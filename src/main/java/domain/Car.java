@@ -2,32 +2,32 @@ package domain;
 
 public class Car implements Comparable<Car> {
 
-  private final String name;
-  private final int MIN_MOVE_NUM = 4;
+    private final String name;
+    private final int MIN_MOVE_NUM = 4;
 
-  private int position = 1;
+    private int position = 1;
 
-  public Car(String name) {
-    this.name = name;
-  }
-
-  public void move(int num) {
-    if (num >= MIN_MOVE_NUM) {
-      position++;
+    public Car(String name) {
+        this.name = name;
     }
-  }
 
-  public int getPosition() {
-    return position;
-  }
+    public void move(int num) {
+        if (num >= MIN_MOVE_NUM) {
+            position++;
+        }
+    }
 
-  public String getName() {
-    return name;
-  }
+    public int getPosition() {
+        return position;
+    }
 
-  @Override
-  public int compareTo(Car o) {
-    return position - o.position;
-  }
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return position - o.position;
+    }
 }
 

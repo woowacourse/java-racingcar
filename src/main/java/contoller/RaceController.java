@@ -10,61 +10,61 @@ import view.OutputView;
 
 public class RaceController {
 
-  private InputView inputView = new InputView();
-  private OutputView outputView = new OutputView();
+    private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
 
-  private <T> T repeat(Supplier<T> inputReader){
-    try {
-      return inputReader.get();
-    } catch (Exception e){
-      outputView.printErrorMessage(e);
-      return repeat(inputReader);
+    private <T> T repeat(Supplier<T> inputReader) {
+        try {
+            return inputReader.get();
+        } catch (Exception e) {
+            outputView.printErrorMessage(e);
+            return repeat(inputReader);
+        }
     }
-  }
 
-  public void run() {
-    List<Car> cars = makeCars();
-    int roundNum = repeat(inputView::readTrialNum);
+    public void run() {
+        List<Car> cars = makeCars();
+        int roundNum = repeat(inputView::readTrialNum);
 
-    startRace(cars, roundNum);
-    pickWinner(cars);
-  }
-
-  private List<Car> makeCars() {
-    List<String> carNames = repeat(inputView::readCarNames);
-    return carNames.stream()
-        .map(Car::new)
-        .collect(Collectors.toList());
-  }
-
-  private void startRace(List<Car> cars, int roundNum) {
-    outputView.printStart(cars);
-    for (int i = 0; i < roundNum; i++) {
-      runRound(cars);
+        startRace(cars, roundNum);
+        pickWinner(cars);
     }
-  }
 
-  private void runRound(List<Car> cars) {
-    for (Car car : cars) {
-      car.move(RandomUtil.getDigit());
+    private List<Car> makeCars() {
+        List<String> carNames = repeat(inputView::readCarNames);
+        return carNames.stream()
+            .map(Car::new)
+            .collect(Collectors.toList());
     }
-    outputView.printCarsStatus(cars);
-  }
 
-  private void pickWinner(List<Car> cars) {
-    int maxPosition = getMaxPosition(cars);
+    private void startRace(List<Car> cars, int roundNum) {
+        outputView.printStart(cars);
+        for (int i = 0; i < roundNum; i++) {
+            runRound(cars);
+        }
+    }
 
-    List<String> winnerNames = cars.stream().sorted()
-        .filter(c -> c.getPosition() == maxPosition)
-        .map(Car::getName)
-        .collect(Collectors.toList());
-    outputView.printWinners(winnerNames);
-  }
+    private void runRound(List<Car> cars) {
+        for (Car car : cars) {
+            car.move(RandomUtil.getDigit());
+        }
+        outputView.printCarsStatus(cars);
+    }
 
-  private int getMaxPosition(List<Car> cars) {
-    return cars.stream()
-        .max(Car::compareTo)
-        .orElseThrow()
-        .getPosition();
-  }
+    private void pickWinner(List<Car> cars) {
+        int maxPosition = getMaxPosition(cars);
+
+        List<String> winnerNames = cars.stream().sorted()
+            .filter(c -> c.getPosition() == maxPosition)
+            .map(Car::getName)
+            .collect(Collectors.toList());
+        outputView.printWinners(winnerNames);
+    }
+
+    private int getMaxPosition(List<Car> cars) {
+        return cars.stream()
+            .max(Car::compareTo)
+            .orElseThrow()
+            .getPosition();
+    }
 }
