@@ -1,3 +1,5 @@
+package cal;
+
 import java.util.Scanner;
 
 public class StringCalculator {
