@@ -4,7 +4,7 @@ public class Car {
     private String name;
     private int position;
 
-    public Car(String name){
+    public Car(String name) {
         this.name = name;
         this.position = 0;
     }
@@ -20,11 +20,11 @@ public class Car {
         }
     }
 
-    public static boolean isMove(int randomNumber){
+    public static boolean isMove(int randomNumber) {
         return randomNumber >= Constant.MOVE_CONDITION;
     }
 
-    public void printCurrentPosition(){
+    public void printCurrentPosition() {
         System.out.print(String.format("%s : ", name));
         for (int i = 1; i <= position; i++) {
             System.out.print("-");
@@ -32,7 +32,11 @@ public class Car {
         System.out.println();
     }
 
-    public int compareToPosition(int pos) {
+    public int updateMaxPosition(int pos) {
         return Math.max(pos, position);
+    }
+
+    public boolean compareToPosition(int maxPosition) {
+        return maxPosition == position;
     }
 }
