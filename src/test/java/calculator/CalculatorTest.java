@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
     Calculator cal;
@@ -36,11 +36,18 @@ public class CalculatorTest {
     }
 
     @Test
-    void 올바른_단일_계산() {
+    void 올바른_단일_계산() throws Exception {
         assertThat(cal.calculate(1,"+",2)).isEqualTo(3);
         assertThat(cal.calculate(3,"-",1)).isEqualTo(2);
         assertThat(cal.calculate(3,"*",2)).isEqualTo(6);
         assertThat(cal.calculate(4,"/",2)).isEqualTo(2);
+    }
+
+    @Test
+    void 잘못된_연산자_계산() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            assertThat(cal.calculate(1,"a", 2)).isEqualTo(3);
+        });
     }
 
     @AfterEach
