@@ -13,19 +13,19 @@ public class Validator {
 
     public boolean validateAll() {
         if (!validateLength()) {
-            System.out.println("validateLength!");
+            System.out.println("validateLength! 다시 입력해주세요!");
             return false;
         }
         if (!validateForm()) {
-            System.out.println("validateForm!");
+            System.out.println("validateForm! 다시 입력해주세요!");
             return false;
         }
         if (!dividedZero()) {
-            System.out.println("dividedZero!");
+            System.out.println("dividedZero! 다시 입력해주세요!");
             return false;
         }
         if(!validateOrderOfNumbers() || !validateOrderOfOperator()) {
-            System.out.println("validateOrderOfNumbers!");
+            System.out.println("validateOrderOfNumbers! 다시 입력해주세요!");
             return false;
         }
         return true;
