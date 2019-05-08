@@ -23,4 +23,6 @@ public class RacingGame {
         //예외
         gameRound = Integer.parseInt(round);
     }
+
+    
 }
