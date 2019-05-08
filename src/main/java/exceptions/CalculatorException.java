@@ -19,4 +19,13 @@ public class CalculatorException {
         return result / number;
     }
 
+    public static int extractNumbersException(String stringNumber) {
+        try{
+            return Integer.parseInt(stringNumber);
+        }catch (Exception e){
+            Calculator.doCalculate();
+        }
+        return -1;
+    }
+
 }

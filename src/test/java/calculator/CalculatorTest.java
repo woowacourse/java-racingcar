@@ -3,7 +3,6 @@ package calculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class CalculatorTest {
 
     @Test
     void innerCalculateTest(){
-        assertThat(cal.innerCalculate(2, 3, "+")).isEqualTo(5);
+        assertThat(Calculator.applyCalculation(2, 3, "+")).isEqualTo(5);
     }
 
 }
