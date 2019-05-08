@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculatorTest {
+    Calculator cal;
+
     @BeforeEach
     void setup() {
-        Calculator cal = new Calculator();
+        cal = new Calculator();
     }
 
     @Test
