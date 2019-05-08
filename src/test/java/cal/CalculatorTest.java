@@ -9,7 +9,7 @@ class CalculatorTest {
 	Calculator cal;
 
 	@BeforeEach
-	void setUp(){
+	void setUp() {
 		cal = new Calculator();
 	}
 
