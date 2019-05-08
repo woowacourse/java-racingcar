@@ -37,4 +37,9 @@ public class CalculatorTest {
     void 나누기Test() {
         assertThat(calc.calculate(new ArrayList<>(Arrays.asList("128 / 4 / 8".split(" "))))).isEqualTo(4);
     }
+
+    @Test
+    void 여러가지Test() {
+        assertThat(calc.calculate(new ArrayList<>(Arrays.asList("1 + 5 / 2 * 5 - 7".split(" "))))).isEqualTo(8);
+    }
 }
