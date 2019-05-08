@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class Car {
     private static int MIN_MOVE_NUMBER = 4;
-    private static int BOUND_NUMBER = 10;
 
     private final String name;
     private int position = 0;
@@ -20,10 +19,16 @@ public class Car {
         return position;
     }
 
-    private int makeRandomNumber() {
-        Random random = new Random();
+    public int getBiggerPosition(int compareNum) {
+       return Math.max(position, compareNum);
+    }
 
-        return random.nextInt(BOUND_NUMBER);
+    public boolean isMaxPosition(int compareNum) {
+        return compareNum == position;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @Override
