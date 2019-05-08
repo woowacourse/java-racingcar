@@ -1,5 +1,6 @@
 package cal;
 
+
 public class Calculator {
 	private static String PLUS = "+";
 	private static String MINUS = "-";
@@ -34,7 +35,7 @@ public class Calculator {
 		}
 
 		if (operator.equals(MINUS)) {
-			minus(number);
+			subtract(number);
 		}
 
 		if (operator.equals(MULTIPLY)) {
@@ -47,15 +48,15 @@ public class Calculator {
 	}
 
 	private void add(int number) {
-		value += number;
+		value = Math.addExact(value, number);
 	}
 
-	private void minus(int number) {
-		value -= number;
+	private void subtract(int number) {
+		value = Math.subtractExact(value, number);
 	}
 
 	private void multiply(int number) {
-		value *= number;
+		value = Math.multiplyExact(value, number);
 	}
 
 	private void devide(int number) {
