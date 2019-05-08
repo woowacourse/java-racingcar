@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class StringCalculator {
+
     int plus(int a, int b) {
         return a + b;
     }
@@ -44,9 +45,53 @@ public class StringCalculator {
         return result;
     }
 
-    public static void main(String[] args) {
+    void isInt(String value) {
+        if (value.matches("\\D")) {
+            throw new IllegalArgumentException("int miss");
+        }
+    }
+
+    void isOperator(String value) {
+        if (!value.matches("[*]|[+]|-|/")) {
+            throw new IllegalArgumentException("operator miss");
+        }
+    }
+
+    void checkLength(int length){
+        if (length % 2 == 0) {
+            throw new IllegalArgumentException("length error");
+        }
+    }
+
+    void check(String[] values) {
+        int n = values.length;
+        checkLength(n);
+
+        for (int i = 0; i < n; i++) {
+            if (i % 2 == 0) {
+                isInt(values[i]);
+            }
+            if (i % 2 == 1) {
+                isOperator(values[i]);
+            }
+        }
+    }
+
+    String inputData() {
         Scanner scanner = new Scanner(System.in);
+        String value = scanner.nextLine();
+        try {
+            String[] values = value.split(" ");
+            check(values);
+            return value;
+        } catch (IllegalArgumentException e) {
+            return inputData();
+        }
+    }
+
+    public static void main(String[] args) {
         StringCalculator stringCalculator = new StringCalculator();
-        System.out.println(stringCalculator.calculate(scanner.nextLine()));
+        String value = stringCalculator.inputData();
+        System.out.println(stringCalculator.calculate(value));
     }
 }
