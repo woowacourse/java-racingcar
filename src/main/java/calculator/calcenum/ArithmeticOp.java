@@ -1,4 +1,4 @@
-package calculator;
+package calculator.calcenum;
 
 public enum ArithmeticOp {
 

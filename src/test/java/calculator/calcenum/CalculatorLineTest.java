@@ -1,5 +1,6 @@
-package calculator;
+package calculator.calcenum;
 
+import calculator.calcenum.CalculatorLine;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
