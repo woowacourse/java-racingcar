@@ -8,4 +8,7 @@ public class StringParser {
         return scanner.nextLine();
     }
 
+    String[] split(String s) {
+        return s.split(" ");
+    }
 }
