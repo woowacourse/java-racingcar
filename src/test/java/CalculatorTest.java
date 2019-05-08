@@ -44,9 +44,16 @@ public class CalculatorTest {
     void 여러개의연산() {
         String[] array = "3 + 2 * 4 / 10 * 3".split(" ");
         assertThat(cal.calculateMultiExpression(array)).isEqualTo(6);
-        array = "3 * 3 * 4 / 4 + 4".split(" ");
-        assertThat(cal.calculateMultiExpression(array)).isEqualTo(13);
+        array = "3 * 3".split(" ");
+        assertThat(cal.calculateMultiExpression(array)).isEqualTo(9);
+    }
 
+    @Test
+    void 숫자연산자혼합인지확인() {
+        String[] array = "3 + 2 * 4".split(" ");
+        assertThat(InputHandler.canCalculate(array)).isEqualTo(true);
+        array = "3 / ".split(" ");
+        assertThat(InputHandler.canCalculate(array)).isEqualTo(false);
     }
 
 }
