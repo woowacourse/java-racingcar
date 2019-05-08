@@ -1,13 +1,15 @@
 package calculator;
 
-//import unitTestExercise.Calculator;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class StringCalculator {
     private static final Scanner SCANNER = new Scanner(System.in);
+    private static final String DELIMITER = " ";
+    private static final String STRING_INPUT_MESSAGE
+            = "사칙연산 공식을 입력해 주십시오 :";
+
     private Map<String, Operation> operationMap = new HashMap<>();
 
     public StringCalculator() {
@@ -17,12 +19,17 @@ public class StringCalculator {
         operationMap.put("/", new Divide());
     }
 
-    private static String inputString() {
-        return SCANNER.nextLine();
+    public void run(){
+        String formula = inputFormula();
+        String[] inputData = formula.split(DELIMITER);
+        int result = calculate(inputData);
+
+        System.out.println(result);
     }
 
-    public static String[] splitString(String str){
-        return str.split(" ");
+    private String inputFormula() {
+        System.out.println(STRING_INPUT_MESSAGE);
+        return SCANNER.nextLine();
     }
 
     public int calculate(String[] formula) {
@@ -38,10 +45,6 @@ public class StringCalculator {
 
     public static void main(String[] args) {
         StringCalculator calc = new StringCalculator();
-        System.out.println("사칙연산 공식을 입력해 주십시오 :");
-        String raw = StringCalculator.inputString();
-        String[] inputData = StringCalculator.splitString(raw);
-        int result = calc.calculate(inputData);
-        System.out.println(result);
+        calc.run();
     }
 }

@@ -14,14 +14,6 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 스플릿() {
-        String raw = "2 + 5";
-        String[] strings = {"2", "+", "5"};
-        String[] result = stringCalculator.splitString(raw);
-        assertThat(result).isEqualTo(strings);
-    }
-
-    @Test
     void 계산() {
         int result;
 
@@ -38,8 +30,8 @@ public class StringCalculatorTest {
         assertThat(result).isEqualTo(0);
     }
 
-    int strCalc(String raw) {
-        String[] arr = StringCalculator.splitString(raw);
+    int strCalc(String formula) {
+        String[] arr = formula.split(" ");
         return stringCalculator.calculate(arr);
     }
 }
