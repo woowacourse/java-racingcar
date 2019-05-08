@@ -24,5 +24,8 @@ public class RacingGame {
         gameRound = Integer.parseInt(round);
     }
 
-    
+    private int randomNumber() {
+        return (int) (Math.random() * Constant.RANDOM_NUMBER_RANGE);
+    }
+
 }
