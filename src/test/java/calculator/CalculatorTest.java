@@ -1,3 +1,4 @@
+package calculator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ public class CalculatorTest {
 
     @Test
     void 곱셈() {
-        assertThat(cal.mult(3, 1)).isEqualTo(3);
+        assertThat(cal.multply(3, 1)).isEqualTo(3);
     }
 
     @Test
@@ -44,16 +45,21 @@ public class CalculatorTest {
     void 여러개의연산() {
         String[] array = "3 + 2 * 4 / 10 * 3".split(" ");
         assertThat(cal.calculateMultiExpression(array)).isEqualTo(6);
-        array = "3 * 3".split(" ");
-        assertThat(cal.calculateMultiExpression(array)).isEqualTo(9);
     }
+
+
 
     @Test
     void 숫자연산자혼합인지확인() {
         String[] array = "3 + 2 * 4".split(" ");
         assertThat(InputHandler.canCalculate(array)).isEqualTo(true);
-        array = "3 / ".split(" ");
+    }
+
+    @Test
+    void 연산자로끝나는식() {
+        String[] array = "3 + 2 *".split(" ");
         assertThat(InputHandler.canCalculate(array)).isEqualTo(false);
     }
+
 
 }

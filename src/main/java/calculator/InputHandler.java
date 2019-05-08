@@ -1,6 +1,6 @@
-import java.util.ArrayList;
+package calculator;
+
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class InputHandler {
@@ -13,9 +13,6 @@ public class InputHandler {
         return input;
     }
 
-    public static String[] splitStringToArray(String input) {
-        return input.split(" ");
-    }
 
     public static boolean canCalculate(String[] inputs) {
         boolean isOperator = false;

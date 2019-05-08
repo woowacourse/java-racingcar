@@ -1,6 +1,8 @@
+package calculator;
+
 public class Calculator {
 
-    public int mult(int num1, int num2) {
+    public int multply(int num1, int num2) {
         return num1 * num2;
     }
 
@@ -26,7 +28,7 @@ public class Calculator {
         if (operator.equals("-"))
             return subtract(leftOperand, rightOperand);
         if (operator.equals("*"))
-            return mult(leftOperand, rightOperand);
+            return multply(leftOperand, rightOperand);
         return divide(leftOperand, rightOperand);
     }
 
