@@ -11,7 +11,7 @@ public class StringCalculator {
         for (int i = 1; i < values.length; i++) {
             if (isInteger(values[i])) {
                 int nextValue = Integer.parseInt(values[i]);
-                result = calculateWithOperator(result, nextValue, operator);
+                result = unitCalculate(result, operator, nextValue);
                 continue;
             }
             operator = values[i];
@@ -33,7 +33,7 @@ public class StringCalculator {
         }
     }
 
-    private int calculateWithOperator(int result, int nextValue, String operator) {
+    private int unitCalculate(int result, String operator, int nextValue) {
         if (operator.equals("+")) {
             return (result + nextValue);
         }
