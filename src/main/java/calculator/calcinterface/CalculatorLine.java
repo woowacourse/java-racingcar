@@ -2,13 +2,12 @@ package calculator.calcinterface;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
-public class CalculatorWithInterface {
+public class CalculatorLine {
     private Operation operation;
     private Map<String, Operation> operationMap;
 
-    public CalculatorWithInterface() {
+    public CalculatorLine() {
         operationMap = new HashMap<>();
         operationMap.put("+", new Plus());
     }

@@ -5,19 +5,21 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CalculatorWithInterfaceTest {
-    private CalculatorWithInterface calculatorWithInterface;
+class CalculatorLineTest {
+    private CalculatorLine calculatorLine;
+    private UserInterfaceView userInterfaceView;
 
     @BeforeEach
     void setUp() {
-        calculatorWithInterface = new CalculatorWithInterface();
+        calculatorLine = new CalculatorLine();
+        userInterfaceView = new UserInterfaceView();
     }
 
     @Test
     void 덧셈() {
         assertThat(5).isEqualTo(
-                calculatorWithInterface.calculateFormula(
-                        calculatorWithInterface.splitFormula("2 + 3"))
+                calculatorLine.calculateFormula(
+                        userInterfaceView.splitFormula("2 + 3"))
         );
     }
 }
