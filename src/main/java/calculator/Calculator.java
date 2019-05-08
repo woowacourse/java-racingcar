@@ -51,8 +51,7 @@ public class Calculator {
         if (symbol.equals("/")) return CalculatorException.divisionException(result, number);
         if (symbol.equals("*")) return result*number;
 
-        doCalculate();
-        return -1;
+        return CalculatorException.applyCalculationException();
     }
 
 

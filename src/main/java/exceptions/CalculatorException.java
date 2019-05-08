@@ -14,6 +14,7 @@ public class CalculatorException {
 
     public static int divisionException(int result, int number){
         if (number == 0) {
+            System.out.println("0이 분모에 있습니다.");
             Calculator.doCalculate();
         }
         return result / number;
@@ -23,8 +24,15 @@ public class CalculatorException {
         try{
             return Integer.parseInt(stringNumber);
         }catch (Exception e){
+            System.out.println("잘못된 입력값입니다! 숫자가 아닙니다!");
             Calculator.doCalculate();
         }
+        return -1;
+    }
+
+    public static int applyCalculationException(){
+        System.out.println("잘못된 입력값입니다. 기호가 아닙니다!");
+        Calculator.doCalculate();
         return -1;
     }
 
