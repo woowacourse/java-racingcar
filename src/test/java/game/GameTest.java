@@ -28,13 +28,13 @@ public class GameTest {
 
     @Test
     void 자동차_이름_길이_5이하_확인() {
-        boolean result = game.checkCarNameLength("pobi");
+        boolean result = game.checkCarNameLength(true, "pobi");
         assertThat(result).isEqualTo(true);
     }
 
     @Test
     void 자동차_이름_길이_5초과_확인() {
-        boolean result = game.checkCarNameLength("pobilove");
+        boolean result = game.checkCarNameLength(true,"pobilove");
         assertThat(result).isEqualTo(false);
     }
 
