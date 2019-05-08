@@ -3,9 +3,14 @@ package cal;
 import java.util.Scanner;
 
 public class TextCalculator {
-    private static double result = 0;
-    private static TextCalculator textCalculator;
-    private static Scanner scanner = new Scanner(System.in);
+    private double result;
+    private Scanner scanner = new Scanner(System.in);
+
+    public void run(){
+        String inputText = scanner.nextLine();
+        TextCalculator textCalculator = new TextCalculator();
+        textCalculator.calculate(inputText);
+    }
 
     public double calculate(String inputText) {
         String tokens[] = inputText.trim().split(" ");
@@ -47,20 +52,4 @@ public class TextCalculator {
             throw new IllegalArgumentException("적절한 입력이 아닙니다.");
         }
     }
-
-    public static void main(String[] args) {
-        try {
-            run();
-        } catch (Exception e) {
-            e.printStackTrace();
-            run();
-        }
-    }
-
-    private static void run(){
-        String inputText = scanner.nextLine();
-        textCalculator = new TextCalculator();
-        textCalculator.calculate(inputText);
-    }
-
 }
