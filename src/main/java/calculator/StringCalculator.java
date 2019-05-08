@@ -1,32 +1,22 @@
 package calculator;
 
-import java.util.Scanner;
-
 public class StringCalculator {
     private static final String BLANK = " ";
-    private int leftValue;
-    private int rightValue;
-    private String operator = null;
 
-    public int calculate (String input) {
+    public int calculate(String input) {
         String[] values = splitWithBlank(input);
+        String operator = null;
+        int result = Integer.parseInt(values[0]);
 
-        for (String value : values) {
-            if (isInteger(value)) {
-                if (operator == null) {
-                    leftValue = Integer.parseInt(value);
-                } else {
-                    rightValue = Integer.parseInt(value);
-                    if (operator.equals("+")) {
-                        return (leftValue + rightValue);
-                    }
-                }
-            } else {
-                operator = value;
+        for (int i = 1; i < values.length; i++) {
+            if (isInteger(values[i])) {
+                int nextValue = Integer.parseInt(values[i]);
+                result = calculateWithOperator(result, nextValue, operator);
+                continue;
             }
+            operator = values[i];
         }
-
-        return -1;
+        return result;
     }
 
     private String[] splitWithBlank(String value) {
@@ -41,6 +31,26 @@ public class StringCalculator {
             // e.printStackTrace();
             return false;
         }
+    }
+
+    private int calculateWithOperator(int result, int nextValue, String operator) {
+        if (operator.equals("+")) {
+            return (result + nextValue);
+        }
+
+        if (operator.equals("-")) {
+            return (result - nextValue);
+        }
+
+        if (operator.equals("*")) {
+            return (result * nextValue);
+        }
+
+        if (operator.equals("/")) {
+            return (result / nextValue);
+        }
+
+        throw new RuntimeException("잘못된 operator를 입력");
     }
 
     public static void main(String[] args) {
