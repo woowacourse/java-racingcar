@@ -2,20 +2,19 @@ package calculator;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class StringCalculator {
     List<String> getSplit(String inputString) {
         List<String> row = Arrays.stream(inputString.split(" ")).collect(Collectors.toList());
-        
+
         if (row.size() == 0) {
             throw new IllegalArgumentException("데이터가 잘못되었습니다!");
         }
         return row;
     }
 
-    int calculate(String inputString) {
+    int calculateAll(String inputString) {
         int result = 0;
         String operator = null;
         List<String> calculationFormula = getSplit(inputString);
@@ -53,6 +52,6 @@ public class StringCalculator {
         if (operator.equals("/")) {
             return previousResult / number;
         }
-        return previousResult;
+        throw new IllegalArgumentException("잘못된 형식의 연산자입니다!");
     }
 }

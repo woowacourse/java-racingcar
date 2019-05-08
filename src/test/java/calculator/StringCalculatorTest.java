@@ -22,26 +22,26 @@ public class StringCalculatorTest {
 
     @Test
     void 더하기() {
-        assertThat(calculator.calculate("2 + 4")).isEqualTo(6);
+        assertThat(calculator.calculateAll("2 + 4")).isEqualTo(6);
     }
 
     @Test
     void 빼기() {
-        assertThat(calculator.calculate("2 - 4")).isEqualTo(-2);
+        assertThat(calculator.calculateAll("2 - 4")).isEqualTo(-2);
     }
 
     @Test
     void 곱하기() {
-        assertThat(calculator.calculate("2 * 4")).isEqualTo(8);
+        assertThat(calculator.calculateAll("2 * 4")).isEqualTo(8);
     }
 
     @Test
     void 나누기() {
-        assertThat(calculator.calculate("2 / 4")).isEqualTo(0);
+        assertThat(calculator.calculateAll("2 / 4")).isEqualTo(0);
     }
 
     @Test
     void 더하고_빼고_곱하고_나누고() {
-        assertThat(calculator.calculate("2 + 4 * 3 / 2 - 7")).isEqualTo(2);
+        assertThat(calculator.calculateAll("2 + 4 * 3 / 2 - 7")).isEqualTo(2);
     }
 }
