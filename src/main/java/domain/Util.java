@@ -2,9 +2,8 @@ package domain;
 
 import java.util.Random;
 
-public class RandomNumber {
-
+public class Util {
     public static int getRandomNumber(){
-        return new Random().nextInt(10);
+        return new Random().nextInt(Const.RANGE_RAN_NUM);
     }
 }
