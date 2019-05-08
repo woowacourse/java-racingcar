@@ -28,4 +28,15 @@ public class CalculatorTest {
         assertThat(cal.extractNumbers(testList)).isEqualTo(checkList);
     }
 
+    @Test
+    void extractSymbolsTest() {
+        List<String> testList = new ArrayList<>();
+        testList.add("2");
+        testList.add("+");
+        testList.add("3");
+        List<String> checkList = new ArrayList<>();
+        checkList.add("+");
+        assertThat(cal.extractSymbols(testList)).isEqualTo(checkList);
+    }
+
 }

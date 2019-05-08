@@ -1,6 +1,7 @@
 package Calculator;
 
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +30,14 @@ public class Calculator {
             listOfNumbers.add(number);
         }
         return listOfNumbers;
+    }
+
+    public List<String> extractSymbols(List<String> symbols){
+        List<String> listOfSymbols = new ArrayList<>();
+        for(int i=1; i<symbols.size(); i += 2){
+            listOfSymbols.add(symbols.get(i));
+        }
+        return listOfSymbols;
     }
 
 
