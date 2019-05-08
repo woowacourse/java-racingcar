@@ -64,6 +64,14 @@ public class CalculatorTest {
         });
     }
 
+    @Test
+    void 잘못된_숫자로_계산() {
+        assertThrows(NumberFormatException.class, () -> {
+            String[] inputs = {"a", "+", "3", "*", "4", "/", "2"};
+            assertThat(cal.calculateAll(inputs)).isEqualTo(10);
+        });
+    }
+
     @AfterEach
     void tearDown() {
     }
