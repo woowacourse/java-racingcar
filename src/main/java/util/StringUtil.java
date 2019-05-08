@@ -11,9 +11,6 @@ public class StringUtil {
     }
 
     public static boolean isCarNameLength(String carName) {
-        if (carName.length() > CAR_NAME_MAX) {
-            return false;
-        }
-        return true;
+        return carName.length() <= CAR_NAME_MAX;
     }
 }

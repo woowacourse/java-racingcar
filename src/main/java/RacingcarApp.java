@@ -1,11 +1,24 @@
-import util.StringUtil;
 import view.InputView;
 
 import java.util.List;
 
+import static util.StringUtil.*;
+
 public class RacingcarApp {
     public static void main(String[] args) {
+        List<String> carNames = getCarNames();
+
+    }
+
+    private static List<String> getCarNames() {
         String str = InputView.inputCarNames();
-        List<String> list = StringUtil.parseStringByComma(str);
+        List<String> list = parseStringByComma(str);
+
+        for (String carName : list) {
+            if(!isCarNameLength(carName)) {
+                return getCarNames();
+            }
+        }
+        return list;
     }
 }
