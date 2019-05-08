@@ -55,7 +55,7 @@ public class StrCalculator {
     }
 
     public boolean isOddPositionMatch(String[] values) {
-        for (int i = 1; i < values.length; i += 2){
+        for (int i = 1; i < values.length; i += 2) {
             if (!values[i].matches("[\\+\\-\\*\\/]")) {
                 return false;
             }

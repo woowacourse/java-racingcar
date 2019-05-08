@@ -1,17 +1,40 @@
+/*
+ * @(#)Car.java
+ *
+ * v 1.0.0
+ *
+ * 2019.05.08
+ *
+ * Copyright (c) 2019 MrKwon, imkimheejoo
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
 package racing;
 
+/**
+ * 레이싱 게임의 자동차 한 대를 위한 클래스
+ *
+ * @author imkimheejoo
+ * @author kwonmc
+ * @version 1.0.0
+ * @see Comparable
+ */
 public class Car implements Comparable<Car> {
     private static final String NAME_EXCEPTION_MESSAGE = "양식에 맞는 이름을 입력해주세요 !";
 
-    private String name;
+    private static final int GO_FORWARD_CRITERIA = 4;
+
+    private final String name;
     private Integer status = 1;
 
-    Car(String name){
+    Car(String name) {
         if (!name.matches("[0-9a-zA-Z]{1,5}")) {
             throw new IllegalArgumentException(NAME_EXCEPTION_MESSAGE);
         }
         this.name = name;
     }
+
     Car(String name, Integer status) {
         this.name = name;
         this.status = status;
@@ -25,9 +48,9 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    void moveOneTime(){
+    void moveOneTime() {
         int rand = generateRandomNumber();
-        if(goOrStop(rand)){
+        if (goOrStop(rand)) {
             status++;
         }
     }
@@ -41,16 +64,16 @@ public class Car implements Comparable<Car> {
         return (int) (Math.random() * 10);
     }
 
-    boolean goOrStop(int randomNum){
-        return randomNum >= 4;
+    boolean goOrStop(int randomNum) {
+        return randomNum >= GO_FORWARD_CRITERIA;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.name);
         sb.append(" : ");
-        for(int i = 0; i < this.status; i++){
+        for (int i = 0; i < this.status; i++) {
             sb.append('-');
         }
         return sb.toString();

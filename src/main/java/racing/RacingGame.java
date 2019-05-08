@@ -1,3 +1,15 @@
+/*
+ * @(#)RacingGame.java
+ *
+ * v 1.0.0
+ *
+ * 2019.05.08
+ *
+ * Copyright (c) 2019 MrKwon, imkimheejoo
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
 package racing;
 
 import java.util.ArrayList;
@@ -5,6 +17,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * 레이싱 게임 한판 진행을 위한 클래스
+ *
+ * @author imkimheejoo
+ * @author MrKwon
+ * @version 1.0.0
+ * @see Car
+ */
 class RacingGame {
     private static final String INPUT_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분.";
     private static final String INPUT_TIMES_MESSAGE = "시도할 횟수는 몇회인가요?";
@@ -16,6 +36,7 @@ class RacingGame {
     private Scanner sc = new Scanner(System.in);
     private int totalTimes;
 
+    // 단위테스트용
     void setCarList(ArrayList<Car> carList) {
         this.carList = carList;
     }
@@ -28,7 +49,7 @@ class RacingGame {
                 Car car = new Car(carName);
                 carList.add(car);
             }
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             inputCarNames();
         }
@@ -41,7 +62,7 @@ class RacingGame {
             if (totalTimes <= 0) {
                 throw new IllegalArgumentException(INPUT_TIMES_EXCEPTION);
             }
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             inputTotalTimes();
         }
@@ -78,7 +99,7 @@ class RacingGame {
 
     List<String> getWinnerList() {
         List<String> result = new ArrayList<>();
-        Integer maxStatus  = Collections.max(carList).getStatus();
+        Integer maxStatus = Collections.max(carList).getStatus();
         for (Car car : carList) {
             if (maxStatus.equals(car.getStatus())) {
                 result.add(car.getName());
