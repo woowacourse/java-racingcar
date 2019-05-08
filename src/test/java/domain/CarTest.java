@@ -6,9 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
     @Test
-    void 전진() {
-        Car car = new Car("pobi");
-        car.move(4);
-//        assertThat(car.getPosition()).isEqualTo(1);
+    void isMoveTest() {
+        assertThat(Car.isMove(4)).isEqualTo(true);
+        assertThat(Car.isMove(2)).isEqualTo(false);
     }
 }

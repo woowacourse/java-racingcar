@@ -9,9 +9,13 @@ public class Car {
     }
 
     public void move(int randomNumber) {
-        if (randomNumber >= Constant.MOVE_CONDITION) {
+        if (isMove(randomNumber)) {
             position++;
         }
+    }
+
+    public static boolean isMove(int randomNumber){
+        return randomNumber >= Constant.MOVE_CONDITION;
     }
 
     public void printCurrentPosition(){

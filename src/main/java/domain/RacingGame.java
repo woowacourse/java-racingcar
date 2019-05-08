@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class RacingGame {
-    public static Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
     private ArrayList<String> carNames;
     private int gameRound;
     private ArrayList<Car> carList;
@@ -21,7 +21,7 @@ public class RacingGame {
 
     private void inputRound() {
         String round = input();
-        //예외
+        //예외처리
         gameRound = Integer.parseInt(round);
     }
 
@@ -33,17 +33,22 @@ public class RacingGame {
 
     private void raceByRound() {
         for (Car car : carList) {
-            car.move(randomNumber());
+            car.move(RandomUtil.randomNumber());
         }
     }
 
-    public void printPositionByRound() {
+    private void printPositionByRound() {
         for (Car car : carList) {
             car.printCurrentPosition();
         }
     }
 
-    private int randomNumber() {
-        return (int) (Math.random() * Constant.RANDOM_NUMBER_RANGE);
+    private void race() {
+        for (int i = 1; i <= gameRound; i++) {
+            raceByRound();
+            printPositionByRound();
+        }
     }
+
+
 }

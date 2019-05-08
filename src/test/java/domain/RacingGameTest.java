@@ -10,13 +10,4 @@ public class RacingGameTest {
     void setUp() {
         game = new RacingGame();
     }
-
-    @Test
-    void 이름입력() {
-    }
-
-    @Test
-    void 위치출력() {
-        game.printPositionByRound();
-    }
 }
