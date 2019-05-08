@@ -3,8 +3,10 @@ package cal;
 import java.util.Scanner;
 
 public class InputView {
-	public String inputExpression(){
-		Scanner scan = new Scanner(System.in);
-		return scan.nextLine();
+	private static final Scanner scanner = new Scanner(System.in);
+
+	public static String inputExpression() {
+		System.out.println("식을 입력하세요 : ");
+		return scanner.nextLine();
 	}
 }
