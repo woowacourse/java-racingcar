@@ -5,8 +5,9 @@ import racingcar.Car;
 import java.util.*;
 
 public class CarException {
-    public static List<String> askCarNamesException(List<String> names){
+    public static List<String> askCarNamesException(){
         try {
+            List<String> names = askAndReceiveCarNames();
             if (isWhiteSpaceOnly(names) || isDuplicate(names) || isOverLimit(names)){
                 throw new IllegalArgumentException();
             }
@@ -14,6 +15,14 @@ public class CarException {
         } catch(Exception e) {
             return Car.askCarNames();
         }
+    }
+
+    public static List<String> askAndReceiveCarNames(){
+        Scanner scanner = new Scanner(System.in);
+        String names = scanner.nextLine();
+        names = names.replaceAll("\\s+","");
+        List<String> nameList = new ArrayList<>(Arrays.asList(names.split(",")));
+        return nameList;
     }
 
     public static boolean isWhiteSpaceOnly(List<String> names) {

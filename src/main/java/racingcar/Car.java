@@ -15,11 +15,7 @@ public class Car {
     }
 
     public static List<String> askCarNames(){
-        Scanner scanner = new Scanner(System.in);
-        String names = scanner.nextLine();
-        names = names.replaceAll("\\s+","");
-        List<String> nameList = new ArrayList<>(Arrays.asList(names.split(",")));
-        return CarException.askCarNamesException(nameList);
+        return CarException.askCarNamesException();
     }
 
     public static int askTotalTurns() {
