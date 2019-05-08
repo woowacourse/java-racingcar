@@ -39,4 +39,8 @@ public class Car {
     public boolean compareToPosition(int maxPosition) {
         return maxPosition == position;
     }
+
+    public void appendWinnerName(String winnerNames){
+        winnerNames += (name + ", ");
+    }
 }

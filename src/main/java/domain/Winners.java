@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class Winners {
     private int maxPosition;
-    private ArrayList<Car> winners;
+    private ArrayList<Car> winnerList;
 
     public Winners() {
         maxPosition = 0;
     }
 
     public void determineWinners(ArrayList<Car> cars) {
-        //maxPosition
-        //position 비교
+        int maxPosition = getMaxPosistion(cars);
+        searchWinners(maxPosition, cars);
     }
 
     private int getMaxPosistion(ArrayList<Car> cars) {
@@ -29,12 +29,19 @@ public class Winners {
 
         for (Car car : cars) {
             if (car.compareToPosition(maxPosition)) {
-                winners.add(car);
+                winnerList.add(car);
             }
         }
     }
 
     public void printWinners() {
-        //
+        String winnerNames = "";
+        String message;
+
+        for (Car winner : winnerList) {
+            winner.appendWinnerName(winnerNames);
+        }
+        message = winnerNames.substring(0, winnerNames.length() - 1);
+        System.out.format("%s 이(가) 최종 우승했습니다.\n", message);
     }
 }
