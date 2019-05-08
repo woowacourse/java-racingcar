@@ -18,7 +18,18 @@ public class CarRacingGame {
         return nameList;
     }
 
+    private static int getTryNum() {
+        String input = InputView.inputTryNum();
+
+        if (!isNumberString(input)) {
+            System.out.println("숫자로 입력해주세요.");
+            return getTryNum();
+        }
+        return Integer.parseInt(input);
+    }
+
     public static void main(String[] args) {
         getCarNames();
+        getTryNum();
     }
 }

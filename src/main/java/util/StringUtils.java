@@ -2,6 +2,7 @@ package util;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.MissingFormatArgumentException;
 
 public class StringUtils {
     private static int CAR_NAME_MAX = 5;
@@ -10,10 +11,16 @@ public class StringUtils {
         return Arrays.asList(string.split(","));
     }
 
-    public static boolean isCarNameLength(String strings) {
-        if (strings.length() > CAR_NAME_MAX) {
+    public static boolean isCarNameLength(String string) {
+        return string.length() <= CAR_NAME_MAX;
+    }
+
+    public static boolean isNumberString(String string) {
+        try {
+            Integer.parseInt(string);
+            return true;
+        } catch (MissingFormatArgumentException e) {
             return false;
         }
-        return true;
     }
 }
