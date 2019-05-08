@@ -23,7 +23,8 @@ public class Calculator {
     }
 
     public static double calculateTokens(ArrayList<String> tokens) {
-        return calculate(tokens, Double.parseDouble(tokens.remove(0)));
+        tokens.add(0, "+");
+        return calculate(tokens, 0);
     }
 
     private static double calculate(ArrayList<String> tokens, double acc) {
