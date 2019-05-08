@@ -40,6 +40,30 @@ public class Calculator {
         return listOfSymbols;
     }
 
+    public int calculate(List<Integer>listOfNumbers, List<String>listOfSymbols) {
+        int result = listOfNumbers.get(0);
+        for (int i=0; i<listOfSymbols.size(); i++) {
+            result = innerCalculate(result, listOfNumbers.get(i+1), listOfSymbols.get(i));
+        }
+        return result;
+    }
+
+    public int innerCalculate(int result, int number, String symbol) {
+        if (symbol.equals("+")) {
+            return result + number;
+        }
+        if (symbol.equals("-")) {
+            return result - number;
+        }
+        if (symbol.equals("/")) {
+            return result/number;
+        }
+        if (symbol.equals("*")) {
+            return result*number;
+        }
+        return -1;
+    }
+
 
 
 

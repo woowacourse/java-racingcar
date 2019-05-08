@@ -39,4 +39,9 @@ public class CalculatorTest {
         assertThat(cal.extractSymbols(testList)).isEqualTo(checkList);
     }
 
+    @Test
+    void innerCalculateTest(){
+        assertThat(cal.innerCalculate(2, 3, "+")).isEqualTo(5);
+    }
+
 }
