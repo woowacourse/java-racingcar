@@ -15,7 +15,7 @@ public class CarTest {
 
     @Test
     void judgeMoveFromRandomNum() {
-        assertThat(Car.judgeMove(4)).isEqualTo("Go");
-        assertThat(Car.judgeMove(3)).isEqualTo("Stop");
+        assertThat(car.judgeMove(4)).isEqualTo("Go");
+        assertThat(car.judgeMove(3)).isEqualTo("Stop");
     }
 }

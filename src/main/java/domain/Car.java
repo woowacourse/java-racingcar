@@ -25,7 +25,7 @@ public class Car {
 
     public int getRandomNumber() {
         Random random = new Random();
-        return random.nextInt(BOUND_NUMBER)
+        return random.nextInt(BOUND_NUMBER);
     }
 
     public String judgeMove(int number) {
