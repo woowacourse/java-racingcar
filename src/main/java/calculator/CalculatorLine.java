@@ -1,4 +1,4 @@
-package junit;
+package calculator;
 
 import java.util.HashMap;
 import java.util.Scanner;

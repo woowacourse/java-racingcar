@@ -1,4 +1,4 @@
-package junit;
+package calculator;
 
 public enum ArithmeticOp {
 
