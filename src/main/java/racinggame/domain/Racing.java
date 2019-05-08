@@ -20,13 +20,20 @@ public class Racing {
         return cars;
     }
 
-    public void startLeague(List<Car> cars, int totalTrial) {
+    public void startLeague(LeagueHistory leagueHistory, List<Car> cars, int totalTrial) {
         for (int trial = 1; trial <= totalTrial; trial++) {
-
+            randomMove(cars);
+            leagueHistory.record(trial, new TrialHistory(cars));
         }
     }
 
-    int generateRandomNumber() {
+    private void randomMove(List<Car> cars) {
+        for (Car car : cars) {
+            car.run(generateRandomNumber());
+        }
+    }
+
+    private int generateRandomNumber() {
         Random random = new Random();
 
         return random.nextInt(RANDOM_BOUND);
@@ -36,7 +43,8 @@ public class Racing {
         Racing racing = new Racing();
         List<Car> cars = racing.initializeCars();
         int totalTrial = InputView.getTrial();
-
-        racing.startLeague(cars, totalTrial);
+        LeagueHistory leagueHistory = new LeagueHistory();
+        racing.startLeague(leagueHistory, cars, totalTrial);
+        leagueHistory.showHistory();
     }
 }
