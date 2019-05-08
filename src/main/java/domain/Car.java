@@ -1,7 +1,10 @@
 package domain;
 
+import java.util.Random;
+
 public class Car {
     private static int MIN_MOVE_NUMBER = 4;
+    private static int BOUND_NUMBER = 10;
 
     private final String name;
     private int position = 0;
@@ -18,4 +21,12 @@ public class Car {
     }
 
     
+
+    private int makeRandomNumber() {
+        Random random = new Random();
+
+        return random.nextInt(BOUND_NUMBER);
+    }
+
+
 }
