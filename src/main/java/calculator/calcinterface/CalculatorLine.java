@@ -10,6 +10,9 @@ public class CalculatorLine {
     public CalculatorLine() {
         operationMap = new HashMap<>();
         operationMap.put("+", new Plus());
+        operationMap.put("-", new Minus());
+        operationMap.put("*", new Multiply());
+        operationMap.put("/", new Divide());
     }
 
     public int calculateFormula(String[] formula) {
