@@ -1,7 +1,7 @@
 package calculator;
 
 
-import exceptions.CalculatorException;
+import exceptionsCalculator.CalculatorException;
 
 import java.util.ArrayList;
 import java.util.Arrays;

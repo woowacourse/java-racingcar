@@ -1,4 +1,4 @@
-package exceptions;
+package exceptionsCalculator;
 
 import calculator.Calculator;
 
