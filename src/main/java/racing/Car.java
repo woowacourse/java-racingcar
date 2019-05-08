@@ -1,11 +1,23 @@
 package racing;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private String name;
-    private int status = 0;
+    private Integer status = 0;
 
     public Car(String name){
         this.name=name;
+    }
+    public Car(String name,Integer status){
+        this.name = name;
+        this.status = status;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void moveOneTime(){
@@ -13,6 +25,11 @@ public class Car {
         if(goOrStop(rand)){
             status++;
         }
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return this.status.compareTo(o.status);
     }
 
     private int generateRandomNumber() {
@@ -23,9 +40,12 @@ public class Car {
         return randomNum >= 4;
     }
 
+    @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < status; i++){
+        sb.append(this.name);
+        sb.append(" : ");
+        for(int i = 0; i < this.status; i++){
             sb.append('-');
         }
         return sb.toString();
