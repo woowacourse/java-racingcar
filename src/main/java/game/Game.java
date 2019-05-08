@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Game {
-    List<Car> carList = new ArrayList<>();
+    // List<Car> carList = new ArrayList<>();
 
     String inputCarNames() {
         Scanner sc = new Scanner(System.in);
@@ -36,10 +36,14 @@ public class Game {
         return carName.length() <= 5 && isRightLength;
     }
 
-    void createCarObject(String[] carNames) {
+    List<Car> createCarObject(String[] carNames) {
+        List<Car> carList = new ArrayList<>();
+
         for (String carName : carNames) {
             carList.add(new Car(carName));
         }
+
+        return carList;
     }
 
     String[] carNameGenerator() {
@@ -66,9 +70,11 @@ public class Game {
         return (int) (Math.random() * 9);
     }
 
-    void checkStopOrMove(Car car, int random) {
-        if (random >= 4) {
-            car.move();
+    void checkStopOrMove(List<Car> carList) {
+        for (Car car : carList) {
+            car.move(randomValueGenerator());
         }
     }
+
+
 }

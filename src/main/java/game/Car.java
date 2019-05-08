@@ -12,7 +12,9 @@ public class Car {
         return this.name;
     }
 
-    public void move() {
-        this.position++;
+    public void move(int randomValue) {
+        if (randomValue >= 4) {
+            this.position++;     
+        }
     }
 }
