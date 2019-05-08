@@ -50,4 +50,21 @@ public class CarException {
         }
         return false;
     }
+
+    public static int askTotalTurnsException() {
+        try {
+            int userInput = askAndReceiveTurns();
+            if (userInput <= 0) {throw new IllegalArgumentException();}
+            return userInput;
+        }catch(Exception e) {
+            return askTotalTurnsException();
+        }
+    }
+
+    public static int askAndReceiveTurns() {
+        System.out.println("시도할 횟수는 몇회인가요?: ");
+        Scanner reader = new Scanner(System.in);
+        int userInput = reader.nextInt();
+        return userInput;
+    }
 }

@@ -22,4 +22,8 @@ public class Car {
         return CarException.askCarNamesException(nameList);
     }
 
+    public static int askTotalTurns() {
+        return CarException.askTotalTurnsException();
+    }
+
 }

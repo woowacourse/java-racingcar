@@ -32,4 +32,5 @@ public class CarExceptionTest {
         assertThat(CarException.isDuplicate(nameList)).isEqualTo(true);
     }
 
+
 }
