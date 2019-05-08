@@ -15,8 +15,5 @@ public enum ArithmeticOp {
         int calculate(int value1, int value2) { return value1 / value2;}
     };
 
-//    private Function<Integer, Integer> expression;
-//    ArithmeticOp(Function<Integer,Integer> expression) {this.expression = expression;}
-
     abstract int calculate(int value1, int value2);
 }
