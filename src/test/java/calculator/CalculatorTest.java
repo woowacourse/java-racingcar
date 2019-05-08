@@ -56,6 +56,14 @@ public class CalculatorTest {
         assertThat(cal.calculateAll(inputs)).isEqualTo(10);
     }
 
+    @Test
+    void 잘못된_입력_개수(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            String[] inputs = {"2", "+", "3", "*", "4", "/"};
+            assertThat(cal.calculateAll(inputs)).isEqualTo(10);
+        });
+    }
+
     @AfterEach
     void tearDown() {
     }
