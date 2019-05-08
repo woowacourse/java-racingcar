@@ -10,7 +10,8 @@ public class CarRacingGame {
         List<String> nameList = parseStringByComma(names);
 
         for (String name : nameList) {
-            if (isCarNameLength(name)) {
+            if (!isCarNameLength(name)) {
+                System.out.println("각 자동차의 이름을 5자 이하로 입력해주세요.");
                 return getCarNames();
             }
         }
