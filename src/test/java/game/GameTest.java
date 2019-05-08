@@ -18,4 +18,11 @@ public class GameTest {
         String result = game.removeBlank("  crong  ");
         assertThat(result).isEqualTo("crong");
     }
+
+    @Test
+    void 문자열_콤마_기준으로_분할() {
+        String[] result = game.splitWithComma("pobi,crong,honux");
+        String[] answer = {"pobi", "crong", "honux"};
+        assertThat(result).isEqualTo(answer);
+    }
 }

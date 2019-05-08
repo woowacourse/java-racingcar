@@ -15,4 +15,8 @@ public class Game {
     String removeBlank(String carNames) {
         return carNames.replace(" ", "");
     }
+
+    String[] splitWithComma(String carNames) {
+        return carNames.split(",");
+    }
 }
