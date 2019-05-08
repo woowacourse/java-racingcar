@@ -17,20 +17,20 @@ public class Calculator {
         return a / b;
     }
 
-    int calculate(int a, String operator, int b) {
-        if (operator == "+") {
+    int calculate(int a, String operator, int b) throws Exception {
+        if (operator.equals("+")) {
             return add(a,b);
         }
-        if (operator == "-") {
+        if (operator.equals("-")) {
             return subtract(a,b);
         }
-        if (operator == "*") {
+        if (operator.equals("*")) {
             return multiply(a,b);
         }
-        if (operator == "/") {
+        if (operator.equals("/")) {
             return divide(a,b);
         }
 
-        return -1;
+        throw new IllegalArgumentException("올바른 연산자가 아닙니다.");
     }
 }
