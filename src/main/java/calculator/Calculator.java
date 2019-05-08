@@ -35,6 +35,10 @@ public class Calculator {
     }
 
     int calculateAll(String[] inputs) throws Exception {
+        if (inputs.length % 2 == 0) {
+            throw new IllegalArgumentException("잘못된 입력입니다.");
+        }
+
         int result = Integer.parseInt(inputs[0]);
         for (int i = 1; i < inputs.length; i+=2) {
             result = calculate(result, inputs[i], Integer.parseInt(inputs[i + 1]));
