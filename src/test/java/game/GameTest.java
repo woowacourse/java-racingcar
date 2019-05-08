@@ -37,4 +37,11 @@ public class GameTest {
         boolean result = game.checkCarNameLength("pobilove");
         assertThat(result).isEqualTo(false);
     }
+
+    @Test
+    void 랜덤_값_범위_확인() {
+        int random = game.randomValueGenerator();
+        boolean result = random >= 0 && random <= 9;
+        assertThat(result).isEqualTo(true);
+    }
 }

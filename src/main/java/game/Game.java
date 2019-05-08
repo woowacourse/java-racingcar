@@ -41,4 +41,8 @@ public class Game {
             return inputGameCount();
         }
     }
+
+    int randomValueGenerator() {
+        return (int) (Math.random() * 9);
+    }
 }
