@@ -32,4 +32,12 @@ public class CalculatorTest {
         assertThat(cal.divide(4, 2)).isEqualTo(2);
     }
 
+    @Test
+    void 사칙연산입력테스트() {
+        assertThat(cal.calculateString(1,"+","2")).isEqualTo(3);
+        assertThat(cal.calculateString(1,"-","2")).isEqualTo(-1);
+        assertThat(cal.calculateString(1,"*","2")).isEqualTo(2);
+        assertThat(cal.calculateString(2,"/","1")).isEqualTo(2);
+    }
+
 }
