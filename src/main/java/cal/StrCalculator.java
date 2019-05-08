@@ -1,6 +1,6 @@
-import java.util.Scanner;
+package cal;
 
-import java.io.*;
+import java.util.Scanner;
 
 public class StrCalculator {
     private static final String INPUT_REQUEST_MESSAGE = "수식을 입력하세요 !";
