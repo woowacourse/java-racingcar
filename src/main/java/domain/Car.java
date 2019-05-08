@@ -13,6 +13,10 @@ public class Car {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         String trace = new String(new char[position]).replace("\0", "-");
@@ -30,5 +34,13 @@ public class Car {
             return "Go";
         }
         return "Stop";
+    }
+
+    public int getBiggerPosition(int compareNum) {
+        return Math.max(position, compareNum);
+    }
+
+    public boolean isMaxPosition(int maxPosition) {
+        return position == maxPosition;
     }
 }
