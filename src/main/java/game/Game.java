@@ -45,4 +45,10 @@ public class Game {
     int randomValueGenerator() {
         return (int) (Math.random() * 9);
     }
+
+    void checkStopOrMove(Car car, int random) {
+        if (random >= 4) {
+            car.move();
+        }
+    }
 }

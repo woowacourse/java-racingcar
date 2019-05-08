@@ -11,4 +11,8 @@ public class Car {
     public String getCarName() {
         return this.name;
     }
+
+    public void move() {
+        this.position++;
+    }
 }
