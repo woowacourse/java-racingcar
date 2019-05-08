@@ -1,23 +1,23 @@
 package calculator;
 
 public class Calculator {
-    int add(int a, int b) {
+    double add(double a, double b) {
         return a + b;
     }
 
-    int subtract(int a, int b) {
+    double subtract(double a, double b) {
         return a - b;
     }
 
-    int multiply(int a, int b) {
+    double multiply(double a, double b) {
         return a * b;
     }
 
-    int divide(int a, int b) {
+    double divide(double a, double b) {
         return a / b;
     }
 
-    int calculate(int a, String operator, int b) throws Exception {
+    double calculate(double a, String operator, double b) throws Exception {
         if (operator.equals("+")) {
             return add(a,b);
         }
@@ -34,14 +34,14 @@ public class Calculator {
         throw new IllegalArgumentException("올바른 연산자가 아닙니다.");
     }
 
-    int calculateAll(String[] inputs) throws Exception {
+    double calculateAll(String[] inputs) throws Exception {
         if (inputs.length % 2 == 0) {
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }
 
-        int result = Integer.parseInt(inputs[0]);
+        double result = Double.parseDouble(inputs[0]);
         for (int i = 1; i < inputs.length; i+=2) {
-            result = calculate(result, inputs[i], Integer.parseInt(inputs[i + 1]));
+            result = calculate(result, inputs[i], Double.parseDouble(inputs[i + 1]));
         }
         return result;
     }
