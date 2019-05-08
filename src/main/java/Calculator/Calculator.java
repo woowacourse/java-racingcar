@@ -1,6 +1,8 @@
 package Calculator;
 
 
+import Exceptions.CalculatorException;
+
 import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,25 +11,28 @@ import java.util.Scanner;
 
 public class Calculator {
     public static void main(String[] args) {
-        Calculator cal = new Calculator();
-        System.out.println("숫자를 입력해 주세요: ");
-        String userInput = cal.readInput();
-        List<String> numbers = new ArrayList<>();
-        numbers = Arrays.asList(userInput.split(" "));
-
+        doCalculate();
     }
 
-    public String readInput() {
-        Scanner reader = new Scanner(System.in);
-        String userInput = reader.nextLine();
-        return userInput;
+    public static void doCalculate() {
+        Calculator cal = new Calculator();
+        String userInput = CalculatorException.readAndReceiveInput();
+        List<String> numbers = Arrays.asList(userInput.split(" "));
+        List<Integer> numberList = cal.extractNumbers(numbers);
+        List<String> symbolList = cal.extractSymbols(numbers);
+        System.out.println(cal.calculate(numberList, symbolList));
+
     }
 
     public List<Integer> extractNumbers(List<String> numbers) {
         List<Integer> listOfNumbers= new ArrayList<>();
         for (int i=0; i<numbers.size(); i += 2) {
-            int number = Integer.parseInt(numbers.get(i));
-            listOfNumbers.add(number);
+            try{
+                int number = Integer.parseInt(numbers.get(i));
+                listOfNumbers.add(number);
+            }catch (Exception e){
+                doCalculate();
+            }
         }
         return listOfNumbers;
     }
