@@ -54,6 +54,9 @@ public class StringCalculator {
     }
 
     public static void main(String[] args) {
-
+        StringCalculator stringCalculator = new StringCalculator();
+        String input = InputView.getValues();
+        int answer = stringCalculator.calculate(input);
+        System.out.println("답은 " + answer + "입니다");
     }
 }
