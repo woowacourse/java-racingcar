@@ -28,7 +28,6 @@ public class StringCalculator {
             Integer.parseInt(value);
             return true;
         } catch (NumberFormatException e) {
-            // e.printStackTrace();
             return false;
         }
     }
