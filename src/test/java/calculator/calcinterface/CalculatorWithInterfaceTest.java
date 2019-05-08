@@ -16,7 +16,7 @@ class CalculatorWithInterfaceTest {
     @Test
     void 덧셈() {
         assertThat(5).isEqualTo(
-                calculatorWithInterface.calcFormulaWithEnum(
+                calculatorWithInterface.calculateFormula(
                         calculatorWithInterface.splitFormula("2 + 3"))
         );
     }
