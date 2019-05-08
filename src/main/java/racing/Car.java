@@ -1,16 +1,18 @@
 package racing;
 
 public class Car implements Comparable<Car> {
+    private static final String NAME_EXCEPTION_MESSAGE = "양식에 맞는 이름을 입력해주세요 !";
+
     private String name;
     private Integer status = 1;
 
     Car(String name){
-        this.name=name;
-    }
-    Car(String name, Integer status){
-        if (name.matches("[0-9a-zA-Z]{1,5}")) {
-            throw new IllegalArgumentException("이름이 글자수를 초과합니다.");
+        if (!name.matches("[0-9a-zA-Z]{1,5}")) {
+            throw new IllegalArgumentException(NAME_EXCEPTION_MESSAGE);
         }
+        this.name = name;
+    }
+    Car(String name, Integer status) {
         this.name = name;
         this.status = status;
     }

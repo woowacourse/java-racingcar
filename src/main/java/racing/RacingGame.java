@@ -10,6 +10,7 @@ class RacingGame {
     private static final String INPUT_TIMES_MESSAGE = "시도할 횟수는 몇회인가요?";
     private static final String PROCESS_RESULT_MESSAGE = "실행결과";
     private static final String FINAL_WINNER_MESSAGE = "가 최종 우승했습니다.";
+    private static final String INPUT_TIMES_EXCEPTION = "이동 횟수는 양수입니다 !";
 
     private ArrayList<Car> carList = new ArrayList<>();
     private Scanner sc = new Scanner(System.in);
@@ -22,15 +23,28 @@ class RacingGame {
     void inputCarNames() {
         System.out.println(INPUT_NAMES_MESSAGE);
         String[] carNames = sc.nextLine().split(",");
-        for (String carName : carNames) {
-            Car car = new Car(carName);
-            carList.add(car);
+        try {
+            for (String carName : carNames) {
+                Car car = new Car(carName);
+                carList.add(car);
+            }
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            inputCarNames();
         }
     }
 
     void inputTotalTimes() {
-        System.out.println(INPUT_TIMES_MESSAGE);
-        totalTimes = Integer.parseInt(sc.nextLine());
+        try {
+            System.out.println(INPUT_TIMES_MESSAGE);
+            totalTimes = Integer.parseInt(sc.nextLine());
+            if (totalTimes <= 0) {
+                throw new IllegalArgumentException(INPUT_TIMES_EXCEPTION);
+            }
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            inputTotalTimes();
+        }
     }
 
     private void printOneTimeResult() {
