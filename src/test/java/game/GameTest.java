@@ -14,7 +14,7 @@ public class GameTest {
     }
 
     @Test
-    void 공백제거() {
+    void 문자열_공백제거() {
         String result = game.removeBlank("  crong  ");
         assertThat(result).isEqualTo("crong");
     }
