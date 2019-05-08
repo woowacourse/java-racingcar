@@ -5,22 +5,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class CalculatorWithInterface {
-    private static final Scanner SCANNER = new Scanner(System.in);
-
     private Operation operation;
     private Map<String, Operation> operationMap;
 
     public CalculatorWithInterface() {
         operationMap = new HashMap<>();
         operationMap.put("+", new Plus());
-    }
-
-    public String inputFormula() {
-        return SCANNER.nextLine();
-    }
-
-    public String[] splitFormula(String formula) {
-        return formula.split(" ");
     }
 
     public int calculateFormula(String[] formula) {
