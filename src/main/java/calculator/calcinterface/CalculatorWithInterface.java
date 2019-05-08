@@ -1,24 +1,18 @@
 package calculator.calcinterface;
 
-import calculator.calcenum.ArithmeticOp;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class CalcMain {
+public class CalculatorWithInterface {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     private Operation operation;
+    private Map<String, Operation> operationMap;
 
-    Map<String, Operation> operationMap = new HashMap<>();;
-
-    public CalcMain() {
+    public CalculatorWithInterface() {
+        operationMap = new HashMap<>();
         operationMap.put("+", new Plus());
-    }
-
-    public static void main(String[] args) {
-
     }
 
     public String inputFormula() {
