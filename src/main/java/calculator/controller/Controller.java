@@ -8,5 +8,6 @@ public class Controller {
         String[] input = View.input();
         CalculateQueue calculateQueue = new CalculateQueue(input);
         calculateQueue.calculate();
+        View.println(String.valueOf(calculateQueue.getResult()));
     }
 }

@@ -12,6 +12,10 @@ public class CalculateQueue {
         queue = new LinkedList<>(Arrays.asList(values));
     }
 
+    public double getResult() {
+        return result;
+    }
+
     public double calculate() {
         result = Double.parseDouble(queue.poll());
         while (!queue.isEmpty()) {

@@ -1,7 +1,6 @@
 package calculator.view;
 
 public class Validator {
-
     private static final String NUMBER_REGEX = "-?[0-9]*";
     private static final String PLUS_OPERATOR = "+";
     private static final String MINUS_Operator = "-";
@@ -40,5 +39,4 @@ public class Validator {
                 || (value.equals(MULTIPLY_OPERATOR))
                 || (value.equals(DIVIDE_OPERATOR));
     }
-
 }

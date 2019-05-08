@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
 
-
     @Test
     void 플러스(){
         assertThat(Calculator.plus(1,2)).isEqualTo(3);
