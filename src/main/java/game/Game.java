@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,5 +32,13 @@ public class Game {
         }
     }
 
-    
+    int inputGameCount() {
+        try {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("시도할 회수는 몇회인가요?");
+            return sc.nextInt();
+        } catch(InputMismatchException e) {
+            return inputGameCount();
+        }
+    }
 }
