@@ -20,4 +20,22 @@ public class Car {
     public void moveForward() {
         this.position++;
     }
+
+    @Override
+    public String toString() {
+        String pos = new String(new char[position]).replace("\0", "-");
+        return this.name + " : " + pos;
+    }
+
+//    public static void main(String[] args) {
+//        Car a = new Car("asdf");
+//        System.out.println(a.getName());
+//        System.out.println(a.getPosition());
+//        a.moveForward();
+//        System.out.println(a.getPosition());
+//        System.out.println(a);
+//        a.moveForward();
+//        a.moveForward();
+//        System.out.println(a);
+//    }
 }
