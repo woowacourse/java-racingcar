@@ -14,7 +14,7 @@ public class Calculator {
 		for (int i = 1; i < parsedExpression.length; i += 2) {
 			String operator = parsedExpression[i];
 			int number = parseInt(parsedExpression[i + 1]);
-
+			calculate(operator, number);
 		}
 
 		return value;
