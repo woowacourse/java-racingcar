@@ -6,6 +6,7 @@
 - static import 하면 클래스를 임포트 하지 않고 클래스의 static 메소드만 임포트 가능. -> import Assertions; Assertions.assertThat() vs import static Assertion.assertThat; assertThat()
 - 불필요한 로컬 변수는 제거한다. (e.g., 한 번만 쓰이는 로컬 변수)
 - 테스트코드 간에도 중복이 생길 수 있다. 중복을 없애라.
+- 테스트코드 간의 의존관계가 존재해서는 안 된다. 모든 테스트케이스는 독립적이어야 한다. (BeforeEach, AfterEach 에서 each 가 의미하는 것.)
 
 # java-racingcar
 자동차 경주 게임 미션 저장소

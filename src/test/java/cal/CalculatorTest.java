@@ -12,6 +12,7 @@ public class CalculatorTest {
     @BeforeEach
     void setup() {
         cal = new Calculator();
+        System.out.println("Setup");
     }
 
     @Test
@@ -20,6 +21,7 @@ public class CalculatorTest {
         // int result = cal.plus(2, 3);
         // System.out.println(result);
         assertThat(cal.plus(2,3)).isEqualTo(5);
+        System.out.println("plus");
     }
 
     @Test
@@ -27,10 +29,12 @@ public class CalculatorTest {
         // Calculator cal = new Calculator();
         // int result = cal.minus(2, 3);
         assertThat(cal.minus(2,3)).isEqualTo(-1);
+        System.out.println("minus");
     }
 
     @AfterEach
     void tearDown() {
         cal = null;
+        System.out.println("tear down");
     }
 }
