@@ -20,13 +20,14 @@ public class Car {
         return position;
     }
 
-    
-
     private int makeRandomNumber() {
         Random random = new Random();
 
         return random.nextInt(BOUND_NUMBER);
     }
 
-
+    @Override
+    public String toString() {
+        return name + " : " + new String(new char[position]).replace("\0", "-");
+    }
 }
