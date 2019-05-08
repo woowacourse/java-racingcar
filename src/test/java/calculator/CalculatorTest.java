@@ -35,6 +35,14 @@ public class CalculatorTest {
         assertThat(cal.divide(4,2)).isEqualTo(2);
     }
 
+    @Test
+    void 올바른_단일_계산() {
+        assertThat(cal.calculate(1,"+",2)).isEqualTo(3);
+        assertThat(cal.calculate(3,"-",1)).isEqualTo(2);
+        assertThat(cal.calculate(3,"*",2)).isEqualTo(6);
+        assertThat(cal.calculate(4,"/",2)).isEqualTo(2);
+    }
+
     @AfterEach
     void tearDown() {
     }
