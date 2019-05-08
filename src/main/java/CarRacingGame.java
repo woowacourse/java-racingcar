@@ -1,15 +1,16 @@
-import util.StringUtils;
 import view.InputView;
 
 import java.util.List;
 
+import static util.StringUtils.*;
+
 public class CarRacingGame {
     private static List<String> getCarNames() {
         String names = InputView.inputCarNames();
-        List<String> nameList = StringUtils.parseStringByComma(names);
+        List<String> nameList = parseStringByComma(names);
 
         for (String name : nameList) {
-            if (StringUtils.isCarNameLength(name)) {
+            if (isCarNameLength(name)) {
                 return getCarNames();
             }
         }
