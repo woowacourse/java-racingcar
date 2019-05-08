@@ -7,7 +7,7 @@ import static util.StringUtil.*;
 public class RacingcarApp {
     public static void main(String[] args) {
         List<String> carNames = getCarNames();
-
+        int tryNumber = InputView.inputTryNum();
     }
 
     private static List<String> getCarNames() {
@@ -15,7 +15,7 @@ public class RacingcarApp {
         List<String> list = parseStringByComma(str);
 
         for (String carName : list) {
-            if(!isCarNameLength(carName)) {
+            if (!isCarNameLength(carName)) {
                 return getCarNames();
             }
         }

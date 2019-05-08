@@ -1,6 +1,5 @@
 package view;
 
-import java.util.MissingFormatArgumentException;
 import java.util.Scanner;
 
 public class InputView {
