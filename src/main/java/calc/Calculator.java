@@ -9,6 +9,7 @@ public class Calculator {
         Scanner input = new Scanner(System.in);
         System.out.println("수식을 입력하여 주십시오.");
         ArrayList<String> tokens = new ArrayList<>(Arrays.asList(input.nextLine().split(" ")));
+        System.out.println("감사합니다.\n결과값은 " + calculate(tokens)+ "입니다.");
 
     }
 
