@@ -3,11 +3,18 @@ package racinggame.domain;
 
 import racinggame.util.InputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Racing {
     public List<Car> initializeCars() {
-        return null;
+        List<String> carNames = InputView.getCarNames();
+        List<Car> cars = new ArrayList<>();
+
+        for (String name : carNames) {
+            cars.add(new Car(name));
+        }
+        return cars;
     }
 
     public void startLeague(List<Car> cars, int trial) {
