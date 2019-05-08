@@ -50,6 +50,12 @@ public class CalculatorTest {
         });
     }
 
+    @Test
+    void 올바른_전체_계산() throws Exception {
+        String[] inputs = {"2", "+", "3", "*", "4", "/", "2"};
+        assertThat(cal.calculateAll(inputs)).isEqualTo(10);
+    }
+
     @AfterEach
     void tearDown() {
     }
