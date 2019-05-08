@@ -28,4 +28,9 @@ public class CalculatorLineTest {
     void 최종연산() {
         assertThat(10).isEqualTo(cal.calculFormula(cal.splitFormula("2 + 3 * 4 / 2")));
     }
+
+    @Test
+    void enum연산() {
+        assertThat(15).isEqualTo(cal.useEnumCal(cal.splitFormula("2 + 3 - 2 * 10 / 2")));
+    }
 }
