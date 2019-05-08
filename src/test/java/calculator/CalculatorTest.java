@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
@@ -17,22 +18,22 @@ public class CalculatorTest {
 
     @Test
     void 덧셈() {
-        assertThat(cal.add(1,2)).isEqualTo(3);
+        assertEquals(3.8 , cal.add(2.3,1.5), 0.01);
     }
 
     @Test
     void 뺄셈() {
-        assertThat(cal.subtract(3,1)).isEqualTo(2);
+        assertEquals(0.8 , cal.subtract(2.3,1.5), 0.01);
     }
 
     @Test
     void 곱셈() {
-        assertThat(cal.multiply(3,2)).isEqualTo(6);
+        assertEquals(6.6, cal.multiply(3.3,2));
     }
 
     @Test
     void 나눗셈() {
-        assertThat(cal.divide(4,2)).isEqualTo(2);
+        assertEquals(2, cal.divide(4.4,2.2));
     }
 
     @Test
