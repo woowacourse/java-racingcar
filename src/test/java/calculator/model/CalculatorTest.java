@@ -1,10 +1,9 @@
 package calculator.model;
 
-import calculator.model.Calculator;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
 
@@ -30,5 +29,10 @@ public class CalculatorTest {
     void 나누기(){
         assertThat(Calculator.divide(10,2)).isEqualTo(5);
         assertThat(Calculator.divide(9,2)).isEqualTo(4.5);
+    }
+
+    @Test
+    void 나눌_때_0으로_나누면_Exception_발생(){
+        assertThrows(IllegalArgumentException.class, () -> Calculator.divide(10,0));
     }
 }
