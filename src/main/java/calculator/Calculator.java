@@ -7,16 +7,16 @@ public class Calculator {
         this.values = values;
     }
 
-    public int calculate() {
-        int result = Integer.parseInt(values[0]);
+    public double calculate() {
+        double result = Double.parseDouble(values[0]);
 
         for (int i = 1; i < values.length - 1; i += 2) {
-            result = operate(result, values[i], Integer.parseInt(values[i + 1]));
+            result = operate(result, values[i], Double.parseDouble(values[i + 1]));
         }
         return result;
     }
 
-    private int operate(int first, String operator, int second) {
+    private double operate(double first, String operator, double second) {
         if (operator.equals("+")) {
             return add(first, second);
         }
@@ -29,23 +29,22 @@ public class Calculator {
         if (operator.equals("/")) {
             return divide(first, second);
         }
-
         throw new IllegalArgumentException("잘못된 계산식입니다.");
     }
 
-    int add(int a, int b) {
+    double add(double a, double b) {
         return a + b;
     }
 
-    int subtract(int a, int b) {
+    double subtract(double a, double b) {
         return a - b;
     }
 
-    int multiply(int a, int b) {
+    double multiply(double a, double b) {
         return a * b;
     }
 
-    int divide(int a, int b) {
+    double divide(double a, double b) {
         return a / b;
     }
 }
