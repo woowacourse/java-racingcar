@@ -1,13 +1,11 @@
-package Calculator;
+package calculator;
 
 
-import Exceptions.CalculatorException;
+import exceptions.CalculatorException;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Calculator {
     public static void main(String[] args) {
@@ -61,13 +59,16 @@ public class Calculator {
             return result - number;
         }
         if (symbol.equals("/")) {
-            return result/number;
+            return CalculatorException.divisionException(result, number);
         }
         if (symbol.equals("*")) {
             return result*number;
         }
+        doCalculate();
         return -1;
     }
+
+
 
 
 

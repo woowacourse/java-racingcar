@@ -1,9 +1,10 @@
-package Calculator;
+package calculator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,34 +19,22 @@ public class CalculatorTest {
 
     @Test
     void extractNumbersTest() {
-        List<String> testList = new ArrayList<>();
-        testList.add("2");
-        testList.add("+");
-        testList.add("3");
-        List<Integer> checkList = new ArrayList<>();
-        checkList.add(2);
-        checkList.add(3);
+        List<String> testList = Arrays.asList("2", "+", "3");
+        List<Integer> checkList = Arrays.asList(2,3);
         assertThat(cal.extractNumbers(testList)).isEqualTo(checkList);
     }
 
     @Test
     void extractSymbolsTest() {
-        List<String> testList = new ArrayList<>();
-        testList.add("2");
-        testList.add("+");
-        testList.add("3");
-        List<String> checkList = new ArrayList<>();
-        checkList.add("+");
+        List<String> testList = Arrays.asList("2", "+", "3");
+        List<String> checkList = Arrays.asList("+");
         assertThat(cal.extractSymbols(testList)).isEqualTo(checkList);
     }
 
     @Test
     void calculateTest(){
-        List<Integer> testList = new ArrayList<>();
-        testList.add(2);
-        testList.add(3);
-        List<String> checkList = new ArrayList<>();
-        checkList.add("+");
+        List<Integer> testList = Arrays.asList(2,3);
+        List<String> checkList = Arrays.asList("+");
         assertThat(cal.calculate(testList, checkList)).isEqualTo(5);
     }
 
