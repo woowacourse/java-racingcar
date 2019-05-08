@@ -2,37 +2,56 @@ package calc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 public class Calculator {
+    static final Operator[] functionTable = { Operator.PLUS, Operator.MINUS, Operator.MULTIPLY, Operator.DIVIDE };
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("수식을 입력하여 주십시오.");
         ArrayList<String> tokens = new ArrayList<>(Arrays.asList(input.nextLine().split(" ")));
-        System.out.println("감사합니다.\n결과값은 " + calculate(tokens)+ "입니다.");
+        try {
+            System.out.println("감사합니다.\n결과값은 " + calculateTokens(tokens)+ "입니다.");
+        } catch (Exception e) {
+            System.out.println("잘못된 입력입니다.");
+        }
 
     }
 
-    public static int calculate(ArrayList<String> tokens) {
-        final String symbol = "+-*/";
-        int lhs = Integer.parseInt(tokens.get(0));
-        for (int i = 1; i < tokens.size(); i += 2) {
-            int rhs = Integer.parseInt(tokens.get(i + 1));
-            switch (symbol.indexOf(tokens.get(i))) {
-                case 0:
-                    lhs += rhs;
-                    break;
-                case 1:
-                    lhs -= rhs;
-                    break;
-                case 2:
-                    lhs *= rhs;
-                    break;
-                case 3:
-                    lhs /= rhs;
-                    break;
-            }
-        }
-        return lhs;
+    public static double calculateTokens(ArrayList<String> tokens) {
+        return calculate(tokens, Double.parseDouble(tokens.remove(0)));
+    }
+
+    private static double calculate(ArrayList<String> tokens, double acc) {
+        double exp = calculateExpression(acc, tokens.remove(0), Double.parseDouble(tokens.remove(0)));
+        HashMap<Boolean, Supplier<Double>> result = new HashMap<>();
+        result.put(true, () -> exp);
+        result.put(false, () -> calculate(tokens, exp));
+        return result.get(tokens.isEmpty()).get();
+    }
+
+    private static double calculateExpression(double lhs, String operator, double rhs) {
+        return functionTable["+-*/".indexOf((operator))].calculate(lhs, rhs);
+    }
+}
+
+enum Operator {
+    PLUS((lhs, rhs) -> lhs + rhs),
+    MINUS((lhs, rhs) -> lhs - rhs),
+    MULTIPLY((lhs, rhs) -> lhs * rhs),
+    DIVIDE((lhs, rhs) -> lhs / rhs);
+
+    private BiFunction<Double, Double, Double> func;
+
+    Operator(BiFunction<Double, Double, Double> func) {
+        this.func = func;
+    }
+
+    public double calculate(double lhs, double rhs) {
+        return func.apply(lhs, rhs);
     }
 }
