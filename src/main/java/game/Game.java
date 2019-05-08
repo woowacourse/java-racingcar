@@ -19,4 +19,8 @@ public class Game {
     String[] splitWithComma(String carNames) {
         return carNames.split(",");
     }
+
+    boolean checkCarNameLength(String carNames) {
+        return carNames.length() <= 5;
+    }
 }

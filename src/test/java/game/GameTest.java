@@ -25,4 +25,16 @@ public class GameTest {
         String[] answer = {"pobi", "crong", "honux"};
         assertThat(result).isEqualTo(answer);
     }
+
+    @Test
+    void 자동차_이름_길이_5이하_확인() {
+        boolean result = game.checkCarNameLength("pobi");
+        assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    void 자동차_이름_길이_5초과_확인() {
+        boolean result = game.checkCarNameLength("pobilove");
+        assertThat(result).isEqualTo(false);
+    }
 }
