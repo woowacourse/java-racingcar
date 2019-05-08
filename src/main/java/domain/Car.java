@@ -13,6 +13,12 @@ public class Car {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        String trace = new String(new char[position]).replace("\0", "-");
+        return name + " : " + trace;
+    }
+
     public int getRandomNumber() {
         Random random = new Random();
         return random.nextInt(BOUND_NUMBER)
