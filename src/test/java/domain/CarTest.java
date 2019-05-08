@@ -1,5 +1,6 @@
 package domain;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -44,5 +45,10 @@ class CarTest {
             car.increasePositionOrNot(i);
             assertThat(car.getPosition()).isEqualTo(init);
         }
+    }
+
+    @AfterEach
+    void tearDown() {
+        car = null;
     }
 }
