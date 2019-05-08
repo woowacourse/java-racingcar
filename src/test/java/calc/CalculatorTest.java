@@ -22,4 +22,19 @@ public class CalculatorTest {
     void addTest() {
         assertThat(calc.calculate(new ArrayList<>(Arrays.asList("1 + 2 + 3".split(" "))))).isEqualTo(6);
     }
+
+    @Test
+    void subtractTest() {
+        assertThat(calc.calculate(new ArrayList<>(Arrays.asList("1 - 2 - 3".split(" "))))).isEqualTo(-4);
+    }
+
+    @Test
+    void 곱Test() {
+        assertThat(calc.calculate(new ArrayList<>(Arrays.asList("1 * 3 * 9".split(" "))))).isEqualTo(27);
+    }
+
+    @Test
+    void 나누기Test() {
+        assertThat(calc.calculate(new ArrayList<>(Arrays.asList("128 / 4 / 8".split(" "))))).isEqualTo(4);
+    }
 }
