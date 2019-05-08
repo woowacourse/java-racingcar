@@ -28,9 +28,20 @@ public class Car {
     }
 
     public void accelerate() {
-        int numToAccelerate = (int) (Math.random() * RANDOM_NUM_SCOPE);
+        accelerate(generateRandomNum());
+    }
+
+    public void accelerate(int numToAccelerate) {
         if (numToAccelerate >= MIN_NUM_TO_ACCELERATE) {
             position++;
         }
+    }
+
+    private int generateRandomNum() {
+        return (int) (Math.random() * RANDOM_NUM_SCOPE);
+    }
+
+    public boolean isEqualPosition(int position) {
+        return (this.position == position);
     }
 }
