@@ -1,6 +1,5 @@
 package cal;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,40 +7,59 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculatorTest {
-
-    Calculator cal;
-    //테스트 코드도 중복을 제거하자.
+    StringCalculator cal;
 
     @BeforeEach
-    void setUp(){
-        cal = new Calculator();
-        System.out.println("setUp");
+    void setUp() {
+        cal = new StringCalculator();
     }
 
     @Test
-    void 덧셈() { //테스트 코드는 예외상황 설명을 해야해서 한글을 사용하는 것이 좋지 않을까.
-        assertThat(cal.plus(2,5)).isEqualTo(7); // result가 5랑 동일해야 통과할 수 있다.
-        System.out.println("plus");
+    void 예외처리() {
+        assertThat(Validator.checkFormat("+ 3 + 3")).isEqualTo(false);
+        assertThat(Validator.checkFormat("10 + * 5")).isEqualTo(false);
+        assertThat(Validator.checkFormat("10 ^ 2")).isEqualTo(false);
+        assertThat(Validator.checkFormat("2")).isEqualTo(false);
+        assertThat(Validator.checkFormat("10 + 2 / 0")).isEqualTo(false);
+
+        /*assertThrows(IllegalArgumentException.class, () -> {
+            Validator.checkFormat("+ 3 + 3");
+        });*/
+    }
+
+    @Test
+    void 덧셈() {
+        int result = cal.calculate("2 + 3");
+        assertThat(result).isEqualTo(5);
     }
 
     @Test
     void 뺄셈() {
-        assertThat(cal.substract(3, 1)).isEqualTo(2);
-        System.out.println("minus");
+        int result = cal.calculate("3 - 2");
+        assertThat(result).isEqualTo(1);
     }
 
     @Test
     void 곱셈() {
-        assertThat(cal.multiply(3,4)).isEqualTo(12);
+        int result = cal.calculate("3 * 2");
+        assertThat(result).isEqualTo(6);
     }
 
     @Test
-    void 나눗셈(){
-        assertThat(cal.divide(4,2)).isEqualTo(2);
+    void 나눗셈() {
+        int result = cal.calculate("4 / 2");
+        assertThat(result).isEqualTo(2);
+    }
+
+    @Test
+    void 복합_계산() {
+        assertThat(cal.calculate("5 * 2 + 2")).isEqualTo(12);
+        assertThat(cal.calculate("12 + 3 * 2")).isEqualTo(30);
+        assertThat(cal.calculate("100 / 25 + 5")).isEqualTo(9);
     }
 
     @AfterEach
-    void 끝(){
-        System.out.println("end");
+    void tearDown() {
+        cal = null;
     }
 }
