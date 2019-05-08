@@ -18,16 +18,25 @@ public class Calculator {
         return num1 - num2;
     }
 
-    public int calculateString(int leftOperand, String operator, String rightOperandStr) {
+    public int calculateSingleExpression(int leftOperand, String operator, String rightOperandStr) {
         int rightOperand = Integer.parseInt(rightOperandStr);
 
-        if(operator.equals("+"))
+        if (operator.equals("+"))
             return add(leftOperand, rightOperand);
-        if(operator.equals("-"))
+        if (operator.equals("-"))
             return subtract(leftOperand, rightOperand);
-        if(operator.equals("*"))
+        if (operator.equals("*"))
             return mult(leftOperand, rightOperand);
         return divide(leftOperand, rightOperand);
+    }
+
+    public int calculateMultiExpression(String[] strings) {
+        int result = Integer.parseInt(strings[0]);
+        for (int i = 1; i < strings.length; ) {
+            result = calculateSingleExpression(result, strings[i], strings[i + 1]);
+            i = i + 2;
+        }
+        return result;
     }
 
     public static void main(String[] args) {

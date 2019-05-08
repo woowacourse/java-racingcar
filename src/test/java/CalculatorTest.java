@@ -33,11 +33,20 @@ public class CalculatorTest {
     }
 
     @Test
-    void 사칙연산입력테스트() {
-        assertThat(cal.calculateString(1,"+","2")).isEqualTo(3);
-        assertThat(cal.calculateString(1,"-","2")).isEqualTo(-1);
-        assertThat(cal.calculateString(1,"*","2")).isEqualTo(2);
-        assertThat(cal.calculateString(2,"/","1")).isEqualTo(2);
+    void 하나의연산() {
+        assertThat(cal.calculateSingleExpression(1, "+", "2")).isEqualTo(3);
+        assertThat(cal.calculateSingleExpression(1, "-", "2")).isEqualTo(-1);
+        assertThat(cal.calculateSingleExpression(1, "*", "2")).isEqualTo(2);
+        assertThat(cal.calculateSingleExpression(2, "/", "1")).isEqualTo(2);
+    }
+
+    @Test
+    void 여러개의연산() {
+        String[] array = "3 + 2 * 4 / 10 * 3".split(" ");
+        assertThat(cal.calculateMultiExpression(array)).isEqualTo(6);
+        array = "3 * 3 * 4 / 4 + 4".split(" ");
+        assertThat(cal.calculateMultiExpression(array)).isEqualTo(13);
+
     }
 
 }
