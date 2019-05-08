@@ -8,7 +8,7 @@ public class RacingGame {
     private static Scanner sc = new Scanner(System.in);
     private ArrayList<String> carNames;
     private int gameRound;
-    private ArrayList<Car> carList;
+    private ArrayList<Car> carList = new ArrayList<>();
 
     private String input() {
         return sc.nextLine();
@@ -48,5 +48,19 @@ public class RacingGame {
             raceByRound();
             printPositionByRound();
         }
+    }
+
+    private void outputWinners(){
+        Winners winners = new Winners();
+        winners.determineWinners(carList);
+        winners.printWinners();
+    }
+
+    public void run(){
+        inputNames();
+        inputRound();
+        registerCars();
+        race();
+        outputWinners();
     }
 }

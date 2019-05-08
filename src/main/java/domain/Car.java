@@ -40,7 +40,7 @@ public class Car {
         return maxPosition == position;
     }
 
-    public void appendWinnerName(String winnerNames){
-        winnerNames += (name + ", ");
+    public String appendWinnerName(String winnerNames){
+        return winnerNames += (name + ", ");
     }
 }

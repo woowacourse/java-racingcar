@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Winners {
     private int maxPosition;
-    private ArrayList<Car> winnerList;
+    private ArrayList<Car> winnerList = new ArrayList<>();
 
     public Winners() {
-        maxPosition = 0;
+        this.maxPosition = 0;
     }
 
     public void determineWinners(ArrayList<Car> cars) {
@@ -39,9 +39,10 @@ public class Winners {
         String message;
 
         for (Car winner : winnerList) {
-            winner.appendWinnerName(winnerNames);
+            winnerNames = winner.appendWinnerName(winnerNames);
         }
-        message = winnerNames.substring(0, winnerNames.length() - 1);
+
+        message = winnerNames.substring(0, winnerNames.length() - 2);
         System.out.format("%s 이(가) 최종 우승했습니다.\n", message);
     }
 }
