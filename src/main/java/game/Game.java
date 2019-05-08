@@ -1,10 +1,11 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Game {
-
-
+    List<Car> carList = new ArrayList<>();
 
     String inputCarNames() {
         Scanner sc = new Scanner(System.in);
@@ -23,4 +24,12 @@ public class Game {
     boolean checkCarNameLength(String carNames) {
         return carNames.length() <= 5;
     }
+
+    void createCarObject(String[] carNames) {
+        for (String carName : carNames) {
+            carList.add(new Car(carName));
+        }
+    }
+
+    
 }
