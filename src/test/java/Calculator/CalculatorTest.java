@@ -40,6 +40,16 @@ public class CalculatorTest {
     }
 
     @Test
+    void calculateTest(){
+        List<Integer> testList = new ArrayList<>();
+        testList.add(2);
+        testList.add(3);
+        List<String> checkList = new ArrayList<>();
+        checkList.add("+");
+        assertThat(cal.calculate(testList, checkList)).isEqualTo(5);
+    }
+
+    @Test
     void innerCalculateTest(){
         assertThat(cal.innerCalculate(2, 3, "+")).isEqualTo(5);
     }
