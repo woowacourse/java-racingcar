@@ -3,8 +3,6 @@ package junit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Scanner;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class CalculatorLineTest {
@@ -20,6 +18,11 @@ public class CalculatorLineTest {
     }
 
     @Test
+    void enum연산() {
+        assertThat(15).isEqualTo(cal.calculFormulaWithEnum(cal.splitFormula("2 + 3 - 2 * 10 / 2")));
+    }
+
+    /* @Test
     void 연산() {
         assertThat(5).isEqualTo(cal.calcul(2, "+", 3));
     }
@@ -27,10 +30,5 @@ public class CalculatorLineTest {
     @Test
     void 최종연산() {
         assertThat(10).isEqualTo(cal.calculFormula(cal.splitFormula("2 + 3 * 4 / 2")));
-    }
-
-    @Test
-    void enum연산() {
-        assertThat(15).isEqualTo(cal.useEnumCal(cal.splitFormula("2 + 3 - 2 * 10 / 2")));
-    }
+    }*/
 }
