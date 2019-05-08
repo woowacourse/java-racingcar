@@ -19,7 +19,7 @@ public class StringUtils {
         try {
             Integer.parseInt(string);
             return true;
-        } catch (MissingFormatArgumentException e) {
+        } catch (NumberFormatException e) {
             return false;
         }
     }
