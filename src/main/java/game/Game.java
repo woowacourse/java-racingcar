@@ -22,14 +22,34 @@ public class Game {
         return carNames.split(",");
     }
 
-    boolean checkCarNameLength(String carNames) {
-        return carNames.length() <= 5;
+    boolean checkCarNamesLength(String[] carNames) {
+        boolean isRightLength = true;
+
+        for (String carName : carNames) {
+            isRightLength = checkCarNameLength(isRightLength, carName);
+        }
+
+        return isRightLength;
+    }
+
+    boolean checkCarNameLength(boolean isRightLength, String carName) {
+        return carName.length() <= 5 && isRightLength;
     }
 
     void createCarObject(String[] carNames) {
         for (String carName : carNames) {
             carList.add(new Car(carName));
         }
+    }
+
+    String[] carNameGenerator() {
+        String[] carNames = splitWithComma(removeBlank(inputCarNames()));
+
+        if (checkCarNamesLength(carNames)) {
+            return carNames;
+        }
+
+        return carNameGenerator();
     }
 
     int inputGameCount() {
