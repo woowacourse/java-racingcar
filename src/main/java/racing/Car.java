@@ -4,18 +4,22 @@ public class Car {
     private String name;
     private int status = 0;
 
-    Car(String name){
+    public Car(String name){
         this.name=name;
     }
 
-    public void goStatus(){
-        if(goOrStop()){
+    public void moveOneTime(){
+        int rand = generateRandomNumber();
+        if(goOrStop(rand)){
             status++;
         }
     }
 
-    public boolean goOrStop(){
-        int randomNum = (int) (Math.random()*10);
+    private int generateRandomNumber() {
+        return (int) (Math.random() * 10);
+    }
+
+    public boolean goOrStop(int randomNum){
         return randomNum >= 4;
     }
 
