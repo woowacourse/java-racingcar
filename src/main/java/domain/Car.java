@@ -2,10 +2,16 @@ package domain;
 
 public class Car {
     private String name;
-    private int position = 0;
+    private int position;
 
-    Car(String name){
+    public Car(String name){
         this.name = name;
+        this.position = 0;
+    }
+
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
     }
 
     public void move(int randomNumber) {
@@ -24,5 +30,9 @@ public class Car {
             System.out.print("-");
         }
         System.out.println();
+    }
+
+    public int compareToPosition(int pos) {
+        return Math.max(pos, position);
     }
 }

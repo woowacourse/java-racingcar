@@ -49,6 +49,4 @@ public class RacingGame {
             printPositionByRound();
         }
     }
-
-
 }
