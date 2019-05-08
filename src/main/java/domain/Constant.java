@@ -1,5 +1,6 @@
 package domain;
 
 public class Constant {
-    public static final int RANDOM_NUMBER_RANGE = 10;
+    static final int RANDOM_NUMBER_RANGE = 10;
+    static final int MOVE_CONDITION = 4;
 }
