@@ -2,25 +2,28 @@ package racing;
 
 public class Car implements Comparable<Car> {
     private String name;
-    private Integer status = 0;
+    private Integer status = 1;
 
-    public Car(String name){
+    Car(String name){
         this.name=name;
     }
-    public Car(String name,Integer status){
+    Car(String name, Integer status){
+        if (name.matches("[0-9a-zA-Z]{1,5}")) {
+            throw new IllegalArgumentException("이름이 글자수를 초과합니다.");
+        }
         this.name = name;
         this.status = status;
     }
 
-    public Integer getStatus() {
+    Integer getStatus() {
         return status;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public void moveOneTime(){
+    void moveOneTime(){
         int rand = generateRandomNumber();
         if(goOrStop(rand)){
             status++;
@@ -36,7 +39,7 @@ public class Car implements Comparable<Car> {
         return (int) (Math.random() * 10);
     }
 
-    public boolean goOrStop(int randomNum){
+    boolean goOrStop(int randomNum){
         return randomNum >= 4;
     }
 
