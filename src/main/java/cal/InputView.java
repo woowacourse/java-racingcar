@@ -11,7 +11,7 @@ public class InputView {
 		return scanner.nextLine();
 	}
 
-	public static boolean checkExpression(String expression) {
+	static boolean checkExpression(String expression) {
 		return expression.matches(expressionPattern);
 	}
 }
