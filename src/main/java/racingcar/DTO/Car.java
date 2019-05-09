@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Car {
     private final static int RANDOM_NUMBER_OFFSET = 10;
+    private final static int MOVE_OFFSET =4;
     private String name;
     private int position;
 
@@ -14,6 +15,10 @@ public class Car {
 
     public void Move() {
 
+    }
+
+    private boolean isPossibleMove() {
+        return GenerateRandomNumber() > MOVE_OFFSET ;
     }
 
     private int GenerateRandomNumber() {
