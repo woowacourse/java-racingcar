@@ -48,7 +48,9 @@ public class InputView {
         }
     }
 
-    static private boolean validateNamesString(String userInput) {
+    // 이름에 중복이 있다면 ? e.g., "pobi,pobi,pobi"
+
+    static public boolean validateNamesString(String userInput) {
         // ","가 두개 이상 연달아 있으면 안 된다.
         if (userInput.contains(",,")) {
             throw new IllegalArgumentException("','가 두개 이상 연달아 있으면 안 됩니다.");
@@ -57,7 +59,7 @@ public class InputView {
         return true;
     }
 
-    static private boolean validateNamesList(List<String> names) {
+    static public boolean validateNamesList(List<String> names) {
         // 이름이 공백으로만 이루어지면 안 된다.
         Iterator<String> it = names.iterator();
         while(it.hasNext()) {
