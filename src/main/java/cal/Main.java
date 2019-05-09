@@ -6,6 +6,7 @@ public class Main {
         int result = inputStr();
         strCalculator.printResult(result);
     }
+
     public static int inputStr() {
         while (true){
             try {
