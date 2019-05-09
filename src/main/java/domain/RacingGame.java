@@ -13,7 +13,7 @@ public class RacingGame {
 
     public void play(ArrayList<Car> cars, int nTrials) {
         for(int trial = 0; trial < nTrials; trial++) {
-            racingTrial.runTrial();
+            racingTrial.runTrial(cars);
         }
 
         ArrayList<Car> winners = new ArrayList();

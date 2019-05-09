@@ -1,10 +1,22 @@
 package domain;
 
-public class RacingTrial {
-    public void runTrial() {
-        System.out.println("각각 차들에 대해서 움직이기");
-        MoveStrategy moveStrategy = new MoveStrategy();
+import view.OutputView;
 
-        System.out.println("각각 차들의 상태 출력");
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+public class RacingTrial {
+    private static final MoveStrategy moveStrategy = new MoveStrategy();
+
+    public void runTrial(ArrayList<Car> cars) {
+        // 각각 차들에 대해서 움직이기
+        ArrayList<Car> carsForMoving = new ArrayList(cars.stream()
+                .filter((Car car) -> moveStrategy.isMove()).collect(Collectors.toList()));
+
+        for (Car car : carsForMoving) {
+            car.move();
+        }
+
+        OutputView.printCars(cars);
     }
 }
