@@ -9,6 +9,7 @@ import java.util.List;
 public class OutputView {
     private static final String COLON = " : ";
     private static final String HYPHEN = "-";
+    private static final String EMPTY_STRING = "";
     private static final String SPACE_AND_COMMA = " ,";
     private static final String WINNER_MENT = "가 최종 우승했습니다.";
 
@@ -22,7 +23,7 @@ public class OutputView {
     }
 
     public static void printEmptyLine() {
-        System.out.println("");
+        System.out.println(EMPTY_STRING);
     }
 
     public static void printWinners(Winner winner) {
