@@ -10,8 +10,12 @@ public class Racing {
 
     public void run() {
         InputView.inputCarNames().forEach(x -> cars.add(new Car(x)));
-        for (int i = 0; i < InputView.inputNumberOfTimes(); ++i) {
-
+        int numberOfTimes = InputView.inputNumberOfTimes();
+        System.out.println("실행 결과");
+        for (int i = 0; i < numberOfTimes; ++i) {
+            cars.forEach(car -> move(car));
+            cars.forEach(car -> OutputView.printCarDistance(car));
+            System.out.println();
         }
     }
 
