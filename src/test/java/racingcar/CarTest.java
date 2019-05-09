@@ -10,7 +10,7 @@ public class CarTest {
 
     @BeforeEach
     void setUp() {
-        car = new Car();
+        car = new Car("pobi");
     }
 
     @Test
@@ -28,8 +28,12 @@ public class CarTest {
         assertThat(car.shouldMove(9)).isTrue();
     }
 
-    /*@Test
+    @Test
     void 움직여야_할때_움직인다() {
+        car.move(false);
+        assertThat(car.getPosition()).isEqualTo(0);
 
-    }*/
+        car.move(true);
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
 }
