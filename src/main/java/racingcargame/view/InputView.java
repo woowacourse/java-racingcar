@@ -24,21 +24,21 @@ public class InputView implements InputViewInterface {
             validNameFormat(names);
             validNameOverlap(names);
             return names;
-        } catch(Exception e){
+        } catch (Exception e) {
             return readNames();
         }
     }
 
     private void validNameFormat(String names) {
-        if (!names.matches("(\\w{1,5},)*\\w{1,5}")){
+        if (!names.matches("(\\w{1,5},)*\\w{1,5}")) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validNameOverlap(String names){
+    private void validNameOverlap(String names) {
         List<String> nameList = Arrays.asList(names.split(","));
         HashSet<String> set = new HashSet<>(nameList);
-        if (nameList.size() != set.size()){
+        if (nameList.size() != set.size()) {
             throw new IllegalArgumentException();
         }
     }
