@@ -1,5 +1,7 @@
 package racinggame.domain;
 
+import racinggame.util.OutputView;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,5 +28,11 @@ public class TrialHistory {
             }
         }
         return winners;
+    }
+
+    public void showTrialResult() {
+        for (String carName : trialHistory.keySet()) {
+            OutputView.showRaceResult(carName, trialHistory.get(carName));
+        }
     }
 }

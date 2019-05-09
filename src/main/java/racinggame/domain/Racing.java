@@ -45,6 +45,7 @@ public class Racing {
         List<Car> cars = racing.initializeCars();
         int totalTrial = InputView.getTrial();
         LeagueHistory leagueHistory = new LeagueHistory();
+
         racing.startLeague(leagueHistory, cars, totalTrial);
         leagueHistory.showHistory();
         OutputView.showWinners(leagueHistory.findWinners(totalTrial));
