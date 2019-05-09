@@ -8,6 +8,6 @@ public class RaceOperator {
     private static RaceResult raceResult;
 
     public static void setupGame() {
-        race = new Race(carNames);
+        //race = new Race(carNames);
     }
 }
