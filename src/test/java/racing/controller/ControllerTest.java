@@ -30,9 +30,11 @@ class ControllerTest {
 
     @Test
     void 카리스트에서우승자를잘뽑아내나요1() {
-        String[] expectation = {"kwon", "kim", "Luffy", "Buddy"};
+        String[] names = {"kwon", "kim", "Luffy", "Buddy"};
+        int[] status = {1, 5, 3, 10};
         CarList carList = new CarList();
+        carList.addCars(names, status);
 
-        assertThat(Controller.getWinners(carList)).isEqualTo("kwon, kim, Luffy, Buddy");
+        assertThat(Controller.getWinners(carList)).isEqualTo("Buddy");
     }
 }

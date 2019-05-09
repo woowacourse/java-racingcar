@@ -3,7 +3,7 @@
  *
  * v 1.0.0
  *
- * 2019.05.08
+ * 2019.05.09
  *
  * Copyright (c) 2019 MrKwon, imkimheejoo
  * WoowahanTechCamp, Seoul, KOREA
@@ -11,6 +11,8 @@
  */
 
 package racing.domain;
+
+import racing.controller.Controller;
 
 /**
  * 레이싱 게임의 자동차 한 대를 위한 클래스
@@ -23,8 +25,6 @@ package racing.domain;
 public class Car implements Comparable<Car> {
     private static final String NAME_EXCEPTION_MESSAGE = "양식에 맞는 이름을 입력해주세요 !";
 
-    private static final int GO_FORWARD_CRITERIA = 4;
-
     private final String name;
     private Integer status = 1;
 
@@ -34,6 +34,7 @@ public class Car implements Comparable<Car> {
         }
         this.name = name;
     }
+
     //Test Fixture를 위해 생성자 추가
     Car(String name, int status) {
         this.name = name;
@@ -49,8 +50,8 @@ public class Car implements Comparable<Car> {
     }
 
     void moveOneTime() {
-        int rand = generateRandomNumber();
-        if (goOrStop(rand)) {
+        int rand = Controller.generateRandomNumber();
+        if (Controller.move(rand)) {
             status++;
         }
     }
@@ -58,14 +59,6 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(Car o) {
         return this.status.compareTo(o.status);
-    }
-
-    private int generateRandomNumber() {
-        return (int) (Math.random() * 10);
-    }
-
-    private boolean goOrStop(int randomNum) {
-        return randomNum >= GO_FORWARD_CRITERIA;
     }
 
     @Override

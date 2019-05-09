@@ -1,11 +1,32 @@
+/*
+ * @(#)CarList.java
+ *
+ * v 1.0.0
+ *
+ * 2019.05.09
+ *
+ * Copyright (c) 2019 MrKwon, imkimheejoo.
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
 package racing.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 게임 한 판에 필요한 Car 들에 대한 처리 클래스
+ *
+ * @author imkimheejoo
+ * @author kwonmc
+ * @version 1.0.0
+ * @see Car
+ */
 public class CarList {
     private static final String INPUT_TIMES_EXCEPTION = "이동 횟수는 양수입니다 !";
+
     private ArrayList<Car> cars = new ArrayList<>();
     private int totalTimes;
 
