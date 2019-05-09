@@ -3,6 +3,7 @@ package com.woowacourse.javaracingcar;
 import com.woowacourse.javaracingcar.domain.Car;
 import com.woowacourse.javaracingcar.domain.CarDto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,15 @@ public class RacingCarUtil {
         } catch (IllegalArgumentException e) {
             return false;
         }
+    }
+
+    public static List<Car> createCars(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
+        for (String s : carNames) {
+            cars.add(new Car(s));
+        }
+
+        return cars;
     }
 
     private static void checkEachOfNames(String[] names) {

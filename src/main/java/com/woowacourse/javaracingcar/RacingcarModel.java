@@ -14,9 +14,9 @@ public class RacingcarModel {
     private List<Car> cars;
     private NumberGenerator numberGenerator;
 
-    public RacingcarModel(NumberGenerator generator, List<Car> cars) {
+    public RacingcarModel(NumberGenerator generator, List<String> carNames) {
         numberGenerator = generator;
-        this.cars = cars;
+        this.cars = RacingCarUtil.createCars(carNames);
     }
 
     /**

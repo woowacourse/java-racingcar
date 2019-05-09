@@ -1,6 +1,5 @@
 package com.woowacourse.javaracingcar;
 
-import com.woowacourse.javaracingcar.domain.Car;
 import com.woowacourse.javaracingcar.domain.CarDto;
 import com.woowacourse.javaracingcar.interfaces.UserInterface;
 
