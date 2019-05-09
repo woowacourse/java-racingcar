@@ -25,4 +25,9 @@ public class CarRegistrationTest {
         assertThat(CarRegistration.checkRepetition(CarRegistration.splitNames(string))).isTrue();
     }
 
+    @Test
+    void 길이제한을초과하는이름이있는지확인() {
+        String string = "pobipobi,pobi,pobi";
+        assertThat(CarRegistration.checkInvalidNameLength(CarRegistration.splitNames(string))).isTrue();
+    }
 }

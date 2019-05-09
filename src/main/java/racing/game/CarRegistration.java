@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 
 public class CarRegistration {
+    private static final int NAME_LENGTH_LIMIT = 6;
+
     public static List<Car> convertToCars(String nextLine) {
         List<Car> cars = new ArrayList<>();
 
@@ -24,6 +26,15 @@ public class CarRegistration {
         }
         for (int i = 0; i < names.length; i++) {
             if (names[i].equals("")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean checkInvalidNameLength(String[] names) {
+        for (int i = 0; i < names.length; i++) {
+            if (names[i].length() >= NAME_LENGTH_LIMIT) {
                 return true;
             }
         }
