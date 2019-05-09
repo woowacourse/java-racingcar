@@ -21,5 +21,23 @@ public class Car{
         return CarException.askTotalTurnsException();
     }
 
+    public void moveCar(){
+        int randomNumber = (int)(Math.random() * 10);
+        if(randomNumber >= 4){
+            position++;
+        }
+    }
+
+    public static int randomNumberGenerator(){
+        return (int) (Math.random() * 10);
+    }
+
+    public void printPosition(){
+        System.out.print(this.name + " : ");
+        for(int i=0; i<this.position; i++){
+            System.out.println("-");
+        }
+    }
+
 
 }
