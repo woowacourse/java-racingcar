@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Collections;
+
 public class Car {
     private static final String BLANK_REGEX = "\\s*";
     private static final int RANDOM_NUM_SCOPE = 10;
@@ -53,10 +55,18 @@ public class Car {
 
     @Override
     public String toString() {
-        return this.name + " : " + this.position;
+        return (getAlignedName() + " : " + getPositionLines());
     }
 
     public String getName() {
         return this.name;
+    }
+
+    public String getAlignedName() {
+        return String.format("%-" + MAX_NUM_OF_CAR_NAME + "s", this.name);
+    }
+
+    private String getPositionLines() {
+        return String.join("", Collections.nCopies(this.position, "-"));
     }
 }

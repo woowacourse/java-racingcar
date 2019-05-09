@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CarTest {
     @Test
@@ -38,5 +39,15 @@ class CarTest {
         car.accelerate(2);
 
         Assertions.assertTrue(car.isEqualPosition(0));
+    }
+
+    @Test
+    void 자동차_클래스의_toString메소드가_제대로_동작하는지_검사() {
+        Car car = new Car("red");
+        car.accelerate(6);
+        car.accelerate(6);
+        car.accelerate(6);
+
+        assertEquals(car.toString(), "red   : ---");
     }
 }
