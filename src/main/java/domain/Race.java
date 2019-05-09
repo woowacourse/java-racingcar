@@ -36,7 +36,9 @@ public class Race {
     private int findMaxPosition() {
         int max = 0;
         for(Car car : raceCars){
-            max = max < car.getPosition() ? car.getPosition() : max;
+            if(max < car.getPosition()){
+                max = car.getPosition();
+            }
         }
         return max;
     }
