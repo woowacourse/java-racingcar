@@ -5,6 +5,7 @@ import java.util.*;
 public class InputView {
 
     private static final int MINIMUM_PARTICIPANT = 2;
+    private static final int LIMIT_NAME_LENGTH = 5;
     private static Scanner sc = new Scanner(System.in);
 
     private static String input() {
@@ -24,7 +25,7 @@ public class InputView {
 
     private static boolean isInValidNames(String[] names) {
         for (String name : names) {
-            if (isBlank(name)) {
+            if (isBlank(name) || isInValidNameLength(name)) {
                 return true;
             }
         }
@@ -34,6 +35,10 @@ public class InputView {
 
     private static boolean isBlank(String str) {
         return str.equals("");
+    }
+
+    private static boolean isInValidNameLength(String name) {
+        return name.length() > LIMIT_NAME_LENGTH;
     }
 
     private static boolean isInValidCarNumber(String[] names) {
