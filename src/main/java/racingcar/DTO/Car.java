@@ -14,7 +14,9 @@ public class Car {
     }
 
     public void Move() {
-
+        if(isPossibleMove()){
+            this.position++;
+        }
     }
 
     private boolean isPossibleMove() {
