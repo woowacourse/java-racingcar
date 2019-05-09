@@ -4,6 +4,12 @@
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
+## 문자열 계산기
+### 기능목록
+* 문자열을 space를 기준으로 split하는 기능
+* 숫자와 연산자를 구분하는 기능
+* 연산자별로 연산을 수행하는 기능
+
 ## 자동차 경주 대회
 ### 기능목록
 * 자동차 이름을 입력받는 기능
