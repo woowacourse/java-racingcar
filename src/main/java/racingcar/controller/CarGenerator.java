@@ -20,8 +20,4 @@ public class CarGenerator {
     public List<Car> getCarList() {
         return carList;
     }
-
-    public void setCarList(List<Car> carList) {
-        this.carList = carList;
-    }
 }

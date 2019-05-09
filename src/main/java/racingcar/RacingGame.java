@@ -1,5 +1,6 @@
 package racingcar;
 
+import racingcar.controller.CarGenerator;
 import racingcar.dto.Car;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -12,10 +13,12 @@ public class RacingGame {
     final static int MIN_CAR_LENGTH = 1;
     final static int MAX_CAR_LENGTH = 5;
 
+    static List<Car> carList = null;
 
     public static void main(String[] args) {
         addCar();
         getTryCount();
+
     }
 
     private static void getTryCount() {
@@ -42,10 +45,13 @@ public class RacingGame {
             if (name.length() > MAX_CAR_LENGTH) {
                 OutputView.printOverNameLength();
                 addCar();
-                break;
+                return;
             }
         }
 
+        CarGenerator carGenerator = new CarGenerator();
+        carGenerator.generateCars(names);
+        carList = carGenerator.getCarList();
     }
 
     private static String[] splitCar(String names) {
