@@ -13,4 +13,14 @@ public class InputView {
             return inputCarList();
         }
     }
+
+    public static int inputTryCount() {
+        System.out.println(Messages.INPUT_TRY_COUNT);
+        try {
+            return Utils.SCANNER.nextInt();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputTryCount();
+        }
+    }
 }

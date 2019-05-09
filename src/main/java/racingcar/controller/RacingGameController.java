@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class RacingGameController {
     private static final int LIMIT_CAR_NAME_LENGTH = 5;
+    private static final int MIN_TRY_COUNT = 1;
     private static final String SPLIT_REGEX = ",";
 
     private ArrayList<Car> carList;
