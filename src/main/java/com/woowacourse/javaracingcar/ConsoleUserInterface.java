@@ -20,8 +20,8 @@ public class ConsoleUserInterface implements UserInterface {
     public List<String> promptUserNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = scanner.nextLine();
-        String[] splittedNames = RacingCarUtil.splitIntoNames(input);
-        if (!RacingCarUtil.isValidNameInput(splittedNames)) {
+        String[] splittedNames = RacingcarUtil.splitIntoNames(input);
+        if (!RacingcarUtil.isValidNameInput(splittedNames)) {
             return onInvalidUserNames();
         }
 
@@ -60,18 +60,16 @@ public class ConsoleUserInterface implements UserInterface {
 
     @Override
     public void printWinners(List<CarDto> winnerList) {
-        String str = RacingCarUtil.joinCarNames(winnerList);
+        String str = RacingcarUtil.joinCarNames(winnerList);
         System.out.println(str + "가 최종 우승했습니다.");
     }
 
-    @Override
-    public List<String> onInvalidUserNames() {
+    private List<String> onInvalidUserNames() {
         System.out.println("잘못된 입력입니다");
         return promptUserNames();
     }
 
-    @Override
-    public int onInvalidTries() {
+    private int onInvalidTries() {
         System.out.println("잘못된 입력입니다");
         return promptTries();
     }

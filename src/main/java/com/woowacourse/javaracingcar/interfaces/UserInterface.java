@@ -12,8 +12,4 @@ public interface UserInterface {
     void printResult(List<CarDto> carList);
 
     void printWinners(List<CarDto> winnerList);
-
-    List<String> onInvalidUserNames();
-
-    int onInvalidTries();
 }
