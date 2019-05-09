@@ -1,42 +1,39 @@
 package calc;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 public class Calculator {
-    static final Operator[] functionTable = { Operator.PLUS, Operator.MINUS, Operator.MULTIPLY, Operator.DIVIDE };
+    public static double val;
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("수식을 입력하여 주십시오.");
         ArrayList<String> tokens = new ArrayList<>(Arrays.asList(input.nextLine().split(" ")));
         try {
-            System.out.println("감사합니다.\n결과값은 " + calculateTokens(tokens)+ "입니다.");
+            calculateTokens(tokens);
+            System.out.println("감사합니다.\n결과값은 " + val + "입니다.");
         } catch (Exception e) {
             System.out.println("잘못된 입력입니다.");
         }
 
     }
 
-    public static double calculateTokens(ArrayList<String> tokens) {
+    public static void calculateTokens(ArrayList<String> tokens) {
+        val = .0;
         tokens.add(0, "+");
-        return calculate(tokens, 0);
+        calculate(tokens);
     }
 
-    private static double calculate(ArrayList<String> tokens, double acc) {
-        double exp = calculateExpression(acc, tokens.remove(0), Double.parseDouble(tokens.remove(0)));
-        HashMap<Boolean, Supplier<Double>> result = new HashMap<>();
-        result.put(true, () -> exp);
-        result.put(false, () -> calculate(tokens, exp));
-        return result.get(tokens.isEmpty()).get();
+    private static boolean calculate(ArrayList<String> tokens) {
+        val = convertSymbolToEnum(tokens.remove(0)).calculate(val, Double.parseDouble(tokens.remove(0)));
+        return tokens.isEmpty() || calculate(tokens);
     }
 
-    private static double calculateExpression(double lhs, String operator, double rhs) {
-        return functionTable["+-*/".indexOf((operator))].calculate(lhs, rhs);
+    private static Operator convertSymbolToEnum(String symbol) {
+        final String conversionTable[] = { "PLUS", "MINUS", "MULTIPLY", "DIVIDE" };
+        return Operator.valueOf(conversionTable["+-*/".indexOf(symbol)]);
     }
 }
 

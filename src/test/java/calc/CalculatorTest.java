@@ -24,53 +24,58 @@ public class CalculatorTest {
     }
 
     @Test
-    void addTest() {
-        assertThat(calc.calculateTokens(expressionToList("1 + 2 + 3"))).isEqualTo(6);
+    void 덧셈테스트() {
+        calc.calculateTokens(expressionToList("1 + 2 + 3"));
+        assertThat(calc.val).isEqualTo(6);
     }
 
     @Test
-    void subtractTest() {
-        assertThat(calc.calculateTokens(expressionToList("1 - 2 - 3"))).isEqualTo(-4);
+    void 뺄셈테스트() {
+        calc.calculateTokens(expressionToList("1 - 3"));
+        assertThat(calc.val).isEqualTo(-2);
     }
 
     @Test
-    void multiplicationTest() {
-        assertThat(calc.calculateTokens(expressionToList("1 * 3 * 9"))).isEqualTo(27);
+    void 곱셈테스트() {
+        calc.calculateTokens(expressionToList("1 * -3"));
+        assertThat(calc.val).isEqualTo(-3);
     }
 
     @Test
-    void divisionTest() {
-        assertThat(calc.calculateTokens(expressionToList("128 / 4 / 8"))).isEqualTo(4);
+    void 나눗셈테스트() {
+        calc.calculateTokens(expressionToList("12 / 3"));
+        assertThat(calc.val).isEqualTo(4);
     }
 
     @Test
-    void expressionTest() {
-        assertThat(calc.calculateTokens(expressionToList("1 + 5 / 2 * 5 - 7"))).isEqualTo(8);
+    void 수식테스트() {
+        calc.calculateTokens(expressionToList("1 - 3 * 6 + 6 / 2"));
+        assertThat(calc.val).isEqualTo(-3);
     }
 
     @Test
-    void exceptionTestA() {
+    void 예외테스트A() {
         assertThrows(Exception.class, () -> {
             calc.calculateTokens(expressionToList("-"));
         });
     }
 
     @Test
-    void exceptionTestB() {
+    void 예외테스트B() {
         assertThrows(Exception.class, () -> {
             calc.calculateTokens(expressionToList("1 +"));
         });
     }
 
     @Test
-    void exceptionTestC() {
+    void 예외테스트C() {
         assertThrows(Exception.class, () -> {
             calc.calculateTokens(expressionToList("1 + /"));
         });
     }
 
     @Test
-    void exceptionTestD() {
+    void 예외테스트D() {
         assertThrows(Exception.class, () -> {
             calc.calculateTokens(expressionToList("1 + 5 /"));
         });

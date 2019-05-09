@@ -1,9 +1,10 @@
 package racingcar;
 
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Car;
+import racingcar.domain.MovableStrategy;
 
 public class RacingCarTest {
-
 
     @Test
     void moveTest() {
@@ -14,9 +15,8 @@ public class RacingCarTest {
 
 }
 
-// 코드 포함?
-class ForceMove implements Car.MovableStrategy {
-    public boolean isMove() {
+class ForceMove implements MovableStrategy {
+    public boolean isMovable() {
         return true;
     }
 }
