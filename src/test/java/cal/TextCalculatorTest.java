@@ -33,6 +33,11 @@ public class TextCalculatorTest {
         assertEquals(10.0, textCalculator.calculate("100 / 10"), 0.0);
     }
 
+    @Test
+    public void 여러가지_연산(){
+        assertEquals(10.0, textCalculator.calculate("2 + 3 * 4 / 2"), 0.00);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void 숫자가아님() {
         textCalculator.calculate("2 + o");
@@ -43,7 +48,7 @@ public class TextCalculatorTest {
         textCalculator.calculate("+ 2");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void 연속_숫자(){
         textCalculator.calculate("2 2 2");
     }

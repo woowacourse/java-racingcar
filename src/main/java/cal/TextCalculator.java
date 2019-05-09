@@ -1,15 +1,18 @@
 package cal;
 
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TextCalculator {
     private double result;
-    private Scanner scanner = new Scanner(System.in);
+    private Map<String, Calculator> calculatorMap;
 
-    public void run(){
-        String inputText = scanner.nextLine();
-        TextCalculator textCalculator = new TextCalculator();
-        textCalculator.calculate(inputText);
+    public TextCalculator() {
+        calculatorMap = new HashMap<>();
+        calculatorMap.put("+", new PlusCalculator());
+        calculatorMap.put("-", new MinusCalculator());
+        calculatorMap.put("*", new MultiplyCalculator());
+        calculatorMap.put("/", new DivideCalculator());
     }
 
     public double calculate(String inputText) {
@@ -24,31 +27,13 @@ public class TextCalculator {
     }
 
     private void detectOperator(String[] tokens, int i) {
-        switch (tokens[i]) {
-            case "+":
-                result = Calculator.plus(result, toDouble(tokens[i + 1]));
-                break;
-
-            case "-":
-                result = Calculator.minus(result, toDouble(tokens[i + 1]));
-                break;
-
-            case "*":
-                result = Calculator.multiply(result, toDouble(tokens[i + 1]));
-                break;
-
-            case "/":
-                result = Calculator.divide(result, toDouble(tokens[i + 1]));
-                break;
-            default:
-                throw new IllegalArgumentException("연산자가 잘못되었습니다.");
-        }
+        result = calculatorMap.get(tokens[i]).calculate(result, Double.parseDouble(tokens[i + 1]));
     }
 
-    private double toDouble(String value){
-        try{
+    private double toDouble(String value) {
+        try {
             return Double.parseDouble(value);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException("적절한 입력이 아닙니다.");
         }
     }
