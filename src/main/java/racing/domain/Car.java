@@ -35,7 +35,7 @@ public class Car implements Comparable<Car> {
         this.name = name;
     }
 
-    //Test Fixture를 위해 생성자 추가
+    //Test Fixture 위해 생성자 추가
     Car(String name, int status) {
         this.name = name;
         this.status = status;

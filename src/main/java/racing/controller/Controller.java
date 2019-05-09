@@ -24,12 +24,14 @@ import racing.domain.CarList;
  * @version 1.0.0
  */
 public class Controller {
+    public static final String INVALID_NAME_EXCEPTION_MESSAGE = "이름을 입력해주세요 !";
+
     private static final int GO_FORWARD_CRITERIA = 4;
 
     public static String[] splitNames(String carNames) {
         String[] names = carNames.split(",");
         if (names.length == 0) {
-            throw new IllegalArgumentException("이름을 입력해주세요 !");
+            throw new IllegalArgumentException(INVALID_NAME_EXCEPTION_MESSAGE);
         }
         return names;
     }
