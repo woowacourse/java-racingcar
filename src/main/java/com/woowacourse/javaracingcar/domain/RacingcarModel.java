@@ -57,6 +57,9 @@ public class RacingcarModel {
     }
 
     private int calculateMaxPosition() {
+        if (cars.isEmpty()) {
+            throw new IllegalStateException("Car list is empty");
+        }
         return Collections.max(cars).getPosition();
     }
 

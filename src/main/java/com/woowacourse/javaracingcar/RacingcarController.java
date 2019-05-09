@@ -10,16 +10,17 @@ import java.util.List;
 public class RacingcarController {
 
     private UserInterface ui;
+    private NumberGenerator numberGenerator;
 
-    public RacingcarController(UserInterface ui) {
+    public RacingcarController(UserInterface ui, NumberGenerator numberGenerator) {
         this.ui = ui;
+        this.numberGenerator = numberGenerator;
     }
 
     public void play() {
         List<String> carNames = ui.promptUserNames();
         int tries = ui.promptTries();
-        NumberGenerator generator = new RandomNumberGenerator();
-        RacingcarModel racingcarModel = new RacingcarModel(generator, carNames);
+        RacingcarModel racingcarModel = new RacingcarModel(numberGenerator, carNames);
 
         for (int i = 0; i < tries; i++) {
             ui.printResult(racingcarModel.loop());

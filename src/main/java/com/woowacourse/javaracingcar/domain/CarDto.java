@@ -27,4 +27,24 @@ public class CarDto {
 
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof CarDto)) {
+            return false;
+        }
+
+        if (name.equals(((CarDto) o).name) &&
+            (position == ((CarDto) o).position)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
 }
