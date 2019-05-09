@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class CalculatorLineTest {
-    CalculatorLine cal;
+    private CalculatorLine cal;
 
     @BeforeEach
     void setUp() {
