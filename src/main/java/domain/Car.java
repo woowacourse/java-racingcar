@@ -1,9 +1,9 @@
 package domain;
 
 public class Car {
-    private static int MIN_MOVE_NUMBER = 4;
-    private static int MAX_MOVE_NUMBER = 9;
-    private static int MIN_STOP_NUMBER = 0;
+    private static final int MIN_MOVE_NUMBER = 4;
+    private static final int MAX_MOVE_NUMBER = 9;
+    private static final int MIN_STOP_NUMBER = 0;
 
     private final String name;
     private int position = 0;

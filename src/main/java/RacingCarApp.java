@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RacingcarApp {
-    private static int BOUND_NUMBER = 10;
+public class RacingCarApp {
+    private static final int BOUND_NUMBER = 10;
 
     public static void main(String[] args) {
-        List<String> carNames = InputView.getCarNames();
+        List<String> carNames = InputView.inputCarNames();
         int tryNumber = InputView.inputTryNum();
 
         List<Car> carList = registerCar(carNames);
@@ -42,7 +42,9 @@ public class RacingcarApp {
 
     private static void tryMove(List<Car> carList) {
         for (Car car : carList) {
-            car.judgeMove(makeRandomNumber());
+            if (car.judgeMove(makeRandomNumber()) == -1) {
+                throw new IllegalArgumentException("잘못된 randomNumber");
+            }
         }
     }
 

@@ -9,16 +9,21 @@ import static util.StringUtil.parseStringByComma;
 public class InputView {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static List<String> getCarNames() {
+    public static List<String> inputCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String inputString = scanner.nextLine();
 
+        return getCarNames(inputString);
+
+    }
+
+    private static List<String> getCarNames(String inputString) {
         List<String> nameList = parseStringByComma(inputString);
 
         for (String carName : nameList) {
             if (!isCarNameLength(carName)) {
                 System.out.println("자동차 이름은 5자이하 입니다.");
-                return getCarNames();
+                return inputCarNames();
             }
         }
 
