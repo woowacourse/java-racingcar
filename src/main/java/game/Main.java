@@ -1,15 +1,17 @@
 package game;
 
+import game.input.UserInput;
+
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();
-        String[] carNames = game.carNameGenerator();
-        List<Car> carList = game.createCarObject(carNames);
-        int gameCount = game.inputGameCount();
+        String[] carNames;
 
+        do {
+            carNames = game.splitWithComma(UserInput.inputCarNames());
+        } while (!game.checkCarNamesLength(carNames));
 
     }
-
 }
