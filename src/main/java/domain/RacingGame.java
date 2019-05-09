@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class RacingGame {
     private final RacingTrial racingTrial;
+    private final MaxFinder maxFinder = new MaxFinder();
 
     public RacingGame(RacingTrial racingTrial) {
         this.racingTrial = racingTrial;
@@ -18,7 +19,7 @@ public class RacingGame {
             racingTrial.runTrial(cars);
         }
 
-        ArrayList<Car> winners = new ArrayList();
+        ArrayList<Car> winners = maxFinder.findAllMax(cars, Car.compareByPosition);
         OutputView.printWinners(winners);
     }
 }

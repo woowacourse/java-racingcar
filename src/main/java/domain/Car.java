@@ -1,8 +1,16 @@
 package domain;
 
+import java.util.Comparator;
 import java.util.stream.IntStream;
 
 public class Car {
+    public static Comparator<Car> compareByPosition = new Comparator<Car>() {
+        @Override
+        public int compare(Car o1, Car o2) {
+            return o1.position - o2.position;
+        }
+    };
+
     private final String name;
     private int position;
 
