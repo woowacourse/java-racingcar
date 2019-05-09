@@ -18,7 +18,7 @@ public class RacingGame {
         List<Car> carList = setCarName();
         int number = inputNumber();
 
-        System.out.println(RESULT_STR);
+        System.out.println("\n"+RESULT_STR);
         for(int i = 0 ; i< number ; i++){
             carList = getRacingPostion(carList);
         }

@@ -6,19 +6,19 @@ import java.util.List;
 
 public class ResultView {
 
-    public String printResult(List<Car> carList) {
-        StringBuilder sb = new StringBuilder();
+    public void printResult(List<Car> carList) {
 
         for (int j = 0; j < carList.size(); j++) {
+            StringBuilder sb = new StringBuilder();
             sb.append(carList.get(j).getName());
             sb.append(" : ");
             for (int k = 0; k < carList.get(j).getPosition(); k++) {
                 sb.append("-");
             }
-//            System.out.println(sb.toString());
+            System.out.println(sb.toString());
         }
-//        System.out.println();
-        return sb.toString();
+        System.out.println();
+
     }
 
     public void printWinner(List<String> winner) {
