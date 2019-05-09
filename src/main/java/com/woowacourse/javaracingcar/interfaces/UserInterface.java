@@ -5,11 +5,11 @@ import com.woowacourse.javaracingcar.domain.Car;
 import java.util.List;
 
 public interface UserInterface {
-    public List<String> promptUserNames();
-    public int promptTries();
-    public void printResult(List<Car> cars);
-    public void printWinners(List<Car> winners);
+    List<String> promptUserNames();
+    int promptTries();
+    void printResult(List<Car> cars);
+    void printWinners(List<Car> winners);
 
-    public List<String> onInvalidUserNames();
-    public int onInvalidTries();
+    List<String> onInvalidUserNames();
+    int onInvalidTries();
 }
