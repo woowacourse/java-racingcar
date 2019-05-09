@@ -9,7 +9,7 @@ public class RaceStatusDto {
         this.carList = carList;
     }
 
-    public List<Car> getCarList(){
+    public List<Car> getCarList() {
         return carList;
     }
 }

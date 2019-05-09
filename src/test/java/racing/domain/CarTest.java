@@ -12,8 +12,8 @@ public class CarTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void 이름_길이_체크_2(){
-        Car car = new Car("abcdef",3);
+    public void 이름_길이_체크_2() {
+        Car car = new Car("abcdef", 3);
     }
 
     @Test
@@ -24,13 +24,11 @@ public class CarTest {
     }
 
     @Test
-    public void 상태_문자_테스트(){
-        Car car = new Car("abc",3);
+    public void 상태_문자_테스트() {
+        Car car = new Car("abc", 3);
 
         assertEquals("abc : ---", car.getStatus());
     }
-
-
 
 
 }

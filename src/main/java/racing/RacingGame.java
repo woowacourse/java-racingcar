@@ -6,9 +6,7 @@ import racing.domain.RepeatNumber;
 import racing.view.InputView;
 import racing.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -31,7 +31,7 @@ public class InputViewTest {
             ByteArrayInputStream input = new ByteArrayInputStream("5".getBytes());
             System.setIn(input);
             assertEquals(5, InputView.inputRepeatNumber().getRepeatNumber());
-        }finally {
+        } finally {
             System.setIn(System.in);
         }
     }
