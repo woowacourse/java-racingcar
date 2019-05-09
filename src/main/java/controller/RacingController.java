@@ -28,4 +28,8 @@ public class RacingController {
         }
         return race;
     }
+
+    public void printWinners(Race race){
+        OutputView.outputWinners(race.getRaceWinners());
+    }
 }

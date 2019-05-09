@@ -25,7 +25,7 @@ public class OutputView {
         return result;
     }
 
-    public static void outputWinner(String winners){
+    public static void outputWinners(String winners){
         System.out.println(winners + Const.OUTPUT_WINNER);
     }
 }
