@@ -43,4 +43,10 @@ public class CalculatorTest {
         String[] target = {"1", "+" ,"2", "+", "3"};
         assertThat(result).isEqualTo(target);
     }
+
+    @Test
+    void 문자열_숫자로_변환하기() {
+        int result = cal.parseStringToInt("10");
+        assertThat(result).isEqualTo(10);
+    }
 }

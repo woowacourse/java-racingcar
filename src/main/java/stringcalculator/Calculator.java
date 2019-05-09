@@ -21,4 +21,8 @@ public class Calculator {
     public String[] splitByBlank(String inputText) {
         return inputText.split(" ");
     }
+
+    public int parseStringToInt(String target) {
+        return Integer.parseInt(target);
+    }
 }
