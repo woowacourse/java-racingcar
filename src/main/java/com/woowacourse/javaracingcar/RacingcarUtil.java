@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RacingCarUtil {
+public class RacingcarUtil {
     private static final int MAX_NAME_LENGTH = 5;
 
-    private RacingCarUtil() {}
+    private RacingcarUtil() {}
 
     public static String joinCarNames(List<CarDto> cars) {
         return cars.stream()
