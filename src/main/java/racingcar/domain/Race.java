@@ -15,7 +15,7 @@ public class Race {
         Collections.unmodifiableCollection(cars);
     }
 
-    public Race(List<Car> cars, boolean getCars) {
+    public Race(List<Car> cars, boolean foobar) { //타입 겹침 회피용
         cars.forEach(car -> this.cars.add(car));
         Collections.unmodifiableCollection(cars);
     }
@@ -24,6 +24,9 @@ public class Race {
         return cars.size();
     }
 
+    /*
+    자동차 대수를 주기로 순서대로 진행함
+     */
     public Car startRound() {
         cursor = (cursor + 1) % cars.size();
         return cars.get(cursor).moveOrStop(strategy);
