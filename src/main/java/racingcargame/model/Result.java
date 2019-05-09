@@ -15,6 +15,10 @@ public class Result implements ResultInterface {
         }
     }
 
+    public Result(List<Car> carList){
+        this.carList = carList;
+    }
+
     @Override
     public List<Car> roundResult() {
         carList.forEach(Car::move);
