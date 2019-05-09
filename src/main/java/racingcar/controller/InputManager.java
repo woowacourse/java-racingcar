@@ -3,10 +3,7 @@ package racingcar.controller;
 import racingcar.model.Car;
 import racingcar.view.InputView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.List;
+import java.util.*;
 
 public class InputManager {
     private static final String COMMA = ",";
@@ -18,11 +15,24 @@ public class InputManager {
 
     List<Car> getRacingCar() {
         List<Car> racingCars = new ArrayList<>();
-        List<String> racingCarNames = getCarName();
+        List<String> racingCarNames;
+        try {
+            racingCarNames = getCarName();
+            checkDuplicateOfCarName(racingCarNames);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e);
+        }
         for (String racingCarName : racingCarNames) {
             racingCars.add(new Car(racingCarName));
         }
         return racingCars;
+    }
+
+    private void checkDuplicateOfCarName(List<String> racingCarNames) {
+        Set<String> carNameSet = new HashSet<>(racingCarNames);
+        if (carNameSet.size() != racingCarNames.size()) {
+            throw new IllegalArgumentException(INPUT_NAME_ERROR_MENT);
+        }
     }
 
     private List<String> getCarName() {
@@ -34,6 +44,7 @@ public class InputManager {
                 throw new IllegalArgumentException(e);
             }
         }
+
         return Arrays.asList(carNames);
     }
 
