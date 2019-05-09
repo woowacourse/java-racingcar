@@ -1,6 +1,8 @@
 package domain;
 
 class Car {
+    private static final int MOVE_CONDITION = 4;
+
     private String name;
     private int position;
 
@@ -22,7 +24,7 @@ class Car {
     }
 
     static boolean isMove(int randomNumber) {
-        return randomNumber >= Constant.MOVE_CONDITION;
+        return randomNumber >= MOVE_CONDITION;
     }
 
     void printPosition() {

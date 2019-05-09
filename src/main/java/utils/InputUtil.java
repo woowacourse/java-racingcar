@@ -1,12 +1,11 @@
 package utils;
 
-import domain.Constant;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputUtil {
+    private static final int MINIMUM_PARTICIPANT = 2;
     private static Scanner sc = new Scanner(System.in);
 
     private static String input() {
@@ -39,7 +38,7 @@ public class InputUtil {
     }
 
     private static boolean isInValidCarNumber(String[] names) {
-        return names.length < Constant.MINIMUM_PARTICIPANT;
+        return names.length < MINIMUM_PARTICIPANT;
     }
 
     public static int inputRound() {
