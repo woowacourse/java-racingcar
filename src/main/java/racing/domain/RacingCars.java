@@ -9,4 +9,14 @@ public class RacingCars {
         this.carList = carList;
     }
 
+    public void race() {
+        for (Car car : carList) {
+            car.move();
+        }
+    }
+
+    public RaceStatusDto getRaceStatus() {
+        return new RaceStatusDto(carList);
+    }
+
 }
