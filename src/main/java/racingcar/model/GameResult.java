@@ -14,7 +14,7 @@ public class GameResult {
             maxDistance = getMaxDistance(maxDistance, car);
         }
         for(Car car : carList) {
-            winnerList = checkMaxPosition(car, winnerList);
+            winnerList = checkMaxPosition(car, winnerList, maxDistance);
         }
 
         return winnerList;
@@ -27,7 +27,7 @@ public class GameResult {
         return maxDistance;
     }
 
-    public List<String> checkMaxPosition(Car car, List<String> winnerList){
+    public List<String> checkMaxPosition(Car car, List<String> winnerList, int maxDistance){
         if(car.getPosition() == maxDistance){
             winnerList.add(car.getName());
             return winnerList;

@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GameResultTest {
 
     GameResult gameResult;
+    final int maxDistance = 5;
 
     @BeforeEach
     void setUp() {
@@ -34,6 +35,27 @@ public class GameResultTest {
         }
 
         assertThat(max).isEqualTo(5);
+    }
+
+    @Test
+    void 우승자_판별_텍스트() {
+        List<Car> carList = new ArrayList<>();
+        carList.add(new Car("pobi"));
+        carList.add(new Car("honux"));
+        carList.add(new Car("crong"));
+
+        carList.get(0).setPosition(maxDistance);
+        carList.get(1).setPosition(maxDistance);
+        carList.get(2).setPosition(maxDistance-1);
+
+        List<String> winner = new ArrayList<>();
+        for(Car cars : carList){
+           winner = gameResult.checkMaxPosition(cars,winner,maxDistance);
+        }
+
+        String result = String.join(",",winner);
+        assertThat(result).isEqualTo("pobi,honux");
+
     }
 
     @AfterEach
