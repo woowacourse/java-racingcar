@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,8 +11,13 @@ class CarTest {
     }
 
     @Test
-    void isAtTest() {
-        assertThat(new Car("TOAST", 65535).isAt(65535)).isEqualTo(true);
+    void compareToTest() {
+        assertThat(new Car("TOAST", 6).compareTo(new Car("TEST", 8))).isEqualTo(2);
+    }
+
+    @Test
+    void isAtSamePositionWithTest() {
+        assertThat(new Car("TOAST", 15).isAtSamePositionWith(new Car("TEST", 15))).isTrue();
     }
 
     @Test

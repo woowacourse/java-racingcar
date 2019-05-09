@@ -6,13 +6,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Race {
-    private final MovementStrategy strategy;
+    private final MovementStrategy strategy = new RandomMovement();
     private final List<Car> cars = new ArrayList<>();
     private final List<Integer> snapshots = new ArrayList<>();
 
-    public Race (List<String> namesList, MovementStrategy strategy) {
-        namesList.forEach(name -> cars.add(new Car(name)));
-        this.strategy = strategy;
+    public Race(List<String> names) {
+        names.forEach(name -> cars.add(new Car(name)));
+    }
+
+    public Race(List<Car> cars, boolean getCars) {
+        cars.forEach(car -> this.cars.add(car));
     }
 
     public void startRoundAndSaveSnapshot() {
@@ -26,9 +29,8 @@ public class Race {
     }
 
     public List<Car> getWinners() {
-        Collections.sort(snapshots);
-        Collections.reverse(snapshots);
-        return cars.stream().filter(x -> x.isAt(snapshots.get(0))).collect(Collectors.toList());
+        Collections.sort(cars);
+        Car winner = cars.get(0);
+        return cars.stream().filter(x -> x.isAtSamePositionWith(winner)).collect(Collectors.toList());
     }
 }
-//테스트용 생성자?

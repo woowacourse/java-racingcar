@@ -8,12 +8,9 @@ import racingcar.view.OutputView;
 import java.util.List;
 
 public class RacingApp {
-    private static List<String> carNames;
-    private static Race race;
-
     public static void main(String[] args) {
-        carNames = InputView.inputCarNames();
-        race = new Race(carNames, new RandomMovement());
+        List<String> carNames = InputView.inputCarNames();
+        Race race = new Race(carNames);
         int trialNumbers = InputView.inputNumberOfTrial();
         for (int i = 0; i < trialNumbers; i++) {
             race.startRoundAndSaveSnapshot();
