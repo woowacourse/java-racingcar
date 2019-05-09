@@ -39,14 +39,22 @@ public class Car{
         }
     }
 
-    public int compare(int max) {
+    public int findMax(int max) {
         if (position > max) {
             max = position;
         }
         return max;
     }
 
+    public void findScoreSameAsMax(int maxPosition, List<Car> winners){
+        if(maxPosition == this.position){
+            winners.add(this);
+        }
+    }
+
     public void setPosition(int position){
+
+        //테스트용
         this.position = position;
     }
 

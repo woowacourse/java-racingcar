@@ -21,6 +21,6 @@ public class CarTest {
     @Test
     void compareTest() {
         Car testCar = new Car("abc");
-        assertThat(testCar.compare(101)).isEqualTo(101);
+        assertThat(testCar.findMax(101)).isEqualTo(101);
     }
 }

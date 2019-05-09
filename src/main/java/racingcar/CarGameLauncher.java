@@ -12,6 +12,8 @@ public class CarGameLauncher {
         int totalTurns = Car.askTotalTurns();
         Cars cars = new Cars(listOfCarNames);
         cars.printTheProcess(totalTurns);
+        Winners winners = new Winners();
+        winners.decideWinners(cars);
 
     }
 }
