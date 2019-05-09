@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Collections;
 
-public class Car implements Cloneable {
+public class Car implements Cloneable, Comparable {
     private static final String BLANK_REGEX = "\\s*";
     private static final int RANDOM_NUM_SCOPE = 10;
     private static final int MIN_NUM_TO_ACCELERATE = 4;
@@ -16,11 +16,6 @@ public class Car implements Cloneable {
         checkBlank(name);
         this.name = name;
     }
-
-//    public Car(Car car) {
-//        this(car.name);
-//        this.position = car.position;
-//    }
 
     private void checkLengthOfName(String name) {
         if (name.length() > MAX_NUM_OF_CAR_NAME) {
@@ -52,6 +47,10 @@ public class Car implements Cloneable {
         return (this.position == position);
     }
 
+    public boolean isMaxPosition(Car car) {
+        return (this.position == car.getPosition());
+    }
+
     @Override
     public boolean equals(Object object) {
         Car car = (Car) object;
@@ -68,8 +67,19 @@ public class Car implements Cloneable {
         return (Car) super.clone();
     }
 
+    @Override
+    public int compareTo(Object o) {
+        Car car = (Car) o;
+        Integer positionToCompare = car.getPosition();
+        return new Integer(this.position).compareTo(positionToCompare);
+    }
+
     public String getName() {
         return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 
     public String getAlignedName() {

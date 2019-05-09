@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import racingcar.domain.result.RacingGameResult;
 import racingcar.domain.result.RacingGameRound;
+import racingcar.util.CloneUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class RacingGame {
         List<RacingGameRound> gameResultDB = new ArrayList<>();
         for (int i = 0; i < gameCount.getGameCount(); i++) {
             proceedOneRound();
-            gameResultDB.add(new RacingGameRound(cloneCarList(carList)));
+            gameResultDB.add(new RacingGameRound(CloneUtil.cloneCarList(carList)));
         }
         return new RacingGameResult(gameResultDB);
     }
@@ -29,15 +30,5 @@ public class RacingGame {
         for (Car car : this.carList) {
             car.accelerate();
         }
-    }
-
-    private List<Car> cloneCarList(List<Car> carList) {
-        return carList.stream().map(car -> {
-            try {
-                return car.clone();
-            } catch (CloneNotSupportedException e) {
-                throw new RuntimeException();
-            }
-        }).collect(Collectors.toList());
     }
 }

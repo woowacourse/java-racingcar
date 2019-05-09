@@ -1,5 +1,7 @@
 package racingcar.domain.result;
 
+import racingcar.domain.Car;
+
 import java.util.List;
 
 public class RacingGameResult {
@@ -13,8 +15,7 @@ public class RacingGameResult {
         return this.gameResultDB;
     }
 
-    // TODO : winner list 추출을 위한 maxPosition 구하는 메소드
-
-    // TODO : maxPosition을 이용하여 winner list를 반환하는 메소드
-
+    public List<Car> getWinners() {
+        return gameResultDB.get(gameResultDB.size() - 1).getWinners();
+    }
 }
