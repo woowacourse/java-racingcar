@@ -8,6 +8,9 @@ import java.util.ArrayList;
 public class RacingGameController {
     private static final int LIMIT_CAR_NAME_LENGTH = 5;
     private static final int MIN_TRY_COUNT = 1;
+    private static final int RANDOM_NUMBER_COUNT = 9;
+    private static final int RANDOM_NUMBER_LOWER_BOUND = 1;
+    private static final int MOVE_CRITERIA = 4;
     private static final String SPLIT_REGEX = ",";
 
     private ArrayList<Car> carList;
@@ -69,5 +72,13 @@ public class RacingGameController {
 
     private boolean hasContinuousComma(String carNameList) {
         return carNameList.contains(",,");
+    }
+
+    private void randomMove(Car car) {
+        int randomNumber = Utils.RANDOM.nextInt(RANDOM_NUMBER_COUNT) + RANDOM_NUMBER_LOWER_BOUND;
+
+        if(randomNumber >= MOVE_CRITERIA) {
+            car.move();
+        }
     }
 }
