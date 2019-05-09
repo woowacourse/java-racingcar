@@ -18,13 +18,13 @@ class CarTest {
 
     @Test
     void 차가_자기_히스토리를_제대로_만드는지_테스트() {
-       /* Given : */
+       /* Given */
         HashMap<String, Integer> carHistory;
 
-        /* When: */
+        /* When */
         carHistory = car.makeCarHisory();
 
-        /* Then: */
+        /* Then */
         assertThat(carHistory.containsKey("testCar")).isTrue();
         assertThat(carHistory.get("testCar")).isEqualTo(0);
     }
