@@ -11,7 +11,6 @@ import static util.StringUtil.*;
 public class RacingcarApp {
     private static int BOUND_NUMBER = 10;
 
-
     public static void main(String[] args) {
         List<String> carNames = getCarNames();
         int tryNumber = InputView.inputTryNum();
@@ -19,8 +18,7 @@ public class RacingcarApp {
         List<Car> carList = registerCar(carNames);
 
         startRacing(carList, tryNumber);
-
-
+        OutputView.printWinnerName(carList);
     }
 
     private static List<Car> registerCar(List<String> carNames) {
@@ -34,11 +32,13 @@ public class RacingcarApp {
     }
 
     private static void startRacing(List<Car> carList, int tryNumber) {
+        System.out.println();
         System.out.println("실행 결과");
 
         for (int i = 0; i < tryNumber; i++) {
             tryMove(carList);
             OutputView.printPosition(carList);
+            System.out.println();
         }
     }
 
