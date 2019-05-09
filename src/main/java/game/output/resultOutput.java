@@ -7,7 +7,7 @@ import java.util.List;
 public class resultOutput {
     static StringBuilder sb = new StringBuilder();
 
-    public static void result(Car car) {
+    public static void eachGameOutput(Car car) {
         sb.setLength(0);
         sb.append(car.getCarName());
         sb.append(" : ");
