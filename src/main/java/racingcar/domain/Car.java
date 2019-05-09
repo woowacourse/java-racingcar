@@ -44,4 +44,14 @@ public class Car {
     public boolean isEqualPosition(int position) {
         return (this.position == position);
     }
+
+    @Override
+    public boolean equals(Object object) {
+        Car car = (Car) object;
+        return (this.name.equals(car.getName()));
+    }
+
+    public String getName() {
+        return this.name;
+    }
 }
