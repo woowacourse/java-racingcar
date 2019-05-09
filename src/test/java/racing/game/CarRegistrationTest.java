@@ -9,15 +9,20 @@ public class CarRegistrationTest {
 
     @Test
     void 입력을이름들로분리() {
-        String string = " ,,, ";
-        assertThat(CarRegistration.splitNames(string)).
-                contains("jihoon", "pobi","gugu","jinwook");
+        String string = "pobi,jinwook";
+        assertThat(CarRegistration.splitNames(string)).contains("pobi","jinwook");
     }
 
     @Test
     void 빈입력인지확인() {
-        String string = new String("  , , ,  ");
+        String string = new String("");
         assertThat(CarRegistration.checkNoInput(CarRegistration.splitNames(string))).isTrue();
+    }
+
+    @Test
+    void 입력에서중복된이름이있는지확인() {
+        String string = "pobi,pobi";
+        assertThat(CarRegistration.checkRepetition(CarRegistration.splitNames(string))).isTrue();
     }
 
 }
