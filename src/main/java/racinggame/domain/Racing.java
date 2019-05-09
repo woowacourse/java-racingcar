@@ -11,8 +11,7 @@ import java.util.Random;
 public class Racing {
     private static final int RANDOM_BOUND = 10;
 
-    public List<Car> initializeCars() {
-        List<String> carNames = InputView.getCarNames();
+    public List<Car> initializeCars(List<String> carNames) {
         List<Car> cars = new ArrayList<>();
 
         for (String name : carNames) {
@@ -42,7 +41,7 @@ public class Racing {
 
     public static void main(String[] args) {
         Racing racing = new Racing();
-        List<Car> cars = racing.initializeCars();
+        List<Car> cars = racing.initializeCars(InputView.getCarNames());
         int totalTrial = InputView.getTrial();
         LeagueHistory leagueHistory = new LeagueHistory();
 
