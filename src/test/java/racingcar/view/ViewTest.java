@@ -12,4 +12,16 @@ public class ViewTest {
         assertThat(View.isNamesValid("conas,1231,sun,gi".split(","))).isEqualTo(false);     //영문자가 아닌 다른 문자를 입력하였을 때
         assertThat(View.isNamesValid("conas,conas,sun,gi".split(","))).isEqualTo(false);    //중복된 이름이 존재할 때
     }
+
+    @Test
+    void 시도할_횟수가_올바른지_확인(){
+        assertThat(View.isValidTryNumber("1")).isEqualTo(true);
+        assertThat(View.isValidTryNumber("10")).isEqualTo(true);
+        assertThat(View.isValidTryNumber("-1")).isEqualTo(false);
+        assertThat(View.isValidTryNumber("0")).isEqualTo(false);
+        assertThat(View.isValidTryNumber("100")).isEqualTo(true);
+        assertThat(View.isValidTryNumber("a")).isEqualTo(false);
+        assertThat(View.isValidTryNumber(" ")).isEqualTo(false);
+        assertThat(View.isValidTryNumber("")).isEqualTo(false);
+    }
 }
