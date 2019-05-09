@@ -1,10 +1,12 @@
-package com.woowacourse.javaracingcar;
+package com.woowacourse.javaracingcar.domain;
 
+import com.woowacourse.javaracingcar.RacingCarUtil;
 import com.woowacourse.javaracingcar.domain.Car;
 import com.woowacourse.javaracingcar.domain.CarDto;
 import com.woowacourse.javaracingcar.interfaces.NumberGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,15 +57,7 @@ public class RacingcarModel {
     }
 
     private int calculateMaxPosition() {
-        int max = 0;
-
-        for (Car c : cars) {
-            if (c.getPosition() > max) {
-                max = c.getPosition();
-            }
-        }
-
-        return max;
+        return Collections.max(cars).getPosition();
     }
 
     private List<CarDto> convertToDtoList() {

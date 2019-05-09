@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 public class RacingCarUtil {
     private static final int MAX_NAME_LENGTH = 5;
 
+    private RacingCarUtil() {}
+
     public static String joinCarNames(List<CarDto> cars) {
         return cars.stream()
             .map(CarDto::getName)

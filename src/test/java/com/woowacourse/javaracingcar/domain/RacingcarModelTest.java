@@ -1,6 +1,6 @@
-package com.woowacourse.javaracingcar;
+package com.woowacourse.javaracingcar.domain;
 
-import com.woowacourse.javaracingcar.domain.CarDto;
+import com.woowacourse.javaracingcar.TestNumberGenerator;
 import com.woowacourse.javaracingcar.interfaces.NumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

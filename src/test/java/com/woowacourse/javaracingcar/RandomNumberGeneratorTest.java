@@ -1,5 +1,6 @@
 package com.woowacourse.javaracingcar;
 
+import com.woowacourse.javaracingcar.domain.RandomNumberGenerator;
 import com.woowacourse.javaracingcar.interfaces.NumberGenerator;
 import org.junit.jupiter.api.Test;
 

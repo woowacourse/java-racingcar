@@ -1,6 +1,6 @@
 package com.woowacourse.javaracingcar.domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final String name;
     private int position;
 
@@ -49,5 +49,10 @@ public class Car {
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return Integer.compare(position, o.position);
     }
 }

@@ -5,6 +5,7 @@ import java.util.Queue;
 
 public class StringCalculatorUtil {
 
+    private StringCalculatorUtil() {}
 
     public static StringCalculator parseCalculator(String input) {
         Queue<Character> operatorQueue = new LinkedList<>();
