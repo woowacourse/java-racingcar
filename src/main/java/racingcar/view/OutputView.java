@@ -6,7 +6,7 @@ import java.util.List;
 
 public class OutputView {
     public static void printRounds(List<String> names, List<Integer> positions) {
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
         for (int i = 0; i < positions.size();) {
             for (int j = 0; j < names.size(); i++, j++) {
                 System.out.println(names.get(j) + " : " + drawTrail(positions.get(i)));
