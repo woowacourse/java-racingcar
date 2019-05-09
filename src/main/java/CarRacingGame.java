@@ -3,7 +3,6 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -12,7 +11,7 @@ import static util.StringUtils.*;
 public class CarRacingGame {
     private static int BOUND_NUMBER = 10;
 
-    private static List<String> getCarNames() {
+    public static List<String> getCarNames() {
         String names = InputView.inputCarNames();
         List<String> nameList = parseStringByComma(names);
 
