@@ -28,6 +28,12 @@ public class RacingGameController {
         return splitedCarNameList;
     }
 
+    public void generateCarList(String[] carNames) {
+        for (String carName : carNames) {
+            carList.add(new Car(carName));
+        }
+    }
+
     private String removeWhiteSpace(String carNameList) {
         return carNameList.replaceAll(" ", "");
     }
