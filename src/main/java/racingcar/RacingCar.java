@@ -12,7 +12,10 @@ public class RacingCar {
         setCars(carNames);
         int numOfGame = InputView.getNumberOfGame();
         startGame(numOfGame);
-
+        
+        int maxPosition = getMaxPosition();
+        List<String> winners = getWinners(maxPosition);
+        OutputView.printWinners(winners);
     }
 
     private String[] makeCarNames(String userInput) {
@@ -43,6 +46,24 @@ public class RacingCar {
             car.play();
             OutputView.printCarStatus(car);
         }
+    }
+
+    private int getMaxPosition() {
+        int maxPosition = 0;
+        for (Car car : cars) {
+            maxPosition = Math.max(car.getPosition(), maxPosition);
+        }
+        return maxPosition;
+    }
+
+    private List<String> getWinners(int maxPosition) {
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.isWinner(maxPosition)) {
+                winners.add(car.getName());
+            }
+        }
+        return winners;
     }
 
     public static void main(String[] args) {

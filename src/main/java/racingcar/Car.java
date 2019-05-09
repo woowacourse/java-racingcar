@@ -35,4 +35,8 @@ public class Car {
         int randomNumber = makeRandomNumber();
         move(shouldMove(randomNumber));
     }
+
+    boolean isWinner(int maxPosition) {
+        return position == maxPosition;
+    }
 }
