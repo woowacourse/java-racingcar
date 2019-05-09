@@ -27,4 +27,12 @@ public class RaceTest {
         names.set(2,"c");
         assertThat(race.checkDuplicated(names)).isEqualTo(true);
     }
+
+    @Test
+    void 자연수확인테스트() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            race.checkValidNumTrials(-30);
+        });
+        assertThat(race.checkValidNumTrials(23)).isEqualTo(true);
+    }
 }
