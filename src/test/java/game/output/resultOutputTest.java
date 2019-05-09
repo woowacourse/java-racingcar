@@ -21,7 +21,7 @@ public class resultOutputTest {
     void 자동차_출력_결과_확인() {
       car.move(4);
       car.move(4);
-      resultOutput.result(car);
+      resultOutput.eachGameOutput(car);
     }
 
     @Test
