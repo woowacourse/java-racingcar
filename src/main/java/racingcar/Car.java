@@ -1,9 +1,6 @@
 package racingcar;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Car{
     private final String name;
@@ -54,9 +51,7 @@ public class Car{
     }
 
     public void setPosition(int position){
-        //테스트용
+        //테스트코드용
         this.position = position;
     }
-
-
 }

@@ -47,7 +47,4 @@ public class Cars {
             carList.get(i).setPosition(inputPosition.get(i));
         }
     }
-
-
-
 }

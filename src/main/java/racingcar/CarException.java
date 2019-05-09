@@ -1,19 +1,21 @@
 package racingcar;
 
-import racingcar.Car;
-
 import java.util.*;
 
 public class CarException {
     public static List<String> askCarNamesException(){
         try {
             List<String> names = askAndReceiveCarNames();
-            if (isWhiteSpaceOnly(names) || isDuplicate(names) || isOverLimit(names)){
-                throw new IllegalArgumentException();
-            }
+            checkConditionsForNames(names);
             return names;
         } catch(Exception e) {
             return Car.askCarNames();
+        }
+    }
+
+    public static void checkConditionsForNames(List<String> names) {
+        if (isWhiteSpaceOnly(names) || isDuplicate(names) || isOverLimit(names)){
+            throw new IllegalArgumentException();
         }
     }
 
@@ -27,12 +29,14 @@ public class CarException {
     }
 
     public static boolean isWhiteSpaceOnly(List<String> names) {
-        boolean result = false;
-        for(int i=0; i<names.size();){
-            result = names.get(i).isEmpty();
-            i = (result) ? names.size() : i + 1;
+        boolean whiteSpaceOnly = false;
+        for(int i=0; i<names.size() && !whiteSpaceOnly; i++){
+            whiteSpaceOnly = names.get(i).isEmpty();
         }
-        return result;
+        if (whiteSpaceOnly) {
+            System.out.println("이름중에 공백으로만 이루어진 이름이 있습니다");
+        }
+        return whiteSpaceOnly;
     }
 
     public static boolean isDuplicate(List<String> names) {
@@ -65,11 +69,15 @@ public class CarException {
     public static int askTotalTurnsException() {
         try {
             int userInput = askAndReceiveTurns();
-            if (userInput <= 0) {throw new IllegalArgumentException();}
+            checkConditionsForTurns(userInput);
             return userInput;
         }catch(Exception e) {
             return askTotalTurnsException();
         }
+    }
+
+    public static void checkConditionsForTurns(int userInput) {
+        if (userInput <= 0) {throw new IllegalArgumentException();}
     }
 
     public static int askAndReceiveTurns() {
