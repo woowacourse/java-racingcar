@@ -32,6 +32,7 @@ public class InputUtil {
                 break;
             }
         }
+        result = isInvalidCarNumber(names);
 
         return result;
     }
@@ -40,32 +41,36 @@ public class InputUtil {
         return str.equals("");
     }
 
+    private static boolean isInvalidCarNumber(String[] names) {
+        return names.length < Constant.MINIMUM_PARTICIPANT;
+    }
+
     public static int inputRound() {
         String round;
-        do{
+        do {
             System.out.println("시도할 회수는 몇회인가요?");
             round = input().trim();
-        }while(isNotValidRound(round));
+        } while (isNotValidRound(round));
 
         return Integer.parseInt(round);
     }
 
-    private static boolean isNotValidRound(String round){
+    private static boolean isNotValidRound(String round) {
         boolean result = true;
 
-        if(isInteger(round) && isPositive(round)){
+        if (isInteger(round) && isPositive(round)) {
             result = false;
         }
 
         return result;
     }
 
-    private static boolean isInteger(String number){
+    private static boolean isInteger(String number) {
         boolean result = true;
 
-        try{
+        try {
             Integer.parseInt(number);
-        }catch(NumberFormatException nfe){
+        } catch (NumberFormatException nfe) {
             result = false;
         }
 

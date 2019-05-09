@@ -9,7 +9,7 @@ public class RacingGame {
     private int gameRound;
     private ArrayList<Car> carList = new ArrayList<>();
 
-    private void input(){
+    private void input() {
         carNames = InputUtil.inputNames();
         gameRound = InputUtil.inputRound();
     }
@@ -42,13 +42,13 @@ public class RacingGame {
         }
     }
 
-    private void outputWinners(){
+    private void outputWinners() {
         Winners winners = new Winners();
         winners.determineWinners(carList);
         winners.printWinners();
     }
 
-    public void run(){
+    public void run() {
         input();
         registerCars();
         race();
