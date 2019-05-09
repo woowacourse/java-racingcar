@@ -2,26 +2,22 @@ package racingcar.controller;
 
 import racingcar.model.Car;
 import racingcar.model.Winner;
-import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 
 public class RacingCarManager {
     private List<Car> cars;
     private int gameCount;
-    private InputManager inputManager;
 
     public RacingCarManager() {
         cars = new ArrayList<>();
         gameCount = 0;
-        inputManager = new InputManager();
     }
 
-    public void racingGameStart() {
-        getGameInformation();
+    public void racingGameStart(InputManager inputManager) {
+        getGameInformation(inputManager);
         startRacing();
         getRacingWinners();
     }
@@ -31,7 +27,7 @@ public class RacingCarManager {
         OutputView.printWinners(winner);
     }
 
-    private void getGameInformation() {
+    private void getGameInformation(InputManager inputManager) {
         cars = inputManager.getRacingCar();
         gameCount = inputManager.getGameCount();
     }

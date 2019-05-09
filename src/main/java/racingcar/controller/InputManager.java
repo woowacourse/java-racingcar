@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-import racingcar.ErrorMessage;
 import racingcar.model.Car;
 import racingcar.view.InputView;
 
@@ -10,8 +9,14 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 public class InputManager {
+    private static final String COMMA = ",";
+    private static final int MIN_CAR_NAME_LENGTH = 1;
+    private static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final String INPUT_NAME_ERROR_MENT = "자동자 이름을 정확하게 입력하세요.";
+    private static final String INPUT_GAME_COUNT_ERROR_MENT = "시도할 횟수를 정확하게 입력하세요";
+    private static final int MIN_GAME_COUNT = 0;
 
-    public List<Car> getRacingCar() {
+    List<Car> getRacingCar() {
         List<Car> racingCars = new ArrayList<>();
         List<String> racingCarNames = getCarName();
         for (String racingCarName : racingCarNames) {
@@ -21,7 +26,7 @@ public class InputManager {
     }
 
     private List<String> getCarName() {
-        String[] carNames = InputView.getRacingCarInput().split(",");
+        String[] carNames = InputView.getRacingCarInput().split(COMMA);
         for (String carName : carNames) {
             try {
                 checkNameValid(carName);
@@ -33,8 +38,8 @@ public class InputManager {
     }
 
     private void checkNameValid(String carName) {
-        if (carName.length() < 1 || carName.length() > 5) {
-            throw new IllegalArgumentException(ErrorMessage.inputErrorMessage.get("ERROR_CAR_NAME_LENGTH"));
+        if (carName.length() < MIN_CAR_NAME_LENGTH || carName.length() > MAX_CAR_NAME_LENGTH) {
+            throw new IllegalArgumentException(INPUT_NAME_ERROR_MENT);
         }
     }
 
@@ -44,14 +49,14 @@ public class InputManager {
             gameCount = InputView.getRacingCount();
             checkGameCountValid(gameCount);
         } catch (InputMismatchException e) {
-            throw new InputMismatchException(ErrorMessage.inputErrorMessage.get("ERROR_GAME_COUNT"));
+            throw new InputMismatchException(INPUT_GAME_COUNT_ERROR_MENT);
         }
         return gameCount;
     }
 
     private void checkGameCountValid(int gameCount) {
-        if (gameCount < 0) {
-            throw new InputMismatchException(ErrorMessage.inputErrorMessage.get("ERROR_GAME_COUNT"));
+        if (gameCount < MIN_GAME_COUNT) {
+            throw new InputMismatchException(INPUT_GAME_COUNT_ERROR_MENT);
         }
     }
 }
