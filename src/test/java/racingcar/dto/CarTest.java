@@ -39,7 +39,6 @@ public class CarTest {
         int before = car.getPosition();
         car.move(4);
         int after = car.getPosition();
-
         assertThat(after).isEqualTo(before);
     }
 

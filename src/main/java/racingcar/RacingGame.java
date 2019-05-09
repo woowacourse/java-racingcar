@@ -50,7 +50,7 @@ public class RacingGame {
         }
 
         for (String name : names) {
-            if (name.length() > MAX_CAR_LENGTH) {
+            if (name.length() > MAX_CAR_LENGTH || name.length() <= 0) {
                 OutputView.printOverNameLength();
                 addCar();
                 return;
