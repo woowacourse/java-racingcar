@@ -22,7 +22,7 @@ public class InputView {
 
         for (String carName : nameList) {
             if (!isCarNameLength(carName)) {
-                System.out.println("자동차 이름은 5자이하 입니다.");
+                System.out.println("자동차 이름은 1자 이상 5자 이하 입니다.");
                 return inputCarNames();
             }
         }
