@@ -1,7 +1,6 @@
 package racinggame.domain;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 public class LeagueHistory {
     private HashMap<Integer, TrialHistory> leagueHistory = new LinkedHashMap<>();
@@ -14,8 +13,14 @@ public class LeagueHistory {
 
     }
 
+
     public TrialHistory getHistoryOf(int trial) {
         return leagueHistory.get(trial);
     }
 
+    public List<String> findWinners(int lastRound) {
+        TrialHistory lastTrialHistory = getHistoryOf(lastRound);
+
+        return lastTrialHistory.findWinners();
+    }
 }

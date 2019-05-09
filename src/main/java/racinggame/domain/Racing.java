@@ -2,6 +2,7 @@ package racinggame.domain;
 
 
 import racinggame.util.InputView;
+import racinggame.util.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,5 +47,6 @@ public class Racing {
         LeagueHistory leagueHistory = new LeagueHistory();
         racing.startLeague(leagueHistory, cars, totalTrial);
         leagueHistory.showHistory();
+        OutputView.showWinners(leagueHistory.findWinners(totalTrial));
     }
 }
