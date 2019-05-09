@@ -2,9 +2,13 @@ package game.output;
 
 import game.Car;
 
+import java.util.List;
+
 public class resultOutput {
+    static StringBuilder sb = new StringBuilder();
+
     public static void result(Car car) {
-        StringBuilder sb = new StringBuilder();
+        sb.setLength(0);
         sb.append(car.getCarName());
         sb.append(" : ");
 
@@ -13,5 +17,18 @@ public class resultOutput {
         }
 
         System.out.println(sb);
+    }
+
+    public static void winnersOutput(List<String> winners) {
+        sb.setLength(0);
+
+        sb.append(String.join(", ", winners));
+        sb.append("가 최종 우승했습니다.");
+
+        System.out.println(sb);
+    }
+
+    public static void printNewLine() {
+        System.out.println();
     }
 }

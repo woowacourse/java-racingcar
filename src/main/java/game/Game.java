@@ -1,12 +1,11 @@
 package game;
 
+import game.output.resultOutput;
+
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
 
 public class Game {
-    // List<Car> carList = new ArrayList<>();
 
     String removeBlank(String carNames) {
         return carNames.replace(" ", "");
@@ -47,15 +46,11 @@ public class Game {
         return (int) (Math.random() * 9);
     }
 
-    void checkStopOrMove(List<Car> carList) {
-        for (Car car : carList) {
+    void oneGame(List<Car> cars) {
+        for (Car car : cars) {
             car.move(randomValueGenerator());
+            resultOutput.result(car);
         }
-    }
-
-    void oneGame(List<Car> cars, int maxInstance) {
-        /*while () {
-
-        }*/
+        resultOutput.printNewLine();
     }
 }

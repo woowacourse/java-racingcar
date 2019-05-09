@@ -21,6 +21,7 @@ public class WinnerTest {
         cars.add(new Car("jason"));
         cars.add(new Car("brown"));
         cars.get(0).move(4);
+        winner.addWinner(true, cars.get(0));
     }
 
     @Test
@@ -31,7 +32,6 @@ public class WinnerTest {
 
     @Test
     void 우승자_이름_확인() {
-        winner.addWinner(true, cars.get(0));
         String name = winner.getWinners().get(0);
         assertThat(name).isEqualTo("pobi");
     }
