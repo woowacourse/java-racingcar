@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.model.Car;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -37,10 +38,12 @@ public class RacingCarManager {
     private void moveRacingCar() {
         for (Car car : cars) {
             car.move(getRandomNumber());
+            OutputView.printCarState(car);
         }
     }
 
     private int getRandomNumber() {
         return (int) Math.random() * 10;
     }
+
 }
