@@ -28,14 +28,14 @@ public class Car implements Comparable<Car> {
     private final String name;
     private Integer status = 1;
 
-    public Car(String name) {
+    Car(String name) {
         if (!name.matches("[0-9a-zA-Z]{1,5}")) {
             throw new IllegalArgumentException(NAME_EXCEPTION_MESSAGE);
         }
         this.name = name;
     }
-
-    public Car(String name, Integer status) {
+    //Test Fixture를 위해 생성자 추가
+    Car(String name, int status) {
         this.name = name;
         this.status = status;
     }

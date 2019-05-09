@@ -16,6 +16,14 @@ public class CarList {
         }
     }
 
+    // Test Fixture 를 위한 오버로딩
+    public void addCars(String[] names, int[] status) {
+        for (int i = 0; i < names.length; i++) {
+            Car car = new Car(names[i], status[i]);
+            cars.add(car);
+        }
+    }
+
     public void setTotalTimes(int totalTimes) {
         if (totalTimes <= 0) {
             throw new IllegalArgumentException(INPUT_TIMES_EXCEPTION);
