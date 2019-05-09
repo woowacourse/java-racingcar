@@ -1,4 +1,7 @@
-package racingcar;
+package racingcar.view;
+
+import racingcar.domain.Car;
+import racingcar.domain.Winner;
 
 public class OutputView {
     public static void printCarDistance(Car car) {
