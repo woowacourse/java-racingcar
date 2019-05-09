@@ -46,5 +46,9 @@ public class Car{
         return max;
     }
 
+    public void setPosition(int position){
+        this.position = position;
+    }
+
 
 }
