@@ -76,5 +76,8 @@ public class Race {
         }
     }
 
-
+    public void getResult(){
+        RaceResult raceResult = new RaceResult(cars);
+        raceResult.judgeWinners();
+    }
 }

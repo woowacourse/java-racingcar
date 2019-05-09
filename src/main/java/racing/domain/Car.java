@@ -33,4 +33,20 @@ public class Car {
         }
         return name + " : " + positionString;
     }
+
+    public boolean isSameRank(Car another) {
+        return another.isSamePosition(position);
+    }
+
+    public boolean isSamePosition (int position) {
+        return this.position == position;
+    }
+
+    public boolean isFartherThan(Car another) {
+        return !another.isBiggerPosition(position);
+    }
+
+    public boolean isBiggerPosition (int position) {
+        return this.position > position;
+    }
 }
