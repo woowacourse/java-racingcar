@@ -70,6 +70,6 @@ public class CarRacingGame {
         System.out.println("\n실행 결과");
         startRacing(cars, tryNum);
 
-        OutputView.printWinnerName(cars);
+        OutputView.printWinner(cars);
     }
 }

@@ -13,7 +13,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinnerName(List<Car> cars) {
+    public static void printWinner(List<Car> cars) {
         Winner winner = new Winner(cars);
         String winnerNames = String.join(",", winner.getWinners());
 

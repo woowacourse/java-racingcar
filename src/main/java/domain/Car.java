@@ -30,8 +30,8 @@ public class Car {
         return "Stop";
     }
 
-    public int getBiggerPosition(int compareNum) {
-        return Math.max(position, compareNum);
+    public int getBiggerPosition(int comparePosition) {
+        return Math.max(position, comparePosition);
     }
 
     public boolean isMaxPosition(int maxPosition) {
