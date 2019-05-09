@@ -13,17 +13,22 @@ public class InputView {
     static Scanner scanner = new Scanner(System.in);
 
     static private String requestString() {
-        String userInput = "";
         try {
-            userInput = scanner.nextLine();
+            return scanner.nextLine();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            requestString();
+            System.out.println("잘못된 문자열 입력입니다.");
+            return requestString();
         }
-
-        return userInput;
     }
 
+    static private int requestInt() {
+        try {
+            return Integer.parseInt(requestString());
+        } catch (Exception e) {
+            System.out.println("잘못된 정수 입력입니다.");
+            return requestInt();
+        }
+    }
     static public List<String> requestNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String namesString = requestString();
@@ -32,13 +37,12 @@ public class InputView {
         try {
             validateNamesString(namesString);
             validateNamesList(namesList);
+            return namesList;
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            requestNames();
+            return requestNames();
         }
-
-        System.out.println(namesList);
-        return namesList;
     }
 
     static private boolean validateNamesString(String userInput) {
@@ -55,7 +59,6 @@ public class InputView {
         Iterator<String> it = names.iterator();
         while(it.hasNext()) {
             String s = it.next();
-            System.out.println(s.length());
             if (s.length() == 0) {
                 throw new IllegalArgumentException("이름이 공백으로만 이루어질 수 없습니다.");
             }
@@ -63,4 +66,9 @@ public class InputView {
         return true;
     }
 
+    static public int requestNumTrials(){
+        System.out.println("시도할 회수는 몇회인가요?");
+        return requestInt();
+
+    }
 }

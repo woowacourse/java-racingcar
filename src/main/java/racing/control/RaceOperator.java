@@ -11,6 +11,10 @@ public class RaceOperator {
     public static void setupGame() {
         race = new Race();
         race.createCars(InputView.requestNames());
+        race.inputNumTrials();
     }
 
+    public static void startGame(){
+        
+    }
 }
