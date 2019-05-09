@@ -16,7 +16,7 @@ public class Result implements ResultInterface {
 
     @Override
     public List<Car> roundResult() {
-        carList.forEach(Car::moveOrNot);
+        carList.forEach(Car::move);
         return carList;
     }
 

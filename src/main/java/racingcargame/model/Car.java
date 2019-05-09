@@ -19,9 +19,19 @@ public class Car implements CarInterface {
     }
 
     @Override
-    public void moveOrNot() {
-        if ((int) (Math.random() * 10) >= 4) {
+    public void move() {
+        if (getRandomNo() >= 4) {
             position++;
         }
+    }
+
+    public void move(int number) {
+        if (number >= 4) {
+            position++;
+        }
+    }
+
+    private int getRandomNo() {
+        return (int) (Math.random() * 10);
     }
 }
