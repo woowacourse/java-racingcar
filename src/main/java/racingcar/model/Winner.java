@@ -1,8 +1,6 @@
 package racingcar.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Winner {
@@ -13,18 +11,7 @@ public class Winner {
     }
 
     private int getMaxDistance() {
-        Collections.sort(cars, new Comparator<Car>() {
-            @Override
-            public int compare(Car car1, Car car2) {
-                if (car1.getPosition() > car2.getPosition()) {
-                    return -1;
-                }
-                if (car1.getPosition() < car2.getPosition()) {
-                    return 1;
-                }
-                return 0;
-            }
-        });
+        cars.sort((Car car1, Car car2) -> car2.getPosition() - car1.getPosition());
         return cars.get(0).getPosition();
     }
 
