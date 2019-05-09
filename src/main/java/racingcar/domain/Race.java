@@ -8,24 +8,25 @@ import java.util.stream.Collectors;
 public class Race {
     private final MovementStrategy strategy = new RandomMovement();
     private final List<Car> cars = new ArrayList<>();
-    private final List<Integer> snapshots = new ArrayList<>();
+    private int cursor = -1;
 
     public Race(List<String> names) {
         names.forEach(name -> cars.add(new Car(name)));
+        Collections.unmodifiableCollection(cars);
     }
 
     public Race(List<Car> cars, boolean getCars) {
         cars.forEach(car -> this.cars.add(car));
+        Collections.unmodifiableCollection(cars);
     }
 
-    public void startRoundAndSaveSnapshot() {
-        for (int i = 0; i < cars.size(); i++) {
-            snapshots.add(cars.get(i).moveAndReturnPosition(strategy));
-        }
+    public int getNumberOfCars() {
+        return cars.size();
     }
 
-    public List<Integer> getSnapshots() {
-        return snapshots;
+    public Car startRound() {
+        cursor = (cursor + 1) % cars.size();
+        return cars.get(cursor).moveOrStop(strategy);
     }
 
     public List<Car> getWinners() {

@@ -1,27 +1,23 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
+import racingcar.domain.Race;
 
 import java.util.List;
 
 public class OutputView {
-    public static void printRounds(List<String> names, List<Integer> positions) {
+    public static void printRounds(int numberOfTrials, Race race) {
         System.out.println("\n실행 결과");
-        for (int i = 0; i < positions.size();) {
-            for (int j = 0; j < names.size(); i++, j++) {
-                System.out.println(names.get(j) + " : " + drawTrail(positions.get(i)));
+        for (int i = 0; i < numberOfTrials; i++) {
+            for (int j = 0; j < race.getNumberOfCars(); j++) {
+                printLane(race.startRound());
             }
             System.out.println();
         }
     }
 
-    private static String drawTrail(int length) {
-        StringBuffer trail = new StringBuffer();
-
-        for (int i = 0; i < length; i++) {
-            trail.append("-");
-        }
-        return trail.toString();
+    public static void printLane(Car car) {
+        System.out.println(car + " : " + car.drawTrail());
     }
 
     public static void printWinners(List<Car> winners) {
@@ -31,6 +27,5 @@ public class OutputView {
                 + IOValidation.differentiateIGa(winnerList.charAt(winnerList.length() - 2))
                 + " 최종 우승했습니다."
         );
-
     }
 }

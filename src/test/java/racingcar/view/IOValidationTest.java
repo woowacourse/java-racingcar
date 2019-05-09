@@ -41,6 +41,5 @@ class IOValidationTest {
         assertThat(IOValidation.differentiateIGa('삶')).isEqualTo("이");
         assertThat(IOValidation.differentiateIGa('놀')).isEqualTo("이");
         assertThat(IOValidation.differentiateIGa('L')).isEqualTo("이");
-
     }
 }

@@ -80,5 +80,4 @@ public class CalculatorTest {
             calc.calculateTokens(expressionToList("1 + 5 /"));
         });
     }
-
 }

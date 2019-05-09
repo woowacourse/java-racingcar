@@ -13,11 +13,11 @@ public class Car implements Comparable<Car> {
         this.position = position;
     }
 
-    public int moveAndReturnPosition(MovementStrategy cond) {
+    public Car moveOrStop(MovementStrategy cond) {
         if (cond.isMovable()) {
             position++;
         }
-        return position;
+        return this;
     }
 
     @Override
@@ -32,5 +32,14 @@ public class Car implements Comparable<Car> {
     @Override
     public String toString() {
         return name;
+    }
+
+    public String drawTrail() {
+        StringBuffer trail = new StringBuffer();
+
+        for (int i = 0; i < position; i++) {
+            trail.append("-");
+        }
+        return trail.toString();
     }
 }

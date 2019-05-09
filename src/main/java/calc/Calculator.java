@@ -1,8 +1,8 @@
 package calc;
 
-import java.util.*;
-import java.util.function.BiFunction;
-import java.util.function.Supplier;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Calculator {
     public static double val;
@@ -34,22 +34,5 @@ public class Calculator {
     private static Operator convertSymbolToEnum(String symbol) {
         final String conversionTable[] = { "PLUS", "MINUS", "MULTIPLY", "DIVIDE" };
         return Operator.valueOf(conversionTable["+-*/".indexOf(symbol)]);
-    }
-}
-
-enum Operator {
-    PLUS((lhs, rhs) -> lhs + rhs),
-    MINUS((lhs, rhs) -> lhs - rhs),
-    MULTIPLY((lhs, rhs) -> lhs * rhs),
-    DIVIDE((lhs, rhs) -> lhs / rhs);
-
-    private BiFunction<Double, Double, Double> func;
-
-    Operator(BiFunction<Double, Double, Double> func) {
-        this.func = func;
-    }
-
-    public double calculate(double lhs, double rhs) {
-        return func.apply(lhs, rhs);
     }
 }
