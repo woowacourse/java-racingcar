@@ -13,6 +13,6 @@ public class OutputView {
     }
 
     public static void printWinners(Winner winner) {
-        System.out.println(String.join(",", winner.getWinnerNames())+"가 우승했습니다.");
+        System.out.println(String.join(",", winner.getWinnerNames()) + "가 우승했습니다.");
     }
 }

@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.Random;
-
 public class Car {
     private static final int CAR_MOVE_CONDITION = 4;
 
