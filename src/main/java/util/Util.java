@@ -15,7 +15,7 @@ public class Util {
         List<String> tempList = new ArrayList<>();
         for(String str : strList){
             if(tempList.contains(str)){
-                throw new IllegalArgumentException("중복된 이름이 있습니다.");
+                throw new IllegalArgumentException(Const.EX_NAME_DUPLE);
             }
             tempList.add(str);
         }

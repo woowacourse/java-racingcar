@@ -6,6 +6,7 @@ public class Const {
     public static final String EX_NAME_LEN = "이름은 1글자 이상 5글자 이하로 입력해주세요.";
     public static final String OUTPUT_GAME_RESULT = "실행 결과";
     public static final String OUTPUT_WINNER = "가 최종 우승했습니다.";
+    public static final String EX_NAME_DUPLE = "중복된 이름이 있습니다.";
 
     public static final int MIN_NAME_LEN = 1;
     public static final int MAX_NAME_LEN = 5;
