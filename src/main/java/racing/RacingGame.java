@@ -14,13 +14,11 @@ import static racing.view.InputView.inputCarNames;
 
 public class RacingGame {
     public void run() {
-        List<Car> carList = generateCarList();
-
-        RacingCars racingCars = new RacingCars(carList);
+        RacingCars racingCars = new RacingCars(generateCarList());
 
         RepeatNumber repeatNumber = InputView.inputRepeatNumber();
 
-        for (int i = 1; i <= repeatNumber.getRepeatNumber(); i++) {
+        for (int i = 1; i <= repeatNumber.getNumber(); i++) {
             racingCars.race();
             OutputView.printStatus(racingCars.getRaceStatus());
         }
