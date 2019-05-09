@@ -18,7 +18,13 @@ public class RacingGame {
     public static void main(String[] args) {
         addCar();
         TryCount tryCount = InputView.InputRacingTryCount();
-        CarController carController = new CarController(carList,tryCount);
+        CarController carController = new CarController(carList);
+        OutputView.printRacingResultTitle();
+        for (int i = 0; i < tryCount.getCount(); i++) {
+            carController.moveCar();
+            OutputView.printRacingResult(carList);
+        }
+
 
     }
 
