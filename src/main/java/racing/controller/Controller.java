@@ -28,15 +28,25 @@ public class Controller {
 
     private static final int GO_FORWARD_CRITERIA = 4;
 
-    public static String[] splitNames(String carNames) {
+    private static CarList carList = new CarList();
+
+    public static void makeCarList(String carNames) {
         String[] names = carNames.split(",");
         if (names.length == 0) {
             throw new IllegalArgumentException(INVALID_NAME_EXCEPTION_MESSAGE);
         }
-        return names;
+        carList.addCars(names);
     }
 
-    public static String getWinners(CarList carList) {
+    public static void setGamePlayNumber(int number) {
+        carList.setTotalTimes(number);
+    }
+
+    public static String makeResultString() {
+        return carList.toString();
+    }
+
+    public static String getWinners() {
         List<String> winnerList = carList.getWinnerList();
         return String.join(", ", winnerList);
     }
