@@ -12,4 +12,12 @@ public class Car {
         position++;
     }
 
+    public String showPosition() {
+        String carPositionString = name + " : ";
+        for (int i = 0; i < position; i++) {
+            carPositionString += '-';
+        }
+
+        return carPositionString;
+    }
 }
