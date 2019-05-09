@@ -1,5 +1,7 @@
 package racinggame.domain;
 
+import java.util.HashMap;
+
 public class Car {
     private static final int ONE_STEP = 1;
     private static final int THRESHOLD = 4;
@@ -15,5 +17,12 @@ public class Car {
         if (number >= THRESHOLD) {
             position += ONE_STEP;
         }
+    }
+
+    public HashMap<String, Integer> makeCarHisory() {
+        HashMap<String, Integer> carHisttory = new HashMap<>();
+
+        carHisttory.put(name, position);
+        return carHisttory;
     }
 }

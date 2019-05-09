@@ -8,7 +8,7 @@ public class TrialHistory {
 
     public TrialHistory(List<Car> cars) {
         for (Car car : cars) {
-            trialHistory.put(car.getName(), car.getPosition());
+            trialHistory.putAll(car.makeCarHisory());
         }
     }
 }
