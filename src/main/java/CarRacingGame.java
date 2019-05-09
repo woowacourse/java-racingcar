@@ -9,7 +9,7 @@ import java.util.Random;
 import static util.StringUtils.*;
 
 public class CarRacingGame {
-    private static int BOUND_NUMBER = 10;
+    private static final int BOUND_NUMBER = 10;
 
     public static List<String> getCarNames() {
         String names = InputView.inputCarNames();

@@ -3,7 +3,7 @@ package domain;
 import java.util.Random;
 
 public class Car {
-    private int MIN_MOVE_NUMBER = 4;
+    private static final int MIN_MOVE_NUMBER = 4;
 
     private final String name;
     private int position = 0;

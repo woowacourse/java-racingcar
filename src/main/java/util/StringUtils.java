@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.MissingFormatArgumentException;
 
 public class StringUtils {
-    private static int CAR_NAME_MAX = 5;
+    private static final int CAR_NAME_MAX = 5;
 
     public static List<String> parseStringByComma(String string) {
         return Arrays.asList(string.split(","));
