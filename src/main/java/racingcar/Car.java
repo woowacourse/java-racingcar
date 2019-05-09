@@ -5,13 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Car {
+public class Car{
     private final String name;
-    private int position;
+    private int position = 0;
 
-    Car(String name, int position) {
+    Car(String name) {
         this.name = name;
-        this.position = position;
     }
 
     public static List<String> askCarNames(){
@@ -21,5 +20,6 @@ public class Car {
     public static int askTotalTurns() {
         return CarException.askTotalTurnsException();
     }
+
 
 }
