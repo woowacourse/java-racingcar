@@ -14,6 +14,6 @@ public class CarGameLauncher {
         cars.printTheProcess(totalTurns);
         Winners winners = new Winners();
         winners.decideWinners(cars);
-
+        winners.announceWinners();
     }
 }
