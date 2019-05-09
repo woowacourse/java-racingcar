@@ -7,9 +7,10 @@ import java.util.List;
 public class OutputView {
 
     public static void showCarsPosition(List<Car> cars) {
+        System.out.println();
         for (Car car : cars
         ) {
-            car.showPosition();
+            System.out.println(car.showPosition());
         }
 
     }

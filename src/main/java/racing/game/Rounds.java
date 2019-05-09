@@ -1,6 +1,11 @@
 package racing.game;
 
 
+import racing.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Rounds {
     private static final int BOUNDARY = 4;
 
@@ -17,5 +22,14 @@ public class Rounds {
         return false;
     }
 
+    public static void doRound(List<Car> cars) {
+        for (Car car : cars) {
+            if (canMove(getRandomValue())) {
+                car.move();
+            }
+        }
+        OutputView.showCarsPosition(cars);
+
+    }
 
 }
