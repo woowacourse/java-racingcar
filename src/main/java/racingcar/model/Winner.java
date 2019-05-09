@@ -28,12 +28,12 @@ public class Winner {
         return cars.get(0).getPosition();
     }
 
-    public List<String> getWinners() {
-        List<String> winners = new ArrayList<>();
+    public List<Car> getWinners() {
+        List<Car> winners = new ArrayList<>();
         int maxPosition = getMaxDistance();
         int carNumber = 0;
         while (checkMaxposition(carNumber, maxPosition)) {
-            winners.add(cars.get(carNumber++).getName());
+            winners.add(cars.get(carNumber++));
         }
         return winners;
     }
