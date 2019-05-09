@@ -22,16 +22,16 @@ public class RacingGameController {
         return InputView.inputCarList();
     }
 
-    public String[] makeValidCarNames(String carNames) throws Exception {
+    public String[] makeValidCarNames(String carNames) {
         carNames = removeWhiteSpace(carNames);
         if (hasContinuousComma(carNames)) {
             throw new IllegalArgumentException("연속된 콤마가 발견 되었습니다.");
         }
-        String[] splitedCarNameList = splitCarList(carNames);
-        if (hasLongCarName(splitedCarNameList)) {
+        String[] carNameList = splitCarList(carNames);
+        if (hasLongCarName(carNameList)) {
             throw new IllegalArgumentException("5자 이하의 자동차 이름만 허용됩니다.");
         }
-        return splitedCarNameList;
+        return carNameList;
     }
 
     public void generateCarList(String[] carNames) {
@@ -44,7 +44,7 @@ public class RacingGameController {
         return InputView.inputTryCount();
     }
 
-    public void makeValidTryCount(int tryCount) throws Exception {
+    public void makeValidTryCount(int tryCount) {
         if (tryCount < MIN_TRY_COUNT) {
             throw new IllegalArgumentException("최소 입력 횟수는 " + MIN_TRY_COUNT + "입니다.");
         }
