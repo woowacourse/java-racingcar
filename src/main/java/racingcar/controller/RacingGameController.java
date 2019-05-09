@@ -13,6 +13,7 @@ public class RacingGameController {
     public String[] splitCarList(String carNameList) {
         String[] carList;
 
+        carNameList = carNameList.replaceAll(" ", "");
         if (hasContinuousComma(carNameList)) {
             throw new IllegalArgumentException("연속된 콤마가 발견 되었습니다.");
         }
