@@ -12,7 +12,7 @@ import java.util.List;
 
 public class RacingController {
 
-    public static List<Car> makeCarList(List<String> carNameList) throws IllegalArgumentException {
+    private static List<Car> makeCarList(List<String> carNameList) throws IllegalArgumentException {
         Util.checkDuplicatedStringList(carNameList);
         Util.checkStringListSize(carNameList);
         List<Car> carList = new ArrayList<>();
