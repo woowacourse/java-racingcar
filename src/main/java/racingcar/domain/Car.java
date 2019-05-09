@@ -11,4 +11,14 @@ public class Car {
     public void move() {
         this.position++;
     }
+
+    @Override
+    public String toString() {
+        String output = name + " : ";
+
+        for (int i = 0; i < position; i++) {
+            output += "-";
+        }
+        return output;
+    }
 }

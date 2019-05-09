@@ -1,7 +1,9 @@
 package racingcar.controller;
 
+import racingcar.constant.Utils;
 import racingcar.domain.Car;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 
@@ -13,8 +15,8 @@ public class RacingGameController {
     private static final int MOVE_CRITERIA = 4;
     private static final String SPLIT_REGEX = ",";
 
-    private ArrayList<Car> carList;
-    private int tryCount;
+    private ArrayList<Car> carList = new ArrayList<>();
+    private int tryCount = 0;
 
     public String requestCarList() {
         return InputView.inputCarList();
@@ -49,6 +51,14 @@ public class RacingGameController {
         this.tryCount = tryCount;
     }
 
+    public void startRacingGame() {
+        System.out.println("\n실행 결과");
+        for (int i = 0; i < tryCount; i++) {
+            tryRacing();
+            OutputView.outputCarPosition(carList);
+        }
+    }
+
     private String removeWhiteSpace(String carNameList) {
         return carNameList.replaceAll(" ", "");
     }
@@ -72,6 +82,12 @@ public class RacingGameController {
 
     private boolean hasContinuousComma(String carNameList) {
         return carNameList.contains(",,");
+    }
+
+    private void tryRacing() {
+        for (Car car : carList) {
+            randomMove(car);
+        }
     }
 
     private void randomMove(Car car) {
