@@ -1,14 +1,12 @@
 package domain;
 
-import utils.OutputUtil;
-
 public class Car {
     private static final int MOVE_CONDITION = 4;
 
-    private String name;
+    private final String name;
     private int position;
 
-    Car(String name) {
+    public Car(String name) {
         this.name = name;
         this.position = 0;
     }
@@ -29,10 +27,6 @@ public class Car {
         return randomNumber >= MOVE_CONDITION;
     }
 
-    void printPosition() {
-        OutputUtil.printPosition(name, position);
-    }
-
     int getMaxPosition(int pos) {
         return Math.max(pos, position);
     }
@@ -43,5 +37,20 @@ public class Car {
 
     public String appendCarName(String carNames) {
         return carNames + (name + ", ");
+    }
+
+    private String getPositionString() {
+        StringBuilder str = new StringBuilder();
+
+        for (int i = 1; i <= position; i++) {
+            str.append("-");
+        }
+
+        return str.toString();
+    }
+
+    @Override
+    public String toString() {
+        return name + " : " + getPositionString();
     }
 }

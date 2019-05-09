@@ -1,8 +1,9 @@
-package utils;
+package view;
 
 import java.util.*;
 
-public class InputUtil {
+public class InputView {
+
     private static final int MINIMUM_PARTICIPANT = 2;
     private static Scanner sc = new Scanner(System.in);
 
@@ -14,9 +15,8 @@ public class InputUtil {
         String[] names;
 
         do {
-            OutputUtil.printMessage("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+            System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
             names = input().trim().split("\\s*,\\s*");
-            System.out.println(Arrays.toString(names));
         } while (isInValidNames(names));
 
         return new ArrayList<>(Arrays.asList(names));
@@ -50,7 +50,7 @@ public class InputUtil {
         String round;
 
         do {
-            OutputUtil.printMessage("시도할 회수는 몇회인가요?");
+            System.out.println("시도할 회수는 몇회인가요?");
             round = input().trim();
         } while (isInValidRound(round));
 

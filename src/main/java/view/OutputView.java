@@ -1,24 +1,15 @@
-package utils;
+package view;
 
 import domain.Car;
 
 import java.util.ArrayList;
 
-public class OutputUtil {
+public class OutputView {
 
-    public static void printMessage(String message) {
-        System.out.println(message);
-    }
-
-
-    public static void printPosition(String name, int position) {
-        StringBuilder result = new StringBuilder(name + " : ");
-
-        for (int i = 1; i <= position; i++) {
-            result.append("-");
+    public static void printPosition(ArrayList<Car> carList) {
+        for (Car car : carList) {
+            System.out.println(car);
         }
-
-        System.out.println(result);
     }
 
     public static void printWinners(ArrayList<Car> winnerList) {

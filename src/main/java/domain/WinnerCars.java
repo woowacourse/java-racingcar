@@ -1,15 +1,13 @@
 package domain;
 
-import utils.OutputUtil;
-
 import java.util.ArrayList;
 
-class WinnerCars {
-    private ArrayList<Car> winnerList = new ArrayList<>();
+public class WinnerCars {
 
-    void determineWinners(ArrayList<Car> cars) {
+    public ArrayList<Car> determineWinners(ArrayList<Car> cars) {
         int maxPosition = getMaxPosition(cars);
-        searchWinners(maxPosition, cars);
+
+        return searchWinners(maxPosition, cars);
     }
 
     private int getMaxPosition(ArrayList<Car> cars) {
@@ -22,28 +20,15 @@ class WinnerCars {
         return maxPosition;
     }
 
-    private void searchWinners(int maxPosition, ArrayList<Car> cars) {
+    private ArrayList<Car> searchWinners(int maxPosition, ArrayList<Car> cars) {
+        ArrayList<Car> winnerList = new ArrayList<>();
 
         for (Car car : cars) {
             if (car.compareToPosition(maxPosition)) {
                 winnerList.add(car);
             }
         }
-    }
 
-    void printWinners() {
-        OutputUtil.printWinners(winnerList);
+        return winnerList;
     }
-
-//    void printWinners() {
-//        String winnerNames = "";
-//        String message;
-//
-//        for (Car winner : winnerList) {
-//            winnerNames = winner.appendCarName(winnerNames);
-//        }
-//
-//        message = winnerNames.substring(0, winnerNames.length() - 2);
-//        System.out.format("%s 이(가) 최종 우승했습니다.\n", message);
-//    }
 }
