@@ -7,9 +7,13 @@ public class InputView {
 
     public static String getUserCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String userCarNames = SCANNER.nextLine();
-        // Validator
-        return getUserCarNames();
+        try {
+            String userCarNames = SCANNER.nextLine();
+            Validator.checkCarNames(userCarNames);
+            return userCarNames;
+        } catch (IllegalArgumentException e) {
+            return getUserCarNames();
+        }
     }
 
     public static int getNumberOfGame() {

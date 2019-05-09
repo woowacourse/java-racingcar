@@ -25,4 +25,11 @@ public class ValidatorTest {
         assertThatThrownBy(() -> {validator.checkCarNames(userInput3);}).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> {validator.checkCarNames(userInput4);}).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 게임_횟수_입력시_예외가_제대로_발생하는지_확인한다() {
+        assertThatCode(() -> {validator.checkNumberOfGame(100);}).doesNotThrowAnyException();
+        assertThatThrownBy(() -> {validator.checkNumberOfGame(-1);}).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> {validator.checkNumberOfGame(0);}).isInstanceOf(IllegalArgumentException.class);
+    }
 }
