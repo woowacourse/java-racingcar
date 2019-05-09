@@ -10,7 +10,9 @@ public class RacingCar {
         String userInput = InputView.getUserCarNames();
         String[] carNames = makeCarNames(userInput);
         setCars(carNames);
-        int numOfGames = InputView.getNumberOfGame();
+        int numOfGame = InputView.getNumberOfGame();
+        startGame(numOfGame);
+
     }
 
     private String[] makeCarNames(String userInput) {
@@ -29,14 +31,17 @@ public class RacingCar {
     }
 
     private void startGame(int numOfGame) {
+        System.out.println("\n실행 결과");
         for (int i = 0; i < numOfGame; i++) {
             moveCars();
+            System.out.println();
         }
     }
 
     private void moveCars() {
         for (Car car : cars) {
             car.play();
+            OutputView.printCarStatus(car);
         }
     }
 
