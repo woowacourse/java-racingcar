@@ -20,9 +20,9 @@ public class Winner {
                     return -1;
                 }
                 if (car1.getPosition() < car2.getPosition()) {
-                    return 0;
+                    return 1;
                 }
-                return 1;
+                return 0;
             }
         });
         return cars.get(0).getPosition();
