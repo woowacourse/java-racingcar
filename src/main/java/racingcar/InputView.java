@@ -18,8 +18,12 @@ public class InputView {
 
     public static int getNumberOfGame() {
         System.out.println("시도할 회수는 몇회인가요?");
-        int numberOfGame = Integer.parseInt(SCANNER.nextLine());
-        // Validator
-        return getNumberOfGame();
+        try {
+            int numberOfGame = Integer.parseInt(SCANNER.nextLine());
+            Validator.checkNumberOfGame(numberOfGame);
+            return numberOfGame;
+        } catch (IllegalArgumentException e) {
+            return getNumberOfGame();
+        }
     }
 }
