@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -71,18 +72,18 @@ class RacingControllerTest {
     @Test
     void 우승차_출력_임의_생성() {
         List<Car> carList = new ArrayList<>();
-        Car car1 = new Car("pobi");
+        Car car1 = new Car("pobii");
         Car car2 = new Car("crong");
         Car car3 = new Car("hee");
         Car car4 = new Car("hi");
 
-        car1.increasePositionOrNot(2);
-        car1.increasePositionOrNot(2);
-        car1.increasePositionOrNot(2);
+        car1.increasePositionOrNot(1);
+        car1.increasePositionOrNot(1);
+        car1.increasePositionOrNot(1);
 
-        car2.increasePositionOrNot(9);
-        car2.increasePositionOrNot(8);
-        car2.increasePositionOrNot(8);
+        car2.increasePositionOrNot(1);
+        car2.increasePositionOrNot(1);
+        car2.increasePositionOrNot(1);
 
         car3.increasePositionOrNot(7);
 

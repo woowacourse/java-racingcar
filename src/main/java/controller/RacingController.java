@@ -48,7 +48,7 @@ public class RacingController {
         Race race = new Race(carList);
         OutputView.outputGameResultTile();
         for (int i = 0; i < roundCount; i++) {
-            race.MoveAllCarOneTime();
+            race.moveAllCarOneTime();
             OutputView.outputGameResult(race.getRaceCars());
         }
         return race;
