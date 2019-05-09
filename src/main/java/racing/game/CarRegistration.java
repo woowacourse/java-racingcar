@@ -16,5 +16,12 @@ public class CarRegistration {
         return names.replaceAll(" ", "").split(",");
     }
 
+    public static boolean checkNoInput(String[] names){
+        if((names.length == 1 && names[0].equals("")) || names.length == 0){
+            return true;
+        }
+        return false;
+    }
+
 
 }

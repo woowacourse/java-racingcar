@@ -9,9 +9,15 @@ public class CarRegistrationTest {
 
     @Test
     void 입력을이름들로분리() {
-        String string = "pobi, gugu, jihoon";
+        String string = " ,,, ";
         assertThat(CarRegistration.splitNames(string)).
                 contains("jihoon", "pobi","gugu","jinwook");
+    }
+
+    @Test
+    void 빈입력인지확인() {
+        String string = new String("  , , ,  ");
+        assertThat(CarRegistration.checkNoInput(CarRegistration.splitNames(string))).isTrue();
     }
 
 }
