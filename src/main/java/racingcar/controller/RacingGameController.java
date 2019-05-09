@@ -35,6 +35,10 @@ public class RacingGameController {
         }
     }
 
+    public int requestTryCount() {
+        return InputView.inputTryCount();
+    }
+
     private String removeWhiteSpace(String carNameList) {
         return carNameList.replaceAll(" ", "");
     }
