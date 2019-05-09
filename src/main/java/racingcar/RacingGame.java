@@ -15,10 +15,11 @@ public class RacingGame {
 
     public static void main(String[] args) {
         addCar();
+        getTryCount();
     }
 
     private static void getTryCount() {
-
+        InputView.InputRacingTryCount();
     }
 
     private static void addCar() {

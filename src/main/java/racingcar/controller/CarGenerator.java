@@ -8,12 +8,20 @@ import java.util.List;
 public class CarGenerator {
     List<Car> carList;
 
-    CarGenerator(){
+    public CarGenerator(){
         carList = new ArrayList<>();
     }
     public void generateCars(String[] carNames){
         for(String carName : carNames){
             carList.add(new Car(carName));
         }
+    }
+
+    public List<Car> getCarList() {
+        return carList;
+    }
+
+    public void setCarList(List<Car> carList) {
+        this.carList = carList;
     }
 }
