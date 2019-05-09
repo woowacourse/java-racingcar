@@ -59,4 +59,11 @@ public class RacingGameControllerTest {
             racingGameController.makeValidCarNames("pobi,   ,brown");
         });
     }
+
+    @Test
+    void 시도_횟수가_최소값_미만인_경우() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            racingGameController.makeValidTryCount(-1);
+        });
+    }
 }
