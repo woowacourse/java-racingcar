@@ -3,8 +3,10 @@ package racingcar.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CarTest {
     @Test
@@ -30,7 +32,7 @@ class CarTest {
         Car car = new Car("win");
         car.accelerate(6);
 
-        Assertions.assertTrue(car.isEqualPosition(1));
+        assertTrue(car.isEqualPosition(1));
     }
 
     @Test
@@ -38,7 +40,7 @@ class CarTest {
         Car car = new Car("win");
         car.accelerate(2);
 
-        Assertions.assertTrue(car.isEqualPosition(0));
+        assertTrue(car.isEqualPosition(0));
     }
 
     @Test
@@ -49,5 +51,20 @@ class CarTest {
         car.accelerate(6);
 
         assertEquals(car.toString(), "red   : ---");
+    }
+
+    @Test
+    void 자동차_클래스의_clone메소드가_제대로_동작하는지_검사() {
+        Car car = new Car("red");
+        car.accelerate(7);
+
+        try {
+            Car cloneCar = car.clone();
+            assertTrue(car.equals(cloneCar));
+            assertTrue(cloneCar.isEqualPosition(1));
+            assertTrue(car != cloneCar);
+        } catch (CloneNotSupportedException e) {
+            System.out.println("생성 실패");
+        }
     }
 }
