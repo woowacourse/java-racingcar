@@ -1,5 +1,6 @@
 package stringcalculator;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -48,5 +49,27 @@ public class CalculatorTest {
     void 문자열_숫자로_변환하기() {
         int result = cal.parseStringToInt("10");
         assertThat(result).isEqualTo(10);
+    }
+
+    @Test
+    void 사칙연산_처리_에러() {
+        String[] inputText = {"1"};
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            cal.excute(inputText);
+        }, "에러");
+    }
+
+    @Test
+    void 사칙연산_처리_결과1() {
+        String[] inputText = {"1", "+", "2"};
+        int result = cal.excute(inputText);
+        assertThat(result).isEqualTo(3);
+    }
+
+    @Test
+    void 사칙연산_처리_결과2() {
+        String[] inputText = {"1", "+", "2", "*", "3"};
+        int result = cal.excute(inputText);
+        assertThat(result).isEqualTo(9);
     }
 }
