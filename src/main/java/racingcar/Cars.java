@@ -12,8 +12,10 @@ public class Cars {
     }
 
     public void printTheProcess(int totalTurns) {
+        System.out.println("실행 결과");
         for (int currentTurn = 0; currentTurn<totalTurns; currentTurn++) {
             printMovement();
+            System.out.println();
         }
     }
 

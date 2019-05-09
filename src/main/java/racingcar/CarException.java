@@ -18,6 +18,7 @@ public class CarException {
     }
 
     public static List<String> askAndReceiveCarNames(){
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         Scanner scanner = new Scanner(System.in);
         String names = scanner.nextLine();
         names = names.replaceAll("\\s+","");
@@ -44,10 +45,11 @@ public class CarException {
     }
 
     public static boolean isOverLimit(List<String> names) {
+        List<String> namesCopy = new ArrayList<>(names);
         boolean overLimit = false;
-        while (!overLimit && !names.isEmpty()) {
+        while (!overLimit && !namesCopy.isEmpty()) {
             overLimit = checkLimit(names.get(0));
-            names.remove(0);
+            namesCopy.remove(0);
         }
         return overLimit;
     }

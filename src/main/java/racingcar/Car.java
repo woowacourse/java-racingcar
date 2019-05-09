@@ -35,8 +35,9 @@ public class Car{
     public void printPosition(){
         System.out.print(this.name + " : ");
         for(int i=0; i<this.position; i++){
-            System.out.println("-");
+            System.out.print("-");
         }
+        System.out.println();
     }
 
     public int findMax(int max) {
@@ -53,7 +54,6 @@ public class Car{
     }
 
     public void setPosition(int position){
-
         //테스트용
         this.position = position;
     }
