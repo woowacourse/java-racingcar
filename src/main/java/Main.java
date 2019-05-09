@@ -1,4 +1,5 @@
 import domain.Car;
+import domain.CarFactory;
 import domain.RacingGame;
 import view.InputView;
 
@@ -8,7 +9,8 @@ public class Main {
     public static void main(String [] args) {
         // 입력 받기
         String [] names = InputView.readNames();
-        ArrayList<Car> cars;
+        CarFactory factory = new CarFactory();
+        ArrayList<Car> cars = factory.newCars(names);
 
         int nTrials = InputView.readNumber();
 
