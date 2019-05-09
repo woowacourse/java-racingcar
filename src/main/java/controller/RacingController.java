@@ -12,7 +12,7 @@ import java.util.List;
 
 public class RacingController {
 
-    public List<Car> makeCarList(List<String> carNameList) throws IllegalArgumentException {
+    public static List<Car> makeCarList(List<String> carNameList) throws IllegalArgumentException {
         Util.checkDuplicatedStringList(carNameList);
         Util.checkStringListSize(carNameList);
         List<Car> carList = new ArrayList<>();
@@ -22,7 +22,7 @@ public class RacingController {
         return carList;
     }
 
-    public List<Car> setCarName() {
+    public static List<Car> setCarName() {
         try {
             return makeCarList(InputView.inputCarNameList());
         } catch (IllegalArgumentException e) {
@@ -31,7 +31,7 @@ public class RacingController {
         }
     }
 
-    public int setRoundCount() {
+    public static int setRoundCount() {
         try {
             int roundCount = InputView.inputRoundCount();
             if (roundCount <= Const.ZERO) {
@@ -44,7 +44,7 @@ public class RacingController {
         }
     }
 
-    public Race moveAllCar(List<Car> carList, int roundCount) {
+    public static Race moveAllCar(List<Car> carList, int roundCount) {
         Race race = new Race(carList);
         OutputView.outputGameResultTile();
         for (int i = 0; i < roundCount; i++) {
@@ -54,7 +54,7 @@ public class RacingController {
         return race;
     }
 
-    public void printWinners(Race race) {
+    public static void printWinners(Race race) {
         OutputView.outputWinners(race.getRaceWinners());
     }
 }
