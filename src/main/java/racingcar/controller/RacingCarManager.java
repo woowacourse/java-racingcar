@@ -10,14 +10,16 @@ import java.util.List;
 public class RacingCarManager {
     private List<Car> cars;
     private int gameCount;
+    private InputManager inputManager;
 
-    public RacingCarManager() {
+    public RacingCarManager(InputManager inputManager) {
         cars = new ArrayList<>();
         gameCount = 0;
+        this.inputManager = inputManager;
     }
 
-    public void racingGameStart(InputManager inputManager) {
-        getGameInformation(inputManager);
+    public void racingGameStart() {
+        getGameInformation();
         startRacing();
         getRacingWinners();
     }
@@ -27,7 +29,7 @@ public class RacingCarManager {
         OutputView.printWinners(winner);
     }
 
-    private void getGameInformation(InputManager inputManager) {
+    private void getGameInformation() {
         cars = inputManager.getRacingCar();
         gameCount = inputManager.getGameCount();
     }
