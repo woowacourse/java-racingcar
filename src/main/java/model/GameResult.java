@@ -5,13 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class GameResult {
-    List<Car> cars;
-
-    GameResult(List<Car> cars) {
-        this.cars = cars;
-    }
-
-    List<String> getWinners() {
+    public List<String> getWinners(List<Car> cars) {
         List<String> winners = new ArrayList<>();
 
         int maxCarPosition = Collections.max(cars).getPosition();

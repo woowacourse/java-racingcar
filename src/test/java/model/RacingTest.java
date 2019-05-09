@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RacingTest {
     Racing racing;
@@ -22,4 +21,6 @@ class RacingTest {
         assertThat(racing.isMove(4)).isEqualTo(true);
         assertThat(racing.isMove(5)).isEqualTo(true);
     }
+
+
 }

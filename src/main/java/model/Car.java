@@ -6,7 +6,7 @@ public class Car implements Comparable<Car> {
     private final String name;
     private int position;
 
-    Car(String name) {
+    public Car(String name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("차 이름 길이 오류");
         }
@@ -16,7 +16,7 @@ public class Car implements Comparable<Car> {
         this.name = name;
     }
 
-    Car(String name, int position) {
+    public Car(String name, int position) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("차 이름 길이 오류");
         }

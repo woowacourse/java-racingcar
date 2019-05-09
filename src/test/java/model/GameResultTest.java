@@ -1,13 +1,12 @@
 package model;
 
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class GameResultTest {
     List<Car> cars;
@@ -26,11 +25,11 @@ class GameResultTest {
         cars.add(new Car("jason",3));
         cars.add(new Car("nick",5));
 
-        GameResult result = new GameResult(cars);
+        GameResult result = new GameResult();
 
         winners.add("coogy");
         winners.add("nick");
 
-        assertThat(result.getWinners()).isEqualTo(winners);
+        assertThat(result.getWinners(cars)).isEqualTo(winners);
     }
 }
