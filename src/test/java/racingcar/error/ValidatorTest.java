@@ -19,4 +19,11 @@ class ValidatorTest {
             Validator.checkAccuracyOfCarNames(new String[]{"car", "car"});
         });
     }
+
+    @Test
+    void 입력값이_정수가_아닌_문자일_때_예외발생하는지_검사() {
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+            Validator.checkAccuracyOfGameCount("e");
+        });
+    }
 }

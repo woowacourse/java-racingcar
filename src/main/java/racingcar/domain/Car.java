@@ -6,7 +6,7 @@ public class Car {
     private static final int MIN_NUM_TO_ACCELERATE = 4;
     public static final int MAX_NUM_OF_CAR_NAME = 5;
 
-    private String name;
+    private final String name;
     private int position = 0;
 
     public Car(String name) {

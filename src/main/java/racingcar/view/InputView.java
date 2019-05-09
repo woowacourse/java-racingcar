@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
+import racingcar.domain.GameCount;
 import racingcar.error.Validator;
 
 import java.util.Arrays;
@@ -32,6 +33,22 @@ public class InputView {
                 .map(String::trim)
                 .map(Car::new)
                 .collect(Collectors.toList());
+    }
+
+    public static GameCount getGameCount() {
+        System.out.println("시도할 횟수는 몇 회인가요?");
+        return getGameCount(makeString());
+    }
+
+    public static GameCount getGameCount(String input) {
+        try {
+            input = input.trim();
+            Validator.checkAccuracyOfGameCount(input);
+            return new GameCount(Integer.parseInt(input));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getGameCount();
+        }
     }
 
     private static String makeString() {
