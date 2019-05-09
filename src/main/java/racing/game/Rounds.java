@@ -48,7 +48,7 @@ public class Rounds {
 
     public static void start(List<Car> cars, int roundNum) {
         System.out.print("\n실행 결과");
-        for(int i = 0; i < roundNum; i++) {
+        for (int i = 0; i < roundNum; i++) {
             doRound(cars);
         }
         OutputView.showChampion(calculateChampions(cars));
