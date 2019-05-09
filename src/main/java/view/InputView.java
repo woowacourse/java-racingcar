@@ -15,12 +15,7 @@ public class InputView {
     }
 
     public static int inputRoundCount(){
-        try{
-            System.out.println(Const.INPUT_ROUND_CNT);
-            return SCANNER.nextInt();
-        }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return inputRoundCount();
-        }
+        System.out.println(Const.INPUT_ROUND_CNT);
+        return SCANNER.nextInt();
     }
 }
