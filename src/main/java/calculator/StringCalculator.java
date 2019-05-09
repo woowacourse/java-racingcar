@@ -54,7 +54,7 @@ class StringCalculator {
         return result;
     }
 
-    private boolean checkInputValid(String value) {
+    boolean checkInputValid(String value) {
         value = value.trim().replaceAll(" +", BLANK);
         String[] values = value.split(BLANK);
         try {
