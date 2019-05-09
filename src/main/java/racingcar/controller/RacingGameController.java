@@ -1,27 +1,39 @@
 package racingcar.controller;
 
+import racingcar.domain.Car;
 import racingcar.view.InputView;
+
+import java.util.ArrayList;
 
 public class RacingGameController {
     private static final int LIMIT_CAR_NAME_LENGTH = 5;
     private static final String SPLIT_REGEX = ",";
 
+    private ArrayList<Car> carList;
+    private int tryCount;
+    
     public String requestCarList() {
         return InputView.inputCarList();
     }
 
-    public String[] splitCarList(String carNameList) {
-        String[] carList;
-
-        carNameList = carNameList.replaceAll(" ", "");
-        if (hasContinuousComma(carNameList)) {
+    public String[] makeValidCarNames(String carNames) throws Exception {
+        carNames = removeWhiteSpace(carNames);
+        if (hasContinuousComma(carNames)) {
             throw new IllegalArgumentException("연속된 콤마가 발견 되었습니다.");
         }
-        carList = carNameList.split(SPLIT_REGEX);
-        if(hasLongCarName(carList)) {
+        String[] splitedCarNameList = splitCarList(carNames);
+        if(hasLongCarName(splitedCarNameList)) {
             throw new IllegalArgumentException("5자 이하의 자동차 이름만 허용됩니다.");
         }
-        return carList;
+        return splitedCarNameList;
+    }
+
+    private String removeWhiteSpace(String carNameList) {
+        return carNameList.replaceAll(" ", "");
+    }
+
+    private String[] splitCarList(String carNameList) {
+        return carNameList.split(SPLIT_REGEX);
     }
 
     private boolean hasLongCarName(String[] carNameList) {
@@ -40,5 +52,4 @@ public class RacingGameController {
     private boolean hasContinuousComma(String carNameList) {
         return carNameList.contains(",,");
     }
-
 }
