@@ -4,7 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorLineTest {
     private CalculatorLine calculatorLine;
@@ -59,6 +60,16 @@ class CalculatorLineTest {
                         userInterfaceView.splitFormula("2 + 3 - 2 * 10 / 2")
                 )
         );
+    }
+
+    @Test
+    void 나눗셈_예외처리() {
+        assertThrows(ArithmeticException.class, () -> {
+           calculatorLine.calculateFormula(
+                   userInterfaceView.splitFormula("10 / 0")
+           );
+        });
+
     }
 
     @AfterEach
