@@ -1,6 +1,7 @@
 package com.woowacourse.javaracingcar;
 
 import com.woowacourse.javaracingcar.domain.Car;
+import com.woowacourse.javaracingcar.domain.CarDto;
 import com.woowacourse.javaracingcar.interfaces.UserInterface;
 
 import java.util.ArrayList;
@@ -45,13 +46,13 @@ public class ConsoleUserInterface implements UserInterface {
     }
 
     @Override
-    public void printResult(List<Car> cars) {
+    public void printResult(List<CarDto> cars) {
         if (!isResultTitlePrinted) {
             System.out.println("실행 결과");
             isResultTitlePrinted = true;
         }
 
-        for (Car c : cars) {
+        for (CarDto c : cars) {
             System.out.println(c);
         }
 
@@ -59,7 +60,7 @@ public class ConsoleUserInterface implements UserInterface {
     }
 
     @Override
-    public void printWinners(List<Car> winners) {
+    public void printWinners(List<CarDto> winners) {
         String str = RacingCarUtil.joinCarNames(winners);
         System.out.println(str + "가 최종 우승했습니다.");
     }

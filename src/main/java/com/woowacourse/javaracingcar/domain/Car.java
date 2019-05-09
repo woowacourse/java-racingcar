@@ -24,11 +24,30 @@ public class Car {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(name + " : ");
+        sb.append(name).append(" : ");
         for (int i = 0; i < position; i++) {
             sb.append('-');
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Car)) {
+            return false;
+        }
+
+        if (name.equals(((Car) o).name) &&
+            (position == ((Car) o).position)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }

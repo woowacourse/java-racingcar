@@ -1,6 +1,7 @@
 package com.woowacourse.javaracingcar;
 
 import com.woowacourse.javaracingcar.domain.Car;
+import com.woowacourse.javaracingcar.domain.CarDto;
 import com.woowacourse.javaracingcar.interfaces.NumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,70 +11,69 @@ import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-class GameTest {
-    NumberGenerator numberGenerator;
-    Game game;
+class RacingcarModelTest {
+    private NumberGenerator numberGenerator;
+    private RacingcarModel racingcarModel;
+    private List<Car> cars;
 
     @BeforeEach
     void setUp() {
-
-
+        cars = new ArrayList<>();
+        cars.add(new Car("pobi"));
+        cars.add(new Car("crong"));
+        cars.add(new Car("honux"));
     }
 
     @Test
-    public void 자동차_전진() {
-        int[] expected = {1,2,5};
-        numberGenerator = new TestNumberGenerator(expected);
+    void 자동차_전진() {
+        int[] numsToGenerate = {1,2,5};
+        numberGenerator = new TestNumberGenerator(numsToGenerate);
 
         Car car = new Car("pobi");
         List<Car> cars = new ArrayList<>();
         cars.add(car);
 
-        game = new Game(numberGenerator, cars);
+        racingcarModel = new RacingcarModel(numberGenerator, cars);
 
-        loopGame(game, expected.length);
-        assertThat(game.getWinners().get(0).getPosition()).isEqualTo(1);
+        loopGame(racingcarModel, numsToGenerate.length);
+        assertThat(racingcarModel.getWinners().get(0).getPosition()).isEqualTo(1);
     }
 
     @Test
-    public void 정상_게임_종료_우승자반환() {
-       List<Car> cars = new ArrayList<>();
-       cars.add(new Car("pobi"));
-       cars.add(new Car("crong"));
-       cars.add(new Car("honux"));
+    void 정상_게임_종료_우승자반환() {
+       int[] numsToGenerate = {1,2,3,1,2,4,4,5,6};
+       numberGenerator = new TestNumberGenerator(numsToGenerate);
 
-       int[] expected = {1,2,3,1,2,4,4,5,6};
-       numberGenerator = new TestNumberGenerator(expected);
+       racingcarModel = new RacingcarModel(numberGenerator, cars);
 
-       game = new Game(numberGenerator, cars);
-
-       loopGame(game, 3);
-       assertThat(game.getWinners().get(0).getName()).isEqualTo("honux");
+       loopGame(racingcarModel, 3);
+       assertThat(racingcarModel.getWinners().get(0).getName()).isEqualTo("honux");
     }
 
     @Test
-    public void 정상_게임_종료_공동_우승자반환() {
-        List<Car> cars = new ArrayList<>();
-        cars.add(new Car("pobi"));
-        cars.add(new Car("crong"));
-        cars.add(new Car("honux"));
+    void 정상_게임_종료_공동_우승자반환() {
+        int[] numsToGenerate ={4,1,4,5,2,5,6,4,6};
+        numberGenerator = new TestNumberGenerator(numsToGenerate);
+        List<CarDto> expectedWinnerList = new ArrayList<>();
+        expectedWinnerList.add(new CarDto(cars.get(0).getName(), cars.get(0).getPosition()));
+        expectedWinnerList.add(new CarDto(cars.get(2).getName(), cars.get(2).getPosition()));
 
-        int[] expected ={4,1,4,5,2,5,6,4,6};
-        numberGenerator = new TestNumberGenerator(expected);
-        List<Car> expectedWinnerList = new ArrayList<>();
-        expectedWinnerList.add(cars.get(0));
-        expectedWinnerList.add(cars.get(2));
+        racingcarModel = new RacingcarModel(numberGenerator, cars);
+        loopGame(racingcarModel, 3);
+        List<CarDto> actualWinnerList = racingcarModel.getWinners();
 
-        game = new Game(numberGenerator, cars);
-        loopGame(game, 3);
-        List<Car> actualWinnerList = game.getWinners();
-
-        assertThat(actualWinnerList).isEqualTo(expectedWinnerList);
+        assertEachCarDto(expectedWinnerList, actualWinnerList);
     }
 
-    void loopGame(Game g, int loops) {
+    void loopGame(RacingcarModel g, int loops) {
         for (int i = 0; i < loops; i++) {
             g.loop();
+        }
+    }
+
+    private void assertEachCarDto(List<CarDto> expected, List<CarDto> actual) {
+        for (int i = 0; i < expected.size(); i++) {
+            assertThat(expected.get(i)).isEqualToIgnoringGivenFields(actual.get(i), "position");
         }
     }
 }

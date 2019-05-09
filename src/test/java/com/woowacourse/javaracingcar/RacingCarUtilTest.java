@@ -38,4 +38,14 @@ class RacingCarUtilTest {
         assertThat(RacingCarUtil.isValidNameInput(RacingCarUtil.splitIntoNames(input)))
             .isFalse();
     }
+
+    @Test
+    void 이름_중복_입력() {
+        String input = "pobi, pobi";
+        assertThat(RacingCarUtil.isValidNameInput(RacingCarUtil.splitIntoNames(input)))
+            .isFalse();
+        input = "pobi, pobi, pobi";
+        assertThat(RacingCarUtil.isValidNameInput(RacingCarUtil.splitIntoNames(input)))
+            .isFalse();
+    }
 }
