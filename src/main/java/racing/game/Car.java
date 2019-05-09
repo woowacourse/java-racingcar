@@ -20,4 +20,16 @@ public class Car {
 
         return carPositionString;
     }
+
+    public int compareTo(Car o2) {
+        if (this.position == o2.position) {
+            return 0;
+        }
+        if (this.position > o2.position) {
+            return 1;
+        }
+        return -1;
+    }
+
+
 }
