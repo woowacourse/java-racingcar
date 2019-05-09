@@ -12,14 +12,15 @@ public class Car {
         this.name = name;
     }
 
-    public void move() {
-        if(isPossibleMove()){
+    public void move(int number) {
+        if(isPossibleMove(number)){
             this.position++;
         }
     }
 
-    private boolean isPossibleMove() {
-        return generateRandomNumber() > MOVE_OFFSET ;
+    protected boolean isPossibleMove(int num) {
+        //return generateRandomNumber() > MOVE_OFFSET;
+        return num > MOVE_OFFSET;
     }
 
     protected int generateRandomNumber() {
