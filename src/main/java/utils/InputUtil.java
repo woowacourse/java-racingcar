@@ -1,8 +1,6 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class InputUtil {
     private static final int MINIMUM_PARTICIPANT = 2;
@@ -30,7 +28,7 @@ public class InputUtil {
             }
         }
 
-        return isInValidCarNumber(names);
+        return isInValidCarNumber(names) || isDuplicatedName(names);
     }
 
     private static boolean isBlank(String str) {
@@ -39,6 +37,12 @@ public class InputUtil {
 
     private static boolean isInValidCarNumber(String[] names) {
         return names.length < MINIMUM_PARTICIPANT;
+    }
+
+    private static boolean isDuplicatedName(String[] names) {
+        Set<String> set = new HashSet<>(Arrays.asList(names));
+
+        return set.size() != names.length;
     }
 
     public static int inputRound() {
