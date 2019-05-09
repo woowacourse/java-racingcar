@@ -6,14 +6,14 @@ import racingcar.util.CloneUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGame {
-    private final List<Car> carList;
+    public static final int MIN_NUM_OF_CARS_FOR_GAME = 2;
+    private final List<Car> cars;
     private final GameCount gameCount;
 
-    public RacingGame(List<Car> carList, GameCount gameCount) {
-        this.carList = carList;
+    public RacingGame(List<Car> cars, GameCount gameCount) {
+        this.cars = cars;
         this.gameCount = gameCount;
     }
 
@@ -21,13 +21,13 @@ public class RacingGame {
         List<RacingGameRound> gameResultDB = new ArrayList<>();
         for (int i = 0; i < gameCount.getGameCount(); i++) {
             proceedOneRound();
-            gameResultDB.add(new RacingGameRound(CloneUtil.cloneCarList(carList)));
+            gameResultDB.add(new RacingGameRound(CloneUtil.cloneCarList(cars)));
         }
         return new RacingGameResult(gameResultDB);
     }
 
     private void proceedOneRound() {
-        for (Car car : this.carList) {
+        for (Car car : this.cars) {
             car.accelerate();
         }
     }

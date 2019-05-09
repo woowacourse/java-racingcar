@@ -18,7 +18,7 @@ public class OutputView {
         System.out.println("\n실행 결과");
         for (RacingGameRound round : gameResultDB) {
             System.out.println(round);
-            PrintUtil.pause();
+            PrintUtil.sleep();
         }
     }
 

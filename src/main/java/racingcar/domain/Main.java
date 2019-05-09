@@ -9,9 +9,9 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<Car> carList = InputView.getCars();
+        List<Car> cars = InputView.getCars();
         GameCount gameCount = InputView.getGameCount();
-        RacingGameResult racingGameResult = new RacingGame(carList, gameCount).start();
+        RacingGameResult racingGameResult = new RacingGame(cars, gameCount).start();
         OutputView.showRacingGameResult(racingGameResult);
         OutputView.showWinners(racingGameResult);
     }
