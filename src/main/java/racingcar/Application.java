@@ -16,7 +16,7 @@ public class Application {
 
             racingGameController.startRacingGame();
             racingGameController.endRacing();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

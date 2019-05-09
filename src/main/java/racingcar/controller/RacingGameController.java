@@ -28,7 +28,7 @@ public class RacingGameController {
             throw new IllegalArgumentException("연속된 콤마가 발견 되었습니다.");
         }
         String[] splitedCarNameList = splitCarList(carNames);
-        if(hasLongCarName(splitedCarNameList)) {
+        if (hasLongCarName(splitedCarNameList)) {
             throw new IllegalArgumentException("5자 이하의 자동차 이름만 허용됩니다.");
         }
         return splitedCarNameList;
@@ -62,7 +62,7 @@ public class RacingGameController {
     public void endRacing() {
         ResultController resultController = new ResultController();
         ArrayList<Car> winningCars = resultController.findWinners(carList);
-        
+
         OutputView.outputWinners(winningCars);
     }
 
@@ -100,7 +100,7 @@ public class RacingGameController {
     private void randomMove(Car car) {
         int randomNumber = Utils.RANDOM.nextInt(RANDOM_NUMBER_COUNT) + RANDOM_NUMBER_LOWER_BOUND;
 
-        if(randomNumber >= MOVE_CRITERIA) {
+        if (randomNumber >= MOVE_CRITERIA) {
             car.move();
         }
     }

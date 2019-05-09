@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.Car;
+
 import java.util.ArrayList;
 
 public class ResultController {
@@ -9,13 +10,13 @@ public class ResultController {
         int farthestPosition = -1;
 
         for (Car car : carList) {
-            if(car.isFartherPosition(farthestPosition)) {
+            if (car.isFartherPosition(farthestPosition)) {
                 winners.clear();
                 winners.add(car);
                 farthestPosition = car.getPosition();
                 continue;
             }
-            if(car.isSamePosition(farthestPosition)) {
+            if (car.isSamePosition(farthestPosition)) {
                 winners.add(car);
             }
         }
