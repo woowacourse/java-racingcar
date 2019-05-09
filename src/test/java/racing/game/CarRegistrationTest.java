@@ -2,6 +2,9 @@ package racing.game;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class CarRegistrationTest {
@@ -30,4 +33,6 @@ public class CarRegistrationTest {
         String string = "pobipobi,pobi,pobi";
         assertThat(CarRegistration.checkInvalidNameLength(CarRegistration.splitNames(string))).isTrue();
     }
+
+
 }
