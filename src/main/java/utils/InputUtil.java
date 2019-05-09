@@ -14,8 +14,9 @@ public class InputUtil {
         String[] names;
 
         do {
-            System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+            OutputUtil.printMessage("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
             names = input().trim().split("\\s*,\\s*");
+            System.out.println(Arrays.toString(names));
         } while (isInValidNames(names));
 
         return new ArrayList<>(Arrays.asList(names));
@@ -49,7 +50,7 @@ public class InputUtil {
         String round;
 
         do {
-            System.out.println("시도할 회수는 몇회인가요?");
+            OutputUtil.printMessage("시도할 회수는 몇회인가요?");
             round = input().trim();
         } while (isInValidRound(round));
 

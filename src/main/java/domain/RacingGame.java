@@ -1,6 +1,7 @@
 package domain;
 
 import utils.InputUtil;
+import utils.OutputUtil;
 import utils.RandomUtil;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class RacingGame {
     }
 
     private void race() {
-        System.out.println("실행 결과");
+        OutputUtil.printMessage("실행 결과");
 
         for (int i = 1; i <= gameRound; i++) {
             raceByRound();

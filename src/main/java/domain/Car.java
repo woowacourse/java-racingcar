@@ -1,6 +1,8 @@
 package domain;
 
-class Car {
+import utils.OutputUtil;
+
+public class Car {
     private static final int MOVE_CONDITION = 4;
 
     private String name;
@@ -28,13 +30,7 @@ class Car {
     }
 
     void printPosition() {
-        StringBuilder result = new StringBuilder(name + " : ");
-
-        for (int i = 1; i <= position; i++) {
-            result.append("-");
-        }
-
-        System.out.println(result);
+        OutputUtil.printPosition(name, position);
     }
 
     int getMaxPosition(int pos) {
@@ -45,7 +41,7 @@ class Car {
         return maxPosition == position;
     }
 
-    String appendCarName(String carNames) {
+    public String appendCarName(String carNames) {
         return carNames + (name + ", ");
     }
 }

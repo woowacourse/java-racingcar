@@ -1,5 +1,7 @@
 package domain;
 
+import utils.OutputUtil;
+
 import java.util.ArrayList;
 
 class WinnerCars {
@@ -30,14 +32,18 @@ class WinnerCars {
     }
 
     void printWinners() {
-        String winnerNames = "";
-        String message;
-
-        for (Car winner : winnerList) {
-            winnerNames = winner.appendCarName(winnerNames);
-        }
-
-        message = winnerNames.substring(0, winnerNames.length() - 2);
-        System.out.format("%s 이(가) 최종 우승했습니다.\n", message);
+        OutputUtil.printWinners(winnerList);
     }
+
+//    void printWinners() {
+//        String winnerNames = "";
+//        String message;
+//
+//        for (Car winner : winnerList) {
+//            winnerNames = winner.appendCarName(winnerNames);
+//        }
+//
+//        message = winnerNames.substring(0, winnerNames.length() - 2);
+//        System.out.format("%s 이(가) 최종 우승했습니다.\n", message);
+//    }
 }
