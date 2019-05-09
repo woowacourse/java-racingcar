@@ -1,5 +1,5 @@
 package racingcar.domain;
 
-public interface MovableStrategy {
+public interface MovementStrategy {
     boolean isMovable();
 }
