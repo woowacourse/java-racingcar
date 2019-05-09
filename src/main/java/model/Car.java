@@ -2,7 +2,7 @@ package model;
 
 import util.Validation;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final String name;
     private int position;
 
@@ -10,9 +10,8 @@ public class Car {
         if (name.length() > 5) {
             throw new IllegalArgumentException("차 이름 길이 오류");
         }
-        name.toUpperCase();
         for (int i = 0; i < name.length(); i++) {
-            Validation.isAlpha(name.charAt(i));
+            Validation.isAlpha(Character.toUpperCase(name.charAt(i)));
         }
         this.name = name;
     }
@@ -21,23 +20,28 @@ public class Car {
         if (name.length() > 5) {
             throw new IllegalArgumentException("차 이름 길이 오류");
         }
-        name.toUpperCase();
+
         for (int i = 0; i < name.length(); i++) {
-            Validation.isAlpha(name.charAt(i));
+            Validation.isAlpha(Character.toUpperCase(name.charAt(i)));
         }
         this.name = name;
         this.position = position;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position;
     }
 
-    public void setPosition(int position) {
+    void setPosition(int position) {
         this.position = position;
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return this.position - car.position;
     }
 }
