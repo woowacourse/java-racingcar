@@ -9,7 +9,7 @@ public class GameResult {
         List<String> winners = new ArrayList<>();
 
         int maxCarPosition = Collections.max(cars).getPosition();
-        for(Car car : cars){
+        for (Car car : cars) {
             addWinners(winners, maxCarPosition, car);
         }
 
@@ -17,7 +17,7 @@ public class GameResult {
     }
 
     private void addWinners(List<String> winners, int maxCarPosition, Car car) {
-        if(car.getPosition() == maxCarPosition){
+        if (car.getPosition() == maxCarPosition) {
             winners.add(car.getName());
         }
     }

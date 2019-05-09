@@ -8,14 +8,14 @@ class CarTest {
     @Test
     void 차이름길이_예외검사() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Car("asdefg");
+            new Car(new CarName("asdefg"));
         });
     }
 
     @Test
     void 차이름_영문검사() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Car("a1das");
+            new Car(new CarName("a1das"));
         });
     }
 }

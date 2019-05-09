@@ -1,6 +1,7 @@
 package view;
 
 import model.Car;
+import model.CarName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final String regexCarNames = "^([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*$";
+    private static final String regexCarNames = "^([^,]+)(,[^,]+)*$";
 
     public static List<Car> inputCarsNames() {
         try {
@@ -25,20 +26,20 @@ public class InputView {
     private static List<Car> parseCars(String carNames) {
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames.split(",")) {
-            Car car = new Car(carName);
+            Car car = new Car(new CarName(carName));
             checkCarNamesDuplication(cars, car);
             cars.add(car);
         }
         return cars;
     }
 
-    public static void checkCarNamesDuplication(List<Car> cars, Car car) {
+    private static void checkCarNamesDuplication(List<Car> cars, Car car) {
         if (cars.contains(car)) {
             throw new IllegalArgumentException("중복되는 자동차 이름이 존재합니다.");
         }
     }
 
-    public static void checkFormCarNames(String carNames) {
+    private static void checkFormCarNames(String carNames) {
         if (!carNames.matches(regexCarNames)) {
             throw new IllegalArgumentException("자동차 이름 형식에 맞지 않습니다.");
         }
@@ -47,7 +48,7 @@ public class InputView {
     public static int inputLapCount() {
         try {
             System.out.println("시도할 회수는 몇회인가요?");
-            int lapCount = Integer.parseInt(scanner.nextLine());
+            int lapCount = parseInteger(scanner.nextLine());
             checkArrangeLapCount(lapCount);
             return lapCount;
         } catch (IllegalArgumentException e) {
@@ -56,7 +57,15 @@ public class InputView {
         }
     }
 
-    public static void checkArrangeLapCount(int lapCount) {
+    private static int parseInteger(String str) {
+        try {
+            return Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자가 아닙니다.");
+        }
+    }
+
+    private static void checkArrangeLapCount(int lapCount) {
         if (lapCount <= 0) {
             throw new IllegalArgumentException("시도 횟수를 자연수로 입력해주세요");
         }

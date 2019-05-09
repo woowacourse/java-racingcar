@@ -7,9 +7,9 @@ import model.RacingGame;
 import java.util.List;
 
 public class RacingGameService {
-    List<Car> cars;
-    RacingGame racingGame;
-    GameResult gameResult;
+    private List<Car> cars;
+    private RacingGame racingGame;
+    private GameResult gameResult;
 
     public RacingGameService(List<Car> cars) {
         this.cars = cars;
@@ -22,7 +22,7 @@ public class RacingGameService {
         return cars;
     }
 
-    public List<String > getWinners(){
+    public List<String> getWinners() {
         return this.gameResult.getWinners(cars);
     }
 }

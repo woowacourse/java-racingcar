@@ -21,6 +21,4 @@ class RacingTest {
         assertThat(racing.isMove(4)).isEqualTo(true);
         assertThat(racing.isMove(5)).isEqualTo(true);
     }
-
-
 }

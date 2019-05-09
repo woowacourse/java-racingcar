@@ -1,32 +1,17 @@
 package model;
 
-import util.Validation;
-
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
     private final String name;
     private int position;
 
-    public Car(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("차 이름 길이 오류");
-        }
-        for (int i = 0; i < name.length(); i++) {
-            Validation.isAlpha(Character.toUpperCase(name.charAt(i)));
-        }
-        this.name = name;
+    public Car(CarName carName) {
+        this.name = carName.getName();
     }
 
-    public Car(String name, int position) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("차 이름 길이 오류");
-        }
-
-        for (int i = 0; i < name.length(); i++) {
-            Validation.isAlpha(Character.toUpperCase(name.charAt(i)));
-        }
-        this.name = name;
+    public Car(CarName carName, int position) {
+        this.name = carName.getName();
         this.position = position;
     }
 
