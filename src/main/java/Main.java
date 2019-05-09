@@ -1,6 +1,7 @@
 import domain.Car;
 import domain.CarFactory;
 import domain.RacingGame;
+import domain.RacingTrial;
 import view.InputView;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class Main {
 
         int nTrials = InputView.readNumber();
 
-        RacingGame racingGame = new RacingGame();
-        racingGame.play();
+        RacingGame racingGame = new RacingGame(new RacingTrial());
+        racingGame.play(cars, nTrials);
     }
 }
