@@ -20,4 +20,10 @@ public class Util {
             tempList.add(str);
         }
     }
+
+    public static void checkStringListSize(List<String> stringList){
+        if(stringList.size() == 0){
+            throw new IllegalArgumentException(Const.EX_NAME_LEN);
+        }
+    }
 }
