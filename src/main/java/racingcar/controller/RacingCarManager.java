@@ -20,12 +20,18 @@ public class RacingCarManager {
 
     public void racingGameStart() {
         getGameInformation();
-        moveRacingCar();
+        startRacing();
     }
 
     private void getGameInformation() {
         cars = inputManager.getRacingCar();
         gameCount = inputManager.getGameCount();
+    }
+
+    private void startRacing() {
+        for (int i = 0; i < gameCount; i++) {
+            moveRacingCar();
+        }
     }
 
     private void moveRacingCar() {
