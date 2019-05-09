@@ -32,7 +32,7 @@ public class Winner {
         List<Car> winners = new ArrayList<>();
         int maxPosition = getMaxDistance();
         int carNumber = 0;
-        while (checkMaxLength(carNumber) && checkMaxposition(carNumber, maxPosition)) {
+        while (checkMaxLength(carNumber) && checkMaxPosition(carNumber, maxPosition)) {
             winners.add(cars.get(carNumber++));
         }
         return winners;
@@ -42,8 +42,8 @@ public class Winner {
         return carNumber < cars.size();
     }
 
-    private boolean checkMaxposition(int index, int maxPosition) {
-        return cars.get(index).getPosition() == maxPosition;
+    private boolean checkMaxPosition(int index, int maxPosition) {
+        return cars.get(index).isMaxPosition(maxPosition);
     }
 
 }

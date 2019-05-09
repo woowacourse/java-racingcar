@@ -1,8 +1,8 @@
 package racingcar.model;
 
-import java.util.Random;
-
 public class Car {
+    private static final int MOVE_CONDITION = 4;
+
     private int position;
     private String name;
 
@@ -12,7 +12,7 @@ public class Car {
     }
 
     public void move(int number) {
-        if (number >= 4) {
+        if (number >= MOVE_CONDITION) {
             position++;
         }
     }
@@ -23,5 +23,9 @@ public class Car {
 
     public String getName() {
         return name;
+    }
+
+    boolean isMaxPosition(int maxPosition) {
+        return position == maxPosition;
     }
 }
