@@ -1,5 +1,7 @@
 package racing.domain;
 
+import racing.view.ConsoleMessages;
+
 import java.util.Random;
 
 public class Car implements Comparable<Car> {
@@ -39,7 +41,7 @@ public class Car implements Comparable<Car> {
 
     private String checkName(String name) {
         if (name.length() > MAX_CAR_NAME) {
-            throw new IllegalArgumentException("레이서의 이름은 5자 이하여야 합니다.");
+            throw new IllegalArgumentException(ConsoleMessages.ERR_CAR_NAME.getMessage());
         }
         return name;
     }
@@ -48,7 +50,7 @@ public class Car implements Comparable<Car> {
         StringBuilder sb = new StringBuilder();
         sb.append(name);
         sb.append(" : ");
-        for (int i = 1; i <= distance; i++) {
+        for (int i = 0; i < distance; i++) {
             sb.append("-");
         }
 
@@ -65,6 +67,6 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car car) {
-        return car.distance - this.distance;
+        return this.distance - car.distance;
     }
 }

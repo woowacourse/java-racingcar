@@ -1,11 +1,13 @@
 package racing.domain;
 
+import racing.view.ConsoleMessages;
+
 public class RepeatNumber {
     private int number;
 
     public RepeatNumber(int number) {
         if (number <= 0)
-            throw new IllegalArgumentException("횟수는 1 이상이어야 합니다.");
+            throw new IllegalArgumentException(ConsoleMessages.ERR_INVALID_REPEAT_NUMBER.getMessage());
         this.number = number;
     }
 

@@ -9,14 +9,12 @@ import java.util.stream.Collectors;
 public class OutputView {
     public static void printStatus(RaceStatusDto raceStatusDto) {
         List<Car> carList = raceStatusDto.getCarList();
-        for (Car car : carList) {
-            System.out.println(car.getStatus());
-        }
+        carList.forEach(car -> System.out.println(car.getStatus()));
         System.out.println();
     }
 
     public static void printWinners(List<String> winners) {
-        String winnerNames = winners.stream().collect(Collectors.joining(","));
+        String winnerNames = String.join(",", winners);
         System.out.println(String.format(ConsoleMessages.OUTPUT_WINNER_NAME.getMessage(), winnerNames));
     }
 }

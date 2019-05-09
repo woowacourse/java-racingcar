@@ -1,8 +1,8 @@
 package racing.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCars {
     private final List<Car> carList;
@@ -12,9 +12,7 @@ public class RacingCars {
     }
 
     public void race() {
-        for (Car car : carList) {
-            car.move();
-        }
+        carList.forEach(Car::move);
     }
 
     public RaceStatusDto getRaceStatus() {
@@ -22,15 +20,10 @@ public class RacingCars {
     }
 
     public List<String> getWinners() {
-        Collections.sort(carList);
-        Car winnerCar = carList.get(0);
-        List<String> winnerNames = new ArrayList<>();
-        for (Car car : carList) {
-            if (!car.isMaxDistance(winnerCar))
-                break;
-            winnerNames.add(car.getName());
-        }
-
-        return winnerNames;
+        Car winnerCar = Collections.max(carList);
+        return carList.stream()
+                .filter(car-> car.isMaxDistance(winnerCar))
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 }
