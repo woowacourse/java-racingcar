@@ -1,11 +1,11 @@
 package racingcar;
 
+import racingcar.controller.CarController;
 import racingcar.controller.CarGenerator;
 import racingcar.dto.Car;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,13 +17,14 @@ public class RacingGame {
 
     public static void main(String[] args) {
         addCar();
-        getTryCount();
+        TryCount tryCount = InputView.InputRacingTryCount();
+        CarController carController = new CarController(carList,tryCount);
 
     }
 
-    private static void getTryCount() {
-        InputView.InputRacingTryCount();
+    private static void race() {
     }
+
 
     private static void addCar() {
         String string = InputView.InputCarNames();
