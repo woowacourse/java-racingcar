@@ -1,22 +1,41 @@
 package racingcar;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Racing {
-    private List<Car> cars = new ArrayList<>();
+    private List<Car> cars;
+    private int numberOfTimes;
+
+    public Racing(List<String> carNames, int numberOfTimes) {
+        this.cars = carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList())
+        ;
+        this.numberOfTimes = numberOfTimes;
+    }
+
 
     public void run() {
-        InputView.inputCarNames().forEach(x -> cars.add(new Car(x)));
-        int numberOfTimes = InputView.inputNumberOfTimes();
-
         System.out.println("실행 결과");
+
         for (int i = 0; i < numberOfTimes; ++i) {
             cars.forEach(car -> car.moveOrNot());
             cars.forEach(car -> OutputView.printCarDistance(car));
             System.out.println();
         }
+    }
 
-        OutputView.printWinners(String.join(", ", Winner.getWinners(cars)));
+    private int getMaxDistance() {
+        int maxDistance = cars.get(0).getPosition();
+        for (int i = 1; i < cars.size(); ++i) {
+            maxDistance = Math.max(maxDistance, cars.get(i).getPosition());
+        }
+        return maxDistance;
+    }
+
+    public Winner getWinner() {
+        return new Winner(cars, getMaxDistance());
     }
 }
+
