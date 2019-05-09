@@ -1,7 +1,6 @@
 package com.woowacourse.javaracingcar;
 
 import com.woowacourse.javaracingcar.domain.RacingcarModel;
-import com.woowacourse.javaracingcar.domain.RandomNumberGenerator;
 import com.woowacourse.javaracingcar.interfaces.NumberGenerator;
 import com.woowacourse.javaracingcar.interfaces.UserInterface;
 
