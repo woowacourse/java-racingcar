@@ -13,13 +13,13 @@ public class RacingCarApp {
         List<String> carNames = InputView.inputCarNames();
         int tryNumber = InputView.inputTryNum();
 
-        List<Car> carList = registerCar(carNames);
+        List<Car> carList = createCar(carNames);
 
         startRacing(carList, tryNumber);
         OutputView.printWinnerName(carList);
     }
 
-    private static List<Car> registerCar(List<String> carNames) {
+    private static List<Car> createCar(List<String> carNames) {
         List<Car> carList = new ArrayList<>();
 
         for (String carName : carNames) {
