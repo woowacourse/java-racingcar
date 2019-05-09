@@ -1,4 +1,4 @@
-package racingcar.DTO;
+package racingcar.dto;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

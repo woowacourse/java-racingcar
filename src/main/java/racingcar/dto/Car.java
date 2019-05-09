@@ -1,4 +1,4 @@
-package racingcar.DTO;
+package racingcar.dto;
 
 import java.util.Random;
 
@@ -8,12 +8,12 @@ public class Car {
     private String name;
     private int position = 0;
 
-    Car(String name) {
+    public Car(String name) {
         this.name = name;
     }
 
-    public void move(int number) {
-        if(isPossibleMove(number)){
+    public void move() {
+        if(isPossibleMove(generateRandomNumber())){
             this.position++;
         }
     }

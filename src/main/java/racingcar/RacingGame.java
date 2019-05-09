@@ -1,15 +1,17 @@
 package racingcar;
 
-import racingcar.View.InputView;
-import racingcar.View.OutputView;
+import racingcar.dto.Car;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class RacingGame {
     final static int MIN_CAR_LENGTH = 1;
     final static int MAX_CAR_LENGTH = 5;
-    //List<Car> cars = new ArrayList<Car>();
+
 
     public static void main(String[] args) {
         addCar();
@@ -42,6 +44,7 @@ public class RacingGame {
                 break;
             }
         }
+
     }
 
     private static String[] splitCar(String names) {
