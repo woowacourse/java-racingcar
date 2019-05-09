@@ -51,6 +51,11 @@ public class Car {
         return (this.name.equals(car.getName()));
     }
 
+    @Override
+    public String toString() {
+        return this.name + " : " + this.position;
+    }
+
     public String getName() {
         return this.name;
     }
