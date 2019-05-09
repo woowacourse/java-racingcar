@@ -8,10 +8,12 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game();
         String[] carNames;
+        List<Car> cars;
 
         do {
             carNames = game.splitWithComma(UserInput.inputCarNames());
         } while (!game.checkCarNamesLength(carNames));
 
+        cars = game.createCarObject(carNames);
     }
 }
