@@ -32,7 +32,7 @@ class ControllerTest {
     void 카리스트에서우승자를잘뽑아내나요1() {
         String[] expectation = {"kwon", "kim", "Luffy", "Buddy"};
         CarList carList = new CarList();
-        carList.addCars(expectation);
+
         assertThat(Controller.getWinners(carList)).isEqualTo("kwon, kim, Luffy, Buddy");
     }
 }
