@@ -22,4 +22,5 @@ public class RaceResultTest {
         assertThat(winner.isSameRank(cars.get(1))).isEqualTo(false);
         assertThat(winner.isSameRank(cars.get(2))).isEqualTo(true);
     }
+
 }

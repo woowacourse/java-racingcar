@@ -1,5 +1,7 @@
 package racing.domain;
 
+import racing.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -38,5 +40,8 @@ public class RaceResult {
         return winner;
     }
 
+    public void printWinners(){
+        OutputView.printResult(winners);
+    }
 
 }

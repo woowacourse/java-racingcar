@@ -6,8 +6,6 @@ import racing.view.InputView;
 
 public class RaceOperator {
     private static Race race;
-    private static RaceResult raceResult;
-
     public static void setupGame() {
         race = new Race();
         race.createCars();
@@ -16,6 +14,9 @@ public class RaceOperator {
 
     public static void startGame(){
         race.repeatRace();
-        race.getResult();
+    }
+
+    public static void endGame() {
+        race.getResult().printWinners();
     }
 }
