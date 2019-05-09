@@ -29,9 +29,10 @@ class GameTest {
         List<Car> cars = new ArrayList<>();
         cars.add(car);
 
-        game = new Game(numberGenerator, 3, cars);
+        game = new Game(numberGenerator, cars);
 
-        assertThat(game.loop().get(0).getPosition()).isEqualTo(1);
+        loopGame(game, expected.length);
+        assertThat(game.getWinners().get(0).getPosition()).isEqualTo(1);
     }
 
     @Test
@@ -44,9 +45,10 @@ class GameTest {
        int[] expected = {1,2,3,1,2,4,4,5,6};
        numberGenerator = new TestNumberGenerator(expected);
 
-       game = new Game(numberGenerator, 3, cars);
+       game = new Game(numberGenerator, cars);
 
-       assertThat(game.loop().get(0).getName()).isEqualTo("honux");
+       loopGame(game, 3);
+       assertThat(game.getWinners().get(0).getName()).isEqualTo("honux");
     }
 
     @Test
@@ -62,9 +64,16 @@ class GameTest {
         expectedWinnerList.add(cars.get(0));
         expectedWinnerList.add(cars.get(2));
 
-        game = new Game(numberGenerator, 3, cars);
-        List<Car> actualWinnerList = game.loop();
+        game = new Game(numberGenerator, cars);
+        loopGame(game, 3);
+        List<Car> actualWinnerList = game.getWinners();
 
         assertThat(actualWinnerList).isEqualTo(expectedWinnerList);
+    }
+
+    void loopGame(Game g, int loops) {
+        for (int i = 0; i < loops; i++) {
+            g.loop();
+        }
     }
 }

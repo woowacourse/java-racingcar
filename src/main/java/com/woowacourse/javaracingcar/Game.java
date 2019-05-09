@@ -11,23 +11,25 @@ public class Game {
     private static final int MOVE_BOUND = 4;
     private List<Car> cars;
     private NumberGenerator numberGenerator;
-    private int tries;
 
-    public Game(NumberGenerator generator, int tries, List<Car> cars) {
+    public Game(NumberGenerator generator, List<Car> cars) {
         numberGenerator = generator;
-        this.tries = tries;
         this.cars = cars;
     }
 
+    /**
+     * 각 자동차에 대해 난수를 생성하고 이에 따라 전진(혹은 멈춤)하는 과정을 1회 수행
+     * @return 게임에 참여한 자동차 리스트
+     */
     public List<Car> loop() {
-        // 게임 루프
-        for (int i = 0; i < tries; i++) {
-            for (Car c : cars)  {
-                c.moveForward(calculateMovingPosition(numberGenerator.generateNumber()));
-            }
+        for (Car c : cars)  {
+            c.move(calculateMovingPosition(numberGenerator.generateNumber()));
         }
 
-        // 우승자 선정
+        return new ArrayList<>(cars);
+    }
+
+    public List<Car> getWinners() {
         int max = calculateMaxPosition();
         List<Car> winners = new ArrayList<>();
         for (Car c : cars) {
@@ -39,7 +41,7 @@ public class Game {
         return winners;
     }
 
-    public int calculateMovingPosition(int generatedNumber) {
+    private int calculateMovingPosition(int generatedNumber) {
         if (generatedNumber >= MOVE_BOUND) {
             return 1;
         }
@@ -49,7 +51,7 @@ public class Game {
         throw new IllegalArgumentException("올바르지 않은 인수: " + generatedNumber);
     }
 
-    public int calculateMaxPosition() {
+    private int calculateMaxPosition() {
         int max = 0;
 
         for (Car c : cars) {
