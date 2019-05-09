@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CalculatorLine {
-    private Operation operation;
     private Map<String, Operation> operationMap;
 
     public CalculatorLine() {
