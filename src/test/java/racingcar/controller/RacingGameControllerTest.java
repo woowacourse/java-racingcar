@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RacingGameControllerTest {
     RacingGameController racingGameController;
-    
+
     @BeforeEach
     void setUp() {
         racingGameController = new RacingGameController();
@@ -49,6 +49,13 @@ public class RacingGameControllerTest {
     void 다섯자_이상_입력된_경우() {
         assertThrows(IllegalArgumentException.class, () -> {
             racingGameController.splitCarList("pppooobbbiii,brown,cu");
+        });
+    }
+
+    @Test
+    void 공백이_입력된_경우() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            racingGameController.splitCarList("pobi,   ,brown");
         });
     }
 }
