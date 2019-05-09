@@ -8,10 +8,14 @@ public class Racing {
 
     void move(Car car) {
         Random random = new Random(SEED);
-        int position = car.getPosition();
 
-        if (random.nextInt() >= BOUND) {
+        if (isMove(random.nextInt())) {
+            int position = car.getPosition();
             car.setPosition(++position);
         }
+    }
+
+    boolean isMove(int number) {
+        return number >= BOUND;
     }
 }
