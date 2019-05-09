@@ -15,11 +15,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RacingcarModelTest {
     private NumberGenerator numberGenerator;
     private RacingcarModel racingcarModel;
-    private List<String> carNames;
+    private List<String> carNameList;
 
     @BeforeEach
     void setUp() {
-        carNames = Arrays.asList("pobi", "crong", "honux");
+        carNameList = Arrays.asList("pobi", "crong", "honux");
     }
 
     @Test
@@ -38,9 +38,9 @@ class RacingcarModelTest {
         int[] numsToGenerate = {1, 2, 3, 1, 2, 4, 4, 5, 6};
         numberGenerator = new TestNumberGenerator(numsToGenerate);
 
-        racingcarModel = new RacingcarModel(numberGenerator, carNames);
+        racingcarModel = new RacingcarModel(numberGenerator, carNameList);
 
-        loopGame(racingcarModel, numsToGenerate.length / carNames.size());
+        loopGame(racingcarModel, numsToGenerate.length / carNameList.size());
         assertThat(racingcarModel.getWinners().get(0).getName()).isEqualTo("honux");
     }
 
@@ -48,17 +48,17 @@ class RacingcarModelTest {
     void 정상_게임_종료_공동_우승자반환() {
         int[] numsToGenerate = {4, 1, 4, 5, 2, 5, 6, 4, 6};
         numberGenerator = new TestNumberGenerator(numsToGenerate);
-        List<String> expectedWinnerNames = Arrays.asList(carNames.get(0), carNames.get((2)));
+        List<String> expectedWinnerNameList = Arrays.asList(carNameList.get(0), carNameList.get((2)));
 
-        racingcarModel = new RacingcarModel(numberGenerator, carNames);
+        racingcarModel = new RacingcarModel(numberGenerator, carNameList);
         loopGame(racingcarModel, 3);
         List<String> actualWinnerList = racingcarModel.getWinners()
             .stream()
             .map(CarDto::getName)
             .collect(Collectors.toList());
 
-        for (int i = 0; i < expectedWinnerNames.size(); i++) {
-            assertThat(expectedWinnerNames.get(i)).isEqualTo(actualWinnerList.get(i));
+        for (int i = 0; i < expectedWinnerNameList.size(); i++) {
+            assertThat(expectedWinnerNameList.get(i)).isEqualTo(actualWinnerList.get(i));
         }
     }
 

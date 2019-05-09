@@ -18,9 +18,9 @@ public class RacingcarController {
     }
 
     public void play() {
-        List<String> carNames = ui.promptUserNames();
+        List<String> carNameList = ui.promptUserNames();
         int tries = ui.promptTries();
-        RacingcarModel racingcarModel = new RacingcarModel(numberGenerator, carNames);
+        RacingcarModel racingcarModel = new RacingcarModel(numberGenerator, carNameList);
 
         for (int i = 0; i < tries; i++) {
             ui.printResult(racingcarModel.loop());

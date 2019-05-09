@@ -35,16 +35,16 @@ public class TestUserInterface implements UserInterface {
     }
 
     @Override
-    public void printResult(List<CarDto> cars) {
+    public void printResult(List<CarDto> carList) {
         if (outputListener != null) {
-            outputListener.onPrintResult(cars);
+            outputListener.onPrintResult(carList);
         }
     }
 
     @Override
-    public void printWinners(List<CarDto> winners) {
+    public void printWinners(List<CarDto> winnerList) {
         if (outputListener != null) {
-            outputListener.onPrintWinners(winners);
+            outputListener.onPrintWinners(winnerList);
         }
     }
 
@@ -59,7 +59,7 @@ public class TestUserInterface implements UserInterface {
     }
 
     interface TestUserInterfaceOutputListener {
-        void onPrintResult(List<CarDto> cars);
-        void onPrintWinners(List<CarDto> cars);
+        void onPrintResult(List<CarDto> carList);
+        void onPrintWinners(List<CarDto> carList);
     }
 }

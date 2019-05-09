@@ -35,9 +35,9 @@ public class RacingCarUtil {
         }
     }
 
-    public static List<Car> createCars(List<String> carNames) {
+    public static List<Car> createCars(List<String> carNameList) {
         List<Car> cars = new ArrayList<>();
-        for (String s : carNames) {
+        for (String s : carNameList) {
             cars.add(new Car(s));
         }
 

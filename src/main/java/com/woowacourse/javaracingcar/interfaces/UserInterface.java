@@ -9,9 +9,9 @@ public interface UserInterface {
 
     int promptTries();
 
-    void printResult(List<CarDto> cars);
+    void printResult(List<CarDto> carList);
 
-    void printWinners(List<CarDto> winners);
+    void printWinners(List<CarDto> winnerList);
 
     List<String> onInvalidUserNames();
 

@@ -1,8 +1,6 @@
 package com.woowacourse.javaracingcar.domain;
 
 import com.woowacourse.javaracingcar.RacingCarUtil;
-import com.woowacourse.javaracingcar.domain.Car;
-import com.woowacourse.javaracingcar.domain.CarDto;
 import com.woowacourse.javaracingcar.interfaces.NumberGenerator;
 
 import java.util.ArrayList;
@@ -13,8 +11,8 @@ import java.util.stream.Collectors;
 public class RacingcarModel {
     private static final int STOP_BOUND = 3;
     private static final int MOVE_BOUND = 4;
-    private List<Car> cars;
-    private NumberGenerator numberGenerator;
+    private final List<Car> cars;
+    private final NumberGenerator numberGenerator;
 
     public RacingcarModel(NumberGenerator generator, List<String> carNames) {
         numberGenerator = generator;

@@ -45,13 +45,13 @@ public class ConsoleUserInterface implements UserInterface {
     }
 
     @Override
-    public void printResult(List<CarDto> cars) {
+    public void printResult(List<CarDto> carList) {
         if (!isResultTitlePrinted) {
             System.out.println("실행 결과");
             isResultTitlePrinted = true;
         }
 
-        for (CarDto c : cars) {
+        for (CarDto c : carList) {
             System.out.println(c);
         }
 
@@ -59,8 +59,8 @@ public class ConsoleUserInterface implements UserInterface {
     }
 
     @Override
-    public void printWinners(List<CarDto> winners) {
-        String str = RacingCarUtil.joinCarNames(winners);
+    public void printWinners(List<CarDto> winnerList) {
+        String str = RacingCarUtil.joinCarNames(winnerList);
         System.out.println(str + "가 최종 우승했습니다.");
     }
 

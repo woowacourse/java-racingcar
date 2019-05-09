@@ -58,12 +58,12 @@ public class RacingcarControllerTest {
         new RacingcarController(new TestUserInterface(
             new TestUserInterface.TestUserInterfaceOutputListener() {
                 @Override
-                public void onPrintResult(List<CarDto> cars) {}
+                public void onPrintResult(List<CarDto> carList) {}
                 @Override
-                public void onPrintWinners(List<CarDto> cars) {
-                    assertThat(cars).hasSize(winnerList.size());
+                public void onPrintWinners(List<CarDto> carList) {
+                    assertThat(carList).hasSize(winnerList.size());
                     for (CarDto winner : winnerList) {
-                        assertThat(cars).contains(winner);
+                        assertThat(carList).contains(winner);
                     }
                 }
             }, carNameInput, triesInput), new TestNumberGenerator(numsToGenerate)).play();
