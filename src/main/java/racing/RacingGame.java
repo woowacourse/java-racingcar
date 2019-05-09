@@ -7,18 +7,16 @@ import racing.view.InputView;
 import racing.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static racing.view.InputView.inputCarNames;
 
 public class RacingGame {
     public void run() {
-        String[] carNames = getCarNames();
-        List<Car> carList = new ArrayList<>();
-
-        for (String carName : carNames) {
-            carList.add(new Car(carName));
-        }
+        List<Car> carList = generateCarList();
 
         RacingCars racingCars = new RacingCars(carList);
 
@@ -32,7 +30,19 @@ public class RacingGame {
 
     }
 
-    private String[] getCarNames() {
-        return inputCarNames().split(",");
+    private List<Car> generateCarList() {
+        try {
+            return getCarNames().stream()
+                    .map(name -> new Car(name))
+                    .collect(Collectors.toList());
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return generateCarList();
+        }
+    }
+
+    private List<String> getCarNames() {
+        return Arrays.asList(inputCarNames().split(","));
     }
 }

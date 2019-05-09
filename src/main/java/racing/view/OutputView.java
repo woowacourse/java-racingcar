@@ -12,6 +12,7 @@ public class OutputView {
         for (Car car : carList){
             System.out.println(car.getStatus());
         }
+        System.out.println();
     }
 
     public static void printWinners(List<String> winners){
