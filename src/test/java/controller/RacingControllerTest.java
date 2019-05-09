@@ -45,7 +45,15 @@ class RacingControllerTest {
     void Car_이름_중복_예외처리_확인() {
         String carNamesEx = "heebg,crong,hi,pobi,crong";
         assertThrows(IllegalArgumentException.class, () -> {
-            List<Car> carList = racingController.makeCarList(Arrays.asList(carNamesEx.split(",")));
+            racingController.makeCarList(Arrays.asList(carNamesEx.split(",")));
+        });
+    }
+
+    @Test
+    void Car_이름_빈칸_예외처리_확인() {
+        String carNamesEx = ",,,,,,";
+        assertThrows(IllegalArgumentException.class, () -> {
+            racingController.makeCarList(Arrays.asList(carNamesEx.split(",")));
         });
     }
 
@@ -54,7 +62,7 @@ class RacingControllerTest {
         racingController.moveAllCar(racingController.makeCarList(carNameList), roundCount);
     }
 
-    @Test
+    @Test                                                    
     void 우승차_출력_프린트문() {
         Race race = racingController.moveAllCar(racingController.makeCarList(carNameList), roundCount);
         racingController.printWinners(race);
