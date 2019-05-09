@@ -11,6 +11,9 @@ public class Race {
     private List<Car> cars;
     private int numTrials;
 
+    /**
+     * 경기 준비 메소드
+     */
     public void createCars() {
         cars = new ArrayList<>();
         Iterator<String> it = inputCarNames().iterator();
@@ -51,6 +54,23 @@ public class Race {
             throw new IllegalArgumentException("시도 횟수는 자연수만 입력 가능합니다.");
         }
         return true;
+    }
+
+
+    /**
+     * 경기 진행 반복 메소드
+     */
+    public void repeatRace() {
+        for (int i=0; i<numTrials; i++) {
+            race();
+        }
+    }
+    private void race() {
+        Iterator<Car> it = cars.iterator();
+        while(it.hasNext()) {
+            Car car = it.next();
+            car.tryGoForward();
+        }
     }
 
 

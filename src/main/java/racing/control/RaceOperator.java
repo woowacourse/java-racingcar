@@ -15,6 +15,6 @@ public class RaceOperator {
     }
 
     public static void startGame(){
-
+        race.repeatRace();
     }
 }
