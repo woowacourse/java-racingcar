@@ -11,14 +11,14 @@ public class Racing {
         return random.nextInt(10);
     }
 
-    public boolean move(Car car, int randomNumber){
+    public int move(Car car, int randomNumber){
+
         int position = car.getPosition();
 
         if(randomNumber > FOWARD_NUM){
             position++;
-            return true;
         }
 
-        return false;
+        return position;
     }
 }
