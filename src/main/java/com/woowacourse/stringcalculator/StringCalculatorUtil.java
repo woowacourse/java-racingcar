@@ -1,3 +1,5 @@
+package com.woowacourse.stringcalculator;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -15,14 +17,14 @@ public class StringCalculatorUtil {
         for (int i = 1; i < length; i += 2) {
             checkIfValidTokens(tokens, length, i);
             operatorQueue.add(tokens[i].charAt(0));
-            numberQueue.add(Integer.parseInt(tokens[i+1]));
+            numberQueue.add(Integer.parseInt(tokens[i + 1]));
         }
 
         return new StringCalculator(operatorQueue, numberQueue);
     }
 
     private static void checkIfValidTokens(String[] tokens, int length, int i) {
-        if (!isOperator(tokens[i]) || i + 1 >= length || !isNumber(tokens[i+1])) {
+        if (!isOperator(tokens[i]) || i + 1 >= length || !isNumber(tokens[i + 1])) {
             throw new IllegalArgumentException("올바르지 않은 식입니다.");
         }
     }
