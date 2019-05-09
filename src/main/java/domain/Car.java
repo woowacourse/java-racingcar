@@ -12,16 +12,16 @@ public class Car {
         this.name = name;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public int getPosition(){
+    public int getPosition() {
         return this.position;
     }
 
-    public void increasePositionOrNot(int random){
-        if(Const.GO_RAN_NUM <= random){
+    public void increasePositionOrNot(int random) {
+        if (Const.GO_RAN_NUM <= random) {
             this.position++;
         }
     }
