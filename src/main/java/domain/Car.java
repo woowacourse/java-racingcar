@@ -11,12 +11,6 @@ public class Car {
         this.position = 0;
     }
 
-    /* 테스트용 생성자 */
-    Car(String name, int position) {
-        this.name = name;
-        this.position = position;
-    }
-
     void move(int randomNumber) {
         if (isMove(randomNumber)) {
             position++;
@@ -27,16 +21,12 @@ public class Car {
         return randomNumber >= MOVE_CONDITION;
     }
 
-    int getMaxPosition(int pos) {
-        return Math.max(pos, position);
+    int getLargePosition(int largePosition) {
+        return Math.max(largePosition, position);
     }
 
     boolean compareToPosition(int maxPosition) {
         return maxPosition == position;
-    }
-
-    public String appendCarName(String carNames) {
-        return carNames + (name + ", ");
     }
 
     private String getPositionString() {
@@ -47,6 +37,10 @@ public class Car {
         }
 
         return str.toString();
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

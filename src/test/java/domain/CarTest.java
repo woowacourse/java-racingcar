@@ -7,16 +7,18 @@ import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CarTest {
+class CarTest {
 
-    ArrayList<Car> carList;
+    private ArrayList<Car> carList;
 
     @BeforeEach
     void setUp() {
         carList = new ArrayList<>();
-        carList.add(new Car("pobi", 3));
-        carList.add(new Car("crong", 4));
-        carList.add(new Car("honux", 5));
+        carList.add(new Car("pobi"));
+        carList.add(new Car("crong"));
+
+        carList.get(0).move(2);
+        carList.get(1).move(9);
     }
 
     @Test
@@ -27,14 +29,15 @@ public class CarTest {
 
     @Test
     void maxPositionTest() {
-        Car car = carList.get(0);
-        assertThat(car.getMaxPosition(5)).isEqualTo(5);
+        Car car = carList.get(1);
+        assertThat(car.getLargePosition(5)).isEqualTo(5);
+        assertThat(car.getLargePosition(0)).isEqualTo(1);
     }
 
     @Test
     void compareToPositionTest() {
-        Car car = carList.get(0);
-        assertThat(car.compareToPosition(3)).isEqualTo(true);
-        assertThat(car.compareToPosition(4)).isEqualTo(false);
+        Car car = carList.get(1);
+        assertThat(car.compareToPosition(1)).isEqualTo(true);
+        assertThat(car.compareToPosition(2)).isEqualTo(false);
     }
 }

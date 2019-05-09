@@ -60,7 +60,7 @@ public class InputView {
     private static boolean isInValidRound(String round) {
         boolean isInValid = true;
 
-        if (isInteger(round) && isPositive(round)) {
+        if (isInteger(round) && isPositiveNumber(round)) {
             isInValid = false;
         }
 
@@ -79,7 +79,7 @@ public class InputView {
         return result;
     }
 
-    private static boolean isPositive(String number) {
+    private static boolean isPositiveNumber(String number) {
         return Integer.parseInt(number) > 0;
     }
 }

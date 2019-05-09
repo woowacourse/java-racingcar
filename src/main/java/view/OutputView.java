@@ -13,14 +13,12 @@ public class OutputView {
     }
 
     public static void printWinners(ArrayList<Car> winnerList) {
-        String winnerNames = "";
-        String message;
+        ArrayList<String> winnerNames = new ArrayList<>();
 
-        for (Car winner : winnerList) {
-            winnerNames = winner.appendCarName(winnerNames);
+        for (Car car : winnerList) {
+            winnerNames.add(car.getName());
         }
 
-        message = winnerNames.substring(0, winnerNames.length() - 2);
-        System.out.format("%s 이(가) 최종 우승했습니다.\n", message);
+        System.out.format("%s 이(가) 최종 우승했습니다.\n", String.join(", ", winnerNames));
     }
 }
