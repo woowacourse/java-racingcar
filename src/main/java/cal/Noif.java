@@ -19,6 +19,7 @@ public class Noif {
             Object obj = engine.eval(String.format("%d %s %s", result, input[i], input[i + 1]));
             result = Integer.valueOf(obj.toString());
         }
+
         System.out.println(result);
     }
 }
