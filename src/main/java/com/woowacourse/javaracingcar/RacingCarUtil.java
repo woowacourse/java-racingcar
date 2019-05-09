@@ -23,16 +23,23 @@ public class RacingCarUtil {
     }
 
     public static boolean isValidNameInput(String[] names) {
-        for (int i = 0; i < names.length; i++) {
-            checkIfNameIncludesSpace(names[i]);
-            checkIfValidNames(names[i]);
+        try {
+            checkEachOfNames(names);
+            return true;
+        } catch(IllegalArgumentException e) {
+            return false;
         }
+    }
 
-        return true;
+    private static void checkEachOfNames(String[] names) {
+        for (String name : names) {
+            checkIfNameIsEmpty(name);
+            checkIfNameIncludesSpace(name);
+            checkIfValidNames(name);
+        }
     }
 
     private static void checkIfValidNames(String name) {
-
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 5자를 넘을 수 없습니다");
         }
@@ -41,6 +48,12 @@ public class RacingCarUtil {
     private static void checkIfNameIncludesSpace(String name) {
         if (name.contains(" ")) {
             throw new IllegalArgumentException("이름에 공백을 포함할 수 없습니다");
+        }
+    }
+
+    private static void checkIfNameIsEmpty(String name) {
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("이름이 비어 있습니다");
         }
     }
 }

@@ -3,7 +3,6 @@ package com.woowacourse.javaracingcar;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RacingCarUtilTest {
     @Test
@@ -16,9 +15,15 @@ class RacingCarUtilTest {
     void 비정상_이름_입력_5자초과() {
         String input = "pobi,crong,honuxxx";
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            RacingCarUtil.isValidNameInput(RacingCarUtil.splitIntoNames(input));
-        });
+        assertThat(RacingCarUtil.isValidNameInput(RacingCarUtil.splitIntoNames(input)))
+            .isFalse();
+    }
+
+    @Test
+    void 비정상_이름_입력() {
+        String input = ", ";
+        assertThat(RacingCarUtil.isValidNameInput(RacingCarUtil.splitIntoNames(input)))
+            .isFalse();
     }
 
     @Test
@@ -29,9 +34,8 @@ class RacingCarUtilTest {
 
     @Test
     void 공백처리_예외() {
-        String input  = "p obi, crong, ho  x";
-        assertThrows(IllegalArgumentException.class, () -> {
-            RacingCarUtil.isValidNameInput(RacingCarUtil.splitIntoNames(input));
-        });
+        String input = "p obi, crong, ho  x";
+        assertThat(RacingCarUtil.isValidNameInput(RacingCarUtil.splitIntoNames(input)))
+            .isFalse();
     }
 }
