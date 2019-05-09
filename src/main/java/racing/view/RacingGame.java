@@ -17,6 +17,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import racing.domain.Car;
+
 /**
  * 레이싱 게임 한판 진행을 위한 클래스
  *
@@ -37,17 +39,19 @@ class RacingGame {
     private int totalTimes;
 
     // 단위테스트용
-    void setCarList(ArrayList<Car> carList) {
-        this.carList = carList;
-    }
+//    void setCarList(ArrayList<Car> carList) {
+//        this.carList = carList;
+//    }
 
+    // View 역할, 입력받는 기능
     void inputCarNames() {
         System.out.println(INPUT_NAMES_MESSAGE);
         String[] carNames = sc.nextLine().split(",");
         try {
+            // TODO : 이 로직은 CarList 의 메소드를 호출해서 처리해야 하는 로직
             for (String carName : carNames) {
                 Car car = new Car(carName);
-                carList.add(car);
+                carList.add(car); // TODO : 모델의 add 메서드로 수정해야 하는 부분
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -55,8 +59,10 @@ class RacingGame {
         }
     }
 
+    // View 역할, 입력받는 기능
     void inputTotalTimes() {
         try {
+            // TODO : totalTimes 를 새로운 지역 변수로 만들고 CarList 클래스에 전달하고 세팅
             System.out.println(INPUT_TIMES_MESSAGE);
             totalTimes = Integer.parseInt(sc.nextLine());
             if (totalTimes <= 0) {
@@ -68,20 +74,29 @@ class RacingGame {
         }
     }
 
+    // TODO : CarList 객체를 호출해서 toString 으로 출력하는 메서드 생성
+    // public void printRacingResult() {  }
+
+    // View 역할, 출력하는 기능
     private void printOneTimeResult() {
+        // TODO : CarList 의 toString 을 오버라이딩
         for (Car car : carList) {
             System.out.println(car.toString());
         }
         System.out.println();
     }
 
+    // View 역할, 출력하는 기능
     private void playOneTime() {
+        // TODO : CarList 의 toString 을 오버라이딩
         for (Car car : carList) {
             car.moveOneTime();
         }
     }
 
+    // View 역할, 출력하는 기능
     void printAllTimeResult() {
+        // TODO : CarList 의 toString 을 오버라이딩
         System.out.println(PROCESS_RESULT_MESSAGE);
         printOneTimeResult(); // 최초 상태 출력
 
@@ -91,13 +106,15 @@ class RacingGame {
         }
     }
 
+
     void printAllWinners() {
         List<String> winnerList = getWinnerList();
         String result = String.join(", ", winnerList);
         System.out.println(result + FINAL_WINNER_MESSAGE);
     }
 
-    List<String> getWinnerList() {
+    // TODO : CarList 클래스로 이주해야 하는 메소드
+    private List<String> getWinnerList() {
         List<String> result = new ArrayList<>();
         Integer maxStatus = Collections.max(carList).getStatus();
         for (Car car : carList) {
