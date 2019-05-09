@@ -24,4 +24,13 @@ public class Car {
         if (number>=GO_FORWRARD_CRITERIA_NUM) return true;
         return false;
     }
+
+    @Override
+    public String toString(){
+        String positionString = "";
+        for (int i = 0 ; i< position; i++) {
+            positionString += "-";
+        }
+        return name + " : " + positionString;
+    }
 }
