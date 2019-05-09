@@ -8,7 +8,7 @@ public class InputView {
     private static Scanner scanner = new Scanner(System.in);
 
     public static String inputCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,)기준으로구분)");
+        System.out.println(ConsoleMessages.INPUT_CAR_NAME.getMessage());
         String carNames = scanner.nextLine();
 
         try {
@@ -21,7 +21,7 @@ public class InputView {
     }
 
     public static RepeatNumber inputRepeatNumber() {
-        System.out.println("시도할 횟수는 몇 회인가요?");
+        System.out.println(ConsoleMessages.INPUT_REPEAT_NUMBER.getMessage());
         return getRepeatNumber(scanner.nextLine());
     }
 
@@ -29,7 +29,7 @@ public class InputView {
         try {
             return new RepeatNumber(repeatNumber);
         } catch (NumberFormatException e) {
-            System.err.println("반복 횟수는 숫자만 가능합니다.");
+            System.err.println(ConsoleMessages.ERR_REPEAT_NUMBER.getMessage());
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         }
@@ -37,7 +37,7 @@ public class InputView {
     }
 
     protected static void checkIdentifier(String carNames) {
-        if (!carNames.contains(",")) throw new IllegalArgumentException("이름은 쉼표를 기준으로 구분합니다.");
+        if (!carNames.contains(",")) throw new IllegalArgumentException(ConsoleMessages.ERR_IDENTIFIER_NAME.getMessage());
     }
 
 
