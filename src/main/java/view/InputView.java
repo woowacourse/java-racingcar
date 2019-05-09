@@ -17,7 +17,7 @@ public class InputView {
 
     }
 
-    private static List<String> getCarNames(String inputString) {
+    public static List<String> getCarNames(String inputString) {
         List<String> nameList = parseStringByComma(inputString);
 
         for (String carName : nameList) {
