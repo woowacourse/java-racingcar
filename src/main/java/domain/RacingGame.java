@@ -12,6 +12,8 @@ public class RacingGame {
     }
 
     public void play(ArrayList<Car> cars, int nTrials) {
+        OutputView.printMassage("실행결과");
+
         for(int trial = 0; trial < nTrials; trial++) {
             racingTrial.runTrial(cars);
         }
