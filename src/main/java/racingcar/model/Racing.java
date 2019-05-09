@@ -12,7 +12,6 @@ public class Racing {
     }
 
     public int move(Car car, int randomNumber){
-
         int position = car.getPosition();
 
         if(randomNumber > FOWARD_NUM){

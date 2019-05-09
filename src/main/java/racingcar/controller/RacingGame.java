@@ -22,7 +22,6 @@ public class RacingGame {
         for(int i = 0 ; i< number ; i++){
             carList = getRacingPostion(carList);
         }
-
         List<String> winner =  getWinner(carList);
         ResultView resultView = new ResultView();
         resultView.printWinner(winner);
@@ -44,7 +43,6 @@ public class RacingGame {
     }
 
     private List<Car> getRacingPostion(List<Car> carList){
-
         Racing racing = new Racing();
         ResultView resultView = new ResultView();
 
@@ -52,7 +50,6 @@ public class RacingGame {
             int position = racing.move(carList.get(i), racing.getRandomNumber());
             carList.get(i).setPosition(position);
         }
-
         resultView.printResult(carList);
 
         return carList;
