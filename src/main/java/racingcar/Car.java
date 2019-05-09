@@ -30,4 +30,9 @@ public class Car {
     void move(boolean moveFlag) {
         position += (moveFlag) ? 1 : 0;
     }
+
+    void play() {
+        int randomNumber = makeRandomNumber();
+        move(shouldMove(randomNumber));
+    }
 }
