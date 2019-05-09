@@ -6,8 +6,8 @@ import racingcar.controller.RacingCarManager;
 public class RacingCarApplication {
     public static void main(String[] args) {
         InputManager inputManager = new InputManager();
-        RacingCarManager racingStart = new RacingCarManager();
+        RacingCarManager racingStart = new RacingCarManager(inputManager);
 
-        racingStart.racingGameStart(inputManager);
+        racingStart.racingGameStart();
     }
 }
