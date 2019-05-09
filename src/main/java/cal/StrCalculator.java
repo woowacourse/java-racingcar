@@ -43,6 +43,27 @@ public class StrCalculator {
         return result;
     }
 
+    public int calculateNoIfExpression() {
+        if (values.length % 2 == 0) {
+            throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
+        }
+
+        if (!isEvenPositionMatch(values) || !isOddPositionMatch(values)){
+            throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
+        }
+
+        int result = Integer.parseInt(values[0]);
+        Calculator cal = new Calculator();
+        for(int i = 1; i < values.length; i += 2) {
+            int number = Integer.parseInt(values[i + 1]);
+            result = values[i].equals("+") ? cal.plus(result, number) :
+                    values[i].equals("-") ? cal.subtract(result, number) :
+                    values[i].equals("*") ? cal.multiple(result, number) :
+                                            cal.divide(result, number);
+        }
+        return result;
+    }
+
     public boolean isEvenPositionMatch(String[] values) {
         for (int i = 0; i < values.length; i += 2){
             try {
