@@ -17,4 +17,8 @@ public class Car {
             this.position++;     
         }
     }
+
+    public boolean isMaxInstance(int maxInstance) {
+        return position == maxInstance;
+    }
 }
