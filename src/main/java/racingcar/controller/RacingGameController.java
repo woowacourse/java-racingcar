@@ -12,7 +12,7 @@ public class RacingGameController {
 
     private ArrayList<Car> carList;
     private int tryCount;
-    
+
     public String requestCarList() {
         return InputView.inputCarList();
     }
@@ -37,6 +37,13 @@ public class RacingGameController {
 
     public int requestTryCount() {
         return InputView.inputTryCount();
+    }
+
+    public void makeValidTryCount(int tryCount) throws Exception {
+        if (tryCount < MIN_TRY_COUNT) {
+            throw new IllegalArgumentException("최소 입력 횟수는 " + MIN_TRY_COUNT + "입니다.");
+        }
+        this.tryCount = tryCount;
     }
 
     private String removeWhiteSpace(String carNameList) {
