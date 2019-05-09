@@ -22,7 +22,7 @@ public class Car{
     }
 
     public void moveCar(){
-        int randomNumber = (int)(Math.random() * 10);
+        int randomNumber = randomNumberGenerator();
         if(randomNumber >= 4){
             position++;
         }
@@ -37,6 +37,13 @@ public class Car{
         for(int i=0; i<this.position; i++){
             System.out.println("-");
         }
+    }
+
+    public int compare(int max) {
+        if (position > max) {
+            max = position;
+        }
+        return max;
     }
 
 

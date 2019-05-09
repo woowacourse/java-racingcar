@@ -11,13 +11,13 @@ public class Cars {
         }
     }
 
-    public void printPosition(int totalTurns) {
+    public void printTheProcess(int totalTurns) {
         for (int currentTurn = 0; currentTurn<totalTurns; currentTurn++) {
-            resultPrintCar();
+            printMovement();
         }
     }
 
-    public void resultPrintCar() {
+    public void printMovement() {
         for (int i=0, n=carList.size(); i<n; i++) {
             carList.get(i).moveCar();
             carList.get(i).printPosition();

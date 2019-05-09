@@ -11,6 +11,7 @@ public class CarGameLauncher {
         List<String> listOfCarNames = Car.askCarNames();
         int totalTurns = Car.askTotalTurns();
         Cars cars = new Cars(listOfCarNames);
-        cars.printPosition(totalTurns);
+        cars.printTheProcess(totalTurns);
+
     }
 }
