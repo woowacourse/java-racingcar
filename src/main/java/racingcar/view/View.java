@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import racingcar.model.CarList;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -70,7 +72,7 @@ public final class View {
 
         do {
             scannedNumberOfTry = sc.nextLine();
-        } while (isValidTryNumber(scannedNumberOfTry));
+        } while (!isValidTryNumber(scannedNumberOfTry));
 
         return Integer.parseInt(scannedNumberOfTry);
     }
@@ -81,6 +83,10 @@ public final class View {
         }
         outputLine("잘못된 입력입니다. 1이상의 정수만 입력하세요.");    // 올바른 수가 아니면
         return false;
+    }
+
+    public static void printCars(CarList carList) {
+        outputLine(carList.toString());
     }
 }
 

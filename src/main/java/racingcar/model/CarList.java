@@ -5,24 +5,29 @@ import java.util.List;
 
 public class CarList {
     private List<Car> carList = new ArrayList<>();
-    private final int numberOfTry;
 
-    public CarList(String[] carNames, int numberOfTry) {
+    public CarList(String[] carNames) {
         for (String carName : carNames) {
             carList.add(new Car(carName));
         }
-        this.numberOfTry=numberOfTry;
     }
 
-    public void moveCarsByNumberOfTry() {
-        for (int i = 0; i < this.numberOfTry; i++) {
-            moveCars();
-        }
+    public List<Car> getCarList() {
+        return carList;
     }
 
-    private void moveCars() {
+    public void moveCars() {
         for (Car car : carList) {
             car.move(Random.isEnableGo());
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Car car : carList) {
+            sb.append(car.toString()).append("\n");
+        }
+        return sb.toString();
     }
 }

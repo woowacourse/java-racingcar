@@ -5,9 +5,14 @@ import racingcar.model.CarList;
 
 public class Controller {
 
-    public void run(String[] carNames, int numberOfTry) {
-        CarList carList=new CarList(carNames,numberOfTry);
-        carList.moveCarsByNumberOfTry();
+    public CarList makeCarList(String[] carNames) {
+        CarList carList=new CarList(carNames);
+        return carList;
+    }
+
+    public CarList moveCar(CarList carList){
+        carList.moveCars();
+        return carList;
     }
 
 }

@@ -20,8 +20,18 @@ public class Car {
     }
 
     public void move(boolean isEnableGo) {
-        if(isEnableGo){
+        if (isEnableGo) {
             position++;
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.name).append(" : ");
+        for (int i = 0; i < this.position; i++) {
+            sb.append("-");
+        }
+        return sb.toString();
     }
 }
