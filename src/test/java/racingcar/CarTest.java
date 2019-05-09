@@ -6,11 +6,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
     Car testCar;
+    Cars carList;
     static String name = "asdf";
 
     @BeforeEach
     void setup() {
         testCar = new Car(name);
+        carList = new Cars();
+        carList.addCar(testCar);
     }
 
     @Test
@@ -23,7 +26,7 @@ public class CarTest {
         assertThat(testCar.getPosition()).isEqualTo(0);
 
         for (int i = 0; i < 10; i++) {
-            testCar.moveForward();
+            testCar.moveForward(carList);
             assertThat(testCar.getPosition()).isEqualTo(i + 1);
         }
     }
@@ -31,9 +34,9 @@ public class CarTest {
     @Test
     void 랜덤포워드() {
         assertThat(testCar.getPosition()).isEqualTo(0);
-        testCar.randomForward(false);
+        testCar.randomForward(false, carList);
         assertThat(testCar.getPosition()).isEqualTo(0);
-        testCar.randomForward(true);
+        testCar.randomForward(true, carList);
         assertThat(testCar.getPosition()).isEqualTo(1);
     }
 
@@ -41,7 +44,7 @@ public class CarTest {
     void 투스트링() {
         assertThat(testCar.toString()).isEqualTo("asdf : ");
         for (int i = 0; i < 3; i++) {
-            testCar.moveForward();
+            testCar.moveForward(carList);
         }
         assertThat(testCar.toString()).isEqualTo("asdf : ---");
     }

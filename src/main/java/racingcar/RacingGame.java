@@ -15,43 +15,41 @@ public class RacingGame {
     private final static int NAME_LENGTH_LIMIT = 5;
     private final static Random RANDOM = new Random();
 
-    public RacingGame() {
-        addCars();
+    public void start() {
+        addCars(getCarNames());
         totalRound = getTotalRound();
         OutputView.printStartMessage();
         play();
         OutputView.printFinalWinner(carList.getWinnerList());
     }
 
-    public void addCars(){
-        String[] carNames = getCarNames();
+    public Cars getCars() {
+        return carList;
+    }
+
+    public void addCars(String[] carNames) {
         for(String carName : carNames){
             carList.addCar(new Car(carName));
         }
     }
 
-    public void play(){
+    private void play() {
         for(int i = 0; i < totalRound; i++){
             playOneRound();
         }
     }
 
-    public void playOneRound(){
+    private void playOneRound() {
         for(Car car : carList){
 
-            car.randomForward(isMove());
-            int position = car.getPosition();
+            car.randomForward(isMove(), carList);
             OutputView.printCar(car);
-
-            if(carList.getMaxPosition() < position){
-                carList.setMaxPosition(position);
-            }
         }
 
         OutputView.printNewline();
     }
 
-    public boolean checkStringLengthLimit(String string){
+    public boolean checkStringLengthLimit(String string) {
         return string.length() <= NAME_LENGTH_LIMIT;
     }
 
@@ -67,15 +65,16 @@ public class RacingGame {
         return carNames;
     }
 
-    public int getTotalRound() {
+    private int getTotalRound() {
         return Integer.parseInt(InputView.inputTotalRound());
     }
 
-    public boolean isMove() {
+    private boolean isMove() {
         return (RANDOM.nextInt(BOUNDARY_ZERO_TO_NINE) >= FORWARD_CRITERION);
     }
 
     public static void main(String[] args) {
-        new RacingGame();
+        RacingGame racingGame = new RacingGame();
+        racingGame.start();
     }
 }

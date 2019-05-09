@@ -17,13 +17,15 @@ public class Car {
         return this.position;
     }
 
-    public void moveForward() {
+    public void moveForward(Cars carList) {
         this.position++;
+        carList.updateMaxPosition(this.position);
+
     }
 
-    public void randomForward(boolean isMove) {
+    public void randomForward(boolean isMove, Cars carList) {
         if (isMove) {
-            this.moveForward();
+            this.moveForward(carList);
         }
     }
 

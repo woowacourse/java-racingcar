@@ -3,12 +3,11 @@ package racingcar;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars implements Iterable<Car> {
     private List<Car> carList = new ArrayList<>();
     private int maxPosition = 0;
-
-
 
     public Iterator<Car> iterator() {
         return carList.iterator();
@@ -19,23 +18,23 @@ public class Cars implements Iterable<Car> {
     }
 
     public List<Car> getWinnerList() {
-        List<Car> result = new ArrayList<>();
+        return carList
+                .stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .collect(Collectors.toList());
+    }
 
-        for (Car car : carList) {
-            if (car.getPosition() == this.maxPosition) {
-                result.add(car);
-            }
-        }
-
-        return result;
+    public int size() {
+        return carList.size();
     }
 
     public int getMaxPosition() {
         return maxPosition;
     }
 
-    public void setMaxPosition(int position) {
-        this.maxPosition = position;
+    public void updateMaxPosition(int position) {
+        if (this.maxPosition < position) {
+            this.maxPosition = position;
+        }
     }
-
 }
