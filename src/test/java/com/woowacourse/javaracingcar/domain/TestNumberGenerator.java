@@ -1,4 +1,4 @@
-package com.woowacourse.javaracingcar;
+package com.woowacourse.javaracingcar.domain;
 
 import com.woowacourse.javaracingcar.interfaces.NumberGenerator;
 

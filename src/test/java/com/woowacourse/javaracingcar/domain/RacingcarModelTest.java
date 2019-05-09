@@ -1,6 +1,5 @@
 package com.woowacourse.javaracingcar.domain;
 
-import com.woowacourse.javaracingcar.TestNumberGenerator;
 import com.woowacourse.javaracingcar.interfaces.NumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 class RacingcarModelTest {
     private NumberGenerator numberGenerator;
