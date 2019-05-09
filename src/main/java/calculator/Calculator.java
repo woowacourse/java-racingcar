@@ -22,7 +22,6 @@ public class Calculator {
 
     public int calculateSingleExpression(int leftOperand, String operator, String rightOperandStr) {
         int rightOperand = Integer.parseInt(rightOperandStr);
-
         if (operator.equals("+"))
             return add(leftOperand, rightOperand);
         if (operator.equals("-"))
