@@ -28,11 +28,10 @@ public class Car implements Comparable<Car> {
     private final String name;
     private Integer status = 1;
 
-    Car(String name) {
+    public Car(String name) {
         if (!name.matches("[0-9a-zA-Z]{1,5}")) {
             throw new IllegalArgumentException(NAME_EXCEPTION_MESSAGE);
         }
-        System.out.println(name);
         this.name = name;
     }
 
