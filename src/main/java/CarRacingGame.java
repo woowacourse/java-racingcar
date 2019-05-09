@@ -67,7 +67,9 @@ public class CarRacingGame {
         List<Car> cars = registerCar(names);
         int tryNum = getTryNum();
 
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
         startRacing(cars, tryNum);
+
+        OutputView.printWinnerName(cars);
     }
 }
