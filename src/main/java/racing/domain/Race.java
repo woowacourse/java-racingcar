@@ -1,6 +1,7 @@
 package racing.domain;
 
 import racing.view.InputView;
+import racing.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -61,8 +62,10 @@ public class Race {
      * 경기 진행 반복 메소드
      */
     public void repeatRace() {
+        System.out.println("실행 결과");
         for (int i=0; i<numTrials; i++) {
             race();
+            OutputView.printRace(cars);
         }
     }
     private void race() {
