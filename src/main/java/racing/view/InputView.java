@@ -29,10 +29,13 @@ public class InputView {
             return requestInt();
         }
     }
+
     static public List<String> requestNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String namesString = requestString();
-        List<String> namesList = Arrays.asList(namesString.split(",")).stream().map(s -> s.trim()).collect(Collectors.toList());
+        List<String> namesList = Arrays.asList(namesString.split(",")).stream()
+                .map(s -> s.trim())
+                .collect(Collectors.toList());
 
         try {
             validateNamesString(namesString);

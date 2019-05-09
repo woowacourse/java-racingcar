@@ -10,8 +10,9 @@ public class Race {
     private List<Car> cars;
     private int numTrials;
 
-    public void createCars(List<String> carNames) {
-        cars = new ArrayList<Car>();
+    public void createCars() {
+        List<String> carNames = InputView.requestNames();
+        cars = new ArrayList<>();
         Iterator<String> it = carNames.iterator();
         while (it.hasNext()) {
             cars.add(new Car(it.next()));
