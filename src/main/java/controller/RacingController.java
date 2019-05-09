@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Car;
+import domain.Const;
 import domain.Race;
 import util.Util;
 import view.InputView;
@@ -31,10 +32,14 @@ public class RacingController {
     }
 
     public int setRoundCount() {
-        try{
-            return InputView.inputRoundCount();
-        }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        try {
+            int roundCount = InputView.inputRoundCount();
+            if (roundCount <= Const.ZERO) {
+                throw new IllegalArgumentException();
+            }
+            return roundCount;
+        } catch (Exception e) {
+            System.out.println("1 이상의 숫자만 입력해주세요");
             return setRoundCount();
         }
     }
