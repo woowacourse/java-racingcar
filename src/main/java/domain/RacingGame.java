@@ -5,24 +5,13 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class RacingGame {
-    private static Scanner sc = new Scanner(System.in);
     private ArrayList<String> carNames;
     private int gameRound;
     private ArrayList<Car> carList = new ArrayList<>();
 
-    private String input() {
-        return sc.nextLine();
-    }
-
-    private void inputNames() {
-        String names = input();
-        carNames = new ArrayList<>(Arrays.asList(names.split(",")));
-    }
-
-    private void inputRound() {
-        String round = input();
-        //예외처리
-        gameRound = Integer.parseInt(round);
+    private void input(){
+        carNames = InputUtil.inputNames();
+        gameRound = InputUtil.inputRound();
     }
 
     private void registerCars() {
@@ -44,9 +33,12 @@ public class RacingGame {
     }
 
     private void race() {
+        System.out.println("실행 결과");
+
         for (int i = 1; i <= gameRound; i++) {
             raceByRound();
             printPositionByRound();
+            System.out.println();
         }
     }
 
@@ -57,8 +49,7 @@ public class RacingGame {
     }
 
     public void run(){
-        inputNames();
-        inputRound();
+        input();
         registerCars();
         race();
         outputWinners();
