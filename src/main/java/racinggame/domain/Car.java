@@ -13,16 +13,18 @@ public class Car {
         this.position = 0;
     }
 
-    void run(int number) {
+    public boolean run(int number) {
         if (number >= THRESHOLD) {
             position += ONE_STEP;
+            return true;
         }
+        return false;
     }
 
-    public HashMap<String, Integer> makeCarHisory() {
-        HashMap<String, Integer> carHisttory = new HashMap<>();
+    public HashMap<String, Integer> makeCarHistory() {
+        HashMap<String, Integer> carHistory = new HashMap<>();
 
-        carHisttory.put(name, position);
-        return carHisttory;
+        carHistory.put(name, position);
+        return carHistory;
     }
 }

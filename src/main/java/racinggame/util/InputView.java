@@ -26,9 +26,12 @@ public class InputView {
     public static int getTrial() {
         System.out.println("시도할 횟수는 몇회인가요?");
         try {
-            return scanner.nextInt();
-        } catch (InputMismatchException e) {
-            e.printStackTrace();
+            int trial = scanner.nextInt();
+
+            Validator.checkPositiveNumber(trial);
+            return trial;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
             return getTrial();
         }
     }

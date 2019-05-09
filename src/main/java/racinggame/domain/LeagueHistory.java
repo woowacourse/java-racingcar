@@ -15,12 +15,8 @@ public class LeagueHistory {
         System.out.println("실행 결과");
         for (TrialHistory trialHistory : leagueHistory.values()) {
             trialHistory.showTrialResult();
-            System.out.println("");
+            System.out.println();
         }
-    }
-
-    public TrialHistory getHistoryOf(int trial) {
-        return leagueHistory.get(trial);
     }
 
     public List<String> findWinners(int lastRound) {
@@ -28,4 +24,9 @@ public class LeagueHistory {
 
         return lastTrialHistory.findWinners();
     }
+
+    public TrialHistory getHistoryOf(int trial) {
+        return leagueHistory.get(trial);
+    }
+
 }

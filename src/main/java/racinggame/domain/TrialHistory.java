@@ -11,23 +11,29 @@ public class TrialHistory {
 
     public TrialHistory(List<Car> cars) {
         for (Car car : cars) {
-            trialHistory.putAll(car.makeCarHisory());
+            trialHistory.putAll(car.makeCarHistory());
         }
     }
 
     public List<String> findWinners() {
         List<String> winners = new ArrayList<>();
-        int maxPosition = 0;
+        int maxCarPosition = getMaxCarPosition();
 
         for (String carName : trialHistory.keySet()) {
-            maxPosition = Math.max(trialHistory.get(carName), maxPosition);
-        }
-        for (String carName : trialHistory.keySet()) {
-            if (trialHistory.get(carName) == maxPosition) {
+            if (trialHistory.get(carName) == maxCarPosition) {
                 winners.add(carName);
             }
         }
         return winners;
+    }
+
+    private int getMaxCarPosition() {
+        int maxCarPosition = 0;
+
+        for (String carName : trialHistory.keySet()) {
+            maxCarPosition = Math.max(trialHistory.get(carName), maxCarPosition);
+        }
+        return maxCarPosition;
     }
 
     public void showTrialResult() {
