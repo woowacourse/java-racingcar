@@ -32,12 +32,12 @@ public class Cars {
         return max;
     }
 
-    public List<Car> decideWinners(int maxPosition) {
-        List<Car> winners = new ArrayList<>();
+    public List<String> decideWinners(int maxPosition) {
+        List<String> winnersName = new ArrayList<>();
         for(int i=0; i<carList.size(); i++){
-            carList.get(i).findScoreSameAsMax(maxPosition, winners);
+            carList.get(i).findScoreSameAsMax(maxPosition, winnersName);
         }
-        return winners;
+        return winnersName;
     }
 
     public void setPosition(List<Integer> inputPosition){

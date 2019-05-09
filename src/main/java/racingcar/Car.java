@@ -46,9 +46,9 @@ public class Car{
         return max;
     }
 
-    public void findScoreSameAsMax(int maxPosition, List<Car> winners){
+    public void findScoreSameAsMax(int maxPosition, List<String> winners){
         if(maxPosition == this.position){
-            winners.add(this);
+            winners.add(this.name);
         }
     }
 

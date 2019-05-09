@@ -3,7 +3,7 @@ package racingcar;
 import java.util.*;
 
 public class Winners {
-    private List<Car> listOfWinners;
+    private List<String> listOfWinners;
     /*
     public void decideWinners(Cars cars) {
         int maxPosition = ;
