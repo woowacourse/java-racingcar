@@ -15,6 +15,7 @@ public class InputView {
         try {
             return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
+            System.out.println("숫자를 입력해 주세요");
             return  inputTryNum();
         }
     }

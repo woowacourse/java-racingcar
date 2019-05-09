@@ -21,6 +21,20 @@ public class RacingcarApp {
         OutputView.printWinnerName(carList);
     }
 
+    private static List<String> getCarNames() {
+        String str = InputView.inputCarNames();
+        List<String> list = parseStringByComma(str);
+
+        for (String carName : list) {
+            if (!isCarNameLength(carName)) {
+                System.out.println("자동차 이름은 5자이하 입니다.");
+                return getCarNames();
+            }
+        }
+
+        return list;
+    }
+
     private static List<Car> registerCar(List<String> carNames) {
         List<Car> carList = new ArrayList<>();
 
@@ -46,19 +60,6 @@ public class RacingcarApp {
         for (Car car : carList) {
             car.judgeMove(makeRandomNumber());
         }
-    }
-
-    private static List<String> getCarNames() {
-        String str = InputView.inputCarNames();
-        List<String> list = parseStringByComma(str);
-
-        for (String carName : list) {
-            if (!isCarNameLength(carName)) {
-                return getCarNames();
-            }
-        }
-
-        return list;
     }
 
     private static int makeRandomNumber() {
