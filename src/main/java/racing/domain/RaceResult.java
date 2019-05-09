@@ -19,9 +19,9 @@ public class RaceResult {
         Car winner = findWinner();
         Car curCar;
         Iterator<Car> it = cars.iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             curCar = it.next();
-            if(curCar.isSameRank(winner)) {
+            if (curCar.isSameRank(winner)) {
                 winners.add(curCar);
             }
         }
@@ -31,7 +31,7 @@ public class RaceResult {
         Iterator<Car> it = cars.iterator();
         Car winner = it.next();
         Car curCar;
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             curCar = it.next();
             if (curCar.isFartherThan(winner)) {
                 winner = curCar;
@@ -40,7 +40,7 @@ public class RaceResult {
         return winner;
     }
 
-    public void printWinners(){
+    public void printWinners() {
         OutputView.printResult(winners);
     }
 

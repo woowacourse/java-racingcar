@@ -1,8 +1,5 @@
 package racing.view;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
-
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -62,7 +59,7 @@ public class InputView {
     static public boolean validateNamesList(List<String> names) {
         // 이름이 공백으로만 이루어지면 안 된다.
         Iterator<String> it = names.iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             String s = it.next();
             if (s.length() == 0) {
                 throw new IllegalArgumentException("이름이 공백으로만 이루어질 수 없습니다.");
@@ -71,7 +68,7 @@ public class InputView {
         return true;
     }
 
-    static public int requestNumTrials(){
+    static public int requestNumTrials() {
         System.out.println("시도할 회수는 몇회인가요?");
         return requestInt();
 

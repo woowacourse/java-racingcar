@@ -23,24 +23,24 @@ public class Race {
         }
     }
 
-    public List<String> inputCarNames(){
-        try{
+    public List<String> inputCarNames() {
+        try {
             List<String> carNames = InputView.requestNames();
             checkDuplicated(carNames);
             return carNames;
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return inputCarNames();
         }
     }
 
-    public boolean checkDuplicated(List<String> names){
+    public boolean checkDuplicated(List<String> names) {
         List<String> namesSet = names.stream().distinct().collect(Collectors.toList());
-        if(names.size()!=namesSet.size()) throw new IllegalArgumentException("중복된 이름이 존재하면 안됩니다.");
+        if (names.size() != namesSet.size()) throw new IllegalArgumentException("중복된 이름이 존재하면 안됩니다.");
         return true;
     }
 
-    public void inputNumTrials(){
+    public void inputNumTrials() {
         try {
             numTrials = InputView.requestNumTrials();
             checkValidNumTrials(numTrials);
@@ -57,26 +57,26 @@ public class Race {
         return true;
     }
 
-
     /**
      * 경기 진행 반복 메소드
      */
     public void repeatRace() {
         System.out.println("실행 결과");
-        for (int i=0; i<numTrials; i++) {
+        for (int i = 0; i < numTrials; i++) {
             race();
             OutputView.printRace(cars);
         }
     }
+
     private void race() {
         Iterator<Car> it = cars.iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             Car car = it.next();
             car.tryGoForward();
         }
     }
 
-    public RaceResult getResult(){
+    public RaceResult getResult() {
         RaceResult raceResult = new RaceResult(cars);
         raceResult.judgeWinners();
         return raceResult;

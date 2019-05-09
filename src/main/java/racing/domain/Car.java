@@ -2,8 +2,6 @@ package racing.domain;
 
 import racing.util.RandomNumberGenerator;
 
-import java.util.Objects;
-
 public class Car {
     private static final int GO_FORWRARD_CRITERIA_NUM = 4;
     private static final int GO_STEP = 1;
@@ -20,20 +18,20 @@ public class Car {
         this.name = name;
     }
 
-    public void tryGoForward(){
+    public void tryGoForward() {
         int randomNum = RandomNumberGenerator.generate(10);
         if (isGo(randomNum)) position += GO_STEP;
     }
 
-    private boolean isGo(int number){
-        if (number>=GO_FORWRARD_CRITERIA_NUM) return true;
+    private boolean isGo(int number) {
+        if (number >= GO_FORWRARD_CRITERIA_NUM) return true;
         return false;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String positionString = "";
-        for (int i = 0 ; i< position; i++) {
+        for (int i = 0; i < position; i++) {
             positionString += "-";
         }
         return name + " : " + positionString;
@@ -43,7 +41,7 @@ public class Car {
         return another.isSamePosition(position);
     }
 
-    public boolean isSamePosition (int position) {
+    public boolean isSamePosition(int position) {
         return this.position == position;
     }
 
@@ -51,11 +49,11 @@ public class Car {
         return !another.isBiggerPosition(position);
     }
 
-    public boolean isBiggerPosition (int position) {
+    public boolean isBiggerPosition(int position) {
         return this.position > position;
     }
 
-    public void printName(){
+    public void printName() {
         System.out.print(name);
     }
 }
