@@ -6,33 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static util.StringUtil.*;
-
 public class RacingcarApp {
     private static int BOUND_NUMBER = 10;
 
     public static void main(String[] args) {
-        List<String> carNames = getCarNames();
+        List<String> carNames = InputView.getCarNames();
         int tryNumber = InputView.inputTryNum();
 
         List<Car> carList = registerCar(carNames);
 
         startRacing(carList, tryNumber);
         OutputView.printWinnerName(carList);
-    }
-
-    private static List<String> getCarNames() {
-        String str = InputView.inputCarNames();
-        List<String> list = parseStringByComma(str);
-
-        for (String carName : list) {
-            if (!isCarNameLength(carName)) {
-                System.out.println("자동차 이름은 5자이하 입니다.");
-                return getCarNames();
-            }
-        }
-
-        return list;
     }
 
     private static List<Car> registerCar(List<String> carNames) {
