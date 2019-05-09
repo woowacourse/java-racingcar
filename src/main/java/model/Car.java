@@ -59,4 +59,14 @@ public class Car implements Comparable<Car> {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.name).append(" : ");
+        for (int i = 0; i < this.position; i++) {
+            sb.append("-");
+        }
+        return sb.toString();
+    }
 }

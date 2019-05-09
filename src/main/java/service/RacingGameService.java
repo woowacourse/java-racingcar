@@ -11,7 +11,7 @@ public class RacingGameService {
     RacingGame racingGame;
     GameResult gameResult;
 
-    RacingGameService(List<Car> cars) {
+    public RacingGameService(List<Car> cars) {
         this.cars = cars;
         racingGame = new RacingGame();
         gameResult = new GameResult();
@@ -20,5 +20,9 @@ public class RacingGameService {
     public List<Car> run() {
         racingGame.run(this.cars);
         return cars;
+    }
+
+    public List<String > getWinners(){
+        return this.gameResult.getWinners(cars);
     }
 }

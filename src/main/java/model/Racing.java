@@ -7,9 +7,9 @@ public class Racing {
     private static final int BOUND = 4;
 
     void move(Car car) {
-        Random random = new Random(SEED);
+        Random random = new Random();
 
-        if (isMove(random.nextInt())) {
+        if (isMove(random.nextInt(SEED))) {
             int position = car.getPosition();
             car.setPosition(++position);
         }
