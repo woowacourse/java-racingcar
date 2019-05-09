@@ -14,7 +14,7 @@ public final class View {
     private static final String ALPHABET_REGEX = "^[a-zA-Z]*$";
 
     /* String matches에 사용할 숫자 REGEX 정의*/
-    private static final String NUMBER_REGEX = "[0-9]*$";
+    private static final String NUMBER_REGEX = "[1-9][0-9]*$";
 
     /* 가능한 이름의 최대 길이 저장 */
     private static final int VALID_NAME_LENGTH = 5;
@@ -65,17 +65,22 @@ public final class View {
     }
 
     public static int inputNumberOfTry() {
-        outputLine("시도할 횟수는 몇회인가요?");
         String scannedNumberOfTry;
+        outputLine("시도할 횟수는 몇회인가요?");
 
-        while (true) {
+        do {
             scannedNumberOfTry = sc.nextLine();
+        } while (isValidTryNumber(scannedNumberOfTry));
 
-            if (scannedNumberOfTry.matches(NUMBER_REGEX)) {
-                return Integer.parseInt(scannedNumberOfTry);        // 입력 받은 수가 올바르면 int로 반환
-            }
-            outputLine("잘못된 입력입니다. 정수만 입력하세요.");    // 올바른 수가 아니면
+        return Integer.parseInt(scannedNumberOfTry);
+    }
+
+    public static boolean isValidTryNumber(String scannedNumberOfTry) {
+        if (scannedNumberOfTry.matches(NUMBER_REGEX)) {
+            return true;
         }
+        outputLine("잘못된 입력입니다. 1이상의 정수만 입력하세요.");    // 올바른 수가 아니면
+        return false;
     }
 }
 
