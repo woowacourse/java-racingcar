@@ -15,6 +15,10 @@ public class RacingGame {
         addCar();
     }
 
+    private static void getTryCount() {
+
+    }
+
     private static void addCar() {
         String string = InputView.InputCarNames();
         String[] names = splitCar(string);
