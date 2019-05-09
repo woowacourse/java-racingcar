@@ -12,8 +12,20 @@ public class Car {
         return name;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     public void move() {
         this.position++;
+    }
+
+    public boolean isFartherPosition(int position) {
+        return this.position > position;
+    }
+
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 
     @Override
