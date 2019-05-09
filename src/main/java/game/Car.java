@@ -1,6 +1,7 @@
 package game;
 
 public class Car {
+    private static int MOVE_POINT = 4;
     private final String name;
     private int position = 0;
 
@@ -13,7 +14,7 @@ public class Car {
     }
 
     public void move(int randomValue) {
-        if (randomValue >= 4) {
+        if (randomValue >= MOVE_POINT) {
             this.position++;
         }
     }
@@ -25,6 +26,5 @@ public class Car {
     public int getPosition() {
         return position;
     }
-
 
 }

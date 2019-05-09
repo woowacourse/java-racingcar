@@ -7,8 +7,11 @@ import java.util.List;
 
 public class Game {
 
+    private static int MAX_NAME_LENGTH = 5;
+    private static int MAX_RANDOM_NUMBER = 9;
+
     String removeBlank(String carNames) {
-        return carNames.replace(" ", "");
+        return carNames.replace(" ", "").replace(",,", ",");
     }
 
     String[] splitWithComma(String carNames) {
@@ -27,7 +30,7 @@ public class Game {
     }
 
     boolean checkCarNameLength(boolean isRightLength, String carName) {
-        return carName.length() <= 5 && isRightLength;
+        return carName.length() <= MAX_NAME_LENGTH && isRightLength;
     }
 
 
@@ -43,13 +46,13 @@ public class Game {
 
 
     int randomValueGenerator() {
-        return (int) (Math.random() * 9);
+        return (int) (Math.random() * MAX_RANDOM_NUMBER);
     }
 
     void oneGame(List<Car> cars) {
         for (Car car : cars) {
             car.move(randomValueGenerator());
-            resultOutput.result(car);
+            resultOutput.eachGameOutput(car);
         }
         resultOutput.printNewLine();
     }
