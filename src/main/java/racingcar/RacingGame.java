@@ -20,18 +20,18 @@ public class RacingGame {
         List<String> carNames = Arrays.asList(names);
 
         if(carNames.stream().distinct().count() != carNames.size()){
-            System.out.println("중복된 이름은 안됩니다.\n 다시 입력해 주세요.");
+            OutputView.printDuplicatedCarName();
             addCar();
         }
 
         if (string.length() <= 0 || names.length < MIN_CAR_LENGTH) {
-            System.out.println("글자 수는 1글자 이상이여야 합니다.\n다시 입력해 주세요.");
+            OutputView.printUnderNameLength();
             addCar();
         }
 
         for (String name : names) {
             if (name.length() > MAX_CAR_LENGTH) {
-                System.out.println("글자 수는 5글자 이내여야 합니다.\n다시 입력해 주세요.");
+                OutputView.printOverNameLength();
                 addCar();
                 break;
             }
