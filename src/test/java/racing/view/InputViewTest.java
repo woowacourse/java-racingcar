@@ -25,5 +25,14 @@ public class InputViewTest {
         }
     }
 
-
+    @Test
+    public void 반복횟수_체크() {
+        try {
+            ByteArrayInputStream input = new ByteArrayInputStream("5".getBytes());
+            System.setIn(input);
+            assertEquals(5, InputView.inputRepeatNumber().getRepeatNumber());
+        }finally {
+            System.setIn(System.in);
+        }
+    }
 }
