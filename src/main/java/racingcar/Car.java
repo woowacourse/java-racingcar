@@ -26,4 +26,8 @@ public class Car {
     boolean shouldMove(int number) {
         return number >= FORWARD_NUM;
     }
+
+    void move(boolean moveFlag) {
+        position += (moveFlag) ? 1 : 0;
+    }
 }
