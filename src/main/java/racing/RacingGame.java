@@ -16,14 +16,9 @@ public class RacingGame {
     public void run() {
         RacingCars racingCars = new RacingCars(generateCarList());
 
-        RepeatNumber repeatNumber = InputView.inputRepeatNumber();
+        startRace(racingCars, InputView.inputRepeatNumber());
 
-        for (int i = 1; i <= repeatNumber.getNumber(); i++) {
-            racingCars.race();
-            OutputView.printStatus(racingCars.getRaceStatus());
-        }
         OutputView.printWinners(racingCars.getWinners());
-
     }
 
     private List<Car> generateCarList() {
@@ -40,5 +35,12 @@ public class RacingGame {
 
     private List<String> getCarNames() {
         return Arrays.asList(inputCarNames().split(","));
+    }
+
+    private void startRace(RacingCars racingCars, RepeatNumber repeatNumber) {
+        for (int i = 0; i < repeatNumber.getNumber(); i++) {
+            racingCars.race();
+            OutputView.printStatus(racingCars.getRaceStatus());
+        }
     }
 }
