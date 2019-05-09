@@ -13,5 +13,6 @@ public class Main {
         GameCount gameCount = InputView.getGameCount();
         RacingGameResult racingGameResult = new RacingGame(carList, gameCount).start();
         OutputView.showRacingGameResult(racingGameResult);
+        OutputView.showWinners(racingGameResult);
     }
 }
