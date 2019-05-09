@@ -15,7 +15,7 @@ public class Application {
             racingGameController.makeValidTryCount(tryCount);
 
             racingGameController.startRacingGame();
-            racingGameController.findWinners();
+            racingGameController.endRacing();
         } catch(Exception e) {
             e.printStackTrace();
         }

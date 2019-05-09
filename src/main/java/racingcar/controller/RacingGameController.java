@@ -59,22 +59,11 @@ public class RacingGameController {
         }
     }
 
-    public void findWinners() {
-        ArrayList<Car> winners = new ArrayList<>();
-        int farthestPosition = -1;
-
-        for (Car car : carList) {
-            if(car.isFartherPosition(farthestPosition)) {
-                winners.clear();
-                winners.add(car);
-                farthestPosition = car.getPosition();
-                continue;
-            }
-            if(car.isSamePosition(farthestPosition)) {
-                winners.add(car);
-            }
-        }
-        OutputView.outputWinners(winners);
+    public void endRacing() {
+        ResultController resultController = new ResultController();
+        ArrayList<Car> winningCars = resultController.findWinners(carList);
+        
+        OutputView.outputWinners(winningCars);
     }
 
     private String removeWhiteSpace(String carNameList) {
