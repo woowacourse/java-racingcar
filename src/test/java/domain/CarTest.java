@@ -28,7 +28,7 @@ public class CarTest {
     @Test
     void maxPositionTest() {
         Car car = carList.get(0);
-        assertThat(car.updateMaxPosition(5)).isEqualTo(5);
+        assertThat(car.getMaxPosition(5)).isEqualTo(5);
     }
 
     @Test

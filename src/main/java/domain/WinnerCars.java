@@ -2,24 +2,19 @@ package domain;
 
 import java.util.ArrayList;
 
-public class Winners {
-    private int maxPosition;
+class WinnerCars {
     private ArrayList<Car> winnerList = new ArrayList<>();
 
-    public Winners() {
-        this.maxPosition = 0;
-    }
-
-    public void determineWinners(ArrayList<Car> cars) {
-        int maxPosition = getMaxPosistion(cars);
+    void determineWinners(ArrayList<Car> cars) {
+        int maxPosition = getMaxPosition(cars);
         searchWinners(maxPosition, cars);
     }
 
-    private int getMaxPosistion(ArrayList<Car> cars) {
+    private int getMaxPosition(ArrayList<Car> cars) {
         int maxPosition = 0;
 
         for (Car car : cars) {
-            maxPosition = car.updateMaxPosition(maxPosition);
+            maxPosition = car.getMaxPosition(maxPosition);
         }
 
         return maxPosition;
@@ -34,12 +29,12 @@ public class Winners {
         }
     }
 
-    public void printWinners() {
+    void printWinners() {
         String winnerNames = "";
         String message;
 
         for (Car winner : winnerList) {
-            winnerNames = winner.appendWinnerName(winnerNames);
+            winnerNames = winner.appendCarName(winnerNames);
         }
 
         message = winnerNames.substring(0, winnerNames.length() - 2);

@@ -1,8 +1,9 @@
 package domain;
 
+import utils.InputUtil;
+import utils.RandomUtil;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class RacingGame {
     private ArrayList<String> carNames;
@@ -28,7 +29,7 @@ public class RacingGame {
 
     private void printPositionByRound() {
         for (Car car : carList) {
-            car.printCurrentPosition();
+            car.printPosition();
         }
     }
 
@@ -43,7 +44,7 @@ public class RacingGame {
     }
 
     private void outputWinners() {
-        Winners winners = new Winners();
+        WinnerCars winners = new WinnerCars();
         winners.determineWinners(carList);
         winners.printWinners();
     }

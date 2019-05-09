@@ -1,4 +1,6 @@
-package domain;
+package utils;
+
+import domain.Constant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,52 +19,48 @@ public class InputUtil {
         do {
             System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
             names = input().trim().split("\\s*,\\s*");
-
-        } while (isNotValidNames(names));
+        } while (isInValidNames(names));
 
         return new ArrayList<>(Arrays.asList(names));
     }
 
-    private static boolean isNotValidNames(String[] names) {
-        boolean result = false;
-
+    private static boolean isInValidNames(String[] names) {
         for (String name : names) {
             if (isBlank(name)) {
-                result = true;
-                break;
+                return true;
             }
         }
-        result = isInvalidCarNumber(names);
 
-        return result;
+        return isInValidCarNumber(names);
     }
 
     private static boolean isBlank(String str) {
         return str.equals("");
     }
 
-    private static boolean isInvalidCarNumber(String[] names) {
+    private static boolean isInValidCarNumber(String[] names) {
         return names.length < Constant.MINIMUM_PARTICIPANT;
     }
 
     public static int inputRound() {
         String round;
+
         do {
             System.out.println("시도할 회수는 몇회인가요?");
             round = input().trim();
-        } while (isNotValidRound(round));
+        } while (isInValidRound(round));
 
         return Integer.parseInt(round);
     }
 
-    private static boolean isNotValidRound(String round) {
-        boolean result = true;
+    private static boolean isInValidRound(String round) {
+        boolean isInValid = true;
 
         if (isInteger(round) && isPositive(round)) {
-            result = false;
+            isInValid = false;
         }
 
-        return result;
+        return isInValid;
     }
 
     private static boolean isInteger(String number) {

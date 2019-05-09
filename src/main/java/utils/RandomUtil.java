@@ -1,4 +1,6 @@
-package domain;
+package utils;
+
+import domain.Constant;
 
 public class RandomUtil {
     public static int randomNumber() {

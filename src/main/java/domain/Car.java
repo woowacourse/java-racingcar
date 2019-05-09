@@ -1,46 +1,49 @@
 package domain;
 
-public class Car {
+class Car {
     private String name;
     private int position;
 
-    public Car(String name) {
+    Car(String name) {
         this.name = name;
         this.position = 0;
     }
 
-    public Car(String name, int position) {
+    /* 테스트용 생성자 */
+    Car(String name, int position) {
         this.name = name;
         this.position = position;
     }
 
-    public void move(int randomNumber) {
+    void move(int randomNumber) {
         if (isMove(randomNumber)) {
             position++;
         }
     }
 
-    public static boolean isMove(int randomNumber) {
+    static boolean isMove(int randomNumber) {
         return randomNumber >= Constant.MOVE_CONDITION;
     }
 
-    public void printCurrentPosition() {
-        System.out.print(String.format("%s : ", name));
+    void printPosition() {
+        StringBuilder result = new StringBuilder(name + " : ");
+
         for (int i = 1; i <= position; i++) {
-            System.out.print("-");
+            result.append("-");
         }
-        System.out.println();
+
+        System.out.println(result);
     }
 
-    public int updateMaxPosition(int pos) {
+    int getMaxPosition(int pos) {
         return Math.max(pos, position);
     }
 
-    public boolean compareToPosition(int maxPosition) {
+    boolean compareToPosition(int maxPosition) {
         return maxPosition == position;
     }
 
-    public String appendWinnerName(String winnerNames) {
-        return winnerNames += (name + ", ");
+    String appendCarName(String carNames) {
+        return carNames + (name + ", ");
     }
 }
