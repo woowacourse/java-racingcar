@@ -46,4 +46,20 @@ public class Rounds {
         return winnerList;
     }
 
+    public static void start(List<Car> cars, int roundNum) {
+        System.out.print("\n실행 결과");
+        for(int i = 0; i < roundNum; i++) {
+            doRound(cars);
+        }
+        OutputView.showChampion(calculateChampions(cars));
+    }
+
+    public static void main(String[] args) {
+        List<Car> cars = new ArrayList<>();
+        cars.add(new Car("pobi"));
+        cars.add(new Car("jihoon"));
+        cars.add(new Car("jinwook"));
+        start(cars, 10);
+    }
+
 }
