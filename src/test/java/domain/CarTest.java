@@ -18,6 +18,9 @@ public class CarTest {
     void 움직임판단() {
         assertThat(car.judgeMove(3)).isEqualTo(0);
         assertThat(car.judgeMove(4)).isEqualTo(1);
+        assertThat(car.judgeMove(9)).isEqualTo(1);
+        assertThat(car.judgeMove(-1)).isEqualTo(-1);
+        assertThat(car.judgeMove(10)).isEqualTo(-1);
     }
 
     @AfterEach
