@@ -2,31 +2,31 @@ package stringcalculator;
 
 public class Calculator {
 
-    public int plus(int result, int target) {
+    public static int plus(int result, int target) {
         return result + target;
     }
 
-    public int minus(int result, int target) {
+    public static int minus(int result, int target) {
         return result - target;
     }
 
-    public int multiply(int result, int target) {
+    public static int multiply(int result, int target) {
         return result * target;
     }
 
-    public int divide(int result, int target) {
+    public static int divide(int result, int target) {
         return result / target;
     }
 
-    public String[] splitByBlank(String inputText) {
+    public static String[] splitByBlank(String inputText) {
         return inputText.split(" ");
     }
 
-    public int parseStringToInt(String target) {
+    public static int parseStringToInt(String target) {
         return Integer.parseInt(target);
     }
 
-    public int calculate(int result, String operator, int nextValue) {
+    public static int calculate(int result, String operator, int nextValue) {
         if ( operator.equals("+")) {
             return plus(result, nextValue);
         }
@@ -46,7 +46,7 @@ public class Calculator {
         return  0;
     }
 
-    public int excute(String[] inputText) {
+    public static int excute(String[] inputText) {
         int result = parseStringToInt(inputText[0]);
 
         for (int i = 1; i < inputText.length ; i += 2) {
@@ -54,6 +54,12 @@ public class Calculator {
         }
 
         return result;
+    }
+
+    public static void main(String[] args) {
+        String inputText = UserInput.inputText();
+        String[] input = splitByBlank(inputText);
+        System.out.println(excute(input));
     }
 
 }
