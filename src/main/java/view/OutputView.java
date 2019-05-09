@@ -1,4 +1,7 @@
-package domain;
+package view;
+
+import domain.Car;
+import domain.Const;
 
 import java.util.List;
 

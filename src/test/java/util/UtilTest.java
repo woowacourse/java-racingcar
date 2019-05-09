@@ -1,6 +1,8 @@
-package domain;
+package util;
 
+import domain.Const;
 import org.junit.jupiter.api.Test;
+import util.Util;
 
 import static org.junit.jupiter.api.Assertions.*;
 

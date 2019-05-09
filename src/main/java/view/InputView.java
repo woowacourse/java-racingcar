@@ -1,13 +1,17 @@
-package domain;
+package view;
 
+import domain.Const;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static String[] inputCarNameList(){
+    public static List<String> inputCarNameList(){
         System.out.println(Const.INPUT_CAR_NAME);
-        return SCANNER.nextLine().split(",");
+        return Arrays.asList(SCANNER.nextLine().split(","));
     }
 
     public static int inputRoundCount(){

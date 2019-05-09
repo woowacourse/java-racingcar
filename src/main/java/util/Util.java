@@ -1,4 +1,6 @@
-package domain;
+package util;
+
+import domain.Const;
 
 import java.util.Random;
 
