@@ -11,6 +11,11 @@ public class Car {
     private String name;
     private int position = 0;
 
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
     public Car(String name) {
         this.name = name;
     }
@@ -48,5 +53,9 @@ public class Car {
 
     public boolean isBiggerPosition (int position) {
         return this.position > position;
+    }
+
+    public void printName(){
+        System.out.print(name);
     }
 }

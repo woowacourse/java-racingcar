@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class RaceResult {
-    List<Car> cars;
-    List<Car> winners;
+    private List<Car> cars;
+    private List<Car> winners;
 
     public RaceResult(List<Car> cars) {
         this.cars = cars;
@@ -23,7 +23,6 @@ public class RaceResult {
                 winners.add(curCar);
             }
         }
-        System.out.println(winners);
     }
 
     public Car findWinner() {
@@ -38,4 +37,6 @@ public class RaceResult {
         }
         return winner;
     }
+
+
 }
