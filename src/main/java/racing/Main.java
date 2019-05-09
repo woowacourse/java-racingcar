@@ -12,6 +12,8 @@
 
 package racing;
 
+import racing.view.RacingGame;
+
 /**
  * 레이싱 게임의 Entry Point 가 있는 클래스
  *
@@ -26,7 +28,7 @@ public class Main {
 
         racingGame.inputCarNames();
         racingGame.inputTotalTimes();
-        racingGame.printAllTimeResult();
+        racingGame.printRacingResult();
         racingGame.printAllWinners();
     }
 }

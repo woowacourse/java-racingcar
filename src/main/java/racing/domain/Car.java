@@ -10,7 +10,7 @@
  * All right Reserved
  */
 
-package racing;
+package racing.domain;
 
 /**
  * 레이싱 게임의 자동차 한 대를 위한 클래스
@@ -32,10 +32,11 @@ public class Car implements Comparable<Car> {
         if (!name.matches("[0-9a-zA-Z]{1,5}")) {
             throw new IllegalArgumentException(NAME_EXCEPTION_MESSAGE);
         }
+        System.out.println(name);
         this.name = name;
     }
 
-    Car(String name, Integer status) {
+    public Car(String name, Integer status) {
         this.name = name;
         this.status = status;
     }
@@ -64,7 +65,7 @@ public class Car implements Comparable<Car> {
         return (int) (Math.random() * 10);
     }
 
-    boolean goOrStop(int randomNum) {
+    private boolean goOrStop(int randomNum) {
         return randomNum >= GO_FORWARD_CRITERIA;
     }
 
@@ -76,8 +77,7 @@ public class Car implements Comparable<Car> {
         for (int i = 0; i < this.status; i++) {
             sb.append('-');
         }
+        sb.append("\n");
         return sb.toString();
     }
-
-
 }
