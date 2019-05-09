@@ -1,30 +1,27 @@
 package racing.game;
 
-
 import racing.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 public class Rounds {
     private static final int BOUNDARY = 4;
-
 
     private static int getRandomValue() {
 
         return (int) (Math.random() * 10);
     }
 
-    public static boolean canMove(int randomValue) {
+    static boolean canMove(int randomValue) {
         if (randomValue >= BOUNDARY) {
             return true;
         }
         return false;
     }
 
-    public static void doRound(List<Car> cars) {
+    private static void doRound(List<Car> cars) {
         for (Car car : cars) {
             if (canMove(getRandomValue())) {
                 car.move();
@@ -34,7 +31,7 @@ public class Rounds {
 
     }
 
-    public static List<Car> calculateChampions(List<Car> cars) {
+    static List<Car> calculateChampions(List<Car> cars) {
         List<Car> winnerList = new ArrayList<>();
         while (winnerList.size() == 0 ||
                 winnerList.get(0).compareTo(Collections.max(cars,
@@ -46,7 +43,7 @@ public class Rounds {
         return winnerList;
     }
 
-    public static void start(List<Car> cars, int roundNum) {
+    static void start(List<Car> cars, int roundNum) {
         System.out.print("\n실행 결과");
         for (int i = 0; i < roundNum; i++) {
             doRound(cars);

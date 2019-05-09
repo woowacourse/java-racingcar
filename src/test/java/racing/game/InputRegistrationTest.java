@@ -16,7 +16,7 @@ public class InputRegistrationTest {
 
     @Test
     void 빈입력인지확인() {
-        String string = new String("");
+        String string = "";
         assertThat(InputRegistration.checkNoInput(InputRegistration.splitNames(string))).isTrue();
     }
 

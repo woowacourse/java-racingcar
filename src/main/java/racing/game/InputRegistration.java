@@ -1,7 +1,5 @@
 package racing.game;
 
-import racing.game.Car;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -24,13 +22,13 @@ public class InputRegistration {
         return roundNumber;
     }
 
-    public static void checkValidity(String[] names) throws Exception {
+    private static void checkValidity(String[] names) throws Exception {
         if (checkNoInput(names) || checkInvalidNameLength(names) || checkRepetition(names)) {
             throw new Exception("잘못된 입력입니다.");
         }
     }
 
-    public static List<Car> convertToCars(String[] names) {
+    private static List<Car> convertToCars(String[] names) {
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < names.length; i++) {
             cars.add(new Car(names[i]));
@@ -39,11 +37,11 @@ public class InputRegistration {
         return cars;
     }
 
-    public static String[] splitNames(String names) {
+    static String[] splitNames(String names) {
         return names.replaceAll(" ", "").split(",");
     }
 
-    public static boolean checkNoInput(String[] names) {
+    static boolean checkNoInput(String[] names) {
         if (names.length == 0) {
             return true;
         }
@@ -55,7 +53,7 @@ public class InputRegistration {
         return false;
     }
 
-    public static boolean checkInvalidNameLength(String[] names) {
+    static boolean checkInvalidNameLength(String[] names) {
         for (int i = 0; i < names.length; i++) {
             if (names[i].length() >= NAME_LENGTH_LIMIT) {
                 return true;
@@ -64,7 +62,7 @@ public class InputRegistration {
         return false;
     }
 
-    public static boolean checkRepetition(String[] names) {
+    static boolean checkRepetition(String[] names) {
         HashSet<String> nameSet = new HashSet<>(Arrays.asList(names));
         return names.length != nameSet.size();
     }

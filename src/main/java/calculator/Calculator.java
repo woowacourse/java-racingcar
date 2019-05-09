@@ -16,7 +16,6 @@ public class Calculator {
     }
 
     public int subtract(int num1, int num2) {
-
         return num1 - num2;
     }
 
@@ -56,9 +55,5 @@ public class Calculator {
         } catch (ArithmeticException ae) {
             throw new Exception("0으로 나눌 수 없습니다.");
         }
-    }
-
-    public static void main(String[] args) {
-
     }
 }

@@ -13,7 +13,6 @@ public class InputHandler {
         return input;
     }
 
-
     public static boolean canCalculate(String[] inputs) {
         boolean isOperator = false;
         boolean result = true;
