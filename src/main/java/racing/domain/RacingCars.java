@@ -1,5 +1,7 @@
 package racing.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RacingCars {
@@ -19,4 +21,16 @@ public class RacingCars {
         return new RaceStatusDto(carList);
     }
 
+    public List<String> getWinners() {
+        Collections.sort(carList);
+        Car winnerCar = carList.get(0);
+        List<String> winnerNames = new ArrayList<>();
+        for (Car car : carList) {
+            if (!car.isMaxDistance(winnerCar))
+                break;
+            winnerNames.add(car.getName());
+        }
+
+        return winnerNames;
+    }
 }

@@ -24,10 +24,12 @@ public class RacingGame {
 
         RepeatNumber repeatNumber = InputView.inputRepeatNumber();
 
-        for(int i = 1; i<= repeatNumber.getRepeatNumber(); i++){
+        for (int i = 1; i <= repeatNumber.getRepeatNumber(); i++) {
             racingCars.race();
             OutputView.printStatus(racingCars.getRaceStatus());
         }
+        OutputView.printWinners(racingCars.getWinners());
+
     }
 
     private String[] getCarNames() {

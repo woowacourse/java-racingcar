@@ -2,9 +2,9 @@ package racing.domain;
 
 import java.util.Random;
 
-public class Car {
+public class Car implements Comparable<Car>{
     private static final int MAX_CAR_NAME = 5;
-    private static final int MIN_MOVEABLE_NUMBER = 4;
+    private static final int MIN_MOVABLE_NUMBER = 4;
     private static final int RANDOM_NUMBER_RANGE = 10;
     private final String name;
     private int distance;
@@ -28,7 +28,7 @@ public class Car {
     }
 
     public boolean isMove(int number){
-        return number >= MIN_MOVEABLE_NUMBER;
+        return number >= MIN_MOVABLE_NUMBER;
     }
 
     private int generateRandomNumber(){
@@ -53,5 +53,18 @@ public class Car {
         }
 
         return sb.toString();
+    }
+
+    public boolean isMaxDistance(Car winnerCar){
+        return this.distance == winnerCar.distance;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return  car.distance-this.distance;
     }
 }
