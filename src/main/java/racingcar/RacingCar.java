@@ -15,5 +15,6 @@ public class RacingCar {
             carList = controller.moveCar(carList);
             View.printCars(carList);
         }
+        View.printWinningCars(controller.getWinningCars(carList));
     }
 }

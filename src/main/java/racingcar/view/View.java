@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.model.CarList;
+import racingcar.model.WinningCars;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,7 +10,6 @@ import java.util.Set;
 
 public final class View {
 
-    /* Scanner 변수 */
     private static final Scanner sc = new Scanner(System.in);
 
     /* String matches에 사용할 알파벳 REGEX 정의 */
@@ -18,15 +18,10 @@ public final class View {
     /* String matches에 사용할 숫자 REGEX 정의*/
     private static final String NUMBER_REGEX = "[1-9][0-9]*$";
 
-    /* 가능한 이름의 최대 길이 저장 */
     private static final int VALID_NAME_LENGTH = 5;
 
     public static void outputLine(String aString) {
         System.out.println(aString);
-    }
-
-    public static void output(String aString) {
-        System.out.print(aString);
     }
 
     public static String[] inputNameOfCar() {
@@ -87,6 +82,10 @@ public final class View {
 
     public static void printCars(CarList carList) {
         outputLine(carList.toString());
+    }
+
+    public static void printWinningCars(WinningCars winningCars) {
+        outputLine(winningCars.toString());
     }
 }
 

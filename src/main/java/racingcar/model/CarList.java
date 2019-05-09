@@ -22,6 +22,18 @@ public class CarList {
         }
     }
 
+    public WinningCars getWinnerCars() {
+        int maxPosition = 0;
+        WinningCars winningCars = new WinningCars();
+        for (Car car : carList) {
+            maxPosition = Integer.max(maxPosition, car.getPosition());
+        }
+        for (Car car : carList) {
+            car.addWinners(winningCars.getWinningCarNames(), maxPosition);
+        }
+        return winningCars;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

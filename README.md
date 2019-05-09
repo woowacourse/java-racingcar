@@ -38,6 +38,7 @@
 - 자동차의 이동이 가능할 때 Position의 증가 확인 (이동 불가시 Position 변동 없음 확인)
 - 4이상의 값이 입력됐을 때(true일 때) position++가 됐는지 확인
 - CarList생성 후 특정 Car를 move(true)하여 maxPosition이  의도한바와 맞는지 확인
+- 승리한 자동차 목록이 맞는지 확인
 
 
 # java-racingcar
