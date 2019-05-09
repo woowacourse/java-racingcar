@@ -21,7 +21,7 @@ public class TestUserInterface implements UserInterface {
 
     @Override
     public List<String> promptUserNames() {
-        String[] names =  RacingCarUtil.splitIntoNames(carNamesInput);
+        String[] names =  RacingcarUtil.splitIntoNames(carNamesInput);
         List<String> nameList = new ArrayList<>();
         for (String name : names) {
             nameList.add(name);
@@ -46,16 +46,6 @@ public class TestUserInterface implements UserInterface {
         if (outputListener != null) {
             outputListener.onPrintWinners(winnerList);
         }
-    }
-
-    @Override
-    public List<String> onInvalidUserNames() {
-        return null;
-    }
-
-    @Override
-    public int onInvalidTries() {
-        return 0;
     }
 
     interface TestUserInterfaceOutputListener {

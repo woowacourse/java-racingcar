@@ -1,6 +1,6 @@
 package com.woowacourse.javaracingcar.domain;
 
-import com.woowacourse.javaracingcar.RacingCarUtil;
+import com.woowacourse.javaracingcar.RacingcarUtil;
 import com.woowacourse.javaracingcar.interfaces.NumberGenerator;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class RacingcarModel {
 
     public RacingcarModel(NumberGenerator generator, List<String> carNames) {
         numberGenerator = generator;
-        this.cars = RacingCarUtil.createCars(carNames);
+        this.cars = RacingcarUtil.createCars(carNames);
     }
 
     /**
