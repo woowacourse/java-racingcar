@@ -3,7 +3,7 @@
  *
  * v 1.0.0
  *
- * 2019.05.08
+ * 2019.05.09
  *
  * Copyright (c) 2019 MrKwon, imkimheejoo.
  * WoowahanTechCamp, Seoul, KOREA
@@ -24,11 +24,6 @@ import racing.view.RacingGame;
  */
 public class Main {
     public static void main(String[] args) {
-        RacingGame racingGame = new RacingGame();
-
-        racingGame.inputCarNames();
-        racingGame.inputTotalTimes();
-        racingGame.printRacingResult();
-        racingGame.printAllWinners();
+        new RacingGame().start();
     }
 }
