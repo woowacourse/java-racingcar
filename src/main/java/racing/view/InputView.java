@@ -1,7 +1,7 @@
 package racing.view;
 
 import racing.game.Car;
-import racing.game.CarRegistration;
+import racing.game.InputRegistration;
 
 import java.util.List;
 import java.util.Scanner;
@@ -15,19 +15,27 @@ public class InputView {
     static List<Car> getCars() {
         System.out.println(ASK_CAR_NAMES);
         try {
-            return CarRegistration.start(SCANNER.nextLine());
+            return InputRegistration.getCars(SCANNER.nextLine());
             //차 이름을 차 객체들로 변환
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(CARNAMES_ERROR);
             return getCars();
         }
     }
 
+    static int getRoundNumber() {
+        try {
+            return InputRegistration.getRoundNumber(SCANNER.nextLine());
+        } catch (Exception e) {
+            System.out.println(ROUND_NUMBER_ERROR);
+            return getRoundNumber();
+        }
+    }
 
 
     public static void main(String[] args) {
         List<Car> cars = getCars();
-        for(Car car : cars)
+        for (Car car : cars)
             System.out.println(car.getName());
     }
 

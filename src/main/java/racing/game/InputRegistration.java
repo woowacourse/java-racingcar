@@ -7,24 +7,32 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-public class CarRegistration {
+public class InputRegistration {
     private static final int NAME_LENGTH_LIMIT = 6;
 
-    public static List<Car> start(String input) throws Exception {
+    public static List<Car> getCars(String input) throws Exception {
         String[] names = splitNames(input);
         checkValidity(names);
         return convertToCars(names);
     }
 
+    public static int getRoundNumber(String input) throws Exception {
+        int roundNumber = Integer.parseInt(input);
+        if (roundNumber < 1) {
+            throw new Exception();
+        }
+        return roundNumber;
+    }
+
     public static void checkValidity(String[] names) throws Exception {
-        if(checkNoInput(names)||checkInvalidNameLength(names)||checkRepetition(names)){
+        if (checkNoInput(names) || checkInvalidNameLength(names) || checkRepetition(names)) {
             throw new Exception("잘못된 입력입니다.");
         }
     }
 
-    public static List<Car> convertToCars(String[] names){
+    public static List<Car> convertToCars(String[] names) {
         List<Car> cars = new ArrayList<>();
-        for(int i = 0; i < names.length; i++){
+        for (int i = 0; i < names.length; i++) {
             cars.add(new Car(names[i]));
         }
 
