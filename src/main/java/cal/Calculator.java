@@ -14,7 +14,6 @@ public class Calculator {
 
     private static void execute(InputView inputView) {
         Numbers numbers = inputView.inputNumbers();
-        //System.out.println(inputView);
 
         try {
             System.out.println(Calculator.calculate(numbers));
