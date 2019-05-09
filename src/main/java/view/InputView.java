@@ -3,6 +3,7 @@ package view;
 import domain.Const;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,8 +15,8 @@ public class InputView {
         return Arrays.asList(SCANNER.nextLine().split(","));
     }
 
-    public static int inputRoundCount(){
+    public static int inputRoundCount() throws Exception {
         System.out.println(Const.INPUT_ROUND_CNT);
-        return SCANNER.nextInt();
+        return Integer.parseInt(SCANNER.nextLine());
     }
 }
