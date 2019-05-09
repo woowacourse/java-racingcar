@@ -16,11 +16,5 @@ public class RaceTest {
     void setUp(){
         race = new Race();
     }
-    @Test
-    void createCarTest() {
-        String [] carNames = {"pobi","crong","honux"};
-        race.createCars(Arrays.asList(carNames));
-        List<Car> createdCars = race.getCars();
-        assertThat(createdCars).isNotEqualTo(null);
-    }
+
 }
