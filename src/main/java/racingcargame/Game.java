@@ -16,16 +16,19 @@ public class Game {
 
     public Game(){
         this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void play() throws IOException {
         start();
         round();
+        endGame();
     }
 
     void start() throws IOException {
         String names = inputView.readNames();
         result = new Result(names.split(","));
+        countOfRound = inputView.readCountOfRound();
     }
 
     void round(){
@@ -35,4 +38,7 @@ public class Game {
         }
     }
 
+    void endGame(){
+        outputView.printGameResult(result.gameResult());
+    }
 }

@@ -4,6 +4,7 @@ import racinginterface.ResultInterface;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Result implements ResultInterface {
     private List<Car> carList = new ArrayList<>();
@@ -22,6 +23,17 @@ public class Result implements ResultInterface {
 
     @Override
     public List<String> gameResult() {
-        return null;
+        int maxPosition = maxPosition();
+        return carList.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private int maxPosition() {
+        return carList.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(-1);
     }
 }
