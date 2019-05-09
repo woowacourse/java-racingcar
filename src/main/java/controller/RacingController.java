@@ -39,7 +39,7 @@ public class RacingController {
             }
             return roundCount;
         } catch (Exception e) {
-            System.out.println("1 이상의 숫자만 입력해주세요");
+            System.out.println(Const.EX_ROUND_COUNT);
             return setRoundCount();
         }
     }
