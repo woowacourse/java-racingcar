@@ -16,5 +16,7 @@ public class Racing {
             cars.forEach(car -> OutputView.printCarDistance(car));
             System.out.println();
         }
+
+        OutputView.printWinners(String.join(", ", Winner.getWinners(cars)));
     }
 }
