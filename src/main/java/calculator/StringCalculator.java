@@ -16,42 +16,22 @@ public class StringCalculator {
 
     int calculateAll(String inputString) {
         int result = 0;
-        String operator = null;
+        Operator operation = null;
         List<String> calculationFormula = getSplit(inputString);
 
         for (String numberOrOperator : calculationFormula) {
-            if (isOperator(numberOrOperator)) {
-                operator = numberOrOperator;
+            if (Operator.isOperator(numberOrOperator)) {
+                operation = Operator.valueof(numberOrOperator);
                 continue;
             }
 
-            if (operator == null) {
+            if (operation == null) {
                 result += Integer.valueOf(numberOrOperator);
                 continue;
             }
 
-            result = operate(result, operator, Integer.valueOf(numberOrOperator));
+            result = (int) (operation.applyAsDouble(result, Integer.valueOf(numberOrOperator)));
         }
         return result;
-    }
-
-    boolean isOperator(String operator) {
-        return (operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/"));
-    }
-
-    int operate(int previousResult, String operator, int number) {
-        if (operator.equals("+")) {
-            return previousResult + number;
-        }
-        if (operator.equals("-")) {
-            return previousResult - number;
-        }
-        if (operator.equals("*")) {
-            return previousResult * number;
-        }
-        if (operator.equals("/")) {
-            return previousResult / number;
-        }
-        throw new IllegalArgumentException("잘못된 형식의 연산자입니다!");
     }
 }
