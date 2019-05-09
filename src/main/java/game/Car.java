@@ -14,7 +14,7 @@ public class Car {
 
     public void move(int randomValue) {
         if (randomValue >= 4) {
-            this.position++;     
+            this.position++;
         }
     }
 
@@ -22,11 +22,9 @@ public class Car {
         return position == maxInstance;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public int getPosition() {
         return position;
     }
+
+
 }

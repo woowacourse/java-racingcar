@@ -9,11 +9,15 @@ public class Main {
         Game game = new Game();
         String[] carNames;
         List<Car> cars;
+        int maxInstance;
 
         do {
             carNames = game.splitWithComma(UserInput.inputCarNames());
         } while (!game.checkCarNamesLength(carNames));
 
         cars = game.createCarObject(carNames);
+        maxInstance = UserInput.inputGameCount();
+
+
     }
 }

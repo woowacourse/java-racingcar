@@ -53,5 +53,9 @@ public class Game {
         }
     }
 
+    void oneGame(List<Car> cars, int maxInstance) {
+        /*while () {
 
+        }*/
+    }
 }
