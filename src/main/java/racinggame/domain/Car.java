@@ -13,6 +13,12 @@ public class Car {
         this.position = 0;
     }
 
+    /* 테스트를 위한 constructor */
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
     public boolean run(int number) {
         if (number >= THRESHOLD) {
             position += ONE_STEP;
