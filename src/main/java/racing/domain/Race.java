@@ -12,9 +12,8 @@ public class Race {
         cars = new ArrayList<Car>();
         Iterator<String> it = carNames.iterator();
 
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             cars.add(new Car(it.next()));
-
         }
     }
 
