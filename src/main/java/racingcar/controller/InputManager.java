@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.ErrorMessage;
 import racingcar.model.Car;
 import racingcar.view.InputView;
 
@@ -25,7 +26,7 @@ public class InputManager {
             try {
                 checkNameValid(carName);
             } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(e);
             }
         }
         return Arrays.asList(carNames);
@@ -33,7 +34,7 @@ public class InputManager {
 
     private void checkNameValid(String carName) {
         if (carName.length() < 1 || carName.length() > 5) {
-            throw new IllegalArgumentException("이름을 1 글자이상 5 글자이하로 해주세요 ");
+            throw new IllegalArgumentException(ErrorMessage.inputErrorMessage.get("ERROR_CAR_NAME_LENGTH"));
         }
     }
 
@@ -43,14 +44,14 @@ public class InputManager {
             gameCount = InputView.getRacingCount();
             checkGameCountValid(gameCount);
         } catch (InputMismatchException e) {
-            getGameCount();
+            throw new InputMismatchException(ErrorMessage.inputErrorMessage.get("ERROR_GAME_COUNT"));
         }
         return gameCount;
     }
 
     private void checkGameCountValid(int gameCount) {
         if (gameCount < 0) {
-            throw new InputMismatchException();
+            throw new InputMismatchException(ErrorMessage.inputErrorMessage.get("ERROR_GAME_COUNT"));
         }
     }
 }
