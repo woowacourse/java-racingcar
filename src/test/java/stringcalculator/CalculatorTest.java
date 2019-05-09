@@ -36,4 +36,11 @@ public class CalculatorTest {
         int result = cal.divide(4, 2);
         assertThat(result).isEqualTo(2);
     }
+
+    @Test
+    void 공백으로_잘라_배열_생성() {
+        String[] result = cal.splitByBlank("1 + 2 + 3");
+        String[] target = {"1", "+" ,"2", "+", "3"};
+        assertThat(result).isEqualTo(target);
+    }
 }

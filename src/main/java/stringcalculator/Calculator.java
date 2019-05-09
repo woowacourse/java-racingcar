@@ -17,4 +17,8 @@ public class Calculator {
     public int divide(int result, int target) {
         return result / target;
     }
+
+    public String[] splitByBlank(String inputText) {
+        return inputText.split(" ");
+    }
 }
