@@ -7,22 +7,24 @@ public class Winner {
     private List<Car> carList;
     private int maxDistance = 0;
 
-    public Winner(List<Car> carList, int maxDistance) {
+    public Winner(List<Car> carList) {
         this.carList = carList;
-        this.maxDistance = maxDistance;
     }
 
     public List<String> getWinner() {
         List<String> winners = new ArrayList<>();
+
+        getMaxDistance();
         for (Car car : carList) {
             if (car.getPosition() == maxDistance) {
                 winners.add(car.getName());
             }
         }
+
         return winners;
     }
 
-    public void getMaxDistance() {
+    private void getMaxDistance() {
         for (Car car : carList) {
             maxDistance = Math.max(maxDistance, car.getPosition());
         }

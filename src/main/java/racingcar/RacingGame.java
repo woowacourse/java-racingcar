@@ -3,6 +3,7 @@ package racingcar;
 import racingcar.controller.CarController;
 import racingcar.controller.CarGenerator;
 import racingcar.dto.Car;
+import racingcar.dto.Winner;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -24,7 +25,12 @@ public class RacingGame {
             carController.moveCar();
             OutputView.printRacingResult(carList);
         }
+        OutputView.printWinner(getWinner());
+    }
 
+    private static String getWinner() {
+        Winner winner = new Winner(carList);
+        return String.join(",", winner.getWinner());
     }
 
     private static void addCar() {
