@@ -22,7 +22,7 @@ public class Winner {
                 if (car1.getPosition() < car2.getPosition()) {
                     return 0;
                 }
-                return -1;
+                return 1;
             }
         });
         return cars.get(0).getPosition();
@@ -32,10 +32,14 @@ public class Winner {
         List<Car> winners = new ArrayList<>();
         int maxPosition = getMaxDistance();
         int carNumber = 0;
-        while (checkMaxposition(carNumber, maxPosition)) {
+        while (checkMaxLength(carNumber) && checkMaxposition(carNumber, maxPosition)) {
             winners.add(cars.get(carNumber++));
         }
         return winners;
+    }
+
+    private boolean checkMaxLength(int carNumber) {
+        return carNumber < cars.size();
     }
 
     private boolean checkMaxposition(int index, int maxPosition) {

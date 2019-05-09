@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.model.Car;
+import racingcar.model.Winner;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -22,6 +23,12 @@ public class RacingCarManager {
     public void racingGameStart() {
         getGameInformation();
         startRacing();
+        getRacingWinners();
+    }
+
+    private void getRacingWinners() {
+        Winner winner = new Winner(cars);
+        OutputView.printWinners(winner);
     }
 
     private void getGameInformation() {
@@ -40,10 +47,11 @@ public class RacingCarManager {
             car.move(getRandomNumber());
             OutputView.printCarState(car);
         }
+        OutputView.printEmptyLine();
     }
 
     private int getRandomNumber() {
-        return (int) Math.random() * 10;
+        return (int) (Math.random() * 10);
     }
 
 }
