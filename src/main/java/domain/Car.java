@@ -5,7 +5,7 @@ public class Car {
     private String name;
     private int position = 0;
 
-    public Car(String name){
+    public Car(String name) throws IllegalArgumentException{
         if(Const.MIN_NAME_LEN > name.length() || Const.MAX_NAME_LEN < name.length()){
             throw new IllegalArgumentException(Const.EX_NAME_LEN);
         }
