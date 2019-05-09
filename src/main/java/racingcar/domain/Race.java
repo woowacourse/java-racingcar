@@ -31,4 +31,4 @@ public class Race {
         return cars.stream().filter(x -> x.isAt(snapshots.get(0))).collect(Collectors.toList());
     }
 }
-//JDK 변경
+//테스트용 생성자?

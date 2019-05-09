@@ -12,7 +12,6 @@ public class Car {
         this.name = name;
         this.position = position;
     }
-    //테스트용 생성자?
 
     public int moveAndReturnPosition(MovementStrategy cond) {
         if (cond.isMovable()) {
@@ -29,5 +28,4 @@ public class Car {
     public String toString() {
         return name;
     }
-
 }

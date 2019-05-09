@@ -16,7 +16,6 @@ public class InputView {
         return names;
     }
 
-    //프라이빗 -> 테스트 ??
     public static List<String> filterTypos(String arg) {
         return new ArrayList<>(
                 Arrays.stream(arg.split(","))
