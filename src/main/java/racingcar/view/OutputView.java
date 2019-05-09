@@ -37,4 +37,8 @@ public class OutputView {
         }
         System.out.println(stringBuilder.toString());
     }
+
+    public static void printWinner(String result) {
+        System.out.println(result + "가 최종 우승했습니다.");
+    }
 }

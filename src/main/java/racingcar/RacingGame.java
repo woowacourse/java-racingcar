@@ -25,12 +25,7 @@ public class RacingGame {
             OutputView.printRacingResult(carList);
         }
 
-
     }
-
-    private static void race() {
-    }
-
 
     private static void addCar() {
         String string = InputView.InputCarNames();
