@@ -8,6 +8,7 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,39 +17,43 @@ import java.util.List;
  * Date: 2019-05-08
  */
 public class RacingController {
-    public static List<Car> setCarName() {
+    protected static List<Car> setCarName(String carNames) {
         try {
-            return makeCarList(InputView.inputCarNameList());
+            return inputCarNames(Arrays.asList(carNames.split(",")));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return setCarName();
+            return setCarName(InputView.inputCarNames());
         }
     }
 
-    private static List<Car> makeCarList(List<String> carNameList) throws IllegalArgumentException {
+    protected static List<Car> inputCarNames(List<String> carNameList) throws IllegalArgumentException {
         Util.checkDuplicatedStringList(carNameList);
         Util.checkStringListSize(carNameList);
         List<Car> carList = new ArrayList<>();
         for (String carName : carNameList) {
+            carName = carName.trim();
             carList.add(new Car(carName));
         }
         return carList;
     }
 
-    public static int setRoundCount() {
+    protected static int setRoundCount(int roundCount) {
         try {
-            int roundCount = InputView.inputRoundCount();
-            if (roundCount <= Const.ZERO) {
-                throw new IllegalArgumentException();
-            }
-            return roundCount;
+            return inputRoundCount(roundCount);
         } catch (Exception e) {
             System.out.println(Const.EX_ROUND_COUNT);
-            return setRoundCount();
+            return setRoundCount(InputView.inputRoundCount());
         }
     }
 
-    public static Race moveAllCar(List<Car> carList, int roundCount) {
+    protected static int inputRoundCount(int roundCount) throws IllegalArgumentException{
+        if(roundCount <= Const.ZERO){
+            throw new IllegalArgumentException();
+        }
+        return roundCount;
+    }
+
+    protected static Race moveAllCar(List<Car> carList, int roundCount) {
         Race race = new Race(carList);
         OutputView.outputGameResultTile();
         for (int i = 0; i < roundCount; i++) {
@@ -58,7 +63,7 @@ public class RacingController {
         return race;
     }
 
-    public static void printWinners(Race race) {
+    protected static void printWinners(Race race) {
         OutputView.outputWinners(race.getRaceWinners());
     }
 }

@@ -14,13 +14,18 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static List<String> inputCarNameList() {
+    public static String inputCarNames() {
         System.out.println(Const.INPUT_CAR_NAME);
-        return Arrays.asList(SCANNER.nextLine().split(","));
+        return SCANNER.nextLine();
     }
 
-    public static int inputRoundCount() throws NumberFormatException {
-        System.out.println(Const.INPUT_ROUND_CNT);
-        return Integer.parseInt(SCANNER.nextLine());
+    public static int inputRoundCount() {
+        try{
+            System.out.println(Const.INPUT_ROUND_CNT);
+            return Integer.parseInt(SCANNER.nextLine());
+        } catch (NumberFormatException e){
+            System.out.println(Const.EX_ROUND_COUNT);
+            return inputRoundCount();
+        }
     }
 }

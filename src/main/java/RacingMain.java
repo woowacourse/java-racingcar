@@ -1,5 +1,4 @@
-import controller.RacingController;
-import domain.Race;
+import controller.PlayRacingController;
 
 /**
  * Created by Heebg
@@ -8,7 +7,6 @@ import domain.Race;
  */
 public class RacingMain {
     public static void main(String[] args) {
-        Race race = RacingController.moveAllCar(RacingController.setCarName(), RacingController.setRoundCount());
-        RacingController.printWinners(race);
+        PlayRacingController.playRacing();
     }
 }
