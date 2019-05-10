@@ -15,11 +15,7 @@ public class ResultView {
     }
 
     public String printWinner(List<String> winners) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.join(",", winners));
-        stringBuilder.append("가 최종 우승 했습니다.");
-
-        return stringBuilder.toString();
+        return String.join(",", winners) + "가 최종 우승 했습니다.";
     }
 
     private String printHyphen(Car car) {
