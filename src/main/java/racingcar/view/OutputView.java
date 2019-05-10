@@ -2,6 +2,7 @@ package racingcar.view;
 
 import racingcar.domain.Car;
 import racingcar.domain.Race;
+import racingcar.utils.StringUtils;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class OutputView {
         }
     }
 
-    public static void printLane(Car car) {
+    private static void printLane(Car car) {
         System.out.println(car + " : " + car.drawTrail());
     }
 
@@ -24,7 +25,7 @@ public class OutputView {
         String winnerList = winners.toString();
         System.out.println(
                 winnerList.substring(1, winnerList.length() - 1)
-                + IOValidation.differentiateIGa(winnerList.charAt(winnerList.length() - 2))
+                + StringUtils.differentiateIGa(winnerList.charAt(winnerList.length() - 2))
                 + " 최종 우승했습니다."
         );
     }

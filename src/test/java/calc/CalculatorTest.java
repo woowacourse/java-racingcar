@@ -20,7 +20,6 @@ public class CalculatorTest {
     @BeforeEach
     public void testInit() {
         calc = new Calculator();
-
     }
 
     @Test
@@ -78,6 +77,13 @@ public class CalculatorTest {
     void 예외테스트D() {
         assertThrows(Exception.class, () -> {
             calc.calculateTokens(expressionToList("1 + 5 /"));
+        });
+    }
+
+    @Test
+    void 예외테스트E() {
+        assertThrows(Exception.class, () -> {
+            calc.calculateTokens(expressionToList("1 + 5 1 1"));
         });
     }
 }
