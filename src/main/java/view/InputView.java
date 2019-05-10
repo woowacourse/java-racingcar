@@ -14,7 +14,13 @@ public class InputView {
     public static List<Car> createCars() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String inputString = scanner.nextLine();
-        return getCarList(inputString);
+
+        try {
+            return getCarList(inputString);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createCars();
+        }
     }
 
     public static List<Car> getCarList(String inputString) {
@@ -22,12 +28,7 @@ public class InputView {
         List<Car> cars = new ArrayList<>();
 
         for (String carName : names) {
-            try {
-                cars.add(new Car(carName));
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                return createCars();
-            }
+            cars.add(new Car(carName));
         }
         return cars;
     }

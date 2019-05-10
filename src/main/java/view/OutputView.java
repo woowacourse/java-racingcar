@@ -6,6 +6,12 @@ import domain.Winner;
 import java.util.List;
 
 public class OutputView {
+
+    public static void printStartUI() {
+        System.out.println();
+        System.out.println("실행 결과");
+    }
+
     public static void printPosition(List<Car> cars) {
         for (Car car : cars) {
             System.out.println(printCar(car));

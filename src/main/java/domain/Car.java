@@ -3,9 +3,6 @@ package domain;
 import java.util.Objects;
 
 public class Car {
-    private static final int MIN_MOVE_NUMBER = 4;
-    private static final int MAX_MOVE_NUMBER = 9;
-    private static final int MIN_STOP_NUMBER = 0;
     private static final int NAME_MAX_LENGTH  = 5;
 
     private final String name;
@@ -22,21 +19,16 @@ public class Car {
         this.position = position;
     }
 
+    public int move() {
+        position++;
+        return position;
+    }
+
+
     private void validName(String name) {
         if ((name.length() > NAME_MAX_LENGTH) || (name.length() < 1)) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하 입니다.");
         }
-    }
-
-    public int judgeMove(int number) {
-        if (number > MAX_MOVE_NUMBER || number < MIN_STOP_NUMBER) {
-            throw new IllegalArgumentException("잘못된 randomNumber");
-        }
-        if (number >= MIN_MOVE_NUMBER) {
-            position++;
-            return 1;
-        }
-        return 0;
     }
 
     public int getBiggerPosition(int position) {
