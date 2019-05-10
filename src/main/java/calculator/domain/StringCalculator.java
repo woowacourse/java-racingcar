@@ -1,4 +1,4 @@
-package calculator;
+package calculator.domain;
 
 public class StringCalculator {
     private static final String BLANK = " ";
@@ -49,13 +49,6 @@ public class StringCalculator {
             return (result / nextValue);
         }
 
-        throw new RuntimeException("잘못된 operator를 입력");
-    }
-
-    public static void main(String[] args) {
-        StringCalculator stringCalculator = new StringCalculator();
-        String input = InputView.getValues();
-        int answer = stringCalculator.calculate(input);
-        System.out.println("답은 " + answer + "입니다");
+        throw new RuntimeException("기호로 +, -, *, / 를 입력해주세요");
     }
 }

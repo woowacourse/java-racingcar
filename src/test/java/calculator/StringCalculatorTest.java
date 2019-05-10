@@ -1,5 +1,6 @@
 package calculator;
 
+import calculator.domain.StringCalculator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,8 +17,7 @@ class StringCalculatorTest {
 
     @Test
     void 덧셈_기능을_테스트한다() {
-        int result = stringCalculator.calculate("2 + 3");
-        assertThat(result).isEqualTo(5);
+        assertThat(stringCalculator.calculate("2 + 3")).isEqualTo(5);
     }
 
     @Test
