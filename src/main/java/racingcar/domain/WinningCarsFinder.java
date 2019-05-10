@@ -20,6 +20,4 @@ public class WinningCarsFinder {
         }
         return winningCars;
     }
-
-
 }

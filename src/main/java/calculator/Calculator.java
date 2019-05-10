@@ -30,7 +30,6 @@ public class Calculator {
         if (operator.equals("/")) {
             return divide(a,b);
         }
-
         throw new IllegalArgumentException("올바른 연산자가 아닙니다.");
     }
 
