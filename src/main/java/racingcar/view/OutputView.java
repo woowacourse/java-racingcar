@@ -5,7 +5,14 @@ import racingcar.domain.Car;
 import java.util.ArrayList;
 
 public class OutputView {
-    public static void outputCarPosition(ArrayList<Car> carList) {
+    public static void outputAllTryCarPosition(ArrayList<ArrayList<Car>> eachTryCars) {
+        System.out.println("\n실행 결과");
+        for (ArrayList<Car> cars : eachTryCars) {
+            outputCarPosition(cars);
+        }
+    }
+
+    private static void outputCarPosition(ArrayList<Car> carList) {
         for (Car car : carList) {
             System.out.println(car);
         }

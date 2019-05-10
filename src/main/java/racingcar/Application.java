@@ -6,18 +6,9 @@ public class Application {
     public static void main(String[] args) {
         RacingGameController racingGameController = new RacingGameController();
 
-        try {
-            String carNames = racingGameController.requestCarList();
-            String[] validCarNames = racingGameController.makeValidCarNames(carNames);
-            racingGameController.generateCarList(validCarNames);
-
-            int tryCount = racingGameController.requestTryCount();
-            racingGameController.makeValidTryCount(tryCount);
-
-            racingGameController.startRacingGame();
-            racingGameController.endRacing();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        racingGameController.createCars();
+        racingGameController.configureTryCount();
+        racingGameController.raceAll();
+        racingGameController.findWinningCars();
     }
 }
