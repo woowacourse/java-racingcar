@@ -60,6 +60,7 @@ public class CalculatorAppTest {
         });
     }
 
+    @Test
     void 예외테스트E() {
         assertThrows(Exception.class, () -> {
             new Calculator("1 3 5");

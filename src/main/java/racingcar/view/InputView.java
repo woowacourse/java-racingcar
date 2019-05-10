@@ -22,9 +22,9 @@ public class InputView {
         }
     }
 
-    private static List<String> filterTypos(String arg) {
+    private static List<String> filterTypos(String text) {
         return new ArrayList<>(
-                Arrays.stream(arg.split(","))
+                Arrays.stream(text.split(","))
                         .map(x -> x.trim())
                         .filter(x -> (!x.equals("")) && (!x.equals(" ")) && (!x.equals(",")))
                         .collect(Collectors.toList())
