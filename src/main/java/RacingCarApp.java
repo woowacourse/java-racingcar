@@ -2,7 +2,6 @@ import domain.Car;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -10,38 +9,26 @@ public class RacingCarApp {
     private static final int BOUND_NUMBER = 10;
 
     public static void main(String[] args) {
-        List<String> carNames = InputView.inputCarNames();
+        List<Car> cars = InputView.createCars();
         int tryNumber = InputView.inputTryNum();
 
-        List<Car> carList = createCar(carNames);
-
-        startRacing(carList, tryNumber);
-        OutputView.printWinnerName(carList);
+        startRacing(cars, tryNumber);
+        OutputView.printWinnerName(cars);
     }
 
-    private static List<Car> createCar(List<String> carNames) {
-        List<Car> carList = new ArrayList<>();
-
-        for (String carName : carNames) {
-            carList.add(new Car(carName));
-        }
-
-        return  carList;
-    }
-
-    private static void startRacing(List<Car> carList, int tryNumber) {
+    private static void startRacing(List<Car> cars, int tryNumber) {
         System.out.println();
         System.out.println("실행 결과");
 
         for (int i = 0; i < tryNumber; i++) {
-            tryMove(carList);
-            OutputView.printPosition(carList);
+            tryMove(cars);
+            OutputView.printPosition(cars);
             System.out.println();
         }
     }
 
-    private static void tryMove(List<Car> carList) {
-        for (Car car : carList) {
+    private static void tryMove(List<Car> cars) {
+        for (Car car : cars) {
             if (car.judgeMove(makeRandomNumber()) == -1) {
                 throw new IllegalArgumentException("잘못된 randomNumber");
             }

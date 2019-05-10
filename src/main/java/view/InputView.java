@@ -1,33 +1,38 @@
 package view;
 
+import domain.Car;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static util.StringUtil.isCarNameLength;
 import static util.StringUtil.parseStringByComma;
 
 public class InputView {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static List<String> inputCarNames() {
+    public static List<Car> createCars() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String inputString = scanner.nextLine();
 
-        return getCarNames(inputString);
+        return getCarList(inputString);
 
     }
 
-    public static List<String> getCarNames(String inputString) {
-        List<String> nameList = parseStringByComma(inputString);
+    public static List<Car> getCarList(String inputString) {
+        List<String> names = parseStringByComma(inputString);
+        List<Car> cars = new ArrayList<>();
 
-        for (String carName : nameList) {
-            if (!isCarNameLength(carName)) {
-                System.out.println("자동차 이름은 1자 이상 5자 이하 입니다.");
-                return inputCarNames();
+        for (String carName : names) {
+            try {
+                cars.add(new Car(carName));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                return createCars();
             }
         }
 
-        return nameList;
+        return cars;
     }
 
     public static int inputTryNum() {

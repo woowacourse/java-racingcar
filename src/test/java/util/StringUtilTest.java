@@ -14,9 +14,4 @@ public class StringUtilTest {
         assertThat(StringUtil.parseStringByComma("스폰지밥,징징이,뚱이")).isEqualTo(testList);
     }
 
-    @Test
-    void 자동차이름길이() {
-        assertThat(StringUtil.isCarNameLength("aaaaa")).isTrue();
-        assertThat(StringUtil.isCarNameLength("aaaaaa")).isFalse();
-    }
 }

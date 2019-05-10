@@ -4,11 +4,16 @@ public class Car {
     private static final int MIN_MOVE_NUMBER = 4;
     private static final int MAX_MOVE_NUMBER = 9;
     private static final int MIN_STOP_NUMBER = 0;
+    private static final int NAME_MAX_LENGTH  = 5;
 
     private final String name;
     private int position = 0;
 
     public Car(String name) {
+        if ((name.length() > NAME_MAX_LENGTH) || (name.length() < 1)) {
+            throw new IllegalArgumentException("자동차 이름은 1자 이상 5자 이하 입니다.");
+        }
+
         this.name = name;
     }
 
