@@ -1,30 +1,40 @@
 package game;
 
 import game.input.UserInput;
-import game.output.resultOutput;
+import game.input.UserInputCheck;
+import game.output.ResultOutput;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();
         Winner winner = new Winner();
-        String[] carNames;
-        List<Car> cars;
-        int maxInstance;
+        List<Car> cars = game.createCars(inputCarNames());
 
-        do {
-            carNames = game.splitWithComma(UserInput.inputCarNames());
-        } while (!game.checkCarNamesLength(carNames));
+        startGame(game, winner, cars, inputMaxInstance());
+        printWinnerResult(winner);
+    }
 
-        cars = game.createCarObject(carNames);
-        maxInstance = UserInput.inputGameCount();
+    private static int inputMaxInstance() {
+        return UserInput.inputGameCount();
+    }
 
+    private static void printWinnerResult(Winner winner) {
+        ResultOutput.printWinners(winner.getWinners());
+    }
+
+    private static void startGame(Game game, Winner winner, List<Car> cars, int maxInstance) {
         while (!winner.checkWinner(cars, maxInstance)) {
             game.oneGame(cars);
         }
+    }
 
-        resultOutput.winnersOutput(winner.getWinners());
+    private static String[] inputCarNames() {
+        String[] carNames;
+        do {
+            carNames = UserInputCheck.splitWithComma(UserInput.inputCarNames());
+        } while (!UserInputCheck.checkCarNamesLength(carNames));
+        return carNames;
     }
 }

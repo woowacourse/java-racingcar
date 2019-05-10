@@ -1,59 +1,35 @@
 package game;
 
-import game.output.resultOutput;
+import game.output.ResultOutput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    private static final int MAX_RANDOM_NUMBER = 9;
+    private static final int ADD_RANDOM_NUMBER = 1;
 
-    private static int MAX_NAME_LENGTH = 5;
-    private static int MAX_RANDOM_NUMBER = 9;
-
-    String removeBlank(String carNames) {
-        return carNames.replace(" ", "").replace(",,", ",");
+    public List<Car> createCars(String[] carNames) {
+        List<Car> cars = new ArrayList<>();
+        addCar(carNames, cars);
+        return cars;
     }
 
-    String[] splitWithComma(String carNames) {
-        String carName = removeBlank(carNames);
-        return carName.split(",");
-    }
-
-    boolean checkCarNamesLength(String[] carNames) {
-        boolean isRightLength = true;
-
+    private void addCar(String[] carNames, List<Car> cars) {
         for (String carName : carNames) {
-            isRightLength = checkCarNameLength(isRightLength, carName);
+            cars.add(new Car(carName));
         }
-
-        return isRightLength;
     }
 
-    boolean checkCarNameLength(boolean isRightLength, String carName) {
-        return carName.length() <= MAX_NAME_LENGTH && isRightLength;
-    }
-
-
-    List<Car> createCarObject(String[] carNames) {
-        List<Car> carList = new ArrayList<>();
-
-        for (String carName : carNames) {
-            carList.add(new Car(carName));
-        }
-
-        return carList;
-    }
-
-
-    int randomValueGenerator() {
-        return (int) (Math.random() * MAX_RANDOM_NUMBER);
-    }
-
-    void oneGame(List<Car> cars) {
+    public void oneGame(List<Car> cars) {
         for (Car car : cars) {
             car.move(randomValueGenerator());
-            resultOutput.eachGameOutput(car);
+            ResultOutput.printEachGame(car);
         }
-        resultOutput.printNewLine();
+        ResultOutput.printNewLine();
+    }
+
+    private int randomValueGenerator() {
+        return (int) (Math.random() * MAX_RANDOM_NUMBER + ADD_RANDOM_NUMBER);
     }
 }

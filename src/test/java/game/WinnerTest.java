@@ -9,7 +9,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinnerTest {
-
     Winner winner;
     List<Car> cars;
 
@@ -21,7 +20,7 @@ public class WinnerTest {
         cars.add(new Car("jason"));
         cars.add(new Car("brown"));
         cars.get(0).move(4);
-        winner.addWinner(true, cars.get(0));
+        winner.checkWinner(cars, 1);
     }
 
     @Test

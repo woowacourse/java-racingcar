@@ -4,12 +4,13 @@ import game.Car;
 
 import java.util.List;
 
-public class resultOutput {
+public class ResultOutput {
     static StringBuilder sb = new StringBuilder();
 
-    public static void eachGameOutput(Car car) {
-        sb.setLength(0);
-        sb.append(car.getCarName());
+    public static void printEachGame(Car car) {
+        init();
+
+        sb.append(car.getName());
         sb.append(" : ");
 
         for (int i = 0; i < car.getPosition(); i++) {
@@ -19,8 +20,8 @@ public class resultOutput {
         System.out.println(sb);
     }
 
-    public static void winnersOutput(List<String> winners) {
-        sb.setLength(0);
+    public static void printWinners(List<String> winners) {
+        init();
 
         sb.append(String.join(", ", winners));
         sb.append("가 최종 우승했습니다.");
@@ -30,5 +31,9 @@ public class resultOutput {
 
     public static void printNewLine() {
         System.out.println();
+    }
+
+    private static void init() {
+        sb.setLength(0);
     }
 }

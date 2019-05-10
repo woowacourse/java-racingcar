@@ -34,7 +34,7 @@ public class CalculatorTest {
 
     @Test
     void 나눗셈() {
-        assertThat(cal.division(3, 2)).isEqualTo(2);
+        assertThat(cal.division(3, 2)).isEqualTo(1);
         System.out.println("Divide");
     }
 

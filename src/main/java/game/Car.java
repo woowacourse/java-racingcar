@@ -1,7 +1,10 @@
 package game;
 
+import java.util.Objects;
+
 public class Car {
-    private static int MOVE_POINT = 4;
+    private static final int MOVE_POINT = 4;
+
     private final String name;
     private int position = 0;
 
@@ -9,8 +12,12 @@ public class Car {
         this.name = name;
     }
 
-    public String getCarName() {
+    public String getName() {
         return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 
     public void move(int randomValue) {
@@ -20,11 +27,21 @@ public class Car {
     }
 
     public boolean isMaxInstance(int maxInstance) {
-        return position == maxInstance;
+        return this.position == maxInstance;
     }
 
-    public int getPosition() {
-        return position;
+    /* 필수 메소드 */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position == car.position &&
+                Objects.equals(name, car.name);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
+    }
 }

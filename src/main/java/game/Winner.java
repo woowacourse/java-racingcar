@@ -4,28 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Winner {
-
     private List<String> winners = new ArrayList<>();
+
+    public List<String> getWinners() {
+        return winners;
+    }
 
     public boolean checkWinner(List<Car> cars, int maxInstance) {
         boolean result = false;
 
         for (Car car : cars) {
-            boolean isMaxInstance = car.isMaxInstance(maxInstance);
-            addWinner(isMaxInstance, car);
-            result |= isMaxInstance;
+            result |= isMaxInstanceAndAddWinner(maxInstance, car);
         }
 
         return result;
     }
 
-    public void addWinner(boolean isMaxInstance, Car car) {
-        if (isMaxInstance) {
-            winners.add(car.getCarName());
-        }
+    private boolean isMaxInstanceAndAddWinner(int maxInstance, Car car) {
+        boolean isMaxInstance = car.isMaxInstance(maxInstance);
+        addWinner(isMaxInstance, car);
+        return isMaxInstance;
     }
 
-    public List<String> getWinners() {
-        return winners;
+    private void addWinner(boolean isMaxInstance, Car car) {
+        if (isMaxInstance) {
+            winners.add(car.getName());
+        }
     }
 }

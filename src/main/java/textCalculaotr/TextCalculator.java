@@ -46,7 +46,7 @@ public class Calculator {
         return  0;
     }
 
-    public static int excute(String[] inputText) {
+    public static int execute(String[] inputText) {
         int result = parseStringToInt(inputText[0]);
 
         for (int i = 1; i < inputText.length ; i += 2) {
@@ -59,7 +59,7 @@ public class Calculator {
     public static void main(String[] args) {
         String inputText = UserInput.inputText();
         String[] input = splitByBlank(inputText);
-        System.out.println(excute(input));
+        System.out.println(execute(input));
     }
 
 }

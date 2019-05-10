@@ -55,21 +55,21 @@ public class CalculatorTest {
     void 사칙연산_처리_에러() {
         String[] inputText = {"1"};
         Assertions.assertThrows(NullPointerException.class, () -> {
-            cal.excute(inputText);
+            cal.execute(inputText);
         }, "에러");
     }
 
     @Test
     void 사칙연산_처리_결과1() {
         String[] inputText = {"1", "+", "2"};
-        int result = cal.excute(inputText);
+        int result = cal.execute(inputText);
         assertThat(result).isEqualTo(3);
     }
 
     @Test
     void 사칙연산_처리_결과2() {
         String[] inputText = {"1", "+", "2", "*", "3"};
-        int result = cal.excute(inputText);
+        int result = cal.execute(inputText);
         assertThat(result).isEqualTo(9);
     }
 }

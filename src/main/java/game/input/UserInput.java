@@ -13,9 +13,9 @@ public class UserInput {
 
     public static int inputGameCount() {
         try {
-            System.out.println("시도할 회수는 몇회인가요?");
+            System.out.println("시도할 회수는 몇 회인가요?");
             return sc.nextInt();
-        } catch(InputMismatchException e) {
+        } catch (InputMismatchException e) {
             return inputGameCount();
         }
     }
