@@ -16,7 +16,7 @@ public class Winner {
         }
     }
 
-    public List<String> getWinnerNames() {
+    public List<String> getWinner() {
         return winnerNames;
     }
 }
