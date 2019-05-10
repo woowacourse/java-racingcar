@@ -49,15 +49,11 @@ public class CarTest {
         Car checkCar = new Car("abc", 1);
         assertThat(car.moveCar(4)).isEqualTo(checkCar);
     }
-    /*
 
     @Test
-    void addCarToCarsTest() {
-        List<String> names = Arrays.asList("a", "b", "c");
-        List<Car> cars = Arrays.asList(new Car(names.get(0)), new Car(names.get(1)), new Car(names.get(2)));
-        Cars carsTest = new Cars(names);
-
-        assertThat(Car.addCarToCars(names, cars))
+    void getCarStateTest() {
+        String checkString = "abc : ---";
+        Car testCar = new Car("abc", 3);
+        assertThat(testCar.getCarState()).isEqualTo(checkString);
     }
-     */
 }
