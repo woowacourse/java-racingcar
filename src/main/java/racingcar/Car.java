@@ -4,21 +4,15 @@ import java.util.Objects;
 
 public class Car {
     private final String name;
-    private int position;
+    private int position = 0;
 
     static final int NAME_LENGTH_LIMIT = 5;
     static final String NAME_IS_EMPTY
             = "자동차의 이름이 비어 있습니다.";
     static final String NAME_TOO_LONG
             = "자동차의 이름은 5자 이하여야 합니다.";
-    static final String WRONG_POSITION
-            = "잘못된 위치값입니다.";
 
-    public Car(String name) {
-        this(name, 0);
-    }
-
-    public Car(String name, final int position)
+    public Car(String name)
             throws IllegalArgumentException {
         name = name.strip();
         if (name.length() < 1) {
@@ -27,12 +21,8 @@ public class Car {
         if (name.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException(NAME_TOO_LONG);
         }
-        if (position < 0) {
-            throw new IllegalArgumentException(WRONG_POSITION);
-        }
 
         this.name = name;
-        this.position = position;
     }
 
     public String getName() {

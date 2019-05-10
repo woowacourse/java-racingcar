@@ -20,13 +20,9 @@ public class CarTest {
 
     @Test
     void 객체생성() {
-        Car car1 = new Car("abc");
-        assertThat(car1.getName()).isEqualTo("abc");
-        assertThat(car1.getPosition()).isEqualTo(0);
-
-        Car car2 = new Car("xyz", 1);
-        assertThat(car2.getName()).isEqualTo("xyz");
-        assertThat(car2.getPosition()).isEqualTo(1);
+        Car car = new Car("abc");
+        assertThat(car.getName()).isEqualTo("abc");
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
     @Test
