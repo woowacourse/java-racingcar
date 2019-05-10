@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class InputValidator {
     private static final int MAX_NAME_LENGTH = 5;
 
-    public static boolean validateForm(String carNames) {
+    public static boolean validateAll(String carNames) {
         if (carNames.contains(",,")) {
             System.out.println("중복된 쉼표가 있습니다. 다시 입력해주세요!");
             return false;

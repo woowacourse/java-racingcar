@@ -15,7 +15,7 @@ public class InputView {
         boolean result;
         do {
             carNames = scanner.nextLine();
-            result = InputValidator.validateForm(carNames);
+            result = InputValidator.validateAll(carNames);
         } while (!result);
         return Arrays.asList(carNames.split(","));
     }
