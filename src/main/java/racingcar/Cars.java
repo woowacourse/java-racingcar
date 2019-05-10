@@ -5,7 +5,7 @@ import java.util.*;
 public class Cars {
     private List<Car> cars = new ArrayList<>();
 
-    Cars(List<String> carNames){
+    Cars(List<String> carNames) {
         Car.instantiateCar(carNames, cars);
     }
 
@@ -27,7 +27,7 @@ public class Cars {
 
     public int decideMaxPosition() {
         int max = 0;
-        for (int i=0, n=this.cars.size(); i<n; i++) {
+        for (int i = 0, n = this.cars.size(); i < n; i++) {
             max = cars.get(i).findMax(max);
         }
         return max;
@@ -35,7 +35,7 @@ public class Cars {
 
     public List<String> decideWinners(int maxPosition) {
         List<String> winnersName = new ArrayList<>();
-        for(int i=0; i<cars.size(); i++){
+        for (int i = 0; i < cars.size(); i++) {
             cars.get(i).findScoreSameAsMax(maxPosition, winnersName);
         }
         return winnersName;

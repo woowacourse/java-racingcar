@@ -95,7 +95,7 @@ public class Car {
 
     public String getCarState() {
         String carState = this.name + " : ";
-        for(int i=0; i<this.position; i++){
+        for (int i = 0; i < this.position; i++) {
             carState += "-";
         }
         return carState;

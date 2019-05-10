@@ -13,7 +13,7 @@ public class CarsTest {
     Cars testCars;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         carNames = Arrays.asList("a", "b", "c");
         carPositions = Arrays.asList(101, 101, 99);
         testCars = new Cars(carNames, carPositions);
@@ -23,11 +23,13 @@ public class CarsTest {
     void decideMaxPositionTest() {
         assertThat(testCars.decideMaxPosition()).isEqualTo(107);
     }
+
     @Test
     void decideWinnersTest() {
-        List<String> checkList = Arrays.asList("a","b");
+        List<String> checkList = Arrays.asList("a", "b");
         assertThat(testCars.decideWinners(101)).isEqualTo(checkList);
     }
+
     @Test
     void carInstantiationTest() {
         List<String> testNames = Arrays.asList("a", "b", "c");

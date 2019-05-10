@@ -11,8 +11,7 @@ public class CarGameLauncher {
     }
 
     public static void doCarGame() {
-        List<String> carNames = InputView.askAndReceiveCarNames();
-        Cars cars = new Cars(carNames);
+        Cars cars = new Cars(InputView.askAndReceiveCarNames());
         int totalTurns = InputView.askAndReceiveTotalTurns();
         OutputView.printTheProcess(cars, totalTurns);
         Winners winners = new Winners();
