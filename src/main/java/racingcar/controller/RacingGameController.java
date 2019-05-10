@@ -8,11 +8,11 @@ public class RacingGameController {
     private RacingGame racingGame = new RacingGame();
 
     public void createCars() {
-        racingGame.generateCarList(racingGame.makeValidCarNames(InputView.inputCarList()));
+        racingGame.generateCarList(InputView.inputCarList());
     }
 
     public void configureTryCount() {
-        racingGame.makeValidTryCount(InputView.inputTryCount());
+        racingGame.configureTryCount(InputView.inputTryCount());
     }
 
     public void raceAll() {
