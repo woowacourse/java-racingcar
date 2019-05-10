@@ -7,10 +7,10 @@ import racingcar.utils.StringUtils;
 import java.util.List;
 
 public class OutputView {
-    public static void printRounds(int numberOfTrials, Race race) {
+    public static void printRounds(int numOfTrials, Race race) {
         System.out.println("\n실행 결과");
-        for (int i = 0; i < numberOfTrials; i++) {
-            for (int j = 0; j < race.getNumberOfCars(); j++) {
+        for (int i = 0; i < numOfTrials; i++) {
+            for (int j = 0; j < race.getNumOfCars(); j++) {
                 printLane(race.startRound());
             }
             System.out.println();
@@ -22,11 +22,11 @@ public class OutputView {
     }
 
     public static void printWinners(List<Car> winners) {
-        String winnerList = winners.toString();
+        String winnersName = winners.toString();
         System.out.println(
-                winnerList.substring(1, winnerList.length() - 1)
-                + StringUtils.differentiateIGa(winnerList.charAt(winnerList.length() - 2))
-                + " 최종 우승했습니다."
+                winnersName.substring(1, winnersName.length() - 1)
+                        + StringUtils.differentiateIGa(winnersName.charAt(winnersName.length() - 2))
+                        + " 최종 우승했습니다."
         );
     }
 }

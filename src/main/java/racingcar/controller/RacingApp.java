@@ -22,7 +22,7 @@ public class RacingApp {
         try {
             race = new Race(filterTypos(InputView.inputCarNames()));
         } catch (IllegalArgumentException e) {
-            System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+            System.out.println("잘못된 입력입니다.");
             initRace();
         }
     }
@@ -42,14 +42,14 @@ public class RacingApp {
             validateNumOfTrial(numOfTrials);
             return numOfTrials;
         } catch (IllegalArgumentException e) {
-            System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+            System.out.println("잘못된 입력입니다.");
             return getNumOfTrials();
         }
     }
 
-    private static void validateNumOfTrial(int number){
+    private static void validateNumOfTrial(int number) {
         if (number < 1) {
-            throw new IllegalArgumentException("1 이상의 실행횟수 필요");
+            throw new IllegalArgumentException();
         }
     }
 }

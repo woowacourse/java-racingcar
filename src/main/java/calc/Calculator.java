@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Calculator {
-    public static double val;
+    private static double val;
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -17,10 +17,9 @@ public class Calculator {
         } catch (Exception e) {
             System.out.println("잘못된 입력입니다.");
         }
-
     }
 
-    public static void calculateTokens(ArrayList<String> tokens) {
+    private static void calculateTokens(ArrayList<String> tokens) {
         val = .0;
         tokens.add(0, "+");
         calculate(tokens);
@@ -32,7 +31,7 @@ public class Calculator {
     }
 
     private static Operator convertSymbolToEnum(String symbol) {
-        final String conversionTable[] = { "PLUS", "MINUS", "MULTIPLY", "DIVIDE" };
+        final String conversionTable[] = {"PLUS", "MINUS", "MULTIPLY", "DIVIDE"};
         return Operator.valueOf(conversionTable["+-*/".indexOf(symbol)]);
     }
 }

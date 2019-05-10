@@ -9,10 +9,9 @@ import java.util.stream.Collectors;
 public class Race {
     private final MovementStrategy strategy = new RandomMovement();
     private final List<Car> cars = new ArrayList<>();
-    private int cursor = -1;
+    private int cursor = 0;
 
-    public Race(List<String> names){
-        System.out.println(names);
+    public Race(List<String> names) {
         validateNames(names);
         names.forEach(name -> cars.add(new Car(name)));
         Collections.unmodifiableCollection(cars);
@@ -27,24 +26,17 @@ public class Race {
     }
 
     private void validateNames(List<String> names) {
-        if (names.size() < 2) {
-            throw new IllegalArgumentException("2개 이상의 이름 필요");
-        }
-        if (names.size() != new HashSet<>(names).size()) {
-            throw new IllegalArgumentException("중복된 이름 불가");
+        if (names.size() < 2 || names.size() != new HashSet<>(names).size()) {
+            throw new IllegalArgumentException();
         }
     }
 
-    public int getNumberOfCars() {
-        return cars.size();
-    }
-
-    /*
-    자동차 대수를 주기로 순서대로 진행함
-     */
     public Car startRound() {
-        cursor = (cursor + 1) % cars.size();
-        return cars.get(cursor).moveOrStop(strategy);
+        return cars.get(cursor++ % cars.size()).moveOrStop(strategy);
+    }
+
+    public int getNumOfCars() {
+        return cars.size();
     }
 
     public List<Car> getWinners() {
@@ -55,7 +47,7 @@ public class Race {
 
     @Override
     public boolean equals(Object obj) {
-        return ((Race)obj).cars.equals(this.cars);
+        return ((Race) obj).cars.equals(this.cars);
     }
 
     @Override
@@ -63,7 +55,7 @@ public class Race {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((cars == null) ? 0 : cars.hashCode());
-        result = prime * result + cursor;
+        result = prime * result + strategy.hashCode();
         return result;
     }
 }

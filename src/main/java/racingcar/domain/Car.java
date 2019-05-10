@@ -33,7 +33,6 @@ public class Car implements Comparable<Car> {
 
     public String drawTrail() {
         StringBuffer trail = new StringBuffer();
-
         for (int i = 0; i < position; i++) {
             trail.append("-");
         }
@@ -42,7 +41,7 @@ public class Car implements Comparable<Car> {
 
     @Override
     public boolean equals(Object obj) {
-        return ((Car)obj).name.equals(this.name) && ((Car)obj).position == this.position;
+        return ((Car) obj).name.equals(this.name) && ((Car) obj).position == this.position;
     }
 
     @Override
