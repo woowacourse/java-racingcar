@@ -18,11 +18,11 @@ public class OutputView {
     }
 
     private static String outputCarPosition(int position) {
-        String result = "";
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < position; i++) {
-            result += "-";
+            sb.append("-");
         }
-        return result;
+        return sb.toString();
     }
 
     public static void outputWinners(String winners) {
