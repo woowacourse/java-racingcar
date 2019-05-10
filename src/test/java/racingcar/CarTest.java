@@ -1,39 +1,46 @@
 package racingcar;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
-    private Car car;
+    @Test
+    void Car_객체_생성시_예외가_제대로_발생하는지_확인한다() {
+        String userInput1 = "pobi";
+        String userInput2 = "abcdefg";
+        String userInput3 = "        ";
+        String userInput4 = "";
+        String userInput5 = null;
 
-    @BeforeEach
-    void setUp() {
-        car = new Car("pobi");
+        assertThatCode(() -> {new Car(userInput1);}).doesNotThrowAnyException();
+        assertThatThrownBy(() -> {new Car(userInput2);}).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> {new Car(userInput3);}).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> {new Car(userInput4);}).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> {new Car(userInput5);}).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 랜덤숫자가_4이상일_때만_움직인다() {
-        assertThat(car.shouldMove(0)).isFalse();
-        assertThat(car.shouldMove(1)).isFalse();
-        assertThat(car.shouldMove(2)).isFalse();
-        assertThat(car.shouldMove(3)).isFalse();
+    void moveTest() {
+        Car car = new Car("pobi");
 
-        assertThat(car.shouldMove(4)).isTrue();
-        assertThat(car.shouldMove(5)).isTrue();
-        assertThat(car.shouldMove(6)).isTrue();
-        assertThat(car.shouldMove(7)).isTrue();
-        assertThat(car.shouldMove(8)).isTrue();
-        assertThat(car.shouldMove(9)).isTrue();
+        car.move(0);
+        assertThat(car.matchPosition(0)).isEqualTo(true);
+
+        car.move(3);
+        assertThat(car.matchPosition(0)).isEqualTo(true);
+
+        car.move(4);
+        assertThat(car.matchPosition(1)).isEqualTo(true);
     }
 
     @Test
-    void 움직여야_할때_움직인다() {
-        car.move(false);
-        assertThat(car.getPosition()).isEqualTo(0);
+    void toStringTest() {
+        Car car1 = new Car("whale", 0);
+        assertThat(car1.toString()).isEqualTo("whale : ");
 
-        car.move(true);
-        assertThat(car.getPosition()).isEqualTo(1);
+        Car car2 = new Car("cony", 3);
+        assertThat(car2.toString()).isEqualTo("cony : ---");
     }
 }

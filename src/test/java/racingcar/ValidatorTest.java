@@ -15,8 +15,8 @@ public class ValidatorTest {
 
     @Test
     void 자동차_이름_입력시_예외가_제대로_발생하는지_확인한다() {
-        String userInput1 = "pobi,cony,whale"; //예외가 발생하지 않아야 한다
-        String userInput2 = "pobi,  ,whale"; //예외가 발생해야 한다
+        String userInput1 = "pobi,cony,whale"; // 예외가 발생하지 않아야 한다
+        String userInput2 = "pobi,  ,whale"; // 예외가 발생해야 한다
         String userInput3 = "        ";
         String userInput4 = ",,,,";
 

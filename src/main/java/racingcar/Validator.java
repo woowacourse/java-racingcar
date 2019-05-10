@@ -7,10 +7,12 @@ public class Validator {
 
     public static void checkCarNames(String userInput) {
         String[] carNames = userInput.split(",");
+
         if (carNames.length < MIN_LENGTH) {
             System.err.println("자동차 이름을 1~5글자로 입력해주세요.");
             throw new IllegalArgumentException();
         }
+
         for (String carName : carNames) {
             int nameLength = carName.trim().length();
             if (nameLength < MIN_LENGTH || nameLength > MAX_LENGTH) {

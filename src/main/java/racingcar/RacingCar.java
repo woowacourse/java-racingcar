@@ -4,27 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCar {
-    private List<Car> cars = new ArrayList<>();
+    private List<Car> cars;
 
-    public void run() {
-        String userInput = InputView.getUserCarNames();
+    public RacingCar() {
+        cars = new ArrayList<>();
+    }
+
+    public List<Car> process(String userInput, int numOfGame) {
         String[] carNames = makeCarNames(userInput);
         setCars(carNames);
-        int numOfGame = InputView.getNumberOfGame();
-        startGame(numOfGame);
-        
-        int maxPosition = getMaxPosition();
-        List<String> winners = getWinners(maxPosition);
-        OutputView.printWinners(winners);
+        playEntireRound(numOfGame);
+
+        return cars;
     }
 
     private String[] makeCarNames(String userInput) {
-        String[] carNames = userInput.split(",");
-        for (int i = 0; i < carNames.length; i++) {
-            carNames[i] = carNames[i].trim();
-        }
-
-        return carNames;
+        return userInput.split(",");
     }
 
     private void setCars(String[] carNames) {
@@ -33,41 +28,22 @@ public class RacingCar {
         }
     }
 
-    private void startGame(int numOfGame) {
+    private void playEntireRound(int numOfGame) {
         System.out.println("\n실행 결과");
         for (int i = 0; i < numOfGame; i++) {
-            moveCars();
-            System.out.println();
+            playOneRound();
         }
     }
 
-    private void moveCars() {
+    private void playOneRound() {
         for (Car car : cars) {
             car.play();
-            OutputView.printCarStatus(car);
+            printCarStatus(car);
         }
+        System.out.println();
     }
 
-    private int getMaxPosition() {
-        int maxPosition = 0;
-        for (Car car : cars) {
-            maxPosition = Math.max(car.getPosition(), maxPosition);
-        }
-        return maxPosition;
-    }
-
-    private List<String> getWinners(int maxPosition) {
-        List<String> winners = new ArrayList<>();
-        for (Car car : cars) {
-            if (car.isWinner(maxPosition)) {
-                winners.add(car.getName());
-            }
-        }
-        return winners;
-    }
-
-    public static void main(String[] args) {
-        RacingCar racingCar = new RacingCar();
-        racingCar.run();
+    private void printCarStatus(Car car) {
+        System.out.println(car);
     }
 }
