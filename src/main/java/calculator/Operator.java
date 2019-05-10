@@ -1,7 +1,6 @@
 package calculator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.function.IntBinaryOperator;
 
 enum Operator implements IntBinaryOperator {
@@ -25,12 +24,9 @@ enum Operator implements IntBinaryOperator {
     }
 
     public static boolean isOperator(String symbol) {
-        List<String> operatorSet = new ArrayList<>();
-
-        for (Operator operator : values()) {
-            operatorSet.add(operator.symbol);
-        }
-        return operatorSet.contains(symbol);
+        return Arrays.stream(values())
+                .map(operator -> operator.symbol)
+                .anyMatch(collectSymbol -> collectSymbol.equals(symbol));
     }
 
     public static Operator findOperator(String symbol) {

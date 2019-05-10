@@ -9,9 +9,8 @@ public class OutputView {
 
     public static void showHistory(final LeagueHistory leagueHistory) {
         System.out.println("실행 결과");
-        for (TrialHistory trialHistory : leagueHistory.values()) {
-            System.out.println(trialHistory);
-        }
+        leagueHistory.values()
+                .forEach(trialHistory -> System.out.println(trialHistory));
     }
 
     public static void showWinners(final List<String> winners) {
