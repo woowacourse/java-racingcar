@@ -17,23 +17,40 @@ public class InputView {
         String carNames = SCANNER.nextLine().trim();
         String[] carName = carNames.split(",");
 
-        if (overLengthName(carName) || hasBlank(carNames) || hasNotAnotherPlayer(carName)
-                || overLapName(carName) || hasMiddleBlank(carName)) {
+        if (checkCarNameValidate(carNames)) {
             return inputName();
         }
 
         return carName;
     }
 
+    private boolean checkCarNameValidate(String carNames) {
+        String[] carName = carNames.split(",");
+
+        if (overLengthName(carName)) return true;
+        if (hasBlank(carNames)) return true;
+        if (hasNotAnotherPlayer(carName)) return true;
+        if (overLapName(carName)) return true;
+
+        return hasMiddleBlank(carName);
+    }
+
     public int inputNumber() {
         System.out.println(MessageConstants.INPUT_ROUND);
         String inputNumber = SCANNER.nextLine();
 
-        if (hasBlank(inputNumber) || hasCharacter(inputNumber) || hasNegativeNumber(inputNumber)) {
+        if (checkNumberValidate(inputNumber)) {
             return inputNumber();
         }
 
         return Integer.parseInt(inputNumber);
+    }
+
+    private boolean checkNumberValidate(String inputNumber) {
+        if (hasBlank(inputNumber)) return true;
+        if (hasCharacter(inputNumber)) return true;
+
+        return hasNegativeNumber(inputNumber);
     }
 
     private boolean hasBlank(String carNames) {
