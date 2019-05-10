@@ -11,7 +11,7 @@ public class Hangul {
     /*
     앞 글자에 따라 뒤에 붙을 조사 이, 가 구분
     유니코드는 가, 각, 갂, 갃, 간, ..., 순으로 받침 없는 글자 + 받침 있는 글자 27가지가 있다
-    영어나 기호는 마지막 발음을 단순 치환
+    영어는 마지막 발음을 단순 치환
     */
     public static String differentiateIGa(String sentence) {
         char letter = sentence.charAt(sentence.length() - 1);
