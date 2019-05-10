@@ -9,7 +9,7 @@ public class Calculator {
     private final List<String> tokens;
     private double result;
 
-    Calculator(String expression) throws IllegalArgumentException {
+    Calculator(String expression) {
         try {
             tokens = Arrays.asList(expression.split(" ")).stream()
                     .map(x -> x.trim())
@@ -17,14 +17,12 @@ public class Calculator {
                     .collect(Collectors.toList());
             result = Double.parseDouble(tokens.remove(0));
             calculate();
-        } catch (IndexOutOfBoundsException
-                | NoSuchElementException
-                | NumberFormatException e) {
+        } catch (IndexOutOfBoundsException | NoSuchElementException | NumberFormatException e) {
             throw new IllegalArgumentException();
         }
     }
 
-    private boolean calculate() throws NumberFormatException {
+    private boolean calculate() {
         result = Operation.ofSymbol(tokens.remove(0))
                 .apply(result, Double.parseDouble(tokens.remove(0)));
         return tokens.isEmpty() || calculate();

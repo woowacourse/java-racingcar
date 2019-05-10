@@ -23,12 +23,27 @@ public class CalculatorTest {
     }
 
     @Test
-    void 나눗셈테스트() {
+    void 나눗셈테스트A() {
         assertThat(new Calculator("12 /   3").getResult()).isEqualTo(4.0);
     }
 
     @Test
-    void 수식테스트() {
+    void 나눗셈테스트B() {
+        assertThat(new Calculator("11 /   0").getResult()).isNaN();
+    }
+
+    @Test
+    void 나눗셈테스트C() {
+        assertThat(new Calculator("0 /   0").getResult()).isNaN();
+    }
+
+    @Test
+    void 나눗셈테스트D() {
+        assertThat(new Calculator("1 /   0      + 1  ").getResult()).isNaN();
+    }
+
+    @Test
+    void 복합수식테스트() {
         assertThat(new Calculator("1 - 3 * 6 + 6 / 2").getResult()).isEqualTo(-3.0);
     }
 
