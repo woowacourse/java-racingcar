@@ -61,12 +61,16 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    boolean matchPosition(int position) {
+        return this.position.equals(position);
+    }
+
     @Override
     public int compareTo(Car o) {
         return this.position.compareTo(o.position);
     }
 
-    public String positionResult() {
+    String positionResult() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.name);
         sb.append(" : ");
