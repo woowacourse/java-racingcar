@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.view.InputView;
+
 import java.util.*;
 
 public class CarGameLauncher {
@@ -7,10 +9,10 @@ public class CarGameLauncher {
         doCarGame();
     }
 
-    private static void doCarGame() {
-        List<String> listOfCarNames = Car.askCarNames();
-        int totalTurns = Car.askTotalTurns();
-        Cars cars = new Cars(listOfCarNames);
+    public static void doCarGame() {
+        List<String> carNames = InputView.askAndReceiveCarNames();
+        Cars cars = new Cars(carNames);
+        int totalTurns = InputView.askAndReceiveTotalTurns();
         cars.printTheProcess(totalTurns);
         Winners winners = new Winners();
         winners.decideWinners(cars);
