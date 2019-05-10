@@ -10,10 +10,6 @@ public enum Operator {
 
     private BiFunction<Double, Double, Double> func;
 
-    Operator(BiFunction<Double, Double, Double> func) {
-        this.func = func;
-    }
-
     static public Operator getFunction(String symbol) {
         final Operator conversionTable[] = { PLUS, MINUS, MULTIPLY, DIVIDE };
         try {
@@ -21,6 +17,10 @@ public enum Operator {
         } catch (IndexOutOfBoundsException e) {
             throw new IllegalArgumentException();
         }
+    }
+
+    Operator(BiFunction<Double, Double, Double> func) {
+        this.func = func;
     }
 
     public double apply(double lhs, double rhs) {
