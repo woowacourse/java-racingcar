@@ -10,7 +10,7 @@ public class Winner {
         winnerNames = new ArrayList<>();
 
         for (int i = 0; i < cars.size(); ++i) {
-            if (cars.get(i).isMaxPosition(maxDistance)) {
+            if (cars.get(i).matchPosition(maxDistance)) {
                 winnerNames.add(cars.get(i).getName());
             }
         }

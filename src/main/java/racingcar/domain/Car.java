@@ -16,7 +16,7 @@ public class Car {
         }
     }
 
-    public boolean isMaxPosition(int maxDistance) {
+    public boolean matchPosition(int maxDistance) {
         return (position == maxDistance);
     }
 
