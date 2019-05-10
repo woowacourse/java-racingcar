@@ -10,7 +10,20 @@ import view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Heebg
+ * User: heebg
+ * Date: 2019-05-08
+ */
 public class RacingController {
+    public static List<Car> setCarName() {
+        try {
+            return makeCarList(InputView.inputCarNameList());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return setCarName();
+        }
+    }
 
     private static List<Car> makeCarList(List<String> carNameList) throws IllegalArgumentException {
         Util.checkDuplicatedStringList(carNameList);
@@ -20,15 +33,6 @@ public class RacingController {
             carList.add(new Car(carName));
         }
         return carList;
-    }
-
-    public static List<Car> setCarName() {
-        try {
-            return makeCarList(InputView.inputCarNameList());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return setCarName();
-        }
     }
 
     public static int setRoundCount() {

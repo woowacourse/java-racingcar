@@ -1,10 +1,17 @@
 package domain;
 
+import java.util.Objects;
+
+/**
+ * Created by Heebg
+ * User: heebg
+ * Date: 2019-05-08
+ */
 public class Car {
     private final String name;
     private int position = 0;
 
-    public Car(String name) {
+    public Car(final String name) {
         if (Const.MIN_NAME_LEN > name.length() || Const.MAX_NAME_LEN < name.length()) {
             throw new IllegalArgumentException(Const.EX_NAME_LEN);
         }
@@ -31,5 +38,19 @@ public class Car {
 
     public boolean isMaxPosition(int maxPosition) {
         return this.position == maxPosition;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position == car.position &&
+                Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }

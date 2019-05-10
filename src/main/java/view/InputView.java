@@ -6,6 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Created by Heebg
+ * User: heebg
+ * Date: 2019-05-08
+ */
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
 

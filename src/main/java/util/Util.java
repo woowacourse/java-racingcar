@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Created by Heebg
+ * User: heebg
+ * Date: 2019-05-08
+ */
 public class Util {
     public static int getRandomNumber() {
         return new Random().nextInt(Const.RANGE_RAN_NUM);
