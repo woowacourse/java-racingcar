@@ -14,7 +14,7 @@ public class Game {
 
     private final String ROUND_RESULT = "실행 결과";
 
-    public Game(){
+    public Game() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
     }
@@ -31,14 +31,14 @@ public class Game {
         countOfRound = inputView.readCountOfRound();
     }
 
-    void round(){
+    void round() {
         System.out.println(ROUND_RESULT);
-        for (int i = 0 ; i < countOfRound; i++){
+        for (int i = 0; i < countOfRound; i++) {
             outputView.printRound(result.roundResult());
         }
     }
 
-    void endGame(){
+    void endGame() {
         outputView.printGameResult(result.gameResult());
     }
 }

@@ -3,11 +3,16 @@ package racingcargame.model;
 import java.util.Objects;
 
 public class Car {
+
+    private static final int POSITION_DEFAULT = 0;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MOVE_POINT = 4;
+
     private final String name;
     private int position;
 
     public Car(String name) {
-        this(name, 0);
+        this(name, POSITION_DEFAULT);
     }
 
     public Car(String name, int position) {
@@ -17,13 +22,13 @@ public class Car {
         this.position = position;
     }
 
-    private void checkLength(String name){
-        if (name.length() > 5) {
+    private void checkLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void checkBlank(String name){
+    private void checkBlank(String name) {
         if (name.equals("")) {
             throw new IllegalArgumentException();
         }
@@ -38,12 +43,12 @@ public class Car {
     }
 
     public void move(int randomNum) {
-        if (randomNum >= 4) {
+        if (randomNum >= MOVE_POINT) {
             position++;
         }
     }
 
-    public boolean matchPosition(int position){
+    public boolean matchPosition(int position) {
         return this.position == position;
     }
 
