@@ -1,23 +1,11 @@
 package racingcar.view;
 
-import racingcar.dto.Car;
+import racingcar.domain.Car;
+import racingcar.domain.RacingResult;
 
 import java.util.List;
 
 public class OutputView {
-
-    public static void printDuplicatedCarName() {
-        System.out.println("중복된 이름은 안됩니다.\n다시 입력해 주세요.");
-    }
-
-    public static void printUnderNameLength() {
-        System.out.println("글자 수는 1글자 이상이여야 합니다.\n다시 입력해 주세요.");
-    }
-
-    public static void printOverNameLength() {
-        System.out.println("글자 수는 5글자 이내여야 합니다.\n다시 입력해 주세요.");
-    }
-
     public static void printRacingResultTitle() {
         System.out.println("실행 결과");
     }
@@ -38,7 +26,7 @@ public class OutputView {
         System.out.println(stringBuilder.toString());
     }
 
-    public static void printWinner(String result) {
-        System.out.println(result + "가 최종 우승했습니다.");
+    public static void printWinner(RacingResult racingResult) {
+        System.out.println(racingResult.toString() + "가 최종 우승했습니다.");
     }
 }

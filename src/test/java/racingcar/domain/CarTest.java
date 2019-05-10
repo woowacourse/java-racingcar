@@ -1,4 +1,4 @@
-package racingcar.dto;
+package racingcar.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +11,11 @@ public class CarTest {
     @BeforeEach
     void setUp() {
         car = new Car("test");
+    }
+
+    @Test
+    void create(){
+        assertThat(new Car("pobi")).isEqualTo(new Car("pobi"));
     }
 
     @Test
@@ -28,9 +33,6 @@ public class CarTest {
         for (int i = 0; i < 10; i++) {
             int num = car.generateRandomNumber();
             System.out.println(num + " " + car.isPossibleMove(num));
-            /*assertThat(num > 4).isTrue();
-            assertThat(num <= 4).isFalse();*/
-            //assertThat(car.isPossibleMove(num)).isTrue();
         }
     }
 
