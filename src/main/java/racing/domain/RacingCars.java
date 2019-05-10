@@ -5,23 +5,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCars {
-    private final List<Car> carList;
+    private final List<Car> cars;
 
-    public RacingCars(List<Car> carList) {
-        this.carList = carList;
+    public RacingCars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public void race() {
-        carList.forEach(Car::move);
+        cars.forEach(Car::move);
     }
 
     public RaceStatusDto getRaceStatus() {
-        return new RaceStatusDto(carList);
+        return new RaceStatusDto(cars);
     }
 
     public List<String> getWinners() {
-        Car winnerCar = Collections.max(carList);
-        return carList.stream()
+        Car winnerCar = Collections.max(cars);
+        return cars.stream()
                 .filter(car-> car.isMatchDistance(winnerCar))
                 .map(Car::getName)
                 .collect(Collectors.toList());

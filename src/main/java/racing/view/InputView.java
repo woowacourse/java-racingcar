@@ -15,7 +15,7 @@ public class InputView {
             checkIdentifier(carNames);
             return carNames;
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.err.println(e.getMessage());g
             return inputCarNames();
         }
     }
