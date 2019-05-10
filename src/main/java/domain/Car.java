@@ -13,7 +13,7 @@ public class Car {
     }
 
     public Car(String name, int position) {
-        validName(name);
+        validateName(name);
 
         this.name = name;
         this.position = position;
@@ -25,7 +25,7 @@ public class Car {
     }
 
 
-    private void validName(String name) {
+    private void validateName(String name) {
         if ((name.length() > NAME_MAX_LENGTH) || (name.length() < 1)) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하 입니다.");
         }
