@@ -2,9 +2,9 @@ package util;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.MissingFormatArgumentException;
 
 public class StringUtils {
+    private static final int CAR_NAME_MIN = 1;
     private static final int CAR_NAME_MAX = 5;
 
     public static List<String> parseStringByComma(String string) {
@@ -12,7 +12,8 @@ public class StringUtils {
     }
 
     public static boolean isCarNameLength(String string) {
-        return string.length() <= CAR_NAME_MAX;
+        return (CAR_NAME_MIN <= string.length())
+                && (string.length() <= CAR_NAME_MAX);
     }
 
     public static boolean isNumberString(String string) {

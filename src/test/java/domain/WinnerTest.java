@@ -3,7 +3,6 @@ package domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -13,16 +12,10 @@ public class WinnerTest {
 
     @BeforeEach
     void setUp() {
-        Car car1 = new Car("a");
-        Car car2 = new Car("b");
-        Car car3 = new Car("c");
+        Car car1 = new Car("a", 2);
+        Car car2 = new Car("b", 1);
+        Car car3 = new Car("c", 3);
 
-        for (int i = 0; i <2; i++) {
-            car1.judgeMove(4);
-        }
-        for (int i = 0; i <3; i++) {
-            car3.judgeMove(4);
-        }
         winner = new Winner(Arrays.asList(car1, car2, car3));
     }
 

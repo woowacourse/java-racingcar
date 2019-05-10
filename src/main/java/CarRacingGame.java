@@ -11,17 +11,29 @@ import static util.StringUtils.*;
 public class CarRacingGame {
     private static final int BOUND_NUMBER = 10;
 
-    public static List<String> getCarNames() {
+    public static void main(String[] args) {
         String names = InputView.inputCarNames();
+        List<Car> cars = readyCarForRacing(names);
+        int tryNum = getTryNum();
+
+        System.out.println("\n실행 결과");
+        startRacing(cars, tryNum);
+
+        OutputView.printWinner(cars);
+    }
+
+    private static List<Car> readyCarForRacing(String names) {
         List<String> nameList = parseStringByComma(names);
+        List<Car> cars = new ArrayList<>();
 
         for (String name : nameList) {
-            if (!isCarNameLength(name)) {
-                System.out.println("각 자동차의 이름을 5자 이하로 입력해주세요.");
-                return getCarNames();
+            try {
+                cars.add(new Car(name));
+            } catch (IllegalArgumentException e) {
+                readyCarForRacing(InputView.inputCarNames());
             }
         }
-        return nameList;
+        return cars;
     }
 
     private static int getTryNum() {
@@ -45,30 +57,10 @@ public class CarRacingGame {
         }
     }
 
-    private static List<Car> registerCar(List<String> names) {
-        List<Car> cars = new ArrayList<>();
-
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
-        return cars;
-    }
-
     private static void startRacing(List<Car> cars, int tryNum) {
         for (int i = 0; i < tryNum; i ++) {
             tryMove(cars);
             OutputView.printTrace(cars);
         }
-    }
-
-    public static void main(String[] args) {
-        List<String> names = getCarNames();
-        List<Car> cars = registerCar(names);
-        int tryNum = getTryNum();
-
-        System.out.println("\n실행 결과");
-        startRacing(cars, tryNum);
-
-        OutputView.printWinner(cars);
     }
 }
