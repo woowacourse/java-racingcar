@@ -26,13 +26,7 @@ public class Car implements Comparable<Car> {
     }
 
     private String getTrimmedName(String name) {
-        String trimmedName;
-        try {
-            trimmedName = name.trim();
-        } catch (NullPointerException e) {
-            throw new NullPointerException();
-        }
-        return trimmedName;
+        return name.trim();
     }
 
     private void checkBlankName(String trimmedName) {
