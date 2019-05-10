@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 import java.util.function.BiFunction;
 import java.util.stream.Stream;
 
-public enum Operator {
+public enum Operation {
     ADD("+", (lhs, rhs) -> lhs + rhs),
     SUBTRACT("-", (lhs, rhs) -> lhs - rhs),
     MULTIPLY("*", (lhs, rhs) -> lhs * rhs),
@@ -13,14 +13,14 @@ public enum Operator {
     private String symbol;
     private BiFunction<Double, Double, Double> operation;
 
-    static public Operator getOperation(String symbol) throws NoSuchElementException {
-        return Stream.of(Operator.values())
+    static public Operation ofSymbol(String symbol) throws NoSuchElementException {
+        return Stream.of(Operation.values())
                 .filter(x -> x.symbol.equals(symbol))
                 .findFirst()
                 .get();
     }
 
-    Operator(String symbol, BiFunction<Double, Double, Double> operation) {
+    Operation(String symbol, BiFunction<Double, Double, Double> operation) {
         this.symbol = symbol;
         this.operation = operation;
     }

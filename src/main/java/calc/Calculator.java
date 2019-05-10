@@ -25,7 +25,7 @@ public class Calculator {
     }
 
     private boolean calculate() throws NumberFormatException {
-        result = Operator.getOperation(tokens.remove(0))
+        result = Operation.ofSymbol(tokens.remove(0))
                 .apply(result, Double.parseDouble(tokens.remove(0)));
         return tokens.isEmpty() || calculate();
     }
