@@ -1,12 +1,10 @@
 package racingcargame.model;
 
-import racinginterface.ResultInterface;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Result implements ResultInterface {
+public class Result {
     private List<Car> carList = new ArrayList<>();
 
     public Result(String[] names) {
@@ -19,13 +17,15 @@ public class Result implements ResultInterface {
         this.carList = carList;
     }
 
-    @Override
     public List<Car> roundResult() {
-        carList.forEach(Car::move);
+        carList.forEach(car -> car.move(getRandomNo()));
         return carList;
     }
 
-    @Override
+    private int getRandomNo() {
+        return (int) (Math.random() * 10);
+    }
+
     public List<String> gameResult() {
         int maxPosition = maxPosition();
         return carList.stream()

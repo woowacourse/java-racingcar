@@ -1,18 +1,32 @@
 package racingcargame.model;
 
-import racinginterface.CarInterface;
+import java.util.Objects;
 
-public class Car implements CarInterface {
+public class Car {
     private final String name;
     private int position;
 
     public Car(String name) {
-        this.name = name;
+        this(name, 0);
     }
 
     public Car(String name, int position) {
+        checkLength(name);
+        checkBlank(name);
         this.name = name;
         this.position = position;
+    }
+
+    private void checkLength(String name){
+        if (name.length() > 5) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkBlank(String name){
+        if (name.equals("")) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public String getName() {
@@ -23,20 +37,27 @@ public class Car implements CarInterface {
         return position;
     }
 
+    public void move(int randomNum) {
+        if (randomNum >= 4) {
+            position++;
+        }
+    }
+
+    public boolean matchPosition(int position){
+        return this.position == position;
+    }
+
     @Override
-    public void move() {
-        if (getRandomNo() >= 4) {
-            position++;
-        }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position == car.position &&
+                name.equals(car.name);
     }
 
-    public void move(int number) {
-        if (number >= 4) {
-            position++;
-        }
-    }
-
-    private int getRandomNo() {
-        return (int) (Math.random() * 10);
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }
