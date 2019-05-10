@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Validator {
-    public static final int NAME_EMPTY = 0;
-    public static final int NAME_LENGTH_BOUND = 5;
     public static final int TRIAL_MIN = 1;
 
     public static void checkCarNames(List<String> carNames) {
