@@ -12,6 +12,8 @@
 
 package racing.domain;
 
+import java.util.Objects;
+
 import racing.controller.Controller;
 
 /**
@@ -26,50 +28,70 @@ public class Car implements Comparable<Car> {
     private static final String NAME_EXCEPTION_MESSAGE = "양식에 맞는 이름을 입력해주세요 !";
 
     private final String name;
-    private Integer status = 1;
+    private Integer position;
 
     Car(String name) {
-        if (!name.matches("[0-9a-zA-Z]{1,5}")) {
-            throw new IllegalArgumentException(NAME_EXCEPTION_MESSAGE);
-        }
-        this.name = name;
+        this(name, 1);
     }
 
     //Test Fixture 위해 생성자 추가
-    Car(String name, int status) {
+    Car(String name, Integer position) {
+        validName(name);
         this.name = name;
-        this.status = status;
+        this.position = position;
     }
 
-    Integer getStatus() {
-        return status;
+    private void validName(String name) {
+        if (!name.matches("[0-9a-zA-Z]{1,5}")) {
+            throw new IllegalArgumentException(NAME_EXCEPTION_MESSAGE);
+        }
+    }
+
+    Integer getPosition() {
+        return position;
     }
 
     String getName() {
         return name;
     }
 
-    void moveOneTime() {
-        int rand = Controller.generateRandomNumber();
+    void moveOneTime(int rand) {
         if (Controller.move(rand)) {
-            status++;
+            position++;
         }
+    }
+
+    boolean matchPosition(int position) {
+        return this.position.equals(position);
     }
 
     @Override
     public int compareTo(Car o) {
-        return this.status.compareTo(o.status);
+        return this.position.compareTo(o.position);
     }
 
-    @Override
-    public String toString() {
+    public String positionResult() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.name);
         sb.append(" : ");
-        for (int i = 0; i < this.status; i++) {
+        for (int i = 0; i < this.position; i++) {
             sb.append('-');
         }
         sb.append("\n");
         return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Car car = (Car) obj;
+        return position.equals(car.position) &&
+                Objects.equals(name, car.name);
     }
 }

@@ -12,6 +12,7 @@
 
 package racing;
 
+import racing.controller.Controller;
 import racing.view.RacingGame;
 
 /**
@@ -24,6 +25,6 @@ import racing.view.RacingGame;
  */
 public class Main {
     public static void main(String[] args) {
-        new RacingGame().start();
+        Controller.start();
     }
 }

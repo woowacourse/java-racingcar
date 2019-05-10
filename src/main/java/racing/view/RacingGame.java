@@ -31,7 +31,7 @@ public class RacingGame {
 
     private Scanner sc = new Scanner(System.in);
 
-    private void inputCarNames() {
+    public void inputCarNames() {
         System.out.println(INPUT_NAMES_MESSAGE);
         try {
             Controller.makeCarList(sc.nextLine());
@@ -41,7 +41,7 @@ public class RacingGame {
         }
     }
 
-    private void inputTotalTimes() {
+    public void inputTotalTimes() {
         try {
             System.out.println(INPUT_TIMES_MESSAGE);
             Controller.setGamePlayNumber(Integer.parseInt(sc.nextLine()));
@@ -51,20 +51,12 @@ public class RacingGame {
         }
     }
 
-    private void printRacingResult() {
+    public void printRacingResult() {
         System.out.println(PROCESS_RESULT_MESSAGE);
         System.out.println(Controller.makeResultString());
     }
 
-    private void printAllWinners() {
+    public void printAllWinners() {
         System.out.println(Controller.getWinners() + FINAL_WINNER_MESSAGE);
-    }
-
-    public void start() {
-        RacingGame racingGame = new RacingGame();
-        racingGame.inputCarNames();
-        racingGame.inputTotalTimes();
-        racingGame.printRacingResult();
-        racingGame.printAllWinners();
     }
 }

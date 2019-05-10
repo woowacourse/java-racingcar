@@ -14,7 +14,8 @@ package racing.controller;
 
 import java.util.List;
 
-import racing.domain.CarList;
+import racing.domain.CarContainer;
+import racing.view.RacingGame;
 
 /**
  * 게임 실행에 관한 컨트롤러 클래스
@@ -25,37 +26,44 @@ import racing.domain.CarList;
  */
 public class Controller {
     public static final String INVALID_NAME_EXCEPTION_MESSAGE = "이름을 입력해주세요 !";
+    public static final int GO_FORWARD_CRITERIA = 4;
 
-    private static final int GO_FORWARD_CRITERIA = 4;
+    private static CarContainer carContainer = new CarContainer();
 
-    private static CarList carList = new CarList();
-
-    public static void makeCarList(String carNames) {
+    public static CarContainer makeCarList(String carNames) {
         String[] names = carNames.split(",");
+        validNamesEmpty(names);
+        carContainer.addCars(names);
+        return carContainer;
+    }
+
+    private static void validNamesEmpty(String[] names) {
         if (names.length == 0) {
             throw new IllegalArgumentException(INVALID_NAME_EXCEPTION_MESSAGE);
         }
-        carList.addCars(names);
     }
 
     public static void setGamePlayNumber(int number) {
-        carList.setTotalTimes(number);
+        carContainer.setTotalTimes(number);
     }
 
     public static String makeResultString() {
-        return carList.toString();
+        return carContainer.makeGameResult();
     }
 
     public static String getWinners() {
-        List<String> winnerList = carList.getWinnerList();
-        return String.join(", ", winnerList);
-    }
-
-    public static int generateRandomNumber() {
-        return (int) (Math.random() * 10);
+        return String.join(", ", carContainer.searchWinners());
     }
 
     public static boolean move(int randomNum) {
         return randomNum >= GO_FORWARD_CRITERIA;
+    }
+
+    public static void start() {
+        RacingGame racingGame = new RacingGame();
+        racingGame.inputCarNames();
+        racingGame.inputTotalTimes();
+        racingGame.printRacingResult();
+        racingGame.printAllWinners();
     }
 }
