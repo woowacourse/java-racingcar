@@ -13,7 +13,12 @@ public class RacingCarApp {
         List<Car> cars = InputView.createCars();
         int tryNumber = InputView.inputTryNum();
 
-        racingGame.startRacing(cars, tryNumber);
+        OutputView.printStartUI();
+        for (int i = 0; i < tryNumber; i++) {
+            racingGame.tryMove(cars);
+            OutputView.printPosition(cars);
+            System.out.println();
+        }
 
         OutputView.printWinnerName(cars);
     }
