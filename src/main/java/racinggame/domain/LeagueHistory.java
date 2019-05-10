@@ -12,7 +12,7 @@ public class LeagueHistory {
         leagueHistory.put(trial, trialHistory);
     }
 
-    public List<String> findWinners(int lastRound) {
+    public List<String> findWinnersOf(int lastRound) {
         TrialHistory lastTrialHistory = getHistoryOf(lastRound);
 
         return lastTrialHistory.findWinners();

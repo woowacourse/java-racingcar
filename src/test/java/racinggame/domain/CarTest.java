@@ -42,10 +42,10 @@ class CarTest {
         Car car = new Car("test");
 
         /* Then */
-        assertTrue(car.run(4));
-        assertTrue(car.run(9));
-        assertFalse(car.run(0));
-        assertFalse(car.run(3));
+        assertTrue(car.move(4));
+        assertTrue(car.move(9));
+        assertFalse(car.move(0));
+        assertFalse(car.move(3));
     }
 
     @Test

@@ -15,7 +15,7 @@ public class InputView {
         return carNames;
     }
 
-    public static int getTrial() {
+    public static int getTotalTrial() {
         System.out.println("시도할 횟수는 몇회인가요?");
         int trial = scanner.nextInt();
 

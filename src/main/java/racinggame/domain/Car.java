@@ -48,7 +48,7 @@ public class Car {
         }
     }
 
-    public boolean run(int number) {
+    public boolean move(int number) {
         if (number >= THRESHOLD) {
             position += ONE_STEP;
             return true;

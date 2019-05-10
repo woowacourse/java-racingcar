@@ -36,7 +36,7 @@ class LeagueHistoryTest {
         leagueHistory.record(1, new TrialHistory(cars));
 
         /* When */
-        List<String> winners = leagueHistory.findWinners(1);
+        List<String> winners = leagueHistory.findWinnersOf(1);
 
         /* Then */
         assertThat(winners.contains("pobi")).isTrue();
@@ -52,7 +52,7 @@ class LeagueHistoryTest {
         leagueHistory.record(1, new TrialHistory(cars));
 
         /* When */
-        List<String> winners = leagueHistory.findWinners(1);
+        List<String> winners = leagueHistory.findWinnersOf(1);
 
         /* Then */
         assertThat(winners.contains("pobi")).isFalse();
