@@ -56,6 +56,11 @@ class CarTest {
         assertThat(car.isGreaterThanMaxPosition(3)).isFalse();
     }
 
+    @Test
+    void 자동차_포지션_차이() {
+        assertThat(car.getPositionGap(2)).isEqualTo(-2);
+    }
+
     @AfterEach
     void tearDown() {
         car = null;
