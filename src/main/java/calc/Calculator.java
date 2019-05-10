@@ -10,8 +10,8 @@ public class Calculator {
 
     Calculator(String line) {
         tokens = Arrays.asList(line.split(" ")).stream()
-                .filter(x -> !x.equals("") && !x.equals(" "))
                 .map(x -> x.trim())
+                .filter(x -> !x.equals("") && !x.equals(" "))
                 .collect(Collectors.toList());
         tokens.add(0, "+");
         calculate();
