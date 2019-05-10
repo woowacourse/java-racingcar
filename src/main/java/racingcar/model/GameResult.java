@@ -24,12 +24,13 @@ public class GameResult {
 
     private int getMaxDistance(List<Car> cars, int maxDistance) {
         for (Car car : cars) {
-            maxDistance = getMaxDistance(maxDistance, car);
+            maxDistance = getMaxDistance(car, maxDistance);
         }
+
         return maxDistance;
     }
 
-    public int getMaxDistance(int maxDistance, Car car) {
+    public int getMaxDistance(Car car, int maxDistance) {
         return car.comparePosition(maxDistance);
     }
 
