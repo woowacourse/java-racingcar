@@ -27,7 +27,7 @@ public class Winner {
     }
 
     private void determineWinner(List<String> winners, Car car) {
-        if (car.isMaxPosition(getMaxDistance())) {
+        if (car.matchPosition(getMaxDistance())) {
             winners.add(car.getName());
         }
     }

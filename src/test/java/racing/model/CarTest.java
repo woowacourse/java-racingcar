@@ -12,7 +12,7 @@ public class CarTest {
         car.move(3);
         assertThat(car.getPosition()).isEqualTo(0);
     }
-    
+
     @Test
     void create_name() {
         assertThat(new Car("pobi").equals(new Car("pobi"))).isEqualTo(true);
