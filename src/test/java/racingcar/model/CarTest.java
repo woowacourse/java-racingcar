@@ -39,6 +39,13 @@ public class CarTest {
     }
 
     @Test
+    void 이름_특수문자_테스트() {
+//        assertThrows(IllegalArgumentException.class, () ->{
+//            new Car("$$$$$");
+//        });
+    }
+
+    @Test
     void 정지() {
 //        Car car = new Car("pobi");
 //        car.move(3);

@@ -5,11 +5,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 public class Car {
 
-    static final int FOWARD_NUM = 4;
-    static final int MAX_BOUND = 10;
+    private static final int FOWARD_NUM = 4;
+    private static final int MAX_BOUND = 10;
+    private static String namePattern = "^[A-Za-z]$";
 
     private String name;
     private int position = 0;
@@ -68,6 +70,10 @@ public class Car {
         }
 
         if (name.length() > 5) {
+            throw new IllegalArgumentException();
+        }
+
+        if(!Pattern.matches(namePattern, name)){
             throw new IllegalArgumentException();
         }
     }
