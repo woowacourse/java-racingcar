@@ -15,11 +15,10 @@ public class RacingGame {
     public void play(ArrayList<Car> cars, int nTrials) {
         OutputView.printMassage("실행결과");
 
-        for(int trial = 0; trial < nTrials; trial++) {
-            racingTrial.runTrial(cars);
+        for (int trial = 0; trial < nTrials; trial++) {
+            OutputView.printCars(racingTrial.runTrial(cars));
         }
 
-        ArrayList<Car> winners = maxFinder.findAllMax(cars, Car.compareByPosition);
-        OutputView.printWinners(winners);
+        OutputView.printWinners(maxFinder.findAllMax(cars, Car.compareByPosition));
     }
 }
