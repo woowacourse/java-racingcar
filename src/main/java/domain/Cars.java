@@ -12,16 +12,7 @@ public class Cars {
         this.carNames = carNames;
     }
 
-    public List<Car> setCarsOnRace() {
-        try {
-            return createCars();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return setCarsOnRace();
-        }
-    }
-
-    private List<Car> createCars() {
+    public List<Car> createCars() {
         Util.checkCarNameZeroSize(carNames);
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
