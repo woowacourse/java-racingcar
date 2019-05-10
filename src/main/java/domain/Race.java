@@ -38,19 +38,6 @@ public class Race {
         return sb.toString();
     }
 
-    public List<Car> getRaceCars() {
-        return carsOnRace;
-    }
-
-    public String getRaceWinners() {
-        List<String> winnersList = new ArrayList<>();
-
-        carsOnRace.stream().filter(x -> x.matchPosition(maxPosition))
-                .forEach(x -> winnersList.add(x.getName()));
-
-        return String.join(",", winnersList);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
