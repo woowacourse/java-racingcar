@@ -11,7 +11,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class InputViewTest {
 
     @Test
-    void 문자열을받아서자동차이름리스트() {
+    void 문자열을받아서_자동차이름리스트_반환() {
         List<Car> resultList = new ArrayList<>();
         resultList.add(new Car("pobi"));
         resultList.add(new Car("crong"));
