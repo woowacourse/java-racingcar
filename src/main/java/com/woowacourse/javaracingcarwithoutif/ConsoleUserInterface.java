@@ -47,6 +47,7 @@ public class ConsoleUserInterface implements UserInterface {
 
     @Override
     public void printResult(List<CarDto> carList) {
+        // 정말 이렇게 하는 게 맞는걸까...?(2)
         Optional<Boolean> optFlag = Optional.of(isResultTitlePrinted);
         Supplier<Boolean> flagSwitch = () -> optFlag
             .filter(i -> !i)

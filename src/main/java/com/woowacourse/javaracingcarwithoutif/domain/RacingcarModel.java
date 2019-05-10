@@ -37,6 +37,7 @@ public class RacingcarModel {
 
     // ref. https://stackoverflow.com/a/52348419/5720753
     private int calculateMovingPosition(int generatedNumber) {
+        // 정말 이렇게 하는게 맞는걸까...?
         Optional<Integer> optResult = Optional.of(generatedNumber);
         Predicate<Integer> conditionToForward = i -> i >= MOVE_BOUND;
         Supplier<Integer> positionToMoveSupplier = () -> optResult
