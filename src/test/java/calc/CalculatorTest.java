@@ -29,17 +29,23 @@ public class CalculatorTest {
 
     @Test
     void 나눗셈테스트B() {
-        assertThat(new Calculator("11 /   0").getResult()).isNaN();
+        assertThrows(Exception.class, () -> {
+            new Calculator("11 /   0");
+        });
     }
 
     @Test
     void 나눗셈테스트C() {
-        assertThat(new Calculator("0 /   0").getResult()).isNaN();
+        assertThrows(Exception.class, () -> {
+            new Calculator("0        /   0");
+        });
     }
 
     @Test
     void 나눗셈테스트D() {
-        assertThat(new Calculator("1 /   0      + 1  ").getResult()).isNaN();
+        assertThrows(Exception.class, () -> {
+            new Calculator("1 /  0 + 1");
+        });
     }
 
     @Test

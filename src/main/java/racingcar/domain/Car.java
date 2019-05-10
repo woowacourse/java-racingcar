@@ -6,7 +6,7 @@ public class Car implements Comparable<Car> {
     private int position;
 
     public Car(String name, int position) {
-        if (name.length() < 0 || MAX_NAME_LENGTH < name.length() || position < 0) {
+        if (name.length() < 1 || MAX_NAME_LENGTH < name.length() || position < 0) {
             throw new IllegalArgumentException();
         }
         this.name = name;
