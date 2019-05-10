@@ -6,7 +6,7 @@ import racingcar.view.OutputView;
 
 public class RacingApp {
     public static void main(String[] args) {
-        Race race = new Race(InputView.inputCarNames());
+        Race race = InputView.inputCarNames();
         OutputView.printRounds(InputView.inputNumberOfTrial(), race);
         OutputView.printWinners(race.getWinners());
     }

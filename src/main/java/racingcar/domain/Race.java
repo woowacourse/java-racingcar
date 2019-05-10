@@ -8,16 +8,28 @@ import java.util.stream.Collectors;
 public class Race {
     private final MovementStrategy strategy = new RandomMovement();
     private final List<Car> cars = new ArrayList<>();
-    private int cursor = 0;
+    private int cursor = -1;
 
     public Race(List<String> names) {
-        names.forEach(name -> cars.add(new Car(name)));
+        names.stream()
+                .distinct()
+                .collect(Collectors.toList())
+                .forEach(name -> cars.add(new Car(name)));
         Collections.unmodifiableCollection(cars);
+        if (cars.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public Race(List<Car> cars, boolean foobar) { //타입 겹침 회피용
-        cars.forEach(car -> this.cars.add(car));
+        cars.stream()
+                .distinct()
+                .collect(Collectors.toList())
+                .forEach(car -> this.cars.add(car));
         Collections.unmodifiableCollection(cars);
+        if (this.cars.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public int getNumberOfCars() {
@@ -33,7 +45,8 @@ public class Race {
 
     public List<Car> getWinners() {
         Collections.sort(cars);
-        Car winner = cars.get(0);
-        return cars.stream().filter(x -> x.isAtSamePositionWith(winner)).collect(Collectors.toList());
+        return cars.stream()
+                .filter(x -> x.isAtSamePositionWith(cars.get(0)))
+                .collect(Collectors.toList());
     }
 }

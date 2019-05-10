@@ -3,11 +3,26 @@ package racingcar.domain;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CarTest {
     @Test
-    void moveOrStopTest() {
-        assertThat(new Car("TOAST", 6).move(new ForceMove()).isAtSamePositionWith(new Car("TEST", 7))).isTrue();
+    void initTestA() {
+        assertThrows(Exception.class, () -> {
+            new Car("", 3);
+        });
+    }
+
+    @Test
+    void initTestB() {
+        assertThrows(Exception.class, () -> {
+            new Car("asfdsgs", 6);
+        });
+    }
+
+    @Test
+    void movementTest() {
+        assertThat(new Car("TOAST", 4).move(new ForceMove()).isAtSamePositionWith(new Car("TEST", 5))).isTrue();
     }
 
     @Test
@@ -21,8 +36,8 @@ class CarTest {
     }
 
     @Test
-    void toStringTest() {
-        assertThat(new Car("TOAST").toString()).isEqualTo("TOAST");
+    void trailDrawingTest() {
+        assertThat(new Car("TOAST", 7).drawTrail()).isEqualTo("-------");
     }
 }
 

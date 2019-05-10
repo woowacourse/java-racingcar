@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.view.Validation;
-
 public class Car implements Comparable<Car> {
     private final String name;
     private int position;
@@ -11,11 +9,11 @@ public class Car implements Comparable<Car> {
     }
 
     public Car(String name, int position) {
-        this.name = name;
-        this.position = position;
-        if (!Validation.isAValidName(name) || position < 0) {
+        if (name.length() < 0 || 5 < name.length() || position < 0) {
             throw new IllegalArgumentException();
         }
+        this.name = name;
+        this.position = position;
     }
 
     public Car move(MovementStrategy cond) {
@@ -33,18 +31,23 @@ public class Car implements Comparable<Car> {
         return trail.toString();
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
-
     public boolean isAtSamePositionWith(Car rhs) {
         return position == rhs.position;
     }
 
     @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
     public int compareTo(Car rhs) {
+        if (position == rhs.position) {
+            return name.compareTo(rhs.name);
+        }
         return rhs.position - position;
+
+
     }
 
     @Override
