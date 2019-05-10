@@ -28,17 +28,6 @@ public class InputRegistration {
         }
     }
 
-    /* Car 클래스로 이동 예정
-    static boolean checkInvalidNameLength(String[] names) {
-        for (int i = 0; i < names.length; i++) {
-            if (names[i].length() >= Car.NAME_LENGTH_MAX_LIMIT) {
-                return true;
-            }
-        }
-        return false;
-    }
-    */
-
     private static List<Car> convertToCars(String[] names) throws Exception {
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < names.length; i++) {

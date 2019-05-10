@@ -8,7 +8,7 @@ public class Car {
     private int position = 0;
 
     public Car(final String name) throws Exception {
-        if (checkNull(name))
+        if (checkNull(name) || checkInvalidNameLength(name))
             throw new Exception();
         this.name = name;
     }
@@ -42,5 +42,9 @@ public class Car {
 
     static boolean checkNull(Object name) {
         return name == null;
+    }
+
+    static boolean checkInvalidNameLength(String name) {
+        return name.length() < NAME_LENGTH_MIN_LIMIT || name.length() >= NAME_LENGTH_MAX_LIMIT;
     }
 }

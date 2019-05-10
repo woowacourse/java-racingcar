@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static racing.game.Car.checkInvalidNameLength;
 import static racing.game.Car.checkNull;
 
 public class CarTest {
@@ -33,11 +34,28 @@ public class CarTest {
         assertThrows(Exception.class, () -> new Car(name));
     }
 
-    /* 이동 예정
-        @Test
-    void 길이제한을초과하는이름이있는지확인() {
-        String string = "pobipobi,pobi,pobi";
-        assertThat(InputRegistration.checkInvalidNameLength(InputRegistration.splitNames(string))).isTrue();
+    @Test
+    void 문자열이길이제한을초과하는지확인() {
+        String name = "pobipobi";
+        assertThat(checkInvalidNameLength(name)).isTrue();
     }
-     */
+
+    @Test
+    void 문자열이빈입력인지확인() {
+        String name = "";
+        assertThat(checkInvalidNameLength(name)).isTrue();
+    }
+
+    @Test
+    void 이름으로제한값보다긴값을입력했을때객체생성시오류확인() {
+        String name = "pobipobi";
+        assertThrows(Exception.class, () -> new Car(name));
+    }
+
+    @Test
+    void 이름으로빈값을입력했을때객체생성시오류확인() {
+        String name = "";
+        assertThrows(Exception.class, () -> new Car(name));
+    }
+
 }
