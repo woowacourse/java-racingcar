@@ -12,8 +12,6 @@
 
 package racing.controller;
 
-import java.util.List;
-
 import racing.domain.CarContainer;
 import racing.view.RacingGame;
 
@@ -25,8 +23,8 @@ import racing.view.RacingGame;
  * @version 1.0.0
  */
 public class Controller {
-    public static final String INVALID_NAME_EXCEPTION_MESSAGE = "이름을 입력해주세요 !";
-    public static final int GO_FORWARD_CRITERIA = 4;
+    private static final String INVALID_NAME_EXCEPTION_MESSAGE = "이름을 입력해주세요 !";
+    private static final int GO_FORWARD_CRITERIA = 4;
 
     private static CarContainer carContainer = new CarContainer();
 
