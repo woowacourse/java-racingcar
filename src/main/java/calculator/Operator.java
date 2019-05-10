@@ -5,7 +5,7 @@ import java.util.function.IntBinaryOperator;
 
 enum Operator implements IntBinaryOperator {
 
-    PLUS("+", (left, right) -> left + right),
+    PLUS("+", Integer::sum),
     MINUS("-", (left, right) -> left - right),
     MULTIPLY("*", (left, right) -> left * right),
     DIVIDE("/", (left, right) -> left / right);
