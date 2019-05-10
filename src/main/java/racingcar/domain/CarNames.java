@@ -13,7 +13,7 @@ public class CarNames {
         String[] names = name.split(",");
         List<String> carNames = Arrays.asList(names);
 
-        minimalCarNameException(names);
+        minimumCarNameException(names);
 
         duplicateNameException(carNames);
 
@@ -36,7 +36,7 @@ public class CarNames {
         }
     }
 
-    protected void minimalCarNameException(String[] names) throws IllegalArgumentException {
+    protected void minimumCarNameException(String[] names) throws IllegalArgumentException {
         if (names.length < MIN_CAR_LENGTH) {
             throw new IllegalArgumentException("글자 수는 1글자 이상이여야 합니다.\n다시 입력해 주세요.");
         }
