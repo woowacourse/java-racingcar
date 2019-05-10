@@ -18,7 +18,7 @@ public class Cars {
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
             Car car = new Car(carName);
-            if(cars.contains(car)){
+            if (cars.contains(car)) {
                 throw new IllegalArgumentException("EX_NAME_DUPLE");
             }
             cars.add(car);

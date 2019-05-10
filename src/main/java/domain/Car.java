@@ -58,7 +58,7 @@ public class Car {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(name);
         stringBuilder.append(" : ");
-        for(int i=0; i<position; i++){
+        for (int i = 0; i < position; i++) {
             stringBuilder.append("-");
         }
         stringBuilder.append("\n");
