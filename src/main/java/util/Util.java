@@ -11,7 +11,7 @@ public class Util {
         return new Random().nextInt(Const.RANGE_RAN_NUM);
     }
 
-    public static void checkDuplicatedStringList(List<String> strList) {
+    public static void checkDuplicatedCarNames(List<String> strList) {
         List<String> tempList = new ArrayList<>();
         for (String str : strList) {
             if (tempList.contains(str)) {
@@ -21,7 +21,7 @@ public class Util {
         }
     }
 
-    public static void checkStringListSize(List<String> stringList) {
+    public static void checkCarNameZeroSize(List<String> stringList) {
         if (stringList.size() == 0) {
             throw new IllegalArgumentException(Const.EX_NAME_LEN);
         }
