@@ -6,13 +6,18 @@ import java.util.Objects;
 
 public class Car {
     private final String name;
-    private int position = 0;
+    private int position;
 
     public Car(final String name) {
+        this(name, 0);
+    }
+
+    public Car(final String name, int position){
         if (StringUtils.isBlank(name) || name.length() > Const.MAX_NAME_LEN) {
             throw new IllegalArgumentException(Const.EX_NAME_LEN);
         }
         this.name = name;
+        this.position = position;
     }
 
     //TODO 나중에 없앨 것
@@ -37,6 +42,10 @@ public class Car {
 
     public boolean matchPosition(int position) {
         return this.position == position;
+    }
+
+    public int getPositionGap(int position) {
+        return this.position - position;
     }
 
     @Override
