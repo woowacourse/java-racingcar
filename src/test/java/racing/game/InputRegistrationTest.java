@@ -2,6 +2,9 @@ package racing.game;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -17,8 +20,15 @@ public class InputRegistrationTest {
 
     @Test
     void 입력에서중복된이름이있는지확인() {
-        String string = "pobi,pobi";
-        assertThat(InputRegistration.checkRepetition(InputRegistration.splitNames(string))).isTrue();
+        String name = "pobi";
+        try {
+            List<Car> cars = new ArrayList<>();
+            Car car = new Car(name);
+            cars.add(car);
+            assertThat(InputRegistration.checkRepetition(name, cars)).isTrue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

@@ -47,4 +47,8 @@ public class Car {
     static boolean checkInvalidNameLength(String name) {
         return name.length() < NAME_LENGTH_MIN_LIMIT || name.length() >= NAME_LENGTH_MAX_LIMIT;
     }
+
+    boolean matchCarName(String name) {
+        return this.name == name;
+    }
 }

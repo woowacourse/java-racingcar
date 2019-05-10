@@ -10,7 +10,6 @@ public class InputRegistration {
 
     public static List<Car> getCars(String input) throws Exception {
         String[] names = splitNames(input);
-        checkValidity(names);
         return convertToCars(names);
     }
 
@@ -22,28 +21,26 @@ public class InputRegistration {
         return roundNumber;
     }
 
-    private static void checkValidity(String[] names) throws Exception {
-        if (checkRepetition(names)) {
-            throw new Exception();
+    static boolean checkRepetition(String name, List<Car> cars) throws Exception {
+        for (Car car : cars) {
+            if (car.matchCarName(name))
+                return true;
         }
+        return false;
     }
 
     private static List<Car> convertToCars(String[] names) throws Exception {
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < names.length; i++) {
-            cars.add(new Car(names[i]));
+            checkRepetition(names[i], cars);
+            Car car = new Car(names[i].trim());
+            cars.add(car);
         }
         return cars;
     }
 
     static String[] splitNames(String names) {
-        return names.replaceAll(" ", "").split(",");
+        return names.split(",");
     }
-
-    static boolean checkRepetition(String[] names) {
-        HashSet<String> nameSet = new HashSet<>(Arrays.asList(names));
-        return names.length != nameSet.size();
-    }
-
 
 }

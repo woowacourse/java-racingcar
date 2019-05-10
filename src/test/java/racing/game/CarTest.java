@@ -58,4 +58,14 @@ public class CarTest {
         assertThrows(Exception.class, () -> new Car(name));
     }
 
+    @Test
+    void Car객체의이름과같은문자열인지확인() {
+        String name = "pobi";
+        try {
+            assertThat(new Car(name).matchCarName(name)).isTrue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
