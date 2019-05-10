@@ -5,34 +5,39 @@ import java.util.List;
 
 public class GameResult {
 
-    private int maxDistance = 0;
+    public List<String> racingResult(List<Car> cars) {
+        List<String> winners = new ArrayList<>();
+        int maxDistance = 0;
 
-    public List<String> racingResult(List<Car> carList){
-        List<String> winnerList = new ArrayList<>();
+        maxDistance = getMaxDistance(cars, maxDistance);
+        winners = getWinners(cars, winners, maxDistance);
 
-        for(Car car : carList){
-            maxDistance = getMaxDistance(maxDistance, car);
-        }
-        for(Car car : carList) {
-            winnerList = checkMaxPosition(car, winnerList, maxDistance);
-        }
-
-        return winnerList;
+        return winners;
     }
 
-    public int getMaxDistance(int maxDistance, Car car){
-        if(car.getPosition() > maxDistance){
-            maxDistance = car.getPosition();
+    private List<String> getWinners(List<Car> cars, List<String> winners, int maxDistance) {
+        for (Car car : cars) {
+            winners = checkMaxPosition(car, winners, maxDistance);
+        }
+        return winners;
+    }
+
+    private int getMaxDistance(List<Car> cars, int maxDistance) {
+        for (Car car : cars) {
+            maxDistance = getMaxDistance(maxDistance, car);
         }
         return maxDistance;
     }
 
-    public List<String> checkMaxPosition(Car car, List<String> winnerList, int maxDistance){
-        if(car.getPosition() == maxDistance){
-            winnerList.add(car.getName());
-            return winnerList;
+    public int getMaxDistance(int maxDistance, Car car) {
+        return car.comparePosition(maxDistance);
+    }
+
+    public List<String> checkMaxPosition(Car car, List<String> winners, int maxDistance) {
+        if (!car.matchPosition(maxDistance).equals("")) {
+            winners.add(car.matchPosition(maxDistance));
         }
 
-        return winnerList;
+        return winners;
     }
 }

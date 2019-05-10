@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
+    private static final String pattern = "^-[0-9]$";
 
     public String[] inputName() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -15,6 +16,7 @@ public class InputView {
                 || overLapName(inputName) || hasMiddleBlank(inputName)) {
             return inputName();
         }
+
         return inputName;
     }
 
@@ -22,7 +24,7 @@ public class InputView {
         System.out.println("시도할 회수는 몇회인가요?");
         String inputNumber = scanner.nextLine();
 
-        if(hasBlankNumber(inputNumber) || hasCharacter(inputNumber) || hasNegativeNumber(inputNumber)){
+        if (hasBlankNumber(inputNumber) || hasCharacter(inputNumber) || hasNegativeNumber(inputNumber)) {
             return inputNumber();
         }
 
@@ -64,37 +66,44 @@ public class InputView {
         return false;
     }
 
-    private boolean hasMiddleBlank(String[] inputName){
+    private boolean hasMiddleBlank(String[] inputName) {
         if (Arrays.asList(inputName).contains("")) {
             System.err.println("에러 : 중간에 공백이름이 있습니다.");
             return true;
         }
+
         return false;
     }
 
-    private boolean hasBlankNumber(String inputNumber){
-        if(inputNumber.trim().equals("")){
+    private boolean hasBlankNumber(String inputNumber) {
+        if (inputNumber.trim().equals("")) {
             System.err.println("에러 : 아무것도 입력되지 않았습니다.");
             return true;
         }
+
         return false;
     }
 
-    private boolean hasNegativeNumber(String inputNumber){
-        if(Integer.parseInt(inputNumber) <= 0){
+    private boolean hasNegativeNumber(String inputNumber) {
+        if (Integer.parseInt(inputNumber) <= 0) {
             System.err.println("에러 : 양의정수가 아닌 수가 입력되었습니다.");
             return true;
         }
+
         return false;
     }
 
-    private boolean hasCharacter(String inputNumber){
-        String pattern = "^[0-9]$";
+    private boolean hasCharacter(String inputNumber) {
+        char[] inputChar = inputNumber.toCharArray();
 
-        if(!Pattern.matches(pattern,inputNumber)){
+        if (inputChar[0] == '-') {
+            return false;
+        }
+        if (!Pattern.matches(pattern, inputNumber)) {
             System.err.println("에러 : 문자가 입력되었습니다.");
             return true;
         }
+
         return false;
     }
 
