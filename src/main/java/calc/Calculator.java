@@ -1,21 +1,24 @@
 package calc;
 
-import java.util.List;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Calculator {
-    private final List<String> tokens;
+    private final Queue<String> tokens;
     private double result;
 
     Calculator(String expression) {
         try {
-            tokens = Stream.of(expression.split(" "))
+            tokens = new LinkedList<>(
+                    Stream.of(expression.split(" "))
                     .map(x -> x.trim())
                     .filter(x -> !x.equals("") && !x.equals(" "))
-                    .collect(Collectors.toList());
-            result = Double.parseDouble(tokens.remove(0));
+                    .collect(Collectors.toList())
+            );
+            result = Double.parseDouble(tokens.poll());
             calculate();
         } catch (IndexOutOfBoundsException | NoSuchElementException | NumberFormatException e) {
             throw new IllegalArgumentException();
@@ -23,8 +26,8 @@ public class Calculator {
     }
 
     private boolean calculate() {
-        result = Operation.ofSymbol(tokens.remove(0))
-                .apply(result, Double.parseDouble(tokens.remove(0)));
+        result = Operation.ofSymbol(tokens.poll())
+                .apply(result, Double.parseDouble(tokens.poll()));
         return tokens.isEmpty() || calculate();
     }
 
