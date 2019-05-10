@@ -19,12 +19,8 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    int getPosition() {
-        return position;
-    }
-
-    void setPosition(int position) {
-        this.position = position;
+    void move() {
+        this.position++;
     }
 
     @Override
