@@ -16,7 +16,7 @@ public class Race {
     public void moveAllCarOneTime() {
         for (Car car : raceCars) {
             car.increasePositionOrNot(Util.getRandomNumber());
-            if (car.checkGreaterThanMaxPos(maxPosition)) {
+            if (car.isGreaterThanMaxPosition(maxPosition)) {
                 ++this.maxPosition;
             }
         }
@@ -29,7 +29,7 @@ public class Race {
     public String getRaceWinners() {
         List<String> winnersList = new ArrayList<>();
 
-        raceCars.stream().filter(x -> x.isMaxPosition(maxPosition))
+        raceCars.stream().filter(x -> x.matchPosition(maxPosition))
                 .forEach(x -> winnersList.add(x.getName()));
 
         return String.join(",", winnersList);
