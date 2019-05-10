@@ -8,12 +8,7 @@ public class CarFactory {
 
         ArrayList<Car> cars  = new ArrayList<>();
         for(String name : names) {
-            try {
-                cars.add(new Car(name));
-            } catch (IllegalArgumentException e) {
-                throw e;
-            }
-
+            cars.add(new Car(name));
         }
         return cars;
     }

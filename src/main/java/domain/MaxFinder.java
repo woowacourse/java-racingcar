@@ -19,6 +19,8 @@ public class MaxFinder {
     public static <T> ArrayList<T> findAllMax(ArrayList<T> values, Comparator<T> comp) {
         T maxVal = Collections.max(values, comp);
 
-        return new ArrayList<>(values.stream().filter((T now) -> comp.compare(now, maxVal) == 0).collect(Collectors.toList()));
+        return new ArrayList<>(values.stream()
+                .filter((T now) -> comp.compare(now, maxVal) == 0)
+                .collect(Collectors.toList()));
     }
 }
