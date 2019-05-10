@@ -14,7 +14,17 @@ import java.util.Random;
 public class CarRacingApplication {
     private static final int RANDOM_BOUND = 10;
 
-    public List<Car> initializeCars(List<String> carNames) {
+    public List<Car> getCars() {
+        try {
+            List<String> carNames = InputView.getCarNames();
+            return initializeCars(carNames);
+        } catch (Exception e) {
+            OutputView.showErrorMessage(e.getMessage());
+            return getCars();
+        }
+    }
+
+    private List<Car> initializeCars(final List<String> carNames) {
         List<Car> cars = new ArrayList<>();
 
         for (String name : carNames) {
@@ -23,7 +33,16 @@ public class CarRacingApplication {
         return cars;
     }
 
-    public void startLeague(LeagueHistory leagueHistory, List<Car> cars, int totalTrial) {
+    public int getTotalTrial() {
+        try {
+            return InputView.getTrial();
+        } catch (Exception e) {
+            OutputView.showErrorMessage(e.getMessage());
+            return getTotalTrial();
+        }
+    }
+
+    public void startLeague(LeagueHistory leagueHistory, List<Car> cars, final int totalTrial) {
         for (int trial = 1; trial <= totalTrial; trial++) {
             randomMove(cars);
             leagueHistory.record(trial, new TrialHistory(cars));
@@ -42,30 +61,11 @@ public class CarRacingApplication {
         return random.nextInt(RANDOM_BOUND);
     }
 
-    public List<Car> getCars() {
-        try {
-            List<String> carNames = InputView.getCarNames();
-            return initializeCars(carNames);
-        } catch (Exception e) {
-            OutputView.showErrorMessage(e.getMessage());
-            return getCars();
-        }
-    }
-
-    public int getTotalTrial() {
-        try {
-            return InputView.getTrial();
-        } catch (Exception e) {
-            OutputView.showErrorMessage(e.getMessage());
-            return getTotalTrial();
-        }
-    }
-
     public static void main(String[] args) {
         CarRacingApplication application = new CarRacingApplication();
-        List<Car> cars = application.getCars();
-        int totalTrial = application.getTotalTrial();
-        LeagueHistory leagueHistory = new LeagueHistory();
+        final List<Car> cars = application.getCars();
+        final int totalTrial = application.getTotalTrial();
+        final LeagueHistory leagueHistory = new LeagueHistory();
 
         application.startLeague(leagueHistory, cars, totalTrial);
         OutputView.showHistory(leagueHistory);

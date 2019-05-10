@@ -1,13 +1,15 @@
 package racinggame.domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashMap;
 import java.util.Objects;
 
 public class Car {
-    private static final int ONE_STEP = 1;
-    private static final int THRESHOLD = 4;
-    private static final int DEFAULT_POSITION = 0;
     private static final int NAME_LENGTH_BOUND = 5;
+    private static final int DEFAULT_POSITION = 0;
+    private static final int MOVE_THRESHOLD = 4;
+    private static final int ONE_STEP = 1;
 
     private final String name;
     private int position;
@@ -16,25 +18,16 @@ public class Car {
         this(name, DEFAULT_POSITION);
     }
 
-    public Car(String name, int position) {
-        isNull(name);
-
-        name = name.trim();
+    public Car(String name, final int position) {
         validCarName(name);
         validCarPosition(position);
 
-        this.name = name;
+        this.name = name.trim();
         this.position = position;
     }
 
-    private void isNull(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException("null값은 입력할 수 없습니다.");
-        }
-    }
-
-    private void validCarName(String name) {
-        if (name.isEmpty()) {
+    private void validCarName(final String name) {
+        if (StringUtils.isBlank(name)) {
             throw new IllegalArgumentException("공백은 입력할 수 없습니다");
         }
         if (name.length() > NAME_LENGTH_BOUND) {
@@ -42,14 +35,14 @@ public class Car {
         }
     }
 
-    private void validCarPosition(int position) {
+    private void validCarPosition(final int position) {
         if (position < DEFAULT_POSITION) {
-            throw new IllegalArgumentException("postion은 0보다 커야 합니다.");
+            throw new IllegalArgumentException("position은 0보다 커야 합니다.");
         }
     }
 
-    public boolean run(int number) {
-        if (number >= THRESHOLD) {
+    public boolean run(final int number) {
+        if (number >= MOVE_THRESHOLD) {
             position += ONE_STEP;
             return true;
         }

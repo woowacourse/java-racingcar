@@ -51,7 +51,7 @@ class CarTest {
     @Test
     void 차가_자기_히스토리를_제대로_만드는지_테스트() {
         /* Given */
-        Car car = new Car("test");
+        final Car car = new Car("test");
         HashMap<String, Integer> carHistory;
 
         /* When */

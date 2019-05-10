@@ -8,17 +8,17 @@ import java.util.List;
 public class LeagueHistory {
     private HashMap<Integer, TrialHistory> leagueHistory = new LinkedHashMap<>();
 
-    public void record(int trial, TrialHistory trialHistory) {
+    public void record(final int trial, final TrialHistory trialHistory) {
         leagueHistory.put(trial, trialHistory);
     }
 
-    public List<String> findWinners(int lastRound) {
+    public List<String> findWinners(final int lastRound) {
         TrialHistory lastTrialHistory = getHistoryOf(lastRound);
 
         return lastTrialHistory.findWinners();
     }
 
-    public TrialHistory getHistoryOf(int trial) {
+    public TrialHistory getHistoryOf(final int trial) {
         return leagueHistory.get(trial);
     }
 

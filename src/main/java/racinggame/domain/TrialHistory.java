@@ -8,7 +8,7 @@ import java.util.List;
 public class TrialHistory {
     private HashMap<String, Integer> trialHistory = new LinkedHashMap<>();
 
-    public TrialHistory(List<Car> cars) {
+    public TrialHistory(final List<Car> cars) {
         for (Car car : cars) {
             trialHistory.putAll(car.makeCarHistory());
         }
@@ -16,7 +16,7 @@ public class TrialHistory {
 
     public List<String> findWinners() {
         List<String> winners = new ArrayList<>();
-        int maxCarPosition = getMaxCarPosition();
+        final int maxCarPosition = getMaxCarPosition();
 
         for (String carName : trialHistory.keySet()) {
             if (trialHistory.get(carName) == maxCarPosition) {

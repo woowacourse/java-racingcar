@@ -19,9 +19,9 @@ class LeagueHistoryTest {
     @Test
     void 기록을_제대로_하는지_테스트() {
         /* Given */
-        List<Car> cars = Arrays.asList(new Car("pobi"),
+        final List<Car> cars = Arrays.asList(new Car("pobi"),
                 new Car("crong"), new Car("gogo"));
-        TrialHistory trialHistory = new TrialHistory(cars);
+        final TrialHistory trialHistory = new TrialHistory(cars);
 
         /* When */
         leagueHistory.record(1, trialHistory);
@@ -31,12 +31,12 @@ class LeagueHistoryTest {
     @Test
     void 우승자를_여러명_선출하는지_테스트() {
         /* Given */
-        List<Car> cars = Arrays.asList(new Car("pobi"),
+        final List<Car> cars = Arrays.asList(new Car("pobi"),
                 new Car("crong"), new Car("gogo"));
         leagueHistory.record(1, new TrialHistory(cars));
 
         /* When */
-        List<String> winners = leagueHistory.findWinners(1);
+        final List<String> winners = leagueHistory.findWinners(1);
 
         /* Then */
         assertThat(winners.contains("pobi")).isTrue();
@@ -47,12 +47,12 @@ class LeagueHistoryTest {
     @Test
     void 자동차가_움직인_뒤_제대로_우승자가_나오는지_테스트() {
         /* Given */
-        List<Car> cars = Arrays.asList(new Car("pobi",2),
+        final List<Car> cars = Arrays.asList(new Car("pobi",2),
                 new Car("crong",1), new Car("gogo",3));
         leagueHistory.record(1, new TrialHistory(cars));
 
         /* When */
-        List<String> winners = leagueHistory.findWinners(1);
+        final List<String> winners = leagueHistory.findWinners(1);
 
         /* Then */
         assertThat(winners.contains("pobi")).isFalse();
