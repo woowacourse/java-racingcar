@@ -13,10 +13,11 @@ class CarFactoryTest {
     @Test
     void newCars_순서에따라_올바른_이름으로_생성했는지_검사() {
         // Arrange
-        String[] names = {"포비", "제이슨", "씨유"};
+        String str = "포비,제이슨,씨유";
+        String[] names = str.split(",");
 
         // Act
-        ArrayList<Car> actuals = factory.newCars(names);
+        ArrayList<Car> actuals = factory.newCars(str);
 
         // Assert
         for (int i = 0; i < names.length && i < actuals.size(); i++) {
@@ -32,10 +33,11 @@ class CarFactoryTest {
     @Test
     void newCars_N개의올바른이름_N개차생성() {
         // Arrange
-        String[] names = {"포비", "제이슨", "씨유"};
+        String str = "포비,제이슨,씨유";
+        String[] names = str.split(",");
 
         // Act
-        ArrayList<Car> actuals = factory.newCars(names);
+        ArrayList<Car> actuals = factory.newCars(str);
 
         // Assert
         assertEquals(names.length, actuals.size());

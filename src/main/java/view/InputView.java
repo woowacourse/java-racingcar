@@ -9,7 +9,7 @@ public class InputView {
         return sc.nextInt();
     }
 
-    public static String[] readNames() {
-        return sc.nextLine().split(",");
+    public static String readString() {
+        return sc.nextLine();
     }
 }

@@ -3,10 +3,17 @@ package domain;
 import java.util.ArrayList;
 
 public class CarFactory {
-    public ArrayList<Car> newCars(String[] names) {
+    public ArrayList<Car> newCars(String str) {
+        String [] names = str.split(",");
+
         ArrayList<Car> cars  = new ArrayList<>();
         for(String name : names) {
-            cars.add(new Car(name));
+            try {
+                cars.add(new Car(name));
+            } catch (IllegalArgumentException e) {
+                throw e;
+            }
+
         }
         return cars;
     }
