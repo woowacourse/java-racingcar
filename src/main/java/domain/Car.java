@@ -15,10 +15,12 @@ public class Car {
         this.name = name;
     }
 
+    //TODO 나중에 없앨 것
     public String getName() {
         return this.name;
     }
 
+    //TODO 나중에 없앨 것
     public int getPosition() {
         return this.position;
     }
