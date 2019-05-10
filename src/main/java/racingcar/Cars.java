@@ -13,19 +13,16 @@ public class Cars {
         Car.instantiateCar(carNames, cars, positions);
     }
 
-    public void printTheProcess(int totalTurns) {
-        System.out.println("실행 결과");
-        for (int currentTurn = 0; currentTurn<totalTurns; currentTurn++) {
-            printMovement();
-            System.out.println();
-        }
+    public int getSize() {
+        return cars.size();
     }
 
-    public void printMovement() {
-        for (int i=0, n=cars.size(); i<n; i++) {
-            cars.get(i).moveCar();
-            cars.get(i).printPosition();
-        }
+    public String getCarState(int index) {
+        return cars.get(index).getCarState();
+    }
+
+    public void updateCarMovement(int index) {
+        cars.get(index).moveCar();
     }
 
     public int decideMaxPosition() {

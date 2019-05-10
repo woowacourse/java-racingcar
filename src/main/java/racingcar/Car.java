@@ -79,14 +79,6 @@ public class Car {
         return (int) (Math.random() * 10);
     }
 
-    public void printPosition() {
-        System.out.print(this.name + " : ");
-        for (int i = 0; i < this.position; i++) {
-            System.out.print("-");
-        }
-        System.out.println();
-    }
-
     public int findMax(int max) {
         if (position > max) {
             max = position;
@@ -98,6 +90,14 @@ public class Car {
         if (maxPosition == this.position) {
             winners.add(this.name);
         }
+    }
+
+    public String getCarState() {
+        String carState = this.name + " : ";
+        for(int i=0; i<this.position; i++){
+            carState += "-";
+        }
+        return carState;
     }
 
     @Override

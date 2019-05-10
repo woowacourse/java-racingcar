@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.*;
 
@@ -13,9 +14,9 @@ public class CarGameLauncher {
         List<String> carNames = InputView.askAndReceiveCarNames();
         Cars cars = new Cars(carNames);
         int totalTurns = InputView.askAndReceiveTotalTurns();
-        cars.printTheProcess(totalTurns);
+        OutputView.printTheProcess(cars, totalTurns);
         Winners winners = new Winners();
         winners.decideWinners(cars);
-        winners.printWinners();
+        OutputView.printWinners(winners);
     }
 }
