@@ -69,7 +69,9 @@ public class InputView {
     }
 
     private boolean hasMiddleBlank(String[] inputName) {
-        if (Arrays.asList(inputName).contains("")) {
+        long emptyNameCount = Arrays.stream(inputName).map(c -> c.replace(" ", "")).filter(String::isEmpty).count();
+
+        if (emptyNameCount > 0) {
             System.err.println("에러 : 중간에 공백이름이 있습니다.");
             return true;
         }

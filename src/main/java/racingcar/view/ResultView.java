@@ -14,7 +14,15 @@ public class ResultView {
         System.out.println();
     }
 
-    public String printHyphen(Car car) {
+    public String printWinner(List<String> winners) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.join(",", winners));
+        stringBuilder.append("가 최종 우승 했습니다.");
+
+        return stringBuilder.toString();
+    }
+
+    private String printHyphen(Car car) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(car.getName());
         stringBuilder.append(" : ");
@@ -22,14 +30,6 @@ public class ResultView {
         for (int k = 0; k < car.getPosition(); k++) {
             stringBuilder.append("-");
         }
-
-        return stringBuilder.toString();
-    }
-
-    public String printWinner(List<String> winners) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.join(",", winners));
-        stringBuilder.append("가 최종 우승 했습니다.");
 
         return stringBuilder.toString();
     }
