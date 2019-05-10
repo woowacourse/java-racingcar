@@ -32,13 +32,24 @@
     + maxPosition에 있는 Car 출력
 
 [TEST목록]
-- 자동차 이름이 올바르게 입력됐는지 확인(영문자,길이 제한, 중복)
-- 시도할 횟수의 유효성 검사 (1 이상의 정수만 가능하도록)
-- 자동차 리스트에 자동차의 추가가 잘 되었는지 확인
-- 자동차의 이동이 가능할 때 Position의 증가 확인 (이동 불가시 Position 변동 없음 확인)
-- 4이상의 값이 입력됐을 때(true일 때) position++가 됐는지 확인
-- CarList생성 후 특정 Car를 move(true)하여 maxPosition이  의도한바와 맞는지 확인
-- 승리한 자동차 목록이 맞는지 확인
+- Car class
+    + 자동차 이름 Blank와 Null 검사
+    + 자동차 이름 Alphabet 검사
+    + 자동차 이름 Length 검사
+    + 올바른 자동차 이름 생성 검사
+    + 자동차 정지
+    + 자동차 이동
+    + 자신의 Position이 maxPosition이 맞을 경우
+    + 자신의 Position이 maxPosition이 아닐 경우
+    + 승리한 차가 List에 추가가 되는지 검사
+- WinningCars class
+    + 우승한 차의 이름들이 저장되는지 확인
+    + 우승하지 않은 차들의 이름들이 저장되지 않는지 확인
+- CarList class
+   + 자동차 이름 중복 확인
+   + 올바른 CarList 생성 확인
+- Random class
+   + 랜덤수가 0부터 9까지인지 검사
 
 
 # java-racingcar
