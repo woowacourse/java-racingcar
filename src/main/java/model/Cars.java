@@ -35,4 +35,17 @@ public class Cars {
             throw new IllegalArgumentException("중복되는 자동차 이름이 존재합니다.");
         }
     }
+
+    List<Car> getCars() {
+        return cars;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Car car : cars) {
+            sb.append(car.toString());
+        }
+        return sb.toString();
+    }
 }
