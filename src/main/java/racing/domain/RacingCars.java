@@ -22,7 +22,7 @@ public class RacingCars {
     public List<String> getWinners() {
         Car winnerCar = Collections.max(carList);
         return carList.stream()
-                .filter(car-> car.isMaxDistance(winnerCar))
+                .filter(car-> car.isMatchDistance(winnerCar))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }

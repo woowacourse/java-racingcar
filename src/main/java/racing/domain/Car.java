@@ -12,6 +12,7 @@ public class Car implements Comparable<Car> {
     private int distance;
 
 
+    //TODO 변경 (생성자, 유효성 검사, name 파라미 final)
     public Car(String name) {
         this.name = checkName(name.trim());
         distance = 1;
@@ -46,6 +47,8 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
+    // TODO 수정
+    // ui가 바뀌더라도 재사용 해야하는데 웹으로 바뀌면 무용지물
     public String getStatus() {
         StringBuilder sb = new StringBuilder();
         sb.append(name);
@@ -57,8 +60,8 @@ public class Car implements Comparable<Car> {
         return sb.toString();
     }
 
-    public boolean isMaxDistance(Car winnerCar) {
-        return this.distance == winnerCar.distance;
+    public boolean isMatchDistance(Car car) {
+        return this.distance == car.distance;
     }
 
     public String getName() {
