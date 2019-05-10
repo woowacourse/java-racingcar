@@ -1,9 +1,6 @@
 package view;
 
-import domain.Car;
 import domain.Const;
-
-import java.util.List;
 
 public class OutputView {
     public static void outputGameResultTile() {
