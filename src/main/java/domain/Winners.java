@@ -13,8 +13,8 @@ public class Winners {
     public int getMaxPosition() {
         int maxPosition = 0;
 
-        for(Car car : carsFinishedRace) {
-            if(car.isGreaterThanMaxPosition(maxPosition)){
+        for (Car car : carsFinishedRace) {
+            if (car.isGreaterThanMaxPosition(maxPosition)) {
                 maxPosition += car.getPositionGap(maxPosition);
             }
         }
@@ -22,11 +22,11 @@ public class Winners {
     }
 
     public String getRaceWinners(int maxPosition) {
-        List<String> winnersList = new ArrayList<>();
+        List<String> winners = new ArrayList<>();
 
         carsFinishedRace.stream().filter(x -> x.matchPosition(maxPosition))
-                .forEach(x -> winnersList.add(x.getName()));
+                .forEach(x -> winners.add(x.getName()));
 
-        return String.join(",", winnersList);
+        return String.join(",", winners);
     }
 }

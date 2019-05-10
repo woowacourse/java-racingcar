@@ -12,7 +12,7 @@ public class Car {
         this(name, 0);
     }
 
-    public Car(final String name, int position){
+    public Car(final String name, int position) {
         if (StringUtils.isBlank(name) || name.length() > Const.MAX_NAME_LEN) {
             throw new IllegalArgumentException(Const.EX_NAME_LEN);
         }
@@ -20,14 +20,8 @@ public class Car {
         this.position = position;
     }
 
-    //TODO 나중에 없앨 것
     public String getName() {
         return this.name;
-    }
-
-    //TODO 나중에 없앨 것
-    public int getPosition() {
-        return this.position;
     }
 
     public void increasePositionOrNot(int randomNumber) {

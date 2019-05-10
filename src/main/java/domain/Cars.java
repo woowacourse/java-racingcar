@@ -19,7 +19,7 @@ public class Cars {
         for (String carName : carNames) {
             Car car = new Car(carName);
             if (cars.contains(car)) {
-                throw new IllegalArgumentException("EX_NAME_DUPLE");
+                throw new IllegalArgumentException(Const.EX_NAME_DUPLE);
             }
             cars.add(car);
         }

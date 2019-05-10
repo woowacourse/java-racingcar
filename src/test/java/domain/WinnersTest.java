@@ -1,5 +1,6 @@
 package domain;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,5 +32,11 @@ class WinnersTest {
     @Test
     void 우승자_이름_구하기() {
         assertThat(winners.getRaceWinners(winners.getMaxPosition())).isEqualTo("crong");
+    }
+
+    @AfterEach
+    void tearDown() {
+        cars = null;
+        winners = null;
     }
 }

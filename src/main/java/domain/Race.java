@@ -10,7 +10,6 @@ public class Race {
     private List<Car> carsOnRace;
     private int roundCount;
     private StringBuilder stringBuilder;
-    private int maxPosition = Const.ZERO;
 
     public Race(List<Car> carsOnRace, int roundCount) {
         this.carsOnRace = carsOnRace;
@@ -31,9 +30,6 @@ public class Race {
         for (Car car : carsOnRace) {
             car.increasePositionOrNot(Util.getRandomNumber());
             sb.append(car.toString());
-            if (car.isGreaterThanMaxPosition(maxPosition)) {
-                ++this.maxPosition;
-            }
         }
         return sb.toString();
     }
@@ -44,13 +40,12 @@ public class Race {
         if (o == null || getClass() != o.getClass()) return false;
         Race race = (Race) o;
         return roundCount == race.roundCount &&
-                maxPosition == race.maxPosition &&
                 Objects.equals(carsOnRace, race.carsOnRace);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(carsOnRace, roundCount, maxPosition);
+        return Objects.hash(carsOnRace, roundCount);
     }
 
     @Override

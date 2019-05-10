@@ -9,7 +9,6 @@ public class Const {
     public static final String EX_NAME_DUPLE = "중복된 이름은 사용할 수 없습니다.";
     public static final String EX_ROUND_COUNT = "1 이상의 숫자만 입력해주세요";
 
-    public static final int MIN_NAME_LEN = 1;
     public static final int MAX_NAME_LEN = 5;
     public static final int GO_RAN_NUM = 4;
     public static final int RANGE_RAN_NUM = 10;

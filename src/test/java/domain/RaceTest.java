@@ -1,5 +1,6 @@
 package domain;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,5 +28,10 @@ class RaceTest {
     void 레이스_시되_회수만큼_수행() {
         race.moveAllCarsByRoundCount();
         System.out.println(race.toString());
+    }
+
+    @AfterEach
+    void tearDown() {
+        race = null;
     }
 }
