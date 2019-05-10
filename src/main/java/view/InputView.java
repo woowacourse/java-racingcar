@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static List<String> inputCarNameList() {
+    public static List<String> inputCarNames() {
         System.out.println(Const.INPUT_CAR_NAME);
         return Arrays.asList(SCANNER.nextLine().split(","));
     }
