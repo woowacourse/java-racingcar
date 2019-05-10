@@ -11,12 +11,14 @@ public class Main {
         Validator validator;
         boolean result;
         String value;
+
         do {
             System.out.println("계산식을 입력해주세요.");
             value = scanner.nextLine();
             validator = new Validator(value);
             result = validator.validateAll();
         } while (!result);
+
         Calculator calculator = new Calculator(value.split(" "));
         System.out.println(calculator.calculate());
     }

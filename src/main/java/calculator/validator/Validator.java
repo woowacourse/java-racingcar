@@ -13,51 +13,51 @@ public class Validator {
 
     public boolean validateAll() {
         if (!validateLength()) {
-            System.out.println("validateLength! 다시 입력해주세요!");
+            System.out.println("계산식을 잘못 입력하였습니다. 다시 입력해주세요!");
             return false;
         }
         if (!validateForm()) {
-            System.out.println("validateForm! 다시 입력해주세요!");
+            System.out.println("숫자와 연산자 외의 다른 문자를 입력하였습니다! 다시 입력해주세요!");
             return false;
         }
         if (!dividedZero()) {
-            System.out.println("dividedZero! 다시 입력해주세요!");
+            System.out.println("0으로 나눌 수 없습니다. 다시 입력해주세요!");
             return false;
         }
         if(!validateOrderOfNumbers() || !validateOrderOfOperator()) {
-            System.out.println("validateOrderOfNumbers! 다시 입력해주세요!");
+            System.out.println("계산식의 순서가 올바르지 않습니다. 다시 입력해주세요!");
             return false;
         }
         return true;
     }
 
-    boolean validateLength() {
+    private boolean validateLength() {
         return (values.length < 3) ? false : true;
     }
 
-    boolean validateForm() {
+    private boolean validateForm() {
         return !(Arrays.stream(values).anyMatch(x -> !isNumeric(x) && !(x.matches("[+|\\-|*|/]"))));
     }
 
-    boolean dividedZero() {
+    private boolean dividedZero() {
         return !(value.contains("/ 0"));
     }
 
-    boolean validateOrderOfNumbers() {
+    private boolean validateOrderOfNumbers() {
         int wrongCount = 0;
         for (int i = 0; i < values.length; i += 2)
             wrongCount += (isNumeric(values[i])) ? 0 : 1;
         return (wrongCount > 0) ? false : true;
     }
 
-    boolean validateOrderOfOperator() {
+    private boolean validateOrderOfOperator() {
         int wrongCount = 0;
         for (int i = 1; i < values.length; i += 2)
             wrongCount += (values[i].matches("[+|\\-|*|/]")) ? 0 : 1;
         return (wrongCount > 0) ? false : true;
     }
 
-    boolean isNumeric(String input) {
+    private boolean isNumeric(String input) {
         try {
             Double.parseDouble(input);
             return true;

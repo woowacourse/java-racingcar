@@ -32,19 +32,19 @@ public class Calculator {
         throw new IllegalArgumentException("잘못된 계산식입니다.");
     }
 
-    double add(double a, double b) {
+    private double add(double a, double b) {
         return a + b;
     }
 
-    double subtract(double a, double b) {
+    private double subtract(double a, double b) {
         return a - b;
     }
 
-    double multiply(double a, double b) {
+    private double multiply(double a, double b) {
         return a * b;
     }
 
-    double divide(double a, double b) {
+    private double divide(double a, double b) {
         return a / b;
     }
 }
