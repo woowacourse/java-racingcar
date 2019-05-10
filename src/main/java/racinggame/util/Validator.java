@@ -8,15 +8,7 @@ public class Validator {
     public static final int TRIAL_MIN = 1;
 
     public static void checkCarNames(List<String> carNames) {
-        for (String carName : carNames) {
-            if (carName.length() == NAME_EMPTY) {
-                throw new IllegalArgumentException("공백은 입력할 수 없습니다");
-            }
-            if (carName.length() > NAME_LENGTH_BOUND) {
-                throw new IllegalArgumentException("이름 길이 제한은 5자 이하입니다");
-            }
-        }
-        if (checkNameDuplication(carNames)) {
+       if (checkNameDuplication(carNames)) {
             throw new IllegalArgumentException("중복되는 이름은 입력할 수 없습니다.");
         }
     }

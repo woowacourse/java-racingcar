@@ -1,6 +1,7 @@
 package racinggame.domain;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Car {
     private static final int ONE_STEP = 1;
@@ -16,11 +17,20 @@ public class Car {
     }
 
     public Car(String name, int position) {
+        isNull(name);
+
+        name = name.trim();
         validCarName(name);
         validCarPosition(position);
 
         this.name = name;
         this.position = position;
+    }
+
+    private void isNull(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("null값은 입력할 수 없습니다.");
+        }
     }
 
     private void validCarName(String name) {
@@ -51,5 +61,19 @@ public class Car {
 
         carHistory.put(name, position);
         return carHistory;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position == car.position &&
+                Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }
