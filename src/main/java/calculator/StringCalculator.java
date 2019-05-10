@@ -5,7 +5,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StringCalculator {
-    List<String> getSplit(String inputString) {
+
+    private Operator operation;
+
+    int calculateAll(String inputString) {
+        int result = 0;
+        List<String> calculationFormula = getSplit(inputString);
+
+        for (String numberOrOperator : calculationFormula) {
+            result = getResult(result, numberOrOperator);
+        }
+        return result;
+    }
+
+    private List<String> getSplit(String inputString) {
         List<String> row = Arrays.stream(inputString.split(" ")).collect(Collectors.toList());
 
         if (row.size() == 0) {
@@ -14,25 +27,16 @@ public class StringCalculator {
         return row;
     }
 
-    int calculateAll(String inputString) {
-        int result = 0;
-        Operator operation = null;
-        List<String> calculationFormula = getSplit(inputString);
-
-        for (String numberOrOperator : calculationFormula) {
-
-            if (Operator.isOperator(numberOrOperator)) {
-                operation = Operator.valueof(numberOrOperator);
-                continue;
-            }
-
-            if (operation == null) {
-                result += Integer.valueOf(numberOrOperator);
-                continue;
-            }
-
-            result = operation.applyAsInt(result, Integer.valueOf(numberOrOperator));
+    private int getResult(int result, String numberOrOperator) {
+        if (Operator.isOperator(numberOrOperator)) {
+            operation = Operator.findOperator(numberOrOperator);
+            return result;
         }
-        return result;
+
+        if (operation == null) {
+            return result + Integer.valueOf(numberOrOperator);
+        }
+
+        return operation.applyAsInt(result, Integer.valueOf(numberOrOperator));
     }
 }
