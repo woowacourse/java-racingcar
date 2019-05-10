@@ -1,94 +1,89 @@
 package racingcar.view;
 
+import racingcar.constant.MessageConstants;
+
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class InputView {
-
-    private static final int MINIMUM_PLAYER = 1;
-    private static final int NAME_LENGTH = 5;
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final String pattern = "^[0-9]$";
+    private final int MINIMUM_PLAYER = 1;
+    private final int NAME_LENGTH = 5;
+    private final Scanner SCANNER = new Scanner(System.in);
+    private final String PATTERN = "^[0-9]$";
 
     public String[] inputName() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String[] inputName = scanner.nextLine().trim().split(",");
+        System.out.println(MessageConstants.INPUT_CARNAME);
 
-        if (overLengthName(inputName) || hasBlank(inputName) || hasNotAnotherPlayer(inputName)
-                || overLapName(inputName) || hasMiddleBlank(inputName)) {
+        String carNames = SCANNER.nextLine().trim();
+        String[] carName = carNames.split(",");
+
+        if (overLengthName(carName) || hasBlank(carNames) || hasNotAnotherPlayer(carName)
+                || overLapName(carName) || hasMiddleBlank(carName)) {
             return inputName();
         }
 
-        return inputName;
+        return carName;
     }
 
     public int inputNumber() {
-        System.out.println("시도할 회수는 몇회인가요?");
-        String inputNumber = scanner.nextLine();
+        System.out.println(MessageConstants.INPUT_ROUND);
+        String inputNumber = SCANNER.nextLine();
 
-        if (hasBlankNumber(inputNumber) || hasCharacter(inputNumber) || hasNegativeNumber(inputNumber)) {
+        if (hasBlank(inputNumber) || hasCharacter(inputNumber) || hasNegativeNumber(inputNumber)) {
             return inputNumber();
         }
 
         return Integer.parseInt(inputNumber);
     }
 
-    private boolean hasBlank(String[] inputName) {
-        if (inputName.length == MINIMUM_PLAYER && inputName[0].trim().equals("")) {
-            System.err.println("에러 : 아무것도 입력 안되었습니다.");
+    private boolean hasBlank(String carNames) {
+        if (carNames.isEmpty()) {
+            System.err.println(MessageConstants.ERROR_EMPTY);
             return true;
         }
         return false;
     }
 
-    private boolean overLengthName(String[] inputName) {
-        if (Arrays.stream(inputName).anyMatch(name -> name.length() >= NAME_LENGTH)) {
-            System.err.println("에러 : 5글자 이하로만 써주세요.");
-            return true;
-        }
-
-        return false;
-    }
-
-    private boolean hasNotAnotherPlayer(String[] inputName) {
-        if (inputName.length == MINIMUM_PLAYER) {
-            System.err.println("에러 : 플레이어를 2명이상 입력해주세요.");
-            return true;
-        }
-        return false;
-    }
-
-    private boolean overLapName(String[] inputName) {
-        Set<String> compareName = new HashSet<>(Arrays.asList(inputName));
-
-        if (inputName.length != compareName.size()) {
-            System.err.println("에러 : 중복된 이름이 있습니다.");
-            return true;
-        }
-        return false;
-    }
-
-    private boolean hasMiddleBlank(String[] inputName) {
-        if (Arrays.asList(inputName).contains("")) {
-            System.err.println("에러 : 중간에 공백이름이 있습니다.");
+    private boolean overLengthName(String[] carName) {
+        if (Arrays.stream(carName).anyMatch(name -> name.length() >= NAME_LENGTH)) {
+            System.err.println(MessageConstants.ERROR_OVERLENGTH);
             return true;
         }
 
         return false;
     }
 
-    private boolean hasBlankNumber(String inputNumber) {
-        if (inputNumber.trim().equals("")) {
-            System.err.println("에러 : 아무것도 입력되지 않았습니다.");
+    private boolean hasNotAnotherPlayer(String[] carName) {
+        if (carName.length == MINIMUM_PLAYER) {
+            System.err.println(MessageConstants.ERROR_PLAYER_NUMBER);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean overLapName(String[] carName) {
+        Set<String> compareName = new HashSet<>(Arrays.asList(carName));
+
+        if (carName.length != compareName.size()) {
+            System.err.println(MessageConstants.ERROR_DUPLICATE_NAME);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean hasMiddleBlank(String[] carName) {
+        if (Arrays.asList(carName).contains("")) {
+            System.err.println(MessageConstants.ERROR_CONTAIN_EMPTY);
             return true;
         }
 
         return false;
     }
+
 
     private boolean hasNegativeNumber(String inputNumber) {
         if (Integer.parseInt(inputNumber) <= 0) {
-            System.err.println("에러 : 양의정수가 아닌 수가 입력되었습니다.");
+            System.err.println(MessageConstants.ERROR_MINUS_NUMBER);
             return true;
         }
 
@@ -101,8 +96,8 @@ public class InputView {
         if (inputChar[0] == '-') {
             return false;
         }
-        if (!Pattern.matches(pattern, inputNumber)) {
-            System.err.println("에러 : 문자가 입력되었습니다.");
+        if (!Pattern.matches(PATTERN, inputNumber)) {
+            System.err.println(MessageConstants.ERROR_INPUT_CHAR);
             return true;
         }
 

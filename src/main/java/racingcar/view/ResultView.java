@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import racingcar.constant.MessageConstants;
 import racingcar.model.Car;
 
 import java.util.List;
@@ -8,30 +9,32 @@ public class ResultView {
 
     public void printResult(List<Car> cars) {
         for (Car car : cars) {
-            System.out.println(printHyphen(car));
+            printHyphen(car);
         }
 
         System.out.println();
     }
 
-    public String printHyphen(Car car) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(car.getName());
-        stringBuilder.append(" : ");
+    private void printHyphen(Car car) {
+        String hyphenString = String.format(MessageConstants.RESULT_PRINT_HYPHEN_FORMAT,
+                car.getName(), getHyphen(car.getPosition()));
 
-        for (int k = 0; k < car.getPosition(); k++) {
+        System.out.println(hyphenString);
+    }
+
+    private String getHyphen(int position) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < position; i++) {
             stringBuilder.append("-");
         }
 
         return stringBuilder.toString();
     }
 
-    public String printWinner(List<String> winners) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.join(",", winners));
-        stringBuilder.append("가 최종 우승 했습니다.");
-
-        return stringBuilder.toString();
+    public void printWinner(List<String> winners) {
+        String winnerResult = String.join(",", winners);
+        System.out.println(String.format(MessageConstants.RESULT_PRINT_WINNER_FORMAT, winnerResult));
     }
 
 }
