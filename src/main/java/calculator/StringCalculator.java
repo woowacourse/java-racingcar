@@ -6,9 +6,10 @@ import java.util.stream.Collectors;
 
 public class StringCalculator {
     List<String> getSplit(String inputString) {
-        List<String> row = Arrays.stream(inputString.split(" ")).collect(Collectors.toList());
+        List<String> row = Arrays.stream(inputString.split(" "))
+                .collect(Collectors.toList());
 
-        if (row.size() == 0) {
+        if (row.isEmpty()) {
             throw new IllegalArgumentException("데이터가 잘못되었습니다!");
         }
         return row;
