@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RaceResultTest {
+public class RaceRefereeTest {
     @Test
     void 우승자찾기테스트() {
         List<Car> cars = new ArrayList<>();
@@ -15,12 +15,10 @@ public class RaceResultTest {
         cars.add(new Car("crong", 2));
         cars.add(new Car("honux", 5));
 
-        RaceResult result = new RaceResult(cars);
-        Car winner = result.findWinner();
+        RaceReferee result = new RaceReferee(cars);
+        List<Car> winners = result.judgeWinners();
 
-        assertThat(winner.isSameRank(cars.get(0))).isEqualTo(true);
-        assertThat(winner.isSameRank(cars.get(1))).isEqualTo(false);
-        assertThat(winner.isSameRank(cars.get(2))).isEqualTo(true);
+        assertThat(winners).contains(new Car[]{new Car("pobi", 5), new Car("honux", 5)});
     }
 
 }

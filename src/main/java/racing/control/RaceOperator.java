@@ -1,21 +1,47 @@
 package racing.control;
 
 import racing.domain.Race;
+import racing.domain.RaceResult;
+import racing.view.InputView;
+import racing.view.OutputView;
 
 public class RaceOperator {
     private static Race race;
+    private int numTrials;
 
-    public static void setupGame() {
+    public void setupGame() {
         race = new Race();
         race.createCars();
-        race.inputNumTrials();
+        numTrials = inputNumTrials();
     }
 
-    public static void startGame() {
-        race.repeatRace();
+    private int inputNumTrials() {
+        try {
+            OutputView.printTrialRequest();
+            numTrials = InputView.requestNaturalNumber();
+            return numTrials;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputNumTrials();
+        }
     }
 
-    public static void endGame() {
-        race.getResult().printWinners();
+    public void startGame() {
+        repeatRace(numTrials);
+        OutputView.printRace(race);
+    }
+
+    private void repeatRace(int numTrials) {
+        OutputView.printResultMessage();
+        for (int i = 0; i < numTrials; i++) {
+            race.progressRace();
+            OutputView.printRace(race);
+            OutputView.printNewLine();
+        }
+    }
+
+    public void endGame() {
+        RaceResult result = race.getResult();
+        OutputView.printResult(result);
     }
 }

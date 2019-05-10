@@ -3,10 +3,6 @@ package racing.view;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class InputViewTest {
 
@@ -15,22 +11,4 @@ public class InputViewTest {
         System.out.println(Arrays.asList(", , ,,,,,ddd,,,".split(",")));
     }
 
-    @Test
-    void validateNamesStringTest() {
-        assertThat(InputView.validateNames("pobi,crong,honux")).isEqualTo(true);
-        assertThrows(IllegalArgumentException.class, () -> {
-            InputView.validateNames(",,pobi");
-        });
-    }
-
-    @Test
-    void validateNamesListTest() {
-        String[] namesString = {"pobi", "crong", ""};
-        List<String> namesList = Arrays.asList(namesString);
-        assertThrows(IllegalArgumentException.class, () -> {
-            InputView.validateSplittedNames(namesList);
-        });
-        namesList.set(namesList.size() - 1, "honux");
-        assertThat(InputView.validateSplittedNames(namesList)).isEqualTo(true);
-    }
 }

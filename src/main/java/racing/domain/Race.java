@@ -2,7 +2,6 @@ package racing.domain;
 
 import racing.util.RandomNumberGenerator;
 import racing.view.InputView;
-import racing.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class Race {
     private List<Car> cars;
-    private int numTrials;
 
     /*
      * 경기 준비 메소드
@@ -24,10 +22,10 @@ public class Race {
         }
     }
 
-    public List<String> inputCarNames() {
+    private List<String> inputCarNames() {
         try {
             List<String> carNames = InputView.requestNames();
-            checkDuplicated(carNames);
+            checkDuplicatedNames(carNames);
             return carNames;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -35,41 +33,16 @@ public class Race {
         }
     }
 
-    public boolean checkDuplicated(final List<String> names) {
-        List<String> namesSet = names.stream().distinct().collect(Collectors.toList());
-        if (names.size() != namesSet.size()) throw new IllegalArgumentException("중복된 이름이 존재하면 안됩니다.");
-        return true;
-    }
-
-    public void inputNumTrials() {
-        try {
-            numTrials = InputView.requestNumTrials();
-            checkValidNumTrials(numTrials);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            inputNumTrials();
-        }
-    }
-
-    public boolean checkValidNumTrials(final int numTrials) {
-        if (0 >= numTrials) {
-            throw new IllegalArgumentException("시도 횟수는 자연수만 입력 가능합니다.");
-        }
+    private boolean checkDuplicatedNames(final List<String> names) {
+        List<String> reducedNames = names.stream().distinct().collect(Collectors.toList());
+        if (names.size() != reducedNames.size()) throw new IllegalArgumentException("중복된 이름이 존재하면 안됩니다.");
         return true;
     }
 
     /*
      * 경기 진행 메소드
      */
-    public void repeatRace() {
-        System.out.println("실행 결과");
-        for (int i = 0; i < numTrials; i++) {
-            race();
-            OutputView.printRace(cars);
-        }
-    }
-
-    private void race() {
+    public void progressRace() {
         Iterator<Car> it = cars.iterator();
         while (it.hasNext()) {
             Car car = it.next();
@@ -81,8 +54,18 @@ public class Race {
      * 경기 결과 메소드
      */
     public RaceResult getResult() {
-        RaceResult raceResult = new RaceResult(cars);
-        raceResult.judgeWinners();
-        return raceResult;
+        RaceReferee raceReferee = new RaceReferee(cars);
+        return raceReferee.getResult();
+    }
+
+    @Override
+    public String toString() {
+        List<String> result = new ArrayList<>();
+
+        Iterator<Car> it = cars.iterator();
+        while (it.hasNext()) {
+            result.add(it.next().toString());
+        }
+        return String.join("\n", result);
     }
 }
