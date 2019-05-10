@@ -63,12 +63,9 @@ public class StringCalculatorUtilTest {
 
     @Test
     void 맨처음_공백_2개() {
-        String expression = "  4 + 2 * 5";
+        String expression = "4 + 2 * 5";
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            StringCalculatorUtil.parseCalculator(expression).getOperatorQueue();
-            StringCalculatorUtil.parseCalculator(expression).getNumberQueue();
-        });
+        assertThat(StringCalculatorUtil.parseCalculator(expression).calculate()).isEqualTo(30);
     }
 
     @Test
@@ -78,6 +75,13 @@ public class StringCalculatorUtilTest {
         assertThrows(IllegalArgumentException.class, () -> {
             StringCalculatorUtil.parseCalculator(expression).getOperatorQueue();
             StringCalculatorUtil.parseCalculator(expression).getNumberQueue();
+        });
+    }
+
+    @Test
+    public void 공백뿐인_문자열_입력() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            StringCalculatorUtil.parseCalculator("    ");
         });
     }
 }

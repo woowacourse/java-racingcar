@@ -8,6 +8,8 @@ public class StringCalculatorUtil {
     private StringCalculatorUtil() {}
 
     public static StringCalculator parseCalculator(String input) {
+        input = input.trim();
+        checkIfExpressionEmpty(input);
         Queue<Character> operatorQueue = new LinkedList<>();
         Queue<Integer> numberQueue = new LinkedList<>();
         String[] tokens = input.split(" ");
@@ -22,6 +24,12 @@ public class StringCalculatorUtil {
         }
 
         return new StringCalculator(operatorQueue, numberQueue);
+    }
+
+    private static void checkIfExpressionEmpty(String expression) {
+        if (expression.isEmpty()) {
+            throw new IllegalArgumentException("식이 비어 있습니다.");
+        }
     }
 
     private static void checkIfValidTokens(String[] tokens, int length, int i) {
