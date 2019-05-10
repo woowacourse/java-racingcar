@@ -30,6 +30,10 @@ public class Car implements Comparable<Car> {
         return number >= MOVE_BOUND;
     }
 
+    public boolean isMaxPosiotion(int maxPosition) {
+        return this.position == maxPosition;
+    }
+
     @Override
     public int compareTo(Car car) {
         return this.position - car.position;
