@@ -8,8 +8,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ControllerTest {
-
-
     @Test
     void 입력이잘변환되나요() {
         String[] expectation = {"kwon", "kim", "Luffy", "Buddy"};

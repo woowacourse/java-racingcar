@@ -9,10 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarContainerTest {
     @Test
-    void addCars() {
-    }
-
-    @Test
     void 우승자찾기1() {
         CarContainer carContainer = new CarContainer();
         String[] names = {"pobi", "jason", "buddy", "luffy"};
