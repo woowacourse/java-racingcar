@@ -43,7 +43,7 @@ public class RacingGame {
     }
 
     private void checkMinTryCount(int tryCount) {
-        if (tryCount == MIN_TRY_COUNT) {
+        if (tryCount < MIN_TRY_COUNT) {
             throw new IllegalArgumentException("최소 입력 횟수는 " + MIN_TRY_COUNT + "입니다.");
         }
     }
