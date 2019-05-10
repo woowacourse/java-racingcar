@@ -9,7 +9,7 @@ public class LapCount {
     }
 
     private int parseNaturalNumber(String lapCount) {
-        if (lapCount.matches(REGEX_IS_NATURAL_NUMBER)) {
+        if (!lapCount.matches(REGEX_IS_NATURAL_NUMBER)) {
             throw new IllegalArgumentException("시도 횟수는 자연수입니다.");
         }
 

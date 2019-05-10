@@ -3,10 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cars {
+public class Cars implements Cloneable {
     private static final String REGEX_CAR_NAMES_FORMAT = "^([^,]+)(,[^,]+)*$";
     private static final String REGEX_CAR_NAMES_SPLIT = ",";
     private List<Car> cars;
+
+    private Cars() {
+        cars = new ArrayList<>();
+    }
 
     public Cars(String carNames) {
         checkCarNamesFormat(carNames);
@@ -24,13 +28,13 @@ public class Cars {
 
         for (String carName : carNames.split(REGEX_CAR_NAMES_SPLIT)) {
             Car car = new Car(new CarName(carName));
-            checkCarNamesDuplication(car);
+            checkCarNamesDuplication(cars, car);
             cars.add(car);
         }
         return cars;
     }
 
-    private void checkCarNamesDuplication(Car car) {
+    private void checkCarNamesDuplication(List<Car> cars, Car car) {
         if (cars.contains(car)) {
             throw new IllegalArgumentException("중복되는 자동차 이름이 존재합니다.");
         }
@@ -47,5 +51,14 @@ public class Cars {
             sb.append(car.toString());
         }
         return sb.append("\n").toString();
+    }
+
+    @Override
+    public Cars clone() throws CloneNotSupportedException {
+        Cars cars = new Cars();
+        for (Car car : this.cars) {
+            cars.cars.add(car.clone());
+        }
+        return cars;
     }
 }

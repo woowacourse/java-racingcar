@@ -1,9 +1,6 @@
 package service;
 
-import model.Cars;
-import model.GameResult;
-import model.LapCount;
-import model.Racing;
+import model.*;
 
 public class RacingGameService {
     Cars cars;
@@ -14,20 +11,23 @@ public class RacingGameService {
         this.lapCount = new LapCount(lapCount);
     }
 
-    public String run() {
-        StringBuilder sb = new StringBuilder();
-        Racing racing = new Racing(cars);
-
-        for (int lapNo = 1; lapNo <= lapCount.getLapCount(); lapNo++) {
-            racing.run();
-            sb.append(cars.toString());
+    public LapRepository run() {
+        try {
+            LapRepository lapRepository = new LapRepository();
+            Racing racing = new Racing(cars);
+            for (int lapNo = 1; lapNo <= lapCount.getLapCount(); lapNo++) {
+                racing.run();
+                lapRepository.add(cars.clone());
+            }
+            return lapRepository;
+        } catch (CloneNotSupportedException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
-
-        return sb.toString();
     }
 
-    public String getWinners() {
-        GameResult gameResult = new GameResult(cars);
-        return gameResult.getWinners().toString();
+    public Winners getWinners() {
+        GameResult gameResult = new GameResult();
+        return gameResult.calculator(cars);
     }
 }

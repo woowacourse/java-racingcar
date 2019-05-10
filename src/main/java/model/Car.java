@@ -60,6 +60,11 @@ public class Car implements Comparable<Car> {
         for (int i = 0; i < this.position; i++) {
             sb.append("-");
         }
-        return sb.append("/n").toString();
+        return sb.append("\n").toString();
+    }
+
+    @Override
+    protected Car clone() throws CloneNotSupportedException {
+        return new Car(new CarName(this.name), this.position);
     }
 }
