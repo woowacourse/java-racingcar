@@ -4,36 +4,38 @@ import util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Race {
     private List<Car> carsOnRace;
     private int roundCount;
+    private StringBuilder stringBuilder;
     private int maxPosition = Const.ZERO;
 
     public Race(List<Car> carsOnRace, int roundCount) {
         this.carsOnRace = carsOnRace;
         this.roundCount = roundCount;
+        this.stringBuilder = new StringBuilder();
     }
 
-    public String moveAllCarsByRoundCount() {
-        StringBuilder stringBuilder = new StringBuilder();
+    public List<Car> moveAllCarsByRoundCount() {
         for (int i = 0; i < roundCount; i++) {
             stringBuilder.append(moveAllCarsByOneTime());
             stringBuilder.append("\n");
         }
-        return stringBuilder.toString();
+        return carsOnRace;
     }
 
     private String moveAllCarsByOneTime() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for (Car car : carsOnRace) {
             car.increasePositionOrNot(Util.getRandomNumber());
-            stringBuilder.append(car.toString());
+            sb.append(car.toString());
             if (car.isGreaterThanMaxPosition(maxPosition)) {
                 ++this.maxPosition;
             }
         }
-        return stringBuilder.toString();
+        return sb.toString();
     }
 
     public List<Car> getRaceCars() {
@@ -47,5 +49,25 @@ public class Race {
                 .forEach(x -> winnersList.add(x.getName()));
 
         return String.join(",", winnersList);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Race race = (Race) o;
+        return roundCount == race.roundCount &&
+                maxPosition == race.maxPosition &&
+                Objects.equals(carsOnRace, race.carsOnRace);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(carsOnRace, roundCount, maxPosition);
+    }
+
+    @Override
+    public String toString() {
+        return stringBuilder.toString();
     }
 }

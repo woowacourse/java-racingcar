@@ -31,7 +31,7 @@ class CarsTest {
 
     @Test
     void 자동차들_객체_생성_중복_예외_처리() {
-        List<String> duplicatedCarNames = Arrays.asList("pobi, pobi, pobi");
+        List<String> duplicatedCarNames = Arrays.asList("pobi", "pobi", "pobi");
         cars = new Cars(duplicatedCarNames);
         assertThrows(IllegalArgumentException.class, () -> {
             cars.createCars();
