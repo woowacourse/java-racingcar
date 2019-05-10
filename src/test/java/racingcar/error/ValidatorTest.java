@@ -14,7 +14,7 @@ class ValidatorTest {
     }
 
     @Test
-    void 중복된_차를_검사하는_동작이_작동하는지_검사() {
+    void 중복된_차가_2개이상_존재하는지_검사() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
             Validator.checkAccuracyOfCarNames(new String[]{"car", "car"});
         });

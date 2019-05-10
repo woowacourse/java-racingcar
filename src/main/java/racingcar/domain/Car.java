@@ -1,36 +1,69 @@
 package racingcar.domain;
 
+import racingcar.util.RandomGenerator;
+
 import java.util.Collections;
+import java.util.Objects;
 
 public class Car implements Cloneable, Comparable {
     private static final String BLANK_REGEX = "\\s*";
-    private static final int RANDOM_NUM_SCOPE = 10;
     private static final int MIN_NUM_TO_ACCELERATE = 4;
-    public static final int MAX_NUM_OF_CAR_NAME = 5;
+    private static final int MAX_NUM_OF_CAR_NAME = 5;
 
     private final String name;
-    private int position = 0;
+    protected int position = 0;
 
-    public Car(String name) {
-        checkLengthOfName(name);
-        checkBlank(name);
-        this.name = name;
+    public Car(final String name) {
+        this(name, 0);
     }
 
-    private void checkLengthOfName(String name) {
+    public Car(final String name, final int position) {
+        validateName(name);
+        validatePosition(position);
+        this.name = name;
+        this.position = position;
+    }
+
+    private void validateName(final String name) {
+        checkNull(name);
+        checkLengthOfName(name);
+        checkBlank(name);
+    }
+
+    private void checkNull(final String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("Null Error");
+        }
+    }
+
+    private void checkLengthOfName(final String name) {
         if (name.length() > MAX_NUM_OF_CAR_NAME) {
             throw new IllegalArgumentException(MAX_NUM_OF_CAR_NAME + "자 이하의 자동차 이름을 입력하세요");
         }
     }
 
-    private void checkBlank(String name) {
+    private void checkBlank(final String name) {
         if (name.matches(BLANK_REGEX)) {
             throw new IllegalArgumentException("자동차 이름을 공백으로 입력하지마세요");
         }
     }
 
+    private void validatePosition(final int position) {
+        if (position < 0) {
+            throw new IllegalArgumentException("자동차의 위치는 0이상을 입력하세요.");
+        }
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
+    }
+
     public void accelerate() {
-        accelerate(generateRandomNum());
+        accelerate(RandomGenerator.generateRandomNum());
     }
 
     public void accelerate(int numToAccelerate) {
@@ -39,27 +72,25 @@ public class Car implements Cloneable, Comparable {
         }
     }
 
-    private int generateRandomNum() {
-        return (int) (Math.random() * RANDOM_NUM_SCOPE);
+    public boolean isEqualPosition(Car other) {
+        return matchPosition(other.position);
     }
 
-    public boolean isEqualPosition(int position) {
+    public boolean matchPosition(int position) {
         return (this.position == position);
-    }
-
-    public boolean isMaxPosition(Car car) {
-        return (this.position == car.getPosition());
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        Car car = (Car) object;
-        return (this.name.equals(car.getName()));
     }
 
     @Override
     public String toString() {
         return (getAlignedName() + " : " + getPositionLines());
+    }
+
+    private String getAlignedName() {
+        return String.format("%-" + MAX_NUM_OF_CAR_NAME + "s", this.name);
+    }
+
+    private String getPositionLines() {
+        return String.join("", Collections.nCopies(this.position, "-"));
     }
 
     @Override
@@ -71,22 +102,20 @@ public class Car implements Cloneable, Comparable {
     public int compareTo(Object o) {
         Car car = (Car) o;
         Integer positionToCompare = car.getPosition();
-        return new Integer(this.position).compareTo(positionToCompare);
+        return Integer.valueOf(this.position).compareTo(positionToCompare);
     }
 
-    public String getName() {
-        return this.name;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
+        Car car = (Car) o;
+        return (position == car.position) &&
+                Objects.equals(name, car.name);
     }
 
-    public int getPosition() {
-        return this.position;
-    }
-
-    public String getAlignedName() {
-        return String.format("%-" + MAX_NUM_OF_CAR_NAME + "s", this.name);
-    }
-
-    private String getPositionLines() {
-        return String.join("", Collections.nCopies(this.position, "-"));
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }

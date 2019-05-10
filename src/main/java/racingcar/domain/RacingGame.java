@@ -9,6 +9,7 @@ import java.util.List;
 
 public class RacingGame {
     public static final int MIN_NUM_OF_CARS_FOR_GAME = 2;
+
     private final List<Car> cars;
     private final GameCount gameCount;
 

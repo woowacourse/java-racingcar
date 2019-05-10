@@ -16,6 +16,6 @@ public class RacingGameResult {
     }
 
     public List<Car> getWinners() {
-        return gameResultDB.get(gameResultDB.size() - 1).getWinners();
+        return this.gameResultDB.get(gameResultDB.size() - 1).getWinners();
     }
 }

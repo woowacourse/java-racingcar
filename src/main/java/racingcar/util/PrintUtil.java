@@ -3,7 +3,7 @@ package racingcar.util;
 import java.io.IOException;
 
 public class PrintUtil {
-    public static final int DEFAULT_SLEEP_TIME = 1000;
+    public static final int DEFAULT_SLEEP_TIME = 500;
 
     private PrintUtil() {}
 
