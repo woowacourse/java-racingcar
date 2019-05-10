@@ -27,6 +27,7 @@ class RacingControllerTest {
     void Car_리스트_만들기() {
         InputStream in = new ByteArrayInputStream(carNames.getBytes());
         System.setIn(in);
+
         List<Car> carList = RacingController.setCarName();
         for (int i = 0; i < carNameList.size(); i++) {
             assertThat(carList.get(i).getName()).isEqualTo(carNameList.get(i));
@@ -68,10 +69,10 @@ class RacingControllerTest {
 
     @Test
     void 횟수_1이상_숫자이외_예외처리_확인() {
-       String input = "0";
-
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        String roundCountEx = "0";
+        InputStream in = new ByteArrayInputStream(roundCountEx.getBytes());
         System.setIn(in);
+
         assertThrows(StackOverflowError.class, () -> {
             RacingController.setRoundCount();
         });
@@ -79,10 +80,10 @@ class RacingControllerTest {
 
     @Test
     void 횟수_숫자_이외_문자_예외처리_확인() {
-        String input = "asdf";
-
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        String roundCountEx = "asdf";
+        InputStream in = new ByteArrayInputStream(roundCountEx.getBytes());
         System.setIn(in);
+
         assertThrows(StackOverflowError.class, () -> {
             RacingController.setRoundCount();
         });
@@ -90,10 +91,10 @@ class RacingControllerTest {
 
     @Test
     void 횟수_정수_이외_예외처리_확인() {
-        String input = "1.2";
-
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        String roundCountEx = "1.2";
+        InputStream in = new ByteArrayInputStream(roundCountEx.getBytes());
         System.setIn(in);
+
         assertThrows(StackOverflowError.class, () -> {
             RacingController.setRoundCount();
         });
@@ -103,12 +104,15 @@ class RacingControllerTest {
     void Car_레이스_실행() {
         InputStream in = new ByteArrayInputStream(carNames.getBytes());
         System.setIn(in);
+
         RacingController.moveAllCar(RacingController.setCarName(), roundCount);
     }
 
     @Test
     void 우승차_출력_프린트문() {
-        System.setIn(new ByteArrayInputStream(carNames.getBytes()));
+        InputStream in = new ByteArrayInputStream(carNames.getBytes());
+        System.setIn(in);
+
         Race race = RacingController.moveAllCar(RacingController.setCarName(), roundCount);
         RacingController.printWinners(race);
     }
@@ -145,5 +149,6 @@ class RacingControllerTest {
 
     @AfterEach
     void tearDown() {
+        carNameList = null;
     }
 }
