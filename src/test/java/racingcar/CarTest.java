@@ -42,6 +42,13 @@ public class CarTest {
     void isOverLimitTest() {
         assertThat(Car.isOverLimit("aaaaaa")).isEqualTo(true);
     }
+
+    @Test
+    void moveCarTest() {
+        Car car = new Car("abc");
+        Car checkCar = new Car("abc", 1);
+        assertThat(car.moveCar(4)).isEqualTo(checkCar);
+    }
     /*
 
     @Test

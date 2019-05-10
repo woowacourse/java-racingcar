@@ -18,6 +18,7 @@ public class CarsTest {
         carPositions = Arrays.asList(101, 101, 99);
         testCars = new Cars(carNames, carPositions);
     }
+
     @Test
     void decideMaxPositionTest() {
         assertThat(testCars.decideMaxPosition()).isEqualTo(107);

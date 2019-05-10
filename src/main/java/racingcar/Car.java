@@ -14,6 +14,7 @@ public class Car {
             throw new IllegalArgumentException();
         }
         this.name = name;
+
     }
 
     Car(String name, int position) {
@@ -68,11 +69,11 @@ public class Car {
         return name.length() > 5;
     }
 
-    public void moveCar() {
-        int randomNumber = randomNumberGenerator();
+    public Car moveCar(int randomNumber) {
         if (randomNumber >= 4) {
             position++;
         }
+        return this;
     }
 
     public static int randomNumberGenerator() {
