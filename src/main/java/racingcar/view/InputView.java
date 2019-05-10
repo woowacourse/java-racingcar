@@ -25,8 +25,8 @@ public class InputView {
     private static List<String> filterTypos(String arg) {
         return new ArrayList<>(
                 Arrays.stream(arg.split(","))
-                        .filter(x -> (!x.equals("")) && (!x.equals(" ")) && (!x.equals(",")))
                         .map(x -> x.trim())
+                        .filter(x -> (!x.equals("")) && (!x.equals(" ")) && (!x.equals(",")))
                         .collect(Collectors.toList())
         );
     }
