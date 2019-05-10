@@ -20,6 +20,7 @@ public class StringCalculator {
         List<String> calculationFormula = getSplit(inputString);
 
         for (String numberOrOperator : calculationFormula) {
+
             if (Operator.isOperator(numberOrOperator)) {
                 operation = Operator.valueof(numberOrOperator);
                 continue;
@@ -30,7 +31,7 @@ public class StringCalculator {
                 continue;
             }
 
-            result = (int) (operation.applyAsDouble(result, Integer.valueOf(numberOrOperator)));
+            result = operation.applyAsInt(result, Integer.valueOf(numberOrOperator));
         }
         return result;
     }
