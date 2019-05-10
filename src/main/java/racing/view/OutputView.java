@@ -11,7 +11,7 @@ public class OutputView {
         System.out.println();
         for (Car car : cars
         ) {
-            System.out.println(car.showPosition());
+            System.out.println(car.statusString());
         }
     }
 
