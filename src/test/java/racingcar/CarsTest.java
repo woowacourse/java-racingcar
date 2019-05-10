@@ -16,11 +16,11 @@ public class CarsTest {
     void setUp(){
         carNames = Arrays.asList("a", "b", "c");
         carPositions = Arrays.asList(101, 101, 99);
-        testCars = new Cars(carNames);
+        testCars = new Cars(carNames, carPositions);
     }
     @Test
     void decideMaxPositionTest() {
-        assertThat(testCars.decideMaxPosition()).isEqualTo(101);
+        assertThat(testCars.decideMaxPosition()).isEqualTo(107);
     }
     @Test
     void decideWinnersTest() {
@@ -35,4 +35,5 @@ public class CarsTest {
         Cars checkCars2 = new Cars(checkNames);
         assertThat(testCars1).isEqualTo(checkCars2);
     }
+
 }

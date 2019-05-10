@@ -9,6 +9,10 @@ public class Cars {
         Car.instantiateCar(carNames, cars);
     }
 
+    Cars(List<String> carNames, List<Integer> positions) {
+        Car.instantiateCar(carNames, cars, positions);
+    }
+
     public void printTheProcess(int totalTurns) {
         System.out.println("실행 결과");
         for (int currentTurn = 0; currentTurn<totalTurns; currentTurn++) {

@@ -16,6 +16,11 @@ public class Car {
         this.name = name;
     }
 
+    Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
     public static void instantiateCar(List<String> carNames, List<Car> cars) {
         try {
             isDuplicate(carNames);
@@ -25,9 +30,24 @@ public class Car {
         }
     }
 
+    public static void instantiateCar(List<String> carNames, List<Car> cars, List<Integer> positions) {
+        try {
+            isDuplicate(carNames);
+            addCarToCars(carNames, cars, positions);
+        } catch (Exception e) {
+            CarGameLauncher.doCarGame();
+        }
+    }
+
     public static void addCarToCars(List<String> carNames, List<Car> cars) {
         for (int i = 0, n = carNames.size(); i < n; i++) {
             cars.add(new Car(carNames.get(i)));
+        }
+    }
+
+    public static void addCarToCars(List<String> carNames, List<Car> cars, List<Integer> positions) {
+        for (int i = 0, n = carNames.size(); i < n; i++) {
+            cars.add(new Car(carNames.get(i), positions.get(i)));
         }
     }
 
