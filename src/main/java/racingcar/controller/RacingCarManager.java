@@ -33,7 +33,7 @@ public class RacingCarManager {
     }
 
     private void printWinners(Winner winner) {
-        OutputView.printWinners(winner);
+        OutputView.printCarWinners(winner);
     }
 
     private Winner getRacingWinners() {
@@ -55,7 +55,7 @@ public class RacingCarManager {
     private void moveRacingCar() {
         for (Car car : cars) {
             car.move(getRandomNumber());
-            OutputView.printCarState(car);
+            OutputView.printCarPosition(car);
         }
         OutputView.printEmptyLine();
     }

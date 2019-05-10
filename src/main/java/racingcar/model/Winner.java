@@ -2,6 +2,7 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Winner {
     private List<Car> cars;
@@ -15,13 +16,16 @@ public class Winner {
         return cars.get(0).getPosition();
     }
 
-    public List<String> getWinnersName() {
-        List<String> winnersName = new ArrayList<>();
-        getWinners().forEach(winner -> winnersName.add(winner.getName()));
-        return winnersName;
+    public List<String> getWinnerCarNames() {
+        List<String> winnerCarNames = new ArrayList<>();
+        List<Car> winnerCars = getWinnerCars();
+        for (Car winnerCar : winnerCars) {
+            winnerCarNames.add(winnerCar.getName());
+        }
+        return winnerCarNames;
     }
 
-    public List<Car> getWinners() {
+    private List<Car> getWinnerCars() {
         List<Car> winners = new ArrayList<>();
         int maxPosition = getMaxDistance();
         int carNumber = 0;
@@ -39,4 +43,16 @@ public class Winner {
         return cars.get(index).isMaxPosition(maxPosition);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Winner winner = (Winner) o;
+        return Objects.equals(cars, winner.cars);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cars);
+    }
 }

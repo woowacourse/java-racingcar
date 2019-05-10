@@ -7,49 +7,41 @@ import java.util.*;
 
 public class InputManager {
     private static final String COMMA = ",";
-    private static final int MIN_CAR_NAME_LENGTH = 1;
-    private static final int MAX_CAR_NAME_LENGTH = 5;
     private static final String INPUT_NAME_ERROR_MENT = "자동자 이름을 정확하게 입력하세요.";
     private static final String INPUT_GAME_COUNT_ERROR_MENT = "시도할 횟수를 정확하게 입력하세요";
     private static final int MIN_GAME_COUNT = 0;
 
     List<Car> getRacingCar() {
         List<Car> racingCars = new ArrayList<>();
-        List<String> racingCarNames;
-        try {
-            racingCarNames = getCarName();
-            checkDuplicateOfCarName(racingCarNames);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e);
-        }
+        List<String> racingCarNames = getCheckedCarNames();
         for (String racingCarName : racingCarNames) {
             racingCars.add(new Car(racingCarName));
         }
         return racingCars;
     }
 
-    private void checkDuplicateOfCarName(List<String> racingCarNames) {
-        Set<String> carNameSet = new HashSet<>(racingCarNames);
-        if (carNameSet.size() != racingCarNames.size()) {
-            throw new IllegalArgumentException(INPUT_NAME_ERROR_MENT);
+    private List<String> getCheckedCarNames() {
+        List<String> racingCarNames;
+        try {
+            racingCarNames = getCarNames();
+            checkDuplicateOfCarName(racingCarNames);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e);
         }
+        return racingCarNames;
     }
 
-    private List<String> getCarName() {
+    private List<String> getCarNames() {
         String[] carNames = InputView.getRacingCarInput().split(COMMA);
-        for (String carName : carNames) {
-            try {
-                checkNameValid(carName);
-            } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException(e);
-            }
+        if (carNames.length == 0) {
+            throw new IllegalArgumentException(INPUT_NAME_ERROR_MENT);
         }
-
         return Arrays.asList(carNames);
     }
 
-    private void checkNameValid(String carName) {
-        if (carName.length() < MIN_CAR_NAME_LENGTH || carName.length() > MAX_CAR_NAME_LENGTH) {
+    private void checkDuplicateOfCarName(List<String> racingCarNames) {
+        Set<String> carNameSet = new HashSet<>(racingCarNames);
+        if (carNameSet.size() != racingCarNames.size()) {
             throw new IllegalArgumentException(INPUT_NAME_ERROR_MENT);
         }
     }
