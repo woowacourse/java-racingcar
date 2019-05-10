@@ -7,12 +7,11 @@ import java.util.Random;
 
 public class RacingGame {
 
-    private final Cars carList = new Cars();
+    private final CarList carList = new CarList();
     private int totalRound;
 
     private final static int FORWARD_CRITERION = 4;
     private final static int BOUNDARY_ZERO_TO_NINE = 10;
-    private final static int NAME_LENGTH_LIMIT = 5;
     private final static Random RANDOM = new Random();
 
     public void start() {
@@ -23,7 +22,7 @@ public class RacingGame {
         OutputView.printFinalWinner(carList.getWinnerList());
     }
 
-    public Cars getCars() {
+    public CarList getCars() {
         return carList;
     }
 
@@ -49,18 +48,18 @@ public class RacingGame {
         OutputView.printNewline();
     }
 
-    public boolean checkStringLengthLimit(String string) {
-        return string.length() <= NAME_LENGTH_LIMIT;
-    }
+//    public boolean checkStringLengthLimit(String string) {
+//        return string.length() <= NAME_LENGTH_LIMIT;
+//    }
 
     public String[] getCarNames() {
         String[] carNames = InputView.inputCarNames().split(",\\s*");
 
         for(String carName : carNames){
-            if(!checkStringLengthLimit(carName)){
+//            if(!checkStringLengthLimit(carName)){
                 OutputView.printNameLimit();
                 return getCarNames();
-            }
+//            }
         }
         return carNames;
     }
