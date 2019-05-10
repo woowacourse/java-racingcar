@@ -12,6 +12,8 @@
 
 package racing.domain;
 
+import racing.utils.Util;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -80,12 +82,8 @@ public class CarContainer {
 
     private void playOneTime() {
         for (Car car : cars) {
-            car.moveOneTime(getRandomNumber());
+            car.moveOneTime(Util.getRandomNumber());
         }
-    }
-
-    private int getRandomNumber() {
-        return (int) (Math.random() * 10);
     }
 
     public List<String> searchWinners() {
