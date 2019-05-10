@@ -1,7 +1,5 @@
 package domain;
 
-import view.OutputView;
-
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.Collectors;

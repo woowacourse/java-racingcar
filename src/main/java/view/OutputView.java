@@ -7,9 +7,9 @@ import java.util.ArrayList;
 public class OutputView {
 
     public static void printWinners(ArrayList<Car> winners) {
-        String [] names = winners.stream().map((Car car) -> car.getName()).toArray(String []:: new);
+        String[] names = winners.stream().map((Car car) -> car.getName()).toArray(String[]::new);
 
-        System.out.println(String.join("," ,names) +  " 가 최종 우승했습니다.");
+        System.out.println(String.join(",", names) + " 가 최종 우승했습니다.");
     }
 
     public static void printCars(ArrayList<Car> cars) {

@@ -2,7 +2,7 @@ package domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CarTest {
     @Test
@@ -19,4 +19,5 @@ class CarTest {
     void 생성자_5글자초과() {
         assertThrows(IllegalArgumentException.class, () -> new Car("123456"));
     }
+
 }

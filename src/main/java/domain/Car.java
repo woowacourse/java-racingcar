@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.Comparator;
-import java.util.stream.IntStream;
 
 public class Car {
     public static final int MAX_NAME_LEN = 5;
@@ -25,8 +24,8 @@ public class Car {
         this.position = position;
     }
 
-    public Car(String name){
-        this(name,0);
+    public Car(String name) {
+        this(name, 0);
     }
 
     public String getName() {
@@ -39,7 +38,7 @@ public class Car {
         sb.append(name);
         sb.append(" : ");
 
-        for(int i = 0; i < position; i++) {
+        for (int i = 0; i < position; i++) {
             sb.append("-");
         }
 
