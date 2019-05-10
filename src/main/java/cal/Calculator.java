@@ -1,25 +1,11 @@
 package cal;
 
-<<<<<<< HEAD
 public class Calculator {
-    public int plus(int i, int j) {
-        return i + j;
-    }
-
-    public int minus(int i , int j) {
-        return i - j;
-    }
-
-    public int multiply(int i, int j) {
-        return i * j;
-=======
-
-public class Calculator {
-    private static String PLUS = "+";
-    private static String MINUS = "-";
-    private static String MULTIPLY = "*";
-    private static String DEVIDE = "/";
-    private int value;
+    private static final String PLUS = "+";
+    private static final String MINUS = "-";
+    private static final String MULTIPLY = "*";
+    private static final String DIVIDE = "/";
+    private int value;    
 
     public int execute(String expression) {
         String[] parsedExpression = splitExpression(expression);
@@ -53,8 +39,8 @@ public class Calculator {
             multiply(number);
         }
 
-        if (operator.equals(DEVIDE)) {
-            devide(number);
+        if (operator.equals(DIVIDE)) {
+            divide(number);
         }
     }
 
@@ -70,8 +56,7 @@ public class Calculator {
         value = Math.multiplyExact(value, number);
     }
 
-    private void devide(int number) {
+    private void divide(int number) {
         value /= number;
->>>>>>> pair-reposit/men7627
     }
 }
