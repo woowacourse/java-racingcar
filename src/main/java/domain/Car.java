@@ -52,4 +52,16 @@ public class Car {
     public int hashCode() {
         return Objects.hash(name, position);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(name);
+        stringBuilder.append(" : ");
+        for(int i=0; i<position; i++){
+            stringBuilder.append("-");
+        }
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
 }
