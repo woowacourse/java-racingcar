@@ -7,7 +7,7 @@ public enum Operation {
     ADD("+", (lhs, rhs) -> lhs + rhs),
     SUBTRACT("-", (lhs, rhs) -> lhs - rhs),
     MULTIPLY("*", (lhs, rhs) -> lhs * rhs),
-    DIVIDE("/", (lhs, rhs) -> !rhs.equals(.0) ? lhs / rhs : 0 / 0);
+    DIVIDE("/", (lhs, rhs) -> (!rhs.equals(.0)) ? lhs / rhs : 0 / 0);
 
     private String symbol;
     private BiFunction<Double, Double, Double> operation;

@@ -1,9 +1,9 @@
 package calc;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Calculator {
     private final List<String> tokens;
@@ -11,7 +11,7 @@ public class Calculator {
 
     Calculator(String expression) {
         try {
-            tokens = Arrays.asList(expression.split(" ")).stream()
+            tokens = Stream.of(expression.split(" "))
                     .map(x -> x.trim())
                     .filter(x -> !x.equals("") && !x.equals(" "))
                     .collect(Collectors.toList());
