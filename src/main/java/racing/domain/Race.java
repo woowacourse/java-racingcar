@@ -1,12 +1,10 @@
 package racing.domain;
 
 import racing.util.RandomNumberGenerator;
-import racing.view.InputView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Race {
     private List<Car> cars;
@@ -14,29 +12,12 @@ public class Race {
     /*
      * 경기 준비 메소드
      */
-    public void createCars() {
+    public void createCars(List<String> carNames) {
         cars = new ArrayList<>();
-        Iterator<String> it = inputCarNames().iterator();
+        Iterator<String> it = carNames.iterator();
         while (it.hasNext()) {
             cars.add(new Car(it.next()));
         }
-    }
-
-    private List<String> inputCarNames() {
-        try {
-            List<String> carNames = InputView.requestNames();
-            checkDuplicatedNames(carNames);
-            return carNames;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return inputCarNames();
-        }
-    }
-
-    private boolean checkDuplicatedNames(final List<String> names) {
-        List<String> reducedNames = names.stream().distinct().collect(Collectors.toList());
-        if (names.size() != reducedNames.size()) throw new IllegalArgumentException("중복된 이름이 존재하면 안됩니다.");
-        return true;
     }
 
     /*

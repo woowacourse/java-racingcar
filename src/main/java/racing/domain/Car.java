@@ -27,7 +27,7 @@ public class Car implements Comparable<Car> {
     }
 
     private void validateName(final String name) {
-        if (name.length() > NAME_MAX_LENGTH) throw new IllegalArgumentException();
+        if (name.length() > NAME_MAX_LENGTH) throw new IllegalArgumentException("차 이름은 5글자 이내 여야합니다.");
     }
 
     public void tryGoForward(final int randomNum) {
