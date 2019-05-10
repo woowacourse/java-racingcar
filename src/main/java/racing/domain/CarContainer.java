@@ -90,7 +90,7 @@ public class CarContainer {
         List<String> result = new ArrayList<>();
         Integer maxStatus = Collections.max(cars).getPosition();
         for (Car car : cars) {
-            if (maxStatus.equals(car.getPosition())) {
+            if(car.matchPosition(maxStatus)){
                 result.add(car.getName());
             }
         }
