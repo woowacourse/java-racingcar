@@ -10,7 +10,6 @@ public class CarListTest {
     Car car1;
     Car car2;
     Car car3;
-    Car car4;
 
     @BeforeEach
     void setup() {
@@ -18,17 +17,13 @@ public class CarListTest {
         car1 = new Car("a");
         car2 = new Car("b");
         car3 = new Car("c");
-        car4 = new Car("d");
+        carList.addCar(car1);
+        carList.addCar(car2);
+        carList.addCar(car3);
     }
 
     @Test
     void 자동차추가() {
-        assertThat(carList.size()).isEqualTo(0);
-
-        carList.addCar(new Car("a"));
-        carList.addCar(new Car("b"));
-        carList.addCar(new Car("c"));
-
         assertThat(carList.size()).isEqualTo(3);
     }
 
@@ -44,33 +39,23 @@ public class CarListTest {
     }
 
     @Test
-    void 우승1() {
+    void 우승1명() {
         car2.moveForward(carList);
         car2.moveForward(carList);
         car2.moveForward(carList);
-
-        carList.addCar(car1);
-        carList.addCar(car2);
-        carList.addCar(car3);
-        carList.addCar(car4);
 
         assertThat(carList.getWinnerList().size()).isEqualTo(1);
     }
 
     @Test
-    void 우승2() {
+    void 우승2명() {
         car2.moveForward(carList);
         car2.moveForward(carList);
         car2.moveForward(carList);
 
-        car4.moveForward(carList);
-        car4.moveForward(carList);
-        car4.moveForward(carList);
-
-        carList.addCar(car1);
-        carList.addCar(car2);
-        carList.addCar(car3);
-        carList.addCar(car4);
+        car3.moveForward(carList);
+        car3.moveForward(carList);
+        car3.moveForward(carList);
 
         assertThat(carList.getWinnerList().size()).isEqualTo(2);
     }
