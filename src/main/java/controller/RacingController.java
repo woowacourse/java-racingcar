@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Car;
+import domain.Cars;
 import domain.Const;
 import domain.Race;
 import util.Util;
@@ -12,22 +13,13 @@ import java.util.List;
 
 public class RacingController {
 
-    private static List<Car> makeCarList(List<String> carNameList) {
-        Util.checkDuplicatedStringList(carNameList);
-        Util.checkStringListSize(carNameList);
-        List<Car> carList = new ArrayList<>();
-        for (String carName : carNameList) {
-            carList.add(new Car(carName));
-        }
-        return carList;
-    }
-
-    public static List<Car> setCarName() {
+    public static List<Car> setCarsOnRace() {
         try {
-            return makeCarList(InputView.inputCarNameList());
+            Cars cars = new Cars(InputView.inputCarNames());
+            return cars.createCars();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return setCarName();
+            return setCarsOnRace();
         }
     }
 
@@ -44,6 +36,10 @@ public class RacingController {
         }
     }
 
+    public static void printWinners(Race race) {
+        OutputView.outputWinners(race.getRaceWinners());
+    }
+
     public static Race moveAllCar(List<Car> carList, int roundCount) {
         Race race = new Race(carList);
         OutputView.outputGameResultTile();
@@ -52,9 +48,5 @@ public class RacingController {
             OutputView.outputGameResult(race.getRaceCars());
         }
         return race;
-    }
-
-    public static void printWinners(Race race) {
-        OutputView.outputWinners(race.getRaceWinners());
     }
 }
