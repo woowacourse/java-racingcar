@@ -13,10 +13,7 @@ public class Rounds {
     }
 
     static boolean canMove(int randomValue) {
-        if (randomValue >= BOUNDARY) {
-            return true;
-        }
-        return false;
+        return randomValue >= BOUNDARY;
     }
 
     static void doRound(List<Car> cars) {

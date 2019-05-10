@@ -6,8 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 
 public class InputRegistration {
-    private static final int NAME_LENGTH_MIN_LIMIT = 1;
-    private static final int NAME_LENGTH_MAX_LIMIT = 6;
     private static final int ROUND_MIN_LIMIT = 1;
 
     public static List<Car> getCars(String input) throws Exception {
@@ -25,43 +23,32 @@ public class InputRegistration {
     }
 
     private static void checkValidity(String[] names) throws Exception {
-        if (checkNoInput(names) || checkInvalidNameLength(names) || checkRepetition(names)) {
+        if (checkRepetition(names)) {
             throw new Exception();
         }
     }
 
-    private static List<Car> convertToCars(String[] names) {
+    /* Car 클래스로 이동 예정
+    static boolean checkInvalidNameLength(String[] names) {
+        for (int i = 0; i < names.length; i++) {
+            if (names[i].length() >= Car.NAME_LENGTH_MAX_LIMIT) {
+                return true;
+            }
+        }
+        return false;
+    }
+    */
+
+    private static List<Car> convertToCars(String[] names) throws Exception {
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < names.length; i++) {
             cars.add(new Car(names[i]));
         }
-
         return cars;
     }
 
     static String[] splitNames(String names) {
         return names.replaceAll(" ", "").split(",");
-    }
-
-    static boolean checkNoInput(String[] names) {
-        if (names.length == NAME_LENGTH_MIN_LIMIT) {
-            return true;
-        }
-        for (int i = 0; i < names.length; i++) {
-            if (names[i].equals("")) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    static boolean checkInvalidNameLength(String[] names) {
-        for (int i = 0; i < names.length; i++) {
-            if (names[i].length() >= NAME_LENGTH_MAX_LIMIT) {
-                return true;
-            }
-        }
-        return false;
     }
 
     static boolean checkRepetition(String[] names) {

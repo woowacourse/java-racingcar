@@ -28,7 +28,7 @@ public class RoundsTest {
     }
 
     @Test
-    void 챔피언이하나일때챔피언계산() {
+    void 챔피언이하나일때챔피언계산() throws Exception {
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("pobi"));
         cars.add(new Car("jihoon"));
@@ -41,7 +41,7 @@ public class RoundsTest {
     }
 
     @Test
-    void 챔피언이여러명일때챔피언계산() {
+    void 챔피언이여러명일때챔피언계산() throws Exception {
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("pobi"));
         cars.add(new Car("jihoon"));
