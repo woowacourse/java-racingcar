@@ -3,19 +3,18 @@ package model;
 import java.util.Random;
 
 public class Racing {
-    private static final int SEED = 10;
-    private static final int BOUND = 4;
+    private static final int RANDOM_BOUND = 10;
+    Cars cars;
 
-    void move(Car car) {
-        Random random = new Random();
-
-        if (isMove(random.nextInt(SEED))) {
-            int position = car.getPosition();
-            car.setPosition(++position);
-        }
+    public Racing (Cars cars) {
+        this.cars = cars;
     }
 
-    boolean isMove(int number) {
-        return number >= BOUND;
+    public Cars run() {
+        for (Car car : cars.getCars()) {
+            Random random = new Random();
+            car.move(random.nextInt(RANDOM_BOUND));
+        }
+        return cars;
     }
 }

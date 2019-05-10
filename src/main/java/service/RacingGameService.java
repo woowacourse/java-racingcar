@@ -1,28 +1,33 @@
 package service;
 
-import model.Car;
-import model.GameResult;
-import model.RacingGame;
-
-import java.util.List;
+import model.*;
 
 public class RacingGameService {
-    private List<Car> cars;
-    private RacingGame racingGame;
-    private GameResult gameResult;
+    Cars cars;
+    LapCount lapCount;
 
-    public RacingGameService(List<Car> cars) {
-        this.cars = cars;
-        racingGame = new RacingGame();
-        gameResult = new GameResult();
+    public RacingGameService(String carNames, String lapCount) {
+        this.cars = new Cars(carNames);
+        this.lapCount = new LapCount(lapCount);
     }
 
-    public List<Car> run() {
-        racingGame.run(this.cars);
-        return cars;
+    public LapRepository run() {
+        try {
+            LapRepository lapRepository = new LapRepository();
+            Racing racing = new Racing(cars);
+            for (int lapNo = 1; lapNo <= lapCount.getLapCount(); lapNo++) {
+                racing.run();
+                lapRepository.add(cars.clone());
+            }
+            return lapRepository;
+        } catch (CloneNotSupportedException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
-    public List<String> getWinners() {
-        return this.gameResult.getWinners(cars);
+    public Winners getWinners() {
+        GameResult gameResult = new GameResult();
+        return gameResult.calculator(cars);
     }
 }

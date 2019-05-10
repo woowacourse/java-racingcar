@@ -1,24 +1,27 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class GameResult {
-    public List<String> getWinners(List<Car> cars) {
-        List<String> winners = new ArrayList<>();
+    private Winners winners = new Winners();
 
-        int maxCarPosition = Collections.max(cars).getPosition();
-        for (Car car : cars) {
-            addWinners(winners, maxCarPosition, car);
+    public GameResult() {
+        winners = new Winners();
+    }
+
+    public Winners calculator(Cars cars) {
+        Car maxPositionCar = Collections.max(cars.getCars());
+
+        for (Car car : cars.getCars()) {
+            addWinners(maxPositionCar, car);
         }
 
         return winners;
     }
 
-    private void addWinners(List<String> winners, int maxCarPosition, Car car) {
-        if (car.getPosition() == maxCarPosition) {
-            winners.add(car.getName());
+    private void addWinners(Car maxPositionCar, Car car) {
+        if (car.compareTo(maxPositionCar) == 0) {
+            winners.addWinners(car.getName());
         }
     }
 }

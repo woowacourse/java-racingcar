@@ -1,29 +1,25 @@
+import model.LapRepository;
+import model.Winners;
 import service.RacingGameService;
 import view.InputView;
 import view.OutputView;
 
 public class RacingCarApplication {
-    private RacingGameService racingGameService;
-    private RacingGameResultService racingGameResultService;
-
-    RacingCarApplication() {
-        racingGameService = new RacingGameService();
-        racingGameResultService = new RacingGameService();
-    }
-
-    private static void run() {
-        racingGameService.run();
-        racingGameResultService.run();
-    }
-
     public static void main(String[] args) {
-        racingGameService = new RacingGameService(InputView.inputCarsNames());
+        RacingGameService racingGameService = racingGameServiceGeneration();
+        LapRepository lapRepository = racingGameService.run();
+        Winners winners = racingGameService.getWinners();
+        OutputView.printGameResult(lapRepository);
+        OutputView.printWinners(winners);
+    }
 
-        int lapCount = InputView.inputLapCount();
-        OutputView.printResultMessage();
-        for (int i = 0; i < lapCount; i++) {
-            OutputView.printLapReseult(racingGameService.run());
+    private static RacingGameService racingGameServiceGeneration() {
+        try {
+            String carNames = InputView.inputCarsNames();
+            String lapCount = InputView.inputLapCount();
+            return new RacingGameService(carNames, lapCount);
+        } catch (IllegalArgumentException e) {
+            return racingGameServiceGeneration();
         }
-        OutputView.printWinners(racingGameService.getWinners());
     }
 }

@@ -1,25 +1,17 @@
 package view;
 
-import model.Car;
-
-import java.util.List;
+import model.LapRepository;
+import model.Winners;
 
 public class OutputView {
     private static final String WINNER_MESSAGE = "%s 가 최종 우승했습니다.";
 
-    public static void printResultMessage() {
-        System.out.println("\n실행 결과");
+    public static void printWinners(Winners winners) {
+        System.out.println(String.format(WINNER_MESSAGE, winners.toString()));
     }
 
-    public static void printLapReseult(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.println(car.toString());
-        }
-        System.out.println();
-    }
-
-    public static void printWinners(List<String> winners) {
-        String winnerNames = String.join(", ", winners);
-        System.out.println(String.format(WINNER_MESSAGE, winnerNames));
+    public static void printGameResult(LapRepository lapRepository){
+        System.out.println("실행 결과");
+        System.out.print(lapRepository.toString());
     }
 }
