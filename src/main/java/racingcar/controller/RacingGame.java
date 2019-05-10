@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.constant.MessageConstants;
 import racingcar.model.Car;
 import racingcar.model.GameResult;
 import racingcar.view.InputView;
@@ -7,29 +8,29 @@ import racingcar.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RacingGame {
-
-    private static final String RESULT_STR = "실행 결과";
-    private static final InputView inputView = new InputView();
-    private static final ResultView resultView = new ResultView();
-    private static final GameResult gameResult = new GameResult();
+    private final int MAX_BOUND = 10;
+    private final InputView INPUTVIEW = new InputView();
+    private final ResultView RESULTVIEW = new ResultView();
+    private final GameResult GAMERESULT = new GameResult();
 
     public void run() {
         List<Car> cars = setCarName();
         int number = inputNumber();
 
-        System.out.println("\n" + RESULT_STR);
+        System.out.println("\n" + MessageConstants.RESULT);
 
         for (int i = 0; i < number; i++) {
-            cars = getRacingPostion(cars);
+            getRacingPosition(cars);
         }
 
-        System.out.println(resultView.printWinner(getWinner(cars)));
+        RESULTVIEW.printWinner(getWinner(cars));
     }
 
     private List<Car> setCarName() {
-        String[] name = inputView.inputName();
+        String[] name = INPUTVIEW.inputName();
         List<Car> cars = new ArrayList<>();
 
         for (String carName : name) {
@@ -40,20 +41,24 @@ public class RacingGame {
     }
 
     private int inputNumber() {
-        return inputView.inputNumber();
+        return INPUTVIEW.inputNumber();
     }
 
-    private List<Car> getRacingPostion(List<Car> cars) {
-        for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).move();
+    private void getRacingPosition(List<Car> cars) {
+        for (Car car : cars) {
+            car.move(getRandomNumber());
         }
-        resultView.printResult(cars);
-
-        return cars;
+        RESULTVIEW.printResult(cars);
     }
+
+    private int getRandomNumber() {
+        Random random = new Random();
+        return random.nextInt(MAX_BOUND);
+    }
+
 
     private List<String> getWinner(List<Car> cars) {
-        return gameResult.racingResult(cars);
+        return GAMERESULT.racingResult(cars);
     }
 
 }

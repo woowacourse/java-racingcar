@@ -4,15 +4,12 @@ package racingcar.model;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class Car {
-
-    static final int FOWARD_NUM = 4;
-    static final int MAX_BOUND = 10;
+    private final int FOWARD_NUM = 4;
 
     private String name;
-    private int position = 0;
+    private int position;
 
     public Car(String name) {
         this(name, 0);
@@ -33,12 +30,21 @@ public class Car {
         return position;
     }
 
-    public Car move() {
-        if (getRandomNumber() >= FOWARD_NUM) {
-            return new Car(this.name, this.position++);
+    private void validName(String name) {
+        if (StringUtils.isBlank(name)) {
+            throw new IllegalArgumentException();
         }
 
-        return this;
+        if (name.length() > 5) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void move(int randomNumber) {
+        if (randomNumber >= FOWARD_NUM) {
+            new Car(this.name, this.position++);
+        }
+
     }
 
     public int comparePosition(int position) {
@@ -57,28 +63,13 @@ public class Car {
         return "";
     }
 
-    private int getRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(MAX_BOUND);
-    }
-
-    private void validName(String name) {
-        if (StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException();
-        }
-
-        if (name.length() > 5) {
-            throw new IllegalArgumentException();
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
         return position == car.position &&
-                Objects.equals(name, car.name);
+                name.equals(car.name);
     }
 
     @Override
