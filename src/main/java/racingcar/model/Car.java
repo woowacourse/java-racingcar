@@ -27,12 +27,9 @@ public class Car {
     }
 
     private boolean isValidName(String name) {
-        return this.isNameNotNull(name) && this.isNameNotBlank(name.trim())
-                && this.isNameConsistOfAlphabet(name.trim()) && this.isNameRightLength(name.trim());
-    }
-
-    private boolean isNameNotNull(String name) {
-        return name != null;
+        return this.isNameNotBlank(name)
+                && this.isNameConsistOfAlphabet(name.trim())
+                && this.isNameRightLength(name.trim());
     }
 
     private boolean isNameNotBlank(String name) {
@@ -54,12 +51,6 @@ public class Car {
     public void move(int randomNumber) {
         if (randomNumber >= POSSIBLE_MOVE) {
             position++;
-        }
-    }
-
-    public void addWinners(List<String> winnerList, int maxPosition) {
-        if (this.position == maxPosition) {
-            winnerList.add(this.name);
         }
     }
 

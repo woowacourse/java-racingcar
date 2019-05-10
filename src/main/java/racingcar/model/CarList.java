@@ -49,8 +49,7 @@ public class CarList {
             maxPosition = car.getMaxPosition(maxPosition);
         }
         for (Car car : carList) {
-            car.addWinners(winningCars.getWinningCarNames(), maxPosition);
-            winningCars.addWinners(car,maxPosition);
+            winningCars.addWinners(car, maxPosition);
         }
         return winningCars;
     }
