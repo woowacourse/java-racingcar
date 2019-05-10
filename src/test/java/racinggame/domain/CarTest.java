@@ -43,9 +43,14 @@ class CarTest {
 
         /* Then */
         assertTrue(car.move(4));
+        assertThat(car).isEqualTo(new Car("test", 1));
         assertTrue(car.move(9));
+        assertThat(car).isEqualTo(new Car("test", 2));
+
         assertFalse(car.move(0));
+        assertThat(car).isEqualTo(new Car("test", 2));
         assertFalse(car.move(3));
+        assertThat(car).isEqualTo(new Car("test", 2));
     }
 
     @Test
@@ -60,5 +65,6 @@ class CarTest {
         /* Then */
         assertThat(carHistory.containsKey("test")).isTrue();
         assertThat(carHistory.get("test")).isEqualTo(0);
+        assertThat(carHistory.size()).isEqualTo(1);
     }
 }

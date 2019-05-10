@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Car {
     private static final int ONE_STEP = 1;
-    private static final int THRESHOLD = 4;
+    private static final int MOVING_THRESHOLD = 4;
     private static final int DEFAULT_POSITION = 0;
     private static final int NAME_LENGTH_BOUND = 5;
 
@@ -49,7 +49,7 @@ public class Car {
     }
 
     public boolean move(int number) {
-        if (number >= THRESHOLD) {
+        if (number >= MOVING_THRESHOLD) {
             position += ONE_STEP;
             return true;
         }
