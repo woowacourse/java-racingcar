@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTest {
     private StringCalculator calculator;
@@ -36,5 +37,22 @@ public class StringCalculatorTest {
     @Test
     void 더하고_빼고_곱하고_나누고() {
         assertThat(calculator.calculateAll("2 + 4 * 3 / 2 - 7")).isEqualTo(2);
+    }
+
+    @Test
+    void 잘못된_수식어를_입력하면_에러인지_테스트() {
+        /* Then */
+        assertThrows(NumberFormatException.class, () -> {
+            calculator.calculateAll("+ + + + +");
+        });
+        assertThrows(NumberFormatException.class, () -> {
+            calculator.calculateAll("2 + 2 + +");
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+           calculator.calculateAll("2 2 2 2 2");
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+           calculator.calculateAll("2 + 2 2 2");
+        });
     }
 }
