@@ -1,11 +1,12 @@
-package racingcar.util;
+package racingcar.utils;
 
 import java.io.IOException;
 
-public class PrintUtil {
-    public static final int DEFAULT_SLEEP_TIME = 1000;
+public class PrintUtils {
+    private static final int DEFAULT_SLEEP_TIME = 1000;
 
-    private PrintUtil() {}
+    private PrintUtils() {
+    }
 
     public static void sleep() {
         sleep(DEFAULT_SLEEP_TIME);

@@ -3,8 +3,8 @@ package racingcar.view;
 import racingcar.domain.Car;
 import racingcar.domain.GameCount;
 import racingcar.error.Validator;
-import racingcar.util.ConvertUtil;
-import racingcar.util.PrintUtil;
+import racingcar.utils.ConvertUtils;
+import racingcar.utils.PrintUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +15,8 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    private InputView() {}
+    private InputView() {
+    }
 
     public static List<Car> getCars() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -25,17 +26,16 @@ public class InputView {
     public static List<Car> getCars(String input) {
         try {
             String[] inputs = input.split(DELIMITER);
-            inputs = ConvertUtil.trim(inputs);
+            inputs = ConvertUtils.trim(inputs);
             Validator.checkAccuracyOfCarNames(inputs);
-            return makeCarList(inputs);
+            return generateCars(inputs);
         } catch (IllegalArgumentException e) {
-            PrintUtil.printErrorMessageWithPause(e);
+            PrintUtils.printErrorMessageWithPause(e);
             return getCars();
         }
     }
 
-
-    private static List<Car> makeCarList(String[] inputs) {
+    private static List<Car> generateCars(String[] inputs) {
         return Arrays.stream(inputs)
                 .map(Car::new)
                 .collect(Collectors.toList());
@@ -52,7 +52,7 @@ public class InputView {
             Validator.checkAccuracyOfGameCount(input);
             return new GameCount(Integer.parseInt(input));
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            PrintUtils.printErrorMessageWithPause(e);
             return getGameCount();
         }
     }

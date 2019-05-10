@@ -2,28 +2,30 @@ package racingcar.view;
 
 import racingcar.domain.result.RacingGameResult;
 import racingcar.domain.result.RacingGameRound;
-import racingcar.util.ConvertUtil;
-import racingcar.util.PrintUtil;
+import racingcar.utils.ConvertUtils;
+import racingcar.utils.PrintUtils;
+import racingcar.utils.StringUtils;
 
 import java.util.List;
 
 public class OutputView {
     private static final String COMMA = ", ";
 
-    private OutputView() {}
+    private OutputView() {
+    }
 
-    public static void showRacingGameResult(RacingGameResult racingGameResult) {
+    public static void showRacingGameProcess(RacingGameResult racingGameResult) {
         List<RacingGameRound> gameResultDB = racingGameResult.getGameResultDB();
 
-        System.out.println("\n실행 결과");
+        System.out.println(StringUtils.ENTER + "실행 결과");
         for (RacingGameRound round : gameResultDB) {
             System.out.println(round);
-            PrintUtil.sleep();
+            PrintUtils.sleep();
         }
     }
 
     public static void showWinners(RacingGameResult racingGameResult) {
-        String winners = String.join(COMMA, ConvertUtil.getNamesOfCars(racingGameResult.getWinners()));
+        String winners = String.join(COMMA, ConvertUtils.getNamesOfCars(racingGameResult.getWinners()));
         System.out.println(winners + " 이(가) 최종 우승했습니다.");
     }
 }

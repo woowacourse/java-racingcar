@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import racingcar.domain.result.RacingGameResult;
 import racingcar.domain.result.RacingGameRound;
-import racingcar.util.CloneUtil;
+import racingcar.utils.CloneUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class RacingGame {
         List<RacingGameRound> gameResultDB = new ArrayList<>();
         for (int i = 0; i < gameCount.getGameCount(); i++) {
             proceedOneRound();
-            gameResultDB.add(new RacingGameRound(CloneUtil.cloneCarList(cars)));
+            gameResultDB.add(new RacingGameRound(CloneUtils.copyAllCars(cars)));
         }
         return new RacingGameResult(gameResultDB);
     }

@@ -1,17 +1,19 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 public class GameCount {
-    public static final int MIN_COUNT = 0;
+    public static final int MIN_COUNT = 1;
     private final int gameCount;
 
     public GameCount(int gameCount) {
-        checkMinOfGameCount(gameCount);
+        checkMinGameCount(gameCount);
         this.gameCount = gameCount;
     }
 
-    void checkMinOfGameCount(int gameCount) {
-        if (gameCount <= MIN_COUNT) {
-            throw new IllegalArgumentException("게임 횟수는 " + MIN_COUNT + "이하가 될 수 없습니다.");
+    private void checkMinGameCount(int gameCount) {
+        if (gameCount < MIN_COUNT) {
+            throw new IllegalArgumentException("게임 횟수는 " + MIN_COUNT + " 미만의 수가 될 수 없습니다.");
         }
     }
 
@@ -20,8 +22,15 @@ public class GameCount {
     }
 
     @Override
-    public boolean equals(Object object) {
-        GameCount otherGameCount = (GameCount) object;
-        return (this.gameCount == otherGameCount.getGameCount());
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameCount gameCount = (GameCount) o;
+        return this.gameCount == gameCount.gameCount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gameCount);
     }
 }

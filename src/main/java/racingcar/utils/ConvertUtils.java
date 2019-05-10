@@ -1,4 +1,4 @@
-package racingcar.util;
+package racingcar.utils;
 
 import racingcar.domain.Car;
 
@@ -6,8 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ConvertUtil {
-    private ConvertUtil() {}
+public class ConvertUtils {
+    private ConvertUtils() {
+    }
 
     public static List<String> getNamesOfCars(List<Car> cars) {
         return cars.stream()
