@@ -1,5 +1,6 @@
 package racinggame.domain;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -9,14 +10,6 @@ public class LeagueHistory {
 
     public void record(int trial, TrialHistory trialHistory) {
         leagueHistory.put(trial, trialHistory);
-    }
-
-    public void showHistory() {
-        System.out.println("실행 결과");
-        for (TrialHistory trialHistory : leagueHistory.values()) {
-            trialHistory.showTrialResult();
-            System.out.println();
-        }
     }
 
     public List<String> findWinners(int lastRound) {
@@ -29,4 +22,7 @@ public class LeagueHistory {
         return leagueHistory.get(trial);
     }
 
+    public Collection<TrialHistory> values() {
+        return leagueHistory.values();
+    }
 }

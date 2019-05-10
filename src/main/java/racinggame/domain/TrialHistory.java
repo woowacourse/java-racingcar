@@ -1,13 +1,12 @@
 package racinggame.domain;
 
-import racinggame.util.OutputView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class TrialHistory {
-    private HashMap<String, Integer> trialHistory = new HashMap<>();
+    private HashMap<String, Integer> trialHistory = new LinkedHashMap<>();
 
     public TrialHistory(List<Car> cars) {
         for (Car car : cars) {
@@ -36,9 +35,17 @@ public class TrialHistory {
         return maxCarPosition;
     }
 
-    public void showTrialResult() {
+    @Override
+    public String toString() {
+        StringBuilder history = new StringBuilder();
+
         for (String carName : trialHistory.keySet()) {
-            OutputView.showRaceResult(carName, trialHistory.get(carName));
+            history.append(carName).append(" : ");
+            for (int i = 0; i < trialHistory.get(carName); i++) {
+                history.append('-');
+            }
+            history.append('\n');
         }
+        return history.toString();
     }
 }
