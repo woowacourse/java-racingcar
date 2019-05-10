@@ -3,13 +3,13 @@ package racing.domain;
 import java.util.List;
 
 public class RaceStatusDto {
-    private final List<Car> carList;
+    private final List<Car> cars;
 
-    public RaceStatusDto(List<Car> carList) {
-        this.carList = carList;
+    public RaceStatusDto(List<Car> cars) {
+        this.cars = cars;
     }
 
-    public List<Car> getCarList() {
-        return carList;
+    public List<Car> getCars() {
+        return cars;
     }
 }

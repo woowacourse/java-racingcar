@@ -4,11 +4,10 @@ import racing.domain.Car;
 import racing.domain.RaceStatusDto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
     public static void printStatus(RaceStatusDto raceStatusDto) {
-        List<Car> carList = raceStatusDto.getCarList();
+        List<Car> carList = raceStatusDto.getCars();
         carList.forEach(car -> System.out.println(car.getStatus()));
         System.out.println();
     }

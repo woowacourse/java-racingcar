@@ -2,48 +2,54 @@ package racing.domain;
 
 import racing.view.ConsoleMessages;
 
-import java.util.Random;
-
 public class Car implements Comparable<Car> {
-    private static final int MAX_CAR_NAME = 5;
-    private static final int MIN_MOVABLE_NUMBER = 4;
-    private static final int RANDOM_NUMBER_RANGE = 10;
     private final String name;
     private int distance;
 
-
-    public Car(String name) {
-        this.name = checkName(name.trim());
-        distance = 1;
+    public Car(final String name) {
+        this(name, 1);
     }
 
-    public Car(String name, int distance) {
-        this.name = checkName(name);
+    public Car(final String name, final int distance) {
+        this.name = getValidName(name);
         this.distance = distance;
     }
 
-    public int move() {
-        if (isMove(generateRandomNumber())) {
+    private String getValidName(String name) {
+        String trimmedName = getTrimmedName(name);
+
+        checkBlankName(trimmedName);
+
+        checkNameLength(trimmedName);
+
+        return trimmedName;
+    }
+
+    private String getTrimmedName(String name) {
+        return name.trim();
+    }
+
+    private void checkBlankName(String trimmedName) {
+        if (trimmedName.isEmpty()) {
+            throw new IllegalArgumentException(ConsoleMessages.ERR_CAR_BLANK_NAME.getMessage());
+        }
+    }
+
+    private void checkNameLength(String trimmedName) {
+        if (trimmedName.length() > Rules.MAX_CAR_NAME) {
+            throw new IllegalArgumentException(ConsoleMessages.ERR_CAR_NAME.getMessage());
+        }
+    }
+
+    public int move(int number) {
+        if (isMove(number)) {
             distance++;
         }
         return distance;
     }
 
-    public boolean isMove(int number) {
-        return number >= MIN_MOVABLE_NUMBER;
-    }
-
-    private int generateRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(RANDOM_NUMBER_RANGE);
-    }
-
-
-    private String checkName(String name) {
-        if (name.length() > MAX_CAR_NAME) {
-            throw new IllegalArgumentException(ConsoleMessages.ERR_CAR_NAME.getMessage());
-        }
-        return name;
+    private boolean isMove(int number) {
+        return number >= Rules.MIN_MOVABLE_NUMBER;
     }
 
     public String getStatus() {
@@ -57,8 +63,8 @@ public class Car implements Comparable<Car> {
         return sb.toString();
     }
 
-    public boolean isMaxDistance(Car winnerCar) {
-        return this.distance == winnerCar.distance;
+    public boolean isMatchDistance(Car car) {
+        return this.distance == car.distance;
     }
 
     public String getName() {
