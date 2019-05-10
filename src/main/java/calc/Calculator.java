@@ -18,7 +18,7 @@ public class Calculator {
     }
 
     private boolean calculate() {
-        result = Operator.getFunction(tokens.remove(0))
+        result = Operator.getOperation(tokens.remove(0))
                 .apply(result, Double.parseDouble(tokens.remove(0)));
         return tokens.isEmpty() || calculate();
     }
