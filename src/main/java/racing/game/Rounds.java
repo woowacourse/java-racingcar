@@ -6,10 +6,10 @@ import java.util.List;
 
 public class Rounds {
     private static final int BOUNDARY = 4;
+    private static final int MAX_NO = 10;
 
     private static int getRandomValue() {
-
-        return (int) (Math.random() * 10);
+        return (int) (Math.random() * MAX_NO);
     }
 
     static boolean canMove(int randomValue) {

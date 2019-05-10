@@ -6,7 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 
 public class InputRegistration {
-    private static final int NAME_LENGTH_LIMIT = 6;
+    private static final int NAME_LENGTH_MIN_LIMIT = 1;
+    private static final int NAME_LENGTH_MAX_LIMIT = 6;
+    private static final int ROUND_MIN_LIMIT = 1;
 
     public static List<Car> getCars(String input) throws Exception {
         String[] names = splitNames(input);
@@ -16,7 +18,7 @@ public class InputRegistration {
 
     public static int getRoundNumber(String input) throws Exception {
         int roundNumber = Integer.parseInt(input);
-        if (roundNumber < 1) {
+        if (roundNumber < ROUND_MIN_LIMIT) {
             throw new Exception();
         }
         return roundNumber;
@@ -24,7 +26,7 @@ public class InputRegistration {
 
     private static void checkValidity(String[] names) throws Exception {
         if (checkNoInput(names) || checkInvalidNameLength(names) || checkRepetition(names)) {
-            throw new Exception("잘못된 입력입니다.");
+            throw new Exception();
         }
     }
 
@@ -42,7 +44,7 @@ public class InputRegistration {
     }
 
     static boolean checkNoInput(String[] names) {
-        if (names.length == 0) {
+        if (names.length == NAME_LENGTH_MIN_LIMIT) {
             return true;
         }
         for (int i = 0; i < names.length; i++) {
@@ -55,7 +57,7 @@ public class InputRegistration {
 
     static boolean checkInvalidNameLength(String[] names) {
         for (int i = 0; i < names.length; i++) {
-            if (names[i].length() >= NAME_LENGTH_LIMIT) {
+            if (names[i].length() >= NAME_LENGTH_MAX_LIMIT) {
                 return true;
             }
         }
