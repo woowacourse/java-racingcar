@@ -39,14 +39,4 @@ public class RacingController {
     public static void printWinners(Race race) {
         OutputView.outputWinners(race.getRaceWinners());
     }
-
-    public static Race moveAllCar(List<Car> carList, int roundCount) {
-        Race race = new Race(carList);
-        OutputView.outputGameResultTile();
-        for (int i = 0; i < roundCount; i++) {
-            race.moveAllCarOneTime();
-            OutputView.outputGameResult(race.getRaceCars());
-        }
-        return race;
-    }
 }
