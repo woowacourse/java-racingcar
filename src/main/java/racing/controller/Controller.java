@@ -57,6 +57,10 @@ public class Controller {
         return randomNum >= GO_FORWARD_CRITERIA;
     }
 
+    public static int getRandomNumber() {
+        return (int) (Math.random() * 10);
+    }
+
     public static void start() {
         RacingGame racingGame = new RacingGame();
         racingGame.inputCarNames();
