@@ -1,40 +1,40 @@
-//package racing.controller;
-//
-//import org.junit.jupiter.api.Test;
-//
-//import racing.domain.Car;
-//import racing.domain.CarList;
-//
-//import static org.assertj.core.api.Assertions.assertThat;
-//import static org.junit.jupiter.api.Assertions.*;
-//
-//class ControllerTest {
-//
-//    @Test
-//    void 입력의이름이잘나눠지나요1() {
-//        String[] expectation = {"kwon", "kim", "Luffy", "Buddy"};
-//        assertThat(Controller.splitNames("kwon,kim,Luffy,Buddy")).isEqualTo(expectation);
-//    }
-//
-//    @Test
-//    void 입력의이름이잘나눠지나요2() {
-//        String[] expectation = {"kwon"};
-//        assertThat(Controller.splitNames("kwon,kim,Luffy,Buddy")).isNotEqualTo(expectation);
-//    }
-//
-//    @Test
-//    void 입력의이름이잘나눠지나요3() {
-//        String[] expectation = {"kwon", "kim", "Luffy", "Buddy"};
-//        assertThat(Controller.splitNames("Buddy")).isNotEqualTo(expectation);
-//    }
-//
-//    @Test
-//    void 카리스트에서우승자를잘뽑아내나요1() {
-//        String[] names = {"kwon", "kim", "Luffy", "Buddy"};
-//        int[] status = {1, 5, 3, 10};
-//        CarList carList = new CarList();
-//        carList.addCars(names, status);
-//
-//        assertThat(Controller.getWinners(carList)).isEqualTo("Buddy");
-//    }
-//}
+package racing.controller;
+
+import org.junit.jupiter.api.Test;
+
+import racing.domain.CarContainer;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+class ControllerTest {
+
+
+    @Test
+    void 입력이잘변환되나요() {
+        String[] expectation = {"kwon", "kim", "Luffy", "Buddy"};
+        CarContainer carList = new CarContainer();
+        carList.addCars(expectation);
+        assertThat(Controller.makeCarList("kwon,kim,Luffy,Buddy")).isEqualTo(carList);
+    }
+
+    @Test
+    void 카리스트에서우승자를잘뽑아내나요() {
+        Controller.makeCarList("kwon,kim,Luffy,Buddy");
+        assertThat(Controller.getWinners()).isEqualTo("kwon, kim, Luffy, Buddy");
+    }
+
+    @Test
+    void 이름배열이비어있으면예외처리가되나요콤마만입력해봄() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Controller.makeCarList(",,,,,");
+        });
+    }
+
+    @Test
+    void 이름배열이비어있으면예외처리가되나요아무것도안입력() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Controller.makeCarList("");
+        });
+    }
+}
