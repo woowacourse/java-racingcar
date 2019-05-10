@@ -2,6 +2,9 @@ package racingcar;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
@@ -24,5 +27,30 @@ public class CarTest {
         assertThat(testCar.findMax(101)).isEqualTo(101);
     }
 
+    @Test
+    void isWhiteSpaceOnlyTest() {
+        assertThat(Car.isWhiteSpaceOnly("")).isEqualTo(true);
+    }
 
+    @Test
+    void isDuplicateTest() {
+        List<String> names = Arrays.asList("a", "b", "a");
+        assertThat(Car.isDuplicate(names)).isEqualTo(true);
+    }
+
+    @Test
+    void isOverLimitTest() {
+        assertThat(Car.isOverLimit("aaaaaa")).isEqualTo(true);
+    }
+    /*
+
+    @Test
+    void addCarToCarsTest() {
+        List<String> names = Arrays.asList("a", "b", "c");
+        List<Car> cars = Arrays.asList(new Car(names.get(0)), new Car(names.get(1)), new Car(names.get(2)));
+        Cars carsTest = new Cars(names);
+
+        assertThat(Car.addCarToCars(names, cars))
+    }
+     */
 }
