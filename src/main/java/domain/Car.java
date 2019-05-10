@@ -9,14 +9,23 @@ public class Car {
     private static final int NAME_MAX_LENGTH  = 5;
 
     private final String name;
-    private int position = 0;
+    private int position;
 
     public Car(String name) {
+        this(name, 0);
+    }
+
+    public Car(String name, int position) {
+        validName(name);
+
+        this.name = name;
+        this.position = position;
+    }
+
+    private void validName(String name) {
         if ((name.length() > NAME_MAX_LENGTH) || (name.length() < 1)) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하 입니다.");
         }
-
-        this.name = name;
     }
 
     public int judgeMove(int number) {
@@ -32,21 +41,20 @@ public class Car {
         return 0;
     }
 
-    public int getBiggerPosition(int comparePosition) {
-       return Math.max(position, comparePosition);
+    public int getBiggerPosition(int position) {
+       return Math.max(this.position, position);
     }
 
-    public boolean isEqualPosition(int comparePosition) {
-        return comparePosition == position;
+    public boolean isEqualPosition(int position) {
+        return this.position == position;
     }
 
     public String getName() {
         return this.name;
     }
 
-    @Override
-    public String toString() {
-        return name + " : " + new String(new char[position]).replace("\0", "-");
+    public int getPosition() {
+        return this.position;
     }
 
     @Override

@@ -19,7 +19,6 @@ public class Winner {
                 winners.add(car.getName());
             }
         }
-
         return winners;
     }
 
@@ -29,7 +28,6 @@ public class Winner {
         for (Car car : cars) {
             maxPosition = car.getBiggerPosition(maxPosition);
         }
-
         return maxPosition;
     }
 }

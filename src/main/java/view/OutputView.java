@@ -8,8 +8,12 @@ import java.util.List;
 public class OutputView {
     public static void printPosition(List<Car> cars) {
         for (Car car : cars) {
-            System.out.println(car);
+            System.out.println(printCar(car));
         }
+    }
+
+    private static String printCar(Car car) {
+        return car.getName() + " : " + new String(new char[car.getPosition()]).replace("\0", "-");
     }
 
     public static void printWinnerName(List<Car> cars) {

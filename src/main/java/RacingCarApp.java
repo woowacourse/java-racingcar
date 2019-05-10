@@ -37,7 +37,6 @@ public class RacingCarApp {
 
     private static int makeRandomNumber() {
         Random random = new Random();
-
         return random.nextInt(BOUND_NUMBER);
     }
 }

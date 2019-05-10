@@ -14,17 +14,9 @@ public class WinnerTest {
 
     @BeforeEach
     void setUp() {
-        Car pobi = new Car("pobi");
-        Car crong = new Car("crong");
-        Car honux = new Car("honux");
-
-        pobi.judgeMove(4);
-        pobi.judgeMove(4);
-
-        crong.judgeMove(4);
-
-        honux.judgeMove(4);
-        honux.judgeMove(4);
+        Car pobi = new Car("pobi", 5);
+        Car crong = new Car("crong", 3);
+        Car honux = new Car("honux", 5);
 
         List<Car> carList = Arrays.asList(pobi, crong, honux);
 
