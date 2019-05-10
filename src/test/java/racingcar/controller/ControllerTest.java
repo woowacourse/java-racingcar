@@ -19,15 +19,6 @@ public class ControllerTest {
     }
 
     @Test
-    void 자동차_리스트가_잘_생성됐는지_확인() {
-        CarList tmp = new CarList(new String[]{"a", "b", "c", "d", "e"});
-        CarList carList = controller.makeCarList(new String[]{"a", "b", "c", "d", "e"});
-        for (int i = 0; i < tmp.getCarList().size(); i++) {
-            assertThat(carList.getCarList().get(i).getName()).isEqualTo(tmp.getCarList().get(i).getName());
-        }
-    }
-
-    @Test
     void 승리한_자동차_목록이_잘_나오는지_확인() {
         ArrayList carArrayList=new ArrayList<>();
         carArrayList.add(new Car("a",0));

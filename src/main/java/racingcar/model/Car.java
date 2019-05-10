@@ -7,14 +7,16 @@ import java.util.Objects;
 
 public class Car {
     private static final int POSSIBLE_MOVE = 4;
+    private static final int VALID_NAME_LENGTH = 5;
+    /* String matches에 사용할 알파벳 REGEX 정의 */
+    private static final String ALPHABET_REGEX = "^[a-zA-Z]*$";
     private final String name;
     private int position = 0;
 
     public Car(String name) {
-        if (StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException("공백 이름은 사용할 수 없습니다.");
+        if (!this.isValidName(name)) {
+            throw new IllegalArgumentException("이름이 잘 못 되었습니다.");
         }
-
         this.name = name.trim();
     }
 
@@ -24,12 +26,29 @@ public class Car {
         this.position = position;
     }
 
-    public String getName() {
-        return name;
+    private boolean isValidName(String name) {
+        return this.isNameNotNull(name) && this.isNameNotBlank(name.trim())
+                && this.isNameConsistOfAlphabet(name.trim()) && this.isNameRightLength(name.trim());
     }
 
-    public int getPosition() {
-        return position;
+    private boolean isNameNotNull(String name) {
+        return name != null;
+    }
+
+    private boolean isNameNotBlank(String name) {
+        return !StringUtils.isBlank(name);
+    }
+
+    private boolean isNameRightLength(String name) {
+        return name.length() <= VALID_NAME_LENGTH;
+    }
+
+    private boolean isNameConsistOfAlphabet(String name) {
+        return name.matches(ALPHABET_REGEX);
+    }
+
+    public boolean isEqualName(String name) {
+        return this.name.equals(name);
     }
 
     public void move(int randomNumber) {
@@ -39,13 +58,22 @@ public class Car {
     }
 
     public void addWinners(List<String> winnerList, int maxPosition) {
-        if (this.getPosition() == maxPosition) {
-            winnerList.add(this.getName());
+        if (this.position == maxPosition) {
+            winnerList.add(this.name);
         }
     }
 
     public int getMaxPosition(int maxPosition) {
         return Integer.max(this.position, maxPosition);
+    }
+
+    public boolean isMaxPosition(int maxPosition) {
+        return this.position == maxPosition;
+    }
+
+    public List<String> addCarInWinners(List<String> winningCarNames) {
+        winningCarNames.add(this.name);
+        return winningCarNames;
     }
 
     @Override

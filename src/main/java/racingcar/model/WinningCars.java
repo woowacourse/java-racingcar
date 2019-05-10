@@ -10,6 +10,12 @@ public class WinningCars {
         return winningCarNames;
     }
 
+    public void addWinners(Car car, int maxPosition) {
+        if(car.isMaxPosition(maxPosition)){
+            winningCarNames=car.addCarInWinners(this.winningCarNames);
+        }
+    }
+
     @Override
     public String toString(){
         StringBuilder sb=new StringBuilder(String.join(", ",winningCarNames));
