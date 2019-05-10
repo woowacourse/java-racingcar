@@ -16,7 +16,7 @@ public enum Operator {
     static public Operator getOperation(String symbol) {
         try {
             return Stream.of(Operator.values())
-                    .filter(x -> x.symbol == symbol)
+                    .filter(x -> x.symbol.equals(symbol))
                     .findFirst()
                     .get();
         } catch (NoSuchElementException e) {
