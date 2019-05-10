@@ -30,14 +30,12 @@ public class Car {
 
     public int judgeMove(int number) {
         if (number > MAX_MOVE_NUMBER || number < MIN_STOP_NUMBER) {
-            return -1;
+            throw new IllegalArgumentException("잘못된 randomNumber");
         }
-
         if (number >= MIN_MOVE_NUMBER) {
             position++;
             return 1;
         }
-
         return 0;
     }
 

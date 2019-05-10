@@ -29,9 +29,7 @@ public class RacingCarApp {
 
     private static void tryMove(List<Car> cars) {
         for (Car car : cars) {
-            if (car.judgeMove(makeRandomNumber()) == -1) {
-                throw new IllegalArgumentException("잘못된 randomNumber");
-            }
+            car.judgeMove(makeRandomNumber());
         }
     }
 
