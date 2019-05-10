@@ -24,7 +24,7 @@ public class CarList {
 
     public void moveCars() {
         for (Car car : carList) {
-            car.move(Random.isEnableGo());
+            car.move(Random.createRandomNumber());
         }
     }
 

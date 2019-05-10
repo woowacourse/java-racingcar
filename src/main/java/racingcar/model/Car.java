@@ -1,14 +1,21 @@
 package racingcar.model;
 
+import org.junit.platform.commons.util.StringUtils;
+
 import java.util.List;
+import java.util.Objects;
 
 public class Car {
+    private static final int POSSIBLE_MOVE = 4;
     private final String name;
-    private int position;
+    private int position = 0;
 
     public Car(String name) {
-        this.name = name;
-        this.position = 0;
+        if (StringUtils.isBlank(name)) {
+            throw new IllegalArgumentException("공백 이름은 사용할 수 없습니다.");
+        }
+
+        this.name = name.trim();
     }
 
     /* 테스트를 위한 생성자 */
@@ -25,8 +32,8 @@ public class Car {
         return position;
     }
 
-    public void move(boolean isEnableGo) {
-        if (isEnableGo) {
+    public void move(int randomNumber) {
+        if (randomNumber >= POSSIBLE_MOVE) {
             position++;
         }
     }
@@ -49,5 +56,19 @@ public class Car {
             sb.append("-");
         }
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return (position == car.position) &&
+                Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }
