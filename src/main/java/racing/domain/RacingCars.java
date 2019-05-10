@@ -12,7 +12,7 @@ public class RacingCars {
     }
 
     public void race() {
-        cars.forEach(Car::move);
+        cars.forEach(car -> car.move(Rules.generateRandomNumber()));
     }
 
     public RaceStatusDto getRaceStatus() {
@@ -22,7 +22,7 @@ public class RacingCars {
     public List<String> getWinners() {
         Car winnerCar = Collections.max(cars);
         return cars.stream()
-                .filter(car-> car.isMatchDistance(winnerCar))
+                .filter(car -> car.isMatchDistance(winnerCar))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
