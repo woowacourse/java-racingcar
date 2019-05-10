@@ -10,7 +10,7 @@ public class Race {
     private final List<Car> cars = new ArrayList<>();
     private int cursor = -1;
 
-    public Race(List<String> names) {
+    public Race(List<String> names) throws IllegalArgumentException {
         names.stream()
                 .distinct()
                 .collect(Collectors.toList())
@@ -21,7 +21,10 @@ public class Race {
         }
     }
 
-    public Race(List<Car> cars, boolean foobar) { //타입 겹침 회피용
+    /*
+    타입 겹침 회피용 인자 추가
+     */
+    public Race(List<Car> cars, boolean foobar) throws IllegalArgumentException {
         cars.stream()
                 .distinct()
                 .collect(Collectors.toList())

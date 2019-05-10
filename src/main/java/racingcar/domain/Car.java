@@ -9,7 +9,7 @@ public class Car implements Comparable<Car> {
         this(name, 0);
     }
 
-    public Car(String name, int position) {
+    public Car(String name, int position) throws IllegalArgumentException {
         if (name.length() < 0 || MAX_NAME_LENGTH < name.length() || position < 0) {
             throw new IllegalArgumentException();
         }

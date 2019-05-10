@@ -13,15 +13,11 @@ public enum Operator {
     private String symbol;
     private BiFunction<Double, Double, Double> operation;
 
-    static public Operator getOperation(String symbol) {
-        try {
-            return Stream.of(Operator.values())
-                    .filter(x -> x.symbol.equals(symbol))
-                    .findFirst()
-                    .get();
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException();
-        }
+    static public Operator getOperation(String symbol) throws NoSuchElementException {
+        return Stream.of(Operator.values())
+                .filter(x -> x.symbol.equals(symbol))
+                .findFirst()
+                .get();
     }
 
     Operator(String symbol, BiFunction<Double, Double, Double> operation) {
