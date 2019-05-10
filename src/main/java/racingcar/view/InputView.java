@@ -71,8 +71,12 @@ public class InputView {
         return false;
     }
 
-    private boolean hasMiddleBlank(String[] carName) {
-        if (Arrays.asList(carName).contains("")) {
+    private boolean hasMiddleBlank(String[] carNames) {
+        long emptyNameCount = Arrays.stream(carNames)
+                .map(c -> c.replace(" ", ""))
+                .filter(String::isEmpty).count();
+
+        if (emptyNameCount > 0) {
             System.err.println(MessageConstants.ERROR_CONTAIN_EMPTY);
             return true;
         }
