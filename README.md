@@ -49,7 +49,7 @@
     - [x] 우승자 찾기
 *******
 ###리팩토링 목록
-- [ ] Car 내부 equals(), hashcode() 사용
+- [x] Car 내부 equals(), hashcode() 사용
 - [ ] 테스트 가능 코드 추가 및 분리
 - [ ] Class 내부 코드 순서 (public -> priavate 관련된 것 끼리 엮어서)
 - [ ] 값이 변하지 않는 지역 변수 인자는 final로 변경 확인
