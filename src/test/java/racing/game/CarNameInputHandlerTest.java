@@ -5,16 +5,13 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class InputRegistrationTest {
-
-
+public class CarNameInputHandlerTest {
     @Test
     void 입력을이름들로분리() {
         String string = "pobi,jinwook";
-        assertThat(InputRegistration.splitNames(string)).contains("pobi", "jinwook");
+        assertThat(CarNameInputHandler.splitNames(string)).contains("pobi", "jinwook");
     }
 
 
@@ -25,18 +22,9 @@ public class InputRegistrationTest {
             List<Car> cars = new ArrayList<>();
             Car car = new Car(name);
             cars.add(car);
-            assertThat(InputRegistration.checkRepetition(name, cars)).isTrue();
+            assertThat(CarNameInputHandler.checkRepetition(name, cars)).isTrue();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    @Test
-    void 잘못된라운드입력확인() {
-        assertThrows(Exception.class, () -> {
-            InputRegistration.getRoundNumber("aa");
-        });
-    }
-
-
 }
