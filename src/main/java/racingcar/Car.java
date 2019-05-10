@@ -6,11 +6,15 @@ public class Car {
     private final String name;
     private int position = 0;
 
-    static final int NAME_LENGTH_LIMIT = 5;
-    static final String NAME_IS_EMPTY
-            = "자동차의 이름이 비어 있습니다.";
-    static final String NAME_TOO_LONG
-            = "자동차의 이름은 5자 이하여야 합니다.";
+    static final int NAME_LENGTH_LIMIT;
+    static final String NAME_IS_EMPTY;
+    static final String NAME_TOO_LONG;
+
+    static {
+        NAME_LENGTH_LIMIT = 5;
+        NAME_IS_EMPTY = "자동차의 이름이 비어 있습니다.";
+        NAME_TOO_LONG = "자동차의 이름은 5자 이하여야 합니다.";
+    }
 
     public Car(String name)
             throws IllegalArgumentException {
