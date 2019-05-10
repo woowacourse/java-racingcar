@@ -29,15 +29,15 @@ public class InputView {
 
     static public List<String> requestNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String namesString = requestString();
-        List<String> namesList = Arrays.asList(namesString.split(",")).stream()
+        String names = requestString();
+        List<String> splittedNames = Arrays.asList(names.split(",")).stream()
                 .map(s -> s.trim())
                 .collect(Collectors.toList());
 
         try {
-            validateNamesString(namesString);
-            validateNamesList(namesList);
-            return namesList;
+            validateNames(names);
+            validateSplittedNames(splittedNames);
+            return splittedNames;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -45,10 +45,8 @@ public class InputView {
         }
     }
 
-    // 이름에 중복이 있다면 ? e.g., "pobi,pobi,pobi"
-
-    static public boolean validateNamesString(String userInput) {
-        // ","가 두개 이상 연달아 있으면 안 된다.
+    static public boolean validateNames(final String userInput) {
+        /** 연속된 "," 체크 */
         if (userInput.contains(",,")) {
             throw new IllegalArgumentException("','가 두개 이상 연달아 있으면 안 됩니다.");
         }
@@ -56,8 +54,8 @@ public class InputView {
         return true;
     }
 
-    static public boolean validateNamesList(List<String> names) {
-        // 이름이 공백으로만 이루어지면 안 된다.
+    static public boolean validateSplittedNames(final List<String> names) {
+        /** 공백으로만 이루어진 이름 체크 */
         Iterator<String> it = names.iterator();
         while (it.hasNext()) {
             String s = it.next();

@@ -19,6 +19,9 @@ public class RaceTest {
         race = new Race();
     }
 
+
+
+
     @Test
     void 중복확인테스트() {
         List<String> names = Arrays.asList(new String[]{"a", "b", "b"});

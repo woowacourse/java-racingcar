@@ -7,23 +7,28 @@ import java.util.Objects;
 public class Car {
     private static final int GO_FORWRARD_CRITERIA_NUM = 4;
     private static final int GO_STEP = 1;
-    private static final int MAX_RANDOM_NUM_UPPER_BOUND = 10;
+    private static final int START_POSITION = 0;
+    private static final int NAME_MAX_LENGTH = 5;
+    static final int MAX_RANDOM_NUM_UPPER_BOUND = 10;
     private String name;
-    private int position = 0;
+    private int position;
 
     public Car(final String name) {
-        this.name = name;
+        this(name,START_POSITION);
     }
 
     public Car(final String name, final int position) {
+        validateName(name);
         this.name = name;
         this.position = position;
     }
 
+    public void validateName(String name){
+        if(name.length()>NAME_MAX_LENGTH) throw new IllegalArgumentException();
+    }
 
 
-    public void tryGoForward() {
-        int randomNum = RandomNumberGenerator.generate(MAX_RANDOM_NUM_UPPER_BOUND);
+    public void tryGoForward(int randomNum) {
         if (isGo(randomNum)) position += GO_STEP;
     }
 

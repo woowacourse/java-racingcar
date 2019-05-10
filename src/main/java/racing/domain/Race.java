@@ -1,5 +1,6 @@
 package racing.domain;
 
+import racing.util.RandomNumberGenerator;
 import racing.view.InputView;
 import racing.view.OutputView;
 
@@ -12,7 +13,7 @@ public class Race {
     private List<Car> cars;
     private int numTrials;
 
-    /**
+    /*
      * 경기 준비 메소드
      */
     public void createCars() {
@@ -34,7 +35,7 @@ public class Race {
         }
     }
 
-    public boolean checkDuplicated(List<String> names) {
+    public boolean checkDuplicated(final List<String> names) {
         List<String> namesSet = names.stream().distinct().collect(Collectors.toList());
         if (names.size() != namesSet.size()) throw new IllegalArgumentException("중복된 이름이 존재하면 안됩니다.");
         return true;
@@ -50,15 +51,15 @@ public class Race {
         }
     }
 
-    public boolean checkValidNumTrials(int numTrials) {
+    public boolean checkValidNumTrials(final int numTrials) {
         if (0 >= numTrials) {
             throw new IllegalArgumentException("시도 횟수는 자연수만 입력 가능합니다.");
         }
         return true;
     }
 
-    /**
-     * 경기 진행 반복 메소드
+    /*
+     * 경기 진행 메소드
      */
     public void repeatRace() {
         System.out.println("실행 결과");
@@ -72,10 +73,13 @@ public class Race {
         Iterator<Car> it = cars.iterator();
         while (it.hasNext()) {
             Car car = it.next();
-            car.tryGoForward();
+            car.tryGoForward(RandomNumberGenerator.generate(Car.MAX_RANDOM_NUM_UPPER_BOUND));
         }
     }
 
+    /*
+     * 경기 결과 메소드
+     */
     public RaceResult getResult() {
         RaceResult raceResult = new RaceResult(cars);
         raceResult.judgeWinners();

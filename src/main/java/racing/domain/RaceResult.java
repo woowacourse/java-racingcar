@@ -10,7 +10,7 @@ public class RaceResult {
     private List<Car> cars;
     private List<Car> winners;
 
-    public RaceResult(List<Car> cars) {
+    public RaceResult(final List<Car> cars) {
         this.cars = cars;
         winners = new ArrayList<>();
     }
@@ -43,5 +43,4 @@ public class RaceResult {
     public void printWinners() {
         OutputView.printResult(winners);
     }
-
 }

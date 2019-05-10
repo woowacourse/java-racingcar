@@ -17,9 +17,9 @@ public class InputViewTest {
 
     @Test
     void validateNamesStringTest() {
-        assertThat(InputView.validateNamesString("pobi,crong,honux")).isEqualTo(true);
+        assertThat(InputView.validateNames("pobi,crong,honux")).isEqualTo(true);
         assertThrows(IllegalArgumentException.class, () -> {
-            InputView.validateNamesString(",,pobi");
+            InputView.validateNames(",,pobi");
         });
     }
 
@@ -28,9 +28,9 @@ public class InputViewTest {
         String[] namesString = {"pobi", "crong", ""};
         List<String> namesList = Arrays.asList(namesString);
         assertThrows(IllegalArgumentException.class, () -> {
-            InputView.validateNamesList(namesList);
+            InputView.validateSplittedNames(namesList);
         });
         namesList.set(namesList.size() - 1, "honux");
-        assertThat(InputView.validateNamesList(namesList)).isEqualTo(true);
+        assertThat(InputView.validateSplittedNames(namesList)).isEqualTo(true);
     }
 }
