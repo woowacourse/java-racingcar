@@ -1,5 +1,6 @@
 package cal;
 
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,8 +29,7 @@ public class CalculatorTest {
     void minusTest() {
         // Calculator cal = new Calculator();
         // int result = cal.minus(2, 3);
-        assertThat(cal.minus(2,3)).isEqualTo(-1);
-        System.out.println("minus");
+        assertThat(cal.minus(2, 3)).isEqualTo(-1);
     }
 
     @AfterEach
