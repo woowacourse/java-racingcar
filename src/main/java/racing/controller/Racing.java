@@ -28,6 +28,14 @@ public class Racing {
         this.count = count;
     }
 
+    private boolean hasDuplicateCarName(List<Car> cars) {
+        Set<String> carNames = new HashSet<>();
+        for (Car car : cars) {
+            carNames.add(car.getName());
+        }
+        return cars.size() != carNames.size();
+    }
+
     public void run() {
         OutputView.print(MSG_GAME_RESULT);
         for (int i = 0; i < count; i++) {
@@ -35,8 +43,6 @@ public class Racing {
             OutputView.print("");
         }
     }
-
-
 
     private void moveCars() {
         for (Car car : cars) {
@@ -47,13 +53,5 @@ public class Racing {
 
     private static int getRandomNumber() {
         return (int) (Math.random() * RANDOM);
-    }
-
-    private boolean hasDuplicateCarName(List<Car> cars) {
-        Set<String> carNames = new HashSet<>();
-        for (Car car : cars) {
-            carNames.add(car.getName());
-        }
-        return cars.size() != carNames.size();
     }
 }

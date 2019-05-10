@@ -22,12 +22,14 @@ public class Car {
         this.position = position;
     }
 
-    public String getName() {
-        return name;
+    public void move(int number) {
+        if (number >= FORWARD_NUMBER) {
+            position++;
+        }
     }
 
-    public int getPosition() {
-        return position;
+    public boolean matchPosition(int position) {
+        return this.position == position;
     }
 
     public String getCurrentLocation() {
@@ -39,14 +41,12 @@ public class Car {
         return currentLocation.toString();
     }
 
-    public void move(int number) {
-        if (number >= FORWARD_NUMBER) {
-            position++;
-        }
+    public String getName() {
+        return name;
     }
 
-    public boolean matchPosition(int position) {
-        return this.position == position;
+    public int getPosition() {
+        return position;
     }
 
     @Override

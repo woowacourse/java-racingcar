@@ -18,7 +18,6 @@ public class InputView {
             return carNames;
         }
         return carName();
-
     }
 
     public static int gameCount() {
