@@ -5,8 +5,10 @@ import java.util.regex.Pattern;
 
 public class InputView {
 
+    private static final int MINIMUM_PLAYER = 1;
+    private static final int NAME_LENGTH = 5;
     private static final Scanner scanner = new Scanner(System.in);
-    private static final String pattern = "^-[0-9]$";
+    private static final String pattern = "^[0-9]$";
 
     public String[] inputName() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -32,7 +34,7 @@ public class InputView {
     }
 
     private boolean hasBlank(String[] inputName) {
-        if (inputName.length == 1 && inputName[0].trim().equals("")) {
+        if (inputName.length == MINIMUM_PLAYER && inputName[0].trim().equals("")) {
             System.err.println("에러 : 아무것도 입력 안되었습니다.");
             return true;
         }
@@ -40,7 +42,7 @@ public class InputView {
     }
 
     private boolean overLengthName(String[] inputName) {
-        if (Arrays.stream(inputName).anyMatch(name -> name.length() >= 5)) {
+        if (Arrays.stream(inputName).anyMatch(name -> name.length() >= NAME_LENGTH)) {
             System.err.println("에러 : 5글자 이하로만 써주세요.");
             return true;
         }
@@ -49,7 +51,7 @@ public class InputView {
     }
 
     private boolean hasNotAnotherPlayer(String[] inputName) {
-        if (inputName.length == 1) {
+        if (inputName.length == MINIMUM_PLAYER) {
             System.err.println("에러 : 플레이어를 2명이상 입력해주세요.");
             return true;
         }
