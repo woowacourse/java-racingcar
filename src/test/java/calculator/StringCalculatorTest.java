@@ -42,10 +42,10 @@ public class StringCalculatorTest {
     @Test
     void 잘못된_수식어를_입력하면_에러인지_테스트() {
         /* Then */
-        assertThrows(NumberFormatException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             calculator.calculateAll("+ + + + +");
         });
-        assertThrows(NumberFormatException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             calculator.calculateAll("2 + 2 + +");
         });
         assertThrows(IllegalArgumentException.class, () -> {

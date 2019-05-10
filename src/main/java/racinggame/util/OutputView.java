@@ -1,7 +1,6 @@
 package racinggame.util;
 
 import racinggame.domain.LeagueHistory;
-import racinggame.domain.TrialHistory;
 
 import java.util.List;
 
