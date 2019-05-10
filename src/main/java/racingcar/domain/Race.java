@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Race {
     private final MovementStrategy strategy = new RandomMovement();
     private final List<Car> cars = new ArrayList<>();
-    private int cursor = -1;
+    private int cursor = 0;
 
     public Race(List<String> names) {
         names.forEach(name -> cars.add(new Car(name)));
@@ -28,8 +28,7 @@ public class Race {
     자동차 대수를 주기로 순서대로 진행함
      */
     public Car startRound() {
-        cursor = (cursor + 1) % cars.size();
-        return cars.get(cursor).moveOrStop(strategy);
+        return cars.get(cursor = (cursor + 1) % cars.size()).move(strategy);
     }
 
     public List<Car> getWinners() {

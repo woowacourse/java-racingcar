@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class IOValidation {
+public class Validation {
     public static List<String> filterTypos(String arg) {
         return new ArrayList<>(
                 Arrays.stream(arg.split(","))
@@ -16,15 +16,19 @@ public class IOValidation {
         );
     }
 
+    public static boolean isAValidName(String name) {
+        return 0 < name.length() && name.length() <= 5;
+    }
+
     public static boolean areValidNames(List<String> names) {
         return names.size() > 1
                 && names.size() == new HashSet<>(names).size()
-                && names.stream().map(x -> x.length() <= 5).reduce(true, (x, y) -> x && y);
+                && names.stream().map(x -> isAValidName(x)).reduce(true, (x, y) -> x && y);
     }
 
-    public static boolean isValidNumber(String line) {
+    public static boolean isAValidNumber(String text) {
         try {
-            return Integer.parseInt(line) > 0;
+            return Integer.parseInt(text) > 0;
         } catch (Exception e) {
             return false;
         }
@@ -41,7 +45,6 @@ public class IOValidation {
         if (48 <= letter && letter <= 122) {
             return ((CONVERSION_TABLE[letter - 48] - 0xAC00) % 28 == 0) ? "가" : "이";
         }
-
         return ((letter - 0xAC00) % 28 == 0) ? "가" : "이";
     }
 }

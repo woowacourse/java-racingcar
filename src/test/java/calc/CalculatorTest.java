@@ -80,4 +80,11 @@ public class CalculatorTest {
             calc.calculateTokens(expressionToList("1 + 5 /"));
         });
     }
+
+    @Test
+    void 예외테스트E() {
+        assertThrows(Exception.class, () -> {
+            calc.calculateTokens(expressionToList("1 3 5"));
+        });
+    }
 }

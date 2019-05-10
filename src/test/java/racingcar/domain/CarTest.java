@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CarTest {
     @Test
     void moveOrStopTest() {
-        assertThat(new Car("TOAST", 6).moveOrStop(new ForceMove()).isAtSamePositionWith(new Car("TEST", 7))).isTrue();
+        assertThat(new Car("TOAST", 6).move(new ForceMove()).isAtSamePositionWith(new Car("TEST", 7))).isTrue();
     }
 
     @Test

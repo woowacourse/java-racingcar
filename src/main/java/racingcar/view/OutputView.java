@@ -24,7 +24,7 @@ public class OutputView {
         String winnerList = winners.toString();
         System.out.println(
                 winnerList.substring(1, winnerList.length() - 1)
-                + IOValidation.differentiateIGa(winnerList.charAt(winnerList.length() - 2))
+                + Validation.differentiateIGa(winnerList.charAt(winnerList.length() - 2))
                 + " 최종 우승했습니다."
         );
     }
