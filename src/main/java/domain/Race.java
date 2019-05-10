@@ -7,10 +7,12 @@ import java.util.List;
 
 public class Race {
     private List<Car> raceCars;
+    private int roundCount;
     private int maxPosition = Const.ZERO;
 
-    public Race(List<Car> raceCars) {
+    public Race(List<Car> raceCars, int roundCount) {
         this.raceCars = raceCars;
+        this.roundCount = roundCount;
     }
 
     public void moveAllCarOneTime() {
