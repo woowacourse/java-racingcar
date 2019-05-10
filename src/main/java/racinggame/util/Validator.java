@@ -7,7 +7,7 @@ import java.util.Set;
 public class Validator {
     public static final int TRIAL_MIN = 1;
 
-    public static void checkCarNames(List<String> carNames) {
+    public static void checkDuplicateNames(List<String> carNames) {
        if (checkNameDuplication(carNames)) {
             throw new IllegalArgumentException("중복되는 이름은 입력할 수 없습니다.");
         }

@@ -13,13 +13,9 @@ class ValidatorTest {
     void 이름을_유효성검사에서_예외를_제대로_던지는지_테스트() {
         /* Given */
         final List<String> duplicatedCarNames = Arrays.asList("crong", "crong", "gogo");
-        final List<String> lengthExceededCarNames = Arrays.asList("abcdef", "gogo");
         /* Then */
         assertThrows(IllegalArgumentException.class, () -> {
-            Validator.checkCarNames(duplicatedCarNames);
-        });
-        assertThrows(IllegalArgumentException.class, () -> {
-            Validator.checkCarNames(lengthExceededCarNames);
+            Validator.checkDuplicateNames(duplicatedCarNames);
         });
     }
 

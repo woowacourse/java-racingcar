@@ -1,6 +1,9 @@
-package racinggame.domain;
+package racinggame;
 
 
+import racinggame.domain.Car;
+import racinggame.domain.LeagueHistory;
+import racinggame.domain.TrialHistory;
 import racinggame.util.InputView;
 import racinggame.util.OutputView;
 
@@ -8,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Racing {
+public class CarRacingApplication {
     private static final int RANDOM_BOUND = 10;
 
     public List<Car> initializeCars(List<String> carNames) {
@@ -39,14 +42,35 @@ public class Racing {
         return random.nextInt(RANDOM_BOUND);
     }
 
+    public List<Car> getCars() {
+        try {
+            List<String> carNames = InputView.getCarNames();
+            return initializeCars(carNames);
+        } catch (Exception e) {
+            OutputView.showErrorMessage(e.getMessage());
+            return getCars();
+        }
+    }
+
+    public int getTotalTrial() {
+        try {
+            return InputView.getTrial();
+        } catch (Exception e) {
+            OutputView.showErrorMessage(e.getMessage());
+            return getTotalTrial();
+        }
+    }
+
     public static void main(String[] args) {
-        Racing racing = new Racing();
-        List<Car> cars = racing.initializeCars(InputView.getCarNames());
-        int totalTrial = InputView.getTrial();
+        CarRacingApplication application = new CarRacingApplication();
+        List<Car> cars = application.getCars();
+        int totalTrial = application.getTotalTrial();
         LeagueHistory leagueHistory = new LeagueHistory();
 
-        racing.startLeague(leagueHistory, cars, totalTrial);
-        leagueHistory.showHistory();
+        application.startLeague(leagueHistory, cars, totalTrial);
+        OutputView.showHistory(leagueHistory);
         OutputView.showWinners(leagueHistory.findWinners(totalTrial));
     }
+
+
 }
