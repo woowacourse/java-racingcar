@@ -17,6 +17,10 @@ public class WinnerTest {
         cars.add(new Car("ms", 1));
         Winner winner = new Winner(cars);
 
-        assertThat(winner.getWinners()).hasSize(2);
+        List<String> winners = new ArrayList<>();
+        winners.add("pobi");
+        winners.add("denis");
+
+        assertThat(winner.getWinners()).isEqualTo(winners);
     }
 }
