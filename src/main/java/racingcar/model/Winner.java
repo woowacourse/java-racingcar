@@ -15,6 +15,12 @@ public class Winner {
         return cars.get(0).getPosition();
     }
 
+    public List<String> getWinnersName() {
+        List<String> winnersName = new ArrayList<>();
+        getWinners().forEach(winner -> winnersName.add(winner.getName()));
+        return winnersName;
+    }
+
     public List<Car> getWinners() {
         List<Car> winners = new ArrayList<>();
         int maxPosition = getMaxDistance();

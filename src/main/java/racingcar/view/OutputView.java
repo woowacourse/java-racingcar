@@ -12,6 +12,7 @@ public class OutputView {
     private static final String EMPTY_STRING = "";
     private static final String SPACE_AND_COMMA = " ,";
     private static final String WINNER_MENT = "가 최종 우승했습니다.";
+    private static final String RESULT_MENT = "실행결과";
 
     public static void printCarState(Car car) {
         StringBuilder sb = new StringBuilder();
@@ -33,5 +34,9 @@ public class OutputView {
             winners.add(winnerOfRacing.getName());
         }
         System.out.println(String.join(SPACE_AND_COMMA, winners) + WINNER_MENT);
+    }
+
+    public static void printResultMent() {
+        System.out.println(RESULT_MENT);
     }
 }

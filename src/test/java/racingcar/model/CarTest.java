@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
-
     @Test
     void 값이4이상일경우_움직인다() {
         Car car = new Car("testCar");
