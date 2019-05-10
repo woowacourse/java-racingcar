@@ -36,7 +36,7 @@ class CarTest {
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
-            car = new Car(" ");                 // 공백 입력 시 에외
+            car = new Car(" ");                // 공백 입력 시 에외
         });
     }
 
@@ -44,6 +44,16 @@ class CarTest {
     void 자동차_포지션_변화() {
         car.increasePositionOrNot(3);
         assertThat(car.matchPosition(0)).isTrue();
+    }
+
+    @Test
+    void 자동차_포지션_일치_확인() {
+        assertThat(car.matchPosition(0)).isTrue();
+    }
+
+    @Test
+    void 자동차_포지션_비교() {
+        assertThat(car.isGreaterThanMaxPosition(3)).isFalse();
     }
 
     @AfterEach
