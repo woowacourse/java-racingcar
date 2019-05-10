@@ -1,7 +1,8 @@
 package racing.view;
 
-import racing.game.Car;
-import racing.game.InputRegistration;
+import racing.model.Car;
+import racing.model.CarNamesInput;
+import racing.model.RoundNumberInput;
 
 import java.util.List;
 import java.util.Scanner;
@@ -16,7 +17,7 @@ public class InputView {
     public static List<Car> getCars() {
         System.out.println(ASK_CAR_NAMES);
         try {
-            return InputRegistration.getCars(SCANNER.nextLine());
+            return CarNamesInput.getCars(SCANNER.nextLine());
             //차 이름을 차 객체들로 변환
         } catch (Exception e) {
             System.out.println(CARNAMES_ERROR + "\n");
@@ -27,7 +28,7 @@ public class InputView {
     public static int getRoundNumber() {
         System.out.println(ASK_ROUND_NUMBERS);
         try {
-            return InputRegistration.getRoundNumber(SCANNER.nextLine());
+            return RoundNumberInput.getRoundNumber(SCANNER.nextLine());
         } catch (Exception e) {
             System.out.println(ROUND_NUMBER_ERROR + "\n");
             return getRoundNumber();
