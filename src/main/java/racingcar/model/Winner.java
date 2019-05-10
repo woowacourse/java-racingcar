@@ -1,9 +1,8 @@
 package racingcar.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class Winner {
     private List<Car> cars;
@@ -13,22 +12,20 @@ public class Winner {
     }
 
     private int getMaxDistance() {
-        Collections.sort(cars, new Comparator<Car>() {
-            @Override
-            public int compare(Car car1, Car car2) {
-                if (car1.getPosition() > car2.getPosition()) {
-                    return -1;
-                }
-                if (car1.getPosition() < car2.getPosition()) {
-                    return 0;
-                }
-                return 1;
-            }
-        });
+        cars.sort((Car car1, Car car2) -> car2.getPosition() - car1.getPosition());
         return cars.get(0).getPosition();
     }
 
-    public List<Car> getWinners() {
+    public List<String> getWinnerCarNames() {
+        List<String> winnerCarNames = new ArrayList<>();
+        List<Car> winnerCars = getWinnerCars();
+        for (Car winnerCar : winnerCars) {
+            winnerCarNames.add(winnerCar.getName());
+        }
+        return winnerCarNames;
+    }
+
+    private List<Car> getWinnerCars() {
         List<Car> winners = new ArrayList<>();
         int maxPosition = getMaxDistance();
         int carNumber = 0;
@@ -46,4 +43,16 @@ public class Winner {
         return cars.get(index).isMaxPosition(maxPosition);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Winner winner = (Winner) o;
+        return Objects.equals(cars, winner.cars);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cars);
+    }
 }

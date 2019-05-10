@@ -8,6 +8,6 @@ public class RacingCarApplication {
         InputManager inputManager = new InputManager();
         RacingCarManager racingStart = new RacingCarManager(inputManager);
 
-        racingStart.racingGameStart();
+        racingStart.playRacingGame();
     }
 }
