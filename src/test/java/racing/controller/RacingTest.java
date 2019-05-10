@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import racing.model.Car;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -14,9 +15,7 @@ public class RacingTest {
 
     @BeforeEach
     void setUp() {
-        cars = new ArrayList<>();
-        cars.add(new Car("pobi"));
-        cars.add(new Car("sean"));
+        cars = Arrays.asList(new Car("pobi"),new Car("sean"));
     }
 
     @Test
