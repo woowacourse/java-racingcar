@@ -1,5 +1,4 @@
-package calculator;
-
+package calculator.validator;
 
 import org.junit.Test;
 

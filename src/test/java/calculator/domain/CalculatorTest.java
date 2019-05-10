@@ -1,5 +1,4 @@
-package calculator;
-
+package calculator.domain;
 
 import org.junit.Test;
 
