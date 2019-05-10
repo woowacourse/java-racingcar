@@ -1,38 +1,38 @@
 package calc;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Calculator {
-    public static double val;
+    private final List<String> tokens;
+    private double result = .0;
 
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("수식을 입력하여 주십시오.");
-        ArrayList<String> tokens = new ArrayList<>(Arrays.asList(input.nextLine().split(" ")));
-        try {
-            calculateTokens(tokens);
-            System.out.println("감사합니다.\n결과값은 " + val + "입니다.");
-        } catch (Exception e) {
-            System.out.println("잘못된 입력입니다.");
-        }
-
-    }
-
-    public static void calculateTokens(ArrayList<String> tokens) {
-        val = .0;
+    Calculator(String line) {
+        tokens = Arrays.asList(line.split(" ")).stream()
+                .filter(x -> !x.equals("") && !x.equals(" "))
+                .map(x -> x.trim())
+                .collect(Collectors.toList());
         tokens.add(0, "+");
-        calculate(tokens);
+        calculate();
     }
 
-    private static boolean calculate(ArrayList<String> tokens) {
-        val = convertSymbolToEnum(tokens.remove(0)).calculate(val, Double.parseDouble(tokens.remove(0)));
-        return tokens.isEmpty() || calculate(tokens);
+    private boolean calculate() {
+        result = convertSymbolToOperator(tokens.remove(0)).calculate(result, Double.parseDouble(tokens.remove(0)));
+        return tokens.isEmpty() || calculate();
     }
 
-    private static Operator convertSymbolToEnum(String symbol) {
+    private static Operator convertSymbolToOperator(String symbol) {
         final String conversionTable[] = { "PLUS", "MINUS", "MULTIPLY", "DIVIDE" };
         return Operator.valueOf(conversionTable["+-*/".indexOf(symbol)]);
+    }
+
+    public double getValue() {
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(result);
     }
 }
