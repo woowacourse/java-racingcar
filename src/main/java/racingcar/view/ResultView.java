@@ -9,17 +9,15 @@ public class ResultView {
 
     public void printResult(List<Car> cars) {
         for (Car car : cars) {
-            printHyphen(car);
+            System.out.println(printHyphen(car));
         }
 
         System.out.println();
     }
 
-    private void printHyphen(Car car) {
-        String hyphenString = String.format(MessageConstants.RESULT_PRINT_HYPHEN_FORMAT,
+    public String printHyphen(Car car) {
+        return String.format(MessageConstants.RESULT_PRINT_HYPHEN_FORMAT,
                 car.getName(), getHyphen(car.getPosition()));
-
-        System.out.println(hyphenString);
     }
 
     private String getHyphen(int position) {
