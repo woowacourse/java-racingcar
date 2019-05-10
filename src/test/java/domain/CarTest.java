@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarTest {
     Car car;
@@ -12,6 +13,18 @@ public class CarTest {
     @BeforeEach
     void setUp() {
         car = new Car("붕붕이");
+    }
+
+    @Test
+    void create() {
+        assertThat(car).isEqualTo(new Car("붕붕이"));
+    }
+
+    @Test
+    void create_5자_초과() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Car("aaaaaa");
+        });
     }
 
     @Test
