@@ -11,29 +11,30 @@ import java.util.stream.Collectors;
 public class RacingcarUtil {
     private static final int MAX_NAME_LENGTH = 5;
 
-    private RacingcarUtil() {}
+    private RacingcarUtil() {
+    }
 
-    public static String joinCarNames(List<CarDto> cars) {
+    public static String joinCarNames(final List<CarDto> cars) {
         return cars.stream()
             .map(CarDto::getName)
             .collect(Collectors.joining(", "));
     }
 
-    public static List<String> splitIntoNames(String input) {
-        String[] names = input.split(",");
+    public static List<String> splitIntoNames(final String input) {
+        final String[] names = input.split(",");
         for (int i = 0; i < names.length; i++) {
             names[i] = names[i].trim();
         }
         return Arrays.asList(names);
     }
 
-    public static boolean isValidNameInput(List<String> carNames) {
-        List<String> validNameList = filterInvalidNames(carNames);
+    public static boolean isValidNameInput(final List<String> carNames) {
+        final List<String> validNameList = filterInvalidNames(carNames);
         return validNameList.size() == carNames.size();
     }
 
-    public static List<Car> createCars(List<String> carNames) {
-        List<Car> cars = new ArrayList<>();
+    public static List<Car> createCars(final List<String> carNames) {
+        final List<Car> cars = new ArrayList<>();
         for (String s : carNames) {
             cars.add(new Car(s));
         }
@@ -41,7 +42,7 @@ public class RacingcarUtil {
         return cars;
     }
 
-    private static List<String> filterInvalidNames(List<String> names) {
+    private static List<String> filterInvalidNames(final List<String> names) {
         return names.stream()
             .filter(RacingcarUtil::checkNameLength)
             .filter(RacingcarUtil::checkIfNameIsEmpty)
@@ -50,25 +51,25 @@ public class RacingcarUtil {
             .collect(Collectors.toList());
     }
 
-    private static boolean checkNameLength(String name) {
+    private static boolean checkNameLength(final String name) {
         return name.length() <= MAX_NAME_LENGTH;
     }
 
-    private static boolean checkIfNameIsEmpty(String name) {
+    private static boolean checkIfNameIsEmpty(final String name) {
         return !name.isEmpty();
     }
 
-    private static boolean checkIfNameIncludesSpace(String name) {
+    private static boolean checkIfNameIncludesSpace(final String name) {
         return !name.contains(" ");
     }
 
-    private static boolean checkIfNameDuplicates(String name, List<String> names) {
+    private static boolean checkIfNameDuplicates(final String name, final List<String> names) {
         return countDuplicateNames(name, names) < 2;
     }
 
-    private static int countDuplicateNames(String name, List<String> names) {
-        return (int)names.stream()
-            .filter(n -> name.equals(n))
+    private static int countDuplicateNames(final String name, final List<String> names) {
+        return (int) names.stream()
+            .filter(name::equals)
             .count();
     }
 }
