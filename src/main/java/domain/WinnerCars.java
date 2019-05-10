@@ -3,32 +3,31 @@ package domain;
 import java.util.ArrayList;
 
 public class WinnerCars {
+    public ArrayList<Car> determineWinners(ArrayList<Car> cars) {
+        int maxPosition = getMaxPosition(cars);
 
-    public ArrayList<Car> determineWinners(ArrayList<Car> carList) {
-        int maxPosition = getMaxPosition(carList);
-
-        return searchWinners(maxPosition, carList);
+        return searchWinners(maxPosition, cars);
     }
 
-    private int getMaxPosition(ArrayList<Car> carList) {
+    private int getMaxPosition(ArrayList<Car> cars) {
         int maxPosition = 0;
 
-        for (Car car : carList) {
+        for (Car car : cars) {
             maxPosition = car.getLargePosition(maxPosition);
         }
 
         return maxPosition;
     }
 
-    private ArrayList<Car> searchWinners(int maxPosition, ArrayList<Car> carList) {
-        ArrayList<Car> winnerList = new ArrayList<>();
+    private ArrayList<Car> searchWinners(int maxPosition, ArrayList<Car> cars) {
+        ArrayList<Car> winners = new ArrayList<>();
 
-        for (Car car : carList) {
+        for (Car car : cars) {
             if (car.compareToPosition(maxPosition)) {
-                winnerList.add(car);
+                winners.add(car);
             }
         }
 
-        return winnerList;
+        return winners;
     }
 }

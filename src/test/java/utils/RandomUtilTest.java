@@ -1,7 +1,6 @@
 package utils;
 
 import org.junit.jupiter.api.Test;
-import utils.RandomUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

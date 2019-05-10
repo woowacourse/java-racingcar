@@ -1,12 +1,14 @@
 package domain;
 
+import java.util.Objects;
+
 public class Car {
     private static final int MOVE_CONDITION = 4;
 
     private final String name;
     private int position;
 
-    public Car(String name) {
+    public Car(final String name) {
         this.name = name;
         this.position = 0;
     }
@@ -39,8 +41,22 @@ public class Car {
         return str.toString();
     }
 
-    public String getName() {
-        return name;
+    public String appendCarName(String carNames) {
+        return carNames + (name + ", ");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position == car.position &&
+                Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 
     @Override

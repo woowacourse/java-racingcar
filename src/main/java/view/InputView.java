@@ -3,9 +3,9 @@ package view;
 import java.util.*;
 
 public class InputView {
-
     private static final int MINIMUM_PARTICIPANT = 2;
     private static final int LIMIT_NAME_LENGTH = 5;
+
     private static Scanner sc = new Scanner(System.in);
 
     private static String input() {
@@ -46,9 +46,9 @@ public class InputView {
     }
 
     private static boolean isDuplicatedName(String[] names) {
-        Set<String> set = new HashSet<>(Arrays.asList(names));
+        Set<String> nonDuplicatedNames = new HashSet<>(Arrays.asList(names));
 
-        return set.size() != names.length;
+        return nonDuplicatedNames.size() != names.length;
     }
 
     public static int inputRound() {

@@ -8,36 +8,40 @@ import java.util.ArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
-
-    private ArrayList<Car> carList;
+    private ArrayList<Car> cars;
 
     @BeforeEach
     void setUp() {
-        carList = new ArrayList<>();
-        carList.add(new Car("pobi"));
-        carList.add(new Car("crong"));
+        cars = new ArrayList<>();
+        cars.add(new Car("pobi"));
+        cars.add(new Car("crong"));
 
-        carList.get(0).move(2);
-        carList.get(1).move(9);
+        cars.get(0).move(3);
+        cars.get(1).move(4);
+    }
+
+    @Test
+    void create_Car() {
+        assertThat(new Car("pobi")).isEqualTo(new Car("pobi"));
     }
 
     @Test
     void isMoveTest() {
-        assertThat(Car.isMove(4)).isEqualTo(true);
-        assertThat(Car.isMove(2)).isEqualTo(false);
+        assertThat(Car.isMove(4)).isTrue();
+        assertThat(Car.isMove(3)).isFalse();
     }
 
     @Test
-    void maxPositionTest() {
-        Car car = carList.get(1);
+    void getLargePositionTest() {
+        Car car = cars.get(1);
         assertThat(car.getLargePosition(5)).isEqualTo(5);
         assertThat(car.getLargePosition(0)).isEqualTo(1);
     }
 
     @Test
     void compareToPositionTest() {
-        Car car = carList.get(1);
-        assertThat(car.compareToPosition(1)).isEqualTo(true);
-        assertThat(car.compareToPosition(2)).isEqualTo(false);
+        Car car = cars.get(1);
+        assertThat(car.compareToPosition(1)).isTrue();
+        assertThat(car.compareToPosition(2)).isFalse();
     }
 }

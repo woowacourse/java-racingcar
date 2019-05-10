@@ -8,39 +8,39 @@ import java.util.ArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WinnerCarsTest {
-    private ArrayList<Car> carList = new ArrayList<>();
-    private ArrayList<Car> answerList = new ArrayList<>();
+    private ArrayList<Car> cars = new ArrayList<>();
+    private ArrayList<Car> answers = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
-        carList.add(new Car("pobi"));
-        carList.add(new Car("crong"));
-        carList.add(new Car("abc"));
-        carList.add(new Car("def"));
+        cars.add(new Car("pobi"));
+        cars.add(new Car("crong"));
+        cars.add(new Car("abc"));
+        cars.add(new Car("def"));
 
-        carList.get(0).move(3);
-        carList.get(1).move(5);
-        carList.get(2).move(5);
-        carList.get(2).move(5);
-        carList.get(3).move(5);
-        carList.get(3).move(5);
+        cars.get(0).move(3);
+        cars.get(1).move(4);
+        cars.get(2).move(4);
+        cars.get(2).move(4);
+        cars.get(3).move(4);
+        cars.get(3).move(4);
 
-        answerList.add(new Car("abc"));
-        answerList.add(new Car("def"));
+        answers.add(new Car("abc"));
+        answers.add(new Car("def"));
 
-        answerList.get(0).move(5);
-        answerList.get(0).move(5);
-        answerList.get(1).move(5);
-        answerList.get(1).move(5);
+        answers.get(0).move(4);
+        answers.get(0).move(4);
+        answers.get(1).move(4);
+        answers.get(1).move(4);
     }
 
     @Test
-    void 우승자확인() {
+    void 우승자_확인() {
         WinnerCars winnerCars = new WinnerCars();
-        ArrayList<Car> winnerList = winnerCars.determineWinners(carList);
+        ArrayList<Car> winnerList = winnerCars.determineWinners(cars);
 
-        for (int i = 0; i < answerList.size(); i++) {
-            assertThat(winnerList.get(i).getName()).isEqualTo(answerList.get(i).getName());
+        for (int i = 0; i < answers.size(); i++) {
+            assertThat(winnerList.get(i)).isEqualTo(answers.get(i));
         }
 
     }
