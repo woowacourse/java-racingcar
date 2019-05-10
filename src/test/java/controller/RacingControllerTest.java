@@ -28,7 +28,7 @@ class RacingControllerTest {
         InputStream in = new ByteArrayInputStream(carNames.getBytes());
         System.setIn(in);
 
-        List<Car> carList = RacingController.setCarName();
+        List<Car> carList = RacingController.setCarsOnRace();
         for (int i = 0; i < carNameList.size(); i++) {
             assertThat(carList.get(i).getName()).isEqualTo(carNameList.get(i));
         }
@@ -41,7 +41,7 @@ class RacingControllerTest {
         System.setIn(in);
 
         assertThrows(NoSuchElementException.class, () -> {
-            RacingController.setCarName();
+            RacingController.setCarsOnRace();
         });
     }
 
@@ -52,7 +52,7 @@ class RacingControllerTest {
         System.setIn(in);
 
         assertThrows(NoSuchElementException.class, () -> {
-            RacingController.setCarName();
+            RacingController.setCarsOnRace();
         });
     }
 
@@ -105,7 +105,7 @@ class RacingControllerTest {
         InputStream in = new ByteArrayInputStream(carNames.getBytes());
         System.setIn(in);
 
-        RacingController.moveAllCar(RacingController.setCarName(), roundCount);
+        RacingController.moveAllCar(RacingController.setCarsOnRace(), roundCount);
     }
 
     @Test
@@ -113,7 +113,7 @@ class RacingControllerTest {
         InputStream in = new ByteArrayInputStream(carNames.getBytes());
         System.setIn(in);
 
-        Race race = RacingController.moveAllCar(RacingController.setCarName(), roundCount);
+        Race race = RacingController.moveAllCar(RacingController.setCarsOnRace(), roundCount);
         RacingController.printWinners(race);
     }
 
