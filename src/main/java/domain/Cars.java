@@ -4,6 +4,7 @@ import util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Cars {
     private List<String> carNames;
@@ -23,5 +24,18 @@ public class Cars {
             cars.add(car);
         }
         return cars;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cars cars = (Cars) o;
+        return Objects.equals(carNames, cars.carNames);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(carNames);
     }
 }
