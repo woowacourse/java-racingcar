@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 public class Car implements Comparable<Car> {
+    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
     private int position;
 
@@ -9,7 +10,7 @@ public class Car implements Comparable<Car> {
     }
 
     public Car(String name, int position) {
-        if (name.length() < 0 || 5 < name.length() || position < 0) {
+        if (name.length() < 0 || MAX_NAME_LENGTH < name.length() || position < 0) {
             throw new IllegalArgumentException();
         }
         this.name = name;

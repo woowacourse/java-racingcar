@@ -6,30 +6,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-public class CalculatorAppTest {
+public class CalculatorTest {
     @Test
     void 덧셈테스트() {
-        assertThat(new Calculator("1 +    2 + 3").getValue()).isEqualTo(6.0);
+        assertThat(new Calculator("1 +    2 + 3").getResult()).isEqualTo(6.0);
     }
 
     @Test
     void 뺄셈테스트() {
-        assertThat(new Calculator("1 -   3").getValue()).isEqualTo(-2.0);
+        assertThat(new Calculator("1 -   3").getResult()).isEqualTo(-2.0);
     }
 
     @Test
     void 곱셈테스트() {
-        assertThat(new Calculator("1   * -3").getValue()).isEqualTo(-3.0);
+        assertThat(new Calculator("1   * -3").getResult()).isEqualTo(-3.0);
     }
 
     @Test
     void 나눗셈테스트() {
-        assertThat(new Calculator("12 /   3").getValue()).isEqualTo(4.0);
+        assertThat(new Calculator("12 /   3").getResult()).isEqualTo(4.0);
     }
 
     @Test
     void 수식테스트() {
-        assertThat(new Calculator("1 - 3 * 6 + 6 / 2").getValue()).isEqualTo(-3.0);
+        assertThat(new Calculator("1 - 3 * 6 + 6 / 2").getResult()).isEqualTo(-3.0);
     }
 
     @Test

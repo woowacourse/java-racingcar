@@ -45,6 +45,7 @@ public class Race {
 
     public List<Car> getWinners() {
         Collections.sort(cars);
+        System.out.println(cars);
         return cars.stream()
                 .filter(x -> x.isAtSamePositionWith(cars.get(0)))
                 .collect(Collectors.toList());

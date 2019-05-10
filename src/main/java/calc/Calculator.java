@@ -6,28 +6,24 @@ import java.util.stream.Collectors;
 
 public class Calculator {
     private final List<String> tokens;
-    private double result = .0;
+    private double result;
 
-    Calculator(String line) {
-        tokens = Arrays.asList(line.split(" ")).stream()
+    Calculator(String expression) {
+        tokens = Arrays.asList(expression.split(" ")).stream()
                 .map(x -> x.trim())
                 .filter(x -> !x.equals("") && !x.equals(" "))
                 .collect(Collectors.toList());
-        tokens.add(0, "+");
+        result = Double.parseDouble(tokens.remove(0));
         calculate();
     }
 
     private boolean calculate() {
-        result = convertSymbolToOperator(tokens.remove(0)).calculate(result, Double.parseDouble(tokens.remove(0)));
+        result = Operator.getFunction(tokens.remove(0))
+                .apply(result, Double.parseDouble(tokens.remove(0)));
         return tokens.isEmpty() || calculate();
     }
 
-    private static Operator convertSymbolToOperator(String symbol) {
-        final String conversionTable[] = { "PLUS", "MINUS", "MULTIPLY", "DIVIDE" };
-        return Operator.valueOf(conversionTable["+-*/".indexOf(symbol)]);
-    }
-
-    public double getValue() {
+    public double getResult() {
         return result;
     }
 

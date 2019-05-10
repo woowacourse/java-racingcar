@@ -14,7 +14,16 @@ public enum Operator {
         this.func = func;
     }
 
-    public double calculate(double lhs, double rhs) {
+    static public Operator getFunction(String symbol) {
+        final Operator conversionTable[] = { PLUS, MINUS, MULTIPLY, DIVIDE };
+        try {
+            return conversionTable["+-*/".indexOf(symbol)];
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public double apply(double lhs, double rhs) {
         return func.apply(lhs, rhs);
     }
 }
