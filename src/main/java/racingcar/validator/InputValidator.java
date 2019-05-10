@@ -35,7 +35,7 @@ public class InputValidator {
     }
 
     private static boolean overlapNames(String carNames) {
-        return ((carNames.split(",").length) == (new HashSet<>(Arrays.asList(carNames)).size()));
+        return ((carNames.split(",").length) == (new HashSet<>(Arrays.asList(carNames.split(","))).size()));
     }
 
     public static boolean validateNaturalNumber(String numberOfTimes) {
