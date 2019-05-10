@@ -2,26 +2,26 @@ package calculator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.DoubleBinaryOperator;
+import java.util.function.IntBinaryOperator;
 
-enum Operator implements DoubleBinaryOperator {
+enum Operator implements IntBinaryOperator {
 
-    PLUS("+", (l, r) -> l + r),
-    MINUS("-", (l, r) -> l - r),
-    MULTIPLY("*", (l, r) -> l * r),
-    DIVIDE("/", (l, r) -> l / r);
+    PLUS("+", (left, right) -> left + right),
+    MINUS("-", (left, right) -> left - right),
+    MULTIPLY("*", (left, right) -> left * right),
+    DIVIDE("/", (left, right) -> left / right);
 
     private final String symbol;
-    private final DoubleBinaryOperator binaryOperator;
+    private final IntBinaryOperator binaryOperator;
 
-    Operator(String symbol, DoubleBinaryOperator doubleBinaryOperator) {
+    Operator(String symbol, IntBinaryOperator intBinaryOperator) {
         this.symbol = symbol;
-        this.binaryOperator = doubleBinaryOperator;
+        this.binaryOperator = intBinaryOperator;
     }
 
     @Override
-    public double applyAsDouble(double left, double right) {
-        return binaryOperator.applyAsDouble(left, right);
+    public int applyAsInt(int left, int right) {
+        return binaryOperator.applyAsInt(left, right);
     }
 
     public static boolean isOperator(String symbol) {
@@ -41,4 +41,5 @@ enum Operator implements DoubleBinaryOperator {
         }
         throw new IllegalArgumentException("해당 연산기호가 없습니다.");
     }
+
 }
