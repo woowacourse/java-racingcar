@@ -1,7 +1,5 @@
 package domain;
 
-import view.OutputView;
-
 import java.util.List;
 
 public class RacingGame {

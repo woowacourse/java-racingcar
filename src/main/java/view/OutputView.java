@@ -16,6 +16,7 @@ public class OutputView {
         for (Car car : cars) {
             System.out.println(printCar(car));
         }
+        System.out.println();
     }
 
     private static String printCar(Car car) {

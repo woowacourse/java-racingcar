@@ -17,7 +17,6 @@ public class RacingCarApp {
         for (int i = 0; i < tryNumber; i++) {
             racingGame.tryMove(cars);
             OutputView.printPosition(cars);
-            System.out.println();
         }
 
         OutputView.printWinnerName(cars);

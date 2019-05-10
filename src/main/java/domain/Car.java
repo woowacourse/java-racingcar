@@ -19,16 +19,15 @@ public class Car {
         this.position = position;
     }
 
-    public int move() {
-        position++;
-        return position;
-    }
-
-
     private void validateName(String name) {
         if ((name.length() > NAME_MAX_LENGTH) || (name.length() < 1)) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하 입니다.");
         }
+    }
+
+    public int move() {
+        position++;
+        return position;
     }
 
     public int getBiggerPosition(int position) {
