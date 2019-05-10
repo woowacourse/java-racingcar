@@ -1,5 +1,7 @@
 package racinggame.domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -17,9 +19,6 @@ public class Car {
     }
 
     public Car(String name, int position) {
-        isNull(name);
-
-        name = name.trim();
         validCarName(name);
         validCarPosition(position);
 
@@ -27,14 +26,8 @@ public class Car {
         this.position = position;
     }
 
-    private void isNull(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException("null값은 입력할 수 없습니다.");
-        }
-    }
-
     private void validCarName(String name) {
-        if (name.isEmpty()) {
+        if (StringUtils.isBlank(name)) {
             throw new IllegalArgumentException("공백은 입력할 수 없습니다");
         }
         if (name.length() > NAME_LENGTH_BOUND) {
