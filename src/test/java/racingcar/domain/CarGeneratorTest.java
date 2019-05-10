@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CarGeneratorTest {
     CarGenerator carGenerator;
@@ -23,7 +22,7 @@ class CarGeneratorTest {
     }
 
     @Test
-    void 차생성_테스트(){
+    void 차생성(){
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("pobi"));
         cars.add(new Car("crong"));
@@ -31,7 +30,7 @@ class CarGeneratorTest {
     }
 
     @Test
-    void 자동차리스트가_잘저장되는지_테스트(){
+    void 자동차리스트가_잘저장되는지(){
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("pobi"));
         cars.add(new Car("crong"));

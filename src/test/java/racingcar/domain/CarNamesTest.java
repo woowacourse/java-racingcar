@@ -25,23 +25,14 @@ public class CarNamesTest {
     }
 
     @Test
-    void 알맞는_예외처리를하는지() {
-        try {
-            CarNames carNames = new CarNames("pobi,,,crong");
-        } catch (IllegalArgumentException e){
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    void 중복된_이름이_존재할때_테스트() {
+    void 중복된_이름이_존재할때() {
         assertThrows(IllegalArgumentException.class, () ->{
             carNames.duplicateNameException(Arrays.asList("pobi", "pobi"));
         });
     }
 
     @Test
-    void 글자수가_1미만일때_테스트() {
+    void 글자수가_1미만일때() {
         assertThrows(IllegalArgumentException.class, () ->{
             carNames.minimalCarNameException("abc,,,def".split(","));
         });
