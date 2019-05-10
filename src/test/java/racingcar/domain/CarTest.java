@@ -19,9 +19,16 @@ public class CarTest {
     }
 
     @Test
+    void 정지() {
+        Car car = new Car("pobi", 0);
+        car.move(3);
+        assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @Test
     void 전진() {
         Car car = new Car("pobi", 0);
-        car.move();
+        car.move(4);
         assertThat(car.getPosition()).isEqualTo(1);
     }
 

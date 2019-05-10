@@ -8,7 +8,6 @@ public class RacingGame {
     private static final int MIN_TRY_COUNT = 1;
     private static final int RANDOM_NUMBER_COUNT = 9;
     private static final int RANDOM_NUMBER_LOWER_BOUND = 1;
-    private static final int MOVE_CRITERIA = 4;
     private static final String SPLIT_REGEX = ",";
 
     private ArrayList<Car> cars = new ArrayList<>();
@@ -67,9 +66,7 @@ public class RacingGame {
     private void randomMove(Car car) {
         int randomNumber = Utils.RANDOM.nextInt(RANDOM_NUMBER_COUNT) + RANDOM_NUMBER_LOWER_BOUND;
 
-        if (randomNumber >= MOVE_CRITERIA) {
-            car.move();
-        }
+        car.move(randomNumber);
     }
 
     public ArrayList<Car> findWinningCars() {
