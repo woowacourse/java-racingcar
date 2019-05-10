@@ -1,4 +1,4 @@
-package stringcalculator;
+package textCalculaotr.input;
 
 import java.util.Scanner;
 
