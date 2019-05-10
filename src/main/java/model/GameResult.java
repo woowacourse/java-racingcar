@@ -5,7 +5,7 @@ import java.util.Collections;
 public class GameResult {
     private Winners winners = new Winners();
 
-    GameResult(Cars cars) {
+    public GameResult(Cars cars) {
         Car maxPositionCar = Collections.max(cars.getCars());
 
         for (Car car : cars.getCars()) {

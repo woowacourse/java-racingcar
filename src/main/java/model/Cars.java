@@ -6,7 +6,7 @@ import java.util.List;
 public class Cars {
     private static final String REGEX_CAR_NAMES_FORMAT = "^([^,]+)(,[^,]+)*$";
     private static final String REGEX_CAR_NAMES_SPLIT = ",";
-    List<Car> cars;
+    private List<Car> cars;
 
     public Cars(String carNames) {
         checkCarNamesFormat(carNames);
@@ -46,6 +46,6 @@ public class Cars {
         for (Car car : cars) {
             sb.append(car.toString());
         }
-        return sb.toString();
+        return sb.append("\n").toString();
     }
 }

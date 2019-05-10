@@ -1,28 +1,33 @@
 package service;
 
-import model.Car;
+import model.Cars;
 import model.GameResult;
-import model.RacingGame;
-
-import java.util.List;
+import model.LapCount;
+import model.Racing;
 
 public class RacingGameService {
-    private List<Car> cars;
-    private RacingGame racingGame;
-    private GameResult gameResult;
+    Cars cars;
+    LapCount lapCount;
 
-    public RacingGameService(List<Car> cars) {
-        this.cars = cars;
-        racingGame = new RacingGame();
-        gameResult = new GameResult();
+    public RacingGameService(String carNames, String lapCount) {
+        this.cars = new Cars(carNames);
+        this.lapCount = new LapCount(lapCount);
     }
 
-    public List<Car> run() {
-        racingGame.run(this.cars);
-        return cars;
+    public String run() {
+        StringBuilder sb = new StringBuilder();
+        Racing racing = new Racing(cars);
+
+        for (int lapNo = 1; lapNo <= lapCount.getLapCount(); lapNo++) {
+            racing.run();
+            sb.append(cars.toString());
+        }
+
+        return sb.toString();
     }
 
-    public List<String> getWinners() {
-        return this.gameResult.getWinners(cars);
+    public String getWinners() {
+        GameResult gameResult = new GameResult(cars);
+        return gameResult.getWinners().toString();
     }
 }

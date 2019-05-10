@@ -6,7 +6,7 @@ public class Racing {
     private static final int RANDOM_BOUND = 10;
     Cars cars;
 
-    Racing (Cars cars) {
+    public Racing (Cars cars) {
         this.cars = cars;
     }
 
