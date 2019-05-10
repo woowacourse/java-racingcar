@@ -8,7 +8,6 @@ public class Application {
 
         racingGameController.createCars();
         racingGameController.configureTryCount();
-        racingGameController.raceAll();
-        racingGameController.findWinningCars();
+        racingGameController.playRacingGame();
     }
 }

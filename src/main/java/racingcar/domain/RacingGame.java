@@ -68,22 +68,4 @@ public class RacingGame {
 
         car.move(randomNumber);
     }
-
-    public ArrayList<Car> findWinningCars() {
-        ArrayList<Car> winningCars = new ArrayList<>();
-        int farthestPosition = -1;
-
-        for (Car car : cars) {
-            if (car.isFartherPosition(farthestPosition)) {
-                winningCars.clear();
-                winningCars.add(car);
-                farthestPosition = car.getPosition();
-                continue;
-            }
-            if (car.isSamePosition(farthestPosition)) {
-                winningCars.add(car);
-            }
-        }
-        return winningCars;
-    }
 }
