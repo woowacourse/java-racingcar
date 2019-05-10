@@ -113,36 +113,6 @@ class RacingControllerTest {
         RacingController.printWinners(race);
     }
 
-    @Test
-    void 우승차_출력_임의_생성() {
-        List<Car> carList = new ArrayList<>();
-        Car car1 = new Car("pobii");
-        Car car2 = new Car("crong");
-        Car car3 = new Car("hee");
-        Car car4 = new Car("hi");
-
-        car1.increasePositionOrNot(3);
-        car1.increasePositionOrNot(3);
-        car1.increasePositionOrNot(3);
-        car1.increasePositionOrNot(3);
-
-        car2.increasePositionOrNot(1);
-        car2.increasePositionOrNot(1);
-        car2.increasePositionOrNot(1);
-
-        car3.increasePositionOrNot(7);
-
-        car4.increasePositionOrNot(5);
-
-        carList.add(car1);
-        carList.add(car2);
-        carList.add(car3);
-        carList.add(car4);
-
-        Race race = new Race(carList);
-        RacingController.printWinners(race);
-    }
-
     @AfterEach
     void tearDown() {
     }
