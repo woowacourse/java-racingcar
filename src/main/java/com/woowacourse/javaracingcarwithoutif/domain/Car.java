@@ -5,12 +5,12 @@ public class Car implements Comparable<Car> {
     private final String name;
     private int position;
 
-    public Car(String name) {
+    public Car(final String name) {
         this.name = name;
         this.position = 0;
     }
 
-    public void move(int position) {
+    public void move(final int position) {
         this.position += position;
     }
 

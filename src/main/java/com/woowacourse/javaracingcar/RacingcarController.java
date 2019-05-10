@@ -6,10 +6,11 @@ import com.woowacourse.javaracingcar.interfaces.UserInterface;
 
 import java.util.List;
 
+
 public class RacingcarController {
 
-    private UserInterface ui;
-    private NumberGenerator numberGenerator;
+    private final UserInterface ui;
+    private final NumberGenerator numberGenerator;
 
     public RacingcarController(UserInterface ui, NumberGenerator numberGenerator) {
         this.ui = ui;
@@ -17,9 +18,9 @@ public class RacingcarController {
     }
 
     public void play() {
-        List<String> carNameList = ui.promptUserNames();
+        List<String> carNames = ui.promptUserNames();
         int tries = ui.promptTries();
-        RacingcarModel racingcarModel = new RacingcarModel(numberGenerator, carNameList);
+        RacingcarModel racingcarModel = new RacingcarModel(numberGenerator, carNames);
 
         for (int i = 0; i < tries; i++) {
             ui.printResult(racingcarModel.loop());

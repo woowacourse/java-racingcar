@@ -25,11 +25,11 @@ public class ConsoleUserInterface implements UserInterface {
             return onInvalidUserNames();
         }
 
-        List<String> splittedNameList = new ArrayList<>();
+        List<String> convertedList = new ArrayList<>();
         for (String str : splittedNames) {
-            splittedNameList.add(str);
+            convertedList.add(str);
         }
-        return splittedNameList;
+        return convertedList;
     }
 
     @Override
@@ -45,13 +45,13 @@ public class ConsoleUserInterface implements UserInterface {
     }
 
     @Override
-    public void printResult(List<CarDto> carList) {
+    public void printResult(List<CarDto> cars) {
         if (!isResultTitlePrinted) {
             System.out.println("실행 결과");
             isResultTitlePrinted = true;
         }
 
-        for (CarDto c : carList) {
+        for (CarDto c : cars) {
             System.out.println(c);
         }
 
@@ -59,8 +59,8 @@ public class ConsoleUserInterface implements UserInterface {
     }
 
     @Override
-    public void printWinners(List<CarDto> winnerList) {
-        String str = RacingcarUtil.joinCarNames(winnerList);
+    public void printWinners(List<CarDto> winners) {
+        String str = RacingcarUtil.joinCarNames(winners);
         System.out.println(str + "가 최종 우승했습니다.");
     }
 

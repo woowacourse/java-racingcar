@@ -27,26 +27,26 @@ public class RacingcarUtil {
         return Arrays.asList(names);
     }
 
-    public static boolean isValidNameInput(List<String> nameList) {
-        List<String> validNameList = filterInvalidNames(nameList);
-        return validNameList.size() == nameList.size();
+    public static boolean isValidNameInput(List<String> carNames) {
+        List<String> validNameList = filterInvalidNames(carNames);
+        return validNameList.size() == carNames.size();
     }
 
-    public static List<Car> createCars(List<String> carNameList) {
+    public static List<Car> createCars(List<String> carNames) {
         List<Car> cars = new ArrayList<>();
-        for (String s : carNameList) {
+        for (String s : carNames) {
             cars.add(new Car(s));
         }
 
         return cars;
     }
 
-    private static List<String> filterInvalidNames(List<String> nameList) {
-        return nameList.stream()
+    private static List<String> filterInvalidNames(List<String> names) {
+        return names.stream()
+            .filter(RacingcarUtil::checkNameLength)
             .filter(RacingcarUtil::checkIfNameIsEmpty)
             .filter(RacingcarUtil::checkIfNameIncludesSpace)
-            .filter(RacingcarUtil::checkNameLength)
-            .filter(n -> checkIfNameDuplicates(n, nameList))
+            .filter(n -> checkIfNameDuplicates(n, names))
             .collect(Collectors.toList());
     }
 
@@ -54,12 +54,12 @@ public class RacingcarUtil {
         return name.length() <= MAX_NAME_LENGTH;
     }
 
-    private static boolean checkIfNameIncludesSpace(String name) {
-        return !name.contains(" ");
-    }
-
     private static boolean checkIfNameIsEmpty(String name) {
         return !name.isEmpty();
+    }
+
+    private static boolean checkIfNameIncludesSpace(String name) {
+        return !name.contains(" ");
     }
 
     private static boolean checkIfNameDuplicates(String name, List<String> names) {

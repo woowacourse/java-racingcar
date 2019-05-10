@@ -5,11 +5,13 @@ import java.util.Queue;
 
 public class StringCalculatorUtil {
 
-    private StringCalculatorUtil() {}
+    private StringCalculatorUtil() {
+    }
 
     public static StringCalculator parseCalculator(String input) {
         input = input.trim();
         checkIfExpressionEmpty(input);
+
         Queue<Character> operatorQueue = new LinkedList<>();
         Queue<Integer> numberQueue = new LinkedList<>();
         String[] tokens = input.split(" ");

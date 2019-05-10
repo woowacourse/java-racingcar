@@ -20,15 +20,15 @@ public class ConsoleUserInterface implements UserInterface {
     @Override
     public List<String> promptUserNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        List<String> splittedNameList = RacingcarUtil.splitIntoNames(scanner.nextLine());
+        List<String> splittedNames = RacingcarUtil.splitIntoNames(scanner.nextLine());
 
-        while (!RacingcarUtil.isValidNameInput(splittedNameList)) {
+        while (!RacingcarUtil.isValidNameInput(splittedNames)) {
             System.out.println("잘못된 입력입니다");
             System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-            splittedNameList = RacingcarUtil.splitIntoNames(scanner.nextLine());
+            splittedNames = RacingcarUtil.splitIntoNames(scanner.nextLine());
         }
 
-        return splittedNameList;
+        return splittedNames;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ConsoleUserInterface implements UserInterface {
     }
 
     @Override
-    public void printResult(List<CarDto> carList) {
+    public void printResult(List<CarDto> cars) {
         // 정말 이렇게 하는 게 맞는걸까...?(2)
         Optional<Boolean> optFlag = Optional.of(isResultTitlePrinted);
         Supplier<Boolean> flagSwitch = () -> optFlag
@@ -57,7 +57,7 @@ public class ConsoleUserInterface implements UserInterface {
             }).orElse(true);
         isResultTitlePrinted = flagSwitch.get();
 
-        for (CarDto c : carList) {
+        for (CarDto c : cars) {
             System.out.println(c);
         }
 
@@ -65,8 +65,8 @@ public class ConsoleUserInterface implements UserInterface {
     }
 
     @Override
-    public void printWinners(List<CarDto> winnerList) {
-        String str = RacingcarUtil.joinCarNames(winnerList);
+    public void printWinners(List<CarDto> winners) {
+        String str = RacingcarUtil.joinCarNames(winners);
         System.out.println(str + "가 최종 우승했습니다.");
     }
 

@@ -14,8 +14,8 @@ public class RacingcarModel {
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
 
-    public RacingcarModel(NumberGenerator generator, List<String> carNames) {
-        numberGenerator = generator;
+    public RacingcarModel(final NumberGenerator generator, final List<String> carNames) {
+        this.numberGenerator = generator;
         this.cars = RacingcarUtil.createCars(carNames);
     }
 
@@ -33,8 +33,8 @@ public class RacingcarModel {
     }
 
     public List<CarDto> getWinners() {
-        int max = calculateMaxPosition();
-        List<CarDto> winners = new ArrayList<>();
+        final int max = calculateMaxPosition();
+        final List<CarDto> winners = new ArrayList<>();
         for (Car c : cars) {
             if (c.getPosition() == max) {
                 winners.add(new CarDto(c.getName(), c.getPosition()));
@@ -44,7 +44,7 @@ public class RacingcarModel {
         return winners;
     }
 
-    private int calculateMovingPosition(int generatedNumber) {
+    private int calculateMovingPosition(final int generatedNumber) {
         if (generatedNumber >= MOVE_BOUND) {
             return 1;
         }

@@ -4,12 +4,18 @@ public class Car implements Comparable<Car> {
     private final String name;
     private int position;
 
-    public Car(String name) {
+    public Car(final String name) {
         this.name = name;
         this.position = 0;
     }
 
-    public void move(int position) {
+    /**
+     * 인자로 명시된 position 만큼 기존의 position을 변경한다.
+     * 메서드명에 대해, 음수 인자도 처리할 수 있기 때문에 moveForward 보다는 move가 적당한 것 같다.
+     *
+     * @param position 위치 변화량
+     */
+    public void move(final int position) {
         this.position += position;
     }
 

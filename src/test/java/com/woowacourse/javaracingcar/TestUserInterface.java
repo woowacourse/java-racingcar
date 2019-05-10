@@ -35,16 +35,16 @@ public class TestUserInterface implements UserInterface {
     }
 
     @Override
-    public void printResult(List<CarDto> carList) {
+    public void printResult(List<CarDto> cars) {
         if (outputListener != null) {
-            outputListener.onPrintResult(carList);
+            outputListener.onPrintResult(cars);
         }
     }
 
     @Override
-    public void printWinners(List<CarDto> winnerList) {
+    public void printWinners(List<CarDto> winners) {
         if (outputListener != null) {
-            outputListener.onPrintWinners(winnerList);
+            outputListener.onPrintWinners(winners);
         }
     }
 

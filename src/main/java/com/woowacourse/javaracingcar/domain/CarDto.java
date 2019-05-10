@@ -1,10 +1,13 @@
 package com.woowacourse.javaracingcar.domain;
 
+/**
+ * 객체 사이에서 데이터만 실어 나르는 DTO 클래스
+ */
 public class CarDto {
     private final String name;
     private final int position;
 
-    public CarDto(String name, int position) {
+    public CarDto(final String name, final int position) {
         this.name = name;
         this.position = position;
     }

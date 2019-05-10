@@ -13,7 +13,7 @@ public class RacingcarModel {
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
 
-    public RacingcarModel(NumberGenerator generator, List<String> carNames) {
+    public RacingcarModel(final NumberGenerator generator, final List<String> carNames) {
         numberGenerator = generator;
         this.cars = RacingcarUtil.createCars(carNames);
     }
@@ -27,7 +27,7 @@ public class RacingcarModel {
     }
 
     public List<CarDto> getWinners() {
-        int max = calculateMaxPosition();
+        final int max = calculateMaxPosition();
 
         return cars.stream()
             .filter(c -> c.getPosition() == max)
@@ -36,11 +36,11 @@ public class RacingcarModel {
     }
 
     // ref. https://stackoverflow.com/a/52348419/5720753
-    private int calculateMovingPosition(int generatedNumber) {
+    private int calculateMovingPosition(final int generatedNumber) {
         // 정말 이렇게 하는게 맞는걸까...?
-        Optional<Integer> optResult = Optional.of(generatedNumber);
-        Predicate<Integer> conditionToForward = i -> i >= MOVE_BOUND;
-        Supplier<Integer> positionToMoveSupplier = () -> optResult
+        final Optional<Integer> optResult = Optional.of(generatedNumber);
+        final Predicate<Integer> conditionToForward = i -> i >= MOVE_BOUND;
+        final Supplier<Integer> positionToMoveSupplier = () -> optResult
             .filter(conditionToForward)
             .map(i -> 1)
             .orElse(0);

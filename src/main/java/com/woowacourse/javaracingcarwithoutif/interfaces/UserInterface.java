@@ -9,7 +9,7 @@ public interface UserInterface {
 
     int promptTries();
 
-    void printResult(List<CarDto> carList);
+    void printResult(List<CarDto> cars);
 
-    void printWinners(List<CarDto> winnerList);
+    void printWinners(List<CarDto> winners);
 }
