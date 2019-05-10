@@ -49,6 +49,6 @@ public class StringCalculator {
             return (result / nextValue);
         }
 
-        throw new RuntimeException("기호로 +, -, *, / 를 입력해주세요");
+        throw new IllegalArgumentException("기호로 +, -, *, / 를 입력해주세요");
     }
 }
