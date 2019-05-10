@@ -43,6 +43,4 @@ public class CarTest {
         Car car = new Car("pobi", 4);
         assertThat(car.isSamePosition(4)).isTrue();
     }
-
-
 }

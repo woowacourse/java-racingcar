@@ -1,10 +1,11 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WinningCarsFinder {
-    public static ArrayList<Car> findWinningCars(ArrayList<Car> cars) {
-        ArrayList<Car> winningCars = new ArrayList<>();
+    public static List<Car> findWinningCars(List<Car> cars) {
+        List<Car> winningCars = new ArrayList<>();
         int farthestPosition = -1;
 
         for (Car car : cars) {

@@ -10,7 +10,7 @@ public class RacingGame {
     private static final int RANDOM_NUMBER_LOWER_BOUND = 1;
     private static final String SPLIT_REGEX = ",";
 
-    private ArrayList<Car> cars = new ArrayList<>();
+    private List<Car> cars = new ArrayList<>();
     private int tryCount = 0;
 
     public void generateCarList(String carNames) {
@@ -47,8 +47,8 @@ public class RacingGame {
         }
     }
 
-    public ArrayList<ArrayList<Car>> raceAll() {
-        ArrayList<ArrayList<Car>> eachTryCars = new ArrayList<>();
+    public List<List<Car>> raceAll() {
+        List<List<Car>> eachTryCars = new ArrayList<>();
 
         for (int i = 0; i < tryCount; i++) {
             race();

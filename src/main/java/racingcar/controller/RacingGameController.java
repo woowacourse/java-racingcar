@@ -7,6 +7,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RacingGameController {
     private RacingGame racingGame = new RacingGame();
@@ -20,7 +21,7 @@ public class RacingGameController {
     }
 
     public void playRacingGame() {
-        ArrayList<ArrayList<Car>> allResult = racingGame.raceAll();
+        List<List<Car>> allResult = racingGame.raceAll();
 
         OutputView.outputAllTryCarPosition(allResult);
         OutputView.outputWinners(WinningCarsFinder.findWinningCars(allResult.get(allResult.size() - 1)));
