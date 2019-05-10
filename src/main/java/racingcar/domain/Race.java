@@ -44,10 +44,9 @@ public class Race {
     }
 
     public List<Car> getWinners() {
-        Collections.sort(cars);
-        System.out.println(cars);
+        Car oneOfTheWinners = Collections.max(cars);
         return cars.stream()
-                .filter(x -> x.isAtSamePositionWith(cars.get(0)))
+                .filter(x -> x.isAtSamePositionWith(oneOfTheWinners))
                 .collect(Collectors.toList());
     }
 }
