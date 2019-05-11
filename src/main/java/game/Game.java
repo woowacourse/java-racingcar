@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private static final int MAX_RANDOM_NUMBER = 9;
-    private static final int ADD_RANDOM_NUMBER = 1;
+    private static final int MAX_RANDOM_NUMBER = 10;
 
     public List<Car> createCars(String[] carNames) {
         List<Car> cars = new ArrayList<>();
@@ -30,6 +29,6 @@ public class Game {
     }
 
     private int randomValueGenerator() {
-        return (int) (Math.random() * MAX_RANDOM_NUMBER + ADD_RANDOM_NUMBER);
+        return (int) (Math.random() * MAX_RANDOM_NUMBER);
     }
 }
