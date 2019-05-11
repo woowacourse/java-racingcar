@@ -5,20 +5,24 @@ import java.util.Collections;
 import java.util.List;
 
 public class WinnerCars {
-    public static List<Car> determineWinners(List<Car> cars) {
-        List<Car> winners = new ArrayList<>();
+    private static List<Car> winnerCars;
+
+    public static void determineWinners(List<Car> cars) {
+        winnerCars = new ArrayList<>();
 
         Collections.sort(cars);
-        Car maxCar = cars.get(0);
+        Car maxPositionCar = cars.get(0);
 
         for (Car car : cars) {
-            if (!maxCar.isEqualPosition(car)) {
+            if (!maxPositionCar.isEqualPosition(car)) {
                 break;
             }
 
-            winners.add(car);
+            winnerCars.add(car);
         }
+    }
 
-        return winners;
+    public static List<Car> getWinnerCars() {
+        return winnerCars;
     }
 }

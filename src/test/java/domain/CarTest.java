@@ -18,6 +18,17 @@ class CarTest {
     }
 
     @Test
+    void moveTest() {
+        Car car = new Car("pobi");
+
+        car.move(3);
+        assertThat(car.getPosition()).isEqualTo(0);
+
+        car.move(4);
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @Test
     void isEqualPositionTest() {
         Car car1 = new Car("pobi");
         Car car2 = new Car("crong");

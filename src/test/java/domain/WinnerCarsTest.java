@@ -19,7 +19,6 @@ class WinnerCarsTest {
         cars.add(new Car("abc"));
         cars.add(new Car("def"));
 
-        cars.get(0).move(3);
         cars.get(1).move(4);
         cars.get(2).move(4);
         cars.get(2).move(4);
@@ -36,11 +35,11 @@ class WinnerCarsTest {
     }
 
     @Test
-    void 우승자_확인() {
-        List<Car> winnerList = WinnerCars.determineWinners(cars);
+    void determineWinnersTest() {
+        WinnerCars.determineWinners(cars);
 
         for (int i = 0; i < winners.size(); i++) {
-            assertThat(winnerList.get(i)).isEqualTo(winners.get(i));
+            assertThat(WinnerCars.getWinnerCars().get(i)).isEqualTo(winners.get(i));
         }
 
     }
