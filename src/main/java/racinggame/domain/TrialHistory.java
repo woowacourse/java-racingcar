@@ -1,9 +1,9 @@
 package racinggame.domain;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class TrialHistory {
     private Map<String, Integer> trialHistory = new LinkedHashMap<>();
@@ -15,15 +15,11 @@ public class TrialHistory {
     }
 
     public List<String> findWinners() {
-        List<String> winners = new ArrayList<>();
         final int maxCarPosition = getMaxCarPosition();
 
-        for (String carName : trialHistory.keySet()) {
-            if (trialHistory.get(carName) == maxCarPosition) {
-                winners.add(carName);
-            }
-        }
-        return winners;
+        return trialHistory.keySet().stream()
+                .filter(carName -> trialHistory.get(carName) == maxCarPosition)
+                .collect(Collectors.toList());
     }
 
     private int getMaxCarPosition() {
