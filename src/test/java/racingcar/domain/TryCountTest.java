@@ -16,7 +16,7 @@ public class TryCountTest {
 
     @Test
     void create() {
-        assertThat(new TryCount("3").equals(new TryCount("3"))).isTrue();
+        assertThat(new TryCount("3")).isEqualTo(new TryCount("3"));
     }
 
     @Test

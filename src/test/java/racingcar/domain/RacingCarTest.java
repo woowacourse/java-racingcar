@@ -26,7 +26,7 @@ class RacingCarTest {
         CarGenerator carGenerator = new CarGenerator();
         RacingCar racingCar = new RacingCar(carGenerator, cars);
 
-        assertThat(racingCar.equals(new RacingCar(carGenerator, cars)));
+        assertThat(racingCar).isEqualTo(new RacingCar(carGenerator, cars));
     }
 
     @Test
