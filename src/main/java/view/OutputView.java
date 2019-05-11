@@ -4,6 +4,7 @@ import domain.Car;
 import domain.Const;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Heebg
@@ -17,17 +18,9 @@ public class OutputView {
 
     public static void outputGameResult(List<Car> carList) {
         for (Car car : carList) {
-            System.out.println(car.getName() + " : " + outputCarPosition(car.getPosition()));
+            System.out.println(car);
         }
         System.out.println();
-    }
-
-    private static String outputCarPosition(int position) {
-        String result = "";
-        for (int i = 0; i < position; i++) {
-            result += "-";
-        }
-        return result;
     }
 
     public static void outputWinners(String winners) {

@@ -41,6 +41,15 @@ public class Car {
     }
 
     @Override
+    public String toString() {
+        String positionView = "";
+        for(int i = 0 ; i < position ; i++){
+            positionView += Const.SHAPE_CAR_POSITION;
+        }
+        return name + " : " + positionView;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
