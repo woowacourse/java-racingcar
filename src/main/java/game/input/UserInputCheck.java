@@ -4,13 +4,23 @@ public class UserInputCheck {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
 
+    public static String[] checkCarNames(String userInput) {
+        String[] carNames = splitWithComma(userInput);
+
+        if (checkCarNamesLength(carNames)) {
+            return carNames;
+        }
+
+        return UserInput.inputCarNames();
+    }
+
     public static String[] splitWithComma(String inputCarName) {
         String carNames = removeBlankAndDoubleComma(inputCarName);
         return carNames.split(",");
     }
 
     public static String removeBlankAndDoubleComma(String inputCarName) {
-        return inputCarName.replace(" ", "").replace(",,", ",");
+        return inputCarName.replace(" ", "");
     }
 
     public static boolean checkCarNamesLength(String[] carNames) {

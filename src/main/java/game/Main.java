@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game();
         Winner winner = new Winner();
-        List<Car> cars = game.createCars(inputCarNames());
+        List<Car> cars = game.createCars(UserInput.inputCarNames());
 
         startGame(game, winner, cars, inputMaxInstance());
         printWinnerResult(winner);
@@ -29,13 +29,5 @@ public class Main {
             game.playGame(cars);
             ResultOutput.printEachGame(cars);
         }
-    }
-
-    private static String[] inputCarNames() {
-        String[] carNames;
-        do {
-            carNames = UserInputCheck.splitWithComma(UserInput.inputCarNames());
-        } while (!UserInputCheck.checkCarNamesLength(carNames));
-        return carNames;
     }
 }
