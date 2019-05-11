@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 public class Car {
     private final String name;
-    private int position = 0;
+    private int position = Const.CAR_OBJ_INIT_POSITION;
 
     public Car(final String name) {
         if (Const.MIN_NAME_LEN > name.length() || Const.MAX_NAME_LEN < name.length()) {

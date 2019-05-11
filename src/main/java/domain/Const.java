@@ -20,4 +20,5 @@ public class Const {
     public static final int RANGE_RAN_NUM = 10;
     public static final int ZERO = 0;
     public static final String SHAPE_CAR_POSITION = "-";
+    public static final int CAR_OBJ_INIT_POSITION = 0;
 }
