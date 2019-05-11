@@ -56,12 +56,21 @@ public class Car {
         return new Car(name, position);
     }
 
-    public boolean isFartherPosition(int position) {
-        return this.position > position;
-    }
+    /**
+     * 자동차의 위치를 비교하는 메서드
+     * @param car
+     * @return 매개변수의 위치가 더 멀면 1, 더 가까우면 -1, 같으면 0 반환
+     */
+    public int comparePosition(Car car) {
+        int anotherPosition = car.getPosition();
 
-    public boolean isSamePosition(int position) {
-        return this.position == position;
+        if (position < anotherPosition) {
+            return 1;
+        }
+        if (position > anotherPosition) {
+            return -1;
+        }
+        return 0;
     }
 
     @Override

@@ -49,12 +49,16 @@ public class CarTest {
     @Test
     void 더_먼_위치() {
         Car car = new Car("pobi", 4);
-        assertThat(car.isFartherPosition(3)).isTrue();
+        Car anotherCar = new Car("cu", 5);
+
+        assertThat(car.comparePosition(anotherCar)).isEqualTo(1);
     }
 
     @Test
     void 같은_위치() {
-        Car car = new Car("pobi", 4);
-        assertThat(car.isSamePosition(4)).isTrue();
+        Car car = new Car("pobi", 5);
+        Car anotherCar = new Car("cu", 5);
+
+        assertThat(car.comparePosition(anotherCar)).isEqualTo(0);
     }
 }
