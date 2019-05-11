@@ -17,7 +17,7 @@ public class Calculator {
         return a / b;
     }
 
-    double calculate(double a, String operator, double b) throws Exception {
+    double calculate(double a, String operator, double b) {
         if (operator.equals("+")) {
             return add(a,b);
         }
@@ -33,7 +33,7 @@ public class Calculator {
         throw new IllegalArgumentException("올바른 연산자가 아닙니다.");
     }
 
-    double calculateAll(String[] inputs) throws Exception {
+    double calculateAll(String[] inputs) {
         if (inputs.length % 2 == 0) {
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }

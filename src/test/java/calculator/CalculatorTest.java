@@ -73,6 +73,24 @@ public class CalculatorTest {
         });
     }
 
+    @Test
+    void 양수를_영으로_나눈_경우() {
+        String[] inputs = {"2", "+", "3", "*", "4", "/", "0"};
+        assertThat(cal.calculateAll(inputs)).isEqualTo(Double.POSITIVE_INFINITY);
+    }
+
+    @Test
+    void 음수를_영으로_나눈_경우() {
+        String[] inputs = {"2", "+", "3", "*", "-4", "/", "0"};
+        assertThat(cal.calculateAll(inputs)).isEqualTo(Double.NEGATIVE_INFINITY);
+    }
+
+    @Test
+    void 영를_영으로_나눈_경우() {
+        String[] inputs = {"0", "/", "0"};
+        assertThat(cal.calculateAll(inputs)).isEqualTo(Double.NaN);
+    }
+
     @AfterEach
     void tearDown() {
     }
