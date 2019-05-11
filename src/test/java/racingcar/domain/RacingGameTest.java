@@ -5,14 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RacingGameTest {
-
-    @Test
-    void 공백이_입력된_경우() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new RacingGame(CarNameSpliter.splitCarNames("pobi,   ,brown"), 1);
-        });
-    }
-
     @Test
     void 자동차들이_없는_경우() {
         assertThrows(IllegalArgumentException.class, () -> {

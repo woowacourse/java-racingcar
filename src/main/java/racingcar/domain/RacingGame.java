@@ -5,7 +5,7 @@ import racingcar.constant.Utils;
 import java.util.*;
 
 public class RacingGame {
-    private static  final int MIN_NUMBER_OF_CARS = 1;
+    private static final int MIN_NUMBER_OF_CARS = 1;
     private static final int MIN_TRY_COUNT = 1;
     private static final int RANDOM_NUMBER_COUNT = 9;
     private static final int RANDOM_NUMBER_LOWER_BOUND = 1;

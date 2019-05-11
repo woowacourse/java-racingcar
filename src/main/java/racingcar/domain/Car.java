@@ -75,16 +75,6 @@ public class Car {
     }
 
     @Override
-    public String toString() {
-        String output = name + " : ";
-
-        for (int i = 0; i < position; i++) {
-            output += "-";
-        }
-        return output;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

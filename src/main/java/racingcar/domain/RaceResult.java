@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RaceResult {
     private List<Car> cars = new ArrayList<>();
@@ -10,21 +11,42 @@ public class RaceResult {
         cars.add(car);
     }
 
-    public String carsPositionConsoleView() {
-        String result = "";
-
-        for (Car car : cars) {
-            result += car + "\n";
-        }
-        return result + "\n";
+    public List<Car> getCars() {
+        return cars;
     }
 
-    public String winnersConsoleView() {
-        List<String> winnersName = new ArrayList<>();
+    public List<Car> findWinningCars() {
+        List<Car> winningCars = new ArrayList<>();
+        winningCars.add(cars.get(0));
 
-        for (Car car : WinningCarsFinder.findWinningCars(cars)) {
-            winnersName.add(car.getName());
+        for (int i = 1; i < cars.size(); i++) {
+            addWinningCars(winningCars, cars.get(i));
         }
-        return String.join(", ", winnersName) + "가 최종 우승했습니다.";
+        return winningCars;
+    }
+
+    private void addWinningCars(List<Car> winningCars, Car nextCar) {
+        int result = nextCar.comparePosition(winningCars.get(0));
+
+        if (result == 1) {
+            return;
+        }
+        if (result == -1) {
+            winningCars.clear();
+        }
+        winningCars.add(nextCar);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RaceResult that = (RaceResult) o;
+        return Objects.equals(cars, that.cars);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cars);
     }
 }

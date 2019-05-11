@@ -4,7 +4,6 @@ import racingcar.domain.*;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGameController {
@@ -22,6 +21,6 @@ public class RacingGameController {
         RaceResult lastResult = allResult.get(allResult.size() - 1);
 
         OutputView.outputAllTryCarPosition(allResult);
-        OutputView.outputWinners(lastResult);
+        OutputView.outputWinners(lastResult.findWinningCars());
     }
 }
