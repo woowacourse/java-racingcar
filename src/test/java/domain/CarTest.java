@@ -31,20 +31,16 @@ class CarTest {
     @Test
     void increase_자동차_포지션_증가일_경우() {
         int init = car.getPosition();
-        for (int i = Const.GO_RAN_NUM; i < Const.RANGE_RAN_NUM; i++) {
-            car.increasePositionOrNot(i);
-            assertThat(car.getPosition()).isEqualTo(++init);
-        }
+        car.increasePositionOrNot(4);
+        assertThat(car.getPosition()).isEqualTo(++init);
 
     }
 
     @Test
     void increase_자동차_포지션_변화_없음() {
         int init = car.getPosition();
-        for (int i = Const.ZERO; i < Const.GO_RAN_NUM; i++) {
-            car.increasePositionOrNot(i);
-            assertThat(car.getPosition()).isEqualTo(init);
-        }
+        car.increasePositionOrNot(3);
+        assertThat(car.getPosition()).isEqualTo(init);
     }
 
     @AfterEach
