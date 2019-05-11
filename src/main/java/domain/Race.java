@@ -13,10 +13,11 @@ import java.util.Objects;
  */
 public class Race {
     private List<Car> raceCars;
-    private int maxPosition = Const.ZERO;
+    private int maxPosition;
 
     public Race(List<Car> raceCars) {
         this.raceCars = raceCars;
+        this.maxPosition = Const.RACE_OBJ_INIT_MAX_POSITION;
     }
 
     public List<Car> getRaceCars() {
