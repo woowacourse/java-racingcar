@@ -1,9 +1,6 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
-import racingcar.domain.CarNameSpliter;
-import racingcar.domain.RacingGame;
-import racingcar.domain.WinningCarsFinder;
+import racingcar.domain.*;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -21,9 +18,10 @@ public class RacingGameController {
     }
 
     public void playRacingGame() {
-        List<List<Car>> allResult = racingGame.raceAll();
+        List<RaceResult> allResult = racingGame.raceAll();
+        RaceResult lastResult = allResult.get(allResult.size() - 1);
 
         OutputView.outputAllTryCarPosition(allResult);
-        OutputView.outputWinners(WinningCarsFinder.findWinningCars(allResult.get(allResult.size() - 1)));
+        OutputView.outputWinners(lastResult);
     }
 }

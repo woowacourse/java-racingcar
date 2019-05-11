@@ -31,12 +31,12 @@ public class RacingGame {
 
     private void checkMinTryCount(int tryCount) {
         if (tryCount < MIN_TRY_COUNT) {
-            throw new IllegalArgumentException("최소 입력 횟수는 " + MIN_TRY_COUNT + "입니다.");
+            throw new IllegalArgumentException("최소 시도 횟수는 " + MIN_TRY_COUNT + "입니다.");
         }
     }
 
-    public List<List<Car>> raceAll() {
-        List<List<Car>> eachTryCars = new ArrayList<>();
+    public List<RaceResult> raceAll() {
+        List<RaceResult> eachTryCars = new ArrayList<>();
 
         for (int i = 0; i < tryCount; i++) {
             eachTryCars.add(race());
@@ -44,13 +44,13 @@ public class RacingGame {
         return eachTryCars;
     }
 
-    private List<Car> race() {
-        List<Car> currentRacingCars = new ArrayList<>();
+    private RaceResult race() {
+        RaceResult raceResult = new RaceResult();
 
         for (Car car : this.cars) {
-            currentRacingCars.add(randomMove(car));
+            raceResult.add(randomMove(car));
         }
-        return currentRacingCars;
+        return raceResult;
     }
 
     private Car randomMove(Car car) {
