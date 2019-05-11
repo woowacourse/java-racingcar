@@ -18,8 +18,7 @@ public class OutputView {
     }
 
     public static void printCarWinners(Winner winner) {
-        RacingCars winnerCars = winner.getWinners();
-        System.out.print(String.join(SPACE_AND_COMMA, winnerCars.getCarNames()) + WINNER_MENT);
+        System.out.print(String.join(SPACE_AND_COMMA, winner.getWinnerNames()) + WINNER_MENT);
     }
 
     public static void printResultMent() {

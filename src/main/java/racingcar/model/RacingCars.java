@@ -35,7 +35,6 @@ public class RacingCars {
         if (racingCarNames.size() < RACING_CAR_SIZE_MIN_BOUND) {
             throw new IllegalArgumentException(RACING_CAR_SIZE_ERROR_MENT);
         }
-        System.out.println(racingCarNames.size());
     }
 
     private void validateDuplicate(List<String> racingCarNames) {

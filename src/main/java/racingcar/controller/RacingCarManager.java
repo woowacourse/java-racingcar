@@ -33,8 +33,12 @@ public class RacingCarManager {
     }
 
     private void endRacing() {
-        Winner winner = new Winner(racingCars);
+        Winner winner = getWinner(racingCars);
         printWinners(winner);
+    }
+
+    private Winner getWinner(RacingCars racingCars) {
+        return new Winner(racingCars).getWinners();
     }
 
     private void printWinners(Winner winner) {

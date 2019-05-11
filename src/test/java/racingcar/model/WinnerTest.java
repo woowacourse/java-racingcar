@@ -15,7 +15,7 @@ class WinnerTest {
                 new Car("Car3", 3)
         )));
         assertThat(winner.getWinners())
-                .isEqualTo(new RacingCars(Arrays.asList(new Car("Car3", 3))));
+                .isEqualTo(new Winner(new RacingCars(Arrays.asList(new Car("Car3", 3)))));
     }
 
     @Test
@@ -26,10 +26,10 @@ class WinnerTest {
                 new Car("Car3", 2)
         )));
         assertThat(winner.getWinners())
-                .isEqualTo(new RacingCars(Arrays.asList(
+                .isEqualTo(new Winner(new RacingCars(Arrays.asList(
                         new Car("Car1", 2),
                         new Car("Car2", 2),
                         new Car("Car3", 2)
-                )));
+                ))));
     }
 }
