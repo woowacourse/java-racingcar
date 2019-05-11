@@ -57,8 +57,8 @@ public class RacingController {
         Race race = new Race(carList);
         OutputView.outputGameResultTile();
         for (int i = 0; i < roundCount; i++) {
-            race.moveAllCarOneTime();
-            OutputView.outputGameResult(race.getRaceCars());
+            race.moveAllCarOneTime(Util.getRandomNumber());
+            OutputView.outputGameResult(race.getRaceCarNames());
         }
         return race;
     }

@@ -33,10 +33,10 @@ public class Race {
         return String.join(",", winners);
     }
 
-    public void moveAllCarOneTime() {
+    public void moveAllCarOneTime(int randNum) {
         for (Car car : raceCars) {
-            car.increasePositionOrNot(Util.getRandomNumber());
-            setMaxPosition(car);
+            car.increasePositionOrNot(randNum);
+            findMaxPosition(car);
         }
     }
 
