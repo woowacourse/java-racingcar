@@ -5,7 +5,7 @@ import game.Car;
 import java.util.List;
 
 public class ResultOutput {
-    static StringBuilder sb = new StringBuilder();
+    private static StringBuilder stringBuilder = new StringBuilder();
 
     public static void printEachGame(List<Car> cars) {
         for (Car car : cars) {
@@ -18,23 +18,23 @@ public class ResultOutput {
     private static void printEachCar(Car car) {
         init();
 
-        sb.append(car.getName());
-        sb.append(" : ");
+        stringBuilder.append(car.getName());
+        stringBuilder.append(" : ");
 
         for (int i = 0; i < car.getPosition(); i++) {
-            sb.append("-");
+            stringBuilder.append("-");
         }
 
-        System.out.println(sb);
+        System.out.println(stringBuilder);
     }
 
     public static void printWinners(List<String> winners) {
         init();
 
-        sb.append(String.join(", ", winners));
-        sb.append("가 최종 우승했습니다.");
+        stringBuilder.append(String.join(", ", winners));
+        stringBuilder.append("가 최종 우승했습니다.");
 
-        System.out.println(sb);
+        System.out.println(stringBuilder);
     }
 
     public static void printNewLine() {
@@ -42,6 +42,6 @@ public class ResultOutput {
     }
 
     private static void init() {
-        sb.setLength(0);
+        stringBuilder.setLength(0);
     }
 }
