@@ -12,6 +12,20 @@ public class CarTest {
     }
 
     @Test
+    void null_이름() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Car(null);
+        });
+    }
+
+    @Test
+    void 공백_이름() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Car("");
+        });
+    }
+
+    @Test
     void 다섯_글자_이상_이름() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Car("ppoobbii");
