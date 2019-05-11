@@ -8,30 +8,15 @@ public class RacingGame {
     private static final int MIN_TRY_COUNT = 1;
     private static final int RANDOM_NUMBER_COUNT = 9;
     private static final int RANDOM_NUMBER_LOWER_BOUND = 1;
-    private static final String SPLIT_REGEX = ",";
 
     private List<Car> cars = new ArrayList<>();
-    private int tryCount = 0;
+    private int tryCount;
 
-    public void generateCarList(String carNames) {
-        checkContinuousComma(carNames);
-
-        for (String carName : splitCarNames(carNames)) {
+    public RacingGame(String[] carNames, int tryCount) {
+        for (String carName : carNames) {
             cars.add(new Car(carName));
         }
-    }
 
-    private void checkContinuousComma(String carNames) {
-        if (carNames.contains(",,")) {
-            throw new IllegalArgumentException("연속된 콤마가 발견 되었습니다.");
-        }
-    }
-
-    private String[] splitCarNames(String carNames) {
-        return carNames.split(SPLIT_REGEX);
-    }
-
-    public void configureTryCount(int tryCount) {
         checkMinTryCount(tryCount);
         this.tryCount = tryCount;
     }
