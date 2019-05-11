@@ -12,14 +12,6 @@ public class Car {
         this.name = name;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public int getPosition() {
-        return this.position;
-    }
-
     public void move(int randomValue) {
         if (randomValue >= MOVE_POINT) {
             this.position++;
@@ -28,6 +20,14 @@ public class Car {
 
     public boolean isMaxInstance(int maxInstance) {
         return this.position == maxInstance;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 
     /* 필수 메소드 */
