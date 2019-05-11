@@ -3,13 +3,16 @@ package racinggame.util;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
     private static Scanner scanner = new Scanner(System.in);
 
     public static List<String> getCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,)를 기준으로 구분).");
-        final List<String> carNames = Arrays.asList(scanner.nextLine().split(","));
+        final List<String> carNames = Arrays.stream(scanner.nextLine().split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
 
         Validator.checkDuplicateNames(carNames);
         return carNames;

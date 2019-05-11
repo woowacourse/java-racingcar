@@ -19,11 +19,11 @@ public class Car {
         this(name, DEFAULT_POSITION);
     }
 
-    public Car(String name, final int position) {
+    public Car(final String name, final int position) {
         validCarName(name);
         validCarPosition(position);
 
-        this.name = name.trim();
+        this.name = name;
         this.position = position;
     }
 
