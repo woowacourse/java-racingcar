@@ -6,10 +6,8 @@ public class CalculatorMain {
         CalculatorLine calculatorLine = new CalculatorLine();
 
         int result = calculatorLine.calculateFormula(
-                            userInterfaceView.splitFormula(
-                                    userInterfaceView.inputFormula()
-                            )
-                    );
+                userInterfaceView.inputFormula()
+        );
 
         userInterfaceView.outputResult(result);
     }

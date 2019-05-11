@@ -14,10 +14,11 @@ public class CalculatorLine {
         operationMap.put("/", new Divide());
     }
 
-    public int calculateFormula(String[] formula) {
-        int result = Integer.parseInt(formula[0]);
-        for (int i = 1; i < formula.length - 1; i++) {
-            result = operationMap.get(formula[i]).calculate(result, Integer.parseInt(formula[++i]));
+    public int calculateFormula(String formula) {
+        String[] formulas = formula.split(" ");
+        int result = Integer.parseInt(formulas[0]);
+        for (int i = 1; i < formulas.length - 1; i++) {
+            result = operationMap.get(formulas[i]).calculate(result, Integer.parseInt(formulas[++i]));
         }
         return result;
     }
