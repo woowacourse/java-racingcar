@@ -4,6 +4,7 @@ import racingcar.model.Car;
 import racingcar.view.InputView;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class InputManager {
     private static final String COMMA = ",";
@@ -12,34 +13,32 @@ public class InputManager {
     private static final int MIN_GAME_COUNT = 0;
 
     List<Car> getRacingCar() {
-        List<Car> racingCars = new ArrayList<>();
         List<String> racingCarNames = getCheckedCarNames();
-        for (String racingCarName : racingCarNames) {
-            racingCars.add(new Car(racingCarName));
-        }
-        return racingCars;
+        return racingCarNames.stream()
+                .map(carName -> new Car(carName))
+                .collect(Collectors.toList());
     }
 
     private List<String> getCheckedCarNames() {
         List<String> racingCarNames;
-        try {
-            racingCarNames = getCarNames();
-            checkDuplicateOfCarName(racingCarNames);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e);
-        }
+        racingCarNames = getCarNames();
+        validateDuplicate(racingCarNames);
         return racingCarNames;
     }
 
     private List<String> getCarNames() {
         String[] carNames = InputView.getRacingCarInput().split(COMMA);
-        if (carNames.length == 0) {
-            throw new IllegalArgumentException(INPUT_NAME_ERROR_MENT);
-        }
+        validateNameSize(carNames);
         return Arrays.asList(carNames);
     }
 
-    private void checkDuplicateOfCarName(List<String> racingCarNames) {
+    private void validateNameSize(String[] carNames) {
+        if (carNames.length == 0) {
+            throw new IllegalArgumentException(INPUT_NAME_ERROR_MENT);
+        }
+    }
+
+    private void validateDuplicate(List<String> racingCarNames) {
         Set<String> carNameSet = new HashSet<>(racingCarNames);
         if (carNameSet.size() != racingCarNames.size()) {
             throw new IllegalArgumentException(INPUT_NAME_ERROR_MENT);
@@ -47,13 +46,8 @@ public class InputManager {
     }
 
     int getGameCount() {
-        int gameCount = 0;
-        try {
-            gameCount = InputView.getRacingCount();
-            checkGameCountValid(gameCount);
-        } catch (InputMismatchException e) {
-            throw new InputMismatchException(INPUT_GAME_COUNT_ERROR_MENT);
-        }
+        int gameCount = InputView.getRacingCount();
+        checkGameCountValid(gameCount);
         return gameCount;
     }
 
