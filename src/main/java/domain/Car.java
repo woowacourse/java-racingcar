@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int MOVE_CONDITION = 4;
 
     private final String name;
@@ -13,36 +13,26 @@ public class Car {
         this.position = 0;
     }
 
+    static boolean isMove(int randomNumber) {
+        return randomNumber >= MOVE_CONDITION;
+    }
+
     void move(int randomNumber) {
         if (isMove(randomNumber)) {
             position++;
         }
     }
 
-    static boolean isMove(int randomNumber) {
-        return randomNumber >= MOVE_CONDITION;
+    boolean isEqualPosition(Car car) {
+        return this.position == car.position;
     }
 
-    int getLargePosition(int largePosition) {
-        return Math.max(largePosition, position);
+    public String getName() {
+        return name;
     }
 
-    boolean compareToPosition(int maxPosition) {
-        return maxPosition == position;
-    }
-
-    private String getPositionString() {
-        StringBuilder str = new StringBuilder();
-
-        for (int i = 1; i <= position; i++) {
-            str.append("-");
-        }
-
-        return str.toString();
-    }
-
-    public String appendCarName(String carNames) {
-        return carNames + (name + ", ");
+    public int getPosition() {
+        return position;
     }
 
     @Override
@@ -60,7 +50,7 @@ public class Car {
     }
 
     @Override
-    public String toString() {
-        return name + " : " + getPositionString();
+    public int compareTo(Car o) {
+        return Integer.compare(o.position, this.position);
     }
 }

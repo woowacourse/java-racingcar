@@ -5,11 +5,12 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
-    private static ArrayList<String> carNames;
+    private static List<String> carNames;
     private static int gameRound;
-    private static ArrayList<Car> cars = new ArrayList<>();
+    private static List<Car> cars = new ArrayList<>();
 
     public static void main(String[] args) {
         run();
@@ -44,8 +45,7 @@ public class Application {
     }
 
     private static void outputWinners() {
-        WinnerCars winnerCars = new WinnerCars();
-        ArrayList<Car> winners = winnerCars.determineWinners(cars);
+        List<Car> winners = WinnerCars.determineWinners(cars);
 
         OutputView.printWinners(winners);
     }

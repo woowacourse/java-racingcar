@@ -12,7 +12,7 @@ public class InputView {
         return sc.nextLine();
     }
 
-    public static ArrayList<String> inputNames() {
+    public static List<String> inputNames() {
         String[] names;
 
         do {
