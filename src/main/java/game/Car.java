@@ -12,8 +12,8 @@ public class Car {
         this.name = name;
     }
 
-    public void move(int randomValue) {
-        if (randomValue >= MOVE_POINT) {
+    public void move(int value) {
+        if (value >= MOVE_POINT) {
             this.position++;
         }
     }
