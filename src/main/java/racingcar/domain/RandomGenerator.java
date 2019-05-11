@@ -1,4 +1,4 @@
-package racingcar.util;
+package racingcar.domain;
 
 public class RandomGenerator {
     private static final int RANDOM_NUM_SCOPE = 10;

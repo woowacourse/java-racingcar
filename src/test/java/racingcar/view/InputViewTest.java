@@ -11,10 +11,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-class InputViewTest {
+public class InputViewTest {
 
     @Test
-    void 자동차_리스트가_제대로_만들어지는_테스트_같을_경우() {
+    public void 자동차_리스트가_제대로_만들어지는_테스트_같을_경우() {
         List<Car> actual = Arrays.asList(new Car("red"), new Car("blue"), new Car("green"));
         List<Car> expected = InputView.getCars("red, blue, green");
 
@@ -22,7 +22,7 @@ class InputViewTest {
     }
 
     @Test
-    void 자동차_리스트가_제대로_만들어지는지_테스트_다를_경우() {
+    public void 자동차_리스트가_제대로_만들어지는지_테스트_다를_경우() {
         List<Car> actual = Arrays.asList(new Car("red"), new Car("blue"), new Car("green"));
         List<Car> expected = InputView.getCars("red, blue, black");
 
@@ -30,7 +30,7 @@ class InputViewTest {
     }
 
     @Test
-    void 게임_횟수가_제대로_만들어지는지_테스트() {
+    public void 게임_횟수가_제대로_만들어지는지_테스트() {
         GameCount actual = new GameCount(3);
         GameCount expected = InputView.getGameCount("3");
 

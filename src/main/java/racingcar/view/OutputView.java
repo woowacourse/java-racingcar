@@ -2,7 +2,6 @@ package racingcar.view;
 
 import racingcar.domain.result.RacingGameResult;
 import racingcar.domain.result.RacingGameRound;
-import racingcar.util.ConvertUtil;
 import racingcar.util.PrintUtil;
 
 import java.util.List;
@@ -13,7 +12,7 @@ public class OutputView {
     private OutputView() {}
 
     public static void showRacingGameResult(RacingGameResult racingGameResult) {
-        List<RacingGameRound> gameResultDB = racingGameResult.getGameResultDB();
+        List<RacingGameRound> gameResultDB = racingGameResult.getGameResult();
 
         System.out.println("\n실행 결과");
         for (RacingGameRound round : gameResultDB) {
@@ -23,7 +22,7 @@ public class OutputView {
     }
 
     public static void showWinners(RacingGameResult racingGameResult) {
-        String winners = String.join(COMMA, ConvertUtil.getNamesOfCars(racingGameResult.getWinners()));
+        String winners = String.join(COMMA, racingGameResult.getFinalWinners());
         System.out.println(winners + " 이(가) 최종 우승했습니다.");
     }
 }

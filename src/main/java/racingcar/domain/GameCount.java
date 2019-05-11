@@ -27,7 +27,7 @@ public class GameCount {
         if (this == o) return true;
         if (!(o instanceof GameCount)) return false;
         GameCount gameCount1 = (GameCount) o;
-        return gameCount == gameCount1.gameCount;
+        return (gameCount == gameCount1.gameCount);
     }
 
     @Override

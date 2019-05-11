@@ -16,7 +16,7 @@ public class RacingGameRound {
     public List<Car> getWinners() {
         Car winner = getWinner();
         return players.stream()
-                .filter(car -> car.isEqualPosition(winner))
+                .filter(car -> car.isEqualCar(winner))
                 .collect(Collectors.toList());
     }
 

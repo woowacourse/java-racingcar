@@ -10,23 +10,23 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class RacingGameRoundTest {
+public class RacingGameRoundTest {
     List<Car> cars;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         cars = Arrays.asList(new Car("red", 2), new Car("blue", 2)
                 , new Car("green", 1));
     }
 
     @Test
-    void RacingGameRound클래스의_toString메소드가_정상작동되는지_검사() {
+    public void RacingGameRound클래스의_toString메소드가_정상작동되는지_검사() {
         RacingGameRound racingGameRound = new RacingGameRound(cars);
         assertEquals("red   : --\nblue  : --\ngreen : -\n", racingGameRound.toString());
     }
 
     @Test
-    void 우승자_리스트를_생성하는_메소드_정상작동하는지_확인() {
+    public void 우승자_리스트를_생성하는_메소드_정상작동하는지_확인() {
         RacingGameRound racingGameRound = new RacingGameRound(cars);
         List<Car> expected = Arrays.asList(new Car("red", 2), new Car("blue", 2));
 
@@ -34,7 +34,7 @@ class RacingGameRoundTest {
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
         cars = null;
     }
 }

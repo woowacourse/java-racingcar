@@ -1,4 +1,4 @@
-package calculator.controller;
+package calculator;
 
 import calculator.domain.StringCalculator;
 import calculator.view.InputView;

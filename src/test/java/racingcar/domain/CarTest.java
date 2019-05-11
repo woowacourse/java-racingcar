@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CarTest {
+public class CarTest {
     Car car;
 
     @BeforeEach
@@ -18,28 +18,28 @@ class CarTest {
     }
 
     @Test
-    void 이름이_null값일때() {
+    public void 이름이_null값일때() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
             new Car(null);
         });
     }
 
     @Test
-    void 위치가_음수일때() {
+    public void 위치가_음수일때() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
             new Car("red", -1);
         });
     }
 
     @Test
-    void 이름의_길이가_기준치이상일때() {
+    public void 이름의_길이가_기준치이상일때() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
             new Car("banana");
         });
     }
 
     @Test
-    void 이름이_빈칸일때() {
+    public void 이름이_빈칸일때() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
             new Car("");
         });
@@ -50,34 +50,34 @@ class CarTest {
     }
 
     @Test
-    void 생성자_검사() {
+    public void 생성자_검사() {
         Car actual = new Car("red");
 
         assertThat(car.equals(actual)).isTrue();
     }
 
     @Test
-    void 자동차가_전진() {
+    public void 자동차가_전진() {
         car.accelerate(4);
 
         assertTrue(car.matchPosition(1));
     }
 
     @Test
-    void 자동차_정지() {
+    public void 자동차_정지() {
         car.accelerate(3);
 
         assertTrue(car.matchPosition(0));
     }
 
     @Test
-    void 자동차_클래스의_toString메소드가_제대로_동작하는지_검사() {
+    public void 자동차_클래스의_toString메소드가_제대로_동작하는지_검사() {
         car.accelerate(4);
         assertEquals("red   : -", car.toString());
     }
 
     @Test
-    void 자동차_클래스의_clone메소드가_제대로_동작하는지_검사() {
+    public void 자동차_클래스의_clone메소드가_제대로_동작하는지_검사() {
         car.accelerate(4);
 
         try {
@@ -89,7 +89,7 @@ class CarTest {
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
         car = null;
     }
 }

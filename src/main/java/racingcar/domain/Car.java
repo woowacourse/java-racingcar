@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.util.RandomGenerator;
-
 import java.util.Collections;
 import java.util.Objects;
 
@@ -9,6 +7,7 @@ public class Car implements Cloneable, Comparable {
     private static final String BLANK_REGEX = "\\s*";
     private static final int MIN_NUM_TO_ACCELERATE = 4;
     private static final int MAX_NUM_OF_CAR_NAME = 5;
+    private static final int MIN_NUM_OF_POSITION = 0;
 
     private final String name;
     protected int position = 0;
@@ -49,8 +48,8 @@ public class Car implements Cloneable, Comparable {
     }
 
     private void validatePosition(final int position) {
-        if (position < 0) {
-            throw new IllegalArgumentException("자동차의 위치는 0이상을 입력하세요.");
+        if (position < MIN_NUM_OF_POSITION) {
+            throw new IllegalArgumentException("자동차의 위치는 0 이상을 입력하세요.");
         }
     }
 
@@ -72,7 +71,7 @@ public class Car implements Cloneable, Comparable {
         }
     }
 
-    public boolean isEqualPosition(Car other) {
+    public boolean isEqualCar(Car other) {
         return matchPosition(other.position);
     }
 

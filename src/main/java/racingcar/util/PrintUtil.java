@@ -1,7 +1,5 @@
 package racingcar.util;
 
-import java.io.IOException;
-
 public class PrintUtil {
     public static final int DEFAULT_SLEEP_TIME = 500;
 
@@ -17,18 +15,5 @@ public class PrintUtil {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void pause() {
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void printErrorMessageWithPause(Exception e) {
-        System.out.print(e.getMessage());
-        pause();
     }
 }
