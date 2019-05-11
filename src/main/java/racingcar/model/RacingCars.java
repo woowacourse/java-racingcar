@@ -8,7 +8,7 @@ public class RacingCars {
     private static final String RACING_CAR_SIZE_ERROR_MENT = "1개 이상의 차 이름을 입력해 주세요";
     private static final String COMMA = ",";
     private static final int RACING_CAR_SIZE_MIN_BOUND = 1;
-    private static int MAX_BOUND = 10;
+    private static final int MAX_BOUND = 10;
 
     private final List<Car> racingCars;
 
@@ -58,17 +58,15 @@ public class RacingCars {
         return new RacingCars(winnerCars);
     }
 
-    private int getMaxPosition() {
+    public int getMaxPosition() {
         Collections.sort(racingCars);
         return racingCars.get(0).getPosition();
     }
 
     public List<String> getCarNames() {
-        List<String> carNames = new ArrayList<>();
-        for (Car car : racingCars) {
-            carNames.add(car.getName());
-        }
-        return carNames;
+        return racingCars.stream()
+                .map(car -> car.getName())
+                .collect(Collectors.toList());
     }
 
     public RacingCars moveRacingCars() {
