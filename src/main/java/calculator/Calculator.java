@@ -1,47 +1,38 @@
 package calculator;
 
-public class Calculator {
-    double add(double a, double b) {
-        return a + b;
+import java.util.function.BiFunction;
+
+public enum Calculator {
+    ADD("+", (a, b) -> a + b),
+    SUBTRACT("-",  (a, b) -> a - b),
+    MULTIPLY("*", (a, b) -> a * b),
+    DIVIDE("/", (a, b) -> a / b);
+
+    private String operator;
+    private BiFunction<Double, Double, Double> calculation;
+
+    Calculator(String operator, BiFunction<Double, Double, Double> calculation) {
+        this.operator = operator;
+        this.calculation = calculation;
     }
 
-    double subtract(double a, double b) {
-        return a - b;
+    public double calculate(double a, double b) {
+        return calculation.apply(a,b);
     }
 
-    double multiply(double a, double b) {
-        return a * b;
-    }
-
-    double divide(double a, double b) {
-        return a / b;
-    }
-
-    double calculate(double a, String operator, double b) {
-        if (operator.equals("+")) {
-            return add(a, b);
+    public static Calculator selectCalculator(String operator) {
+        if (operator.equals(ADD.operator)) {
+            return ADD;
         }
-        if (operator.equals("-")) {
-            return subtract(a, b);
+        if (operator.equals(SUBTRACT.operator)) {
+            return SUBTRACT;
         }
-        if (operator.equals("*")) {
-            return multiply(a, b);
+        if (operator.equals(MULTIPLY.operator)) {
+            return MULTIPLY;
         }
-        if (operator.equals("/")) {
-            return divide(a, b);
+        if (operator.equals(DIVIDE.operator)) {
+            return DIVIDE;
         }
-        throw new IllegalArgumentException("올바른 연산자가 아닙니다.");
-    }
-
-    double calculateAll(String[] inputs) {
-        if (inputs.length % 2 == 0) {
-            throw new IllegalArgumentException("잘못된 입력입니다.");
-        }
-
-        double result = Double.parseDouble(inputs[0]);
-        for (int i = 1; i < inputs.length; i += 2) {
-            result = calculate(result, inputs[i], Double.parseDouble(inputs[i + 1]));
-        }
-        return result;
+        throw new IllegalArgumentException("잘못된 연산자가 입력되었습니다.");
     }
 }
