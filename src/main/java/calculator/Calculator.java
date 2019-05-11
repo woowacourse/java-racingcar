@@ -39,7 +39,7 @@ public class Calculator {
         }
 
         double result = Double.parseDouble(inputs[0]);
-        for (int i = 1; i < inputs.length; i+=2) {
+        for (int i = 1; i < inputs.length; i += 2) {
             result = calculate(result, inputs[i], Double.parseDouble(inputs[i + 1]));
         }
         return result;
