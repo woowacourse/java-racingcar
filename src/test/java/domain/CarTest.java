@@ -9,15 +9,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
     Car car;
+    String carInitName;
 
     @BeforeEach
     void setUp() {
-        car = new Car("hello");
+        carInitName = "hello";
+        car = new Car(carInitName);
     }
 
     @Test
     void create_자동차_객체_생성() {
-        assertThat(car.getName()).isEqualTo("hello");
+        assertThat(car).isEqualTo(new Car(carInitName));
+    }
+
+    @Test
+    void create_자동차_객체_생성_포지션_확인() {
+        assertThat(car).isEqualTo(new Car(carInitName,Const.CAR_OBJ_INIT_POSITION));
+    }
+
+    @Test
+    void create_자동차_객체_생성_포지션() {
+        int position = Const.CAR_OBJ_INIT_POSITION + 3;
+        assertThat(new Car(carInitName,position)).isEqualTo(new Car(carInitName,position));
     }
 
     @Test
@@ -35,18 +48,24 @@ class CarTest {
     }
 
     @Test
+    void create_자동차_포지션_범위_예외() {
+        int position = Const.CAR_OBJ_INIT_POSITION - 1;
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Car(carInitName,position);
+        });
+    }
+
+    @Test
     void increase_자동차_포지션_증가일_경우() {
-        int init = car.getPosition();
         car.increasePositionOrNot(4);
-        assertThat(car.getPosition()).isEqualTo(++init);
+        assertThat(car.toString()).isEqualTo(carInitName + " : -");
 
     }
 
     @Test
     void increase_자동차_포지션_변화_없음() {
-        int init = car.getPosition();
         car.increasePositionOrNot(3);
-        assertThat(car.getPosition()).isEqualTo(init);
+        assertThat(car.toString()).isEqualTo(carInitName + " : ");
     }
 
     @AfterEach

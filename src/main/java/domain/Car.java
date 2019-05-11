@@ -9,21 +9,26 @@ import java.util.Objects;
  */
 public class Car {
     private final String name;
-    private int position = Const.CAR_OBJ_INIT_POSITION;
+    private int position;
 
     public Car(final String name) {
+        this(name,Const.CAR_OBJ_INIT_POSITION);
+    }
+
+    public Car (final String name, final int position){
         if (Const.MIN_NAME_LEN > name.length() || Const.MAX_NAME_LEN < name.length()) {
             throw new IllegalArgumentException(Const.EX_NAME_LEN);
         }
+        if(position < Const.CAR_OBJ_INIT_POSITION){
+            throw new IllegalArgumentException();
+        }
+
         this.name = name;
+        this.position = position;
     }
 
     public String getName() {
         return this.name;
-    }
-
-    public int getPosition() {
-        return this.position;
     }
 
     public void increasePositionOrNot(int random) {
