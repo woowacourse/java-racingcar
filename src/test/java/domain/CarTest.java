@@ -16,7 +16,7 @@ class CarTest {
     }
 
     @Test
-    void 자동차_객체_생성() {
+    void create_자동차_객체_생성() {
         assertThrows(IllegalArgumentException.class, () -> {
             Car car = new Car("123456");
         });
@@ -29,7 +29,7 @@ class CarTest {
     }
 
     @Test
-    void 자동차_포지션_증가일_경우() {
+    void increase_자동차_포지션_증가일_경우() {
         int init = car.getPosition();
         for (int i = Const.GO_RAN_NUM; i < Const.RANGE_RAN_NUM; i++) {
             car.increasePositionOrNot(i);
@@ -39,7 +39,7 @@ class CarTest {
     }
 
     @Test
-    void 자동차_포지션_변화_없음() {
+    void increase_자동차_포지션_변화_없음() {
         int init = car.getPosition();
         for (int i = Const.ZERO; i < Const.GO_RAN_NUM; i++) {
             car.increasePositionOrNot(i);
