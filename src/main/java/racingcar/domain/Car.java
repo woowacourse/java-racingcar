@@ -14,9 +14,25 @@ public class Car {
     }
 
     public Car(String name, int position) {
+        checkNullName(name);
+        name = name.trim();
+        checkBlackName(name);
         checkLimitCharacters(name);
+
         this.name = name;
         this.position = position;
+    }
+
+    private void checkNullName(String carName) {
+        if (carName == null) {
+            throw new IllegalArgumentException("null 이름은 불가능합니다.");
+        }
+    }
+
+    private void checkBlackName(String carName) {
+        if (carName.length() == 0) {
+            throw new IllegalArgumentException("공백 이름은 불가능합니다.");
+        }
     }
 
     private void checkLimitCharacters(String carName) {

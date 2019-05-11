@@ -14,16 +14,11 @@ public class RacingGame {
     private int tryCount = 0;
 
     public void generateCarList(String carNames) {
-        carNames = removeWhiteSpace(carNames);
         checkContinuousComma(carNames);
 
         for (String carName : splitCarNames(carNames)) {
             cars.add(new Car(carName));
         }
-    }
-
-    private String removeWhiteSpace(String carNames) {
-        return carNames.replaceAll(" ", "");
     }
 
     private void checkContinuousComma(String carNames) {
