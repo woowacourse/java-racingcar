@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Car;
+import domain.Race;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 import static controller.RacingController.setCars;
+import static controller.RacingController.setRacingCars;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RacingControllerTest {
     private final String carNames = "pobi,crong,hee,iba";
@@ -31,19 +32,14 @@ class RacingControllerTest {
         assertThat(setCars(carNameList)).isEqualTo(carList);
     }
 
-/*    @Test
-    void Car_레이스_실행() {
-        RacingController.moveAllCar(RacingController.setCarName(carNames), roundCount);
-    }
-
     @Test
-    void 우승차_출력_프린트문() {
-        Race race = RacingController.moveAllCar(RacingController.setCarName(carNames), roundCount);
-        RacingController.printWinners(race);
-    }*/
+    void setRacingCars_확인() {
+        assertThat(setRacingCars(carList)).isEqualTo(new Race(carList));
+    }
 
     @AfterEach
     void tearDown() {
         carNameList = null;
+        carList = null;
     }
 }

@@ -2,7 +2,6 @@ package controller;
 
 import domain.Car;
 import domain.Race;
-import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +21,13 @@ public class RacingController {
         return carList;
     }
 
-    protected static Race moveAllCar(List<Car> carList, int roundCount) {
+    protected static Race setRacingCars(List<Car> carList) {
         Race race = new Race(carList);
-        OutputView.outputGameResultTile();
-        for (int i = 0; i < roundCount; i++) {
-            race.moveAllCarOneTime();
-            OutputView.outputGameResult(race.getRaceCarInfo());
-        }
+        return race;
+    }
+
+    protected static Race moveCar(Race race) {
+        race.moveAllCarOneTime();
         return race;
     }
 }

@@ -19,7 +19,10 @@ public class PlayRacingController {
     public static void playRacing() {
         List<Car> cars = setCarName(InputView.inputCarNames());
         int roundCount = setRoundCount(InputView.inputRoundCount());
-        Race race = RacingController.moveAllCar(cars, roundCount);
+
+        OutputView.outputGameResultTile();
+        Race race = RacingController.setRacingCars(cars);
+        race = outputMoveCar(race, roundCount);
         OutputView.outputWinners(race.getRaceWinners());
     }
 
@@ -43,5 +46,13 @@ public class PlayRacingController {
             System.out.println(Const.EX_ROUND_COUNT);
             return setRoundCount(InputView.inputRoundCount());
         }
+    }
+
+    protected static Race outputMoveCar(Race race, int roundCount) {
+        for (int i = 0; i < roundCount; i++) {
+            race = RacingController.moveCar(race);
+            OutputView.outputGameResult(race.getRaceCarInfo());
+        }
+        return race;
     }
 }

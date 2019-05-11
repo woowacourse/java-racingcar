@@ -2,16 +2,19 @@ package controller;
 
 import domain.Car;
 import domain.Const;
+import domain.Race;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import view.OutputView;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static controller.PlayRacingController.setCarName;
-import static controller.PlayRacingController.setRoundCount;
+import static controller.PlayRacingController.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,11 +30,19 @@ class PlayRacingControllerTest {
     private final String excep = "Excep";
     private Car exCar;
     private String exRoundCount = "100";
+    private List<Car> cars;
+    private Race race;
+    private InputStream in;
 
     @BeforeEach
     void setUp() {
         carNameList = Arrays.asList(carNames.split(","));
         exCar = new Car(excep);
+        cars = new ArrayList<>();
+        for (String name : carNameList){
+            cars.add(new Car(name));
+        }
+        race = new Race(cars);
     }
 
 
@@ -113,9 +124,22 @@ class PlayRacingControllerTest {
         });
     }
 
+    @Test
+    void outputMoveCar_확인() {
+        outputMoveCar(race,8);
+    }
+
+    @Test
+    void outputMoveCar_우승자_결과까지_확인() {
+        outputMoveCar(race,8);
+        OutputView.outputWinners(race.getRaceWinners());
+    }
+
     @AfterEach
     void tearDown() {
         carNameList = null;
         exCar = null;
+        cars = null;
+        race = null;
     }
 }
