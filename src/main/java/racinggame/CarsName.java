@@ -1,12 +1,11 @@
 package racinggame;
 
-import racinggame.view.UserInput;
-
-public class CarNameGenerator {
+public class CarsName {
     static final int MAX_NAME_LENGTH = 5;
     static final int MIN_NAME_LENGTH = 1;
+    private String[] carsName;
 
-    public String[] createCarsName(String inputText) {
+    public CarsName(String inputText) {
         String[] carsName;
 
         do {
@@ -15,7 +14,7 @@ public class CarNameGenerator {
             carsName = splitByComma(inputText);
         } while (!checkCarsNameLength(carsName));
 
-        return carsName;
+        this.carsName = carsName;
     }
 
     private String removeBlank(String carsName) {
@@ -49,9 +48,13 @@ public class CarNameGenerator {
     private boolean checkEachCarNameLength(boolean allNamesAreRightLength, String carName) {
         boolean eachIsRightLength;
 
-        eachIsRightLength = carName.length() <= MAX_NAME_LENGTH
-                && carName.length() >= MIN_NAME_LENGTH
+        eachIsRightLength = carName.length() <= MAX_NAME_LENGTH && carName.length() >= MIN_NAME_LENGTH
                 && allNamesAreRightLength;
+
         return eachIsRightLength;
+    }
+
+    public String[] getCarsName() {
+        return carsName;
     }
 }

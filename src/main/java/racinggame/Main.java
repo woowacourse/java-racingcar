@@ -6,13 +6,14 @@ import racinggame.view.resultOutput;
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();
-        CarGenerator cg = new CarGenerator();
-        CarNameGenerator cng = new CarNameGenerator();
+
         String inputText = UserInput.inputCarsName();
         int gameCount = UserInput.inputGameCount();
-        Winner winner;
 
-        winner = game.playGames(cg.createCars(cng.createCarsName(inputText)), gameCount);
+        CarsName carsName = new CarsName(inputText);
+        Cars cars = new Cars(carsName);
+        Winner winner = game.playGames(cars, gameCount);
+
         resultOutput.winnersOutput(winner.getWinners());
     }
 }
