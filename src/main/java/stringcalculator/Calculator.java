@@ -2,64 +2,57 @@ package stringcalculator;
 
 public class Calculator {
 
-    public static int plus(int result, int target) {
-        return result + target;
+    public int calculate(String[] inputText) {
+        int sum = parseStringToInt(inputText[0]);
+        int rightValue;
+        String operator;
+
+        for (int i = 1; i < inputText.length ; i += 2) {
+            rightValue = parseStringToInt(inputText[i + 1]);
+            operator = inputText[i];
+            sum = excuteOperation(sum, rightValue, operator);
+        }
+
+        return sum;
     }
 
-    public static int minus(int result, int target) {
-        return result - target;
-    }
-
-    public static int multiply(int result, int target) {
-        return result * target;
-    }
-
-    public static int divide(int result, int target) {
-        return result / target;
-    }
-
-    public static String[] splitByBlank(String inputText) {
-        return inputText.split(" ");
-    }
-
-    public static int parseStringToInt(String target) {
+    private int parseStringToInt(String target) {
         return Integer.parseInt(target);
     }
 
-    public static int calculate(int result, String operator, int nextValue) {
+    private int excuteOperation(int leftValue, int rightValue, String operator) {
         if ( operator.equals("+")) {
-            return plus(result, nextValue);
+            return plus(leftValue, rightValue);
         }
 
         if ( operator.equals("-")) {
-            return minus(result, nextValue);
+            return minus(leftValue, rightValue);
         }
 
         if ( operator.equals("*")) {
-            return multiply(result, nextValue);
+            return multiply(leftValue, rightValue);
         }
 
         if ( operator.equals("/")) {
-            return divide(result, nextValue);
+            return divide(leftValue, rightValue);
         }
 
         return  0;
     }
 
-    public static int excute(String[] inputText) {
-        int result = parseStringToInt(inputText[0]);
-
-        for (int i = 1; i < inputText.length ; i += 2) {
-            result = calculate(result, inputText[i], parseStringToInt(inputText[i + 1]));
-        }
-
-        return result;
+    private int plus(int leftValue, int rightValue) {
+        return leftValue + rightValue;
     }
 
-    public static void main(String[] args) {
-        String inputText = UserInput.inputText();
-        String[] input = splitByBlank(inputText);
-        System.out.println(excute(input));
+    private int minus(int leftValue, int rightValue) {
+        return leftValue - rightValue;
     }
 
+    private int multiply(int leftValue, int rightValue) {
+        return leftValue * rightValue;
+    }
+
+    private int divide(int leftValue, int rightValue) {
+        return leftValue / rightValue;
+    }
 }
