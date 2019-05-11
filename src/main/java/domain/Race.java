@@ -36,9 +36,13 @@ public class Race {
     public void moveAllCarOneTime() {
         for (Car car : raceCars) {
             car.increasePositionOrNot(Util.getRandomNumber());
-            if (car.checkGreaterThanMaxPos(maxPosition)) {
-                ++this.maxPosition;
-            }
+            setMaxPosition(car);
+        }
+    }
+
+    private void setMaxPosition(Car car) {
+        if (car.checkGreaterThanMaxPos(maxPosition)) {
+            ++this.maxPosition;
         }
     }
 
