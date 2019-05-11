@@ -16,9 +16,9 @@ public class OutputView {
         System.out.println(Const.OUTPUT_GAME_RESULT);
     }
 
-    public static void outputGameResult(List<Car> carList) {
-        for (Car car : carList) {
-            System.out.println(car);
+    public static void outputGameResult(List<String> carNames) {
+        for (String carName : carNames) {
+            System.out.println(carName);
         }
         System.out.println();
     }

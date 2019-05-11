@@ -18,10 +18,27 @@ public class Race {
     public Race(List<Car> raceCars) {
         this.raceCars = raceCars;
         this.maxPosition = Const.RACE_OBJ_INIT_MAX_POSITION;
+        setMaxPosition(this.raceCars);
     }
 
-    public List<Car> getRaceCars() {
-        return raceCars;
+    private void setMaxPosition(List<Car> cars) {
+        for(Car car : cars){
+            setMaxPosition(car);
+        }
+    }
+
+    private void setMaxPosition(Car car) {
+        if (car.checkGreaterThanMaxPos(maxPosition)) {
+            ++this.maxPosition;
+        }
+    }
+
+    public List<String> getRaceCarNames() {
+        List<String> carNames = new ArrayList<>();
+        for (Car car : raceCars) {
+            carNames.add(car.toString());
+        }
+        return carNames;
     }
 
     public String getRaceWinners() {
@@ -33,16 +50,10 @@ public class Race {
         return String.join(",", winners);
     }
 
-    public void moveAllCarOneTime(int randNum) {
+    public void moveAllCarOneTime() {
         for (Car car : raceCars) {
-            car.increasePositionOrNot(randNum);
-            findMaxPosition(car);
-        }
-    }
-
-    private void setMaxPosition(Car car) {
-        if (car.checkGreaterThanMaxPos(maxPosition)) {
-            ++this.maxPosition;
+            car.increasePositionOrNot(Util.getRandomNumber());
+            setMaxPosition(car);
         }
     }
 
