@@ -1,5 +1,5 @@
 /*
- * @(#)RacingView.java
+ * @(#)InputView.java
  *
  * v 2.0.0
  *
