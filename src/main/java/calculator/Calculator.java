@@ -21,17 +21,10 @@ public enum Calculator {
     }
 
     public static Calculator selectCalculator(String operator) {
-        if (operator.equals(ADD.operator)) {
-            return ADD;
-        }
-        if (operator.equals(SUBTRACT.operator)) {
-            return SUBTRACT;
-        }
-        if (operator.equals(MULTIPLY.operator)) {
-            return MULTIPLY;
-        }
-        if (operator.equals(DIVIDE.operator)) {
-            return DIVIDE;
+        for (Calculator cal : Calculator.values()) {
+            if (cal.operator.equals(operator)) {
+                return cal;
+            }
         }
         throw new IllegalArgumentException("잘못된 연산자가 입력되었습니다.");
     }
