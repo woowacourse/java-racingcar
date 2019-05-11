@@ -6,7 +6,6 @@ import com.woowacourse.javaracingcar.interfaces.OutputView;
 import java.util.List;
 
 public class ConsoleOutputView implements OutputView {
-
     private boolean isResultTitlePrinted;
 
     public ConsoleOutputView() {
@@ -22,10 +21,20 @@ public class ConsoleOutputView implements OutputView {
         }
 
         for (CarDto c : cars) {
-            System.out.println(c);
+            System.out.println(carToString(c));
         }
 
         System.out.println();
+    }
+
+    public String carToString(CarDto car) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(car.getName()).append(" : ");
+        for (int i = 0; i < car.getPosition(); i++) {
+            sb.append('-');
+        }
+
+        return sb.toString();
     }
 
     @Override

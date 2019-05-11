@@ -3,9 +3,7 @@ package com.woowacourse.javaracingcar;
 import com.woowacourse.javaracingcar.domain.Car;
 import com.woowacourse.javaracingcar.domain.CarDto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class RacingcarUtil {
@@ -43,11 +41,10 @@ public class RacingcarUtil {
     }
 
     private static List<String> filterInvalidNames(final List<String> names) {
-        return names.stream()
+        return new HashSet<>(names).stream()
             .filter(RacingcarUtil::checkNameLength)
             .filter(RacingcarUtil::checkIfNameIsEmpty)
             .filter(RacingcarUtil::checkIfNameIncludesSpace)
-            .filter(n -> checkIfNameDuplicates(n, names))
             .collect(Collectors.toList());
     }
 
@@ -61,15 +58,5 @@ public class RacingcarUtil {
 
     private static boolean checkIfNameIncludesSpace(final String name) {
         return !name.contains(" ");
-    }
-
-    private static boolean checkIfNameDuplicates(final String name, final List<String> names) {
-        return countDuplicateNames(name, names) < 2;
-    }
-
-    private static int countDuplicateNames(final String name, final List<String> names) {
-        return (int) names.stream()
-            .filter(name::equals)
-            .count();
     }
 }

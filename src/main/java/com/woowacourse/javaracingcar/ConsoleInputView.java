@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleInputView implements InputView {
+    private static final int TRIES_MIN = 1;
 
     @Override
     public List<String> promptUserNames() {
@@ -42,6 +43,6 @@ public class ConsoleInputView implements InputView {
     }
 
     private boolean isValidTries(int tries) {
-        return tries > 0;
+        return tries >= TRIES_MIN;
     }
 }

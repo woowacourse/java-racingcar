@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RacingcarControllerTest {
 
     @Test
-    void runPlayTestCases() {
+    void testNormalPlayCases() {
         // 테스트 케이스 생성
         List<int[]> numsToGenerateList = createNumsToGenerateList();
         List<String> carNameInputList = createCarNameInputList();
@@ -28,16 +28,11 @@ public class RacingcarControllerTest {
         }
     }
 
-    private List<List<CarDto>> createWinnerList() {
+    private List<int[]> createNumsToGenerateList() {
         return Arrays.asList(
-            Arrays.asList(new CarDto("honux", 2)),
-            Arrays.asList(new CarDto("pobi", 2),
-                new CarDto("honux", 2))
+            new int[]{1, 2, 5, 3, 2, 5, 4, 5, 3},
+            new int[]{1, 2, 3, 5, 2, 6, 4, 3, 7, 3, 9, 2}
         );
-    }
-
-    private List<Integer> createTriesInputList() {
-        return Arrays.asList(3, 4);
     }
 
     private List<String> createCarNameInputList() {
@@ -47,30 +42,26 @@ public class RacingcarControllerTest {
         );
     }
 
-    private List<int[]> createNumsToGenerateList() {
+    private List<Integer> createTriesInputList() {
+        return Arrays.asList(3, 4);
+    }
+
+    private List<List<CarDto>> createWinnerList() {
         return Arrays.asList(
-            new int[]{1, 2, 5, 3, 2, 5, 4, 5, 3},
-            new int[]{1, 2, 3, 5, 2, 6, 4, 3, 7, 3, 9, 2}
+            Arrays.asList(new CarDto("honux", 2)),
+            Arrays.asList(new CarDto("pobi", 2),
+                new CarDto("honux", 2))
         );
     }
 
     void testPlay(int[] numsToGenerate, String carNameInput, int triesInput, List<CarDto> winnerList) {
-        new RacingcarController(
-            new TestInputView(carNameInput, triesInput),
-            new TestOutputView(
-                new TestOutputView.TestOutputListener() {
-                    @Override
-                    public void onPrintResult(List<CarDto> carList) {
-                    }
+        RacingcarController controller = new RacingcarController(RacingcarUtil.splitIntoNames(carNameInput),
+            new TestNumberGenerator(numsToGenerate));
 
-                    @Override
-                    public void onPrintWinners(List<CarDto> carList) {
-                        assertThat(carList).hasSize(winnerList.size());
-                        for (CarDto winner : winnerList) {
-                            assertThat(carList).contains(winner);
-                        }
-                    }
-                }),
-            new TestNumberGenerator(numsToGenerate)).play();
+        for (int i = 0; i < triesInput; i++) {
+            controller.play();
+        }
+
+        assertThat(controller.retrieveWinners()).isEqualTo(winnerList);
     }
 }

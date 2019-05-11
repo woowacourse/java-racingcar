@@ -1,6 +1,8 @@
 package com.woowacourse.javaracingcar;
 
-import com.woowacourse.javaracingcar.domain.RacingcarModel;
+import com.woowacourse.javaracingcar.domain.Car;
+import com.woowacourse.javaracingcar.domain.CarDto;
+import com.woowacourse.javaracingcar.domain.RacingcarGame;
 import com.woowacourse.javaracingcar.interfaces.InputView;
 import com.woowacourse.javaracingcar.interfaces.NumberGenerator;
 import com.woowacourse.javaracingcar.interfaces.OutputView;
@@ -9,26 +11,22 @@ import java.util.List;
 
 
 public class RacingcarController {
+    private final RacingcarGame game;
 
-    private final OutputView outputView;
-    private final InputView inputView;
-    private final NumberGenerator numberGenerator;
-
-    public RacingcarController(final InputView input, final OutputView output, final NumberGenerator numberGenerator) {
-        inputView = input;
-        outputView = output;
-        this.numberGenerator = numberGenerator;
+    public RacingcarController(final List<String> carNames, final NumberGenerator numberGenerator) {
+        this.game = new RacingcarGame(numberGenerator, RacingcarUtil.createCars(carNames));
     }
 
-    public void play() {
-        final List<String> carNames = inputView.promptUserNames();
-        final int tries = inputView.promptTries();
-        final RacingcarModel racingcarModel = new RacingcarModel(numberGenerator, carNames);
+    public List<CarDto> play() {
+        return game.loop();
+    }
 
-        for (int i = 0; i < tries; i++) {
-            outputView.printResult(racingcarModel.loop());
-        }
+    public List<CarDto> retrieveWinners() {
+        return game.getWinners();
+    }
 
-        outputView.printWinners(racingcarModel.getWinners());
+    @Override
+    public String toString() {
+        return String.format("RacingcarController { game: %s }", game);
     }
 }

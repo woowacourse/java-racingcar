@@ -1,12 +1,14 @@
 package com.woowacourse.javaracingcar.domain;
 
 public class Car implements Comparable<Car> {
+    private static final int STARTING_POSITION = 0;
+
     private final String name;
     private int position;
 
     public Car(final String name) {
         this.name = name;
-        this.position = 0;
+        this.position = STARTING_POSITION;
     }
 
     /**
@@ -15,8 +17,9 @@ public class Car implements Comparable<Car> {
      *
      * @param position 위치 변화량
      */
-    public void move(final int position) {
+    public CarDto move(final int position) {
         this.position += position;
+        return new CarDto(name, position);
     }
 
     public String getName() {
@@ -29,13 +32,7 @@ public class Car implements Comparable<Car> {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name).append(" : ");
-        for (int i = 0; i < position; i++) {
-            sb.append('-');
-        }
-
-        return sb.toString();
+        return String.format("Car { name: \"%s\", position: %d }", name, position);
     }
 
     @Override

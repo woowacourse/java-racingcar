@@ -8,14 +8,20 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RacingcarModel {
+public class RacingcarGame {
     private static final int MOVE_BOUND = 4;
+    private static final int MOVING_POSITION = 1;
+    private static final int STOP_POSITION = 0;
+
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
 
-    public RacingcarModel(final NumberGenerator generator, final List<String> carNames) {
+    public RacingcarGame(final NumberGenerator generator, final List<Car> cars) {
+        if (cars.isEmpty()) {
+            throw new IllegalArgumentException("Car list is empty");
+        }
         this.numberGenerator = generator;
-        this.cars = RacingcarUtil.createCars(carNames);
+        this.cars = cars;
     }
 
     /**
@@ -33,10 +39,10 @@ public class RacingcarModel {
 
     private int calculateMovingPosition(final int generatedNumber) {
         if (generatedNumber >= MOVE_BOUND) {
-            return 1;
+            return MOVING_POSITION;
         }
 
-        return 0;
+        return STOP_POSITION;
     }
 
     private List<CarDto> convertToDtoList() {
@@ -58,9 +64,15 @@ public class RacingcarModel {
     }
 
     private int calculateMaxPosition() {
-        if (cars.isEmpty()) {
-            throw new IllegalStateException("Car list is empty");
-        }
         return Collections.max(cars).getPosition();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        cars.forEach(sb::append);
+        sb.append("]");
+        return String.format("RacingcarGame { cars: %s }", sb.toString());
     }
 }
