@@ -19,16 +19,16 @@ public class Calculator {
 
     double calculate(double a, String operator, double b) {
         if (operator.equals("+")) {
-            return add(a,b);
+            return add(a, b);
         }
         if (operator.equals("-")) {
-            return subtract(a,b);
+            return subtract(a, b);
         }
         if (operator.equals("*")) {
-            return multiply(a,b);
+            return multiply(a, b);
         }
         if (operator.equals("/")) {
-            return divide(a,b);
+            return divide(a, b);
         }
         throw new IllegalArgumentException("올바른 연산자가 아닙니다.");
     }
