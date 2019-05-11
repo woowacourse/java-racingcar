@@ -17,15 +17,21 @@ class CarTest {
 
     @Test
     void create_자동차_객체_생성() {
+        assertThat(car.getName()).isEqualTo("hello");
+    }
+
+    @Test
+    void create_자동차_이름_5자이상_예외_숫자() {
         assertThrows(IllegalArgumentException.class, () -> {
             Car car = new Car("123456");
         });
+    }
 
+    @Test
+    void create_자동차_이름_빈값_예외() {
         assertThrows(IllegalArgumentException.class, () -> {
             Car car = new Car("");
         });
-
-        assertThat(car.getName()).isEqualTo("hello");
     }
 
     @Test
