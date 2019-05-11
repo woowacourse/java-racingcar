@@ -42,10 +42,6 @@ public class Car implements Comparable<Car> {
         return this;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public String getName() {
         return name;
     }
