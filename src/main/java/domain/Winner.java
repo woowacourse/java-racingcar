@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Winner {
-    private final List<Car> cars;
+    private final List<String> winners;
 
     public Winner(List<Car> cars) {
-        this.cars = cars;
+        this.winners = getWinnerList(cars);
     }
 
-    public List<String> getWinnerList() {
+    private List<String> getWinnerList(List<Car> cars) {
         List<String> winners = new ArrayList<>();
-        int maxPosition = getMaxPosition();
+        int maxPosition = getMaxPosition(cars);
 
         for (Car car : cars) {
             if (car.isEqualPosition(maxPosition)) {
@@ -22,12 +22,16 @@ public class Winner {
         return winners;
     }
 
-    private int getMaxPosition() {
+    private int getMaxPosition(List<Car> cars) {
         int maxPosition = 0;
 
         for (Car car : cars) {
             maxPosition = car.getBiggerPosition(maxPosition);
         }
         return maxPosition;
+    }
+
+    public List<String> getWinners() {
+        return winners;
     }
 }

@@ -24,22 +24,22 @@ public class CarTest {
 
     @Test
     void 정지() {
-        assertThat(car.judgeMove(3)).isEqualTo(0);
+        assertThat(car.move(3)).isEqualTo(0);
     }
 
     @Test
     void 이동() {
-        assertThat(car.judgeMove(4)).isEqualTo(1);
-        assertThat(car.judgeMove(9)).isEqualTo(1);
+        assertThat(car.move(4)).isEqualTo(1);
+        assertThat(car.move(9)).isEqualTo(1);
     }
 
     @Test
     void 움직임_예외() {
         assertThrows(IllegalArgumentException.class, () -> {
-            car.judgeMove(-1);
+            car.move(-1);
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            car.judgeMove(10);
+            car.move(10);
         });
     }
 
