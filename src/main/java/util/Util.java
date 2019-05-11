@@ -31,4 +31,10 @@ public class Util {
             throw new IllegalArgumentException(Const.EX_NAME_LEN);
         }
     }
+
+    public static void checkRoundCountRange(int roundCnt){
+        if (roundCnt <= Const.ZERO){
+            throw new IllegalArgumentException(Const.EX_ROUND_COUNT);
+        }
+    }
 }
