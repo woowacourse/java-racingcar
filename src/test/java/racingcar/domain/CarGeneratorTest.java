@@ -37,6 +37,6 @@ class CarGeneratorTest {
         cars.add(new Car("crong"));
 
         carGenerator.generateCars("pobi,crong".split(","));
-        assertThat(carGenerator.getCars().equals(cars)).isTrue();
+        assertThat(carGenerator.getCars()).isEqualTo(cars);
     }
 }

@@ -17,12 +17,11 @@ public class RacingResultTest {
         cars.add(new Car("pobi",3));
         cars.add(new Car("crong",5));
         racingResult = new RacingResult(cars);
-
     }
 
     @Test
     void create() {
-        assertThat(new RacingResult(cars).equals(new RacingResult(cars))).isTrue();
+        assertThat(new RacingResult(cars)).isEqualTo(new RacingResult(cars));
     }
 
     @Test
