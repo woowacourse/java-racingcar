@@ -18,9 +18,17 @@ public class InputValidatorTest {
     }
 
     @Test
-    public void 자동차_이름에_알파벳이_아닌_문자가_포함된_경우() {
-        assertFalse(InputValidator.validateAll(" "));
+    public void 자동차_이름이_빈문자열인_경우() {
         assertFalse(InputValidator.validateAll(""));
+    }
+
+    @Test
+    public void 자동차_이름이_공백인_경우() {
+        assertFalse(InputValidator.validateAll(" "));
+    }
+
+    @Test
+    public void 자동차_이름에_잘못된_문자열이_포함된_경우() {
         assertFalse(InputValidator.validateAll("abc#,abcd,abcde,abcd1"));
     }
 
@@ -30,12 +38,32 @@ public class InputValidatorTest {
     }
 
     @Test
-    public void 시도_횟수가_자연수가_아닌_경우() {
+    public void 시도_횟수가_빈문자열인_경우() {
         assertFalse(InputValidator.validateNaturalNumber(""));
+    }
+
+    @Test
+    public void 시도_횟수가_공백인_경우() {
         assertFalse(InputValidator.validateNaturalNumber(" "));
+    }
+
+    @Test
+    public void 시도_횟수가_0인_경우() {
         assertFalse(InputValidator.validateNaturalNumber("0"));
+    }
+
+    @Test
+    public void 시도_횟수가_잘못된_숫자인_경우() {
         assertFalse(InputValidator.validateNaturalNumber("01"));
+    }
+
+    @Test
+    public void 시도_횟수가_음수인_경우() {
         assertFalse(InputValidator.validateNaturalNumber("-1"));
+    }
+
+    @Test
+    public void 시도_횟수가_문자열인_경우() {
         assertFalse(InputValidator.validateNaturalNumber("sadfsf"));
     }
 }
