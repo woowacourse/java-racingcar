@@ -49,10 +49,11 @@ public class Car {
         return position;
     }
 
-    public void move(int randomNumber) {
+    public Car move(int randomNumber) {
         if (randomNumber >= MOVE_CRITERIA) {
             this.position++;
         }
+        return new Car(name, position);
     }
 
     public boolean isFartherPosition(int position) {

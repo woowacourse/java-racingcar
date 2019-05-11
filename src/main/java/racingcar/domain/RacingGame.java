@@ -46,21 +46,23 @@ public class RacingGame {
         List<List<Car>> eachTryCars = new ArrayList<>();
 
         for (int i = 0; i < tryCount; i++) {
-            race();
-            eachTryCars.add(cars);
+            eachTryCars.add(race());
         }
         return eachTryCars;
     }
 
-    private void race() {
-        for (Car car : cars) {
-            randomMove(car);
+    private List<Car> race() {
+        List<Car> currentRacingCars = new ArrayList<>();
+
+        for (Car car : this.cars) {
+            currentRacingCars.add(randomMove(car));
         }
+        return currentRacingCars;
     }
 
-    private void randomMove(Car car) {
+    private Car randomMove(Car car) {
         int randomNumber = Utils.RANDOM.nextInt(RANDOM_NUMBER_COUNT) + RANDOM_NUMBER_LOWER_BOUND;
 
-        car.move(randomNumber);
+        return car.move(randomNumber);
     }
 }
