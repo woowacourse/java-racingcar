@@ -33,16 +33,9 @@ public class CarDto {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof CarDto)) {
-            return false;
-        }
-
-        if (name.equals(((CarDto) o).name) &&
-            (position == ((CarDto) o).position)) {
-            return true;
-        }
-
-        return false;
+        return (o instanceof CarDto) && // Car 타입이면서
+            name.equals(((CarDto) o).name) && // 이름이 같고
+            position == ((CarDto) o).position; // 위치가 같아야 함
     }
 
     @Override

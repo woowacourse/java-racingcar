@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingcarModel {
-    private static final int STOP_BOUND = 3;
     private static final int MOVE_BOUND = 4;
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
@@ -32,6 +31,20 @@ public class RacingcarModel {
         return convertToDtoList();
     }
 
+    private int calculateMovingPosition(final int generatedNumber) {
+        if (generatedNumber >= MOVE_BOUND) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    private List<CarDto> convertToDtoList() {
+        return cars.stream()
+            .map(c -> new CarDto(c.getName(), c.getPosition()))
+            .collect(Collectors.toList());
+    }
+
     public List<CarDto> getWinners() {
         final int max = calculateMaxPosition();
         final List<CarDto> winners = new ArrayList<>();
@@ -44,26 +57,10 @@ public class RacingcarModel {
         return winners;
     }
 
-    private int calculateMovingPosition(final int generatedNumber) {
-        if (generatedNumber >= MOVE_BOUND) {
-            return 1;
-        }
-        if (generatedNumber <= STOP_BOUND) {
-            return 0;
-        }
-        throw new IllegalArgumentException("올바르지 않은 인수: " + generatedNumber);
-    }
-
     private int calculateMaxPosition() {
         if (cars.isEmpty()) {
             throw new IllegalStateException("Car list is empty");
         }
         return Collections.max(cars).getPosition();
-    }
-
-    private List<CarDto> convertToDtoList() {
-        return cars.stream()
-            .map(c -> new CarDto(c.getName(), c.getPosition()))
-            .collect(Collectors.toList());
     }
 }

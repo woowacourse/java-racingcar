@@ -4,6 +4,7 @@ import com.woowacourse.javaracingcar.domain.Car;
 import com.woowacourse.javaracingcar.domain.CarDto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,29 +12,6 @@ public class RacingcarUtil {
     private static final int MAX_NAME_LENGTH = 5;
 
     private RacingcarUtil() {
-    }
-
-    public static String joinCarNames(final List<CarDto> cars) {
-        return cars.stream()
-            .map(CarDto::getName)
-            .collect(Collectors.joining(", "));
-    }
-
-    public static String[] splitIntoNames(final String commaSplittedNames) {
-        final String[] names = commaSplittedNames.split(",");
-        for (int i = 0; i < names.length; i++) {
-            names[i] = names[i].trim();
-        }
-        return names;
-    }
-
-    public static boolean isValidNameInput(final String[] names) {
-        try {
-            checkEachOfNames(names);
-            return true;
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
     }
 
     public static List<Car> createCars(final List<String> carNames) {
@@ -45,47 +23,53 @@ public class RacingcarUtil {
         return cars;
     }
 
-    private static void checkEachOfNames(final String[] names) {
-        for (String name : names) {
-            checkIfNameIsEmpty(name);
-            checkIfNameIncludesSpace(name);
-            checkIfValidNames(name);
-            checkIfNameDuplicates(name, names);
-        }
+    public static String joinCarNames(final List<CarDto> cars) {
+        return cars.stream()
+            .map(CarDto::getName)
+            .collect(Collectors.joining(", "));
     }
 
-    private static void checkIfValidNames(final String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 5자를 넘을 수 없습니다");
+    public static List<String> splitIntoNames(final String input) {
+        final String[] names = input.split(",");
+        for (int i = 0; i < names.length; i++) {
+            names[i] = names[i].trim();
         }
+        return Arrays.asList(names);
     }
 
-    private static void checkIfNameIncludesSpace(final String name) {
-        if (name.contains(" ")) {
-            throw new IllegalArgumentException("이름에 공백을 포함할 수 없습니다");
-        }
+    public static boolean isValidNameInput(final List<String> carNames) {
+        final List<String> validNameList = filterInvalidNames(carNames);
+        return validNameList.size() == carNames.size();
     }
 
-    private static void checkIfNameIsEmpty(final String name) {
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException("이름이 비어 있습니다");
-        }
+    private static List<String> filterInvalidNames(final List<String> names) {
+        return names.stream()
+            .filter(RacingcarUtil::checkNameLength)
+            .filter(RacingcarUtil::checkIfNameIsEmpty)
+            .filter(RacingcarUtil::checkIfNameIncludesSpace)
+            .filter(n -> checkIfNameDuplicates(n, names))
+            .collect(Collectors.toList());
     }
 
-    private static void checkIfNameDuplicates(final String name, final String[] names) {
-        int cnt = countDuplicateNames(name, names);
-        if (cnt >= 2) {
-            throw new IllegalArgumentException("중복되는 이름이 있습니다");
-        }
+    private static boolean checkNameLength(final String name) {
+        return name.length() <= MAX_NAME_LENGTH;
     }
 
-    private static int countDuplicateNames(final String name, final String[] names) {
-        int cnt = 0;
-        for (String comp : names) {
-            if (name.equals(comp)) {
-                cnt++;
-            }
-        }
-        return cnt;
+    private static boolean checkIfNameIsEmpty(final String name) {
+        return !name.isEmpty();
+    }
+
+    private static boolean checkIfNameIncludesSpace(final String name) {
+        return !name.contains(" ");
+    }
+
+    private static boolean checkIfNameDuplicates(final String name, final List<String> names) {
+        return countDuplicateNames(name, names) < 2;
+    }
+
+    private static int countDuplicateNames(final String name, final List<String> names) {
+        return (int) names.stream()
+            .filter(name::equals)
+            .count();
     }
 }

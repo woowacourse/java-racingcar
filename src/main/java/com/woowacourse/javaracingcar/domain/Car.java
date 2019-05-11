@@ -40,16 +40,9 @@ public class Car implements Comparable<Car> {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Car)) {
-            return false;
-        }
-
-        if (name.equals(((Car) o).name) &&
-            (position == ((Car) o).position)) {
-            return true;
-        }
-
-        return false;
+        return (o instanceof Car) && // Car 타입이면서
+            name.equals(((Car) o).name) && // 이름이 같고
+            position == ((Car) o).position; // 위치가 같아야 함
     }
 
     @Override
