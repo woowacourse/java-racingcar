@@ -1,6 +1,6 @@
-package game.output;
+package racinggame.view;
 
-import game.Car;
+import racinggame.Car;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public class resultOutput {
 
     public static void eachGameOutput(Car car) {
         sb.setLength(0);
-        sb.append(car.getCarName());
+        sb.append(car.getName());
         sb.append(" : ");
 
         for (int i = 0; i < car.getPosition(); i++) {

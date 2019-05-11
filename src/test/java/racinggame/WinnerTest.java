@@ -1,4 +1,4 @@
-package game;
+package racinggame;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,13 @@ public class WinnerTest {
         cars.add(new Car("jason"));
         cars.add(new Car("brown"));
         cars.get(0).move(4);
-        winner.addWinner(true, cars.get(0));
+        winner.checkWinner(cars, 1);
+    }
+
+    @Test
+    void 우승자_없는_경우_확인() {
+        boolean result = winner.checkWinner(cars, 2);
+        assertThat(result).isEqualTo(false);
     }
 
     @Test

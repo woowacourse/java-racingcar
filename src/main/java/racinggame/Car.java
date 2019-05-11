@@ -1,16 +1,12 @@
-package game;
+package racinggame;
 
 public class Car {
-    private static int MOVE_POINT = 4;
+    private static final int MOVE_POINT = 4;
     private final String name;
     private int position = 0;
 
     public Car(String name) {
         this.name = name;
-    }
-
-    public String getCarName() {
-        return this.name;
     }
 
     public void move(int randomValue) {
@@ -23,8 +19,11 @@ public class Car {
         return position == maxInstance;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public int getPosition() {
         return position;
     }
-
 }

@@ -1,4 +1,4 @@
-package game;
+package racinggame;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,13 +16,13 @@ public class CarTest {
 
     @Test
     void 자동차_이름_확인() {
-        String result = car.getCarName();
+        String result = car.getName();
         assertThat(result).isEqualTo("bongjin");
     }
 
     @Test
     void 최대_이동_거리_미달_확인() {
-        boolean result = car.isMaxInstance(5);
+        boolean result = car.isMaxInstance(2);
         car.move(4);
         assertThat(result).isEqualTo(false);
     }
