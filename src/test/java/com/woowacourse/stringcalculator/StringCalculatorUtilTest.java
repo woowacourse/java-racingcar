@@ -30,23 +30,14 @@ public class StringCalculatorUtilTest {
         expectedNumberQueue.add(5);
 
         String expression = "4 + 2 * 5";
-        Queue<Character> actualOperatorQueue = StringCalculatorUtil.parseCalculator(expression).getOperatorQueue();
-        Queue<Integer> actualNumberQueue = StringCalculatorUtil.parseCalculator(expression).getNumberQueue();
-        int length = expectedNumberQueue.size() - 1;
-
-        assertThat(expectedNumberQueue.poll()).isEqualTo(actualNumberQueue.poll());
-        for (int i = 0; i < length; i++) {
-            assertThat(expectedNumberQueue.poll()).isEqualTo(actualNumberQueue.poll());
-            assertThat(expectedOperatorQueue.poll()).isEqualTo(actualOperatorQueue.poll());
-        }
+        assertThat(StringCalculatorUtil.parseCalculator(expression).calculate()).isEqualTo(30);
     }
 
     @Test
     void 비정상문자열 () {
         String expression = "4 + 2 -";
         assertThrows(IllegalArgumentException.class, () -> {
-            StringCalculatorUtil.parseCalculator(expression).getOperatorQueue();
-            StringCalculatorUtil.parseCalculator(expression).getNumberQueue();
+            StringCalculatorUtil.parseCalculator(expression);
         });
 
     }
@@ -56,8 +47,7 @@ public class StringCalculatorUtilTest {
         String expression = "4  + 2 * 5";
 
         assertThrows(IllegalArgumentException.class, () -> {
-            StringCalculatorUtil.parseCalculator(expression).getOperatorQueue();
-            StringCalculatorUtil.parseCalculator(expression).getNumberQueue();
+            StringCalculatorUtil.parseCalculator(expression);
         });
     }
 
@@ -73,8 +63,7 @@ public class StringCalculatorUtilTest {
         String expression = "dfdfsdfda";
 
         assertThrows(IllegalArgumentException.class, () -> {
-            StringCalculatorUtil.parseCalculator(expression).getOperatorQueue();
-            StringCalculatorUtil.parseCalculator(expression).getNumberQueue();
+            StringCalculatorUtil.parseCalculator(expression);
         });
     }
 

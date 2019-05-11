@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTest {
-    Queue<Character> operationQueue;
+    Queue<IntOperator> operationQueue;
     Queue<Integer> numberQueue;
     StringCalculator stringCalculator;
 
@@ -22,8 +22,8 @@ public class StringCalculatorTest {
 
     @Test
     void 정상입력() {
-        operationQueue.add('+');
-        operationQueue.add('*');
+        operationQueue.add(IntOperator.valueOf('+'));
+        operationQueue.add(IntOperator.valueOf('*'));
         numberQueue.add(4);
         numberQueue.add(2);
         numberQueue.add(5);
@@ -34,8 +34,8 @@ public class StringCalculatorTest {
 
     @Test
     void 정상입력_0으로_나누기() {
-        operationQueue.add('+');
-        operationQueue.add('/');
+        operationQueue.add(IntOperator.valueOf('+'));
+        operationQueue.add(IntOperator.valueOf('/'));
         numberQueue.add(-2);
         numberQueue.add(3);
         numberQueue.add(0);
@@ -46,9 +46,9 @@ public class StringCalculatorTest {
 
     @Test
     void 연산자_비정상입력() {
-        operationQueue.add('+');
-        operationQueue.add('*');
-        operationQueue.add('*');
+        operationQueue.add(IntOperator.valueOf('+'));
+        operationQueue.add(IntOperator.valueOf('*'));
+        operationQueue.add(IntOperator.valueOf('*'));
         numberQueue.add(4);
         numberQueue.add(2);
         numberQueue.add(5);
@@ -60,8 +60,8 @@ public class StringCalculatorTest {
 
     @Test
     void 피연산자_비정상입력() {
-        operationQueue.add('+');
-        operationQueue.add('*');
+        operationQueue.add(IntOperator.valueOf('+'));
+        operationQueue.add(IntOperator.valueOf('*'));
         numberQueue.add(4);
         numberQueue.add(2);
         numberQueue.add(5);
@@ -74,13 +74,12 @@ public class StringCalculatorTest {
 
     @Test
     void 연산자_비정상문자입력() {
-        operationQueue.add('?');
-        operationQueue.add('*');
-        numberQueue.add(4);
-        numberQueue.add(2);
-        numberQueue.add(5);
-
         assertThrows(IllegalArgumentException.class, () -> {
+            operationQueue.add(IntOperator.valueOf('?'));
+            operationQueue.add(IntOperator.valueOf('*'));
+            numberQueue.add(4);
+            numberQueue.add(2);
+            numberQueue.add(5);
             stringCalculator = new StringCalculator(operationQueue, numberQueue);
             stringCalculator.calculate();
         });

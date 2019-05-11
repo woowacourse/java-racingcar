@@ -12,7 +12,7 @@ public class StringCalculatorUtil {
         input = input.trim();
         checkIfExpressionEmpty(input);
 
-        Queue<Character> operatorQueue = new LinkedList<>();
+        Queue<IntOperator> operatorQueue = new LinkedList<>();
         Queue<Integer> numberQueue = new LinkedList<>();
         String[] tokens = input.split(" ");
 
@@ -21,7 +21,7 @@ public class StringCalculatorUtil {
 
         for (int i = 1; i < length; i += 2) {
             checkIfValidTokens(tokens, length, i);
-            operatorQueue.add(tokens[i].charAt(0));
+            operatorQueue.add(IntOperator.valueOf(tokens[i].charAt(0)));
             numberQueue.add(Integer.parseInt(tokens[i + 1]));
         }
 
@@ -53,8 +53,12 @@ public class StringCalculatorUtil {
         if (str.length() == 0) {
             return false;
         }
-        char c = str.charAt(0);
 
-        return c == '+' || c == '-' || c == '*' || c == '/';
+        try {
+            IntOperator.valueOf(str.charAt(0));
+            return true;
+        } catch(IllegalArgumentException e) {
+            return false;
+        }
     }
 }
