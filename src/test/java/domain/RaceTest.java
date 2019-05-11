@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by Heebg
@@ -38,7 +37,7 @@ class RaceTest {
         for (Car car : cars) {
             carNames.add(car.toString());
         }
-        assertThat(race.getRaceCarNames()).isEqualTo(carNames);
+        assertThat(race.getRaceCarInfo()).isEqualTo(carNames);
     }
 
     @Test

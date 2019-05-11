@@ -58,7 +58,7 @@ public class RacingController {
         OutputView.outputGameResultTile();
         for (int i = 0; i < roundCount; i++) {
             race.moveAllCarOneTime();
-            OutputView.outputGameResult(race.getRaceCarNames());
+            OutputView.outputGameResult(race.getRaceCarInfo());
         }
         return race;
     }

@@ -33,7 +33,7 @@ public class Race {
         }
     }
 
-    public List<String> getRaceCarNames() {
+    public List<String> getRaceCarInfo() {
         List<String> carNames = new ArrayList<>();
         for (Car car : raceCars) {
             carNames.add(car.toString());
