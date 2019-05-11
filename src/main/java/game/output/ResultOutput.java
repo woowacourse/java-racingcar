@@ -7,7 +7,15 @@ import java.util.List;
 public class ResultOutput {
     static StringBuilder sb = new StringBuilder();
 
-    public static void printEachGame(Car car) {
+    public static void printEachGame(List<Car> cars) {
+        for (Car car : cars) {
+            printEachCar(car);
+        }
+
+        printNewLine();
+    }
+
+    private static void printEachCar(Car car) {
         init();
 
         sb.append(car.getName());

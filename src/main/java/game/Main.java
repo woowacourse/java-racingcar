@@ -27,6 +27,7 @@ public class Main {
     private static void startGame(Game game, Winner winner, List<Car> cars, int maxInstance) {
         while (!winner.checkWinner(cars, maxInstance)) {
             game.playGame(cars);
+            ResultOutput.printEachGame(cars);
         }
     }
 
