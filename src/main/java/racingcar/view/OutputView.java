@@ -1,10 +1,7 @@
 package racingcar.view;
 
-import racingcar.model.Car;
 import racingcar.model.RacingCars;
 import racingcar.model.Winner;
-
-import java.util.List;
 
 public class OutputView {
     private static final String EMPTY_STRING = "";
@@ -20,13 +17,8 @@ public class OutputView {
         System.out.println(EMPTY_STRING);
     }
 
-//    public static void printCarWinners(Winner winner) {
-//        List<String> winnerCarNames = winner.getWinnerCarNames();
-//        System.out.println(String.join(SPACE_AND_COMMA, winnerCarNames) + WINNER_MENT);
-//    }
-
-    public static void printCarWinners(RacingCars racingCars) {
-        RacingCars winnerCars = racingCars.getWinnerCars();
+    public static void printCarWinners(Winner winner) {
+        RacingCars winnerCars = winner.getWinners();
         System.out.print(String.join(SPACE_AND_COMMA, winnerCars.getCarNames()) + WINNER_MENT);
     }
 

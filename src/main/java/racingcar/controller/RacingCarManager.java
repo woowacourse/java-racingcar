@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.model.RacingCars;
+import racingcar.model.Winner;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -32,10 +33,11 @@ public class RacingCarManager {
     }
 
     private void endRacing() {
-        printWinners(racingCars);
+        Winner winner = new Winner(racingCars);
+        printWinners(winner);
     }
 
-    private void printWinners(RacingCars racingCars) {
-        OutputView.printCarWinners(racingCars);
+    private void printWinners(Winner winner) {
+        OutputView.printCarWinners(winner);
     }
 }

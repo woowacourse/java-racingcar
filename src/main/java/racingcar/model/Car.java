@@ -50,8 +50,8 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    boolean isMaxPosition(int maxPosition) {
-        return position == maxPosition;
+    boolean isSamePositionCar(Car car) {
+        return this.position == car.position;
     }
 
     public String getCurrentPosition() {

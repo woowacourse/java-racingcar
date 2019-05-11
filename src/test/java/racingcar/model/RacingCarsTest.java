@@ -25,17 +25,6 @@ class RacingCarsTest {
     }
 
     @Test
-    void 우승자확인() {
-        RacingCars racingCars = new RacingCars(Arrays.asList(
-                new Car("Car1", 2),
-                new Car("Car2", 2),
-                new Car("Car3", 3)
-        ));
-        assertThat(racingCars.getWinnerCars()).
-                isEqualTo(new RacingCars(Arrays.asList(new Car("Car3", 3))));
-    }
-
-    @Test
     void 세개의차가_움직였을경우_포지션_문자열() {
         RacingCars racingCars = new RacingCars(Arrays.asList(
                 new Car("Car1", 2),
@@ -44,6 +33,6 @@ class RacingCarsTest {
         ));
 
         assertThat(racingCars.getCurrentPositionsOfRacingCars())
-                .isEqualTo(Arrays.asList("Car1 : --","Car2 : --","Car3 : --"));
+                .isEqualTo(Arrays.asList("Car1 : --", "Car2 : --", "Car3 : --"));
     }
 }

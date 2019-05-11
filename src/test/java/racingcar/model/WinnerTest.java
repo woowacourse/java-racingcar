@@ -1,27 +1,37 @@
-//package racingcar.model;
-//
-//import org.junit.jupiter.api.Test;
-//
-//import java.util.Arrays;
-//import java.util.List;
-//
-//import static org.assertj.core.api.Assertions.assertThat;
-//
-//class WinnerTest {
-//    @Test
-//    void 우승자_전부인_경우() {
-//        List<Car> cars = Arrays.asList(new Car("car1", 0),
-//                new Car("car2", 0), new Car("car3", 0));
-//        Winner winner = new Winner(cars);
-//        assertThat(winner.getWinnerCarNames()).isEqualTo(Arrays.asList("car1", "car2", "car3"));
-//    }
-//
-//    @Test
-//    void 우승자_한명인_경우() {
-//        List<Car> cars = Arrays.asList(new Car("car1", 1),
-//                new Car("car2", 0), new Car("car3", 0));
-//        Winner winner = new Winner(cars);
-//        assertThat(winner.getWinnerCarNames()).isEqualTo(Arrays.asList("car1"));
-//    }
-//
-//}
+package racingcar.model;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+
+class WinnerTest {
+    @Test
+    void 우승자_한명_확인() {
+        Winner winner = new Winner(new RacingCars(Arrays.asList(
+                new Car("Car1", 2),
+                new Car("Car2", 2),
+                new Car("Car3", 3)
+        )));
+        assertThat(winner.getWinners())
+                .isEqualTo(new RacingCars(Arrays.asList(new Car("Car3", 3))));
+    }
+
+    @Test
+    void 우승자_전부_확인() {
+        Winner winner = new Winner(new RacingCars(Arrays.asList(
+                new Car("Car1", 2),
+                new Car("Car2", 2),
+                new Car("Car3", 2)
+        )));
+        assertThat(winner.getWinners())
+                .isEqualTo(new RacingCars(Arrays.asList(
+                        new Car("Car1", 2),
+                        new Car("Car2", 2),
+                        new Car("Car3", 2)
+                )));
+    }
+}
