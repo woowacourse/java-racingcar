@@ -2,7 +2,6 @@ package racingcar.model;
 
 import org.junit.platform.commons.util.StringUtils;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Car {
@@ -10,6 +9,7 @@ public class Car {
     private static final int VALID_NAME_LENGTH = 5;
     /* String matches에 사용할 알파벳 REGEX 정의 */
     private static final String ALPHABET_REGEX = "^[a-zA-Z]*$";
+
     private final String name;
     private int position = 0;
 
@@ -26,21 +26,21 @@ public class Car {
         this.position = position;
     }
 
-    private boolean isValidName(String name) {
-        return this.isNameNotBlank(name)
-                && this.isNameConsistOfAlphabet(name.trim())
-                && this.isNameRightLength(name.trim());
+    private static boolean isValidName(String name) {
+        return isNameNotBlank(name)
+                && isNameConsistOfAlphabet(name.trim())
+                && isNameRightLength(name.trim());
     }
 
-    private boolean isNameNotBlank(String name) {
+    private static boolean isNameNotBlank(String name) {
         return !StringUtils.isBlank(name);
     }
 
-    private boolean isNameRightLength(String name) {
+    private static boolean isNameRightLength(String name) {
         return name.length() <= VALID_NAME_LENGTH;
     }
 
-    private boolean isNameConsistOfAlphabet(String name) {
+    private static boolean isNameConsistOfAlphabet(String name) {
         return name.matches(ALPHABET_REGEX);
     }
 
@@ -54,17 +54,18 @@ public class Car {
         }
     }
 
-    public int getMaxPosition(int maxPosition) {
+    int getMaxPosition(int maxPosition) {
         return Integer.max(this.position, maxPosition);
     }
 
-    public boolean isMaxPosition(int maxPosition) {
-        return this.position == maxPosition;
+    void checkWinner(WinningCars winningCars, int maxPosition) {
+        if (isMaxPosition(maxPosition)) {
+            winningCars.addWinner(this.name);
+        }
     }
 
-    public List<String> addCarInWinners(List<String> winningCarNames) {
-        winningCarNames.add(this.name);
-        return winningCarNames;
+    public boolean isMaxPosition(int maxPosition){
+        return this.position == maxPosition;
     }
 
     @Override

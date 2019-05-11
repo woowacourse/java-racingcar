@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-public class RandomTest {
+class RandomTest {
 
     @Test
     void 랜덤수가_0부터_9까지인지_검사() {

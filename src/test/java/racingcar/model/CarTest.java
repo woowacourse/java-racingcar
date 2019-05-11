@@ -3,15 +3,10 @@ package racingcar.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
-public class CarTest {
-
+class CarTest {
     Car car;
 
     @BeforeEach
@@ -64,12 +59,4 @@ public class CarTest {
         car = new Car("a", 0);
         assertThat(car.isMaxPosition(5)).isFalse();
     }
-
-    @Test
-    void 승리한_차가_List에_추가가_되는지_검사() {
-        car = new Car("a");
-        List<String> winnerNames = new ArrayList<>();
-        assertThat(car.addCarInWinners(winnerNames).contains("a")).isTrue();
-    }
-
 }
