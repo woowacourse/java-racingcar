@@ -19,9 +19,16 @@ public class CarTest {
     }
 
     @Test
-    void 공백_이름() {
+    void 길이가_0인_이름() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Car("");
+        });
+    }
+
+    @Test
+    void 공백_이름() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Car("  ");
         });
     }
 
