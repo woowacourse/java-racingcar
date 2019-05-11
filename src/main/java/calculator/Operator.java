@@ -6,10 +6,10 @@ import java.util.function.IntBinaryOperator;
 
 enum Operator implements IntBinaryOperator {
 
-    PLUS("+", (left, right) -> left + right),
-    MINUS("-", (left, right) -> left - right),
-    MULTIPLY("*", (left, right) -> left * right),
-    DIVIDE("/", (left, right) -> left / right);
+    ADDITION("+", (left, right) -> left + right),
+    SUBTRACTION("-", (left, right) -> left - right),
+    MULTIPLICATION("*", (left, right) -> left * right),
+    DIVISION("/", (left, right) -> left / right);
 
     private final String symbol;
     private final IntBinaryOperator binaryOperator;
