@@ -1,34 +1,26 @@
 package racingcar.model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Winner {
-    private final List<Car> cars;
+    private final RacingCars racingCars;
 
-    public Winner(final List<Car> cars) {
-        this.cars = cars;
+    public Winner(final RacingCars racingCars) {
+        this.racingCars = racingCars;
     }
 
-    public List<String> getWinnerCarNames() {
-        List<Car> winnerCars = getWinnerCars();
-        return winnerCars.stream()
-                .map(car -> car.getName())
-                .collect(Collectors.toList());
+    public List<String> getWinnerNames() {
+        return racingCars.getCarNames();
     }
 
-    private List<Car> getWinnerCars() {
-        Car firstPrizeCar = getMaxDistance();
-        return cars.stream()
-                .filter(car -> car.isSamePositionCar(firstPrizeCar))
-                .collect(Collectors.toList());
-    }
-
-    private Car getMaxDistance() {
-        Collections.sort(cars);
-        return cars.get(0);
+    public Winner getWinners() {
+        Car maxPositionCar = racingCars.getMaxPositionCar();
+        List<Car> racingCar = racingCars.getRacingCars();
+        return new Winner(new RacingCars(racingCar.stream()
+                .filter(car -> car.isSamePositionCar(maxPositionCar))
+                .collect(Collectors.toList())));
     }
 
     @Override
@@ -36,11 +28,11 @@ public class Winner {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Winner winner = (Winner) o;
-        return Objects.equals(cars, winner.cars);
+        return Objects.equals(racingCars, winner.racingCars);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cars);
+        return Objects.hash(racingCars);
     }
 }

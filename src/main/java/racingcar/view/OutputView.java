@@ -1,9 +1,7 @@
 package racingcar.view;
 
-import racingcar.model.Car;
+import racingcar.model.RacingCars;
 import racingcar.model.Winner;
-
-import java.util.List;
 
 public class OutputView {
     private static final String EMPTY_STRING = "";
@@ -11,8 +9,8 @@ public class OutputView {
     private static final String WINNER_MENT = "가 최종 우승했습니다.";
     private static final String RESULT_MENT = "실행결과";
 
-    public static void printCarPosition(Car car) {
-        System.out.println(car.getCurrentPosition());
+    public static void printCarPositions(RacingCars racingCars) {
+        System.out.println(String.join("\n", racingCars.getCurrentPositionsOfRacingCars()));
     }
 
     public static void printEmptyLine() {
@@ -20,8 +18,7 @@ public class OutputView {
     }
 
     public static void printCarWinners(Winner winner) {
-        List<String> winners = winner.getWinnerCarNames();
-        System.out.println(String.join(SPACE_AND_COMMA, winners) + WINNER_MENT);
+        System.out.print(String.join(SPACE_AND_COMMA, winner.getWinnerNames()) + WINNER_MENT);
     }
 
     public static void printResultMent() {
