@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RacingCarManager {
-    private static int MAX_BOUND = 10;
+    private static final int MAX_BOUND = 10;
 
     private final InputManager inputManager;
     private List<Car> cars;
