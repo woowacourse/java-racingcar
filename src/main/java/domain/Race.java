@@ -27,7 +27,7 @@ public class Race {
         List<String> winnersList = new ArrayList<>();
 
         raceCars.stream().filter(x -> x.isMaxPosition(maxPosition))
-                .forEach(x -> winnersList.add(x.getName()));
+                .forEach(x -> winnersList.add(x.toString().split(" ")[0]));
 
         return String.join(",", winnersList);
     }
