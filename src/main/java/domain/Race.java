@@ -24,12 +24,12 @@ public class Race {
     }
 
     public String getRaceWinners() {
-        List<String> winnersList = new ArrayList<>();
+        List<String> winners = new ArrayList<>();
 
         raceCars.stream().filter(x -> x.isMaxPosition(maxPosition))
-                .forEach(x -> winnersList.add(x.toString().split(" ")[0]));
+                .forEach(x -> winners.add(x.toString().split(" ")[0]));
 
-        return String.join(",", winnersList);
+        return String.join(",", winners);
     }
 
     public void moveAllCarOneTime() {
