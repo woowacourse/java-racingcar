@@ -26,12 +26,7 @@ public class Calculator {
     }
 
     private static boolean calculate(ArrayList<String> tokens) {
-        val = convertSymbolToEnum(tokens.remove(0)).calculate(val, Double.parseDouble(tokens.remove(0)));
+        val = Operator.findOperator(tokens.remove(0)).calculate(val, Double.parseDouble(tokens.remove(0)));
         return tokens.isEmpty() || calculate(tokens);
-    }
-
-    private static Operator convertSymbolToEnum(String symbol) {
-        final String conversionTable[] = {"PLUS", "MINUS", "MULTIPLY", "DIVIDE"};
-        return Operator.valueOf(conversionTable["+-*/".indexOf(symbol)]);
     }
 }
