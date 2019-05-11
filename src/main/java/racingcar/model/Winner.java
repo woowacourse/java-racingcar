@@ -1,15 +1,14 @@
 package racingcar.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Winner {
-    private List<Car> cars;
+    private final List<Car> cars;
 
-    public Winner(List<Car> cars) {
+    public Winner(final List<Car> cars) {
         this.cars = cars;
     }
 
