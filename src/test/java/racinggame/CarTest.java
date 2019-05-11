@@ -23,7 +23,7 @@ public class CarTest {
     @Test
     void 최대_이동_거리_미달_확인() {
         boolean result = car.isMaxInstance(2);
-        car.move(4);
+        car.move(2);
         assertThat(result).isEqualTo(false);
     }
 
