@@ -8,7 +8,7 @@ public class Cars implements Cloneable {
     private static final String REGEX_CAR_NAMES_SPLIT = ",";
     private List<Car> cars;
 
-    private Cars() {
+    public Cars() {
         cars = new ArrayList<>();
     }
 

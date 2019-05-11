@@ -17,7 +17,7 @@ public class LapRepository {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(Cars cars : laps){
+        for (Cars cars : laps) {
             sb.append(cars.toString());
         }
         return sb.toString();

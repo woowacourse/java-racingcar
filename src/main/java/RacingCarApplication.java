@@ -5,7 +5,7 @@ import view.InputView;
 import view.OutputView;
 
 public class RacingCarApplication {
-    public static void main(String[] args) throws CloneNotSupportedException{
+    public static void main(String[] args) {
         RacingGameService racingGameService = racingGameServiceGeneration();
         LapRepository lapRepository = racingGameService.run();
         Winners winners = racingGameService.getWinners();

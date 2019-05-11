@@ -10,7 +10,7 @@ public class OutputView {
         System.out.println(String.format(WINNER_MESSAGE, winners.toString()));
     }
 
-    public static void printGameResult(LapRepository lapRepository){
+    public static void printGameResult(LapRepository lapRepository) {
         System.out.println("실행 결과");
         System.out.print(lapRepository.toString());
     }
