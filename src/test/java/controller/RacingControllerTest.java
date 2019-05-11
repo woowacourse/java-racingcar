@@ -25,7 +25,7 @@ class RacingControllerTest {
     void Car_리스트_만들기() {
         List<Car> carList = RacingController.setCarName(carNames);
         for (int i = 0; i < Arrays.asList(carNames.split(",")).size(); i++) {
-            assertThat(carList.get(i).getName()).isEqualTo(carNameList.get(i));
+            assertThat(carList.get(i).toString().split(" ")[0]).isEqualTo(carNameList.get(i));
         }
     }
 

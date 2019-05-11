@@ -12,23 +12,19 @@ public class Car {
     private int position;
 
     public Car(final String name) {
-        this(name,Const.CAR_OBJ_INIT_POSITION);
+        this(name, Const.CAR_OBJ_INIT_POSITION);
     }
 
-    public Car (final String name, final int position){
+    public Car(final String name, final int position) {
         if (Const.MIN_NAME_LEN > name.length() || Const.MAX_NAME_LEN < name.length()) {
             throw new IllegalArgumentException(Const.EX_NAME_LEN);
         }
-        if(position < Const.CAR_OBJ_INIT_POSITION){
+        if (position < Const.CAR_OBJ_INIT_POSITION) {
             throw new IllegalArgumentException();
         }
 
         this.name = name;
         this.position = position;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public void increasePositionOrNot(int random) {
@@ -48,7 +44,7 @@ public class Car {
     @Override
     public String toString() {
         String positionView = "";
-        for(int i = 0 ; i < position ; i++){
+        for (int i = 0; i < position; i++) {
             positionView += Const.SHAPE_CAR_POSITION;
         }
         return name + " : " + positionView;
