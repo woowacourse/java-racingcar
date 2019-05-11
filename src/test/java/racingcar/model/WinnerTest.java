@@ -23,5 +23,4 @@ class WinnerTest {
         Winner winner = new Winner(cars);
         assertThat(winner.getWinnerCarNames()).isEqualTo(Arrays.asList("car1"));
     }
-
 }

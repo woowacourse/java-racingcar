@@ -38,5 +38,4 @@ class CarTest {
             Car car = new Car("asd", -1);
         });
     }
-
 }

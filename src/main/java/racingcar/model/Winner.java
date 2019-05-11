@@ -1,8 +1,10 @@
 package racingcar.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Winner {
     private List<Car> cars;
@@ -11,36 +13,23 @@ public class Winner {
         this.cars = cars;
     }
 
-    private int getMaxDistance() {
-        cars.sort((Car car1, Car car2) -> car2.getPosition() - car1.getPosition());
-        return cars.get(0).getPosition();
-    }
-
     public List<String> getWinnerCarNames() {
-        List<String> winnerCarNames = new ArrayList<>();
         List<Car> winnerCars = getWinnerCars();
-        for (Car winnerCar : winnerCars) {
-            winnerCarNames.add(winnerCar.getName());
-        }
-        return winnerCarNames;
+        return winnerCars.stream()
+                .map(car -> car.getName())
+                .collect(Collectors.toList());
     }
 
     private List<Car> getWinnerCars() {
-        List<Car> winners = new ArrayList<>();
-        int maxPosition = getMaxDistance();
-        int carNumber = 0;
-        while (checkMaxLength(carNumber) && checkMaxPosition(carNumber, maxPosition)) {
-            winners.add(cars.get(carNumber++));
-        }
-        return winners;
+        Car firstPrizeCar = getMaxDistance();
+        return cars.stream()
+                .filter(car -> car.isSamePositionCar(firstPrizeCar))
+                .collect(Collectors.toList());
     }
 
-    private boolean checkMaxLength(int carNumber) {
-        return carNumber < cars.size();
-    }
-
-    private boolean checkMaxPosition(int index, int maxPosition) {
-        return cars.get(index).isMaxPosition(maxPosition);
+    private Car getMaxDistance() {
+        Collections.sort(cars);
+        return cars.get(0);
     }
 
     @Override

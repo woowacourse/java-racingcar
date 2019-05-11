@@ -2,7 +2,7 @@ package racingcar.model;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int DEFAULT_POSITION = 0;
     private static final int MOVE_CONDITION = 4;
     private static final int MIN_CAR_NAME_LENGTH = 1;
@@ -42,16 +42,12 @@ public class Car {
         return this;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public String getName() {
         return name;
     }
 
-    boolean isMaxPosition(int maxPosition) {
-        return position == maxPosition;
+    boolean isSamePositionCar(Car car) {
+        return this.position == car.position;
     }
 
     public String getCurrentPosition() {
@@ -61,6 +57,19 @@ public class Car {
             sb.append(HYPHEN);
         }
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        if (this.position < o.position) {
+            return 1;
+        }
+
+        if (this.position > o.position) {
+            return -1;
+        }
+
+        return 0;
     }
 
     @Override
@@ -76,5 +85,4 @@ public class Car {
     public int hashCode() {
         return Objects.hash(position, name);
     }
-
 }
