@@ -6,10 +6,6 @@ import java.util.List;
 public class Winner {
     private List<String> winners = new ArrayList<>();
 
-    public List<String> getWinners() {
-        return winners;
-    }
-
     public boolean checkWinner(List<Car> cars, int maxInstance) {
         boolean result = false;
 
@@ -30,5 +26,9 @@ public class Winner {
         if (isMaxInstance) {
             winners.add(car.getName());
         }
+    }
+
+    public List<String> getWinners() {
+        return winners;
     }
 }
