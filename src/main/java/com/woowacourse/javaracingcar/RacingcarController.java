@@ -1,31 +1,34 @@
 package com.woowacourse.javaracingcar;
 
 import com.woowacourse.javaracingcar.domain.RacingcarModel;
+import com.woowacourse.javaracingcar.interfaces.InputView;
 import com.woowacourse.javaracingcar.interfaces.NumberGenerator;
-import com.woowacourse.javaracingcar.interfaces.UserInterface;
+import com.woowacourse.javaracingcar.interfaces.OutputView;
 
 import java.util.List;
 
 
 public class RacingcarController {
 
-    private final UserInterface ui;
+    private final OutputView outputView;
+    private final InputView inputView;
     private final NumberGenerator numberGenerator;
 
-    public RacingcarController(final UserInterface ui, final NumberGenerator numberGenerator) {
-        this.ui = ui;
+    public RacingcarController(final InputView input, final OutputView output, final NumberGenerator numberGenerator) {
+        inputView = input;
+        outputView = output;
         this.numberGenerator = numberGenerator;
     }
 
     public void play() {
-        final List<String> carNames = ui.promptUserNames();
-        final int tries = ui.promptTries();
+        final List<String> carNames = inputView.promptUserNames();
+        final int tries = inputView.promptTries();
         final RacingcarModel racingcarModel = new RacingcarModel(numberGenerator, carNames);
 
         for (int i = 0; i < tries; i++) {
-            ui.printResult(racingcarModel.loop());
+            outputView.printResult(racingcarModel.loop());
         }
 
-        ui.printWinners(racingcarModel.getWinners());
+        outputView.printWinners(racingcarModel.getWinners());
     }
 }
