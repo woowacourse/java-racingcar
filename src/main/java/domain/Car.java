@@ -25,8 +25,8 @@ public class Car {
         }
     }
 
-    public int move(Rule rule) {
-        if (rule.isMove()) {
+    public int move(int randomNumber) {
+        if (Rule.isMove(randomNumber)) {
             position++;
         }
         return position;

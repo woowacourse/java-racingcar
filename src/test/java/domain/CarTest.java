@@ -30,7 +30,7 @@ public class CarTest {
     @Test
     void 이동() {
         assertThat(car.move(4)).isEqualTo(1);
-        assertThat(car.move(9)).isEqualTo(1);
+        assertThat(car.move(9)).isEqualTo(2);
     }
 
     @Test

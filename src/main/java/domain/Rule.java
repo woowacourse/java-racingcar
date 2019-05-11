@@ -8,7 +8,7 @@ public class Rule {
     private static final int MAX_MOVE_NUMBER = 9;
     private static final int MIN_STOP_NUMBER = 0;
 
-    public boolean isMove(int number) {
+    public static boolean isMove(int number) {
         if (number > MAX_MOVE_NUMBER || number < MIN_STOP_NUMBER) {
             throw new IllegalArgumentException("잘못된 randomNumber");
         }
@@ -18,7 +18,7 @@ public class Rule {
         return false;
     }
 
-    public int makeRandomNumber() {
+    public static int makeRandomNumber() {
         Random random = new Random();
         return random.nextInt(BOUND_NUMBER);
     }

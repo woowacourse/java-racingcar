@@ -6,7 +6,7 @@ public class RacingGame {
 
     public List<Car> tryMove(List<Car> cars) {
         for (Car car : cars) {
-            car.move(new Rule());
+            car.move(Rule.makeRandomNumber());
         }
         return cars;
     }
