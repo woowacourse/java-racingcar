@@ -6,6 +6,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarManager {
+    private static final int MIN_GAME_COUNT = 0;
     private int gameCount = 0;
     private RacingCars racingCars;
 
@@ -18,7 +19,7 @@ public class RacingCarManager {
     private void getGameInformation() {
         racingCars = new RacingCars(InputView.getRacingCarInput());
         gameCount = InputView.getRacingCount();
-        if (gameCount < 0) {
+        if (gameCount < MIN_GAME_COUNT) {
             throw new IllegalArgumentException("0이상의 숫자를 입력하세요");
         }
     }
