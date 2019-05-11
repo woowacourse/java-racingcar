@@ -23,6 +23,12 @@ public class CalculatorTest {
     }
 
     @Test
+    void 수식토큰화테스트() {
+        assertThat(calc.tokenizeExpression("1   - 3    *  6"))
+            .isEqualTo(Arrays.asList("1", "-", "3", "*", "6"));
+    }
+
+    @Test
     void 덧셈테스트() {
         calc.calculateTokens(expressionToList("1 + 2 + 3"));
         assertThat(calc.val).isEqualTo(6);
