@@ -1,7 +1,7 @@
 package cal;
 
 public class OutputView {
-    public static void printResult(int result) {
+    static void printResult(int result) {
         System.out.println(result);
     }
 }

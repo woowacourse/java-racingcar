@@ -4,13 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars implements Cloneable {
-    private static final String REGEX_CAR_NAMES_FORMAT = "^([^,]+)(,[^,]+)*$";
+    private static final String REGEX_CAR_NAMES_FORMAT = "^([A-Za-z]+)(,[A-Za-z]+)*$";
     private static final String REGEX_CAR_NAMES_SPLIT = ",";
     private List<Car> cars;
-
-    private Cars() {
-        cars = new ArrayList<>();
-    }
 
     public Cars(String carNames) {
         checkCarNamesFormat(carNames);
@@ -53,12 +49,21 @@ public class Cars implements Cloneable {
         return sb.append("\n").toString();
     }
 
-    @Override
-    public Cars clone() throws CloneNotSupportedException {
-        Cars cars = new Cars();
-        for (Car car : this.cars) {
-            cars.cars.add(car.clone());
+    public Cars copy() {
+        try {
+            Cars copyCars = (Cars) clone();
+            copyCars.cars = deepCopy(cars);
+            return copyCars;
+        } catch (CloneNotSupportedException e) {
+            throw new IllegalArgumentException("자동차들 복제를 실패했습니다.");
         }
-        return cars;
+    }
+
+    private List<Car> deepCopy(List<Car> source) {
+        List<Car> copy = new ArrayList<>();
+        for (Car car : source) {
+            copy.add(car.copy());
+        }
+        return copy;
     }
 }

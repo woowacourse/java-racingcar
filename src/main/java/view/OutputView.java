@@ -1,6 +1,6 @@
 package view;
 
-import model.LapRepository;
+import model.LapRecord;
 import model.Winners;
 
 public class OutputView {
@@ -10,8 +10,8 @@ public class OutputView {
         System.out.println(String.format(WINNER_MESSAGE, winners.toString()));
     }
 
-    public static void printGameResult(LapRepository lapRepository){
+    public static void printGameResult(LapRecord lapRecord){
         System.out.println("실행 결과");
-        System.out.print(lapRepository.toString());
+        System.out.print(lapRecord.toString());
     }
 }

@@ -2,13 +2,13 @@ package model;
 
 import java.util.Objects;
 
-public class Car implements Comparable<Car> {
+public class Car implements Comparable<Car>, Cloneable {
     private static final int MOVE_BOUND = 4;
     private final String name;
     private int position;
 
     public Car(CarName carName) {
-        this.name = carName.getName();
+        this(carName, 0);
     }
 
     public Car(CarName carName, int position) {
@@ -30,8 +30,12 @@ public class Car implements Comparable<Car> {
         return number >= MOVE_BOUND;
     }
 
-    public boolean isMaxPosiotion(int maxPosition) {
-        return this.position == maxPosition;
+    public Car copy() {
+        try {
+            return (Car) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new IllegalArgumentException("자동차를 복제 할 수 없습니다.");
+        }
     }
 
     @Override
@@ -61,10 +65,5 @@ public class Car implements Comparable<Car> {
             sb.append("-");
         }
         return sb.append("\n").toString();
-    }
-
-    @Override
-    protected Car clone() throws CloneNotSupportedException {
-        return new Car(new CarName(this.name), this.position);
     }
 }

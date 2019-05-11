@@ -3,7 +3,7 @@ package model;
 import java.util.Collections;
 
 public class GameResult {
-    private Winners winners = new Winners();
+    private Winners winners;
 
     public GameResult() {
         winners = new Winners();

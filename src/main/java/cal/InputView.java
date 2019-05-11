@@ -6,20 +6,21 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String expressionPattern = "^(-?[0-9]+)(\\s([+\\-*/])\\s(-?[0-9]+))+$";
 
-    public static String inputExpression() {
+    static String inputExpression() {
         try {
             System.out.println("식을 입력하세요 : ");
-            return checkExpression(scanner.nextLine());
+            String expression = scanner.nextLine();
+            checkExpression(expression);
+            return expression;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputExpression();
         }
     }
 
-    static String checkExpression(String expression) {
+    static void checkExpression(String expression) {
         if (!expression.matches(expressionPattern)) {
             throw new IllegalArgumentException("잘못 된 식입니다.");
         }
-        return expression;
     }
 }

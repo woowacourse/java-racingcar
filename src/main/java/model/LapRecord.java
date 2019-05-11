@@ -3,10 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LapRepository {
-    List<Cars> laps;
+public class LapRecord {
+    private List<Cars> laps;
 
-    public LapRepository() {
+    public LapRecord() {
         laps = new ArrayList<>();
     }
 

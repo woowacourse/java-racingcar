@@ -1,7 +1,7 @@
 package model;
 
 public class LapCount {
-    static final String REGEX_IS_NATURAL_NUMBER = "^([1-9])([0-9])*$";
+    private static final String REGEX_IS_NATURAL_NUMBER = "^([1-9])([0-9])*$";
     private int lapCount;
 
     public LapCount(String lapCount) {
