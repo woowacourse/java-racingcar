@@ -10,11 +10,10 @@ public class Racing {
         this.cars = cars;
     }
 
-    public Cars run() {
+    public void run() {
         for (Car car : cars.getCars()) {
             Random random = new Random();
             car.move(random.nextInt(RANDOM_BOUND));
         }
-        return cars;
     }
 }

@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Cars implements Cloneable {
     private static final String REGEX_CAR_NAMES_FORMAT = "^([A-Za-z]+)(,[A-Za-z]+)*$";
@@ -13,7 +14,11 @@ public class Cars implements Cloneable {
         this.cars = parseCars(carNames);
     }
 
-    private static void checkCarNamesFormat(String carNames) {
+    Cars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    static void checkCarNamesFormat(String carNames) {
         if (!carNames.matches(REGEX_CAR_NAMES_FORMAT)) {
             throw new IllegalArgumentException("자동차 이름 형식에 맞지 않습니다.");
         }
@@ -30,7 +35,7 @@ public class Cars implements Cloneable {
         return cars;
     }
 
-    private void checkCarNamesDuplication(List<Car> cars, Car car) {
+    static void checkCarNamesDuplication(List<Car> cars, Car car) {
         if (cars.contains(car)) {
             throw new IllegalArgumentException("중복되는 자동차 이름이 존재합니다.");
         }
@@ -65,5 +70,18 @@ public class Cars implements Cloneable {
             copy.add(car.copy());
         }
         return copy;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cars)) return false;
+        Cars cars1 = (Cars) o;
+        return Objects.equals(getCars(), cars1.getCars());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCars());
     }
 }

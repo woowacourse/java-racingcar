@@ -21,13 +21,9 @@ public class Car implements Comparable<Car>, Cloneable {
     }
 
     void move(int number) {
-        if (isMove(number)) {
+        if (number >= MOVE_BOUND) {
             this.position++;
         }
-    }
-
-    private boolean isMove(int number) {
-        return number >= MOVE_BOUND;
     }
 
     public Car copy() {

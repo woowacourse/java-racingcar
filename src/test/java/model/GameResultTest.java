@@ -20,16 +20,16 @@ class GameResultTest {
 
     @Test
     void 우승자추출_검사() {
+        GameResult result = new GameResult();
+
         cars.add(new Car(new CarName("coozy"), 5));
         cars.add(new Car(new CarName("pobi"), 4));
         cars.add(new Car(new CarName("jason"), 3));
         cars.add(new Car(new CarName("nick"), 5));
 
-        GameResult result = new GameResult();
-
         winners.add("coozy");
         winners.add("nick");
 
-        assertThat(result.getWinners(cars)).isEqualTo(winners);
+        assertThat(result.calculator(new Cars(cars))).isEqualTo(new Winners(winners));
     }
 }
