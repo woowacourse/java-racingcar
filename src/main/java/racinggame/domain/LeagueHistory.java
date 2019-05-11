@@ -1,12 +1,12 @@
 package racinggame.domain;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LeagueHistory {
-    private HashMap<Integer, TrialHistory> leagueHistory = new LinkedHashMap<>();
+    private Map<Integer, TrialHistory> leagueHistory = new LinkedHashMap<>();
 
     public void record(final int trial, final TrialHistory trialHistory) {
         leagueHistory.put(trial, trialHistory);

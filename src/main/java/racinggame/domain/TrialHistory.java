@@ -1,12 +1,12 @@
 package racinggame.domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TrialHistory {
-    private HashMap<String, Integer> trialHistory = new LinkedHashMap<>();
+    private Map<String, Integer> trialHistory = new LinkedHashMap<>();
 
     public TrialHistory(final List<Car> cars) {
         for (Car car : cars) {

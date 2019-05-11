@@ -3,6 +3,7 @@ package racinggame.domain;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Car {
@@ -49,8 +50,8 @@ public class Car {
         return false;
     }
 
-    public HashMap<String, Integer> makeCarHistory() {
-        HashMap<String, Integer> carHistory = new HashMap<>();
+    public Map<String, Integer> makeCarHistory() {
+        Map<String, Integer> carHistory = new HashMap<>();
 
         carHistory.put(name, position);
         return carHistory;
