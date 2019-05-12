@@ -12,8 +12,13 @@
 
 package racing;
 
-import racing.controller.Controller;
-import racing.view.RacingGame;
+import racing.domain.RacingGame;
+import racing.domain.RacingGameResult;
+import racing.view.InputView;
+import racing.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 레이싱 게임의 Entry Point 가 있는 클래스
@@ -21,10 +26,29 @@ import racing.view.RacingGame;
  * @author imkimheejoo
  * @author MrKwon
  * @version 1.0.0
- * @see RacingGame
+ * @see InputView
  */
 public class Main {
     public static void main(String[] args) {
-        Controller.start();
+        RacingGame racingGame = new RacingGame(InputView.inputCarNames(), InputView.inputExecution());
+        RacingGameResult racingGameResult = racingGame.playRacing();
+        OutputView.printRacingResult(racingGameResult);
+        OutputView.printAllWinners(racingGameResult);
+
+//       List<A> aList = new ArrayList<>();
+//        for(int i=0; i<5; i++){
+//            List<Integer> list = new ArrayList<>();
+//            list.add(i);
+//            aList.add(new A(list));
+//        }
+//        System.out.println(aList.get(0).list);
+//        System.out.println(aList.get(3).list);
+    }
+    static class A{
+        List<Integer> list;
+
+        A(List<Integer> list) {
+            this.list = list;
+        }
     }
 }
