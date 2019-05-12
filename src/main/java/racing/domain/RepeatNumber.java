@@ -1,13 +1,13 @@
 package racing.domain;
 
-import racing.view.ConsoleMessages;
+import racing.view.ErrorMessages;
 
 public class RepeatNumber {
     private int number;
 
     public RepeatNumber(int number) {
         if (number <= 0) {
-            throw new IllegalArgumentException(ConsoleMessages.ERR_INVALID_REPEAT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.ERR_INVALID_REPEAT_NUMBER.getMessage());
         }
         this.number = number;
     }

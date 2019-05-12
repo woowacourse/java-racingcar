@@ -29,7 +29,7 @@ public class InputView {
         try {
             return new RepeatNumber(repeatNumber);
         } catch (NumberFormatException e) {
-            System.err.println(ConsoleMessages.ERR_REPEAT_NUMBER.getMessage());
+            System.err.println(ErrorMessages.ERR_REPEAT_NUMBER.getMessage());
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         }
@@ -38,7 +38,7 @@ public class InputView {
 
     protected static void checkIdentifier(String carNames) {
         if (!carNames.contains(",")) {
-            throw new IllegalArgumentException(ConsoleMessages.ERR_IDENTIFIER_NAME.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.ERR_IDENTIFIER_NAME.getMessage());
         }
     }
 

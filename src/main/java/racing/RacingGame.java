@@ -3,7 +3,7 @@ package racing;
 import racing.domain.Car;
 import racing.domain.RacingCars;
 import racing.domain.RepeatNumber;
-import racing.view.ConsoleMessages;
+import racing.view.ErrorMessages;
 import racing.view.InputView;
 import racing.view.OutputView;
 
@@ -35,7 +35,7 @@ public class RacingGame {
         List<String> splitNames = Arrays.asList(InputView.inputCarNames().split(","));
 
         if (splitNames.isEmpty()){
-            throw new IllegalArgumentException(ConsoleMessages.ERR_CAR_BLANK_NAME.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.ERR_CAR_BLANK_NAME.getMessage());
         }
 
         return splitNames;
