@@ -12,10 +12,6 @@ public class OutputView {
         System.out.println(result + "가 최종 우승했습니다.");
     }
 
-    public static void printTrialRequest(){
-        System.out.println("시도할 회수는 몇회인가요?");
-    }
-
     public static void printResultMessage() {
         System.out.println("실행 결과");
     }

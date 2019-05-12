@@ -1,7 +1,6 @@
 package racing.view;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -9,20 +8,17 @@ import java.util.stream.Collectors;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> requestNames() {
+    public static List<String> inputNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String names = requestString();
-        List<String> splittedNames = Arrays.asList(names.split(",")).stream()
-                .map(s -> s.trim())
-                .collect(Collectors.toList());
+        final String names = requestString();
         try {
-            validateNames(names);
-            validateSplittedNames(splittedNames);
+            validateNoConsecutiveCommas(names);
+            List<String> splittedNames = Arrays.asList(names.split(","));
+            validateNoDuplication(splittedNames);
             return splittedNames;
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return requestNames();
+            return inputNames();
         }
     }
 
@@ -35,41 +31,44 @@ public class InputView {
         }
     }
 
-    private static boolean validateNames(final String userInput) {
-        /** 연속된 "," 체크 */
-        if (userInput.contains(",,")) {
+    private static boolean validateNoConsecutiveCommas(final String names) {
+        if (names.contains(",,")) {
             throw new IllegalArgumentException("','가 두개 이상 연달아 있으면 안 됩니다.");
         }
-
         return true;
     }
 
-    private static boolean validateSplittedNames(final List<String> names) {
-        /** 공백으로만 이루어진 이름 체크 */
-        Iterator<String> it = names.iterator();
-        while (it.hasNext()) {
-            String s = it.next();
-            if (s.length() == 0) {
-                throw new IllegalArgumentException("이름이 공백으로만 이루어질 수 없습니다.");
-            }
-        }
+    private static boolean validateNoDuplication(final List<String> names) {
+        List<String> reducedNames = names.stream().distinct().collect(Collectors.toList());
+        if (names.size() != reducedNames.size()) throw new IllegalArgumentException("중복된 이름이 존재하면 안됩니다.");
         return true;
     }
 
-    public static int requestNaturalNumber() {
+    public static int inputNumTrials() {
         try {
-            int nums = Integer.parseInt(requestString());
-            checkValidateNaturalNumber(nums);
-            return nums;
+            System.out.println("시도할 회수는 몇회인가요?");
+            int numTrials = requestInteger();
+            validateNaturalNumber(numTrials);
+            return numTrials;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return requestNaturalNumber();
+            return inputNumTrials();
         }
     }
 
-    private static boolean checkValidateNaturalNumber(final int numTrials) {
+    private static int requestInteger() {
+        try {
+            int nums = Integer.parseInt(requestString());
+            return nums;
+        } catch (Exception e) {
+            System.out.println("올바른 정수 입력이 아닙니다.");
+            return requestInteger();
+        }
+    }
+
+    private static boolean validateNaturalNumber(final int numTrials) {
         if (0 >= numTrials) {
-            throw new IllegalArgumentException("자연수만 입력 가능합니다.");
+            throw new IllegalArgumentException("시도 횟수는 자연수만 입력 가능합니다.");
         }
         return true;
     }

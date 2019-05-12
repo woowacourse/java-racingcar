@@ -19,7 +19,7 @@ public class Car implements Comparable<Car> {
 
     public Car(final String name, final int position) {
         validateNameLength(name);
-        this.name = name;
+        this.name = name.trim();
         this.position = position;
     }
 
