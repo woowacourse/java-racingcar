@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Calculator {
-    public static double val;
+    static double val;
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -21,15 +21,15 @@ public class Calculator {
     }
 
     //private static ArrayList<String> tokenizeExpression(String nextLine) {
-    public static ArrayList<String> tokenizeExpression(String nextLine) {
-        return new ArrayList<String>(
+    static ArrayList<String> tokenizeExpression(String nextLine) {
+        return new ArrayList<>(
                 Arrays.asList(
                         nextLine.replaceAll(" +"," ").split(" ")
                 )
         );
     }
 
-    public static void calculateTokens(ArrayList<String> tokens) {
+    static void calculateTokens(ArrayList<String> tokens) {
         val = .0;
         tokens.add(0, "+");
         calculate(tokens);
