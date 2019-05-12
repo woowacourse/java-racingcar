@@ -14,6 +14,6 @@ public class OutputView {
 
     public static void printWinners(List<String> winners) {
         String winnerNames = String.join(",", winners);
-        System.out.println(String.format(ConsoleMessages.OUTPUT_WINNER_NAME.getMessage(), winnerNames));
+        System.out.println(String.format(OutputMessages.OUTPUT_WINNER_NAME.getMessage(), winnerNames));
     }
 }
