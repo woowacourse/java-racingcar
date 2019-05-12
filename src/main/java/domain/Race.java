@@ -1,5 +1,6 @@
 package domain;
 
+import controller.RacingController;
 import util.Util;
 
 import java.util.ArrayList;
@@ -9,29 +10,17 @@ import java.util.Objects;
 public class Race {
     private List<Car> carsOnRace;
     private int roundCount;
-    private StringBuilder stringBuilder;
 
     public Race(List<Car> carsOnRace, int roundCount) {
         this.carsOnRace = carsOnRace;
         this.roundCount = roundCount;
-        this.stringBuilder = new StringBuilder();
     }
 
     public List<Car> moveAllCarsByRoundCount() {
         for (int i = 0; i < roundCount; i++) {
-            stringBuilder.append(moveAllCarsByOneTime());
-            stringBuilder.append("\n");
+            RacingController.hasNextRound(carsOnRace);
         }
         return carsOnRace;
-    }
-
-    private String moveAllCarsByOneTime() {
-        StringBuilder sb = new StringBuilder();
-        for (Car car : carsOnRace) {
-            car.increasePositionOrNot(Util.getRandomNumber());
-            sb.append(car.toString());
-        }
-        return sb.toString();
     }
 
     @Override
@@ -46,10 +35,5 @@ public class Race {
     @Override
     public int hashCode() {
         return Objects.hash(carsOnRace, roundCount);
-    }
-
-    @Override
-    public String toString() {
-        return stringBuilder.toString();
     }
 }

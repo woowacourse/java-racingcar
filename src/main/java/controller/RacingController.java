@@ -1,6 +1,7 @@
 package controller;
 
 import domain.*;
+import util.Util;
 import view.InputView;
 import view.OutputView;
 
@@ -36,6 +37,13 @@ public class RacingController {
         } catch (Exception e) {
             System.out.println(Const.EX_ROUND_COUNT);
             return setRoundCount();
+        }
+    }
+
+    public static void hasNextRound(List<Car> carsOnRace){
+        for(Car car : carsOnRace){
+            car.increasePositionOrNot(Util.getRandomNumber());
+            OutputView.outputGameResult(car.toString());
         }
     }
 }
