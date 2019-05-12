@@ -73,3 +73,6 @@
     따라서 Race, RaceResult, Car 에 getter 메서드를 추가한다.
     - [x] RacingGame 내에서 처리하던 출력 로직을 OutputView 로 빼낸다.
 - [x] RaceResult 클래스 제거
+
+## 도메인 모델
+![Domain Model](/static/racing-car-domain-model.jpg)
