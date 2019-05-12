@@ -15,6 +15,7 @@ public class Car {
 
     public Car(String name, int position) {
         checkLimitCharacters(name);
+        checkBlankName(name);
         this.name = name;
         this.position = position;
     }
@@ -22,6 +23,12 @@ public class Car {
     private void checkLimitCharacters(String carName) {
         if (carName.length() > LIMIT_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException(LIMIT_CAR_NAME_LENGTH + "자 이하의 자동차 이름만 허용됩니다.");
+        }
+    }
+
+    private void checkBlankName(String carName) {
+        if (carName.replaceAll(" ", "").equals("")) {
+            throw new IllegalArgumentException("이름이 빈칸일 수 없습니다.");
         }
     }
 

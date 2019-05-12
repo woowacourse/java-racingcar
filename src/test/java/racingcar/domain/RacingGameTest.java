@@ -10,7 +10,7 @@ public class RacingGameTest {
 
     @BeforeEach
     void setUp() {
-        racingGame = new RacingGame("");
+        racingGame = new RacingGame("pobi");
     }
 
     @Test

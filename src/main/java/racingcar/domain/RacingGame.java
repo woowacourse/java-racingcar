@@ -31,7 +31,7 @@ public class RacingGame {
     }
 
     private String removeWhiteSpace(String carNames) {
-        return carNames.replaceAll(" ", "");
+        return carNames.trim();
     }
 
     private void checkContinuousComma(String carNames) {
