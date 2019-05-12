@@ -11,16 +11,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class StringCalculatorTest {
-	StringCalculator stringCalculator;
-
-	@BeforeEach
-	public void setUp() {
-		stringCalculator = new StringCalculator();
-	}
 
 	@Test
 	public void 덧셈_기능을_테스트한다() {
-		//assertThat(stringCalculator.calculate("2 + 3")).isEqualTo(5);
 		assertThat(Operator.PLUS.calculate(2, 3)).isEqualTo(5);
 	}
 
@@ -77,11 +70,17 @@ public class StringCalculatorTest {
 
 	@Test
 	public void 긴_문자열_수식을_테스트한다() {
-		assertThat(stringCalculator.calculate("2 + 3 * 4 / 2 - 7")).isEqualTo(3);
+		assertThat(StringCalculator.calculate("2 + 3 * 4 / 2 - 7")).isEqualTo(3);
 	}
 
-	@AfterEach
-	public void tearDown() {
-		stringCalculator = null;
+	@Test
+	public void 잘못된_수식을_테스트한다() {
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+			StringCalculator.calculate("2 + 3 * a / 2 - 7");
+		});
+
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+			StringCalculator.calculate("2 ! 3 * a / 2 - 7");
+		});
 	}
 }

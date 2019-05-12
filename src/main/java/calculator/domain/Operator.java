@@ -46,10 +46,6 @@ public enum Operator {
 		}
 	}
 
-	public String getSymbol() {
-		return this.symbol;
-	}
-
 	public static Operator fromSymbol(String symbol) {
 		if (stringToEnum.containsKey(symbol))
 			return stringToEnum.get(symbol);
