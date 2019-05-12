@@ -7,8 +7,8 @@ import java.util.List;
 
 public class OutputView {
     public static void printStatus(RaceStatusDto raceStatusDto) {
-        List<Car> carList = raceStatusDto.getCars();
-        carList.forEach(car -> System.out.println(car.getStatus()));
+        List<Car> cars = raceStatusDto.getCars();
+        cars.forEach(car -> System.out.println(car.getStatus()));
         System.out.println();
     }
 
