@@ -20,8 +20,12 @@ public class Car {
         this.position = position;
     }
 
-    String getName() {
+    public String getName() {
         return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 
     public void increasePositionOrNot(int randomNumber) {
@@ -30,16 +34,8 @@ public class Car {
         }
     }
 
-    public boolean isGreaterThanMaxPosition(int maxPosition) {
-        return this.position > maxPosition;
-    }
-
     public boolean matchPosition(int position) {
         return this.position == position;
-    }
-
-    public int getPositionGap(int position) {
-        return this.position - position;
     }
 
     @Override
