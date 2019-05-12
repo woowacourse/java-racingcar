@@ -75,4 +75,4 @@
 - [x] RaceResult 클래스 제거
 
 ## 도메인 모델
-![Domain Model]({{"/static/racing-car-domain-model.jpg" | relative_url }})
+![Domain Model](./static/racing-car-domain-model.jpg)
