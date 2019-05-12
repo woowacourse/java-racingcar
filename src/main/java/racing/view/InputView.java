@@ -37,7 +37,9 @@ public class InputView {
     }
 
     protected static void checkIdentifier(String carNames) {
-        if (!carNames.contains(",")) throw new IllegalArgumentException(ConsoleMessages.ERR_IDENTIFIER_NAME.getMessage());
+        if (!carNames.contains(",")) {
+            throw new IllegalArgumentException(ConsoleMessages.ERR_IDENTIFIER_NAME.getMessage());
+        }
     }
 
 
