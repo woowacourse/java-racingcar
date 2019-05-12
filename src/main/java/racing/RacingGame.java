@@ -35,7 +35,7 @@ public class RacingGame {
         List<String> splitNames = Arrays.asList(InputView.inputCarNames().split(","));
 
         if (splitNames.isEmpty()){
-            throw new IllegalArgumentException(ErrorMessages.ERR_CAR_BLANK_NAME.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.NAME_NULL.getMessage());
         }
 
         return splitNames;

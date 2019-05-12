@@ -31,13 +31,13 @@ public class Car implements Comparable<Car> {
 
     private void checkBlankName(String trimmedName) {
         if (trimmedName.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessages.ERR_CAR_BLANK_NAME.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.CAR_BLANK_NAME.getMessage());
         }
     }
 
     private void checkNameLength(String trimmedName) {
         if (trimmedName.length() > Rules.MAX_CAR_NAME) {
-            throw new IllegalArgumentException(ErrorMessages.ERR_CAR_NAME.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.CAR_NAME.getMessage());
         }
     }
 

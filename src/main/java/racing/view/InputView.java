@@ -8,7 +8,7 @@ public class InputView {
     private static Scanner scanner = new Scanner(System.in);
 
     public static String inputCarNames() {
-        System.out.println(ConsoleMessages.INPUT_CAR_NAME.getMessage());
+        System.out.println(InputMessages.CAR_NAME.getMessage());
         String carNames = scanner.nextLine();
 
         try {
@@ -21,7 +21,7 @@ public class InputView {
     }
 
     public static RepeatNumber inputRepeatNumber() {
-        System.out.println(ConsoleMessages.INPUT_REPEAT_NUMBER.getMessage());
+        System.out.println(InputMessages.REPEAT_NUMBER.getMessage());
         return getRepeatNumber(scanner.nextLine());
     }
 
@@ -29,7 +29,7 @@ public class InputView {
         try {
             return new RepeatNumber(repeatNumber);
         } catch (NumberFormatException e) {
-            System.err.println(ErrorMessages.ERR_REPEAT_NUMBER.getMessage());
+            System.err.println(ErrorMessages.NOT_NUMBER.getMessage());
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         }
@@ -38,9 +38,7 @@ public class InputView {
 
     protected static void checkIdentifier(String carNames) {
         if (!carNames.contains(",")) {
-            throw new IllegalArgumentException(ErrorMessages.ERR_IDENTIFIER_NAME.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.IDENTIFIER_NAME.getMessage());
         }
     }
-
-
 }

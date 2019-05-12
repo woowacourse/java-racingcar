@@ -7,7 +7,7 @@ public class RepeatNumber {
 
     public RepeatNumber(int number) {
         if (number <= 0) {
-            throw new IllegalArgumentException(ErrorMessages.ERR_INVALID_REPEAT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_REPEAT_NUMBER.getMessage());
         }
         this.number = number;
     }
