@@ -4,9 +4,6 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Car {
-    private final static int RANDOM_NUMBER_OFFSET = 10;
-    private final static int MOVE_OFFSET = 4;
-
     private final String name;
     private int position = 0;
 
@@ -20,27 +17,16 @@ public class Car {
     }
 
     public void move() {
-        if (isPossibleMove()) {
+        if (Rule.isPossibleMove()) {
             this.position++;
         }
     }
 
-    public void move(int num) { //테스트 코드를 위한 코드
-        if (isPossibleMove(num)) {
+    /* For Test */
+    public void move(int num) {
+        if (Rule.isPossibleMove(num)) {
             this.position++;
         }
-    }
-
-    private boolean isPossibleMove(int num) { //테스트 코드를 위한 코드
-        return num > MOVE_OFFSET;
-    }
-
-    private boolean isPossibleMove() {
-        return generateRandomNumber() > MOVE_OFFSET;
-    }
-
-    private int generateRandomNumber() {
-        return new Random().nextInt(RANDOM_NUMBER_OFFSET);
     }
 
     public String getName() {
