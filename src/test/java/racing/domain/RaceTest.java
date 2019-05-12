@@ -10,20 +10,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RaceTest {
-    Race race;
-
-    @BeforeEach
-    void setUp() {
-        race = new Race();
-    }
-
     @Test
-    void 우승자찾기테스트() {
+    void judgeWinnersTest() {
         List<Car> cars = new ArrayList<>(Arrays.asList(new Car []
-                {new Car("pobi"), new Car("crong"), new Car("honux")}));
+                {new Car("pobi", 5), new Car("crong", 3), new Car("honux", 5)}));
 
-        List<Car> winners = result.judgeWinners();
+        List<Car> winners = Race.judgeWinners(cars);
 
-        assertThat(winners).contains(new Car[]{new Car("pobi", 5), new Car("honux", 5)});
+        assertThat(winners).contains(new Car[] {new Car("pobi", 5), new Car("honux", 5)});
     }
 }
