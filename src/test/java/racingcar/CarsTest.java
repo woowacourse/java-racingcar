@@ -27,7 +27,7 @@ public class CarsTest {
     @Test
     void decideWinnersTest() {
         List<String> checkList = Arrays.asList("a", "b");
-        assertThat(testCars.decideWinners(101)).isEqualTo(checkList);
+        assertThat(testCars.decideWinners()).isEqualTo(checkList);
     }
 
     @Test
@@ -37,6 +37,12 @@ public class CarsTest {
         List<String> checkNames = Arrays.asList("a", "b", "c");
         Cars checkCars2 = new Cars(checkNames);
         assertThat(testCars1).isEqualTo(checkCars2);
+    }
+
+    @Test
+    void isDuplicateTest() {
+        List<String> names = Arrays.asList("a", "b", "a");
+        assertThat(Cars.isDuplicate(names)).isEqualTo(true);
     }
 
 }

@@ -19,7 +19,6 @@ public class Car {
             throw new IllegalArgumentException();
         }
         this.name = name;
-
     }
 
     Car(String name, int position) {
@@ -27,47 +26,8 @@ public class Car {
         this.position = position;
     }
 
-    public static void instantiateCar(List<String> carNames, List<Car> cars) {
-        try {
-            isDuplicate(carNames);
-            addCarToCars(carNames, cars);
-        } catch (Exception e) {
-            CarGameLauncher.doCarGame();
-        }
-    }
-
-    public static void instantiateCar(List<String> carNames, List<Car> cars, List<Integer> positions) {
-        try {
-            isDuplicate(carNames);
-            addCarToCars(carNames, cars, positions);
-        } catch (Exception e) {
-            CarGameLauncher.doCarGame();
-        }
-    }
-
-    public static void addCarToCars(List<String> carNames, List<Car> cars) {
-        for (String name : carNames) {
-            cars.add(new Car(name));
-        }
-    }
-
-    public static void addCarToCars(List<String> carNames, List<Car> cars, List<Integer> positions) {
-        for (int i = 0, n = carNames.size(); i < n; i++) {
-            cars.add(new Car(carNames.get(i), positions.get(i)));
-        }
-    }
-
     public static boolean isWhiteSpaceOnly(String name) {
         return name.isEmpty();
-    }
-
-    public static boolean isDuplicate(List<String> names) {
-        Set<String> nameSet = new HashSet<>(names);
-        if (names.size() != nameSet.size()) {
-            System.out.println("이름에 중복이 있습니다!");
-            return true;
-        }
-        return false;
     }
 
     public static boolean isOverLimit(String name) {

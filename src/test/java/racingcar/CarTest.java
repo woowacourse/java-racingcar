@@ -2,9 +2,6 @@ package racingcar;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
@@ -31,12 +28,6 @@ public class CarTest {
     }
 
     @Test
-    void isDuplicateTest() {
-        List<String> names = Arrays.asList("a", "b", "a");
-        assertThat(Car.isDuplicate(names)).isEqualTo(true);
-    }
-
-    @Test
     void isOverLimitTest() {
         assertThat(Car.isOverLimit("aaaaaa")).isEqualTo(true);
     }
@@ -46,6 +37,13 @@ public class CarTest {
         Car car = new Car("abc");
         Car checkCar = new Car("abc", 1);
         assertThat(car.moveCar(4)).isEqualTo(checkCar);
+    }
+
+    @Test
+    void notMoveCarTest() {
+        Car car = new Car("abc");
+        Car checkCar = new Car("abc", 0);
+        assertThat(car.moveCar(3)).isEqualTo(checkCar);
     }
 
     @Test

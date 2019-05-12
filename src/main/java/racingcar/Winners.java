@@ -6,7 +6,7 @@ public class Winners {
     private List<String> listOfWinners;
 
     public void decideWinners(Cars cars) {
-        this.listOfWinners = cars.decideWinners(cars.decideMaxPosition());
+        this.listOfWinners = cars.decideWinners();
     }
 
     public String getWinners() {

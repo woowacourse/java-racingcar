@@ -6,11 +6,11 @@ public class Cars {
     private List<Car> cars = new ArrayList<>();
 
     Cars(List<String> carNames) {
-        Car.instantiateCar(carNames, cars);
+        instantiateCar(carNames, cars);
     }
 
     Cars(List<String> carNames, List<Integer> positions) {
-        Car.instantiateCar(carNames, cars, positions);
+        instantiateCar(carNames, cars, positions);
     }
 
     public int getSize() {
@@ -33,12 +33,52 @@ public class Cars {
         return max;
     }
 
-    public List<String> decideWinners(int maxPosition) {
+    public List<String> decideWinners() {
         List<String> winnersName = new ArrayList<>();
+        int maxPosition = decideMaxPosition();
         for (Car car : cars) {
             car.findScoreSameAsMax(maxPosition, winnersName);
         }
         return winnersName;
+    }
+
+    public static void instantiateCar(List<String> carNames, List<Car> cars) {
+        try {
+            isDuplicate(carNames);
+            addCarToCars(carNames, cars);
+        } catch (Exception e) {
+            CarGameLauncher.doCarGame();
+        }
+    }
+
+    public static void instantiateCar(List<String> carNames, List<Car> cars, List<Integer> positions) {
+        try {
+            isDuplicate(carNames);
+            addCarToCars(carNames, cars, positions);
+        } catch (Exception e) {
+            CarGameLauncher.doCarGame();
+        }
+    }
+
+    public static void addCarToCars(List<String> carNames, List<Car> cars) {
+        for (String name : carNames) {
+            cars.add(new Car(name));
+        }
+    }
+
+    public static void addCarToCars(List<String> carNames, List<Car> cars, List<Integer> positions) {
+        for (int i = 0, n = carNames.size(); i < n; i++) {
+            cars.add(new Car(carNames.get(i), positions.get(i)));
+        }
+    }
+
+    public static boolean isDuplicate(List<String> names) {
+        Set<String> nameSet = new HashSet<>(names);
+        if (names.size() != nameSet.size()) {
+            System.out.println("이름에 중복이 있습니다!");
+            return true;
+        }
+        return false;
     }
 
     @Override
