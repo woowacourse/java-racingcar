@@ -7,26 +7,45 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarTest {
     @Test
-    void 자동차생성테스트() {
+    void carInitializerTest() {
         Car car = new Car("pobi");
         assertThat(car).isEqualTo(new Car("pobi"));
     }
 
     @Test
-    void 이름글자수제한테스트(){
+    void maxNameLengthTest() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Car car = new Car("abcdee");
+            Car car = new Car("123456");
         });
     }
 
     @Test
-    void 전진테스트(){
-        Car car =new Car("brown");
-        car.tryGoForward(3);
-        assertThat(car).isEqualTo(new Car("brown",0));
-
-        car.tryGoForward(4);
-        assertThat(car).isEqualTo(new Car("brown",1));
+    void minNameLengthTest() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Car car = new Car("");
+        });
     }
 
+    @Test
+    void goForwardFailTest() {
+        Car car =new Car("pobi");
+        car.tryGoForward(3);
+        assertThat(car).isEqualTo(new Car("pobi",0));
+    }
+
+    @Test
+    void goForwardSuccessTest() {
+        Car car =new Car("pobi");
+        car.tryGoForward(4);
+        assertThat(car).isEqualTo(new Car("pobi",1));
+    }
+
+    @Test
+    void carCompareTest() {
+        Car fastCar = new Car("pobi", 1);
+        Car slowCar = new Car("crong", 0);
+        assertThat(fastCar.compareTo(slowCar) == 1).isTrue();
+        assertThat(slowCar.compareTo(fastCar) == -1).isTrue();
+        assertThat(fastCar.compareTo(new Car("honux", 1)) == 0).isTrue();
+    }
 }

@@ -6,7 +6,8 @@ public class Car implements Comparable<Car> {
     private static final int GO_FORWRARD_CRITERIA_NUM = 4;
     private static final int GO_STEP = 1;
     private static final int START_POSITION = 0;
-    private static final int NAME_MAX_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_NAME_LENGTH = 1;
     static final int RANDOM_NUM_UPPER_BOUND = 10;
 
     private final String name;
@@ -17,7 +18,7 @@ public class Car implements Comparable<Car> {
     }
 
     public Car(final String name, final int position) {
-        validateName(name);
+        validateNameLength(name);
         this.name = name;
         this.position = position;
     }
@@ -26,8 +27,9 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    private static void validateName(final String name) {
-        if (name.length() > NAME_MAX_LENGTH) throw new IllegalArgumentException("차 이름은 5글자 이내여야 합니다.");
+    private static void validateNameLength(final String name) {
+        if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH)
+            throw new IllegalArgumentException("차 이름은 빈 문자열을 허용하지 않고 5글자 이내여야 합니다.");
     }
 
     public void tryGoForward(final int randomNum) {
