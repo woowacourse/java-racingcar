@@ -31,12 +31,12 @@ public class RacingGame {
         return cars;
     }
 
-    public List<Car> getCars() {
-        return this.cars;
-    }
-
-    public int makeRandomNumber() {
+    private int makeRandomNumber() {
         Random random = new Random();
         return random.nextInt(Rule.BOUND_RULE_NUMBER);
+    }
+
+    public List<Car> getCars() {
+        return this.cars;
     }
 }
