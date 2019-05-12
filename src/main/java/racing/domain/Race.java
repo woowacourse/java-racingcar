@@ -21,7 +21,9 @@ public class Race {
         }
     }
 
-    public List<Car> getCars() { return cars; }
+    public List<Car> getCars() {
+        return cars;
+    }
 
     /*
      * 경기 진행 메소드

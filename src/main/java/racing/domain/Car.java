@@ -23,14 +23,17 @@ public class Car implements Comparable<Car> {
         this.position = position;
     }
 
-    public String getName() {
-        return name;
-    }
-    public int getPosition() { return position; }
-
     private static void validateNameLength(final String name) {
         if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH)
             throw new IllegalArgumentException("차 이름은 빈 문자열을 허용하지 않고 5글자 이내여야 합니다.");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     public void tryGoForward(final int randomNum) {
