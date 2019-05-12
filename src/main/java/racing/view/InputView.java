@@ -5,10 +5,11 @@ import racing.domain.RepeatNumber;
 import java.util.Scanner;
 
 public class InputView {
-    private static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner;
 
     public static String inputCarNames() {
         System.out.println(InputMessages.CAR_NAME.getMessage());
+        scanner = new Scanner(System.in);
         String carNames = scanner.nextLine();
 
         try {
@@ -22,6 +23,7 @@ public class InputView {
 
     public static RepeatNumber inputRepeatNumber() {
         System.out.println(InputMessages.REPEAT_NUMBER.getMessage());
+        scanner = new Scanner(System.in);
         return getRepeatNumber(scanner.nextLine());
     }
 
