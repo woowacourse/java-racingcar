@@ -22,6 +22,6 @@ public class Const {
     public static final int MIN_ROUND_COUNT = ZERO;
     public static final String SHAPE_CAR_POSITION = "-";
     public static final int CAR_OBJ_INIT_POSITION = ZERO;
-    public static final int RACE_OBJ_INIT_MAX_POSITION = ZERO;
+    public static final int WINNER_OBJ_INIT_MAX_POSITION = ZERO;
     public static final int INIT_POSITION_OUTPUT_CAR_POSITION = ZERO;
 }

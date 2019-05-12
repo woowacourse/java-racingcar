@@ -3,6 +3,7 @@ package controller;
 import domain.Car;
 import domain.Const;
 import domain.Race;
+import domain.Winners;
 import view.InputView;
 import view.OutputView;
 
@@ -18,8 +19,7 @@ public class PlayRacingController {
     public static void playRacing() {
         Race race = new Race(setCarName(InputView.inputCarNames()), setRoundCount(InputView.inputRoundCount()));
         OutputView.outputGameResultTile();
-        playRacing(race);
-        OutputView.outputWinners(race.getRaceWinners());
+        OutputView.outputWinners(playRacing(race).getWinnersName());
     }
 
     protected static List<Car> setCarName(String carName) {
@@ -40,10 +40,10 @@ public class PlayRacingController {
         }
     }
 
-    protected static List<String> playRacing(Race race) {
+    protected static Winners playRacing(Race race) {
         while (race.hasNextRound()) {
             OutputView.outputGameResult(RacingController.moveCar(race));
         }
-        return race.getRaceCarInfo();
+        return race.winners();
     }
 }

@@ -7,7 +7,7 @@ import java.util.Objects;
  * User: heebg
  * Date: 2019-05-08
  */
-public class Car {
+public class Car implements Comparable<Car> {
     private final String name;
     private int position;
 
@@ -33,12 +33,12 @@ public class Car {
         }
     }
 
-    public boolean checkGreaterThanMaxPos(int maxPosition) {
-        return this.position > maxPosition;
+    public boolean isGreater(int position) {
+        return this.position > position;
     }
 
-    public boolean isMaxPosition(int maxPosition) {
-        return this.position == maxPosition;
+    public boolean isMatchPosition(int position) {
+        return this.position == position;
     }
 
     @Override
@@ -48,6 +48,11 @@ public class Car {
             positionView += Const.SHAPE_CAR_POSITION;
         }
         return name + " : " + positionView;
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return this.position - o.position;
     }
 
     @Override

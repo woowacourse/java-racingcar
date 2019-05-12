@@ -14,7 +14,6 @@ import java.util.Objects;
  */
 public class Race {
     private List<Car> raceCars;
-    private int maxPosition;
     private HashMap<String, Integer> roundCounts;
     private static final String ROUND_COUNT = "roundCount";
     private static final String NOW_ROUND_COUNT = "nowRoundCount";
@@ -29,21 +28,6 @@ public class Race {
         this.roundCounts = new HashMap<>();
         this.roundCounts.put(ROUND_COUNT, roundCount);
         this.roundCounts.put(NOW_ROUND_COUNT, Const.MIN_ROUND_COUNT);
-
-        this.maxPosition = Const.RACE_OBJ_INIT_MAX_POSITION;
-        setMaxPosition(this.raceCars);
-    }
-
-    private void setMaxPosition(List<Car> cars) {
-        for (Car car : cars) {
-            setMaxPosition(car);
-        }
-    }
-
-    private void setMaxPosition(Car car) {
-        if (car.checkGreaterThanMaxPos(maxPosition)) {
-            ++this.maxPosition;
-        }
     }
 
     public List<String> getRaceCarInfo() {
@@ -54,20 +38,18 @@ public class Race {
         return carNames;
     }
 
-    public String getRaceWinners() {
-        List<String> winners = new ArrayList<>();
-
-        raceCars.stream().filter(x -> x.isMaxPosition(maxPosition))
-                .forEach(x -> winners.add(x.toString().split(" ")[0]));
-
-        return String.join(",", winners);
-    }
-
     public Race moveAllCars() {
         while (hasNextRound()) {
             moveAllCarOneTime();
         }
         return this;
+    }
+
+    public Winners winners() {
+        if(hasNextRound()){
+            throw new IllegalArgumentException();
+        }
+        return new Winners(raceCars);
     }
 
     public boolean hasNextRound() {
@@ -80,7 +62,6 @@ public class Race {
     public Race moveAllCarOneTime() {
         for (Car car : raceCars) {
             car.increasePositionOrNot(Util.getRandomNumber());
-            setMaxPosition(car);
         }
         roundCounts.put(NOW_ROUND_COUNT, roundCounts.get(NOW_ROUND_COUNT) + 1);
         return this;

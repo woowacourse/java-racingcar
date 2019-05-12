@@ -57,8 +57,7 @@ class PlayRacingControllerTest {
 
     @Test
     void playRacing_우승자_결과까지_확인() {
-        PlayRacingController.playRacing(race);
-        OutputView.outputWinners(race.getRaceWinners());
+        OutputView.outputWinners(PlayRacingController.playRacing(race).getWinnersName());
     }
 
     @AfterEach

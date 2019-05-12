@@ -47,20 +47,12 @@ class RaceTest {
     }
 
     @Test
-    void getRaceCarNames_이름_확인() {
+    void getRaceCarInfo_확인() {
         List<String> carNames = new ArrayList<>();
         for (Car car : cars) {
             carNames.add(car.toString());
         }
         assertThat(race.getRaceCarInfo()).isEqualTo(carNames);
-    }
-
-    @Test
-    void getRaceWinners_그리고_setMaxPoint_확인() {
-        cars.add(new Car("win", Const.CAR_OBJ_INIT_POSITION + 1));
-        cars.add(new Car("ner", Const.CAR_OBJ_INIT_POSITION + 1));
-        race = new Race(cars);
-        assertThat(race.getRaceWinners()).isEqualTo("win,ner");
     }
 
     @Test
