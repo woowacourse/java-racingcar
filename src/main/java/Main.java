@@ -1,18 +1,16 @@
-import domain.Car;
-import domain.CarFactory;
-import domain.RacingGame;
-import domain.RacingTrial;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
         ArrayList<Car> cars = inputCars(new CarFactory());
         int nTrials = inputNTrials();
 
-        RacingGame racingGame = new RacingGame(new RacingTrial());
+        RacingGame racingGame = new RacingGame(new RacingTrial(new CarMoveFilter(new MoveStrategy(new Random()))));
         racingGame.play(cars, nTrials);
     }
 

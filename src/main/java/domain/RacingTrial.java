@@ -1,23 +1,20 @@
 package domain;
 
-import view.OutputView;
-
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 public class RacingTrial {
-    private static final MoveStrategy moveStrategy = new MoveStrategy(new Random());
+    private final CarMoveFilter carMoveFilter;// = new CarMoveFilter();
+
+    public RacingTrial(CarMoveFilter carMoveFilter) {
+        this.carMoveFilter = carMoveFilter;
+    }
 
     public ArrayList<Car> runTrial(ArrayList<Car> cars) {
-        // 각각 차들에 대해서 움직이기
-        ArrayList<Car> carsForMoving = new ArrayList(cars.stream()
-                .filter((Car car) -> moveStrategy.isMove()).collect(Collectors.toList()));
+        ArrayList<Car> carsForMoving = carMoveFilter.adjust(cars);
 
         for (Car car : carsForMoving) {
             car.move();
         }
-
         return cars;
     }
 }

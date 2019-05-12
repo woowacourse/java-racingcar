@@ -26,12 +26,5 @@ class RacingGameTest {
 
         // Assert
         verify(mockedRacingTrial, times(nTrials)).runTrial(cars);
-
     }
-
-//    @Test
-//    void play_winners를_잘출력했는지() {
-//        // maxfinder에게 부탁했는지
-//        // 받은 winner를 잘 출력했는지
-//    }
 }
