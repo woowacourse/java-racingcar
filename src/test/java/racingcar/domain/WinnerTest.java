@@ -38,6 +38,6 @@ class WinnerTest {
 
     @Test
     void 최댓값이_맞는지_테스트() {
-        assertThat(winner.getMaxDistance2()).isEqualTo(4);
+        assertThat(winner.getMaxDistance()).isEqualTo(4);
     }
 }
