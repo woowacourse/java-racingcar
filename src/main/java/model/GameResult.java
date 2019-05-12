@@ -3,13 +3,13 @@ package model;
 import java.util.Collections;
 
 public class GameResult {
-    private Winners winners = new Winners();
+    private Winners winners;
 
     public GameResult() {
         winners = new Winners();
     }
 
-    public Winners calculator(Cars cars) {
+    public Winners findWinner(Cars cars) {
         Car maxPositionCar = Collections.max(cars.getCars());
 
         for (Car car : cars.getCars()) {

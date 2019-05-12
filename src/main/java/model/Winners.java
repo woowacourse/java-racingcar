@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Winners {
-    List<String> winners = new ArrayList<>();
+    private List<String> winners = new ArrayList<>();
 
-    public void addWinners(String name) {
+    void addWinners(String name) {
         winners.add(name);
     }
 

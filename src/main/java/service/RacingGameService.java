@@ -3,31 +3,27 @@ package service;
 import model.*;
 
 public class RacingGameService {
-    Cars cars;
-    LapCount lapCount;
+    private Cars cars;
+    private LapCount lapCount;
 
-    public RacingGameService(String carNames, String lapCount) {
-        this.cars = new Cars(carNames);
+    public RacingGameService(String inputCarNames, String lapCount) {
+        this.cars = new Cars(inputCarNames);
         this.lapCount = new LapCount(lapCount);
     }
 
-    public LapRepository run() {
-        try {
-            LapRepository lapRepository = new LapRepository();
-            Racing racing = new Racing(cars);
-            for (int lapNo = 1; lapNo <= lapCount.getLapCount(); lapNo++) {
-                racing.run();
-                lapRepository.add(cars.clone());
-            }
-            return lapRepository;
-        } catch (CloneNotSupportedException e) {
-            System.out.println(e.getMessage());
-            return null;
+    public LapRecorder run() throws CloneNotSupportedException {
+        Racing racing = new Racing(cars);
+        LapRecorder lapRecorder = new LapRecorder();
+
+        for (int lapNo = 1; lapNo <= lapCount.getLapCount(); lapNo++) {
+            lapRecorder.record(new Cars(racing.run()));
         }
+
+        return lapRecorder;
     }
 
     public Winners getWinners() {
         GameResult gameResult = new GameResult();
-        return gameResult.calculator(cars);
+        return gameResult.findWinner(cars);
     }
 }

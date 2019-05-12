@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Racing {
     private static final int RANDOM_BOUND = 10;
-    Cars cars;
+    private Cars cars;
 
     public Racing(Cars cars) {
         this.cars = cars;
@@ -15,6 +15,7 @@ public class Racing {
             Random random = new Random();
             car.move(random.nextInt(RANDOM_BOUND));
         }
+
         return cars;
     }
 }

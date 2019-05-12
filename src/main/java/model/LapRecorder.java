@@ -3,14 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LapRepository {
-    List<Cars> laps;
+public class LapRecorder {
+    private List<Cars> laps;
 
-    public LapRepository() {
+    public LapRecorder() {
         laps = new ArrayList<>();
     }
 
-    public void add(Cars cars) {
+    public void record(Cars cars) {
         laps.add(cars);
     }
 

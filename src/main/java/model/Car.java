@@ -2,7 +2,7 @@ package model;
 
 import java.util.Objects;
 
-public class Car implements Comparable<Car> {
+public class Car implements Comparable<Car>, Cloneable {
     private static final int MOVE_BOUND = 4;
     private final String name;
     private int position;
@@ -11,7 +11,7 @@ public class Car implements Comparable<Car> {
         this.name = carName.getName();
     }
 
-    public Car(CarName carName, int position) {
+    Car(CarName carName, int position) {
         this.name = carName.getName();
         this.position = position;
     }
@@ -28,10 +28,6 @@ public class Car implements Comparable<Car> {
 
     private boolean isMove(int number) {
         return number >= MOVE_BOUND;
-    }
-
-    public boolean isMaxPosiotion(int maxPosition) {
-        return this.position == maxPosition;
     }
 
     @Override
@@ -63,8 +59,7 @@ public class Car implements Comparable<Car> {
         return sb.append("\n").toString();
     }
 
-    @Override
-    protected Car clone() throws CloneNotSupportedException {
-        return new Car(new CarName(this.name), this.position);
+    Car copy() throws CloneNotSupportedException {
+        return (Car) this.clone();
     }
 }

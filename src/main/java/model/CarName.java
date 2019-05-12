@@ -8,7 +8,6 @@ public class CarName {
         if (!name.matches(regexCarName)) {
             throw new IllegalArgumentException("자동차 이름은 영어로 구성되고 길이는 1~5입니다.");
         }
-
         this.name = name;
     }
 
