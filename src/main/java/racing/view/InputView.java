@@ -13,9 +13,9 @@ public class InputView {
         return SCANNER.nextLine();
     }
 
-    public static int getRoundNumber() {
+    public static String getRoundNumber() {
         System.out.println(ASK_ROUND_NUMBERS);
 
-        return Integer.parseInt(SCANNER.nextLine());
+        return SCANNER.nextLine();
     }
 }

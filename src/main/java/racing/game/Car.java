@@ -29,7 +29,7 @@ public class Car {
         return name.length() < NAME_LENGTH_MIN_LIMIT || name.length() >= NAME_LENGTH_MAX_LIMIT;
     }
 
-    private boolean checkRepetition(List<Car> cars) {
+    boolean checkRepetition(List<Car> cars) {
         for (Car car : cars) {
             if (car.matchCarName(name))
                 return true;
@@ -37,8 +37,8 @@ public class Car {
         return false;
     }
 
-    private boolean matchCarName(String name) {
-        return this.name == name;
+    boolean matchCarName(String name) {
+        return this.name.equals(name);
     }
 
     void move() {

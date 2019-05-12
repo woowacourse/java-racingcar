@@ -2,6 +2,10 @@ package racing.game;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static racing.game.Car.checkInvalidNameLength;
@@ -67,5 +71,30 @@ public class CarTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void 같은이름이있는리스트를줬을때중복확인() {
+        try {
+            Car car = new Car("pobi");
+            List<Car> cars = Arrays.asList(new Car[]{new Car("pobi"), new Car("crong")});
+            assertThat(car.checkRepetition(cars)).isTrue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void 같은이름을입력했을때객체생성시오류확인() {
+        String name = "pobi";
+        List<Car> cars = new ArrayList<>();
+        try {
+            cars = Arrays.asList(new Car[]{new Car("pobi"), new Car("crong")});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        List<Car> finalCars = cars;
+        assertThrows(Exception.class, () -> new Car(name, finalCars));
+    }
+
 
 }

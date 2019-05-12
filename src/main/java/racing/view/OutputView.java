@@ -13,6 +13,10 @@ public class OutputView {
         System.out.println(CARNAMES_ERROR);
     }
 
+    public static void showRoundNumError() {
+        System.out.println(ROUND_NUMBER_ERROR);
+    }
+
     public static void showCarsPosition(List<Car> cars) {
         System.out.println();
         for (Car car : cars
