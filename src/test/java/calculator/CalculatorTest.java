@@ -34,7 +34,7 @@ public class CalculatorTest {
     }
 
     @Test
-    void 하나의연산() {
+    void 하나의_연산을_하는_경우() {
         assertThat(cal.calculateSingleExpression(1, "+", "2")).isEqualTo(3);
         assertThat(cal.calculateSingleExpression(1, "-", "2")).isEqualTo(-1);
         assertThat(cal.calculateSingleExpression(1, "*", "2")).isEqualTo(2);
@@ -42,13 +42,10 @@ public class CalculatorTest {
     }
 
     @Test
-    void 여러개의연산() {
+    void 여러개의_연산을_하는_경우() {
         String[] array = "3 + 2 * 4 / 10 * 3".split(" ");
         assertThat(cal.calculateMultiExpression(array)).isEqualTo(6);
     }
-
-
-
 
 
 }

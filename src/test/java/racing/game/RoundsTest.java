@@ -10,17 +10,17 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class RoundsTest {
     @Test
-    void 기준점이상을입력시True를반환하는지() {
+    void 기준점이상을_입력한_경우() {
         assertThat(Rounds.canMove(4)).isTrue();
     }
 
     @Test
-    void 기준점미만을입력시False를반환하는지() {
+    void 기준점미만을_입력한_경우() {
         assertThat(Rounds.canMove(3)).isFalse();
     }
 
     @Test
-    void 챔피언이하나일때챔피언계산() throws Exception {
+    void 챔피언이_하나일때_챔피언계산() throws Exception {
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("pobi"));
         cars.add(new Car("jihoo"));
@@ -33,7 +33,7 @@ public class RoundsTest {
     }
 
     @Test
-    void 챔피언이여러명일때챔피언계산() throws Exception {
+    void 챔피언이_여러명일때_챔피언계산() throws Exception {
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("pobi"));
         cars.add(new Car("jihoo"));

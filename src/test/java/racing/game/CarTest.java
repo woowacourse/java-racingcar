@@ -14,7 +14,7 @@ import static racing.game.Car.checkNull;
 public class CarTest {
 
     @Test
-    void 차의위치를출력() {
+    void 차의_위치를_출력() {
         Car car = null;
         try {
             car = new Car("pobi");
@@ -27,43 +27,31 @@ public class CarTest {
     }
 
     @Test
-    void 문자열이_NULL인지확인() {
+    void 문자열이_NULL인지_확인() {
         String name = null;
         assertThat(checkNull(name)).isTrue();
     }
 
     @Test
-    void 이름으로_NULL을입력했을때_객체생성시오류확인() {
+    void 이름으로_NULL을_입력한_경우_객체생성시_오류확인() {
         String name = null;
         assertThrows(Exception.class, () -> new Car(name));
     }
 
     @Test
-    void 문자열이길이제한을초과하는지확인() {
+    void 문자열이_길이제한을_초과하는_경우() {
         String name = "pobipobi";
         assertThat(checkInvalidNameLength(name)).isTrue();
     }
 
     @Test
-    void 문자열이빈입력인지확인() {
+    void 문자열이_빈입력인_경우() {
         String name = "";
         assertThat(checkInvalidNameLength(name)).isTrue();
     }
 
     @Test
-    void 이름으로제한값보다긴값을입력했을때객체생성시오류확인() {
-        String name = "pobipobi";
-        assertThrows(Exception.class, () -> new Car(name));
-    }
-
-    @Test
-    void 이름으로빈값을입력했을때객체생성시오류확인() {
-        String name = "";
-        assertThrows(Exception.class, () -> new Car(name));
-    }
-
-    @Test
-    void Car객체의이름과같은문자열인지확인() {
+    void Car객체의_이름과_같은_문자열인_경우() {
         String name = "pobi";
         try {
             assertThat(new Car(name).matchCarName(name)).isTrue();
@@ -73,7 +61,7 @@ public class CarTest {
     }
 
     @Test
-    void 같은이름이있는리스트를줬을때중복확인() {
+    void 같은이름이있는_리스트와_이름의중복을_비교하는_경우() {
         try {
             Car car = new Car("pobi");
             List<Car> cars = Arrays.asList(new Car[]{new Car("pobi"), new Car("crong")});
@@ -84,7 +72,19 @@ public class CarTest {
     }
 
     @Test
-    void 같은이름을입력했을때객체생성시오류확인() {
+    void 이름으로_제한값보다_긴값을_입력한_경우_객체생성시_에러확인() {
+        String name = "pobipobi";
+        assertThrows(Exception.class, () -> new Car(name));
+    }
+
+    @Test
+    void 이름으로_빈값을_입력한_경우_객체생성시_에러확인() {
+        String name = "";
+        assertThrows(Exception.class, () -> new Car(name));
+    }
+
+    @Test
+    void 같은이름을_입력한_경우_객체생성시_에러확인() {
         String name = "pobi";
         List<Car> cars = new ArrayList<>();
         try {
@@ -95,6 +95,5 @@ public class CarTest {
         List<Car> finalCars = cars;
         assertThrows(Exception.class, () -> new Car(name, finalCars));
     }
-
 
 }
