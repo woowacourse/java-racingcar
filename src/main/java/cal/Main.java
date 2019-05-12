@@ -11,7 +11,6 @@ public class Main {
         while (true){
             try {
                 strCalculator.input();
-//                return strCalculator.calculate();
                 return strCalculator.calculateNoIfExpression();
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
