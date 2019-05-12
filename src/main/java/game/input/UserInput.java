@@ -11,12 +11,12 @@ public class UserInput {
         return UserInputCheck.checkCarNames(scanner.nextLine());
     }
 
-    public static int inputGameCount() {
+    public static int inputTryCount() {
         try {
             System.out.println("시도할 회수는 몇 회인가요?");
             return scanner.nextInt();
         } catch (InputMismatchException e) {
-            return inputGameCount();
+            return inputTryCount();
         }
     }
 }

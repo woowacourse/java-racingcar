@@ -11,13 +11,10 @@ public class Main {
         Game game = new Game();
         Winner winner = new Winner();
         List<Car> cars = game.createCars(UserInput.inputCarNames());
+        int tryCount = UserInput.inputTryCount();
 
-        startGame(game, winner, cars, inputMaxInstance());
+        startGame(game, winner, cars, tryCount);
         printWinnerResult(winner);
-    }
-
-    private static int inputMaxInstance() {
-        return UserInput.inputGameCount();
     }
 
     private static void printWinnerResult(Winner winner) {
