@@ -11,7 +11,7 @@ public class Calculator {
 		double result = Double.parseDouble(values[0]);
 
 		for (int i = 1; i < values.length - 1; i += 2) {
-			result = operate(result, Double.parseDouble(values[i + 1]), Operator.of(values[i]));
+			result = operate(result, Double.parseDouble(values[i + 1]), Operator.getOperator(values[i]));
 		}
 		return result;
 	}

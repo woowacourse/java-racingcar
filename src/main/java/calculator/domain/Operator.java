@@ -3,7 +3,6 @@ package calculator.domain;
 public enum Operator {
 	ADDITION("+"), SUBTRACTION("-"), MULTIPLICATION("*"), DIVISION("/");
 
-	private static final Operator[] operators = Operator.values();
 	private final String operator;
 
 	Operator(String operator) {
@@ -14,8 +13,8 @@ public enum Operator {
 		return this.operator;
 	}
 
-	public static Operator of(String s) {
-		for (Operator o : operators) {
+	public static Operator getOperator(String s) {
+		for (Operator o : Operator.values()) {
 			if (o.getOperator().equals(s)) {
 				return o;
 			}
