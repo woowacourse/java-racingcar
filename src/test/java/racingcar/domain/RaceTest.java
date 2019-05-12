@@ -6,35 +6,43 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
-import java.util.List;
 
 class RaceTest {
     @Test
     void createTest() {
-        Race race = new Race(Arrays.asList("A", "B", "C", "D", "E"));
-        List<Car> testCars = Arrays.asList(new Car("A"), new Car("B"), new Car("C"), new Car("D"), new Car("E"));
-        Race race2 = new Race(testCars, true);
-        assertThat(race).isEqualTo(race2);
+        assertThat(new Race(Arrays.asList("A", "B", "C")).equals(new Race(Arrays.asList("A", "B", "C")))).isTrue();
     }
 
     @Test
     void invalidCreateTest1() {
+        assertThat(new Race(Arrays.asList("A", "B", "C")).equals(new Race(Arrays.asList("D", "E", "F")))).isFalse();
+    }
+
+    @Test
+    void invalidCreateTest2() {
         assertThrows(IllegalArgumentException.class, () -> {
             Race race = new Race(Arrays.asList("A"));
         });
     }
 
     @Test
-    void invalidCreateTest2() {
+    void invalidCreateTest3() {
         assertThrows(IllegalArgumentException.class, () -> {
             Race race = new Race(Arrays.asList("A", "A"));
         });
     }
 
     @Test
-    void getWinnersTest() {
-        List<Car> testCars = Arrays.asList(new Car("T", 6), new Car("E", 3), new Car("S", 7), new Car("U", 7));
-        Race race = new Race(testCars, true);
-        assertThat(race.getWinners().toString()).isEqualTo(Arrays.asList("S", "U").toString());
+    void getWinnersTest1() {
+        Race race = new Race(Arrays.asList("A", "B", "C"), new ForceMove());
+        race.startRound();
+        assertThat(race.getWinners().toString()).isEqualTo(Arrays.asList("A", "B", "C").toString());
+    }
+
+    @Test
+    void getWinnersTest2() {
+        Race race = new Race(Arrays.asList("A", "B", "C"), new ForceStop());
+        race.startRound();
+        assertThat(race.getWinners().size()).isEqualTo(0);
     }
 }

@@ -1,6 +1,5 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
 import racingcar.domain.RoundResult;
 import racingcar.utils.StringUtils;
 
@@ -12,7 +11,11 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinners(List<Car> winners) {
+    public static void printWinners(List<String> winners) {
+        if (winners.size() == 0) {
+            System.out.println("레이스에 실패하였습니다.");
+            return;
+        }
         String winnersName = winners.toString();
         System.out.println(
                 winnersName.substring(1, winnersName.length() - 1)

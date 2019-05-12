@@ -20,7 +20,7 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public boolean moveOrStop(MovementStrategy cond) {
+    public boolean move(MovementStrategy cond) {
         if (cond.isMovable()) {
             position++;
             return true;
