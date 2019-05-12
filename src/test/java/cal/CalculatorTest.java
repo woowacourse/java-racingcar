@@ -1,6 +1,5 @@
 package cal;
 
-import cal.Calculator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,30 +31,25 @@ public class CalculatorTest {
         // System.out.println(result); test 코드에서 콘솔에 값을 출력하는 것은 지양
         assertThat(cal.plus(2, 3)).isEqualTo(5);
         // 프로그램을 통해 콘솔로 테스팅했던 부분을 자동화
-        System.out.println("덧셈");
     }
 
     @Test
     void 뺄셈() {
         assertThat(cal.sub(5, 3)).isEqualTo(2);
-        System.out.println("뺄셈");
     }
 
     @Test
     void 곱셈() {
         assertThat(cal.mul(2, 3)).isEqualTo(6);
-        System.out.println("곱셈");
     }
 
     @Test
     void 나눗셈() {
         assertThat(cal.div(6, 3)).isEqualTo(2);
-        System.out.println("나눗셈");
     }
 
     @AfterEach
     void tearDown() {
         // 테스트 후처리
-        System.out.println("tearDown");
     }
 }

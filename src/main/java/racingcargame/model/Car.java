@@ -3,10 +3,10 @@ package racingcargame.model;
 import java.util.Objects;
 
 public class Car {
-
     private static final int POSITION_DEFAULT = 0;
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MOVE_POINT = 4;
+    private static final String POSITION_MESSAGE = "-";
 
     private final String name;
     private int position;
@@ -16,20 +16,21 @@ public class Car {
     }
 
     public Car(String name, int position) {
-        checkLength(name);
         checkBlank(name);
+        checkLength(name);
+
         this.name = name;
         this.position = position;
     }
 
-    private void checkLength(String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
+    private void checkBlank(String name) {
+        if (name.equals("")) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void checkBlank(String name) {
-        if (name.equals("")) {
+    private void checkLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
@@ -48,8 +49,18 @@ public class Car {
         }
     }
 
-    public boolean matchPosition(int position) {
+    public boolean isSamePosition(int position) {
         return this.position == position;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder position = new StringBuilder();
+        for (int i = 0; i < this.position; i++) {
+            position.append(POSITION_MESSAGE);
+        }
+
+        return name + " : " + position.toString();
     }
 
     @Override

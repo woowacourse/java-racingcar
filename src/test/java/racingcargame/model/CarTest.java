@@ -32,7 +32,7 @@ public class CarTest {
         Car testCar = new Car("test");
         testCar.move(3);
 
-        assertThat(testCar.matchPosition(0)).isEqualTo(true);
+        assertThat(testCar.isSamePosition(0)).isEqualTo(true);
     }
 
     @Test
@@ -40,6 +40,6 @@ public class CarTest {
         Car testCar = new Car("test");
         testCar.move(4);
 
-        assertThat(testCar.matchPosition(1)).isEqualTo(true);
+        assertThat(testCar.isSamePosition(1)).isEqualTo(true);
     }
 }

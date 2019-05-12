@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 class Winner {
-    List<String> makeWinner(List<Car> cars) {
+    private static final String DELIMITER = ",";
+
+    String makeWinner(List<Car> cars) {
         int maxPosition = maxPosition(cars);
         return cars.stream()
-                .filter(car -> car.matchPosition(maxPosition))
+                .filter(car -> car.isSamePosition(maxPosition))
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.joining(DELIMITER));
     }
 
     private int maxPosition(List<Car> cars) {
