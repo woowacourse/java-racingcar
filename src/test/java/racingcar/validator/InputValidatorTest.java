@@ -26,6 +26,7 @@ class InputValidatorTest {
     @Test
     void 자동차_이름에_중복된_이름이_있는_경우() {
         assertFalse(InputValidator.validateForm("abc,abcd,abc,,abcde"));
+        assertFalse(InputValidator.validateForm("abc,abcd,abc,abcde"));
     }
 
     @Test

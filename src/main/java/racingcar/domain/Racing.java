@@ -21,7 +21,6 @@ public class Racing {
         this.numberOfTimes = numberOfTimes;
     }
 
-
     public void run() {
         System.out.println("실행 결과");
 
