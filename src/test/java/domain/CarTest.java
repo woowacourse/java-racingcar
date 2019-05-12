@@ -61,6 +61,11 @@ class CarTest {
     }
 
     @Test
+    void isMatchPosition_확인() {
+        assertTrue(new Car("hee", 5).isMatchPosition(5));
+    }
+
+    @Test
     void increase_자동차_포지션_증가일_경우() {
         car.increasePositionOrNot(4);
         assertTrue(car.isMatchPosition(Const.CAR_OBJ_INIT_POSITION + 1));
