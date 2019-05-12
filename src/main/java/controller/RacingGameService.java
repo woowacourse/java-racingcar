@@ -1,8 +1,20 @@
-package service;
+/*
+ * @(#)RacingGameController.java      1.0 2019/05/12
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Calculator, Java, Seoul, KOREA
+ */
+
+package controller;
 
 import model.*;
 
+/**
+ * @version 1.0 2019년 05년 12일
+ * @author 김효건
+ */
 public class RacingGameService {
+    /*RacingCar 게임의 전체적인 로직(controller)를 담당하는 클래스*/
     private Cars cars;
     private LapCount lapCount;
 

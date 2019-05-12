@@ -1,9 +1,20 @@
+/*
+ * @(#)Cars.java      1.0 2019/05/12
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Calculator, Java, Seoul, KOREA
+ */
 package model;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @version 1.0 2019년 05년 12일
+ * @author 김효건
+ */
 public class Cars implements Cloneable {
+    /*경주를 진행하는 자동차들에 대한 클래스*/
     private static final String REGEX_CAR_NAMES_FORMAT = "^([^,]+)(,[^,]+)*$";
     private static final String REGEX_CAR_NAMES_SPLIT = ",";
     private List<Car> cars = new ArrayList<>();

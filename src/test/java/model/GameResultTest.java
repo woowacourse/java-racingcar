@@ -1,3 +1,9 @@
+/*
+ * @(#)GameResultTest.java      1.0 2019/05/12
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Calculator, Java, Seoul, KOREA
+ */
 package model;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -8,7 +14,12 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * @version 1.0 2019년 05년 12일
+ * @author 김효건
+ */
 class GameResultTest {
+    /*게임결과(우승자) 추출을 테스팅하는 클래스*/
     List<Car> carList;
     Winners winners;
     GameResult gameResult;

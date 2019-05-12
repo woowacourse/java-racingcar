@@ -1,3 +1,9 @@
+/*
+ * @(#)CalculatorTest.java      1.0 2019/05/12
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Calculator, Java, Seoul, KOREA
+ */
 package cal;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -5,7 +11,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * @version 1.0 2019년 05년 12일
+ * @author 김효건
+ */
 class CalculatorTest {
+	/*계산기 로직을 테스팅하는 클래스*/
 	Calculator cal;
 
 	@BeforeEach

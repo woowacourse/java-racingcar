@@ -1,14 +1,25 @@
+/*
+ * @(#)Calculator.java      1.0 2019/05/12
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Calculator, Java, Seoul, KOREA
+ */
+
 package cal;
 
-
-public class Calculator {
+/**
+ * @version 1.0 2019년 05년 12일
+ * @author 김효건
+ */
+class Calculator {
+    /*계산기 전체적인 로직에 관한 클래스*/
     private static String PLUS = "+";
     private static String MINUS = "-";
     private static String MULTIPLY = "*";
     private static String DEVIDE = "/";
     private int value;
 
-    public int execute(String expression) {
+    int execute(String expression) {
         String[] parsedExpression = splitExpression(expression);
         value = parseInt(parsedExpression[0]);
         for (int i = 1; i < parsedExpression.length; i += 2) {

@@ -1,6 +1,18 @@
+/*
+ * @(#)Main.java      1.0 2019/05/12
+ *
+ * Copyright (c) 2019 Hyogeon Kim,
+ * Calculator, Java, Seoul, KOREA
+ */
+
 package cal;
 
+/**
+ * @version 1.0 2019년 05년 12일
+ * @author 김효건
+ */
 public class Main {
+    /*계산기 Main클래스*/
     static final Calculator cal = new Calculator();
 
     public static void main(String[] args) {
