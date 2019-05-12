@@ -1,10 +1,8 @@
-package cal.NormalCal;
+package cal.normal;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import cal.NormalCal.Calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

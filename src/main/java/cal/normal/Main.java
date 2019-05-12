@@ -1,4 +1,4 @@
-package cal.NormalCal;
+package cal.normal;
 
 public class Main {
     private static StrCalculator strCalculator  = new StrCalculator();

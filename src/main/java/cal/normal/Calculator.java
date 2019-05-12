@@ -1,4 +1,4 @@
-package cal.NormalCal;
+package cal.normal;
 
 public class Calculator {
     public int plus(int a, int b) {

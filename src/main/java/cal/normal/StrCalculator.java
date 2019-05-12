@@ -1,4 +1,4 @@
-package cal.NormalCal;
+package cal.normal;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package cal.JSEngineCal;
+package cal.jsengine;
 
 import java.util.Scanner;
 
