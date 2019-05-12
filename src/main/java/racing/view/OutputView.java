@@ -2,7 +2,6 @@ package racing.view;
 
 import racing.domain.Car;
 import racing.domain.Race;
-import racing.domain.RaceResult;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,12 +32,12 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printResult(final RaceResult result) {
-        List<String> winners = new ArrayList<>();
-        Iterator<Car> it = result.getWinners().iterator();
+    public static void printResult(final List<Car> winners) {
+        List<String> result = new ArrayList<>();
+        Iterator<Car> it = winners.iterator();
         while(it.hasNext()) {
-            winners.add(it.next().getName());
+            result.add(it.next().getName());
         }
-        System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
+        System.out.println(String.join(", ", result) + "가 최종 우승했습니다.");
     }
 }

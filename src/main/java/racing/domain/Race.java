@@ -55,7 +55,7 @@ public class Race {
     /*
      * 경기 결과 메소드
      */
-    public RaceResult getResult() {
-        return new RaceResult(judgeWinners(cars));
+    public List<Car> getResult() {
+        return judgeWinners(cars);
     }
 }

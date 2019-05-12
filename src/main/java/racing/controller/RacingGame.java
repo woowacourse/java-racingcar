@@ -1,7 +1,6 @@
 package racing.controller;
 
 import racing.domain.Race;
-import racing.domain.RaceResult;
 import racing.view.InputView;
 import racing.view.OutputView;
 
@@ -41,7 +40,6 @@ public class RacingGame {
 
     /* 경주 종료 */
     public void endGame() {
-        RaceResult result = race.getResult();
-        OutputView.printResult(result);
+        OutputView.printResult(race.getResult());
     }
 }
