@@ -23,7 +23,6 @@ class PlayRacingControllerTest {
     private final String carNames = "pobi,crong,hee,iba";
     private String roundCount = "5";
     private List<String> carNameList;
-    private final String excep = "Excep";
     private List<Car> cars;
     private Race race;
 
