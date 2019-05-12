@@ -1,7 +1,9 @@
-package racingcar.domain;
+package racingcar.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Car;
+import racingcar.domain.CarGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

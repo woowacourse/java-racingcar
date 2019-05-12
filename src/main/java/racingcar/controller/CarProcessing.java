@@ -1,4 +1,7 @@
-package racingcar.domain;
+package racingcar.controller;
+
+import racingcar.domain.Car;
+import racingcar.domain.CarGenerator;
 
 import java.util.List;
 import java.util.Objects;
@@ -6,8 +9,12 @@ import java.util.Objects;
 public class CarProcessing {
     private CarGenerator carGenerator;
 
-    public CarProcessing() {
+    protected CarProcessing() {
         this.carGenerator = new CarGenerator();
+    }
+
+    protected List<Car> createCar(String[] carNames){
+        return carGenerator.generateCars(carNames);
     }
 
     /* For Test */
@@ -15,11 +22,7 @@ public class CarProcessing {
         this.carGenerator = carGenerator;
     }
 
-    public List<Car> createCar(String[] carNames){
-        return carGenerator.generateCars(carNames);
-    }
-
-    public void race(List<Car> cars) {
+    protected void race(List<Car> cars) {
         for (Car car : cars) {
             car.move();
         }
