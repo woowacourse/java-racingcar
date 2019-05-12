@@ -9,11 +9,13 @@ import java.util.stream.Collectors;
 public class Race {
     private final MovementStrategy strategy = new RandomMovement();
     private final List<Car> cars = new ArrayList<>();
-    private int cursor = 0;
+    //private int cursor = 0;
+    private RoundResult roundResult = new RoundResult();
 
     public Race(List<String> names) {
         validateNames(names);
         names.forEach(name -> cars.add(new Car(name)));
+        cars.forEach(car -> roundResult.addParticipant(car));
         Collections.unmodifiableCollection(cars);
     }
 
@@ -31,12 +33,13 @@ public class Race {
         }
     }
 
-    public Car startRound() {
-        return cars.get(cursor++ % cars.size()).moveOrStop(strategy);
-    }
-
-    public int getNumOfCars() {
-        return cars.size();
+    public RoundResult startRound() {
+        for (Car car : cars) {
+            if (car.moveOrStop(strategy)) {
+                roundResult.updateResult(car);
+            }
+        }
+        return roundResult;
     }
 
     public List<Car> getWinners() {

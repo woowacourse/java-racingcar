@@ -20,23 +20,16 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public Car moveOrStop(MovementStrategy cond) {
+    public boolean moveOrStop(MovementStrategy cond) {
         if (cond.isMovable()) {
             position++;
+            return true;
         }
-        return this;
+        return false;
     }
 
     public boolean isAtSamePositionWith(Car rhs) {
         return position == rhs.position;
-    }
-
-    public String drawTrail() {
-        StringBuffer trail = new StringBuffer();
-        for (int i = 0; i < position; i++) {
-            trail.append("-");
-        }
-        return trail.toString();
     }
 
     @Override

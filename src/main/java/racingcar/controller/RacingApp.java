@@ -4,46 +4,39 @@ import racingcar.domain.Race;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class RacingApp {
     private static Race race;
 
     public static void main(String[] args) {
         initRace();
-        OutputView.printRounds(getNumOfTrials(), race);
+        startRace(getNumOfRounds());
         OutputView.printWinners(race.getWinners());
+    }
+
+    private static void startRace(int numOfRounds) {
+        System.out.println("\n실행 결과");
+        for (int i = 0; i < numOfRounds; i++) {
+            OutputView.printRound(race.startRound());
+        }
     }
 
     private static void initRace() {
         try {
-            race = new Race(filterTypos(InputView.inputCarNames()));
+            race = new Race(InputView.inputCarNames());
         } catch (IllegalArgumentException e) {
             System.out.println("잘못된 입력입니다.");
             initRace();
         }
     }
 
-    private static List<String> filterTypos(String arg) {
-        return new ArrayList<>(
-                Arrays.stream(arg.split(","))
-                        .map(x -> x.trim())
-                        .filter(x -> (!x.equals("")) && (!x.equals(" ")) && (!x.equals(",")))
-                        .collect(Collectors.toList())
-        );
-    }
-
-    private static int getNumOfTrials() {
+    private static int getNumOfRounds() {
         try {
             int numOfTrials = InputView.inputNumberOfTrial();
             validateNumOfTrial(numOfTrials);
             return numOfTrials;
         } catch (IllegalArgumentException e) {
             System.out.println("잘못된 입력입니다.");
-            return getNumOfTrials();
+            return getNumOfRounds();
         }
     }
 

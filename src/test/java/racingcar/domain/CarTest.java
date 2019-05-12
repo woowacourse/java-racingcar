@@ -34,12 +34,12 @@ class CarTest {
 
     @Test
     void moveTest() {
-        assertThat(new Car("TOAST", 6).moveOrStop(new ForceMove()).isAtSamePositionWith(new Car("TEST", 7))).isTrue();
+        assertThat(new Car("TOAST", 6).moveOrStop(new ForceMove())).isTrue();
     }
 
     @Test
     void stopTest() {
-        assertThat(new Car("TOAST", 6).moveOrStop(new ForceStop()).isAtSamePositionWith(new Car("TEST", 6))).isTrue();
+        assertThat(new Car("TOAST", 6).moveOrStop(new ForceStop())).isFalse();
     }
 
     @Test

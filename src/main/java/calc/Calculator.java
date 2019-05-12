@@ -20,7 +20,8 @@ public class Calculator {
         }
     }
 
-    private static ArrayList<String> tokenizeExpression(String nextLine) {
+    //private static ArrayList<String> tokenizeExpression(String nextLine) {
+    public static ArrayList<String> tokenizeExpression(String nextLine) {
         return new ArrayList<String>(
                 Arrays.asList(
                         nextLine.replaceAll(" +"," ").split(" ")
