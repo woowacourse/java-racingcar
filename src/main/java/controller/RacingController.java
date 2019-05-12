@@ -39,8 +39,8 @@ public class RacingController {
         }
     }
 
-    public static void hasNextRound(List<Car> carsOnRace){
-        for(Car car : carsOnRace){
+    public static void hasNextRound(List<Car> carsOnRace) {
+        for (Car car : carsOnRace) {
             car.increasePositionOrNot(Util.getRandomNumber());
             OutputView.outputGameResult(car.toString());
         }

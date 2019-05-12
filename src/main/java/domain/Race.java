@@ -1,9 +1,7 @@
 package domain;
 
 import controller.RacingController;
-import util.Util;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 

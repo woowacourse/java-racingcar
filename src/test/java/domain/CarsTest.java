@@ -24,7 +24,7 @@ class CarsTest {
     @Test
     void 자동차들_객체_생성() {
         List<Car> carsOnRace = new ArrayList<>();
-        for(String car : carNames){
+        for (String car : carNames) {
             carsOnRace.add(new Car(car));
         }
         assertThat(cars.createCars()).isEqualTo(carsOnRace);
