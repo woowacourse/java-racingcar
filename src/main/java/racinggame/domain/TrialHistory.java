@@ -32,6 +32,10 @@ public class TrialHistory {
         return maxCarPosition;
     }
 
+    public Map<String, Integer> getTrialHistory() {
+        return trialHistory;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -43,19 +47,5 @@ public class TrialHistory {
     @Override
     public int hashCode() {
         return Objects.hash(trialHistory);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder history = new StringBuilder();
-
-        for (String carName : trialHistory.keySet()) {
-            history.append(carName).append(" : ");
-            for (int i = 0; i < trialHistory.get(carName); i++) {
-                history.append('-');
-            }
-            history.append('\n');
-        }
-        return history.toString();
     }
 }
