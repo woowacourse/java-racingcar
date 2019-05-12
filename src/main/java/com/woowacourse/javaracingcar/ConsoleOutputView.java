@@ -1,26 +1,19 @@
 package com.woowacourse.javaracingcar;
 
 import com.woowacourse.javaracingcar.domain.CarDto;
+import com.woowacourse.javaracingcar.domain.PlayingCars;
+import com.woowacourse.javaracingcar.domain.WinnerGroup;
 import com.woowacourse.javaracingcar.interfaces.OutputView;
 
-import java.util.List;
-
 public class ConsoleOutputView implements OutputView {
-    private boolean isResultTitlePrinted;
-
-    public ConsoleOutputView() {
-        isResultTitlePrinted = false;
+    @Override
+    public void printResultTitle() {
+        System.out.println("실행 결과");
     }
 
     @Override
-    public void printResult(List<CarDto> cars) {
-        // "실행 결과" 는 한번만 출력돼야 함.
-        if (!isResultTitlePrinted) {
-            System.out.println("실행 결과");
-            isResultTitlePrinted = true;
-        }
-
-        for (CarDto c : cars) {
+    public void printResult(PlayingCars cars) {
+        for (CarDto c : cars.retrieveAllCars()) {
             System.out.println(carToString(c));
         }
 
@@ -38,8 +31,8 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printWinners(List<CarDto> winners) {
-        String str = RacingcarUtil.joinCarNames(winners);
+    public void printWinners(WinnerGroup winners) {
+        String str = RacingcarUtil.joinCarNames(winners.getWinners());
         System.out.println(str + "가 최종 우승했습니다.");
     }
 }

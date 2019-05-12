@@ -1,9 +1,9 @@
 package com.woowacourse.javaracingcar;
 
-import com.woowacourse.javaracingcar.domain.CarDto;
-import com.woowacourse.javaracingcar.domain.TestNumberGenerator;
+import com.woowacourse.javaracingcar.domain.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -62,6 +62,6 @@ public class RacingcarControllerTest {
             controller.play();
         }
 
-        assertThat(controller.retrieveWinners()).isEqualTo(winnerList);
+        assertThat(controller.retrieveWinners().getWinners()).isEqualTo(winnerList);
     }
 }

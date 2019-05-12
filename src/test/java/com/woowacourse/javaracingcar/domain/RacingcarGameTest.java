@@ -16,27 +16,26 @@ class RacingcarGameTest {
     void testNormalCase() {
         int[] numsToGenerate = {1, 2, 5, 3, 5, 7, 6, 4, 3};
         RacingcarGame game = new RacingcarGame(new TestNumberGenerator(numsToGenerate),
-            Arrays.asList(new Car("pobi"), new Car("crong"), new Car("honux")));
+            Arrays.asList(new Car("pobi"), new Car("crong"), new Car("honux")), new RacingcarGameRuleImpl());
 
-        assertThat(game.loop()).isEqualTo(Arrays.asList(
+        assertThat(game.loop().retrieveAllCars()).contains(
             new CarDto("pobi", 0),
             new CarDto("crong", 0),
-            new CarDto("honux", 1)
-        ));
-        assertThat(game.loop()).isEqualTo(Arrays.asList(
+            new CarDto("honux", 1));
+        assertThat(game.loop().retrieveAllCars()).contains(
             new CarDto("pobi", 0),
             new CarDto("crong", 1),
             new CarDto("honux", 2)
-        ));
-        assertThat(game.loop()).isEqualTo(Arrays.asList(
+        );
+        assertThat(game.loop().retrieveAllCars()).contains(
             new CarDto("pobi", 1),
             new CarDto("crong", 2),
             new CarDto("honux", 2)
-        ));
-        assertThat(game.getWinners()).isEqualTo(Arrays.asList(
+        );
+        assertThat(game.getWinners().getWinners()).contains(
             new CarDto("crong", 2),
             new CarDto("honux", 2)
-        ));
+        );
     }
 
     @Test
@@ -45,7 +44,7 @@ class RacingcarGameTest {
         NumberGenerator numberGenerator = new TestNumberGenerator(numsToGenerate);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            new RacingcarGame(numberGenerator, Collections.emptyList());
+            new RacingcarGame(numberGenerator, Collections.emptyList(), new RacingcarGameRuleImpl());
         });
     }
 }

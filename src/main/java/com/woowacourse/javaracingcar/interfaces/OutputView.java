@@ -1,10 +1,10 @@
 package com.woowacourse.javaracingcar.interfaces;
 
-import com.woowacourse.javaracingcar.domain.CarDto;
-
-import java.util.List;
+import com.woowacourse.javaracingcar.domain.PlayingCars;
+import com.woowacourse.javaracingcar.domain.WinnerGroup;
 
 public interface OutputView {
-    void printResult(List<CarDto> cars);
-    void printWinners(List<CarDto> winners);
+    void printResultTitle();
+    void printResult(PlayingCars cars);
+    void printWinners(WinnerGroup winners);
 }

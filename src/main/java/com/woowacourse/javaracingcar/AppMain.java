@@ -12,6 +12,7 @@ public class AppMain {
         RacingcarController controller = new RacingcarController(input.promptUserNames(), new RandomNumberGenerator());
         int tries = input.promptTries();
 
+        output.printResultTitle();
         for (int i = 0; i < tries; i++) {
             output.printResult(controller.play());
         }

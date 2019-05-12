@@ -3,7 +3,7 @@ package com.woowacourse.javaracingcar.domain;
 /**
  * 객체 사이에서 데이터만 실어 나르는 DTO 클래스
  */
-public class CarDto {
+public class CarDto implements Comparable<CarDto> {
     private final String name;
     private final int position;
 
@@ -37,4 +37,9 @@ public class CarDto {
         return name.hashCode();
     }
 
+
+    @Override
+    public int compareTo(CarDto o) {
+        return Integer.compare(position, o.position);
+    }
 }
