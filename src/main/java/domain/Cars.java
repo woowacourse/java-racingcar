@@ -16,6 +16,7 @@ public class Cars {
     public List<Car> createCars() {
         Util.checkCarNameZeroSize(carNames);
         List<Car> cars = new ArrayList<>();
+
         for (String carName : carNames) {
             Car car = new Car(carName);
             if (cars.contains(car)) {
