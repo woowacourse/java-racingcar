@@ -9,10 +9,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGame {
-    private static Race race;
-    private int numTrials;
+    private final Race race;
+    private final int numTrials;
 
-    public void setupGame() {
+
+    /* 경주 준비 */
+    public RacingGame() {
         race = new Race();
         setupCars(race);
         numTrials = inputNumTrials();
@@ -23,25 +25,14 @@ public class RacingGame {
             race.createCars(inputCarNames());
         } catch (Exception e) {
             OutputView.printErrMsg(e.getMessage());
-            setupGame();
-        }
-    }
-
-    private int inputNumTrials() {
-        try {
-            OutputView.printTrialRequest();
-            numTrials = InputView.requestNaturalNumber();
-            return numTrials;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return inputNumTrials();
+            setupCars(race);
         }
     }
 
     private List<String> inputCarNames() {
         try {
             List<String> carNames = InputView.requestNames();
-            checkDuplicatedNames(carNames);
+            validateNoDuplication(carNames);
             return carNames;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -49,12 +40,23 @@ public class RacingGame {
         }
     }
 
-    private boolean checkDuplicatedNames(final List<String> names) {
+    private boolean validateNoDuplication(final List<String> names) {
         List<String> reducedNames = names.stream().distinct().collect(Collectors.toList());
         if (names.size() != reducedNames.size()) throw new IllegalArgumentException("중복된 이름이 존재하면 안됩니다.");
         return true;
     }
 
+    private int inputNumTrials() {
+        try {
+            OutputView.printTrialRequest();
+            return InputView.requestNaturalNumber();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputNumTrials();
+        }
+    }
+
+    /* 경주 시작 */
     public void startGame() {
         repeatRace(numTrials);
         OutputView.printRace(race);
