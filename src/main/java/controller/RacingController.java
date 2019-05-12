@@ -13,7 +13,6 @@ public class RacingController {
         Race race = new Race(setCarsOnRace(), setRoundCount());
         Winners winners = new Winners(race.moveAllCarsByRoundCount());
         OutputView.outputGameResultTile();
-        OutputView.outputGameResult(race.toString());
         OutputView.outputWinners(winners.getRaceWinners());
     }
 
@@ -45,5 +44,6 @@ public class RacingController {
             car.increasePositionOrNot(Util.getRandomNumber());
             OutputView.outputGameResult(car.toString());
         }
+        System.out.println();
     }
 }

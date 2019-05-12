@@ -76,6 +76,14 @@ class RacingControllerTest {
         });
     }
 
+    @Test
+    void 라운드별_자동차_포지션_출력_확인() {
+        InputStream in = new ByteArrayInputStream(carNamesInput.getBytes());
+        System.setIn(in);
+
+        RacingController.hasNextRound(RacingController.setCarsOnRace());
+    }
+
     @AfterEach
     void tearDown() {
         carNames = null;

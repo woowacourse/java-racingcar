@@ -20,7 +20,7 @@ public class Car {
         this.position = position;
     }
 
-    public String getName() {
+    String getName() {
         return this.name;
     }
 
@@ -64,7 +64,6 @@ public class Car {
         for (int i = 0; i < position; i++) {
             stringBuilder.append("-");
         }
-        stringBuilder.append("\n");
         return stringBuilder.toString();
     }
 }

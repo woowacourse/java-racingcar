@@ -25,9 +25,8 @@ class RaceTest {
     }
 
     @Test
-    void 레이스_시되_회수만큼_수행() {
+    void 레이스_시도_회수만큼_수행() {
         race.moveAllCarsByRoundCount();
-        System.out.println(race.toString());
     }
 
     @AfterEach
