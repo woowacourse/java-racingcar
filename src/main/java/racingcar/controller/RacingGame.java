@@ -8,14 +8,14 @@ import java.util.List;
 
 public class RacingGame {
     public static void playGame() {
-        CarProcessing carProcessing = new CarProcessing();
+        RacingCar racingCar = new RacingCar();
         CarNames carNames = InputView.InputCarNames();
-        List<Car> cars = carProcessing.createCar(carNames.getName());
+        List<Car> cars = racingCar.createCar(carNames.getName());
         TryCount tryCount = InputView.InputRacingTryCount();
 
         OutputView.printRacingResultTitle();
         for (int i = 0; i < tryCount.getCount(); i++) {
-            carProcessing.race();
+            RacingCar.race();
             OutputView.printRacingResult(cars);
         }
         OutputView.printWinner(new RacingResult(cars));
