@@ -5,17 +5,17 @@ import java.util.Scanner;
 public class InputView {
     Scanner scanner = new Scanner(System.in);
 
-    public Numbers inputNumbers(){
+    public InputValues inputNumbers(){
         System.out.println("문자열을 입력하세요,");
         String[] string = scanner.nextLine().split(" ");
-        Numbers numbers;
+        InputValues inputValues;
 
         try {
-             numbers = new Numbers(string);
+             inputValues = new InputValues(string);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return inputNumbers();
         }
-        return numbers;
+        return inputValues;
     }
 }

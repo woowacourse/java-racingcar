@@ -3,8 +3,8 @@ package cal;
 public class Calculator {
     static StringCalculator stringCalculator = new StringCalculator();
 
-    private static int calculate(Numbers numbers) throws ArithmeticException {
-        return stringCalculator.calculate(numbers.getInput());
+    private static int calculate(InputValues inputValues) throws ArithmeticException {
+        return stringCalculator.calculate(inputValues.getInput());
     }
 
     public static void main(String[] args) {
@@ -13,10 +13,10 @@ public class Calculator {
     }
 
     private static void execute(InputView inputView) {
-        Numbers numbers = inputView.inputNumbers();
+        InputValues inputValues = inputView.inputNumbers();
 
         try {
-            System.out.println(Calculator.calculate(numbers));
+            System.out.println(Calculator.calculate(inputValues));
         } catch (ArithmeticException e) {
             e.printStackTrace();
             execute(inputView);

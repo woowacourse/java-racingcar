@@ -1,9 +1,9 @@
 package cal;
 
-public class Numbers {
+public class InputValues {
     private String[] input;
 
-    public Numbers(String[] input) {
+    public InputValues(String[] input) {
         this.input = input;
 
         for (int i = 0; i < input.length; i++) {
