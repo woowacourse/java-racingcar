@@ -19,9 +19,8 @@ public class OutputView {
 
     public static void showCarsPosition(List<Car> cars) {
         System.out.println();
-        for (Car car : cars
-        ) {
-            System.out.println(car.showPosition());
+        for (Car car : cars) {
+            System.out.println(car.toString());
         }
     }
 

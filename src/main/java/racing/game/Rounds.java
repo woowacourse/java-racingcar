@@ -5,21 +5,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class Rounds {
-    private static final int BOUNDARY = 4;
     private static final int MAX_NO = 10;
 
     private static int getRandomValue() {
         return (int) (Math.random() * MAX_NO);
     }
 
-    static boolean canMove(int randomValue) {
-        return randomValue >= BOUNDARY;
-    }
-
     static void doRound(List<Car> cars) {
         for (Car car : cars) {
-            if (canMove(getRandomValue()))
-                car.move();
+            car.move(getRandomValue());
         }
     }
 

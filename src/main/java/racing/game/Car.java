@@ -5,6 +5,7 @@ import java.util.List;
 public class Car {
     private static final int NAME_LENGTH_MIN_LIMIT = 1;
     private static final int NAME_LENGTH_MAX_LIMIT = 6;
+    private static final int BOUNDARY = 4;
 
     private final String name;
     private int position = 0;
@@ -41,11 +42,16 @@ public class Car {
         return this.name.equals(name);
     }
 
-    void move() {
-        position++;
+    boolean move(int randomValue) {
+        if (randomValue >= BOUNDARY) {
+            position++;
+            return true;
+        }
+        return false;
     }
 
-    public String showPosition() {
+    @Override
+    public String toString() {
         String carPositionString = name + " : ";
         for (int i = 0; i < position; i++) {
             carPositionString += '-';

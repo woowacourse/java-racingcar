@@ -12,6 +12,26 @@ import static racing.game.Car.checkInvalidNameLength;
 import static racing.game.Car.checkNull;
 
 public class CarTest {
+    @Test
+    void 기준점이상을_입력한_경우() {
+        try {
+            Car car = new Car("pobi");
+            assertThat(car.move(4)).isTrue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void 기준점미만을_입력한_경우() {
+        try {
+            Car car = new Car("pobi");
+            assertThat(car.move(3)).isFalse();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Test
     void 차의_위치를_출력() {
@@ -21,9 +41,9 @@ public class CarTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        car.move();
-        car.move();
-        assertThat(car.showPosition()).isEqualTo("pobi : --");
+        car.move(4);
+        car.move(4);
+        assertThat(car.toString()).isEqualTo("pobi : --");
     }
 
     @Test
