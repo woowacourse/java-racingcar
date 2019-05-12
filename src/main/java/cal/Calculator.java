@@ -1,21 +1,19 @@
 package cal;
 
-import java.util.Scanner;
-
 public class Calculator {
-    int plus(int a, int b){
-        return a + b;
+    int plus(int former, int letter){
+        return former + letter;
     }
 
-    int sub(int a, int b){
-        return a - b;
+    int minus(int former, int letter){
+        return former - letter;
     }
 
-    int mul(int a, int b){
-        return a * b;
+    int multiply(int former, int letter){
+        return former * letter;
     }
 
-    int div(int a, int b){
-        return a / b;
+    int divide(int former, int letter){
+        return former / letter;
     }
 }
