@@ -1,12 +1,12 @@
 package racingcar.domain;
 
+import racingcar.domain.Rule.MoveRule;
+
 import java.util.*;
 
 public class RacingGame {
     private static final int MIN_NUMBER_OF_CARS = 1;
     private static final int MIN_TRY_COUNT = 1;
-    private static final int RANDOM_NUMBER_COUNT = 9;
-    private static final int RANDOM_NUMBER_LOWER_BOUND = 1;
 
     private List<Car> cars = new ArrayList<>();
     private int tryCount;
@@ -46,15 +46,8 @@ public class RacingGame {
         RaceResult raceResult = new RaceResult();
 
         for (Car car : this.cars) {
-            raceResult.add(randomMove(car));
+            raceResult.add(car.move(new MoveRule()));
         }
         return raceResult;
-    }
-
-    private Car randomMove(Car car) {
-        Random random = new Random();
-        int randomNumber = random.nextInt(RANDOM_NUMBER_COUNT) + RANDOM_NUMBER_LOWER_BOUND;
-
-        return car.move(randomNumber);
     }
 }

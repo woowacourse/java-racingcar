@@ -1,6 +1,8 @@
 package racingcar.domain;
 
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Rule.MoveRule;
+import racingcar.domain.Rule.Rule;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -42,15 +44,19 @@ public class CarTest {
     @Test
     void 정지() {
         Car car = new Car("pobi", 0);
-        car.move(3);
+        Rule rule = new MoveRule(3);
+        car.move(rule);
+
         assertThat(car.getPosition()).isEqualTo(0);
     }
 
     @Test
     void 전진() {
         Car car = new Car("pobi", 0);
-        car.move(4);
-        assertThat(car.getPosition()).isEqualTo(1);
+        Rule rule = new MoveRule(4);
+        car.move(rule);
+
+        assertThat(car.comparePosition(new Car("cu", 1))).isEqualTo(0);
     }
 
     @Test
