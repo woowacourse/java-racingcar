@@ -11,7 +11,7 @@ public class Race {
     private List<Car> cars;
 
     /*
-     * 경기 준비 메소드
+     * 경기 준비
      */
     public Race(List<String> carNames) {
         cars = new ArrayList<>();
@@ -20,6 +20,8 @@ public class Race {
             cars.add(new Car(it.next()));
         }
     }
+
+    public List<Car> getCars() { return cars; }
 
     /*
      * 경기 진행 메소드

@@ -78,7 +78,7 @@
 - [x] controller/RacingGame 클래스 내에서 View 호출 제한
     - [x] Input validation을 InputView 로 빼낸다.
 - [ ] 도메인과 출력을 분리
-    - [ ] toString() 을 사용하지 않는다는 것은, 인스턴스 내의 정보를 OutputView 에 전달할 수 있어야 한다는 것을 의미한다.
+    - [x] toString() 을 사용하지 않는다는 것은, 인스턴스 내의 정보를 OutputView 에 전달할 수 있어야 한다는 것을 의미한다.
     따라서 Race, RaceResult, Car 에 getter 메서드를 추가한다.
     - [ ] toString() 은 핵심적인 정보만 전달하고 OutputView 에서 출력 형식을 결정
     - RacingGame 내에서 처리하던 출력 로직을 OutputView 로 빼낸다.

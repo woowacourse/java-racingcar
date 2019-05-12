@@ -11,6 +11,8 @@ public class RaceResult {
         this.winners = winners;
     }
 
+    public List<Car> getWinners() { return winners; }
+
     @Override
     public String toString() {
         List<String> result = new ArrayList<>();

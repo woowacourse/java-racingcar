@@ -26,6 +26,7 @@ public class Car implements Comparable<Car> {
     public String getName() {
         return name;
     }
+    public int getPosition() { return position; }
 
     private static void validateNameLength(final String name) {
         if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH)
