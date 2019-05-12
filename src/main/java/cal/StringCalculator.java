@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StringCalculator {
-    final static int EVEN = 2;
+    final static int EVEN_NUMBER = 2;
     List<Integer> numbers = new ArrayList<>();
     List<Character> operators = new ArrayList<>();
 
@@ -30,7 +30,7 @@ public class StringCalculator {
     }
 
     private void putList(String input, int index) {
-        if (index % EVEN == 0) { // 숫자 인덱스
+        if (index % EVEN_NUMBER == 0) { // 숫자 인덱스
             numbers.add(Integer.parseInt(input));
             return;
         }
