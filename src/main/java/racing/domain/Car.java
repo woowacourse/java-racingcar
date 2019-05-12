@@ -16,7 +16,7 @@ public class Car implements Comparable<Car> {
     }
 
     private String getValidName(String name) {
-        String trimmedName = getTrimmedName(name);
+        String trimmedName = trimName(name);
 
         checkBlankName(trimmedName);
 
@@ -25,7 +25,7 @@ public class Car implements Comparable<Car> {
         return trimmedName;
     }
 
-    private String getTrimmedName(String name) {
+    private String trimName(String name) {
         return name.trim();
     }
 
