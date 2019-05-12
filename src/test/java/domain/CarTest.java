@@ -62,12 +62,14 @@ class CarTest {
 
     @Test
     void increase_자동차_포지션_증가일_경우() {
-        assertThat(car.increasePositionOrNot(4)).isEqualTo(Const.CAR_OBJ_INIT_POSITION + 1);
+        car.increasePositionOrNot(4);
+        assertTrue(car.isMatchPosition(Const.CAR_OBJ_INIT_POSITION + 1));
     }
 
     @Test
     void increase_자동차_포지션_변화_없음() {
-        assertThat(car.increasePositionOrNot(3)).isEqualTo(Const.CAR_OBJ_INIT_POSITION);
+        car.increasePositionOrNot(3);
+        assertTrue(car.isMatchPosition(Const.CAR_OBJ_INIT_POSITION));
     }
 
     @Test
