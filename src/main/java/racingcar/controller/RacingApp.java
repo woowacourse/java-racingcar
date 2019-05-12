@@ -8,7 +8,7 @@ public class RacingApp {
     private static Race race;
 
     public static void main(String[] args) {
-        while(!initRace());
+        while (!initRace()) ;
         startRace(getNumOfRounds());
         OutputView.printWinners(race.getWinners());
     }
