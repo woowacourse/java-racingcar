@@ -28,7 +28,6 @@ public class RacingGame {
     /* 경주 시작 */
     public void startGame() {
         repeatRace(numTrials);
-        OutputView.printRace(race);
     }
 
     /* 경주 진행 */
@@ -37,7 +36,6 @@ public class RacingGame {
         for (int i = 0; i < numTrials; i++) {
             race.progressRace();
             OutputView.printRace(race);
-            OutputView.printNewLine();
         }
     }
 

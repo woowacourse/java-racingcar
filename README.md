@@ -77,11 +77,10 @@
 - [x] 서로 다른 케이스에 대해 테스트를 분리
 - [x] controller/RacingGame 클래스 내에서 View 호출 제한
     - [x] Input validation을 InputView 로 빼낸다.
-- [ ] 도메인과 출력을 분리
+- [x] 도메인과 출력을 분리
     - [x] toString() 을 사용하지 않는다는 것은, 인스턴스 내의 정보를 OutputView 에 전달할 수 있어야 한다는 것을 의미한다.
     따라서 Race, RaceResult, Car 에 getter 메서드를 추가한다.
-    - [ ] toString() 은 핵심적인 정보만 전달하고 OutputView 에서 출력 형식을 결정
-    - RacingGame 내에서 처리하던 출력 로직을 OutputView 로 빼낸다.
+    - [x] RacingGame 내에서 처리하던 출력 로직을 OutputView 로 빼낸다.
 * Race 클래스는 자동차 경주를 수행하는 역할을 하고, Referee 클래스는 우승자를 판별하는 역할을 한다. 둘 다 동일한 자동차의 
 리스트를 인스턴스 변수로 갖는데, 이는 같은 정보가 중복되는 것이므로 두 클래스를 합치는 것이 좋다고 판단했다. 두 역할을 통합적으로
 포함할 수 있는 Race 라는 이름으로 두 클래스를 합쳐서 불필요한 클래스를 없앴다.

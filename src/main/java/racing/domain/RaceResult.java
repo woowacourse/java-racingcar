@@ -1,7 +1,5 @@
 package racing.domain;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class RaceResult {
@@ -12,14 +10,4 @@ public class RaceResult {
     }
 
     public List<Car> getWinners() { return winners; }
-
-    @Override
-    public String toString() {
-        List<String> result = new ArrayList<>();
-        Iterator<Car> it = winners.iterator();
-        while(it.hasNext()) {
-            result.add(it.next().getName());
-        }
-        return String.join(", ", result);
-    }
 }

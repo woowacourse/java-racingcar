@@ -42,15 +42,6 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public String toString() {
-        String positionBars = "";
-        for (int i = 0; i < position; i++) {
-            positionBars += "-";
-        }
-        return name + " : " + positionBars;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

@@ -58,15 +58,4 @@ public class Race {
     public RaceResult getResult() {
         return new RaceResult(judgeWinners(cars));
     }
-
-    @Override
-    public String toString() {
-        List<String> result = new ArrayList<>();
-
-        Iterator<Car> it = cars.iterator();
-        while (it.hasNext()) {
-            result.add(it.next().toString());
-        }
-        return String.join("\n", result);
-    }
 }
