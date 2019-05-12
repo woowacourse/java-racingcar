@@ -3,6 +3,7 @@ package domain;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 public class RacingGame {
     private final RacingTrial racingTrial;
@@ -15,9 +16,7 @@ public class RacingGame {
     public void play(ArrayList<Car> cars, int nTrials) {
         OutputView.printMassage("실행결과");
 
-        for (int trial = 0; trial < nTrials; trial++) {
-            OutputView.printCars(racingTrial.runTrial(cars));
-        }
+        IntStream.range(0, nTrials).forEach((trial) -> OutputView.printCars(racingTrial.runTrial(cars)));
 
         OutputView.printWinners(maxFinder.findAllMax(cars, Car.positionComparator));
     }
