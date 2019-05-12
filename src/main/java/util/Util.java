@@ -12,7 +12,7 @@ public class Util {
     }
 
     public static void checkCarNameZeroSize(List<String> stringList) {
-        if (stringList.size() == 0) {
+        if (stringList.size() == Const.ZERO) {
             throw new IllegalArgumentException(Const.EX_NAME_LEN);
         }
     }
