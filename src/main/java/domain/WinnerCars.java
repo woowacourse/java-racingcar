@@ -5,10 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class WinnerCars {
-    private static List<Car> winnerCars;
+    private List<Car> winnerCars;
 
-    public static void determineWinners(List<Car> cars) {
+    public void determineWinners(GameResult gameResult) {
         winnerCars = new ArrayList<>();
+        List<Car> cars = gameResult.getCars();
 
         Collections.sort(cars);
         Car maxPositionCar = cars.get(0);
@@ -22,7 +23,7 @@ public class WinnerCars {
         }
     }
 
-    public static List<Car> getWinnerCars() {
-        return winnerCars;
+    public List<Car> getWinnerCars() {
+        return Collections.unmodifiableList(winnerCars);
     }
 }

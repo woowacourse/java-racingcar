@@ -1,15 +1,18 @@
 package view;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.*;
 
 public class InputView {
     private static final int MINIMUM_PARTICIPANT = 2;
     private static final int LIMIT_NAME_LENGTH = 5;
+    private static final String CAR_NAME_SPLIT_REGULAR_EXPRESSION = "\\s*,\\s*";
 
-    private static Scanner sc = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     private static String input() {
-        return sc.nextLine();
+        return scanner.nextLine();
     }
 
     public static List<String> inputNames() {
@@ -17,7 +20,7 @@ public class InputView {
 
         do {
             System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-            names = input().trim().split("\\s*,\\s*");
+            names = input().trim().split(CAR_NAME_SPLIT_REGULAR_EXPRESSION);
         } while (isInValidNames(names));
 
         return new ArrayList<>(Arrays.asList(names));
@@ -25,16 +28,12 @@ public class InputView {
 
     private static boolean isInValidNames(String[] names) {
         for (String name : names) {
-            if (isBlank(name) || isInValidNameLength(name)) {
+            if (StringUtils.isBlank(name) || isInValidNameLength(name)) {
                 return true;
             }
         }
 
         return isInValidCarNumber(names) || isDuplicatedName(names);
-    }
-
-    private static boolean isBlank(String str) {
-        return str.equals("");
     }
 
     private static boolean isInValidNameLength(String name) {

@@ -13,7 +13,7 @@ public class Car implements Comparable<Car> {
         this.position = 0;
     }
 
-    static boolean isMove(int randomNumber) {
+    boolean isMove(int randomNumber) {
         return randomNumber >= MOVE_CONDITION;
     }
 

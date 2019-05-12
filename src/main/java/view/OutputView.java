@@ -1,32 +1,36 @@
 package view;
 
 import domain.Car;
+import domain.GameResult;
+import domain.WinnerCars;
 
 import java.util.List;
 
 public class OutputView {
-    public static void printPosition(List<Car> cars) {
+    public static void printPosition(GameResult gameResult) {
         StringBuilder message = new StringBuilder();
+        List<Car> cars = gameResult.getCars();
 
         for (Car car : cars) {
-            message.append(car.getName()).append(" : ").append(stringPosition(car)).append("\n");
+            message.append(car.getName()).append(" : ").append(currentPosition(car)).append("\n");
         }
 
         System.out.print(message.toString());
     }
 
-    private static String stringPosition(Car car) {
-        StringBuilder message = new StringBuilder();
+    private static String currentPosition(Car car) {
+        StringBuilder positionString = new StringBuilder();
 
         for (int i = 1; i <= car.getPosition(); i++) {
-            message.append("-");
+            positionString.append("-");
         }
 
-        return message.toString();
+        return positionString.toString();
     }
 
-    public static void printWinners(List<Car> winners) {
+    public static void printWinners(WinnerCars winnerCars) {
         StringBuilder message = new StringBuilder();
+        List<Car> winners = winnerCars.getWinnerCars();
 
         for (Car car : winners) {
             message.append(car.getName()).append(", ");

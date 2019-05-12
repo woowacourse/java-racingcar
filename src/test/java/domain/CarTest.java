@@ -13,8 +13,10 @@ class CarTest {
 
     @Test
     void isMoveTest() {
-        assertThat(Car.isMove(4)).isTrue();
-        assertThat(Car.isMove(3)).isFalse();
+        Car car = new Car("pobi");
+
+        assertThat(car.isMove(4)).isTrue();
+        assertThat(car.isMove(3)).isFalse();
     }
 
     @Test
