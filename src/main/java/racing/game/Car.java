@@ -52,25 +52,26 @@ public class Car {
 
     @Override
     public String toString() {
-        String carPositionString = name + " : ";
+        String carPosition = name + " : ";
         for (int i = 0; i < position; i++) {
-            carPositionString += '-';
+            carPosition += '-';
         }
-
-        return carPositionString;
-    }
-
-    public int compareTo(Car o2) {
-        if (this.position == o2.position) {
-            return 0;
-        }
-        if (this.position > o2.position) {
-            return 1;
-        }
-        return -1;
+        return carPosition;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int matchPosition(int position) {
+        if (this.position > position)
+            return 1;
+        if (this.position == position)
+            return 0;
+        return -1;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
