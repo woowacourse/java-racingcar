@@ -65,7 +65,7 @@
 - [x] 클래스 이름 변경
 - [x] 불필요한 클래스 제거
     - [x] Race 클래스와 Referee 클래스를 Race 하나로 합친다.
-- [ ] 도메인 모델 (개인적으로 해보고 싶음)
+- [x] 도메인 모델 (개인적으로 해보고 싶음)
 - [ ] 클래스 초기화를 생성자를 통해 수행
     - [ ] controller/RacingGame.java
     - [ ] domain/Race.java
