@@ -27,16 +27,16 @@ public class Cars {
 
     public int decideMaxPosition() {
         int max = 0;
-        for (int i = 0, n = this.cars.size(); i < n; i++) {
-            max = cars.get(i).findMax(max);
+        for (Car car : cars) {
+            max = car.findMax(max);
         }
         return max;
     }
 
     public List<String> decideWinners(int maxPosition) {
         List<String> winnersName = new ArrayList<>();
-        for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).findScoreSameAsMax(maxPosition, winnersName);
+        for (Car car : cars) {
+            car.findScoreSameAsMax(maxPosition, winnersName);
         }
         return winnersName;
     }

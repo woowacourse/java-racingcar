@@ -3,6 +3,11 @@ package racingcar;
 import java.util.*;
 
 public class Car {
+    private static final int MAX_NAME_SIZE = 5;
+    private static final int POSSIBLE_MOVE_CAR = 4;
+    private static final int MAX_RANDOM_NUMBER = 10;
+    private static final int MIN_RANDOM_NUMBER = 0;
+
     private final String name;
     private int position = 0;
 
@@ -41,8 +46,8 @@ public class Car {
     }
 
     public static void addCarToCars(List<String> carNames, List<Car> cars) {
-        for (int i = 0, n = carNames.size(); i < n; i++) {
-            cars.add(new Car(carNames.get(i)));
+        for (String name : carNames) {
+            cars.add(new Car(name));
         }
     }
 
@@ -66,18 +71,18 @@ public class Car {
     }
 
     public static boolean isOverLimit(String name) {
-        return name.length() > 5;
+        return name.length() > MAX_NAME_SIZE;
     }
 
     public Car moveCar(int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= POSSIBLE_MOVE_CAR) {
             position++;
         }
         return this;
     }
 
     public static int randomNumberGenerator() {
-        return (int) (Math.random() * 10);
+        return (int) (Math.random() * MAX_RANDOM_NUMBER) + MIN_RANDOM_NUMBER;
     }
 
     public int findMax(int max) {
