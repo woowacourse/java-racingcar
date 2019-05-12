@@ -23,9 +23,9 @@ class CarProcessingTest {
     @Test
     void create() {
         CarGenerator carGenerator = new CarGenerator();
-        CarProcessing carProcessing = new CarProcessing(carGenerator, cars);
+        CarProcessing carProcessing = new CarProcessing(carGenerator);
 
-        assertThat(carProcessing).isEqualTo(new CarProcessing(carGenerator, cars));
+        assertThat(carProcessing).isEqualTo(new CarProcessing(carGenerator));
     }
 
     @Test

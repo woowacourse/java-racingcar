@@ -4,26 +4,22 @@ import java.util.List;
 import java.util.Objects;
 
 public class CarProcessing {
-    private List<Car> cars;
     private CarGenerator carGenerator;
 
     public CarProcessing() {
         this.carGenerator = new CarGenerator();
-        this.cars = carGenerator.getCars();
     }
 
     /* For Test */
-    protected CarProcessing(CarGenerator carGenerator, List<Car> cars) {
+    protected CarProcessing(CarGenerator carGenerator) {
         this.carGenerator = carGenerator;
-        this.cars = cars;
     }
 
     public List<Car> createCar(String[] carNames){
-        carGenerator.generateCars(carNames);
-        return carGenerator.getCars();
+        return carGenerator.generateCars(carNames);
     }
 
-    public void race() {
+    public void race(List<Car> cars) {
         for (Car car : cars) {
             car.move();
         }
@@ -38,17 +34,4 @@ public class CarProcessing {
         return cars;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CarProcessing carProcessing = (CarProcessing) o;
-        return Objects.equals(cars, carProcessing.cars) &&
-                Objects.equals(carGenerator, carProcessing.carGenerator);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(cars, carGenerator);
-    }
 }

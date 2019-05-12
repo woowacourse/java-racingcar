@@ -28,7 +28,7 @@ public class RacingGame {
 
     private void startGame(CarProcessing carProcessing) {
         for (int i = 0; i < tryCount; i++) {
-            carProcessing.race();
+            carProcessing.race(cars);
             OutputView.printRacingResult(cars);
         }
     }
