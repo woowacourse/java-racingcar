@@ -6,11 +6,8 @@ import racinggame.domain.TrialHistory;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 public class CarRacing {
-    private static final int RANDOM_BOUND = 10;
-
     private List<Car> cars;
     private final int totalTrial;
 
@@ -19,11 +16,11 @@ public class CarRacing {
         this.totalTrial = totalTrial;
     }
 
-    public LeagueHistory raceStart() {
+    public LeagueHistory raceStart(RunCondition runCondition) {
         LeagueHistory leagueHistory = new LeagueHistory();
 
         for (int trial = 1; trial <= totalTrial; trial++) {
-            cars.forEach(car -> car.run(generateRandomNumber()));
+            cars.forEach(car -> car.run(runCondition.runOrStop()));
             leagueHistory.record(trial, new TrialHistory(cars));
         }
         return leagueHistory;
@@ -31,12 +28,6 @@ public class CarRacing {
 
     public int getTotalTrial() {
         return totalTrial;
-    }
-
-    private static int generateRandomNumber() {
-        Random random = new Random();
-
-        return random.nextInt(RANDOM_BOUND);
     }
 
     @Override

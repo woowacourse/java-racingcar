@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Car {
+    public static final int MOVE_THRESHOLD = 4;
     private static final int NAME_LENGTH_BOUND = 5;
     private static final int DEFAULT_POSITION = 0;
-    private static final int MOVE_THRESHOLD = 4;
     private static final int ONE_STEP = 1;
 
     private final String name;

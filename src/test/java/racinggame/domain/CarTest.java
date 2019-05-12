@@ -2,7 +2,7 @@ package racinggame.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -52,7 +52,7 @@ class CarTest {
     void 차가_자기_히스토리를_제대로_만드는지_테스트() {
         /* Given */
         final Car car = new Car("test");
-        HashMap<String, Integer> carHistory;
+        Map<String, Integer> carHistory;
 
         /* When */
         carHistory = car.makeCarHistory();
