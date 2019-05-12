@@ -3,7 +3,7 @@ package calculator.domain;
 public class StringCalculator {
     private static final String BLANK = " ";
 
-    public int calculate(String input) {
+    public static int calculate(String input) {
         String[] values = splitWithBlank(input);
         Operator operator = null;
         Operand result = new Operand(values[0]);
@@ -19,11 +19,11 @@ public class StringCalculator {
         return result.intValue();
     }
 
-    private String[] splitWithBlank(String value) {
+    private static String[] splitWithBlank(String value) {
         return value.split(BLANK);
     }
 
-    private boolean isInteger(String value) {
+    private static boolean isInteger(String value) {
         try {
             Integer.parseInt(value);
             return true;

@@ -2,17 +2,21 @@ package calculator;
 
 import calculator.domain.StringCalculator;
 import calculator.view.InputView;
+import calculator.view.OutputView;
 
 public class Main {
 
     public static void main(String[] args) {
-        StringCalculator stringCalculator = new StringCalculator();
-        String input = InputView.takeUserInput();
         try {
-            int answer = stringCalculator.calculate(input);
-            System.out.println("답은 " + answer + "입니다");
+            proceed();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            proceed();
         }
+    }
+
+    private static void proceed() {
+        String input = InputView.takeUserInput();
+        OutputView.showResult(StringCalculator.calculate(input));
     }
 }
