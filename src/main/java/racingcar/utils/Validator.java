@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.utils;
+
+import java.util.Arrays;
 
 public class Validator {
     private static final int MIN_LENGTH = 1;
@@ -13,12 +15,12 @@ public class Validator {
             throw new IllegalArgumentException();
         }
 
-        for (String carName : carNames) {
-            int nameLength = carName.trim().length();
-            if (nameLength < MIN_LENGTH || nameLength > MAX_LENGTH) {
-                System.err.println("자동차 이름을 1~5글자로 입력해주세요.");
-                throw new IllegalArgumentException();
-            }
+        boolean containsInappropriateName = Arrays.stream(carNames)
+                .map(carName -> carName.trim().length())
+                .anyMatch(nameLength -> nameLength < MIN_LENGTH || nameLength > MAX_LENGTH);
+        if(containsInappropriateName) {
+            System.err.println("자동차 이름을 1~5글자로 입력해주세요.");
+            throw new IllegalArgumentException();
         }
     }
 

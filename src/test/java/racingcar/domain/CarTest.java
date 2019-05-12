@@ -1,9 +1,8 @@
-package racingcar;
+package racingcar.domain;
 
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
     @Test
@@ -14,11 +13,11 @@ public class CarTest {
         String userInput4 = "";
         String userInput5 = null;
 
-        assertThatCode(() -> {new Car(userInput1);}).doesNotThrowAnyException();
-        assertThatThrownBy(() -> {new Car(userInput2);}).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> {new Car(userInput3);}).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> {new Car(userInput4);}).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> {new Car(userInput5);}).isInstanceOf(IllegalArgumentException.class);
+        assertThatCode(() -> new Car(userInput1)).doesNotThrowAnyException();
+        assertThatThrownBy(() -> new Car(userInput2)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Car(userInput3)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Car(userInput4)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Car(userInput5)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

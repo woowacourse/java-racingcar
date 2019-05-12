@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.view;
+
+import racingcar.utils.Validator;
 
 import java.util.Scanner;
 
