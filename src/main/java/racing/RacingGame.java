@@ -26,7 +26,7 @@ public class RacingGame {
             return splitNames().stream()
                     .map(name -> new Car(name))
                     .collect(Collectors.toList());
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             return generateCars();
         }

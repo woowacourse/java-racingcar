@@ -20,7 +20,7 @@ public class CarTest {
         Car car = new Car("");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void 이름_NULL_체크3() {
         Car car = new Car(null);
     }
