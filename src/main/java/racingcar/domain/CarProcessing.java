@@ -3,16 +3,17 @@ package racingcar.domain;
 import java.util.List;
 import java.util.Objects;
 
-public class RacingCar {
+public class CarProcessing {
     private List<Car> cars = null;
     private CarGenerator carGenerator;
 
-    public RacingCar() {
+    public CarProcessing() {
         this.carGenerator = new CarGenerator();
         this.cars = carGenerator.getCars();
     }
 
-    public RacingCar(CarGenerator carGenerator, List<Car> cars) {
+    /* For Test */
+    public CarProcessing(CarGenerator carGenerator, List<Car> cars) {
         this.carGenerator = carGenerator;
         this.cars = cars;
     }
@@ -28,6 +29,7 @@ public class RacingCar {
         }
     }
 
+    /* For Test */
     public List<Car> race(List<Car> cars, int num) {
         for (Car car : cars) {
             car.move(num);
@@ -40,9 +42,9 @@ public class RacingCar {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RacingCar racingCar = (RacingCar) o;
-        return Objects.equals(cars, racingCar.cars) &&
-                Objects.equals(carGenerator, racingCar.carGenerator);
+        CarProcessing carProcessing = (CarProcessing) o;
+        return Objects.equals(cars, carProcessing.cars) &&
+                Objects.equals(carGenerator, carProcessing.carGenerator);
     }
 
     @Override

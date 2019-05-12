@@ -7,16 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class RacingCarTest {
+class CarProcessingTest {
 
-    RacingCar racingCar;
+    CarProcessing carProcessing;
     List<Car> cars = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
-        racingCar = new RacingCar();
+        carProcessing = new CarProcessing();
         cars.add(new Car("pobi"));
         cars.add(new Car("crong"));
     }
@@ -24,26 +23,26 @@ class RacingCarTest {
     @Test
     void create() {
         CarGenerator carGenerator = new CarGenerator();
-        RacingCar racingCar = new RacingCar(carGenerator, cars);
+        CarProcessing carProcessing = new CarProcessing(carGenerator, cars);
 
-        assertThat(racingCar).isEqualTo(new RacingCar(carGenerator, cars));
+        assertThat(carProcessing).isEqualTo(new CarProcessing(carGenerator, cars));
     }
 
     @Test
     void 제대로_자동차리스트가_리턴되는지_테스트() {
-        List<Car> cars = racingCar.createCar("a,b,c,d".split(","));
+        List<Car> cars = carProcessing.createCar("a,b,c,d".split(","));
         System.out.println(cars.toString());
     }
 
     @Test
     void 자동차가_움직이는지_테스트() {
-        List<Car> resultCars = racingCar.race(cars, 5);
+        List<Car> resultCars = carProcessing.race(cars, 5);
         assertThat(resultCars.toString()).isEqualTo("[Car{name='pobi', position=1}, Car{name='crong', position=1}]");
     }
 
     @Test
     void 자동차가_안움직이는지_테스트() {
-        List<Car> resultCars = racingCar.race(cars, 4);
+        List<Car> resultCars = carProcessing.race(cars, 4);
         assertThat(resultCars.toString()).isEqualTo("[Car{name='pobi', position=0}, Car{name='crong', position=0}]");
     }
 }
