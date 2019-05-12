@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RacingCar {
@@ -10,11 +11,9 @@ public class RacingCar {
         cars = new ArrayList<>();
     }
 
-    public List<Car> process(String userInput, int numOfGame) {
+    public List<Car> prepareRace(String userInput) {
         String[] carNames = makeCarNames(userInput);
         setCars(carNames);
-        playEntireRound(numOfGame);
-
         return cars;
     }
 
@@ -28,22 +27,16 @@ public class RacingCar {
         }
     }
 
-    private void playEntireRound(int numOfGame) {
-        System.out.println("\n실행 결과");
-        for (int i = 0; i < numOfGame; i++) {
-            playOneRound();
-        }
-    }
-
-    private void playOneRound() {
+    public void playOneRound() {
         for (Car car : cars) {
             car.play();
-            printCarStatus(car);
         }
-        System.out.println();
     }
 
-    private void printCarStatus(Car car) {
-        System.out.println(car);
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        cars.forEach(car -> sb.append(car + "\n"));
+        return sb.toString();
     }
 }

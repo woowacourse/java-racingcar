@@ -55,7 +55,7 @@ public class Car {
         return (this.position > position) ? this.position : position;
     }
 
-   @Override
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(name + " : ");
         for (int i = 0; i < position; i++) {
