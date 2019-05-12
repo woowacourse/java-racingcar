@@ -10,7 +10,7 @@ public class Winners {
         this.carsFinishedRace = carsFinishedRace;
     }
 
-    public int getMaxPosition() {
+    private int getMaxPosition() {
         int maxPosition = 0;
 
         for (Car car : carsFinishedRace) {
