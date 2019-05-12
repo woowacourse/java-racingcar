@@ -11,11 +11,11 @@ public class Car implements Comparable<Car> {
     }
 
     public Car(final String name, final int distance) {
-        this.name = getValidName(name);
+        this.name = validName(name);
         this.distance = distance;
     }
 
-    private String getValidName(String name) {
+    private String validName(String name) {
         String trimmedName = trimName(name);
 
         checkBlankName(trimmedName);
