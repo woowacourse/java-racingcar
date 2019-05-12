@@ -69,8 +69,7 @@ public class Main {
     private static void runRacingGame(int runs, RacingGame racingGame) {
         OutputView.printResultTitle();
         for (int i = 0; i < runs; i++) {
-            racingGame.runEachGame();
-            OutputView.printEachGameResult(racingGame);
+            OutputView.printEachGameResult(racingGame.runEachGame());
         }
         OutputView.printResultTotal(racingGame);
     }

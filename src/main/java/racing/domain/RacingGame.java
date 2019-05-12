@@ -37,11 +37,12 @@ public class RacingGame {
         return cars;
     }
 
-    public void runEachGame() {
+    public RacingGame runEachGame() {
         for (Car car : cars) {
             int rand = getRandomNumber();
             car.moveByRandomNumber(rand);
         }
+        return this;
     }
 
     private int getRandomNumber() {
