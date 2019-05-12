@@ -31,7 +31,7 @@ class WinnersTest {
 
     @Test
     void 우승자_이름_구하기() {
-        assertThat(winners.getRaceWinners(winners.getMaxPosition())).isEqualTo("crong");
+        assertThat(winners.getRaceWinners()).isEqualTo("crong");
     }
 
     @AfterEach

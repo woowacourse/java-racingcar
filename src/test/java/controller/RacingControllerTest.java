@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Car;
+import domain.Cars;
 import domain.Race;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,57 +15,32 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RacingControllerTest {
-    private final String carNames = "pobi,crong,hee,iba";
-    private final int roundCount = 5;
-    private List<String> carNameList;
+    private String carNamesInput = "pobi,crong,hee,iba";
+    private List<String> carNames;
 
     @BeforeEach
     void setUp() {
-        carNameList = Arrays.asList(carNames.split(","));
+        carNames = Arrays.asList(carNamesInput.split(","));
     }
 
     @Test
     void Car_리스트_만들기() {
-        InputStream in = new ByteArrayInputStream(carNames.getBytes());
+        InputStream in = new ByteArrayInputStream(carNamesInput.getBytes());
         System.setIn(in);
 
-        List<Car> carList = RacingController.setCarsOnRace();
-        for (int i = 0; i < carNameList.size(); i++) {
-            assertThat(carList.get(i).getName()).isEqualTo(carNameList.get(i));
+        List<Car> cars = RacingController.setCarsOnRace();
+        for (int i = 0; i < carNames.size(); i++) {
+            assertThat(cars).isEqualTo(new Cars(carNames).createCars());
         }
     }
 
     @Test
-    void Car_이름_길이_예외처리_반복_확인() {
-        String carNamesEx = "heebong";
-        InputStream in = new ByteArrayInputStream(carNamesEx.getBytes());
+    void 횟수_입력_확인() {
+        String rountCount = "5";
+        InputStream in = new ByteArrayInputStream(rountCount.getBytes());
         System.setIn(in);
 
-        assertThrows(NoSuchElementException.class, () -> {
-            RacingController.setCarsOnRace();
-        });
-    }
-
-    @Test
-    void Car_이름_중복_예외처리_반복_확인() {
-        String carNamesEx = "heebg,crong,hi,pobi,crong";
-        InputStream in = new ByteArrayInputStream(carNamesEx.getBytes());
-        System.setIn(in);
-
-        assertThrows(NoSuchElementException.class, () -> {
-            RacingController.setCarsOnRace();
-        });
-    }
-
-    @Test
-    void Car_이름_빈칸_예외처리_반복_확인() {
-        String carNamesEx = "1,2,,,,3,";
-        InputStream in = new ByteArrayInputStream(carNamesEx.getBytes());
-        System.setIn(in);
-
-        assertThrows(StackOverflowError.class, () -> {
-            RacingController.setRoundCount();
-        });
+        assertThat(RacingController.setRoundCount()).isEqualTo(5);
     }
 
     @Test
@@ -102,6 +78,6 @@ class RacingControllerTest {
 
     @AfterEach
     void tearDown() {
-        carNameList = null;
+        carNames = null;
     }
 }

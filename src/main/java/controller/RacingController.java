@@ -17,7 +17,7 @@ public class RacingController {
         OutputView.outputWinners(winners.getRaceWinners());
     }
 
-    private static List<Car> setCarsOnRace() {
+    public static List<Car> setCarsOnRace() {
         try {
             Cars cars = new Cars(InputView.inputCarNames());
             return cars.createCars();
