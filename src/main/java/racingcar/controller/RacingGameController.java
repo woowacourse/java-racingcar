@@ -8,6 +8,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RacingGameController {
     private RacingGame racingGame;
@@ -18,7 +19,7 @@ public class RacingGameController {
     }
 
     public void playRacingGame() {
-        ArrayList<RoundResult> allResult = new ArrayList<>();
+        List<RoundResult> allResult = new ArrayList<>();
 
         while (!racingGame.isZeroTryCount()) {
             allResult.add(playOneRound());
@@ -29,7 +30,7 @@ public class RacingGameController {
     }
 
     private RoundResult playOneRound() {
-        ArrayList<Car> oneRound = new ArrayList<>();
+        List<Car> oneRound = new ArrayList<>();
 
         oneRound = racingGame.race();
         racingGame.subtractTryCount();

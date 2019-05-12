@@ -1,15 +1,16 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RoundResult {
-    private ArrayList<Car> roundResult = new ArrayList<>();
+    private List<Car> roundResult = new ArrayList<>();
 
-    public RoundResult(ArrayList<Car> roundResult) {
+    public RoundResult(List<Car> roundResult) {
         this.roundResult = roundResult;
     }
 
-    public ArrayList<Car> getRoundResult() {
+    public List<Car> getRoundResult() {
         return this.roundResult;
     }
 }

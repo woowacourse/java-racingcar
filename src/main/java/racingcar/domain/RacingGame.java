@@ -10,12 +10,13 @@ public class RacingGame {
     private static final int RANDOM_NUMBER_LOWER_BOUND = 1;
     private static final String SPLIT_REGEX = ",";
 
-    private ArrayList<Car> cars = new ArrayList<>();
+    private List<Car> cars = new ArrayList<>();
     private int tryCount = MIN_TRY_COUNT;
 
     public RacingGame(String carNames) {
         this(carNames, MIN_TRY_COUNT);
     }
+
     public RacingGame(String carNames, int tryCount) {
         generateCarList(carNames);
         configureTryCount(tryCount);
@@ -55,8 +56,8 @@ public class RacingGame {
         }
     }
 
-    public ArrayList<Car> race() {
-        ArrayList<Car> racingResult = new ArrayList<>();
+    public List<Car> race() {
+        List<Car> racingResult = new ArrayList<>();
         for (Car car : cars) {
             randomMove(car);
             racingResult.add(new Car(car));

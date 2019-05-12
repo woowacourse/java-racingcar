@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
-    public static void outputAllTryCarPosition(ArrayList<RoundResult> rounds) {
+    public static void outputAllTryCarPosition(List<RoundResult> rounds) {
         System.out.println("\n실행 결과");
         for (RoundResult round : rounds) {
             outputCarPosition(round);
@@ -22,7 +22,7 @@ public class OutputView {
     }
 
     public static void outputWinners(List<Car> winners) {
-        ArrayList<String> winnersName = new ArrayList<>();
+        List<String> winnersName = new ArrayList<>();
 
         for (Car car : winners) {
             winnersName.add(car.getName());
