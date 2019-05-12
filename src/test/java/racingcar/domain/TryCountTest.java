@@ -3,6 +3,8 @@ package racingcar.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Method;
+
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -16,38 +18,20 @@ public class TryCountTest {
 
     @Test
     void create() {
-        assertThat(new TryCount("3").equals(new TryCount("3"))).isTrue();
+        assertThat(new TryCount("3")).isEqualTo(new TryCount("3"));
     }
 
     @Test
     void 자연수가아닐때_익셉션이발생하는지_테스트() {
         assertThrows(IllegalArgumentException.class, () -> {
-            tryCount.validTryNumberException("-2");
+            new TryCount("-2");
         });
     }
 
     @Test
     void 문자열을입력했을때_익셉션이발생하는지_테스트(){
         assertThrows(IllegalArgumentException.class, () -> {
-            tryCount.validTryNumberException("sdjflkdjf");
+            new TryCount("abcsjdsa");
         });
-    }
-
-    @Test
-    void 자연수가아닐때_익셉션_로그가_제대로_출력되는지_테스트() {
-        try {
-            tryCount.validTryNumberException("-2");
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    void 문자열을_입력했을때_익셉션_로그가_제대로_출력되는지_테스트() {
-        try {
-            tryCount.validTryNumberException("ㅁㄴㅇㄹ-2");
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -7,18 +7,12 @@ import java.util.Objects;
 public class CarGenerator {
     List<Car> cars;
 
-    public CarGenerator(){
+    public CarGenerator() {
         cars = new ArrayList<>();
     }
 
-    public void generateCars(String[] carNames){
-        for(String carName : carNames){
-            cars.add(new Car(carName));
-        }
-    }
-
-    public List<Car> generateCars2(String[] carNames){
-        for(String carName : carNames){
+    public List<Car> generateCars(String[] carNames) {
+        for (String carName : carNames) {
             cars.add(new Car(carName));
         }
         return this.cars;

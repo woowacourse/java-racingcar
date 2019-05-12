@@ -17,9 +17,8 @@ public class RacingCar {
         this.cars = cars;
     }
 
-    public List<Car> createCar(String[] carNames){
-        carGenerator.generateCars(carNames);
-        return carGenerator.getCars();
+    public List<Car> createCar(String[] carNames) {
+        return cars = carGenerator.generateCars(carNames);
     }
 
     public void race() {
@@ -28,7 +27,7 @@ public class RacingCar {
         }
     }
 
-    public List<Car> race(List<Car> cars, int num) {
+    public static List<Car> race(List<Car> cars, int num) {
         for (Car car : cars) {
             car.move(num);
         }

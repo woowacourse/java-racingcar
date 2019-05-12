@@ -9,7 +9,7 @@ import java.util.List;
 public class RacingGame {
 
 
-    static List<Car> cars = null;
+    private static List<Car> cars = null;
 
     public static void main(String[] args) {
         RacingCar racingCar = new RacingCar();

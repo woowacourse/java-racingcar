@@ -18,7 +18,7 @@ class CarGeneratorTest {
 
     @Test
     void create() {
-        assertThat(carGenerator.equals(new CarGenerator())).isTrue();
+        assertThat(new CarGenerator()).isEqualTo(new CarGenerator());
     }
 
     @Test
@@ -26,7 +26,7 @@ class CarGeneratorTest {
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("pobi"));
         cars.add(new Car("crong"));
-        assertThat(carGenerator.generateCars2("pobi,,,crong".split(",")).equals(cars)).isTrue();
+        assertThat(carGenerator.generateCars("pobi,crong".split(",")).equals(cars)).isTrue();
     }
 
     @Test

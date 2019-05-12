@@ -38,9 +38,4 @@ class WinnerTest {
         testCars.add(new Car("c", 4));
         assertThat(winner.getWinner()).isEqualTo("b,c");
     }
-
-    @Test
-    void 최댓값이_맞는지_테스트() {
-        assertThat(winner.getMaxDistance2()).isEqualTo(4);
-    }
 }

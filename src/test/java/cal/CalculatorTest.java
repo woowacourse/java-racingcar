@@ -15,18 +15,6 @@ public class CalculatorTest {
         System.out.println("SetUp");
     }
 
-    @Test
-    void 덧셈() {
-        assertThat(stringCalculator.add(1, 2)).isEqualTo(3);
-        System.out.println("덧셈");
-    }
-
-    @Test
-    void 뺼셈() {
-        System.out.println("뺄셈");
-        assertThat(stringCalculator.minus(6, 2)).isEqualTo(3);
-    }
-
     @AfterEach
     void tearDown() {
         stringCalculator = null;

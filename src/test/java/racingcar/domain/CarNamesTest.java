@@ -2,10 +2,11 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.CarNames;
 
 
 import java.util.Arrays;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarNamesTest {
@@ -18,23 +19,28 @@ public class CarNamesTest {
     }
 
     @Test
+    void create() {
+        assertThat(new CarNames()).isEqualTo(new CarNames());
+    }
+
+    @Test
     void 글자수_5자초과() {
         assertThrows(IllegalArgumentException.class, () ->{
-            carNames.maximumCarNameException("a,b,c,dwerwersdf".split(","));
+            new CarNames("a,b,c,dwerwersdf");
         });
     }
 
     @Test
     void 중복된_이름이_존재할때() {
         assertThrows(IllegalArgumentException.class, () ->{
-            carNames.duplicateNameException(Arrays.asList("pobi", "pobi"));
+            new CarNames("pobi,pobi");
         });
     }
 
     @Test
     void 글자수가_1미만일때() {
         assertThrows(IllegalArgumentException.class, () ->{
-            carNames.minimalCarNameException("abc,,,def".split(","));
+            new CarNames("a,b,c,,,d,e,f");
         });
     }
 }

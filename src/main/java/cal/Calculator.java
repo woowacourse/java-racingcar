@@ -1,7 +1,7 @@
 package cal;
 
 public class Calculator {
-    static StringCalculator stringCalculator = new StringCalculator();
+    private static StringCalculator stringCalculator = new StringCalculator();
 
     private static int calculate(Numbers numbers) throws ArithmeticException {
         return stringCalculator.calculate(numbers.getInput());
