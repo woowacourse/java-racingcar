@@ -9,14 +9,10 @@ import racingcar.view.OutputView;
 import java.util.ArrayList;
 
 public class RacingGameController {
-    private RacingGame racingGame = new RacingGame();
+    private RacingGame racingGame;
 
     public void createCars() {
-        racingGame.generateCarList(InputView.inputCarList());
-    }
-
-    public void configureTryCount() {
-        racingGame.configureTryCount(InputView.inputTryCount());
+        racingGame = new RacingGame(InputView.inputCarList(), InputView.inputTryCount());
     }
 
     public void playRacingGame() {

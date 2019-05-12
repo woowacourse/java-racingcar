@@ -10,34 +10,34 @@ public class RacingGameTest {
 
     @BeforeEach
     void setUp() {
-        racingGame = new RacingGame();
+        racingGame = new RacingGame("");
     }
 
     @Test
     void 앞에_연속된_콤마가_입력된_경우() {
         assertThrows(IllegalArgumentException.class, () -> {
-            racingGame.generateCarList(",,,pobi");
+            racingGame = new RacingGame(",,,pobi");
         });
     }
 
     @Test
     void 중간에_연속된_콤마가_입력된_경우() {
         assertThrows(IllegalArgumentException.class, () -> {
-            racingGame.generateCarList("po,,,bi");
+            racingGame = new RacingGame("po,,,bi");
         });
     }
 
     @Test
     void 뒤에_연속된_콤마가_입력된_경우() {
         assertThrows(IllegalArgumentException.class, () -> {
-            racingGame.generateCarList("pobi,,,");
+            racingGame = new RacingGame("pobi,,,");
         });
     }
 
     @Test
     void 공백이_입력된_경우() {
         assertThrows(IllegalArgumentException.class, () -> {
-            racingGame.generateCarList("pobi,   ,brown");
+            racingGame = new RacingGame("pobi,   ,brown");
         });
     }
 

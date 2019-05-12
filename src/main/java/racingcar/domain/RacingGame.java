@@ -11,7 +11,15 @@ public class RacingGame {
     private static final String SPLIT_REGEX = ",";
 
     private ArrayList<Car> cars = new ArrayList<>();
-    private int tryCount = 0;
+    private int tryCount = MIN_TRY_COUNT;
+
+    public RacingGame(String carNames) {
+        this(carNames, MIN_TRY_COUNT);
+    }
+    public RacingGame(String carNames, int tryCount) {
+        generateCarList(carNames);
+        configureTryCount(tryCount);
+    }
 
     public void generateCarList(String carNames) {
         carNames = removeWhiteSpace(carNames);
