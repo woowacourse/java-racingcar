@@ -3,7 +3,7 @@ package cal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import cal.StrCalculator;
+import cal.NormalCal.StrCalculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
