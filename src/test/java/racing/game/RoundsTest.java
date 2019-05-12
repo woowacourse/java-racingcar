@@ -3,19 +3,18 @@ package racing.game;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class RoundsTest {
+class RoundsTest {
     @Test
     void 챔피언이_하나일때_챔피언계산() {
-        List<Car> cars = new ArrayList<>();
+        List<Car> cars;
         try {
-            cars.add(new Car("pobi"));
-            cars.add(new Car("jihoo"));
-            cars.add(new Car("jinwo"));
+            cars = Arrays.asList(new Car[]{new Car("pobi"), new Car("jihoo"), new Car("jinwo")});
             cars.get(0).move(4);
             cars.get(0).move(4);
             List<Car> winners = new ArrayList<>();
@@ -28,10 +27,8 @@ public class RoundsTest {
 
     @Test
     void 챔피언이_여러명일때_챔피언계산() throws Exception {
-        List<Car> cars = new ArrayList<>();
-        cars.add(new Car("pobi"));
-        cars.add(new Car("jihoo"));
-        cars.add(new Car("jinwo"));
+        List<Car> cars;
+        cars = Arrays.asList(new Car[]{new Car("pobi"), new Car("jihoo"), new Car("jinwo")});
         cars.get(0).move(4);
         cars.get(1).move(4);
         List<Car> winners = new ArrayList<>();

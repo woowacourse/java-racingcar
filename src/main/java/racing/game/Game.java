@@ -14,7 +14,7 @@ public class Game {
         play();
     }
 
-    public static void play() {
+    private static void play() {
         List<Car> cars;
         int roundNum;
 
@@ -46,7 +46,6 @@ public class Game {
         String[] nameSplitted = names.split(",");
         if (nameSplitted.length < CAR_COUNT_MIN_LIMIT)
             throw new Exception();
-
         return nameSplitted;
     }
 

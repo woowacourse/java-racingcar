@@ -3,7 +3,7 @@ package racing.game;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rounds {
+class Rounds {
     private static final int MAX_NO = 10;
 
     private static int getRandomValue() {
@@ -30,5 +30,4 @@ public class Rounds {
         }
         return winners;
     }
-
 }

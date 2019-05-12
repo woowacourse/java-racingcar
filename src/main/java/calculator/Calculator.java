@@ -1,50 +1,26 @@
 package calculator;
 
-public class Calculator {
+import java.util.function.BinaryOperator;
 
-    public int multply(int num1, int num2) {
-        return num1 * num2;
+class Calculator {
+    int calculateSingleExpression(int leftOperand, String operator, int rightOperand) {
+        return Operator.getOperator(operator).calculate(leftOperand, rightOperand);
     }
 
-    public int divide(int num1, int num2) {
-        return num1 / num2;
-    }
-
-
-    public int add(int num1, int num2) {
-        return num1 + num2;
-    }
-
-    public int subtract(int num1, int num2) {
-        return num1 - num2;
-    }
-
-    public int calculateSingleExpression(int leftOperand, String operator, String rightOperandStr) {
-        int rightOperand = Integer.parseInt(rightOperandStr);
-        if (operator.equals("+"))
-            return add(leftOperand, rightOperand);
-        if (operator.equals("-"))
-            return subtract(leftOperand, rightOperand);
-        if (operator.equals("*"))
-            return multply(leftOperand, rightOperand);
-        return divide(leftOperand, rightOperand);
-    }
-
-    public int calculateMultiExpression(String[] strings) {
+    int calculateMultiExpression(String[] strings) {
         int result = Integer.parseInt(strings[0]);
 
         if (strings.length == 1)
             return result;
-
         for (int i = 1; i < strings.length; ) {
-            result = calculateSingleExpression(result, strings[i], strings[i + 1]);
+            result = calculateSingleExpression(result, strings[i],
+                    Integer.parseInt(strings[i + 1]));
             i = i + 2;
         }
-
         return result;
     }
 
-    public int calculate() throws Exception {
+    int calculate() throws Exception {
         String[] input = InputHandler.getInput().split(" ");
         if (!InputHandler.canCalculate(input))
             throw new Exception("계산 가능한 형식이 아닙니다.");
@@ -54,6 +30,37 @@ public class Calculator {
             return result;
         } catch (ArithmeticException ae) {
             throw new Exception("0으로 나눌 수 없습니다.");
+        }
+    }
+
+    public enum Operator {
+        ADD("+", (leftOperand, rightOperand) -> leftOperand + rightOperand),
+        SUB("-", (leftOperand, rightOperand) -> leftOperand - rightOperand),
+        MUL("*", (leftOperand, rightOperand) -> leftOperand * rightOperand),
+        DIV("/", (leftOperand, rightOperand) -> leftOperand / rightOperand);
+
+        private String operator;
+        private BinaryOperator<Integer> calcFunction;
+
+        Operator(String operator, BinaryOperator<Integer> calcFunction) {
+            this.operator = operator;
+            this.calcFunction = calcFunction;
+        }
+
+        private boolean matchOperator(String operator) {
+            return operator.equals(this.operator);
+        }
+
+        static Operator getOperator(String operator) {
+            for (Operator op : Operator.values()) {
+                if (op.matchOperator(operator))
+                    return op;
+            }
+            return null;
+        }
+
+        int calculate(int leftOperand, int rightOperand) {
+            return calcFunction.apply(leftOperand, rightOperand);
         }
     }
 }

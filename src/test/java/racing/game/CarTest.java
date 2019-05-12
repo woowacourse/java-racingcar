@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static racing.game.Car.checkInvalidNameLength;
 import static racing.game.Car.checkNull;
 
-public class CarTest {
+class CarTest {
     @Test
     void 기준점이상을_입력한_경우() {
         try {
@@ -31,7 +31,6 @@ public class CarTest {
             e.printStackTrace();
         }
     }
-
 
     @Test
     void 차의_위치를_출력() {
@@ -115,5 +114,4 @@ public class CarTest {
         List<Car> finalCars = cars;
         assertThrows(Exception.class, () -> new Car(name, finalCars));
     }
-
 }
