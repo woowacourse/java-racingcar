@@ -1,7 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Winners {
     private List<Car> carsFinishedRace;
@@ -11,14 +10,10 @@ public class Winners {
     }
 
     private int getMaxPosition() {
-        int maxPosition = 0;
-
-        for (Car car : carsFinishedRace) {
-            if (car.isGreaterThanMaxPosition(maxPosition)) {
-                maxPosition += car.getPositionGap(maxPosition);
-            }
-        }
-        return maxPosition;
+        return carsFinishedRace
+                .stream()
+                .max(Comparator.comparing(Car::getPosition))
+                .orElseThrow(NoSuchElementException::new).getPosition();
     }
 
     public String getRaceWinners() {
