@@ -13,7 +13,7 @@ public class Race {
     /*
      * 경기 준비 메소드
      */
-    public void createCars(List<String> carNames) {
+    public Race(List<String> carNames) {
         cars = new ArrayList<>();
         Iterator<String> it = carNames.iterator();
         while (it.hasNext()) {

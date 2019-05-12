@@ -12,20 +12,18 @@ public class RacingGame {
     private final Race race;
     private final int numTrials;
 
-
     /* 경주 준비 */
     public RacingGame() {
-        race = new Race();
-        setupCars(race);
+        race = setupRace();
         numTrials = inputNumTrials();
     }
 
-    private void setupCars(Race race) {
+    private Race setupRace() {
         try {
-            race.createCars(inputCarNames());
+            return new Race(inputCarNames());
         } catch (Exception e) {
             OutputView.printErrMsg(e.getMessage());
-            setupCars(race);
+            return setupRace();
         }
     }
 
@@ -62,6 +60,7 @@ public class RacingGame {
         OutputView.printRace(race);
     }
 
+    /* 경주 진행 */
     private void repeatRace(int numTrials) {
         OutputView.printResultMessage();
         for (int i = 0; i < numTrials; i++) {
@@ -71,6 +70,7 @@ public class RacingGame {
         }
     }
 
+    /* 경주 종료 */
     public void endGame() {
         RaceResult result = race.getResult();
         OutputView.printResult(result);
