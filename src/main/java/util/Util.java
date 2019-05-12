@@ -32,8 +32,8 @@ public class Util {
         }
     }
 
-    public static void checkRoundCountRange(int roundCnt){
-        if (roundCnt <= Const.ZERO){
+    public static void checkRoundCountRange(int roundCnt) {
+        if (roundCnt <= Const.MIN_ROUND_COUNT) {
             throw new IllegalArgumentException(Const.EX_ROUND_COUNT);
         }
     }

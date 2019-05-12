@@ -19,6 +19,7 @@ public class Const {
     public static final int GO_RAN_NUM = 4;
     public static final int RANGE_RAN_NUM = 10;
     public static final int ZERO = 0;
+    public static final int MIN_ROUND_COUNT = ZERO;
     public static final String SHAPE_CAR_POSITION = "-";
     public static final int CAR_OBJ_INIT_POSITION = ZERO;
     public static final int RACE_OBJ_INIT_MAX_POSITION = ZERO;

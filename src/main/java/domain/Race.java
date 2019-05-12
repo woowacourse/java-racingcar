@@ -3,6 +3,7 @@ package domain;
 import util.Util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,15 +15,27 @@ import java.util.Objects;
 public class Race {
     private List<Car> raceCars;
     private int maxPosition;
+    private HashMap<String, Integer> roundCounts;
+    private static final String ROUND_COUNT = "roundCount";
+    private static final String NOW_ROUND_COUNT = "nowRoundCount";
 
     public Race(List<Car> raceCars) {
+        this(raceCars, Const.MIN_ROUND_COUNT + 1);
+    }
+
+    public Race(List<Car> raceCars, int roundCount) {
+        Util.checkRoundCountRange(roundCount);
         this.raceCars = raceCars;
+        this.roundCounts = new HashMap<>();
+        this.roundCounts.put(ROUND_COUNT, roundCount);
+        this.roundCounts.put(NOW_ROUND_COUNT, Const.MIN_ROUND_COUNT);
+
         this.maxPosition = Const.RACE_OBJ_INIT_MAX_POSITION;
         setMaxPosition(this.raceCars);
     }
 
     private void setMaxPosition(List<Car> cars) {
-        for(Car car : cars){
+        for (Car car : cars) {
             setMaxPosition(car);
         }
     }
@@ -50,11 +63,27 @@ public class Race {
         return String.join(",", winners);
     }
 
-    public void moveAllCarOneTime() {
+    public Race moveAllCars() {
+        while (hasNextRound()) {
+            moveAllCarOneTime();
+        }
+        return this;
+    }
+
+    public boolean hasNextRound() {
+        if (roundCounts.get(NOW_ROUND_COUNT) < roundCounts.get(ROUND_COUNT)) {
+            return true;
+        }
+        return false;
+    }
+
+    public Race moveAllCarOneTime() {
         for (Car car : raceCars) {
             car.increasePositionOrNot(Util.getRandomNumber());
             setMaxPosition(car);
         }
+        roundCounts.put(NOW_ROUND_COUNT, roundCounts.get(NOW_ROUND_COUNT) + 1);
+        return this;
     }
 
     @Override
@@ -62,12 +91,12 @@ public class Race {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Race race = (Race) o;
-        return maxPosition == race.maxPosition &&
-                Objects.equals(raceCars, race.raceCars);
+        return Objects.equals(raceCars, race.raceCars) &&
+                Objects.equals(roundCounts, race.roundCounts);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(raceCars, maxPosition);
+        return Objects.hash(raceCars, roundCounts);
     }
 }

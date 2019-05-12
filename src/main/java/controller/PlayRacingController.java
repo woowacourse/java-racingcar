@@ -3,7 +3,6 @@ package controller;
 import domain.Car;
 import domain.Const;
 import domain.Race;
-import util.Util;
 import view.InputView;
 import view.OutputView;
 
@@ -17,12 +16,9 @@ import java.util.List;
  */
 public class PlayRacingController {
     public static void playRacing() {
-        List<Car> cars = setCarName(InputView.inputCarNames());
-        int roundCount = setRoundCount(InputView.inputRoundCount());
-
+        Race race = new Race(setCarName(InputView.inputCarNames()), setRoundCount(InputView.inputRoundCount()));
         OutputView.outputGameResultTile();
-        Race race = RacingController.setRacingCars(cars);
-        race = outputMoveCar(race, roundCount);
+        playRacing(race);
         OutputView.outputWinners(race.getRaceWinners());
     }
 
@@ -44,11 +40,10 @@ public class PlayRacingController {
         }
     }
 
-    protected static Race outputMoveCar(Race race, int roundCount) {
-        for (int i = 0; i < roundCount; i++) {
-            race = RacingController.moveCar(race);
-            OutputView.outputGameResult(race.getRaceCarInfo());
+    protected static List<String> playRacing(Race race) {
+        while (race.hasNextRound()) {
+            OutputView.outputGameResult(RacingController.moveCar(race));
         }
-        return race;
+        return race.getRaceCarInfo();
     }
 }

@@ -24,7 +24,7 @@ public class RacingController {
         return carList;
     }
 
-    protected static int setRoundCount(int roundCount){
+    protected static int setRoundCount(int roundCount) {
         Util.checkRoundCountRange(roundCount);
         return roundCount;
     }
@@ -34,8 +34,8 @@ public class RacingController {
         return race;
     }
 
-    protected static Race moveCar(Race race) {
+    protected static List<String> moveCar(Race race) {
         race.moveAllCarOneTime();
-        return race;
+        return race.getRaceCarInfo();
     }
 }

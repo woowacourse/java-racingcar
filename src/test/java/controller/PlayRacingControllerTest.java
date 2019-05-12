@@ -30,10 +30,10 @@ class PlayRacingControllerTest {
     void setUp() {
         carNameList = Arrays.asList(carNames.split(","));
         cars = new ArrayList<>();
-        for (String name : carNameList){
+        for (String name : carNameList) {
             cars.add(new Car(name));
         }
-        race = new Race(cars);
+        race = new Race(cars, Integer.parseInt(roundCount));
     }
 
 
@@ -51,13 +51,13 @@ class PlayRacingControllerTest {
     }
 
     @Test
-    void outputMoveCar_확인() {
-        outputMoveCar(race,8);
+    void playRacing_확인() {
+        PlayRacingController.playRacing(race);
     }
 
     @Test
-    void outputMoveCar_우승자_결과까지_확인() {
-        outputMoveCar(race,8);
+    void playRacing_우승자_결과까지_확인() {
+        PlayRacingController.playRacing(race);
         OutputView.outputWinners(race.getRaceWinners());
     }
 
