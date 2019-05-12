@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class RacingGameController {
     private RacingGame racingGame;
+    private WinningCarsFinder winningCarsFinder;
 
     public void createCars() {
         racingGame = new RacingGame(InputView.inputCarList(), InputView.inputTryCount());
@@ -23,7 +24,8 @@ public class RacingGameController {
             allResult.add(playOneRound());
         }
         OutputView.outputAllTryCarPosition(allResult);
-        OutputView.outputWinners(WinningCarsFinder.findWinningCars(allResult.get(allResult.size() - 1).getRoundResult()));
+        winningCarsFinder = new WinningCarsFinder(allResult.get(allResult.size() - 1).getRoundResult());
+        OutputView.outputWinners(winningCarsFinder.getWinningCars());
     }
 
     private RoundResult playOneRound() {

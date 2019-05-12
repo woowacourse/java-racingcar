@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class OutputView {
     public static void outputAllTryCarPosition(ArrayList<RoundResult> rounds) {
         System.out.println("\n실행 결과");
-        for (RoundResult cars : rounds) {
-            outputCarPosition(cars);
+        for (RoundResult round : rounds) {
+            outputCarPosition(round);
         }
     }
 

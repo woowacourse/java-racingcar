@@ -3,23 +3,33 @@ package racingcar.domain;
 import java.util.ArrayList;
 
 public class WinningCarsFinder {
-    public static ArrayList<Car> findWinningCars(ArrayList<Car> cars) {
-        ArrayList<Car> winningCars = new ArrayList<>();
-        int farthestPosition = -1;
+    private ArrayList<Car> winningCars = new ArrayList<>();
+    private int farthestPosition = -1;
 
+
+    public WinningCarsFinder(ArrayList<Car> cars) {
         for (Car car : cars) {
-            if (car.isFartherPosition(farthestPosition)) {
-                winningCars.clear();
-                winningCars.add(car);
-                farthestPosition = car.getPosition();
-                continue;
-            }
-            if (car.isSamePosition(farthestPosition)) {
-                winningCars.add(car);
-            }
+            findSamePosition(car);
+            findFarthestPosition(car);
         }
-        return winningCars;
     }
 
+    private void findFarthestPosition(Car car) {
+        if (this.farthestPosition < car.getPosition()) {
+            winningCars.clear();
+            winningCars.add(car);
+            this.farthestPosition = car.getPosition();
+        }
+    }
 
+    private void findSamePosition(Car car) {
+        if (this.farthestPosition == car.getPosition()) {
+            winningCars.add(car);
+        }
+    }
+
+    public ArrayList<Car> getWinningCars() {
+        return this.winningCars;
+    }
 }
+
