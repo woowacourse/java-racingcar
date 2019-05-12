@@ -46,7 +46,9 @@ public class Race {
         return Collections.max(cars);
     }
 
-    private boolean isSamePosition(Car c1, Car c2) { return c1.compareTo(c2) == 0; }
+    private boolean isSamePosition(Car c1, Car c2) {
+        return c1.compareTo(c2) == 0;
+    }
 
     /*
      * 경기 결과 메소드
