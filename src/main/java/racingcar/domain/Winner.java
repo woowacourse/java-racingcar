@@ -13,7 +13,7 @@ public class Winner {
         this.cars = carList;
     }
 
-    public String getWinner() {
+    public List<String> getWinner() {
         int maxDistance;
         List<String> winners = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class Winner {
             }
         }
 
-        return String.join(",", winners);
+        return winners;
     }
 
     protected int getMaxDistance() {

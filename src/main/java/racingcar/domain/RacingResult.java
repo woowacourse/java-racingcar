@@ -8,7 +8,7 @@ public class RacingResult {
 
     public RacingResult(List<Car> cars) {
         Winner winner = new Winner(cars);
-        this.result = winner.getWinner();
+        //this.result = winner.getWinner();
     }
 
     @Override
