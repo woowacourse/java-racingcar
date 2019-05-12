@@ -21,7 +21,7 @@ public class CalculatorTest {
 
     @Test
     public void 곱셈() {
-        calculator = new Calculator(new String[]{"2.0", "*", "3.0"});
+       calculator = new Calculator(new String[]{"2.0", "*", "3.0"});
         assertThat(calculator.calculate()).isEqualTo(6.0);
     }
 
@@ -33,8 +33,7 @@ public class CalculatorTest {
 
     @Test
     public void 정상적인_입력() {
-        String testInput = "2 + 3 * 4 / 2";
-        Calculator cal = new Calculator(testInput.split(" "));
-        assertThat(cal.calculate()).isEqualTo(10);
+        calculator = new Calculator(new String[]{"2","+","3","*","4","/","2"});
+        assertThat(calculator.calculate()).isEqualTo(10);
     }
 }

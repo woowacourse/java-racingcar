@@ -1,50 +1,33 @@
 package calculator.domain;
 
 public class Calculator {
-    private String[] values;
+	private String[] values;
 
-    public Calculator(String[] values) {
-        this.values = values;
-    }
+	public Calculator(String[] values) {
+		this.values = values;
+	}
 
-    public double calculate() {
-        double result = Double.parseDouble(values[0]);
+	public double calculate() {
+		double result = Double.parseDouble(values[0]);
 
-        for (int i = 1; i < values.length - 1; i += 2) {
-            result = operate(result, values[i], Double.parseDouble(values[i + 1]));
-        }
-        return result;
-    }
+		for (int i = 1; i < values.length - 1; i += 2) {
+			result = operate(result, Double.parseDouble(values[i + 1]), Operator.of(values[i]));
+		}
+		return result;
+	}
 
-    private double operate(double first, String operator, double second) {
-        if (operator.equals("+")) {
-            return add(first, second);
-        }
-        if (operator.equals("-")) {
-            return subtract(first, second);
-        }
-        if (operator.equals("*")) {
-            return multiply(first, second);
-        }
-        if (operator.equals("/")) {
-            return divide(first, second);
-        }
-        throw new IllegalArgumentException("잘못된 계산식입니다.");
-    }
-
-    private double add(double a, double b) {
-        return a + b;
-    }
-
-    private double subtract(double a, double b) {
-        return a - b;
-    }
-
-    private double multiply(double a, double b) {
-        return a * b;
-    }
-
-    private double divide(double a, double b) {
-        return a / b;
-    }
+	private double operate(double num1, double num2, Operator operator) {
+		switch (operator) {
+			case ADDITION:
+				return num1 + num2;
+			case SUBTRACTION:
+				return num1 - num2;
+			case MULTIPLICATION:
+				return num1 * num2;
+			case DIVISION:
+				return num1 / num2;
+			default:
+				throw new IllegalArgumentException("올바르지 않은 계산식입니다.");
+		}
+	}
 }
