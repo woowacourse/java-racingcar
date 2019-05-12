@@ -13,7 +13,7 @@ public class RacingResult {
     protected static int getMaxPosition(List<Car> cars) {
         int maxPosition = 0;
         for (Car car : cars) {
-            maxPosition = Math.max(car.getPosition(), maxPosition);
+            maxPosition = car.findPositionBiggerThan(maxPosition);
         }
         return maxPosition;
     }

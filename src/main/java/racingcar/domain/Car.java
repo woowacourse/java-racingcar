@@ -9,7 +9,7 @@ public class Car {
     private static final int MAX_LENGTH = 5;
 
     private final String name;
-    private int position = 0;
+    private int position;
 
     public Car(String name) {
         this(name, 0);
@@ -55,10 +55,13 @@ public class Car {
         return this.position == position;
     }
 
-    @Override
+    public int findPositionBiggerThan(int position) {
+        return (this.position > position) ? this.position : position;
+    }
+
+   @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name + " : ");
+        StringBuilder sb = new StringBuilder(name + " : ");
         for (int i = 0; i < position; i++) {
             sb.append("-");
         }
