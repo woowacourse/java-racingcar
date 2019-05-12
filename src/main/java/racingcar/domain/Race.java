@@ -1,55 +1,41 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Race {
-    private final MovementStrategy strategy = new RandomMovement();
-    private final List<Car> cars = new ArrayList<>();
-    private int cursor = -1;
+    private static final int MIN_NUMBER_OF_CARS = 2;
+    private final List<Car> cars;
+    private final Movable strategy;
 
     public Race(List<String> names) {
-        names.stream()
+        cars = Collections.unmodifiableList(
+            names.stream()
+                .map(x -> x.trim())
                 .distinct()
+                .map(name -> new Car(name))
                 .collect(Collectors.toList())
-                .forEach(name -> cars.add(new Car(name)));
-        Collections.unmodifiableCollection(cars);
-        if (cars.isEmpty()) {
+        );
+        if (cars.size() < MIN_NUMBER_OF_CARS) {
             throw new IllegalArgumentException();
         }
+        strategy = new RandomMovement();
     }
 
-    /*
-    타입 겹침 회피용 인자 추가
-     */
-    public Race(List<Car> cars, boolean foobar) {
-        cars.stream()
-                .distinct()
-                .collect(Collectors.toList())
-                .forEach(car -> this.cars.add(car));
-        Collections.unmodifiableCollection(cars);
-        if (this.cars.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
+    public Race(List<Car> cars, Movable strategy) {
+        this.cars = cars;
+        this.strategy = strategy;
     }
 
-    public int getNumberOfCars() {
-        return cars.size();
-    }
-
-    /*
-    자동차 대수를 주기로 순서대로 진행함
-     */
-    public Car startRound() {
-        return cars.get(cursor = (cursor + 1) % cars.size()).move(strategy);
+    public List<Car> startEachRound() {
+        cars.forEach(car -> car.move(strategy));
+        return cars;
     }
 
     public List<Car> getWinners() {
-        Car oneOfTheWinners = Collections.max(cars);
         return cars.stream()
-                .filter(x -> x.isAtSamePositionWith(oneOfTheWinners))
+                .filter(x -> x.compareTo(Collections.max(cars)) == 0)
                 .collect(Collectors.toList());
     }
 }

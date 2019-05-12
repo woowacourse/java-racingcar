@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Random;
 
-public class RandomMovement implements MovementStrategy {
+public class RandomMovement implements Movable {
     static final int MOVE_THRES = 4;
     static final int MAX_RAND = 9;
 

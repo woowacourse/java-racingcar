@@ -1,30 +1,32 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
-import racingcar.domain.Race;
 
 import java.util.List;
 
 public class OutputView {
-    public static void printRounds(int numberOfTrials, Race race) {
+    public static void printRounds() {
         System.out.println("\n실행 결과");
-        for (int i = 0; i < numberOfTrials; i++) {
-            for (int j = 0; j < race.getNumberOfCars(); j++) {
-                printLane(race.startRound());
-            }
-            System.out.println();
-        }
+    }
+    public static void printEachRound(List<Car> cars) {
+        cars.forEach(car -> System.out.println(car + " : " + drawTrail(car.getPosition())));
+        System.out.println();
     }
 
-    public static void printLane(Car car) {
-        System.out.println(car + " : " + car.drawTrail());
+    private static String drawTrail(int position) {
+        StringBuffer trail = new StringBuffer();
+        for (int i = 0; i < position; i++) {
+            trail.append("-");
+        }
+        return trail.toString();
     }
 
     public static void printWinners(List<Car> winners) {
-        String result = winners.toString().replace("[", "").replace("]", "");
+        String result = winners.toString();
+        result = result.substring(1, result.length() - 1);
         System.out.println(
                 result
-                + Hangul.differentiateIGa(result)
+                + HangulPostposition.differentiateIGa(result)
                 + " 최종 우승했습니다."
         );
     }

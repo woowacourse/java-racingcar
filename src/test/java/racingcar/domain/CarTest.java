@@ -21,23 +21,12 @@ class CarTest {
     }
 
     @Test
-    void movementTest() {
-        assertThat(new Car("TOAST", 4).move(new ForceMove()).isAtSamePositionWith(new Car("TEST", 5))).isTrue();
+    void moveTest() {
+        assertThat(new Car("TOAST", 4).move(new AlwaysMove()).compareTo(new Car("TEST", 5))).isEqualTo(0);
     }
 
     @Test
-    void isAtSamePositionWithTest() {
-        assertThat(new Car("TOAST", 15).isAtSamePositionWith(new Car("TEST", 15))).isTrue();
-    }
-
-    @Test
-    void trailDrawingTest() {
-        assertThat(new Car("TOAST", 7).drawTrail()).isEqualTo("-------");
-    }
-}
-
-class ForceMove implements MovementStrategy {
-    public boolean isMovable() {
-        return true;
+    void stopTest() {
+        assertThat(new Car("TOAST", 4).move(new AlwaysStop()).compareTo(new Car("TEST", 4))).isEqualTo(0);
     }
 }
