@@ -12,6 +12,7 @@
 
 package racing.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,6 +46,31 @@ public class RacingGame {
 
     private int getRandomNumber() {
         return (int) (Math.random() * RANDOM_NUMBER_RANGE);
+    }
+
+    public String[] getWinners() {
+        int maxPosition = Collections.max(cars).getPosition();
+        String[] result = new String[countWinnerNumber(maxPosition)];
+
+        int index = 0;
+        for (Car car : cars) {
+            if (car.getPosition() == maxPosition) {
+                result[index] = car.getName();
+                index++;
+            }
+        }
+
+        return result;
+    }
+
+    private int countWinnerNumber(int number) {
+        int result = 0;
+        for (Car car : cars) {
+            if (car.getPosition() == number) {
+                result++;
+            }
+        }
+        return result;
     }
 
     @Override

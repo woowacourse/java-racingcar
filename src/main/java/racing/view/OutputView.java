@@ -51,33 +51,8 @@ public class OutputView {
     }
 
     public static void printResultTotal(RacingGame racingGame) {
-        String[] resultArray = getWinners(racingGame);
+        String[] resultArray = racingGame.getWinners();
         String result = String.join(", ", resultArray);
         System.out.println(result + RESULT_TOTAL_MESSAGE);
-    }
-
-    private static String[] getWinners(RacingGame racingGame) {
-        int maxPosition = Collections.max(racingGame.getCars()).getPosition();
-        String[] result = new String[countWinnerNumber(maxPosition, racingGame)];
-
-        int index = INT_ZERO;
-        for (Car car : racingGame.getCars()) {
-            if (car.getPosition() == maxPosition) {
-                result[index] = car.getName();
-                index++;
-            }
-        }
-
-        return result;
-    }
-
-    private static int countWinnerNumber(int number, RacingGame racingGame) {
-        int result = INT_ZERO;
-        for (Car car : racingGame.getCars()) {
-            if (car.getPosition() == number) {
-                result++;
-            }
-        }
-        return result;
     }
 }
