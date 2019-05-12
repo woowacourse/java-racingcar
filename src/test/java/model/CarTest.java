@@ -2,20 +2,21 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
     @Test
-    void 차이름길이_예외검사() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Car(new CarName("asdefg"));
-        });
-    }
+    void 차_전진_정지_검사() {
+        Car car1 = new Car(new CarName("coogi"),3);
+        car1.move(4);
+        assertThat(new Car(new CarName("coogi"),4)).isEqualTo(car1);
 
-    @Test
-    void 차이름_영문검사() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Car(new CarName("a1das"));
-        });
+        Car car2 = new Car(new CarName("coogi"));
+        car2.move(0);
+        assertThat(new Car(new CarName("coogi"))).isEqualTo(car2);
+
+        Car car3 = new Car(new CarName("coogi"));
+        car3.move(9);
+        assertThat(new Car(new CarName("coogi"),1)).isEqualTo(car3);
     }
 }

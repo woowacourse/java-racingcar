@@ -19,9 +19,13 @@ public class Cars implements Cloneable {
         }
     }
 
+    Cars(List<Car> cars) {
+        this.cars = cars;
+    }
+
     private static void checkCarNamesFormat(String inputCarNames) {
         if (!inputCarNames.matches(REGEX_CAR_NAMES_FORMAT)) {
-            throw new IllegalArgumentException("자동차 이름 형식에 맞지 않습니다.");
+            throw new IllegalArgumentException("자동차 이름 입력형식에 맞지 않습니다.");
         }
     }
 

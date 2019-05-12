@@ -9,27 +9,29 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GameResultTest {
-    List<Car> cars;
-    List<String> winners;
+    List<Car> carList;
+    Winners winners;
+    GameResult gameResult;
 
     @BeforeEach
     void setUp() {
-        cars = new ArrayList<>();
-        winners = new ArrayList<>();
+        carList = new ArrayList<>();
+        winners = new Winners();
+        gameResult = new GameResult();
     }
 
     @Test
     void 우승자추출_검사() {
-        cars.add(new Car(new CarName("coozy"), 5));
-        cars.add(new Car(new CarName("pobi"), 4));
-        cars.add(new Car(new CarName("jason"), 3));
-        cars.add(new Car(new CarName("nick"), 5));
+        carList.add(new Car(new CarName("coozy"), 5));
+        carList.add(new Car(new CarName("pobi"), 4));
+        carList.add(new Car(new CarName("jason"), 3));
+        carList.add(new Car(new CarName("nick"), 5));
 
-        GameResult result = new GameResult();
+        winners.addWinners("coozy");
+        winners.addWinners("nick");
 
-        winners.add("coozy");
-        winners.add("nick");
+        Cars cars = new Cars(carList);
 
-        assertThat(result.getWinners(cars)).isEqualTo(winners);
+        assertThat(gameResult.findWinner(cars).toString()).isEqualTo(winners.toString());
     }
 }
