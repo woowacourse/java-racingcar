@@ -30,7 +30,7 @@ public class Cars implements Cloneable {
         }
     }
 
-    Cars(List<Car> cars) {
+    public Cars(List<Car> cars) {
         this.cars = cars;
     }
 
@@ -54,7 +54,7 @@ public class Cars implements Cloneable {
         }
     }
 
-    List<Car> getCars() {
+    public List<Car> getCars() {
         return cars;
     }
 

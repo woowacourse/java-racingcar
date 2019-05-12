@@ -13,12 +13,12 @@ import model.*;
  * @version 1.0 2019년 05년 12일
  * @author 김효건
  */
-public class RacingGameService {
+public class RacingGameController {
     /*RacingCar 게임의 전체적인 로직(controller)를 담당하는 클래스*/
     private Cars cars;
     private LapCount lapCount;
 
-    public RacingGameService(String inputCarNames, String lapCount) {
+    public RacingGameController(String inputCarNames, String lapCount) {
         this.cars = new Cars(inputCarNames);
         this.lapCount = new LapCount(lapCount);
     }

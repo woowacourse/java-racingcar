@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @version 1.0 2019년 05년 12일
@@ -25,11 +26,59 @@ class CalculatorTest {
 	}
 
 	@Test
-	void 이항연산() {
-		assertThat(cal.execute("5 + 3")).isEqualTo(8);
-		assertThat(cal.execute("5 - 3")).isEqualTo(2);
-		assertThat(cal.execute("5 * 3")).isEqualTo(15);
-		assertThat(cal.execute("6 / 3")).isEqualTo(2);
+	void 항의개수_3미만_검사() {
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("3+");
+		});
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("*3");
+		});
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("3 +");
+		});
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("/ 3");
+		});
+	}
+
+	@Test
+	void 항의개수_홀수_검사() {
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("3 * 5 +");
+		});
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("3 * 5 + 7 *");
+		});
+	}
+
+	@Test
+	void 정수입력위치_오류() {
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("+ 3 * 7");
+		});
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("3 * +");
+		});
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("! * 3");
+		});
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("a - 3");
+		});
+	}
+
+	@Test
+	void 연산자입력위치_오류() {
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("3 5");
+		});
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("3 ! 5");
+		});
+
+		assertThrows(IllegalArgumentException.class, ()->{
+			cal.execute("3 + 5 a 6");
+		});
 	}
 
 	@Test

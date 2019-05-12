@@ -23,12 +23,12 @@ public class Car implements Comparable<Car>, Cloneable {
         this.name = carName.getName();
     }
 
-    Car(CarName carName, int position) {
+    public Car(CarName carName, int position) {
         this.name = carName.getName();
         this.position = position;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
@@ -71,7 +71,7 @@ public class Car implements Comparable<Car>, Cloneable {
         return sb.append("\n").toString();
     }
 
-    Car copy() throws CloneNotSupportedException {
+    public Car copy() throws CloneNotSupportedException {
         return (Car) this.clone();
     }
 }

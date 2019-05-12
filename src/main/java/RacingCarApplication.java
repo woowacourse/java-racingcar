@@ -6,7 +6,7 @@
  */
 import model.LapRecorder;
 import model.Winners;
-import controller.RacingGameService;
+import controller.RacingGameController;
 import view.InputView;
 import view.OutputView;
 
@@ -17,18 +17,18 @@ import view.OutputView;
 public class RacingCarApplication {
     /*자동차 게임을 실행시키는 메인 클래스*/
     public static void main(String[] args) throws CloneNotSupportedException {
-        RacingGameService racingGameService = setRacingGame();
+        RacingGameController racingGameService = setRacingGame();
         LapRecorder lapRecorder = racingGameService.run();
         Winners winners = racingGameService.getWinners();
         OutputView.printGameResult(lapRecorder);
         OutputView.printWinners(winners);
     }
 
-    private static RacingGameService setRacingGame() {
+    private static RacingGameController setRacingGame() {
         try {
             String inputCarNames = InputView.inputCarsNames();
             String lapCount = InputView.inputLapCount();
-            return new RacingGameService(inputCarNames, lapCount);
+            return new RacingGameController(inputCarNames, lapCount);
         } catch (IllegalArgumentException e) {
             return setRacingGame();
         }
