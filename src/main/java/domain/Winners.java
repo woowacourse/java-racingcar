@@ -21,8 +21,9 @@ public class Winners {
         return maxPosition;
     }
 
-    public String getRaceWinners(int maxPosition) {
+    public String getRaceWinners() {
         List<String> winners = new ArrayList<>();
+        int maxPosition = getMaxPosition();
 
         carsFinishedRace.stream().filter(x -> x.matchPosition(maxPosition))
                 .forEach(x -> winners.add(x.getName()));

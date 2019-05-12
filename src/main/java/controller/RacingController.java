@@ -11,6 +11,6 @@ public class RacingController {
         Winners winners = new Winners(race.moveAllCarsByRoundCount());
         OutputView.outputGameResultTile();
         OutputView.outputGameResult(race.toString());
-        OutputView.outputWinners(winners.getRaceWinners(winners.getMaxPosition()));
+        OutputView.outputWinners(winners.getRaceWinners());
     }
 }
