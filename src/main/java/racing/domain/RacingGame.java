@@ -50,7 +50,7 @@ public class RacingGame {
     }
 
     public String[] getWinners() {
-        int maxPosition = Collections.max(cars).getPosition();
+        int maxPosition = getMaxPosition(this.cars);
         String[] result = new String[countWinnerNumber(maxPosition)];
 
         int index = 0;
@@ -62,6 +62,10 @@ public class RacingGame {
         }
 
         return result;
+    }
+
+    private int getMaxPosition(List<Car> cars) {
+        return Collections.max(cars).getPosition();
     }
 
     private int countWinnerNumber(int number) {
