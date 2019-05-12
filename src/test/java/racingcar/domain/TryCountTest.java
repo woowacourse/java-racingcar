@@ -22,21 +22,21 @@ public class TryCountTest {
     @Test
     void 자연수가아닐때_익셉션이발생하는지_테스트() {
         assertThrows(IllegalArgumentException.class, () -> {
-            tryCount.validTryNumberException("-2");
+            tryCount.invalidTryNumberException("-2");
         });
     }
 
     @Test
     void 문자열을입력했을때_익셉션이발생하는지_테스트(){
         assertThrows(IllegalArgumentException.class, () -> {
-            tryCount.validTryNumberException("sdjflkdjf");
+            tryCount.invalidTryNumberException("sdjflkdjf");
         });
     }
 
     @Test
     void 자연수가아닐때_익셉션_로그가_제대로_출력되는지_테스트() {
         try {
-            tryCount.validTryNumberException("-2");
+            tryCount.invalidTryNumberException("-2");
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
@@ -45,7 +45,7 @@ public class TryCountTest {
     @Test
     void 문자열을_입력했을때_익셉션_로그가_제대로_출력되는지_테스트() {
         try {
-            tryCount.validTryNumberException("ㅁㄴㅇㄹ-2");
+            tryCount.invalidTryNumberException("ㅁㄴㅇㄹ-2");
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }

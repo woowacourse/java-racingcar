@@ -4,21 +4,34 @@ import racingcar.domain.*;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
-    public static void playGame() {
-        RacingCar racingCar = new RacingCar();
-        CarNames carNames = InputView.InputCarNames();
-        List<Car> cars = racingCar.createCar(carNames.getName());
-        TryCount tryCount = InputView.InputRacingTryCount();
+    private List<Car> cars;
+    private int tryCount;
 
+    public void playGame() {
+        CarProcessing carProcessing = new CarProcessing();
+
+        prepareGame(carProcessing);
         OutputView.printRacingResultTitle();
-        for (int i = 0; i < tryCount.getCount(); i++) {
-            RacingCar.race();
+        startGame(carProcessing);
+        OutputView.printWinner(new RacingResult(cars));
+    }
+
+    private void prepareGame(CarProcessing carProcessing) {
+        CarNames carNames = InputView.InputCarNames();
+
+        cars = carProcessing.createCar(carNames.getName());
+        tryCount = InputView.InputRacingTryCount().getCount();
+    }
+
+    private void startGame(CarProcessing carProcessing) {
+        for (int i = 0; i < tryCount; i++) {
+            carProcessing.race();
             OutputView.printRacingResult(cars);
         }
-        OutputView.printWinner(new RacingResult(cars));
     }
 
 }

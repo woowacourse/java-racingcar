@@ -19,14 +19,14 @@ public class CarNamesTest {
     @Test
     void 글자수가_1미만일때_테스트() {
         assertThrows(IllegalArgumentException.class, () ->{
-            carNames.minimumCarNameException("abc,,,def".split(","));
+            carNames.underCarNameLengthException("abc,,,def".split(","));
         });
     }
 
     @Test
     void 글자수_5자초과() {
         assertThrows(IllegalArgumentException.class, () ->{
-            carNames.maximumCarNameException("a,b,c,dwerwersdf".split(","));
+            carNames.overCarNameLengthException("a,b,c,dwerwersdf".split(","));
         });
     }
 

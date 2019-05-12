@@ -10,7 +10,7 @@ public class TryCount {
     }
 
     public TryCount(String stringCount) throws IllegalArgumentException {
-        validTryNumberException(stringCount);
+        invalidTryNumberException(stringCount);
 
         this.count = Integer.parseInt(stringCount);
     }
@@ -19,7 +19,7 @@ public class TryCount {
         return count;
     }
 
-    protected void validTryNumberException(String stringCount) throws IllegalArgumentException {
+    protected void invalidTryNumberException(String stringCount) throws IllegalArgumentException {
         if (!isNumeric(stringCount)) {
             throw new IllegalArgumentException("문자열을 입력할 수 없습니다.\n 다시 입력해 주세요.");
         }

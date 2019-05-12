@@ -4,6 +4,6 @@ import racingcar.controller.RacingGame;
 
 public class RacingApplication {
     public static void main(String[] args) {
-        RacingGame.playGame();
+        new RacingGame().playGame();
     }
 }

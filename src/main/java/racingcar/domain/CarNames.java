@@ -6,6 +6,7 @@ import java.util.List;
 public class CarNames {
     final static int MIN_CAR_LENGTH = 1;
     final static int MAX_CAR_LENGTH = 5;
+
     private String[] names;
 
     public CarNames(String name) throws IllegalArgumentException {
@@ -13,16 +14,17 @@ public class CarNames {
         String[] names = name.split(",");
         List<String> carNames = Arrays.asList(names);
 
-        minimumCarNameException(names);
+        underCarNameLengthException(names);
         duplicateNameException(carNames);
-        maximumCarNameException(names);
+        overCarNameLengthException(names);
 
         this.names = names;
     }
 
+    /* For Test */
     public CarNames(){
 
-    }; // 테스트용 생성자
+    }
 
     public String[] getName() {
         return names;
@@ -34,7 +36,7 @@ public class CarNames {
         }
     }
 
-    protected void minimumCarNameException(String[] names) throws IllegalArgumentException {
+    protected void underCarNameLengthException(String[] names) throws IllegalArgumentException {
         if (names.length < MIN_CAR_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 1글자 이상이여야 합니다.\n다시 입력해 주세요.");
         }
@@ -46,9 +48,9 @@ public class CarNames {
         }
     }
 
-    protected void maximumCarNameException(String[] names) throws IllegalArgumentException {
-        for (String name2 : names) {
-            if (name2.length() > MAX_CAR_LENGTH || name2.length() <= 0) {
+    protected void overCarNameLengthException(String[] names) throws IllegalArgumentException {
+        for (String name : names) {
+            if (name.length() > MAX_CAR_LENGTH || name.length() <= 0) {
                 throw new IllegalArgumentException("자동차 이름은 5글자 이내여야 합니다.\n다시 입력해 주세요.");
             }
         }
