@@ -7,9 +7,10 @@ import java.util.List;
 
 public class Game {
     public static void main(String[] args) {
-        play();
+        //play();
     }
 
+    /*
     public static void play() {
         List<Car> cars = InputView.getCars();
         int roundNum = InputView.getRoundNumber();
@@ -21,4 +22,5 @@ public class Game {
         }
         OutputView.showChampion(Rounds.calculateChampions(cars));
     }
+    */
 }
