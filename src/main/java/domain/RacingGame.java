@@ -19,6 +19,6 @@ public class RacingGame {
             OutputView.printCars(racingTrial.runTrial(cars));
         }
 
-        OutputView.printWinners(maxFinder.findAllMax(cars, Car.compareByPosition));
+        OutputView.printWinners(maxFinder.findAllMax(cars, Car.positionComparator));
     }
 }
