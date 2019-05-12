@@ -1,7 +1,7 @@
 package cal;
 
 public class TextCalculator {
-    public double calculate(String inputText) {
+    public static double calculate(String inputText) {
         String tokens[] = inputText.trim().split(" ");
         double result = toDouble(tokens[0]);
 
@@ -13,12 +13,12 @@ public class TextCalculator {
         return result;
     }
 
-    private double calculate(double result, String operator, double number) {
+    private static double calculate(double result, String operator, double number) {
         return CalculatorMapping.getCalculator(operator).calculate(result, number);
     }
 
 
-    private double toDouble(String value) {
+    private static double toDouble(String value) {
         try {
             return Double.parseDouble(value);
         } catch (Exception e) {
