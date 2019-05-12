@@ -13,7 +13,7 @@ public class CarTest {
     Car car;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         car = new Car("red");
     }
 
