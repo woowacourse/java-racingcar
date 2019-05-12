@@ -35,18 +35,18 @@ public class Race {
     /*
      * 우승자 판별 메소드
      */
-    public List<Car> judgeWinners(List<Car> cars) {
+    public static List<Car> judgeWinners(List<Car> cars) {
         List<Car> winners = new ArrayList<>(cars);
         Car winner = findWinner(cars);
         winners.removeIf((c) -> (!isSamePosition(c, winner)));
         return winners;
     }
 
-    private Car findWinner(List<Car> cars) {
+    private static Car findWinner(List<Car> cars) {
         return Collections.max(cars);
     }
 
-    private boolean isSamePosition(Car c1, Car c2) {
+    private static boolean isSamePosition(Car c1, Car c2) {
         return c1.compareTo(c2) == 0;
     }
 
