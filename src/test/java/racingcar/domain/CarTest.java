@@ -18,7 +18,7 @@ public class CarTest {
         assertThat(new Car("pobi")).isEqualTo(new Car("pobi"));
     }
 
-    @Test
+    /*@Test
     void 난수생성테스트() {
         for (int i = 0; i < 10; i++) {
             int num = car.generateRandomNumber();
@@ -34,7 +34,7 @@ public class CarTest {
             int num = car.generateRandomNumber();
             System.out.println(num + " " + car.isPossibleMove(num));
         }
-    }
+    }*/
 
     @Test
     void 숫자가_4이하일때_움직이지않는지_테스트() {

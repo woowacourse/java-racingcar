@@ -27,16 +27,6 @@ class CarGeneratorTest {
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("pobi"));
         cars.add(new Car("crong"));
-        assertThat(carGenerator.generateCars2("pobi,,,crong".split(",")).equals(cars)).isTrue();
-    }
-
-    @Test
-    void 자동차리스트가_잘저장되는지_테스트(){
-        List<Car> cars = new ArrayList<>();
-        cars.add(new Car("pobi"));
-        cars.add(new Car("crong"));
-
-        carGenerator.generateCars("pobi,crong".split(","));
-        assertThat(carGenerator.getCars()).isEqualTo(cars);
+        assertThat(carGenerator.generateCars("pobi,,,crong".split(","))).isEqualTo(cars);
     }
 }

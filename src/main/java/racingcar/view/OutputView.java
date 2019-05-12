@@ -12,18 +12,9 @@ public class OutputView {
 
     public static void printRacingResult(List<Car> cars) {
         for (Car car : cars) {
-            System.out.print(car.getName() + " : ");
-            printRacingPosition(car.getPosition());
+            System.out.print(car.getName() + " : " + car.toString());
         }
         System.out.println();
-    }
-
-    public static void printRacingPosition(int position) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            stringBuilder.append("-");
-        }
-        System.out.println(stringBuilder.toString());
     }
 
     public static void printWinner(RacingResult racingResult) {

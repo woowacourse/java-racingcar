@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Winner {
+    private final static int EQUAL_VALUE = 0;
+
     private List<Car> cars;
 
     public Winner(List<Car> carList) {
@@ -17,7 +19,7 @@ public class Winner {
 
         maxDistance = getMaxDistance();
         for (Car car : cars) {
-            if (car.getPosition() == maxDistance) {
+            if (car.compareToPosition(maxDistance) == EQUAL_VALUE) {
                 winners.add(car.getName());
             }
         }
@@ -29,7 +31,7 @@ public class Winner {
         int maxDistance = 0;
 
         for (Car car : cars) {
-            maxDistance = Math.max(maxDistance, car.getPosition());
+            maxDistance = Math.max(maxDistance, car.compareToPosition(maxDistance));
         }
 
         return maxDistance;

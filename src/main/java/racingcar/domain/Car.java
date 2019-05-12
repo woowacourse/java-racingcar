@@ -33,7 +33,14 @@ public class Car {
         return name;
     }
 
-    public int getPosition() {
+    /* For Test */
+    protected int getPosition() {
+        return position;
+    }
+
+    public int compareToPosition(int offset) {
+        if (this.position < offset) return -1;
+        if (this.position == offset) return 0;
         return position;
     }
 
@@ -52,9 +59,13 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "name='" + name + '\'' +
-                ", position=" + position +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < position; i++) {
+            stringBuilder.append("-");
+        }
+        stringBuilder.append("\n");
+
+        return stringBuilder.toString();
     }
 }
