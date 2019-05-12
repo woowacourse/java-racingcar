@@ -17,18 +17,12 @@ public enum IntOperator {
     }
 
     public static IntOperator valueOf(char operatorChar) {
-        if (operatorChar == PLUS.operatorSymbol) {
-            return PLUS;
+        for (IntOperator op : values()) {
+            if (operatorChar == op.operatorSymbol) {
+                return op;
+            }
         }
-        if (operatorChar == MINUS.operatorSymbol) {
-            return MINUS;
-        }
-        if (operatorChar == MULTIPLY.operatorSymbol) {
-            return MULTIPLY;
-        }
-        if (operatorChar == DIVIDE.operatorSymbol) {
-            return DIVIDE;
-        }
+
         throw new IllegalArgumentException("Invalid operator character: " + operatorChar);
     }
 
