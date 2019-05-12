@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingResult {
-    public static void process(List<Car> cars) {
+    public static List<String> findWinners(List<Car> cars) {
         int maxPosition = getMaxPosition(cars);
-        List<String> winners = getWinners(cars, maxPosition);
-        printWinners(winners);
+        return getWinners(cars, maxPosition);
     }
 
     protected static int getMaxPosition(List<Car> cars) {
@@ -23,10 +22,5 @@ public class RacingResult {
                 .filter(car -> car.matchPosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
-    }
-
-    private static void printWinners(List<String> winners) {
-        String result = String.join(", ", winners);
-        System.out.println(result + "가 최종 우승했습니다.");
     }
 }

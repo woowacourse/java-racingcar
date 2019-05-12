@@ -17,7 +17,8 @@ public class RacingCarController {
         int numOfGame = InputView.getNumberOfGame();
         playGame(racingCar, numOfGame);
 
-        RacingResult.process(cars);
+        List<String> winners = RacingResult.findWinners(cars);
+        OutputView.printWinners(winners);
     }
 
     private static void playGame(RacingCar racingCar, int numOfGame) {
