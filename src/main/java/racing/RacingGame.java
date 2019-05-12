@@ -22,7 +22,7 @@ public class RacingGame {
 
     private List<Car> generateCars() {
         try {
-            return getCarNames().stream()
+            return splitNames().stream()
                     .map(name -> new Car(name))
                     .collect(Collectors.toList());
         } catch (Exception e) {
@@ -31,14 +31,14 @@ public class RacingGame {
         }
     }
 
-    private List<String> getCarNames() {
-        List<String> splitNames = Arrays.asList(InputView.inputCarNames().split(","));
+    private List<String> splitNames() {
+        List<String> names = Arrays.asList(InputView.inputCarNames().split(","));
 
-        if (splitNames.isEmpty()){
+        if (names.isEmpty()){
             throw new IllegalArgumentException(ErrorMessages.NAME_NULL.getMessage());
         }
 
-        return splitNames;
+        return names;
     }
 
     private void startRace(RacingCars racingCars, RepeatNumber repeatNumber) {
