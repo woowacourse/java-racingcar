@@ -40,7 +40,7 @@ public class TextCalculatorTest {
         TextCalculator.calculate("+ 2");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected =  NullPointerException.class)
     public void 연속_숫자() {
         TextCalculator.calculate("2 2 2");
     }
