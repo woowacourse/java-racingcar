@@ -3,78 +3,54 @@ package calculator.calcinterface;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sun.jvm.hotspot.jdi.ArrayTypeImpl;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorLineTest {
     private CalculatorLine calculatorLine;
-    private UserInterfaceView userInterfaceView;
-
-    @BeforeEach
-    void setUp() {
-        calculatorLine = new CalculatorLine();
-        userInterfaceView = new UserInterfaceView();
-    }
 
     @Test
     void 덧셈() {
-        assertThat(5).isEqualTo(
-                calculatorLine.calculateFormula(
-                        userInterfaceView.splitFormula("2 + 3")
-                )
-        );
+        calculatorLine = new CalculatorLine("2 + 3");
+        assertThat(5).isEqualTo(calculatorLine.calculateFormula());
     }
 
     @Test
     void 뺄셈() {
-        assertThat(2).isEqualTo(
-                calculatorLine.calculateFormula(
-                        userInterfaceView.splitFormula("5 - 3")
-                )
-        );
+        calculatorLine = new CalculatorLine("2 - 3");
+        assertThat(-1).isEqualTo(calculatorLine.calculateFormula());
     }
 
     @Test
     void 곱셈() {
-        assertThat(10).isEqualTo(
-                calculatorLine.calculateFormula(
-                        userInterfaceView.splitFormula("5 * 2")
-                )
-        );
+        calculatorLine = new CalculatorLine("2 * 3");
+        assertThat(6).isEqualTo(calculatorLine.calculateFormula());
     }
 
     @Test
     void 나눗셈() {
-        assertThat(2).isEqualTo(
-                calculatorLine.calculateFormula(
-                        userInterfaceView.splitFormula("10 / 5")
-                )
-        );
+        calculatorLine = new CalculatorLine("10 / 2");
+        assertThat(5).isEqualTo(calculatorLine.calculateFormula());
     }
 
     @Test
-    void 혼합_사칙연산() {
-        assertThat(15).isEqualTo(
-                calculatorLine.calculateFormula(
-                        userInterfaceView.splitFormula("2 + 3 - 2 * 10 / 2")
-                )
-        );
+    void 혼합_사칙_연산() {
+        calculatorLine = new CalculatorLine("2 + 3 * 2 / 5");
+        assertThat(2).isEqualTo(calculatorLine.calculateFormula());
     }
 
     @Test
-    void 나눗셈_예외처리() {
+    void 나눗셈_예외_처리() {
+        calculatorLine = new CalculatorLine("10 / 0");
         assertThrows(ArithmeticException.class, () -> {
-           calculatorLine.calculateFormula(
-                   userInterfaceView.splitFormula("10 / 0")
-           );
+            calculatorLine.calculateFormula();
         });
-
     }
 
     @AfterEach
     void tearDown() {
         calculatorLine = null;
-        userInterfaceView = null;
     }
 }

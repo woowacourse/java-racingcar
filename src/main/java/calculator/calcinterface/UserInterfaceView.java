@@ -9,10 +9,6 @@ public class UserInterfaceView {
         return SCANNER.nextLine();
     }
 
-    public String[] splitFormula(String formula) {
-        return formula.split(" ");
-    }
-
     public void outputResult(int result){
         System.out.println(result);
     }
