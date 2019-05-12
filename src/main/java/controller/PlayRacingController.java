@@ -28,9 +28,6 @@ public class PlayRacingController {
 
     protected static List<Car> setCarName(String carName) {
         try {
-            List<String> carNames = Arrays.asList(carName.split(","));
-            Util.checkDuplicatedStringList(carNames);
-            Util.checkStringListSize(carNames);
             return RacingController.setCars(Arrays.asList(carName.split(",")));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -40,8 +37,7 @@ public class PlayRacingController {
 
     protected static int setRoundCount(int roundCount) {
         try {
-            Util.checkRoundCountRange(roundCount);
-            return roundCount;
+            return RacingController.setRoundCount(roundCount);
         } catch (Exception e) {
             System.out.println(Const.EX_ROUND_COUNT);
             return setRoundCount(InputView.inputRoundCount());

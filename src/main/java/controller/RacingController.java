@@ -2,6 +2,7 @@ package controller;
 
 import domain.Car;
 import domain.Race;
+import util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,19 @@ import java.util.List;
  */
 public class RacingController {
     protected static List<Car> setCars(List<String> carNameList) {
+        Util.checkDuplicatedStringList(carNameList);
+        Util.checkStringListSize(carNameList);
         List<Car> carList = new ArrayList<>();
         for (String carName : carNameList) {
             carName = carName.trim();
             carList.add(new Car(carName));
         }
         return carList;
+    }
+
+    protected static int setRoundCount(int roundCount){
+        Util.checkRoundCountRange(roundCount);
+        return roundCount;
     }
 
     protected static Race setRacingCars(List<Car> carList) {
