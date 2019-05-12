@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CarNames {
-    final static int MIN_CAR_LENGTH = 1;
-    final static int MAX_CAR_LENGTH = 5;
+    private final static int MIN_CAR_LENGTH = 1;
+    private final static int MAX_CAR_LENGTH = 5;
 
     private String[] names;
 
@@ -22,8 +22,7 @@ public class CarNames {
     }
 
     /* For Test */
-    public CarNames(){
-
+    protected CarNames(){
     }
 
     public String[] getName() {

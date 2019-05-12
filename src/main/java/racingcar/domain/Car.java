@@ -31,15 +31,15 @@ public class Car {
         }
     }
 
-    protected boolean isPossibleMove(int num) { //테스트 코드를 위한 코드
+    private boolean isPossibleMove(int num) { //테스트 코드를 위한 코드
         return num > MOVE_OFFSET;
     }
 
-    protected boolean isPossibleMove() {
+    private boolean isPossibleMove() {
         return generateRandomNumber() > MOVE_OFFSET;
     }
 
-    protected int generateRandomNumber() {
+    private int generateRandomNumber() {
         return new Random().nextInt(RANDOM_NUMBER_OFFSET);
     }
 

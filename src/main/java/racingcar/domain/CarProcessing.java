@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class CarProcessing {
-    private List<Car> cars = null;
+    private List<Car> cars;
     private CarGenerator carGenerator;
 
     public CarProcessing() {
@@ -13,7 +13,7 @@ public class CarProcessing {
     }
 
     /* For Test */
-    public CarProcessing(CarGenerator carGenerator, List<Car> cars) {
+    protected CarProcessing(CarGenerator carGenerator, List<Car> cars) {
         this.carGenerator = carGenerator;
         this.cars = cars;
     }
@@ -30,7 +30,7 @@ public class CarProcessing {
     }
 
     /* For Test */
-    public List<Car> race(List<Car> cars, int num) {
+    protected List<Car> race(List<Car> cars, int num) {
         for (Car car : cars) {
             car.move(num);
         }
