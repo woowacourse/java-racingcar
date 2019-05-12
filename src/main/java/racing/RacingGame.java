@@ -33,13 +33,17 @@ public class RacingGame {
     }
 
     private List<String> splitNames() {
-        List<String> names = Arrays.asList(InputView.inputCarNames().split(","));
+        List<String> names = Arrays.asList(inputNames().split(","));
 
         if (names.isEmpty()){
             throw new IllegalArgumentException(ErrorMessages.NAME_NULL.getMessage());
         }
 
         return names;
+    }
+
+    private String inputNames(){
+        return InputView.inputCarNames();
     }
 
     private void startRace(RacingCars racingCars, RepeatNumber repeatNumber) {
