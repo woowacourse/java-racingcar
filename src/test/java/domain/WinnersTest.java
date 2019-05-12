@@ -25,11 +25,6 @@ class WinnersTest {
     }
 
     @Test
-    void 최대_포지션_구하기() {
-        assertThat(winners.getMaxPosition()).isEqualTo(3);
-    }
-
-    @Test
     void 우승자_이름_구하기() {
         assertThat(winners.getRaceWinners()).isEqualTo("crong");
     }
