@@ -7,15 +7,10 @@ import racingcar.view.OutputView;
 import java.util.List;
 
 public class RacingGame {
-
-
-    static List<Car> cars = null;
-
-    public static void main(String[] args) {
+    public static void playGame() {
         RacingCar racingCar = new RacingCar();
-
         CarNames carNames = InputView.InputCarNames();
-        cars = racingCar.createCar(carNames.getName());
+        List<Car> cars = racingCar.createCar(carNames.getName());
         TryCount tryCount = InputView.InputRacingTryCount();
 
         OutputView.printRacingResultTitle();
