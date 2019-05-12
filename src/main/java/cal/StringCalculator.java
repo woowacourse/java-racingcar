@@ -33,12 +33,12 @@ public class StringCalculator {
         int num1 = 0;
 
         for (int i = 0; i < input.length; i++) {
-            putList(input[i],i);
+            putList(input[i], i);
         }
 
         num1 = numberList.get(0);
-        for(int i=0;i< numberList.size()-1; i++){
-            int num2 = numberList.get(i+1);
+        for (int i = 0; i < numberList.size() - 1; i++) {
+            int num2 = numberList.get(i + 1);
             char operator = operatorList.get(i);
             num1 = subCalculate(num1, num2, operator);
         }
@@ -47,13 +47,13 @@ public class StringCalculator {
     }
 
     int subCalculate(int num1, int num2, char operator) throws ArithmeticException {// 이거 좋게 구현하는 힌트
-        if(operator == '+') return add(num1,num2);
+        if (operator == '+') return add(num1, num2);
 
-        if(operator == '-') return minus(num1,num2);
+        if (operator == '-') return minus(num1, num2);
 
-        if(operator == '*') return multiple(num1,num2);
+        if (operator == '*') return multiple(num1, num2);
 
-        if(operator == '/') return divide(num1,num2);
+        if (operator == '/') return divide(num1, num2);
 
         return -1;
     }
