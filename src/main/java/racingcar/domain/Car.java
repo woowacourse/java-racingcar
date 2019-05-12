@@ -20,6 +20,11 @@ public class Car {
         this.position = position;
     }
 
+    public Car(Car car) {
+        this.name = car.getName();
+        this.position = car.getPosition();
+    }
+
     private void checkLimitCharacters(String carName) {
         if (carName.length() > LIMIT_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException(LIMIT_CAR_NAME_LENGTH + "자 이하의 자동차 이름만 허용됩니다.");

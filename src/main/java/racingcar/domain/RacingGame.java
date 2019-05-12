@@ -59,8 +59,8 @@ public class RacingGame {
         ArrayList<Car> racingResult = new ArrayList<>();
         for (Car car : cars) {
             randomMove(car);
+            racingResult.add(new Car(car));
         }
-        racingResult.addAll(cars);
         return racingResult;
     }
 
