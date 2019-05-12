@@ -27,10 +27,11 @@ public class Car implements Comparable<Car> {
         this.position = position;
     }
 
-    public void increasePositionOrNot(int random) {
+    public int increasePositionOrNot(int random) {
         if (Const.GO_RAN_NUM <= random) {
             this.position++;
         }
+        return this.position;
     }
 
     public boolean isGreater(int position) {
