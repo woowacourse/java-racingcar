@@ -30,8 +30,7 @@ public class InputView {
 
     public String[] getCarNames() {
         try {
-            String[] tmp = sc.next().split(CAR_NAME_INPUT_DELIMITER);
-            return tmp;
+            return sc.next().split(CAR_NAME_INPUT_DELIMITER);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getCarNames();
