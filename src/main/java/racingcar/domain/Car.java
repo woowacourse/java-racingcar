@@ -34,10 +34,6 @@ public class Car {
         return name;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     private int makeRandomNumber() {
         return (int) (Math.random() * RANDOM_NUMBER_LIMIT);
     }
