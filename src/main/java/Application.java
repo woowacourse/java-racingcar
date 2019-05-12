@@ -1,5 +1,7 @@
+import domain.GameProgressService;
 import domain.GameResult;
 import domain.WinnerCars;
+import domain.WinnerDecisionService;
 import view.InputView;
 import view.OutputView;
 
@@ -11,11 +13,12 @@ public class Application {
     }
 
     private static void run() {
+        WinnerCars winnerCars;
         gameResult = new GameResult(InputView.inputNames(), InputView.inputRound());
-        WinnerCars winnerCars = new WinnerCars();
 
         race();
-        winnerCars.determineWinners(gameResult);
+        winnerCars = new WinnerCars(WinnerDecisionService.decideWinners(gameResult));
+
         OutputView.printWinners(winnerCars);
     }
 
@@ -23,7 +26,7 @@ public class Application {
         System.out.println("실행 결과");
 
         for (int i = 1; i <= gameResult.getGameRound(); i++) {
-            gameResult.raceByRound();
+            GameProgressService.raceByRound(gameResult);
             OutputView.printPosition(gameResult);
             System.out.println();
         }

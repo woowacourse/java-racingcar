@@ -7,6 +7,8 @@ import domain.WinnerCars;
 import java.util.List;
 
 public class OutputView {
+    private static final int INDEX_NUMBER_TO_CUT = 2;
+
     public static void printPosition(GameResult gameResult) {
         StringBuilder message = new StringBuilder();
         List<Car> cars = gameResult.getCars();
@@ -36,7 +38,7 @@ public class OutputView {
             message.append(car.getName()).append(", ");
         }
 
-        message = new StringBuilder(message.substring(0, message.length() - 2));
+        message = new StringBuilder(message.substring(0, message.length() - INDEX_NUMBER_TO_CUT));
         System.out.format("%s 이(가) 최종 우승했습니다.\n", message.toString());
     }
 }

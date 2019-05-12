@@ -3,6 +3,7 @@ package domain;
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
+    private static final int START_POSITION = 0;
     private static final int MOVE_CONDITION = 4;
 
     private final String name;
@@ -10,7 +11,7 @@ public class Car implements Comparable<Car> {
 
     Car(final String name) {
         this.name = name;
-        this.position = 0;
+        this.position = START_POSITION;
     }
 
     boolean isMove(int randomNumber) {
@@ -51,6 +52,7 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car o) {
-        return Integer.compare(o.position, this.position);
+        return Integer.compare(this.position, o.position);
+
     }
 }

@@ -1,8 +1,7 @@
 package domain;
 
-import utils.RandomUtil;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,19 +13,29 @@ public class GameResult {
         cars = new ArrayList<>();
         this.gameRound = gameRound;
 
+        registerCars(names);
+    }
+
+    private void registerCars(List<String> names) {
         for (String name : names) {
             cars.add(new Car(name));
         }
     }
 
-    public void raceByRound() {
+    Car decideMaxPositionCar() {
+        Car maxPositionCar = cars.get(0);
+
         for (Car car : cars) {
-            car.move(RandomUtil.randomNumber());
+            if (maxPositionCar.compareTo(car) < 0) {
+                maxPositionCar = car;
+            }
         }
+
+        return maxPositionCar;
     }
 
     public List<Car> getCars() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 
     public int getGameRound() {
