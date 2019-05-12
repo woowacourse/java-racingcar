@@ -17,18 +17,18 @@ public class InputView {
 	private InputView() {
 	}
 
-	public static List<Car> getCars() {
-		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-		return getCars(takeUserInput());
+	public static List<Car> showMessageOfInputCars() {
+		try {
+			System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+			return getCars(takeUserInput());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return showMessageOfInputCars();
+		}
 	}
 
 	public static List<Car> getCars(String input) {
-		try {
-			return makeCars(input);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return getCars();
-		}
+		return makeCars(input);
 	}
 
 	private static List<Car> makeCars(String input) {
@@ -45,18 +45,18 @@ public class InputView {
 				.collect(Collectors.toList());
 	}
 
-	public static GameCount getGameCount() {
-		System.out.println("시도할 횟수는 몇 회인가요?");
-		return getGameCount(takeUserInput());
+	public static GameCount showMessageOfInputGameCount() {
+		try {
+			System.out.println("시도할 횟수는 몇 회인가요?");
+			return getGameCount(takeUserInput());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return showMessageOfInputGameCount();
+		}
 	}
 
 	public static GameCount getGameCount(String input) {
-		try {
-			return makeGameCount(input);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return getGameCount();
-		}
+		return makeGameCount(input);
 	}
 
 	private static GameCount makeGameCount(String input) {
