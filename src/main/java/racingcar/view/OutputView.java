@@ -4,6 +4,7 @@ import racingcar.domain.Car;
 import racingcar.domain.RoundResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OutputView {
     public static void outputAllTryCarPosition(ArrayList<RoundResult> rounds) {
@@ -20,7 +21,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void outputWinners(ArrayList<Car> winners) {
+    public static void outputWinners(List<Car> winners) {
         ArrayList<String> winnersName = new ArrayList<>();
 
         for (Car car : winners) {
