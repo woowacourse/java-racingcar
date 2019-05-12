@@ -10,7 +10,7 @@ public class Car implements Cloneable, Comparable {
     private static final int MIN_NUM_OF_POSITION = 0;
 
     private final String name;
-    protected int position = 0;
+    private int position = 0;
 
     public Car(final String name) {
         this(name, 0);

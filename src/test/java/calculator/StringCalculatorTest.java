@@ -1,10 +1,8 @@
 package calculator;
 
 import calculator.domain.Operand;
-import calculator.domain.StringCalculator;
 import calculator.domain.Operator;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import calculator.domain.StringCalculator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,6 +1,3 @@
-/*
- * Operand.java
- */
 package calculator.domain;
 
 public class Operand {

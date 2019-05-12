@@ -1,6 +1,3 @@
-/*
- * OutputView.java
- */
 package calculator.view;
 
 public class OutputView {
