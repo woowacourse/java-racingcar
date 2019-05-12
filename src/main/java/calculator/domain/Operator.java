@@ -1,7 +1,26 @@
 package calculator.domain;
 
 public enum Operator {
-	ADDITION("+"), SUBTRACTION("-"), MULTIPLICATION("*"), DIVISION("/");
+	ADDITION("+") {
+		double operate(double num1, double num2) {
+			return num1 + num2;
+		}
+	},
+	SUBTRACTION("-") {
+		double operate(double num1, double num2) {
+			return num1 - num2;
+		}
+	},
+	MULTIPLICATION("*") {
+		double operate(double num1, double num2) {
+			return num1 * num2;
+		}
+	},
+	DIVISION("/") {
+		double operate(double num1, double num2) {
+			return num1 / num2;
+		}
+	};
 
 	private final String operator;
 
@@ -12,6 +31,8 @@ public enum Operator {
 	public String getOperator() {
 		return this.operator;
 	}
+
+	abstract double operate(double num1, double num2);
 
 	public static Operator getOperator(String s) {
 		for (Operator o : Operator.values()) {
