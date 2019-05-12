@@ -1,6 +1,5 @@
 package calculator;
 
-
 import exceptionsCalculator.CalculatorException;
 
 import java.util.ArrayList;
@@ -8,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Calculator {
+
     public static void main(String[] args) {
         doCalculate();
     }
@@ -40,18 +40,8 @@ public class Calculator {
     public static int calculate(List<Integer> listOfNumbers, List<String> listOfSymbols) {
         int result = listOfNumbers.get(0);
         for (int i = 0; i < listOfSymbols.size(); i++) {
-            result = applyCalculation(result, listOfNumbers.get(i + 1), listOfSymbols.get(i));
+            result = Calculate.RESULT.getCalculateResult(result, listOfNumbers.get(i + 1), listOfSymbols.get(i));
         }
         return result;
     }
-
-    public static int applyCalculation(int result, int number, String symbol) {
-        if (symbol.equals("+")) return result + number;
-        if (symbol.equals("-")) return result - number;
-        if (symbol.equals("/")) return CalculatorException.divisionException(result, number);
-        if (symbol.equals("*")) return result * number;
-        return CalculatorException.applyCalculationException();
-    }
-
-
 }

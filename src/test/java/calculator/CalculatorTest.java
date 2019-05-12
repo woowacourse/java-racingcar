@@ -39,7 +39,7 @@ public class CalculatorTest {
 
     @Test
     void innerCalculateTest() {
-        assertThat(Calculator.applyCalculation(2, 3, "+")).isEqualTo(5);
+        assertThat(Calculate.RESULT.getCalculateResult(2, 3, "+")).isEqualTo(5);
     }
 
 }
