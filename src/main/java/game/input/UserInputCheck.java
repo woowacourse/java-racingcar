@@ -26,6 +26,10 @@ public class UserInputCheck {
     public static boolean checkCarNamesLength(String[] carNames) {
         boolean isFIveOrLess = true;
 
+        if (carNames.length == 0) {
+            return false;
+        }
+
         for (String carName : carNames) {
             isFIveOrLess &= checkCarNameLength(carName);
         }
@@ -34,6 +38,7 @@ public class UserInputCheck {
     }
 
     private static boolean checkCarNameLength(String carName) {
+        System.out.println(carName.length());
         return carName.length() >= MIN_NAME_LENGTH
                 && carName.length() <= MAX_NAME_LENGTH;
     }
