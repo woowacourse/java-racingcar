@@ -1,4 +1,4 @@
-package racing.control;
+package racing.controller;
 
 import racing.domain.Race;
 import racing.domain.RaceResult;
@@ -8,7 +8,7 @@ import racing.view.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RaceOperator {
+public class RacingGame {
     private static Race race;
     private int numTrials;
 

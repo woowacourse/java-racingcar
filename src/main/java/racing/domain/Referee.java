@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class RaceReferee {
+public class Referee {
     private final List<Car> cars;
 
-    public RaceReferee(final List<Car> cars) {
+    public Referee(final List<Car> cars) {
         this.cars = cars;
     }
 

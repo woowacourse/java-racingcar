@@ -1,13 +1,13 @@
 package racing;
 
-import racing.control.RaceOperator;
+import racing.controller.RacingGame;
 
 public class RacingApplication {
 
     public static void main(String[] args) {
-        RaceOperator raceOperator = new RaceOperator();
-        raceOperator.setupGame();
-        raceOperator.startGame();
-        raceOperator.endGame();
+        RacingGame racingGame = new RacingGame();
+        racingGame.setupGame();
+        racingGame.startGame();
+        racingGame.endGame();
     }
 }

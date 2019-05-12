@@ -35,8 +35,8 @@ public class Race {
      * 경기 결과 메소드
      */
     public RaceResult getResult() {
-        RaceReferee raceReferee = new RaceReferee(cars);
-        return raceReferee.getResult();
+        Referee referee = new Referee(cars);
+        return referee.getResult();
     }
 
     @Override
