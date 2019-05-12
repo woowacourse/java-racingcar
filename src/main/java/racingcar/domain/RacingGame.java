@@ -55,25 +55,26 @@ public class RacingGame {
         }
     }
 
-    public ArrayList<ArrayList<Car>> raceAll() {
-        ArrayList<ArrayList<Car>> eachTryCars = new ArrayList<>();
-
-        for (int i = 0; i < tryCount; i++) {
-            race();
-            eachTryCars.add(cars);
-        }
-        return eachTryCars;
-    }
-
-    private void race() {
+    public ArrayList<Car> race() {
+        ArrayList<Car> racingResult = new ArrayList<>();
         for (Car car : cars) {
             randomMove(car);
         }
+        racingResult.addAll(cars);
+        return racingResult;
     }
 
     private void randomMove(Car car) {
         int randomNumber = Utils.RANDOM.nextInt(RANDOM_NUMBER_COUNT) + RANDOM_NUMBER_LOWER_BOUND;
 
         car.move(randomNumber);
+    }
+
+    public boolean isZeroTryCount() {
+        return tryCount == 0;
+    }
+
+    public void subtractTryCount() {
+        tryCount--;
     }
 }

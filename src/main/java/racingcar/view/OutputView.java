@@ -1,19 +1,20 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
+import racingcar.domain.RoundResult;
 
 import java.util.ArrayList;
 
 public class OutputView {
-    public static void outputAllTryCarPosition(ArrayList<ArrayList<Car>> eachTryCars) {
+    public static void outputAllTryCarPosition(ArrayList<RoundResult> rounds) {
         System.out.println("\n실행 결과");
-        for (ArrayList<Car> cars : eachTryCars) {
+        for (RoundResult cars : rounds) {
             outputCarPosition(cars);
         }
     }
 
-    private static void outputCarPosition(ArrayList<Car> cars) {
-        for (Car car : cars) {
+    private static void outputCarPosition(RoundResult round) {
+        for (Car car : round.getRoundResult()) {
             System.out.println(car);
         }
         System.out.println();

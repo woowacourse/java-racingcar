@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
+import racingcar.domain.RoundResult;
 import racingcar.domain.WinningCarsFinder;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -16,9 +17,20 @@ public class RacingGameController {
     }
 
     public void playRacingGame() {
-        ArrayList<ArrayList<Car>> allResult = racingGame.raceAll();
+        ArrayList<RoundResult> allResult = new ArrayList<>();
 
+        while (!racingGame.isZeroTryCount()) {
+            allResult.add(playOneRound());
+        }
         OutputView.outputAllTryCarPosition(allResult);
-        OutputView.outputWinners(WinningCarsFinder.findWinningCars(allResult.get(allResult.size() - 1)));
+        OutputView.outputWinners(WinningCarsFinder.findWinningCars(allResult.get(allResult.size() - 1).getRoundResult()));
+    }
+
+    private RoundResult playOneRound() {
+        ArrayList<Car> oneRound = new ArrayList<>();
+
+        oneRound = racingGame.race();
+        racingGame.subtractTryCount();
+        return new RoundResult(oneRound);
     }
 }
