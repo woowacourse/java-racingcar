@@ -15,8 +15,8 @@ public class RacingCars {
         cars.forEach(car -> car.move(Rules.generateRandomNumber()));
     }
 
-    public RaceStatusDto getRaceStatus() {
-        return new RaceStatusDto(cars);
+    public List<Car> getCars() {
+        return cars;
     }
 
     public List<String> getWinners() {

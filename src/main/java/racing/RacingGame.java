@@ -1,6 +1,7 @@
 package racing;
 
 import racing.domain.Car;
+import racing.domain.RaceStatusDto;
 import racing.domain.RacingCars;
 import racing.domain.RepeatNumber;
 import racing.view.ErrorMessages;
@@ -44,7 +45,7 @@ public class RacingGame {
     private void startRace(RacingCars racingCars, RepeatNumber repeatNumber) {
         for (int i = 0; i < repeatNumber.getNumber(); i++) {
             racingCars.race();
-            OutputView.printStatus(racingCars.getRaceStatus());
+            OutputView.printStatus(new RaceStatusDto(racingCars.getCars()));
         }
     }
 }
