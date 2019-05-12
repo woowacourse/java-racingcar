@@ -25,10 +25,10 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public int move(int randomNumber) {
-        if (Rule.isMove(randomNumber)) {
-            position++;
-        }
+    public int move(Rule rule) {
+
+        this.position = this.position + rule.getAugmenter();
+
         return position;
     }
 
@@ -42,10 +42,10 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car car) {
-        if (this.getPosition() < car.getPosition()) {
+        if (this.position < car.getPosition()) {
             return 1;
         }
-        if (this.getPosition() > car.getPosition()) {
+        if (this.position > car.getPosition()) {
             return -1;
         }
         return 0;

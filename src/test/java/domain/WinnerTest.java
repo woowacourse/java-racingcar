@@ -26,7 +26,7 @@ public class WinnerTest {
     @Test
     void 우승자구하기() {
         List<String> result = Arrays.asList("pobi", "honux");
-        assertThat(winner.getWinners()).isEqualTo(result);
+        assertThat(winner.getWinnerNames()).isEqualTo(result);
     }
 
     @AfterEach
