@@ -12,8 +12,8 @@ public class OutputView {
         }
     }
 
-    private static void outputCarPosition(ArrayList<Car> carList) {
-        for (Car car : carList) {
+    private static void outputCarPosition(ArrayList<Car> cars) {
+        for (Car car : cars) {
             System.out.println(car);
         }
         System.out.println();
