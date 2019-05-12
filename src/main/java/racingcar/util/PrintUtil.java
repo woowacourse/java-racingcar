@@ -1,7 +1,7 @@
 package racingcar.util;
 
 public class PrintUtil {
-    public static final int DEFAULT_SLEEP_TIME = 500;
+    private static final int DEFAULT_SLEEP_TIME = 500;
 
     private PrintUtil() {}
 
