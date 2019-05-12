@@ -62,6 +62,10 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
+    public boolean isSamePosition(int position) {
+        return this.position == position;
+    }
+
     public String getStringPosition() {
         char[] pos = new char[this.position];
         for (int i = 0; i < pos.length; i++) {

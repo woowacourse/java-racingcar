@@ -25,7 +25,7 @@ import java.util.Objects;
  * @see Car
  */
 public class RacingGame {
-    private static final int RANDOM_NUMBER_RANGE = 10;
+    private static final int RAND_INT_UPPER_BOUND = 10;
 
     private List<Car> cars;
 
@@ -46,7 +46,7 @@ public class RacingGame {
     }
 
     private int getRandomNumber() {
-        return (int) (Math.random() * RANDOM_NUMBER_RANGE);
+        return (int) (Math.random() * RAND_INT_UPPER_BOUND);
     }
 
     public String[] getWinners() {
@@ -55,7 +55,7 @@ public class RacingGame {
 
         int index = 0;
         for (Car car : cars) {
-            if (car.getPosition() == maxPosition) {
+            if (car.isSamePosition(maxPosition)) {
                 result[index] = car.getName();
                 index++;
             }
@@ -67,7 +67,7 @@ public class RacingGame {
     private int countWinnerNumber(int number) {
         int result = 0;
         for (Car car : cars) {
-            if (car.getPosition() == number) {
+            if (car.isSamePosition(number)) {
                 result++;
             }
         }
