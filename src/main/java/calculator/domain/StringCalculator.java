@@ -6,17 +6,17 @@ public class StringCalculator {
     public int calculate(String input) {
         String[] values = splitWithBlank(input);
         Operator operator = null;
-        int result = Integer.parseInt(values[0]);
+        Operand result = new Operand(values[0]);
 
         for (int i = 1; i < values.length; i++) {
             if (isInteger(values[i])) {
-                int nextValue = Integer.parseInt(values[i]);
-                result = operator.calculate(result, nextValue);
+                Operand nextValue = new Operand(values[i]);
+                result = new Operand(operator.calculate(result.intValue(), nextValue.intValue()));
                 continue;
             }
             operator = Operator.fromSymbol(values[i]);
         }
-        return result;
+        return result.intValue();
     }
 
     private String[] splitWithBlank(String value) {

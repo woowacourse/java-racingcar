@@ -1,5 +1,6 @@
 package calculator;
 
+import calculator.domain.Operand;
 import calculator.domain.StringCalculator;
 import calculator.domain.Operator;
 import org.junit.jupiter.api.AfterEach;
@@ -54,7 +55,14 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	public void 연산자외에_다른_기호로_생성했을때() {
+	public void Operand클래스에서_정수외에_다른_문자열로_생성했을때() {
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+			new Operand("+");
+		});
+	}
+
+	@Test
+	public void Operator클래스에서_연산자외에_다른_기호로_생성했을때() {
 		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
 			Operator.fromSymbol("!");
 		});

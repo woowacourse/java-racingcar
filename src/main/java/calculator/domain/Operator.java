@@ -41,8 +41,8 @@ public enum Operator {
 	private static final Map<String, Operator> stringToEnum = new HashMap<>();
 
 	static {
-		for (Operator op : values()) {
-			stringToEnum.put(op.symbol, op);
+		for (Operator operator : values()) {
+			stringToEnum.put(operator.symbol, operator);
 		}
 	}
 
@@ -51,10 +51,10 @@ public enum Operator {
 	}
 
 	public static Operator fromSymbol(String symbol) {
-		if (!Arrays.asList(values()).contains(symbol))
-			throw new IllegalArgumentException("+, -, *, / 를 연산자로 입력해주세요");
+		if (stringToEnum.containsKey(symbol))
+			return stringToEnum.get(symbol);
 
-		return stringToEnum.get(symbol);
+		throw new IllegalArgumentException("+, -, *, / 를 연산자로 입력해주세요");
 	}
 
 	abstract public int calculate(int first, int second);
