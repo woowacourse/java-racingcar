@@ -11,7 +11,6 @@ import static org.mockito.Mockito.*;
 
 class RacingTrialTest {
 
-
     // 받은 차들에 대해서 moveStrategy 가 적용된 차들을 움직여주는 역할
     @Test
     void runTrial_움직여야할차들만움직이는지확인() {
