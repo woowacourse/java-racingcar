@@ -8,7 +8,7 @@ public class RacingApp {
     private static Race race;
 
     public static void main(String[] args) {
-        initRace();
+        while(!initRace());
         startRace(getNumOfRounds());
         OutputView.printWinners(race.getWinners());
     }
@@ -20,12 +20,13 @@ public class RacingApp {
         }
     }
 
-    private static void initRace() {
+    private static boolean initRace() {
         try {
             race = new Race(InputView.inputCarNames());
+            return true;
         } catch (IllegalArgumentException e) {
             System.out.println("잘못된 입력입니다.");
-            initRace();
+            return false;
         }
     }
 
