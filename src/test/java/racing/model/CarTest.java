@@ -27,6 +27,13 @@ public class CarTest {
     }
 
     @Test
+    void create_position_음수(){
+        assertThrows(IllegalArgumentException.class, () ->{
+            new Car("pobi", -1);
+        });
+    }
+
+    @Test
     void move() {
         Car car = new Car("pobi");
         car.move(4);
