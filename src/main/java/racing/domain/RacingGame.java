@@ -24,7 +24,7 @@ import java.util.Objects;
  * @see Car
  */
 public class RacingGame {
-    private static final int INT_TEN = 10;
+    private static final int RANDOM_NUMBER_RANGE = 10;
 
     private List<Car> cars;
 
@@ -44,7 +44,7 @@ public class RacingGame {
     }
 
     private int getRandomNumber() {
-        return (int) (Math.random() * INT_TEN);
+        return (int) (Math.random() * RANDOM_NUMBER_RANGE);
     }
 
     @Override

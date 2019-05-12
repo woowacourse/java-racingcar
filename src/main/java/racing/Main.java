@@ -12,6 +12,7 @@
 
 package racing;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import racing.domain.Car;
@@ -29,6 +30,8 @@ import racing.view.OutputView;
  * @see RacingGame
  */
 public class Main {
+    private static final String CAR_NAMES_INVALID_ERROR = "레이싱 게임에 참여할 이름들을 입력해주세요.";
+
     public static void main(String[] args) {
         InputView inputView = new InputView();
         List<Car> cars = getCars(inputView);
@@ -38,7 +41,24 @@ public class Main {
 
     private static List<Car> getCars(InputView inputView) {
         OutputView.printMessageCarNames();
-        return inputView.getCarNames();
+        String[] cars = inputView.getCarNames();
+        return makeCarListFromArray(cars);
+    }
+
+    private static List<Car> makeCarListFromArray(String[] carNames) {
+        validInputs(carNames);
+        List<Car> carArrayList = new ArrayList<>();
+        for (String carName : carNames) {
+            Car tmpCar = new Car(carName);
+            carArrayList.add(tmpCar);
+        }
+        return carArrayList;
+    }
+
+    private static void validInputs(String[] carNames) {
+        if (carNames.length == 0) {
+            throw new IllegalArgumentException(CAR_NAMES_INVALID_ERROR);
+        }
     }
 
     private static int getRuns(InputView inputView) {
