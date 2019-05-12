@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.constant.Utils;
-
 import java.util.*;
 
 public class RacingGame {
@@ -54,7 +52,8 @@ public class RacingGame {
     }
 
     private Car randomMove(Car car) {
-        int randomNumber = Utils.RANDOM.nextInt(RANDOM_NUMBER_COUNT) + RANDOM_NUMBER_LOWER_BOUND;
+        Random random = new Random();
+        int randomNumber = random.nextInt(RANDOM_NUMBER_COUNT) + RANDOM_NUMBER_LOWER_BOUND;
 
         return car.move(randomNumber);
     }
