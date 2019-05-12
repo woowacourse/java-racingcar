@@ -3,6 +3,7 @@ package racing.domain;
 import racing.util.RandomNumberGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,11 +33,31 @@ public class Race {
     }
 
     /*
+     * 우승자 판별 메소드
+     */
+    public List<Car> judgeWinners() {
+        List<Car> winners = new ArrayList<>();
+        Car winner = findWinner(), curCar;
+        Iterator<Car> it = cars.iterator();
+        while (it.hasNext()) {
+            curCar = it.next();
+            if (curCar.compareTo(winner) == 0) {
+                winners.add(curCar);
+            }
+        }
+        return winners;
+    }
+
+    private Car findWinner() {
+        return Collections.max(cars);
+    }
+
+
+    /*
      * 경기 결과 메소드
      */
     public RaceResult getResult() {
-        Referee referee = new Referee(cars);
-        return referee.getResult();
+        return new RaceResult(judgeWinners());
     }
 
     @Override
