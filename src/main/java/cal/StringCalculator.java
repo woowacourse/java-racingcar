@@ -4,68 +4,32 @@ import java.util.Scanner;
 
 public class StringCalculator {
 
-    int plus(int a, int b) {
-        return a + b;
-    }
-
-    int sub(int a, int b) {
-        return a - b;
-    }
-
-    int mul(int a, int b) {
-        return a * b;
-    }
-
-    int div(int a, int b) {
-        return a / b;
-    }
-
-    int operation(int result, String oper, int next) {
-        if (oper.equals("+")) {
-            return plus(result, next);
-        }
-        if (oper.equals("-")) {
-            return sub(result, next);
-        }
-        if (oper.equals("*")) {
-            return mul(result, next);
-        }
-        if (oper.equals("/")) {
-            return div(result, next);
-        }
-        return -1;
-    }
-
-    int calculate(String value) {
+    int calculate(String value) throws IllegalArgumentException{
         String[] strings = value.split(" ");
         int length = strings.length;
         int result = Integer.parseInt(strings[0]);
 
         for (int i = 1; i < length; i += 2) {
-            result = operation(result, strings[i], Integer.parseInt(strings[i + 1]));
+            Operator oper = Operator.getOperator(strings[i]);
+            int next = Integer.parseInt(strings[i + 1]);
+            result = oper.calculate(result, next);
         }
         return result;
     }
 
-    void isInt(String value) {
-        if (value.matches("\\D")) {
-            throw new IllegalArgumentException("int miss");
+    String inputData() {
+        Scanner scanner = new Scanner(System.in);
+        String value = scanner.nextLine();
+        try {
+            String[] values = value.split(" ");
+            check(values);
+            return value;
+        } catch (IllegalArgumentException e) {
+            return inputData();
         }
     }
 
-    void isOperator(String value) {
-        if (!value.matches("[*]|[+]|-|/")) {
-            throw new IllegalArgumentException("operator miss");
-        }
-    }
-
-    void checkLength(int length){
-        if (length % 2 == 0) {
-            throw new IllegalArgumentException("length error");
-        }
-    }
-
-    void check(String[] values) {
+    private void check(String[] values) {
         int n = values.length;
         checkLength(n);
 
@@ -79,15 +43,21 @@ public class StringCalculator {
         }
     }
 
-    String inputData() {
-        Scanner scanner = new Scanner(System.in);
-        String value = scanner.nextLine();
-        try {
-            String[] values = value.split(" ");
-            check(values);
-            return value;
-        } catch (IllegalArgumentException e) {
-            return inputData();
+    private void isInt(String value) {
+        if (value.matches("\\D")) {
+            throw new IllegalArgumentException("int miss");
+        }
+    }
+
+    private void isOperator(String value) {
+        if (!value.matches("[*]|[+]|-|/")) {
+            throw new IllegalArgumentException("operator miss");
+        }
+    }
+
+    private void checkLength(int length) {
+        if (length % 2 == 0) {
+            throw new IllegalArgumentException("length error");
         }
     }
 
