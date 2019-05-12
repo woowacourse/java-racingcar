@@ -21,20 +21,29 @@ class CarTest {
     }
 
     @Test
-    void 자동차_객체_생성_예외처리() {
+    void 자동차_객체_생성_5글자_초과_예외처리() {
         assertThrows(IllegalArgumentException.class, () -> {
-            car = new Car("123456");            // 5글자 초과 이름 입력 시 예외
+            car = new Car("123456");
         });
+    }
 
+    @Test
+    void 자동차_객체_생성_0길이_예외처리() {
         assertThrows(IllegalArgumentException.class, () -> {
             car = new Car("");                  // 길이가 0인 name을 입력 시 예외
 
         });
+    }
 
+    @Test
+    void 자동차_객체_생성_null_예외처리() {
         assertThrows(IllegalArgumentException.class, () -> {
             car = new Car(null);                // null에 대한 예외
         });
+    }
 
+    @Test
+    void 자동차_객체_생성_공백_예외처리() {
         assertThrows(IllegalArgumentException.class, () -> {
             car = new Car(" ");                // 공백 입력 시 에외
         });
@@ -49,16 +58,6 @@ class CarTest {
     @Test
     void 자동차_포지션_일치_확인() {
         assertThat(car.matchPosition(0)).isTrue();
-    }
-
-    @Test
-    void 자동차_포지션_비교() {
-        assertThat(car.isGreaterThanMaxPosition(3)).isFalse();
-    }
-
-    @Test
-    void 자동차_포지션_차이() {
-        assertThat(car.getPositionGap(2)).isEqualTo(-2);
     }
 
     @AfterEach
