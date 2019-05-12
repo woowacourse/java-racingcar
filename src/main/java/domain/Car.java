@@ -40,9 +40,7 @@ public class Car {
         sb.append(name);
         sb.append(" : ");
 
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
+        IntStream.range(0, position).forEach((i) -> sb.append("-"));
 
         return sb.toString();
     }
