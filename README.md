@@ -69,8 +69,8 @@
 - [x] 클래스 초기화를 생성자를 통해 수행
     - [x] controller/RacingGame.java
     - [x] domain/Race.java
-- [ ] 메소드가 한 가지 일만 하도록 분리
-    - [ ] domain/Referee.java
+- [x] 메소드가 한 가지 일만 하도록 분리
+    - [x] domain/Race.java
 - [ ] 불필요한 테스트 코드를 제거
 - [ ] 서로 다른 케이스에 대해 테스트를 분리
 

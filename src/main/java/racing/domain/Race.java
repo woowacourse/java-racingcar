@@ -28,36 +28,31 @@ public class Race {
         Iterator<Car> it = cars.iterator();
         while (it.hasNext()) {
             Car car = it.next();
-            car.tryGoForward(RandomNumberGenerator.generate(Car.MAX_RANDOM_NUM_UPPER_BOUND));
+            car.tryGoForward(RandomNumberGenerator.generate(Car.RANDOM_NUM_UPPER_BOUND));
         }
     }
 
     /*
      * 우승자 판별 메소드
      */
-    public List<Car> judgeWinners() {
-        List<Car> winners = new ArrayList<>();
-        Car winner = findWinner(), curCar;
-        Iterator<Car> it = cars.iterator();
-        while (it.hasNext()) {
-            curCar = it.next();
-            if (curCar.compareTo(winner) == 0) {
-                winners.add(curCar);
-            }
-        }
+    public List<Car> judgeWinners(List<Car> cars) {
+        List<Car> winners = new ArrayList<>(cars);
+        Car winner = findWinner(cars);
+        winners.removeIf((c) -> (!isSamePosition(c, winner)));
         return winners;
     }
 
-    private Car findWinner() {
+    private Car findWinner(List<Car> cars) {
         return Collections.max(cars);
     }
 
+    private boolean isSamePosition(Car c1, Car c2) { return c1.compareTo(c2) == 0; }
 
     /*
      * 경기 결과 메소드
      */
     public RaceResult getResult() {
-        return new RaceResult(judgeWinners());
+        return new RaceResult(judgeWinners(cars));
     }
 
     @Override
