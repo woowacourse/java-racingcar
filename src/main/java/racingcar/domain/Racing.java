@@ -12,22 +12,23 @@ public class Racing {
     private static final int MAX_RANDOM_NUMBER = 9;
 
     private List<Car> cars;
-    private int numberOfTimes;
 
-    public Racing(List<String> carNames, int numberOfTimes) {
+    public Racing(List<String> carNames) {
         this.cars = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList())
         ;
-        this.numberOfTimes = numberOfTimes;
     }
 
-    public Winner run() {
-        for (int i = 0; i < numberOfTimes; ++i) {
-            cars.forEach(car -> car.moveOrNot(RandomNumberCreator.create(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)));
-            OutputView.printMoveResult(cars);
+    public List<Car> run() {
+        for (Car car : cars) {
+            car.moveOrNot(RandomNumberCreator.create(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER));
         }
 
+        return cars;
+    }
+
+    public Winner getWinner() {
         return new Winner(cars, getCarWithMaxPosition());
     }
 
