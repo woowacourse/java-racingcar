@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,6 @@ public class Racing {
 		this.racingResult = new RacingResult();
 	}
 
-
 	public Winner run() {
 		for (int i = 0; i < numberOfTimes; ++i) {
 			cars.forEach(car -> car.moveOrNot(RandomNumberCreator.create(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)));
@@ -32,12 +32,9 @@ public class Racing {
 		return getWinner();
 	}
 
-	private int getMaxPosition() {
-		int maxPosition = 0;
-		for (int i = 0; i < cars.size(); ++i) {
-			maxPosition = cars.get(i).comparePosition(maxPosition);
-		}
-		return maxPosition;
+	private Car getMaxPositionCar() {
+		Collections.sort(cars);
+		return cars.get(cars.size() - 1);
 	}
 
 	public RacingResult getRacingResult() {
@@ -45,7 +42,7 @@ public class Racing {
 	}
 
 	public Winner getWinner() {
-		return new Winner(cars, getMaxPosition());
+		return new Winner(cars, getMaxPositionCar());
 	}
 }
 

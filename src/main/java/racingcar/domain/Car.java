@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class Car {
+public class Car implements Comparable<Car>{
 	private static final int CAR_MOVE_CONDITION = 4;
 
 	private final String name;
@@ -24,13 +24,14 @@ public class Car {
 		return (position == maxDistance);
 	}
 
-	public int comparePosition(int distance) {
-		return ((this.position < distance) ? distance : this.position);
-	}
-
 	@Override
 	public String toString() {
 		return this.name;
+	}
+
+	@Override
+	public int compareTo(Car anotherCar) {
+		return ((this.position > anotherCar.position)? 1 : (this.position == anotherCar.position)? 0 : -1);
 	}
 
 }

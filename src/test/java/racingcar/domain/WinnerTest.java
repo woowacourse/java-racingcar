@@ -23,14 +23,14 @@ public class WinnerTest {
 
 	@Test
 	public void 우승자가_한명인_경우() {
-		Winner winner = new Winner(cars, 2);
+		Winner winner = new Winner(cars, cars.get(1));
 		assertTrue(winner.getWinner().equals(Arrays.asList(cars.get(1).toString())));
 	}
 
 	@Test
 	public void 우승자가_여러명인_경우() {
 		cars.get(2).moveOrNot(4);
-		Winner winner = new Winner(cars, 2);
+		Winner winner = new Winner(cars, cars.get(1));
 		assertTrue(winner.getWinner().equals(Arrays.asList(cars.get(1).toString(), cars.get(2).toString())));
 	}
 
