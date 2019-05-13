@@ -21,23 +21,20 @@ public class CarTest {
 
     @Test
     void create_but_name_is_null() {
-        assertThrows(NullPointerException.class, () -> {
-            new Car(null);
-        });
+        assertThrows(NullPointerException.class, ()
+                -> new Car(null));
     }
 
     @Test
     void create_but_name_is_too_short() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Car("");
-        });
+        assertThrows(IllegalArgumentException.class, ()
+                -> new Car(""));
     }
 
     @Test
     void create_but_name_is_too_long() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Car("caaaar");
-        });
+        assertThrows(IllegalArgumentException.class, ()
+                -> new Car("caaaar"));
     }
 
     @Test
