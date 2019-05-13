@@ -1,11 +1,11 @@
 package view;
 
-import racingcar.Car;
-import racingcar.Cars;
-import racingcar.Winners;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import racinggame.Car;
+import racinggame.Cars;
+import racinggame.Winners;
 
 
 public class OutputView {

@@ -1,6 +1,6 @@
 package controller;
 
-import racingcar.RacingGame;
+import racinggame.RacingGame;
 import view.InputView;
 import view.OutputView;
 

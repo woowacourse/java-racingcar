@@ -1,4 +1,4 @@
-package racingcar;
+package racinggame;
 
 import java.util.Comparator;
 import java.util.Iterator;

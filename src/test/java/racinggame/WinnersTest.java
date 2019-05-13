@@ -1,4 +1,4 @@
-package racingcar;
+package racinggame;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,6 +8,10 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import racinggame.Car;
+import racinggame.Cars;
+import racinggame.Winners;
 
 public class WinnersTest {
 	Winners winners;
