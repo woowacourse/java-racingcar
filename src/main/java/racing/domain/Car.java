@@ -54,23 +54,16 @@ public class Car implements Comparable<Car> {
         return number >= Rules.MIN_MOVABLE_NUMBER;
     }
 
-    public String getStatus() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name);
-        sb.append(" : ");
-        for (int i = 0; i < distance; i++) {
-            sb.append("-");
-        }
-
-        return sb.toString();
-    }
-
     public boolean isMatchDistance(Car car) {
         return this.distance == car.distance;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getDistance() {
+        return distance;
     }
 
     @Override

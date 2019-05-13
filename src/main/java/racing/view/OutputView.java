@@ -8,8 +8,25 @@ import java.util.List;
 public class OutputView {
     public static void printStatus(RaceStatusDto raceStatusDto) {
         List<Car> cars = raceStatusDto.getCars();
-        cars.forEach(car -> System.out.println(car.getStatus()));
-        System.out.println();
+
+        System.out.println(printStatus(cars).toString());
+    }
+
+    private static StringBuilder printStatus(List<Car> cars) {
+        StringBuilder sb = new StringBuilder();
+        for (Car car : cars) {
+            sb.append(car.getName());
+            sb.append(" : ");
+            printDistanceStatus(sb, car);
+            sb.append("\n");
+        }
+        return sb;
+    }
+
+    private static void printDistanceStatus(StringBuilder sb, Car car) {
+        for (int i = 0; i < car.getDistance(); i++) {
+            sb.append("-");
+        }
     }
 
     public static void printWinners(List<String> winners) {

@@ -10,7 +10,6 @@ public enum ConsoleMessages {
     ERR_INVALID_REPEAT_NUMBER("횟수는 1 이상이어야 합니다."),
     OUTPUT_WINNER_NAME("%s가 최종 우승했습니다.");
 
-
     private String message;
 
     private ConsoleMessages(String message){
