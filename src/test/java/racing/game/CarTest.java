@@ -36,12 +36,10 @@ class CarTest {
     void 차의_위치를_출력() {
         Car car = null;
         try {
-            car = new Car("pobi");
+            car = new Car("pobi", 2);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        car.move(4);
-        car.move(4);
         assertThat(car.toString()).isEqualTo("pobi : --");
     }
 

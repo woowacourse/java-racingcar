@@ -6,19 +6,27 @@ public class Car {
     private static final int NAME_LENGTH_MIN_LIMIT = 1;
     private static final int NAME_LENGTH_MAX_LIMIT = 6;
     private static final int BOUNDARY = 4;
+    private static final String POSITION_MARK = "-";
 
     private final String name;
     private int position = 0;
 
     public Car(final String name) throws Exception {
         this.name = name.trim();
-        if (checkNull(name) || checkInvalidNameLength(name))
+        if (checkNull(this.name) || checkInvalidNameLength(this.name))
+            throw new Exception();
+    }
+
+    public Car(final String name, int position) throws Exception {
+        this.name = name.trim();
+        this.position = position;
+        if (checkNull(this.name) || checkInvalidNameLength(this.name))
             throw new Exception();
     }
 
     public Car(final String name, List<Car> cars) throws Exception {
         this.name = name.trim();
-        if (checkNull(name) || checkInvalidNameLength(name) || checkRepetition(cars))
+        if (checkNull(this.name) || checkInvalidNameLength(this.name) || checkRepetition(cars))
             throw new Exception();
     }
 
@@ -54,7 +62,7 @@ public class Car {
     public String toString() {
         String carPosition = name + " : ";
         for (int i = 0; i < position; i++) {
-            carPosition += '-';
+            carPosition += POSITION_MARK;
         }
         return carPosition;
     }
