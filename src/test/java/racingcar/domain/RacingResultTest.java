@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,11 +14,10 @@ public class RacingResultTest {
 
     @BeforeEach
     void setUp() {
-        cars = new ArrayList<>();
-        cars.add(new Car("pobi", 1));
-        cars.add(new Car("cony", 5));
-        cars.add(new Car("whale", 10));
-        cars.add(new Car("mir", 10));
+        cars = Arrays.asList(new Car("pobi", 1),
+                new Car("cony", 5),
+                new Car("whale", 10),
+                new Car("mir", 10));
     }
 
     @Test
