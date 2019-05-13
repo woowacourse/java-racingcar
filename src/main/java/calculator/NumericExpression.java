@@ -41,7 +41,7 @@ public class NumericExpression {
     }
 
     private void checkInvalidToken(String token, int position) throws Exception {
-        if (position / 2 == 1) {
+        if (position % 2 == 1) {
             checkInvalidOperator(token);
             return;
         }

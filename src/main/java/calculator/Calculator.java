@@ -30,6 +30,7 @@ public class Calculator {
         if (operator.equals("*"))
             return multply(leftOperand, rightOperand);
         return divide(leftOperand, rightOperand);
+
     }
 
     public int calculateMultiExpression(String[] strings) {
