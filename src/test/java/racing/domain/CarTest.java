@@ -27,16 +27,16 @@ public class CarTest {
 
     @Test
     void goForwardFailTest() {
-        Car car =new Car("pobi");
+        Car car = new Car("pobi");
         car.tryGoForward(3);
-        assertThat(car).isEqualTo(new Car("pobi",0));
+        assertThat(car).isEqualTo(new Car("pobi", 0));
     }
 
     @Test
     void goForwardSuccessTest() {
-        Car car =new Car("pobi");
+        Car car = new Car("pobi");
         car.tryGoForward(4);
-        assertThat(car).isEqualTo(new Car("pobi",1));
+        assertThat(car).isEqualTo(new Car("pobi", 1));
     }
 
     @Test

@@ -60,8 +60,12 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(final Car another) {
-        if (position < another.position) { return -1; }
-        if (position > another.position) { return 1; }
+        if (position < another.position) {
+            return -1;
+        }
+        if (position > another.position) {
+            return 1;
+        }
         return 0;
     }
 }

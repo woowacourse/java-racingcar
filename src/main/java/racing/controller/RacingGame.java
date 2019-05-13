@@ -21,7 +21,11 @@ public class RacingGame {
         return race;
     }
 
-    public List<Car> getResult() { return race.getWinners(); }
+    public List<Car> getResult() {
+        return race.getWinners();
+    }
 
-    public boolean isEnd() { return numTrials == 0; }
+    public boolean isEnd() {
+        return numTrials == 0;
+    }
 }
