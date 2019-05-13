@@ -5,18 +5,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Winners implements Iterable<Car>{
+public class Winners implements Iterable<Car> {
 	private final List<Car> winners;
-	
+
 	public Winners(Cars cars, int maxPosition) {
 		winners = getWinners(cars, maxPosition);
 	}
-    
-    public List<Car> getWinners(Cars cars, int maxPosition) {
-    	return cars.stream()
-    			.filter(car -> car.matchPosition(maxPosition))
-    			.collect(Collectors.toList());
-    }
+
+	public List<Car> getWinners(Cars cars, int maxPosition) {
+		return cars.stream().filter(car -> car.matchPosition(maxPosition)).collect(Collectors.toList());
+	}
 
 	@Override
 	public Iterator<Car> iterator() {

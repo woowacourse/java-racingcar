@@ -5,28 +5,24 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Cars implements Iterable<Car>{
-    private final List<Car> cars;
+public class Cars implements Iterable<Car> {
+	private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
-    	this.cars = cars;
-    }
+	public Cars(List<Car> cars) {
+		this.cars = cars;
+	}
 
-    public void addCar(Car car) {
-        cars.add(car);
-    }
+	public void addCar(Car car) {
+		cars.add(car);
+	}
 
-    public int size() {
-        return cars.size();
-    }
+	public int size() {
+		return cars.size();
+	}
 
-    public int getMaxPosition() {
-    	return cars
-    			.stream()
-    			.max(Comparator.comparing(Car::getPosition))
-    			.get()
-    			.getPosition();
-    }
+	public int getMaxPosition() {
+		return cars.stream().max(Comparator.comparing(Car::getPosition)).get().getPosition();
+	}
 
 	@Override
 	public Iterator<Car> iterator() {
