@@ -12,19 +12,19 @@ import java.util.List;
 public class RacingGame {
 
     public void run() {
-        List<Car> cars = setCarName();
+        List<Car> cars = makeCarCategory();
         int number = inputNumber();
 
         System.out.println("\n" + MessageConstants.RESULT);
 
         for (int i = 0; i < number; i++) {
-            cars = getRacingPostion(cars);
+            cars = oneRoundPosition(cars);
         }
 
         System.out.println(ResultView.printWinner(getWinner(cars)));
     }
 
-    private List<Car> setCarName() {
+    private List<Car> makeCarCategory() {
         String[] name = InputView.inputName();
         List<Car> cars = new ArrayList<>();
 
@@ -39,9 +39,9 @@ public class RacingGame {
         return InputView.inputNumber();
     }
 
-    private List<Car> getRacingPostion(List<Car> cars) {
+    private List<Car> oneRoundPosition(List<Car> cars) {
         for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).move();
+            cars.get(i).isMovePosiotion();
         }
         ResultView.printResult(cars);
 
