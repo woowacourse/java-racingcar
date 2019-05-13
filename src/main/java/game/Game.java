@@ -20,7 +20,14 @@ public class Game {
         }
     }
 
-    public void playGame(List<Car> cars) {
+    public void playGame(List<Car> cars, int tryCount) {
+        while (tryCount-- > 0) {
+            playOneGame(cars);
+            ResultOutput.printEachGame(cars);
+        }
+    }
+
+    private void playOneGame(List<Car> cars) {
         for (Car car : cars) {
             car.move(randomValueGenerator());
         }

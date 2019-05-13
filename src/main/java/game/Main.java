@@ -13,14 +13,8 @@ public class Main {
         List<Car> cars = game.createCars(UserInput.inputCarNames());
         int tryCount = UserInput.inputTryCount();
 
-        startGame(game, winner, cars, tryCount);
+        game.playGame(cars, tryCount);
+        winner.selectWinners(cars);
         ResultOutput.printWinners(winner.getWinners());
-    }
-
-    private static void startGame(Game game, Winner winner, List<Car> cars, int maxInstance) {
-        while (!winner.checkWinner(cars, maxInstance)) {
-            game.playGame(cars);
-            ResultOutput.printEachGame(cars);
-        }
     }
 }
