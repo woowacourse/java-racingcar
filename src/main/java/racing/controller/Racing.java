@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Racing {
-    private final static String MSG_GAME_RESULT = "실행 결과";
     private final static String MSG_DUPLICATE_CAR_NAME = "중복된 차량 이름이 있습니다.";
     private final static String MSG_COUNT_MUST_POSITIVE = "게임횟수는 0보다 커야합니다.";
     private final static int RANDOM_NUMBER_RANGE= 10;
@@ -48,23 +47,21 @@ public class Racing {
         return cars.size() != carNames.size();
     }
 
-    public Winner run() {
-        OutputView.print(MSG_GAME_RESULT);
-        for (int i = 0; i < count; i++) {
-            moveCars();
-            OutputView.print("");
-        }
-        return new Winner(cars);
-    }
-
-    private void moveCars() {
+    public void moveCars() {
         for (Car car : cars) {
             car.move(getRandomNumber());
-            OutputView.print(car);
         }
     }
 
     private static int getRandomNumber() {
         return (int) (Math.random() * RANDOM_NUMBER_RANGE);
+    }
+
+    public Winner getWinners() {
+        return new Winner(cars);
+    }
+
+    public List<Car> getCars() {
+        return this.cars;
     }
 }
