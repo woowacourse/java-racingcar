@@ -1,4 +1,4 @@
-package cal;
+package cal.domain;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

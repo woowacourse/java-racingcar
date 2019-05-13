@@ -1,4 +1,6 @@
-package cal;
+package cal.view;
+
+import cal.domain.InputValues;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package cal;
+package cal.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,19 +9,19 @@ public class StringCalculator {
     private List<Integer> numbers = new ArrayList<>();
     private List<Character> operators = new ArrayList<>();
 
-    protected int add(int num1, int num2) {
+    public int add(int num1, int num2) {
         return num1 + num2;
     }
 
-    protected int minus(int num1, int num2) {
+    public int minus(int num1, int num2) {
         return num1 - num2;
     }
 
-    protected int multiple(int num1, int num2) {
+    public int multiple(int num1, int num2) {
         return num1 * num2;
     }
 
-    protected int divide(int num1, int num2) throws ArithmeticException {
+    public int divide(int num1, int num2) throws ArithmeticException {
         if (num2 == 0) {
             numbers.clear();
             operators.clear();
@@ -30,7 +30,7 @@ public class StringCalculator {
         return num1 / num2;
     }
 
-    protected int calculate(String[] input) throws ArithmeticException {
+    public int calculate(String[] input) throws ArithmeticException {
         int num1 = 0;
 
         for (int i = 0; i < input.length; i++) {

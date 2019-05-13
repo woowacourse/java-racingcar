@@ -1,4 +1,8 @@
-package cal;
+package cal.controller;
+
+import cal.domain.InputValues;
+import cal.domain.StringCalculator;
+import cal.view.InputView;
 
 public class Calculator {
     private static StringCalculator stringCalculator = new StringCalculator();

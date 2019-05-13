@@ -1,5 +1,6 @@
-package cal;
+package cal.controller;
 
+import cal.domain.StringCalculator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class CalculatorTest {
-    StringCalculator stringCalculator;
+    private StringCalculator stringCalculator;
 
     @BeforeEach
     void setUp() {
@@ -24,7 +25,7 @@ public class CalculatorTest {
     @Test
     void 뺼셈() {
         System.out.println("뺄셈");
-        assertThat(stringCalculator.minus(6, 2)).isEqualTo(3);
+        assertThat(stringCalculator.minus(6, 2)).isEqualTo(4);
     }
 
     @AfterEach

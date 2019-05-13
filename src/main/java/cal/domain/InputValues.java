@@ -1,4 +1,4 @@
-package cal;
+package cal.domain;
 
 public class InputValues {
     private final static int EVEN = 2;
@@ -14,11 +14,18 @@ public class InputValues {
                 continue;
             }
 
-            invalidateOperatorException(input[i]);
+            invalidateOperatorLengthException(input[i]);
+            unmatchedOperatorException(input[i]);
         }
     }
 
-    private void invalidateOperatorException(String s) {
+    private void invalidateOperatorLengthException(String s) {
+        if (s == null || s.length() > 1) {
+            throw new IllegalArgumentException("올바른 연산기호가 아닙니다.");
+        }
+    }
+
+    private void unmatchedOperatorException(String s) {
         char oper = s.charAt(0);
         if (oper != '+' && oper != '-' && oper != '*' && oper != '/') {
             throw new IllegalArgumentException("올바른 연산기호가 아닙니다.");
