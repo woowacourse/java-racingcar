@@ -9,7 +9,7 @@ public class RacingGame {
     private final Race race;
     private int numTrials;
 
-    public RacingGame(List<String> carNames, int numTrials) {
+    public RacingGame(final List<String> carNames, final int numTrials) {
         race = new Race(carNames);
         this.numTrials = numTrials;
     }

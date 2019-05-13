@@ -45,7 +45,7 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
@@ -59,13 +59,9 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public int compareTo(Car another) {
-        if (position < another.position) {
-            return -1;
-        }
-        if (position > another.position) {
-            return 1;
-        }
+    public int compareTo(final Car another) {
+        if (position < another.position) { return -1; }
+        if (position > another.position) { return 1; }
         return 0;
     }
 }
