@@ -3,7 +3,7 @@ package calculator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validator {
+public class ExpressionValidator {
     private final static String REGEX_CALCULATOR_FORMAT = "[0-9]{1,}([\\+|\\-|\\*|\\/][0-9]{1,}){1,}";
     private final static char SIGN_DIVIDE = '/';
 
