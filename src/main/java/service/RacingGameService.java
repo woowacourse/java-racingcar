@@ -14,18 +14,14 @@ public class RacingGameService {
     }
 
     private static LapRecord gameStart(Cars cars, LapCount lapCount) {
-        LapRecord lapRecord = new LapRecord();
-        Racing racing = new Racing(cars);
-        for (int lapNo = 1; lapNo <= lapCount.getLapCount(); lapNo++) {
-            racing.run();
-            lapRecord.add(cars.copy());
-        }
+        Racing racing = new Racing(cars, lapCount);
 
-        return lapRecord;
+        return racing.run();
     }
 
     private static Winners calculatorWinners(Cars cars) {
         GameResult gameResult = new GameResult();
+
         return gameResult.calculatorWinners(cars);
     }
 }
