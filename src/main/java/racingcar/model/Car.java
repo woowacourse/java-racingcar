@@ -1,6 +1,6 @@
 package racingcar.model;
 
-import org.junit.platform.commons.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Objects;

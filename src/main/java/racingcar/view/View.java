@@ -1,19 +1,13 @@
 package racingcar.view;
 
-import racingcar.model.CarList;
+import racingcar.model.RacingGame;
 import racingcar.model.WinningCars;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public final class View {
 
     private static final Scanner sc = new Scanner(System.in);
-
-    /* String matches에 사용할 숫자 REGEX 정의*/
-    private static final String NUMBER_REGEX = "[1-9][0-9]*$";
 
     public static void outputLine(String aString) {
         System.out.println(aString);
@@ -24,27 +18,13 @@ public final class View {
         return sc.nextLine().split(",");
     }
 
-    public static int inputNumberOfTry() {
-        String scannedNumberOfTry;
+    public static String inputNumberOfTry() {
         outputLine("시도할 횟수는 몇회인가요?");
-
-        do {
-            scannedNumberOfTry = sc.nextLine();
-        } while (!isValidTryNumber(scannedNumberOfTry));
-
-        return Integer.parseInt(scannedNumberOfTry);
+        return sc.nextLine();
     }
 
-    public static boolean isValidTryNumber(String scannedNumberOfTry) {
-        if (scannedNumberOfTry.matches(NUMBER_REGEX)) {
-            return true;
-        }
-        outputLine("잘못된 입력입니다. 1이상의 정수만 입력하세요.");    // 올바른 수가 아니면
-        return false;
-    }
-
-    public static void printCars(CarList carList) {
-        outputLine(carList.toString());
+    public static void printCars(RacingGame racingGame) {
+        outputLine(racingGame.toString());
     }
 
     public static void printWinningCars(WinningCars winningCars) {
