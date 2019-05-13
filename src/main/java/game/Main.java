@@ -1,5 +1,6 @@
 package game;
 
+import game.create.CarsGenerator;
 import game.input.UserInput;
 import game.input.UserInputCheck;
 import game.output.ResultOutput;
@@ -10,7 +11,8 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game();
         Winner winner = new Winner();
-        List<Car> cars = game.createCars(UserInput.inputCarNames());
+        String[] carNames = UserInput.inputCarNames();
+        List<Car> cars = CarsGenerator.createCars(carNames);
         int tryCount = UserInput.inputTryCount();
 
         game.playGame(cars, tryCount);
