@@ -35,4 +35,11 @@ public class CarTest {
         boolean result = car.isMaxInstance(3);
         assertThat(result).isEqualTo(true);
     }
+
+    @Test
+    void 자동차_이동_거리_출력_확인() {
+        car.move(4);
+        String result = car.toString();
+        assertThat(result).isEqualTo("bongjin : -");
+    }
 }

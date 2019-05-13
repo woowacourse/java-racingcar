@@ -26,4 +26,17 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+    @Override
+    public String toString() {
+        String result;
+
+        result =  name + " : ";
+
+        for (int i = 0; i < position; i++) {
+            result += "-";
+        }
+
+        return result;
+    }
 }

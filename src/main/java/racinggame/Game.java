@@ -20,7 +20,7 @@ public class Game {
     private void playOneGame(List<Car> cars) {
         for (Car car : cars) {
             car.move(randomValueGenerator());
-            resultOutput.eachGameOutput(car);
+            System.out.println(car.toString());
         }
         resultOutput.printNewLine();
     }
