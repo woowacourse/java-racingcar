@@ -3,7 +3,7 @@ package domain;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,12 +24,12 @@ class CarMoveFilterTest {
         when(mockedMoveStrategy.isMove()).thenReturn(expectedIsMoveds.get(0),
                 expectedIsMoveds.subList(1, expectedIsMoveds.size()).toArray(new Boolean[]{}));
 
-        ArrayList<Car> cars = new ArrayList(Stream.generate(() -> new Car("a")).limit(MAX_CARS).collect(Collectors.toList()));
+        List<Car> cars = new ArrayList(Stream.generate(() -> new Car("a")).limit(MAX_CARS).collect(Collectors.toList()));
         CarMoveFilter carMoveFilter = new CarMoveFilter(mockedMoveStrategy);
 
 
         // Act
-        ArrayList<Car> returnedCars = carMoveFilter.adjust(cars);
+        List<Car> returnedCars = carMoveFilter.adjust(cars);
 
         // Assert
         for (int i = 0; i < expectedIsMoveds.size(); i++) {

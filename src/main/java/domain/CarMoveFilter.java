@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarMoveFilter {
@@ -10,7 +10,7 @@ public class CarMoveFilter {
         this.moveStrategy = moveStrategy;
     }
 
-    public ArrayList<Car> adjust(ArrayList<Car> cars) {
-        return new ArrayList<>(cars.stream().filter((car) -> moveStrategy.isMove()).collect(Collectors.toList()));
+    public List<Car> adjust(List<Car> cars) {
+        return cars.stream().filter((car) -> moveStrategy.isMove()).collect(Collectors.toList());
     }
 }

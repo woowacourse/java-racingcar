@@ -2,8 +2,7 @@ package domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +16,7 @@ class CarFactoryTest {
         String[] names = str.split(",");
 
         // Act
-        ArrayList<Car> actuals = factory.newCars(str);
+        List<Car> actuals = factory.newCars(str);
 
         // Assert
         for (int i = 0; i < names.length && i < actuals.size(); i++) {
@@ -37,7 +36,7 @@ class CarFactoryTest {
         String[] names = str.split(",");
 
         // Act
-        ArrayList<Car> actuals = factory.newCars(str);
+        List<Car> actuals = factory.newCars(str);
 
         // Assert
         assertEquals(names.length, actuals.size());

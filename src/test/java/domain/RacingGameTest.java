@@ -2,8 +2,8 @@ package domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 
@@ -17,7 +17,7 @@ class RacingGameTest {
         racingGame = new RacingGame(mockedRacingTrial);
 
         int nTrials = 10;
-        ArrayList<Car> cars = new ArrayList<>(Arrays.asList(new Car("a"), new Car("b"), new Car("c")));
+        List<Car> cars = Arrays.asList(new Car("a"), new Car("b"), new Car("c"));
 
 
         // Act

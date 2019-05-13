@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,7 +34,7 @@ class MaxFinderTest {
             ArrayList<Integer> testCase = testCases.get(i);
 
             // Act
-            ArrayList<Integer> actual = maxFinder.findAllMax(testCase, Integer::compareTo);
+            List<Integer> actual = maxFinder.findAllMax(testCase, Integer::compareTo);
 
             // Assert
             assertEquals(expectedes.get(i), actual.size(), String.format("i: %d", i));

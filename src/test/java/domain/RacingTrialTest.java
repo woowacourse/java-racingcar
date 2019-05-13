@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class RacingTrialTest {
@@ -22,7 +22,7 @@ class RacingTrialTest {
             mockedCars.add(mockedCar);
         }
         ArrayList<Integer> movedIdxs = new ArrayList(Arrays.asList(0, 4, 9));
-        ArrayList<Car> movedCars = new ArrayList(movedIdxs.stream().map((Integer i) -> mockedCars.get(i)).collect(Collectors.toList()));
+        List<Car> movedCars = movedIdxs.stream().map((Integer i) -> mockedCars.get(i)).collect(Collectors.toList());
 
         CarMoveFilter mockedCarMoveFilter = mock(CarMoveFilter.class);
         when(mockedCarMoveFilter.adjust(mockedCars)).thenReturn(movedCars);

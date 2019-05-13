@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class RacingTrial {
     private final CarMoveFilter carMoveFilter;// = new CarMoveFilter();
@@ -9,8 +9,8 @@ public class RacingTrial {
         this.carMoveFilter = carMoveFilter;
     }
 
-    public ArrayList<Car> runTrial(ArrayList<Car> cars) {
-        ArrayList<Car> carsForMoving = carMoveFilter.adjust(cars);
+    public List<Car> runTrial(List<Car> cars) {
+        List<Car> carsForMoving = carMoveFilter.adjust(cars);
 
         for (Car car : carsForMoving) {
             car.move();
