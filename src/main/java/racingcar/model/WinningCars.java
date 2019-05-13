@@ -8,7 +8,7 @@ public class WinningCars {
     private static final int START_POSITION = 0;
     private List<String> winningCarNames = new ArrayList<>();
 
-    public WinningCars(Set<Car> cars) {
+    void setWinner(Set<Car> cars) {
         int maxPosition = START_POSITION;
         for (Car car : cars) {
             maxPosition = car.getMaxPosition(maxPosition);
@@ -18,7 +18,7 @@ public class WinningCars {
         }
     }
 
-    void addWinner(String name){
+    void addWinner(String name) {
         winningCarNames.add(name);
     }
 
