@@ -1,8 +1,9 @@
 package exceptionsCalculator;
 
-import calculator.Calculator;
+//import calculator.Calculator;
 
 import java.util.Scanner;
+/*
 
 public class CalculatorException {
 
@@ -37,3 +38,5 @@ public class CalculatorException {
     }
 
 }
+
+ */

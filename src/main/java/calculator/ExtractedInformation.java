@@ -2,12 +2,12 @@ package calculator;
 
 import java.util.*;
 
-public class Extractor {
+public class ExtractedInformation {
     private List<Integer> numbers = new ArrayList<>();
     private List<String> symbols = new ArrayList<>();
 
-    Extractor(List<String> expression) {
-        checkConditionsForExtractor(expression);
+    ExtractedInformation(List<String> expression) {
+        checkConditions(expression);
         for (int i = 0, n = expression.size(); i <n; i += 2) {
             numbers.add(Integer.parseInt(expression.get(i)));
         }
@@ -16,19 +16,35 @@ public class Extractor {
         }
     }
 
-    public static Extractor instantiateExtractor() {
+    public static ExtractedInformation instantiateExtractor() {
         try {
-            Extractor extractor = new Extractor(new ArrayList<>(Arrays.asList(InputView.askAndReceiveExpression().split(" "))));
-            return extractor;
+            ExtractedInformation extractedInfo = new ExtractedInformation(new ArrayList<>(Arrays.asList(InputView.askAndReceiveExpression().split(" "))));
+            return extractedInfo;
         } catch (Exception e) {
             return instantiateExtractor();
         }
     }
 
-    private static void checkConditionsForExtractor(List<String> expression) {
-        if (isSymbolsNotInCorrectOrder(expression) || isNotCalculable(expression)) {
+    private static void checkConditions(List<String> expression) {
+        if (isSymbolsNotInCorrectOrder(expression) || isNotCalculable(expression) || isZeroDivision(expression)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private static boolean isZeroDivision(List<String> expression) {
+        boolean zeroDivision = false;
+        for (int i = 1, n = expression.size(); i < n && !zeroDivision; i++) {
+            zeroDivision = checkZeroDivision(expression.get(i), expression.get(i-1));
+        }
+        return zeroDivision;
+    }
+
+    private static boolean checkZeroDivision(String symbol, String number) {
+        if (symbol.equals("/") && number.equals("0")) {
+            System.out.println("0으로 나눌 수 없습니다!");
+            return true;
+        }
+        return false;
     }
 
     private static boolean isSymbolsNotInCorrectOrder(List<String> expression) {
@@ -43,6 +59,7 @@ public class Extractor {
         if (symbol.equals("+") || symbol.equals("-") || symbol.equals("*") || symbol.equals("/")) {
             return false;
         }
+        System.out.println("기호가 잘못되었습니다!");
         return true;
     }
 
@@ -53,20 +70,36 @@ public class Extractor {
         for (int i = 0; i < n; i += 2) {
             numberCount++;
         }
-        for (int i = 1; i < n; i += 1 ) {
+        for (int i = 1; i < n; i += 2 ) {
             symbolCount++;
         }
-        if (numberCount + 1 > symbolCount) {
+        if (numberCount - symbolCount == 1) {
             return false;
         }
         return true;
+    }
+
+    public int getInitialValue() {
+        return numbers.get(0);
+    }
+
+    public int getSymbolSize() {
+        return symbols.size();
+    }
+
+    public int getNumber(int index) {
+        return numbers.get(index);
+    }
+
+    public String getSymbol(int index) {
+        return symbols.get(index);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Extractor extractor = (Extractor) o;
+        ExtractedInformation extractor = (ExtractedInformation) o;
         return Objects.equals(numbers, extractor.numbers) &&
                 Objects.equals(symbols, extractor.symbols);
     }

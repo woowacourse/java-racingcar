@@ -1,13 +1,41 @@
 package calculator;
 
 
-import exceptionsCalculator.CalculatorException;
+//import exceptionsCalculator.CalculatorException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class Calculator {
+
+    public static int calculate(ExtractedInformation extractedInfo) {
+        int result = extractedInfo.getInitialValue();
+        for (int i = 0, n = extractedInfo.getSymbolSize(); i < n; i++) {
+            result = applyCalculation(result, extractedInfo.getNumber(i + 1), extractedInfo.getSymbol(i));
+        }
+        return result;
+    }
+
+    public static int applyCalculation(int result, int number, String symbol) {
+        if (symbol.equals("+")) return result + number;
+        if (symbol.equals("-")) return result - number;
+        if (symbol.equals("/")) return divide(result, number);
+        if (symbol.equals("*")) return result * number;
+        //return CalculatorException.applyCalculationException();
+        return 7;
+    }
+
+    private static int divide(int result, int number){
+        if (number == 0) {
+            System.out.println("0이 분모에 있습니다.");
+            StringCalculatorLauncher.doCalculate();
+        }
+        return result / number;
+    }
+
+    /*
     public static void main(String[] args) {
         doCalculate();
     }
@@ -37,20 +65,5 @@ public class Calculator {
         return listOfSymbols;
     }
 
-    public static int calculate(List<Integer> listOfNumbers, List<String> listOfSymbols) {
-        int result = listOfNumbers.get(0);
-        for (int i = 0; i < listOfSymbols.size(); i++) {
-            result = applyCalculation(result, listOfNumbers.get(i + 1), listOfSymbols.get(i));
-        }
-        return result;
-    }
-
-    public static int applyCalculation(int result, int number, String symbol) {
-        if (symbol.equals("+")) return result + number;
-        if (symbol.equals("-")) return result - number;
-        if (symbol.equals("/")) return CalculatorException.divisionException(result, number);
-        if (symbol.equals("*")) return result * number;
-
-        return CalculatorException.applyCalculationException();
-    }
+     */
 }
