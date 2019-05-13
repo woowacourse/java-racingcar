@@ -22,7 +22,7 @@ public class Car {
         validCarName(name);
         validCarPosition(position);
 
-        this.name = name;
+        this.name = name.trim();
         this.position = position;
     }
 
