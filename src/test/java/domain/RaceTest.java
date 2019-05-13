@@ -48,11 +48,11 @@ class RaceTest {
 
     @Test
     void getRaceCarInfo_확인() {
-        List<String> carNames = new ArrayList<>();
+        List<String> carsInfo = new ArrayList<>();
         for (Car car : cars) {
-            carNames.add(car.toString());
+            carsInfo.add(car.toString());
         }
-        assertThat(race.getRaceCarInfo()).isEqualTo(carNames);
+        assertThat(race.getRaceCarsInfo()).isEqualTo(carsInfo);
     }
 
     @Test

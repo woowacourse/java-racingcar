@@ -2,7 +2,6 @@ package controller;
 
 import domain.Car;
 import domain.Race;
-import domain.Winners;
 import util.Util;
 
 import java.util.ArrayList;
@@ -37,6 +36,6 @@ public class RacingController {
 
     protected static List<String> moveCar(Race race) {
         race.moveAllCarOneTime();
-        return race.getRaceCarInfo();
+        return race.getRaceCarsInfo();
     }
 }
