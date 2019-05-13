@@ -1,15 +1,32 @@
 package domain;
 
-import utils.RandomUtil;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameProgressService {
-    public static void raceByRound(GameResult gameResult) {
+    private GameMovingStrategy strategy;
+
+    public GameProgressService(GameMovingStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public GameResult initGameResult(List<String> names) {
+        List<Car> cars = new ArrayList<>();
+
+        for (String name : names) {
+            cars.add(new Car(name));
+        }
+
+        return new GameResult(cars);
+    }
+
+    public GameResult raceByRound(GameResult gameResult) {
         List<Car> cars = gameResult.getCars();
 
         for (Car car : cars) {
-            car.move(RandomUtil.randomNumber());
+            car.move(strategy.getMovingNum());
         }
+
+        return new GameResult(cars);
     }
 }

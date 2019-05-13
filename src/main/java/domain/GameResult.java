@@ -7,22 +7,25 @@ import java.util.Objects;
 
 public class GameResult {
     private List<Car> cars;
-    private int gameRound;
 
-    public GameResult(List<String> names, int gameRound) {
-        cars = new ArrayList<>();
-        this.gameRound = gameRound;
-
-        registerCars(names);
+    GameResult(List<Car> cars) {
+        this.cars = cars;
     }
 
-    private void registerCars(List<String> names) {
-        for (String name : names) {
-            cars.add(new Car(name));
+    public List<Car> getWinners() {
+        List<Car> winnerCars = new ArrayList<>();
+        Car maxPositionCar = decideMaxPositionCar();
+
+        for (Car car : cars) {
+            if (maxPositionCar.isEqualPosition(car)) {
+                winnerCars.add(car);
+            }
         }
+
+        return Collections.unmodifiableList(winnerCars);
     }
 
-    Car decideMaxPositionCar() {
+    private Car decideMaxPositionCar() {
         Car maxPositionCar = cars.get(0);
 
         for (Car car : cars) {
@@ -38,21 +41,16 @@ public class GameResult {
         return Collections.unmodifiableList(cars);
     }
 
-    public int getGameRound() {
-        return gameRound;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GameResult that = (GameResult) o;
-        return gameRound == that.gameRound &&
-                Objects.equals(cars, that.cars);
+        return Objects.equals(cars, that.cars);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cars, gameRound);
+        return Objects.hash(cars);
     }
 }

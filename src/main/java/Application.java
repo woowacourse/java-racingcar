@@ -1,34 +1,41 @@
 import domain.GameProgressService;
 import domain.GameResult;
+import domain.RandomNumberStrategy;
 import domain.WinnerCars;
-import domain.WinnerDecisionService;
 import view.InputView;
 import view.OutputView;
 
 public class Application {
-    private static GameResult gameResult;
+    private static GameProgressService gameProgressService;
 
     public static void main(String[] args) {
         run();
     }
 
     private static void run() {
-        WinnerCars winnerCars;
-        gameResult = new GameResult(InputView.inputNames(), InputView.inputRound());
+        GameResult gameResult = initGame();
 
-        race();
-        winnerCars = new WinnerCars(WinnerDecisionService.decideWinners(gameResult));
-
-        OutputView.printWinners(winnerCars);
+        race(gameResult, InputView.inputRound());
+        completeGame(gameResult);
     }
 
-    private static void race() {
+    private static GameResult initGame() {
+        gameProgressService = new GameProgressService(new RandomNumberStrategy());
+        return gameProgressService.initGameResult(InputView.inputNames());
+    }
+
+    private static void race(GameResult gameResult, int gameRound) {
         System.out.println("실행 결과");
 
-        for (int i = 1; i <= gameResult.getGameRound(); i++) {
-            GameProgressService.raceByRound(gameResult);
+        for (int i = 1; i <= gameRound; i++) {
+            gameResult = gameProgressService.raceByRound(gameResult);
             OutputView.printPosition(gameResult);
             System.out.println();
         }
+    }
+
+    private static void completeGame(GameResult gameResult) {
+        WinnerCars winnerCars = new WinnerCars(gameResult.getWinners());
+        OutputView.printWinners(winnerCars);
     }
 }
