@@ -58,12 +58,12 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    public int getPosition() {
+    private int getPosition() {
         return position;
     }
 
-    public boolean isSamePosition(int position) {
-        return this.position == position;
+    public boolean isSamePosition(Car car) {
+        return this.position == car.getPosition();
     }
 
     public String getStringPosition() {

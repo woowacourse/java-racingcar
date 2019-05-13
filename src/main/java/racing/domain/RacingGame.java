@@ -49,33 +49,21 @@ public class RacingGame {
         return (int) (Math.random() * RAND_INT_UPPER_BOUND);
     }
 
-    public String[] getWinners() {
-        int maxPosition = getMaxPosition(this.cars);
-        String[] result = new String[countWinnerNumber(maxPosition)];
+    public String getWinners() {
+        Car maxCar = getMaxPosition(this.cars);
+        Winner winner = new Winner();
 
-        int index = 0;
         for (Car car : cars) {
-            if (car.isSamePosition(maxPosition)) {
-                result[index] = car.getName();
-                index++;
+            if (car.isSamePosition(maxCar)) {
+                winner.add(car);
             }
         }
 
-        return result;
+        return winner.getWinners();
     }
 
-    private int getMaxPosition(List<Car> cars) {
-        return Collections.max(cars).getPosition();
-    }
-
-    private int countWinnerNumber(int number) {
-        int result = 0;
-        for (Car car : cars) {
-            if (car.isSamePosition(number)) {
-                result++;
-            }
-        }
-        return result;
+    private Car getMaxPosition(List<Car> cars) {
+        return Collections.max(cars);
     }
 
     @Override

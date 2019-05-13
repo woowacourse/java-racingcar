@@ -12,8 +12,6 @@
 
 package racing.view;
 
-import java.util.Collections;
-
 import racing.domain.Car;
 import racing.domain.RacingGame;
 
@@ -50,8 +48,7 @@ public class OutputView {
     }
 
     public static void printResultTotal(RacingGame racingGame) {
-        String[] resultArray = racingGame.getWinners();
-        String result = String.join(", ", resultArray);
+        String result = racingGame.getWinners();
         System.out.println(result + RESULT_TOTAL_MESSAGE);
     }
 }
