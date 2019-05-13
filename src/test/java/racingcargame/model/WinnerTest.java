@@ -24,7 +24,6 @@ public class WinnerTest {
                 new Car("crong", 3),
                 new Car("honux", 1));
 
-        //assertThat(winner.makeWinner(cars).size()).isEqualTo(1);
         assertThat(winner.makeWinner(cars).contains("crong")).isTrue();
     }
 
@@ -35,8 +34,7 @@ public class WinnerTest {
                 new Car("honux", 3),
                 new Car("jason", 1));
 
-        //assertThat(winner.makeWinner(cars).size()).isEqualTo(2);
-        assertThat(winner.makeWinner(cars)).isEqualTo(Arrays.asList("crong", "honux"));
+        assertThat(winner.makeWinner(cars)).isEqualTo("crong,honux");
     }
 
     @AfterEach
