@@ -13,7 +13,6 @@ public class Car {
         this(name, 0);
     }
 
-    // Constructor for test code
     public Car(String name, int position) {
         if ("".equals(name) || name.length() > MAX_NAME_LENGTH || position < 0) {
             throw new IllegalArgumentException();

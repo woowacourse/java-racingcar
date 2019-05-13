@@ -1,12 +1,8 @@
 package racing.controller;
 
-import racing.model.Car;
 import racing.model.Winner;
 import racing.view.InputView;
 import racing.view.OutputView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Game {
     public static void main(String[] args) {

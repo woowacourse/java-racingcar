@@ -15,6 +15,7 @@ public class Racing {
     private final static String MSG_COUNT_MUST_POSITIVE = "게임횟수는 0보다 커야합니다.";
     private final static int RANDOM_NUMBER_RANGE= 10;
     private final static int POSITIVE_CONDITION = 1;
+    private final static int POSITION_INIT = 0;
 
     private final List<Car> cars;
     private final int count;
@@ -34,7 +35,7 @@ public class Racing {
     private List<Car> bindCars(String[] carNames){
         List<Car> bindingCars = new ArrayList<>();
         for (int i = 0; i < carNames.length; i++) {
-            bindingCars.add(new Car(carNames[i]));
+            bindingCars.add(new Car(carNames[i],POSITION_INIT));
         }
         return bindingCars;
     }
