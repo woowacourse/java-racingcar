@@ -9,13 +9,6 @@ public class Winners {
         this.carsFinishedRace = carsFinishedRace;
     }
 
-    private int getMaxPosition() {
-        return carsFinishedRace
-                .stream()
-                .max(Comparator.comparing(Car::getPosition))
-                .orElseThrow(NoSuchElementException::new).getPosition();
-    }
-
     public String getRaceWinners() {
         List<String> winners = new ArrayList<>();
         int maxPosition = getMaxPosition();
@@ -24,5 +17,12 @@ public class Winners {
                 .forEach(x -> winners.add(x.getName()));
 
         return String.join(",", winners);
+    }
+
+    private int getMaxPosition() {
+        return carsFinishedRace
+                .stream()
+                .max(Comparator.comparing(Car::getPosition))
+                .orElseThrow(NoSuchElementException::new).getPosition();
     }
 }
