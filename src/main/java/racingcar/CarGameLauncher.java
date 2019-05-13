@@ -12,7 +12,7 @@ public class CarGameLauncher {
 
     public static void doCarGame() {
         Cars cars = Cars.prepareCarsForRacing();
-        RacingGame racingGame = RacingGame.decideTotalTurns();
+        RacingGame racingGame = RacingGame.openNewGame();
         OutputView.printTheProcess(cars, racingGame);
         Winners winners = new Winners();
         winners.decideWinners(cars);

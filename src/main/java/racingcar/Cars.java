@@ -49,7 +49,7 @@ public class Cars {
     }
 
     public void updateCarMovement(int index) {
-        cars.get(index).moveCar(Car.randomNumberGenerator());
+        cars.get(index).moveCar(Rule.randomNumberGenerator());
     }
 
     public int decideMaxPosition() {

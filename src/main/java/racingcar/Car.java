@@ -5,7 +5,7 @@ import java.util.*;
 public class Car {
     private static final int NAME_LENGTH_LIMIT = 5;
     private static final int STOP_OR_GO = 4;
-    private static final int RANOM_GENERATING_NUMBER = 10;
+    private static final int RANDOM_GENERATING_NUMBER = 10;
 
     private final String name;
     private int position = 0;
@@ -39,10 +39,6 @@ public class Car {
             position++;
         }
         return this;
-    }
-
-    public static int randomNumberGenerator() {
-    return (int) (Math.random() * RANOM_GENERATING_NUMBER);
     }
 
     public int findMax(int max) {

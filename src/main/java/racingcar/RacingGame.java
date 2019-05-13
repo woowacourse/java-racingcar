@@ -4,7 +4,10 @@ import java.util.*;
 import racingcar.view.InputView;
 
 public class RacingGame {
+    private static final int TOTAL_TURNS_LIMIT = 0;
+
     private final int totalTurns;
+
 
     RacingGame(int totalTurns) {
         checkConditionsForTotalTurns(totalTurns);
@@ -12,18 +15,18 @@ public class RacingGame {
     }
 
     public static void checkConditionsForTotalTurns(int userInput) {
-        if (userInput <= 0) {
+        if (userInput <= TOTAL_TURNS_LIMIT) {
             throw new IllegalArgumentException();
         }
     }
 
-    public static RacingGame decideTotalTurns() {
+    public static RacingGame openNewGame() {
         try{
             int totalTurns = InputView.askAndReceiveTotalTurns();
             RacingGame racingGame = new RacingGame(totalTurns);
             return racingGame;
         } catch (Exception e) {
-            return decideTotalTurns();
+            return openNewGame();
         }
     }
 
