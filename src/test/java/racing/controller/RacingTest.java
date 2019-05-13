@@ -20,6 +20,7 @@ public class RacingTest {
 
     @Test
     void 차량이름_중복() {
+        cars = new ArrayList<>(cars);
         cars.add(new Car("pobi"));
 
         assertThrows(IllegalArgumentException.class, () -> {
