@@ -5,27 +5,33 @@ import java.util.List;
 
 public class Winner {
     private List<String> winners = new ArrayList<>();
+    private int maxInstance = 0;
 
-    public boolean checkWinner(List<Car> cars, int maxInstance) {
-        boolean result = false;
-
+    public void selectWinners(List<Car> cars) {
+        checkMaxInstance(cars);
         for (Car car : cars) {
-            result |= isMaxInstanceAndAddWinner(maxInstance, car);
+            addWinner(car);
         }
-
-        return result;
     }
 
-    private boolean isMaxInstanceAndAddWinner(int maxInstance, Car car) {
-        boolean isMaxInstance = car.isMaxInstance(maxInstance);
-        addWinner(isMaxInstance, car);
-        return isMaxInstance;
+    private void addWinner(Car car) {
+        if (isMaxInstance(car)) {
+            addWinners(car.getName());
+        }
     }
 
-    private void addWinner(boolean isMaxInstance, Car car) {
-        if (isMaxInstance) {
-            winners.add(car.getName());
+    private boolean isMaxInstance(Car car) {
+        return car.getPosition() == maxInstance;
+    }
+
+    private void checkMaxInstance(List<Car> cars) {
+        for (Car car : cars) {
+            maxInstance = Math.max(maxInstance, car.getPosition());
         }
+    }
+
+    private void addWinners(String carName) {
+        winners.add(carName);
     }
 
     public List<String> getWinners() {
