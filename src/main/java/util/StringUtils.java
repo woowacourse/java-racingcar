@@ -1,8 +1,5 @@
 package util;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class StringUtils {
     private static final int CAR_NAME_MIN = 1;
     private static final int CAR_NAME_MAX = 5;

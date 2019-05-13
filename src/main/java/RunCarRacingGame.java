@@ -6,7 +6,7 @@ import java.util.List;
 
 public class RunCarRacingGame {
     public static void main(String[] args) {
-        String names = InputView.inputCarNames();
+        List<String> names = InputView.inputCarNames();
         List<Car> cars = CarRacingGame.readyCarForRacing(names);
         int tryNum = InputView.inputTryNum();
 

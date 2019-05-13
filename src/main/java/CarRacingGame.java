@@ -6,20 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static util.StringUtils.*;
 
 public class CarRacingGame {
     private static final int BOUND_NUMBER = 10;
 
-    public static List<Car> readyCarForRacing(String names) {
-        List<String> nameList = parseStringByComma(names);
+    public static List<Car> readyCarForRacing(List<String> names) {
         List<Car> cars = new ArrayList<>();
 
-        for (String name : nameList) {
+        for (String name : names) {
             try {
                 cars.add(new Car(name));
             } catch (IllegalArgumentException e) {
-                readyCarForRacing(InputView.inputCarNames());
+                return readyCarForRacing(InputView.inputCarNames());
             }
         }
         return cars;
