@@ -8,18 +8,41 @@ public class StrCalculator {
     private static final String RESULT_MESSAGE = "의 결과는 ";
 
     private Scanner sc = new Scanner(System.in);
-    String[] values;
 
-    void input() {
-        System.out.println(INPUT_REQUEST_MESSAGE);
-        values = sc.nextLine().split(" ");
+    String[] input() {
+        try{
+            System.out.println(INPUT_REQUEST_MESSAGE);
+            return checkInputException(splitExpression(checkIsEmpty(sc.nextLine())));
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return input();
+        }
     }
 
-    int calculate() {
-        checkInputException();
+    String[] splitExpression(String expression) {
+        checkIsEmpty(expression);
+        return expression.split(" ");
+    }
 
-        int result = Integer.parseInt(values[0]);
+    String checkIsEmpty(String exp) {
+        String tempExp = exp;
+        tempExp.trim();
+        if(tempExp.length() == 0) {
+            throw new IllegalArgumentException("빈 공식은 허용할 수 없습니다 !");
+        }
+        return exp;
+    }
+    private String[] checkInputException(String[] exp) {
+        if (!isEvenPositionMatch(exp) || !isOddPositionMatch(exp)) {
+            throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
+        }
+        return exp;
+    }
+
+    int calculate(String[] values) {
         Calculator cal = new Calculator();
+        int result = Integer.parseInt(values[0]);
+
         for (int i = 1; i < values.length; i += 2) {
             if (values[i].equals("+")) {
                 result = cal.add(result, Integer.parseInt(values[i + 1]));
@@ -37,14 +60,8 @@ public class StrCalculator {
         return result;
     }
 
-    private void checkInputException() {
-        if (!expressionIsOdd() || !isEvenPositionMatch(values) || !isOddPositionMatch(values)) {
-            throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
-        }
-    }
-
-    boolean expressionIsOdd() {
-        return values.length % 2 == 0;
+    boolean expressionIsOdd(String[] exp) {
+        return exp.length % 2 == 0;
     }
 
     boolean isEvenPositionMatch(String[] values) {
@@ -60,21 +77,21 @@ public class StrCalculator {
 
     boolean isOddPositionMatch(String[] values) {
         for (int i = 1; i < values.length; i += 2) {
-            if (!values[i].matches("[\\+\\-\\*\\/]")) {
+            if (values[i] == null || !values[i].matches("[\\+\\-\\*\\/]")) {
                 return false;
             }
         }
         return true;
     }
 
-    void printResult(int calResult) {
-        System.out.printf(makeResultSentence(calResult), calResult);
+    void printResult(String[] exp,int calResult) {
+        System.out.printf(makeResultSentence(exp,calResult), calResult);
         System.out.println();
     }
 
-    String makeResultSentence(int calResult) {
+    String makeResultSentence(String[] exp, int calResult) {
         StringBuilder sb = new StringBuilder();
-        for (String value : values) {
+        for (String value : exp) {
             sb.append(value);
             sb.append(" ");
         }
@@ -82,6 +99,5 @@ public class StrCalculator {
         sb.append(calResult);
         return sb.toString();
     }
-
 
 }

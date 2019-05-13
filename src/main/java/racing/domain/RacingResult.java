@@ -29,7 +29,7 @@ class RacingResult {
             }
         }
     }
-    private int getMaxPosition() {
+    int getMaxPosition() {
         return Collections.max(roundCars).getPosition();
     }
 

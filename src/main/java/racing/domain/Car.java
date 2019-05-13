@@ -14,17 +14,15 @@ package racing.domain;
 
 import java.util.Objects;
 
-import racing.utils.Helper;
-
 /**
  * 레이싱 게임의 자동차 한 대를 위한 클래스
  *
  * @author imkimheejoo
  * @author kwonmc
- * @version 1.0.0
+ * @version 2.0.0
  * @see Comparable
  */
-class Car implements Comparable<Car> {
+public class Car implements Comparable<Car> {
     private static final int INIT_POSITION = 0;
     private static final int GO_FORWARD_CRITERIA = 4;
 
@@ -35,7 +33,7 @@ class Car implements Comparable<Car> {
         this(name, INIT_POSITION);
     }
 
-    Car(String name, int position) {
+    public Car(String name, int position) {
         this.name = name;
         this.position = position;
     }
@@ -53,7 +51,7 @@ class Car implements Comparable<Car> {
             position++;
         }
     }
-    boolean moveOrNot(int randomNum) {
+    static boolean moveOrNot(int randomNum) {
         return randomNum >= GO_FORWARD_CRITERIA;
     }
 

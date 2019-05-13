@@ -23,7 +23,7 @@ import java.util.Objects;
  *
  * @author imkimheejoo
  * @author kwonmc
- * @version 1.0.0
+ * @version 2.0.0
  * @see Car
  */
 public class RacingGame {
@@ -41,7 +41,6 @@ public class RacingGame {
             cars.add(car);
         }
     }
-
     public RacingGameResult playRacing() {
         RacingGameResult racingGameResult = new RacingGameResult();
         for (int i = 0; i < execution; i++) {
