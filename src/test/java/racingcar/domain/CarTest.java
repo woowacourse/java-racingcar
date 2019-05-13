@@ -62,7 +62,7 @@ public class CarTest {
 
         assertThat(car.comparePosition(anotherCar)).isEqualTo(0);
     }
-
+  
     @Test
     void 더_가까운_위치() {
         Car car = new Car("pobi", 5);

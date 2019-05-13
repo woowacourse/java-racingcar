@@ -35,23 +35,18 @@
     - 4이상의 수가 입력될 경우에만 이동 가능
     - 특정한 입력값이 없는 경우 1 ~ 9사이의 랜덤한 값을 적용
 
-
 ### View
 1. InputView
    - 사용자로부터 자동차 목록 입력받아 컨트롤러에 전달
    - 사용자로부터 시도할 횟수를 입력받아 컨트롤러에 전달
 2. OutputView
-   - 컨트롤러로 부터 받은 자동차들의 이름과 위치 출력
-   - 컨트롤러로 부터 받은 우승자들의 이름 목록 출력
+   - 컨트롤러로 부터 받은 이름과 위치 출력
+   - 컨트롤러로 부터 받은 우승자 이름 목록 출력
    
 ### Controller
-- InputView에 자동차 목록 요청
-- InputView에 시도 횟수 요청
-- Racing게임에 적용할 Rule 결정
- 
-- 자동차 목록, 시도 횟수, Rule을 RacingGame에 전달해 게임 진행
-- 게임진행 결과를 OuptView에 전달
-- 우승자를 출력하기 위한 마지막 게임 진행 결과를 OutputView에 전달
+- InputView에 자동차 목록 요청해서 RacingGame에 전달
+- InputView에 시도할 횟수를 요청해서 RacingGame에 전달
+- RacingGame에 경기 진행을 요청 후 받은 결과를 OutputView에 전달
 
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
