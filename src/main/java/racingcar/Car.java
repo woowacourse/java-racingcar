@@ -3,6 +3,10 @@ package racingcar;
 import java.util.*;
 
 public class Car {
+    private static final int NAME_LENGTH_LIMIT = 5;
+    private static final int STOP_OR_GO = 4;
+    private static final int RANOM_GENERATING_NUMBER = 10;
+
     private final String name;
     private int position = 0;
 
@@ -59,18 +63,18 @@ public class Car {
     }
 
     public static boolean isOverLimit(String name) {
-        return name.length() > 5;
+        return name.length() > NAME_LENGTH_LIMIT;
     }
 
     public Car moveCar(int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= STOP_OR_GO) {
             position++;
         }
         return this;
     }
 
     public static int randomNumberGenerator() {
-        return (int) (Math.random() * 10);
+    return (int) (Math.random() * RANOM_GENERATING_NUMBER);
     }
 
     public int findMax(int max) {
