@@ -14,13 +14,6 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 유효하지_않은_값() {
-        /* Given : */
-        /* When: */
-        /* Then: */
-    }
-
-    @Test
     void 더하기() {
         assertThat(calculator.calculateAll("2 + 4")).isEqualTo(6);
     }
