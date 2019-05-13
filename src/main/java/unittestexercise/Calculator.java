@@ -15,7 +15,4 @@ public class Calculator {
         return a / b;
     }
 
-    public static void main(String[] args) {
-        // psvm 단축키
-    }
 }

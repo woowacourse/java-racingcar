@@ -17,20 +17,20 @@ public class StringCalculatorTest {
     void 계산() {
         int result;
 
-        result = strCalc("2 + 3 * 4 / 2");
+        result = calculate("2 + 3 * 4 / 2");
         assertThat(result).isEqualTo(10);
 
-        result = strCalc("3 + 7 / 2 * 5");
+        result = calculate("3 + 7 / 2 * 5");
         assertThat(result).isEqualTo(25);
 
-        result = strCalc("100 / 4 * 3 + 3");
+        result = calculate("100 / 4 * 3 + 3");
         assertThat(result).isEqualTo(78);
 
-        result = strCalc("9 - 7 * 1 - 2");
+        result = calculate("9 - 7 * 1 - 2");
         assertThat(result).isEqualTo(0);
     }
 
-    int strCalc(String formula) {
+    int calculate(String formula) {
         String[] arr = formula.split(" ");
         return stringCalculator.calculate(arr);
     }

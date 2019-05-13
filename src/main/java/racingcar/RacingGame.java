@@ -1,80 +1,79 @@
 package racingcar;
 
-import view.InputView;
-import view.OutputView;
-
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class RacingGame {
+    private final Cars cars;
 
-    private final Cars carList = new Cars();
-    private int totalRound;
+    public static final int RANDOM_MAX = 10;
+    private static final Random RANDOM = new Random();
+    private static final String DUPLICATED_NAME_EXCEPTION_MESSAGE = "중복되지 않은 이름을 입력해주세요.";
+    private static final String NULL_NAMES_LENGTH_EXCEPTION_MESSAGE = "올바른 이름을 입력해주세요.";
 
-    private final static int FORWARD_CRITERION = 4;
-    private final static int BOUNDARY_ZERO_TO_NINE = 10;
-    private final static int NAME_LENGTH_LIMIT = 5;
-    private final static Random RANDOM = new Random();
-
-    public void start() {
-        addCars(getCarNames());
-        totalRound = getTotalRound();
-        OutputView.printStartMessage();
-        play();
-        OutputView.printFinalWinner(carList.getWinnerList());
+    public RacingGame(String[] carNames) {
+    	if(hasDuplicatedNames(carNames)) {
+    		throw new IllegalArgumentException(DUPLICATED_NAME_EXCEPTION_MESSAGE);
+    	}
+    	if(carNames.length == 0) {
+    		throw new IllegalArgumentException(NULL_NAMES_LENGTH_EXCEPTION_MESSAGE);
+		}
+    	this.cars = new Cars(Arrays.stream(carNames).map(name -> new Car(name)).collect(Collectors.toList()));
     }
 
     public Cars getCars() {
-        return carList;
+        return cars;
+    }
+    
+    public void addCar(Car car) {
+    	cars.addCar(car);
     }
 
-    public void addCars(String[] carNames) {
-        for(String carName : carNames){
-            carList.addCar(new Car(carName));
+    public void playOneRound() {
+        for(Car car : cars){
+            car.move(getRandomNumber());
         }
     }
-
-    private void play() {
-        for(int i = 0; i < totalRound; i++){
-            playOneRound();
-        }
+    
+    public Winners getWinners() {
+    	int maxPosition = cars.getMaxPosition();
+    	return new Winners(cars, maxPosition);
+    }
+    
+    public int getRandomNumber() {
+    	return RANDOM.nextInt(RANDOM_MAX);
+    }
+    
+    public boolean hasDuplicatedNames(String[] carNames) {;
+    	List<String> names = Arrays.stream(carNames).collect(Collectors.toList());
+    	return !(names.size() == new HashSet<String>(names).size());
     }
 
-    private void playOneRound() {
-        for(Car car : carList){
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cars == null) ? 0 : cars.hashCode());
+		return result;
+	}
 
-            car.randomForward(isMove(), carList);
-            OutputView.printCar(car);
-        }
-
-        OutputView.printNewline();
-    }
-
-    public boolean checkStringLengthLimit(String string) {
-        return string.length() <= NAME_LENGTH_LIMIT;
-    }
-
-    public String[] getCarNames() {
-        String[] carNames = InputView.inputCarNames().split(",\\s*");
-
-        for(String carName : carNames){
-            if(!checkStringLengthLimit(carName)){
-                OutputView.printNameLimit();
-                return getCarNames();
-            }
-        }
-        return carNames;
-    }
-
-    private int getTotalRound() {
-        return Integer.parseInt(InputView.inputTotalRound());
-    }
-
-    private boolean isMove() {
-        return (RANDOM.nextInt(BOUNDARY_ZERO_TO_NINE) >= FORWARD_CRITERION);
-    }
-
-    public static void main(String[] args) {
-        RacingGame racingGame = new RacingGame();
-        racingGame.start();
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RacingGame other = (RacingGame) obj;
+		if (cars == null) {
+			if (other.cars != null)
+				return false;
+		} else if (!cars.equals(other.cars))
+			return false;
+		return true;
+	}
 }

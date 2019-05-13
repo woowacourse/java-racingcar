@@ -1,77 +1,39 @@
 package racingcar;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CarsTest {
-    Cars cars;
-    Car car1;
-    Car car2;
-    Car car3;
-    Car car4;
-
-    @BeforeEach
-    void setup() {
-        cars = new Cars();
-        car1 = new Car("a");
-        car2 = new Car("b");
-        car3 = new Car("c");
-        car4 = new Car("d");
-    }
-
-    @Test
-    void 자동차추가() {
-        assertThat(cars.size()).isEqualTo(0);
-
-        cars.addCar(new Car("a"));
-        cars.addCar(new Car("b"));
-        cars.addCar(new Car("c"));
-
-        assertThat(cars.size()).isEqualTo(3);
-    }
-
-    @Test
-    void 최댓값() {
-        assertThat(cars.getMaxPosition()).isEqualTo(0);
-
-        car2.moveForward(cars);
-        car2.moveForward(cars);
-        car2.moveForward(cars);
-
-        assertThat(cars.getMaxPosition()).isEqualTo(3);
-    }
-
-    @Test
-    void 우승1() {
-        car2.moveForward(cars);
-        car2.moveForward(cars);
-        car2.moveForward(cars);
-
-        cars.addCar(car1);
-        cars.addCar(car2);
-        cars.addCar(car3);
-        cars.addCar(car4);
-
-        assertThat(cars.getWinnerList().size()).isEqualTo(1);
-    }
-
-    @Test
-    void 우승2() {
-        car2.moveForward(cars);
-        car2.moveForward(cars);
-        car2.moveForward(cars);
-
-        car4.moveForward(cars);
-        car4.moveForward(cars);
-        car4.moveForward(cars);
-
-        cars.addCar(car1);
-        cars.addCar(car2);
-        cars.addCar(car3);
-        cars.addCar(car4);
-
-        assertThat(cars.getWinnerList().size()).isEqualTo(2);
-    }
+	List<Car> cars;
+	
+	@BeforeEach
+	void setup() {
+		cars = new ArrayList<Car>();
+		
+		cars.add(new Car("bmo", 0));
+		cars.add(new Car("pobi", 2));
+		cars.add(new Car("crong", 4));
+		cars.add(new Car("honux", 6));
+	}
+	
+	@Test
+	void maxPosition() {
+		assertThat(new Cars(cars).getMaxPosition()).isEqualTo(6);
+	}
+	
+	@Test
+	void size() {
+		assertThat(new Cars(cars).size()).isEqualTo(4);
+	}
+	
+	@AfterEach
+	void tearDown() {
+		cars = null;
+	}
 }

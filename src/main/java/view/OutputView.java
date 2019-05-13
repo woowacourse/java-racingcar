@@ -1,41 +1,62 @@
 package view;
 
 import racingcar.Car;
+import racingcar.Cars;
+import racingcar.Winners;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 public class OutputView {
-    private static final String ONE_ROUND_RESULT = "\n실행 결과";
-    private static final String FINAL_WINNER = "가 최종 우승했습니다.";
-    private static final String NAME_LIMIT_MESSAGE
-            = "5자 이하의 이름을 입력해주세요.";
+	private static final String EXECUTION_RESULT_MESSAGE = "\n실행 결과";
+	private static final String FINAL_WINNER_MESSAGE = "가 최종 우승했습니다.";
+	private static final String ILLEGAL_NUMBER_MESSAGE = "올바른 수를 입력해주세요.";
+	private static final String ILLEGAL_ROUND_MESSAGE = "1 이상의 수를 입력해주세요.";
 
-    public static void printStartMessage(){
-        System.out.println(ONE_ROUND_RESULT);
-    }
+	public static void printStartMessage() {
+		System.out.println(EXECUTION_RESULT_MESSAGE);
+	}
 
-    public static void printCar(Car car){
-        System.out.println(car);
-    }
+	public static void printCars(Cars cars) {
+		for(Car car: cars) {
+			printCar(car);
+		}
+		System.out.println();
+	}
+	
+	public static void printCar(Car car) {
+		System.out.print(car.getName());
+		System.out.print(" : ");
+		for (int i = car.getPosition(); i > 0; i--) {
+			System.out.print("-");
+		}
+		System.out.println();
+	}
 
-    public static void printNewline() {
-        System.out.println();
-    }
+	public static void printNewline() {
+		System.out.println();
+	}
 
-    public static void printNameLimit(){
-        System.out.println(NAME_LIMIT_MESSAGE);
+	public static void printIllegalArgumentMessage(String illegalArgumentMessage) {
+		System.out.println(illegalArgumentMessage);
+	}
+	
+	public static void printIllegalNumber() {
+		System.out.println(ILLEGAL_NUMBER_MESSAGE);
+	}
+	
+	public static void printIllegalRound() {
+		System.out.println(ILLEGAL_ROUND_MESSAGE);
+	}
 
-    }
+	public static void printFinalWinner(Winners winners) {
+		List<String> winnerStrings = winners
+				.stream()
+				.map(car -> car.getName())
+				.collect(Collectors.toList());
 
-    public static void printFinalWinner(List<Car> winnerList) {
-        List<String> winList = new ArrayList<>();
-
-        for (Car car: winnerList) {
-            winList.add(car.getName());
-        }
-
-        String result = String.join(", ", winList) + FINAL_WINNER;
-        System.out.println(result);
-    }
+		String result = String.join(", ", winnerStrings) + FINAL_WINNER_MESSAGE;
+		System.out.println(result);
+	}
 }

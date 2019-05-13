@@ -42,9 +42,4 @@ public class StringCalculator {
 
         return result;
     }
-
-    public static void main(String[] args) {
-        StringCalculator calc = new StringCalculator();
-        calc.run();
-    }
 }
