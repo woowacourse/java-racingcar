@@ -2,16 +2,25 @@ package racingcar.model;
 
 import java.util.*;
 
-public class Cars {
-    private Set<Car> cars = new LinkedHashSet<>();
+public class RacingGame {
+    private static final int END_TRY_NUMBER = 0;
 
-    public Cars(String[] carNames) {
+    private Set<Car> cars = new LinkedHashSet<>();
+    private int numberOfTry;
+
+    public RacingGame(String[] carNames, int numberOfTry) {
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
+        this.numberOfTry = numberOfTry;
         if (this.isOverlap(carNames)) {
             throw new IllegalArgumentException("중복된 이름이 있습니다.");
         }
+    }
+
+    public boolean checkNumberOfTry() {
+        numberOfTry--;
+        return numberOfTry >= END_TRY_NUMBER;
     }
 
     private boolean isOverlap(String[] carNames) {
@@ -32,19 +41,6 @@ public class Cars {
         WinningCars winningCars = new WinningCars();
         winningCars.setWinner(cars);
         return winningCars;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cars cars1 = (Cars) o;
-        return Objects.equals(cars, cars1.cars);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(cars);
     }
 
     @Override

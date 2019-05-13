@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.model.Cars;
+import racingcar.model.RacingGame;
 import racingcar.model.WinningCars;
 
 import java.util.Scanner;
@@ -39,12 +39,16 @@ public final class View {
         return false;
     }
 
-    public static void printCars(Cars cars) {
-        outputLine(cars.toString());
+    public static void printCars(RacingGame racingGame) {
+        outputLine(racingGame.toString());
     }
 
     public static void printWinningCars(WinningCars winningCars) {
         outputLine(winningCars.toString());
+    }
+
+    public static void printResultStart() {
+        outputLine("실행 결과");
     }
 }
 

@@ -1,33 +1,31 @@
 package racingcar;
 
-import racingcar.model.Cars;
+import racingcar.model.RacingGame;
 import racingcar.model.WinningCars;
 import racingcar.view.View;
 
 public class RacingCar {
     public static void main(String[] args) {
-        Cars cars = makeCarList(View.inputNameOfCar());
+        RacingGame racingGame = makeCars(View.inputNameOfCar()
+                , View.inputNumberOfTry());
 
-        int numberOfTry = View.inputNumberOfTry();
-        View.outputLine("실행 결과");
-        for (int i = 0; i < numberOfTry; i++) {
-            cars = moveCar(cars);
-            View.printCars(cars);
+        View.printResultStart();
+        while (racingGame.checkNumberOfTry()) {
+            moveCar(racingGame);
+            View.printCars(racingGame);
         }
-        View.printWinningCars(getWinningCars(cars));
+        View.printWinningCars(getWinningCars(racingGame));
     }
 
-    private static Cars makeCarList(String[] carNames) {
-        Cars cars = new Cars(carNames);
-        return cars;
+    private static RacingGame makeCars(String[] carNames, int numberOfTry) {
+        return new RacingGame(carNames, numberOfTry);
     }
 
-    private static Cars moveCar(Cars cars) {
-        cars.moveCars();
-        return cars;
+    private static void moveCar(RacingGame racingGame) {
+        racingGame.moveCars();
     }
 
-    private static WinningCars getWinningCars(Cars cars) {
-        return cars.getWinnerCars();
+    private static WinningCars getWinningCars(RacingGame racingGame) {
+        return racingGame.getWinnerCars();
     }
 }
