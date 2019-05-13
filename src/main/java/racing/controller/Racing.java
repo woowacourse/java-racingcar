@@ -1,8 +1,10 @@
 package racing.controller;
 
 import racing.model.Car;
+import racing.model.Winner;
 import racing.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,15 +19,24 @@ public class Racing {
     private final List<Car> cars;
     private final int count;
 
-    public Racing(List<Car> cars, int count) {
-        if (hasDuplicateCarName(cars)) {
+    public Racing(String[] carNames, int count) {
+        List<Car> bindingCar = bindCars(carNames);
+        if (hasDuplicateCarName(bindingCar)) {
             throw new IllegalArgumentException(MSG_DUPLICATE_CAR_NAME);
         }
         if (count < POSITIVE_CONDITION) {
             throw new IllegalArgumentException(MSG_COUNT_MUST_POSITIVE);
         }
-        this.cars = cars;
+        this.cars = bindingCar;
         this.count = count;
+    }
+
+    private List<Car> bindCars(String[] carNames){
+        List<Car> bindingCars = new ArrayList<>();
+        for (int i = 0; i < carNames.length; i++) {
+            bindingCars.add(new Car(carNames[i]));
+        }
+        return bindingCars;
     }
 
     private boolean hasDuplicateCarName(List<Car> cars) {
@@ -36,12 +47,13 @@ public class Racing {
         return cars.size() != carNames.size();
     }
 
-    public void run() {
+    public Winner run() {
         OutputView.print(MSG_GAME_RESULT);
         for (int i = 0; i < count; i++) {
             moveCars();
             OutputView.print("");
         }
+        return new Winner(cars);
     }
 
     private void moveCars() {

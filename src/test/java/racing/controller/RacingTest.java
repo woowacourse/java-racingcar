@@ -2,36 +2,29 @@ package racing.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racing.model.Car;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RacingTest {
-    List<Car> cars;
+    StringBuilder carNames = new StringBuilder();
 
     @BeforeEach
     void setUp() {
-        cars = Arrays.asList(new Car("pobi"),new Car("sean"));
+        carNames.append("pobi,dennis");
     }
 
     @Test
     void 차량이름_중복() {
-        cars = new ArrayList<>(cars);
-        cars.add(new Car("pobi"));
-
+        carNames.append(",pobi");
         assertThrows(IllegalArgumentException.class, () -> {
-            new Racing(cars, 3);
+            new Racing(carNames.toString().split(","), 3);
         });
     }
 
     @Test()
     void 이동횟수_음수() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Racing(cars, -1);
+            new Racing(carNames.toString().split(","), -1);
         });
     }
 }
