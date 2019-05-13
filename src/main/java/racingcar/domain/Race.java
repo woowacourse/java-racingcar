@@ -13,7 +13,8 @@ public class Race {
     public Race(Map<String, Integer> carInfo) {
         cars = Collections.unmodifiableList(
             carInfo.entrySet().stream()
-                .map(x -> new Car(x.getKey(), x.getValue()))
+                .filter(x -> !x.getKey().trim().equals("") && !x.getKey().trim().equals(" "))
+                .map(x -> new Car(x.getKey().trim(), x.getValue()))
                 .collect(Collectors.toList())
         );
         if (cars.size() < MIN_NUMBER_OF_CARS) {
