@@ -1,6 +1,5 @@
 package cal;
 
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,28 +12,30 @@ public class CalculatorTest {
     @BeforeEach
     void setup() {
         cal = new Calculator();
-        System.out.println("Setup");
     }
 
     @Test
     void addTest() {
-        // Calculator cal = new Calculator();
-        // int result = cal.plus(2, 3);
-        // System.out.println(result);
         assertThat(cal.plus(2,3)).isEqualTo(5);
-        System.out.println("plus");
     }
 
     @Test
     void minusTest() {
-        // Calculator cal = new Calculator();
-        // int result = cal.minus(2, 3);
         assertThat(cal.minus(2, 3)).isEqualTo(-1);
+    }
+
+    @Test
+    void mulTest() {
+        assertThat(cal.mul(4, 2)).isEqualTo(8);
+    }
+
+    @Test
+    void divTest() {
+        assertThat(cal.div(4, 2)).isEqualTo(2);
     }
 
     @AfterEach
     void tearDown() {
         cal = null;
-        System.out.println("tear down");
     }
 }

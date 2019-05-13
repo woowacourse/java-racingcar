@@ -1,9 +1,8 @@
-package cal.string;
+package stringcal;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayInputStream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -38,5 +37,10 @@ public class StringCalculatorTest {
     @Test
     void generalTest() {
         assertThat(cal.calculate("2 + 3 * 4")).isEqualTo(20);
+    }
+
+    @AfterEach
+    void tearDown() {
+        cal = null;
     }
 }

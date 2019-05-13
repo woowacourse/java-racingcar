@@ -1,4 +1,4 @@
-# string-calculator
+# stringcal-calculator
 문자열 계산기 + 테스트 코드
 
 # java-racingcar
@@ -84,4 +84,4 @@
 - [x] 테스트 코드의 우승자 판별 테스트에서 containsExactly() 활용
 
 ## 도메인 모델
-![Domain Model](./static/racing-car-domain-model.jpg)
+![Domain Model](./static/racing-car-domain-model.png)
