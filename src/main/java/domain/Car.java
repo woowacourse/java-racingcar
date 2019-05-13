@@ -31,6 +31,7 @@ public class Car implements Comparable<Car> {
      * @param position 자동차 위치
      * @throws IllegalArgumentException 이름 길이가 최대/최소 이외일 경우 <br> 위치가 최소보다 작을 경우 발생.
      */
+
     public Car(final String name, final int position) {
         if (Const.MIN_NAME_LEN > name.length() || Const.MAX_NAME_LEN < name.length()) {
             throw new IllegalArgumentException(Const.EX_NAME_LEN);
