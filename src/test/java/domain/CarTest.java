@@ -23,7 +23,7 @@ class CarTest {
     @Test
     void 자동차_객체_생성_5글자_초과_예외처리() {
         assertThrows(IllegalArgumentException.class, () -> {
-            car = new Car("123456");
+            car = new Car("123456");            // 길이가 5를 초과했을 시 예외
         });
     }
 
@@ -51,14 +51,12 @@ class CarTest {
 
     @Test
     void 자동차_포지션_변화_없음_확인() {
-        car.increasePositionOrNot(3);
-        assertThat(car.matchPosition(0)).isTrue();
+        assertThat(car.increasePositionOrNot(3)).isEqualTo(Const.CAR_MOVE_FAIL);
     }
 
     @Test
     void 자동차_포지션_변화_확인() {
-        car.increasePositionOrNot(4);
-        assertThat(car.matchPosition(1)).isTrue();
+        assertThat(car.increasePositionOrNot(4)).isEqualTo(Const.CAR_MOVE_SUCCESS);
     }
 
     @Test
