@@ -22,20 +22,8 @@ public class StringCalculator {
         return result;
     }
 
-    private int matchOperator(int result, String operator, int operand) {
-        if (operator.equals("+")) {
-            return result + operand;
-        }
-
-        if (operator.equals("-")) {
-            return result - operand;
-        }
-
-        if (operator.equals("*")) {
-            return result * operand;
-        }
-
-        return result / operand;
+    int matchOperator(int firstOperand, String operator, int secondOperand) {
+        return Operator.stringToOperator(operator).calculate(firstOperand, secondOperand);
     }
 
     private String[] splitUserInput(String userInput) {
