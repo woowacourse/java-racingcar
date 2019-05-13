@@ -70,6 +70,7 @@
     - [ ] 뷰를 RaceOperator에서 분리
     - [ ] 초기화 static factory method 사용
     - [ ] 자동차 이름입력 재귀 실행 수정
+    - [x] Race클래스 내 cars 생성 위치 수정
     - [ ] RandomNumberGenerator 인터페이스 분리
     - [ ] toString 수정
     - [ ] 핵심 로직 테스트

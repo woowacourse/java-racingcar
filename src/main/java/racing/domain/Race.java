@@ -7,13 +7,12 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Race {
-    private List<Car> cars;
+    private List<Car> cars = new ArrayList<>();
 
     /*
      * 경기 준비 메소드
      */
     public void createCars(List<String> carNames) {
-        cars = new ArrayList<>();
         Iterator<String> it = carNames.iterator();
         while (it.hasNext()) {
             cars.add(new Car(it.next()));
