@@ -30,14 +30,6 @@ public class Car {
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
     private int makeRandomNumber() {
         return (int) (Math.random() * RANDOM_NUMBER_LIMIT);
     }
@@ -53,6 +45,14 @@ public class Car {
 
     public boolean matchPosition(int position) {
         return this.position == position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override

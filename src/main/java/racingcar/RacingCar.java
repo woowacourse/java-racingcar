@@ -11,14 +11,14 @@ public class RacingCar {
     }
 
     public List<Car> process(String userInput, int numOfGame) {
-        String[] carNames = makeCarNames(userInput);
+        String[] carNames = splitCarNames(userInput);
         setCars(carNames);
         playEntireRound(numOfGame);
 
         return cars;
     }
 
-    private String[] makeCarNames(String userInput) {
+    private String[] splitCarNames(String userInput) {
         return userInput.split(",");
     }
 

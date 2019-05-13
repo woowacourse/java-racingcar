@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
     @Test
-    void Car_객체_생성시_예외가_제대로_발생하는지_확인한다() {
+    public void Car_객체_생성시_예외가_제대로_발생하는지_확인한다() {
         String userInput1 = "pobi";
         String userInput2 = "abcdefg";
         String userInput3 = "        ";
@@ -22,7 +22,7 @@ public class CarTest {
     }
 
     @Test
-    void moveTest() {
+    public void moveTest() {
         Car car = new Car("pobi");
 
         car.move(0);
@@ -36,7 +36,7 @@ public class CarTest {
     }
 
     @Test
-    void toStringTest() {
+    public void toStringTest() {
         Car car1 = new Car("whale", 0);
         assertThat(car1.toString()).isEqualTo("whale : ");
 

@@ -3,13 +3,13 @@ package stringcalc;
 import java.util.Scanner;
 
 public class StringCalculator {
-    static final Scanner SCANNER = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     String getUserInput() {
         return SCANNER.nextLine();
     }
 
-    int calculate(String userInput) {
+    protected int calculate(String userInput) {
         String[] splitUserInput = splitUserInput(userInput);
         int result = Integer.parseInt(splitUserInput[0]);
 
@@ -22,7 +22,7 @@ public class StringCalculator {
         return result;
     }
 
-    int matchOperator(int result, String operator, int operand) {
+    private int matchOperator(int result, String operator, int operand) {
         if (operator.equals("+")) {
             return result + operand;
         }
@@ -38,7 +38,7 @@ public class StringCalculator {
         return result / operand;
     }
 
-    String[] splitUserInput(String userInput) {
+    private String[] splitUserInput(String userInput) {
         return userInput.split(" ");
     }
 
