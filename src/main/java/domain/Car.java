@@ -17,7 +17,8 @@ public class Car {
         }
         if (MAX_NAME_LEN < name.length()) {
             throw new IllegalArgumentException(
-                    String.format("입력된 이름의 길이가 너무 깁니다. %d 자 이하로 입력해주세요. (in: %s)", MAX_NAME_LEN, name));
+                    String.format("입력된 이름의 길이가 너무 깁니다. %d 자 이하로 입력해주세요. (in: %s)"
+                            , MAX_NAME_LEN, name));
         }
 
         this.name = name;
@@ -38,9 +39,7 @@ public class Car {
         sb.append(name);
         sb.append(" : ");
 
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
+        for (int i = 0; i < position; i++) sb.append("-");
 
         return sb.toString();
     }

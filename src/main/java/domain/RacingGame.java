@@ -4,9 +4,10 @@ import view.OutputView;
 
 import java.util.ArrayList;
 
+import static domain.MaxFinder.*;
+
 public class RacingGame {
     private final RacingTrial racingTrial;
-    private final MaxFinder maxFinder = new MaxFinder();
 
     public RacingGame(RacingTrial racingTrial) {
         this.racingTrial = racingTrial;
@@ -19,6 +20,6 @@ public class RacingGame {
             OutputView.printCars(racingTrial.runTrial(cars));
         }
 
-        OutputView.printWinners(maxFinder.findAllMax(cars, Car.compareByPosition));
+        OutputView.printWinners(findAllMax(cars, Car.compareByPosition));
     }
 }

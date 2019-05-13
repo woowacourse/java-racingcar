@@ -7,9 +7,7 @@ public class CarFactory {
         String[] names = str.split(",", -1);
 
         ArrayList<Car> cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
+        for (String name : names) cars.add(new Car(name));
         return cars;
     }
 }
