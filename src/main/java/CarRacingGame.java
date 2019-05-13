@@ -13,7 +13,8 @@ public class CarRacingGame {
         for (String name : names) {
             try {
                 cars.add(new Car(name));
-            } catch (IllegalArgumentException e) {
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
                 return readyCarForRacing(InputView.inputCarNames());
             }
         }
@@ -22,7 +23,7 @@ public class CarRacingGame {
 
     public static void tryMove(List<Car> cars) {
         for (Car car : cars) {
-            car.judgeMove(CarRacingRule.getRandomNumber());
+            CarRacingRule.judgeMove(car, CarRacingRule.getRandomNumber());
         }
     }
 

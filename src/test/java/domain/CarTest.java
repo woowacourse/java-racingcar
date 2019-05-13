@@ -50,11 +50,4 @@ public class CarTest {
         assertThat(car.isMaxPosition(0)).isTrue();
         assertThat(car.isMaxPosition(1)).isFalse();
     }
-
-    /* 가능하면 테스트 단위는 작게 > GO와 STOP 분리 */
-    @Test
-    void judgeMove() {
-        assertThat(car.judgeMove(4)).isEqualTo("Go");
-        assertThat(car.judgeMove(3)).isEqualTo("Stop");
-    }
 }

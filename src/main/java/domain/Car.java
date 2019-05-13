@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Car {
     private final String name;
-    private int position = 0;
+    private int position;
 
     public Car(String name) {
         this(name, 0);
@@ -14,13 +14,11 @@ public class Car {
 
     public Car(String name, int position) {
         if (name == null) {
-            System.out.println("자동차의 이름을 입력해주세요.");
-            throw new NullPointerException();
+            throw new NullPointerException("자동차의 이름을 입력해주세요.");
         }
 
         if (!StringUtils.isCarNameLength(name)) {
-            System.out.println("각 자동차의 이름을 1자 이상, 5자 이하로 입력해주세요.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("각 자동차의 이름을 1자 이상, 5자 이하로 입력해주세요.");
         }
 
         this.name = name.trim();
