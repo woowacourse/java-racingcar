@@ -21,10 +21,6 @@ public class Car {
         }
     }
 
-    public boolean isMaxInstance(int maxInstance) {
-        return position == maxInstance;
-    }
-
     public String getName() {
         return this.name;
     }

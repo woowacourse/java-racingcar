@@ -3,17 +3,33 @@ package racinggame;
 import racinggame.view.UserInput;
 import racinggame.view.ResultOutput;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();
+        String inputText;
+        int gameCount;
+        String[] carsName;
+        List<Car> cars = new ArrayList<>();
 
-        String inputText = UserInput.inputCarsName();
-        int gameCount = UserInput.inputGameCount();
+        inputText = UserInput.inputCarsName();
+        gameCount = UserInput.inputGameCount();
 
-        CarsName carsName = new CarsName(inputText);
-        Cars cars = new Cars(carsName);
-        Winner winner = game.playGames(cars, gameCount);
+        carsName = CarsName.makeCarsName(inputText);
 
-        ResultOutput.winnersOutput(winner.getWinners());
+        for (String carName : carsName) {
+            cars.add(new Car(carName));
+        }
+
+        for (int i = 0; i < gameCount; i++) {
+            game.playGame(cars);
+            ResultOutput.printNewLine();
+        }
+
+        Winner winners = new Winner(cars);
+
+        ResultOutput.winnersOutput(winners.getWinners());
     }
 }

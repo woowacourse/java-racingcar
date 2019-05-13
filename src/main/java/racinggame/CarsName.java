@@ -1,11 +1,11 @@
 package racinggame;
 
 public class CarsName {
+
     static final int MAX_NAME_LENGTH = 5;
     static final int MIN_NAME_LENGTH = 1;
-    private String[] carsName;
 
-    public CarsName(String inputText) {
+    public static String[] makeCarsName (String inputText) {
         String[] carsName;
 
         do {
@@ -14,16 +14,16 @@ public class CarsName {
             carsName = splitByComma(inputText);
         } while (!checkCarsNameLength(carsName));
 
-        this.carsName = carsName;
+        return carsName;
     }
 
-    private String removeBlank(String carsName) {
+    private static String removeBlank(String carsName) {
         carsName = carsName.replace(" ", "");
 
         return carsName;
     }
 
-    private String removeDuplicatedComma(String carsName) {
+    private static String removeDuplicatedComma(String carsName) {
         while (carsName.contains(",,")) {
             carsName = carsName.replace(",,", ",");
         }
@@ -31,11 +31,11 @@ public class CarsName {
         return carsName;
     }
 
-    private String[] splitByComma(String carsName) {
+    private static String[] splitByComma(String carsName) {
         return carsName.split(",");
     }
 
-    private boolean checkCarsNameLength(String[] carsName) {
+    private static boolean checkCarsNameLength(String[] carsName) {
         boolean allNamesAreRightLength = true;
 
         for (String carName : carsName) {
@@ -45,7 +45,7 @@ public class CarsName {
         return allNamesAreRightLength;
     }
 
-    private boolean checkEachCarNameLength(boolean allNamesAreRightLength, String carName) {
+    private static boolean checkEachCarNameLength(boolean allNamesAreRightLength, String carName) {
         boolean eachIsRightLength;
 
         eachIsRightLength = carName.length() <= MAX_NAME_LENGTH && carName.length() >= MIN_NAME_LENGTH
@@ -54,7 +54,4 @@ public class CarsName {
         return eachIsRightLength;
     }
 
-    public String[] getCarsName() {
-        return carsName;
-    }
 }

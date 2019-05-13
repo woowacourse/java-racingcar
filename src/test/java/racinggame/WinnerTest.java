@@ -14,30 +14,22 @@ public class WinnerTest {
     Winner winner;
     List<Car> cars;
 
-    @BeforeEach
-    void setUp() {
-        winner = new Winner();
-        Car[] carsArr = {new Car("pobi"), new Car("jason"), new Car("brown")};
+    @Test
+    void 우승자_한명_결과_확인() {
+        Car[] carsArr = {new Car("pobi", 3), new Car("slo", 2)};
         cars = Arrays.asList(carsArr);
-        cars.get(0).move(4);
-        winner.checkWinner(cars, 1);
+        winner = new Winner(cars);
+        String result = winner.toString();
+        assertThat(result).isEqualTo("pobi");
     }
 
     @Test
-    void 우승자_없는_경우_확인() {
-        boolean result = winner.checkWinner(cars, 2);
-        assertThat(result).isEqualTo(false);
+    void 우승자_두명_결과_확인() {
+        Car[] carsArr = {new Car("pobi", 3), new Car("slo", 2), new Car("ho",3)};
+        cars = Arrays.asList(carsArr);
+        winner = new Winner(cars);
+        String result = winner.toString();
+        assertThat(result).isEqualTo("pobi ho");
     }
 
-    @Test
-    void 우승자_결과_확인() {
-        boolean result = winner.checkWinner(cars, 1);
-        assertThat(result).isEqualTo(true);
-    }
-
-    @Test
-    void 우승자_이름_확인() {
-        String name = winner.getWinners().get(0);
-        assertThat(name).isEqualTo("pobi");
-    }
 }
