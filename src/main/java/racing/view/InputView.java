@@ -5,11 +5,9 @@ import racing.domain.RepeatNumber;
 import java.util.Scanner;
 
 public class InputView {
-    private static Scanner scanner = new Scanner(System.in);
-
     public static String inputCarNames() {
         System.out.println(ConsoleMessages.INPUT_CAR_NAME.getMessage());
-        String carNames = scanner.nextLine();
+        String carNames = new Scanner(System.in).nextLine();
 
         try {
             checkIdentifier(carNames);
@@ -22,7 +20,7 @@ public class InputView {
 
     public static RepeatNumber inputRepeatNumber() {
         System.out.println(ConsoleMessages.INPUT_REPEAT_NUMBER.getMessage());
-        return getRepeatNumber(scanner.nextLine());
+        return getRepeatNumber(new Scanner(System.in).nextLine());
     }
 
     private static RepeatNumber getRepeatNumber(String repeatNumber) {
@@ -37,7 +35,9 @@ public class InputView {
     }
 
     protected static void checkIdentifier(String carNames) {
-        if (!carNames.contains(",")) throw new IllegalArgumentException(ConsoleMessages.ERR_IDENTIFIER_NAME.getMessage());
+        if (!carNames.contains(",")) {
+            throw new IllegalArgumentException(ConsoleMessages.ERR_IDENTIFIER_NAME.getMessage());
+        }
     }
 
 

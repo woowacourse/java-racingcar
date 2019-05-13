@@ -1,5 +1,6 @@
 package racing.view;
 
+import org.junit.After;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -15,24 +16,21 @@ public class InputViewTest {
 
     @Test
     public void 정상_구분자() {
-        try {
-            String inputString = "andole,baedi";
-            ByteArrayInputStream input = new ByteArrayInputStream(inputString.getBytes());
-            System.setIn(input);
-            assertEquals(inputString, InputView.inputCarNames());
-        } finally {
-            System.setIn(System.in);
-        }
+        String inputString = "andole,baedi";
+        ByteArrayInputStream input = new ByteArrayInputStream(inputString.getBytes());
+        System.setIn(input);
+        assertEquals(inputString, InputView.inputCarNames());
     }
 
     @Test
     public void 반복횟수_체크() {
-        try {
-            ByteArrayInputStream input = new ByteArrayInputStream("5".getBytes());
-            System.setIn(input);
-            assertEquals(5, InputView.inputRepeatNumber().getNumber());
-        } finally {
-            System.setIn(System.in);
-        }
+        ByteArrayInputStream input = new ByteArrayInputStream("5".getBytes());
+        System.setIn(input);
+        assertEquals(5, InputView.inputRepeatNumber().getNumber());
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        System.setIn(System.in);
     }
 }
