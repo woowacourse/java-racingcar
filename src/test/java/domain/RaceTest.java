@@ -27,6 +27,11 @@ class RaceTest {
         race.moveAllCarsByRoundCount();
     }
 
+    @Test
+    void 전체_시도_회수_현재_라운드_비교_확인() {
+        assertThat(race.hasNextRound()).isTrue();
+    }
+
     @AfterEach
     void tearDown() {
         race = null;
