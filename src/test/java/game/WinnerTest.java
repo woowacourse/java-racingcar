@@ -18,12 +18,15 @@ public class WinnerTest {
         Car pobi = new Car("pobi");
         Car crong = new Car("crong");
         Car mir = new Car("mir");
+        int tryCount = 5;
 
         cars.add(pobi);
         cars.add(crong);
         cars.add(mir);
 
-        game.playGame(cars, 5);
+        while (tryCount-- > 0) {
+            game.playOneGame(cars);
+        }
     }
 
     @Test

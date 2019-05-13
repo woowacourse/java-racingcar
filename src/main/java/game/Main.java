@@ -15,7 +15,10 @@ public class Main {
         List<Car> cars = CarsGenerator.createCars(carNames);
         int tryCount = UserInput.inputTryCount();
 
-        game.playGame(cars, tryCount);
+        while (tryCount-- > 0) {
+            game.playOneGame(cars);
+            ResultOutput.printEachGame(cars);
+        }
         winner.selectWinners(cars);
         ResultOutput.printWinners(winner.getWinners());
     }
