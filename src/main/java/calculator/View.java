@@ -9,7 +9,7 @@ public class View {
         return value;
     }
 
-    public static void output(int result) {
+    public static void output(double result) {
         System.out.println(result);
     }
 }

@@ -12,7 +12,7 @@ public class StringCalculator {
     private Queue<Integer> numbers = new LinkedList<>();
     private Queue<String> operators = new LinkedList<>();
 
-    public StringCalculator(String value){
+    public StringCalculator(String value) {
         String[] expression = value.split(" ");
         divideExpression(numbers, operators, expression);
     }
@@ -29,26 +29,10 @@ public class StringCalculator {
     }
 
     public int calculate() {
-        int result = map(numbers.poll(), numbers.poll(), operators.poll());
+        int result = Operator.of(operators.poll()).calculate(numbers.poll(), numbers.poll());
         while (!operators.isEmpty()) {
-            result = map(result, numbers.poll(), operators.poll());
+            result = Operator.of(operators.poll()).calculate(result, numbers.poll());
         }
         return result;
-    }
-
-    private int map(int i, int j, String operator) {
-        if (operator.equals(PLUS)) {
-            return Calculator.add(i, j);
-        }
-        if (operator.equals(MINUS)) {
-            return Calculator.subtract(i, j);
-        }
-        if (operator.equals(MULTIPLE)) {
-            return Calculator.multiply(i, j);
-        }
-        if (operator.equals(DIVIDE)) {
-            return Calculator.divide(i, j);
-        }
-        throw new IllegalArgumentException();
     }
 }

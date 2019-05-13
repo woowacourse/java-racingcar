@@ -13,7 +13,7 @@ public class CalculatorTest {
     void 덧셈() {
         calculator = new StringCalculator("3 + 5");
         int result = calculator.calculate();
-        assertThat(result).isEqualTo(5);
+        assertThat(result).isEqualTo(8);
     }
 
     @Test
