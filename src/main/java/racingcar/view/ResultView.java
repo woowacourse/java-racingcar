@@ -15,14 +15,14 @@ public class ResultView {
         System.out.println();
     }
 
-    public static String printWinner(List<String> winners) {
-        return String.format(MessageConstants.RESULT_PRINT_WINNER_FORMAT,
-                String.join(",",winners));
-    }
-
     public static String printHypen(Car car){
         return String.format(MessageConstants.RESULT_PRINT_HYPHEN_FORMAT,
                 car.getName(), getHyphen(car.getPosition()));
+    }
+
+    public static String printWinner(List<String> winners) {
+        return String.format(MessageConstants.RESULT_PRINT_WINNER_FORMAT,
+                String.join(",",winners));
     }
 
     private static String getHyphen(int position){
