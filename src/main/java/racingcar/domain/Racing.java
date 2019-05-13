@@ -21,14 +21,14 @@ public class Racing {
         this.numberOfTimes = numberOfTimes;
     }
 
-    public void run() {
-        System.out.println("실행 결과");
-
+    public Winner run() {
         for (int i = 0; i < numberOfTimes; ++i) {
             cars.forEach(car -> car.moveOrNot(RandomNumberCreator.create(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)));
             cars.forEach(car -> OutputView.printCarDistance(car));
             System.out.println();
         }
+
+        return new Winner(cars, getMaxDistance());
     }
 
     private int getMaxDistance() {
@@ -41,6 +41,9 @@ public class Racing {
 
     public Winner getWinner() {
         return new Winner(cars, getMaxDistance());
+    }
+    public List<Car> getCars() {
+        return cars;
     }
 }
 
