@@ -5,16 +5,17 @@ import java.util.List;
 
 public class Race implements Iterator {
     private final RaceStatus status;
-    private int leftRound;
+    private int leftRounds;
 
     public Race(List<String> names, int numberOfTrials) {
         status = new RaceStatus(names, new RandomMovement());
-        leftRound = numberOfTrials;
+        leftRounds = numberOfTrials;
     }
 
+    @Override
     public RaceStatus next() {
         status.startEachRound();
-        leftRound--;
+        leftRounds--;
         return status;
     }
 
@@ -24,6 +25,6 @@ public class Race implements Iterator {
 
     @Override
     public boolean hasNext() {
-        return leftRound != 0;
+        return leftRounds != 0;
     }
 }
