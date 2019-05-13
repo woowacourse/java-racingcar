@@ -81,7 +81,7 @@
 - [x] 불필요한 테스트 코드 제거
 - [ ] 테스트 애노테이션 (@Test) 중복 제거
 - [x] 테스트 코드에서 List 생성 코드 단순화
-- [ ] 테스트 코드의 우승자 판별 테스트에서 containsExactly() 활용
+- [x] 테스트 코드의 우승자 판별 테스트에서 containsExactly() 활용
 
 ## 도메인 모델
 ![Domain Model](./static/racing-car-domain-model.jpg)
