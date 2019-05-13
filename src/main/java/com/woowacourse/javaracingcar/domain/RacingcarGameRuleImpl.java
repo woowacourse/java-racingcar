@@ -20,7 +20,7 @@ public class RacingcarGameRuleImpl implements RacingcarGameRule {
     public int getPositionToMove() {
         int number = numberGenerator.generateNumber(ARG_MIN, ARG_MAX);
         if (ARG_MIN > number || number > ARG_MAX) {
-            throw new IllegalArgumentException("Invalid number for calculating position to move: " + number);
+            throw new IllegalStateException("Invalid number for calculating position to move: " + number);
         }
 
         if (number >= MOVE_BOUND) {
