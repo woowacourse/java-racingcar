@@ -1,7 +1,6 @@
 package racing.model;
 
 import org.junit.jupiter.api.Test;
-import racing.model.Car;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -12,6 +11,6 @@ public class CarTest {
         Car car = new Car("pobi");
         car.move(5);
         car.move(5);
-        assertThat(car.showPosition()).isEqualTo("pobi : --");
+        assertThat(car.statusString()).isEqualTo("pobi : --");
     }
 }

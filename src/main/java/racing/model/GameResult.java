@@ -1,8 +1,4 @@
 package racing.model;
-
-import racing.model.Car;
-import racing.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

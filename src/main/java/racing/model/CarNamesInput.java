@@ -31,8 +31,11 @@ public class CarNamesInput {
 
 
     static boolean checkRepetition(String[] names) {
-        HashSet<String> nameSet = new HashSet<>(Arrays.asList(names));
-        return names.length != nameSet.size();
+        return names.length != arrayToSet(names).size();
+    }
+
+    private static HashSet<String> arrayToSet(String[] names) {
+        return new HashSet(Arrays.asList(names));
     }
 
     private static List<Car> convertToCars(String[] names) throws Exception {
