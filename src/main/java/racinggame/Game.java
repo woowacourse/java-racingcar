@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Game {
 
-    private static final int MAX_RANDOM_VALUE = 9;
+    private static final int MAX_RANDOM_VALUE = 10;
 
     public Winner playGames(Cars cars, int maxInstance) {
         Winner winner = new Winner();
@@ -26,6 +26,6 @@ public class Game {
     }
 
     private int randomValueGenerator() {
-        return ((int) (Math.random() * MAX_RANDOM_VALUE)) + 1;
+        return ((int) (Math.random() * MAX_RANDOM_VALUE));
     }
 }
