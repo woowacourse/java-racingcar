@@ -1,9 +1,12 @@
 package domain;
 
 /**
- * Created by Heebg
- * User: heebg
- * Date: 2019-05-08
+ * 상수 클래스
+ * <br> 프로젝트에서 사용할 문자열, 기준 숫자들을 모아놓은 클래스
+ * <br> Const.ZERO
+ *
+ * @author heebg
+ * @version 1.0 2019-05-08
  */
 public class Const {
     public static final String INPUT_CAR_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
@@ -22,6 +25,5 @@ public class Const {
     public static final int MIN_ROUND_COUNT = ZERO;
     public static final String SHAPE_CAR_POSITION = "-";
     public static final int CAR_OBJ_INIT_POSITION = ZERO;
-    public static final int WINNER_OBJ_INIT_MAX_POSITION = ZERO;
     public static final int INIT_POSITION_OUTPUT_CAR_POSITION = ZERO;
 }

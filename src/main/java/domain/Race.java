@@ -9,8 +9,8 @@ import java.util.Objects;
 
 /**
  * 레이스 게임을 진행해 자동차들을 이동시키는 클래스
- * Race race = new Race(raceCars);
- * Race race = new Race(raceCars, roundCount);
+ * <br> Race race = new Race(raceCars);
+ * <br> Race race = new Race(raceCars, roundCount);
  *
  * @author heebg
  * @version 1.0 2019-05-08
