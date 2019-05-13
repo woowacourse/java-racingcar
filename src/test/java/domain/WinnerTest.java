@@ -20,8 +20,8 @@ public class WinnerTest {
     }
 
     @Test
-    void getWinners() {
-        assertThat(winner.getWinners())
+    void getWinnerNames() {
+        assertThat(winner.getWinnerNames())
                 .isEqualTo(Arrays.asList("c"));
     }
 }

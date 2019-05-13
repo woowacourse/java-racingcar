@@ -15,7 +15,7 @@ public class OutputView {
 
     public static void printWinner(List<Car> cars) {
         Winner winner = new Winner(cars);
-        String winnerNames = String.join(",", winner.getWinners());
+        String winnerNames = String.join(",", winner.getWinnerNames());
 
         System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
