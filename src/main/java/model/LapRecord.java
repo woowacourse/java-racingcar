@@ -6,11 +6,11 @@ import java.util.List;
 public class LapRecord {
     private List<Cars> laps;
 
-    public LapRecord() {
+    LapRecord() {
         laps = new ArrayList<>();
     }
 
-    public void add(Cars cars) {
+    void add(Cars cars) {
         laps.add(cars);
     }
 
