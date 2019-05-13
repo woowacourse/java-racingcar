@@ -20,7 +20,8 @@ public class OutputView {
         }
         printNewLine();
     }
-    public static void printCar(final Car car){
+
+    public static void printCar(final Car car) {
         String positionBars = "";
         for (int i = 0; i < car.getPosition(); i++) {
             positionBars += "-";
@@ -29,7 +30,7 @@ public class OutputView {
     }
 
     public static void printResult(final List<String> winnerNames) {
-        String joinedNames = String.join(", ",winnerNames);
+        String joinedNames = String.join(", ", winnerNames);
         System.out.println(String.join("\n", joinedNames + "가 최종 우승했습니다."));
     }
 

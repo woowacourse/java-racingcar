@@ -25,15 +25,16 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    public int getPosition(){
+    public int getPosition() {
         return position;
     }
-    public void tryGoForward(final int randomNum) {
-        if (isGo(randomNum)) position += GO_STEP;
+
+    public void tryGoForward(MovementStrategy cond) {
+        if (isGo(cond)) position += GO_STEP;
     }
 
-    private boolean isGo(final int number) {
-        return number >= GO_FORWRARD_CRITERIA_NUM;
+    private boolean isGo(MovementStrategy cond) {
+        return cond.numberGenerate() >= GO_FORWRARD_CRITERIA_NUM;
     }
 
     @Override

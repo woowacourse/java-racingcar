@@ -73,6 +73,6 @@
         - [x] view 조작 컨트롤러에서 Main으로 분리
     - [x] 자동차 이름입력 재귀 실행 수정
     - [x] Race클래스 내 cars 생성 위치 수정
-    - [ ] RandomNumberGenerator 인터페이스 분리 
-    - [ ] 핵심 로직 테스트
+    - [x] RandomNumberGenerator 인터페이스 분리 
+    - [x] 핵심 로직 테스트
  

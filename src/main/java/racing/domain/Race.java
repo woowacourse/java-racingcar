@@ -1,29 +1,23 @@
 package racing.domain;
 
-import racing.util.RandomNumberGenerator;
-
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Race {
     private List<Car> cars;
-    private List<String>carNames;
-    public Race(final List<String>carNames){
-        this.carNames = carNames;
-        this.cars = createCars();
+    private final List<String> carNames;
+    private final MovementStrategy strategy;
+
+    public Race(final List<String> carNames) {
+        this(carNames, new NumberGenerate());
     }
 
-    /*
-     * 경기 준비 메소드
-     */
-    public List<Car> createCars() {
-        List<Car> carList = new ArrayList<>();
-        Iterator<String> it = carNames.iterator();
-        while (it.hasNext()) {
-            carList.add(new Car(it.next()));
-        }
-        return carList;
+    public Race(final List<String> carNames, MovementStrategy strategy) {
+        this.carNames = Collections.unmodifiableList(carNames);
+        this.cars = this.carNames.stream().map(name -> new Car(name)).collect(Collectors.toList());
+        this.strategy = strategy;
     }
 
     /*
@@ -33,7 +27,7 @@ public class Race {
         Iterator<Car> it = cars.iterator();
         while (it.hasNext()) {
             Car car = it.next();
-            car.tryGoForward(RandomNumberGenerator.generate(Car.MAX_RANDOM_NUM_UPPER_BOUND));
+            car.tryGoForward(strategy);
         }
     }
 

@@ -13,14 +13,12 @@ public class CalculatorTest {
     public void setUp()  {
         cal = new Calculator();
         System.out.println("Setup");
-
     }
 
     @Test
     void 덧셈() {
         assertThat(cal.add(2, 3)).isEqualTo(5);
         System.out.println("plus");
-
     }
 
     @Test

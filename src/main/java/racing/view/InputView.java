@@ -25,7 +25,7 @@ public class InputView {
             return true;
         }
         while (it.hasNext()) {
-            String s = it.next();
+            String s  = it.next();
             if (isOverLength(s) || isBlank(s)) {
                 return true;
             }
