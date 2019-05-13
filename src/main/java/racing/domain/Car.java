@@ -25,11 +25,10 @@ import java.util.Objects;
 public class Car implements Comparable<Car> {
     private static final String NAME_EXCEPTION_MESSAGE = "양식에 맞게 다시 입력해주세요 ! (이름은 쉼표(,) 기준으로 구분)";
     public static final String POSITION_EXCEPTION_MESSAGE = "포지션은 양수.";
-    private static final int CRITERIA_OF_GO_STOP = 4;
-//    private static final char CHAR_HYPHEN = '-';
+    private static final char CHAR_HYPHEN = '-';
 
     private final String name;
-    private int position = 0;
+    private int position;
 
     public Car(String name) {
         this(name, 0);
@@ -66,8 +65,16 @@ public class Car implements Comparable<Car> {
         return this.position == car.getPosition();
     }
 
-    public void moveByRandomNumber(int rand) {
-        if (rand >= CRITERIA_OF_GO_STOP) {
+    public String positionVisualize() {
+        char[] pos = new char[this.position];
+        for (int i = 0; i < pos.length; i++) {
+            pos[i] = CHAR_HYPHEN;
+        }
+        return String.copyValueOf(pos);
+    }
+
+    public void moveByRandomNumber(Rule rule) {
+        if (rule.goOrStop()) {
             goForward();
         }
     }

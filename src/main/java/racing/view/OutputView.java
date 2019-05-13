@@ -27,7 +27,6 @@ public class OutputView {
     private static final String RESULT_EACH_GAME_MESSAGE = "%s : %s\n";
     private static final String RESULT_TITLE_MESSAGE = "\n실행 결과";
     private static final String RESULT_TOTAL_MESSAGE = "가 최종 우승했습니다.";
-    private static final char CHAR_HYPHEN = '-';
 
     public static void printMessageCarNames() {
         System.out.println(CAR_NAME_REQUEST_MESSAGE);
@@ -43,19 +42,10 @@ public class OutputView {
 
     public static void printEachGameResult(RacingGame racingGame) {
         for (Car car : racingGame.getCars()) {
-            System.out.printf(RESULT_EACH_GAME_MESSAGE, car.getName(), positionVisualize(car));
+            System.out.printf(RESULT_EACH_GAME_MESSAGE, car.getName(), car.positionVisualize());
         }
         System.out.println();
     }
-
-    private static String positionVisualize(Car car) {
-        char[] pos = new char[car.getPosition()];
-        for (int i = 0; i < pos.length; i++) {
-            pos[i] = CHAR_HYPHEN;
-        }
-        return String.copyValueOf(pos);
-    }
-
 
     public static void printResultTotal(RacingGame racingGame) {
         String result = racingGame.getWinners();

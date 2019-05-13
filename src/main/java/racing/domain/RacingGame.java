@@ -25,8 +25,6 @@ import java.util.Objects;
  * @see Car
  */
 public class RacingGame {
-    private static final int RAND_INT_UPPER_BOUND = 10;
-
     private List<Car> cars;
 
     public RacingGame(List<Car> cars) {
@@ -39,14 +37,10 @@ public class RacingGame {
 
     public RacingGame runEachGame() {
         for (Car car : cars) {
-            int rand = getRandomNumber();
-            car.moveByRandomNumber(rand);
+            Rule rule = new Rule();
+            car.moveByRandomNumber(rule);
         }
         return this;
-    }
-
-    private int getRandomNumber() {
-        return (int) (Math.random() * RAND_INT_UPPER_BOUND);
     }
 
     public String getWinners() {
