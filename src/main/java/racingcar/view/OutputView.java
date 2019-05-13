@@ -1,7 +1,10 @@
 package racingcar.view;
 
+import racingcar.model.GameResult;
 import racingcar.model.RacingCars;
 import racingcar.model.Winner;
+
+import java.util.List;
 
 public class OutputView {
     private static final String EMPTY_STRING = "";
@@ -10,7 +13,7 @@ public class OutputView {
     private static final String RESULT_MENT = "실행결과";
 
     public static void printCarPositions(RacingCars racingCars) {
-        System.out.println(String.join("\n", racingCars.getCurrentPositionsOfRacingCars()));
+        System.out.println(racingCars.getCurrentPositionsOfRacingCars());
     }
 
     public static void printEmptyLine() {
@@ -23,5 +26,9 @@ public class OutputView {
 
     public static void printResultMent() {
         System.out.println(RESULT_MENT);
+    }
+
+    public static void printResults(GameResult gameResult) {
+        System.out.println(gameResult.getAllResults());
     }
 }

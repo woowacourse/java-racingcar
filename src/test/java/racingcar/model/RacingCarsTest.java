@@ -33,6 +33,6 @@ class RacingCarsTest {
         ));
 
         assertThat(racingCars.getCurrentPositionsOfRacingCars())
-                .isEqualTo(Arrays.asList("Car1 : --", "Car2 : --", "Car3 : --"));
+                .isEqualTo("Car1 : --\n" + "Car2 : --\n" + "Car3 : --");
     }
 }

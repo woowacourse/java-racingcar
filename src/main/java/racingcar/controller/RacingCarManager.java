@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.model.GameResult;
 import racingcar.model.RacingCars;
 import racingcar.model.Winner;
 import racingcar.view.InputView;
@@ -7,8 +8,14 @@ import racingcar.view.OutputView;
 
 public class RacingCarManager {
     private static final int MIN_GAME_COUNT = 0;
+
+    private final GameResult gameResult;
     private int gameCount = 0;
     private RacingCars racingCars;
+
+    public RacingCarManager() {
+        this.gameResult = new GameResult();
+    }
 
     public void playRacingGame() {
         getGameInformation();
@@ -41,17 +48,17 @@ public class RacingCarManager {
 
     private void moveRacingCarsOneCount() {
         racingCars.moveRacingCars();
-        printCarPositions();
-    }
-
-    private void printCarPositions() {
-        OutputView.printCarPositions(racingCars);
-        OutputView.printEmptyLine();
+        gameResult.addResult(racingCars);
     }
 
     private void endRacing() {
+        printResults();
         Winner winner = getWinner(racingCars);
         printWinners(winner);
+    }
+
+    private void printResults() {
+        OutputView.printResults(gameResult);
     }
 
     private Winner getWinner(RacingCars racingCars) {

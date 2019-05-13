@@ -73,12 +73,12 @@ public class RacingCars {
         return random.nextInt(MAX_BOUND);
     }
 
-    public List<String> getCurrentPositionsOfRacingCars() {
+    public String getCurrentPositionsOfRacingCars() {
         List<String> currentPositions = new ArrayList<>();
         for (Car racingCar : racingCars) {
             currentPositions.add(racingCar.getCurrentPosition());
         }
-        return currentPositions;
+        return String.join("\n", currentPositions);
     }
 
     @Override
