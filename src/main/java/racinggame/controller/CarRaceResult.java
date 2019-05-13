@@ -1,20 +1,27 @@
 package racinggame.controller;
 
 import racinggame.domain.LeagueHistory;
-import racinggame.util.OutputView;
+import racinggame.domain.TrialHistory;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 public class CarRaceResult {
     private final LeagueHistory leagueHistory;
+    private final int lastTrial;
 
-    public CarRaceResult(final LeagueHistory leagueHistory) {
+    public CarRaceResult(final LeagueHistory leagueHistory, final int lastTrial) {
         this.leagueHistory = leagueHistory;
+        this.lastTrial = lastTrial;
     }
 
-    public void showCarRaceResult(final int lastTrial) {
-        OutputView.showHistory(leagueHistory);
-        OutputView.showWinners(leagueHistory.findWinners(lastTrial));
+    public Collection<TrialHistory> getRaceResult() {
+        return leagueHistory.values();
+    }
+
+    public List<String> getRaceWinners() {
+        return leagueHistory.findWinners(lastTrial);
     }
 
     @Override

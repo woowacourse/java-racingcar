@@ -16,18 +16,14 @@ public class CarRacing {
         this.totalTrial = totalTrial;
     }
 
-    public LeagueHistory raceStart(RunCondition runCondition) {
+    public CarRaceResult raceStart(RunCondition runCondition) {
         LeagueHistory leagueHistory = new LeagueHistory();
 
         for (int trial = 1; trial <= totalTrial; trial++) {
             cars.forEach(car -> car.run(runCondition.runOrStop()));
             leagueHistory.record(trial, new TrialHistory(cars));
         }
-        return leagueHistory;
-    }
-
-    public int getTotalTrial() {
-        return totalTrial;
+        return new CarRaceResult(leagueHistory, totalTrial);
     }
 
     @Override

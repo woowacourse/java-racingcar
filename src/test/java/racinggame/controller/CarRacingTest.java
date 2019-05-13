@@ -23,7 +23,6 @@ class CarRacingTest {
 
     @Test
     void 객체를_제대로_생성하는지_테스트() {
-        /* Given */
         /* Then */
         assertThat(new CarRacing(cars, totalTrial)).isEqualTo(new CarRacing(cars, 3));
     }
@@ -32,12 +31,16 @@ class CarRacingTest {
     void 리그가_제대로_진행되는지_확인() {
         /* Given */
         CarRacing carRacing = new CarRacing(cars, totalTrial);
+        LeagueHistory leagueHistory = new LeagueHistory();
+
         /* When */
-        LeagueHistory leagueHistory = carRacing.raceStart(new CarAlwaysRun());
+        CarRaceResult carRaceResult = carRacing.raceStart(new CarAlwaysRun());
+        for (int i = 1; i <= totalTrial; i++) {
+            leagueHistory.record(i, new TrialHistory(Arrays.asList(new Car("pobi", i),
+                    new Car("crong", i))));
+        }
+
         /* Then */
-        assertThat(leagueHistory.getHistoryOf(totalTrial))
-                .isEqualTo(new TrialHistory(Arrays.asList(
-                        new Car("pobi", 3),
-                        new Car("crong", 3))));
+        assertThat(carRaceResult).isEqualTo(new CarRaceResult(leagueHistory, totalTrial));
     }
 }

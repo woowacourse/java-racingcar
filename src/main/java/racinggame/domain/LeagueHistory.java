@@ -1,9 +1,6 @@
 package racinggame.domain;
 
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LeagueHistory {
     private Map<Integer, TrialHistory> leagueHistory = new LinkedHashMap<>();
@@ -24,5 +21,18 @@ public class LeagueHistory {
 
     public Collection<TrialHistory> values() {
         return leagueHistory.values();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LeagueHistory that = (LeagueHistory) o;
+        return Objects.equals(leagueHistory, that.leagueHistory);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(leagueHistory);
     }
 }
