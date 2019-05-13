@@ -12,12 +12,9 @@ import java.util.Random;
 
 public class RacingGame {
     private final int MAX_BOUND = 10;
-    private final InputView INPUTVIEW = new InputView();
-    private final ResultView RESULTVIEW = new ResultView();
-    private final GameResult GAMERESULT = new GameResult();
 
     public void run() {
-        List<Car> cars = setCarName();
+        List<Car> cars = makeCarList();
         int number = inputNumber();
 
         System.out.println("\n" + MessageConstants.RESULT);
@@ -26,11 +23,12 @@ public class RacingGame {
             getRacingPosition(cars);
         }
 
-        RESULTVIEW.printWinner(getWinner(cars));
+        ResultView.printWinner(getWinner(cars));
     }
 
-    private List<Car> setCarName() {
-        String[] name = INPUTVIEW.inputName();
+
+    private List<Car> makeCarList() {
+        String[] name = InputView.inputName();
         List<Car> cars = new ArrayList<>();
 
         for (String carName : name) {
@@ -41,14 +39,14 @@ public class RacingGame {
     }
 
     private int inputNumber() {
-        return INPUTVIEW.inputNumber();
+        return InputView.inputNumber();
     }
 
     private void getRacingPosition(List<Car> cars) {
         for (Car car : cars) {
             car.move(getRandomNumber());
         }
-        RESULTVIEW.printResult(cars);
+        ResultView.printResult(cars);
     }
 
     private int getRandomNumber() {
@@ -56,9 +54,8 @@ public class RacingGame {
         return random.nextInt(MAX_BOUND);
     }
 
-
     private List<String> getWinner(List<Car> cars) {
-        return GAMERESULT.racingResult(cars);
+        return GameResult.racingResult(cars);
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ResultView {
 
-    public void printResult(List<Car> cars) {
+    public static void printResult(List<Car> cars) {
         for (Car car : cars) {
             System.out.println(printHyphen(car));
         }
@@ -15,12 +15,12 @@ public class ResultView {
         System.out.println();
     }
 
-    public String printHyphen(Car car) {
+    public static String printHyphen(Car car) {
         return String.format(MessageConstants.RESULT_PRINT_HYPHEN_FORMAT,
                 car.getName(), getHyphen(car.getPosition()));
     }
 
-    private String getHyphen(int position) {
+    private static String getHyphen(int position) {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = 0; i < position; i++) {
@@ -30,7 +30,7 @@ public class ResultView {
         return stringBuilder.toString();
     }
 
-    public void printWinner(List<String> winners) {
+    public static void printWinner(List<String> winners) {
         String winnerResult = String.join(",", winners);
         System.out.println(String.format(MessageConstants.RESULT_PRINT_WINNER_FORMAT, winnerResult));
     }

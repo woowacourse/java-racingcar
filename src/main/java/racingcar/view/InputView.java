@@ -6,12 +6,12 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 public class InputView {
-    private final int MINIMUM_PLAYER = 1;
-    private final int NAME_LENGTH = 5;
-    private final Scanner SCANNER = new Scanner(System.in);
-    private final String PATTERN = "^[0-9]$";
+    private static final int MINIMUM_PLAYER = 1;
+    private static final int NAME_LENGTH = 5;
+    private static final Scanner SCANNER = new Scanner(System.in);
+    private static final String PATTERN = "^[0-9]$";
 
-    public String[] inputName() {
+    public static String[] inputName() {
         System.out.println(MessageConstants.INPUT_CARNAME);
 
         String carNames = SCANNER.nextLine().trim();
@@ -24,7 +24,7 @@ public class InputView {
         return carName;
     }
 
-    private boolean checkCarNameValidate(String carNames) {
+    private static boolean checkCarNameValidate(String carNames) {
         String[] carName = carNames.split(",");
 
         if (overLengthName(carName)) return true;
@@ -35,7 +35,7 @@ public class InputView {
         return hasMiddleBlank(carName);
     }
 
-    public int inputNumber() {
+    public static int inputNumber() {
         System.out.println(MessageConstants.INPUT_ROUND);
         String inputNumber = SCANNER.nextLine();
 
@@ -46,14 +46,14 @@ public class InputView {
         return Integer.parseInt(inputNumber);
     }
 
-    private boolean checkNumberValidate(String inputNumber) {
+    private static boolean checkNumberValidate(String inputNumber) {
         if (hasBlank(inputNumber)) return true;
         if (hasCharacter(inputNumber)) return true;
 
         return hasNegativeNumber(inputNumber);
     }
 
-    private boolean hasBlank(String carNames) {
+    private static boolean hasBlank(String carNames) {
         if (carNames.isEmpty()) {
             System.err.println(MessageConstants.ERROR_EMPTY);
             return true;
@@ -61,7 +61,7 @@ public class InputView {
         return false;
     }
 
-    private boolean overLengthName(String[] carName) {
+    private static boolean overLengthName(String[] carName) {
         if (Arrays.stream(carName).anyMatch(name -> name.length() >= NAME_LENGTH)) {
             System.err.println(MessageConstants.ERROR_OVERLENGTH);
             return true;
@@ -70,7 +70,7 @@ public class InputView {
         return false;
     }
 
-    private boolean hasNotAnotherPlayer(String[] carName) {
+    private static boolean hasNotAnotherPlayer(String[] carName) {
         if (carName.length == MINIMUM_PLAYER) {
             System.err.println(MessageConstants.ERROR_PLAYER_NUMBER);
             return true;
@@ -78,7 +78,7 @@ public class InputView {
         return false;
     }
 
-    private boolean overLapName(String[] carName) {
+    private static boolean overLapName(String[] carName) {
         Set<String> compareName = new HashSet<>(Arrays.asList(carName));
 
         if (carName.length != compareName.size()) {
@@ -88,7 +88,7 @@ public class InputView {
         return false;
     }
 
-    private boolean hasMiddleBlank(String[] carNames) {
+    private static boolean hasMiddleBlank(String[] carNames) {
         long emptyNameCount = Arrays.stream(carNames)
                 .map(c -> c.replace(" ", ""))
                 .filter(String::isEmpty).count();
@@ -102,7 +102,7 @@ public class InputView {
     }
 
 
-    private boolean hasNegativeNumber(String inputNumber) {
+    private static boolean hasNegativeNumber(String inputNumber) {
         if (Integer.parseInt(inputNumber) <= 0) {
             System.err.println(MessageConstants.ERROR_MINUS_NUMBER);
             return true;
@@ -111,7 +111,7 @@ public class InputView {
         return false;
     }
 
-    private boolean hasCharacter(String inputNumber) {
+    private static boolean hasCharacter(String inputNumber) {
         char[] inputChar = inputNumber.toCharArray();
 
         if (inputChar[0] == '-') {
