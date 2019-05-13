@@ -46,16 +46,9 @@ public class Calculator {
         return result;
     }
 
-    public int calculate(String[] tokens) throws Exception {
-        String[] input = InputHandler.getInput().split(" ");
-        if (!NumericExpression.canCalculate(input))
-            throw new Exception("계산 가능한 형식이 아닙니다.");
-        try {
-            int result = calculateMultiExpression(input);
-            System.out.println("계산 결과 : " + result);
-            return result;
-        } catch (ArithmeticException ae) {
-            throw new Exception("0으로 나눌 수 없습니다.");
-        }
+    public int calculate(String[] tokens) {
+
+        return calculateMultiExpression(tokens);
+
     }
 }

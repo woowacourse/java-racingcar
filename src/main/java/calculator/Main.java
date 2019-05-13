@@ -5,7 +5,7 @@ public class Main {
         start();
     }
 
-    public static int start() throws Exception {
+    public static void start() {
         String expression = InputHandler.getInput();
         Calculator calculator = new Calculator();
         calculator.calculate(expression.split(" "));
