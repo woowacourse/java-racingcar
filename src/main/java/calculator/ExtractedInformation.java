@@ -76,6 +76,7 @@ public class ExtractedInformation {
         if (numberCount - symbolCount == 1) {
             return false;
         }
+        System.out.println("계산 할 수 없는 식입니다!");
         return true;
     }
 
