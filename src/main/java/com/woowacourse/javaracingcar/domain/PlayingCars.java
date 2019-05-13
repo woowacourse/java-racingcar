@@ -25,7 +25,7 @@ public class PlayingCars {
      * @param carName       자동차 이름
      * @param positionDelta 움직일 거리
      */
-    public void updateCarPosition(final String carName, final int positionDelta) {
+    public void moveCar(final String carName, final int positionDelta) {
         Optional<Car> maybeCar = Optional.ofNullable(cars.get(carName));
         maybeCar.orElseThrow(() -> new IllegalArgumentException("Car was not found with name: " + carName));
         maybeCar.ifPresent(c -> c.move(positionDelta));

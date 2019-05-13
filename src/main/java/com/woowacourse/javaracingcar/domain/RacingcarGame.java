@@ -31,7 +31,7 @@ public class RacingcarGame {
 
         for (int i = 0; i < tries; i++) {
             cars.retrieveAllCars().forEach(c -> {
-                cars.updateCarPosition(c.getName(), rule.getPositionToMove());
+                cars.moveCar(c.getName(), rule.getPositionToMove());
             });
             rounds.add(new GameRound(cars));
         }
