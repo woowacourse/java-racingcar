@@ -9,22 +9,21 @@ import java.util.List;
 public class RacingController {
 
     public static void main(String[] args) {
-        Race race = new Race(setCarsOnRace(), setRoundCount());
+        Race race = setRace();
         OutputView.outputGameResultTile();
-        while(race.hasNextRound()){
+        while (race.hasNextRound()) {
             printEachCarsOnRace(race.moveAllCarsByRoundCount());
         }
         Winners winners = new Winners(race.moveAllCarsByRoundCount());
         OutputView.outputWinners(winners.getRaceWinners());
     }
 
-    public static List<Car> setCarsOnRace() {
+    public static Race setRace() {
         try {
-            CarsFactory carsFactory = new CarsFactory(InputView.inputCarNames());
-            return carsFactory.createCars();
+            return new Race(InputView.inputCarNames(), setRoundCount());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return setCarsOnRace();
+            return setRace();
         }
     }
 
@@ -41,8 +40,8 @@ public class RacingController {
         }
     }
 
-    public static void printEachCarsOnRace(List<Car> carsOnRace){
-        for(Car car : carsOnRace){
+    public static void printEachCarsOnRace(List<Car> carsOnRace) {
+        for (Car car : carsOnRace) {
             OutputView.outputGameResult(car.toString());
         }
         System.out.println();

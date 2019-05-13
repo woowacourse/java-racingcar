@@ -14,12 +14,12 @@ class RaceTest {
 
     @BeforeEach
     void setUp() {
-        race = new Race(new CarsFactory(Arrays.asList("pobi", "crong", "kim")).createCars(), roundCount);
+        race = new Race(Arrays.asList("pobi", "crong", "kim"), roundCount);
     }
 
     @Test
     void 레이스_객체_생성() {
-        assertThat(race).isEqualTo(new Race(new CarsFactory(Arrays.asList("pobi", "crong", "kim")).createCars(), roundCount));
+        assertThat(race).isEqualTo(new Race(Arrays.asList("pobi", "crong", "kim"), roundCount));
     }
 
     @Test

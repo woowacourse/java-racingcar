@@ -31,9 +31,9 @@ public class Car {
     public int increasePositionOrNot(int randomNumber) {
         if (Const.GO_RAN_NUM <= randomNumber) {
             this.position++;
-            return Const.CAR_MOVE_SUCCESS;
+            return 1;
         }
-        return Const.CAR_MOVE_FAIL;
+        return 0;
     }
 
     public boolean matchPosition(int position) {

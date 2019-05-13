@@ -1,6 +1,5 @@
 package domain;
 
-import controller.RacingController;
 import util.Util;
 
 import java.util.List;
@@ -11,10 +10,10 @@ public class Race {
     private int roundCount;
     private int currentRound;
 
-    public Race(List<Car> carsOnRace, int roundCount) {
-        this.carsOnRace = carsOnRace;
+    public Race(List<String> carNames, int roundCount) {
+        this.carsOnRace = new CarsFactory(carNames).createCars();
         this.roundCount = roundCount;
-        currentRound = 1;
+        this.currentRound = 1;
     }
 
     public List<Car> moveAllCarsByRoundCount() {

@@ -6,6 +6,7 @@ import domain.Race;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import view.InputView;
 import view.OutputView;
 
 import java.io.ByteArrayInputStream;
@@ -29,7 +30,7 @@ class RacingControllerTest {
         InputStream in = new ByteArrayInputStream(carNamesInput.getBytes());
         System.setIn(in);
 
-        List<Car> cars = RacingController.setCarsOnRace();
+        List<Car> cars = new CarsFactory(InputView.inputCarNames()).createCars();
         for (int i = 0; i < carNames.size(); i++) {
             assertThat(cars).isEqualTo(new CarsFactory(carNames).createCars());
         }
@@ -75,17 +76,6 @@ class RacingControllerTest {
         assertThrows(StackOverflowError.class, () -> {
             RacingController.setRoundCount();
         });
-    }
-
-    @Test
-    void 라운드_하나_자동차_포지션_출력_확인() {
-        InputStream in = new ByteArrayInputStream(carNamesInput.getBytes());
-        int roundCount = 5;
-
-        System.setIn(in);
-
-        Race race = new Race(RacingController.setCarsOnRace(), roundCount);
-        RacingController.printEachCarsOnRace(race.moveAllCarsByRoundCount());
     }
 
     @AfterEach
