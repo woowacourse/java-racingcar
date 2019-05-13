@@ -60,11 +60,12 @@ public class Car {
 
     @Override
     public String toString() {
-        String carPosition = name + " : ";
+        StringBuffer stringBuffer = new StringBuffer(name);
+        stringBuffer.append(" : ");
         for (int i = 0; i < position; i++) {
-            carPosition += POSITION_MARK;
+            stringBuffer.append(POSITION_MARK);
         }
-        return carPosition;
+        return stringBuffer.toString();
     }
 
     public String getName() {
