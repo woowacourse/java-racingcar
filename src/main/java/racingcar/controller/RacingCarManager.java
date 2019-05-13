@@ -25,12 +25,28 @@ public class RacingCarManager {
     }
 
     private void startRacing() {
+        printStartRacingMent();
+        moveRaceCars();
+    }
+
+    private void printStartRacingMent() {
         OutputView.printResultMent();
+    }
+
+    private void moveRaceCars() {
         for (int i = 0; i < gameCount; i++) {
-            racingCars.moveRacingCars();
-            OutputView.printCarPositions(racingCars);
-            OutputView.printEmptyLine();
+            moveRacingCarsOneCount();
         }
+    }
+
+    private void moveRacingCarsOneCount() {
+        racingCars.moveRacingCars();
+        printCarPositions();
+    }
+
+    private void printCarPositions() {
+        OutputView.printCarPositions(racingCars);
+        OutputView.printEmptyLine();
     }
 
     private void endRacing() {
