@@ -3,7 +3,7 @@ package cal;
 public enum Operator {
     PLUS("+", (former, letter) -> former + letter),
     MINUS("-", (former, letter) -> former - letter),
-    MULTIFLY("*", (former, letter) -> former * letter),
+    MULTIPLY("*", (former, letter) -> former * letter),
     DIVIDE("/", (former, letter) -> former / letter);
 
     private String value;
