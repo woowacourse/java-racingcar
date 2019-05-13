@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCar {
+    private static final int RANDOM_NUMBER_LIMIT = 10;
+
     private List<Car> cars;
 
     public RacingCar() {
@@ -37,13 +39,18 @@ public class RacingCar {
 
     private void playOneRound() {
         for (Car car : cars) {
-            car.play();
-            printCarStatus(car);
+            moveOneCar(car);
+            OutputView.printCarStatus(car);
         }
         System.out.println();
     }
 
-    private void printCarStatus(Car car) {
-        System.out.println(car);
+    private void moveOneCar(Car car) {
+        int randomNumber = makeRandomNumber();
+        car.move(randomNumber);
+    }
+
+    private int makeRandomNumber() {
+        return (int) (Math.random() * RANDOM_NUMBER_LIMIT);
     }
 }
