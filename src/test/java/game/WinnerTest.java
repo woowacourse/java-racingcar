@@ -1,37 +1,38 @@
 package game;
 
+import game.output.ResultOutput;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class WinnerTest {
-    Winner winner;
-    List<Car> cars;
+    Game game = new Game();
+    Winner winner = new Winner();
+    List<Car> cars = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
-        winner = new Winner();
-        cars = new ArrayList<>();
-        cars.add(new Car("pobi"));
-        cars.add(new Car("jason"));
-        cars.add(new Car("brown"));
-        cars.get(0).move(4);
-        winner.checkWinner(cars, 1);
+        Car pobi = new Car("pobi");
+        Car crong = new Car("crong");
+        Car mir = new Car("mir");
+
+        cars.add(pobi);
+        cars.add(crong);
+        cars.add(mir);
+
+        game.playGame(cars, 5);
     }
 
     @Test
-    void 우승자_결과_확인() {
-        boolean result = winner.checkWinner(cars, 1);
-        assertThat(result).isEqualTo(true);
+    void 우승자_결정_확인() {
+        winner.selectWinners(cars);
     }
 
-    @Test
-    void 우승자_이름_확인() {
-        String name = winner.getWinners().get(0);
-        assertThat(name).isEqualTo("pobi");
+    @AfterEach
+    void tearDown() {
+        ResultOutput.printWinners(winner.getWinners());
     }
 }
