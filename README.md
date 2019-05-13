@@ -74,5 +74,13 @@
     - [x] RacingGame 내에서 처리하던 출력 로직을 OutputView 로 빼낸다.
 - [x] RaceResult 클래스 제거
 
+## 2차 피드백 이후 리팩토링
+- [ ] MVC 패턴 리팩토링
+- [ ] List 순회할 때 Iterator 대신 for-each
+- [ ] 테스트 코드에서 불필요한 로컬 변수 제거, 중복 제거 
+- [ ] 테스트 애노테이션 (@Test) 중복 제거
+- [ ] 테스트 코드에서 List 생성 코드 단순화
+- [ ] 테스트 코드의 우승자 판별 테스트에서 containsExactly() 활용
+
 ## 도메인 모델
 ![Domain Model](./static/racing-car-domain-model.jpg)
