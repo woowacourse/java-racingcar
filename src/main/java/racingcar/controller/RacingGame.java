@@ -26,7 +26,6 @@ public class RacingGame {
         ResultView.printWinner(getWinner(cars));
     }
 
-
     private List<Car> makeCarList() {
         String[] name = InputView.inputName();
         List<Car> cars = new ArrayList<>();
@@ -44,7 +43,7 @@ public class RacingGame {
 
     private void getRacingPosition(List<Car> cars) {
         for (Car car : cars) {
-            car.move(getRandomNumber());
+            car.makeNewCar(getRandomNumber());
         }
         ResultView.printResult(cars);
     }

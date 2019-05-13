@@ -35,14 +35,14 @@ public class CarTest {
     @Test
     void 정지() {
         Car car = new Car("pobi");
-        car.move(3);
+        car.makeNewCar(3);
         assertThat(car).isEqualTo(new Car("pobi", 0));
     }
 
     @Test
     void 이동() {
         Car car = new Car("pobi");
-        car.move(4);
+        car.makeNewCar(4);
         assertThat(car).isEqualTo(new Car("pobi", 1));
     }
 }

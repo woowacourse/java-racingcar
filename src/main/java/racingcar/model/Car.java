@@ -42,9 +42,13 @@ public class Car {
 
     public void move(int randomNumber) {
         if (randomNumber >= FOWARD_NUM) {
-            new Car(this.name, this.position++);
+            this.position++;
         }
+    }
 
+    public void makeNewCar(int randomNumber) {
+        move(randomNumber);
+        new Car(this.name, this.position);
     }
 
     public int comparePosition(int position) {
