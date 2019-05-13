@@ -8,9 +8,15 @@ public class Winner {
     private int maxInstance = 0;
 
     public void selectWinners(List<Car> cars) {
-        checkMaxInstance(cars);
+        selectMaxInstance(cars);
         for (Car car : cars) {
             addWinner(car);
+        }
+    }
+
+    private void selectMaxInstance(List<Car> cars) {
+        for (Car car : cars) {
+            maxInstance = Math.max(maxInstance, car.getPosition());
         }
     }
 
@@ -22,12 +28,6 @@ public class Winner {
 
     private boolean isMaxInstance(Car car) {
         return car.getPosition() == maxInstance;
-    }
-
-    private void checkMaxInstance(List<Car> cars) {
-        for (Car car : cars) {
-            maxInstance = Math.max(maxInstance, car.getPosition());
-        }
     }
 
     private void addWinners(String carName) {
