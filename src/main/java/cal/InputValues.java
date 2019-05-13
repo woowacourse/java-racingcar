@@ -10,16 +10,24 @@ public class InputValues {
 
         for (int i = 0; i < input.length; i++) {
             if (i % EVEN == 0){
-                if (!isNumber(input[i])) {
-                    throw new IllegalArgumentException("숫자가 아닙니다.");
-                }
+                invalidateNumberException(input[i]);
                 continue;
             }
 
-            char oper = input[i].charAt(0);
-            if (oper != '+' && oper != '-' && oper != '*' && oper != '/') {
-                throw new IllegalArgumentException("올바른 연산기호가 아닙니다.");
-            }
+            invalidateOperatorException(input[i]);
+        }
+    }
+
+    private void invalidateOperatorException(String s) {
+        char oper = s.charAt(0);
+        if (oper != '+' && oper != '-' && oper != '*' && oper != '/') {
+            throw new IllegalArgumentException("올바른 연산기호가 아닙니다.");
+        }
+    }
+
+    private void invalidateNumberException(String input) {
+        if (!isNumber(input)) {
+            throw new IllegalArgumentException("숫자가 아닙니다.");
         }
     }
 
