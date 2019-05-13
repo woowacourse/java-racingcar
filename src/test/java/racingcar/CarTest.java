@@ -54,13 +54,4 @@ public class CarTest {
         car.move(3);
         assertThat(car.matchPosition(0)).isEqualTo(true);
     }
-
-    @Test
-    public void toStringTest() {
-        Car car1 = new Car("whale", 0);
-        assertThat(car1.toString()).isEqualTo("whale : ");
-
-        Car car2 = new Car("cony", 3);
-        assertThat(car2.toString()).isEqualTo("cony : ---");
-    }
 }

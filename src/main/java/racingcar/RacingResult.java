@@ -1,34 +1,23 @@
 package racingcar;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RacingResult {
-    public static void process(List<Car> cars) {
-        int maxPosition = getMaxPosition(cars);
-        List<String> winners = getWinners(cars, maxPosition);
-        printWinners(winners);
-    }
+    private ArrayList<Integer>[] carPositionHistory;
 
-    protected static int getMaxPosition(List<Car> cars) {
-        int maxPosition = 0;
-        for (Car car : cars) {
-            maxPosition = Math.max(car.getPosition(), maxPosition);
+    public RacingResult(String[] carNames) {
+        this.carPositionHistory = new ArrayList[carNames.length];
+
+        for (int i = 0; i < carNames.length; i++) {
+            carPositionHistory[i] = new ArrayList<>();
         }
-        return maxPosition;
     }
 
-    protected static List<String> getWinners(List<Car> cars, int maxPosition) {
-        List<String> winners = new ArrayList<>();
-        for (Car car : cars) {
-            if (car.matchPosition(maxPosition)) {
-                winners.add(car.getName());
-            }
-        }
-        return winners;
+    public void recordCarPositionHistory(int carIndex, Car car) {
+        carPositionHistory[carIndex].add(car.getPosition());
     }
 
-    private static void printWinners(List<String> winners) {
-        OutputView.printWinners(winners);
+    public ArrayList<Integer>[] getCarPositionHistory() {
+        return carPositionHistory;
     }
 }

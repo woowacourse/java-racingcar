@@ -37,22 +37,8 @@ public class Car {
         return this.position == position;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public int getPosition() {
         return position;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name + " : ");
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
-        return sb.toString();
     }
 
     @Override

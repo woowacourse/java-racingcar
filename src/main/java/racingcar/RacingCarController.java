@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCarController {
@@ -8,8 +9,12 @@ public class RacingCarController {
         int numOfGame = InputView.getNumberOfGame();
 
         RacingCar racingCar = new RacingCar();
-        List<Car> cars = racingCar.process(userInput, numOfGame);
+        ArrayList<Integer>[] carPositionHistory = racingCar.process(userInput, numOfGame);
 
-        RacingResult.process(cars);
+        String[] carNames = racingCar.splitCarNames(userInput);
+        OutputView.printCarPositionHistory(carNames, carPositionHistory);
+
+        List<String> winners = RacingWinners.process(carNames, carPositionHistory);
+        OutputView.printWinners(winners);
     }
 }

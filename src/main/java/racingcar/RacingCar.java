@@ -7,20 +7,22 @@ public class RacingCar {
     private static final int RANDOM_NUMBER_LIMIT = 10;
 
     private List<Car> cars;
+    private RacingResult racingResult;
 
     public RacingCar() {
         cars = new ArrayList<>();
     }
 
-    public List<Car> process(String userInput, int numOfGame) {
+    public ArrayList<Integer>[] process(String userInput, int numOfGame) {
         String[] carNames = splitCarNames(userInput);
         setCars(carNames);
+        racingResult = new RacingResult(carNames);
         playEntireRound(numOfGame);
 
-        return cars;
+        return racingResult.getCarPositionHistory();
     }
 
-    private String[] splitCarNames(String userInput) {
+    public String[] splitCarNames(String userInput) {
         return userInput.split(",");
     }
 
@@ -31,18 +33,16 @@ public class RacingCar {
     }
 
     private void playEntireRound(int numOfGame) {
-        System.out.println("\n실행 결과");
         for (int i = 0; i < numOfGame; i++) {
             playOneRound();
         }
     }
 
     private void playOneRound() {
-        for (Car car : cars) {
-            moveOneCar(car);
-            OutputView.printCarStatus(car);
+        for (int i = 0; i < cars.size(); i++) {
+            moveOneCar(cars.get(i));
+            racingResult.recordCarPositionHistory(i, cars.get(i));
         }
-        System.out.println();
     }
 
     private void moveOneCar(Car car) {
