@@ -43,7 +43,7 @@ public class CalculatorTest {
 
     @Test
     void 여러개의연산() {
-        String[] array = "3 + 2 * 4 / 10 * 3".split(" ");
+        String[] array = "3 + 2 * 4 / 10 5 3".split(" ");
         assertThat(cal.calculateMultiExpression(array)).isEqualTo(6);
     }
 
