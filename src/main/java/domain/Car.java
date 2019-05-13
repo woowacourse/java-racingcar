@@ -5,6 +5,9 @@ import util.StringUtils;
 import java.util.Objects;
 
 public class Car {
+    private static final int CAR_NAME_MIN = 1;
+    private static final int CAR_NAME_MAX = 5;
+
     private final String name;
     private int position;
 
@@ -17,7 +20,8 @@ public class Car {
             throw new NullPointerException("자동차의 이름을 입력해주세요.");
         }
 
-        if (!StringUtils.isCarNameLength(name)) {
+        if (!StringUtils.isLengthInRange(name,
+                CAR_NAME_MIN, CAR_NAME_MAX)) {
             throw new IllegalArgumentException("각 자동차의 이름을 1자 이상, 5자 이하로 입력해주세요.");
         }
 

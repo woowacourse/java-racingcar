@@ -7,9 +7,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class StringUtilsTest {
 
     @Test
-    void isCarNameLength() {
-        assertThat(StringUtils.isCarNameLength("abc")).isTrue();
-        assertThat(StringUtils.isCarNameLength("abcdef")).isFalse();
+    void isInRange() {
+        assertThat(StringUtils.isLengthInRange("abc", 1, 5)).isTrue();
+        assertThat(StringUtils.isLengthInRange("abcdef", 1, 5)).isFalse();
     }
 
     @Test

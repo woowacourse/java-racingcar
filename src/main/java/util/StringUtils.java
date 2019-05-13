@@ -1,12 +1,9 @@
 package util;
 
 public class StringUtils {
-    private static final int CAR_NAME_MIN = 1;
-    private static final int CAR_NAME_MAX = 5;
-
-    public static boolean isCarNameLength(String string) {
-        return (CAR_NAME_MIN <= string.length())
-                && (string.length() <= CAR_NAME_MAX);
+    public static boolean isLengthInRange(String string, int min, int max) {
+        return (min <= string.length())
+                && (string.length() <= max);
     }
 
     public static boolean isNumberString(String string) {
