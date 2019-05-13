@@ -1,9 +1,13 @@
 package com.woowacourse.javaracingcar;
 
 import com.woowacourse.javaracingcar.domain.CarDto;
+import com.woowacourse.javaracingcar.domain.GameResult;
 import com.woowacourse.javaracingcar.domain.PlayingCars;
 import com.woowacourse.javaracingcar.domain.WinnerGroup;
 import com.woowacourse.javaracingcar.interfaces.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConsoleOutputView implements OutputView {
     @Override
@@ -12,10 +16,16 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printResult(PlayingCars cars) {
-        for (CarDto c : cars.retrieveAllCars()) {
-            System.out.println(carToString(c));
-        }
+    public void printResult(GameResult result) {
+        System.out.println("실행 결과");
+
+        result.getRounds().forEach(r -> {
+            r.forEach(c -> System.out.println(carToString(c)));
+            System.out.println();
+        });
+
+        String str = RacingcarUtil.joinCarNames(result.getWinners());
+        System.out.println(str + "가 최종 우승했습니다.");
 
         System.out.println();
     }
@@ -28,11 +38,5 @@ public class ConsoleOutputView implements OutputView {
         }
 
         return sb.toString();
-    }
-
-    @Override
-    public void printWinners(WinnerGroup winners) {
-        String str = RacingcarUtil.joinCarNames(winners.getWinners());
-        System.out.println(str + "가 최종 우승했습니다.");
     }
 }

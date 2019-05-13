@@ -12,12 +12,23 @@ public class RandomNumberGeneratorTest {
     @Test
     void testGenerateNumber() {
         RandomNumberGenerator generator = new RandomNumberGenerator();
+        boolean isMaxPresent = false;
+        boolean isMinPresent = false;
         for (int i = 0; i < 100; i++) {
-            assertThat(checkRandomNumberIsValidRange(generator.generateNumber())).isTrue();
+            int n = generator.generateNumber(0, 9);
+            if (n == 9) {
+                isMaxPresent = true;
+            }
+            if (n == 0) {
+                isMinPresent = true;
+            }
+            assertThat(checkRandomNumberIsValidRange(n)).isTrue();
         }
+        assertThat(isMaxPresent).isTrue();
+        assertThat(isMinPresent).isTrue();
     }
 
     private boolean checkRandomNumberIsValidRange(int generateNumber) {
-        return NumberGenerator.MIN <= generateNumber && generateNumber <= NumberGenerator.MAX;
+        return 0 <= generateNumber && generateNumber <= 9;
     }
 }

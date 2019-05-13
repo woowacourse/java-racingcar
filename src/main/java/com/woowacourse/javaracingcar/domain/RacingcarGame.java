@@ -1,24 +1,22 @@
 package com.woowacourse.javaracingcar.domain;
 
-import com.woowacourse.javaracingcar.interfaces.NumberGenerator;
 import com.woowacourse.javaracingcar.interfaces.RacingcarGameRule;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RacingcarGame {
     private final PlayingCars cars;
-    private final NumberGenerator numberGenerator;
     private final RacingcarGameRule rule;
 
-    public RacingcarGame(final NumberGenerator generator, final List<Car> cars, final RacingcarGameRule rule) {
-        if (generator == null || cars == null || rule == null) {
+    public RacingcarGame(final List<Car> cars, final RacingcarGameRule rule) {
+        if (cars == null || rule == null) {
             throw new IllegalArgumentException("One or more argument(s) is null");
         }
         if (cars.isEmpty()) {
             throw new IllegalArgumentException("Car list is empty");
         }
 
-        this.numberGenerator = generator;
         this.cars = new PlayingCars(cars);
         this.rule = rule;
     }
@@ -28,20 +26,17 @@ public class RacingcarGame {
      *
      * @return 게임에 참여한 자동차 리스트
      */
-    public PlayingCars loop() {
-        for (CarDto c : cars.retrieveAllCars()) {
-            cars.update(new CarDto(c.getName(), c.getPosition() + calculateMovingPosition(numberGenerator.generateNumber())));
+    public GameResult loop(int tries) {
+        List<GameRound> rounds = new ArrayList<>();
+
+        for (int i = 0; i < tries; i++) {
+            cars.retrieveAllCars().forEach(c -> {
+                cars.updateCarPosition(c.getName(), rule.getPositionToMove());
+            });
+            rounds.add(new GameRound(cars));
         }
 
-        return cars;
-    }
-
-    private int calculateMovingPosition(final int generatedNumber) {
-        return rule.calculatePositionToMove(generatedNumber);
-    }
-
-    public WinnerGroup getWinners() {
-        return new WinnerGroup(cars);
+        return new GameResult(rounds);
     }
 
     @Override

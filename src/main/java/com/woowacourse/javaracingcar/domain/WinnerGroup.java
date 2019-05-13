@@ -8,8 +8,9 @@ import java.util.stream.Collectors;
 public class WinnerGroup {
     final List<CarDto> winners;
 
-    public WinnerGroup(final PlayingCars playingCars) {
-        final List<CarDto> cars = playingCars.retrieveAllCars();
+    public WinnerGroup(final GameRound gameRound) {
+        final List<CarDto> cars = new ArrayList<>();
+        gameRound.forEach(cars::add);
         final int max = Collections.max(cars).getPosition();
 
         winners = cars.stream()

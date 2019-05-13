@@ -11,7 +11,7 @@ public class TestNumberGenerator implements NumberGenerator {
     }
 
     @Override
-    public int generateNumber() {
+    public int generateNumber(int min, int max) {
         return numbers[index++];
     }
 }

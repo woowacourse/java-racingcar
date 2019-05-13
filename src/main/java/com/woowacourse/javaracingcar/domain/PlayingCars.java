@@ -3,6 +3,7 @@ package com.woowacourse.javaracingcar.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class PlayingCars {
@@ -20,13 +21,14 @@ public class PlayingCars {
         cars.forEach(c -> this.cars.put(c.getName(), c));
     }
 
-    public void update(final CarDto car) {
-        Car foundCar = cars.get(car.getName());
-        if (foundCar == null) {
-            throw new IllegalArgumentException("Car was not found with name: " + car.getName());
-        }
-
-        foundCar.move(car.getPosition() - foundCar.getPosition());
+    /**
+     * @param carName       자동차 이름
+     * @param positionDelta 움직일 거리
+     */
+    public void updateCarPosition(final String carName, final int positionDelta) {
+        Optional<Car> maybeCar = Optional.ofNullable(cars.get(carName));
+        maybeCar.orElseThrow(() -> new IllegalArgumentException("Car was not found with name: " + carName));
+        maybeCar.ifPresent(c -> c.move(positionDelta));
     }
 
     public List<CarDto> retrieveAllCars() {

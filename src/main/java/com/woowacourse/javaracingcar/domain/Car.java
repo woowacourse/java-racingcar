@@ -19,7 +19,7 @@ public class Car implements Comparable<Car> {
      */
     public CarDto move(final int position) {
         this.position += position;
-        return new CarDto(name, position);
+        return new CarDto(name, this.position);
     }
 
     public String getName() {

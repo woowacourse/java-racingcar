@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class RandomNumberGenerator implements NumberGenerator {
     @Override
-    public int generateNumber() {
-        return new Random().nextInt(MAX + 1);
+    public int generateNumber(int min, int max) {
+        return new Random().nextInt(max - min + 1) + min;
     }
 }
