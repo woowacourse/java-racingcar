@@ -1,6 +1,7 @@
 package domain;
 
 import controller.RacingController;
+import util.Util;
 
 import java.util.List;
 import java.util.Objects;
@@ -8,17 +9,23 @@ import java.util.Objects;
 public class Race {
     private List<Car> carsOnRace;
     private int roundCount;
+    private int currentRound;
 
     public Race(List<Car> carsOnRace, int roundCount) {
         this.carsOnRace = carsOnRace;
         this.roundCount = roundCount;
+        currentRound = 1;
     }
 
     public List<Car> moveAllCarsByRoundCount() {
-        for (int i = 0; i < roundCount; i++) {
-            RacingController.hasNextRound(carsOnRace);
+        for (Car car : carsOnRace) {
+            car.increasePositionOrNot(Util.getRandomNumber());
         }
         return carsOnRace;
+    }
+
+    public boolean hasNextRound() {
+        return this.roundCount >= this.currentRound++;
     }
 
     @Override

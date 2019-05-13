@@ -2,9 +2,11 @@ package controller;
 
 import domain.Car;
 import domain.CarsFactory;
+import domain.Race;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import view.OutputView;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -76,11 +78,14 @@ class RacingControllerTest {
     }
 
     @Test
-    void 라운드별_자동차_포지션_출력_확인() {
+    void 라운드_하나_자동차_포지션_출력_확인() {
         InputStream in = new ByteArrayInputStream(carNamesInput.getBytes());
+        int roundCount = 5;
+
         System.setIn(in);
 
-        RacingController.hasNextRound(RacingController.setCarsOnRace());
+        Race race = new Race(RacingController.setCarsOnRace(), roundCount);
+        RacingController.printEachCarsOnRace(race.moveAllCarsByRoundCount());
     }
 
     @AfterEach
