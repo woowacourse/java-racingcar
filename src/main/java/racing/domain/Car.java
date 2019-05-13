@@ -25,21 +25,15 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
+    public int getPosition(){
+        return position;
+    }
     public void tryGoForward(final int randomNum) {
         if (isGo(randomNum)) position += GO_STEP;
     }
 
     private boolean isGo(final int number) {
         return number >= GO_FORWRARD_CRITERIA_NUM;
-    }
-
-    @Override
-    public String toString() {
-        String positionBars = "";
-        for (int i = 0; i < position; i++) {
-            positionBars += "-";
-        }
-        return name + " : " + positionBars;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package racing.domain;
 
 import racing.util.RandomNumberGenerator;
-import racing.view.InputView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,10 +32,14 @@ public class Race {
             car.tryGoForward(RandomNumberGenerator.generate(Car.MAX_RANDOM_NUM_UPPER_BOUND));
         }
     }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
     /*
      * 경기 결과 메소드
      */
-
     public List<String> getResult() {
         RaceResult raceResult = new RaceResult(cars);
         return raceResult.getWinnerNames();

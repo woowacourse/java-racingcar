@@ -9,6 +9,7 @@ public class RacingApplication {
 
     public static void main(String[] args) {
         RaceOperator raceOperator = new RaceOperator(InputView.inputCarNames(), InputView.inputNumTrials());
+        OutputView.printRaceStartMessage();
         while(raceOperator.isEnd()){
             OutputView.printProgress(raceOperator.doRace());
         }

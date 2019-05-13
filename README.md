@@ -68,7 +68,7 @@
     - [x] operator, calculator 분리
 - [ ] 자동차
     - [ ] 뷰와 도메인 operator 내에서 분리
-        - [ ] toString 아웃풋뷰로 분리
+        - [x] toString 아웃풋뷰로 분리
         - [x] view와 domain 맞닿아 있는 부분 제거
         - [x] view 조작 컨트롤러에서 Main으로 분리
     - [ ] 초기화 static factory method 사용

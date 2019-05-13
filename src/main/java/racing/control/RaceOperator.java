@@ -1,8 +1,9 @@
 package racing.control;
 
+import racing.domain.Car;
 import racing.domain.Race;
-import racing.domain.RaceResult;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class RaceOperator {
