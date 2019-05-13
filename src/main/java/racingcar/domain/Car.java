@@ -1,6 +1,7 @@
 package racingcar.domain;
 
-public class Car implements Comparable<Car> {
+public class Car {
+    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
     private int position;
 
@@ -15,7 +16,7 @@ public class Car implements Comparable<Car> {
     }
 
     private static void validateName(String name) {
-        if (name == null || name.length() > 5 || name.isEmpty()) {
+        if (name == null || name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
             throw new IllegalArgumentException("자동차 이름 검증 실패");
         }
     }
@@ -26,10 +27,6 @@ public class Car implements Comparable<Car> {
             return true;
         }
         return false;
-    }
-
-    public boolean isAtSamePositionWith(Car rhs) {
-        return position == rhs.position;
     }
 
     @Override
@@ -49,10 +46,5 @@ public class Car implements Comparable<Car> {
     @Override
     public String toString() {
         return name;
-    }
-
-    @Override
-    public int compareTo(Car rhs) {
-        return rhs.position - position;
     }
 }

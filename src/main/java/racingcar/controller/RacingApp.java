@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.Race;
+import racingcar.domain.RacingResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -9,15 +10,9 @@ public class RacingApp {
 
     public static void main(String[] args) {
         while (!initRace()) ;
-        startRace(getNumOfRounds());
-        OutputView.printWinners(race.getWinners());
-    }
-
-    private static void startRace(int numOfRounds) {
-        System.out.println("\n실행 결과");
-        for (int i = 0; i < numOfRounds; i++) {
-            OutputView.printRound(race.startRound());
-        }
+        RacingResult racingResult = race.startRace(getNumOfRounds());
+        OutputView.printRaceResult(racingResult);
+        OutputView.printWinners(racingResult.getWinners());
     }
 
     private static boolean initRace() {

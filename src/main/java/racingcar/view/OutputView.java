@@ -1,14 +1,16 @@
 package racingcar.view;
 
-import racingcar.domain.RoundResult;
+import racingcar.domain.RacingResult;
 import racingcar.utils.StringUtils;
 
 import java.util.List;
 
 public class OutputView {
-    public static void printRound(RoundResult roundResult) {
-        roundResult.getFormattedRoundResult().forEach(x -> System.out.println(x));
-        System.out.println();
+    public static void printRaceResult(RacingResult racingResult) {
+        System.out.println("\n실행 결과");
+        for (String roundResult : racingResult.getFormattedRacingResult()) {
+            System.out.println(roundResult);
+        }
     }
 
     public static void printWinners(List<String> winners) {

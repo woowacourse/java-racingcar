@@ -35,34 +35,30 @@ class RaceTest {
     }
 
     @Test
-    void startRoundTest1() {
+    void startRaceTest1() {
         Race race = new Race(Arrays.asList("A", "B"), new ForceMove());
-        RoundResult roundResult = new RoundResult();
-        roundResult.addParticipant(new Car("A", 1), 1);
-        roundResult.addParticipant(new Car("B", 1), 1);
-        assertThat(race.startRound().equals(roundResult)).isTrue();
+        RacingResult racingResult1 = race.startRace(1);
+
+        RacingResult racingResult2 = new RacingResult();
+        racingResult2.addParticipant(new Car("A"));
+        racingResult2.addParticipant(new Car("B"));
+        racingResult2.updateResult(new Car("A"), true);
+        racingResult2.updateResult(new Car("B"), true);
+
+        assertThat(racingResult1.equals(racingResult2)).isTrue();
     }
 
     @Test
-    void startRoundTest2() {
+    void startRaceTest2() {
         Race race = new Race(Arrays.asList("A", "B"), new ForceMove());
-        RoundResult roundResult = new RoundResult();
-        roundResult.addParticipant(new Car("A", 3), 3);
-        roundResult.addParticipant(new Car("B", 3), 3);
-        assertThat(race.startRound().equals(roundResult)).isFalse();
-    }
+        RacingResult racingResult1 = race.startRace(3);
 
-    @Test
-    void getWinnersTest1() {
-        Race race = new Race(Arrays.asList("A", "B", "C"), new ForceMove());
-        race.startRound();
-        assertThat(race.getWinners().toString()).isEqualTo(Arrays.asList("A", "B", "C").toString());
-    }
+        RacingResult racingResult2 = new RacingResult();
+        racingResult2.addParticipant(new Car("A"));
+        racingResult2.addParticipant(new Car("B"));
+        racingResult2.updateResult(new Car("A"), true);
+        racingResult2.updateResult(new Car("B"), true);
 
-    @Test
-    void getWinnersTest2() {
-        Race race = new Race(Arrays.asList("A", "B", "C"), new ForceStop());
-        race.startRound();
-        assertThat(race.getWinners().size()).isEqualTo(0);
+        assertThat(racingResult1.equals(racingResult2)).isFalse();
     }
 }

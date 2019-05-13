@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -10,55 +9,44 @@ public class Race {
     private static final int MIN_NUM_OF_CARS = 2;
     private final MovementStrategy strategy;
     private final List<Car> cars;
-    private RoundResult roundResult = new RoundResult();
-    private boolean checkRaceSucceed = false;
 
     public Race(List<String> names) {
         this(names, new RandomMovement());
     }
 
     public Race(List<String> names, MovementStrategy strategy) {
-        validateNames(names);
         this.cars = Collections.unmodifiableList(
                 names.stream().map(name -> new Car(name)).collect(Collectors.toList())
         );
+        validateCars();
         this.strategy = strategy;
-        cars.forEach(car -> roundResult.addParticipant(car));
     }
 
-    private void validateNames(List<String> names) {
-        if ((names.size() < MIN_NUM_OF_CARS)
-                || (names.size() != new HashSet<>(names).size())) {
+    private void validateCars() {
+        if ((cars.size() < MIN_NUM_OF_CARS)
+                || (cars.size() != new HashSet<>(cars).size())) {
             throw new IllegalArgumentException();
         }
     }
 
-    public RoundResult startRound() {
-        for (Car car : cars) {
-            if (car.move(strategy)) {
-                checkRaceSucceed = true;
-                roundResult.updateResult(car);
-            }
+    public RacingResult startRace(int numOfRound) {
+        RacingResult racingResult = new RacingResult();
+        cars.forEach(car -> racingResult.addParticipant(car));
+        for (int i = 0; i < numOfRound; i++) {
+            startRound(racingResult);
         }
-        return roundResult;
+        return racingResult;
     }
 
-    public List<String> getWinners() {
-        if (!checkRaceSucceed) {
-            return new ArrayList<>();
+    void startRound(RacingResult racingResult) {
+        for (Car car : cars) {
+            racingResult.updateResult(car, car.move(strategy));
         }
-        List<Car> sortedCars = new ArrayList<>(cars);
-        Collections.sort(sortedCars);
-        Car winner = sortedCars.get(0);
-        return sortedCars.stream()
-                .filter(x -> x.isAtSamePositionWith(winner))
-                .map(x -> x.toString())
-                .collect(Collectors.toList());
     }
 
     @Override
     public boolean equals(Object obj) {
-        return ((Race) obj).cars.equals(this.cars) && ((Race) obj).roundResult.equals(this.roundResult);
+        return ((Race) obj).cars.equals(this.cars);
     }
 
     @Override
