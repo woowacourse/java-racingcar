@@ -39,12 +39,10 @@ public enum Operator {
     }
 
     public static Operator stringToOperator(String inputOperator) {
-        for (Operator operator : Operator.values()) {
-            if (operator.getOperator().equals(inputOperator)) {
-                return operator;
-            }
-        }
-        throw new IllegalArgumentException("연산자 입력 오류");
+        return Arrays.stream(Operator.values())
+                .filter(operator -> operator.getOperator().equals(inputOperator))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("연산자 입력 오류"));
     }
 
     abstract int calculate(int firstOperand, int secondOperand);
