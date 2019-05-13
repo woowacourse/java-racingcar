@@ -5,7 +5,7 @@ import racingcar.domain.Car;
 import java.util.List;
 
 public class OutputView {
-    public static void printRounds() {
+    public static void printRaceStartMessage() {
         System.out.println("\n실행 결과");
     }
     public static void printEachRound(List<Car> cars) {
