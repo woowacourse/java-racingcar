@@ -1,5 +1,7 @@
 package racingcargame.view;
 
+import racingcargame.model.Validation;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -21,16 +23,11 @@ public class InputView {
         System.out.println(COUNT_OF_ROUND_INPUT_MESSAGE);
         try {
             int input = scanner.nextInt();
-            validNagetiveNumber(input);
+            Validation.validNegativeNumber(input);
             return input;
         } catch (Exception e) {
             return readCountOfRound();
         }
     }
-
-    private static void validNagetiveNumber(int input) {
-        if (input < 0) {
-            throw new IllegalArgumentException();
-        }
-    }
+    
 }
