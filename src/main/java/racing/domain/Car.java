@@ -101,4 +101,9 @@ public class Car implements Comparable<Car> {
         return position == car.position &&
                 Objects.equals(name, car.name);
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
