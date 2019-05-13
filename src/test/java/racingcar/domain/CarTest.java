@@ -19,6 +19,13 @@ public class CarTest {
     }
 
     @Test
+    void 빈칸_이름() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Car("     ");
+        });
+    }
+
+    @Test
     void 정지() {
         Car car = new Car("pobi", 0);
         car.move(3);
