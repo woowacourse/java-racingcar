@@ -8,12 +8,12 @@ public class OutputView {
 
     private static final String WINNER_MESSAGE = "가 최종 우승했습니다";
 
-    static public void printRound(List<Car> carList) {
+    public static void printRound(List<Car> carList) {
         carList.forEach(car -> System.out.println(car.toString()));
         System.out.println();
     }
 
-    static public void printGameResult(String winners) {
+    public static void printGameResult(String winners) {
         System.out.println(winners + WINNER_MESSAGE);
     }
 }
