@@ -10,11 +10,11 @@ public class RacingController {
 
     public static void main(String[] args) {
         Race race = new Race(setCarsOnRace(), setRoundCount());
+        OutputView.outputGameResultTile();
         while(race.hasNextRound()){
             printEachCarsOnRace(race.moveAllCarsByRoundCount());
         }
         Winners winners = new Winners(race.moveAllCarsByRoundCount());
-        OutputView.outputGameResultTile();
         OutputView.outputWinners(winners.getRaceWinners());
     }
 
@@ -45,5 +45,6 @@ public class RacingController {
         for(Car car : carsOnRace){
             OutputView.outputGameResult(car.toString());
         }
+        System.out.println();
     }
 }
