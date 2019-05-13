@@ -4,7 +4,7 @@ import racing.view.ConsoleMessages;
 
 public class Car implements Comparable<Car> {
     private static final int DEFAULT_DISTANCE = 1;
-    
+
     private final String name;
     private int distance;
 
@@ -13,12 +13,12 @@ public class Car implements Comparable<Car> {
     }
 
     public Car(final String name, final int distance) {
-        this.name = getValidName(name);
+        this.name = validName(name);
         this.distance = distance;
     }
 
-    private String getValidName(String name) {
-        String trimmedName = getTrimmedName(name);
+    private String validName(String name) {
+        String trimmedName = trimName(name);
 
         checkBlankName(trimmedName);
 
@@ -27,7 +27,7 @@ public class Car implements Comparable<Car> {
         return trimmedName;
     }
 
-    private String getTrimmedName(String name) {
+    private String trimName(String name) {
         return name.trim();
     }
 
