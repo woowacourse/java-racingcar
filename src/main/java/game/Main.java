@@ -14,10 +14,6 @@ public class Main {
         int tryCount = UserInput.inputTryCount();
 
         startGame(game, winner, cars, tryCount);
-        printWinnerResult(winner);
-    }
-
-    private static void printWinnerResult(Winner winner) {
         ResultOutput.printWinners(winner.getWinners());
     }
 
