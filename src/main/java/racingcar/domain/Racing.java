@@ -3,6 +3,7 @@ package racingcar.domain;
 import racingcar.util.RandomNumberCreator;
 import racingcar.view.OutputView;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,26 +25,15 @@ public class Racing {
     public Winner run() {
         for (int i = 0; i < numberOfTimes; ++i) {
             cars.forEach(car -> car.moveOrNot(RandomNumberCreator.create(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)));
-            cars.forEach(car -> OutputView.printCarDistance(car));
-            System.out.println();
+            OutputView.printMoveResult(cars);
         }
 
-        return new Winner(cars, getMaxDistance());
+        return new Winner(cars, getCarWithMaxPosition());
     }
 
-    private int getMaxDistance() {
-        int maxDistance = cars.get(0).getPosition();
-        for (int i = 1; i < cars.size(); ++i) {
-            maxDistance = Math.max(maxDistance, cars.get(i).getPosition());
-        }
-        return maxDistance;
-    }
-
-    public Winner getWinner() {
-        return new Winner(cars, getMaxDistance());
-    }
-    public List<Car> getCars() {
-        return cars;
+    public Car getCarWithMaxPosition() {
+        Collections.sort(cars);
+        return cars.get(0);
     }
 }
 

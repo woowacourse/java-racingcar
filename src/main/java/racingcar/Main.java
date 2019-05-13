@@ -1,6 +1,5 @@
 package racingcar;
 
-import racingcar.domain.Car;
 import racingcar.domain.Racing;
 import racingcar.domain.Winner;
 import racingcar.view.InputView;
@@ -13,13 +12,9 @@ public class Main {
         List<String> carNames = InputView.inputCarNames();
         int numberOfTimes = InputView.inputNumberOfTimes();
         Racing racingGame = new Racing(carNames, numberOfTimes);
+        OutputView.printResultStart();
+        // 게임 실행
         Winner winner = racingGame.run();
-
-        System.out.println("실행 결과");
-        for (int i = 0; i < numberOfTimes; ++i) {
-            racingGame.getCars().forEach(car -> OutputView.printCarDistance(car));
-            System.out.println();
-        }
         OutputView.printWinners(winner);
     }
 }

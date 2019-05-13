@@ -6,11 +6,11 @@ import java.util.List;
 public class Winner {
     private List<String> winnerNames;
 
-    public Winner(List<Car> cars, int maxDistance) {
+    public Winner(List<Car> cars, Car carWithMaxDistance) {
         winnerNames = new ArrayList<>();
 
         for (int i = 0; i < cars.size(); ++i) {
-            if (cars.get(i).isMaxPosition(maxDistance)) {
+            if (cars.get(i).isMaxPosition(carWithMaxDistance)) {
                 winnerNames.add(cars.get(i).getName());
             }
         }
