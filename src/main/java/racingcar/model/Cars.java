@@ -6,20 +6,20 @@ public class Cars {
     private Set<Car> cars = new LinkedHashSet<>();
 
     public Cars(String[] carNames) {
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
         if (this.isOverlap(carNames)) {
             throw new IllegalArgumentException("중복된 이름이 있습니다.");
         }
     }
 
     private boolean isOverlap(String[] carNames) {
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
         return carNames.length != cars.size();
     }
 
     public boolean isEqualCars(Set<Car> cars) {
-        return this.cars.equals(cars);
+        return this.cars.toString().equals(cars.toString());
     }
 
     public void moveCars() {
@@ -29,7 +29,9 @@ public class Cars {
     }
 
     public WinningCars getWinnerCars() {
-        return new WinningCars(cars);
+        WinningCars winningCars = new WinningCars();
+        winningCars.setWinner(cars);
+        return winningCars;
     }
 
     @Override
