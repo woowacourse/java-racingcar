@@ -46,9 +46,4 @@ public class CarTest {
         car.move(3);
         assertThat(car.matchPosition(0)).isEqualTo(true);
     }
-
-    @Test
-    void current_position() {
-        assertThat(new Car("pobi", 3).getCurrentLocation()).isEqualTo("pobi  : ---");
-    }
 }

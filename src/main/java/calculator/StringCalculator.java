@@ -9,14 +9,12 @@ public class StringCalculator {
     private final static String MULTIPLE = "*";
     private final static String DIVIDE = "/";
 
-    public int calculate(String value) {
+    private Queue<Integer> numbers = new LinkedList<>();
+    private Queue<String> operators = new LinkedList<>();
+
+    public StringCalculator(String value){
         String[] expression = value.split(" ");
-        Queue<Integer> numbers = new LinkedList<>();
-        Queue<String> operators = new LinkedList<>();
-
         divideExpression(numbers, operators, expression);
-
-        return getResult(numbers, operators);
     }
 
     private void divideExpression(Queue<Integer> numbers, Queue<String> operators, String[] expression) {
@@ -30,7 +28,7 @@ public class StringCalculator {
         }
     }
 
-    private int getResult(Queue<Integer> numbers, Queue<String> operators) {
+    public int calculate() {
         int result = map(numbers.poll(), numbers.poll(), operators.poll());
         while (!operators.isEmpty()) {
             result = map(result, numbers.poll(), operators.poll());
