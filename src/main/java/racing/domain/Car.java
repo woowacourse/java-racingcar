@@ -3,7 +3,7 @@ package racing.domain;
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
-    private static final int GO_FORWRARD_CRITERIA_NUM = 4;
+    private static final int GO_FORWARD_CRITERIA_NUM = 4;
     private static final int GO_STEP = 1;
     private static final int START_POSITION = 0;
     private static final int MAX_NAME_LENGTH = 5;
@@ -41,7 +41,7 @@ public class Car implements Comparable<Car> {
     }
 
     private static boolean isGo(final int number) {
-        return number >= GO_FORWRARD_CRITERIA_NUM;
+        return number >= GO_FORWARD_CRITERIA_NUM;
     }
 
     @Override

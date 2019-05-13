@@ -17,9 +17,7 @@ public class Race {
         }
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
+    public List<Car> getCars() { return cars; }
 
     public void progressRace() {
         for (Car c : cars) {
@@ -27,9 +25,7 @@ public class Race {
         }
     }
 
-    public List<Car> getWinners() {
-        return findWinners(cars);
-    }
+    public List<Car> getWinners() { return findWinners(cars); }
 
     public static List<Car> findWinners(List<Car> cars) {
         List<Car> winners = new ArrayList<>(cars);

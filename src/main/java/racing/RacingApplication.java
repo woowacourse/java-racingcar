@@ -9,6 +9,7 @@ public class RacingApplication {
     public static void main(String[] args) {
         RacingGame racingGame = createRacingGame();
 
+        OutputView.printRaceStartMessage();
         while (!racingGame.isEnd()) {
             OutputView.printRace(racingGame.race());
         }
