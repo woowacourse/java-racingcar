@@ -11,6 +11,7 @@ public class CarsTest {
     List<String> carNames;
     List<Integer> carPositions;
     Cars testCars;
+    /*
 
     @BeforeEach
     void setUp() {
@@ -18,6 +19,8 @@ public class CarsTest {
         carPositions = Arrays.asList(101, 101, 99);
         testCars = new Cars(carNames, carPositions);
     }
+
+     */
 
     @Test
     void decideMaxPositionTest() {

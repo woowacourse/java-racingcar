@@ -29,12 +29,15 @@ public class CarTest {
     void isWhiteSpaceOnlyTest() {
         assertThat(Car.isWhiteSpaceOnly("")).isEqualTo(true);
     }
+    /*
 
     @Test
     void isDuplicateTest() {
         List<String> names = Arrays.asList("a", "b", "a");
         assertThat(Car.isDuplicate(names)).isEqualTo(true);
     }
+
+     */
 
     @Test
     void isOverLimitTest() {
