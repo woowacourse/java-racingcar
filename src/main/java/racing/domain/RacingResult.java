@@ -1,36 +1,43 @@
 package racing.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-/**
- * 한 라운드(실행횟수)에 따른 경주경기에 대한 처리를 하는 클래스
- */
-class RacingResult {
-    private List<Car> roundCars;
 
-    RacingResult(List<Car> roundCars) {
-        this.roundCars = roundCars;
+/**
+ * 한 라운드(실행횟수)를 실행한 차들의 결과를 처리를 하는 클래스
+ *
+ * @author imkimheejoo
+ * @version 2.0.0
+ */
+
+public class RacingResult {
+    private List<Car> cars;
+
+    RacingResult(List<Car> cars) {
+        this.cars = cars;
     }
 
-    String makeRoundResult() {
+    public String makeRoundResult() {
         StringBuilder sb = new StringBuilder();
-        for (Car car : roundCars) {
+        for (Car car : cars) {
             sb.append(car.positionResult());
         }
-        sb.append("\n");
-
         return sb.toString();
     }
 
-    void compareTiePosition(List<String> winners) {
-        for (Car car : roundCars) {
+    public List<String> searchWinners() {
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars) {
             if (car.matchPosition(getMaxPosition())) {
                 winners.add(car.getName());
             }
         }
+        return winners;
     }
+
     int getMaxPosition() {
-        return Collections.max(roundCars).getPosition();
+        return Collections.max(cars).getPosition();
     }
 
 }

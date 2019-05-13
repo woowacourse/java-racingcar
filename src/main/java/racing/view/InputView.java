@@ -17,10 +17,9 @@ import racing.validator.InputValidator;
 import java.util.Scanner;
 
 /**
- * 레이싱 게임 한판 진행을 위한 클래스
+ * 사용자의 입력에 관한 클래스
  *
  * @author imkimheejoo
- * @author MrKwon
  * @version 1.0.0
  */
 public class InputView {
@@ -40,7 +39,7 @@ public class InputView {
     }
 
     private static String[] splitNames(String carNames) {
-        String[] names = carNames.split(COMMA);
+        String[] names = InputValidator.checkDuplication(carNames.split(COMMA));
         for (String name : names) {
             InputValidator.checkValidName(name);
         }

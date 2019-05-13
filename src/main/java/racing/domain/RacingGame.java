@@ -28,43 +28,20 @@ import java.util.Objects;
  */
 public class RacingGame {
     private ArrayList<Car> cars = new ArrayList<>();
-    private int execution;
 
-    public RacingGame(String[] carNames, int execution) {
-        addCars(carNames);
-        this.execution = execution;
-    }
-
-    private void addCars(String[] names) {
+    public RacingGame(String[] names) {
         for (String name : names) {
             Car car = new Car(name);
             cars.add(car);
         }
     }
-    public RacingGameResult playRacing() {
-        RacingGameResult racingGameResult = new RacingGameResult();
-        for (int i = 0; i < execution; i++) {
-            playOneTime();
-            List<Car> list=new ArrayList<>();
-            cars.forEach(r->list.add(r.copyCar()));
-            RacingResult racingResult = new RacingResult(list);
-            racingGameResult.addResult(racingResult);
-        }
-        return racingGameResult;
-    }
-    private void playOneTime() {
-        for (Car car : cars) {
-            car.movePosition(Helper.getRandomNumber());
-        }
-    }
 
-    // Test Fixture 를 위한 오버로딩
-//    void addCars(String[] names, int[] status) {
-//        for (int i = 0; i < names.length; i++) {
-//            Car car = new Car(names[i], status[i]);
-//            cars.add(car);
-//        }
-//    }
+    public RacingResult race() {
+        List<Car> roundCars = new ArrayList<>();
+        cars.forEach(r -> r.movePosition(Helper.getRandomNumber()));
+        cars.forEach(r -> roundCars.add(r.copyCar()));
+        return new RacingResult(roundCars);
+    }
 
     @Override
     public int hashCode() {

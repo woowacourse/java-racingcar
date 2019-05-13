@@ -51,6 +51,7 @@ public class Car implements Comparable<Car> {
             position++;
         }
     }
+
     static boolean moveOrNot(int randomNum) {
         return randomNum >= GO_FORWARD_CRITERIA;
     }
@@ -75,8 +76,8 @@ public class Car implements Comparable<Car> {
         return sb.toString();
     }
 
-    Car copyCar(){
-        return new Car(this.name,this.position);
+    Car copyCar() {
+        return new Car(this.name, this.position);
     }
 
     @Override
