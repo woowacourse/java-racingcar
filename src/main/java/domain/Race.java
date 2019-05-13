@@ -24,7 +24,7 @@ public class Race {
     }
 
     public boolean hasNextRound() {
-        return this.roundCount >= this.currentRound++;
+        return this.roundCount > this.currentRound++;
     }
 
     @Override
