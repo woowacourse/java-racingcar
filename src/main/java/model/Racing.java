@@ -3,8 +3,8 @@ package model;
 import java.util.Random;
 
 public class Racing {
+    private static final Random random = new Random();
     private static final int RANDOM_BOUND = 10;
-    private static Random random = new Random();
     private Cars cars;
     private LapCount lapCount;
     private LapRecord lapRecord;
