@@ -67,11 +67,13 @@
     - [x] 상수구현 enum화
     - [x] operator, calculator 분리
 - [ ] 자동차
-    - [ ] 뷰를 RaceOperator에서 분리
+    - [ ] 뷰와 도메인 operator 내에서 분리
+        - [ ] toString 아웃풋뷰로 분리
+        - [x] view와 domain 맞닿아 있는 부분 제거
+        - [ ] view 조작 컨트롤러에서 Main으로 분리
     - [ ] 초기화 static factory method 사용
-    - [ ] 자동차 이름입력 재귀 실행 수정
+    - [x] 자동차 이름입력 재귀 실행 수정
     - [x] Race클래스 내 cars 생성 위치 수정
     - [ ] RandomNumberGenerator 인터페이스 분리
-    - [ ] toString 수정
     - [ ] 핵심 로직 테스트
  

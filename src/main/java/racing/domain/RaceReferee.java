@@ -13,19 +13,17 @@ public class RaceReferee {
     }
 
     public List<Car> judgeWinners() {
-        List<Car> winners = new ArrayList<>();
-        Car winner = findWinner(), curCar;
-        Iterator<Car> it = cars.iterator();
-        while (it.hasNext()) {
-            curCar = it.next();
-            if (curCar.compareTo(winner) == 0) {
-                winners.add(curCar);
-            }
-        }
+        List<Car> winners = cars;
+        Car winner = findWinner(cars);
+        winners.removeIf((c) -> (isSamePosition(c, winner)));
         return winners;
     }
 
-    private Car findWinner() {
+    private boolean isSamePosition(Car car1, Car car2) {
+        return car1.compareTo(car2) != 0;
+    }
+
+    private Car findWinner(List<Car> cars) {
         return Collections.max(cars);
     }
 
