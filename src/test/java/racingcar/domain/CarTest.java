@@ -20,16 +20,18 @@ class CarTest {
     @Test
     void 자동차가_기준치_이상의_값에서_전진하는지_테스트() {
         Car car = new Car("win");
-        car.accelerate(4);
+        boolean isAccelerated = car.accelerate(4);
 
+        assertTrue(isAccelerated);
         assertTrue(car.isEqualPosition(1));
     }
 
     @Test
     void 자동차가_기준치_미만의_값에서_전진하지_않는지_테스트() {
         Car car = new Car("win");
-        car.accelerate(3);
+        boolean isAccelerated = car.accelerate(3);
 
+        assertFalse(isAccelerated);
         assertTrue(car.isEqualPosition(0));
     }
 

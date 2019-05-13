@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Objects;
 
 public class Car implements Cloneable, Comparable {
-    private static final int RANDOM_NUM_SCOPE = 10;
     private static final int MIN_NUM_TO_ACCELERATE = 4;
     public static final int MAX_NUM_OF_CAR_NAME = 5;
     private final String name;
@@ -30,18 +29,12 @@ public class Car implements Cloneable, Comparable {
         }
     }
 
-    public void accelerate() {
-        accelerate(generateRandomNum());
-    }
-
-    public void accelerate(int numToAccelerate) {
+    public boolean accelerate(int numToAccelerate) {
         if (numToAccelerate >= MIN_NUM_TO_ACCELERATE) {
             position++;
+            return true;
         }
-    }
-
-    private int generateRandomNum() {
-        return (int) (Math.random() * RANDOM_NUM_SCOPE);
+        return false;
     }
 
     public boolean isEqualPosition(Car car) {
