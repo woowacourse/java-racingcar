@@ -11,20 +11,16 @@ public class InputValidator {
 
     public static boolean validateForm(String carNames) {
         if (carNames.contains(",,")) {
-            System.out.println("중복된 쉼표가 있습니다. 다시 입력해주세요!");
-            return false;
+            throw new IllegalArgumentException("중복된 쉼표가 있습니다.");
         }
         if (!isAlphabet(carNames)) {
-            System.out.println("알파벳 이외의 잘못된 문자가 포함되어 있습니다. 다시 입력해주세요!");
-            return false;
+            throw new IllegalArgumentException("알파벳 이외의 잘못된 문자가 포함되어 있습니다.");
         }
         if (!validateLength(carNames)) {
-            System.out.println("자동차 이름이 5글자를 초과하였습니다. 다시 입력해주세요!");
-            return false;
+            throw new IllegalArgumentException("자동차 이름이 5글자를 초과하였습니다.");
         }
         if (!overlapNames(carNames)) {
-            System.out.println("중복된 이름이 존재합니다. 다시 입력해주세요!");
-            return false;
+            throw new IllegalArgumentException("중복된 이름이 존재합니다.");
         }
         return true;
     }
@@ -43,8 +39,7 @@ public class InputValidator {
 
     public static boolean validateNaturalNumber(String numberOfTimes) {
         if (!numberOfTimes.matches(NUMBER_REGULAR_EXPRESSION)) {
-            System.out.println("자연수가 아닙니다. 다시 입력해주세요!");
-            return false;
+            throw new IllegalArgumentException("자연수가 아닙니다.");
         }
         return true;
     }

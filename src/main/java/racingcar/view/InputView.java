@@ -15,7 +15,12 @@ public class InputView {
         boolean result;
         do {
             carNames = scanner.nextLine();
-            result = InputValidator.validateForm(carNames);
+            try {
+                result = InputValidator.validateForm(carNames);
+            } catch (Exception e) {
+                result = false;
+                System.out.println(e.getMessage() + "다시 입력해주세요!");
+            }
         } while (!result);
         return Arrays.asList(carNames.split(","));
     }
@@ -26,7 +31,12 @@ public class InputView {
         boolean result;
         do {
             numberOfTimes = scanner.nextLine();
-            result = InputValidator.validateNaturalNumber(numberOfTimes);
+            try {
+                result = InputValidator.validateNaturalNumber(numberOfTimes);
+            } catch (Exception e) {
+                result = false;
+                System.out.println(e.getMessage() + "다시 입력해주세요!");
+            }
         } while (!result);
         return Integer.parseInt(numberOfTimes);
     }
