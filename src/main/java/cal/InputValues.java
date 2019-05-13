@@ -26,12 +26,12 @@ public class InputValues {
     }
 
     private void invalidateNumberException(String input) {
-        if (!isNumber(input)) {
+        if (!isNumeric(input)) {
             throw new IllegalArgumentException("숫자가 아닙니다.");
         }
     }
 
-    private boolean isNumber(String input) {
+    private boolean isNumeric(String input) {
         return input.matches("-?\\d+(\\.\\d+)?");
     }
 

@@ -19,7 +19,7 @@ public class CarNamesTest {
     @Test
     void 입력이_null일때_테스트() {
         assertThrows(IllegalArgumentException.class, () ->{
-            carNames.validateNullCarNameException(null);
+            carNames.invalidateNullCarNameException(null);
         });
     }
 
