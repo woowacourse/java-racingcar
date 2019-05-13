@@ -1,27 +1,50 @@
 package racingcar.domain;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Race {
-    private final Competitors competitors;
-    private final Movable strategy;
+    private static final int MIN_NUMBER_OF_CARS = 2;
+    private final List<Car> cars;
 
-    public Race(List<String> names, Movable strategy) {
-        this.competitors = new Competitors(names);
-        this.strategy = strategy;
+    public Race(Map<String, Integer> carInfo) {
+        cars = Collections.unmodifiableList(
+            carInfo.entrySet().stream()
+                .map(x -> new Car(x.getKey(), x.getValue()))
+                .collect(Collectors.toList())
+        );
+        if (cars.size() < MIN_NUMBER_OF_CARS) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    public Race(Map<String, Integer> carInfo, Movable strategy) {
-        this.competitors = new Competitors(carInfo);
-        this.strategy = strategy;
+
+    public Race(List<String> names) {
+        this(new LinkedHashMap<String, Integer>() {{
+            names.stream()
+                .map(x -> x.trim())
+                .filter(x -> !x.equals("") && !x.equals(" "))
+                .forEach(name -> put(name, 0));
+        }});
     }
 
-    public List<Car> startEachRound() {
-        return competitors.startEachRound(strategy);
+    public Race startEachRound() {
+        cars.forEach(car -> car.move(new RandomMovement()));
+        return this;
     }
 
-    public List<Car> getWinners() {
-        return competitors.getWinners();
+    public List<Car> getCurrentResult() {
+        return cars;
+    }
+
+    public List<String> getNameOfWinners() {
+        Car oneOfTheWinners = Collections.max(cars);
+        return cars.stream()
+            .filter(x -> x.compareTo(oneOfTheWinners) == 0)
+            .map(x -> x.toString())
+            .collect(Collectors.toList());
     }
 }

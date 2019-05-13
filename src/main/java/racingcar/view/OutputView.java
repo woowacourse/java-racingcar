@@ -1,15 +1,15 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
-
-import java.util.List;
+import racingcar.domain.Race;
 
 public class OutputView {
     public static void printRaceStartMessage() {
         System.out.println("\n실행 결과");
     }
-    public static void printEachRound(List<Car> cars) {
-        cars.forEach(car -> System.out.println(car + " : " + drawTrail(car.getPosition())));
+    public static void printEachRound(Race race) {
+        race.getCurrentResult().forEach(
+                car -> System.out.println(car + " : " + drawTrail(car.getPosition()))
+        );
         System.out.println();
     }
 
@@ -21,8 +21,8 @@ public class OutputView {
         return trail.toString();
     }
 
-    public static void printWinners(List<Car> winners) {
-        String result = winners.toString();
+    public static void printWinners(Race race) {
+        String result = race.getNameOfWinners().toString();
         result = result.substring(1, result.length() - 1);
         System.out.println(
                 result
