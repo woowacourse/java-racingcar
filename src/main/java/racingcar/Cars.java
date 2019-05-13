@@ -5,7 +5,9 @@ import java.util.*;
 public class Cars {
     private List<Car> cars = new ArrayList<>();
 
-    Cars(List<String> carNames) {
+    Cars(String names) {
+        names = names.replaceAll("\\s+", "");
+        List<String> carNames = new ArrayList<>(Arrays.asList(names.split(",")));
         instantiateCar(carNames);
     }
 

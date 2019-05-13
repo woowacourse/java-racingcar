@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.view.InputView;
+import racingcar.view.InputViewException;
 import racingcar.view.OutputView;
 
 public class CarGameLauncher {
@@ -10,7 +11,7 @@ public class CarGameLauncher {
 
     public static void doCarGame() {
         Cars cars = new Cars(InputView.askAndReceiveCarNames());
-        int totalTurns = InputView.askAndReceiveTotalTurns();
+        int totalTurns = InputViewException.askAndReceiveTotalTurns();
         OutputView.printTheProcess(cars, totalTurns);
         Winners winners = new Winners();
         winners.decideWinners(cars);
