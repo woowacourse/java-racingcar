@@ -17,6 +17,13 @@ public class CarNamesTest {
     }
 
     @Test
+    void 입력이_null일때_테스트() {
+        assertThrows(IllegalArgumentException.class, () ->{
+            carNames.validateNullCarNameException(null);
+        });
+    }
+
+    @Test
     void 글자수가_1미만일때_테스트() {
         assertThrows(IllegalArgumentException.class, () ->{
             carNames.underCarNameLengthException("abc,,,def".split(","));

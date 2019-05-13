@@ -1,13 +1,15 @@
 package cal;
 
 public class InputValues {
+    private final static int EVEN = 2;
+
     private String[] input;
 
     public InputValues(String[] input) {
         this.input = input;
 
         for (int i = 0; i < input.length; i++) {
-            if (i % 2 == 0){
+            if (i % EVEN == 0){
                 if (!isNumber(input[i])) {
                     throw new IllegalArgumentException("숫자가 아닙니다.");
                 }

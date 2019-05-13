@@ -3,9 +3,9 @@ package cal;
 import java.util.Scanner;
 
 public class InputView {
-    Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
-    public InputValues inputNumbers(){
+    public static InputValues inputNumbers(){
         System.out.println("문자열을 입력하세요,");
         String[] string = scanner.nextLine().split(" ");
         InputValues inputValues;

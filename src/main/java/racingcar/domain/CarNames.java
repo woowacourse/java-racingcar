@@ -10,6 +10,8 @@ public class CarNames {
     private String[] names;
 
     public CarNames(String name) throws IllegalArgumentException {
+        validateNullCarNameException(name);
+
         name.replaceAll(" ", "");
         String[] names = name.split(",");
         List<String> carNames = Arrays.asList(names);
@@ -29,6 +31,12 @@ public class CarNames {
         return names;
     }
 
+    protected void validateNullCarNameException(String name) throws IllegalArgumentException {
+        if (name == null) {
+            throw new IllegalArgumentException("자동차 이름을 입력해주세요.");
+        }
+    }
+
     protected void duplicateNameException(List<String> carNames) throws IllegalArgumentException {
         if (carNames.stream().distinct().count() != carNames.size()) {
             throw new IllegalArgumentException("중복된 이름은 안됩니다.\n다시 입력해 주세요.");
@@ -37,12 +45,12 @@ public class CarNames {
 
     protected void underCarNameLengthException(String[] names) throws IllegalArgumentException {
         if (names.length < MIN_CAR_LENGTH) {
-            throw new IllegalArgumentException("자동차 이름은 1글자 이상이여야 합니다.\n다시 입력해 주세요.");
+            throw new IllegalArgumentException("자동차 이름은 1글자 이상이어야 합니다.\n다시 입력해 주세요.");
         }
 
         for(String name : names){
             if(name.length()<= 0){
-                throw new IllegalArgumentException("자동차 이름은 1글자 이상이여야 합니다.\n다시 입력해 주세요.");
+                throw new IllegalArgumentException("자동차 이름은 1글자 이상이어야 합니다.\n다시 입력해 주세요.");
             }
         }
     }

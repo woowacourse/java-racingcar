@@ -20,7 +20,7 @@ public class TryCount {
     }
 
     protected void invalidTryNumberException(String stringCount) throws IllegalArgumentException {
-        if (!Rule.isNumeric(stringCount)) {
+        if (!TryCount.isNumeric(stringCount)) {
             throw new IllegalArgumentException("문자열을 입력할 수 없습니다.\n다시 입력해 주세요.");
         }
         if (Integer.parseInt(stringCount) <= 0) {
@@ -28,9 +28,9 @@ public class TryCount {
         }
     }
 
-    /*private static boolean isNumeric(String str) { //문자열이 숫자인지 아닌지 판단하는 메소드
+    private static boolean isNumeric(String str) { //문자열이 숫자인지 아닌지 판단하는 메소드
         return str.matches("-?\\d+(\\.\\d+)?");
-    }*/
+    }
 
     @Override
     public boolean equals(Object o) {

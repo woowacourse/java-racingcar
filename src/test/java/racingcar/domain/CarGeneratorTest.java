@@ -25,8 +25,10 @@ class CarGeneratorTest {
     @Test
     void 차생성_테스트(){
         List<Car> cars = new ArrayList<>();
+
         cars.add(new Car("pobi"));
         cars.add(new Car("crong"));
-        assertThat(carGenerator.generateCars("pobi,,,crong".split(","))).isEqualTo(cars);
+
+        assertThat(carGenerator.generateCars("pobi,crong".split(","))).isEqualTo(cars);
     }
 }
