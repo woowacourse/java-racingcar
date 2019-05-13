@@ -43,6 +43,7 @@ public class RaceOperator {
             List<String> carNames = InputView.requestNames();
             checkDuplicatedNames(carNames);
             return carNames;
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return inputCarNames();

@@ -11,7 +11,7 @@ public class StringCalculatorTest {
     StringCalculator cal;
 
     @BeforeEach
-    void setUp (){
+    void setUp() {
         cal = new StringCalculator();
     }
 

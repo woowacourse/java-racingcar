@@ -59,4 +59,18 @@
 - [x] 값이 변하지 않는 지역 변수 인자는 final로 변경 확인
 - [x] 자료구조나 자료형이 들어간 변수명 변경
 - [x] 도메인에 sout을 뷰로 분리
-- [x] 컬렉션 api 사용가능한 부분 대체 
+- [x] 컬렉션 api 사용가능한 부분 대체
+
+*******
+###코드 리뷰 후 수정 목록
+- [x] 계산기 
+    - [x] 상수구현 enum화
+    - [x] operator, calculator 분리
+- [ ] 자동차
+    - [ ] 뷰를 RaceOperator에서 분리
+    - [ ] 초기화 static factory method 사용
+    - [ ] 자동차 이름입력 재귀 실행 수정
+    - [ ] RandomNumberGenerator 인터페이스 분리
+    - [ ] toString 수정
+    - [ ] 핵심 로직 테스트
+ 
