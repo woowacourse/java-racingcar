@@ -5,36 +5,32 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import view.OutputView;
+
 public class RacingGame {
 	private final Cars cars;
 	private final RacingGameMovingStrategy racingGameMovingStrategy;
+	private int totalRound;
+	private int currentRound = 0;
 
-	private static final String DUPLICATED_NAME_EXCEPTION_MESSAGE = "중복되지 않은 이름을 입력해주세요.";
-	private static final String NULL_NAMES_LENGTH_EXCEPTION_MESSAGE = "올바른 이름을 입력해주세요.";
-
-	public RacingGame(String[] carNames, RacingGameMovingStrategy racingGameMovingStrategy) {
-		if (hasDuplicatedNames(carNames)) {
-			throw new IllegalArgumentException(DUPLICATED_NAME_EXCEPTION_MESSAGE);
-		}
-		if (carNames.length == 0) {
-			throw new IllegalArgumentException(NULL_NAMES_LENGTH_EXCEPTION_MESSAGE);
-		}
-		
+	public RacingGame(String[] carNames, int totalRound, RacingGameMovingStrategy racingGameMovingStrategy) {
 		this.cars = new Cars(Arrays.stream(carNames).map(name -> new Car(name)).collect(Collectors.toList()));
 		this.racingGameMovingStrategy = racingGameMovingStrategy;
+		this.totalRound = totalRound;
 	}
 
-	public Cars playOneRound() {
+	public Cars playNextRound() {
 		for (Car car : cars) {
 			car.move(racingGameMovingStrategy.movable());
 		}
-		
+
+		currentRound++;
+
 		return cars;
 	}
 
-	private boolean hasDuplicatedNames(String[] carNames) {
-		List<String> names = Arrays.stream(carNames).collect(Collectors.toList());
-		return !(names.size() == new HashSet<String>(names).size());
+	public boolean isFinished() {
+		return totalRound <= currentRound;
 	}
 
 	@Override

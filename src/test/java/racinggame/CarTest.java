@@ -24,12 +24,6 @@ public class CarTest {
 	}
 
 	@Test
-	void 이름길이() {
-		assertThat(car.checkCarNameLength("12345")).isEqualTo(true);
-		assertThat(car.checkCarNameLength("123456")).isEqualTo(false);
-	}
-
-	@Test
 	void move() {
 		assertThat(car.matchPosition(0)).isEqualTo(true);
 		car.move(false);

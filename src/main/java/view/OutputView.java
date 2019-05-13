@@ -10,8 +10,6 @@ import racinggame.Winners;
 public class OutputView {
 	private static final String EXECUTION_RESULT_MESSAGE = "\n실행 결과";
 	private static final String FINAL_WINNER_MESSAGE = "가 최종 우승했습니다.";
-	private static final String ILLEGAL_NUMBER_MESSAGE = "올바른 수를 입력해주세요.";
-	private static final String ILLEGAL_ROUND_MESSAGE = "1 이상의 수를 입력해주세요.";
 
 	public static void printStartMessage() {
 		System.out.println(EXECUTION_RESULT_MESSAGE);
@@ -39,14 +37,6 @@ public class OutputView {
 
 	public static void printIllegalArgumentMessage(String illegalArgumentMessage) {
 		System.out.println(illegalArgumentMessage);
-	}
-
-	public static void printIllegalNumber() {
-		System.out.println(ILLEGAL_NUMBER_MESSAGE);
-	}
-
-	public static void printIllegalRound() {
-		System.out.println(ILLEGAL_ROUND_MESSAGE);
 	}
 
 	public static void printFinalWinner(Winners winners) {
