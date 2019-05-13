@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class InputHandlerTest {
+public class NumericExpressionTest {
 
     @Test
     void 숫자연산자혼합인지확인() {

@@ -9,7 +9,7 @@ public class InputHandler {
     static Scanner scanner = new Scanner(System.in);
 
     public static String getInput() {
-        System.out.println("식을 입력해주세요.");
+        System.out.println(ASK_EXPRESSION);
         String input = scanner.nextLine();
 
         try {
