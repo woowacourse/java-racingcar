@@ -2,6 +2,7 @@ package racing.control;
 
 import racing.domain.Car;
 import racing.domain.Race;
+import racing.util.RandomNumberGenerator;
 
 import java.util.HashMap;
 import java.util.List;

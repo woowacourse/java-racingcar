@@ -7,19 +7,23 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Race {
-    private List<Car> cars = new ArrayList<>();
-    public Race(List<String>carNames){
-        createCars(carNames);
+    private List<Car> cars;
+    private List<String>carNames;
+    public Race(final List<String>carNames){
+        this.carNames = carNames;
+        this.cars = createCars();
     }
 
     /*
      * 경기 준비 메소드
      */
-    public void createCars(List<String> carNames) {
+    public List<Car> createCars() {
+        List<Car> carList = new ArrayList<>();
         Iterator<String> it = carNames.iterator();
         while (it.hasNext()) {
-            cars.add(new Car(it.next()));
+            carList.add(new Car(it.next()));
         }
+        return carList;
     }
 
     /*

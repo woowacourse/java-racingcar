@@ -2,6 +2,8 @@ package racing;
 
 import racing.control.RaceOperator;
 
+import racing.domain.Car;
+import racing.util.RandomNumberGenerator;
 import racing.view.InputView;
 import racing.view.OutputView;
 

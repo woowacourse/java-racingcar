@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class InputViewTest {
 
     @Test
-    void requestNameTest() {
+    void 이름입력() {
         System.out.println(Arrays.asList(", , ,,,,,ddd,,,".split(",")));
     }
 
