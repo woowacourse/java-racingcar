@@ -12,44 +12,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGameTest {
-	RacingGame racingGame;
+	RacingGame racingGameMove;
+	RacingGame racingGameStop;
 	List<String> carNames;
+	RacingGameMovingStrategy racingGameMovingStrategyMove;
+	RacingGameMovingStrategy racingGameMovingStrategyStop;
 
 	@BeforeEach
 	void setup() {
+		racingGameMovingStrategyMove = new SelectableRacingGameMovingStrategy(3, 4);
+		racingGameMovingStrategyStop = new SelectableRacingGameMovingStrategy(4, 4);
 		carNames = new ArrayList<String>();
 		carNames.add("bmo");
-		racingGame = new RacingGame(carNames.stream().toArray(String[]::new));
+		racingGameMove = new RacingGame(carNames.stream().toArray(String[]::new), racingGameMovingStrategyMove);
+		racingGameStop = new RacingGame(carNames.stream().toArray(String[]::new), racingGameMovingStrategyStop);
 	}
 
 	@Test
 	void 생성() {
 		String[] names1 = { "amo" };
-		RacingGame racingGame1 = new RacingGame(names1);
-		assertThat(racingGame).isNotEqualTo(racingGame1);
+		RacingGame racingGame1 = new RacingGame(names1, racingGameMovingStrategyMove);
+		assertThat(racingGameMove).isNotEqualTo(racingGame1);
 
 		String[] names2 = { "bmo" };
-		RacingGame racingGame2 = new RacingGame(names2);
-		assertThat(racingGame).isEqualTo(racingGame2);
+		RacingGame racingGame2 = new RacingGame(names2, racingGameMovingStrategyMove);
+		assertThat(racingGameMove).isEqualTo(racingGame2);
 	}
 
 	@Test
-	void 난수() {
-		for (int i = Math.min(RacingGame.RANDOM_MAX * 2, Integer.MAX_VALUE); i >= 0; i--) {
-			assertThat(racingGame.getRandomNumber()).isBetween(0, 9);
-		}
-	}
+	void play() {
+		assertThat(racingGameMove).isEqualTo(racingGameStop);
+		assertThat(racingGameMove.playOneRound()).isNotEqualTo(racingGameStop.playOneRound());
 
-	@Test
-	void 이름중복() {
-		assertThat(racingGame.hasDuplicatedNames(carNames.stream().toArray(String[]::new))).isEqualTo(false);
-		carNames.add("bmo");
-		assertThat(racingGame.hasDuplicatedNames(carNames.stream().toArray(String[]::new))).isEqualTo(true);
+		racingGameMove.playOneRound();
+		racingGameMove.playOneRound();
+
+		RacingGame comparingRacingGameMove =
+				new RacingGame(carNames.stream().toArray(String[]::new), racingGameMovingStrategyMove);
+
+		comparingRacingGameMove.playOneRound();
+		comparingRacingGameMove.playOneRound();
+		comparingRacingGameMove.playOneRound();
+
+		assertThat(racingGameMove).isEqualTo(comparingRacingGameMove);
 	}
 
 	@AfterEach
 	void tearDown() {
+		racingGameMove = null;
+		racingGameStop = null;
 		carNames = null;
-		racingGame = null;
+		racingGameMovingStrategyMove = null;
+		racingGameMovingStrategyStop = null;
 	}
 }

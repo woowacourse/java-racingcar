@@ -1,33 +1,47 @@
 package controller;
 
+import racinggame.Cars;
 import racinggame.RacingGame;
+import racinggame.RacingGameMovingStrategy;
+import racinggame.RandomRacingGameMovingStrategy;
+import racinggame.Winners;
 import view.InputView;
 import view.OutputView;
 
 public class MainController {
 	private static final int MIN_ROUND = 1;
+	private static final int MOVE_BOUND = 4;
+	private static final int RANDOM_MIN = 0;
+	private static final int RANDOM_MAX = 9;
 
 	public static void main(String[] args) {
-		RacingGame racingGame = getRacingGame();
+		RacingGameMovingStrategy racingGameMovingStrategy =
+				new RandomRacingGameMovingStrategy(RANDOM_MIN, RANDOM_MAX, MOVE_BOUND);
+
+		RacingGame racingGame = getRacingGame(racingGameMovingStrategy);
 		int totalRound = getTotalRound();
-
+		
 		OutputView.printStartMessage();
-
+		
+		Cars cars = null;
+		
 		for (int i = 0; i < totalRound; i++) {
-			racingGame.playOneRound();
-			OutputView.printCars(racingGame.getCars());
+			cars = racingGame.playOneRound();
+			OutputView.printCars(cars);
 		}
 
-		OutputView.printFinalWinner(racingGame.getWinners());
+		Winners winners = new Winners(cars);
+		OutputView.printFinalWinner(winners);
 	}
-
-	public static RacingGame getRacingGame() {
+	
+	public static RacingGame getRacingGame(RacingGameMovingStrategy racingGameMovingStrategy) {
+		String[] carNames = InputView.inputCarNames().replaceAll(" ", "").split(",");
+		
 		try {
-			String[] carNames = InputView.inputCarNames().replaceAll(" ", "").split(",");
-			return new RacingGame(carNames);
+			return new RacingGame(carNames, racingGameMovingStrategy);
 		} catch (IllegalArgumentException e) {
 			OutputView.printIllegalArgumentMessage(e.getMessage());
-			return getRacingGame();
+			return getRacingGame(racingGameMovingStrategy);
 		}
 	}
 

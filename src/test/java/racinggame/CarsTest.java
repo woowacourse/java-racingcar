@@ -19,7 +19,7 @@ public class CarsTest {
 	void setup() {
 		cars = new ArrayList<Car>();
 
-		cars.add(new Car("bmo", 0));
+		cars.add(new Car("bmo", 1));
 		cars.add(new Car("pobi", 2));
 		cars.add(new Car("crong", 4));
 		cars.add(new Car("honux", 6));
@@ -31,8 +31,16 @@ public class CarsTest {
 	}
 
 	@Test
-	void size() {
-		assertThat(new Cars(cars).size()).isEqualTo(4);
+	void 생성() {
+		List<Car> comparingCars = new ArrayList<Car>();
+		Car car = new Car("bmo", 0);
+		car.move(true);
+		comparingCars.add(car);
+		comparingCars.add(new Car("pobi", 2));
+		comparingCars.add(new Car("crong", 4));
+		comparingCars.add(new Car("honux", 6));
+
+		assertThat(new Cars(cars)).isEqualTo(new Cars(comparingCars));
 	}
 
 	@AfterEach

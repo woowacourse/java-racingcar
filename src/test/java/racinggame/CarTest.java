@@ -19,7 +19,7 @@ public class CarTest {
 	@Test
 	void 생성() {
 		assertThat(car).isEqualTo(new Car("bmo", 0));
-		car.move(4);
+		car.move(true);
 		assertThat(car).isEqualTo(new Car("bmo", 1));
 	}
 
@@ -32,9 +32,9 @@ public class CarTest {
 	@Test
 	void move() {
 		assertThat(car.matchPosition(0)).isEqualTo(true);
-		car.move(3);
+		car.move(false);
 		assertThat(car.matchPosition(0)).isEqualTo(true);
-		car.move(4);
+		car.move(true);
 		assertThat(car.matchPosition(0)).isEqualTo(false);
 	}
 

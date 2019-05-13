@@ -24,7 +24,7 @@ public class WinnersTest {
 		cars.add(new Car("bmo", 0));
 		cars.add(new Car("jake", 0));
 		cars.add(new Car("finn", 0));
-		winners = new Winners(new Cars(cars), 1);
+		winners = new Winners(new Cars(cars));
 	}
 
 	@Test
@@ -32,15 +32,15 @@ public class WinnersTest {
 		List<Car> comparingCars = new ArrayList<Car>();
 		comparingCars.add(new Car("lsp", 1));
 		comparingCars.add(new Car("amo", 0));
-		Winners comparingWinners = new Winners(new Cars(comparingCars), 1);
+		Winners comparingWinners = new Winners(new Cars(comparingCars));
 
 		assertThat(winners).isEqualTo(comparingWinners);
 
 		cars.add(new Car("finn", 2));
 		comparingCars.add(new Car("finn", 2));
 
-		winners = new Winners(new Cars(cars), 2);
-		comparingWinners = new Winners(new Cars(comparingCars), 2);
+		winners = new Winners(new Cars(cars));
+		comparingWinners = new Winners(new Cars(comparingCars));
 
 		assertThat(winners).isEqualTo(comparingWinners);
 	}

@@ -8,21 +8,22 @@ import java.util.stream.Stream;
 public class Winners implements Iterable<Car> {
 	private final List<Car> winners;
 
-	public Winners(Cars cars, int maxPosition) {
-		winners = getWinners(cars, maxPosition);
+	public Winners(Cars cars) {
+		int maxPosition = cars.getMaxPosition();
+		
+		winners = cars
+				.stream()
+				.filter(car -> car.matchPosition(maxPosition))
+				.collect(Collectors.toList());
 	}
 
-	public List<Car> getWinners(Cars cars, int maxPosition) {
-		return cars.stream().filter(car -> car.matchPosition(maxPosition)).collect(Collectors.toList());
+	public Stream<Car> stream() {
+		return winners.stream();
 	}
 
 	@Override
 	public Iterator<Car> iterator() {
 		return winners.iterator();
-	}
-
-	public Stream<Car> stream() {
-		return winners.stream();
 	}
 
 	@Override

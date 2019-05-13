@@ -4,7 +4,6 @@ public class Car {
 	private final String name;
 	private int position;
 
-	private static final int MOVE_BOUND = 4;
 	private static final int NAME_LENGTH_MAX = 5;
 	private static final int NAME_LENGTH_MIN = 1;
 	private static final String NAME_LENGTH_OUT_OF_BOUNDS_EXCEPTION_MESSAGE = "1 ~ 5자의 이름을 입력해주세요.";
@@ -33,8 +32,8 @@ public class Car {
 		return this.position == position;
 	}
 
-	public void move(int randomNumber) {
-		if (randomNumber >= MOVE_BOUND) {
+	public void move(boolean isMove) {
+		if (isMove) {
 			this.position++;
 		}
 	}

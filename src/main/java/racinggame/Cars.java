@@ -16,10 +16,6 @@ public class Cars implements Iterable<Car> {
 		cars.add(car);
 	}
 
-	public int size() {
-		return cars.size();
-	}
-
 	public int getMaxPosition() {
 		return cars.stream().max(Comparator.comparing(Car::getPosition)).get().getPosition();
 	}
