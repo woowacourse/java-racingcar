@@ -9,8 +9,7 @@ public class StringCalculatorLauncher {
 
     public static void doCalculate() {
         ExtractedInformation extractedInfo = ExtractedInformation.instantiateExtractor();
-
-
+        int result = Calculator.calculate(extractedInfo);
 
     }
 }

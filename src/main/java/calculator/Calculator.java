@@ -18,22 +18,15 @@ public class Calculator {
         return result;
     }
 
-    public static int applyCalculation(int result, int number, String symbol) {
+    private static int applyCalculation(int result, int number, String symbol) {
         if (symbol.equals("+")) return result + number;
         if (symbol.equals("-")) return result - number;
-        if (symbol.equals("/")) return divide(result, number);
+        if (symbol.equals("/")) return result / number;
         if (symbol.equals("*")) return result * number;
         //return CalculatorException.applyCalculationException();
         return 7;
     }
 
-    private static int divide(int result, int number){
-        if (number == 0) {
-            System.out.println("0이 분모에 있습니다.");
-            StringCalculatorLauncher.doCalculate();
-        }
-        return result / number;
-    }
 
     /*
     public static void main(String[] args) {

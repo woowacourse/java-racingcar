@@ -1,4 +1,3 @@
-/*
 package calculator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -10,12 +9,15 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculatorTest {
+
+    /*
     Calculator cal;
 
     @BeforeEach
     void setup(){
         cal = new Calculator();
     }
+
 
     @Test
     void extractNumbersTest() {
@@ -42,7 +44,34 @@ public class CalculatorTest {
     void innerCalculateTest(){
         assertThat(Calculator.applyCalculation(2, 3, "+")).isEqualTo(5);
     }
+     */
+    @Test
+    void calculateTest() {
+        List<String> test = Arrays.asList("2", "+", "3");
+        ExtractedInformation extractedInfo = new ExtractedInformation(test);
+        assertThat(Calculator.calculate(extractedInfo)).isEqualTo(5);
+    }
+
+    @Test
+    void calculateTest2() {
+        List<String> test = Arrays.asList("2", "-", "3");
+        ExtractedInformation extractedInfo = new ExtractedInformation(test);
+        assertThat(Calculator.calculate(extractedInfo)).isEqualTo(-1);
+    }
+
+    @Test
+    void calculateTest3() {
+        List<String> test = Arrays.asList("4","/" , "2");
+        ExtractedInformation extractedInfo = new ExtractedInformation(test);
+        assertThat(Calculator.calculate(extractedInfo)).isEqualTo(2);
+    }
+
+    @Test
+    void calculateTest4() {
+        List<String> test = Arrays.asList("2", "*", "3");
+        ExtractedInformation extractedInfo = new ExtractedInformation(test);
+        assertThat(Calculator.calculate(extractedInfo)).isEqualTo(6);
+    }
 
 }
 
- */
