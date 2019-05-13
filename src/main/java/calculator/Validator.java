@@ -3,6 +3,10 @@ package calculator;
 import java.util.Arrays;
 
 public class Validator {
+    private static final int MIN_LENGTH = 3;
+    private static final String DIVIDE_ZERO_FORM = "/ 0";
+    private static final String OPERATOR_REGULAR_EXPRESSION = "[+|\\-|*|/]";
+
     private String value;
     private String[] values;
 
@@ -32,15 +36,15 @@ public class Validator {
     }
 
     boolean validateLength() {
-        return (values.length < 3) ? false : true;
+        return (values.length < MIN_LENGTH) ? false : true;
     }
 
     boolean validateForm() {
-        return !(Arrays.stream(values).anyMatch(x -> !isNumeric(x) && !(x.matches("[+|\\-|*|/]"))));
+        return !(Arrays.stream(values).anyMatch(x -> !isNumeric(x) && !(x.matches(OPERATOR_REGULAR_EXPRESSION))));
     }
 
     boolean dividedZero() {
-        return !(value.contains("/ 0"));
+        return !(value.contains(DIVIDE_ZERO_FORM));
     }
 
     boolean validateOrderOfNumbers() {
@@ -53,7 +57,7 @@ public class Validator {
     boolean validateOrderOfOperator() {
         int wrongCount = 0;
         for (int i = 1; i < values.length; i += 2)
-            wrongCount += (values[i].matches("[+|\\-|*|/]")) ? 0 : 1;
+            wrongCount += (values[i].matches(OPERATOR_REGULAR_EXPRESSION)) ? 0 : 1;
         return (wrongCount > 0) ? false : true;
     }
 
