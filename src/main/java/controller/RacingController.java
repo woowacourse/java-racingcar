@@ -11,7 +11,6 @@ public class RacingController {
 
     public static void main(String[] args) {
         Race race = setRace();
-
         OutputView.outputGameResultTile();
         while (race.hasNextRound()) {
             printEachCarsOnRace(race.moveAllCarsByRoundCount());
