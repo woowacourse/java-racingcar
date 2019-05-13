@@ -26,7 +26,7 @@ public class Car implements Comparable<Car> {
     private static final String NAME_EXCEPTION_MESSAGE = "양식에 맞게 다시 입력해주세요 ! (이름은 쉼표(,) 기준으로 구분)";
     public static final String POSITION_EXCEPTION_MESSAGE = "포지션은 양수.";
     private static final int CRITERIA_OF_GO_STOP = 4;
-    private static final char CHAR_HYPHEN = '-';
+//    private static final char CHAR_HYPHEN = '-';
 
     private final String name;
     private int position = 0;
@@ -58,20 +58,12 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    private int getPosition() {
+    public int getPosition() {
         return position;
     }
 
     public boolean isSamePosition(Car car) {
         return this.position == car.getPosition();
-    }
-
-    public String getStringPosition() {
-        char[] pos = new char[this.position];
-        for (int i = 0; i < pos.length; i++) {
-            pos[i] = CHAR_HYPHEN;
-        }
-        return String.copyValueOf(pos);
     }
 
     public void moveByRandomNumber(int rand) {
