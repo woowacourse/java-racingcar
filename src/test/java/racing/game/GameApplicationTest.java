@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static racing.game.Game.*;
+import static racing.game.GameApplication.*;
 
-public class GameTest {
+public class GameApplicationTest {
     private static int DEFAULT_NAMES_SIZE = 0;
     private static int ROUND_MIN_LIMIT = 1;
 

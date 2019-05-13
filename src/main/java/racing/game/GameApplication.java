@@ -6,7 +6,7 @@ import racing.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+public class GameApplication {
     private static final int ROUND_MIN_LIMIT = 1;
     private static final int CAR_COUNT_MIN_LIMIT = 2;
 
