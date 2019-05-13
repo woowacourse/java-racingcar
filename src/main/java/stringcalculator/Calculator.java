@@ -21,19 +21,19 @@ public class Calculator {
     }
 
     private int excuteOperation(int leftValue, int rightValue, String operator) {
-        if ( operator.equals("+")) {
+        if (operator.equals("+")) {
             return plus(leftValue, rightValue);
         }
 
-        if ( operator.equals("-")) {
+        if (operator.equals("-")) {
             return minus(leftValue, rightValue);
         }
 
-        if ( operator.equals("*")) {
+        if (operator.equals("*")) {
             return multiply(leftValue, rightValue);
         }
 
-        if ( operator.equals("/")) {
+        if (operator.equals("/")) {
             return divide(leftValue, rightValue);
         }
 
