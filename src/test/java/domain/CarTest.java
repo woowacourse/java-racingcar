@@ -50,9 +50,15 @@ class CarTest {
     }
 
     @Test
-    void 자동차_포지션_변화() {
+    void 자동차_포지션_변화_없음_확인() {
         car.increasePositionOrNot(3);
         assertThat(car.matchPosition(0)).isTrue();
+    }
+
+    @Test
+    void 자동차_포지션_변화_확인() {
+        car.increasePositionOrNot(4);
+        assertThat(car.matchPosition(1)).isTrue();
     }
 
     @Test
