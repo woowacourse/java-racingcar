@@ -14,19 +14,19 @@ public class UserInputCheck {
             return carNames;
         }
 
-        return UserInput.inputCarNames();
+        return null;
     }
 
-    public static String[] splitWithComma(String inputCarName) {
+    private static String[] splitWithComma(String inputCarName) {
         String carNames = removeBlank(inputCarName);
         return carNames.split(",");
     }
 
-    public static String removeBlank(String inputCarName) {
+    private static String removeBlank(String inputCarName) {
         return inputCarName.replace(" ", "");
     }
 
-    public static boolean checkCarNamesLength(String[] carNames) {
+    private static boolean checkCarNamesLength(String[] carNames) {
         List<Boolean> isCarName = new ArrayList<>();
 
         if (carNames.length == 0) {

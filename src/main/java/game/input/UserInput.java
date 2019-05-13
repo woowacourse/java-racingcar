@@ -8,7 +8,13 @@ public class UserInput {
 
     public static String[] inputCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분");
-        return UserInputCheck.checkCarNames(scanner.nextLine());
+        String[] carNames =UserInputCheck.checkCarNames(scanner.nextLine());
+
+        if (carNames == null) {
+            return inputCarNames();
+        }
+
+        return carNames;
     }
 
     public static int inputTryCount() {
