@@ -14,7 +14,7 @@ public class RacingApplication {
             OutputView.printRace(racingGame.race());
         }
 
-        OutputView.printResult(racingGame.getResult());
+        OutputView.printWinners(racingGame.getWinners());
     }
 
     /* RacingGame 생성시 발생할 수 있는 예외를 처리하기 위한 메소드*/

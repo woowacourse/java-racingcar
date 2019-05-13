@@ -18,12 +18,12 @@ public class Car implements Comparable<Car> {
     }
 
     public Car(final String name, final int position) {
-        validateNameLength(name);
+        validateCarNameLength(name);
         this.name = name.trim();
         this.position = position;
     }
 
-    private static void validateNameLength(final String name) {
+    private static void validateCarNameLength(final String name) {
         if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH)
             throw new IllegalArgumentException("차 이름은 빈 문자열을 허용하지 않고 5글자 이내여야 합니다.");
     }

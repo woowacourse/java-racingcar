@@ -30,7 +30,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printResult(final List<Car> winners) {
+    public static void printWinners(final List<Car> winners) {
         List<String> result = new ArrayList<>();
         for (Car c : winners) {
             result.add(c.getName());

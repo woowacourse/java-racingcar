@@ -21,7 +21,7 @@ public class RacingGame {
         return race;
     }
 
-    public List<Car> getResult() {
+    public List<Car> getWinners() {
         return race.getWinners();
     }
 
