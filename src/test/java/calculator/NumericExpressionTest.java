@@ -53,14 +53,7 @@ public class NumericExpressionTest {
         //assertThat(InputHandler.canCalculate(array)).isEqualTo(true);
     }
 
-    @Test
-    void 영으로나누는식() {
-        String input = "3 / 0";
-        Calculator calculator = new Calculator();
-        assertThrows(Exception.class, () -> {
-            calculator.calculateMultiExpression(input.split(" "));
-        }).printStackTrace();
-    }
+
 
 
 }

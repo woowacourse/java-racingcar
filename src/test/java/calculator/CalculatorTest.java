@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
     Calculator cal;
@@ -11,26 +12,6 @@ public class CalculatorTest {
     @BeforeEach
     void setUp() {
         cal = new Calculator();
-    }
-
-    @Test
-    void 덧셈() {
-        assertThat(cal.add(1, 2)).isEqualTo(3);
-    }
-
-    @Test
-    void 뺄셈() {
-        assertThat(cal.subtract(3, 1)).isEqualTo(2);
-    }
-
-    @Test
-    void 곱셈() {
-        assertThat(cal.multply(3, 1)).isEqualTo(3);
-    }
-
-    @Test
-    void 나눗셈() {
-        assertThat(cal.divide(4, 2)).isEqualTo(2);
     }
 
     @Test
@@ -45,6 +26,15 @@ public class CalculatorTest {
     void 여러개의연산() {
         String[] array = "3 + 2 * 4 / 10 5 3".split(" ");
         assertThat(cal.calculateMultiExpression(array)).isEqualTo(6);
+    }
+
+    @Test
+    void 영으로나누는연산() {
+        String input = "3 / 0";
+        Calculator calculator = new Calculator();
+        assertThrows(Exception.class, () -> {
+            calculator.calculateMultiExpression(input.split(" "));
+        }).printStackTrace();
     }
 
 

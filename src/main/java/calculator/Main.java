@@ -8,6 +8,8 @@ public class Main {
     public static void start() {
         String expression = InputHandler.getInput();
         Calculator calculator = new Calculator();
+
         calculator.calculate(expression.split(" "));
+
     }
 }
