@@ -1,6 +1,5 @@
 package racing.view;
 
-import racing.domain.RepeatNumber;
 
 import java.util.Scanner;
 
@@ -18,20 +17,9 @@ public class InputView {
         }
     }
 
-    public static RepeatNumber inputRepeatNumber() {
+    public static String inputRepeatNumber() {
         System.out.println(ConsoleMessages.INPUT_REPEAT_NUMBER.getMessage());
-        return getRepeatNumber(new Scanner(System.in).nextLine());
-    }
-
-    private static RepeatNumber getRepeatNumber(String repeatNumber) {
-        try {
-            return new RepeatNumber(repeatNumber);
-        } catch (NumberFormatException e) {
-            System.err.println(ConsoleMessages.ERR_REPEAT_NUMBER.getMessage());
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
-        }
-        return inputRepeatNumber();
+        return new Scanner(System.in).nextLine();
     }
 
     protected static void checkIdentifier(String carNames) {

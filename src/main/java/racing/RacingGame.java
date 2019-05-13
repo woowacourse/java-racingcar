@@ -15,7 +15,7 @@ public class RacingGame {
     public void run() {
         RacingCars racingCars = new RacingCars(generateCars());
 
-        startRace(racingCars, InputView.inputRepeatNumber());
+        startRace(racingCars, inputRepeatNumber());
 
         OutputView.printWinners(racingCars.getWinners());
     }
@@ -37,8 +37,23 @@ public class RacingGame {
         if (splitNames.isEmpty()){
             throw new IllegalArgumentException(ConsoleMessages.ERR_CAR_BLANK_NAME.getMessage());
         }
-
         return splitNames;
+    }
+
+    private static RepeatNumber inputRepeatNumber() {
+        return toRepeatNumber(InputView.inputRepeatNumber());
+    }
+
+
+    private static RepeatNumber toRepeatNumber(String number) {
+        try {
+            return new RepeatNumber(number);
+        } catch (NumberFormatException e) {
+            System.err.println(ConsoleMessages.ERR_REPEAT_NUMBER.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
+        return inputRepeatNumber();
     }
 
     private void startRace(RacingCars racingCars, RepeatNumber repeatNumber) {
