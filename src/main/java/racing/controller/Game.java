@@ -2,16 +2,19 @@ package racing.controller;
 
 import racing.model.Car;
 import racing.model.GameResult;
+import racing.model.Random;
 import racing.view.InputView;
 import racing.view.OutputView;
 
 import java.util.List;
 
 public class Game {
+    static final int RANDOM_RANGE_START = 0;
+    static final int RANDOM_RANGO_END = 9;
+
     public static void main(String[] args) {
         start();
     }
-
 
     public static void start() {
         List<Car> cars = InputView.getCars();
@@ -32,14 +35,11 @@ public class Game {
 
     private static void doRound(List<Car> cars) {
         for (Car car : cars) {
-            car.move(getRandomValue());
+            car.move(Random.getIntegerValue(RANDOM_RANGE_START, RANDOM_RANGO_END));
         }
         OutputView.showCarsPosition(cars);
     }
 
-    private static int getRandomValue() {
 
-        return (int) (Math.random() * 10);
-    }
 
 }
