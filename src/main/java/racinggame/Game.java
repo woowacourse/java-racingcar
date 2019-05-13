@@ -1,6 +1,6 @@
 package racinggame;
 
-import racinggame.view.resultOutput;
+import racinggame.view.ResultOutput;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class Game {
             car.move(randomValueGenerator());
             System.out.println(car.toString());
         }
-        resultOutput.printNewLine();
+        ResultOutput.printNewLine();
     }
 
     private int randomValueGenerator() {

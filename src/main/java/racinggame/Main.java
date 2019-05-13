@@ -1,7 +1,7 @@
 package racinggame;
 
 import racinggame.view.UserInput;
-import racinggame.view.resultOutput;
+import racinggame.view.ResultOutput;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,6 +14,6 @@ public class Main {
         Cars cars = new Cars(carsName);
         Winner winner = game.playGames(cars, gameCount);
 
-        resultOutput.winnersOutput(winner.getWinners());
+        ResultOutput.winnersOutput(winner.getWinners());
     }
 }

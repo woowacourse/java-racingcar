@@ -1,23 +1,9 @@
 package racinggame.view;
 
-import racinggame.Car;
-
 import java.util.List;
 
-public class resultOutput {
+public class ResultOutput {
     static StringBuilder sb = new StringBuilder();
-
-    public static void eachGameOutput(Car car) {
-        sb.setLength(0);
-        sb.append(car.getName());
-        sb.append(" : ");
-
-        for (int i = 0; i < car.getPosition(); i++) {
-            sb.append("-");
-        }
-
-        System.out.println(sb);
-    }
 
     public static void winnersOutput(List<String> winners) {
         sb.setLength(0);
