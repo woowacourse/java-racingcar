@@ -31,7 +31,6 @@ public class CarTest {
     void 차정지테스트() {
         Car testCar = new Car("test");
         testCar.move(3);
-
         assertThat(testCar.matchPosition(0)).isEqualTo(true);
     }
 
