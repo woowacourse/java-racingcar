@@ -64,4 +64,8 @@ public class Racing {
     public List<Car> getCars() {
         return this.cars;
     }
+
+    public int getCount(){
+        return this.count;
+    }
 }

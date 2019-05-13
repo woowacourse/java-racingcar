@@ -15,7 +15,7 @@ public class Game {
             Racing racing = new Racing(cars, count);
             OutputView.print(MSG_GAME_RESULT);
 
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < racing.getCount(); i++) {
                 racing.moveCars();
                 OutputView.print(racing.getCars());
             }
