@@ -13,11 +13,15 @@ public class Main {
         int gameCount;
         String[] carsName;
         List<Car> cars = new ArrayList<>();
+        CarNameLengthChecker checker;
 
-        inputText = UserInput.inputCarsName();
+        do {
+            inputText = UserInput.inputCarsName();
+            carsName = CarsName.makeCarsName(inputText);
+            checker = new CarNameLengthChecker(carsName);
+        } while (!checker.isRightLength());
+
         gameCount = UserInput.inputGameCount();
-
-        carsName = CarsName.makeCarsName(inputText);
 
         for (String carName : carsName) {
             cars.add(new Car(carName));
