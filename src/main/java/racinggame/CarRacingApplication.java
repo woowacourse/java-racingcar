@@ -2,6 +2,8 @@ package racinggame;
 
 import racinggame.domain.Cars;
 import racinggame.domain.LeagueHistory;
+import racinggame.domain.NumberGenerator;
+import racinggame.domain.RandomNumberGenerator;
 import racinggame.util.InputView;
 import racinggame.util.OutputView;
 
@@ -12,9 +14,10 @@ public class CarRacingApplication {
         CarRacingApplication application = new CarRacingApplication();
         Cars cars = application.getCars();
         int totalTrial = application.getTotalTrial();
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
 
         League woowahanLeague = new League(totalTrial);
-        LeagueHistory woowahanLeagueHistory = woowahanLeague.startRaceOf(cars);
+        LeagueHistory woowahanLeagueHistory = woowahanLeague.startRace(cars, numberGenerator);
 
         OutputView.showHistoryOf(woowahanLeagueHistory);
         OutputView.showWinnersOf(woowahanLeagueHistory, totalTrial);
