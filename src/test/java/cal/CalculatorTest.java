@@ -53,16 +53,16 @@ class CalculatorTest {
 
 	@Test
 	void 정수입력위치_오류() {
-		assertThrows(IllegalArgumentException.class, ()->{
+		assertThrows(NumberFormatException.class, ()->{
 			cal.execute("+ 3 * 7");
 		});
-		assertThrows(IllegalArgumentException.class, ()->{
+		assertThrows(NumberFormatException.class, ()->{
 			cal.execute("3 * +");
 		});
-		assertThrows(IllegalArgumentException.class, ()->{
+		assertThrows(NumberFormatException.class, ()->{
 			cal.execute("! * 3");
 		});
-		assertThrows(IllegalArgumentException.class, ()->{
+		assertThrows(NumberFormatException.class, ()->{
 			cal.execute("a - 3");
 		});
 	}

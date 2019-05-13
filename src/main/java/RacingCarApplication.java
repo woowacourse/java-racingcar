@@ -30,6 +30,7 @@ public class RacingCarApplication {
             String lapCount = InputView.inputLapCount();
             return new RacingGameController(inputCarNames, lapCount);
         } catch (IllegalArgumentException e) {
+            System.out.println(e);
             return setRacingGame();
         }
     }

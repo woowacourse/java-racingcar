@@ -7,34 +7,38 @@
 
 package cal;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
 /**
  * @author 김효건
  * @version 1.0 2019년 05년 12일
  */
 class Calculator {
     /*계산기 전체적인 로직에 관한 클래스*/
-    private static String PLUS = "+";
-    private static String MINUS = "-";
-    private static String MULTIPLY = "*";
-    private static String DEVIDE = "/";
-
     private int value;
 
-    int execute(String expression) {
+    private static Map<String, Function<Integer, Integer>> calculatrMaaping = new HashMap<>();
+
+    public Calculator() {
+        calculatrMaaping.put("+", (number) -> (this.value + number));
+        calculatrMaaping.put("-", (number) -> this.value - number);
+        calculatrMaaping.put("*", (number) -> this.value * number);
+        calculatrMaaping.put("/", (number) -> this.value / number);
+    }
+
+    public int execute(String expression) {
         String[] parsedExpression = splitExpression(expression);
-        checkValidExpressionFormat(parsedExpression);
         checkValidNumberOfToken(parsedExpression);
+        checkValidExpressionFormat(parsedExpression);
         this.value = parseInt(parsedExpression[0]);
         for (int i = 1; i < parsedExpression.length; i += 2) {
             String operator = parsedExpression[i];
             int number = parseInt(parsedExpression[i + 1]);
-            calculate(operator, number);
+            this.value = calculatrMaaping.get(operator).apply(number);
         }
         return value;
-    }
-
-    private int parseInt(String str) {
-        return Integer.parseInt(str);
     }
 
     private String[] splitExpression(String expression) {
@@ -56,52 +60,26 @@ class Calculator {
         }
     }
 
-    private void isOperator(String expression) {
-        if (!(expression.equals("+") || expression.equals("-") || expression.equals("*") || expression.equals("/"))){
-            throw new IllegalArgumentException("연산자 입력 위치에 연산자 이 외의 값 입력 오류");
-        }
-    }
-
     private void isInteger(String expression) {
         try {
             Integer.parseInt(expression);
         } catch (NumberFormatException e) {
-            new Exception("정수 입력 위치에 정수 이 외의 값 입력 오류");
+            throw new NumberFormatException("정수 입력 위치에 정수 이 외의 값 입력 오류");
         }
     }
 
-
-    private void calculate(String operator, int number) {
-        if (operator.equals(PLUS)) {
-            add(number);
-        }
-
-        if (operator.equals(MINUS)) {
-            subtract(number);
-        }
-
-        if (operator.equals(MULTIPLY)) {
-            multiply(number);
-        }
-
-        if (operator.equals(DEVIDE)) {
-            devide(number);
+    private void isOperator(String expression) {
+        if (!(expression.equals("+") || expression.equals("-") || expression.equals("*") || expression.equals("/"))) {
+            throw new IllegalArgumentException("연산자 입력 위치에 연산자 이 외의 값 입력 오류");
         }
     }
 
-    private void add(int number) {
-        value = Math.addExact(value, number);
+    private int parseInt(String str) {
+        return Integer.parseInt(str);
     }
 
-    private void subtract(int number) {
-        value = Math.subtractExact(value, number);
-    }
-
-    private void multiply(int number) {
-        value = Math.multiplyExact(value, number);
-    }
-
-    private void devide(int number) {
-        value /= number;
+    public static void main(String[] args) {
+        Calculator cal = new Calculator();
+        System.out.println(cal.execute("5 + a"));
     }
 }
