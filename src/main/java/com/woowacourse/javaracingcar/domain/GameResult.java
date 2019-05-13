@@ -7,11 +7,9 @@ import java.util.stream.Collectors;
 
 public class GameResult {
     private final List<GameRound> rounds;
-    private final List<CarDto> winners;
 
     public GameResult(final List<GameRound> rounds) {
         this.rounds = rounds;
-        this.winners = createWinner();
     }
 
     private List<CarDto> createWinner() {
@@ -31,6 +29,6 @@ public class GameResult {
     }
 
     public List<CarDto> getWinners() {
-        return new ArrayList<>(winners);
+        return createWinner();
     }
 }
