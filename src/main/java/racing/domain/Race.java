@@ -4,7 +4,6 @@ import racing.util.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 public class Race {
@@ -15,9 +14,9 @@ public class Race {
      */
     public Race(List<String> carNames) {
         cars = new ArrayList<>();
-        Iterator<String> it = carNames.iterator();
-        while (it.hasNext()) {
-            cars.add(new Car(it.next()));
+
+        for (String name : carNames) {
+            cars.add(new Car(name));
         }
     }
 
@@ -29,10 +28,8 @@ public class Race {
      * 경기 진행 메소드
      */
     public void progressRace() {
-        Iterator<Car> it = cars.iterator();
-        while (it.hasNext()) {
-            Car car = it.next();
-            car.tryGoForward(RandomNumberGenerator.generate(Car.RANDOM_NUM_UPPER_BOUND));
+        for (Car c : cars) {
+            c.tryGoForward(RandomNumberGenerator.generate(Car.RANDOM_NUM_UPPER_BOUND));
         }
     }
 
