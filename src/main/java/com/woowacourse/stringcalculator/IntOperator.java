@@ -1,6 +1,8 @@
 package com.woowacourse.stringcalculator;
 
+import java.util.Arrays;
 import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 public enum IntOperator {
     PLUS('+', (i1, i2) -> i1 + i2),
@@ -17,13 +19,12 @@ public enum IntOperator {
     }
 
     public static IntOperator valueOf(char operatorChar) {
-        for (IntOperator op : values()) {
-            if (operatorChar == op.operatorSymbol) {
-                return op;
-            }
+        try {
+            return Arrays.stream(values()).filter(op -> op.operatorSymbol == operatorChar)
+                .collect(Collectors.toList()).get(0);
+        } catch (IndexOutOfBoundsException e) { // 인자와 일치하는 객체가 없다 === 유효하지 않은 인자
+            throw new IllegalArgumentException("Invalid operator character: " + operatorChar);
         }
-
-        throw new IllegalArgumentException("Invalid operator character: " + operatorChar);
     }
 
     public Integer execute(int x, int y) {
