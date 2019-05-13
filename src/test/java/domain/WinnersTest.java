@@ -12,16 +12,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WinnersTest {
     private Winners winners;
-    private List<Car> cars;
+    private List<CarDto> carsOnFinishedRace;
 
     @BeforeEach
     void setUp() {
-        cars = Arrays.asList(
-                new Car("pobi", 2),
-                new Car("crong", 3),
-                new Car("honux", 1)
+        carsOnFinishedRace = Arrays.asList(
+                new CarDto("pobi", 2),
+                new CarDto("crong", 3),
+                new CarDto("honux", 1)
         );
-        winners = new Winners(cars);
+        winners = new Winners(carsOnFinishedRace);
     }
 
     @Test
@@ -31,7 +31,7 @@ class WinnersTest {
 
     @AfterEach
     void tearDown() {
-        cars = null;
+        carsOnFinishedRace = null;
         winners = null;
     }
 }

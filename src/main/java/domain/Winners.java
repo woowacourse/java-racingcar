@@ -3,9 +3,9 @@ package domain;
 import java.util.*;
 
 public class Winners {
-    private List<Car> carsFinishedRace;
+    private List<CarDto> carsFinishedRace;
 
-    public Winners(List<Car> carsFinishedRace) {
+    public Winners(List<CarDto> carsFinishedRace) {
         this.carsFinishedRace = carsFinishedRace;
     }
 
@@ -13,7 +13,7 @@ public class Winners {
         List<String> winners = new ArrayList<>();
         int maxPosition = getMaxPosition();
 
-        carsFinishedRace.stream().filter(x -> x.matchPosition(maxPosition))
+        carsFinishedRace.stream().filter(x -> x.isMaxPosition(maxPosition))
                 .forEach(x -> winners.add(x.getName()));
 
         return String.join(",", winners);
@@ -22,7 +22,7 @@ public class Winners {
     private int getMaxPosition() {
         return carsFinishedRace
                 .stream()
-                .max(Comparator.comparing(Car::getPosition))
+                .max(Comparator.comparing(CarDto::getPosition))
                 .orElseThrow(NoSuchElementException::new).getPosition();
     }
 }

@@ -2,6 +2,7 @@ package domain;
 
 import util.Util;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +25,17 @@ public class Race {
     }
 
     public boolean hasNextRound() {
-        return this.roundCount > this.currentRound++;
+        return this.roundCount >= this.currentRound++;
+    }
+
+    public List<CarDto> getCarsOnFinishedRace(){
+        List<CarDto> carsOnFinishedRace = new ArrayList<>();
+
+        carsOnRace.stream()
+                .map(c -> new CarDto(c.getName(), c.getPosition()))
+                .forEach(carsOnFinishedRace::add);
+
+        return carsOnFinishedRace;
     }
 
     @Override

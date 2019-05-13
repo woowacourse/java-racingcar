@@ -4,7 +4,6 @@ import domain.*;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RacingController {
@@ -15,7 +14,7 @@ public class RacingController {
         while (race.hasNextRound()) {
             printEachCarsOnRace(race.moveAllCarsByRoundCount());
         }
-        Winners winners = new Winners(printEachCarsOnRace(race.moveAllCarsByRoundCount()));
+        Winners winners = new Winners(race.getCarsOnFinishedRace());
         OutputView.outputWinners(winners.getRaceWinners());
     }
 
@@ -41,11 +40,10 @@ public class RacingController {
         }
     }
 
-    public static List<Car> printEachCarsOnRace(List<Car> carsOnRace) {
+    public static void printEachCarsOnRace(List<Car> carsOnRace) {
         for (Car car : carsOnRace) {
             OutputView.outputGameResult(car.toString());
         }
         System.out.println();
-        return carsOnRace;
     }
 }
