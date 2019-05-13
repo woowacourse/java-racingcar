@@ -11,11 +11,9 @@ public class CarRacingRule {
         return random.nextInt(BOUND_NUMBER);
     }
 
-    public static String judgeMove(Car car, int number) {
+    public static void judgeMove(Car car, int number) {
         if (number >= MIN_MOVE_NUMBER) {
             car.moveForeword();
-            return "Go";
         }
-        return "Stop";
     }
 }
