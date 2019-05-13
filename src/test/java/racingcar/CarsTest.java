@@ -33,9 +33,9 @@ public class CarsTest {
 
     @Test
     void carInstantiationTest() {
-        List<String> testNames = Arrays.asList("a", "b", "c");
+        String testNames = "a, b, c";
         Cars testCars1 = new Cars(testNames);
-        List<String> checkNames = Arrays.asList("a", "b", "c");
+        String checkNames = "a, b, c";
         Cars checkCars2 = new Cars(checkNames);
         assertThat(testCars1).isEqualTo(checkCars2);
     }
