@@ -7,14 +7,8 @@ public class Car {
     private int position = 0;
 
     Car(String name) {
-        if (isWhiteSpaceOnly(name)) {
-            throw new IllegalArgumentException();
-        }
-        if (isOverLimit(name)) {
-            throw new IllegalArgumentException();
-        }
+        checkConditionsForCar(name);
         this.name = name;
-
     }
 
     Car(String name, int position) {
@@ -22,6 +16,13 @@ public class Car {
         this.position = position;
     }
 
+    private static void checkConditionsForCar(String carName) {
+        if (isWhiteSpaceOnly(carName)||  isOverLimit(carName)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    /*
     public static void instantiateCar(List<String> carNames, List<Car> cars) {
         try {
             isDuplicate(carNames);
@@ -51,18 +52,10 @@ public class Car {
             cars.add(new Car(carNames.get(i), positions.get(i)));
         }
     }
+     */
 
     public static boolean isWhiteSpaceOnly(String name) {
         return name.isEmpty();
-    }
-
-    public static boolean isDuplicate(List<String> names) {
-        Set<String> nameSet = new HashSet<>(names);
-        if (names.size() != nameSet.size()) {
-            System.out.println("이름에 중복이 있습니다!");
-            return true;
-        }
-        return false;
     }
 
     public static boolean isOverLimit(String name) {

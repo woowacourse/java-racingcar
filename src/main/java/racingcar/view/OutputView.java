@@ -1,13 +1,14 @@
 package racingcar.view;
 
 import racingcar.Cars;
+import racingcar.RacingGame;
 import racingcar.Winners;
 
 public class OutputView {
 
-    public static void printTheProcess(Cars cars, int totalTurns) {
+    public static void printTheProcess(Cars cars, RacingGame racingGame) {
         System.out.println("실행 결과");
-        for (int currentTurn = 0; currentTurn < totalTurns; currentTurn++) {
+        for (int currentTurn = 0, totalTurns = racingGame.getTotalTurns(); currentTurn < totalTurns; currentTurn++) {
             updateAndPrintMovement(cars);
             System.out.println();
         }

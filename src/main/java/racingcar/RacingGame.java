@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.*;
 import racingcar.view.InputView;
 
 public class RacingGame {
@@ -16,14 +17,17 @@ public class RacingGame {
         }
     }
 
-    public static RacingGame instantiateRacingGame() {
+    public static RacingGame decideTotalTurns() {
         try{
             int totalTurns = InputView.askAndReceiveTotalTurns();
             RacingGame racingGame = new RacingGame(totalTurns);
             return racingGame;
         } catch (Exception e) {
-            return instantiateRacingGame();
+            return decideTotalTurns();
+        }
     }
 
+    public int getTotalTurns() {
+        return totalTurns;
     }
 }

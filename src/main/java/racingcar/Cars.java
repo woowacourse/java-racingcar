@@ -1,17 +1,49 @@
 package racingcar;
 
+import racingcar.view.InputView;
+
 import java.util.*;
 
 public class Cars {
     private List<Car> cars = new ArrayList<>();
 
     Cars(List<String> carNames) {
-        Car.instantiateCar(carNames, cars);
+        checkConditionsForCarNames(carNames);
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
     }
-
+    /*
     Cars(List<String> carNames, List<Integer> positions) {
         Car.instantiateCar(carNames, cars, positions);
     }
+
+     */
+    public static Cars prepareCarsForRacing() {
+        try {
+            List<String> carNames = InputView.askAndReceiveCarNames();
+            Cars cars = new Cars(carNames);
+            return cars;
+        } catch (Exception e) {
+            return prepareCarsForRacing();
+        }
+
+    }
+    private static void checkConditionsForCarNames(List<String> carNames) {
+        if (isDuplicate(carNames)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static boolean isDuplicate(List<String> names) {
+        Set<String> nameSet = new HashSet<>(names);
+        if (names.size() != nameSet.size()) {
+            System.out.println("이름에 중복이 있습니다!");
+            return true;
+        }
+        return false;
+    }
+
 
     public int getSize() {
         return cars.size();
