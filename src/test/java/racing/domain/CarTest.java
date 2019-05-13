@@ -1,6 +1,7 @@
 package racing.domain;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -8,21 +9,20 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CarTest {
     @Test
     void carInitializerTest() {
-        Car car = new Car("pobi");
-        assertThat(car).isEqualTo(new Car("pobi"));
+        assertThat(new Car("pobi")).isEqualTo(new Car("pobi"));
     }
 
     @Test
     void maxNameLengthTest() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Car car = new Car("123456");
+            new Car("123456");
         });
     }
 
     @Test
     void minNameLengthTest() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Car car = new Car("");
+            new Car("");
         });
     }
 
