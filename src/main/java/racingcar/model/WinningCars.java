@@ -28,14 +28,13 @@ public class WinningCars {
         }
     }
 
+    /* Test를 위한 Code */
     public boolean isWinner(String name) {
         return winningCarNames.contains(name);
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(String.join(", ", winningCarNames));
-        sb.append(" 가 최종 우승했습니다.");
-        return sb.toString();
+        return String.join(", ", winningCarNames) + " 가 최종 우승했습니다.";
     }
 }

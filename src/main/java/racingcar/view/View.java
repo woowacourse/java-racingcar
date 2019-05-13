@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public final class View {
 
-    private static final Scanner sc = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void outputLine(String aString) {
         System.out.println(aString);
@@ -15,12 +15,12 @@ public final class View {
 
     public static String[] inputNameOfCar() {
         outputLine("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-        return sc.nextLine().split(",");
+        return scanner.nextLine().split(",");
     }
 
     public static String inputNumberOfTry() {
         outputLine("시도할 횟수는 몇회인가요?");
-        return sc.nextLine();
+        return scanner.nextLine();
     }
 
     public static void printCars(RacingGame racingGame) {

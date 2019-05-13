@@ -12,7 +12,7 @@ public class RacingCar {
         RacingGame racingGame = makeCars(carNames, numberOfTry);
         View.outputLine("실행 결과");
         for (int i = 0; i < Integer.parseInt(numberOfTry); i++) {
-            racingGame = playRacing(racingGame);
+            playRacing(racingGame);
             View.printCars(racingGame);
         }
         View.printWinningCars(getWinningCars(racingGame));
@@ -22,9 +22,8 @@ public class RacingCar {
         return new RacingGame(carNames, numberOfTry);
     }
 
-    private static RacingGame playRacing(RacingGame racingGame) {
+    private static void playRacing(RacingGame racingGame) {
         racingGame.moveCars();
-        return racingGame;
     }
 
     private static WinningCars getWinningCars(RacingGame racingGame) {

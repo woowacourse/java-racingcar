@@ -54,10 +54,6 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public int getMaxPosition(int maxPosition) {
-        return Integer.max(this.position, maxPosition);
-    }
-
     public boolean isMaxPosition(int maxPosition) {
         return this.position == maxPosition;
     }
@@ -69,12 +65,12 @@ public class Car implements Comparable<Car> {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.name).append(" : ");
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.name).append(" : ");
         for (int i = 0; i < this.position; i++) {
-            sb.append("-");
+            stringBuilder.append("-");
         }
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     @Override
@@ -94,6 +90,6 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car o) {
-        return this.position-o.position;
+        return this.position - o.position;
     }
 }

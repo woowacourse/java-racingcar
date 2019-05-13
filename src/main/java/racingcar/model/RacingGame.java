@@ -22,9 +22,9 @@ public class RacingGame {
     }
 
     /* 테스트를 위한 생성자 */
-//    public RacingGame(ArrayList<Car> cars) {
-//        this.cars = cars;
-//    }
+    public RacingGame(String[] carNames) {
+        this(carNames, "0");
+    }
 
     private boolean isOverlap(String[] carNames) {
         return this.cars.size() != carNames.length;
@@ -42,12 +42,11 @@ public class RacingGame {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         for (Car car : cars) {
-            sb.append(car.toString()).append("\n");
+            stringBuilder.append(car.toString()).append("\n");
         }
-
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     @Override
