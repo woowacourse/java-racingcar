@@ -31,15 +31,6 @@ public class Car {
         return this.position == position;
     }
 
-    public String getCurrentLocation() {
-        StringBuilder currentLocation = new StringBuilder();
-        currentLocation.append(String.format("%-5s : ", name));
-        for (int i = 0; i < position; i++) {
-            currentLocation.append("-");
-        }
-        return currentLocation.toString();
-    }
-
     public String getName() {
         return name;
     }

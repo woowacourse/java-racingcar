@@ -11,7 +11,12 @@ public class OutputView {
     }
 
     public static void print(Car car) {
-        System.out.println(car.getCurrentLocation());
+        StringBuilder currentLocation = new StringBuilder();
+        currentLocation.append(String.format("%-5s : ", car.getName()));
+        for (int i = 0; i < car.getPosition(); i++) {
+            currentLocation.append("-");
+        }
+        System.out.println(currentLocation.toString());
     }
 
     public static void print(Winner winner) {
