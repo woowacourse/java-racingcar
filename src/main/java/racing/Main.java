@@ -12,7 +12,6 @@ public class Main {
 
         RacingGame racingGame = new RacingGame(carNames);
         RacingResult result = null;
-
         System.out.println(OutputView.PROCESS_RESULT_MESSAGE);
         for (int i = 0; i < tryNo; i++) {
             result = racingGame.race();
