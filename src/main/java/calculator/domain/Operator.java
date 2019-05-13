@@ -1,45 +1,38 @@
 package calculator.domain;
 
+import java.util.function.BiFunction;
+
 public enum Operator {
-	ADDITION("+") {
-		double operate(double num1, double num2) {
-			return num1 + num2;
-		}
-	},
-	SUBTRACTION("-") {
-		double operate(double num1, double num2) {
-			return num1 - num2;
-		}
-	},
-	MULTIPLICATION("*") {
-		double operate(double num1, double num2) {
-			return num1 * num2;
-		}
-	},
-	DIVISION("/") {
-		double operate(double num1, double num2) {
-			return num1 / num2;
-		}
-	};
+	ADDITION("+", (num1, num2) -> num1 + num2),
+	SUBTRACTION("-", (num1, num2) -> num1 - num2),
+	MULTIPLICATION("*", (num1, num2) -> num1 * num2),
+	DIVISION("/", (num1, num2) -> num1 / num2);
 
 	private final String operator;
+	public BiFunction<Double, Double, Double> calculation;
 
-	Operator(String operator) {
+	Operator(String operator, BiFunction<Double, Double, Double> calculation) {
 		this.operator = operator;
+		this.calculation = calculation;
 	}
 
-	public String getOperator() {
-		return this.operator;
-	}
-
-	abstract double operate(double num1, double num2);
-
-	public static Operator getOperator(String s) {
+	public static Operator getOperator(String operator) {
 		for (Operator o : Operator.values()) {
-			if (o.getOperator().equals(s)) {
+			if (o.getOperator().equals(operator)) {
 				return o;
 			}
 		}
-		return null;
+		throw new IllegalArgumentException();
 	}
+
+	private String getOperator() {
+		return this.operator;
+	}
+
+	public double operate(double num1, double num2) {
+		return calculation.apply(num1, num2);
+	}
+
+
+
 }
