@@ -5,8 +5,6 @@ import util.StringUtils;
 import java.util.Objects;
 
 public class Car {
-    private static final int MIN_MOVE_NUMBER = 4;
-
     private final String name;
     private int position = 0;
 
@@ -33,12 +31,8 @@ public class Car {
         return name;
     }
 
-    public String judgeMove(int number) {
-        if (number >= MIN_MOVE_NUMBER) {
-            position ++;
-            return "Go";
-        }
-        return "Stop";
+    public void moveForeword() {
+        position ++;
     }
 
     public int getBiggerPosition(int comparePosition) {

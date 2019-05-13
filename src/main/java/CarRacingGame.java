@@ -4,12 +4,9 @@ import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class CarRacingGame {
-    private static final int BOUND_NUMBER = 10;
-
     public static List<Car> readyCarForRacing(List<String> names) {
         List<Car> cars = new ArrayList<>();
 
@@ -23,14 +20,9 @@ public class CarRacingGame {
         return cars;
     }
 
-    private static int getRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(BOUND_NUMBER);
-    }
-
     public static void tryMove(List<Car> cars) {
         for (Car car : cars) {
-            car.judgeMove(getRandomNumber());
+            car.judgeMove(CarRacingRule.getRandomNumber());
         }
     }
 
