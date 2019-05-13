@@ -1,5 +1,8 @@
 package game.input;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserInputCheck {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
@@ -15,30 +18,32 @@ public class UserInputCheck {
     }
 
     public static String[] splitWithComma(String inputCarName) {
-        String carNames = removeBlankAndDoubleComma(inputCarName);
+        String carNames = removeBlank(inputCarName);
         return carNames.split(",");
     }
 
-    public static String removeBlankAndDoubleComma(String inputCarName) {
+    public static String removeBlank(String inputCarName) {
         return inputCarName.replace(" ", "");
     }
 
     public static boolean checkCarNamesLength(String[] carNames) {
-        boolean isFIveOrLess = true;
+        List<Boolean> isCarName = new ArrayList<>();
 
         if (carNames.length == 0) {
             return false;
         }
 
-        for (String carName : carNames) {
-            isFIveOrLess &= checkCarNameLength(carName);
-        }
+        return hasIncorrectCarName(carNames, isCarName);
+    }
 
-        return isFIveOrLess;
+    private static boolean hasIncorrectCarName(String[] carNames, List<Boolean> isCarName) {
+        for (String carName : carNames) {
+            isCarName.add(checkCarNameLength(carName));
+        }
+        return !(isCarName.contains(false));
     }
 
     private static boolean checkCarNameLength(String carName) {
-        System.out.println(carName.length());
         return carName.length() >= MIN_NAME_LENGTH
                 && carName.length() <= MAX_NAME_LENGTH;
     }
