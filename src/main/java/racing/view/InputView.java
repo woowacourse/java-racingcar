@@ -31,17 +31,15 @@ public class InputView {
         }
     }
 
-    private static boolean validateNoConsecutiveCommas(final String names) {
+    private static void validateNoConsecutiveCommas(final String names) {
         if (names.contains(",,")) {
             throw new IllegalArgumentException("','가 두개 이상 연달아 있으면 안 됩니다.");
         }
-        return true;
     }
 
-    private static boolean validateNoDuplication(final List<String> names) {
+    private static void validateNoDuplication(final List<String> names) {
         List<String> reducedNames = names.stream().distinct().collect(Collectors.toList());
         if (names.size() != reducedNames.size()) throw new IllegalArgumentException("중복된 이름이 존재하면 안됩니다.");
-        return true;
     }
 
     public static int inputNumTrials() {
@@ -58,18 +56,16 @@ public class InputView {
 
     private static int requestInteger() {
         try {
-            int nums = Integer.parseInt(requestString());
-            return nums;
+            return Integer.parseInt(requestString());
         } catch (Exception e) {
             System.out.println("올바른 정수 입력이 아닙니다.");
             return requestInteger();
         }
     }
 
-    private static boolean validateNaturalNumber(final int numTrials) {
+    private static void validateNaturalNumber(final int numTrials) {
         if (0 >= numTrials) {
             throw new IllegalArgumentException("시도 횟수는 자연수만 입력 가능합니다.");
         }
-        return true;
     }
 }
