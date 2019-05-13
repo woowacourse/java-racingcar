@@ -3,7 +3,6 @@ package racingcar.model;
 import java.util.*;
 
 public class RacingGame {
-    private static final int START_POSITION = 0;
     private static final String NUMBER_REGEX = "[1-9][0-9]*$";  // String matches에 사용할 숫자 REGEX 정의
 
     private Set<Car> cars = new LinkedHashSet<>();
@@ -38,15 +37,7 @@ public class RacingGame {
     }
 
     public WinningCars getWinnerCars() {
-        int maxPosition = START_POSITION;
-        WinningCars winningCars = new WinningCars();
-        for (Car car : cars) {
-            maxPosition = car.getMaxPosition(maxPosition);
-        }
-        for (Car car : cars) {
-            winningCars.addWinners(car, maxPosition);
-        }
-        return winningCars;
+        return new WinningCars(this.cars);
     }
 
     @Override

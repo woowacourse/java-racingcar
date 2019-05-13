@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int POSSIBLE_MOVE = 4;
     private static final int VALID_NAME_LENGTH = 5;
     /* String matches에 사용할 알파벳 REGEX 정의 */
@@ -89,5 +89,11 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name, position);
+    }
+
+
+    @Override
+    public int compareTo(Car o) {
+        return this.position-o.position;
     }
 }
