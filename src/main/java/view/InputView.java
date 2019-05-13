@@ -2,6 +2,8 @@ package view;
 
 import java.util.Scanner;
 
+import static util.StringUtils.isNumberString;
+
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -10,8 +12,14 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String inputTryNum() {
+    public static int inputTryNum() {
         System.out.println("시도할 횟수는 몇 회인가요?");
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+
+        if (!isNumberString(input)) {
+            System.out.println("숫자로 입력해주세요.");
+            return inputTryNum();
+        }
+        return Integer.parseInt(input);
     }
 }

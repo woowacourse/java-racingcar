@@ -1,4 +1,5 @@
 import domain.Car;
+import jdk.internal.util.xml.impl.Input;
 import view.InputView;
 import view.OutputView;
 
@@ -14,7 +15,7 @@ public class CarRacingGame {
     public static void main(String[] args) {
         String names = InputView.inputCarNames();
         List<Car> cars = readyCarForRacing(names);
-        int tryNum = getTryNum();
+        int tryNum = InputView.inputTryNum();
 
         System.out.println("\n실행 결과");
         startRacing(cars, tryNum);
@@ -34,16 +35,6 @@ public class CarRacingGame {
             }
         }
         return cars;
-    }
-
-    private static int getTryNum() {
-        String input = InputView.inputTryNum();
-
-        if (!isNumberString(input)) {
-            System.out.println("숫자로 입력해주세요.");
-            return getTryNum();
-        }
-        return Integer.parseInt(input);
     }
 
     private static int getRandomNumber() {
