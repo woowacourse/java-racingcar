@@ -1,45 +1,27 @@
 package racing.controller;
 
+import racing.domain.Car;
 import racing.domain.Race;
-import racing.view.InputView;
-import racing.view.OutputView;
+
+import java.util.List;
 
 public class RacingGame {
     private final Race race;
-    private final int numTrials;
+    private int numTrials;
 
-    /* 경주 준비 */
-    public RacingGame() {
-        race = setupRace();
-        numTrials = InputView.inputNumTrials();
+    public RacingGame(List<String> carNames, int numTrials) {
+        race = new Race(carNames);
+        this.numTrials = numTrials;
     }
 
-    /* Car 생성시 발생할 수 있는 예외를 처리하기 위한 메소드*/
-    private Race setupRace() {
-        try {
-            return new Race(InputView.inputNames());
-        } catch (Exception e) {
-            OutputView.printErrMsg(e.getMessage());
-            return setupRace();
-        }
+    /* 자동차 경주 한 싸이클 진행 */
+    public Race race() {
+        race.progressRace();
+        numTrials--;
+        return race;
     }
 
-    /* 경주 시작 */
-    public void startGame() {
-        repeatRace(numTrials);
-    }
+    public List<Car> getResult() { return race.getWinners(); }
 
-    /* 경주 진행 */
-    private void repeatRace(int numTrials) {
-        OutputView.printResultMessage();
-        for (int i = 0; i < numTrials; i++) {
-            race.progressRace();
-            OutputView.printRace(race);
-        }
-    }
-
-    /* 경주 종료 */
-    public void endGame() {
-        OutputView.printResult(race.getResult());
-    }
+    public boolean isEnd() { return numTrials == 0; }
 }

@@ -9,9 +9,6 @@ import java.util.List;
 public class Race {
     private List<Car> cars;
 
-    /*
-     * 경기 준비
-     */
     public Race(List<String> carNames) {
         cars = new ArrayList<>();
 
@@ -24,19 +21,17 @@ public class Race {
         return cars;
     }
 
-    /*
-     * 경기 진행 메소드
-     */
     public void progressRace() {
         for (Car c : cars) {
             c.tryGoForward(RandomNumberGenerator.generate(Car.RANDOM_NUM_UPPER_BOUND));
         }
     }
 
-    /*
-     * 우승자 판별 메소드
-     */
-    public static List<Car> judgeWinners(List<Car> cars) {
+    public List<Car> getWinners() {
+        return findWinners(cars);
+    }
+
+    public static List<Car> findWinners(List<Car> cars) {
         List<Car> winners = new ArrayList<>(cars);
         Car winner = findWinner(cars);
         winners.removeIf((c) -> (!isSamePosition(c, winner)));
@@ -49,12 +44,5 @@ public class Race {
 
     private static boolean isSamePosition(Car c1, Car c2) {
         return c1.compareTo(c2) == 0;
-    }
-
-    /*
-     * 경기 결과 메소드
-     */
-    public List<Car> getResult() {
-        return judgeWinners(cars);
     }
 }
