@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
+    private static final String RESULT_IS = "실행 결과";
 
     public static void showCarsPosition(List<Car> cars) {
         System.out.println();
@@ -24,4 +25,7 @@ public class OutputView {
         System.out.println(stringJoiner.toString() + "가 최종 우승했습니다.");
     }
 
+    public static void saysSomethingBeforeShowingResult() {
+        System.out.print(RESULT_IS);
+    }
 }

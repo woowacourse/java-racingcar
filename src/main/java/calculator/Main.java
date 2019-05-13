@@ -9,7 +9,7 @@ public class Main {
         String expression = InputHandler.getInput();
         Calculator calculator = new Calculator();
 
-        calculator.calculate(expression.split(" "));
+        calculator.calculateInput(expression);
 
     }
 }

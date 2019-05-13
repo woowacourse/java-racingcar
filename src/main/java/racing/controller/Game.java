@@ -18,16 +18,16 @@ public class Game {
 
     public static void start() {
         List<Car> cars = InputView.getCars();
-        List<Car> champions;
         int roundNum = InputView.getRoundNumber();
-
         doRounds(cars, roundNum);
+
+        List<Car> champions;
         champions = GameResult.calculateChampions(cars);
         OutputView.showChampion(champions);
     }
 
     static void doRounds(List<Car> cars, int roundNum) {
-        System.out.print("\n실행 결과");
+        OutputView.saysSomethingBeforeShowingResult();
         for (int i = 0; i < roundNum; i++) {
             doRound(cars);
         }
@@ -39,7 +39,6 @@ public class Game {
         }
         OutputView.showCarsPosition(cars);
     }
-
 
 
 }

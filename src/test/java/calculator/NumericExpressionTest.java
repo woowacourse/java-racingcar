@@ -48,9 +48,12 @@ public class NumericExpressionTest {
     }
 
     @Test
-    void 숫자연산자혼합인지확인() {
-        String[] array = "3 + 2 * 4".split(" ");
-        //assertThat(InputHandler.canCalculate(array)).isEqualTo(true);
+    void 숫자사이의여러개공백() {
+        String input = "3 +  2";
+        assertThrows(Exception.class, () -> {
+            new NumericExpression(input);
+        }).printStackTrace();
+
     }
 
 

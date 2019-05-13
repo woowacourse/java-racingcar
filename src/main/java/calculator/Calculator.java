@@ -15,11 +15,9 @@ public class Calculator {
         MULTI("*", (num1, num2) -> num1 * num2),
         DIVIDE("/", (num1, num2) -> num1 / num2);
 
-        private String operator;
         private BiFunction<Integer, Integer, Integer> function;
 
         Operator(String operator, BiFunction<Integer, Integer, Integer> function) {
-            this.operator = operator;
             this.function = function;
         }
     }
@@ -50,7 +48,8 @@ public class Calculator {
         return result;
     }
 
-    public int calculate(String[] tokens) {
+    public int calculateInput(String input) {
+        String[] tokens = input.split(" ");
         return calculateMultiExpression(tokens);
     }
 }

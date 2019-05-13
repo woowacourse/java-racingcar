@@ -50,7 +50,7 @@ public class NumericExpression {
     }
 
     private void checkInvalidOperator(String token) throws Exception {
-        if (Arrays.asList(operators).contains(token) ==  false) {
+        if (Arrays.asList(operators).contains(token) == false) {
             throw new Exception("잘못된 연산자입니다. 다시 입력하세요");
         }
     }
@@ -62,9 +62,6 @@ public class NumericExpression {
             throw new Exception("피연산자 값이 정수가 아닙니다. 다시 입력하세요.");
         }
     }
-
-
-
 
 
     @Override
