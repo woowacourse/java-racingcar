@@ -15,6 +15,10 @@ public class WinnerTest {
 
     @BeforeEach
     void setUp() {
+        game = new Game();
+        winner = new Winner();
+        cars = new ArrayList<>();
+
         Car pobi = new Car("pobi");
         Car crong = new Car("crong");
         Car mir = new Car("mir");
