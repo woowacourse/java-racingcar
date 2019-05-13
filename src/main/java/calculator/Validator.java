@@ -10,27 +10,23 @@ public class Validator {
     private String value;
     private String[] values;
 
-    public Validator(String value) {
+    public Validator(String value, String[] values) {
         this.value = value;
-        this.values = value.split(" ");
+        this.values = values;
     }
 
     public boolean validateAll() {
         if (!validateLength()) {
-            System.out.println("validateLength! 다시 입력해주세요!");
-            return false;
+            throw new IllegalArgumentException("validateLength! 다시 입력해주세요!");
         }
         if (!validateForm()) {
-            System.out.println("validateForm! 다시 입력해주세요!");
-            return false;
+            throw new IllegalArgumentException("validateForm! 다시 입력해주세요!");
         }
         if (!dividedZero()) {
-            System.out.println("dividedZero! 다시 입력해주세요!");
-            return false;
+            throw new IllegalArgumentException("validateForm! 다시 입력해주세요!");
         }
-        if(!validateOrderOfNumbers() || !validateOrderOfOperator()) {
-            System.out.println("validateOrderOfNumbers! 다시 입력해주세요!");
-            return false;
+        if (!validateOrderOfNumbers() || !validateOrderOfOperator()) {
+            throw new IllegalArgumentException("validateForm! 다시 입력해주세요!");
         }
         return true;
     }

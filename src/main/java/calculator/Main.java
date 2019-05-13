@@ -5,16 +5,21 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Validator validator;
         boolean result;
-        String value;
+        String[] splitedValues;
         do {
             System.out.println("계산식을 입력해주세요.");
-            value = scanner.nextLine();
-            validator = new Validator(value);
-            result = validator.validateAll();
+            String value = scanner.nextLine();
+            splitedValues = value.split(" ");
+            try {
+                Validator validator = new Validator(value, splitedValues);
+                result = validator.validateAll();
+            } catch (Exception e) {
+                result = false;
+                System.out.println(e.getMessage());
+            }
         } while (!result);
-        Calculator calculator = new Calculator(value.split(" "));
+        Calculator calculator = new Calculator(splitedValues);
         System.out.println(calculator.calculate());
     }
 }
