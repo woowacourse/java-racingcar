@@ -3,7 +3,6 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Car {
-    private static final int RANDOM_NUMBER_LIMIT = 10;
     private static final int FORWARD_NUM = 4;
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
@@ -23,28 +22,15 @@ public class Car {
 
     private void checkName(String name) {
         if (name == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름이 정상적으로 입력되지 않았습니다. (null)");
         }
         if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름이 정상적으로 입력되지 않았습니다. (1~5글자만 가능합니다.)");
         }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    private int makeRandomNumber() {
-        return (int) (Math.random() * RANDOM_NUMBER_LIMIT);
     }
 
     protected void move(int number) {
         position += (number >= FORWARD_NUM) ? 1 : 0;
-    }
-
-    public void play() {
-        int randomNumber = makeRandomNumber();
-        move(randomNumber);
     }
 
     public boolean matchPosition(int position) {
@@ -53,6 +39,10 @@ public class Car {
 
     public int findPositionBiggerThan(int position) {
         return (this.position > position) ? this.position : position;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

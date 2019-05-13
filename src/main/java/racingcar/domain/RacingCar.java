@@ -1,10 +1,11 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+`import java.util.List;
 
 public class RacingCar {
+    private static final int RANDOM_NUMBER_LIMIT = 10;
+
     private List<Car> cars;
 
     public RacingCar() {
@@ -12,12 +13,12 @@ public class RacingCar {
     }
 
     public List<Car> prepareRace(String userInput) {
-        String[] carNames = makeCarNames(userInput);
+        String[] carNames = splitCarNames(userInput);
         setCars(carNames);
         return cars;
     }
 
-    private String[] makeCarNames(String userInput) {
+    private String[] splitCarNames(String userInput) {
         return userInput.split(",");
     }
 
@@ -29,8 +30,12 @@ public class RacingCar {
 
     public void playOneRound() {
         for (Car car : cars) {
-            car.play();
+            car.move(makeRandomNumber());
         }
+    }
+
+    private int makeRandomNumber() {
+        return (int) (Math.random() * RANDOM_NUMBER_LIMIT);
     }
 
     @Override

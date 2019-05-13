@@ -21,15 +21,15 @@ public class CarTest {
     }
 
     @Test
-    void moveTest() {
+    void 값에따라_정지하는지_확인() {
         Car car = new Car("pobi");
-
-        car.move(0);
-        assertThat(car.matchPosition(0)).isEqualTo(true);
-
         car.move(3);
         assertThat(car.matchPosition(0)).isEqualTo(true);
+    }
 
+    @Test
+    void 값에따라_이동하는지_확인() {
+        Car car = new Car("pobi");
         car.move(4);
         assertThat(car.matchPosition(1)).isEqualTo(true);
     }
