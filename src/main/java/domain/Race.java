@@ -2,10 +2,7 @@ package domain;
 
 import util.Util;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * 레이스 게임을 진행해 자동차들을 이동시키는 클래스
@@ -32,6 +29,16 @@ public class Race {
     }
 
     /**
+     * Race 생성자
+     * <br> 횟수는 자동으로 최소+1로 초기화
+     *
+     * @param names 자동차들 이름
+     */
+    public Race(String names) {
+        this(names, Const.MIN_ROUND_COUNT + 1);
+    }
+
+    /**
      * Race 생성자.
      * <br> 횟수는 범위 확인 후 초기화
      *
@@ -48,9 +55,33 @@ public class Race {
     }
 
     /**
+     * Race 생성자
+     *
+     * @param carNames   자동차들 이름
+     * @param roundCount 총 진행할 게임 횟수
+     */
+    public Race(String carNames, int roundCount) {
+        Util.checkRoundCountRange(roundCount);
+        this.raceCars = setCars(carNames);
+        this.roundCounts = new HashMap<>();
+        this.roundCounts.put(ROUND_COUNT, roundCount);
+        this.roundCounts.put(NOW_ROUND_COUNT, Const.MIN_ROUND_COUNT);
+    }
+
+    private List<Car> setCars(String carNames) {
+        List<Car> cars = new ArrayList<>();
+        List<String> names = Arrays.asList(carNames.split(","));
+        names.replaceAll(String::trim);
+        for (String name : names) {
+            cars.add(new Car(name));
+        }
+        return cars;
+    }
+
+    /**
      * 레이싱을 진행중인 자동차들의 정보들 반환
      *
-     * @return carInfo      자동차들의 정보
+     * @return carInfo 자동차들의 정보
      */
     public List<String> getRaceCarsInfo() {
         List<String> carInfo = new ArrayList<>();
@@ -63,7 +94,7 @@ public class Race {
     /**
      * 남은 횟수만큼 레이싱 게임을 진행
      *
-     * @return Race     게임이 종료된 상태의 Race
+     * @return Race 게임이 종료된 상태의 Race
      */
     public Race moveAllCars() {
         while (hasNextRound()) {
@@ -75,7 +106,7 @@ public class Race {
     /**
      * 게임이 종료되었다면 Winners 객체를 반환
      *
-     * @return winners      현재 객체로 초기화한 Winners 객체
+     * @return winners 현재 객체로 초기화한 Winners 객체
      * @throws IllegalArgumentException 게임이 종료되지 않았을 경우
      */
     public Winners winners() {

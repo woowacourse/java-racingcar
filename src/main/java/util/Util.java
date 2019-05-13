@@ -3,6 +3,7 @@ package util;
 import domain.Const;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -21,6 +22,23 @@ public class Util {
      */
     public static int getRandomNumber() {
         return new Random().nextInt(Const.RANGE_RAN_NUM);
+    }
+
+    /**
+     * 이름 유효성 검사 후 값 반환
+     * <br> 유효성에서 문제가 있을 경우 예외 발생
+     *
+     * @param name 이름
+     * @return 이름
+     * @throws IllegalArgumentException 문제가 있을 경우
+     */
+    public static String checkCarNames(String name) {
+        List<String> names = Arrays.asList(name.split(","));
+        names.replaceAll(String::trim);
+        checkStringListSize(names);
+        checkDuplicatedStringList(names);
+        checkCarNameRange(names);
+        return name;
     }
 
     /**
@@ -51,6 +69,34 @@ public class Util {
         if (stringList.size() == Const.ZERO) {
             throw new IllegalArgumentException(Const.EX_NAME_LEN);
         }
+    }
+
+    /**
+     * 이름 길이가 최소/최대값 이내인지 확인
+     * <br> 범위에 없으면 예외 발생
+     *
+     * @param names 확인할 이름들
+     * @throws IllegalArgumentException 범위에 없을 경우
+     */
+    public static void checkCarNameRange(List<String> names) {
+        for (String name : names) {
+            if (name.length() < Const.MIN_NAME_LEN || name.length() > Const.MAX_NAME_LEN) {
+                throw new IllegalArgumentException(Const.EX_NAME_LEN);
+            }
+        }
+    }
+
+    /**
+     * 횟수 유효성 확인 후 값 반환
+     * <br> 유효성에 문제가 있을 시 예외 발생
+     *
+     * @param roundCount 횟수
+     * @return 횟수
+     * @throws IllegalArgumentException 유효성에 문제가 있을 경우
+     */
+    public static int checkRoundCount(int roundCount) {
+        checkRoundCountRange(roundCount);
+        return roundCount;
     }
 
     /**
