@@ -27,4 +27,31 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(9);
     }
 
+    @Test
+    void 더하기() {
+        String[] inputText = {"1", "+", "2"};
+        int result = cal.calculate(inputText);
+        assertThat(result).isEqualTo(3);
+    }
+
+    @Test
+    void 빼기() {
+        String[] inputText = {"5", "-", "2"};
+        int result = cal.calculate(inputText);
+        assertThat(result).isEqualTo(3);
+    }
+
+    @Test
+    void 곱하기() {
+        String[] inputText = {"3", "*", "2"};
+        int result = cal.calculate(inputText);
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    void 나누기() {
+        String[] inputText = {"10", "/", "2"};
+        int result = cal.calculate(inputText);
+        assertThat(result).isEqualTo(5);
+    }
 }
