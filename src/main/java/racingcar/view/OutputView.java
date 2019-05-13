@@ -1,13 +1,13 @@
 package racingcar.view;
 
-import racingcar.domain.Race;
+import racingcar.domain.RaceStatus;
 
 public class OutputView {
     public static void printRaceStartMessage() {
         System.out.println("\n실행 결과");
     }
-    public static void printEachRound(Race race) {
-        race.getCurrentResult().forEach(
+    public static void printEachRound(RaceStatus status) {
+        status.getCurrentStatus().forEach(
                 car -> System.out.println(car + " : " + drawTrail(car.getPosition()))
         );
         System.out.println();
@@ -21,8 +21,8 @@ public class OutputView {
         return trail.toString();
     }
 
-    public static void printWinners(Race race) {
-        String result = race.getNameOfWinners().toString();
+    public static void printWinners(RaceStatus status) {
+        String result = status.getNameOfWinners().toString();
         result = result.substring(1, result.length() - 1);
         System.out.println(
                 result

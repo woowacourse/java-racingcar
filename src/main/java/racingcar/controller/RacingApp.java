@@ -6,12 +6,11 @@ import racingcar.view.OutputView;
 
 public class RacingApp {
     public static void main(String[] args) {
-        final Race race = new Race(InputView.inputCarNames());
-        final int numberOfTrials = InputView.inputNumberOfTrials();
+        final Race race = new Race(InputView.inputCarNames(), InputView.inputNumberOfTrials());
         OutputView.printRaceStartMessage();
-        for (int i = 0; i < numberOfTrials; i++) {
-            OutputView.printEachRound((race.startEachRound()));
+        while (race.hasNext()) {
+            OutputView.printEachRound((race.next()));
         }
-        OutputView.printWinners(race);
+        OutputView.printWinners(race.finish());
     }
 }

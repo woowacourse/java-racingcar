@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-class RaceTest {
+class RaceStatusTest {
     @Test
     void getWinnersTest() {
         Map<String, Integer> testCars = new LinkedHashMap<String, Integer>() {{
@@ -17,8 +17,8 @@ class RaceTest {
             put("Y", 2);
             put("Z", 8);
         }};
-        Race race = new Race(testCars, new AlwaysMove());
-        race.startEachRound();
-        assertThat(race.getWinners().toString()).isEqualTo(Arrays.asList("X", "Z").toString());
+        RaceStatus status = new RaceStatus(testCars, new AlwaysMove());
+        status.startEachRound();
+        assertThat(status.getNameOfWinners().toString()).isEqualTo(Arrays.asList("X", "Z").toString());
     }
 }
