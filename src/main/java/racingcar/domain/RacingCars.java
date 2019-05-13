@@ -1,18 +1,42 @@
 package racingcar.domain;
 
+import racingcar.domain.Rule.Rule;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RaceResult {
+public class RacingCars {
     private List<Car> cars = new ArrayList<>();
+
+    public RacingCars() {
+    }
+
+    public RacingCars(String[] carNames) {
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
 
     public void add(Car car) {
         cars.add(car);
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public boolean isOver(int count) {
+        return cars.size() > count;
+    }
+
+    public RacingCars race(Rule rule) {
+        RacingCars nextRacingCars = new RacingCars();
+
+        for (Car car : this.cars) {
+            nextRacingCars.add(car.move(rule));
+        }
+        return nextRacingCars;
     }
 
     public List<Car> findWinningCars() {
@@ -41,7 +65,7 @@ public class RaceResult {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RaceResult that = (RaceResult) o;
+        RacingCars that = (RacingCars) o;
         return Objects.equals(cars, that.cars);
     }
 

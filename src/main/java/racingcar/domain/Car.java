@@ -6,12 +6,13 @@ import java.util.Objects;
 
 public class Car {
     private static final int LIMIT_CAR_NAME_LENGTH = 5;
+    private static final int START_POSITION = 0;
 
     private final String name;
-    private int position = 0;
+    private int position;
 
     public Car(String name) {
-        this(name, 0);
+        this(name, START_POSITION);
     }
 
     public Car(String name, int position) {
@@ -50,9 +51,14 @@ public class Car {
         return position;
     }
 
+    public Car move() {
+        this.position++;
+        return new Car(name, position);
+    }
+
     public Car move(Rule rule) {
         if (rule.canMove()) {
-            this.position++;
+            return move();
         }
         return new Car(name, position);
     }
