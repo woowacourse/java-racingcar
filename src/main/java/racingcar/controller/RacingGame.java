@@ -14,19 +14,19 @@ public class RacingGame {
     private final int MAX_BOUND = 10;
 
     public void run() {
-        List<Car> cars = makeCarList();
+        List<Car> cars = setCarName();
         int number = inputNumber();
 
         System.out.println("\n" + MessageConstants.RESULT);
 
         for (int i = 0; i < number; i++) {
-            getRacingPosition(cars);
+            printOneRoundResult(cars);
         }
 
         ResultView.printWinner(getWinner(cars));
     }
 
-    private List<Car> makeCarList() {
+    private List<Car> setCarName() {
         String[] name = InputView.inputName();
         List<Car> cars = new ArrayList<>();
 
@@ -41,7 +41,7 @@ public class RacingGame {
         return InputView.inputNumber();
     }
 
-    private void getRacingPosition(List<Car> cars) {
+    private void printOneRoundResult(List<Car> cars) {
         for (Car car : cars) {
             car.makeNewCar(getRandomNumber());
         }
