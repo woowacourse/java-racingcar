@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
-`import java.util.List;
+import java.util.List;
 
 public class RacingCar {
     private static final int RANDOM_NUMBER_LIMIT = 10;
