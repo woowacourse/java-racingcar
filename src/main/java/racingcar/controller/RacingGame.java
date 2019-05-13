@@ -14,7 +14,7 @@ public class RacingGame {
     private final int MAX_BOUND = 10;
 
     public void run() {
-        List<Car> cars = setCarName();
+        List<Car> cars = makeCarContents();
         int number = inputNumber();
 
         System.out.println("\n" + MessageConstants.RESULT);
@@ -26,7 +26,7 @@ public class RacingGame {
         ResultView.printWinner(getWinner(cars));
     }
 
-    private List<Car> setCarName() {
+    private List<Car> makeCarContents() {
         String[] name = InputView.inputName();
         List<Car> cars = new ArrayList<>();
 
