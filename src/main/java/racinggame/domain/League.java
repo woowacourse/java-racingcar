@@ -1,8 +1,4 @@
-package racinggame;
-
-import racinggame.domain.Cars;
-import racinggame.domain.LeagueHistory;
-import racinggame.domain.NumberGenerator;
+package racinggame.domain;
 
 public class League {
     private int totalTrial;

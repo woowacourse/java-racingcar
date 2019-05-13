@@ -1,9 +1,6 @@
 package racinggame;
 
-import racinggame.domain.Cars;
-import racinggame.domain.LeagueHistory;
-import racinggame.domain.NumberGenerator;
-import racinggame.domain.RandomNumberGenerator;
+import racinggame.domain.*;
 import racinggame.util.InputView;
 import racinggame.util.OutputView;
 
