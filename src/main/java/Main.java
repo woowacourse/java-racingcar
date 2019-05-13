@@ -9,21 +9,19 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Car> cars = inputCars(new CarFactory());
+        ArrayList<Car> cars = inputCars();
         int nTrials = inputNTrials();
 
-        RacingGame racingGame = new RacingGame(new RacingTrial());
-        racingGame.play(cars, nTrials);
+        RacingGame.play(cars, nTrials);
     }
 
-    private static ArrayList<Car> inputCars(CarFactory carFactory) {
+    private static ArrayList<Car> inputCars() {
         try {
             OutputView.printMassage("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n");
-            return carFactory.newCars(InputView.readString());
-        } catch (Exception e) {
-            OutputView.printMassage(String.format("각 차의 이름은 %d 글자의 길이여야합니다.", Car.MAX_NAME_LEN));
+            return CarFactory.newCars(InputView.readString());
+        } catch (IllegalArgumentException e) {
             OutputView.printMassage(e.getMessage());
-            return inputCars(carFactory);
+            return inputCars();
         }
     }
 
