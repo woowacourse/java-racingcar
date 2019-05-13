@@ -1,10 +1,11 @@
 package racingcargame.model;
 
+import racingcargame.model.validation.CarValidation;
+
 import java.util.Objects;
 
 public class Car {
     private static final int POSITION_DEFAULT = 0;
-    private static final int MAX_NAME_LENGTH = 5;
     private static final int MOVE_POINT = 4;
     private static final String POSITION_MESSAGE = "-";
 
@@ -16,23 +17,11 @@ public class Car {
     }
 
     public Car(String name, int position) {
-        checkBlank(name);
-        checkLength(name);
+        CarValidation.checkBlank(name);
+        CarValidation.checkLength(name);
 
         this.name = name;
         this.position = position;
-    }
-
-    private void checkBlank(String name) {
-        if (name.equals("")) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void checkLength(String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public String getName() {

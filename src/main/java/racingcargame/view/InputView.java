@@ -1,6 +1,6 @@
 package racingcargame.view;
 
-import racingcargame.model.Validation;
+import racingcargame.view.validation.InputViewValidation;
 
 import java.util.Scanner;
 
@@ -23,11 +23,11 @@ public class InputView {
         System.out.println(COUNT_OF_ROUND_INPUT_MESSAGE);
         try {
             int input = scanner.nextInt();
-            Validation.validNegativeNumber(input);
+            InputViewValidation.validNegativeNumber(input);
             return input;
         } catch (Exception e) {
             return readCountOfRound();
         }
     }
-    
+
 }

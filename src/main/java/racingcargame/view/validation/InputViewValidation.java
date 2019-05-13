@@ -1,6 +1,6 @@
-package racingcargame.model;
+package racingcargame.view.validation;
 
-public class Validation {
+public class InputViewValidation {
 
     public static void validNegativeNumber(int input) {
         if (input < 0) {
