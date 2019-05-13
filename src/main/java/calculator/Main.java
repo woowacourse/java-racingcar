@@ -3,10 +3,17 @@ package calculator;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
+        String[] splitedValues = inputExpression();
+        Calculator calculator = new Calculator(splitedValues);
+        System.out.println(calculator.calculate());
+    }
+
+    private static String[] inputExpression() {
         Scanner scanner = new Scanner(System.in);
-        boolean result;
         String[] splitedValues;
+        boolean result;
         do {
             System.out.println("계산식을 입력해주세요.");
             String value = scanner.nextLine();
@@ -19,7 +26,6 @@ public class Main {
                 System.out.println(e.getMessage());
             }
         } while (!result);
-        Calculator calculator = new Calculator(splitedValues);
-        System.out.println(calculator.calculate());
+        return splitedValues;
     }
 }
