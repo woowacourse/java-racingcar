@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.function.IntBinaryOperator;
 
 enum Operator implements IntBinaryOperator {
-
     ADDITION("+", (left, right) -> left + right),
     SUBTRACTION("-", (left, right) -> left - right),
     MULTIPLICATION("*", (left, right) -> left * right),
@@ -33,7 +32,7 @@ enum Operator implements IntBinaryOperator {
         return operatorSet.contains(symbol);
     }
 
-    public static Operator valueof(String symbol) {
+    public static Operator of(String symbol) {
         for (Operator operator : values()) {
             if (operator.symbol.equals(symbol)) {
                 return operator;

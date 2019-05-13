@@ -15,7 +15,7 @@ public class StringCalculator {
         result += Integer.valueOf(elementsOfFormula.remove(FIRST_ELEMENT_IDX));
         for (String numberOrOperator : elementsOfFormula) {
             if (Operator.isOperator(numberOrOperator)) {
-                operator = Operator.valueof(numberOrOperator);
+                operator = Operator.of(numberOrOperator);
                 continue;
             }
 
