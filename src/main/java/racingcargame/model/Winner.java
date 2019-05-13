@@ -3,8 +3,16 @@ package racingcargame.model;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class Winner {
-    static List<String> makeWinner(List<Car> cars) {
+public class Winner {
+    private static final String DELIMITER = ",";
+
+    private final List<String> winnerResult;
+
+    public Winner(List<Car> cars) {
+        this.winnerResult = findWinner(cars);
+    }
+
+    private List<String> findWinner(List<Car> cars) {
         int maxPosition = maxPosition(cars);
         return cars.stream()
                 .filter(car -> car.matchPosition(maxPosition))
@@ -12,10 +20,15 @@ class Winner {
                 .collect(Collectors.toList());
     }
 
-    private static int maxPosition(List<Car> cars) {
+    private int maxPosition(List<Car> cars) {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(-1);
+    }
+
+    @Override
+    public String toString() {
+        return String.join(DELIMITER, winnerResult);
     }
 }

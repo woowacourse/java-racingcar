@@ -1,35 +1,41 @@
 package racingcargame;
 
 import racingcargame.model.Result;
+import racingcargame.model.Round;
 import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 
-public class Game {
+import java.util.ArrayList;
+import java.util.List;
+
+class Game {
     private Result result;
     private int countOfRound;
 
-    private final String ROUND_RESULT = "실행 결과";
+    private static final String ROUND_RESULT = "실행 결과";
 
-    public void play() {
+    void play() {
         start();
         round();
         endGame();
     }
 
-    void start() {
+    private void start() {
         String names = InputView.readNames();
         result = new Result(names.split(","));
         countOfRound = InputView.readCountOfRound();
     }
 
-    void round() {
+    private void round() {
         System.out.println(ROUND_RESULT);
+        List<Round> rounds = new ArrayList<>();
         for (int i = 0; i < countOfRound; i++) {
-            OutputView.printRound(result.roundResult());
+            rounds.add(result.roundResult());
         }
+        OutputView.printRound(rounds);
     }
 
-    void endGame() {
+    private void endGame() {
         OutputView.printGameResult(result.gameResult());
     }
 }
