@@ -5,16 +5,16 @@ public class StringCalculator {
 
     public int calculate(String input) {
         String[] values = splitWithBlank(input);
-        String operator = null;
+        Operator operator = null;
         int result = Integer.parseInt(values[0]);
 
         for (int i = 1; i < values.length; i++) {
             if (isInteger(values[i])) {
                 int nextValue = Integer.parseInt(values[i]);
-                result = unitCalculate(result, operator, nextValue);
+                result = operator.calculate(result, nextValue);
                 continue;
             }
-            operator = values[i];
+            operator = Operator.getOperatorBy(values[i]);
         }
         return result;
     }
@@ -32,30 +32,10 @@ public class StringCalculator {
         }
     }
 
-    private int unitCalculate(int result, String operator, int nextValue) {
-        if (operator.equals("+")) {
-            return (result + nextValue);
-        }
-
-        if (operator.equals("-")) {
-            return (result - nextValue);
-        }
-
-        if (operator.equals("*")) {
-            return (result * nextValue);
-        }
-
-        if (operator.equals("/")) {
-            return (result / nextValue);
-        }
-
-        throw new RuntimeException("잘못된 operator를 입력");
-    }
-
     public static void main(String[] args) {
         StringCalculator stringCalculator = new StringCalculator();
         String input = InputView.getValues();
         int answer = stringCalculator.calculate(input);
-        System.out.println("답은 " + answer + "입니다");
+        System.out.println("답은 " + answer + "입니다.");
     }
 }
