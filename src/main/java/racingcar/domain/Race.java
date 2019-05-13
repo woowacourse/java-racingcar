@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -29,19 +30,19 @@ public class Race {
         }
     }
 
-    public RacingResult startRace(int numOfRound) {
-        RacingResult racingResult = new RacingResult();
-        cars.forEach(car -> racingResult.addParticipant(car));
+    public List<RoundResult> startRace(int numOfRound) {
+        List<RoundResult> racingResult = new ArrayList<>();
         for (int i = 0; i < numOfRound; i++) {
-            startRound(racingResult);
+            racingResult.add(startRound());
         }
         return racingResult;
     }
 
-    void startRound(RacingResult racingResult) {
-        for (Car car : cars) {
-            racingResult.updateResult(car, car.move(strategy));
-        }
+    RoundResult startRound() {
+        RoundResult roundResult;
+        cars.forEach(car -> car.run(strategy));
+        roundResult = new RoundResult(cars);
+        return roundResult;
     }
 
     @Override

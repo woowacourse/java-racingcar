@@ -1,15 +1,15 @@
 package racingcar.view;
 
-import racingcar.domain.RacingResult;
+import racingcar.domain.RoundResult;
 import racingcar.utils.StringUtils;
 
 import java.util.List;
 
 public class OutputView {
-    public static void printRaceResult(RacingResult racingResult) {
+    public static void printRaceResult(List<RoundResult> racingResult) {
         System.out.println("\n실행 결과");
-        for (String roundResult : racingResult.getFormattedRacingResult()) {
-            System.out.println(roundResult);
+        for (RoundResult roundResult : racingResult) {
+            System.out.println(roundResult.getFormattedRoundResult());
         }
     }
 

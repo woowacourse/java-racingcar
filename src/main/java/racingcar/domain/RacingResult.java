@@ -1,4 +1,4 @@
-package racingcar.domain;
+/*package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -109,4 +109,4 @@ public class RacingResult {
         result = prime * result + ((racingResult.size() == 0) ? 0 : racingResult.keySet().hashCode());
         return result;
     }
-}
+}*/

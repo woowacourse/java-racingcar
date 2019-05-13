@@ -1,18 +1,20 @@
 package racingcar.controller;
 
 import racingcar.domain.Race;
-import racingcar.domain.RacingResult;
+import racingcar.domain.RoundResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
+
+import java.util.List;
 
 public class RacingApp {
     private static Race race;
 
     public static void main(String[] args) {
         while (!initRace()) ;
-        RacingResult racingResult = race.startRace(getNumOfRounds());
-        OutputView.printRaceResult(racingResult);
-        OutputView.printWinners(racingResult.getWinners());
+        List<RoundResult> raceResult = race.startRace(getNumOfRounds());
+        OutputView.printRaceResult(raceResult);
+        OutputView.printWinners(raceResult.get(raceResult.size() - 1).getWinners());
     }
 
     private static boolean initRace() {

@@ -21,12 +21,15 @@ public class Car {
         }
     }
 
-    public boolean move(MovementStrategy cond) {
+    public Car run(MovementStrategy cond) {
         if (cond.isMovable()) {
             position++;
-            return true;
         }
-        return false;
+        return this;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override

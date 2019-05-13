@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 class RaceTest {
     @Test
@@ -36,29 +38,21 @@ class RaceTest {
 
     @Test
     void startRaceTest1() {
-        Race race = new Race(Arrays.asList("A", "B"), new ForceMove());
-        RacingResult racingResult1 = race.startRace(1);
-
-        RacingResult racingResult2 = new RacingResult();
-        racingResult2.addParticipant(new Car("A"));
-        racingResult2.addParticipant(new Car("B"));
-        racingResult2.updateResult(new Car("A"), true);
-        racingResult2.updateResult(new Car("B"), true);
-
-        assertThat(racingResult1.equals(racingResult2)).isTrue();
+        List<String> carNames = new ArrayList<>(Arrays.asList("A", "B"));
+        List<RoundResult> racingResult = new Race(carNames, new ForceMove()).startRace(1);
+        RoundResult virtualRoundResult = new RoundResult(new ArrayList<>(
+                Arrays.asList(new Car("A", 1), new Car("B", 1))
+        ));
+        assertThat(racingResult.equals(new ArrayList<>(Arrays.asList(virtualRoundResult)))).isTrue();
     }
 
     @Test
     void startRaceTest2() {
-        Race race = new Race(Arrays.asList("A", "B"), new ForceMove());
-        RacingResult racingResult1 = race.startRace(3);
-
-        RacingResult racingResult2 = new RacingResult();
-        racingResult2.addParticipant(new Car("A"));
-        racingResult2.addParticipant(new Car("B"));
-        racingResult2.updateResult(new Car("A"), true);
-        racingResult2.updateResult(new Car("B"), true);
-
-        assertThat(racingResult1.equals(racingResult2)).isFalse();
+        List<String> carNames = new ArrayList<>(Arrays.asList("A", "B"));
+        List<RoundResult> racingResult = new Race(carNames, new ForceMove()).startRace(1);
+        RoundResult virtualRoundResult = new RoundResult(new ArrayList<>(
+                Arrays.asList(new Car("A", 1), new Car("B", 2))
+        ));
+        assertThat(racingResult.equals(new ArrayList<>(Arrays.asList(virtualRoundResult)))).isFalse();
     }
 }
