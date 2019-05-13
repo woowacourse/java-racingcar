@@ -9,7 +9,7 @@ public class GameResult {
         winners = new Winners();
     }
 
-    public Winners calculator(Cars cars) {
+    public Winners calculatorWinners(Cars cars) {
         Car maxPositionCar = Collections.max(cars.getCars());
 
         for (Car car : cars.getCars()) {

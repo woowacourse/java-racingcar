@@ -23,6 +23,6 @@ public class RacingGameService {
 
     public Winners getWinners() {
         GameResult gameResult = new GameResult();
-        return gameResult.calculator(cars);
+        return gameResult.calculatorWinners(cars);
     }
 }

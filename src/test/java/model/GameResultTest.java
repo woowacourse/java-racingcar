@@ -30,6 +30,6 @@ class GameResultTest {
         winners.add("coozy");
         winners.add("nick");
 
-        assertThat(result.calculator(new Cars(cars))).isEqualTo(new Winners(winners));
+        assertThat(result.calculatorWinners(new Cars(cars))).isEqualTo(new Winners(winners));
     }
 }
