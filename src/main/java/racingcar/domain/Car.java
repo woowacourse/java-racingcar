@@ -1,35 +1,36 @@
 package racingcar.domain;
 
 public class Car {
-    private static final int CAR_MOVE_CONDITION = 4;
+	private static final int CAR_MOVE_CONDITION = 4;
 
-    private final String name;
-    private int position = 0;
+	private final String name;
+	private int position;
 
-    public Car(String name) {
-        this(name, 0);
-    }
+	public Car(String name) {
+		this.name = name;
+	}
 
-    public Car(String name, int position) {
-        this.name = name;
-        this.position = position;
-    }
+	public void moveOrNot(int randomNumber) {
+		if (randomNumber >= CAR_MOVE_CONDITION) {
+			++position;
+		}
+	}
 
-    public void moveOrNot(int randomNumber) {
-        if (randomNumber >= CAR_MOVE_CONDITION) {
-            ++position;
-        }
-    }
+	public int getPosition() {
+		return this.position;
+	}
 
-    public boolean matchPosition(int maxDistance) {
-        return (position == maxDistance);
-    }
+	public boolean matchPosition(int maxDistance) {
+		return (position == maxDistance);
+	}
 
-    public String getName() {
-        return this.name;
-    }
+	public int comparePosition(int distance) {
+		return ((this.position < distance) ? distance : this.position);
+	}
 
-    public int getPosition() {
-        return this.position;
-    }
+	@Override
+	public String toString() {
+		return this.name;
+	}
+
 }

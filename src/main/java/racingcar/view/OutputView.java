@@ -1,18 +1,15 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
+import racingcar.domain.RacingResult;
 import racingcar.domain.Winner;
 
 public class OutputView {
-    public static void printCarDistance(Car car) {
-        System.out.print(car.getName() + ": ");
-        for (int i = 0; i < car.getPosition(); ++i) {
-            System.out.print("-");
-        }
-        System.out.println();
-    }
+	public static void printRacingResult(RacingResult racingResult) {
+		System.out.println("실행 결과");
+		System.out.println(racingResult);
+	}
 
-    public static void printWinners(Winner winner) {
-        System.out.println(String.join(",", winner.getWinner()) + "가 우승했습니다.");
-    }
+	public static void printWinners(Winner winner) {
+		System.out.println(String.join(",", winner.getWinner()) + "가 우승했습니다.");
+	}
 }

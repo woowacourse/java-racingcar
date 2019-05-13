@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Winner {
-    private List<String> winnerNames;
+	private List<String> winnerNames;
 
-    public Winner(List<Car> cars, int maxDistance) {
-        winnerNames = new ArrayList<>();
+	public Winner(List<Car> cars, int maxPosition) {
+		winnerNames = new ArrayList<>();
 
-        for (int i = 0; i < cars.size(); ++i) {
-            if (cars.get(i).matchPosition(maxDistance)) {
-                winnerNames.add(cars.get(i).getName());
-            }
-        }
-    }
+		for (int i = 0; i < cars.size(); ++i) {
+			if (cars.get(i).matchPosition(maxPosition)) {
+				winnerNames.add(cars.get(i).toString());
+			}
+		}
+	}
 
-    public List<String> getWinner() {
-        return winnerNames;
-    }
+	public List<String> getWinner() {
+		return winnerNames;
+	}
 }

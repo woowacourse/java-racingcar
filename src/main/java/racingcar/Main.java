@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Racing racingGame = new Racing(InputView.inputCarNames(), InputView.inputNumberOfTimes());
         Winner winner = racingGame.run();
+        OutputView.printRacingResult(racingGame.getRacingResult());
         OutputView.printWinners(winner);
     }
 }
