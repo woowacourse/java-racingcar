@@ -2,7 +2,7 @@ package racingcar.domain.result;
 
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
-import racingcar.utils.CloneUtils;
+import racingcar.domain.RacingGamePlayers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,15 +19,15 @@ class RacingGameResultTest {
         cars.get(0).accelerate(7);
         cars.get(1).accelerate(7);
         cars.get(2).accelerate(7);
-        gameResultHistory.add(new RacingGameRound(CloneUtils.copyAllCars(cars)));
+        gameResultHistory.add(new RacingGameRound(new RacingGamePlayers(cars)));
 
         cars.get(0).accelerate(1);
         cars.get(1).accelerate(7);
         cars.get(2).accelerate(7);
-        gameResultHistory.add(new RacingGameRound(CloneUtils.copyAllCars(cars)));
+        gameResultHistory.add(new RacingGameRound(new RacingGamePlayers(cars)));
 
-        List<Car> actual = Arrays.asList(new Car("blue"), new Car("green"));
+        List<String> actual = Arrays.asList("blue", "green");
 
-        assertEquals(new RacingGameResult(gameResultHistory).getWinners(), actual);
+        assertEquals(new RacingGameResult(gameResultHistory).getNamesOfWinners(), actual);
     }
 }

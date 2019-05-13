@@ -1,7 +1,5 @@
 package racingcar.domain.result;
 
-import racingcar.domain.Car;
-
 import java.util.List;
 
 public class RacingGameResult {
@@ -15,7 +13,11 @@ public class RacingGameResult {
         return this.gameResultHistory;
     }
 
-    public List<Car> getWinners() {
-        return gameResultHistory.get(gameResultHistory.size() - 1).getWinners();
+    public List<String> getNamesOfWinners() {
+        return getLastGameRound().getNamesOfWinners();
+    }
+
+    private RacingGameRound getLastGameRound() {
+        return gameResultHistory.get(gameResultHistory.size() - 1);
     }
 }

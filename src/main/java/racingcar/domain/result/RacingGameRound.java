@@ -1,36 +1,22 @@
 package racingcar.domain.result;
 
-import racingcar.domain.Car;
+import racingcar.domain.RacingGamePlayers;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGameRound {
-    private final List<Car> players;
+    private RacingGamePlayers players;
 
-    public RacingGameRound(List<Car> players) {
-        this.players = players;
+    public RacingGameRound(RacingGamePlayers players) {
+        this.players = players.clone();
     }
 
-    public List<Car> getWinners() {
-        Car winner = getWinner();
-        return players.stream()
-                .filter(car -> car.isEqualPosition(winner))
-                .collect(Collectors.toList());
-    }
-
-    private Car getWinner() {
-        return Collections.max(players);
+    public List<String> getNamesOfWinners() {
+        return players.getNamesOfWinners();
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car player : players) {
-            stringBuilder.append(player);
-            stringBuilder.append("\n");
-        }
-        return stringBuilder.toString();
+        return players.toString();
     }
 }

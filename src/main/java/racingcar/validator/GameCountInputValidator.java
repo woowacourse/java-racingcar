@@ -1,7 +1,5 @@
 package racingcar.validator;
 
-import racingcar.domain.GameCount;
-
 public class GameCountInputValidator {
     private GameCountInputValidator() {
     }

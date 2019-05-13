@@ -4,7 +4,6 @@ import racingcar.domain.Car;
 import racingcar.domain.GameCount;
 import racingcar.validator.CarInputValidator;
 import racingcar.validator.GameCountInputValidator;
-import racingcar.utils.ConvertUtils;
 import racingcar.utils.PrintUtils;
 
 import java.util.Arrays;
@@ -27,13 +26,17 @@ public class InputView {
     public static List<Car> getCars(String input) {
         try {
             String[] inputs = input.split(DELIMITER);
-            inputs = ConvertUtils.trim(inputs);
+            inputs = trim(inputs);
             CarInputValidator.checkAccuracyOfCarNames(inputs);
             return generateCars(inputs);
         } catch (IllegalArgumentException e) {
             PrintUtils.printErrorMessageWithPause(e);
             return getCars();
         }
+    }
+
+    private static String[] trim(String[] inputs) {
+        return Arrays.stream(inputs).map(String::trim).toArray(String[]::new);
     }
 
     private static List<Car> generateCars(String[] inputs) {
