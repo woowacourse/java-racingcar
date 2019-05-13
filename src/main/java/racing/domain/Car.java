@@ -3,11 +3,13 @@ package racing.domain;
 import racing.view.ConsoleMessages;
 
 public class Car implements Comparable<Car> {
+    private static final int DEFAULT_DISTANCE = 1;
+    
     private final String name;
     private int distance;
 
     public Car(final String name) {
-        this(name, 1);
+        this(name, DEFAULT_DISTANCE);
     }
 
     public Car(final String name, final int distance) {
