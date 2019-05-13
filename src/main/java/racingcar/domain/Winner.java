@@ -1,48 +1,28 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Winner {
     private List<Car> cars;
-    private int maxDistance = 0;
 
-    public Winner(List<Car> carList) {
-        this.cars = carList;
+    public Winner(List<Car> cars) {
+        this.cars = cars;
     }
 
     public String getWinner() {
-        List<String> winners = new ArrayList<>();
 
-        maxDistance = getMaxDistance();
-        for (Car car : cars) {
-            if (car.getPosition() == maxDistance) {
-                winners.add(car.getName());
-            }
-        }
+        List<String> winners;
+
+        Collections.sort(cars, Car::compareTo);
+        Car winner = cars.get(0);
+        winners = cars.stream().filter(x -> x.isSamePosition(winner))
+                .map(x -> x.toString())
+                .collect(Collectors.toList());
 
         return String.join(",", winners);
     }
 
-    private int getMaxDistance() {
-        for (Car car : cars) {
-            maxDistance = Math.max(maxDistance, car.getPosition());
-        }
-        return maxDistance;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Winner winner = (Winner) o;
-        return maxDistance == winner.maxDistance &&
-                Objects.equals(cars, winner.cars);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(cars, maxDistance);
-    }
 }

@@ -1,10 +1,10 @@
 package cal;
 
-public class Numbers {
+public class Expression {
     private static final int EVEN_NUMBER = 2;
     private String[] input;
 
-    public Numbers(String[] input) throws IllegalArgumentException {
+    public Expression(String[] input) throws IllegalArgumentException {
         this.input = input;
         validateNumber();
     }

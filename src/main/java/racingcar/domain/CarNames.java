@@ -42,12 +42,12 @@ public class CarNames {
 
     private void validateMinimalCarName(String[] names) throws IllegalArgumentException {
         if (names.length < MIN_CAR_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름 갯수는 1글자 이상이여야 합니다.\n다시 입력해 주세요.");
+            throw new IllegalArgumentException("이름 갯수는 1글자 이상이어야 합니다.\n다시 입력해 주세요.");
         }
 
         for (String name : names) {
             if (name.length() <= 0) {
-                throw new IllegalArgumentException("글자 수는 1글자 이상이여야 합니다.\n다시 입력해 주세요.");
+                throw new IllegalArgumentException("글자 수는 1글자 이상이어야 합니다.\n다시 입력해 주세요.");
             }
         }
 

@@ -20,7 +20,7 @@ public class TryCount {
         }
     }
 
-    public static boolean isNumeric(String str) { //문자열이 숫자인지 아닌지 판단하는 메소드
+    private static boolean isNumeric(String str) { //문자열이 숫자인지 아닌지 판단하는 메소드
         return str.matches("-?\\d+(\\.\\d+)?");
     }
 

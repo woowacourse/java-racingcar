@@ -1,15 +1,12 @@
 package racingcar.domain;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class WinnerTest {
     Winner winner = null;
@@ -38,4 +35,6 @@ class WinnerTest {
         testCars.add(new Car("c", 4));
         assertThat(winner.getWinner()).isEqualTo("b,c");
     }
+
+
 }

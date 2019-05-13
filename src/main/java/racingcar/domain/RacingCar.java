@@ -9,7 +9,6 @@ public class RacingCar {
 
     public RacingCar() {
         this.carGenerator = new CarGenerator();
-        this.cars = carGenerator.getCars();
     }
 
     public RacingCar(CarGenerator carGenerator, List<Car> cars) {
@@ -23,7 +22,7 @@ public class RacingCar {
 
     public void race() {
         for (Car car : cars) {
-            car.move();
+            car.move(Rule.generateRandomNumber());
         }
     }
 

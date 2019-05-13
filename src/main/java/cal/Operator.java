@@ -39,7 +39,6 @@ public enum Operator {
 
     abstract int calculate(int num1, int num2);
 
-
     public static Operator fromName(char operator) {
         return Arrays.stream(Operator.values()).filter(o -> o.getOperator() == operator).findAny().orElseThrow(IllegalArgumentException::new);
     }
