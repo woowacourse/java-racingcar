@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public static void showRacingGameProcess(RacingGameResult racingGameResult) {
-        List<RacingGameRound> gameResultDB = racingGameResult.getGameResultDB();
+        List<RacingGameRound> gameResultDB = racingGameResult.getGameResultHistory();
 
         System.out.println(StringUtils.ENTER + "실행 결과");
         for (RacingGameRound round : gameResultDB) {

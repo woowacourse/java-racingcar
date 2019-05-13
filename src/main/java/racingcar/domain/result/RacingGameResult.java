@@ -5,17 +5,17 @@ import racingcar.domain.Car;
 import java.util.List;
 
 public class RacingGameResult {
-    private final List<RacingGameRound> gameResultDB;
+    private final List<RacingGameRound> gameResultHistory;
 
-    public RacingGameResult(List<RacingGameRound> gameResultDB) {
-        this.gameResultDB = gameResultDB;
+    public RacingGameResult(List<RacingGameRound> gameResultHistory) {
+        this.gameResultHistory = gameResultHistory;
     }
 
-    public List<RacingGameRound> getGameResultDB() {
-        return this.gameResultDB;
+    public List<RacingGameRound> getGameResultHistory() {
+        return this.gameResultHistory;
     }
 
     public List<Car> getWinners() {
-        return gameResultDB.get(gameResultDB.size() - 1).getWinners();
+        return gameResultHistory.get(gameResultHistory.size() - 1).getWinners();
     }
 }

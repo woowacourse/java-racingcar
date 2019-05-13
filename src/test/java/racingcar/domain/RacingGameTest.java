@@ -15,6 +15,6 @@ class RacingGameTest {
         GameCount gameCount = new GameCount(7);
         RacingGameResult racingGameResult = new RacingGame(carList, gameCount).start();
 
-        assertEquals(racingGameResult.getGameResultDB().size(), gameCount.getGameCount());
+        assertEquals(racingGameResult.getGameResultHistory().size(), gameCount.getGameCount());
     }
 }

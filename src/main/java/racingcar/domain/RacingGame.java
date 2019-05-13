@@ -20,12 +20,12 @@ public class RacingGame {
     }
 
     public RacingGameResult start() {
-        List<RacingGameRound> gameResultDB = new ArrayList<>();
+        List<RacingGameRound> gameResultHistory = new ArrayList<>();
         for (int i = 0; i < gameCount.getGameCount(); i++) {
             proceedOneRound();
-            gameResultDB.add(new RacingGameRound(CloneUtils.copyAllCars(cars)));
+            gameResultHistory.add(new RacingGameRound(CloneUtils.copyAllCars(cars)));
         }
-        return new RacingGameResult(gameResultDB);
+        return new RacingGameResult(gameResultHistory);
     }
 
     private void proceedOneRound() {
