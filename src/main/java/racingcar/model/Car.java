@@ -30,22 +30,6 @@ public class Car {
         return position;
     }
 
-    private void validName(String name) {
-        if (StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException();
-        }
-
-        if (name.length() > 5) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public void move(int randomNumber) {
-        if (randomNumber >= FOWARD_NUM) {
-            this.position++;
-        }
-    }
-
     public void makeNewCar(int randomNumber) {
         move(randomNumber);
         new Car(this.name, this.position);
@@ -65,6 +49,22 @@ public class Car {
         }
 
         return "";
+    }
+
+    private void move(int randomNumber) {
+        if (randomNumber >= FOWARD_NUM) {
+            this.position++;
+        }
+    }
+
+    private void validName(String name) {
+        if (StringUtils.isBlank(name)) {
+            throw new IllegalArgumentException();
+        }
+
+        if (name.length() > 5) {
+            throw new IllegalArgumentException();
+        }
     }
 
     @Override

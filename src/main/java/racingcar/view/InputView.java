@@ -24,17 +24,6 @@ public class InputView {
         return carName;
     }
 
-    private static boolean checkCarNameValidate(String carNames) {
-        String[] carName = carNames.split(",");
-
-        if (overLengthName(carName)) return true;
-        if (hasBlank(carNames)) return true;
-        if (hasNotAnotherPlayer(carName)) return true;
-        if (overLapName(carName)) return true;
-
-        return hasMiddleBlank(carName);
-    }
-
     public static int inputNumber() {
         System.out.println(MessageConstants.INPUT_ROUND);
         String inputNumber = SCANNER.nextLine();
@@ -44,6 +33,17 @@ public class InputView {
         }
 
         return Integer.parseInt(inputNumber);
+    }
+
+    private static boolean checkCarNameValidate(String carNames) {
+        String[] carName = carNames.split(",");
+
+        if (overLengthName(carName)) return true;
+        if (hasBlank(carNames)) return true;
+        if (hasNotAnotherPlayer(carName)) return true;
+        if (overLapName(carName)) return true;
+
+        return hasMiddleBlank(carName);
     }
 
     private static boolean checkNumberValidate(String inputNumber) {
@@ -101,7 +101,6 @@ public class InputView {
         return false;
     }
 
-
     private static boolean hasNegativeNumber(String inputNumber) {
         if (Integer.parseInt(inputNumber) <= 0) {
             System.err.println(MessageConstants.ERROR_MINUS_NUMBER);
@@ -124,5 +123,4 @@ public class InputView {
 
         return false;
     }
-
 }

@@ -6,7 +6,6 @@ import racingcar.model.Car;
 import java.util.List;
 
 public class ResultView {
-
     public static void printResult(List<Car> cars) {
         for (Car car : cars) {
             System.out.println(printHyphen(car));
@@ -20,6 +19,11 @@ public class ResultView {
                 car.getName(), getHyphen(car.getPosition()));
     }
 
+    public static void printWinner(List<String> winners) {
+        String winnerResult = String.join(",", winners);
+        System.out.println(String.format(MessageConstants.RESULT_PRINT_WINNER_FORMAT, winnerResult));
+    }
+
     private static String getHyphen(int position) {
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -29,10 +33,4 @@ public class ResultView {
 
         return stringBuilder.toString();
     }
-
-    public static void printWinner(List<String> winners) {
-        String winnerResult = String.join(",", winners);
-        System.out.println(String.format(MessageConstants.RESULT_PRINT_WINNER_FORMAT, winnerResult));
-    }
-
 }

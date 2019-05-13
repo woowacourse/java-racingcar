@@ -15,6 +15,18 @@ public class GameResult {
         return winners;
     }
 
+    public static int getMaxDistance(Car car, int maxDistance) {
+        return car.comparePosition(maxDistance);
+    }
+
+    public static List<String> checkMaxPosition(Car car, List<String> winners, int maxDistance) {
+        if (!car.matchPosition(maxDistance).equals("")) {
+            winners.add(car.matchPosition(maxDistance));
+        }
+
+        return winners;
+    }
+
     private static List<String> getWinners(List<Car> cars, List<String> winners, int maxDistance) {
         for (Car car : cars) {
             winners = checkMaxPosition(car, winners, maxDistance);
@@ -28,17 +40,5 @@ public class GameResult {
         }
 
         return maxDistance;
-    }
-
-    public static int getMaxDistance(Car car, int maxDistance) {
-        return car.comparePosition(maxDistance);
-    }
-
-    public static List<String> checkMaxPosition(Car car, List<String> winners, int maxDistance) {
-        if (!car.matchPosition(maxDistance).equals("")) {
-            winners.add(car.matchPosition(maxDistance));
-        }
-
-        return winners;
     }
 }
