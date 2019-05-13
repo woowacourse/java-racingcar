@@ -6,22 +6,23 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarsTest {
-    List<String> carNames;
-    List<Integer> carPositions;
     Cars testCars;
 
     @BeforeEach
     void setUp() {
-        carNames = Arrays.asList("a", "b", "c");
-        carPositions = Arrays.asList(101, 101, 99);
-        testCars = new Cars(carNames, carPositions);
+        ArrayList<Car> cars = new ArrayList<>();
+        cars.add(new Car("a", 101));
+        cars.add(new Car("b", 101));
+        cars.add(new Car("c", 99));
+        testCars = new Cars(cars);
     }
 
     @Test
     void decideMaxPositionTest() {
-        assertThat(testCars.decideMaxPosition()).isEqualTo(107);
+        assertThat(testCars.decideMaxPosition()).isEqualTo(101);
     }
 
     @Test
@@ -42,7 +43,9 @@ public class CarsTest {
     @Test
     void isDuplicateTest() {
         List<String> names = Arrays.asList("a", "b", "a");
-        assertThat(Cars.isDuplicate(names)).isEqualTo(true);
+        assertThrows(IllegalArgumentException.class, ()-> {
+            Cars.isDuplicate(names);
+        });
     }
 
 }

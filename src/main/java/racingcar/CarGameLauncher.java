@@ -15,5 +15,6 @@ public class CarGameLauncher {
         Winners winners = new Winners();
         winners.decideWinners(cars);
         OutputView.printWinners(winners);
+        System.exit(0);
     }
 }
