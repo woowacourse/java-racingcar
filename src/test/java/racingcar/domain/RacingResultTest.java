@@ -13,7 +13,7 @@ public class RacingResultTest {
     private List<Car> cars;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         cars = Arrays.asList(new Car("pobi", 1),
                 new Car("cony", 5),
                 new Car("whale", 10),
@@ -21,12 +21,12 @@ public class RacingResultTest {
     }
 
     @Test
-    void getMaxPositionTest() {
+    public void getMaxPositionTest() {
         assertThat(RacingResult.getMaxPosition(cars)).isEqualTo(10);
     }
 
     @Test
-    void getWinnersTest() {
+    public void getWinnersTest() {
         int maxPosition = 10;
         List<String> winners = new ArrayList<>();
         winners.add("whale");
