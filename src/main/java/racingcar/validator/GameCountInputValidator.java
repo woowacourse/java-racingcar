@@ -8,7 +8,7 @@ public class GameCountInputValidator {
 
     public static void checkAccuracyOfGameCount(String input) {
         if (!isInteger(input)) {
-            throw new IllegalArgumentException("게임 횟수는 " + GameCount.MIN_COUNT + " 이상의 정수로 입력해 주세요.");
+            throw new IllegalArgumentException("게임 횟수는 정수로 입력해 주세요.");
         }
     }
 
