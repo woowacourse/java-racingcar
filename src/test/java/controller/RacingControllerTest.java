@@ -1,7 +1,7 @@
 package controller;
 
 import domain.Car;
-import domain.Cars;
+import domain.CarsFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +29,7 @@ class RacingControllerTest {
 
         List<Car> cars = RacingController.setCarsOnRace();
         for (int i = 0; i < carNames.size(); i++) {
-            assertThat(cars).isEqualTo(new Cars(carNames).createCars());
+            assertThat(cars).isEqualTo(new CarsFactory(carNames).createCars());
         }
     }
 

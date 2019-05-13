@@ -1,7 +1,6 @@
 package controller;
 
 import domain.*;
-import util.Util;
 import view.InputView;
 import view.OutputView;
 
@@ -11,6 +10,9 @@ public class RacingController {
 
     public static void main(String[] args) {
         Race race = new Race(setCarsOnRace(), setRoundCount());
+        while(race.hasNextRound()){
+            printEachCarsOnRace(race.moveAllCarsByRoundCount());
+        }
         Winners winners = new Winners(race.moveAllCarsByRoundCount());
         OutputView.outputGameResultTile();
         OutputView.outputWinners(winners.getRaceWinners());
@@ -18,8 +20,8 @@ public class RacingController {
 
     public static List<Car> setCarsOnRace() {
         try {
-            Cars cars = new Cars(InputView.inputCarNames());
-            return cars.createCars();
+            CarsFactory carsFactory = new CarsFactory(InputView.inputCarNames());
+            return carsFactory.createCars();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return setCarsOnRace();
@@ -39,11 +41,9 @@ public class RacingController {
         }
     }
 
-    public static void hasNextRound(List<Car> carsOnRace) {
-        for (Car car : carsOnRace) {
-            car.increasePositionOrNot(Util.getRandomNumber());
+    public static void printEachCarsOnRace(List<Car> carsOnRace){
+        for(Car car : carsOnRace){
             OutputView.outputGameResult(car.toString());
         }
-        System.out.println();
     }
 }

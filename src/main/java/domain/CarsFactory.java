@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Cars {
+public class CarsFactory {
     private List<String> carNames;
 
-    public Cars(List<String> carNames) {
+    public CarsFactory(List<String> carNames) {
         this.carNames = carNames;
     }
 
@@ -31,8 +31,8 @@ public class Cars {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Cars cars = (Cars) o;
-        return Objects.equals(carNames, cars.carNames);
+        CarsFactory carsFactory = (CarsFactory) o;
+        return Objects.equals(carNames, carsFactory.carNames);
     }
 
     @Override

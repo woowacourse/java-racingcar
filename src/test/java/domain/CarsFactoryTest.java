@@ -11,14 +11,14 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CarsTest {
-    private Cars cars;
+class CarsFactoryTest {
+    private CarsFactory carsFactory;
     private List<String> carNames;
 
     @BeforeEach
     void setUp() {
         carNames = Arrays.asList("pobi", "crong", "ex");
-        cars = new Cars(carNames);
+        carsFactory = new CarsFactory(carNames);
     }
 
     @Test
@@ -27,30 +27,30 @@ class CarsTest {
         for (String car : carNames) {
             carsOnRace.add(new Car(car));
         }
-        assertThat(cars.createCars()).isEqualTo(carsOnRace);
+        assertThat(carsFactory.createCars()).isEqualTo(carsOnRace);
     }
 
     @Test
     void 자동차들_객체_생성_중복_예외_처리() {
         List<String> duplicatedCarNames = Arrays.asList("pobi", "pobi", "pobi");
-        cars = new Cars(duplicatedCarNames);
+        carsFactory = new CarsFactory(duplicatedCarNames);
         assertThrows(IllegalArgumentException.class, () -> {
-            cars.createCars();
+            carsFactory.createCars();
         });
     }
 
     @Test
     void 자동차들_객체_생성_없는_값_예외_처리() {
         List<String> notExistedCarNames = new ArrayList<>();
-        cars = new Cars(notExistedCarNames);
+        carsFactory = new CarsFactory(notExistedCarNames);
         assertThrows(IllegalArgumentException.class, () -> {
-            cars.createCars();
+            carsFactory.createCars();
         });
     }
 
     @AfterEach
     void tearDown() {
         carNames = null;
-        cars = null;
+        carsFactory = null;
     }
 }

@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RaceTest {
     private Race race;
@@ -15,12 +14,12 @@ class RaceTest {
 
     @BeforeEach
     void setUp() {
-        race = new Race(new Cars(Arrays.asList("pobi", "crong", "kim")).createCars(), roundCount);
+        race = new Race(new CarsFactory(Arrays.asList("pobi", "crong", "kim")).createCars(), roundCount);
     }
 
     @Test
     void 레이스_객체_생성() {
-        assertThat(race).isEqualTo(new Race(new Cars(Arrays.asList("pobi", "crong", "kim")).createCars(), roundCount));
+        assertThat(race).isEqualTo(new Race(new CarsFactory(Arrays.asList("pobi", "crong", "kim")).createCars(), roundCount));
     }
 
     @Test
