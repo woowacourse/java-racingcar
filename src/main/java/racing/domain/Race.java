@@ -27,6 +27,7 @@ public class Race {
         }
     }
 
+    /* 우승자 판별 */
     public List<Car> getWinners() {
         return findWinners(cars);
     }
