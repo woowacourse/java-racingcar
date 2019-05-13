@@ -26,43 +26,11 @@ public class Car {
         }
     }
 
-    /*
-    public static void instantiateCar(List<String> carNames, List<Car> cars) {
-        try {
-            isDuplicate(carNames);
-            addCarToCars(carNames, cars);
-        } catch (Exception e) {
-            CarGameLauncher.doCarGame();
-        }
-    }
-
-    public static void instantiateCar(List<String> carNames, List<Car> cars, List<Integer> positions) {
-        try {
-            isDuplicate(carNames);
-            addCarToCars(carNames, cars, positions);
-        } catch (Exception e) {
-            CarGameLauncher.doCarGame();
-        }
-    }
-
-    public static void addCarToCars(List<String> carNames, List<Car> cars) {
-        for (int i = 0, n = carNames.size(); i < n; i++) {
-            cars.add(new Car(carNames.get(i)));
-        }
-    }
-
-    public static void addCarToCars(List<String> carNames, List<Car> cars, List<Integer> positions) {
-        for (int i = 0, n = carNames.size(); i < n; i++) {
-            cars.add(new Car(carNames.get(i), positions.get(i)));
-        }
-    }
-     */
-
-    public static boolean isWhiteSpaceOnly(String name) {
+    private static boolean isWhiteSpaceOnly(String name) {
         return name.isEmpty();
     }
 
-    public static boolean isOverLimit(String name) {
+    private static boolean isOverLimit(String name) {
         return name.length() > NAME_LENGTH_LIMIT;
     }
 

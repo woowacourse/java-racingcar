@@ -6,8 +6,30 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarTest {
+
+    @Test
+    void carInstantiationTest() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Car testCar = new Car("");
+        });
+    }
+
+    @Test
+    void carInstantiationTest2() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Car testCar = new Car("1234567891011");
+        });
+    }
+
+    @Test
+    void carInstantiationTest3() {
+        assertThat(new Car("123")).isEqualTo(new Car("123"));
+    }
+
+
     @Test
     void randomNumberGeneratorTest() {
         int random = Car.randomNumberGenerator();
@@ -25,11 +47,12 @@ public class CarTest {
         assertThat(testCar.findMax(101)).isEqualTo(101);
     }
 
+    /*
+
     @Test
     void isWhiteSpaceOnlyTest() {
         assertThat(Car.isWhiteSpaceOnly("")).isEqualTo(true);
     }
-    /*
 
     @Test
     void isDuplicateTest() {
@@ -37,12 +60,11 @@ public class CarTest {
         assertThat(Car.isDuplicate(names)).isEqualTo(true);
     }
 
-     */
-
     @Test
     void isOverLimitTest() {
         assertThat(Car.isOverLimit("aaaaaa")).isEqualTo(true);
     }
+     */
 
     @Test
     void moveCarTest() {

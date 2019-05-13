@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarsTest {
     List<String> carNames;
@@ -21,6 +22,21 @@ public class CarsTest {
     }
 
      */
+
+    @Test
+    void carsInstantiationTest() {
+        List<String> testCarNames = Arrays.asList("a","a","a");
+        assertThrows(IllegalArgumentException.class, () -> {
+            Cars testCars = new Cars(testCarNames);
+        });
+    }
+
+    @Test
+    void carsInstantiationTest2() {
+        List<String> testCarNames1 = Arrays.asList("a","b","c");
+        List<String> testCarNames2 = Arrays.asList("a", "b", "c");
+        assertThat(new Cars(testCarNames1)).isEqualTo(new Cars(testCarNames2));
+    }
 
     @Test
     void decideMaxPositionTest() {

@@ -13,12 +13,7 @@ public class Cars {
             cars.add(new Car(carName));
         }
     }
-    /*
-    Cars(List<String> carNames, List<Integer> positions) {
-        Car.instantiateCar(carNames, cars, positions);
-    }
 
-     */
     public static Cars prepareCarsForRacing() {
         try {
             List<String> carNames = InputView.askAndReceiveCarNames();
