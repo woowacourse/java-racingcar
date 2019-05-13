@@ -15,6 +15,7 @@ public class InputView {
         return carNames;
     }
 
+    /*
     public static int askAndReceiveTotalTurns() {
         try {
             int userInput = askAndReceiveTurns();
@@ -24,14 +25,9 @@ public class InputView {
             return askAndReceiveTotalTurns();
         }
     }
+     */
 
-    public static void checkConditionsForTurns(int userInput) {
-        if (userInput <= 0) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static int askAndReceiveTurns() {
+    public static int askAndReceiveTotalTurns() {
         System.out.println("시도할 횟수는 몇회인가요?: ");
         Scanner reader = new Scanner(System.in);
         int userInput = reader.nextInt();
