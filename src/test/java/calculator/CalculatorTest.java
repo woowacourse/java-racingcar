@@ -15,17 +15,30 @@ public class CalculatorTest {
     }
 
     @Test
-    void 하나의연산() {
-        assertThat(cal.calculateSingleExpression(1, "+", "2")).isEqualTo(3);
-        assertThat(cal.calculateSingleExpression(1, "-", "2")).isEqualTo(-1);
-        assertThat(cal.calculateSingleExpression(1, "*", "2")).isEqualTo(2);
-        assertThat(cal.calculateSingleExpression(2, "/", "1")).isEqualTo(2);
+    void 덧셈연산() {
+        assertThat(cal.calculateInput("1 + 2")).isEqualTo(3);
     }
 
     @Test
+    void 뺄셈연산() {
+        assertThat(cal.calculateInput("1 - 2")).isEqualTo(-1);
+    }
+
+    @Test
+    void 곱셈연산() {
+        assertThat(cal.calculateInput("1 * 2")).isEqualTo(2);
+    }
+
+    @Test
+    void 나눗셈연산() {
+        assertThat(cal.calculateInput("2 / 2")).isEqualTo(1);
+    }
+
+
+    @Test
     void 여러개의연산() {
-        String[] array = "3 + 2 * 4 / 10 5 3".split(" ");
-        assertThat(cal.calculateMultiExpression(array)).isEqualTo(6);
+        String[] array = "3 + 2 * 4 / 2 + 3".split(" ");
+        assertThat(cal.calculateMultiExpression(array)).isEqualTo(13);
     }
 
     @Test
