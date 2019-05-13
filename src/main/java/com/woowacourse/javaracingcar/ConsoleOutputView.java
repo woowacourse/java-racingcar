@@ -2,12 +2,7 @@ package com.woowacourse.javaracingcar;
 
 import com.woowacourse.javaracingcar.domain.CarDto;
 import com.woowacourse.javaracingcar.domain.GameResult;
-import com.woowacourse.javaracingcar.domain.PlayingCars;
-import com.woowacourse.javaracingcar.domain.WinnerGroup;
 import com.woowacourse.javaracingcar.interfaces.OutputView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ConsoleOutputView implements OutputView {
     @Override
