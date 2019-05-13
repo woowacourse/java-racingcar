@@ -3,10 +3,33 @@ package racingcar;
 import java.util.*;
 
 public class Winners {
-    private List<String> listOfWinners;
+    private List<String> listOfWinners = new ArrayList<>();
 
-    public void decideWinners(Cars cars) {
-        this.listOfWinners = cars.decideWinners();
+    Winners(Cars cars) {
+        List<Car> carsState = cars.getCars();
+        int maxPosition = decideMaxPosition(carsState);
+        decideWinners(carsState, maxPosition);
+    }
+
+    public int decideMaxPosition(List<Car> cars) {
+        int max = 0;
+        for (Car car : cars) {
+            max = car.findMax(max);
+        }
+        return max;
+    }
+
+    public void decideWinners(List<Car> cars, int maxPosition) {
+        for (Car car : cars) {
+            addWinners(car, maxPosition);
+        }
+    }
+
+    public void addWinners(Car car, int maxPosition) {
+        String winnerName = car.sameMaxPositionCarName(maxPosition);
+        if (winnerName != null) {
+            listOfWinners.add(winnerName);
+        }
     }
 
     public String getWinners() {

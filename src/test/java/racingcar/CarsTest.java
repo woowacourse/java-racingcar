@@ -21,17 +21,6 @@ public class CarsTest {
     }
 
     @Test
-    void decideMaxPositionTest() {
-        assertThat(testCars.decideMaxPosition()).isEqualTo(101);
-    }
-
-    @Test
-    void decideWinnersTest() {
-        List<String> checkList = Arrays.asList("a", "b");
-        assertThat(testCars.decideWinners()).isEqualTo(checkList);
-    }
-
-    @Test
     void carInstantiationTest() {
         String testNames = "a, b, c";
         Cars testCars1 = new Cars(testNames);
@@ -43,7 +32,7 @@ public class CarsTest {
     @Test
     void isDuplicateTest() {
         List<String> names = Arrays.asList("a", "b", "a");
-        assertThrows(IllegalArgumentException.class, ()-> {
+        assertThrows(IllegalArgumentException.class, () -> {
             Cars.isDuplicate(names);
         });
     }

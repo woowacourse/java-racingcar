@@ -52,10 +52,11 @@ public class Car {
         return max;
     }
 
-    public void findScoreSameAsMax(int maxPosition, List<String> winners) {
-        if (maxPosition == this.position) {
-            winners.add(this.name);
+    public String sameMaxPositionCarName(int maxPosition) {
+        if (this.position == maxPosition) {
+            return this.name;
         }
+        return null;
     }
 
     public String getCarState() {

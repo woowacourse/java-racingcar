@@ -27,21 +27,8 @@ public class Cars {
         cars.get(index).moveCar(Car.randomNumberGenerator());
     }
 
-    public int decideMaxPosition() {
-        int max = 0;
-        for (Car car : cars) {
-            max = car.findMax(max);
-        }
-        return max;
-    }
-
-    public List<String> decideWinners() {
-        List<String> winnersName = new ArrayList<>();
-        int maxPosition = decideMaxPosition();
-        for (Car car : cars) {
-            car.findScoreSameAsMax(maxPosition, winnersName);
-        }
-        return winnersName;
+    public List<Car> getCars() {
+        return cars;
     }
 
     public void instantiateCar(List<String> carNames) {
