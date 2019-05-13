@@ -1,7 +1,6 @@
 package racingcar.domain;
 
-import racingcar.error.Validator;
-import racingcar.utils.StringUtils;
+import racingcar.validator.InputValidator;
 
 import java.util.Collections;
 import java.util.Objects;
@@ -18,8 +17,8 @@ public class Car implements Cloneable, Comparable {
     }
 
     public Car(final String name, int position) {
-        Validator.checkNull(name);
-        Validator.checkBlank(name);
+        InputValidator.checkNull(name);
+        InputValidator.checkBlank(name);
         checkLengthOfName(name);
         this.name = name;
         this.position = position;

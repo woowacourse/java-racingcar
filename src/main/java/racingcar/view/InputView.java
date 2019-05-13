@@ -2,7 +2,8 @@ package racingcar.view;
 
 import racingcar.domain.Car;
 import racingcar.domain.GameCount;
-import racingcar.error.Validator;
+import racingcar.validator.CarInputValidator;
+import racingcar.validator.GameCountInputValidator;
 import racingcar.utils.ConvertUtils;
 import racingcar.utils.PrintUtils;
 
@@ -27,7 +28,7 @@ public class InputView {
         try {
             String[] inputs = input.split(DELIMITER);
             inputs = ConvertUtils.trim(inputs);
-            Validator.checkAccuracyOfCarNames(inputs);
+            CarInputValidator.checkAccuracyOfCarNames(inputs);
             return generateCars(inputs);
         } catch (IllegalArgumentException e) {
             PrintUtils.printErrorMessageWithPause(e);
@@ -49,7 +50,7 @@ public class InputView {
     public static GameCount getGameCount(String input) {
         try {
             input = input.trim();
-            Validator.checkAccuracyOfGameCount(input);
+            GameCountInputValidator.checkAccuracyOfGameCount(input);
             return new GameCount(Integer.parseInt(input));
         } catch (IllegalArgumentException e) {
             PrintUtils.printErrorMessageWithPause(e);
