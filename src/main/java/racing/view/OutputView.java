@@ -7,12 +7,21 @@ import java.util.StringJoiner;
 
 public class OutputView {
     private static final String RESULT_IS = "실행 결과";
+    private static final String POSITION_CHARACTER = "-";
 
     public static void showCarsPosition(List<Car> cars) {
         System.out.println();
         for (Car car : cars
         ) {
-            System.out.println(car.statusString());
+            showSingleCarPosition(car);
+        }
+    }
+
+    private static void showSingleCarPosition(Car car) {
+        int position = car.getPosition();
+        System.out.print(car.getName() + " : ");
+        for (int i = 0; i < position; i++) {
+            System.out.print(POSITION_CHARACTER);
         }
     }
 
