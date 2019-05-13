@@ -30,7 +30,7 @@ public class RoundResult {
         return formattedRoundResult.toString();
     }
 
-    static String drawPositionLine(int position) {
+    private String drawPositionLine(int position) {
         StringBuffer positionLine = new StringBuffer();
         for (int i = 0; i < position; i++) {
             positionLine.append("-");

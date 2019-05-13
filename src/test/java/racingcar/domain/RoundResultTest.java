@@ -32,7 +32,7 @@ class RoundResultTest {
 
     @Test
     void drawPositionLineTest() {
-        assertThat(RoundResult.drawPositionLine(3)).isEqualTo("---");
+        assertThat(new RoundResult(new ArrayList<>()).drawPositionLine(3)).isEqualTo("---");
     }
 
     @Test

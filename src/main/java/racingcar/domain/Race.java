@@ -38,7 +38,7 @@ public class Race {
         return racingResult;
     }
 
-    RoundResult startRound() {
+    private RoundResult startRound() {
         RoundResult roundResult;
         cars.forEach(car -> car.run(strategy));
         roundResult = new RoundResult(cars);

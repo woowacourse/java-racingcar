@@ -21,11 +21,10 @@ public class Car {
         }
     }
 
-    public Car run(MovementStrategy cond) {
+    public void run(MovementStrategy cond) {
         if (cond.isMovable()) {
             position++;
         }
-        return this;
     }
 
     public int getPosition() {

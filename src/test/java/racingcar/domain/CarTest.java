@@ -33,15 +33,19 @@ class CarTest {
     }
 
     @Test
-    void moveTest() {
-        assertThat(new Car("TOAST", 6).run(new ForceMove())
-                .equals(new Car("TOAST", 7))).isTrue();
+    void runTest() {
+        Car car = new Car("TOAST");
+        car.run(new ForceMove());
+        car.run(new ForceMove());
+        assertThat(car.getPosition()).isEqualTo(2);
     }
 
     @Test
     void stopTest() {
-        assertThat(new Car("TOAST", 6).run(new ForceStop())
-                .equals(new Car("TOAST", 6))).isTrue();
+        Car car = new Car("TOAST");
+        car.run(new ForceStop());
+        car.run(new ForceStop());
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
     @Test
