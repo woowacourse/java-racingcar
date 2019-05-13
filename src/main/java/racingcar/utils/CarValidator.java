@@ -2,7 +2,7 @@ package racingcar.utils;
 
 import java.util.Arrays;
 
-public class Validator {
+public class CarValidator {
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
     private static final int MIN_NUM_OF_GAME = 1;
