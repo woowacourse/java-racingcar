@@ -1,9 +1,6 @@
 package racinggame.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 public class TrialHistory {
     private HashMap<String, Integer> trialHistory = new LinkedHashMap<>();
@@ -33,6 +30,19 @@ public class TrialHistory {
             maxCarPosition = Math.max(trialHistory.get(carName), maxCarPosition);
         }
         return maxCarPosition;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TrialHistory that = (TrialHistory) o;
+        return Objects.equals(trialHistory, that.trialHistory);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(trialHistory);
     }
 
     @Override
