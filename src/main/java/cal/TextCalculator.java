@@ -1,7 +1,5 @@
 package cal;
 
-import cal.utils.Calculator;
-
 public class TextCalculator {
     public static double calculate(String inputText) {
         String tokens[] = inputText.trim().split(" ");
