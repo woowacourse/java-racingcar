@@ -6,12 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringCalculatorTest {
-	StringCalculator stringCalculator;
-
-	@BeforeEach
-	void setup() {
-		stringCalculator = new StringCalculator();
-	}
 
 	@Test
 	void 계산() {
@@ -31,7 +25,6 @@ public class StringCalculatorTest {
 	}
 
 	int calculate(String formula) {
-		String[] arr = formula.split(" ");
-		return stringCalculator.calculate(arr);
+		return StringCalculator.calculate(formula.split(" "));
 	}
 }
