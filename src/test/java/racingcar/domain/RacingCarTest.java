@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RacingCarTest {
 
-    RacingCar racingCar;
-    List<Car> cars = new ArrayList<>();
+    private RacingCar racingCar;
+    private List<Car> cars = new ArrayList<>();
 
     @BeforeEach
     void setUp() {

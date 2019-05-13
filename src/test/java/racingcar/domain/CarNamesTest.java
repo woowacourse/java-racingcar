@@ -3,20 +3,10 @@ package racingcar.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-import java.util.Arrays;
-
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarNamesTest {
-
-    private CarNames carNames;
-
-    @BeforeEach
-    void setUp() {
-        carNames = new CarNames("pobi");
-    }
 
     @Test
     void create() {

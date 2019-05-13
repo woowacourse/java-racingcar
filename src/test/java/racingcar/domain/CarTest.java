@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class CarTest {
-    Car car;
+    private Car car;
 
     @BeforeEach
     void setUp() {
@@ -29,4 +29,8 @@ public class CarTest {
         assertThat(car.compareTo(new Car("test",1))).isEqualTo(-1);
     }
 
+    @Test
+    void isSamePosition_테스트() {
+        assertThat(car.isSamePosition(new Car("test",0))).isTrue();
+    }
 }

@@ -9,8 +9,8 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class RacingResultTest {
-    List<Car> cars= new ArrayList<>();
-    RacingResult racingResult;
+    private List<Car> cars= new ArrayList<>();
+    private RacingResult racingResult;
 
     @BeforeEach
     void setUp() {

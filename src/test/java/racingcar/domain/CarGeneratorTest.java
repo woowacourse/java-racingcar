@@ -9,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 class CarGeneratorTest {
-    CarGenerator carGenerator;
+    private CarGenerator carGenerator;
 
     @BeforeEach
     void setUp() {

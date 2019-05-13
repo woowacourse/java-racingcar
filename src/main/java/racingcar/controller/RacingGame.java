@@ -7,8 +7,6 @@ import racingcar.view.OutputView;
 import java.util.List;
 
 public class RacingGame {
-
-
     private static List<Car> cars = null;
 
     public static void main(String[] args) {
@@ -23,6 +21,7 @@ public class RacingGame {
             racingCar.race();
             OutputView.printRacingResult(cars);
         }
+
         OutputView.printWinner(new RacingResult(cars));
     }
 
