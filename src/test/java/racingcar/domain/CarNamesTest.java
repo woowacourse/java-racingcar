@@ -11,16 +11,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarNamesTest {
 
-    CarNames carNames;
+    private CarNames carNames;
 
     @BeforeEach
     void setUp() {
-        carNames = new CarNames();
+        carNames = new CarNames("pobi");
     }
 
     @Test
     void create() {
-        assertThat(new CarNames()).isEqualTo(new CarNames());
+        assertThat(new CarNames("pobi")).isEqualTo(new CarNames("pobi"));
     }
 
     @Test
@@ -41,6 +41,13 @@ public class CarNamesTest {
     void 글자수가_1미만일때() {
         assertThrows(IllegalArgumentException.class, () ->{
             new CarNames("a,b,c,,,d,e,f");
+        });
+    }
+
+    @Test
+    void 글자수가_NULL일때() {
+        assertThrows(IllegalArgumentException.class, () ->{
+            new CarNames(null);
         });
     }
 }

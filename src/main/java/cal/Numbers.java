@@ -21,7 +21,6 @@ public class Numbers {
             if (!Operator.isOperator(operator)) {
                 throw new IllegalArgumentException("올바른 연산기호가 아닙니다.");
             }
-
         }
     }
 

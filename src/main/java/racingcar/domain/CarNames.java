@@ -9,6 +9,8 @@ public class CarNames {
     private String[] names;
 
     public CarNames(String name) throws IllegalArgumentException {
+        validateNullCarName(name);
+
         name.replaceAll(" ", "");
         String[] names = name.split(",");
         List<String> carNames = Arrays.asList(names);
@@ -24,6 +26,12 @@ public class CarNames {
 
     public String[] getName() {
         return names;
+    }
+
+    private void validateNullCarName(String name) throws IllegalArgumentException{
+        if (name == null){
+            throw new IllegalArgumentException("null은 입력으로 들어올 수 없습니다.\n다시 입력해 주세요.");
+        }
     }
 
     private void validateDuplicateCarName(List<String> carNames) throws IllegalArgumentException {

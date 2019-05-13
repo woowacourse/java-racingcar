@@ -9,11 +9,11 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TryCountTest {
-    TryCount tryCount = null;
+    private TryCount tryCount = null;
 
     @BeforeEach
     void setUp() {
-        tryCount = new TryCount();
+        tryCount = new TryCount("3");
     }
 
     @Test
