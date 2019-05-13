@@ -22,7 +22,12 @@ public class RacingGame {
         configureTryCount(tryCount);
     }
 
-    public void generateCarList(String carNames) {
+    private void configureTryCount(int tryCount) {
+        checkMinTryCount(tryCount);
+        this.tryCount = tryCount;
+    }
+
+    private void generateCarList(String carNames) {
         carNames = removeWhiteSpace(carNames);
         checkContinuousComma(carNames);
 
@@ -43,11 +48,6 @@ public class RacingGame {
 
     private String[] splitCarNames(String carNames) {
         return carNames.split(SPLIT_REGEX);
-    }
-
-    public void configureTryCount(int tryCount) {
-        checkMinTryCount(tryCount);
-        this.tryCount = tryCount;
     }
 
     private void checkMinTryCount(int tryCount) {
@@ -77,5 +77,19 @@ public class RacingGame {
 
     public void subtractTryCount() {
         tryCount--;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RacingGame that = (RacingGame) o;
+        return tryCount == that.tryCount &&
+                Objects.equals(cars, that.cars);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cars, tryCount);
     }
 }
