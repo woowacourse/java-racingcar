@@ -1,6 +1,7 @@
 package racing.game;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 class Rounds {
@@ -18,15 +19,10 @@ class Rounds {
 
     static List<Car> calculateChampions(List<Car> cars) {
         List<Car> winners = new ArrayList<>();
-        int winnerPosition = 0;
+        int winnerPosition = Collections.max(cars, (car1, car2) -> car1.compareTo(car2)).getPosition();
         for (Car car : cars) {
-            if (car.matchPosition(winnerPosition) == 0)
+            if (car.matchPosition(winnerPosition))
                 winners.add(car);
-            if (car.matchPosition(winnerPosition) == 1) {
-                winners.clear();
-                winnerPosition = car.getPosition();
-                winners.add(car);
-            }
         }
         return winners;
     }

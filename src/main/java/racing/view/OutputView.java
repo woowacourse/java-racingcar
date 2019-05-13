@@ -17,6 +17,10 @@ public class OutputView {
         System.out.println(ROUND_NUMBER_ERROR);
     }
 
+    public static void showRace() {
+        System.out.print("\n실행 결과");
+    }
+
     public static void showCarsPosition(List<Car> cars) {
         System.out.println();
         for (Car car : cars) {
@@ -32,4 +36,5 @@ public class OutputView {
         }
         System.out.println(stringJoiner.toString() + "가 최종 우승했습니다.");
     }
+
 }

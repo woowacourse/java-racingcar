@@ -20,7 +20,7 @@ public class Game {
 
         while (((cars = convertNamesToCars(InputView.getCarNames())).size()) < CAR_COUNT_MIN_LIMIT) ;
         while ((roundNum = checkRoundNum(InputView.getRoundNumber())) < ROUND_MIN_LIMIT) ;
-        System.out.print("\n실행 결과");
+        OutputView.showRace();
         for (int i = 0; i < roundNum; i++) {
             Rounds.doRound(cars);
             OutputView.showCarsPosition(cars);

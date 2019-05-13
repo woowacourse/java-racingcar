@@ -71,15 +71,15 @@ public class Car {
         return name;
     }
 
-    public int matchPosition(int position) {
-        if (this.position > position)
-            return 1;
-        if (this.position == position)
-            return 0;
-        return -1;
+    public boolean matchPosition(int position) {
+        return this.position == position;
     }
 
     public int getPosition() {
         return position;
+    }
+
+    public int compareTo(Car o2) {
+        return Integer.compare(this.position, o2.position);
     }
 }
