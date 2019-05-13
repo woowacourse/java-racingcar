@@ -1,5 +1,7 @@
 package calculator;
 
+import java.util.List;
+
 public class Calculator {
 
     public int multply(int num1, int num2) {
@@ -44,9 +46,9 @@ public class Calculator {
         return result;
     }
 
-    public int calculate() throws Exception {
+    public int calculate(String[] tokens) throws Exception {
         String[] input = InputHandler.getInput().split(" ");
-        if (!InputHandler.canCalculate(input))
+        if (!NumericExpression.canCalculate(input))
             throw new Exception("계산 가능한 형식이 아닙니다.");
         try {
             int result = calculateMultiExpression(input);

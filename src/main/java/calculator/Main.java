@@ -5,15 +5,9 @@ public class Main {
         start();
     }
 
-    public static int start() {
+    public static int start() throws Exception {
+        String expression = InputHandler.getInput();
         Calculator calculator = new Calculator();
-
-        try {
-            return calculator.calculate();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println();
-            return start();
-        }
+        calculator.calculate(expression.split(" "));
     }
 }
