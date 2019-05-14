@@ -9,17 +9,16 @@ public class Winner {
     private final String JOIN_DELIMITER = ", ";
     private List<Car> winners;
 
-    public Winner() {
+    Winner() {
         winners = new ArrayList<>();
     }
 
-    Winner calculateChampions(List<Car> cars) {
+    void calculateChampions(List<Car> cars) {
         int winnerPosition = Collections.max(cars, (car1, car2) -> car1.compareTo(car2)).getPosition();
         for (Car car : cars) {
             if (car.matchPosition(winnerPosition))
                 winners.add(car);
         }
-        return this;
     }
 
     @Override
@@ -29,5 +28,9 @@ public class Winner {
             stringJoiner.add(winner.getName());
         }
         return stringJoiner.toString() + "가 최종 우승했습니다.";
+    }
+
+    List<Car> getWinners() {
+        return winners;
     }
 }

@@ -19,7 +19,9 @@ public class GameApplication {
         for (int i = 0; i < roundNum; i++) {
             OutputView.showCarsPosition(Rounds.doRound(cars).toString());
         }
-        OutputView.showChampion(new Winner().calculateChampions(cars).toString());
+        Winner winner = new Winner();
+        winner.calculateChampions(cars);
+        OutputView.showChampion(winner.toString());
     }
 
     private static int getRoundNum() {

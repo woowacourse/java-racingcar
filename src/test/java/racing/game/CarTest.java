@@ -12,7 +12,8 @@ class CarTest {
     void 기준점이상을_입력한_경우() {
         try {
             Car car = new Car("pobi");
-            assertThat(car.move(4)).isTrue();
+            car.move(4);
+            assertThat(car.matchPosition(1)).isTrue();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -22,7 +23,8 @@ class CarTest {
     void 기준점미만을_입력한_경우() {
         try {
             Car car = new Car("pobi");
-            assertThat(car.move(3)).isFalse();
+            car.move(3);
+            assertThat(car.matchPosition(0)).isTrue();
         } catch (Exception e) {
             e.printStackTrace();
         }

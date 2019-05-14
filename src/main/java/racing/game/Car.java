@@ -1,5 +1,7 @@
 package racing.game;
 
+import java.util.Objects;
+
 public class Car {
     private static final int NAME_LENGTH_MIN_LIMIT = 1;
     private static final int NAME_LENGTH_MAX_LIMIT = 6;
@@ -34,37 +36,49 @@ public class Car {
         return this.name.equals(name);
     }
 
-    boolean move(int randomValue) {
+    void move(int randomValue) {
         if (randomValue >= BOUNDARY) {
             position++;
-            return true;
         }
-        return false;
     }
 
     @Override
     public String toString() {
-        StringBuffer stringBuffer = new StringBuffer(name);
-        stringBuffer.append(" : ");
+        StringBuilder stringBuilder = new StringBuilder(name);
+        stringBuilder.append(" : ");
         for (int i = 0; i < position; i++) {
-            stringBuffer.append(POSITION_MARK);
+            stringBuilder.append(POSITION_MARK);
         }
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public boolean matchPosition(int position) {
+    boolean matchPosition(int position) {
         return this.position == position;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position;
     }
 
-    public int compareTo(Car o2) {
+    int compareTo(Car o2) {
         return Integer.compare(this.position, o2.position);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position == car.position &&
+                Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }
