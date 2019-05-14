@@ -19,6 +19,6 @@ class RaceResultTest {
         }};
         Race race = new Race(testCars, 2);
         race.next();
-        assertThat(race.finish().getResult().keySet().toString()).isEqualTo(Arrays.asList("X", "Z").toString());
+        assertThat(race.finish().getWinners().keySet().toString()).isEqualTo(Arrays.asList("X", "Z").toString());
     }
 }

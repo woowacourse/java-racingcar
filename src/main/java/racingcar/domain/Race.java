@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 
 public class Race implements Iterator {
     private static final int MIN_NUMBER_OF_CARS = 2;
+    private static final int INITIAL_POSITION = 0;
+
     private final List<Car> cars;
     private final Movable strategy = new RandomMovement();
     private int leftRounds;
@@ -32,7 +34,7 @@ public class Race implements Iterator {
                     names.stream()
                         .map(x -> x.trim())
                         .filter(x -> !x.equals("") && !x.equals(" "))
-                        .forEach(name -> put(name, 0));
+                        .forEach(name -> put(name, INITIAL_POSITION));
                 }},
                 numberOfTrials
         );
@@ -46,11 +48,11 @@ public class Race implements Iterator {
     }
 
     public RaceResult finish() {
-        return new RaceResult(cars).getWinners();
+        return new RaceResult(cars);
     }
 
     @Override
     public boolean hasNext() {
-        return leftRounds != 0;
+        return leftRounds > 0;
     }
 }

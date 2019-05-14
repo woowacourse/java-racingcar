@@ -22,7 +22,7 @@ public class OutputView {
     }
 
     public static void printWinners(RaceResult result) {
-        String names = result.getResult().keySet().toString();
+        String names = result.getWinners().keySet().toString();
         names = names.substring(1, names.length() - 1);
         System.out.println(
                 names

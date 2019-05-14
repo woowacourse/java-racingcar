@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class RaceResult {
     Map<String, Integer> cars;
@@ -20,15 +21,12 @@ public class RaceResult {
         return cars;
     }
 
-    public RaceResult getWinners() {
+    public Map<String, Integer> getWinners() {
         int positionOfWinners = Collections.max(cars.values());
-        cars = Collections.unmodifiableMap(
-            new LinkedHashMap<String, Integer>() {{
+        return Collections.unmodifiableMap(
                 cars.entrySet().stream()
                     .filter(x -> x.getValue() == positionOfWinners)
-                    .forEach(x -> put(x.getKey(), x.getValue()));
-            }}
+                    .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue()))
         );
-        return this;
     }
 }
