@@ -33,17 +33,6 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    /* For Test */
-    protected int getPosition() {
-        return position;
-    }
-
-    public int compareToPosition(int offset) {
-        if (this.position < offset) return -1;
-        if (this.position == offset) return 0;
-        return position;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

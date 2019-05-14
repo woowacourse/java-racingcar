@@ -43,19 +43,20 @@ public class CarTest {
 
     @Test
     void 숫자가_4이하일때_움직이지않는지_테스트() {
-        int before = car.getPosition();
+        String before = car.toString();
         car.move(4);
-        int after = car.getPosition();
+        String after = car.toString();
+
         assertThat(after).isEqualTo(before);
     }
 
     @Test
     void 숫자가_5이상일때_움직이는지_테스트() {
-        int before = car.getPosition();
+        String before = car.toString();
         car.move(5);
-        int after = car.getPosition();
+        String after = car.toString();
 
-        assertThat(after).isEqualTo(before+1);
+        assertThat(after).isEqualTo("-" + before);
     }
 
     @Test
