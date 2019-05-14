@@ -14,35 +14,35 @@ public class CarTest {
 
     @Test
     void 자동차_객체_만들기_테스트() {
-//        assertThat(new Car("Pobi")).isEqualTo(new Car("Pobi"));
+        assertThat(new Car("Pobi")).isEqualTo(new Car("Pobi"));
     }
 
     @Test
     void 자동차_객체이름_공백_테스트() {
-//        assertThrows(IllegalArgumentException.class, () ->{
-//            new Car("");
-//        });
+        assertThrows(IllegalArgumentException.class, () ->{
+            new Car("");
+        });
     }
 
     @Test
     void 자동차_객체이름_5자초과_테스트() {
-//        assertThrows(IllegalArgumentException.class, () ->{
-//            new Car("asdfgh");
-//        });
+        assertThrows(IllegalArgumentException.class, () ->{
+            new Car("asdfgh");
+        });
     }
 
     @Test
     void 자동차_객체이름_NULL_테스트() {
-//        assertThrows(IllegalArgumentException.class, () ->{
-//            new Car(null);
-//        });
+        assertThrows(IllegalArgumentException.class, () ->{
+            new Car(null);
+        });
     }
 
     @Test
     void 이름_특수문자_테스트() {
-//        assertThrows(IllegalArgumentException.class, () ->{
-//            new Car("$$$$$");
-//        });
+        assertThrows(IllegalArgumentException.class, () ->{
+            new Car("$$$$$");
+        });
     }
 
     @Test

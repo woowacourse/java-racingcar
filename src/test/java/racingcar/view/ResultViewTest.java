@@ -17,9 +17,9 @@ public class ResultViewTest {
     }
 
     @Test
-    void 자동차_위_출력_테스트() {
+    void 자동차_위치_출력_테스트() {
         Car car = new Car("pobi",5);
-        assertThat(resultView.printHyphen(car)).isEqualTo("pobi : -----");
+        assertThat(resultView.printHypen(car)).isEqualTo("pobi : -----");
     }
 
     @AfterEach
