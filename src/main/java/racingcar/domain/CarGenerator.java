@@ -9,7 +9,7 @@ public class CarGenerator {
     public CarGenerator() {
     }
 
-    public List<Car> generateCars(String[] carNames) {
+    public static List<Car> generateCars(String[] carNames) {
         List<Car> cars = new ArrayList<>();
 
         for(String carName : carNames){

@@ -7,19 +7,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class CarProcessing {
-    private CarGenerator carGenerator;
 
     protected CarProcessing() {
-        this.carGenerator = new CarGenerator();
     }
 
     protected List<Car> createCar(String[] carNames){
-        return carGenerator.generateCars(carNames);
-    }
-
-    /* For Test */
-    protected CarProcessing(CarGenerator carGenerator) {
-        this.carGenerator = carGenerator;
+        return CarGenerator.generateCars(carNames);
     }
 
     protected void race(List<Car> cars) {
@@ -36,5 +29,4 @@ public class CarProcessing {
 
         return cars;
     }
-
 }
