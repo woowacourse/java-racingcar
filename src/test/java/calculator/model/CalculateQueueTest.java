@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculateQueueTest {
 
-    CalculateQueue calculateQueue;
     @Test
     void 계산_검사(){
         assertThat(new CalculateQueue("1 + 3 - 2 * 10 / 2".split(" ")).calculate()).isEqualTo(10);

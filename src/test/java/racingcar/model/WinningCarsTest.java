@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,6 +27,4 @@ public class WinningCarsTest {
     void winningCars에_없는_자동차_검증() {
         assertThat(winningCars.isWinner("b")).isFalse();
     }
-
-
 }
