@@ -57,10 +57,13 @@ class Rounds {
         return (int) (Math.random() * MAX_NO);
     }
 
-    static void doRound(List<Car> cars) {
+    static Result doRound(List<Car> cars) {
+        Result result = new Result();
         for (Car car : cars) {
             car.move(getRandomValue());
+            result.add(car.toString());
         }
+        return result;
     }
 
     static List<Car> calculateChampions(List<Car> cars) {
