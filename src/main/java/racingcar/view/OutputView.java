@@ -1,14 +1,14 @@
 package racingcar.view;
 
-import racingcar.domain.RaceStatus;
+import racingcar.domain.RaceResult;
 
 public class OutputView {
     public static void printRaceStartMessage() {
         System.out.println("\n실행 결과");
     }
-    public static void printEachRound(RaceStatus status) {
-        status.getCurrentStatus().forEach(
-                car -> System.out.println(car + " : " + drawTrail(car.getPosition()))
+    public static void printEachRound(RaceResult result) {
+        result.getResult().entrySet().forEach(
+                car -> System.out.println(car.getKey() + " : " + drawTrail(car.getValue()))
         );
         System.out.println();
     }
@@ -21,12 +21,12 @@ public class OutputView {
         return trail.toString();
     }
 
-    public static void printWinners(RaceStatus status) {
-        String result = status.getNameOfWinners().toString();
-        result = result.substring(1, result.length() - 1);
+    public static void printWinners(RaceResult result) {
+        String names = result.getResult().keySet().toString();
+        names = names.substring(1, names.length() - 1);
         System.out.println(
-                result
-                + HangulPostposition.differentiateIGa(result)
+                names
+                + HangulPostposition.differentiateIGa(names)
                 + " 최종 우승했습니다."
         );
     }
