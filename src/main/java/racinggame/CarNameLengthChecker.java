@@ -7,26 +7,15 @@ public class CarNameLengthChecker {
     private boolean isRightLength;
 
     public CarNameLengthChecker(String[] carsName) {
-        this.isRightLength = checkCarsNameLength(carsName);
-    }
-
-    private boolean checkCarsNameLength(String[] carsName) {
-        boolean allNamesAreRightLength = true;
+        boolean allAreRightLength = true;
 
         for (String carName : carsName) {
-            allNamesAreRightLength = checkEachCarNameLength(allNamesAreRightLength, carName);
+            allAreRightLength = carName.length() <= MAX_NAME_LENGTH
+                    && carName.length() >= MIN_NAME_LENGTH
+                    && allAreRightLength;
         }
 
-        return allNamesAreRightLength;
-    }
-
-    private boolean checkEachCarNameLength(boolean allNamesAreRightLength, String carName) {
-        boolean eachIsRightLength;
-
-        eachIsRightLength = carName.length() <= MAX_NAME_LENGTH && carName.length() >= MIN_NAME_LENGTH
-                && allNamesAreRightLength;
-
-        return eachIsRightLength;
+        this.isRightLength = allAreRightLength;
     }
 
     public boolean isRightLength() {
