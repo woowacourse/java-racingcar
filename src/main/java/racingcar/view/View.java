@@ -18,9 +18,9 @@ public final class View {
         return scanner.nextLine().split(",");
     }
 
-    public static String inputNumberOfTry() {
+    public static int inputNumberOfTry() {
         outputLine("시도할 횟수는 몇회인가요?");
-        return scanner.nextLine();
+        return scanner.nextInt();
     }
 
     public static void printCars(RacingGame racingGame) {

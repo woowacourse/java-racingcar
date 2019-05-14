@@ -3,27 +3,25 @@ package racingcar.model;
 import java.util.*;
 
 public class RacingGame {
-    private static final String NUMBER_REGEX = "[1-9][0-9]*$";  // String matches에 사용할 숫자 REGEX 정의
-
+    private static final int MIN_NUMBER_OF_TRY = 0;
     private Set<Car> cars = new LinkedHashSet<>();
     private int numberOfTry;
 
-    public RacingGame(String[] carNames, String numberOfTry) {
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
+    public RacingGame(String[] carNames, int numberOfTry) {
         if (this.isOverlap(carNames)) {
             throw new IllegalArgumentException("중복된 이름이 있습니다.");
         }
-        if (!numberOfTry.matches(NUMBER_REGEX)) {
+        if (numberOfTry < MIN_NUMBER_OF_TRY) {
             throw new IllegalArgumentException("올바른 시도 횟수를 입력해야 합니다.");
         }
-        this.numberOfTry = Integer.parseInt(numberOfTry);
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
+        this.numberOfTry = numberOfTry;
     }
 
-    /* 테스트를 위한 생성자 */
     public RacingGame(String[] carNames) {
-        this(carNames, "0");
+        this(carNames, 0);
     }
 
     private boolean isOverlap(String[] carNames) {
