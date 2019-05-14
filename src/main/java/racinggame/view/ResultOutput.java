@@ -1,5 +1,7 @@
 package racinggame.view;
 
+import racinggame.Car;
+
 import java.util.List;
 
 public class ResultOutput {
@@ -13,7 +15,11 @@ public class ResultOutput {
         System.out.println(sb);
     }
 
-    public static void printNewLine() {
+    public static void eachGameOutput(List<Car> cars) {
+        for (Car car : cars) {
+            System.out.println(car.toString());
+        }
+
         System.out.println();
     }
 }

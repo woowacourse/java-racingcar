@@ -1,13 +1,19 @@
 package racinggame;
 
+import racinggame.view.UserInput;
+
 public class CarsName {
 
-    public static String[] makeCarsName (String inputText) {
+    public static String[] makeCarsName () {
         String[] carsName;
+        CarNameLengthChecker checker;
+        String inputText;
 
-        inputText = removeBlank(inputText);
-        inputText = removeDuplicatedComma(inputText);
-        carsName = splitByComma(inputText);
+        do {
+            inputText = UserInput.inputCarsName();
+            carsName = splitByComma(removeDuplicatedComma(removeBlank(inputText)));
+            checker = new CarNameLengthChecker(carsName);
+        } while (!checker.isRightLength());
 
         return carsName;
     }
