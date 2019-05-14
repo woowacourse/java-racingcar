@@ -47,16 +47,16 @@ public class CarTest {
 
     @Test
     void 정지() {
-//        Car car = new Car("pobi");
-//        car.move(3);
-//        assertThat(car).isEqualTo(new Car("pobi",1));
+        Car car = new Car("pobi");
+        car.move(3);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
     @Test
     void 이동() {
-//        Car car = new Car("pobi");
-//        car.move(4);
-//        assertThat(car).isEqualTo(new Car("pobi",1));
+        Car car = new Car("pobi");
+        car.move(4);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @AfterEach

@@ -34,7 +34,7 @@ public class Car {
     }
 
     public Car isMovePosiotion() {
-        move();
+        move(getRandomNumber());
         return this;
     }
 
@@ -54,8 +54,8 @@ public class Car {
         return "";
     }
 
-    private void move(){
-        if (getRandomNumber() >= FOWARD_NUM) {
+    private void move(int randomNumber){
+        if (randomNumber >= FOWARD_NUM) {
             this.position++;
         }
     }
