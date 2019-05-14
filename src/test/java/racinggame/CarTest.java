@@ -34,4 +34,18 @@ public class CarTest {
         String result = car2.toString();
         assertThat(result).isEqualTo("sloth : ---");
     }
+
+    @Test
+    void 자동차_이동_확인() {
+        car.move(4);
+        boolean result = car.isMatch(1);
+        assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    void 자동차_정지_확인() {
+        car.move(3);
+        boolean result = car.isMatch(0);
+        assertThat(result).isEqualTo(true);
+    }
 }
