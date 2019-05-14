@@ -9,11 +9,9 @@ public class RacingCar {
         int numberOfTry = View.inputNumberOfTry();
 
         RacingGame racingGame = new RacingGame(carNames, numberOfTry);
+        racingGame.playGame();
         View.outputLine("실행 결과");
-        for (int i = 0; i < numberOfTry; i++) {
-            racingGame.moveCars();
-            View.printCars(racingGame);
-        }
+        View.outputLine(racingGame.result());
         View.printWinningCars(racingGame.getWinnerCars());
     }
 }

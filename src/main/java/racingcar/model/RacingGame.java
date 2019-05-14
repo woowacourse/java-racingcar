@@ -6,6 +6,7 @@ public class RacingGame {
     private static final int MIN_NUMBER_OF_TRY = 0;
     private Set<Car> cars = new LinkedHashSet<>();
     private int numberOfTry;
+    private StringBuilder savedResult = new StringBuilder();
 
     public RacingGame(String[] carNames, int numberOfTry) {
         if (this.isOverlap(carNames)) {
@@ -25,26 +26,29 @@ public class RacingGame {
     }
 
     private boolean isOverlap(String[] carNames) {
-        return this.cars.size() != carNames.length;
+        return new HashSet<>(Arrays.asList(carNames)).size() != carNames.length;
     }
 
-    public void moveCars() {
+    public void playGame() {
+        while (this.numberOfTry-- > 0) {
+            this.moveCars();
+        }
+    }
+
+    private void moveCars() {
         for (Car car : cars) {
             car.move(Random.createRandomNumber());
+            savedResult.append(car.toString()).append("\n");
         }
+        savedResult.append("\n");
+    }
+
+    public String result() {
+        return savedResult.toString();
     }
 
     public WinningCars getWinnerCars() {
         return new WinningCars(this.cars);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars) {
-            stringBuilder.append(car.toString()).append("\n");
-        }
-        return stringBuilder.toString();
     }
 
     @Override

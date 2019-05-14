@@ -23,10 +23,6 @@ public final class View {
         return scanner.nextInt();
     }
 
-    public static void printCars(RacingGame racingGame) {
-        outputLine(racingGame.toString());
-    }
-
     public static void printWinningCars(WinningCars winningCars) {
         outputLine(winningCars.toString());
     }
