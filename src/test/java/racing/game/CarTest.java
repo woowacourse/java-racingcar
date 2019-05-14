@@ -2,7 +2,6 @@ package racing.game;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -78,17 +77,6 @@ class CarTest {
     }
 
     @Test
-    void 같은이름이있는_리스트와_이름의중복을_비교하는_경우() {
-        try {
-            Car car = new Car("pobi");
-            List<Car> cars = Arrays.asList(new Car[]{new Car("pobi"), new Car("crong")});
-            assertThat(car.checkRepetition(cars)).isTrue();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
     void 이름으로_제한값보다_긴값을_입력한_경우_객체생성시_에러확인() {
         String name = "pobipobi";
         assertThrows(Exception.class, () -> new Car(name));
@@ -98,18 +86,5 @@ class CarTest {
     void 이름으로_빈값을_입력한_경우_객체생성시_에러확인() {
         String name = "";
         assertThrows(Exception.class, () -> new Car(name));
-    }
-
-    @Test
-    void 같은이름을_입력한_경우_객체생성시_에러확인() {
-        String name = "pobi";
-        List<Car> cars = new ArrayList<>();
-        try {
-            cars = Arrays.asList(new Car[]{new Car("pobi"), new Car("crong")});
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        List<Car> finalCars = cars;
-        assertThrows(Exception.class, () -> new Car(name, finalCars));
     }
 }

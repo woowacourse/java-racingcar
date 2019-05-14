@@ -24,26 +24,12 @@ public class Car {
             throw new Exception();
     }
 
-    public Car(final String name, List<Car> cars) throws Exception {
-        this.name = name.trim();
-        if (checkNull(this.name) || checkInvalidNameLength(this.name) || checkRepetition(cars))
-            throw new Exception();
-    }
-
     static boolean checkNull(Object name) {
         return name == null;
     }
 
     static boolean checkInvalidNameLength(String name) {
         return name.length() < NAME_LENGTH_MIN_LIMIT || name.length() >= NAME_LENGTH_MAX_LIMIT;
-    }
-
-    boolean checkRepetition(List<Car> cars) {
-        for (Car car : cars) {
-            if (car.matchCarName(name))
-                return true;
-        }
-        return false;
     }
 
     boolean matchCarName(String name) {
