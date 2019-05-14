@@ -1,43 +1,28 @@
 package operation;
 
-import java.util.regex.Pattern;
-
 public class Operation {
 
-    public int calculate(String index) {
-        String[] valueArr = index.split(" ");
-        int result = Integer.parseInt(valueArr[0]);
+    public double calculate(String predictor){
+        String[] predictorIndex = predictor.trim().split(" ");
+        double result =isNumber(predictorIndex[0]);
 
-        for (int i = 0; i < valueArr.length; i++) {
-            result = getResult(valueArr, result, i);
+        for (int i = 1; i < predictorIndex.length ; i+=2) {
+            double number = isNumber(predictorIndex[i+1]);
+            String operator = predictorIndex[i];
+            result = Operator.doCalculator(operator, result, number);
         }
 
         return result;
     }
 
-    private int getResult(String[] valueArr, int result, int i) {
-        String patterns = "^[0-9]$";
-
-        if (!Pattern.matches(patterns, valueArr[i])) {
-            result = operate(valueArr, result, i);
-
+    private static double isNumber(String index){
+        try{
+            return Double.parseDouble(index);
+        } catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("적절한 값이 아닙니다.");
+        } catch (ArrayIndexOutOfBoundsException e){
+            throw new ArrayIndexOutOfBoundsException("다항식의 순서가 부적절 합니다.");
         }
-        return result;
     }
 
-    private int operate(String[] valueArr, int result, int i) {
-        if (valueArr[i].equals("+")) {
-            result += Integer.parseInt(valueArr[i + 1]);
-        }
-        if (valueArr[i].equals("-")) {
-            result -= Integer.parseInt(valueArr[i + 1]);
-        }
-        if (valueArr[i].equals("*")) {
-            result *= Integer.parseInt(valueArr[i + 1]);
-        }
-        if (valueArr[i].equals("/")) {
-            result /= Integer.parseInt(valueArr[i + 1]);
-        }
-        return result;
-    }
 }
