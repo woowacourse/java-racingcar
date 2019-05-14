@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RaceResult {
-    Map<String, Integer> cars;
+    private Map<String, Integer> cars;
 
     public RaceResult(List<Car> cars) {
         this.cars = Collections.unmodifiableMap(
