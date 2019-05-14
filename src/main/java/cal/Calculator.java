@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 
-public class Calculator {
+final public class Calculator {
     private static Map<String, BiFunction<Double, Double, Double>> operators = new HashMap<>();
 
     static {

@@ -1,8 +1,15 @@
 package cal;
 
-public class TextCalculator {
-    public static double calculate(String inputText) {
-        String tokens[] = inputText.trim().split(" ");
+final public class TextCalculator {
+    private final static String DEFAULT_DELIMITER = " ";
+    private final String text;
+
+    public TextCalculator(final String text) {
+        this.text = text.trim();
+    }
+
+    public double calculate() {
+        String tokens[] = split(DEFAULT_DELIMITER);
         double result = toDouble(tokens[0]);
 
         for (int i = 1; i < tokens.length; i += 2) {
@@ -13,11 +20,15 @@ public class TextCalculator {
         return result;
     }
 
-    private static double calculate(String operator, double result, double number) {
+    private String[] split(String delimiter) {
+        return text.split(delimiter);
+    }
+
+    private  double calculate(String operator, double result, double number) {
         return Calculator.calculate(operator, result, number);
     }
 
-    private static double toDouble(String value) {
+    private  double toDouble(String value) {
         try {
             return Double.parseDouble(value);
         } catch (Exception e) {
