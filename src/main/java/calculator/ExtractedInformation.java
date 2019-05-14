@@ -3,6 +3,8 @@ package calculator;
 import java.util.*;
 
 public class ExtractedInformation {
+    private static final int INITIAL_INDEX = 0;
+
     private List<Integer> numbers = new ArrayList<>();
     private List<String> symbols = new ArrayList<>();
 
@@ -33,8 +35,8 @@ public class ExtractedInformation {
 
     private static boolean isZeroDivision(List<String> expression) {
         boolean zeroDivision = false;
-        for (int i = 1, n = expression.size(); i < n && !zeroDivision; i++) {
-            zeroDivision = checkZeroDivision(expression.get(i), expression.get(i-1));
+        for (int i = 1, n = expression.size(); i < n - 1&& !zeroDivision; i++) {
+            zeroDivision = checkZeroDivision(expression.get(i), expression.get(i + 1));
         }
         return zeroDivision;
     }
@@ -81,7 +83,7 @@ public class ExtractedInformation {
     }
 
     public int getInitialValue() {
-        return numbers.get(0);
+return numbers.get(INITIAL_INDEX);
     }
 
     public int getSymbolSize() {

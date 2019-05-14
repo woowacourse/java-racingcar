@@ -10,13 +10,14 @@ import java.util.List;
 
 public class Calculator {
 
-    public static int calculate(ExtractedInformation extractedInfo) {
+    public static int calculate(ExtractedInformation extractedInfo, OperatorMap functionMap) {
         int result = extractedInfo.getInitialValue();
         for (int i = 0, n = extractedInfo.getSymbolSize(); i < n; i++) {
-            result = applyCalculation(result, extractedInfo.getNumber(i + 1), extractedInfo.getSymbol(i));
+            result = functionMap.getFunction(extractedInfo.getSymbol(i)).calculate(result, extractedInfo.getNumber(i+1));
         }
         return result;
     }
+    /*
 
     private static int applyCalculation(int result, int number, String symbol) {
         if (symbol.equals("+")) return result + number;
@@ -26,4 +27,6 @@ public class Calculator {
         //return CalculatorException.applyCalculationException();
         return -1;
     }
+
+     */
 }

@@ -9,7 +9,8 @@ public class StringCalculatorLauncher {
 
     public static void doCalculate() {
         ExtractedInformation extractedInfo = ExtractedInformation.instantiateExtractor();
-        int result = Calculator.calculate(extractedInfo);
+        OperatorMap functionMap = new OperatorMap();
+        int result = Calculator.calculate(extractedInfo, functionMap);
         OutputView.printResult(result);
     }
 }

@@ -12,4 +12,8 @@ public class OperatorMap {
         functionMap.put("/", Operator.DIVIDE);
         functionMap.put("*", Operator.MULTIPLY);
     }
+
+    public Operator getFunction(String symbol) {
+        return functionMap.get(symbol);
+    }
 }
