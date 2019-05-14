@@ -21,14 +21,7 @@ public class InputViewTest {
         System.setIn(input);
         assertEquals(inputString, InputView.inputCarNames());
     }
-
-    @Test
-    public void 반복횟수_체크() {
-        ByteArrayInputStream input = new ByteArrayInputStream("5".getBytes());
-        System.setIn(input);
-        assertEquals(5, InputView.inputRepeatNumber().getNumber());
-    }
-
+    
     @After
     public void tearDown() throws Exception {
         System.setIn(System.in);

@@ -31,13 +31,4 @@ public class CarTest {
         assertEquals(2, car.move(Rules.MIN_MOVABLE_NUMBER));
         assertEquals(2, car.move(Rules.MIN_MOVABLE_NUMBER - 1));
     }
-
-    @Test
-    public void 상태_문자_테스트() {
-        Car car = new Car("abc", 3);
-
-        assertEquals("abc : ---", car.getStatus());
-    }
-
-
 }
