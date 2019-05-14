@@ -46,12 +46,8 @@ public class Car {
         return position;
     }
 
-    public String matchPosition(int position) {
-        if (this.position == position) {
-            return this.name;
-        }
-
-        return "";
+    public boolean matchPosition(int position) {
+        return this.position == position;
     }
 
     private void move(int randomNumber){
