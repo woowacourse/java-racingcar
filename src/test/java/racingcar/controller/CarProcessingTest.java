@@ -23,14 +23,6 @@ class CarProcessingTest {
     }
 
     @Test
-    void create() {
-        CarGenerator carGenerator = new CarGenerator();
-        CarProcessing carProcessing = new CarProcessing(carGenerator);
-
-        assertThat(carProcessing).isEqualTo(new CarProcessing(carGenerator));
-    }
-
-    @Test
     void 제대로_자동차리스트가_리턴되는지_테스트() {
         List<Car> cars = carProcessing.createCar("a,b,c,d".split(","));
         System.out.println(cars.toString());
@@ -39,12 +31,12 @@ class CarProcessingTest {
     @Test
     void 자동차가_움직이는지_테스트() {
         List<Car> resultCars = carProcessing.race(cars, 5);
-        assertThat(resultCars.toString()).isEqualTo("[Car{name='pobi', position=1}, Car{name='crong', position=1}]");
+        assertThat(resultCars.toString()).isEqualTo("[-\n, -\n]");
     }
 
     @Test
     void 자동차가_안움직이는지_테스트() {
         List<Car> resultCars = carProcessing.race(cars, 4);
-        assertThat(resultCars.toString()).isEqualTo("[Car{name='pobi', position=0}, Car{name='crong', position=0}]");
+        assertThat(resultCars.toString()).isEqualTo("[\n, \n]");
     }
 }

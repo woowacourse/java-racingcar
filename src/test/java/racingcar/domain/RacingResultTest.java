@@ -12,17 +12,17 @@ public class RacingResultTest {
     List<Car> cars= new ArrayList<>();
     RacingResult racingResult;
 
-    @BeforeEach
+    /*@BeforeEach
     void setUp() {
         cars.add(new Car("pobi",3));
         cars.add(new Car("crong",5));
         racingResult = new RacingResult(cars);
-    }
+    }*/
 
-    @Test
+    /*@Test
     void create() {
         assertThat(new RacingResult(cars)).isEqualTo(new RacingResult(cars));
-    }
+    }*/
 
     @Test
     void 우승자_출력_테스트(){

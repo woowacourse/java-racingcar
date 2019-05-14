@@ -3,6 +3,11 @@ package racingcar.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class CarTest {
@@ -51,5 +56,14 @@ public class CarTest {
         int after = car.getPosition();
 
         assertThat(after).isEqualTo(before+1);
+    }
+
+    @Test
+    void 최댓값_테스트() {
+        List<Car> cars = new ArrayList<>(
+                Arrays.asList(new Car("a", 2), new Car("b", 5), new Car("c", 4))
+        );
+
+        assertThat(Collections.max(cars).compareTo(new Car(null, 5))).isEqualTo(0);
     }
 }

@@ -6,9 +6,7 @@ import java.util.Objects;
 public class RacingResult {
     String result;
 
-    public RacingResult(List<Car> cars) {
-        Winner winner = new Winner(cars);
-        //this.result = winner.getWinner();
+    public RacingResult() {
     }
 
     @Override

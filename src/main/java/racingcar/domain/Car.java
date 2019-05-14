@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.Objects;
 import java.util.Random;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final String name;
     private int position = 0;
 
@@ -67,5 +67,10 @@ public class Car {
         stringBuilder.append("\n");
 
         return stringBuilder.toString();
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return Integer.compare(this.position, car.position);
     }
 }

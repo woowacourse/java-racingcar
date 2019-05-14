@@ -16,7 +16,7 @@ public class RacingGame {
         prepareGame(carProcessing);
         OutputView.printRacingResultTitle();
         startGame(carProcessing);
-        OutputView.printWinner(new Winner(cars).getWinner());
+        OutputView.printWinner(Winner.getWinner(cars));
     }
 
     private void prepareGame(CarProcessing carProcessing) {
