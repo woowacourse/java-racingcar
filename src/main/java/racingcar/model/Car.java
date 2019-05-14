@@ -2,6 +2,7 @@ package racingcar.model;
 
 
 import org.apache.commons.lang3.StringUtils;
+import racingcar.view.InputView;
 
 import java.util.Objects;
 import java.util.Random;
@@ -19,8 +20,6 @@ public class Car {
     }
 
     public Car(String name, int position) {
-        validName(name);
-
         this.name = name;
         this.position = position;
     }
@@ -59,16 +58,6 @@ public class Car {
     private int getRandomNumber() {
         Random random = new Random();
         return random.nextInt(MAX_BOUND);
-    }
-
-    private void validName(String name) {
-        if (StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException();
-        }
-
-        if (name.length() > 5) {
-            throw new IllegalArgumentException();
-        }
     }
 
     @Override

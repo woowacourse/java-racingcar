@@ -7,8 +7,8 @@ import java.util.regex.Pattern;
 
 public class InputView {
 
+    private static final int MAX_NAME_LENGTH = 5;
     private static final int MINIMUM_PLAYER = 1;
-    private static final int NAME_LENGTH = 5;
     private static final String pattern = "^[0-9]$";
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -44,7 +44,7 @@ public class InputView {
     }
 
     private static boolean overLengthName(String[] inputName) {
-        if (Arrays.stream(inputName).anyMatch(name -> name.length() >= NAME_LENGTH)) {
+        if (Arrays.stream(inputName).anyMatch(name -> name.length() >= MAX_NAME_LENGTH)) {
             System.err.println(MessageConstants.ERROR_OVERLENGTH);
             return true;
         }
