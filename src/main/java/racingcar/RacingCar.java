@@ -9,24 +9,12 @@ public class RacingCar {
         String[] carNames = View.inputNameOfCar();
         String numberOfTry = View.inputNumberOfTry();
 
-        RacingGame racingGame = makeCars(carNames, numberOfTry);
+        RacingGame racingGame = new RacingGame(carNames, numberOfTry);
         View.outputLine("실행 결과");
         for (int i = 0; i < Integer.parseInt(numberOfTry); i++) {
-            playRacing(racingGame);
+            racingGame.moveCars();
             View.printCars(racingGame);
         }
-        View.printWinningCars(getWinningCars(racingGame));
-    }
-
-    private static RacingGame makeCars(String[] carNames, String numberOfTry) {
-        return new RacingGame(carNames, numberOfTry);
-    }
-
-    private static void playRacing(RacingGame racingGame) {
-        racingGame.moveCars();
-    }
-
-    private static WinningCars getWinningCars(RacingGame racingGame) {
-        return racingGame.getWinnerCars();
+        View.printWinningCars(racingGame.getWinnerCars());
     }
 }
