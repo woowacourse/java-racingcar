@@ -1,7 +1,5 @@
 package racing.game;
 
-import java.util.List;
-
 public class Car {
     private static final int NAME_LENGTH_MIN_LIMIT = 1;
     private static final int NAME_LENGTH_MAX_LIMIT = 6;
