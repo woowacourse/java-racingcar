@@ -9,13 +9,13 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class CarTest {
     static final String nameDefault = "asdf";
     Car testCar;
-    CarList carList;
+    Cars cars;
 
     @BeforeEach
     void setup() {
         testCar = new Car(nameDefault);
-        carList = new CarList();
-        carList.addCar(testCar);
+        cars = new Cars();
+        cars.addCar(testCar);
     }
 
     @Test
@@ -52,18 +52,18 @@ public class CarTest {
     @Test
     void 위치() {
         assertThat(testCar.getPosition()).isEqualTo(0);
-        testCar.moveForward(carList);
+        testCar.moveForward(cars);
         assertThat(testCar.getPosition()).isEqualTo(1);
-        testCar.moveForward(carList);
+        testCar.moveForward(cars);
         assertThat(testCar.getPosition()).isEqualTo(2);
     }
 
     @Test
     void 랜덤포워드() {
         assertThat(testCar.getPosition()).isEqualTo(0);
-        testCar.randomForward(false, carList);
+        testCar.randomForward(false, cars);
         assertThat(testCar.getPosition()).isEqualTo(0);
-        testCar.randomForward(true, carList);
+        testCar.randomForward(true, cars);
         assertThat(testCar.getPosition()).isEqualTo(1);
     }
 
@@ -71,7 +71,7 @@ public class CarTest {
     void 투스트링() {
         assertThat(testCar.toString()).isEqualTo("asdf : ");
         for (int i = 0; i < 3; i++) {
-            testCar.moveForward(carList);
+            testCar.moveForward(cars);
         }
         assertThat(testCar.toString()).isEqualTo("asdf : ---");
     }

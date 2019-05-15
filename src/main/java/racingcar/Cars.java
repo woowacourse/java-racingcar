@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarList implements Iterable<Car> {
+public class Cars implements Iterable<Car> {
     private List<Car> carList = new ArrayList<>();
     private int maxPosition = 0;
 

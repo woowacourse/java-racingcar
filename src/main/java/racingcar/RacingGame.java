@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RacingGame {
 
-    private final CarList carList = new CarList();
+    private final Cars cars = new Cars();
     private int totalRound;
 
     private final static int FORWARD_CRITERION = 4;
@@ -16,16 +16,16 @@ public class RacingGame {
         totalRound = InputView.inputTotalRound();
         OutputView.printStartMessage();
         play();
-        OutputView.printFinalWinner(carList.getWinnerList());
+        OutputView.printFinalWinner(cars.getWinnerList());
     }
 
-    public CarList getCars() {
-        return carList;
+    public Cars getCars() {
+        return cars;
     }
 
     public void addCars(String[] carNames) {
         for(String carName : carNames){
-            carList.addCar(new Car(carName));
+            cars.addCar(new Car(carName));
         }
     }
 
@@ -36,8 +36,8 @@ public class RacingGame {
     }
 
     private void playOneRound() {
-        for(Car car : carList){
-            car.randomForward(isMove(), carList);
+        for (Car car : cars) {
+            car.randomForward(isMove(), cars);
             OutputView.printCar(car);
         }
 
