@@ -10,16 +10,16 @@ public class Car {
     private int position = 0;
 
     Car(String name) {
+        this(name, 0);
+    }
+
+    Car(String name, int position) {
         if (isWhiteSpaceOnly(name)) {
             throw new IllegalArgumentException();
         }
         if (isOverLimit(name)) {
             throw new IllegalArgumentException();
         }
-        this.name = name;
-    }
-
-    Car(String name, int position) {
         this.name = name;
         this.position = position;
     }
