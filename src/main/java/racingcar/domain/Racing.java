@@ -29,12 +29,15 @@ public class Racing {
     }
 
     public Winner getWinner() {
-        return new Winner(cars, getCarWithMaxPosition());
+        return new Winner(cars, getMaxDistance());
     }
 
-    public Car getCarWithMaxPosition() {
-        Collections.sort(cars);
-        return cars.get(0);
+    private int getMaxDistance() {
+        int maxDistance = cars.get(0).getPosition();
+        for (int i = 1; i < cars.size(); ++i) {
+            maxDistance = Math.max(maxDistance, cars.get(i).getPosition());
+        }
+        return maxDistance;
     }
 }
 

@@ -16,8 +16,8 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public boolean isMaxPosition(Car anotherCar) {
-        return (this.position == anotherCar.position);
+    public boolean isMaxPosition(int maxDistance) {
+        return (this.position == maxDistance);
     }
 
     public String getName() {

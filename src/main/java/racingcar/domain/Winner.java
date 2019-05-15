@@ -5,17 +5,17 @@ import java.util.List;
 
 public class Winner {
     private List<Car> cars;
-    private Car carWithMaxDistance;
+    private int maxDistance;
 
-    public Winner(List<Car> cars, Car carWithMaxDistance) {
+    public Winner(List<Car> cars, int maxDistance) {
         this.cars = cars;
-        this.carWithMaxDistance = carWithMaxDistance;
+        this.maxDistance = maxDistance;
     }
 
     public List<String> getWinnerNames() {
         List<String> winnerNames = new ArrayList<>();
         for (int i = 0; i < cars.size(); ++i) {
-            if (cars.get(i).isMaxPosition(carWithMaxDistance)) {
+            if (cars.get(i).isMaxPosition(maxDistance)) {
                 winnerNames.add(cars.get(i).getName());
             }
         }
