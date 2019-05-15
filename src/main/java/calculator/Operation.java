@@ -24,14 +24,14 @@ public class Operation {
         }
     }
 
-    private static Map<String, Operator> operators = new HashMap<>();
+    private Map<String, Operator> operators = new HashMap<>();
 
-    static {
+    public Operation() {
         for (Operator value : Operator.values())
             operators.put(value.operator, value);
     }
 
-    public static double run(String operator, double num1, double num2) {
+    public double run(String operator, double num1, double num2) {
         return operators.get(operator).calculate(num1, num2);
     }
 }
