@@ -25,14 +25,14 @@ class RacingTest {
     @Test
     void 최종_우승자가_한_명인_경우() {
         List<Car> cars = Arrays.asList(new Car("test1", 3), new Car("test2", 4), new Car("test3", 1));
-        Winner winner = new Winner(cars, 4);
+        Winner winner = new Winner(cars, cars.get(1));
         assertThat(winner.getWinnerNames().size()).isEqualTo(1);
     }
 
     @Test
     void 최종_우승자가_여러_명인_경우() {
         List<Car> cars = Arrays.asList(new Car("test1", 2), new Car("test2", 4), new Car("test3", 4));
-        Winner winner = new Winner(cars, 4);
+        Winner winner = new Winner(cars, cars.get(1));
         assertThat(winner.getWinnerNames().size()).isEqualTo(2);
     }
 }
