@@ -28,10 +28,10 @@ public class Racing {
     }
 
     public Winner getWinner() {
-        return new Winner(cars, getCarWithMaxPosision());
+        return new Winner(cars, getCarWithMaxPosition());
     }
 
-    private Car getCarWithMaxPosision() {
+    private Car getCarWithMaxPosition() {
         Collections.sort(cars);
         return cars.get(0);
     }
