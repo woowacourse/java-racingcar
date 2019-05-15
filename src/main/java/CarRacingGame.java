@@ -16,7 +16,7 @@ public class CarRacingGame {
                 cars.add(new Car(name));
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                return readyCarForRacing(InputView.inputCarNames());
+                return new ArrayList<>();
             }
         }
         return cars;

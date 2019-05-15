@@ -6,8 +6,14 @@ import java.util.List;
 
 public class CarRacingGameApp {
     public static void main(String[] args) {
-        List<String> names = InputView.inputCarNames();
-        List<Car> cars = CarRacingGame.readyCarForRacing(names);
+        List<String> names;
+        List<Car> cars;
+
+        do {
+            names = InputView.inputCarNames();
+            cars = CarRacingGame.readyCarForRacing(names);
+        } while (cars.size() == 0);
+
         int tryNum = InputView.inputTryNum();
 
         System.out.println("\n실행 결과");
