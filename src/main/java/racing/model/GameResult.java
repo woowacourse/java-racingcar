@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GameResult {
 
-    public static List<Car> calculateChampions(List<Car> cars) {
+    public List<Car> calculateChampions(List<Car> cars) {
         List<Car> winners = new ArrayList<>();
         while (winners.size() == 0 ||
                 winners.get(0).compareTo(Collections.max(cars,

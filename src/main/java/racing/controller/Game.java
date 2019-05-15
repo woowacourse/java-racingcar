@@ -22,9 +22,8 @@ public class Game {
         int roundNum = InputView.getRoundNumber();
         doRounds(cars, roundNum);
 
-        List<Car> champions;
-        champions = GameResult.calculateChampions(cars);
-        OutputView.showChampion(champions);
+        GameResult gameResult = new GameResult();
+        OutputView.showChampion(gameResult.calculateChampions(cars));
     }
 
     static void doRounds(List<Car> cars, int roundNum) {
