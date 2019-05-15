@@ -2,7 +2,7 @@ package racingcar;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final String name;
     private int position = 0;
 
@@ -33,19 +33,13 @@ public class Car {
         return this.name;
     }
 
-    public int getPosition() {
-        return this.position;
-    }
-
-    public void moveForward(Cars cars) {
+    public void moveForward() {
         this.position++;
-        cars.updateMaxPosition(this.position);
-
     }
 
-    public void randomForward(boolean shouldGo, Cars cars) {
+    public void randomForward(boolean shouldGo) {
         if (shouldGo) {
-            this.moveForward(cars);
+            this.moveForward();
         }
     }
 
@@ -66,5 +60,10 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name, position);
+    }
+
+    @Override
+    public int compareTo(Car anotherCar) {
+        return this.position - anotherCar.position;
     }
 }

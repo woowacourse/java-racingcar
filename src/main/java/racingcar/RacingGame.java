@@ -37,7 +37,7 @@ public class RacingGame {
 
     private void playOneRound() {
         for (Car car : cars) {
-            car.randomForward(isMove(), cars);
+            car.randomForward(isMove());
             OutputView.printCar(car);
         }
 

@@ -27,36 +27,36 @@ public class CarsTest {
         assertThat(cars.size()).isEqualTo(3);
     }
 
-    @Test
-    void 최댓값() {
-        assertThat(cars.getMaxPosition()).isEqualTo(0);
-
-        car2.moveForward(cars);
-        car2.moveForward(cars);
-        car2.moveForward(cars);
-
-        assertThat(cars.getMaxPosition()).isEqualTo(3);
-    }
-
-    @Test
-    void 우승1명() {
-        car2.moveForward(cars);
-        car2.moveForward(cars);
-        car2.moveForward(cars);
-
-        assertThat(cars.getWinnerList().size()).isEqualTo(1);
-    }
-
-    @Test
-    void 우승2명() {
-        car2.moveForward(cars);
-        car2.moveForward(cars);
-        car2.moveForward(cars);
-
-        car3.moveForward(cars);
-        car3.moveForward(cars);
-        car3.moveForward(cars);
-
-        assertThat(cars.getWinnerList().size()).isEqualTo(2);
-    }
+//    @Test
+//    void 최댓값() {
+//        assertThat(cars.getMaxPosition()).isEqualTo(0);
+//
+//        car2.moveForward(cars);
+//        car2.moveForward(cars);
+//        car2.moveForward(cars);
+//
+//        assertThat(cars.getMaxPosition()).isEqualTo(3);
+//    }
+//
+//    @Test
+//    void 우승1명() {
+//        car2.moveForward(cars);
+//        car2.moveForward(cars);
+//        car2.moveForward(cars);
+//
+//        assertThat(cars.getWinnerList().size()).isEqualTo(1);
+//    }
+//
+//    @Test
+//    void 우승2명() {
+//        car2.moveForward(cars);
+//        car2.moveForward(cars);
+//        car2.moveForward(cars);
+//
+//        car3.moveForward(cars);
+//        car3.moveForward(cars);
+//        car3.moveForward(cars);
+//
+//        assertThat(cars.getWinnerList().size()).isEqualTo(2);
+//    }
 }

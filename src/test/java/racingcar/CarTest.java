@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class CarTest {
-    static final String nameDefault = "asdf";
+    static final String nameDefault = "alpha";
     Car testCar;
     Cars cars;
 
@@ -20,9 +20,8 @@ public class CarTest {
 
     @Test
     void 객체생성() {
-        Car car = new Car("abc");
-        assertThat(car.getName()).isEqualTo("abc");
-        assertThat(car.getPosition()).isEqualTo(0);
+        Car car = new Car(nameDefault);
+        assertThat(car.getName()).isEqualTo(nameDefault);
     }
 
     @Test
@@ -51,28 +50,28 @@ public class CarTest {
 
     @Test
     void 위치() {
-        assertThat(testCar.getPosition()).isEqualTo(0);
-        testCar.moveForward(cars);
-        assertThat(testCar.getPosition()).isEqualTo(1);
-        testCar.moveForward(cars);
-        assertThat(testCar.getPosition()).isEqualTo(2);
+        assertThat(testCar.toString()).isEqualTo(nameDefault + " : ");
+        testCar.moveForward();
+        assertThat(testCar.toString()).isEqualTo(nameDefault + " : -");
+        testCar.moveForward();
+        assertThat(testCar.toString()).isEqualTo(nameDefault + " : --");
     }
 
     @Test
     void 랜덤포워드() {
-        assertThat(testCar.getPosition()).isEqualTo(0);
-        testCar.randomForward(false, cars);
-        assertThat(testCar.getPosition()).isEqualTo(0);
-        testCar.randomForward(true, cars);
-        assertThat(testCar.getPosition()).isEqualTo(1);
+        assertThat(testCar.toString()).isEqualTo(nameDefault + " : ");
+        testCar.randomForward(false);
+        assertThat(testCar.toString()).isEqualTo(nameDefault + " : ");
+        testCar.randomForward(true);
+        assertThat(testCar.toString()).isEqualTo(nameDefault + " : -");
     }
 
     @Test
     void 투스트링() {
-        assertThat(testCar.toString()).isEqualTo("asdf : ");
-        for (int i = 0; i < 3; i++) {
-            testCar.moveForward(cars);
-        }
-        assertThat(testCar.toString()).isEqualTo("asdf : ---");
+        assertThat(testCar.toString()).isEqualTo(nameDefault + " : ");
+        testCar.moveForward();
+        testCar.moveForward();
+        testCar.moveForward();
+        assertThat(testCar.toString()).isEqualTo(nameDefault + " : ---");
     }
 }
