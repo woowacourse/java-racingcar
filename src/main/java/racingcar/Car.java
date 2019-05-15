@@ -5,8 +5,6 @@ import java.util.*;
 public class Car {
     private static final int MAX_NAME_SIZE = 5;
     private static final int POSSIBLE_MOVE_CAR = 4;
-    private static final int MAX_RANDOM_NUMBER = 10;
-    private static final int MIN_RANDOM_NUMBER = 0;
 
     private final String name;
     private int position = 0;
@@ -39,10 +37,6 @@ public class Car {
             position++;
         }
         return this;
-    }
-
-    public static int randomNumberGenerator() {
-        return (int) (Math.random() * MAX_RANDOM_NUMBER) + MIN_RANDOM_NUMBER;
     }
 
     public int findMax(int max) {
