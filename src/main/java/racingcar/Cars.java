@@ -22,7 +22,7 @@ public class Cars {
     }
 
     public String getCarState(int index) {
-        return cars.get(index).getCarState();
+        return cars.get(index).toString(); //TODO
     }
 
     public void updateCarMovement(int index) {

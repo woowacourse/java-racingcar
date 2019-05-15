@@ -36,9 +36,8 @@ public class CarTest {
     }
 
     @Test
-    void 자동차의_상태를_String으로_반환() {
-        String checkString = "abc : ---";
+    void 자동차의_상태를_문자로_반환() {
         Car testCar = new Car("abc", 3);
-        assertThat(testCar.getCarState()).isEqualTo(checkString);
+        assertThat(testCar).isEqualTo(new Car("abc", 3));
     }
 }

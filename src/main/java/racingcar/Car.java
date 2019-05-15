@@ -57,12 +57,14 @@ public class Car {
         return false;
     }
 
-    public String getCarState() {
-        String carState = this.name + " : ";
-        for (int i = 0; i < this.position; i++) {
-            carState += "-";
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(name + " : ");
+        for (int i = 0; i < position; i++) {
+            stringBuilder.append("-");
         }
-        return carState;
+        return stringBuilder.toString();
     }
 
     @Override
