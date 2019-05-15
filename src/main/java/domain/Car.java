@@ -1,11 +1,7 @@
 package domain;
 
-import java.util.Comparator;
-import java.util.stream.IntStream;
-
 public class Car {
     public static final int MAX_NAME_LEN = 5;
-    public static final Comparator<Car> positionComparator = (o1, o2) -> o1.position - o2.position;
 
     private final String name;
     private int position;
@@ -30,22 +26,16 @@ public class Car {
         this(name, 0);
     }
 
+    public MovedCar move() {
+        position++;
+        return new MovedCar(name, position);
+    }
+
+    public MovedCar getMovedCar() {
+        return new MovedCar(name, position);
+    }
+
     public String getName() {
         return name;
-    }
-
-    public String getStatusString() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append(name);
-        sb.append(" : ");
-
-        IntStream.range(0, position).forEach((i) -> sb.append("-"));
-
-        return sb.toString();
-    }
-
-    public void move() {
-        position++;
     }
 }

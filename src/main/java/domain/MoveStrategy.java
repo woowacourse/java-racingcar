@@ -1,18 +1,13 @@
 package domain;
 
-import java.util.Random;
+import java.util.function.Predicate;
 
-public class MoveStrategy {
+public class MoveStrategy implements Predicate<Integer> {
     public static final int MAX_NUM = 10; // [0, MAX_NUM)
     public static final int MOVE_START = 4;
 
-    private final Random random;
-
-    public MoveStrategy(Random random) {
-        this.random = random;
-    }
-
-    public boolean isMove() {
-        return MOVE_START <= random.nextInt(MAX_NUM);
+    @Override
+    public boolean test(Integer num) {
+        return MOVE_START <= num;
     }
 }

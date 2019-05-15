@@ -22,45 +22,13 @@ class CarTest {
         assertThrows(IllegalArgumentException.class, () -> new Car("123456"));
     }
 
-    @Test
-    void positionComparator_위치동일할때() {
-        int[] positions = new int[]{
-                0, 1, 10, 100, 1000
-        };
-
-        for (int position : positions) {
-            Car car1 = new Car("car1", position);
-            Car car2 = new Car("car2", position);
-
-            assertThat(Car.positionComparator.compare(car1, car2)).isEqualTo(0);
-        }
-    }
 
     @Test
-    void positionComparator_앞이적은위치() {
-        int[] positions = new int[]{
-                0, 1, 10, 100, 1000
-        };
+    void move_포지션이1증가() {
+        String name = "car";
+        int position = 100;
+        Car car = new Car(name, position);
 
-        for (int position : positions) {
-            Car car1 = new Car("car1", position - 1);
-            Car car2 = new Car("car2", position);
-
-            assertThat(Car.positionComparator.compare(car1, car2)).isNegative();
-        }
-    }
-
-    @Test
-    void positionComparator_앞이큰위치() {
-        int[] positions = new int[]{
-                0, 1, 10, 100, 1000
-        };
-
-        for (int position : positions) {
-            Car car1 = new Car("car1", position);
-            Car car2 = new Car("car2", position + 1);
-
-            assertThat(Car.positionComparator.compare(car1, car2)).isNegative();
-        }
+        assertThat(car.move()).isEqualTo(new MovedCar(name, position + 1));
     }
 }
