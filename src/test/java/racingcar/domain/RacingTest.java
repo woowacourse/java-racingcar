@@ -28,7 +28,7 @@ class RacingTest {
         for (int i = 0; i < 4; ++i) {
             cars.get(1).moveOrNot(4);
         }
-        Winner winner = new Winner(cars, cars.get(1));
+        Winner winner = new Winner(cars, 4);
         assertThat(winner.getWinnerNames().size()).isEqualTo(1);
     }
 
@@ -39,7 +39,7 @@ class RacingTest {
             cars.get(1).moveOrNot(4);
             cars.get(2).moveOrNot(4);
         }
-        Winner winner = new Winner(cars, cars.get(1));
+        Winner winner = new Winner(cars, 4);
         assertThat(winner.getWinnerNames().size()).isEqualTo(2);
     }
 }
