@@ -1,5 +1,8 @@
 package textCalculaotr;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TextCalculator {
     public int execute(String[] inputText) {
         int result = parseStringToInt(inputText[0]);
@@ -16,22 +19,17 @@ public class TextCalculator {
     }
 
     private int calculate(int result, String operator, int nextValue) {
-        if (operator.equals("+")) {
-            return Calculator.add(result, nextValue);
+        Map<String, Operators> map = new HashMap<>();
+        Operators[] operators = Operators.values();
+
+        for (Operators operator1 : operators) {
+            map.put(operator1.getOperator(), operator1);
         }
 
-        if (operator.equals("-")) {
-            return Calculator.subtract(result, nextValue);
+        if (map.get(operator) == null) {
+            return 0;
         }
 
-        if (operator.equals("*")) {
-            return Calculator.multiply(result, nextValue);
-        }
-
-        if (operator.equals("/")) {
-            return Calculator.division(result, nextValue);
-        }
-
-        return 0;
+        return map.get(operator).result(result, nextValue);
     }
 }
