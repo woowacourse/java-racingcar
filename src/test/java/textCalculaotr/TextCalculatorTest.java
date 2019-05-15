@@ -21,7 +21,7 @@ public class TextCalculatorTest {
         String[] inputText = {"1"};
         Assertions.assertThrows(NullPointerException.class, () -> {
             textCalculator.execute(inputText);
-        }, "에러");
+        });
     }
 
     @Test

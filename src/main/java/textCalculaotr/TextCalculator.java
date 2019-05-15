@@ -7,6 +7,10 @@ public class TextCalculator {
     public int execute(String[] inputText) {
         int result = parseStringToInt(inputText[0]);
 
+        if (inputText.length < 2) {
+            throw new NullPointerException("올바르지 않은 입력입니다.");
+        }
+
         for (int i = 1; i < inputText.length ; i += 2) {
             result = calculate(result, inputText[i], parseStringToInt(inputText[i + 1]));
         }
