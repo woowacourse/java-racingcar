@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.util.Utils;
+
 import java.util.*;
 
 public class Cars {
@@ -24,7 +26,7 @@ public class Cars {
     }
 
     public void updateCarMovement(int index) {
-        cars.get(index).moveCar(Car.randomNumberGenerator());
+        cars.get(index).moveCar(Utils.randomNumberGenerator());
     }
 
     public List<Car> getCars() {

@@ -17,28 +17,28 @@ public class CalculatorTest {
     }
 
     @Test
-    void extractNumbersTest() {
+    void 타입을_제대로_변경하는지_확인() {
         List<String> testList = Arrays.asList("2", "+", "3");
         List<Integer> checkList = Arrays.asList(2, 3);
         assertThat(cal.extractNumbers(testList)).isEqualTo(checkList);
     }
 
     @Test
-    void extractSymbolsTest() {
+    void 기호만_따로_잘분리_하는지_확인() {
         List<String> testList = Arrays.asList("2", "+", "3");
         List<String> checkList = Arrays.asList("+");
         assertThat(cal.extractSymbols(testList)).isEqualTo(checkList);
     }
 
     @Test
-    void calculateTest() {
+    void 결과값을_제대로_반환하는지_확인() {
         List<Integer> testList = Arrays.asList(2, 3);
         List<String> checkList = Arrays.asList("+");
         assertThat(cal.calculate(testList, checkList)).isEqualTo(5);
     }
 
     @Test
-    void innerCalculateTest() {
+    void 결과값을_enum을_통해_반환하는지_확인() {
         assertThat(Calculate.RESULT.getCalculateResult(2, 3, "+")).isEqualTo(5);
     }
 
