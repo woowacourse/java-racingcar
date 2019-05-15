@@ -15,7 +15,7 @@ public class Play {
     }
 
     public List<String> moveCarState() {
-        moveCar();
+        cars.updateCarMovement();
         return getCarStates();
     }
 
@@ -25,11 +25,5 @@ public class Play {
             carStates.add(cars.getCarState(i));
         }
         return carStates;
-    }
-
-    private void moveCar() {
-        for (int i = 0, n = cars.getSize(); i < n; i++) {
-            cars.updateCarMovement(i);
-        }
     }
 }

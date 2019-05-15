@@ -22,11 +22,13 @@ public class Cars {
     }
 
     public String getCarState(int index) {
-        return cars.get(index).toString(); //TODO
+        return cars.get(index).toString();
     }
 
-    public void updateCarMovement(int index) {
-        cars.get(index).moveCar(Utils.randomNumberGenerator());
+    public void updateCarMovement() {
+        for (Car car : cars) {
+            car.moveCar(Utils.randomNumberGenerator());
+        }
     }
 
     public List<Car> getCars() {
