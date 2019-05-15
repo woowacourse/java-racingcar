@@ -17,16 +17,4 @@ public class Calculator {
         }
         return result;
     }
-    /*
-
-    private static int applyCalculation(int result, int number, String symbol) {
-        if (symbol.equals("+")) return result + number;
-        if (symbol.equals("-")) return result - number;
-        if (symbol.equals("/")) return result / number;
-        if (symbol.equals("*")) return result * number;
-        //return CalculatorException.applyCalculationException();
-        return -1;
-    }
-
-     */
 }
