@@ -1,21 +1,25 @@
 package racingcar;
 
-import racingcar.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Play {
+    private final Cars cars;
 
-    public static void printCarState(Cars cars, int turn) {
-        OutputView.printResult();
-        for (int i = 0; i < turn; i++) {
-            moveCar(cars);
-            OutputView.printState(getCarStates(cars));
-        }
+    public Play(String names) {
+        cars = new Cars(names);
     }
 
-    public static List<String> getCarStates(Cars cars) {
+    public Winners getWinners() {
+        return new Winners(this.cars);
+    }
+
+    public List<String> moveCarState() {
+        moveCar();
+        return getCarStates();
+    }
+
+    public List<String> getCarStates() {
         List<String> carStates = new ArrayList<>();
         for (int i = 0, n = cars.getSize(); i < n; i++) {
             carStates.add(cars.getCarState(i));
@@ -23,7 +27,7 @@ public class Play {
         return carStates;
     }
 
-    public static void moveCar(Cars cars) {
+    private void moveCar() {
         for (int i = 0, n = cars.getSize(); i < n; i++) {
             cars.updateCarMovement(i);
         }

@@ -10,11 +10,14 @@ public class CarGameLauncher {
     }
 
     public static void doCarGame() {
-        Cars cars = new Cars(InputView.askAndReceiveCarNames());
+        String names = InputView.askAndReceiveCarNames();
         int totalTurns = InputViewException.askAndReceiveTotalTurns();
-        Play.printCarState(cars, totalTurns);
-        Winners winners = new Winners(cars);
-        OutputView.printWinners(winners);
+        Play play = new Play(names);
+        OutputView.printResult();
+        for (int i = 0; i < totalTurns; i++) {
+            OutputView.printState(play.moveCarState());
+        }
+        OutputView.printWinners(play.getWinners());
         System.exit(0);
     }
 }

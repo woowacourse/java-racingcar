@@ -14,7 +14,7 @@ class WinnersTest {
     @BeforeEach
     void setUp() {
         ArrayList<Car> cars = new ArrayList<>(Arrays.asList(new Car("a", 101),
-                                    new Car("b", 101), new Car("c", 99)));
+                new Car("b", 101), new Car("c", 99)));
         testCars = new Cars(cars);
     }
 

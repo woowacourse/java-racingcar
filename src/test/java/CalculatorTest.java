@@ -13,11 +13,11 @@ public class CalculatorTest {
 
     @Test
     void addTest() {
-        assertThat(cal.addition(1,2)).isEqualTo(3);
+        assertThat(cal.addition(1, 2)).isEqualTo(3);
     }
 
     @Test
     void subTest() {
-        assertThat(cal.subtraction(2,2)).isEqualTo(0);
+        assertThat(cal.subtraction(2, 2)).isEqualTo(0);
     }
 }
