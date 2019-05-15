@@ -12,20 +12,17 @@ public class Main {
 
     private static String[] inputExpression() {
         Scanner scanner = new Scanner(System.in);
-        String[] splitedValues;
-        boolean result;
-        do {
+        while(true) {
             System.out.println("계산식을 입력해주세요.");
             String value = scanner.nextLine();
-            splitedValues = value.split(" ");
+            String[]  splitedValues = value.split(" ");
             try {
                 Validator validator = new Validator(value, splitedValues);
-                result = validator.validateAll();
+                validator.validateAll();
+                return splitedValues;
             } catch (Exception e) {
-                result = false;
                 System.out.println(e.getMessage());
             }
-        } while (!result);
-        return splitedValues;
+        }
     }
 }
