@@ -1,4 +1,5 @@
 import domain.Car;
+import domain.Rule;
 import view.InputView;
 import view.OutputView;
 
@@ -23,7 +24,7 @@ public class CarRacingGame {
 
     public static void tryMove(List<Car> cars) {
         for (Car car : cars) {
-            CarRacingRule.judgeMove(car, CarRacingRule.getRandomNumber());
+            car.moveForeword(Rule.judgeMove(Rule.getRandomNumber()));
         }
     }
 

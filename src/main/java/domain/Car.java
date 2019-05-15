@@ -33,8 +33,11 @@ public class Car {
         return name;
     }
 
-    public void moveForeword() {
-        position ++;
+    public int moveForeword(Boolean rule) {
+        if (rule) {
+            position ++;
+        }
+        return position;
     }
 
     public int getBiggerPosition(int comparePosition) {

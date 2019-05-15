@@ -43,6 +43,13 @@ public class CarTest {
     }
 
     @Test
+    void moveForeword() {
+        Rule rule = new Rule();
+        assertThat(car.moveForeword(rule.judgeMove(3))).isEqualTo(0);
+        assertThat(car.moveForeword(rule.judgeMove(4))).isEqualTo(1);
+    }
+
+    @Test
     void is_max_position() {
         assertThat(car.isMaxPosition(0)).isTrue();
         assertThat(car.isMaxPosition(1)).isFalse();

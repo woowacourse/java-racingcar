@@ -1,8 +1,8 @@
-import domain.Car;
+package domain;
 
 import java.util.Random;
 
-public class CarRacingRule {
+public class Rule {
     private static final int BOUND_NUMBER = 10;
     private static final int MIN_MOVE_NUMBER = 4;
 
@@ -11,9 +11,7 @@ public class CarRacingRule {
         return random.nextInt(BOUND_NUMBER);
     }
 
-    public static void judgeMove(Car car, int number) {
-        if (number >= MIN_MOVE_NUMBER) {
-            car.moveForeword();
-        }
+    public static boolean judgeMove(int number) {
+        return number >= MIN_MOVE_NUMBER;
     }
 }
