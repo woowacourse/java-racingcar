@@ -36,13 +36,13 @@ public class CalculatorTest {
 
 
     @Test
-    void 여러개의연산() {
+    void 여러개의_연산() {
         String[] array = "3 + 2 * 4 / 2 + 3".split(" ");
         assertThat(cal.calculateMultiExpression(array)).isEqualTo(13);
     }
 
     @Test
-    void 영으로나누는연산() {
+    void 영으로_나누는_연산() {
         String input = "3 / 0";
         Calculator calculator = new Calculator();
         assertThrows(Exception.class, () -> {

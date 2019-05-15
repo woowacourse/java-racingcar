@@ -6,6 +6,7 @@ import racing.model.Random;
 import racing.view.InputView;
 import racing.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -39,6 +40,8 @@ public class Game {
         }
         OutputView.showCarsPosition(cars);
     }
+
+
 
 
 }

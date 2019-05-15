@@ -13,7 +13,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class GameResultTest {
 
     @Test
-    void 챔피언이하나일때챔피언계산() throws Exception {
+    void 챔피언이_하나일_때_챔피언_계산() throws Exception {
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("pobi"));
         cars.add(new Car("jihoo"));
@@ -26,7 +26,7 @@ public class GameResultTest {
     }
 
     @Test
-    void 챔피언이여러명일때챔피언계산() throws Exception {
+    void 챔피언이_여러_명일_때_챔피언_계산() throws Exception {
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("pobi"));
         cars.add(new Car("jihoo"));

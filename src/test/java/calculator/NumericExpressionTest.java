@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class NumericExpressionTest {
 
     @Test
-    void 허용된특수문자외특수문자가들어간식() {
+    void 허용된_특수문자_외_특수문자가_들어간_식() {
         String input = "3 + 2 : 3";
         assertThrows(Exception.class, () -> {
             new NumericExpression(input);
@@ -16,7 +16,7 @@ public class NumericExpressionTest {
     }
 
     @Test
-    void 숫자가아닌문자가들어간식() {
+    void 숫자가_아닌_문자가_들어간_식() {
         String input = "3 + 2 / ㅁ";
         assertThrows(Exception.class, () -> {
             new NumericExpression(input);
@@ -24,7 +24,7 @@ public class NumericExpressionTest {
     }
 
     @Test
-    void 연산자로끝나는식() {
+    void 연산자로_끝나는_식() {
         String input = "3 + 2 /";
         assertThrows(Exception.class, () -> {
             new NumericExpression(input);
@@ -32,7 +32,7 @@ public class NumericExpressionTest {
     }
 
     @Test
-    void 빈문자열() {
+    void 빈_문자열() {
         String input = "";
         assertThrows(Exception.class, () -> {
             new NumericExpression(input);
@@ -48,7 +48,7 @@ public class NumericExpressionTest {
     }
 
     @Test
-    void 숫자사이의여러개공백() {
+    void 숫자_사이의_여러_개_공백() {
         String input = "3 +  2";
         assertThrows(Exception.class, () -> {
             new NumericExpression(input);
