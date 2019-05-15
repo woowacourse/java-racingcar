@@ -10,6 +10,11 @@ public class Car implements Comparable<Car> {
         this.name = name;
     }
 
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
     public void moveOrNot(int randomNumber) {
         if (randomNumber >= CAR_MOVE_CONDITION) {
             ++position;

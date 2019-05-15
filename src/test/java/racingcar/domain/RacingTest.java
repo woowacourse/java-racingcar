@@ -24,21 +24,14 @@ class RacingTest {
 
     @Test
     void 최종_우승자가_한_명인_경우() {
-        List<Car> cars = Arrays.asList(new Car("test1"), new Car("test2"), new Car("test3"));
-        for (int i = 0; i < 4; ++i) {
-            cars.get(1).moveOrNot(4);
-        }
+        List<Car> cars = Arrays.asList(new Car("test1", 3), new Car("test2", 4), new Car("test3", 1));
         Winner winner = new Winner(cars, 4);
         assertThat(winner.getWinnerNames().size()).isEqualTo(1);
     }
 
     @Test
     void 최종_우승자가_여러_명인_경우() {
-        List<Car> cars = Arrays.asList(new Car("test1"), new Car("test2"), new Car("test3"));
-        for (int i = 0; i < 4; ++i) {
-            cars.get(1).moveOrNot(4);
-            cars.get(2).moveOrNot(4);
-        }
+        List<Car> cars = Arrays.asList(new Car("test1", 2), new Car("test2", 4), new Car("test3", 4));
         Winner winner = new Winner(cars, 4);
         assertThat(winner.getWinnerNames().size()).isEqualTo(2);
     }
