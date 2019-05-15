@@ -19,7 +19,7 @@ class WinnersTest {
     }
 
     @Test
-    void 최종거리와_같은_자동차이름_반환받기() {
+    void 최종거리와_같은지_확인한다() {
         Car car = new Car("a", 3);
         assertThat(car.isSameMaxPosition(3)).isEqualTo(true);
     }
@@ -27,5 +27,10 @@ class WinnersTest {
     @Test
     void 우승_거리를_반환받는다() {
         assertThat(new Winners(testCars).decideMaxPosition(testCars.getCars())).isEqualTo(101);
+    }
+
+    @Test
+    void 우승자들을_리턴받는다() {
+        assertThat(new Winners(testCars).getWinnerNames()).isEqualTo("a, b");
     }
 }

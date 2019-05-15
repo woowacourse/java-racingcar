@@ -3,12 +3,12 @@ package racingcar;
 import java.util.*;
 
 public class Winners {
-    private List<String> listOfWinners = new ArrayList<>();
+    private List<String> listOfWinners;
 
     Winners(Cars cars) {
         List<Car> carsState = cars.getCars();
         int maxPosition = decideMaxPosition(carsState);
-        decideWinners(carsState, maxPosition);
+        this.listOfWinners = getResultWinners(carsState, maxPosition);
     }
 
     public int decideMaxPosition(List<Car> cars) {
@@ -19,20 +19,21 @@ public class Winners {
         return max;
     }
 
-    public void decideWinners(List<Car> cars, int maxPosition) {
+    public List<String> getResultWinners(List<Car> cars, int maxPosition) { //TODO get winners
+        List<String> listOfWinners = new ArrayList<>();
         for (Car car : cars) {
-            addWinners(car, maxPosition);
+            findWinner(listOfWinners, car, maxPosition);
         }
+        return listOfWinners;
     }
 
-    public void addWinners(Car car, int maxPosition) {
+    public void findWinner(List<String> listOfWinners, Car car, int maxPosition) {
         if (car.isSameMaxPosition(maxPosition)) {
             listOfWinners.add(car.getName());
         }
     }
 
-    public String getWinners() {
+    public String getWinnerNames() {
         return String.join(", ", listOfWinners);
     }
-
 }

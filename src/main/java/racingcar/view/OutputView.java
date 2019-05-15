@@ -1,7 +1,5 @@
 package racingcar.view;
 
-import racingcar.Winners;
-
 import java.util.List;
 
 public class OutputView {
@@ -17,7 +15,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinners(Winners winners) {
-        System.out.println(winners.getWinners() + " 가 우승했습니다!");
+    public static void printWinners(String winners) {
+        System.out.println(winners + " 가 우승했습니다!");
     }
 }

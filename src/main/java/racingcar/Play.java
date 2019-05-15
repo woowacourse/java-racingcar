@@ -10,8 +10,8 @@ public class Play {
         cars = new Cars(names);
     }
 
-    public Winners getWinners() {
-        return new Winners(this.cars);
+    public String getWinners() {
+        return new Winners(this.cars).getWinnerNames();
     }
 
     public List<String> moveCarState() {
