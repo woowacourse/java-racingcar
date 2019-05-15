@@ -24,6 +24,10 @@ public class Car {
         this.position = position;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public static boolean isWhiteSpaceOnly(String name) {
         return name.isEmpty();
     }
@@ -46,11 +50,11 @@ public class Car {
         return max;
     }
 
-    public String sameMaxPositionCarName(int maxPosition) {
+    public boolean isSameMaxPosition(int maxPosition) {
         if (this.position == maxPosition) {
-            return this.name;
+            return true;
         }
-        return null;
+        return false;
     }
 
     public String getCarState() {

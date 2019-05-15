@@ -26,9 +26,8 @@ public class Winners {
     }
 
     public void addWinners(Car car, int maxPosition) {
-        String winnerName = car.sameMaxPositionCarName(maxPosition);
-        if (winnerName != null) {
-            listOfWinners.add(winnerName);
+        if (car.isSameMaxPosition(maxPosition)) {
+            listOfWinners.add(car.getName());
         }
     }
 
