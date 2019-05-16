@@ -3,15 +3,13 @@ package racingcar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CarsTest {
-    private Cars cars;
-    private Car car1;
-    private Car car2;
-    private Car car3;
+class CarsTest {
+    Cars cars;
+    Car car1;
+    Car car2;
+    Car car3;
 
     @BeforeEach
     void setup() {
@@ -30,22 +28,9 @@ public class CarsTest {
     }
 
     @Test
-    void 우승1명() {
-        car2.moveForward();
-        car2.moveForward();
-        car2.moveForward();
+    void 최대전진값() {
+        car1.moveForward();
 
-        List<Car> winnerList = cars.getWinnerList();
-
-        assertThat(winnerList.size()).isEqualTo(1);
-        assertThat(winnerList.contains(car1)).isFalse();
-        assertThat(winnerList.contains(car2)).isTrue();
-        assertThat(winnerList.contains(car3)).isFalse();
-    }
-
-    @Test
-    void 우승2명() {
-        car2.moveForward();
         car2.moveForward();
         car2.moveForward();
 
@@ -53,11 +38,6 @@ public class CarsTest {
         car3.moveForward();
         car3.moveForward();
 
-        List<Car> winnerList = cars.getWinnerList();
-
-        assertThat(winnerList.size()).isEqualTo(2);
-        assertThat(winnerList.contains(car1)).isFalse();
-        assertThat(winnerList.contains(car2)).isTrue();
-        assertThat(winnerList.contains(car3)).isTrue();
+        assertThat(cars.getMaxAdvancedCar()).isEqualTo(car3);
     }
 }
