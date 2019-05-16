@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+/*
 
 public class CarTest {
 
@@ -47,7 +48,7 @@ public class CarTest {
         assertThat(testCar.findMax(101)).isEqualTo(101);
     }
 
-    /*
+
 
     @Test
     void isWhiteSpaceOnlyTest() {
@@ -64,7 +65,7 @@ public class CarTest {
     void isOverLimitTest() {
         assertThat(Car.isOverLimit("aaaaaa")).isEqualTo(true);
     }
-     */
+
 
     @Test
     void moveCarTest() {
@@ -80,3 +81,6 @@ public class CarTest {
         assertThat(testCar.getCarState()).isEqualTo(checkString);
     }
 }
+
+ */
+

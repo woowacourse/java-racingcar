@@ -8,11 +8,12 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/*
 public class CarsTest {
     List<String> carNames;
     List<Integer> carPositions;
     Cars testCars;
-    /*
+
 
     @BeforeEach
     void setUp() {
@@ -21,7 +22,7 @@ public class CarsTest {
         testCars = new Cars(carNames, carPositions);
     }
 
-     */
+
 
     @Test
     void carsInstantiationTest() {
@@ -59,3 +60,6 @@ public class CarsTest {
     }
 
 }
+
+ */
+
