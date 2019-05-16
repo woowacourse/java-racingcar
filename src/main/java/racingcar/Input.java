@@ -2,12 +2,12 @@ package racingcar;
 
 import java.util.Scanner;
 
-public class InputView {
-    private static final Scanner SCANNER = new Scanner(System.in);
+class Input {
+    private static Scanner SCANNER = new Scanner(System.in);
 
-    static final String INPUT_CAR_NAMES;
-    static final String INPUT_TOTAL_ROUND;
-    static final String INVALID_NUMBER_INPUT;
+    private static String INPUT_CAR_NAMES;
+    private static String INPUT_TOTAL_ROUND;
+    private static String INVALID_NUMBER_INPUT;
 
     static {
         INPUT_CAR_NAMES = "경주할 자동차 이름을 입력하세요. [이름은 쉼표(,)를 기준으로 구분]";
@@ -15,12 +15,12 @@ public class InputView {
         INVALID_NUMBER_INPUT = "올바른 숫자가 입력되지 않았습니다. 다시 입력해 주세요.";
     }
 
-    public static String inputStringWithMessage(String message) {
+    private static String inputStringWithMessage(String message) {
         System.out.println(message);
         return SCANNER.nextLine();
     }
 
-    public static String[] inputCarNames() {
+    static String[] carNames() {
         String[] carNames = inputStringWithMessage(INPUT_CAR_NAMES)
                 .strip()
                 .split(",\\s*");
@@ -30,14 +30,14 @@ public class InputView {
                 new Car(carName);
             } catch (IllegalArgumentException error) {
                 System.out.println(error.getMessage());
-                return inputCarNames(); // 재귀
+                return carNames(); // 재귀
             }
         }
 
         return carNames;
     }
 
-    public static int inputTotalRound() {
+    static int totalRound() {
         int result;
 
         try {
@@ -55,6 +55,6 @@ public class InputView {
 
     private static int inputTotalRoundRetry() { // 재귀용 함수
         System.out.println(INVALID_NUMBER_INPUT);
-        return inputTotalRound();
+        return totalRound();
     }
 }

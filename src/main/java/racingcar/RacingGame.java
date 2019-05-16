@@ -2,8 +2,7 @@ package racingcar;
 
 import java.util.Random;
 
-public class RacingGame {
-
+class RacingGame {
     private final Cars cars = new Cars();
     private int totalRound;
 
@@ -11,45 +10,29 @@ public class RacingGame {
     private final static int BOUNDARY_ZERO_TO_NINE = 10;
     private final static Random RANDOM = new Random();
 
-    public void start() {
-        addCars(InputView.inputCarNames());
-        totalRound = InputView.inputTotalRound();
-        OutputView.printStartMessage();
-        play();
-        OutputView.printFinalWinner(cars.getWinnerList());
+    RacingGame(String[] carNames, int totalRound) {
+        addCars(carNames);
+        this.totalRound = totalRound;
     }
 
-    public Cars getCars() {
-        return cars;
-    }
-
-    public void addCars(String[] carNames) {
+    private void addCars(String[] carNames) {
         for(String carName : carNames){
             cars.addCar(new Car(carName));
         }
     }
 
-    private void play() {
-        for(int i = 0; i < totalRound; i++){
-            playOneRound();
-        }
-    }
-
-    private void playOneRound() {
+    Cars playOneRound() {
         for (Car car : cars) {
             car.randomForward(isMove());
-            OutputView.printCar(car);
         }
+        return cars;
+    }
 
-        OutputView.printNewline();
+    int getTotalRound() {
+        return totalRound;
     }
 
     private boolean isMove() {
         return (RANDOM.nextInt(BOUNDARY_ZERO_TO_NINE) >= FORWARD_CRITERION);
-    }
-
-    public static void main(String[] args) {
-        RacingGame racingGame = new RacingGame();
-        racingGame.start();
     }
 }
