@@ -8,7 +8,7 @@ public class CarFactory {
 
         ArrayList<Car> cars = new ArrayList<>();
         for (String name : names) {
-            cars.add(new Car(name));
+            cars.add(Car.create(name));
         }
         return cars;
     }
