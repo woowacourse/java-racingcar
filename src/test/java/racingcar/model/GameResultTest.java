@@ -5,34 +5,29 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameResultTest {
 
-    GameResult gameResult;
-    final int maxDistance = 5;
+    private GameResult gameResult;
+    private List<Car> carList;
 
     @BeforeEach
     void setUp() {
-        gameResult = new GameResult();
+        carList = new ArrayList<>();
+        carList.add(new Car("pobi", 5));
+        carList.add(new Car("honux", 5));
+        carList.add(new Car("crong", 4));
+
+        gameResult = new GameResult(carList);
     }
 
     @Test
     void 우승자_판별_테스트() {
-        List<Car> carList = new ArrayList<>();
-        carList.add(new Car("pobi",5));
-        carList.add(new Car("honux",5));
-        carList.add(new Car("crong",4));
-
-        List<String> winner = new ArrayList<>();
-        for(Car cars : carList){
-           winner = gameResult.checkMaxPosition(cars,winner,maxDistance);
-        }
-
-        assertThat(String.join(",",winner)).isEqualTo("pobi,honux");
+        List<String> winner = gameResult.racingResult();
+        assertThat(String.join(",", winner)).isEqualTo("pobi,honux");
     }
 
     @AfterEach

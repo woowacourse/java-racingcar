@@ -5,12 +5,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResultViewTest {
 
-    ResultView resultView;
+    private ResultView resultView;
+
     @BeforeEach
     void setUp() {
         resultView = new ResultView();
@@ -18,7 +18,7 @@ public class ResultViewTest {
 
     @Test
     void 자동차_위치_출력_테스트() {
-        Car car = new Car("pobi",5);
+        Car car = new Car("pobi", 5);
         assertThat(resultView.printHypen(car)).isEqualTo("pobi : -----");
     }
 

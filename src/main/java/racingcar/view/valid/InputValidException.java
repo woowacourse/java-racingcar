@@ -5,12 +5,14 @@ import racingcar.constant.MessageConstants;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputValidException {
 
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MINIMUM_PLAYER = 1;
+    private static final Pattern pattern = Pattern.compile("^[0-9]$");
 
     public static boolean hasBlank(String[] inputName) {
         if (inputName.length == MINIMUM_PLAYER && inputName[0].trim().equals("")) {
@@ -51,6 +53,7 @@ public class InputValidException {
         long emptyNameCount = Arrays.stream(inputName).map(c -> c.replace(" ", "")).filter(String::isEmpty).count();
 
         if (emptyNameCount > 0) {
+
             System.err.println(MessageConstants.ERROR_CONTAIN_EMPTY);
             return true;
         }
@@ -77,17 +80,15 @@ public class InputValidException {
     }
 
     public static boolean hasCharacter(String inputNumber) {
-        char[] inputChar = inputNumber.toCharArray();
-        String pattern = "^[0-9]$";
+        Matcher matcher = pattern.matcher(inputNumber);
 
-        if (inputChar[0] == '-') {
+        if (inputNumber.charAt(0) == '-') {
             return false;
         }
-        if (!Pattern.matches(pattern, inputNumber)) {
+        if (!matcher.find()) {
             System.err.println(MessageConstants.ERROR_INPUT_CHAR);
             return true;
         }
-
         return false;
     }
 }

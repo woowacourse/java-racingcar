@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.constant.MessageConstants;
 import racingcar.model.Car;
 import racingcar.model.GameResult;
+import racingcar.model.RandomNumber;
 import racingcar.view.InputView;
 import racingcar.view.ResultView;
 
@@ -40,8 +41,8 @@ public class RacingGame {
     }
 
     private List<Car> oneRoundPosition(List<Car> cars) {
-        for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).isMovePosiotion();
+        for (Car car : cars) {
+            car.moveCarByRandom(RandomNumber.getRandomNumber());
         }
         ResultView.printResult(cars);
 
@@ -49,8 +50,7 @@ public class RacingGame {
     }
 
     private List<String> getWinner(List<Car> cars) {
-        GameResult gameResult = new GameResult();
-        return gameResult.racingResult(cars);
+        return new GameResult(cars).racingResult();
     }
 
 }

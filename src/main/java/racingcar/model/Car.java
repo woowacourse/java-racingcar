@@ -1,19 +1,13 @@
 package racingcar.model;
 
-
-import org.apache.commons.lang3.StringUtils;
-import racingcar.view.InputView;
-
 import java.util.Objects;
-import java.util.Random;
 
 public class Car {
 
     private static final int FOWARD_NUM = 4;
-    private static final int MAX_BOUND = 10;
 
     private String name;
-    private int position = 0;
+    private int position;
 
     public Car(String name) {
         this(name, 0);
@@ -32,9 +26,8 @@ public class Car {
         return position;
     }
 
-    public Car isMovePosiotion() {
-        move(getRandomNumber());
-        return this;
+    public void moveCarByRandom(int randomNumber) {
+        move(randomNumber);
     }
 
     public int comparePosition(int position) {
@@ -49,15 +42,10 @@ public class Car {
         return this.position == position;
     }
 
-    private void move(int randomNumber){
+    private void move(int randomNumber) {
         if (randomNumber >= FOWARD_NUM) {
             this.position++;
         }
-    }
-
-    private int getRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(MAX_BOUND);
     }
 
     @Override

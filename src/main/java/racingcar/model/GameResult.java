@@ -5,9 +5,15 @@ import java.util.List;
 
 public class GameResult {
 
-    public List<String> racingResult(List<Car> cars) {
+    private List<Car> cars;
+
+    public GameResult(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    public List<String> racingResult() {
         int maxDistance = 0;
-        maxDistance = compareMaxDistance(cars, maxDistance);
+        maxDistance = compareMaxDistance(this.cars, maxDistance);
 
         return getWinners(cars, maxDistance);
     }

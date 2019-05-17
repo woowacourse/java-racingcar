@@ -15,19 +15,19 @@ public class ResultView {
         System.out.println();
     }
 
-    public static String printHypen(Car car){
+    public static String printHypen(Car car) {
         return String.format(MessageConstants.RESULT_PRINT_HYPHEN_FORMAT,
                 car.getName(), getHyphen(car.getPosition()));
     }
 
     public static String printWinner(List<String> winners) {
         return String.format(MessageConstants.RESULT_PRINT_WINNER_FORMAT,
-                String.join(",",winners));
+                String.join(",", winners));
     }
 
-    private static String getHyphen(int position){
+    private static String getHyphen(int position) {
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0 ; i < position ; i++) {
+        for (int i = 0; i < position; i++) {
             stringBuilder.append("-");
         }
         return stringBuilder.toString();

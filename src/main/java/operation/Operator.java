@@ -16,7 +16,7 @@ public enum Operator {
     private static Map<String, Operator> operators = new HashMap<>();
 
     static {
-        for(Operator value : Operator.values()){
+        for (Operator value : Operator.values()) {
             operators.put(value.operator, value);
         }
     }
@@ -27,14 +27,12 @@ public enum Operator {
 
     }
 
-    private double calculate(double result, double number){
+    private double calculate(double result, double number) {
         return this.expression.apply(result, number);
     }
 
     public static double doCalculator(String operator, double result, double number) {
-        if(operator.equals("/") && number == 0){
-            throw new IllegalArgumentException("0으로는 나눌 수 없습니다.");
-        }
         return operators.get(operator).calculate(result, number);
     }
+
 }
