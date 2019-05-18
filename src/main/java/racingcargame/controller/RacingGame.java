@@ -1,8 +1,7 @@
 package racingcargame.controller;
 
-import racingcargame.model.Car;
-import racingcargame.model.CarsGenerator;
-import racingcargame.model.TurnsGenerator;
+import racingcargame.view.OutputView;
+import racingcargame.model.*;
 import racingcargame.view.InputView;
 
 import java.util.*;
@@ -13,7 +12,29 @@ public class RacingGame {
     public void play() {
         List<Car> cars = makeCars();
         getTotalTurns();
+        doTheTurns(cars);
+        //List<Car> winners = decideWinners(cars);
+        Winners winners = new Winners(cars);
+        List<String> winnersNames = winners.getWinnersNames();
+        OutputView.printWinners(winnersNames);
+    }
 
+
+    private void doTheTurns(List<Car> cars) {
+        System.out.println("실행결과: ");
+        for (int currentTurn = 0; currentTurn < totalTurns; currentTurn++) {
+            doOneTurn(cars);
+        }
+    }
+
+    private void doOneTurn(List<Car> cars) {
+        for (Car car : cars) {
+            int randomNumber = RandomNumberGenerator.generateRandomNumber();
+            car.updateCarPosition(randomNumber);
+            String carState = car.getCarState();
+            OutputView.printCarState(carState);
+        }
+        OutputView.printLineChange();
     }
 
     private static List<Car> makeCars() {
@@ -37,7 +58,5 @@ public class RacingGame {
             getTotalTurns();
         }
     }
-
-
 
 }

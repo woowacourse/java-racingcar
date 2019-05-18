@@ -38,15 +38,6 @@ public class CarNamesTest {
         assertThrows(IllegalArgumentException.class, ()->
                 CarNames.makeCarNames("a,,,b"));
     }
-    /*
-    @Test
-    void 이름에_공백문자만_있을때_예외테스트() {
-        assertThrows(IllegalArgumentException.class, ()->
-                CarNames.makeCarNames("a, ,b"));
-        assertThrows(IllegalArgumentException.class, ()->
-                CarNames.makeCarNames("a,  ,b"));
-    }
-     */
 
     @Test
     void 이름의길이가적합하지않을때() {
