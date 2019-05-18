@@ -13,7 +13,6 @@ public class RacingGame {
         List<Car> cars = makeCars();
         getTotalTurns();
         doTheTurns(cars);
-        //List<Car> winners = decideWinners(cars);
         Winners winners = new Winners(cars);
         List<String> winnersNames = winners.getWinnersNames();
         OutputView.printWinners(winnersNames);
@@ -21,7 +20,7 @@ public class RacingGame {
 
 
     private void doTheTurns(List<Car> cars) {
-        System.out.println("실행결과: ");
+        OutputView.printResultSentence();
         for (int currentTurn = 0; currentTurn < totalTurns; currentTurn++) {
             doOneTurn(cars);
         }

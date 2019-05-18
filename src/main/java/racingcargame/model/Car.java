@@ -16,7 +16,6 @@ public class Car {
 
     public void updateCarPosition(int randomNumber) {
         position += randomNumber;
-        //return this???
     }
 
     public String getCarState() {

@@ -3,6 +3,8 @@ package racingcargame.model;
 import java.util.*;
 
 public class CarNamesValidator {
+    private static final int MAXIMUM_NAME_LENGTH = 5;
+
     static void checkConditions(String carNames) {
         checkNullName(carNames);
         List<String> names = new ArrayList<>(Arrays.asList(carNames.split(",")));
@@ -29,7 +31,7 @@ public class CarNamesValidator {
     }
 
     private static boolean checkCurrentNameLength(String name) {
-        if (name.isEmpty() || name.length() > 5) {
+        if (name.isEmpty() || name.length() > MAXIMUM_NAME_LENGTH) {
             return true;
         }
         return false;

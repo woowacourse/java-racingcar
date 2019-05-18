@@ -14,7 +14,6 @@ public class CarsGenerator {
         }
 
         return cars;
-
     }
 
 }

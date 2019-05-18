@@ -16,8 +16,6 @@ public class RacingGameLauncher {
     private static void startGame() {
         RacingGame game = new RacingGame();
         game.play();
-        List<Car> testCars = new ArrayList<>(Arrays.asList(new Car("a", 10), new Car("b", 11), new Car("c", 12)));
-        List<Car> testWinners = Judge.decideWinners(testCars);
     }
 
 }
