@@ -34,7 +34,7 @@ public class OutputView {
         System.out.println(stringJoiner.toString() + "가 최종 우승했습니다.");
     }
 
-    public static void saysSomethingBeforeShowingResult() {
+    public static void printStartTheGame() {
         System.out.print(RESULT_IS);
     }
 }

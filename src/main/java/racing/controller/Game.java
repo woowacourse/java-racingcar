@@ -6,7 +6,6 @@ import racing.model.Random;
 import racing.view.InputView;
 import racing.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -27,7 +26,7 @@ public class Game {
     }
 
     static void doRounds(List<Car> cars, int roundNum) {
-        OutputView.saysSomethingBeforeShowingResult();
+        OutputView.printStartTheGame();
         for (int i = 0; i < roundNum; i++) {
             doRound(cars);
         }
