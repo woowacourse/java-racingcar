@@ -1,6 +1,5 @@
-package racingcar.controller;
+package racingcar.model;
 
-import racingcar.model.Car;
 import racingcar.view.InputView;
 
 import java.util.*;
@@ -11,7 +10,7 @@ public class InputManager {
     private static final String INPUT_GAME_COUNT_ERROR_MENT = "시도할 횟수를 정확하게 입력하세요";
     private static final int MIN_GAME_COUNT = 0;
 
-    List<Car> getRacingCar() {
+    public List<Car> getRacingCar() {
         List<Car> racingCars = new ArrayList<>();
         List<String> racingCarNames = getCheckedCarNames();
         for (String racingCarName : racingCarNames) {
@@ -46,7 +45,7 @@ public class InputManager {
         }
     }
 
-    int getGameCount() {
+    public int getGameCount() {
         int gameCount = 0;
         try {
             gameCount = InputView.getRacingCount();
