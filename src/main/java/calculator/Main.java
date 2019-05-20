@@ -8,8 +8,14 @@ public class Main {
     public static void start() {
         String expression = InputHandler.getInput();
         Calculator calculator = new Calculator();
+        calculate(expression, calculator);
+    }
 
-        calculator.calculateInput(expression);
-
+    private static void calculate(String expression, Calculator calculator) {
+        try {
+            calculator.calculateInput(expression);
+        } catch (ArithmeticException e) {
+            start();
+        }
     }
 }

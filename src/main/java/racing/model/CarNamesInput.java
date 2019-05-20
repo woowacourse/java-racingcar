@@ -30,8 +30,8 @@ public class CarNamesInput {
     }
 
     private boolean checkInvalidNameLength(String[] names) {
-        for ( String name : names
-             ) {
+        for (String name : names
+        ) {
             if (name.length() > NAME_LENGTH_LIMIT_TOP || name.length() < NAME_LENGTH_LIMIT_BOTTOM)
                 return true;
         }

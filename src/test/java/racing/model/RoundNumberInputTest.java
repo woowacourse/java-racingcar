@@ -9,6 +9,7 @@ public class RoundNumberInputTest {
     @Test
     void 잘못된_라운드_입력_확인() {
         assertThrows(Exception.class, () -> {
-            RoundNumberInput.getRoundNumber("aa");});
+            RoundNumberInput.getRoundNumber("aa");
+        });
     }
 }

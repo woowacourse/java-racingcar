@@ -1,12 +1,12 @@
 package racing.model;
 
 
+import racing.dto.MovedCar;
+
 import java.util.Objects;
 
 public class Car {
     private static final int BOUNDARY = 4;
-
-
     private String name;
     private int position = 0;
 
@@ -14,9 +14,10 @@ public class Car {
         this.name = name;
     }
 
-    public void move(int randomNumber) {
+    public MovedCar move(int randomNumber) {
         if (randomNumber >= BOUNDARY)
             position++;
+        return new MovedCar(this.name, this.position);
     }
 
     public int getPosition() {
