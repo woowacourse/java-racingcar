@@ -1,6 +1,5 @@
 package racing.controller;
 
-import racing.dto.MovedCar;
 import racing.model.Car;
 import racing.model.GameResult;
 import racing.model.Random;

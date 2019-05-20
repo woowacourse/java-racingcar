@@ -1,6 +1,5 @@
 package calculator;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputHandler {
@@ -8,13 +7,12 @@ public class InputHandler {
 
     static Scanner scanner = new Scanner(System.in);
 
-    public static String getInput() {
+    public static NumericExpression getInput() {
         System.out.println(ASK_EXPRESSION);
         String input = scanner.nextLine();
 
         try {
-            NumericExpression numericExpression = new NumericExpression(input);
-            return numericExpression.toString();
+            return new NumericExpression(input);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return getInput();

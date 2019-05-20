@@ -2,7 +2,7 @@ package calculator;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class NumericExpressionTest {
@@ -12,7 +12,7 @@ public class NumericExpressionTest {
         String input = "3 + 2 : 3";
         assertThrows(Exception.class, () -> {
             new NumericExpression(input);
-        }).printStackTrace();
+        });
     }
 
     @Test
@@ -20,7 +20,7 @@ public class NumericExpressionTest {
         String input = "3 + 2 / ㅁ";
         assertThrows(Exception.class, () -> {
             new NumericExpression(input);
-        }).printStackTrace();
+        });
     }
 
     @Test
@@ -28,7 +28,7 @@ public class NumericExpressionTest {
         String input = "3 + 2 /";
         assertThrows(Exception.class, () -> {
             new NumericExpression(input);
-        }).printStackTrace();
+        });
     }
 
     @Test
@@ -36,7 +36,7 @@ public class NumericExpressionTest {
         String input = "";
         assertThrows(Exception.class, () -> {
             new NumericExpression(input);
-        }).printStackTrace();
+        });
     }
 
     @Test
@@ -44,7 +44,7 @@ public class NumericExpressionTest {
         String input = " ";
         assertThrows(Exception.class, () -> {
             new NumericExpression(input);
-        }).printStackTrace();
+        });
     }
 
     @Test
@@ -52,8 +52,15 @@ public class NumericExpressionTest {
         String input = "3 +  2";
         assertThrows(Exception.class, () -> {
             new NumericExpression(input);
-        }).printStackTrace();
+        });
+    }
 
+    @Test
+    void 올바른_입력() throws Exception {
+        String input = "3 / 2";
+        assertDoesNotThrow(() -> {
+            new NumericExpression(input);
+        });
     }
 
 

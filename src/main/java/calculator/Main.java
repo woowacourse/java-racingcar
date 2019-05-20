@@ -6,9 +6,9 @@ public class Main {
     }
 
     public static void start() {
-        String expression = InputHandler.getInput();
+        NumericExpression expression = InputHandler.getInput();
         Calculator calculator = new Calculator();
-        calculate(expression, calculator);
+        calculate(expression.getExpression(), calculator);
     }
 
     private static void calculate(String expression, Calculator calculator) {

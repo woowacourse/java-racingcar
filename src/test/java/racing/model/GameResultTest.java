@@ -2,8 +2,6 @@ package racing.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racing.model.Car;
-import racing.model.GameResult;
 
 import java.util.ArrayList;
 import java.util.HashSet;

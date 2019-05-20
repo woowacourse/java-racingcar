@@ -44,11 +44,14 @@ public class CalculatorTest {
     @Test
     void 영으로_나누는_연산() {
         String input = "3 / 0";
-        Calculator calculator = new Calculator();
         assertThrows(Exception.class, () -> {
-            calculator.calculateMultiExpression(input.split(" "));
-        }).printStackTrace();
+            cal.calculateMultiExpression(input.split(" "));
+        });
     }
+
+
+
+
 
 
 }
