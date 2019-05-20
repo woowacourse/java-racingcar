@@ -21,10 +21,4 @@ public class OperatorTest {
         assertThat(Operator.getOperatorByCode("+")).isEqualTo(Operator.PLUS);
     }
 
-    @Test
-    void getOperatorByCode_비정상_입력() {
-        assertThrows(Exception.class, () -> {
-            Operator.getOperatorByCode("1");
-        });
-    }
 }

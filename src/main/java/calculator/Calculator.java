@@ -19,7 +19,6 @@ public class Calculator {
             result = calculateSingleExpression(result, strings[i], strings[i + 1]);
             i = i + 2;
         }
-
         return result;
     }
 
