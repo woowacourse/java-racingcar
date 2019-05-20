@@ -39,4 +39,10 @@ class CarTest {
         });
     }
 
+    @Test
+    void 현재포지션() {
+        Car car = new Car("test",5);
+        assertThat(car.getCurrentPosition()).isEqualTo("test : -----");
+    }
+
 }
