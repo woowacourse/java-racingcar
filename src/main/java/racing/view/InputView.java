@@ -17,7 +17,8 @@ public class InputView {
     public static List<Car> getCars() {
         System.out.println(ASK_CAR_NAMES);
         try {
-            return CarNamesInput.getCars(SCANNER.nextLine());
+            CarNamesInput carNamesInput = new CarNamesInput(SCANNER.nextLine());
+            return carNamesInput.getCars();
             //차 이름을 차 객체들로 변환
         } catch (Exception e) {
             System.out.println(CARNAMES_ERROR + "\n");

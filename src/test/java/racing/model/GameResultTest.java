@@ -1,5 +1,6 @@
 package racing.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racing.model.Car;
 import racing.model.GameResult;
@@ -11,6 +12,12 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class GameResultTest {
+    GameResult gameResult;
+
+    @BeforeEach
+    void initGameResult() {
+        gameResult = new GameResult();
+    }
 
     @Test
     void 챔피언이_하나일_때_챔피언_계산() throws Exception {
@@ -22,7 +29,7 @@ public class GameResultTest {
         cars.get(0).move(5);
         List<Car> winners = new ArrayList<>();
         winners.add(cars.get(0));
-        assertThat(GameResult.calculateChampions(cars)).isEqualTo(winners);
+        assertThat(gameResult.calculateChampions(cars)).isEqualTo(winners);
     }
 
     @Test
@@ -37,6 +44,6 @@ public class GameResultTest {
         winners.add(cars.get(1));
         winners.add(cars.get(0));
         HashSet<Car> winnerSet = new HashSet<>(winners);
-        assertThat(new HashSet(GameResult.calculateChampions(cars))).isEqualTo(winnerSet);
+        assertThat(new HashSet(gameResult.calculateChampions(cars))).isEqualTo(winnerSet);
     }
 }

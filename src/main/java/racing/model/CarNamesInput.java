@@ -1,49 +1,56 @@
 package racing.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class CarNamesInput {
+    private static final int NAME_LENGTH_LIMIT_TOP = 5;
+    private static final int NAME_LENGTH_LIMIT_BOTTOM = 1;
+    private final String input;
 
-    public static List<Car> getCars(String input) throws Exception {
+    public CarNamesInput(final String input) throws Exception {
         String[] names = splitNames(input);
         checkCarNamesValidity(names);
-        return convertToCars(names);
+        this.input = input;
     }
 
-    public static String[] splitNames(String names) {
+    public List<Car> getCars() throws Exception {
+        return convertToCars(splitNames(input));
+    }
 
+    private String[] splitNames(String names) {
         return names.replaceAll(" ", "").split(",");
     }
 
 
-    private static void checkCarNamesValidity(String[] names) throws Exception {
-        if (checkNoInput(names) || checkRepetition(names)) {
+    private void checkCarNamesValidity(String[] names) throws Exception {
+        if (checkInvalidNameLength(names) || checkNoInput(names) ||
+                checkRepetition(names, new HashSet(Arrays.asList(names)))) {
             throw new Exception("잘못된 입력입니다.");
         }
     }
 
-    static boolean checkNoInput(String[] names) {
+    private boolean checkInvalidNameLength(String[] names) {
+        for ( String name : names
+             ) {
+            if (name.length() > NAME_LENGTH_LIMIT_TOP || name.length() < NAME_LENGTH_LIMIT_BOTTOM)
+                return true;
+        }
+        return false;
+    }
+
+    private boolean checkNoInput(String[] names) {
         return names.length == 0;
     }
 
-
-    static boolean checkRepetition(String[] names) {
-        return names.length != arrayToSet(names).size();
+    private boolean checkRepetition(String[] names, Set<String> namesWithoutRepetition) {
+        return names.length != namesWithoutRepetition.size();
     }
 
-    private static HashSet<String> arrayToSet(String[] names) {
-        return new HashSet(Arrays.asList(names));
-    }
-
-    private static List<Car> convertToCars(String[] names) throws Exception {
+    private List<Car> convertToCars(String[] names) throws Exception {
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < names.length; i++) {
             cars.add(new Car(names[i]));
         }
-
         return cars;
     }
 
