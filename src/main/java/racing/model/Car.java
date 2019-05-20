@@ -19,15 +19,6 @@ public class Car {
             position++;
     }
 
-    public String statusString() {
-        String carPositionString = name + " : ";
-        for (int i = 0; i < position; i++) {
-            carPositionString += '-';
-        }
-
-        return carPositionString;
-    }
-
     public int getPosition() {
         return position;
     }
