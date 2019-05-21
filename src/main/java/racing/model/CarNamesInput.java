@@ -1,6 +1,9 @@
 package racing.model;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class CarNamesInput {
     private static final int NAME_LENGTH_LIMIT_TOP = 5;

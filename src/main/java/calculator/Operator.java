@@ -10,7 +10,7 @@ public enum Operator {
     MULTI("*", (num1, num2) -> num1 * num2),
     DIVIDE("/", (num1, num2) -> num1 / num2);
 
-    public BiFunction<Integer, Integer, Integer> function;
+    private BiFunction<Integer, Integer, Integer> function;
     private String operatorString;
 
     Operator(String operatorString, BiFunction<Integer, Integer, Integer> function) {
@@ -25,6 +25,10 @@ public enum Operator {
 
     private String getOperatorCode() {
         return this.operatorString;
+    }
+
+    public int apply(int leftOperand, int rightOperand) {
+        return this.function.apply(leftOperand, rightOperand);
     }
 
     public static Operator getOperatorByCode(String code) {

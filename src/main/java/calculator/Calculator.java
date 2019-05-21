@@ -6,7 +6,7 @@ public class Calculator {
     public int calculateSingleExpression(int leftOperand, String operator, String rightOperandStr) {
         int rightOperand = Integer.parseInt(rightOperandStr);
         return Operator.getOperatorByCode(operator)
-                .function.apply(leftOperand, rightOperand);
+                .apply(leftOperand, rightOperand);
     }
 
     public int calculateMultiExpression(String[] strings) {

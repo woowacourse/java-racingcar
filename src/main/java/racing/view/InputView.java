@@ -1,6 +1,5 @@
 package racing.view;
 
-import racing.model.Car;
 import racing.model.CarNamesInput;
 import racing.model.RoundNumberInput;
 
