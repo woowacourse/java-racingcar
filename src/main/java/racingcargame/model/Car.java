@@ -3,15 +3,24 @@ package racingcargame.model;
 import java.util.Objects;
 
 public class Car {
+    private static final int MAXIMUM_NAME_LENGTH = 5;
+
     private final String name;
     private int position = 0;
 
-    Car(String name) {
+    public Car(String name) {
+        checkNameLength(name);
         this.name = name;
     }
     public Car(String name, int position) {
         this.name = name;
         this.position = position;
+    }
+
+    private static void checkNameLength(String name) {
+        if (name.isEmpty() || name.length() > MAXIMUM_NAME_LENGTH) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public void updateCarPosition(int randomNumber) {
