@@ -1,6 +1,7 @@
 package racing.controller;
 
 import racing.model.Car;
+import racing.model.CarFactory;
 import racing.model.GameResult;
 import racing.model.Random;
 import racing.view.InputView;
@@ -17,7 +18,7 @@ public class Game {
     }
 
     public static void start() {
-        List<Car> cars = InputView.getCars();
+        List<Car> cars = CarFactory.generateCarsByNames(InputView.getCarNames());
         int roundNum = InputView.getRoundNumber();
         doRounds(cars, roundNum);
 

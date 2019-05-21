@@ -14,15 +14,15 @@ public class InputView {
     static final String ASK_CAR_NAMES = "경주할 자동차 이름을 입력하세요)이름은 쉼표(,)를 기준으로 구분).";
     static final String ASK_ROUND_NUMBERS = "시도할 횟수는 몇회인가요?";
 
-    public static List<Car> getCars() {
+    public static List<String> getCarNames() {
         System.out.println(ASK_CAR_NAMES);
         try {
             CarNamesInput carNamesInput = new CarNamesInput(SCANNER.nextLine());
-            return carNamesInput.getCars();
+            return carNamesInput.getNames();
             //차 이름을 차 객체들로 변환
         } catch (Exception e) {
             System.out.println(CARNAMES_ERROR + "\n");
-            return getCars();
+            return getCarNames();
         }
     }
 

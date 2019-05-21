@@ -5,16 +5,16 @@ import java.util.*;
 public class CarNamesInput {
     private static final int NAME_LENGTH_LIMIT_TOP = 5;
     private static final int NAME_LENGTH_LIMIT_BOTTOM = 1;
-    private final String input;
+    private final List<String> names;
 
     public CarNamesInput(final String input) throws Exception {
         String[] names = splitNames(input);
         checkCarNamesValidity(names);
-        this.input = input;
+        this.names = Arrays.asList(splitNames(input));
     }
 
-    public List<Car> getCars() throws Exception {
-        return convertToCars(splitNames(input));
+    public List<String> getNames() {
+        return names;
     }
 
     private String[] splitNames(String names) {
@@ -30,8 +30,7 @@ public class CarNamesInput {
     }
 
     private boolean checkInvalidNameLength(String[] names) {
-        for (String name : names
-        ) {
+        for (String name : names) {
             if (name.length() > NAME_LENGTH_LIMIT_TOP || name.length() < NAME_LENGTH_LIMIT_BOTTOM)
                 return true;
         }
@@ -45,14 +44,4 @@ public class CarNamesInput {
     private boolean checkRepetition(String[] names, Set<String> namesWithoutRepetition) {
         return names.length != namesWithoutRepetition.size();
     }
-
-    private List<Car> convertToCars(String[] names) throws Exception {
-        List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < names.length; i++) {
-            cars.add(new Car(names[i]));
-        }
-        return cars;
-    }
-
-
 }
