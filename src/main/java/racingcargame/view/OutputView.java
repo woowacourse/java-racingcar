@@ -1,8 +1,10 @@
 package racingcargame.view;
 
 import racingcargame.model.Car;
+import racingcargame.model.Cars;
 import racingcargame.model.Winners;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
@@ -11,17 +13,31 @@ public class OutputView {
         System.out.println("답은 " + result + " 입니다!");
     }
 
-    public static void printCarState(String carState) {
-        System.out.println(carState);
+    public static void printCarMovements(Cars resultCars) {
+        for (Car car : resultCars.getCars()) {
+            System.out.print(car.getName() + ":");
+            printPosition(car.getPosition());
+        }
+    }
+
+    private static void printPosition(int position) {
+        for (int i = 0; i < position; i++) {
+            System.out.print("-");
+            System.out.println();
+        }
     }
 
     public static void printLineChange() {
         System.out.println();
     }
 
-    public static void printWinners(List<String> winnersNames) {
-        String winners = String.join(",", winnersNames);
-        System.out.println(winners + " 가 우승했습니다");
+    public static void printWinners(Winners winners) {
+        List<String> names = new ArrayList<>();
+        for (Car car : winners.getWinners()) {
+            names.add(car.getName());
+        }
+        String winnersNames = String.join(",", names);
+        System.out.println(winnersNames + " 가 우승했습니다!");
     }
 
     public static void printResultSentence() {

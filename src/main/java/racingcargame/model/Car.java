@@ -2,7 +2,7 @@ package racingcargame.model;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int MAXIMUM_NAME_LENGTH = 5;
 
     private final String name;
@@ -23,8 +23,19 @@ public class Car {
         }
     }
 
-    public void updateCarPosition(int randomNumber) {
-        position += randomNumber;
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public Car update(int randomNumber) {
+        if (randomNumber > 4) {
+            return new Car(name, position + 1);
+        }
+        return new Car(name, position);
     }
 
     public String getCarState() {
@@ -43,8 +54,8 @@ public class Car {
         return max;
     }
 
-    public boolean isMax(int max) {
-        if (position == max) {
+    public boolean isMax(Car maxCar) {
+        if (position == maxCar.position) {
             return true;
         }
         return false;
@@ -64,7 +75,8 @@ public class Car {
         return Objects.hash(name, position);
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public int compareTo(Car car) {
+        return Integer.compare(this.position, car.position);
     }
 }

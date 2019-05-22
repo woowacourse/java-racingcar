@@ -20,7 +20,33 @@ public class Cars {
         }
     }
 
-    public void
+    public Cars cloneCars() {
+        List<String> names = new ArrayList<>();
+        for (Car car : cars) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(car.getName());
+            names.add(sb.toString());
+        }
+        String carNames = String.join(",", names);
+        return new Cars(carNames);
+    }
+
+    public Cars moveTheCars(List<Integer> randomNumbers) {
+        for (int i = 0, n = cars.size(); i < n; i++) {
+            Car movedCar = cars.get(i).update(randomNumbers.get(i));
+            cars.remove(i);
+            cars.add(i, movedCar);
+        }
+        return this;
+    }
+
+    public int getSize() {
+        return cars.size();
+    }
+
+    public List<Car> getCars() {
+        return this.cars;
+    }
 
 
 

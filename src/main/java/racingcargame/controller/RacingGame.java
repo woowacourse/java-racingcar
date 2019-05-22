@@ -10,16 +10,13 @@ public class RacingGame {
     private Turns totalTurns;
 
     public void play() {
-        //get necessary information
         Cars cars = generateCars();
         getTotalTurns();
 
-        //do the game
         Cars resultCars = doTheTurns(cars);
-        Winners winners = new Winners(cars);
+        Winners winners = new Winners(resultCars);
 
-        List<String> winnersNames = winners.getWinnersNames();
-        OutputView.printWinners(winnersNames);
+        OutputView.printWinners(winners);
     }
 
     private Cars generateCars() {
@@ -31,7 +28,6 @@ public class RacingGame {
             System.out.println("자동차 이름 중에 잘못된 이름이 있습니다!");
             return generateCars();
         }
-
     }
 
     private void getTotalTurns() {
@@ -45,32 +41,23 @@ public class RacingGame {
         }
     }
 
-    private void doTheTurns(List<Car> cars) {
+    private Cars doTheTurns(Cars cars) {
         OutputView.printResultSentence();
+        Cars resultCars = cars.cloneCars();
         for (int currentTurn = 0; currentTurn < totalTurns.getTurns(); currentTurn++) {
-            cars.moveTheCars();
+            List<Integer> randomNumbers = generateRandomNumbers(cars.getSize());
+            resultCars = resultCars.moveTheCars(randomNumbers);
+            OutputView.printCarMovements(resultCars);
         }
+        return resultCars;
     }
 
-    private void doOneTurn(List<Car> cars) {
-        for (Car car : cars) {
-            int randomNumber = RandomNumberGenerator.generateRandomNumber();
-            car.updateCarPosition(randomNumber);
-            String carState = car.getCarState();
-            OutputView.printCarState(carState);
+    private List<Integer> generateRandomNumbers(int size) {
+        List<Integer> randomNumbers = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int currentRandom = (int) (Math.random() * 10);
+            randomNumbers.add(currentRandom);
         }
-        OutputView.printLineChange();
+        return randomNumbers;
     }
-
-    private static List<Car> makeCars() {
-        try {
-            String carNames = InputView.askCarNames();
-            List<Car> cars = CarsGenerator.makeCars(carNames);
-            return cars;
-        } catch (Exception e) {
-            System.out.println("잘못된 차이름이 있습니다!");
-            return makeCars();
-        }
-    }
-
 }
