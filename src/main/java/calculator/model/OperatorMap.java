@@ -1,4 +1,4 @@
-package calculator;
+package calculator.model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 public class OperatorMap {
     private Map<String, Operator> functionMap = new HashMap<>();
 
-    OperatorMap() {
+    public OperatorMap() {
         functionMap.put("+", Operator.PLUS);
         functionMap.put("-", Operator.MINUS);
         functionMap.put("/", Operator.DIVIDE);

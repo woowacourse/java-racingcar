@@ -1,4 +1,6 @@
-package calculator;
+package calculator.model;
+
+import calculator.view.InputView;
 
 import java.util.*;
 
@@ -82,11 +84,15 @@ public class ExtractedInformation {
         return true;
     }
 
+    public int calculate(OperatorMap functionMap, int result, int index) {
+        return functionMap.getFunction(symbols.get(index)).calculate(result, numbers.get(index+1));
+    }
+
     public int getInitialValue() {
 return numbers.get(INITIAL_INDEX);
     }
 
-    public int getSymbolSize() {
+    public int getCalculatingRounds() {
         return symbols.size();
     }
 

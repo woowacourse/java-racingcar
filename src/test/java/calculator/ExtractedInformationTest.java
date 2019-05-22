@@ -1,5 +1,6 @@
 package calculator;
 
+import calculator.model.ExtractedInformation;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;

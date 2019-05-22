@@ -40,6 +40,8 @@ public class RacingGame {
         return new Cars(carNames);
     }
 
+    만약 throw new IllegalArgumentException을 쓴다면 check에서 throw하고 잡힐 시 true:주입!
+
      */
 
 
