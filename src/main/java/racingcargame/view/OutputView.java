@@ -18,13 +18,14 @@ public class OutputView {
             System.out.print(car.getName() + ":");
             printPosition(car.getPosition());
         }
+        System.out.println();
     }
 
     private static void printPosition(int position) {
         for (int i = 0; i < position; i++) {
             System.out.print("-");
-            System.out.println();
         }
+        System.out.println();
     }
 
     public static void printLineChange() {

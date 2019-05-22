@@ -30,6 +30,19 @@ public class RacingGame {
         }
     }
 
+    /*
+    private Cars generateCarsIter() {
+        boolean isUserInputWrong = true;
+        while(isUserInputWrong) {
+            String carNames = InputView.askCarNames();
+            isUserInputWrong = checkCarNames(carNames);
+        }
+        return new Cars(carNames);
+    }
+
+     */
+
+
     private void getTotalTurns() {
         try {
             String input = InputView.askTotalTurns();
