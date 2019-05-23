@@ -10,7 +10,7 @@ public class Turns {
     }
 
     private void checkTotalTurns(int totalTurns) {
-        if (totalTurns < 1 || totalTurns > 5) {
+        if (totalTurns < 1) {
             throw new IllegalArgumentException();
         }
     }
