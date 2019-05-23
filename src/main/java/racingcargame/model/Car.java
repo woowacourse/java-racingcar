@@ -38,22 +38,6 @@ public class Car implements Comparable<Car> {
         return new Car(name, position);
     }
 
-    public String getCarState() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name).append(":");
-        for (int i = 0; i < this.position; i++) {
-            sb.append("-");
-        }
-        return sb.toString();
-    }
-
-    public int findMax(int max) {
-        if (position > max) {
-            max = position;
-        }
-        return max;
-    }
-
     public boolean isMax(Car maxCar) {
         if (position == maxCar.position) {
             return true;

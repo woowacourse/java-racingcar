@@ -27,19 +27,6 @@ public class Cars {
         }
     }
 
-    public boolean getPassingBooleanValue(String carNames) {
-        try {
-            List<String> names = new ArrayList<>(Arrays.asList(carNames.split(",")));
-            checkDuplicateNames(names);
-            for (String name : names) {
-                cars.add(new Car(name));
-            }
-            return false;
-        } catch (Exception e) {
-            return true;
-        }
-    }
-
     private static void checkDuplicateNames(List<String> names) {
         Set<String> namesWithoutDuplicates = new HashSet<>(names);
         if (names.size() != namesWithoutDuplicates.size()) {
