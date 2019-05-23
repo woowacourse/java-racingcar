@@ -13,6 +13,10 @@ public class Cars {
         }
     }
 
+    public Cars(List<Car> cars) {
+        this.cars = cars;
+    }
+
     public static boolean checkCarNames(String carNames) {
         try {
             new Cars(carNames);

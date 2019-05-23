@@ -1,5 +1,8 @@
 package calculator;
 
+import calculator.model.Calculator;
+import calculator.model.ExtractedInformation;
+import calculator.model.OperatorMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -7,38 +10,49 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-/*
+
 
 public class CalculatorTest {
     @Test
-    void calculateTest() {
+        void 덧셈_테스트() {
         List<String> test = Arrays.asList("2", "+", "3");
         ExtractedInformation extractedInfo = new ExtractedInformation(test);
-        assertThat(Calculator.calculate(extractedInfo)).isEqualTo(5);
+        OperatorMap functionMap = new OperatorMap();
+        Calculator calculator = new Calculator(extractedInfo, functionMap);
+
+        assertThat(calculator.calculate()).isEqualTo(5);
     }
 
     @Test
-    void calculateTest2() {
+    void 뺄셈_테스트() {
         List<String> test = Arrays.asList("2", "-", "3");
         ExtractedInformation extractedInfo = new ExtractedInformation(test);
-        assertThat(Calculator.calculate(extractedInfo)).isEqualTo(-1);
+        OperatorMap functionMap = new OperatorMap();
+        Calculator calculator = new Calculator(extractedInfo, functionMap);
+
+        assertThat(calculator.calculate()).isEqualTo(-1);
     }
 
+
     @Test
-    void calculateTest3() {
+    void 나눗셈_테스트() {
         List<String> test = Arrays.asList("4","/" , "2");
         ExtractedInformation extractedInfo = new ExtractedInformation(test);
-        assertThat(Calculator.calculate(extractedInfo)).isEqualTo(2);
+        OperatorMap functionMap = new OperatorMap();
+        Calculator calculator = new Calculator(extractedInfo, functionMap);
+
+        assertThat(calculator.calculate()).isEqualTo(2);
     }
 
     @Test
-    void calculateTest4() {
+    void 곱셈_테스트() {
         List<String> test = Arrays.asList("2", "*", "3");
         ExtractedInformation extractedInfo = new ExtractedInformation(test);
-        assertThat(Calculator.calculate(extractedInfo)).isEqualTo(6);
+        OperatorMap functionMap = new OperatorMap();
+        Calculator calculator = new Calculator(extractedInfo, functionMap);
+
+        assertThat(calculator.calculate()).isEqualTo(6);
     }
 
 }
-
- */
 
