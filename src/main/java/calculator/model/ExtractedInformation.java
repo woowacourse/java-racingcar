@@ -10,7 +10,7 @@ public class ExtractedInformation {
     private List<Integer> numbers = new ArrayList<>();
     private List<String> symbols = new ArrayList<>();
 
-    ExtractedInformation(List<String> expression) {
+    public ExtractedInformation(List<String> expression) {
         checkConditions(expression);
         for (int i = 0, n = expression.size(); i <n; i += 2) {
             numbers.add(Integer.parseInt(expression.get(i)));

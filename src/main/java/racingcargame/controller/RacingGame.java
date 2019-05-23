@@ -18,6 +18,8 @@ public class RacingGame {
 
         OutputView.printWinners(winners);
     }
+    /*
+    @generateCar recursive version
 
     private Cars generateCars() {
         try {
@@ -28,6 +30,19 @@ public class RacingGame {
             System.out.println("자동차 이름 중에 잘못된 이름이 있습니다!");
             return generateCars();
         }
+    }
+     */
+
+    //generateCar IterativeVersion
+    private Cars generateCars() {
+        String carNames = "Error @ generateCar()";
+        boolean isUserInputWrong = true;
+        while (isUserInputWrong) {
+            carNames = InputView.askCarNames();
+            carNames = carNames.replaceAll(" ", ",");
+            isUserInputWrong = Cars.checkCarNames(carNames);
+        }
+        return new Cars(carNames);
     }
 
     /*

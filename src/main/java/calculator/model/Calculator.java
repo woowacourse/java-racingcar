@@ -18,6 +18,6 @@ public class Calculator {
         for (int i = 0, n = extractedInfo.getCalculatingRounds(); i < n; i++) {
             result = extractedInfo.calculate(functionMap, result, i);
         }
-        return 100;
+        return result;
     }
 }

@@ -13,6 +13,29 @@ public class Cars {
         }
     }
 
+    public static boolean checkCarNames(String carNames) {
+        try {
+            new Cars(carNames);
+            return false;
+        } catch (Exception e) {
+            System.out.println("입력이 잘못되었습니다!");
+            return true;
+        }
+    }
+
+    public boolean getPassingBooleanValue(String carNames) {
+        try {
+            List<String> names = new ArrayList<>(Arrays.asList(carNames.split(",")));
+            checkDuplicateNames(names);
+            for (String name : names) {
+                cars.add(new Car(name));
+            }
+            return false;
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
     private static void checkDuplicateNames(List<String> names) {
         Set<String> namesWithoutDuplicates = new HashSet<>(names);
         if (names.size() != namesWithoutDuplicates.size()) {
@@ -47,7 +70,4 @@ public class Cars {
     public List<Car> getCars() {
         return this.cars;
     }
-
-
-
 }

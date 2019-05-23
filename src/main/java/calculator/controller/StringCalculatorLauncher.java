@@ -14,7 +14,9 @@ public class StringCalculatorLauncher {
         ExtractedInformation extractedInfo = ExtractedInformation.instantiateExtractor();
         OperatorMap functionMap = new OperatorMap();
         Calculator calculator = new Calculator(extractedInfo, functionMap);
+
         int result = calculator.calculate();
+
         OutputView.printResult(result);
     }
 }
