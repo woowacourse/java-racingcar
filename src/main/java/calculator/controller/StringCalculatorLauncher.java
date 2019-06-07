@@ -8,7 +8,6 @@ import racingcargame.view.OutputView;
 
 
 public class StringCalculatorLauncher {
-    private static final String SPACE = " ";
     public static void main(String[] args) {
         doCalculate();
     }

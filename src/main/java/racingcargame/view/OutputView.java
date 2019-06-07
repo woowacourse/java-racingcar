@@ -28,10 +28,6 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printLineChange() {
-        System.out.println();
-    }
-
     public static void printWinners(Winners winners) {
         List<String> names = new ArrayList<>();
         for (Car car : winners.getWinners()) {

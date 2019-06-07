@@ -1,6 +1,7 @@
 package racingcargame.model;
 
 public class Turns {
+    private static final int MINIMUM_TURN = 1;
     private int turns;
 
     public Turns(String turns) {
@@ -10,12 +11,12 @@ public class Turns {
     }
 
     private void checkTotalTurns(int totalTurns) {
-        if (totalTurns < 1) {
+        if (totalTurns < MINIMUM_TURN) {
             throw new IllegalArgumentException();
         }
     }
 
-    public int getTurns() {
-        return turns;
+    public boolean isTurnsNotFinished(int currentTurn) {
+        return turns != currentTurn;
     }
 }

@@ -17,13 +17,12 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static boolean checkCarNames(String carNames) {
+    public static Cars instantiateCars(String carNames) {
         try {
-            new Cars(carNames);
-            return false;
+            return new Cars(carNames);
         } catch (Exception e) {
             System.out.println("입력이 잘못되었습니다!");
-            return true;
+            return null;
         }
     }
 

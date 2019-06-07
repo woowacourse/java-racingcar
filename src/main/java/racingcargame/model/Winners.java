@@ -33,6 +33,6 @@ public class Winners {
     }
 
     public List<Car> getWinners() {
-        return winners;
+        return Collections.unmodifiableList(winners);
     }
 }

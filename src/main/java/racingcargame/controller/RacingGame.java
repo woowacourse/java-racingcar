@@ -7,77 +7,48 @@ import racingcargame.view.InputView;
 import java.util.*;
 
 public class RacingGame {
-    private Turns totalTurns;
 
     public void play() {
         Cars cars = generateCars();
-        getTotalTurns();
+        Turns turns = generateTurns();
 
-        Cars resultCars = doTheTurns(cars);
+        Cars resultCars = doTheTurns(cars, turns);
         Winners winners = new Winners(resultCars);
 
         OutputView.printWinners(winners);
     }
-    /*
-    @generateCar recursive version
 
     private Cars generateCars() {
-        try {
+        Cars cars = null;
+        while (cars == null) {
             String carNames = InputView.askCarNames();
-            carNames = carNames.replaceAll(" ","");
-            return new Cars(carNames);
-        } catch (Exception e) {
-            System.out.println("자동차 이름 중에 잘못된 이름이 있습니다!");
-            return generateCars();
+            carNames = carNames.replaceAll(" ", "");
+            cars = Cars.instantiateCars(carNames);
         }
-    }
-     */
-
-    //generateCar IterativeVersion
-    private Cars generateCars() {
-        String carNames = "Error @ generateCar()";
-        boolean isUserInputWrong = true;
-        while (isUserInputWrong) {
-            carNames = InputView.askCarNames();
-            carNames = carNames.replaceAll(" ", ",");
-            isUserInputWrong = Cars.checkCarNames(carNames);
-        }
-        return new Cars(carNames);
+        return cars;
     }
 
-    /*
-    private Cars generateCarsIter() {
-        boolean isUserInputWrong = true;
-        while(isUserInputWrong) {
-            String carNames = InputView.askCarNames();
-            isUserInputWrong = checkCarNames(carNames);
-        }
-        return new Cars(carNames);
-    }
 
-    만약 throw new IllegalArgumentException을 쓴다면 check에서 throw하고 잡힐 시 true:주입!
-
-     */
-
-
-    private void getTotalTurns() {
+    private Turns generateTurns() {
         try {
             String input = InputView.askTotalTurns();
-            Turns totalTurns = new Turns(input);
-            this.totalTurns = totalTurns;
-        } catch(Exception e) {
+            Turns turns = new Turns(input);
+            return turns;
+        } catch (Exception e) {
             System.out.println("잘못된 입력입니다");
-            getTotalTurns();
+            return generateTurns();
         }
     }
 
-    private Cars doTheTurns(Cars cars) {
+    private Cars doTheTurns(Cars cars, Turns turns) {
         OutputView.printResultSentence();
         Cars resultCars = cars.cloneCars();
-        for (int currentTurn = 0; currentTurn < totalTurns.getTurns(); currentTurn++) {
+        int currentTurn = 0;
+        while (turns.isTurnsNotFinished(currentTurn)) {
             List<Integer> randomNumbers = generateRandomNumbers(cars.getSize());
             resultCars = resultCars.moveTheCars(randomNumbers);
             OutputView.printCarMovements(resultCars);
+            currentTurn++;
         }
         return resultCars;
     }
