@@ -35,7 +35,7 @@ public class RacingGame {
             Turns turns = new Turns(input);
             return turns;
         } catch (Exception e) {
-            System.out.println("잘못된 입력입니다");
+            OutputView.printTurnsErrorMessage();
             return generateTurns();
         }
     }

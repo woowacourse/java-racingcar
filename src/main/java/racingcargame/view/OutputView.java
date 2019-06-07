@@ -40,4 +40,8 @@ public class OutputView {
     public static void printResultSentence() {
         System.out.println("실행결과");
     }
+
+    public static void printTurnsErrorMessage() {
+        System.out.println("잘못된 Turns입력값입니다");
+    }
 }
