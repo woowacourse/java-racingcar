@@ -1,43 +1,43 @@
 package calculator.model;
 
-import calculator.view.InputView;
 
 import java.util.*;
 
 public class ExtractedInformation {
     private static final int INITIAL_INDEX = 0;
+    private static final String SPACE = " ";
 
     private List<Integer> numbers = new ArrayList<>();
     private List<String> symbols = new ArrayList<>();
 
-    public ExtractedInformation(List<String> expression) {
-        checkConditions(expression);
-        for (int i = 0, n = expression.size(); i <n; i += 2) {
-            numbers.add(Integer.parseInt(expression.get(i)));
+    public ExtractedInformation(String expression) {
+        checkNull(expression);
+        List<String> numbersAndSymbols = new ArrayList<>(Arrays.asList(expression.split(SPACE)));
+        checkConditions(numbersAndSymbols);
+        for (int i = 0, n = numbersAndSymbols.size(); i < n; i += 2) {
+            numbers.add(Integer.parseInt(numbersAndSymbols.get(i)));
         }
-        for (int i = 1, n = expression.size(); i < n; i += 2) {
-            symbols.add(expression.get(i));
+        for (int i = 1, n = numbersAndSymbols.size(); i < n; i += 2) {
+            symbols.add(numbersAndSymbols.get(i));
         }
     }
 
-    public static ExtractedInformation instantiateExtractor() {
-        try {
-            ExtractedInformation extractedInfo = new ExtractedInformation(new ArrayList<>(Arrays.asList(InputView.askAndReceiveExpression().split(" "))));
-            return extractedInfo;
-        } catch (Exception e) {
-            return instantiateExtractor();
+    private static void checkNull(String expression) {
+        if (expression == null) {
+            throw new IllegalArgumentException();
         }
     }
+
 
     private static void checkConditions(List<String> expression) {
-        if (isSymbolsNotInCorrectOrder(expression) || isNotCalculable(expression) || isZeroDivision(expression)) {
+        if (isNotCalculable(expression) || isZeroDivision(expression)) {
             throw new IllegalArgumentException();
         }
     }
 
     private static boolean isZeroDivision(List<String> expression) {
         boolean zeroDivision = false;
-        for (int i = 1, n = expression.size(); i < n - 1&& !zeroDivision; i++) {
+        for (int i = 1, n = expression.size(); i < n - 1 && !zeroDivision; i++) {
             zeroDivision = checkZeroDivision(expression.get(i), expression.get(i + 1));
         }
         return zeroDivision;
@@ -49,14 +49,6 @@ public class ExtractedInformation {
             return true;
         }
         return false;
-    }
-
-    private static boolean isSymbolsNotInCorrectOrder(List<String> expression) {
-        boolean isNotCorrectOrder = false;
-        for (int i = 1, n = expression.size(); i < n && !isNotCorrectOrder; i += 2) {
-            isNotCorrectOrder = checkCorrectOrder(expression.get(i));
-        }
-        return isNotCorrectOrder;
     }
 
     private static boolean checkCorrectOrder(String symbol) {
@@ -74,7 +66,7 @@ public class ExtractedInformation {
         for (int i = 0; i < n; i += 2) {
             numberCount++;
         }
-        for (int i = 1; i < n; i += 2 ) {
+        for (int i = 1; i < n; i += 2) {
             symbolCount++;
         }
         if (numberCount - symbolCount == 1) {
@@ -85,24 +77,17 @@ public class ExtractedInformation {
     }
 
     public int calculate(OperatorMap functionMap, int result, int index) {
-        return functionMap.getFunction(symbols.get(index)).calculate(result, numbers.get(index+1));
+        return functionMap.getFunction(symbols.get(index)).calculate(result, numbers.get(index + 1));
     }
 
     public int getInitialValue() {
-return numbers.get(INITIAL_INDEX);
+        return numbers.get(INITIAL_INDEX);
     }
 
     public int getCalculatingRounds() {
         return symbols.size();
     }
 
-    public int getNumber(int index) {
-        return numbers.get(index);
-    }
-
-    public String getSymbol(int index) {
-        return symbols.get(index);
-    }
 
     @Override
     public boolean equals(Object o) {

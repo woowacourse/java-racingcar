@@ -1,9 +1,6 @@
 package calculator.model;
 
 
-//import exceptionsCalculator.CalculatorException;
-
-
 public class Calculator {
     private ExtractedInformation extractedInfo;
     private OperatorMap functionMap;
