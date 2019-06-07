@@ -20,7 +20,7 @@ public class Winners {
 
     private List<Car> collectAllWinners(Cars resultCars, Car maxCar) {
         List<Car> winners = new ArrayList<>();
-        for (Car car: resultCars.getCars()) {
+        for (Car car : resultCars.getCars()) {
             checkMax(car, maxCar, winners);
         }
         return winners;

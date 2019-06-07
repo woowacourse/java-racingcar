@@ -12,6 +12,7 @@ public class Car implements Comparable<Car> {
         checkNameLength(name);
         this.name = name;
     }
+
     public Car(String name, int position) {
         this.name = name;
         this.position = position;
