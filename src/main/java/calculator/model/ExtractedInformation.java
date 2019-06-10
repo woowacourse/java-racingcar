@@ -76,8 +76,8 @@ public class ExtractedInformation {
         return true;
     }
 
-    public int calculate(OperatorMap functionMap, int result, int index) {
-        return functionMap.getFunction(symbols.get(index)).calculate(result, numbers.get(index + 1));
+    public int calculate(int result, int index) {
+        return Operator.from(symbols.get(index)).calculate(result, numbers.get(index + 1));
     }
 
     public int getInitialValue() {

@@ -16,7 +16,7 @@ public class StringCalculatorLauncher {
         try {
             ExtractedInformation extractedInfo = generateExtractedInformation();
             OperatorMap functionMap = new OperatorMap();
-            Calculator calculator = new Calculator(extractedInfo, functionMap);
+            Calculator calculator = new Calculator(extractedInfo);
 
             int result = calculator.calculate();
 
