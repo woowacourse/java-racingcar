@@ -2,7 +2,6 @@ package calculator.controller;
 
 import calculator.model.Calculator;
 import calculator.model.ExtractedInformation;
-import calculator.model.OperatorMap;
 import calculator.view.InputView;
 import racingcargame.view.OutputView;
 
@@ -15,7 +14,6 @@ public class StringCalculatorLauncher {
     public static void doCalculate() {
         try {
             ExtractedInformation extractedInfo = generateExtractedInformation();
-            OperatorMap functionMap = new OperatorMap();
             Calculator calculator = new Calculator(extractedInfo);
 
             int result = calculator.calculate();

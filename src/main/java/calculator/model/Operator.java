@@ -28,32 +28,4 @@ public enum Operator {
         return this.method.apply(a, b);
     }
 
-//    //public int calculate(int a, int b) {
-//        return this.function.apply(a, b);
-//    }
-//
-//    PLUS {
-//        int calculate(int result, int next) {
-//            return result + next;
-//        }
-//    },
-//    MINUS {
-//        int calculate(int result, int next) {
-//            return result - next;
-//        }
-//    },
-//    DIVIDE {
-//        int calculate(int result, int next) {
-//            return result / next;
-//        }
-//    },
-//    MULTIPLY {
-//        int calculate(int result, int next) {
-//            return result * next;
-//        }
-//    };
-//
-//    abstract int calculate(int result, int next);
-
-
 }
