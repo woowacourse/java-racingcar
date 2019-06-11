@@ -2,42 +2,29 @@ package domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-
-class CarTest {
+public class CarTest {
     @Test
-    void 생성자_빈문자열() {
-        assertThrows(IllegalArgumentException.class, () -> Car.create(""));
+    void 생성자_() {
+
     }
 
     @Test
-    void 생성자_null() {
-        assertThrows(IllegalArgumentException.class, () -> Car.create(null));
+    void move_움직이는_경우() {
+        String name = "a";
+        Distance distance = Distance.from(0);
+        Car car = Car.of(name, distance);
+
+        assertThat(car.move(TestMoveStrategy.MOVE)).isEqualTo(car.of(name, distance.increased()));
     }
 
     @Test
-    void 생성자_5글자초과() {
-        assertThrows(IllegalArgumentException.class, () -> Car.create("123456"));
-    }
+    void move_멈추는_경우() {
+        String name = "a";
+        Distance distance = Distance.from(0);
+        Car car = Car.of(name, distance);
 
-
-    @Test
-    void move_포지션이1증가() {
-        String name = "car";
-        int position = 100;
-        Car car = Car.create(name, position, () -> true);
-
-        assertThat(car.move()).isEqualTo(Car.create(name, position + 1));
-    }
-
-    @Test
-    void move_그대로() {
-        String name = "car";
-        int position = 100;
-        Car car = Car.create(name, position, () -> false);
-
-        assertThat(car.move()).isEqualTo(Car.create(name, position));
+        assertThat(car.move(TestMoveStrategy.DONT_MOVE)).isEqualTo(car.of(name, distance));
     }
 }

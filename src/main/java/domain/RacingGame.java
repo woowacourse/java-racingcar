@@ -1,26 +1,38 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import exception.RacingGameNoTrialLeftException;
 
 public class RacingGame {
-    private int leftTrials;
+    private final Cars cars;
+    private Trial trial;
 
-    public RacingGame(int numTrials) {
-        this.leftTrials = numTrials;
+    private RacingGame(Cars cars, Trial trial) {
+        this.cars = cars;
+        this.trial = trial;
     }
 
-    public List<Car> playTrial(List<Car> cars) {
-        if (leftTrials == 0) {
-            return new ArrayList<>();
+    public static RacingGame of(Cars cars, Trial trial) {
+        return new RacingGame(cars, trial);
+    }
+
+    public Cars doTrial(MoveStrategy strategy) {
+        checkTrial();
+
+        trial = trial.adjust();
+        return cars.move(strategy);
+    }
+
+    private void checkTrial() {
+        if (trial.isEmpty()) {
+            throw new RacingGameNoTrialLeftException("trial 이 남지 않았습니다");
         }
-        leftTrials--;
-
-        return cars.stream().map(car -> car.move()).collect(Collectors.toList());
     }
 
-    public boolean isFinished() {
-        return leftTrials == 0;
+    public boolean hasTrial() {
+        return !trial.isEmpty();
+    }
+
+    public Cars findWinners() {
+        return cars.findWinners();
     }
 }

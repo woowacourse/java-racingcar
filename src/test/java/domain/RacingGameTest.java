@@ -1,53 +1,85 @@
 package domain;
 
+import exception.RacingGameNoTrialLeftException;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RacingGameTest {
     @Test
-    void playTrial_전부움직이기() {
-        List<Car> cars = Arrays.asList(
-                Car.create("a", 1, () -> true),
-                Car.create("b", 2, () -> true),
-                Car.create("c", 3, () -> true));
-        RacingGame racingGame = new RacingGame(1);
+    void doTrial_() {
+        Trial trial = Trial.from(1);
+        int numCars = 2;
+        Distance distance = Distance.from(10);
+        RacingGame racingGame = RacingGame.of(TestCars.generateCars(numCars, distance), trial);
 
-        assertThat(racingGame.playTrial(cars)).isEqualTo(Arrays.asList(
-                Car.create("a", 2),
-                Car.create("b", 3),
-                Car.create("c", 4)));
-        assertThat(racingGame.isFinished()).isTrue();
+        assertThat(racingGame.doTrial(TestMoveStrategy.MOVE)).isEqualTo(TestCars.generateCars(numCars, distance.increased()));
     }
 
     @Test
-    void playTrial_전부정지() {
-        List<Car> cars = Arrays.asList(
-                Car.create("a", 1, () -> false),
-                Car.create("b", 2, () -> false),
-                Car.create("c", 3, () -> false));
-        RacingGame racingGame = new RacingGame(1);
+    void doTrial_EMPTY_trial시도() {
+        Trial trial = Trial.EMPTY;
+        int numCars = 2;
+        Distance distance = Distance.from(10);
+        RacingGame racingGame = RacingGame.of(TestCars.generateCars(numCars, distance), trial);
 
-        assertThat(racingGame.playTrial(cars)).isEqualTo(Arrays.asList(
-                Car.create("a", 1),
-                Car.create("b", 2),
-                Car.create("c", 3)));
-        assertThat(racingGame.isFinished()).isTrue();
+        assertThrows(RacingGameNoTrialLeftException.class, () -> racingGame.doTrial(TestMoveStrategy.MOVE));
     }
 
     @Test
-    void isFinished_numTrials이0() {
-        RacingGame racingGame = new RacingGame(0);
+    void doTrial_특정횟수_시도() {
+        int numTrial = 3;
+        Trial trial = Trial.from(numTrial);
+        int numCars = 2;
+        Distance distance = Distance.from(10);
+        RacingGame racingGame = RacingGame.of(TestCars.generateCars(numCars, distance), trial);
 
-        assertThat(racingGame.isFinished()).isTrue();
+        for (int i = 0; i < numTrial; i++) {
+            racingGame.doTrial(TestMoveStrategy.MOVE);
+        }
+
+        assertThat(racingGame.hasTrial()).isFalse();
     }
 
     @Test
-    void isFinished_numTrials이0이아닐때() {
-        RacingGame racingGame = new RacingGame(1);
+    void findWinners_승자1명() {
+        int distance = 10;
+        Cars cars = generateCars(
+                Arrays.asList("1", "2", "3"),
+                Arrays.asList(distance, distance, distance + 1));
+        Cars winners = generateCars(
+                Arrays.asList("3"),
+                Arrays.asList(distance + 1));
+        RacingGame racingGame = RacingGame.of(cars, Trial.EMPTY);
 
-        assertThat(racingGame.isFinished()).isFalse();
+        assertThat(racingGame.findWinners()).isEqualTo(winners);
     }
+
+    @Test
+    void findWinners_승자2명() {
+        int distance = 10;
+        Cars cars = generateCars(
+                Arrays.asList("1", "2", "3"),
+                Arrays.asList(distance + 1, distance, distance + 1));
+        Cars winners = generateCars(
+                Arrays.asList("1", "3"),
+                Arrays.asList(distance + 1, distance + 1));
+        RacingGame racingGame = RacingGame.of(cars, Trial.EMPTY);
+
+        assertThat(racingGame.findWinners()).isEqualTo(winners);
+    }
+
+    private Cars generateCars(List<String> names, List<Integer> distances) {
+        List<Car> cars = new ArrayList<>();
+        for (int i = 0; i < names.size(); i++) {
+            cars.add(Car.of(names.get(i), Distance.from(distances.get(i))));
+        }
+        return Cars.from(cars);
+    }
+
 }
