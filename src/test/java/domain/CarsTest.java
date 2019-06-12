@@ -32,10 +32,10 @@ class CarsTest {
     @Test
     void findWinners_승자1명() {
         int distance = 10;
-        Cars cars = generateCars(
+        Cars cars = TestCars.of(
                 Arrays.asList("1", "2", "3"),
                 Arrays.asList(distance, distance, distance + 1));
-        Cars winners = generateCars(
+        Cars winners = TestCars.of(
                 Arrays.asList("3"),
                 Arrays.asList(distance + 1));
 
@@ -45,21 +45,13 @@ class CarsTest {
     @Test
     void findWinners_승자2명() {
         int distance = 10;
-        Cars cars = generateCars(
+        Cars cars = TestCars.of(
                 Arrays.asList("1", "2", "3"),
                 Arrays.asList(distance + 1, distance, distance + 1));
-        Cars winners = generateCars(
+        Cars winners = TestCars.of(
                 Arrays.asList("1", "3"),
                 Arrays.asList(distance + 1, distance + 1));
 
         assertThat(cars.findWinners()).isEqualTo(winners);
-    }
-
-    private Cars generateCars(List<String> names, List<Integer> distances) {
-        List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < names.size(); i++) {
-            cars.add(Car.of(names.get(i), Distance.from(distances.get(i))));
-        }
-        return Cars.from(cars);
     }
 }

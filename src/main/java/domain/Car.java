@@ -3,15 +3,15 @@ package domain;
 import java.util.Objects;
 
 public class Car {
-    private final String name;
+    private CarName name;
     private final Distance distance;
 
-    private Car(String name, Distance distance) {
+    private Car(CarName name, Distance distance) {
         this.name = name;
         this.distance = distance;
     }
 
-    public static Car of(String name, Distance distance) {
+    public static Car of(CarName name, Distance distance) {
         return new Car(name, distance);
     }
 

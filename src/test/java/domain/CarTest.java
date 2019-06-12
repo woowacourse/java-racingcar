@@ -6,13 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
     @Test
-    void 생성자_() {
-
-    }
-
-    @Test
     void move_움직이는_경우() {
-        String name = "a";
+        CarName name = CarName.from("a");
         Distance distance = Distance.from(0);
         Car car = Car.of(name, distance);
 
@@ -21,7 +16,7 @@ public class CarTest {
 
     @Test
     void move_멈추는_경우() {
-        String name = "a";
+        CarName name = CarName.from("a");
         Distance distance = Distance.from(0);
         Car car = Car.of(name, distance);
 
