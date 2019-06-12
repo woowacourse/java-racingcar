@@ -17,6 +17,12 @@ public class Cars {
         return new Cars(cars);
     }
 
+    public static Cars fromNames(List<CarName> carNames) {
+        return from(carNames.stream()
+                .map(carName -> Car.of(carName, Distance.ZERO))
+                .collect(Collectors.toList()));
+    }
+
     public Cars move(MoveStrategy strategy) {
         return new Cars(cars.stream()
                 .map(car -> car.move(strategy))

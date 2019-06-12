@@ -5,6 +5,7 @@ import exception.NegativeDistanceException;
 import java.util.Objects;
 
 public class Distance {
+    public static final Distance ZERO = from(0);
     private final int distance;
 
     private Distance(int distance) {
