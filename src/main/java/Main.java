@@ -6,6 +6,7 @@ import exception.CarNameLenExceedException;
 import parser.CarNamesParser;
 import parser.TrialParser;
 import view.InputView;
+import view.OutputView;
 
 import java.util.List;
 
@@ -17,10 +18,11 @@ public class Main {
 
         // 실행 결과
         while(game.hasTrial()) {
-            Cars cars = game.doTrial(() -> true);
+            Cars cars = game.doTrial();
 
-            // print cars
+            OutputView.printCars(cars.toDTO());
         }
+        OutputView.printWinnerCars(game.findWinners().toDTO());
     }
 
     public static Cars inputCars() {

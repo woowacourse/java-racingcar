@@ -1,5 +1,7 @@
 package domain;
 
+import dto.CarDTO;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -32,6 +34,12 @@ public class Cars {
 
     public Cars findWinners() {
         return from(MaxFinder.findAllMax(cars, Comparator.comparing(Car::getNumDistance)));
+    }
+
+    public List<CarDTO> toDTO() {
+        return cars.stream()
+                .map(Car::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override

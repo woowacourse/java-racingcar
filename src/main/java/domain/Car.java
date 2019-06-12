@@ -1,5 +1,7 @@
 package domain;
 
+import dto.CarDTO;
+
 import java.util.Objects;
 
 public class Car {
@@ -24,6 +26,10 @@ public class Car {
 
     public int getNumDistance() {
         return distance.toInt();
+    }
+
+    public CarDTO toDTO() {
+        return CarDTO.of(name.toString(), distance.toInt());
     }
 
     @Override

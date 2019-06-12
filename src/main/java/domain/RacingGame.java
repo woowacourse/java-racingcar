@@ -3,7 +3,7 @@ package domain;
 import exception.RacingGameNoTrialLeftException;
 
 public class RacingGame {
-    private final Cars cars;
+    private Cars cars;
     private Trial trial;
 
     private RacingGame(Cars cars, Trial trial) {
@@ -19,7 +19,9 @@ public class RacingGame {
         checkTrial();
 
         trial = trial.adjust();
-        return cars.move(strategy);
+        cars = cars.move(strategy);
+
+        return cars;
     }
 
     private void checkTrial() {
