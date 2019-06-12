@@ -1,7 +1,4 @@
-import domain.CarName;
-import domain.Cars;
-import domain.RacingGame;
-import domain.Trial;
+import domain.*;
 import exception.CarNameLenExceedException;
 import parser.CarNamesParser;
 import parser.TrialParser;
@@ -16,9 +13,9 @@ public class Main {
     public static void main(String[] args) {
         RacingGame game = RacingGame.of(inputCars(), inputTrial());
 
-        // 실행 결과
+        OutputView.printGame();
         while(game.hasTrial()) {
-            Cars cars = game.doTrial();
+            Cars cars = game.doTrial(RandomMoveStrategy.DEFAULT);
 
             OutputView.printCars(cars.toDTO());
         }

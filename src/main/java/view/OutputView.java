@@ -37,4 +37,8 @@ public class OutputView {
 
         System.out.println(String.join(nameSeparator, names) + " 가 최종 우승했습니다.");
     }
+
+    public static void printGame() {
+        System.out.println("실행결과");
+    }
 }

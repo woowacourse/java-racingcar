@@ -16,7 +16,7 @@ public class Trial {
 
     private void checkTrial(int trial) {
         if (trial < 0) {
-            throw new NegativeTrialException("Trial은 음이 아닌 정수여야 합니다.");
+            throw new NegativeTrialException("Trial 은 음이 아닌 정수여야 합니다.");
         }
     }
 

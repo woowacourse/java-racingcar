@@ -5,7 +5,7 @@ import dto.CarDTO;
 import java.util.Objects;
 
 public class Car {
-    private CarName name;
+    private final CarName name;
     private final Distance distance;
 
     private Car(CarName name, Distance distance) {
