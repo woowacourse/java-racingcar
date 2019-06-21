@@ -4,11 +4,11 @@ package calculator.model;
 import java.util.*;
 
 public class ExtractedInformation {
-    private static final int INITIAL_INDEX = 0;
+    private static final String ZERO = "0";
     private static final String SPACE = " ";
 
     private List<Integer> numbers = new ArrayList<>();
-    private List<String> symbols = new ArrayList<>();
+    private List<Operator> symbols = new ArrayList<>();
 
     public ExtractedInformation(String expression) {
         checkNull(expression);
@@ -18,7 +18,7 @@ public class ExtractedInformation {
             numbers.add(Integer.parseInt(numbersAndSymbols.get(i)));
         }
         for (int i = 1, n = numbersAndSymbols.size(); i < n; i += 2) {
-            symbols.add(numbersAndSymbols.get(i));
+            symbols.add(Operator.from(numbersAndSymbols.get(i)));
         }
     }
 
@@ -27,7 +27,6 @@ public class ExtractedInformation {
             throw new IllegalArgumentException();
         }
     }
-
 
     private static void checkConditions(List<String> expression) {
         if (isNotCalculable(expression) || isZeroDivision(expression)) {
@@ -44,19 +43,11 @@ public class ExtractedInformation {
     }
 
     private static boolean checkZeroDivision(String symbol, String number) {
-        if (symbol.equals("/") && number.equals("0")) {
+        if (symbol.equals("/") && ZERO.equals(number)) {
             System.out.println("0으로 나눌 수 없습니다!");
             return true;
         }
         return false;
-    }
-
-    private static boolean checkCorrectOrder(String symbol) {
-        if (symbol.equals("+") || symbol.equals("-") || symbol.equals("*") || symbol.equals("/")) {
-            return false;
-        }
-        System.out.println("기호가 잘못되었습니다!");
-        return true;
     }
 
     private static boolean isNotCalculable(List<String> expression) {
@@ -77,17 +68,16 @@ public class ExtractedInformation {
     }
 
     public int calculate(int result, int index) {
-        return Operator.from(symbols.get(index)).calculate(result, numbers.get(index + 1));
+        return symbols.get(index).calculate(result, numbers.get(index + 1));
     }
 
     public int getInitialValue() {
-        return numbers.get(INITIAL_INDEX);
+        return numbers.get(0);
     }
 
     public int getCalculatingRounds() {
         return symbols.size();
     }
-
 
     @Override
     public boolean equals(Object o) {

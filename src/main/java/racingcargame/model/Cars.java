@@ -17,18 +17,11 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars instantiateCars(String carNames) {
-        try {
-            return new Cars(carNames);
-        } catch (Exception e) {
-            System.out.println("입력이 잘못되었습니다!");
-            return null;
-        }
-    }
 
     private static void checkDuplicateNames(List<String> names) {
         Set<String> namesWithoutDuplicates = new HashSet<>(names);
         if (names.size() != namesWithoutDuplicates.size()) {
+            System.out.println("입력이 잘못되었습니다!");
             throw new IllegalArgumentException("중복된 이름이 존재합니다.\n다시 입력해주세요.");
         }
     }

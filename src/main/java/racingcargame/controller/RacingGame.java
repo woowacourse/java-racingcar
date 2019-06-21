@@ -19,15 +19,20 @@ public class RacingGame {
     }
 
     private Cars generateCars() {
-        Cars cars = null;
-        while (cars == null) {
-            String carNames = InputView.askCarNames();
-            carNames = carNames.replaceAll(" ", "");
-            cars = Cars.instantiateCars(carNames);
-        }
-        return cars;
+        Optional<Cars> cars;
+        do {
+            cars = generateOptionalCars();
+        } while (!cars.isPresent());
+        return cars.get();
     }
 
+    private static Optional<Cars> generateOptionalCars() {
+        try {
+            return Optional.ofNullable(new Cars(InputView.askCarNames()));
+        } catch (Exception e) {
+            return Optional.empty();
+        }
+    }
 
     private Turns generateTurns() {
         try {

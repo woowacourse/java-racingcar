@@ -3,7 +3,7 @@ package calculator.controller;
 import calculator.model.Calculator;
 import calculator.model.ExtractedInformation;
 import calculator.view.InputView;
-import racingcargame.view.OutputView;
+import calculator.view.OutputView;
 
 
 public class StringCalculatorLauncher {
