@@ -35,13 +35,18 @@ public class RacingGame {
     }
 
     private Turns generateTurns() {
+        Optional<Turns> turns;
+        do {
+            turns = generateOptionalTurns();
+        } while (!turns.isPresent());
+        return turns.get();
+    }
+
+    private Optional<Turns> generateOptionalTurns() {
         try {
-            String input = InputView.askTotalTurns();
-            Turns turns = new Turns(input);
-            return turns;
+            return Optional.ofNullable(new Turns(InputView.askTotalTurns()));
         } catch (Exception e) {
-            OutputView.printTurnsErrorMessage();
-            return generateTurns();
+            return Optional.empty();
         }
     }
 
