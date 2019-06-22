@@ -1,12 +1,27 @@
 package view;
 
 import dto.CarDto;
+import dto.CarsDto;
+import dto.RacingGameDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    public static void printCars(List<CarDto> cars) {
+    public static void printGame() {
+        System.out.println("실행결과");
+    }
+
+    public static void printGame(RacingGameDto racingGameDto) {
+        System.out.println("실행결과");
+
+        for (CarsDto cars : racingGameDto.getCarsDtosFromFirstTrial()) {
+            printCars(cars);
+        }
+        printWinnerCars(racingGameDto.getWinningCarsDto());
+    }
+
+    private static void printCars(CarsDto cars) {
         for (CarDto car : cars) {
             System.out.println(toString(car));
         }
@@ -27,17 +42,13 @@ public class OutputView {
         return sb.toString();
     }
 
-    public static void printWinnerCars(List<CarDto> winnerCars) {
+    public static void printWinnerCars(CarsDto winnerCars) {
         final String nameSeparator = ",";
 
-        List<String> names = winnerCars.stream()
+        List<String> names = winnerCars.getCars().stream()
                 .map(CarDto::getName)
                 .collect(Collectors.toList());
 
         System.out.println(String.join(nameSeparator, names) + " 가 최종 우승했습니다.");
-    }
-
-    public static void printGame() {
-        System.out.println("실행결과");
     }
 }

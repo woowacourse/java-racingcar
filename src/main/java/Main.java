@@ -1,5 +1,7 @@
 import domain.*;
 import dto.CarDto;
+import dto.CarsDto;
+import dto.RacingGameDto;
 import exception.CarNameLenExceedException;
 import parser.CarNameParser;
 import parser.TrialParser;
@@ -15,14 +17,26 @@ public class Main {
     public static void main(String[] args) {
         RacingGame game = RacingGame.of(inputCars(), inputTrial());
 
-        OutputView.printGame();
+        RacingGameDto racingGameDto = RacingGameDto.create();
+
         while (game.hasTrial()) {
             Cars cars = game.doTrial(RandomMoveStrategy.DEFAULT);
 
-            OutputView.printCars(toCarDtos(cars));
+            racingGameDto.addCarsDto(toCarsDto(cars));
         }
-        Cars winnerCars = game.findWinners();
-        OutputView.printWinnerCars(toCarDtos(winnerCars));
+        racingGameDto.setWinningCarsDto(toCarsDto(game.findWinners()));
+
+        OutputView.printGame(racingGameDto);
+//
+//
+//        OutputView.printGame();
+//        while (game.hasTrial()) {
+//            Cars cars = game.doTrial(RandomMoveStrategy.DEFAULT);
+//
+//            OutputView.printCars(toCarDtos(cars));
+//        }
+//        Cars winnerCars = game.findWinners();
+//        OutputView.printWinnerCars(toCarDtos(winnerCars));
     }
 
     public static Cars inputCars() {
@@ -50,13 +64,13 @@ public class Main {
         }
     }
 
-    private static List<CarDto> toCarDtos(Cars cars) {
-        List<CarDto> dtos =new ArrayList<>();
+    private static CarsDto toCarsDto(Cars cars) {
+        List<CarDto> dtos = new ArrayList<>();
         for (Car car : cars) {
             dtos.add(toCarDto(car));
         }
 
-        return dtos;
+        return CarsDto.from(dtos);
     }
 
     private static CarDto toCarDto(Car car) {

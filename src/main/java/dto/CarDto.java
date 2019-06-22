@@ -9,15 +9,15 @@ public class CarDto {
         this.distance = distance;
     }
 
+    public static CarDto of(String name, int distance) {
+        return new CarDto(name, distance);
+    }
+
     public String getName() {
         return name;
     }
 
     public int getDistance() {
         return distance;
-    }
-
-    public static CarDto of(String name, int distance) {
-        return new CarDto(name, distance);
     }
 }
