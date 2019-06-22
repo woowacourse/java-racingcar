@@ -10,7 +10,7 @@ public class CarNameParser {
     private static final String CAR_NAME_SEPARATOR = ",";
 
     public static CarName parseCarName(String input) {
-        return CarName.from(input);
+        return CarName.from(input.trim());
     }
 
     public static List<CarName> parseCarNames(String input) {

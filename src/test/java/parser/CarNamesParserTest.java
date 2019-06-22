@@ -11,6 +11,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CarNameParserTest {
     @Test
+    void parseCarName_이름_앞뒤에_공백존재() {
+        String name = "a";
+        String input = String.format(" %s ", name);
+
+        assertThat(CarNameParser.parseCarName(input)).isEqualTo(CarName.from("a"));
+    }
+
+    @Test
     void parseCarNames_() {
         String input = "a,b,c";
 
