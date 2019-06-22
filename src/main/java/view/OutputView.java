@@ -1,19 +1,19 @@
 package view;
 
-import dto.CarDTO;
+import dto.CarDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    public static void printCars(List<CarDTO> cars) {
-        for (CarDTO car : cars) {
+    public static void printCars(List<CarDto> cars) {
+        for (CarDto car : cars) {
             System.out.println(toString(car));
         }
         System.out.println();
     }
 
-    private static String toString(CarDTO car) {
+    private static String toString(CarDto car) {
         final String CAR_DISTANCE_MARKER = "-";
 
         StringBuilder sb = new StringBuilder();
@@ -27,11 +27,11 @@ public class OutputView {
         return sb.toString();
     }
 
-    public static void printWinnerCars(List<CarDTO> winnerCars) {
+    public static void printWinnerCars(List<CarDto> winnerCars) {
         final String nameSeparator = ",";
 
         List<String> names = winnerCars.stream()
-                .map(CarDTO::getName)
+                .map(CarDto::getName)
                 .collect(Collectors.toList());
 
         System.out.println(String.join(nameSeparator, names) + " 가 최종 우승했습니다.");

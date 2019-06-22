@@ -1,10 +1,12 @@
 import domain.*;
+import dto.CarDto;
 import exception.CarNameLenExceedException;
-import parser.CarNamesParser;
+import parser.CarNameParser;
 import parser.TrialParser;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -17,9 +19,10 @@ public class Main {
         while (game.hasTrial()) {
             Cars cars = game.doTrial(RandomMoveStrategy.DEFAULT);
 
-            OutputView.printCars(cars.toDTO());
+            OutputView.printCars(toCarDtos(cars));
         }
-        OutputView.printWinnerCars(game.findWinners().toDTO());
+        Cars winnerCars = game.findWinners();
+        OutputView.printWinnerCars(toCarDtos(winnerCars));
     }
 
     public static Cars inputCars() {
@@ -27,7 +30,7 @@ public class Main {
 
         while (true) {
             try {
-                List<CarName> carNames = CarNamesParser.parse(input);
+                List<CarName> carNames = CarNameParser.parseCarNames(input);
                 return Cars.fromNames(carNames);
             } catch (CarNameLenExceedException | IllegalArgumentException e) {
                 input = InputView.inputCarNames(e.getMessage());
@@ -45,5 +48,18 @@ public class Main {
                 input = InputView.inputNumTrial(e.getMessage());
             }
         }
+    }
+
+    private static List<CarDto> toCarDtos(Cars cars) {
+        List<CarDto> dtos =new ArrayList<>();
+        for (Car car : cars) {
+            dtos.add(toCarDto(car));
+        }
+
+        return dtos;
+    }
+
+    private static CarDto toCarDto(Car car) {
+        return CarDto.of(car.getName(), car.getNumDistance());
     }
 }

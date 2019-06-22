@@ -9,20 +9,20 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CarNamesParserTest {
+class CarNameParserTest {
     @Test
-    void parse_() {
+    void parseCarNames_() {
         String input = "a,b,c";
 
-        assertThat(CarNamesParser.parse(input)).isEqualTo(
+        assertThat(CarNameParser.parseCarNames(input)).isEqualTo(
                 generateCarNames(Arrays.asList("a", "b", "c")));
     }
 
     @Test
-    void parse_쉼표사이에_공백존재() {
+    void parseCarNames_쉼표사이에_공백존재() {
         String input = "a ,b, c";
 
-        assertThat(CarNamesParser.parse(input)).isEqualTo(
+        assertThat(CarNameParser.parseCarNames(input)).isEqualTo(
                 generateCarNames(Arrays.asList("a", "b", "c")));
     }
 

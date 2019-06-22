@@ -2,7 +2,9 @@ package domain;
 
 public class MoveCondition {
     // [NUM_START, NUM_END]
-    public static final int NUM_FROM = 0, NUM_MOVE_FROM = 4, NUM_TO = 9;
+    public static final int NUM_FROM = 0;
+    public static final int NUM_MOVE_FROM = 4;
+    public static final int NUM_TO = 9;
 
     public static boolean canMove(int num) {
         checkNum(num);

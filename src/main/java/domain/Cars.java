@@ -1,14 +1,9 @@
 package domain;
 
-import dto.CarDTO;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class Cars {
+public class Cars implements Iterable<Car> {
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
@@ -36,10 +31,9 @@ public class Cars {
         return from(MaxFinder.findAllMax(cars, Comparator.comparing(Car::getNumDistance)));
     }
 
-    public List<CarDTO> toDTO() {
-        return cars.stream()
-                .map(Car::toDTO)
-                .collect(Collectors.toList());
+    @Override
+    public Iterator<Car> iterator() {
+        return cars.iterator();
     }
 
     @Override
