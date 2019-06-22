@@ -17,7 +17,6 @@ class RandomMoveStrategyTest {
     void canMove_NUM_TO보다큰경우() {
         assertThrows(IndexOutOfBoundsException.class,
                 () -> RandomMoveCondition.canMove(RandomMoveCondition.NUM_TO + 1));
-        Integer
     }
 
     @Test
