@@ -11,5 +11,4 @@ public class RacingGameLauncher {
         RacingGame game = new RacingGame();
         game.play();
     }
-
 }

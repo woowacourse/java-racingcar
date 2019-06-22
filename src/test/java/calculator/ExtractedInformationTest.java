@@ -11,7 +11,7 @@ public class ExtractedInformationTest {
     @Test
     void 식과_숫자수가_맞지_않을때_테스트() {
         String test = "2 + 3 *";
-        assertThrows(IllegalArgumentException.class, ()-> {
+        assertThrows(IllegalArgumentException.class, () -> {
             ExtractedInformation extractedInfo = new ExtractedInformation(test);
         });
     }
@@ -19,7 +19,7 @@ public class ExtractedInformationTest {
     @Test
     void 숫자가_아닐때_테스트() {
         String test = "a + b";
-        assertThrows(IllegalArgumentException.class, ()-> {
+        assertThrows(IllegalArgumentException.class, () -> {
             ExtractedInformation extractedInfo = new ExtractedInformation(test);
         });
     }
@@ -27,7 +27,7 @@ public class ExtractedInformationTest {
     @Test
     void 영_으로_나눌때_테스트() {
         String test = "3 / 0";
-        assertThrows(IllegalArgumentException.class, ()-> {
+        assertThrows(IllegalArgumentException.class, () -> {
             ExtractedInformation extractedInfo = new ExtractedInformation(test);
         });
     }
@@ -38,5 +38,4 @@ public class ExtractedInformationTest {
         String test2 = "1 + 3";
         assertThat(new ExtractedInformation(test1)).isEqualTo(new ExtractedInformation(test2));
     }
-
 }

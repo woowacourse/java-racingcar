@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculatorTest {
     @Test
-        void 덧셈_테스트() {
+    void 덧셈_테스트() {
         String test = "2 + 3";
         ExtractedInformation extractedInfo = new ExtractedInformation(test);
         Calculator calculator = new Calculator(extractedInfo);
@@ -44,6 +44,5 @@ public class CalculatorTest {
 
         assertThat(calculator.calculate()).isEqualTo(6);
     }
-
 }
 

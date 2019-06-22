@@ -17,7 +17,6 @@ public class Cars {
         this.cars = cars;
     }
 
-
     private static void checkDuplicateNames(List<String> names) {
         Set<String> namesWithoutDuplicates = new HashSet<>(names);
         if (names.size() != namesWithoutDuplicates.size()) {

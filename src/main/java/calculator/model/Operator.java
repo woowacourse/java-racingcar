@@ -12,7 +12,7 @@ public enum Operator {
     private String symbol;
     private BiFunction<Integer, Integer, Integer> method;
 
-    Operator(String symbol, BiFunction<Integer, Integer, Integer>  method) {
+    Operator(String symbol, BiFunction<Integer, Integer, Integer> method) {
         this.symbol = symbol;
         this.method = method;
     }
@@ -27,5 +27,4 @@ public enum Operator {
     public int calculate(int a, int b) {
         return this.method.apply(a, b);
     }
-
 }
