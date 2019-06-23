@@ -7,9 +7,10 @@ import java.util.List;
 public class Winners {
     private List<Car> winners = new ArrayList<>();
 
-    public Winners(Cars resultCars) {
-        Car maxCar = decideMaxCar(resultCars);
-        List<Car> winners = collectAllWinners(resultCars, maxCar);
+    public Winners(List<Cars> resultCars) {
+        Cars resultCarsToDecideWinners = resultCars.get(resultCars.size() - 1);
+        Car maxCar = decideMaxCar(resultCarsToDecideWinners);
+        List<Car> winners = collectAllWinners(resultCarsToDecideWinners, maxCar);
         this.winners = winners;
     }
 

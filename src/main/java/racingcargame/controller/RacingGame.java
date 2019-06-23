@@ -12,9 +12,10 @@ public class RacingGame {
         Cars cars = generateCars();
         Turns turns = generateTurns();
 
-        Cars resultCars = doTheTurns(cars, turns);
-        Winners winners = new Winners(resultCars);
+        List<Cars> resultCars = doTheTurns(cars, turns);
+        OutputView.printCarMovements(resultCars);
 
+        Winners winners = new Winners(resultCars);
         OutputView.printWinners(winners);
     }
 
@@ -50,14 +51,14 @@ public class RacingGame {
         }
     }
 
-    private Cars doTheTurns(Cars cars, Turns turns) {
+    private List<Cars> doTheTurns(Cars cars, Turns turns) {
         OutputView.printResultSentence();
-        Cars resultCars = cars.cloneCars();
+        List<Cars> resultCars = new ArrayList<>();
         int currentTurn = 0;
         while (turns.isTurnsNotFinished(currentTurn)) {
             List<Integer> randomNumbers = generateRandomNumbers(cars.getSize());
-            resultCars = resultCars.moveTheCars(randomNumbers);
-            OutputView.printCarMovements(resultCars);
+            cars = cars.moveTheCars(randomNumbers);
+            resultCars.add(cars);
             currentTurn++;
         }
         return resultCars;

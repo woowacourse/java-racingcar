@@ -32,11 +32,11 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
-    public Car update(int randomNumber) {
+    public Car move(int randomNumber) {
         if (randomNumber > 4) {
             return new Car(name, position + 1);
         }
-        return new Car(name, position);
+        return this;
     }
 
     public boolean isMax(Car maxCar) {

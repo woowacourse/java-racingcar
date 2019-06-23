@@ -9,12 +9,14 @@ import java.util.List;
 
 public class OutputView {
 
-    public static void printResult(int result) {
-        System.out.println("답은 " + result + " 입니다!");
+    public static void printCarMovements(List<Cars> resultCars) {
+        for (Cars currentCars : resultCars) {
+            printMovementsOfCurrentCars(currentCars);
+        }
     }
 
-    public static void printCarMovements(Cars resultCars) {
-        for (Car car : resultCars.getCars()) {
+    private static void printMovementsOfCurrentCars(Cars currentCars) {
+        for (Car car : currentCars.getCars()) {
             System.out.print(car.getName() + ":");
             printPosition(car.getPosition());
         }
@@ -39,9 +41,5 @@ public class OutputView {
 
     public static void printResultSentence() {
         System.out.println("실행결과");
-    }
-
-    public static void printTurnsErrorMessage() {
-        System.out.println("잘못된 Turns입력값입니다");
     }
 }
