@@ -24,11 +24,12 @@ public class RacingGameDto {
         return winningCarsDto;
     }
 
+    public void addCarsDto(CarsDto carsDto) {
+        this.carsDtosFromFirstTrial.add(carsDto);
+    }
+
     public void setWinningCarsDto(CarsDto winningCarsDto) {
         this.winningCarsDto = winningCarsDto;
     }
 
-    public void addCarsDto(CarsDto carsDto) {
-        this.carsDtosFromFirstTrial.add(carsDto);
-    }
 }

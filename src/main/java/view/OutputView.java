@@ -8,10 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    public static void printGame() {
-        System.out.println("실행결과");
-    }
-
     public static void printGame(RacingGameDto racingGameDto) {
         System.out.println("실행결과");
 
@@ -42,7 +38,7 @@ public class OutputView {
         return sb.toString();
     }
 
-    public static void printWinnerCars(CarsDto winnerCars) {
+    private static void printWinnerCars(CarsDto winnerCars) {
         final String nameSeparator = ",";
 
         List<String> names = winnerCars.getCars().stream()

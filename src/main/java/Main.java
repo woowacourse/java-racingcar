@@ -12,13 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    private static final String EMPTY_NOTIFYING_MESSAGE = "";
-
     public static void main(String[] args) {
         RacingGame game = RacingGame.of(inputCars(), inputTrial());
 
         RacingGameDto racingGameDto = RacingGameDto.create();
-
         while (game.hasTrial()) {
             Cars cars = game.doTrial(RandomMoveStrategy.DEFAULT);
 
@@ -30,26 +27,28 @@ public class Main {
     }
 
     public static Cars inputCars() {
-        String input = InputView.inputCarNames(EMPTY_NOTIFYING_MESSAGE);
+        String input = InputView.inputCarNames();
 
         while (true) {
             try {
                 List<CarName> carNames = CarNameParser.parseCarNames(input);
                 return Cars.fromNames(carNames);
             } catch (CarNameLenExceedException | IllegalArgumentException e) {
-                input = InputView.inputCarNames(e.getMessage());
+                input = InputView.inputCarNames();
+                InputView.showErrorMessage(e.getMessage());
             }
         }
     }
 
     public static Trial inputTrial() {
-        String input = InputView.inputNumTrial(EMPTY_NOTIFYING_MESSAGE);
+        String input = InputView.inputNumTrial();
 
         while (true) {
             try {
                 return TrialParser.parse(input);
             } catch (NumberFormatException e) {
-                input = InputView.inputNumTrial(e.getMessage());
+                input = InputView.inputNumTrial();
+                InputView.showErrorMessage(e.getMessage());
             }
         }
     }
