@@ -27,16 +27,6 @@ public class Main {
         racingGameDto.setWinningCarsDto(toCarsDto(game.findWinners()));
 
         OutputView.printGame(racingGameDto);
-//
-//
-//        OutputView.printGame();
-//        while (game.hasTrial()) {
-//            Cars cars = game.doTrial(RandomMoveStrategy.DEFAULT);
-//
-//            OutputView.printCars(toCarDtos(cars));
-//        }
-//        Cars winnerCars = game.findWinners();
-//        OutputView.printWinnerCars(toCarDtos(winnerCars));
     }
 
     public static Cars inputCars() {

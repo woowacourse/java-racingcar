@@ -8,20 +8,12 @@ public class RacingGameDto {
     private CarsDto winningCarsDto;
 
     public RacingGameDto() {
-        this(new ArrayList<>(), CarsDto.EMPTY);
-    }
-
-    private RacingGameDto(List<CarsDto> carsDtosFromFirstTrial, CarsDto winningCarsDto) {
-        this.carsDtosFromFirstTrial = carsDtosFromFirstTrial;
-        this.winningCarsDto = winningCarsDto;
+        this.carsDtosFromFirstTrial = new ArrayList<>();
+        this.winningCarsDto = CarsDto.EMPTY;
     }
 
     public static RacingGameDto create() {
         return new RacingGameDto();
-    }
-
-    public static RacingGameDto of(List<CarsDto> carsDtosFromFirstTrial, CarsDto winningCarsDto) {
-        return new RacingGameDto(carsDtosFromFirstTrial, winningCarsDto);
     }
 
     public List<CarsDto> getCarsDtosFromFirstTrial() {
@@ -30,10 +22,6 @@ public class RacingGameDto {
 
     public CarsDto getWinningCarsDto() {
         return winningCarsDto;
-    }
-
-    public void setCarsDtosFromFirstTrial(List<CarsDto> carsDtosFromFirstTrial) {
-        this.carsDtosFromFirstTrial = carsDtosFromFirstTrial;
     }
 
     public void setWinningCarsDto(CarsDto winningCarsDto) {
