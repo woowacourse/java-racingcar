@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CalculateTest {
+
     private static Stream<Arguments> sourceForNegativeException() {
         return Stream.of(
                 Arguments.of("1,2:-3", -3),
@@ -19,19 +20,19 @@ public class CalculateTest {
 
     @Test
     void customPlusTest() {
-        assertThat(Calculate.plus("//;\n1;2;3")).isEqualTo(6);
+        assertThat(Calculate.calculate("//;\n1;2;3")).isEqualTo(6);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"1,2|3", "1,2,3|6", "1,2:3|6"}, delimiter = '|')
     void plusTest(String input, int result) {
-        assertThat(Calculate.plus(input)).isEqualTo(result);
+        assertThat(Calculate.calculate(input)).isEqualTo(result);
     }
 
     @ParameterizedTest
     @MethodSource("sourceForNegativeException")
     void inputNegativeThrowIllegalException(String input, int negative) {
-        assertThatThrownBy(() -> Calculate.plus(input))
+        assertThatThrownBy(() -> Calculate.calculate(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("%d 는 음수입니다.", negative);
     }
