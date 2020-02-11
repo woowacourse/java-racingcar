@@ -1,25 +1,25 @@
 package calculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringCalculator {
 
     private static final String BASIC_DELIMITER = ";|,";
 
     public static int plusByDelimiterFrom(String input) {
         if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException();
+            return 0;
+        }
+        String customDelimiter = BASIC_DELIMITER;
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        if (m.find()) {
+            customDelimiter += "|" + m.group(1);
+            String numbersWithDelimiters = m.group(2);
+            return plus(numbersWithDelimiters, customDelimiter);
         }
 
-        String[] customDelimiterAndNumbers = input.split("\n");
-        if (customDelimiterAndNumbers.length == 1) {
-            return plus(customDelimiterAndNumbers[0], BASIC_DELIMITER);
-        }
-        String newDelimiter = makeDelimiter(customDelimiterAndNumbers[0]);
-        return plus(customDelimiterAndNumbers[1], newDelimiter);
-    }
-
-    private static String makeDelimiter(String customDelimiterAndNumber) {
-        String[] customDelimiter = customDelimiterAndNumber.split("//");
-        return BASIC_DELIMITER + "|" + customDelimiter[1];
+        return plus(input, customDelimiter);
     }
 
     private static int plus(String customDelimiterAndNumber, String newDelimiter) {
