@@ -1,5 +1,7 @@
 package racing;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Car {
 	private String name;
 	private int position;
@@ -11,5 +13,12 @@ public class Car {
 
 	public String getName() {
 		return name;
+	}
+
+	public int randomGenerate() {
+		return ThreadLocalRandom.current()
+			.ints(0, 9)
+			.findFirst()
+			.orElse(0);
 	}
 }
