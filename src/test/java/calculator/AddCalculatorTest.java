@@ -71,13 +71,12 @@ public class AddCalculatorTest {
     @Test
     @DisplayName("숫자 이외의 값 또는 음수가 입력되면 RuntimeException throw")
     public void runtimeException_throw() {
-        String[] inputs = {"a,1","-1,1"};
-        for(String input : inputs) {
+        String[] inputs = {"a,1", "-1,1", "1,3p4"};
+        for (String input : inputs) {
             Assertions.assertThatThrownBy(() -> {
                 calculator.extractExpression(input);
             }).isInstanceOf(RuntimeException.class);
         }
-
     }
 
 }

@@ -20,15 +20,12 @@ public class Calculator {
 
     public String extractDelimiter(String s) {
         int index = s.indexOf('\n');
-
         return s.substring(2, index);
     }
 
     public List<Integer> extractExpression(String s) {
-        String delimiter = extractDelimiter(s);
-        int newLineIndex = s.indexOf('\n');
-        String expression = s.substring(newLineIndex + 1);
-        String[] splitExpression = expression.split(delimiter);
+        String expression = s.substring(s.indexOf('\n') + 1);
+        String[] splitExpression = expression.split(extractDelimiter(s));
         List<Integer> result = new ArrayList<>();
         try {
             splitExpression(splitExpression, result);
@@ -41,10 +38,14 @@ public class Calculator {
     private void splitExpression(String[] splitExpression, List<Integer> result) {
         for (int i = 0; i < splitExpression.length; i++) {
             int convertNumber = Integer.parseInt(splitExpression[i]);
-            if (convertNumber < 0) {
-                throw new RuntimeException();
-            }
+            throwRuntimeExceptionWhenNegativeNumber(convertNumber);
             result.add(convertNumber);
+        }
+    }
+
+    private void throwRuntimeExceptionWhenNegativeNumber(int convertNumber) {
+        if (convertNumber < 0) {
+            throw new RuntimeException();
         }
     }
 
