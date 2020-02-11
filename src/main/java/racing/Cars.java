@@ -31,6 +31,14 @@ public class Cars {
 			.orElse(0);
 	}
 
+	public void playRound() {
+		cars.forEach(car -> car.goForward(car.randomGenerate()));
+	}
+
+	public void printPosition() {
+		OutputView.printRoundPosition(cars);
+	}
+
 	// 테스트코드에서만 사용하는 getter 메소드
 	public List<Car> getCars() {
 		return this.cars;
