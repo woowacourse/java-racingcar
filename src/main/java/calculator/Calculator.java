@@ -6,7 +6,7 @@ public class Calculator {
 
         if (input.charAt(0) == '/') {
             delimiter = input.substring(2, 3);
-            input = input.substring(4);
+            input = input.substring(5);
         }
 
         return input.split(delimiter);
