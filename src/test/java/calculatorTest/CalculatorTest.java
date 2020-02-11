@@ -41,4 +41,13 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(10);
     }
 
+    @Test
+    @DisplayName("//와 \n 문자 사이에 커스텀 구분자를 지정할 수 있음")
+    void splitAndSum_custom_구분자() {
+        int result = Calculator.splitAndSum("//;\n1;2;3");
+        assertThat(result).isEqualTo(6);
+
+        result = Calculator.splitAndSum("1:2,3");
+        assertThat(result).isEqualTo(6);
+    }
 }
