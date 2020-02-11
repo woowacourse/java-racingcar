@@ -27,8 +27,16 @@ public class Calculator {
             return Integer.parseInt(inputs[0]);
         }
         for (String value : inputs) {
-            result += Integer.parseInt(value);
+            try {
+                result += Integer.parseInt(value);
+            } catch(IllegalArgumentException e){
+                throw new IllegalArgumentException("지정된 구분자가 아닙니다.");
+            }
         }
         return result;
+    }
+
+    void checkInteger(String a){
+
     }
 }

@@ -48,8 +48,10 @@ public class CalculatorTest {
         int result = Calculator.splitAndSum("//;\n1;2;3");
         assertThat(result).isEqualTo(6);
 
-        result = Calculator.splitAndSum("1:2,3");
-        assertThat(result).isEqualTo(6);
+        assertThatThrownBy(()->{
+            int result2 = Calculator.splitAndSum("1:2@3");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("지정된 구분자가 아닙니다.");
     }
 
     @Test
