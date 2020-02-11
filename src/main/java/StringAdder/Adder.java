@@ -5,12 +5,16 @@ import java.util.regex.Pattern;
 
 public class Adder {
     public int splitAndSum(String inputString) {
+        int result = 0;
         if (inputString.isEmpty()) return 0;
+        if (inputString.charAt(0) == '/') {
+            String[] customList = customSplit(inputString);
+            return customSum(customList);
+        }
         String[] inputStrings = getSplit(inputString);
         if (inputStrings.length == 1) {
             return Integer.parseInt(inputString);
         }
-        int result = 0;
         for (String stringNumber : inputStrings) {
             result += Integer.parseInt(stringNumber);
         }
@@ -18,9 +22,21 @@ public class Adder {
         return result;
     }
 
-    public String[] getSplit(String inputString) {
+    private int customSum(String[] customList) {
+        int result = 0;
+        String[] listToSum = getSplit(customList[0], customList[1]);
+        for (String number : listToSum) {
+            result += Integer.parseInt(number);
+        }
+        return result;
+    }
 
+    public String[] getSplit(String inputString) {
         return inputString.split(",|:");
+    }
+
+    public String[] getSplit(String custom, String inputString) {
+        return inputString.split(custom);
     }
 
     public String[] customSplit(String inputString) {
