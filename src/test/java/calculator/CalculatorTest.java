@@ -28,4 +28,12 @@ public class CalculatorTest {
         assertThat(result[1]).isEqualTo("2");
         assertThat(result[2]).isEqualTo("3");
     }
+
+    @Test
+    void 구분자가_커스텀인_경우_분리() {
+        String[] result = Calculator.splitString("//;\n1;2;3");
+        assertThat(result[0]).isEqualTo("1");
+        assertThat(result[1]).isEqualTo("2");
+        assertThat(result[2]).isEqualTo("3");
+    }
 }
