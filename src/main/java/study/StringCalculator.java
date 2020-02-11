@@ -13,7 +13,7 @@ public class StringCalculator {
 
     private static final Scanner sc = new Scanner(System.in);
 
-    public void run() {
+    public static void run() {
         System.out.println("더하고 싶은 숫자를 입력해주세요!");
         System.out.println("기본 구분자는 ,와 : 입니다. 커스텀 구분자를 이용하시려면 //와 // 사이에 구분자를 넣어주세요.)");
         System.out.println("ex) 1,2,3 or //#//1#2#3");
