@@ -1,27 +1,38 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class Calculator {
-	public static int calculate(String s) {
-		String regex = "";
+	public static int calculate(String input) {
+		String regex = checkCustomRegex("", input);
+
+		input = subStringInput(regex, input);
+
+		return Stream.of(splitAsRegex(regex, input))
+			.map(Integer::parseInt)
+			.reduce(Integer::sum)
+			.orElse(0);
+	}
+
+	private static String checkCustomRegex(String regex, String input) {
 		Pattern p = Pattern.compile("//(.)\n");
-		Matcher matcher = p.matcher(s);
+		Matcher matcher = p.matcher(input);
 		while (matcher.find()) {
 			regex = matcher.group(1);
 		}
 
-		if(!regex.equals("")) {
-			s = s.substring(4);
+		return regex;
+	}
+
+	private static String subStringInput(String regex, String input) {
+		if (!regex.equals("")) {
+			return input.substring(4);
 		}
 
-		String[] split = s.split("[" + regex + ",:]");
-		int result = 0;
+		return input;
+	}
 
-
-		for (int i = 0; i < split.length; i++) {
-			result += Integer.parseInt(split[i]);
-		}
-
-		return result;
+	private static String[] splitAsRegex(String regex, String input) {
+		return input.split("[" + regex + ",:]");
 	}
 }
