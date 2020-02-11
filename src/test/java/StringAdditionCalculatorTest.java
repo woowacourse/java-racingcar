@@ -26,4 +26,21 @@ public class StringAdditionCalculatorTest {
         //then
         assertThat(stringAdditionCalculator.createNumbers(input).contains(number)).isTrue();
     }
+
+    @Test
+    void getCustomDelimiterTest() {
+        //given
+        String input = "\\;\n1;2;3";
+        String expected = ";";
+        // then
+        assertThat(stringAdditionCalculator.getCustomDelimiter(input)).isEqualTo(expected);
+    }
+
+    @Test
+    void hasCustomDelimiterTest(){
+        String input = "\\,\n";
+
+        assertThat(stringAdditionCalculator.hasCustomDelimiter(input)).isTrue();
+    }
+
 }
