@@ -24,4 +24,11 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("숫자 두개를 컴마 구분자로 입력할 경우 합반환")
+    void splitAndSum_쉼표구분자() {
+        int result = Calculator.splitAndSum("2,4");
+        assertThat(result).isEqualTo(6);
+    }
+
 }

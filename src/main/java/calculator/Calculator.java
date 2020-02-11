@@ -5,8 +5,14 @@ public class Calculator {
         if (input == null || input.isEmpty()) {
             return 0;
         }
-
-        int result = Integer.parseInt(input);
+        int result = 0;
+        String[] inputs = input.split(",");
+        if(inputs.length == 1) {
+            return Integer.parseInt(inputs[0]);
+        }
+        for (String val : inputs){
+            result += Integer.parseInt(val);
+        }
         return result;
     }
 }
