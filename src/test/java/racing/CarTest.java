@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -43,5 +44,15 @@ public class CarTest {
 
 		car.goForward(number);
 		assertThat(car.getPosition()).isEqualTo(1);
+	}
+
+	@DisplayName("'자동차 이름 : 자동차 위치' 출력 테스트")
+	@Test
+	public void toStringTest() {
+		String expected = "자동차1 : -";
+		Car car = new Car("자동차1");
+		car.goForward(5);
+
+		assertThat(car.toString()).isEqualTo(expected);
 	}
 }
