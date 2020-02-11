@@ -39,4 +39,11 @@ public class AdderTest {
         assertThat(result).containsExactly("1", "2", "3");
     }
 
+    @Test
+    public void 커스텀문자_테스트() {
+        List<String> result;
+        result = Arrays.asList(adder.customSplit("//;\n1;2;3"));
+
+        assertThat(result).containsExactly(";", "1;2;3");
+    }
 }
