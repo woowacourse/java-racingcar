@@ -5,6 +5,10 @@ public class StringCalculator {
     private static final String BASIC_DELIMITER = ";|,";
 
     public static int plusByDelimiterFrom(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+
         String[] customDelimiterAndNumbers = input.split("\n");
         if (customDelimiterAndNumbers.length == 1) {
             return plus(customDelimiterAndNumbers[0], BASIC_DELIMITER);
@@ -24,7 +28,15 @@ public class StringCalculator {
 
         int result = 0;
         for (String value : values) {
-            result += Integer.parseInt(value);
+            result += parseInt(value);
+        }
+        return result;
+    }
+
+    private static int parseInt(String value) {
+        int result = Integer.parseInt(value);
+        if (result < 0) {
+            throw new IllegalArgumentException();
         }
         return result;
     }
