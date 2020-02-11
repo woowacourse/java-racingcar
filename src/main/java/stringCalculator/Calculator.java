@@ -2,7 +2,6 @@ package stringCalculator;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.DoubleStream;
 
 public class Calculator {
     private static final String COMMA = ",";
@@ -21,11 +20,19 @@ public class Calculator {
     }
 
     private static Double parseDoubleIfValid(String operand) {
-        Double output = Double.parseDouble(operand);
+        Double output = parseDoubleIfNumber(operand);
         if (output < 0.0) {
             throw new RuntimeException("음수 계산은 지원하지 않습니다.");
         }
         return output;
+    }
+
+    private static Double parseDoubleIfNumber(String operand) {
+        try {
+            return Double.parseDouble(operand);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("적절한 문자열을 입력해주세요");
+        }
     }
 
     private static String combineDelimeters(String customDelimiter) {
