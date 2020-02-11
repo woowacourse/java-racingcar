@@ -18,9 +18,10 @@ public class Calculator {
     }
 
     public static String[] split(String input) {
-        if (checkCustomDelimiter(input)) {
-            delimiter = input.substring(2, 3);
-            input = removeCustomDelimiterWord(input);
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        if(m.find()) {
+            String customDelimiter = m.group(1);
+            return m.group(2).split(customDelimiter);
         }
 
         return input.split(delimiter);
