@@ -25,4 +25,10 @@ public class StringAdderTest {
 
         Assertions.assertThat(result).isEqualTo(7);
     }
+    @Test
+    void 숫자가_2개이상인_경우() {
+        int result = StringAdder.add("1,2:3,4:5");
+
+        Assertions.assertThat(result).isEqualTo(15);
+    }
 }
