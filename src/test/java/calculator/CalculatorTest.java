@@ -59,4 +59,15 @@ public class CalculatorTest {
 		);
 	}
 
+	@DisplayName("숫자 이외의 값을 입력할 경우 RuntimeException을 throw 한다. - 커스텀구분자")
+	@ParameterizedTest
+	@ValueSource(strings = {"//;\na;b;c", "//;\n1;2;-5", "//\n1;2", "//;\n1:2;-5"})
+	void checkRuntimeException_NaN_success1(String input) {
+		assertThatExceptionOfType(RuntimeException.class).isThrownBy(
+			() -> Calculator.calculate(input)
+		);
+	}
+
+
+
 }
