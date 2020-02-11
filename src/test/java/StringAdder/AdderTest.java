@@ -1,6 +1,10 @@
 package StringAdder;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AdderTest {
@@ -16,4 +20,15 @@ public class AdderTest {
         int result = adder.splitAndSum("");
         assertThat(result).isEqualTo(0);
     }
+
+    @Test
+    public void 숫자를_2개이상_입력() throws Exception {
+        int result = adder.splitAndSum("1,3");
+        assertThat(result).isEqualTo(4);
+
+        result = adder.splitAndSum("1,3,6");
+        assertThat(result).isEqualTo(10);
+    }
+
+
 }

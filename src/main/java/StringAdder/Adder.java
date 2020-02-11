@@ -1,9 +1,17 @@
 package StringAdder;
 
 public class Adder {
-    public int splitAndSum(String number){
-        if(number.isEmpty()) return 0;
+    public int splitAndSum(String inputString) {
+        if (inputString.isEmpty()) return 0;
+        String[] inputStrings = getSplit(inputString);
+        if (inputStrings.length == 1) {
+            return Integer.parseInt(inputString);
+        }
+        int result = 0;
+        for (String stringNumber : inputStrings) {
+            result += Integer.parseInt(stringNumber);
+        }
 
-        return 1;
+        return result;
     }
 }
