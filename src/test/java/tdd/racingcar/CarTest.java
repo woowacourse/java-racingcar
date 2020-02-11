@@ -6,11 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
+	private static final String CAR_NAME = "name";
+
 	private Car car;
 
 	@BeforeEach
 	void init() {
-		car = new Car();
+		car = new Car(CAR_NAME);
 	}
 
 	@Test
@@ -37,5 +39,11 @@ public class CarTest {
 		car.move(power);
 		final int currentPosition = car.getPosition();
 		assertEquals(currentPosition, previousPosition);
+	}
+
+	@Test
+	void getName() {
+		final String actual = car.getName();
+		assertEquals(CAR_NAME, actual);
 	}
 }

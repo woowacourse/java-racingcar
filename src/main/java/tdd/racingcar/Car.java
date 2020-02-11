@@ -4,6 +4,11 @@ public class Car {
 	private static final int MIN_POWER_TO_MOVE = 4;
 
 	private int position = 0;
+	private final String name;
+
+	public Car(final String name) {
+		this.name = name;
+	}
 
 	public int getPosition() {
 		return position;
@@ -13,5 +18,9 @@ public class Car {
 		if (power >= MIN_POWER_TO_MOVE) {
 			position++;
 		}
+	}
+
+	public String getName() {
+		return name;
 	}
 }
