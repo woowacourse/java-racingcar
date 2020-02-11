@@ -1,3 +1,7 @@
+package stringcalculator;
+
+import stringcalculator.parser.StringParserGroup;
+
 import java.util.List;
 
 public class Calculate {
@@ -5,9 +9,8 @@ public class Calculate {
     private static final String NEGATIVE_EXCEPTION_MESSAGE = "%d 는 음수입니다.";
 
     public static int calculate(String input) {
-        DelimiterAndTale delimiterAndTale = StringCalculate.removeHead(input);
-        List<String> values = delimiterAndTale.split();
-        return add(values);
+        List<String> numbers = StringParserGroup.findByInput(input).parse();
+        return add(numbers);
     }
 
     private static int add(List<String> values) {
