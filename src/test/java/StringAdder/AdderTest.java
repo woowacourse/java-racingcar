@@ -2,10 +2,12 @@ package StringAdder;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class AdderTest {
     private Adder adder = new Adder();
@@ -33,18 +35,18 @@ public class AdderTest {
 
     @Test
     public void 문자_split() {
-        List<String> result;
-        result = Arrays.asList(adder.getSplit("1,2:3"));
+        List<Integer> result;
+        result = adder.getSplit("1,2:3");
 
-        assertThat(result).containsExactly("1", "2", "3");
+        assertThat(result).containsExactly(1, 2, 3);
     }
 
     @Test
     public void 커스텀문자_split() {
-        List<String> result;
-        result = Arrays.asList(adder.getSplit("1;2;3", ";"));
+        List<Integer> result;
+        result = adder.getSplit(";", "1;2;3");
 
-        assertThat(result).containsExactly("1", "2", "3");
+        assertThat(result).containsExactly(1, 2, 3);
     }
 
     @Test
@@ -60,5 +62,19 @@ public class AdderTest {
         int result;
         result = adder.splitAndSum("//;\n1;2;3");
         assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    public void 음수예외처리() {
+        int result;
+        result = adder.splitAndSum("//;\n1;2;3");
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    public void streamReduceTest() {
+        List<Integer> finalNums = new ArrayList<>(Arrays.asList(1, 2, 3));
+        System.out.println(finalNums.stream().reduce((x, y) -> x + y).get());
+
     }
 }

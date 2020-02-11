@@ -1,42 +1,42 @@
 package StringAdder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Adder {
     public int splitAndSum(String inputString) {
-        int result = 0;
+        List<Integer> finalNums = new ArrayList<>();
         if (inputString.isEmpty()) return 0;
-        if (inputString.charAt(0) == '/') {
-            String[] customList = customSplit(inputString);
-            return customSum(customList);
+        if (isCustom(inputString)) {
+            finalNums = getSplit(customSplit(inputString)[0], customSplit(inputString)[1]);
+            return finalNums.stream().reduce((x, y) -> x + y).get();
         }
-        String[] inputStrings = getSplit(inputString);
-        if (inputStrings.length == 1) {
-            return Integer.parseInt(inputString);
-        }
-        for (String stringNumber : inputStrings) {
-            result += Integer.parseInt(stringNumber);
-        }
+        finalNums = getSplit(inputString);
+        return finalNums.stream().reduce((x, y) -> x + y).get();
+    }
 
+    private boolean isCustom(String inputString) {
+        return inputString.charAt(0) == '/';
+    }
+
+    public List<Integer> getSplit(String inputString) {
+        List<Integer> result = new ArrayList<>();
+        String[] stringNums = inputString.split(",|:");
+        for (String stringNum : stringNums) {
+            result.add(Integer.parseInt(stringNum));
+        }
         return result;
     }
 
-    private int customSum(String[] customList) {
-        int result = 0;
-        String[] listToSum = getSplit(customList[0], customList[1]);
-        for (String number : listToSum) {
-            result += Integer.parseInt(number);
+    public List<Integer> getSplit(String custom, String inputString) {
+        List<Integer> result = new ArrayList<>();
+        String[] stringNums = inputString.split(custom);
+        for (String stringNum : stringNums) {
+            result.add(Integer.parseInt(stringNum));
         }
         return result;
-    }
-
-    public String[] getSplit(String inputString) {
-        return inputString.split(",|:");
-    }
-
-    public String[] getSplit(String custom, String inputString) {
-        return inputString.split(custom);
     }
 
     public String[] customSplit(String inputString) {
