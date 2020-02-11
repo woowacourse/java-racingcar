@@ -53,4 +53,13 @@ public class CalculatorTest {
             Calculator.calculate(numbers);
         }).isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    void 음수인_경우_예외_발생() {
+        String[] numbers = Calculator.splitString("-2,2,3");
+
+        assertThatThrownBy(()-> {
+            Calculator.calculate(numbers);
+        }).isInstanceOf(RuntimeException.class);
+    }
 }

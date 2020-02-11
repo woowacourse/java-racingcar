@@ -17,9 +17,22 @@ public class Calculator {
 
         for (String number : numbers) {
             int parsedNumber = Integer.parseInt(number);
+
+            validatePositiveNumber(parsedNumber);
+
             result += parsedNumber;
         }
 
         return result;
+    }
+
+    private static void validatePositiveNumber(int parsedNumber) {
+        if (isNegativeNumber(parsedNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static boolean isNegativeNumber(int parsedNumber) {
+        return parsedNumber < 0;
     }
 }
