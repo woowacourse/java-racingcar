@@ -19,4 +19,10 @@ public class StringAdderTest {
         result = StringAdder.add(null);
         Assertions.assertThat(result).isEqualTo(0);
     }
+    @Test
+    void 숫자_1개만_들어오는_경우() {
+        int result = StringAdder.add("7");
+
+        Assertions.assertThat(result).isEqualTo(7);
+    }
 }
