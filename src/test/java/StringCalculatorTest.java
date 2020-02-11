@@ -1,3 +1,4 @@
+import calculator.domain.StringCalculator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,6 +17,12 @@ public class StringCalculatorTest {
 
         value = null;
         assertThat(StringCalculator.run(value)).isEqualTo(0);
+    }
+
+    @Test
+    public void customDelimiter () {
+        String delimiter = "//;\n1;2;3";
+        assertThat(StringCalculator.run(delimiter)).isEqualTo(6);
     }
 }
 
