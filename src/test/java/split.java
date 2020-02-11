@@ -1,4 +1,6 @@
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +14,17 @@ public class split {
 		String[] result = Split.splitByCommaOrColon(value1);
 		String[] expected = {"1", "2", "3"};
 
-		Assertions.assertArrayEquals(expected, result);
+		assertArrayEquals(expected, result);
+	}
+
+	@Test
+	void getCustomDelimiter() {
+		Assertions.assertThatThrownBy(() -> {
+			String value = "//;\n1;2;3";
+			String delimiter = ":";
+			String result = Split.getCustomDelimiter(value);
+
+			Assertions.assertThat(result).isEqualTo(delimiter);
+		}).isInstanceOf(NullPointerException.class);
 	}
 }
