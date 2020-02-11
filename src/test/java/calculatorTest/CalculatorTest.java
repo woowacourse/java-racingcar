@@ -3,6 +3,8 @@ package calculatorTest;
 import calculator.Calculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -18,11 +20,12 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(0);
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource(value = {"1:1", "11:11"})
     @DisplayName("숫자 하나를 문자열로 입력할 경우")
-    void splitAndSum_숫자하나() {
-        int result = Calculator.splitAndSum("2");
-        assertThat(result).isEqualTo(2);
+    void splitAndSum_숫자하나(String input, int answer) {
+        int result = Calculator.splitAndSum(input);
+        assertThat(result).isEqualTo(answer);
     }
 
     @Test
