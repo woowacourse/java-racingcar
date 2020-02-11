@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import racingGame.domain.MovementNumber;
-
 public class MovementNumberTest {
 	@Test
 	void checkValidMovementNumber_이동_횟수가_숫자가_아닌_경우() {
