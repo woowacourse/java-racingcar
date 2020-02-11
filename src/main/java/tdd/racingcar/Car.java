@@ -31,4 +31,8 @@ public class Car {
 	public String getName() {
 		return name;
 	}
+
+	public boolean hasGreaterPositionThan(final int position) {
+		return this.position > position;
+	}
 }

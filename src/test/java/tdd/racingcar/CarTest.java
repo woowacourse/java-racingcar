@@ -55,4 +55,17 @@ public class CarTest {
 			new Car(TOO_LONG_NAME))
 			.withMessage("이름은 최대 5자까지 가능합니다.");
 	}
+
+	@Test
+	void hasGreaterPositionThan() {
+		car.move(4);
+
+		final int shortPosition = 0;
+		final int carPosition = car.getPosition();
+		final int longPosition = 2;
+
+		assertTrue(car.hasGreaterPositionThan(shortPosition));
+		assertFalse(car.hasGreaterPositionThan(carPosition));
+		assertFalse(car.hasGreaterPositionThan(longPosition));
+	}
 }
