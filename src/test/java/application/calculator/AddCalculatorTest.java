@@ -1,40 +1,20 @@
-package calculator;
+package application.calculator;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledIfSystemProperties;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class AddCalculatorTest {
-    private Calculator calculator;
+    private Calculate calculate;
 
     @BeforeEach
     public void setUp() {
-        calculator = new Calculator();
-    }
-
-    @Test
-    @DisplayName("덧셈 기능만 테스트")
-    public void addTest() {
-        List<Integer> numbers = new ArrayList<>();
-        numbers.add(1);
-        numbers.add(2);
-        numbers.add(3);
-        int result = Calculator.calculation(numbers);
-        Assertions.assertThat(result).isEqualTo(6);
-    }
-
-    @Test
-    @DisplayName("문자열이 들어오면 쉼표로 구분하여 배열로 변환한다.")
-    public void string_Split_Test() {
-        String[] strArrays = calculator.splitString("1,2:3");
-        String[] expected = {"1", "2", "3"};
-        Assertions.assertThat(strArrays).isEqualTo(expected);
+        calculate = new Calculate();
     }
 
     @Test
@@ -42,8 +22,9 @@ public class AddCalculatorTest {
     public void extractStringValue() {
         String[] input = {"//;\n1;2;3", "//;;\n1;;2;;3", "//'\n1'2'3"};
         String[] expected = {";", ";;", "'"};
+
         for (int i = 0; i < input.length; i++) {
-            Assertions.assertThat(calculator.extractDelimiter(input[i])).isEqualTo(expected[i]);
+            Assertions.assertThat(calculate.isSameDelimiter(input[i])).isFalse();
         }
     }
 
@@ -56,7 +37,8 @@ public class AddCalculatorTest {
         lists.add(new ArrayList(Arrays.asList(1, 20, 3)));
         lists.add(new ArrayList(Arrays.asList(4, 5, 6)));
         for (int i = 0; i < input.length; i++) {
-            Assertions.assertThat(calculator.extractExpression(input[i])).isEqualTo(lists.get(i));
+            calculate = new Calculate();
+            Assertions.assertThat(calculate.extractExpression(input[i])).isEqualTo(lists.get(i));
         }
     }
 
@@ -64,9 +46,8 @@ public class AddCalculatorTest {
     @DisplayName("커스텀 구분자를 추가하는 테스트")
     public void addCustomDelimiterTest() {
         String input = "//;\n1,2:3;4";
-        String customDelimiter = calculator.extractDelimiter(input);
-        calculator.addDelimiter(customDelimiter);
-        Assertions.assertThat(calculator.isSameDelimiter(",|:|;")).isTrue();
+        calculate.extractDelimiter(input);
+        Assertions.assertThat(calculate.isSameDelimiter(",|:|;")).isTrue();
     }
 
     @Test
@@ -75,7 +56,7 @@ public class AddCalculatorTest {
         String[] inputs = {"a,1", "-1,1", "1,3p4"};
         for (String input : inputs) {
             Assertions.assertThatThrownBy(() -> {
-                calculator.extractExpression(input);
+                calculate.extractExpression(input);
             }).isInstanceOf(RuntimeException.class);
         }
     }
@@ -86,7 +67,7 @@ public class AddCalculatorTest {
         String[] inputs = {"/;\n1;2;3;", ";\n1,2,3", " ;\n1;2;3", "//;1;2;3"};
         for (String input : inputs) {
             Assertions.assertThatThrownBy(() -> {
-                calculator.checkCustomExpression(input);
+                calculate.checkCustomExpression(input);
             }).isInstanceOf(RuntimeException.class);
         }
     }
