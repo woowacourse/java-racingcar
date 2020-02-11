@@ -11,12 +11,8 @@ public class StringCalculator {
     }
 
     private static int calculate(String value) {
-        String[] numbers = DelimiterUtil.parseString(value);
-        int result = 0;
-        for (String number : numbers) {
-            result += Integer.parseInt(number);
-        }
-        return result;
+        String[] valueSplit = DelimiterUtil.parseString(value);
+        return new Numbers(valueSplit).sum();
     }
 
     private static boolean isNullOrBlank(String value) {

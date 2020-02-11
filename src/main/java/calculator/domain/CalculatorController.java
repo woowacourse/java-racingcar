@@ -1,6 +1,5 @@
 package calculator.domain;
 
-import calculator.domain.StringCalculator;
 import calculator.io.UserInput;
 
 public class CalculatorController {
