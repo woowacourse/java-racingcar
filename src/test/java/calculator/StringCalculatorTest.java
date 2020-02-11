@@ -31,7 +31,7 @@ public class StringCalculatorTest {
 
     @Test
     void 음수_예외처리() {
-        assertThatThrownBy(()-> StringCalculator.plusByDelimiterFrom("-1,2,3"))
+        assertThatThrownBy(() -> StringCalculator.plusByDelimiterFrom("-1,2,3"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -1,4 +1,4 @@
-package Car;
+package racingcargame.domain;
 
 import org.junit.jupiter.api.Test;
 

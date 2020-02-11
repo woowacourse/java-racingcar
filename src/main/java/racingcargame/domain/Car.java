@@ -1,4 +1,4 @@
-package Car;
+package racingcargame.domain;
 
 public class Car {
 
@@ -9,7 +9,7 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        if (name == null || name.isEmpty() ) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException();
         }
         if (name.length() > CAR_NAME_LIMIT) {
