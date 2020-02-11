@@ -13,7 +13,7 @@
 - [x] 우승자 찾는 기능
 
 - [x] 현재 위치 출력하는 기능
-- [ ] 우승자 출력하는 기능
+- [x] 우승자 출력하는 기능
 
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
