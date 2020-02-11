@@ -1,4 +1,4 @@
-package racingGame;
+package racingGame.utils;
 
 public class StringUtil {
 	private static final String DELIMITER = ",";

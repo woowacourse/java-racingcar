@@ -1,4 +1,4 @@
-package racingGame;
+package racingGame.domain;
 
 public class MovementNumber {
 	private static final int ZERO = 0;

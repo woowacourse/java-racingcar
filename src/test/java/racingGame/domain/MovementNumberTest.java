@@ -1,8 +1,10 @@
-package racingGame;
+package racingGame.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import racingGame.domain.MovementNumber;
 
 public class MovementNumberTest {
 	@Test
