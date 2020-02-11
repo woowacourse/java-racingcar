@@ -24,7 +24,11 @@ public class Calculator {
 		int result = 0;
 		String[] numbers = value.split(DEFAULT_DELIMITER);
 		for (String number : numbers) {
-			result += Integer.parseInt(number);
+			int tmp = Integer.parseInt(number);
+			if (tmp < 0) {
+				throw new RuntimeException();
+			}
+			result += tmp;
 		}
 		return result;
 	}

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.regex.Pattern;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.converter.ConvertWith;
@@ -43,5 +44,14 @@ public class CalculatorTest {
 	void calculate_customDelimiter_success() {
 		String[] s = Calculator.splitCustomDelimiter("//@\n1@2@3");
 		assertThat(s).containsExactly("1", "2", "3");
+	}
+
+	@DisplayName("숫자 이외의 값을 입력할 경우 RuntimeException을 throw 한다. - 기본구분자")
+	@ParameterizedTest
+	@ValueSource(strings = {"q:q:q:q:q:q:q:q:q", "1:-5"})
+	void checkRuntimeException_NaN_success(String input) {
+		assertThatExceptionOfType(RuntimeException.class).isThrownBy(
+			() -> Calculator.calculate(input)
+		);
 	}
 }
