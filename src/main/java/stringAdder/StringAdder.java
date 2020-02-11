@@ -1,8 +1,6 @@
 package stringAdder;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class StringAdder {
     public static int add(String value) throws RuntimeException {

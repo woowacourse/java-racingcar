@@ -44,7 +44,6 @@ public class Input {
 
             return list;
         } catch(NullPointerException e){
-            System.out.println("빈 문자열을 입력할 수 없습니다.");
             return null;
         }
     }
