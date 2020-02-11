@@ -77,12 +77,14 @@ public class CalculatorTest {
 		);
 	}
 
-	@DisplayName("정의되지 않은 구분자을 사용시 RuntimeException을 throw 한다. - 커스텀구분자")
+	@DisplayName("정의되지 않은 구분자를 사용하거나 포맷을 지키지 않았을 시 RuntimeException을 throw 한다. - 커스텀구분자")
 	@ParameterizedTest
-	@ValueSource(strings = {"//;\na;b.c", "//*\n1:2:5"})
+	@ValueSource(strings = {"//;\na;b.c", "//*\n1:2:5", "//;1;2;3", "/;\n1;2;3", "//;1;2;3"})
 	void checkRuntimeException_customDelimiter_success1(String input) {
 		assertThatExceptionOfType(RuntimeException.class).isThrownBy(
 			() -> Calculator.calculate(input)
 		);
 	}
+
+
 }
