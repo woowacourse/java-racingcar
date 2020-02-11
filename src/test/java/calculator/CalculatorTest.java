@@ -1,22 +1,25 @@
 package calculator;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class CalculatorTest {
-	@Test
-	void 덧셈() {
-		int result = Calculator.calculate("1,2");
-		assertThat(result).isEqualTo(3);
+	@ParameterizedTest
+	@MethodSource("generateInput")
+	void 덧셈(String input, int expected) {
+		int result = Calculator.calculate(input);
+		assertThat(result).isEqualTo(expected);
+	}
 
-		result = Calculator.calculate("1:5");
-		assertThat(result).isEqualTo(6);
-
-		result = Calculator.calculate("1:5:7,5,1");
-		assertThat(result).isEqualTo(19);
-
-		result = Calculator.calculate("//^\n1:5:7^5,1");
-		assertThat(result).isEqualTo(19);
+	static Stream<Arguments> generateInput() {
+		return Stream.of(Arguments.of("1,2", 3),
+				Arguments.of("1:5", 6),
+				Arguments.of("1:5:7,5,1", 19),
+				Arguments.of("//^\n1:5:7^5,1", 19));
 	}
 }
