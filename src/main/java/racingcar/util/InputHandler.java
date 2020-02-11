@@ -18,4 +18,14 @@ public class InputHandler {
             throw new IllegalArgumentException("횟수 10번 초과입니다!");
         }
     }
+
+    public static int validateNumber(String input) {
+        int count = 0;
+        try {
+            count = Integer.parseInt(input);
+        }  catch (NumberFormatException e) {
+            throw new IllegalArgumentException("잘못된 횟수 입력");
+        }
+        return count;
+    }
 }

@@ -14,7 +14,7 @@ public class InputHandlerTest {
         assertThatThrownBy(() -> {
             InputHandler.validateNullOrEmpty(input);
         }).isInstanceOf(IllegalArgumentException.class)
-        .hasMessageContaining("빈 값 혹은 Null");
+                .hasMessageContaining("빈 값 혹은 Null");
     }
 
     @Test
@@ -23,7 +23,7 @@ public class InputHandlerTest {
         assertThatThrownBy(() -> {
             InputHandler.validateNameLength(name);
         }).isInstanceOf(IllegalArgumentException.class)
-        .hasMessageContaining("이름 길이 5자 초과");
+                .hasMessageContaining("이름 길이 5자 초과");
     }
 
     @Test
@@ -35,5 +35,12 @@ public class InputHandlerTest {
                 .hasMessageContaining("횟수 10번 초과");
     }
 
-
+    @Test
+    void 횟수가_숫자가_아닌_경우() {
+        String count = "a";
+        assertThatThrownBy(() -> {
+            InputHandler.validateNumber(count);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("잘못된 횟수 입력");
+    }
 }
