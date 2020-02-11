@@ -1,5 +1,6 @@
 package learningTest;
 
+import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,4 +16,11 @@ public class LearningTest {
                 .isEqualTo(true)
                 .isNotEqualTo(false);
     }
+
+    @Test
+    void contains() {
+        String a = "\\n";
+        System.out.println(a.contains("\\n"));
+    }
+
 }

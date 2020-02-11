@@ -36,10 +36,14 @@ public class StringParserTest {
     @Test
     @DisplayName("커스텀 구분자로 문자열 파싱")
     void parse_WithCustomDelimiter() {
+        String input = "//;\\n1;2;3";
+        String[] expected = {"1", "2", "3"};
+        String[] result = StringParser.parse(input);
 
+        parseOneCase(input, expected, result);
     }
 
-    void parseOneCase(String input, String[] expected, String[] result) {
+    private void parseOneCase(String input, String[] expected, String[] result) {
         assertThat(Arrays.equals(expected, result)).isEqualTo(true);
     }
 
