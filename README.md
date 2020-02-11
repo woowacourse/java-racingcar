@@ -1,5 +1,6 @@
-# java-racingcar
-자동차 경주 게임 미션 저장소
-
-## 우아한테크코스 코드리뷰
-* [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
+## 요구사항
+1. 문자열 입력
+2. 기본 구분자(";", ",")로 문자열 파싱
+3. 커스텀 기본자("//\n")(최대 1개)로 파싱
+4. 덧셈
+5. 숫자 이외의 값/음수가 입력되면 예외처리(RuntimeException)
