@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CalculatorTest {
     @Test
@@ -49,5 +50,19 @@ public class CalculatorTest {
 
         result = Calculator.splitAndSum("1:2,3");
         assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("음수를 전달할 경우 RuntimeException 예외가 발생하게 됨")
+    void splitAndSum_negative() {
+        assertThatThrownBy(()->{
+            int result = Calculator.splitAndSum("1,2,-3");
+        }).isInstanceOf(RuntimeException.class)
+        .hasMessageContaining("음수는 포함할 수 없습니다.");
+
+        assertThatThrownBy(()->{
+            int result = Calculator.splitAndSum("//;\n1;-2;3");
+        }).isInstanceOf(RuntimeException.class)
+                .hasMessageContaining("음수는 포함할 수 없습니다.");
     }
 }

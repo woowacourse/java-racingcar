@@ -18,11 +18,16 @@ public class Calculator {
         }
         String[] inputs = input.split(delimiter);
 
+        for(String value : inputs) {
+            if (value.contains("-")) {
+                throw new RuntimeException("음수는 포함할 수 없습니다.");
+            }
+        }
         if (inputs.length == 1) {
             return Integer.parseInt(inputs[0]);
         }
-        for (String val : inputs) {
-            result += Integer.parseInt(val);
+        for (String value : inputs) {
+            result += Integer.parseInt(value);
         }
         return result;
     }
