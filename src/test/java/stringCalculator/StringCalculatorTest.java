@@ -30,4 +30,22 @@ public class StringCalculatorTest {
         }
         fileInputStream.close();
     }
+
+    @Test
+    @DisplayName("콤마, 콜론 혼용 계산 테스트")
+    void commmaColonCalculateTest() throws Exception {
+        String input;
+        String expected;
+        FileInputStream fileInputStream = new FileInputStream("src/test/resources/commaColonCalculateTestcase");
+        Scanner scanner = new Scanner(fileInputStream);
+
+        while (scanner.hasNext()) {
+            String[] raw = scanner.nextLine().split(INPUT_EXPECTED_DIVIDER);
+            input = raw[0];
+            expected = raw[1];
+
+            Assertions.assertThat(Calculator.calculate(input)).isEqualTo(Double.parseDouble(expected));
+        }
+        fileInputStream.close();
+    }
 }
