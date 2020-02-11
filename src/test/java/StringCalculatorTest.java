@@ -8,8 +8,14 @@ public class StringCalculatorTest {
         String value = "1,2:3";
         assertThat(StringCalculator.run(value)).isEqualTo(6);
 
-        String value2 = "1:6,3";
-        assertThat(StringCalculator.run(value2)).isEqualTo(10);
+        value = "1:6,3";
+        assertThat(StringCalculator.run(value)).isEqualTo(10);
+
+        value = "";
+        assertThat(StringCalculator.run(value)).isEqualTo(0);
+
+        value = null;
+        assertThat(StringCalculator.run(value)).isEqualTo(0);
     }
 }
 

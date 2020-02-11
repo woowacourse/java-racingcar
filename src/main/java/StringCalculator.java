@@ -4,6 +4,9 @@ public class StringCalculator {
     public static final int STEP = 2;
 
     public static int run(String value) {
+        if(value==null || value.isBlank()){
+            return 0;
+        }
         String[] values = value.split(DELIMITER);
         int result = Integer.parseInt(values[0]);
         for (int i = FIRST_SEPARATOR; i < value.length(); i += STEP) {
