@@ -11,22 +11,24 @@ public class Input {
 
     private String input;
 
-    public Input(){
+    public Input() {
         this.input = InputView.inputValue();
     }
 
-    public Input(String value){
+    public Input(String value) {
         this.input = value;
     }
 
-    private boolean isInputEmpty(){
-        return input == null || input.isEmpty();
-
+    private List<String> checkInputEmpty(List<String> list) {
+        if (input == null || input.isEmpty() || list.isEmpty()){
+            return null;
+        }
+        return list;
     }
 
-    private String getDelimiter(){
+    private String getDelimiter() {
         Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(input);
-        if(m.find()){
+        if (m.find()) {
             input = m.group(2);
             return m.group(1);
         }
@@ -38,12 +40,9 @@ public class Input {
             String delimiter = getDelimiter();
             List<String> list = Arrays.asList(input.split(delimiter));
 
-            if(isInputEmpty() || list.isEmpty()){
-                return null;
-            }
-
+            list = checkInputEmpty(list);
             return list;
-        } catch(NullPointerException e){
+        } catch (NullPointerException e) {
             return null;
         }
     }
