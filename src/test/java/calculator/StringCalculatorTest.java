@@ -30,4 +30,11 @@ public class StringCalculatorTest {
         int result = StringCalculator.splitAndSum("1,2");
         assertThat(result).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("구분자를 쉼표(,) 이외에 콜론(:)을 사용하는 경우 테스트")
+    public void splitAndSum_쉼표_또는_콜론_구분자() throws Exception {
+        int result = StringCalculator.splitAndSum("1,2:3");
+        assertThat(result).isEqualTo(6);
+    }
 }
