@@ -6,7 +6,14 @@ public class PlusCalculator {
 	private static final Pattern PATTERN = Pattern.compile("//(.)\n(.*)");
 
 	public static int calculate(final String value) {
+		if (isBlank(value)) {
+			return 0;
+		}
 		return sum(splitValues(value));
+	}
+
+	private static boolean isBlank(String value) {
+		return value == null || value.isBlank();
 	}
 
 	private static int sum(final String[] values) {
