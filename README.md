@@ -38,14 +38,14 @@
     --> 구현 순서
     
     - CarUtil
-        - 랜덤한 0~9 까지의 수를 반환하는 메소드를 테스트
+        - [x] 랜덤한 0~9 까지의 수를 반환하는 메소드를 테스트
         - Static Class
 
     - Validator
         - Static Class
-        - , 단위로 Split 되는지 테스트
-        - null이 입력되는 경우 Exception이 발생하는지 테스트
-        - Empty값 입력되는 경우 Exception이 발생하는지 테스트
+        - [x] , 가 없는 경우(한 명인 경우)
+        - [x] null이 입력되는 경우 False
+        - [x] Empty값 입력되는 경우 False
     - Car
         - 전진 메서드가 정상 작동 하는 지
         - toString() 이 원하는 내용을 포함하는지
