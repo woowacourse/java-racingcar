@@ -57,4 +57,20 @@ public class PlusCalculatorTest {
 		final int expectedForFourValues = 10;
 		assertThat(actualForFourValues).isEqualTo(expectedForFourValues);
 	}
+
+	@Test
+	void plusNumbersSplitByCustomDelimiter() {
+		final String customValue = "//;\n1;2;3";
+		final int expected = 6;
+		final int actual = PlusCalculator.calculate(customValue);
+		assertThat(actual).isEqualTo(expected);
+	}
+
+	@Test
+	void plusNumbersSplitByMixedDelimiter() {
+		final String customValue = "//;\n1;2,3:4";
+		final int expected = 10;
+		final int actual = PlusCalculator.calculate(customValue);
+		assertThat(actual).isEqualTo(expected);
+	}
 }
