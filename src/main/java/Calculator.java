@@ -26,12 +26,7 @@ public class Calculator {
             String customDelimiter = m.group(1);
             return m.group(2).split(customDelimiter);
         }
-
         return input.split(delimiter);
-    }
-
-    private static String removeCustomDelimiterWord(String input) {
-        return input.substring(5);
     }
 
     public static void validExceptPositiveNumberAndZero(String[] inputs) {

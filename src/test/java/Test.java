@@ -1,8 +1,3 @@
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-
-import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -16,7 +11,7 @@ public class Test {
     }
 
     @org.junit.jupiter.api.Test
-    void substring_인덱스_에러_예외_발() {
+    void substring_인덱스_에러_예외_발생() {
         String input = "//1,2";
         assertThatThrownBy(() -> {
             Calculator.calculate(input);
