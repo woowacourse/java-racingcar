@@ -1,10 +1,8 @@
-package tdd.calculator;
+package tdd.calculator.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-
-import tdd.calculator.PlusCalculator;
 
 public class PlusCalculatorTest {
 	@Test

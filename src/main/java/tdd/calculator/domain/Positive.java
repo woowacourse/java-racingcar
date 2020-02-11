@@ -1,4 +1,4 @@
-package tdd.calculator;
+package tdd.calculator.domain;
 
 public class Positive {
 	private static final int INDEX_OF_MINUS_SIGN = 0;
