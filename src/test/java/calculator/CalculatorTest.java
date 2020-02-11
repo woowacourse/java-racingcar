@@ -36,4 +36,11 @@ public class CalculatorTest {
         assertThat(result[1]).isEqualTo("2");
         assertThat(result[2]).isEqualTo("3");
     }
+
+    @Test
+    void 문자열_배열의_원소들을_덧셈계산() {
+        String[] numbers = Calculator.splitString("//;\n1;2;3");
+        int result = Calculator.calculate(numbers);
+        assertThat(result).isEqualTo(6);
+    }
 }
