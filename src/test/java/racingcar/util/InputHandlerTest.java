@@ -25,4 +25,15 @@ public class InputHandlerTest {
         }).isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("이름 길이 5자 초과");
     }
+
+    @Test
+    void 횟수가_10번_초과() {
+        int count = 11;
+        assertThatThrownBy(() -> {
+            InputHandler.validateCount(count);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("횟수 10번 초과");
+    }
+
+
 }

@@ -12,4 +12,10 @@ public class InputHandler {
             throw new IllegalArgumentException("이름 길이 5자 초과입니다!");
         }
     }
+
+    public static void validateCount(int count) {
+        if (count > 10) {
+            throw new IllegalArgumentException("횟수 10번 초과입니다!");
+        }
+    }
 }
