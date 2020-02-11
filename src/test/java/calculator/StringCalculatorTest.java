@@ -8,14 +8,25 @@ public class StringCalculatorTest {
 
     @Test
     void 덧셈() {
-        int result = StringCalculator.calculate("1,2");
+        int result = StringCalculator.plusByDelimiterFrom("1,2");
         assertThat(result).isEqualTo(3);
     }
 
     @Test
     void 덧셈세개() {
-        int result = StringCalculator.calculate("1,2,3");
+        int result = StringCalculator.plusByDelimiterFrom("1,2,3");
         assertThat(result).isEqualTo(6);
     }
 
+    @Test
+    void 덧셈커스텀() {
+        int result = StringCalculator.plusByDelimiterFrom("//;\n1;2;3");
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    void split학습테스트() {
+        String[] values = "1,2:3,4:5".split(",|:");
+        assertThat(values.length).isEqualTo(5);
+    }
 }
