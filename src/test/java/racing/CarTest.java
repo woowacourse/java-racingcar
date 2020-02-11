@@ -35,4 +35,13 @@ public class CarTest {
 			Arguments.of(new Car("자동차5"))
 		);
 	}
+
+	@Test
+	public void goForwardTest() {
+		int number = 5;
+		Car car = new Car("자동차1");
+
+		car.goForward(number);
+		assertThat(car.getPosition()).isEqualTo(1);
+	}
 }

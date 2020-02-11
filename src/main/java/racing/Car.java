@@ -15,10 +15,20 @@ public class Car {
 		return name;
 	}
 
+	public int getPosition() {
+		return position;
+	}
+
 	public int randomGenerate() {
 		return ThreadLocalRandom.current()
 			.ints(0, 9)
 			.findFirst()
 			.orElse(0);
+	}
+
+	public void goForward(int number) {
+		if(number >= 4) {
+			position++;
+		}
 	}
 }
