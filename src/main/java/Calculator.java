@@ -8,6 +8,9 @@ public class Calculator {
     public static String delimiter = "," + OR_OPERATOR + ":";
 
     public static int calculate(String input) {
+        if(input == null || input.isEmpty()) {
+            return 0;
+        }
         String[] splitedInputs = split(input);
         validExceptPositiveNumberAndZero(splitedInputs);
         int result = Arrays.stream(splitedInputs)
