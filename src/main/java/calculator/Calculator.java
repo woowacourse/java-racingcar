@@ -17,6 +17,7 @@ public class Calculator {
         String[] inputs = splitByDelimiter(input);
         if (inputs.length == SINGLE_NUMBER) {
             isContainNegative(inputs[0]);
+            checkDelimiter(inputs[0]);
             return Integer.parseInt(inputs[0]);
         }
         return sumNumbers(inputs);
