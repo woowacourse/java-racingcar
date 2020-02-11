@@ -4,14 +4,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    public static int splitAndSum(String text) {
+    public static int calculate(String text) {
         if (text == null || text.isEmpty()) {
             return 0;
         }
-        return custom(text);
+        if(text.contains("-")){
+            throw new RuntimeException("message");
+        }
+        return splitAndSum(text);
     }
 
-    private static int custom(String text) {
+    private static int splitAndSum(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (m.find()) {
             String customDelimiter = m.group(1);
