@@ -29,4 +29,26 @@ public class StringAddCalculatorTest {
 		String value = "//;\n1;2;3";
 		assertThat(StringAddCalculator.calculate(value)).isEqualTo(6);
 	}
+
+	@Test
+	void calculate_숫자_이외의_값() {
+		final String invalidValue = "1:2,a";
+		assertThatThrownBy(() -> StringAddCalculator.calculate(invalidValue))
+			.isInstanceOf(RuntimeException.class);
+
+		final String invalidValue2 = "//;\n1;2;a";
+		assertThatThrownBy(() -> StringAddCalculator.calculate(invalidValue2))
+			.isInstanceOf(RuntimeException.class);
+	}
+
+	@Test
+	void calculate_음수() {
+		final String invalidValue = "1:2,-2";
+		assertThatThrownBy(() -> StringAddCalculator.calculate(invalidValue))
+			.isInstanceOf(RuntimeException.class);
+
+		final String invalidValue2 = "//;\n1;2;-2";
+		assertThatThrownBy(() -> StringAddCalculator.calculate(invalidValue2))
+			.isInstanceOf(RuntimeException.class);
+	}
 }
