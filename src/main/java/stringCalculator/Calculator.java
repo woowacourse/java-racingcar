@@ -2,26 +2,53 @@ package stringCalculator;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Calculator {
     private static final String COMMA = ",";
     private static final String COLON = ":";
+    private static final String CUSTOM_DELIMITER_STARTER = "//";
+    private static final String CUSTOM_DELIMITER_TERMINATOR = "\\n";
 
     public static double calculate(String input) {
-        List<String> operands = Arrays.asList(input.split(combineDelimeters()));
+        String delimiters = combineDelimeters(getNewDelimiter(input));
+        input = getPureExpression(input);
+        List<String> operands = Arrays.asList(input.split(delimiters));
         return operands.stream()
                 .mapToDouble(operand -> Double.parseDouble(operand))
                 .sum();
     }
 
-    private static String combineDelimeters() {
+    private static String combineDelimeters(String customDelimiter) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(COMMA);
         stringBuilder.append("|");
         stringBuilder.append(COLON);
-        //stringBuilder.append("|");
-        //stringBuilder.append(input.stream().collect(Collectors.joining("|")));
+        if (customDelimiter != null) {
+            stringBuilder.append("|");
+            stringBuilder.append(customDelimiter);
+        }
         return stringBuilder.toString();
+    }
+
+    private static String getNewDelimiter(String input) {
+        if (!hasCustomDelimiterRequest(input)) {
+            return null;
+        }
+        int startIndex = input.indexOf(CUSTOM_DELIMITER_STARTER) + CUSTOM_DELIMITER_STARTER.length();
+        int endIndex = input.indexOf(CUSTOM_DELIMITER_TERMINATOR);
+        return input.substring(startIndex, endIndex);
+    }
+
+    private static String getPureExpression(String input) {
+        if (!hasCustomDelimiterRequest(input)) {
+            return input;
+        }
+        return input.substring(CUSTOM_DELIMITER_STARTER.length()
+                + getNewDelimiter(input).length()
+                + CUSTOM_DELIMITER_TERMINATOR.length());
+    }
+
+    private static boolean hasCustomDelimiterRequest (String input) {
+        return input.substring(0, CUSTOM_DELIMITER_STARTER.length()).equals(CUSTOM_DELIMITER_STARTER);
     }
 }
