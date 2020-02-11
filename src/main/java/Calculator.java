@@ -1,14 +1,15 @@
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Calculator {
     public static final String OR_OPERATOR = "|";
-    public static final String CUSTOM_DELIMITER_PREFIX = "//";
-    public static final String CUSTOM_DELIMITER_SUFFIX = "`n";
+    public static final String NUMBER_EXPRESSION = "^~[0-9]+$";
     public static String delimiter = "," + OR_OPERATOR + ":";
 
     public static int calculate(String input) {
         String[] splitedInputs = split(input);
-        validExceptNumber(splitedInputs);
+        validExceptPositiveNumberAndZero(splitedInputs);
         int result = Arrays.stream(splitedInputs)
                 .map(Integer::parseInt)
                 .reduce(Integer::sum)
@@ -21,26 +22,19 @@ public class Calculator {
             delimiter = input.substring(2, 3);
             input = removeCustomDelimiterWord(input);
         }
-        return input.split(delimiter);
-    }
 
-    private static boolean checkCustomDelimiter(String input) {
-        String prefix = input.substring(0, 2);
-        String suffix = input.substring(3, 5);
-        return prefix.equals(CUSTOM_DELIMITER_PREFIX)
-                && suffix.equals(CUSTOM_DELIMITER_SUFFIX);
+        return input.split(delimiter);
     }
 
     private static String removeCustomDelimiterWord(String input) {
         return input.substring(5);
     }
 
-   public static void validExceptNumber(String[] inputs) {
-        String regExp = "^[0-9]+$";
-        boolean a = Arrays.stream(inputs)
-                .allMatch(input -> input.matches(regExp));
-        if(a == false) {
-            throw new RuntimeException("숫자 이외의 값입니다.");
+    public static void validExceptPositiveNumberAndZero(String[] inputs) {
+        boolean isNotPositiveNumberAndZero = Arrays.stream(inputs)
+                .anyMatch(input -> input.matches(NUMBER_EXPRESSION));
+        if (isNotPositiveNumberAndZero) {
+            throw new RuntimeException("숫자 이외의 값 혹은 음수가 입력되었습니다.");
         }
     }
 }
