@@ -11,4 +11,16 @@ public class StringAddCalculatorTest {
 		value = "";
 		assertThat(StringAddCalculator.calculate(value)).isEqualTo(0);
 	}
+
+	@Test
+	void calculate_쉼표_콜론_구분자로_숫자합_계산() {
+		String value = "1,2";
+		assertThat(StringAddCalculator.calculate(value)).isEqualTo(3);
+
+		value = "1:2";
+		assertThat(StringAddCalculator.calculate(value)).isEqualTo(3);
+
+		value = "1,2:3";
+		assertThat(StringAddCalculator.calculate(value)).isEqualTo(6);
+	}
 }
