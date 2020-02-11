@@ -28,4 +28,10 @@ public class InputHandler {
         }
         return count;
     }
+
+    public static void validateCarCount(int carCount) {
+        if (carCount > 5) {
+            throw new IllegalArgumentException("자동차 5대 초과입니다!");
+        }
+    }
 }

@@ -43,4 +43,14 @@ public class InputHandlerTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("잘못된 횟수 입력");
     }
+
+    @Test
+    void 자동자가_5대_초과로_오는_경우() {
+        int carCount = 6;
+        assertThatThrownBy(() -> {
+            InputHandler.validateCarCount(carCount);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("자동차 5대 초과");
+
+    }
 }
