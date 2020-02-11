@@ -5,6 +5,8 @@ public class Calculator {
         if (input == null || input.isEmpty()) {
             return 0;
         }
-        return -1;
+
+        int result = Integer.parseInt(input);
+        return result;
     }
 }
