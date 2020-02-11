@@ -3,6 +3,7 @@ package calculator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CalculatorTest {
     @Test
@@ -42,5 +43,14 @@ public class CalculatorTest {
         String[] numbers = Calculator.splitString("//;\n1;2;3");
         int result = Calculator.calculate(numbers);
         assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    void 숫자_이외의_값인_경우_예외_발생() {
+        String[] numbers = Calculator.splitString("a,2,3");
+
+        assertThatThrownBy(()-> {
+            Calculator.calculate(numbers);
+        }).isInstanceOf(RuntimeException.class);
     }
 }

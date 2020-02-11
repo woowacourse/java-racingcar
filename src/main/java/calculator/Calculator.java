@@ -12,12 +12,11 @@ public class Calculator {
         return input.split(delimiter);
     }
 
-    public static int calculate(String[] numbers) {
+    public static int calculate(String[] numbers) throws NumberFormatException {
         int result = 0;
 
         for (String number : numbers) {
             int parsedNumber = Integer.parseInt(number);
-
             result += parsedNumber;
         }
 
