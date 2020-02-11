@@ -8,12 +8,16 @@ public class Calculator {
     private static final String CUSTOM_DELIMITER_STARTER = "//";
     private static final String CUSTOM_DELIMITER_TERMINATOR = "\\n";
     private static final String OR = "|";
+    private static final String EMPTY_STRING = "";
 
     public static double calculate(String rawInput) {
+        if (rawInput == null || rawInput.equals(EMPTY_STRING)) {
+            return 0;
+        }
+
         String delimiters = combineDelimiters(getNewDelimiter(rawInput));
         String pureExpression = getPureExpression(rawInput);
         List<String> operands = Arrays.asList(pureExpression.split(delimiters));
-
         return operands.stream()
                 .mapToDouble(operand -> parseDoubleIfValid(operand))
                 .sum();
@@ -64,6 +68,9 @@ public class Calculator {
     }
 
     private static boolean hasCustomDelimiterRequest (String rawInput) {
-        return rawInput.substring(0, CUSTOM_DELIMITER_STARTER.length()).equals(CUSTOM_DELIMITER_STARTER);
+        if (rawInput.length() > CUSTOM_DELIMITER_STARTER.length()) {
+            return rawInput.substring(0, CUSTOM_DELIMITER_STARTER.length()).equals(CUSTOM_DELIMITER_STARTER);
+        }
+        return false;
     }
 }

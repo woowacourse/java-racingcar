@@ -51,4 +51,14 @@ public class StringCalculatorTest {
                 }
         ).isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    @DisplayName("null 또는 빈 문자열 테스트")
+    public void calculateNullOrEmptyStringTest() {
+        double result = Calculator.calculate(null);
+        Assertions.assertThat(result).isEqualTo(0);
+
+        result = Calculator.calculate("");
+        Assertions.assertThat(result).isEqualTo(0);
+    }
 }
