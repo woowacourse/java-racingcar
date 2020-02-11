@@ -1,5 +1,8 @@
 package calculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
@@ -13,17 +16,19 @@ package calculator;
  *
  */
 public class Calculator {
-	public static final int DELIMITER_BEGIN_INDEX = 2;
-	public static final int DELIMITER_END_INDEX = 3;
 	public static final String DEFAULT_DELIMITER = "[:,]";
-	public static final char DELIMITER_END_CHAR = '\n';
-	public static final int START_INDEX = 0;
+	public static final Pattern DEFAULT_INPUT_PATTERN = Pattern.compile("-?[0-9]+([:,]-?[0-9]+)*");
+	public static final Pattern CUSTOM_INPUT_PATTERN = Pattern.compile("//(.)\n(.*)");
 
 	public static int calculate(String value) {
 		if (isBlank(value)) {
 			return 0;
 		}
 		return plus(split(value));
+	}
+
+	private static boolean isBlank(String value) {
+		return value == null || value.isEmpty();
 	}
 
 	private static String[] split(String value) {
@@ -34,35 +39,24 @@ public class Calculator {
 	}
 
 	private static boolean containDefaultDelimiter(String value) {
-		char c = value.charAt(START_INDEX);
-		try {
-			Integer.parseInt(Character.toString(c));
-		} catch(NumberFormatException e) {
-			return false;
+		Matcher matcher = DEFAULT_INPUT_PATTERN.matcher(value);
+		return matcher.matches();
+	}
+
+	private static String[] splitCustomDelimiter(String value) {
+		Matcher matcher = CUSTOM_INPUT_PATTERN.matcher(value);
+		if (!matcher.find()) {
+			throw new IllegalArgumentException("inappropriate custom format");
 		}
-		return true;
+		String customDelimiter = matcher.group(1);
+		return matcher.group(2).split(customDelimiter);
 	}
 
-	private static boolean isBlank(String value) {
-		return value == null || value.isEmpty();
-	}
-
-	public static String[] splitCustomDelimiter(String value) {
-		String delimiter = value.substring(DELIMITER_BEGIN_INDEX, DELIMITER_END_INDEX);
-		String realValue = value.substring(value.indexOf(DELIMITER_END_CHAR) + 1);
-		return realValue.split(delimiter);
-	}
-
-	public static int plus(String[] numbers) {
-		int result = 0;
+	private static int plus(String[] numbers) {
+		Number result = Number.ZERO;
 		for (String number : numbers) {
-			int tmp = Integer.parseInt(number);
-			if (tmp < 0) {
-				throw new RuntimeException();
-			}
-			result += tmp;
+			result = result.add(new Number(Integer.parseInt(number)));
 		}
-		return result;
+		return result.getValue();
 	}
 }
-

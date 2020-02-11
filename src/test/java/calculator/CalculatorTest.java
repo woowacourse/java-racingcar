@@ -21,8 +21,9 @@ import org.junit.jupiter.params.provider.ValueSource;
  *
  */
 public class CalculatorTest {
+	@DisplayName("빈 문자열 혹은 null값이 들어온 경우 0 반환")
 	@Test
-	void isBlank_emptyOrNull_success() {
+	void calculate_emptyOrNull_success() {
 		int result = Calculator.calculate("");
 		assertThat(result).isEqualTo(0);
 
@@ -30,18 +31,12 @@ public class CalculatorTest {
 		assertThat(result).isEqualTo(0);
 	}
 
+	@DisplayName("계산식의 덧셈 결과를 테스트한다. - 기본구분자")
 	@ParameterizedTest
 	@CsvSource(value = {"1,2_3", "1:2_3", "1,2:3_6"}, delimiter = '_')
 	void calculate_defaultDelimiter_success(String value, int expected) {
 		int actual = Calculator.calculate(value);
 		assertThat(actual).isEqualTo(expected);
-	}
-
-	@DisplayName("계산식을 문자열 배열을 테스트한다. - 커스텀구분자 ")
-	@Test
-	void splitCustomDelimiter_customDelimiter_success() {
-		String[] s = Calculator.splitCustomDelimiter("//@\n1@2@3");
-		assertThat(s).containsExactly("1", "2", "3");
 	}
 
 	@DisplayName("계산식의 덧셈 결과를 테스트한다. - 커스텀구분자")
@@ -50,19 +45,19 @@ public class CalculatorTest {
 		assertThat(Calculator.calculate("//@\n1@2@3")).isEqualTo(6);
 	}
 
-	@DisplayName("숫자 이외의 값을 입력할 경우 RuntimeException을 throw 한다. - 기본구분자")
+	@DisplayName("숫자 이외의 값, 음수를 입력할 경우 RuntimeException을 throw 한다. - 기본구분자")
 	@ParameterizedTest
 	@ValueSource(strings = {"q:q:q:q:q:q:q:q:q", "1:-5"})
-	void checkRuntimeException_NaN_success(String input) {
+	void Given_defaultDelimiter_When_NaN_Then_runtimeException(String input) {
 		assertThatExceptionOfType(RuntimeException.class).isThrownBy(
 			() -> Calculator.calculate(input)
 		);
 	}
 
-	@DisplayName("숫자 이외의 값을 입력할 경우 RuntimeException을 throw 한다. - 커스텀구분자")
+	@DisplayName("숫자 이외의 값, 음수를 입력할 경우 RuntimeException을 throw 한다. - 커스텀구분자")
 	@ParameterizedTest
 	@ValueSource(strings = {"//;\na;b;c", "//;\n1;2;-5", "//\n1;2", "//;\n1:2;-5"})
-	void checkRuntimeException_NaN_success1(String input) {
+	void Given_customDelimiter_When_NaN_Then_runtimeException(String input) {
 		assertThatExceptionOfType(RuntimeException.class).isThrownBy(
 			() -> Calculator.calculate(input)
 		);
@@ -71,7 +66,7 @@ public class CalculatorTest {
 	@DisplayName("정의되지 않은 구분자 사용시 RuntimeException을 throw 한다. - 기본구분자")
 	@ParameterizedTest
 	@ValueSource(strings = {"1:2;3", "10:20.30"})
-	void checkRuntimeException_defaultDelimiter_success(String value) {
+	void Given_defaultDelimiter_When_undefinedDelimiter_Then_runtimeException(String value) {
 		assertThatExceptionOfType(RuntimeException.class).isThrownBy(
 			() -> Calculator.calculate(value)
 		);
@@ -80,11 +75,9 @@ public class CalculatorTest {
 	@DisplayName("정의되지 않은 구분자를 사용하거나 포맷을 지키지 않았을 시 RuntimeException을 throw 한다. - 커스텀구분자")
 	@ParameterizedTest
 	@ValueSource(strings = {"//;\na;b.c", "//*\n1:2:5", "//;1;2;3", "/;\n1;2;3", "//;1;2;3"})
-	void checkRuntimeException_customDelimiter_success1(String input) {
+	void Given_customDelimiter_When_undefinedDelimiter_Then_runtimeException(String input) {
 		assertThatExceptionOfType(RuntimeException.class).isThrownBy(
 			() -> Calculator.calculate(input)
 		);
 	}
-
-
 }
