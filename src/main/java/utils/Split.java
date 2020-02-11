@@ -8,11 +8,12 @@ public class Split {
 		return value.split("[,:]");
 	}
 
-	public static String getCustomDelimiter(String value) {
+	public static String[] splitNumberByCustomByDelimiter(String value) {
 		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(value);
 		if (m.find()) {
-			return m.group(1);
+			String delimiter = m.group(1);
+			return m.group(2).split(delimiter);
 		}
-		throw new NullPointerException("구분자 기호를 입력하세요");
+		throw new NullPointerException("유효하지 않은 구분자와 피연산자 입니다.");
 	}
 }
