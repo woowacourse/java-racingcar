@@ -10,4 +10,12 @@ public class PlusCalculatorTest {
 		final int expected = 3;
 		assertThat(actual).isEqualTo(expected);
 	}
+
+	@Test
+	void plusTwoNumberSplitByColon() {
+		final String value = "1:2";
+		final int actual = PlusCalculator.calculate(value);
+		final int expected = 3;
+		assertThat(actual).isEqualTo(expected);
+	}
 }
