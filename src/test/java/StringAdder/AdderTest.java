@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -47,12 +49,16 @@ public class AdderTest {
         result = adder.getSplit(";", "1;2;3");
 
         assertThat(result).containsExactly(1, 2, 3);
+
+        result = adder.getSplit("-", "1-2-3");
+
+        assertThat(result).containsExactly(1, 2, 3);
     }
 
     @Test
     public void 커스텀문자_테스트() {
         List<String> result;
-        result = Arrays.asList(adder.customSplit("//;\n1;2;3"));
+        result = Arrays.asList(adder.customMarkAndEquation("//;\n1;2;3"));
 
         assertThat(result).containsExactly(";", "1;2;3");
     }
@@ -65,16 +71,34 @@ public class AdderTest {
     }
 
     @Test
-    public void 음수예외처리() {
-        int result;
-        result = adder.splitAndSum("//;\n1;2;3");
-        assertThat(result).isEqualTo(6);
+    public void 예외처리_notCustom() {
+        assertThatThrownBy(() -> adder.validateSingleMinus("-1,2,3"))
+                .isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    public void 숫자가아니문자예외처리() {
+        assertThatThrownBy(() -> adder.getSplit("1,12,b"))
+                .isInstanceOf(RuntimeException.class);
     }
 
     @Test
     public void streamReduceTest() {
         List<Integer> finalNums = new ArrayList<>(Arrays.asList(1, 2, 3));
         System.out.println(finalNums.stream().reduce((x, y) -> x + y).get());
+    }
 
+    @Test
+    public void customnegative() {
+        assertThatThrownBy(() -> adder.splitAndSum("//-\n1-2-3"))
+                .isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    public void a() {
+
+        String inputString = "//-\n1-2-3";
+        Matcher minusMatcher = Pattern.compile("--").matcher(inputString);
+        System.out.println(minusMatcher.find());
     }
 }
