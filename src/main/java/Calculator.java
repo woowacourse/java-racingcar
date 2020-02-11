@@ -1,13 +1,10 @@
 import java.util.Arrays;
 
 public class Calculator {
-
-    public static final String COMMA = ",";
-    public static final String COLUMN = ":";
     public static final String OR_OPERATOR = "|";
     public static final String CUSTOM_DELIMITER_PREFIX = "//";
     public static final String CUSTOM_DELIMITER_SUFFIX = "`n";
-    public static String delimiter = COMMA + OR_OPERATOR + COLUMN;
+    public static String delimiter = "," + OR_OPERATOR + ":";
 
     public static int calculate(String input) {
         String[] splitedInputs = split(input);
