@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfSystemProperties;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,4 +80,14 @@ public class AddCalculatorTest {
         }
     }
 
+    @Test
+    @DisplayName("올바르지 않은 커스텀 구분자 문자열 테스트")
+    public void checkCustomExpressionTest() {
+        String[] inputs = {"/;\n1;2;3;", ";\n1,2,3", " ;\n1;2;3", "//;1;2;3"};
+        for (String input : inputs) {
+            Assertions.assertThatThrownBy(() -> {
+                calculator.checkCustomExpression(input);
+            }).isInstanceOf(RuntimeException.class);
+        }
+    }
 }

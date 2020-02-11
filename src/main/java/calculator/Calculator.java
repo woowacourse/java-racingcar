@@ -59,4 +59,12 @@ public class Calculator {
         }
         return false;
     }
+
+    public void checkCustomExpression(String input) {
+        String checkString = input.substring(0, input.indexOf("\n") + 1);
+        if (!"//".equals(checkString.substring(0, 2))
+                || !"\n".equals(checkString.substring(checkString.length() - 1))) {
+            throw new RuntimeException("잘못된 커스텀 구분자 식을 입력하였습니다.");
+        }
+    }
 }
