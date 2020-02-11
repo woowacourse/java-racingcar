@@ -7,4 +7,12 @@ public class Calculator {
     public static String[] splitString(String s) {
         return s.split(",");
     }
+
+    public static String[] spliStirngForColon(String s) {
+        return s.split(":");
+    }
+
+    public static String addDelemeter(String s) {
+        return s.substring(4,s.length());
+    }
 }
