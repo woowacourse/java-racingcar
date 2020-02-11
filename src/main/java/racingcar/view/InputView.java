@@ -16,11 +16,7 @@ public class InputView {
 
     private final static Scanner scanner = new Scanner(System.in);
 
-    public String inputCarNames() {
+    public static String input() {
         return scanner.nextLine();
-    }
-
-    public int inputTryCount() throws Exception {
-        return scanner.nextInt();
     }
 }
