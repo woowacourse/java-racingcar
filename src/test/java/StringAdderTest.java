@@ -40,4 +40,11 @@ public class StringAdderTest {
         Assertions.assertThatThrownBy(() -> StringAdder.add("1,-2:3,4:5"))
                 .isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    void 커스텀구분자_사용했을_경우_최소조건() {
+        int result = StringAdder.add("//;\n1;2;3");
+
+        Assertions.assertThat(result).isEqualTo(6);
+    }
 }
