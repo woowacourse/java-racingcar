@@ -1,4 +1,4 @@
-package tdd.racingcar;
+package tdd.racingcar.util;
 
 import static org.junit.jupiter.api.Assertions.*;
 

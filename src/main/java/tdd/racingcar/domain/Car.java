@@ -1,4 +1,4 @@
-package tdd.racingcar;
+package tdd.racingcar.domain;
 
 public class Car {
 	private static final int MIN_POWER_TO_MOVE = 4;

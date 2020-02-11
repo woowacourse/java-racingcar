@@ -1,4 +1,4 @@
-package tdd.racingcar;
+package tdd.racingcar.domain;
 
 public class Round {
 	private static final int ONE = 1;

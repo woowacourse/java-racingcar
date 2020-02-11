@@ -1,4 +1,4 @@
-package tdd.racingcar;
+package tdd.racingcar.util;
 
 import java.util.Arrays;
 import java.util.List;
