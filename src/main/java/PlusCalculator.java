@@ -1,6 +1,5 @@
 public class PlusCalculator {
-	private static final String COMMA = ",";
-	private static final String COLON = ":";
+	private static final String DELIMITER = "[,:]";
 
 	public static int calculate(final String value) {
 		final String[] values = splitValues(value);
@@ -12,9 +11,6 @@ public class PlusCalculator {
 	}
 
 	private static String[] splitValues(final String value) {
-		if (value.contains(COMMA)) {
-			return value.split(COMMA);
-		}
-		return value.split(COLON);
+		return value.split(DELIMITER);
 	}
 }

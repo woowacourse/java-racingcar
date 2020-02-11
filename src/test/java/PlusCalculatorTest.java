@@ -44,4 +44,17 @@ public class PlusCalculatorTest {
 		final int expectedForFourValues = 10;
 		assertThat(actualForFourValues).isEqualTo(expectedForFourValues);
 	}
+
+	@Test
+	void plusNumbersSplitByCommaAndColon() {
+		final String threeValues = "1,2:3";
+		final int actualForThreeValues = PlusCalculator.calculate(threeValues);
+		final int expectedForThreeValues = 6;
+		assertThat(actualForThreeValues).isEqualTo(expectedForThreeValues);
+
+		final String fourValues = "1:2,3:4";
+		final int actualForFourValues = PlusCalculator.calculate(fourValues);
+		final int expectedForFourValues = 10;
+		assertThat(actualForFourValues).isEqualTo(expectedForFourValues);
+	}
 }
