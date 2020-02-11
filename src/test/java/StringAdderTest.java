@@ -38,7 +38,15 @@ public class StringAdderTest {
     @Test
     void 숫자가_음수인_경우() {
         Assertions.assertThatThrownBy(() -> StringAdder.add("1,-2:3,4:5"))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageMatching("음수는 입력하실 수 없습니다.");
+    }
+
+    @Test
+    void 숫자_이외의_값이_들어올_경우() {
+        Assertions.assertThatThrownBy(() -> StringAdder.add("1,-A:3,4:5"))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageMatching("숫자 이외의 값은 입력하실 수 없습니다.");
     }
 
     @Test
@@ -46,5 +54,12 @@ public class StringAdderTest {
         int result = StringAdder.add("//;\n1;2;3");
 
         Assertions.assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    void 커스텀구분자만_들어올_경우_최소조건() {
+        int result = StringAdder.add("//;\n");
+
+        Assertions.assertThat(result).isEqualTo(0);
     }
 }

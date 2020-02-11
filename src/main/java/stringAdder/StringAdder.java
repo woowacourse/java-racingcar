@@ -24,10 +24,15 @@ public class StringAdder {
         }
         String[] values = value.split(customDelimiter);
         for (String s : values) {
-            if (Integer.parseInt(s) < 0) {
-                throw new RuntimeException();
+            try {
+                int operand = Integer.parseInt(s);
+                if (operand < 0) {
+                    throw new RuntimeException("음수는 입력하실 수 없습니다.");
+                }
+                result += operand;
+            }catch(NumberFormatException e){
+                throw new RuntimeException("숫자 이외의 값은 입력하실 수 없습니다.");
             }
-            result += Integer.parseInt(s);
         }
         return result;
     }
