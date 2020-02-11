@@ -23,4 +23,10 @@ public class StringAddCalculatorTest {
 		value = "1,2:3";
 		assertThat(StringAddCalculator.calculate(value)).isEqualTo(6);
 	}
+
+	@Test
+	void calculate_커스텀_구분자로_숫자합_계산() {
+		String value = "//;\n1;2;3";
+		assertThat(StringAddCalculator.calculate(value)).isEqualTo(6);
+	}
 }
