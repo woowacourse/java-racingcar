@@ -9,6 +9,17 @@ public class Car {
     private int position;
 
     public Car(String name) {
+        validateName(name);
+        this.name = name;
+        this.position = 0;
+    }
+
+    public Car(String name, int position) {
+        validateName(name);
+        this.name = name;
+        this.position = position;
+    }
+
     private void validateName(String name) {
         if (!(name.length() >= MIN_NAME_LENGTH && name.length() <= MAX_NAME_LENGTH)) {
             throw new IllegalArgumentException("이름 길이는 0~5이여야 합니다.");
