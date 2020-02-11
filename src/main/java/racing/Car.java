@@ -27,8 +27,12 @@ public class Car {
 	}
 
 	public void goForward(int number) {
-		if(number >= 4) {
+		if (number >= 4) {
 			position++;
 		}
+	}
+
+	public boolean isWinner(int winnersPosition) {
+		return this.position == winnersPosition;
 	}
 }
