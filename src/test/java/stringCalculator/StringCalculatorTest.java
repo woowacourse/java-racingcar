@@ -14,17 +14,13 @@ public class StringCalculatorTest {
     private static final String STRING_CALCULATOR_TESTCASE_PATH = "src/test/resources/stringCalculatorTestcase/";
 
     private void calculateTest(String testcasePath) throws Exception {
-        String input;
-        String expected;
         FileInputStream fileInputStream = new FileInputStream(testcasePath);
         Scanner scanner = new Scanner(fileInputStream);
 
         while (scanner.hasNext()) {
-            String[] raw = scanner.nextLine().split(INPUT_EXPECTED_DIVIDER);
-            input = raw[0];
-            expected = raw[1];
-
-            Assertions.assertThat(Calculator.calculate(input)).isEqualTo(Double.parseDouble(expected));
+            String[] inputAndExpected = scanner.nextLine().split(INPUT_EXPECTED_DIVIDER);
+            Assertions.assertThat(Calculator.calculate(inputAndExpected[0]))
+                    .isEqualTo(Double.parseDouble(inputAndExpected[1]));
         }
         fileInputStream.close();
     }
