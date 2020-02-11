@@ -1,8 +1,8 @@
-package main;
+package calculator.main;
 
-import calculator.Calculator;
-import view.InputView;
-import view.OutputView;
+import calculator.domain.Calculator;
+import calculator.view.InputView;
+import calculator.view.OutputView;
 
 public class Main {
     public static void main(String[] args) {

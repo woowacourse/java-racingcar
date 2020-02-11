@@ -1,4 +1,4 @@
-package calculator;
+package calculator.domain;
 
 public class Calculator {
     public static String[] splitString(String input) {
