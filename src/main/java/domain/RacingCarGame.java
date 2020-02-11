@@ -15,6 +15,27 @@ public class RacingCarGame {
     public void run() {
         setName();
         setRepeat();
+        processGame();
+    }
+
+    private void processGame() {
+        OutputView.newLine();
+        OutputView.resultInstruction();
+        for (int i=0; i<times; i++) {
+            processOneTime();
+            OutputView.newLine();
+        }
+    }
+
+    private void processOneTime() {
+        for (Car car: cars) {
+            car.decideGoOrStop(createRandomNumber());
+            OutputView.carNameAndPosition(car);
+        }
+    }
+
+    private int createRandomNumber() {
+        return (int) (Math.random() * 10);
     }
 
     private void setRepeat() {
