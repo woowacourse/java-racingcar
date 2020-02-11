@@ -4,7 +4,11 @@ import calculator.domain.CalculatorController;
 
 public class Application {
     public static void main(String[] args) {
-        CalculatorController controller = new CalculatorController();
-        controller.run();
+        try {
+            CalculatorController controller = new CalculatorController();
+            System.out.println(controller.run());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

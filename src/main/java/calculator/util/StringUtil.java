@@ -1,9 +1,10 @@
 package calculator.util;
 
-public class DelimiterUtil {
+public class StringUtil {
 	public static final String COMMA = ",";
 	public static final String COLON = ":";
 	public static final int DELIMITER_INDEX = 2;
+	public static final int NO_INDEX = -1;
 
 	public static String[] parseString(String expression) {
 		if (isUsingCustomDelimiter(expression)) {
@@ -17,7 +18,7 @@ public class DelimiterUtil {
 	}
 
 	private static void validateProperInput(int end) {
-		if (end == -1) {
+		if (end == NO_INDEX) {
 			throw new IllegalArgumentException("입력이 잘못 되었습니다.");
 		}
 	}

@@ -1,26 +1,23 @@
 package calculator.domain;
 
-import calculator.domain.StringCalculator;
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class StringCalculatorTest {
-    @Test
-    public void calculate() {
-        String value = "1,2:3";
-        assertThat(StringCalculator.run(value)).isEqualTo(6);
+    private static final String NORMAL_INPUT = "1,2:3";
+    private static final String EMPTY = "";
+    private static final String SINGLE_NUMBER = "1";
+    private static final String ONLY_COMMA = "1,2";
 
-        value = "1:6,3";
-        assertThat(StringCalculator.run(value)).isEqualTo(10);
-
-        value = "";
-        assertThat(StringCalculator.run(value)).isEqualTo(0);
-
-        value = null;
-        assertThat(StringCalculator.run(value)).isEqualTo(0);
+    @ParameterizedTest
+    @CsvSource(value = {NORMAL_INPUT + "-6",EMPTY + "-0",SINGLE_NUMBER+ "-1",ONLY_COMMA+ "-3"}, delimiter = '-')
+    @DisplayName("커스텀 없이, 정상적인 경우")
+    public void calculate(String input, int expected) {
+        assertThat(StringCalculator.run(input)).isEqualTo(expected);
     }
 
     @Test
@@ -28,6 +25,13 @@ public class StringCalculatorTest {
     public void customDelimiter () {
         String delimiter = "//;\n1;2;3";
         assertThat(StringCalculator.run(delimiter)).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("널값이 입력되는 경우")
+    public void nullTest() {
+        String value = null;
+        assertThat(StringCalculator.run(value)).isEqualTo(0);
     }
 
     @Test

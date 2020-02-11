@@ -1,6 +1,6 @@
 package calculator.domain;
 
-import calculator.util.DelimiterUtil;
+import calculator.util.StringUtil;
 
 public class StringCalculator {
     public static int run(String value) {
@@ -11,7 +11,7 @@ public class StringCalculator {
     }
 
     private static int calculate(String value) {
-        String[] valueSplit = DelimiterUtil.parseString(value);
+        String[] valueSplit = StringUtil.parseString(value);
         return new Numbers(valueSplit).sum();
     }
 
