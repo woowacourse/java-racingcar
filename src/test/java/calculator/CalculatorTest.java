@@ -2,6 +2,8 @@ package calculator;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.regex.Pattern;
+
 import org.junit.jupiter.api.Test;
 
 /*
@@ -33,5 +35,11 @@ public class CalculatorTest {
 
 		result = Calculator.calculate("1,2");
 		assertThat(result).isEqualTo(3);
+	}
+
+	@Test
+	void calculate_customDelimiter_success() {
+		String[] s = Calculator.splitCustomDelimiter("//@\n1@2@3");
+		assertThat(s).containsExactly("1", "2", "3");
 	}
 }
