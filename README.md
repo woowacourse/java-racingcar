@@ -1,5 +1,11 @@
 # java-racingcar
 자동차 경주 게임 미션 저장소
 
-## 우아한테크코스 코드리뷰
-* [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
+> 요구사항
+- 쉼표 또는 콜론을 구분자로 분리해서 숫자의 합을 반환
+
+- 커스텀 기본 구분자를 지정할 수 있다.
+- //와 \n 사이에 위치하는 문자를 커스텀 구분자로 사용한다.
+- 예시: "//;\n1;2;3" -> 6
+
+- 숫자 이외의 값 또는 음수를 전달하는 경우 RuntimeException을 throw한다.
