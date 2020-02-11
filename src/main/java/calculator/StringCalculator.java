@@ -15,6 +15,7 @@ public class StringCalculator {
     }
 
     private static int splitAndSum(String text) {
+
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (m.find()) {
             String customDelimiter = m.group(1);
