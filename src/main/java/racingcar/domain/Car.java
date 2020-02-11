@@ -13,6 +13,7 @@ package racingcar.domain;
 public class Car {
 
     private final String name;
+    private int forwardCount = 0;
 
     public Car(String name) {
         this.name = name;
@@ -20,5 +21,13 @@ public class Car {
 
     public String getName() {
         return name;
+    }
+
+    public void forward() {
+        forwardCount++;
+    }
+
+    public int getForwardCount() {
+        return forwardCount;
     }
 }

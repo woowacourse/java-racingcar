@@ -21,4 +21,13 @@ public class CarTest {
         Car car = new Car("가나다");
         assertThat(car.getName()).isEqualTo("가나다");
     }
+
+    @Test
+    void forwardCount() {
+        Car car = new Car("가나다");
+        car.forward();
+        car.forward();
+        car.forward();
+        assertThat(car.getForwardCount()).isEqualTo(3);
+    }
 }
