@@ -3,10 +3,11 @@ import java.util.regex.Pattern;
 
 public class Calculate {
 
-    private static final String DELIMITER = ",|:";
+    private static final String DELIMITER = "[,:]";
     private static final String CUSTOM_INPUT_REGEX = "//(.)\n(.*)";
     private static final int CUSTOM_DELIMITER_INDEX = 1;
     private static final int CUSTOM_INPUT = 2;
+    private static final String NEGATIVE_EXCEPTION_MESSAGE = "%d 는 음수입니다.";
 
     public static int plus(String input) {
 
@@ -28,9 +29,17 @@ public class Calculate {
     private static int add(String[] values) {
         int result = 0;
         for (String value : values) {
-            result += Integer.parseInt(value);
+            int number = Integer.parseInt(value);
+            checkNegative(number);
+            result += number;
         }
         return result;
+    }
+
+    private static void checkNegative(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException(String.format(NEGATIVE_EXCEPTION_MESSAGE, number));
+        }
     }
 
     private static boolean isCustom(Matcher input) {
