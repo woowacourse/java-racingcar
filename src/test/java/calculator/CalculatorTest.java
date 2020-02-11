@@ -2,12 +2,9 @@ package calculator;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.regex.Pattern;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -40,10 +37,17 @@ public class CalculatorTest {
 		assertThat(actual).isEqualTo(expected);
 	}
 
+	@DisplayName("계산식을 문자열 배열을 테스트한다. - 커스텀구분자 ")
 	@Test
-	void calculate_customDelimiter_success() {
+	void splitCustomDelimiter_customDelimiter_success() {
 		String[] s = Calculator.splitCustomDelimiter("//@\n1@2@3");
 		assertThat(s).containsExactly("1", "2", "3");
+	}
+
+	@DisplayName("계산식의 덧셈 결과를 테스트한다. - 커스텀구분자")
+	@Test
+	void calculate_customDelimiter_success() {
+		assertThat(Calculator.calculate("//@\n1@2@3")).isEqualTo(6);
 	}
 
 	@DisplayName("숫자 이외의 값을 입력할 경우 RuntimeException을 throw 한다. - 기본구분자")
@@ -54,4 +58,5 @@ public class CalculatorTest {
 			() -> Calculator.calculate(input)
 		);
 	}
+
 }
