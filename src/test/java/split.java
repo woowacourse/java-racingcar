@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import utils.Split;
+import utils.Validator;
 
 public class split {
 	@Test
@@ -46,6 +47,16 @@ public class split {
 			String value = "//\n1;2;3";
 			Split.splitNumberByCustomByDelimiter(value);
 		}).isInstanceOf(NullPointerException.class);
+	}
+
+	@Test
+	void should_throw_RuntimeException_When_MinusNumberOrCharacters(){
+		Assertions.assertThatThrownBy(()->{
+			String value = "a";
+			String[] numbers = Split.splitByCommaOrColon(value);
+
+			Validator.validateNumber(numbers);
+		}).isInstanceOf(RuntimeException.class);
 	}
 
 }
