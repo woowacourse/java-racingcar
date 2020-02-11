@@ -1,3 +1,5 @@
+package tdd.calculator;
+
 public class Positive {
 	private static final int INDEX_OF_MINUS_SIGN = 0;
 	private static final char MINUS_SIGN = '-';
