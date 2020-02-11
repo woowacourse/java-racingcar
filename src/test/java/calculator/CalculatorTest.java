@@ -71,9 +71,18 @@ public class CalculatorTest {
 	@DisplayName("정의되지 않은 구분자 사용시 RuntimeException을 throw 한다. - 기본구분자")
 	@ParameterizedTest
 	@ValueSource(strings = {"1:2;3", "10:20.30"})
-	void checkRuntimeException_DefaultDelimiter_success(String value) {
+	void checkRuntimeException_defaultDelimiter_success(String value) {
 		assertThatExceptionOfType(RuntimeException.class).isThrownBy(
-			()-> Calculator.calculate(value)
+			() -> Calculator.calculate(value)
+		);
+	}
+
+	@DisplayName("정의되지 않은 구분자을 사용시 RuntimeException을 throw 한다. - 커스텀구분자")
+	@ParameterizedTest
+	@ValueSource(strings = {"//;\na;b.c", "//*\n1:2:5"})
+	void checkRuntimeException_customDelimiter_success1(String input) {
+		assertThatExceptionOfType(RuntimeException.class).isThrownBy(
+			() -> Calculator.calculate(input)
 		);
 	}
 }
