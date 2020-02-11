@@ -5,11 +5,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import utils.Split;
 import utils.Validator;
 
-public class split {
+public class SplitTest {
 	@Test
 	@DisplayName("콤마와 콜론으로 문자열 분리")
 	void splitByCommaOrColon() {
@@ -49,10 +50,11 @@ public class split {
 		}).isInstanceOf(NullPointerException.class);
 	}
 
-	@Test
-	void should_throw_RuntimeException_When_MinusNumberOrCharacters(){
+	@ParameterizedTest
+	@DisplayName("음수와 문자가 피연산자가 될 경우 테스트")
+	@ValueSource(strings = {"a","-1","-1,a"})
+	void should_throw_RuntimeException_When_MinusNumberOrCharacters(String value){
 		Assertions.assertThatThrownBy(()->{
-			String value = "a";
 			String[] numbers = Split.splitByCommaOrColon(value);
 
 			Validator.validateNumber(numbers);
