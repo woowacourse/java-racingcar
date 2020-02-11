@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class StringCalculatorTest {
 
     public static final String INPUT_EXPECTED_DIVIDER = "->";
+    private static final String STRING_CALCULATOR_TESTCASE_PATH = "src/test/resources/stringCalculatorTestcase/";
 
     private void calculateTest(String testcasePath) throws Exception {
         String input;
@@ -31,26 +32,26 @@ public class StringCalculatorTest {
     @Test
     @DisplayName("콤마 계산 테스트")
     public void commmaCalculateTest() throws Exception {
-        calculateTest("src/test/resources/commaCalculateTestcase");
+        calculateTest(STRING_CALCULATOR_TESTCASE_PATH + "commaCalculateTestcase");
     }
 
     @Test
     @DisplayName("콤마, 콜론 혼용 계산 테스트")
     public void commmaColonCalculateTest() throws Exception {
-        calculateTest("src/test/resources/commaColonCalculateTestcase");
+        calculateTest(STRING_CALCULATOR_TESTCASE_PATH + "commaColonCalculateTestcase");
     }
 
     @Test
     @DisplayName("사용자 정의 delimiter 혼용 계산 테스트")
     public void customDelimiterCalculateTest() throws Exception {
-        calculateTest("src/test/resources/customDelimiterCalculateTestcase");
+        calculateTest(STRING_CALCULATOR_TESTCASE_PATH + "customDelimiterCalculateTestcase");
     }
 
     @Test
     @DisplayName("런타임 익셉션 테스트")
     public void checkValid() throws Exception {
         Assertions.assertThatThrownBy( () -> {
-                    calculateTest("src/test/resources/invalidInputTestcase");
+                    calculateTest(STRING_CALCULATOR_TESTCASE_PATH + "invalidInputTestcase");
                 }
         ).isInstanceOf(RuntimeException.class);
     }
