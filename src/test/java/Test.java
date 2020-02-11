@@ -1,4 +1,5 @@
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class Test {
 
@@ -25,5 +26,13 @@ public class Test {
         String customDelimiterInput = "//_`n11_222_3333";
         String[] splitedInput = Calculator.split(customDelimiterInput);
         assertThat(splitedInput).isEqualTo(new String[]{"11", "222", "3333"});
+    }
+
+    @org.junit.jupiter.api.Test
+    void 숫자_이외의값_혹은_음수_입력() {
+        String exceptNumberInputs = "ㅋㅋ:-222,3333";
+        assertThatThrownBy(() -> {
+            Calculator.calculate(exceptNumberInputs);
+        }).isInstanceOf(RuntimeException.class);
     }
 }

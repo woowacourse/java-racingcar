@@ -8,6 +8,7 @@ public class Calculator {
 
     public static int calculate(String input) {
         String[] splitedInputs = split(input);
+        validExceptNumber(splitedInputs);
         int result = Arrays.stream(splitedInputs)
                 .map(Integer::parseInt)
                 .reduce(Integer::sum)
@@ -32,5 +33,14 @@ public class Calculator {
 
     private static String removeCustomDelimiterWord(String input) {
         return input.substring(5);
+    }
+
+   public static void validExceptNumber(String[] inputs) {
+        String regExp = "^[0-9]+$";
+        boolean a = Arrays.stream(inputs)
+                .allMatch(input -> input.matches(regExp));
+        if(a == false) {
+            throw new RuntimeException("숫자 이외의 값입니다.");
+        }
     }
 }
