@@ -1,11 +1,12 @@
+package calculator;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import domain.Calculator;
-import utils.Split;
+import calculator.domain.Calculator;
 
 public class CalculatorTest {
 
@@ -13,8 +14,7 @@ public class CalculatorTest {
 	@DisplayName("정상적으로 작동할 경우")
 	@CsvSource(value = {"1,2:3 6", "1.0,1.1 2.1"}, delimiter = ' ')
 	void addNumbers(String value, Double expected) {
-		String[] numbers = Split.splitByCommaOrColon(value);
-		Double result = Calculator.calculate(numbers);
+		Double result = Calculator.calculate(value);
 
 		Assertions.assertThat(result).isEqualTo(expected);
 	}
@@ -23,8 +23,7 @@ public class CalculatorTest {
 	@DisplayName("비정상적으로 작동할 경우")
 	@CsvSource(value = {"1,2:3 0", "1.0,1.1 2.3"}, delimiter = ' ')
 	void error_addNumbers(String value, Double expected) {
-		String[] numbers = Split.splitByCommaOrColon(value);
-		Double result = Calculator.calculate(numbers);
+		Double result = Calculator.calculate(value);
 
 		Assertions.assertThat(result).isNotEqualTo(expected);
 	}
@@ -35,8 +34,7 @@ public class CalculatorTest {
 		String value1 = "//;\n1;2;3";
 		Double expected = 6.0;
 
-		String[] numbers = Split.splitNumberByCustomByDelimiter(value1);
-		Double result = Calculator.calculate(numbers);
+		Double result = Calculator.calculate(value1);
 
 		Assertions.assertThat(result).isEqualTo(expected);
 	}

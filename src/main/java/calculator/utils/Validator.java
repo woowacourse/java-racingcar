@@ -1,4 +1,4 @@
-package utils;
+package calculator.utils;
 
 public class Validator {
 	private static final int ZERO = 0;
@@ -7,7 +7,7 @@ public class Validator {
 		for (String number : numbers) {
 			if (!isNumeric(number))
 				throw new RuntimeException();
-			if (Double.parseDouble(number) < 0){
+			if (Double.parseDouble(number) < 0) {
 				throw new RuntimeException();
 			}
 		}
