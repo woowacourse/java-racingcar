@@ -1,5 +1,8 @@
 package stringCalculator;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class StringParser {
     public static final String DEFAULT_DELIMITER_REGEX = ",|:";
     public static final String FRONT_SIGN = "//";
@@ -9,16 +12,22 @@ public class StringParser {
     private StringParser() {
     }
 
-    public static String[] parse(String input) {
+    public static List<String> parse(String input) {
         if (hasSign(input)) {
-            int startOfCustomDelimiter = input.indexOf(FRONT_SIGN) + TWO_STEP;
-            int endOfCustomDelimiter = input.indexOf(BACK_SIGN);
-            String customDelimiter = input.substring(startOfCustomDelimiter, endOfCustomDelimiter);
-            return input.substring(endOfCustomDelimiter + TWO_STEP, input.length())
-                    .split(DEFAULT_DELIMITER_REGEX + "|" + customDelimiter);
+            return parseWithCustomDelimiter(input);
         }
 
-        return input.split(DEFAULT_DELIMITER_REGEX);
+        return Arrays.asList(input.split(DEFAULT_DELIMITER_REGEX));
+
+    }
+
+    private static List<String> parseWithCustomDelimiter(String input) {
+        int startOfCustomDelimiter = input.indexOf(FRONT_SIGN) + TWO_STEP;
+        int endOfCustomDelimiter = input.indexOf(BACK_SIGN);
+        String customDelimiter = input.substring(startOfCustomDelimiter, endOfCustomDelimiter);
+        String[] result = input.substring(endOfCustomDelimiter + TWO_STEP, input.length())
+                            .split(DEFAULT_DELIMITER_REGEX + "|" + customDelimiter);
+        return Arrays.asList(result);
     }
 
     private static boolean hasSign(String input) {
