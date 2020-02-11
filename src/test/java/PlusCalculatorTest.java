@@ -73,4 +73,16 @@ public class PlusCalculatorTest {
 		final int actual = PlusCalculator.calculate(customValue);
 		assertThat(actual).isEqualTo(expected);
 	}
+
+	@Test
+	void plusForNegativeNumber() {
+		final String customValue = "//;\n1;2,-3:4";
+		assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> PlusCalculator.calculate(customValue));
+	}
+
+	@Test
+	void plusForNotNumber() {
+		final String customValue = "//;\n1;2,a,3,4";
+		assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> PlusCalculator.calculate(customValue));
+	}
 }

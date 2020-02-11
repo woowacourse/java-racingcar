@@ -12,7 +12,8 @@ public class PlusCalculator {
 	private static int sum(final String[] values) {
 		int sum = 0;
 		for (final String value : values) {
-			sum += Integer.parseInt(value);
+			final int positive = new Positive(value).getPositive();
+			sum += positive;
 		}
 		return sum;
 	}
