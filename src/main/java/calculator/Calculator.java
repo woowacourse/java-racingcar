@@ -3,9 +3,12 @@ package calculator;
 import java.util.Arrays;
 
 public class Calculator {
-	public static int calculate(String s) {
-		String delimiter = Delimiter.getDelimiter(s);
-		String[] values = s.split(delimiter);
+
+	public static final String COLON_DELIMITER = ":";
+
+	public static int calculate(String input) {
+		String[] values = Expression.getFinalExpression(input)
+				.split(COLON_DELIMITER);
 
 		return sum(values);
 	}
