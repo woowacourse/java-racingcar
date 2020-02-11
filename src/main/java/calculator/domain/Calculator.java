@@ -1,4 +1,4 @@
-package calculator;
+package calculator.domain;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +20,7 @@ public class Calculator {
 	public static final String CUSTOM_DELIMITER_POSTFIX = "\n";
 	public static final int DELIMITER_POSITION = 0;
 	public static final int EXPRESSION_POSITION = 1;
-	public static final String CUSTOM_DELIMITER_PATTERN = "^(\\/\\/.\\n)?\\d+(.\\d+)*\\b";
+	public static final String CUSTOM_DELIMITER_PATTERN = "^(\\/\\/.\n)?\\d+(.\\d+)*\\b";
 	public static final String NUMBER_LIST_IS_EMPTY_MESSAGE = "숫자가 한 개 이상 주어져아 합니다.";
 	public static final String INVALID_INPUT_MESSAGE = "입력이 유효하지 않습니다.";
 
@@ -28,7 +28,7 @@ public class Calculator {
 		validateNumbers(numbers);
 		return numbers.stream()
 				.mapToInt(value -> value)
-				.sum();
+				.reduce(0, Math::addExact);
 	}
 
 	private static void validateNumbers(final List<Integer> numbers) {

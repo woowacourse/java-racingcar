@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import calculator.domain.Calculator;
+
 /**
  * 계산기 테스트 클래스
  *
@@ -25,6 +27,14 @@ public class CalculatorTest {
 		List<Integer> numbers = Arrays.asList(1, 2, 3);
 		Assertions.assertThat(Calculator.calculate(numbers))
 				.isEqualTo(6);
+	}
+
+	@Test
+	@DisplayName("연산 오버플로우 테스트")
+	void calculate_연산_중에_오버플로우가_발생하는_경우() {
+		List<Integer> numbers = Arrays.asList(Integer.MAX_VALUE, 1);
+		Assertions.assertThatThrownBy(() -> Calculator.calculate(numbers))
+				.isInstanceOf(ArithmeticException.class);
 	}
 
 	@Test
