@@ -1,10 +1,13 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class StringAdditionCalculator {
     public static final String END_CHARACTER = "\n";
+    public static final char START_CHARACTER = '\\';
+    public static final int ZERO = 0;
+    public static final int FIRST_INDEX = 0;
     public static final int START_INDEX = 1;
+
 
     private String delimiter = ",|:";
 
@@ -23,23 +26,49 @@ public class StringAdditionCalculator {
     }
 
     public List<Integer> createNumbers(String input, String delimiter) {
-        return Arrays.stream(input.split(delimiter))
-                .map(x -> Integer.parseInt(x))
-                .collect(Collectors.toList());
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String stringNumber : input.split(delimiter)) {
+            numbers.add(convertToInteger(stringNumber));
+        }
+
+        return numbers;
+    }
+
+    private int convertToInteger(String stringNumber) {
+        int number = 0;
+
+        try {
+            number = Integer.parseInt(stringNumber);
+            validatePositiveNumber(number);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Input has something not number");
+        }
+
+        return number;
+    }
+
+    private void validatePositiveNumber(int number) {
+        if (number < ZERO) {
+            throw new RuntimeException("Input has negative number");
+        }
     }
 
     public String getCustomDelimiter(String input) {
         StringBuilder customDelimiter = new StringBuilder();
+
         for (int i = START_INDEX; i < input.length(); i++) {
-            if (END_CHARACTER.equals(input.substring(i, i+1))) {
+            if (END_CHARACTER.equals(input.substring(i, i + 1))) {
                 break;
             }
             customDelimiter.append(input.charAt(i));
         }
+
         return customDelimiter.toString();
     }
 
     public boolean hasCustomDelimiter(String input) {
-        return input.charAt(0) == '\\' && input.contains(END_CHARACTER);
+        return input.charAt(FIRST_INDEX) == START_CHARACTER
+                && input.contains(END_CHARACTER);
     }
 }
