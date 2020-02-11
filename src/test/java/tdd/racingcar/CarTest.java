@@ -1,5 +1,6 @@
 package tdd.racingcar;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class CarTest {
 	private static final String CAR_NAME = "name";
+	private static final String TOO_LONG_NAME ="tooLongName";
 
 	private Car car;
 
@@ -45,5 +47,12 @@ public class CarTest {
 	void getName() {
 		final String actual = car.getName();
 		assertEquals(CAR_NAME, actual);
+	}
+
+	@Test
+	void canValidateName() {
+		assertThatIllegalArgumentException().isThrownBy(() ->
+			new Car(TOO_LONG_NAME))
+			.withMessage("이름은 최대 5자까지 가능합니다.");
 	}
 }
