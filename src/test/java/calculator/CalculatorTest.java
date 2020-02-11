@@ -25,4 +25,13 @@ public class CalculatorTest {
 		result = Calculator.calculate(null);
 		assertThat(result).isEqualTo(0);
 	}
+
+	@Test
+	void calculate_defaultDelimiter_success() {
+		int result = Calculator.calculate("1:2");
+		assertThat(result).isEqualTo(3);
+
+		result = Calculator.calculate("1,2");
+		assertThat(result).isEqualTo(3);
+	}
 }

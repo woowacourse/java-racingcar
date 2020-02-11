@@ -14,13 +14,18 @@ package calculator;
  */
 public class Calculator {
 	public static int calculate(String value) {
-		if (isBlank(value)) {
+		if(isBlank(value)){
 			return 0;
 		}
-		return 1;
+		int result = 0;
+		String[] numbers = value.split(":|,");
+		for (String number : numbers) {
+			result += Integer.parseInt(number);
+		}
+		return result;
 	}
 
 	private static boolean isBlank(String value) {
-		return value.isEmpty() || value == null;
+		return value == null || value.isEmpty();
 	}
 }
