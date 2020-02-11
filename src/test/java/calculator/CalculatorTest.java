@@ -5,6 +5,10 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.converter.ConvertWith;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /*
  * Copyright (c) 2020 by 또동페어
@@ -28,13 +32,11 @@ public class CalculatorTest {
 		assertThat(result).isEqualTo(0);
 	}
 
-	@Test
-	void calculate_defaultDelimiter_success() {
-		int result = Calculator.calculate("1:2");
-		assertThat(result).isEqualTo(3);
-
-		result = Calculator.calculate("1,2");
-		assertThat(result).isEqualTo(3);
+	@ParameterizedTest
+	@CsvSource(value = {"1,2_3", "1:2_3", "1,2:3_6"}, delimiter = '_')
+	void calculate_defaultDelimiter_success(String value, int expected) {
+		int actual = Calculator.calculate(value);
+		assertThat(actual).isEqualTo(expected);
 	}
 
 	@Test
