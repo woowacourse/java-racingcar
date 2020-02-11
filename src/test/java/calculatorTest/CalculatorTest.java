@@ -25,10 +25,20 @@ public class CalculatorTest {
     }
 
     @Test
-    @DisplayName("숫자 두개를 컴마 구분자로 입력할 경우 합반환")
+    @DisplayName("숫자 두개를 컴마 구분자로 입력할 경우 합 반환")
     void splitAndSum_쉼표구분자() {
         int result = Calculator.splitAndSum("2,4");
         assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("구분자를 컴마 이외의 콜론을 사용할 경우 합 반환")
+    void splitAndSum_쉼표_혹은_콜론_구분자() {
+        int result = Calculator.splitAndSum("2:4,1");
+        assertThat(result).isEqualTo(7);
+
+        result = Calculator.splitAndSum("3,2:5");
+        assertThat(result).isEqualTo(10);
     }
 
 }

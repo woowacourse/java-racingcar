@@ -6,7 +6,7 @@ public class Calculator {
             return 0;
         }
         int result = 0;
-        String[] inputs = input.split(",");
+        String[] inputs = input.split(",|:");
         if(inputs.length == 1) {
             return Integer.parseInt(inputs[0]);
         }
