@@ -45,4 +45,13 @@ public class StringCalculatorTest {
     public void customDelimiterCalculateTest() throws Exception {
         calculateTest("src/test/resources/customDelimiterCalculateTestcase");
     }
+
+    @Test
+    @DisplayName("런타임 익셉션 테스트")
+    public void checkValid() throws Exception {
+        Assertions.assertThatThrownBy( () -> {
+                    calculateTest("src/test/resources/invalidInputTestcase");
+                }
+        ).isInstanceOf(RuntimeException.class);
+    }
 }

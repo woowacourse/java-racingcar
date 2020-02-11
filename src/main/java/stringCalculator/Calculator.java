@@ -2,6 +2,7 @@ package stringCalculator;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.DoubleStream;
 
 public class Calculator {
     private static final String COMMA = ",";
@@ -13,9 +14,18 @@ public class Calculator {
         String delimiters = combineDelimeters(getNewDelimiter(input));
         input = getPureExpression(input);
         List<String> operands = Arrays.asList(input.split(delimiters));
+
         return operands.stream()
-                .mapToDouble(operand -> Double.parseDouble(operand))
+                .mapToDouble(operand -> parseDoubleIfValid(operand))
                 .sum();
+    }
+
+    private static Double parseDoubleIfValid(String operand) {
+        Double output = Double.parseDouble(operand);
+        if (output < 0.0) {
+            throw new RuntimeException("음수 계산은 지원하지 않습니다.");
+        }
+        return output;
     }
 
     private static String combineDelimeters(String customDelimiter) {
