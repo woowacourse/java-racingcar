@@ -3,9 +3,11 @@ package tdd.calculator.domain;
 import tdd.calculator.util.InputUtils;
 
 public class PlusCalculator {
+	private static final int DEFAULT_VALUE = 0;
+
 	public static int calculate(final String value) {
 		if (isBlank(value)) {
-			return 0;
+			return DEFAULT_VALUE;
 		}
 		return sum(InputUtils.splitValues(value));
 	}
@@ -15,7 +17,7 @@ public class PlusCalculator {
 	}
 
 	private static int sum(final String[] values) {
-		int sum = 0;
+		int sum = DEFAULT_VALUE;
 		for (final String value : values) {
 			final int positive = new Positive(value).getPositive();
 			sum += positive;

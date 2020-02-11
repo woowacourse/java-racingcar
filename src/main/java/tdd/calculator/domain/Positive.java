@@ -19,7 +19,7 @@ public class Positive {
 
 	private boolean isNotNumber(final String value) {
 		return value.chars()
-			.anyMatch(c -> !Character.isDigit((char)c));
+			.anyMatch(ch -> !Character.isDigit(ch));
 	}
 
 	public int getPositive() {
