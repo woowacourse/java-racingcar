@@ -30,10 +30,22 @@ public class Calculator {
         String expression = s.substring(newLineIndex + 1);
         String[] splitExpression = expression.split(delimiter);
         List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < splitExpression.length; i++) {
-            result.add(Integer.parseInt(splitExpression[i]));
+        try {
+            splitExpression(splitExpression, result);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("양수 만 입력해주세요");
         }
         return result;
+    }
+
+    private void splitExpression(String[] splitExpression, List<Integer> result) {
+        for (int i = 0; i < splitExpression.length; i++) {
+            int convertNumber = Integer.parseInt(splitExpression[i]);
+            if (convertNumber < 0) {
+                throw new RuntimeException();
+            }
+            result.add(convertNumber);
+        }
     }
 
     public void addDelimiter(String delimiter) {
