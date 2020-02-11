@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AdderTest {
     private Adder adder = new Adder();
+
     @Test
     public void splitAndSum_숫자하나() throws Exception {
         int result = adder.splitAndSum("1");
@@ -30,5 +31,12 @@ public class AdderTest {
         assertThat(result).isEqualTo(10);
     }
 
+    @Test
+    public void 문자_split() {
+        List<String> result;
+        result = Arrays.asList(adder.getSplit("1,2:3"));
+
+        assertThat(result).containsExactly("1", "2", "3");
+    }
 
 }

@@ -14,4 +14,9 @@ public class Adder {
 
         return result;
     }
+
+    public String[] getSplit(String inputString) {
+
+        return inputString.split(",|:");
+    }
 }
