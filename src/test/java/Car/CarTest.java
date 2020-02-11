@@ -34,4 +34,20 @@ public class CarTest {
         assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 자동차는_4이상의숫자를받으면_전진한다() {
+        String name = "장재주";
+        Car car = new Car(name);
+        car.move(4);
+        assertThat(car.isSamePositionWith(1)).isTrue();
+    }
+
+    @Test
+    void 자동차는_3이하일경우_전진하지않는다() {
+        String name = "장재주";
+        Car car = new Car(name);
+        car.move(3);
+        assertThat(car.isSamePositionWith(0)).isTrue();
+    }
 }

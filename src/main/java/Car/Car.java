@@ -2,15 +2,30 @@ package Car;
 
 public class Car {
 
+    private static final int CAR_NAME_LIMIT = 5;
+    private static final int FORWARD_BASE_NUMBER = 4;
+
     private String name;
+    private int position;
 
     public Car(String name) {
         if (name == null || name.isEmpty() ) {
             throw new IllegalArgumentException();
         }
-        if (name.length() > 5) {
+        if (name.length() > CAR_NAME_LIMIT) {
             throw new IllegalArgumentException();
         }
         this.name = name;
+    }
+
+
+    public void move(int number) {
+        if (number >= FORWARD_BASE_NUMBER) {
+            position++;
+        }
+    }
+
+    public boolean isSamePositionWith(int position) {
+        return this.position == position;
     }
 }
