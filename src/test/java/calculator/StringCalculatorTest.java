@@ -1,13 +1,10 @@
 /*
- * Copyright (c) 2019 by 이름
+ * Copyright (c) 2020 by 티거, 제이미
  * All rights reserved.
  *
- * 클래스명.java
- * 클래스 설명
- *
- * @author      이름
+ * @author      티거, 제이미
  * @version     1.0
- * @date        dd mm yyyy
+ * @date        11 Feb 2020
  *
  */
 
