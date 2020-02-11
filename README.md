@@ -11,3 +11,8 @@
 * ``Style`` formatting, missing semi colons...
 * ``Refactor``
 * ``Test`` when adding missing test
+
+## Rule for TDD  
+1. create fail test code
+2. create test as much as possible
+  - skip hard test
