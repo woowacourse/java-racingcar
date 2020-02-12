@@ -7,26 +7,15 @@ public class TryCount {
 
 	private int tryCount;
 
-	public TryCount(final String value) {
-		checkValidationOf(value);
-		tryCount = Integer.parseInt(value);
+	public TryCount(final int tryCount) {
+		checkValidationOf(tryCount);
+		this.tryCount = tryCount;
 	}
 
-	private void checkValidationOf(final String value) {
-		if (isNotNumber(value)) {
-			throw new IllegalArgumentException("횟수는 숫자이어야 합니다.");
-		}
-		if (isUnderOne(value)) {
+	private void checkValidationOf(final int tryCount) {
+		if (tryCount < MIN) {
 			throw new IllegalArgumentException("횟수는 1이상 이어야 합니다.");
 		}
-	}
-
-	private boolean isNotNumber(final String value) {
-		return !value.chars().allMatch(Character::isDigit);
-	}
-
-	private boolean isUnderOne(final String value) {
-		return Integer.parseInt(value) < MIN;
 	}
 
 	public void consume() {
