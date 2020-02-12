@@ -25,4 +25,14 @@ public class InputView {
         return names;
     }
 
+    public static int inputGameRound() {
+        System.out.println("시도할 회수는 몇회인가요? (최대 10회)");
+        return validateRound(sc.nextLine());
+    }
+
+    private static int validateRound(String inputRound) {
+        int round = InputHandler.validateNumber(inputRound);
+        InputHandler.validateCount(round);
+        return round;
+    }
 }

@@ -16,6 +16,7 @@ public class RacingCar {
 
     public void run() {
         setUp(inputPlayerInfo());
+        int round = inputGameRound();
     }
 
     private String[] inputPlayerInfo() {
@@ -29,6 +30,10 @@ public class RacingCar {
             players.add(new Car(name));
         }
         cars = new Cars(players);
+    }
+
+    private int inputGameRound() {
+        return InputView.inputGameRound();
     }
 
     public int generateRandom() {
