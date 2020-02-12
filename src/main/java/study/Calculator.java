@@ -5,9 +5,14 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class Calculator {
-	public static int calculate(String input) {
-		String regex = checkCustomRegex("", input);
+	private static final String BLANK = "";
+	private static final String CUSTOM_REGEX = "//(.)\n";
+	private static final String DEFAULT_REGEX = ",:";
+	private static final RuntimeException RUNTIME_EXCEPTION = new RuntimeException("잘못 입력하셨습니다.");
+	private static final int CUSTOM_REGEX_LENGTH = 4;
 
+	public static int calculate(String input) {
+		String regex = checkCustomRegex(BLANK, input);
 		input = subStringInput(regex, input);
 
 		return Stream.of(splitAsRegex(regex, input))
@@ -15,11 +20,11 @@ public class Calculator {
 			.map(Integer::parseInt)
 			.filter(Calculator::isPositive)
 			.reduce(Integer::sum)
-			.orElse(0);
+			.orElseThrow(() -> RUNTIME_EXCEPTION);
 	}
 
 	private static String checkCustomRegex(String regex, String input) {
-		Pattern p = Pattern.compile("//(.)\n");
+		Pattern p = Pattern.compile(CUSTOM_REGEX);
 		Matcher matcher = p.matcher(input);
 		while (matcher.find()) {
 			regex = matcher.group(1);
@@ -29,28 +34,28 @@ public class Calculator {
 	}
 
 	private static String subStringInput(String regex, String input) {
-		if (!regex.equals("")) {
-			return input.substring(4);
+		if (!regex.equals(BLANK)) {
+			return input.substring(CUSTOM_REGEX_LENGTH);
 		}
 
 		return input;
 	}
 
 	private static String[] splitAsRegex(String regex, String input) {
-		return input.split("[" + regex + ",:]");
+		return input.split("[" + regex + DEFAULT_REGEX + "]");
 	}
-
 
 	private static boolean isNumber(String input) {
 		if (input.chars().mapToObj(number -> (char)number).noneMatch(Character::isDigit)) {
-			throw new RuntimeException("잘못 입력하셨습니다.");
+			throw RUNTIME_EXCEPTION;
 		}
 
 		return true;
 	}
+
 	private static boolean isPositive(int number) {
 		if (number < 0) {
-			throw new RuntimeException("잘못 입력하셨습니다.");
+			throw RUNTIME_EXCEPTION;
 		}
 
 		return true;
