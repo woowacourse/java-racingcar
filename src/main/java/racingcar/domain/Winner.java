@@ -19,7 +19,7 @@ public class Winner {
     private final List<String> winnerNames;
     private int maxCount = 0;
 
-    public Winner(List<Car> cars) {
+    Winner(List<Car> cars) {
         winnerNames = setWinner(cars);
     }
 

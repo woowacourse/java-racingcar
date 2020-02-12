@@ -14,15 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Controller {
+public class Racing {
 
     private final static String NEW_LINE = "\n";
     private final static int RANDOM_NUMBER_RANGE = 10;
-
     private final List<Car> cars;
     private final int tryCount;
 
-    public Controller(List<String> carNames, int tryCount) {
+    public Racing(List<String> carNames, int tryCount) {
         this.cars = setCars(carNames);
         this.tryCount = tryCount;
     }
