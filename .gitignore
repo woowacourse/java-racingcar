@@ -4,8 +4,6 @@
 !gradle/wrapper/gradle-wrapper.jar
 /out/
 /target/
-/src/main/java/application/calculator
-/src/test/java/application/calculator
 
 ### STS ###
 .apt_generated

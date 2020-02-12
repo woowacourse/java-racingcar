@@ -30,4 +30,14 @@ public class RacingCarTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    public void moveCarWhenNumberOverFour() {
+        Car car = new Car("test");
+        int overFourCase = 4;
+        int lessFourCase = 0;
+        car.moveCarWhenNumberOverFour(overFourCase);
+        Assertions.assertThat(car.getPosition()).isEqualTo(1);
+        car.moveCarWhenNumberOverFour(lessFourCase);
+        Assertions.assertThat(car.getPosition()).isEqualTo(1);
+    }
 }
