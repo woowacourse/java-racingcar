@@ -2,6 +2,7 @@ package tdd.racingcar.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class Cars {
 	private final List<Car> cars;
@@ -11,10 +12,13 @@ public class Cars {
 	}
 
 	public void move() {
-		cars.forEach(car -> {
-			final Power power = PowerFactory.createRandomPower();
-			car.move(power);
-		});
+		final Power randomPower = PowerFactory.createRandomPower();
+		cars.forEach(tryToMove(randomPower));
+
+	}
+
+	public Consumer<Car> tryToMove(final Power power) {
+		return car -> car.move(power);
 	}
 
 	public int getMaxPosition() {
