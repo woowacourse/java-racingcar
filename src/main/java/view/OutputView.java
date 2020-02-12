@@ -10,6 +10,7 @@ public class OutputView {
         for (Car car : cars) {
             System.out.println(car.getName() + " : " + printPositionBar(car));
         }
+        System.out.println();
     }
 
     public static String printPositionBar(Car car) {

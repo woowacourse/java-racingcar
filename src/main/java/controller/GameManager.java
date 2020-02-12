@@ -3,6 +3,7 @@ package controller;
 import model.Car;
 import model.Dice;
 import view.InputView;
+import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +18,20 @@ public class GameManager {
 
     public void startGame() {
         init();
+        run();
     }
 
     private void init() {
         setCarList(inputCarName());
         setRound();
+    }
+
+    private void run() {
+        System.out.println("실행 결과");
+        for (int i = 0; i < round; i++) {
+            race(cars);
+            OutputView.printScore(cars);
+        }
     }
 
     private void setRound() {
@@ -49,5 +59,4 @@ public class GameManager {
             moveOrStay(car, Dice.makeRandomNumber());
         }
     }
-
 }
