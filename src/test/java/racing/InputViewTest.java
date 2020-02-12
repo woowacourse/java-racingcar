@@ -48,4 +48,11 @@ public class InputViewTest {
 			Arguments.of(null, false),
 			Arguments.of("AB,C,D,EF,G", true));
 	}
+
+	@Test
+	public void checkRoundNumberTest() {
+		assertThat(InputView.checkRoundNumber("5")).isTrue();
+		assertThat(InputView.checkRoundNumber("-")).isFalse();
+		assertThat(InputView.checkRoundNumber("5.")).isFalse();
+	}
 }

@@ -17,9 +17,13 @@ public class InputView {
 		return input.nextLine();
 	}
 
-	public static int inputRoundNumber(Scanner input) {
+	public static String inputRoundNumber(Scanner input) {
 		System.out.println("시도할 회수는 몇회인가요?");
-		return input.nextInt();
+		return input.nextLine();
+	}
+
+	public static boolean checkRoundNumber(String input) {
+		return input.chars().mapToObj(x -> (char)x).allMatch(Character::isDigit);
 	}
 
 	public static List<String> splitAsComma(String value) {
