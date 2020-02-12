@@ -11,8 +11,15 @@ public class InputView {
         return SCANNER.nextLine();
     }
 
-    public static String inputTryNumber() {
+    public static int inputTryNumber() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return SCANNER.nextLine();
+        int input;
+        try {
+            input =  SCANNER.nextInt();
+        } catch (NumberFormatException e) {
+            System.out.println("숫자만 입력해 주세요.");
+            input = SCANNER.nextInt();
+        }
+        return input;
     }
 }
