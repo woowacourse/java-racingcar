@@ -10,6 +10,7 @@ public class NameTest {
 		final String name = "abcdef";
 
 		assertThatThrownBy(() -> new Name(name))
-			.isInstanceOf(IllegalArgumentException.class);
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("이름은 5자이하만 가능합니다.");
 	}
 }

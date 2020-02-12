@@ -12,7 +12,9 @@ public class CarTest {
 
 	@BeforeEach
 	void init() {
-		car = new Car();
+		final String name = "test";
+
+		car = new Car(new Name(name));
 	}
 
 	@Test
@@ -24,6 +26,8 @@ public class CarTest {
 		final int actual = car.getPosition();
 
 		final int expected = initPosition;
+
+		System.out.println(car.toString());
 
 		assertThat(actual).isEqualTo(expected);
 	}

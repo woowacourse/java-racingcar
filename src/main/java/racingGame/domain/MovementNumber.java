@@ -2,6 +2,7 @@ package racingGame.domain;
 
 public class MovementNumber {
 	private static final int ZERO = 0;
+
 	private final int movementNumber;
 
 	public MovementNumber(final String number) {
