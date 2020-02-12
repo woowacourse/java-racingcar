@@ -21,13 +21,13 @@ public class CarTest {
     @Test
     @DisplayName("자동차 상태 문자열 변환 테스트")
     void displayTest() {
-        Car a = new Car("히히");
+        Car car = new Car("히히");
 
         for (int i = 0; i < 10; i++) {
-            a.move();
+            car.move();
         }
 
-        System.out.println(a.convertStatusToString());
+        System.out.println(car.convertStatusToString());
     }
 }
 
