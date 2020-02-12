@@ -2,11 +2,13 @@ package racingcar.domain;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class CarTest {
 	@ParameterizedTest
@@ -20,5 +22,12 @@ public class CarTest {
 	static Stream<Arguments> generateInput() {
 		return Stream.of(Arguments.of("bumblebee,pobi,sika"),
 				Arguments.of("ie,aaaaa,jjjj"));
+	}
+
+	@ParameterizedTest
+	@CsvSource(value = {"0 false", "3 false", "4 true", "9 true"}, delimiter = ' ')
+	void 이동조건(int value, boolean expected) {
+		Car car = new Car("bumbl");
+		assertThat(car.move(value)).isEqualTo(expected);
 	}
 }
