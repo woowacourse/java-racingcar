@@ -1,10 +1,10 @@
-package racingGame;
+package com.woowacourse.racingGame;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import racingGame.domain.Car;
-import racingGame.domain.Cars;
+import com.woowacourse.racingGame.domain.Car;
+import com.woowacourse.racingGame.domain.Cars;
 
 public class RacingGame {
 	private int maxPosition = 7;

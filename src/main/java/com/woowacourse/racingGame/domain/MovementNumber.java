@@ -1,4 +1,4 @@
-package racingGame.domain;
+package com.woowacourse.racingGame.domain;
 
 public class MovementNumber {
 	private static final int ZERO = 0;

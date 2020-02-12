@@ -1,11 +1,11 @@
-package racingGame.utils;
+package com.woowacourse.racingGame.utils;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import racingGame.domain.Car;
-import racingGame.domain.Name;
+import com.woowacourse.racingGame.domain.Car;
+import com.woowacourse.racingGame.domain.Name;
 
 public class StringUtilTest {
 	@Test

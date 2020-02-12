@@ -1,4 +1,4 @@
-package racingGame.domain;
+package com.woowacourse.racingGame.domain;
 
 import java.util.Objects;
 

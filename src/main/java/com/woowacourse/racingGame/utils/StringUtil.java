@@ -1,4 +1,4 @@
-package racingGame.utils;
+package com.woowacourse.racingGame.utils;
 
 public class StringUtil {
 	private static final String DELIMITER = ",";

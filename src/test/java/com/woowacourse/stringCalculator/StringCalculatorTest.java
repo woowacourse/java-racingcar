@@ -1,4 +1,4 @@
-package stringCalculator;
+package com.woowacourse.stringCalculator;
 
 import static org.assertj.core.api.Assertions.*;
 

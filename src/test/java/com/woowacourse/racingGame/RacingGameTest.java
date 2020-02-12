@@ -1,4 +1,4 @@
-package racingGame;
+package com.woowacourse.racingGame;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -8,9 +8,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import racingGame.domain.Car;
-import racingGame.domain.Cars;
-import racingGame.domain.Name;
+import com.woowacourse.racingGame.domain.Car;
+import com.woowacourse.racingGame.domain.Cars;
+import com.woowacourse.racingGame.domain.Name;
 
 public class RacingGameTest {
 	@Test

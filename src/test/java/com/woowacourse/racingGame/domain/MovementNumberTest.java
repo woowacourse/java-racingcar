@@ -1,4 +1,4 @@
-package racingGame.domain;
+package com.woowacourse.racingGame.domain;
 
 import static org.assertj.core.api.Assertions.*;
 

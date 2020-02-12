@@ -1,4 +1,4 @@
-package stringCalculator;
+package com.woowacourse.stringCalculator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

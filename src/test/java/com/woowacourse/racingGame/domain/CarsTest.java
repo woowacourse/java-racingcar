@@ -1,10 +1,11 @@
-package racingGame.domain;
+package com.woowacourse.racingGame.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CarsTest {
@@ -17,7 +18,7 @@ public class CarsTest {
 
 		Cars cars = new Cars(nonDuplicatedCars);
 
-		assertThat(cars.getCars()).isEqualTo(nonDuplicatedCars);
+		Assertions.assertThat(cars.getCars()).isEqualTo(nonDuplicatedCars);
 	}
 
 	@Test
