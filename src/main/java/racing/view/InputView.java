@@ -9,6 +9,7 @@ public class InputView {
 	private static final int MAX_LENGTH = 5;
 	private static final int MIN_LENGTH = 1;
 	private static final String CAR_NAME_DELIMITER = ",";
+	private static final String WRONG_INPUT_MESSAGE = "잘못 입력하셨습니다.";
 
 	public Scanner input() {
 		return new Scanner(System.in);
@@ -23,7 +24,10 @@ public class InputView {
 			.map(InputView::splitAsComma)
 			.filter(InputView::checkNotEmpty)
 			.filter(InputView::checkLength)
-			.orElseGet(() -> inputCarNames(input));
+			.orElseGet(() -> {
+				System.out.println(WRONG_INPUT_MESSAGE);
+				return inputCarNames(input);
+			});
 	}
 
 	public static int inputRoundNumber(Scanner input) {
@@ -34,7 +38,10 @@ public class InputView {
 			.filter(InputView::checkNotNull)
 			.filter(InputView::checkRoundNumber)
 			.map(Integer::parseInt)
-			.orElseGet(() -> inputRoundNumber(input));
+			.orElseGet(() -> {
+				System.out.println(WRONG_INPUT_MESSAGE);
+				return inputRoundNumber(input);
+			});
 	}
 
 	public static boolean checkRoundNumber(String input) {
