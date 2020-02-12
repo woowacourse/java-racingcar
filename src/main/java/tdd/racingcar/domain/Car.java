@@ -3,7 +3,7 @@ package tdd.racingcar.domain;
 public class Car {
 	private static final int MAX_NAME_LENGTH = 5;
 
-	private int position = 0;
+	private Position position = new Position(0);
 	private final String name;
 
 	public Car(final String name) {
@@ -18,12 +18,12 @@ public class Car {
 	}
 
 	public int getPosition() {
-		return position;
+		return position.getPosition();
 	}
 
 	public void move(final Power power) {
 		if (power.isEnough()) {
-			position++;
+			position.move();
 		}
 	}
 
@@ -32,6 +32,6 @@ public class Car {
 	}
 
 	public boolean isPosition(final int maxPosition) {
-		return position == maxPosition;
+		return position.equals(new Position(maxPosition));
 	}
 }
