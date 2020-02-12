@@ -32,4 +32,22 @@ public class GameManagerTest {
 
         assertThat(result).isEqualTo(GameManager.getCarList());
     }
+
+    @DisplayName("4이상 숫자가 주어지면 전진")
+    @Test
+    void MoveOrStay() {
+        Car car = new Car("car");
+        GameManager.MoveOrStay(car, 1);
+        assertThat(car.getPosition()).isEqualTo(0);
+
+        GameManager.MoveOrStay(car, 4);
+        assertThat(car.getPosition()).isEqualTo(1);
+
+        GameManager.MoveOrStay(car, 4);
+        assertThat(car.getPosition()).isEqualTo(2);
+
+        GameManager.MoveOrStay(car, 8);
+        GameManager.MoveOrStay(car, 8);
+        assertThat(car.getPosition()).isEqualTo(4);
+    }
 }

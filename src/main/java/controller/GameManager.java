@@ -23,4 +23,9 @@ public class GameManager {
     }
 
 
+    public static void MoveOrStay(Car car, int inputNumber) {
+        if (inputNumber >= 4) {
+            car.move();
+        }
+    }
 }

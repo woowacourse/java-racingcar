@@ -22,4 +22,16 @@ public class Car {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    public void move() {
+        position += 1;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
 }
