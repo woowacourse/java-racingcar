@@ -2,7 +2,6 @@ package tdd.racingcar.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Cars {
 	private final List<Car> cars;
@@ -18,14 +17,7 @@ public class Cars {
 		});
 	}
 
-	public List<Car> getWinners() {
-		final int maxPosition = getMaxPosition();
-		return cars.stream()
-			.filter(car -> car.isPosition(maxPosition))
-			.collect(Collectors.toList());
-	}
-
-	private int getMaxPosition() {
+	public int getMaxPosition() {
 		return cars.stream()
 			.mapToInt(Car::getPosition)
 			.max()

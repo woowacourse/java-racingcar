@@ -3,6 +3,7 @@ package tdd.racingcar;
 import tdd.racingcar.domain.Cars;
 import tdd.racingcar.domain.CarsFactory;
 import tdd.racingcar.domain.TryCount;
+import tdd.racingcar.util.CarsUtils;
 import tdd.racingcar.view.InputView;
 import tdd.racingcar.view.OutputView;
 
@@ -15,9 +16,8 @@ public class Application {
 		while (tryCount.isRemain()) {
 			cars.move();
 			tryCount.consume();
-			OutputView.printCars(cars);
+			OutputView.printCar(CarsUtils.getState(cars));
 		}
-
-		OutputView.printWinners(cars.getWinners());
+		OutputView.printWinners(CarsUtils.getWinners(cars));
 	}
 }
