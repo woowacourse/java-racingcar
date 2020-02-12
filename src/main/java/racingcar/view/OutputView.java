@@ -4,6 +4,9 @@ import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.message.Message;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
@@ -20,6 +23,7 @@ public class OutputView {
     private static final char LINE_FEED = '\n';
     private static final char COLON = ':';
     private static final char TRACE_OF_CAR = '-';
+    private static final String WINNER_NAME_JOIN_DELIMITER = ",";
 
     public static void printRoundResult(Cars cars){
         StringBuilder stringBuilder = new StringBuilder();
@@ -43,5 +47,12 @@ public class OutputView {
 
     public static void printRoundStart() {
         System.out.println(Message.ROUND_START.getMessageText());
+    }
+
+    public static void printWinner(List<Car> winner) {
+        String collect = winner.stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(WINNER_NAME_JOIN_DELIMITER));
+        System.out.println(collect);
     }
 }

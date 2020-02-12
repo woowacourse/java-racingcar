@@ -4,6 +4,7 @@ import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
 import racingcar.splitter.NameSplitter;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 /*
  * Copyright (c) 2020 by 또동페어
@@ -24,5 +25,6 @@ public class Application {
         int numberOfRound = InputView.inputNumberOfRound();
         RacingGame game = new RacingGame(cars, numberOfRound);
         game.start();
+        OutputView.printWinner(game.getWinner());
     }
 }

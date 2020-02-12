@@ -3,6 +3,8 @@ package racingcar.domain;
 import racingcar.message.Message;
 import racingcar.view.OutputView;
 
+import java.util.List;
+
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
@@ -16,7 +18,7 @@ import racingcar.view.OutputView;
  *
  */
 public class RacingGame {
-    public static final int MINIMUM_NUMBER_OF_ROUND = 1;
+    private static final int MINIMUM_NUMBER_OF_ROUND = 1;
 
     private final Cars cars;
     private final int numberOfRound;
@@ -35,5 +37,9 @@ public class RacingGame {
             cars.run();
             OutputView.printRoundResult(cars);
         }
+    }
+
+    public List<Car> getWinner() {
+        return cars.findWinner();
     }
 }

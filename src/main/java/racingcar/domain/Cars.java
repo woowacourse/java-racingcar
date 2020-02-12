@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @date        12 Feb 2020
  *
  */
-public class Cars implements Iterable<Car>{
+public class Cars implements Iterable<Car> {
     private final List<Car> cars = new ArrayList<>();
 
     public Cars(List<String> names) {
@@ -48,7 +48,7 @@ public class Cars implements Iterable<Car>{
                 .collect(Collectors.toList());
     }
 
-    public void run() {
+    void run() {
         for (Car car : cars) {
             car.run(RandomNumberGenerator.getRandomNumber());
         }
