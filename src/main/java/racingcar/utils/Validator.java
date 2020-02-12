@@ -15,4 +15,12 @@ public class Validator {
 		Set<String> nameSet = new HashSet<>(Arrays.asList(names));
 		return nameSet.size() != names.length;
 	}
+
+	public static boolean isNotValidName(String name) {
+		String trimedName = TrimName.removeAllBlankInName(name);
+		return trimedName.equals("");
+		// if (trimedName.equals("")) {
+		// 	throw new IllegalArgumentException("공백입력 불가");
+		// }
+	}
 }

@@ -23,9 +23,16 @@ class ValidatorTest {
 
 	@Test
 	void ReturnTrue_When_DuplicatedName() {
-		String[] names = {"pobi","pobi"};
+		String[] names = {"pobi", "pobi"};
 
 		boolean result = Validator.containDuplicatedName(names);
+		assertTrue(result);
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {" ", "    "})
+	void isValidName(String name) {
+		boolean result = Validator.isNotValidName(name);
 		assertTrue(result);
 	}
 }
