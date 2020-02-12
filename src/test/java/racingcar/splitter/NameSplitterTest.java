@@ -16,6 +16,9 @@ package racingcar.splitter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class NameSplitterTest {
 
@@ -25,5 +28,15 @@ public class NameSplitterTest {
 		Assertions.assertThat(NameSplitter.split("네오,프로도,튜브")).containsExactly("네오", "프로도", "튜브");
 		Assertions.assertThat(NameSplitter.split("어피치,라이언,콘,무지,제이지")).containsExactly("어피치", "라이언", "콘", "무지", "제이지");
 		Assertions.assertThat(NameSplitter.split("죠르디,프로도,튜브,123")).containsExactly("죠르디", "프로도", "튜브", "123");
+	}
+
+	@DisplayName("쉼표가 없거나, 이름이 하나일 있을 경우")
+	@ParameterizedTest
+	@EmptySource
+	@ValueSource(strings = {"네오,", "네오"})
+	void Should_fail_When_inappropriateValue(String input) {
+		Assertions.assertThatThrownBy(() -> NameSplitter.split(input))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("car must be at least one");
 	}
 }

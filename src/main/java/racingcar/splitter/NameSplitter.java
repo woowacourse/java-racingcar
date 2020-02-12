@@ -17,9 +17,14 @@ import java.util.stream.Collectors;
 
 public class NameSplitter {
 	public static final String DELIMITER = ",";
+	public static final int MINIMUM_NUMBER_OF_NAMES = 2;
 
-	public static List<String> split(String names) {
-		return Arrays.stream(names.split(DELIMITER))
+	public static List<String> split(String nameValue) {
+		List<String> names = Arrays.stream(nameValue.split(DELIMITER))
 			.collect(Collectors.toList());
+		if(names.size() < MINIMUM_NUMBER_OF_NAMES) {
+			throw new IllegalArgumentException("car must be at least one");
+		}
+		return names;
 	}
 }
