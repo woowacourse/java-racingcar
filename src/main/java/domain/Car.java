@@ -1,6 +1,6 @@
 package domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
     public static final int ZERO = 0;
     public static final int NAME_UPPER_LIMIT = 5;
     public static final int GO_CONDITION = 4;
@@ -37,5 +37,10 @@ public class Car {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int compareTo(Car c) {
+        return c.getPosition() - getPosition();
     }
 }
