@@ -4,6 +4,12 @@ import java.util.List;
 public class StringCalculator {
     private int result = 0;
     public int add(String numberExpression) {
+        if (hasCustomSeperator(numberExpression)) {
+            String seperator = numberExpression.substring(2,3);
+            addNumbersInExpressionBySeparator(numberExpression.substring(4), seperator);
+            return result;
+        }
+
         if (containsLetter(numberExpression)) {
             throw new RuntimeException("문자를 포함합니다");
         }
@@ -20,6 +26,10 @@ public class StringCalculator {
 
 
         return result;
+    }
+
+    private boolean hasCustomSeperator(String numberExpression) {
+        return numberExpression.startsWith("//") && numberExpression.substring(3, 4).equals("\n");
     }
 
     private boolean containsLetter(String numberExpression) {

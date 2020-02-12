@@ -71,4 +71,11 @@ public class StringCalculatorTest {
         assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() -> stringCalculator.add("-1"));
     }
+
+    @Test
+    void 덧셈_커스텀구분자가_있을_때() {
+        StringCalculator stringCalculator = new StringCalculator();
+        int result = stringCalculator.add("//;\n1;2;3");
+        assertThat(result).isEqualTo(6);
+    }
 }
