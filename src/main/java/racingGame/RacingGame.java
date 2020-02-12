@@ -14,4 +14,10 @@ public class RacingGame {
         String[] names = value.split(",");
         return Arrays.asList(names);
     }
+
+    public static void validateInputList(String value) {
+        List<String> names = splitInput(value);
+        names.stream()
+                .forEach((x)->validateInput(x));
+    }
 }

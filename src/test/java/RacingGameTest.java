@@ -23,4 +23,12 @@ public class RacingGameTest {
         List<String> list = RacingGame.splitInput(value);
         Assertions.assertThat(list).contains(expected);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi,crong,honuxs", "a,b,ccccccc", "a,,b", ""})
+    void 여러명_입력시_이름길이_검증(String value){
+        Assertions.assertThatThrownBy(()->{
+            RacingGame.validateInputList(value);
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageMatching("이름의 길이는 1자 이상, 5자 이하만 가능합니다.");
+    }
 }
