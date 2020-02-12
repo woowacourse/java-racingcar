@@ -5,6 +5,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Car {
+	public static final int FORWARD_PIVOT = 4;
+	public static final int RANDOM_MAX = 9;
+	public static final int RANDOM_MIN = 0;
+	public static final String POSITION_VIEWER = "-";
 	private String name;
 	private int position;
 
@@ -23,13 +27,13 @@ public class Car {
 
 	public int randomGenerate() {
 		return ThreadLocalRandom.current()
-			.ints(0, 9)
+			.ints(RANDOM_MIN, RANDOM_MAX)
 			.findFirst()
-			.orElse(0);
+			.orElse(RANDOM_MIN);
 	}
 
 	public void goForward(int number) {
-		if (number >= 4) {
+		if (number >= FORWARD_PIVOT) {
 			position++;
 		}
 	}
@@ -40,8 +44,8 @@ public class Car {
 
 	private String printPosition() {
 		return IntStream.range(0, position)
-			.mapToObj(x -> "-")
-			.collect(Collectors.joining(""));
+			.mapToObj(x -> POSITION_VIEWER)
+			.collect(Collectors.joining());
 	}
 
 	@Override
