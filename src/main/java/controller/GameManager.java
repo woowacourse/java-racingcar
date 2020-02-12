@@ -2,6 +2,7 @@ package controller;
 
 import model.Car;
 import model.Dice;
+import model.Winner;
 import view.InputView;
 import view.OutputView;
 
@@ -19,6 +20,12 @@ public class GameManager {
     public void startGame() {
         init();
         run();
+        award();
+    }
+
+    private void award() {
+        Winner.setWinner(cars);
+        OutputView.printWinners(Winner.getWinners());
     }
 
     private void init() {
