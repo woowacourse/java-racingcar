@@ -16,4 +16,8 @@ public class OutputView {
     public static void printExceptionMessage(Exception e) {
         System.out.println(e.getMessage());
     }
+
+    public static void printPositionByDash(String outputValue) {
+        System.out.println(outputValue);
+    }
 }
