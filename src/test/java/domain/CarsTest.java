@@ -40,6 +40,8 @@ public class CarsTest {
     @Test
     void getWinnersTest() {
         int maxPosition = cars.getMaxPosition();
-        assertThat(cars.getWinners(maxPosition).equals(Arrays.asList(car2, car4))).isTrue();
+        List<Car> expectedWinners = Arrays.asList(car2, car4);
+        List<Car> actualWinners = cars.getWinners(maxPosition);
+        assertThat(actualWinners.equals(expectedWinners)).isTrue();
     }
 }
