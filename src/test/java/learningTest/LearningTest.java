@@ -4,7 +4,9 @@ import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class LearningTest {
     @Test
@@ -23,4 +25,10 @@ public class LearningTest {
         System.out.println(a.contains("\\n"));
     }
 
+    @Test
+    void 리스트_한번더() {
+        List<String> strings1 = Arrays.asList(new String[]{"a","b"});
+//        List<String> strings2 = Arrays.asList(strings1);
+        System.out.println();
+    }
 }

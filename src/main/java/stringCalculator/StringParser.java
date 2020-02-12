@@ -14,34 +14,40 @@ public class StringParser {
     }
 
     public static List<Integer> parse(String input) {
+        String[] parsedArray;
+        List<String> parsedList;
+
         if (hasSign(input)) {
             return parseWithCustomDelimiter(input);
         }
 
-        return splitStringListToIntegerList(input.split(DEFAULT_DELIMITER_REGEX));
+        parsedArray = input.split(DEFAULT_DELIMITER_REGEX);
+        parsedList = Arrays.asList(parsedArray);
+
+        return splitStringListToIntegerList(parsedList);
     }
 
     private static List<Integer> parseWithCustomDelimiter(String input) {
         int startOfCustomDelimiter = input.indexOf(FRONT_SIGN) + TWO_STEP;
         int endOfCustomDelimiter = input.indexOf(BACK_SIGN);
         String customDelimiter = input.substring(startOfCustomDelimiter, endOfCustomDelimiter);
-        String[] result = input.substring(endOfCustomDelimiter + TWO_STEP, input.length())
-                .split(DEFAULT_DELIMITER_REGEX + "|" + customDelimiter);
+        String query = input.substring(endOfCustomDelimiter + TWO_STEP);
+        String[] split = query.split(DEFAULT_DELIMITER_REGEX + "|" + customDelimiter);
+        List<String> result = Arrays.asList(split);
         return splitStringListToIntegerList(result);
     }
 
-    private static List<Integer> splitStringListToIntegerList(String[] split) {
-        if (split.equals(new String[]{""})) {
+    private static List<Integer> splitStringListToIntegerList(List<String> split) {
+        if (split.equals(Arrays.asList(new String[]{""}))) {
             return Arrays.asList(new Integer[]{0});
         }
         // 여기에 예외 처리
         try {
-            return Arrays.asList(split)
-                    .stream()
+            return split.stream()
                     .map((t) -> Integer.parseInt(t))
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            System.err.println(Arrays.asList(split));
+            System.err.println(split);
             System.err.println(e.getMessage());
             throw e;
         }
