@@ -6,6 +6,7 @@ import racingcar.Controller.InputValidation;
 import racingcar.View.InputView;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -25,5 +26,22 @@ public class RacingCarTest {
         assertFalse(InputValidation.isSmallerThanSix(result));
         result = "Ford";
         assertTrue(InputValidation.isSmallerThanSix(result));
+    }
+
+    @Test
+    @DisplayName("null 또는 빈 문자열 입력 시")
+    void inputControl_null_또는_빈문자열_입력() {
+        String nullResult = null;
+        String emptyResult = "";
+
+        assertThatThrownBy( () -> {
+            InputValidation.checkNullOrEmptyInput(nullResult);
+        }).isInstanceOf(NullPointerException.class)
+        .hasMessage("입력이 null이나 빈 문자열입니다.");
+
+        assertThatThrownBy( () -> {
+            InputValidation.checkNullOrEmptyInput(emptyResult);
+        }).isInstanceOf(NullPointerException.class)
+        .hasMessage("입력이 null이나 빈 문자열입니다.");
     }
 }
