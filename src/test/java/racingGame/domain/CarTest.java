@@ -44,4 +44,22 @@ public class CarTest {
 
 		assertThat(actual).isEqualTo(expected);
 	}
+
+	@Test
+	void isWinnerPosition_우승한_위치의_자동차() {
+		final int winnerPosition = 7;
+
+		car.setPosition(7);
+
+		assertThat(car.isWinnerPosition(winnerPosition)).isTrue();
+	}
+
+	@Test
+	void isWinnerPosition_우승하지_못한_위치의_자동차() {
+		final int winnerPosition = 7;
+
+		car.setPosition(6);
+
+		assertThat(car.isWinnerPosition(winnerPosition)).isFalse();
+	}
 }
