@@ -1,5 +1,7 @@
 package racingcargame.domain;
 
+import java.util.Objects;
+
 public class Car {
 
     private static final int CAR_NAME_LIMIT = 5;
@@ -38,5 +40,18 @@ public class Car {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return name.equals(car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

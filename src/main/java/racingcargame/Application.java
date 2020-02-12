@@ -1,9 +1,8 @@
 package racingcargame;
 
 import racingcargame.domain.Car;
-import racingcargame.domain.Cars;
+import racingcargame.game.CarRace;
 import racingcargame.view.intput.InputView;
-import racingcargame.view.output.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,10 +10,8 @@ import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
-        Cars cars = new Cars(parseCars(InputView.askCarNames()));
-        cars.moveFoward(Integer.parseInt(InputView.askRound()));
-        List<String> carNamesInFirst = cars.getCarsInMaxPosition();
-        OutputView.printWinners(carNamesInFirst);
+        CarRace carRace = new CarRace(parseCars(InputView.askCarNames()));
+        carRace.run(Integer.parseInt(InputView.askRound()));
     }
 
     private static List<Car> parseCars(String input) {
