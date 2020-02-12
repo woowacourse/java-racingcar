@@ -17,7 +17,7 @@ public class OutputView {
 	}
 
 	public static void printCars(final Cars cars) {
-		cars.toList().forEach(OutputView::printCar);
+		cars.forEach(OutputView::printCar);
 		emptyLine();
 	}
 

@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +17,8 @@ public class CarsTest {
 
 	@BeforeEach
 	void init() {
-		differentPositionCars = CarsFactory.create("a,b,c,d").toList();
+		differentPositionCars = new ArrayList<>();
+		CarsFactory.create("a,b,c,d").forEach(differentPositionCars::add);
 		differentPositionCars.get(0).move(new Power(4));
 		differentPositionCars.get(0).move(new Power(4));
 		differentPositionCars.get(1).move(new Power(4));

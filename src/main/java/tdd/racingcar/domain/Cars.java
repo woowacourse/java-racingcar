@@ -1,10 +1,10 @@
 package tdd.racingcar.domain;
 
-import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Cars {
+public class Cars implements Iterable<Car> {
 	private final List<Car> cars;
 
 	public Cars(final List<Car> cars) {
@@ -32,7 +32,8 @@ public class Cars {
 				.orElseThrow(() -> new IllegalArgumentException("차가 존재하지 않습니다."));
 	}
 
-	public List<Car> toList() {
-		return Collections.unmodifiableList(cars);
+	@Override
+	public Iterator<Car> iterator() {
+		return cars.iterator();
 	}
 }
