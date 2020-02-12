@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Game {
     private HashMap<String, Integer> winners = new HashMap<String, Integer>();
@@ -24,4 +25,10 @@ public class Game {
     }
 
 
+    public String[] spiltCarsName(String carsNameInput) {
+        String[] carNames = carsNameInput.trim()
+                .replace(" ", "")
+                .split(",");
+        return carNames;
+    }
 }

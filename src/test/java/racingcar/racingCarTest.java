@@ -61,4 +61,12 @@ public class racingCarTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름은 1자 이상 5자 이하여야 합니다.");
     }
+
+    @Test
+    @DisplayName("자동차 이름을 처리하는 부분")
+    void splitCarsNameTest() {
+        Game game = new Game(0);
+        assertThat(game.spiltCarsName(" alan,bart,carol,daisy ,eddy")
+                .equals(new String[]{"alan", "bart", "carol", "daisy", "eddy"}));
+    }
 }
