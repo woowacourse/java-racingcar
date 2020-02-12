@@ -3,7 +3,7 @@ package racingcar.io;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class consoleOutput {
+public class ConsoleOutput {
     public static void printStatus(LinkedHashMap<String, Integer> status) {
         status.forEach((name, position) -> {
             System.out.println(name + ": " + stripBuilder(position));

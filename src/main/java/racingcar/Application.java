@@ -1,7 +1,7 @@
 package racingcar;
 
 import racingcar.domain.Cars;
-import racingcar.io.userInput;
+import racingcar.io.UserInput;
 
 import static racingcar.Utils.enrollCars;
 import static racingcar.Utils.splitCarsName;
@@ -14,8 +14,8 @@ public class Application {
 
     private static Game initializeGame() {
         try {
-            Cars cars = new Cars(enrollCars(splitCarsName(userInput.inputCarsName())));
-            return new Game(cars, userInput.inputIteration());
+            Cars cars = new Cars(enrollCars(splitCarsName(UserInput.inputCarsName())));
+            return new Game(cars, UserInput.inputIteration());
         }catch(Exception e) {
             System.out.println(e.getMessage());
             return initializeGame();

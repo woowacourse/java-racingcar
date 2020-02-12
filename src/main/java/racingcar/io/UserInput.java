@@ -2,7 +2,7 @@ package racingcar.io;
 
 import java.util.Scanner;
 
-public class userInput {
+public class UserInput {
     static final Scanner scanner = new Scanner(System.in);
 
     public static String inputCarsName() {

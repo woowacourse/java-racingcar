@@ -1,7 +1,7 @@
 package racingcar;
 
 import racingcar.domain.Cars;
-import racingcar.io.consoleOutput;
+import racingcar.io.ConsoleOutput;
 import racingcar.util.RandomNumberGenerator;
 
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ public class Game {
         RandomNumberGenerator random = new RandomNumberGenerator();
         for (int i = 0; i < iteration; i++) {
             cars.playTurn(random);
-            consoleOutput.printStatus(cars.notifyStatus());
+            ConsoleOutput.printStatus(cars.notifyStatus());
         }
-        consoleOutput.printResult(findWinner(cars.notifyStatus()));
+        ConsoleOutput.printResult(findWinner(cars.notifyStatus()));
     }
 
     public List<String> findWinner(LinkedHashMap<String, Integer> finalStatus) {
