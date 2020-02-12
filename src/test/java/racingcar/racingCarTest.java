@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 import racingcar.domain.CarFactory;
 import racingcar.domain.Cars;
-import racingcar.util.CarUtils;
 
 import java.util.LinkedHashMap;
 import java.util.Random;
@@ -16,7 +15,6 @@ import java.util.Random;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class racingCarTest {
 
@@ -36,17 +34,12 @@ public class racingCarTest {
         Car car = new Car("pobi");
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("car가 4 이상의 숫자를 받을 때만 전진한다")
-    void doesCarProceed() {
+    @ValueSource(ints = {0, 1, 2, 3})
+    void doesCarProceed(int randomSeed) {
         Car car = new Car("hiro");
-        for (int i = 0; i <= 3; i++) {
-            assertFalse(CarUtils.checkMove(i));
-
-        }
-        for (int i = 4; i <= 9; i++) {
-            assertTrue(CarUtils.checkMove(i));
-        }
+        assertFalse(car.checkMove(randomSeed));
     }
 
     @ParameterizedTest
@@ -56,7 +49,7 @@ public class racingCarTest {
         Car car = new Car("hiro");
         Random random = new Random();
         assertThatThrownBy(() -> {
-            CarUtils.checkMove(number);
+            car.checkMove(number);
         }).isInstanceOf(NumberFormatException.class);
     }
 
@@ -75,7 +68,7 @@ public class racingCarTest {
     void carProceedTest() {
         Car car = new Car("hiro");
         for (int i = 0; i < 4; i++) {
-            car.proceed();
+            car.checkMove(4);
         }
         assertThat(car.getPosition()).isEqualTo(4);
     }

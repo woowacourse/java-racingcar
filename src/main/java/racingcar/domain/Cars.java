@@ -5,9 +5,8 @@ import racingcar.util.NumberGenerator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import static racingcar.util.CarUtils.checkMove;
-
 public class Cars {
+    public static final String RANDOM_OUTOF_BOUND = "범위를 초과한 난수입니다.";
     private List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -16,11 +15,11 @@ public class Cars {
 
     public void playTurn(NumberGenerator random) {
         cars.forEach(car -> {
-            if (checkMove(random.generateNumber())) {
-                car.proceed();
-            }
+            car.checkMove(random.generateNumber());
         });
     }
+
+
 
     public LinkedHashMap<String, Integer> notifyStatus() {
         LinkedHashMap<String, Integer> status = new LinkedHashMap<>();
