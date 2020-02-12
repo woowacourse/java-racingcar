@@ -18,10 +18,10 @@ public class InputView {
 
         InputHandler.validateCarCount(names.length);
 
-        for (String name : names) {
-            name = name.trim();
-            InputHandler.validateNullOrEmpty(name);
-            InputHandler.validateNameLength(name);
+        for (int i = 0; i < names.length; i++) {
+            names[i] = names[i].trim();
+            InputHandler.validateNullOrEmpty(names[i]);
+            InputHandler.validateNameLength(names[i]);
         }
         return names;
     }
