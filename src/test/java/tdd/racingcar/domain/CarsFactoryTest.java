@@ -17,6 +17,8 @@ public class CarsFactoryTest {
 		names.add("c");
 		names.add("d");
 		final Cars cars = CarsFactory.create("a,b,c,d");
-		assertEquals(names.size(), Arrays.asList(cars).size());
+		final List<Car> actual = new ArrayList<>();
+		cars.forEach(actual::add);
+		assertEquals(names.size(), actual.size());
 	}
 }
