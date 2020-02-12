@@ -1,7 +1,6 @@
 package racingcargame.util;
 
 import org.junit.jupiter.api.Test;
-import racingcargame.view.exception.TryNumberException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
