@@ -39,4 +39,12 @@ public class CarNameException {
     private static boolean isExceedLength(String name) {
         return name.length() > NAME_MAX_LENGTH;
     }
+
+    public static void checkBlankInput() {
+        for (String name : CAR_NAMES) {
+            if(name.equals("")) {
+                throw new RuntimeException();
+            }
+        }
+    }
 }

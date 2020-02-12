@@ -35,4 +35,14 @@ class CarNameExceptionTest {
         assertThatThrownBy(() -> CarNameException.haveExceededLengthName())
                 .isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    void 쉼표만_입력되었을_때() {
+        String[] input = {"", ""};
+
+        CarNameException.CAR_NAMES.addAll(Arrays.asList(input));
+
+        assertThatThrownBy(CarNameException::checkBlankInput)
+                .isInstanceOf(RuntimeException.class);
+    }
 }
