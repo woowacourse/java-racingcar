@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Cars;
+import domain.Race;
 import utils.InputUtil;
 import view.InputView;
 import view.OutputView;
@@ -9,7 +10,7 @@ import java.io.IOException;
 
 public class RaceController {
 	public static void run() {
-		Cars cars = readCars();
+		//Race race = new Race(readCars(), readRaceCount());
 	}
 
 	private static Cars readCars() {
