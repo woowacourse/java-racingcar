@@ -3,10 +3,10 @@ package racingCar.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class RandomBooleanGeneratorTest {
+public class RandomGeneratorTest {
     @Test
-    void generate() {
-        boolean result = RandomBooleanGenerator.generate();
+    void decideGoOrStop() {
+        boolean result = RandomGenerator.decideGoOrStop();
         Assertions.assertThat(result).isInstanceOf(Boolean.class);
     }
 }
