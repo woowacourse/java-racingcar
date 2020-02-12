@@ -17,8 +17,15 @@ public class StringCalculatorTest {
 
     @DisplayName("숫자 하나를 입력 시 그 숫자 그대로 출력 테스트")
     @Test
-    public void splitAndSumOneNumberTest() {
+    public void splitAndSumOneNumberTest() throws Exception {
         int result = StringCalculator.splitAndSum("1");
         Assertions.assertThat(result).isEqualTo(1);
+    }
+
+    @DisplayName("쉼표구분자로 문자열을 나눠서 숫자들의 합을 출력 테스트")
+    @Test
+    public void splitAndSumUsingCommaDelimiter() throws Exception {
+        int result = StringCalculator.splitAndSum("1,2");
+        Assertions.assertThat(result).isEqualTo(3);
     }
 }
