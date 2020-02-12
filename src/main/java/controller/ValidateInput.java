@@ -13,15 +13,19 @@ public class ValidateInput {
         return names;
     }
 
-    public static boolean isOverZero(int count) {
-        return count > 0;
+    public static boolean isUnderZero(int round) {
+        return round <= 0;
     }
 
     public static int ValidateCount(String input) {
         if (isNotInteger(input)) {
             throw new IllegalArgumentException("숫자가 아닌 문자를 입력하였습니다.");
         }
-        return Integer.parseInt(input);
+        int integerInput = Integer.parseInt(input);
+        if (isUnderZero(integerInput)) {
+            throw new IllegalArgumentException("1이상의 숫자만 입력해야 합니다.");
+        }
+        return integerInput;
     }
 
     private static boolean isNotInteger(String input) {

@@ -20,7 +20,7 @@ public class ValidateInputTest {
     @Test
     void isOverZero() {
         int count = 0;
-        boolean result = ValidateInput.isOverZero(count);
+        boolean result = ValidateInput.isUnderZero(count);
         assertThat(result).isFalse();
     }
 
