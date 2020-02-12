@@ -82,4 +82,14 @@ public class RacingCarTest {
         }).isInstanceOf(InputMismatchException.class)
         .hasMessage("소수는 입력할 수 없습니다.");
     }
+
+    @Test
+    @DisplayName("시도 횟수가 문자인 경우")
+    void inputControl_시도횟수가_문자_입력() {
+        assertThatThrownBy(() -> {
+            String trialTime = "abc";
+            InputValidation.checkNotNumber(trialTime);
+        }).isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("문자는 입력할 수 없습니다.");
+    }
 }

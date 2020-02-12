@@ -35,4 +35,12 @@ public class InputValidation {
             throw new InputMismatchException("소수는 입력할 수 없습니다.");
         }
     }
+
+    public static void checkNotNumber(String trialTime) {
+        try {
+            int value = Integer.parseInt(trialTime);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("문자는 입력할 수 없습니다.");
+        }
+    }
 }
