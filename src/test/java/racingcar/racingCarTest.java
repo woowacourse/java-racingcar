@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
-import java.util.List;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,7 +36,7 @@ public class racingCarTest {
     @DisplayName("car가 4 이상의 숫자를 받을 때만 전진한다")
     void doesCarProceed() {
         Car car = new Car("hiro");
-        for(int i = 0; i <= 3; i++) {
+        for (int i = 0; i <= 3; i++) {
             assertFalse(Utils.checkMove(i));
         }
         for (int i = 4; i <= 9; i++) {
@@ -46,6 +45,7 @@ public class racingCarTest {
         assertThat(game.announceWinner().get("hiro")).isEqualTo(6);
     }
 
+    @ParameterizedTest
     @DisplayName("car의 전진 여부를 결정하는 난수 범위를 체크한다.")
     @ValueSource(ints = {10, -1})
     void randomGeneratorTest(int number) {
@@ -70,14 +70,23 @@ public class racingCarTest {
     @DisplayName("Car의 Proceed 테스트")
     void carProceedTest() {
         Car car = new Car("hiro");
-        for(int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
             car.proceed();
         }
-        assertThat(car.displayNameAndPosition()[1].equals("4"));
+        assertThat(car.getPosition()).isEqualTo(4);
     }
 
     @Test
-    @DisplayName("경기 결과 발표 테스트")
-    void winnerAnnounceTest() {
+    @DisplayName("경기 진행 테스트(1턴)")
+    void gameProceedTest() {
+        TestNumberGenerator test = new TestNumberGenerator(new int[]{4, 2, 3, 9, 5});
+        Cars cars = new Cars(enrollCars(new String[]{"alan", "bart", "carol", "don", "eddy"}));
+        cars.playTurn(test);
+        assertThat(cars.notifyStatus().get("alan")).isEqualTo(1);
+        assertThat(cars.notifyStatus().get("bart")).isEqualTo(0);
+        assertThat(cars.notifyStatus().get("carol")).isEqualTo(0);
+        assertThat(cars.notifyStatus().get("don")).isEqualTo(1);
+        assertThat(cars.notifyStatus().get("eddy")).isEqualTo(1);
+
     }
 }

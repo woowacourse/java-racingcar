@@ -17,7 +17,11 @@ public class Car {
         position++;
     }
 
-    public String[] displayNameAndPosition() {
-        return new String[] {name, Integer.toString(position)};
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

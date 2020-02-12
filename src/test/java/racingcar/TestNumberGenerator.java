@@ -1,0 +1,17 @@
+package racingcar;
+
+import racingcar.util.NumberGenerator;
+
+public class TestNumberGenerator implements NumberGenerator {
+    int[] numbers;
+    int index = 0;
+
+    public TestNumberGenerator(int[] numbers) {
+        this.numbers = numbers;
+    }
+
+    @Override
+    public int generateNumber() {
+        return numbers[index++];
+    }
+}
