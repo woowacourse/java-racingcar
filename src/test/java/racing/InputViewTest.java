@@ -36,4 +36,16 @@ public class InputViewTest {
 			Arguments.of(Arrays.asList(""), false),
 			Arguments.of(Arrays.asList("A", "B", "C"), true));
 	}
+
+	@ParameterizedTest
+	@MethodSource("generateInputString")
+	public void checkNotNullTest(String input, boolean expected) {
+		assertThat(InputView.checkNotNull(input)).isEqualTo(expected);
+	}
+
+	static Stream<Arguments> generateInputString() {
+		return Stream.of(
+			Arguments.of(null, false),
+			Arguments.of("AB,C,D,EF,G", true));
+	}
 }

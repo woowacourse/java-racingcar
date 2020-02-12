@@ -33,4 +33,8 @@ public class InputView {
 	private static boolean isRightLength(String input) {
 		return input.length() >= MIN_LENGTH && input.length() <= MAX_LENGTH;
 	}
+
+	public static boolean checkNotNull(String input) {
+		return input != null;
+	}
 }
