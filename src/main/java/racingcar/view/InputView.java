@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import java.util.Scanner;
+
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
@@ -12,21 +14,14 @@ package racingcar.view;
  * @date        12 Feb 2020
  *
  */
-
-import java.util.Scanner;
-
 public class InputView {
-	private final Scanner scanner;
+    private static final Scanner scanner = new Scanner(System.in);
 
-	public InputView(Scanner scanner) {
-		this.scanner = scanner;
-	}
+    public static String inputCarNames() {
+        return scanner.nextLine();
+    }
 
-	public String inputCarNames() {
-		return scanner.nextLine();
-	}
-
-	public int inputNumberOfRound() {
-		return scanner.nextInt();
-	}
+    public static int inputNumberOfRound() {
+        return scanner.nextInt();
+    }
 }

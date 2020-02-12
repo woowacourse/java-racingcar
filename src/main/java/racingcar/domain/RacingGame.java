@@ -13,16 +13,22 @@ package racingcar.domain;
  *
  */
 public class RacingGame {
-	public static final int MINIMUM_NUMBER_OF_ROUND = 1;
+    public static final int MINIMUM_NUMBER_OF_ROUND = 1;
 
-	private final Cars cars;
-	private final int numberOfRound;
+    private final Cars cars;
+    private final int numberOfRound;
 
-	RacingGame(Cars cars, int numberOfRound) {
-		if (numberOfRound < MINIMUM_NUMBER_OF_ROUND) {
-			throw new IllegalArgumentException("round number must be positive");
-		}
-		this.cars = cars;
-		this.numberOfRound = numberOfRound;
-	}
+    public RacingGame(Cars cars, int numberOfRound) {
+        if (numberOfRound < MINIMUM_NUMBER_OF_ROUND) {
+            throw new IllegalArgumentException("round number must be positive");
+        }
+        this.cars = cars;
+        this.numberOfRound = numberOfRound;
+    }
+
+    public void start() {
+        for (int i = 0; i < numberOfRound; i++) {
+            cars.run();
+        }
+    }
 }
