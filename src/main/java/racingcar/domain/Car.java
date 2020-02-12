@@ -13,8 +13,14 @@ public class Car {
         return name;
     }
 
-    public int movePosition() {
-        this.position++;
+    public int getPosition() {
+        return position;
+    }
+
+    public int movePosition(int moveValue) {
+        if (moveValue >= 4) {
+            this.position++;
+        }
         return this.position;
     }
 }
