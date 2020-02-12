@@ -15,15 +15,10 @@ public class InputUtils {
 		final boolean hasCustomDelimiter = matcher.find();
 		if (hasCustomDelimiter) {
 			final String customValue = matcher.group(VALUE_INDEX);
-			final String customDelimiter = buildCustomDelimiter(matcher);
-			return customValue.split(customDelimiter);
+			final String customDelimiter = matcher.group(DELIMITER_INDEX);
+			return customValue.split(DELIMITER + CONCATENATOR + customDelimiter);
 		}
 		return value.split(DELIMITER);
-	}
-
-	private static String buildCustomDelimiter(final Matcher matcher) {
-		final String additionalDelimiter = matcher.group(DELIMITER_INDEX);
-		return DELIMITER + CONCATENATOR + additionalDelimiter;
 	}
 }
 
