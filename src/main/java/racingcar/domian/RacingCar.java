@@ -1,6 +1,5 @@
 package racingcar.domian;
 
-import jdk.internal.util.xml.impl.Input;
 import racingcar.view.InputView;
 
 import java.util.ArrayList;
@@ -19,12 +18,12 @@ public class RacingCar {
         setUp(inputPlayerInfo());
     }
 
-    public String[] inputPlayerInfo() {
+    private String[] inputPlayerInfo() {
         String[] names = InputView.inputCarName();
         return names;
     }
 
-    public void setUp(String[] names) {
+    private void setUp(String[] names) {
         List<Car> players = new ArrayList<>();
         for (String name : names) {
             players.add(new Car(name));
@@ -35,6 +34,4 @@ public class RacingCar {
     public int generateRandom() {
         return random.nextInt(10);
     }
-
-
 }

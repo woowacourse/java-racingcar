@@ -2,7 +2,7 @@ package racingcar.util;
 
 public class InputHandler {
     public static void validateNullOrEmpty(String input) {
-        if(input == null || input.isEmpty()){
+        if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException("빈 값 혹은 Null 입력입니다!");
         }
     }
@@ -23,7 +23,7 @@ public class InputHandler {
         int count = 0;
         try {
             count = Integer.parseInt(input);
-        }  catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("잘못된 횟수 입력");
         }
         return count;
