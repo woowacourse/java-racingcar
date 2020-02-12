@@ -1,93 +1,72 @@
 package application.calculator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Calculate {
-    private String delimiter = ",|:";
 
-    public static int calculation(List<Integer> numbers) {
+    public static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
+    public static final String BASIC_DELIMITER = ",|:";
+    public static final int DELIMITER_INDEX = 1;
+    public static final int TOKENS_INDEX = 2;
+    public static final int ZERO = 0;
+    public static final String EMPTY = "";
+
+    public int calculateStringEquation(String stringEquation) {
+        Matcher customEquation = Pattern.compile(CUSTOM_DELIMITER).matcher(stringEquation);
+        int result;
+        if(customEquation.find()) {
+            String customDelimiter = customEquation.group(DELIMITER_INDEX);
+            String[] tokens = customEquation.group(TOKENS_INDEX).split(customDelimiter);
+            return sumTokens(tokens);
+        }
+        result = calculateBasicEquation(stringEquation);
+        return result;
+    }
+
+    private int calculateBasicEquation(String stringEquation) {
+        String[] tokens = stringEquation.split(BASIC_DELIMITER);
+        return sumTokens(tokens);
+    }
+
+    public int sumTokens(String[] tokens){
         int result = 0;
-        for (int i : numbers) {
-            result = result + i;
+        for(String token : tokens) {
+            result = calculateResult(result, token);
         }
         return result;
     }
 
-    public List<Integer> makeNumbersList(String s) {
-        String expression = extractExpression(s);
-        addCustomDelimiter(s);
-        String[] splitExpression = expression.split(this.delimiter);
-        List<Integer> result = new ArrayList<>();
-        try {
-            convertExpression(splitExpression, result);
-        } catch (RuntimeException e) {
-            throw new RuntimeException("양수만 입력해주세요");
-        }
+    private int calculateResult(int result, String token) {
+        int tokenNumber;
+        tokenNumber = checkNullOrEmptyOrInteger(token);
+        checkNegativeNumber(tokenNumber);
+        result += Integer.parseInt(token);
         return result;
     }
 
-    public String extractExpression(String s) {
-        if (isStartsWithSlash(s)) {
-            return s.substring(s.indexOf("\\n") + 2);
+    public int checkNullOrEmptyOrInteger(String input) {
+        if(isNullOrEmptyEquation(input)) {
+            return ZERO;
         }
-        return s;
+        return checkIntegerNumber(input);
     }
 
-    public void addCustomDelimiter(String s) {
-        if (!isStartsWithSlash(s)) {
-            return;
-        }
-        this.delimiter = this.delimiter + extractDelimiter(s);
-    }
-
-    public String extractDelimiter(String s) {
-        if (!isStartsWithSlash(s)) {
-            return "";
-        }
-        int index = s.indexOf("\\n");
-        return "|" + s.substring(2, index);
-    }
-
-    public boolean isStartsWithSlash(String s) {
-        if (s.startsWith("/")) {
-            return true;
-        }
-        return false;
-    }
-
-    private void convertExpression(String[] splitExpression, List<Integer> result) {
-        for (int i = 0; i < splitExpression.length; i++) {
-            int convertNumber = Integer.parseInt(splitExpression[i]);
-            throwRuntimeExceptionWhenNegativeNumber(convertNumber);
-            result.add(convertNumber);
-        }
-    }
-
-    private void throwRuntimeExceptionWhenNegativeNumber(int convertNumber) {
-        if (convertNumber < 0) {
+    public void checkNegativeNumber(int tokenNumber) {
+        if(isNegativeNumber(tokenNumber)) {
             throw new RuntimeException();
         }
     }
 
-    public void checkCustomExpression(String input) {
-        String checkString = input.substring(0, input.indexOf("\\n") + 1);
-        if (!"//".equals(checkString.substring(0, 2))
-                || !"\\n".equals(checkString.substring(checkString.length() - 1))) {
-            throw new RuntimeException("잘못된 커스텀 구분자 식을 입력하였습니다.");
-        }
+    private boolean isNegativeNumber(int tokenNumber) {
+        return tokenNumber < ZERO;
     }
 
-    /**
-     * 구분자가 제대로 추출되었는지 확인하는 메소드
-     *
-     * @param delimiter 추출한 구분자
-     * @return 구분자를 제대로 추출하면 true, 아니면 false
-     */
-    public boolean isSameDelimiter(String delimiter) {
-        if (this.delimiter.equals(delimiter)) {
-            return true;
-        }
-        return false;
+    private int checkIntegerNumber(String token) {
+        return Integer.parseInt(token);
+    }
+
+    private boolean isNullOrEmptyEquation(String input) {
+        return input == null || EMPTY.equals(input);
     }
 }
