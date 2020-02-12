@@ -14,11 +14,23 @@ public class InputView {
             InputValidation.checkNullOrEmptyInput(carNames);
             InputValidation.checkSmallerThanSix(carNames);
             return carNames;
-        } catch (NullPointerException e) {
-            OutputView.printExceptionMessage(e);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             OutputView.printExceptionMessage(e);
         }
         return inputCarName();
+    }
+
+    public static int inputTrialTime() {
+        String trialTime = sc.nextLine();
+        try {
+            InputValidation.checkIntegerOverflow(trialTime);
+            InputValidation.checkDecimalNumber(trialTime);
+            InputValidation.checkNegativeAndZeroInput(trialTime);
+            InputValidation.checkNotNumber(trialTime);
+            return Integer.parseInt(trialTime);
+        } catch (Exception e) {
+            OutputView.printExceptionMessage(e);
+        }
+        return inputTrialTime();
     }
 }
