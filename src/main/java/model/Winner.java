@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Winner {
-
+    private static List<String> winners = new ArrayList<>();
 
     public static int getMaxPosition(List<Car> cars) {
         int maxPosition = 0;
@@ -14,14 +14,16 @@ public class Winner {
         return maxPosition;
     }
 
-    public static List<String> setWinner(List<Car> cars) {
-        List<String> winners = new ArrayList<>();
+    public static void setWinner(List<Car> cars) {
         int maxPosition = getMaxPosition(cars);
         for (Car car : cars) {
             if (maxPosition == car.getPosition()) {
                 winners.add(car.getName());
             }
         }
+    }
+
+    public static List<String> getWinners() {
         return winners;
     }
 }

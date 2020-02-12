@@ -37,7 +37,7 @@ public class WinnerTest {
         List<String> result = new ArrayList<>();
         result.add("a");
         result.add("b");
-        List<String> winners = Winner.setWinner(cars);
-        assertThat(winners).isEqualTo(result);
+        Winner.setWinner(cars);
+        assertThat(Winner.getWinners()).isEqualTo(result);
     }
 }
