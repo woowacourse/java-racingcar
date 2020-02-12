@@ -16,4 +16,14 @@ public class Cars {
         }
         return max;
     }
+
+    public void moveAll() {
+        for (Car car : cars) {
+            car.move(RandomNumberGenerator.generateRandom());
+        }
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
 }

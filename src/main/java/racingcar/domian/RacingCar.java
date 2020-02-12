@@ -1,6 +1,7 @@
 package racingcar.domian;
 
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,8 @@ public class RacingCar {
     public void run() {
         setUp(inputPlayerInfo());
         int round = inputGameRound();
+        OutputView.printResult();
+        startGame(round);
     }
 
     private String[] inputPlayerInfo() {
@@ -28,5 +31,12 @@ public class RacingCar {
 
     private int inputGameRound() {
         return InputView.inputGameRound();
+    }
+
+    private void startGame(int round) {
+        for (int i = 0; i < round; i++) {
+            cars.moveAll();
+            OutputView.printCurrentRound(cars.getCars());
+        }
     }
 }
