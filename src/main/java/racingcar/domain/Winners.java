@@ -8,7 +8,9 @@ public class Winners {
 	private final List<String> winners;
 
 	public Winners(List<String> winnersWithNull) {
-		this.winners = winnersWithNull.stream().filter(Objects::nonNull).collect(Collectors.toList());
+		this.winners = winnersWithNull.stream()
+			.filter(Objects::nonNull)
+			.collect(Collectors.toList());
 	}
 
 	public boolean contains(String name) {

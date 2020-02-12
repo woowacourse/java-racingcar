@@ -1,21 +1,25 @@
 package racingcar.domain;
 
-// TODO: 2020/02/11 Application, Game
 public class Car implements Comparable<Car> {
+	public static final int MAXIMUM_LENGTH = 5;
+	public static final int MOVING_NUMBER = 4;
+
 	private final String name;
 	private int position = 0;
 
 	public Car(String name) {
-		if (isTooLongName(name))
+		if (isInvalid(name)) {
 			throw new IllegalArgumentException();
+		}
 		this.name = name;
 	}
 
-	private boolean isTooLongName(String name) {
-		return name.length() > 5;
+	private boolean isInvalid(String name) {
+		return name == null
+			|| name.length() > MAXIMUM_LENGTH
+			|| name.trim().isEmpty();
 	}
 
-	// TODO: 2020/02/11 int -> something wrapping ?
 	public void move(int random) {
 		if (isMoving(random)) {
 			position++;
@@ -23,7 +27,7 @@ public class Car implements Comparable<Car> {
 	}
 
 	private boolean isMoving(int random) {
-		return random >= 4;
+		return random >= MOVING_NUMBER;
 	}
 
 	public boolean isOnSamePosition(Car anotherCar) {
@@ -36,8 +40,6 @@ public class Car implements Comparable<Car> {
 		}
 		return null;
 	}
-
-	// TODO: 2020/02/11 isSame(int, car another) -> equals 빠지고 move도 테스트되니
 
 	@Override
 	public int compareTo(Car anotherCar) {

@@ -4,16 +4,47 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import racingcar.util.CarUtil;
+
 public class Cars {
+	public static final int MINIMUM_PLAYER = 1;
+	public static final int FIRST = 0;
+
 	private List<Car> cars;
 
 	public Cars(List<Car> cars) {
+		if (cars.size() <= MINIMUM_PLAYER) {
+			throw new IllegalArgumentException();
+		}
 		this.cars = cars;
 	}
 
 	public Car getCarOnMaxPosition() {
 		Collections.sort(cars);
-		return cars.get(0);
+		return cars.get(FIRST);
+	}
+
+	public void move(Times times) {
+		while (!times.isDone()) {
+			eachCarsMove();
+			times.reduce();
+			System.out.println(this);
+		}
+	}
+
+	private void eachCarsMove() {
+		for (Car car : cars) {
+			car.move(CarUtil.random());
+		}
+	}
+
+	public List<String> getWinners() {
+		List<String> winner = new ArrayList<>();
+		Car max = getCarOnMaxPosition();
+		for (Car car : cars) {
+			winner.add(car.getCoWinnersName(max));
+		}
+		return winner;
 	}
 
 	@Override
@@ -23,17 +54,5 @@ public class Cars {
 			sb.append(car);
 		}
 		return sb.toString();
-	}
-
-	public List<String> getWinners() {
-		List<String> winner = new ArrayList<>();
-		Car max = getCarOnMaxPosition();
-		for (Car car : cars) {
-			String name = car.getCoWinnersName(max);
-			if (name != null) {
-				winner.add(name);
-			}
-		}
-		return winner;
 	}
 }

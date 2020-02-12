@@ -1,7 +1,10 @@
 package racingcar.util;
 
 public class CarUtil {
+
+	public static final int BOUND = 10;
+
 	public static int random() {
-		return (int)(Math.random() * 10);
+		return (int)(Math.random() * BOUND);
 	}
 }
