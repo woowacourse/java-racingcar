@@ -1,5 +1,7 @@
 package view;
 
+import controller.ValidateInput;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -10,6 +12,7 @@ public class InputView {
     }
 
     public static int inputCount() {
-        return scanner.nextInt();
+        String input = scanner.next();
+        return ValidateInput.inputCount(input);
     }
 }
