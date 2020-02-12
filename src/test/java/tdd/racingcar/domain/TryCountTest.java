@@ -16,20 +16,21 @@ public class TryCountTest {
 	}
 
 	@Test
-	void consume() {
+	void next() {
 		final TryCount tryCount = new TryCount(2);
-		tryCount.consume();
-		final TryCount expected = new TryCount(1);
-		assertEquals(expected, tryCount);
+		tryCount.next();
+		final int actual = tryCount.next();
+		final int expected = 1;
+		assertEquals(expected, actual);
 	}
 
 	@Test
-	void isRemain() {
-		final TryCount two = new TryCount(2);
-		assertTrue(two.isRemain());
-		two.consume();
-		assertTrue(two.isRemain());
-		two.consume();
-		assertFalse(two.isRemain());
+	void hasNext() {
+		final TryCount tryCount = new TryCount(2);
+		assertTrue(tryCount.hasNext());
+		tryCount.next();
+		assertTrue(tryCount.hasNext());
+		tryCount.next();
+		assertFalse(tryCount.hasNext());
 	}
 }

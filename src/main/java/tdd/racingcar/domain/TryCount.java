@@ -1,8 +1,8 @@
 package tdd.racingcar.domain;
 
-import java.util.Objects;
+import java.util.Iterator;
 
-public class TryCount {
+public class TryCount implements Iterator<Integer> {
 	private static final int MIN = 1;
 
 	private int tryCount;
@@ -18,26 +18,13 @@ public class TryCount {
 		}
 	}
 
-	public void consume() {
-		tryCount--;
-	}
-
-	public boolean isRemain() {
+	@Override
+	public boolean hasNext() {
 		return tryCount >= MIN;
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		TryCount tryCount1 = (TryCount)o;
-		return tryCount == tryCount1.tryCount;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(tryCount);
+	public Integer next() {
+		return tryCount--;
 	}
 }
