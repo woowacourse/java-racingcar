@@ -15,8 +15,18 @@ public class Car {
         this.position = INITIAL_POSITION;
     }
 
-    public boolean goOrNot(int randomNumber) {
+    public void goOrNot() {
+        if (isGo(createRandomNumber())){
+            position++;
+        }
+    }
+
+    public boolean isGo(int randomNumber) {
         return randomNumber >= CRITERIA_FOR_GO;
+    }
+
+    private int createRandomNumber(){
+        return (int)(Math.random() * 9) + 1;
     }
 
     public int getPosition() {
@@ -25,7 +35,7 @@ public class Car {
 
     public void showCurrentPosition() {
         StringBuilder outputValue = new StringBuilder();
-        outputValue.append(carName + " : ");
+        outputValue.append(carName).append(" : ");
         for (int i = 0; i < position; i++){
             outputValue.append("-");
         }
