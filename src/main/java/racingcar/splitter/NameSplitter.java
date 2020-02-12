@@ -18,12 +18,19 @@ import java.util.stream.Collectors;
 public class NameSplitter {
 	public static final String DELIMITER = ",";
 	public static final int MINIMUM_NUMBER_OF_NAMES = 2;
+	public static final int MINIMUM_LENGTH_OF_NAME = 1;
+	public static final int MAXIMUM_LENGTH_OF_NAME = 5;
 
 	public static List<String> split(String nameValue) {
 		List<String> names = Arrays.stream(nameValue.split(DELIMITER))
 			.collect(Collectors.toList());
-		if(names.size() < MINIMUM_NUMBER_OF_NAMES) {
+		if (names.size() < MINIMUM_NUMBER_OF_NAMES) {
 			throw new IllegalArgumentException("car must be at least one");
+		}
+		for (String name : names) {
+			if (name.length() < MINIMUM_LENGTH_OF_NAME || name.length() > MAXIMUM_LENGTH_OF_NAME) {
+				throw new IllegalArgumentException("name must be between 1-5");
+			}
 		}
 		return names;
 	}

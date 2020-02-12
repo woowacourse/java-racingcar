@@ -34,9 +34,18 @@ public class NameSplitterTest {
 	@ParameterizedTest
 	@EmptySource
 	@ValueSource(strings = {"네오,", "네오"})
-	void Should_fail_When_inappropriateValue(String input) {
+	void Should_exception_When_inappropriateValue(String input) {
 		Assertions.assertThatThrownBy(() -> NameSplitter.split(input))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("car must be at least one");
+	}
+
+	@DisplayName("입력받은 이름 중 1~5자 사이가 아닌 글자 들어간 경우")
+	@ParameterizedTest
+	@ValueSource(strings = {"네오네오빔빔,검은고양이네로", "콘,검은고양이네로"})
+	void Should_exception_When_inappropriateNameLength(String input) {
+		Assertions.assertThatThrownBy(() -> NameSplitter.split(input))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("name must be between 1-5");
 	}
 }
