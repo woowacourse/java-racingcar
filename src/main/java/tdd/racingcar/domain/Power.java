@@ -3,6 +3,7 @@ package tdd.racingcar.domain;
 public class Power {
 	private static final int MIN_POWER = 0;
 	private static final int MAX_POWER = 9;
+	private static final int ENOUGH_POWER_BOUND = 4;
 
 	private final int power;
 
@@ -19,5 +20,9 @@ public class Power {
 
 	private boolean isInvalid(final int power) {
 		return power < MIN_POWER || power > MAX_POWER;
+	}
+
+	public boolean isEnough() {
+		return power >= ENOUGH_POWER_BOUND;
 	}
 }
