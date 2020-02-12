@@ -6,8 +6,9 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class InputView {
-	public static final int MAX_LENGTH = 5;
-	public static final int MIN_LENGTH = 1;
+	private static final int MAX_LENGTH = 5;
+	private static final int MIN_LENGTH = 1;
+	private static final String CAR_NAME_DELIMITER = ",";
 
 	public Scanner input() {
 		return new Scanner(System.in);
@@ -41,7 +42,7 @@ public class InputView {
 	}
 
 	public static List<String> splitAsComma(String value) {
-		return Arrays.asList(value.split(",", -1));
+		return Arrays.asList(value.split(CAR_NAME_DELIMITER, -1));
 	}
 
 	public static boolean checkNotEmpty(List<String> input) {

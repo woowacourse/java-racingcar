@@ -5,10 +5,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Car {
-	public static final int FORWARD_PIVOT = 4;
-	public static final int RANDOM_MAX = 9;
-	public static final int RANDOM_MIN = 0;
-	public static final String POSITION_VIEWER = "-";
+	private static final int FORWARD_PIVOT = 4;
+	private static final int RANDOM_MAX = 9;
+	private static final int RANDOM_MIN = 0;
+	private static final String POSITION_VIEWER = "-";
 	private String name;
 	private int position;
 
