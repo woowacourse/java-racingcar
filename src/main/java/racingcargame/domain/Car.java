@@ -9,15 +9,18 @@ public class Car {
     private int position;
 
     public Car(String name) {
+        validateCarName(name);
+        this.name = name;
+    }
+
+    private void validateCarName(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException();
         }
         if (name.length() > CAR_NAME_LIMIT) {
             throw new IllegalArgumentException();
         }
-        this.name = name;
     }
-
 
     public void move(int number) {
         if (number >= FORWARD_BASE_NUMBER) {
