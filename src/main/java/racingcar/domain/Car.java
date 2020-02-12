@@ -1,7 +1,14 @@
 package racingcar.domain;
 
 public class Car {
-    public Car(String name) {
+    private final String name;
+    private int position = 0;
 
+    public Car(String name) {
+        this.name = name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
