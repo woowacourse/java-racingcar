@@ -10,7 +10,7 @@ public class StringCalculator {
         if (isNullOrEmptyText(text)) {
             return 0;
         }
-        String delimiter = ",|:";
+        String delimiter = ConstantForCalculator.DEFAULT_DELIMITER;
         String[] splitedText = splitText(text, delimiter);
         List<Integer> numbers = new ArrayList<>();
         splitText(text, delimiter);
@@ -19,7 +19,7 @@ public class StringCalculator {
     }
 
     private static String[] splitText(String text, String delimiter) {
-        Matcher matcher = Pattern.compile("//(.)\\\\n(.*)").matcher(text);
+        Matcher matcher = Pattern.compile(ConstantForCalculator.REGULAR_EXPRESSION).matcher(text);
         if (matcher.find()) {
             String customDelimiter = matcher.group(1);
             delimiter = addCustomDelimiter(delimiter, customDelimiter);
@@ -31,7 +31,7 @@ public class StringCalculator {
     private static String addCustomDelimiter(String delimiter, String customDelimiter) {
         StringBuilder sb = new StringBuilder();
         sb.append(delimiter);
-        sb.append("|");
+        sb.append(ConstantForCalculator.BIT_OR_OPERATOR);
         sb.append(customDelimiter);
         return sb.toString();
     }

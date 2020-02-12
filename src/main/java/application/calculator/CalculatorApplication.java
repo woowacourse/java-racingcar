@@ -8,12 +8,21 @@ public class CalculatorApplication {
     private static void runCalculator() {
         try {
             String userInputText = getUserInputText();
-            int result = StringCalculator.splitAndSum(userInputText);
-            System.out.println(userInputText + " => " + result);
+            int calculateResult = StringCalculator.splitAndSum(userInputText);
+            String result = makeResultString(userInputText, calculateResult);
+            System.out.println(result);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             runCalculator();
         }
+    }
+
+    private static String makeResultString(String userInputText, int calculateResult) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(userInputText);
+        sb.append(ConstantForCalculator.ARROW);
+        sb.append(calculateResult);
+        return sb.toString();
     }
 
     private static String getUserInputText() {
