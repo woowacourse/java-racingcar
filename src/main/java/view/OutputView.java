@@ -27,8 +27,8 @@ public class OutputView {
         System.out.println(car.getName() + " : " + blank);
     }
 
-    public static void winnerInstruction() {
-        System.out.println("가 최종 우승했습니다.");
+    public static void winnerInstruction(String winnerName) {
+        System.out.println(winnerName + "가 최종 우승했습니다.");
     }
 
     public static void newLine() {

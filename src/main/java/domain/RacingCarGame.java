@@ -4,6 +4,7 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RacingCarGame {
 
@@ -16,19 +17,26 @@ public class RacingCarGame {
         setName();
         setRepeat();
         processGame();
+        getGameResult();
+    }
+
+    private void getGameResult() {
+        RacingCars racingCars = new RacingCars(cars);
+        List<Car> winnerCar = racingCars.getWinner();
+        OutputView.winnerInstruction(racingCars.getWinnerName(winnerCar));
     }
 
     private void processGame() {
         OutputView.newLine();
         OutputView.resultInstruction();
-        for (int i=0; i<times; i++) {
+        for (int i = 0; i < times; i++) {
             processOneTime();
             OutputView.newLine();
         }
     }
 
     private void processOneTime() {
-        for (Car car: cars) {
+        for (Car car : cars) {
             car.decideGoOrStop(createRandomNumber());
             OutputView.carNameAndPosition(car);
         }
