@@ -17,14 +17,14 @@ public class ValidateInput {
         return count > 0;
     }
 
-    public static int inputCount(String input) {
-        if (isNotInt(input)) {
+    public static int ValidateCount(String input) {
+        if (isNotInteger(input)) {
             throw new IllegalArgumentException("숫자가 아닌 문자를 입력하였습니다.");
         }
         return Integer.parseInt(input);
     }
 
-    private static boolean isNotInt(String input) {
+    private static boolean isNotInteger(String input) {
         Pattern pattern = Pattern.compile("^\\d+$");
         return !pattern.matcher(input).matches();
     }

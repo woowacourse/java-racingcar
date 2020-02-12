@@ -1,4 +1,4 @@
-package StringAdder;
+package stringadder;
 
 import java.util.ArrayList;
 import java.util.List;

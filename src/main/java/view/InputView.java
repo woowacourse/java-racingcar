@@ -13,6 +13,6 @@ public class InputView {
 
     public static int inputCount() {
         String input = scanner.next();
-        return ValidateInput.inputCount(input);
+        return ValidateInput.ValidateCount(input);
     }
 }
