@@ -13,4 +13,12 @@ public class CarsTest {
             Cars.validateNames(input);
         }).isInstanceOf(Exception.class);
     }
+
+    @Test
+    void 자동차의_이름이_중복되는지_검증_실패() {
+        String input = "무늬, 무늬,  무늬 ";
+        assertThatThrownBy(() -> {
+           Cars.validateDuplicatedNames(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
