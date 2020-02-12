@@ -9,9 +9,11 @@ public class StringCalculator {
             words = numberExpression.split(":");
         }
 
-        int firstNumber = Integer.parseInt(words[0]);
-        int secondNumber = Integer.parseInt(words[1]);
+        int result = 0;
+        for (String word : words) {
+            result += Integer.parseInt(word);
+        }
 
-        return firstNumber + secondNumber;
+        return result;
     }
 }

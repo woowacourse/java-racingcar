@@ -22,6 +22,12 @@ public class CalculatorTest {
     }
 
     @Test
+    void 덧셈_쉼표_세개의인자() {
+        int result = StringCalculator.add("1,2,3");
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
     void 덧셈_인자가없을때() {
         int result = StringCalculator.add("");
         assertThat(result).isEqualTo(0);
