@@ -15,7 +15,6 @@ public class RacingCarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", ",asd", "asdfrq,pobi", "pobi,pobi", "pobi,,crong", "pobi, ,crong"})
-//    @ValueSource(strings = {",asd"})
     public void validateInputCarNameTest(String input) {
         Assertions.assertThatThrownBy(() -> {
             CarName carName = new CarName(input);
@@ -23,7 +22,7 @@ public class RacingCarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"","a","-1","a,sd,fd"})
+    @ValueSource(strings = {"", "a", "-1", "a,sd,fd"})
     public void validateInputRacingLab(String input) {
         Assertions.assertThatThrownBy(() -> {
             RacingLab racingLab = new RacingLab(input);
@@ -39,5 +38,12 @@ public class RacingCarTest {
         Assertions.assertThat(car.getPosition()).isEqualTo(1);
         car.moveCarWhenNumberOverFour(lessFourCase);
         Assertions.assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @Test
+    public void generateRandomNumberTest() {
+        Racing racing = new Racing();
+        int randomNumber = racing.generateRandomNumber();
+        Assertions.assertThat(randomNumber).isBetween(0, 9);
     }
 }
