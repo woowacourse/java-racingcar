@@ -1,8 +1,8 @@
 public class StringCalculator {
-    public static int add(String s) {
-        String[] words = s.split(",");
+    public static int add(String numberExpression) {
+        String[] words = numberExpression.split(",");
         if (words.length == 1) {
-            words = s.split(":");
+            words = numberExpression.split(":");
         }
 
         int firstNumber = Integer.parseInt(words[0]);
