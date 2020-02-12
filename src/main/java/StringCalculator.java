@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class StringCalculator {
-    public static int add(String numberExpression) {
+    public int add(String numberExpression) {
         int result = 0;
         if (numberExpression.isEmpty()) {
             return result;
@@ -31,5 +31,9 @@ public class StringCalculator {
 
 
         return result;
+    }
+
+    private boolean isInteger(String splittedWord) {
+        return splittedWord.length() == 1;
     }
 }
