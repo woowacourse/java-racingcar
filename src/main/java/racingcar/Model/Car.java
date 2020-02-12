@@ -50,4 +50,11 @@ public class Car {
         }
         OutputView.printPositionByDash(outputValue.toString());
     }
+
+    public void findWinners(Car car) {
+        if (this.position == car.position) {
+            winners.append(", ");
+            winners.append(car.carName);
+        }
+    }
 }

@@ -10,10 +10,10 @@ import java.util.List;
 public class Game {
     private static final int INDEX_START = 0;
 
-    private List<Car> cars = new ArrayList<>();
-    private int trialTime;
+    private static List<Car> cars = new ArrayList<>();
+    private static int trialTime;
 
-    public void initialize() {
+    public static void initialize() {
         String[] carNames = InputView.inputCarName();
         for (String name : carNames) {
             cars.add(new Car(name));
@@ -21,15 +21,15 @@ public class Game {
         trialTime = InputView.inputTrialTime();
     }
 
-    public void race() {
+    public static void race() {
         OutputView.printResultMessage();
         for (int index = INDEX_START; index < trialTime; index++) {
             raceOneRound();
+            OutputView.printNewLine();
         }
-        OutputView.printNewLine();
     }
 
-    private void raceOneRound() {
+    private static void raceOneRound() {
         for (Car car : cars) {
             car.goOrNot();
             car.showCurrentPosition();
@@ -37,7 +37,6 @@ public class Game {
     }
 
     public static Car findTopPositionCar(List<Car> cars) {
-        StringBuilder winners = new StringBuilder();
         Car winner = cars.get(0);
         if (cars.size() == 1) {
             return winner;
@@ -48,6 +47,14 @@ public class Game {
             }
         }
         return winner;
+    }
+
+    public static void showWinner(){
+        Car topPositionCar = findTopPositionCar(cars);
+        for (Car car : cars){
+            topPositionCar.findWinners(car);
+        }
+        OutputView.printWinners(Car.winners.toString());
     }
 
 }
