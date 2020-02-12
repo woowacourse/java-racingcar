@@ -22,8 +22,7 @@ public class TryCount {
 	}
 
 	private boolean isNotNumber(final String value) {
-		return value.chars()
-			.anyMatch(ch -> !Character.isDigit(ch));
+		return !value.chars().allMatch(Character::isDigit);
 	}
 
 	private boolean isUnderOne(final String value) {
