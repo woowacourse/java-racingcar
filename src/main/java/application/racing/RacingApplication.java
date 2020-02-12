@@ -1,32 +1,17 @@
-package application;
-
-import application.calculator.Calculate;
-import application.calculator.UserInputScanner;
-import application.racing.*;
+package application.racing;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Application {
+public class RacingApplication {
     private static Scanner scanner = new Scanner(System.in);
-
-    public static void runCalculator() {
-        Calculate calculate = new Calculate();
-        try {
-            String userInput = UserInputScanner.inputStringEquation();
-            int result = Calculate.calculation(calculate.makeNumbersList(userInput));
-            System.out.println(userInput + " => " + Integer.toString(result));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            runCalculator();
-        }
-    }
 
     public static void runRacingGame() {
         try {
             List<Car> cars = makeCarList();
             RacingLab racingLab = getRacingLab();
+            Output.printRacingResultMessage();
             startRacing(cars, racingLab);
         } catch (Exception e) {
             Output.printErrorMessage(e.getMessage());
@@ -62,7 +47,6 @@ public class Application {
     }
 
     public static void main(String[] args) {
-//        runCalculator();
         runRacingGame();
     }
 }
