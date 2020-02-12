@@ -13,7 +13,7 @@ public class StringCalculator {
         String[] splittedWordsWithComma = numberExpression.split(",");
         List<String> notSplittedWordsWithComma = new ArrayList<>();
         for (String spllitedWordWithComma : splittedWordsWithComma) {
-            if (spllitedWordWithComma.length() == 1) {
+            if (isInteger(spllitedWordWithComma)) {
                 result += Integer.parseInt(spllitedWordWithComma);
                 continue;
             }
@@ -23,7 +23,7 @@ public class StringCalculator {
         for (String notSpllitedWordWithComma : notSplittedWordsWithComma) {
             String[] splittedWordsWithCollon = notSpllitedWordWithComma.split(":");
             for (String splittedWordWithColon : splittedWordsWithCollon) {
-                if (splittedWordWithColon.length() == 1) {
+                if (isInteger(splittedWordWithColon)) {
                     result += Integer.parseInt(splittedWordWithColon);
                 }
             }
