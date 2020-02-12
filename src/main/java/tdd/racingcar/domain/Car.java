@@ -1,7 +1,6 @@
 package tdd.racingcar.domain;
 
 public class Car {
-	private static final int MIN_POWER_TO_MOVE = 4;
 	private static final int MAX_NAME_LENGTH = 5;
 
 	private int position = 0;
@@ -22,8 +21,8 @@ public class Car {
 		return position;
 	}
 
-	public void move(final int power) {
-		if (power >= MIN_POWER_TO_MOVE) {
+	public void move(final Power power) {
+		if (power.isEnough()) {
 			position++;
 		}
 	}
