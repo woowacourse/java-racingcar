@@ -12,7 +12,7 @@ public class InputView {
 
     public static String[] inputCarName() {
         System.out.println(CAR_NAME_INPUT_MESSAGE);
-        String input = scanner.next();
+        String input = scanner.nextLine().replace(" ", "");
         return ValidateInput.validateName(nameSplit(input));
     }
 
