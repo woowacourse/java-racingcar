@@ -25,6 +25,6 @@ public class CarTest {
 		Car pobiClone = new Car("pobi");
 		pobi.move(GOING_NUMBER);
 		pobiClone.move(GOING_NUMBER);
-		assertThat(pobi.equals(pobiClone)).isTrue();
+		assertThat(pobi.isOnSamePosition(pobiClone)).isTrue();
 	}
 }
