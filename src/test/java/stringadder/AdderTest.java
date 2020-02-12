@@ -1,6 +1,8 @@
 package stringadder;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,13 +28,10 @@ public class AdderTest {
         assertThat(result).isEqualTo(0);
     }
 
-    @Test
-    public void 숫자를_2개이상_입력() throws Exception {
-        int result = adder.splitAndSum("1,3");
-        assertThat(result).isEqualTo(4);
-
-        result = adder.splitAndSum("1,3,6");
-        assertThat(result).isEqualTo(10);
+    @ParameterizedTest
+    @CsvSource(value = {"'1,3',4", "'1,3,6',10"})
+    public void 숫자를_2개이상_입력(String s, int result) throws Exception {
+        assertThat(adder.splitAndSum(s)).isEqualTo(result);
     }
 
     @Test
