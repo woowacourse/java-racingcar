@@ -1,5 +1,6 @@
 package stringCalculator;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,4 +44,17 @@ public class StringParserTest {
         assertThat(expected.equals(result)).isEqualTo(true);
     }
 
+    @Test
+    @DisplayName("음수와 숫자가 아닌 경우 예외 처리")
+    void parse_ShouldGenerateExceptionWhenInputNegativeOrNonDigit() {
+        Assertions.assertThatThrownBy(() -> {
+            String input = "//;\\n1;a;3";
+            List<Integer> result = StringParser.parse(input);
+        }).isInstanceOf(RuntimeException.class);
+
+        Assertions.assertThatThrownBy(() -> {
+            String input = "//;\\n1;-2;3";
+            List<Integer> result = StringParser.parse(input);
+        }).isInstanceOf(RuntimeException.class);
+    }
 }

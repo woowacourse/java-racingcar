@@ -41,15 +41,22 @@ public class StringParser {
         if (split.equals(Arrays.asList(new String[]{""}))) {
             return Arrays.asList(new Integer[]{0});
         }
-        // 여기에 예외 처리
-        try {
-            return split.stream()
-                    .map((t) -> Integer.parseInt(t))
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
-            System.err.println(split);
-            System.err.println(e.getMessage());
-            throw e;
+
+        split.stream().forEach((t) -> checkIsPositiveNumber(t));
+
+        return split.stream()
+                .map((t) -> Integer.parseInt(t)).collect(Collectors.toList());
+    }
+
+    private static void checkIsPositiveNumber(String string) throws RuntimeException {
+        string.chars().forEach((t) -> {
+            checkIsDigit(t);
+        });
+    }
+
+    private static void checkIsDigit(int t) throws RuntimeException {
+        if (!Character.isDigit(t)) {
+            throw new RuntimeException();
         }
     }
 

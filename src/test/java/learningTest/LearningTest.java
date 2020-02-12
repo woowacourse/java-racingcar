@@ -31,4 +31,14 @@ public class LearningTest {
 //        List<String> strings2 = Arrays.asList(strings1);
         System.out.println();
     }
+
+    @Test
+    void 테스트() {
+        String string = "a1c";
+        string.chars().forEach((t) -> {
+            if (!Character.isDigit(t)) {
+                System.out.println("no num");
+            }
+        });
+    }
 }
