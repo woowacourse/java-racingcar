@@ -8,7 +8,7 @@ class InputUtilsTest {
 	@Test
 	void splitValuesForComma() {
 		final String value = "1,2";
-		final String[] actual = InputUtils.splitValues(value);
+		final String[] actual = InputUtils.split(value);
 		final String[] expected = {"1", "2"};
 		assertThat(actual).isEqualTo(expected);
 	}
@@ -16,7 +16,7 @@ class InputUtilsTest {
 	@Test
 	void splitValuesForColon() {
 		final String value = "1:2:3";
-		final String[] actual = InputUtils.splitValues(value);
+		final String[] actual = InputUtils.split(value);
 		final String[] expected = {"1", "2", "3"};
 		assertThat(actual).isEqualTo(expected);
 	}
@@ -24,7 +24,7 @@ class InputUtilsTest {
 	@Test
 	void splitValuesForCommaAndColon() {
 		final String value = "1,2:3";
-		final String[] actual = InputUtils.splitValues(value);
+		final String[] actual = InputUtils.split(value);
 		final String[] expected = {"1", "2", "3"};
 		assertThat(actual).isEqualTo(expected);
 	}
@@ -32,7 +32,7 @@ class InputUtilsTest {
 	@Test
 	void splitValuesForCustomDelimiter() {
 		final String customValue = "//;\n1;2;3";
-		final String[] actual = InputUtils.splitValues(customValue);
+		final String[] actual = InputUtils.split(customValue);
 		final String[] expected = {"1", "2", "3"};
 		assertThat(actual).isEqualTo(expected);
 	}
@@ -40,7 +40,7 @@ class InputUtilsTest {
 	@Test
 	void splitValuesForMixedDelimiter() {
 		final String customValue = "//;\n1;2,3:4";
-		final String[] actual = InputUtils.splitValues(customValue);
+		final String[] actual = InputUtils.split(customValue);
 		final String[] expected = {"1", "2", "3", "4"};
 		assertThat(actual).isEqualTo(expected);
 	}

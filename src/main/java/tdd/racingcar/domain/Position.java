@@ -11,13 +11,9 @@ public class Position {
 	}
 
 	private void checkValidationOf(final int position) {
-		if (isInvalid(position)) {
+		if (position < MIN_POSITION) {
 			throw new IllegalArgumentException("자동차의 위치는 0 이상이어야 합니다.");
 		}
-	}
-
-	private boolean isInvalid(final int position) {
-		return position < MIN_POSITION;
 	}
 
 	public void move() {
@@ -30,5 +26,9 @@ public class Position {
 
 	public boolean isPosition(final int position) {
 		return this.position == position;
+	}
+
+	public boolean isPosition(final Position other) {
+		return this.position == other.position;
 	}
 }
