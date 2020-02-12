@@ -1,16 +1,21 @@
+package calculator;
+
+import calculator.Calculator;
+import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class Test {
+public class CalculatorTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void 덧셈() {
         String input = "1,2:3,4";
         int result = Calculator.calculate(input);
         assertThat(result).isEqualTo(10);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void substring_인덱스_에러_예외_발생() {
         String input = "//1,2";
         assertThatThrownBy(() -> {
@@ -18,14 +23,14 @@ public class Test {
         }).isInstanceOf(RuntimeException.class);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void 문자열_나누기() {
         String input = "55:341,8";
         String[] splitedInput = Calculator.split(input);
         assertThat(splitedInput).isEqualTo(new String[]{"55", "341", "8"});
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void 커스텀_구분자_지정() {
         String noneCustomDelimiterInput = "12:3,4";
         String[] splitedInput2 = Calculator.split(noneCustomDelimiterInput);
@@ -36,7 +41,7 @@ public class Test {
         assertThat(splitedInput).isEqualTo(new String[]{"11", "222", "3333"});
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void 숫자_이외의값_혹은_음수_입력() {
         String exceptNumberInputs = "ㅋㅋ:-222,3333";
         assertThatThrownBy(() -> {
@@ -44,7 +49,7 @@ public class Test {
         }).isInstanceOf(RuntimeException.class);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void 숫자만_들어왔을때() {
         String input = "123";
         int result = Calculator.calculate(input);
