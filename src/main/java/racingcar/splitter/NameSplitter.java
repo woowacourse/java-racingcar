@@ -21,10 +21,10 @@ import java.util.stream.Collectors;
  *
  */
 public class NameSplitter {
-    public static final String DELIMITER = ",";
-    public static final int MINIMUM_NUMBER_OF_NAMES = 2;
-    public static final int MINIMUM_LENGTH_OF_NAME = 1;
-    public static final int MAXIMUM_LENGTH_OF_NAME = 5;
+    private static final String DELIMITER = ",";
+    private static final int MINIMUM_NUMBER_OF_NAMES = 2;
+    private static final int MINIMUM_LENGTH_OF_NAME = 1;
+    private static final int MAXIMUM_LENGTH_OF_NAME = 5;
 
     public static List<String> split(String nameValue) {
         List<String> names = Arrays.stream(nameValue.split(DELIMITER))

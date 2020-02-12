@@ -25,9 +25,9 @@ public class OutputView {
     private static final char TRACE_OF_CAR = '-';
     private static final String WINNER_NAME_JOIN_DELIMITER = ",";
 
-    public static void printRoundResult(Cars cars){
+    public static void printRoundResult(Cars cars) {
         StringBuilder stringBuilder = new StringBuilder();
-        for(Car car : cars){
+        for (Car car : cars) {
             stringBuilder.append(car.getName());
             stringBuilder.append(COLON);
             stringBuilder.append(makePositionLine(car.getPosition()));
@@ -45,7 +45,7 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    public static void printRoundStart() {
+    public static void printGameResultMessage() {
         System.out.println(Message.ROUND_START.getMessageText());
     }
 

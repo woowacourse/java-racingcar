@@ -48,7 +48,7 @@ public class Cars implements Iterable<Car> {
                 .collect(Collectors.toList());
     }
 
-    void run() {
+    public void run() {
         for (Car car : cars) {
             car.run(RandomNumberGenerator.getRandomNumber());
         }

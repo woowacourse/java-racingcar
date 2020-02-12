@@ -1,7 +1,7 @@
 package racingcar;
 
 import racingcar.domain.Cars;
-import racingcar.domain.RacingGame;
+import racingcar.domain.Round;
 import racingcar.splitter.NameSplitter;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -23,8 +23,12 @@ public class Application {
         String rawCarNames = InputView.inputCarNames();
         Cars cars = new Cars(NameSplitter.split(rawCarNames));
         int numberOfRound = InputView.inputNumberOfRound();
-        RacingGame game = new RacingGame(cars, numberOfRound);
-        game.start();
-        OutputView.printWinner(game.getWinner());
+        Round round = new Round(numberOfRound);
+        OutputView.printGameResultMessage();
+        for (int i = 0; i < round.getNumberOfRound(); i++) {
+            cars.run();
+            OutputView.printRoundResult(cars);
+        }
+        OutputView.printWinner(cars.findWinner());
     }
 }
