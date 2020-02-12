@@ -1,7 +1,7 @@
 package CarRacingGame;
 
 import domain.Car;
-import domain.RacingCars;
+import domain.RacingCarGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CarRacingGameTest {
 
     ArrayList<Car> cars = new ArrayList<>();
-    RacingCars racingCars;
+    RacingCarGame racingCarGame = new RacingCarGame();
 
     @ParameterizedTest
     @DisplayName("이름이 올바른지 확인")
@@ -65,33 +65,12 @@ public class CarRacingGameTest {
     }
 
     @Test
-    @DisplayName("우승자가 한 명일 경우 제대로 산출되는지")
-    void checkRealWinner() {
-        cars.get(0).decideGoOrStop(8);
-        cars.get(1).decideGoOrStop(1);
-        cars.get(2).decideGoOrStop(0);
-        racingCars = new RacingCars(cars);
-        assertThat(racingCars.getWinner()).containsExactly(cars.get(0));
-    }
-
-    @Test
-    @DisplayName("우승자가 여러 명일 경우 제대로 산출되는지")
-    void checkRealWinners() {
-        cars.get(0).decideGoOrStop(8);
-        cars.get(1).decideGoOrStop(4);
-        cars.get(2).decideGoOrStop(0);
-        racingCars = new RacingCars(cars);
-        assertThat(racingCars.getWinner()).containsExactly(cars.get(0), cars.get(1));
-    }
-
-    @Test
     @DisplayName("우승자의 이름이 제대로 추출되는지")
     void checkWinnerName() {
         cars.get(0).decideGoOrStop(8);
         cars.get(1).decideGoOrStop(1);
         cars.get(2).decideGoOrStop(0);
-        racingCars = new RacingCars(cars);
-        assertThat(racingCars.getWinnerName(racingCars.getWinner())).isEqualTo("car1");
+        assertThat(racingCarGame.getWinner(cars)).isEqualTo("car1");
     }
 
     @Test
@@ -100,7 +79,6 @@ public class CarRacingGameTest {
         cars.get(0).decideGoOrStop(8);
         cars.get(1).decideGoOrStop(5);
         cars.get(2).decideGoOrStop(0);
-        racingCars = new RacingCars(cars);
-        assertThat(racingCars.getWinnerName(racingCars.getWinner())).isEqualTo("car1, car2");
+        assertThat(racingCarGame.getWinner(cars)).isEqualTo("car1, car2");
     }
 }
