@@ -3,6 +3,7 @@ package racingcargame.domain;
 import racingcargame.util.RandomFactory;
 
 public class Engine {
+    public static final int LIMIT = 4;
     private int power;
 
     private Engine(int power) {
@@ -20,5 +21,9 @@ public class Engine {
 
     public static Engine createEngineSetBy(int power) {
         return new Engine(power);
+    }
+
+    public boolean isHigherThanLimit() {
+        return LIMIT <= power;
     }
 }
