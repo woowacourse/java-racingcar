@@ -10,7 +10,7 @@ public class InputView {
 
     public static String[] inputCarName() {
         OutputView.printInputCarNamesMessage();
-        String[] carNames = sc.nextLine().split(DELIMITER);
+        String[] carNames = sc.nextLine().split(DELIMITER); // TODO 스페이스바만 입력했을때 ,로 끝났을 경우 어떻게 해야 할까용
         try {
             InputValidation.checkNullOrEmptyInput(carNames);
             InputValidation.checkSmallerThanSix(carNames);

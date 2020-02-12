@@ -8,7 +8,7 @@ import java.util.InputMismatchException;
 public class InputValidation {
 
     public static void checkNullOrEmptyInput(String[] carNames) {
-        if (carNames == null || carNames.length == 0) {
+        if (carNames.length == 0 || carNames[0].length() == 0) {
             throw new NullPointerException("입력이 null 이나 빈 문자열입니다.");
         }
     }
