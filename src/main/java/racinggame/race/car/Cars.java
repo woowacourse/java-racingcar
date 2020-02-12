@@ -17,7 +17,7 @@ public class Cars implements Iterable<Car> {
         this.cars = cars;
     }
 
-    public void go(Engine randomEngine) {
+    public void move(Engine randomEngine) {
         for (Car car : cars) {
             car.moveWith(randomEngine);
         }

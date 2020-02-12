@@ -15,7 +15,7 @@ public class Race {
 
         OutputView.showReady(RacingResBundleDTO.from(cars));
         for (int i = 0; i < reqDTO.getCount(); i++) {
-            cars.go(new RealEngine());
+            cars.move(new RealEngine());
             OutputView.showCars(RacingResBundleDTO.from(cars));
         }
         OutputView.showWinners(cars.getWinner());
