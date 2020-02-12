@@ -12,4 +12,11 @@ class CarNameExceptionTest {
         boolean result = CarNameException.validOneCar(input);
         assertThat(result).isEqualTo(true);
     }
+
+    @Test
+    void 자동차_이름이_중복되었을_때() {
+        String[] input = {"pobi", "pobi"};
+        boolean  result = CarNameException.isDuplicatedNames(input);
+        assertThat(result).isEqualTo(true);
+    }
 }
