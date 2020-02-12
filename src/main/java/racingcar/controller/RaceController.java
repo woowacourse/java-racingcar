@@ -1,10 +1,9 @@
-package controller;
+package racingcar.controller;
 
-import domain.Cars;
-import domain.Race;
-import utils.InputUtil;
-import view.InputView;
-import view.OutputView;
+import racingcar.domain.Cars;
+import racingcar.utils.InputUtil;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.io.IOException;
 

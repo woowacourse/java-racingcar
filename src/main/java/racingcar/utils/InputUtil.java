@@ -1,6 +1,6 @@
-package utils;
+package racingcar.utils;
 
-import domain.Cars;
+import racingcar.domain.Cars;
 
 import java.io.BufferedReader;
 import java.io.IOException;

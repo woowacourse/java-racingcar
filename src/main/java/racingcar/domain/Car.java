@@ -1,4 +1,4 @@
-package domain;
+package racingcar.domain;
 
 public class Car {
 	public static final int MINIMUM_LENGTH_OF_CAR_NAME = 1;

@@ -1,4 +1,4 @@
-package domain;
+package racingcar.domain;
 
 public class Race {
 	private final Cars cars;
