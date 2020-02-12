@@ -7,8 +7,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Input {
-    public static final String DEFAULT_DELIMITER = ",|:";
-    public static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
+    private static final String DEFAULT_DELIMITER = ",|:";
+    private static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
 
     private String input;
 
