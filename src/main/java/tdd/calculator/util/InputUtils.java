@@ -12,16 +12,13 @@ public class InputUtils {
 
 	public static String[] split(final String value) {
 		final Matcher matcher = PATTERN.matcher(value);
-		if (hasCustomDelimiter(matcher)) {
+		final boolean hasCustomDelimiter = matcher.find();
+		if (hasCustomDelimiter) {
 			final String customValue = matcher.group(VALUE_INDEX);
 			final String customDelimiter = buildCustomDelimiter(matcher);
 			return customValue.split(customDelimiter);
 		}
 		return value.split(DELIMITER);
-	}
-
-	private static boolean hasCustomDelimiter(final Matcher matcher) {
-		return matcher.find();
 	}
 
 	private static String buildCustomDelimiter(final Matcher matcher) {
