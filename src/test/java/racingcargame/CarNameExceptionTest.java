@@ -6,6 +6,7 @@ import racingcargame.view.exception.CarNameException;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarNameExceptionTest {
     @Test
@@ -23,5 +24,15 @@ class CarNameExceptionTest {
 
         boolean  result = CarNameException.isDuplicatedNames(input);
         assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    void 자동차_이름의_길이가_5를_초과할때() {
+        String[] input = {"abcde", "123456789"};
+
+        CarNameException.CAR_NAMES.addAll(Arrays.asList(input));
+
+        assertThatThrownBy(() -> CarNameException.haveExceededLengthName())
+                .isInstanceOf(RuntimeException.class);
     }
 }
