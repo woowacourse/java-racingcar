@@ -11,7 +11,7 @@ public class Cars {
 
     public Cars(String inputNames) {
         cars = Arrays.stream(inputNames.split(DELIMITER))
-                .map(x -> new Car(x))
+                .map(name -> new Car(name))
                 .collect(Collectors.toList());
     }
 

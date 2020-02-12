@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1cf1431f-eb1d-465a-b3ce-daa02bf592a6" name="Default Changelist" comment="feat : Throw runtime exception in case that input has negative number and something not number">
+      <change afterPath="$PROJECT_DIR$/src/test/java/racingcar/view/InputViewTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/racingcar/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/racingcar/domain/Cars.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/racingcar/domain/Cars.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/racingcar/view/InputView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/racingcar/view/InputView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/racingcar/domain/CarsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/racingcar/domain/CarsTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1XdwieolmJGYg1SNOu3hzX3JOFs" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/Calculator" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="racingcar.view" />
+      <recent name="racingcar.domain" />
+      <recent name="racingcar" />
+      <recent name="calculator" />
+      <recent name="calculator.domain" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hongbin\Desktop\dev\java-racingcar\src\test\java\racingcar" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="racingcar" />
+      <recent name="" />
+      <recent name="view" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.InputViewTest.validateEmpty">
+    <configuration name="StringAdditionCalculatorTest.custom" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;StringAdditionCalculatorTest.custom&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CarTest.movePositionAccordingToCondition" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-racingcar.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="racingcar.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="racingcar.domain" />
+      <option name="MAIN_CLASS_NAME" value="racingcar.domain.CarTest" />
+      <option name="METHOD_NAME" value="movePositionAccordingToCondition(int,boolean)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CarsTest.우승자들" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-racingcar.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="racingcar.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="racingcar.domain" />
+      <option name="MAIN_CLASS_NAME" value="racingcar.domain.CarsTest" />
+      <option name="METHOD_NAME" value="우승자들(racingcar.domain.Cars,java.util.List)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CarsTest.유저들_이름_나누기" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-racingcar.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="racingcar.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="racingcar.domain" />
+      <option name="MAIN_CLASS_NAME" value="racingcar.domain.CarsTest" />
+      <option name="METHOD_NAME" value="유저들_이름_나누기" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InputViewTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-racingcar.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="racingcar.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="racingcar.view" />
+      <option name="MAIN_CLASS_NAME" value="racingcar.view.InputViewTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InputViewTest.validateEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-racingcar.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="racingcar.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="racingcar.view" />
+      <option name="MAIN_CLASS_NAME" value="racingcar.view.InputViewTest" />
+      <option name="METHOD_NAME" value="validateEmpty(java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.InputViewTest.validateEmpty" />
+        <item itemvalue="JUnit.InputViewTest" />
+        <item itemvalue="JUnit.CarsTest.우승자들" />
+        <item itemvalue="JUnit.CarTest.movePositionAccordingToCondition" />
+        <item itemvalue="JUnit.CarsTest.유저들_이름_나누기" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1cf1431f-eb1d-465a-b3ce-daa02bf592a6" name="Default Changelist" comment="" />
+      <created>1581389407194</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581389407194</updated>
+      <workItem from="1581389409204" duration="19745000" />
+      <workItem from="1581419323832" duration="3000" />
+      <workItem from="1581429511176" duration="836000" />
+      <workItem from="1581470599264" duration="12911000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat : Return result of addition">
+      <created>1581396661606</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581396661606</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat : Throw runtime exception in case that input has negative number and something not number">
+      <created>1581405502982</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1581405502982</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat : Return result of addition" />
+    <MESSAGE value="feat : Throw runtime exception in case that input has negative number and something not number" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : Throw runtime exception in case that input has negative number and something not number" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="71" key="#Project_Structure" timestamp="1581408152466">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1581408152466" />
+    <state x="574" y="114" key="#com.intellij.ide.util.MemberChooser" timestamp="1581472005029">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="114" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1581472005029" />
+    <state x="414" y="338" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1581470635061">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="414" y="338" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1581470635061" />
+    <state x="560" y="271" width="415" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1581408925107">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="560" y="271" width="415" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1581408925107" />
+    <state x="560" y="292" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1581407044132">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="560" y="292" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.824@0.0.1536.824" timestamp="1581407044132" />
+    <state x="456" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581483048084">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="456" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1581483048084" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581477739949">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1581477739949" />
+    <state x="327" y="6" key="CommitChangelistDialog2" timestamp="1581474534490">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="327" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581474534490" />
+    <state width="746" height="210" key="GridCell.Tab.0.bottom" timestamp="1581487985434">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581487985434" />
+    <state width="746" height="210" key="GridCell.Tab.0.center" timestamp="1581487985434">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581487985434" />
+    <state width="746" height="210" key="GridCell.Tab.0.left" timestamp="1581487985434">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581487985434" />
+    <state width="746" height="210" key="GridCell.Tab.0.right" timestamp="1581487985434">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581487985434" />
+    <state width="746" height="261" key="GridCell.Tab.1.bottom" timestamp="1581486140786">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="746" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581486140786" />
+    <state width="746" height="261" key="GridCell.Tab.1.center" timestamp="1581486140785">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="746" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1581486140785" />
+    <state width="746" height="261" key="GridCell.Tab.1.left" timestamp="1581486140785">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="746" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1581486140785" />
+    <state width="746" height="261" key="GridCell.Tab.1.right" timestamp="1581486140785">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="746" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1581486140785" />
+    <state x="584" y="347" key="ReplaceDuplicatesPrompt" timestamp="1581405014746">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="584" y="347" key="ReplaceDuplicatesPrompt/0.0.1536.824@0.0.1536.824" timestamp="1581405014746" />
+    <state x="277" y="55" key="SettingsEditor" timestamp="1581471274048">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1581471274048" />
+    <state x="571" y="190" key="chooseDestDirectoryDialog" timestamp="1581407808148">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="571" y="190" key="chooseDestDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1581407808148" />
+    <state x="459" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1581470599313">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="459" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1581470599313" />
+    <state x="540" y="131" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1581486844605">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="540" y="131" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1581486844605" />
+    <state x="499" y="166" width="538" height="500" key="extract.method.dialog" timestamp="1581405012846">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="166" width="538" height="500" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1581405012846" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1581483743516">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1581483743516" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1581476066332">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581476066332" />
+  </component>
+</project>
