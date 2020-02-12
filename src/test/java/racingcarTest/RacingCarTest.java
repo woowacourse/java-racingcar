@@ -49,15 +49,24 @@ public class RacingCarTest {
     @DisplayName("시도횟수가 음수 또는 0")
     void inputControl_시도횟수가_0이하() {
         assertThatThrownBy(() -> {
-            int trialTime  = -4;
+            String trialTime  = "-4";
             InputValidation.checkNegativeAndZeroInput(trialTime);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("음수 또는 0을 입력할 수 없습니다.");
 
         assertThatThrownBy(() -> {
-            int trialTime  = 0;
+            String trialTime  = "0";
             InputValidation.checkNegativeAndZeroInput(trialTime);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("음수 또는 0을 입력할 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("시도 횟수가 타입 범위를 초과할 경우")
+    void inputControl_시도횟수가_타입_범위초과() {
+        assertThatThrownBy(() -> {
+            String trialTime = "100000000000";
+            InputValidation.checkIntegerOverflow(trialTime);
+        });
     }
 }

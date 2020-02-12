@@ -14,9 +14,17 @@ public class InputValidation {
         }
     }
 
-    public static void checkNegativeAndZeroInput(int trialTime) {
-        if (trialTime <= 0){
+    public static void checkNegativeAndZeroInput(String trialTime) {
+        double value = Double.parseDouble(trialTime);
+        if (value <= 0){
             throw new IllegalArgumentException("음수 또는 0을 입력할 수 없습니다.");
+        }
+    }
+
+    public static void checkIntegerOverflow(String trialTime) {
+        double value = Double.parseDouble(trialTime);
+        if (value > Integer.MAX_VALUE) {
+            throw new ArithmeticException("입력 범위를 초과했습니다.");
         }
     }
 }
