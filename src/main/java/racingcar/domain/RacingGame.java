@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import racingcar.message.Message;
+import racingcar.view.OutputView;
 
 /*
  * Copyright (c) 2020 by 또동페어
@@ -29,8 +30,10 @@ public class RacingGame {
     }
 
     public void start() {
+        OutputView.printRoundStart();
         for (int i = 0; i < numberOfRound; i++) {
             cars.run();
+            OutputView.printRoundResult(cars);
         }
     }
 }

@@ -4,6 +4,7 @@ import racingcar.generator.RandomNumberGenerator;
 import racingcar.message.Message;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
  * @date        12 Feb 2020
  *
  */
-public class Cars {
+public class Cars implements Iterable<Car>{
     private final List<Car> cars = new ArrayList<>();
 
     public Cars(List<String> names) {
@@ -51,5 +52,10 @@ public class Cars {
         for (Car car : cars) {
             car.run(RandomNumberGenerator.getRandomNumber());
         }
+    }
+
+    @Override
+    public Iterator<Car> iterator() {
+        return cars.iterator();
     }
 }

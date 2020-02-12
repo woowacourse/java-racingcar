@@ -66,4 +66,12 @@ public class Car {
     public boolean isSamePosition(Car maxPositionCar) {
         return position == maxPositionCar.position;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
 }

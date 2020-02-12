@@ -19,7 +19,8 @@ public enum Message {
     EXCEPTION_ROUND_IS_NOT_POSITIVE("round number must be positive"),
     EXCEPTION_NOT_ENOUGH_CAR("car must be at least one"),
     EXCEPTION_LENGTH_OF_NAME("name must be between 1-5"),
-    EXCEPTION_DUPLICATED_NAME("name can not be duplicated");
+    EXCEPTION_DUPLICATED_NAME("name can not be duplicated"),
+    ROUND_START("실행 결과");
 
     private String messageText;
 
