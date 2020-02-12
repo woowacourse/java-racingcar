@@ -1,5 +1,9 @@
 public class StringCalculator {
     public static int add(String numberExpression) {
+        if (numberExpression.isEmpty()) {
+            return 0;
+        }
+
         String[] words = numberExpression.split(",");
         if (words.length == 1) {
             words = numberExpression.split(":");

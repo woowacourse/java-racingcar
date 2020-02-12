@@ -20,4 +20,10 @@ public class CalculatorTest {
         result = StringCalculator.add("4:5");
         assertThat(result).isEqualTo(9);
     }
+
+    @Test
+    void 덧셈_인자가없을때() {
+        int result = StringCalculator.add("");
+        assertThat(result).isEqualTo(0);
+    }
 }
