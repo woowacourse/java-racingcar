@@ -27,12 +27,12 @@ public class InputViewTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource("generateInput")
+	@MethodSource("generateInputCarNames")
 	public void checkLengthTest(List<String> input, boolean expected) {
 		assertThat(InputView.checkLength(input)).isEqualTo(expected);
 	}
 
-	static Stream<Arguments> generateInput() {
+	static Stream<Arguments> generateInputCarNames() {
 		return Stream.of(
 			Arguments.of(Arrays.asList("ABCDEF", "B", "C"), false),
 			Arguments.of(Arrays.asList("A", "B", "ABCDEF"), false),

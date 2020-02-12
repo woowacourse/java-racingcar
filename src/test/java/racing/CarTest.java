@@ -20,17 +20,18 @@ public class CarTest {
 	public void carInitTest() {
 		List<String> input = Arrays.asList("A", "B", "C");
 		Cars cars = new Cars(input);
+
 		assertThat(cars.size()).isEqualTo(input.size());
 		assertThat(cars.getAllNames()).isEqualTo(input);
 	}
 
 	@ParameterizedTest
-	@MethodSource("generateInput")
+	@MethodSource("generateCar")
 	public void randomGenerateTest(Car car) {
 		assertThat(car.randomGenerate()).isBetween(0, 9);
 	}
 
-	static Stream<Arguments> generateInput() {
+	static Stream<Arguments> generateCar() {
 		return Stream.of(
 			Arguments.of(new Car("자동차1")),
 			Arguments.of(new Car("자동차2")),
