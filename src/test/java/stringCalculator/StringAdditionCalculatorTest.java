@@ -11,7 +11,7 @@ public class StringAdditionCalculatorTest {
     @Test
     @DisplayName("더하기")
     void add() {
-        List<String> operands = Arrays.asList(new String[]{"1", "3"});
+        List<Integer> operands = Arrays.asList(new Integer[]{1, 3});
         int result = StringAdditionCalculator.sum(operands);
         Assertions.assertThat(result).isEqualTo(4);
     }
