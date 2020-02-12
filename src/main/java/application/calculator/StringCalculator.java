@@ -19,7 +19,7 @@ public class StringCalculator {
     }
 
     private static String[] splitText(String text, String delimiter) {
-        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
+        Matcher matcher = Pattern.compile("//(.)\\\\n(.*)").matcher(text);
         if (matcher.find()) {
             String customDelimiter = matcher.group(1);
             delimiter = addCustomDelimiter(delimiter, customDelimiter);
@@ -59,7 +59,11 @@ public class StringCalculator {
     }
 
     private static int getConvertNumber(String string) {
-        return Integer.parseInt(string);
+        try {
+            return Integer.parseInt(string);
+        } catch (Exception e) {
+            throw new RuntimeException("잘못된 수를 입력하였습니다.");
+        }
     }
 
     private static boolean isNullOrEmptyText(String text) {

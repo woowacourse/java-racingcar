@@ -57,7 +57,7 @@ public class StringCalculatorTest {
     @DisplayName("커스텀 구분자로 문자열을 나눠서 숫자들의 합을 반환 테스트")
     @Test
     public void splitAndSumUsingCustomDelimiterTest() throws Exception {
-        int result = StringCalculator.splitAndSum("//;\n1;2;3");
+        int result = StringCalculator.splitAndSum("//;\\n1;2;3");
         Assertions.assertThat(result).isEqualTo(6);
     }
 
