@@ -17,23 +17,24 @@ public class OutputView {
                 .collect(Collectors.joining(LINE_CHANGER)));
     }
 
-    private static String getStatus(Car car) {
-        StringBuilder SB = new StringBuilder();
-        SB.append(car.getName()).append(SEPARATOR);
-
-        for (int i = 0; i < car.getDistance(); i++) {
-            SB.append(DISTANCE_INDICATOR);
-        }
-
-        return SB.toString();
-    }
-
     public static void printWinners(List<Car> cars) {
         StringBuilder SB = new StringBuilder();
+
         SB.append(cars.stream()
                 .map(Car::getName)
                 .collect(Collectors.joining(COMMA)));
         SB.append("가 최종 우승했습니다.");
         System.out.println(SB.toString());
+    }
+
+    private static String getStatus(Car car) {
+        StringBuilder SB = new StringBuilder();
+
+        SB.append(car.getName());
+        SB.append(SEPARATOR);
+        for (int i = 0; i < car.getDistance(); i++) {
+            SB.append(DISTANCE_INDICATOR);
+        }
+        return SB.toString();
     }
 }

@@ -28,7 +28,15 @@ public class CarRacing {
     }
 
     private int getMaxDistance() {
-        cars.sort((car1, car2) -> car2.getDistance() - car1.getDistance());
-        return cars.get(0).getDistance();
+        Integer maxDistance = 0;
+        cars.stream()
+                .forEach(car -> updateMaxDistance(car.getDistance(), maxDistance));
+        return maxDistance;
+    }
+
+    private void updateMaxDistance(int compareDistance, Integer maxDistance) {
+        if (compareDistance > maxDistance) {
+            maxDistance = compareDistance;
+        }
     }
 }

@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +17,15 @@ public class CarTest {
         assertThatThrownBy(() -> new Car(illegalName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차 이름은 5자 이하여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("자동차의 위치가 예상 범위안에 있는지 테스트")
+    void moveTest() {
+        Car testCar = new Car("test");
+        for (int i = 0; i < 10; i++) {
+            assertThat(testCar.getDistance()).isBetween(0,i);
+        }
     }
 }
 

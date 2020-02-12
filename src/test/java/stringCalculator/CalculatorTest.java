@@ -1,4 +1,4 @@
-package stringcalculator;
+package stringCalculator;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 import java.util.Scanner;
 
 @DisplayName("문자열 계산기 테스트")
-public class StringCalculatorTest {
+public class CalculatorTest {
 
     public static final String INPUT_EXPECTED_DIVIDER = "->";
     private static final String STRING_CALCULATOR_TESTCASE_PATH = "src/test/resources/stringCalculatorTestcase/";

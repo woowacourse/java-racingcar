@@ -5,7 +5,7 @@ import java.util.Random;
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MOVE_THRESHOLD = 4;
-    private static final int RANDOM_MAX = 10;
+    private static final int RANDOM_RANGE = 10;
     private static final int RANDOM_MIN = 0;
 
     private final String name;
@@ -38,12 +38,10 @@ public class Car {
     }
 
     private boolean canMove() {
-        int randomNumber = new Random().nextInt(RANDOM_MAX - RANDOM_MIN) + RANDOM_MIN;
-
+        int randomNumber = new Random().nextInt(RANDOM_RANGE) + RANDOM_MIN;
         if (randomNumber >= MOVE_THRESHOLD) {
             return true;
         }
-
         return false;
     }
 
