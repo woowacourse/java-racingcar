@@ -8,33 +8,34 @@ public class StringCalculator {
             return result;
         }
 
-        String[] splittedWordsWithComma = numberExpression.split(",");
-        List<String> notSplittedWordsWithComma = addNumbersSplittedWithComma(splittedWordsWithComma);
+        List<String> notSplittedWordsWithComma = addNumbersInExpressionBySeparator(numberExpression, ",");
 
         for (String notSpllitedWordWithComma : notSplittedWordsWithComma) {
-            String[] splittedWordsWithCollon = notSpllitedWordWithComma.split(":");
-            for (String splittedWordWithColon : splittedWordsWithCollon) {
-                addNumber(splittedWordWithColon);
-            }
+            addNumbersInExpressionBySeparator(notSpllitedWordWithComma, ":");
         }
 
 
         return result;
     }
 
-    private List<String> addNumbersSplittedWithComma(String[] splittedWordsWithComma) {
+    private List<String> addNumbersInExpressionBySeparator(String numberExpression, String seperator) {
+        String[] splittedNumberExpression = numberExpression.split(seperator);
+        return addSplittedNumberExpression(splittedNumberExpression);
+    }
 
-        List<String> notSplittedWordsWithComma = new ArrayList<>();
+    private List<String> addSplittedNumberExpression(String[] splittedNumberExpression) {
 
-        for (String splittedWordWithComma : splittedWordsWithComma) {
+        List<String> notSplittedExpression = new ArrayList<>();
+
+        for (String splittedWordWithComma : splittedNumberExpression) {
             boolean isAdded = addNumber(splittedWordWithComma);
             if (isAdded) {
                 continue;
             }
-            notSplittedWordsWithComma.add(splittedWordWithComma);
+            notSplittedExpression.add(splittedWordWithComma);
         }
 
-        return notSplittedWordsWithComma;
+        return notSplittedExpression;
 
     }
 
