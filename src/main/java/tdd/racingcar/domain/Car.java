@@ -34,4 +34,8 @@ public class Car {
 	public boolean hasGreaterPositionThan(final int position) {
 		return this.position > position;
 	}
+
+	public boolean isPosition(final int maxPosition) {
+		return position == maxPosition;
+	}
 }

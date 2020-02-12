@@ -11,30 +11,30 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CarsTest {
-	private List<Car> DifferentPositionCars;
+	private List<Car> differentPositionCars;
 
 	@BeforeEach
 	void init() {
-		DifferentPositionCars = CarFactory.create(Arrays.asList("a", "b", "c", "d"));
-		DifferentPositionCars.get(0).move(new Power(4));
-		DifferentPositionCars.get(0).move(new Power(4));
-		DifferentPositionCars.get(1).move(new Power(4));
-		DifferentPositionCars.get(1).move(new Power(4));
-		DifferentPositionCars.get(2).move(new Power(4));
+		differentPositionCars = CarFactory.create(Arrays.asList("a", "b", "c", "d"));
+		differentPositionCars.get(0).move(new Power(4));
+		differentPositionCars.get(0).move(new Power(4));
+		differentPositionCars.get(1).move(new Power(4));
+		differentPositionCars.get(1).move(new Power(4));
+		differentPositionCars.get(2).move(new Power(4));
 	}
 
 	@Test
-	void getMaxPosition() {
-		Cars cars = new Cars(DifferentPositionCars);
-		final int expectedPosition = 2;
-		final int maxPosition = cars.getMaxPosition();
-		assertEquals(expectedPosition, maxPosition);
-	}
-
-	@Test
-	void getMaxPositionInEmptyCars() {
-		Cars cars = new Cars(new ArrayList<>());
-		assertThatIllegalArgumentException().isThrownBy(cars::getMaxPosition)
+	void getWinnersForEmptyCars() {
+		final Cars cars = new Cars(new ArrayList<>());
+		assertThatIllegalArgumentException().isThrownBy(cars::getWinners)
 			.withMessage("차가 존재하지 않습니다.");
+	}
+
+	@Test
+	void getWinners() {
+		final Cars cars = new Cars(differentPositionCars);
+		final List<Car> expected = Arrays.asList(differentPositionCars.get(0), differentPositionCars.get(1));
+		final List<Car> actual = cars.getWinners();
+		assertEquals(expected, actual);
 	}
 }
