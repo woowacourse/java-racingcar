@@ -32,8 +32,8 @@ public class CarTest {
 
 	@Test
 	void toStringTest() {
-		assertThat(pobi.toString()).isEqualTo("pobi : \n");
+		assertThat(pobi).hasToString("pobi : \n");
 		pobi.move(GOING_NUMBER);
-		assertThat(pobi.toString()).isEqualTo("pobi : -\n");
+		assertThat(pobi).hasToString("pobi : -\n");
 	}
 }
