@@ -1,11 +1,10 @@
-package racing;
+package racing.car;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racing.car.Car;
-import racing.car.Name;
 import racing.car.numbergenerator.FixedNumberGenerator;
 import racing.car.numbergenerator.NumberGenerator;
+import racing.car.numbergenerator.RandomNumberGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,5 +28,15 @@ public class CarTest {
         NumberGenerator fixed = new FixedNumberGenerator();
         car.go(fixed);
         assertThat(car.getDistance()).isEqualTo(1);
+    }
+
+    @DisplayName("가장 멀리간 차의 거리를 반환하는 메서드 테스트")
+    @Test
+    void name3() {
+        Car car1 = new Car(new Name("a"));
+        car1.go(new RandomNumberGenerator());
+        Car car2 = new Car(new Name("b"));
+        Car car3 = new Car(new Name("c"));
+
     }
 }
