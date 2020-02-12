@@ -6,7 +6,7 @@ public class Car {
     private final Name name;
     private Location location;
 
-    Car(String name) {
+    public Car(String name) {
         validateEmptyName(name);
         validateNameLength(name);
 
@@ -34,7 +34,21 @@ public class Car {
         return location.getLocation();
     }
 
-    public void move() {
+    public void play() {
+        if (GoOrStop.decideGoOrStop()) {
+            move();
+        }
+    }
+
+    private void move() {
         location.moveForward();
+    }
+
+    public String getResult() {
+        StringBuilder result = new StringBuilder();
+        result.append(name);
+        result.append(" : ");
+        result.append(location);
+        return String.valueOf(result);
     }
 }

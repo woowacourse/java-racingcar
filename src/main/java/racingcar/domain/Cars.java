@@ -7,7 +7,7 @@ import java.util.List;
 public class Cars {
     private final List<Car> cars;
 
-    Cars(String names) {
+    public Cars(String names) {
         List<Car> cars = new ArrayList<>();
 
         validateNames(names);
@@ -39,5 +39,20 @@ public class Cars {
                 .map(s -> s.trim())
                 .distinct()
                 .count() != splitInput.length;
+    }
+
+    public void play() {
+        for (Car car : cars) {
+            car.play();
+        }
+    }
+
+    public String getResult() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Car car : cars) {
+            stringBuilder.append(car.getResult());
+            stringBuilder.append("\n");
+        }
+        return String.valueOf(stringBuilder);
     }
 }

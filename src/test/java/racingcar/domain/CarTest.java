@@ -29,9 +29,8 @@ public class CarTest {
     }
 
     @Test
-    void 위치를_이동시키는_기능_테스트() {
-        Car car = new Car("두강");
-        car.move();
-        assertThat(car.getLocation()).isEqualTo(1);
+    void print() {
+        Car car = new Car("무늬");
+        System.out.println(car.getResult());
     }
 }
