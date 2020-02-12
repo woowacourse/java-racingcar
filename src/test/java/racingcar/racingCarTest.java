@@ -17,7 +17,7 @@ public class racingCarTest {
     @Test
     @DisplayName("게임 클래스를 검사")
     void gameTest() {
-        Game game = new Game(5);
+        Game game = new Game(null, 5);
     }
 
     @Test
@@ -63,10 +63,6 @@ public class racingCarTest {
     }
 
     @Test
-    @DisplayName("자동차 이름을 처리하는 부분")
-    void splitCarsNameTest() {
-        Game game = new Game(0);
-        assertThat(game.spiltCarsName(" alan,bart,carol,daisy ,eddy")
-                .equals(new String[]{"alan", "bart", "carol", "daisy", "eddy"}));
-    }
+
+
 }
