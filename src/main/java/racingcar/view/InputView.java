@@ -6,6 +6,10 @@ public class InputView {
     private Scanner scanner = new Scanner(System.in);
 
     public String getCarNames() {
+        //input에 대한 vali view
+        //값에 대한 검증
+        //빈약한 도메인과 풍부한 도메인
+
         String input = "";
         try{
             input = enterCarNames();
@@ -18,7 +22,7 @@ public class InputView {
 
     public String getGameCounts() {
         String input = "";
-        try{
+        try {
             input = enterGameCounts();
         } catch (Exception e){
             System.err.println(e.getMessage());
