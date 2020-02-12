@@ -20,11 +20,11 @@ public class OutputView {
 
     public static void carNameAndPosition(Car car) {
         String blank = "";
-        int currentPosition = car.getPosition();
+        int currentPosition = car.getCarPosition();
         for (int i = 0; i < currentPosition; i++) {
             blank += MARK;
         }
-        System.out.println(car.getName() + " : " + blank);
+        System.out.println(car.getCarName() + " : " + blank);
     }
 
     public static void winnerInstruction(String winnerName) {

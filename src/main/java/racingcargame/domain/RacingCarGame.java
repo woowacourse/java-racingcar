@@ -12,7 +12,7 @@ public class RacingCarGame {
     private static final String DELIMITER = ",";
 
     public String run(String userInputName, int userInputRepeat) {
-        List<Car> cars = setName(userInputName);
+        final List<Car> cars = setName(userInputName);
         processGame(userInputRepeat, cars);
         return getWinner(cars);
     }
@@ -53,11 +53,11 @@ public class RacingCarGame {
 
     public String getWinner(List<Car> cars) {
         Collections.sort(cars);
-        int maxPosition = cars.get(0).getPosition();
+        int maxPosition = cars.get(0).getCarPosition();
 
         List<String> winnerCar = cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .map(car -> car.getName())
+                .filter(car -> car.getCarPosition() == maxPosition)
+                .map(car -> car.getCarName())
                 .collect(Collectors.toList());
         return String.join(", ", winnerCar);
     }
