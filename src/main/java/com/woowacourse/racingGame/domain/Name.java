@@ -8,8 +8,15 @@ public class Name {
 	private final String name;
 
 	public Name(final String name) {
+		checkNullOrEmpty(name);
 		checkNameLength(name);
 		this.name = name;
+	}
+
+	private void checkNullOrEmpty(final String name) {
+		if (name == null || name.isEmpty()) {
+			throw new IllegalArgumentException("null 또는 빈 문자열입니다.");
+		}
 	}
 
 	private void checkNameLength(final String name) {

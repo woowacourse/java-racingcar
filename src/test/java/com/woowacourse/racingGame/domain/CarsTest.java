@@ -32,5 +32,4 @@ public class CarsTest {
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("중복된 이름이 존재합니다.");
 	}
-
 }
