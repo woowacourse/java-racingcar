@@ -12,6 +12,9 @@ package racingcar.domain;
 
 public class Car {
 
+    private final static String HYPHEN = "-";
+    private final static String COLON = " : ";
+    private final static String NEW_LINE = "\n";
     private final String name;
     private int forwardCount = 0;
 
@@ -35,8 +38,8 @@ public class Car {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < forwardCount; i++) {
-            stringBuilder.append("-");
+            stringBuilder.append(HYPHEN);
         }
-        return name + " : " + stringBuilder.toString() + "\n";
+        return name + COLON + stringBuilder.toString() + NEW_LINE;
     }
 }

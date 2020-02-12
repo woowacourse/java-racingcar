@@ -1,13 +1,10 @@
 /*
- * Copyright (c) 2019 by 이름
+ * Copyright (c) 2020 by 티거, 제이미
  * All rights reserved.
  *
- * 클래스명.java
- * 클래스 설명
- *
- * @author      이름
+ * @author      티거, 제이미
  * @version     1.0
- * @date        dd mm yyyy
+ * @date        12 Feb 2020
  *
  */
 
@@ -18,12 +15,15 @@ import java.util.List;
 import java.util.Random;
 
 public class Controller {
+
+    private final static String NEW_LINE = "\n";
+    private final static int RANDOM_NUMBER_RANGE = 10;
     private final List<Car> cars;
     private final int tryCount;
 
     public Controller(List<String> carNames, int tryCount) {
-        this.cars =  setCars(carNames);
-        this.tryCount  = tryCount;
+        this.cars = setCars(carNames);
+        this.tryCount = tryCount;
     }
 
     private List<Car> setCars(List<String> carNames) {
@@ -37,20 +37,24 @@ public class Controller {
     public String run() {
         StringBuilder executionResult = new StringBuilder();
         for (int i = 0; i < tryCount; i++) {
-            executionResult.append("\n");
-            for (Car car : cars) {
-                if (getRandomNumber()) {
-                    car.forward();
-                }
-                executionResult.append(car.toString());
-            }
+            playRacing(executionResult);
         }
         return executionResult.toString();
     }
 
-    private boolean getRandomNumber() {
+    private void playRacing(StringBuilder racingProgress) {
+        racingProgress.append(NEW_LINE);
+        for (Car car : cars) {
+            if (isForwardByRandom()) {
+                car.forward();
+            }
+            racingProgress.append(car.toString());
+        }
+    }
+
+    private boolean isForwardByRandom() {
         Random random = new Random();
-        return BehaviorJudgment.isForward(random.nextInt(10));
+        return BehaviorJudgment.isForward(random.nextInt(RANDOM_NUMBER_RANGE));
     }
 
     public String getWinner() {

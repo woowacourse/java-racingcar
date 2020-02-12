@@ -23,10 +23,10 @@ public class Application {
         List<String> carNames = inputCarNames();
         int tryCount = inputTryCount();
         Controller controller = new Controller(carNames, tryCount);
-        String executionResult = controller.run();
 
+        String racingProgress = controller.run();
         OutputView.printExecutionResult();
-        OutputView.printString(executionResult);
+        OutputView.printString(racingProgress);
 
         String winner = controller.getWinner();
         OutputView.printWinner(winner);

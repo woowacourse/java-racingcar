@@ -17,6 +17,7 @@ public class CarNames {
 
     private final static String BLANK = " ";
     private final static String DELIMITER = ",";
+    private final static int NAME_LENGTH_LIMIT = 5;
     private List<String> carNames;
 
     public CarNames(String input) throws IllegalArgumentException {
@@ -31,7 +32,7 @@ public class CarNames {
     }
 
     private static void validateNameLength(String input) {
-        if (input.length() > 5) {
+        if (input.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("5자 이상 이름은 허용되지 않습니다.");
         }
     }

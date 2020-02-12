@@ -18,6 +18,7 @@ public class StringCalculator {
     private final static String REGEX_NOT_NUMBER = "[^0-9]";
     private final static String DELIMITER = ",|:";
     private final static String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
+    private final static String HYPHEN = "-";
 
     public static int splitAndSum(String text) {
         if (isNullOrBlank(text)) {
@@ -31,7 +32,7 @@ public class StringCalculator {
     }
 
     private static void notNaturalNumberException(String text) {
-        if (text.contains("-") || text.matches(REGEX_NOT_NUMBER)) {
+        if (text.contains(HYPHEN) || text.matches(REGEX_NOT_NUMBER)) {
             throw new RuntimeException();
         }
     }
@@ -56,8 +57,8 @@ public class StringCalculator {
     }
 
     private static String validateNoHyphen(String delimiter) {
-        if (delimiter.equals("-")) {
-            throw new RuntimeException("구분자로 -를 사용하실 수 없습니다.");
+        if (delimiter.equals(HYPHEN)) {
+            throw new RuntimeException("구분자로 " + HYPHEN + "를 사용하실 수 없습니다.");
         }
         return delimiter;
     }
