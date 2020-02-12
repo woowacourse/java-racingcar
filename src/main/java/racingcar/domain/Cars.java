@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /*
  * Copyright (c) 2020 by 또동페어
@@ -22,5 +23,16 @@ public class Cars {
 		for (String name : names) {
 			cars.add(new Car(name));
 		}
+	}
+
+	Cars(List<String> names, List<Integer> position) {
+		for (int i = 0; i < names.size(); i++) {
+			cars.add(new Car(names.get(i), position.get(i)));
+		}
+	}
+
+	public Car findMaxPositionCar() {
+		return cars.stream()
+			.reduce(Car::getBiggerCar).get();
 	}
 }
