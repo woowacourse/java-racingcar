@@ -1,26 +1,25 @@
 package racingcar;
 
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.utils.RandomConstructor;
+import racingcar.utils.RandomValueConstructor;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarRacing {
-
     public static final int POSITIVE_CRITERIA = 1;
 
     public static void main(String[] args) {
         String inputNames = InputView.receiveNameInput();
         Cars cars = new Cars(inputNames);
+
         int count = InputView.receiveCountInput();
         validatePositiveNumber(count);
 
         OutputView.showResult();
 
-        showEachRaceResult(cars, count);
+        showRaceResult(cars, count);
 
-        OutputView.showWinner(cars.getWinners());
+        OutputView.showWinners(cars.getWinners());
     }
 
     protected static void validatePositiveNumber(int countInput) {
@@ -29,19 +28,14 @@ public class CarRacing {
         }
     }
 
-    protected static void showEachRaceResult(Cars cars, int count) {
-        RandomConstructor randomConstructor = new RandomConstructor();
+    private static void showRaceResult(Cars cars, int count) {
+        RandomValueConstructor randomValueConstructor = new RandomValueConstructor();
 
         for (int i = 0; i < count; i++) {
-            Race(cars, randomConstructor);
-            OutputView.showRace(cars.getCars());
-        }
-    }
+            cars.getCars().stream()
+                    .forEach(car -> car.movePositionAccordingToCondition(randomValueConstructor.getRandomNumber()));
 
-    private static void Race(Cars cars, RandomConstructor randomConstructor) {
-        for (Car car : cars.getCars()) {
-            int randomValue = randomConstructor.getRandomNumber();
-            car.movePositionAccordingToCondition(randomValue);
+            OutputView.showEachRaceResult(cars.getCars());
         }
     }
 }

@@ -1,12 +1,10 @@
 package calculator.domain;
 
-
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.Test;
 
 class NumbersTest {
     @Test
@@ -15,7 +13,7 @@ class NumbersTest {
         String input = "1,2:3";
         String delimiter = ",|:";
         //then
-        assertThat(new Numbers(input, delimiter)).isEqualTo(List.of(1,2,3));
+        assertThat(new Numbers(input, delimiter)).isEqualTo(List.of(1, 2, 3));
     }
 
     @Test
@@ -26,8 +24,7 @@ class NumbersTest {
         //then
         assertThatThrownBy(() -> {
             new Numbers(isNotNumber, delimiter);
-        })
-                .isInstanceOf(RuntimeException.class)
+        }).isInstanceOf(RuntimeException.class)
                 .hasMessage("Input has something not number");
 
         //given
@@ -35,8 +32,7 @@ class NumbersTest {
         //then
         assertThatThrownBy(() -> {
             new Numbers(hasNegativeNumber, delimiter);
-        })
-                .isInstanceOf(RuntimeException.class)
+        }).isInstanceOf(RuntimeException.class)
                 .hasMessage("Input has negative number");
     }
 }

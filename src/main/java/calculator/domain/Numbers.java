@@ -5,14 +5,18 @@ import java.util.List;
 
 public class Numbers {
     public static final int ZERO = 0;
+    public static final int START = 1;
 
     private List<Integer> numbers;
 
     public Numbers(String input, String delimiter) {
+        String numbersWithDelimiter = input.substring(input.indexOf(Delimiter.END_CHARACTER) + START);
+
         List<Integer> numbers = new ArrayList<>();
 
-        for (String stringNumber : input.split(delimiter)) {
-            numbers.add(convertToInteger(stringNumber));
+        for (String stringNumber : numbersWithDelimiter.split(delimiter)) {
+            int number = convertToInteger(stringNumber);
+            numbers.add(number);
         }
 
         this.numbers = numbers;

@@ -15,7 +15,7 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public static void showRace(List<Car> cars) {
+    public static void showEachRaceResult(List<Car> cars) {
         for (Car car : cars) {
             String carName = car.getName();
 
@@ -28,7 +28,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void showWinner(List<String> winners) {
+    public static void showWinners(List<String> winners) {
         System.out.print(String.join(COMMA, winners));
         System.out.println("가 최종 우승했습니다.");
     }

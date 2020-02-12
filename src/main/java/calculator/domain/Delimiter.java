@@ -5,6 +5,7 @@ public class Delimiter {
     public static final int FIRST_INDEX = 0;
     public static final int START_INDEX = 2;
     public static final String DEFAULT_DELIMITER = ",|:";
+    public static final String END_CHARACTER = "\n";
 
     private String delimiter;
 
@@ -16,12 +17,12 @@ public class Delimiter {
         }
     }
 
-    public boolean hasCustomDelimiter(String input) {
-        return START_CHARACTER.equals(input.substring(FIRST_INDEX, 2));
+    protected boolean hasCustomDelimiter(String input) {
+        return START_CHARACTER.equals(input.substring(FIRST_INDEX, START_INDEX));
     }
 
-    public String defineDelimiter(String input) {
-        return input.substring(START_INDEX);
+    private String defineDelimiter(String input) {
+        return input.substring(START_INDEX, input.indexOf(END_CHARACTER));
     }
 
     public String getDelimiter() {

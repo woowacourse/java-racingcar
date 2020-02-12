@@ -1,11 +1,10 @@
 package calculator.domain;
 
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 class DelimiterTest {
-
     @Test
     void defineDelimiter() {
         //given
@@ -15,9 +14,9 @@ class DelimiterTest {
 
         //given
         String customDelimiter = "a";
-        String custumInput = "//" + customDelimiter +"\n1a2a3a";
+        String customInput = "//" + customDelimiter +"\n1a2a3a";
         //then
-        assertThat(new Delimiter(custumInput).getDelimiter()).isEqualTo(customDelimiter);
+        assertThat(new Delimiter(customInput).getDelimiter()).isEqualTo(customDelimiter);
     }
 
     @Test

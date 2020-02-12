@@ -1,25 +1,23 @@
 package racingcar.domain;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class CarsTest {
-
     public static final int FORWARD_CRITERIA = 5;
     public static final int ALLEN = 0;
     public static final int POBI = 2;
 
     @Test
-    void 자동차들_이름_나누기() {
+    void splitCarNames() {
         //given
         String inputNames = "123,324,456";
         Cars cars = new Cars(inputNames);
@@ -35,8 +33,8 @@ class CarsTest {
 
     @ParameterizedTest
     @MethodSource("createCarsAndWinners")
-    void 우승자들(Cars cars, List<String> expectedWinners) {
-        //given
+    void getWinners(Cars cars, List<String> expectedWinners) {
+        //when
         List<String> winners = cars.getWinners();
         //then
         assertThat(winners).isEqualTo(expectedWinners);
@@ -47,7 +45,7 @@ class CarsTest {
         String lowoon = "로운";
         String pobi = "pobi";
 
-        Cars cars = new Cars(String.join(",", allen, lowoon, pobi));
+        Cars cars = new Cars(String.join(Cars.DELIMITER, allen, lowoon, pobi));
         List<Car> carsList = cars.getCars();
         carsList.get(ALLEN).movePositionAccordingToCondition(FORWARD_CRITERIA);
         carsList.get(POBI).movePositionAccordingToCondition(FORWARD_CRITERIA);
@@ -68,9 +66,9 @@ class CarsTest {
 
     private static Stream<Arguments> createNamesAndMessage() {
         String oneTeam = "앨런";
-        String oneTeamMessage = "참가자는 2명 이상이어야합니다.";
+        String oneTeamMessage = "참가자는 " + Cars.MINIMUM_TEAM + "명 이상이어야합니다.";
         String hasOverFiveCharacterName = "123,123456,124";
-        String fiveCharacterNameMessage = "이름은 5자 이하여야 합니다.";
+        String fiveCharacterNameMessage = "이름은 " + Car.MAXIMUM_NAME + "자 이하여야 합니다.";
 
         return Stream.of(
                 Arguments.of(oneTeam, oneTeamMessage),

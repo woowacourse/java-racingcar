@@ -16,6 +16,6 @@ class InputViewTest {
     }
 
     private static String[] createNullAndEmpty() {
-        return new String[] {"", null};
+        return new String[] {InputView.EMPTY, null};
     }
 }

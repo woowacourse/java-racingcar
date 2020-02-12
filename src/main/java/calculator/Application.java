@@ -12,10 +12,7 @@ public class Application {
         String input = InputView.receiveInput();
         Delimiter delimiter = new Delimiter(input);
 
-        if (Delimiter.START_CHARACTER
-                .equals(input.substring(Delimiter.FIRST_INDEX, Delimiter.START_INDEX))) {
-            input = InputView.receiveInput();
-        }
+        input = receiveMoreOrNot(input);
 
         Numbers numbers = new Numbers(input, delimiter.getDelimiter());
 
@@ -23,5 +20,14 @@ public class Application {
         int result = stringAdditionCalculator.calculate(numbers.getNumbers());
 
         OutputView.showResult(result);
+    }
+
+    private static String receiveMoreOrNot(String input) {
+        if (Delimiter.START_CHARACTER
+                .equals(input.substring(Delimiter.FIRST_INDEX, Delimiter.START_INDEX))) {
+            input += InputView.receiveInput();
+        }
+
+        return input;
     }
 }
