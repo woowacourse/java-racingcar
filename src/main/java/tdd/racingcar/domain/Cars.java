@@ -4,17 +4,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import tdd.racingcar.util.InputUtils;
-
 public class Cars {
 	private final List<Car> cars;
-
-	public Cars(final String input) {
-		this.cars = InputUtils.splitByComma(input)
-			.stream()
-			.map(Car::new)
-			.collect(Collectors.toList());
-	}
 
 	public Cars(final List<Car> cars) {
 		this.cars = cars;

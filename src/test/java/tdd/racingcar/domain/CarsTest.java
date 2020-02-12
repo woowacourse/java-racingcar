@@ -15,7 +15,7 @@ public class CarsTest {
 
 	@BeforeEach
 	void init() {
-		differentPositionCars = CarFactory.create(Arrays.asList("a", "b", "c", "d"));
+		differentPositionCars = CarsFactory.create("a,b,c,d").toList();
 		differentPositionCars.get(0).move(new Power(4));
 		differentPositionCars.get(0).move(new Power(4));
 		differentPositionCars.get(1).move(new Power(4));

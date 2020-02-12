@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-public class CarFactoryTest {
+public class CarsFactoryTest {
 	@Test
 	void createCar() {
 		final List<String> names = new ArrayList<>();
@@ -16,7 +16,7 @@ public class CarFactoryTest {
 		names.add("c");
 		names.add("d");
 
-		final List<Car> cars = CarFactory.create(names);
-		assertEquals(names.size(), cars.size());
+		final Cars cars = CarsFactory.create("a,b,c,d");
+		assertEquals(names.size(), cars.toList().size());
 	}
 }
