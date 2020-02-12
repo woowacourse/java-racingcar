@@ -21,7 +21,7 @@ public class Cars {
                 .get();
     }
 
-    public List<Car> getWinners(int maxPosition) {
+    public List<Car> findWinners(int maxPosition) {
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());

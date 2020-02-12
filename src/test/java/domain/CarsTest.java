@@ -41,7 +41,7 @@ public class CarsTest {
     void getWinnersTest() {
         int maxPosition = cars.getMaxPosition();
         List<Car> expectedWinners = Arrays.asList(car2, car4);
-        List<Car> actualWinners = cars.getWinners(maxPosition);
+        List<Car> actualWinners = cars.findWinners(maxPosition);
         assertThat(actualWinners.equals(expectedWinners)).isTrue();
     }
 }
