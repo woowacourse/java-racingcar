@@ -47,4 +47,8 @@ public class Cars {
             car.move(RandomGenerator.generateRandom());
         }
     }
+
+    public List<String> getCarsInMaxPosition() {
+        return getCarsInSamePositionWith(getMaxPosition());
+    }
 }

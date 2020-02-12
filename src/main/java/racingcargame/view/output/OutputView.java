@@ -9,6 +9,7 @@ public class OutputView {
         for (Car car : cars) {
             printRoundEach(car);
         }
+        System.out.println();
     }
 
     private static void printRoundEach(Car car) {
@@ -19,5 +20,10 @@ public class OutputView {
             sb.append("-");
         }
         System.out.println(sb.toString());
+    }
+
+    public static void printWinners(List<String> carNames) {
+        String names = String.join(",", carNames);
+        System.out.println(names + "가 우승하셨습니다.");
     }
 }
