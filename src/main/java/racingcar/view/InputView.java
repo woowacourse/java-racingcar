@@ -16,6 +16,24 @@ public class InputView {
         return input;
     }
 
+    public String getGameCounts() {
+        String input = "";
+        try{
+            input = enterGameCounts();
+        } catch (Exception e){
+            System.err.println(e.getMessage());
+            getGameCounts();
+        }
+        return input;
+    }
+
+    private String enterGameCounts() throws Exception {
+        OutputView.askGameCounts();
+        String inputGameCounts = scanner.nextLine();
+        ValidateInput.isNotNumber(inputGameCounts);
+        return inputGameCounts;
+    }
+
     private String enterCarNames() throws Exception {
         OutputView.askCarNames();
         String inputCarNames = scanner.nextLine();

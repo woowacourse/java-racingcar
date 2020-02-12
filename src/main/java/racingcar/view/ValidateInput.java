@@ -15,4 +15,12 @@ public class ValidateInput {
             throw new IllegalArgumentException("이름은 5자 이내로 작성해주세요.");
         }
     }
+
+    public static void isNotNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch(NumberFormatException e) {
+            throw new NumberFormatException("시도 횟수는 숫자를 입력해주세요.");
+        }
+    }
 }

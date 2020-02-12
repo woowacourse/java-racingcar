@@ -29,4 +29,13 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 5자 이내로 작성해주세요.");
     }
+
+    @Test
+    void 시도_횟수가_숫자가_아닌_경우() {
+        String input = "두번";
+        assertThatThrownBy(() -> ValidateInput.isNotNumber(input))
+                .isInstanceOf(NumberFormatException.class)
+                .hasMessage("시도 횟수는 숫자를 입력해주세요.");
+    }
+
 }
