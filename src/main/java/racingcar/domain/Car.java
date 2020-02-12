@@ -30,4 +30,13 @@ public class Car {
     public int getForwardCount() {
         return forwardCount;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < forwardCount; i++) {
+            stringBuilder.append("-");
+        }
+        return name + " : " + stringBuilder.toString() + "\n";
+    }
 }
