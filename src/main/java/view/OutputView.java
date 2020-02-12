@@ -2,7 +2,16 @@ package view;
 
 import model.Car;
 
+import java.util.List;
+
 public class OutputView {
+
+    public static void printScore(List<Car> cars) {
+        for (Car car : cars) {
+            System.out.println(car.getName() + " : " + printPositionBar(car));
+        }
+    }
+
     public static String printPositionBar(Car car) {
         int position = car.getPosition();
         return makePositionBar(position);
