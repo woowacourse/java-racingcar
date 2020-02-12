@@ -6,19 +6,26 @@ public class Positive {
 
 	private final int positive;
 
-	public Positive(final String value) {
-		if (isNegative(value) || isNotNumber(value)) {
-			throw new RuntimeException();
+	public Positive(final String positive) {
+		validate(positive);
+		this.positive = Integer.parseInt(positive);
+	}
+
+	private void validate(final String positive) {
+		if (isNotNumber(positive)) {
+			throw new RuntimeException("숫자가 아닌 문자를 입력할 수 없습니다.");
 		}
-		positive = Integer.parseInt(value);
+		if (isNegative(positive)) {
+			throw new RuntimeException("음수를 입력할 수 없습니다.");
+		}
 	}
 
-	private boolean isNegative(final String value) {
-		return value.charAt(INDEX_OF_MINUS_SIGN) == MINUS_SIGN;
+	private boolean isNegative(final String positive) {
+		return positive.charAt(INDEX_OF_MINUS_SIGN) == MINUS_SIGN;
 	}
 
-	private boolean isNotNumber(final String value) {
-		return value.chars()
+	private boolean isNotNumber(final String positive) {
+		return positive.chars()
 				.anyMatch(ch -> !Character.isDigit(ch));
 	}
 
