@@ -1,5 +1,7 @@
 package racingcar.Controller;
 
+import java.util.InputMismatchException;
+
 public class InputValidation {
 
     public static void checkNullOrEmptyInput(String result) {
@@ -25,6 +27,12 @@ public class InputValidation {
         double value = Double.parseDouble(trialTime);
         if (value > Integer.MAX_VALUE) {
             throw new ArithmeticException("입력 범위를 초과했습니다.");
+        }
+    }
+
+    public static void checkDecimalNumber(String trialTime) {
+        if (trialTime.contains(".")) {
+            throw new InputMismatchException("소수는 입력할 수 없습니다.");
         }
     }
 }

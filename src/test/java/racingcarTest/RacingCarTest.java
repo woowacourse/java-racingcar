@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import racingcar.Controller.InputValidation;
 import racingcar.View.InputView;
 
+import java.util.InputMismatchException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -67,6 +69,17 @@ public class RacingCarTest {
         assertThatThrownBy(() -> {
             String trialTime = "100000000000";
             InputValidation.checkIntegerOverflow(trialTime);
-        });
+        }).isInstanceOf(ArithmeticException.class)
+        .hasMessage("입력 범위를 초과했습니다.");
+    }
+
+    @Test
+    @DisplayName("시도 횟수가 소수인 경우")
+    void inputControl_시도횟수가_소수_입력() {
+        assertThatThrownBy(() -> {
+            String trialTime = "3.5";
+            InputValidation.checkDecimalNumber(trialTime);
+        }).isInstanceOf(InputMismatchException.class)
+        .hasMessage("소수는 입력할 수 없습니다.");
     }
 }
