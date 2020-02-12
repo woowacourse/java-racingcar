@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
-public class RacingCarTest {
+public class InputControlTest {
 
     @Test
     @DisplayName("컴마로 분리")
