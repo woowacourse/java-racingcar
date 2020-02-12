@@ -8,8 +8,15 @@ public class Name {
 	private final String name;
 
 	public Name(final String name) {
+		checkNameEmpty(name);
 		checkNameLength(name);
 		this.name = name;
+	}
+
+	private void checkNameEmpty(String name) {
+		if(name.trim().isEmpty()){
+			throw new IllegalArgumentException("공백인 이름이 있습니다.");
+		}
 	}
 
 	private void checkNameLength(final String name) {

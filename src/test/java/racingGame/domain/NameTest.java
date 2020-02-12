@@ -13,4 +13,13 @@ public class NameTest {
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("이름은 5자이하만 가능합니다.");
 	}
+
+	@Test
+	void checkNameEmpty_자동차_이름이_공백() {
+		final String name = "";
+
+		assertThatThrownBy(() -> new Name(name))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("공백인 이름이 있습니다.");
+	}
 }
