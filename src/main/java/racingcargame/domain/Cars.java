@@ -1,5 +1,7 @@
 package racingcargame.domain;
 
+import racingcargame.genrator.RandomGenerator;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,5 +29,17 @@ public class Cars {
                 .filter(car -> car.isSamePositionWith(position))
                 .map(Car::getName)
                 .collect(Collectors.toList());
+    }
+
+    public void moveFoward(int round) {
+        for (int i = 0; i < round; i++) {
+            moveOneRound();
+        }
+    }
+
+    private void moveOneRound() {
+        for (Car car : cars) {
+            car.move(RandomGenerator.generateRandom());
+        }
     }
 }

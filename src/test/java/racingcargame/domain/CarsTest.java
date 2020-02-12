@@ -39,4 +39,14 @@ public class CarsTest {
         assertThat(cars.getCarsInSamePositionWith(0)).contains("라테");
         assertThat(cars.getCarsInSamePositionWith(0)).contains("포비");
     }
+
+    @Test
+    void 현재_cars를_n회전진() {
+        List<Car> carList = new ArrayList<>();
+        carList.add(new Car("제이"));
+        carList.add(new Car("라테"));
+        carList.add(new Car("포비"));
+        Cars cars = new Cars(carList);
+        cars.moveFoward(5);
+    }
 }
