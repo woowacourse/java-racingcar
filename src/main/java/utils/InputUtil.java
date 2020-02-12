@@ -23,14 +23,4 @@ public class InputUtil {
 
 		return new Cars(carsName);
 	}
-
-	/*
-	 * 입력 테스트용 메서드
-	 */
-	public static Cars createCarsByInput(String input) {
-		List<String> carsName = Arrays.asList(input.replace(SPACE, EMPTY)
-				.split(COMMA, LIMIT));
-
-		return new Cars(carsName);
-	}
 }
