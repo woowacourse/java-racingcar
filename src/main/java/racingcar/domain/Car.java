@@ -29,4 +29,8 @@ public class Car {
     private static boolean isOverLength(String input) {
         return input.length() > MAX_NAME_LENGTH;
     }
+
+    public int getLocation() {
+        return location.getLocation();
+    }
 }

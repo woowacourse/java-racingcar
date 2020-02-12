@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
@@ -19,5 +20,11 @@ public class CarTest {
         assertThatThrownBy(() -> {
             Car.validateNameLength(input);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 위치를_알려주는_기능_테스트() {
+        Car car = new Car("moonui");
+        assertThat(car.getLocation()).isEqualTo(0);
     }
 }

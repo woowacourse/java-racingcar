@@ -6,4 +6,8 @@ public class Location {
     Location() {
         this.location = 0;
     }
+
+    public int getLocation() {
+        return location;
+    }
 }
