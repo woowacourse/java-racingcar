@@ -15,9 +15,7 @@ public class RacingGame {
         return Arrays.asList(names);
     }
 
-    public static void validateInputList(String value) {
-        List<String> names = splitInput(value);
-        names.stream()
-                .forEach((x)->validateInput(x));
+    public static void validateInputList(List<String> values) {
+        values.stream().forEach((x)->validateInput(x));
     }
 }
