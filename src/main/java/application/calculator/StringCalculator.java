@@ -2,8 +2,11 @@ package application.calculator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
+    private static String[] splitString;
     private static List<Integer> numbers = new ArrayList<>();
     private static String delimiter = ",|:";
 
@@ -11,9 +14,19 @@ public class StringCalculator {
         if (isNullOrEmptyText(text)) {
             return 0;
         }
-        String[] splitString = getSplitString(text);
+        splitText(text);
         addNumbers(splitString);
         return calculateNumberSum();
+    }
+
+    private static void splitText(String text) {
+        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
+        if (matcher.find()) {
+            String customDelimiter = matcher.group(1);
+            splitString = matcher.group(2).split(customDelimiter);
+        } else {
+            splitString = text.split(delimiter);
+        }
     }
 
     private static int calculateNumberSum() {
@@ -33,10 +46,6 @@ public class StringCalculator {
 
     private static int getConvertNumber(String string) {
         return Integer.parseInt(string);
-    }
-
-    private static String[] getSplitString(String text) {
-        return text.split(delimiter);
     }
 
     private static boolean isNullOrEmptyText(String text) {
