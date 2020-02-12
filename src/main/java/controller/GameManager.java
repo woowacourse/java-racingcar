@@ -22,9 +22,15 @@ public class GameManager {
         }
     }
 
-    public static void MoveOrStay(Car car, int inputNumber) {
+    public static void moveOrStay(Car car, int inputNumber) {
         if (inputNumber >= 4) {
             car.move();
+        }
+    }
+
+    public static void race(List<Car> cars) {
+        for (Car car : cars) {
+            moveOrStay(car, Dice.makeRandomNumber());
         }
     }
 }

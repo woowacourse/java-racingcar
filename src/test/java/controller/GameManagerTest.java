@@ -37,17 +37,17 @@ public class GameManagerTest {
     @Test
     void MoveOrStay() {
         Car car = new Car("car");
-        GameManager.MoveOrStay(car, 1);
+        GameManager.moveOrStay(car, 1);
         assertThat(car.getPosition()).isEqualTo(0);
 
-        GameManager.MoveOrStay(car, 4);
+        GameManager.moveOrStay(car, 4);
         assertThat(car.getPosition()).isEqualTo(1);
 
-        GameManager.MoveOrStay(car, 4);
+        GameManager.moveOrStay(car, 4);
         assertThat(car.getPosition()).isEqualTo(2);
 
-        GameManager.MoveOrStay(car, 8);
-        GameManager.MoveOrStay(car, 8);
+        GameManager.moveOrStay(car, 8);
+        GameManager.moveOrStay(car, 8);
         assertThat(car.getPosition()).isEqualTo(4);
     }
 }
