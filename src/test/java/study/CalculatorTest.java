@@ -27,6 +27,23 @@ public class CalculatorTest {
 		return Stream.of(
 			Arguments.of("//;\n1;2;3", 6),
 			Arguments.of("//#\n2#3#4", 9),
+			Arguments.of("//-\n2-3-4", 9),
 			Arguments.of("//*\n4*5*6", 15));
+	}
+
+	@ParameterizedTest
+	@MethodSource("wrongInput")
+	public void wrongInputTest(String input) {
+		assertThatThrownBy(() -> Calculator.calculate(input))
+			.isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("잘못 입력");
+	}
+
+	static Stream<Arguments> wrongInput() {
+		return Stream.of(
+			Arguments.of("-1,2:3"),
+			Arguments.of("1,2,dmkf"),
+			Arguments.of("-1,-2,dmkf"),
+			Arguments.of("dsads,qqq,z"));
 	}
 }

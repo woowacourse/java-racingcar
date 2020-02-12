@@ -11,7 +11,9 @@ public class Calculator {
 		input = subStringInput(regex, input);
 
 		return Stream.of(splitAsRegex(regex, input))
+			.filter(Calculator::isNumber)
 			.map(Integer::parseInt)
+			.filter(Calculator::isPositive)
 			.reduce(Integer::sum)
 			.orElse(0);
 	}
@@ -37,4 +39,21 @@ public class Calculator {
 	private static String[] splitAsRegex(String regex, String input) {
 		return input.split("[" + regex + ",:]");
 	}
+
+
+	private static boolean isNumber(String input) {
+		if (input.chars().mapToObj(number -> (char)number).noneMatch(Character::isDigit)) {
+			throw new RuntimeException("잘못 입력하셨습니다.");
+		}
+
+		return true;
+	}
+	private static boolean isPositive(int number) {
+		if (number < 0) {
+			throw new RuntimeException("잘못 입력하셨습니다.");
+		}
+
+		return true;
+	}
+
 }
