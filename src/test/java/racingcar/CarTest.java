@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
-
     Car car = new Car();
+
     @Test
     void 유저들_이름_나누기() {
         //given
@@ -16,4 +16,15 @@ class CarTest {
         //the
         assertThat(car.splitNames(inputNames)).isEqualTo(expectedNameList);
     }
+
+    @Test
+    void 전진() {
+        //given
+        int state = car.getPosition();
+        //when
+        car.moveForward();
+        //then
+        assertThat(car.getPosition()).isEqualTo(state + 1);
+    }
+
 }
