@@ -45,10 +45,7 @@ public class GameManagerTest {
         assertThat(car.getPosition()).isEqualTo(1);
 
         GameManager.moveOrStay(car, 4);
-        assertThat(car.getPosition()).isEqualTo(2);
-
-        GameManager.moveOrStay(car, 8);
-        GameManager.moveOrStay(car, 8);
-        assertThat(car.getPosition()).isEqualTo(4);
+        GameManager.moveOrStay(car, 6);
+        assertThat(car.getPosition()).isEqualTo(3);
     }
 }

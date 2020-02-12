@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameManager {
+    public static final int ZERO = 0;
+    public static final int MIN_MOVE_NUMBER = 4;
     private static List<Car> cars = new ArrayList<>();
     private int round;
 
@@ -33,16 +35,18 @@ public class GameManager {
         setRound();
     }
 
-    private void run() {
-        System.out.println("실행 결과");
-        for (int i = 0; i < round; i++) {
-            race(cars);
-            OutputView.printScore(cars);
+    public static void moveOrStay(Car car, int inputNumber) {
+        if (inputNumber >= MIN_MOVE_NUMBER) {
+            car.move();
         }
     }
 
-    private void setRound() {
-        this.round = InputView.inputCount();
+    private void run() {
+        OutputView.printBeginResult();
+        for (int i = ZERO; i < round; i++) {
+            race(cars);
+            OutputView.printScore(cars);
+        }
     }
 
     public static List<Car> getCarList() {
@@ -55,10 +59,8 @@ public class GameManager {
         }
     }
 
-    public static void moveOrStay(Car car, int inputNumber) {
-        if (inputNumber >= 4) {
-            car.move();
-        }
+    private void setRound() {
+        this.round = InputView.inputRound();
     }
 
     public static void race(List<Car> cars) {

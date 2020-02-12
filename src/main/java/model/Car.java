@@ -3,6 +3,7 @@ package model;
 import java.util.Objects;
 
 public class Car {
+    public static final int ONE_STEP = 1;
     private final String name;
     private int position = 0;
 
@@ -24,7 +25,7 @@ public class Car {
     }
 
     public void move() {
-        position += 1;
+        position += ONE_STEP;
     }
 
     public String getName() {
