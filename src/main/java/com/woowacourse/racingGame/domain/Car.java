@@ -4,19 +4,18 @@ import java.util.Objects;
 
 public class Car {
 	private static final int MOVE_BOUND = 4;
-	private static final int INIT_POSITION = 0;
 
 	private final Name name;
-	private int position;
+	private Position position;
 
 	public Car(Name name) {
-		this.position = INIT_POSITION;
+		this.position = Position.ZERO;
 		this.name = name;
 	}
 
 	public void move(final int randomNumber) {
 		if (isMove(randomNumber)) {
-			this.position++;
+			this.position = this.position.increaseOne();
 		}
 	}
 
@@ -25,15 +24,15 @@ public class Car {
 	}
 
 	public boolean isWinnerPosition(final int winnerPosition) {
-		return this.position == winnerPosition;
+		return this.position.getPosition() == winnerPosition;
 	}
 
 	public int getPosition() {
-		return position;
+		return position.getPosition();
 	}
 
-	public void setPosition(int position) {
-		this.position = position;
+	public void setPosition(final int position) {
+		this.position = new Position(position);
 	}
 
 	@Override
