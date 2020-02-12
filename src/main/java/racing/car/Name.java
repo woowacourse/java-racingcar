@@ -12,14 +12,14 @@ public class Name {
         this.name = input;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validate(String input) {
         if (input.length() > MAXIMUM_LENGTH) {
             throw new IllegalArgumentException(String.format(NAME_LENGTH_EXCEPTION_MESSAGE, input));
         }
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override

@@ -14,6 +14,10 @@ public class Car {
         this.name = name;
     }
 
+    public String getName() {
+        return this.name.getName();
+    }
+
     public int getDistance() {
         return this.distance;
     }
@@ -25,8 +29,8 @@ public class Car {
         }
     }
 
-    public String getName() {
-        return this.name.getName();
+    public boolean isWinner(int distance) {
+        return this.distance == distance;
     }
 
     @Override
@@ -41,13 +45,5 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name, distance);
-    }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "name=" + name +
-                ", distance=" + distance +
-                '}';
     }
 }

@@ -30,7 +30,7 @@ public class CarTest {
         NumberGenerator fixed = new FixedNumberGenerator();
         car.go(fixed);
 
-        assertThat(car.getDistance()).isEqualTo(1);
+        assertThat(car.getDistance()).isEqualTo(2);
     }
 
     @DisplayName("가장 멀리간 차의 거리를 반환하는 메서드 테스트")
@@ -46,6 +46,6 @@ public class CarTest {
 
         Cars cars = new Cars(Arrays.asList(car1, car2, car3));
         //then
-        assertThat(cars.getWinner()).isEqualTo(Arrays.asList(car1, car2));
+        assertThat(cars.getWinner()).isEqualTo(new Winners(Arrays.asList(car1, car2)));
     }
 }

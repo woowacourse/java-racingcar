@@ -12,7 +12,5 @@ public class CarFactory {
                 .map(Name::new)
                 .map(Car::new)
                 .collect(collectingAndThen(toList(), Cars::new));
-
     }
-
 }

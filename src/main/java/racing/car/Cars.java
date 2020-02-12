@@ -2,9 +2,9 @@ package racing.car;
 
 import racing.car.numbergenerator.NumberGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars;
@@ -13,12 +13,30 @@ public class Cars {
         this.cars = cars;
     }
 
-    public int size() {
-        return cars.size();
+    public Winners getWinner() {
+        int max = getMaxDistance();
+        return new Winners(getWinnerByMaxDistance(max));
+    }
+
+    private int getMaxDistance() {
+        return this.cars.stream()
+                .map(Car::getDistance)
+                .max(Integer::compareTo)
+                .orElseThrow(AssertionError::new);
+    }
+
+    private List<Car> getWinnerByMaxDistance(int max) {
+        return this.cars.stream()
+                .filter(car -> car.isWinner(max))
+                .collect(Collectors.toList());
     }
 
     public Car get(int index) {
         return cars.get(index);
+    }
+
+    public int size() {
+        return cars.size();
     }
 
     public void go(NumberGenerator randomNumberGenerator) {
@@ -26,31 +44,6 @@ public class Cars {
             car.go(randomNumberGenerator);
         }
     }
-
-    public List<Car> getWinner() {
-        int max = getMaxDistance();
-        return getWinnerByMaxDistance(max);
-    }
-
-    private int getMaxDistance() {
-        return this.cars.stream()
-                .map(Car::getDistance)
-                .sorted()
-                .unordered()
-                .findFirst()
-                .orElseThrow(AssertionError::new);
-    }
-
-    private List<Car> getWinnerByMaxDistance(int max) {
-        List<Car> result = new ArrayList<>();
-        for (int i = 0; i < size(); i++) {
-            if (max == cars.get(i).getDistance()) {
-                result.add(cars.get(i));
-            }
-        }
-        return result;
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -64,5 +57,4 @@ public class Cars {
     public int hashCode() {
         return Objects.hash(cars);
     }
-
 }
