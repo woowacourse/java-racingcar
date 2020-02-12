@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import racingcar.generator.RandomNumberGenerator;
+import racingcar.message.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class Cars {
     public Car findMaxPositionCar() {
         return cars.stream()
                 .reduce(Car::getBiggerCar)
-                .orElseThrow(() -> new NullPointerException("max position car is null"));
+                .orElseThrow(() -> new NullPointerException(Message.EXCEPTION_CAR_IS_NULL.getMessageText()));
     }
 
     public List<Car> findWinner() {

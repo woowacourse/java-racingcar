@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.message.Message;
+
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
@@ -20,7 +22,7 @@ public class RacingGame {
 
     public RacingGame(Cars cars, int numberOfRound) {
         if (numberOfRound < MINIMUM_NUMBER_OF_ROUND) {
-            throw new IllegalArgumentException("round number must be positive");
+            throw new IllegalArgumentException(Message.EXCEPTION_ROUND_IS_NOT_POSITIVE.getMessageText());
         }
         this.cars = cars;
         this.numberOfRound = numberOfRound;

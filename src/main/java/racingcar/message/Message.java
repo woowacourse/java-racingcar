@@ -1,0 +1,33 @@
+package racingcar.message;
+
+/*
+ * Copyright (c) 2020 by 또동페어
+ * All rights reserved.
+ *
+ * Message.java
+ * 메지시를 저장하는 enum
+ *
+ * @author      또동페어
+ * @version     1.0
+ * @date        12 Feb 2020
+ *
+ */
+public enum Message {
+    INPUT_CAR_NAMES("자동차 이름을 입력하세요 (1 - 5글자) :"),
+    INPUT_NUMBER_OF_ROUND("게임라운드를 입력하세요 :"),
+    EXCEPTION_CAR_IS_NULL("max position car is null"),
+    EXCEPTION_ROUND_IS_NOT_POSITIVE("round number must be positive"),
+    EXCEPTION_NOT_ENOUGH_CAR("car must be at least one"),
+    EXCEPTION_LENGTH_OF_NAME("name must be between 1-5"),
+    EXCEPTION_DUPLICATED_NAME("name can not be duplicated");
+
+    private String messageText;
+
+    Message(String messageText) {
+        this.messageText = messageText;
+    }
+
+    public String getMessageText() {
+        return messageText;
+    }
+}

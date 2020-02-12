@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import racingcar.message.Message;
+
 import java.util.Scanner;
 
 /*
@@ -18,10 +20,12 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String inputCarNames() {
+        System.out.println(Message.INPUT_CAR_NAMES.getMessageText());
         return scanner.nextLine();
     }
 
     public static int inputNumberOfRound() {
+        System.out.println(Message.INPUT_NUMBER_OF_ROUND.getMessageText());
         return scanner.nextInt();
     }
 }
