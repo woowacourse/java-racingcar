@@ -6,16 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class TryCountTest {
-	private static final String NOT_NUMBER_INPUT = "A";
-	private static final String MIXED_INPUT = "A1B2";
-	private static final String ZERO_INPUT = "0";
-
-	@Test
-	void canValidateTryCountForNotNumber() {
-		assertThatIllegalArgumentException().isThrownBy(() ->
-				new TryCount(NOT_NUMBER_INPUT))
-				.withMessage("횟수는 숫자이어야 합니다.");
-	}
+	private static final int ZERO_INPUT = 0;
 
 	@Test
 	void canValidateTryCountForZero() {
@@ -25,23 +16,16 @@ public class TryCountTest {
 	}
 
 	@Test
-	void canValidateTryCountForMixedInput() {
-		assertThatIllegalArgumentException().isThrownBy(() ->
-				new TryCount(MIXED_INPUT))
-				.withMessage("횟수는 숫자이어야 합니다.");
-	}
-
-	@Test
 	void consume() {
-		final TryCount tryCount = new TryCount("2");
+		final TryCount tryCount = new TryCount(2);
 		tryCount.consume();
-		final TryCount expected = new TryCount("1");
+		final TryCount expected = new TryCount(1);
 		assertEquals(expected, tryCount);
 	}
 
 	@Test
 	void isRemain() {
-		final TryCount two = new TryCount("2");
+		final TryCount two = new TryCount(2);
 		assertTrue(two.isRemain());
 		two.consume();
 		assertTrue(two.isRemain());
