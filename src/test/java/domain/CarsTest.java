@@ -28,4 +28,10 @@ public class CarsTest {
         assertThat(cars.getCar(0)).isEqualTo(car1);
         assertThat(cars.getCar(1)).isEqualTo(car2);
     }
+
+    @Test
+    void getMaxPositionTest() {
+        int maxPosition = cars.getMaxPosition();
+        assertThat(maxPosition).isEqualTo(7);
+    }
 }
