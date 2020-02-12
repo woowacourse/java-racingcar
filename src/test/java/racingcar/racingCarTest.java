@@ -2,9 +2,14 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 
+import java.util.Random;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -33,5 +38,27 @@ public class racingCarTest {
             assertTrue(game.checkMove(i));
         }
         assertThat(game.announceWinner().get("hiro")).isEqualTo(6);
+    }
+
+    @ParameterizedTest
+    @DisplayName("car의 전진 여부를 결정하는 난수 범위를 체크한다.")
+    @ValueSource(ints = {10, -1})
+    void randomGeneratorTest(int number) {
+        Game game = new Game(0);
+        Car car = new Car("hiro");
+        Random random = new Random();
+        assertThatThrownBy(() -> {
+            game.checkMove(number);
+        }).isInstanceOf(NumberFormatException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("이름의 5자 제한을 체크하는 부분")
+    @ValueSource(strings = {"abcdef", ""})
+    void checkCarNameException(String name) {
+        assertThatThrownBy(() -> {
+            Car car = new Car(name);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("이름은 1자 이상 5자 이하여야 합니다.");
     }
 }
