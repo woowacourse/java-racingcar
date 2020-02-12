@@ -46,11 +46,15 @@ public class Calculator {
 	}
 
 	private static boolean isNumber(String input) {
-		if (input.chars().mapToObj(number -> (char)number).noneMatch(Character::isDigit)) {
+		if (stringToCharacterStream(input).noneMatch(Character::isDigit)) {
 			throw RUNTIME_EXCEPTION;
 		}
 
 		return true;
+	}
+
+	private static Stream<Character> stringToCharacterStream(String input) {
+		return input.chars().mapToObj(number -> (char)number);
 	}
 
 	private static boolean isPositive(int number) {
