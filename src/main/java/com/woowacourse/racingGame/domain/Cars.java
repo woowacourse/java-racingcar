@@ -2,6 +2,7 @@ package com.woowacourse.racingGame.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Cars {
 	private final List<Car> cars;
@@ -25,5 +26,20 @@ public class Cars {
 
 	public List<Car> getCars() {
 		return cars;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Cars cars = (Cars)o;
+		return Objects.equals(this.cars, cars.cars);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cars);
 	}
 }

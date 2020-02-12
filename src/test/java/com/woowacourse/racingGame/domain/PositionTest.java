@@ -12,4 +12,17 @@ public class PositionTest {
 		assertThatThrownBy(() -> new Position(invalidValue))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
+
+	@Test
+	void increaseOne_위치가_1_증가() {
+		Position value = Position.ZERO;
+		int currentPosition = value.getPosition();
+		value = value.increaseOne();
+
+		final int actual = value.getPosition();
+
+		final int expected = currentPosition + 1;
+
+		assertThat(actual).isEqualTo(expected);
+	}
 }
