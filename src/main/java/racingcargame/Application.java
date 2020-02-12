@@ -15,7 +15,6 @@ public class Application {
         RacingCarGame game = new RacingCarGame();
         String winner = game.run(userInputName, userInputRepeat);
 
-        OutputView.resultInstruction();
         OutputView.winnerInstruction(winner);
     }
 }
