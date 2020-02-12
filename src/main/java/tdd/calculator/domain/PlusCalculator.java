@@ -13,8 +13,7 @@ public class PlusCalculator {
 		if (isBlank(value)) {
 			return DEFAULT_VALUE;
 		}
-		final List<Positive> positives = toPositives(InputUtils.splitValues(value));
-		return sum(positives);
+		return sum(toPositives(InputUtils.split(value)));
 	}
 
 	private static boolean isBlank(final String value) {
