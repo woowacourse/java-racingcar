@@ -19,8 +19,6 @@ public class Cars {
         });
     }
 
-
-
     public LinkedHashMap<String, Integer> notifyStatus() {
         LinkedHashMap<String, Integer> status = new LinkedHashMap<>();
         cars.forEach(car -> {
