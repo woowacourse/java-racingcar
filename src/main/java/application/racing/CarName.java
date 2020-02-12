@@ -19,7 +19,7 @@ public class CarName {
     private void throwExceptionWhenHasDuplicateCarName() {
         Set<String> nonDuplicateName = new HashSet<>(this.carName);
         if (nonDuplicateName.size() != this.carName.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("중복된 자동차 이름을 입력하였습니다.");
         }
     }
 
@@ -32,7 +32,7 @@ public class CarName {
 
     private void throwExceptionWhenNameLengthOverFive(String s) {
         if (s.length() > 5) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("5글자 초과의 자동차 이름을 입력하였습니다.");
         }
     }
 
@@ -44,8 +44,26 @@ public class CarName {
     }
 
     private void throwExceptionWhenInputIsEmptyOrNullOrBlank(String input) {
-        if (input.isEmpty() || input == null || " ".equals(input)) {
-            throw new IllegalArgumentException();
+        if (input.isEmpty() || input == null || isContainBlank(input)) {
+            throw new IllegalArgumentException("공백을 포함한 이름을 입력하였습니다.");
         }
+    }
+
+    private boolean isContainBlank(String input) {
+        String[] splitName = input.split("");
+        for (String s : splitName) {
+            if (isBlankString(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isBlankString(String s) {
+        return " ".equals(s);
+    }
+
+    public List<String> getCarNameList() {
+        return this.carName;
     }
 }

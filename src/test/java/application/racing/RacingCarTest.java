@@ -17,7 +17,7 @@ public class RacingCarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", ",asd", "asdfrq,pobi", "pobi,pobi", "pobi,,crong", "pobi, ,crong"})
+    @ValueSource(strings = {"", ",asd", "asdfrq,pobi", "pobi,pobi", "pobi,,crong", "pobi, ,crong", "  ,pobi"})
     public void validateInputCarNameTest(String input) {
         Assertions.assertThatThrownBy(() -> {
             CarName carName = new CarName(input);
