@@ -1,4 +1,4 @@
-package StringAdder;
+package stringadder;
 
 import org.junit.jupiter.api.Test;
 
