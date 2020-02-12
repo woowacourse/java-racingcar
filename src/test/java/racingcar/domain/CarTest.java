@@ -1,18 +1,21 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
+@DisplayName("자동차 객체 테스트")
 public class CarTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/racingtestcase/illegalCarNameTestcase.csv")
-    public void Car(String testcase) {
-        assertThatThrownBy(() -> {
-            new Car(testcase);
-        }).isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("잘못된 이름으로 객체생성을 시도할 때 테스트")
+    public void illegalCarNameTest(String illegalName) {
+        assertThatThrownBy(() -> new Car(illegalName))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
+
+
+
