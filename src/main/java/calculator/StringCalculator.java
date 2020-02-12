@@ -10,56 +10,69 @@
 
 package calculator;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    private final static String REGEX_NOT_NUMBER = "[^0-9]";
+    private final static String REGEX_CHECK_NOT_NUMBER = "[^0-9]";
     private final static String DELIMITER = ",|:";
     private final static String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
     private final static String HYPHEN = "-";
 
-    public static int splitAndSum(String text) {
-        if (isNullOrBlank(text)) {
+    public static int splitAndSum(String input) {
+        if (isNullOrBlank(input)) {
             return 0;
         }
-        return add(split(text));
+        List<String> inputs = split(input);
+        return addAll(inputs);
     }
 
-    private static boolean isNullOrBlank(String text) {
-        return text == null || text.equals("");
+    private static boolean isNullOrBlank(String input) {
+        return input == null || input.equals("");
     }
 
-    private static void notNaturalNumberException(String text) {
-        if (text.contains(HYPHEN) || text.matches(REGEX_NOT_NUMBER)) {
+    private static List<String> split(String input) {
+        Matcher matcher = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
+        if (matcher.find()) {
+            String customDelimiter = matcher.group(1);
+            input = matcher.group(2);
+            validateNaturalNumberDelimiterMinus(input);
+            return Arrays.asList(input.split(customDelimiter));
+        }
+        return Arrays.asList(input.split(DELIMITER));
+    }
+
+    private static void validateNumber(String input) {
+        if (input.matches(REGEX_CHECK_NOT_NUMBER)) {
             throw new RuntimeException();
         }
     }
 
-    private static int add(String[] inputs) {
+    private static void validateNaturalNumberDelimiterMinus(String input) {
+        if (input.contains(HYPHEN + HYPHEN) || input.charAt(0) + "" == HYPHEN) {
+            throw new RuntimeException();
+        }
+    }
+
+    private static void validateNaturalNumber(String input) {
+        if (input.contains(HYPHEN)) {
+            throw new RuntimeException();
+        }
+        if (input.contains(HYPHEN + HYPHEN) || input.charAt(0) + "" == HYPHEN) {
+            throw new RuntimeException();
+        }
+    }
+
+    private static int addAll(List<String> inputs) {
         int result = 0;
         for (String inputA : inputs) {
-            notNaturalNumberException(inputA);
+            validateNumber(inputA);
+            validateNaturalNumber(inputA);
             result += Integer.parseInt(inputA);
         }
         return result;
-    }
-
-    private static String[] split(String text) {
-        Matcher matcher = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(text);
-        if (matcher.find()) {
-            String customDelimiter = validateNoHyphen(matcher.group(1));
-            text = matcher.group(2);
-            return text.split(customDelimiter);
-        }
-        return text.split(DELIMITER);
-    }
-
-    private static String validateNoHyphen(String delimiter) {
-        if (delimiter.equals(HYPHEN)) {
-            throw new RuntimeException("구분자로 " + HYPHEN + "를 사용하실 수 없습니다.");
-        }
-        return delimiter;
     }
 }
