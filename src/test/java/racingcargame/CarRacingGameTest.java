@@ -1,7 +1,7 @@
-package CarRacingGame;
+package racingcargame;
 
-import domain.Car;
-import domain.RacingCarGame;
+import racingcargame.domain.Car;
+import racingcargame.domain.RacingCarGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

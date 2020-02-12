@@ -1,7 +1,6 @@
-package domain;
+package racingcargame.domain;
 
-import view.InputView;
-import view.OutputView;
+import racingcargame.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,15 +11,10 @@ public class RacingCarGame {
 
     private static final String DELIMITER = ",";
 
-    public void run() {
-        List<Car> cars = setName();
-        int repeat = setRepeat();
-        processGame(repeat, cars);
-        getGameResult(cars);
-    }
-
-    private void getGameResult(List<Car> cars) {
-        OutputView.winnerInstruction(getWinner(cars));
+    public String run(String userInputName, int userInputRepeat) {
+        List<Car> cars = setName(userInputName);
+        processGame(userInputRepeat, cars);
+        return getWinner(cars);
     }
 
     private void processGame(int repeat, List<Car> cars) {
@@ -43,15 +37,8 @@ public class RacingCarGame {
         return (int) (Math.random() * 10);
     }
 
-    private int setRepeat() {
-        OutputView.inputRepeatInstruction();
-        return InputView.inputRepeat();
-    }
-
-    private List<Car> setName() {
-        OutputView.inputNameInstruction();
-        String name = InputView.inputNames();
-        String[] names = splitName(name);
+    private List<Car> setName(String userInput) {
+        String[] names = splitName(userInput);
 
         List<Car> cars = new ArrayList<>();
         for (String n : names) {

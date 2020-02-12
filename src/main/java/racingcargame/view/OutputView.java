@@ -1,6 +1,6 @@
-package view;
+package racingcargame.view;
 
-import domain.Car;
+import racingcargame.domain.Car;
 
 public class OutputView {
 

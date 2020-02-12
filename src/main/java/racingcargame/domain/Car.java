@@ -1,4 +1,4 @@
-package domain;
+package racingcargame.domain;
 
 public class Car implements Comparable<Car> {
     public static final int ZERO = 0;
