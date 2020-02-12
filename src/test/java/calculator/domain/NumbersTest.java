@@ -1,7 +1,8 @@
 package calculator.domain;
 
-import com.sun.tools.javac.util.List;
+
 import org.junit.jupiter.api.Test;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
