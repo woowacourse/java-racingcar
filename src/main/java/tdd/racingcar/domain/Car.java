@@ -1,20 +1,11 @@
 package tdd.racingcar.domain;
 
 public class Car {
-	private static final int MAX_NAME_LENGTH = 5;
-
 	private Position position = new Position(0);
-	private final String name;
+	private final Name name;
 
 	public Car(final String name) {
-		checkValidation(name);
-		this.name = name;
-	}
-
-	private void checkValidation(final String name) {
-		if (name.length() > MAX_NAME_LENGTH) {
-			throw new IllegalArgumentException("이름은 최대 5자까지 가능합니다.");
-		}
+		this.name = new Name(name);
 	}
 
 	public int getPosition() {
@@ -28,7 +19,7 @@ public class Car {
 	}
 
 	public String getName() {
-		return name;
+		return name.getName();
 	}
 
 	public boolean isPosition(final int maxPosition) {
