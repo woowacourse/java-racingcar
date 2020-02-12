@@ -3,7 +3,7 @@ package tdd.racingcar.domain;
 import java.util.Objects;
 
 public class TryCount {
-	private static final int ONE = 1;
+	private static final int MIN = 1;
 
 	private int tryCount;
 
@@ -26,7 +26,7 @@ public class TryCount {
 	}
 
 	private boolean isUnderOne(final String value) {
-		return Integer.parseInt(value) < ONE;
+		return Integer.parseInt(value) < MIN;
 	}
 
 	public void consume() {
@@ -34,7 +34,7 @@ public class TryCount {
 	}
 
 	public boolean isRemain() {
-		return tryCount >= ONE;
+		return tryCount >= MIN;
 	}
 
 	@Override
