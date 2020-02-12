@@ -12,6 +12,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import racing.domain.Car;
+import racing.domain.Cars;
+
 public class CarTest {
 	@Test
 	public void carInitTest() {

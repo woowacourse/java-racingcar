@@ -1,7 +1,9 @@
-package racing;
+package racing.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import racing.view.OutputView;
 
 public class Cars {
 	private List<Car> cars;

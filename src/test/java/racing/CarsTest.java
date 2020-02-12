@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import racing.domain.Car;
+import racing.domain.Cars;
+
 public class CarsTest {
 	@Test
 	public void winnerTest() {

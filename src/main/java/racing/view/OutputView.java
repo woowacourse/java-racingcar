@@ -1,7 +1,9 @@
-package racing;
+package racing.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import racing.domain.Car;
 
 public class OutputView {
 	public static void printRoundPosition(List<Car> cars) {
