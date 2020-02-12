@@ -2,15 +2,30 @@ package controller;
 
 import model.Car;
 import model.Dice;
+import view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameManager {
     private static List<Car> cars = new ArrayList<>();
+    private int round;
 
-    public static String[] nameSplit(String input) {
-        return input.split(",");
+    private static String[] inputCarName() {
+        return InputView.inputCarName();
+    }
+
+    public void startGame() {
+        init();
+    }
+
+    private void init() {
+        setCarList(inputCarName());
+        setRound();
+    }
+
+    private void setRound() {
+        this.round = InputView.inputCount();
     }
 
     public static List<Car> getCarList() {
@@ -34,4 +49,5 @@ public class GameManager {
             moveOrStay(car, Dice.makeRandomNumber());
         }
     }
+
 }

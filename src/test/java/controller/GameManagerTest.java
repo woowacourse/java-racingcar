@@ -3,6 +3,7 @@ package controller;
 import model.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class GameManagerTest {
     @Test
     public void nameSplit() {
         String input = "k3,k5,audi";
-        String[] names = GameManager.nameSplit(input);
+        String[] names = InputView.nameSplit(input);
         assertThat(names).containsExactly("k3", "k5", "audi");
     }
 

@@ -22,6 +22,7 @@ public class WinnerTest {
         GameManager.moveOrStay(cars.get(0), 9);
         GameManager.moveOrStay(cars.get(1), 9);
         GameManager.moveOrStay(cars.get(1), 9);
+        GameManager.moveOrStay(cars.get(1), 9);
     }
 
     @DisplayName("car객체들의 최대 포지션 구하기")

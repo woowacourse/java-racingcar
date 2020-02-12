@@ -4,13 +4,13 @@ import java.util.regex.Pattern;
 
 public class ValidateInput {
 
-    public static boolean checkNameLength(String[] names) {
+    public static String[] validateName(String[] names) {
         for (String name : names) {
             if (name.length() > 5) {
-                return false;
+                throw new IllegalArgumentException();
             }
         }
-        return true;
+        return names;
     }
 
     public static boolean isOverZero(int count) {
