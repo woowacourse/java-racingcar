@@ -1,12 +1,35 @@
 package racingGame;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RacingGame {
 
 
     public static int generateRandom() {
-        int random = (int)(Math.random()*10);
+        int random = new Random().nextInt(10);
         return random;
+    }
+
+    public static List<String> play(Input input) {
+        List<String> names = input.splitInput();
+        int repeat = input.getRepeat();
+
+        List<Car> cars = new ArrayList<>();
+        for (String name : names) {
+            cars.add(new Car(name));
+        }
+        for (int i = 0; i < repeat; i++) {
+            cars.stream().forEach((x) -> {
+                int random = generateRandom();
+                x.move(random);
+            });
+        }
+        List<String> winners = new ArrayList<>();
+        cars.stream().forEach((x) -> {
+            x.addWinnerName(winners);
+        });
+        return winners;
     }
 }

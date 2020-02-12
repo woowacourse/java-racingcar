@@ -1,5 +1,7 @@
 package racingGame;
 
+import java.util.List;
+
 public class Car {
     private static int maxPosition = 0;
     public static final int START_POSITION = 0;
@@ -19,8 +21,8 @@ public class Car {
     public void move(int random) {
         if (random >= 4){
             position++;
-            maxPosition = Integer.max(position, maxPosition);
         }
+        maxPosition = Integer.max(position, maxPosition);
     }
 
     public boolean isWinner() {
@@ -29,5 +31,11 @@ public class Car {
 
     public boolean isSamePosition(int position) {
         return position == this.position;
+    }
+
+    public void addWinnerName(List<String> winners){
+        if(isWinner()){
+            winners.add(this.name);
+        }
     }
 }

@@ -57,5 +57,8 @@ public class Input {
             throw new IllegalArgumentException("횟수는 1이상의 정수만 가능합니다.");
         }
     }
+    public int getRepeat(){
+        return repeat;
+    }
 
 }

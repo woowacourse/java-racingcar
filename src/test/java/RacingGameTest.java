@@ -67,5 +67,9 @@ public class RacingGameTest {
         Assertions.assertThat(chkWinner).isEqualTo(false);
     }
 
-
+    @Test
+    void 게임_진행_테스트(){
+        List<String> winners = RacingGame.play(input);
+        Assertions.assertThat(winners).containsAnyOf("pobi", "crong", "honux");
+    }
 }
