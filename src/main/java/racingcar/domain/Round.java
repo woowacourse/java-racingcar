@@ -4,7 +4,7 @@ public class Round {
     private static final int ZERO = 0;
     private int round;
 
-    Round(String input) {
+    public Round(String input) {
         int temp = validateIsNumber(input);
         validateIsNegativeNumber(temp);
         this.round = temp;
@@ -22,5 +22,13 @@ public class Round {
 
     private static boolean isNotPositiveNumber(int parsedNumber) {
         return parsedNumber <= ZERO;
+    }
+
+    public boolean isGoing() {
+        if (round > 0) {
+            round--;
+            return true;
+        }
+        return false;
     }
 }
