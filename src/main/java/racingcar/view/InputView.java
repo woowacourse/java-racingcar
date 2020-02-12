@@ -5,10 +5,9 @@ import java.util.Scanner;
 public class InputView {
     private Scanner scanner = new Scanner(System.in);
 
-    public String getCarNames() {
+    public String[] getCarNames() {
         //input에 대한 vali view
         //값에 대한 검증
-        //빈약한 도메인과 풍부한 도메인
 
         String input = "";
         try{
@@ -17,10 +16,10 @@ public class InputView {
             System.err.println(e.getMessage());
             getCarNames();
         }
-        return input;
+        return splitName(input);
     }
 
-    public String getGameCounts() {
+    public int getGameCounts() {
         String input = "";
         try {
             input = enterGameCounts();
@@ -28,7 +27,7 @@ public class InputView {
             System.err.println(e.getMessage());
             getGameCounts();
         }
-        return input;
+        return Integer.parseInt(input);
     }
 
     private String enterGameCounts() throws Exception {

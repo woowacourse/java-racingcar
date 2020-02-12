@@ -22,4 +22,13 @@ public class CarTest {
         Car car = new Car("pobi");
         assertThat(car.movePosition(3)).isEqualTo(0);
     }
+
+    @Test
+    void 진행상황_출력() {
+        Car car = new Car("pobi");
+        car.movePosition(5);
+        car.movePosition(5);
+        car.movePosition(5);
+        assertThat(car.currntPositon()).isEqualTo("pobi : ---");
+    }
 }

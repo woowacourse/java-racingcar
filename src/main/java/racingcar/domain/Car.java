@@ -1,6 +1,8 @@
 package racingcar.domain;
 
 public class Car {
+    public static final String POSITION_MARK = "-";
+
     private String name;
     private int position;
 
@@ -23,4 +25,13 @@ public class Car {
         }
         return this.position;
     }
+
+    public String currntPositon() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0 ; i < this.position ; i++) {
+            stringBuilder.append(POSITION_MARK);
+        }
+        return this.name +  " : " + stringBuilder;
+    }
+
 }
