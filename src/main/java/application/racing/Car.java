@@ -10,9 +10,13 @@ public class Car {
     }
 
     public void moveCarWhenNumberOverFour(int number) {
-        if (number >= 4) {
+        if (isNumberOverFour(number)) {
             this.position = this.position + 1;
         }
+    }
+
+    private boolean isNumberOverFour(int number) {
+        return number >= 4;
     }
 
     public int getPosition() {
