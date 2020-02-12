@@ -64,4 +64,11 @@ public class StringCalculatorTest {
         assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() -> stringCalculator.add("haha"));
     }
+
+    @Test
+    void 덧셈_음수의_값이_들어갔을_때() {
+        StringCalculator stringCalculator = new StringCalculator();
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> stringCalculator.add("-1"));
+    }
 }
