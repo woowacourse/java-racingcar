@@ -25,7 +25,8 @@ public class Application {
         int numberOfRound = InputView.inputNumberOfRound();
         Round round = new Round(numberOfRound);
         OutputView.printGameResultMessage();
-        for (int i = 0; i < round.getNumberOfRound(); i++) {
+        while (!round.isFinalRound()) {
+            round.goNextRound();
             cars.run();
             OutputView.printRoundResult(cars);
         }
