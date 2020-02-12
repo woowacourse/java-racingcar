@@ -12,7 +12,9 @@ package racingcar.splitter;/*
  */
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class NameSplitter {
@@ -31,6 +33,10 @@ public class NameSplitter {
 			if (name.length() < MINIMUM_LENGTH_OF_NAME || name.length() > MAXIMUM_LENGTH_OF_NAME) {
 				throw new IllegalArgumentException("name must be between 1-5");
 			}
+		}
+		Set<String> tmpNameSet = new HashSet<>(names);
+		if (tmpNameSet.size() != names.size()) {
+			throw new IllegalArgumentException("name can not be duplicated");
 		}
 		return names;
 	}

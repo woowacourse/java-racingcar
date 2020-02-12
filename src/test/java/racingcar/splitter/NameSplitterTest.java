@@ -48,4 +48,14 @@ public class NameSplitterTest {
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("name must be between 1-5");
 	}
+
+	@DisplayName("같은 이름이 2개이상 존재하는 경우")
+	@ParameterizedTest
+	@ValueSource(strings = {"콘,네오,콘", "또링,또링,또링"})
+	void Should_exception_When_duplicateNames(String input) {
+		Assertions.assertThatThrownBy(() -> NameSplitter.split(input))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("name can not be duplicated");
+	}
+
 }
