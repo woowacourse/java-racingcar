@@ -10,6 +10,8 @@ public class InputUtils {
 	private static final int DELIMITER_INDEX = 1;
 	private static final String CONCATENATOR = "|";
 
+	private InputUtils() {}
+
 	public static String[] split(final String value) {
 		final Matcher matcher = PATTERN.matcher(value);
 		final boolean hasCustomDelimiter = matcher.find();

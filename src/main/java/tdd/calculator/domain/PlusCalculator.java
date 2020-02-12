@@ -9,6 +9,8 @@ import tdd.calculator.util.InputUtils;
 public class PlusCalculator {
 	private static final int DEFAULT_VALUE = 0;
 
+	private PlusCalculator() {}
+
 	public static int calculate(final String value) {
 		if (isBlank(value)) {
 			return DEFAULT_VALUE;
