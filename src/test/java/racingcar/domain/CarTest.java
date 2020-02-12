@@ -11,4 +11,9 @@ public class CarTest {
         assertThat(car.getName()).isEqualTo("pobi");
     }
 
+    @Test
+    void 전진하기() {
+        Car car = new Car("pobi");
+        assertThat(car.movePosition()).isEqualTo(1);
+    }
 }
