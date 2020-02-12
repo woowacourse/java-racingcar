@@ -21,6 +21,7 @@ public class Application {
     public static void main(String[] args) {
         List<String> carNames = inputCarNames();
         int tryCount = inputTryCount();
+
     }
 
     private static List<String> inputCarNames() {
@@ -28,8 +29,8 @@ public class Application {
             try {
                 OutputView.printInputCarNames();
                 String carName = InputView.input();
-                CarNames.setCarNames(carName);
-                return CarNames.getCarNames();
+                CarNames carNames = new CarNames(carName);
+                return carNames.getCarNames();
             } catch (IllegalArgumentException ioe) {
                 OutputView.printString(ioe.getMessage());
             }
@@ -40,9 +41,9 @@ public class Application {
         while (true) {
             try {
                 OutputView.printInputTryCount();
-                String tryCount = InputView.input();
-                TryCount.setTryCount(tryCount);
-                return TryCount.getTryCount();
+                String count = InputView.input();
+                TryCount tryCount = new TryCount(count);
+                return tryCount.getTryCount();
             } catch (Exception e) {
                 OutputView.printString(e.getMessage());
             }

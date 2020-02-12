@@ -33,8 +33,8 @@ public class CarNamesTest {
     @Test
     void split() throws Exception {
         String input = "aaa,bbb,ccc,ddd";
-        new CarNames(input);
-        List<String> inputList = CarNames.getInputs();
+        CarNames car = new CarNames(input);
+        List<String> inputList = car.getCarNames();
         assertThat(inputList.get(0)).isEqualTo("aaa");
         assertThat(inputList.get(1)).isEqualTo("bbb");
         assertThat(inputList.get(2)).isEqualTo("ccc");

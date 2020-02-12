@@ -17,14 +17,11 @@ public class CarNames {
 
     private final static String BLANK = " ";
     private final static String DELIMITER = ",";
-    private static List<String> carNames;
+    private List<String> carNames;
 
-    public static void setCarNames(String input) throws IllegalArgumentException {
+    public CarNames(String input) throws IllegalArgumentException {
         validateHasBlank(input);
         carNames = split(input);
-        for (String carName : carNames) {
-            validateNameLength(carName);
-        }
     }
 
     private static void validateHasBlank(String input) {
@@ -40,10 +37,14 @@ public class CarNames {
     }
 
     private static List<String> split(String input) {
-        return Arrays.asList(input.split(DELIMITER));
+        List<String> inputs = Arrays.asList(input.split(DELIMITER));
+        for (String carName : inputs) {
+            validateNameLength(carName);
+        }
+        return inputs;
     }
 
-    public static List<String> getCarNames() {
+    public List<String> getCarNames() {
         return carNames;
     }
 }
