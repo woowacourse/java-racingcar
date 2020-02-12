@@ -9,14 +9,7 @@ public class StringCalculator {
         }
 
         String[] splittedWordsWithComma = numberExpression.split(",");
-        List<String> notSplittedWordsWithComma = new ArrayList<>();
-        for (String spllitedWordWithComma : splittedWordsWithComma) {
-            boolean isAdded = addNumber(spllitedWordWithComma);
-            if (isAdded) {
-                continue;
-            }
-            notSplittedWordsWithComma.add(spllitedWordWithComma);
-        }
+        List<String> notSplittedWordsWithComma = addNumbersSplittedWithComma(splittedWordsWithComma);
 
         for (String notSpllitedWordWithComma : notSplittedWordsWithComma) {
             String[] splittedWordsWithCollon = notSpllitedWordWithComma.split(":");
@@ -27,6 +20,22 @@ public class StringCalculator {
 
 
         return result;
+    }
+
+    private List<String> addNumbersSplittedWithComma(String[] splittedWordsWithComma) {
+
+        List<String> notSplittedWordsWithComma = new ArrayList<>();
+
+        for (String splittedWordWithComma : splittedWordsWithComma) {
+            boolean isAdded = addNumber(splittedWordWithComma);
+            if (isAdded) {
+                continue;
+            }
+            notSplittedWordsWithComma.add(splittedWordWithComma);
+        }
+
+        return notSplittedWordsWithComma;
+
     }
 
     private boolean addNumber(String splittedWord) {
