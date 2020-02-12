@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Car {
     public static final String DELIMITER = ",";
+    public static final int CRITERIA = 4;
 
     private int position;
 
@@ -19,5 +20,11 @@ public class Car {
 
     public void moveForward() {
         position++;
+    }
+
+    public void moveCarAccordingToCondition(int randomValue) {
+        if (randomValue >= CRITERIA) {
+            moveForward();
+        }
     }
 }

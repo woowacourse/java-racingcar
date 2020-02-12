@@ -27,4 +27,14 @@ class CarTest {
         assertThat(car.getPosition()).isEqualTo(state + 1);
     }
 
+    @Test
+    void 랜덤값이_4인경우_전진() {
+        //given
+        int value = 4;
+        int state = car.getPosition();
+        //when
+        car.moveCarAccordingToCondition(value);
+        //then
+        assertThat(car.getPosition()).isEqualTo(state + 1);
+    }
 }
