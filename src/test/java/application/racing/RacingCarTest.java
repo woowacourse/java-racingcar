@@ -21,4 +21,13 @@ public class RacingCarTest {
             CarName carName = new CarName(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"","a","-1","a,sd,fd"})
+    public void validateInputRacingLab(String input) {
+        Assertions.assertThatThrownBy(() -> {
+            RacingLab racingLab = new RacingLab(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
