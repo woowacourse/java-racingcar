@@ -22,7 +22,7 @@ public class CarsTest {
 
 	@ParameterizedTest
 	@MethodSource("generateInput_최소_대수")
-	void 소_자동차_대수(List<String> input) {
+	void 최소_자동차_대수(List<String> input) {
 		assertThatThrownBy(() -> new Cars(input))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("자동차는 최소 2대 이상이어야 합니다.");
