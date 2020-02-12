@@ -8,11 +8,11 @@ public class TryCount {
 	private int tryCount;
 
 	public TryCount(final String value) {
-		checkValidationFor(value);
+		checkValidationOf(value);
 		tryCount = Integer.parseInt(value);
 	}
 
-	private void checkValidationFor(final String value) {
+	private void checkValidationOf(final String value) {
 		if (isNotNumber(value)) {
 			throw new IllegalArgumentException("횟수는 숫자이어야 합니다.");
 		}
