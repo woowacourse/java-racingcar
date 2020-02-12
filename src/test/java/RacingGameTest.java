@@ -32,4 +32,20 @@ public class RacingGameTest {
             RacingGame.validateInputList(list);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageMatching("이름의 길이는 1자 이상, 5자 이하만 가능합니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"ABC","2147483649"})
+    void 횟수_입력시_타입_검증(String value){
+        Assertions.assertThatThrownBy(()-> {
+                    RacingGame.validateInputNumberType(value);
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageMatching("횟수는 1이상의 정수만 가능합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-100", "0"})
+    void 횟수_음수_입력시_예외검증(String value){
+        Assertions.assertThatThrownBy(()-> {
+            RacingGame.validateInputNumberType(value);
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageMatching("횟수는 1이상의 정수만 가능합니다.");
+    }
 }
