@@ -2,7 +2,12 @@ package study;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class CalculatorTest {
 	@Test
@@ -11,9 +16,17 @@ public class CalculatorTest {
 		assertThat(result).isEqualTo(6);
 	}
 
-	@Test
-	public void customAdd() {
-		int result = Calculator.calculate("//;\n1;2;3");
-		assertThat(result).isEqualTo(6);
+	@ParameterizedTest
+	@MethodSource("generateInput")
+	public void customAdd(String input, int expected) {
+		int result = Calculator.calculate(input);
+		assertThat(result).isEqualTo(expected);
+	}
+
+	static Stream<Arguments> generateInput() {
+		return Stream.of(
+			Arguments.of("//;\n1;2;3", 6),
+			Arguments.of("//#\n2#3#4", 9),
+			Arguments.of("//*\n4*5*6", 15));
 	}
 }
