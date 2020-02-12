@@ -26,4 +26,8 @@ public class Cars {
                 .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
     }
+
+    public int getSize() {
+        return cars.size();
+    }
 }

@@ -26,4 +26,8 @@ public class AttemptNumber {
             throw new IllegalArgumentException(NOT_POSITIVE_MESSAGE);
         }
     }
+
+    public int getNumber() {
+        return this.number;
+    }
 }
