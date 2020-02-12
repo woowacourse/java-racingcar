@@ -1,14 +1,23 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Cars {
-    private List<Car> cars;
+    private final List<Car> cars;
 
     Cars(String names) {
-        validateNames(names);
+        List<Car> cars = new ArrayList<>();
 
+        validateNames(names);
+        validateDuplicatedNames(names);
+
+        for (String name : names.split(",")) {
+            cars.add(new Car(name));
+        }
+
+        this.cars = cars;
     }
 
     public static void validateNames(String input) throws IllegalArgumentException {

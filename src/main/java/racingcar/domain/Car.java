@@ -3,6 +3,16 @@ package racingcar.domain;
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
 
+    private final Name name;
+    private Location location;
+
+    public Car(String name) {
+        validateEmptyName(name);
+        validateNameLength(name);
+
+        this.name = new Name(name);
+    }
+
     public static void validateEmptyName(String input) throws IllegalArgumentException {
         if (input.isEmpty()) {
             throw new IllegalArgumentException();
