@@ -2,6 +2,7 @@ package racingcar.domain;
 
 public class Car {
     public static final int CRITERIA = 4;
+    public static final int MAXIMUM_NAME = 5;
 
     private String name;
     private int position;
@@ -11,8 +12,8 @@ public class Car {
         position = 0;
     }
 
-    public void movePositionAccordingToCondition(int value) {
-        if (value >= CRITERIA) {
+    public void movePositionAccordingToCondition(int randomValue) {
+        if (randomValue >= CRITERIA) {
             move();
         }
     }
@@ -27,5 +28,9 @@ public class Car {
 
     public String getName() {
         return name;
+    }
+
+    public boolean hasOverFiveCharacterName() {
+        return name.length() > MAXIMUM_NAME;
     }
 }

@@ -3,18 +3,44 @@
   <component name="ChangeListManager">
     <list default="true" id="1cf1431f-eb1d-465a-b3ce-daa02bf592a6" name="Default Changelist" comment="feat : Throw runtime exception in case that input has negative number and something not number">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/racingcar/CarRacing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/racingcar/CarRacing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/racingcar/domain/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/racingcar/domain/Car.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/racingcar/domain/Cars.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/racingcar/domain/Cars.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/racingcar/CarRacingTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/racingcar/CarRacingTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/racingcar/domain/CarsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/racingcar/domain/CarsTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/racingcar/utils/RandomConstructor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/racingcar/utils/RandomConstructor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/racingcar/view/OutputView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/racingcar/view/OutputView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/racingcar/CarRacing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/racingcar/CarRacing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/racingcar/domain/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/racingcar/domain/Car.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/racingcar/domain/Cars.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/racingcar/domain/Cars.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/racingcar/utils/RandomConstructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/racingcar/utils/RandomConstructor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/racingcar/view/OutputView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/racingcar/view/OutputView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/calculator/ApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/calculator/ApplicationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/calculator/domain/DelimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/calculator/domain/DelimiterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/calculator/domain/NumbersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/calculator/domain/NumbersTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/calculator/domain/StringAdditionCalculatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/calculator/domain/StringAdditionCalculatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/racingcar/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/racingcar/CarRacingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/racingcar/CarRacingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/racingcar/domain/CarTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/racingcar/domain/CarTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/racingcar/domain/CarsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/racingcar/domain/CarsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/racingcar/view/InputViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/racingcar/view/InputViewTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -74,6 +100,7 @@
       <recent name="calculator.domain" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hongbin\Desktop\dev\java-racingcar" />
       <recent name="C:\Users\hongbin\Desktop\dev\java-racingcar\src\test\java\racingcar" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -88,7 +115,7 @@
       <recent name="view" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CarsTest.validateCars (2)">
+  <component name="RunManager" selected="Application.CarRacing">
     <configuration name="CarRacing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="racingcar.CarRacing" />
       <module name="java-racingcar.main" />
@@ -188,10 +215,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CarRacing" />
         <item itemvalue="JUnit.CarsTest.validateCars (2)" />
         <item itemvalue="JUnit.CarsTest.validateCars (1)" />
         <item itemvalue="JUnit.CarsTest.validateCars" />
-        <item itemvalue="Application.CarRacing" />
         <item itemvalue="JUnit.CarRacingTest.validatePositiveNumber" />
       </list>
     </recent_temporary>
@@ -209,7 +236,7 @@
       <workItem from="1581389409204" duration="19745000" />
       <workItem from="1581419323832" duration="3000" />
       <workItem from="1581429511176" duration="836000" />
-      <workItem from="1581470599264" duration="18157000" />
+      <workItem from="1581470599264" duration="24204000" />
     </task>
     <task id="LOCAL-00001" summary="feat : Return result of addition">
       <created>1581396661606</created>
@@ -257,6 +284,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="560" y="292" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.824@0.0.1536.824" timestamp="1581407044132" />
+    <state x="484" y="115" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog" timestamp="1581502586232">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="484" y="115" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.0.1536.824@0.0.1536.824" timestamp="1581502586232" />
     <state x="456" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581483048084">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -269,38 +300,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="327" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581490811498" />
-    <state width="746" height="210" key="GridCell.Tab.0.bottom" timestamp="1581493871609">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1581503195490">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581493871609" />
-    <state width="746" height="210" key="GridCell.Tab.0.center" timestamp="1581493871608">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581503195490" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1581503195490">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581493871608" />
-    <state width="746" height="210" key="GridCell.Tab.0.left" timestamp="1581493871608">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581503195490" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1581503195490">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581493871608" />
-    <state width="746" height="210" key="GridCell.Tab.0.right" timestamp="1581493871609">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581503195490" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1581503195490">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581493871609" />
-    <state width="746" height="261" key="GridCell.Tab.1.bottom" timestamp="1581486140786">
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581503195490" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1581502735692">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581486140786" />
-    <state width="746" height="261" key="GridCell.Tab.1.center" timestamp="1581486140785">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581502735692" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1581502735692">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1581486140785" />
-    <state width="746" height="261" key="GridCell.Tab.1.left" timestamp="1581486140785">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1581502735692" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1581502735692">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1581486140785" />
-    <state width="746" height="261" key="GridCell.Tab.1.right" timestamp="1581486140785">
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1581502735692" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1581502735692">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1581486140785" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1581502735692" />
     <state x="584" y="347" key="ReplaceDuplicatesPrompt" timestamp="1581405014746">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -321,17 +352,17 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="580" y="96" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1581490985139" />
-    <state x="499" y="166" width="538" height="500" key="extract.method.dialog" timestamp="1581405012846">
+    <state x="499" y="166" width="538" height="500" key="extract.method.dialog" timestamp="1581502624425">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="166" width="538" height="500" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1581405012846" />
+    <state x="499" y="166" width="538" height="500" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1581502624425" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1581483743516">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1581483743516" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1581476066332">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1581498963879">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581476066332" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581498963879" />
   </component>
 </project>
