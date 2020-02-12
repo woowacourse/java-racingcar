@@ -14,4 +14,12 @@ public class ValidateInputTest {
         boolean result = ValidateInput.checkNameLength(name);
         assertThat(result).isFalse();
     }
+
+    @DisplayName("입력한 숫자가 0보다 큰지 확인")
+    @Test
+    void isOverZero() {
+        int count = -1;
+        boolean result = ValidateInput.isOverZero(count);
+        assertThat(result).isFalse();
+    }
 }

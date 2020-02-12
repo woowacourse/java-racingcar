@@ -10,4 +10,8 @@ public class ValidateInput {
         }
         return true;
     }
+
+    public static boolean isOverZero(int count) {
+        return count > 0;
+    }
 }
