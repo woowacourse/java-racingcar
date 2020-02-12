@@ -6,11 +6,12 @@ public class Car {
     private final Name name;
     private Location location;
 
-    public Car(String name) {
+    Car(String name) {
         validateEmptyName(name);
         validateNameLength(name);
 
         this.name = new Name(name);
+        this.location = new Location();
     }
 
     public static void validateEmptyName(String input) throws IllegalArgumentException {
