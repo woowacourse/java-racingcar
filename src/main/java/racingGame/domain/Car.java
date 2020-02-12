@@ -10,14 +10,14 @@ public class Car {
 		this.position = INIT_POSITION;
 	}
 
-	public boolean isMove(final int randomNumber) {
-		return randomNumber >= MOVE_BOUND;
-	}
-
-	public void move(final boolean carMove) {
-		if (carMove) {
+	public void move(final int randomNumber) {
+		if (isMove(randomNumber)) {
 			this.position++;
 		}
+	}
+
+	private boolean isMove(final int randomNumber) {
+		return randomNumber >= MOVE_BOUND;
 	}
 
 	public int getPosition() {

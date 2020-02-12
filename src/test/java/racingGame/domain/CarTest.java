@@ -16,25 +16,24 @@ public class CarTest {
 	}
 
 	@Test
-	void isMove_랜덤_값이_3_이하() {
+	void move_랜덤_값이_3_이하() {
 		final int stoppedRandomNumber = 3;
-
-		assertThat(car.isMove(stoppedRandomNumber)).isFalse();
-	}
-
-	@Test
-	void isMove_랜덤_값이_4_이상() {
-		final int movedRandomNumber = 5;
-
-		assertThat(car.isMove(movedRandomNumber)).isTrue();
-	}
-
-	@Test
-	void move_이동을_해야하는_상태() {
 		final int initPosition = car.getPosition();
-		final boolean moveStatus = true;
 
-		car.move(moveStatus);
+		car.move(stoppedRandomNumber);
+		final int actual = car.getPosition();
+
+		final int expected = initPosition;
+
+		assertThat(actual).isEqualTo(expected);
+	}
+
+	@Test
+	void move_랜덤_값이_4_이상() {
+		final int movedRandomNumber = 7;
+		final int initPosition = car.getPosition();
+
+		car.move(movedRandomNumber);
 		final int actual = car.getPosition();
 
 		final int expected = initPosition + MOVING_UNIT;
