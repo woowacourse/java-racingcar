@@ -24,14 +24,16 @@ public class InputViewTest {
 
 	@ParameterizedTest
 	@MethodSource("generateInput")
-	public void checkMaxLengthTest(List<String> input, boolean expected) {
-		assertThat(InputView.checkMaxLength(input)).isEqualTo(expected);
+	public void checkLengthTest(List<String> input, boolean expected) {
+		assertThat(InputView.checkLength(input)).isEqualTo(expected);
 	}
 
 	static Stream<Arguments> generateInput() {
 		return Stream.of(
 			Arguments.of(Arrays.asList("ABCDEF", "B", "C"), false),
 			Arguments.of(Arrays.asList("A", "B", "ABCDEF"), false),
+			Arguments.of(Arrays.asList("A", "B", ""), false),
+			Arguments.of(Arrays.asList(""), false),
 			Arguments.of(Arrays.asList("A", "B", "C"), true));
 	}
 }

@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+	public static final int MAX_LENGTH = 5;
+	public static final int MIN_LENGTH = 1;
+
 	public Scanner input() {
 		return new Scanner(System.in);
 	}
@@ -23,7 +26,11 @@ public class InputView {
 		return Arrays.asList(value.split(","));
 	}
 
-	public static boolean checkMaxLength(List<String> input) {
-		return input.stream().allMatch(x -> x.length() <= 5);
+	public static boolean checkLength(List<String> input) {
+		return input.stream().allMatch(InputView::isRightLength);
+	}
+
+	private static boolean isRightLength(String input) {
+		return input.length() >= MIN_LENGTH && input.length() <= MAX_LENGTH;
 	}
 }
