@@ -1,10 +1,7 @@
 package racingcar;
 
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.io.userInput;
-
-import java.util.List;
 
 import static racingcar.Utils.enrollCars;
 import static racingcar.Utils.splitCarsName;

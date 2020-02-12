@@ -7,7 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.io.consoleOutput;
 
 import java.util.LinkedHashMap;
 import java.util.Random;

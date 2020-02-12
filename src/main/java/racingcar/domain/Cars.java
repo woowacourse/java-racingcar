@@ -1,12 +1,9 @@
 package racingcar.domain;
 
 import racingcar.util.NumberGenerator;
-import racingcar.util.RandomNumberGenerator;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import static racingcar.Utils.checkMove;
 

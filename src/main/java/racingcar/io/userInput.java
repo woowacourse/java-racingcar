@@ -1,8 +1,5 @@
 package racingcar.io;
 
-import racingcar.domain.Car;
-
-import java.util.List;
 import java.util.Scanner;
 
 public class userInput {
@@ -17,6 +14,4 @@ public class userInput {
         System.out.println("시도할 횟수는 몇 회인가요?");
         return scanner.nextInt();
     }
-
-
 }

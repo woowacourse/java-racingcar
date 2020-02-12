@@ -4,7 +4,10 @@ import racingcar.domain.Cars;
 import racingcar.io.consoleOutput;
 import racingcar.util.RandomNumberGenerator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Game {
 
@@ -35,8 +38,8 @@ public class Game {
                 maxValue = position;
             }
         }
-        for(String name : finalStatus.keySet()) {
-            if(finalStatus.get(name).equals(maxValue)) {
+        for (String name : finalStatus.keySet()) {
+            if (finalStatus.get(name).equals(maxValue)) {
                 winners.add(name);
             }
         }
