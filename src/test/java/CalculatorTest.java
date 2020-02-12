@@ -9,6 +9,7 @@ public class CalculatorTest {
         int result = stringCalculator.add("1,2");
         assertThat(result).isEqualTo(3);
 
+        stringCalculator = new StringCalculator();
         result = stringCalculator.add("4,5");
         assertThat(result).isEqualTo(9);
     }
@@ -19,6 +20,7 @@ public class CalculatorTest {
         int result = stringCalculator.add("1:2");
         assertThat(result).isEqualTo(3);
 
+        stringCalculator = new StringCalculator();
         result = stringCalculator.add("4:5");
         assertThat(result).isEqualTo(9);
     }
@@ -50,6 +52,7 @@ public class CalculatorTest {
         int result = stringCalculator.add("1,2:3");
         assertThat(result).isEqualTo(6);
 
+        stringCalculator = new StringCalculator();
         result = stringCalculator.add("1,2:3:4,5");
         assertThat(result).isEqualTo(15);
     }
