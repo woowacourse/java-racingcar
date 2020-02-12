@@ -36,7 +36,7 @@ public class Car implements Comparable<Car> {
 
 	public String getCoWinnersName(Car anotherCar) {
 		if (isOnSamePosition(anotherCar)) {
-			return name;
+			return anotherCar.name;
 		}
 		return null;
 	}

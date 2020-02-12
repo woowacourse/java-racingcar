@@ -42,7 +42,7 @@ public class Cars {
 		List<String> winner = new ArrayList<>();
 		Car max = getCarOnMaxPosition();
 		for (Car car : cars) {
-			winner.add(car.getCoWinnersName(max));
+			winner.add(max.getCoWinnersName(car));
 		}
 		return winner;
 	}
