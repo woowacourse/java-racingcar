@@ -7,10 +7,14 @@ public class Player {
         this.name = name;
     }
 
-    public void play() {
-        if(RandomGenerator.decideGoOrStop()) {
-            position += 1;
+    public void play(boolean shouldGo) {
+        if(shouldGo) {
+            goOneStep();
         }
+    }
+
+    private void goOneStep() {
+        position += 1;
     }
 
     public int getPosition() {
