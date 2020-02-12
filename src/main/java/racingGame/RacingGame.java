@@ -20,6 +20,7 @@ public class RacingGame {
         for (String name : names) {
             cars.add(new Car(name));
         }
+        OutputView.printResultFormat();
         for (int i = 0; i < repeat; i++) {
             cars.stream().forEach((x) -> {
                 int random = generateRandom();

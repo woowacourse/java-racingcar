@@ -1,5 +1,7 @@
 package racingGame;
 
+import java.util.List;
+
 public class Output {
     public static void makeCarLog(String name, int position){
         StringBuilder log = new StringBuilder(name);
@@ -8,5 +10,10 @@ public class Output {
             log.append("-");
         }
         OutputView.printLog(log.toString());
+    }
+
+    public static void makeWinnerNames(List<String> names){
+        String winnerNames = String.join(",", names);
+        OutputView.printWinners(winnerNames);
     }
 }
