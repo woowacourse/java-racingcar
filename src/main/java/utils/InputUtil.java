@@ -1,6 +1,7 @@
 package utils;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class InputUtil {
@@ -12,10 +13,18 @@ public class InputUtil {
 		List<String> cars = Arrays.asList(input.replace(SPACE, EMPTY)
 				.split(COMMA));
 
-		validateCarNameLength(cars);
+		validateLengthOfCarName(cars);
+		validateDuplicateCarName(cars);
 	}
 
-	private static void validateCarNameLength(List<String> cars) {
+	private static void validateDuplicateCarName(List<String> cars) {
+		if (!cars.stream()
+			.allMatch(new HashSet<>()::add)) {
+			throw new IllegalArgumentException("중복된 이름이 존재합니다.");
+		}
+	}
+
+	private static void validateLengthOfCarName(List<String> cars) {
 		cars.stream()
 				.filter(name -> (name.length() < 1) || (name.length() > 5))
 				.findFirst()
