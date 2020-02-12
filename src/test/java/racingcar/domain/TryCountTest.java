@@ -34,6 +34,4 @@ public class TryCountTest {
         assertThatThrownBy(() -> new TryCount(input)).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("숫자");
     }
-
-
 }

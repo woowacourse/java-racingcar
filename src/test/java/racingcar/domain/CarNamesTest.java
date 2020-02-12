@@ -40,4 +40,12 @@ public class CarNamesTest {
         assertThat(inputList.get(2)).isEqualTo("ccc");
         assertThat(inputList.get(3)).isEqualTo("ddd");
     }
+
+    @DisplayName("문자열 5글자 초과 때 잡는지 확인")
+    @ParameterizedTest
+    @ValueSource(strings ={"abcdef", "abcdef,abcde", "abcde,abcdef", "abcde,abcdef,abcde"})
+    void overFive(String input) {
+        assertThatThrownBy(() -> new CarNames(input)).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("자 이상 이름은 허용되지 않습니다");
+    }
 }
