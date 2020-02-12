@@ -1,0 +1,29 @@
+package racingcar.splitter;
+
+/*
+ * Copyright (c) 2020 by 또동페어
+ * All rights reserved.
+ *
+ * Splitter.java
+ * 문자열 분리가 정상적으로 되었는지 테스트하는 클래스
+ *
+ * @author      또동페어
+ * @version     1.0
+ * @date        12 Feb 2020
+ *
+ */
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+public class NameSplitterTest {
+
+	@DisplayName("쉼표를 기준으로 문자열을 정상적으로 분리")
+	@Test
+	void Should_success_When_appropriateValue() {
+		Assertions.assertThat(NameSplitter.split("네오,프로도,튜브")).containsExactly("네오", "프로도", "튜브");
+		Assertions.assertThat(NameSplitter.split("어피치,라이언,콘,무지,제이지")).containsExactly("어피치", "라이언", "콘", "무지", "제이지");
+		Assertions.assertThat(NameSplitter.split("죠르디,프로도,튜브,123")).containsExactly("죠르디", "프로도", "튜브", "123");
+	}
+}
