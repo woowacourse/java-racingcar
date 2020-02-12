@@ -24,4 +24,13 @@ public class Cars {
             car.movePosition(createRandomValue());
         }
     }
+
+    public String printCurrentResult() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Car car : cars){
+            stringBuilder.append(car.currntPositon());
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
+    }
 }
