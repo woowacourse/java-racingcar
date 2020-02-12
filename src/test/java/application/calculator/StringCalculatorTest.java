@@ -60,4 +60,11 @@ public class StringCalculatorTest {
         int result = StringCalculator.splitAndSum("//;\n1;2;3");
         Assertions.assertThat(result).isEqualTo(6);
     }
+
+    @DisplayName("음수를 전달할 경우 RuntimeException 예외가 발생하는지 테스트")
+    @Test
+    public void splitAndSumThrowRuntimeExceptionWhenNegativeTest() throws Exception {
+        Assertions.assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
+                .isInstanceOf(RuntimeException.class);
+    }
 }

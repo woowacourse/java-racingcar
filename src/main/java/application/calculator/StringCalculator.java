@@ -40,7 +40,14 @@ public class StringCalculator {
     private static void addNumbers(String[] splitString) {
         for (String string : splitString) {
             int convertNumber = getConvertNumber(string);
+            throwRuntimeExceptionWhenNegativeNumber(convertNumber);
             numbers.add(convertNumber);
+        }
+    }
+
+    private static void throwRuntimeExceptionWhenNegativeNumber(int number) {
+        if (number < 0) {
+            throw new RuntimeException("음수를 입력하였습니다.");
         }
     }
 
