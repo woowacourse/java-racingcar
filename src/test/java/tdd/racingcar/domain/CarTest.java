@@ -26,7 +26,7 @@ public class CarTest {
 
 	@Test
 	void moveForEnoughPower() {
-		final int power = 4;
+		final Power power = new Power(4);
 		final int previousPosition = car.getPosition();
 		car.move(power);
 		final int currentPosition = car.getPosition();
@@ -36,7 +36,7 @@ public class CarTest {
 
 	@Test
 	void moveForNotEnoughPower() {
-		final int power = 3;
+		final Power power = new Power(3);
 		final int previousPosition = car.getPosition();
 		car.move(power);
 		final int currentPosition = car.getPosition();
@@ -58,7 +58,8 @@ public class CarTest {
 
 	@Test
 	void hasGreaterPositionThan() {
-		car.move(4);
+		final Power power = new Power(4);
+		car.move(power);
 
 		final int shortPosition = 0;
 		final int carPosition = car.getPosition();

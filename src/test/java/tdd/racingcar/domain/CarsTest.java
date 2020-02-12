@@ -16,11 +16,11 @@ public class CarsTest {
 	@BeforeEach
 	void init() {
 		DifferentPositionCars = CarFactory.create(Arrays.asList("a", "b", "c", "d"));
-		DifferentPositionCars.get(0).move(4);
-		DifferentPositionCars.get(0).move(4);
-		DifferentPositionCars.get(1).move(4);
-		DifferentPositionCars.get(1).move(4);
-		DifferentPositionCars.get(2).move(4);
+		DifferentPositionCars.get(0).move(new Power(4));
+		DifferentPositionCars.get(0).move(new Power(4));
+		DifferentPositionCars.get(1).move(new Power(4));
+		DifferentPositionCars.get(1).move(new Power(4));
+		DifferentPositionCars.get(2).move(new Power(4));
 	}
 
 	@Test
