@@ -6,30 +6,37 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    private static String[] splitString;
-    private static List<Integer> numbers = new ArrayList<>();
-    private static String delimiter = ",|:";
-
     public static int splitAndSum(String text) {
         if (isNullOrEmptyText(text)) {
             return 0;
         }
-        splitText(text);
-        addNumbers(splitString);
-        return calculateNumberSum();
+        String delimiter = ",|:";
+        String[] splitedText = splitText(text, delimiter);
+        List<Integer> numbers = new ArrayList<>();
+        splitText(text, delimiter);
+        addNumbers(splitedText, numbers);
+        return calculateNumberSum(numbers);
     }
 
-    private static void splitText(String text) {
+    private static String[] splitText(String text, String delimiter) {
         Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (matcher.find()) {
             String customDelimiter = matcher.group(1);
-            splitString = matcher.group(2).split(customDelimiter);
-        } else {
-            splitString = text.split(delimiter);
+            delimiter = addCustomDelimiter(delimiter, customDelimiter);
+            return matcher.group(2).split(delimiter);
         }
+        return text.split(delimiter);
     }
 
-    private static int calculateNumberSum() {
+    private static String addCustomDelimiter(String delimiter, String customDelimiter) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(delimiter);
+        sb.append("|");
+        sb.append(customDelimiter);
+        return sb.toString();
+    }
+
+    private static int calculateNumberSum(List<Integer> numbers) {
         int sum = 0;
         for (int integer : numbers) {
             sum = sum + integer;
@@ -37,7 +44,7 @@ public class StringCalculator {
         return sum;
     }
 
-    private static void addNumbers(String[] splitString) {
+    private static void addNumbers(String[] splitString, List<Integer> numbers) {
         for (String string : splitString) {
             int convertNumber = getConvertNumber(string);
             throwRuntimeExceptionWhenNegativeNumber(convertNumber);
