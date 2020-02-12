@@ -1,9 +1,11 @@
-package racingcar.view;/*
+package racingcar.view;
+
+/*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
  *
- * ***.java
- * 000 담당하는 클래스
+ * InputViewTest.java
+ * 입력 테스트
  *
  * @author      또동페어
  * @version     1.0
@@ -11,5 +13,27 @@ package racingcar.view;/*
  *
  */
 
+import static org.assertj.core.api.Assertions.*;
+
+import java.io.ByteArrayInputStream;
+import java.util.Scanner;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 public class InputViewTest {
+	private InputView inputView;
+
+	@BeforeEach
+	void setup() {
+		Scanner scanner = new Scanner(new ByteArrayInputStream("동글,또링,또도링".getBytes()));
+		inputView = new InputView(scanner);
+	}
+
+	@DisplayName("입력 값이 정상적으로 들어왔는지 테스트")
+	@Test
+	void inputCarNamesTest() {
+		assertThat(inputView.inputCarNames()).isEqualTo("동글,또링,또도링");
+	}
 }

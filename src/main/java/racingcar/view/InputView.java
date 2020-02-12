@@ -1,9 +1,11 @@
-package racingcar.view;/*
+package racingcar.view;
+
+/*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
  *
- * ***.java
- * 000 담당하는 클래스
+ * InputView.java
+ * 입력을 담당하는 클래스
  *
  * @author      또동페어
  * @version     1.0
@@ -11,5 +13,16 @@ package racingcar.view;/*
  *
  */
 
+import java.util.Scanner;
+
 public class InputView {
+	private final Scanner scanner;
+
+	public InputView(Scanner scanner) {
+		this.scanner = scanner;
+	}
+
+	public String inputCarNames() {
+		return scanner.nextLine();
+	}
 }
