@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Car {
     private static int maxPosition = 0;
-    public static final int START_POSITION = 0;
+    private static final int START_POSITION = 0;
     private String name;
     private int position;
 
@@ -21,6 +21,7 @@ public class Car {
     public void move(int random) {
         if (random >= 4){
             position++;
+
         }
         maxPosition = Integer.max(position, maxPosition);
     }
@@ -37,5 +38,9 @@ public class Car {
         if(isWinner()){
             winners.add(this.name);
         }
+    }
+
+    public void passingLog(){
+        Output.makeCarLog(name,position);
     }
 }

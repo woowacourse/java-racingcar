@@ -24,7 +24,9 @@ public class RacingGame {
             cars.stream().forEach((x) -> {
                 int random = generateRandom();
                 x.move(random);
+                x.passingLog();
             });
+            OutputView.printLine();
         }
         List<String> winners = new ArrayList<>();
         cars.stream().forEach((x) -> {
