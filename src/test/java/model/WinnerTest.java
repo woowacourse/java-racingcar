@@ -20,7 +20,7 @@ public class WinnerTest {
         cars.add(new Car("c"));
         GameManager.moveOrStay(cars.get(0), 9);
         GameManager.moveOrStay(cars.get(0), 9);
-        GameManager.moveOrStay(cars.get(0), 9);
+        GameManager.moveOrStay(cars.get(1), 9);
         GameManager.moveOrStay(cars.get(1), 9);
     }
 
@@ -29,5 +29,15 @@ public class WinnerTest {
     void getMaxPosition() {
         int maxPosition = Winner.getMaxPosition(cars);
         assertThat(maxPosition).isEqualTo(3);
+    }
+
+    @DisplayName("우승자 Car 객체 리스트 구하기")
+    @Test
+    void setWinner() {
+        List<String> result = new ArrayList<>();
+        result.add("a");
+        result.add("b");
+        List<String> winners = Winner.setWinner(cars);
+        assertThat(winners).isEqualTo(result);
     }
 }
