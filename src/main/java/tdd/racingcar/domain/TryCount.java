@@ -35,6 +35,10 @@ public class TryCount {
 		return new TryCount(nextTryCount);
 	}
 
+	public boolean isLastRound() {
+		return tryCount > ONE;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)

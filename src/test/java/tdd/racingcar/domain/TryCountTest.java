@@ -30,4 +30,13 @@ public class TryCountTest {
 		final TryCount actual = tryCount.consume();
 		assertEquals(expected, actual);
 	}
+
+	@Test
+	void isLastRound() {
+		final TryCount two = new TryCount("2");
+		assertTrue(two.isLastRound());
+
+		final TryCount one = two.consume();
+		assertFalse(one.isLastRound());
+	}
 }
