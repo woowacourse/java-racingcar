@@ -10,7 +10,7 @@
 
 package racingcar.domain;
 
-public class BehaviorJudgment {
+public class Director {
 
     private final static int BASE_NUMBER = 4;
 

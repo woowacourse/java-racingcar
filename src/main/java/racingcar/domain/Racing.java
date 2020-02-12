@@ -54,7 +54,7 @@ public class Racing {
 
     private boolean isForwardByRandom() {
         Random random = new Random();
-        return BehaviorJudgment.isForward(random.nextInt(RANDOM_NUMBER_RANGE));
+        return Director.isForward(random.nextInt(RANDOM_NUMBER_RANGE));
     }
 
     public String getWinner() {
