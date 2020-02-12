@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RacingCarTest {
     @Test
     public void splitTest() {
@@ -45,5 +48,26 @@ public class RacingCarTest {
         Racing racing = new Racing();
         int randomNumber = racing.generateRandomNumber();
         Assertions.assertThat(randomNumber).isBetween(0, 9);
+    }
+
+    @Test
+    public void findWinner() {
+        List<Car> cars = new ArrayList<>();
+        Car pobi = new Car("pobi");
+        Car lavin = new Car("lavin");
+        Car ramen = new Car("ramen");
+        pobi.moveCarWhenNumberOverFour(4);
+        pobi.moveCarWhenNumberOverFour(4);
+        lavin.moveCarWhenNumberOverFour(4);
+        lavin.moveCarWhenNumberOverFour(4);
+        ramen.moveCarWhenNumberOverFour(4);
+        cars.add(pobi);
+        cars.add(lavin);
+        cars.add(ramen);
+        Racing racing = new Racing();
+        List<String> winners = new ArrayList<>();
+        winners.add("pobi");
+        winners.add("lavin");
+        Assertions.assertThat(racing.findWinner(cars)).isEqualTo(winners);
     }
 }
