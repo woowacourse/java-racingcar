@@ -38,4 +38,13 @@ public class CarsTest {
 	void checkIfIsOnSamePosition() {
 		assertThat(kyle.isOnSamePosition(rutgo)).isTrue();
 	}
+
+	@Test
+	void checkToString() {
+		Cars cars = new Cars(carList);
+		assertThat(cars.toString()).isEqualTo("hodol : \n"
+			+ "pobi : --\n"
+			+ "kyle : -\n"
+			+ "rutgo : -\n");
+	}
 }

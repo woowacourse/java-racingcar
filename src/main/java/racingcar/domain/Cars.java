@@ -14,4 +14,13 @@ public class Cars {
 		Collections.sort(cars);
 		return cars.get(0);
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (Car car : cars) {
+			sb.append(car);
+		}
+		return sb.toString();
+	}
 }

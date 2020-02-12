@@ -38,4 +38,15 @@ public class Car implements Comparable<Car> {
 	public int compareTo(Car anotherCar) {
 		return anotherCar.position - position;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(name).append(" : ");
+		for (int i = 0; i < position; i++) {
+			sb.append("-");
+		}
+		sb.append("\n");
+		return sb.toString();
+	}
 }
