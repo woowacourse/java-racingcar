@@ -7,8 +7,6 @@ public class Car {
     private static final int MOVE_THRESHOLD = 4;
     private static final int RANDOM_MAX = 10;
     private static final int RANDOM_MIN = 0;
-    private static final String STATUS_SEPERATOR = " : ";
-    private static final String DISTANCE_INDICATOR = "-";
 
     private final String name;
     private int distance;
@@ -17,6 +15,14 @@ public class Car {
         checkValidName(name);
         this.name = name;
         this.distance = 0;
+    }
+
+    public int getDistance() {
+        return this.distance;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     private void checkValidName(String name) {
@@ -41,25 +47,10 @@ public class Car {
         return false;
     }
 
-    public String convertStatusToString() {
-        StringBuilder SB = new StringBuilder();
-        SB.append(this.name).append(STATUS_SEPERATOR);
-
-        for (int i = 0; i < this.distance; i++) {
-            SB.append(DISTANCE_INDICATOR);
-        }
-
-        return SB.toString();
-    }
-
     public boolean isWinner(int maxDistance) {
         if (this.distance == maxDistance) {
             return true;
         }
         return false;
-    }
-
-    public int getDistance() {
-        return this.distance;
     }
 }

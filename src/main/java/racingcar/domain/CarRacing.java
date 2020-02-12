@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarRacing {
-    private static final String LINE_CHANGER = "\n";
-
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public CarRacing(List<String> names) {
         this.cars = names.stream()
@@ -14,14 +12,12 @@ public class CarRacing {
                 .collect(Collectors.toList());
     }
 
-    public void move() {
-        cars.stream().forEach(Car::move);
+    public List<Car> getCars() {
+        return cars;
     }
 
-    public String convertStatusesToString() {
-        return cars.stream()
-                .map(Car::convertStatusToString)
-                .collect(Collectors.joining(LINE_CHANGER));
+    public void move() {
+        cars.stream().forEach(Car::move);
     }
 
     public List<Car> getWinners() {

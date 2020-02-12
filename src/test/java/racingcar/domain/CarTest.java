@@ -17,18 +17,6 @@ public class CarTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차 이름은 5자 이하여야 합니다.");
     }
-
-    @Test
-    @DisplayName("자동차 상태 문자열 변환 테스트")
-    void displayTest() {
-        Car car = new Car("히히");
-
-        for (int i = 0; i < 10; i++) {
-            car.move();
-        }
-
-        System.out.println(car.convertStatusToString());
-    }
 }
 
 

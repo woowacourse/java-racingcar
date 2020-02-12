@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,10 +42,7 @@ public class CarRacingTest {
             carRacing.move();
         }
 
-        System.out.println(carRacing.convertStatusesToString());
-        System.out.print("\n * winners *\n");
-        System.out.println(carRacing.getWinners().stream()
-                .map(Car::convertStatusToString)
-                .collect(Collectors.joining("\n")));
+        OutputView.printStatus(carRacing.getCars());
+        OutputView.printWinners(carRacing.getWinners());
     }
 }
