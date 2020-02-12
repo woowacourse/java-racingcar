@@ -3,13 +3,16 @@ package racingcar.domain;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarsTest {
 
@@ -53,6 +56,27 @@ class CarsTest {
 
         return Stream.of(
                 Arguments.of(cars, List.of(allen, pobi))
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("createNamesAndMessage")
+    void validateCars(String inputNames, String message) {
+        assertThatThrownBy(() -> {
+            Cars cars = new Cars(inputNames);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(message);
+    }
+
+    private static Stream<Arguments> createNamesAndMessage() {
+        String oneTeam = "앨런";
+        String oneTeamMessage = "참가자는 2명 이상이어야합니다.";
+        String hasOverFiveCharacterName = "123,123456,124";
+        String fiveCharacterNameMessage = "이름은 5자 이하여야 합니다.";
+
+        return Stream.of(
+                Arguments.of(oneTeam, oneTeamMessage),
+                Arguments.of(hasOverFiveCharacterName, fiveCharacterNameMessage)
         );
     }
 }
