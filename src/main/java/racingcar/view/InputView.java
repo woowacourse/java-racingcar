@@ -13,6 +13,13 @@ public class InputView {
 
     public static String[] splitName(String input) {
         String[] carNames = input.split(",");
+        checkCarNames(carNames);
         return carNames;
+    }
+
+    private static void checkCarNames(String[] carNames) {
+        for (String carName: carNames) {
+            ValidateInput.isOverSixLetters(carName);
+        }
     }
 }

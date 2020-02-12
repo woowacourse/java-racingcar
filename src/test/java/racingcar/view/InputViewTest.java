@@ -21,4 +21,12 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("공백이 입력되었습니다.");
     }
+
+    @Test
+    void 이름이_6자_이상_입력되었을_경우() {
+        String input = "pobipobi";
+        assertThatThrownBy(() -> ValidateInput.isOverSixLetters(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 5자 이내로 작성해주세요.");
+    }
 }
