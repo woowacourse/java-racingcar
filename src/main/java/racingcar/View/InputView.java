@@ -9,6 +9,7 @@ public class InputView {
     private static Scanner sc = new Scanner(System.in);
 
     public static String[] inputCarName() {
+        OutputView.printInputCarNamesMessage();
         String[] carNames = sc.nextLine().split(DELIMITER);
         try {
             InputValidation.checkNullOrEmptyInput(carNames);
@@ -21,6 +22,7 @@ public class InputView {
     }
 
     public static int inputTrialTime() {
+        OutputView.printInputTrialTimeMessage();
         String trialTime = sc.nextLine();
         try {
             InputValidation.checkIntegerOverflow(trialTime);
