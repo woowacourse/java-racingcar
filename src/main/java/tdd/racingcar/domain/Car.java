@@ -1,7 +1,7 @@
 package tdd.racingcar.domain;
 
 public class Car {
-	private Position position = new Position(0);
+	private final Position position = new Position(0);
 	private final Name name;
 
 	public Car(final String name) {
