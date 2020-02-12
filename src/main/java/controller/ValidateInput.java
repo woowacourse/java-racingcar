@@ -6,8 +6,8 @@ public class ValidateInput {
 
     public static String[] validateName(String[] names) {
         for (String name : names) {
-            if (name.length() > 5) {
-                throw new IllegalArgumentException();
+            if (name.length() > 5 || name.isEmpty()) {
+                throw new IllegalArgumentException("이름의 길이는 1이상 5이하만 가능합니다");
             }
         }
         return names;

@@ -13,7 +13,13 @@ public class ValidateInputTest {
     void checkNameLength() {
         String[] name = new String[]{"a", "fghsdtsdt", "12", "sdfs"};
         assertThatThrownBy(() -> ValidateInput.validateName(name))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름의 길이는 1이상 5이하만 가능합니다");
+
+        String[] name2 = new String[]{"a", "", "12", "sdfs"};
+        assertThatThrownBy(() -> ValidateInput.validateName(name2))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름의 길이는 1이상 5이하만 가능합니다");
     }
 
     @DisplayName("입력한 숫자가 0보다 큰지 확인")
