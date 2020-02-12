@@ -1,6 +1,7 @@
 package racingcarTest;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.Model.Car;
@@ -17,5 +18,13 @@ public class CarTest {
     })
     void isGo_랜덤숫자가_4이상일때만_true_반환(int randomNumber, Boolean result) {
         assertThat(car.isGo(randomNumber)).isEqualTo(result);
+    }
+
+    @Test
+    @DisplayName("포지션이 더 크면 true 반환")
+    void comparePosition_파라미터로_들어온_객체보다_포지션이_크면_true로_반환() {
+        Car car = new Car("작은곰", 5);
+        Car target = new Car("보스독", 1);
+        assertThat(car.comparePosition(target)).isTrue();
     }
 }

@@ -3,8 +3,12 @@ package racingcar.Model;
 import racingcar.View.OutputView;
 
 public class Car {
+    public static final int RANDOM_UPPER_LIMIT = 9;
+    public static final int RANDOM_LOWER_LIMIT = 1;
     private static final int CRITERIA_FOR_GO = 4;
     private static final int INITIAL_POSITION = 0;
+
+    public static StringBuilder winners = new StringBuilder();
 
     private String carName;
     private int position;
@@ -13,6 +17,11 @@ public class Car {
     public Car(String carName) {
         this.carName = carName;
         this.position = INITIAL_POSITION;
+    }
+
+    public Car(String carName, int position) {
+        this.carName = carName;
+        this.position = position;
     }
 
     public void goOrNot() {
@@ -26,11 +35,11 @@ public class Car {
     }
 
     private int createRandomNumber(){
-        return (int)(Math.random() * 9) + 1;
+        return (int)(Math.random() * RANDOM_UPPER_LIMIT) + RANDOM_LOWER_LIMIT;
     }
 
-    public int getPosition() {
-        return position;
+    public boolean comparePosition(Car target) {
+        return this.position > target.position;
     }
 
     public void showCurrentPosition() {
