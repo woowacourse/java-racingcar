@@ -15,7 +15,7 @@ public class OutputViewTest {
         GameManager.moveOrStay(car, 6);
         GameManager.moveOrStay(car, 6);
 
-        String result = OutputView.visualizePosition(car);
+        String result = OutputView.printPositionBar(car);
         assertThat(result).isEqualTo("--");
     }
 }
