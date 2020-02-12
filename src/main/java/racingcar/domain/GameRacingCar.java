@@ -4,7 +4,7 @@ import java.util.List;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class RacingCarGame {
+public class GameRacingCar {
     public static void start() {
         List<String> carNames = inputCarNames();
         int tryCount = inputTryCount();

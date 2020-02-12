@@ -18,7 +18,7 @@ public class Car {
     private final String name;
     private int forwardCount = 0;
 
-    public Car(String name) {
+    Car(String name) {
         this.name = name;
     }
 

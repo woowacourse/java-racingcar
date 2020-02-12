@@ -18,7 +18,7 @@ public class TryCount {
         MINIMUM_NUMBER + "부터" + MAXIMUM_NUMBER + "까지의 숫자만 입력 가능합니다.";
     private final int tryCount;
 
-    public TryCount(String count) {
+    TryCount(String count) {
         tryCount = returnValidateNumber(count);
     }
 

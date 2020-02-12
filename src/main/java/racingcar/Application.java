@@ -10,11 +10,11 @@
 
 package racingcar;
 
-import racingcar.domain.RacingCarGame;
+import racingcar.domain.GameRacingCar;
 
 public class Application {
 
     public static void main(String[] args) {
-        RacingCarGame.start();
+        GameRacingCar.start();
     }
 }
