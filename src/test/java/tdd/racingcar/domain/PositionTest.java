@@ -8,7 +8,7 @@ public class PositionTest {
 	@Test
 	void constructor() {
 		assertThatIllegalArgumentException().isThrownBy(() -> new Position(-1))
-			.withMessage("자동차의 위치는 0 이상이어야 합니다.");
+				.withMessage("자동차의 위치는 0 이상이어야 합니다.");
 	}
 
 	@Test

@@ -124,6 +124,6 @@ public class PlusCalculatorTest {
 	@Test
 	public void calculate_negative() throws Exception {
 		assertThatThrownBy(() -> PlusCalculator.calculate("-1,2,3"))
-			.isInstanceOf(RuntimeException.class);
+				.isInstanceOf(RuntimeException.class);
 	}
 }

@@ -10,14 +10,12 @@ public class Application {
 	public static void main(final String[] args) {
 		final Cars cars = CarsFactory.create(InputView.inputNames());
 		final TryCount tryCount = new TryCount(InputView.inputTryCount());
-
 		OutputView.printResultMessage();
 		while (tryCount.isRemain()) {
 			cars.move();
 			tryCount.consume();
 			OutputView.printCars(cars);
 		}
-
 		OutputView.printWinners(cars.getWinners());
 	}
 }

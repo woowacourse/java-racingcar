@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class CarTest {
 	private static final String CAR_NAME = "name";
-	private static final String TOO_LONG_NAME ="tooLongName";
+	private static final String TOO_LONG_NAME = "tooLongName";
 
 	private Car car;
 
@@ -52,7 +52,7 @@ public class CarTest {
 	@Test
 	void canValidateName() {
 		assertThatIllegalArgumentException().isThrownBy(() ->
-			new Car(TOO_LONG_NAME))
-			.withMessage("이름은 최대 5자까지 가능합니다.");
+				new Car(TOO_LONG_NAME))
+				.withMessage("이름은 최대 5자까지 가능합니다.");
 	}
 }

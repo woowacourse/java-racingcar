@@ -21,15 +21,15 @@ public class Cars {
 	public List<Car> getWinners() {
 		final int maxPosition = getMaxPosition();
 		return cars.stream()
-			.filter(car -> car.isPosition(maxPosition))
-			.collect(Collectors.toList());
+				.filter(car -> car.isPosition(maxPosition))
+				.collect(Collectors.toList());
 	}
 
 	private int getMaxPosition() {
 		return cars.stream()
-			.mapToInt(Car::getPosition)
-			.max()
-			.orElseThrow(() -> new IllegalArgumentException("차가 존재하지 않습니다."));
+				.mapToInt(Car::getPosition)
+				.max()
+				.orElseThrow(() -> new IllegalArgumentException("차가 존재하지 않습니다."));
 	}
 
 	public List<Car> toList() {

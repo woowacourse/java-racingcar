@@ -23,13 +23,13 @@ public class PlusCalculator {
 
 	private static List<Positive> toPositives(final String[] values) {
 		return Arrays.stream(values)
-			.map(Positive::new)
-			.collect(Collectors.toList());
+				.map(Positive::new)
+				.collect(Collectors.toList());
 	}
 
 	private static int sum(final List<Positive> positives) {
 		return positives.stream()
-			.mapToInt(Positive::getPositive)
-			.sum();
+				.mapToInt(Positive::getPositive)
+				.sum();
 	}
 }

@@ -13,22 +13,22 @@ public class TryCountTest {
 	@Test
 	void canValidateTryCountForNotNumber() {
 		assertThatIllegalArgumentException().isThrownBy(() ->
-			new TryCount(NOT_NUMBER_INPUT))
-			.withMessage("횟수는 숫자이어야 합니다.");
+				new TryCount(NOT_NUMBER_INPUT))
+				.withMessage("횟수는 숫자이어야 합니다.");
 	}
 
 	@Test
 	void canValidateTryCountForZero() {
 		assertThatIllegalArgumentException().isThrownBy(() ->
-			new TryCount(ZERO_INPUT))
-			.withMessage("횟수는 1이상 이어야 합니다.");
+				new TryCount(ZERO_INPUT))
+				.withMessage("횟수는 1이상 이어야 합니다.");
 	}
 
 	@Test
 	void canValidateTryCountForMixedInput() {
 		assertThatIllegalArgumentException().isThrownBy(() ->
-			new TryCount(MIXED_INPUT))
-			.withMessage("횟수는 숫자이어야 합니다.");
+				new TryCount(MIXED_INPUT))
+				.withMessage("횟수는 숫자이어야 합니다.");
 	}
 
 	@Test

@@ -27,7 +27,7 @@ public class CarsTest {
 	void getWinnersForEmptyCars() {
 		final Cars cars = new Cars(new ArrayList<>());
 		assertThatIllegalArgumentException().isThrownBy(cars::getWinners)
-			.withMessage("차가 존재하지 않습니다.");
+				.withMessage("차가 존재하지 않습니다.");
 	}
 
 	@Test

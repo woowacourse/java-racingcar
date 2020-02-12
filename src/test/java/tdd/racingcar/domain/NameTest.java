@@ -10,7 +10,7 @@ public class NameTest {
 	@Test
 	void constructor() {
 		assertThatIllegalArgumentException().isThrownBy(() ->
-			new Name(TOO_LONG_NAME))
-			.withMessage("이름은 최대 5자까지 가능합니다.");
+				new Name(TOO_LONG_NAME))
+				.withMessage("이름은 최대 5자까지 가능합니다.");
 	}
 }
