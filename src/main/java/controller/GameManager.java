@@ -1,6 +1,7 @@
 package controller;
 
 import model.Car;
+import model.Dice;
 
 import java.util.ArrayList;
 import java.util.List;
