@@ -1,5 +1,6 @@
 package racingcar;
 
+import racingcar.domain.CarFactory;
 import racingcar.domain.Cars;
 import racingcar.io.UserInput;
 
@@ -15,10 +16,8 @@ public class Application {
 
     private static Game initializeGame() {
         try {
-            String[] carsName = splitCarsName(UserInput.inputCarsName());
-            detectDuplicateName(carsName);
-            Cars cars = new Cars(enrollCars(carsName));
-            return new Game(cars, UserInput.inputIteration());
+            CarFactory carFactory = new CarFactory(UserInput.inputCarsName());
+            return new Game(carFactory.enrollCars(), UserInput.inputIteration());
         }catch(Exception e) {
             System.out.println(e.getMessage());
             return initializeGame();

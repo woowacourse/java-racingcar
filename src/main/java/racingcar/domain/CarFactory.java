@@ -24,14 +24,15 @@ public class CarFactory {
 
     private void detectDuplicateName() {
         String[] carsNameWithoutDuplicate = Arrays.asList(carsName).toArray(new String[0]);
-        if(carsName != carsNameWithoutDuplicate) {
+        if(carsName.length != carsNameWithoutDuplicate.length) {
             throw new IllegalArgumentException("중복된 이름을 사용할 수 없습니다.");
         }
     }
 
-    public List<Car> enrollCars() {
-        List<Car> cars = new ArrayList<>();
-        Arrays.stream(carsName).forEach(x -> cars.add(new Car(x)));
+    public Cars enrollCars() {
+        List<Car> carsList = new ArrayList<>();
+        Arrays.stream(carsName).forEach(x -> carsList.add(new Car(x)));
+        Cars cars = new Cars(carsList);
         return cars;
     }
 }

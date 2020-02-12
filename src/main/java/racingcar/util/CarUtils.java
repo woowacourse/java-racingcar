@@ -14,26 +14,6 @@ public class CarUtils {
 
     private CarUtils() {}
 
-    public static List<Car> enrollCars(String[] carNames) {
-        List<Car> cars = new ArrayList<>();
-        Arrays.stream(carNames).forEach(x -> cars.add(new Car(x)));
-        return cars;
-    }
-
-    public static String[] splitCarsName(String carsNameInput) {
-        String[] carNames = carsNameInput.trim()
-                .replace(SPACE, BLANK)
-                .split(COMMA);
-        return carNames;
-    }
-
-    public static void detectDuplicateName(String[] carsName) {
-        String[] carsNameWithoutDuplicate = Arrays.asList(carsName).toArray(new String[0]);
-        if(carsName != carsNameWithoutDuplicate) {
-            throw new IllegalArgumentException("중복된 이름을 사용할 수 없습니다.");
-        }
-    }
-
     public static boolean checkMove(int i) {
         if (i < 0 || i >= 10) {
             throw new NumberFormatException(RANDOM_OUTOF_BOUND);

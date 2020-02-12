@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
+import racingcar.domain.CarFactory;
 import racingcar.domain.Cars;
 import racingcar.util.CarUtils;
 
@@ -16,15 +17,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static racingcar.util.CarUtils.enrollCars;
 
 public class racingCarTest {
 
     private static Game game;
+    private static Cars cars;
 
     @BeforeAll
     public static void init() {
-        Cars cars = new Cars(enrollCars(new String[]{"alan", "bart", "carol"}));
+        CarFactory carFactory = new CarFactory("alan, bart, carol, don, eddy");
+        cars = carFactory.enrollCars();
         game = new Game(cars, 5);
     }
 
@@ -82,7 +84,6 @@ public class racingCarTest {
     @DisplayName("경기 진행 테스트(1턴)")
     void gameProceedTest() {
         TestNumberGenerator test = new TestNumberGenerator(new int[]{4, 2, 3, 9, 5});
-        Cars cars = new Cars(enrollCars(new String[]{"alan", "bart", "carol", "don", "eddy"}));
         cars.playTurn(test);
         assertThat(cars.notifyStatus().get("alan")).isEqualTo(1);
         assertThat(cars.notifyStatus().get("bart")).isEqualTo(0);
