@@ -5,7 +5,7 @@ import racingcar.util.NumberGenerator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import static racingcar.Utils.checkMove;
+import static racingcar.util.CarUtils.checkMove;
 
 public class Cars {
     private List<Car> cars;

@@ -15,7 +15,7 @@ public class ConsoleOutput {
         status.forEach((name, position) -> {
             System.out.println(name + NAME_POSITION_DIVIDER + stripBuilder(position));
         });
-        System.out.println("");
+        System.out.println(BLANKSTRING);
     }
 
     private static String stripBuilder(Integer position) {

@@ -3,8 +3,8 @@ package racingcar;
 import racingcar.domain.Cars;
 import racingcar.io.UserInput;
 
-import static racingcar.Utils.enrollCars;
-import static racingcar.Utils.splitCarsName;
+import static racingcar.util.CarUtils.enrollCars;
+import static racingcar.util.CarUtils.splitCarsName;
 
 public class Application {
     public static void main(String[] args) {
@@ -14,7 +14,8 @@ public class Application {
 
     private static Game initializeGame() {
         try {
-            Cars cars = new Cars(enrollCars(splitCarsName(UserInput.inputCarsName())));
+            String[] carsName = splitCarsName(UserInput.inputCarsName());
+            Cars cars = new Cars(enrollCars(carsName));
             return new Game(cars, UserInput.inputIteration());
         }catch(Exception e) {
             System.out.println(e.getMessage());

@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.util;
 
 import racingcar.domain.Car;
 
@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Utils {
+public class CarUtils {
     public static final String SPACE = " ";
     public static final String BLANK = "";
     public static final String COMMA = ",";
     public static final String RANDOM_OUTOF_BOUND = "범위를 초과한 난수입니다.";
+
+    private CarUtils() {}
 
     public static List<Car> enrollCars(String[] carNames) {
         List<Car> cars = new ArrayList<>();

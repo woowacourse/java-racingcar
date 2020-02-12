@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.util.CarUtils;
 
 import java.util.LinkedHashMap;
 import java.util.Random;
@@ -15,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static racingcar.Utils.enrollCars;
+import static racingcar.util.CarUtils.enrollCars;
 
 public class racingCarTest {
 
@@ -38,11 +39,11 @@ public class racingCarTest {
     void doesCarProceed() {
         Car car = new Car("hiro");
         for (int i = 0; i <= 3; i++) {
-            assertFalse(Utils.checkMove(i));
+            assertFalse(CarUtils.checkMove(i));
 
         }
         for (int i = 4; i <= 9; i++) {
-            assertTrue(Utils.checkMove(i));
+            assertTrue(CarUtils.checkMove(i));
         }
     }
 
@@ -53,7 +54,7 @@ public class racingCarTest {
         Car car = new Car("hiro");
         Random random = new Random();
         assertThatThrownBy(() -> {
-            Utils.checkMove(number);
+            CarUtils.checkMove(number);
         }).isInstanceOf(NumberFormatException.class);
     }
 
