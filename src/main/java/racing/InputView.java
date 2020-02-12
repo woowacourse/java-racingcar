@@ -2,6 +2,7 @@ package racing;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class InputView {
@@ -12,14 +13,27 @@ public class InputView {
 		return new Scanner(System.in);
 	}
 
-	public static String inputCarNames(Scanner input) {
+	public static List<String> inputCarNames(Scanner input) {
 		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-		return input.nextLine();
+		String carNames = input.nextLine();
+
+		return Optional.of(carNames)
+			.filter(InputView::checkNotNull)
+			.map(InputView::splitAsComma)
+			.filter(InputView::checkNotEmpty)
+			.filter(InputView::checkLength)
+			.orElseGet(() -> inputCarNames(input));
 	}
 
-	public static String inputRoundNumber(Scanner input) {
+	public static int inputRoundNumber(Scanner input) {
 		System.out.println("시도할 회수는 몇회인가요?");
-		return input.nextLine();
+		String round = input.nextLine();
+
+		return Optional.of(round)
+			.filter(InputView::checkNotNull)
+			.filter(InputView::checkRoundNumber)
+			.map(Integer::parseInt)
+			.orElseGet(() -> inputRoundNumber(input));
 	}
 
 	public static boolean checkRoundNumber(String input) {
@@ -27,7 +41,11 @@ public class InputView {
 	}
 
 	public static List<String> splitAsComma(String value) {
-		return Arrays.asList(value.split(","));
+		return Arrays.asList(value.split(",", -1));
+	}
+
+	public static boolean checkNotEmpty(List<String> input) {
+		return !input.isEmpty();
 	}
 
 	public static boolean checkLength(List<String> input) {
