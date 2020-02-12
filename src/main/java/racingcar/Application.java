@@ -12,6 +12,7 @@ package racingcar;
 
 import java.util.List;
 import racingcar.domain.CarNames;
+import racingcar.domain.Controller;
 import racingcar.domain.TryCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -21,7 +22,14 @@ public class Application {
     public static void main(String[] args) {
         List<String> carNames = inputCarNames();
         int tryCount = inputTryCount();
+        Controller controller = new Controller(carNames, tryCount);
+        String executionResult = controller.run();
 
+        OutputView.printExecutionResult();
+        OutputView.printString(executionResult);
+
+        String winner = controller.getWinner();
+        OutputView.printWinner(winner);
     }
 
     private static List<String> inputCarNames() {

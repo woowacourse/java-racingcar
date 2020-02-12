@@ -21,7 +21,7 @@ public class OutputView {
     }
 
     public static void printExecutionResult() {
-        System.out.println("실행 결과");
+        System.out.print("\n실행 결과");
     }
 
     public static void printString(String string) {
