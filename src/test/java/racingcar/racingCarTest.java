@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
+import java.util.List;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,7 +23,8 @@ public class racingCarTest {
 
     @BeforeAll
     public static void init() {
-        game = new Game(enrollCars(new String[]{"alan", "bart", "carol"}), 5);
+        Cars cars = new Cars(enrollCars(new String[]{"alan", "bart", "carol"}));
+        game = new Game(cars, 5);
     }
 
     @Test
@@ -71,5 +74,10 @@ public class racingCarTest {
             car.proceed();
         }
         assertThat(car.displayNameAndPosition()[1].equals("4"));
+    }
+
+    @Test
+    @DisplayName("경기 결과 발표 테스트")
+    void winnerAnnounceTest() {
     }
 }
