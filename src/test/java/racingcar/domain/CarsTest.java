@@ -3,7 +3,6 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -29,29 +28,29 @@ public class CarsTest {
 	}
 
 	@Test
-	void sort() {
+	void checkIfIsOnSamePosition() {
+		assertThat(kyle.isOnSamePosition(rutgo)).isTrue();
+	}
+
+	@Test
+	void getCarOnMaxPosition() {
 		Cars cars = new Cars(carList);
 		Car carOnMaxPosition = cars.getCarOnMaxPosition();
 		assertThat(carOnMaxPosition).isEqualTo(pobi);
 	}
 
 	@Test
-	void checkIfIsOnSamePosition() {
-		assertThat(kyle.isOnSamePosition(rutgo)).isTrue();
+	void getWinners() {
+		Cars cars = new Cars(carList);
+		assertThat(cars.getWinners()).containsExactly("pobi", null, null, null);
 	}
 
 	@Test
-	void checkToString() {
+	void testToString() {
 		Cars cars = new Cars(carList);
 		assertThat(cars).hasToString("hodol : \n"
 			+ "pobi : --\n"
 			+ "kyle : -\n"
 			+ "rutgo : -\n");
-	}
-
-	@Test
-	void getWinner() {
-		Cars cars = new Cars(carList);
-		assertThat(cars.getWinners()).isEqualTo(Arrays.asList(new String[] {"pobi"}));
 	}
 }
