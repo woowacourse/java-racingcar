@@ -1,0 +1,23 @@
+package racingcar.domain;
+
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+public class RoundTest {
+    @Test
+    void 시도할_회수가_숫자가_아닌_경우_검증_실패() {
+        String input = "a";
+        assertThatThrownBy(() -> {
+            Round.validateIsNumber(input);
+        }).isInstanceOf(NumberFormatException.class);
+    }
+
+    @Test
+    void 시도할_회수가_음수가_아닌_경우_검증_실패() {
+        int input = -1;
+        assertThatThrownBy(() -> {
+            Round.validateIsNegativeNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+}
