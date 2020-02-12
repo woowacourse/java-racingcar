@@ -17,14 +17,14 @@ public class Input {
         validateInput();
     }
 
-    private void validateInput(){
-        if (input == null || input.isEmpty()){
+    private void validateInput() {
+        if (input == null || input.isEmpty()) {
             throw new NullPointerException("식을 입력해 주세요.");
         }
     }
 
     private void validateList(List<Integer> list) {
-        if (list.isEmpty()){
+        if (list.isEmpty()) {
             throw new NullPointerException("식을 입력해 주세요.");
         }
     }
@@ -43,14 +43,14 @@ public class Input {
         validateInput();
     }
 
-    private List<Integer> parseIntList(String delimiter){
+    private List<Integer> parseIntList(String delimiter) {
         try {
             String[] stringArrayValues = input.split(delimiter);
             List<String> stringListValues = Arrays.asList(stringArrayValues);
             return stringListValues.stream()
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new RuntimeException("숫자 이외의 값은 입력하실 수 없습니다.");
         }
     }
@@ -62,7 +62,7 @@ public class Input {
 
             validateList(list);
             return list;
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             throw new NullPointerException();
         }
     }
