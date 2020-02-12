@@ -8,7 +8,7 @@ import racingcar.Model.Car;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
-    Car car = new Car("보스독");
+    private Car car = new Car("보스독");
 
     @ParameterizedTest
     @DisplayName("isGo 테스트")
