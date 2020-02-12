@@ -16,27 +16,34 @@ import java.util.List;
 public class Winner {
 
     private final static String COMMA_SPACE = ", ";
-    private static List<String> winnerNames = new ArrayList<>();
-    private static int count;
+    private final List<String> winnerNames;
+    private int maxCount = 0;
 
-    public static String getWinner(List<Car> cars) {
-        count = 0;
-        for (Car car : cars) {
-            putWinnerNames(car);
-        }
-        return String.join(COMMA_SPACE, winnerNames);
+    public Winner(List<Car> cars) {
+        winnerNames = setWinner(cars);
     }
 
-    private static void putWinnerNames(Car car) {
-        int forwardCount = car.getForwardCount();
-        String carName = car.getName();
-        if (count == forwardCount) {
+    private List<String> setWinner(List<Car> cars) {
+        List<String> winnerNames = new ArrayList<>();
+        for (Car car : cars) {
+            putWinnerNames(winnerNames, car.getName(), car.getForwardCount());
+        }
+        return winnerNames;
+    }
+
+    private void putWinnerNames(List<String> winnerNames, String carName, int carForwardCount) {
+        if (maxCount == carForwardCount) {
             winnerNames.add(carName);
         }
-        if (count < forwardCount) {
+        if (maxCount < carForwardCount) {
+            maxCount = carForwardCount;
             winnerNames.clear();
-            count = forwardCount;
             winnerNames.add(carName);
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.join(COMMA_SPACE, winnerNames);
     }
 }

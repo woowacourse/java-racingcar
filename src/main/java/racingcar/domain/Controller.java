@@ -18,6 +18,7 @@ public class Controller {
 
     private final static String NEW_LINE = "\n";
     private final static int RANDOM_NUMBER_RANGE = 10;
+
     private final List<Car> cars;
     private final int tryCount;
 
@@ -58,6 +59,7 @@ public class Controller {
     }
 
     public String getWinner() {
-        return Winner.getWinner(cars);
+        Winner winner = new Winner(cars);
+        return winner.toString();
     }
 }
