@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -41,5 +42,9 @@ public class CarRacingTest {
         }
 
         System.out.println(carRacing.convertStatusesToString());
+        System.out.print("\n * winners *\n");
+        System.out.println(carRacing.getWinners().stream()
+                .map(Car::convertStatusToString)
+                .collect(Collectors.joining("\n")));
     }
 }

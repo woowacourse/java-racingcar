@@ -51,4 +51,15 @@ public class Car {
 
         return SB.toString();
     }
+
+    public boolean isWinner(int maxDistance) {
+        if (this.distance == maxDistance) {
+            return true;
+        }
+        return false;
+    }
+
+    public int getDistance() {
+        return this.distance;
+    }
 }
