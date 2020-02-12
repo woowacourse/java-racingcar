@@ -26,17 +26,16 @@ public class TryCountTest {
 	@Test
 	void consume() {
 		final TryCount tryCount = new TryCount("2");
+		tryCount.consume();
 		final TryCount expected = new TryCount("1");
-		final TryCount actual = tryCount.consume();
-		assertEquals(expected, actual);
+		assertEquals(expected, tryCount);
 	}
 
 	@Test
 	void isLastRound() {
 		final TryCount two = new TryCount("2");
-		assertTrue(two.isLastRound());
-
-		final TryCount one = two.consume();
-		assertFalse(one.isLastRound());
+		assertTrue(two.isRemain());
+		two.consume();
+		assertFalse(two.isRemain());
 	}
 }

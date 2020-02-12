@@ -30,13 +30,12 @@ public class TryCount {
 		return Integer.parseInt(value) < ONE;
 	}
 
-	public TryCount consume() {
-		final String nextTryCount = Integer.toString(tryCount - ONE);
-		return new TryCount(nextTryCount);
+	public void consume() {
+		tryCount--;
 	}
 
-	public boolean isLastRound() {
-		return tryCount > ONE;
+	public boolean isRemain() {
+		return tryCount >= ONE;
 	}
 
 	@Override
