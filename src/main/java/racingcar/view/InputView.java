@@ -19,6 +19,7 @@ public class InputView {
         InputHandler.validateCarCount(names.length);
 
         for (String name : names) {
+            name = name.trim();
             InputHandler.validateNullOrEmpty(name);
             InputHandler.validateNameLength(name);
         }
@@ -31,7 +32,7 @@ public class InputView {
     }
 
     private static int validateRound(String inputRound) {
-        int round = InputHandler.validateNumber(inputRound);
+        int round = InputHandler.validateNumber(inputRound.trim());
         InputHandler.validateCount(round);
         return round;
     }

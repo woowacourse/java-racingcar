@@ -14,8 +14,8 @@ public class InputHandler {
     }
 
     public static void validateCount(int count) {
-        if (count > 10) {
-            throw new IllegalArgumentException("횟수 10번 초과입니다!");
+        if (count < 1 || count > 10 ) {
+            throw new IllegalArgumentException("횟수가 1보다 작거나 10번 초과입니다!");
         }
     }
 

@@ -3,6 +3,7 @@ package racingcar.util;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -26,13 +27,13 @@ public class InputHandlerTest {
                 .hasMessageContaining("이름 길이 5자 초과");
     }
 
-    @Test
-    void 횟수가_10번_초과() {
-        int count = 11;
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 11, 0})
+    void 횟수가_10초과_및_1보다작은_경우(int count) {
         assertThatThrownBy(() -> {
             InputHandler.validateCount(count);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("횟수 10번 초과");
+                .hasMessageContaining("횟수가 1보다 작거나 10번 초과");
     }
 
     @Test
