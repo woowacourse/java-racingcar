@@ -7,8 +7,6 @@ public class Name {
     private static final Set<String> CAR_NAMES = new HashSet<>();
     private static final int NAME_MAX_LENGTH = 5;
     private static final String BLANK = "";
-    private static boolean ddd = false;
-
 
     private String name;
 
@@ -34,13 +32,13 @@ public class Name {
         }
     }
 
-    private static void isExceededMaxLength(String name) {
+    private void isExceededMaxLength(String name) {
         if (name.length() > NAME_MAX_LENGTH) {
             throw new RuntimeException("길이 최대치를 초과하는 이름을 가지고 있습니다.");
         }
     }
 
-    private static void checkBlankInput(String name) {
+    private void checkBlankInput(String name) {
         if (BLANK.equals(name)) {
             throw new RuntimeException("공백 이름을 가지고 있습니다.");
         }
