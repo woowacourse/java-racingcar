@@ -34,11 +34,11 @@ public class Calculator {
 	}
 
 	private static String subStringInput(String regex, String input) {
-		if (!regex.equals(BLANK)) {
-			return input.substring(CUSTOM_REGEX_LENGTH);
+		if (regex.equals(BLANK)) {
+			return input;
 		}
 
-		return input;
+		return input.substring(CUSTOM_REGEX_LENGTH);
 	}
 
 	private static String[] splitAsRegex(String regex, String input) {
