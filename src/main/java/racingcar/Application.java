@@ -1,11 +1,11 @@
 package racingcar;
 
+import racingcar.domain.Game;
 import racingcar.view.InputView;
 
 public class Application {
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        System.out.println(inputView.getCarNames());
-        System.out.println(inputView.getGameCounts());
+        Game game = new Game();
+        game.run();
     }
 }

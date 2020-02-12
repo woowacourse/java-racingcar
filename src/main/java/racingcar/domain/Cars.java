@@ -25,7 +25,7 @@ public class Cars {
         }
     }
 
-    public String printCurrentResult() {
+    public String getCurrentResult() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Car car : cars){
             stringBuilder.append(car.currntPositon());

@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +13,10 @@ public class Game { //게임 로직 구현
         String[] carNames = inputView.getCarNames();
         int attempts = inputView.getGameCounts();
         Cars cars = createCars(carNames);
-        //ㅈㅏ동차 이름, 포지션 추력
-
+        for (int i = 0 ; i < attempts ; i++) {
+            cars.moveCars();
+            OutputView.printCurrentResult(cars.getCurrentResult());
+        }
 
     }
 

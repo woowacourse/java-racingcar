@@ -10,4 +10,9 @@ public class OutputView {
     public static void askGameCounts() {
         System.out.println("시도 횟수를 입력해주세요.");
     }
+
+    public static void printCurrentResult(String result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
+    }
 }
