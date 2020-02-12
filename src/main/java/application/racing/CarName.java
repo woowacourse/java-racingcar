@@ -10,7 +10,7 @@ public class CarName {
 
     public CarName(String input) {
         throwExceptionWhenInputIsEmptyOrNullOrBlank(input);
-        String[] splitName = input.split(",");
+        String[] splitName = input.split(ConstantForRacing.NAME_DELIMITER);
         addCarName(splitName);
         validateName();
         throwExceptionWhenHasDuplicateCarName();
@@ -31,7 +31,7 @@ public class CarName {
     }
 
     private void throwExceptionWhenNameLengthOverFive(String s) {
-        if (s.length() > 5) {
+        if (s.length() > ConstantForRacing.NAME_LENGTH_STANDARD) {
             throw new IllegalArgumentException("5글자 초과의 자동차 이름을 입력하였습니다.");
         }
     }
@@ -50,7 +50,7 @@ public class CarName {
     }
 
     private boolean isContainBlank(String input) {
-        String[] splitName = input.split("");
+        String[] splitName = input.split(ConstantForRacing.EMPTY_STRING);
         for (String s : splitName) {
             if (isBlankString(s)) {
                 return true;
@@ -60,7 +60,7 @@ public class CarName {
     }
 
     private boolean isBlankString(String s) {
-        return " ".equals(s);
+        return ConstantForRacing.BLANK_STRING.equals(s);
     }
 
     public List<String> getCarNameList() {

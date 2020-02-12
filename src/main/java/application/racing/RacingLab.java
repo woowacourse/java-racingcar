@@ -23,7 +23,7 @@ public class RacingLab {
     }
 
     private boolean isRacingLabUnderZero() {
-        return this.racingLab < 0;
+        return this.racingLab < ConstantForRacing.RACING_LAB_STANDARD;
     }
 
     public int getRacingLab() {

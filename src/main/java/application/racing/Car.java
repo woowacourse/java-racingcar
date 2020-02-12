@@ -11,12 +11,12 @@ public class Car {
 
     public void moveCarWhenNumberOverFour(int number) {
         if (isNumberOverFour(number)) {
-            this.position = this.position + 1;
+            this.position = this.position + ConstantForRacing.ADD_POSITION;
         }
     }
 
     private boolean isNumberOverFour(int number) {
-        return number >= 4;
+        return number >= ConstantForRacing.MOVE_STANDARD;
     }
 
     public int getPosition() {
