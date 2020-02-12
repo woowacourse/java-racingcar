@@ -22,13 +22,21 @@ import org.junit.jupiter.api.Test;
  */
 
 public class CarsTest {
-
-	@DisplayName("각 카를 돌며 가장 멀리 간 거리를 알아내서 ")
+	@DisplayName("가장 멀리간 자동차 구하기 테스트")
 	@Test
 	void testFindMaxPositionCar() {
-		List<String> names = Arrays.asList("또링", "동글");
-		List<Integer> position = Arrays.asList(5, 20);
+		List<String> names = Arrays.asList("또링", "동글", "알트");
+		List<Integer> position = Arrays.asList(5, 20, 10);
 		Cars cars = new Cars(names, position);
 		assertThat(cars.findMaxPositionCar()).isEqualTo(new Car("동글", 20));
+	}
+
+	@DisplayName("우승자 목록 구하기 테스트")
+	@Test
+	void testFindWinner() {
+		List<String> names = Arrays.asList("또링", "동글", "알트", "큰곰");
+		List<Integer> position = Arrays.asList(20, 20, 15, 5);
+		Cars cars = new Cars(names, position);
+		assertThat(cars.findWinner()).containsExactly(new Car("또링", 20), new Car("동글", 20));
 	}
 }

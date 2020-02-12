@@ -62,4 +62,8 @@ public class Car {
 	public int hashCode() {
 		return Objects.hash(name, position);
 	}
+
+	public boolean isSamePosition(Car maxPositionCar) {
+		return position == maxPositionCar.position;
+	}
 }

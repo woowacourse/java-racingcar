@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 /*
  * Copyright (c) 2020 by 또동페어
@@ -33,6 +33,14 @@ public class Cars {
 
 	public Car findMaxPositionCar() {
 		return cars.stream()
-			.reduce(Car::getBiggerCar).get();
+			.reduce(Car::getBiggerCar)
+			.orElseThrow(() -> new NullPointerException("max position car is null"));
+	}
+
+	public List<Car> findWinner() {
+		Car maxPositionCar = findMaxPositionCar();
+		return cars.stream()
+			.filter(car -> car.isSamePosition(maxPositionCar))
+			.collect(Collectors.toList());
 	}
 }
