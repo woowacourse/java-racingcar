@@ -7,8 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -93,11 +91,4 @@ public class AdderTest {
                 .isInstanceOf(RuntimeException.class);
     }
 
-    @Test
-    public void a() {
-
-        String inputString = "//-\n1-2-3";
-        Matcher minusMatcher = Pattern.compile("--").matcher(inputString);
-        System.out.println(minusMatcher.find());
-    }
 }

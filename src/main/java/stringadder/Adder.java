@@ -6,10 +6,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Adder {
+    private List<Integer> finalNumbers;
+
     public int splitAndSum(String inputString) {
         if (inputString.isEmpty() || inputString == null) {
             return 0;
         }
+        return sumNotEmpty(inputString);
+    }
+
+    private int sumNotEmpty(String inputString) {
         if (isCustomMarkIsMinus(inputString)) {
             return sumWhenCustomMarkMinus(inputString);
         }
@@ -20,24 +26,21 @@ public class Adder {
     }
 
     private int sumNotCustomMark(String inputString) {
-        List<Integer> finalNums;
         validateSingleMinus(inputString);
-        finalNums = getSplit(inputString);
-        return finalNums.stream().reduce((x, y) -> x + y).get();
+        finalNumbers = getSplit(inputString);
+        return finalNumbers.stream().reduce((x, y) -> x + y).get();
     }
 
     private int sumWhenCustomMarkNotMinus(String inputString) {
-        List<Integer> finalNums;
         validateSingleMinus(inputString);
-        finalNums = getSplit(customMarkAndEquation(inputString)[0], customMarkAndEquation(inputString)[1]);
-        return finalNums.stream().reduce((x, y) -> x + y).get();
+        finalNumbers = getSplit(customMarkAndEquation(inputString)[0], customMarkAndEquation(inputString)[1]);
+        return finalNumbers.stream().reduce((x, y) -> x + y).get();
     }
 
     private int sumWhenCustomMarkMinus(String inputString) {
-        List<Integer> finalNums;
         validateDoubleMinus(inputString);
-        finalNums = getSplit(customMarkAndEquation(inputString)[0], customMarkAndEquation(inputString)[1]);
-        return finalNums.stream().reduce((x, y) -> x + y).get();
+        finalNumbers = getSplit(customMarkAndEquation(inputString)[0], customMarkAndEquation(inputString)[1]);
+        return finalNumbers.stream().reduce((x, y) -> x + y).get();
     }
 
     private boolean isCustomMarkIsMinus(String inputString) {
