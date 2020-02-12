@@ -3,6 +3,7 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -30,8 +31,8 @@ public class CarsTest {
 	@Test
 	void sort() {
 		Cars cars = new Cars(carList);
-		Car sort = cars.getCarOnMaxPosition();
-		assertThat(sort).isEqualTo(pobi);
+		Car carOnMaxPosition = cars.getCarOnMaxPosition();
+		assertThat(carOnMaxPosition).isEqualTo(pobi);
 	}
 
 	@Test
@@ -42,9 +43,15 @@ public class CarsTest {
 	@Test
 	void checkToString() {
 		Cars cars = new Cars(carList);
-		assertThat(cars.toString()).isEqualTo("hodol : \n"
+		assertThat(cars).hasToString("hodol : \n"
 			+ "pobi : --\n"
 			+ "kyle : -\n"
 			+ "rutgo : -\n");
+	}
+
+	@Test
+	void getWinner() {
+		Cars cars = new Cars(carList);
+		assertThat(cars.getWinners()).isEqualTo(Arrays.asList(new String[] {"pobi"}));
 	}
 }

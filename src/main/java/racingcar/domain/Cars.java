@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,5 +23,17 @@ public class Cars {
 			sb.append(car);
 		}
 		return sb.toString();
+	}
+
+	public List<String> getWinners() {
+		List<String> winner = new ArrayList<>();
+		Car max = getCarOnMaxPosition();
+		for (Car car : cars) {
+			String name = car.getCoWinnersName(max);
+			if (name != null) {
+				winner.add(name);
+			}
+		}
+		return winner;
 	}
 }
