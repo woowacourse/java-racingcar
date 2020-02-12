@@ -26,7 +26,7 @@ public class CarRacingTest {
 
         assertThatThrownBy(() -> new CarRacing(nameList))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("자동차 이름은 5자 이하여야 합니다.");
+                .hasMessage("자동차 이름은 5자 이하의 비어있지 않은 이름이어야 합니다.");
     }
 
     @Test
