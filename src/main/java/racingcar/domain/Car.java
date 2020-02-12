@@ -13,9 +13,23 @@ package racingcar.domain;
  *
  */
 public class Car {
+	public static final int MINIMUM_NUMBER_TO_GO = 4;
+
 	private final String name;
+	private int position;
 
 	public Car(String name) {
 		this.name = name;
+		this.position = 0;
+	}
+
+	public void run(int randomNumber) {
+		if (randomNumber >= MINIMUM_NUMBER_TO_GO) {
+			position++;
+		}
+	}
+
+	public boolean isPosition(int position) {
+		return this.position == position;
 	}
 }
