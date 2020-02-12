@@ -2,6 +2,8 @@ package tdd.racingcar.util;
 
 import static java.util.stream.Collectors.*;
 
+import java.util.function.Predicate;
+
 import tdd.racingcar.domain.Car;
 import tdd.racingcar.domain.Cars;
 
@@ -24,8 +26,12 @@ public class CarsUtils {
 	public static String getWinners(final Cars cars) {
 		final int maxPosition = cars.getMaxPosition();
 		return cars.toList().stream()
-			.filter(car -> car.isPosition(maxPosition))
+			.filter(isPosition(maxPosition))
 			.map(Car::getName)
 			.collect(joining(DELIMITER));
+	}
+
+	private static Predicate<Car> isPosition(final int position) {
+		return car -> car.isPosition(position);
 	}
 }
