@@ -16,7 +16,7 @@ public class Name {
 		}
 	}
 
-	private boolean isInvalid(String name) {
+	private boolean isInvalid(final String name) {
 		return name.length() > MAX_LENGTH;
 	}
 

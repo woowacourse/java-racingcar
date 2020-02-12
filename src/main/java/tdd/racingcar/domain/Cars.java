@@ -11,15 +11,18 @@ public class Cars {
 		this.cars = cars;
 	}
 
+	public void move() {
+		cars.forEach(car -> {
+			final Power power = PowerFactory.createRandomPower();
+			car.move(power);
+		});
+	}
+
 	public List<Car> getWinners() {
 		final int maxPosition = getMaxPosition();
 		return cars.stream()
 			.filter(car -> car.isPosition(maxPosition))
 			.collect(Collectors.toList());
-	}
-
-	public List<Car> toList() {
-		return Collections.unmodifiableList(cars);
 	}
 
 	private int getMaxPosition() {
@@ -29,10 +32,7 @@ public class Cars {
 			.orElseThrow(() -> new IllegalArgumentException("차가 존재하지 않습니다."));
 	}
 
-	public void move() {
-		cars.forEach(car -> {
-			final Power power = PowerFactory.createRandomPower();
-			car.move(power);
-		});
+	public List<Car> toList() {
+		return Collections.unmodifiableList(cars);
 	}
 }
