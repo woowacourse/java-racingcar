@@ -12,19 +12,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 public class InputControlTest {
-
-    @Test
-    @DisplayName("컴마로 분리")
-    void inputControl_컴마로_분리() {
-        String[] result = InputView.inputCarName("포드,페라리,마세라티");
-        assertThat(result).containsExactly("포드", "페라리", "마세라티");
-    }
-
     @Test
     @DisplayName("null 또는 빈 문자열 입력 시")
     void inputControl_null_또는_빈문자열_입력() {
-        String nullResult = null;
-        String emptyResult = "";
+        String[] nullResult = null;
+        String[] emptyResult = {""};
 
         assertThatThrownBy(() -> {
             InputValidation.checkNullOrEmptyInput(nullResult);
@@ -41,7 +33,7 @@ public class InputControlTest {
     @DisplayName("차 이름이 5글자 이내")
     void inputControl_차_이름_글자수() {
         assertThatThrownBy(() -> {
-            String result = "Maserati";
+            String[] result = {"Maserati"};
             InputValidation.checkSmallerThanSix(result);
         }).isInstanceOf(IllegalArgumentException.class)
         .hasMessage("자동차 이름의 길이가 6 이상입니다.");
