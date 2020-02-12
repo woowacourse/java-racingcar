@@ -1,5 +1,7 @@
 package racingGame.domain;
 
+import racingGame.utils.StringUtil;
+
 import java.util.Objects;
 
 public class Car {
@@ -18,6 +20,15 @@ public class Car {
 		if (isMove(randomNumber)) {
 			this.position++;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return name.toString() +" : "+ StringUtil.convertPositionToString(position);
+	}
+
+	public String toStringOnlyName() {
+		return name.toString();
 	}
 
 	private boolean isMove(final int randomNumber) {

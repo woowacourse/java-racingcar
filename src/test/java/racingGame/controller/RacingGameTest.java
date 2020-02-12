@@ -1,4 +1,4 @@
-package racingGame;
+package racingGame.controller;
 
 import static org.assertj.core.api.Assertions.*;
 
