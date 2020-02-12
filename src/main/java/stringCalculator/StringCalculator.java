@@ -1,7 +1,9 @@
+package stringCalculator;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class StringAddCalculator {
+public class StringCalculator {
 	private static final int ZERO = 0;
 	private static final String DELIMITERS = "[:,]";
 
