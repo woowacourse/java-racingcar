@@ -4,7 +4,7 @@
  *
  * @author      티거, 제이미
  * @version     1.0
- * @date        11 Feb 2020
+ * @date        12 Feb 2020
  *
  */
 
@@ -12,32 +12,35 @@ package racingcar.domain;
 
 public class TryCount {
 
-    private static int tryCount = 0;
+    private int tryCount = 0;
+    private final static String EXCEPTION_MESSAGE = "1부터 1000까지의 숫자만 입력 가능합니다.";
 
-    public static void setTryCount(String count) {
+    public TryCount(String count) {
+        tryCount = returnValidateNumber(count);
+    }
+
+    private static int returnValidateNumber(String count) {
         validateNumber(count);
-        tryCount = Integer.parseInt(count);
-        validateCount();
+        int number = Integer.parseInt(count);
+        validateRange(number);
+        return number;
     }
 
     private static void validateNumber(String count) {
         try {
             Integer.parseInt(count);
         } catch (NumberFormatException nfe) {
-            throw new NumberFormatException("시도 횟수는 숫자로 입력해야합니다.");
+            throw new NumberFormatException(EXCEPTION_MESSAGE);
         }
     }
 
-    private static void validateCount() {
-        if (tryCount > 1000) {
-            throw new IllegalArgumentException("최대 시도 횟수는 1000번 입니다.");
-        }
-        if (tryCount <= 0) {
-            throw new IllegalArgumentException("시도 횟수는 1번 이상이여야 합니다.");
+    private static void validateRange(int count) {
+        if (count <= 0 || count > 1000) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
     }
 
-    public static int getTryCount() {
+    public int getTryCount() {
         return tryCount;
     }
 }
