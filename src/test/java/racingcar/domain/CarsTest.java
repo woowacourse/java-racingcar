@@ -14,10 +14,10 @@ public class CarsTest {
     @Test
     void 가장_먼_자동차의_거리() {
         List<Car> cars = new ArrayList<Car>();
-        cars.add(new Car(2));
-        cars.add(new Car(4));
-        cars.add(new Car(5));
-        cars.add(new Car(6));
+        cars.add(new Car(2, "user1"));
+        cars.add(new Car(4, "user2"));
+        cars.add(new Car(5, "user3"));
+        cars.add(new Car(6, "user4"));
         Cars players = new Cars(cars);
         assertThat(players.findMaxPosition()).isEqualTo(6);
     }
