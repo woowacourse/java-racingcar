@@ -1,11 +1,13 @@
 package domain;
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+
+import java.util.List;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class CarsTest {
     private static Car car1;
@@ -20,7 +22,7 @@ public class CarsTest {
         car2 = new Car("둔덩", 7);
         car3 = new Car("라면", 2);
         car4 = new Car("유안", 7);
-        cars = new Cars(Arrays.asList(car1, car2));
+        cars = new Cars(Arrays.asList(car1, car2, car3, car4));
     }
 
     @Test
@@ -33,5 +35,11 @@ public class CarsTest {
     void getMaxPositionTest() {
         int maxPosition = cars.getMaxPosition();
         assertThat(maxPosition).isEqualTo(7);
+    }
+
+    @Test
+    void getWinnersTest() {
+        int maxPosition = cars.getMaxPosition();
+        assertThat(cars.getWinners(maxPosition).equals(Arrays.asList(car2, car4))).isTrue();
     }
 }

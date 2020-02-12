@@ -6,7 +6,6 @@ public class Car {
     private static final int MIN_MOVABLE_NUM = 4;
 
     private final String name;
-    public int temp = 1;
     private int position;
 
     public Car(String name) {
@@ -41,5 +40,9 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 }

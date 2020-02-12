@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars;
@@ -18,5 +19,11 @@ public class Cars {
                 .map(Car::getPosition)
                 .max(Integer::compareTo)
                 .get();
+    }
+
+    public List<Car> getWinners(int maxPosition) {
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .collect(Collectors.toList());
     }
 }
