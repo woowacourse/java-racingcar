@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Winner {
-    public static final int MIN_POSITION = 0;
+    private static final int MIN_POSITION = 0;
     private static List<String> winners = new ArrayList<>();
 
     public static int getMaxPosition(List<Car> cars) {

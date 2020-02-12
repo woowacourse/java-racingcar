@@ -6,12 +6,12 @@ import java.util.List;
 
 public class OutputView {
 
-    public static final String COLON = " : ";
-    public static final String BLANK = "\0";
-    public static final String SCORE_BAR = "-";
-    public static final String COMMA = ",";
-    public static final String WINNER_MESSAGE_FOOTER = " 가 우승했습니다.";
-    public static final String BEGIN_RESULT_MESSAGE = "실행 결과";
+    private static final String COLON = " : ";
+    private static final String BLANK = "\0";
+    private static final String SCORE_BAR = "-";
+    private static final String COMMA = ",";
+    private static final String WINNER_MESSAGE_FOOTER = " 가 우승했습니다.";
+    private static final String BEGIN_RESULT_MESSAGE = "실행 결과";
 
     public static void printScore(List<Car> cars) {
         for (Car car : cars) {

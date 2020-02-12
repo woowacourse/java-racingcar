@@ -3,7 +3,7 @@ package model;
 import java.util.Objects;
 
 public class Car {
-    public static final int ONE_STEP = 1;
+    private static final int ONE_STEP = 1;
     private final String name;
     private int position = 0;
 

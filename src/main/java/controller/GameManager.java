@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GameManager {
     public static final int ZERO = 0;
-    public static final int MIN_MOVE_NUMBER = 4;
+    private static final int MIN_MOVE_NUMBER = 4;
     private static List<Car> cars = new ArrayList<>();
     private int round;
 
