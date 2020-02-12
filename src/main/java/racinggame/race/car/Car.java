@@ -5,8 +5,6 @@ import racinggame.race.car.engine.Engine;
 import java.util.Objects;
 
 public class Car {
-    private static final int MINIMUM = 4;
-
     private final Name name;
     private Distance distance = Distance.startingPosition();
 
@@ -23,14 +21,9 @@ public class Car {
     }
 
     public void moveWith(Engine engine) {
-        int power = engine.getPower();
-        if (enough(power)) {
+        if (engine.enoughPower()) {
             this.distance = this.distance.move();
         }
-    }
-
-    private boolean enough(int power) {
-        return power >= MINIMUM;
     }
 
     public boolean isWinner(int distance) {

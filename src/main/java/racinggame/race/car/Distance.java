@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Distance {
     private static final int STARTING_POSITION = 1;
     private static final int MOVE_DISTANCE = 1;
+
     private final int distance;
 
     private Distance(int distance) {
