@@ -6,6 +6,7 @@ public class Car {
     private static final int MIN_MOVABLE_NUM = 4;
 
     private final String name;
+    public int temp = 1;
     private int position;
 
     public Car(String name) {
@@ -21,7 +22,7 @@ public class Car {
     }
 
     private void validateName(String name) {
-        if (!(name.length() >= MIN_NAME_LENGTH && name.length() <= MAX_NAME_LENGTH)) {
+        if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름 길이는 0~5이여야 합니다.");
         }
     }
@@ -32,5 +33,13 @@ public class Car {
             return true;
         }
         return false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
