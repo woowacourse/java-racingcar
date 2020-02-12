@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Adder {
     public int splitAndSum(String inputString) {
-        if (inputString.isEmpty()) {
+        if (inputString.isEmpty() || inputString == null) {
             return 0;
         }
         if (isCustomMarkIsMinus(inputString)) {
