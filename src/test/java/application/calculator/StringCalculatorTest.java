@@ -24,8 +24,15 @@ public class StringCalculatorTest {
 
     @DisplayName("쉼표구분자로 문자열을 나눠서 숫자들의 합을 출력 테스트")
     @Test
-    public void splitAndSumUsingCommaDelimiter() throws Exception {
+    public void splitAndSumUsingCommaDelimiterTest() throws Exception {
         int result = StringCalculator.splitAndSum("1,2");
         Assertions.assertThat(result).isEqualTo(3);
+    }
+
+    @DisplayName("쉼표 또는 콜론 구분자를 이용해 문자열을 나눠서 숫자들의 합을 출력 테스트")
+    @Test
+    public void splitAndSumUsingCommaOrColonDelimiterTest() throws Exception {
+        int result = StringCalculator.splitAndSum("1,2:3");
+        Assertions.assertThat(result).isEqualTo(6);
     }
 }
