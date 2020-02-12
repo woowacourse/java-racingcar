@@ -28,4 +28,12 @@ public class Car {
     public boolean isSamePositionWith(int position) {
         return this.position == position;
     }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
