@@ -8,7 +8,7 @@ public class Car {
 
     private static final int MINIMUM = 4;
     private Name name;
-    private int distance;
+    private int distance = 1;
 
     public Car(Name name) {
         this.name = name;

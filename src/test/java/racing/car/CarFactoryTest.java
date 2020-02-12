@@ -17,12 +17,13 @@ class CarFactoryTest {
         List<String> names = Arrays.asList("pobi", "bebop");
 
         //when
-        List<Car> cars = CarFactory.makeCars(names);
+        Cars cars = CarFactory.makeCars(names);
 
         //then
         Car pobi = new Car(new Name("pobi"));
         Car bebop = new Car(new Name("bebop"));
 
-        assertThat(cars).contains(pobi, bebop);
+        Cars expectCars = new Cars(Arrays.asList(pobi, bebop));
+        assertThat(cars).isEqualTo(expectCars);
     }
 }

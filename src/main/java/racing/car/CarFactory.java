@@ -1,15 +1,18 @@
 package racing.car;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class CarFactory {
 
-    public static List<Car> makeCars(List<String> names) {
+    public static Cars makeCars(List<String> names) {
         return names.stream()
                 .map(Name::new)
                 .map(Car::new)
-                .collect(Collectors.toList());
+                .collect(collectingAndThen(toList(), Cars::new));
+
     }
 
 }

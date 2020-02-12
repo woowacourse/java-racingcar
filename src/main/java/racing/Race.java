@@ -1,11 +1,9 @@
 package racing;
 
-import racing.car.Car;
 import racing.car.CarFactory;
+import racing.car.Cars;
 import racing.view.RacingInputView;
 import racing.view.RacingReqDTO;
-
-import java.util.List;
 
 public class Race {
 
@@ -13,8 +11,11 @@ public class Race {
         // List<String 이름들, count
         RacingReqDTO reqDTO = RacingInputView.inputRequest();
 
-        List<Car> cars = CarFactory.makeCars(reqDTO.getNames());
+        Cars cars = CarFactory.makeCars(reqDTO.getNames());
 
+        for (int i = 0; i < reqDTO.getCount(); i++) {
+
+        }
     }
 
 }
