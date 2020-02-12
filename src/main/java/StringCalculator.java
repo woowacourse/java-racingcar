@@ -4,6 +4,10 @@ import java.util.List;
 public class StringCalculator {
     private int result = 0;
     public int add(String numberExpression) {
+        if (containsLetter(numberExpression)) {
+            throw new RuntimeException("문자를 포함합니다");
+        }
+
         if (numberExpression.isEmpty()) {
             return result;
         }
@@ -16,6 +20,23 @@ public class StringCalculator {
 
 
         return result;
+    }
+
+    private boolean containsLetter(String numberExpression) {
+        for (int i = 0; i < numberExpression.length(); i++) {
+            if (!isDigit(numberExpression.charAt(i)) && !isSeperator(numberExpression.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isSeperator(Character charAt) {
+        return charAt.equals(':') || charAt.equals(',');
+    }
+
+    private boolean isDigit(Character charAt) {
+        return Character.isDigit(charAt);
     }
 
     private List<String> addNumbersInExpressionBySeparator(String numberExpression, String seperator) {

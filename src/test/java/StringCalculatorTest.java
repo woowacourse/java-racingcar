@@ -1,8 +1,9 @@
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class CalculatorTest {
+public class StringCalculatorTest {
     @Test
     void 덧셈_쉼표_두개의인자_여러입력확인() {
         StringCalculator stringCalculator = new StringCalculator();
@@ -55,5 +56,12 @@ public class CalculatorTest {
         stringCalculator = new StringCalculator();
         result = stringCalculator.add("1,2:3:4,5");
         assertThat(result).isEqualTo(15);
+    }
+
+    @Test
+    void 덧셈_숫자_이외의_값이_들어갔을_때() {
+        StringCalculator stringCalculator = new StringCalculator();
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> stringCalculator.add("haha"));
     }
 }
