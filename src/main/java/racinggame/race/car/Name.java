@@ -1,10 +1,11 @@
-package racing.car;
+package racinggame.race.car;
 
 import java.util.Objects;
 
 public class Name {
     private static final String NAME_LENGTH_EXCEPTION_MESSAGE = "%s 는 5글자를 초과한 이름입니다.";
     private static final int MAXIMUM_LENGTH = 5;
+
     private final String name;
 
     public Name(String input) {

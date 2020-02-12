@@ -1,4 +1,6 @@
-package racing;
+package racinggame;
+
+import racinggame.race.Race;
 
 public class RacingGame {
 

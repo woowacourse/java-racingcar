@@ -1,22 +1,23 @@
-package racing.car;
+package racinggame.race.car;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class Winners {
-
     public static final String COMMA = ", ";
+
     private final List<Car> cars;
 
     public Winners(List<Car> cars) {
         this.cars = cars;
     }
 
-    public String combine() {
+    public String getNames() {
         List<String> winnersNames = cars.stream()
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .collect(toList());
 
         return String.join(COMMA, winnersNames);
     }

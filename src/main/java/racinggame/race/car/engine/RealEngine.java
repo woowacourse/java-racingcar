@@ -1,12 +1,12 @@
-package racing.car.numbergenerator;
+package racinggame.race.car.engine;
 
 import java.util.Random;
 
-public class RandomNumberGenerator implements NumberGenerator {
+public class RealEngine implements Engine {
     private static final int BOUND = 10;
 
     @Override
-    public int generate() {
+    public int getPower() {
         Random random = new Random();
         return random.nextInt(BOUND);
     }
