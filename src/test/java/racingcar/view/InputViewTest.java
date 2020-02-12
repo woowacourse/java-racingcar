@@ -25,15 +25,20 @@ import org.junit.jupiter.api.Test;
 public class InputViewTest {
 	private InputView inputView;
 
-	@BeforeEach
-	void setup() {
-		Scanner scanner = new Scanner(new ByteArrayInputStream("동글,또링,또도링".getBytes()));
-		inputView = new InputView(scanner);
-	}
-
 	@DisplayName("입력 값이 정상적으로 들어왔는지 테스트")
 	@Test
 	void inputCarNamesTest() {
+		Scanner scanner = new Scanner(new ByteArrayInputStream("동글,또링,또도링".getBytes()));
+		inputView = new InputView(scanner);
 		assertThat(inputView.inputCarNames()).isEqualTo("동글,또링,또도링");
 	}
+
+	@DisplayName("라운드 횟수가 정상적으로 들어왔는지 테스트")
+	@Test
+	void inputNumberOfRoundTest() {
+		Scanner scanner = new Scanner(new ByteArrayInputStream("3".getBytes()));
+		inputView = new InputView(scanner);
+		assertThat(inputView.inputNumberOfRound()).isEqualTo(3);
+	}
+
 }

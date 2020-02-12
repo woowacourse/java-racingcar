@@ -15,12 +15,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-	public List<Car> cars = new ArrayList<>();
+	public static final int MINIMUM_NUMBER_OF_ROUND = 1;
 
-	Cars(List<String> names) {
+	private final List<Car> cars = new ArrayList<>();
+	private final int numberOfRound;
+
+	Cars(List<String> names, int numberOfRound) {
+		if (numberOfRound < MINIMUM_NUMBER_OF_ROUND) {
+			throw new IllegalArgumentException("round number must be positive");
+		}
+
 		for(String name : names) {
 			cars.add(new Car(name));
 		}
+		this.numberOfRound = numberOfRound;
 	}
 
 }

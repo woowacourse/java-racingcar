@@ -12,19 +12,23 @@ package racingcar.domain;
  *
  */
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.Arrays;
 import java.util.List;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarsTest {
-	@DisplayName("이름목록을 받아 cars 객체를 정상적으로 생성")
-	@Test
-	void testCar() {
+	@DisplayName("이름목록과 라운드 횟수를 받아 Cars 생성실패 - 부적절한 라운드 횟수")
+	@ParameterizedTest
+	@ValueSource(ints = {0, -1})
+	void testCar(int numberOfRound) {
 		List<String> names = Arrays.asList("또링", "동글");
-		Cars cars = new Cars(names);
-		Assertions.assertThat(cars).isNotNull();
+		assertThatThrownBy(() -> new Cars(names, numberOfRound))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("round number must be positive");
 	}
 }

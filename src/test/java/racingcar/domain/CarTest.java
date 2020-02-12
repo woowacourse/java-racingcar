@@ -26,4 +26,5 @@ public class CarTest {
 		Car car = new Car(name);
 		Assertions.assertThat(car).isNotNull();
 	}
+
 }

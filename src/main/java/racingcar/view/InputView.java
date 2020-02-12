@@ -25,4 +25,8 @@ public class InputView {
 	public String inputCarNames() {
 		return scanner.nextLine();
 	}
+
+	public int inputNumberOfRound() {
+		return scanner.nextInt();
+	}
 }
