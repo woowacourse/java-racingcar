@@ -7,7 +7,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.io.consoleOutput;
 
+import java.util.LinkedHashMap;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,7 +44,7 @@ public class racingCarTest {
         for (int i = 4; i <= 9; i++) {
             assertTrue(Utils.checkMove(i));
         }
-        assertThat(game.announceWinner().get("hiro")).isEqualTo(6);
+        assertThat(car.getPosition()).isEqualTo(6);
     }
 
     @ParameterizedTest
@@ -87,6 +89,17 @@ public class racingCarTest {
         assertThat(cars.notifyStatus().get("carol")).isEqualTo(0);
         assertThat(cars.notifyStatus().get("don")).isEqualTo(1);
         assertThat(cars.notifyStatus().get("eddy")).isEqualTo(1);
-
     }
+
+    @Test
+    @DisplayName("결과 발표 테스트")
+    void getResultTest() {
+        LinkedHashMap<String, Integer> finalStatus = new LinkedHashMap<>();
+        finalStatus.put("alan", 6);
+        finalStatus.put("bart", 3);
+        finalStatus.put("cloy", 6);
+        finalStatus.put("don", 5);
+        assertThat(game.findWinner(finalStatus)).containsExactly("alan", "cloy");
+    }
+
 }

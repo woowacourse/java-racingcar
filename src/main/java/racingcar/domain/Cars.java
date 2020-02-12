@@ -4,7 +4,9 @@ import racingcar.util.NumberGenerator;
 import racingcar.util.RandomNumberGenerator;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static racingcar.Utils.checkMove;
 
@@ -23,8 +25,8 @@ public class Cars {
         });
     }
 
-    public HashMap<String, Integer> notifyStatus() {
-        HashMap<String, Integer> status = new HashMap<>();
+    public LinkedHashMap<String, Integer> notifyStatus() {
+        LinkedHashMap<String, Integer> status = new LinkedHashMap<>();
         cars.forEach(car -> {
             status.put(car.getName(), car.getPosition());
         });

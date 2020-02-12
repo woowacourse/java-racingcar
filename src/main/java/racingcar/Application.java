@@ -13,6 +13,7 @@ public class Application {
     public static void main(String[] args) {
         Cars cars = new Cars(enrollCars(splitCarsName(userInput.inputCarsName())));
         Game game = new Game(cars, userInput.inputIteration());
+        game.playGame();
     }
 
 }
