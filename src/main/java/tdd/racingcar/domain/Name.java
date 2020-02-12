@@ -6,11 +6,11 @@ public class Name {
 	private final String name;
 
 	public Name(final String name) {
-		checkValidationOf(name);
+		validate(name);
 		this.name = name;
 	}
 
-	private void checkValidationOf(final String name) {
+	private void validate(final String name) {
 		if (name.length() > MAX_LENGTH) {
 			throw new IllegalArgumentException("이름은 최대 5자까지 가능합니다.");
 		}

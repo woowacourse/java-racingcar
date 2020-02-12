@@ -8,11 +8,11 @@ public class TryCount {
 	private int tryCount;
 
 	public TryCount(final int tryCount) {
-		checkValidationOf(tryCount);
+		validate(tryCount);
 		this.tryCount = tryCount;
 	}
 
-	private void checkValidationOf(final int tryCount) {
+	private void validate(final int tryCount) {
 		if (tryCount < MIN) {
 			throw new IllegalArgumentException("횟수는 1이상 이어야 합니다.");
 		}

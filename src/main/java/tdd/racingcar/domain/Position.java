@@ -6,11 +6,11 @@ public class Position {
 	private int position;
 
 	public Position(final int position) {
-		checkValidationOf(position);
+		validate(position);
 		this.position = position;
 	}
 
-	private void checkValidationOf(final int position) {
+	private void validate(final int position) {
 		if (position < MIN_POSITION) {
 			throw new IllegalArgumentException("자동차의 위치는 0 이상이어야 합니다.");
 		}

@@ -8,18 +8,14 @@ public class Power {
 	private final int power;
 
 	public Power(final int power) {
-		checkValidationOf(power);
+		validate(power);
 		this.power = power;
 	}
 
-	private void checkValidationOf(final int power) {
-		if (isInvalid(power)) {
+	private void validate(final int power) {
+		if (power < MIN_POWER || power > MAX_POWER) {
 			throw new IllegalArgumentException("파워는 0 이상 9 이하의 값을 가질 수 있습니다.");
 		}
-	}
-
-	private boolean isInvalid(final int power) {
-		return power < MIN_POWER || power > MAX_POWER;
 	}
 
 	public boolean isEnough() {
