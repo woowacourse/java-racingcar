@@ -1,6 +1,7 @@
 package racingcargame.domain;
 
 import racingcargame.genrator.RandomGenerator;
+import racingcargame.view.output.OutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +14,9 @@ public class Cars {
         this.cars = cars;
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
 
     public int getMaxPosition() {
         int result = 0;
@@ -34,6 +38,7 @@ public class Cars {
     public void moveFoward(int round) {
         for (int i = 0; i < round; i++) {
             moveOneRound();
+            OutputView.printRound(cars);
         }
     }
 
