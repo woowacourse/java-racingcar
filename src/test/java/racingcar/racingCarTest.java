@@ -39,11 +39,11 @@ public class racingCarTest {
         Car car = new Car("hiro");
         for (int i = 0; i <= 3; i++) {
             assertFalse(Utils.checkMove(i));
+
         }
         for (int i = 4; i <= 9; i++) {
             assertTrue(Utils.checkMove(i));
         }
-        assertThat(car.getPosition()).isEqualTo(6);
     }
 
     @ParameterizedTest
