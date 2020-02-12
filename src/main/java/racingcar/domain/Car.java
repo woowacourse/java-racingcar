@@ -33,4 +33,8 @@ public class Car {
     public int getLocation() {
         return location.getLocation();
     }
+
+    public void move() {
+        location.moveForward();
+    }
 }

@@ -10,4 +10,8 @@ public class Location {
     public int getLocation() {
         return location;
     }
+
+    public void moveForward() {
+        location++;
+    }
 }

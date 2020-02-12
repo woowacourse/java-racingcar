@@ -24,7 +24,14 @@ public class CarTest {
 
     @Test
     void 위치를_알려주는_기능_테스트() {
-        Car car = new Car("moonui");
+        Car car = new Car("무늬");
         assertThat(car.getLocation()).isEqualTo(0);
+    }
+
+    @Test
+    void 위치를_이동시키는_기능_테스트() {
+        Car car = new Car("두강");
+        car.move();
+        assertThat(car.getLocation()).isEqualTo(1);
     }
 }
