@@ -1,4 +1,5 @@
 package racingcar.domain;
+
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
@@ -11,15 +12,10 @@ package racingcar.domain;
  * @date        12 Feb 2020
  *
  */
-
 public class Car {
 	private final String name;
 
 	public Car(String name) {
 		this.name = name;
-	}
-
-	public String getName() {
-		return name;
 	}
 }

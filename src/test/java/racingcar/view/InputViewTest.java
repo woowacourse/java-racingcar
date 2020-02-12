@@ -1,5 +1,13 @@
 package racingcar.view;
 
+import static org.assertj.core.api.Assertions.*;
+
+import java.io.ByteArrayInputStream;
+import java.util.Scanner;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
@@ -12,16 +20,6 @@ package racingcar.view;
  * @date        12 Feb 2020
  *
  */
-
-import static org.assertj.core.api.Assertions.*;
-
-import java.io.ByteArrayInputStream;
-import java.util.Scanner;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 public class InputViewTest {
 	private InputView inputView;
 
@@ -40,5 +38,4 @@ public class InputViewTest {
 		inputView = new InputView(scanner);
 		assertThat(inputView.inputNumberOfRound()).isEqualTo(3);
 	}
-
 }

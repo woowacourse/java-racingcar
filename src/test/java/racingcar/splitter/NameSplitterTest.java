@@ -1,5 +1,12 @@
 package racingcar.splitter;
 
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
+
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
@@ -12,16 +19,7 @@ package racingcar.splitter;
  * @date        12 Feb 2020
  *
  */
-
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.ValueSource;
-
 public class NameSplitterTest {
-
 	@DisplayName("쉼표를 기준으로 문자열을 정상적으로 분리")
 	@Test
 	void Should_success_When_appropriateValue() {
@@ -57,5 +55,4 @@ public class NameSplitterTest {
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("name can not be duplicated");
 	}
-
 }
