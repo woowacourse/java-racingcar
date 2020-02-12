@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Map;
+
 public class Car {
     private final String name;
     private int position = 0;
@@ -11,7 +13,11 @@ public class Car {
         this.name = name;
     }
 
-    public int getPosition() {
-        return position;
+    public void proceed() {
+        position++;
+    }
+
+    public String[] displayNameAndPosition() {
+        return new String[] {name, Integer.toString(position)};
     }
 }
