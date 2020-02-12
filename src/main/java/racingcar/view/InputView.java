@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class InputView {
 
     private static final Scanner sc = new Scanner(System.in);
+    public static final String DELIMITER = ",";
+    public static final int ZERO = 0;
 
     public static String[] inputCarName() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -14,11 +16,11 @@ public class InputView {
     }
 
     private static String[] validateNames(String s) {
-        String[] names = s.split(",");
+        String[] names = s.split(DELIMITER);
 
         InputHandler.validateCarCount(names.length);
 
-        for (int i = 0; i < names.length; i++) {
+        for (int i = ZERO; i < names.length; i++) {
             names[i] = names[i].trim();
             InputHandler.validateNullOrEmpty(names[i]);
             InputHandler.validateNameLength(names[i]);

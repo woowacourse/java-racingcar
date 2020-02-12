@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCar {
+    private static final int ZERO = 0;
     private Cars cars;
 
     public void run() {
@@ -39,7 +40,7 @@ public class RacingCar {
     }
 
     private void startGame(int round) {
-        for (int i = 0; i < round; i++) {
+        for (int i = ZERO; i < round; i++) {
             cars.moveAll();
             OutputView.printCurrentRound(cars.getCars());
         }

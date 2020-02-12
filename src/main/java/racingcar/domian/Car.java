@@ -3,11 +3,14 @@ package racingcar.domian;
 import java.util.Objects;
 
 public class Car {
+    private static final String EMPTY_STRING = "";
+    private static final int INIT_POSITION = 0;
+    private static final int LIMIT_FOR_MOVE = 4;
     private int position;
     private String name;
 
     public Car(String name) {
-        this(0, name);
+        this(INIT_POSITION, name);
     }
 
     public Car(int position, String name) {
@@ -16,7 +19,7 @@ public class Car {
     }
 
     public void move(int inputValue) {
-        if (inputValue >= 4) {
+        if (inputValue >= LIMIT_FOR_MOVE) {
             this.position++;
         }
     }
@@ -39,11 +42,11 @@ public class Car {
         return this.position;
     }
 
-    public String findWinner(int max) {
+    public String isWinner(int max) {
         if (isMaxPosition(max)) {
             return name;
         }
-        return "";
+        return EMPTY_STRING;
     }
 
     public boolean isMaxPosition(int max) {

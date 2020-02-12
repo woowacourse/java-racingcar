@@ -1,7 +1,6 @@
 package racingcar.domian;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +29,7 @@ public class Cars {
         List<String> winners = new ArrayList<>();
         int max = findMaxPosition();
         for (Car car : cars) {
-            winners.add(car.findWinner(max));
+            winners.add(car.isWinner(max));
         }
         return winners.stream().filter(x -> !"".equals(x)).collect(Collectors.joining(","));
     }
