@@ -27,21 +27,37 @@ public class RacingCarTest {
         assertThatThrownBy(() -> {
             InputValidation.checkNullOrEmptyInput(nullResult);
         }).isInstanceOf(NullPointerException.class)
-        .hasMessage("입력이 null이나 빈 문자열입니다.");
+        .hasMessage("입력이 null 이나 빈 문자열입니다.");
 
         assertThatThrownBy( () -> {
             InputValidation.checkNullOrEmptyInput(emptyResult);
         }).isInstanceOf(NullPointerException.class)
-        .hasMessage("입력이 null이나 빈 문자열입니다.");
+        .hasMessage("입력이 null 이나 빈 문자열입니다.");
     }
 
     @Test
     @DisplayName("차 이름이 5글자 이내")
     void inputControl_차_이름_글자수() {
-        assertThatThrownBy(()->{
+        assertThatThrownBy(() -> {
             String result = "Maserati";
             InputValidation.checkSmallerThanSix(result);
         }).isInstanceOf(IllegalArgumentException.class)
         .hasMessage("자동차 이름의 길이가 6 이상입니다.");
+    }
+
+    @Test
+    @DisplayName("시도횟수가 음수 또는 0")
+    void inputControl_시도횟수가_0이하() {
+        assertThatThrownBy(() -> {
+            int trialTime  = -4;
+            InputValidation.checkNegativeAndZeroInput(trialTime);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("음수 또는 0을 입력할 수 없습니다.");
+
+        assertThatThrownBy(() -> {
+            int trialTime  = 0;
+            InputValidation.checkNegativeAndZeroInput(trialTime);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("음수 또는 0을 입력할 수 없습니다.");
     }
 }
