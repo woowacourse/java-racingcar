@@ -1,6 +1,9 @@
 package racingcar.domian;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars;
@@ -21,6 +24,15 @@ public class Cars {
         for (Car car : cars) {
             car.move(RandomNumberGenerator.generateRandom());
         }
+    }
+
+    public String getResult() {
+        List<String> winners = new ArrayList<>();
+        int max = findMaxPosition();
+        for (Car car : cars) {
+            winners.add(car.findWinner(max));
+        }
+        return winners.stream().filter(x -> !"".equals(x)).collect(Collectors.joining(","));
     }
 
     public List<Car> getCars() {

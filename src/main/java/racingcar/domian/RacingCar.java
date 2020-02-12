@@ -12,8 +12,13 @@ public class RacingCar {
     public void run() {
         setUp(inputPlayerInfo());
         int round = inputGameRound();
-        OutputView.printResult();
+        OutputView.printNotice();
         startGame(round);
+        OutputView.printResult(getResult());
+    }
+
+    private String getResult() {
+        return cars.getResult();
     }
 
     private String[] inputPlayerInfo() {
