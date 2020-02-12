@@ -14,7 +14,8 @@ public class CarTest {
     @DisplayName("잘못된 이름으로 객체생성을 시도할 때 테스트")
     void illegalCarNameTest(String illegalName) {
         assertThatThrownBy(() -> new Car(illegalName))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 이름은 5자 이하여야 합니다.");
     }
 
     @Test
