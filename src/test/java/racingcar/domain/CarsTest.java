@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CarsTest {
@@ -28,24 +29,22 @@ public class CarsTest {
 	}
 
 	@Test
-	void checkIfIsOnSamePosition() {
-		assertThat(kyle.isOnSamePosition(rutgo)).isTrue();
-	}
-
-	@Test
-	void getCarOnMaxPosition() {
+	@DisplayName("최대 포지션의 Car가 반환되는지")
+	void getMaxCar() {
 		Cars cars = new Cars(carList);
 		Car carOnMaxPosition = cars.getCarOnMaxPosition();
 		assertThat(carOnMaxPosition).isEqualTo(pobi);
 	}
 
 	@Test
+	@DisplayName("우승자 명단이 반환되는지")
 	void getWinners() {
 		Cars cars = new Cars(carList);
 		assertThat(cars.getWinners()).containsExactly("pobi", null, null, null);
 	}
 
 	@Test
+	@DisplayName("toString()")
 	void testToString() {
 		Cars cars = new Cars(carList);
 		assertThat(cars).hasToString("hodol : \n"
