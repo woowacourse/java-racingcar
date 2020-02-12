@@ -18,7 +18,7 @@ public class CarNames {
     private final static String BLANK = " ";
     private final static String DELIMITER = ",";
     private final static int NAME_LENGTH_LIMIT = 5;
-    private List<String> carNames;
+    private final List<String> carNames;
 
     public CarNames(String input) throws IllegalArgumentException {
         validateHasNotBlank(input);
