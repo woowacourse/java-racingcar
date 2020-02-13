@@ -58,4 +58,10 @@ public class RacingCarTest {
             assertThat(racingCar.getPostion()).isEqualTo(0);
         }
     }
+
+    @Test
+    void 전진하는_자동차를_출력_시_이름이_출력되도록_자동차를_문자화할때_이름을_리턴한다() {
+        RacingCar racingCar = new RacingCar("name");
+        assertThat(racingCar.toString()).isEqualTo("name");
+    }
 }

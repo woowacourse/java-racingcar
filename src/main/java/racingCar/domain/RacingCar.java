@@ -31,4 +31,9 @@ public class RacingCar {
             stop();
         }
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
