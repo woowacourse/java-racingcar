@@ -28,4 +28,8 @@ public class Cars {
 			throw new IllegalArgumentException("자동차는 최소 2대 이상이어야 합니다.");
 		}
 	}
+
+	public void moveAll() {
+		cars.forEach(car -> car.move(RandomGenerator.generateRandom()));
+	}
 }
