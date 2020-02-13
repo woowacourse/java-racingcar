@@ -29,4 +29,12 @@ public class Location {
         }
         return result.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Location) {
+            return location == ((Location) o).location;
+        }
+        return false;
+    }
 }

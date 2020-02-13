@@ -1,5 +1,6 @@
 package racingcar.domain.car;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.CaseInsensitiveMap;
 import racingcar.domain.GoOrStop;
 
 import java.util.List;
@@ -76,5 +77,9 @@ public class Car {
                 .map(winner -> winner.toString())
                 .collect(Collectors.toList());
         return String.join(", ", list);
+    }
+
+    public boolean isLocation(int maxLocation) {
+        return this.location.equals(new Location(maxLocation));
     }
 }
