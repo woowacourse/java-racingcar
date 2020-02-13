@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 public class Location {
     private static final String MARK = "-";
@@ -19,10 +19,10 @@ public class Location {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < location; i++) {
-            stringBuilder.append(MARK);
+            result.append(MARK);
         }
-        return String.valueOf(stringBuilder);
+        return result.toString();
     }
 }

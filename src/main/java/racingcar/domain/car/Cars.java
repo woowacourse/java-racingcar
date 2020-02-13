@@ -1,10 +1,12 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Cars {
+    private static final String DELIMITER = ",";
+
     private final List<Car> cars;
 
     public Cars(String names) {
@@ -13,7 +15,7 @@ public class Cars {
         validateNames(names);
         validateDuplicatedNames(names);
 
-        for (String name : names.split(",")) {
+        for (String name : names.split(DELIMITER)) {
             cars.add(new Car(name));
         }
 
@@ -22,13 +24,13 @@ public class Cars {
 
     public static void validateNames(String input) throws IllegalArgumentException {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("입력값은 빈 문자열일 수 없습니다.");
         }
     }
 
 
     public static void validateDuplicatedNames(String input) throws IllegalArgumentException {
-        String[] splitInput = input.split(",");
+        String[] splitInput = input.split(DELIMITER);
         if (isDuplicatedNames(splitInput)) {
             throw new IllegalArgumentException("이름들은 중복될 수 없습니다.");
         }
@@ -48,11 +50,11 @@ public class Cars {
     }
 
     public String getResult() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder results = new StringBuilder();
         for (Car car : cars) {
-            stringBuilder.append(car.getResult());
-            stringBuilder.append("\n");
+            results.append(car.getResult());
+            results.append("\n");
         }
-        return String.valueOf(stringBuilder);
+        return results.toString();
     }
 }
