@@ -25,11 +25,7 @@ public class CarTest {
 		car.move(stoppedRandomNumber);
 		final int actual = car.getPosition();
 
-		final int expected = initPosition;
-
-		System.out.println(car.toString());
-
-		assertThat(actual).isEqualTo(expected);
+		assertThat(actual).isEqualTo(initPosition);
 	}
 
 	@Test

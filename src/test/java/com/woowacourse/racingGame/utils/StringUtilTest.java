@@ -2,6 +2,9 @@ package com.woowacourse.racingGame.utils;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import com.woowacourse.racingGame.domain.Car;
@@ -12,9 +15,20 @@ public class StringUtilTest {
 	void splitCarName_쉼표로_구분되어_입력된_자동차_이름() {
 		final String inputCarName = "a,b,c,d";
 
-		String[] actual = StringUtil.splitCarName(inputCarName);
+		List<String> actual = StringUtil.splitCarName(inputCarName);
 
-		String[] expected = {"a", "b", "c", "d"};
+		List<String> expected = Arrays.asList("a", "b", "c", "d");
+
+		assertThat(actual).isEqualTo(expected);
+	}
+
+	@Test
+	void splitCarName_공백이_앞뒤로_존재하는_자동차_이름() {
+		final String inputCarName = "a, b, c, d ";
+
+		List<String> actual = StringUtil.splitCarName(inputCarName);
+
+		List<String> expected = Arrays.asList("a", "b", "c", "d");
 
 		assertThat(actual).isEqualTo(expected);
 	}
@@ -27,6 +41,17 @@ public class StringUtilTest {
 		final String actual = StringUtil.convertPositionToString(car.getPosition());
 
 		final String expected = "----";
+
+		assertThat(actual).isEqualTo(expected);
+	}
+
+	@Test
+	void joinWinningCar_우승한_자동차들의_이름() {
+		final List<String> winners = Arrays.asList("toni", "alt");
+
+		final String actual = StringUtil.joinWinningCar(winners);
+
+		final String expected = "toni,alt";
 
 		assertThat(actual).isEqualTo(expected);
 	}

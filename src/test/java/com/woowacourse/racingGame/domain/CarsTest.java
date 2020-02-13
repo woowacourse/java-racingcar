@@ -2,7 +2,7 @@ package com.woowacourse.racingGame.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -11,10 +11,10 @@ import org.junit.jupiter.api.Test;
 public class CarsTest {
 	@Test
 	void checkDuplicate_유효한_이름() {
-		List<Car> nonDuplicatedCars = new ArrayList<>();
-		nonDuplicatedCars.add(new Car(new Name("a")));
-		nonDuplicatedCars.add(new Car(new Name("bb")));
-		nonDuplicatedCars.add(new Car(new Name("ccc")));
+		List<Car> nonDuplicatedCars = Arrays.asList(
+			new Car(new Name("a")),
+			new Car(new Name("bb")),
+			new Car(new Name("ccc")));
 
 		Cars cars = new Cars(nonDuplicatedCars);
 
@@ -23,10 +23,10 @@ public class CarsTest {
 
 	@Test
 	void checkDuplicate_중복된_이름_존재() {
-		List<Car> duplicatedCars = new ArrayList<>();
-		duplicatedCars.add(new Car(new Name("a")));
-		duplicatedCars.add(new Car(new Name("bb")));
-		duplicatedCars.add(new Car(new Name("a")));
+		List<Car> duplicatedCars = Arrays.asList(
+			new Car(new Name("a")),
+			new Car(new Name("bb")),
+			new Car(new Name("a")));
 
 		assertThatThrownBy(() -> new Cars(duplicatedCars))
 			.isInstanceOf(IllegalArgumentException.class)

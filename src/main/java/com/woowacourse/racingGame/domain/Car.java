@@ -31,6 +31,10 @@ public class Car {
 		return position.getPosition();
 	}
 
+	public String getName() {
+		return name.getName();
+	}
+
 	public void setPosition(final int position) {
 		this.position = new Position(position);
 	}
