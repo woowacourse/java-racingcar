@@ -17,15 +17,21 @@ class GameManagerTest {
 
     @Test
     void play_Once() {
-        gameManager.play(1);
+        gameManager.play(1).forEach(System.out::println);
         List<PlayerInfoPair> players = gameManager.getState();
         Assertions.assertThat(players.size()).isEqualTo(3);
     }
 
     @Test
     void play_Multiple() {
-        gameManager.play(3);
+        gameManager.play(3).forEach(System.out::println);
         List<PlayerInfoPair> players = gameManager.getState();
         Assertions.assertThat(players.size()).isEqualTo(3);
+    }
+
+    @Test
+    void name() {
+        List<String> winnerList = gameManager.getWinner();
+        System.out.println(winnerList);
     }
 }

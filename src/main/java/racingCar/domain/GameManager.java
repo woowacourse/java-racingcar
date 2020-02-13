@@ -14,8 +14,8 @@ public class GameManager {
                 .collect(Collectors.toList());
     }
 
-    public void play(int num) {
-        IntStream.range(0, num).forEach(this::play);
+    public IntStream play(int num) {
+        return IntStream.range(0, num).peek(this::play);
     }
 
     private void play() {
@@ -26,5 +26,9 @@ public class GameManager {
         return players.stream()
                 .map(Player::getPlayerInfoPair)
                 .collect(Collectors.toList());
+    }
+
+    public List<String> getWinner() {
+        return null;
     }
 }
