@@ -1,6 +1,6 @@
 package racingcar.utils;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +15,6 @@ class SplitTest {
 		// when
 		String[] result = Split.splitInputName(values);
 		// then
-		Assertions.assertArrayEquals(expected,result);
+		Assertions.assertThat(result).containsExactly(expected);
 	}
 }
