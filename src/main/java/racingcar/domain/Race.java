@@ -7,7 +7,6 @@ public class Race {
 
 	private final Cars cars;
 	private final RaceCount raceCount;
-	private String winnersName;
 
 	public Race(Cars cars, RaceCount raceCount) {
 		this.cars = cars;
@@ -25,10 +24,6 @@ public class Race {
 			maxPosition = cars.getMaxPosition(maxPosition);
 		}
 
-		winnersName = cars.getWinnersName(maxPosition);
-	}
-
-	public String getWinnersName() {
-		return winnersName;
+		RaceController.showWinnersName(cars.getWinnersName(maxPosition));
 	}
 }

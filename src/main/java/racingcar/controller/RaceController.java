@@ -42,4 +42,8 @@ public class RaceController {
 	public static void showRaceStart() {
 		OutputView.printRaceStart();
 	}
+
+	public static void showWinnersName(String winnersName) {
+		OutputView.printWinnersName(winnersName);
+	}
 }
