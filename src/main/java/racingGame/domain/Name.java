@@ -8,9 +8,9 @@ public class Name {
 	private final String name;
 
 	public Name(final String name) {
-		checkNameEmpty(name);
-		checkNameLength(name);
-		this.name = name;
+		checkNameEmpty(name.trim());
+		checkNameLength(name.trim());
+		this.name = name.trim();
 	}
 
 	private void checkNameEmpty(String name) {

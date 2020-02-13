@@ -1,5 +1,10 @@
 package racingGame.utils;
 
+import racingGame.domain.Car;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringUtil {
 	private static final String DELIMITER = ",";
 	private static final String POSITION_CHARACTER = "-";
@@ -14,5 +19,14 @@ public class StringUtil {
 			convertedPosition.append(POSITION_CHARACTER);
 		}
 		return convertedPosition.toString();
+	}
+
+	public static List<String> extractWinnersName(List<Car> winners) {
+		List<String> names = new ArrayList<>();
+
+		for (Car winner : winners) {
+			names.add(winner.toStringOnlyName());
+		}
+		return names;
 	}
 }

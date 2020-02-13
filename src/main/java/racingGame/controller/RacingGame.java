@@ -10,7 +10,7 @@ import racingGame.view.InputView;
 import racingGame.view.OutputView;
 
 public class RacingGame {
-    private int maxPosition = 7;
+    private int maxPosition;
 
     public void run() {
         int movementNumber;

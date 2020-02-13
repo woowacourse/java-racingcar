@@ -3,6 +3,8 @@ package racingGame.domain;
 import racingGame.utils.RandomGenerator;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Cars {
@@ -48,7 +50,7 @@ public class Cars {
                 .count();
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public Collection<Car> getCars() {
+        return Collections.unmodifiableCollection(cars);
     }
 }
