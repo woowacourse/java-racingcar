@@ -10,10 +10,18 @@ public class InputView {
     private static final String RACE_COUNT_INPUT_MESSAGE = "시도할 회수는 몇회인가요?";
 
     public static RacingReqDTO inputRequest() {
-        System.out.println(RACER_NAME_INPUT_MESSAGE);
-        String names = scanner.nextLine();
-        System.out.println(RACE_COUNT_INPUT_MESSAGE);
-        int count = scanner.nextInt();
+        String names = inputNames();
+        int count = inputRaceCount();
         return new RacingReqDTO(names, count);
+    }
+
+    private static int inputRaceCount() {
+        System.out.println(RACE_COUNT_INPUT_MESSAGE);
+        return scanner.nextInt();
+    }
+
+    private static String inputNames() {
+        System.out.println(RACER_NAME_INPUT_MESSAGE);
+        return scanner.nextLine();
     }
 }
