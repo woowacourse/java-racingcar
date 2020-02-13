@@ -25,13 +25,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  */
 
 public class InputValidationTest {
-//    static Stream<Arguments> stringArraySource () {
-//        return Stream.of(
-//                Arguments.of((new String[] { "123"}))
-////                Arguments.of((new int[] )),
-////                Arguments.of((new int[]{1, 3, 5} ))
-//        );
-//    }
 
     @ParameterizedTest
     @ValueSource(strings = {" ", })
@@ -51,7 +44,6 @@ public class InputValidationTest {
             InputValidation.checkEmptyCarName(carNames);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("차 이름은 빈 문자열일 수 없습니다.");
-
     }
 
     @Test
@@ -100,11 +92,11 @@ public class InputValidationTest {
                 .hasMessage("소수는 입력할 수 없습니다.");
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"abc", " ", " ##$$$$$"})
     @DisplayName("시도 횟수가 문자인 경우")
-    void inputValidation_시도횟수가_문자_입력() {
+    void inputValidation_시도횟수가_문자_입력(String trialTime) {
         assertThatThrownBy(() -> {
-            String trialTime = "abc";
             InputValidation.checkNotNumber(trialTime);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("문자는 입력할 수 없습니다.");
