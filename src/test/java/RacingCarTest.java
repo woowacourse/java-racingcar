@@ -20,4 +20,15 @@ public class RacingCarTest {
         position = racingCar.getPostion();
         assertThat(position).isEqualTo(1);
     }
+
+    @Test
+    void 자동차는_멈출_수_있다() {
+        RacingCar racingCar = new RacingCar("name");
+        int position = racingCar.getPostion();
+        assertThat(position).isEqualTo(0);
+
+        racingCar.stop();
+        position = racingCar.getPostion();
+        assertThat(position).isEqualTo(1);
+    }
 }

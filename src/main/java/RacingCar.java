@@ -13,4 +13,8 @@ public class RacingCar {
     public void proceed() {
         position++;
     }
+
+    public void stop() {
+
+    }
 }
