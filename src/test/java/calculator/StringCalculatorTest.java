@@ -64,9 +64,9 @@ public class StringCalculatorTest {
 
     @Test
     void 정규표현식학습테스트2() {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher("1,2,3");
+        Matcher m = Pattern.compile("//(.*)\n(.*)").matcher("//\n1,2,3");
         if (m.find()) {
-            assertThat(m.group(1)).isEqualTo(";");
+            assertThat(m.group(1)).isEqualTo("");
             assertThat(m.group(2)).isEqualTo("1,2,3");
         }
     }
