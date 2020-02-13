@@ -75,4 +75,15 @@ public class RacingCarTest {
         position = racingCar.getPostion();
         assertThat(position).isEqualTo(1);
     }
+
+    @Test
+    void 임의의_숫자가_3이하일_경우_멈춘다() {
+        RacingCar racingCar = new RacingCar("name");
+        int position = racingCar.getPostion();
+        assertThat(position).isEqualTo(0);
+
+        racingCar.stopWithNumberUnderThree(3);
+        position = racingCar.getPostion();
+        assertThat(position).isEqualTo(0);
+    }
 }

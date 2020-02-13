@@ -40,4 +40,8 @@ public class RacingCar {
     public void goWithNumberOverFour(int i) {
         go();
     }
+
+    public void stopWithNumberUnderThree(int i) {
+        stop();
+    }
 }
