@@ -38,4 +38,8 @@ public class RaceController {
 	public static void showCurrentPosition(String currentPosition) {
 		OutputView.printCurrentPosition(currentPosition);
 	}
+
+	public static void showRaceStart() {
+		OutputView.printRaceStart();
+	}
 }

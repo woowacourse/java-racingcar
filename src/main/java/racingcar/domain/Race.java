@@ -17,11 +17,14 @@ public class Race {
 	public void run() {
 		int maxPosition = INITIAL_POSITION;
 
+		RaceController.showRaceStart();
+
 		for (int i = 0; i < raceCount.getRaceCount(); i++) {
 			cars.moveAll();
 			RaceController.showCurrentPosition(cars.getCurrentPosition());
 			maxPosition = cars.getMaxPosition(maxPosition);
 		}
+
 		winnersName = cars.getWinnersName(maxPosition);
 	}
 
