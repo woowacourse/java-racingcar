@@ -8,9 +8,7 @@ import java.util.List;
 
 public class OutputView {
     public static void printCars(Cars cars) {
-        for (Car individualCar : cars.getCars()) {
-            System.out.println(individualCar.toString());
-        }
+        cars.getCars().forEach(car -> System.out.println(car.toString()));
         System.out.println();
     }
 

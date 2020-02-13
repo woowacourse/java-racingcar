@@ -37,9 +37,7 @@ public class Cars {
     public List<Car> getWinnersList() {
         List<Car> winners = new ArrayList<>();
 
-        for (Car car : cars) {
-            addIfWinner(winners, car);
-        }
+        cars.forEach(car -> addIfWinner(winners, car));
         return winners;
     }
 

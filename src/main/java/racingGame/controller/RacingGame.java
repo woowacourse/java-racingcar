@@ -9,7 +9,7 @@ import racingGame.view.OutputView;
 public class RacingGame {
     public void run() {
         Cars cars = generateCars();
-        int movementNumber = generateMovementNumber().toInteger();
+        final int movementNumber = generateMovementNumber().toInteger();
 
         for (int i = 0; i < movementNumber; i++) {
             cars.moveCars();
