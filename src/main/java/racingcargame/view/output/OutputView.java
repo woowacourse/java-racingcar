@@ -1,31 +1,21 @@
 package racingcargame.view.output;
 
-import racingcargame.domain.Car;
+import racingcargame.domain.CarRaceResult;
+import racingcargame.domain.RoundResult;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
-    public static void printRound(List<Car> cars) {
-        for (Car car : cars) {
-            printRoundEach(car);
-        }
-        System.out.println();
-    }
 
-    private static void printRoundEach(Car car) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(car.getName());
-        sb.append(": ");
-        for (int i = 0; i < car.getPosition(); i++) {
-            sb.append("-");
-        }
-        System.out.println(sb.toString());
-    }
-
-    public static void printWinners(List<Car> winners) {
-        List<String> winnerNames = winners.stream().map(Car::getName).collect(Collectors.toList());
-        String names = String.join(",", winnerNames);
+    public static void printWinners(List<String> winners) {
+        String names = String.join(",", winners);
         System.out.println(names + "가 우승하셨습니다.");
+    }
+
+    public static void printEachTime(CarRaceResult carRaceResult) {
+        List<RoundResult> roundResultList = carRaceResult.getRoundResultList();
+        for (RoundResult roundResult : roundResultList) {
+            System.out.println(roundResult);
+        }
     }
 }

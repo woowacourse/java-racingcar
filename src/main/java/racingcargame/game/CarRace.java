@@ -1,10 +1,13 @@
 package racingcargame.game;
 
 import racingcargame.domain.Car;
+import racingcargame.domain.CarRaceResult;
+import racingcargame.domain.CarSnapShot;
+import racingcargame.domain.RoundResult;
 import racingcargame.domain.TrialTimes;
 import racingcargame.genrator.RandomGenerator;
-import racingcargame.view.output.OutputView;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,28 +34,24 @@ public class CarRace {
         }
     }
 
-    public void run(TrialTimes trialTimes) {
+    public CarRaceResult run(TrialTimes trialTimes) {
+        List<RoundResult> roundResultList = new ArrayList<>();
+
         for (int i = 0; i < trialTimes.getTrialTimes(); i++) {
-            runOneTurn();
-            OutputView.printRound(cars);
+            RoundResult roundResult = runOneTurn();
+            roundResultList.add(roundResult);
         }
+
+        return new CarRaceResult(roundResultList);
     }
 
-    private void runOneTurn() {
+    private RoundResult runOneTurn() {
         for (Car car : cars) {
             int randomNumber = RandomGenerator.generateRandom();
             car.move(randomNumber);
         }
-    }
 
-    public List<Car> getWinners() {
-        int maxPosition = getMaxPosition();
-        return cars.stream()
-                .filter(car -> car.isSamePositionWith(maxPosition))
-                .collect(Collectors.toList());
-    }
-
-    private int getMaxPosition() {
-        return cars.stream().mapToInt(Car::getPosition).max().orElse(0);
+        List<CarSnapShot> carSnapShotList = cars.stream().map(CarSnapShot::new).collect(Collectors.toList());
+        return new RoundResult(carSnapShotList);
     }
 }

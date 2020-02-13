@@ -1,6 +1,6 @@
 package racingcargame;
 
-import racingcargame.domain.Car;
+import racingcargame.domain.CarRaceResult;
 import racingcargame.domain.TrialTimes;
 import racingcargame.game.CarRace;
 import racingcargame.parser.GameParser;
@@ -13,8 +13,9 @@ public class Application {
     public static void main(String[] args) {
         CarRace carRace = GameParser.generateCarRace(InputView.askCarNames());
         TrialTimes trialTimes = GameParser.generateTrialTimes(InputView.askRound());
-        carRace.run(trialTimes);
-        List<Car> winners = carRace.getWinners();
+        CarRaceResult carRaceResult = carRace.run(trialTimes);
+        OutputView.printEachTime(carRaceResult);
+        List<String> winners = carRaceResult.getWinners();
         OutputView.printWinners(winners);
     }
 }
