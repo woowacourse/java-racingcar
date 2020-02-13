@@ -5,6 +5,11 @@ import java.util.Set;
 
 public class Name {
     private static final Set<String> CAR_NAMES = new HashSet<>();
+
+    public String getName() {
+        return name;
+    }
+
     private static final int NAME_MAX_LENGTH = 5;
     private static final String BLANK = "";
 

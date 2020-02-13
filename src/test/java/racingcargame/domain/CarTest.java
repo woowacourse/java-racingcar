@@ -15,4 +15,10 @@ public class CarTest {
         car.go(engine);
         assertThat(car.isSameTo(1)).isEqualTo(true);
     }
+
+    @Test
+    void 포지션만큼출력() {
+        Car car = new Car("pobi", 3);
+        assertThat(car.printPosition()).isEqualTo("pobi : ---\n");
+    }
 }

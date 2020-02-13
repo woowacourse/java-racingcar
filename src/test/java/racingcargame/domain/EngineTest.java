@@ -8,7 +8,7 @@ public class EngineTest {
 
     @Test
     void 엔진_랜덤_생성_테스트() {
-        Engine engine = Engine.getRandom();
+        Engine engine = Engine.createRandomEngine();
         assertThat(engine.getPower()).isBetween(0, 9);
     }
 }
