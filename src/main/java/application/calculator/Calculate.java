@@ -7,10 +7,10 @@ public class Calculate {
 
     public static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
     public static final String BASIC_DELIMITER = ",|:";
+    public static final String EMPTY = "";
     public static final int DELIMITER_INDEX = 1;
     public static final int TOKENS_INDEX = 2;
     public static final int ZERO = 0;
-    public static final String EMPTY = "";
 
     public int calculateStringEquation(String stringEquation) {
         Matcher customEquation = Pattern.compile(CUSTOM_DELIMITER).matcher(stringEquation);

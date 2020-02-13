@@ -1,4 +1,4 @@
-package application.racing;
+package application.racingGame;
 
 public class Car {
     private String name;
@@ -9,17 +9,16 @@ public class Car {
         this.position = 0;
     }
 
-    public void moveCarWhenNumberOverFour(int number) {
-        if (number >= 4) {
-            this.position = this.position + 1;
-        }
-    }
-
     public int getPosition() {
         return this.position;
+    }
+
+    public void setPosition() {
+        this.position++;
     }
 
     public String getName() {
         return this.name;
     }
+
 }
