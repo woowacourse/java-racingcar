@@ -43,7 +43,10 @@ public class RacingCar implements Comparable<RacingCar> {
     }
 
     public void goWithNumberOverFour(int i) {
-        go();
+        if (4 <= i) {
+            go();
+        }
+
     }
 
     public void stopWithNumberUnderThree(int i) {
