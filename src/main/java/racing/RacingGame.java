@@ -6,5 +6,4 @@ public class RacingGame {
         Race race = new Race();
         race.run();
     }
-
 }

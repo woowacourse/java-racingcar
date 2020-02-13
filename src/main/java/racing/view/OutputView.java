@@ -5,6 +5,11 @@ import racing.car.Cars;
 import racing.car.Winners;
 
 public class OutputView {
+    public static void printProcess(Cars cars) {
+        System.out.println("실행 결과");
+        printCarsInformation(cars);
+    }
+
     public static void printCarsInformation(Cars cars) {
         for (int i = 0; i < cars.size(); i++) {
             Car car = cars.get(i);
@@ -24,10 +29,5 @@ public class OutputView {
 
     public static void printWinners(Winners winners) {
         System.out.println(String.format("%s가 최종 우승했습니다.", winners.combine()));
-    }
-
-    public static void printProcess(Cars cars) {
-        System.out.println("실행 결과");
-        printCarsInformation(cars);
     }
 }
