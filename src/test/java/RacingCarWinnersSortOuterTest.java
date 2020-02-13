@@ -2,6 +2,8 @@ import org.junit.jupiter.api.Test;
 import racingCar.domain.RacingCar;
 import racingCar.domain.RacingCarWinnersSortOuter;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingCarWinnersSortOuterTest {
@@ -18,8 +20,8 @@ public class RacingCarWinnersSortOuterTest {
         honux.setPosition(4);
 
         RacingCar[] competitors = {pobi, crong, honux};
-        RacingCar[] winners = RacingCarWinnersSortOuter.sortOut(competitors);
-        assertThat(winners.length).isEqualTo(1);
-        assertThat(winners[0]).isEqualTo(honux);
+        List<RacingCar> winners = RacingCarWinnersSortOuter.sortOut(competitors);
+        assertThat(winners.size()).isEqualTo(1);
+        assertThat(winners.get(0)).isEqualTo(honux);
     }
 }
