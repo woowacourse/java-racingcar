@@ -12,11 +12,11 @@ public class OutputView {
 
 	public void printRacingGameResult(final List<Result> results) {
 		for (Result result : results) {
-			printSelectedResultCarStatus(result);
+			printRacingCarStatus(result);
 		}
 	}
 
-	private void printSelectedResultCarStatus(final Result result) {
+	private void printRacingCarStatus(final Result result) {
 		final List<String> racingCarStatus = result.getRacingCarStatus();
 
 		for (String carStatus : racingCarStatus) {
@@ -26,7 +26,7 @@ public class OutputView {
 	}
 
 	public void printWinners(final Result finalResult) {
-		final String winners = StringUtil.joinWinningCar(finalResult.getWinners());
+		final String winners = StringUtil.joinNameOf(finalResult.getWinners());
 		System.out.println(winners + "가 최종 우승했습니다.");
 	}
 }

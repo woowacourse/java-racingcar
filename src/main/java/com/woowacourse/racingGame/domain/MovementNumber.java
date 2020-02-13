@@ -5,24 +5,27 @@ public class MovementNumber {
 
 	private final int movementNumber;
 
-	public MovementNumber(final String number) {
-		final int parsedNumber = checkValidMovementNumber(number);
-
-		checkPositiveMovementNumber(parsedNumber);
-		movementNumber = parsedNumber;
+	public MovementNumber(final String inputMovementNumber) {
+		final int parsedNumber = checkValid(inputMovementNumber);
+		checkPositive(parsedNumber);
+		this.movementNumber = parsedNumber;
 	}
 
-	private void checkPositiveMovementNumber(final int parsedNumber) {
-		if (parsedNumber < ZERO) {
-			throw new IllegalArgumentException("입력한 이동 횟수가 음수입니다.");
+	private int checkValid(final String number) {
+		try {
+			return Integer.parseInt(number);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("입력한 이동 횟수가 숫자가 아닙니다.");
 		}
 	}
 
-	private int checkValidMovementNumber(final String number) {
-		return Integer.parseInt(number);
+	private void checkPositive(final int parsedNumber) {
+		if (!(parsedNumber > ZERO)) {
+			throw new IllegalArgumentException("입력한 이동 횟수가 0보다 작은 값입니다.");
+		}
 	}
 
 	public int getMovementNumber() {
-		return movementNumber;
+		return this.movementNumber;
 	}
 }

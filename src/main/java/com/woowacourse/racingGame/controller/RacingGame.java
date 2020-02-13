@@ -1,7 +1,5 @@
 package com.woowacourse.racingGame.controller;
 
-import java.util.List;
-
 import com.woowacourse.racingGame.domain.Car;
 import com.woowacourse.racingGame.domain.Cars;
 import com.woowacourse.racingGame.domain.Result;
@@ -15,14 +13,13 @@ public class RacingGame {
 	}
 
 	public Result play() {
-		moveCar();
-		final List<Car> playedCar = cars.getCars();
-		return new Result(new Cars(playedCar));
+		attemptMoveCars();
+		return new Result(cars);
 	}
 
-	private void moveCar() {
+	private void attemptMoveCars() {
 		for (Car car : cars.getCars()) {
-			car.move(RandomGenerator.generateRandomNumber());
+			car.attemptMoveThrough(RandomGenerator.generateRandomNumber());
 		}
 	}
 }

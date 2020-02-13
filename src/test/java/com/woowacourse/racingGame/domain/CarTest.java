@@ -2,60 +2,50 @@ package com.woowacourse.racingGame.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
 	private static final int MOVING_UNIT = 1;
 
-	private Car car;
-
-	@BeforeEach
-	void init() {
-		final String name = "test";
-
-		car = new Car(new Name(name));
-	}
-
 	@Test
-	void move_랜덤_값이_3_이하() {
+	void attemptMoveThrough_랜덤_값이_3_이하() {
 		final int stoppedRandomNumber = 3;
-		final int initPosition = car.getPosition();
+		final Car car = new Car(new Name("test"), new Position(4));
+		car.attemptMoveThrough(stoppedRandomNumber);
 
-		car.move(stoppedRandomNumber);
 		final int actual = car.getPosition();
 
-		assertThat(actual).isEqualTo(initPosition);
-	}
-
-	@Test
-	void move_랜덤_값이_4_이상() {
-		final int movedRandomNumber = 7;
-		final int initPosition = car.getPosition();
-
-		car.move(movedRandomNumber);
-		final int actual = car.getPosition();
-
-		final int expected = initPosition + MOVING_UNIT;
+		final int expected = 4;
 
 		assertThat(actual).isEqualTo(expected);
 	}
 
 	@Test
-	void isWinnerPosition_우승한_위치의_자동차() {
-		final int winnerPosition = 7;
+	void attemptMoveThrough_랜덤_값이_4_이상() {
+		final int movedRandomNumber = 7;
+		final Car car = new Car(new Name("test"), new Position(4));
+		car.attemptMoveThrough(movedRandomNumber);
 
-		car.setPosition(7);
+		final int actual = car.getPosition();
 
-		assertThat(car.isWinnerPosition(winnerPosition)).isTrue();
+		final int expected = 4 + MOVING_UNIT;
+
+		assertThat(actual).isEqualTo(expected);
 	}
 
 	@Test
-	void isWinnerPosition_우승하지_못한_위치의_자동차() {
+	void isSamePosition_우승한_위치의_자동차() {
 		final int winnerPosition = 7;
+		final Car car = new Car(new Name("test"), new Position(7));
 
-		car.setPosition(6);
+		assertThat(car.isSamePosition(winnerPosition)).isTrue();
+	}
 
-		assertThat(car.isWinnerPosition(winnerPosition)).isFalse();
+	@Test
+	void isSamePosition_우승하지_못한_위치의_자동차() {
+		final int winnerPosition = 7;
+		final Car car = new Car(new Name("test"), new Position(6));
+
+		assertThat(car.isSamePosition(winnerPosition)).isFalse();
 	}
 }

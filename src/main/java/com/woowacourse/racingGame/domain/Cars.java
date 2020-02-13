@@ -14,12 +14,12 @@ public class Cars {
 	}
 
 	private void checkDuplicate(final List<Car> cars) {
-		if (isDuplicate(cars)) {
+		if (isDuplicateExist(cars)) {
 			throw new IllegalArgumentException("중복된 이름이 존재합니다.");
 		}
 	}
 
-	private boolean isDuplicate(final List<Car> cars) {
+	private boolean isDuplicateExist(final List<Car> cars) {
 		return cars.size() != Arrays.stream(cars.toArray())
 			.distinct()
 			.count();

@@ -1,34 +1,28 @@
 package com.woowacourse.racingGame.utils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.woowacourse.racingGame.domain.Car;
-
 public class StringUtil {
 	private static final String DELIMITER = ",";
-	private static final String POSITION_CHARACTER = "-";
+	private static final String DASH = "-";
 	public static final String JOIN_DELIMITER = ", ";
 
-	public static List<String> splitCarName(final String inputCarName) {
-		return new ArrayList<>(Arrays.asList(inputCarName.split(DELIMITER))).stream()
+	public static List<String> split(final String inputCarName) {
+		return Arrays.stream(inputCarName.split(DELIMITER))
 			.map(String::trim)
 			.collect(Collectors.toList());
 	}
 
-	public static String convertCarStatus(final Car car) {
-		String carPosition = Stream.generate(() -> POSITION_CHARACTER)
-			.limit(car.getPosition())
+	public static String convertIntoDashBy(final int position) {
+		return Stream.generate(() -> DASH)
+			.limit(position)
 			.collect(Collectors.joining());
-		return car.getName()
-			+ " : "
-			+ carPosition;
 	}
 
-	public static String joinWinningCar(final List<String> winners) {
+	public static String joinNameOf(final List<String> winners) {
 		return String.join(JOIN_DELIMITER, winners);
 	}
 }

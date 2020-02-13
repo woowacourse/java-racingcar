@@ -2,7 +2,7 @@ package com.woowacourse.racingGame.view;
 
 import java.util.Scanner;
 
-public class Inputview {
+public class InputView {
 	private Scanner scanner = new Scanner(System.in);
 
 	public String inputCarName() {

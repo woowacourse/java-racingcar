@@ -5,23 +5,25 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class PositionTest {
-	@Test
-	void checkValidation_위치가_음수() {
-		final int invalidValue = -1;
+	public static final int MOVING_UNIT = 1;
 
-		assertThatThrownBy(() -> new Position(invalidValue))
+	@Test
+	void checkValid_위치가_음수() {
+		final int negativeNumber = -1;
+
+		assertThatThrownBy(() -> new Position(negativeNumber))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test
-	void increaseOne_위치가_1_증가() {
-		Position value = Position.ZERO;
-		int currentPosition = value.getPosition();
-		value = value.increaseOne();
+	void increaseByMovingUnit_위치가_Moving_Unit만큼_증가() {
+		int initPosition = 4;
+		Position position = new Position(initPosition);
+		position = position.increaseByMovingUnit();
 
-		final int actual = value.getPosition();
+		final int actual = position.getPosition();
 
-		final int expected = currentPosition + 1;
+		final int expected = initPosition + MOVING_UNIT;
 
 		assertThat(actual).isEqualTo(expected);
 	}

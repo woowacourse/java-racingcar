@@ -3,13 +3,13 @@ package com.woowacourse.racingGame.domain;
 import java.util.Objects;
 
 public class Name {
-	private static final int MAX_NAME_LENGTH = 5;
+	private static final int MAX_NAME_LENGTH_LIMIT = 5;
 
 	private final String name;
 
 	public Name(final String name) {
 		checkNullOrEmpty(name);
-		checkNameLength(name);
+		checkValidLength(name);
 		this.name = name;
 	}
 
@@ -19,8 +19,8 @@ public class Name {
 		}
 	}
 
-	private void checkNameLength(final String name) {
-		if (name.length() > MAX_NAME_LENGTH) {
+	private void checkValidLength(final String name) {
+		if (name.length() > MAX_NAME_LENGTH_LIMIT) {
 			throw new IllegalArgumentException("이름은 5자이하만 가능합니다.");
 		}
 	}

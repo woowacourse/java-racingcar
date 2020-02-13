@@ -22,9 +22,9 @@ public class NameTest {
 
 	@Test
 	void checkValidLength_자동차_이름의_길이가_5를_초과() {
-		final String name = "abcdef";
+		final String invalidLengthName = "abcdef";
 
-		assertThatThrownBy(() -> new Name(name))
+		assertThatThrownBy(() -> new Name(invalidLengthName))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("이름은 5자이하만 가능합니다.");
 	}

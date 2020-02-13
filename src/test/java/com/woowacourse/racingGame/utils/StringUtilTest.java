@@ -9,13 +9,14 @@ import org.junit.jupiter.api.Test;
 
 import com.woowacourse.racingGame.domain.Car;
 import com.woowacourse.racingGame.domain.Name;
+import com.woowacourse.racingGame.domain.Position;
 
 public class StringUtilTest {
 	@Test
-	void splitCarName_쉼표로_구분되어_입력된_자동차_이름() {
+	void split_쉼표로_구분되어_입력된_자동차_이름() {
 		final String inputCarName = "a,b,c,d";
 
-		List<String> actual = StringUtil.splitCarName(inputCarName);
+		List<String> actual = StringUtil.split(inputCarName);
 
 		List<String> expected = Arrays.asList("a", "b", "c", "d");
 
@@ -23,10 +24,10 @@ public class StringUtilTest {
 	}
 
 	@Test
-	void splitCarName_공백이_앞뒤로_존재하는_자동차_이름() {
+	void split_공백이_앞뒤로_존재하는_자동차_이름() {
 		final String inputCarName = "a, b, c, d ";
 
-		List<String> actual = StringUtil.splitCarName(inputCarName);
+		List<String> actual = StringUtil.split(inputCarName);
 
 		List<String> expected = Arrays.asList("a", "b", "c", "d");
 
@@ -34,24 +35,23 @@ public class StringUtilTest {
 	}
 
 	@Test
-	void convertCarStatus_게임을_진행한_자동차의_상태() {
-		final Car car = new Car(new Name("test"));
-		car.setPosition(4);
+	void convertIntoDashBy_게임을_진행한_자동차의_상태() {
+		final Car car = new Car(new Name("test"), new Position(4));
 
-		final String actual = StringUtil.convertCarStatus(car);
+		final String actual = StringUtil.convertIntoDashBy(car.getPosition());
 
-		final String expected = "test : ----";
+		final String expected = "----";
 
 		assertThat(actual).isEqualTo(expected);
 	}
 
 	@Test
-	void joinWinningCar_우승한_자동차들의_이름() {
+	void joinNameOf_우승한_자동차_이름들() {
 		final List<String> winners = Arrays.asList("toni", "alt");
 
-		final String actual = StringUtil.joinWinningCar(winners);
+		final String actual = StringUtil.joinNameOf(winners);
 
-		final String expected = "toni,alt";
+		final String expected = "toni, alt";
 
 		assertThat(actual).isEqualTo(expected);
 	}

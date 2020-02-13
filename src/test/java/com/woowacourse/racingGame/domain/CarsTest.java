@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.Arrays;
 import java.util.List;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CarsTest {
@@ -15,10 +14,11 @@ public class CarsTest {
 			new Car(new Name("a")),
 			new Car(new Name("bb")),
 			new Car(new Name("ccc")));
-
 		Cars cars = new Cars(nonDuplicatedCars);
 
-		Assertions.assertThat(cars.getCars()).isEqualTo(nonDuplicatedCars);
+		final List<Car> actual = cars.getCars();
+
+		assertThat(actual).isEqualTo(nonDuplicatedCars);
 	}
 
 	@Test

@@ -14,7 +14,6 @@ public class ResultTest {
 			new Car(new Name("car1"), new Position(3)),
 			new Car(new Name("car2"), new Position(2)),
 			new Car(new Name("car3"), new Position(1)));
-
 		final Result result = new Result(new Cars(racingCar));
 
 		final List<String> actual = result.getRacingCarStatus();
@@ -33,7 +32,6 @@ public class ResultTest {
 			new Car(new Name("car2"), new Position(winnerPosition)),
 			new Car(new Name("car3"), new Position(winnerPosition - 2)),
 			new Car(new Name("car4"), new Position(winnerPosition)));
-
 		Cars cars = new Cars(inGameCars);
 		Result result = new Result(cars);
 
