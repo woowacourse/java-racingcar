@@ -1,6 +1,7 @@
 package racingcargame.domain;
 
 public class Repeat {
+
     private static final int ZERO = 0;
 
     private int repeat;

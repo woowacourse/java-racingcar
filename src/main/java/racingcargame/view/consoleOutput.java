@@ -3,7 +3,9 @@ package racingcargame.view;
 import racingcargame.domain.Car;
 
 public class consoleOutput {
+
     private static final String MARK = "-";
+    private static final String SEPARATOR = " : ";
 
     public static void printRaceResultMessage() {
         System.out.println("\n실행 결과");
@@ -13,7 +15,7 @@ public class consoleOutput {
         StringBuilder sb = new StringBuilder();
 
         sb.append(car.getCarName());
-        sb.append(" : ");
+        sb.append(SEPARATOR);
         printEachStatus(car, sb);
         System.out.println(sb);
     }

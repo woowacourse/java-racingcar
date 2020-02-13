@@ -20,7 +20,7 @@ public class consoleApp {
         final List<CarDto> racingResult = game.run(names, repeat);
         printRaceResult(racingResult);
 
-        String winner = game.winner;
+        final String winner = game.winner;
         printWinner(winner);
     }
 

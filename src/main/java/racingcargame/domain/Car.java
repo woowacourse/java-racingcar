@@ -1,6 +1,7 @@
 package racingcargame.domain;
 
 public class Car implements Comparable<Car> {
+
     private static final int GO_CONDITION = 4;
 
     private CarName carName;
@@ -16,8 +17,8 @@ public class Car implements Comparable<Car> {
         this.carPosition = new CarPosition(car.getCarPosition());
     }
 
-    public void decideGoOrStop(int randomNumber) {
-        if (randomNumber >= GO_CONDITION) {
+    public void decideGoOrStop(MoveDecider moveDecider) {
+        if (moveDecider.getNumber() >= GO_CONDITION) {
             carPosition.increase();
             this.carPosition = new CarPosition(this.getCarPosition());
         }

@@ -1,8 +1,10 @@
 package racingcargame.domain;
 
 public class CarName {
+
     private static final int ZERO = 0;
     private static final int NAME_UPPER_LIMIT = 5;
+    private static final String BLANK = " ";
 
     private String name;
 
@@ -26,7 +28,7 @@ public class CarName {
     }
 
     private void validateNoBlank(String name) {
-        if (name.contains(" ")) {
+        if (name.contains(BLANK)) {
             throw new IllegalArgumentException("이름에는 띄어쓰기가 포함될 수 없습니다.");
         }
     }

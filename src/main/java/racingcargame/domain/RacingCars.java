@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCars {
-    private static final int NUMBER_RANGE = 10;
+
     private static final String DELIMITER = ",";
 
     private List<Car> cars;
@@ -31,13 +31,9 @@ public class RacingCars {
         return userInput.split(DELIMITER);
     }
 
-    public CarDto processOneRace() {
-        cars.forEach(car -> car.decideGoOrStop(createRandomNumber()));
+    public CarDto processOneRace(MoveDecider moveDecider) {
+        cars.forEach(car -> car.decideGoOrStop(moveDecider));
         return new CarDto(cars);
-    }
-
-    private int createRandomNumber() {
-        return (int) (Math.random() * NUMBER_RANGE);
     }
 
     public String getWinner() {
