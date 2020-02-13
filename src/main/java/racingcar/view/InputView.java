@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.domain.Names;
+import racingcar.domain.Trial;
 
 import java.util.Scanner;
 
@@ -12,29 +13,20 @@ public class InputView {
             OutputView.askCarNames();
             String carNames = scanner.nextLine();
             new Names(carNames);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             getNames();
         }
     }
-/*
-    public int getTrial() {
-        String input = "";
+
+    public static void getTrial() {
         try {
-            input = enterTrial();
+            OutputView.askTrial();
+            String trial = scanner.nextLine();
+            new Trial(trial);
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             getTrial();
         }
-        return Integer.parseInt(input);
     }
-
-    private String enterTrial() throws Exception {
-        OutputView.askGameCounts();
-        String inputGameCounts = scanner.nextLine();
-        ValidateInput.isNotNumber(inputGameCounts);
-        return inputGameCounts;
-    }
-
- */
 }
