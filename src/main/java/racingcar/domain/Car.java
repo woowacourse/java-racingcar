@@ -53,6 +53,11 @@ public class Car {
         }
         return this;
     }
+    public String checkMoreWinners(Car car) {
+        if(car.position == this.position) {
+
+        }
+    }
 
     private String stripBuilder() {
         String strip = BLANKSTRING;
@@ -61,4 +66,6 @@ public class Car {
         }
         return strip;
     }
+
+
 }

@@ -123,4 +123,16 @@ public class racingCarTest {
         assertThat(car1.comparePosition(car2)
                 .currentPosition().get(0)).isEqualTo(winnerName);
     }
+
+    @Test
+    @DisplayName("우승자가 정해진 경우 추가 우승자를 찾음")
+    void findMoreWinners() {
+        Car winnerCar = new Car("alan");
+        Car car2 = new Car("bart");
+        for(int i = 0; i < 10; i++) {
+            winnerCar.checkMove(4);
+            car2.checkMove(4);
+        }
+        assertThat(winnerCar.checkMoreWinners(car2)).isEqualTo("bart");
+    }
 }
