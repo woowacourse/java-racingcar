@@ -11,7 +11,7 @@ public class Application {
         gameManager.playGame();
 
         int maxPosition = cars.getMaxPosition();
-        Winners winners = new Winners(cars.findWinners(maxPosition));
+        Cars winners = new Cars(cars.findByPosition(maxPosition));
         OutputView.printWinners(winners);
     }
 

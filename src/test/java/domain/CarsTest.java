@@ -58,10 +58,10 @@ public class CarsTest {
     }
 
     @Test
-    void getWinnersTest() {
-        int maxPosition = cars.getMaxPosition();
+    void findByPositionTest() {
         List<Car> expectedWinners = Arrays.asList(winnerCar1, winnerCar2);
-        List<Car> actualWinners = cars.findWinners(maxPosition);
+        int maxPosition = cars.getMaxPosition();
+        List<Car> actualWinners = cars.findByPosition(maxPosition);
         assertThat(actualWinners.equals(expectedWinners)).isTrue();
     }
 }

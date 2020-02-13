@@ -1,7 +1,7 @@
 package view;
 
 import domain.Car;
-import domain.Winners;
+import domain.Cars;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -22,11 +22,11 @@ public class OutputView {
         return builder.toString();
     }
 
-    public static void printWinners(Winners winners) {
+    public static void printWinners(Cars winners) {
         int winnerSize = winners.getSize();
         List<String> winnerNames = new ArrayList<>();
         for (int count = 0; count < winnerSize; count++) {
-            Car winner = winners.getWinner(count);
+            Car winner = winners.getCar(count);
             winnerNames.add(winner.getName());
         }
         String formattedName = String.join(",", winnerNames);
