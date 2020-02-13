@@ -2,7 +2,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingGame.controller.Input;
+import racinggame.controller.Input;
 
 public class InputTest {
 

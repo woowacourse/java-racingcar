@@ -1,11 +1,15 @@
-package racingGame.controller;
+package racinggame.controller;
 
-import racingGame.domain.Car;
-import racingGame.view.OutputView;
+import racinggame.domain.Car;
+import racinggame.view.OutputView;
 
 import java.util.*;
 
 public class Output {
+    private static final String LOG_DELIMITER = " : ";
+    private static final String POSITION_CHARACTER = "-";
+    private static final String SPLIT_DELIMITER = ",";
+
     private List<String> winners = new ArrayList<>();
     private Map<String, Integer> carStatus;
 
@@ -16,9 +20,9 @@ public class Output {
 
     public String makeCarLog(String name, int position) {
         StringBuilder log = new StringBuilder(name);
-        log.append(" : ");
+        log.append(LOG_DELIMITER);
         for (int i = 0; i < position; i++) {
-            log.append("-");
+            log.append(POSITION_CHARACTER);
         }
         return log.toString();
     }
@@ -26,7 +30,7 @@ public class Output {
     public void makeWinnerNames(List<Car> cars) {
         cars.stream().forEach((x) -> x.addWinnerName(winners));
 
-        String winnerNames = String.join(",", winners);
+        String winnerNames = String.join(SPLIT_DELIMITER, winners);
         OutputView.printWinners(winnerNames);
     }
 

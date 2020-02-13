@@ -1,10 +1,7 @@
-package racingGame.domain;
+package racinggame.domain;
 
-import racingGame.controller.Input;
-import racingGame.controller.Output;
-import racingGame.view.OutputView;
-
-import java.util.List;
+import racinggame.controller.Input;
+import racinggame.controller.Output;
 
 public class Main {
     public static void main(String... args){

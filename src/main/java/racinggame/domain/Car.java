@@ -1,29 +1,28 @@
-package racingGame.domain;
+package racinggame.domain;
 
-import racingGame.controller.Output;
+import racinggame.controller.Output;
 
 import java.util.List;
 
 public class Car {
+    private static final int FORWARD_NUMBER = 4;
     private static int maxPosition = 0;
     private static final int START_POSITION = 0;
     private String name;
     private int position;
 
-    public Car(String name){
-        this.name = name;
-        this.position = START_POSITION;
+    public Car(String name) {
+        this(name, START_POSITION);
     }
 
-    public Car(String name, int position){
+    public Car(String name, int position) {
         this.name = name;
         this.position = position;
     }
 
     public void move(int random) {
-        if (random >= 4){
+        if (random >= FORWARD_NUMBER) {
             position++;
-
         }
         maxPosition = Integer.max(position, maxPosition);
     }
@@ -36,13 +35,13 @@ public class Car {
         return position == this.position;
     }
 
-    public void addWinnerName(List<String> winners){
-        if(isWinner()){
+    public void addWinnerName(List<String> winners) {
+        if (isWinner()) {
             winners.add(this.name);
         }
     }
 
-    public void passingLog(Output output){
-        output.updateCarStatus(name,position);
+    public void passingLog(Output output) {
+        output.updateCarStatus(name, position);
     }
 }
