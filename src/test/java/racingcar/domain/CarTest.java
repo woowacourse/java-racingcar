@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -29,5 +30,15 @@ public class CarTest {
 	void 이동조건(int value, boolean expected) {
 		Car car = new Car("bumbl");
 		assertThat(car.move(value)).isEqualTo(expected);
+	}
+
+	@Test
+	void 큰_포지션_반환() {
+		Car car = new Car("a");
+		car.move(4);
+		car.move(4);
+
+		assertThat(car.compareAndReturnMax(3)).isEqualTo(3);
+		assertThat(car.compareAndReturnMax(1)).isEqualTo(2);
 	}
 }

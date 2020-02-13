@@ -29,4 +29,8 @@ public class Car {
 		}
 		return false;
 	}
+
+	public int compareAndReturnMax(int positionToCompare) {
+		return Math.max(position, positionToCompare);
+	}
 }
