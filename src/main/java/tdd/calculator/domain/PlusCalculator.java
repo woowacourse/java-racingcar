@@ -15,22 +15,22 @@ public class PlusCalculator {
 		if (isBlank(value)) {
 			return DEFAULT_VALUE;
 		}
-		return sum(toPositives(InputUtils.split(value)));
+		return sum(toUnsignedNumbers(InputUtils.split(value)));
 	}
 
 	private static boolean isBlank(final String value) {
 		return value == null || value.isBlank();
 	}
 
-	private static List<Positive> toPositives(final String[] values) {
+	private static List<UnsignedNumber> toUnsignedNumbers(final String[] values) {
 		return Arrays.stream(values)
-				.map(Positive::new)
+				.map(UnsignedNumber::new)
 				.collect(Collectors.toList());
 	}
 
-	private static int sum(final List<Positive> positives) {
-		return positives.stream()
-				.mapToInt(Positive::getValue)
+	private static int sum(final List<UnsignedNumber> unsignedNumbers) {
+		return unsignedNumbers.stream()
+				.mapToInt(UnsignedNumber::getValue)
 				.sum();
 	}
 }
