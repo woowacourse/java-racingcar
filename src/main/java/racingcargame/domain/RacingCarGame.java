@@ -1,25 +1,26 @@
 package racingcargame.domain;
 
-import racingcargame.view.OutputView;
-
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingCarGame {
+    public String winner;
+    public final static ArrayList<CarDto> carStatus = new ArrayList<>();
 
-    public String run(String userInputName, int userInputRepeat) {
+    public ArrayList<CarDto> run(String userInputName, int userInputRepeat) {
         final RacingCars cars = new RacingCars(userInputName);
         processGame(userInputRepeat, cars);
-        return cars.getWinner();
+        winner = cars.getWinner();
+        return carStatus;
     }
 
     private void processGame(int repeat, RacingCars cars) {
-        OutputView.newLine();
-        OutputView.resultInstruction();
+
         for (int i = 0; i < repeat; i++) {
-            cars.processOneTime();
-            OutputView.newLine();
+            carStatus.add(cars.processOneTime());
         }
+
     }
+
+
 }

@@ -7,11 +7,16 @@ public class CarPosition {
     private int position;
 
     public CarPosition() {
+
         this.position = DEFAULT_POSITION;
     }
+    public CarPosition(int pos) {
+        this.position = pos;
+    }
 
-    public void increase() {
-        position += MOVE_UNIT;
+    public int increase() {
+        this.position += MOVE_UNIT;
+        return position;
     }
 
     public int getPosition() {

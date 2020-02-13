@@ -11,9 +11,16 @@ public class Car implements Comparable<Car> {
         this.carPosition = new CarPosition();
     }
 
+    public Car(Car car) {
+        this.carName = new CarName(car.getCarName());
+        this.carPosition = new CarPosition(car.getCarPosition());
+    }
+
+
     public void decideGoOrStop(int randomNumber) {
         if (randomNumber >= GO_CONDITION) {
             carPosition.increase();
+            this.carPosition = new CarPosition(this.getCarPosition());
         }
     }
 

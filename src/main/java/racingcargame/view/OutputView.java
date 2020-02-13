@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public static void resultInstruction() {
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
     }
 
     public static void carNameAndPosition(Car car) {

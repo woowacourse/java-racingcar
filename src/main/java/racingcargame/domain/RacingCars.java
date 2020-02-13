@@ -4,6 +4,7 @@ import racingcargame.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,11 +32,11 @@ public class RacingCars {
         return userInput.split(DELIMITER);
     }
 
-    public void processOneTime() {
+    public CarDto processOneTime() {
         for (Car car : cars) {
             car.decideGoOrStop(createRandomNumber());
-            OutputView.carNameAndPosition(car);
         }
+        return new CarDto(cars);
     }
 
     private int createRandomNumber() {
