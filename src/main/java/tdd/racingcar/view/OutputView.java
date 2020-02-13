@@ -5,8 +5,8 @@ public class OutputView {
 		System.out.println("실행 결과");
 	}
 
-	public static void printCar(final String carState) {
-		System.out.println(carState);
+	public static void printRecord(String record) {
+		System.out.println(record);
 		printEmptyLine();
 	}
 
