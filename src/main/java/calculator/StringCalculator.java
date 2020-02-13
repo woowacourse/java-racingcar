@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    private static final String BASIC_DELIMITER = ";|,";
+    private static final String BASIC_DELIMITER = ":|,";
 
     public static int plusByDelimiterFrom(String input) {
         if (input == null || input.isEmpty()) {

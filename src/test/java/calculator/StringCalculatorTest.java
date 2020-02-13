@@ -23,6 +23,12 @@ public class StringCalculatorTest {
     }
 
     @Test
+    void 덧셈_기본구분자_두개() {
+        int result = StringCalculator.plusByDelimiterFrom("1,3:5");
+        assertThat(result).isEqualTo(9);
+    }
+
+    @Test
     void 덧셈커스텀() {
         int result = StringCalculator.plusByDelimiterFrom("//;\n1;2;3");
         assertThat(result).isEqualTo(6);
