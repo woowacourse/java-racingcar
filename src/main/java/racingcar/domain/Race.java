@@ -1,6 +1,8 @@
 package racingcar.domain;
 
 public class Race {
+	private static final int INITIAL_POSITION = 0;
+
 	private final Cars cars;
 	private final RaceCount raceCount;
 	private String winnersName;
@@ -11,7 +13,7 @@ public class Race {
 	}
 
 	public void run() {
-		int maxPosition = 0;
+		int maxPosition = INITIAL_POSITION;
 
 		for (int i = 0; i < raceCount.getRaceCount(); i++) {
 			cars.moveAll();
