@@ -33,10 +33,10 @@ public class InputView {
         OutputView.printInputTrialTimeMessage();
         String trialTime = sc.nextLine();
         try {
-            InputValidation.checkIntegerOverflow(trialTime);
             InputValidation.checkDecimalNumber(trialTime);
-            InputValidation.checkNegativeAndZeroInput(trialTime);
             InputValidation.checkNotNumber(trialTime);
+            InputValidation.checkNegativeAndZeroInput(trialTime);
+            InputValidation.checkIntegerOverflow(trialTime);
             return Integer.parseInt(trialTime);
         } catch (Exception e) {
             OutputView.printExceptionMessage(e);

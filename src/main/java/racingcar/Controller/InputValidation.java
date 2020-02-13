@@ -50,10 +50,11 @@ public class InputValidation {
     }
 
     public static void checkNotNumber(String trialTime) {
-        try {
-            int value = Integer.parseInt(trialTime);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("문자는 입력할 수 없습니다.");
+        try{
+            double value = Double.parseDouble(trialTime);
+        }
+        catch(NumberFormatException e) {
+            throw new NumberFormatException("문자는 입력할 수 없습니다.");
         }
     }
 
