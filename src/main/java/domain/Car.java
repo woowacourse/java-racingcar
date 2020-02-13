@@ -22,7 +22,7 @@ public class Car {
 
     private void validateName(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름 길이는 0~5이여야 합니다.");
+            throw new IllegalArgumentException("이름 길이는 1~5 이여야 합니다.");
         }
     }
 

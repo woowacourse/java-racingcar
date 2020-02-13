@@ -2,18 +2,38 @@ import domain.*;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
-
 public class Application {
     public static void main(String[] args) {
-        String carNames = InputView.inputCarNames();
-        Cars cars = new Cars(CarGenerator.create(carNames));
-        AttemptNumber attemptNumber = new AttemptNumber(InputView.inputAttemptNumber());
+        Cars cars = createCarsByInput();
+        AttemptNumber attemptNumber = createAttemptNumberByInput();
+
         GameManager gameManager = new GameManager(cars, attemptNumber);
         gameManager.playGame();
+
         int maxPosition = cars.getMaxPosition();
         Winners winners = new Winners(cars.findWinners(maxPosition));
         OutputView.printWinners(winners);
+    }
+
+    private static Cars createCarsByInput() {
+        while(true) {
+            try {
+                String carNames = InputView.inputCarNames();
+                return new Cars(CarGenerator.create(carNames));
+            } catch (IllegalArgumentException e) {
+                OutputView.printExceptionMsg(e.getMessage());
+            }
+        }
+    }
+
+    private static AttemptNumber createAttemptNumberByInput() {
+        while(true) {
+            try {
+                return new AttemptNumber(InputView.inputAttemptNumber());
+            } catch (IllegalArgumentException e) {
+                OutputView.printExceptionMsg(e.getMessage());
+            }
+        }
     }
 
 }

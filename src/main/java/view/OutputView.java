@@ -14,7 +14,7 @@ public class OutputView {
 
     private static String makeHyphens(int position) {
         StringBuilder builder = new StringBuilder();
-        while (position-- > 0) {
+        for (int i = 0; i < position; i++) {
             builder.append("-");
         }
         return builder.toString();
@@ -28,12 +28,14 @@ public class OutputView {
             Car winner = winners.getWinner(count);
             winnerNames.add(winner.getName());
         }
-        System.out.println(String.join(",", winnerNames) + "(이)가 우승했씁니다.");
+        System.out.println(String.join(",", winnerNames) + "(이)가 우승했습니다.");
     }
 
     public static void println() {
-        System.out.print("\n");
+        System.out.println();
     }
 
-
+    public static void printExceptionMsg(String msg) {
+        System.out.println(msg);
+    }
 }
