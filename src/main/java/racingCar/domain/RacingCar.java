@@ -36,4 +36,8 @@ public class RacingCar {
     public String toString() {
         return name;
     }
+
+    public void goWithNumberOverFour(int i) {
+        go();
+    }
 }

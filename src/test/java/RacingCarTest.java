@@ -64,4 +64,15 @@ public class RacingCarTest {
         RacingCar racingCar = new RacingCar("name");
         assertThat(racingCar.toString()).isEqualTo("name");
     }
+
+    @Test
+    void 임의의_숫자가_4이상일_경우_전진한다() {
+        RacingCar racingCar = new RacingCar("name");
+        int position = racingCar.getPostion();
+        assertThat(position).isEqualTo(0);
+
+        racingCar.goWithNumberOverFour(4);
+        position = racingCar.getPostion();
+        assertThat(position).isEqualTo(1);
+    }
 }
