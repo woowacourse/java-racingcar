@@ -1,15 +1,15 @@
-package view;
+package racingcar.view;
 
-import controller.GameManager;
-import model.Car;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.controller.GameManager;
+import racingcar.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 
 public class OutputViewTest {

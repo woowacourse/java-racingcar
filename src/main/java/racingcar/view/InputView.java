@@ -1,6 +1,6 @@
-package view;
+package racingcar.view;
 
-import controller.ValidateInput;
+import racingcar.controller.ValidateInput;
 
 import java.util.Scanner;
 

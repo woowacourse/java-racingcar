@@ -1,4 +1,4 @@
-import controller.GameManager;
+import racingcar.controller.GameManager;
 
 public class RacingCarApplication {
     public static void main(String[] args) {

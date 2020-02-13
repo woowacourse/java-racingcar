@@ -1,10 +1,10 @@
-package controller;
+package racingcar.controller;
 
-import model.Car;
-import model.Dice;
-import model.Winner;
-import view.InputView;
-import view.OutputView;
+import racingcar.model.Car;
+import racingcar.model.Dice;
+import racingcar.model.Winner;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
