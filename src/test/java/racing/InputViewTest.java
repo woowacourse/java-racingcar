@@ -42,7 +42,7 @@ public class InputViewTest {
 	}
 
 	@Test
-	@DisplayName("콤마만 입력하여 EMPTY_LIST 가 입력된 경우 테스트")
+	@DisplayName("리스트가 비지 않았는지 확인하는 테스트")
 	public void checkNotEmptyTest() {
 		assertThat(InputView.checkNotEmpty(Arrays.asList("5"))).isEqualTo(true);
 		assertThat(InputView.checkNotEmpty(Collections.EMPTY_LIST)).isEqualTo(false);
@@ -62,8 +62,8 @@ public class InputViewTest {
 
 	@Test
 	public void checkRoundNumberTest() {
-		assertThat(InputView.checkRoundNumber("5")).isTrue();
-		assertThat(InputView.checkRoundNumber("-")).isFalse();
-		assertThat(InputView.checkRoundNumber("5.")).isFalse();
+		assertThat(InputView.checkNumber("5")).isTrue();
+		assertThat(InputView.checkNumber("-")).isFalse();
+		assertThat(InputView.checkNumber("5.")).isFalse();
 	}
 }
