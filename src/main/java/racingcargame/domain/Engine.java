@@ -3,7 +3,7 @@ package racingcargame.domain;
 import racingcargame.util.RandomFactory;
 
 public class Engine {
-    public static final int LIMIT = 4;
+    private static final int LIMIT = 4;
     private int power;
 
     private Engine(int power) {

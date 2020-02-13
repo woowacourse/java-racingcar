@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCars {
-    public static final String DELIMITER = ",";
+    private static final String DELIMITER = ",";
     private final List<Car> cars = new ArrayList<>();
 
-    public RacingCars(List<Car> cars) {
+    RacingCars(List<Car> cars) {
         this.cars.addAll(cars);
     }
 
@@ -41,11 +41,11 @@ public class RacingCars {
     }
 
     private static void validCarAmount(String[] splicedInputCarNames) {
-        if(splicedInputCarNames.length == 0) {
+        if (splicedInputCarNames.length == 0) {
             System.out.println("입력된 자동차가 없습니다.");
             throw new RuntimeException();
         }
-        if(splicedInputCarNames.length == 1) {
+        if (splicedInputCarNames.length == 1) {
             System.out.println("하나의 자동차만 입력되었습니다.");
             throw new RuntimeException();
         }

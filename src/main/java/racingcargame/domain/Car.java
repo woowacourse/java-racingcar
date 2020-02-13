@@ -2,6 +2,7 @@ package racingcargame.domain;
 
 public class Car implements Comparable<Car> {
     private final Name name;
+    // TODO : POSITION으로 나누기
     private int position;
 
     public Car(String name) {

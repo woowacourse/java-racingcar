@@ -4,6 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcargame.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
@@ -29,5 +32,15 @@ public class CarTest {
         String name = "pobi";
         boolean result = car.isSame(name);
         assertThat(result).isTrue();
+    }
+
+    @Test
+    void 자동차_생성() {
+        String[] carNames = new String[]{"pobi", "jason"};
+        List<Car> carList = new ArrayList<>();
+        for (String carName : carNames) {
+            carList.add(new Car(carName));
+        }
+        assertThat(carList.size()).isEqualTo(2);
     }
 }

@@ -6,7 +6,6 @@ import java.util.Set;
 public class Name {
     private static final Set<String> CAR_NAMES = new HashSet<>();
     private static final int NAME_MAX_LENGTH = 5;
-    private static final String BLANK = "";
 
     private String name;
 
@@ -60,6 +59,6 @@ public class Name {
     @Override
     public boolean equals(Object obj) {
         String anotherName = (String) obj;
-        return anotherName == this.name;
+        return anotherName.equals(this.name);
     }
 }
