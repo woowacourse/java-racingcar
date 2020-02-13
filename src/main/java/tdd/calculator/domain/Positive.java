@@ -29,7 +29,7 @@ public class Positive {
 				.anyMatch(ch -> !Character.isDigit(ch));
 	}
 
-	public int getPositive() {
+	public int getValue() {
 		return positive;
 	}
 }

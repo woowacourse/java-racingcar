@@ -30,7 +30,7 @@ public class PlusCalculator {
 
 	private static int sum(final List<Positive> positives) {
 		return positives.stream()
-				.mapToInt(Positive::getPositive)
+				.mapToInt(Positive::getValue)
 				.sum();
 	}
 }
