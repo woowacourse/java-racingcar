@@ -19,14 +19,14 @@ public class Application {
 		tryCount.forEachRemaining(startRound(cars, record));
 
 		OutputView.printResultMessage();
-		record.forEach(OutputView::printRecord);
+		OutputView.printRecord(record.toString());
 		OutputView.printWinners(OutputUtils.getWinners(cars));
 	}
 
 	private static Consumer<Integer> startRound(final Cars cars, final Record record) {
 		return (count) -> {
 			cars.move();
-			record.add(OutputUtils.getState(cars));
+			record.append(OutputUtils.getState(cars));
 		};
 	}
 }

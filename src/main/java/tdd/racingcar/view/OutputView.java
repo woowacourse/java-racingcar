@@ -7,11 +7,6 @@ public class OutputView {
 
 	public static void printRecord(String record) {
 		System.out.println(record);
-		printEmptyLine();
-	}
-
-	private static void printEmptyLine() {
-		System.out.println();
 	}
 
 	public static void printWinners(final String winners) {
