@@ -1,7 +1,9 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Winners {
     private static List<Car> winners = new ArrayList<>();
@@ -18,6 +20,9 @@ public class Winners {
     }
 
     public static String getWinners() {
-        return String.join(",", winners.toString());
+        return winners.stream()
+                .map(Car::toString)
+                .collect(Collectors
+                        .joining(","));
     }
 }
