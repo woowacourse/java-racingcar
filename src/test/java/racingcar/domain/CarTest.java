@@ -27,7 +27,7 @@ public class CarTest {
     @Test
     void print() {
         Car car = new Car("무늬");
-        System.out.println(car.getResult());
+        System.out.println(car.getRoundResult());
     }
 
     @Test

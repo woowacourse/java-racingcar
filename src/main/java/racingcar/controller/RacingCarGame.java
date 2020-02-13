@@ -19,11 +19,11 @@ public class RacingCarGame {
     }
 
     private static void playRounds(Cars cars, Round round) {
-        String result;
+        String roundResult;
         while(round.isGoing()) {
             cars.play();
-            result = cars.getResult();
-            OutputView.printResult(result);
+            roundResult = cars.getRoundResult();
+            OutputView.printResult(roundResult);
             System.out.println();
         }
     }

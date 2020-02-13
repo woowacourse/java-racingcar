@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Cars {
     private static final String DELIMITER = ",";
-    public static final String ENTER = "\n";
+    private static final String ENTER = "\n";
 
     private final List<Car> cars;
 
@@ -64,10 +64,10 @@ public class Cars {
         }
     }
 
-    public String getResult() {
+    public String getRoundResult() {
         StringBuilder results = new StringBuilder();
         for (Car car : cars) {
-            results.append(car.getResult());
+            results.append(car.getRoundResult());
             results.append(ENTER);
         }
         return results.toString();

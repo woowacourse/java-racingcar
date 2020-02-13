@@ -4,8 +4,7 @@ import racingcar.domain.GoOrStop;
 
 public class Car implements Comparable<Car> {
     private static final int MAX_NAME_LENGTH = 5;
-    public static final String IS = " : ";
-    public static final String DELIMITER = ", ";
+    private static final String IS = " : ";
 
     private final Name name;
     private Location location;
@@ -52,7 +51,7 @@ public class Car implements Comparable<Car> {
         location.moveForward();
     }
 
-    public String getResult() {
+    public String getRoundResult() {
         StringBuilder result = new StringBuilder();
         result.append(name);
         result.append(IS);
