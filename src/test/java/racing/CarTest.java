@@ -48,6 +48,11 @@ public class CarTest {
 
 		car.goForward(number);
 		assertThat(car.getPosition()).isEqualTo(1);
+
+		number = 2;
+
+		car.goForward(number);
+		assertThat(car.getPosition()).isEqualTo(1);
 	}
 
 	@DisplayName("'자동차 이름 : 자동차 위치' 출력 테스트")
