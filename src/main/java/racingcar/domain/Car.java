@@ -1,41 +1,39 @@
 package racingcar.domain;
 
-public class Car implements Comparable<Car>{
+public class Car implements Comparable<Car> {
     public static final String POSITION_MARK = "-";
 
-    private String name;
+    private Name name;
     private int position;
 
-    public Car(String name) {
+    public Car(Name name) {
         this.name = name;
         this.position = 0;
     }
 
-    public boolean isMaxDistance(Car maxDistanceCar) {
-        return this.position >= maxDistanceCar.position;
-    }
-
     public int movePosition(int moveValue) {
         if (moveValue >= 4) {
-            this.position++;
+            position++;
         }
-        return this.position;
+        return position;
     }
 
     public String getCurrentPosition() {
-        StringBuilder currentPosition = new StringBuilder(this.name);
+        StringBuilder currentPosition = new StringBuilder(name.getName());
         currentPosition.append(" : ");
 
-        for (int i = 0 ; i < this.position ; i++) {
+        for (int i = 0; i < position; i++) {
             currentPosition.append(POSITION_MARK);
         }
         return currentPosition.toString();
     }
 
-    @Override
-    public String toString() {
-        return this.name;
+    public boolean isMaxPosition(Car maxPositionCar) {
+        return this.position >= maxPositionCar.position;
     }
+
+    @Override
+    public String toString() { return name.getName(); }
 
     @Override
     public int compareTo(Car car) {

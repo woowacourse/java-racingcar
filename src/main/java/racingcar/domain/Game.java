@@ -1,25 +1,22 @@
 package racingcar.domain;
 
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class Game { //게임 로직 구현
 
     public void run() {
-        InputView.getNames();
-        InputView.getTrial();
-        //        for (int i = 0 ; i < trial ; i++) {
-//            cars.moveCars();
-//            OutputView.printCurrentResult(cars.getCurrentResult());
-//        }
-//        Winners.selectWinners(cars.getCars());
-//        OutputView.printWinnerResult();
-    }
+        Names names = InputView.getNames();
+        Trial trial = InputView.getTrial();
 
-    private Cars createCars(String[] carNames) {
-        Cars cars = new Cars();
-        for (String carName : carNames) {
-            cars.addCar(new Car(carName));
+        Cars cars = new Cars(names);
+
+        OutputView.printCurrentResultTitle();
+        for (int i = 0; i < trial.getTrial(); i++) {
+            cars.moveCars();
+            OutputView.printCurrentResult(cars.getCurrentResult());
         }
-        return cars;
+        Winners.selectWinners(cars.getCars());
+        OutputView.printWinnerResult();
     }
 }

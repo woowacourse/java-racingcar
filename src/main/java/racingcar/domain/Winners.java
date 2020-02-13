@@ -11,7 +11,7 @@ public class Winners {
                 .max(Car::compareTo)
                 .get();
         for (Car car : cars) {
-            if (car.isMaxDistance(maxDistanceCar)) {
+            if (car.isMaxPosition(maxDistanceCar)) {
                 winners.add(car);
             }
         }

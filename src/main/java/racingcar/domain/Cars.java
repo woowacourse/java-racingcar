@@ -1,26 +1,22 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
+    public static final int RANDOM_VALUE_LIMIT = 10;
 
-    private final List<Car> cars = new ArrayList<>();
+    private List<Car> cars;
 
-/*    public Cars(Car car) {
-        cars.add(car);
-    }*/
-
-    public void addCar(Car car) {
-        cars.add(car);
-    }
-
-    public Car getCar(int index) {
-        return cars.get(index);
+    public Cars(Names names) {
+        List<Name> na = names.getNames();
+        cars = na.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public int createRandomValue() {
-        return (int) (Math.random() * 10);
+        return (int) (Math.random() * RANDOM_VALUE_LIMIT);
     }
 
     public void moveCars() {

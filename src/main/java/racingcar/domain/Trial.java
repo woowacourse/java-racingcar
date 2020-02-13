@@ -4,6 +4,10 @@ public class Trial {
     private static final int GAME_COUNT_MINIMUM = 1;
     private int trial;
 
+    public int getTrial() {
+        return trial;
+    }
+
     public Trial(String trial) throws Exception {
         this.trial = isNotNumber(trial);
         isNotPositiveNumber();

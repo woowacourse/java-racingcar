@@ -4,14 +4,14 @@ public class Name {
     public static final int NAME_LENGTH_LIMIT = 5;
     private String name;
 
-    @Override
-    public String toString() {
-        return name;
-    }
 
     public Name(String name) throws IllegalArgumentException {
         this.name = name;
         isCorrectName();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void isCorrectName() throws IllegalArgumentException {
