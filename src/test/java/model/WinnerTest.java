@@ -22,14 +22,14 @@ public class WinnerTest {
         GameManager.moveOrStay(cars.get(0), 9);
         GameManager.moveOrStay(cars.get(1), 9);
         GameManager.moveOrStay(cars.get(1), 9);
-        GameManager.moveOrStay(cars.get(1), 9);
+        GameManager.moveOrStay(cars.get(2), 9);
     }
 
     @DisplayName("car객체들의 최대 포지션 구하기")
     @Test
     void getMaxPosition() {
         int maxPosition = Winner.getMaxPosition(cars);
-        assertThat(maxPosition).isEqualTo(3);
+        assertThat(maxPosition).isEqualTo(2);
     }
 
     @DisplayName("우승자 Car 객체 리스트 구하기")

@@ -32,5 +32,4 @@ public class OutputViewTest {
         String result = OutputView.printPositionBar(cars.get(0));
         assertThat(result).isEqualTo("--");
     }
-
 }

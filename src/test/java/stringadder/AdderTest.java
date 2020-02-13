@@ -86,7 +86,7 @@ public class AdderTest {
     }
 
     @Test
-    public void customnegative() {
+    public void customNegative() {
         assertThatThrownBy(() -> adder.splitAndSum("//-\n1-2-3"))
                 .isInstanceOf(RuntimeException.class);
     }

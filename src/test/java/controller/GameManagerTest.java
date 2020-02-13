@@ -11,7 +11,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameManagerTest {
-    private List<Car> carList = new ArrayList<>();
 
     @DisplayName("이름을 입력받아 ',' 로 분리")
     @Test
