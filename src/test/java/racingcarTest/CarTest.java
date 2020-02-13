@@ -22,12 +22,7 @@ import racingcar.Model.Car;
  */
 
 public class CarTest {
-    private static Car car;
-
-    @BeforeAll
-    static void setUp() {
-        car = new Car("보스독");
-    }
+    private static Car car = new Car("보스독");
 
     @ParameterizedTest
     @DisplayName("isGo 테스트")
