@@ -17,25 +17,25 @@ import racingcar.Controller.InputValidation;
  */
 
 public class InputView {
-    private static Scanner scanner = new Scanner(System.in);
+	private static Scanner scanner = new Scanner(System.in);
 
-    public static List<String> inputCarName() {
-        OutputView.printInputCarNamesMessage();
-        return InputValidation.validateInputCarName(scanner.nextLine());
-    }
+	public static List<String> inputCarName() {
+		OutputView.printInputCarNamesMessage();
+		return InputValidation.validateInputCarName(scanner.nextLine());
+	}
 
-    public static int inputTrialTime() {
-        OutputView.printInputTrialTimeMessage();
-        String trialTime = scanner.nextLine();
-        try {
-            InputValidation.checkDecimalNumber(trialTime);
-            InputValidation.checkNotNumber(trialTime);
-            InputValidation.checkNegativeAndZeroInput(trialTime);
-            InputValidation.checkIntegerOverflow(trialTime);
-            return Integer.parseInt(trialTime);
-        } catch (Exception e) {
-            OutputView.printExceptionMessage(e);
-        }
-        return inputTrialTime();
-    }
+	public static int inputTrialTime() {
+		OutputView.printInputTrialTimeMessage();
+		String trialTime = scanner.nextLine();
+		try {
+			InputValidation.checkDecimalNumber(trialTime);
+			InputValidation.checkNotNumber(trialTime);
+			InputValidation.checkNegativeAndZeroInput(trialTime);
+			InputValidation.checkIntegerOverflow(trialTime);
+			return Integer.parseInt(trialTime);
+		} catch (Exception e) {
+			OutputView.printExceptionMessage(e);
+		}
+		return inputTrialTime();
+	}
 }

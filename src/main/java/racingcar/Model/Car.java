@@ -19,64 +19,67 @@ import static java.util.stream.Collectors.joining;
  */
 
 public class Car {
-    public static final int RANDOM_UPPER_LIMIT = 9;
-    public static final int RANDOM_LOWER_LIMIT = 1;
-    private static final int CRITERIA_FOR_GO = 4;
-    private static final int INITIAL_POSITION = 0;
-    public static final String DASH = "-";
-    public static final String COLON = " : ";
-    public static final String NAME_DIVIDER = ", ";
+	public static final int RANDOM_UPPER_LIMIT = 9;
+	public static final int RANDOM_LOWER_LIMIT = 1;
+	private static final int CRITERIA_FOR_GO = 4;
+	private static final int INITIAL_POSITION = 0;
+	public static final String DASH = "-";
+	public static final String COLON = " : ";
+	public static final String NAME_DIVIDER = ", ";
 
-    public static List<String> winners = new ArrayList<>();
+	public static List<String> winners = new ArrayList<>();
 
-    private String carName;
-    private int position;
+	private String carName;
+	private int position;
 
+	public Car(final String carName) {
+		this.carName = carName;
+		this.position = INITIAL_POSITION;
+	}
 
-    public Car(String carName) {
-        this.carName = carName;
-        this.position = INITIAL_POSITION;
-    }
+	public Car(final String carName, final int position) {
+		this.carName = carName;
+		this.position = position;
+	}
 
-    public Car(String carName, int position) {
-        this.carName = carName;
-        this.position = position;
-    }
+	public void goOrNot() {
+		if (isGo(createRandomNumber())) {
+			position++;
+		}
+	}
 
-    public void goOrNot() {
-        if (isGo(createRandomNumber())) {
-            position++;
-        }
-    }
+	public boolean isGo(final int randomNumber) {
+		return randomNumber >= CRITERIA_FOR_GO;
+	}
 
-    public boolean isGo(int randomNumber) {
-        return randomNumber >= CRITERIA_FOR_GO;
-    }
+	private int createRandomNumber() {
+		return (int) (Math.random() * RANDOM_UPPER_LIMIT) + RANDOM_LOWER_LIMIT;
+	}
 
-    private int createRandomNumber() {
-        return (int) (Math.random() * RANDOM_UPPER_LIMIT) + RANDOM_LOWER_LIMIT;
-    }
+	public boolean comparePosition(final Car target) {
+		return this.position > target.position;
+	}
 
-    public boolean comparePosition(Car target) {
-        return this.position > target.position;
-    }
+	public void showCurrentPosition() {
+		StringBuilder outputValue = new StringBuilder();
+		outputValue.append(carName).append(COLON);
+		for (int index = 0; index < position; index++) {
+			outputValue.append(DASH);
+		}
+		OutputView.printPositionByDash(outputValue.toString());
+	}
 
-    public void showCurrentPosition() {
-        StringBuilder outputValue = new StringBuilder();
-        outputValue.append(carName).append(COLON);
-        for (int i = 0; i < position; i++) {
-            outputValue.append(DASH);
-        }
-        OutputView.printPositionByDash(outputValue.toString());
-    }
+	public void findWinners(final Car car) {
+		if (this.position == car.position) {
+			winners.add(car.carName);
+		}
+	}
 
-    public void findWinners(Car car) {
-        if (this.position == car.position) {
-            winners.add(car.carName);
-        }
-    }
+	public String getWinners() {
+		return winners.stream()
+				.map(String::valueOf)
+				.collect(joining(NAME_DIVIDER));
+	}
 
-    public String getWinners() {
-        return winners.stream().map(String::valueOf).collect(joining(NAME_DIVIDER));
-    };
+	;
 }

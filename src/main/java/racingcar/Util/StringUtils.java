@@ -18,13 +18,13 @@ import java.util.stream.Collectors;
 public class StringUtils {
 	private static final String DELIMITER = ",";
 
-	public static List<String> splitCarNames(String carNameInput) {
+	public static List<String> splitCarNames(final String carNameInput) {
 		return Arrays.asList(carNameInput.split(DELIMITER));
 	}
 
-	public static List<String> trimCarNames(List<String> carNamesInput) {
+	public static List<String> trimCarNames(final List<String> carNamesInput) {
 		return carNamesInput.stream()
-				.map(String :: trim)
+				.map(String::trim)
 				.collect(Collectors.toList());
 	}
 
