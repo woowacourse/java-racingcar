@@ -13,8 +13,8 @@ public class Car {
         return this.position;
     }
 
-    public void setPosition() {
-        this.position++;
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     public String getName() {

@@ -9,6 +9,7 @@ public class Race {
     public static final String CAR_NAME_DELIMITER = ",";
     public static final int MAXIMUM_RANDOM_NUMBER_RANGE = 9;
     public static final int MINIMUM_NUMBER_OF_MOVE_FORWARD = 4;
+    public static final int MOVE_FORWARD = 1;
 
     public void run() {
         while(true) {
@@ -103,7 +104,8 @@ public class Race {
 
     public void checkCarConditionByRandomNumber(Car car, int randomNumber) {
         if (isOverMinimumNumberOfMoveForward(randomNumber)) {
-            car.setPosition();
+            int moveForward = car.getPosition() + MOVE_FORWARD;
+            car.setPosition(moveForward);
         }
     }
 
