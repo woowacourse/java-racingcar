@@ -14,9 +14,8 @@ public class CarPosition {
         this.position = pos;
     }
 
-    public int increase() {
+    public void increase() {
         this.position += MOVE_UNIT;
-        return position;
     }
 
     public int getPosition() {

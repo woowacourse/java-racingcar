@@ -16,7 +16,6 @@ public class Car implements Comparable<Car> {
         this.carPosition = new CarPosition(car.getCarPosition());
     }
 
-
     public void decideGoOrStop(int randomNumber) {
         if (randomNumber >= GO_CONDITION) {
             carPosition.increase();

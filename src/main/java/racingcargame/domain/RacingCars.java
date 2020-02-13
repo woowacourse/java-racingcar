@@ -3,6 +3,7 @@ package racingcargame.domain;
 import racingcargame.controller.CarDto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,12 +20,11 @@ public class RacingCars {
 
     private List<Car> setCars(String names) {
         cars = new ArrayList<>();
-
         String[] carNames = splitName(names);
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
-        return cars;
+
+        return Arrays.stream(carNames)
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     private String[] splitName(String userInput) {
@@ -32,9 +32,7 @@ public class RacingCars {
     }
 
     public CarDto processOneRace() {
-        for (Car car : cars) {
-            car.decideGoOrStop(createRandomNumber());
-        }
+        cars.forEach(car -> car.decideGoOrStop(createRandomNumber()));
         return new CarDto(cars);
     }
 
@@ -48,8 +46,8 @@ public class RacingCars {
 
         List<String> winnerCar = cars.stream()
                 .filter(car -> car.isMaxPosition(maxPosition))
-                .map(car -> car.getCarName())
+                .map(Car::getCarName)
                 .collect(Collectors.toList());
-        return String.join(", ", winnerCar);
+        return String.join(DELIMITER, winnerCar);
     }
 }

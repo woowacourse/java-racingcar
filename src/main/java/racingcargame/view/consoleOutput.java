@@ -2,7 +2,7 @@ package racingcargame.view;
 
 import racingcargame.domain.Car;
 
-public class OutputView {
+public class consoleOutput {
     private static final String MARK = "-";
 
     public static void printRaceResultMessage() {
@@ -14,10 +14,14 @@ public class OutputView {
 
         sb.append(car.getCarName());
         sb.append(" : ");
+        printEachStatus(car, sb);
+        System.out.println(sb);
+    }
+
+    private static void printEachStatus(Car car, StringBuilder sb) {
         for (int i = 0; i < car.getCarPosition(); i++) {
             sb.append(MARK);
         }
-        System.out.println(sb);
     }
 
     public static void printWinner(String winnerName) {
