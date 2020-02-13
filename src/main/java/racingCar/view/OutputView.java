@@ -21,6 +21,6 @@ public class OutputView {
     }
 
     public static void printRound(int round) {
-        System.out.println(round);
+        System.out.println(round + "회차");
     }
 }
