@@ -37,10 +37,10 @@ public class Cars {
 		}
 	}
 
-	public boolean isPostionsOf(List<Integer> postions) {
-		validateSize(postions);
+	public boolean isPositionsOf(List<Integer> positions) {
+		validateSize(positions);
 		for (int i = 0; i < cars.size(); i++) {
-			if (!cars.get(i).isPositionOf(postions.get(i))) {
+			if (!cars.get(i).isPositionOf(positions.get(i))) {
 				return false;
 			}
 		}
