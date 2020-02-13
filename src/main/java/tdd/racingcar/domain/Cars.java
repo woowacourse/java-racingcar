@@ -1,6 +1,5 @@
 package tdd.racingcar.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
@@ -16,7 +15,7 @@ public class Cars  {
 		cars.forEach(tryToMove());
 	}
 
-	public Consumer<Car> tryToMove() {
+	private Consumer<Car> tryToMove() {
 		return car -> {
 			final Power randomPower = PowerFactory.createRandomPower();
 			car.move(randomPower);
