@@ -1,40 +1,45 @@
 package racingcar.domain;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domian.RacingCar;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 public class RacingCarTest {
-    RacingCar game;
+    private static RacingCar game;
 
     @BeforeAll
-    void setUp() {
+    static void setUp() {
         game = new RacingCar();
     }
 
-/*    @ParameterizedTest
-    @ValueSource(ints = {-1, 11, 0})
-    void 횟수가_10초과_및_1보다작은_경우(int count) {
+    @ParameterizedTest
+    @ValueSource(strings = {"11"})
+    void 횟수가_10초과_및_1보다작은_경우(String count) {
+        InputStream in = new ByteArrayInputStream(count.getBytes());
+        System.setIn(in);
         assertThatThrownBy(() -> {
-            validateCount(count);
+            game.setUpRound();
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("횟수가 1보다 작거나 10번 초과");
     }
 
+
     @Test
     void 횟수가_숫자가_아닌_경우() {
         String count = "a";
+        InputStream in = new ByteArrayInputStream(count.getBytes());
+        System.setIn(in);
+
         assertThatThrownBy(() -> {
-            validateNumber(count);
+            game.setUpRound();
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("잘못된 횟수 입력");
     }
-
-    @Test
-    void 자동자가_5대_초과로_오는_경우() {
-        int carCount = 6;
-        assertThatThrownBy(() -> {
-            validateCarCount(carCount);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자동차 5대 초과");
-    }*/
 }
