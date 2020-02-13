@@ -2,6 +2,7 @@ package racingCar.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GameManager {
     private List<Player> players;
@@ -13,7 +14,11 @@ public class GameManager {
                 .collect(Collectors.toList());
     }
 
-    public void play() {
+    public void play(int num) {
+        IntStream.range(0, num).forEach(this::play);
+    }
+
+    private void play() {
         players.forEach((t) -> t.play(RandomGenerator.decideGoOrStop()));
     }
 
