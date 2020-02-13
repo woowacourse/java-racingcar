@@ -21,7 +21,7 @@ public class Position {
         this(1);
     }
 
-    public Position(int position) {
+    public Position(final int position) {
         validatePosition(position);
         this.position = position;
     }

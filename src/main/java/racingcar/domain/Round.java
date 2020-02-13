@@ -35,7 +35,7 @@ public class Round {
         currentRound++;
     }
 
-    public boolean isRoundOf(int round) {
+    public boolean isRoundOf(final int round) {
         return currentRound == round;
     }
 

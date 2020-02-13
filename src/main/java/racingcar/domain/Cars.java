@@ -34,7 +34,7 @@ public class Cars {
         }
     }
 
-    public boolean isPostionsOf(List<Integer> postions) {
+    public boolean isPostionsOf(final List<Integer> postions) {
         validateSize(postions);
         for (int i = 0; i < cars.size(); i++) {
             if (!cars.get(i).isPositionOf(postions.get(i))) {
@@ -49,14 +49,14 @@ public class Cars {
         moveAll(numbers);
     }
 
-    public void moveAll(List<Integer> powers) {
+    public void moveAll(final List<Integer> powers) {
         validateSize(powers);
         for (int i = 0; i < cars.size(); i++) {
             cars.get(i).move(powers.get(i));
         }
     }
 
-    private void validateSize(List<Integer> input) {
+    private void validateSize(final List<Integer> input) {
         if (cars.size() != input.size()) {
             throw new IllegalArgumentException("Car 리스트와 입력 리스트의 사이즈가 같지 않습니다.");
         }
