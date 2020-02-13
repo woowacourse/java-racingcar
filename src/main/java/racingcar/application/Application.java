@@ -1,25 +1,19 @@
 package racingcar.application;
 
-import racingcar.domain.Car;
 import racingcar.domain.CarRacing;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class Application {
-    private static final int ERROR_THRESHOLD = 5;
-    private static final int CONTINUOUS_ERROR_CODE = 0;
-
-    private static int errorCount = 0;
-
     public static void main(String[] args) {
-        CarRacing carRacing = generateCarRacing2();
-        int moveNumber = enterValidNumber();
+        CarRacing carRacing = generateCarRacing();
+        int moveNumber = enterNumberUntilValid();
 
         run(carRacing, moveNumber);
         findWinner(carRacing);
     }
 
-    private static CarRacing generateCarRacing2() {
+    private static CarRacing generateCarRacing() {
         while (true) {
             try {
                 return new CarRacing(InputView.getNames());
@@ -29,35 +23,27 @@ public class Application {
         }
     }
 
-    private static CarRacing generateCarRacing() {
-        try {
-            return new CarRacing(InputView.getNames());
-        } catch(IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            exitProgramByContinuousError();
-            return generateCarRacing();
+    private static int enterNumberUntilValid() {
+        while(true) {
+            return enterValidNumber();
         }
-    }
-
-    private static void exitProgramByContinuousError() {
-        if (errorCount > ERROR_THRESHOLD) {
-            System.out.println("오류 횟수 " + ERROR_THRESHOLD + "회 초과로 프로그램을 종료합니다");
-            System.exit(CONTINUOUS_ERROR_CODE);
-        }
-        errorCount++;
     }
 
     private static int enterValidNumber() {
-        int output = 0;
-        boolean isInputNeeded = true;
-
-        while(isInputNeeded) {
-            output = InputView.getMoveNumber();
-            if (output > 0) {
-                isInputNeeded = false;
-            }
+        int number;
+        try {
+            number = InputView.getMoveNumber();
+            checkValidNumber(number);
+        } catch(IllegalArgumentException e) {
+            throw new IllegalArgumentException();
         }
-        return output;
+        return number;
+    }
+
+    private static void checkValidNumber(int number) {
+        if (number < 1) {
+            throw new IllegalArgumentException("양의 정수만 입력이 가능합니다.");
+        }
     }
 
     private static void run(CarRacing carRacing, int moveNumber) {

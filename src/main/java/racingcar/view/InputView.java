@@ -18,8 +18,7 @@ public class InputView {
             System.out.println("시도할 회수는 몇회인가요?");
             return Integer.parseInt(SCANNER.nextLine());
         } catch (IllegalArgumentException e) {
-            System.out.println("숫자만 입력이 가능합니다. 다시 입력해주세요");
-            return getMoveNumber();
+            throw new IllegalArgumentException("숫자만 입력이 가능합니다.");
         }
     }
 }

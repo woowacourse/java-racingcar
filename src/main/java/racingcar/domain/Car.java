@@ -27,22 +27,15 @@ public class Car {
 
     /* 테스트용 메서드 */
     public void move(int number) {
-        if (canMoveWithGivenNum(number)) {
+        if (number >= MOVE_THRESHOLD) {
             this.distance++;
         }
     }
 
     public void move() {
-        if (canMoveWithGivenNum(generateRandNumber())) {
+        if (generateRandNumber() >= MOVE_THRESHOLD) {
             this.distance++;
         }
-    }
-
-    private boolean canMoveWithGivenNum(int number) {
-        if (number >= MOVE_THRESHOLD) {
-            return true;
-        }
-        return false;
     }
 
     public static int generateRandNumber() {
