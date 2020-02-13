@@ -6,14 +6,13 @@ import racingcargame.domain.RacingCarGame;
 import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        OutputView.inputNameInstruction();
-        final String userInputName = InputView.inputNames();
-        OutputView.inputRepeatInstruction();
-        final int userInputRepeat = InputView.inputRepeat();
+        final String userInputName = inputName();
+        final int userInputRepeat = inputRepeat();
 
         RacingCarGame game = new RacingCarGame();
         OutputView.resultInstruction();
@@ -24,6 +23,16 @@ public class Application {
 
         String winner = game.winner;
         OutputView.winnerInstruction(winner);
+    }
+
+    private static int inputRepeat() {
+        OutputView.inputRepeatInstruction();
+        return InputView.inputRepeat();
+    }
+
+    private static String inputName() {
+        OutputView.inputNameInstruction();
+        return InputView.inputNames();
     }
 
     private static void printEachRaceStatus(CarDto carDto) {

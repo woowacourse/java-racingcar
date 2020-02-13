@@ -37,6 +37,6 @@ public class CarRacingGameTest {
         cars.get(0).decideGoOrStop(8);
         cars.get(1).decideGoOrStop(5);
         cars.get(2).decideGoOrStop(0);
-//        assertThat(racingCarGame.getWinner(cars)).isEqualTo("car1, car2");
+        assertThat(racingCars.getWinner()).isEqualTo("car1, car2");
     }
 }
