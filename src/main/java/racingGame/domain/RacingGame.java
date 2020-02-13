@@ -1,4 +1,7 @@
-package racingGame;
+package racingGame.domain;
+
+import racingGame.controller.Input;
+import racingGame.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +16,8 @@ public class RacingGame {
     }
 
     public static List<String> play(Input input) {
-        List<String> names = input.splitInput();
-        int repeat = input.getRepeat();
+        List<String> names = input.splitInputByComma();
+        int repeat = input.parseRepeatToInt();
 
         List<Car> cars = new ArrayList<>();
         for (String name : names) {

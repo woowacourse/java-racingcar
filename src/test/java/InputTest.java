@@ -2,7 +2,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingGame.Input;
+import racingGame.controller.Input;
 
 public class InputTest {
 
@@ -13,7 +13,7 @@ public class InputTest {
     @ValueSource(strings = {"pobipobi", "crongcrong", "honuxisgreat", ""})
     void 한명_입력시_이름길이_검증(String value) {
         Assertions.assertThatThrownBy(() -> {
-            Input.validateInput(value);
+            Input input = new Input(value,TEST_REPEAT);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageMatching("이름의 길이는 1자 이상, 5자 이하만 가능합니다.");
     }
 
@@ -21,7 +21,7 @@ public class InputTest {
     @CsvSource(value = {"pobi,crong,honux:pobi", "a,b,c:c"}, delimiter = ':')
     void 여러명_입력시_split_검증(String value, String expected) {
         Input input = new Input(value, TEST_REPEAT);
-        input.splitInput().contains(expected);
+        input.splitInputByComma().contains(expected);
     }
 
     @ParameterizedTest

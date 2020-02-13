@@ -1,4 +1,7 @@
-package racingGame;
+package racingGame.domain;
+
+import racingGame.controller.Input;
+import racingGame.controller.Output;
 
 import java.util.List;
 

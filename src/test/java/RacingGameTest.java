@@ -5,9 +5,9 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racingGame.Car;
-import racingGame.Input;
-import racingGame.RacingGame;
+import racingGame.domain.Car;
+import racingGame.controller.Input;
+import racingGame.domain.RacingGame;
 
 import java.util.ArrayList;
 import java.util.List;
