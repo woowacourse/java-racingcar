@@ -11,8 +11,8 @@ public class CarPosition {
         this.position = DEFAULT_POSITION;
     }
 
-    public CarPosition(int pos) {
-        this.position = pos;
+    public CarPosition(int position) {
+        this.position = position;
     }
 
     public void increase() {

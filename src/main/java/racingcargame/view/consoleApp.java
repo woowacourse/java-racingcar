@@ -2,26 +2,36 @@ package racingcargame.view;
 
 import racingcargame.controller.CarDto;
 import racingcargame.controller.RacingCarController;
-import racingcargame.domain.Repeat;
+import racingcargame.domain.RepeatTimes;
 
 import java.util.List;
 
 import static racingcargame.view.consoleInput.inputNames;
 import static racingcargame.view.consoleInput.inputRepeat;
-import static racingcargame.view.consoleOutput.*;
+import static racingcargame.view.consoleOutput.printRaceResultMessage;
+import static racingcargame.view.consoleOutput.printWinner;
 
 public class consoleApp {
     public static void main(String[] args) {
         final String names = inputNames();
-        final Repeat repeat = new Repeat(inputRepeat());
+        final int repeat = parseStringToInt(inputRepeat());
+        final RepeatTimes repeatTimes = new RepeatTimes(repeat);
 
         printRaceResultMessage();
         final RacingCarController game = new RacingCarController();
-        final List<CarDto> racingResult = game.run(names, repeat);
+        final List<CarDto> racingResult = game.run(names, repeatTimes);
         printRaceResult(racingResult);
 
         final String winner = game.winner;
         printWinner(winner);
+    }
+
+    private static int parseStringToInt(String inputRepeat) {
+        try {
+            return Integer.parseInt(inputRepeat);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("정수를 입력해주세요.");
+        }
     }
 
     private static void printRaceResult(List<CarDto> carStatus) {

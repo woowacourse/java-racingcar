@@ -20,15 +20,11 @@ public class RacingCars {
 
     private List<Car> setCars(String names) {
         cars = new ArrayList<>();
-        String[] carNames = splitName(names);
+        String[] carNames = names.split(DELIMITER);
 
         return Arrays.stream(carNames)
                 .map(Car::new)
                 .collect(Collectors.toList());
-    }
-
-    private String[] splitName(String userInput) {
-        return userInput.split(DELIMITER);
     }
 
     public CarDto processOneRace(MoveDecider moveDecider) {

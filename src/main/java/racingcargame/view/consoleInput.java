@@ -11,8 +11,8 @@ public class consoleInput {
         return scanner.nextLine();
     }
 
-    public static int inputRepeat() {
+    public static String inputRepeat() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return scanner.nextInt();
+        return scanner.nextLine();
     }
 }

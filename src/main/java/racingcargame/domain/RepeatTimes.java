@@ -1,14 +1,14 @@
 package racingcargame.domain;
 
-public class Repeat {
+public class RepeatTimes {
 
     private static final int ZERO = 0;
 
-    private int repeat;
+    private int repeatTimes;
 
-    public Repeat(int repeat) {
-        validateNegative(repeat);
-        this.repeat = repeat;
+    public RepeatTimes(int repeatTimes) {
+        validateNegative(repeatTimes);
+        this.repeatTimes = repeatTimes;
     }
 
     private void validateNegative(int repeat) {
@@ -17,7 +17,7 @@ public class Repeat {
         }
     }
 
-    public int getRepeat() {
-        return repeat;
+    public int getRepeatTimes() {
+        return repeatTimes;
     }
 }
