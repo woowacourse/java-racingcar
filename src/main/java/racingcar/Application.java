@@ -1,11 +1,11 @@
 package racingcar;
 
 import racingcar.domain.Cars;
-import racingcar.utils.RandomValueConstructor;
+import racingcar.domain.Race;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class CarRacing {
+public class Application {
     public static final int POSITIVE_CRITERIA = 1;
 
     public static void main(String[] args) {
@@ -29,11 +29,11 @@ public class CarRacing {
     }
 
     private static void showRaceResult(Cars cars, int count) {
-        RandomValueConstructor randomValueConstructor = new RandomValueConstructor();
+        Race race = new Race();
 
         for (int i = 0; i < count; i++) {
             cars.getCars().stream()
-                    .forEach(car -> car.movePositionAccordingToCondition(randomValueConstructor.getRandomNumber()));
+                    .forEach(car -> race.racing(car));
 
             OutputView.showEachRaceResult(cars.getCars());
         }

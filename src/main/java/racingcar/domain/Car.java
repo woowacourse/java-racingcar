@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 public class Car {
-    public static final int MOVING_CRITERIA = 4;
     public static final int MAXIMUM_NAME = 5;
 
     private String name;
@@ -12,13 +11,7 @@ public class Car {
         position = 0;
     }
 
-    public void movePositionAccordingToCondition(int randomValue) {
-        if (randomValue >= MOVING_CRITERIA) {
-            moveForward();
-        }
-    }
-
-    private void moveForward() {
+    public void moveForward() {
         position++;
     }
 

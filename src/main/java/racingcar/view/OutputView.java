@@ -1,10 +1,10 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import racingcar.domain.Car;
 
 public class OutputView {
     public static final String GAGE = "-";

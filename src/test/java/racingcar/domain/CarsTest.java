@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class CarsTest {
-    public static final int FORWARD_CRITERIA = 5;
     public static final int ALLEN = 0;
     public static final int POBI = 2;
 
@@ -47,8 +46,8 @@ class CarsTest {
 
         Cars cars = new Cars(String.join(Cars.DELIMITER, allen, lowoon, pobi));
         List<Car> carsList = cars.getCars();
-        carsList.get(ALLEN).movePositionAccordingToCondition(FORWARD_CRITERIA);
-        carsList.get(POBI).movePositionAccordingToCondition(FORWARD_CRITERIA);
+        carsList.get(ALLEN).moveForward();
+        carsList.get(POBI).moveForward();
 
         return Stream.of(
                 Arguments.of(cars, List.of(allen, pobi))
