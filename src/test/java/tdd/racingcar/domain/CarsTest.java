@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +29,7 @@ public class CarsTest {
 	@Test
 	void getWinnersForEmptyCars() {
 		final Cars cars = new Cars(new ArrayList<>());
-		assertThatIllegalArgumentException().isThrownBy(cars::getWinners)
+		assertThatExceptionOfType(RuntimeException.class).isThrownBy(cars::getWinners)
 				.withMessage("차가 존재하지 않습니다.");
 	}
 

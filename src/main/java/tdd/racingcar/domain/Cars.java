@@ -30,7 +30,7 @@ public class Cars implements Iterable<Car> {
 		return cars.stream()
 				.mapToInt(Car::getPosition)
 				.max()
-				.orElseThrow(() -> new IllegalArgumentException("차가 존재하지 않습니다."));
+				.orElseThrow(() -> new RuntimeException("차가 존재하지 않습니다."));
 	}
 
 	@Override
