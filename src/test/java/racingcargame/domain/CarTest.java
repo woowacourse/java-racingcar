@@ -13,12 +13,20 @@ public class CarTest {
         Engine engine = Engine.createEngineSetBy(5);
         Car car = new Car("pobi");
         car.go(engine);
-        assertThat(car.isSameTo(1)).isEqualTo(true);
+        assertThat(car.isSameToPosition(1)).isEqualTo(true);
     }
 
     @Test
     void 포지션만큼출력() {
         Car car = new Car("pobi", 3);
         assertThat(car.printPosition()).isEqualTo("pobi : ---\n");
+    }
+
+    @Test
+    void 자동차이름이_같은지_확인() {
+        Car car = new Car("pobi");
+        String name = "pobi";
+        boolean result = car.isSame(name);
+        assertThat(result).isTrue();
     }
 }

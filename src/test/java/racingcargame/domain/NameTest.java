@@ -2,6 +2,7 @@ package racingcargame.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NameTest {
@@ -28,6 +29,13 @@ public class NameTest {
             new Name("");
         })
                 .isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    void 같은_이름인지_확인() {
+        Name name = new Name("brown");
+        boolean result = name.equals("brown");
+        assertThat(result).isTrue();
     }
 
 }

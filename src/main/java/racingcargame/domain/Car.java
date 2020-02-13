@@ -1,6 +1,6 @@
 package racingcargame.domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final String DISTANCE = "-";
     private final Name name;
     private int position;
@@ -21,8 +21,12 @@ public class Car {
         }
     }
 
-    public boolean isSameTo(int position) {
+    public boolean isSameToPosition(int position) {
         return this.position == position;
+    }
+
+    public boolean isSameToPosition(Car car) {
+        return this.position == car.position;
     }
 
     public String printPosition() {
@@ -33,5 +37,14 @@ public class Car {
         }
         sb.append("\n");
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return Integer.compare(this.position, o.position);
+    }
+
+    public boolean isSame(String name) {
+        return this.name.equals(name);
     }
 }

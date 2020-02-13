@@ -5,11 +5,6 @@ import java.util.Set;
 
 public class Name {
     private static final Set<String> CAR_NAMES = new HashSet<>();
-
-    public String getName() {
-        return name;
-    }
-
     private static final int NAME_MAX_LENGTH = 5;
     private static final String BLANK = "";
 
@@ -47,5 +42,20 @@ public class Name {
         if (BLANK.equals(name)) {
             throw new RuntimeException("공백 이름을 가지고 있습니다.");
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        String anotherName = (String) obj;
+        return anotherName == this.name;
     }
 }
