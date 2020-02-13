@@ -23,7 +23,7 @@ public class CalculatorApplication {
 		Scanner scanner = new Scanner(new BufferedInputStream(System.in));
 		InputView inputView = new InputView(scanner);
 
-		String input = inputView.inputMathemeticalExpression();
+		String input = inputView.inputMathematicalExpression();
 		System.out.println(input);
 
 		try {

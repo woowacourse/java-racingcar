@@ -20,7 +20,7 @@ public class InputView {
 		this.scanner = Objects.requireNonNull(scanner);
 	}
 
-	public String inputMathemeticalExpression() {
+	public String inputMathematicalExpression() {
 		System.out.println(INPUT_MATHEMATICAL_EXPRESSION_GUIDE_MESSAGE);
 		return scanner.useDelimiter("\n\n").next();
 	}
