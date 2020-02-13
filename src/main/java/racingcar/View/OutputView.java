@@ -41,6 +41,6 @@ public class OutputView {
     }
 
     public static void printWinners(String winners) {
-        System.out.println(winners.substring(2) + "가 최종 우승했습니다.");
+        System.out.println(winners + "가 최종 우승했습니다.");
     }
 }

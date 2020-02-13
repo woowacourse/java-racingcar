@@ -2,6 +2,11 @@ package racingcar.Model;
 
 import racingcar.View.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.stream.Collectors.joining;
+
 /**
  * 클래스 이름 : Car.java
  *
@@ -20,8 +25,9 @@ public class Car {
     private static final int INITIAL_POSITION = 0;
     public static final String DASH = "-";
     public static final String COLON = " : ";
+    public static final String NAME_DIVIDER = ", ";
 
-    public static StringBuilder winners = new StringBuilder();
+    public static List<String> winners = new ArrayList<>();
 
     private String carName;
     private int position;
@@ -66,8 +72,11 @@ public class Car {
 
     public void findWinners(Car car) {
         if (this.position == car.position) {
-            winners.append(", ");
-            winners.append(car.carName);
+            winners.add(car.carName);
         }
     }
+
+    public String getWinners() {
+        return winners.stream().map(String::valueOf).collect(joining(NAME_DIVIDER));
+    };
 }

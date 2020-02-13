@@ -50,7 +50,7 @@ public class Game {
         for (Car car : cars) {
             topPositionCar.findWinners(car);
         }
-        OutputView.printWinners(Car.winners.toString());
+        OutputView.printWinners(topPositionCar.getWinners());
     }
 
     public static Car findTopPositionCar(List<Car> cars) {
