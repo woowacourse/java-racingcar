@@ -14,7 +14,7 @@ public class Engine {
         return power;
     }
 
-    public static Engine getRandom() {
+    public static Engine createRandomEngine() {
         int power = RandomFactory.getRandom();
         return new Engine(power);
     }
