@@ -29,7 +29,7 @@ public class CarTest {
     void move(int power, int position) {
         Car car = new Car(new Name("pobi"));
         car.move(power);
-        Assertions.assertThat(car.isEqualPositionTo(position))
+        Assertions.assertThat(car.isPositionOf(position))
                 .isTrue();
     }
 }

@@ -58,4 +58,25 @@ public class CarsTest {
         Assertions.assertThatThrownBy(() -> new Cars(cars))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("moveAll 테스트")
+    void moveAll() {
+        List<Integer> powers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> expectingPositions = Arrays.asList(1, 1, 1, 2, 2, 2);
+        Cars carsObject = new Cars(cars);
+        carsObject.moveAll(powers);
+        Assertions.assertThat(carsObject.isPostionsOf(expectingPositions))
+                .isTrue();
+    }
+
+    @Test
+    @DisplayName("moveAll에 일치하지 않는 크기의 powers를 입력한 경우")
+    void moveAll_일치하지_않는_크기의_리스트를_입력한_경우() {
+        List<Integer> powers = Arrays.asList(1, 2, 3, 4, 5);
+        Cars carsObject = new Cars(cars);
+        Assertions.assertThatThrownBy(() -> carsObject.moveAll(powers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Car 리스트와 입력 리스트의 사이즈가 같지 않습니다.");
+    }
 }
