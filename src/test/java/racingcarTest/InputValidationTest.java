@@ -57,7 +57,7 @@ public class InputValidationTest {
 
     @Test
     @DisplayName("시도횟수가 음수 또는 0")
-    void inputValidation_시도횟수가_0이하() {
+    void checkNegativeAndZeroInput_시도횟수가_0이하() {
         assertThatThrownBy(() -> {
             String trialTime = "-4";
             InputValidation.checkNegativeAndZeroInput(trialTime);
@@ -73,7 +73,7 @@ public class InputValidationTest {
 
     @Test
     @DisplayName("시도 횟수가 타입 범위를 초과할 경우")
-    void inputValidation_시도횟수가_타입_범위초과() {
+    void checkIntegerOverflow_시도횟수가_타입_범위초과() {
         assertThatThrownBy(() -> {
             String trialTime = "100000000000";
             InputValidation.checkIntegerOverflow(trialTime);
@@ -83,7 +83,7 @@ public class InputValidationTest {
 
     @Test
     @DisplayName("시도 횟수가 소수인 경우")
-    void inputValidation_시도횟수가_소수_입력() {
+    void checkDecimalNumber_시도횟수가_소수_입력() {
         assertThatThrownBy(() -> {
             String trialTime = "3.5";
             InputValidation.checkDecimalNumber(trialTime);
@@ -93,7 +93,7 @@ public class InputValidationTest {
 
     @Test
     @DisplayName("시도 횟수가 문자인 경우")
-    void inputValidation_시도횟수가_문자_입력() {
+    void checkNotNumber_시도횟수가_문자_입력() {
         assertThatThrownBy(() -> {
             String trialTime = "abc";
             InputValidation.checkNotNumber(trialTime);
