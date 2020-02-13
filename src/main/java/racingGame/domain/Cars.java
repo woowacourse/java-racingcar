@@ -2,14 +2,13 @@ package racingGame.domain;
 
 import racingGame.utils.RandomGenerator;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Cars {
     private static final int POSITION_INIT = 0;
+
     private final List<Car> cars;
+    private int maximumPosition = POSITION_INIT;
 
     public Cars(final List<Car> cars) {
         checkDuplicate(cars);
@@ -26,22 +25,28 @@ public class Cars {
         for (Car individualCar : cars) {
             individualCar.move(RandomGenerator.generateRandomNumber());
         }
+        updateMaximumPosition();
     }
 
-    public int getMaximumPosition() {
-        int maxPosition = POSITION_INIT;
-
+    public void updateMaximumPosition() {
         for (Car individualCar : cars) {
-            maxPosition = getBigger(maxPosition, individualCar.getPosition());
+            maximumPosition = Math.max(maximumPosition,individualCar.getPosition());
         }
-        return maxPosition;
     }
 
-    private int getBigger(int maxPosition, int position) {
-        if (maxPosition < position) {
-            return position;
+    public List<Car> getWinnersList() {
+        List<Car> winners = new ArrayList<>();
+
+        for (Car car : cars) {
+            addIfWinner(winners, car);
         }
-        return maxPosition;
+        return winners;
+    }
+
+    private void addIfWinner(List<Car> winners, final Car car) {
+        if (car.isWinnerPosition(maximumPosition)) {
+            winners.add(car);
+        }
     }
 
     private long getDistinctSize(final List<Car> cars) {
