@@ -31,7 +31,7 @@ public class StringCalculator {
     }
 
     private static boolean isNullOrBlank(String input) {
-        return input == null || input.equals("");
+        return input == null || input.isEmpty();
     }
 
     private static List<String> split(String input) {
