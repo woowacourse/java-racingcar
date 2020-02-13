@@ -31,4 +31,17 @@ public class RacingCarTest {
         position = racingCar.getPostion();
         assertThat(position).isEqualTo(0);
     }
+
+    @Test
+    void 주어진_횟수동안_N대의_자동차는_전진할_수_있다() {
+        int givenNumberToGo = 5;
+        int N = 3;
+        for (int i = 0; i < N; i++) {
+            String name = String.valueOf(i);
+            RacingCar racingCar = new RacingCar(name);
+            assertThat(racingCar.getPostion()).isEqualTo(0);
+            racingCar.goManyTimes(givenNumberToGo);
+            assertThat(racingCar.getPostion()).isEqualTo(givenNumberToGo);
+        }
+    }
 }
