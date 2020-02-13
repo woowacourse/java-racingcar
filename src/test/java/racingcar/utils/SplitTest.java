@@ -14,7 +14,7 @@ class SplitTest {
 		String[] expected = {"pobi", "crong", "honux"};
 		// when
 		String[] result = Split.splitInputName(values);
-		//then
+		// then
 		Assertions.assertArrayEquals(expected,result);
 	}
 }

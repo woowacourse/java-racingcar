@@ -8,6 +8,8 @@ public class Validator {
 	private static final int maxLengthOfName = 5;
 	private static final int ZERO = 0;
 
+	private Validator() {}
+
 	// carNAME 오류검증
 	public static void validateCarNames(String[] carNames) {
 		for (String name : carNames) {

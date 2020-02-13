@@ -8,6 +8,8 @@ import racingcar.domain.Car;
 public class Winner {
 	private static final List<String> winners = new ArrayList<>();
 
+	private Winner() {}
+
 	public static String getWinners(List<Car> carList) {
 		int max = getWinnerPosition(carList);
 		for (Car car : carList) {

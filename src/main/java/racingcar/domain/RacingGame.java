@@ -12,6 +12,8 @@ import racingcar.view.OutputView;
 
 public class RacingGame {
 
+	private RacingGame(){}
+
 	public static void runRacingGame() {
 		try {
 			String[] carNames = getRacingCarNames();
