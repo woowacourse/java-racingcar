@@ -5,14 +5,20 @@ import racingcar.domain.car.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-
 public class RacingCarGame {
     public static void main(String[] args) {
         Cars cars = inputCarNames();
-
         Round round = inputRoundNumber();
 
         System.out.println("실행 결과");
+        playRounds(cars, round);
+
+        System.out.println("우승자 명단");
+        Winners winners = new Winners(cars);
+        OutputView.printResult(winners.getWinnerNames());
+    }
+
+    private static void playRounds(Cars cars, Round round) {
         String result;
         while(round.isGoing()) {
             cars.play();
@@ -20,9 +26,6 @@ public class RacingCarGame {
             OutputView.printResult(result);
             System.out.println();
         }
-
-        Winners winners = new Winners(cars);
-        OutputView.printResult(winners.getWinnerNames());
     }
 
     private static Cars inputCarNames() {

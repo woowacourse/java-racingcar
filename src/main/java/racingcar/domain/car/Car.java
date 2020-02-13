@@ -1,6 +1,5 @@
 package racingcar.domain.car;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.CaseInsensitiveMap;
 import racingcar.domain.GoOrStop;
 
 import java.util.List;
@@ -9,6 +8,8 @@ import java.util.stream.Stream;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
+    public static final String IS = " : ";
+    public static final String DELIMITER = ", ";
 
     private final Name name;
     private Location location;
@@ -62,7 +63,7 @@ public class Car {
     public String getResult() {
         StringBuilder result = new StringBuilder();
         result.append(name);
-        result.append(" : ");
+        result.append(IS);
         result.append(location);
         return result.toString();
     }
@@ -76,7 +77,7 @@ public class Car {
         List<String> list = Stream.of(name)
                 .map(winner -> winner.toString())
                 .collect(Collectors.toList());
-        return String.join(", ", list);
+        return String.join(DELIMITER, list);
     }
 
     public boolean isLocation(int maxLocation) {

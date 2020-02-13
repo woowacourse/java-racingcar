@@ -29,7 +29,7 @@ public class Round {
     }
 
     public boolean isGoing() {
-        if (round > 0) {
+        if (round > ZERO) {
             round--;
             return true;
         }

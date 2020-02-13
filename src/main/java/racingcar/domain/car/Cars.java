@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Cars {
     private static final String DELIMITER = ",";
+    public static final String ENTER = "\n";
 
     private final List<Car> cars;
 
@@ -67,7 +68,7 @@ public class Cars {
         StringBuilder results = new StringBuilder();
         for (Car car : cars) {
             results.append(car.getResult());
-            results.append("\n");
+            results.append(ENTER);
         }
         return results.toString();
     }
