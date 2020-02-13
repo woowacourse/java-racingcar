@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import racingcar.util.NumberGenerator;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -20,11 +21,23 @@ public class Cars {
         });
     }
 
-    public LinkedHashMap<String, Integer> notifyStatus() {
-        LinkedHashMap<String, Integer> status = new LinkedHashMap<>();
+    public LinkedHashMap<String, String> notifyStatus() {
+        LinkedHashMap<String, String> status = new LinkedHashMap<>();
         cars.forEach(car -> {
-            status.put(car.getName(), car.getPosition());
+            status.put(car.currentPosition().get(0), car.currentPosition().get(1));
         });
         return status;
+    }
+
+    public List<String> findWinner() {
+        Car carInMaxPosition = cars.get(0);
+        List<String> winners = new ArrayList<>();
+        for (int i  = 1; i < cars.size()-1; i++) {
+            carInMaxPosition = carInMaxPosition.comparePosition(cars.get(i));
+        }
+        for (Car car : cars) {
+            carInMaxPosition.checkMoreWinners(car, winners);
+        }
+        return winners;
     }
 }

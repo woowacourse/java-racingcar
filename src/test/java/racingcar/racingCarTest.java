@@ -10,7 +10,9 @@ import racingcar.domain.Car;
 import racingcar.domain.CarFactory;
 import racingcar.domain.Cars;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -71,7 +73,7 @@ public class racingCarTest {
         for (int i = 0; i < 4; i++) {
             car.checkMove(4);
         }
-        assertThat(car.getPosition()).isEqualTo(4);
+        assertThat(car.currentPosition().get(1)).isEqualTo("----");
     }
 
     @Test
@@ -79,29 +81,26 @@ public class racingCarTest {
     void gameProceedTest() {
         TestNumberGenerator test = new TestNumberGenerator(new int[]{4, 2, 3, 9, 5});
         cars.playTurn(test);
-        assertThat(cars.notifyStatus().get("alan")).isEqualTo(1);
-        assertThat(cars.notifyStatus().get("bart")).isEqualTo(0);
-        assertThat(cars.notifyStatus().get("carol")).isEqualTo(0);
-        assertThat(cars.notifyStatus().get("don")).isEqualTo(1);
-        assertThat(cars.notifyStatus().get("eddy")).isEqualTo(1);
+        assertThat(cars.notifyStatus().get("alan")).isEqualTo("-");
+        assertThat(cars.notifyStatus().get("bart")).isEqualTo("");
+        assertThat(cars.notifyStatus().get("carol")).isEqualTo("");
+        assertThat(cars.notifyStatus().get("don")).isEqualTo("-");
+        assertThat(cars.notifyStatus().get("eddy")).isEqualTo("-");
     }
 
     @Test
     @DisplayName("결과 발표 테스트")
     void getResultTest() {
-        LinkedHashMap<String, Integer> finalStatus = new LinkedHashMap<>();
-        finalStatus.put("alan", 6);
-        finalStatus.put("bart", 3);
-        finalStatus.put("cloy", 6);
-        finalStatus.put("don", 5);
-        assertThat(game.findWinner(finalStatus)).containsExactly("alan", "cloy");
+        TestNumberGenerator test = new TestNumberGenerator(new int[]{4, 2, 3, 9, 5});
+        cars.playTurn(test);
+        assertThat(cars.findWinner()).containsExactly("alan", "don", "eddy");
     }
 
     @Test
     @DisplayName("Car의 현재 위치를 시각적으로 리턴하는 것을 테스트")
     void checkCurrentPosition() {
         Car car = new Car("hiro");
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             car.checkMove(4);
         }
         assertThat(car.currentPosition().get(0)).isEqualTo("hiro");
@@ -114,10 +113,10 @@ public class racingCarTest {
     void checkPositionCompare(int car1Position, int car2Position, String winnerName) {
         Car car1 = new Car("asdf");
         Car car2 = new Car("hiro");
-        for(int i = 0; i < car1Position; i++) {
+        for (int i = 0; i < car1Position; i++) {
             car1.checkMove(4);
         }
-        for(int i = 0; i < car2Position; i++) {
+        for (int i = 0; i < car2Position; i++) {
             car2.checkMove(4);
         }
         assertThat(car1.comparePosition(car2)
@@ -129,10 +128,11 @@ public class racingCarTest {
     void findMoreWinners() {
         Car winnerCar = new Car("alan");
         Car car2 = new Car("bart");
-        for(int i = 0; i < 10; i++) {
+        List<String> winner = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
             winnerCar.checkMove(4);
             car2.checkMove(4);
         }
-        assertThat(winnerCar.checkMoreWinners(car2)).isEqualTo("bart");
+        assertThat(winnerCar.checkMoreWinners(car2, winner)).containsExactly("bart");
     }
 }

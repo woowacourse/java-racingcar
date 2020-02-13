@@ -34,29 +34,23 @@ public class Car {
         position++;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
     public List<String> currentPosition() {
         return Arrays.asList(new String[]{name, stripBuilder()});
     }
 
     public Car comparePosition(Car car) {
         List<String> winner = new ArrayList<>();
-        if(car.position > this.position) {
+        if (car.position > this.position) {
             return car;
         }
         return this;
     }
-    public String checkMoreWinners(Car car) {
-        if(car.position == this.position) {
 
+    public List<String> checkMoreWinners(Car car, List<String> winners) {
+        if (car.position == this.position) {
+            winners.add(car.name);
         }
+        return winners;
     }
 
     private String stripBuilder() {
