@@ -24,7 +24,7 @@ public class CarRacingTest {
     void illegalNamesTest (String names){
         List<String> nameList = Arrays.asList(names.split(","));
 
-        assertThatThrownBy(() -> new CarRacing(nameList, 1))
+        assertThatThrownBy(() -> new CarRacing(nameList))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차 이름은 5자 이하의 비어있지 않은 이름이어야 합니다.");
     }
@@ -33,7 +33,7 @@ public class CarRacingTest {
     @DisplayName("모든 차들의 위치가 적절한 범위안에 있는지 테스트")
     void moveTest() {
         int range = 5;
-        CarRacing carRacing = new CarRacing(Arrays.asList("a","b","c","d","e","f","g"), range);
+        CarRacing carRacing = new CarRacing(Arrays.asList("a","b","c","d","e","f","g"));
         moveMultipleTimes(carRacing, range);
 
         carRacing.getCars().stream()
@@ -44,7 +44,7 @@ public class CarRacingTest {
     @DisplayName("우승자들보다 멀리 간 자동차가 없는지 테스트")
     void winnerTest() {
         int range = 5;
-        CarRacing carRacing = new CarRacing(Arrays.asList("a","b","c","d","e","f","g"), range);
+        CarRacing carRacing = new CarRacing(Arrays.asList("a","b","c","d","e","f","g"));
         moveMultipleTimes(carRacing, range);
 
         carRacing.getWinners().stream()

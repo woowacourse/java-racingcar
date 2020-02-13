@@ -25,18 +25,28 @@ public class Car {
         }
     }
 
-    public void move() {
-        if (canMove()) {
+    /* 테스트용 메서드 */
+    public void move(int number) {
+        if (canMoveWithGivenNum(number)) {
             this.distance++;
         }
     }
 
-    private boolean canMove() {
-        int randomNumber = new Random().nextInt(RANDOM_RANGE) + RANDOM_MIN;
-        if (randomNumber >= MOVE_THRESHOLD) {
+    public void move() {
+        if (canMoveWithGivenNum(generateRandNumber())) {
+            this.distance++;
+        }
+    }
+
+    private boolean canMoveWithGivenNum(int number) {
+        if (number >= MOVE_THRESHOLD) {
             return true;
         }
         return false;
+    }
+
+    public static int generateRandNumber() {
+        return new Random().nextInt(RANDOM_RANGE) + RANDOM_MIN;
     }
 
     public boolean isWinner(int maxDistance) {

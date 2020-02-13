@@ -5,14 +5,11 @@ import java.util.stream.Collectors;
 
 public class CarRacing {
     private final List<Car> cars;
-    private int moveNumber;
 
-    public CarRacing(List<String> names, int moveNumber) {
+    public CarRacing(List<String> names) {
         this.cars = names.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
-
-        this.moveNumber = moveNumber;
     }
 
     public void move() {
@@ -35,9 +32,5 @@ public class CarRacing {
 
     public List<Car> getCars() {
         return cars;
-    }
-
-    public int getMoveNumber() {
-        return this.moveNumber;
     }
 }
