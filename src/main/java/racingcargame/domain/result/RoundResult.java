@@ -11,15 +11,12 @@ public class RoundResult {
         this.carSnapShots = carSnapShots;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
+    public String getStatus() {
+        List<String> carSnapShotsStatus = carSnapShots.stream()
+                .map(CarSnapShot::getStatus)
+                .collect(Collectors.toList());
 
-        for (CarSnapShot carSnapShot : carSnapShots) {
-            sb.append(carSnapShot.getStatus() + "\n");
-        }
-
-        return sb.toString();
+        return String.join("\n", carSnapShotsStatus);
     }
 
     public List<String> getWinners() {

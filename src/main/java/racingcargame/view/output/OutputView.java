@@ -14,6 +14,8 @@ public class OutputView {
 
     public static void printAllRounds(CarRaceResult carRaceResult) {
         List<RoundResult> roundResults = carRaceResult.getRoundResultList();
+
+        System.out.println();
         for (int i = 0; i < roundResults.size(); i++) {
             printRound(roundResults.get(i), i);
         }
@@ -21,7 +23,8 @@ public class OutputView {
 
     private static void printRound(RoundResult roundResult, int index) {
         System.out.println(index + 1 + "회차");
-        System.out.println(roundResult);
+        System.out.println(roundResult.getStatus());
+        System.out.println();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

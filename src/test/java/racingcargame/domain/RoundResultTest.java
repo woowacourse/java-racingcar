@@ -33,6 +33,6 @@ class RoundResultTest {
         carSnapShotList.add(new CarSnapShot(carPobi));
 
         RoundResult roundResult = new RoundResult(carSnapShotList);
-        assertThat(roundResult.toString()).isEqualTo("제이   : ---\n라테   : --\n포비   : -\n");
+        assertThat(roundResult.getStatus()).isEqualTo("제이   : ---\n라테   : --\n포비   : -");
     }
 }

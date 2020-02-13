@@ -28,6 +28,7 @@ public class CarRace {
         if (cars.size() < MINIMUM_NUMBER_OF_CARS) {
             throw new IllegalArgumentException("자동차 경주는 최소 2대 이상의 자동차가 있을 경우 가능합니다.");
         }
+
         Set<Car> carSet = new HashSet<>(cars);
         if (carSet.size() != cars.size()) {
             throw new IllegalArgumentException("자동차 이름에 중복이 있습니다.");
