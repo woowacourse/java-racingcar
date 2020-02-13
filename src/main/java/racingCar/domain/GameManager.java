@@ -1,9 +1,11 @@
 package racingCar.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class GameManager {
     private List<Player> players;
@@ -15,30 +17,50 @@ public class GameManager {
                 .collect(Collectors.toList());
     }
 
-    public IntStream play(int num) {
-        return IntStream.range(0, num).peek(this::play);
-    }
+//    public Stream<Player> gameManagerStream() {
+//        return IntStream.rangeClosed(1, numOfRounds)
+//                .mapToObj((t) -> players);
+//    }
 
-    private void play() {
+    public void play() {
         players.forEach((t) -> t.play(RandomGenerator.decideGoOrStop()));
     }
 
-    public Map<String, Integer> getState() {
-        return players.stream()
-                .collect(Collectors.toMap(Player::getName, Player::getPosition));
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        players.forEach(
+                (t) -> stringBuilder.append(t)
+                        .append("\n")
+        );
+
+        return stringBuilder.toString();
     }
 
-    public List<Player> getWinners() {
+    public List<Player> getState() {
+        return new ArrayList<>(players);
+    }
+
+    public String getWinners() {
         int max = getMax();
 
-        return players.stream()
+        List<Player> winnerList = players.stream()
                 .filter((t) -> t.isWinner(max))
                 .collect(Collectors.toList());
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        winnerList.stream()
+                .peek((t) -> stringBuilder.append(t.getName()))
+                .forEach((t) -> stringBuilder.append(", "));
+
+        stringBuilder.delete(stringBuilder.length()-2, stringBuilder.length());
+
+        return stringBuilder.toString();
     }
 
     private int getMax() {
         return players.stream()
-                    .max(Player::compare)
-                    .orElseThrow(RuntimeException::new).getPosition();
+                .max(Player::compare)
+                .orElseThrow(RuntimeException::new).getPosition();
     }
 }

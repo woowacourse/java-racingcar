@@ -31,6 +31,9 @@ public class Player {
         position += 1;
     }
 
+    /**
+     * 예시) pobi : ---
+     */
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder(name);
         stringBuilder.append(COLON_WRAPPED_WITH_SPACE);

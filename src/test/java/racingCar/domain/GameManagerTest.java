@@ -17,22 +17,14 @@ class GameManagerTest {
     }
 
     @Test
-    void play_Once() {
-        gameManager.play(1).forEach(System.out::println);
-        Map<String, Integer> players = gameManager.getState();
-        Assertions.assertThat(players.size()).isEqualTo(3);
-    }
-
-    @Test
-    void play_Multiple() {
-        gameManager.play(3).forEach(System.out::println);
-        Map<String, Integer> players = gameManager.getState();
+    void play() {
+        gameManager.play();
+        List<Player> players = gameManager.getState();
         Assertions.assertThat(players.size()).isEqualTo(3);
     }
 
     @Test
     void getWinner() {
-        List<Player> winnerList = gameManager.getWinners();
-        winnerList.forEach((t) -> System.out.println(t.getName()));
+        System.out.println(gameManager.getWinners());
     }
 }
