@@ -2,8 +2,8 @@ package racingcar.domain;
 
 public class Name {
     public static final int NAME_LENGTH_LIMIT = 5;
-    private String name;
 
+    private String name;
 
     public Name(String name) throws IllegalArgumentException {
         this.name = name;

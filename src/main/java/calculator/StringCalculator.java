@@ -8,7 +8,7 @@ public class StringCalculator {
         if (text == null || text.isEmpty()) {
             return 0;
         }
-        if(text.contains("-")){
+        if (text.contains("-")) {
             throw new RuntimeException("message");
         }
         return splitAndSum(text);

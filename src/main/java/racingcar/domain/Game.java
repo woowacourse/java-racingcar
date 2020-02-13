@@ -3,8 +3,7 @@ package racingcar.domain;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class Game { //게임 로직 구현
-
+public class Game {
     public void run() {
         Names names = InputView.getNames();
         Trial trial = InputView.getTrial();

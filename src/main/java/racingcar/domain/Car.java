@@ -33,7 +33,9 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public String toString() { return name.getName(); }
+    public String toString() {
+        return name.getName();
+    }
 
     @Override
     public int compareTo(Car car) {

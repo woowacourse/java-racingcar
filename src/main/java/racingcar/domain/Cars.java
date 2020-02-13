@@ -9,8 +9,8 @@ public class Cars {
     private List<Car> cars;
 
     public Cars(Names names) {
-        List<Name> na = names.getNames();
-        cars = na.stream()
+        this.cars = names.getNames()
+                .stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
