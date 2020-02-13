@@ -30,7 +30,7 @@ public class Car {
 		return false;
 	}
 
-	public int compareAndReturnMax(int positionToCompare) {
+	public int compareMaxPosition(int positionToCompare) {
 		return Math.max(position, positionToCompare);
 	}
 }

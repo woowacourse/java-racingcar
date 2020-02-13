@@ -38,7 +38,7 @@ public class CarTest {
 		car.move(4);
 		car.move(4);
 
-		assertThat(car.compareAndReturnMax(3)).isEqualTo(3);
-		assertThat(car.compareAndReturnMax(1)).isEqualTo(2);
+		assertThat(car.compareMaxPosition(3)).isEqualTo(3);
+		assertThat(car.compareMaxPosition(1)).isEqualTo(2);
 	}
 }
