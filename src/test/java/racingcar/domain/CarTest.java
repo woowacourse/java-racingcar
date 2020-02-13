@@ -7,21 +7,21 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class CarTest {
 
-	@Test
-	void getCarNameAndPosition() {
-		String name = "pobi";
-		int position = 0;
-		Car car = new Car(name);
+    @Test
+    void getCarNameAndPosition() {
+        String name = "pobi";
+        int position = 0;
+        Car car = new Car(name);
 
-		Assertions.assertThat(car).extracting("name", "position").contains(name, position);
-	}
+        Assertions.assertThat(car).extracting("name", "position").contains(name, position);
+    }
 
-	@ParameterizedTest
-	@CsvSource(value = {"3,0", "4,1"})
-	void Should_move_when_bigger_than_3(int value, int expected) {
-		Car car = new Car("pobi");
-		car.move(value);
+    @ParameterizedTest
+    @CsvSource(value = {"3,0", "4,1"})
+    void Should_move_when_bigger_than_3(int value, int expected) {
+        Car car = new Car("pobi");
+        car.move(value);
 
-		Assertions.assertThat(car).extracting("position").isEqualTo(expected);
-	}
+        Assertions.assertThat(car).extracting("position").isEqualTo(expected);
+    }
 }

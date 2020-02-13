@@ -1,46 +1,46 @@
 package racingcar.domain;
 
 public class Car {
-	private static final int MOVE_FORWARD = 4;
-	private static final int INITIAL_POSITION = 0;
-	private String name;
-	private int position;
+    private static final int MOVE_FORWARD = 4;
+    private static final int INITIAL_POSITION = 0;
+    private String name;
+    private int position;
 
-	public Car(String name) {
-		this.name = name;
-		position = INITIAL_POSITION;
-	}
+    public Car(String name) {
+        this.name = name;
+        position = INITIAL_POSITION;
+    }
 
-	public void move(int randomNumber) {
-		if (shouldMove(randomNumber)) {
-			position++;
-		}
-	}
+    public void move(int randomNumber) {
+        if (shouldMove(randomNumber)) {
+            position++;
+        }
+    }
 
-	public boolean isWinner(int winnerPosition) {
-		return winnerPosition == position;
-	}
+    public boolean isWinner(int winnerPosition) {
+        return winnerPosition == position;
+    }
 
-	private boolean shouldMove(int randomNumber) {
-		return randomNumber >= MOVE_FORWARD;
-	}
+    private boolean shouldMove(int randomNumber) {
+        return randomNumber >= MOVE_FORWARD;
+    }
 
-	public int getPosition() {
-		return position;
-	}
+    public int getPosition() {
+        return position;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder trace = new StringBuilder();
-		for (int i = 0; i < position; i++) {
-			trace.append("-");
-		}
+    @Override
+    public String toString() {
+        StringBuilder trace = new StringBuilder();
+        for (int i = 0; i < position; i++) {
+            trace.append("-");
+        }
 
-		return name + ": " + trace.toString();
-	}
+        return name + ": " + trace.toString();
+    }
 
 }
