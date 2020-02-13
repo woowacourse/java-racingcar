@@ -1,5 +1,7 @@
 package racingCar.domain;
 
+import java.util.stream.IntStream;
+
 public class PlayerInfoPair {
     private String name;
     private int position;
@@ -10,7 +12,10 @@ public class PlayerInfoPair {
     }
 
     public String toString() {
-        // TO DO
-        return "";
+        StringBuilder stringBuilder = new StringBuilder(name);
+        stringBuilder.append(" : ");
+        IntStream.range(0, position)
+                .forEach((t) -> stringBuilder.append("-"));
+        return stringBuilder.toString();
     }
 }
