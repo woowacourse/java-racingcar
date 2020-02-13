@@ -25,7 +25,7 @@ public class RacingCar implements Comparable<RacingCar> {
 
     }
 
-    public void goManyTimesAsRandom(int givenNumberToGo) {
+    public void goManyTimesAsRandom(int givenNumberToGo, int randomNumber) {
         for (int i = 0; i < givenNumberToGo; i++) {
             go();
         }

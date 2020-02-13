@@ -57,7 +57,7 @@ public class RacingCarTest {
             String name = String.valueOf(i);
             RacingCar racingCar = new RacingCar(name);
             assertThat(racingCar.getPostion()).isEqualTo(0);
-            racingCar.goManyTimes(givenNumberToGo);
+            racingCar.goManyTimesAsRandom(givenNumberToGo, 4);
             assertThat(racingCar.getPostion()).isEqualTo(givenNumberToGo);
         }
     }
