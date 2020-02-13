@@ -25,22 +25,6 @@ public class CarTest {
 		assertThat(cars.getAllNames()).isEqualTo(input);
 	}
 
-	@ParameterizedTest
-	@MethodSource("generateCar")
-	public void randomGenerateTest(Car car) {
-		assertThat(car.randomGenerate()).isBetween(0, 9);
-	}
-
-	static Stream<Arguments> generateCar() {
-		return Stream.of(
-			Arguments.of(new Car("자동차1")),
-			Arguments.of(new Car("자동차2")),
-			Arguments.of(new Car("자동차3")),
-			Arguments.of(new Car("자동차4")),
-			Arguments.of(new Car("자동차5"))
-		);
-	}
-
 	@Test
 	public void goForwardTest() {
 		int number = 5;
@@ -53,15 +37,5 @@ public class CarTest {
 
 		car.goForward(number);
 		assertThat(car.getPosition()).isEqualTo(1);
-	}
-
-	@DisplayName("'자동차 이름 : 자동차 위치' 출력 테스트")
-	@Test
-	public void toStringTest() {
-		String expected = "자동차1 : -";
-		Car car = new Car("자동차1");
-		car.goForward(5);
-
-		assertThat(car.toString()).isEqualTo(expected);
 	}
 }
