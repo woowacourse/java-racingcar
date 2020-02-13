@@ -6,70 +6,48 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Adder {
-    private List<Integer> finalNumbers;
+
+    private List<Integer> finalNumbers = new ArrayList<>();
 
     public int splitAndSum(String inputString) {
-        if (inputString.isEmpty() || inputString == null) {
+        if (inputString == null || inputString.isEmpty()) {
             return 0;
         }
-        return sumNotEmpty(inputString);
+        return Calculate(inputString);
     }
 
-    private int sumNotEmpty(String inputString) {
-        if (isCustomMarkIsMinus(inputString)) {
-            return sumWhenCustomMarkMinus(inputString);
+    private int Calculate(String inputString) {
+        if (validateCustomMark(inputString)) {
+            finalNumbers = getSplit(customMarkAndEquation(inputString)[0], customMarkAndEquation(inputString)[1]);
+            return finalNumbers.stream().reduce((x, y) -> x + y).get();
         }
-        if (isCustom(inputString)) {
-            return sumWhenCustomMarkNotMinus(inputString);
-        }
-        return sumNotCustomMark(inputString);
-    }
-
-    private int sumNotCustomMark(String inputString) {
-        validateSingleMinus(inputString);
         finalNumbers = getSplit(inputString);
         return finalNumbers.stream().reduce((x, y) -> x + y).get();
     }
 
-    private int sumWhenCustomMarkNotMinus(String inputString) {
-        validateSingleMinus(inputString);
-        finalNumbers = getSplit(customMarkAndEquation(inputString)[0], customMarkAndEquation(inputString)[1]);
-        return finalNumbers.stream().reduce((x, y) -> x + y).get();
-    }
-
-    private int sumWhenCustomMarkMinus(String inputString) {
-        validateDoubleMinus(inputString);
-        finalNumbers = getSplit(customMarkAndEquation(inputString)[0], customMarkAndEquation(inputString)[1]);
-        return finalNumbers.stream().reduce((x, y) -> x + y).get();
-    }
-
-    private boolean isCustomMarkIsMinus(String inputString) {
-        return inputString.charAt(0) == '/' && customMarkAndEquation(inputString)[0] == "-";
-    }
-
-    public void validateDoubleMinus(String inputString) {
-        Matcher minusMatcher = Pattern.compile("--").matcher(inputString);
-        if (minusMatcher.find()) {
-            throw new RuntimeException();
+    private boolean validateCustomMark(String inputString) {
+        if (inputString.charAt(0) == '/') {
+            return true;
         }
-    }
-
-    public void validateSingleMinus(String inputString) {
-        Matcher minusMatcher = Pattern.compile("-").matcher(inputString);
-        if (minusMatcher.find()) {
-            throw new RuntimeException();
-        }
-    }
-
-    private boolean isCustom(String inputString) {
-        return inputString.charAt(0) == '/';
+        return false;
     }
 
     public List<Integer> getSplit(String inputString) {
         List<Integer> result = new ArrayList<>();
-        String[] stringNums = inputString.split(",|:");
-        for (String stringNum : stringNums) {
+        String[] stringNumbers = inputString.split(",|:");
+        return getFinalNumbers(result, stringNumbers);
+    }
+
+    public List<Integer> getSplit(String custom, String inputString) {
+        List<Integer> result = new ArrayList<>();
+        String[] stringNumbers = inputString.split(custom);
+        return getFinalNumbers(result, stringNumbers);
+    }
+
+    private List<Integer> getFinalNumbers(List<Integer> result, String[] stringNumbers) {
+        for (String stringNum : stringNumbers) {
             result.add(toInteger(stringNum));
+            validateNegativeNumber(result.get(result.size() - 1));
         }
         return result;
     }
@@ -82,15 +60,6 @@ public class Adder {
         }
     }
 
-    public List<Integer> getSplit(String custom, String inputString) {
-        List<Integer> result = new ArrayList<>();
-        String[] stringNums = inputString.split(custom);
-        for (String stringNum : stringNums) {
-            result.add(toInteger(stringNum));
-        }
-        return result;
-    }
-
     public String[] customMarkAndEquation(String inputString) {
         Pattern pattern = Pattern.compile("//(.)\n(.*)");
         Matcher matcher = pattern.matcher(inputString);
@@ -101,4 +70,11 @@ public class Adder {
         }
         return result;
     }
+
+    public void validateNegativeNumber(int input) {
+        if (input < 0) {
+            throw new RuntimeException();
+        }
+    }
+
 }

@@ -1,10 +1,10 @@
 package stringadder;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,14 +21,17 @@ public class AdderTest {
     }
 
     @Test
-    public void 아무것도_안들어갔을_떄() throws Exception {
+    public void splitAndSum_null_또는_빈문자() {
         int result = adder.splitAndSum("");
+        assertThat(result).isEqualTo(0);
+
+        result = adder.splitAndSum(null);
         assertThat(result).isEqualTo(0);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"'1,3',4", "'1,3,6',10"})
-    public void 숫자를_2개이상_입력(String s, int result) throws Exception {
+    public void 숫자를_2개이상_입력(String s, int result) {
         assertThat(adder.splitAndSum(s)).isEqualTo(result);
     }
 
@@ -44,11 +47,9 @@ public class AdderTest {
     public void 커스텀문자_split() {
         List<Integer> result;
         result = adder.getSplit(";", "1;2;3");
-
         assertThat(result).containsExactly(1, 2, 3);
 
         result = adder.getSplit("-", "1-2-3");
-
         assertThat(result).containsExactly(1, 2, 3);
     }
 
@@ -68,27 +69,31 @@ public class AdderTest {
     }
 
     @Test
-    public void 예외처리_notCustom() {
-        assertThatThrownBy(() -> adder.validateSingleMinus("-1,2,3"))
+    public void 음수입력시예외처리테스트() {
+        assertThatThrownBy(() -> adder.validateNegativeNumber(-1))
                 .isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    public void 숫자가아니문자예외처리() {
+    public void 문자입력예외처리() {
         assertThatThrownBy(() -> adder.getSplit("1,12,b"))
                 .isInstanceOf(RuntimeException.class);
     }
 
-    @Test
-    public void streamReduceTest() {
-        List<Integer> finalNums = new ArrayList<>(Arrays.asList(1, 2, 3));
-        System.out.println(finalNums.stream().reduce((x, y) -> x + y).get());
-    }
 
     @Test
+    @DisplayName("커스텀문자가 - 일 때 계산 테스트")
     public void customNegative() {
-        assertThatThrownBy(() -> adder.splitAndSum("//-\n1-2-3"))
-                .isInstanceOf(RuntimeException.class);
+        int result;
+        result = adder.splitAndSum("//-\n1-2-3");
+        assertThat(result).isEqualTo(6);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"'//-\n-1-2-3'", "'//-\n1--2-3"})
+    @DisplayName("커스텀문자가 - 일 때 예외처리테스트")
+    public void customNegativeMinusErrorTest(String s) {
+        assertThatThrownBy(() -> adder.splitAndSum(s));
     }
 
 }
