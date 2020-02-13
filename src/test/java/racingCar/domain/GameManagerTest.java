@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 class GameManagerTest {
     private GameManager gameManager;
@@ -18,20 +19,20 @@ class GameManagerTest {
     @Test
     void play_Once() {
         gameManager.play(1).forEach(System.out::println);
-        List<PlayerInfoPair> players = gameManager.getState();
+        Map<String, Integer> players = gameManager.getState();
         Assertions.assertThat(players.size()).isEqualTo(3);
     }
 
     @Test
     void play_Multiple() {
         gameManager.play(3).forEach(System.out::println);
-        List<PlayerInfoPair> players = gameManager.getState();
+        Map<String, Integer> players = gameManager.getState();
         Assertions.assertThat(players.size()).isEqualTo(3);
     }
 
     @Test
     void getWinner() {
-        List<PlayerInfoPair> winnerList = gameManager.getWinners();
+        List<Player> winnerList = gameManager.getWinners();
         winnerList.forEach((t) -> System.out.println(t.getName()));
     }
 }

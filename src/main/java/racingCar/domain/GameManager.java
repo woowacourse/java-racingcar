@@ -1,6 +1,7 @@
 package racingCar.domain;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -22,25 +23,22 @@ public class GameManager {
         players.forEach((t) -> t.play(RandomGenerator.decideGoOrStop()));
     }
 
-    public List<PlayerInfoPair> getState() {
+    public Map<String, Integer> getState() {
         return players.stream()
-                .map(Player::getPlayerInfoPair)
-                .collect(Collectors.toList());
+                .collect(Collectors.toMap(Player::getName, Player::getPosition));
     }
 
-    public List<PlayerInfoPair> getWinners() {
+    public List<Player> getWinners() {
         int max = getMax();
 
         return players.stream()
-                .map(Player::getPlayerInfoPair)
                 .filter((t) -> t.isWinner(max))
                 .collect(Collectors.toList());
     }
 
     private int getMax() {
         return players.stream()
-                    .map(Player::getPlayerInfoPair)
-                    .max(PlayerInfoPair::compare)
+                    .max(Player::compare)
                     .orElseThrow(RuntimeException::new).getPosition();
     }
 }

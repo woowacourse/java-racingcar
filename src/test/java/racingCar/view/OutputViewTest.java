@@ -2,24 +2,24 @@ package racingCar.view;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingCar.domain.PlayerInfoPair;
+import racingCar.domain.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
 class OutputViewTest {
-    private List<PlayerInfoPair> playerInfoPairs;
+    private List<Player> players;
 
     @BeforeEach
     void setUp() {
-        playerInfoPairs = new ArrayList<>();
-        playerInfoPairs.add(new PlayerInfoPair("pobi", 3));
-        playerInfoPairs.add(new PlayerInfoPair("pobi2", 1));
-        playerInfoPairs.add(new PlayerInfoPair("pobi3", 8));
+        players = new ArrayList<>();
+        players.add(new Player("pobi", 3));
+        players.add(new Player("pobi2", 1));
+        players.add(new Player("pobi3", 8));
     }
 
     @Test
     void printResult() {
-        OutputView.printResult(playerInfoPairs);
+        OutputView.printResult(players);
     }
 }
