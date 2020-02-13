@@ -31,22 +31,8 @@ public class InputValidation {
     public static void checkSmallerThanSix(String[] carNames) {
         for (String carName : carNames) {
             if (carName.length() > 5) {
-                throw new IllegalArgumentException("자동차 이름의 길이가 6 이상입니다.");
+                throw new IllegalArgumentException("차 이름의 길이가 6 이상입니다.");
             }
-        }
-    }
-
-    public static void checkNegativeAndZeroInput(String trialTime) {
-        double value = Double.parseDouble(trialTime);
-        if (value <= 0) {
-            throw new IllegalArgumentException("음수 또는 0을 입력할 수 없습니다.");
-        }
-    }
-
-    public static void checkIntegerOverflow(String trialTime) {
-        double value = Double.parseDouble(trialTime);
-        if (value > Integer.MAX_VALUE) {
-            throw new ArithmeticException("입력 범위를 초과했습니다.");
         }
     }
 
@@ -64,4 +50,18 @@ public class InputValidation {
         }
     }
 
+    public static void checkNegativeAndZeroInput(String trialTime) {
+        double value = Double.parseDouble(trialTime);
+        if (value <= 0) {
+            throw new IllegalArgumentException("음수 또는 0을 입력할 수 없습니다.");
+        }
+    }
+
+
+    public static void checkIntegerOverflow(String trialTime) {
+        double value = Double.parseDouble(trialTime);
+        if (value > Integer.MAX_VALUE) {
+            throw new ArithmeticException("입력 범위를 초과했습니다.");
+        }
+    }
 }

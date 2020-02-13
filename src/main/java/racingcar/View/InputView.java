@@ -23,13 +23,8 @@ public class InputView {
         OutputView.printInputCarNamesMessage();
         String[] carNames = sc.nextLine().split(DELIMITER);
         trimCarNames(carNames);
-        try {
-            InputValidation.checkNullOrEmptyInput(carNames);
-            InputValidation.checkEmptyCarName(carNames);
-            InputValidation.checkSmallerThanSix(carNames);
+        if (checkInputCarNameValidation(carNames)) {
             return carNames;
-        } catch (Exception e) {
-            OutputView.printExceptionMessage(e);
         }
         return inputCarName();
     }
@@ -40,18 +35,36 @@ public class InputView {
         }
     }
 
+    private static boolean checkInputCarNameValidation(String[] carNames) {
+        try {
+            InputValidation.checkNullOrEmptyInput(carNames);
+            InputValidation.checkEmptyCarName(carNames);
+            InputValidation.checkSmallerThanSix(carNames);
+            return true;
+        } catch (Exception e) {
+            OutputView.printExceptionMessage(e);
+        }
+        return false;
+    }
+
+
     public static int inputTrialTime() {
         OutputView.printInputTrialTimeMessage();
         String trialTime = sc.nextLine();
+        if (checkInputTrialTimeValidation(trialTime)) return Integer.parseInt(trialTime);
+        return inputTrialTime();
+    }
+
+    private static boolean checkInputTrialTimeValidation(String trialTime) {
         try {
             InputValidation.checkDecimalNumber(trialTime);
             InputValidation.checkNotNumber(trialTime);
             InputValidation.checkNegativeAndZeroInput(trialTime);
             InputValidation.checkIntegerOverflow(trialTime);
-            return Integer.parseInt(trialTime);
+            return true;
         } catch (Exception e) {
             OutputView.printExceptionMessage(e);
         }
-        return inputTrialTime();
+        return false;
     }
 }

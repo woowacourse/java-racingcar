@@ -15,10 +15,10 @@ import java.util.regex.Pattern;
  */
 
 public class Calculator {
-    public static final String REGEX = "//(.)\n(.*)";
-    public static final int SINGLE_NUMBER = 1;
-    public static final String NEGATIVE_SYMBOL = "-";
-    public static final String OR_SYMBOL = "|";
+    private static final String REGEX = "//(.)\n(.*)";
+    private static final int SINGLE_NUMBER = 1;
+    private static final String NEGATIVE_SYMBOL = "-";
+    private static final String OR_SYMBOL = "|";
 
     public static int splitAndSum(final String input) {
         if (isNullOrEmpty(input)) {

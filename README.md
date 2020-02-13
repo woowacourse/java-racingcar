@@ -22,7 +22,13 @@
 
 ### View
 
-- InputView ← split() 후 배열반환
+- **InputView**
+    - 차 이름을 입려받는 inputCarName
+        - 공백을 제거하기 위한 trimCarNames 메소드
+        - 예외처리를 하기 위한 checkInputCarNameValidation 메소드
+    - 시도 횟수를 입력받는 inputTrialTime
+        - 예외처리를 하기 위한 checkInputTrialTimeValidation 메소드
+        
 - OutputView
 
 ---
@@ -30,76 +36,85 @@
 ### Model(도메인)
 
 - **Car**
-    - name, position
-    - go or not (int random)
-    - 랜덤 수만 뽑는 메서드
-    - 현재 위치 반환(숫자로 반환)
-    - 현재 위치 반환(-로 반환)  
+    - carName, position을 상태 변수로 갖는다.
+    - position 상태를 변화시키는 goOrNot 메소드
+        - 랜덤 숫자에 따라 이동할 지 결정하는 isGo 메소드
+            - 랜덤 숫자를 반환하는 createRandomNumber 메소드
+    - 인자로 받은 Car 객체와의 position 변수를 비교하여 높은 값을 갖고 있는지를 알려주는 comparePosition 메소드
+    - 현재 위치를 '-'를 이용하여 보여주는 showCurrentPosition 메소드
+    - 최종 우승한 차의 carName을 저장하기 위한 findWinners 메소드
 
 ---
 
 ### Controller
 
 - **Game**
-    - cars
-    - winner (미정)
-    - trialTime
+    - Car 객체를 저장하는 cars, 시도 횟수를 저장하는 trialTime를 클래스 변수로 갖는다.
     - initialize
         - 자동차 이름 input
-        - car instance 생성
+        - Car instance 생성
         - trialTime input
         - trialTime 초기화
     - race
-        - showPositions(위치 출력도 한다)
-        - 자동차_수 * trialTime만큼 경주 진행
-    - winner 계산
-        - 공동 우승 List
+        - trialTime만큼 경주 진행하는 raceOneRound 메소드
+            - 각 Car 객체에 대해 이동할 지 확인하고, 현재 position 값에 맞게 '-'로 출력.
+    - showWinner
+        - findTopPositionCar 메소드를 호출하여 position이 가장 큰 Car 객체를 찾음.
+            - cars 리스트를 순회하여 position이 가장 큰 Car 객체를 찾는 findTopPositionCar 메소드.
+        - 가장 큰 Car객체에서 findWinners 메소드를 사용하여 cars 리스트를 순회 후, 최종 우승자 목록 출력.
+        
 - **InputValidation 예외처리(유효성 검사) 클래스**
 
     **자동차 이름** 
 
-    - [예외처리] 차 이름 다섯글자 초과인 경우
-    - [예외처리] null이나 빈문자열이 입력될 경우
+    - [예외처리] 차 이름 다섯글자 초과인 경우 ⇒ "차 이름의 길이가 6 이상입니다." (IllegalArgumentException)
+    - [예외처리] null이나 빈문자열이 입력될 경우 ⇒ "입력이 null 이나 빈 문자열입니다." (NullPointerException)
+    - [예외처리] 차 이름 중 빈 문자열이 있을 경우 ⇒ "차 이름은 빈 문자열일 수 없습니다." (IllegalArgumentException)
 
     **시도 횟수**
 
-    - [예외처리] 시도횟수가 0이하인 경우 ⇒ "음수를 입력할 수 없습니다." (IllegalArguementException)
-    - [예외처리] Int범위를 벗어날 경우 ⇒ "범위를 초과했습니다." (ArithmeticException)
     - [예외처리] 소수가 입력되었을 경우 ⇒ "소수는 입력할 수 없습니다."(InputMismatchException)
-    - [예외처리] 문자가 입력되었을 경우 ⇒ "문자를 입력할 수 없습니다." (IllegalArguementException)
+    - [예외처리] 문자가 입력되었을 경우 ⇒ "문자는 입력할 수 없습니다." (NumberFormatException)
+    - [예외처리] 시도횟수가 0이하인 경우 ⇒ "음수 또는 0을 입력할 수 없습니다." (IllegalArguementException)
+    - [예외처리] Int범위를 벗어날 경우 ⇒ "입력 범위를 초과했습니다." (ArithmeticException)
     
     ---
     
     ## Main
     
-    
+    - Game 클래스 메소드인 initialize, race, showWinner 메소드를 순차적으로 호출한다.
     
     ---
     
-    ## 테스트 목록
+## 테스트 목록
     
-    ### InputControlTest
-    
-    - inputControl_컴마로_분리
-    - inputControl_차_이름_글자수
-    - inputControl_null_또는_빈문자열_입력
-    - inputControl_시도횟수가_0이하
-    - inputControl_시도횟수가_범위초과
-    - inputControl_시도횟수가_소수_입력
-    - inputControl_시도횟수가_문자_입력
-    
-    ### DomainModelTest
-    
-    - goOrNot_랜덤숫자가_4이상일때만_움직인다()
-        - true, false로 테스트.
-    - getPosition_차의_현재_포지션
-    
-    ### GameTest
-    
-    - initialize_이름으로_차_객체_생성_테스트(String[] inputs)
-        - return이 List<Car>
-    - setUp → 게임이 끝난 후 차 인스턴스들 만들기 (이름, 포지션)
-        - calculateWinner_우승자_선별
+### InputControlTest
+
+- inputControl_컴마로_분리
+- inputControl_차_이름_글자수
+- inputControl_null_또는_빈문자열_입력
+- inputControl_시도횟수가_0이하
+- inputControl_시도횟수가_범위초과
+- inputControl_시도횟수가_소수_입력
+- inputControl_시도횟수가_문자_입력
+
+### CarTest
+
+- isGo_랜덤숫자가_4이상일때만_true_반환()
+    - true, false로 테스트.
+- comparePosition_파라미터로_들어온_객체보다_포지션이_크면_true로_반환()
+    - true, false로 테스트.
+
+### GameTest
+
+- findTopPositionCar()
+    - position이 가장 큰 차 선별
+    - 임의로 리스트 생성 후, 그 중 가장 큰 position으로 생성된 객체와 비교.
+- findWinners()
+    - 가장 큰 position을 갖고 있는 객체와 리스트에 있는 객체들을 비교.
+    - 가장 큰 position을 갖고 있는 객체 자신과 동일한 position 값을 갖고 있는 객체를 포함.
+        
+        
 # 문자열 계산기 미션 저장소
 
 ## 요구사항
