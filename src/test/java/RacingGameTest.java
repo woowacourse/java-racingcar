@@ -20,11 +20,12 @@ public class RacingGameTest {
     private final String NAMES = "pobi,crong,honux";
     private final String REPEAT = "5";
 
-    @BeforeAll
-    static void initList(){
+    void initList() {
+        carList.clear();
         carList.add(new Car("pobi", 0));
         carList.add(new Car("kim", 0));
         carList.add(new Car("park", 0));
+
         carList.get(0).move(4);
         carList.get(0).move(4);
         carList.get(0).move(4);
@@ -36,18 +37,20 @@ public class RacingGameTest {
         carList.get(2).move(4);
         carList.get(2).move(2);
         carList.get(2).move(1);
-
     }
+
     @BeforeEach
     void initInput() {
         input = new Input(NAMES, REPEAT);
         output = new Output();
+        Car.initMaxPosition();
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"3,true","2,false"})
+    @CsvSource(value = {"3,true", "2,false"})
     void 이동_테스트(int position, boolean expected) {
-        boolean result = carList.get(0).isSamePosition(position);
+        initList();
+        boolean result = carList.get(0).match(position);
         Assertions.assertThat(result).isEqualTo(expected);
     }
 
@@ -59,7 +62,8 @@ public class RacingGameTest {
     }
 
     @Test
-    void 우승자_확인_테스트(){
+    void 우승자_확인_테스트() {
+        initList();
         boolean chkWinner = carList.get(0).isWinner();
         Assertions.assertThat(chkWinner).isEqualTo(true);
 
@@ -69,10 +73,14 @@ public class RacingGameTest {
         chkWinner = carList.get(2).isWinner();
         Assertions.assertThat(chkWinner).isEqualTo(false);
     }
-/*
-    @Test
-    void 게임_진행_테스트(){
+
+    @RepeatedTest(value = 1000)
+    void 레이싱게임_실행_결과_테스트() {
         RacingGame.play(input, output);
-        Assertions.assertThat().containsAnyOf("pobi", "crong", "honux");
-    }*/
+        boolean result1 = output.isContainName("pobi");
+        boolean result2 = output.isContainName("crong");
+        boolean result3 = output.isContainName("honux");
+
+        Assertions.assertThat(result1 || result2 || result3).isTrue();
+    }
 }

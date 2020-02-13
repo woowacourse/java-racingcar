@@ -23,15 +23,15 @@ public class Car {
     public void move(int random) {
         if (random >= FORWARD_NUMBER) {
             position++;
+            maxPosition = Integer.max(position, maxPosition);
         }
-        maxPosition = Integer.max(position, maxPosition);
     }
 
     public boolean isWinner() {
         return position == maxPosition;
     }
 
-    public boolean isSamePosition(int position) {
+    public boolean match(int position) {
         return position == this.position;
     }
 
@@ -43,5 +43,9 @@ public class Car {
 
     public void passingLog(Output output) {
         output.updateCarStatus(name, position);
+    }
+
+    public static void initMaxPosition() {
+        maxPosition = 0;
     }
 }

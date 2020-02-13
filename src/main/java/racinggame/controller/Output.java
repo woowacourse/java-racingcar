@@ -15,7 +15,7 @@ public class Output {
 
     public void initCarStatus(List<String> names) {
         carStatus = new LinkedHashMap<>();
-        names.stream().forEach((x) -> carStatus.put(x, 0));
+        names.stream().forEach(name -> carStatus.put(name, 0));
     }
 
     public String makeCarLog(String name, int position) {
@@ -28,7 +28,7 @@ public class Output {
     }
 
     public void makeWinnerNames(List<Car> cars) {
-        cars.stream().forEach((x) -> x.addWinnerName(winners));
+        cars.stream().forEach(car -> car.addWinnerName(winners));
 
         String winnerNames = String.join(SPLIT_DELIMITER, winners);
         OutputView.printWinners(winnerNames);
@@ -39,10 +39,15 @@ public class Output {
     }
 
     public void printLog() {
-        for (String name : carStatus.keySet()) {
+        for (Map.Entry<String, Integer> entry : carStatus.entrySet()) {
+            String name = entry.getKey();
             String log = makeCarLog(name, carStatus.get(name));
             OutputView.printLog(log);
         }
         OutputView.printLine();
+    }
+
+    public boolean isContainName(String name){
+        return winners.contains(name);
     }
 }

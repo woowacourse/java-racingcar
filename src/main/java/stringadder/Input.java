@@ -10,15 +10,15 @@ public class Input {
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
 
-    private String input;
+    private String expression;
 
-    public Input(String value) throws NullPointerException {
-        this.input = value;
+    public Input(String value) {
+        this.expression = value;
         validateInput();
     }
 
     private void validateInput() {
-        if (input == null || input.isEmpty()) {
+        if (expression == null || expression.isEmpty()) {
             throw new NullPointerException("식을 입력해 주세요.");
         }
     }
@@ -30,7 +30,7 @@ public class Input {
     }
 
     private String getDelimiter() {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(input);
+        Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(expression);
         if (m.find()) {
             changeInput(m.group(2));
             return m.group(1);
@@ -39,13 +39,13 @@ public class Input {
     }
 
     private void changeInput(String group) {
-        input = group;
+        expression = group;
         validateInput();
     }
 
     private List<Integer> parseIntList(String delimiter) {
         try {
-            String[] stringArrayValues = input.split(delimiter);
+            String[] stringArrayValues = expression.split(delimiter);
             List<String> stringListValues = Arrays.asList(stringArrayValues);
             return stringListValues.stream()
                     .map(Integer::parseInt)
