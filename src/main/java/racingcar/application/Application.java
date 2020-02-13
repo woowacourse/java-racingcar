@@ -12,26 +12,22 @@ public class Application {
     private static int errorCount = 0;
 
     public static void main(String[] args) {
-        CarRacing carRacing = generateCarRacing();
+        CarRacing carRacing = generateCarRacing2();
         int moveNumber = enterValidNumber();
 
         run(carRacing, moveNumber);
         findWinner(carRacing);
     }
 
-//    private static CarRacing generateCarRacing2() {
-//        CarRacing newRacing;
-//        boolean isInputNeeded = true;
-//        while (isInputNeeded) {
-//            try {
-//                newRacing = new CarRacing(InputView.getNames(), InputView.getMoveNumber());
-//                isInputNeeded = false;
-//            } catch(IllegalArgumentException e) {
-//                System.out.println(e.getMessage());
-//            }
-//        }
-//        return newRacing;
-//    }
+    private static CarRacing generateCarRacing2() {
+        while (true) {
+            try {
+                return new CarRacing(InputView.getNames());
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
     private static CarRacing generateCarRacing() {
         try {
