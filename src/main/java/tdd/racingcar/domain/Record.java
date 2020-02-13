@@ -10,7 +10,7 @@ public class Record {
 		record = Map.copyOf(cars.getPositions());
 	}
 
-	public void forEach(BiConsumer<String, Integer> action) {
+	public void forEach(final BiConsumer<String, Integer> action) {
 		record.forEach(action);
 	}
 }
