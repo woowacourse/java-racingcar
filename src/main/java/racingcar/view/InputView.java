@@ -10,9 +10,9 @@ public class InputView {
 		return scanner.nextLine();
 	}
 
-	public static int getPlayRound() {
+	public static String getPlayRound() {
 		System.out.println("시도할 횟수를 입력하세요");
-		return scanner.nextInt();
+		return scanner.nextLine();
 	}
 
 }

@@ -22,7 +22,7 @@ class WinnerTest {
 		carCrong.move(4);
 		carCrong.move(4);
 
-		Assertions.assertThat(Winner.getWinners(carList)).extracting("name").contains("crong");
+		Assertions.assertThat(Winner.getWinners(carList)).contains("crong");
 	}
 
 	@Test
@@ -36,6 +36,6 @@ class WinnerTest {
 		carPobi.move(4);
 		carCrong.move(4);
 
-		Assertions.assertThat(Winner.getWinners(carList)).extracting("name").contains("crong", "pobi");
+		Assertions.assertThat(Winner.getWinners(carList)).contains("crong", "pobi");
 	}
 }

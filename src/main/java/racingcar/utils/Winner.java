@@ -6,17 +6,16 @@ import java.util.List;
 import racingcar.domain.Car;
 
 public class Winner {
+	private static final List<String> winners = new ArrayList<>();
 
-	public static List<Car> getWinners(List<Car> carList) {
-		final List<Car> winners = new ArrayList<>();
-
+	public static String getWinners(List<Car> carList) {
 		int max = getWinnerPosition(carList);
 		for (Car car : carList) {
-			if (isWinnerPosition(max, car)) {
-				winners.add(car);
+			if (car.isWinner(max)) {
+				winners.add(car.getName());
 			}
 		}
-		return winners;
+		return String.join(",", winners);
 	}
 
 	private static int getWinnerPosition(List<Car> carList) {
@@ -32,7 +31,4 @@ public class Winner {
 		return maxPosition;
 	}
 
-	private static boolean isWinnerPosition(int maxPosition, Car car) {
-		return maxPosition == car.getPosition();
-	}
 }

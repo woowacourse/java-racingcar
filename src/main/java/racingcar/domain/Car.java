@@ -16,6 +16,10 @@ public class Car {
 		}
 	}
 
+	public boolean isWinner(int winnerPosition) {
+		return winnerPosition == position;
+	}
+
 	private boolean shouldMove(int randomNumber) {
 		return randomNumber >= MOVE_FORWARD;
 	}
@@ -27,4 +31,15 @@ public class Car {
 	public String getName() {
 		return name;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder trace = new StringBuilder();
+		for (int i = 0; i < position; i++) {
+			trace.append("-");
+		}
+
+		return name + ": " + trace.toString();
+	}
+
 }

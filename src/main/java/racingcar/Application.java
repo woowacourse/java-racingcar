@@ -1,10 +1,9 @@
 package racingcar;
 
-import racingcar.utils.Split;
-import racingcar.view.InputView;
+import racingcar.domain.RacingGame;
 
 public class Application {
 	public static void main(String[] args) {
-
+		RacingGame.runRacingGame();
 	}
 }

@@ -1,27 +1,11 @@
 package racingcar.utils;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ValidatorTest {
-	// @ParameterizedTest
-	// @ValueSource(strings = {"pobi", "crong"})
-	// void ReturnTrue_When_ValidLengthOfName(String name) {
-	// 	boolean result = Validator.isValidLengthOfName(name);
-	// 	assertTrue(result);
-	// }
-	//
-	//
-	// @ParameterizedTest
-	// @ValueSource(strings = {" ", "    "})
-	// void isValidName(String name) {
-	// 	boolean result = Validator.isNotValidName(name);
-	// 	assertTrue(result);
-	// }
 
 	@Test
 	void Throw_When_NotValidLengthOfName() {
@@ -61,8 +45,8 @@ class ValidatorTest {
 	}
 
 	@Test
-	void Throw_when_isValidName(){
-		String[] names = {" ",""};
+	void Throw_when_isValidName() {
+		String[] names = {" ", ""};
 
 		Assertions.assertThatThrownBy(() ->
 			Validator.validateCarNames(names))
@@ -71,11 +55,30 @@ class ValidatorTest {
 	}
 
 	@Test
-	void when_isNotValidName(){
-		String[] names = {"  a"," sd "};
+	void when_isNotValidName() {
+		String[] names = {"  a", " sd "};
 
 		Assertions.assertThatCode(() ->
 			Validator.validateCarNames(names)).doesNotThrowAnyException();
 	}
 
+	@ParameterizedTest
+	@ValueSource(strings = {"1", "3", "5"})
+	void when_isValidPlayRound(String playRound) {
+		Assertions.assertThatCode(() -> Validator.validatePlayRound(playRound)).doesNotThrowAnyException();
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"-1", "-3", "-5"})
+	void Throw_isNotValidPlayRound(String playRound) {
+		Assertions.assertThatThrownBy(() -> Validator.validatePlayRound(playRound))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"1.1", "-3.1", "5.2"})
+	void Throw_isNotIntegerPlayRound(String playRound) {
+		Assertions.assertThatThrownBy(() -> Validator.validatePlayRound(playRound))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
 }
