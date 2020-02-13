@@ -22,15 +22,23 @@
 
 ### View
 
-- InputView ← split() 후 배열반환
+- InputView
+    - InputCarName
+    - InputTrialTime
 - OutputView
+    - printInputCarNameMessage
+    - printInputTrialTimeMessage
+    - printExceptionMessage
+    - printResultMessage
+    - printWinners
+    - printPositionByDash
 
 ---
 
 ### Model(도메인)
 
 - **Car**
-    - name, position
+    - [state] : name, position
     - go or not (int random)
     - 랜덤 수만 뽑는 메서드
     - 현재 위치 반환(숫자로 반환)
@@ -40,10 +48,8 @@
 
 ### Controller
 
-- **Game**
-    - cars
-    - winner (미정)
-    - trialTime
+- **RacingGame**
+    - [state] cars, trialTime
     - initialize
         - 자동차 이름 input
         - car instance 생성
@@ -51,17 +57,20 @@
         - trialTime 초기화
     - race
         - showPositions(위치 출력도 한다)
-        - 자동차_수 * trialTime만큼 경주 진행
-    - winner 계산
-        - 공동 우승 List
+        - 자동차_수 * trialTime만큼 경주 진행 (raceOneRound)
+    - showWinner
+        - findTopPositionCar
+        
 - **InputValidation 예외처리(유효성 검사) 클래스**
 
-    **자동차 이름** 
+    **about 자동차 이름** 
 
     - [예외처리] 차 이름 다섯글자 초과인 경우
+    - [예외처리] 차 이름이 중복된 경우
+    - [예외처리] 차 이름 중에 공백이 들어가 있을 경우
     - [예외처리] null이나 빈문자열이 입력될 경우
 
-    **시도 횟수**
+    **about 시도 횟수**
 
     - [예외처리] 시도횟수가 0이하인 경우 ⇒ "음수를 입력할 수 없습니다." (IllegalArguementException)
     - [예외처리] Int범위를 벗어날 경우 ⇒ "범위를 초과했습니다." (ArithmeticException)
@@ -72,34 +81,34 @@
     
     ## Main
     
-    
-    
+   
     ---
     
     ## 테스트 목록
     
-    ### InputControlTest
+    ### InputValidationTest
     
-    - inputControl_컴마로_분리
-    - inputControl_차_이름_글자수
-    - inputControl_null_또는_빈문자열_입력
-    - inputControl_시도횟수가_0이하
-    - inputControl_시도횟수가_범위초과
-    - inputControl_시도횟수가_소수_입력
-    - inputControl_시도횟수가_문자_입력
+    - inputValidation_차_이름_글자수
+    - inputValidation_null_또는_빈문자열_입력
+    - inputValidation_차_이름_중복
+    - inputValidation_차_이름_중_공백_입력
+    - inputValidation_시도횟수가_0이하
+    - inputValidation_시도횟수가_범위초과
+    - inputValidation_시도횟수가_소수_입력
+    - inputValidation_시도횟수가_문자_입력
     
-    ### DomainModelTest
+    ### CarTest
     
     - goOrNot_랜덤숫자가_4이상일때만_움직인다()
         - true, false로 테스트.
-    - getPosition_차의_현재_포지션
+    - comparePosition_파라미터로_들어온_객체보다_포지션이_크면_true로_반환()
     
-    ### GameTest
+    ### RacingGameTest
     
-    - initialize_이름으로_차_객체_생성_테스트(String[] inputs)
-        - return이 List<Car>
-    - setUp → 게임이 끝난 후 차 인스턴스들 만들기 (이름, 포지션)
-        - calculateWinner_우승자_선별
+    - findTopPositionCar()
+    - findWinners()
+    
+---
 # 문자열 계산기 미션 저장소
 
 ## 요구사항
