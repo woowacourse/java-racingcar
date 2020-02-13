@@ -7,6 +7,8 @@ public class StringAddCalculator {
 	private static final int ZERO = 0;
 	private static final String DELIMITERS = "[:,]";
 
+	private StringAddCalculator() {}
+
 	public static int calculate(final String value) {
 		if (isNullOrEmpty(value)) {
 			return 0;

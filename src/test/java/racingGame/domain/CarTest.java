@@ -8,17 +8,9 @@ import org.junit.jupiter.api.Test;
 public class CarTest {
 	private static final int MOVING_UNIT = 1;
 
-	private Car car;
-
-	@BeforeEach
-	void init() {
-		final String name = "test";
-
-		car = new Car(new Name(name));
-	}
-
 	@Test
 	void move_랜덤_값이_3_이하() {
+		Car car = new Car(new Name("test"));
 		final int stoppedRandomNumber = 3;
 		final int initPosition = car.getPosition();
 
@@ -32,6 +24,7 @@ public class CarTest {
 
 	@Test
 	void move_랜덤_값이_4_이상() {
+		Car car = new Car(new Name("test"));
 		final int movedRandomNumber = 7;
 		final int initPosition = car.getPosition();
 
@@ -45,6 +38,7 @@ public class CarTest {
 
 	@Test
 	void isWinnerPosition_우승한_위치의_자동차() {
+		Car car = new Car(new Name("test"));
 		final int winnerPosition = 2;
 
 		car.move(7);
@@ -55,6 +49,7 @@ public class CarTest {
 
 	@Test
 	void isWinnerPosition_우승하지_못한_위치의_자동차() {
+		Car car = new Car(new Name("test"));
 		final int winnerPosition = 2;
 
 		car.move(9);

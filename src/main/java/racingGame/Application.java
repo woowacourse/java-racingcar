@@ -1,6 +1,7 @@
 package racingGame;
 
 import racingGame.controller.RacingGame;
+import stringCalculator.StringAddCalculator;
 
 public class Application {
     public static void main (String args[]){
