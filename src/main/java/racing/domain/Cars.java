@@ -41,7 +41,6 @@ public class Cars {
 		OutputView.printAllPosition(cars);
 	}
 
-	// 테스트코드에서만 사용하는 getter 메소드
 	public List<Car> getCars() {
 		return this.cars;
 	}
