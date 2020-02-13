@@ -1,10 +1,15 @@
 package racingCar.domain;
 
+import racingCar.domain.errors.InvalidInputException;
+
 public class RacingCar {
     private String name;
     private int position = 0;
 
     public RacingCar(String name) {
+        if (5 < name.length()) {
+            throw new InvalidInputException();
+        }
         this.name = name;
     }
 

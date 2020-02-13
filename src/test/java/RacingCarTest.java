@@ -1,7 +1,9 @@
 import org.junit.jupiter.api.Test;
+import racingCar.domain.errors.InvalidInputException;
 import racingCar.domain.RacingCar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class RacingCarTest {
@@ -9,6 +11,20 @@ public class RacingCarTest {
     void 자동차에_이름을_부여() {
         RacingCar racingCar = new RacingCar("name");
         assertNotNull(racingCar);
+    }
+
+    @Test
+    void 자동차의_이름은_5자_이하만_가능하다() {
+        String nameWhichLengthIsUnder5 = "name";
+        RacingCar racingCar = new RacingCar(nameWhichLengthIsUnder5);
+        assertNotNull(racingCar);
+
+        String nameWhichLengthIsOver5 ="nameee";
+        assertThatExceptionOfType(InvalidInputException.class)
+                .isThrownBy(() -> {
+                    new RacingCar(nameWhichLengthIsOver5);
+                });
+
     }
 
     @Test
