@@ -5,6 +5,7 @@ import racingcargame.domain.TrialTimes;
 import racingcargame.game.CarRace;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class GameParserTest {
 
@@ -18,5 +19,12 @@ class GameParserTest {
     void trialTimes() {
         TrialTimes trialTimes = GameParser.generateTrialTimes("2");
         assertThat(trialTimes);
+    }
+
+
+    @Test
+    void createTrialTimesWithNotNumber() {
+        assertThatThrownBy(() -> GameParser.generateTrialTimes("a"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
