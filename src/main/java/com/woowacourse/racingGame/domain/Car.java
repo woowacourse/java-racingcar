@@ -13,6 +13,11 @@ public class Car {
 		this.name = name;
 	}
 
+	public Car(Name name, Position position) {
+		this.position = position;
+		this.name = name;
+	}
+
 	public void move(final int randomNumber) {
 		if (isMove(randomNumber)) {
 			this.position = this.position.increaseOne();
