@@ -4,8 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.Controller.InputValidation;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
@@ -22,25 +26,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class InputValidationTest {
     @Test
     @DisplayName("null 또는 빈 문자열 입력 시")
-    void inputValidation_null_또는_빈문자열_입력() {
-        String[] nullResult = null;
-        String[] emptyResult = {""};
+    void checkNullOrEmptyInput_null_또는_빈문자열_입력() {
+        List<String> nullResult = null;
+        List<String> emptyResult = new ArrayList<>(10);
 
-        assertThatThrownBy(() -> {
-            InputValidation.checkNullOrEmptyInput(nullResult);
-        }).isInstanceOf(NullPointerException.class)
-                .hasMessage("입력이 null 이나 빈 문자열입니다.");
-
-        assertThatThrownBy(() -> {
-            InputValidation.checkNullOrEmptyInput(emptyResult);
-        }).isInstanceOf(NullPointerException.class)
-                .hasMessage("입력이 null 이나 빈 문자열입니다.");
+        assertThatNullPointerException().isThrownBy(() -> InputValidation.checkNullOrEmptyInput(nullResult));
+        assertThatNullPointerException().isThrownBy(() -> InputValidation.checkNullOrEmptyInput(emptyResult));
     }
 
     @Test
     @DisplayName("차 이름에 빈 문자열 입력 시")
-    void inputValidation_차_이름_빈_문자열() {
-        String[] carNames = {"a", "", "c"};
+    void checkEmptyCarName_차_이름_빈_문자열() {
+        List<String> carNames = Arrays.asList("a", "", "c");
         assertThatThrownBy(() -> {
             InputValidation.checkEmptyCarName(carNames);
         }).isInstanceOf(IllegalArgumentException.class)
@@ -50,10 +47,10 @@ public class InputValidationTest {
 
     @Test
     @DisplayName("차 이름이 5글자 이내")
-    void inputValidation_차_이름_글자수() {
+    void checkSmallerThanSix_차_이름_글자수() {
         assertThatThrownBy(() -> {
-            String[] result = {"Maserati"};
-            InputValidation.checkSmallerThanSix(result);
+            List<String> carNames = Arrays.asList("Maserati", "Audi");
+            InputValidation.checkSmallerThanSix(carNames);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차 이름의 길이가 6 이상입니다.");
     }

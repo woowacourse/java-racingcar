@@ -1,5 +1,6 @@
 package racingcar.View;
 
+import java.util.List;
 import java.util.Scanner;
 
 import racingcar.Controller.InputValidation;
@@ -16,33 +17,16 @@ import racingcar.Controller.InputValidation;
  */
 
 public class InputView {
-    private static final String DELIMITER = ",";
-    private static Scanner sc = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
-    public static String[] inputCarName() {
+    public static List<String> inputCarName() {
         OutputView.printInputCarNamesMessage();
-        String[] carNames = sc.nextLine().split(DELIMITER);
-        trimCarNames(carNames);
-        try {
-            InputValidation.checkNullOrEmptyInput(carNames);
-            InputValidation.checkEmptyCarName(carNames);
-            InputValidation.checkSmallerThanSix(carNames);
-            return carNames;
-        } catch (Exception e) {
-            OutputView.printExceptionMessage(e);
-        }
-        return inputCarName();
-    }
-
-    private static void trimCarNames(String[] carNames) {
-        for (int i = 0; i < carNames.length; i++) {
-            carNames[i] = carNames[i].trim();
-        }
+        return InputValidation.validateInputCarName(scanner.nextLine());
     }
 
     public static int inputTrialTime() {
         OutputView.printInputTrialTimeMessage();
-        String trialTime = sc.nextLine();
+        String trialTime = scanner.nextLine();
         try {
             InputValidation.checkDecimalNumber(trialTime);
             InputValidation.checkNotNumber(trialTime);

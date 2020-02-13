@@ -25,10 +25,8 @@ public class Game {
     private static int trialTime;
 
     public static void initialize() {
-        String[] carNames = InputView.inputCarName();
-        for (String name : carNames) {
-            cars.add(new Car(name));
-        }
+        List<String> carNames = InputView.inputCarName();
+        carNames.forEach(carName -> cars.add(new Car(carName)));
         trialTime = InputView.inputTrialTime();
     }
 

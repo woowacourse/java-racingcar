@@ -1,6 +1,11 @@
 package racingcar.Controller;
 
+import racingcar.Util.StringUtils;
+import racingcar.View.InputView;
+import racingcar.View.OutputView;
+
 import java.util.InputMismatchException;
+import java.util.List;
 
 /**
  * 클래스 이름 : InputValidation.java
@@ -14,13 +19,27 @@ import java.util.InputMismatchException;
  */
 
 public class InputValidation {
-    public static void checkNullOrEmptyInput(String[] carNames) {
-        if (carNames.length == 0 || carNames[0].length() == 0) {
+    public static List<String> validateInputCarName(String carNameInput) {
+        List<String> carNames = StringUtils.splitCarNames(carNameInput);
+        carNames = StringUtils.trimCarNames(carNames);
+        try {
+            checkNullOrEmptyInput(carNames);
+            checkEmptyCarName(carNames);
+            checkSmallerThanSix(carNames);
+            return carNames;
+        } catch (Exception e) {
+            OutputView.printExceptionMessage(e);
+        }
+        return InputView.inputCarName();
+    }
+
+    public static void checkNullOrEmptyInput(List<String> carNames) {
+        if (carNames == null || carNames.isEmpty()) {
             throw new NullPointerException("입력이 null 이나 빈 문자열입니다.");
         }
     }
 
-    public static void checkEmptyCarName(String[] carNames) {
+    public static void checkEmptyCarName(List<String> carNames) {
         for (String carName : carNames) {
             if (carName.isEmpty()) {
                 throw new IllegalArgumentException("차 이름은 빈 문자열일 수 없습니다.");
@@ -28,7 +47,7 @@ public class InputValidation {
         }
     }
 
-    public static void checkSmallerThanSix(String[] carNames) {
+    public static void checkSmallerThanSix(List<String> carNames) {
         for (String carName : carNames) {
             if (carName.length() > 5) {
                 throw new IllegalArgumentException("자동차 이름의 길이가 6 이상입니다.");
@@ -63,5 +82,4 @@ public class InputValidation {
             throw new NumberFormatException("문자는 입력할 수 없습니다.");
         }
     }
-
 }
