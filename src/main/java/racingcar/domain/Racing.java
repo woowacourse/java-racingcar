@@ -49,7 +49,7 @@ public class Racing {
             if (isForwardByRandom()) {
                 car.forward();
             }
-            racingProgress.append(car.toString());
+            racingProgress.append(car.getProgress());
         }
     }
 
@@ -60,6 +60,6 @@ public class Racing {
 
     public String getWinner() {
         Winner winner = new Winner(cars);
-        return winner.toString();
+        return winner.getWinner();
     }
 }

@@ -35,8 +35,7 @@ public class Car {
         return forwardCount;
     }
 
-    @Override
-    public String toString() {
+    public String getProgress() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < forwardCount; i++) {
             stringBuilder.append(HYPHEN);

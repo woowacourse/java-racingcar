@@ -43,8 +43,7 @@ public class Winner {
         }
     }
 
-    @Override
-    public String toString() {
+    public String getWinner() {
         return String.join(COMMA_SPACE, winnerNames);
     }
 }
