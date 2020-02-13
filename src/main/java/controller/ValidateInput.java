@@ -45,7 +45,6 @@ public class ValidateInput {
     private static String[] IllegalNameException() {
         ValidationView.printNameErrorMessage();
         return InputView.inputCarName();
-
     }
 
     public static boolean isUnderZero(int round) {

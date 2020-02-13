@@ -27,10 +27,7 @@ public class Adder {
     }
 
     private boolean validateCustomMark(String inputString) {
-        if (inputString.charAt(0) == '/') {
-            return true;
-        }
-        return false;
+        return inputString.charAt(0) == '/';
     }
 
     public List<Integer> getSplit(String inputString) {
