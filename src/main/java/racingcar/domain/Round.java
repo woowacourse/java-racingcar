@@ -5,9 +5,9 @@ public class Round {
     private int round;
 
     public Round(String input) {
-        int temp = validateIsNumber(input);
-        validateIsNegativeNumber(temp);
-        this.round = temp;
+        int tempRound = validateIsNumber(input);
+        validateIsNegativeNumber(tempRound);
+        this.round = tempRound;
     }
 
     public static int validateIsNumber(String input) throws IllegalArgumentException {

@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     public static final String IS = " : ";
-    public static final String DELIMITER = ", ";
 
     private final Name name;
     private Location location;
@@ -70,14 +69,6 @@ public class Car {
 
     public String getName() {
         return name.toString();
-    }
-
-    @Override
-    public String toString() {
-        List<String> list = Stream.of(name)
-                .map(winner -> winner.toString())
-                .collect(Collectors.toList());
-        return String.join(DELIMITER, list);
     }
 
     public boolean isLocation(int maxLocation) {

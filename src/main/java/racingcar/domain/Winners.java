@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Winners {
+    public static final String AND = ", ";
     private final List<String> winners;
 
     public Winners(Cars cars) {
@@ -16,10 +17,10 @@ public class Winners {
     }
 
     public int findMaxLocation(Cars cars) {
-        List<Integer> a = cars.getCars().stream()
+        List<Integer> locationOfCars = cars.getCars().stream()
                 .map(car -> car.getLocation())
                 .collect(Collectors.toList());
-        return Collections.max(a);
+        return Collections.max(locationOfCars);
     }
 
     public List<String> findWinners(Cars cars, int maxLocation) {
@@ -31,6 +32,6 @@ public class Winners {
     }
 
     public String getWinnerNames() {
-        return String.join(", ", winners);
+        return String.join(AND, winners);
     }
 }
