@@ -10,13 +10,17 @@ public class Round {
         this.round = temp;
     }
 
-    public static int validateIsNumber(String input) throws NumberFormatException {
-        return  Integer.parseInt(input);
+    public static int validateIsNumber(String input) throws IllegalArgumentException {
+       try {
+           return Integer.parseInt(input);
+       } catch (NumberFormatException e) {
+           throw new IllegalArgumentException("시도할 회수는 숫자이어야 합니다.");
+       }
     }
 
     public static void validateIsNegativeNumber(int parsedNumber) {
         if (isNotPositiveNumber(parsedNumber)) {
-            throw new IllegalArgumentException("경주 라운드는 양수이어야 합니다.");
+            throw new IllegalArgumentException("시도할 회수는 양수이어야 합니다.");
         }
     }
 

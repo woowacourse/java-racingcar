@@ -8,13 +8,9 @@ import racingcar.view.OutputView;
 
 public class RacingCarGame {
     public static void main(String[] args) {
-        System.out.println("경주할 자동차 이름을 입력해주세요.(이름은 쉼표(,)를 기준으로 구분합니다.)");
-        String inputForNames = InputView.inputValue();
-        Cars cars = new Cars(inputForNames);
+        Cars cars = inputCarNames();
 
-        System.out.println("시도할 회수는 몇회인가요?");
-        String inputForRound = InputView.inputValue();
-        Round round = new Round(inputForRound);
+        Round round = inputRoundNumber();
 
         System.out.println("실행 결과");
         String result;
@@ -27,5 +23,27 @@ public class RacingCarGame {
 
         Winners winners = new Winners(cars);
         OutputView.printResult(winners.getWinnerNames());
+    }
+
+    private static Cars inputCarNames() {
+        try {
+            System.out.println("경주할 자동차 이름을 입력해주세요.(이름은 쉼표(,)를 기준으로 구분합니다.)");
+            String inputForNames = InputView.inputValue();
+            return new Cars(inputForNames);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            return inputCarNames();
+        }
+    }
+
+    private static Round inputRoundNumber() {
+        try {
+            System.out.println("시도할 회수는 몇회인가요?");
+            String inputForRound = InputView.inputValue();
+            return new Round(inputForRound);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            return inputRoundNumber();
+        }
     }
 }
