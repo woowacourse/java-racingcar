@@ -28,7 +28,19 @@ public class GameManager {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getWinner() {
-        return null;
+    public List<PlayerInfoPair> getWinners() {
+        int max = getMax();
+
+        return players.stream()
+                .map(Player::getPlayerInfoPair)
+                .filter((t) -> t.isWinner(max))
+                .collect(Collectors.toList());
+    }
+
+    private int getMax() {
+        return players.stream()
+                    .map(Player::getPlayerInfoPair)
+                    .max(PlayerInfoPair::compare)
+                    .orElseThrow(RuntimeException::new).getPosition();
     }
 }

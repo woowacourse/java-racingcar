@@ -21,4 +21,20 @@ public class PlayerInfoPair {
                 .forEach((t) -> stringBuilder.append(HYPHEN));
         return stringBuilder.toString();
     }
+
+    public static int compare(PlayerInfoPair a, PlayerInfoPair b) {
+        return a.position - b.position;
+    }
+
+    public boolean isWinner(int max) {
+        return position == max;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
 }
