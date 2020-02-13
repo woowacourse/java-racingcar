@@ -1,9 +1,5 @@
 package racingcargame.view;
 
-import com.sun.corba.se.impl.io.TypeMismatchException;
-import org.omg.IOP.CodecPackage.TypeMismatch;
-
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
@@ -16,4 +12,6 @@ public class InputView {
     public static int inputRepeat() {
         return scanner.nextInt();
     }
+
+
 }

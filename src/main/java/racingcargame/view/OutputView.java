@@ -37,4 +37,9 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void errorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+        System.out.println("프로그램을 다시 실행해 주세요.");
+    }
+
 }

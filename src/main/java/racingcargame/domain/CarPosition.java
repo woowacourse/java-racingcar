@@ -22,4 +22,5 @@ public class CarPosition {
     public int getPosition() {
         return position;
     }
+
 }

@@ -14,8 +14,8 @@ public class CarName {
     }
 
     private void validateLength(String name) {
-        if (name.length() <= ZERO || name.length() > NAME_UPPER_LIMIT) {
-            throw new IllegalArgumentException("이름은 1자 이상 5자 이하로 해주세요.");
+        if (name.length() <= ZERO || name.length() > NAME_UPPER_LIMIT || name.contains(",")) {
+            throw new IllegalArgumentException("이름은 1자 이상 5자 이하여야 합니다.");
         }
     }
 

@@ -6,33 +6,30 @@ import racingcargame.domain.RacingCarGame;
 import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 
-import java.util.InputMismatchException;
 import java.util.List;
 
 public class Application {
-    public static void main(String[] args) {
-        final String userInputName = inputName();
-        final int userInputRepeat = inputRepeat();
+    public static void main(String[] args) throws Exception {
 
-        RacingCarGame game = new RacingCarGame();
-        OutputView.resultInstruction();
-        List<CarDto> carStatus = game.run(userInputName, userInputRepeat);
-        for (CarDto carDto : carStatus) {
-            printEachRaceStatus(carDto);
+        try {
+            OutputView.inputNameInstruction();
+            final String userInputName = InputView.inputNames();
+            OutputView.inputRepeatInstruction();
+            final int userInputRepeat = InputView.inputRepeat();
+
+            RacingCarGame game = new RacingCarGame();
+            List<CarDto> carStatus = game.run(userInputName, userInputRepeat);
+            OutputView.resultInstruction();
+            for (CarDto carDto : carStatus) {
+                printEachRaceStatus(carDto);
+            }
+
+            String winner = game.winner;
+            OutputView.winnerInstruction(winner);
         }
-
-        String winner = game.winner;
-        OutputView.winnerInstruction(winner);
-    }
-
-    private static int inputRepeat() {
-        OutputView.inputRepeatInstruction();
-        return InputView.inputRepeat();
-    }
-
-    private static String inputName() {
-        OutputView.inputNameInstruction();
-        return InputView.inputNames();
+        catch (Exception e) {
+            OutputView.errorMessage(e.getMessage());
+        }
     }
 
     private static void printEachRaceStatus(CarDto carDto) {
