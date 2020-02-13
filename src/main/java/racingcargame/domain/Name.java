@@ -11,6 +11,7 @@ public class Name {
     private String name;
 
     public Name(String name) {
+        name = name.trim();
         isDuplicatedNames(name);
         addName(name);
         valid(name);
