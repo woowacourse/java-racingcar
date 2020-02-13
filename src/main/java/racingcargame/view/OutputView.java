@@ -34,4 +34,8 @@ public class OutputView {
         }
         System.out.println(sb.toString());
     }
+
+    public static void printHead() {
+        System.out.println("실행 결과");
+    }
 }

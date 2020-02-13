@@ -16,13 +16,11 @@ public class RacingGameApplication {
             cars.add(new Car(inputCarName));
         }
         RacingCars racingCars = new RacingCars(cars);
-        // TODO : 자동차들 이름 출력
 
         int tryLimitNumber = InputView.inputTryNumber();
         TryLimitNumber tryLimitNumber1 = new TryLimitNumber(tryLimitNumber);
-        // TODO : 시도회수 출력
 
-        // TODO : '실행 결과' 문구 출력
+        OutputView.printHead();
         int tryNumber = 0;
         while(tryLimitNumber1.isBiggerThan(tryNumber)){
             racingCars.go();
