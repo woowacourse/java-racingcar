@@ -22,7 +22,7 @@ public class Winners {
         return Collections.max(cars.getCars());
     }
 
-    public List<Car> findWinners(Cars cars, Car carAtMaxLocation) {
+    private List<Car> findWinners(Cars cars, Car carAtMaxLocation) {
         List<Car> winners = cars.getCars().stream()
                 .filter(car -> car.isAtSameLocation(carAtMaxLocation))
                 .collect(Collectors.toList());
