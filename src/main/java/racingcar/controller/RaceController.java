@@ -34,4 +34,8 @@ public class RaceController {
 			return readRaceCount();
 		}
 	}
+
+	public static void showCurrentPosition(String currentPosition) {
+		OutputView.printCurrentPosition(currentPosition);
+	}
 }

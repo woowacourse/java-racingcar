@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.controller.RaceController;
+
 public class Race {
 	private static final int INITIAL_POSITION = 0;
 
@@ -17,6 +19,7 @@ public class Race {
 
 		for (int i = 0; i < raceCount.getRaceCount(); i++) {
 			cars.moveAll();
+			RaceController.showCurrentPosition(cars.getCurrentPosition());
 			maxPosition = cars.getMaxPosition(maxPosition);
 		}
 		winnersName = cars.getWinnersName(maxPosition);
