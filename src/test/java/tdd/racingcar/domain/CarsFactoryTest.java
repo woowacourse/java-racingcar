@@ -17,6 +17,6 @@ public class CarsFactoryTest {
 		names.add("d");
 
 		final Cars cars = CarsFactory.create("a,b,c,d");
-		assertEquals(names.size(), cars.toList().size());
+		assertEquals(names.size(), cars.stream().count());
 	}
 }
