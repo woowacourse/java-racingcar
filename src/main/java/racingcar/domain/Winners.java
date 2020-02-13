@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 
 import java.util.Collections;
@@ -7,30 +8,32 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Winners {
-    private final List<String> winners;
+    private static final String AND = ", ";
+
+    private final List<Car> winners;
 
     public Winners(Cars cars) {
-        int maxLocation = findMaxLocation(cars);
-        List<String> winners = findWinners(cars, maxLocation);
+        Car carAtMaxLocation = findCarAtMaxLocation(cars);
+        List<Car> winners = findWinners(cars, carAtMaxLocation);
         this.winners = winners;
     }
 
-    public int findMaxLocation(Cars cars) {
-        List<Integer> a = cars.getCars().stream()
-                .map(car -> car.getLocation())
-                .collect(Collectors.toList());
-        return Collections.max(a);
+    public Car findCarAtMaxLocation(Cars cars) {
+        return Collections.max(cars.getCars());
     }
 
-    public List<String> findWinners(Cars cars, int maxLocation) {
-        List<String> winners = cars.getCars().stream()
-                .filter(car -> car.isLocation(maxLocation))
-                .map(car -> car.getName())
+    public List<Car> findWinners(Cars cars, Car carAtMaxLocation) {
+        List<Car> winners = cars.getCars().stream()
+                .filter(car -> car.isAtSameLocation(carAtMaxLocation))
                 .collect(Collectors.toList());
         return winners;
     }
 
-    public String getWinnerNames() {
-        return String.join(", ", winners);
+    public String getWinnersName() {
+        List<String> winnerNames = winners.stream()
+                .map(winner -> winner.toString())
+                .collect(Collectors.toList());
+
+        return String.join(AND, winnerNames);
     }
 }

@@ -12,7 +12,7 @@ public class WinnersTest {
     void 자동차들의_위치중_가장_큰_값을_반환() {
         Cars cars = new Cars("무늬,두강,코일,쿨라임", 1);
         Winners winners = new Winners(cars);
-        assertThat(winners.findMaxLocation(cars)).isEqualTo(4);
+        assertThat(winners.findCarAtMaxLocation(cars)).isEqualTo(4);
     }
 
     @Test

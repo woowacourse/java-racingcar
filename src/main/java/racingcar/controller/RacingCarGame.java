@@ -15,7 +15,7 @@ public class RacingCarGame {
 
         System.out.println("우승자 명단");
         Winners winners = new Winners(cars);
-        OutputView.printResult(winners.getWinnerNames());
+        OutputView.printResult(winners.getWinnersName());
     }
 
     private static void playRounds(Cars cars, Round round) {

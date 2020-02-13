@@ -2,11 +2,7 @@ package racingcar.domain.car;
 
 import racingcar.domain.GoOrStop;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int MAX_NAME_LENGTH = 5;
     public static final String IS = " : ";
     public static final String DELIMITER = ", ";
@@ -68,19 +64,25 @@ public class Car {
         return result.toString();
     }
 
-    public String getName() {
-        return name.toString();
+    public boolean isAtSameLocation(Car anotherCar) {
+        return this.location.compareTo(anotherCar.location) == 0;
+    }
+
+    @Override
+    public int compareTo(Car anotherCar) {
+        if (this.location.compareTo(anotherCar.location) > 0) {
+            return 1;
+        }
+
+        if (this.location.compareTo(anotherCar.location) < 0) {
+            return -1;
+        }
+
+        return 0;
     }
 
     @Override
     public String toString() {
-        List<String> list = Stream.of(name)
-                .map(winner -> winner.toString())
-                .collect(Collectors.toList());
-        return String.join(DELIMITER, list);
-    }
-
-    public boolean isLocation(int maxLocation) {
-        return this.location.equals(new Location(maxLocation));
+        return name.toString();
     }
 }
