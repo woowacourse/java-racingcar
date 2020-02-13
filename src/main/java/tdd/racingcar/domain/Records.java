@@ -11,7 +11,7 @@ public class Records implements Iterable<Record> {
 		records = new LinkedList<>();
 	}
 
-	public void add(Record record) {
+	public void add(final Record record) {
 		records.add(record);
 	}
 

@@ -1,14 +1,13 @@
 package tdd.racingcar.domain;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
 public class Record {
-	private final Map<String, Integer> record = new HashMap<>();
+	private final Map<String, Integer> record;
 
 	public Record(final Cars cars) {
-		record.putAll(cars.getPositions());
+		record = Map.copyOf(cars.getPositions());
 	}
 
 	public void forEach(BiConsumer<String, Integer> action) {
