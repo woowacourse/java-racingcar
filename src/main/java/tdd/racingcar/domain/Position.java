@@ -30,7 +30,7 @@ public class Position {
 		return position;
 	}
 
-	public boolean isPosition(final int position) {
+	public boolean match(final int position) {
 		return this.position == position;
 	}
 

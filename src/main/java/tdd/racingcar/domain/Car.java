@@ -15,7 +15,7 @@ public class Car {
 	}
 
 	public boolean isPosition(final int maxPosition) {
-		return position.isPosition(maxPosition);
+		return position.match(maxPosition);
 	}
 
 	public int getPosition() {
