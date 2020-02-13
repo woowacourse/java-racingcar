@@ -1,8 +1,9 @@
 package tdd.racingcar.domain;
 
+import java.util.Iterator;
 import java.util.Objects;
 
-public class TryCount {
+public class TryCount implements Iterator<Integer> {
 	private static final int ONE = 1;
 
 	private int tryCount;
@@ -29,12 +30,14 @@ public class TryCount {
 		return Integer.parseInt(value) < ONE;
 	}
 
-	public void consume() {
-		tryCount--;
+	@Override
+	public boolean hasNext() {
+		return tryCount >= ONE;
 	}
 
-	public boolean isRemain() {
-		return tryCount >= ONE;
+	@Override
+	public Integer next() {
+		return tryCount--;
 	}
 
 	@Override

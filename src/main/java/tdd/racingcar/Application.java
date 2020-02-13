@@ -1,5 +1,7 @@
 package tdd.racingcar;
 
+import java.util.function.Consumer;
+
 import tdd.racingcar.domain.Cars;
 import tdd.racingcar.domain.CarsFactory;
 import tdd.racingcar.domain.Record;
@@ -14,14 +16,17 @@ public class Application {
 		final TryCount tryCount = new TryCount(InputView.inputTryCount());
 		final Record record = new Record();
 
-		while (tryCount.isRemain()) {
-			cars.move();
-			record.add(OutputUtils.getState(cars));
-			tryCount.consume();
-		}
+		tryCount.forEachRemaining(startRound(cars, record));
 
 		OutputView.printResultMessage();
 		record.forEach(OutputView::printRecord);
 		OutputView.printWinners(OutputUtils.getWinners(cars));
+	}
+
+	private static Consumer<Integer> startRound(final Cars cars, final Record record) {
+		return (count) -> {
+			cars.move();
+			record.add(OutputUtils.getState(cars));
+		};
 	}
 }

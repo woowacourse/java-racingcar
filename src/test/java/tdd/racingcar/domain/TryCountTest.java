@@ -34,18 +34,19 @@ public class TryCountTest {
 	@Test
 	void consume() {
 		final TryCount tryCount = new TryCount("2");
-		tryCount.consume();
-		final TryCount expected = new TryCount("1");
-		assertEquals(expected, tryCount);
+		tryCount.next();
+		final int expected = 1;
+		final int actual = tryCount.next();
+		assertEquals(expected, actual);
 	}
 
 	@Test
 	void isRemain() {
 		final TryCount two = new TryCount("2");
-		assertTrue(two.isRemain());
-		two.consume();
-		assertTrue(two.isRemain());
-		two.consume();
-		assertFalse(two.isRemain());
+		assertTrue(two.hasNext());
+		two.next();
+		assertTrue(two.hasNext());
+		two.next();
+		assertFalse(two.hasNext());
 	}
 }
