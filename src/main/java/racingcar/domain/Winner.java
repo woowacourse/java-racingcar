@@ -43,7 +43,7 @@ public class Winner {
         }
     }
 
-    public String getWinner() {
+    public String toString() {
         return String.join(COMMA_SPACE, winnerNames);
     }
 }

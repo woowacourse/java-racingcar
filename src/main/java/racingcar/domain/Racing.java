@@ -60,6 +60,6 @@ public class Racing {
 
     public String getWinner() {
         Winner winner = new Winner(cars);
-        return winner.getWinner();
+        return winner.toString();
     }
 }
