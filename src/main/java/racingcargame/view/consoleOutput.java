@@ -2,16 +2,16 @@ package racingcargame.view;
 
 import racingcargame.domain.Car;
 
-public class consoleOutput {
+class consoleOutput {
 
     private static final String MARK = "-";
     private static final String SEPARATOR = " : ";
 
-    public static void printRaceResultMessage() {
+    static void printRaceResultMessage() {
         System.out.println("\n실행 결과");
     }
 
-    public static void printRaceStatus(Car car) {
+    static void printRaceStatus(Car car) {
         StringBuilder sb = new StringBuilder();
 
         sb.append(car.getCarName());
@@ -26,7 +26,7 @@ public class consoleOutput {
         }
     }
 
-    public static void printWinner(String winnerName) {
+    static void printWinner(String winnerName) {
         System.out.println(winnerName + "가 최종 우승했습니다.");
     }
 }

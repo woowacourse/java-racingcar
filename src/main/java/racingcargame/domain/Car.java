@@ -12,7 +12,7 @@ public class Car implements Comparable<Car> {
         this.carPosition = new CarPosition();
     }
 
-    public Car(Car car) {
+    Car(Car car) {
         this.carName = new CarName(car.getCarName());
         this.carPosition = new CarPosition(car.getCarPosition());
     }
@@ -20,11 +20,11 @@ public class Car implements Comparable<Car> {
     public void decideGoOrStop(MoveDecider moveDecider) {
         if (moveDecider.getNumber() >= GO_CONDITION) {
             carPosition.increase();
-            this.carPosition = new CarPosition(this.getCarPosition());
+            this.carPosition = new CarPosition(carPosition.getPosition());
         }
     }
 
-    public boolean isMaxPosition(int position) {
+    boolean isMaxPosition(int position) {
         return this.carPosition.getPosition() == position;
     }
 
@@ -38,6 +38,6 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car c) {
-        return c.getCarPosition() - getCarPosition();
+        return c.carPosition.getPosition() - carPosition.getPosition();
     }
 }

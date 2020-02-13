@@ -8,7 +8,7 @@ public class CarName {
 
     private String name;
 
-    public CarName(String name) {
+    CarName(String name) {
         validateNotNull(name);
         validateLength(name);
         validateNoBlank(name);

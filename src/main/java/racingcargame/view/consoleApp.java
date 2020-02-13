@@ -1,7 +1,7 @@
 package racingcargame.view;
 
-import racingcargame.controller.CarDto;
 import racingcargame.controller.RacingCarController;
+import racingcargame.domain.CarStatus;
 import racingcargame.domain.RepeatTimes;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class consoleApp {
 
         printRaceResultMessage();
         final RacingCarController game = new RacingCarController();
-        final List<CarDto> racingResult = game.run(names, repeatTimes);
+        final List<CarStatus> racingResult = game.run(names, repeatTimes);
         printRaceResult(racingResult);
 
         final String winner = game.winner;
@@ -34,12 +34,12 @@ public class consoleApp {
         }
     }
 
-    private static void printRaceResult(List<CarDto> carStatus) {
+    private static void printRaceResult(List<CarStatus> carStatus) {
         carStatus.forEach(consoleApp::printEachRaceStatus);
     }
 
-    private static void printEachRaceStatus(CarDto carDto) {
-        carDto.getCar().forEach(consoleOutput::printRaceStatus);
+    private static void printEachRaceStatus(CarStatus carStatus) {
+        carStatus.getCars().forEach(consoleOutput::printRaceStatus);
         System.out.println();
     }
 }

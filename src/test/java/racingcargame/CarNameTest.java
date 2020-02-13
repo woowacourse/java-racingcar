@@ -14,7 +14,7 @@ public class CarNameTest {
     @ValueSource(strings = {"abcdef", ""})
     void lengthTest(String name) {
         assertThatThrownBy(() -> {
-            Car car = new Car(name);
+            new Car(name);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 1자 이상 5자 이하로 해주세요.");
     }
@@ -24,7 +24,7 @@ public class CarNameTest {
     void nullTest() {
         assertThatThrownBy(() -> {
             String nullString = null;
-            Car car = new Car(nullString);
+            new Car(nullString);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 null값이 될 수 없습니다.");
     }
@@ -33,7 +33,7 @@ public class CarNameTest {
     @DisplayName("이름에 띄어쓰기가 포함된 경우")
     void blankTest() {
         assertThatThrownBy(() -> {
-            Car car = new Car("ab c");
+            new Car("ab c");
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름에는 띄어쓰기가 포함될 수 없습니다.");
     }

@@ -1,7 +1,5 @@
 package racingcargame.domain;
 
-import racingcargame.controller.CarDto;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,9 +25,9 @@ public class RacingCars {
                 .collect(Collectors.toList());
     }
 
-    public CarDto processOneRace(MoveDecider moveDecider) {
+    public CarStatus processOneRace(MoveDecider moveDecider) {
         cars.forEach(car -> car.decideGoOrStop(moveDecider));
-        return new CarDto(cars);
+        return new CarStatus(cars);
     }
 
     public String getWinner() {

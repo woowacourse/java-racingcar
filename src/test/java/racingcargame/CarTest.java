@@ -1,20 +1,30 @@
 package racingcargame;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcargame.domain.Car;
+import racingcargame.domain.MoveDecider;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
+
+    MoveDecider moveDecider;
+
+    @BeforeEach
+    void setUp() {
+        moveDecider = new MoveDecider();
+    }
+
     @ParameterizedTest
     @DisplayName("자동차가 4,5,6,7,8,9일 때 전진하는지")
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     void carGo(int random) {
         Car car = new Car("car");
         int originalPosition = car.getCarPosition();
-        car.decideGoOrStop(random);
+//        car.decideGoOrStop(random);
         assertThat(car.getCarPosition()).isEqualTo(originalPosition + 1);
     }
 
@@ -24,7 +34,7 @@ public class CarTest {
     void carStop(int random) {
         Car car = new Car("car");
         int originalPosition = car.getCarPosition();
-        car.decideGoOrStop(random);
+//        car.decideGoOrStop(random);
         assertThat(car.getCarPosition()).isEqualTo(originalPosition);
     }
 }
