@@ -28,10 +28,4 @@ public class CarTest {
         Car car = new Car("무늬");
         assertThat(car.getLocation()).isEqualTo(0);
     }
-
-    @Test
-    void print() {
-        Car car = new Car("무늬");
-        System.out.println(car.getResult());
-    }
 }

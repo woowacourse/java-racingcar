@@ -10,7 +10,7 @@ public class RoundTest {
         String input = "a";
         assertThatThrownBy(() -> {
             Round.validateIsNumber(input);
-        }).isInstanceOf(NumberFormatException.class);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
