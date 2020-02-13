@@ -9,6 +9,7 @@ import racingcargame.domain.TrialTimes;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarRaceTest {
@@ -58,5 +59,33 @@ class CarRaceTest {
     @DisplayName("자동차 경주는 시도 횟수를 받아서 실시")
     void runRounds() {
         carRace.run(new TrialTimes(5));
+    }
+
+    @Test
+    @DisplayName("자동차 경주게임의 1등을 뽑는 메서드")
+    void getWinners() {
+        List<Car> carList = new ArrayList<>();
+        Car carJ = new Car("제이");
+        Car carPobi = new Car("포비");
+        Car carLatte = new Car("라테");
+
+        carJ.move(4);
+        carJ.move(4);
+        carJ.move(4);
+        carJ.move(4);
+
+        carLatte.move(4);
+        carLatte.move(4);
+        carLatte.move(4);
+        carLatte.move(4);
+
+        carList.add(carJ);
+        carList.add(carPobi);
+        carList.add(carLatte);
+
+        CarRace carRace = new CarRace(carList);
+        List<Car> winners = carRace.getWinners();
+        assertThat(winners).contains(carJ, carLatte);
+
     }
 }

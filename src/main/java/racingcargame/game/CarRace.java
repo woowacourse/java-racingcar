@@ -8,12 +8,13 @@ import racingcargame.view.output.OutputView;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class CarRace {
 
     private static final int MINIMUM_NUMBER_OF_CARS = 2;
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public CarRace(List<Car> cars) {
         validate(cars);
@@ -42,5 +43,16 @@ public class CarRace {
             int randomNumber = RandomGenerator.generateRandom();
             car.move(randomNumber);
         }
+    }
+
+    public List<Car> getWinners() {
+        int maxPosition = getMaxPosition();
+        return cars.stream()
+                .filter(car -> car.isSamePositionWith(maxPosition))
+                .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return cars.stream().mapToInt(Car::getPosition).max().orElse(0);
     }
 }
