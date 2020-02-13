@@ -10,7 +10,7 @@ public class Car {
 
     public Car(String name) {
         validateName(name);
-        this.name = name;
+        this.name = name.trim();
         this.position = 0;
     }
 
