@@ -8,12 +8,15 @@ public class RacingCarWinnersSortOuter {
     public static List<RacingCar> sortOut(RacingCar[] competitors) {
         int maxPosition = getMaxPostionOfCompetitors(competitors);
 
-        List<RacingCar> winners = Arrays.stream(competitors).filter(racingCar -> racingCar.getPostion() == maxPosition)
-                .sorted().collect(Collectors.toList());
-        return winners;
+        return findWinnersByMaxPosition(competitors, maxPosition);
     }
 
     private static int getMaxPostionOfCompetitors(RacingCar[] competitors) {
         return 4;
+    }
+
+    private static List<RacingCar> findWinnersByMaxPosition(RacingCar[] competitors, int maxPosition) {
+        return Arrays.stream(competitors).filter(racingCar -> racingCar.getPostion() == maxPosition)
+                .sorted().collect(Collectors.toList());
     }
 }
