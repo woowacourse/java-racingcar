@@ -2,7 +2,7 @@ package racingCar.domain;
 
 import racingCar.domain.errors.InvalidInputException;
 
-public class RacingCar {
+public class RacingCar implements Comparable<RacingCar> {
     private String name;
     private int position = 0;
 
@@ -52,5 +52,18 @@ public class RacingCar {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    @Override
+    public int compareTo(RacingCar o) {
+        if (o.position < this.position) {
+            return 1;
+        }
+
+        if (o.position == this.position) {
+            return 1;
+        }
+
+        return -1;
     }
 }
