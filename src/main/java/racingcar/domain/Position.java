@@ -18,7 +18,7 @@ public class Position {
     private int position;
 
     public Position() {
-        this(1);
+        this(MIN_POSITION);
     }
 
     public Position(final int position) {
