@@ -3,6 +3,7 @@ package tdd.racingcar.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Cars implements Iterable<Car> {
@@ -36,5 +37,10 @@ public class Cars implements Iterable<Car> {
 	@Override
 	public Iterator<Car> iterator() {
 		return cars.iterator();
+	}
+
+	public Map<String, Integer> getPositions() {
+		return cars.stream()
+				.collect(Collectors.toMap(Car::getName, Car::getPosition));
 	}
 }

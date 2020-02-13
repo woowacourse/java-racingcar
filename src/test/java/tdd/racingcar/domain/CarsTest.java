@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,5 +41,17 @@ public class CarsTest {
 		final List<Car> expected = Arrays.asList(differentPositionCars.get(0), differentPositionCars.get(1));
 		final List<Car> actual = cars.getWinners();
 		assertEquals(expected, actual);
+	}
+
+	@Test
+	void getPositions() {
+		final Cars cars = new Cars(differentPositionCars);
+		final Map<String, Integer> expected = new HashMap<>();
+		expected.put("a", 2);
+		expected.put("b", 2);
+		expected.put("c", 1);
+		expected.put("d", 0);
+		final Map<String, Integer> actual = cars.getPositions();
+		assertThat(actual).isEqualTo(expected);
 	}
 }
