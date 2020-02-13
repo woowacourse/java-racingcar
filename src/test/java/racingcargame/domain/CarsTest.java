@@ -10,43 +10,34 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CarsTest {
 
     @Test
-    void cars() {
+    void cars생성_확인() {
         List<Car> carList = new ArrayList<>();
         carList.add(new Car("제이"));
         carList.add(new Car("라테"));
         carList.add(new Car("포비"));
         Cars cars = new Cars(carList);
+        assertThat(cars).hasFieldOrPropertyWithValue("cars", carList);
     }
 
     @Test
-    void 현재Cars중_maxPosition_반환() {
+    void 현재Cars중_maxPosition에_있는_CarName을_반환() {
         List<Car> carList = new ArrayList<>();
         carList.add(new Car("제이"));
         carList.add(new Car("라테"));
         carList.add(new Car("포비"));
         Cars cars = new Cars(carList);
-        assertThat(cars.getMaxPosition()).isEqualTo(0);
+        assertThat(cars.getCarNamesInMaxPosition()).contains("제이");
+        assertThat(cars.getCarNamesInMaxPosition()).contains("라테");
+        assertThat(cars.getCarNamesInMaxPosition()).contains("포비");
     }
 
     @Test
-    void 현재Cars중_넣어준포지션과_같은_위치인지_확인() {
+    void 현재Cars를_전진() {
         List<Car> carList = new ArrayList<>();
         carList.add(new Car("제이"));
         carList.add(new Car("라테"));
         carList.add(new Car("포비"));
         Cars cars = new Cars(carList);
-        assertThat(cars.getCarNamesInSamePositionWith(0)).contains("제이");
-        assertThat(cars.getCarNamesInSamePositionWith(0)).contains("라테");
-        assertThat(cars.getCarNamesInSamePositionWith(0)).contains("포비");
-    }
-
-    @Test
-    void 현재Cars를_n회전진() {
-        List<Car> carList = new ArrayList<>();
-        carList.add(new Car("제이"));
-        carList.add(new Car("라테"));
-        carList.add(new Car("포비"));
-        Cars cars = new Cars(carList);
-        cars.moveFoward(5);
+        cars.moveOneRound();
     }
 }

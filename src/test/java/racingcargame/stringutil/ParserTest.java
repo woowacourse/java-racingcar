@@ -12,9 +12,9 @@ public class ParserTest {
     @Test
     void 이름을_입력하면_구분자로_구분하여_CarList_생성() {
         List<Car> actual = Parser.parseCars("a, b, c");
-        List<Car> expected = new ArrayList<Car>(Arrays.asList(new Car("a"),
+        List<Car> expected = Arrays.asList(new Car("a"),
                 new Car("b"),
-                new Car("c")));
+                new Car("c"));
         Assertions.assertThat(actual).isEqualTo(actual);
     }
 }

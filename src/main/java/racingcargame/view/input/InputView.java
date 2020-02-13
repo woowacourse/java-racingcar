@@ -11,7 +11,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String askRound() {
+    public static String askTotalRounds() {
         System.out.println("시도 횟수를 입력하세요.");
         return scanner.nextLine();
     }

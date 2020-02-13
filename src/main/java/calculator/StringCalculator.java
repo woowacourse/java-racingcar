@@ -4,7 +4,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-
     private static final String BASIC_DELIMITER = ";|,";
 
     public static int plusByDelimiterFrom(String input) {
@@ -18,7 +17,6 @@ public class StringCalculator {
             String numbersWithDelimiters = m.group(2);
             return plus(numbersWithDelimiters, customDelimiter);
         }
-
         return plus(input, customDelimiter);
     }
 
@@ -40,5 +38,4 @@ public class StringCalculator {
         }
         return result;
     }
-
 }

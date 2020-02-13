@@ -15,4 +15,12 @@ public class Parser {
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
+
+    public static int parseRound(String askRound) {
+        int round = Integer.parseInt(askRound);
+        if (round <= 0) {
+            throw new IllegalArgumentException("양수를 입력해주세요.");
+        }
+        return round;
+    }
 }
