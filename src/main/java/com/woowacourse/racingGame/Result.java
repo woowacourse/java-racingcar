@@ -16,6 +16,12 @@ public class Result {
 		this.cars = cars;
 	}
 
+	public List<String> getRacingCarStatus() {
+		return cars.getCars().stream()
+			.map(StringUtil::convertCarStatus)
+			.collect(Collectors.toList());
+	}
+
 	public List<String> getWinners(final Cars cars) {
 		List<String> winners = new ArrayList<>();
 
@@ -29,14 +35,5 @@ public class Result {
 		if (car.isWinnerPosition(maxPosition)) {
 			winners.add(car.getName());
 		}
-	}
-
-	public List<String> getRacingCarStatus() {
-		return cars.getCars().stream()
-			.map(car -> car.getName()
-				+ " : "
-				+ StringUtil.convertPositionToString(car.getPosition())
-			)
-			.collect(Collectors.toList());
 	}
 }

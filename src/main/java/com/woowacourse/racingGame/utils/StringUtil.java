@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.woowacourse.racingGame.domain.Car;
+
 public class StringUtil {
 	private static final String DELIMITER = ",";
 	private static final String POSITION_CHARACTER = "-";
@@ -16,10 +18,13 @@ public class StringUtil {
 			.collect(Collectors.toList());
 	}
 
-	public static String convertPositionToString(final int position) {
-		return Stream.generate(() -> POSITION_CHARACTER)
-			.limit(position)
+	public static String convertCarStatus(final Car car) {
+		String carPosition = Stream.generate(() -> POSITION_CHARACTER)
+			.limit(car.getPosition())
 			.collect(Collectors.joining());
+		return car.getName()
+			+ " : "
+			+ carPosition;
 	}
 
 	public static String joinWinningCar(final List<String> winners) {

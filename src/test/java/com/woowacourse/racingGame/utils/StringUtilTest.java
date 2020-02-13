@@ -34,13 +34,13 @@ public class StringUtilTest {
 	}
 
 	@Test
-	void convertPositionToString_자동차_위치를_문자로_변환() {
+	void convertCarStatus_게임을_진행한_자동차의_상태() {
 		final Car car = new Car(new Name("test"));
 		car.setPosition(4);
 
-		final String actual = StringUtil.convertPositionToString(car.getPosition());
+		final String actual = StringUtil.convertCarStatus(car);
 
-		final String expected = "----";
+		final String expected = "test : ----";
 
 		assertThat(actual).isEqualTo(expected);
 	}
