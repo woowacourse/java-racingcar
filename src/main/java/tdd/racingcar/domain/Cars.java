@@ -1,14 +1,15 @@
 package tdd.racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars implements Iterable<Car> {
-	private final List<Car> cars;
+	private final List<Car> cars = new ArrayList<>();
 
 	public Cars(final List<Car> cars) {
-		this.cars = cars;
+		this.cars.addAll(cars);
 	}
 
 	public void move() {
