@@ -13,6 +13,8 @@ import java.util.Objects;
 public class Name {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String INVALID_CHARACTER = " ";
+    public static final String INVALID_NAME_LENGTH_MESSAGE = "Invalid name length.";
+    public static final String INVALID_CHARACTER_IN_NAME_MESSAGE = "Invalid character in name.";
 
     private final String name;
 
@@ -33,13 +35,13 @@ public class Name {
 
     private void validateNameLength(final String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
-            throw new IllegalArgumentException("이름의 길이가 올바르지 않습니다.");
+            throw new IllegalArgumentException(INVALID_NAME_LENGTH_MESSAGE);
         }
     }
 
     private void validateNameHasInvalidCharacter(final String name) {
         if (name.contains(INVALID_CHARACTER)) {
-            throw new IllegalArgumentException("이름에 유효하지 않은 문자가 있습니다.");
+            throw new IllegalArgumentException(INVALID_CHARACTER_IN_NAME_MESSAGE);
         }
     }
 

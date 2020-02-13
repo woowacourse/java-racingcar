@@ -11,7 +11,8 @@ package racingcar.domain;
 public class Round {
     public static final int MAX_TOTAL_ROUND = 100;
     public static final int START_ROUND = 1;
-    public static final String TOTAL_ROUND_OUT_OF_RANGE_MESSAGE = "총 라운드 수가 범위를 벗어났습니다.";
+    public static final String TOTAL_ROUND_OUT_OF_RANGE_MESSAGE = "Input total round out of range(1,100)";
+    public static final String LAST_ROUND_MESSAGE = "Current round is last round.";
 
     private final int totalRound;
     private int currentRound;
@@ -30,7 +31,7 @@ public class Round {
 
     public void next() {
         if (currentRound >= totalRound) {
-            throw new IllegalArgumentException("최종 라운드입니다.");
+            throw new IllegalArgumentException(LAST_ROUND_MESSAGE);
         }
         currentRound++;
     }

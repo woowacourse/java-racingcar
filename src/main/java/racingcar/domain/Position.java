@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Position {
     private static final int MIN_POSITION = 1;
     private static final int MAX_POSITION = 101;
-    public static final String CAR_OUT_OF_RANGE_MESSAGE = "car의 position이 범위를 벗어났습니다.";
+    public static final String CAR_OUT_OF_RANGE_MESSAGE = "Car's position out of range(1,101)";
 
     private int position;
 
