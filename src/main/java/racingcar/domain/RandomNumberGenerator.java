@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.domain.Cars.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,17 +15,17 @@ import java.util.Random;
  * @since 2020/02/13
  */
 public class RandomNumberGenerator {
-    private final Random random = new Random();
+	private final Random random = new Random();
 
-    public int generateRandomNumber() {
-        return random.nextInt(10);
-    }
+	public int generateRandomNumber() {
+		return random.nextInt(MAX_CARS_SIZE);
+	}
 
-    public List<Integer> generateRandomNumbers(final int size) {
-        List<Integer> numbers = new ArrayList<>();
-        for (int index = 0; index < size; index++) {
-            numbers.add(generateRandomNumber());
-        }
-        return numbers;
-    }
+	public List<Integer> generateRandomNumbers(final int size) {
+		List<Integer> numbers = new ArrayList<>();
+		for (int index = 0; index < size; index++) {
+			numbers.add(generateRandomNumber());
+		}
+		return numbers;
+	}
 }
