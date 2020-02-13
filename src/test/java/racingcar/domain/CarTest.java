@@ -1,10 +1,8 @@
 package racingcar.domain;
 
-import java.util.Arrays;
+import static org.assertj.core.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -29,16 +27,16 @@ public class CarTest {
     @ValueSource(strings = {"또링", "동글"})
     void testCar(String name) {
         car = new Car(name);
-        Assertions.assertThat(car).isNotNull();
+        assertThat(car).isNotNull();
     }
 
-    @DisplayName("입력받은 수에 따라 자동차가 동작한다.")
+    @DisplayName("입력받은 수에 따라 자동차가 동작")
     @ParameterizedTest
     @CsvSource(value = {"0:0", "1:0", "2:0", "3:0",
             "4:1", "5:1", "6:1", "7:1", "8:1", "9:1"}, delimiter = ':')
     void testRun(int randomNumber, int position) {
         car = new Car("붕붕");
         car.run(randomNumber);
-        Assertions.assertThat(car.isPosition(position)).isTrue();
+        assertThat(car).extracting("position").isEqualToComparingOnlyGivenFields(position);
     }
 }

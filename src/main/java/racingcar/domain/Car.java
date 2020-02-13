@@ -21,8 +21,7 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        this.name = name;
-        this.position = 0;
+        this(name, 0);
     }
 
     public Car(String name, int position) {
@@ -36,15 +35,11 @@ public class Car {
         }
     }
 
-    public boolean isPosition(int position) {
-        return this.position == position;
-    }
-
-    public Car getBiggerCar(Car carB) {
-        if (position >= carB.position) {
+    Car getFartherCar(Car otherCar) {
+        if (position >= otherCar.position) {
             return this;
         }
-        return carB;
+        return otherCar;
     }
 
     @Override

@@ -2,10 +2,6 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -45,7 +41,7 @@ class RoundTest {
     @Test
     void testGoNextRound() {
         round.goNextRound();
-        assertThat(round.isSameCurrent(1)).isTrue();
+        assertThat(round).extracting("currentRound").isEqualTo(1);
     }
 
     @DisplayName("마지막 라운드 체크")

@@ -3,7 +3,7 @@ package racingcar.domain;
 import racingcar.generator.RandomNumberGenerator;
 import racingcar.message.Message;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,24 +21,10 @@ import java.util.stream.Collectors;
  *
  */
 public class Cars implements Iterable<Car> {
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
-    public Cars(List<String> names) {
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
-    }
-
-    Cars(List<String> names, List<Integer> position) {
-        for (int i = 0; i < names.size(); i++) {
-            cars.add(new Car(names.get(i), position.get(i)));
-        }
-    }
-
-    public Car findMaxPositionCar() {
-        return cars.stream()
-                .reduce(Car::getBiggerCar)
-                .orElseThrow(() -> new NullPointerException(Message.EXCEPTION_CAR_IS_NULL.getMessageText()));
+    public Cars(List<Car> cars) {
+        this.cars = Collections.unmodifiableList(cars);
     }
 
     public List<Car> findWinner() {
@@ -46,6 +32,12 @@ public class Cars implements Iterable<Car> {
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
                 .collect(Collectors.toList());
+    }
+
+    private Car findMaxPositionCar() {
+        return cars.stream()
+                .reduce(Car::getFartherCar)
+                .orElseThrow(() -> new NullPointerException(Message.EXCEPTION_CAR_IS_NULL.getMessageText()));
     }
 
     public void run() {

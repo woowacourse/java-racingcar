@@ -17,14 +17,14 @@ import racingcar.message.Message;
 public class Round {
     private static final int MINIMUM_NUMBER_OF_ROUND = 1;
 
-    private final int numberOfRound;
+    private final int totalRound;
     private int currentRound;
 
-    public Round(int numberOfRound) {
-        if (numberOfRound < MINIMUM_NUMBER_OF_ROUND) {
+    public Round(int totalRound) {
+        if (totalRound < MINIMUM_NUMBER_OF_ROUND) {
             throw new IllegalArgumentException(Message.EXCEPTION_ROUND_IS_NOT_POSITIVE.getMessageText());
         }
-        this.numberOfRound = numberOfRound;
+        this.totalRound = totalRound;
         this.currentRound = 0;
     }
 
@@ -32,11 +32,7 @@ public class Round {
         currentRound++;
     }
 
-    public boolean isSameCurrent(int currentRound) {
-        return this.currentRound == currentRound;
-    }
-
     public boolean isFinalRound() {
-        return currentRound == numberOfRound;
+        return currentRound == totalRound;
     }
 }

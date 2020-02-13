@@ -1,11 +1,15 @@
 package racingcar;
 
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Round;
 import racingcar.domain.Winner;
 import racingcar.splitter.NameSplitter;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Copyright (c) 2020 by 또동페어
@@ -21,17 +25,34 @@ import racingcar.view.OutputView;
  */
 public class Application {
     public static void main(String[] args) {
-        String rawCarNames = InputView.inputCarNames();
-        Cars cars = new Cars(NameSplitter.split(rawCarNames));
-        int numberOfRound = InputView.inputNumberOfRound();
-        Round round = new Round(numberOfRound);
+        try {
+            String rawCarNames = InputView.inputCarNames();
+            List<String> carNames = NameSplitter.split(rawCarNames);
+            Cars cars = new Cars(createCarsByNames(carNames));
+            Round round = new Round(InputView.inputNumberOfRound());
+            playGame(cars, round);
+            Winner winner = new Winner(cars.findWinner());
+            OutputView.printWinner(winner);
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
+    }
+
+    public static List<Car> createCarsByNames(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : carNames) {
+            cars.add(new Car(name));
+        }
+        return cars;
+    }
+
+    public static void playGame(Cars cars, Round round) {
         OutputView.printGameResultMessage();
         while (!round.isFinalRound()) {
-            round.goNextRound();
             cars.run();
             OutputView.printRoundResult(cars);
+            round.goNextRound();
         }
-        Winner winner = new Winner(cars.findWinner());
-        OutputView.printWinner(winner);
     }
 }
