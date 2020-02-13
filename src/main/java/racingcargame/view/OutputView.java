@@ -19,12 +19,14 @@ public class OutputView {
     }
 
     public static void carNameAndPosition(Car car) {
-        String blank = "";
-        int currentPosition = car.getCarPosition();
-        for (int i = 0; i < currentPosition; i++) {
-            blank += MARK;
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(car.getCarName());
+        sb.append(" : ");
+        for (int i = 0; i < car.getCarPosition(); i++) {
+            sb.append(MARK);
         }
-        System.out.println(car.getCarName() + " : " + blank);
+        System.out.println(sb);
     }
 
     public static void winnerInstruction(String winnerName) {

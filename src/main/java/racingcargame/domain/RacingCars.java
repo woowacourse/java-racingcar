@@ -32,7 +32,7 @@ public class RacingCars {
         return userInput.split(DELIMITER);
     }
 
-    public CarDto processOneTime() {
+    public CarDto processOneRace() {
         for (Car car : cars) {
             car.decideGoOrStop(createRandomNumber());
         }

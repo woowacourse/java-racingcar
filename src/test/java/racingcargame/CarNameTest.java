@@ -23,7 +23,8 @@ public class CarNameTest {
     @DisplayName("이름을 입력하지 않은 경우")
     void nullTest() {
         assertThatThrownBy(() -> {
-            Car car = new Car(null);
+            String nullString = null;
+            Car car = new Car(nullString);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 null값이 될 수 없습니다.");
     }

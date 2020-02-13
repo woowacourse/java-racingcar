@@ -9,14 +9,17 @@ public class CarDto {
     private List<Car> cars;
 
     public CarDto(List<Car> cars) {
+        this.cars = cloneCars(cars);
+    }
 
-        List<Car> re = new ArrayList<>();
+    private List<Car> cloneCars(List<Car> cars) {
+        List<Car> tempCars = new ArrayList<>();
         Iterator<Car> iterator = cars.iterator();
 
         while (iterator.hasNext()) {
-            re.add(new Car(iterator.next()));
+            tempCars.add(new Car(iterator.next()));
         }
-        this.cars = re;
+        return tempCars;
     }
 
     public List<Car> getCar() {
