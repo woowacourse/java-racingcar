@@ -2,6 +2,11 @@ package racingCar.view;
 
 import racingCar.domain.RacingCar;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class OutputView {
     void printRacingCar(RacingCar racingCar) {
         System.out.print(racingCar);
@@ -21,6 +26,11 @@ public class OutputView {
             }
             System.out.println();
         }
+    }
+
+    void printResult(RacingCar[] racingCars) {
+        List<String> namesOfWinners = Arrays.asList(racingCars).stream().map(RacingCar::toString).collect(Collectors.toList());
+        System.out.println(String.join(",", namesOfWinners) + "가 최종 우승했습니다.");
     }
 
     private void printRacingPosition(RacingCar racingCar) {
