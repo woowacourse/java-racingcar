@@ -42,7 +42,7 @@ public class Name {
     }
 
     private void checkBlankInput(String name) {
-        if (BLANK.equals(name)) {
+        if (name.isEmpty()) {
             System.out.println("공백 이름을 가지고 있습니다.");
             throw new RuntimeException();
         }

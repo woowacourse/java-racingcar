@@ -1,5 +1,8 @@
-package racingcargame.domain;
+package racingcargame;
 
+import racingcargame.domain.RacingCars;
+import racingcargame.domain.TryLimitNumber;
+import racingcargame.domain.Winners;
 import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 
