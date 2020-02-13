@@ -6,9 +6,6 @@ public class InputView {
     private Scanner scanner = new Scanner(System.in);
 
     public String[] getCarNames() {
-        //input에 대한 vali view
-        //값에 대한 검증
-
         String input = "";
         try{
             input = enterCarNames();
@@ -19,13 +16,13 @@ public class InputView {
         return splitName(input);
     }
 
-    public int getGameCounts() {
+    public int getTrial() {
         String input = "";
         try {
             input = enterGameCounts();
         } catch (Exception e){
             System.err.println(e.getMessage());
-            getGameCounts();
+            getTrial();
         }
         return Integer.parseInt(input);
     }

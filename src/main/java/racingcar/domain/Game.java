@@ -3,7 +3,6 @@ package racingcar.domain;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Game { //게임 로직 구현
@@ -11,22 +10,20 @@ public class Game { //게임 로직 구현
     public void run() {
         InputView inputView = new InputView();
         String[] carNames = inputView.getCarNames();
-        int attempts = inputView.getGameCounts();
+        int trial = inputView.getTrial();
         Cars cars = createCars(carNames);
-        for (int i = 0 ; i < attempts ; i++) {
+        for (int i = 0 ; i < trial ; i++) {
             cars.moveCars();
             OutputView.printCurrentResult(cars.getCurrentResult());
         }
-
+        cars.selectWinners();
     }
 
     private Cars createCars(String[] carNames) {
-        List<Car> carList = new ArrayList<Car>();
+        Cars cars = new Cars();
         for (String carName : carNames) {
-            carList.add(new Car(carName));
+            cars.addCar(new Car(carName));
         }
-
-        Cars cars = new Cars(carList);
         return cars;
     }
 }

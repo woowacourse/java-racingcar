@@ -14,7 +14,10 @@ public class CarsTest {
         carList.add(new Car("pobi"));
         carList.add(new Car("elly"));
         carList.add(new Car("rutgo"));
-        Cars cars = new Cars(carList);
+        Cars cars = new Cars();
+        for (Car car : carList){
+            cars.addCar(car);
+        }
         cars.getCar(0).movePosition(5);
         cars.getCar(0).movePosition(5);
         cars.getCar(0).movePosition(5);

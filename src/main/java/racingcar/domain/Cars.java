@@ -5,32 +5,51 @@ import java.util.List;
 
 public class Cars {
 
-    private final List<Car> cars;
+    private final List<Car> cars = new ArrayList<>();
 
-    public Cars(List<Car> cars) {
-        this.cars = cars;
+/*    public Cars(Car car) {
+        cars.add(car);
+    }*/
+
+    public void addCar(Car car) {
+        cars.add(car);
     }
 
     public Car getCar(int index) {
         return cars.get(index);
     }
 
-    public int createRandomValue(){
-        return (int)(Math.random() * 10);
+    public int createRandomValue() {
+        return (int) (Math.random() * 10);
     }
 
-    public void moveCars(){
-        for (Car car : cars){
+    public void moveCars() {
+        for (Car car : cars) {
             car.movePosition(createRandomValue());
         }
     }
 
     public String getCurrentResult() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars){
-            stringBuilder.append(car.currntPositon());
-            stringBuilder.append("\n");
+        StringBuilder currentResult = new StringBuilder();
+        for (Car car : cars) {
+            currentResult.append(car.getCurrentPosition());
+            currentResult.append("\n");
         }
-        return stringBuilder.toString();
+        return currentResult.toString();
+    }
+
+    public void selectWinners() {
+        List<Car> winners = new ArrayList<>();
+        Car maxDistanceCar = cars.stream()
+                .max(Car::compareTo)
+                .get();
+        for (Car car : cars) {
+            if (car.isMaxDistance(maxDistanceCar)) {
+                winners.add(car);
+            }
+        }
+        for (Car winner : winners) {
+            System.out.println(winner.toString());
+        }
     }
 }
