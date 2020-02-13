@@ -18,12 +18,18 @@ import racingcar.View.OutputView;
  * 날짜 : 2020.02.13 목요일
  */
 
-public class Game {
+public class RacingGame {
     private static final int INDEX_START = 0;
     public static final int SINGLE = 1;
 
     private static List<Car> cars = new ArrayList<>();
     private static int trialTime;
+
+    public static void play() {
+        initialize();
+        race();
+        showWinner();
+    }
 
     public static void initialize() {
         String[] carNames = InputView.inputCarName();

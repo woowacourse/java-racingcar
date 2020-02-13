@@ -2,7 +2,7 @@ package racingcarTest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.Controller.Game;
+import racingcar.Controller.RacingGame;
 import racingcar.Model.Car;
 
 import java.util.Arrays;
@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * 날짜 : 2020.02.13 목요일
  */
 
-public class GameTest {
+public class RacingGameTest {
     private List<Car> cars = Arrays.asList(
             new Car("토니", 8),
             new Car("포비", 15),
@@ -33,7 +33,7 @@ public class GameTest {
     @Test
     @DisplayName("포지션이 가장 큰 차 선별")
     void findTopPositionCar() {
-        Car topPositionCar = Game.findTopPositionCar(cars);
+        Car topPositionCar = RacingGame.findTopPositionCar(cars);
         assertThat(topPositionCar).isEqualTo(cars.get(3));
     }
 
