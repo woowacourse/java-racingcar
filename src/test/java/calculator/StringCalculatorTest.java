@@ -13,7 +13,6 @@ public class StringCalculatorTest {
     public void nullOrBlankSplitTest() {
         int result = StringCalculator.splitAndSum(null);
         assertThat(result).isEqualTo(0);
-
         result = StringCalculator.splitAndSum("");
         assertThat(result).isEqualTo(0);
     }
