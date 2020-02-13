@@ -31,10 +31,6 @@ public class Car {
         }
     }
 
-    public boolean isEqualPositionTo(final Position position) {
-        return this.position.equals(position);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
