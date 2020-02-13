@@ -11,6 +11,7 @@ import com.woowacourse.racingGame.domain.Car;
 public class StringUtil {
 	private static final String DELIMITER = ",";
 	private static final String POSITION_CHARACTER = "-";
+	public static final String JOIN_DELIMITER = ", ";
 
 	public static List<String> splitCarName(final String inputCarName) {
 		return new ArrayList<>(Arrays.asList(inputCarName.split(DELIMITER))).stream()
@@ -28,6 +29,6 @@ public class StringUtil {
 	}
 
 	public static String joinWinningCar(final List<String> winners) {
-		return String.join(DELIMITER, winners);
+		return String.join(JOIN_DELIMITER, winners);
 	}
 }

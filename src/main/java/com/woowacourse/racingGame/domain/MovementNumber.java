@@ -21,4 +21,8 @@ public class MovementNumber {
 	private int checkValidMovementNumber(final String number) {
 		return Integer.parseInt(number);
 	}
+
+	public int getMovementNumber() {
+		return movementNumber;
+	}
 }
