@@ -20,7 +20,7 @@ class UnsignedNumberTest {
 	void testNotNumber() {
 		assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
 			new UnsignedNumber("a");
-		});
+		}).withMessage("숫자 이외의 값을 입력할 수 없습니다.");
 	}
 
 	@Test
