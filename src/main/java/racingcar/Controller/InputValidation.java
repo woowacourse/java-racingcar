@@ -13,6 +13,14 @@ public class InputValidation {
         }
     }
 
+    public static void checkEmptyCarName(String[] carNames) {
+        for (String carName : carNames) {
+            if (carName.isEmpty()) {
+                throw new IllegalArgumentException("차 이름은 빈 문자열일 수 없습니다.");
+            }
+        }
+    }
+
     public static void checkSmallerThanSix(String[] carNames) {
         for (String carName : carNames) {
             if (carName.length() > 5) {
@@ -48,4 +56,5 @@ public class InputValidation {
             throw new IllegalArgumentException("문자는 입력할 수 없습니다.");
         }
     }
+
 }

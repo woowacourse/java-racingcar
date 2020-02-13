@@ -11,14 +11,22 @@ public class InputView {
     public static String[] inputCarName() {
         OutputView.printInputCarNamesMessage();
         String[] carNames = sc.nextLine().split(DELIMITER); // TODO 스페이스바만 입력했을때 ,로 끝났을 경우 어떻게 해야 할까용
+        trimCarNames(carNames);
         try {
             InputValidation.checkNullOrEmptyInput(carNames);
+            InputValidation.checkEmptyCarName(carNames);
             InputValidation.checkSmallerThanSix(carNames);
             return carNames;
         } catch (Exception e) {
             OutputView.printExceptionMessage(e);
         }
         return inputCarName();
+    }
+
+    private static void trimCarNames(String[] carNames) {
+        for (int i = 0; i < carNames.length; i++) {
+            carNames[i] = carNames[i].trim();
+        }
     }
 
     public static int inputTrialTime() {

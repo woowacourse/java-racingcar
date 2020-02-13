@@ -30,6 +30,17 @@ public class InputControlTest {
     }
 
     @Test
+    @DisplayName("차 이름에 빈 문자열 입력 시")
+    void checkEmptyCarName() {
+        String[] carNames = {"a", "", "c"};
+        assertThatThrownBy(() -> {
+            InputValidation.checkEmptyCarName(carNames);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("차 이름은 빈 문자열일 수 없습니다.");
+
+    }
+
+    @Test
     @DisplayName("차 이름이 5글자 이내")
     void inputControl_차_이름_글자수() {
         assertThatThrownBy(() -> {
