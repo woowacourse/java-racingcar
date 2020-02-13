@@ -35,8 +35,8 @@ public class Car {
 		return randomNumber >= MOVE_BOUND;
 	}
 
-	public boolean isWinnerPosition(final int winnerPosition) {
-		return this.position == winnerPosition;
+	public boolean isSamePosition(final int position) {
+		return this.position == position;
 	}
 
 	public int getPosition() {

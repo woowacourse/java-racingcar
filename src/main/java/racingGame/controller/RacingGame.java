@@ -11,8 +11,8 @@ import racingGame.view.OutputView;
 
 public class RacingGame {
     public void run() {
-        int movementNumber = InputView.getMovementNumber();
         Cars cars = new Cars(CarFactory.createByNames(InputView.getCarName()));
+        int movementNumber = InputView.getMovementNumber();
 
         for (int i = 0; i < movementNumber; i++) {
             cars.moveCars();
@@ -20,6 +20,4 @@ public class RacingGame {
         }
         OutputView.printWinners(cars.getWinnersList());
     }
-
-
 }

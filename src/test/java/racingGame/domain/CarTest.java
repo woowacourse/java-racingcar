@@ -51,7 +51,7 @@ public class CarTest {
 
 		car.setPosition(7);
 
-		assertThat(car.isWinnerPosition(winnerPosition)).isTrue();
+		assertThat(car.isSamePosition(winnerPosition)).isTrue();
 	}
 
 	@Test
@@ -60,6 +60,6 @@ public class CarTest {
 
 		car.setPosition(6);
 
-		assertThat(car.isWinnerPosition(winnerPosition)).isFalse();
+		assertThat(car.isSamePosition(winnerPosition)).isFalse();
 	}
 }

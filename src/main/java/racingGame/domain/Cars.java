@@ -5,10 +5,10 @@ import racingGame.utils.RandomGenerator;
 import java.util.*;
 
 public class Cars {
-    private static final int POSITION_INIT = 0;
+    private static final int INIT_POSITION = 0;
 
     private final List<Car> cars;
-    private int maximumPosition = POSITION_INIT;
+    private int maximumPosition = INIT_POSITION;
 
     public Cars(final List<Car> cars) {
         checkDuplicate(cars);
@@ -44,7 +44,7 @@ public class Cars {
     }
 
     private void addIfWinner(List<Car> winners, final Car car) {
-        if (car.isWinnerPosition(maximumPosition)) {
+        if (car.isSamePosition(maximumPosition)) {
             winners.add(car);
         }
     }
