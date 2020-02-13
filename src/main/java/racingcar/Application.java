@@ -1,10 +1,10 @@
 package racingcar;
 
-import racingcar.utils.RandomNumber;
+import racingcar.utils.Split;
+import racingcar.view.InputView;
 
 public class Application {
 	public static void main(String[] args) {
-		int number = RandomNumber.generateRandomIntIntRange();
-		System.out.println(number);
+
 	}
 }
