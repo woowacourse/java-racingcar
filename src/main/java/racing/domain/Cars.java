@@ -26,10 +26,11 @@ public class Cars {
 				.orElse(0);
 	}
 
-	public List<Car> findWinner() {
+	public List<String> findWinner() {
 		return cars.stream()
-			.filter(car -> car.isWinner(findWinnersPosition()))
-			.collect(Collectors.toList());
+				.filter(car -> car.isWinner(findWinnersPosition()))
+				.map(Car::getName)
+				.collect(Collectors.toList());
 	}
 
 	public List<Car> getCars() {
