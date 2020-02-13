@@ -14,14 +14,6 @@ public class Car {
 		this.position = 0;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public int getPosition() {
-		return position;
-	}
-
 	public int randomGenerate() {
 		return ThreadLocalRandom.current()
 			.ints(RANDOM_MIN, RANDOM_MAX)
@@ -37,5 +29,13 @@ public class Car {
 
 	public boolean isWinner(int winnersPosition) {
 		return this.position == winnersPosition;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getPosition() {
+		return position;
 	}
 }

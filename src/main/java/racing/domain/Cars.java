@@ -15,16 +15,6 @@ public class Cars {
 				.collect(Collectors.toList());
 	}
 
-	public int size() {
-		return cars.size();
-	}
-
-	public List<String> getAllNames() {
-		return cars.stream()
-				.map(Car::getName)
-				.collect(Collectors.toList());
-	}
-
 	public List<Car> findWinner() {
 		return cars.stream()
 			.filter(car -> car.isWinner(findWinnersPosition()))
@@ -48,5 +38,15 @@ public class Cars {
 
 	public List<Car> getCars() {
 		return Collections.unmodifiableList(cars);
+	}
+
+	public List<String> getAllNames() {
+		return getCars().stream()
+				.map(Car::getName)
+				.collect(Collectors.toList());
+	}
+
+	public int getSize() {
+		return cars.size();
 	}
 }

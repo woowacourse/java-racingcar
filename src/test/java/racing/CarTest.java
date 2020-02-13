@@ -21,7 +21,7 @@ public class CarTest {
 		List<String> input = Arrays.asList("A", "B", "C");
 		Cars cars = new Cars(input);
 
-		assertThat(cars.size()).isEqualTo(input.size());
+		assertThat(cars.getSize()).isEqualTo(input.size());
 		assertThat(cars.getAllNames()).isEqualTo(input);
 	}
 
