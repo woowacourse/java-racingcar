@@ -18,7 +18,7 @@ public class Winner {
     public static void setWinner(List<Car> cars) {
         int maxPosition = getMaxPosition(cars);
         for (Car car : cars) {
-            if (maxPosition == car.getPosition()) {
+            if (car.isMaxPosition(maxPosition)) {
                 winners.add(car.getName());
             }
         }
