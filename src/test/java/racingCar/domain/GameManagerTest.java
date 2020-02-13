@@ -16,8 +16,15 @@ class GameManagerTest {
     }
 
     @Test
-    void play() {
-        gameManager.play();
+    void play_Once() {
+        gameManager.play(1);
+        List<PlayerInfoPair> players = gameManager.getState();
+        Assertions.assertThat(players.size()).isEqualTo(3);
+    }
+
+    @Test
+    void play_Multiple() {
+        gameManager.play(3);
         List<PlayerInfoPair> players = gameManager.getState();
         Assertions.assertThat(players.size()).isEqualTo(3);
     }
