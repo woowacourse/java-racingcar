@@ -12,4 +12,8 @@ public class InputView {
     public int inputNumbersToMove() {
         return Integer.parseInt(scanner.nextLine());
     }
+
+    public void inputSomething() {
+        scanner.nextLine();
+    }
 }
