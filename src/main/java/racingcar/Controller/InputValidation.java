@@ -55,6 +55,19 @@ public class InputValidation {
 		}
 	}
 
+	public static int validateInputTrialTime(final String trialTimeInput) {
+		try {
+			InputValidation.checkDecimalNumber(trialTimeInput);
+			InputValidation.checkNotNumber(trialTimeInput);
+			InputValidation.checkNegativeAndZeroInput(trialTimeInput);
+			InputValidation.checkIntegerOverflow(trialTimeInput);
+			return Integer.parseInt(trialTimeInput);
+		} catch (Exception e) {
+			OutputView.printExceptionMessage(e);
+		}
+		return InputView.inputTrialTime();
+	}
+
 	public static void checkNegativeAndZeroInput(final String trialTime) {
 		double value = Double.parseDouble(trialTime);
 		if (value <= 0) {

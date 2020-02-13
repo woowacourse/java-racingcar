@@ -26,16 +26,7 @@ public class InputView {
 
 	public static int inputTrialTime() {
 		OutputView.printInputTrialTimeMessage();
-		String trialTime = scanner.nextLine();
-		try {
-			InputValidation.checkDecimalNumber(trialTime);
-			InputValidation.checkNotNumber(trialTime);
-			InputValidation.checkNegativeAndZeroInput(trialTime);
-			InputValidation.checkIntegerOverflow(trialTime);
-			return Integer.parseInt(trialTime);
-		} catch (Exception e) {
-			OutputView.printExceptionMessage(e);
-		}
-		return inputTrialTime();
+		return InputValidation.validateInputTrialTime(scanner.nextLine());
+
 	}
 }
