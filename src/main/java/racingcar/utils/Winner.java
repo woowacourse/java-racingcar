@@ -7,6 +7,7 @@ import racingcar.domain.Car;
 
 public class Winner {
 	private static final List<String> winners = new ArrayList<>();
+	private static final String COMMA = ",";
 
 	private Winner() {}
 
@@ -17,7 +18,7 @@ public class Winner {
 				winners.add(car.getName());
 			}
 		}
-		return String.join(",", winners);
+		return String.join(COMMA, winners);
 	}
 
 	private static int getWinnerPosition(List<Car> carList) {

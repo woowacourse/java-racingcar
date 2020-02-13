@@ -2,12 +2,13 @@ package racingcar.domain;
 
 public class Car {
 	private static final int MOVE_FORWARD = 4;
+	private static final int INITIAL_POSITION = 0;
 	private String name;
 	private int position;
 
 	public Car(String name) {
 		this.name = name;
-		position = 0;
+		position = INITIAL_POSITION;
 	}
 
 	public void move(int randomNumber) {

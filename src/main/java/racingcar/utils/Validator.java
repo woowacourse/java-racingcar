@@ -7,6 +7,7 @@ import java.util.Set;
 public class Validator {
 	private static final int maxLengthOfName = 5;
 	private static final int ZERO = 0;
+	private static final String NO_WORD = "";
 
 	private Validator() {}
 
@@ -36,7 +37,7 @@ public class Validator {
 
 	private static boolean isNotValidName(String name) {
 		String trimedName = TrimName.removeAllBlankInName(name);
-		return trimedName.equals("");
+		return trimedName.equals(NO_WORD);
 	}
 
 	// 시도 횟수 오류검증
