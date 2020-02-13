@@ -3,8 +3,9 @@ package tdd.racingcar.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
-public class Cars {
+public class Cars  {
 	private final List<Car> cars;
 
 	public Cars(final List<Car> cars) {
@@ -12,13 +13,14 @@ public class Cars {
 	}
 
 	public void move() {
-		final Power randomPower = PowerFactory.createRandomPower();
-		cars.forEach(tryToMove(randomPower));
-
+		cars.forEach(tryToMove());
 	}
 
-	public Consumer<Car> tryToMove(final Power power) {
-		return car -> car.move(power);
+	public Consumer<Car> tryToMove() {
+		return car -> {
+			final Power randomPower = PowerFactory.createRandomPower();
+			car.move(randomPower);
+		};
 	}
 
 	public int getMaxPosition() {
@@ -28,7 +30,7 @@ public class Cars {
 			.orElseThrow(() -> new IllegalArgumentException("차가 존재하지 않습니다."));
 	}
 
-	public List<Car> toList() {
-		return Collections.unmodifiableList(cars);
+	public Stream<Car> stream() {
+		return cars.stream();
 	}
 }
