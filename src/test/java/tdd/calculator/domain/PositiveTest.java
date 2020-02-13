@@ -9,7 +9,7 @@ class PositiveTest {
 	void getPositive() {
 		final Positive one = new Positive("1");
 		final int expected = 1;
-		final int actual = one.getPositive();
+		final int actual = one.getValue();
 		assertEquals(expected, actual);
 	}
 }

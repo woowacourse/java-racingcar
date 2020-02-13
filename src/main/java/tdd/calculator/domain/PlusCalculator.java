@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import tdd.calculator.util.InputUtils;
-import tdd.racingcar.view.InputView;
 
 public class PlusCalculator {
 	private static final int DEFAULT_VALUE = 0;
@@ -36,7 +35,7 @@ public class PlusCalculator {
 
 	private static int sum(final List<Positive> positives) {
 		return positives.stream()
-			.mapToInt(Positive::getPositive)
+			.mapToInt(Positive::getValue)
 			.sum();
 	}
 
