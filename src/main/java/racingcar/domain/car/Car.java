@@ -42,10 +42,6 @@ public class Car implements Comparable<Car> {
         return input.length() > MAX_NAME_LENGTH;
     }
 
-    public int getLocation() {
-        return location.getLocation();
-    }
-
     public void play() {
         if (GoOrStop.decideGoOrStop()) {
             move();

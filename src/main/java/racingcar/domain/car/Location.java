@@ -13,10 +13,6 @@ public class Location implements Comparable<Location> {
         this.location = location;
     }
 
-    public int getLocation() {
-        return location;
-    }
-
     public void moveForward() {
         location++;
     }
