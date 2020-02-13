@@ -18,6 +18,7 @@ public class CarNames {
     private final static String BLANK = " ";
     private final static String DELIMITER = ",";
     private final static int NAME_LENGTH_LIMIT = 5;
+
     private final List<String> carNames;
 
     CarNames(String input) throws IllegalArgumentException {

@@ -15,6 +15,7 @@ public class Car {
     private final static String HYPHEN = "-";
     private final static String COLON = " : ";
     private final static String NEW_LINE = "\n";
+
     private final String name;
     private int forwardCount = 0;
 

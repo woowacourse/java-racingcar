@@ -16,6 +16,7 @@ import java.util.List;
 public class Winner {
 
     private final static String COMMA_SPACE = ", ";
+
     private final List<String> winnerNames;
     private int maxCount = 0;
 
