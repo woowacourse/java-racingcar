@@ -11,32 +11,38 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGame {
-	private static List<Car> racingCarList;
 
 	public static void runRacingGame() {
 		try {
 			String[] carNames = getRacingCarNames();
 			int playRound = getRacingRound();
 
-			racingCarList = new ArrayList<>(carNames.length);
-			for (String carName : carNames) {
-				racingCarList.add(new Car(carName));
-			}
-
-			for (int i = 0; i < playRound; i++) {
-				for (Car car : racingCarList) {
-					car.move(RandomNumber.generateRandomIntIntRange());
-					OutputView.printRoundResult(car);
-				}
-				System.out.println();
-			}
+			final List<Car> racingCarList = getCars(carNames);
+			startRace(playRound, racingCarList);
 
 			OutputView.printWinners(Winner.getWinners(racingCarList));
-
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			runRacingGame();
 		}
+	}
+
+	private static void startRace(int playRound, List<Car> racingCarList) {
+		for (int i = 0; i < playRound; i++) {
+			for (Car car : racingCarList) {
+				car.move(RandomNumber.generateRandomIntIntRange());
+				OutputView.printRoundResult(car);
+			}
+			System.out.println();
+		}
+	}
+
+	private static List<Car> getCars(String[] carNames) {
+		final List<Car> racingCarList = new ArrayList<>(carNames.length);
+		for (String carName : carNames) {
+			racingCarList.add(new Car(carName));
+		}
+		return racingCarList;
 	}
 
 	private static String[] getRacingCarNames() {

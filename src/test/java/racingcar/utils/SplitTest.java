@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
-public class SplitTest {
+class SplitTest {
 	@Test
 	@DisplayName("자동차 이름을 쉼표(,) 기준으로 분리 테스트")
 	void splitNameTest() {
