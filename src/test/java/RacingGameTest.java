@@ -22,7 +22,6 @@ public class RacingGameTest {
     Output output;
 
 
-
     void initList() {
         carList.clear();
         carList.add(new Car("pobi", 0));
@@ -81,7 +80,7 @@ public class RacingGameTest {
     void 레이싱게임_실행_결과_테스트() {
         RacingGame.play(input, output);
         boolean result = false;
-        for(String name : testNames){
+        for (String name : testNames) {
             result = result || output.isContainName(name);
         }
         Assertions.assertThat(result).isTrue();

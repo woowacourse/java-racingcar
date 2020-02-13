@@ -47,7 +47,7 @@ public class Output {
         OutputView.printLine();
     }
 
-    public boolean isContainName(String name){
+    public boolean isContainName(String name) {
         return winners.contains(name);
     }
 }
