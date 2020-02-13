@@ -1,9 +1,9 @@
 package racingcargame.domain;
 
 public class Car {
-
     private static final int CAR_NAME_LIMIT = 5;
     private static final int FORWARD_BASE_NUMBER = 4;
+    public static final int INITIAL_POSITION = 0;
 
     private String name;
     private int position;
@@ -16,11 +16,11 @@ public class Car {
             throw new IllegalArgumentException();
         }
         this.name = name;
+        this.position = INITIAL_POSITION;
     }
 
-
-    public void move(int number) {
-        if (number >= FORWARD_BASE_NUMBER) {
+    public void move(int randomNumber) {
+        if (randomNumber >= FORWARD_BASE_NUMBER) {
             position++;
         }
     }

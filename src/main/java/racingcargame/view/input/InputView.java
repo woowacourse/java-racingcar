@@ -1,4 +1,4 @@
-package racingcargame.view.intput;
+package racingcargame.view.input;
 
 import java.util.Scanner;
 
@@ -15,5 +15,4 @@ public class InputView {
         System.out.println("시도 횟수를 입력하세요.");
         return scanner.nextLine();
     }
-
 }

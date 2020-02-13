@@ -5,6 +5,9 @@ import racingcargame.domain.Car;
 import java.util.List;
 
 public class OutputView {
+
+    public static final String DISPLAY_POSITION_CHAR = "-";
+
     public static void printRound(List<Car> cars) {
         for (Car car : cars) {
             printRoundEach(car);
@@ -17,10 +20,11 @@ public class OutputView {
         sb.append(car.getName());
         sb.append(": ");
         for (int i = 0; i < car.getPosition(); i++) {
-            sb.append("-");
+            sb.append(DISPLAY_POSITION_CHAR);
         }
         System.out.println(sb.toString());
     }
+
 
     public static void printWinners(List<String> carNames) {
         String names = String.join(",", carNames);

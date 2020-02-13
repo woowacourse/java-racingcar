@@ -29,19 +29,19 @@ public class CarsTest {
     }
 
     @Test
-    void 현재Cars중_넣어준포지션과_같은_위치_자동() {
+    void 현재Cars중_넣어준포지션과_같은_위치인지_확인() {
         List<Car> carList = new ArrayList<>();
         carList.add(new Car("제이"));
         carList.add(new Car("라테"));
         carList.add(new Car("포비"));
         Cars cars = new Cars(carList);
-        assertThat(cars.getCarsInSamePositionWith(0)).contains("제이");
-        assertThat(cars.getCarsInSamePositionWith(0)).contains("라테");
-        assertThat(cars.getCarsInSamePositionWith(0)).contains("포비");
+        assertThat(cars.getCarNamesInSamePositionWith(0)).contains("제이");
+        assertThat(cars.getCarNamesInSamePositionWith(0)).contains("라테");
+        assertThat(cars.getCarNamesInSamePositionWith(0)).contains("포비");
     }
 
     @Test
-    void 현재_cars를_n회전진() {
+    void 현재Cars를_n회전진() {
         List<Car> carList = new ArrayList<>();
         carList.add(new Car("제이"));
         carList.add(new Car("라테"));
