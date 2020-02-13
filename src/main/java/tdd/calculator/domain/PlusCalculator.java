@@ -2,7 +2,6 @@ package tdd.calculator.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import tdd.calculator.util.InputUtils;
@@ -14,30 +13,23 @@ public class PlusCalculator {
 		if (isBlank(value)) {
 			return DEFAULT_VALUE;
 		}
-		final List<Positive> positives = toPositives(InputUtils.splitValues(value));
-		return sum(positives);
+		final List<UnsignedNumber> unsignedNumbers = toUnsignedNumbers(InputUtils.splitValues(value));
+		return sum(unsignedNumbers);
 	}
 
 	private static boolean isBlank(final String value) {
 		return value == null || value.isBlank();
 	}
 
-	private static List<Positive> toPositives(final String[] values) {
+	private static List<UnsignedNumber> toUnsignedNumbers(final String[] values) {
 		return Arrays.stream(values)
-			.filter(isNotZero())
-			.map(Positive::new)
+			.map(UnsignedNumber::new)
 			.collect(Collectors.toList());
 	}
 
-	private static Predicate<String> isNotZero() {
-		return value -> Integer.parseInt(value) != DEFAULT_VALUE;
-	}
-
-	private static int sum(final List<Positive> positives) {
-		return positives.stream()
-			.mapToInt(Positive::getValue)
+	private static int sum(final List<UnsignedNumber> unsignedNumbers) {
+		return unsignedNumbers.stream()
+			.mapToInt(UnsignedNumber::getValue)
 			.sum();
 	}
-
-
 }
