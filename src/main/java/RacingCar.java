@@ -23,4 +23,10 @@ public class RacingCar {
             go();
         }
     }
+
+    public void stopManyTimes(int givenNumberToStop) {
+        for (int i = 0; i < givenNumberToStop; i++) {
+            stop();
+        }
+    }
 }
