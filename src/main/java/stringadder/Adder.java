@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 public class Adder {
 
+    private List<Integer> result = new ArrayList<>();
     private List<Integer> finalNumbers = new ArrayList<>();
 
     public int splitAndSum(String inputString) {
@@ -33,13 +34,11 @@ public class Adder {
     }
 
     public List<Integer> getSplit(String inputString) {
-        List<Integer> result = new ArrayList<>();
         String[] stringNumbers = inputString.split(",|:");
         return getFinalNumbers(result, stringNumbers);
     }
 
     public List<Integer> getSplit(String custom, String inputString) {
-        List<Integer> result = new ArrayList<>();
         String[] stringNumbers = inputString.split(custom);
         return getFinalNumbers(result, stringNumbers);
     }

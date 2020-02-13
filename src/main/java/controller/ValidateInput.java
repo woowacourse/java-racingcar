@@ -22,7 +22,7 @@ public class ValidateInput {
 
     public static int ValidateCount(String input) {
         int integerInput = Integer.parseInt(input);
-        ;
+
         if (isNotInteger(input)) {
             return IllegalNotIntegerException();
         }
