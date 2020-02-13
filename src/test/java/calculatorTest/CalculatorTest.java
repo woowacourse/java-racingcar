@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * 클래스 이름 : CalculatorTest.java
@@ -66,7 +65,7 @@ public class CalculatorTest {
     @DisplayName("지정된 구분자가 아닌 문자가 들어왔을 경우 예외 발생하게 됨")
     void splitAndSum_지정되지_않은_구분자() {
         assertThatThrownBy(() -> {
-            int result2 = Calculator.splitAndSum("1:2@3");
+            int result = Calculator.splitAndSum("1:2@3");
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자와 구분자만 입력할 수 있습니다.");
     }

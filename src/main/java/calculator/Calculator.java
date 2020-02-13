@@ -15,14 +15,15 @@ import java.util.regex.Pattern;
  */
 
 public class Calculator {
-    public static final String REGEX = "//(.)\n(.*)";
-    public static final int SINGLE_NUMBER = 1;
-    public static final String NEGATIVE_SYMBOL = "-";
-    public static final String OR_SYMBOL = "|";
+    private static final String REGEX = "//(.)\n(.*)";
+    private static final int SINGLE_NUMBER = 1;
+    private static final int NULL_OR_EMPTY_RETURN_VALUE = 0;
+    private static final String NEGATIVE_SYMBOL = "-";
+    private static final String OR_SYMBOL = "|";
 
     public static int splitAndSum(final String input) {
         if (isNullOrEmpty(input)) {
-            return 0;
+            return NULL_OR_EMPTY_RETURN_VALUE;
         }
         String[] inputs = splitByDelimiter(input);
 
@@ -55,12 +56,8 @@ public class Calculator {
         return result;
     }
 
-    private static int checkDelimiter(final String value) {
-        try {
-            return Integer.parseInt(value);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("숫자와 구분자만 입력할 수 있습니다.");
-        }
+    private static boolean isNullOrEmpty(final String input) {
+        return input == null || input.isEmpty();
     }
 
     private static void isContainNegative(final String value) {
@@ -69,7 +66,11 @@ public class Calculator {
         }
     }
 
-    private static boolean isNullOrEmpty(final String input) {
-        return input == null || input.isEmpty();
+    private static int checkDelimiter(final String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("숫자와 구분자만 입력할 수 있습니다.");
+        }
     }
 }
