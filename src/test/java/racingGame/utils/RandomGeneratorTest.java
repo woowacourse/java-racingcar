@@ -1,8 +1,8 @@
 package racingGame.utils;
 
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class RandomGeneratorTest {
     private static final Integer LOWER_BOUND = 0;

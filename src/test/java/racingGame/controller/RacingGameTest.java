@@ -1,24 +1,21 @@
 package racingGame.controller;
 
-import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import racingGame.domain.Car;
+import racingGame.domain.Cars;
+import racingGame.domain.Name;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
-import racingGame.domain.Car;
-import racingGame.domain.Cars;
-import racingGame.domain.Name;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingGameTest {
     @Test
     void getWinners_우승한_자동차() {
-        RacingGame racingGame = new RacingGame();
         List<Car> inGameCars = new ArrayList<>();
         Cars cars;
-        int winnerPosition = 2;
 
         inGameCars.add(new Car(new Name("car1")));
         inGameCars.add(new Car(new Name("car2")));

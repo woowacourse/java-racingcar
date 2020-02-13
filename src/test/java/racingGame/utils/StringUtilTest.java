@@ -1,11 +1,10 @@
 package racingGame.utils;
 
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import racingGame.domain.Car;
 import racingGame.domain.Name;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringUtilTest {
     @Test
