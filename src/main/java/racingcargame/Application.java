@@ -1,8 +1,8 @@
 package racingcargame;
 
+import racingcargame.controller.CarDto;
+import racingcargame.controller.RacingCarController;
 import racingcargame.domain.Car;
-import racingcargame.domain.CarDto;
-import racingcargame.domain.RacingCarGame;
 import racingcargame.domain.Repeat;
 import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
@@ -14,15 +14,19 @@ public class Application {
         final String names = InputView.inputNames();
         final Repeat repeat = new Repeat(InputView.inputRepeat());
 
-        OutputView.printRaceResult();
-        final RacingCarGame game = new RacingCarGame();
+        OutputView.printRaceResultMessage();
+        final RacingCarController game = new RacingCarController();
         final List<CarDto> carStatus = game.run(names, repeat);
-        for (CarDto carDto : carStatus) {
-            printEachRaceStatus(carDto);
-        }
+        printRaceResult(carStatus);
 
         String winner = game.winner;
         OutputView.printWinner(winner);
+    }
+
+    private static void printRaceResult(List<CarDto> carStatus) {
+        for (CarDto carDto : carStatus) {
+            printEachRaceStatus(carDto);
+        }
     }
 
     private static void printEachRaceStatus(CarDto carDto) {

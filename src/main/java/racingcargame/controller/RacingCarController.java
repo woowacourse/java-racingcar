@@ -1,8 +1,11 @@
-package racingcargame.domain;
+package racingcargame.controller;
+
+import racingcargame.domain.RacingCars;
+import racingcargame.domain.Repeat;
 
 import java.util.ArrayList;
 
-public class RacingCarGame {
+public class RacingCarController {
     public String winner;
 
     public ArrayList<CarDto> run(String userInputName, Repeat userInputRepeat) {

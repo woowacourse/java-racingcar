@@ -5,7 +5,7 @@ import racingcargame.domain.Car;
 public class OutputView {
     private static final String MARK = "-";
 
-    public static void printRaceResult() {
+    public static void printRaceResultMessage() {
         System.out.println("\n실행 결과");
     }
 

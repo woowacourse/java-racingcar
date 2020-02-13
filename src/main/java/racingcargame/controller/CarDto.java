@@ -1,4 +1,6 @@
-package racingcargame.domain;
+package racingcargame.controller;
+
+import racingcargame.domain.Car;
 
 import java.util.ArrayList;
 import java.util.Iterator;
