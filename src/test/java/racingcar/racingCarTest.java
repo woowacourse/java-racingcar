@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 import racingcar.domain.CarFactory;
@@ -107,4 +108,19 @@ public class racingCarTest {
         assertThat(car.currentPosition().get(1)).isEqualTo("----------");
     }
 
+    @ParameterizedTest
+    @DisplayName("Car끼리 private변수인 position을 비교하는 것을 테스트")
+    @CsvSource(value = {"4,10,hiro", "12,10,asdf"})
+    void checkPositionCompare(int car1Position, int car2Position, String winnerName) {
+        Car car1 = new Car("asdf");
+        Car car2 = new Car("hiro");
+        for(int i = 0; i < car1Position; i++) {
+            car1.checkMove(4);
+        }
+        for(int i = 0; i < car2Position; i++) {
+            car2.checkMove(4);
+        }
+        assertThat(car1.comparePosition(car2)
+                .currentPosition().get(0)).isEqualTo(winnerName);
+    }
 }

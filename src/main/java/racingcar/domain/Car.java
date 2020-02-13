@@ -46,6 +46,14 @@ public class Car {
         return Arrays.asList(new String[]{name, stripBuilder()});
     }
 
+    public Car comparePosition(Car car) {
+        List<String> winner = new ArrayList<>();
+        if(car.position > this.position) {
+            return car;
+        }
+        return this;
+    }
+
     private String stripBuilder() {
         String strip = BLANKSTRING;
         for (int i = 0; i < position; i++) {
