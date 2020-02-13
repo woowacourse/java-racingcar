@@ -30,8 +30,8 @@ class GameManagerTest {
     }
 
     @Test
-    void name() {
-        List<String> winnerList = gameManager.getWinner();
-        System.out.println(winnerList);
+    void getWinner() {
+        List<PlayerInfoPair> winnerList = gameManager.getWinners();
+        winnerList.forEach((t) -> System.out.println(t.getName()));
     }
 }
