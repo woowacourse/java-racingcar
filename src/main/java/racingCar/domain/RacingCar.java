@@ -49,4 +49,8 @@ public class RacingCar {
     public void stopWithNumberUnderThree(int i) {
         stop();
     }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 }
