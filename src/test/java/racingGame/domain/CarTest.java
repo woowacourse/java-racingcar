@@ -27,8 +27,6 @@ public class CarTest {
 
 		final int expected = initPosition;
 
-		System.out.println(car.toString());
-
 		assertThat(actual).isEqualTo(expected);
 	}
 
@@ -47,18 +45,19 @@ public class CarTest {
 
 	@Test
 	void isWinnerPosition_우승한_위치의_자동차() {
-		final int winnerPosition = 7;
+		final int winnerPosition = 2;
 
-		car.setPosition(7);
+		car.move(7);
+		car.move(9);
 
 		assertThat(car.isSamePosition(winnerPosition)).isTrue();
 	}
 
 	@Test
 	void isWinnerPosition_우승하지_못한_위치의_자동차() {
-		final int winnerPosition = 7;
+		final int winnerPosition = 2;
 
-		car.setPosition(6);
+		car.move(9);
 
 		assertThat(car.isSamePosition(winnerPosition)).isFalse();
 	}

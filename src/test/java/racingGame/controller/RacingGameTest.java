@@ -25,17 +25,19 @@ public class RacingGameTest {
 		inGameCars.add(new Car(new Name("car3")));
 		inGameCars.add(new Car(new Name("car4")));
 
-		inGameCars.get(0).setPosition(winnerPosition - 1);
-		inGameCars.get(1).setPosition(winnerPosition);
-		inGameCars.get(2).setPosition(winnerPosition - 2);
-		inGameCars.get(3).setPosition(winnerPosition);
+		inGameCars.get(0).move(7);
+		inGameCars.get(1).move(7);
+		inGameCars.get(2).move(7);
+		inGameCars.get(3).move(7);
+		inGameCars.get(2).move(7);
+		inGameCars.get(3).move(7);
 
 		cars = new Cars(inGameCars);
 
-		List<Car> actual = racingGame.getWinners(cars);
+		List<Car> actual = cars.getWinnersList();
 
 		List<Car> expected = Arrays.asList(
-			new Car(new Name("car2")),
+			new Car(new Name("car3")),
 			new Car(new Name("car4")));
 
 		assertThat(actual).isEqualTo(expected);

@@ -22,7 +22,10 @@ public class StringUtilTest {
 	@Test
 	void convertPositionToString_자동차_위치를_문자로_변환() {
 		final Car car = new Car(new Name("test"));
-		car.setPosition(4);
+		car.move(9);
+		car.move(9);
+		car.move(9);
+		car.move(9);
 
 		final String actual = StringUtil.convertPositionToString(car.getPosition());
 

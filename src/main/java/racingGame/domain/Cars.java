@@ -28,7 +28,7 @@ public class Cars {
         updateMaximumPosition();
     }
 
-    public void updateMaximumPosition() {
+    private void updateMaximumPosition() {
         for (Car individualCar : cars) {
             maximumPosition = Math.max(maximumPosition,individualCar.getPosition());
         }
@@ -56,6 +56,6 @@ public class Cars {
     }
 
     public Collection<Car> getCars() {
-        return Collections.unmodifiableCollection(cars);
+        return cars;
     }
 }

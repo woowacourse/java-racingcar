@@ -43,10 +43,6 @@ public class Car {
 		return position;
 	}
 
-	public void setPosition(int position) {
-		this.position = position;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
