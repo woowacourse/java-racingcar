@@ -1,20 +1,17 @@
 package racingcar.domain;
 
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.Name;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Winners {
-    private final List<Name> winners;
+    private final List<String> winners;
 
     public Winners(Cars cars) {
-        List<Name> winners = new ArrayList<>();
         int maxLocation = findMaxLocation(cars);
-        findWinners(cars, maxLocation);
+        List<String> winners = findWinners(cars, maxLocation);
         this.winners = winners;
     }
 
@@ -31,5 +28,9 @@ public class Winners {
                 .map(car -> car.getName())
                 .collect(Collectors.toList());
         return winners;
+    }
+
+    public String getWinnerNames() {
+        return String.join(", ", winners);
     }
 }

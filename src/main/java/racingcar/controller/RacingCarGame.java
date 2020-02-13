@@ -24,5 +24,8 @@ public class RacingCarGame {
             OutputView.printResult(result);
             System.out.println();
         }
+
+        Winners winners = new Winners(cars);
+        OutputView.printResult(winners.getWinnerNames());
     }
 }
