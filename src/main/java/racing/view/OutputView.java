@@ -23,7 +23,9 @@ public class OutputView {
 	}
 
 	public static void printWinner(List<Car> winners) {
-		String winnersName = winners.stream().map(Car::getName).collect(Collectors.joining(WINNER_NAME_DELIMITER));
+		String winnersName = winners.stream()
+				.map(Car::getName)
+				.collect(Collectors.joining(WINNER_NAME_DELIMITER));
 		System.out.print(winnersName + " 최종 우승했습니다.");
 	}
 }
