@@ -3,7 +3,7 @@ package racinggame.race.car;
 import java.util.List;
 import java.util.Objects;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.joining;
 
 public class Winners {
     public static final String COMMA = ", ";
@@ -15,11 +15,9 @@ public class Winners {
     }
 
     public String getNames() {
-        List<String> winnersNames = cars.stream()
+        return cars.stream()
                 .map(Car::getName)
-                .collect(toList());
-
-        return String.join(COMMA, winnersNames);
+                .collect(joining(COMMA));
     }
 
     @Override
