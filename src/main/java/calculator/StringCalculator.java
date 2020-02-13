@@ -6,6 +6,8 @@ import java.util.List;
 public class StringCalculator {
     private int result = 0;
     public int add(String numberExpression) {
+
+
         if (hasCustomSeperator(numberExpression)) {
             String seperator = numberExpression.substring(2,3);
             addNumbersInExpressionBySeparator(numberExpression.substring(4), seperator);
@@ -20,14 +22,16 @@ public class StringCalculator {
             return result;
         }
 
-        List<String> notSplittedWordsWithComma = addNumbersInExpressionBySeparator(numberExpression, ",");
-
-        for (String notSpllitedWordWithComma : notSplittedWordsWithComma) {
-            addNumbersInExpressionBySeparator(notSpllitedWordWithComma, ":");
-        }
-
+        addNumbersInExpressionBySeparators(numberExpression);
 
         return result;
+    }
+
+    private void addNumbersInExpressionBySeparators(String numberExpression) {
+        String[] numbers = numberExpression.split(",|:");
+        for (String number : numbers) {
+            result += Integer.parseInt(number);
+        }
     }
 
     private boolean hasCustomSeperator(String numberExpression) {
