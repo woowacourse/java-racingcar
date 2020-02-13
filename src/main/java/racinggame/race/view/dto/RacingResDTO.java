@@ -2,8 +2,10 @@ package racinggame.race.view.dto;
 
 import racinggame.race.car.Car;
 
+import java.util.Arrays;
+
 public class RacingResDTO {
-    private static final String BAR = "-";
+    private static final char BAR = '-';
 
     private final String name;
     private final String distance;
@@ -18,11 +20,9 @@ public class RacingResDTO {
     }
 
     private String makeDistanceBar(int distance) {
-        StringBuilder bars = new StringBuilder();
-        for (int i = 0; i < distance; i++) {
-            bars.append(BAR);
-        }
-        return bars.toString();
+        char[] bars = new char[distance];
+        Arrays.fill(bars, BAR);
+        return String.valueOf(bars);
     }
 
     public String getName() {
