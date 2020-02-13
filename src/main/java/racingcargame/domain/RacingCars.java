@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 public class RacingCars {
     private static final String DELIMITER = ",";
+    private static final String NO_CAR_ERROR_MESSAGE = "입력된 자동차가 없습니다.";
+    private static final String ONE_CAR_ERROR_MESSAGE = "하나의 자동차만 입력되었습니다.";
+
     private final List<Car> cars = new ArrayList<>();
 
     RacingCars(List<Car> cars) {
@@ -42,11 +45,11 @@ public class RacingCars {
 
     private static void validCarAmount(String[] splicedInputCarNames) {
         if (splicedInputCarNames.length == 0) {
-            System.out.println("입력된 자동차가 없습니다.");
+            System.out.println(NO_CAR_ERROR_MESSAGE);
             throw new RuntimeException();
         }
         if (splicedInputCarNames.length == 1) {
-            System.out.println("하나의 자동차만 입력되었습니다.");
+            System.out.println(ONE_CAR_ERROR_MESSAGE);
             throw new RuntimeException();
         }
     }

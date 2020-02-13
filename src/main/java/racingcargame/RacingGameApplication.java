@@ -7,6 +7,7 @@ import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 
 public class RacingGameApplication {
+
     public static void main(String[] args) {
         RacingCars racingCars = inputRacingCars();
 
@@ -46,6 +47,4 @@ public class RacingGameApplication {
             tryNumber++;
         }
     }
-
-
 }

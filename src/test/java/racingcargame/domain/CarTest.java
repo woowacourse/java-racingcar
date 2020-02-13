@@ -17,7 +17,7 @@ public class CarTest {
         Engine engine = Engine.createEngineSetBy(5);
         Car car = new Car("pobi");
         car.go(engine);
-        assertThat(car.isSameToPosition(1)).isEqualTo(true);
+        assertThat(car.isSameToPosition(new Position(1))).isEqualTo(true);
     }
 
     @Test

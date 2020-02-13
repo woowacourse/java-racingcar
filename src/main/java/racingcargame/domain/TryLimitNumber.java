@@ -2,6 +2,7 @@ package racingcargame.domain;
 
 public class TryLimitNumber {
     private static final int MIN_TRY_NUMBER = 1;
+    private static final String TRY_LIMIT_ERROR_MESSAGE = "1 이상의 숫자만 입력 가능합니다.";
 
     private final int number;
 
@@ -12,7 +13,7 @@ public class TryLimitNumber {
 
     private void checkExceedRange(int number) {
         if (number < MIN_TRY_NUMBER) {
-            System.out.println("1 이상의 숫자만 입력 가능합니다.");
+            System.out.println(TRY_LIMIT_ERROR_MESSAGE);
             throw new RuntimeException();
         }
     }
