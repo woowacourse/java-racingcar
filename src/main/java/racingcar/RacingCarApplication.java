@@ -26,12 +26,15 @@ public class RacingCarApplication {
             round.next();
             OutputView.printRoundResult(cars);
         }
-        WinningRule winningRule = cars.getWinningRule();
-        List<Name> winnerNames = winningRule.decideWinners();
-        OutputView.printWinnerNames(winnerNames);
+        showWinnerNames(cars.getWinningRule());
     }
 
     private static Cars makeCars() {
         return new Cars(CarNameSplitter.split(InputView.inputNames()));
+    }
+
+    private static void showWinnerNames(WinningRule winningRule) {
+        List<Name> winnerNames = winningRule.decideWinners();
+        OutputView.printWinnerNames(winnerNames);
     }
 }
