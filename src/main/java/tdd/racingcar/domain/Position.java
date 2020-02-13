@@ -20,15 +20,15 @@ public class Position {
 		position++;
 	}
 
-	public int getPosition() {
+	public int getValue() {
 		return position;
 	}
 
-	public boolean isPosition(final int position) {
+	public boolean match(final int position) {
 		return this.position == position;
 	}
 
-	public boolean isPosition(final Position other) {
-		return this.position == other.position;
+	public boolean match(final Position other) {
+		return match(other.position);
 	}
 }

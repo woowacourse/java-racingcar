@@ -14,12 +14,12 @@ public class Car {
 		}
 	}
 
-	public boolean isPosition(final int maxPosition) {
-		return position.isPosition(maxPosition);
+	public boolean isPosition(final int position) {
+		return this.position.match(position);
 	}
 
 	public int getPosition() {
-		return position.getPosition();
+		return position.getValue();
 	}
 
 	public String getName() {

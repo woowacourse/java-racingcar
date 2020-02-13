@@ -18,6 +18,6 @@ public class PositionTest {
 		final Position position = new Position(0);
 		position.move();
 		final Position expected = new Position(1);
-		assertThat(position.isPosition(expected)).isTrue();
+		assertThat(position.match(expected)).isTrue();
 	}
 }
