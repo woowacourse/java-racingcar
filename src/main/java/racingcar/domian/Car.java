@@ -19,6 +19,14 @@ public class Car {
         this.name = validateName(name);
     }
 
+    public int getPosition() {
+        return this.position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     private static String validateName(String name) {
         name = name.trim();
         validateNullOrEmpty(name);
@@ -38,11 +46,21 @@ public class Car {
         }
     }
 
-
     public void move(int inputValue) {
         if (inputValue >= LIMIT_FOR_MOVE) {
             this.position++;
         }
+    }
+
+    public String isWinner(int max) {
+        if (isMaxPosition(max)) {
+            return name;
+        }
+        return EMPTY_STRING;
+    }
+
+    private boolean isMaxPosition(int max) {
+        return this.position == max;
     }
 
     @Override
@@ -57,24 +75,5 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(position, name);
-    }
-
-    public int getPosition() {
-        return this.position;
-    }
-
-    public String isWinner(int max) {
-        if (isMaxPosition(max)) {
-            return name;
-        }
-        return EMPTY_STRING;
-    }
-
-    public boolean isMaxPosition(int max) {
-        return this.position == max;
-    }
-
-    public String getName() {
-        return name;
     }
 }

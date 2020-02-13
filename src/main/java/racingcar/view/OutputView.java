@@ -5,7 +5,6 @@ import racingcar.domian.Car;
 import java.util.List;
 
 public class OutputView {
-
     private static final int ZERO = 0;
     private static final String COLON = " : ";
     private static final String DASH = "-";

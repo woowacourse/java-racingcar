@@ -18,13 +18,13 @@ public class RacingCar {
         round = validateRound(InputView.inputGameRound());
     }
 
-    private static int validateRound(String inputRound) {
+    private int validateRound(String inputRound) {
         int round = validateNumber(inputRound.trim());
         validateCount(round);
         return round;
     }
 
-    private static int validateNumber(String input) {
+    private int validateNumber(String input) {
         int count;
         try {
             count = Integer.parseInt(input);
@@ -34,7 +34,7 @@ public class RacingCar {
         return count;
     }
 
-    private static void validateCount(int count) {
+    private void validateCount(int count) {
         if (count < COUNT_LOWER_LIMIT || count > COUNT_UPPER_LIMIT) {
             throw new IllegalArgumentException("횟수가 1보다 작거나 10번 초과입니다!");
         }

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars;
+
     private static final int CAR_LIMIT = 5;
     private static final String DELIMITER = ",";
 
@@ -17,6 +18,10 @@ public class Cars {
             players.add(new Car(name));
         }
         this.cars = players;
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 
     private static void validateCarCount(int carCount) {
@@ -46,9 +51,5 @@ public class Cars {
             winners.add(car.isWinner(max));
         }
         return winners.stream().filter(x -> !"".equals(x)).collect(Collectors.joining(","));
-    }
-
-    public List<Car> getCars() {
-        return cars;
     }
 }
