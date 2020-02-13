@@ -3,7 +3,12 @@ package stringCalculator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import javax.crypto.spec.PSource;
 import java.io.FileInputStream;
 import java.util.Scanner;
 
@@ -52,13 +57,11 @@ public class CalculatorTest {
         ).isInstanceOf(RuntimeException.class);
     }
 
-    @Test
+    @ParameterizedTest
+    @NullAndEmptySource
     @DisplayName("null 또는 빈 문자열 테스트")
-    public void calculateNullOrEmptyStringTest() {
-        double result = Calculator.calculate(null);
-        Assertions.assertThat(result).isEqualTo(0);
-
-        result = Calculator.calculate("");
+    public void calculateNullOrEmptyStringTest(String input) {
+        double result = Calculator.calculate(input);
         Assertions.assertThat(result).isEqualTo(0);
     }
 }

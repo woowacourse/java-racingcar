@@ -42,7 +42,7 @@ public class Calculator {
     private static String combineDelimiters(String customDelimiter) {
         StringBuilder SB = new StringBuilder();
         SB.append(DEFAULT_DELIMITER);
-        if (customDelimiter != null) {
+        if (customDelimiter != EMPTY_STRING) {
             SB.append(OR);
             SB.append(customDelimiter);
         }
@@ -51,7 +51,7 @@ public class Calculator {
 
     private static String getNewDelimiter(String rawInput) {
         if (!hasCustomDelimiterRequest(rawInput)) {
-            return null;
+            return EMPTY_STRING;
         }
         int startIndex = rawInput.indexOf(CUSTOM_DELIMITER_STARTER) + CUSTOM_DELIMITER_STARTER.length();
         int endIndex = rawInput.indexOf(CUSTOM_DELIMITER_TERMINATOR);
