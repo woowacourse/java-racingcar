@@ -9,4 +9,15 @@ public class RacingCarTest {
         RacingCar racingCar = new RacingCar("name");
         assertNotNull(racingCar);
     }
+
+    @Test
+    void 자동차는_전진할_수_있다() {
+        RacingCar racingCar = new RacingCar("name");
+        int position = racingCar.getPostion();
+        assertThat(position).isEqualTo(0);
+
+        racingCar.proceed();
+        position = racingCar.getPostion();
+        assertThat(position).isEqualTo(1);
+    }
 }
