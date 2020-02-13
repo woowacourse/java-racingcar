@@ -4,9 +4,6 @@ import racingGame.utils.RandomGenerator;
 
 import java.util.*;
 
-import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.maxBy;
-
 public class Cars {
     private static final int INIT_POSITION = 0;
 
@@ -31,7 +28,10 @@ public class Cars {
     }
 
     public void updateMaximumPosition() {
-        maximumPosition = cars.stream().max(Comparator.comparingInt(Car::getPosition)).get().getPosition();
+        maximumPosition = cars.stream()
+                .max(Comparator.comparingInt(Car::getPosition))
+                .get()
+                .getPosition();
     }
 
     public List<Car> getWinnersList() {

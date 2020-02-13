@@ -4,7 +4,7 @@ import racingGame.controller.RacingGame;
 import stringCalculator.StringAddCalculator;
 
 public class Application {
-    public static void main (String args[]){
+    public static void main(String args[]) {
         RacingGame racingGame = new RacingGame();
         racingGame.run();
     }

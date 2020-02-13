@@ -1,9 +1,5 @@
 package racingGame.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import racingGame.domain.Car;
 import racingGame.domain.Cars;
 import racingGame.domain.MovementNumber;
 import racingGame.utils.CarFactory;
