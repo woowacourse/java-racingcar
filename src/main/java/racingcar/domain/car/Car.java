@@ -2,6 +2,10 @@ package racingcar.domain.car;
 
 import racingcar.domain.GoOrStop;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
 
@@ -14,6 +18,14 @@ public class Car {
 
         this.name = new Name(name);
         this.location = new Location();
+    }
+
+    public Car(String name, int location) {
+        validateEmptyName(name);
+        validateNameLength(name);
+
+        this.name = new Name(name);
+        this.location = new Location(location);
     }
 
     public static void validateEmptyName(String input) throws IllegalArgumentException {
@@ -52,5 +64,17 @@ public class Car {
         result.append(" : ");
         result.append(location);
         return result.toString();
+    }
+
+    public String getName() {
+        return name.toString();
+    }
+
+    @Override
+    public String toString() {
+        List<String> list = Stream.of(name)
+                .map(winner -> winner.toString())
+                .collect(Collectors.toList());
+        return String.join(", ", list);
     }
 }

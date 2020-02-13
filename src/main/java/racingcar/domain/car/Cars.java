@@ -2,6 +2,7 @@ package racingcar.domain.car;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Cars {
@@ -17,6 +18,19 @@ public class Cars {
 
         for (String name : names.split(DELIMITER)) {
             cars.add(new Car(name));
+        }
+
+        this.cars = cars;
+    }
+
+    public Cars(String names, int location) {
+        List<Car> cars = new ArrayList<>();
+
+        validateNames(names);
+        validateDuplicatedNames(names);
+
+        for (String name : names.split(DELIMITER)) {
+            cars.add(new Car(name, location++));
         }
 
         this.cars = cars;
@@ -56,5 +70,9 @@ public class Cars {
             results.append("\n");
         }
         return results.toString();
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

@@ -9,6 +9,10 @@ public class Location {
         this.location = 0;
     }
 
+    Location(int location) {
+        this.location = location;
+    }
+
     public int getLocation() {
         return location;
     }
