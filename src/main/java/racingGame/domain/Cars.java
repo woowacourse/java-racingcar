@@ -28,10 +28,9 @@ public class Cars {
         for (Car individualCar : cars) {
             individualCar.move(RandomGenerator.generateRandomNumber());
         }
-        updateMaximumPosition();
     }
 
-    private void updateMaximumPosition() {
+    public void updateMaximumPosition() {
         maximumPosition = cars.stream().max(Comparator.comparingInt(Car::getPosition)).get().getPosition();
     }
 

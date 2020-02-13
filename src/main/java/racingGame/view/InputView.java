@@ -10,8 +10,8 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static int getMovementNumber() {
+    public static String getMovementNumber() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return scanner.nextInt();
+        return scanner.nextLine();
     }
 }

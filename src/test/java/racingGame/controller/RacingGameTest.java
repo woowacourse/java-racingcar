@@ -18,7 +18,7 @@ public class RacingGameTest {
 		RacingGame racingGame = new RacingGame();
 		List<Car> inGameCars = new ArrayList<>();
 		Cars cars;
-		int winnerPosition = 7;
+		int winnerPosition = 2;
 
 		inGameCars.add(new Car(new Name("car1")));
 		inGameCars.add(new Car(new Name("car2")));
@@ -33,7 +33,7 @@ public class RacingGameTest {
 		inGameCars.get(3).move(7);
 
 		cars = new Cars(inGameCars);
-
+		cars.updateMaximumPosition();
 		List<Car> actual = cars.getWinnersList();
 
 		List<Car> expected = Arrays.asList(
