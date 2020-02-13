@@ -42,7 +42,7 @@ public class Car {
         }
     }
 
-    public void passingLog(){
-        Output.makeCarLog(name,position);
+    public void passingLog(Output output){
+        output.updateCarStatus(name,position);
     }
 }

@@ -1,6 +1,7 @@
 package racingGame.domain;
 
 import racingGame.controller.Input;
+import racingGame.controller.Output;
 import racingGame.view.OutputView;
 
 import java.util.ArrayList;
@@ -15,27 +16,21 @@ public class RacingGame {
         return random;
     }
 
-    public static List<String> play(Input input) {
+    public static void play(Input input, Output output) {
         List<String> names = input.splitInputByComma();
+        List<Car> cars = new ArrayList<>();
         int repeat = input.parseRepeatToInt();
 
-        List<Car> cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
+        output.initCarStatus(names);
+        names.stream().forEach((x)->cars.add(new Car(x)));
         OutputView.printResultFormat();
         for (int i = 0; i < repeat; i++) {
             cars.stream().forEach((x) -> {
-                int random = generateRandom();
-                x.move(random);
-                x.passingLog();
+                x.move(generateRandom());
+                x.passingLog(output);
             });
-            OutputView.printLine();
+            output.printLog();
         }
-        List<String> winners = new ArrayList<>();
-        cars.stream().forEach((x) -> {
-            x.addWinnerName(winners);
-        });
-        return winners;
+        output.makeWinnerNames(cars);
     }
 }

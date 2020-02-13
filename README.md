@@ -47,5 +47,13 @@
 
 ### 예외처리
 
+
+
+* 왜 인풋은 인스턴스, 아웃풋은 클래스인가?
+* 메서드 길이
+* 등등...
+
+내일 점심까지
+
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
