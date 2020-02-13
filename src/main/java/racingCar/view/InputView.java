@@ -9,7 +9,7 @@ public class InputView {
         this.scanner = scanner;
     }
 
-    public int inputNumbersToMove() {
+    public int inputNumberToMove() {
         return Integer.parseInt(scanner.nextLine());
     }
 
