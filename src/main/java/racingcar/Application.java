@@ -32,8 +32,9 @@ public class Application {
         Race race = new Race();
 
         for (int i = 0; i < count; i++) {
-            cars.getCars().stream()
-                    .forEach(car -> race.racing(car));
+            cars.getCars()
+                    .stream()
+                    .forEach(race::racing);
 
             OutputView.showEachRaceResult(cars.getCars());
         }

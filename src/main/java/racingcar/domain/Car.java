@@ -11,6 +11,11 @@ public class Car {
         position = 0;
     }
 
+    protected Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
     public void moveForward() {
         position++;
     }
@@ -29,5 +34,9 @@ public class Car {
 
     public boolean isEmpty() {
         return name.isEmpty();
+    }
+
+    public boolean isMaxPosition(int maxPosition) {
+        return position == maxPosition;
     }
 }

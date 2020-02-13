@@ -12,9 +12,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class CarsTest {
-    public static final int ALLEN = 0;
-    public static final int POBI = 2;
-
     @Test
     void splitCarNames() {
         //given
@@ -42,13 +39,11 @@ class CarsTest {
     private static Stream<Arguments> createCarsAndWinners() {
         String allen = "앨런";
         String lowoon = "로운";
-        String pobi = "pobi";
+        String pobi = "포비";
 
-        Cars cars = new Cars(String.join(Cars.DELIMITER, allen, lowoon, pobi));
-        List<Car> carsList = cars.getCars();
-        carsList.get(ALLEN).moveForward();
-        carsList.get(POBI).moveForward();
-
+        List<Car> testCars = List.of(new Car(allen, 3), new Car(lowoon, 2), new Car(pobi, 3));
+        Cars cars = new Cars(testCars);
+        
         return Stream.of(
                 Arguments.of(cars, List.of(allen, pobi))
         );

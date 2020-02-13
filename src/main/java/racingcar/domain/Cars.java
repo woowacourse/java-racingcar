@@ -21,6 +21,10 @@ public class Cars {
         validateCarNames();
     }
 
+    protected Cars(List<Car> cars) {
+        this.cars = cars;
+    }
+
     private void validateCarNames() {
         if (cars.size() < MINIMUM_TEAM) {
             throw new IllegalArgumentException("참가자는 " + MINIMUM_TEAM + "명 이상이어야합니다.");
@@ -42,13 +46,13 @@ public class Cars {
     }
 
     public List<String> getWinners() {
-        final int maximum = cars.stream()
+        final int maxPosition = cars.stream()
                  .map(car -> car.getPosition())
                  .max(Integer::compareTo)
                  .get();
 
          return cars.stream()
-                 .filter(car -> car.getPosition() == maximum)
+                 .filter(car -> car.isMaxPosition(maxPosition))
                  .map(car -> car.getName())
                  .collect(Collectors.toList());
     }
