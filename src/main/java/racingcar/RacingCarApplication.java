@@ -1,10 +1,12 @@
 package racingcar;
 
-import racingcar.domain.*;
+import racingcar.controller.RacingGame;
+import racingcar.domain.CarNameSplitter;
+import racingcar.domain.Cars;
+import racingcar.domain.RandomNumberGenerator;
+import racingcar.domain.Round;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.util.List;
 
 /**
  * 프로그램 실행 클래스
@@ -15,23 +17,17 @@ import java.util.List;
  * @since 2020/02/13
  */
 public class RacingCarApplication {
-    public static void main(String[] args) {
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        Cars cars = makeCars();
-        Round round = new Round(InputView.inputRound());
+	public static void main(String[] args) {
+		try {
+			RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+			String names = InputView.inputNames();
+			Cars cars = new Cars(CarNameSplitter.split(names));
+			Round round = new Round(InputView.inputRound());
 
-        OutputView.printFirstRoundResult(cars);
-        while (!round.isFinal()) {
-            cars.moveAll(randomNumberGenerator);
-            round.next();
-            OutputView.printRoundResult(cars);
-        }
-        WinningRule winningRule = cars.getWinningRule();
-        List<Name> winnerNames = winningRule.decideWinners();
-        OutputView.printWinnerNames(winnerNames);
-    }
-
-    private static Cars makeCars() {
-        return new Cars(CarNameSplitter.split(InputView.inputNames()));
-    }
+			RacingGame racingGame = new RacingGame(cars, round, randomNumberGenerator);
+			racingGame.run();
+		} catch (IllegalArgumentException | NullPointerException e) {
+			OutputView.printErrorMessage(e.getMessage());
+		}
+	}
 }
