@@ -12,6 +12,7 @@ import java.util.Map;
 public class Game {
 
     private final int iteration;
+
     private Cars cars;
 
     public Game(Cars cars, int iteration) {

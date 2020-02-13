@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Cars {
     public static final String RANDOM_OUTOF_BOUND = "범위를 초과한 난수입니다.";
+
     private List<Car> cars;
 
     public Cars(List<Car> cars) {
