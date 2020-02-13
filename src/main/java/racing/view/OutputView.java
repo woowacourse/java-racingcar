@@ -24,6 +24,6 @@ public class OutputView {
 
 	public static void printWinner(List<String> winners) {
 		String winnersName = String.join(WINNER_NAME_DELIMITER, winners);
-		System.out.print(winnersName + " 최종 우승했습니다.");
+		System.out.println(winnersName + " 최종 우승했습니다.");
 	}
 }
