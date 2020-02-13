@@ -12,7 +12,8 @@ public class RacingCarWinnersSortOuter {
     }
 
     private static int getMaxPostionOfCompetitors(RacingCar[] competitors) {
-        return 4;
+        return Arrays.stream(competitors).map(RacingCar::getPostion)
+                .max(Integer::compareTo).orElse(-1);
     }
 
     private static List<RacingCar> findWinnersByMaxPosition(RacingCar[] competitors, int maxPosition) {
