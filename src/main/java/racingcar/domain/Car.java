@@ -12,8 +12,6 @@ package racingcar.domain;
 
 public class Car {
 
-    private final static String HYPHEN = "-";
-    private final static String COLON = " : ";
     private final static String NEW_LINE = "\n";
 
     private final String name;
@@ -35,11 +33,11 @@ public class Car {
         return forwardCount;
     }
 
-    public String getProgress() {
+    public String getProgress(String delimiter, String progressSign) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < forwardCount; i++) {
-            stringBuilder.append(HYPHEN);
+            stringBuilder.append(progressSign);
         }
-        return name + COLON + stringBuilder.toString() + NEW_LINE;
+        return name + delimiter + stringBuilder.toString() + NEW_LINE;
     }
 }

@@ -15,8 +15,6 @@ import java.util.List;
 
 public class Winner {
 
-    private final static String COMMA_SPACE = ", ";
-
     private final List<String> winnerNames;
     private int maxCount = 0;
 
@@ -43,7 +41,7 @@ public class Winner {
         }
     }
 
-    public String toString() {
-        return String.join(COMMA_SPACE, winnerNames);
+    public String getWinnerWithDelimiter(String delimiter) {
+        return String.join(delimiter, winnerNames);
     }
 }

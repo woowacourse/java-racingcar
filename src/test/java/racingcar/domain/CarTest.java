@@ -39,6 +39,6 @@ public class CarTest {
         car.forward();
         car.forward();
         car.forward();
-        assertThat(car.toString()).isEqualTo("가나다 : ---\n");
+        assertThat(car.getProgress(" : ", "-")).isEqualTo("가나다 : ---\n");
     }
 }

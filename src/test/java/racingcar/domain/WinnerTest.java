@@ -47,7 +47,7 @@ public class WinnerTest {
     void winners() {
         Winner winner1 = new Winner(cars1);
         Winner winner2 = new Winner(cars2);
-        assertThat(winner1.toString()).isEqualTo("zxc");
-        assertThat(winner2.toString()).isEqualTo("zxc, qwe");
+        assertThat(winner1.getWinnerWithDelimiter(", ")).isEqualTo("zxc");
+        assertThat(winner2.getWinnerWithDelimiter(", ")).isEqualTo("zxc, qwe");
     }
 }

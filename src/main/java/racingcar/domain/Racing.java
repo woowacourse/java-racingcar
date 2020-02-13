@@ -18,6 +18,8 @@ public class Racing {
 
     private final static String NEW_LINE = "\n";
     private final static int RANDOM_NUMBER_RANGE = 10;
+    private final static String CAR_DELIMITER = " : ";
+    private final static String CAR_PROGRESS_SIGN = "-";
 
     private final List<Car> cars;
     private final int tryCount;
@@ -49,7 +51,7 @@ public class Racing {
             if (isForwardByRandom()) {
                 car.forward();
             }
-            racingProgress.append(car.getProgress());
+            racingProgress.append(car.getProgress(CAR_DELIMITER, CAR_PROGRESS_SIGN));
         }
     }
 
@@ -58,8 +60,8 @@ public class Racing {
         return Director.isForward(random.nextInt(RANDOM_NUMBER_RANGE));
     }
 
-    public String getWinner() {
+    public String getWinner(String delimiter) {
         Winner winner = new Winner(cars);
-        return winner.toString();
+        return winner.getWinnerWithDelimiter(delimiter);
     }
 }

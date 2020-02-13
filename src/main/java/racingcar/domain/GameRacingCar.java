@@ -5,6 +5,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameRacingCar {
+    public final static String WINNER_DELIMITER = ", ";
     public static void start() {
         List<String> carNames = inputCarNames();
         int tryCount = inputTryCount();
@@ -14,7 +15,7 @@ public class GameRacingCar {
         OutputView.printExecutionResult();
         OutputView.printString(racingProgress);
 
-        String winner = racing.getWinner();
+        String winner = racing.getWinner(WINNER_DELIMITER);
         OutputView.printWinner(winner);
     }
 
