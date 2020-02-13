@@ -14,8 +14,8 @@ import java.util.InputMismatchException;
  */
 
 public class InputValidation {
-    public static void checkNullOrEmptyInput(String[] carNames) {
-        if (carNames.length == 0 || carNames[0].length() == 0) {
+    public static void checkNullOrEmptyInput(String carName) {
+        if (carName == null || carName.isEmpty()) {
             throw new NullPointerException("입력이 null 이나 빈 문자열입니다.");
         }
     }

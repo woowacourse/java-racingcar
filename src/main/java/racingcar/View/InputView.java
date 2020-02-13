@@ -21,10 +21,9 @@ public class InputView {
 
     public static String[] inputCarName() {
         OutputView.printInputCarNamesMessage();
-        String[] carNames = sc.nextLine().split(DELIMITER);
+        String[] carNames = inputCarNameWithConsole().split(DELIMITER);
         trimCarNames(carNames);
         try {
-            InputValidation.checkNullOrEmptyInput(carNames);
             InputValidation.checkEmptyCarName(carNames);
             InputValidation.checkSmallerThanSix(carNames);
             return carNames;
@@ -32,6 +31,17 @@ public class InputView {
             OutputView.printExceptionMessage(e);
         }
         return inputCarName();
+    }
+
+    private static String inputCarNameWithConsole() {
+        String inputValue = sc.nextLine();
+        try {
+            InputValidation.checkNullOrEmptyInput(inputValue);
+            return inputValue;
+        } catch (NullPointerException e){
+            OutputView.printExceptionMessage(e);
+        }
+        return inputCarNameWithConsole();
     }
 
     private static void trimCarNames(String[] carNames) {

@@ -20,6 +20,7 @@ import racingcar.View.OutputView;
 
 public class Game {
     private static final int INDEX_START = 0;
+    public static final int SINGLE = 1;
 
     private static List<Car> cars = new ArrayList<>();
     private static int trialTime;
@@ -58,7 +59,7 @@ public class Game {
     public static Car findTopPositionCar(List<Car> cars) {
         Car winner = cars.get(0);
         int carSize = cars.size();
-        if (carSize == 1) {
+        if (carSize == SINGLE) {
             return winner;
         }
         for (int i = 1; i < carSize; i++) {

@@ -2,9 +2,14 @@ package racingcarTest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.Controller.InputValidation;
 
 import java.util.InputMismatchException;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -20,19 +25,20 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  */
 
 public class InputValidationTest {
-    @Test
+//    static Stream<Arguments> stringArraySource () {
+//        return Stream.of(
+//                Arguments.of((new String[] { "123"}))
+////                Arguments.of((new int[] )),
+////                Arguments.of((new int[]{1, 3, 5} ))
+//        );
+//    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" ", })
     @DisplayName("null 또는 빈 문자열 입력 시")
-    void inputValidation_null_또는_빈문자열_입력() {
-        String[] nullResult = null;
-        String[] emptyResult = {""};
-
+    void inputValidation_null_또는_빈문자열_입력(String value) {
         assertThatThrownBy(() -> {
-            InputValidation.checkNullOrEmptyInput(nullResult);
-        }).isInstanceOf(NullPointerException.class)
-                .hasMessage("입력이 null 이나 빈 문자열입니다.");
-
-        assertThatThrownBy(() -> {
-            InputValidation.checkNullOrEmptyInput(emptyResult);
+            InputValidation.checkNullOrEmptyInput(value);
         }).isInstanceOf(NullPointerException.class)
                 .hasMessage("입력이 null 이나 빈 문자열입니다.");
     }
