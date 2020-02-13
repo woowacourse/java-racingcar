@@ -21,12 +21,12 @@ public class Racing {
     private final static String CAR_DELIMITER = " : ";
     private final static String CAR_PROGRESS_SIGN = "-";
 
-    public static String run(List<Car> cars, int tryCount) {
+    public static StringBuilder run(List<Car> cars, int tryCount) {
         StringBuilder racingProgress = new StringBuilder();
         for (int i = 0; i < tryCount; i++) {
             playRacing(cars, racingProgress);
         }
-        return racingProgress.toString();
+        return racingProgress;
     }
 
     private static void playRacing(List<Car> cars, StringBuilder racingProgress) {

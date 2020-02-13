@@ -17,7 +17,7 @@ public class RacingTest {
         CarNames carNames = new CarNames("aaa,bbb,ccc");
         Cars cars = new Cars(carNames.getCarNames());
         List<Car> racingCars = cars.getCars();
-        String progress = Racing.run(racingCars, 10);
+        String progress = Racing.run(racingCars, 10).toString();
         assertThat(progress).contains("aaa :")
             .contains("bbb :")
             .contains("ccc : ")

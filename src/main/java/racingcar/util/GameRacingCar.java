@@ -17,9 +17,9 @@ public class GameRacingCar {
         List<Car> cars = new Cars(carNames).getCars();
         int tryCount = inputTryCount();
 
-        String racingProgress = Racing.run(cars, tryCount);
+        StringBuilder racingProgress = Racing.run(cars, tryCount);
         OutputView.printExecutionResult();
-        OutputView.printString(racingProgress);
+        OutputView.printString(racingProgress.toString());
 
         String winner = Winner.getWinnerWithDelimiter(cars, WINNER_DELIMITER);
         OutputView.printWinner(winner);
