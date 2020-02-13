@@ -18,14 +18,6 @@ public class Car {
         this.distance = 0;
     }
 
-    public int getDistance() {
-        return this.distance;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
     public static void checkValidName(String name) {
         if (name.length() > MAX_NAME_LENGTH
                 || name.length() < MIN_NAME_LENGTH) {
@@ -48,9 +40,14 @@ public class Car {
     }
 
     public boolean isWinner(int maxDistance) {
-        if (this.distance == maxDistance) {
-            return true;
-        }
-        return false;
+        return maxDistance == this.distance;
+    }
+
+    public int getDistance() {
+        return this.distance;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

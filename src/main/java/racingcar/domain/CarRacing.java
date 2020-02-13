@@ -5,19 +5,18 @@ import java.util.stream.Collectors;
 
 public class CarRacing {
     private final List<Car> cars;
+    private int moveNumber;
 
-    public CarRacing(List<String> names) {
+    public CarRacing(List<String> names, int moveNumber) {
         this.cars = names.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
-    }
 
-    public List<Car> getCars() {
-        return cars;
+        this.moveNumber = moveNumber;
     }
 
     public void move() {
-        cars.stream().forEach(Car::move);
+        cars.forEach(Car::move);
     }
 
     public List<Car> getWinners() {
@@ -28,15 +27,17 @@ public class CarRacing {
     }
 
     private int getMaxDistance() {
-        Integer maxDistance = 0;
-        cars.stream()
-                .forEach(car -> updateMaxDistance(car.getDistance(), maxDistance));
-        return maxDistance;
+        return cars.stream()
+                .mapToInt(Car::getDistance)
+                .max()
+                .getAsInt();
     }
 
-    private void updateMaxDistance(int compareDistance, Integer maxDistance) {
-        if (compareDistance > maxDistance) {
-            maxDistance = compareDistance;
-        }
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public int getMoveNumber() {
+        return this.moveNumber;
     }
 }

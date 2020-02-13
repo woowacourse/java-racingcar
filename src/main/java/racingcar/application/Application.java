@@ -6,37 +6,30 @@ import racingcar.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        CarRacing carRacing = enterNames();
-        Integer moveNumber = enterMoveNumber();
-
-        run(carRacing, moveNumber);
+        CarRacing carRacing = generateCarRacing();
+        run(carRacing);
+        findWinner(carRacing);
     }
 
-    private static CarRacing enterNames() {
+    private static CarRacing generateCarRacing() {
         try {
-            return new CarRacing(InputView.getNames());
+            return new CarRacing(InputView.getNames(), InputView.getMoveNumber());
         } catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return enterNames();
+            return generateCarRacing();
         }
     }
 
-    private static int enterMoveNumber() {
-        try {
-            return InputView.getMoveNumber();
-        } catch(IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return enterMoveNumber();
-        }
-    }
-
-    private static void run(CarRacing carRacing, int moveNumber) {
+    private static void run(CarRacing carRacing) {
         System.out.println("\n실행 결과");
-        for(int i = 0; i < moveNumber; i++) {
+        for(int i = 0; i < carRacing.getMoveNumber(); i++) {
             carRacing.move();
             OutputView.printStatus(carRacing.getCars());
             System.out.println();
         }
+    }
+
+    private static void findWinner(CarRacing carRacing) {
         OutputView.printWinners(carRacing.getWinners());
     }
 }

@@ -18,13 +18,13 @@ public class OutputView {
     }
 
     public static void printWinners(List<Car> cars) {
-        StringBuilder SB = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
 
-        SB.append(cars.stream()
+        stringBuilder.append(cars.stream()
                 .map(Car::getName)
                 .collect(Collectors.joining(COMMA)));
-        SB.append("가 최종 우승했습니다.");
-        System.out.println(SB.toString());
+        stringBuilder.append("가 최종 우승했습니다.");
+        System.out.println(stringBuilder.toString());
     }
 
     private static String getStatus(Car car) {
