@@ -16,6 +16,6 @@ public class OutputView {
 	}
 
 	public static void printWinnersName(String winnersName) {
-		System.out.println(winnersName);
+		System.out.println(winnersName + " 우승!!!!!!!!");
 	}
 }
