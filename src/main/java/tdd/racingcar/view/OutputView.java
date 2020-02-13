@@ -3,6 +3,8 @@ package tdd.racingcar.view;
 import static java.util.stream.Collectors.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
 import tdd.racingcar.domain.Car;
 import tdd.racingcar.domain.Cars;
@@ -18,13 +20,17 @@ public class OutputView {
 		System.out.println("실행 결과");
 	}
 
-	public static void printCars(final Cars cars) {
+	public static void printRecord(Queue<Map<String, Integer>> record) {
+		record.forEach(OutputView::printCars);
+	}
+
+	private static void printCars(Map<String, Integer> cars) {
 		cars.forEach(OutputView::printCar);
 		emptyLine();
 	}
 
-	private static void printCar(final Car car) {
-		System.out.println(car.getName() + COLON + POSITION_MARK.repeat(car.getPosition()));
+	private static void printCar(final String name, final int position) {
+		System.out.println(name + COLON + POSITION_MARK.repeat(position));
 	}
 
 	private static void emptyLine() {
