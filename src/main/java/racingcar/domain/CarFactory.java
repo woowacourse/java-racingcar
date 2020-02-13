@@ -32,7 +32,6 @@ public class CarFactory {
     public Cars enrollCars() {
         List<Car> carsList = new ArrayList<>();
         Arrays.stream(carsName).forEach(x -> carsList.add(new Car(x)));
-        Cars cars = new Cars(carsList);
-        return cars;
+        return new Cars(carsList);
     }
 }

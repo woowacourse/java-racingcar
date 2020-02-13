@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class Car {
         if (i < 0 || i >= 10) {
             throw new NumberFormatException(RANDOM_OUTOF_BOUND);
         }
-        if (i >= 4 && i <= 9) {
+        if (i >= 4) {
             proceed();
             return true;
         }
@@ -35,11 +34,10 @@ public class Car {
     }
 
     public List<String> currentPosition() {
-        return Arrays.asList(new String[]{name, stripBuilder()});
+        return Arrays.asList(name, stripBuilder());
     }
 
     public Car comparePosition(Car car) {
-        List<String> winner = new ArrayList<>();
         if (car.position > this.position) {
             return car;
         }
@@ -54,11 +52,11 @@ public class Car {
     }
 
     private String stripBuilder() {
-        String strip = BLANKSTRING;
+        StringBuilder strip = new StringBuilder(BLANKSTRING);
         for (int i = 0; i < position; i++) {
-            strip += HYPHEN;
+            strip.append(HYPHEN);
         }
-        return strip;
+        return strip.toString();
     }
 
 
