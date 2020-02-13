@@ -17,16 +17,19 @@ import java.util.List;
 public class RacingCarApplication {
     public static void main(String[] args) {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        Cars cars = makeCars();
-        Round round = new Round(InputView.inputRound());
-
-        OutputView.printFirstRoundResult(cars);
-        while (!round.isFinal()) {
-            cars.moveAll(randomNumberGenerator);
-            round.next();
-            OutputView.printRoundResult(cars);
+        try {
+            Cars cars = makeCars();
+            Round round = new Round(InputView.inputRound());
+            OutputView.printFirstRoundResult(cars);
+            while (!round.isFinal()) {
+                cars.moveAll(randomNumberGenerator);
+                round.next();
+                OutputView.printRoundResult(cars);
+            }
+            showWinnerNames(cars.getWinningRule());
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
         }
-        showWinnerNames(cars.getWinningRule());
     }
 
     private static Cars makeCars() {

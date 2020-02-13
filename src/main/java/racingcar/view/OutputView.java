@@ -55,4 +55,8 @@ public class OutputView {
                 .map(Name::toString)
                 .collect(Collectors.joining(NAME_DELIMITER));
     }
+
+    public static void printExceptionMessage(final String message) {
+        System.out.println(message);
+    }
 }
