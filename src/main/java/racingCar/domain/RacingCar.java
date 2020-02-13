@@ -1,3 +1,5 @@
+package racingCar.domain;
+
 public class RacingCar {
     private String name;
     private int position = 0;
