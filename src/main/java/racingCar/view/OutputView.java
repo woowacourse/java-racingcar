@@ -19,24 +19,21 @@ public class OutputView {
         System.out.println("시도할 회수는 몇회인가요?");
     }
 
-    static void printGuideOfResult() {
+    public static void printGuideOfResult() {
         System.out.println("실행 결과");
     }
 
-    static void printStateOfRacingCars(RacingCar[] racingCars, int numberToMove) {
-
-
-        for (int i = 0; i < numberToMove; i++) {
-            for (RacingCar racingCar : racingCars) {
-                printRacingCar(racingCar);
-                printRacingPosition(racingCar);
-            }
-            System.out.println();
+    public static void printStateOfRacingCars(RacingCar[] racingCars) {
+        for (RacingCar racingCar : racingCars) {
+            printRacingCar(racingCar);
+            printRacingPosition(racingCar);
         }
+
+        System.out.println();
     }
 
-    static void printResult(RacingCar[] racingCars) {
-        List<String> namesOfWinners = Arrays.asList(racingCars).stream().map(RacingCar::toString).collect(Collectors.toList());
+    public static void printResult(List<RacingCar> racingCars) {
+        List<String> namesOfWinners = racingCars.stream().map(RacingCar::toString).collect(Collectors.toList());
         System.out.println(String.join(",", namesOfWinners) + "가 최종 우승했습니다.");
     }
 

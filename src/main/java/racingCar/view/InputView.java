@@ -3,17 +3,13 @@ package racingCar.view;
 import java.util.Scanner;
 
 public class InputView {
-    private Scanner scanner;
+    private static Scanner scanner = new Scanner(System.in);
 
-    InputView(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
-    public int inputNumberToMove() {
+    public static int inputNumberToMove() {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public void inputSomething() {
+    public static void inputSomething() {
         scanner.nextLine();
     }
 }
