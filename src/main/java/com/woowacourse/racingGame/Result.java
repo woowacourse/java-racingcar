@@ -2,12 +2,19 @@ package com.woowacourse.racingGame;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.woowacourse.racingGame.domain.Car;
 import com.woowacourse.racingGame.domain.Cars;
+import com.woowacourse.racingGame.utils.StringUtil;
 
 public class Result {
 	private int maxPosition = 7;
+	private final Cars cars;
+
+	public Result(final Cars cars) {
+		this.cars = cars;
+	}
 
 	public List<String> getWinners(final Cars cars) {
 		List<String> winners = new ArrayList<>();
@@ -22,5 +29,14 @@ public class Result {
 		if (car.isWinnerPosition(maxPosition)) {
 			winners.add(car.getName());
 		}
+	}
+
+	public List<String> getRacingCarStatus() {
+		return cars.getCars().stream()
+			.map(car -> car.getName()
+				+ " : "
+				+ StringUtil.convertPositionToString(car.getPosition())
+			)
+			.collect(Collectors.toList());
 	}
 }
