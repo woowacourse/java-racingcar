@@ -83,7 +83,7 @@ public class RacingGame {
                 car.accelarate(generateRandomNumber(), FORWARD_NUMBER);
                 car.passingLog(output);
             });
-            output.printLog();
+            output.printStatusLog();
         }
     }
 }

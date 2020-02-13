@@ -26,17 +26,17 @@ public class RacingGameTest {
         carList.add(new Car("kim", 0));
         carList.add(new Car("park", 0));
 
-        carList.get(0).move(4);
-        carList.get(0).move(4);
-        carList.get(0).move(4);
+        carList.get(0).accelarate(4,4);
+        carList.get(0).accelarate(4,4);
+        carList.get(0).accelarate(4,4);
 
-        carList.get(1).move(4);
-        carList.get(1).move(4);
-        carList.get(1).move(4);
+        carList.get(1).accelarate(4,4);
+        carList.get(1).accelarate(4,4);
+        carList.get(1).accelarate(4,4);
 
-        carList.get(2).move(4);
-        carList.get(2).move(2);
-        carList.get(2).move(1);
+        carList.get(2).accelarate(4,4);
+        carList.get(2).accelarate(2,4);
+        carList.get(2).accelarate(1,4);
     }
 
     @BeforeEach
@@ -56,7 +56,7 @@ public class RacingGameTest {
 
     @RepeatedTest(value = 50)
     void 랜덤_테스트() {
-        int result = RacingGame.generateRandom();
+        int result = RacingGame.generateRandomNumber();
 
         Assertions.assertThat(result).isBetween(0, 9);
     }

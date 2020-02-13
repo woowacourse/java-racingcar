@@ -16,7 +16,7 @@ public class OutputView {
     private static final String REPEAT_FORMAT = "시도할 회수는 몇회인가요?";
 
     /**
-     * RESULT_FORMAT 은 문자열 상수 값으로, 실행 결과(printLog 실행) 출력 전에 출력되어야 하는 양식값이다.
+     * RESULT_FORMAT 은 문자열 상수 값으로, 실행 결과(printStatusLog 실행) 출력 전에 출력되어야 하는 양식값이다.
      * RacingGame 클래스의 메인 로직을 통해 출력된다.
      */
     private static final String RESULT_FORMAT = "\n실행 결과";
@@ -37,7 +37,7 @@ public class OutputView {
     }
 
     /**
-     * printLog 는 자동차의 주행 기록을 출력하기 위한 메서드이다.
+     * printStatusLog 는 자동차의 주행 기록을 출력하기 위한 메서드이다.
      * 문자열을 입력받은 후, 줄바꿈을 포함하여 출력해 준다.
      *
      * @param log 출력할 자동차 주행 기록을 저장한 String 인스턴스이다.

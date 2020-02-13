@@ -17,6 +17,6 @@ public class OutputTest {
         if(position == 0){
             log += " ";
         }
-        Assertions.assertThat(output.makeCarLog(name, position)).isEqualTo(log);
+        Assertions.assertThat(output.makeStatusLog(name, position)).isEqualTo(log);
     }
 }
