@@ -1,8 +1,8 @@
 package domain;
 
-import view.OutputView;
-
 import java.util.Random;
+
+import view.OutputView;
 
 public class GameManager {
     private static final int RANDOM_BOUND = 10;

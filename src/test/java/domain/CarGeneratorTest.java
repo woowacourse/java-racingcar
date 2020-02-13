@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.List;
@@ -15,4 +16,12 @@ public class CarGeneratorTest {
         assertThat(cars.get(0).getName()).isEqualTo("타미");
         assertThat(cars.get(1).getName()).isEqualTo("둔덩");
     }
+
+    @Test
+    public void carGenerateTest_쉼표만_입력한_경우() {
+        String carNames = ",";
+        assertThatThrownBy(() -> CarGenerator.create(carNames) )
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
