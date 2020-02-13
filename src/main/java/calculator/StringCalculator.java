@@ -62,9 +62,6 @@ public class StringCalculator {
         if (input.contains(HYPHEN)) {
             throw new RuntimeException();
         }
-        if (input.contains(HYPHEN + HYPHEN) || input.charAt(0) + "" == HYPHEN) {
-            throw new RuntimeException();
-        }
     }
 
     private static int addAll(List<String> inputs) {
