@@ -1,23 +1,27 @@
-package racingcar.domain;
+package racingcar.util;
 
 import java.util.List;
+import racingcar.domain.Car;
+import racingcar.domain.CarNames;
+import racingcar.domain.Cars;
+import racingcar.domain.TryCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameRacingCar {
 
-    public final static String WINNER_DELIMITER = ", ";
+    private final static String WINNER_DELIMITER = ", ";
 
     public static void start() {
         List<String> carNames = inputCarNames();
+        List<Car> cars = new Cars(carNames).getCars();
         int tryCount = inputTryCount();
-        Racing racing = new Racing(carNames, tryCount);
 
-        String racingProgress = racing.run();
+        String racingProgress = Racing.run(cars, tryCount);
         OutputView.printExecutionResult();
         OutputView.printString(racingProgress);
 
-        String winner = racing.getWinner(WINNER_DELIMITER);
+        String winner = Winner.getWinnerWithDelimiter(cars, WINNER_DELIMITER);
         OutputView.printWinner(winner);
     }
 

@@ -16,10 +16,10 @@ public class TryCount {
     private final static int MAXIMUM_NUMBER = 1000;
     private final static String EXCEPTION_MESSAGE =
         MINIMUM_NUMBER + "부터" + MAXIMUM_NUMBER + "까지의 숫자만 입력 가능합니다.";
-    
+
     private final int tryCount;
 
-    TryCount(String count) {
+    public TryCount(String count) {
         tryCount = returnValidateNumber(count);
     }
 

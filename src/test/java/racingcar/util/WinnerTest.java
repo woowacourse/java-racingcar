@@ -8,14 +8,17 @@
  *
  */
 
-package racingcar.domain;
+package racingcar.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Car;
+import racingcar.domain.CarNames;
 
 public class WinnerTest {
 
@@ -45,9 +48,7 @@ public class WinnerTest {
 
     @Test
     void winners() {
-        Winner winner1 = new Winner(cars1);
-        Winner winner2 = new Winner(cars2);
-        assertThat(winner1.getWinnerWithDelimiter(", ")).isEqualTo("zxc");
-        assertThat(winner2.getWinnerWithDelimiter(", ")).isEqualTo("zxc, qwe");
+        Assertions.assertThat(Winner.getWinnerWithDelimiter(cars1,", ")).isEqualTo("zxc");
+        assertThat(Winner.getWinnerWithDelimiter(cars2, ", ")).isEqualTo("zxc, qwe");
     }
 }

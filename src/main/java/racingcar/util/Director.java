@@ -8,7 +8,7 @@
  *
  */
 
-package racingcar.domain;
+package racingcar.util;
 
 public class Director {
 

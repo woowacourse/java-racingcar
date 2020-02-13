@@ -8,7 +8,7 @@
  *
  */
 
-package racingcar.domain;
+package racingcar.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

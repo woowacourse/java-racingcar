@@ -10,7 +10,7 @@
 
 package racingcar;
 
-import racingcar.domain.GameRacingCar;
+import racingcar.util.GameRacingCar;
 
 public class Application {
 

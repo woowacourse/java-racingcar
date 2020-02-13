@@ -8,21 +8,23 @@
  *
  */
 
-package racingcar.domain;
+package racingcar.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import racingcar.domain.Car;
 
 public class Winner {
 
-    private final List<String> winnerNames;
-    private int maxCount = 0;
+    private static int maxCount = 0;
 
-    Winner(List<Car> cars) {
-        winnerNames = setWinner(cars);
+    public static String getWinnerWithDelimiter(List<Car> cars, String delimiter) {
+        maxCount = 0;
+        List<String> winnerNames = setWinner(cars);
+        return String.join(delimiter, winnerNames);
     }
 
-    private List<String> setWinner(List<Car> cars) {
+    private static List<String> setWinner(List<Car> cars) {
         List<String> winnerNames = new ArrayList<>();
         for (Car car : cars) {
             putWinnerNames(winnerNames, car.getName(), car.getForwardCount());
@@ -30,7 +32,7 @@ public class Winner {
         return winnerNames;
     }
 
-    private void putWinnerNames(List<String> winnerNames, String carName, int carForwardCount) {
+    private static void putWinnerNames(List<String> winnerNames, String carName, int carForwardCount) {
         if (maxCount == carForwardCount) {
             winnerNames.add(carName);
         }
@@ -39,9 +41,5 @@ public class Winner {
             winnerNames.clear();
             winnerNames.add(carName);
         }
-    }
-
-    public String getWinnerWithDelimiter(String delimiter) {
-        return String.join(delimiter, winnerNames);
     }
 }

@@ -21,7 +21,7 @@ public class CarNames {
 
     private final List<String> carNames;
 
-    CarNames(String input) throws IllegalArgumentException {
+    public CarNames(String input) throws IllegalArgumentException {
         validateHasNotBlank(input);
         carNames = split(input);
     }
