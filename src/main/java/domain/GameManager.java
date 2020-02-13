@@ -1,5 +1,7 @@
 package domain;
 
+import view.OutputView;
+
 import java.util.Random;
 
 public class GameManager {
@@ -25,7 +27,9 @@ public class GameManager {
         for (int count = 0; count < carsSize; count++) {
             Car car = cars.getCar(count);
             car.move(getRandomNumber());
+            OutputView.printCurrentPosition(car.getName(), car.getPosition());
         }
+        OutputView.println();
     }
 
     private int getRandomNumber() {
