@@ -6,6 +6,7 @@ public class Car {
     private static final String EMPTY_STRING = "";
     private static final int INIT_POSITION = 0;
     private static final int LIMIT_FOR_MOVE = 4;
+    private static final int NAME_LENGTH_LIMIT = 5;
     private int position;
     private String name;
 
@@ -15,8 +16,28 @@ public class Car {
 
     public Car(int position, String name) {
         this.position = position;
-        this.name = name;
+        this.name = validateName(name);
     }
+
+    private static String validateName(String name) {
+        name = name.trim();
+        validateNullOrEmpty(name);
+        validateNameLength(name);
+        return name;
+    }
+
+    private static void validateNullOrEmpty(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("빈 값 혹은 Null 입력입니다!");
+        }
+    }
+
+    private static void validateNameLength(String name) {
+        if (name.length() > NAME_LENGTH_LIMIT) {
+            throw new IllegalArgumentException("이름 길이 5자 초과입니다!");
+        }
+    }
+
 
     public void move(int inputValue) {
         if (inputValue >= LIMIT_FOR_MOVE) {

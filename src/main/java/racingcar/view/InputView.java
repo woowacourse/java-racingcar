@@ -1,41 +1,19 @@
 package racingcar.view;
 
-import racingcar.util.InputHandler;
-
 import java.util.Scanner;
 
 public class InputView {
 
     private static final Scanner sc = new Scanner(System.in);
-    public static final String DELIMITER = ",";
     public static final int ZERO = 0;
 
-    public static String[] inputCarName() {
+    public static String inputCarName() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        return validateNames(sc.nextLine());
+        return sc.nextLine();
     }
 
-    private static String[] validateNames(String s) {
-        String[] names = s.split(DELIMITER);
-
-        InputHandler.validateCarCount(names.length);
-
-        for (int i = ZERO; i < names.length; i++) {
-            names[i] = names[i].trim();
-            InputHandler.validateNullOrEmpty(names[i]);
-            InputHandler.validateNameLength(names[i]);
-        }
-        return names;
-    }
-
-    public static int inputGameRound() {
+    public static String inputGameRound() {
         System.out.println("시도할 회수는 몇회인가요? (최대 10회)");
-        return validateRound(sc.nextLine());
-    }
-
-    private static int validateRound(String inputRound) {
-        int round = InputHandler.validateNumber(inputRound.trim());
-        InputHandler.validateCount(round);
-        return round;
+        return sc.nextLine();
     }
 }
