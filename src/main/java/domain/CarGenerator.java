@@ -8,7 +8,6 @@ public class CarGenerator {
 
     public static List<Car> create(String carsName) {
         String[] carNames = carsName.split(COMMA);
-
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName));

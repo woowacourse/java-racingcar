@@ -4,25 +4,24 @@ public class Car {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_MOVABLE_NUM = 4;
+    private static final String WRONG_NAME_LENGTH_MESSAGE = "이름 길이는 1~5 이여야 합니다.";
 
     private final String name;
     private int position;
 
     public Car(String name) {
-        validateName(name);
-        this.name = name.trim();
-        this.position = 0;
+        this(name, 0);
     }
 
     public Car(String name, int position) {
         validateName(name);
-        this.name = name;
+        this.name = name.trim();
         this.position = position;
     }
 
     private void validateName(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름 길이는 1~5 이여야 합니다.");
+            throw new IllegalArgumentException(WRONG_NAME_LENGTH_MESSAGE);
         }
     }
 

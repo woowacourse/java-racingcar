@@ -5,6 +5,8 @@ import view.OutputView;
 import java.util.Random;
 
 public class GameManager {
+    private static final int RANDOM_BOUND = 10;
+
     private final Random random;
     private final Cars cars;
     private final AttemptNumber attemptNumber;
@@ -33,6 +35,6 @@ public class GameManager {
     }
 
     private int getRandomNumber() {
-        return random.nextInt(10);
+        return random.nextInt(RANDOM_BOUND);
     }
 }

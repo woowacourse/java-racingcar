@@ -28,6 +28,6 @@ public class AttemptNumber {
     }
 
     public int getNumber() {
-        return this.number;
+        return number;
     }
 }
