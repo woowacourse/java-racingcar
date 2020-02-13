@@ -31,7 +31,7 @@ public class Winners {
 
     public String getWinnersName() {
         List<String> winnerNames = winners.stream()
-                .map(winner -> winner.toString())
+                .map(Car::toString)
                 .collect(Collectors.toList());
 
         return String.join(AND, winnerNames);
