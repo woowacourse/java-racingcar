@@ -13,8 +13,21 @@ public class Cars {
         this.cars = cars;
     }
 
+    private void validateDuplicateNames(List<Car> cars) {
+        boolean isDuplicated = cars.stream()
+                .distinct()
+                .count() != cars.size();
+        if (isDuplicated) {
+            throw new IllegalArgumentException(DUPLICATED_NAME_MESSAGE);
+        }
+    }
+
     public Car getCar(int index) {
         return cars.get(index);
+    }
+
+    public int getSize() {
+        return cars.size();
     }
 
     public int getMaxPosition() {
@@ -28,19 +41,5 @@ public class Cars {
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
-    }
-
-    public int getSize() {
-        return cars.size();
-    }
-
-    private void validateDuplicateNames(List<Car> cars) {
-        boolean isDuplicated =cars.stream()
-                .distinct()
-                .count() != cars.size();
-
-        if (isDuplicated) {
-            throw new IllegalArgumentException(DUPLICATED_NAME_MESSAGE);
-        }
     }
 }
