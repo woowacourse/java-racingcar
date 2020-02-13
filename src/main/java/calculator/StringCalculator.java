@@ -21,6 +21,7 @@ public class StringCalculator {
     private final static String DELIMITER = ",|:";
     private final static String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
     private final static String HYPHEN = "-";
+    private final static Pattern PATTERN = Pattern.compile(CUSTOM_DELIMITER_PATTERN);
 
     public static int splitAndSum(String input) {
         if (isNullOrBlank(input)) {
@@ -35,7 +36,7 @@ public class StringCalculator {
     }
 
     private static List<String> split(String input) {
-        Matcher matcher = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
+        Matcher matcher = PATTERN.matcher(input);
         if (matcher.find()) {
             String customDelimiter = matcher.group(1);
             input = matcher.group(2);
