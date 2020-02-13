@@ -41,4 +41,15 @@ public class CarTest {
 		assertThat(car.compareMaxPosition(3)).isEqualTo(3);
 		assertThat(car.compareMaxPosition(1)).isEqualTo(2);
 	}
+
+	@ParameterizedTest
+	@CsvSource(value = {"2:true", "3:false"}, delimiter = ':')
+	void 포지션이_2인_자동차와_비교하여_우승_확인(int maxPosition, boolean expected) {
+		Car car = new Car("a");
+
+		car.move(4);
+		car.move(4);
+
+		assertThat(car.isMaxPosition(maxPosition)).isEqualTo(expected);
+	}
 }

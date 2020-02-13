@@ -33,4 +33,8 @@ public class Car {
 	public int compareMaxPosition(int positionToCompare) {
 		return Math.max(position, positionToCompare);
 	}
+
+	public boolean isMaxPosition(int maxPosition) {
+		return position == maxPosition;
+	}
 }
