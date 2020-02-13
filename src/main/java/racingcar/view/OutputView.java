@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import racingcar.domain.Winners;
+
 public class OutputView {
     private OutputView() {
     }
@@ -14,5 +16,9 @@ public class OutputView {
     public static void printCurrentResult(String result) {
         System.out.println("실행 결과");
         System.out.println(result);
+    }
+
+    public static void printWinnerResult(){
+        System.out.println(Winners.getWinners() + "가 최종 우승했습니다.");
     }
 }

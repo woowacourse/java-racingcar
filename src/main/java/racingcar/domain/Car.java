@@ -12,7 +12,7 @@ public class Car implements Comparable<Car>{
     }
 
     public boolean isMaxDistance(Car maxDistanceCar) {
-        return this.position > maxDistanceCar.position;
+        return this.position >= maxDistanceCar.position;
     }
 
     public int movePosition(int moveValue) {
@@ -39,6 +39,6 @@ public class Car implements Comparable<Car>{
 
     @Override
     public int compareTo(Car car) {
-        return car.position - this.position;
+        return this.position - car.position;
     }
 }

@@ -38,18 +38,7 @@ public class Cars {
         return currentResult.toString();
     }
 
-    public void selectWinners() {
-        List<Car> winners = new ArrayList<>();
-        Car maxDistanceCar = cars.stream()
-                .max(Car::compareTo)
-                .get();
-        for (Car car : cars) {
-            if (car.isMaxDistance(maxDistanceCar)) {
-                winners.add(car);
-            }
-        }
-        for (Car winner : winners) {
-            System.out.println(winner.toString());
-        }
+    public List<Car> getCars() {
+        return cars;
     }
 }

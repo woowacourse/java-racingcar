@@ -1,20 +1,23 @@
 package racingcar.domain;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Winners {
-    private List<Car> winners;
+    private static List<Car> winners = new ArrayList<>();
 
-    public Winners(List<Car> winners) {
-        this.winners = Collections.unmodifiableList(winners);
+    public static void selectWinners(List<Car> cars) {
+        Car maxDistanceCar = cars.stream()
+                .max(Car::compareTo)
+                .get();
+        for (Car car : cars) {
+            if (car.isMaxDistance(maxDistanceCar)) {
+                winners.add(car);
+            }
+        }
     }
 
-    public String getWinners(){
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car winner : winners){
-            stringBuilder.append(winner);
-        }
-        return stringBuilder.toString();
+    public static String getWinners() {
+        return String.join(",", winners.toString());
     }
 }

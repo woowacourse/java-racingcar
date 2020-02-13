@@ -7,16 +7,19 @@ import java.util.List;
 
 public class Game { //게임 로직 구현
 
+//    private Winners winners = new Winners();
     public void run() {
+        Cars cars = new Cars();
         InputView inputView = new InputView();
         String[] carNames = inputView.getCarNames();
         int trial = inputView.getTrial();
-        Cars cars = createCars(carNames);
+        cars = createCars(carNames);
         for (int i = 0 ; i < trial ; i++) {
             cars.moveCars();
             OutputView.printCurrentResult(cars.getCurrentResult());
         }
-        cars.selectWinners();
+        Winners.selectWinners(cars.getCars());
+        OutputView.printWinnerResult();
     }
 
     private Cars createCars(String[] carNames) {
