@@ -1,4 +1,4 @@
-package com.woowacourse.racingGame;
+package com.woowacourse.racingGame.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -6,10 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import com.woowacourse.racingGame.domain.Car;
-import com.woowacourse.racingGame.domain.Cars;
-import com.woowacourse.racingGame.domain.Name;
 
 public class ResultTest {
 	@Test
@@ -50,7 +46,7 @@ public class ResultTest {
 		Cars cars = new Cars(inGameCars);
 		Result result = new Result(cars);
 
-		List<String> actual = result.getWinners(cars);
+		List<String> actual = result.getWinners();
 
 		List<String> expected = Arrays.asList("car2", "car4");
 
