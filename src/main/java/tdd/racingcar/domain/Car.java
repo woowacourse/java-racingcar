@@ -1,11 +1,12 @@
 package tdd.racingcar.domain;
 
 public class Car {
-	private final Position position = new Position(0);
 	private final Name name;
+	private final Position position;
 
 	public Car(final String name) {
 		this.name = new Name(name);
+		this.position = new Position(0);
 	}
 
 	public void move(final Power power) {
