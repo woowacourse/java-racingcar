@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
  * @since 2020/02/13
  */
 public class CarNameSplitter {
-    private static final String DELIMETER = ",";
+    private static final String DELIMITER = ",";
 
     public static List<Car> split(final String input) {
-        return Arrays.stream(input.split(DELIMETER))
+        return Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
                 .map(Name::new)
                 .map(Car::new)
