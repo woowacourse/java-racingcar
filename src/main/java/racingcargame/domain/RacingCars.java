@@ -1,6 +1,7 @@
 package racingcargame.domain;
 
 import com.sun.tools.internal.ws.wsdl.document.Output;
+import racingcargame.util.Spliter;
 import racingcargame.view.OutputView;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class RacingCars {
         this.cars.addAll(cars);
     }
 
-    public void go() {
+    public void move() {
         cars.forEach(car -> car.go(Engine.createRandomEngine()));
     }
 
@@ -30,5 +31,14 @@ public class RacingCars {
 
     public List<Car> getUnmodifiableCars() {
         return Collections.unmodifiableList(cars);
+    }
+
+    public static RacingCars createRacingCars(String inputCarNames) {
+        String[] splitedInputCarNames = Spliter.split(inputCarNames);
+        List<Car> cars = new ArrayList<>();
+        for (String inputCarName : splitedInputCarNames) {
+            cars.add(new Car(inputCarName));
+        }
+        return new RacingCars(cars);
     }
 }
