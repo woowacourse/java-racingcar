@@ -1,10 +1,12 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.List;
 import java.util.Arrays;
 
+import calculator.StringCalculator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +27,7 @@ public class CarsTest {
         cars = new Cars(Arrays.asList(car1, car2, car3, car4));
     }
 
+
     @Test
     void getCarTest() {
         assertThat(cars.getCar(0)).isEqualTo(car1);
@@ -43,5 +46,13 @@ public class CarsTest {
         List<Car> expectedWinners = Arrays.asList(car2, car4);
         List<Car> actualWinners = cars.findWinners(maxPosition);
         assertThat(actualWinners.equals(expectedWinners)).isTrue();
+    }
+
+    @Test
+    void duplicatedNameTest() {
+        Car duplicatedCar1 = new Car("던둥");
+        Car duplicatedCar2 = new Car("던둥");
+        assertThatThrownBy(() -> new Cars(Arrays.asList(duplicatedCar1, duplicatedCar2)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

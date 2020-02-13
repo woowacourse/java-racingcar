@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final String DUPLICATED_NAME_MESSAGE = "중복된 이름이 있습니다.";
+
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
+        validateDuplicateNames(cars);
         this.cars = cars;
     }
 
@@ -29,5 +32,15 @@ public class Cars {
 
     public int getSize() {
         return cars.size();
+    }
+
+    private void validateDuplicateNames(List<Car> cars) {
+        boolean isDuplicated =cars.stream()
+                .distinct()
+                .count() != cars.size();
+
+        if (isDuplicated) {
+            throw new IllegalArgumentException(DUPLICATED_NAME_MESSAGE);
+        }
     }
 }
