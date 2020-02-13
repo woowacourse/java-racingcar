@@ -26,12 +26,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputValidationTest {
 
-    @ParameterizedTest
-    @ValueSource(strings = {" ", })
+    @Test
     @DisplayName("null 또는 빈 문자열 입력 시")
-    void inputValidation_null_또는_빈문자열_입력(String value) {
+    void inputValidation_null_또는_빈문자열_입력() {
         assertThatThrownBy(() -> {
-            InputValidation.checkNullOrEmptyInput(value);
+            String inputValue = "";
+            InputValidation.checkNullOrEmptyInput(inputValue);
+        }).isInstanceOf(NullPointerException.class)
+                .hasMessage("입력이 null 이나 빈 문자열입니다.");
+
+        assertThatThrownBy(() -> {
+            InputValidation.checkNullOrEmptyInput(null);
         }).isInstanceOf(NullPointerException.class)
                 .hasMessage("입력이 null 이나 빈 문자열입니다.");
     }
@@ -54,6 +59,17 @@ public class InputValidationTest {
             InputValidation.checkSmallerThanSix(result);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차 이름의 길이가 6 이상입니다.");
+    }
+
+    @Test
+    @DisplayName("차 이름이 중복되었을 경우")
+    void inputValidation_차_이름_중복() {
+        assertThatThrownBy(() -> {
+            String[] result = {"포비", "포비"};
+            InputValidation.checkDuplicatedName(result);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 이름이 중복되었습니다.");
+
     }
 
     @Test

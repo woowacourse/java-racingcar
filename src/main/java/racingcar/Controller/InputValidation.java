@@ -1,6 +1,9 @@
 package racingcar.Controller;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.InputMismatchException;
+import java.util.Set;
 
 /**
  * 클래스 이름 : InputValidation.java
@@ -33,6 +36,13 @@ public class InputValidation {
             if (carName.length() > 5) {
                 throw new IllegalArgumentException("자동차 이름의 길이가 6 이상입니다.");
             }
+        }
+    }
+
+    public static void checkDuplicatedName(String[] carNames) {
+        Set<String> set = new HashSet<>(Arrays.asList(carNames));
+        if (set.size() < carNames.length) {
+            throw new IllegalArgumentException("자동차 이름이 중복되었습니다.");
         }
     }
 

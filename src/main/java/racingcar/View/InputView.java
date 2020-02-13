@@ -26,6 +26,7 @@ public class InputView {
         try {
             InputValidation.checkEmptyCarName(carNames);
             InputValidation.checkSmallerThanSix(carNames);
+            InputValidation.checkDuplicatedName(carNames);
             return carNames;
         } catch (Exception e) {
             OutputView.printExceptionMessage(e);
