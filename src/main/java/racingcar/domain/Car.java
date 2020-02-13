@@ -2,6 +2,14 @@ package racingcar.domain;
 
 import java.util.Objects;
 
+/**
+ * 자동차 클래스
+ *
+ * @version 1.0.0
+ * @author K.S.KIM
+ * @author HyoChan
+ * @since 2020/02/13
+ */
 public class Car {
     public static final int MIN_MOVE_POWER = 4;
 
@@ -18,7 +26,7 @@ public class Car {
     }
 
     public void move(final int power) {
-        if(power>=MIN_MOVE_POWER) {
+        if (power >= MIN_MOVE_POWER) {
             position.moveForward();
         }
     }

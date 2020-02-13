@@ -8,6 +8,14 @@ import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.domain.Car;
 import racingcar.domain.Name;
 
+/**
+ * 자동차 테스트 클래스
+ *
+ * @version 1.0.0
+ * @author K.S.KIM
+ * @author HyoChan
+ * @since 2020/02/13
+ */
 public class CarTest {
     @Test
     @DisplayName("생성자 테스트")

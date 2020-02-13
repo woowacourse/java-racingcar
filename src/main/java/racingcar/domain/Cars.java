@@ -2,6 +2,14 @@ package racingcar.domain;
 
 import java.util.*;
 
+/**
+ * 자동차 목록 클래스
+ *
+ * @version 1.0.0
+ * @author K.S.KIM
+ * @author HyoChan
+ * @since 2020/02/13
+ */
 public class Cars {
     public static final int MIN_CARS_SIZE = 1;
     public static final int MAX_CARS_SIZE = 10;
@@ -43,7 +51,7 @@ public class Cars {
 
     public void moveAll(List<Integer> powers) {
         validateSize(powers);
-        for (int i = 0; i<cars.size(); i++) {
+        for (int i = 0; i < cars.size(); i++) {
             cars.get(i).move(powers.get(i));
         }
     }
@@ -52,6 +60,10 @@ public class Cars {
         if (cars.size() != input.size()) {
             throw new IllegalArgumentException("Car 리스트와 입력 리스트의 사이즈가 같지 않습니다.");
         }
+    }
+
+    public WinningRule getWinningRule() {
+        return new WinningRule(cars);
     }
 
     public List<Car> getCars() {

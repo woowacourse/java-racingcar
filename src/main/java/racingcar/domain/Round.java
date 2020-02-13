@@ -1,5 +1,13 @@
 package racingcar.domain;
 
+/**
+ * 게임 횟수 클래스
+ *
+ * @version 1.0.0
+ * @author K.S.KIM
+ * @author HyoChan
+ * @since 2020/02/13
+ */
 public class Round {
     public static final int MAX_TOTAL_ROUND = 100;
     public static final int START_ROUND = 1;
@@ -21,7 +29,7 @@ public class Round {
     }
 
     public void next() {
-        if (currentRound>=totalRound) {
+        if (currentRound >= totalRound) {
             throw new IllegalArgumentException("최종 라운드입니다.");
         }
         currentRound++;

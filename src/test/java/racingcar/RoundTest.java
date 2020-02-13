@@ -7,6 +7,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Round;
 
+/**
+ * 게임 횟수 테스트 클래스
+ *
+ * @version 1.0.0
+ * @author K.S.KIM
+ * @author HyoChan
+ * @since 2020/02/13
+ */
 public class RoundTest {
     @Test
     @DisplayName("생성자 테스트")

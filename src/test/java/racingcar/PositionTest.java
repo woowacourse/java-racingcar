@@ -1,6 +1,5 @@
 package racingcar;
 
-import javafx.geometry.Pos;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,6 +7,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Position;
 
+/**
+ * 자동차 위치 테스트 클래스
+ *
+ * @version 1.0.0
+ * @author K.S.KIM
+ * @author HyoChan
+ * @since 2020/02/13
+ */
 public class PositionTest {
     @Test
     @DisplayName("생성자 테스트")

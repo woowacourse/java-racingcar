@@ -2,6 +2,14 @@ package racingcar.domain;
 
 import java.util.Objects;
 
+/**
+ * 자동차 이름 클래스
+ *
+ * @version 1.0.0
+ * @author K.S.KIM
+ * @author HyoChan
+ * @since 2020/02/13
+ */
 public class Name {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String INVALID_CHARACTER = " ";
@@ -24,7 +32,7 @@ public class Name {
     }
 
     private void validateNameLength(final String name) {
-        if (name.length()>MAX_NAME_LENGTH || name.isEmpty()) {
+        if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
             throw new IllegalArgumentException("이름의 길이가 올바르지 않습니다.");
         }
     }

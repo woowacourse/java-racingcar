@@ -2,6 +2,14 @@ package racingcar.domain;
 
 import java.util.Objects;
 
+/**
+ * 자동차 위치 클래스
+ *
+ * @version 1.0.0
+ * @author K.S.KIM
+ * @author HyoChan
+ * @since 2020/02/13
+ */
 public class Position {
     private static final int MIN_POSITION = 1;
     private static final int MAX_POSITION = 101;
