@@ -43,6 +43,6 @@ public class GameTest {
         for (Car car : cars) {
             topPositionCar.findWinners(car);
         }
-        assertThat(Car.winners.toString()).isEqualTo(", 포비, 보스독");
+        assertThat(topPositionCar.getWinners()).isEqualTo("포비, 보스독");
     }
 }
