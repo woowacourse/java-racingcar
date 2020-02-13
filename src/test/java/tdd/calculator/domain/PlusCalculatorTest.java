@@ -89,6 +89,7 @@ public class PlusCalculatorTest {
 	}
 
 	@Test
+	@SuppressWarnings("NonAsciiCharacters")
 	public void calculate_null_또는_빈문자() {
 		int result = PlusCalculator.calculate(null);
 		assertThat(result).isEqualTo(0);
@@ -98,30 +99,35 @@ public class PlusCalculatorTest {
 	}
 
 	@Test
+	@SuppressWarnings("NonAsciiCharacters")
 	public void calculate_숫자하나() throws Exception {
 		int result = PlusCalculator.calculate("1");
 		assertThat(result).isEqualTo(1);
 	}
 
 	@Test
+	@SuppressWarnings("NonAsciiCharacters")
 	public void calculate_쉼표구분자() throws Exception {
 		int result = PlusCalculator.calculate("1,2");
 		assertThat(result).isEqualTo(3);
 	}
 
 	@Test
+	@SuppressWarnings("NonAsciiCharacters")
 	public void calculate_쉼표_또는_콜론_구분자() throws Exception {
 		int result = PlusCalculator.calculate("1,2:3");
 		assertThat(result).isEqualTo(6);
 	}
 
 	@Test
+	@SuppressWarnings("NonAsciiCharacters")
 	public void calculate_custom_구분자() throws Exception {
 		int result = PlusCalculator.calculate("//;\n1;2;3");
 		assertThat(result).isEqualTo(6);
 	}
 
 	@Test
+	@SuppressWarnings("NonAsciiCharacters")
 	public void calculate_negative() throws Exception {
 		assertThatThrownBy(() -> PlusCalculator.calculate("-1,2,3"))
 				.isInstanceOf(RuntimeException.class);
