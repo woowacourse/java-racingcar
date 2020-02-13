@@ -2,6 +2,7 @@ package racingcar;
 
 import racingcar.domain.Cars;
 import racingcar.domain.Round;
+import racingcar.domain.Winner;
 import racingcar.splitter.NameSplitter;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -30,6 +31,7 @@ public class Application {
             cars.run();
             OutputView.printRoundResult(cars);
         }
-        OutputView.printWinner(cars.findWinner());
+        Winner winner = new Winner(cars.findWinner());
+        OutputView.printWinner(winner);
     }
 }
