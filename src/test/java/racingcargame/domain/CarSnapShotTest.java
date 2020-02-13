@@ -1,6 +1,8 @@
 package racingcargame.domain;
 
 import org.junit.jupiter.api.Test;
+import racingcargame.domain.car.Car;
+import racingcargame.domain.result.CarSnapShot;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,6 +17,6 @@ public class CarSnapShotTest {
         car.move(4);
 
         CarSnapShot carSnapShot = new CarSnapShot(car);
-        assertThat(carSnapShot.getStatus()).isEqualTo("제이 : ----");
+        assertThat(carSnapShot.getStatus()).isEqualTo("제이   : ----");
     }
 }

@@ -1,4 +1,4 @@
-package racingcargame.domain;
+package racingcargame.domain.trialtimes;
 
 public class TrialTimes {
 
@@ -13,7 +13,7 @@ public class TrialTimes {
 
     private void validate(int trialTimes) {
         if (trialTimes < MINIMUM_TRIAL_TIMES) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("시도 횟수는 0이하일 수 없습니다.");
         }
     }
 

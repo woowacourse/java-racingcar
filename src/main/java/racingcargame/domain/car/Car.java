@@ -1,4 +1,4 @@
-package racingcargame.domain;
+package racingcargame.domain.car;
 
 import java.util.Objects;
 
@@ -11,16 +11,24 @@ public class Car {
     private int position;
 
     public Car(String name) {
+        validateNull(name);
+        name = name.trim();
         validateCarName(name);
         this.name = name;
     }
 
+    private void validateNull(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("자동차 이름이 입력되지 않았습니다.");
+        }
+    }
+
     private void validateCarName(String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException();
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("자동차 이름이 입력되지 않았습니다. 자동차 이름은 쉼표를 기준으로 구분합니다.");
         }
         if (name.length() > CAR_NAME_LIMIT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차 이름 길이 제한을 초과했습니다. 길이 제한은 " + CAR_NAME_LIMIT + "입니다.");
         }
     }
 
@@ -53,5 +61,9 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public static int getCarNameLimit() {
+        return CAR_NAME_LIMIT;
     }
 }

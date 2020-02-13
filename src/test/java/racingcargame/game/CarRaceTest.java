@@ -3,8 +3,8 @@ package racingcargame.game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcargame.domain.Car;
-import racingcargame.domain.TrialTimes;
+import racingcargame.domain.car.Car;
+import racingcargame.domain.trialtimes.TrialTimes;
 
 import java.util.ArrayList;
 import java.util.List;

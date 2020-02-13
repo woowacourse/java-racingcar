@@ -1,6 +1,10 @@
 package racingcargame.domain;
 
 import org.junit.jupiter.api.Test;
+import racingcargame.domain.car.Car;
+import racingcargame.domain.result.CarRaceResult;
+import racingcargame.domain.result.CarSnapShot;
+import racingcargame.domain.result.RoundResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,5 +46,6 @@ class CarRaceResultTest {
         CarRaceResult carRaceResult = new CarRaceResult(roundResults);
 
         assertThat(carRaceResult.getWinners()).contains("제이").contains("라테");
+        assertThat(carRaceResult.getRoundResultList()).size().isEqualTo(2);
     }
 }

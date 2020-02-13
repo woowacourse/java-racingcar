@@ -1,6 +1,9 @@
 package racingcargame.domain;
 
 import org.junit.jupiter.api.Test;
+import racingcargame.domain.car.Car;
+import racingcargame.domain.result.CarSnapShot;
+import racingcargame.domain.result.RoundResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +33,6 @@ class RoundResultTest {
         carSnapShotList.add(new CarSnapShot(carPobi));
 
         RoundResult roundResult = new RoundResult(carSnapShotList);
-        assertThat(roundResult.toString()).isEqualTo("제이 : ---\n라테 : --\n포비 : -\n");
+        assertThat(roundResult.toString()).isEqualTo("제이   : ---\n라테   : --\n포비   : -\n");
     }
 }

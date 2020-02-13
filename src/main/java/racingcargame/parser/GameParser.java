@@ -1,7 +1,7 @@
 package racingcargame.parser;
 
-import racingcargame.domain.Car;
-import racingcargame.domain.TrialTimes;
+import racingcargame.domain.car.Car;
+import racingcargame.domain.trialtimes.TrialTimes;
 import racingcargame.game.CarRace;
 
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class GameParser {
         try {
             return new TrialTimes(Integer.parseInt(trialTimesInput));
         } catch (NumberFormatException ne) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("시도 횟수는 숫자만 입력 가능합니다.");
         }
     }
 }
