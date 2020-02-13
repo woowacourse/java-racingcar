@@ -3,6 +3,7 @@ package racingcar.utils;
 import java.util.Random;
 
 public class RandomNumber {
+	private RandomNumber(){}
 
 	private static final int maxRange = 10;
 
