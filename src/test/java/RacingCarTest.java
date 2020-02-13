@@ -16,7 +16,7 @@ public class RacingCarTest {
         int position = racingCar.getPostion();
         assertThat(position).isEqualTo(0);
 
-        racingCar.proceed();
+        racingCar.go();
         position = racingCar.getPostion();
         assertThat(position).isEqualTo(1);
     }
@@ -29,6 +29,6 @@ public class RacingCarTest {
 
         racingCar.stop();
         position = racingCar.getPostion();
-        assertThat(position).isEqualTo(1);
+        assertThat(position).isEqualTo(0);
     }
 }

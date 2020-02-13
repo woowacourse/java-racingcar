@@ -10,7 +10,7 @@ public class RacingCar {
         return position;
     }
 
-    public void proceed() {
+    public void go() {
         position++;
     }
 
