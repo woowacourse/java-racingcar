@@ -17,7 +17,7 @@ public class Player {
         position += 1;
     }
 
-    public int getPosition() {
-        return position;
+    public PlayerInfoPair getPlayerInfoPair() {
+        return new PlayerInfoPair(name, position);
     }
 }
