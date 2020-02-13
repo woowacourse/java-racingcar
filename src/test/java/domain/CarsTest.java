@@ -8,44 +8,27 @@ import java.util.Arrays;
 
 import calculator.StringCalculator;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
 public class CarsTest {
+    private static final int EXPECTED_MAX_POSITION = 7;
+    private static final int EXPECTED_SIZE = 4;
+
     private static Car car1;
     private static Car car2;
-    private static Car car3;
-    private static Car car4;
+    private static Car winnerCar1;
+    private static Car winnerCar2;
     private static Cars cars;
 
     @BeforeAll
     static void setup() {
         car1 = new Car("타미", 1);
-        car2 = new Car("둔덩", 7);
-        car3 = new Car("라면", 2);
-        car4 = new Car("유안", 7);
-        cars = new Cars(Arrays.asList(car1, car2, car3, car4));
-    }
-
-
-    @Test
-    void getCarTest() {
-        assertThat(cars.getCar(0)).isEqualTo(car1);
-        assertThat(cars.getCar(1)).isEqualTo(car2);
-    }
-
-    @Test
-    void getMaxPositionTest() {
-        int maxPosition = cars.getMaxPosition();
-        assertThat(maxPosition).isEqualTo(7);
-    }
-
-    @Test
-    void getWinnersTest() {
-        int maxPosition = cars.getMaxPosition();
-        List<Car> expectedWinners = Arrays.asList(car2, car4);
-        List<Car> actualWinners = cars.findWinners(maxPosition);
-        assertThat(actualWinners.equals(expectedWinners)).isTrue();
+        car2 = new Car("유안", 2);
+        winnerCar1 = new Car("라면", EXPECTED_MAX_POSITION);
+        winnerCar2 = new Car("둔덩", EXPECTED_MAX_POSITION);
+        cars = new Cars(Arrays.asList(car1, car2, winnerCar1, winnerCar2));
     }
 
     @Test
@@ -54,5 +37,31 @@ public class CarsTest {
         Car duplicatedCar2 = new Car("던둥");
         assertThatThrownBy(() -> new Cars(Arrays.asList(duplicatedCar1, duplicatedCar2)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("Cars 리스트의 원소가 적절한지 검증한다.")
+    void getCarTest() {
+        assertThat(cars.getCar(0)).isEqualTo(car1);
+        assertThat(cars.getCar(1)).isEqualTo(car2);
+    }
+
+    @Test
+    void getSizeTest() {
+        assertThat(cars.getSize()).isEqualTo(EXPECTED_SIZE);
+    }
+
+    @Test
+    void getMaxPositionTest() {
+        int maxPosition = cars.getMaxPosition();
+        assertThat(maxPosition).isEqualTo(EXPECTED_MAX_POSITION);
+    }
+
+    @Test
+    void getWinnersTest() {
+        int maxPosition = cars.getMaxPosition();
+        List<Car> expectedWinners = Arrays.asList(winnerCar1, winnerCar2);
+        List<Car> actualWinners = cars.findWinners(maxPosition);
+        assertThat(actualWinners.equals(expectedWinners)).isTrue();
     }
 }
