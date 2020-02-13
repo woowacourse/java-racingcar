@@ -24,6 +24,10 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    public boolean isMaxPosition(int position) {
+        return this.carPosition.getPosition() == position;
+    }
+
     public int getCarPosition() {
         return carPosition.getPosition();
     }

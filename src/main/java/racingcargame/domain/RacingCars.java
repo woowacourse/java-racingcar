@@ -1,10 +1,7 @@
 package racingcargame.domain;
 
-import racingcargame.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,14 +11,14 @@ public class RacingCars {
 
     private List<Car> cars;
 
-    public RacingCars(String userInput) {
-        this.cars = setCars(userInput);
+    public RacingCars(String names) {
+        this.cars = setCars(names);
     }
 
-    private List<Car> setCars(String userInput) {
+    private List<Car> setCars(String names) {
         cars = new ArrayList<>();
 
-        String[] carNames = splitName(userInput);
+        String[] carNames = splitName(names);
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
@@ -48,7 +45,7 @@ public class RacingCars {
         int maxPosition = cars.get(0).getCarPosition();
 
         List<String> winnerCar = cars.stream()
-                .filter(car -> car.getCarPosition() == maxPosition)
+                .filter(car -> car.isMaxPosition(maxPosition))
                 .map(car -> car.getCarName())
                 .collect(Collectors.toList());
         return String.join(", ", winnerCar);
