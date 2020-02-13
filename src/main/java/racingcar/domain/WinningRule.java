@@ -13,25 +13,18 @@ import java.util.stream.Collectors;
  * @since 2020/02/13
  */
 public class WinningRule {
-    private final List<Car> cars;
+	private final List<Car> cars;
+	private final int maxPosition;
 
-    public WinningRule(final List<Car> cars) {
-        this.cars = Objects.requireNonNull(cars);
-    }
+	public WinningRule(final List<Car> cars, final int maxPosition) {
+		this.cars = Objects.requireNonNull(cars);
+		this.maxPosition = maxPosition;
+	}
 
-    public List<Name> decideWinners() {
-        int maxPosition = calculateMaxPosition();
-        return cars.stream()
-                .filter(car -> car.isPositionOf(maxPosition))
-                .map(Car::getName)
-                .collect(Collectors.toList());
-    }
-
-    private int calculateMaxPosition() {
-        return cars.stream()
-                .map(Car::getPosition)
-                .map(Position::getPosition)
-                .max(Integer::compare)
-                .orElseThrow(IllegalArgumentException::new);
-    }
+	public List<Name> decideWinners() {
+		return cars.stream()
+				.filter(car -> car.isPositionOf(maxPosition))
+				.map(Car::getName)
+				.collect(Collectors.toList());
+	}
 }
