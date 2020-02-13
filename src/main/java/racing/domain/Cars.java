@@ -32,10 +32,6 @@ public class Cars {
 		cars.forEach(car -> car.goForward(car.randomGenerate()));
 	}
 
-	public void printPosition() {
-		OutputView.printAllPosition(cars);
-	}
-
 	public List<Car> getCars() {
 		return Collections.unmodifiableList(cars);
 	}
