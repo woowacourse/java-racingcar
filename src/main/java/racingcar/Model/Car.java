@@ -2,6 +2,17 @@ package racingcar.Model;
 
 import racingcar.View.OutputView;
 
+/**
+ * 클래스 이름 : Car.java
+ *
+ * @author 보스독
+ * @author 작은곰
+ * @author 토니
+ * @version 1.0
+ * <p>
+ * 날짜 : 2020.02.13 목요일
+ */
+
 public class Car {
     public static final int RANDOM_UPPER_LIMIT = 9;
     public static final int RANDOM_LOWER_LIMIT = 1;

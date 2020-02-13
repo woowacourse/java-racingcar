@@ -3,13 +3,21 @@ package racingcarTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.Controller.InputValidation;
-import racingcar.View.InputView;
 
 import java.util.InputMismatchException;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+/**
+ * 클래스 이름 : InputControlTest.java
+ *
+ * @author 보스독
+ * @author 작은곰
+ * @author 토니
+ * @version 1.0
+ * <p>
+ * 날짜 : 2020.02.13 목요일
+ */
 
 public class InputControlTest {
     @Test

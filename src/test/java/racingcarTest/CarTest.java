@@ -8,6 +8,17 @@ import racingcar.Model.Car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * 클래스 이름 : CarTest.java
+ *
+ * @author 보스독
+ * @author 작은곰
+ * @author 토니
+ * @version 1.0
+ * <p>
+ * 날짜 : 2020.02.13 목요일
+ */
+
 public class CarTest {
     private Car car = new Car("보스독");
 
