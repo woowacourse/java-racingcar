@@ -1,8 +1,14 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Car {
     public static final String NAME_MUSTBE_1TO5 = "이름은 1자 이상 5자 이하여야 합니다.";
     public static final String RANDOM_OUTOF_BOUND = "범위를 초과한 난수입니다.";
+    public static final String HYPHEN = "-";
+    public static final String BLANKSTRING = "";
     private final String name;
     private int position = 0;
 
@@ -34,5 +40,17 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public List<String> currentPosition() {
+        return Arrays.asList(new String[]{name, stripBuilder()});
+    }
+
+    private String stripBuilder() {
+        String strip = BLANKSTRING;
+        for (int i = 0; i < position; i++) {
+            strip += HYPHEN;
+        }
+        return strip;
     }
 }

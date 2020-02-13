@@ -96,4 +96,15 @@ public class racingCarTest {
         assertThat(game.findWinner(finalStatus)).containsExactly("alan", "cloy");
     }
 
+    @Test
+    @DisplayName("Car의 현재 위치를 시각적으로 리턴하는 것을 테스트")
+    void checkCurrentPosition() {
+        Car car = new Car("hiro");
+        for(int i = 0; i < 10; i++) {
+            car.checkMove(4);
+        }
+        assertThat(car.currentPosition().get(0)).isEqualTo("hiro");
+        assertThat(car.currentPosition().get(1)).isEqualTo("----------");
+    }
+
 }
