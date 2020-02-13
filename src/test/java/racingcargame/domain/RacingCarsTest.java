@@ -1,6 +1,7 @@
 package racingcargame.domain;
 
 import org.junit.jupiter.api.Test;
+import racingcargame.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class RacingCarsTest {
         cars.add(new Car("jason",1));
         cars.add(new Car("brown",4));
         RacingCars racingCars = new RacingCars(cars);
-        String result = racingCars.printPosition();
+        String result = OutputView.printPosition(racingCars);
         String expected = "pobi : ---" + "\n" + "jason : -" + "\n" + "brown : ----" + "\n";
         assertThat(result).isEqualTo(expected);
     }

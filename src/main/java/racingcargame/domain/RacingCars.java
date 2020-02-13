@@ -1,5 +1,8 @@
 package racingcargame.domain;
 
+import com.sun.tools.internal.ws.wsdl.document.Output;
+import racingcargame.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,14 +19,6 @@ public class RacingCars {
         cars.forEach(car -> car.go(Engine.createRandomEngine()));
     }
 
-    public String printPosition() {
-        StringBuilder sb = new StringBuilder();
-        for (Car car : cars) {
-            sb.append(car.printPosition());
-        }
-        return sb.toString();
-    }
-
     public List<Car> extractWinners() {
         Collections.sort(cars);
         Car firstScoreCar = cars.get(cars.size() - 1);
@@ -31,5 +26,9 @@ public class RacingCars {
                 .filter(car -> car.isSameToPosition(firstScoreCar))
                 .collect(Collectors.toList());
         return Collections.unmodifiableList(winners);
+    }
+
+    public List<Car> getUnmodifiableCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

@@ -1,7 +1,6 @@
 package racingcargame.domain;
 
 public class Car implements Comparable<Car> {
-    private static final String DISTANCE = "-";
     private final Name name;
     private int position;
 
@@ -29,14 +28,12 @@ public class Car implements Comparable<Car> {
         return this.position == car.position;
     }
 
-    public String printPosition() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name.getName() + " : ");
-        for (int i = 0; i < position; i++) {
-            sb.append(DISTANCE);
-        }
-        sb.append("\n");
-        return sb.toString();
+    public int getPosition() {
+        return position;
+    }
+
+    public String getName() {
+        return name.getName();
     }
 
     @Override

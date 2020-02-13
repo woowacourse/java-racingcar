@@ -2,6 +2,7 @@ package racingcargame.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcargame.view.OutputView;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,7 +20,7 @@ public class CarTest {
     @Test
     void 포지션만큼출력() {
         Car car = new Car("pobi", 3);
-        assertThat(car.printPosition()).isEqualTo("pobi : ---\n");
+        assertThat(OutputView.printPosition(car)).isEqualTo("pobi : ---\n");
     }
 
     @Test
