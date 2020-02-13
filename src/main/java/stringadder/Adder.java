@@ -76,5 +76,4 @@ public class Adder {
             throw new RuntimeException();
         }
     }
-
 }

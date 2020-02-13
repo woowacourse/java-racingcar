@@ -43,13 +43,11 @@ public class AdderTest {
         assertThat(result).containsExactly(1, 2, 3);
     }
 
-    @Test
-    public void 커스텀문자_split() {
+    @ParameterizedTest
+    @CsvSource(value = {"';','1;2;3'", "'-','1-2-3'"})
+    public void 커스텀문자_split(String mark, String equation) {
         List<Integer> result;
-        result = adder.getSplit(";", "1;2;3");
-        assertThat(result).containsExactly(1, 2, 3);
-
-        result = adder.getSplit("-", "1-2-3");
+        result = adder.getSplit(mark, equation);
         assertThat(result).containsExactly(1, 2, 3);
     }
 
