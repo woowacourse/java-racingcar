@@ -1,55 +1,40 @@
 package racingcar.view;
 
+import racingcar.domain.Names;
+
 import java.util.Scanner;
 
 public class InputView {
-    private Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public String[] getCarNames() {
-        String input = "";
-        try{
-            input = enterCarNames();
-        } catch (Exception e){
-            System.err.println(e.getMessage());
-            getCarNames();
+    public static void getNames() {
+        try {
+            OutputView.askCarNames();
+            String carNames = scanner.nextLine();
+            new Names(carNames);
+        } catch(IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            getNames();
         }
-        return splitName(input);
     }
-
+/*
     public int getTrial() {
         String input = "";
         try {
-            input = enterGameCounts();
-        } catch (Exception e){
+            input = enterTrial();
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             getTrial();
         }
         return Integer.parseInt(input);
     }
 
-    private String enterGameCounts() throws Exception {
+    private String enterTrial() throws Exception {
         OutputView.askGameCounts();
         String inputGameCounts = scanner.nextLine();
         ValidateInput.isNotNumber(inputGameCounts);
         return inputGameCounts;
     }
 
-    private String enterCarNames() throws Exception {
-        OutputView.askCarNames();
-        String inputCarNames = scanner.nextLine();
-        ValidateInput.isBlank(inputCarNames);
-        checkCarNames(splitName(inputCarNames));
-        return inputCarNames;
-    }
-
-    public static String[] splitName(String input) {
-        String[] carNames = input.split(",");
-        return carNames;
-    }
-
-    private static void checkCarNames(String[] carNames) throws Exception {
-        for (String carName : carNames) {
-            ValidateInput.isOverSixLetters(carName);
-        }
-    }
+ */
 }

@@ -9,6 +9,7 @@ public class OutputView {
     public static void askCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
+
     public static void askGameCounts() {
         System.out.println("시도 횟수를 입력해주세요.");
     }
@@ -18,7 +19,11 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void printWinnerResult(){
+    public static void printWinnerResult() {
         System.out.println(Winners.getWinners() + "가 최종 우승했습니다.");
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.err.println(errorMessage);
     }
 }

@@ -10,16 +10,14 @@ public class Game { //게임 로직 구현
 //    private Winners winners = new Winners();
     public void run() {
         Cars cars = new Cars();
-        InputView inputView = new InputView();
-        String[] carNames = inputView.getCarNames();
-        int trial = inputView.getTrial();
-        cars = createCars(carNames);
-        for (int i = 0 ; i < trial ; i++) {
-            cars.moveCars();
-            OutputView.printCurrentResult(cars.getCurrentResult());
-        }
-        Winners.selectWinners(cars.getCars());
-        OutputView.printWinnerResult();
+        InputView.getNames();
+//        cars = createCars(carNames);
+//        for (int i = 0 ; i < trial ; i++) {
+//            cars.moveCars();
+//            OutputView.printCurrentResult(cars.getCurrentResult());
+//        }
+//        Winners.selectWinners(cars.getCars());
+//        OutputView.printWinnerResult();
     }
 
     private Cars createCars(String[] carNames) {
