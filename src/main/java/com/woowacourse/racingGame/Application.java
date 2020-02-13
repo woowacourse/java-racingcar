@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import com.woowacourse.racingGame.controller.RacingGame;
+import com.woowacourse.racingGame.domain.Car;
 import com.woowacourse.racingGame.domain.Cars;
 import com.woowacourse.racingGame.domain.MovementNumber;
 import com.woowacourse.racingGame.domain.Result;
 import com.woowacourse.racingGame.utils.CarsFactory;
+import com.woowacourse.racingGame.utils.RandomGenerator;
 import com.woowacourse.racingGame.view.InputView;
 import com.woowacourse.racingGame.view.OutputView;
 
@@ -22,9 +23,8 @@ public class Application {
 
 		final Cars cars = generateCars();
 		final MovementNumber movementNumber = receiveInputMovementNumber();
-		final RacingGame racingGame = new RacingGame(cars);
 
-		final List<Result> results = playRacingGame(racingGame, movementNumber);
+		final List<Result> results = playRacingGame(cars, movementNumber);
 
 		outputView.printRacingGameResult(results);
 		outputView.printWinners(getFinalResult(results, movementNumber));
@@ -50,11 +50,17 @@ public class Application {
 		}
 	}
 
-	private static List<Result> playRacingGame(final RacingGame racingGame,
-		final MovementNumber movementNumber) {
+	private static List<Result> playRacingGame(final Cars cars, final MovementNumber movementNumber) {
 		return IntStream.range(0, movementNumber.getMovementNumber())
-			.mapToObj(i -> racingGame.play())
+			.mapToObj(i -> attemptMove(cars))
 			.collect(Collectors.toList());
+	}
+
+	private static Result attemptMove(final Cars cars) {
+		for (Car car : cars.getCars()) {
+			car.attemptMoveThrough(RandomGenerator.generateRandomNumber());
+		}
+		return new Result(cars);
 	}
 
 	private static Result getFinalResult(final List<Result> results, final MovementNumber movementNumber) {
