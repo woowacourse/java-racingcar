@@ -30,11 +30,11 @@ public class Racing {
     }
 
     private List<Car> setCars(List<String> carNames) {
-        List<Car> carList = new ArrayList<>();
+        List<Car> returnCars = new ArrayList<>();
         for (String carName : carNames) {
-            carList.add(new Car(carName));
+            returnCars.add(new Car(carName));
         }
-        return carList;
+        return returnCars;
     }
 
     public String run() {
