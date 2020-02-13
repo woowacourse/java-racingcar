@@ -9,11 +9,15 @@ import java.util.List;
 import java.util.Random;
 
 public class RacingGame {
+
+    public static final int NUMBER_BOUND = 10;
+
+    /* 인스턴스를 사용하지 않으므로 추가 */
     private RacingGame() {
     }
 
     public static int generateRandom() {
-        return new Random().nextInt(10);
+        return new Random().nextInt(NUMBER_BOUND);
     }
 
     public static void play(Input input, Output output) {

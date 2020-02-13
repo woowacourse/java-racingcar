@@ -6,6 +6,7 @@ public class OutputView {
     public static final String RESULT_FORMAT = "\n실행 결과";
     public static final String WINNER_FORMAT = "가 최종 우승했습니다.";
 
+    /* 인스턴스를 사용하지 않으므로 추가 */
     private OutputView() {
 
     }

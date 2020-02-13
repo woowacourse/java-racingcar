@@ -15,10 +15,13 @@ import java.util.List;
 
 public class RacingGameTest {
     private static final List<Car> carList = new ArrayList<>();
-    Input input;
-    Output output;
+    private final String[] testNames = {"pobi", "crong", "honux"};
     private final String NAMES = "pobi,crong,honux";
     private final String REPEAT = "5";
+    Input input;
+    Output output;
+
+
 
     void initList() {
         carList.clear();
@@ -77,10 +80,10 @@ public class RacingGameTest {
     @RepeatedTest(value = 1000)
     void 레이싱게임_실행_결과_테스트() {
         RacingGame.play(input, output);
-        boolean result1 = output.isContainName("pobi");
-        boolean result2 = output.isContainName("crong");
-        boolean result3 = output.isContainName("honux");
-
-        Assertions.assertThat(result1 || result2 || result3).isTrue();
+        boolean result = false;
+        for(String name : testNames){
+            result = result || output.isContainName(name);
+        }
+        Assertions.assertThat(result).isTrue();
     }
 }
