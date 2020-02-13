@@ -1,6 +1,7 @@
 package racingcargame.game;
 
 import racingcargame.domain.Car;
+import racingcargame.domain.TrialTimes;
 import racingcargame.genrator.RandomGenerator;
 import racingcargame.view.output.OutputView;
 
@@ -29,8 +30,8 @@ public class CarRace {
         }
     }
 
-    public void run(int trialTime) {
-        for (int i = 0; i < trialTime; i++) {
+    public void run(TrialTimes trialTimes) {
+        for (int i = 0; i < trialTimes.getTrialTimes(); i++) {
             runOneTurn();
             OutputView.printRound(cars);
         }

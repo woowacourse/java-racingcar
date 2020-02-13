@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcargame.domain.Car;
+import racingcargame.domain.TrialTimes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,6 @@ class CarRaceTest {
     @Test
     @DisplayName("자동차 경주는 시도 횟수를 받아서 실시")
     void runRounds() {
-        carRace.run(5);
+        carRace.run(new TrialTimes(5));
     }
 }
