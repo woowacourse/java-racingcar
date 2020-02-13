@@ -1,15 +1,12 @@
 package racingcargame.domain;
 
-import com.sun.tools.internal.ws.wsdl.document.Output;
-import racingcargame.util.Spliter;
-import racingcargame.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCars {
+    public static final String DELIMITER = ",";
     private final List<Car> cars = new ArrayList<>();
 
     public RacingCars(List<Car> cars) {
@@ -34,11 +31,19 @@ public class RacingCars {
     }
 
     public static RacingCars createRacingCars(String inputCarNames) {
-        String[] splitedInputCarNames = Spliter.split(inputCarNames);
+        String[] splicedInputCarNames = inputCarNames.split(DELIMITER);
+        validOneCar(splicedInputCarNames);
         List<Car> cars = new ArrayList<>();
-        for (String inputCarName : splitedInputCarNames) {
+        for (String inputCarName : splicedInputCarNames) {
             cars.add(new Car(inputCarName));
         }
         return new RacingCars(cars);
+    }
+
+    private static void validOneCar(String[] splicedInputCarNames) {
+        if(splicedInputCarNames.length == 1) {
+            System.out.println("하나의 자동차만 입력되었습니다.");
+            throw new RuntimeException();
+        }
     }
 }

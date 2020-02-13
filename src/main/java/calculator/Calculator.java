@@ -24,7 +24,8 @@ public class Calculator {
         boolean isNotPositiveNumberAndZero = Arrays.stream(inputs)
                 .anyMatch(input -> input.matches(NUMBER_EXPRESSION));
         if (isNotPositiveNumberAndZero) {
-            throw new RuntimeException("숫자 이외의 값 혹은 음수가 입력되었습니다.");
+            System.out.println("숫자 이외의 값 혹은 음수가 입력되었습니다.");
+            throw new RuntimeException();
         }
     }
 }

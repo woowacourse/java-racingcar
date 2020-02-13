@@ -12,7 +12,8 @@ public class TryLimitNumber {
 
     private void checkExceedRange(int number) {
         if (number < MIN_TRY_NUMBER) {
-            throw new RuntimeException("1 이상의 숫자만 입력 가능합니다.");
+            System.out.println("1 이상의 숫자만 입력 가능합니다.");
+            throw new RuntimeException();
         }
     }
 

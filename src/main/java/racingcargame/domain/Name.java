@@ -29,19 +29,22 @@ public class Name {
 
     private void isDuplicatedNames(String input) {
         if (CAR_NAMES.contains(input)) {
-            throw new RuntimeException("중복된 이름을 가지고 있습니다.");
+            System.out.println("중복된 이름을 가지고 있습니다.");
+            throw new RuntimeException();
         }
     }
 
     private void isExceededMaxLength(String name) {
         if (name.length() > NAME_MAX_LENGTH) {
-            throw new RuntimeException("길이 최대치를 초과하는 이름을 가지고 있습니다.");
+            System.out.println("길이 최대치를 초과하는 이름을 가지고 있습니다.");
+            throw new RuntimeException();
         }
     }
 
     private void checkBlankInput(String name) {
         if (BLANK.equals(name)) {
-            throw new RuntimeException("공백 이름을 가지고 있습니다.");
+            System.out.println("공백 이름을 가지고 있습니다.");
+            throw new RuntimeException();
         }
     }
 
