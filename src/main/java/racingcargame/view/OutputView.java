@@ -26,12 +26,12 @@ public class OutputView {
         return sb.toString();
     }
 
-    public static String printPosition(RacingCars cars) {
+    public static void printPosition(RacingCars cars) {
         List<Car> racingCars = cars.getUnmodifiableCars();
         StringBuilder sb = new StringBuilder();
         for (Car car : racingCars) {
             sb.append(OutputView.printPosition(car));
         }
-        return sb.toString();
+        System.out.println(sb.toString());
     }
 }
