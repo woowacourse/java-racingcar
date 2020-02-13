@@ -16,8 +16,8 @@ public class CarsTest {
 	public void winnerTest() {
 		Cars cars = new Cars(Arrays.asList("자동차1", "자동차2", "자동차3"));
 		cars.getCars().get(1).goForward(5);
-		List<Car> winners = cars.findWinner();
-		String winnersName = winners.stream().map(Car::getName).collect(Collectors.joining(","));
+		List<String> winners = cars.findWinner();
+		String winnersName = String.join(",", winners);
 
 		assertThat(winnersName).contains("자동차2");
 		assertThat(winnersName).doesNotContain("자동차1");
