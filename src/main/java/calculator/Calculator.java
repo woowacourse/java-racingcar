@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
  */
 
 public class Calculator {
-
     public static final String REGEX = "//(.)\n(.*)";
     public static final int SINGLE_NUMBER = 1;
     public static final String NEGATIVE_SYMBOL = "-";

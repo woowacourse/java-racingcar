@@ -34,7 +34,7 @@ public class GameTest {
     @DisplayName("포지션이 가장 큰 차 선별")
     void findTopPositionCar() {
         Car topPositionCar = Game.findTopPositionCar(cars);
-        assertThat(topPositionCar).isEqualTo(cars.get(2));
+        assertThat(topPositionCar).isEqualTo(cars.get(3));
     }
 
     @Test

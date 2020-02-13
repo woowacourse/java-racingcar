@@ -14,7 +14,6 @@ import java.util.InputMismatchException;
  */
 
 public class InputValidation {
-
     public static void checkNullOrEmptyInput(String[] carNames) {
         if (carNames.length == 0 || carNames[0].length() == 0) {
             throw new NullPointerException("입력이 null 이나 빈 문자열입니다.");
@@ -39,7 +38,7 @@ public class InputValidation {
 
     public static void checkNegativeAndZeroInput(String trialTime) {
         double value = Double.parseDouble(trialTime);
-        if (value <= 0){
+        if (value <= 0) {
             throw new IllegalArgumentException("음수 또는 0을 입력할 수 없습니다.");
         }
     }
@@ -58,10 +57,9 @@ public class InputValidation {
     }
 
     public static void checkNotNumber(String trialTime) {
-        try{
+        try {
             double value = Double.parseDouble(trialTime);
-        }
-        catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new NumberFormatException("문자는 입력할 수 없습니다.");
         }
     }

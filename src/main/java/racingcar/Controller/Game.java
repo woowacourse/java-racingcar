@@ -1,11 +1,11 @@
 package racingcar.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import racingcar.Model.Car;
 import racingcar.View.InputView;
 import racingcar.View.OutputView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 클래스 이름 : Game.java
@@ -47,25 +47,26 @@ public class Game {
         }
     }
 
+    public static void showWinner() {
+        Car topPositionCar = findTopPositionCar(cars);
+        for (Car car : cars) {
+            topPositionCar.findWinners(car);
+        }
+        OutputView.printWinners(Car.winners.toString());
+    }
+
     public static Car findTopPositionCar(List<Car> cars) {
         Car winner = cars.get(0);
-        if (cars.size() == 1) {
+        int carSize = cars.size();
+        if (carSize == 1) {
             return winner;
         }
-        for(int i = 1; i < cars.size(); i++) {
+        for (int i = 1; i < carSize; i++) {
             if (!winner.comparePosition(cars.get(i))) {
                 winner = cars.get(i);
             }
         }
         return winner;
-    }
-
-    public static void showWinner(){
-        Car topPositionCar = findTopPositionCar(cars);
-        for (Car car : cars){
-            topPositionCar.findWinners(car);
-        }
-        OutputView.printWinners(Car.winners.toString());
     }
 
 }

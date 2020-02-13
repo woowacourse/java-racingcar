@@ -64,8 +64,8 @@ public class CalculatorTest {
 
     @Test
     @DisplayName("지정된 구분자가 아닌 문자가 들어왔을 경우 예외 발생하게 됨")
-    void splitAndSum_지정되지_않은_구분자(){
-        assertThatThrownBy(()->{
+    void splitAndSum_지정되지_않은_구분자() {
+        assertThatThrownBy(() -> {
             int result2 = Calculator.splitAndSum("1:2@3");
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자와 구분자만 입력할 수 있습니다.");
@@ -74,12 +74,12 @@ public class CalculatorTest {
     @Test
     @DisplayName("음수를 전달할 경우 RuntimeException 예외가 발생하게 됨")
     void splitAndSum_negative() {
-        assertThatThrownBy(()->{
+        assertThatThrownBy(() -> {
             int result = Calculator.splitAndSum("1,2,-3");
         }).isInstanceOf(RuntimeException.class)
                 .hasMessageContaining("음수는 포함할 수 없습니다.");
 
-        assertThatThrownBy(()->{
+        assertThatThrownBy(() -> {
             int result = Calculator.splitAndSum("//;\n1;-2;3");
         }).isInstanceOf(RuntimeException.class)
                 .hasMessageContaining("음수는 포함할 수 없습니다.");
@@ -88,7 +88,7 @@ public class CalculatorTest {
     @Test
     @DisplayName("문자열을 전달할 경우 예외가 발생하게 됨")
     void splitAndSum_문자열() {
-        assertThatThrownBy(()->{
+        assertThatThrownBy(() -> {
             int result = Calculator.splitAndSum("a");
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자와 구분자만 입력할 수 있습니다.");

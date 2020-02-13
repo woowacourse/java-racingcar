@@ -18,6 +18,8 @@ public class Car {
     public static final int RANDOM_LOWER_LIMIT = 1;
     private static final int CRITERIA_FOR_GO = 4;
     private static final int INITIAL_POSITION = 0;
+    public static final String DASH = "-";
+    public static final String COLON = " : ";
 
     public static StringBuilder winners = new StringBuilder();
 
@@ -36,7 +38,7 @@ public class Car {
     }
 
     public void goOrNot() {
-        if (isGo(createRandomNumber())){
+        if (isGo(createRandomNumber())) {
             position++;
         }
     }
@@ -45,8 +47,8 @@ public class Car {
         return randomNumber >= CRITERIA_FOR_GO;
     }
 
-    private int createRandomNumber(){
-        return (int)(Math.random() * RANDOM_UPPER_LIMIT) + RANDOM_LOWER_LIMIT;
+    private int createRandomNumber() {
+        return (int) (Math.random() * RANDOM_UPPER_LIMIT) + RANDOM_LOWER_LIMIT;
     }
 
     public boolean comparePosition(Car target) {
@@ -55,9 +57,9 @@ public class Car {
 
     public void showCurrentPosition() {
         StringBuilder outputValue = new StringBuilder();
-        outputValue.append(carName).append(" : ");
-        for (int i = 0; i < position; i++){
-            outputValue.append("-");
+        outputValue.append(carName).append(COLON);
+        for (int i = 0; i < position; i++) {
+            outputValue.append(DASH);
         }
         OutputView.printPositionByDash(outputValue.toString());
     }

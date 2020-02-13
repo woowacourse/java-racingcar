@@ -14,7 +14,7 @@ import racingcar.Controller.Game;
  */
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Game.initialize();
         Game.race();
         Game.showWinner();

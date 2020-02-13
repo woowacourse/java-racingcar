@@ -21,7 +21,7 @@ public class InputView {
 
     public static String[] inputCarName() {
         OutputView.printInputCarNamesMessage();
-        String[] carNames = sc.nextLine().split(DELIMITER); // TODO 스페이스바만 입력했을때 ,로 끝났을 경우 어떻게 해야 할까용
+        String[] carNames = sc.nextLine().split(DELIMITER);
         trimCarNames(carNames);
         try {
             InputValidation.checkNullOrEmptyInput(carNames);
