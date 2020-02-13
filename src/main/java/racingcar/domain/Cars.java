@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
 	private static final int MINIMUM_NUMBER_OF_CARS = 2;
@@ -37,6 +38,14 @@ public class Cars {
 		for (Car nextCar : cars) {
 			currentMaxPosition = nextCar.compareMaxPosition(currentMaxPosition);
 		}
+
 		return currentMaxPosition;
+	}
+
+	public List<String> getWinnersName(int maxPosition) {
+		return cars.stream()
+				.filter(car -> car.isMaxPosition(maxPosition))
+				.map(Car::getName)
+				.collect(Collectors.toList());
 	}
 }
