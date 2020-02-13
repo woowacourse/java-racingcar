@@ -11,6 +11,9 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGame {
+
+    public static final int StartPlayRound = 0;
+
     private RacingGame() {
     }
 
@@ -30,7 +33,7 @@ public class RacingGame {
     }
 
     private static void startRace(int playRound, List<Car> racingCarList) {
-        for (int i = 0; i < playRound; i++) {
+        for (int i = StartPlayRound; i < playRound; i++) {
             for (Car car : racingCarList) {
                 car.move(RandomNumber.generateRandomIntIntRange());
                 OutputView.printRoundResult(car);

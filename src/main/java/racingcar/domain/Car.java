@@ -2,12 +2,13 @@ package racingcar.domain;
 
 public class Car {
 	private static final int MOVE_FORWARD = 4;
+	public static final int StartPosition = 0;
 	private int position;
 	private String name;
 
 	public Car(String name) {
 		this.name = name;
-		position = 0;
+		position = StartPosition;
 	}
 
 	public void move(int randomNumber) {
@@ -35,7 +36,7 @@ public class Car {
 	@Override
 	public String toString() {
 		StringBuilder trace = new StringBuilder();
-		for (int i = 0; i < position; i++) {
+		for (int i = StartPosition; i < position; i++) {
 			trace.append("-");
 		}
 
