@@ -24,4 +24,8 @@ public class RaceCount {
 			throw new IllegalArgumentException(raceCount + "는 자연수가 아닙니다.");
 		}
 	}
+
+	public int getRaceCount() {
+		return raceCount;
+	}
 }

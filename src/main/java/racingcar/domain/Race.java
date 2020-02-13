@@ -8,4 +8,13 @@ public class Race {
 		this.cars = cars;
 		this.raceCount = raceCount;
 	}
+
+	public void run() {
+		int maxPosition = 0;
+
+		for (int i = 0; i < raceCount.getRaceCount(); i++) {
+			cars.moveAll();
+			maxPosition = cars.getMaxPosition(maxPosition);
+		}
+	}
 }

@@ -32,4 +32,11 @@ public class Cars {
 	public void moveAll() {
 		cars.forEach(car -> car.move(RandomGenerator.generateRandom()));
 	}
+
+	public int getMaxPosition(int currentMaxPosition) {
+		for (Car nextCar : cars) {
+			currentMaxPosition = nextCar.compareAndReturnMax(currentMaxPosition);
+		}
+		return currentMaxPosition;
+	}
 }
