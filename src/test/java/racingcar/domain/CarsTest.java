@@ -1,29 +1,18 @@
-package racingcar;
+package racingcar.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.CarFactory;
-import racingcar.domain.Cars;
+import racingcar.TestNumberGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RacingCarTest {
-
-    private static Game game;
-    private static Cars cars;
-
-    @BeforeEach
-    public void init() {
-        CarFactory carFactory = new CarFactory("alan, bart, carol, don, eddy");
-        cars = carFactory.enrollCars();
-        game = new Game(cars, 5);
-    }
-
+public class CarsTest {
     @Test
     @DisplayName("경기 진행 테스트(1턴)")
-    void gameProceedTest() {
+    void playTurnTest() {
         TestNumberGenerator test = new TestNumberGenerator(new int[]{4, 2, 3, 9, 5});
+        CarFactory carFactory = new CarFactory("alan, bart, carol, don, eddy");
+        Cars cars = carFactory.enrollCars();
         cars.playTurn(test);
         assertThat(cars.notifyStatus().get("alan")).isEqualTo("-");
         assertThat(cars.notifyStatus().get("bart")).isEqualTo("");
@@ -35,8 +24,10 @@ public class RacingCarTest {
     @Test
     @DisplayName("결과 발표 테스트")
     void getResultTest() {
-        TestNumberGenerator test = new TestNumberGenerator(new int[]{4, 2, 3, 9, 5});
+        TestNumberGenerator test = new TestNumberGenerator(new int[]{4, 2, 5});
+        CarFactory carFactory = new CarFactory("alan, bart, carol");
+        Cars cars = carFactory.enrollCars();
         cars.playTurn(test);
-        assertThat(cars.findWinner()).containsExactly("alan", "don", "eddy");
+        assertThat(cars.findWinner()).containsExactly("alan", "carol");
     }
 }
