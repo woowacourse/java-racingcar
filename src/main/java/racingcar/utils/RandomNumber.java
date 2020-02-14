@@ -2,14 +2,16 @@ package racingcar.utils;
 
 import java.util.Random;
 
+import racingcar.domain.RandomNo;
+
 public class RandomNumber {
     private static final int maxRange = 10;
 
     private RandomNumber() {
     }
 
-    public static int generateRandomIntIntRange() {
+    public static RandomNo generateRandomIntIntRange() {
         Random r = new Random();
-        return r.nextInt(maxRange);
-    }
+        return new RandomNo(r.nextInt(maxRange));
+    };
 }

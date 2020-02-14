@@ -25,7 +25,8 @@ class CarTest {
     @ParameterizedTest
     @CsvSource(value = {"3,0", "4,1"})
     void Should_move_when_bigger_than_3(int value, int expected) {
-        car.move(value);
+        RandomNo randomNo = new RandomNo(value);
+        car.move(randomNo);
 
         Assertions.assertThat(car).extracting("position").isEqualTo(expected);
     }
