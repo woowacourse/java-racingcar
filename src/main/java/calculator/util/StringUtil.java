@@ -26,4 +26,8 @@ public class StringUtil {
 	private static boolean isUsingCustomDelimiter(String expression) {
 		return expression.startsWith("//");
 	}
+
+	public static boolean isNullOrBlank(String value) {
+		return value == null || value.trim().isEmpty();
+	}
 }

@@ -1,7 +1,6 @@
 package racingcar.util;
 
-public class CarUtil {
-
+public class RandomUtil {
 	public static final int BOUND = 10;
 
 	public static int random() {

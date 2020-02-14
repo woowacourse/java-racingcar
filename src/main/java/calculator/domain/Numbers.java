@@ -15,7 +15,7 @@ public class Numbers {
 
 	private void validate(String input) {
 		if (Integer.parseInt(input) < 0) {
-			throw new RuntimeException();
+			throw new RuntimeException("0 또는 음수는 입력 할 수 없습니다.\n");
 		}
 	}
 

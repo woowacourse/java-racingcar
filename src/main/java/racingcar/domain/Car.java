@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import calculator.domain.StringCalculator;
+
 public class Car implements Comparable<Car> {
 	public static final int MAXIMUM_LENGTH = 5;
 	public static final int MOVING_NUMBER = 4;
@@ -9,15 +11,14 @@ public class Car implements Comparable<Car> {
 
 	public Car(String name) {
 		if (isInvalid(name)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("자동차의 이름이 적절하지 않습니다.");
 		}
 		this.name = name;
 	}
 
 	private boolean isInvalid(String name) {
-		return name == null
-			|| name.length() > MAXIMUM_LENGTH
-			|| name.trim().isEmpty();
+		return StringCalculator.isNullOrBlank(name)
+			|| name.length() > MAXIMUM_LENGTH;
 	}
 
 	public void move(int random) {
@@ -34,6 +35,7 @@ public class Car implements Comparable<Car> {
 		return compareTo(anotherCar) == 0;
 	}
 
+	// TODO: 2020/02/14 Optional
 	public String getCoWinnersName(Car anotherCar) {
 		if (isOnSamePosition(anotherCar)) {
 			return anotherCar.name;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import racingcar.util.CarUtil;
+import racingcar.util.RandomUtil;
 
 public class Cars {
 	public static final int MINIMUM_PLAYER = 1;
@@ -34,7 +34,7 @@ public class Cars {
 
 	private void eachCarsMove() {
 		for (Car car : cars) {
-			car.move(CarUtil.random());
+			car.move(RandomUtil.random());
 		}
 	}
 

@@ -1,6 +1,7 @@
 package racingcar.domain.factory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import racingcar.domain.Car;
@@ -12,6 +13,6 @@ public class CarsFactory {
 		for (String name : names) {
 			carList.add(new Car(name));
 		}
-		return new Cars(carList);
+		return new Cars(Collections.unmodifiableList(carList));
 	}
 }
