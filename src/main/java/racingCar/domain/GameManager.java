@@ -2,10 +2,7 @@ package racingCar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class GameManager {
     private List<Player> players;
@@ -61,6 +58,7 @@ public class GameManager {
     private int getMax() {
         return players.stream()
                 .max(Player::compare)
-                .orElseThrow(RuntimeException::new).getPosition();
+                .orElseThrow(RuntimeException::new)
+                .getPosition();
     }
 }

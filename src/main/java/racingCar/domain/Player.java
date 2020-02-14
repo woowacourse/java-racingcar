@@ -1,7 +1,5 @@
 package racingCar.domain;
 
-import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Player {
