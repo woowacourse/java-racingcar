@@ -40,7 +40,7 @@ public class Cars {
 
     public void moveAll() {
         for (Car car : cars) {
-            car.move(RandomNumberGenerator.generateRandom());
+            car.moveByRandom(RandomNumberGenerator.generateRandom());
         }
     }
 

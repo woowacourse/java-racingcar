@@ -47,7 +47,7 @@ public class Car {
         }
     }
 
-    public void move(int inputValue) {
+    public void moveByRandom(int inputValue) {
         if (inputValue >= LIMIT_FOR_MOVE) {
             this.position++;
         }
