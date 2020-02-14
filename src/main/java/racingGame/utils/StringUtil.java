@@ -17,7 +17,7 @@ public class StringUtil {
     public static String convertPositionToString(final int position) {
         StringBuilder convertedPosition = new StringBuilder();
 
-        IntStream.range(0,position).forEach(i->convertedPosition.append(POSITION_CHARACTER));
+        IntStream.range(0, position).forEach(i -> convertedPosition.append(POSITION_CHARACTER));
         return convertedPosition.toString();
     }
 
