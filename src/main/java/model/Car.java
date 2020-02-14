@@ -11,6 +11,22 @@ public class Car {
         this.name = name;
     }
 
+    public void move() {
+        position += ONE_STEP;
+    }
+
+    public boolean isMaxPosition(int MaxPosition) {
+        return MaxPosition == position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -22,21 +38,5 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public void move() {
-        position += ONE_STEP;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public boolean isMaxPosition(int MaxPosition) {
-        return MaxPosition == position;
     }
 }

@@ -10,7 +10,7 @@ public class OutputView {
     private static final String BLANK = "\0";
     private static final String SCORE_BAR = "-";
     private static final String COMMA = ",";
-    private static final String WINNER_MESSAGE_FOOTER = " 가 우승했습니다.";
+    private static final String EXECUTION_RESULT_MESSAGE = " 가 우승했습니다.";
     private static final String BEGIN_RESULT_MESSAGE = "실행 결과";
 
     public static void printScore(List<Car> cars) {
@@ -31,7 +31,7 @@ public class OutputView {
 
     public static void printWinners(List<String> winners) {
         String winner = String.join(COMMA, winners);
-        System.out.println(winner + WINNER_MESSAGE_FOOTER);
+        System.out.println(winner + EXECUTION_RESULT_MESSAGE);
     }
 
     public static void printBeginResult() {
