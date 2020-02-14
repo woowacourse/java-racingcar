@@ -6,12 +6,12 @@ import racingcar.domain.RandomNo;
 
 public class RandomNumber {
     private static final int maxRange = 10;
+    private static final Random random = new Random();
 
     private RandomNumber() {
     }
 
     public static RandomNo generateRandomIntIntRange() {
-        Random r = new Random();
-        return new RandomNo(r.nextInt(maxRange));
-    };
+        return new RandomNo(random.nextInt(maxRange));
+    }
 }
