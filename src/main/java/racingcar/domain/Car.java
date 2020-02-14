@@ -25,8 +25,8 @@ public class Car {
         forwardCount++;
     }
 
-    public CarName getName() {
-        return name;
+    public String getName() {
+        return name.toString();
     }
 
     public int getForwardCount() {

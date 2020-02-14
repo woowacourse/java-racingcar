@@ -2,12 +2,10 @@ package racingcar.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
 import racingcar.domain.CarNameFactory;
-import racingcar.domain.Cars;
+import racingcar.domain.CarFactory;
 
 public class RacingTest {
 
@@ -15,9 +13,8 @@ public class RacingTest {
     @Test
     void makeCars() {
         CarNameFactory carNameFactory = new CarNameFactory("aaa,bbb,ccc");
-        Cars cars = new Cars(carNameFactory.getCarNames());
-        List<Car> racingCars = cars.getCars();
-        String progress = Racing.run(racingCars, 10).toString();
+        CarFactory carFactory = new CarFactory(carNameFactory);
+        String progress = Racing.run(carFactory, 10).toString();
         assertThat(progress).contains("aaa :")
             .contains("bbb :")
             .contains("ccc : ")

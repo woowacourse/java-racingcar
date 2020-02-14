@@ -12,28 +12,26 @@ package racingcar.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
-import racingcar.domain.CarName;
+import racingcar.domain.CarFactory;
 import racingcar.domain.CarNameFactory;
 
 public class WinnerTest {
 
-    private static List<Car> cars1 = new ArrayList<>();
-    private static List<Car> cars2 = new ArrayList<>();
+    private static CarFactory carFactory1;
+    private static CarFactory carFactory2;
 
     @BeforeAll
     static void makeCars() {
         String input = "asd,zxc,qwe";
-        List<CarName> carNames = new CarNameFactory(input).getCarNames();
-        for (CarName carName : carNames) {
-            cars1.add(new Car(carName));
-            cars2.add(new Car(carName));
-        }
+        carFactory1 = new CarFactory(new CarNameFactory(input));
+        carFactory2 = new CarFactory(new CarNameFactory(input));
+
+        List<Car> cars1 = carFactory1.getCars();
+        List<Car> cars2 = carFactory2.getCars();
         cars1.get(0).forward();
         cars1.get(1).forward();
         cars1.get(1).forward();
@@ -49,7 +47,7 @@ public class WinnerTest {
 
     @Test
     void winners() {
-        Assertions.assertThat(Winner.getWinnerWithDelimiter(cars1,", ")).isEqualTo("zxc");
-        assertThat(Winner.getWinnerWithDelimiter(cars2, ", ")).isEqualTo("zxc, qwe");
+        assertThat(Winner.getWinnerWithDelimiter(carFactory1, ", ")).isEqualTo("zxc");
+        assertThat(Winner.getWinnerWithDelimiter(carFactory2, ", ")).isEqualTo("zxc, qwe");
     }
 }

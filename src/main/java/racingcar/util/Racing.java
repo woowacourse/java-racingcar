@@ -13,6 +13,7 @@ package racingcar.util;
 import java.util.List;
 import java.util.Random;
 import racingcar.domain.Car;
+import racingcar.domain.CarFactory;
 
 public class Racing {
 
@@ -21,10 +22,10 @@ public class Racing {
     private final static String CAR_DELIMITER = " : ";
     private final static String CAR_PROGRESS_SIGN = "-";
 
-    public static StringBuilder run(List<Car> cars, int tryCount) {
+    public static StringBuilder run(CarFactory carFactory, int tryCount) {
         StringBuilder racingProgress = new StringBuilder();
         for (int i = 0; i < tryCount; i++) {
-            playRacing(cars, racingProgress);
+            playRacing(carFactory.getCars(), racingProgress);
         }
         return racingProgress;
     }

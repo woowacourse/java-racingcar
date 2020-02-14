@@ -12,13 +12,12 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
-    private static final CarName carName = new CarName("가나다");
 
+    private static final CarName carName = new CarName("가나다");
 
     @Test
     void carName() {
