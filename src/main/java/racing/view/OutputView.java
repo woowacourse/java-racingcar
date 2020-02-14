@@ -10,7 +10,7 @@ public class OutputView {
 	private static final String WINNER_NAME_DELIMITER = ",";
 	private static final String POSITION_VIEWER = "-";
 
-	public static void printEachPosition(Car car) {
+	static void printEachPosition(Car car) {
 		System.out.println(car.getName() + " : "
 				+ IntStream.range(0, car.getPosition())
 					.mapToObj(x -> POSITION_VIEWER)

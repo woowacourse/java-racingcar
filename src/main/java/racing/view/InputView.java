@@ -44,19 +44,19 @@ public class InputView {
 			});
 	}
 
-	public static boolean checkRoundNumber(String input) {
+	static boolean checkRoundNumber(String input) {
 		return input.chars().mapToObj(x -> (char)x).allMatch(Character::isDigit);
 	}
 
-	public static List<String> splitAsComma(String value) {
+	static List<String> splitAsComma(String value) {
 		return Arrays.asList(value.split(CAR_NAME_DELIMITER, -1));
 	}
 
-	public static boolean checkNotEmpty(List<String> input) {
+	static boolean checkNotEmpty(List<String> input) {
 		return !input.isEmpty();
 	}
 
-	public static boolean checkLength(List<String> input) {
+	static boolean checkLength(List<String> input) {
 		return input.stream().allMatch(InputView::isRightLength);
 	}
 
@@ -64,7 +64,7 @@ public class InputView {
 		return input.length() >= MIN_LENGTH && input.length() <= MAX_LENGTH;
 	}
 
-	public static boolean checkNotNull(String input) {
+	static boolean checkNotNull(String input) {
 		return input != null;
 	}
 }
