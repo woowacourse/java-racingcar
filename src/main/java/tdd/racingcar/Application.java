@@ -13,12 +13,11 @@ public class Application {
 		final Cars cars = CarsFactory.create(InputView.inputNames());
 		TryCount tryCount = new TryCount(InputView.inputTryCount());
 		Records records = new Records();
-		OutputView.printResultMessage();
 		tryCount.forEachRemaining(count -> {
 			cars.move();
 			records.add(new Record(cars));
 		});
-		records.forEach(OutputView::printRecord);
+		OutputView.printRecords(records);
 		OutputView.printWinners(cars.getWinners());
 	}
 }

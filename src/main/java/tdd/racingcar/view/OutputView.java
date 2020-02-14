@@ -6,6 +6,7 @@ import java.util.List;
 
 import tdd.racingcar.domain.Car;
 import tdd.racingcar.domain.Record;
+import tdd.racingcar.domain.Records;
 
 public class OutputView {
 	private static final String COLON = " : ";
@@ -14,21 +15,18 @@ public class OutputView {
 
 	private OutputView() {}
 
-	public static void printResultMessage() {
+	public static void printRecords(Records records) {
 		System.out.println("실행 결과");
+		records.forEach(OutputView::printRecord);
 	}
 
 	public static void printRecord(Record record) {
 		record.forEach(OutputView::printCar);
-		emptyLine();
+		System.out.println();
 	}
 
 	private static void printCar(final String name, final int position) {
 		System.out.println(name + COLON + POSITION_MARK.repeat(position));
-	}
-
-	private static void emptyLine() {
-		System.out.println();
 	}
 
 	public static void printWinners(List<Car> winners) {
