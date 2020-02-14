@@ -5,6 +5,7 @@ import racingGame.domain.Name;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class CarFactory {
     public static List<Car> createByNames(String carName) {
@@ -12,9 +13,9 @@ public class CarFactory {
 
         String[] carNames = carName.split(",");
 
-        for (int i = 0; i < carNames.length; i++) {
-            cars.add(new Car(new Name(carNames[i])));
-        }
+        IntStream.range(0, carNames.length)
+                .forEach(i -> cars.add(new Car(new Name(carNames[i]))));
+
         return cars;
     }
 }

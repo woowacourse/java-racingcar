@@ -6,15 +6,18 @@ import racingGame.utils.CarFactory;
 import racingGame.view.InputView;
 import racingGame.view.OutputView;
 
+import java.util.stream.IntStream;
+
 public class RacingGame {
     public void run() {
         Cars cars = generateCars();
         final int movementNumber = generateMovementNumber().toInteger();
 
-        for (int i = 0; i < movementNumber; i++) {
-            cars.moveCars();
-            OutputView.printCars(cars);
-        }
+        IntStream.range(0, movementNumber)
+                .forEach(i -> {
+                    cars.moveCars();
+                    OutputView.printCars(cars);
+                });
         cars.updateMaximumPosition();
         OutputView.printWinners(cars.getWinnersList());
     }

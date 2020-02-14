@@ -22,9 +22,7 @@ public class Cars {
     }
 
     public void moveCars() {
-        for (Car individualCar : cars) {
-            individualCar.move(RandomGenerator.generateRandomNumber());
-        }
+        cars.stream().forEach(car -> car.move(RandomGenerator.generateRandomNumber()));
     }
 
     public void updateMaximumPosition() {

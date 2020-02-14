@@ -4,6 +4,7 @@ import racingGame.domain.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class StringUtil {
     private static final String DELIMITER = ",";
@@ -15,9 +16,8 @@ public class StringUtil {
 
     public static String convertPositionToString(final int position) {
         StringBuilder convertedPosition = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            convertedPosition.append(POSITION_CHARACTER);
-        }
+
+        IntStream.range(0,position).forEach(i->convertedPosition.append(POSITION_CHARACTER));
         return convertedPosition.toString();
     }
 
