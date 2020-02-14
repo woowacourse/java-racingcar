@@ -36,7 +36,7 @@ public class CarsFactory {
 		}
 	}
 
-	public static List<String> removeSpaceAndSplit(String carsNameInput) {
+	private static List<String> removeSpaceAndSplit(String carsNameInput) {
 		return Arrays.asList(carsNameInput.replace(SPACE, EMPTY)
 				.split(COMMA, LIMIT));
 	}
