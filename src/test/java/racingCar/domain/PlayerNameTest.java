@@ -25,4 +25,14 @@ public class PlayerNameTest {
                 }
         );
     }
+
+    @Test
+    void duplicateName() {
+        String duplicateNameString = "over,over,pobi";
+        Assertions.assertThatThrownBy(
+                () -> {
+                    new PlayerName(duplicateNameString);
+                }
+        );
+    }
 }
