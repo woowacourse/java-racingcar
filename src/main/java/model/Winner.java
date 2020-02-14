@@ -14,13 +14,10 @@ public class Winner {
         return maxPosition;
     }
 
-    public static void setWinner(List<Car> cars) {
-        int maxPosition = getMaxPosition(cars);
-        for (Car car : cars) {
-            if (car.isMaxPosition(maxPosition)) {
-                winners.add(car.getName());
-            }
-        }
+    public void setWinner(List<Car> cars) {
+        cars.stream()
+                .filter(x -> x.isMaxPosition(getMaxPosition(cars)))
+                .forEach(x -> winners.add(x.getName()));
     }
 
     public List<String> getWinners() {
