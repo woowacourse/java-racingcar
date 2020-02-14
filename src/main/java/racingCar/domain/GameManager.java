@@ -11,6 +11,11 @@ public class GameManager {
         try{
             List<PlayerName> nameList = NameParser.parse(input);
             players = nameList.stream()
+                    .peek((t) -> {
+                        if (nameList.contains(t)) {
+                            throw new IllegalArgumentException();
+                        }
+                    })
                     .map(Player::new)
                     .collect(Collectors.toList());
         } catch(IllegalArgumentException e) {

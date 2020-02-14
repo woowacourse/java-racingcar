@@ -19,5 +19,7 @@ public class OutputView {
         System.out.println(round + "회차");
     }
 
-    public static void printNameWithInvalidLength() {  System.out.println("각 이름의 길이를 1 이상 5 이하로 입력해주세요"); }
+    public static void printInvalidInputCheck() {
+        System.out.println("이름 입력 조건: 길이는 1부터 5까지, 중복 허용X");
+    }
 }

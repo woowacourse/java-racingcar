@@ -31,7 +31,7 @@ public class Application {
         GameManager gameManager = new GameManager(namesInput);
 
         while(!gameManager.isCreated()) {
-            OutputView.printNameWithInvalidLength();
+            OutputView.printInvalidInputCheck();
             namesInput = InputView.InputUserNames();
             gameManager = new GameManager(namesInput);
         }
