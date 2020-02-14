@@ -13,15 +13,15 @@ public class CarNames {
 
     private List<String> carNames;
 
-    public CarNames(String input) {
-        throwExceptionWhenInputIsNullOrEmptyOrBlank(input);
-        String[] names = input.split(NAME_DELIMITER);
+    public CarNames(String name) {
+        validateNameFormat(name);
+        String[] names = name.split(NAME_DELIMITER);
         addCarName(names);
         validateName();
-        throwExceptionWhenHasDuplicateCarName();
+        validateDuplicateCarNames();
     }
 
-    private void throwExceptionWhenHasDuplicateCarName() {
+    private void validateDuplicateCarNames() {
         Set<String> nonDuplicateName = new HashSet<>(this.carNames);
         if (nonDuplicateName.size() != this.carNames.size()) {
             throw new IllegalArgumentException(ERR_MESSAGE_FOR_DUPLICATE_NAME);
@@ -32,7 +32,7 @@ public class CarNames {
         this.carNames = new ArrayList(Arrays.asList(splitName));
     }
 
-    private void throwExceptionWhenNameLengthOverFive(String s) {
+    private void validateNameLength(String s) {
         if (s.length() > FIVE) {
             throw new IllegalArgumentException(ERR_MESSAGE_FOR_NAME_LENGTH_OVER);
         }
@@ -40,12 +40,12 @@ public class CarNames {
 
     private void validateName() {
         for (String s : this.carNames) {
-            throwExceptionWhenInputIsNullOrEmptyOrBlank(s);
-            throwExceptionWhenNameLengthOverFive(s);
+            validateNameFormat(s);
+            validateNameLength(s);
         }
     }
 
-    private void throwExceptionWhenInputIsNullOrEmptyOrBlank(String input) {
+    private void validateNameFormat(String input) {
         if (input == null || input.isEmpty() || isContainBlank(input)) {
             throw new IllegalArgumentException(ERR_MESSAGE_FOR_NAME_WITH_BLANK);
         }

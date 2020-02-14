@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarNamesTest {
-    @DisplayName("잘못된 문자열로 자동차를 생성할 때 예외 발생 테스트")
+    @DisplayName("잘못된 문자열로 자동차 이름 리스트를 생성할 때 예외 발생 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"", ",asd", "asdfrq,pobi", "pobi,pobi", "pobi,,crong", "pobi, ,crong", "  ,pobi"})
     public void validateCarNameTest(String input) {
