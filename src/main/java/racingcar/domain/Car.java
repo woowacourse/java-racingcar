@@ -1,28 +1,23 @@
 package racingcar.domain;
 
 public class Car {
-	private static final int MOVE_FORWARD = 4;
 	public static final int StartPosition = 0;
+	private final String name;
 	private int position;
-	private String name;
 
 	public Car(String name) {
 		this.name = name;
 		position = StartPosition;
 	}
 
-	public void move(int randomNumber) {
-		if (shouldMove(randomNumber)) {
+	public void move(RandomNo RandomNo) {
+		if (RandomNo.isMove()) {
 			position++;
 		}
 	}
 
 	public boolean isWinner(int winnerPosition) {
 		return winnerPosition == position;
-	}
-
-	private boolean shouldMove(int randomNumber) {
-		return randomNumber >= MOVE_FORWARD;
 	}
 
 	public int getPosition() {

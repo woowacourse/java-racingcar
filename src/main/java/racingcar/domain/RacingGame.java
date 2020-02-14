@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import racingcar.utils.RandomNumber;
+import racingcar.utils.MakeRandomNumber;
 import racingcar.utils.Split;
 import racingcar.utils.Validator;
 import racingcar.utils.Winner;
@@ -35,7 +35,7 @@ public class RacingGame {
     private static void startRace(int playRound, List<Car> racingCarList) {
         for (int i = StartPlayRound; i < playRound; i++) {
             for (Car car : racingCarList) {
-                car.move(RandomNumber.generateRandomIntIntRange());
+                car.move(MakeRandomNumber.generateRandomIntIntRange());
                 OutputView.printRoundResult(car);
             }
             System.out.println();

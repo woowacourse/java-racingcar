@@ -20,7 +20,9 @@ class CarTest {
 	@CsvSource(value = {"3,0", "4,1"})
 	void Should_move_when_bigger_than_3(int value, int expected) {
 		Car car = new Car("pobi");
-		car.move(value);
+		RandomNo no = new RandomNo(value);
+
+		car.move(no);
 
 		Assertions.assertThat(car).extracting("position").isEqualTo(expected);
 	}
