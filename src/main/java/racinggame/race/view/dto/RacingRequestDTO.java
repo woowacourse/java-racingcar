@@ -16,7 +16,7 @@ public class RacingRequestDTO {
     private static final String BLANK = "";
     private static final int MINIMUM_COUNT = 1;
     private static final String MINIMUM_COUNT_EXCEPTION_MESSAGE = "시도 횟수는 0보다 커야합니다.";
-    private static final String EMPTY_NAMES_EXCETPION_MESSAGE = "입력값이 비어 있습니다.";
+    private static final String EMPTY_NAMES_EXCEPTION_MESSAGE = "입력값이 비어 있습니다.";
 
     private final List<String> names;
     private final int count;
@@ -36,7 +36,7 @@ public class RacingRequestDTO {
 
     private void validateNames(String names) {
         if (isEmpty(names)) {
-            throw new IllegalArgumentException(EMPTY_NAMES_EXCETPION_MESSAGE);
+            throw new IllegalArgumentException(EMPTY_NAMES_EXCEPTION_MESSAGE);
         }
     }
 
