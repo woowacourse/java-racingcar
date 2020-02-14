@@ -17,9 +17,9 @@ public class Car {
     private final String name;
 
     /**
-     * position은 자동차의 현재 위치를 담는 정수형 변수이다.
+     * position은 자동차의 현재 위치를 담는 Position 인스턴스이다.
      */
-    private int position;
+    private Position position;
 
     /**
      * maxPosition은 static 정수 변수로, Car 인스턴스 전체가 공유한다.
@@ -52,18 +52,7 @@ public class Car {
      */
     public Car(String name, int position) {
         this.name = name;
-        this.position = position;
-    }
-
-    /**
-     * increasePosition은 position 값 변경(1 상승) 시 호출되는 메서드이다.
-     * 이 메서드 호출 이외에는 position 값이 변경되지 않도록 설계하려고 노력하였다.
-     * 위치가 1을 초과하는 만큼 증가하거나, 혹은 감소하는 경우는 없기 때문이다.
-     * 또한 이 메서드 호출 시, Car 인스턴스 전체에 공유되는 maxPosition값을 갱신해준다.
-     */
-    private void increasePosition() {
-        this.position++;
-        updateMaxPosition();
+        this.position = new Position(position);
     }
 
     /**
@@ -72,19 +61,21 @@ public class Car {
      * 만약 현재의 position 값이 maxPosition 값보다 크다면, 그 값으로 갱신한다.
      */
     private void updateMaxPosition() {
-        maxPosition = Integer.max(position, maxPosition);
+        maxPosition = Integer.max(position.getPosition(), maxPosition);
     }
 
     /**
-     * accelarate 메서드는 랜덤한 값과 기준이 되는 값을 전달받아,
+     * accelerate 메서드는 랜덤한 값과 기준이 되는 값을 전달받아,
      * 랜덤한 값이 기준이 되는 값을 넘은 경우 position을 증가시킨다.
+     * 또한 이 증가 메서드 호출 시, Car 인스턴스 전체에 공유되는 maxPosition값을 갱신해준다.
      *
      * @param random 비교를 위한 임의의 정수형 변수이다.
      * @param bound  가속을 위한 비교의 기준값인 정수형 변수이다.
      */
-    public void accelarate(int random, int bound) {
+    public void accelerate(int random, int bound) {
         if (random >= bound) {
-            increasePosition();
+            position.accelerate();
+            updateMaxPosition();
         }
     }
 
@@ -94,7 +85,7 @@ public class Car {
      * @return 이 인스턴스가 승자라면 true를, 아니라면 false를 반환한다.
      */
     public boolean isWinner() {
-        return position == maxPosition;
+        return position.match(maxPosition);
     }
 
     /**
@@ -104,7 +95,7 @@ public class Car {
      * @return 이 인스턴스의 position 값과 파라미터가 일치하면 true를, 아니라면 false를 반환한다.
      */
     public boolean match(int position) {
-        return position == this.position;
+        return this.position.match(position);
     }
 
     /**
@@ -126,7 +117,7 @@ public class Car {
      * @param output 출력값을 저장하는 Output 인스턴스이다.
      */
     public void passingLog(Output output) {
-        output.updateCarStatus(name, position);
+        output.updateCarStatus(name, position.getPosition());
     }
 
     /**

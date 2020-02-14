@@ -81,7 +81,7 @@ public class RacingGame {
     private static void moveCars(Output output, List<Car> cars, int repeat) {
         for (int i = 0; i < repeat; i++) {
             cars.stream().forEach(car -> {
-                car.accelarate(generateRandomNumber(), FORWARD_NUMBER);
+                car.accelerate(generateRandomNumber(), FORWARD_NUMBER);
                 car.passingLog(output);
             });
             output.printStatusLog();

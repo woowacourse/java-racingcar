@@ -25,17 +25,17 @@ public class RacingGameTest {
         carList.add(new Car("kim", 0));
         carList.add(new Car("park", 0));
 
-        carList.get(0).accelarate(4,4);
-        carList.get(0).accelarate(4,4);
-        carList.get(0).accelarate(4,4);
+        carList.get(0).accelerate(4,4);
+        carList.get(0).accelerate(4,4);
+        carList.get(0).accelerate(4,4);
 
-        carList.get(1).accelarate(4,4);
-        carList.get(1).accelarate(4,4);
-        carList.get(1).accelarate(4,4);
+        carList.get(1).accelerate(4,4);
+        carList.get(1).accelerate(4,4);
+        carList.get(1).accelerate(4,4);
 
-        carList.get(2).accelarate(4,4);
-        carList.get(2).accelarate(2,4);
-        carList.get(2).accelarate(1,4);
+        carList.get(2).accelerate(4,4);
+        carList.get(2).accelerate(2,4);
+        carList.get(2).accelerate(1,4);
     }
 
     @BeforeEach

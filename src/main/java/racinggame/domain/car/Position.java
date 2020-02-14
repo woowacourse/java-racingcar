@@ -77,4 +77,13 @@ public class Position {
             throw new IllegalArgumentException("잘못된 요청이 가속 메서드에 전달되었습니다");
         }
     }
+
+    /**
+     * getPosition은 포지션 값을 반환해주는 메서드이다.
+     *
+     * @return 정수형 position 값을 반환한다.
+     */
+    public int getPosition(){
+        return position;
+    }
 }
