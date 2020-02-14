@@ -1,12 +1,8 @@
 package racingCar.view;
 
-import racingCar.domain.GameManager;
-import racingCar.domain.Player;
-
-import java.util.List;
-
 public class OutputView {
     private static final String RESULT_HEAD = "실행 결과";
+    private static final String INVALID_NAME_WARNING = "각 이름의 길이를 1 이상 5 이하로 입력해주세요.";
 
     public static void printTitle() {
         System.out.println(RESULT_HEAD);
@@ -22,5 +18,9 @@ public class OutputView {
 
     public static void printRound(int round) {
         System.out.println(round + "회차");
+    }
+
+    public static void printInvalidNameWarning() {
+        System.out.println(INVALID_NAME_WARNING);
     }
 }

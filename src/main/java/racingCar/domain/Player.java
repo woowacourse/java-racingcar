@@ -5,16 +5,16 @@ import java.util.stream.IntStream;
 public class Player {
     private static final String COLON_WRAPPED_WITH_SPACE = " : ";
     private static final String HYPHEN = "-";
+    private static final int DEFAULT_POSITION = 0;
 
-    private String name;
+    private PlayerName name;
     private int position;
 
-    public Player(String name) {
-        this.name = name;
-        this.position = 0;
+    public Player(PlayerName name) {
+        this(name, DEFAULT_POSITION);
     }
 
-    public Player(String name, int position) {
+    private Player(PlayerName name, int position) {
         this.name = name;
         this.position = position;
     }
@@ -33,7 +33,7 @@ public class Player {
      * 예시) pobi : ---
      */
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(name);
+        StringBuilder stringBuilder = new StringBuilder(name.toString());
         stringBuilder.append(COLON_WRAPPED_WITH_SPACE);
         IntStream.range(0, position)
                 .forEach((t) -> stringBuilder.append(HYPHEN));
@@ -49,7 +49,7 @@ public class Player {
     }
 
     public String getName() {
-        return name;
+        return name.toString();
     }
 
     public int getPosition() {

@@ -8,16 +8,19 @@ public class GameManager {
     private List<Player> players;
 
     public GameManager(String input) {
-        List<String> nameList = NameParser.parse(input);
-        players = nameList.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
+        try {
+            List<PlayerName> nameList = NameParser.parse(input);
+            players = nameList.stream()
+                    .map(Player::new)
+                    .collect(Collectors.toList());
+        } catch (IllegalArgumentException e) {
+            players = new ArrayList<>();
+        }
     }
 
-//    public Stream<Player> gameManagerStream() {
-//        return IntStream.rangeClosed(1, numOfRounds)
-//                .mapToObj((t) -> players);
-//    }
+    public boolean isEmpty() {
+        return players.isEmpty();
+    }
 
     public void play() {
         players.forEach((t) -> t.play(RandomGenerator.decideGoOrStop()));
