@@ -8,23 +8,39 @@ import java.util.List;
 import java.util.Map;
 
 class GameManagerTest {
-    private GameManager gameManager;
-
-    @BeforeEach
-    void setUp() {
-        String input = "pobi,jason,cu";
-        gameManager = new GameManager(input);
-    }
-
     @Test
     void play() {
+        String input = "pobi,jason,cu";
+        GameManager gameManager = new GameManager(input);
         gameManager.play();
         List<Player> players = gameManager.getState();
         Assertions.assertThat(players.size()).isEqualTo(3);
     }
 
     @Test
-    void getWinner() {
-        System.out.println(gameManager.getWinners());
+    void isEmpty_ShouldReturnTrueWhenInputInvalidName() {
+        String input = "abcabc"; // ""
+        GameManager gameManager= new GameManager(input);
+
+        Assertions.assertThat(gameManager.isEmpty())
+                .isTrue();
+    }
+
+    @Test
+    void isEmpty_ShouldReturnFalseWhenInputVaildName() {
+        String input = "abcac"; // "a"
+        GameManager gameManager= new GameManager(input);
+
+        Assertions.assertThat(gameManager.isEmpty())
+                .isFalse();
+    }
+
+    @Test
+    void isEmpty_ShouldReturnFalseWhenInputDuplicatedNames() {
+        String input = "abc,abc";
+        GameManager gameManager = new GameManager(input);
+
+        Assertions.assertThat(gameManager.isEmpty())
+                .isTrue();
     }
 }

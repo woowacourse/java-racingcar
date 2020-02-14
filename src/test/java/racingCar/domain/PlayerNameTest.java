@@ -5,6 +5,15 @@ import org.junit.jupiter.api.Test;
 
 class PlayerNameTest {
     @Test
+    void PlayerName_ToStringShouldReturnSameString() {
+        String input = "Abccc";
+        PlayerName playerName = new PlayerName(input);
+
+        Assertions.assertThat(playerName.toString())
+                .isEqualTo(input);
+    }
+
+    @Test
     void PlayerName_ShouldThrowWhenInputIsGreaterThanFive() {
         String greaterThanFive = "abcdef";
 

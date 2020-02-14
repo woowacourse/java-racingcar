@@ -1,20 +1,31 @@
 package racingCar.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GameManager {
     private List<Player> players;
 
     public GameManager(String input) {
+        players = new ArrayList<>();
         try {
             List<PlayerName> nameList = NameParser.parse(input);
             players = nameList.stream()
                     .map(Player::new)
                     .collect(Collectors.toList());
         } catch (IllegalArgumentException e) {
-            players = new ArrayList<>();
+            players.clear();
+        }
+    }
+
+    private void checkDuplication() throws IllegalArgumentException {
+        Set<String> set = new HashSet<>();
+        players.forEach((t) -> set.add(t.toString()));
+        if (players.size() != set.size()) {
+            throw new IllegalArgumentException();
         }
     }
 
@@ -53,7 +64,7 @@ public class GameManager {
                 .peek((t) -> stringBuilder.append(t.getName()))
                 .forEach((t) -> stringBuilder.append(", "));
 
-        stringBuilder.delete(stringBuilder.length()-2, stringBuilder.length());
+        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
 
         return stringBuilder.toString();
     }

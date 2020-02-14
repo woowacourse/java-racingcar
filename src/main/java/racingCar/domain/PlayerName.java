@@ -18,6 +18,10 @@ public class PlayerName {
         return name.length() > 5;
     }
 
+    private boolean equals(PlayerName playerName) {
+        return name.equals(playerName.name);
+    }
+
     public String toString() {
         return name;
     }
