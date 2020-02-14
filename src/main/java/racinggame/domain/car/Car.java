@@ -1,4 +1,4 @@
-package racinggame.domain;
+package racinggame.domain.car;
 
 import racinggame.controller.Output;
 
@@ -14,7 +14,7 @@ public class Car {
     /**
      * name은 자동차의 이름을 담는 문자열 인스턴스이다.
      */
-    private String name;
+    private final String name;
 
     /**
      * position은 자동차의 현재 위치를 담는 정수형 변수이다.

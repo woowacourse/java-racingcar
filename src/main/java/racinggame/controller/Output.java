@@ -1,6 +1,6 @@
 package racinggame.controller;
 
-import racinggame.domain.Car;
+import racinggame.domain.car.Car;
 import racinggame.view.OutputView;
 
 import java.util.*;
