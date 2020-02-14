@@ -40,7 +40,7 @@ public class Cars {
 	public List<Car> getWinners() {
 		return cars.stream()
 				.filter(car -> car.isMaxPosition(getMaxPosition()))
-				.collect(Collectors.toList());
+				.collect(Collectors.toUnmodifiableList());
 	}
 
 	private int getMaxPosition() {
