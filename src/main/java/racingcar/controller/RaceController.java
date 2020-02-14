@@ -3,7 +3,7 @@ package racingcar.controller;
 import racingcar.domain.Cars;
 import racingcar.domain.Race;
 import racingcar.domain.RaceCount;
-import racingcar.utils.InputUtil;
+import racingcar.utils.carsNameSpliter;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -17,8 +17,8 @@ public class RaceController {
 
 	private static Cars createCars() {
 		try {
-			InputView.printCarsNameInput();
-			return InputUtil.createCarsByInput();
+			String carsName = InputView.getCarsNameInput();
+			return new Cars(carsNameSpliter.split(carsName));
 		} catch (IllegalArgumentException | IOException e) {
 			OutputView.printExceptionMessage(e.getMessage());
 			return createCars();
@@ -27,8 +27,8 @@ public class RaceController {
 
 	private static RaceCount createRaceCount() {
 		try {
-			InputView.printRaceCountInput();
-			return InputUtil.createRaceCountByInput();
+			String raceCount = InputView.getRaceCountInput();
+			return new RaceCount(raceCount);
 		} catch (IllegalArgumentException | IOException e) {
 			OutputView.printExceptionMessage(e.getMessage());
 			return createRaceCount();
