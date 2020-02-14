@@ -19,6 +19,9 @@ import racingcar.Controller.InputValidation;
 public class InputView {
 	private static Scanner SCANNER = new Scanner(System.in);
 
+	private InputView() {
+	}
+
 	public static String inputCarName() {
 		OutputView.printInputCarNamesMessage();
 		return SCANNER.nextLine();

@@ -18,6 +18,9 @@ import java.util.stream.Collectors;
 public class StringUtils {
 	private static final String DELIMITER = ",";
 
+	private StringUtils() {
+	}
+
 	public static List<String> splitCarNames(final String carNameInput) {
 		return Arrays.asList(carNameInput.split(DELIMITER));
 	}

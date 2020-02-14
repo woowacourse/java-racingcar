@@ -14,6 +14,9 @@ public class RandomNumberUtils {
 	private static final int RANDOM_UPPER_LIMIT = 10;
 	private static Random random = new Random();
 
+	private RandomNumberUtils() {
+	}
+
 	public static int createRandomNumber() {
 		return random.nextInt(RANDOM_UPPER_LIMIT);
 	}
