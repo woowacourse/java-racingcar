@@ -1,11 +1,11 @@
 package application.racing.domain;
 
 public class Car {
-    private String name;
+    private CarName carName;
     private Position position;
 
     public Car(String name) {
-        this.name = name;
+        this.carName = new CarName(name);
         this.position = new Position();
     }
 
@@ -19,6 +19,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return this.name;
+        return this.carName.toString();
     }
 }

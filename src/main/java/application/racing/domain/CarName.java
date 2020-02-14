@@ -32,6 +32,22 @@ public class CarName {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof CarName)) {
+            return false;
+        }
+        CarName compareCarName = (CarName) o;
+        return compareCarName.carName.equals(this.carName);
+    }
+
+    public int hashCode() {
+        return super.hashCode() + 137;
+    }
+
+    @Override
     public String toString() {
         return this.carName;
     }

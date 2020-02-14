@@ -26,4 +26,20 @@ public class Position {
     public int getPosition() {
         return this.position;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Position)) {
+            return false;
+        }
+        Position comparePosition = (Position) o;
+        return comparePosition.position == this.position;
+    }
+
+    public int hashCode() {
+        return super.hashCode() + 137;
+    }
 }

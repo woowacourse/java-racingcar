@@ -3,6 +3,7 @@ package application.racing;
 import application.racing.domain.CarName;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -14,5 +15,15 @@ public class CarNameTest {
         Assertions.assertThatThrownBy(() -> {
             new CarName(input);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("equals 메소드 오버라이드 테스트")
+    @Test
+    public void CarNameEqualsTest() {
+        CarName input = new CarName("lavin");
+
+        CarName expected = new CarName("lavin");
+
+        Assertions.assertThat(input).isEqualTo(expected);
     }
 }

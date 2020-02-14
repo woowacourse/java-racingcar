@@ -3,6 +3,7 @@ package application.racing;
 import application.racing.domain.Position;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -27,5 +28,15 @@ public class PositionTest {
         Assertions.assertThatThrownBy(() -> {
             position.move(number);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("equals 메소드 오버라이드 테스트")
+    @Test
+    public void positionEqualsTest() {
+        Position input = new Position();
+
+        Position expected = new Position();
+
+        Assertions.assertThat(input).isEqualTo(expected);
     }
 }
