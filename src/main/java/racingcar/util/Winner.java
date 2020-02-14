@@ -17,30 +17,14 @@ import racingcar.domain.CarFactory;
 
 public class Winner {
 
-    private static int maxCount = 0;
-
-    public static String getWinnerWithDelimiter(CarFactory carFactory, String delimiter) {
-        maxCount = 0;
-        List<String> winnerNames = setWinner(carFactory);
-        return String.join(delimiter, winnerNames);
-    }
-
-    private static List<String> setWinner(CarFactory carFactory) {
-        List<String> winnerNames = new ArrayList<>();
+    public static List<String> getWinners(CarFactory carFactory) {
+        List<String> winners = new ArrayList<>();
+        int maxPosition = carFactory.getMaxPosition();
         for (Car car : carFactory.getCars()) {
-            putWinnerNames(winnerNames, car.getName(), car.getForwardCount());
+            if(car.isEqualPosition(maxPosition)) {
+                winners.add(car.getName());
+            }
         }
-        return winnerNames;
-    }
-
-    private static void putWinnerNames(List<String> winnerNames, String carName, int carForwardCount) {
-        if (maxCount == carForwardCount) {
-            winnerNames.add(carName);
-        }
-        if (maxCount < carForwardCount) {
-            maxCount = carForwardCount;
-            winnerNames.clear();
-            winnerNames.add(carName);
-        }
+        return winners;
     }
 }

@@ -47,7 +47,7 @@ public class WinnerTest {
 
     @Test
     void winners() {
-        assertThat(Winner.getWinnerWithDelimiter(carFactory1, ", ")).isEqualTo("zxc");
-        assertThat(Winner.getWinnerWithDelimiter(carFactory2, ", ")).isEqualTo("zxc, qwe");
+        assertThat(Winner.getWinners(carFactory1)).contains("zxc");
+        assertThat(Winner.getWinners(carFactory2)).contains("zxc").contains("qwe");
     }
 }

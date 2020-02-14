@@ -15,27 +15,31 @@ public class Car {
     private final static String NEW_LINE = "\n";
 
     private final CarName name;
-    private int forwardCount = 0;
+    private int position = 0;
 
     public Car(CarName name) {
         this.name = name;
     }
 
     public void forward() {
-        forwardCount++;
+        position++;
     }
 
     public String getName() {
         return name.toString();
     }
 
-    public int getForwardCount() {
-        return forwardCount;
+    int getPosition() {
+        return position;
+    }
+
+    public boolean isEqualPosition(int position) {
+        return this.position == position;
     }
 
     public String getProgress(String delimiter, String progressSign) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < forwardCount; i++) {
+        for (int i = 0; i < position; i++) {
             stringBuilder.append(progressSign);
         }
         return name + delimiter + stringBuilder.toString() + NEW_LINE;

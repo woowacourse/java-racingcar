@@ -31,7 +31,7 @@ public class CarTest {
         car.forward();
         car.forward();
         car.forward();
-        assertThat(car.getForwardCount()).isEqualTo(3);
+        assertThat(car.getPosition()).isEqualTo(3);
     }
 
     @DisplayName("차가 전진하는지 보는 테스트")
