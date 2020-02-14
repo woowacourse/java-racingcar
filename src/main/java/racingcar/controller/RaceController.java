@@ -12,7 +12,14 @@ import java.io.IOException;
 public class RaceController {
 	public static void run() {
 		Race race = new Race(createCars(), createRaceCount());
-		race.run();
+		showRaceStart();
+
+		while (race.isProgress()) {
+			race.run();
+			showCurrentPosition(race.getCarsCurrentPosition());
+		}
+
+		showWinnersName(race.getWinnersName());
 	}
 
 	private static Cars createCars() {

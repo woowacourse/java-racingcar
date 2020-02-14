@@ -25,7 +25,7 @@ public class RaceCount {
 		}
 	}
 
-	public int getRaceCount() {
-		return raceCount;
+	public boolean isProgressingRound(int currentRound) {
+		return raceCount >= currentRound;
 	}
 }

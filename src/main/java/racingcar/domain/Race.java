@@ -1,29 +1,35 @@
 package racingcar.domain;
 
-import racingcar.controller.RaceController;
-
 public class Race {
 	private static final int INITIAL_POSITION = 0;
+	private static final int INITIAL_ROUND = 1;
 
 	private final Cars cars;
 	private final RaceCount raceCount;
+	private int currentRound;
 
 	public Race(Cars cars, RaceCount raceCount) {
 		this.cars = cars;
 		this.raceCount = raceCount;
+		this.currentRound = INITIAL_ROUND;
 	}
 
 	public void run() {
-		int maxPosition = INITIAL_POSITION;
+		cars.moveAll();
+		currentRound++;
+	}
 
-		RaceController.showRaceStart();
+	public boolean isProgress() {
+		return raceCount.isProgressingRound(currentRound);
+	}
 
-		for (int i = 0; i < raceCount.getRaceCount(); i++) {
-			cars.moveAll();
-			RaceController.showCurrentPosition(cars.getCurrentPosition());
-			maxPosition = cars.getMaxPosition(maxPosition);
-		}
+	public String getWinnersName() {
+		int maxPosition = cars.getMaxPosition(INITIAL_POSITION);
 
-		RaceController.showWinnersName(cars.getWinnersName(maxPosition));
+		return cars.getWinnersName(maxPosition);
+	}
+
+	public String getCarsCurrentPosition() {
+		return cars.getCurrentPosition();
 	}
 }
