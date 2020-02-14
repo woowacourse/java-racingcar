@@ -38,8 +38,8 @@ public class CarTest {
 		car.move(4);
 		car.move(4);
 
-		assertThat(car.compareMaxPosition(3)).isEqualTo(3);
-		assertThat(car.compareMaxPosition(1)).isEqualTo(2);
+		assertThat(car.getBiggerPosition(3)).isEqualTo(3);
+		assertThat(car.getBiggerPosition(1)).isEqualTo(2);
 	}
 
 	@ParameterizedTest

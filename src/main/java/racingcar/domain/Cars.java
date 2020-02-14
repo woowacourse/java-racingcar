@@ -49,7 +49,7 @@ public class Cars {
 	private int getMaxPosition() {
 		int maxPosition = Car.INITIAL_POSITION;
 		for (Car car : cars) {
-			maxPosition = car.compareMaxPosition(maxPosition);
+			maxPosition = car.getBiggerPosition(maxPosition);
 		}
 
 		return maxPosition;
