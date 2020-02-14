@@ -20,23 +20,23 @@ import org.junit.jupiter.params.provider.ValueSource;
  *
  */
 public class CarTest {
-    private Car car;
+	private Car car;
 
-    @DisplayName("이름을 받아 car 객체를 정상적으로 생성")
-    @ParameterizedTest
-    @ValueSource(strings = {"또링", "동글"})
-    void testCar(String name) {
-        car = new Car(name);
-        assertThat(car).isNotNull();
-    }
+	@DisplayName("이름을 받아 car 객체를 정상적으로 생성")
+	@ParameterizedTest
+	@ValueSource(strings = {"또링", "동글"})
+	void testCar(String name) {
+		car = new Car(name);
+		assertThat(car).isNotNull();
+	}
 
-    @DisplayName("입력받은 수에 따라 자동차가 동작")
-    @ParameterizedTest
-    @CsvSource(value = {"0:0", "1:0", "2:0", "3:0",
-            "4:1", "5:1", "6:1", "7:1", "8:1", "9:1"}, delimiter = ':')
-    void testRun(int randomNumber, int position) {
-        car = new Car("붕붕");
-        car.run(randomNumber);
-        assertThat(car).extracting("position").isEqualToComparingOnlyGivenFields(position);
-    }
+	@DisplayName("입력받은 수에 따라 자동차가 동작")
+	@ParameterizedTest
+	@CsvSource(value = {"0:0", "1:0", "2:0", "3:0",
+		"4:1", "5:1", "6:1", "7:1", "8:1", "9:1"}, delimiter = ':')
+	void testRun(int randomNumber, int position) {
+		car = new Car("붕붕");
+		car.run(randomNumber);
+		assertThat(car).extracting("position").isEqualToComparingOnlyGivenFields(position);
+	}
 }

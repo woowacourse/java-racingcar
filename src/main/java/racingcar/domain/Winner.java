@@ -17,16 +17,16 @@ import java.util.stream.Collectors;
  *
  */
 public class Winner {
-    private final List<Car> winners;
+	private final List<Car> winners;
 
-    public Winner(List<Car> winners) {
-        this.winners = Collections.unmodifiableList(winners);
-    }
+	public Winner(List<Car> winners) {
+		this.winners = Collections.unmodifiableList(winners);
+	}
 
-    public List<String> getWinnerNames() {
-        List<String> result = winners.stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
-        return Collections.unmodifiableList(result);
-    }
+	public List<String> getWinnerNames() {
+		List<String> result = winners.stream()
+			.map(Car::getName)
+			.collect(Collectors.toList());
+		return Collections.unmodifiableList(result);
+	}
 }

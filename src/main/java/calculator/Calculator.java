@@ -19,6 +19,10 @@ public class Calculator {
 	public static final String DEFAULT_DELIMITER = "[:,]";
 	public static final Pattern DEFAULT_INPUT_PATTERN = Pattern.compile("-?[0-9]+([:,]-?[0-9]+)*");
 	public static final Pattern CUSTOM_INPUT_PATTERN = Pattern.compile("//(.)\n(.*)");
+	public static final String EXCEPTION_INAPPROPRIATE_CUSTOM_FORMAT = "inappropriate custom format";
+
+	private Calculator() {
+	}
 
 	public static int calculate(String value) {
 		if (isBlank(value)) {
@@ -28,7 +32,7 @@ public class Calculator {
 	}
 
 	private static boolean isBlank(String value) {
-		return value == null || value.isEmpty();
+		return value == null || value.trim().isEmpty();
 	}
 
 	private static String[] split(String value) {
@@ -46,7 +50,7 @@ public class Calculator {
 	private static String[] splitCustomDelimiter(String value) {
 		Matcher matcher = CUSTOM_INPUT_PATTERN.matcher(value);
 		if (!matcher.find()) {
-			throw new IllegalArgumentException("inappropriate custom format");
+			throw new IllegalArgumentException(EXCEPTION_INAPPROPRIATE_CUSTOM_FORMAT);
 		}
 		String customDelimiter = matcher.group(1);
 		return matcher.group(2).split(customDelimiter);

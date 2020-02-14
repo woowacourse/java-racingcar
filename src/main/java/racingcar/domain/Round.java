@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.message.Message;
+import racingcar.message.RacingCarMessage;
 
 /*
  * Copyright (c) 2020 by 또동페어
@@ -15,24 +15,24 @@ import racingcar.message.Message;
  *
  */
 public class Round {
-    private static final int MINIMUM_NUMBER_OF_ROUND = 1;
+	private static final int MINIMUM_NUMBER_OF_ROUND = 1;
 
-    private final int totalRound;
-    private int currentRound;
+	private final int totalRound;
+	private int currentRound;
 
-    public Round(int totalRound) {
-        if (totalRound < MINIMUM_NUMBER_OF_ROUND) {
-            throw new IllegalArgumentException(Message.EXCEPTION_ROUND_IS_NOT_POSITIVE.getMessageText());
-        }
-        this.totalRound = totalRound;
-        this.currentRound = 0;
-    }
+	public Round(int totalRound) {
+		if (totalRound < MINIMUM_NUMBER_OF_ROUND) {
+			throw new IllegalArgumentException(RacingCarMessage.EXCEPTION_ROUND_IS_NOT_POSITIVE.getMessageText());
+		}
+		this.totalRound = totalRound;
+		this.currentRound = 0;
+	}
 
-    public void goNextRound() {
-        currentRound++;
-    }
+	public void goNextRound() {
+		currentRound++;
+	}
 
-    public boolean isFinalRound() {
-        return currentRound == totalRound;
-    }
+	public boolean isFinalRound() {
+		return currentRound == totalRound;
+	}
 }

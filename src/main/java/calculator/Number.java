@@ -13,13 +13,15 @@ package calculator;
  *
  */
 public class Number {
+	public static final int MINIMUM_NUMBER = 0;
+	public static final String EXCEPTION_NEGATIVE_NUMBER = "negative number is not able to use";
 	public static final Number ZERO = new Number(0);
 
 	private final int value;
 
 	Number(int value) {
-		if (value < 0) {
-			throw new IllegalArgumentException("not a positive");
+		if (value < MINIMUM_NUMBER) {
+			throw new IllegalArgumentException(EXCEPTION_NEGATIVE_NUMBER);
 		}
 		this.value = value;
 	}

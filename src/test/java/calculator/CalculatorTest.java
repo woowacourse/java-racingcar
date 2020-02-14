@@ -29,6 +29,9 @@ public class CalculatorTest {
 
 		result = Calculator.calculate(null);
 		assertThat(result).isEqualTo(0);
+
+		result = Calculator.calculate("  ");
+		assertThat(result).isEqualTo(0);
 	}
 
 	@DisplayName("계산식의 덧셈 결과를 테스트한다. - 기본구분자")

@@ -21,39 +21,39 @@ import org.junit.jupiter.params.provider.ValueSource;
  *
  */
 public class NameSplitterTest {
-    @DisplayName("쉼표를 기준으로 문자열을 정상적으로 분리")
-    @Test
-    void Should_success_When_appropriateValue() {
-        assertThat(NameSplitter.split("네오,프로도,튜브")).containsExactly("네오", "프로도", "튜브");
-        assertThat(NameSplitter.split("어피치,라이언,콘,무지,제이지")).containsExactly("어피치", "라이언", "콘", "무지", "제이지");
-        assertThat(NameSplitter.split("죠르디,프로도,튜브,123")).containsExactly("죠르디", "프로도", "튜브", "123");
-    }
+	@DisplayName("쉼표를 기준으로 문자열을 정상적으로 분리")
+	@Test
+	void Should_success_When_appropriateValue() {
+		assertThat(NameSplitter.split("네오,프로도,튜브")).containsExactly("네오", "프로도", "튜브");
+		assertThat(NameSplitter.split("어피치,라이언,콘,무지,제이지")).containsExactly("어피치", "라이언", "콘", "무지", "제이지");
+		assertThat(NameSplitter.split("죠르디,프로도,튜브,123")).containsExactly("죠르디", "프로도", "튜브", "123");
+	}
 
-    @DisplayName("쉼표가 없거나, 이름이 하나일 있을 경우")
-    @ParameterizedTest
-    @EmptySource
-    @ValueSource(strings = {"네오,", "네오"})
-    void Should_exception_When_inappropriateValue(String input) {
-        assertThatThrownBy(() -> NameSplitter.split(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("car must be at least one");
-    }
+	@DisplayName("쉼표가 없거나, 이름이 하나일 있을 경우")
+	@ParameterizedTest
+	@EmptySource
+	@ValueSource(strings = {"네오,", "네오"})
+	void Should_exception_When_inappropriateValue(String input) {
+		assertThatThrownBy(() -> NameSplitter.split(input))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("car must be at least one");
+	}
 
-    @DisplayName("입력받은 이름 중 1~5자 사이가 아닌 글자 들어간 경우")
-    @ParameterizedTest
-    @ValueSource(strings = {"네오네오빔빔,검은고양이네로", "콘,검은고양이네로"})
-    void Should_exception_When_inappropriateNameLength(String input) {
-        assertThatThrownBy(() -> NameSplitter.split(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("name must be between 1-5");
-    }
+	@DisplayName("입력받은 이름 중 1~5자 사이가 아닌 글자 들어간 경우")
+	@ParameterizedTest
+	@ValueSource(strings = {"네오네오빔빔,검은고양이네로", "콘,검은고양이네로"})
+	void Should_exception_When_inappropriateNameLength(String input) {
+		assertThatThrownBy(() -> NameSplitter.split(input))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("name must be between 1-5");
+	}
 
-    @DisplayName("같은 이름이 2개이상 존재하는 경우")
-    @ParameterizedTest
-    @ValueSource(strings = {"콘,네오,콘", "또링,또링,또링"})
-    void Should_exception_When_duplicateNames(String input) {
-        assertThatThrownBy(() -> NameSplitter.split(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("name can not be duplicated");
-    }
+	@DisplayName("같은 이름이 2개이상 존재하는 경우")
+	@ParameterizedTest
+	@ValueSource(strings = {"콘,네오,콘", "또링,또링,또링"})
+	void Should_exception_When_duplicateNames(String input) {
+		assertThatThrownBy(() -> NameSplitter.split(input))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("name can not be duplicated");
+	}
 }

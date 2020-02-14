@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import racingcar.generator.RandomNumberGenerator;
-import racingcar.message.Message;
+import racingcar.message.RacingCarMessage;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -21,33 +21,33 @@ import java.util.stream.Collectors;
  *
  */
 public class Cars implements Iterable<Car> {
-    private final List<Car> cars;
+	private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
-        this.cars = Collections.unmodifiableList(cars);
-    }
+	public Cars(List<Car> cars) {
+		this.cars = Collections.unmodifiableList(cars);
+	}
 
-    public List<Car> findWinner() {
-        Car maxPositionCar = findMaxPositionCar();
-        return cars.stream()
-                .filter(car -> car.isSamePosition(maxPositionCar))
-                .collect(Collectors.toList());
-    }
+	public List<Car> findWinner() {
+		Car maxPositionCar = findMaxPositionCar();
+		return cars.stream()
+			.filter(car -> car.isSamePosition(maxPositionCar))
+			.collect(Collectors.toList());
+	}
 
-    private Car findMaxPositionCar() {
-        return cars.stream()
-                .reduce(Car::getFartherCar)
-                .orElseThrow(() -> new NullPointerException(Message.EXCEPTION_CAR_IS_NULL.getMessageText()));
-    }
+	private Car findMaxPositionCar() {
+		return cars.stream()
+			.reduce(Car::getFartherCar)
+			.orElseThrow(() -> new NullPointerException(RacingCarMessage.EXCEPTION_CAR_IS_NULL.getMessageText()));
+	}
 
-    public void run() {
-        for (Car car : cars) {
-            car.run(RandomNumberGenerator.getRandomNumber());
-        }
-    }
+	public void run() {
+		for (Car car : cars) {
+			car.run(RandomNumberGenerator.getRandomNumber());
+		}
+	}
 
-    @Override
-    public Iterator<Car> iterator() {
-        return cars.iterator();
-    }
+	@Override
+	public Iterator<Car> iterator() {
+		return cars.iterator();
+	}
 }
