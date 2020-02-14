@@ -1,14 +1,12 @@
 package racinggame.race.car;
 
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 import static java.util.stream.Collectors.toList;
 
-public class Cars implements Iterable<Car> {
+public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -39,6 +37,10 @@ public class Cars implements Iterable<Car> {
                 .collect(toList());
     }
 
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(this.cars);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -54,20 +56,5 @@ public class Cars implements Iterable<Car> {
     @Override
     public int hashCode() {
         return Objects.hash(cars);
-    }
-
-    @Override
-    public Iterator<Car> iterator() {
-        return cars.iterator();
-    }
-
-    @Override
-    public void forEach(Consumer<? super Car> action) {
-        cars.forEach(action);
-    }
-
-    @Override
-    public Spliterator<Car> spliterator() {
-        return cars.spliterator();
     }
 }

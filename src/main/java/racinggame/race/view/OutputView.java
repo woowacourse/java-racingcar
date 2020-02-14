@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public static void showCars(RacingResponseBundleDTO racingResponseBundleDTO) {
-        for (RacingResponseDTO racingResponseDTO : racingResponseBundleDTO) {
+        for (RacingResponseDTO racingResponseDTO : racingResponseBundleDTO.getRacingResponseDTOs()) {
             System.out.println(String.format(NAME_AND_DISTANCE_FORMAT, racingResponseDTO.getName(), racingResponseDTO.getDistance()));
         }
         System.out.println();

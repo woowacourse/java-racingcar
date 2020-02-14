@@ -4,18 +4,16 @@ import racinggame.race.car.Car;
 import racinggame.race.car.Cars;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
-public class RacingResponseBundleDTO implements Iterable<RacingResponseDTO> {
-    private final List<RacingResponseDTO> racingResponseDTOS;
+public class RacingResponseBundleDTO {
+    private final List<RacingResponseDTO> racingResponseDTOs;
 
     private RacingResponseBundleDTO(Cars cars) {
-        racingResponseDTOS = new ArrayList<>();
-        for (Car car : cars) {
-            racingResponseDTOS.add(RacingResponseDTO.from(car));
+        racingResponseDTOs = new ArrayList<>();
+        for (Car car : cars.getCars()) {
+            racingResponseDTOs.add(RacingResponseDTO.from(car));
         }
     }
 
@@ -23,19 +21,7 @@ public class RacingResponseBundleDTO implements Iterable<RacingResponseDTO> {
         return new RacingResponseBundleDTO(cars);
     }
 
-    @Override
-    public Iterator<RacingResponseDTO> iterator() {
-        return this.racingResponseDTOS.iterator();
+    public List<RacingResponseDTO> getRacingResponseDTOs() {
+        return Collections.unmodifiableList(this.racingResponseDTOs);
     }
-
-    @Override
-    public void forEach(Consumer<? super RacingResponseDTO> action) {
-        racingResponseDTOS.forEach(action);
-    }
-
-    @Override
-    public Spliterator<RacingResponseDTO> spliterator() {
-        return racingResponseDTOS.spliterator();
-    }
-
 }
