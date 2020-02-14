@@ -11,27 +11,27 @@ import java.io.IOException;
 
 public class RaceController {
 	public static void run() {
-		Race race = new Race(readCars(), readRaceCount());
+		Race race = new Race(createCars(), createRaceCount());
 		race.run();
 	}
 
-	private static Cars readCars() {
+	private static Cars createCars() {
 		try {
 			InputView.printCarsNameInput();
 			return InputUtil.createCarsByInput();
 		} catch (IllegalArgumentException | IOException e) {
 			OutputView.printExceptionMessage(e.getMessage());
-			return readCars();
+			return createCars();
 		}
 	}
 
-	private static RaceCount readRaceCount() {
+	private static RaceCount createRaceCount() {
 		try {
 			InputView.printRaceCountInput();
 			return InputUtil.createRaceCountByInput();
 		} catch (IllegalArgumentException | IOException e) {
 			OutputView.printExceptionMessage(e.getMessage());
-			return readRaceCount();
+			return createRaceCount();
 		}
 	}
 
