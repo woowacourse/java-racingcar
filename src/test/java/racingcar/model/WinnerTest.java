@@ -25,7 +25,7 @@ public class WinnerTest {
         GameManager.moveOrStay(cars.get(1), 9);
     }
 
-    @DisplayName("car객체들의 최대 포지션 구하기")
+    @DisplayName("car 객체들의 최대 포지션 구하기")
     @Test
     void getMaxPosition() {
         int maxPosition = Winner.getMaxPosition(cars);
@@ -36,7 +36,6 @@ public class WinnerTest {
     @Test
     void setWinner() {
         List<String> result = new ArrayList<>();
-        result.add("a");
         result.add("b");
         Winner.setWinner(cars);
         assertThat(Winner.getWinners()).isEqualTo(result);

@@ -2,7 +2,7 @@ package stringadder;
 
 import java.util.regex.Pattern;
 
-public class NumberValidate {
+public class ValidateNumber {
     public static final String ERROR_MESSAGE_NEGATIVE_NUMBER = "0 이상의 수를 입력하세요";
     public static final String ERROR_MESSAGE_NOT_INTEGER = "숫자만 입력하세요.";
     public static final String MINUS_SIGN = "-";

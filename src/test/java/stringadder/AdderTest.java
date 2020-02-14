@@ -75,23 +75,23 @@ public class AdderTest {
 
         assertThatThrownBy(() -> adder.splitAndSum("//-\n-1-2-3"))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessage(NumberValidate.ERROR_MESSAGE_NEGATIVE_NUMBER);
+                .hasMessage(ValidateNumber.ERROR_MESSAGE_NEGATIVE_NUMBER);
     }
 
     @Test
     public void 예외처리_notCustom() {
         String[] input = new String[]{"-1", "2", "3"};
-        assertThatThrownBy(() -> NumberValidate.validate(input))
+        assertThatThrownBy(() -> ValidateNumber.validate(input))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessage(NumberValidate.ERROR_MESSAGE_NEGATIVE_NUMBER);
+                .hasMessage(ValidateNumber.ERROR_MESSAGE_NEGATIVE_NUMBER);
     }
 
     @Test
     public void 숫자가아니문자예외처리() {
         String[] input = new String[]{"a", "2", "3"};
-        assertThatThrownBy(() -> NumberValidate.validate(input))
+        assertThatThrownBy(() -> ValidateNumber.validate(input))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessage(NumberValidate.ERROR_MESSAGE_NOT_INTEGER);
+                .hasMessage(ValidateNumber.ERROR_MESSAGE_NOT_INTEGER);
     }
 
     @Test

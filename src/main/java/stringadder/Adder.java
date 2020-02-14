@@ -24,7 +24,7 @@ public class Adder {
 
     private int sumNotCustom(String inputString) {
         String[] numbers = split(inputString);
-        NumberValidate.validate(numbers);
+        ValidateNumber.validate(numbers);
         return sumWhenList(toIntegerList(numbers));
     }
 
@@ -32,7 +32,7 @@ public class Adder {
         String customMark = customMarkAndNumber(inputString)[0];
         String number = customMarkAndNumber(inputString)[1];
         String[] numbers = splitWhenCustom(number, customMark);
-        NumberValidate.validate(numbers);
+        ValidateNumber.validate(numbers);
         return sumWhenList(toIntegerList(numbers));
     }
 

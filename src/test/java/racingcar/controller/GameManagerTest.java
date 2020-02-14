@@ -23,15 +23,14 @@ public class GameManagerTest {
 
     @DisplayName("입력받은 이름으로 car 객체 생성")
     @Test
-    void setCarList() {
+    void setCars() {
         String[] input = new String[]{"k3", "k5"};
-        GameManager.setCarList(input);
 
         List<Car> result = new ArrayList<>();
         result.add(new Car("k3"));
         result.add(new Car("k5"));
 
-        assertThat(result).isEqualTo(GameManager.getCarList());
+        assertThat(GameManager.setCars(input)).isEqualTo(result);
     }
 
     @DisplayName("4이상 숫자가 주어지면 전진")
