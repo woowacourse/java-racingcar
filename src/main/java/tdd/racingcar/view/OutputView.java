@@ -32,7 +32,7 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printWinners(final List<Car> winners) {
+	public static void printWinners(List<Car> winners) {
 		System.out.println(
 				winners.stream()
 						.map(Car::getName)

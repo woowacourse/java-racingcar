@@ -28,7 +28,7 @@ public class PlusCalculator {
 				.collect(Collectors.toList());
 	}
 
-	private static int sum(final List<UnsignedNumber> unsignedNumbers) {
+	private static int sum(List<UnsignedNumber> unsignedNumbers) {
 		return unsignedNumbers.stream()
 				.mapToInt(UnsignedNumber::getValue)
 				.sum();

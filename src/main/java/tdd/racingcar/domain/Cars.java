@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Cars implements Iterable<Car> {
 	private final List<Car> cars;
 
-	public Cars(final List<Car> cars) {
+	public Cars(List<Car> cars) {
 		this.cars = List.copyOf(cars);
 	}
 

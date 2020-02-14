@@ -28,7 +28,7 @@ public class Position {
 		return this.position == position;
 	}
 
-	public boolean match(final Position other) {
+	public boolean match(Position other) {
 		return match(other.position);
 	}
 }

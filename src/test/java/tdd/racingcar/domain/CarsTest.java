@@ -36,20 +36,20 @@ public class CarsTest {
 	@Test
 	void getWinners() {
 		final Cars cars = new Cars(differentPositionCars);
-		final List<Car> expected = Arrays.asList(differentPositionCars.get(0), differentPositionCars.get(1));
-		final List<Car> actual = cars.getWinners();
+		List<Car> expected = Arrays.asList(differentPositionCars.get(0), differentPositionCars.get(1));
+		List<Car> actual = cars.getWinners();
 		assertEquals(expected, actual);
 	}
 
 	@Test
 	void getPositions() {
 		final Cars cars = new Cars(differentPositionCars);
-		final Map<String, Integer> expected = new HashMap<>();
+		Map<String, Integer> expected = new HashMap<>();
 		expected.put("a", 2);
 		expected.put("b", 2);
 		expected.put("c", 1);
 		expected.put("d", 0);
-		final Map<String, Integer> actual = cars.getPositions();
+		Map<String, Integer> actual = cars.getPositions();
 		assertThat(actual).isEqualTo(expected);
 	}
 }

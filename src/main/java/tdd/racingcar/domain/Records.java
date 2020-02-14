@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Records implements Iterable<Record> {
-	private final List<Record> records;
+	private List<Record> records;
 
 	public Records() {
 		records = new LinkedList<>();

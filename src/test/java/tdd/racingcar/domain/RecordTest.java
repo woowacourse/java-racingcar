@@ -11,7 +11,7 @@ public class RecordTest {
 	void forEach() {
 		final Cars cars = CarsFactory.create("a,b,c");
 		cars.move();
-		final Map<String, Integer> positions = cars.getPositions();
+		Map<String, Integer> positions = cars.getPositions();
 		final Record record = new Record(cars);
 		record.forEach((name, position) -> {
 			assertThat(positions.get(name)).isEqualTo(position);

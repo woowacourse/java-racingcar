@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test;
 public class RecordsTest {
 	@Test
 	void add() {
-		final Records records = new Records();
+		Records records = new Records();
 		final Cars cars = CarsFactory.create("a,b,c");
-		final Set<Record> expected = new HashSet<>();
+		Set<Record> expected = new HashSet<>();
 		expected.add(new Record(cars));
 		cars.move();
 		expected.add(new Record(cars));

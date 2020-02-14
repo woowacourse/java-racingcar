@@ -19,7 +19,7 @@ public class TryCountTest {
 
 	@Test
 	void next() {
-		final TryCount tryCount = new TryCount(2);
+		TryCount tryCount = new TryCount(2);
 		tryCount.next();
 		final int actual = tryCount.next();
 		final int expected = 1;
@@ -28,7 +28,7 @@ public class TryCountTest {
 
 	@Test
 	void hasNext() {
-		final TryCount tryCount = new TryCount(2);
+		TryCount tryCount = new TryCount(2);
 		assertTrue(tryCount.hasNext());
 		tryCount.next();
 		assertTrue(tryCount.hasNext());

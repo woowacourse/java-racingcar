@@ -11,13 +11,13 @@ import org.junit.jupiter.api.Test;
 public class CarsFactoryTest {
 	@Test
 	void createCar() {
-		final List<String> names = new ArrayList<>();
+		List<String> names = new ArrayList<>();
 		names.add("a");
 		names.add("b");
 		names.add("c");
 		names.add("d");
 		final Cars cars = CarsFactory.create("a,b,c,d");
-		final List<Car> actual = new ArrayList<>();
+		List<Car> actual = new ArrayList<>();
 		cars.forEach(actual::add);
 		assertEquals(names.size(), actual.size());
 	}

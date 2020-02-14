@@ -13,10 +13,10 @@ import tdd.racingcar.view.InputView;
 import tdd.racingcar.view.OutputView;
 
 public class Application {
-	public static void main(final String[] args) {
+	public static void main(String[] args) {
 		final Cars cars = CarsFactory.create(InputView.inputNames());
-		final TryCount tryCount = new TryCount(InputView.inputTryCount());
-		final Records records = new Records();
+		TryCount tryCount = new TryCount(InputView.inputTryCount());
+		Records records = new Records();
 		OutputView.printResultMessage();
 		tryCount.forEachRemaining(count -> {
 			cars.move();
