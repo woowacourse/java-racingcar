@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class AdderTest {
     private Adder adder = new Adder();
@@ -35,7 +34,7 @@ public class AdderTest {
     @Test
     public void 문자_split() {
         List<Integer> result;
-        result = adder.getSplit("1,2:3");
+        result = adder.toIntegerList("1,2:3");
 
         assertThat(result).containsExactly(1, 2, 3);
     }
@@ -43,11 +42,11 @@ public class AdderTest {
     @Test
     public void 커스텀문자_split() {
         List<Integer> result;
-        result = adder.getSplit(";", "1;2;3");
+        result = adder.toIntegerList(";", "1;2;3");
 
         assertThat(result).containsExactly(1, 2, 3);
 
-        result = adder.getSplit("-", "1-2-3");
+        result = adder.toIntegerList("-", "1-2-3");
 
         assertThat(result).containsExactly(1, 2, 3);
     }
@@ -69,13 +68,14 @@ public class AdderTest {
 
     @Test
     public void 예외처리_notCustom() {
-        assertThatThrownBy(() -> adder.validateSingleMinus("-1,2,3"))
-                .isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> adder.validateNumber("-1,2,3"))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage(Adder.ERROR_MESSAGE_NEGATIVE_NUMBER);
     }
 
     @Test
     public void 숫자가아니문자예외처리() {
-        assertThatThrownBy(() -> adder.getSplit("1,12,b"))
+        assertThatThrownBy(() -> adder.toIntegerList("1,12,b"))
                 .isInstanceOf(RuntimeException.class);
     }
 
