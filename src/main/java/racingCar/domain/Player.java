@@ -20,7 +20,7 @@ public class Player {
     }
 
     public void play(boolean shouldGo) {
-        if(shouldGo) {
+        if (shouldGo) {
             goOneStep();
         }
     }
