@@ -10,15 +10,16 @@
 
 package racingcar.view;
 
+import java.util.List;
 import java.util.Map;
 import racingcar.domain.Car;
-import racingcar.domain.RacingResult;
 import racingcar.domain.RacingResultFactory;
 
 public class OutputView {
 
     private final static String CAR_DELIMITER = " : ";
     private final static String CAR_PROGRESS_SIGN = "-";
+    private final static String WINNER_DELIMITER = ", ";
 
     public static void printInputCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -45,7 +46,7 @@ public class OutputView {
     }
 
     private static void parseResult(Map<Car, Integer> carIntegerMap) {
-        for(Car car : carIntegerMap.keySet()) {
+        for (Car car : carIntegerMap.keySet()) {
             System.out.print(car.getName());
             System.out.print(CAR_DELIMITER);
             for (int i = 0; i < carIntegerMap.get(car); i++) {
@@ -55,7 +56,8 @@ public class OutputView {
         }
     }
 
-    public static void printWinner(String winners) {
-        System.out.println(winners + "가 최종 우승했습니다.");
+    public static void printWinner(List<String> winners) {
+        System.out.print(String.join(WINNER_DELIMITER, winners));
+        System.out.println("가 최종 우승했습니다.");
     }
 }

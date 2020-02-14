@@ -15,14 +15,12 @@ import racingcar.domain.CarFactory;
 import racingcar.domain.CarNameFactory;
 import racingcar.domain.RacingResultFactory;
 import racingcar.domain.TryCount;
-import racingcar.util.Racing;
+import racingcar.controller.Racing;
 import racingcar.util.Winner;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class Application {
-
-    private final static String WINNER_DELIMITER = ", ";
 
     public static void main(String[] args) {
 
@@ -34,8 +32,8 @@ public class Application {
         OutputView.printExecutionResult();
         OutputView.printResultFactory(racingProgress);
 
-        List<String> winner = Winner.getWinners(carFactory);
-        OutputView.printWinner(String.join(WINNER_DELIMITER, winner));
+        List<String> winners = Winner.getWinners(carFactory);
+        OutputView.printWinner(winners);
     }
 
 

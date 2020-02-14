@@ -21,7 +21,7 @@ public class Winner {
         List<String> winners = new ArrayList<>();
         int maxPosition = carFactory.getMaxPosition();
         for (Car car : carFactory.getCars()) {
-            if(car.isEqualPosition(maxPosition)) {
+            if (car.isEqualPosition(maxPosition)) {
                 winners.add(car.getName());
             }
         }

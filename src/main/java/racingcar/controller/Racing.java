@@ -8,7 +8,7 @@
  *
  */
 
-package racingcar.util;
+package racingcar.controller;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -18,6 +18,7 @@ import racingcar.domain.Car;
 import racingcar.domain.CarFactory;
 import racingcar.domain.RacingResult;
 import racingcar.domain.RacingResultFactory;
+import racingcar.util.Director;
 
 public class Racing {
 
