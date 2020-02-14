@@ -24,13 +24,13 @@ public class GameManagerTest {
     @Test
     void setCarList() {
         String[] input = new String[]{"k3", "k5"};
-        GameManager.setCarList(input);
+        gameManager.setCarList(input);
 
         List<Car> result = new ArrayList<>();
         result.add(new Car("k3"));
         result.add(new Car("k5"));
 
-        assertThat(result).isEqualTo(GameManager.getCarList());
+        assertThat(result).isEqualTo(gameManager.getCarList());
     }
 
     @DisplayName("4이상 숫자가 주어지면 전진")

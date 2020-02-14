@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameManager {
-    public static final int ZERO = 0;
-    private static final int MIN_MOVE_NUMBER = 4;
-    private static List<Car> cars = new ArrayList<>();
+    static final int ZERO = 0;
+    private List<Car> cars = new ArrayList<>();
+    private Winner winner = new Winner();
     private int round;
+    private static final int MIN_MOVE_NUMBER = 4;
 
     private static String[] inputCarName() {
         return InputView.inputCarName();
@@ -25,9 +26,10 @@ public class GameManager {
         award();
     }
 
-    private void award() {
-        Winner.setWinner(cars);
-        OutputView.printWinners(Winner.getWinners());
+    static void race(List<Car> cars) {
+        for (Car car : cars) {
+            moveOrStay(car, Dice.makeRandomNumber());
+        }
     }
 
     private void init() {
@@ -49,23 +51,22 @@ public class GameManager {
         }
     }
 
-    public static List<Car> getCarList() {
-        return cars;
+    private void award() {
+        winner.setWinner(cars);
+        OutputView.printWinners(winner.getWinners());
     }
 
-    public static void setCarList(String[] carNames) {
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
+    public List<Car> getCarList() {
+        return this.cars;
     }
 
     private void setRound() {
         this.round = InputView.inputRound();
     }
 
-    public static void race(List<Car> cars) {
-        for (Car car : cars) {
-            moveOrStay(car, Dice.makeRandomNumber());
+    void setCarList(String[] carNames) {
+        for (String carName : carNames) {
+            this.cars.add(new Car(carName));
         }
     }
 }

@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinnerTest {
     private List<Car> cars = new ArrayList<>();
+    private Winner winner = new Winner();
 
     @BeforeEach
     void setUp() {
@@ -28,7 +29,7 @@ public class WinnerTest {
     @DisplayName("car객체들의 최대 포지션 구하기")
     @Test
     void getMaxPosition() {
-        int maxPosition = Winner.getMaxPosition(cars);
+        int maxPosition = winner.getMaxPosition(cars);
         assertThat(maxPosition).isEqualTo(2);
     }
 
@@ -38,7 +39,7 @@ public class WinnerTest {
         List<String> result = new ArrayList<>();
         result.add("a");
         result.add("b");
-        Winner.setWinner(cars);
-        assertThat(Winner.getWinners()).isEqualTo(result);
+        winner.setWinner(cars);
+        assertThat(winner.getWinners()).isEqualTo(result);
     }
 }
