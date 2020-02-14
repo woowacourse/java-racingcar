@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameManager {
-    static final int ZERO = 0;
     private List<Car> cars = new ArrayList<>();
     private Winner winner = new Winner();
     private int round;
     private static final int MIN_MOVE_NUMBER = 4;
+    static final int ZERO = 0;
 
     private static String[] inputCarName() {
         return InputView.inputCarName();
