@@ -17,6 +17,9 @@ public class CarFactory {
     }
 
     private String[] splitCarsName(String commaSeparatedCarsName) {
+        if(!commaSeparatedCarsName.contains(",")) {
+            throw new IllegalArgumentException("1대만 있으면 경기를 진행할 수 없습니다.");
+        }
         return commaSeparatedCarsName.trim()
                 .replace(SPACE, BLANK)
                 .split(COMMA);
