@@ -2,16 +2,13 @@ package racingcar.controller;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class ValidateInputTest {
 
     @DisplayName("이름이 다섯글자 이내인지 판단")
-    @ParameterizedTest
-    @CsvSource(value = {})
+    @Test
     void checkNameLength() {
         String[] name = new String[]{"a", "fghsdtsdt", "12", "sdfs"};
         assertThatThrownBy(() -> ValidateInput.validateName(name))
@@ -29,7 +26,7 @@ public class ValidateInputTest {
     void isOverZero() {
         int count = 0;
         boolean result = ValidateInput.isUnderZero(count);
-        assertThat(result).isFalse();
+        assertThat(result).isTrue();
     }
 
     @DisplayName("입력 라운드 숫자 유효성 검사 테스트")

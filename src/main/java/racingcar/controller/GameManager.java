@@ -3,7 +3,6 @@ package racingcar.controller;
 import racingcar.model.Car;
 import racingcar.model.Dice;
 import racingcar.model.Winner;
-import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
@@ -14,10 +13,6 @@ public class GameManager {
     private static final int MIN_MOVE_NUMBER = 4;
     private static List<Car> cars = new ArrayList<>();
     private int round;
-
-    private static String[] inputCarName() {
-        return InputView.inputCarName();
-    }
 
     public GameManager(String[] carNames, int round) {
         this.cars = setCars(carNames);
@@ -54,20 +49,6 @@ public class GameManager {
         if (inputNumber >= MIN_MOVE_NUMBER) {
             car.move();
         }
-    }
-
-    public static List<Car> getCarList() {
-        return cars;
-    }
-
-    public static void setCarList(String[] carNames) {
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
-    }
-
-    private void setRound() {
-        this.round = InputView.inputRound();
     }
 
     public static void race(List<Car> cars) {
