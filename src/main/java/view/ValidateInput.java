@@ -1,12 +1,10 @@
-package controller;
-
-import view.InputView;
-import view.ValidationView;
+package view;
 
 import java.util.regex.Pattern;
 
 public class ValidateInput {
 
+    public static final int ZERO = 0;
     private static final String NUMBER_FORMAT = "^\\d+$";
     private static final int MAX_NAME_LENGTH = 5;
 
@@ -48,7 +46,7 @@ public class ValidateInput {
     }
 
     public static boolean isUnderZero(int round) {
-        return round <= GameManager.ZERO;
+        return round <= ZERO;
     }
 
 
