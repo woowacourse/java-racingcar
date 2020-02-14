@@ -50,6 +50,10 @@ public class Cars {
         for (Car car : cars) {
             winners.add(car.isWinner(max));
         }
-        return winners.stream().filter(x -> !"".equals(x)).collect(Collectors.joining(","));
+        return winners.stream().filter(s -> isWinner(s)).collect(Collectors.joining(","));
+    }
+
+    private boolean isWinner(String s) {
+        return !"".equals(s);
     }
 }
