@@ -6,9 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Adder {
-    public static final String ERROR_MESSAGE_NEGATIVE_NUMBER = "0 이상의 수를 입력하세요";
     public static final String MINUS_SIGN = "-";
-    private List<Integer> finalNumbers;
+    public static final char SLASH = '/';
+    public static final String EQUATION_PATTERN_WHEN_CUSTOM_MINUS = "(-?\\d)-(-?\\d)-(-?\\d)";
+    public static final String NORMAL_SPLIT_DELIMITER = ",|:";
+    public static final String INPUT_PATTERN = "//(.)\n(.*)";
 
     public int splitAndSum(String inputString) {
         if (inputString == null || inputString.isEmpty()) {
@@ -20,83 +22,60 @@ public class Adder {
         return sumNotCustom(inputString);
     }
 
-    private int sumCustom(String inputString) {
-        if (isCustomMarkIsMinus(inputString)) {
-            return sumWhenCustomMarkMinus(inputString);
+    public static String[] splitWhenCustom(String number, String customMark) {
+        if (customMark.equals(MINUS_SIGN)) {
+            return splitWhenCustomMarkIsMinus(number);
         }
-        return sumWhenCustomMarkNotMinus(inputString);
+        return number.split(customMark);
+    }
+
+    public static String[] splitWhenCustomMarkIsMinus(String input) {
+        String[] result = new String[3];
+        Pattern pattern = Pattern.compile(EQUATION_PATTERN_WHEN_CUSTOM_MINUS);
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            result[0] = matcher.group(1);
+            result[1] = matcher.group(2);
+            result[2] = matcher.group(3);
+        }
+        return result;
+    }
+
+    public static List<Integer> toIntegerList(String[] input) {
+        List<Integer> result = new ArrayList<>();
+        for (String str : input) {
+            result.add(Integer.parseInt(str));
+        }
+        return result;
     }
 
     private int sumNotCustom(String inputString) {
-        validateNumber(inputString);
-        return sumWhenList(toIntegerList(inputString));
+        NumberValidate.validate(split(inputString));
+        return sumWhenList(toIntegerList(split(inputString)));
+    }
+
+    private int sumCustom(String inputString) {
+        String customMark = customMarkAndNumber(inputString)[0];
+        String number = customMarkAndNumber(inputString)[1];
+        String[] numbers = splitWhenCustom(number, customMark);
+        NumberValidate.validate(numbers);
+        return sumWhenList(toIntegerList(numbers));
     }
 
     private int sumWhenList(List<Integer> finalNumbers) {
         return finalNumbers.stream().reduce((x, y) -> x + y).get();
     }
 
-    private int sumWhenCustomMarkNotMinus(String inputString) {
-        validateNumber(inputString);
-        finalNumbers = toIntegerList(customMarkAndEquation(inputString)[0], customMarkAndEquation(inputString)[1]);
-        return finalNumbers.stream().reduce((x, y) -> x + y).get();
-    }
-
-    private int sumWhenCustomMarkMinus(String inputString) {
-        validateDoubleMinus(inputString);
-        finalNumbers = toIntegerList(customMarkAndEquation(inputString)[0], customMarkAndEquation(inputString)[1]);
-        return finalNumbers.stream().reduce((x, y) -> x + y).get();
-    }
-
-    private boolean isCustomMarkIsMinus(String inputString) {
-        return inputString.charAt(0) == '/' && customMarkAndEquation(inputString)[0] == "-";
-    }
-
-    public void validateDoubleMinus(String inputString) {
-        Matcher minusMatcher = Pattern.compile("--").matcher(inputString);
-        if (minusMatcher.find()) {
-            throw new RuntimeException();
-        }
-    }
-
-    public void validateNumber(String inputString) {
-        if (inputString.contains(MINUS_SIGN)) {
-            throw new RuntimeException(ERROR_MESSAGE_NEGATIVE_NUMBER);
-        }
+    public String[] split(String inputString) {
+        return inputString.split(NORMAL_SPLIT_DELIMITER);
     }
 
     private boolean isCustom(String inputString) {
-        return inputString.charAt(0) == '/';
+        return inputString.charAt(0) == SLASH;
     }
 
-    public List<Integer> toIntegerList(String inputString) {
-        List<Integer> result = new ArrayList<>();
-        String[] numbers = inputString.split(",|:");
-        for (String number : numbers) {
-            result.add(toInteger(number));
-        }
-        return result;
-    }
-
-    private int toInteger(String stringNum) {
-        try {
-            return Integer.parseInt(stringNum);
-        } catch (Exception e) {
-            throw new RuntimeException();
-        }
-    }
-
-    public List<Integer> toIntegerList(String custom, String inputString) {
-        List<Integer> result = new ArrayList<>();
-        String[] stringNums = inputString.split(custom);
-        for (String stringNum : stringNums) {
-            result.add(toInteger(stringNum));
-        }
-        return result;
-    }
-
-    public String[] customMarkAndEquation(String inputString) {
-        Pattern pattern = Pattern.compile("//(.)\n(.*)");
+    public String[] customMarkAndNumber(String inputString) {
+        Pattern pattern = Pattern.compile(INPUT_PATTERN);
         Matcher matcher = pattern.matcher(inputString);
         String[] result = new String[2];
         while (matcher.find()) {

@@ -33,30 +33,35 @@ public class AdderTest {
 
     @Test
     public void 문자_split() {
-        List<Integer> result;
-        result = adder.toIntegerList("1,2:3");
+        String[] result;
+        result = adder.split("1,2:3");
 
-        assertThat(result).containsExactly(1, 2, 3);
+        assertThat(result).containsExactly("1", "2", "3");
     }
 
     @Test
     public void 커스텀문자_split() {
-        List<Integer> result;
-        result = adder.toIntegerList(";", "1;2;3");
+        String[] result = adder.splitWhenCustom("1;2;3", ";");
+        assertThat(result).containsExactly("1", "2", "3");
 
-        assertThat(result).containsExactly(1, 2, 3);
+        result = adder.splitWhenCustom("1-2-3", "-");
+        assertThat(result).containsExactly("1", "2", "3");
 
-        result = adder.toIntegerList("-", "1-2-3");
+        result = adder.splitWhenCustom("-1--2-3", "-");
+        assertThat(result).containsExactly("-1", "-2", "3");
 
-        assertThat(result).containsExactly(1, 2, 3);
+//        result = adder.splitWhenCustom("-2-3", "-");
+//        assertThat(result).containsExactly("-2", "3");
     }
 
     @Test
-    public void 커스텀문자_테스트() {
+    public void 커스텀문자와_숫자_나누기() {
         List<String> result;
-        result = Arrays.asList(adder.customMarkAndEquation("//;\n1;2;3"));
-
+        result = Arrays.asList(adder.customMarkAndNumber("//;\n1;2;3"));
         assertThat(result).containsExactly(";", "1;2;3");
+
+        result = Arrays.asList(adder.customMarkAndNumber("//-\n-1-2-3"));
+        assertThat(result).containsExactly("-", "-1-2-3");
     }
 
     @Test
@@ -64,19 +69,29 @@ public class AdderTest {
         int result;
         result = adder.splitAndSum("//;\n1;2;3");
         assertThat(result).isEqualTo(6);
+
+        result = adder.splitAndSum("//-\n1-2-3");
+        assertThat(result).isEqualTo(6);
+
+        assertThatThrownBy(() -> adder.splitAndSum("//-\n-1-2-3"))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage(NumberValidate.ERROR_MESSAGE_NEGATIVE_NUMBER);
     }
 
     @Test
     public void 예외처리_notCustom() {
-        assertThatThrownBy(() -> adder.validateNumber("-1,2,3"))
+        String[] input = new String[]{"-1", "2", "3"};
+        assertThatThrownBy(() -> NumberValidate.validate(input))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessage(Adder.ERROR_MESSAGE_NEGATIVE_NUMBER);
+                .hasMessage(NumberValidate.ERROR_MESSAGE_NEGATIVE_NUMBER);
     }
 
     @Test
     public void 숫자가아니문자예외처리() {
-        assertThatThrownBy(() -> adder.toIntegerList("1,12,b"))
-                .isInstanceOf(RuntimeException.class);
+        String[] input = new String[]{"a", "2", "3"};
+        assertThatThrownBy(() -> NumberValidate.validate(input))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage(NumberValidate.ERROR_MESSAGE_NOT_INTEGER);
     }
 
     @Test
@@ -84,11 +99,4 @@ public class AdderTest {
         List<Integer> finalNums = new ArrayList<>(Arrays.asList(1, 2, 3));
         System.out.println(finalNums.stream().reduce((x, y) -> x + y).get());
     }
-
-    @Test
-    public void customnegative() {
-        assertThatThrownBy(() -> adder.splitAndSum("//-\n1-2-3"))
-                .isInstanceOf(RuntimeException.class);
-    }
-
 }
