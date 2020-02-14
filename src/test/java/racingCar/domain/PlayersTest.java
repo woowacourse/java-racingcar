@@ -1,17 +1,15 @@
 package racingCar.domain;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
 
-class GameManagerTest {
+class PlayersTest {
     @Test
     void play() {
         String input = "pobi,jason,cu";
-        GameManager gameManager = new GameManager(input);
+        Players gameManager = new Players(input);
         gameManager.play();
         List<Player> players = gameManager.getState();
         Assertions.assertThat(players.size()).isEqualTo(3);
@@ -20,7 +18,7 @@ class GameManagerTest {
     @Test
     void isEmpty_ShouldReturnTrueWhenInputInvalidName() {
         String input = "abcabc"; // ""
-        GameManager gameManager= new GameManager(input);
+        Players gameManager= new Players(input);
 
         Assertions.assertThat(gameManager.isEmpty())
                 .isTrue();
@@ -29,7 +27,7 @@ class GameManagerTest {
     @Test
     void isEmpty_ShouldReturnFalseWhenInputVaildName() {
         String input = "abcac"; // "a"
-        GameManager gameManager= new GameManager(input);
+        Players gameManager= new Players(input);
 
         Assertions.assertThat(gameManager.isEmpty())
                 .isFalse();
@@ -38,7 +36,7 @@ class GameManagerTest {
     @Test
     void isEmpty_ShouldReturnFalseWhenInputDuplicatedNames() {
         String input = "abc,abc";
-        GameManager gameManager = new GameManager(input);
+        Players gameManager = new Players(input);
 
         Assertions.assertThat(gameManager.isEmpty())
                 .isTrue();

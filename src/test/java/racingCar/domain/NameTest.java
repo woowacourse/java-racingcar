@@ -3,13 +3,13 @@ package racingCar.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class PlayerNameTest {
+class NameTest {
     @Test
     void PlayerName_ToStringShouldReturnSameString() {
         String input = "Abccc";
-        PlayerName playerName = new PlayerName(input);
+        Name name = new Name(input);
 
-        Assertions.assertThat(playerName.toString())
+        Assertions.assertThat(name.toString())
                 .isEqualTo(input);
     }
 
@@ -18,7 +18,7 @@ class PlayerNameTest {
         String greaterThanFive = "abcdef";
 
         Assertions.assertThatThrownBy(() -> {
-            PlayerName case2 = new PlayerName(greaterThanFive);
+            Name case2 = new Name(greaterThanFive);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -27,7 +27,7 @@ class PlayerNameTest {
         String blank = "";
 
         Assertions.assertThatThrownBy(() -> {
-            PlayerName case1 = new PlayerName(blank);
+            Name case1 = new Name(blank);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -1,9 +1,9 @@
 package racingCar.domain;
 
-public class PlayerName {
+public class Name {
     private final String name;
 
-    public PlayerName(final String name) throws IllegalArgumentException {
+    public Name(final String name) throws IllegalArgumentException {
         checkIsValidLength(name);
         this.name = name;
     }
@@ -18,8 +18,8 @@ public class PlayerName {
         return name.length() > 5;
     }
 
-    private boolean equals(PlayerName playerName) {
-        return name.equals(playerName.name);
+    private boolean equals(Name name) {
+        return this.name.equals(name.name);
     }
 
     public String toString() {

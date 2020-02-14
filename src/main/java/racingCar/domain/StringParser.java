@@ -4,12 +4,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NameParser {
+public class StringParser {
     public static final String DELIMITER = ",";
 
-    public static List<PlayerName> parse(String input) throws IllegalArgumentException {
+    private StringParser() {
+    }
+
+    public static List<Name> parseToNameList(String input) throws IllegalArgumentException {
         return Arrays.stream(input.split(DELIMITER))
-                .map(PlayerName::new)
+                .map(Name::new)
                 .collect(Collectors.toUnmodifiableList());
     }
 }

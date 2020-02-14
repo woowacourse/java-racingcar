@@ -7,14 +7,14 @@ public class Player {
     private static final String HYPHEN = "-";
     private static final int DEFAULT_POSITION = 0;
 
-    private PlayerName name;
+    private Name name;
     private int position;
 
-    public Player(PlayerName name) {
+    public Player(Name name) {
         this(name, DEFAULT_POSITION);
     }
 
-    private Player(PlayerName name, int position) {
+    private Player(Name name, int position) {
         this.name = name;
         this.position = position;
     }

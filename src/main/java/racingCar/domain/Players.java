@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class GameManager {
+public class Players {
     private List<Player> players;
 
-    public GameManager(String input) {
+    public Players(String input) {
         players = new ArrayList<>();
         try {
             List<PlayerName> nameList = NameParser.parse(input);
