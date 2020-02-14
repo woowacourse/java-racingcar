@@ -14,7 +14,11 @@ public class Cars {
     }
 
     public void playTurn(NumberGenerator random) {
-        cars.forEach(car -> car.checkMove(random.generateNumber()));
+        cars.forEach(car -> {
+            if(car.canMove(random.generateNumber())) {
+                car.proceed();
+            }
+        });
     }
 
     public LinkedHashMap<String, String> notifyStatus() {

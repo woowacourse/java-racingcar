@@ -41,7 +41,7 @@ public class RacingCarTest {
     @ValueSource(ints = {0, 1, 2, 3})
     void doesCarProceed(int randomSeed) {
         Car car = new Car("hiro");
-        assertFalse(car.checkMove(randomSeed));
+        assertFalse(car.canMove(randomSeed));
     }
 
     @ParameterizedTest
@@ -51,7 +51,7 @@ public class RacingCarTest {
         Car car = new Car("hiro");
         Random random = new Random();
         assertThatThrownBy(() -> {
-            car.checkMove(number);
+            car.canMove(number);
         }).isInstanceOf(NumberFormatException.class);
     }
 
@@ -70,7 +70,7 @@ public class RacingCarTest {
     void carProceedTest() {
         Car car = new Car("hiro");
         for (int i = 0; i < 4; i++) {
-            car.checkMove(4);
+            car.canMove(4);
         }
         assertThat(car.currentPosition().get(1)).isEqualTo("----");
     }
@@ -100,7 +100,7 @@ public class RacingCarTest {
     void checkCurrentPosition() {
         Car car = new Car("hiro");
         for (int i = 0; i < 10; i++) {
-            car.checkMove(4);
+            car.canMove(4);
         }
         assertThat(car.currentPosition().get(0)).isEqualTo("hiro");
         assertThat(car.currentPosition().get(1)).isEqualTo("----------");
@@ -113,10 +113,10 @@ public class RacingCarTest {
         Car car1 = new Car("asdf");
         Car car2 = new Car("hiro");
         for (int i = 0; i < car1Position; i++) {
-            car1.checkMove(4);
+            car1.canMove(4);
         }
         for (int i = 0; i < car2Position; i++) {
-            car2.checkMove(4);
+            car2.canMove(4);
         }
         assertThat(car1.comparePosition(car2)
                 .currentPosition().get(0)).isEqualTo(winnerName);
@@ -129,8 +129,8 @@ public class RacingCarTest {
         Car car2 = new Car("bart");
         List<String> winner = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            winnerCar.checkMove(4);
-            car2.checkMove(4);
+            winnerCar.canMove(4);
+            car2.canMove(4);
         }
         assertThat(winnerCar.checkMoreWinners(car2, winner)).containsExactly("bart");
     }

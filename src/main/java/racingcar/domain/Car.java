@@ -8,28 +8,31 @@ public class Car {
     public static final String RANDOM_OUTOF_BOUND = "범위를 초과한 난수입니다.";
     public static final String HYPHEN = "-";
     public static final String BLANKSTRING = "";
+    public static final int ZERO = 0;
+    public static final int MAX = 9;
+    public static final int THRESHOLD = 4;
+
     private final String name;
     private int position = 0;
 
     public Car(String name) {
-        if (name == null || name.length() == 0 || name.length() > 5) {
+        if (name == null || name.isEmpty() || name.length() > 5) {
             throw new IllegalArgumentException(NAME_MUSTBE_1TO5);
         }
         this.name = name;
     }
 
-    public boolean checkMove(int i) {
-        if (i < 0 || i >= 10) {
+    public boolean canMove(int i) {
+        if (i < ZERO || i > MAX) {
             throw new NumberFormatException(RANDOM_OUTOF_BOUND);
         }
-        if (i >= 4) {
-            proceed();
+        if (i >= THRESHOLD) {
             return true;
         }
         return false;
     }
 
-    private void proceed() {
+    public void proceed() {
         position++;
     }
 
