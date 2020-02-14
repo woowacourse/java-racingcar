@@ -1,9 +1,5 @@
 package tdd.racingcar;
 
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
-
 import tdd.racingcar.domain.Cars;
 import tdd.racingcar.domain.CarsFactory;
 import tdd.racingcar.domain.Record;
