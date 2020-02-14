@@ -1,11 +1,12 @@
 package racingcar.Domain;
 
-import racingcar.View.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;
+
+import racingcar.Util.RandomNumberUtils;
+import racingcar.View.OutputView;
 
 /**
  * 클래스 이름 : Car.java
@@ -19,8 +20,6 @@ import static java.util.stream.Collectors.joining;
  */
 
 public class Car {
-	public static final int RANDOM_UPPER_LIMIT = 9;
-	public static final int RANDOM_LOWER_LIMIT = 1;
 	private static final int CRITERIA_FOR_GO = 4;
 	private static final int INITIAL_POSITION = 0;
 	public static final String DASH = "-";
@@ -43,7 +42,7 @@ public class Car {
 	}
 
 	public void goOrNot() {
-		if (isGo(createRandomNumber())) {
+		if (isGo(RandomNumberUtils.createRandomNumber())) {
 			position++;
 		}
 	}
@@ -52,9 +51,6 @@ public class Car {
 		return randomNumber >= CRITERIA_FOR_GO;
 	}
 
-	private int createRandomNumber() {
-		return (int) (Math.random() * RANDOM_UPPER_LIMIT) + RANDOM_LOWER_LIMIT;
-	}
 
 	public boolean comparePosition(final Car target) {
 		return this.position > target.position;
