@@ -9,7 +9,7 @@ public class Car {
         this.position = new Position();
     }
 
-    public void moveCarWhenNumberOverFour(int number) {
+    public void moveCar(int number) {
         this.position.move(number);
     }
 

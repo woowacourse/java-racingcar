@@ -48,7 +48,7 @@ public class Racing {
     private void changeCarsPosition(List<Car> cars) {
         for (Car car : cars) {
             int randomNumber = generateRandomNumber();
-            car.moveCarWhenNumberOverFour(randomNumber);
+            car.moveCar(randomNumber);
         }
     }
 }
