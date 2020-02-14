@@ -4,6 +4,8 @@ import java.util.regex.Pattern;
 
 public class ValidateInput {
 
+    private static final String NUMBER_FORMAT = "^\\d+$";
+    private static final Pattern pattern = Pattern.compile(NUMBER_FORMAT);
     public static final int ZERO = 0;
     private static final int MAX_NAME_LENGTH = 5;
 
@@ -53,7 +55,6 @@ public class ValidateInput {
 
 
     private static boolean isNotInteger(String input) {
-        Pattern pattern = Pattern.compile(NUMBER_FORMAT);
         return !pattern.matcher(input).matches();
     }
 }
