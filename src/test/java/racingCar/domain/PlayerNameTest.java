@@ -27,12 +27,16 @@ public class PlayerNameTest {
     }
 
     @Test
+    void checkValidName() {
+        String validName = "asdf";
+        Assertions.assertThat(new GameManager(validName).isCreated()).isTrue();
+    }
+
+    @Test
     void duplicateName() {
         String duplicateNameString = "over,over,pobi";
-        Assertions.assertThatThrownBy(
-                () -> {
-                    new PlayerName(duplicateNameString);
-                }
-        );
+        String validString = "over,pobi";
+        Assertions.assertThat(new GameManager(duplicateNameString).isCreated()).isFalse();
+        //Assertions.assertThat(new GameManager(validString).isCreated()).isTrue();
     }
 }

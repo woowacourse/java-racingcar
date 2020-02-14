@@ -30,7 +30,7 @@ public class Application {
         String namesInput = InputView.InputUserNames();
         GameManager gameManager = new GameManager(namesInput);
 
-        while(!gameManager.isCreated()) {
+        while (!gameManager.isCreated()) {
             OutputView.printInvalidInputCheck();
             namesInput = InputView.InputUserNames();
             gameManager = new GameManager(namesInput);

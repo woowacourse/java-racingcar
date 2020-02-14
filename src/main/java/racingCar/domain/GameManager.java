@@ -1,25 +1,24 @@
 package racingCar.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GameManager {
     private List<Player> players;
 
-    public GameManager(String input) throws IllegalArgumentException {
-        try{
+    public GameManager(String input) {
+        players = new ArrayList<>();
+        try {
             List<PlayerName> nameList = NameParser.parse(input);
-            players = nameList.stream()
-                    .peek((t) -> {
-                        if (nameList.contains(t)) {
-                            throw new IllegalArgumentException();
-                        }
-                    })
+            nameList.stream()
                     .map(Player::new)
-                    .collect(Collectors.toList());
-        } catch(IllegalArgumentException e) {
-            players = new ArrayList<>();
+                    .forEach((t) -> players.add(t));
+            checkDuplication();
+        } catch (IllegalArgumentException e) {
+            players.clear();
         }
     }
 
@@ -67,5 +66,16 @@ public class GameManager {
 
     public boolean isCreated() {
         return !players.isEmpty();
+    }
+
+    private void checkDuplication() throws IllegalArgumentException {
+        Set<String> set = new HashSet<String>();
+
+        players.forEach(
+                (t) -> set.add(t.toString())
+        );
+        if (players.size() != set.size()) {
+            throw new IllegalArgumentException();
+        }
     }
 }

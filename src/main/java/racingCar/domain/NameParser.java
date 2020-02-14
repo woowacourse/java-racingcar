@@ -6,7 +6,8 @@ import java.util.stream.Collectors;
 
 public class NameParser {
     public static final String DELIMITER = ",";
-    public static List<PlayerName> parse(String input) throws IllegalArgumentException{
+
+    public static List<PlayerName> parse(String input) throws IllegalArgumentException {
         return Arrays.stream(input.split(DELIMITER))
                 .map(PlayerName::new)
                 .collect(Collectors.toList());
