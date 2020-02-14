@@ -48,7 +48,7 @@ public class SplitTest {
 		Assertions.assertThatThrownBy(() -> {
 			String value = "//\n1;2;3";
 			Split.splitNumberByCustomByDelimiter(value);
-		}).isInstanceOf(NullPointerException.class);
+		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@ParameterizedTest
