@@ -1,12 +1,12 @@
 package racingCar.domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
+    private static final int ZERO_INDEX = 0;
+
     private List<Player> players;
 
     public Players(String input) {
@@ -33,8 +33,17 @@ public class Players {
         return players.isEmpty();
     }
 
-    public void play() {
-        players.forEach((t) -> t.goOrWait(RandomGenerator.decideGoOrStop()));
+    public List<Player> play(Deciders deciders) {
+        checkSameNum(deciders);
+        IntStream.range(ZERO_INDEX, players.size())
+                .forEach((t) -> players.get(t).goOrWait(deciders.get(t)));
+        return Collections.unmodifiableList(players);
+    }
+
+    private void checkSameNum(Deciders deciders) {
+        if (deciders.isNotEqualSize(this)) {
+            throw new RuntimeException();
+        }
     }
 
     public String toString() {
@@ -45,10 +54,6 @@ public class Players {
         );
 
         return stringBuilder.toString();
-    }
-
-    public List<Player> getState() {
-        return new ArrayList<>(players);
     }
 
     public String getWinners() {
@@ -74,5 +79,9 @@ public class Players {
                 .max(Player::compare)
                 .orElseThrow(RuntimeException::new)
                 .getPosition();
+    }
+
+    public int size() {
+        return players.size();
     }
 }
