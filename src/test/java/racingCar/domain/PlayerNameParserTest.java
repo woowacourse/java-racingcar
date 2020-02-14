@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class NameParserTest {
+public class PlayerNameParserTest {
     @Test
     @DisplayName("사용자의 이름을 쉼표 기준으로 구분한다")
     void parse() throws Exception {
