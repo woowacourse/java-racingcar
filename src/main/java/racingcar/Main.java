@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.Controller.Game;
+import racingcar.View.OutputView;
 
 /**
  * 클래스 이름 : Main.java
@@ -15,8 +16,12 @@ import racingcar.Controller.Game;
 
 public class Main {
     public static void main(String[] args) {
-        Game.initialize();
-        Game.race();
-        Game.showWinner();
+        try {
+            Game.initialize();
+            Game.race();
+            Game.showWinner();
+        } catch (Exception e) {
+            OutputView.printExceptionMessage(e);
+        }
     }
 }

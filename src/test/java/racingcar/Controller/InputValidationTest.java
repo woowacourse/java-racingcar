@@ -24,37 +24,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputValidationTest {
     @Test
-    @DisplayName("null 또는 빈 문자열 입력 시")
-    void checkNullOrEmptyInput_null_또는_빈문자열_입력() {
-        List<String> nullResult = null;
-        List<String> emptyResult = new ArrayList<>(10);
-
-        assertThatNullPointerException().isThrownBy(() -> InputValidation.checkNullOrEmptyInput(nullResult));
-        assertThatNullPointerException().isThrownBy(() -> InputValidation.checkNullOrEmptyInput(emptyResult));
-    }
-
-    @Test
-    @DisplayName("차 이름에 빈 문자열 입력 시")
-    void checkEmptyCarName_차_이름_빈_문자열() {
-        List<String> carNames = Arrays.asList("a", "", "c");
-        assertThatThrownBy(() -> {
-            InputValidation.checkEmptyCarName(carNames);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("차 이름은 빈 문자열일 수 없습니다.");
-
-    }
-
-    @Test
-    @DisplayName("차 이름이 5글자 이내")
-    void checkSmallerThanSix_차_이름_글자수() {
-        assertThatThrownBy(() -> {
-            List<String> carNames = Arrays.asList("Maserati", "Audi");
-            InputValidation.checkSmallerThanSix(carNames);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("자동차 이름의 길이가 6 이상입니다.");
-    }
-
-    @Test
     @DisplayName("시도횟수가 음수 또는 0")
     void checkNegativeAndZeroInput_시도횟수가_0이하() {
         assertThatThrownBy(() -> {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import racingcar.Domain.Car;
+import racingcar.Util.StringUtils;
 import racingcar.View.InputView;
 import racingcar.View.OutputView;
 
@@ -26,7 +27,9 @@ public class Game {
 	private static int trialTime;
 
 	public static void initialize() {
-		List<String> carNames = InputView.inputCarName();
+		String inputCarName = InputView.inputCarName();
+		List<String> carNames =  StringUtils.splitCarNames(inputCarName);
+		carNames = StringUtils.trimCarNames(carNames);
 		carNames.forEach(carName -> cars.add(new Car(carName)));
 		trialTime = InputView.inputTrialTime();
 	}

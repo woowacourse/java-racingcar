@@ -29,16 +29,16 @@ public class Car {
 
 	public static List<String> winners = new ArrayList<>();
 
-	private String carName;
+	private Name carName;
 	private int position;
 
 	public Car(final String carName) {
-		this.carName = carName;
+		this.carName = new Name(carName);
 		this.position = INITIAL_POSITION;
 	}
 
 	public Car(final String carName, final int position) {
-		this.carName = carName;
+		this.carName = new Name(carName);
 		this.position = position;
 	}
 
@@ -62,7 +62,7 @@ public class Car {
 
 	public void showCurrentPosition() {
 		StringBuilder outputValue = new StringBuilder();
-		outputValue.append(carName).append(COLON);
+		outputValue.append(carName.getName()).append(COLON);
 		for (int index = 0; index < position; index++) {
 			outputValue.append(DASH);
 		}
@@ -71,7 +71,7 @@ public class Car {
 
 	public void findWinners(final Car car) {
 		if (this.position == car.position) {
-			winners.add(car.carName);
+			winners.add(car.carName.getName());
 		}
 	}
 

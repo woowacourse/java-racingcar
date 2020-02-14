@@ -19,42 +19,6 @@ import java.util.List;
  */
 
 public class InputValidation {
-	public static List<String> validateInputCarName(final String carNameInput) {
-		List<String> carNames = StringUtils.splitCarNames(carNameInput);
-		carNames = StringUtils.trimCarNames(carNames);
-		try {
-			checkNullOrEmptyInput(carNames);
-			checkEmptyCarName(carNames);
-			checkSmallerThanSix(carNames);
-			return carNames;
-		} catch (Exception e) {
-			OutputView.printExceptionMessage(e);
-		}
-		return InputView.inputCarName();
-	}
-
-	public static void checkNullOrEmptyInput(final List<String> carNames) {
-		if (carNames == null || carNames.isEmpty()) {
-			throw new NullPointerException("입력이 null 이나 빈 문자열입니다.");
-		}
-	}
-
-	public static void checkEmptyCarName(final List<String> carNames) {
-		for (String carName : carNames) {
-			if (carName.isEmpty()) {
-				throw new IllegalArgumentException("차 이름은 빈 문자열일 수 없습니다.");
-			}
-		}
-	}
-
-	public static void checkSmallerThanSix(final List<String> carNames) {
-		for (String carName : carNames) {
-			if (carName.length() > 5) {
-				throw new IllegalArgumentException("자동차 이름의 길이가 6 이상입니다.");
-			}
-		}
-	}
-
 	public static int validateInputTrialTime(final String trialTimeInput) {
 		try {
 			InputValidation.checkDecimalNumber(trialTimeInput);

@@ -17,16 +17,16 @@ import racingcar.Controller.InputValidation;
  */
 
 public class InputView {
-	private static Scanner scanner = new Scanner(System.in);
+	private static Scanner SCANNER = new Scanner(System.in);
 
-	public static List<String> inputCarName() {
+	public static String inputCarName() {
 		OutputView.printInputCarNamesMessage();
-		return InputValidation.validateInputCarName(scanner.nextLine());
+		return SCANNER.nextLine();
 	}
 
 	public static int inputTrialTime() {
 		OutputView.printInputTrialTimeMessage();
-		return InputValidation.validateInputTrialTime(scanner.nextLine());
+		return InputValidation.validateInputTrialTime(SCANNER.nextLine());
 
 	}
 }
