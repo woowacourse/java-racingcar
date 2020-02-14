@@ -12,6 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import racing.controller.CarGenerator;
 import racing.domain.Car;
 import racing.domain.RacingGame;
 
@@ -19,7 +20,8 @@ public class CarTest {
 	@Test
 	public void carInitTest() {
 		List<String> input = Arrays.asList("A", "B", "C");
-		RacingGame racingGame = new RacingGame(input);
+		CarGenerator carGenerator = new CarGenerator();
+		RacingGame racingGame = new RacingGame(carGenerator.generateCars(input));
 
 		assertThat(racingGame.carSize()).isEqualTo(input.size());
 		assertThat(racingGame.getAllNames()).isEqualTo(input);

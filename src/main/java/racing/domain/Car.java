@@ -1,10 +1,5 @@
 package racing.domain;
 
-import static racing.view.OutputView.*;
-
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 public class Car {
 	public static final int MAX_LENGTH = 5;
 	public static final int MIN_LENGTH = 1;
@@ -18,6 +13,11 @@ public class Car {
 		this.position = 0;
 	}
 
+	public Car(String name, int position) {
+		this.name = name;
+		this.position = position;
+	}
+
 	public void goForward(int number) {
 		if (number >= FORWARD_PIVOT) {
 			position++;
@@ -28,17 +28,6 @@ public class Car {
 		return this.position == position;
 	}
 
-	private String printPosition() {
-		return IntStream.range(0, position)
-			.mapToObj(x -> POSITION_VIEWER)
-			.collect(Collectors.joining());
-	}
-
-	@Override
-	public String toString() {
-		return this.name + " : " + printPosition();
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -46,5 +35,4 @@ public class Car {
 	public int getPosition() {
 		return position;
 	}
-
 }

@@ -8,10 +8,12 @@ import racing.controller.RandomGenerator;
 public class RacingGame {
 	private List<Car> cars;
 
-	public RacingGame(List<String> carNames) {
-		cars = carNames.stream()
-			.map(Car::new)
-			.collect(Collectors.toList());
+	public RacingGame(List<Car> cars) {
+		if (cars == null) {
+			throw new IllegalArgumentException();
+		}
+
+		this.cars = cars;
 	}
 
 	public List<Car> findWinner() {
@@ -41,14 +43,6 @@ public class RacingGame {
 			.collect(Collectors.toList());
 	}
 
-	@Override
-	public String toString() {
-		return cars.stream()
-			.map(Car::toString)
-			.collect(Collectors.joining("\n"));
-	}
-
-	// 테스트코드에서만 사용하는 getter 메소드
 	public List<Car> getCars() {
 		return this.cars;
 	}

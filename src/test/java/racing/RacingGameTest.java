@@ -14,8 +14,11 @@ import racing.domain.RacingGame;
 public class RacingGameTest {
 	@Test
 	public void winnerTest() {
-		RacingGame racingGame = new RacingGame(Arrays.asList("자동차1", "자동차2", "자동차3"));
-		racingGame.getCars().get(1).goForward(5);
+		List<Car> cars = Arrays.asList(
+			new Car("자동차1", 5),
+			new Car("자동차2", 7),
+			new Car("자동차3", 1));
+		RacingGame racingGame = new RacingGame(cars);
 		List<Car> winners = racingGame.findWinner();
 		String winnersName = winners.stream().map(Car::getName).collect(Collectors.joining(","));
 

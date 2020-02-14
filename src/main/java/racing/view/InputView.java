@@ -3,6 +3,7 @@ package racing.view;
 import static racing.domain.Car.*;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -11,11 +12,9 @@ public class InputView {
 	private static final String CAR_NAME_DELIMITER = ",";
 	private static final String WRONG_INPUT_MESSAGE = "잘못 입력하셨습니다.";
 
-	public Scanner input() {
-		return new Scanner(System.in);
-	}
+	public static Scanner input = new Scanner(System.in);
 
-	public static List<String> inputCarNames(Scanner input) {
+	public static List<String> inputCarNames() {
 		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
 		String carNames = input.nextLine();
 
@@ -24,13 +23,10 @@ public class InputView {
 			.map(InputView::splitAsComma)
 			.filter(InputView::checkNotEmpty)
 			.filter(InputView::checkLength)
-			.orElseGet(() -> {
-				System.out.println(WRONG_INPUT_MESSAGE);
-				return inputCarNames(input);
-			});
+			.orElseThrow(() -> new InputMismatchException(WRONG_INPUT_MESSAGE));
 	}
 
-	public static int inputRoundNumber(Scanner input) {
+	public static int inputRoundNumber() {
 		System.out.println("시도할 회수는 몇회인가요?");
 		String round = input.nextLine();
 
@@ -38,22 +34,23 @@ public class InputView {
 			.filter(InputView::checkNotNull)
 			.filter(InputView::checkNumber)
 			.map(Integer::parseInt)
-			.orElseGet(() -> {
-				System.out.println(WRONG_INPUT_MESSAGE);
-				return inputRoundNumber(input);
-			});
+			.orElseThrow(() -> new InputMismatchException(WRONG_INPUT_MESSAGE));
 	}
 
 	public static boolean checkNumber(String input) {
-		return input.chars().mapToObj(x -> (char)x).allMatch(Character::isDigit);
+		return input.chars()
+			.mapToObj(x -> (char)x)
+			.allMatch(Character::isDigit);
 	}
 
 	public static List<String> splitAsComma(String value) {
 		return Arrays.asList(value.split(CAR_NAME_DELIMITER, -1));
 	}
 
-	public static boolean checkNotEmpty(List<String> input) {
-		return !input.isEmpty();
+	public static boolean checkNotEmpty(List<String> inputs) {
+		return Optional.ofNullable(inputs)
+			.filter(input -> !input.isEmpty())
+			.isPresent();
 	}
 
 	public static boolean checkLength(List<String> input) {
