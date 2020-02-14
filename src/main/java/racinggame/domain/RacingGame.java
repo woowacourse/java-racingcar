@@ -15,7 +15,9 @@ public class RacingGame {
     }
 
     public static int generateRandom() {
-        return new Random().nextInt(NUMBER_BOUND);
+        Random rand = new Random();
+        rand.setSeed(System.currentTimeMillis());
+        return rand.nextInt(NUMBER_BOUND);
     }
 
     public static void play(Input input, Output output) {
