@@ -1,6 +1,7 @@
 package racinggame.domain.car;
 
 public class Position {
+    public static final int DEFAULT_ACCELERATE = 1;
     private int position;
 
     private void validatePosition(int position){
@@ -16,5 +17,13 @@ public class Position {
 
     public boolean match(int position) {
         return position == this.position;
+    }
+
+    public void accelerate() {
+        accelerate(DEFAULT_ACCELERATE);
+    }
+
+    public void accelerate(int accelerateValue){
+        position+=accelerateValue;
     }
 }

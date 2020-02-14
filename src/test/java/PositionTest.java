@@ -26,4 +26,12 @@ public class PositionTest {
         }).isInstanceOf(IllegalArgumentException.class)
         .hasMessageMatching("위치값은 0 이상이어야 합니다.");
     }
+
+    @Test
+    void 위치값_가속메서드_호출_테스트() {
+        position = new Position(0);
+        position.accelerate();
+
+        Assertions.assertThat(position.match(1)).isTrue();
+    }
 }
