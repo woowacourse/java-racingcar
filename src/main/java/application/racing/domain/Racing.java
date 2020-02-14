@@ -22,7 +22,7 @@ public class Racing {
     private void addWinners(List<Car> cars, List<String> winners, int maxPosition) {
         for (Car car : cars) {
             if (car.getPosition() == maxPosition) {
-                winners.add(car.getName());
+                winners.add(car.toString());
             }
         }
     }

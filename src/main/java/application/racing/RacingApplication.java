@@ -42,7 +42,7 @@ public class RacingApplication {
         CarName carName = new CarName(inputCarNames);
         List<Car> cars = new ArrayList<>();
         for (String name : carName.getCarNameList()) {
-            cars.add(new Car(name));
+            cars.add(new Car(name, 0));
         }
         return cars;
     }

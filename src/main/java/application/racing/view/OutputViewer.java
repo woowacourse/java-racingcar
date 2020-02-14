@@ -25,7 +25,7 @@ public class OutputViewer {
 
     private String addCarNameStringWithColon(Car car) {
         StringBuilder sb = new StringBuilder();
-        sb.append(car.getName());
+        sb.append(car.toString());
         sb.append(ConstantForRacing.COLON_STRING);
         return sb.toString();
     }
