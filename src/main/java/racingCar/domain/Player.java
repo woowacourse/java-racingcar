@@ -1,7 +1,5 @@
 package racingCar.domain;
 
-import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Player {
@@ -22,7 +20,7 @@ public class Player {
     }
 
     public void play(boolean shouldGo) {
-        if(shouldGo) {
+        if (shouldGo) {
             goOneStep();
         }
     }

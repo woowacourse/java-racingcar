@@ -2,10 +2,7 @@ package racingCar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class GameManager {
     private List<Player> players;
@@ -16,11 +13,6 @@ public class GameManager {
                 .map(Player::new)
                 .collect(Collectors.toList());
     }
-
-//    public Stream<Player> gameManagerStream() {
-//        return IntStream.rangeClosed(1, numOfRounds)
-//                .mapToObj((t) -> players);
-//    }
 
     public void play() {
         players.forEach((t) -> t.play(RandomGenerator.decideGoOrStop()));
@@ -53,7 +45,7 @@ public class GameManager {
                 .peek((t) -> stringBuilder.append(t.getName()))
                 .forEach((t) -> stringBuilder.append(", "));
 
-        stringBuilder.delete(stringBuilder.length()-2, stringBuilder.length());
+        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
 
         return stringBuilder.toString();
     }
