@@ -1,7 +1,5 @@
 package racinggame.controller;
 
-import racinggame.controller.Input;
-import racinggame.controller.Output;
 import racinggame.domain.RacingGame;
 
 /**

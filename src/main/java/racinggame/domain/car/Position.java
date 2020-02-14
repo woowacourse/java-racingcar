@@ -33,8 +33,8 @@ public class Position {
      *
      * @param position 검사할 position 값이다.
      */
-    private void validatePosition(int position){
-        if(position < 0){
+    private void validatePosition(int position) {
+        if (position < 0) {
             throw new IllegalArgumentException("위치값은 0 이상이어야 합니다.");
         }
     }
@@ -67,13 +67,13 @@ public class Position {
      *
      * @param accelerateValue 현재 위치에 더해 줄 정수 값이다.
      */
-    public void accelerate(int accelerateValue){
-        if(accelerateValue <= 0){
+    public void accelerate(int accelerateValue) {
+        if (accelerateValue <= 0) {
             throw new IllegalArgumentException("잘못된 요청이 가속 메서드에 전달되었습니다");
         }
         try {
-            position = Math.addExact(position,accelerateValue);
-        }catch(ArithmeticException e){
+            position = Math.addExact(position, accelerateValue);
+        } catch (ArithmeticException e) {
             throw new IllegalArgumentException("잘못된 요청이 가속 메서드에 전달되었습니다");
         }
     }
@@ -83,7 +83,7 @@ public class Position {
      *
      * @return 정수형 position 값을 반환한다.
      */
-    public int getPosition(){
+    public int getPosition() {
         return position;
     }
 }
