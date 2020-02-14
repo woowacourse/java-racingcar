@@ -29,7 +29,7 @@ public class Car {
         return name.toString();
     }
 
-    int getPosition() {
+    public int getPosition() {
         return position;
     }
 

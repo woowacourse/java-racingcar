@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class RacingResult {
 
-    private Map<Car, Integer> racingResult;
+    private final Map<Car, Integer> racingResult;
 
     public RacingResult(Map<Car, Integer> racingCarResult) {
         racingResult = racingCarResult;

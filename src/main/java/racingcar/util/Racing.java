@@ -10,34 +10,36 @@
 
 package racingcar.util;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import racingcar.domain.Car;
 import racingcar.domain.CarFactory;
+import racingcar.domain.RacingResult;
+import racingcar.domain.RacingResultFactory;
 
 public class Racing {
 
-    private final static String NEW_LINE = "\n";
     private final static int RANDOM_NUMBER_RANGE = 10;
-    private final static String CAR_DELIMITER = " : ";
-    private final static String CAR_PROGRESS_SIGN = "-";
 
-    public static StringBuilder run(CarFactory carFactory, int tryCount) {
-        StringBuilder racingProgress = new StringBuilder();
+    public static RacingResultFactory run(CarFactory carFactory, int tryCount) {
+        RacingResultFactory racingResultFactory = new RacingResultFactory();
         for (int i = 0; i < tryCount; i++) {
-            playRacing(carFactory.getCars(), racingProgress);
+            playRacing(carFactory.getCars(), racingResultFactory);
         }
-        return racingProgress;
+        return racingResultFactory;
     }
 
-    private static void playRacing(List<Car> cars, StringBuilder racingProgress) {
-        racingProgress.append(NEW_LINE);
+    private static void playRacing(List<Car> cars, RacingResultFactory racingResultFactory) {
+        LinkedHashMap<Car, Integer> racingResults = new LinkedHashMap<>();
         for (Car car : cars) {
             if (isForwardByRandom()) {
                 car.forward();
             }
-            racingProgress.append(car.getProgress(CAR_DELIMITER, CAR_PROGRESS_SIGN));
+            racingResults.put(car, car.getPosition());
         }
+        racingResultFactory.setResult(new RacingResult(racingResults));
     }
 
     private static boolean isForwardByRandom() {

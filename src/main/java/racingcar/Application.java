@@ -13,6 +13,7 @@ package racingcar;
 import java.util.List;
 import racingcar.domain.CarFactory;
 import racingcar.domain.CarNameFactory;
+import racingcar.domain.RacingResultFactory;
 import racingcar.domain.TryCount;
 import racingcar.util.Racing;
 import racingcar.util.Winner;
@@ -29,9 +30,9 @@ public class Application {
         CarFactory carFactory = new CarFactory(carNameFactory);
         int tryCount = inputTryCount();
 
-        StringBuilder racingProgress = Racing.run(carFactory, tryCount);
+        RacingResultFactory racingProgress = Racing.run(carFactory, tryCount);
         OutputView.printExecutionResult();
-        OutputView.printString(racingProgress.toString());
+        OutputView.printResultFactory(racingProgress);
 
         List<String> winner = Winner.getWinners(carFactory);
         OutputView.printWinner(String.join(WINNER_DELIMITER, winner));
