@@ -9,7 +9,7 @@ public class Adder {
     private List<Integer> finalNumbers;
 
     public int splitAndSum(String inputString) {
-        if (inputString.isEmpty() || inputString == null) {
+        if (inputString == null || inputString.isEmpty()) {
             return 0;
         }
         return sumNotEmpty(inputString);
