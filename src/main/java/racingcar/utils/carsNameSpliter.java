@@ -13,6 +13,5 @@ public class carsNameSpliter {
 		return Arrays.asList(
 				carsName.replace(SPACE, EMPTY)
 						.split(COMMA, LIMIT));
-
 	}
 }
