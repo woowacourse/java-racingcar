@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,13 +11,15 @@ public class Cars {
 	private static final String COMMA_DELIMITER = ", ";
 	private static final String NEW_LINE_DELIMITER = "\n";
 
-	private final List<Car> cars = new ArrayList<>();
+	private final List<Car> cars;
 
 	public Cars(List<String> carsName) {
 		validateDuplicateCarName(carsName);
 		validateNumberOfCars(carsName);
 
+		List<Car> cars = new ArrayList<>();
 		carsName.forEach(carName -> cars.add(new Car(carName)));
+		this.cars = Collections.unmodifiableList(cars);
 	}
 
 	private void validateDuplicateCarName(List<String> carsName) {
