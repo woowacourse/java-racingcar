@@ -22,7 +22,7 @@ public class PlusCalculator {
 		return value == null || value.isBlank();
 	}
 
-	private static List<UnsignedNumber> toUnsignedNumbers(final String[] values) {
+	private static List<UnsignedNumber> toUnsignedNumbers(String[] values) {
 		return Arrays.stream(values)
 				.map(UnsignedNumber::new)
 				.collect(Collectors.toList());
