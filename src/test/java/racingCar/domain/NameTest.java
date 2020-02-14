@@ -1,31 +1,31 @@
 package racingCar.domain;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class NameTest {
-    @Test
-    void PlayerName_ToStringShouldReturnSameString() {
-        String input = "Abccc";
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "bc", "def", "sample"})
+    void toString_ShouldReturnSameString(String input) {
         Name name = new Name(input);
-
         Assertions.assertThat(name.toString())
                 .isEqualTo(input);
     }
 
-    @Test
-    void PlayerName_ShouldThrowWhenInputIsGreaterThanFive() {
-        String greaterThanFive = "abcdef";
-
+    @ParameterizedTest
+    @ValueSource(strings = {"abcdef", "notebook"})
+    void playerName_ShouldThrowWhenInputIsGreaterThanFive(String input) {
         Assertions.assertThatThrownBy(() -> {
-            Name case2 = new Name(greaterThanFive);
+            Name case2 = new Name(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void PlayerName_ShouldThrowWhenInputIsBlank() {
+    void playerName_ShouldThrowWhenInputIsBlank() {
         String blank = "";
-
         Assertions.assertThatThrownBy(() -> {
             Name case1 = new Name(blank);
         }).isInstanceOf(IllegalArgumentException.class);
