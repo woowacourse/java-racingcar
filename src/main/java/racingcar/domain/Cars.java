@@ -15,29 +15,19 @@ public class Cars {
         String[] names = inputNames.split(DELIMITER, OPTION);
 
         cars = Arrays.stream(names)
-                .map(name -> new Car(name.trim()))
+                .map(name -> new Car(new Name(name.trim())))
                 .collect(Collectors.toList());
 
-        validateCarNames();
+        validateCars();
     }
 
-    protected Cars(List<Car> cars) {
+    Cars(List<Car> cars) {
         this.cars = cars;
     }
 
-    private void validateCarNames() {
+    private void validateCars() {
         if (cars.size() < MINIMUM_TEAM) {
             throw new IllegalArgumentException("참가자는 " + MINIMUM_TEAM + "명 이상이어야합니다.");
-        }
-
-        if (cars.stream()
-                .anyMatch(Car::hasOverFiveCharacterName)) {
-            throw new IllegalArgumentException("이름은 " + Car.MAXIMUM_NAME + "자 이하여야 합니다.");
-        }
-
-        if (cars.stream()
-                .anyMatch(Car::isEmpty)) {
-            throw new IllegalArgumentException("입력이 없습니다.");
         }
     }
 
@@ -46,14 +36,13 @@ public class Cars {
     }
 
     public List<String> getWinners() {
-        final int maxPosition = cars.stream()
-                 .map(car -> car.getPosition())
-                 .max(Integer::compareTo)
-                 .get();
+        final Car winner = cars.stream()
+                .max(Car::compareTo)
+                .get();
 
-         return cars.stream()
-                 .filter(car -> car.isMaxPosition(maxPosition))
-                 .map(car -> car.getName())
-                 .collect(Collectors.toList());
+        return cars.stream()
+                .filter(car -> car.isWinner(winner))
+                .map(Car::toString)
+                .collect(Collectors.toList());
     }
 }

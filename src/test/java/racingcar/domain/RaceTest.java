@@ -13,10 +13,12 @@ class RaceTest {
     void moveForwardAccordingToCondition(int randomValue, boolean expected) {
         //given
         Race race = new Race();
-        Car car = new Car("앨런");
+        Car car = new Car(new Name("앨런"));
         int initState = car.getPosition();
+
         //when
         race.moveAccordingToCondition(car, randomValue);
+
         //then
         assertThat(car.getPosition() == initState + START).isEqualTo(expected);
     }

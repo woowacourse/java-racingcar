@@ -1,17 +1,21 @@
 package racingcar.domain;
 
-public class Car {
-    public static final int MAXIMUM_NAME = 5;
+public class Car implements Comparable<Car> {
+    public static final int INIT_POSITION = 0;
 
-    private String name;
+    private final Name name;
     private int position;
 
-    public Car(String name) {
+    public Car(Name name) {
+        if (RaceResult.EMPTY.equals(name.toString())) {
+            throw new IllegalArgumentException("입력이 없는 이름이 있습니다.");
+        }
+
         this.name = name;
-        position = 0;
+        this.position = INIT_POSITION;
     }
 
-    protected Car(String name, int position) {
+    Car(Name name, int position) {
         this.name = name;
         this.position = position;
     }
@@ -24,19 +28,17 @@ public class Car {
         return position;
     }
 
-    public String getName() {
-        return name;
+    public boolean isWinner(Car winner) {
+        return winner.getPosition() == position;
     }
 
-    public boolean hasOverFiveCharacterName() {
-        return name.length() > MAXIMUM_NAME;
+    @Override
+    public String toString() {
+        return name.toString();
     }
 
-    public boolean isEmpty() {
-        return name.isEmpty();
-    }
-
-    public boolean isMaxPosition(int maxPosition) {
-        return position == maxPosition;
+    @Override
+    public int compareTo(Car car) {
+        return Integer.compare(this.position, car.getPosition());
     }
 }

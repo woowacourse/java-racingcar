@@ -1,7 +1,7 @@
 package calculator.view;
 
 public class OutputView {
-    public static void receiveInput() {
+    public static void showInputRequest() {
         System.out.println("숫자를 입력해주세요.");
     }
 

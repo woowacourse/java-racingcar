@@ -8,7 +8,7 @@ import calculator.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        OutputView.receiveInput();
+        OutputView.showInputRequest();
         String input = InputView.receiveInput();
         Delimiter delimiter = new Delimiter(input);
 

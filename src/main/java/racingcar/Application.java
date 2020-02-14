@@ -1,42 +1,38 @@
 package racingcar;
 
+import java.util.List;
+
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Race;
+import racingcar.domain.RaceResult;
+import racingcar.domain.TryCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class Application {
-    public static final int POSITIVE_CRITERIA = 1;
-
     public static void main(String[] args) {
         String inputNames = InputView.receiveNameInput();
         Cars cars = new Cars(inputNames);
 
-        int count = InputView.receiveCountInput();
-        validatePositiveNumber(count);
+        int countInput = InputView.receiveCountInput();
+        TryCount tryCount = new TryCount(countInput);
 
         OutputView.showResult();
-
-        showRaceResult(cars, count);
-
-        OutputView.showWinners(cars.getWinners());
+        showRaceResult(cars, tryCount);
     }
 
-    protected static void validatePositiveNumber(int countInput) {
-        if (countInput < POSITIVE_CRITERIA) {
-            throw new IllegalArgumentException(POSITIVE_CRITERIA + "이상의 수를 입력해야합니다.");
-        }
-    }
-
-    private static void showRaceResult(Cars cars, int count) {
+    private static void showRaceResult(Cars cars, TryCount tryCount) {
         Race race = new Race();
+        RaceResult raceResult = new RaceResult();
 
-        for (int i = 0; i < count; i++) {
-            cars.getCars()
-                    .stream()
-                    .forEach(race::racing);
-
-            OutputView.showEachRaceResult(cars.getCars());
+        for (int i = 0; i < tryCount.getTryCount(); i++) {
+            race.startRace(cars);
+            List<Car> carGroup = cars.getCars();
+            OutputView.showEachRaceResult(raceResult.getEachRaceResult(carGroup));
         }
+
+        List<String> winnerGroup = cars.getWinners();
+        OutputView.showWinners(raceResult.getWinnerNames(winnerGroup));
     }
 }

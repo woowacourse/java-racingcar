@@ -3,7 +3,7 @@ package racingcar.view;
 import java.util.Scanner;
 
 public class InputView {
-    public static final String EMPTY = "";
+    static final String EMPTY = "";
     private static Scanner scanner = new Scanner(System.in);
 
     public static String receiveNameInput() {
@@ -24,7 +24,7 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public static void validate(String input) {
+    static void validate(String input) {
         if (EMPTY.equals(input) || input == null) {
             throw new IllegalArgumentException("입력이 없습니다.");
         }

@@ -2,21 +2,27 @@ package calculator.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class DelimiterTest {
-    @Test
-    void defineDelimiter() {
-        //given
-        String input = "1,2:3";
-        //then
-        assertThat(new Delimiter(input).getDelimiter()).isEqualTo(Delimiter.DEFAULT_DELIMITER);
+    @ParameterizedTest
+    @MethodSource("createDelimiterAndInput")
+    void defineDelimiter(String input, String delimiter) {
+        assertThat(new Delimiter(input).getDelimiter()).isEqualTo(delimiter);
+    }
 
-        //given
+    private static Stream<Arguments> createDelimiterAndInput() {
         String customDelimiter = "a";
-        String customInput = "//" + customDelimiter +"\n1a2a3a";
-        //then
-        assertThat(new Delimiter(customInput).getDelimiter()).isEqualTo(customDelimiter);
+
+        return Stream.of(
+                Arguments.of("1,2:3", Delimiter.DEFAULT_DELIMITER),
+                Arguments.of("//" + customDelimiter + "\n1a2a3a", customDelimiter)
+        );
     }
 
     @Test

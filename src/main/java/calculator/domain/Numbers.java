@@ -23,7 +23,7 @@ public class Numbers {
     }
 
     private int convertToInteger(String stringNumber) {
-        int number = 0;
+        int number = ZERO;
 
         try {
             number = Integer.parseInt(stringNumber);

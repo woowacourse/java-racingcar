@@ -18,11 +18,13 @@ class CarsTest {
         String inputNames = "123,324,456";
         Cars cars = new Cars(inputNames);
         List<String> expectedNameList = List.of("123", "324", "456");
+
         //when
         List<String> carNames = cars.getCars()
                 .stream()
-                .map(car -> car.getName())
+                .map(Car::toString)
                 .collect(Collectors.toList());
+
         //then
         assertThat(carNames).isEqualTo(expectedNameList);
     }
@@ -32,41 +34,29 @@ class CarsTest {
     void getWinners(Cars cars, List<String> expectedWinners) {
         //when
         List<String> winners = cars.getWinners();
+
         //then
         assertThat(winners).isEqualTo(expectedWinners);
     }
 
     private static Stream<Arguments> createCarsAndWinners() {
-        String allen = "앨런";
-        String lowoon = "로운";
-        String pobi = "포비";
+        Name allen = new Name("앨런");
+        Name lowoon = new Name("로운");
+        Name pobi = new Name("포비");
 
         List<Car> testCars = List.of(new Car(allen, 3), new Car(lowoon, 2), new Car(pobi, 3));
         Cars cars = new Cars(testCars);
-        
+
         return Stream.of(
-                Arguments.of(cars, List.of(allen, pobi))
+                Arguments.of(cars, List.of(allen.toString(), pobi.toString()))
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("createNamesAndMessage")
+    @Test
     void validateCars(String inputNames, String message) {
         assertThatThrownBy(() -> {
             Cars cars = new Cars(inputNames);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(message);
-    }
-
-    private static Stream<Arguments> createNamesAndMessage() {
-        String oneTeam = "앨런";
-        String oneTeamMessage = "참가자는 " + Cars.MINIMUM_TEAM + "명 이상이어야합니다.";
-        String hasOverFiveCharacterName = "123,123456,124";
-        String fiveCharacterNameMessage = "이름은 " + Car.MAXIMUM_NAME + "자 이하여야 합니다.";
-
-        return Stream.of(
-                Arguments.of(oneTeam, oneTeamMessage),
-                Arguments.of(hasOverFiveCharacterName, fiveCharacterNameMessage)
-        );
+                .hasMessage("참가자는 " + Cars.MINIMUM_TEAM + "명 이상이어야합니다.");
     }
 }

@@ -1,9 +1,9 @@
 package racingcar.view;
 
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
     @ParameterizedTest
