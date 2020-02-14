@@ -4,7 +4,7 @@ public class Number {
     private final int number;
 
     public Number(String number) {
-        if(number.isBlank()) {
+        if (number.isBlank()) {
             throw new RuntimeException("빈 값이 포함되어 있습니다.");
         }
         this.number = parseNumber(number);

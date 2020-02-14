@@ -5,9 +5,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NumberTest {
+
+    @Test
+    @DisplayName("Number 만들기")
+    public void makeNumberTest() {
+        Number number = new Number("4");
+        assertThat(number.getNumber()).isEqualTo(4);
+    }
 
     @ParameterizedTest
     @DisplayName("숫자가 아닌 것을 입력했을 때")
