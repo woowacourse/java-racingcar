@@ -1,7 +1,5 @@
 package racinggame.domain;
 
-import racinggame.controller.Input;
-import racinggame.controller.Output;
 import racinggame.view.OutputView;
 
 import java.util.ArrayList;

@@ -3,7 +3,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racinggame.controller.Input;
+import racinggame.domain.Input;
 
 public class InputTest {
     public static final String TEST_REPEAT = "1";

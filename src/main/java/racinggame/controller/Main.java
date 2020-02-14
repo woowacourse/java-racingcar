@@ -1,7 +1,8 @@
-package racinggame.domain;
+package racinggame.controller;
 
-import racinggame.controller.Input;
-import racinggame.controller.Output;
+import racinggame.domain.Input;
+import racinggame.domain.Output;
+import racinggame.domain.RacingGame;
 
 public class Main {
     public static void main(String... args) {

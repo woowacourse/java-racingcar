@@ -1,7 +1,5 @@
 package racinggame.domain;
 
-import racinggame.controller.Output;
-
 import java.util.List;
 
 public class Car {
