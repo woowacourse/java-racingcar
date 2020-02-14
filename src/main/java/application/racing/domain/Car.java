@@ -1,31 +1,24 @@
 package application.racing.domain;
 
-import application.racing.ConstantForRacing;
-
 public class Car {
     private String name;
-    private int position;
+    private Position position;
 
-    public Car(String name) {
+    public Car(String name, int position) {
         this.name = name;
-        this.position = 0;
+        this.position = new Position(position);
     }
 
     public void moveCarWhenNumberOverFour(int number) {
-        if (isNumberOverFour(number)) {
-            this.position = this.position + ConstantForRacing.ADD_POSITION;
-        }
-    }
-
-    private boolean isNumberOverFour(int number) {
-        return number >= ConstantForRacing.MOVE_STANDARD;
+        this.position.move(number);
     }
 
     public int getPosition() {
-        return this.position;
+        return this.position.getPosition();
     }
 
-    public String getName() {
+    @Override
+    public String toString() {
         return this.name;
     }
 }
