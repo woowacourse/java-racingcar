@@ -13,9 +13,9 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void playTurn(NumberGenerator random) {
+    public void playTurn(NumberGenerator number) {
         cars.forEach(car -> {
-            if(car.canMove(random.generateNumber())) {
+            if(car.canMove(number.generateNumber())) {
                 car.proceed();
             }
         });

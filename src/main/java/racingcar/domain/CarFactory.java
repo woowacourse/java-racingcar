@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarFactory {
     public static final String SPACE = " ";
@@ -27,15 +28,16 @@ public class CarFactory {
     }
 
     private void detectDuplicateName() {
-        HashSet<String> carsNameWithoutDuplicate = new HashSet<String>(carsName);
+        HashSet<String> carsNameWithoutDuplicate = new HashSet<>(carsName);
         if (carsName.size() != carsNameWithoutDuplicate.size()) {
             throw new IllegalArgumentException("중복된 이름을 사용할 수 없습니다.");
         }
     }
 
     public Cars enrollCars() {
-        List<Car> carsList = new ArrayList<>();
-        carsName.forEach(x -> carsList.add(new Car(x)));
-        return new Cars(carsList);
+        List<Car> cars = carsName.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
+        return new Cars(cars);
     }
 }
