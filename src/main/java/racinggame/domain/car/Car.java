@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Car 클래스는 자동차 경주에 사용될 자동차의 정보값을 담는 클래스이다.
  * 현재 위치와 이름 값을 필드에 보유하고 있으며,
- * 추가로 static 변수인 maxPosition을 가지고 있어
+ * 추가로 static 변수인 winnerRecord을 가지고 있어
  * Car 클래스가 보유한 position값 중 제일 큰 position 값이 무엇인지 조회할 수 있다.
  */
 public class Car {
@@ -22,11 +22,11 @@ public class Car {
     private Position position;
 
     /**
-     * maxPosition은 static 정수 변수로, Car 인스턴스 전체가 공유한다.
+     * winnerRecord는 static 정수 변수로, Car 인스턴스 전체가 공유한다.
      * 여기에 Car 인스턴스가 보유한 position 값 중 제일 큰 값이 무엇인지 저장한다.
      * 이는 position에 대한 값 변조가 일어날 시 마다 갱신된다.
      */
-    private static int maxPosition = 0;
+    private static int winnerRecord = 0;
 
     /**
      * START_POSITION은 Car 클래스 생성 시 position 값으로 설정되는 정수형 상수이다.
@@ -56,18 +56,18 @@ public class Car {
     }
 
     /**
-     * updateMaxPosition은 maxPosition의 값을 수정하는 메서드이다.
-     * 이 메서드 외에서는 maxPosition 값이 변경되지 않도록 설계에 주의하였다.
-     * 만약 현재의 position 값이 maxPosition 값보다 크다면, 그 값으로 갱신한다.
+     * updateMaxPosition은 winnerRecord의 값을 수정하는 메서드이다.
+     * 이 메서드 외에서는 winnerRecord 값이 변경되지 않도록 설계에 주의하였다.
+     * 만약 현재의 position 값이 winnerRecord 값보다 크다면, 그 값으로 갱신한다.
      */
     private void updateMaxPosition() {
-        maxPosition = Integer.max(position.getPosition(), maxPosition);
+        winnerRecord = Integer.max(position.getPosition(), winnerRecord);
     }
 
     /**
      * accelerate 메서드는 랜덤한 값과 기준이 되는 값을 전달받아,
      * 랜덤한 값이 기준이 되는 값을 넘은 경우 position을 증가시킨다.
-     * 또한 이 증가 메서드 호출 시, Car 인스턴스 전체에 공유되는 maxPosition값을 갱신해준다.
+     * 또한 이 증가 메서드 호출 시, Car 인스턴스 전체에 공유되는 winnerRecord값을 갱신해준다.
      *
      * @param random 비교를 위한 임의의 정수형 변수이다.
      * @param bound  가속을 위한 비교의 기준값인 정수형 변수이다.
@@ -85,7 +85,7 @@ public class Car {
      * @return 이 인스턴스가 승자라면 true를, 아니라면 false를 반환한다.
      */
     public boolean isWinner() {
-        return position.match(maxPosition);
+        return position.match(winnerRecord);
     }
 
     /**
@@ -121,11 +121,11 @@ public class Car {
     }
 
     /**
-     * initMaxPosition은 static으로 설정되어 잘못된 값이 설정될 수 있는 maxPosition의 값을 초기화하는 메서드이다.
+     * InitWinnerRecord은 static으로 설정되어 잘못된 값이 설정될 수 있는 winnerRecord의 값을 초기화하는 메서드이다.
      * 물론 현재 프로그램에서는 문제가 없지만, 만약 레이스를 다회 실행할 경우 문제가 될 여지가 있어 추가하였다.
      * 또한 테스트 메서드에서 반복을 위해 사용하고 있다.
      */
-    public static void initMaxPosition() {
-        maxPosition = 0;
+    public static void initWinnerRecord() {
+        winnerRecord = 0;
     }
 }

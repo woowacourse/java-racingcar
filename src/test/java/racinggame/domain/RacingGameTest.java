@@ -1,3 +1,5 @@
+package racinggame.domain;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
@@ -42,7 +44,7 @@ public class RacingGameTest {
     void initInput() {
         input = new Input(NAMES, REPEAT);
         output = new Output();
-        Car.initMaxPosition();
+        Car.initWinnerRecord();
     }
 
     @ParameterizedTest
