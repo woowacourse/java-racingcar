@@ -23,7 +23,8 @@ public class CarFactory {
     }
 
     private void detectDuplicateName() {
-        String[] carsNameWithoutDuplicate = Arrays.asList(carsName).toArray(new String[0]);
+        String[] carsNameWithoutDuplicate = Arrays.asList(carsName)
+                .toArray(new String[0]);
         if (carsName.length != carsNameWithoutDuplicate.length) {
             throw new IllegalArgumentException("중복된 이름을 사용할 수 없습니다.");
         }

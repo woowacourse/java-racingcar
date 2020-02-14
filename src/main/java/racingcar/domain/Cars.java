@@ -26,7 +26,8 @@ public class Cars {
     public List<String> findWinner() {
         Car carInMaxPosition = cars.get(0);
         List<String> winners = new ArrayList<>();
-        for (int i = 1; i < cars.size() - 1; i++) {
+        int size = cars.size();
+        for (int i = 1; i < size - 1; i++) {
             carInMaxPosition = carInMaxPosition.comparePosition(cars.get(i));
         }
         for (Car car : cars) {

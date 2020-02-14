@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class racingCarTest {
+public class RacingCarTest {
 
     private static Game game;
     private static Cars cars;
