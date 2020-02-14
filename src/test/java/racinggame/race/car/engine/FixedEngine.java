@@ -3,15 +3,15 @@ package racinggame.race.car.engine;
 public class FixedEngine implements Engine {
     private static FixedEngine instance = new FixedEngine();
 
-    public boolean enoughPower() {
-        return true;
-    }
-
     private FixedEngine() {
     }
 
     public static FixedEngine getInstance() {
         return instance;
+    }
+
+    public boolean enoughPower() {
+        return true;
     }
 
 
