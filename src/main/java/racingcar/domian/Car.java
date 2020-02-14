@@ -7,6 +7,7 @@ public class Car {
     private static final int INIT_POSITION = 0;
     private static final int LIMIT_FOR_MOVE = 4;
     private static final int NAME_LENGTH_LIMIT = 5;
+
     private int position;
     private String name;
 
