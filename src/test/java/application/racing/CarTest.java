@@ -14,13 +14,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RacingCarTest {
+public class CarTest {
     @DisplayName("잘못된 문자열로 자동차를 생성할 때 예외 발생 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"", ",asd", "asdfrq,pobi", "pobi,pobi", "pobi,,crong", "pobi, ,crong", "  ,pobi"})
     public void validateCarNameTest(String input) {
         Assertions.assertThatThrownBy(() -> {
-            CarName carName = new CarName(input);
+            new CarName(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
