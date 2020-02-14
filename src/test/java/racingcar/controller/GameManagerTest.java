@@ -45,4 +45,19 @@ public class GameManagerTest {
         GameManager.moveOrStay(car, 6);
         assertThat(car.getPosition()).isEqualTo(3);
     }
+
+    @DisplayName("게임이 끝났는지 출력")
+    @Test
+    void isEnd() {
+        GameManager gameManager = new GameManager(new String[]{"a", "b"}, 4);
+        assertThat(gameManager.isNotEnd()).isTrue();
+        gameManager.race();
+        gameManager.race();
+        assertThat(gameManager.isNotEnd()).isTrue();
+        gameManager.race();
+        gameManager.race();
+        assertThat(gameManager.isNotEnd()).isFalse();
+
+
+    }
 }

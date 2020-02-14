@@ -1,5 +1,6 @@
 import racingcar.controller.GameManager;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class RacingCarApplication {
     public static void main(String[] args) {
@@ -7,6 +8,11 @@ public class RacingCarApplication {
         int round = InputView.inputRound();
 
         GameManager gameManager = new GameManager(carNames, round);
-        gameManager.startGame();
+        OutputView.printBeginResult();
+        while (gameManager.isNotEnd()) {
+            gameManager.race();
+        }
+
+        OutputView.printWinners(gameManager.getWinners());
     }
 }

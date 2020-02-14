@@ -13,6 +13,7 @@ public class GameManager {
     private static final int MIN_MOVE_NUMBER = 4;
     private static List<Car> cars = new ArrayList<>();
     private int round;
+    private static int currentRound = 0;
 
     public GameManager(String[] carNames, int round) {
         this.cars = setCars(carNames);
@@ -27,22 +28,12 @@ public class GameManager {
         return cars;
     }
 
-    public void startGame() {
-        run();
-        award();
-    }
-
-    private void run() {
-        OutputView.printBeginResult();
-        for (int i = ZERO; i < round; i++) {
-            race(cars);
-            OutputView.printScore(cars);
+    public static void race() {
+        for (Car car : cars) {
+            moveOrStay(car, Dice.makeRandomNumber());
         }
-    }
-
-    private void award() {
-        Winner.setWinner(cars);
-        OutputView.printWinners(Winner.getWinners());
+        OutputView.printScore(cars);
+        currentRound += 1;
     }
 
     public static void moveOrStay(Car car, int inputNumber) {
@@ -51,9 +42,11 @@ public class GameManager {
         }
     }
 
-    public static void race(List<Car> cars) {
-        for (Car car : cars) {
-            moveOrStay(car, Dice.makeRandomNumber());
-        }
+    public static List<String> getWinners() {
+        return Winner.getWinners(cars);
+    }
+
+    public boolean isNotEnd() {
+        return this.round > this.currentRound;
     }
 }
