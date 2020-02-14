@@ -22,8 +22,7 @@ public class Name {
         return this.name.equals(name.name);
     }
 
-    public String toString() {
+    public String getString() {
         return name;
     }
-
 }

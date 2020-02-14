@@ -14,18 +14,26 @@ public class Player {
         this(name, DEFAULT_POSITION);
     }
 
-    private Player(Name name, int position) {
+    /**
+     * use only for test
+     */
+    public Player(Name name, int position) {
         this.name = name;
         this.position = position;
     }
 
-    public void play(boolean shouldGo) {
+    /**
+     * @return position after action
+     */
+    public int goOrWait(boolean shouldGo) {
         if (shouldGo) {
             goOneStep();
         }
+
+        return position;
     }
 
-    public void goOneStep() {
+    private void goOneStep() {
         position += 1;
     }
 
@@ -33,7 +41,7 @@ public class Player {
      * 예시) pobi : ---
      */
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(name.toString());
+        StringBuilder stringBuilder = new StringBuilder(name.getString());
         stringBuilder.append(COLON_WRAPPED_WITH_SPACE);
         IntStream.range(0, position)
                 .forEach((t) -> stringBuilder.append(HYPHEN));
@@ -49,7 +57,7 @@ public class Player {
     }
 
     public String getName() {
-        return name.toString();
+        return name.getString();
     }
 
     public int getPosition() {

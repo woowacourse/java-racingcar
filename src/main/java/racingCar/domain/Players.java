@@ -34,7 +34,7 @@ public class Players {
     }
 
     public void play() {
-        players.forEach((t) -> t.play(RandomGenerator.decideGoOrStop()));
+        players.forEach((t) -> t.goOrWait(RandomGenerator.decideGoOrStop()));
     }
 
     public String toString() {

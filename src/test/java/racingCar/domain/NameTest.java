@@ -1,7 +1,6 @@
 package racingCar.domain;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -11,7 +10,7 @@ class NameTest {
     @ValueSource(strings = {"a", "bc", "def", "sample"})
     void toString_ShouldReturnSameString(String input) {
         Name name = new Name(input);
-        Assertions.assertThat(name.toString())
+        Assertions.assertThat(name.getString())
                 .isEqualTo(input);
     }
 

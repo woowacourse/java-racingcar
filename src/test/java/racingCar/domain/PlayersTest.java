@@ -2,6 +2,8 @@ package racingCar.domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -15,11 +17,10 @@ class PlayersTest {
         Assertions.assertThat(players.size()).isEqualTo(3);
     }
 
-    @Test
-    void isEmpty_ShouldReturnTrueWhenInputInvalidName() {
-        String input = "abcabc"; // ""
+    @ParameterizedTest
+    @ValueSource(strings = {"", "abcdef"})
+    void isEmpty_ShouldReturnTrueWhenInputInvalidName(String input) {
         Players gameManager= new Players(input);
-
         Assertions.assertThat(gameManager.isEmpty())
                 .isTrue();
     }
