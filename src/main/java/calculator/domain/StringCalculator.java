@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    public static final String MESSAGE = "음수가 포함되어 있습니다.";
+    public static final String NEGATIVE_VALUE_INCLUDED = "음수가 포함되어 있습니다.";
 
     public static int splitAndSum(String expression) {
         if (expression == null || expression.isEmpty()) {
@@ -15,7 +15,7 @@ public class StringCalculator {
         }
         List<String> numbers = splitNumbers(expression);
         if (numbers.stream().anyMatch(x -> Integer.parseInt(x) < 0)) {
-            throw new RuntimeException(MESSAGE);
+            throw new RuntimeException(NEGATIVE_VALUE_INCLUDED);
         }
         return numbers.stream()
                 .mapToInt(Integer::parseInt)
