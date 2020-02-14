@@ -13,7 +13,7 @@ class RacingResponseDTOTest {
     @Test
     void getDistanceBar() {
         //given
-        Car car = new Car("bebop", new FixedEngine());
+        Car car = new Car("bebop", FixedEngine.getInstance());
         car.move();
 
         //when

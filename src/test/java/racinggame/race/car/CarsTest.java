@@ -14,9 +14,9 @@ class CarsTest {
     @Test
     void getWinner1() {
         //given
-        Car car1 = new Car("a", new FixedEngine());
-        Car car2 = new Car("b", new FixedEngine());
-        Car car3 = new Car("c", new FixedEngine());
+        Car car1 = new Car("a", FixedEngine.getInstance());
+        Car car2 = new Car("b", FixedEngine.getInstance());
+        Car car3 = new Car("c", FixedEngine.getInstance());
         Cars cars = new Cars(Arrays.asList(car1, car2, car3));
 
         //when
@@ -31,8 +31,8 @@ class CarsTest {
     @Test
     void move1() {
         //given
-        Car car1 = new Car("a", new FixedEngine());
-        Car car2 = new Car("b", new FixedEngine());
+        Car car1 = new Car("a", FixedEngine.getInstance());
+        Car car2 = new Car("b", FixedEngine.getInstance());
         Cars cars = new Cars(Arrays.asList(car1, car2));
 
         //when

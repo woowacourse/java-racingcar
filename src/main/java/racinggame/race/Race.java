@@ -11,7 +11,7 @@ public class Race {
 
     public void run() {
         RacingRequestDTO reqDTO = InputView.inputRequest();
-        Cars cars = reqDTO.toCars(new RealEngine());
+        Cars cars = reqDTO.toCars(RealEngine.getInstance());
 
         OutputView.showReady(RacingResponseBundleDTO.from(cars));
         for (int i = 0; i < reqDTO.getCount(); i++) {

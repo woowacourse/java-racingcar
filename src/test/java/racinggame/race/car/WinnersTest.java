@@ -13,9 +13,9 @@ public class WinnersTest {
     @Test
     void test1() {
         //given
-        Car car1 = new Car("a", new FixedEngine());
-        Car car2 = new Car("b", new FixedEngine());
-        Car car3 = new Car("c", new FixedEngine());
+        Car car1 = new Car("a", FixedEngine.getInstance());
+        Car car2 = new Car("b", FixedEngine.getInstance());
+        Car car3 = new Car("c", FixedEngine.getInstance());
 
         //when
         Winners winners = new Winners(Arrays.asList(car1, car2, car3));

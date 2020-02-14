@@ -3,8 +3,17 @@ package racinggame.race.car.engine;
 import java.util.Random;
 
 public class RealEngine implements Engine {
+    public static RealEngine instance = new RealEngine();
     private static final int BOUND = 10;
     private static final int MINIMUM = 4;
+
+    private RealEngine() {
+        return;
+    }
+
+    public static RealEngine getInstance() {
+        return instance;
+    }
 
     @Override
     public boolean enoughPower() {

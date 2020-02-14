@@ -22,10 +22,10 @@ class RacingRequestDTOTest {
         RacingRequestDTO racingRequestDTO = new RacingRequestDTO("a,b", 1);
 
         //when
-        Cars cars = racingRequestDTO.toCars(new FixedEngine());
+        Cars cars = racingRequestDTO.toCars(FixedEngine.getInstance());
 
         //then
-        assertThat(cars).isEqualTo(new Cars(Arrays.asList(new Car("a", new FixedEngine()), new Car("b", new FixedEngine()))));
+        assertThat(cars).isEqualTo(new Cars(Arrays.asList(new Car("a", FixedEngine.getInstance()), new Car("b", FixedEngine.getInstance()))));
     }
 
     @DisplayName("이름을 null 혹은 빈칸을 입력받은 경우 exception 발생")
