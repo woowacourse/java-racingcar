@@ -4,19 +4,19 @@ import racinggame.race.car.Car;
 
 import java.util.Arrays;
 
-public class RacingResDTO {
+public class RacingResponseDTO {
     private static final char BAR = '-';
 
     private final String name;
     private final String distance;
 
-    private RacingResDTO(String name, int distance) {
+    private RacingResponseDTO(String name, int distance) {
         this.name = name;
         this.distance = makeDistanceBar(distance);
     }
 
-    public static RacingResDTO from(Car car) {
-        return new RacingResDTO(car.getName(), car.getDistance());
+    public static RacingResponseDTO from(Car car) {
+        return new RacingResponseDTO(car.getName(), car.getDistance());
     }
 
     private String makeDistanceBar(int distance) {

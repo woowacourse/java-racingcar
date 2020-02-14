@@ -14,4 +14,17 @@ public class RealEngine implements Engine {
     private boolean enough(Random random) {
         return random.nextInt(BOUND) > MINIMUM;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        return o != null && getClass() == o.getClass();
+    }
 }

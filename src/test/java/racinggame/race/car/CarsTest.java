@@ -14,14 +14,14 @@ class CarsTest {
     @Test
     void getWinner1() {
         //given
-        Car car1 = new Car("a");
-        Car car2 = new Car("b");
-        Car car3 = new Car("c");
+        Car car1 = new Car("a", new FixedEngine());
+        Car car2 = new Car("b", new FixedEngine());
+        Car car3 = new Car("c", new FixedEngine());
         Cars cars = new Cars(Arrays.asList(car1, car2, car3));
 
         //when
-        car1.moveWith(new FixedEngine());
-        car2.moveWith(new FixedEngine());
+        car1.move();
+        car2.move();
 
         //then
         assertThat(cars.getWinner()).isEqualTo(new Winners(Arrays.asList(car1, car2)));
@@ -31,22 +31,15 @@ class CarsTest {
     @Test
     void move1() {
         //given
-        Car car1 = new Car("a");
-        Car car2 = new Car("b");
-        Car car3 = new Car("c");
-        Cars cars = new Cars(Arrays.asList(car1, car2, car3));
+        Car car1 = new Car("a", new FixedEngine());
+        Car car2 = new Car("b", new FixedEngine());
+        Cars cars = new Cars(Arrays.asList(car1, car2));
 
         //when
-        cars.move(new FixedEngine());
+        cars.move();
 
         //then
-        Car expect1 = new Car("a");
-        Car expect2 = new Car("b");
-        Car expect3 = new Car("c");
-        expect1.moveWith(new FixedEngine());
-        expect2.moveWith(new FixedEngine());
-        expect3.moveWith(new FixedEngine());
-
-        assertThat(cars).isEqualTo(new Cars(Arrays.asList(expect1, expect2, expect3)));
+        assertThat(car1.getDistance()).isEqualTo(2);
+        assertThat(car2.getDistance()).isEqualTo(2);
     }
 }

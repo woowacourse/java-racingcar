@@ -4,4 +4,17 @@ public class FixedEngine implements Engine {
     public boolean enoughPower() {
         return true;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        return o != null && getClass() == o.getClass();
+    }
 }

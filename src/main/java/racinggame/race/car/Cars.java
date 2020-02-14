@@ -1,7 +1,5 @@
 package racinggame.race.car;
 
-import racinggame.race.car.engine.Engine;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -17,9 +15,9 @@ public class Cars implements Iterable<Car> {
         this.cars = cars;
     }
 
-    public void move(Engine randomEngine) {
+    public void move() {
         for (Car car : cars) {
-            car.moveWith(randomEngine);
+            car.move();
         }
     }
 
@@ -37,14 +35,18 @@ public class Cars implements Iterable<Car> {
 
     private List<Car> findWinningCarsByDistance(int max) {
         return this.cars.stream()
-                .filter(car -> car.isWinner(max))
+                .filter(car -> car.isSameDistance(max))
                 .collect(toList());
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Cars cars1 = (Cars) o;
         return Objects.equals(cars, cars1.cars);
     }

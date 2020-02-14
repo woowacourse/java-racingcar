@@ -2,6 +2,7 @@ package racinggame.race.car;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racinggame.race.car.engine.FixedEngine;
 
 import java.util.Arrays;
 
@@ -12,9 +13,9 @@ public class WinnersTest {
     @Test
     void test1() {
         //given
-        Car car1 = new Car("a");
-        Car car2 = new Car("b");
-        Car car3 = new Car("c");
+        Car car1 = new Car("a", new FixedEngine());
+        Car car2 = new Car("b", new FixedEngine());
+        Car car3 = new Car("c", new FixedEngine());
 
         //when
         Winners winners = new Winners(Arrays.asList(car1, car2, car3));

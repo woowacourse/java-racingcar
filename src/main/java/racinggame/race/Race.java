@@ -4,19 +4,19 @@ import racinggame.race.car.Cars;
 import racinggame.race.car.engine.RealEngine;
 import racinggame.race.view.InputView;
 import racinggame.race.view.OutputView;
-import racinggame.race.view.dto.RacingReqDTO;
-import racinggame.race.view.dto.RacingResBundleDTO;
+import racinggame.race.view.dto.RacingRequestDTO;
+import racinggame.race.view.dto.RacingResponseBundleDTO;
 
 public class Race {
 
     public void run() {
-        RacingReqDTO reqDTO = InputView.inputRequest();
-        Cars cars = reqDTO.toCars();
+        RacingRequestDTO reqDTO = InputView.inputRequest();
+        Cars cars = reqDTO.toCars(new RealEngine());
 
-        OutputView.showReady(RacingResBundleDTO.from(cars));
+        OutputView.showReady(RacingResponseBundleDTO.from(cars));
         for (int i = 0; i < reqDTO.getCount(); i++) {
-            cars.move(new RealEngine());
-            OutputView.showCars(RacingResBundleDTO.from(cars));
+            cars.move();
+            OutputView.showCars(RacingResponseBundleDTO.from(cars));
         }
         OutputView.showWinners(cars.getWinner());
     }
