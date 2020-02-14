@@ -5,12 +5,14 @@ import java.util.regex.Pattern;
 public class ValidateInput {
 
     public static final int ZERO = 0;
-    private static final String NUMBER_FORMAT = "^\\d+$";
     private static final int MAX_NAME_LENGTH = 5;
 
     public static String[] validateName(String[] names) {
+        if (names == null) {
+            IllegalNameException();
+        }
         for (String name : names) {
-            if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
+            if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
                 names = IllegalNameException();
                 break;
             }
