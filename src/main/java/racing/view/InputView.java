@@ -11,11 +11,9 @@ public class InputView {
 	private static final String CAR_NAME_DELIMITER = ",";
 	private static final String WRONG_INPUT_MESSAGE = "잘못 입력하셨습니다.";
 
-	public Scanner input() {
-		return new Scanner(System.in);
-	}
+	private static final Scanner input = new Scanner(System.in);
 
-	public static List<String> inputCarNames(Scanner input) {
+	public static List<String> inputCarNames() {
 		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
 		String carNames = input.nextLine();
 
@@ -26,11 +24,11 @@ public class InputView {
 			.filter(InputView::checkLength)
 			.orElseGet(() -> {
 				System.out.println(WRONG_INPUT_MESSAGE);
-				return inputCarNames(input);
+				return inputCarNames();
 			});
 	}
 
-	public static int inputRoundNumber(Scanner input) {
+	public static int inputRoundNumber() {
 		System.out.println("시도할 회수는 몇회인가요?");
 		String round = input.nextLine();
 
@@ -40,7 +38,7 @@ public class InputView {
 			.map(Integer::parseInt)
 			.orElseGet(() -> {
 				System.out.println(WRONG_INPUT_MESSAGE);
-				return inputRoundNumber(input);
+				return inputRoundNumber();
 			});
 	}
 
