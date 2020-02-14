@@ -49,6 +49,15 @@ public class StringCalculatorTest {
     @DisplayName("음수를 입력했을 때")
     public void negativeIntIncludedTest() throws Exception {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining("음수");
+    }
+
+    @Test
+    @DisplayName("구분자를 두번 입력했을 때")
+    public void duplicateDelimeterTest() throws Exception {
+        assertThatThrownBy(() -> StringCalculator.splitAndSum("1,,2,3"))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining("빈 값");
     }
 }

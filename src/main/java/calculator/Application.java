@@ -10,12 +10,12 @@ public class Application {
     }
 
     private static void runCalculator() {
-        try {
+        //try {
             String expression = UserInput.inputExpression();
             ConsoleOutput.printSum(StringCalculator.splitAndSum(expression));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            runCalculator();
-        }
+        //} catch (Exception e) {
+         //   System.out.println(e.getMessage());
+         //   runCalculator();
+        //}
     }
 }
