@@ -2,7 +2,8 @@ package racingcar.util;
 
 import java.util.List;
 import racingcar.domain.Car;
-import racingcar.domain.CarNames;
+import racingcar.domain.CarName;
+import racingcar.domain.CarNameFactory;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
 import racingcar.view.InputView;
@@ -13,7 +14,7 @@ public class GameRacingCar {
     private final static String WINNER_DELIMITER = ", ";
 
     public static void start() {
-        List<String> carNames = inputCarNames();
+        List<CarName> carNames = inputCarNames();
         List<Car> cars = new Cars(carNames).getCars();
         int tryCount = inputTryCount();
 
@@ -25,13 +26,13 @@ public class GameRacingCar {
         OutputView.printWinner(winner);
     }
 
-    private static List<String> inputCarNames() {
+    private static List<CarName> inputCarNames() {
         while (true) {
             try {
                 OutputView.printInputCarNames();
                 String carName = InputView.input();
-                CarNames carNames = new CarNames(carName);
-                return carNames.getCarNames();
+                CarNameFactory carNameFactory = new CarNameFactory(carName);
+                return carNameFactory.getCarNames();
             } catch (IllegalArgumentException ioe) {
                 OutputView.printString(ioe.getMessage());
             }

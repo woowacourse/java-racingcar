@@ -24,4 +24,9 @@ public class CarName {
             throw new IllegalArgumentException(NAME_LENGTH_LIMIT + "자 이상 이름은 허용되지 않습니다.");
         }
     }
+
+    @Override
+    public String toString() {
+        return carName;
+    }
 }

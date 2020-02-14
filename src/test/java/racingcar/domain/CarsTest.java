@@ -11,7 +11,7 @@ public class CarsTest {
     @DisplayName("자동차 이름들을 주었을 때, 자동차들을 잘 만드는지 확인")
     @Test
     void makeCars() {
-        CarNames carNames = new CarNames("aaa,bbb,ccc");
+        CarNameFactory carNames = new CarNameFactory("aaa,bbb,ccc");
         Cars cars = new Cars(carNames.getCarNames());
         List<Car> racingCars = cars.getCars();
         assertThat(racingCars.get(0).getName()).isEqualTo("aaa");

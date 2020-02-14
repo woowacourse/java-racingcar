@@ -6,13 +6,13 @@ import java.util.List;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<String> carNames) {
+    public Cars(List<CarName> carNames) {
         this.cars = setCars(carNames);
     }
 
-    private List<Car> setCars(List<String> carNames) {
+    private List<Car> setCars(List<CarName> carNames) {
         List<Car> returnCars = new ArrayList<>();
-        for (String carName : carNames) {
+        for (CarName carName : carNames) {
             returnCars.add(new Car(carName));
         }
         return returnCars;

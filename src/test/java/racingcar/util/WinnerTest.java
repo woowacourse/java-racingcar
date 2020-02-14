@@ -18,7 +18,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
-import racingcar.domain.CarNames;
+import racingcar.domain.CarName;
+import racingcar.domain.CarNameFactory;
 
 public class WinnerTest {
 
@@ -28,8 +29,8 @@ public class WinnerTest {
     @BeforeAll
     static void makeCars() {
         String input = "asd,zxc,qwe";
-        List<String> carNames = new CarNames(input).getCarNames();
-        for (String carName : carNames) {
+        List<CarName> carNames = new CarNameFactory(input).getCarNames();
+        for (CarName carName : carNames) {
             cars1.add(new Car(carName));
             cars2.add(new Car(carName));
         }

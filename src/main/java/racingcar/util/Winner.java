@@ -27,7 +27,7 @@ public class Winner {
     private static List<String> setWinner(List<Car> cars) {
         List<String> winnerNames = new ArrayList<>();
         for (Car car : cars) {
-            putWinnerNames(winnerNames, car.getName(), car.getForwardCount());
+            putWinnerNames(winnerNames, car.getName() + "", car.getForwardCount());
         }
         return winnerNames;
     }

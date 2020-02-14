@@ -12,20 +12,23 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
+    private static final CarName carName = new CarName("가나다");
+
 
     @Test
     void carName() {
-        Car car = new Car("가나다");
+        Car car = new Car(carName);
         assertThat(car.getName()).isEqualTo("가나다");
     }
 
     @Test
     void forwardCount() {
-        Car car = new Car("가나다");
+        Car car = new Car(carName);
         car.forward();
         car.forward();
         car.forward();
@@ -35,7 +38,7 @@ public class CarTest {
     @DisplayName("차가 전진하는지 보는 테스트")
     @Test
     void toStringCar() {
-        Car car = new Car("가나다");
+        Car car = new Car(carName);
         car.forward();
         car.forward();
         car.forward();

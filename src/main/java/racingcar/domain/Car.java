@@ -14,10 +14,10 @@ public class Car {
 
     private final static String NEW_LINE = "\n";
 
-    private final String name;
+    private final CarName name;
     private int forwardCount = 0;
 
-    public Car(String name) {
+    public Car(CarName name) {
         this.name = name;
     }
 
@@ -25,7 +25,7 @@ public class Car {
         forwardCount++;
     }
 
-    public String getName() {
+    public CarName getName() {
         return name;
     }
 
