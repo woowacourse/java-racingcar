@@ -4,7 +4,13 @@ import racing.car.Car;
 import racing.car.Cars;
 import racing.car.Winners;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class OutputView {
+
+    public static final String COMMA = ", ";
+
     public static void printProcess(Cars cars) {
         System.out.println("실행 결과");
         printCarsInformation(cars);
@@ -27,7 +33,15 @@ public class OutputView {
         System.out.println(bars.toString());
     }
 
+    public static String combine(Winners winners) {
+        List<String> winnersNames = winners.getCars().getCars().stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+
+        return String.join(COMMA, winnersNames);
+    }
+
     public static void printWinners(Winners winners) {
-        System.out.println(String.format("%s가 최종 우승했습니다.", winners.combine()));
+        System.out.println(String.format("%s가 최종 우승했습니다.", combine(winners)));
     }
 }

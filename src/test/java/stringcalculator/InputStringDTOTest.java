@@ -9,7 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class InputStringDTOTest {
 
-
     @DisplayName("입력이 비어있거나 null 일경우 0 반환")
     @ParameterizedTest
     @CsvSource(value = {",0", "' ',0"})
@@ -29,5 +28,12 @@ class InputStringDTOTest {
 
         //then
         assertThat(inputStringDTO.getInput()).isEqualTo(input);
+    }
+
+    @DisplayName("String::isEmpty() 테스트")
+    @ParameterizedTest
+    @CsvSource(value = {"'',true", "' ',false"})
+    void isEmptyTest(String input, boolean result) {
+        assertThat(input.isEmpty()).isEqualTo(result);
     }
 }

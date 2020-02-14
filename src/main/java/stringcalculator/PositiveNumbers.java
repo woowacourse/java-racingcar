@@ -8,6 +8,7 @@ public class PositiveNumbers {
     public static final int NEGATIVE = -1;
     public static final String NUMBER_FORMAT_EXCEPTION_MESSAGE = "%s는 숫자가 아닙니다.";
     public static final String NEGATIVE_NUMBER_EXCEPTION_MESSAGE = "%d는 음수입니다.";
+
     private List<Integer> numbers;
 
     public PositiveNumbers(List<String> maybeNumbers) {
@@ -21,13 +22,13 @@ public class PositiveNumbers {
 
     private Integer parseInt(String maybeNumber) {
         try {
-            return parseInt(Integer.parseInt(maybeNumber));
+            return parsePositiveInt(Integer.parseInt(maybeNumber));
         } catch (NumberFormatException e) {
             throw new NumberFormatException(String.format(NUMBER_FORMAT_EXCEPTION_MESSAGE, maybeNumber));
         }
     }
 
-    private Integer parseInt(Integer maybePositive) {
+    private Integer parsePositiveInt(Integer maybePositive) {
         if (maybePositive > NEGATIVE) {
             return maybePositive;
         }

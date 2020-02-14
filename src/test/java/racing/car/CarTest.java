@@ -46,6 +46,6 @@ public class CarTest {
 
         Cars cars = new Cars(Arrays.asList(car1, car2, car3));
         //then
-        assertThat(cars.getWinner()).isEqualTo(new Winners(Arrays.asList(car1, car2)));
+        assertThat(cars.getWinner()).isEqualTo(new Winners(cars));
     }
 }

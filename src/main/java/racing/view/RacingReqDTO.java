@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class RacingReqDTO {
 
     private static final String DELIMITER = ",";
+
     private final List<String> names;
     private final int count;
 

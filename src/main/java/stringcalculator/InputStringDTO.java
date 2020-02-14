@@ -2,25 +2,22 @@ package stringcalculator;
 
 public class InputStringDTO {
 
-    private static final String BLANK = "";
     private static final String DEFAULT = "0";
 
     private final String input;
 
     public InputStringDTO(String input) {
-        if (isEmpty(input)) {
-            this.input = DEFAULT;
-            return;
-        }
-        this.input = input;
+        this.input = validate(input);
     }
 
-    private boolean isEmpty(String input) {
-        return input == null || input.trim().equals(BLANK);
+    private String validate(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            return DEFAULT;
+        }
+        return input;
     }
 
     public String getInput() {
         return input;
     }
-
 }

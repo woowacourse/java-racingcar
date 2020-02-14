@@ -2,6 +2,7 @@ package racing.car;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racing.view.OutputView;
 
 import java.util.Arrays;
 
@@ -15,11 +16,12 @@ public class WinnersTest {
         Car car1 = new Car(new Name("a"));
         Car car2 = new Car(new Name("b"));
         Car car3 = new Car(new Name("c"));
+        Cars cars = new Cars(Arrays.asList(car1, car2, car3));
 
         //when
-        Winners winners = new Winners(Arrays.asList(car1, car2, car3));
+        Winners winners = new Winners(cars);
 
         //then
-        assertThat(winners.combine()).isEqualTo("a, b, c");
+        assertThat(OutputView.combine(winners)).isEqualTo("a, b, c");
     }
 }

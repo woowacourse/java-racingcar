@@ -6,12 +6,24 @@ import java.util.Objects;
 
 public class Car {
 
-    private static final int MINIMUM = 4;
+    private static final int STANDARD_FOR_GO = 4;
+
     private Name name;
     private int distance = 1;
 
     public Car(Name name) {
         this.name = name;
+    }
+
+    public void go(NumberGenerator numberGenerator) {
+        int randomNumber = numberGenerator.generate();
+        if (randomNumber >= STANDARD_FOR_GO) {
+            this.distance++;
+        }
+    }
+
+    public boolean isWinner(int distance) {
+        return this.distance == distance;
     }
 
     public String getName() {
@@ -20,17 +32,6 @@ public class Car {
 
     public int getDistance() {
         return this.distance;
-    }
-
-    public void go(NumberGenerator randomNumberGenerator) {
-        int randomNumber = randomNumberGenerator.generate();
-        if (randomNumber >= MINIMUM) {
-            this.distance++;
-        }
-    }
-
-    public boolean isWinner(int distance) {
-        return this.distance == distance;
     }
 
     @Override
