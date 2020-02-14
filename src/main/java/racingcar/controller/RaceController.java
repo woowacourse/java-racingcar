@@ -2,9 +2,9 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.CarsFactory;
 import racingcar.domain.Race;
 import racingcar.domain.RaceCount;
-import racingcar.utils.carsNameSpliter;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class RaceController {
 	public static void run() {
-		Race race = new Race(createCars(), createRaceCount());
+		Race race = new Race(createCarsUntilValid(), createRaceCount());
 		showRaceStart();
 
 		while (race.isProgress()) {
@@ -24,13 +24,13 @@ public class RaceController {
 		showWinnersName(race.getWinners());
 	}
 
-	private static Cars createCars() {
+	private static Cars createCarsUntilValid() {
 		try {
-			String carsName = InputView.getCarsNameInput();
-			return new Cars(carsNameSpliter.split(carsName));
+			String carsNameInput = InputView.getCarsNameInput();
+			return CarsFactory.createCars(carsNameInput);
 		} catch (IllegalArgumentException | IOException e) {
 			OutputView.printExceptionMessage(e.getMessage());
-			return createCars();
+			return createCarsUntilValid();
 		}
 	}
 

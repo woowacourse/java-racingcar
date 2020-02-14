@@ -15,7 +15,6 @@ public class Car {
 		this.position = INITIAL_POSITION;
 	}
 
-
 	private void validateLengthOfCarName(String name) {
 		if ((name.length() < MINIMUM_LENGTH_OF_CAR_NAME) || (name.length() > MAXIMUM_LENGTH_OF_CAR_NAME)) {
 			throw new IllegalArgumentException(name + "의 길이가 1~5 사이에 있지 않습니다.");
