@@ -14,6 +14,13 @@ public class PositionTest {
 	}
 
 	@Test
+	void match() {
+		Position actual = new Position(1);
+		Position expected = new Position(1);
+		assertThat(actual.match(expected)).isTrue();
+	}
+
+	@Test
 	void move() {
 		Position position = new Position(0);;
 		Position expected = new Position(1);
