@@ -7,11 +7,15 @@ import java.util.stream.Collectors;
 public class GameManager {
     private List<Player> players;
 
-    public GameManager(String input) {
-        List<String> nameList = NameParser.parse(input);
-        players = nameList.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
+    public GameManager(String input) throws IllegalArgumentException {
+        try{
+            List<PlayerName> nameList = NameParser.parse(input);
+            players = nameList.stream()
+                    .map(Player::new)
+                    .collect(Collectors.toList());
+        } catch(IllegalArgumentException e) {
+            players = new ArrayList<>();
+        }
     }
 
     public void play() {
@@ -54,5 +58,9 @@ public class GameManager {
         return players.stream()
                 .max(Player::compare)
                 .orElseThrow(RuntimeException::new).getPosition();
+    }
+
+    public boolean isCreated() {
+        return !players.isEmpty();
     }
 }

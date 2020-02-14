@@ -5,27 +5,27 @@ import java.util.stream.IntStream;
 public class Player {
     private static final String COLON_WRAPPED_WITH_SPACE = " : ";
     private static final String HYPHEN = "-";
+    private static final int DEFAULT_POSITION = 0;
 
-    private String name;
+    private PlayerName name;
     private int position;
 
-    public Player(String name) {
-        this.name = name;
-        this.position = 0;
+    Player(PlayerName name) {
+        this(name, DEFAULT_POSITION);
     }
 
-    public Player(String name, int position) {
+    private Player(PlayerName name, int position) {
         this.name = name;
         this.position = position;
     }
 
-    public void play(boolean shouldGo) {
+    void play(boolean shouldGo) {
         if (shouldGo) {
             goOneStep();
         }
     }
 
-    public void goOneStep() {
+    private void goOneStep() {
         position += 1;
     }
 
@@ -33,26 +33,26 @@ public class Player {
      * 예시) pobi : ---
      */
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(name);
+        StringBuilder stringBuilder = new StringBuilder(name.toString());
         stringBuilder.append(COLON_WRAPPED_WITH_SPACE);
         IntStream.range(0, position)
                 .forEach((t) -> stringBuilder.append(HYPHEN));
         return stringBuilder.toString();
     }
 
-    public static int compare(Player a, Player b) {
+    static int compare(Player a, Player b) {
         return a.position - b.position;
     }
 
-    public boolean isWinner(int max) {
+    boolean isWinner(int max) {
         return position == max;
     }
 
-    public String getName() {
+    PlayerName getName() {
         return name;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position;
     }
 }

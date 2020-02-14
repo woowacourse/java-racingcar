@@ -18,4 +18,6 @@ public class OutputView {
     public static void printRound(int round) {
         System.out.println(round + "회차");
     }
+
+    public static void printNameWithInvalidLength() {  System.out.println("각 이름의 길이를 1 이상 5 이하로 입력해주세요"); }
 }

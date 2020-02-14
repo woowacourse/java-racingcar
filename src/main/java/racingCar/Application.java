@@ -9,10 +9,14 @@ import java.util.stream.IntStream;
 public class Application {
     public static void main(String[] args) throws Exception {
 
-        String namesInput = InputView.InputUserNames();
-        int roundInput = InputView.InputNumberOfRound();
-        GameManager gameManager = new GameManager(namesInput);
+        String namesInput;
+        int roundInput;
+        GameManager gameManager;
+        gameManager = createGameManager();
+
+        roundInput = InputView.InputNumberOfRound();
         OutputView.printTitle();
+
         IntStream.rangeClosed(1, roundInput)
                 .forEach((t) -> {
                     OutputView.printRound(t);
@@ -22,5 +26,15 @@ public class Application {
         OutputView.printWinners(gameManager.getWinners());
     }
 
+    private static GameManager createGameManager() {
+        String namesInput = InputView.InputUserNames();
+        GameManager gameManager = new GameManager(namesInput);
 
+        while(!gameManager.isCreated()) {
+            OutputView.printNameWithInvalidLength();
+            namesInput = InputView.InputUserNames();
+            gameManager = new GameManager(namesInput);
+        }
+        return gameManager;
+    }
 }

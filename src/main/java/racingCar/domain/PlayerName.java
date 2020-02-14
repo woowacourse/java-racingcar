@@ -17,4 +17,8 @@ public class PlayerName {
     private boolean lengthOutOfRange(String name) {
         return name.isEmpty() || name.length() >= 6;
     }
+
+    public String toString() {
+        return this.name;
+    }
 }
