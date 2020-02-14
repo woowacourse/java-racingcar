@@ -1,6 +1,4 @@
-package racing.car;
-
-import racing.car.numbergenerator.NumberGenerator;
+package racing.domain;
 
 import java.util.Objects;
 
@@ -9,21 +7,22 @@ public class Car {
     private static final int STANDARD_FOR_GO = 4;
 
     private Name name;
-    private int distance = 1;
+    private Distance distance;
 
     public Car(Name name) {
         this.name = name;
+        this.distance = new Distance();
     }
 
     public void go(NumberGenerator numberGenerator) {
         int randomNumber = numberGenerator.generate();
         if (randomNumber >= STANDARD_FOR_GO) {
-            this.distance++;
+            this.distance.increase();
         }
     }
 
     public boolean isWinner(int distance) {
-        return this.distance == distance;
+        return this.distance.isEqual(distance);
     }
 
     public String getName() {
@@ -31,7 +30,7 @@ public class Car {
     }
 
     public int getDistance() {
-        return this.distance;
+        return this.distance.getDistance();
     }
 
     @Override
@@ -39,8 +38,8 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return distance == car.distance &&
-                Objects.equals(name, car.name);
+        return Objects.equals(name, car.name) &&
+                Objects.equals(distance, car.distance);
     }
 
     @Override

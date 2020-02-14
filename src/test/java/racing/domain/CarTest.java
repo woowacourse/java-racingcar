@@ -1,9 +1,7 @@
-package racing.car;
+package racing.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racing.car.numbergenerator.FixedNumberGenerator;
-import racing.car.numbergenerator.NumberGenerator;
 
 import java.util.Arrays;
 

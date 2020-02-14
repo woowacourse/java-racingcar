@@ -1,8 +1,8 @@
 package racing;
 
-import racing.car.CarFactory;
-import racing.car.Cars;
-import racing.car.numbergenerator.RandomNumberGenerator;
+import racing.domain.CarFactory;
+import racing.domain.Cars;
+import racing.domain.RandomNumberGenerator;
 import racing.view.InputView;
 import racing.view.OutputView;
 import racing.view.RacingReqDTO;
