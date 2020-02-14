@@ -39,19 +39,20 @@ public class Cars {
 		cars.forEach(car -> car.move(RandomGenerator.generateRandom()));
 	}
 
-	public int getMaxPosition(int currentMaxPosition) {
-		for (Car car : cars) {
-			currentMaxPosition = car.compareMaxPosition(currentMaxPosition);
-		}
-
-		return currentMaxPosition;
-	}
-
-	public String getWinnersName(int maxPosition) {
+	public String getWinnersName() {
 		return cars.stream()
-				.filter(car -> car.isMaxPosition(maxPosition))
+				.filter(car -> car.isMaxPosition(getMaxPosition()))
 				.map(Car::getName)
 				.collect(Collectors.joining(COMMA_DELIMITER));
+	}
+
+	private int getMaxPosition() {
+		int maxPosition = Car.INITIAL_POSITION;
+		for (Car car : cars) {
+			maxPosition = car.compareMaxPosition(maxPosition);
+		}
+
+		return maxPosition;
 	}
 
 	public String getCurrentPosition() {

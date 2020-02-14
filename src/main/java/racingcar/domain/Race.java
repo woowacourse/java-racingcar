@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 public class Race {
-	private static final int INITIAL_POSITION = 0;
 	private static final int INITIAL_ROUND = 1;
 
 	private final Cars cars;
@@ -24,9 +23,7 @@ public class Race {
 	}
 
 	public String getWinnersName() {
-		int maxPosition = cars.getMaxPosition(INITIAL_POSITION);
-
-		return cars.getWinnersName(maxPosition);
+		return cars.getWinnersName();
 	}
 
 	public String getCarsCurrentPosition() {

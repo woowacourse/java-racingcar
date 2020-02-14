@@ -1,10 +1,10 @@
 package racingcar.domain;
 
 public class Car {
+	static final int INITIAL_POSITION = 0;
 	private static final int MINIMUM_LENGTH_OF_CAR_NAME = 1;
 	private static final int MAXIMUM_LENGTH_OF_CAR_NAME = 5;
 	private static final int MINIMUM_MOVE_NUMBER = 4;
-	private static final int INITIAL_POSITION = 0;
 
 	private final String name;
 	private int position;
