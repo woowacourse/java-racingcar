@@ -32,7 +32,7 @@ public class Position {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof Position)) {
+        if (o == null || !(o instanceof Position)) {
             return false;
         }
         Position comparePosition = (Position) o;

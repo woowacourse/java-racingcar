@@ -21,4 +21,17 @@ public class Car {
     public String toString() {
         return this.carName.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o == null || !(o instanceof Car)) {
+            return false;
+        }
+        Car compareCar = (Car) o;
+        return compareCar.carName.equals(this.carName)
+                && compareCar.position.equals(this.position);
+    }
 }
