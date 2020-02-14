@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Race;
 import racingcar.domain.RaceCount;
@@ -8,6 +9,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.io.IOException;
+import java.util.List;
 
 public class RaceController {
 	public static void run() {
@@ -16,10 +18,10 @@ public class RaceController {
 
 		while (race.isProgress()) {
 			race.run();
-			showCurrentPosition(race.getCarsCurrentPosition());
+			showCurrentPosition(race.getCars());
 		}
 
-		showWinnersName(race.getWinnersName());
+		showWinnersName(race.getWinners());
 	}
 
 	private static Cars createCars() {
@@ -42,15 +44,15 @@ public class RaceController {
 		}
 	}
 
-	public static void showCurrentPosition(String currentPosition) {
-		OutputView.printCurrentPosition(currentPosition);
+	public static void showCurrentPosition(List<Car> cars) {
+		OutputView.printCurrentPosition(cars);
 	}
 
 	public static void showRaceStart() {
 		OutputView.printRaceStart();
 	}
 
-	public static void showWinnersName(String winnersName) {
-		OutputView.printWinnersName(winnersName);
+	public static void showWinnersName(List<Car> cars) {
+		OutputView.printWinnersName(cars);
 	}
 }

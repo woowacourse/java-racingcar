@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.List;
+
 public class Race {
 	private static final int INITIAL_ROUND = 1;
 
@@ -22,11 +24,11 @@ public class Race {
 		return raceCount.isProgressingRound(currentRound);
 	}
 
-	public String getWinnersName() {
-		return cars.getWinnersName();
+	public List<Car> getWinners() {
+		return cars.getWinners();
 	}
 
-	public String getCarsCurrentPosition() {
-		return cars.getCurrentPosition();
+	public List<Car> getCars() {
+		return cars.getCars();
 	}
 }

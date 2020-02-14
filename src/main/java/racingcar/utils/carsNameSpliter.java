@@ -9,7 +9,6 @@ public class carsNameSpliter {
 	private static final String COMMA = ",";
 	private static final int LIMIT = -1;
 
-
 	public static List<String> split(String carsName) {
 		return Arrays.asList(
 				carsName.replace(SPACE, EMPTY)

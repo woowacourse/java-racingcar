@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 
 public class Cars {
 	private static final int MINIMUM_NUMBER_OF_CARS = 2;
-	private static final String COMMA_DELIMITER = ", ";
-	private static final String NEW_LINE_DELIMITER = "\n";
 
 	private final List<Car> cars;
 
@@ -39,11 +37,10 @@ public class Cars {
 		cars.forEach(car -> car.move(RandomGenerator.generateRandom()));
 	}
 
-	public String getWinnersName() {
+	public List<Car> getWinners() {
 		return cars.stream()
 				.filter(car -> car.isMaxPosition(getMaxPosition()))
-				.map(Car::getName)
-				.collect(Collectors.joining(COMMA_DELIMITER));
+				.collect(Collectors.toList());
 	}
 
 	private int getMaxPosition() {
@@ -55,9 +52,7 @@ public class Cars {
 		return maxPosition;
 	}
 
-	public String getCurrentPosition() {
-		return cars.stream()
-				.map(Car::toString)
-				.collect(Collectors.joining(NEW_LINE_DELIMITER));
+	public List<Car> getCars() {
+		return cars;
 	}
 }
