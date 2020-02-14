@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class RacingResult {
