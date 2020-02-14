@@ -1,4 +1,6 @@
-package application.racing;
+package application.racing.domain;
+
+import application.racing.ConstantForRacing;
 
 public class Car {
     private String name;

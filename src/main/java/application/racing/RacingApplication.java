@@ -1,5 +1,11 @@
 package application.racing;
 
+import application.racing.domain.Car;
+import application.racing.domain.CarName;
+import application.racing.domain.Racing;
+import application.racing.domain.RacingLab;
+import application.racing.view.OutputViewer;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,10 +17,10 @@ public class RacingApplication {
         try {
             List<Car> cars = makeCarList();
             RacingLab racingLab = getRacingLab();
-            Output.printRacingResultMessage();
+            OutputViewer.printRacingResultMessage();
             startRacing(cars, racingLab);
         } catch (Exception e) {
-            Output.printErrorMessage(e.getMessage());
+            OutputViewer.printErrorMessage(e.getMessage());
             runRacingGame();
         }
     }
@@ -22,7 +28,7 @@ public class RacingApplication {
     private static void startRacing(List<Car> cars, RacingLab racingLab) {
         Racing racing = new Racing();
         List<String> winners = racing.executeRacingGame(cars, racingLab.getRacingLab());
-        Output.printWinner(winners);
+        OutputViewer.printWinner(winners);
     }
 
     private static RacingLab getRacingLab() {

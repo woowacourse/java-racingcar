@@ -1,4 +1,6 @@
-package application.racing;
+package application.racing.domain;
+
+import application.racing.view.OutputViewer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +37,10 @@ public class Racing {
     }
 
     public List<String> executeRacingGame(List<Car> cars, int racingLab) {
-        Output output = new Output();
+        OutputViewer outputViewer = new OutputViewer();
         for (int i = 0; i < racingLab; i++) {
             changeCarsPosition(cars);
-            output.printPositionDuringRacing(cars);
+            outputViewer.printPositionDuringRacing(cars);
         }
         return findWinner(cars);
     }

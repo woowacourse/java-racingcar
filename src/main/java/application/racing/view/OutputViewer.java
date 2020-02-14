@@ -1,8 +1,11 @@
-package application.racing;
+package application.racing.view;
+
+import application.racing.ConstantForRacing;
+import application.racing.domain.Car;
 
 import java.util.List;
 
-public class Output {
+public class OutputViewer {
     public static void printErrorMessage(String message) {
         System.out.println(message);
     }

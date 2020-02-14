@@ -1,4 +1,6 @@
-package application.racing;
+package application.racing.domain;
+
+import application.racing.ConstantForRacing;
 
 import java.util.ArrayList;
 import java.util.HashSet;
