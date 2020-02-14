@@ -26,9 +26,9 @@ public class GameManager {
         award();
     }
 
-    static void race(List<Car> cars) {
-        for (Car car : cars) {
-            moveOrStay(car, Dice.makeRandomNumber());
+    public static void moveOrStay(Car car, int RandomNumber) {
+        if (RandomNumber >= MIN_MOVE_NUMBER) {
+            car.move();
         }
     }
 
@@ -37,9 +37,9 @@ public class GameManager {
         setRound();
     }
 
-    public static void moveOrStay(Car car, int inputNumber) {
-        if (inputNumber >= MIN_MOVE_NUMBER) {
-            car.move();
+    private void race(List<Car> cars) {
+        for (Car car : cars) {
+            moveOrStay(car, Dice.makeRandomNumber());
         }
     }
 
