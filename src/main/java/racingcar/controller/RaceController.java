@@ -20,7 +20,7 @@ public class RaceController {
 			InputView.printCarsNameInput();
 			return InputUtil.createCarsByInput();
 		} catch (IllegalArgumentException | IOException e) {
-			OutputView.printExceptionMessage(e);
+			OutputView.printExceptionMessage(e.getMessage());
 			return readCars();
 		}
 	}
@@ -30,7 +30,7 @@ public class RaceController {
 			InputView.printRaceCountInput();
 			return InputUtil.createRaceCountByInput();
 		} catch (IllegalArgumentException | IOException e) {
-			OutputView.printExceptionMessage(e);
+			OutputView.printExceptionMessage(e.getMessage());
 			return readRaceCount();
 		}
 	}

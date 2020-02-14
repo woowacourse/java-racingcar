@@ -3,8 +3,8 @@ package racingcar.view;
 public class OutputView {
 	private static final String NEW_LINE = "\n";
 
-	public static void printExceptionMessage(Exception e) {
-		e.printStackTrace();
+	public static void printExceptionMessage(String message) {
+		System.out.println(message);;
 	}
 
 	public static void printCurrentPosition(String currentPosition) {
