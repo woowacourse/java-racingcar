@@ -12,8 +12,6 @@ package racingcar.domain;
 
 public class Car {
 
-    private final static String NEW_LINE = "\n";
-
     private final CarName name;
     private int position = 0;
 
@@ -35,13 +33,5 @@ public class Car {
 
     public boolean isEqualPosition(int position) {
         return this.position == position;
-    }
-
-    public String getProgress(String delimiter, String progressSign) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            stringBuilder.append(progressSign);
-        }
-        return name + delimiter + stringBuilder.toString() + NEW_LINE;
     }
 }

@@ -19,12 +19,14 @@ public class CarTest {
 
     private static final CarName carName = new CarName("가나다");
 
+    @DisplayName("차가 제대로 생성되는지 보는 테스트")
     @Test
     void carName() {
         Car car = new Car(carName);
         assertThat(car.getName()).isEqualTo("가나다");
     }
 
+    @DisplayName("차가 전진하는지 보는 테스트")
     @Test
     void forwardCount() {
         Car car = new Car(carName);
@@ -32,15 +34,5 @@ public class CarTest {
         car.forward();
         car.forward();
         assertThat(car.getPosition()).isEqualTo(3);
-    }
-
-    @DisplayName("차가 전진하는지 보는 테스트")
-    @Test
-    void toStringCar() {
-        Car car = new Car(carName);
-        car.forward();
-        car.forward();
-        car.forward();
-        assertThat(car.getProgress(" : ", "-")).isEqualTo("가나다 : ---\n");
     }
 }
