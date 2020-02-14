@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import calculator.domain.StringCalculator;
-
 public class Car implements Comparable<Car> {
 	public static final int MAXIMUM_LENGTH = 5;
 	public static final int MOVING_NUMBER = 4;
@@ -17,7 +15,8 @@ public class Car implements Comparable<Car> {
 	}
 
 	private boolean isInvalid(String name) {
-		return StringCalculator.isNullOrBlank(name)
+		return name == null
+			|| name.trim().isEmpty()
 			|| name.length() > MAXIMUM_LENGTH;
 	}
 
