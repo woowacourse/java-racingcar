@@ -22,6 +22,20 @@ public class Adder {
         return sumNotCustom(inputString);
     }
 
+    private int sumNotCustom(String inputString) {
+        String[] numbers = split(inputString);
+        NumberValidate.validate(numbers);
+        return sumWhenList(toIntegerList(numbers));
+    }
+
+    private int sumCustom(String inputString) {
+        String customMark = customMarkAndNumber(inputString)[0];
+        String number = customMarkAndNumber(inputString)[1];
+        String[] numbers = splitWhenCustom(number, customMark);
+        NumberValidate.validate(numbers);
+        return sumWhenList(toIntegerList(numbers));
+    }
+
     public static String[] splitWhenCustom(String number, String customMark) {
         if (customMark.equals(MINUS_SIGN)) {
             return splitWhenCustomMarkIsMinus(number);
@@ -49,19 +63,6 @@ public class Adder {
         return result;
     }
 
-    private int sumNotCustom(String inputString) {
-        NumberValidate.validate(split(inputString));
-        return sumWhenList(toIntegerList(split(inputString)));
-    }
-
-    private int sumCustom(String inputString) {
-        String customMark = customMarkAndNumber(inputString)[0];
-        String number = customMarkAndNumber(inputString)[1];
-        String[] numbers = splitWhenCustom(number, customMark);
-        NumberValidate.validate(numbers);
-        return sumWhenList(toIntegerList(numbers));
-    }
-
     private int sumWhenList(List<Integer> finalNumbers) {
         return finalNumbers.stream().reduce((x, y) -> x + y).get();
     }
@@ -77,11 +78,11 @@ public class Adder {
     public String[] customMarkAndNumber(String inputString) {
         Pattern pattern = Pattern.compile(INPUT_PATTERN);
         Matcher matcher = pattern.matcher(inputString);
-        String[] result = new String[2];
+        String[] markAndNumber = new String[2];
         while (matcher.find()) {
-            result[0] = matcher.group(1);
-            result[1] = matcher.group(2);
+            markAndNumber[0] = matcher.group(1);
+            markAndNumber[1] = matcher.group(2);
         }
-        return result;
+        return markAndNumber;
     }
 }
