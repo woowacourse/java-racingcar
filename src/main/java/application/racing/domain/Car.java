@@ -4,9 +4,9 @@ public class Car {
     private String name;
     private Position position;
 
-    public Car(String name, int position) {
+    public Car(String name) {
         this.name = name;
-        this.position = new Position(position);
+        this.position = new Position();
     }
 
     public void moveCarWhenNumberOverFour(int number) {
