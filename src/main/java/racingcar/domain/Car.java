@@ -17,14 +17,14 @@ import java.util.Objects;
 public class Car {
 	public static final int MINIMUM_NUMBER_TO_GO = 4;
 
-	private final String name;
+	private final Name name;
 	private int position;
 
-	public Car(String name) {
+	public Car(Name name) {
 		this(name, 0);
 	}
 
-	public Car(String name, int position) {
+	public Car(Name name, int position) {
 		this.name = name;
 		this.position = position;
 	}
@@ -47,7 +47,7 @@ public class Car {
 	}
 
 	public String getName() {
-		return name;
+		return name.getName();
 	}
 
 	public int getPosition() {

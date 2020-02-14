@@ -26,7 +26,7 @@ public class CarTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"또링", "동글"})
 	void testCar(String name) {
-		car = new Car(name);
+		car = new Car(new Name(name));
 		assertThat(car).isNotNull();
 	}
 
@@ -35,7 +35,7 @@ public class CarTest {
 	@CsvSource(value = {"0:0", "1:0", "2:0", "3:0",
 		"4:1", "5:1", "6:1", "7:1", "8:1", "9:1"}, delimiter = ':')
 	void testRun(int randomNumber, int position) {
-		car = new Car("붕붕");
+		car = new Car(new Name("붕붕"));
 		car.run(randomNumber);
 		assertThat(car).extracting("position").isEqualToComparingOnlyGivenFields(position);
 	}

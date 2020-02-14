@@ -24,7 +24,7 @@ public class WinnerTest {
 	@DisplayName("승리자 이름 목록을 제대로 가져오는지 테스트")
 	@Test
 	void TestGetWinnerNames() {
-		List<Car> winners = Arrays.asList(new Car("또동", 20), new Car("두둥", 20));
+		List<Car> winners = Arrays.asList(new Car(new Name("또동"), 20), new Car(new Name("두둥"), 20));
 		Winner winner = new Winner(winners);
 		assertThat(winner.getWinnerNames()).containsExactly("또동", "두둥");
 	}

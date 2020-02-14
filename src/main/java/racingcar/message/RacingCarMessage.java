@@ -20,7 +20,8 @@ public enum RacingCarMessage {
 	EXCEPTION_NOT_ENOUGH_CAR("car must be at least one"),
 	EXCEPTION_LENGTH_OF_NAME("name must be between 1-5"),
 	EXCEPTION_DUPLICATED_NAME("name can not be duplicated"),
-	ROUND_START("실행 결과");
+	ROUND_START("실행 결과"),
+	EXCEPTION_NAME_NULL_OR_BLANK("name can not be null or blank");
 
 	private final String messageText;
 

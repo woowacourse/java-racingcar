@@ -4,11 +4,10 @@ import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Round;
 import racingcar.domain.Winner;
-import racingcar.splitter.NameSplitter;
+import racingcar.splitter.CarSplitter;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -26,25 +25,16 @@ import java.util.List;
 public class Application {
 	public static void main(String[] args) {
 		try {
-			String rawCarNames = InputView.inputCarNames();
-			List<String> carNames = NameSplitter.split(rawCarNames);
-			Cars cars = new Cars(createCarsByNames(carNames));
+			List<Car> carNames = CarSplitter.split(InputView.inputCarNames());
+			Cars cars = new Cars(carNames);
 			Round round = new Round(InputView.inputNumberOfRound());
 			playGame(cars, round);
-			Winner winner = new Winner(cars.findWinner());
+			Winner winner = new Winner(cars.findWinners());
 			OutputView.printWinner(winner);
 		} catch (RuntimeException e) {
 			System.out.println(e.getMessage());
 			System.exit(1);
 		}
-	}
-
-	public static List<Car> createCarsByNames(List<String> carNames) {
-		List<Car> cars = new ArrayList<>();
-		for (String name : carNames) {
-			cars.add(new Car(name));
-		}
-		return cars;
 	}
 
 	public static void playGame(Cars cars, Round round) {

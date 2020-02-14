@@ -4,8 +4,10 @@ import racingcar.generator.RandomNumberGenerator;
 import racingcar.message.RacingCarMessage;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /*
@@ -21,13 +23,34 @@ import java.util.stream.Collectors;
  *
  */
 public class Cars implements Iterable<Car> {
+	private static final int MINIMUM_NUMBER_OF_NAMES = 2;
+
 	private final List<Car> cars;
 
 	public Cars(List<Car> cars) {
+		validate(cars);
 		this.cars = Collections.unmodifiableList(cars);
 	}
 
-	public List<Car> findWinner() {
+	private static void validate(List<Car> cars) {
+		validateNumberOfName(cars);
+		validateDuplicatedName(cars);
+	}
+
+	private static void validateNumberOfName(List<Car> cars) {
+		if (cars.size() < MINIMUM_NUMBER_OF_NAMES) {
+			throw new IllegalArgumentException(RacingCarMessage.EXCEPTION_NOT_ENOUGH_CAR.getMessageText());
+		}
+	}
+
+	private static void validateDuplicatedName(List<Car> cars) {
+		Set<Car> tmpNameSet = new HashSet<>(cars);
+		if (tmpNameSet.size() != cars.size()) {
+			throw new IllegalArgumentException(RacingCarMessage.EXCEPTION_DUPLICATED_NAME.getMessageText());
+		}
+	}
+
+	public List<Car> findWinners() {
 		Car maxPositionCar = findMaxPositionCar();
 		return cars.stream()
 			.filter(car -> car.isSamePosition(maxPositionCar))
