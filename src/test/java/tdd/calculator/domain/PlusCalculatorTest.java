@@ -7,85 +7,75 @@ import org.junit.jupiter.api.Test;
 public class PlusCalculatorTest {
 	@Test
 	void plusTwoNumberSplitByComma() {
-		final String value = "1,2";
-		final int actual = PlusCalculator.calculate(value);
-		final int expected = 3;
+		int actual = PlusCalculator.calculate("1,2");
+		int expected = 3;
 		assertThat(actual).isEqualTo(expected);
 	}
 
 	@Test
 	void plusNumbersSplitByComma() {
-		final String threeValues = "1,2,3";
-		final int actualForThreeValues = PlusCalculator.calculate(threeValues);
-		final int expectedForThreeValues = 6;
+		int actualForThreeValues = PlusCalculator.calculate("1,2,3");
+		int expectedForThreeValues = 6;
 		assertThat(actualForThreeValues).isEqualTo(expectedForThreeValues);
 
-		final String fourValues = "1,2,3,4";
-		final int actualForFourValues = PlusCalculator.calculate(fourValues);
-		final int expectedForFourValues = 10;
+		int actualForFourValues = PlusCalculator.calculate("1,2,3,4");
+		int expectedForFourValues = 10;
 		assertThat(actualForFourValues).isEqualTo(expectedForFourValues);
 	}
 
 	@Test
 	void plusTwoNumberSplitByColon() {
-		final String value = "1:2";
-		final int actual = PlusCalculator.calculate(value);
-		final int expected = 3;
+		int actual = PlusCalculator.calculate("1:2");
+		int expected = 3;
 		assertThat(actual).isEqualTo(expected);
 	}
 
 	@Test
 	void plusNumbersSplitByColon() {
-		final String threeValues = "1:2:3";
-		final int actualForThreeValues = PlusCalculator.calculate(threeValues);
-		final int expectedForThreeValues = 6;
+		int actualForThreeValues = PlusCalculator.calculate("1:2:3");
+		int expectedForThreeValues = 6;
 		assertThat(actualForThreeValues).isEqualTo(expectedForThreeValues);
 
-		final String fourValues = "1:2:3:4";
-		final int actualForFourValues = PlusCalculator.calculate(fourValues);
-		final int expectedForFourValues = 10;
+		int actualForFourValues = PlusCalculator.calculate("1:2:3:4");
+		int expectedForFourValues = 10;
 		assertThat(actualForFourValues).isEqualTo(expectedForFourValues);
 	}
 
 	@Test
 	void plusNumbersSplitByCommaAndColon() {
-		final String threeValues = "1,2:3";
-		final int actualForThreeValues = PlusCalculator.calculate(threeValues);
-		final int expectedForThreeValues = 6;
+		int actualForThreeValues = PlusCalculator.calculate("1,2:3");
+		int expectedForThreeValues = 6;
 		assertThat(actualForThreeValues).isEqualTo(expectedForThreeValues);
 
-		final String fourValues = "1:2,3:4";
-		final int actualForFourValues = PlusCalculator.calculate(fourValues);
-		final int expectedForFourValues = 10;
+		int actualForFourValues = PlusCalculator.calculate("1:2,3:4");
+		int expectedForFourValues = 10;
 		assertThat(actualForFourValues).isEqualTo(expectedForFourValues);
 	}
 
 	@Test
 	void plusNumbersSplitByCustomDelimiter() {
-		final String customValue = "//;\n1;2;3";
-		final int expected = 6;
-		final int actual = PlusCalculator.calculate(customValue);
+		int actual = PlusCalculator.calculate("//;\n1;2;3");
+		int expected = 6;
 		assertThat(actual).isEqualTo(expected);
 	}
 
 	@Test
 	void plusNumbersSplitByMixedDelimiter() {
-		final String customValue = "//;\n1;2,3:4";
-		final int expected = 10;
-		final int actual = PlusCalculator.calculate(customValue);
+		int actual = PlusCalculator.calculate("//;\n1;2,3:4");
+		int expected = 10;
 		assertThat(actual).isEqualTo(expected);
 	}
 
 	@Test
 	void plusForNegativeNumber() {
-		final String customValue = "//;\n1;2,-3:4";
-		assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> PlusCalculator.calculate(customValue));
+		assertThatExceptionOfType(RuntimeException.class)
+				.isThrownBy(() -> PlusCalculator.calculate("//;\n1;2,-3:4"));
 	}
 
 	@Test
 	void plusForNotNumber() {
-		final String customValue = "//;\n1;2,a,3,4";
-		assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> PlusCalculator.calculate(customValue));
+		assertThatExceptionOfType(RuntimeException.class)
+				.isThrownBy(() -> PlusCalculator.calculate("//;\n1;2,a,3,4"));
 	}
 
 	@Test

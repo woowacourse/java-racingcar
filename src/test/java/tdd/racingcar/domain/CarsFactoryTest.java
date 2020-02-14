@@ -1,6 +1,6 @@
 package tdd.racingcar.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,14 +11,10 @@ import org.junit.jupiter.api.Test;
 public class CarsFactoryTest {
 	@Test
 	void createCar() {
-		List<String> names = new ArrayList<>();
-		names.add("a");
-		names.add("b");
-		names.add("c");
-		names.add("d");
-		final Cars cars = CarsFactory.create("a,b,c,d");
+		List<String> names = new ArrayList<>(Arrays.asList("a", "b", "c", "d"));
+		Cars cars = CarsFactory.create("a,b,c,d");
 		List<Car> actual = new ArrayList<>();
 		cars.forEach(actual::add);
-		assertEquals(names.size(), actual.size());
+		assertThat(names.size()).isEqualTo(actual.size());
 	}
 }

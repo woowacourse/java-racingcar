@@ -11,7 +11,7 @@ public class RecordsTest {
 	@Test
 	void add() {
 		Records records = new Records();
-		final Cars cars = CarsFactory.create("a,b,c");
+		Cars cars = CarsFactory.create("a,b,c");
 		Set<Record> expected = new HashSet<>();
 		expected.add(new Record(cars));
 		cars.move();

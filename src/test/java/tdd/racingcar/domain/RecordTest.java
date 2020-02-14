@@ -9,10 +9,10 @@ import org.junit.jupiter.api.Test;
 public class RecordTest {
 	@Test
 	void forEach() {
-		final Cars cars = CarsFactory.create("a,b,c");
+		Cars cars = CarsFactory.create("a,b,c");
 		cars.move();
 		Map<String, Integer> positions = cars.getPositions();
-		final Record record = new Record(cars);
+		Record record = new Record(cars);
 		record.forEach((name, position) -> {
 			assertThat(positions.get(name)).isEqualTo(position);
 		});

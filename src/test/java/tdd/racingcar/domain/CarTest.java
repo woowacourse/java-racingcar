@@ -1,58 +1,35 @@
 package tdd.racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
-	private static final String CAR_NAME = "name";
-	private static final String TOO_LONG_NAME = "tooLongName";
-
-	private Car car;
-
-	@BeforeEach
-	void init() {
-		car = new Car(CAR_NAME);
-	}
-
 	@Test
 	void getPosition() {
-		final int expected = 0;
-		final int actual = car.getPosition();
-		assertEquals(expected, actual);
+		Car car = new Car("핀", 10);
+		assertThat(car.getPosition()).isEqualTo(10);
 	}
 
 	@Test
 	void moveForEnoughPower() {
-		final Power power = new Power(4);
-		final int previousPosition = car.getPosition();
-		car.move(power);
-		final int currentPosition = car.getPosition();
-		final int expectedPosition = previousPosition + 1;
-		assertEquals(expectedPosition, currentPosition);
-	}
-
-	@Test
-	void moveForNotEnoughPower() {
-		final Power power = new Power(3);
-		final int previousPosition = car.getPosition();
-		car.move(power);
-		final int currentPosition = car.getPosition();
-		assertEquals(currentPosition, previousPosition);
+		Car car = new Car("핀", 0);
+		int current = car.getPosition() + 1;
+		car.move(new Power(4));
+		int next = 1;
+		assertThat(current).isEqualTo(next);
 	}
 
 	@Test
 	void getName() {
-		final String actual = car.getName();
-		assertEquals(CAR_NAME, actual);
+		Car car = new Car("핀");
+		assertThat(car.getName()).isEqualTo("핀");
 	}
 
 	@Test
 	void canValidateName() {
 		assertThatIllegalArgumentException().isThrownBy(() ->
-				new Car(TOO_LONG_NAME))
+				new Car("너무긴이름이다우와"))
 				.withMessage("이름은 최대 5자까지 가능합니다.");
 	}
 }

@@ -11,8 +11,8 @@ public class NameTest {
 	@Test
 	@DisplayName("이름이 5자를 초과할 때 예외 발생 테스트")
 	void testTooLongName() {
-		assertThatIllegalArgumentException().isThrownBy(() ->
-				new Name(TOO_LONG_NAME))
+		assertThatExceptionOfType(IllegalArgumentException.class)
+				.isThrownBy(() -> new Name(TOO_LONG_NAME))
 				.withMessage("이름은 최대 5자까지 가능합니다.");
 	}
 }
