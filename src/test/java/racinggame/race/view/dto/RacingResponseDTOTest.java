@@ -17,7 +17,7 @@ class RacingResponseDTOTest {
         car.move();
 
         //when
-        RacingResponseDTO racingResponseDTO = RacingResponseDTO.from(car);
+        RacingResponseDTO racingResponseDTO = new RacingResponseDTO(car);
 
         //then
         assertThat(racingResponseDTO.getDistance()).isEqualTo("--");

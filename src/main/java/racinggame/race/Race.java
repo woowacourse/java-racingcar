@@ -5,7 +5,7 @@ import racinggame.race.car.engine.RealEngine;
 import racinggame.race.view.InputView;
 import racinggame.race.view.OutputView;
 import racinggame.race.view.dto.RacingRequestDTO;
-import racinggame.race.view.dto.RacingResponseBundleDTO;
+import racinggame.race.view.dto.RacingResponseDTO;
 
 public class Race {
 
@@ -13,10 +13,10 @@ public class Race {
         RacingRequestDTO reqDTO = InputView.inputRequest();
         Cars cars = reqDTO.toCars(RealEngine.getInstance());
 
-        OutputView.showReady(RacingResponseBundleDTO.from(cars));
+        OutputView.showReady(RacingResponseDTO.listFrom(cars));
         for (int i = 0; i < reqDTO.getCount(); i++) {
             cars.move();
-            OutputView.showCars(RacingResponseBundleDTO.from(cars));
+            OutputView.showCars(RacingResponseDTO.listFrom(cars));
         }
         OutputView.showWinners(cars.getWinner());
     }

@@ -1,8 +1,11 @@
 package racinggame.race.view.dto;
 
 import racinggame.race.car.Car;
+import racinggame.race.car.Cars;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingResponseDTO {
     private static final char BAR = '-';
@@ -10,13 +13,15 @@ public class RacingResponseDTO {
     private final String name;
     private final String distance;
 
-    private RacingResponseDTO(String name, int distance) {
-        this.name = name;
-        this.distance = makeDistanceBar(distance);
+    public RacingResponseDTO(Car car) {
+        this.name = car.getName();
+        this.distance = makeDistanceBar(car.getDistance());
     }
 
-    public static RacingResponseDTO from(Car car) {
-        return new RacingResponseDTO(car.getName(), car.getDistance());
+    public static List<RacingResponseDTO> listFrom(Cars cars) {
+        return cars.getCars().stream()
+                .map(RacingResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
     private String makeDistanceBar(int distance) {
