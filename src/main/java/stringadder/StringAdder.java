@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class StringAdder {
+    public static final String NEGATIVE_INPUT_ERROR = "음수는 입력하실 수 없습니다.";
+
     private StringAdder() {
     }
 
@@ -21,7 +23,7 @@ public class StringAdder {
 
     private static void validateValues(List<Integer> values) {
         if (Collections.min(values) < 0) {
-            throw new RuntimeException("음수는 입력하실 수 없습니다.");
+            throw new RuntimeException(NEGATIVE_INPUT_ERROR);
         }
     }
 }

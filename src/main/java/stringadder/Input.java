@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 public class Input {
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
+    public static final String EMPTY_EXPRESSION_ERROR = "식을 입력해 주세요.";
+    public static final String NUMBER_FORMAT_ERROR = "숫자 이외의 값은 입력하실 수 없습니다.";
 
     private String expression;
 
@@ -19,13 +21,13 @@ public class Input {
 
     private void validateInput() {
         if (expression == null || expression.isEmpty()) {
-            throw new NullPointerException("식을 입력해 주세요.");
+            throw new NullPointerException(EMPTY_EXPRESSION_ERROR);
         }
     }
 
     private void validateList(List<Integer> list) {
         if (list.isEmpty()) {
-            throw new NullPointerException("식을 입력해 주세요.");
+            throw new NullPointerException(EMPTY_EXPRESSION_ERROR);
         }
     }
 
@@ -51,7 +53,7 @@ public class Input {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new RuntimeException("숫자 이외의 값은 입력하실 수 없습니다.");
+            throw new RuntimeException(NUMBER_FORMAT_ERROR);
         }
     }
 
