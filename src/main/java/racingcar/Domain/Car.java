@@ -1,4 +1,4 @@
-package racingcar.Model;
+package racingcar.Domain;
 
 import racingcar.View.OutputView;
 

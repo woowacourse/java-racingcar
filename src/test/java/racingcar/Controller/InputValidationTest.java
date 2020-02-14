@@ -1,8 +1,7 @@
-package racingcarTest;
+package racingcar.Controller;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.Controller.InputValidation;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -3,7 +3,7 @@ package racingcar.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import racingcar.Model.Car;
+import racingcar.Domain.Car;
 import racingcar.View.InputView;
 import racingcar.View.OutputView;
 
