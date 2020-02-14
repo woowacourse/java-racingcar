@@ -1,7 +1,7 @@
 package application.racing;
 
 import application.racing.domain.Car;
-import application.racing.domain.CarName;
+import application.racing.domain.CarNames;
 import application.racing.domain.Racing;
 import application.racing.domain.RacingLab;
 import application.racing.view.OutputViewer;
@@ -39,9 +39,9 @@ public class RacingApplication {
 
     private static List<Car> makeCarList() {
         String inputCarNames = getCarNames();
-        CarName carName = new CarName(inputCarNames);
+        CarNames carNames = new CarNames(inputCarNames);
         List<Car> cars = new ArrayList<>();
-        for (String name : carName.getCarNameList()) {
+        for (String name : carNames.getCarNameList()) {
             cars.add(new Car(name, 0));
         }
         return cars;
