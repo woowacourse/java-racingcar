@@ -1,7 +1,7 @@
 package racingcar.view;
 
 public class OutputView {
-	private static final String NEW_LINE = "\n";
+	private static final String NEW_LINE = System.lineSeparator();
 
 	public static void printExceptionMessage(String message) {
 		System.out.println(message);;
