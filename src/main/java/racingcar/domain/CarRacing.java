@@ -22,13 +22,13 @@ public class CarRacing {
 
     public List<Car> getWinners() {
         int maxDistance = getMaxDistance();
+
         return cars.stream()
                 .filter((car) -> car.isWinner(maxDistance))
                 .collect(Collectors.toList());
     }
 
     private int getMaxDistance() {
-        cars.sort((car1, car2) -> car2.getDistance() - car1.getDistance());
-        return cars.get(0).getDistance();
+        return cars.stream().mapToInt((car)->car.getDistance()).max().getAsInt();
     }
 }
