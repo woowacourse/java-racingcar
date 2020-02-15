@@ -1,13 +1,11 @@
-package racingcar.domain;
+package racingcar.domain.car;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import org.junit.jupiter.api.Test;
-import racingcar.domain.car.Car;
-import racingcar.domain.car.Cars;
-
-import java.util.List;
 
 public class CarsTest {
     @Test
@@ -22,7 +20,7 @@ public class CarsTest {
     void 자동차의_이름이_중복되는_경우_예외_처리() {
         String input = "무늬, 무늬,  무늬 ";
         assertThatThrownBy(() -> {
-           Cars.validateDuplicatedNames(input);
+            Cars.validateDuplicatedNames(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
