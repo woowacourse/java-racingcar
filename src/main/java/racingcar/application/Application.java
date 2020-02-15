@@ -12,12 +12,11 @@ public class Application {
     private static void run() {
         CarRacing carRacing = new CarRacing(InputView.getNames());
         int moveNumber = InputView.getMoveNumber();
-        System.out.println("\n실행 결과");
+        OutputView.printResultTitle();
 
         for(int i = 0; i < moveNumber; i++) {
             carRacing.move();
             OutputView.printStatus(carRacing.getCars());
-            System.out.println();
         }
 
         OutputView.printWinners(carRacing.getWinners());

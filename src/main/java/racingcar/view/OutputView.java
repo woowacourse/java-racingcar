@@ -14,7 +14,8 @@ public class OutputView {
     public static void printStatus(List<Car> cars) {
         System.out.println(cars.stream()
                 .map(OutputView::getStatus)
-                .collect(Collectors.joining(LINE_CHANGER)));
+                .collect(Collectors.joining(LINE_CHANGER))
+            + LINE_CHANGER);
     }
 
     private static String getStatus(Car car) {
@@ -35,5 +36,9 @@ public class OutputView {
                 .collect(Collectors.joining(COMMA)));
         SB.append("가 최종 우승했습니다.");
         System.out.println(SB.toString());
+    }
+
+    public static void printResultTitle() {
+        System.out.println("\n실행 결과");
     }
 }
