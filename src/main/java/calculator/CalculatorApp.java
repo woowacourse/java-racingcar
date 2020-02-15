@@ -1,6 +1,7 @@
 package calculator;
 
 import calculator.domain.Calculator;
+import calculator.domain.Operand;
 import calculator.view.InputView;
 import calculator.view.OutputView;
 
@@ -10,7 +11,7 @@ public class CalculatorApp {
         System.out.println(inputExpression);
 
         Calculator calculator = new Calculator();
-        int result = calculator.run(inputExpression);
+        Operand result = calculator.run(inputExpression);
 
         OutputView.printResult(result);
     }

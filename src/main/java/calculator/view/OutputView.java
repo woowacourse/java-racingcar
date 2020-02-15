@@ -1,10 +1,12 @@
 package calculator.view;
 
-public class OutputView {
-    private OutputView() {
-    }
+import calculator.domain.Operand;
 
-    public static void printResult(int result) {
-        System.out.println("결과 : " + result);
-    }
+public class OutputView {
+	private OutputView() {
+	}
+
+	public static void printResult(Operand result) {
+		System.out.println("결과 : " + result.getNumber());
+	}
 }
