@@ -1,5 +1,7 @@
 package racingcar.domian;
 
+import racingcar.util.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,10 +13,10 @@ public class Cars {
     private static final String DELIMITER = ",";
 
     public Cars(String inputNames) {
-        inputNames = validateNullOrEmpty(inputNames);
+        inputNames = StringUtils.validNullOrEmpty(inputNames);
 
         String[] names = inputNames.split(DELIMITER);
-        validateCarCount(names);
+        validCarCount(names);
 
         List<Car> players = new ArrayList<>();
         for (String name : names) {
@@ -27,14 +29,7 @@ public class Cars {
         return cars;
     }
 
-    private static String validateNullOrEmpty(String inputNames) {
-        if (inputNames == null || (inputNames = inputNames.trim()).isEmpty()) {
-            throw new IllegalArgumentException("잘못된 입력입니다.");
-        }
-        return inputNames;
-    }
-
-    private static void validateCarCount(String[] names) {
+    private static void validCarCount(String[] names) {
         if (names.length > CAR_LIMIT) {
             throw new IllegalArgumentException("자동차 5대 초과입니다!");
         }

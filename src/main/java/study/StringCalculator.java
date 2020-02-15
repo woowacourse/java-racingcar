@@ -1,5 +1,8 @@
 package study;
 
+import racingcar.util.IntegerUtils;
+import racingcar.util.StringUtils;
+
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,9 +20,8 @@ public class StringCalculator {
         System.out.println("더하고 싶은 숫자를 입력해주세요!");
         System.out.println("기본 구분자는 ,와 : 입니다. 커스텀 구분자를 이용하시려면 //와 // 사이에 구분자를 넣어주세요.)");
         System.out.println("ex) 1,2,3 or //#//1#2#3");
-        String input = null;
         while (true) {
-            input = sc.next();
+            String input = sc.next();
             try {
                 System.out.println(calculate(input));
                 break;
@@ -31,7 +33,9 @@ public class StringCalculator {
     }
 
     public static int calculate(String s) {
-        if (isNullOrEmtpy(s)) {
+        try {
+            StringUtils.validNullOrEmpty(s);
+        } catch (IllegalArgumentException e) {
             return ZERO;
         }
         String[] strArr = getEquation(s);
@@ -39,10 +43,6 @@ public class StringCalculator {
             strArr = s.split(DEFAULT_REGEX);
         }
         return split(strArr);
-    }
-
-    private static boolean isNullOrEmtpy(String s) {
-        return (s == null || s.isEmpty());
     }
 
     private static String[] getEquation(String s) {
@@ -64,13 +64,11 @@ public class StringCalculator {
     }
 
     private static int getAsNumber(String s) {
-        int result = ZERO;
         try {
-            result = Integer.parseInt(s);
-        } catch (NumberFormatException e) {
+            return validate(IntegerUtils.stringToInt(s));
+        } catch (IllegalArgumentException e) {
             throw new RuntimeException("숫자 아니야");
         }
-        return validate(result);
     }
 
     private static int validate(int number) {

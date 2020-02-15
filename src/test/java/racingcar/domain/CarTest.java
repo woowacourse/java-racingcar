@@ -4,23 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 import racingcar.domian.Car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
-    @DisplayName("자동차의 이름이 null 혹은 empty인 경우 테스트")
-    @ParameterizedTest
-    @NullAndEmptySource
-    void 입력값이_null_혹은_empty(String name) {
-        assertThatThrownBy(() -> {
-            new Car(name);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("잘못된 입력입니다.");
-    }
-
     @Test
     @DisplayName("자동차의 이름이 5자 초과인 경우 테스트")
     void 이름이_5자_초과() {

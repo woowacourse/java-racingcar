@@ -1,5 +1,7 @@
 package racingcar.domian;
 
+import racingcar.util.StringUtils;
+
 import java.util.Objects;
 
 public class Car {
@@ -17,7 +19,7 @@ public class Car {
 
     public Car(int position, String name) {
         this.position = position;
-        this.name = validateName(name);
+        this.name = validName(name);
     }
 
     public int getPosition() {
@@ -28,20 +30,13 @@ public class Car {
         return name;
     }
 
-    private static String validateName(String name) {
-        name = validateNullOrEmpty(name);
-        validateNameLength(name);
+    private static String validName(String name) {
+        name = StringUtils.validNullOrEmpty(name);
+        validNameLength(name);
         return name;
     }
 
-    private static String validateNullOrEmpty(String name) {
-        if (name == null || (name = name.trim()).isEmpty()) {
-            throw new IllegalArgumentException("잘못된 입력입니다.");
-        }
-        return name;
-    }
-
-    private static void validateNameLength(String name) {
+    private static void validNameLength(String name) {
         if (name.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("이름 길이 5자 초과입니다!");
         }
