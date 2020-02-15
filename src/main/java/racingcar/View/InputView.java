@@ -1,9 +1,7 @@
 package racingcar.View;
 
-import java.util.List;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import racingcar.Controller.InputValidation;
 
 /**
  * 클래스 이름 : InputView.java
@@ -28,8 +26,12 @@ public class InputView {
 	}
 
 	public static int inputTrialTime() {
+		try {
 		OutputView.printInputTrialTimeMessage();
-		return InputValidation.validateInputTrialTime(SCANNER.nextLine());
+		return SCANNER.nextInt();
+		} catch (InputMismatchException e) {
+			throw new InputMismatchException("1~100 범위의 양의 정수만 입력해주세요.");
+		}
 
 	}
 }

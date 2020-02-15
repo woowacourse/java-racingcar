@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import racingcar.Domain.Car;
+import racingcar.Domain.TrialTime;
 import racingcar.Util.RandomNumberUtils;
 import racingcar.Util.StringUtils;
 import racingcar.View.InputView;
@@ -25,19 +26,20 @@ public class Game {
 	private static final int COMPARING_START_INDEX = 1;
 
 	private static List<Car> cars = new ArrayList<>();
-	private static int trialTime;
+	private static TrialTime trialTime = null;
 
 	public static void initialize() {
 		String inputCarName = InputView.inputCarName();
 		List<String> carNames =  StringUtils.splitCarNames(inputCarName);
 		carNames = StringUtils.trimCarNames(carNames);
 		carNames.forEach(carName -> cars.add(new Car(carName)));
-		trialTime = InputView.inputTrialTime();
+		int inputTrialTime = InputView.inputTrialTime();
+		trialTime = new TrialTime(inputTrialTime);
 	}
 
 	public static void race() {
 		OutputView.printResultMessage();
-		for (int index = INDEX_START; index < trialTime; index++) {
+		for (int index = INDEX_START, end = trialTime.getTrialTime(); index < end; index++) {
 			raceOneRound();
 			OutputView.printNewLine();
 		}

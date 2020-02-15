@@ -5,7 +5,6 @@ import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 
-import racingcar.Util.RandomNumberUtils;
 import racingcar.View.OutputView;
 
 /**
