@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
 import racingcar.domain.CarName;
-import racingcar.domain.RandomNo;
+import racingcar.domain.MoveNumber;
 import racingcar.domain.Winner;
 
 class WinnerTest {
@@ -17,23 +17,23 @@ class WinnerTest {
     private List<Car> carList;
     private Car carPobi;
     private Car carCrong;
-    private RandomNo randomNo;
+    private MoveNumber moveNumber;
 
     @BeforeEach
     void setUp() {
         carList = new ArrayList<>();
         carPobi = new Car(new CarName("pobi"));
         carCrong = new Car(new CarName("crong"));
-        randomNo = new RandomNo(4);
+        moveNumber = new MoveNumber(4);
     }
 
     @Test
     void getWinners() {
         carList.add(carPobi);
         carList.add(carCrong);
-        carPobi.move(randomNo);
-        carCrong.move(randomNo);
-        carCrong.move(randomNo);
+        carPobi.move(moveNumber);
+        carCrong.move(moveNumber);
+        carCrong.move(moveNumber);
 
         Assertions.assertThat(Winner.getWinners(carList)).contains("crong");
     }
@@ -42,8 +42,8 @@ class WinnerTest {
     void getWinners_When_MoreThan_2() {
         carList.add(carPobi);
         carList.add(carCrong);
-        carPobi.move(randomNo);
-        carCrong.move(randomNo);
+        carPobi.move(moveNumber);
+        carCrong.move(moveNumber);
 
         Assertions.assertThat(Winner.getWinners(carList)).contains("crong", "pobi");
     }

@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
     private Car car;
@@ -26,8 +25,8 @@ class CarTest {
     @ParameterizedTest
     @CsvSource(value = {"3,0", "4,1"})
     void Should_move_when_bigger_than_3(int value, int expected) {
-        RandomNo randomNo = new RandomNo(value);
-        car.move(randomNo);
+        MoveNumber moveNumber = new MoveNumber(value);
+        car.move(moveNumber);
 
         Assertions.assertThat(car).extracting("position").isEqualTo(expected);
     }

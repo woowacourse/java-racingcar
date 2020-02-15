@@ -2,7 +2,7 @@ package racingcar.utils;
 
 import java.util.Random;
 
-import racingcar.domain.RandomNo;
+import racingcar.domain.MoveNumber;
 
 public class RandomNumber {
     private static final int MAX_RANGE = 10;
@@ -11,7 +11,7 @@ public class RandomNumber {
     private RandomNumber() {
     }
 
-    public static RandomNo generateRandomIntIntRange() {
-        return new RandomNo(random.nextInt(MAX_RANGE));
+    public static MoveNumber generateRandomIntIntRange() {
+        return new MoveNumber(random.nextInt(MAX_RANGE));
     }
 }

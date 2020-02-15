@@ -1,10 +1,10 @@
 package racingcar.domain;
 
-public class RandomNo {
+public class MoveNumber {
     private int randomNumber;
     private static final int MOVE_FORWARD = 4;
 
-    public RandomNo(int number) {
+    public MoveNumber(int number) {
         if (number < 0 || number > 9) {
             throw new IllegalArgumentException();
         }
