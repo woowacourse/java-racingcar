@@ -14,6 +14,13 @@ public class RandomNo {
 		this.randomNumber = randomNumber;
 	}
 
+	public static RandomNo valueOf(final int randomNumber) {
+		if (randomNumber >= RandomNoCache.low && randomNumber <= RandomNoCache.high) {
+			return RandomNoCache.cache[randomNumber + (-RandomNoCache.low)];
+		}
+		return new RandomNo(randomNumber);
+	}
+
 	public boolean isMovable() {
 		return randomNumber >= MOVABLE_LOWER_BOUND;
 	}
