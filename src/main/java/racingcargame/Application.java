@@ -17,6 +17,6 @@ public class Application {
             cars.moveOneRound();
             OutputView.printRound(cars.getCars());
         }
-        OutputView.printWinners(cars.getWinners());
+//        OutputView.printWinners(cars.getWinners());
     }
 }

@@ -9,23 +9,9 @@ public class CarTest {
 
     @Test
     void 자동차는_이름을_입력받아_생성() {
-        String name = "재주";
+        String name = "라테";
         Car car = new Car(name);
         assertThat(car).isNotNull();
-    }
-
-    @Test
-    void 자동차_이름은_비어있는_문자열이면_예외발생() {
-        String name = "";
-        assertThatThrownBy(() -> new Car(name))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 자동차_이름은_null이면_예외발생() {
-        String name = null;
-        assertThatThrownBy(() -> new Car(name))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

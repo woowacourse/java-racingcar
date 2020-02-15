@@ -13,7 +13,7 @@ public class Cars {
         this.cars = cars;
     }
 
-    public List<String> getWinners() {
+    public List<Name> getWinners() {
         return findCarNamesInPosition(findMaxPosition());
     }
 
@@ -24,14 +24,14 @@ public class Cars {
                 .orElseThrow(() -> new IllegalArgumentException("최대값을 뽑을 수 없습니다."));
     }
 
-    private List<String> findCarNamesInPosition(int position) {
+    private List<Name> findCarNamesInPosition(int position) {
         return cars.stream()
                 .filter(car -> car.isSamePosition(position))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    private List<String> findCarNamesInPosition(Position position) {
+    private List<Name> findCarNamesInPosition(Position position) {
         return findCarNamesInPosition(position.getPosition());
     }
 
