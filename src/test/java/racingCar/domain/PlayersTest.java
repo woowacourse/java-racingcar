@@ -17,7 +17,7 @@ class PlayersTest {
     @ParameterizedTest
     @ValueSource(ints = {1,2,3})
     void play(int input) {
-        String names = "pobi,jason,cu";
+        List<Name> names = StringParser.parseToNameList("pobi,jason,cu");
         Players players = new Players(names);
         List<Boolean> trueBooleans = new ArrayList<>();
         for (Player player: players.getUnmodifiableList()) {
@@ -36,7 +36,8 @@ class PlayersTest {
     @ParameterizedTest
     @ValueSource(strings = {"", "abcdef"})
     void isEmpty_ShouldReturnTrueWhenInputIsInvalidName(String input) {
-        Players gameManager = new Players(input);
+        List<Name> names = StringParser.parseToNameList(input);
+        Players gameManager = new Players(names);
         Assertions.assertThat(gameManager.isEmpty())
                 .isTrue();
     }
@@ -44,7 +45,8 @@ class PlayersTest {
     @Test
     void isEmpty_ShouldReturnFalseWhenInputIsValidName() {
         String input = "abcac"; // "a"
-        Players gameManager = new Players(input);
+        List<Name> names = StringParser.parseToNameList(input);
+        Players gameManager = new Players(names);
 
         Assertions.assertThat(gameManager.isEmpty())
                 .isFalse();
@@ -53,7 +55,8 @@ class PlayersTest {
     @Test
     void isEmpty_ShouldReturnFalseWhenInputAreDuplicatedNames() {
         String input = "abc,abc";
-        Players gameManager = new Players(input);
+        List<Name> names = StringParser.parseToNameList(input);
+        Players gameManager = new Players(names);
 
         Assertions.assertThat(gameManager.isEmpty())
                 .isTrue();
@@ -61,7 +64,9 @@ class PlayersTest {
 
     @Test
     void getUnmodifiableList() {
-        Players players = new Players("kueni,pobi");
+        String input = "kueni,pobi";
+        List<Name> names = StringParser.parseToNameList(input);
+        Players players = new Players(names);
         Assertions.assertThat(players.getUnmodifiableList().size())
                 .isEqualTo(2);
     }
