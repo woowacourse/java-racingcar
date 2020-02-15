@@ -14,13 +14,13 @@ public class RacingGame {
 	private static final String ENTER = "\n";
 
 	public static String showEachRaceResult(Cars cars, int count) {
-		StringBuilder result = new StringBuilder();
+		StringBuilder gameResult = new StringBuilder();
 
 		for (int i = INDEX_INIT; i < count; i++) {
 			race(cars);
-			result.append(getRaceResult(cars.getCars()));
+			gameResult.append(getRaceResult(cars.getCars()));
 		}
-		return result.toString();
+		return gameResult.toString();
 	}
 
 	protected static String getRaceResult(List<Car> cars) {
