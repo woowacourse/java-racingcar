@@ -7,7 +7,14 @@ public class Car {
 
     public Car(String name) {
         checkNameLengthUnderSix(name);
+        checkNullOrEmptyName(name);
         this.name = name;
+    }
+
+    private void checkNullOrEmptyName(String name) {
+        if (name == null || name.isEmpty()){
+            throw new NullPointerException("차이름은 공백 또는 빈 문자열일 수 없습니다.");
+        }
     }
 
     private void checkNameLengthUnderSix(String name) {
