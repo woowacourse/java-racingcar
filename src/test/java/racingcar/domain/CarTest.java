@@ -15,7 +15,7 @@ public class CarTest {
 
     @DisplayName("랜덤 생성된 값이 4이상일 때 이동 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"1,false", "2,false", "3,false", "4,true", "5,true", "6,true", "7,true", "8,true", "9,true"})
+    @CsvSource(value = {"0,false", "3,false", "4,true", "9,true"})
     void 생성된_랜덤값이_4이상이면_이동한다(int inputValue, boolean expected) {
         Car car = new Car("user");
         Car expectedCar = new Car(1, "user");
