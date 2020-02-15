@@ -23,7 +23,7 @@ public class RacingCarTest {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
                     new RacingCar(nameWhichLengthIsOver5);
-                });
+                }).withMessage("이름은 최대 길이인 5를 넘을 수 없습니다.");
 
     }
 

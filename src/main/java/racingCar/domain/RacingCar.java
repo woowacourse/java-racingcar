@@ -10,7 +10,7 @@ public class RacingCar implements Comparable<RacingCar> {
 
     public RacingCar(String name) {
         if (MAX_RACINGCAR_NAME_LENGTH < name.length()) {
-            throw new InvalidInputException();
+            throw new InvalidInputException(String.format("이름은 최대 길이인 %d를 넘을 수 없습니다.", MAX_RACINGCAR_NAME_LENGTH));
         }
         this.name = name;
     }
