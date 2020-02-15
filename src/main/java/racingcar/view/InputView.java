@@ -14,10 +14,10 @@ public class InputView {
     public static List<String> getNames() {
         try {
             System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-            List<String> output = Arrays.asList(SCANNER.nextLine().split(COMMA));
-            output.stream()
-                    .forEach(Car::checkValidName);
-            return output;
+            List<String> input = Arrays.asList(SCANNER.nextLine()
+                .split(COMMA));
+            input.forEach(Car::checkValidName);
+            return input;
         } catch (IllegalArgumentException e) {
             System.out.println("다시 입력해주세요");
             return getNames();

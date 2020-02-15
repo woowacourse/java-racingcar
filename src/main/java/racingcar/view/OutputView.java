@@ -22,7 +22,7 @@ public class OutputView {
         StringBuilder SB = new StringBuilder();
         SB.append(car.getName()).append(SEPARATOR);
 
-        for (int i = 0; i < car.getDistance(); i++) {
+        for (int i = 0; i < car.getPosition(); i++) {
             SB.append(DISTANCE_INDICATOR);
         }
 
