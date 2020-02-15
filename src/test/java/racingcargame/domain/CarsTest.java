@@ -25,13 +25,13 @@ public class CarsTest {
         List<String> carNames = Arrays.asList("라테, 제이, 포비".split(","));
         Cars cars = new Cars(carNames);
         cars.getCars().get(0).move(4);
-        assertThat(cars.getWinnerNames().getNames())
+        assertThat(cars.findWinnerNames().getNames())
                 .extracting("name")
                 .contains("라테");
-        assertThat(cars.getWinnerNames().getNames())
+        assertThat(cars.findWinnerNames().getNames())
                 .extracting("name")
                 .doesNotContain("제이");
-        assertThat(cars.getWinnerNames().getNames())
+        assertThat(cars.findWinnerNames().getNames())
                 .extracting("name")
                 .doesNotContain("포비");
     }

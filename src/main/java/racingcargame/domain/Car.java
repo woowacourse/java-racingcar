@@ -12,11 +12,6 @@ public class Car {
         this.position = new Position(INITIAL_POSITION);
     }
 
-    public Car(String name, int position) {
-        this.name = new Name(name);
-        this.position = new Position(position);
-    }
-
     public void move(int value) {
         if (value >= FORWARD_THRESHOLD) {
             position.move();

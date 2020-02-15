@@ -1,15 +1,20 @@
 package racingcargame.controller;
 
-import racingcargame.stringutil.Parser;
-
 public class TryNumber {
     private int tryNumber;
 
-    public TryNumber(String tryRound) {
-        this.tryNumber = Parser.parseRound(tryRound);
+    public TryNumber(int tryNumber) {
+        if (tryNumber <= 0) {
+            throw new IllegalArgumentException("양수를 입력해주세요.");
+        }
+        this.tryNumber = tryNumber;
     }
 
-    public int getTryNumber() {
-        return tryNumber;
+    public boolean isNotZero() {
+        return tryNumber != 0;
+    }
+
+    public void reduce() {
+        tryNumber--;
     }
 }

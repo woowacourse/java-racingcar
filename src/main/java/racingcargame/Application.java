@@ -1,21 +1,19 @@
 package racingcargame;
 
+import racingcargame.controller.CarRace;
 import racingcargame.controller.TryNumber;
 import racingcargame.domain.Cars;
+import racingcargame.domain.Names;
 import racingcargame.view.input.InputView;
 import racingcargame.view.output.OutputView;
 
-import static racingcargame.stringutil.Parser.*;
-
 public class Application {
     public static void main(String[] args) {
-        Cars cars = new Cars(parseStrings(InputView.askCarNames()));
-        TryNumber tryNumber = new TryNumber(InputView.askTotalRounds());
+        Cars cars = new Cars(Names.valueOf(InputView.askCarNames()));
+        TryNumber tryNumber = new TryNumber(Integer.parseInt(InputView.askTotalRounds()));
+        CarRace race = new CarRace(cars, tryNumber);
+        race.start();
         OutputView.printResultTitle();
-        for (int i = 0; i < tryNumber.getTryNumber(); i++) {
-            cars.moveOneRound();
-            OutputView.printRound(cars.getCars());
-        }
-        OutputView.printWinners(cars.getWinnerNames());
+        OutputView.printWinners(cars.findWinnerNames());
     }
 }

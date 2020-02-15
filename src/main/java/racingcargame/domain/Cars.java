@@ -5,19 +5,20 @@ import sun.plugin2.applet.StopListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
     private List<Car> cars = new ArrayList<>();
 
-    public Cars(List<String> carNames) {
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
+    public Cars(Names carNames) {
+        for (Name name : carNames.getNames()) {
+            cars.add(new Car(name.toString()));
         }
     }
 
-    public Names getWinnerNames() {
+    public Names findWinnerNames() {
         return findCarNamesInPosition(findMaxPosition());
     }
 
