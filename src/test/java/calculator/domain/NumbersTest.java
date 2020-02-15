@@ -1,42 +1,40 @@
 package calculator.domain;
 
-
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
+import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class NumbersTest {
-    @Test
-    void numbersTest() {
-        //given
-        String input = "1,2:3";
-        String delimiter = ",|:";
-        //then
-        assertThat(new Numbers(input, delimiter)).isEqualTo(List.of(1,2,3));
-    }
+	public static Stream<Arguments> createExpressionAndDelimiter() {
+		return Stream.of(
+			Arguments.of("-,3", ",|:", "Input has something not number"),
+			Arguments.of("1,2,-3", ",|:", "Input has negative number")
+		);
+	}
 
-    @Test
-    void validate() {
-        //given
-        final String isNotNumber = "-,3";
-        final String delimiter = ",|:";
-        //then
-        assertThatThrownBy(() -> {
-            new Numbers(isNotNumber, delimiter);
-        })
-                .isInstanceOf(RuntimeException.class)
-                .hasMessage("Input has something not number");
+	@Test
+	void numbersTest() {
+		//given
+		String input = "1,2:3";
+		String delimiter = ",|:";
+		//then
+		assertThat(new Numbers(input, delimiter).getNumbers()).isEqualTo(List.of(1, 2, 3));
+	}
 
-        //given
-        final String hasNegativeNumber = "1,-2:3";
-        //then
-        assertThatThrownBy(() -> {
-            new Numbers(hasNegativeNumber, delimiter);
-        })
-                .isInstanceOf(RuntimeException.class)
-                .hasMessage("Input has negative number");
-    }
+	@ParameterizedTest
+	@MethodSource("createExpressionAndDelimiter")
+	void validate(String expression, String delimiter, String errorMessage) {
+		assertThatThrownBy(() -> {
+			new Numbers(expression, delimiter);
+		})
+			.isInstanceOf(RuntimeException.class)
+			.hasMessage(errorMessage);
+
+	}
 }

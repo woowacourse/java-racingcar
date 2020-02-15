@@ -1,30 +1,42 @@
 package calculator.domain;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class DelimiterTest {
 
-    @Test
-    void defineDelimiter() {
-        //given
-        String input = "1,2:3";
-        //then
-        assertThat(new Delimiter(input).getDelimiter()).isEqualTo(Delimiter.DEFAULT_DELIMITER);
+	@ParameterizedTest
+	@CsvSource(value = {"1,2:3!,|:"}, delimiter = '!')
+	void defineDelimiter(String input, String delimiter) {
+		assertThat(new Delimiter(input).getDelimiter()).isEqualTo(delimiter);
+	}
 
-        //given
-        String customDelimiter = "a";
-        String custumInput = "//" + customDelimiter +"\n1a2a3a";
-        //then
-        assertThat(new Delimiter(custumInput).getDelimiter()).isEqualTo(customDelimiter);
-    }
+	@Test
+	void customDelimiter() {
+		String input = "//a\n1a2a3";
+		String delimiter = "a";
+		assertThat(new Delimiter(input).getDelimiter()).isEqualTo(delimiter);
+	}
 
-    @Test
-    void hasCustomDelimiterTest() {
-        //given
-        String input = "//,\n";
-        //then
-        assertThat(new Delimiter(input).hasCustomDelimiter(input)).isTrue();
-    }
+	@Test
+	void hasCustomDelimiterTest() {
+		//given
+		String input = "//,\n";
+		//then
+		assertThat(new Delimiter(input).hasCustomDelimiter(input)).isTrue();
+	}
+
+	// class CarRacingTest {
+	// 	@ParameterizedTest
+	// 	@ValueSource(ints = {-1, 0})
+	// 	void validatePositiveNumber(int negativeNumber) {
+	// 		assertThatThrownBy(() -> {
+	// 			CarRacing.validatePositiveNumber(negativeNumber);
+	// 		}).isInstanceOf(IllegalArgumentException.class)
+	// 			.hasMessage("2이상의 수를 입력해야합니다.");
+	// 	}
+	// }
 }
