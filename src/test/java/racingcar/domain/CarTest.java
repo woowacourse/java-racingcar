@@ -4,13 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-
 import java.util.stream.Stream;
 
 @DisplayName("자동차 객체 테스트")
@@ -29,9 +26,8 @@ public class CarTest {
     @DisplayName("move가 숫자 값에 대해서 적절하게 작동하는지 테스트")
     void moveTest(int input, int expectedDistance) {
         Car testCar = new Car("test");
-        testCar.move(input);
+        testCar.move(new TestMovingStrategy(input));
         assertThat(testCar.getDistance()).isEqualTo(expectedDistance);
-
     }
 
     private static Stream<Arguments> provideNumAndDistance() {
@@ -47,6 +43,21 @@ public class CarTest {
                 Arguments.of(8,1),
                 Arguments.of(9,1)
         );
+    }
+
+    class TestMovingStrategy implements MovingStrategy {
+        private static final int MOVING_THRESHOLD = 4;
+
+        private int comparingNumber;
+
+        TestMovingStrategy(int input) {
+            this.comparingNumber = input;
+        }
+
+        @Override
+        public boolean isMovable() {
+            return comparingNumber >= MOVING_THRESHOLD;
+        }
     }
 }
 

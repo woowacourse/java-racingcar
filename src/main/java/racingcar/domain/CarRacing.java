@@ -13,7 +13,7 @@ public class CarRacing {
     }
 
     public void move() {
-        cars.forEach(Car::move);
+        cars.forEach(car -> car.move(new RandomMovingStrategy()));
     }
 
     public List<Car> getWinners() {

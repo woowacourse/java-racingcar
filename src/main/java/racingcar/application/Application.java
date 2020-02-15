@@ -25,19 +25,14 @@ public class Application {
 
     private static int enterNumberUntilValid() {
         while(true) {
-            return enterValidNumber();
+            try {
+                int number = InputView.getMoveNumber();
+                checkValidNumber(number);
+                return number;
+            } catch(IllegalArgumentException e) {
+                throw new IllegalArgumentException(e.getMessage());
+            }
         }
-    }
-
-    private static int enterValidNumber() {
-        int number;
-        try {
-            number = InputView.getMoveNumber();
-            checkValidNumber(number);
-        } catch(IllegalArgumentException e) {
-            throw new IllegalArgumentException();
-        }
-        return number;
     }
 
     private static void checkValidNumber(int number) {

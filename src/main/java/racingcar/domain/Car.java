@@ -5,9 +5,6 @@ import java.util.Random;
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
-    private static final int MOVE_THRESHOLD = 4;
-    private static final int RANDOM_RANGE = 10;
-    private static final int RANDOM_MIN = 0;
 
     private final String name;
     private int distance;
@@ -25,21 +22,10 @@ public class Car {
         }
     }
 
-    /* 테스트용 메서드 */
-    public void move(int number) {
-        if (number >= MOVE_THRESHOLD) {
+    public void move(MovingStrategy movingStrategy) {
+        if (movingStrategy.isMovable()) {
             this.distance++;
         }
-    }
-
-    public void move() {
-        if (generateRandNumber() >= MOVE_THRESHOLD) {
-            this.distance++;
-        }
-    }
-
-    public static int generateRandNumber() {
-        return new Random().nextInt(RANDOM_RANGE) + RANDOM_MIN;
     }
 
     public boolean isWinner(int maxDistance) {
