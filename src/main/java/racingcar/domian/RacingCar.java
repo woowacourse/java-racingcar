@@ -7,6 +7,7 @@ public class RacingCar {
     private static final int ZERO = 0;
     private static final int COUNT_LOWER_LIMIT = 1;
     private static final int COUNT_UPPER_LIMIT = 10;
+
     private Cars cars;
     private int round;
 

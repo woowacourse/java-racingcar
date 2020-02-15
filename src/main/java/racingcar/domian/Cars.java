@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private final List<Car> cars;
-
     private static final int CAR_LIMIT = 5;
     private static final String DELIMITER = ",";
+
+    private final List<Car> cars;
 
     public Cars(String inputNames) {
         String[] names = inputNames.split(DELIMITER);
