@@ -3,6 +3,8 @@ package racingCar.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +21,7 @@ class DecidersTest {
 
     @Test
     void decidePlayerGoOrWait() {
-        Deciders deciders = new Deciders(players);
-        deciders.decidePlayerGoOrWait();
-        System.out.println(deciders);
+        /* 테스트 하기 어려운 경우 */
     }
 
     @Test
@@ -43,16 +43,20 @@ class DecidersTest {
     void get_ShouldTrue() {
         List<Boolean> booleans = getBooleans(true);
         Deciders deciders = new Deciders(players, booleans);
-        Assertions.assertThat(deciders.get(1))
-                .isTrue();
+        for (int i = 0; i < players.size(); i++) {
+            Assertions.assertThat(deciders.get(i))
+                    .isTrue();
+        }
     }
 
     @Test
     void get_ShouldFalse() {
         List<Boolean> booleans = getBooleans(false);
         Deciders deciders = new Deciders(players, booleans);
-        Assertions.assertThat(deciders.get(1))
-                .isFalse();
+        for (int i = 0; i < players.size(); i++) {
+            Assertions.assertThat(deciders.get(i))
+                    .isFalse();
+        }
     }
 
     private List<Boolean> getBooleans(boolean bool) {
