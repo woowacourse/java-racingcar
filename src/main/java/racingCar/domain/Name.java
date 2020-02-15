@@ -29,4 +29,8 @@ public class Name {
     public String getString() {
         return name;
     }
+
+    public String toString() {
+        return getString();
+    }
 }

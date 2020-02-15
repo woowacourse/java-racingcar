@@ -1,5 +1,6 @@
 package racingCar.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,9 +11,13 @@ public class StringParser {
     private StringParser() {
     }
 
-    public static List<Name> parseToNameList(String input) throws IllegalArgumentException {
-        return Arrays.stream(input.split(DELIMITER))
-                .map(Name::new)
-                .collect(Collectors.toUnmodifiableList());
+    public static List<Name> parseToNameList(String input) {
+        try {
+            return Arrays.stream(input.split(DELIMITER))
+                    .map(Name::new)
+                    .collect(Collectors.toUnmodifiableList());
+        } catch (IllegalArgumentException e) {
+            return new ArrayList<>();
+        }
     }
 }

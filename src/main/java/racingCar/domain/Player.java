@@ -3,11 +3,9 @@ package racingCar.domain;
 import java.util.stream.IntStream;
 
 public class Player {
-    private static final String COLON_WRAPPED_WITH_SPACE = " : ";
-    private static final String HYPHEN = "-";
     private static final int DEFAULT_POSITION = 0;
 
-    private Name name;
+    private final Name name;
     private int position;
 
     public Player(Name name) {
@@ -35,17 +33,6 @@ public class Player {
 
     private void goOneStep() {
         position += 1;
-    }
-
-    /**
-     * 예시) pobi : ---
-     */
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(name.getString());
-        stringBuilder.append(COLON_WRAPPED_WITH_SPACE);
-        IntStream.range(0, position)
-                .forEach((t) -> stringBuilder.append(HYPHEN));
-        return stringBuilder.toString();
     }
 
     public static int compare(Player a, Player b) {

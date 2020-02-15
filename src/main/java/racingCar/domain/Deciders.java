@@ -9,15 +9,18 @@ public class Deciders {
     private static final int BOUND = 4;
     private static final int TEN = 10;
 
-    private List<Boolean> booleans;
+    private final List<Boolean> booleans;
 
+    /**
+     * has random booleans
+     */
     public Deciders(Players players) {
         this.booleans = getBooleansDecidingPlayerGoOrWait(players);
     }
 
     private List<Boolean> getBooleansDecidingPlayerGoOrWait(Players players) {
         List<Boolean> randomBooleans = new ArrayList<>();
-        for (Player player: players.getUnmodifiableList()) {
+        for (Player ignored : players.getUnmodifiableList()) {
             randomBooleans.add(decidePlayerGoOrWait());
         }
         return randomBooleans;

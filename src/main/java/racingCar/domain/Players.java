@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 public class Players {
     private static final int ZERO_INDEX = 0;
 
-    private List<Player> players;
+    private final List<Player> players;
 
     public Players(List<Name> names) {
         players = new ArrayList<>();
@@ -48,32 +48,12 @@ public class Players {
         }
     }
 
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        players.forEach(
-                (t) -> stringBuilder.append(t)
-                        .append("\n")
-        );
-
-        return stringBuilder.toString();
-    }
-
-    public String getWinners() {
+    public List<Player> getWinners() {
         int max = getMax();
 
-        List<Player> winnerList = players.stream()
+        return players.stream()
                 .filter((t) -> t.isWinner(max))
-                .collect(Collectors.toList());
-
-        StringBuilder stringBuilder = new StringBuilder();
-
-        winnerList.stream()
-                .peek((t) -> stringBuilder.append(t.getName()))
-                .forEach((t) -> stringBuilder.append(", "));
-
-        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
-
-        return stringBuilder.toString();
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private int getMax() {
