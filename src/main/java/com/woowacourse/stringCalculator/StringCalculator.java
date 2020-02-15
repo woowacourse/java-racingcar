@@ -6,6 +6,12 @@ import java.util.regex.Pattern;
 public class StringCalculator {
 	private static final int ZERO = 0;
 	private static final String DELIMITERS = "[:,]";
+	private static final Pattern CUSTOM_REGEX = Pattern.compile("//(.)\n(.*)");
+
+	// TODO : 실행하는 main문이 없는 경우, private 생성자를 만들어 제한을 둬야 함.
+
+	private StringCalculator() {
+	}
 
 	public static int calculate(final String value) {
 		if (isNullOrEmpty(value)) {
@@ -37,11 +43,11 @@ public class StringCalculator {
 	}
 
 	private static String[] splitByDelimiter(final String value) {
-		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(value);
+		Matcher matcher = CUSTOM_REGEX.matcher(value);
 
-		if (m.find()) {
-			final String customDelimiter = m.group(1);
-			return m.group(2).split(customDelimiter);
+		if (matcher.find()) {
+			final String customDelimiter = matcher.group(1);
+			return matcher.group(2).split(customDelimiter);
 		}
 		return value.split(DELIMITERS);
 	}

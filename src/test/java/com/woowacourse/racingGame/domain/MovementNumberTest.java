@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class MovementNumberTest {
 	@Test
 	void checkValid_이동_횟수가_숫자가_아닌_경우() {

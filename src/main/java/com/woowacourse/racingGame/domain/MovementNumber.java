@@ -20,7 +20,7 @@ public class MovementNumber {
 	}
 
 	private void checkPositive(final int parsedNumber) {
-		if (!(parsedNumber > ZERO)) {
+		if (parsedNumber <= ZERO) {
 			throw new IllegalArgumentException("입력한 이동 횟수가 0보다 작은 값입니다.");
 		}
 	}

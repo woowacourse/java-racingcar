@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+// NOTE : 이건 View에 필요한 작업 처리의 보조? View와 같이 있어야하지 않을까?
 public class StringUtil {
 	private static final String DELIMITER = ",";
 	private static final String DASH = "-";

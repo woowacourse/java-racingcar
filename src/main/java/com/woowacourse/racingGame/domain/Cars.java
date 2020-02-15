@@ -25,6 +25,13 @@ public class Cars {
 			.count();
 	}
 
+	public void attemptMove() {
+		for (Car car : cars) {
+			car.attemptMoveThrough(RandomGenerator.generateRandomNumber());
+		}
+	}
+
+	// NOTE : unmodifiable로 처리해주는 것이 의미를 가지는지 리뷰어님께 여쭤보기.
 	public List<Car> getCars() {
 		return Collections.unmodifiableList(cars);
 	}

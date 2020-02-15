@@ -4,8 +4,24 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
 	private static final int MOVING_UNIT = 1;
+
+	@Test
+	void attemptMoveThrough_범위_밖의_수() {
+		final int lowerNumber = -1;
+		final Car car = new Car(new Name("test"), new Position(4));
+
+		assertThatThrownBy(() -> car.attemptMoveThrough(lowerNumber))
+			.isInstanceOf(IllegalArgumentException.class);
+
+		final int higherNumber = 10;
+		final Car car1 = new Car(new Name("test"), new Position(4));
+
+		assertThatThrownBy(() -> car1.attemptMoveThrough(higherNumber))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
 
 	@Test
 	void attemptMoveThrough_랜덤_값이_3_이하() {

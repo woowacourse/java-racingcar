@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class CarsTest {
 	@Test
 	void checkDuplicate_유효한_이름() {

@@ -19,6 +19,10 @@ public class Car {
 	}
 
 	public void attemptMoveThrough(final int randomNumber) {
+		if (randomNumber < 0 || randomNumber > 9) {
+			throw new IllegalArgumentException();
+		}
+
 		if (isMovable(randomNumber)) {
 			this.position = this.position.increaseByMovingUnit();
 		}
@@ -28,6 +32,7 @@ public class Car {
 		return randomNumber >= MOVABLE_LOWER_BOUND;
 	}
 
+	// NOTE : 불변객체의 이점?
 	public boolean isSamePosition(final int winnerPosition) {
 		return this.position.getPosition() == winnerPosition;
 	}

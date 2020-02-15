@@ -11,6 +11,7 @@ import com.woowacourse.racingGame.domain.Car;
 import com.woowacourse.racingGame.domain.Name;
 import com.woowacourse.racingGame.domain.Position;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class StringUtilTest {
 	@Test
 	void split_쉼표로_구분되어_입력된_자동차_이름() {

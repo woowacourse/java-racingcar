@@ -1,4 +1,4 @@
-package com.woowacourse.racingGame.utils;
+package com.woowacourse.racingGame.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,10 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.woowacourse.racingGame.domain.Car;
-import com.woowacourse.racingGame.domain.Cars;
-import com.woowacourse.racingGame.domain.Name;
-
+@SuppressWarnings("NonAsciiCharacters")
 public class CarsFactoryTest {
 	@Test
 	void generate_Cars_생성() {

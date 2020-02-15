@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class NameTest {
 	@Test
 	void checkNullOrEmpty_null_또는_빈_문자열() {
