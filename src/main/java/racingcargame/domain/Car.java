@@ -3,7 +3,7 @@ package racingcargame.domain;
 public class Car {
     private static final int CAR_NAME_LIMIT = 5;
     private static final int FORWARD_BASE_NUMBER = 4;
-    public static final int INITIAL_POSITION = 0;
+    private static final int INITIAL_POSITION = 0;
 
     private String name;
     private int position;
@@ -19,14 +19,6 @@ public class Car {
         this.position = INITIAL_POSITION;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
     public void move(int randomNumber) {
         if (randomNumber >= FORWARD_BASE_NUMBER) {
             position++;
@@ -35,5 +27,13 @@ public class Car {
 
     public boolean isSamePositionWith(int position) {
         return this.position == position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
