@@ -20,9 +20,18 @@ public class Position implements Comparable<Position> {
     }
 
     @Override
+    public int compareTo(Position o) {
+        return Integer.compare(this.position, o.position);
+    }
+
+    @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Position position1 = (Position) o;
         return position == position1.position;
     }
@@ -30,10 +39,5 @@ public class Position implements Comparable<Position> {
     @Override
     public int hashCode() {
         return Objects.hash(position);
-    }
-
-    @Override
-    public int compareTo(Position o) {
-        return Integer.compare(this.position, o.position);
     }
 }

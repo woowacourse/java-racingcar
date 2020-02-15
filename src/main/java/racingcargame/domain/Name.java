@@ -1,7 +1,5 @@
 package racingcargame.domain;
 
-import java.util.Objects;
-
 public class Name {
     private static final int CAR_NAME_LIMIT = 5;
 

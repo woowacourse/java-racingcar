@@ -9,6 +9,9 @@ public class Names {
     private List<Name> names;
 
     public Names(List<Name> names) {
+        if (names == null || names.isEmpty()) {
+            throw new IllegalArgumentException("빈 값 또는 null이 입력되었습니다.");
+        }
         this.names = names;
     }
 
