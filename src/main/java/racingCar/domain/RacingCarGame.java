@@ -8,11 +8,12 @@ import java.util.List;
 public class RacingCarGame {
 
     public void play() {
-        OutputView.printStartingComment();
-        InputView.inputSomething();
-        OutputView.printAskingSentenceOfTry();
-        int numberToMove = InputView.inputNumberToMove();
-        System.out.println();
+        int numberToMove = InputView.setupGame();
+        RacingCar[] competitors = playRace(numberToMove);
+        showResult(competitors);
+    }
+
+    private RacingCar[] playRace(int numberToMove) {
         String[] names = RacingCarNameGenerator.generate("pobi,crong,honux");
         RacingCar[] competitors = new RacingCar[3];
         for (int i = 0; i < names.length; i++) {
@@ -30,6 +31,10 @@ public class RacingCarGame {
             OutputView.printStateOfRacingCars(competitors);
         }
 
+        return competitors;
+    }
+
+    private void showResult(RacingCar[] competitors) {
         List<RacingCar> winners = RacingCarWinnersSortOuter.sortOut(competitors);
         OutputView.printResult(winners);
     }
