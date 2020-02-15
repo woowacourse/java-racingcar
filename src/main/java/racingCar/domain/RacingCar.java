@@ -3,11 +3,13 @@ package racingCar.domain;
 import racingCar.domain.errors.InvalidInputException;
 
 public class RacingCar implements Comparable<RacingCar> {
+    private static final int MAX_RACINGCAR_NAME_LENGTH = 5;
+    private static final int STANDARD_TO_GO = 4;
     private String name;
     private int position = 0;
 
     public RacingCar(String name) {
-        if (5 < name.length()) {
+        if (MAX_RACINGCAR_NAME_LENGTH < name.length()) {
             throw new InvalidInputException();
         }
         this.name = name;
@@ -43,7 +45,7 @@ public class RacingCar implements Comparable<RacingCar> {
     }
 
     public void goWithNumberOverFour(int i) {
-        if (4 <= i) {
+        if (STANDARD_TO_GO <= i) {
             go();
         }
 
