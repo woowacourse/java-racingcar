@@ -15,6 +15,8 @@ import java.util.Scanner;
  */
 
 public class InputView {
+	private static final String INPUT_RANGE_EXCEPTION_MESSAGE = "1~100 범위의 양의 정수만 입력해주세요.";
+
 	private static Scanner SCANNER = new Scanner(System.in);
 
 	private InputView() {
@@ -27,10 +29,10 @@ public class InputView {
 
 	public static int inputTrialTime() {
 		try {
-		OutputView.printInputTrialTimeMessage();
-		return SCANNER.nextInt();
+			OutputView.printInputTrialTimeMessage();
+			return SCANNER.nextInt();
 		} catch (InputMismatchException e) {
-			throw new InputMismatchException("1~100 범위의 양의 정수만 입력해주세요.");
+			throw new InputMismatchException(INPUT_RANGE_EXCEPTION_MESSAGE);
 		}
 
 	}

@@ -25,19 +25,24 @@ public class Game {
 	private static final int INDEX_START = 0;
 	private static final int COMPARING_START_INDEX = 1;
 
-	private static List<Car> cars = new ArrayList<>();
-	private static TrialTime trialTime = null;
+	private List<Car> cars = new ArrayList<>();
+	private final TrialTime trialTime;
 
-	public static void initialize() {
+	public Game() {
 		String inputCarName = InputView.inputCarName();
-		List<String> carNames =  StringUtils.splitCarNames(inputCarName);
+		List<String> carNames = StringUtils.splitCarNames(inputCarName);
 		carNames = StringUtils.trimCarNames(carNames);
 		carNames.forEach(carName -> cars.add(new Car(carName)));
 		int inputTrialTime = InputView.inputTrialTime();
-		trialTime = new TrialTime(inputTrialTime);
+		this.trialTime = new TrialTime(inputTrialTime);
 	}
 
-	public static void race() {
+	public Game(List<Car> cars, int inputTrialTime) {
+		this.cars = cars;
+		this.trialTime = new TrialTime(inputTrialTime);
+	}
+
+	public void race() {
 		OutputView.printResultMessage();
 		for (int index = INDEX_START, end = trialTime.getTrialTime(); index < end; index++) {
 			raceOneRound();
@@ -45,20 +50,20 @@ public class Game {
 		}
 	}
 
-	private static void raceOneRound() {
+	private void raceOneRound() {
 		for (Car car : cars) {
 			car.goOrNot(RandomNumberUtils.createRandomNumber());
 			car.showCurrentPosition();
 		}
 	}
 
-	public static void showWinner() {
+	public void showWinner() {
 		Car topPositionCar = findTopPositionCar(cars);
 		cars.forEach(topPositionCar::findWinners);
 		OutputView.printWinners(topPositionCar.getWinners());
 	}
 
-	public static Car findTopPositionCar(final List<Car> cars) {
+	public Car findTopPositionCar(final List<Car> cars) {
 		Car winner = cars.get(0);
 		int carSize = cars.size();
 		if (carSize == 1) {

@@ -15,13 +15,13 @@ import racingcar.View.OutputView;
  */
 
 public class Main {
-    public static void main(String[] args) {
-        try {
-            Game.initialize();
-            Game.race();
-            Game.showWinner();
-        } catch (Exception e) {
-            OutputView.printExceptionMessage(e.getMessage());
-        }
-    }
+	public static void main(String[] args) {
+		try {
+			Game game = new Game();
+			game.race();
+			game.showWinner();
+		} catch (Exception e) {
+			OutputView.printExceptionMessage(e.getMessage());
+		}
+	}
 }

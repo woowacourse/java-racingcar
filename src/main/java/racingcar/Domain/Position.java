@@ -11,21 +11,26 @@ import java.util.Objects;
  * 날짜 : 2020/02/15
  */
 public class Position {
+	private static final String POSITION_CAN_NOT_BE_NULL_EXCEPTION_MESSAGE = "자동차 위치는 null일 수 없습니다.";
+	private static final String POSITION_CAN_BE_ONLY_POSITIVE_EXCEPTION_MESSAGE = "양수만 입력해야합니다.";
+	private static final int DEFAULT_POSITION = 1;
+	private static final int POSITION_LOWER_BOUNDARY = 1;
+
 	private int position;
 
 	public Position() {
-		this.position = 1;
+		this.position = DEFAULT_POSITION;
 	}
 
-	public Position(Integer inputPosition) {
-		Objects.requireNonNull(inputPosition, "자동차 위치는 null일 수 없습니다.");
+	public Position(final Integer inputPosition) {
+		Objects.requireNonNull(inputPosition, POSITION_CAN_NOT_BE_NULL_EXCEPTION_MESSAGE);
 		validatePosition(inputPosition);
 		this.position = inputPosition;
 	}
 
-	private void validatePosition(Integer inputPosition) {
-		if (inputPosition < 1) {
-			throw new IllegalArgumentException("양수만 입력해야합니다.");
+	private void validatePosition(final Integer inputPosition) {
+		if (inputPosition < POSITION_LOWER_BOUNDARY) {
+			throw new IllegalArgumentException(POSITION_CAN_BE_ONLY_POSITIVE_EXCEPTION_MESSAGE);
 		}
 	}
 

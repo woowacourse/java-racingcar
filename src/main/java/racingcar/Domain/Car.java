@@ -20,12 +20,11 @@ import racingcar.View.OutputView;
 
 public class Car {
 	private static final int CRITERIA_FOR_GO = 4;
-	public static final String DASH = "-";
-	public static final String COLON = " : ";
-	public static final String NAME_DIVIDER = ", ";
+	private static final String POSITION_INDICATOR = "-";
+	private static final String COLON = " : ";
+	private static final String NAME_DIVIDER = ", ";
 
 	public static List<String> winners = new ArrayList<>();
-
 	private Name carName;
 	private Position position;
 
@@ -60,8 +59,8 @@ public class Car {
 	public void showCurrentPosition() {
 		StringBuilder outputValue = new StringBuilder();
 		outputValue.append(carName.getName()).append(COLON);
-		for (int index = 0; index < position.getPosition(); index++) {
-			outputValue.append(DASH);
+		for (int index = 0, position = this.getPosition().getPosition(); index < position; index++) {
+			outputValue.append(POSITION_INDICATOR);
 		}
 		OutputView.printPositionByDash(outputValue.toString());
 	}
@@ -77,6 +76,4 @@ public class Car {
 				.map(String::valueOf)
 				.collect(joining(NAME_DIVIDER));
 	}
-
-	;
 }
