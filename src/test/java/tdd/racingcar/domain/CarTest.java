@@ -19,34 +19,33 @@ public class CarTest {
 
 	@Test
 	void getPosition() {
-		final int expected = 0;
-		final int actual = car.getPosition();
+		final Position expected = new Position(0);
+		final Position actual = car.getPosition();
 		assertEquals(expected, actual);
 	}
 
 	@Test
 	void moveForEnoughPower() {
 		final Power power = new Power(4);
-		final int previousPosition = car.getPosition();
 		car.move(power);
-		final int currentPosition = car.getPosition();
-		final int expectedPosition = previousPosition + 1;
-		assertEquals(expectedPosition, currentPosition);
+		final Position actualPosition = car.getPosition();
+		final Position expectedPosition = new Position(1);
+		assertEquals(expectedPosition, actualPosition);
 	}
 
 	@Test
 	void moveForNotEnoughPower() {
 		final Power power = new Power(3);
-		final int previousPosition = car.getPosition();
+		final Position previousPosition = car.getPosition();
 		car.move(power);
-		final int currentPosition = car.getPosition();
+		final Position currentPosition = car.getPosition();
 		assertEquals(currentPosition, previousPosition);
 	}
 
 	@Test
 	void getName() {
-		final String actual = car.getName();
-		assertEquals(CAR_NAME, actual);
+		final Name actual = car.getName();
+		assertEquals(CAR_NAME, actual.toString());
 	}
 
 	@Test

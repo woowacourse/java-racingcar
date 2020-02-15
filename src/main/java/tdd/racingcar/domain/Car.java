@@ -1,11 +1,12 @@
 package tdd.racingcar.domain;
 
 public class Car {
-	private final Position position = new Position(0);
+	private Position position;
 	private final Name name;
 
 	public Car(final String name) {
 		this.name = new Name(name);
+		this.position = new Position(0);
 	}
 
 	public void move(final Power power) {
@@ -14,15 +15,11 @@ public class Car {
 		}
 	}
 
-	public boolean isPosition(final int maxPosition) {
-		return position.match(maxPosition);
+	public Position getPosition() {
+		return position;
 	}
 
-	public int getPosition() {
-		return position.getPosition();
-	}
-
-	public String getName() {
-		return name.getName();
+	public Name getName() {
+		return name;
 	}
 }
