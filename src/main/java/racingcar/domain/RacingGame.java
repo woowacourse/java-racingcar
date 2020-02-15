@@ -40,11 +40,11 @@ public class RacingGame {
 	}
 
 	private static List<Car> getCars(String[] carNames) {
-		final List<Car> racingCarList = new ArrayList<>(carNames.length);
+		final List<Car> racingCars = new ArrayList<>(carNames.length);
 		for (String carName : carNames) {
-			racingCarList.add(new Car(carName));
+			racingCars.add(new Car(carName));
 		}
-		return racingCarList;
+		return racingCars;
 	}
 
 	private static String[] getRacingCarNames() {
