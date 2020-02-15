@@ -1,56 +1,60 @@
 package racingcar.application;
 
-import racingcar.domain.CarRacing;
+import racingcar.domain.*;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Application {
     public static void main(String[] args) {
-        CarRacing carRacing = generateCarRacing();
-        int moveNumber = enterNumberUntilValid();
+        CarRacing carRacing = new CarRacing(generateCarsData());
+        RacingRound racingRound = generateValidRound();
 
-        run(carRacing, moveNumber);
+        run(carRacing, racingRound);
         findWinner(carRacing);
     }
 
-    private static CarRacing generateCarRacing() {
+    private static List<CarData> generateCarsData() {
+        final int defaultDistance = 0;
         while (true) {
             try {
-                return new CarRacing(InputView.getNames());
+                List<Name> names = InputView.getNames();
+                return names.stream()
+                        .map(name -> new CarData(name, defaultDistance))
+                        .collect(Collectors.toList());
             } catch(IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static int enterNumberUntilValid() {
+    private static RacingRound generateValidRound() {
         while(true) {
             try {
-                int number = InputView.getMoveNumber();
-                checkValidNumber(number);
-                return number;
+                return InputView.getMoveNumber();
             } catch(IllegalArgumentException e) {
-                throw new IllegalArgumentException(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
 
-    private static void checkValidNumber(int number) {
-        if (number < 1) {
-            throw new IllegalArgumentException("양의 정수만 입력이 가능합니다.");
-        }
-    }
-
-    private static void run(CarRacing carRacing, int moveNumber) {
-        System.out.println("\n실행 결과");
-        for(int i = 0; i < moveNumber; i++) {
+    private static void run(CarRacing carRacing, RacingRound racingRound) {
+        OutputView.printResultStart();
+        for(int i = 0; i < racingRound.getRound(); i++) {
             carRacing.move();
-            OutputView.printStatus(carRacing.getCars());
-            System.out.println();
+            OutputView.printStatus(getCarData(carRacing.getCars()));
         }
     }
 
     private static void findWinner(CarRacing carRacing) {
-        OutputView.printWinners(carRacing.getWinners());
+        OutputView.printWinners(getCarData(carRacing.getWinners()));
+    }
+
+    private static List<CarData> getCarData(List<Car> cars) {
+        return cars.stream()
+                .map(Car::getCarData)
+                .collect(Collectors.toList());
     }
 }

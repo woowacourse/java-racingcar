@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
+import racingcar.domain.CarData;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,28 +11,33 @@ public class OutputView {
     private static final String DISTANCE_INDICATOR = "-";
     private static final String COMMA = ", ";
 
-    public static void printStatus(List<Car> cars) {
-        System.out.println(cars.stream()
-                .map(OutputView::getStatus)
-                .collect(Collectors.joining(LINE_CHANGER)));
+    public static void printResultStart() {
+        System.out.println("\n실행 결과");
     }
 
-    public static void printWinners(List<Car> cars) {
+    public static void printStatus(List<CarData> carsData) {
+        System.out.println(carsData.stream()
+                .map(OutputView::getStatus)
+                .collect(Collectors.joining(LINE_CHANGER)));
+        System.out.println();
+    }
+
+    public static void printWinners(List<CarData> winnerCarsData) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(cars.stream()
-                .map(Car::getName)
+        stringBuilder.append(winnerCarsData.stream()
+                .map(carData -> carData.getName().getValue())
                 .collect(Collectors.joining(COMMA)));
         stringBuilder.append("가 최종 우승했습니다.");
         System.out.println(stringBuilder.toString());
     }
 
-    private static String getStatus(Car car) {
+    private static String getStatus(CarData carData) {
         StringBuilder SB = new StringBuilder();
 
-        SB.append(car.getName());
+        SB.append(carData.getName().getValue());
         SB.append(SEPARATOR);
-        for (int i = 0; i < car.getDistance(); i++) {
+        for (int i = 0; i < carData.getDistance(); i++) {
             SB.append(DISTANCE_INDICATOR);
         }
         return SB.toString();

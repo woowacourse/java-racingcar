@@ -16,7 +16,7 @@ public class CarTest {
     @CsvFileSource(resources = "/racingtestcase/illegalCarNameTestcase.csv")
     @DisplayName("잘못된 이름으로 객체생성을 시도할 때 테스트")
     void illegalCarNameTest(String illegalName) {
-        assertThatThrownBy(() -> new Car(illegalName))
+        assertThatThrownBy(() -> new Name(illegalName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차 이름은 5자 이하의 비어있지 않은 이름이어야 합니다.");
     }
@@ -25,7 +25,9 @@ public class CarTest {
     @MethodSource("provideNumAndDistance")
     @DisplayName("move가 숫자 값에 대해서 적절하게 작동하는지 테스트")
     void moveTest(int input, int expectedDistance) {
-        Car testCar = new Car("test");
+        CarData carData = new CarData(new Name("abc"), 0);
+        Car testCar = new Car(carData);
+
         testCar.move(new TestMovingStrategy(input));
         assertThat(testCar.getDistance()).isEqualTo(expectedDistance);
     }

@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 public class CarRacing {
     private final List<Car> cars;
 
-    public CarRacing(List<String> names) {
-        this.cars = names.stream()
+    public CarRacing(List<CarData> carData) {
+        this.cars = carData.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
