@@ -9,12 +9,18 @@ public class Car {
 	private final String name;
 	private int position;
 
-	public Car(String name) {
+	public Car(final String name) {
+		validateNullName(name);
 		validateLengthOfCarName(name);
 		this.name = name;
 		this.position = INITIAL_POSITION;
 	}
 
+	private void validateNullName(String name) {
+		if (name == null) {
+			throw new IllegalArgumentException("이름이 null일 수 없습니다.");
+		}
+	}
 
 	private void validateLengthOfCarName(String name) {
 		if ((name.length() < MINIMUM_LENGTH_OF_CAR_NAME) || (name.length() > MAXIMUM_LENGTH_OF_CAR_NAME)) {

@@ -12,6 +12,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class CarTest {
+	@Test
+	void 이름이_널이_아닌지_확인() {
+		assertThatThrownBy(() -> new Car(null))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("이름이 null일 수 없습니다.");
+	}
+
 	@ParameterizedTest
 	@MethodSource("generateInput")
 	void 이름_길이_1이상_5이하(String input) {

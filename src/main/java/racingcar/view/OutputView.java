@@ -4,7 +4,7 @@ public class OutputView {
 	private static final String NEW_LINE = "\n";
 
 	public static void printExceptionMessage(Exception e) {
-		e.printStackTrace();
+		System.out.println(e.getMessage());
 	}
 
 	public static void printCurrentPosition(String currentPosition) {
