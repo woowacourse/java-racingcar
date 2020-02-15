@@ -10,12 +10,9 @@ public class RacingCar {
     private Cars cars;
     private int round;
 
-    public void setUpPlayer(String inputNames) {
-        cars = new Cars(inputNames);
-    }
-
-    public void setUpRound(String inputRound) {
-        round = validateRound(inputRound);
+    public RacingCar(String names, String round) {
+        this.cars = new Cars(names);
+        this.round = validateRound(round);
     }
 
     private int validateRound(String inputRound) {

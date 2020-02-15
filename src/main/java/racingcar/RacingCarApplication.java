@@ -6,9 +6,9 @@ import racingcar.view.OutputView;
 
 public class RacingCarApplication {
     public static void main(String[] args) {
-        RacingCar game = new RacingCar();
-        game.setUpPlayer(InputView.inputCarName());
-        game.setUpRound(InputView.inputGameRound());
+        String playerNames = InputView.inputCarName();
+        String round = InputView.inputGameRound();
+        RacingCar game = new RacingCar(playerNames, round);
 
         OutputView.printNotice();
 

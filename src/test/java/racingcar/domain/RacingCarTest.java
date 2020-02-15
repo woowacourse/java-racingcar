@@ -10,19 +10,13 @@ import racingcar.domian.RacingCar;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RacingCarTest {
-    private static RacingCar game;
-
-    @BeforeAll
-    static void setUp() {
-        game = new RacingCar();
-    }
 
     @DisplayName("경주 Round 카운트가 10초과 혹은 1보다 작은 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"11"})
+    @ValueSource(strings = {"0", "-1", "11"})
     void 횟수가_10초과_및_1보다작은_경우(String count) {
         assertThatThrownBy(() -> {
-            game.setUpRound(count);
+            new RacingCar("user", count);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("횟수가 1보다 작거나 10번 초과");
     }
@@ -31,7 +25,7 @@ public class RacingCarTest {
     @Test
     void 횟수가_숫자가_아닌_경우() {
         assertThatThrownBy(() -> {
-            game.setUpRound("a");
+            new RacingCar("user", "a");
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("잘못된 횟수 입력");
     }
