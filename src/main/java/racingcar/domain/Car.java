@@ -1,12 +1,10 @@
 package racingcar.domain;
 
-import javax.crypto.MacSpi;
-
 public class Car {
-    public static final int INIT_POSITION = 0;
+    static final int INIT_POSITION = 0;
 
     private final Name name;
-    private int position;
+    private Position position;
 
     public Car(Name name) {
         if (RaceResult.EMPTY.equals(name.getName())) {
@@ -14,19 +12,19 @@ public class Car {
         }
 
         this.name = name;
-        this.position = INIT_POSITION;
+        this.position = new Position(INIT_POSITION);
     }
 
     public void moveForward() {
-        position++;
+        position.moveForward();
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
-    public boolean isMaxPosition(int maxPosition) {
-        return this.position == maxPosition;
+    public boolean matchesPosition(Position position) {
+        return this.position.equals(position);
     }
 
     public String getName() {

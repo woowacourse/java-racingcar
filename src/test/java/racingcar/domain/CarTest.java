@@ -10,7 +10,10 @@ class CarTest {
     @Test
     void moveForward() {
         //given
-        Car car = new Car(new Name("앨런"));
+        String allen = "앨런";
+        Name name = new Name(allen);
+        Car car = new Car(name);
+
         int initState = car.getPosition();
 
         //when
