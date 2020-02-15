@@ -9,27 +9,21 @@ public class Winner {
     private Winner() {
     }
 
-    public static List<String> getWinners(List<Car> carList) {
-        int max = getWinnerPosition(carList);
-        for (Car car : carList) {
-            if (car.isWinner(max)) {
-                winners.add(car.getName());
-            }
-        }
+    public static List<String> findWinners(List<Car> carList) {
+        int max = findWinnerPosition(carList);
+
+        carList.stream()
+            .filter(car -> car.isWinner(max))
+            .forEach(car -> winners.add(car.getName()));
+
         return winners;
     }
 
-    private static int getWinnerPosition(List<Car> carList) {
-        int maxPosition = Integer.MIN_VALUE;
-        int position;
-
-        for (Car car : carList) {
-            position = car.getPosition();
-            if (position > maxPosition) {
-                maxPosition = position;
-            }
-        }
-        return maxPosition;
+    private static int findWinnerPosition(List<Car> cars) {
+        return cars.stream()
+            .map(Car::getPosition)
+            .reduce(Integer::max)
+            .orElse(0);
     }
 
 }
