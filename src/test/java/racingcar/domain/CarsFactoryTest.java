@@ -10,31 +10,31 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class CarsTest {
+public class CarsFactoryTest {
 	@ParameterizedTest
 	@MethodSource("generateInput_중복")
-	void 이름_중복(List<String> input) {
+	void 이름_중복(String input) {
 
-		assertThatThrownBy(() -> new Cars(input))
+		assertThatThrownBy(() -> CarsFactory.createCars(input))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("중복된 이름이 존재합니다.");
 	}
 
 	@ParameterizedTest
 	@MethodSource("generateInput_최소_대수")
-	void 최소_자동차_대수(List<String> input) {
-		assertThatThrownBy(() -> new Cars(input))
+	void 최소_자동차_대수(String input) {
+		assertThatThrownBy(() -> CarsFactory.createCars(input))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("자동차는 최소 2대 이상이어야 합니다.");
 	}
 
 	static Stream<Arguments> generateInput_중복() {
-		return Stream.of(Arguments.of(Arrays.asList("bumbl","bumbl","sika")),
-				Arguments.of(Arrays.asList("ff", "ff", "ff")));
+		return Stream.of(Arguments.of("bumbl, bumbl, sika"),
+				Arguments.of("ff, ff, ff"));
 	}
 
 	static Stream<Arguments> generateInput_최소_대수() {
-		return Stream.of(Arguments.of(Arrays.asList("aaa")),
-				(Arguments.of(Arrays.asList(""))));
+		return Stream.of(Arguments.of("aaa"),
+				(Arguments.of("")));
 	}
 }
