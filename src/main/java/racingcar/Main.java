@@ -2,6 +2,7 @@ package racingcar;
 
 import racingcar.controller.RacingGame;
 import racingcar.domain.Round;
+import racingcar.domain.Winners;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 import racingcar.domain.result.RacingResult;
@@ -22,9 +23,7 @@ public class Main {
         RacingResult racingResult = racingGame.play();
         OutputView.printResult(racingResult);
 
-
-//        System.out.println("우승자 명단");
-//        Winners winners = new Winners(cars);
-//        OutputView.printResult(winners.getWinnersName());
+        List<Car> winners = Winners.getWinners(cars);
+        OutputView.printWinners(winners);
     }
 }

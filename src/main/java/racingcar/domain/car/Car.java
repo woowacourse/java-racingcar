@@ -32,8 +32,9 @@ public class Car implements Comparable<Car> {
         return position.getValue();
     }
 
-    public boolean isAtSameLocation(Car anotherCar) {
-        return this.position.compareTo(anotherCar.position) == 0;
+    public boolean isAt(int position) {
+        Position positionToCompare = new Position(position);
+        return this.position.compareTo(positionToCompare) == 0;
     }
 
     @Override
