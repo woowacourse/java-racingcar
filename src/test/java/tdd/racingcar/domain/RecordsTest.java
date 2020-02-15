@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class RecordTest {
+class RecordsTest {
 	@Test
 	void append() {
-		final Record record = new Record();
-		record.append("first");
+		final Records records = new Records();
+		records.append("first");
 		final String expected = "first";
-		final String actual = record.toString();
+		final String actual = records.toString();
 
 		assertEquals(expected, actual);
 	}
