@@ -2,6 +2,7 @@ package racingcar.Domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.stream.Collectors.joining;
 
@@ -48,10 +49,6 @@ public class Car {
 		return randomNumber >= CRITERIA_FOR_GO;
 	}
 
-	public Position getPosition() {
-		return this.position;
-	}
-
 	public boolean comparePosition(final Car target) {
 		return this.position.getPosition() > target.position.getPosition();
 	}
@@ -76,4 +73,24 @@ public class Car {
 				.map(String::valueOf)
 				.collect(joining(NAME_DIVIDER));
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Car car = (Car) o;
+		return Objects.equals(carName, car.carName);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(carName);
+	}
+
+	public Position getPosition() {
+		return this.position;
+	}
+
 }

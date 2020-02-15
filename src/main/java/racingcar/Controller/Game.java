@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import racingcar.Domain.Car;
+import racingcar.Domain.Cars;
 import racingcar.Domain.TrialTime;
 import racingcar.Util.RandomNumberUtils;
 import racingcar.Util.StringUtils;
@@ -25,20 +26,23 @@ public class Game {
 	private static final int INDEX_START = 0;
 	private static final int COMPARING_START_INDEX = 1;
 
-	private List<Car> cars = new ArrayList<>();
+	private Cars cars;
 	private final TrialTime trialTime;
 
 	public Game() {
+		List<Car> separatedCars = new ArrayList<>();
+
 		String inputCarName = InputView.inputCarName();
 		List<String> carNames = StringUtils.splitCarNames(inputCarName);
 		carNames = StringUtils.trimCarNames(carNames);
-		carNames.forEach(carName -> cars.add(new Car(carName)));
+		carNames.forEach(carName -> separatedCars.add(new Car(carName)));
+		cars = new Cars(separatedCars);
 		int inputTrialTime = InputView.inputTrialTime();
 		this.trialTime = new TrialTime(inputTrialTime);
 	}
 
 	public Game(List<Car> cars, int inputTrialTime) {
-		this.cars = cars;
+		this.cars = new Cars(cars);
 		this.trialTime = new TrialTime(inputTrialTime);
 	}
 
@@ -51,15 +55,15 @@ public class Game {
 	}
 
 	private void raceOneRound() {
-		for (Car car : cars) {
+		for (Car car : cars.getCars()) {
 			car.goOrNot(RandomNumberUtils.createRandomNumber());
 			car.showCurrentPosition();
 		}
 	}
 
 	public void showWinner() {
-		Car topPositionCar = findTopPositionCar(cars);
-		cars.forEach(topPositionCar::findWinners);
+		Car topPositionCar = findTopPositionCar(cars.getCars());
+		cars.getCars().forEach(topPositionCar::findWinners);
 		OutputView.printWinners(topPositionCar.getWinners());
 	}
 
