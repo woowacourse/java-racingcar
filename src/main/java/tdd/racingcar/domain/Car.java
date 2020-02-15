@@ -4,7 +4,7 @@ public class Car {
 	private static final int DEFAULT_POSITION = 0;
 
 	private final Name name;
-	private Position position;
+	private final Position position;
 
 	public Car(final String name) {
 		this(name, DEFAULT_POSITION);
