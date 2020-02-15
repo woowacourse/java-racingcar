@@ -18,14 +18,6 @@ class PlayerTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1,kueni : -", "2,kueni : --"})
-    void testToString(int input, String expected) {
-        Player player = new Player(new Name("kueni"), input);
-        Assertions.assertThat(player.toString().equals(expected))
-                .isTrue();
-    }
-
-    @ParameterizedTest
     @CsvSource(value = {"1,3,-2", "3,1,2", "2,2,0"})
     void compare(int a, int b, int expected) {
         Player player = new Player(new Name("kueni"), a);

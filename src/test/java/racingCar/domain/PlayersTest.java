@@ -20,7 +20,7 @@ class PlayersTest {
         List<Name> names = StringParser.parseToNameList("pobi,jason,cu");
         Players players = new Players(names);
         List<Boolean> trueBooleans = new ArrayList<>();
-        for (Player player: players.getUnmodifiableList()) {
+        for (Player ignored : players.getUnmodifiableList()) {
             trueBooleans.add(true);
         }
         Deciders deciders = new Deciders(players, trueBooleans);
