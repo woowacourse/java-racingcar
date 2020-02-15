@@ -1,4 +1,4 @@
-package racinggame.controller;
+package racinggame.domain.data;
 
 import racinggame.domain.car.Car;
 import racinggame.view.OutputView;

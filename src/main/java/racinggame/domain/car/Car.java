@@ -1,6 +1,6 @@
 package racinggame.domain.car;
 
-import racinggame.controller.Output;
+import racinggame.domain.data.Output;
 
 import java.util.List;
 

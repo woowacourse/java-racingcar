@@ -1,7 +1,7 @@
 package racinggame.domain;
 
-import racinggame.controller.Input;
-import racinggame.controller.Output;
+import racinggame.domain.data.Input;
+import racinggame.domain.data.Output;
 import racinggame.domain.car.Car;
 import racinggame.view.OutputView;
 
@@ -14,10 +14,7 @@ import java.util.Random;
  * 클래스 메서드를 통해 수행되도록 설계되었다.
  */
 public class RacingGame {
-    /**
-     * random은 난수값 생성을 위한 Random 객체의 인스턴스이다.
-     */
-    private static final Random random = new Random();
+    private static final Random random = new Random(System.currentTimeMillis());
     /**
      * RANDOM_NUMBER_BOUND는 랜덤값의 생성 범위를 지정하는 정수형 상수값이다.
      * 이 값이 변경될 수 있고, 기본적으로 레이싱 게임의 룰에 속해있는 값이므로

@@ -1,6 +1,8 @@
 package racinggame.controller;
 
 import racinggame.domain.RacingGame;
+import racinggame.domain.data.Input;
+import racinggame.domain.data.Output;
 
 /**
  * Main 클래스는 메인 로직의 최상위 운영을 담당하는 클래스이다.

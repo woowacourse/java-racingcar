@@ -1,9 +1,10 @@
-package racinggame.controller;
+package racinggame.domain.data;
 
 import racinggame.view.InputView;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Input 클래스는 InputView와 RacingGame 사이에서 입력값의 검증, 전달을 맡는 클래스이다.
@@ -30,7 +31,7 @@ public class Input {
      * 이후 데이터에 대한 예외처리를 수행하여,
      * 만약 올바르지 않은 값임이 확인된다면 예외를 발생시킨다.
      *
-     * @param inputName 이름의 목록을 저장하는 String 값이다.
+     * @param inputName   이름의 목록을 저장하는 String 값이다.
      * @param inputRepeat 횟수를 저장하는 String 값이다.
      */
     public Input(String inputName, String inputRepeat) {
@@ -51,7 +52,7 @@ public class Input {
         return Arrays.asList(splitName);
     }
 
-    public boolean isLoopDone(int repeat){
+    public boolean isLoopDone(int repeat) {
         return repeat < this.repeat;
     }
 
@@ -71,12 +72,14 @@ public class Input {
      * validateNames 는 이름의 목록 데이터를 분석하여, 목록 자체가 비어있거나 null인 경우 예외를 발생시킨다.
      * 또한, 각각의 이름 데이터에 문제가 있는지 validateNameLength를 호출하여 검사한다.
      */
-     private void validateNames() {
-        List<String> list = splitInputByComma();
-        if (list == null) {
+    private void validateNames() {
+        List<String> splitName = splitInputByComma();
+        if (Objects.isNull(names)) {
             throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
         }
-        list.stream().forEach(Input::validateNameLength);
+        for (String name : splitName) {
+            validateNameLength(name);
+        }
     }
 
     /**
