@@ -2,7 +2,6 @@ package racingcar.domain.car;
 
 public class Car implements Comparable<Car> {
     private static final int NUMBER_POSSIBLE_TO_GO = 4;
-    private static final String IS = " : ";
 
     private final Name name;
     private Position position;
@@ -31,14 +30,6 @@ public class Car implements Comparable<Car> {
 
     public int getPosition() {
         return position.getValue();
-    }
-
-    public String getRoundResult() {
-        StringBuilder result = new StringBuilder();
-        result.append(name);
-        result.append(IS);
-        result.append(position);
-        return result.toString();
     }
 
     public boolean isAtSameLocation(Car anotherCar) {

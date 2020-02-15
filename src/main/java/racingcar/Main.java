@@ -6,6 +6,7 @@ import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 import racingcar.domain.result.RacingResult;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Main {
 
         RacingGame racingGame = new RacingGame(cars, round);
         RacingResult racingResult = racingGame.play();
+        OutputView.printResult(racingResult);
 
 
 //        System.out.println("우승자 명단");

@@ -30,12 +30,6 @@ public class CarTest {
     }
 
     @Test
-    void print() {
-        Car car = new Car("무늬", DEFAULT_POSITION);
-        System.out.println(car.getRoundResult());
-    }
-
-    @Test
     void 자동차의_위치값이_큰_경우_양수를_반환() {
         Car greaterCar = new Car("무늬", 4);
         Car lessCar = new Car("두강", 1);

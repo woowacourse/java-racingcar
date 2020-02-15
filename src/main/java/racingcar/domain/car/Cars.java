@@ -9,7 +9,6 @@ import java.util.List;
 public class Cars {
     private static final int DEFAULT_POSITION = 0;
     private static final String DELIMITER = ",";
-    private static final String ENTER = "\n";
 
     public static List<Car> generateCarsByInput(String inputForCarNames) {
         List<Car> cars = new ArrayList<>();
@@ -53,14 +52,5 @@ public class Cars {
         for (Car car : cars) {
             car.moveByNumber(number);
         }
-    }
-
-    public static String getRoundResult(List<Car> cars) {
-        StringBuilder results = new StringBuilder();
-        for (Car car : cars) {
-            results.append(car.getRoundResult());
-            results.append(ENTER);
-        }
-        return results.toString();
     }
 }
