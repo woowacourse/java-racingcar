@@ -11,16 +11,13 @@ public class Name {
 	}
 
 	private void checkValidationOf(final String name) {
-		if (isInvalid(name)) {
+		if (name.length() > MAX_LENGTH) {
 			throw new IllegalArgumentException("이름은 최대 5자까지 가능합니다.");
 		}
 	}
 
-	private boolean isInvalid(final String name) {
-		return name.length() > MAX_LENGTH;
-	}
-
-	public String getName() {
+	@Override
+	public String toString() {
 		return name;
 	}
 }

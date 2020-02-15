@@ -13,25 +13,25 @@ public class Position {
 	}
 
 	private void checkValidationOf(final int position) {
-		if (isInvalid(position)) {
+		if (position < MIN_POSITION) {
 			throw new IllegalArgumentException("자동차의 위치는 0 이상이어야 합니다.");
 		}
-	}
-
-	private boolean isInvalid(final int position) {
-		return position < MIN_POSITION;
 	}
 
 	public void move() {
 		position++;
 	}
 
-	public int getPosition() {
-		return position;
+	public Position getGreater(Position another) {
+		if (this.position > another.position) {
+			return this;
+		}
+		return another;
 	}
 
-	public boolean match(final int position) {
-		return this.position == position;
+	@Override
+	public String toString() {
+		return String.valueOf(position);
 	}
 
 	@Override

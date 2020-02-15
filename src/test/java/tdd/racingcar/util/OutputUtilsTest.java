@@ -51,7 +51,7 @@ class OutputUtilsTest {
 	@Test
 	void getWinners() {
 		final String expected = "a";
-		final String actual = OutputUtils.getWinners(cars);
+		final String actual = OutputUtils.getWinnerState(cars);
 		assertEquals(expected, actual);
 	}
 }

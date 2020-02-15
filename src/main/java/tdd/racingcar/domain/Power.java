@@ -13,13 +13,9 @@ public class Power {
 	}
 
 	private void checkValidationOf(final int power) {
-		if (isInvalid(power)) {
-			throw new IllegalArgumentException("파워는 0 이상 9 이하의 값을 가질 수 있습니다.");
+		if (power < MIN_POWER || power > MAX_POWER) {
+			throw new IllegalArgumentException("파워는 0 이상 9 이하의 값만 가질 수 있습니다.");
 		}
-	}
-
-	private boolean isInvalid(final int power) {
-		return power < MIN_POWER || power > MAX_POWER;
 	}
 
 	public boolean isEnough() {
