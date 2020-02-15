@@ -13,7 +13,7 @@ package racingcar.view;
 import java.util.List;
 import java.util.Map;
 import racingcar.domain.Car;
-import racingcar.domain.RacingResultFactory;
+import racingcar.domain.RacingResults;
 
 public class OutputView {
 
@@ -37,10 +37,10 @@ public class OutputView {
         System.out.println(string);
     }
 
-    public static void printResultFactory(RacingResultFactory racingResultFactory) {
-        int size = racingResultFactory.size();
+    public static void printResultFactory(RacingResults racingResults) {
+        int size = racingResults.size();
         for (int i = 1; i <= size; i++) {
-            parseResult(racingResultFactory.getEpisodeResult(i));
+            parseResult(racingResults.getEpisodeResult(i));
             System.out.println();
         }
     }

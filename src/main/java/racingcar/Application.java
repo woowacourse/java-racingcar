@@ -13,7 +13,7 @@ package racingcar;
 import java.util.List;
 import racingcar.domain.CarFactory;
 import racingcar.domain.CarNameFactory;
-import racingcar.domain.RacingResultFactory;
+import racingcar.domain.RacingResults;
 import racingcar.domain.TryCount;
 import racingcar.controller.Racing;
 import racingcar.util.Winner;
@@ -28,7 +28,7 @@ public class Application {
         CarFactory carFactory = new CarFactory(carNameFactory);
         int tryCount = inputTryCount();
 
-        RacingResultFactory racingProgress = Racing.run(carFactory, tryCount);
+        RacingResults racingProgress = Racing.run(carFactory, tryCount);
         OutputView.printExecutionResult();
         OutputView.printResultFactory(racingProgress);
 

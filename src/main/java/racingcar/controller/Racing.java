@@ -12,27 +12,26 @@ package racingcar.controller;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import racingcar.domain.Car;
 import racingcar.domain.CarFactory;
 import racingcar.domain.RacingResult;
-import racingcar.domain.RacingResultFactory;
+import racingcar.domain.RacingResults;
 import racingcar.util.Director;
 
 public class Racing {
 
     private final static int RANDOM_NUMBER_RANGE = 10;
 
-    public static RacingResultFactory run(CarFactory carFactory, int tryCount) {
-        RacingResultFactory racingResultFactory = new RacingResultFactory();
+    public static RacingResults run(CarFactory carFactory, int tryCount) {
+        RacingResults racingResults = new RacingResults();
         for (int i = 0; i < tryCount; i++) {
-            playRacing(carFactory.getCars(), racingResultFactory);
+            playRacing(carFactory.getCars(), racingResults);
         }
-        return racingResultFactory;
+        return racingResults;
     }
 
-    private static void playRacing(List<Car> cars, RacingResultFactory racingResultFactory) {
+    private static void playRacing(List<Car> cars, RacingResults racingResultFactory) {
         LinkedHashMap<Car, Integer> racingResults = new LinkedHashMap<>();
         for (Car car : cars) {
             if (isForwardByRandom()) {

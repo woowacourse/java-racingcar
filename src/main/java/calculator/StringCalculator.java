@@ -54,8 +54,8 @@ public class StringCalculator {
     }
 
     private static void validateNaturalNumberDelimiterMinus(String input) {
-        if (input.contains(HYPHEN + HYPHEN) ||
-            Character.toString(input.charAt(INDEX_OF_DELIMITER)).equals(HYPHEN)) {
+        if (input.contains(HYPHEN + HYPHEN)
+            || Character.toString(input.charAt(INDEX_OF_DELIMITER)).equals(HYPHEN)) {
             throw new RuntimeException();
         }
     }
