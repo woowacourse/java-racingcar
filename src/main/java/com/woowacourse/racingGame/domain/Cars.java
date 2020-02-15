@@ -27,7 +27,7 @@ public class Cars {
 
 	public void attemptMove() {
 		for (Car car : cars) {
-			car.attemptMoveThrough(RandomGenerator.generateRandomNumber());
+			car.attemptMoveThrough(new RandomNo(RandomGenerator.generateRandomNumber()));
 		}
 	}
 

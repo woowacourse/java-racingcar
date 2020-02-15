@@ -3,8 +3,6 @@ package com.woowacourse.racingGame.domain;
 import java.util.Objects;
 
 public class Car {
-	private static final int MOVABLE_LOWER_BOUND = 4;
-
 	private final Name name;
 	private Position position;
 
@@ -18,18 +16,14 @@ public class Car {
 		this.name = name;
 	}
 
-	public void attemptMoveThrough(final int randomNumber) {
-		if (randomNumber < 0 || randomNumber > 9) {
-			throw new IllegalArgumentException();
-		}
-
-		if (isMovable(randomNumber)) {
+	public void attemptMoveThrough(final RandomNo randomNo) {
+		if (isMovable(randomNo)) {
 			this.position = this.position.increaseByMovingUnit();
 		}
 	}
 
-	private boolean isMovable(final int randomNumber) {
-		return randomNumber >= MOVABLE_LOWER_BOUND;
+	private boolean isMovable(final RandomNo randomNo) {
+		return randomNo.isMovable();
 	}
 
 	// NOTE : 불변객체의 이점?

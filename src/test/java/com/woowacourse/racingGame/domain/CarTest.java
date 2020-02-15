@@ -13,13 +13,13 @@ public class CarTest {
 		final int lowerNumber = -1;
 		final Car car = new Car(new Name("test"), Position.valueOf(4));
 
-		assertThatThrownBy(() -> car.attemptMoveThrough(lowerNumber))
+		assertThatThrownBy(() -> car.attemptMoveThrough(new RandomNo(lowerNumber)))
 			.isInstanceOf(IllegalArgumentException.class);
 
 		final int higherNumber = 10;
 		final Car car1 = new Car(new Name("test"), Position.valueOf(4));
 
-		assertThatThrownBy(() -> car1.attemptMoveThrough(higherNumber))
+		assertThatThrownBy(() -> car1.attemptMoveThrough(new RandomNo(higherNumber)))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -27,7 +27,7 @@ public class CarTest {
 	void attemptMoveThrough_랜덤_값이_3_이하() {
 		final int stoppedRandomNumber = 3;
 		final Car car = new Car(new Name("test"), Position.valueOf(4));
-		car.attemptMoveThrough(stoppedRandomNumber);
+		car.attemptMoveThrough(new RandomNo(stoppedRandomNumber));
 
 		final int actual = car.getPosition();
 
@@ -40,7 +40,7 @@ public class CarTest {
 	void attemptMoveThrough_랜덤_값이_4_이상() {
 		final int movedRandomNumber = 7;
 		final Car car = new Car(new Name("test"), Position.valueOf(4));
-		car.attemptMoveThrough(movedRandomNumber);
+		car.attemptMoveThrough(new RandomNo(movedRandomNumber));
 
 		final int actual = car.getPosition();
 
