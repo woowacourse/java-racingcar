@@ -21,7 +21,7 @@ public class Race {
 	}
 
 	public List<String> getWinnersName() {
-		return cars.getWinnersName(cars.getMaxPosition());
+		return cars.getWinnersName(cars.findMaxPosition());
 	}
 
 	public Cars getCars() {

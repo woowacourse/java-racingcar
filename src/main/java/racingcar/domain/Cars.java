@@ -37,9 +37,11 @@ public class Cars {
 		cars.forEach(car -> car.move(RandomGenerator.generateRandom()));
 	}
 
-	public int getMaxPosition(int currentMaxPosition) {
+	public int findMaxPosition() {
+		int maxPosition = INITIAL_MAX_POSITION;
+
 		for (Car nextCar : cars) {
-			currentMaxPosition = nextCar.maxPosition(currentMaxPosition);
+			maxPosition = nextCar.maxPosition(maxPosition);
 		}
 
 		return maxPosition;
