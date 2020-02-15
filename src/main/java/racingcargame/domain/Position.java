@@ -1,7 +1,5 @@
 package racingcargame.domain;
 
-import java.util.Objects;
-
 public class Position implements Comparable<Position> {
     private static final int STEP_SIZE = 1;
 

@@ -2,7 +2,7 @@ package racingcargame.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,33 +11,35 @@ public class CarsTest {
 
     @Test
     void cars생성_확인() {
-        List<Car> carList = new ArrayList<>();
-        carList.add(new Car("제이"));
-        carList.add(new Car("라테"));
-        carList.add(new Car("포비"));
-        Cars cars = new Cars(carList);
-        assertThat(cars).hasFieldOrPropertyWithValue("cars", carList);
+        List<String> carNames = Arrays.asList("라테, 제이, 포비".split(","));
+        Cars cars = new Cars(carNames);
+        assertThat(cars).isNotNull();
+        assertThat(cars.getCars()).
+                extracting("name").
+                extracting("name").
+                contains("라테");
     }
 
     @Test
     void 현재Cars중_maxPosition에_있는_CarName을_반환() {
-        List<Car> carList = new ArrayList<>();
-        carList.add(new Car("제이"));
-        carList.add(new Car("라테"));
-        carList.add(new Car("포비"));
-        Cars cars = new Cars(carList);
-        assertThat(cars.getWinners()).contains(carList.get(0).getName());
-        assertThat(cars.getWinners()).contains(carList.get(1).getName());
-        assertThat(cars.getWinners()).contains(carList.get(2).getName());
+        List<String> carNames = Arrays.asList("라테, 제이, 포비".split(","));
+        Cars cars = new Cars(carNames);
+        cars.getCars().get(0).move(4);
+        assertThat(cars.getWinnerNames().getNames())
+                .extracting("name")
+                .contains("라테");
+        assertThat(cars.getWinnerNames().getNames())
+                .extracting("name")
+                .doesNotContain("제이");
+        assertThat(cars.getWinnerNames().getNames())
+                .extracting("name")
+                .doesNotContain("포비");
     }
 
     @Test
     void 현재Cars를_전진() {
-        List<Car> carList = new ArrayList<>();
-        carList.add(new Car("제이"));
-        carList.add(new Car("라테"));
-        carList.add(new Car("포비"));
-        Cars cars = new Cars(carList);
+        List<String> carNames = Arrays.asList("라테, 제이, 포비".split(","));
+        Cars cars = new Cars(carNames);
         cars.moveOneRound();
     }
 }

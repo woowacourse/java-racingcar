@@ -1,10 +1,8 @@
 package racingcargame.stringutil;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racingcargame.domain.Car;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,12 +12,10 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class ParserTest {
     @Test
-    void 이름을_입력하면_구분자로_구분하여_CarList_생성() {
-        List<Car> actual = Parser.parseCars("a, b, c");
-        List<Car> expected = Arrays.asList(new Car("a"),
-                new Car("b"),
-                new Car("c"));
-        assertThat(actual).isEqualTo(actual);
+    void 이름을_입력하면_구분자로_구분하여_StringList_생성() {
+        List<String> actual = Parser.parseStrings("a,b,c");
+        List<String> expected = Arrays.asList("a", "b", "c");
+        assertThat(actual).isEqualTo(expected);
     }
 
     @ParameterizedTest

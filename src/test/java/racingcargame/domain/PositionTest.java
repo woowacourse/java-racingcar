@@ -5,7 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.setRemoveAssertJRelatedElementsFromStackTrace;
 
 public class PositionTest {
     @ParameterizedTest
@@ -24,7 +23,7 @@ public class PositionTest {
     }
 
     @Test
-    void compare_오버라이드_기능_테스트() {
+    void compareTo_오버라이드_기능_테스트() {
         Position position1 = new Position(2);
         Position position2 = new Position(1);
         int actual = position1.compareTo(position2);

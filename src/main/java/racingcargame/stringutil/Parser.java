@@ -9,11 +9,8 @@ import java.util.stream.Collectors;
 public class Parser {
     public static final String DELIMITER = ",";
 
-    public static List<Car> parseCars(String input) {
-        List<String> carNames = Arrays.asList(input.split(DELIMITER));
-        return carNames.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
+    public static List<String> parseStrings(String input) {
+        return Arrays.asList(input.split(DELIMITER));
     }
 
     public static int parseRound(String askRound) {

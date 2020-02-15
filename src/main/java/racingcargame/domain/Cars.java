@@ -1,19 +1,23 @@
 package racingcargame.domain;
 
 import racingcargame.genrator.RandomGenerator;
+import sun.plugin2.applet.StopListener;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private List<Car> cars;
+    private List<Car> cars = new ArrayList<>();
 
-    public Cars(List<Car> cars) {
-        this.cars = cars;
+    public Cars(List<String> carNames) {
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
     }
 
-    public List<Name> getWinners() {
+    public Names getWinnerNames() {
         return findCarNamesInPosition(findMaxPosition());
     }
 
@@ -24,14 +28,14 @@ public class Cars {
                 .orElseThrow(() -> new IllegalArgumentException("최대값을 뽑을 수 없습니다."));
     }
 
-    private List<Name> findCarNamesInPosition(int position) {
-        return cars.stream()
+    private Names findCarNamesInPosition(int position) {
+        return new Names(cars.stream()
                 .filter(car -> car.isSamePosition(position))
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
-    private List<Name> findCarNamesInPosition(Position position) {
+    private Names findCarNamesInPosition(Position position) {
         return findCarNamesInPosition(position.getPosition());
     }
 
