@@ -29,15 +29,11 @@ public class Cars {
                 .orElseThrow(() -> new IllegalArgumentException("최대값을 뽑을 수 없습니다."));
     }
 
-    private Names findCarNamesInPosition(int position) {
+    private Names findCarNamesInPosition(Position position) {
         return new Names(cars.stream()
                 .filter(car -> car.isSamePosition(position))
                 .map(Car::getName)
                 .collect(Collectors.toList()));
-    }
-
-    private Names findCarNamesInPosition(Position position) {
-        return findCarNamesInPosition(position.getPosition());
     }
 
     public void moveOneRound() {

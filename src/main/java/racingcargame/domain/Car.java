@@ -18,8 +18,8 @@ public class Car {
         }
     }
 
-    public boolean isSamePosition(int positionNumber) {
-        return position.isSame(positionNumber);
+    public boolean isSamePosition(Position position) {
+        return this.position.equals(position);
     }
 
     public Name getName() {

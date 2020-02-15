@@ -10,9 +10,9 @@ public class PositionTest {
     @ParameterizedTest
     @CsvSource(value = {"0:0:true", "1:0:false"}, delimiter = ':')
     void 현재_포지션이_입력한_포지션과_같은지_검사(int positionNumber, int comparedPositionNumber, boolean expected) {
-        Position position = new Position(positionNumber);
-        boolean actual = position.isSame(comparedPositionNumber);
-        assertThat(actual).isEqualTo(expected);
+        Position position1 = new Position(positionNumber);
+        Position position2 = new Position(comparedPositionNumber);
+        assertThat(position1.equals(position2)).isEqualTo(expected);
     }
 
     @Test

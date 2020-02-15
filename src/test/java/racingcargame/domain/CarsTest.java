@@ -2,17 +2,14 @@ package racingcargame.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarsTest {
 
     @Test
     void cars생성_확인() {
-        List<String> carNames = Arrays.asList("라테, 제이, 포비".split(","));
-        Cars cars = new Cars(carNames);
+        String[] carNames = "라테, 제이, 포비".split(",");
+        Cars cars = new Cars(Names.valueOf(carNames));
         assertThat(cars).isNotNull();
         assertThat(cars.getCars()).
                 extracting("name").
@@ -22,8 +19,8 @@ public class CarsTest {
 
     @Test
     void 현재Cars중_maxPosition에_있는_CarName을_반환() {
-        List<String> carNames = Arrays.asList("라테, 제이, 포비".split(","));
-        Cars cars = new Cars(carNames);
+        String[] carNames = "라테, 제이, 포비".split(",");
+        Cars cars = new Cars(Names.valueOf(carNames));
         cars.getCars().get(0).move(4);
         assertThat(cars.findWinnerNames().getNames())
                 .extracting("name")
@@ -38,8 +35,8 @@ public class CarsTest {
 
     @Test
     void 현재Cars를_전진() {
-        List<String> carNames = Arrays.asList("라테, 제이, 포비".split(","));
-        Cars cars = new Cars(carNames);
+        String[] carNames = "라테, 제이, 포비".split(",");
+        Cars cars = new Cars(Names.valueOf(carNames));
         cars.moveOneRound();
     }
 }

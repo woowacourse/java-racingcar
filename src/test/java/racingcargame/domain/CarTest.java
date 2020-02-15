@@ -26,7 +26,7 @@ public class CarTest {
         String name = "장재주";
         Car car = new Car(name);
         car.move(4);
-        assertThat(car.isSamePosition(1)).isTrue();
+        assertThat(car).extracting("position").hasFieldOrPropertyWithValue("position", 1);
     }
 
     @Test
@@ -34,6 +34,6 @@ public class CarTest {
         String name = "장재주";
         Car car = new Car(name);
         car.move(3);
-        assertThat(car.isSamePosition(0)).isTrue();
+        assertThat(car).extracting("position").hasFieldOrPropertyWithValue("position", 0);
     }
 }
