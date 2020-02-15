@@ -2,57 +2,43 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import racingcar.util.CarUtil;
 
-public class Cars {
-    public static final int MINIMUM_PLAYER = 1;
-    public static final int FIRST = 0;
-
+public class Cars implements Iterable<Car> {
     private List<Car> cars;
 
     public Cars(List<Car> cars) {
-        if (cars.size() <= MINIMUM_PLAYER) {
+        if (cars.size() <= 1) {
             throw new IllegalArgumentException();
         }
         this.cars = cars;
     }
 
-    public Car getCarOnMaxPosition() {
+    public int maxPosition() {
         Collections.sort(cars);
-        return cars.get(FIRST);
+        return cars.get(0).getPosition();
     }
 
-    public void move(Times times) {
-        while (!times.isDone()) {
-            eachCarsMove();
-            times.reduce();
-            System.out.println(this);
-        }
-    }
-
-    private void eachCarsMove() {
+    public void move() {
         for (Car car : cars) {
             car.move(CarUtil.random());
         }
     }
 
     public List<String> getWinners() {
-        List<String> winner = new ArrayList<>();
-        Car max = getCarOnMaxPosition();
+        List<String> winners = new ArrayList<>();
+        int maxPosition = maxPosition();
         for (Car car : cars) {
-            winner.add(max.getCoWinnersName(car));
+            winners.add(car.nameIfOn(maxPosition));
         }
-        return winner;
+        return winners;
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Car car : cars) {
-            sb.append(car);
-        }
-        return sb.toString();
+    public Iterator<Car> iterator() {
+        return cars.iterator();
     }
 }
