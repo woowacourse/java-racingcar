@@ -1,8 +1,10 @@
 package racingCar.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Players {
     private static final int ZERO_INDEX = 0;
@@ -10,8 +12,9 @@ public class Players {
     private final List<Player> players;
 
     public Players(List<Name> names) {
-        players = new ArrayList<>();
-        Collections.addAll(players);
+        players = names.stream()
+            .map(Player::new)
+            .collect(Collectors.toList());
         handleDuplication();
     }
 

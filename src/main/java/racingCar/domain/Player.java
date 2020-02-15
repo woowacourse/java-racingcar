@@ -1,7 +1,5 @@
 package racingCar.domain;
 
-import java.util.stream.IntStream;
-
 public class Player {
     private static final int DEFAULT_POSITION = 0;
 
