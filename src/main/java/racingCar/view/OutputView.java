@@ -22,14 +22,9 @@ public class OutputView {
     }
 
     private static String createWinnerList(Players players) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Player player : players.getWinners()) {
-            stringBuilder.append(player.getName())
-                    .append(", ");
-        }
-        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
-
-        return stringBuilder.toString();
+        return players.getWinners().stream()
+                .map((t) -> t.getName().toString())
+                .collect(Collectors.joining(", "));
     }
 
     private static String getHyphens(Player player) {

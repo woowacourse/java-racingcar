@@ -21,14 +21,14 @@ public class Application {
     private static Players createPlayers() {
         String nameInput = InputView.inputUserNames();
         List<Name> names = StringParser.parseToNameList(nameInput);
+        Players players = new Players(names);
 
-        while (names.isEmpty()) {
+        if (players.isEmpty()) {
             OutputView.printInvalidNameWarning();
-            nameInput = InputView.inputUserNames();
-            names = StringParser.parseToNameList(nameInput);
+            return createPlayers();
         }
 
-        return new Players(names);
+        return players;
     }
 
     private static void proceedRounds(Players players, int roundInput) {
