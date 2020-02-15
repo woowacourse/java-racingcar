@@ -1,5 +1,8 @@
-package racingcar.domain;
+package racingcar.controller;
 
+import racingcar.domain.Cars;
+import racingcar.domain.Times;
+import racingcar.domain.Winners;
 import racingcar.io.InputView;
 import racingcar.io.OutputView;
 
@@ -8,7 +11,15 @@ public class Game {
         Cars cars = InputView.getCars();
         Times times = InputView.getTimes();
         OutputView.printResultTitle();
-        cars.move(times);
+        move(cars, times);
         OutputView.printWinners(new Winners(cars.getWinners()));
+    }
+
+    public void move(Cars cars, Times times) {
+        while (!times.isDone()) {
+            cars.move();
+            times.reduce();
+            OutputView.printCars(cars);
+        }
     }
 }
