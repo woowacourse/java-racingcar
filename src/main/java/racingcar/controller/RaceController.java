@@ -12,7 +12,11 @@ import java.io.IOException;
 public class RaceController {
 	public static void run() {
 		Race race = new Race(readCars(), readRaceCount());
-		race.run();
+
+		OutputView.printRaceStart();
+		while (!race.isEnd()) {
+			race.run();
+		}
 	}
 
 	private static Cars readCars() {
@@ -33,17 +37,5 @@ public class RaceController {
 			OutputView.printExceptionMessage(e);
 			return readRaceCount();
 		}
-	}
-
-	public static void showCurrentPosition(String currentPosition) {
-		OutputView.printCurrentPosition(currentPosition);
-	}
-
-	public static void showRaceStart() {
-		OutputView.printRaceStart();
-	}
-
-	public static void showWinnersName(String winnersName) {
-		OutputView.printWinnersName(winnersName);
 	}
 }

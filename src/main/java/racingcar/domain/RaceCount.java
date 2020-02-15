@@ -2,13 +2,17 @@ package racingcar.domain;
 
 public class RaceCount {
 	private static final int MINIMUM_NATURAL_NUMBER = 1;
+	private static final int INITIAL_COUNT = 0;
 
 	private final int raceCount;
+	private int currentCount;
 
 	public RaceCount(String raceCount) {
 		validateRaceCountInteger(raceCount);
 		validateRaceCountNaturalNumber(raceCount);
+
 		this.raceCount = Integer.parseInt(raceCount);
+		this.currentCount = INITIAL_COUNT;
 	}
 
 	private void validateRaceCountInteger(String raceCount) {
@@ -25,7 +29,11 @@ public class RaceCount {
 		}
 	}
 
-	public int getRaceCount() {
-		return raceCount;
+	public void increaseCurrentCount() {
+		currentCount++;
+	}
+
+	public boolean isEnd() {
+		return currentCount == raceCount;
 	}
 }

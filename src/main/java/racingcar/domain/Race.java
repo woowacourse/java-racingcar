@@ -1,10 +1,6 @@
 package racingcar.domain;
 
-import racingcar.controller.RaceController;
-
 public class Race {
-	private static final int INITIAL_POSITION = 0;
-
 	private final Cars cars;
 	private final RaceCount raceCount;
 
@@ -14,16 +10,15 @@ public class Race {
 	}
 
 	public void run() {
-		int maxPosition = INITIAL_POSITION;
+		cars.moveAll();
+		raceCount.increaseCurrentCount();
+	}
 
-		RaceController.showRaceStart();
+	public boolean isEnd() {
+		return raceCount.isEnd();
+	}
 
-		for (int i = 0; i < raceCount.getRaceCount(); i++) {
-			cars.moveAll();
-			RaceController.showCurrentPosition(cars.getCurrentPosition());
-			maxPosition = cars.getMaxPosition(maxPosition);
-		}
-
-		RaceController.showWinnersName(cars.getWinnersName(maxPosition));
+	public Cars getCars() {
+		return cars;
 	}
 }
