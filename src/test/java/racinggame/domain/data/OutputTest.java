@@ -10,13 +10,14 @@ public class OutputTest {
     Output output;
 
     @BeforeEach
-    void initOutput(){
+    void initOutput() {
         output = new Output();
     }
+
     @ParameterizedTest
     @CsvSource(value = {"pobi,3,pobi : ---", "crong,4,crong : ----", "honux,0,honux : "})
-    void 로그_테스트(String name, int position, String log){
-        if(position == 0){
+    void 로그_테스트(String name, int position, String log) {
+        if (position == 0) {
             log += " ";
         }
         Assertions.assertThat(output.makeStatusLog(name, position)).isEqualTo(log);

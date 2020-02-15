@@ -53,7 +53,7 @@ public class Output {
      * 이름과 양식을 집어넣고, 이후 주행 거리만큼 특수 양식을 반복 삽입한다.
      * 삽입 시 반복문을 사용하는 구조는 추후 개선할 예정이다.
      *
-     * @param name 데이터에 들어갈 이름 값으로, 문자열 값이다.
+     * @param name     데이터에 들어갈 이름 값으로, 문자열 값이다.
      * @param position 데이터에 들어갈 주행 거리 값으로, 정수형이다.
      * @return 데이터를 바탕으로 만들어진 문자열 값을 반환한다.
      */
@@ -82,7 +82,7 @@ public class Output {
     /**
      * updateCarStatus는 이름과 횟수를 전달받아, map으로 선언된 carStatus에서 이를 조회,갱신한다.
      *
-     * @param name 값을 찾기 위한 key 값이다.
+     * @param name     값을 찾기 위한 key 값이다.
      * @param position 주행 거리를 담은, 실제로 저장될 value 값이다.
      */
     public void updateCarStatus(String name, int position) {
@@ -112,7 +112,7 @@ public class Output {
      * @param name 검사를 위해 전달되는 이름으로, String 값이다.
      * @return name이 winners에 있다면 true를, 아니라면 false를 반환한다.
      */
-    public boolean isContainName(String name){
+    public boolean isContainName(String name) {
         return winners.contains(name);
     }
 }

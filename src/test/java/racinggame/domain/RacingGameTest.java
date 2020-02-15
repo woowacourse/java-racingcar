@@ -28,17 +28,17 @@ public class RacingGameTest {
         carList.add(new Car("kim", 0));
         carList.add(new Car("park", 0));
 
-        carList.get(0).accelerate(4,4);
-        carList.get(0).accelerate(4,4);
-        carList.get(0).accelerate(4,4);
+        carList.get(0).accelerate(4, 4);
+        carList.get(0).accelerate(4, 4);
+        carList.get(0).accelerate(4, 4);
 
-        carList.get(1).accelerate(4,4);
-        carList.get(1).accelerate(4,4);
-        carList.get(1).accelerate(4,4);
+        carList.get(1).accelerate(4, 4);
+        carList.get(1).accelerate(4, 4);
+        carList.get(1).accelerate(4, 4);
 
-        carList.get(2).accelerate(4,4);
-        carList.get(2).accelerate(2,4);
-        carList.get(2).accelerate(1,4);
+        carList.get(2).accelerate(4, 4);
+        carList.get(2).accelerate(2, 4);
+        carList.get(2).accelerate(1, 4);
     }
 
     @BeforeEach
@@ -79,7 +79,7 @@ public class RacingGameTest {
 
     @RepeatedTest(value = 1000)
     void 레이싱게임_실행_결과_테스트() {
-        RacingGame.play(names,repeat, output);
+        RacingGame.play(names, repeat, output);
         boolean result1 = output.isContainName("pobi");
         boolean result2 = output.isContainName("crong");
         boolean result3 = output.isContainName("honux");

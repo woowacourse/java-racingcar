@@ -5,7 +5,7 @@ public class Repeat {
     private static final String NUMBER_FORMAT_ERROR_MESSAGE = "횟수는 정수만 가능합니다.";
     private static final String NOT_POSITIVE_ERROR_MESSAGE = "횟수는 1이상의 정수만 가능합니다.";
 
-    public Repeat(String repeat){
+    public Repeat(String repeat) {
         this.repeat = validateRepeat(repeat);
     }
 

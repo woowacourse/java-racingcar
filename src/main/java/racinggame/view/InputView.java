@@ -23,23 +23,11 @@ public class InputView {
         throw new AssertionError();
     }
 
-    /**
-     * inputName은 이름 정보를 문자열로 입력받는 메서드이다.
-     * 양식 출력은 OutputView를 통해 수행한다.
-     *
-     * @return 입력받은 String 인스턴스를 반환한다.
-     */
     public static String inputName() {
         OutputView.printNameFormat();
         return scanner.nextLine();
     }
 
-    /**
-     * inputRepeat는 게임의 횟수 정보를 문자열로 입력받는 메서드이다.
-     * 양식 출력은 OutputView를 통해 수행한다.
-     *
-     * @return 입력받은 정수형 변수 값을 반환한다.
-     */
     public static String inputRepeat() {
         OutputView.printRepeatFormat();
         return scanner.nextLine();
