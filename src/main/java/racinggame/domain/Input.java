@@ -15,6 +15,7 @@ public class Input {
     public static final String NOT_POSITIVE_ERROR_MESSAGE = "횟수는 1이상의" +
             " 정수만 가능합니다.";
     private static final String SPLIT_DELIMITER = ",";
+    public static final int NAME_LENGTH_LIMIT = 5;
 
     private String names;
     private String repeat;
@@ -54,8 +55,8 @@ public class Input {
         return false;
     }
 
-    private static boolean isLongerThanFive(String name){
-        if(name.length()>5){
+    private static boolean isLongerThanFive(String name) {
+        if (name.length() > NAME_LENGTH_LIMIT) {
             return true;
         }
         return false;
@@ -66,7 +67,9 @@ public class Input {
         if (Objects.isNull(list)) {
             throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
         }
-        list.stream().forEach(Input::validateNameLength);
+        for (String name : list) {
+            validateNameLength(name);
+        }
     }
 
     private void validateRepeat() {

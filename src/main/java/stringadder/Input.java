@@ -32,10 +32,13 @@ public class Input {
     }
 
     private String getDelimiter() {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(expression);
-        if (m.find()) {
-            changeInput(m.group(2));
-            return m.group(1);
+        if(expression.matches(CUSTOM_DELIMITER)) {
+            Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(expression);
+
+            if (m.find()) {
+                changeInput(m.group(2));
+                return m.group(1);
+            }
         }
         return DEFAULT_DELIMITER;
     }
