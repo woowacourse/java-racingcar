@@ -12,14 +12,35 @@ import racingcar.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        String inputNames = InputView.receiveNameInput();
-        Cars cars = new Cars(inputNames);
+        Cars cars = createCars();;
 
-        int countInput = InputView.receiveCountInput();
-        TryCount tryCount = new TryCount(countInput);
+        TryCount tryCount = receiveTryCount();
 
         OutputView.showResult();
         showRaceResult(cars, tryCount);
+    }
+
+    private static Cars createCars() {
+        try {
+            String nameInput = InputView.receiveNameInput();
+            return new Cars(nameInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createCars();
+        }
+    }
+
+    private static TryCount receiveTryCount() {
+        try {
+            int countInput = InputView.receiveCountInput();
+            return new TryCount(countInput);
+        } catch (NumberFormatException e) {
+            System.out.println("숫자를 입력해야 합니다.");
+            return receiveTryCount();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return receiveTryCount();
+        }
     }
 
     private static void showRaceResult(Cars cars, TryCount tryCount) {

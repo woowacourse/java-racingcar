@@ -15,7 +15,7 @@ public class RaceResult {
         String eachRaceResult = EMPTY;
 
         for (Car car : cars) {
-            eachRaceResult = String.join(EMPTY, eachRaceResult, car.toString());
+            eachRaceResult = String.join(EMPTY, eachRaceResult, car.getName());
 
             String raceResultOfCar = Stream.generate(() -> GAGE)
                     .limit(car.getPosition())

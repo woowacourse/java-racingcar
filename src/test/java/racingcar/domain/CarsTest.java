@@ -12,6 +12,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class CarsTest {
+    static final String COMMA = ",";
+
     @Test
     void splitCarNames() {
         //given
@@ -22,7 +24,7 @@ class CarsTest {
         //when
         List<String> carNames = cars.getCars()
                 .stream()
-                .map(Car::toString)
+                .map(Car::getName)
                 .collect(Collectors.toList());
 
         //then
@@ -40,23 +42,41 @@ class CarsTest {
     }
 
     private static Stream<Arguments> createCarsAndWinners() {
-        Name allen = new Name("앨런");
-        Name lowoon = new Name("로운");
-        Name pobi = new Name("포비");
+        String allen = "앨런";
+        String lowoon = "로운";
+        String pobi = "포비";
 
-        List<Car> testCars = List.of(new Car(allen, 3), new Car(lowoon, 2), new Car(pobi, 3));
-        Cars cars = new Cars(testCars);
+        Cars cars = new Cars(String.join(COMMA, allen, lowoon, pobi));
+
+        int winnerPosition = 3;
+        int loserPosition = 2;
+
+        Car allenCar = cars.getCars().get(0);
+        Car lowoonCar = cars.getCars().get(1);
+        Car pobiCar = cars.getCars().get(2);
+
+        for (int i = 0; i < winnerPosition; i++) {
+            allenCar.moveForward();
+            pobiCar.moveForward();
+        }
+
+        for (int i = 0; i < loserPosition; i++) {
+            lowoonCar.moveForward();
+        }
 
         return Stream.of(
-                Arguments.of(cars, List.of(allen.toString(), pobi.toString()))
+                Arguments.of(cars, List.of(allen, pobi))
         );
     }
 
     @Test
-    void validateCars(String inputNames, String message) {
-        assertThatThrownBy(() -> {
-            Cars cars = new Cars(inputNames);
-        }).isInstanceOf(IllegalArgumentException.class)
+    void validateCars() {
+        //given
+        String inputNames = "앨런";
+
+        //then
+        assertThatThrownBy(() -> new Cars(inputNames))
+        .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참가자는 " + Cars.MINIMUM_TEAM + "명 이상이어야합니다.");
     }
 }

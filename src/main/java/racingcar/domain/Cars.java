@@ -15,14 +15,11 @@ public class Cars {
         String[] names = inputNames.split(DELIMITER, OPTION);
 
         cars = Arrays.stream(names)
-                .map(name -> new Car(new Name(name.trim())))
+                .map(name -> new Name(name.trim()))
+                .map(Car::new)
                 .collect(Collectors.toList());
 
         validateCars();
-    }
-
-    Cars(List<Car> cars) {
-        this.cars = cars;
     }
 
     private void validateCars() {
@@ -36,13 +33,16 @@ public class Cars {
     }
 
     public List<String> getWinners() {
-        final Car winner = cars.stream()
-                .max(Car::compareTo)
+        int maximum = cars.stream()
+                .map(Car::getPosition)
+                .max(Integer::compareTo)
                 .get();
 
+        MaxPosition maxPosition = new MaxPosition(maximum);
+
         return cars.stream()
-                .filter(car -> car.isWinner(winner))
-                .map(Car::toString)
+                .filter(car -> maxPosition.isMaxPosition(car.getPosition()))
+                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 }
