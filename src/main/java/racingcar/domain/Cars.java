@@ -7,8 +7,7 @@ import java.util.stream.Collectors;
 
 public class Cars {
 	private static final int MINIMUM_NUMBER_OF_CARS = 2;
-	private static final String COMMA_DELIMITER = ", ";
-	private static final String NEW_LINE_DELIMITER = "\n";
+	private static final int INITIAL_MAX_POSITION = 0;
 
 	private final List<Car> cars = new ArrayList<>();
 
@@ -44,17 +43,11 @@ public class Cars {
 		return currentMaxPosition;
 	}
 
-	public String getWinnersName(int maxPosition) {
+	public List<String> getWinnersName(int maxPosition) {
 		return cars.stream()
 			.filter(car -> car.isMaxPosition(maxPosition))
 			.map(Car::getName)
-			.collect(Collectors.joining(COMMA_DELIMITER));
-	}
-
-	public String getCurrentPosition() {
-		return cars.stream()
-			.map(Car::toString)
-			.collect(Collectors.joining(NEW_LINE_DELIMITER));
+			.collect(Collectors.toList());
 	}
 
 	public List<Car> getCars() {
