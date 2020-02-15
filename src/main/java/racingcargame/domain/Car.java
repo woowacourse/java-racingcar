@@ -25,7 +25,7 @@ public class Car {
         }
     }
 
-    public boolean isSamePositionWith(int positionNumber) {
+    public boolean isSamePosition(int positionNumber) {
         return position.isSame(positionNumber);
     }
 

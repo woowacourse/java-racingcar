@@ -2,7 +2,7 @@ package racingcargame.domain;
 
 import racingcargame.genrator.RandomGenerator;
 
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,35 +13,35 @@ public class Cars {
         this.cars = cars;
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<String> getWinners() {
+        return findCarNamesInPosition(findMaxPosition());
     }
 
-    public List<String> getCarNamesInMaxPosition() {
-        return getCarNamesInSamePositionWith(getMaxPosition());
-    }
-
-    private Position getMaxPosition() {
+    private Position findMaxPosition() {
         return cars.stream()
                 .map(Car::getPosition)
                 .max(Position::compareTo)
                 .orElseThrow(() -> new IllegalArgumentException("최대값을 뽑을 수 없습니다."));
     }
 
-    private List<String> getCarNamesInSamePositionWith(int position) {
+    private List<String> findCarNamesInPosition(int position) {
         return cars.stream()
-                .filter(car -> car.isSamePositionWith(position))
+                .filter(car -> car.isSamePosition(position))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    private List<String> getCarNamesInSamePositionWith(Position position) {
-        return getCarNamesInSamePositionWith(position.getPosition());
+    private List<String> findCarNamesInPosition(Position position) {
+        return findCarNamesInPosition(position.getPosition());
     }
 
     public void moveOneRound() {
         for (Car car : cars) {
             car.move(RandomGenerator.generateRandom());
         }
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

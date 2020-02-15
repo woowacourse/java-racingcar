@@ -40,7 +40,7 @@ public class CarTest {
         String name = "장재주";
         Car car = new Car(name);
         car.move(4);
-        assertThat(car.isSamePositionWith(1)).isTrue();
+        assertThat(car.isSamePosition(1)).isTrue();
     }
 
     @Test
@@ -48,6 +48,6 @@ public class CarTest {
         String name = "장재주";
         Car car = new Car(name);
         car.move(3);
-        assertThat(car.isSamePositionWith(0)).isTrue();
+        assertThat(car.isSamePosition(0)).isTrue();
     }
 }

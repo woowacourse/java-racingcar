@@ -26,9 +26,9 @@ public class CarsTest {
         carList.add(new Car("라테"));
         carList.add(new Car("포비"));
         Cars cars = new Cars(carList);
-        assertThat(cars.getCarNamesInMaxPosition()).contains("제이");
-        assertThat(cars.getCarNamesInMaxPosition()).contains("라테");
-        assertThat(cars.getCarNamesInMaxPosition()).contains("포비");
+        assertThat(cars.getWinners()).contains("제이");
+        assertThat(cars.getWinners()).contains("라테");
+        assertThat(cars.getWinners()).contains("포비");
     }
 
     @Test
