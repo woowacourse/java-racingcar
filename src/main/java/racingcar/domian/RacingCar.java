@@ -1,6 +1,5 @@
 package racingcar.domian;
 
-import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCar {
@@ -11,12 +10,12 @@ public class RacingCar {
     private Cars cars;
     private int round;
 
-    public void setUpPlayer() {
-        cars = new Cars(InputView.inputCarName());
+    public void setUpPlayer(String inputNames) {
+        cars = new Cars(inputNames);
     }
 
-    public void setUpRound() {
-        round = validateRound(InputView.inputGameRound());
+    public void setUpRound(String inputRound) {
+        round = validateRound(inputRound);
     }
 
     private int validateRound(String inputRound) {
