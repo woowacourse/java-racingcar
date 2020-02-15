@@ -25,7 +25,6 @@ public class RacingCarGame {
             for (RacingCar competitor : competitors) {
                 int randomNumber = RandomNumberCreator.create();
                 competitor.goWithNumberOverFour(randomNumber);
-                competitor.stopWithNumberUnderThree(randomNumber);
             }
 
             OutputView.printStateOfRacingCars(competitors);

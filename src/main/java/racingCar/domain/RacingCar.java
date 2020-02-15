@@ -23,19 +23,9 @@ public class RacingCar implements Comparable<RacingCar> {
         position++;
     }
 
-    public void stop() {
-
-    }
-
     public void goManyTimesAsRandom(int givenNumberToGo, int randomNumber) {
         for (int i = 0; i < givenNumberToGo; i++) {
             go();
-        }
-    }
-
-    public void stopManyTimes(int givenNumberToStop) {
-        for (int i = 0; i < givenNumberToStop; i++) {
-            stop();
         }
     }
 
@@ -49,10 +39,6 @@ public class RacingCar implements Comparable<RacingCar> {
             go();
         }
 
-    }
-
-    public void stopWithNumberUnderThree(int i) {
-        stop();
     }
 
     public void setPosition(int position) {
