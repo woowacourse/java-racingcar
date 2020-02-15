@@ -11,7 +11,7 @@ class NameTest {
     @ValueSource(strings = {"a", "bc", "def", "abcde"})
     void toString_ShouldReturnSameString(String input) {
         Name name = new Name(input);
-        Assertions.assertThat(name.getString())
+        Assertions.assertThat(name.toString())
                 .isEqualTo(input);
     }
 
@@ -53,7 +53,7 @@ class NameTest {
     @ValueSource(strings = {"kueni", "pobi", "jason"})
     void getString(String string) {
         Name name = new Name(string);
-        Assertions.assertThat(name.getString().equals(string))
+        Assertions.assertThat(name.toString().equals(string))
                 .isTrue();
     }
 }

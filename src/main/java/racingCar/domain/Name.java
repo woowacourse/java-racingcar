@@ -26,11 +26,7 @@ public class Name {
         return this.name.equals(name);
     }
 
-    public String getString() {
-        return name;
-    }
-
     public String toString() {
-        return getString();
+        return name;
     }
 }

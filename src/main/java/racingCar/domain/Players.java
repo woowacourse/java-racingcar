@@ -24,7 +24,7 @@ public class Players {
     private void checkDuplication() throws IllegalArgumentException {
         Set<String> set = new HashSet<>();
         for (Player player : players) {
-            set.add(player.getName().getString());
+            set.add(player.getName().toString());
         }
         if (players.size() != set.size()) {
             throw new IllegalArgumentException();
