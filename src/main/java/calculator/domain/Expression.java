@@ -1,5 +1,7 @@
 package calculator.domain;
 
+import java.util.stream.Stream;
+
 public class Expression {
     private String expression;
 
@@ -22,6 +24,8 @@ public class Expression {
     }
 
     public int calculate() {
-        return Integer.parseInt(expression);
+        return Stream.of(expression.split(",|:"))
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 }

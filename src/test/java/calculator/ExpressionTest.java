@@ -5,6 +5,8 @@ import calculator.domain.ExpressionException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class ExpressionTest {
     Expression expression;
@@ -28,8 +30,17 @@ public class ExpressionTest {
     @Test
     @DisplayName("숫자 하나를 입력한 경우")
     void singleNumberTest() {
-        Expression expression = new Expression("1");
+        expression = new Expression("1");
         Assertions.assertThat(expression.calculate())
                 .isEqualTo(1);
+    }
+
+    @ParameterizedTest
+    @DisplayName(",나 :를 구분자로 식을 입력한 경우")
+    @ValueSource(strings = {"1,2,3", "1:2:3", "1,2:3"})
+    void splitTest(String exp) {
+        expression = new Expression(exp);
+        Assertions.assertThat(expression.calculate())
+                .isEqualTo(6);
     }
 }
