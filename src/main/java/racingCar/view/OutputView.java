@@ -8,7 +8,7 @@ public class OutputView {
         System.out.println(RESULT_TITLE);
     }
 
-    public static void printEachRound(Players players) {
+    public static void printRoundResult(Players players) {
         for (Player player : players.getUnmodifiableList()) {
             System.out.println(player.getName() + COLON_WRAPPED_WITH_SPACE + getHyphens(player));
         }
@@ -16,10 +16,19 @@ public class OutputView {
 
     public static void printWinners(Players players) {
         System.out.println(PRINT_WINNERS_HEAD);
-        for (Player player: players.getWinners()) {
-            System.out.println(FOUR_SPACE + player.getName());
-        }
+        System.out.println(FOUR_SPACE + createWinnerList(players));
         System.out.println(PRINT_WINNERS_TAIL);
+    }
+
+    private static String createWinnerList(Players players) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Player player : players.getWinners()) {
+            stringBuilder.append(player.getName())
+                    .append(", ");
+        }
+        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
+
+        return stringBuilder.toString();
     }
 
     private static String getHyphens(Player player) {
@@ -34,7 +43,11 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    public static void printRound(int round) {
+    public static void printRoundNum(int round) {
+        if (round == 0) {
+            System.out.println(ROUND_START_TEXT);
+            return;
+        }
         System.out.println(round + ROUND_TAIL);
     }
 
