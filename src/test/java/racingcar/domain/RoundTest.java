@@ -40,25 +40,29 @@ class RoundTest {
 	@DisplayName("다음 라운드로 잘 넘어가는지 체크")
 	@Test
 	void testGoNextRound() {
-		round.goNextRound();
-		assertThat(round).extracting("currentRound").isEqualTo(1);
+		int checkRound = 3;
+		runRound(round, checkRound);
+
+		assertThat(round).extracting("currentRound").isEqualTo(checkRound);
 	}
 
 	@DisplayName("마지막 라운드 체크")
 	@Test
 	void testisFinalRound_success() {
-		for (int i = 0; i < 4; i++) {
-			round.goNextRound();
-		}
-		assertThat(round.isFinalRound()).isTrue();
+		runRound(round, 4);
+		assertThat(round.isNonFinalRound()).isFalse();
 	}
 
 	@DisplayName("마지막 라운드 체크 - 실패")
 	@Test
 	void testisFinalRound_fail() {
-		for (int i = 0; i < 2; i++) {
+		runRound(round, 2);
+		assertThat(round.isNonFinalRound()).isTrue();
+	}
+
+	private void runRound(Round round, final int numberOfrunRound) {
+		for (int i = 0; i < numberOfrunRound; i++) {
 			round.goNextRound();
 		}
-		assertThat(round.isFinalRound()).isFalse();
 	}
 }

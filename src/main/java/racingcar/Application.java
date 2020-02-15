@@ -1,14 +1,13 @@
 package racingcar;
 
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Round;
 import racingcar.domain.Winner;
-import racingcar.splitter.CarSplitter;
+import racingcar.domain.PowerGenerator;
+import racingcar.domain.RandomPowerGenerator;
+import racingcar.domain.CarsFactory;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.util.List;
 
 /*
  * Copyright (c) 2020 by 또동페어
@@ -25,24 +24,21 @@ import java.util.List;
 public class Application {
 	public static void main(String[] args) {
 		try {
-			List<Car> carNames = CarSplitter.split(InputView.inputCarNames());
-			Cars cars = new Cars(carNames);
+			Cars cars = CarsFactory.createCars(InputView.inputCarNames());
 			Round round = new Round(InputView.inputNumberOfRound());
-			playGame(cars, round);
+			PowerGenerator powerGenerator = new RandomPowerGenerator();
+
+			OutputView.printGameResultMessage();
+			while (round.isNonFinalRound()) {
+				cars.moveAll(powerGenerator);
+				OutputView.printRoundResult(cars);
+				round.goNextRound();
+			}
 			Winner winner = new Winner(cars.findWinners());
 			OutputView.printWinner(winner);
 		} catch (RuntimeException e) {
 			System.out.println(e.getMessage());
 			System.exit(1);
-		}
-	}
-
-	public static void playGame(Cars cars, Round round) {
-		OutputView.printGameResultMessage();
-		while (!round.isFinalRound()) {
-			cars.run();
-			OutputView.printRoundResult(cars);
-			round.goNextRound();
 		}
 	}
 }

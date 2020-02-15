@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.generator.RandomNumberGenerator;
 import racingcar.message.RacingCarMessage;
 
 import java.util.Collections;
@@ -23,7 +22,7 @@ import java.util.stream.Collectors;
  *
  */
 public class Cars implements Iterable<Car> {
-	private static final int MINIMUM_NUMBER_OF_NAMES = 2;
+	private static final int MINIMUM_NUMBER_OF_CARS = 2;
 
 	private final List<Car> cars;
 
@@ -38,14 +37,14 @@ public class Cars implements Iterable<Car> {
 	}
 
 	private static void validateNumberOfName(List<Car> cars) {
-		if (cars.size() < MINIMUM_NUMBER_OF_NAMES) {
+		if (cars.size() < MINIMUM_NUMBER_OF_CARS) {
 			throw new IllegalArgumentException(RacingCarMessage.EXCEPTION_NOT_ENOUGH_CAR.getMessageText());
 		}
 	}
 
 	private static void validateDuplicatedName(List<Car> cars) {
-		Set<Car> tmpNameSet = new HashSet<>(cars);
-		if (tmpNameSet.size() != cars.size()) {
+		Set<Car> carsWithDistinctName = new HashSet<>(cars);
+		if (carsWithDistinctName.size() != cars.size()) {
 			throw new IllegalArgumentException(RacingCarMessage.EXCEPTION_DUPLICATED_NAME.getMessageText());
 		}
 	}
@@ -63,9 +62,9 @@ public class Cars implements Iterable<Car> {
 			.orElseThrow(() -> new NullPointerException(RacingCarMessage.EXCEPTION_CAR_IS_NULL.getMessageText()));
 	}
 
-	public void run() {
+	public void moveAll(PowerGenerator powerGenerator) {
 		for (Car car : cars) {
-			car.run(RandomNumberGenerator.getRandomNumber());
+			car.move(powerGenerator.generatePower());
 		}
 	}
 

@@ -21,18 +21,22 @@ public class Round {
 	private int currentRound;
 
 	public Round(int totalRound) {
+		validateRound(totalRound);
+		this.totalRound = totalRound;
+		this.currentRound = 0;
+	}
+
+	private void validateRound(int totalRound) {
 		if (totalRound < MINIMUM_NUMBER_OF_ROUND) {
 			throw new IllegalArgumentException(RacingCarMessage.EXCEPTION_ROUND_IS_NOT_POSITIVE.getMessageText());
 		}
-		this.totalRound = totalRound;
-		this.currentRound = 0;
 	}
 
 	public void goNextRound() {
 		currentRound++;
 	}
 
-	public boolean isFinalRound() {
-		return currentRound == totalRound;
+	public boolean isNonFinalRound() {
+		return currentRound < totalRound;
 	}
 }

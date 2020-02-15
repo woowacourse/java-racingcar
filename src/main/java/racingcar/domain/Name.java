@@ -1,4 +1,10 @@
-package racingcar.domain;/*
+package racingcar.domain;
+
+import java.util.Objects;
+
+import racingcar.message.RacingCarMessage;
+
+/*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
  *
@@ -10,10 +16,6 @@ package racingcar.domain;/*
  * @date        14 Feb 2020
  *
  */
-
-import java.util.Objects;
-
-import racingcar.message.RacingCarMessage;
 
 public class Name {
 	private static final int MINIMUM_LENGTH_OF_NAME = 1;

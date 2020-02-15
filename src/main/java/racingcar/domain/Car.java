@@ -15,35 +15,33 @@ import java.util.Objects;
  *
  */
 public class Car {
-	public static final int MINIMUM_NUMBER_TO_GO = 4;
-
 	private final Name name;
-	private int position;
+	private final Position position;
 
 	public Car(Name name) {
-		this(name, 0);
+		this(name, new Position(0));
 	}
 
-	public Car(Name name, int position) {
-		this.name = name;
-		this.position = position;
+	public Car(Name name, Position position) {
+		this.name = Objects.requireNonNull(name);
+		this.position = Objects.requireNonNull(position);
 	}
 
-	public void run(int randomNumber) {
-		if (randomNumber >= MINIMUM_NUMBER_TO_GO) {
-			position++;
+	public void move(PowerLevel powerLevel) {
+		if (powerLevel.isMovable()) {
+			position.moveForward();
 		}
 	}
 
 	Car getFartherCar(Car otherCar) {
-		if (position >= otherCar.position) {
+		if (position.isGreaterThanOrEqualTo(otherCar.position)) {
 			return this;
 		}
 		return otherCar;
 	}
 
 	boolean isSamePosition(Car maxPositionCar) {
-		return position == maxPositionCar.position;
+		return position.equals(maxPositionCar.position);
 	}
 
 	public String getName() {
@@ -51,7 +49,7 @@ public class Car {
 	}
 
 	public int getPosition() {
-		return position;
+		return position.getPosition();
 	}
 
 	@Override
@@ -61,12 +59,11 @@ public class Car {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Car car = (Car)o;
-		return position == car.position &&
-			Objects.equals(name, car.name);
+		return Objects.equals(name, car.name);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(name, position);
+		return Objects.hash(name);
 	}
 }

@@ -1,13 +1,11 @@
-package racingcar.splitter;
+package racingcar.domain;
 
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
 import racingcar.domain.Name;
-import racingcar.message.RacingCarMessage;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /*
@@ -22,14 +20,18 @@ import java.util.stream.Collectors;
  * @date        12 Feb 2020
  *
  */
-public class CarSplitter {
-	private static final String DELIMITER = ",";
+public class CarsFactory {
+	private static final String SPLIT_DELIMITER = ",";
 
-	private CarSplitter() {
+	private CarsFactory() {
 	}
 
-	public static List<Car> split(String rawNames) {
-		return Arrays.stream(rawNames.split(DELIMITER))
+	public static Cars createCars(String rawNames) {
+		return new Cars(split(rawNames));
+	}
+
+	private static List<Car> split(String rawNames) {
+		return Arrays.stream(rawNames.split(SPLIT_DELIMITER))
 			.map(Name::new)
 			.map(Car::new)
 			.collect(Collectors.toList());

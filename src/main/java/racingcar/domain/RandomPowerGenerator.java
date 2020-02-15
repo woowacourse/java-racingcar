@@ -1,4 +1,4 @@
-package racingcar.generator;
+package racingcar.domain;
 
 import java.util.Random;
 
@@ -14,14 +14,12 @@ import java.util.Random;
  * @date        12 Feb 2020
  *
  */
-public class RandomNumberGenerator {
+public class RandomPowerGenerator implements PowerGenerator {
 	private static final Random random = new Random();
-	private static final int RANDOM_NUMBER_BOUND = 10;
+	private static final int RANDOM_BOUND = 10;
 
-	private RandomNumberGenerator() {
-	}
-
-	public static int getRandomNumber() {
-		return random.nextInt(RANDOM_NUMBER_BOUND);
+	public PowerLevel generatePower() {
+		random.setSeed(System.nanoTime());
+		return new PowerLevel(random.nextInt(RANDOM_BOUND));
 	}
 }
