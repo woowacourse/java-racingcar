@@ -10,8 +10,8 @@ public class Car {
         position = INITIAL_POSITION;
     }
 
-    public void move(RandomNo randomNumber) {
-        if (randomNumber.isMovable()) {
+    public void move(RandomNo number) {
+        if (number.isMovable()) {
             position++;
         }
     }

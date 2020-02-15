@@ -4,11 +4,11 @@ public class RandomNo {
     private int randomNumber;
     private static final int MOVE_FORWARD = 4;
 
-    public RandomNo(int randomNumber) {
-        if (randomNumber < 0 || randomNumber > 9) {
+    public RandomNo(int number) {
+        if (number < 0 || number > 9) {
             throw new IllegalArgumentException();
         }
-        this.randomNumber = randomNumber;
+        this.randomNumber = number;
     }
 
     boolean isMovable() {
