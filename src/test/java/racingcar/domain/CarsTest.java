@@ -16,7 +16,7 @@ public class CarsTest {
         String inputNames = "user1,user2,user3,user4";
         Cars cars = new Cars(inputNames);
         Car testCar = cars.getCars().get(0);
-        testCar.move(5);
+        testCar.moveByRandom(5);
         assertThat(cars.findMaxPosition()).isEqualTo(1);
     }
 

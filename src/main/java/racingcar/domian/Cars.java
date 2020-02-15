@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class Cars {
     private static final int CAR_LIMIT = 5;
     private static final String DELIMITER = ",";
+    private static final String EMPTY_STRING = "";
 
     private final List<Car> cars;
 
@@ -30,6 +31,10 @@ public class Cars {
         }
     }
 
+    private static boolean isNotEmpty(String maybeWinner) {
+        return !EMPTY_STRING.equals(maybeWinner);
+    }
+
     public int findMaxPosition() {
         int max = 0;
         for (Car car : cars) {
@@ -40,7 +45,7 @@ public class Cars {
 
     public void moveAll() {
         for (Car car : cars) {
-            car.move(RandomNumberGenerator.generateRandom());
+            car.moveByRandom(RandomNumberGenerator.generateRandom());
         }
     }
 
@@ -50,6 +55,6 @@ public class Cars {
         for (Car car : cars) {
             winners.add(car.isWinner(max));
         }
-        return winners.stream().filter(x -> !"".equals(x)).collect(Collectors.joining(","));
+        return winners.stream().filter(Cars::isNotEmpty).collect(Collectors.joining(","));
     }
 }

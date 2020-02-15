@@ -19,7 +19,7 @@ public class CarTest {
     void 생성된_랜덤값이_4이상이면_이동한다(int inputValue, boolean expected) {
         Car car = new Car("user");
         Car expectedCar = new Car(1, "user");
-        car.move(inputValue);
+        car.moveByRandom(inputValue);
         assertThat(car.equals(expectedCar)).isEqualTo(expected);
     }
 
