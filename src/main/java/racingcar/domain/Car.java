@@ -48,16 +48,4 @@ public class Car {
 	public int getPosition() {
 		return position.getPosition();
 	}
-
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder = new StringBuilder();
-
-		stringBuilder.append(name).append(" : ");
-		for (int i = 0; i < position; i++) {
-			stringBuilder.append("-");
-		}
-
-		return stringBuilder.toString();
-	}
 }

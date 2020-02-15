@@ -16,6 +16,7 @@ public class RaceController {
 		OutputView.printRaceStart();
 		while (!race.isEnd()) {
 			race.run();
+			OutputView.printCurrentPosition(race.getCars());
 		}
 	}
 

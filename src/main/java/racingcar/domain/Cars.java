@@ -12,7 +12,7 @@ public class Cars {
 
 	private final List<Car> cars = new ArrayList<>();
 
-	public Cars(List<String> carsName) {
+	public Cars(final List<String> carsName) {
 		validateDuplicateCarName(carsName);
 		validateNumberOfCars(carsName);
 
@@ -21,7 +21,7 @@ public class Cars {
 
 	private void validateDuplicateCarName(List<String> carsName) {
 		if (!carsName.stream()
-				.allMatch(new HashSet<>()::add)) {
+			.allMatch(new HashSet<>()::add)) {
 			throw new IllegalArgumentException("중복된 이름이 존재합니다.");
 		}
 	}
@@ -38,7 +38,7 @@ public class Cars {
 
 	public int getMaxPosition(int currentMaxPosition) {
 		for (Car nextCar : cars) {
-			currentMaxPosition = nextCar.compareMaxPosition(currentMaxPosition);
+			currentMaxPosition = nextCar.maxPosition(currentMaxPosition);
 		}
 
 		return currentMaxPosition;
@@ -46,14 +46,18 @@ public class Cars {
 
 	public String getWinnersName(int maxPosition) {
 		return cars.stream()
-				.filter(car -> car.isMaxPosition(maxPosition))
-				.map(Car::getName)
-				.collect(Collectors.joining(COMMA_DELIMITER));
+			.filter(car -> car.isMaxPosition(maxPosition))
+			.map(Car::getName)
+			.collect(Collectors.joining(COMMA_DELIMITER));
 	}
 
 	public String getCurrentPosition() {
 		return cars.stream()
-				.map(Car::toString)
-				.collect(Collectors.joining(NEW_LINE_DELIMITER));
+			.map(Car::toString)
+			.collect(Collectors.joining(NEW_LINE_DELIMITER));
+	}
+
+	public List<Car> getCars() {
+		return cars;
 	}
 }
