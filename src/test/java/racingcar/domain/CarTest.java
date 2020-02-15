@@ -7,9 +7,31 @@ import racingcar.domain.car.Position;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
+    private static final int DEFAULT_POSITION = 0;
+    private static final int MOVED_DISTANCE = 1;
+
+    @Test
+    void 주어진_양수에_따라_자동차를_전진() {
+        Car car = new Car("무늬", DEFAULT_POSITION);
+        car.moveByNumber(0);
+        assertThat(car.getPosition()).isEqualTo(DEFAULT_POSITION);
+
+        car = new Car("무늬", DEFAULT_POSITION);
+        car.moveByNumber(3);
+        assertThat(car.getPosition()).isEqualTo(DEFAULT_POSITION);
+
+        car = new Car("무늬", DEFAULT_POSITION);
+        car.moveByNumber(4);
+        assertThat(car.getPosition()).isEqualTo(DEFAULT_POSITION + MOVED_DISTANCE);
+
+        car = new Car("무늬", DEFAULT_POSITION);
+        car.moveByNumber(9);
+        assertThat(car.getPosition()).isEqualTo(DEFAULT_POSITION + MOVED_DISTANCE);
+    }
+
     @Test
     void print() {
-        Car car = new Car("무늬");
+        Car car = new Car("무늬", DEFAULT_POSITION);
         System.out.println(car.getRoundResult());
     }
 

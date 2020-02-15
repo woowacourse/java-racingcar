@@ -1,10 +1,13 @@
 package racingcar.domain.car;
 
+import racingcar.domain.RandomNumberGenerator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Cars {
+    private static final int DEFAULT_POSITION = 0;
     private static final String DELIMITER = ",";
     private static final String ENTER = "\n";
 
@@ -15,7 +18,7 @@ public class Cars {
         validateDuplicatedNames(inputForCarNames);
 
         for (String name : getSplit(inputForCarNames)) {
-            cars.add(new Car(name));
+            cars.add(new Car(name, DEFAULT_POSITION));
         }
 
         return cars;
@@ -46,8 +49,9 @@ public class Cars {
     }
 
     public static void play(List<Car> cars) {
+        int number = RandomNumberGenerator.generateNumber();
         for (Car car : cars) {
-            car.play();
+            car.moveByNumber(number);
         }
     }
 

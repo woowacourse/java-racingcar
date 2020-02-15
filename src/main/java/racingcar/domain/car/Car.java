@@ -1,31 +1,36 @@
 package racingcar.domain.car;
 
-import racingcar.domain.GoOrStop;
-
 public class Car implements Comparable<Car> {
+    private static final int NUMBER_POSSIBLE_TO_GO = 4;
     private static final String IS = " : ";
 
     private final Name name;
     private Position position;
 
-    public Car(String name) {
+    public Car(String name, int position) {
         this.name = new Name(name);
-        this.position = new Position();
+        this.position = new Position(position);
     }
 
-    public Car(String name, int location) {
-        this.name = new Name(name);
-        this.position = new Position(location);
-    }
-
-    public void play() {
-        if (GoOrStop.decideToGo()) {
+    public void moveByNumber(int number) {
+        if (canMove(number)) {
             move();
         }
     }
 
+    private boolean canMove(int number) {
+        if (number >= NUMBER_POSSIBLE_TO_GO) {
+            return true;
+        }
+        return false;
+    }
+
     private void move() {
         position.moveForward();
+    }
+
+    public int getPosition() {
+        return position.getValue();
     }
 
     public String getRoundResult() {
