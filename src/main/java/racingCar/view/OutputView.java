@@ -8,15 +8,16 @@ public class OutputView {
         System.out.println(RESULT_TITLE);
     }
 
-    public static void printRoundResult(Players players) {
+    private static void printRoundResult(Players players) {
         for (Player player : players.getUnmodifiableList()) {
             System.out.println(player.getName() + COLON_WRAPPED_WITH_SPACE + getHyphens(player));
         }
     }
 
     public static void printWinners(Players players) {
-        System.out.println(PRINT_WINNERS_HEAD);
-        System.out.println(FOUR_SPACE + createWinnerList(players));
+        System.out.println();
+        System.out.print(PRINT_WINNERS_HEAD);
+        System.out.print(createWinnerList(players));
         System.out.println(PRINT_WINNERS_TAIL);
     }
 
@@ -43,7 +44,7 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    public static void printRoundNum(int round) {
+    private static void printRoundNum(int round) {
         if (round == 0) {
             System.out.println(ROUND_START_TEXT);
             return;
@@ -53,5 +54,11 @@ public class OutputView {
 
     public static void printInvalidNameWarning() {
         System.out.println(INVALID_NAME_WARNING);
+    }
+
+    public static void printRoundResultWithRoundNum(int roundNum, Players players) {
+        System.out.println();
+        printRoundNum(roundNum);
+        printRoundResult(players);
     }
 }

@@ -32,12 +32,10 @@ public class Application {
     }
 
     private static void proceedRounds(Players players, int roundInput) {
-        OutputView.printRoundNum(ZERO);
-        OutputView.printRoundResult(players);
+        OutputView.printRoundResultWithRoundNum(ZERO, players);
         for (int round = ONE_ROUND; round <= roundInput; round++) {
-            OutputView.printRoundNum(round);
             players.play(new Deciders(players));
-            OutputView.printRoundResult(players);
+            OutputView.printRoundResultWithRoundNum(round, players);
         }
     }
 }
