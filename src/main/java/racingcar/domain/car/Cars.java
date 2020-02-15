@@ -48,8 +48,8 @@ public class Cars {
     }
 
     public static void play(List<Car> cars) {
-        int number = RandomNumberGenerator.generateNumber();
         for (Car car : cars) {
+            int number = RandomNumberGenerator.generateNumber();
             car.moveByNumber(number);
         }
     }
