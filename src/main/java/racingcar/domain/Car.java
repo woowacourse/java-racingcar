@@ -8,10 +8,10 @@ public class Car implements Comparable<Car> {
 	private final String name;
 	private int position;
 
-	public Car(String name) {
+	public Car(String name, int position) {
 		validateNameLength(name);
 		this.name = name;
-		position = ZERO;
+		this.position = position;
 	}
 
 	public void movePositionAccordingToCondition(int number) {

@@ -26,13 +26,13 @@ public class InputView {
 		return number;
 	}
 
-	private static void validateNullOrEmpty(String input) {
+	protected static void validateNullOrEmpty(String input) {
 		if (EMPTY.equals(input) || input == null) {
 			throw new IllegalArgumentException("입력이 없습니다.");
 		}
 	}
 
-	private static void validatePositiveNumber(int countInput) {
+	protected static void validatePositiveNumber(int countInput) {
 		if (countInput < POSITIVE_CRITERIA) {
 			throw new IllegalArgumentException(POSITIVE_CRITERIA + "이상의 수를 입력해야합니다.");
 		}

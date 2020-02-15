@@ -6,8 +6,9 @@ import java.util.stream.Collectors;
 
 public class Cars {
 	private static final String DELIMITER = ",";
-	private static final int MINIMUM_TEAM = 2;
 	private static final int LIMIT = -1;
+	private static final int INIT_POSITION = 0;
+	private static final int MINIMUM_TEAM = 2;
 
 	private List<Car> cars;
 
@@ -15,7 +16,7 @@ public class Cars {
 		String[] names = inputNames.split(DELIMITER, LIMIT);
 
 		cars = Arrays.stream(names)
-			.map(name -> new Car(name.trim()))
+			.map(name -> new Car(name.trim(), INIT_POSITION))
 			.collect(Collectors.toList());
 
 		validateTeamCount();

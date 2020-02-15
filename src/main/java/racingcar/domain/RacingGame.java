@@ -23,7 +23,7 @@ public class RacingGame {
 		return result.toString();
 	}
 
-	private static String getRaceResult(List<Car> cars) {
+	protected static String getRaceResult(List<Car> cars) {
 		StringBuilder raceResult = new StringBuilder();
 		for (Car car : cars) {
 			String carName = car.getName();
