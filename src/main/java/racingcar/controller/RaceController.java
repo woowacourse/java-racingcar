@@ -8,10 +8,11 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.io.IOException;
+import java.util.List;
 
 public class RaceController {
 	public static void run() {
-		Race race = new Race(readCars(), readRaceCount());
+		Race race = new Race(new Cars(readCars()), new RaceCount(readRaceCount()));
 
 		OutputView.printRaceStart();
 		while (!race.isEnd()) {
@@ -21,20 +22,20 @@ public class RaceController {
 		OutputView.printWinnersName(race.getWinnersName());
 	}
 
-	private static Cars readCars() {
+	private static List<String> readCars() {
 		try {
 			InputView.printCarsNameInput();
-			return InputUtil.createCarsByInput();
+			return InputUtil.inputCars();
 		} catch (IllegalArgumentException | IOException e) {
 			OutputView.printExceptionMessage(e);
 			return readCars();
 		}
 	}
 
-	private static RaceCount readRaceCount() {
+	private static String readRaceCount() {
 		try {
 			InputView.printRaceCountInput();
-			return InputUtil.createRaceCountByInput();
+			return InputUtil.inputRaceCount();
 		} catch (IllegalArgumentException | IOException e) {
 			OutputView.printExceptionMessage(e);
 			return readRaceCount();

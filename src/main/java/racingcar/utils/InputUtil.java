@@ -17,16 +17,16 @@ public class InputUtil {
 
 	private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-	public static Cars createCarsByInput() throws IOException {
+	public static List<String> inputCars() throws IOException {
 		String input = bufferedReader.readLine();
 		List<String> carsName = Arrays.asList(
 				input.replace(SPACE, EMPTY)
 				.split(COMMA, LIMIT));
 
-		return new Cars(carsName);
+		return carsName;
 	}
 
-	public static RaceCount createRaceCountByInput() throws IOException {
-		return new RaceCount(bufferedReader.readLine());
+	public static String inputRaceCount() throws IOException {
+		return bufferedReader.readLine();
 	}
 }
