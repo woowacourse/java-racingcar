@@ -16,6 +16,10 @@ public class CarSnapShot {
         this.position = car.getPosition();
     }
 
+    public boolean isSamePositionWith(int position) {
+        return this.position == position;
+    }
+
     public String getStatus() {
         return String.format(CAR_STATUS_FORMAT, name, StringUtils.multiply(CAR_POSITION_EXPRESSION, position));
     }

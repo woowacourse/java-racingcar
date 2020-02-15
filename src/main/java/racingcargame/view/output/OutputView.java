@@ -7,12 +7,13 @@ import java.util.List;
 
 public class OutputView {
 
-    public static void printWinners(List<String> winners) {
+    public static void printWinners(CarRaceResult carRaceResult) {
+        List<String> winners = carRaceResult.getWinners();
         String names = String.join(",", winners);
         System.out.println(names + "가 우승하셨습니다.");
     }
 
-    public static void printAllRounds(CarRaceResult carRaceResult) {
+    public static void printAllRoundResults(CarRaceResult carRaceResult) {
         List<RoundResult> roundResults = carRaceResult.getRoundResultList();
 
         System.out.println();

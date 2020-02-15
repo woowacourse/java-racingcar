@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class RoundResult {
 
+    private static final String CAR_STATUS_DELIMITER = "\n";
     private final List<CarSnapShot> carSnapShots;
 
     public RoundResult(List<CarSnapShot> carSnapShots) {
@@ -16,14 +17,14 @@ public class RoundResult {
                 .map(CarSnapShot::getStatus)
                 .collect(Collectors.toList());
 
-        return String.join("\n", carSnapShotsStatus);
+        return String.join(CAR_STATUS_DELIMITER, carSnapShotsStatus);
     }
 
     public List<String> getWinners() {
         int maxPosition = getMaxPosition();
 
         return carSnapShots.stream()
-                .filter(carSnapShot -> carSnapShot.getPosition() == maxPosition)
+                .filter(carSnapShot -> carSnapShot.isSamePositionWith(maxPosition))
                 .map(CarSnapShot::getName)
                 .collect(Collectors.toList());
     }

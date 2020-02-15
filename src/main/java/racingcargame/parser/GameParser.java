@@ -1,8 +1,8 @@
 package racingcargame.parser;
 
 import racingcargame.domain.car.Car;
+import racingcargame.domain.game.CarRace;
 import racingcargame.domain.trialtimes.TrialTimes;
-import racingcargame.game.CarRace;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,9 +10,13 @@ import java.util.stream.Collectors;
 
 public class GameParser {
 
+    private static final String NAME_INPUT_DELIMITER = ",";
+
     public static CarRace generateCarRace(String carNamesInput) {
-        List<String> names = Arrays.asList(carNamesInput.split(","));
-        List<Car> cars = names.stream().map(Car::new).collect(Collectors.toList());
+        List<String> names = Arrays.asList(carNamesInput.split(NAME_INPUT_DELIMITER));
+        List<Car> cars = names.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
         return new CarRace(cars);
     }
 

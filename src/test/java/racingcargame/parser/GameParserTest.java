@@ -1,8 +1,8 @@
 package racingcargame.parser;
 
 import org.junit.jupiter.api.Test;
+import racingcargame.domain.game.CarRace;
 import racingcargame.domain.trialtimes.TrialTimes;
-import racingcargame.game.CarRace;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
