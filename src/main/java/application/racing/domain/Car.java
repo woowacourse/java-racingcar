@@ -34,4 +34,9 @@ public class Car {
         return compareCar.carName.equals(this.carName)
                 && compareCar.position.equals(this.position);
     }
+
+    @Override
+    public int hashCode() {
+        return 31 * (this.carName.hashCode() + this.position.hashCode());
+    }
 }

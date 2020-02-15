@@ -45,8 +45,9 @@ public class CarName {
         return compareCarName.carName.equals(this.carName);
     }
 
+    @Override
     public int hashCode() {
-        return super.hashCode() + 137;
+        return this.carName.hashCode() * 31;
     }
 
     @Override

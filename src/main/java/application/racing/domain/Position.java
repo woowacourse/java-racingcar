@@ -39,7 +39,8 @@ public class Position {
         return comparePosition.position == this.position;
     }
 
+    @Override
     public int hashCode() {
-        return super.hashCode() + 137;
+        return 31 + this.position;
     }
 }
