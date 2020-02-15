@@ -2,6 +2,7 @@ package racingTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import racing.controller.RacingGame;
 import racing.model.Car;
 import racing.model.CarLineUp;
 
@@ -10,16 +11,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
 
-    private CarLineUp carLineUp = new CarLineUp();
+    private RacingGame game = new RacingGame();
+    private CarLineUp lineUp  = new CarLineUp();
 
     @BeforeEach
     void setUp(){
-        carLineUp.add(new Car("포비"));
-        carLineUp.add(new Car("코난"));
-        carLineUp.add(new Car("보스독"));
-        carLineUp.add(new Car("엘사"));
+        lineUp.add(new Car("포비"));
+        lineUp.add(new Car("코난"));
+        lineUp.add(new Car("보스독"));
+        lineUp.add(new Car("엘사"));
     }
-
 
     @Test
     void 글자수_5글자_이하만_생성(){
@@ -40,7 +41,7 @@ public class CarTest {
     @Test
     void 차이름_중복될_경우_예외처리(){
         assertThatThrownBy(() -> {
-            Car car = new Car("포비");
+            game.checkNameDuplicate(lineUp, "포비");
         }).isInstanceOf(IllegalArgumentException.class)
         .hasMessage("차이름이 중복되었습니다.");
     }

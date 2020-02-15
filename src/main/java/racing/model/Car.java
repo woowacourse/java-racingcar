@@ -8,15 +8,9 @@ public class Car {
     public Car(String name) {
         checkNameLengthUnderSix(name);
         checkNullOrEmptyName(name);
-        checkNameDuplicate(name);
         this.name = name;
     }
 
-    private void checkNameDuplicate(String name) {
-        if (CarLineUp.isContainAlready(name)){
-            throw new IllegalArgumentException("차이름이 중복되었습니다.");
-        }
-    }
 
     private void checkNullOrEmptyName(String name) {
         if (name == null || name.isEmpty()){
