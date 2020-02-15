@@ -21,6 +21,7 @@ public class StringCalculator {
     private final static String DELIMITER = ",|:";
     private final static String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
     private final static String HYPHEN = "-";
+    private final static int INDEX_OF_DELIMITER = 0;
     private final static Pattern PATTERN = Pattern.compile(CUSTOM_DELIMITER_PATTERN);
 
     public static int splitAndSum(String input) {
@@ -53,7 +54,8 @@ public class StringCalculator {
     }
 
     private static void validateNaturalNumberDelimiterMinus(String input) {
-        if (input.contains(HYPHEN + HYPHEN) || input.charAt(0) + "" == HYPHEN) {
+        if (input.contains(HYPHEN + HYPHEN) ||
+            Character.toString(input.charAt(INDEX_OF_DELIMITER)).equals(HYPHEN)) {
             throw new RuntimeException();
         }
     }
