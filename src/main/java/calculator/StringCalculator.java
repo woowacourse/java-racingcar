@@ -30,7 +30,6 @@ public class StringCalculator {
     }
 
     private List<String> addSplittedNumberExpression(String[] splittedNumberExpression) {
-
         List<String> notSplittedExpression = new ArrayList<>();
 
         for (String splittedWordWithComma : splittedNumberExpression) {
