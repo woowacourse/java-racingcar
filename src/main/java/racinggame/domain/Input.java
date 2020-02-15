@@ -1,9 +1,11 @@
 package racinggame.domain;
 
+import com.sun.tools.javac.util.StringUtils;
 import racinggame.view.InputView;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Input {
     public static final String LENGTH_ERROR_MESSAGE = "이름의 길이는 1자 이상, 5자" +
@@ -40,14 +42,28 @@ public class Input {
     }
 
     private static void validateNameLength(String name) {
-        if (name == null || name.isEmpty() || name.length() > 5) {
+        if (isNullName(name) || name.isEmpty() || isLongerThanFive(name)) {
             throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
         }
     }
 
+    private static boolean isNullName(String name) {
+        if (Objects.isNull(name)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean isLongerThanFive(String name){
+        if(name.length()>5){
+            return true;
+        }
+        return false;
+    }
+
     public void validateInput() {
         List<String> list = splitInputByComma();
-        if (list == null) {
+        if (Objects.isNull(list)) {
             throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
         }
         list.stream().forEach(Input::validateNameLength);
