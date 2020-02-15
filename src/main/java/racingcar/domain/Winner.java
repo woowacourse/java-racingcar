@@ -1,9 +1,7 @@
-package racingcar.utils;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import racingcar.domain.Car;
 
 public class Winner {
     private static final List<String> winners = new ArrayList<>();

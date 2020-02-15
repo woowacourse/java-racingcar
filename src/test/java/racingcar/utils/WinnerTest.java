@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
 import racingcar.domain.RandomNo;
+import racingcar.domain.Winner;
 
 class WinnerTest {
 

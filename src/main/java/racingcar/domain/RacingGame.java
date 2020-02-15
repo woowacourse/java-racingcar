@@ -6,7 +6,6 @@ import java.util.List;
 import racingcar.utils.RandomNumber;
 import racingcar.utils.Split;
 import racingcar.utils.Validator;
-import racingcar.utils.Winner;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
