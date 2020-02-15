@@ -1,6 +1,7 @@
 package racingcargame.view.output;
 
 import racingcargame.domain.Car;
+import racingcargame.domain.Position;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         sb.append(car.getName());
         sb.append(": ");
-        for (int i = 0; i < car.getPosition(); i++) {
+        for (int i = 0; i < car.getPosition().getPosition(); i++) {
             sb.append(DISPLAY_POSITION_CHAR);
         }
         System.out.println(sb.toString());

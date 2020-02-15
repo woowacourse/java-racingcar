@@ -2,6 +2,7 @@ package racingcargame.domain;
 
 import racingcargame.genrator.RandomGenerator;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,14 +21,11 @@ public class Cars {
         return getCarNamesInSamePositionWith(getMaxPosition());
     }
 
-    private int getMaxPosition() {
-        int result = 0;
-        for (Car car : cars) {
-            if (car.getPosition() > result) {
-                result = car.getPosition();
-            }
-        }
-        return result;
+    private Position getMaxPosition() {
+        return cars.stream()
+                .map(Car::getPosition)
+                .max(Position::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException("최대값을 뽑을 수 없습니다."));
     }
 
     private List<String> getCarNamesInSamePositionWith(int position) {
@@ -35,6 +33,10 @@ public class Cars {
                 .filter(car -> car.isSamePositionWith(position))
                 .map(Car::getName)
                 .collect(Collectors.toList());
+    }
+
+    private List<String> getCarNamesInSamePositionWith(Position position) {
+        return getCarNamesInSamePositionWith(position.getPosition());
     }
 
     public void moveOneRound() {

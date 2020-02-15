@@ -1,6 +1,8 @@
 package racingcargame.domain;
 
-public class Position {
+import java.util.Objects;
+
+public class Position implements Comparable<Position> {
     private static final int STEP_SIZE = 1;
 
     private int position;
@@ -9,11 +11,20 @@ public class Position {
         this.position = position;
     }
 
-    public boolean isSamePosition(int comparedPosition) {
+    public boolean isSame(int comparedPosition) {
         return position == comparedPosition;
     }
 
     public void move() {
         position += STEP_SIZE;
+    }
+
+    @Override
+    public int compareTo(Position o) {
+        return Integer.compare(this.position, o.position);
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
