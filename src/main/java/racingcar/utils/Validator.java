@@ -15,13 +15,25 @@ public class Validator {
     // carNAME 오류검증
     public static void validateCarNames(String[] carNames) {
         for (String name : carNames) {
-            if (isNotValidName(name)) {
-                throw new IllegalArgumentException("공백만 입력 할 수 없습니다.");
-            }
-            if (!isValidLengthOfName(name)) {
-                throw new IllegalArgumentException("5글자 이하로만 입력가능합니다.");
-            }
+            checkNull(name);
+            checkLength(name);
         }
+        checkDuplicates(carNames);
+    }
+
+    private static void checkNull(String name) {
+        if (isNotValidName(name)) {
+            throw new IllegalArgumentException("공백만 입력 할 수 없습니다.");
+        }
+    }
+
+    private static void checkLength(String name) {
+        if (!isValidLengthOfName(name)) {
+            throw new IllegalArgumentException("5글자 이하로만 입력가능합니다.");
+        }
+    }
+
+    private static void checkDuplicates(String[] carNames) {
         if (containDuplicatedName(carNames)) {
             throw new IllegalArgumentException("중복된 이름입력이 불가합니다.");
         }
