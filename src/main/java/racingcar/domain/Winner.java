@@ -5,19 +5,18 @@ import java.util.List;
 
 public class Winner {
     private static final List<String> winners = new ArrayList<>();
-    private static final String COMMA = ",";
 
     private Winner() {
     }
 
-    public static String getWinners(List<Car> carList) {
+    public static List<String> getWinners(List<Car> carList) {
         int max = getWinnerPosition(carList);
         for (Car car : carList) {
             if (car.isWinner(max)) {
                 winners.add(car.getName());
             }
         }
-        return String.join(COMMA, winners);
+        return winners;
     }
 
     private static int getWinnerPosition(List<Car> carList) {

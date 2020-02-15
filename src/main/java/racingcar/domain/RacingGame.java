@@ -20,7 +20,8 @@ public class RacingGame {
 
             startRace(playRound, racingCarList);
 
-            OutputView.printWinners(Winner.getWinners(racingCarList));
+            List<String> winners = Winner.getWinners(racingCarList);
+            OutputView.printWinners(winners);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             runRacingGame();
