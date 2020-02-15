@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
     private Car car;
@@ -13,6 +14,19 @@ class CarTest {
     @BeforeEach
     void setUp() {
         car = new Car(TEST_NAME);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobiconnan","subway","sonypark"})
+    void Throw_Error_When_CarName_isMoreThan_5(String name) {
+        Assertions.assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi","metro","sony2"})
+    void Not_Throw_Error_When_CarName_isLessThanOrEqualTo5_(String name) {
+        Assertions.assertThatCode(()-> new Car(name)).doesNotThrowAnyException();
+
     }
 
     @Test

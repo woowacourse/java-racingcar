@@ -8,25 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 class ValidatorTest {
 
     @Test
-    void Throw_When_NotValidLengthOfName() {
-        String[] names = {"pobiconan", "subway"};
-
-        Assertions.assertThatThrownBy(() ->
-            Validator.validateCarNames(names))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageMatching("5글자 이하로만 입력가능합니다.");
-    }
-
-    @Test
-    void When_ValidLengthOfName() {
-        String[] names = {"crong", "sony"};
-
-        Assertions.assertThatCode(() ->
-            Validator.validateCarNames(names))
-            .doesNotThrowAnyException();
-    }
-
-    @Test
     void Throw_When_DuplicatedName() {
         String[] names = {"pobi", "pobi"};
 

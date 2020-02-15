@@ -15,10 +15,9 @@ public class RacingGame {
 
 	public static void runRacingGame() {
 		try {
-			String[] carNames = getRacingCarNames();
+			final List<Car> racingCarList = getCars(getRacingCarNames());
 			int playRound = getRacingRound();
 
-			final List<Car> racingCarList = getCars(carNames);
 			startRace(playRound, racingCarList);
 
 			OutputView.printWinners(Winner.getWinners(racingCarList));

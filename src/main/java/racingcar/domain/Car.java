@@ -2,10 +2,14 @@ package racingcar.domain;
 
 public class Car {
     private static final int INITIAL_POSITION = 0;
+    private static final int MAX_LENGTH_OF_NAME = 5;
     private String name;
     private int position;
 
     public Car(String name) {
+        if (name.length() > MAX_LENGTH_OF_NAME) {
+            throw new IllegalArgumentException("자동차 이름은 5글자 이하로만 입력가능합니다.");
+        }
         this.name = name;
         position = INITIAL_POSITION;
     }
@@ -16,15 +20,15 @@ public class Car {
         }
     }
 
-    public boolean isWinner(int winnerPosition) {
+    boolean isWinner(int winnerPosition) {
         return winnerPosition == position;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
