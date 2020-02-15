@@ -18,6 +18,7 @@ public class RaceController {
 			race.run();
 			OutputView.printCurrentPosition(race.getCars());
 		}
+		OutputView.printWinnersName(race.getWinnersName());
 	}
 
 	private static Cars readCars() {

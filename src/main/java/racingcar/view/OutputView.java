@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import java.util.List;
+
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
@@ -7,6 +9,7 @@ public class OutputView {
 	private static final String NEW_LINE = "\n";
 	private static final String COLON = " : ";
 	private static final String POSITION_BAR = "-";
+	private static final String WINNERS_NAME_DELIMITER = ", ";
 
 	public static void printExceptionMessage(Exception e) {
 		System.out.println(e.getMessage());
@@ -29,7 +32,7 @@ public class OutputView {
 		System.out.println(NEW_LINE + "레이스 시작!!!!!!");
 	}
 
-	public static void printWinnersName(String winnersName) {
-		System.out.println(winnersName + " 우승!!!!!!!!");
+	public static void printWinnersName(List<String> winnersName) {
+		System.out.println(String.join(WINNERS_NAME_DELIMITER, winnersName) + " 우승!!!!!!!!");
 	}
 }

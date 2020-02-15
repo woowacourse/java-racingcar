@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.List;
+
 public class Race {
 	private final Cars cars;
 	private final RaceCount raceCount;
@@ -16,6 +18,10 @@ public class Race {
 
 	public boolean isEnd() {
 		return raceCount.isEnd();
+	}
+
+	public List<String> getWinnersName() {
+		return cars.getWinnersName(cars.getMaxPosition());
 	}
 
 	public Cars getCars() {

@@ -40,7 +40,7 @@ public class Cars {
 			currentMaxPosition = nextCar.maxPosition(currentMaxPosition);
 		}
 
-		return currentMaxPosition;
+		return maxPosition;
 	}
 
 	public List<String> getWinnersName(int maxPosition) {
