@@ -11,8 +11,11 @@ public class Cars {
     private static final String DELIMITER = ",";
 
     public Cars(String inputNames) {
+        inputNames = validateNullOrEmpty(inputNames);
+
         String[] names = inputNames.split(DELIMITER);
-        validateCarCount(names.length);
+        validateCarCount(names);
+
         List<Car> players = new ArrayList<>();
         for (String name : names) {
             players.add(new Car(name));
@@ -24,8 +27,15 @@ public class Cars {
         return cars;
     }
 
-    private static void validateCarCount(int carCount) {
-        if (carCount > CAR_LIMIT) {
+    private static String validateNullOrEmpty(String inputNames) {
+        if (inputNames == null || (inputNames = inputNames.trim()).isEmpty()) {
+            throw new IllegalArgumentException("잘못된 입력입니다.");
+        }
+        return inputNames;
+    }
+
+    private static void validateCarCount(String[] names) {
+        if (names.length > CAR_LIMIT) {
             throw new IllegalArgumentException("자동차 5대 초과입니다!");
         }
     }

@@ -15,23 +15,29 @@ public class RacingCar {
         this.round = validateRound(round);
     }
 
-    private int validateRound(String inputRound) {
-        int round = validateNumber(inputRound.trim());
+    private static int validateRound(String inputRound) {
+        inputRound = validateNullOrEmpty(inputRound);
+        int round = validateNumber(inputRound);
         validateCount(round);
         return round;
     }
 
-    private int validateNumber(String input) {
-        int count;
+    private static String validateNullOrEmpty(String inputRound) {
+        if (inputRound == null || (inputRound = inputRound.trim()).isEmpty()) {
+            throw new IllegalArgumentException("잘못된 입력입니다.");
+        }
+        return inputRound;
+    }
+
+    private static int validateNumber(String input) {
         try {
-            count = Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("잘못된 횟수 입력");
         }
-        return count;
     }
 
-    private void validateCount(int count) {
+    private static void validateCount(int count) {
         if (count < COUNT_LOWER_LIMIT || count > COUNT_UPPER_LIMIT) {
             throw new IllegalArgumentException("횟수가 1보다 작거나 10번 초과입니다!");
         }

@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,6 +11,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
+    @DisplayName("자동차의 이름이 null 혹은 empty인 경우 테스트")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void 입력값이_null_혹은_empty(String name) {
+        assertThatThrownBy(() -> {
+            new Car(name);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("잘못된 입력입니다.");
+    }
+
+    @Test
+    @DisplayName("자동차의 이름이 5자 초과인 경우 테스트")
+    void 이름이_5자_초과() {
+        assertThatThrownBy(() -> {
+            new Car("아무거나 입력했어요");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("이름 길이 5자 초과");
+    }
 
     @DisplayName("랜덤 생성된 값이 4이상일 때 이동 테스트")
     @ParameterizedTest
@@ -30,24 +47,5 @@ public class CarTest {
         int max = 3;
         Car car = new Car(position, name);
         assertThat(car.isWinner(max)).isEqualTo(expected);
-    }
-
-    @DisplayName("자동차의 이름이 null 혹은 empty인 경우 테스트")
-    @ParameterizedTest
-    @NullAndEmptySource
-    void 입력값이_null_혹은_empty(String input) {
-        assertThatThrownBy(() -> {
-            new Car(input);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("빈 값 혹은 Null");
-    }
-
-    @Test
-    @DisplayName("자동차의 이름이 5자 초과인 경우 테스트")
-    void 이름이_5자_초과() {
-        assertThatThrownBy(() -> {
-            new Car("아무거나 입력했어요");
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("이름 길이 5자 초과");
     }
 }

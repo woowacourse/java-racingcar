@@ -29,16 +29,16 @@ public class Car {
     }
 
     private static String validateName(String name) {
-        name = name.trim();
-        validateNullOrEmpty(name);
+        name = validateNullOrEmpty(name);
         validateNameLength(name);
         return name;
     }
 
-    private static void validateNullOrEmpty(String input) {
-        if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException("빈 값 혹은 Null 입력입니다!");
+    private static String validateNullOrEmpty(String name) {
+        if (name == null || (name = name.trim()).isEmpty()) {
+            throw new IllegalArgumentException("잘못된 입력입니다.");
         }
+        return name;
     }
 
     private static void validateNameLength(String name) {
