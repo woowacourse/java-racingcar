@@ -11,13 +11,13 @@ public class CarTest {
 	@Test
 	void attemptMoveThrough_범위_밖의_수() {
 		final int lowerNumber = -1;
-		final Car car = new Car(new Name("test"), new Position(4));
+		final Car car = new Car(new Name("test"), Position.valueOf(4));
 
 		assertThatThrownBy(() -> car.attemptMoveThrough(lowerNumber))
 			.isInstanceOf(IllegalArgumentException.class);
 
 		final int higherNumber = 10;
-		final Car car1 = new Car(new Name("test"), new Position(4));
+		final Car car1 = new Car(new Name("test"), Position.valueOf(4));
 
 		assertThatThrownBy(() -> car1.attemptMoveThrough(higherNumber))
 			.isInstanceOf(IllegalArgumentException.class);
@@ -26,7 +26,7 @@ public class CarTest {
 	@Test
 	void attemptMoveThrough_랜덤_값이_3_이하() {
 		final int stoppedRandomNumber = 3;
-		final Car car = new Car(new Name("test"), new Position(4));
+		final Car car = new Car(new Name("test"), Position.valueOf(4));
 		car.attemptMoveThrough(stoppedRandomNumber);
 
 		final int actual = car.getPosition();
@@ -39,7 +39,7 @@ public class CarTest {
 	@Test
 	void attemptMoveThrough_랜덤_값이_4_이상() {
 		final int movedRandomNumber = 7;
-		final Car car = new Car(new Name("test"), new Position(4));
+		final Car car = new Car(new Name("test"), Position.valueOf(4));
 		car.attemptMoveThrough(movedRandomNumber);
 
 		final int actual = car.getPosition();
@@ -52,7 +52,7 @@ public class CarTest {
 	@Test
 	void isSamePosition_우승한_위치의_자동차() {
 		final int winnerPosition = 7;
-		final Car car = new Car(new Name("test"), new Position(7));
+		final Car car = new Car(new Name("test"), Position.valueOf(7));
 
 		assertThat(car.isSamePosition(winnerPosition)).isTrue();
 	}
@@ -60,7 +60,7 @@ public class CarTest {
 	@Test
 	void isSamePosition_우승하지_못한_위치의_자동차() {
 		final int winnerPosition = 7;
-		final Car car = new Car(new Name("test"), new Position(6));
+		final Car car = new Car(new Name("test"), Position.valueOf(6));
 
 		assertThat(car.isSamePosition(winnerPosition)).isFalse();
 	}

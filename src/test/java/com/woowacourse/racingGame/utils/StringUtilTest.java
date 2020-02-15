@@ -37,7 +37,7 @@ public class StringUtilTest {
 
 	@Test
 	void convertIntoDashBy_게임을_진행한_자동차의_상태() {
-		final Car car = new Car(new Name("test"), new Position(4));
+		final Car car = new Car(new Name("test"), Position.valueOf(4));
 
 		final String actual = StringUtil.convertIntoDashBy(car.getPosition());
 
