@@ -1,5 +1,6 @@
 package racingcar.domain.result;
 
+import racingcar.domain.Referee;
 import racingcar.domain.car.Car;
 
 import java.util.List;
@@ -36,5 +37,9 @@ public class RacingResult {
         }
 
         return stringBuilder.toString();
+    }
+
+    public List<Car> getWinners() {
+        return Referee.getWinners(cars);
     }
 }

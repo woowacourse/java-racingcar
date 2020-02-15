@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class WinnersTest {
+public class RefereeTest {
     @Test
     void 가장_멀리_간_자동차의_위치를_반환() {
         Car car1 = new Car("무늬", 4);
@@ -17,7 +17,7 @@ public class WinnersTest {
         Car car4 = new Car("코일", 2);
         List<Car> cars = Arrays.asList(car1, car2, car3, car4);
 
-        assertThat(Winners.findMaxPosition(cars)).isEqualTo(4);
+        assertThat(Referee.findMaxPosition(cars)).isEqualTo(4);
     }
 
     @Test
@@ -30,6 +30,6 @@ public class WinnersTest {
 
         List<Car> expectedWinners = Arrays.asList(car1, car2);
 
-        assertThat(Winners.getWinners(cars)).isEqualTo(expectedWinners);
+        assertThat(Referee.getWinners(cars)).isEqualTo(expectedWinners);
     }
 }

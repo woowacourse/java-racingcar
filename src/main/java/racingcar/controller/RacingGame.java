@@ -11,7 +11,10 @@ public class RacingGame {
     private final List<Car> cars;
     private final Round round;
 
-    public RacingGame(List<Car> cars, Round round) {
+    public RacingGame(String carsName, String roundNumber) {
+        List<Car> cars = Cars.generateCarsByInput(carsName);
+        Round round = new Round(roundNumber);
+
         this.cars = cars;
         this.round = round;
     }
