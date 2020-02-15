@@ -35,14 +35,14 @@ class PlayersTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", "abcdef"})
-    void isEmpty_ShouldReturnTrueWhenInputInvalidName(String input) {
+    void isEmpty_ShouldReturnTrueWhenInputIsInvalidName(String input) {
         Players gameManager = new Players(input);
         Assertions.assertThat(gameManager.isEmpty())
                 .isTrue();
     }
 
     @Test
-    void isEmpty_ShouldReturnFalseWhenInputVaildName() {
+    void isEmpty_ShouldReturnFalseWhenInputIsValidName() {
         String input = "abcac"; // "a"
         Players gameManager = new Players(input);
 
@@ -51,7 +51,7 @@ class PlayersTest {
     }
 
     @Test
-    void isEmpty_ShouldReturnFalseWhenInputDuplicatedNames() {
+    void isEmpty_ShouldReturnFalseWhenInputAreDuplicatedNames() {
         String input = "abc,abc";
         Players gameManager = new Players(input);
 

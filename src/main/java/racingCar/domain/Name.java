@@ -18,7 +18,7 @@ public class Name {
         return name.length() > 5;
     }
 
-    private boolean equals(Name name) {
+    public boolean equals(Name name) {
         return this.name.equals(name.name);
     }
 
