@@ -32,13 +32,6 @@ public class CarTest {
 				Arguments.of("ie,aaaaa,jjjj"));
 	}
 
-	@ParameterizedTest
-	@CsvSource(value = {"0 false", "3 false", "4 true", "9 true"}, delimiter = ' ')
-	void 이동조건(int value, boolean expected) {
-		Car car = new Car("bumbl");
-		assertThat(car.move(value)).isEqualTo(expected);
-	}
-
 	@Test
 	void 큰_포지션_반환() {
 		Car car = new Car("a");

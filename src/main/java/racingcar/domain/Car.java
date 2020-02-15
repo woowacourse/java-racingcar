@@ -7,13 +7,13 @@ public class Car {
 	private static final int INITIAL_POSITION = 0;
 
 	private final String name;
-	private int position;
+	private Position position;
 
 	public Car(final String name) {
 		validateNullName(name);
 		validateLengthOfCarName(name);
 		this.name = name;
-		this.position = INITIAL_POSITION;
+		this.position = new Position(INITIAL_POSITION);
 	}
 
 	private void validateNullName(String name) {
@@ -28,12 +28,10 @@ public class Car {
 		}
 	}
 
-	public boolean move(int randomValue) {
-		if (randomValue >= MINIMUM_MOVE_NUMBER) {
-			position++;
-			return true;
+	public void move(int value) {
+		if (position.isMovable(value)) {
+			position.move();
 		}
-		return false;
 	}
 
 	public int compareMaxPosition(int positionToCompare) {
