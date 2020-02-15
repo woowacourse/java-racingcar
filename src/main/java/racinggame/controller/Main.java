@@ -1,8 +1,10 @@
 package racinggame.controller;
 
 import racinggame.domain.RacingGame;
-import racinggame.domain.data.Input;
+import racinggame.domain.data.Names;
 import racinggame.domain.data.Output;
+import racinggame.domain.data.Repeat;
+import racinggame.view.InputView;
 
 /**
  * Main 클래스는 메인 로직의 최상위 운영을 담당하는 클래스이다.
@@ -12,9 +14,11 @@ import racinggame.domain.data.Output;
  */
 public class Main {
     public static void main(String... args) {
-        Input input = new Input();
+        //Input input = new Input(InputView.inputName(), InputView.inputRepeat());
+        Names names = new Names(InputView.inputName());
+        Repeat repeat = new Repeat(InputView.inputRepeat());
         Output output = new Output();
-        RacingGame.play(input, output);
+        RacingGame.play(names,repeat, output);
     }
 }
 

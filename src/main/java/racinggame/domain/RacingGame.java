@@ -1,8 +1,9 @@
 package racinggame.domain;
 
-import racinggame.domain.data.Input;
+import racinggame.domain.data.Names;
 import racinggame.domain.data.Output;
 import racinggame.domain.car.Car;
+import racinggame.domain.data.Repeat;
 import racinggame.view.OutputView;
 
 import java.util.ArrayList;
@@ -57,14 +58,16 @@ public class RacingGame {
      * @param input  입력값을 저장하는 Input 인스턴스이다.
      * @param output 출력값을 저장하는 Output 인스턴스이다.
      */
-    public static void play(Input input, Output output) {
-        List<String> names = input.splitInputByComma();
+    public static void play(Names names, Repeat repeat, Output output) {
+        List<String> splitName = names.splitNamesByComma();
         List<Car> cars = new ArrayList<>();
 
-        output.initCarStatus(names);
-        names.stream().forEach(x -> cars.add(new Car(x)));
+        output.initCarStatus(splitName);
+        for(String name : splitName){
+            cars.add(new Car(name));
+        }
         OutputView.printResultFormat();
-        moveCars(input,output, cars);
+        moveCars(repeat, output, cars);
         output.makeWinnerNames(cars);
     }
 
@@ -78,10 +81,10 @@ public class RacingGame {
      * @param cars   Car 객체를 저장하는 List 이다.
      * @param repeat 반복할 횟수를 저장하는 정수형 변수이다.
      */
-    private static void moveCars(Input input, Output output, List<Car> cars) {
-        int repeat = 0;
-        while(input.isLoopDone(repeat)){
-            repeat++;
+    private static void moveCars(Repeat repeat, Output output, List<Car> cars) {
+        int cnt = 0;
+        while(repeat.isLoopDone(cnt)){
+            cnt++;
             cars.stream().forEach(car -> {
                 car.accelerate(generateRandomNumber(), FORWARD_NUMBER);
                 car.passingLog(output);

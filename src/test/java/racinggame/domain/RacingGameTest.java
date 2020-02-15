@@ -6,16 +6,18 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import racinggame.domain.data.Names;
 import racinggame.domain.data.Output;
 import racinggame.domain.car.Car;
-import racinggame.domain.data.Input;
+import racinggame.domain.data.Repeat;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGameTest {
     private static final List<Car> carList = new ArrayList<>();
-    Input input;
+    Names names;
+    Repeat repeat;
     Output output;
     private final String NAMES = "pobi,crong,honux";
     private final String REPEAT = "5";
@@ -41,7 +43,8 @@ public class RacingGameTest {
 
     @BeforeEach
     void initInput() {
-        input = new Input(NAMES, REPEAT);
+        names = new Names(NAMES);
+        repeat = new Repeat(REPEAT);
         output = new Output();
         Car.initWinnerRecord();
     }
@@ -76,7 +79,7 @@ public class RacingGameTest {
 
     @RepeatedTest(value = 1000)
     void 레이싱게임_실행_결과_테스트() {
-        RacingGame.play(input, output);
+        RacingGame.play(names,repeat, output);
         boolean result1 = output.isContainName("pobi");
         boolean result2 = output.isContainName("crong");
         boolean result3 = output.isContainName("honux");
