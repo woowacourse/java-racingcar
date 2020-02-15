@@ -28,7 +28,7 @@ public class Cars {
 	public List<String> getWinners() {
 		final Car maxPositionCar = cars.stream()
 			.max(Car::compareTo)
-			.orElseThrow(() -> new IllegalArgumentException("차가 없습니다."));
+			.orElseThrow(() -> new IllegalArgumentException("차량 리스트가 비었습니다."));
 
 		return cars.stream()
 			.filter(car -> car.isMaxPosition(maxPositionCar))
