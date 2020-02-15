@@ -1,31 +1,29 @@
 package application.racing.domain;
 
-import application.racing.ConstantForRacing;
-
 public class RacingLab {
+    private final static String ERR_MESSAGE_FOR_NOT_NUMBER = "숫자를 입력하십시오.";
+    private final static String ERR_MESSAGE_FOR_UNDER_ZERO = "0 이상의 수를 입력하십시오.";
+    private final static int RACING_LAB_STANDARD = 0;
+
     private int racingLab;
 
     public RacingLab(String input) {
-        throwExceptionWhenCannotParsing(input);
-        throwExceptionWhenNegativeRacingLabNumber();
+        validateRightNumber(input);
+        validateRacingLabUnderZero();
     }
 
-    private void throwExceptionWhenCannotParsing(String input) {
+    private void validateRightNumber(String input) {
         try {
             this.racingLab = Integer.parseInt(input);
         } catch (Exception e) {
-            throw new IllegalArgumentException("숫자를 입력하십시오.");
+            throw new IllegalArgumentException(ERR_MESSAGE_FOR_NOT_NUMBER);
         }
     }
 
-    private void throwExceptionWhenNegativeRacingLabNumber() {
-        if (isRacingLabUnderZero()) {
-            throw new IllegalArgumentException("0 이상의 수를 입력하십시오.");
+    private void validateRacingLabUnderZero() {
+        if (this.racingLab < RACING_LAB_STANDARD) {
+            throw new IllegalArgumentException(ERR_MESSAGE_FOR_UNDER_ZERO);
         }
-    }
-
-    private boolean isRacingLabUnderZero() {
-        return this.racingLab < ConstantForRacing.RACING_LAB_STANDARD;
     }
 
     public int getRacingLab() {
