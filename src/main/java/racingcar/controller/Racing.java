@@ -12,6 +12,7 @@ package racingcar.controller;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import racingcar.domain.Car;
 import racingcar.domain.CarFactory;
@@ -32,7 +33,7 @@ public class Racing {
     }
 
     private static void playRacing(List<Car> cars, RacingResults racingResultFactory) {
-        LinkedHashMap<Car, Integer> racingResults = new LinkedHashMap<>();
+        Map<Car, Integer> racingResults = new LinkedHashMap<>();
         for (Car car : cars) {
             if (isForwardByRandom()) {
                 car.forward();
