@@ -5,7 +5,13 @@ import application.racing.view.OutputViewer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Racing {
+public class RacingGame {
+    private int round;
+
+    public RacingGame() {
+        this.round = 0;
+    }
+
     public int generateRandomNumber() {
         double randomValue = Math.random();
         return (int) (randomValue * 9);
@@ -50,5 +56,14 @@ public class Racing {
             int randomNumber = generateRandomNumber();
             car.moveCar(randomNumber);
         }
+    }
+
+    public void raceOneLab(Cars cars) {
+        cars.moveEachCar();
+        this.round = this.round + 1;
+    }
+
+    public boolean isEnd(RacingLab racingLab) {
+        return this.round == racingLab.getRacingLab();
     }
 }

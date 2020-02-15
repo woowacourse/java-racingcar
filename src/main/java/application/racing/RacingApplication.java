@@ -2,7 +2,7 @@ package application.racing;
 
 import application.racing.domain.Car;
 import application.racing.domain.CarNames;
-import application.racing.domain.Racing;
+import application.racing.domain.RacingGame;
 import application.racing.domain.RacingLab;
 import application.racing.view.OutputViewer;
 
@@ -26,8 +26,8 @@ public class RacingApplication {
     }
 
     private static void startRacing(List<Car> cars, RacingLab racingLab) {
-        Racing racing = new Racing();
-        List<String> winners = racing.executeRacingGame(cars, racingLab.getRacingLab());
+        RacingGame racingGame = new RacingGame();
+        List<String> winners = racingGame.executeRacingGame(cars, racingLab.getRacingLab());
         OutputViewer.printWinner(winners);
     }
 

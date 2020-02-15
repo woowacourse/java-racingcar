@@ -29,4 +29,8 @@ public class Cars {
             throw new IllegalArgumentException(ERR_MESSAGE_FOR_DUPLICATE_NAME);
         }
     }
+
+    public void moveEachCar() {
+        this.cars.stream().forEach(car -> car.moveCar(new RandomNumber().getRandomNumber()));
+    }
 }

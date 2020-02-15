@@ -11,15 +11,8 @@ public class Position {
     }
 
     public void move(int randomNumber) {
-        validateRandomNumber(randomNumber);
         if (randomNumber >= MOVING_STANDARD) {
             this.position = this.position + MOVEMENT_NUMBER;
-        }
-    }
-
-    private void validateRandomNumber(int randomNumber) {
-        if (randomNumber < 0 || randomNumber > 9) {
-            throw new IllegalArgumentException();
         }
     }
 

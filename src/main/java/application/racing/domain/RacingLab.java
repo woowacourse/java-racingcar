@@ -15,7 +15,7 @@ public class RacingLab {
     private void validateRightNumber(String input) {
         try {
             this.racingLab = Integer.parseInt(input);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERR_MESSAGE_FOR_NOT_NUMBER);
         }
     }
