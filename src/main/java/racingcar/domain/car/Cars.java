@@ -2,39 +2,27 @@ package racingcar.domain.car;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Cars {
     private static final String DELIMITER = ",";
     private static final String ENTER = "\n";
 
-    private final List<Car> cars;
-
-    public Cars(String names) {
+    public static List<Car> generateCarsByInput(String inputForCarNames) {
         List<Car> cars = new ArrayList<>();
 
-        validateNames(names);
-        validateDuplicatedNames(names);
+        validateNames(inputForCarNames);
+        validateDuplicatedNames(inputForCarNames);
 
-        for (String name : names.split(DELIMITER)) {
+        for (String name : getSplit(inputForCarNames)) {
             cars.add(new Car(name));
         }
 
-        this.cars = cars;
+        return cars;
     }
 
-    public Cars(String names, int location) {
-        List<Car> cars = new ArrayList<>();
-
-        validateNames(names);
-        validateDuplicatedNames(names);
-
-        for (String name : names.split(DELIMITER)) {
-            cars.add(new Car(name, location++));
-        }
-
-        this.cars = cars;
+    private static String[] getSplit(String inputForCarNames) {
+        return inputForCarNames.split(DELIMITER);
     }
 
     public static void validateNames(String input) throws IllegalArgumentException {
@@ -43,9 +31,8 @@ public class Cars {
         }
     }
 
-
     public static void validateDuplicatedNames(String input) throws IllegalArgumentException {
-        String[] splitInput = input.split(DELIMITER);
+        String[] splitInput = getSplit(input);
         if (isDuplicatedNames(splitInput)) {
             throw new IllegalArgumentException("이름들은 중복될 수 없습니다.");
         }
@@ -58,22 +45,18 @@ public class Cars {
                 .count() != splitInput.length;
     }
 
-    public void play() {
+    public static void play(List<Car> cars) {
         for (Car car : cars) {
             car.play();
         }
     }
 
-    public String getRoundResult() {
+    public static String getRoundResult(List<Car> cars) {
         StringBuilder results = new StringBuilder();
         for (Car car : cars) {
             results.append(car.getRoundResult());
             results.append(ENTER);
         }
         return results.toString();
-    }
-
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
     }
 }

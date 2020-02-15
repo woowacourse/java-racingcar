@@ -1,52 +1,56 @@
 package racingcar.controller;
 
+import jdk.internal.util.xml.impl.Input;
 import racingcar.domain.*;
+import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.List;
+
 public class RacingCarGame {
     public static void main(String[] args) {
-        Cars cars = inputCarNames();
-        Round round = inputRoundNumber();
+        String inputForCarNames = InputView.inputCarNames();
+        List<Car> cars = Cars.generateCarsByInput(inputForCarNames);
+
+        Round round = inputRound();
 
         System.out.println("실행 결과");
         playRounds(cars, round);
 
-        System.out.println("우승자 명단");
-        Winners winners = new Winners(cars);
-        OutputView.printResult(winners.getWinnersName());
+//        System.out.println("우승자 명단");
+//        Winners winners = new Winners(cars);
+//        OutputView.printResult(winners.getWinnersName());
     }
 
-    private static void playRounds(Cars cars, Round round) {
-        String roundResult;
-        while(round.isGoing()) {
-            cars.play();
-            roundResult = cars.getRoundResult();
-            OutputView.printResult(roundResult);
-            System.out.println();
-        }
-    }
-
-    private static Cars inputCarNames() {
+    private static List<Car> inputCarNames() {
         try {
-            System.out.println("경주할 자동차 이름을 입력해주세요.(이름은 쉼표(,)를 기준으로 구분합니다.)");
-            String inputForNames = InputView.inputValue();
-            return new Cars(inputForNames);
+            String inputForCarNames = InputView.inputCarNames();
+            return Cars.generateCarsByInput(inputForCarNames);
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             return inputCarNames();
         }
     }
 
-    private static Round inputRoundNumber() {
+    private static Round inputRound() {
         try {
-            System.out.println("시도할 회수는 몇회인가요?");
-            String inputForRound = InputView.inputValue();
+            String inputForRound = InputView.inputRound();
             return new Round(inputForRound);
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
-            return inputRoundNumber();
+            return inputRound();
+        }
+    }
+
+    private static void playRounds(List<Car> cars, Round round) {
+        String roundResult;
+        while(round.isGoing()) {
+            Cars.play(cars);
+            roundResult = Cars.getRoundResult(cars);
+            OutputView.printResult(roundResult);
+            System.out.println();
         }
     }
 }

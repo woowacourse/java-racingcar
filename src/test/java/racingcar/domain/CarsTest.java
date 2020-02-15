@@ -1,9 +1,13 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
+import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
+
+import java.util.List;
 
 public class CarsTest {
     @Test
@@ -20,5 +24,17 @@ public class CarsTest {
         assertThatThrownBy(() -> {
            Cars.validateDuplicatedNames(input);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 자동차의_이름들로_Car_객체를_생성하는_기능() {
+        String inputForCarNames = "무늬, 두강";
+        List<Car> cars = Cars.generateCarsByInput(inputForCarNames);
+        assertThat(cars.size()).isEqualTo(2);
+
+
+        inputForCarNames = "무늬, 두강, 쿨라임, 코일";
+        cars = Cars.generateCarsByInput(inputForCarNames);
+        assertThat(cars.size()).isEqualTo(4);
     }
 }

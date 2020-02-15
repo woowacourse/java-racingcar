@@ -6,7 +6,7 @@ public class GoOrStop {
     private static final int NUMBER_POSSIBLE_TO_GO = 4;
     private static final int MAX_RANDOM_NUMBER = 10;
 
-    public static boolean decideGoOrStop() {
+    public static boolean decideToGo() {
         boolean possibleToGo = false;
 
         if (generateRandomNumber() >= NUMBER_POSSIBLE_TO_GO) {

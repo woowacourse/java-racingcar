@@ -1,15 +1,15 @@
 package racingcar.domain.car;
 
-public class Location implements Comparable<Location> {
+public class Position implements Comparable<Position> {
     private static final String MARK = "-";
 
     private int location;
 
-    public Location() {
+    public Position() {
         this.location = 0;
     }
 
-    public Location(int location) {
+    public Position(int location) {
         this.location = location;
     }
 
@@ -28,14 +28,14 @@ public class Location implements Comparable<Location> {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Location) {
-            return location == ((Location) o).location;
+        if (o instanceof Position) {
+            return location == ((Position) o).location;
         }
         return false;
     }
 
     @Override
-    public int compareTo(Location anotherLocation) {
-        return Integer.compare(this.location, anotherLocation.location);
+    public int compareTo(Position anotherPosition) {
+        return Integer.compare(this.location, anotherPosition.location);
     }
 }
