@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import racingcar.utils.RandomNumber;
-import racingcar.utils.Split;
+import racingcar.utils.StringUtils;
 import racingcar.utils.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -48,7 +48,7 @@ public class RacingGame {
 	private static String[] getRacingCarNames() {
 		try {
 			String input = InputView.getCarNames();
-			return Split.splitInputName(input);
+			return StringUtils.splitInputName(input);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return getRacingCarNames();
