@@ -1,32 +1,36 @@
 package tdd.racingcar.domain;
 
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Cars  {
-	private final List<Car> cars;
+public class Cars {
+	private List<Car> cars;
 
-	public Cars(final List<Car> cars) {
-		this.cars = cars;
+	public Cars(List<Car> cars) {
+		this.cars = List.copyOf(cars);
 	}
 
 	public void move() {
-		cars.forEach(tryToMove());
-	}
-
-	private Consumer<Car> tryToMove() {
-		return car -> {
+		for (Car car : cars) {
 			final Power randomPower = PowerFactory.createRandomPower();
 			car.move(randomPower);
-		};
+		}
 	}
 
-	public int getMaxPosition() {
+	public List<Name> getWinnerNames() {
+		final Position maxPosition = getMaxPosition();
 		return cars.stream()
-			.mapToInt(Car::getPosition)
-			.max()
-			.orElseThrow(() -> new IllegalArgumentException("차가 존재하지 않습니다."));
+			.filter(car -> car.getPosition().equals(maxPosition))
+			.map(Car::getName)
+			.collect(Collectors.toUnmodifiableList());
+	}
+
+	private Position getMaxPosition() {
+		return cars.stream()
+			.map(Car::getPosition)
+			.reduce(Position::getGreater)
+			.orElseThrow(() -> new NullPointerException("차가 존재하지 않습니다."));
 	}
 
 	public Stream<Car> stream() {
