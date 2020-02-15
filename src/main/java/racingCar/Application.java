@@ -1,10 +1,13 @@
 package racingCar;
 
 import racingCar.domain.Deciders;
+import racingCar.domain.Name;
 import racingCar.domain.Players;
+import racingCar.domain.StringParser;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class Application {
@@ -26,11 +29,12 @@ public class Application {
 
     private static Players createGameManager() {
         String namesInput = InputView.InputUserNames();
-        Players gameManager = new Players(namesInput);
+        List<Name> names = StringParser.parseToNameList(namesInput);
+        Players gameManager = new Players(names);
         while (gameManager.isEmpty()) {
             OutputView.printInvalidNameWarning();
             namesInput = InputView.InputUserNames();
-            gameManager = new Players(namesInput);
+            gameManager = new Players(names);
         }
         return gameManager;
     }

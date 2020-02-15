@@ -22,6 +22,10 @@ public class Name {
         return this.name.equals(name.name);
     }
 
+    public boolean equals(String name) {
+        return this.name.equals(name);
+    }
+
     public String getString() {
         return name;
     }

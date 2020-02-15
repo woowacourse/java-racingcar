@@ -56,8 +56,8 @@ public class Player {
         return position == max;
     }
 
-    public String getName() {
-        return name.getString();
+    public Name getName() {
+        return name;
     }
 
     public int getPosition() {

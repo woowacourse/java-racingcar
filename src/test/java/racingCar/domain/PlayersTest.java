@@ -33,25 +33,6 @@ class PlayersTest {
         }
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"", "abcdef"})
-    void isEmpty_ShouldReturnTrueWhenInputIsInvalidName(String input) {
-        List<Name> names = StringParser.parseToNameList(input);
-        Players gameManager = new Players(names);
-        Assertions.assertThat(gameManager.isEmpty())
-                .isTrue();
-    }
-
-    @Test
-    void isEmpty_ShouldReturnFalseWhenInputIsValidName() {
-        String input = "abcac"; // "a"
-        List<Name> names = StringParser.parseToNameList(input);
-        Players gameManager = new Players(names);
-
-        Assertions.assertThat(gameManager.isEmpty())
-                .isFalse();
-    }
-
     @Test
     void isEmpty_ShouldReturnFalseWhenInputAreDuplicatedNames() {
         String input = "abc,abc";

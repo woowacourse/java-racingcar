@@ -9,13 +9,13 @@ public class Players {
 
     private List<Player> players;
 
-    public Players(String input) {
+    public Players(List<Name> names) {
         players = new ArrayList<>();
+        for (Name name : names) {
+            players.add(new Player(name));
+        }
         try {
-            List<PlayerName> nameList = NameParser.parse(input);
-            players = nameList.stream()
-                    .map(Player::new)
-                    .collect(Collectors.toList());
+            checkDuplication();
         } catch (IllegalArgumentException e) {
             players.clear();
         }
@@ -23,7 +23,9 @@ public class Players {
 
     private void checkDuplication() throws IllegalArgumentException {
         Set<String> set = new HashSet<>();
-        players.forEach((t) -> set.add(t.toString()));
+        for (Player player : players) {
+            set.add(player.getName().getString());
+        }
         if (players.size() != set.size()) {
             throw new IllegalArgumentException();
         }

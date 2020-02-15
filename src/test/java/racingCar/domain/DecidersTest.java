@@ -16,7 +16,8 @@ class DecidersTest {
 
     @BeforeEach
     void setUp() {
-        players = new Players("kueni,pobi,jason");
+        List<Name> names = StringParser.parseToNameList("kueni,pobi,jason");
+        players = new Players(names);
     }
 
     @Test
@@ -33,7 +34,8 @@ class DecidersTest {
 
     @Test
     void isNotEqualSize_ShouldTrueWhenSizeIsNotEqual() {
-        Players other = new Players("kueni, pobi");
+        List<Name> names = StringParser.parseToNameList("kueni, pobi");
+        Players other = new Players(names);
         Deciders deciders = new Deciders(other);
         Assertions.assertThat(deciders.isNotEqualSize(players))
                 .isTrue();
