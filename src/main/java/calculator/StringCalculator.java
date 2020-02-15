@@ -6,8 +6,6 @@ import java.util.List;
 public class StringCalculator {
     private int result = 0;
     public int add(String numberExpression) {
-
-
         if (hasCustomSeperator(numberExpression)) {
             String seperator = numberExpression.substring(2,3);
             addNumbersInExpressionBySeparator(numberExpression.substring(4), seperator);
