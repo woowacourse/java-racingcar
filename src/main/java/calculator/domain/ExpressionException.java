@@ -1,10 +1,9 @@
 package calculator.domain;
 
 public class ExpressionException extends IllegalArgumentException {
-    public static final String NOT_BLANK = "입력값은 공백이 될 수 없습니다.";
-    public static final String NOT_NULL = "입력값은 null이 될 수 없습니다.";
+	public static final String INTEGER_OVERFLOW = "연산의 결과가 정수의 최대값을 초과했습니다.";
 
-    public ExpressionException(String errMsg) {
-        super(errMsg);
-    }
+	public ExpressionException(String errMsg) {
+		super(errMsg);
+	}
 }

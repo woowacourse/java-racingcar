@@ -1,35 +1,58 @@
 package calculator;
 
-import calculator.domain.Expression;
-import calculator.domain.ExpressionException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import calculator.domain.Expression;
+import calculator.domain.ExpressionException;
+import calculator.domain.Operand;
+
 public class ExpressionTest {
-    private Expression expression;
+	private Expression expression;
+	private List<Operand> operands;
 
-    @Test
-    @DisplayName("입력값이 null인 경우")
-    void nullTest() {
-        Assertions.assertThatThrownBy(
-                () -> expression = new Expression(null)
-        ).isInstanceOf(ExpressionException.class);
-    }
+	@BeforeEach
+	void setUp() {
+		operands = new ArrayList<>();
+	}
 
-    @Test
-    @DisplayName("빈 문자열을 입력받은 경우")
-    void blankTest() {
-        Assertions.assertThatThrownBy(
-                () -> expression = new Expression("")
-        ).isInstanceOf(ExpressionException.class);
-    }
+	@Test
+	@DisplayName("Expression(Operand 리스트)이 null인 경우")
+	void nullTest() {
+		expression = new Expression(null);
+		Assertions.assertThat(expression.calculate()).isEqualTo(new Operand(0));
+	}
 
-    @Test
-    @DisplayName("숫자 하나를 입력한 경우")
-    void singleNumberTest() {
-        expression = new Expression("1");
-        Assertions.assertThat(expression.calculate())
-                .isEqualTo(1);
-    }
+	@Test
+	@DisplayName("Expression(Operand 리스트)이 길이가 0인 경우")
+	void emptyTest() {
+		expression = new Expression(null);
+		Assertions.assertThat(expression.calculate()).isEqualTo(new Operand(0));
+	}
+
+	@Test
+	@DisplayName("Expression(Operand 리스트)의 피연산자가 1개인 경우")
+	void singleNumberTest() {
+		operands.add(new Operand(1));
+		expression = new Expression(operands);
+
+		Assertions.assertThat(expression.calculate()).isEqualTo(new Operand(1));
+	}
+
+	@Test
+	@DisplayName("연산의 결과가 오버플로우된 경우")
+	void overflowTest() {
+		operands.add(new Operand(Integer.MAX_VALUE));
+		operands.add(new Operand(1));
+		expression = new Expression(operands);
+
+		Assertions.assertThatThrownBy(
+			() -> expression.calculate()
+		).hasMessage(ExpressionException.INTEGER_OVERFLOW);
+	}
 }

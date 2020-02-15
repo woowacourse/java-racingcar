@@ -1,29 +1,19 @@
 package calculator.domain;
 
-import static calculator.domain.StringSplitter.splitString;
+import java.util.List;
 
 public class Expression {
-    private String expression;
+	private List<Operand> operands;
 
-    public Expression(String expression) {
-        validateNull(expression);
-        validateBlank(expression);
-        this.expression = expression;
-    }
+	public Expression(List<Operand> operands) {
+		this.operands = operands;
+	}
 
-    private void validateBlank(String expression) {
-        if (expression.isEmpty()) {
-            throw new ExpressionException(ExpressionException.NOT_BLANK);
-        }
-    }
-
-    private void validateNull(String expression) {
-        if (expression == null) {
-            throw new ExpressionException(ExpressionException.NOT_NULL);
-        }
-    }
-
-    public int calculate() {
-        return splitString(expression).stream().mapToInt(Integer::intValue).sum();
-    }
+	public Operand calculate() {
+		if (operands == null || operands.isEmpty()) {
+			return new Operand(0);
+		}
+		return operands.stream()
+			.reduce(new Operand(0), Operand::sum);
+	}
 }

@@ -21,7 +21,7 @@ public class OperandTest {
 	void notNumberTest() {
 		Assertions.assertThatThrownBy(
 			() -> operand.valueOf("a")
-		).isInstanceOf(OperandException.class);
+		).hasMessage(OperandException.NOT_NUMBER);
 	}
 
 	@Test
@@ -29,14 +29,13 @@ public class OperandTest {
 	void negativeTest() {
 		Assertions.assertThatThrownBy(
 			() -> operand.valueOf("-1")
-		).isInstanceOf(OperandException.class);
+		).hasMessage(OperandException.NOT_NEGATVIE);
 	}
 
 	@Test
 	@DisplayName("sum 테스트")
 	void sumTest() {
 		operand = new Operand(1);
-		Assertions.assertThat(operand.sum(new Operand(3)))
-			.isEqualTo(new Operand(4));
+		Assertions.assertThat(operand.sum(new Operand(3))).isEqualTo(new Operand(4));
 	}
 }

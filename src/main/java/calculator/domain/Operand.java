@@ -26,7 +26,11 @@ public class Operand {
 	}
 
 	public Operand sum(Operand next) {
-		return new Operand(Math.addExact(this.number, next.number));
+		try {
+			return new Operand(Math.addExact(this.number, next.number));
+		} catch (ArithmeticException e) {
+			throw new ExpressionException(ExpressionException.INTEGER_OVERFLOW);
+		}
 	}
 
 	public int getNumber() {
