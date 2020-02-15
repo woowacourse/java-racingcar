@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -17,11 +18,15 @@ class PlayersTest {
     @ValueSource(ints = {1,2,3})
     void play(int input) {
         String names = "pobi,jason,cu";
-        Players gameManager = new Players(names);
-        Deciders deciders = new Deciders(gameManager, true);
+        Players players = new Players(names);
+        List<Boolean> trueBooleans = new ArrayList<>();
+        for (Player player: players.getUnmodifiableList()) {
+            trueBooleans.add(true);
+        }
+        Deciders deciders = new Deciders(players, trueBooleans);
         List<Player> results = new ArrayList<>();
         for (int i = 0; i < input; i++) {
-            results = gameManager.play(deciders);
+            results = players.play(deciders);
         }
         for (Player t : results) {
             Assertions.assertThat(t.getPosition()).isEqualTo(input);
@@ -52,5 +57,12 @@ class PlayersTest {
 
         Assertions.assertThat(gameManager.isEmpty())
                 .isTrue();
+    }
+
+    @Test
+    void getUnmodifiableList() {
+        Players players = new Players("kueni,pobi");
+        Assertions.assertThat(players.getUnmodifiableList().size())
+                .isEqualTo(2);
     }
 }

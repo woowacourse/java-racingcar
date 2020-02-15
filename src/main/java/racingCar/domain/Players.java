@@ -84,4 +84,12 @@ public class Players {
     public int size() {
         return players.size();
     }
+
+    public boolean isSizeNotEqual(int size) {
+        return players.size() != size;
+    }
+
+    public List<Player> getUnmodifiableList() {
+        return Collections.unmodifiableList(players);
+    }
 }
