@@ -19,7 +19,13 @@ public class InputView {
     public static int inputRound() {
         System.out.println(ROUND_INPUT_MESSAGE);
         String input = scanner.next();
-        return ValidateInput.ValidateCount(input);
+        try {
+            return ValidateInput.ValidateCount(input);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ValidateInput.INTEGER_ERROR_MESSAGE);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ValidateInput.MIN_ROUND_NUMBER_ERROR_MESSAGE);
+        }
     }
 
     public static String[] nameSplit(String input) {
