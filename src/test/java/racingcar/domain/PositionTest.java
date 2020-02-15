@@ -23,13 +23,29 @@ public class PositionTest {
 	@CsvSource(value = {"0 false", "3 false", "4 true", "9 true"}, delimiter = ' ')
 	void 이동조건(int value, boolean expected) {
 		Position position = new Position(value);
+
 		assertThat(position.isMovable(value)).isEqualTo(expected);
 	}
 
 	@Test
 	void 이동확인() {
 		Position position = new Position(0);
+
 		position.move();
 		assertThat(position.getPosition()).isEqualTo(1);
+	}
+
+	@Test
+	void 큰_포지션_반환() {
+		Position position = new Position(2);
+
+		assertThat(position.maxPosition(3)).isEqualTo(3);
+		assertThat(position.maxPosition(1)).isEqualTo(2);
+	}
+
+	@ParameterizedTest
+	@CsvSource(value = {"2:true", "3:false"}, delimiter = ':')
+	void Max포지션인지_확인(int maxPosition, boolean expected) {
+		assertThat(new Position(2).isMaxPosition(maxPosition)).isEqualTo(expected);
 	}
 }

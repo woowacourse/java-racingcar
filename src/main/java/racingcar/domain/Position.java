@@ -33,4 +33,12 @@ public class Position {
 	public int getPosition() {
 		return position;
 	}
+
+	public int maxPosition(int position) {
+		return Math.max(this.position, position);
+	}
+
+	public boolean isMaxPosition(int maxPosition) {
+		return position == maxPosition;
+	}
 }

@@ -3,7 +3,6 @@ package racingcar.domain;
 public class Car {
 	private static final int MINIMUM_LENGTH_OF_CAR_NAME = 1;
 	private static final int MAXIMUM_LENGTH_OF_CAR_NAME = 5;
-	private static final int MINIMUM_MOVE_NUMBER = 4;
 	private static final int INITIAL_POSITION = 0;
 
 	private final String name;
@@ -34,16 +33,20 @@ public class Car {
 		}
 	}
 
-	public int compareMaxPosition(int positionToCompare) {
-		return Math.max(position, positionToCompare);
+	public int maxPosition(int positionToCompare) {
+		return position.maxPosition(positionToCompare);
 	}
 
 	public boolean isMaxPosition(int maxPosition) {
-		return position == maxPosition;
+		return position.isMaxPosition(maxPosition);
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public int getPosition() {
+		return position.getPosition();
 	}
 
 	@Override
