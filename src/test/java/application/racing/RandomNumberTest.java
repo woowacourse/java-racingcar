@@ -9,7 +9,7 @@ public class RandomNumberTest {
     @DisplayName("RandomNumber 생성자 테스트")
     @Test
     public void randomNumberConstructorTest() {
-       RandomNumber randomNumber = new RandomNumber();
-       Assertions.assertThat(randomNumber.getRandomNumber()).isBetween(0, 9);
+        RandomNumber randomNumber = new RandomNumber();
+        Assertions.assertThat(randomNumber.getRandomNumber()).isBetween(0, 9);
     }
 }

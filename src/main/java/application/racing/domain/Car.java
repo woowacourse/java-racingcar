@@ -13,6 +13,10 @@ public class Car {
         this.position.move(number);
     }
 
+    public boolean isMaxPosition(int maxPosition) {
+        return this.getPosition() == maxPosition;
+    }
+
     public int getPosition() {
         return this.position.getPosition();
     }

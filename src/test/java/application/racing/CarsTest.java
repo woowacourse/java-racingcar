@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+
 public class CarsTest {
     @DisplayName("Cars 클래스 생성자 테스트")
     @ParameterizedTest

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Cars {
     private final static String ERR_MESSAGE_FOR_DUPLICATE_NAME = "중복된 자동차 이름을 입력하였습니다.";
@@ -31,6 +32,26 @@ public class Cars {
     }
 
     public void moveEachCar() {
-        this.cars.stream().forEach(car -> car.moveCar(new RandomNumber().getRandomNumber()));
+        this.cars.stream()
+                .forEach(car -> car.moveCar(new RandomNumber().getRandomNumber()));
+    }
+
+    public List<String> findWinner() {
+        int maxPosition = findMaxPosition();
+        return this.cars.stream()
+                .filter(car -> car.isMaxPosition(maxPosition))
+                .map(Car::toString)
+                .collect(Collectors.toList());
+    }
+
+    private int findMaxPosition() {
+        return this.cars.stream()
+                .map(Car::getPosition)
+                .max(Integer::compare)
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public List<Car> getCars() {
+        return this.cars;
     }
 }

@@ -1,38 +1,40 @@
 package application.racing.view;
 
-import application.racing.ConstantForRacing;
 import application.racing.domain.Car;
+import application.racing.domain.Cars;
 
 import java.util.List;
 
 public class OutputViewer {
+    private final static String RUN_RESULT = "\n실행 결과";
+    private final static String COLON = " : ";
+    private final static String BAR = "-";
+    private final static String WINNER_MENTION = "가 최종 우승했습니다.";
+    private final static String NAME_DELIMITER = ", ";
+
     public static void printErrorMessage(String message) {
         System.out.println(message);
     }
 
     public static void printRacingResultMessage() {
-        System.out.println(ConstantForRacing.RESULT_STRING);
+        System.out.println(RUN_RESULT);
     }
 
-    public void printPositionDuringRacing(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.print(addCarNameStringWithColon(car));
+    public static void printPositionDuringRace(Cars cars) {
+        for (Car car : cars.getCars()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(car.toString());
+            sb.append(COLON);
+            System.out.print(sb.toString());
             printCarPositionUsingBar(car);
             System.out.println();
         }
         System.out.println();
     }
 
-    private String addCarNameStringWithColon(Car car) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(car.toString());
-        sb.append(ConstantForRacing.COLON_STRING);
-        return sb.toString();
-    }
-
-    private void printCarPositionUsingBar(Car car) {
+    private static void printCarPositionUsingBar(Car car) {
         for (int i = 0; i < car.getPosition(); i++) {
-            System.out.print(ConstantForRacing.BAR_STRING);
+            System.out.print(BAR);
         }
     }
 
@@ -40,7 +42,7 @@ public class OutputViewer {
         StringBuilder sb = new StringBuilder();
         String winnerNameString = makeWinnerNameString(winners);
         sb.append(winnerNameString);
-        sb.append(ConstantForRacing.WINNER_STRING);
+        sb.append(WINNER_MENTION);
         System.out.println(sb.toString());
     }
 
@@ -50,8 +52,7 @@ public class OutputViewer {
 
     private static String addCommaWithBlank() {
         StringBuilder sb = new StringBuilder();
-        sb.append(ConstantForRacing.NAME_DELIMITER);
-        sb.append(ConstantForRacing.BLANK_STRING);
+        sb.append(NAME_DELIMITER);
         return sb.toString();
     }
 }
