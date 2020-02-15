@@ -50,4 +50,8 @@ public class CarName {
         return trimedName.isEmpty();
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -6,39 +6,24 @@ import java.util.List;
 import racingcar.utils.RandomNumber;
 import racingcar.utils.StringUtils;
 import racingcar.view.InputView;
-import racingcar.view.OutputView;
 
 public class RacingGame {
 
-    private RacingGame() {
+    private List<Car> racingCars;
+
+    public RacingGame(List<Car> racingCars) {
+        this.racingCars = racingCars;
     }
 
-    public static void runRacingGame() {
-        try {
-            final List<Car> racingCarList = getCars(getRacingCarNames());
-            int playRound = getRacingRound();
-
-            startRace(playRound, racingCarList);
-
-            List<String> winners = Winner.findWinners(racingCarList);
-            OutputView.printWinners(winners);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            runRacingGame();
-        }
+    public List<Car> getRacingCars() {
+        return racingCars;
     }
 
-    private static void startRace(int playRound, List<Car> racingCarList) {
-        for (int i = 0; i < playRound; i++) {
-            for (Car car : racingCarList) {
-                car.move(RandomNumber.generateRandomIntIntRange());
-                OutputView.printRoundResult(car);
-            }
-            System.out.println();
-        }
+    public void moveCar() {
+        racingCars.forEach(car -> car.move(RandomNumber.generateRandomIntIntRange()));
     }
 
-    private static List<Car> getCars(String[] carNames) {
+    public static List<Car> generateCars(String[] carNames) {
         final List<Car> racingCars = new ArrayList<>(carNames.length);
         for (String carName : carNames) {
             racingCars.add(new Car(new CarName(carName)));
@@ -46,23 +31,23 @@ public class RacingGame {
         return racingCars;
     }
 
-    private static String[] getRacingCarNames() {
+    public static String[] generateRacingCarNames() {
         try {
-            String input = InputView.getCarNames();
+            String input = InputView.inputCarNames();
             return StringUtils.splitInputName(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getRacingCarNames();
+            return generateRacingCarNames();
         }
     }
 
-    private static int getRacingRound() {
+    public static int generateGameRound() {
         try {
-            GameRound gameRound = new GameRound(InputView.getPlayRound());
+            GameRound gameRound = new GameRound(InputView.inputGameRound());
             return gameRound.getGameRound();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getRacingRound();
+            return generateGameRound();
         }
     }
 

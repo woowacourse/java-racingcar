@@ -9,7 +9,7 @@ public class GameRound {
         return gameRound;
     }
 
-    GameRound(String inputRound) {
+    public GameRound(String inputRound) {
         validateGameRound(inputRound);
         this.gameRound = Integer.parseInt(inputRound);
     }
@@ -17,7 +17,7 @@ public class GameRound {
     // 시도 횟수 오류검증
     private static void validateGameRound(String playRound) {
         if (!isValidGameRound(playRound)) {
-            throw new IllegalArgumentException("음수 입력 불가합니다.");
+            throw new IllegalArgumentException("음수는 입력 불가합니다.");
         }
     }
 
