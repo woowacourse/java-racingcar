@@ -8,23 +8,15 @@ import racingcar.view.OutputView;
 
 public class CarRacing {
 	private static final int INDEX_INIT = 0;
-	private static final int POSITIVE_CRITERIA = 1;
 
 	public static void main(String[] args) {
 		String inputNames = InputView.receiveNameInput();
 		Cars cars = new Cars(inputNames);
 		int count = InputView.receiveCountInput();
 
-		validatePositiveNumber(count);
 		OutputView.showResult();
 		showEachRaceResult(cars, count);
 		OutputView.showWinner(cars.getWinners());
-	}
-
-	protected static void validatePositiveNumber(int countInput) {
-		if (countInput < POSITIVE_CRITERIA) {
-			throw new IllegalArgumentException(POSITIVE_CRITERIA + "이상의 수를 입력해야합니다.");
-		}
 	}
 
 	protected static void showEachRaceResult(Cars cars, int count) {

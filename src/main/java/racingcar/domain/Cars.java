@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 public class Cars {
 	private static final String DELIMITER = ",";
 	private static final int MINIMUM_TEAM = 2;
-	private static final int MAX_NAME_LENGTH = 5;
 	private static final int LIMIT = -1;
 
 	private List<Car> cars;
@@ -19,7 +18,7 @@ public class Cars {
 			.map(name -> new Car(name.trim()))
 			.collect(Collectors.toList());
 
-		validateCarNames();
+		validateTeamCount();
 	}
 
 	public List<Car> getCars() {
@@ -38,14 +37,9 @@ public class Cars {
 			.collect(Collectors.toList());
 	}
 
-	public void validateCarNames() {
+	public void validateTeamCount() {
 		if (cars.size() < MINIMUM_TEAM) {
 			throw new IllegalArgumentException("참가자는 " + MINIMUM_TEAM + "명 이상이어야합니다.");
-		}
-
-		if (cars.stream()
-			.anyMatch(Car::hasOverFiveCharacterName)) {
-			throw new IllegalArgumentException("이름은 " + MAX_NAME_LENGTH + "자 이하여야 합니다.");
 		}
 	}
 }
