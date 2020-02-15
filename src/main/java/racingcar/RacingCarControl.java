@@ -7,10 +7,10 @@ import racingcar.view.OutputView;
 public class RacingCarControl {
     public static void run() {
         CarsInOneRace carsInOneRace = new CarsInOneRace(InputView.getNames());
-        int moveNumber = InputView.getMoveNumber();
+        int moveCount = InputView.getMoveCount();
         OutputView.printResultTitle();
 
-        for(int i = 0; i < moveNumber; i++) {
+        for(int i = 0; i < moveCount; i++) {
             carsInOneRace.move();
             OutputView.printStatus(carsInOneRace.getCars());
         }

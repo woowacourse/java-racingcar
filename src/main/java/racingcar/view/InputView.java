@@ -3,9 +3,9 @@ package racingcar.view;
 import racingcar.domain.Car;
 
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import util.Count;
 
 public class InputView {
     private final static Scanner SCANNER = new Scanner(System.in);
@@ -24,13 +24,16 @@ public class InputView {
         }
     }
 
-    public static int getMoveNumber() {
+    public static int getMoveCount() {
+        Count count;
+
         try {
             System.out.println("시도할 회수는 몇회인가요?");
-            return Integer.parseInt(SCANNER.nextLine());
+            count = new Count(Integer.parseInt(SCANNER.nextLine()));
+            return count.getMoveCount();
         } catch (IllegalArgumentException e) {
             System.out.println("다시 입력해주세요");
-            return getMoveNumber();
+            return getMoveCount();
         }
     }
 }
