@@ -16,7 +16,7 @@ import racingcar.domain.CarNameFactory;
 import racingcar.domain.RacingResults;
 import racingcar.domain.TryCount;
 import racingcar.controller.Racing;
-import racingcar.util.Winner;
+import racingcar.controller.Winner;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -26,7 +26,7 @@ public class Application {
 
         CarNameFactory carNameFactory = inputCarNames();
         CarFactory carFactory = new CarFactory(carNameFactory);
-        int tryCount = inputTryCount();
+        TryCount tryCount = inputTryCount();
 
         RacingResults racingProgress = Racing.run(carFactory, tryCount);
         OutputView.printExecutionResult();
@@ -42,21 +42,19 @@ public class Application {
             try {
                 OutputView.printInputCarNames();
                 String carName = InputView.input();
-                CarNameFactory carNameFactory = new CarNameFactory(carName);
-                return carNameFactory;
+                return new CarNameFactory(carName);
             } catch (IllegalArgumentException ioe) {
                 OutputView.printString(ioe.getMessage());
             }
         }
     }
 
-    private static int inputTryCount() {
+    private static TryCount inputTryCount() {
         while (true) {
             try {
                 OutputView.printInputTryCount();
                 String count = InputView.input();
-                TryCount tryCount = new TryCount(count);
-                return tryCount.getTryCount();
+                return new TryCount(count);
             } catch (Exception e) {
                 OutputView.printString(e.getMessage());
             }

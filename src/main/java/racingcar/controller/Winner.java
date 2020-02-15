@@ -8,7 +8,7 @@
  *
  */
 
-package racingcar.util;
+package racingcar.controller;
 
 import java.util.ArrayList;
 import java.util.List;

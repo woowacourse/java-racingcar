@@ -18,15 +18,17 @@ import racingcar.domain.Car;
 import racingcar.domain.CarFactory;
 import racingcar.domain.RacingResult;
 import racingcar.domain.RacingResults;
+import racingcar.domain.TryCount;
 import racingcar.util.Director;
 
 public class Racing {
 
     private final static int RANDOM_NUMBER_RANGE = 10;
 
-    public static RacingResults run(CarFactory carFactory, int tryCount) {
+    public static RacingResults run(CarFactory carFactory, TryCount tryCount) {
         RacingResults racingResults = new RacingResults();
-        for (int i = 0; i < tryCount; i++) {
+        int count = tryCount.getTryCount();
+        for (int i = 0; i < count; i++) {
             playRacing(carFactory.getCars(), racingResults);
         }
         return racingResults;
