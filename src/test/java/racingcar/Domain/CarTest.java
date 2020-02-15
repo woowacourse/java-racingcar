@@ -27,13 +27,24 @@ public class CarTest {
         car = new Car("보스독");
     }
 
-    @ParameterizedTest
-    @DisplayName("isGo 테스트")
-    @CsvSource(value = {
-            "1,false", "2,false", "3,false", "4,true", "5,true", "6,true", "7,true", "8,true", "9,true"
-    })
-    void isGo_랜덤숫자가_4이상일때만_true_반환(int randomNumber, Boolean result) {
-        assertThat(car.isGo(randomNumber)).isEqualTo(result);
+    @Test
+    @DisplayName("car 안 움직이기 테스트")
+    void goOrNot_랜덤숫자가_3이하라서_position_moveForward_실행안함() {
+        final int randomNumber = 3;
+        final Car car = new Car("toney");
+        final Position expectedPosition = new Position();
+        car.goOrNot(randomNumber);
+        assertThat(car.getPosition()).isEqualTo(expectedPosition);
+    }
+
+    @Test
+    @DisplayName("car 움직이기 테스트")
+    void goOrNot_랜덤숫자가_4이상일때만_position_moveForward() {
+        final int randomNumber = 4;
+        final Car car = new Car("toney");
+        final Position expectedPosition = new Position(2);
+        car.goOrNot(randomNumber);
+        assertThat(car.getPosition()).isEqualTo(expectedPosition);
     }
 
     @Test

@@ -27,7 +27,7 @@ public class InputValidation {
 			InputValidation.checkIntegerOverflow(trialTimeInput);
 			return Integer.parseInt(trialTimeInput);
 		} catch (Exception e) {
-			OutputView.printExceptionMessage(e);
+			OutputView.printExceptionMessage(e.getMessage());
 		}
 		return InputView.inputTrialTime();
 	}

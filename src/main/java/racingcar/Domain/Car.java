@@ -21,7 +21,6 @@ import racingcar.View.OutputView;
 
 public class Car {
 	private static final int CRITERIA_FOR_GO = 4;
-	private static final int INITIAL_POSITION = 0;
 	public static final String DASH = "-";
 	public static final String COLON = " : ";
 	public static final String NAME_DIVIDER = ", ";
@@ -29,44 +28,47 @@ public class Car {
 	public static List<String> winners = new ArrayList<>();
 
 	private Name carName;
-	private int position;
+	private Position position;
 
 	public Car(final String carName) {
 		this.carName = new Name(carName);
-		this.position = INITIAL_POSITION;
+		this.position = new Position();
 	}
 
 	public Car(final String carName, final int position) {
 		this.carName = new Name(carName);
-		this.position = position;
+		this.position = new Position(position);
 	}
 
-	public void goOrNot() {
-		if (isGo(RandomNumberUtils.createRandomNumber())) {
-			position++;
+	public void goOrNot(final int randomNumber) {
+		if (isGo(randomNumber)) {
+			position.moveForward();
 		}
 	}
 
-	public boolean isGo(final int randomNumber) {
+	private boolean isGo(final int randomNumber) {
 		return randomNumber >= CRITERIA_FOR_GO;
 	}
 
+	public Position getPosition() {
+		return this.position;
+	}
 
 	public boolean comparePosition(final Car target) {
-		return this.position > target.position;
+		return this.position.getPosition() > target.position.getPosition();
 	}
 
 	public void showCurrentPosition() {
 		StringBuilder outputValue = new StringBuilder();
 		outputValue.append(carName.getName()).append(COLON);
-		for (int index = 0; index < position; index++) {
+		for (int index = 0; index < position.getPosition(); index++) {
 			outputValue.append(DASH);
 		}
 		OutputView.printPositionByDash(outputValue.toString());
 	}
 
 	public void findWinners(final Car car) {
-		if (this.position == car.position) {
+		if (this.position.equals(car.position)) {
 			winners.add(car.carName.getName());
 		}
 	}

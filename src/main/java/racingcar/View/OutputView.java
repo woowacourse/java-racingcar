@@ -27,8 +27,8 @@ public class OutputView {
 		System.out.println(TRIAL_TIME_INPUT_GUIDE_MESSAGE);
 	}
 
-	public static void printExceptionMessage(final Exception e) {
-		System.out.println(e.getMessage());
+	public static void printExceptionMessage(final String exceptionMessage) {
+		System.out.println(exceptionMessage);
 	}
 
 	public static void printPositionByDash(final String outputValue) {

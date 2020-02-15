@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import racingcar.Domain.Car;
+import racingcar.Util.RandomNumberUtils;
 import racingcar.Util.StringUtils;
 import racingcar.View.InputView;
 import racingcar.View.OutputView;
@@ -44,7 +45,7 @@ public class Game {
 
 	private static void raceOneRound() {
 		for (Car car : cars) {
-			car.goOrNot();
+			car.goOrNot(RandomNumberUtils.createRandomNumber());
 			car.showCurrentPosition();
 		}
 	}

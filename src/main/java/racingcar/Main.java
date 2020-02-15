@@ -21,7 +21,7 @@ public class Main {
             Game.race();
             Game.showWinner();
         } catch (Exception e) {
-            OutputView.printExceptionMessage(e);
+            OutputView.printExceptionMessage(e.getMessage());
         }
     }
 }
