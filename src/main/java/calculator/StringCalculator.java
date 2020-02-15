@@ -83,6 +83,11 @@ public class StringCalculator {
     }
 
     private boolean isInteger(String splittedWord) {
-        return splittedWord.length() == 1;
+        try {
+            Integer.parseInt(splittedWord);
+            return true;
+        } catch (NumberFormatException exception) {
+            return false;
+        }
     }
 }
