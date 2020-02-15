@@ -5,20 +5,20 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Winners {
-	private final List<String> winners;
+    private final List<String> winners;
 
-	public Winners(List<String> winnersWithNull) {
-		this.winners = winnersWithNull.stream()
-			.filter(Objects::nonNull)
-			.collect(Collectors.toList());
-	}
+    public Winners(List<String> winnersWithNull) {
+        this.winners = winnersWithNull.stream()
+            .filter(Objects::nonNull)
+            .collect(Collectors.toList());
+    }
 
-	public boolean contains(String name) {
-		return winners.contains(name);
-	}
+    public boolean contains(String name) {
+        return winners.contains(name);
+    }
 
-	@Override
-	public String toString() {
-		return String.join(", ", winners);
-	}
+    @Override
+    public String toString() {
+        return String.join(", ", winners);
+    }
 }

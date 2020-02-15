@@ -9,11 +9,11 @@ class DelimiterUtilTest {
     @Test
     void 올바른_입력() {
         String[] value = StringUtil.parseString("1,2:3");
-        assertArrayEquals(value,new String[]{"1","2","3"});
+        assertArrayEquals(value, new String[] {"1", "2", "3"});
 
         value = StringUtil.parseString("//;\n1;2;3");
         System.out.println(value);
-        assertArrayEquals(value,new String[]{"1","2","3"});
+        assertArrayEquals(value, new String[] {"1", "2", "3"});
     }
 
     @Test
