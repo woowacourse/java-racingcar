@@ -12,9 +12,9 @@ public class WinnersTest {
     @Test
     @DisplayName("생성 시 Null 필터링")
     void constructor() {
-        Winners winners = new Winners(Arrays.asList("pobi", null, null));
+        Winners winners = new Winners(Arrays.asList("pobi", "", ""));
         assertThat(winners.contains("pobi")).isTrue();
-        assertThat(winners.contains(null)).isFalse();
+        assertThat(winners.contains("")).isFalse();
         assertThat(winners.contains("kyle")).isFalse();
     }
 
@@ -28,7 +28,7 @@ public class WinnersTest {
     @Test
     @DisplayName("toString()")
     void toStringTest() {
-        Winners winners = new Winners(Arrays.asList("pobi", "kyle", null));
+        Winners winners = new Winners(Arrays.asList("pobi", "kyle", ""));
         assertThat(winners).hasToString(("pobi, kyle"));
     }
 }

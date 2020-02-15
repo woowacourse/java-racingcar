@@ -10,14 +10,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class TimesTest {
     @Test
     @DisplayName("정상적인 입력과 생성")
-    void validTimes() throws Exception {
+    void validTimes() {
         assertThat(new Times("10")).isNotNull();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"asd", "", " "})
     @DisplayName("숫자가 아닌 입력 시 예외발생")
-    void characterConstructingTimes(String value) throws Exception {
+    void characterConstructingTimes(String value) {
         assertThatThrownBy(() -> {
             new Times(value);
         }).isInstanceOf(NumberFormatException.class);
