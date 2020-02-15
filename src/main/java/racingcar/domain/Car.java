@@ -2,22 +2,29 @@ package racingcar.domain;
 
 public class Car implements Comparable<Car> {
     public static final int MAXIMUM_LENGTH = 5;
-    public static final int MOVING_NUMBER = 4;
+    public static final int CRITERIA = 4;
 
     private final String name;
-    private int position = 0;
+    private int position;
 
     public Car(String name) {
         if (isInvalid(name)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("빈 문자열이거나 각각의 이름의 길이가 5자를 넘어갈 수는 없습니다.");
         }
         this.name = name;
+        this.position = 0;
     }
 
     private boolean isInvalid(String name) {
-        return name == null
-            || name.length() > MAXIMUM_LENGTH
-            || name.trim().isEmpty();
+        if (isEmpty(name)) {
+            return true;
+        }
+        return name.length() > MAXIMUM_LENGTH;
+
+    }
+
+    private boolean isEmpty(String name) {
+        return name == null || name.trim().isEmpty();
     }
 
     public void move(int random) {
@@ -27,33 +34,27 @@ public class Car implements Comparable<Car> {
     }
 
     private boolean isMoving(int random) {
-        return random >= MOVING_NUMBER;
+        return random >= CRITERIA;
     }
 
-    public boolean isOnSamePosition(Car anotherCar) {
-        return compareTo(anotherCar) == 0;
-    }
-
-    public String getCoWinnersName(Car anotherCar) {
-        if (isOnSamePosition(anotherCar)) {
-            return anotherCar.name;
+    public String nameIfOn(int maxPosition) {
+        if (position == maxPosition) {
+            return name;
         }
-        return null;
+        return "";
     }
 
     @Override
-    public int compareTo(Car anotherCar) {
-        return anotherCar.position - position;
+    public int compareTo(Car other) {
+        return other.position - position;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name).append(" : ");
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
-        sb.append("\n");
-        return sb.toString();
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
