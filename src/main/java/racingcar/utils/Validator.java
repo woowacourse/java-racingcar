@@ -37,7 +37,7 @@ public class Validator {
     }
 
     private static boolean isNotValidName(String name) {
-        String trimedName = TrimName.removeAllBlankInName(name);
+        String trimedName = StringUtils.removeAllBlank(name);
         return trimedName.equals(NO_WORD);
     }
 

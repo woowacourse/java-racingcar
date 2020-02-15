@@ -4,13 +4,13 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class TrimNameTest {
+class StringUtilsTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"po bi", "  pobi  "})
     void removeAllBlankInName(String name) {
         String expected = "pobi";
-        String result = TrimName.removeAllBlankInName(name);
+        String result = StringUtils.removeAllBlank(name);
         Assertions.assertThat(result).isEqualTo(expected);
     }
 
@@ -18,7 +18,7 @@ class TrimNameTest {
     @ValueSource(strings = {"", "", "     "})
     void removeAllBlankInName_When_EmptyString(String name) {
         String expected = "";
-        String result = TrimName.removeAllBlankInName(name);
+        String result = StringUtils.removeAllBlank(name);
         Assertions.assertThat(result).isEqualTo(expected);
     }
 
