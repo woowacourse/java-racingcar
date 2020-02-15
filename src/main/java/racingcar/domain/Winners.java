@@ -1,16 +1,18 @@
 package racingcar.domain;
 
+import static java.util.stream.Collectors.*;
+
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Winners {
     private final List<String> winners;
 
-    public Winners(List<String> winnersWithNull) {
+    public Winners(final List<String> winnersWithNull) {
         this.winners = winnersWithNull.stream()
-            .filter(Objects::nonNull)
-            .collect(Collectors.toList());
+            .filter(name -> !name.isEmpty())
+            .collect(collectingAndThen(toList(),
+                Collections::unmodifiableList));
     }
 
     public boolean contains(String name) {
