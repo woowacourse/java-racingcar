@@ -11,9 +11,11 @@ public class Players {
 
     public Players(List<Name> names) {
         players = new ArrayList<>();
-        for (Name name : names) {
-            players.add(new Player(name));
-        }
+        Collections.addAll(players);
+        handleDuplication();
+    }
+
+    private void handleDuplication() {
         try {
             checkDuplication();
         } catch (IllegalArgumentException e) {
@@ -22,11 +24,12 @@ public class Players {
     }
 
     private void checkDuplication() throws IllegalArgumentException {
-        Set<String> set = new HashSet<>();
-        for (Player player : players) {
-            set.add(player.getName().toString());
-        }
-        if (players.size() != set.size()) {
+        Set<String> set = players.stream()
+                .map(Player::getName)
+                .map(Name::toString)
+                .collect(Collectors.toSet());
+
+        if (isSizeNotEqual(set.size())) {
             throw new IllegalArgumentException();
         }
     }
@@ -37,8 +40,11 @@ public class Players {
 
     public List<Player> play(Deciders deciders) {
         checkSameNum(deciders);
-        IntStream.range(ZERO_INDEX, players.size())
-                .forEach((t) -> players.get(t).goOrWait(deciders.get(t)));
+
+        int bound = players.size();
+        for (int i = ZERO_INDEX; i < bound; i++) {
+            players.get(i).goOrWait(deciders.get(i));
+        }
         return Collections.unmodifiableList(players);
     }
 
