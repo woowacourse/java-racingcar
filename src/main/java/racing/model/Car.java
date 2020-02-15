@@ -8,7 +8,14 @@ public class Car {
     public Car(String name) {
         checkNameLengthUnderSix(name);
         checkNullOrEmptyName(name);
+        checkNameDuplicate(name);
         this.name = name;
+    }
+
+    private void checkNameDuplicate(String name) {
+        if (CarLineUp.isContainAlready(name)){
+            throw new IllegalArgumentException("차이름이 중복되었습니다.");
+        }
     }
 
     private void checkNullOrEmptyName(String name) {
@@ -21,5 +28,9 @@ public class Car {
         if (name.length() > MAX_NAME_SIZE){
             throw new IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.");
         }
+    }
+
+    public boolean isNameEqual(String name) {
+        return this.name == name;
     }
 }
