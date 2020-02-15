@@ -9,24 +9,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
     private Car car;
-    private static final String TEST_NAME = "pobi";
+    private static final CarName TEST_NAME = new CarName("pobi");
 
     @BeforeEach
     void setUp() {
         car = new Car(TEST_NAME);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"pobiconnan","subway","sonypark"})
-    void Throw_Error_When_CarName_isMoreThan_5(String name) {
-        Assertions.assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"pobi","metro","sony2"})
-    void Not_Throw_Error_When_CarName_isLessThanOrEqualTo5_(String name) {
-        Assertions.assertThatCode(()-> new Car(name)).doesNotThrowAnyException();
-
     }
 
     @Test

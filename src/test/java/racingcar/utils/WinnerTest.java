@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
+import racingcar.domain.CarName;
 import racingcar.domain.RandomNo;
 import racingcar.domain.Winner;
 
@@ -21,8 +22,8 @@ class WinnerTest {
     @BeforeEach
     void setUp() {
         carList = new ArrayList<>();
-        carPobi = new Car("pobi");
-        carCrong = new Car("crong");
+        carPobi = new Car(new CarName("pobi"));
+        carCrong = new Car(new CarName("crong"));
         randomNo = new RandomNo(4);
     }
 

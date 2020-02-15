@@ -40,7 +40,7 @@ public class RacingGame {
 	private static List<Car> getCars(String[] carNames) {
 		final List<Car> racingCars = new ArrayList<>(carNames.length);
 		for (String carName : carNames) {
-			racingCars.add(new Car(carName));
+			racingCars.add(new Car(new CarName(carName)));
 		}
 		return racingCars;
 	}
@@ -48,9 +48,7 @@ public class RacingGame {
 	private static String[] getRacingCarNames() {
 		try {
 			String input = InputView.getCarNames();
-			String[] carNames = Split.splitInputName(input);
-			Validator.validateCarNames(carNames);
-			return carNames;
+			return Split.splitInputName(input);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return getRacingCarNames();
