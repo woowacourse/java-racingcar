@@ -1,33 +1,36 @@
 package racingcargame.domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import racingcargame.view.OutputView;
+import static org.assertj.core.api.Assertions.*;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+@SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
 
-    @DisplayName("랜덤값이 4 이상이면 자동차의 position 증가 테스트")
-    @Test
-    void testIfRandomValueIs4ThenCarGo() {
-        Engine engine = Engine.createEngineSetBy(5);
-        Car car = new Car("pobi");
-        car.go(engine);
-        assertThat(car.isSameToPosition(1)).isEqualTo(true);
-    }
+	@ParameterizedTest
+	@CsvSource(value = {"3:0", "4:1", "5:1", "9:1"}, delimiter = ':')
+	void 랜덤값이_4이상_9이하이면_자동차의_position_증가(int input, int expected) {
+		Car car = new Car("pobi");
+		Engine engine = Engine.createBy(input);
+		car.go(engine);
+		assertThat(car.getPosition()).isEqualTo(expected);
+	}
 
-    @Test
-    void 포지션만큼출력() {
-        Car car = new Car("pobi", 3);
-        assertThat(OutputView.printPosition(car)).isEqualTo("pobi : ---\n");
-    }
-
-    @Test
-    void 자동차이름이_같은지_확인() {
-        Car car = new Car("pobi");
-        String name = "pobi";
-        boolean result = car.isSame(name);
-        assertThat(result).isTrue();
-    }
+	@ParameterizedTest
+	@CsvSource(value = {"2:pobi", "1:crong", "0:jason", "3:brown"}, delimiter = ':')
+	void 자동차_객체_비교로_오름차순_정렬(int index, String expectedName) {
+		List<Car> cars = new ArrayList<>();
+		cars.add(new Car("pobi", 5));
+		cars.add(new Car("crong", 3));
+		cars.add(new Car("jason", 2));
+		cars.add(new Car("brown", 7));
+		Collections.sort(cars);
+		String result = cars.get(index).getName();
+		assertThat(result).isEqualTo(expectedName);
+	}
 }
