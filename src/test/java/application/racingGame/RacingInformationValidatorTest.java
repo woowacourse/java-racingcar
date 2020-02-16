@@ -2,21 +2,16 @@ package application.racingGame;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 public class RacingInformationValidatorTest {
 
     private List<Car> cars;
     private Race race;
-    private RacingInformationValidator racingInformationValidator;
     private Car pobi;
     private Car lavin;
     private Car ramen;
@@ -25,7 +20,6 @@ public class RacingInformationValidatorTest {
     void setUp() {
         cars = new ArrayList<>();
         race = new Race();
-        racingInformationValidator = new RacingInformationValidator();
         pobi = new Car("pobi");
         lavin = new Car("lavin");
         ramen = new Car("ramen");
