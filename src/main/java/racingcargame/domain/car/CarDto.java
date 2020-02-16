@@ -4,7 +4,7 @@ public class CarDto implements Comparable<CarDto> {
 	private String name;
 	private int position;
 
-	CarDto(String name, int position) {
+	public CarDto(String name, int position) {
 		this.name = name;
 		this.position = position;
 	}
@@ -17,12 +17,22 @@ public class CarDto implements Comparable<CarDto> {
 		return position;
 	}
 
+	public boolean isPositionOf(int position) {
+		return this.position == position;
+	}
+
 	@Override
 	public int compareTo(CarDto c) {
 		return c.position - position;
 	}
 
-	public boolean isPositionOf(int position) {
-		return this.position == position;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		CarDto carDto = (CarDto)o;
+		return name.equals(carDto.name) && position == carDto.position;
 	}
 }

@@ -1,8 +1,8 @@
 package racingcargame.domain.car;
 
 class CarName {
-	private static final int ZERO = 0;
-	private static final int NAME_UPPER_LIMIT = 5;
+	private static final int LOWER_LIMIT = 1;
+	private static final int UPPER_LIMIT = 5;
 	private static final String BLANK = " ";
 
 	private String name;
@@ -15,7 +15,7 @@ class CarName {
 	}
 
 	private void validateLength(String name) {
-		if (name.length() <= ZERO || name.length() > NAME_UPPER_LIMIT) {
+		if (name.length() < LOWER_LIMIT || name.length() > UPPER_LIMIT) {
 			throw new IllegalArgumentException("이름은 1자 이상 5자 이하로 해주세요.");
 		}
 	}
@@ -28,7 +28,7 @@ class CarName {
 
 	private void validateBlank(String name) {
 		if (name.contains(BLANK)) {
-			throw new IllegalArgumentException("이름에는 띄어쓰기가 포함될 수 없습니다.");
+			throw new IllegalArgumentException("이름에는 공백이 포함될 수 없습니다.");
 		}
 	}
 

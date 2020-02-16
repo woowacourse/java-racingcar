@@ -24,7 +24,7 @@ public class RacingCars {
 	}
 
 	public RacingStatus processOneRace(MoveDecider moveDecider) {
-		cars.forEach(car -> car.decideGoOrStop(moveDecider));
+		cars.forEach(car -> car.decideMoveOrStop(moveDecider));
 		return new RacingStatus(cars);
 	}
 }

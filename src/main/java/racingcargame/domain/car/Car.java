@@ -15,9 +15,13 @@ public class Car {
 		return new CarDto(carName.getName(), carPosition.getPosition());
 	}
 
-	public void decideGoOrStop(MoveDecider moveDecider) {
+	public void decideMoveOrStop(MoveDecider moveDecider) {
 		if (moveDecider.isMovable()) {
-			carPosition.increase();
+			move();
 		}
+	}
+
+	public int move() {
+		return carPosition.increase();
 	}
 }
