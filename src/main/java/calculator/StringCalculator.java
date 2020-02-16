@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class StringCalculator {
 
     private static final String NGATIVE_SIGN = "-";
+    public static final String DELIMITER = ",|:";
     private static Matcher m;
 
     public static int calculate(String text) {
@@ -27,7 +28,7 @@ public class StringCalculator {
             return sum(tokens);
         }
 
-        String[] numbers = text.split(",|:");
+        String[] numbers = text.split(DELIMITER);
         return sum(numbers);
     }
 
