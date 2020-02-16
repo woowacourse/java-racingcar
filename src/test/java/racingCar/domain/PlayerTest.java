@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayerTest {
+
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3, 10})
     void goOrWait(int input) {

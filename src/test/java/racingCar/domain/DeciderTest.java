@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class DeciderTest {
+
     @ParameterizedTest
     @ValueSource(ints = {0,5,9})
     void Decider(int input) {

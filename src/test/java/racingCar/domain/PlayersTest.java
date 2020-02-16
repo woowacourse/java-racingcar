@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class PlayersTest {
+
     @ParameterizedTest
     @ValueSource(strings = {"abc,abc", "b,cvd,a,cvd,e"})
     void isReady_ShouldReturnFalseWhenInputAreDuplicatedNames(String input) {

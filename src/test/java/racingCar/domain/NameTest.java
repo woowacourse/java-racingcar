@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class NameTest {
+
     @ParameterizedTest
     @ValueSource(strings = {"a", "bc", "def", "abcde"})
     void toString_ShouldReturnSameString(String input) {

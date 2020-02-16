@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringParserTest {
+
     @Test
     void parseToNameList_ShouldReturnTrue() {
         // given
