@@ -57,7 +57,7 @@ public class Cars {
 		return maxPosition;
 	}
 
-	public List<String> getWinnersName(int maxPosition) {
+	public List<String> findWinnersNameByMaxPosition(int maxPosition) {
 		return cars.stream()
 			.filter(car -> car.isMaxPosition(maxPosition))
 			.map(Car::getName)
