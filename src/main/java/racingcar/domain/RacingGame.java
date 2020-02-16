@@ -24,11 +24,18 @@ public class RacingGame {
     }
 
     public static List<Car> generateCars(String[] carNames) {
+        checkNameNull(carNames);
         final List<Car> racingCars = new ArrayList<>(carNames.length);
         for (String carName : carNames) {
             racingCars.add(new Car(new CarName(carName)));
         }
         return racingCars;
+    }
+
+    private static void checkNameNull(String[] carNames) {
+        if (carNames.length == 0) {
+            throw new IllegalArgumentException("자동차 이름이 없습니다.");
+        }
     }
 
     public static String[] generateRacingCarNames() {

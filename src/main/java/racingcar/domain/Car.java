@@ -20,22 +20,12 @@ public class Car {
         return winnerPosition == position;
     }
 
-    int getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    String getName() {
+    public String getName() {
         return name.getName();
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder trace = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            trace.append("-");
-        }
-
-        return name + ": " + trace.toString();
     }
 
 }
