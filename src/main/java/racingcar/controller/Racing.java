@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import racingcar.domain.Car;
-import racingcar.domain.CarFactory;
+import racingcar.domain.Cars;
 import racingcar.domain.RacingResult;
 import racingcar.domain.RacingResults;
 import racingcar.domain.TryCount;
@@ -25,11 +25,11 @@ public class Racing {
 
     private final static int RANDOM_NUMBER_RANGE = 10;
 
-    public static RacingResults run(CarFactory carFactory, TryCount tryCount) {
+    public static RacingResults run(Cars cars, TryCount tryCount) {
         RacingResults racingResults = new RacingResults();
         int count = tryCount.getTryCount();
         for (int i = 0; i < count; i++) {
-            playRacing(carFactory.getCars(), racingResults);
+            playRacing(cars.getCars(), racingResults);
         }
         return racingResults;
     }

@@ -11,8 +11,8 @@
 package racingcar;
 
 import java.util.List;
-import racingcar.domain.CarFactory;
-import racingcar.domain.CarNameFactory;
+import racingcar.domain.Cars;
+import racingcar.domain.CarNames;
 import racingcar.domain.RacingResults;
 import racingcar.domain.TryCount;
 import racingcar.controller.Racing;
@@ -24,25 +24,25 @@ public class Application {
 
     public static void main(String[] args) {
 
-        CarNameFactory carNameFactory = inputCarNames();
-        CarFactory carFactory = new CarFactory(carNameFactory);
+        CarNames carNames = inputCarNames();
+        Cars cars = new Cars(carNames);
         TryCount tryCount = inputTryCount();
 
-        RacingResults racingProgress = Racing.run(carFactory, tryCount);
+        RacingResults racingProgress = Racing.run(cars, tryCount);
         OutputView.printExecutionResult();
         OutputView.printResultFactory(racingProgress);
 
-        List<String> winners = Winner.getWinners(carFactory);
+        List<String> winners = Winner.getWinners(cars);
         OutputView.printWinner(winners);
     }
 
 
-    private static CarNameFactory inputCarNames() {
+    private static CarNames inputCarNames() {
         while (true) {
             try {
                 OutputView.printInputCarNames();
                 String carName = InputView.input();
-                return new CarNameFactory(carName);
+                return new CarNames(carName);
             } catch (IllegalArgumentException ioe) {
                 OutputView.printString(ioe.getMessage());
             }

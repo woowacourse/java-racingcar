@@ -14,13 +14,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CarNameFactory {
+public class CarNames {
 
     private final static String DELIMITER = ",";
 
     private final List<CarName> carNames;
 
-    public CarNameFactory(String input) throws IllegalArgumentException {
+    public CarNames(String input) throws IllegalArgumentException {
         carNames = split(input);
     }
 

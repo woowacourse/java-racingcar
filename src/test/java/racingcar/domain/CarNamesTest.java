@@ -16,16 +16,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
-public class CarNameFactoryTest {
+public class CarNamesTest {
 
     @DisplayName("문자열을 리스트로 나누는지 확인")
     @Test
     void split() {
         String input = "aaa,bbb,ccc,ddd";
-        CarNameFactory car = new CarNameFactory(input);
+        CarNames car = new CarNames(input);
         List<CarName> inputList = car.getCarNames();
         assertThat(inputList.get(0).toString()).isEqualTo("aaa");
         assertThat(inputList.get(1).toString()).isEqualTo("bbb");

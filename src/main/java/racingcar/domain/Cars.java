@@ -3,15 +3,15 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarFactory {
+public class Cars {
 
     private final List<Car> cars;
 
-    public CarFactory(CarNameFactory carNameFactory) {
-        this.cars = setCars(carNameFactory);
+    public Cars(CarNames carNames) {
+        this.cars = setCars(carNames);
     }
 
-    private List<Car> setCars(CarNameFactory carNameFactory) {
+    private List<Car> setCars(CarNames carNameFactory) {
         List<Car> returnCars = new ArrayList<>();
         List<CarName> carNames = carNameFactory.getCarNames();
         for (CarName carName : carNames) {

@@ -13,14 +13,14 @@ package racingcar.controller;
 import java.util.ArrayList;
 import java.util.List;
 import racingcar.domain.Car;
-import racingcar.domain.CarFactory;
+import racingcar.domain.Cars;
 
 public class Winner {
 
-    public static List<String> getWinners(CarFactory carFactory) {
+    public static List<String> getWinners(Cars cars) {
         List<String> winners = new ArrayList<>();
-        int maxPosition = carFactory.getMaxPosition();
-        for (Car car : carFactory.getCars()) {
+        int maxPosition = cars.getMaxPosition();
+        for (Car car : cars.getCars()) {
             if (car.isEqualPosition(maxPosition)) {
                 winners.add(car.getName());
             }
