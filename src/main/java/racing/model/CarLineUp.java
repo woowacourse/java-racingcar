@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class CarLineUp {
+    public static final String COMMA = ", ";
+    public static final int SINGLE_SIZE = 1;
+
     private List<Car> lineUp = new ArrayList<>();
 
     public void add(Car car){
@@ -28,18 +31,39 @@ public class CarLineUp {
     }
 
     public String findWinner() {
-        Position topPosition = lineUp.get(0).getPosition();
-        for (int index = 1; index < lineUp.size(); index++){
-            topPosition = topPosition.comparePositionSize(lineUp.get(index).getPosition());
-        }
-
-        StringBuilder winner = new StringBuilder();
+        Car topPositionCar = findTopPositionCar();
+        StringBuilder winners = new StringBuilder();
+        winners.append(topPositionCar);
         for (Car car : lineUp){
-            if (car.getPosition().equals(topPosition)){
-                winner.append(", ");
-                winner.append(car);
-            }
+            findAnotherWinners(topPositionCar, winners, car);
         }
-        return winner.toString();
+        return winners.toString();
+    }
+
+    private void findAnotherWinners(Car topPositionCar, StringBuilder winners, Car car) {
+        if (isAnotherWinner(topPositionCar, car)){
+            winners.append(COMMA);
+            winners.append(car);
+        }
+    }
+
+    private boolean isAnotherWinner(Car topPositionCar, Car car) {
+        return !car.equals(topPositionCar) && car.getPosition().equals(topPositionCar.getPosition());
+    }
+
+    private Car findTopPositionCar() {
+        Car topPositionCar = lineUp.get(0);
+        int lineUpSize = lineUp.size();
+        if (isSingleLineUp(lineUpSize)){
+            return topPositionCar;
+        }
+        for (int index  =  1; index < lineUpSize; index++){
+            topPositionCar = topPositionCar.comparePositionSize(lineUp.get(index));
+        }
+        return topPositionCar;
+    }
+
+    private boolean isSingleLineUp(int lineUpSize) {
+        return lineUpSize == SINGLE_SIZE;
     }
 }

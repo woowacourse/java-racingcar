@@ -32,18 +32,15 @@ public class Position {
         return dash.toString();
     }
 
-    public Position comparePositionSize(Position targetPosition) {
-        if (this.position < targetPosition.position){
-            return targetPosition;
-        }
-        return this;
-    }
-
     @Override
     public boolean equals(Object o){
         if (this.position == ((Position)o).position && (o instanceof Position)){
             return true;
         }
         return false;
+    }
+
+    public boolean isBiggerThan(Position targetPosition) {
+        return this.position > targetPosition.position;
     }
 }

@@ -22,7 +22,7 @@ public class CarLineUpTest {
     @Test
     void 우승자_찾기(){
         String winner = lineUp.findWinner();
-        assertThat(winner).isEqualTo(", 보스독");
+        assertThat(winner).isEqualTo("보스독");
     }
 
 }

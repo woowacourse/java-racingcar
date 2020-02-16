@@ -63,6 +63,13 @@ public class Car {
         return this.position;
     }
 
+    public Car comparePositionSize(Car targetCar) {
+        if (position.isBiggerThan(targetCar.getPosition())){
+            return this;
+        }
+        return targetCar;
+    }
+
     @Override
     public String toString(){
         return name;
