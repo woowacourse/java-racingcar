@@ -14,9 +14,11 @@ import java.util.List;
 
 public class RacingGameTest {
     private static final List<Car> carList = new ArrayList<>();
+    private static final int WINNER_POSITION = 3;
     private final String[] testNames = {"pobi", "crong", "honux"};
     private final String NAMES = "pobi,crong,honux";
     private final String REPEAT = "5";
+
     Input input;
     Output output;
 
@@ -43,8 +45,6 @@ public class RacingGameTest {
     @BeforeEach
     void initInput() {
         input = new Input(NAMES, REPEAT);
-        output = new Output();
-        Car.initMaxPosition();
     }
 
     @ParameterizedTest
@@ -65,22 +65,22 @@ public class RacingGameTest {
     @Test
     void 우승자_확인_테스트() {
         initList();
-        boolean chkWinner = carList.get(0).isWinner();
+        boolean chkWinner = carList.get(0).isSamePosition(WINNER_POSITION);
         Assertions.assertThat(chkWinner).isEqualTo(true);
 
-        chkWinner = carList.get(1).isWinner();
+        chkWinner = carList.get(1).isSamePosition(WINNER_POSITION);
         Assertions.assertThat(chkWinner).isEqualTo(true);
 
-        chkWinner = carList.get(2).isWinner();
+        chkWinner = carList.get(2).isSamePosition(WINNER_POSITION);
         Assertions.assertThat(chkWinner).isEqualTo(false);
     }
 
-    @RepeatedTest(value = 1000)
+    @RepeatedTest(value = 100)
     void 레이싱게임_실행_결과_테스트() {
-        RacingGame.play(input, output);
+        output = RacingGame.play(input);
         boolean result = false;
         for (String name : testNames) {
-            result = result || output.isContainName(name);
+            result = result || output.hasWinnersName(name);
         }
         Assertions.assertThat(result).isTrue();
     }

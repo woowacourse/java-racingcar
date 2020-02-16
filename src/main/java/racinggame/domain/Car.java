@@ -4,9 +4,8 @@ import java.util.List;
 
 public class Car {
     private static final int FORWARD_NUMBER = 4;
-    private static int maxPosition = 0;
     private static final int START_POSITION = 0;
-    private String name;
+    private final String name;
     private int position;
 
     public Car(String name) {
@@ -18,32 +17,36 @@ public class Car {
         this.position = position;
     }
 
-    public void move(int random) {
+    public boolean move(int random){
         if (random >= FORWARD_NUMBER) {
             position++;
-            maxPosition = Integer.max(position, maxPosition);
+            return true;
         }
-    }
-
-    public boolean isWinner() {
-        return position == maxPosition;
+        return false;
     }
 
     public boolean match(int position) {
         return position == this.position;
     }
 
-    public void addWinnerName(List<String> winners) {
-        if (isWinner()) {
-            winners.add(this.name);
+    public boolean isSamePosition(int position){
+        return this.position == position;
+    }
+
+    public String makeLog(){
+        StringBuilder log = new StringBuilder(name);
+        log.append(" : ");
+        for(int i=0;i<position;i++){
+            log.append("-");
         }
+        return log.toString();
     }
 
-    public void passingLog(Output output) {
-        output.updateCarStatus(name, position);
+    public String makeWinnerLog(){
+        return this.name;
     }
 
-    public static void initMaxPosition() {
-        maxPosition = 0;
+    public int updateMaxPosition(int maxPosition) {
+        return Math.max(position, maxPosition);
     }
 }

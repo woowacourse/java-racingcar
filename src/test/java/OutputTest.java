@@ -3,14 +3,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racinggame.domain.Output;
+import racinggame.domain.RacingGame;
 
 public class OutputTest {
     Output output;
-
-    @BeforeEach
-    void initOutput() {
-        output = new Output();
-    }
 
     @ParameterizedTest
     @CsvSource(value = {"pobi,3,pobi : ---", "crong,4,crong : ----", "honux,0,honux : "})

@@ -7,8 +7,8 @@ import racinggame.domain.RacingGame;
 public class Main {
     public static void main(String... args) {
         Input input = new Input();
-        Output output = new Output();
-        RacingGame.play(input, output);
+        Output output = RacingGame.play(input);
+        output.makeWinnersLog();
     }
 }
 
