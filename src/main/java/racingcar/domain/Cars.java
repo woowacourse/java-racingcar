@@ -8,7 +8,6 @@ import racingcar.util.RandomUtil;
 
 public class Cars {
 	public static final int MINIMUM_PLAYER = 1;
-	public static final int FIRST = 0;
 
 	private List<Car> cars;
 

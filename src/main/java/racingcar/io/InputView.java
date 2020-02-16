@@ -16,6 +16,7 @@ public class InputView {
 			String[] names = InputView.getNames();
 			return CarsFactory.create(names);
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return getCars();
 		}
 	}
@@ -25,6 +26,7 @@ public class InputView {
 		try {
 			return new Times(InputView.getInput());
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return getTimes();
 		}
 	}
