@@ -3,10 +3,9 @@ package racingcar;
 import racingcar.controller.RacingGame;
 import racingcar.domain.Cars;
 import racingcar.domain.CarsFactory;
-import racingcar.domain.PowerGenerator;
-import racingcar.domain.RandomPowerGenerator;
 import racingcar.domain.Round;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 /*
  * Copyright (c) 2020 by 또동페어
@@ -26,12 +25,10 @@ public class Application {
 			Cars cars = CarsFactory.createCars(InputView.inputCarNames());
 			Round round = new Round(InputView.inputNumberOfRound());
 
-			PowerGenerator powerGenerator = new RandomPowerGenerator();
-			RacingGame gameController = new RacingGame(powerGenerator);
-			gameController.start(cars, round);
+			RacingGame racingGame = new RacingGame();
+			racingGame.start(cars, round);
 		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-			System.exit(1);
+			OutputView.printErrorMessage(e.getMessage());
 		}
 	}
 }

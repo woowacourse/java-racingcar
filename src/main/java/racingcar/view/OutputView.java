@@ -58,4 +58,8 @@ public class OutputView {
 		String joinedWinnerName = String.join(WINNER_NAME_JOIN_DELIMITER, winnerNames);
 		System.out.println(joinedWinnerName);
 	}
+
+	public static void printErrorMessage(String message) {
+		System.out.println(message);
+	}
 }
