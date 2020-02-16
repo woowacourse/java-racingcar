@@ -1,6 +1,6 @@
 package racingGame.utils;
 
-public class FixedMovableStrategy implements NumberGenerateStrategy {
+public class MovableNumberGenerator implements NumberGenerator {
     private static final int MOVABLE_NUMBER = 9;
 
     @Override

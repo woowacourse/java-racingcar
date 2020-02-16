@@ -2,7 +2,7 @@ package racingGame.utils;
 
 import java.util.Random;
 
-public class RandomStrategy implements NumberGenerateStrategy {
+public class RandomNumberGenerator implements NumberGenerator {
     private static final int UPPER_BOUND = 10;
 
     @Override

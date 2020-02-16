@@ -1,7 +1,7 @@
 package racingGame.domain;
 
 import racingGame.utils.NumberGenerator;
-import racingGame.utils.RandomStrategy;
+import racingGame.utils.RandomNumberGenerator;
 
 import java.util.*;
 
@@ -23,8 +23,8 @@ public class Cars {
     }
 
     public void moveCars() {
-        NumberGenerator numberGenerator = new NumberGenerator(new RandomStrategy());
-        cars.stream().forEach(car -> car.move(numberGenerator.generate()));
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        cars.stream().forEach(car -> car.move(numberGenerator.generateNumber()));
     }
 
     public void updateMaximumPosition() {
