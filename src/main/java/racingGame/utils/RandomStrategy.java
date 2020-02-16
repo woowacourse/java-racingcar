@@ -2,10 +2,11 @@ package racingGame.utils;
 
 import java.util.Random;
 
-public class RandomGenerator {
+public class RandomStrategy implements NumberGenerateStrategy {
     private static final int UPPER_BOUND = 10;
 
-    public static int generateRandomNumber() {
+    @Override
+    public int generateNumber() {
         return new Random().nextInt(UPPER_BOUND);
     }
 }

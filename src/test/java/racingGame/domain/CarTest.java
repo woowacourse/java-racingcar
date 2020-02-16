@@ -1,6 +1,9 @@
 package racingGame.domain;
 
 import org.junit.jupiter.api.Test;
+import racingGame.utils.FixedImmovableStrategy;
+import racingGame.utils.FixedMovableStrategy;
+import racingGame.utils.NumberGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,10 +13,11 @@ public class CarTest {
     @Test
     void move_랜덤_값이_3_이하() {
         Car car = new Car(new Name("test"));
-        final int stoppedRandomNumber = 3;
+        NumberGenerator numberGenerator = new NumberGenerator();
+        numberGenerator.setNumberGenerateStrategy(new FixedImmovableStrategy());
         final int initPosition = car.getPosition();
 
-        car.move(stoppedRandomNumber);
+        car.move(numberGenerator.generate());
         final int actual = car.getPosition();
 
         final int expected = initPosition;
@@ -24,10 +28,11 @@ public class CarTest {
     @Test
     void move_랜덤_값이_4_이상() {
         Car car = new Car(new Name("test"));
-        final int movedRandomNumber = 7;
+        NumberGenerator numberGenerator = new NumberGenerator();
+        numberGenerator.setNumberGenerateStrategy(new FixedMovableStrategy());
         final int initPosition = car.getPosition();
 
-        car.move(movedRandomNumber);
+        car.move(numberGenerator.generate());
         final int actual = car.getPosition();
 
         final int expected = initPosition + MOVING_UNIT;
@@ -38,10 +43,12 @@ public class CarTest {
     @Test
     void isWinnerPosition_우승한_위치의_자동차() {
         Car car = new Car(new Name("test"));
+        NumberGenerator numberGenerator = new NumberGenerator();
+        numberGenerator.setNumberGenerateStrategy(new FixedMovableStrategy());
         final int winnerPosition = 2;
 
-        car.move(7);
-        car.move(9);
+        car.move(numberGenerator.generate());
+        car.move(numberGenerator.generate());
 
         assertThat(car.isSamePosition(winnerPosition)).isTrue();
     }
@@ -49,9 +56,11 @@ public class CarTest {
     @Test
     void isWinnerPosition_우승하지_못한_위치의_자동차() {
         Car car = new Car(new Name("test"));
+        NumberGenerator numberGenerator = new NumberGenerator();
+        numberGenerator.setNumberGenerateStrategy(new FixedMovableStrategy());
         final int winnerPosition = 2;
 
-        car.move(9);
+        car.move(numberGenerator.generate());
 
         assertThat(car.isSamePosition(winnerPosition)).isFalse();
     }
