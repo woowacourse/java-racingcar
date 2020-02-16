@@ -19,12 +19,6 @@ public class CarTest {
     }
 
     @Test
-    void 현재_위치_가져오기() {
-        car.movePosition(5);
-        assertThat(car.getCurrentPosition()).isEqualTo("pobi : -");
-    }
-
-    @Test
     void 최대_위치인지_비교_테스트() {
         Names names = new Names("pobi,elly,rutgo");
         Cars cars = new Cars(names);

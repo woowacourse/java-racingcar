@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    public static final int RANDOM_VALUE_LIMIT = 10;
-
     private List<Car> cars;
 
     public Cars(Names names) {
@@ -16,13 +14,9 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public int createRandomValue() {
-        return (int) (Math.random() * RANDOM_VALUE_LIMIT);
-    }
-
-    public void moveCars() {
+    public void moveCars(int randomValue) {
         for (Car car : cars) {
-            car.movePosition(createRandomValue());
+            car.movePosition(randomValue);
         }
     }
 
