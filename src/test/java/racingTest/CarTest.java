@@ -2,9 +2,7 @@ package racingTest;
 
 import org.junit.jupiter.api.Test;
 import racing.model.Car;
-import racing.model.Position;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
@@ -25,12 +23,4 @@ public class CarTest {
         }).isInstanceOf(NullPointerException.class)
         .hasMessage("차이름은 공백 또는 빈 문자열일 수 없습니다.");
     }
-
-    @Test
-    void 이름과_함께_현재_포지션_반환(){
-        Car car = new Car("보스독");
-        String result = car.getCurrentResult(new Position(5));
-        assertThat(result).isEqualTo("보스독 : -----");
-    }
-
 }

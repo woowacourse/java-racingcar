@@ -8,8 +8,8 @@ import racing.view.OutputView;
 
 public class RacingGame {
 
-    CarLineUp lineUp;
-    TrialTime trialTime;
+    private CarLineUp lineUp;
+    private TrialTime trialTime;
 
     public void play(){
         initializeLineUp();

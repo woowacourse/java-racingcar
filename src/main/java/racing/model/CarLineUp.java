@@ -26,7 +26,7 @@ public class CarLineUp {
     public void raceOneTime() {
         for (Car car : lineUp){
             car.move(new RandomNo());
-            OutputView.printCurrentDashResult(car.getCurrentResult());
+            OutputView.printCurrentDashResult(car.getName(), car.getPosition());
         }
     }
 

@@ -36,8 +36,7 @@ public class InputView {
         try {
             checkTrialTimeNullOrEmpty(trialTime);
             checkTrialTimeNotNumber(trialTime);
-            int trialTimeIntegerValue = Integer.parseInt(trialTime);
-            return new TrialTime(trialTimeIntegerValue);
+            return new TrialTime(Integer.parseInt(trialTime));
         } catch(Exception e){
             OutputView.printExceptionMessage(e);
         }

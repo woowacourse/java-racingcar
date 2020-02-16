@@ -2,8 +2,7 @@ package racing.model;
 
 public class Car {
 
-    public static final int MAX_NAME_SIZE = 5;
-    public static final String COLON = " : ";
+    private static final int MAX_NAME_SIZE = 5;
     private final String name;
     private Position position;
 
@@ -46,22 +45,12 @@ public class Car {
         }
     }
 
-    public String getCurrentResult() {
-        StringBuilder result = new StringBuilder();
-        result.append(name).append(COLON);
-        result.append(position.getPositionByDash());
-        return result.toString();
-    }
-
-    public String getCurrentResult(Position position) {
-        StringBuilder result = new StringBuilder();
-        result.append(name).append(COLON);
-        result.append(position.getPositionByDash());
-        return result.toString();
-    }
-
     public Position getPosition() {
         return this.position;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Car comparePositionSize(Car targetCar) {
