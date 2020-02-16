@@ -27,13 +27,29 @@ public class Car {
 
 
     public Car(String carName) {
+        checkEmptyCarName(carName);
+        checkSmallerThanSix(carName);
         this.carName = carName;
         this.position = INITIAL_POSITION;
     }
 
     public Car(String carName, int position) {
+        checkEmptyCarName(carName);
+        checkSmallerThanSix(carName);
         this.carName = carName;
         this.position = position;
+    }
+
+    public static void checkEmptyCarName(String carName) {
+        if (carName.isEmpty()) {
+            throw new IllegalArgumentException("차 이름은 빈 문자열일 수 없습니다.");
+        }
+    }
+
+    public static void checkSmallerThanSix(String carName) {
+        if (carName.length() > 5) {
+            throw new IllegalArgumentException("차 이름의 길이가 6 이상입니다.");
+        }
     }
 
     public void goOrNot() {
@@ -55,7 +71,7 @@ public class Car {
         return this.position > target.position;
     }
 
-    public void showCurrentPosition() {
+    public void showCurrentPosition() { // TODO 출력 분리
         StringBuilder outputValue = new StringBuilder();
         outputValue.append(carName).append(COLON);
         for (int i = 0; i < position; i++) {

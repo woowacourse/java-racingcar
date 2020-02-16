@@ -61,6 +61,7 @@ public class Game {
         if (carSize == 1) {
             return winner;
         }
+        // TODO 힌트 : 우승자를 알기 위해서는 가장 먼 position의 위치, 이 위치와 동일한 자동차들
         for (int i = 1; i < carSize; i++) {
             if (!winner.comparePosition(cars.get(i))) {
                 winner = cars.get(i);

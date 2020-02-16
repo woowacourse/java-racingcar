@@ -23,10 +23,7 @@ public class InputView {
         OutputView.printInputCarNamesMessage();
         String[] carNames = sc.nextLine().split(DELIMITER);
         trimCarNames(carNames);
-        if (checkInputCarNameValidation(carNames)) {
-            return carNames;
-        }
-        return inputCarName();
+        return carNames;
     }
 
     private static void trimCarNames(String[] carNames) {
@@ -34,20 +31,6 @@ public class InputView {
             carNames[i] = carNames[i].trim();
         }
     }
-
-    private static boolean checkInputCarNameValidation(String[] carNames) {
-        try {
-            InputValidation.checkWantToTerminate(carNames[0]);
-            InputValidation.checkNullOrEmptyInput(carNames);
-            InputValidation.checkEmptyCarName(carNames);
-            InputValidation.checkSmallerThanSix(carNames);
-            return true;
-        } catch (Exception e) {
-            OutputView.printExceptionMessage(e);
-        }
-        return false;
-    }
-
 
     public static int inputTrialTime() {
         OutputView.printInputTrialTimeMessage();
