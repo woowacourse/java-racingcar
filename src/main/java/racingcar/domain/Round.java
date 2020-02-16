@@ -2,6 +2,7 @@ package racingcar.domain;
 
 public class Round {
     private static final int ZERO = 0;
+
     private int round;
 
     public Round(String input) {

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class Winners {
     public static final String AND = ", ";
+
     private final List<String> winners;
 
     public Winners(Cars cars) {
