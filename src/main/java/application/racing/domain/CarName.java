@@ -2,9 +2,7 @@ package application.racing.domain;
 
 public class CarName {
     private final static String BLANK = " ";
-    private final static String ERR_MESSAGE_FOR_INVALID_NAME = "이름을 잘못 입력하였습니다.";
-    private final static String ERR_MESSAGE_FOR_NAME_WITH_BLANK = "공백을 포함한 이름을 입력하였습니다.";
-    private final static String ERR_MESSAGE_FOR_NAME_LENGTH_OVER = "5글자 초과의 자동차 이름을 입력하였습니다.";
+    private final static int MAX_NAME_LENGTH = 5;
 
     private String carName;
 
@@ -17,19 +15,19 @@ public class CarName {
 
     private void validateCarNameFormat(String carName) {
         if (carName == null || carName.isEmpty()) {
-            throw new IllegalArgumentException(ERR_MESSAGE_FOR_INVALID_NAME);
+            throw new IllegalArgumentException("이름을 잘못 입력하였습니다.");
         }
     }
 
     private void validateCarNameContainBlank(String carName) {
         if (carName.contains(BLANK)) {
-            throw new IllegalArgumentException(ERR_MESSAGE_FOR_NAME_WITH_BLANK);
+            throw new IllegalArgumentException("공백을 포함한 이름을 입력하였습니다.");
         }
     }
 
     private void validateCarNameLength(String carName) {
-        if (carName.length() > 5) {
-            throw new IllegalArgumentException(ERR_MESSAGE_FOR_NAME_LENGTH_OVER);
+        if (carName.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("5글자 초과의 자동차 이름을 입력하였습니다.");
         }
     }
 

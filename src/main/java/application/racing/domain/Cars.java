@@ -7,33 +7,33 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private final static String ERR_MESSAGE_FOR_DUPLICATE_NAME = "중복된 자동차 이름을 입력하였습니다.";
+    private final static String NAME_DELIMITER = ",";
 
     List<Car> cars;
 
     public Cars(String name) {
-        addCar(name);
+        initializeCar(name);
         validateDuplicateCar();
     }
 
-    private void addCar(String name) {
-        String[] names = name.split(",");
+    private void initializeCar(String name) {
+        String[] names = name.split(NAME_DELIMITER);
         cars = new ArrayList<>();
         for (int i = 0; i < names.length; i++) {
-            cars.add(new Car(names[i]));
+            cars.add(new Car(new CarName(names[i])));
         }
     }
 
     private void validateDuplicateCar() {
         Set<Car> duplicateCar = new HashSet<>(cars);
         if (duplicateCar.size() != cars.size()) {
-            throw new IllegalArgumentException(ERR_MESSAGE_FOR_DUPLICATE_NAME);
+            throw new IllegalArgumentException("중복된 자동차 이름을 입력하였습니다.");
         }
     }
 
     public void moveEachCar() {
         this.cars.stream()
-                .forEach(car -> car.moveCar(new RandomNumber().getRandomNumber()));
+                .forEach(car -> car.move(new RandomNumber().getRandomNumber()));
     }
 
     public List<String> findWinner() {

@@ -1,7 +1,6 @@
 package application.racing.domain;
 
 public class Position {
-    private final static int MOVEMENT_NUMBER = 1;
     private final static int MOVING_STANDARD = 4;
 
     private int position;
@@ -12,7 +11,7 @@ public class Position {
 
     public void move(int randomNumber) {
         if (randomNumber >= MOVING_STANDARD) {
-            this.position = this.position + MOVEMENT_NUMBER;
+            this.position = this.position + 1;
         }
     }
 

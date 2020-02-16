@@ -1,6 +1,9 @@
 package application.racing.domain;
 
 public class RandomNumber {
+    private static final int MINIMUM_RANDOM_NUMBER = 0;
+    private static final int MAXIMUM_RANDOM_NUMBER = 9;
+
     private int randomNumber;
 
     public RandomNumber() {
@@ -10,7 +13,7 @@ public class RandomNumber {
     }
 
     private void validateRandomNumber(int randomNumber) {
-        if (randomNumber < 0 || randomNumber > 9) {
+        if (randomNumber < MINIMUM_RANDOM_NUMBER || randomNumber > MAXIMUM_RANDOM_NUMBER) {
             throw new IllegalArgumentException("범위를 벗어나는 값입니다.");
         }
     }

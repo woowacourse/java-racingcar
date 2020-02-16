@@ -4,12 +4,12 @@ public class Car {
     private CarName carName;
     private Position position;
 
-    public Car(String name) {
-        this.carName = new CarName(name);
+    public Car(CarName carName) {
+        this.carName = carName;
         this.position = new Position();
     }
 
-    public void moveCar(int number) {
+    public void move(int number) {
         this.position.move(number);
     }
 
