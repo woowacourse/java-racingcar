@@ -7,6 +7,10 @@ public class Car {
     private Name name;
     private Position position;
 
+    public Car(Name name) {
+        this(name.toString());
+    }
+
     public Car(String name) {
         this.name = new Name(name);
         this.position = new Position(INITIAL_POSITION);
