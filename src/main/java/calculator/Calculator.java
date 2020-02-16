@@ -30,13 +30,13 @@ public class Calculator {
 	}
 
 	public static int calculate(String value) {
-		if (isBlank(value)) {
+		if (isNullOrBlank(value)) {
 			return 0;
 		}
 		return plus(split(value));
 	}
 
-	private static boolean isBlank(String value) {
+	private static boolean isNullOrBlank(String value) {
 		return value == null || value.trim().isEmpty();
 	}
 
