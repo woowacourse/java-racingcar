@@ -29,7 +29,10 @@ public class Car {
         return this.name == name;
     }
 
-    public boolean isMovable(int randomNo) {
-        return randomNo >= 4;
+    public void move(RandomNo randomNo){
+        if (randomNo.isMovable()){
+            position += 1;
+        }
     }
+
 }
