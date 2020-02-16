@@ -1,10 +1,6 @@
 package racingcar.domain.car;
 
-import racingcar.domain.GoOrStop;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import racingcar.domain.RandomNumber;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
@@ -50,7 +46,9 @@ public class Car {
     }
 
     public void play() {
-        if (GoOrStop.decideGoOrStop()) {
+        RandomNumber randomNumber = new RandomNumber();
+        int randomNo = randomNumber.getRandomNumber();
+        if (randomNumber.canMove(randomNo)) {
             move();
         }
     }
