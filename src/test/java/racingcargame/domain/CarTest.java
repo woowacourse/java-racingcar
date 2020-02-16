@@ -14,10 +14,18 @@ public class CarTest {
     @DisplayName("랜덤값이 4 이상이면 자동차의 position 증가 테스트")
     @Test
     void testIfRandomValueIs4ThenCarGo() {
-        Engine engine = Engine.createEngineSetBy(5);
+        Engine engine = Engine.createEngineSetBy(4);
         Car car = new Car("pobi");
         car.go(engine);
         assertThat(car.isSameToPosition(new Position(1))).isEqualTo(true);
+    }
+
+    @Test
+    void 랜덤값이_기준_이하_일_경우_자동차의_position변화_없음_테스트() {
+        Engine engine = Engine.createEngineSetBy(3);
+        Car car = new Car("pobi");
+        car.go(engine);
+        assertThat(car.isSameToPosition(new Position(0))).isEqualTo(true);
     }
 
     @Test
