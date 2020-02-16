@@ -1,5 +1,6 @@
 package racingcargame.controller;
 
+import jdk.internal.util.xml.impl.Input;
 import racingcargame.domain.Cars;
 import racingcargame.domain.Names;
 import racingcargame.view.input.InputView;
@@ -10,8 +11,9 @@ public class CarRace {
     private TryNumber tryNumber;
 
     public CarRace() {
-        this.cars = new Cars(Names.valueOf(InputView.askCarNames()));
-        this.tryNumber = new TryNumber(Integer.parseInt(InputView.askTotalRounds()));
+        Names names = Names.valueOf(InputView.askCarNames());
+        this.cars = new Cars(names);
+        this.tryNumber = new TryNumber(InputView.askTotalRounds());
     }
 
     public void start() {

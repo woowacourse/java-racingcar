@@ -3,6 +3,7 @@ package racingcargame.view.output;
 import racingcargame.domain.Car;
 import racingcargame.domain.Name;
 import racingcargame.domain.Names;
+import racingcargame.domain.Position;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +27,8 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         sb.append(car.getName());
         sb.append(": ");
-        for (int i = 0; i < car.getPosition().getPosition(); i++) {
+        Position position = car.getPosition();
+        for (int i = 0; i < position.getPosition(); i++) {
             sb.append(DISPLAY_POSITION_CHAR);
         }
         System.out.println(sb.toString());

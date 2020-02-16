@@ -1,11 +1,9 @@
 package racingcargame.domain;
 
 import racingcargame.genrator.RandomGenerator;
-import sun.plugin2.applet.StopListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 

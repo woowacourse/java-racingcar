@@ -9,6 +9,7 @@ public class Name {
         if ((name == null) || (name.isEmpty())) {
             throw new IllegalArgumentException("빈 값을 입력하지 마세요.");
         }
+        name = name.trim();
         if (name.length() > CAR_NAME_LIMIT) {
             throw new IllegalArgumentException("5자 이내만 입력 가능합니다.");
         }
