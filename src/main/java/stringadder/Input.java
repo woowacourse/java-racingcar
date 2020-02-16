@@ -30,10 +30,12 @@ public class Input {
     }
 
     private String getDelimiter() {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(expression);
-        if (m.find()) {
-            changeInput(m.group(2));
-            return m.group(1);
+        if(expression.matches(CUSTOM_DELIMITER)) {
+            Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(expression);
+            if (m.find()) {
+                changeInput(m.group(2));
+                return m.group(1);
+            }
         }
         return DEFAULT_DELIMITER;
     }
@@ -56,14 +58,10 @@ public class Input {
     }
 
     public List<Integer> splitInput() {
-        try {
-            String delimiter = getDelimiter();
-            List<Integer> list = parseIntList(delimiter);
+        String delimiter = getDelimiter();
+        List<Integer> list = parseIntList(delimiter);
 
-            validateList(list);
-            return list;
-        } catch (NullPointerException e) {
-            throw new NullPointerException();
-        }
+        validateList(list);
+        return list;
     }
 }

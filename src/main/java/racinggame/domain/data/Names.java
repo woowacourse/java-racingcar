@@ -10,15 +10,6 @@ public class Names {
     private static final String LENGTH_ERROR_MESSAGE = "이름의 길이는 1자 이상, 5자 이하만 가능합니다.";
     private static final String SPLIT_DELIMITER = ",";
 
-    /**
-     * 생성자 메서드의 파라미터로 이름목록과 횟수가 전달될 경우,
-     * 이를 Input 인스턴스의 필드값으로 옮겨 저장한다.
-     * 이후 데이터에 대한 예외처리를 수행하여,
-     * 만약 올바르지 않은 값임이 확인된다면 예외를 발생시킨다.
-     *
-     * @param inputName   이름의 목록을 저장하는 String 값이다.
-     * @param inputRepeat 횟수를 저장하는 String 값이다.
-     */
     public Names(String inputName) {
         this.names = inputName;
         validateNames();
@@ -36,9 +27,13 @@ public class Names {
      * @param name 검증을 위해 전달되는, 이름을 담은 String 인스턴스이다.
      */
     private static void validateNameLength(String name) {
-        if (name == null || name.isEmpty() || name.length() > 5) {
+        if (Objects.isNull(name) || name.isEmpty() || isLongerThanFive(name)) {
             throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
         }
+    }
+
+    private static boolean isLongerThanFive(String name) {
+        return name.length() > 5;
     }
 
     /**
