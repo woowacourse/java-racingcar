@@ -14,4 +14,10 @@ public class TrialTime {
             throw new IllegalArgumentException("시도횟수는 음수가 입력될 수 없습니다.");
         }
     }
+
+    public void raceByTrialTime(CarLineUp lineUp) {
+        for (int index = 0; index < trialTime; index++){
+            lineUp.raceOneTime();
+        }
+    }
 }

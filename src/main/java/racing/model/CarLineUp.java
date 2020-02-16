@@ -17,4 +17,10 @@ public class CarLineUp {
             }
         }return false;
     }
+
+    public void raceOneTime() {
+        for (Car car : lineUp){
+            car.move(new RandomNo());
+        }
+    }
 }
