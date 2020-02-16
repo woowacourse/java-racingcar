@@ -13,5 +13,5 @@ package racingcar.domain;
  *
  */
 public interface PowerGenerator {
-	PowerLevel generatePower();
+	Power generatePower();
 }

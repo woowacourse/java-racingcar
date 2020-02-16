@@ -32,11 +32,11 @@ public class Position {
 		}
 	}
 
-	public void moveForward() {
+	void moveForward() {
 		position += MOVING_DISTANCE;
 	}
 
-	public boolean isGreaterThanOrEqualTo(Position otherPosition) {
+	boolean isGreaterThanOrEqualTo(Position otherPosition) {
 		return position >= otherPosition.position;
 	}
 

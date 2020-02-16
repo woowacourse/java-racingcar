@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 class PowerGeneratorTest {
 	@Test
 	void testGeneratingPower() {
-		PowerGenerator generator = () -> new PowerLevel(5);
-		PowerLevel powerLevel = generator.generatePower();
-		assertThat(powerLevel).isEqualTo(new PowerLevel(5));
+		PowerGenerator generator = () -> new Power(5);
+		Power powerLevel = generator.generatePower();
+		assertThat(powerLevel).isEqualTo(new Power(5));
 	}
 }

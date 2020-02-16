@@ -25,7 +25,7 @@ public class CarsFactoryTest {
 	@Test
 	void Should_success_When_appropriateValue() {
 		Assertions.assertThat(CarsFactory.createCars("네오,프로도,튜브"))
-			.containsExactly(new Car(new Name("네오")), new Car(new Name("프로도")), new Car(new Name("튜브")));
+			.containsExactly(new Car("네오"), new Car("프로도"), new Car("튜브"));
 	}
 
 	@DisplayName("입력받은 이름 중 1~5자 사이가 아닌 글자 들어간 경우 실패")

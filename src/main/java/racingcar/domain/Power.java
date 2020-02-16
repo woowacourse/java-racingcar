@@ -14,7 +14,7 @@ import java.util.Objects;
  * @date        14 Feb 2020
  *
  */
-public class PowerLevel {
+public class Power {
 	private static final int MINIMUM_POWER_TO_RUN = 4;
 	private static final int MINIMUM_POWER = 0;
 	private static final int MAXIMUM_POWER = 9;
@@ -22,7 +22,7 @@ public class PowerLevel {
 
 	private final int powerLevel;
 
-	public PowerLevel(int powerLevel) {
+	public Power(int powerLevel) {
 		validatePowerLevel(powerLevel);
 		this.powerLevel = powerLevel;
 	}
@@ -33,7 +33,7 @@ public class PowerLevel {
 		}
 	}
 
-	public boolean isMovable() {
+	boolean isMovable() {
 		return powerLevel >= MINIMUM_POWER_TO_RUN;
 	}
 
@@ -43,7 +43,7 @@ public class PowerLevel {
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		PowerLevel that = (PowerLevel)o;
+		Power that = (Power)o;
 		return powerLevel == that.powerLevel;
 	}
 

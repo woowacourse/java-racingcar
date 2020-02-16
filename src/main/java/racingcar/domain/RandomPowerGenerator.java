@@ -18,8 +18,8 @@ public class RandomPowerGenerator implements PowerGenerator {
 	private static final Random random = new Random();
 	private static final int RANDOM_BOUND = 10;
 
-	public PowerLevel generatePower() {
+	public Power generatePower() {
 		random.setSeed(System.nanoTime());
-		return new PowerLevel(random.nextInt(RANDOM_BOUND));
+		return new Power(random.nextInt(RANDOM_BOUND));
 	}
 }

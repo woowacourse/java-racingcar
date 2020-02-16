@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,46 +23,46 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class CarTest {
 	private Car car;
 
+	@BeforeEach
+	void setUp() {
+		car = new Car("붕붕");
+	}
+
 	@DisplayName("이름을 받아 car 객체를 정상적으로 생성")
 	@ParameterizedTest
 	@ValueSource(strings = {"또링", "동글"})
 	void testCar(String name) {
-		car = new Car(new Name(name));
+		car = new Car(name);
 		assertThat(car).isNotNull();
 	}
 
 	@Test
 	void testRun() {
-		car = new Car(new Name("붕붕"));
-		car.move(new PowerLevel(4));
+		car.move(new Power(4));
 		assertThat(car).extracting("position").isEqualTo(1);
 	}
 
 	@Test
 	void testStop() {
-		car = new Car(new Name("붕붕"));
-		car.move(new PowerLevel(0));
+		car.move(new Power(0));
 		assertThat(car).extracting("position").isEqualTo(0);
 	}
 
 	@Test
 	void getFartherCarTest() {
-		car = new Car(new Name("붕붕"));
-		Car car2 = new Car(new Name("붕붕2"), new Position(2));
+		Car car2 = new Car("붕붕2", 2);
 		assertThat(car.getFartherCar(car2)).isEqualTo(car2);
 	}
 
 	@Test
 	void isSamePositionCarTest_true() {
-		car = new Car(new Name("붕붕"));
-		Car car2 = new Car(new Name("붕붕2"), new Position(0));
+		Car car2 = new Car("붕붕2", 0);
 		assertThat(car.isSamePosition(car2)).isTrue();
 	}
 
 	@Test
 	void isSamePositionCarTest_false() {
-		car = new Car(new Name("붕붕"));
-		Car car2 = new Car(new Name("붕붕2"), new Position(2));
+		Car car2 = new Car("붕붕2",2);
 		assertThat(car.isSamePosition(car2)).isFalse();
 	}
 }

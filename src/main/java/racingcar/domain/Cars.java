@@ -50,6 +50,13 @@ public class Cars implements Iterable<Car> {
 		}
 	}
 
+	public void moveAll(PowerGenerator powerGenerator) {
+		for (Car car : cars) {
+			Power power = powerGenerator.generatePower();
+			car.move(power);
+		}
+	}
+
 	public List<Car> findWinners() {
 		Car maxPositionCar = findMaxPositionCar();
 		return cars.stream()
@@ -61,12 +68,6 @@ public class Cars implements Iterable<Car> {
 		return cars.stream()
 			.reduce(Car::getFartherCar)
 			.orElseThrow(() -> new NullPointerException(CARS_NULL_EXCEPTION_MESSAGE));
-	}
-
-	public void moveAll(PowerGenerator powerGenerator) {
-		for (Car car : cars) {
-			car.move(powerGenerator.generatePower());
-		}
 	}
 
 	@Override

@@ -28,7 +28,6 @@ public class CarsFactory {
 
 	private static List<Car> split(String rawNames) {
 		return Arrays.stream(rawNames.split(SPLIT_DELIMITER))
-			.map(Name::new)
 			.map(Car::new)
 			.collect(Collectors.toList());
 	}

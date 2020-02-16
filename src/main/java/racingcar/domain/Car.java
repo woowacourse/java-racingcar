@@ -18,17 +18,17 @@ public class Car {
 	private final Name name;
 	private final Position position;
 
-	public Car(Name name) {
-		this(name, new Position(0));
+	public Car(String name) {
+		this(name, 0);
 	}
 
-	public Car(Name name, Position position) {
-		this.name = Objects.requireNonNull(name);
-		this.position = Objects.requireNonNull(position);
+	public Car(String name, int position) {
+		this.name = new Name(name);
+		this.position = new Position(position);
 	}
 
-	public void move(PowerLevel powerLevel) {
-		if (powerLevel.isMovable()) {
+	public void move(Power power) {
+		if (power.isMovable()) {
 			position.moveForward();
 		}
 	}
