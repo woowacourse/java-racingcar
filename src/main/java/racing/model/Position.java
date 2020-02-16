@@ -1,0 +1,30 @@
+package racing.model;
+
+import com.sun.marlin.Dasher;
+
+public class Position {
+    public static final String DASH = "-";
+    public static final int STEP = 1;
+
+    private int position;
+
+    public void add(){
+        position += STEP;
+    }
+
+    public String getPositionByDash() {
+        StringBuilder dash = new StringBuilder();
+        for (int index = 0; index < position; index++){
+            dash.append(DASH);
+        }
+        return dash.toString();
+    }
+
+    public String getPositionByDash(int position) {
+        StringBuilder dash = new StringBuilder();
+        for (int index = 0; index < position; index++){
+            dash.append(DASH);
+        }
+        return dash.toString();
+    }
+}

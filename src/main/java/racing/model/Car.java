@@ -3,13 +3,14 @@ package racing.model;
 public class Car {
 
     public static final int MAX_NAME_SIZE = 5;
-    private String name;
-    private int position;
+    private final String name;
+    private Position position;
 
     public Car(String name) {
         checkNameLengthUnderSix(name);
         checkNullOrEmptyName(name);
         this.name = name;
+        position = new Position();
     }
 
 
@@ -31,15 +32,7 @@ public class Car {
 
     public void move(RandomNo randomNo){
         if (randomNo.isMovable()){
-            position += 1;
+            position.add();
         }
-    }
-
-    public String getPositionByDash(int position) {
-        StringBuilder dash = new StringBuilder();
-        for (int index = 0; index < position; index++){
-            dash.append("-");
-        }
-        return dash.toString();
     }
 }
