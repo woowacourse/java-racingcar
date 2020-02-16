@@ -1,12 +1,16 @@
 package racing.model;
 
-import com.sun.marlin.Dasher;
-
 public class Position {
     public static final String DASH = "-";
     public static final int STEP = 1;
 
     private int position;
+
+    public Position (){}
+
+    public Position (int position){
+        this.position = position;
+    }
 
     public void add(){
         position += STEP;

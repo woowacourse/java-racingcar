@@ -35,4 +35,11 @@ public class Car {
             position.add();
         }
     }
+
+    public String getCurrentResult(Position position) {
+        StringBuilder result = new StringBuilder();
+        result.append(name).append(" : ");
+        result.append(position.getPositionByDash());
+        return result.toString();
+    }
 }
