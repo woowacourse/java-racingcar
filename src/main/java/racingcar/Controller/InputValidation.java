@@ -14,6 +14,12 @@ import java.util.InputMismatchException;
  */
 
 public class InputValidation {
+    public static void checkWantToTerminate(String input) {
+        if (input.equals("-1")) {
+            System.exit(0);
+        }
+    }
+
     public static void checkNullOrEmptyInput(String[] carNames) {
         if (carNames.length == 0 || carNames[0].length() == 0) {
             throw new NullPointerException("입력이 null 이나 빈 문자열입니다.");

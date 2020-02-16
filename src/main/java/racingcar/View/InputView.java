@@ -37,6 +37,7 @@ public class InputView {
 
     private static boolean checkInputCarNameValidation(String[] carNames) {
         try {
+            InputValidation.checkWantToTerminate(carNames[0]);
             InputValidation.checkNullOrEmptyInput(carNames);
             InputValidation.checkEmptyCarName(carNames);
             InputValidation.checkSmallerThanSix(carNames);
@@ -57,6 +58,7 @@ public class InputView {
 
     private static boolean checkInputTrialTimeValidation(String trialTime) {
         try {
+            InputValidation.checkWantToTerminate(trialTime);
             InputValidation.checkDecimalNumber(trialTime);
             InputValidation.checkNotNumber(trialTime);
             InputValidation.checkNegativeAndZeroInput(trialTime);
