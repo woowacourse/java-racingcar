@@ -1,5 +1,7 @@
 package racing.view;
 
+import racing.model.TrialTime;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -16,6 +18,11 @@ public class InputView {
 
     private static String[] splitByDelimiter(String carNames) {
         return carNames.split(DELIMITER);
+    }
+
+    public static TrialTime inputTrialTime() {
+        int trialTime = scanner.nextInt();
+        return new TrialTime(trialTime);
     }
 }
 
