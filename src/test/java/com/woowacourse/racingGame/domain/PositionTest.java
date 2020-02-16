@@ -36,12 +36,4 @@ public class PositionTest {
 
 		assertThat(position1).isEqualTo(position2);
 	}
-
-	@Test
-	void valueOf_캐싱되지_못한_위치() {
-		Position position1 = Position.valueOf(300);
-		Position position2 = Position.valueOf(300);
-
-		assertThat(position1).isNotEqualTo(position2);
-	}
 }

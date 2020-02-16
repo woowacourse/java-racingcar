@@ -1,10 +1,13 @@
 package com.woowacourse.racingGame.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Position {
 	private static final int INIT_POSITION = 0;
 	private static final int MOVING_UNIT = 1;
-
-	public static final Position ZERO = Position.valueOf(INIT_POSITION);
+	private static final Map<Integer, Position> cache = new HashMap<>();
+	public static final Position ZERO = new Position(INIT_POSITION);
 
 	private final int position;
 
@@ -20,10 +23,12 @@ public class Position {
 	}
 
 	public static Position valueOf(final int position) {
-		if (position >= PositionCache.low && position <= PositionCache.high) {
-			return PositionCache.cache[position + (-PositionCache.low)];
+		if (cache.containsKey(position)) {
+			return cache.get(position);
 		}
-		return new Position(position);
+		Position newPosition = new Position(position);
+		cache.put(position, newPosition);
+		return newPosition;
 	}
 
 	public Position increaseByMovingUnit() {

@@ -1,6 +1,10 @@
 package com.woowacourse.racingGame.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RandomNo {
+	private static final Map<Integer, RandomNo> cache = new HashMap<>();
 	private static final int MOVABLE_LOWER_BOUND = 4;
 	public static final int RANDOM_LOWER_BOUND = 0;
 	public static final int RANDOM_UPPER_BOUND = 9;
@@ -15,10 +19,12 @@ public class RandomNo {
 	}
 
 	public static RandomNo valueOf(final int randomNumber) {
-		if (randomNumber >= RandomNoCache.low && randomNumber <= RandomNoCache.high) {
-			return RandomNoCache.cache[randomNumber + (-RandomNoCache.low)];
+		if (cache.containsKey(randomNumber)) {
+			return cache.get(randomNumber);
 		}
-		return new RandomNo(randomNumber);
+		RandomNo newRandomNo = new RandomNo(randomNumber);
+		cache.put(randomNumber, newRandomNo);
+		return newRandomNo;
 	}
 
 	public boolean isMovable() {

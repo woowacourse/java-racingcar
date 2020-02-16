@@ -27,6 +27,7 @@ public class Cars {
 
 	public void attemptMove() {
 		for (Car car : cars) {
+			// NOTE : RandomSeed를 줄 때, RandomGenerator가 static으로 선언되어서 동일한 random 값이 생성?
 			car.attemptMoveThrough(RandomNo.valueOf(RandomGenerator.generateRandomNumber()));
 		}
 	}
