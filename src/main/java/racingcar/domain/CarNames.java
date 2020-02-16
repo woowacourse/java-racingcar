@@ -20,7 +20,7 @@ public class CarNames {
     private final static int NAME_LENGTH_LIMIT = 5;
     private List<String> carNames;
 
-    public CarNames(String input) throws IllegalArgumentException {
+    public CarNames(String input) {
         validateHasBlank(input);
         carNames = split(input);
     }

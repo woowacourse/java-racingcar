@@ -16,7 +16,7 @@ public class Car {
     private final static String COLON = " : ";
     private final static String NEW_LINE = "\n";
     private final String name;
-    private int forwardCount = 0;
+    private int position = 0;
 
     public Car(String name) {
         this.name = name;
@@ -27,17 +27,17 @@ public class Car {
     }
 
     public void forward() {
-        forwardCount++;
+        position++;
     }
 
     public int getForwardCount() {
-        return forwardCount;
+        return position;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < forwardCount; i++) {
+        for (int i = 0; i < position; i++) {
             stringBuilder.append(HYPHEN);
         }
         return name + COLON + stringBuilder.toString() + NEW_LINE;
