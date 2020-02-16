@@ -4,6 +4,7 @@ import racingcargame.util.RandomFactory;
 
 public class Engine {
     private static final int LIMIT = 4;
+
     private int power;
 
     private Engine(int power) {

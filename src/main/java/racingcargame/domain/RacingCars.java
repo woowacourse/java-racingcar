@@ -19,6 +19,18 @@ public class RacingCars {
         this.cars.addAll(cars);
     }
 
+    public static RacingCars createRacingCars(String inputCarNames) {
+        String[] splicedInputCarNames = inputCarNames.split(DELIMITER);
+        trimName(splicedInputCarNames);
+        validCarAmount(splicedInputCarNames);
+        validCarNameDuplicate(splicedInputCarNames);
+        List<Car> cars = new ArrayList<>();
+        for (String inputCarName : splicedInputCarNames) {
+            cars.add(new Car(inputCarName));
+        }
+        return new RacingCars(cars);
+    }
+
     public void move() {
         cars.forEach(car -> car.go(Engine.createRandomEngine()));
     }
@@ -34,18 +46,6 @@ public class RacingCars {
 
     public List<Car> getUnmodifiableCars() {
         return Collections.unmodifiableList(cars);
-    }
-
-    public static RacingCars createRacingCars(String inputCarNames) {
-        String[] splicedInputCarNames = inputCarNames.split(DELIMITER);
-        trimName(splicedInputCarNames);
-        validCarAmount(splicedInputCarNames);
-        validCarNameDuplicate(splicedInputCarNames);
-        List<Car> cars = new ArrayList<>();
-        for (String inputCarName : splicedInputCarNames) {
-            cars.add(new Car(inputCarName));
-        }
-        return new RacingCars(cars);
     }
 
     private static void validCarNameDuplicate(String[] names) {
