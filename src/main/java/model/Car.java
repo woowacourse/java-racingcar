@@ -3,18 +3,32 @@ package model;
 public class Car {
 
     private static final String NAME_LENGTH_ERROR_MESSAGE = "이름의 길이는 1~5 글자여야 합니다.";
+    public static final int MAX_NAME_LENGTH = 5;
+    public static final int MIN_MOVE_DELIMITER = 4;
+    public static final int MOVE = 1;
     private final String name;
+    private int position;
 
     public Car(String name) {
-
+        validateName(name);
         this.name = name;
     }
 
+
     static void validateName(String name) {
-        if (name.isEmpty() || name.length() > 5) {
+        if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR_MESSAGE);
         }
+    }
 
+    public void move(int randomNumber) {
+        if (randomNumber >= MIN_MOVE_DELIMITER) {
+            this.position += MOVE;
+        }
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 
 
