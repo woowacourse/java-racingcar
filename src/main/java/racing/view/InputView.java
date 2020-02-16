@@ -11,10 +11,19 @@ public class InputView {
     public static String[] inputCarNames(){
         OutputView.printInputCarNamesMessage();
         String carNames = scanner.nextLine();
+        try {
+            checkCarNamesNullOrEmpty(carNames);
+            return splitByDelimiter(carNames);
+        } catch (Exception e){
+            OutputView.printExceptionMessage(e);
+        }
+        return inputCarNames();
+    }
+
+    private static void checkCarNamesNullOrEmpty(String carNames) {
         if (carNames == null || carNames.isEmpty()){
             throw new NullPointerException("차 이름이 입력되지 않았습니다.");
         }
-        return splitByDelimiter(carNames);
     }
 
     private static String[] splitByDelimiter(String carNames) {
