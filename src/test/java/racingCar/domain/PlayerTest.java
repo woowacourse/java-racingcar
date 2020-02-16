@@ -9,27 +9,23 @@ class PlayerTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
     void goOrWait(int input) {
+        Decider decider = new Decider(5);
         Player player = new Player(new Name("kueni"));
         int result = 0;
         for (int i = 0; i < input; i++) {
-            result = player.goOrWait(true);
+            result = player.goOrWait(decider);
         }
         Assertions.assertThat(result).isEqualTo(input);
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1,3,-2", "3,1,2", "2,2,0"})
-    void compare(int a, int b, int expected) {
-        Player player = new Player(new Name("kueni"), a);
-        Player other = new Player(new Name("pobi"), b);
-        Assertions.assertThat(Player.compare(player, other))
-                .isEqualTo(expected);
-    }
-
-    @ParameterizedTest
     @CsvSource(value = {"3,3,true", "3,2,false"})
     void isWinner(int position, int max, boolean expected) {
-        Player player = new Player(new Name("kueni"), position);
+        Decider decider = new Decider(5);
+        Player player = new Player(new Name("kueni"));
+        for (int i = 0; i < position; i++) {
+            player.goOrWait(decider);
+        }
         Assertions.assertThat(player.isWinner(max))
                 .isEqualTo(expected);
     }
@@ -37,7 +33,7 @@ class PlayerTest {
     @ParameterizedTest
     @ValueSource(strings = {"kueni", "pobi", "CU"})
     void getName(String input) {
-        Player player = new Player(new Name(input), 3);
+        Player player = new Player(new Name(input));
         Assertions.assertThat(player.getName().equals(input))
                 .isTrue();
     }
@@ -45,7 +41,10 @@ class PlayerTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3})
     void getPosition(int input) {
-        Player player = new Player(new Name("kueni"), input);
+        Player player = new Player(new Name("kueni"));
+        for (int i = 0; i < input; i++) {
+            player.goOrWait(new Decider(5));
+        }
         Assertions.assertThat(player.getPosition())
                 .isEqualTo(input);
     }

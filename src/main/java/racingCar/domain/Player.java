@@ -1,28 +1,22 @@
 package racingCar.domain;
 
 public class Player {
+    private static final int THREE_FOR_DECIDING = 3;
     private static final int DEFAULT_POSITION = 0;
 
     private final Name name;
     private int position;
 
     public Player(Name name) {
-        this(name, DEFAULT_POSITION);
-    }
-
-    /**
-     * use only for test
-     */
-    public Player(Name name, int position) {
         this.name = name;
-        this.position = position;
+        this.position = DEFAULT_POSITION;
     }
 
     /**
      * @return position after action
      */
-    public int goOrWait(boolean shouldGo) {
-        if (shouldGo) {
+    public int goOrWait(Decider decider) {
+        if (decider.isBiggerThan(THREE_FOR_DECIDING)) {
             goOneStep();
         }
 
@@ -31,10 +25,6 @@ public class Player {
 
     private void goOneStep() {
         position += 1;
-    }
-
-    public static int compare(Player a, Player b) {
-        return a.position - b.position;
     }
 
     public boolean isWinner(int max) {

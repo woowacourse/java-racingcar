@@ -1,6 +1,5 @@
 package racingCar.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -37,22 +36,22 @@ public class Players {
         }
     }
 
-    public boolean isEmpty() {
-        return players.isEmpty();
+    public boolean isReady() {
+        return !players.isEmpty();
     }
 
     public List<Player> play(Deciders deciders) {
-        checkSameNum(deciders);
+        checkIsSameSize(deciders.size());
 
         int bound = players.size();
         for (int i = ZERO_INDEX; i < bound; i++) {
-            players.get(i).goOrWait(deciders.get(i));
+            players.get(i).goOrWait(deciders.getUnmodifiableList().get(i));
         }
         return Collections.unmodifiableList(players);
     }
 
-    private void checkSameNum(Deciders deciders) {
-        if (deciders.isNotEqualSize(this)) {
+    private void checkIsSameSize(int num) {
+        if (isSizeNotEqual(num)) {
             throw new RuntimeException();
         }
     }
@@ -67,17 +66,17 @@ public class Players {
 
     private int getMax() {
         return players.stream()
-                .max(Player::compare)
-                .orElseThrow(RuntimeException::new)
-                .getPosition();
+                .mapToInt(Player::getPosition)
+                .max()
+                .orElseThrow();
+    }
+
+    private boolean isSizeNotEqual(int size) {
+        return players.size() != size;
     }
 
     public int size() {
         return players.size();
-    }
-
-    public boolean isSizeNotEqual(int size) {
-        return players.size() != size;
     }
 
     public List<Player> getUnmodifiableList() {

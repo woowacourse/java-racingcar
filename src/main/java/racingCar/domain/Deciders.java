@@ -1,64 +1,23 @@
 package racingCar.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Deciders {
-    private static final int ZERO_INDEX = 0;
-    private static final int BOUND = 4;
-    private static final int TEN = 10;
+    private final List<Decider> deciders;
 
-    private final List<Boolean> booleans;
-
-    /**
-     * has random booleans
-     */
-    public Deciders(Players players) {
-        this.booleans = getBooleansDecidingPlayerGoOrWait(players);
+    public Deciders(List<Integer> values) {
+        deciders = values.stream()
+                .map(Decider::new)
+                .collect(Collectors.toList());
     }
 
-    private List<Boolean> getBooleansDecidingPlayerGoOrWait(Players players) {
-        List<Boolean> randomBooleans = new ArrayList<>();
-        for (Player ignored : players.getUnmodifiableList()) {
-            randomBooleans.add(decidePlayerGoOrWait());
-        }
-        return randomBooleans;
+    public int size() {
+        return deciders.size();
     }
 
-    /**
-     * use for test
-     */
-    public Deciders(Players players, List<Boolean> booleans) {
-        checkAreSameSize(players, booleans);
-        this.booleans = new ArrayList<>();
-        this.booleans.addAll(booleans);
-    }
-
-    private void checkAreSameSize(Players players, List<Boolean> booleans) {
-        if (players.isSizeNotEqual(booleans.size())) {
-            throw new RuntimeException();
-        }
-    }
-
-    public boolean decidePlayerGoOrWait() {
-        int randomNumber = (int) (Math.random() * TEN);
-        return randomNumber >= BOUND;
-    }
-
-    public boolean isNotEqualSize(Players players) {
-        return booleans.size() != players.size();
-    }
-
-    public boolean get(int index) {
-        return booleans.get(index);
-    }
-
-    public String toString() {
-        return booleans.toString();
-    }
-
-    public List<Boolean> getUnmodifiableList() {
-        return Collections.unmodifiableList(booleans);
+    public List<Decider> getUnmodifiableList() {
+        return Collections.unmodifiableList(deciders);
     }
 }

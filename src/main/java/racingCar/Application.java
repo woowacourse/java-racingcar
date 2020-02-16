@@ -1,41 +1,52 @@
 package racingCar;
 
-import racingCar.domain.*;
+import racingCar.domain.RacingCar;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
-import java.util.List;
+import java.util.InputMismatchException;
 
 public class Application {
-    public static final int ONE_ROUND = 1;
-    private static final int ZERO = 0;
-
     public static void main(String[] args) {
-        Players players = createPlayers();
-        int roundInput = InputView.InputNumberOfRound();
+        int roundNum;
+
+        inputUserNameAndInitRacingCar();
+        roundNum = inputRoundNumWithHandleException();
+        playEachRoundAndOutputIncludingTitleAndWinners(roundNum);
+    }
+
+    private static void playEachRoundAndOutputIncludingTitleAndWinners(int roundNum) {
         OutputView.printResultTitle();
-        proceedRounds(players, roundInput);
-        OutputView.printWinners(players);
+        playEachRoundAndOutput(roundNum);
+        OutputView.printWinners(RacingCar.players);
     }
 
-    private static Players createPlayers() {
-        String nameInput = InputView.inputUserNames();
-        List<Name> names = StringParser.parseToNameList(nameInput);
-        Players players = new Players(names);
-
-        if (players.isEmpty()) {
-            OutputView.printInvalidNameWarning();
-            return createPlayers();
+    private static void playEachRoundAndOutput(int roundNum) {
+        for (int round = 0; round < roundNum; round++) {
+            OutputView.printRoundResultWithRoundNum(round, RacingCar.players);
+            RacingCar.playWithRandoms();
         }
-
-        return players;
+        OutputView.printRoundResultWithRoundNum(roundNum, RacingCar.players);
     }
 
-    private static void proceedRounds(Players players, int roundInput) {
-        OutputView.printRoundResultWithRoundNum(ZERO, players);
-        for (int round = ONE_ROUND; round <= roundInput; round++) {
-            players.play(new Deciders(players));
-            OutputView.printRoundResultWithRoundNum(round, players);
+    private static int inputRoundNumWithHandleException() {
+        try {
+            return InputView.InputNumberOfRound();
+        } catch (InputMismatchException e) {
+            OutputView.printInvalidRoundNumWarning();
+            InputView.removeBuffer();
+            return inputRoundNumWithHandleException();
         }
+    }
+
+    public static void inputUserNameAndInitRacingCar() {
+        String userNames = InputView.inputUserNames();
+        boolean isReady = RacingCar.init(userNames);
+        if (isReady) {
+            return;
+        }
+
+        OutputView.printInvalidNameWarning();
+        inputUserNameAndInitRacingCar();
     }
 }

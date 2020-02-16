@@ -51,6 +51,10 @@ public class OutputView {
         System.out.println(INVALID_NAME_WARNING);
     }
 
+    public static void printInvalidRoundNumWarning() {
+        System.out.println(REINPUT_REQUEST_TEXT);
+    }
+
     public static void printRoundResultWithRoundNum(int roundNum, Players players) {
         System.out.println();
         printRoundNum(roundNum);

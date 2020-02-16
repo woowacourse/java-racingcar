@@ -19,11 +19,11 @@ class PlayersTest {
     void play(int input) {
         List<Name> names = StringParser.parseToNameList("pobi,jason,cu");
         Players players = new Players(names);
-        List<Boolean> trueBooleans = new ArrayList<>();
+        List<Integer> ints = new ArrayList<>();
         for (Player ignored : players.getUnmodifiableList()) {
-            trueBooleans.add(true);
+            ints.add(5);
         }
-        Deciders deciders = new Deciders(players, trueBooleans);
+        Deciders deciders = new Deciders(ints);
         List<Player> results = new ArrayList<>();
         for (int i = 0; i < input; i++) {
             results = players.play(deciders);
@@ -39,8 +39,26 @@ class PlayersTest {
         List<Name> names = StringParser.parseToNameList(input);
         Players gameManager = new Players(names);
 
-        Assertions.assertThat(gameManager.isEmpty())
-                .isTrue();
+        Assertions.assertThat(gameManager.isReady())
+                .isFalse();
+    }
+
+    @Test
+    void getWinners() {
+        // given
+        String input = "a,b,c,d";
+        List<Name> names = StringParser.parseToNameList(input);
+        Players players = new Players(names);
+        players.getUnmodifiableList().get(0).goOrWait(new Decider(5));
+        players.getUnmodifiableList().get(1).goOrWait(new Decider(5));
+        players.getUnmodifiableList().get(3).goOrWait(new Decider(5));
+
+        // when
+        List<Player> winners = players.getWinners();
+
+        // then
+        Assertions.assertThat(winners.size())
+                .isEqualTo(3);
     }
 
     @Test

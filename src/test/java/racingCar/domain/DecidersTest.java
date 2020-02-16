@@ -7,65 +7,48 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DecidersTest {
-    Players players;
+    @Test
+    void Deciders() {
+        // given
+        List<Integer> ints = Arrays.asList(0, 1, 2, 3, 4, 4, 5, 6, 7, 8, 9);
 
-    @BeforeEach
-    void setUp() {
-        List<Name> names = StringParser.parseToNameList("kueni,pobi,jason");
-        players = new Players(names);
+        // when
+        Deciders deciders = new Deciders(ints);
+
+        // then
+        Assertions.assertThat(deciders.getUnmodifiableList().size())
+                .isEqualTo(ints.size());
     }
 
     @Test
-    void decidePlayerGoOrWait() {
-        /* 테스트 하기 어려운 경우 */
+    void Deciders_ShouldThrowException() {
+        // given
+        List<Integer> ints = Arrays.asList(-1, 0, 2, 5);
+
+        // then
+        Assertions.assertThatThrownBy(() -> {
+
+            // when
+            Deciders deciders = new Deciders(ints);
+        });
     }
 
     @Test
-    void isNotEqualSize_ShouldFalseWhenSizeIsEqual() {
-        Deciders deciders = new Deciders(players);
-        Assertions.assertThat(deciders.isNotEqualSize(players))
-                .isFalse();
-    }
+    void size() {
+        // given
+        List<Integer> ints = Arrays.asList(0, 1, 2, 3, 4, 4, 5, 6, 7, 8, 9);
+        Deciders deciders = new Deciders(ints);
 
-    @Test
-    void isNotEqualSize_ShouldTrueWhenSizeIsNotEqual() {
-        List<Name> names = StringParser.parseToNameList("kueni, pobi");
-        Players other = new Players(names);
-        Deciders deciders = new Deciders(other);
-        Assertions.assertThat(deciders.isNotEqualSize(players))
-                .isTrue();
-    }
+        // when
+        int size = deciders.size();
 
-    @Test
-    void get_ShouldTrue() {
-        List<Boolean> booleans = getBooleans(true);
-        Deciders deciders = new Deciders(players, booleans);
-        for (int i = 0; i < players.size(); i++) {
-            Assertions.assertThat(deciders.get(i))
-                    .isTrue();
-        }
-    }
-
-    @Test
-    void get_ShouldFalse() {
-        List<Boolean> booleans = getBooleans(false);
-        Deciders deciders = new Deciders(players, booleans);
-        for (int i = 0; i < players.size(); i++) {
-            Assertions.assertThat(deciders.get(i))
-                    .isFalse();
-        }
-    }
-
-    private List<Boolean> getBooleans(boolean bool) {
-        List<Boolean> booleans = new ArrayList<>();
-        for (Player player: players.getUnmodifiableList()) {
-            booleans.add(bool);
-        }
-        return booleans;
+        // then
+        Assertions.assertThat(size).isEqualTo(ints.size());
     }
 }
