@@ -3,6 +3,7 @@ package racingcar.View;
 import java.util.Scanner;
 
 import racingcar.Controller.InputValidation;
+import racingcar.Model.TrialTime;
 
 /**
  * 클래스 이름 : InputView.java
@@ -32,24 +33,10 @@ public class InputView {
         }
     }
 
-    public static int inputTrialTime() {
+    public static TrialTime inputTrialTime() {
         OutputView.printInputTrialTimeMessage();
-        String trialTime = sc.nextLine();
-        if (checkInputTrialTimeValidation(trialTime)) return Integer.parseInt(trialTime);
-        return inputTrialTime();
+        String tryNo = sc.nextLine();
+        return new TrialTime(tryNo);
     }
 
-    private static boolean checkInputTrialTimeValidation(String trialTime) {
-        try {
-            InputValidation.checkWantToTerminate(trialTime);
-            InputValidation.checkDecimalNumber(trialTime);
-            InputValidation.checkNotNumber(trialTime);
-            InputValidation.checkNegativeAndZeroInput(trialTime);
-            InputValidation.checkIntegerOverflow(trialTime);
-            return true;
-        } catch (Exception e) {
-            OutputView.printExceptionMessage(e);
-        }
-        return false;
-    }
 }

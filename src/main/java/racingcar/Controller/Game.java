@@ -29,7 +29,7 @@ public class Game {
         for (String name : carNames) {
             cars.add(new Car(name));
         }
-        trialTime = InputView.inputTrialTime();
+        trialTime = InputView.inputTrialTime().getTrialTime();
     }
 
     public static void race() {

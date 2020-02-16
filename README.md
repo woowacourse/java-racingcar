@@ -121,7 +121,7 @@
 - [x] CarTest class 내 isGo 메서드 관련 테스트 케이스를 단순화 하자.
 - [x] Car 객체의 isGo 메서드를 private으로 선언 할 수 있지 않을까.
 - [x] 잘못된 input을 받는 경우에, 재시도를 하기 위한 종료 조건이 필요하다.
-- [ ] InputView의 역할이 가중되어 있다.
+- [x] InputView의 역할이 가중되어 있다.
 - [ ] Car 객체로부터 출력을 분리하자.
 - [x] Car Name에 대한 유효성 검사는 Car의 역할로 적합하다.
 - [ ] indent의 최대 깊이는 1이다.
