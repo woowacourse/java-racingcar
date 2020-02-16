@@ -5,10 +5,7 @@ import racingGame.utils.RandomNumberGenerator;
 import java.util.*;
 
 public class Cars {
-    private static final int INIT_POSITION = 0;
-
     private final List<Car> cars;
-    private int maximumPosition = INIT_POSITION;
 
     public Cars(final List<Car> cars) {
         checkDuplicate(cars);
