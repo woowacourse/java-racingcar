@@ -15,8 +15,6 @@ import java.util.Objects;
  *
  */
 public class Car {
-    public static final int MINIMUM_NUMBER_TO_GO = 4;
-
     private final String name;
     private int position;
 
@@ -29,8 +27,8 @@ public class Car {
         this.position = position;
     }
 
-    public void run(int randomNumber) {
-        if (randomNumber >= MINIMUM_NUMBER_TO_GO) {
+    public void run(int randomValue) {
+        if (new RandomNumber(randomValue).isMovable()) {
             position++;
         }
     }
