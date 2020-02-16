@@ -16,7 +16,9 @@ public class Cars {
     public static final String INPUT_NUMBERS_NOT_EQUAL_TO_CARS_MESSAGE = "Input numbers not equal to cars.";
     public static final String DUPLICATE_NAME_EXISTS_MESSAGE = "Duplicate name exists.";
     public static final String CAR_NUMBERS_OUT_OF_RANGE_MESSAGE = "Car numbers out of range(0,10).";
+
     private final List<Car> cars;
+    private NumberGeneratorStrategy numberGeneratorStrategy;
 
     public Cars(final List<Car> cars) {
         validateNotDuplicate(cars);
@@ -47,8 +49,12 @@ public class Cars {
         return true;
     }
 
-    public void moveAll(final RandomNumberGenerator randomNumberGenerator) {
-        List<Integer> numbers = randomNumberGenerator.generateRandomNumbers(cars.size());
+    public void setNumberGeneratorStrategy(NumberGeneratorStrategy numberGeneratorStrategy) {
+        this.numberGeneratorStrategy = numberGeneratorStrategy;
+    }
+
+    public void moveAll() {
+        List<Integer> numbers = numberGeneratorStrategy.generateNumbers(cars.size());
         moveAll(numbers);
     }
 

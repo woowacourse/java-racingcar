@@ -12,14 +12,15 @@ import java.util.Random;
  * @author HyoChan
  * @since 2020/02/13
  */
-public class RandomNumberGenerator {
+public class RandomNumberGeneratorStrategy implements NumberGeneratorStrategy {
     private final Random random = new Random();
 
     private int generateRandomNumber() {
         return random.nextInt(10);
     }
 
-    public List<Integer> generateRandomNumbers(final int size) {
+    @Override
+    public List<Integer> generateNumbers(final int size) {
         List<Integer> numbers = new ArrayList<>();
         for (int index = 0; index < size; index++) {
             numbers.add(generateRandomNumber());
