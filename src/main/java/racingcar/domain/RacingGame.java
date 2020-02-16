@@ -14,20 +14,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class Controller {
+public class RacingGame {
 
     private final static String NEW_LINE = "\n";
     private final static int RANDOM_NUMBER_RANGE = 10;
     private final Cars cars;
     private final int tryCount;
 
-    public Controller(List<Car> cars, int tryCount) {
+    public RacingGame(List<Car> cars, int tryCount) {
         this.cars = new Cars(cars);
         this.tryCount = tryCount;
     }
 
-
-    public String run() {
+    public String getRacingProgress() {
         StringBuilder executionResult = new StringBuilder();
         for (int i = 0; i < tryCount; i++) {
             playRacing(executionResult);

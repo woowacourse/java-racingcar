@@ -13,7 +13,7 @@ package racingcar;
 import java.util.List;
 import racingcar.domain.Car;
 import racingcar.domain.CarFactory;
-import racingcar.domain.Controller;
+import racingcar.domain.RacingGame;
 import racingcar.domain.TryCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -23,13 +23,13 @@ public class Application {
     public static void main(String[] args) {
         List<Car> cars = inputCarNames();
         int tryCount = inputTryCount();
-        Controller controller = new Controller(cars, tryCount);
+        RacingGame racingGame = new RacingGame(cars, tryCount);
 
-        String racingProgress = controller.run();
+        String racingProgress = racingGame.getRacingProgress();
         OutputView.printExecutionResult();
         OutputView.printString(racingProgress);
 
-        String winner = controller.getWinner();
+        String winner = racingGame.getWinner();
         OutputView.printWinner(winner);
     }
 
