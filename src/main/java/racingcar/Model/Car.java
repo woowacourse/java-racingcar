@@ -11,6 +11,7 @@ package racingcar.Model;
 
 public class Car {
     private static final int INITIAL_POSITION = 0;
+    public static final int MAX_CAR_NAME_LENGTH = 5;
 
     public static StringBuilder winners = new StringBuilder();
 
@@ -38,7 +39,7 @@ public class Car {
     }
 
     public static void checkSmallerThanSix(String carName) {
-        if (carName.length() > 5) {
+        if (carName.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException("차 이름의 길이가 6 이상입니다.");
         }
     }
