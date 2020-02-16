@@ -1,5 +1,14 @@
 package racingcar.Model;
 
+/**
+ * 클래스 이름 : Name.java
+ *
+ * @author 작은곰
+ * @version 1.0.1
+ * <p>
+ * 날짜 : 2020.02.16 일요일
+ */
+
 public class Name {
     private String name;
 

@@ -5,17 +5,16 @@ import java.util.List;
 import java.util.Scanner;
 
 import racingcar.Model.Car;
+import racingcar.Model.Name;
 import racingcar.Model.TrialTime;
 
 /**
  * 클래스 이름 : InputView.java
  *
- * @author 보스독
  * @author 작은곰
- * @author 토니
- * @version 1.0
+ * @version 1.0.1
  * <p>
- * 날짜 : 2020.02.13 목요일
+ * 날짜 : 2020.02.16 일요일
  */
 
 public class InputView {
@@ -28,7 +27,7 @@ public class InputView {
         trimCarNames(carNames);
         List<Car> cars = new ArrayList<>();
         for (String name : carNames) {
-            cars.add(new Car(name));
+            cars.add(new Car(new Name(name)));
         }
         return cars;
     }

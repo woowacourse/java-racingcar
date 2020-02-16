@@ -1,16 +1,12 @@
 package racingcar.Model;
 
-import racingcar.View.OutputView;
-
 /**
  * 클래스 이름 : Car.java
  *
- * @author 보스독
  * @author 작은곰
- * @author 토니
- * @version 1.0
+ * @version 1.0.1
  * <p>
- * 날짜 : 2020.02.13 목요일
+ * 날짜 : 2020.02.16 일요일
  */
 
 public class Car {
@@ -63,9 +59,9 @@ public class Car {
     }
 
     public void findWinners(Car car) {
-        if (this.position == car.position) {
+        if (this.position.getPosition() == car.position.getPosition()) {
             winners.append(", ");
-            winners.append(car.carName);
+            winners.append(car.carName.getName());
         }
     }
 

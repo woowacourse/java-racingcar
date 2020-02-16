@@ -23,10 +23,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  */
 
 public class InputValidationTest {
-    @ParameterizedTest
-    @CsvSource(value = {"a", "", "c"})
+    @Test
     @DisplayName("차 이름에 빈 문자열 입력 시")
-    void inputValidation_차_이름_빈_문자열(String carNames) {
+    void inputValidation_차_이름_빈_문자열() {
+        String carNames = "";
         assertThatThrownBy(() -> {
             Name.checkEmptyCarName(carNames);
         }).isInstanceOf(IllegalArgumentException.class)
@@ -41,7 +41,7 @@ public class InputValidationTest {
             String result = "Maserati";
             Name.checkSmallerThanSix(result);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("자동차 이름의 길이가 6 이상입니다.");
+                .hasMessage("차 이름의 길이가 6 이상입니다.");
     }
 
     @Test

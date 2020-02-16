@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.Controller.Game;
 import racingcar.Model.Car;
+import racingcar.Model.Name;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,10 +24,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameTest {
     private List<Car> cars = Arrays.asList(
-            new Car("토니", 8),
-            new Car("포비", 15),
-            new Car("작은곰", 14),
-            new Car("보스독", 15)
+            new Car(new Name("토니"), 8),
+            new Car(new Name("포비"), 15),
+            new Car(new Name("작은곰"), 14),
+            new Car(new Name("보스독"), 15)
     );
     private Car topPositionCar = cars.get(1);
 
