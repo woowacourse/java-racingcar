@@ -4,9 +4,9 @@ package racingcar.Model;
  * 클래스 이름 : Car.java
  *
  * @author 작은곰
- * @version 1.0.1
+ * @version 1.0.2
  * <p>
- * 날짜 : 2020.02.16 일요일
+ * 날짜 : 2020.02.17 월요일
  */
 
 public class Car {

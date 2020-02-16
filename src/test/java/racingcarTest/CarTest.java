@@ -9,18 +9,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.Model.Car;
 import racingcar.Model.Name;
-import racingcar.Model.Position;
 import racingcar.Model.RandomNumber;
 
 /**
  * 클래스 이름 : CarTest.java
  *
- * @author 보스독
  * @author 작은곰
- * @author 토니
- * @version 1.0
+ * @version 1.0.2
  * <p>
- * 날짜 : 2020.02.13 목요일
+ * 날짜 : 2020.02.17 월요일
  */
 
 public class CarTest {
