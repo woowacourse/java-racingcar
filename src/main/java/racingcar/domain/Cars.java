@@ -29,8 +29,7 @@ public class Cars {
 	}
 
 	private void validateDuplicateCarName(List<String> carsName) {
-		boolean isDuplicatedName = !(carsName.stream()
-			.allMatch(new HashSet<>()::add));
+		boolean isDuplicatedName = new HashSet<>(carsName).size() != carsName.size();
 
 		if (isDuplicatedName) {
 			throw new IllegalArgumentException("중복된 이름이 존재합니다.");
