@@ -26,9 +26,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         try {
-            String rawCarNames = InputView.inputCarNames();
-            List<String> carNames = NameSplitter.split(rawCarNames);
-            Cars cars = new Cars(createCarsByNames(carNames));
+            Cars cars = new Cars(InputView.inputCarNames());
             Round round = new Round(InputView.inputNumberOfRound());
             playGame(cars, round);
             Winner winner = new Winner(cars.findWinner());
@@ -37,14 +35,6 @@ public class Application {
             System.out.println(e.getMessage());
             System.exit(1);
         }
-    }
-
-    public static List<Car> createCarsByNames(List<String> carNames) {
-        List<Car> cars = new ArrayList<>();
-        for (String name : carNames) {
-            cars.add(new Car(name));
-        }
-        return cars;
     }
 
     public static void playGame(Cars cars, Round round) {

@@ -2,7 +2,9 @@ package racingcar.domain;
 
 import racingcar.generator.RandomNumberGenerator;
 import racingcar.message.Message;
+import racingcar.splitter.NameSplitter;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -21,7 +23,16 @@ import java.util.stream.Collectors;
  *
  */
 public class Cars implements Iterable<Car> {
-    private final List<Car> cars;
+    private List<Car> cars;
+
+    public Cars(String rawCarNames) {
+        List<String> carNames = NameSplitter.split(rawCarNames);
+        cars = new ArrayList<>();
+        for (String name : carNames) {
+            cars.add(new Car(name));
+        }
+        this.cars = Collections.unmodifiableList(cars);
+    }
 
     public Cars(List<Car> cars) {
         this.cars = Collections.unmodifiableList(cars);
