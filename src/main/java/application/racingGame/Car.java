@@ -1,7 +1,8 @@
 package application.racingGame;
 
 public class Car {
-    private String name;
+
+    private final String name;
     private int position;
 
     public Car(String name) {
@@ -9,16 +10,16 @@ public class Car {
         this.position = 0;
     }
 
-    public int getPosition() {
-        return this.position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
     public String getName() {
         return this.name;
+    }
+
+    public void moveForward(){
+        position++;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 
 }

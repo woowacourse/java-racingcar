@@ -1,55 +1,38 @@
 package application.racingGame;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Race {
 
-    public static final String CAR_NAME_DELIMITER = ",";
     public static final int MAXIMUM_RANDOM_NUMBER_RANGE = 9;
     public static final int MINIMUM_NUMBER_OF_MOVE_FORWARD = 4;
-    public static final int MOVE_FORWARD = 1;
 
-    public void run() {
-        while(true) {
-            try {
-                List<String> winners = startRacing();
-                OutputRacingView.printWinner(winners);
-                break;
-            } catch (Exception e) {
-                OutputRacingView.printErrorMessage(e.getMessage());
-            }
-        }
+    public List<String> run(RaceParticipants raceParticipants, RacingLabConsoleInput racingLabConsoleInput) {
+        raceParticipants.init();
+        List<String> winners = startRacing(raceParticipants, racingLabConsoleInput.getRacingLabValue());
+        return winners;
     }
 
-    public List<Car> getCarList() {
-        OutputRacingView.startRacingGameMessage();
-        List<String> carNames = getCarName();
-        List<Car> cars = new ArrayList<>();
-        for (String name : carNames) {
-            cars.add(new Car(name));
+    private List<String> startRacing(RaceParticipants raceParticipants, String racingLabValue) {
+        int racingLab = getRacingLab(racingLabValue);
+
+        for (int i = 0; i<racingLab; i++) {
+            moveCarForward(raceParticipants.getCars());
+            OutputRacingView.printPositionDuringRacing(raceParticipants.getCars());
         }
-        return cars;
+
+        return getNamesOfWinners(raceParticipants.getCars());
     }
 
-    public int getRacingLab() {
-        OutputRacingView.getRacingLabMessage();
-        String racingLabValue = InputRacingInformation.getRacingValue();
+    private int getRacingLab(String racingLabValue) {
         return RacingInformationValidator.validateRacingLab(racingLabValue);
     }
 
-    private List<String> getCarName() {
-        String inputCarNames = InputRacingInformation.getRacingValue();
-        List<String> carNames = Arrays.asList(inputCarNames.split(CAR_NAME_DELIMITER));
-        RacingInformationValidator.validateCarName(carNames);
-        return carNames;
-    }
-
-    public List<String> getNamesOfWinners(List<Car> cars) {
+    private List<String> getNamesOfWinners(List<Car> cars) {
         List<String> winners = new ArrayList<>();
-        int maxPosition = 0;
-        maxPosition = findMaxPosition(cars, maxPosition);
+        int maxPosition;
+        maxPosition = findMaxPosition(cars);
         getWinnerName(cars, winners, maxPosition);
         return winners;
     }
@@ -62,32 +45,23 @@ public class Race {
         }
     }
 
-    public boolean isWinnerCar(int maxPosition, Car car) {
+    private boolean isWinnerCar(int maxPosition, Car car) {
         return car.getPosition() == maxPosition;
     }
 
-    public int findMaxPosition(List<Car> cars, int maxPosition) {
-        for (Car car : cars) {
-            if (isCarPositionOverBeforeMaxPosition(maxPosition, car)) {
-                maxPosition = car.getPosition();
-            }
-        }
-        return maxPosition;
+    private int findMaxPosition(List<Car> cars) {
+        List<Integer> carPositions = extractPosition(cars);
+        return carPositions.stream().reduce(Integer::max).get();
     }
 
-    public boolean isCarPositionOverBeforeMaxPosition(int maxPosition, Car car) {
-        return maxPosition < car.getPosition();
-    }
+    private List<Integer> extractPosition(List<Car> cars) {
+        List<Integer> carPositions = new ArrayList<>();
 
-    private List<String> startRacing() {
-        List<Car> cars = getCarList();
-        int racingLab = getRacingLab();
-
-        for (int i = 0; i < racingLab; i++) {
-            moveCarForward(cars);
-            OutputRacingView.printPositionDuringRacing(cars);
+        for(Car car : cars) {
+            carPositions.add(car.getPosition());
         }
-        return getNamesOfWinners(cars);
+
+        return carPositions;
     }
 
     private void moveCarForward(List<Car> cars) {
@@ -97,15 +71,14 @@ public class Race {
         }
     }
 
-    public int generateRandomNumber() {
+    private int generateRandomNumber() {
         double randomValue = Math.random();
         return (int) (randomValue * MAXIMUM_RANDOM_NUMBER_RANGE);
     }
 
-    public void checkCarConditionByRandomNumber(Car car, int randomNumber) {
+    private void checkCarConditionByRandomNumber(Car car, int randomNumber) {
         if (isOverMinimumNumberOfMoveForward(randomNumber)) {
-            int moveForward = car.getPosition() + MOVE_FORWARD;
-            car.setPosition(moveForward);
+            car.moveForward();
         }
     }
 
