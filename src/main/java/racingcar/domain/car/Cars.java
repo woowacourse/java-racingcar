@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Cars {
     private static final String DELIMITER = ",";
-    public static final String ENTER = "\n";
+    public static final String ENTER = System.lineSeparator();
 
     private final List<Car> cars;
 
