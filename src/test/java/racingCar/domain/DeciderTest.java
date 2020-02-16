@@ -1,8 +1,8 @@
 package racingCar.domain;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class DeciderTest {
@@ -26,43 +26,16 @@ public class DeciderTest {
         }).isInstanceOf(RuntimeException.class);
     }
 
-    @Test
-    void isBiggerThan() {
+    @ParameterizedTest
+    @CsvSource(value = {"5,4,true", "1,9,false", "4,4,false"})
+    void isBiggerThan(int given, int input, boolean expected) {
         // given
-        int value = 5;
-        Decider decider = new Decider(value);
+        Decider decider = new Decider(given);
 
         // when
-        int input = 4;
         boolean bool = decider.isBiggerThan(input);
 
         // then
-        boolean expected = true;
         Assertions.assertThat(bool).isEqualTo(expected);
-    }
-
-    @Test
-    void setValue() {
-        // given
-        Decider decider = new Decider(3);
-
-        // when
-        decider.setValue(9);
-
-        // then
-        Assertions.assertThat(decider.getValue())
-                .isEqualTo(9);
-    }
-
-    @Test
-    void setValue_ShouldThrowException() {
-        // given
-        Decider decider = new Decider(3);
-
-        Assertions.assertThatThrownBy(() -> {
-
-            // when
-            decider.setValue(10);
-        });
     }
 }

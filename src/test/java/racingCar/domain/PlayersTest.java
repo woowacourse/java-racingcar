@@ -15,30 +15,15 @@ import java.util.stream.IntStream;
 
 class PlayersTest {
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3})
-    void play(int input) {
-        List<Name> names = StringParser.parseToNameList("pobi,jason,cu");
-        Players players = new Players(names);
-        List<Integer> ints = new ArrayList<>();
-        for (Player ignored : players.getUnmodifiableList()) {
-            ints.add(5);
-        }
-        Deciders deciders = new Deciders(ints);
-        List<Player> results = new ArrayList<>();
-        for (int i = 0; i < input; i++) {
-            results = players.play(deciders);
-        }
-        for (Player t : results) {
-            Assertions.assertThat(t.getPosition()).isEqualTo(input);
-        }
-    }
-
-    @Test
-    void isEmpty_ShouldReturnFalseWhenInputAreDuplicatedNames() {
-        String input = "abc,abc";
+    @ValueSource(strings = {"abc,abc", "b,cvd,a,cvd,e"})
+    void isReady_ShouldReturnFalseWhenInputAreDuplicatedNames(String input) {
+        // given
         List<Name> names = StringParser.parseToNameList(input);
+
+        // when
         Players gameManager = new Players(names);
 
+        // then
         Assertions.assertThat(gameManager.isReady())
                 .isFalse();
     }
@@ -51,6 +36,8 @@ class PlayersTest {
         Players players = new Players(names);
         players.getUnmodifiableList().get(0).goOrWait(new Decider(5));
         players.getUnmodifiableList().get(1).goOrWait(new Decider(5));
+        players.getUnmodifiableList().get(1).goOrWait(new Decider(5));
+        players.getUnmodifiableList().get(3).goOrWait(new Decider(5));
         players.getUnmodifiableList().get(3).goOrWait(new Decider(5));
 
         // when
@@ -58,15 +45,25 @@ class PlayersTest {
 
         // then
         Assertions.assertThat(winners.size())
-                .isEqualTo(3);
+                .isEqualTo(2);
     }
 
-    @Test
-    void getUnmodifiableList() {
-        String input = "kueni,pobi";
+    @ParameterizedTest
+    @CsvSource(value = {"a,b,c/3", "kueni,pobi,jason,cu,woni,jun/6"}, delimiter = '/')
+    void getUnmodifiableList(String input, int expected) {
+        // given
         List<Name> names = StringParser.parseToNameList(input);
         Players players = new Players(names);
-        Assertions.assertThat(players.getUnmodifiableList().size())
-                .isEqualTo(2);
+
+        // when
+        List<Player> result = players.getUnmodifiableList();
+
+        // then
+        Assertions.assertThat(result.size())
+                .isEqualTo(expected);
+        Assertions.assertThatThrownBy(() -> {
+           result.add(new Player(new Name("woowa")));
+        });
+
     }
 }
