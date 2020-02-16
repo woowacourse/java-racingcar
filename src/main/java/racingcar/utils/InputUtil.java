@@ -1,8 +1,5 @@
 package racingcar.utils;
 
-import racingcar.domain.Cars;
-import racingcar.domain.RaceCount;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,7 +17,7 @@ public class InputUtil {
 	public static List<String> inputCars() throws IOException {
 		String input = bufferedReader.readLine();
 		List<String> carsName = Arrays.asList(
-				input.replace(SPACE, EMPTY)
+			input.replace(SPACE, EMPTY)
 				.split(COMMA, LIMIT));
 
 		return carsName;

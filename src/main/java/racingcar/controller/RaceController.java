@@ -1,14 +1,14 @@
 package racingcar.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import racingcar.domain.Cars;
 import racingcar.domain.Race;
 import racingcar.domain.RaceCount;
 import racingcar.utils.InputUtil;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.io.IOException;
-import java.util.List;
 
 public class RaceController {
 	public static void run() {

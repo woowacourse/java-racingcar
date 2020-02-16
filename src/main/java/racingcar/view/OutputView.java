@@ -15,10 +15,10 @@ public class OutputView {
 		System.out.println(e.getMessage());
 	}
 
-	public static void printCurrentPosition(Cars cars) {
+	public static void printCurrentPosition(List<Car> cars) {
 		StringBuilder stringBuilder = new StringBuilder();
 
-		for (Car car : cars.getCars()) {
+		for (Car car : cars) {
 			stringBuilder.append(car.getName()).append(COLON);
 			for (int i = 0; i < car.getPosition(); i++) {
 				stringBuilder.append(POSITION_BAR);
