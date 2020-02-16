@@ -55,7 +55,7 @@ public class Calculator {
 	private static int plus(String[] numbers) {
 		Number result = Number.ZERO;
 		for (String number : numbers) {
-			result = result.add(new Number(Integer.parseInt(number)));
+			result = result.add(new Number(number));
 		}
 		return result.getValue();
 	}
