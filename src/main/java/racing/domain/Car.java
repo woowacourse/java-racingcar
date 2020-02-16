@@ -17,7 +17,7 @@ public class Car {
 		}
 	}
 
-	public boolean isWinner(int winnersPosition) {
+	public boolean isWinnerPosition(int winnersPosition) {
 		return this.position == winnersPosition;
 	}
 

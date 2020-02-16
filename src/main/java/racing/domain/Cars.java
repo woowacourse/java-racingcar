@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
-import racing.view.OutputView;
-
 public class Cars {
 	private static final int RANDOM_MAX = 9;
 	private static final int RANDOM_MIN = 0;
@@ -39,7 +37,7 @@ public class Cars {
 
 	public List<String> findWinner() {
 		return cars.stream()
-				.filter(car -> car.isWinner(findWinnersPosition()))
+				.filter(car -> car.isWinnerPosition(findWinnersPosition()))
 				.map(Car::getName)
 				.collect(Collectors.toList());
 	}
