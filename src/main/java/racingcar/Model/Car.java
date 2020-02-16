@@ -15,14 +15,11 @@ import racingcar.View.OutputView;
 
 public class Car {
     private static final int INITIAL_POSITION = 0;
-    public static final String DASH = "-";
-    public static final String COLON = " : ";
 
     public static StringBuilder winners = new StringBuilder();
 
     private String carName;
     private int position;
-
 
     public Car(String carName) {
         checkEmptyCarName(carName);
@@ -65,13 +62,8 @@ public class Car {
         return this.position > target.position;
     }
 
-    public void showCurrentPosition() { // TODO 출력 분리
-        StringBuilder outputValue = new StringBuilder();
-        outputValue.append(carName).append(COLON);
-        for (int i = 0; i < position; i++) {
-            outputValue.append(DASH);
-        }
-        OutputView.printPositionByDash(outputValue.toString());
+    public void showCurrentPosition() {
+        OutputView.printPositionByDash(carName, position);
     }
 
     public void findWinners(Car car) {

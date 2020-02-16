@@ -32,7 +32,7 @@ public class Game {
         trialTime = InputView.inputTrialTime().getTrialTime();
     }
 
-    public static void race() {
+    public static void race() { // TODO : 출력 분리
         OutputView.printResultMessage();
         for (int index = INDEX_START; index < trialTime; index++) {
             raceOneRound();

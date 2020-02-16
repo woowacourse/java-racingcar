@@ -16,6 +16,9 @@ public class OutputView {
     private static final String CAR_NAMES_INPUT_GUIDE_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분, -1을 입력 시 종료)";
     private static final String TRIAL_TIME_INPUT_GUIDE_MESSAGE = "시도할 횟수는 몇 회인가요?(-1을 입력 시 종료)";
 
+    public static final String DASH = "-";
+    public static final String COLON = " : ";
+
     public static void printInputCarNamesMessage() {
         System.out.println(CAR_NAMES_INPUT_GUIDE_MESSAGE);
     }
@@ -28,7 +31,12 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public static void printPositionByDash(String outputValue) {
+    public static void printPositionByDash(String carName, int position) {
+        StringBuilder outputValue = new StringBuilder();
+        outputValue.append(carName).append(COLON);
+        for (int i = 0; i < position; i++) {
+            outputValue.append(DASH);
+        }
         System.out.println(outputValue);
     }
 
