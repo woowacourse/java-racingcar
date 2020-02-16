@@ -2,12 +2,14 @@ package racingcar.domain;
 
 import java.util.Objects;
 
+import racingcar.message.RacingCarMessage;
+
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
  *
- * ***.java
- * 000 담당하는 클래스
+ * PowerGenerator.java
+ * 자동차 동력 구현체
  *
  * @author      또동페어
  * @version     1.0
@@ -28,7 +30,7 @@ public class PowerLevel {
 
 	private void validatePowerLevel(int powerLevel) {
 		if (powerLevel < MINIMUM_POWER || powerLevel > MAXIMUM_POWER) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(RacingCarMessage.ILLEGAL_ENGINE_LEVEL.getMessageText());
 		}
 	}
 

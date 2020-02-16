@@ -1,20 +1,21 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
+import racingcar.message.RacingCarMessage;
+
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
  *
- * ***.java
- * 000 담당하는 클래스
+ * Position.java
+ * 자동차 위치 관련 클래스
  *
  * @author      또동페어
  * @version     1.0
  * @date        14 Feb 2020
  *
  */
-
-import java.util.Objects;
-
 public class Position {
 	private static final int MIN_POSITION_VALUE = 0;
 	private static final int MOVING_DISTANCE = 1;
@@ -28,7 +29,7 @@ public class Position {
 
 	private void validatePositionRange(int position) {
 		if (position < MIN_POSITION_VALUE) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(RacingCarMessage.ILLEGAL_CAR_POSITION.getMessageText());
 		}
 	}
 

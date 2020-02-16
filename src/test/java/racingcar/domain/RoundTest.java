@@ -37,32 +37,17 @@ class RoundTest {
 			.hasMessage("round number must be positive");
 	}
 
-	@DisplayName("다음 라운드로 잘 넘어가는지 체크")
-	@Test
-	void testGoNextRound() {
-		int checkRound = 3;
-		runRound(round, checkRound);
-
-		assertThat(round).extracting("currentRound").isEqualTo(checkRound);
-	}
-
-	@DisplayName("마지막 라운드 체크")
+	@DisplayName("마지막 라운드 아닌가 체크 - True")
 	@Test
 	void testisFinalRound_success() {
-		runRound(round, 4);
-		assertThat(round.isNonFinalRound()).isFalse();
+		int checkRound = 3;
+		assertThat(round.isNonFinalRound(checkRound)).isTrue();
 	}
 
-	@DisplayName("마지막 라운드 체크 - 실패")
+	@DisplayName("마지막 라운드 맞는지 체크 - False")
 	@Test
 	void testisFinalRound_fail() {
-		runRound(round, 2);
-		assertThat(round.isNonFinalRound()).isTrue();
-	}
-
-	private void runRound(Round round, final int numberOfrunRound) {
-		for (int i = 0; i < numberOfrunRound; i++) {
-			round.goNextRound();
-		}
+		int checkRound = 4;
+		assertThat(round.isNonFinalRound(checkRound)).isFalse();
 	}
 }

@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
  *
- * ***.java
- * 000 담당하는 클래스
+ * PositionTest.java
+ * 동력 생성 테스트 클래스
  *
  * @author      또동페어
  * @version     1.0

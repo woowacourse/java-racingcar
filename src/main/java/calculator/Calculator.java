@@ -57,9 +57,9 @@ public class Calculator {
 	}
 
 	private static int plus(String[] numbers) {
-		Number result = Number.ZERO;
+		Operand result = Operand.ZERO;
 		for (String number : numbers) {
-			result = result.add(new Number(Integer.parseInt(number)));
+			result = result.add(new Operand(Integer.parseInt(number)));
 		}
 		return result.getValue();
 	}

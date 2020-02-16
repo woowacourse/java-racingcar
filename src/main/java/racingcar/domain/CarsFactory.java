@@ -1,9 +1,5 @@
 package racingcar.domain;
 
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.Name;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,8 +8,8 @@ import java.util.stream.Collectors;
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
  *
- * NameSplitter.java
- * 이름분리를 담당하는 클래스
+ * CarsFactory.java
+ * 자동차 일급 컬렉션 생성하는 클래스
  *
  * @author      또동페어
  * @version     1.0

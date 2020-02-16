@@ -18,12 +18,10 @@ public class Round {
 	private static final int MINIMUM_NUMBER_OF_ROUND = 1;
 
 	private final int totalRound;
-	private int currentRound;
 
 	public Round(int totalRound) {
 		validateRound(totalRound);
 		this.totalRound = totalRound;
-		this.currentRound = 0;
 	}
 
 	private void validateRound(int totalRound) {
@@ -32,11 +30,7 @@ public class Round {
 		}
 	}
 
-	public void goNextRound() {
-		currentRound++;
-	}
-
-	public boolean isNonFinalRound() {
-		return currentRound < totalRound;
+	public boolean isNonFinalRound(int round) {
+		return round < totalRound;
 	}
 }

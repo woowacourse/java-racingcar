@@ -21,7 +21,9 @@ public enum RacingCarMessage {
 	EXCEPTION_LENGTH_OF_NAME("name must be between 1-5"),
 	EXCEPTION_DUPLICATED_NAME("name can not be duplicated"),
 	ROUND_START("실행 결과"),
-	EXCEPTION_NAME_NULL_OR_BLANK("name can not be null or blank");
+	EXCEPTION_NAME_NULL_OR_BLANK("name can not be null or blank"),
+	ILLEGAL_CAR_POSITION("position can not be negative"),
+	ILLEGAL_ENGINE_LEVEL("illegal engine level detected");
 
 	private final String messageText;
 

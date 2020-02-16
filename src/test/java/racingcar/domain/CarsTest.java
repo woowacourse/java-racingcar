@@ -23,7 +23,6 @@ import org.junit.jupiter.api.Test;
  */
 
 class CarsTest {
-	private Cars cars;
 	private Car firstCar;
 	private Car secondCar;
 

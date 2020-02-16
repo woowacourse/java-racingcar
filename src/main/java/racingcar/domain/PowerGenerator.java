@@ -4,8 +4,8 @@ package racingcar.domain;
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
  *
- * ***.java
- * 000 담당하는 클래스
+ * PowerGenerator.java
+ * 자동차 동력 생 담당하는 인터페이스
  *
  * @author      또동페어
  * @version     1.0

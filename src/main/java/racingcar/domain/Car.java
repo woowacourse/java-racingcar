@@ -40,8 +40,8 @@ public class Car {
 		return otherCar;
 	}
 
-	boolean isSamePosition(Car maxPositionCar) {
-		return position.equals(maxPositionCar.position);
+	boolean isSamePosition(Car otherCar) {
+		return position.equals(otherCar.position);
 	}
 
 	public String getName() {

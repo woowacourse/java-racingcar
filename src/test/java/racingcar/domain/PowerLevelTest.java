@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -11,8 +10,8 @@ import org.junit.jupiter.params.provider.ValueSource;
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
  *
- * ***.java
- * 000 담당하는 클래스
+ * PowerLevelTest.java
+ * 동력 관련 클래스
  *
  * @author      또동페어
  * @version     1.0
