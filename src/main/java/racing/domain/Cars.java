@@ -32,8 +32,8 @@ public class Cars {
 
 	private int findWinnersPosition() {
 		return cars.stream()
-				.map(Car::getPosition)
-				.reduce(Integer::max)
+				.mapToInt(Car::getPosition)
+				.max()
 				.orElse(0);
 	}
 
