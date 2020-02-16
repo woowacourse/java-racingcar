@@ -19,7 +19,7 @@ import racingcar.domain.Winner;
  *
  */
 public class OutputView {
-	private static final char LINE_FEED = '\n';
+	private static final String LINE_FEED = System.lineSeparator();
 	private static final char COLON = ':';
 	private static final char TRACE_OF_CAR = '-';
 
