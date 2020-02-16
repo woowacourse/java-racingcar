@@ -17,7 +17,7 @@ public class Car {
         this.position = position;
     }
 
-    public boolean move(int random){
+    public boolean move(int random) {
         if (random >= FORWARD_NUMBER) {
             position++;
             return true;
@@ -29,20 +29,20 @@ public class Car {
         return position == this.position;
     }
 
-    public boolean isSamePosition(int position){
+    public boolean isSamePosition(int position) {
         return this.position == position;
     }
 
-    public String makeLog(){
+    public String makeLog() {
         StringBuilder log = new StringBuilder(name);
         log.append(" : ");
-        for(int i=0;i<position;i++){
+        for (int i = 0; i < position; i++) {
             log.append("-");
         }
         return log.toString();
     }
 
-    public String makeWinnerLog(){
+    public String makeWinnerLog() {
         return this.name;
     }
 

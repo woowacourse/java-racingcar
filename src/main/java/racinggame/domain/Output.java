@@ -12,7 +12,7 @@ public class Output {
 
     private Winners winners;
 
-    public Output(Winners winners){
+    public Output(Winners winners) {
         this.winners = winners;
     }
 
@@ -25,13 +25,13 @@ public class Output {
         return carLog.toString();
     }
 
-    public void makeWinnersLog(){
+    public void makeWinnersLog() {
         List<String> names = winners.makeWinnerNames();
         String splitNames = String.join(SPLIT_DELIMITER, names);
         OutputView.printWinners(splitNames);
     }
 
-    public boolean hasWinnersName(String name){
+    public boolean hasWinnersName(String name) {
         return winners.makeWinnerNames().contains(name);
     }
 }

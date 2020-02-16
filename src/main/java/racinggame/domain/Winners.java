@@ -15,7 +15,7 @@ public class Winners {
 
     public List<String> makeWinnerNames() {
         List<String> winnerNames = new ArrayList<>();
-        for(Car car: winners){
+        for (Car car : winners) {
             winnerNames.add(car.makeWinnerLog());
         }
         return winnerNames;

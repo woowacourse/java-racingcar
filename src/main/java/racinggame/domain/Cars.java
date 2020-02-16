@@ -13,14 +13,12 @@ public class Cars {
 
     public Cars(List<String> names) {
         cars = new ArrayList<>();
-
         for (String name : names) {
             cars.add(new Car(name, 0));
         }
     }
 
     public void moveAllCars() {
-        boolean beforeMoveFlag = false;
         for (Car car : cars) {
             if (moveEachCar(car)) {
                 maxPosition = car.updateMaxPosition(maxPosition);
