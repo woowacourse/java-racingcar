@@ -38,6 +38,7 @@ public class Cars {
     public List<Car> getWinnersList() {
         List<Car> winners = new ArrayList<>();
 
+        updateMaximumPosition();
         cars.forEach(car -> addIfWinner(winners, car));
         return winners;
     }

@@ -18,7 +18,6 @@ public class RacingGame {
                     cars.moveCars();
                     OutputView.printCars(cars);
                 });
-        cars.updateMaximumPosition();
         OutputView.printWinners(cars.getWinnersList());
     }
 
