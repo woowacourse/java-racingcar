@@ -26,8 +26,8 @@ public class Car {
 	private static final String NAME_DIVIDER = ", ";
 
 	public static List<String> winners = new ArrayList<>();
-	private Name carName;
-	private Position position;
+	private final Name carName;
+	private final Position position;
 
 	public Car(final String carName) {
 		this.carName = new Name(carName);
@@ -60,18 +60,6 @@ public class Car {
 			outputValue.append(POSITION_INDICATOR);
 		}
 		OutputView.printPositionByDash(outputValue.toString());
-	}
-
-	public void findWinners(final Car car) {
-		if (this.position.equals(car.position)) {
-			winners.add(car.carName.getName());
-		}
-	}
-// TODO 지금할건 일든 차 찾는걸 cars로 위임하기
-	public String getWinners() {
-		return winners.stream()
-				.map(String::valueOf)
-				.collect(joining(NAME_DIVIDER));
 	}
 
 	public boolean isSamePosition(int targetCarPosition) {
