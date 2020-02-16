@@ -1,42 +1,16 @@
 package racingcar.domain;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import racingcar.utils.RandomGenerator;
+import racingcar.view.OutputView;
 
 public class RacingGame {
 	private static final int INDEX_INIT = 0;
-	private static final String GAGE = "-";
-	private static final String EMPTY = "";
-	private static final String COLON = " : ";
-	private static final String ENTER = "\n";
 
-	public static String showEachRaceResult(Cars cars, int count) {
-		StringBuilder gameResult = new StringBuilder();
-
+	public static void showEachRaceResult(Cars cars, int count) {
 		for (int i = INDEX_INIT; i < count; i++) {
 			race(cars);
-			gameResult.append(getRaceResult(cars.getCars()));
+			OutputView.showRace(cars.getCars());
 		}
-		return gameResult.toString();
-	}
-
-	protected static String getRaceResult(List<Car> cars) {
-		StringBuilder raceResult = new StringBuilder();
-		for (Car car : cars) {
-			String carName = car.getName();
-
-			String resultOfMovement = Stream.generate(() -> GAGE)
-				.limit(car.getPosition())
-				.collect(Collectors.joining(EMPTY));
-
-			raceResult.append(String.join(COLON, carName, resultOfMovement))
-				.append(ENTER);
-		}
-		raceResult.append(ENTER);
-		return raceResult.toString();
 	}
 
 	private static void race(Cars cars) {

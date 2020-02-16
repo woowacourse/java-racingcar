@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,16 +24,24 @@ public class Cars {
 	}
 
 	public List<Car> getCars() {
-		return cars;
+		return Collections.unmodifiableList(cars);
 	}
 
 	public List<String> getWinners() {
-		final Car maxPositionCar = cars.stream()
+		final Car maxPositionCar = getMaxPositionCar();
+
+		return getSameCars(maxPositionCar);
+	}
+
+	private Car getMaxPositionCar() {
+		return cars.stream()
 			.max(Car::compareTo)
 			.orElseThrow(() -> new IllegalArgumentException("차량 리스트가 비었습니다."));
+	}
 
+	private List<String> getSameCars(Car maxPositionCar) {
 		return cars.stream()
-			.filter(car -> car.isMaxPosition(maxPositionCar))
+			.filter(car -> car.isSamePosition(maxPositionCar))
 			.map(Car::getName)
 			.collect(Collectors.toList());
 	}

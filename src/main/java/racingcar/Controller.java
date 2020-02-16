@@ -13,7 +13,7 @@ public class Controller {
 			int count = InputView.receiveCountInput();
 
 			OutputView.showResult();
-			OutputView.showRace(RacingGame.showEachRaceResult(cars, count));
+			RacingGame.showEachRaceResult(cars, count);
 			OutputView.showWinner(cars.getWinners());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

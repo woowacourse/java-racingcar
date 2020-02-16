@@ -30,7 +30,7 @@ public class Car implements Comparable<Car> {
 		position++;
 	}
 
-	public boolean isMaxPosition(Car other) {
+	public boolean isSamePosition(Car other) {
 		return other.position == this.position;
 	}
 
