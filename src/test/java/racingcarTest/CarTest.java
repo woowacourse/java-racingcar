@@ -5,8 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.Model.Car;
 import racingcar.Model.Name;
+import racingcar.Model.Position;
+import racingcar.Model.RandomNumber;
 
 /**
  * 클래스 이름 : CarTest.java
@@ -27,5 +31,15 @@ public class CarTest {
         Car one = new Car(new Name("작은곰"), 5);
         Car two = new Car(new Name("보스독"), 1);
         assertThat(one.comparePosition(two)).isTrue();
+    }
+
+    @ParameterizedTest
+    @DisplayName("숫자가 4 이상인 경우 움직인다")
+    @CsvSource(value = {"3, 0", "4, 1"})
+    void goOrNot_숫자가_4_이상이면_움직인다(int randomNo, int result) {
+        RandomNumber randomNumber = new RandomNumber(randomNo);
+        Car car = new Car("작은곰");
+        car.goOrNot(randomNumber);
+        assertThat(car.getPosition()).isEqualTo(result);
     }
 }

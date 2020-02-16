@@ -132,9 +132,9 @@
 - [ ] Game 클래스 내 출력문을 Main으로 옮겨보자.
 - [ ] topPositionCar보다는 지역 변수인 topPosition을 구현해보자.
 - [x] 상수를 사용하자.
-- [ ] RandomNumber 생성을 Car 클래스 밖에서 하자.
+- [x] RandomNumber 생성을 Car 클래스 밖에서 하자.
 - [x] Car 클래스의 생성자에서 String name을 인자로 받아보자. Name과 Car의 길이 체크하는 중복 로직을 없애보자.
-- [ ] RandomNumberTest를 CarTest로 옮기게 될 것이다.
+- [x] RandomNumberTest를 CarTest로 옮기게 될 것이다.
         
 # 문자열 계산기 미션 저장소
 

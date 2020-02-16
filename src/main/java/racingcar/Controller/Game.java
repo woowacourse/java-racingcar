@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import racingcar.Model.Car;
+import racingcar.Model.RandomNumber;
 import racingcar.View.OutputView;
 
 /**
@@ -37,7 +38,8 @@ public class Game {
 
     private static void raceOneRound() {
         for (Car car : gamecars) {
-            car.goOrNot();
+            RandomNumber randomNumber = new RandomNumber();
+            car.goOrNot(randomNumber);
             OutputView.printPositionByDash(car);
         }
     }
