@@ -59,7 +59,17 @@
     - 자동차 경주 과정, 결과를 나타내는 클래스
 - Race
     - 자동차 경주를 하는 클래스
+- RaceParticipant
+    - 자동차 참여가 가능한지 판별하여 등록하는 클래스
+- RacingCarConsoleInput
+    - 자동차 전체이름을 입력받는 클래스
+- RacingCarNameInput
+    - 자동차 전체 이름을 입력받는 인터페이스
 - RacingGame
     - 자동차 경주게임을 실행하는 클래스
 - RacingInformationValidator
     - 입력받은 자동차 경주에 필요한 정보를 검증하는 클래스
+- RacingLabConsoleInput
+    - 시도 횟수를 입력받는 클래스
+- RacingLabInput
+    - 시도 횟수를 입력받는 인터페이스
