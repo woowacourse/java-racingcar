@@ -9,7 +9,7 @@ public class RandomFactory {
     private static final int LOWER_BOUND = 0;
     private static final int UPPER_BOUND = 9;
 
-    static{
+    static {
         for (int element = LOWER_BOUND; element <= UPPER_BOUND; element++) {
             numbers.add(element);
         }

@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class NameTest {
 
     @Test
+    @SuppressWarnings("NonAsciiCharacters")
     void 자동차_이름의_길이가_5를_초과할때() {
         assertThatThrownBy(() -> {
             new Name("123456");
@@ -16,6 +17,7 @@ public class NameTest {
     }
 
     @Test
+    @SuppressWarnings("NonAsciiCharacters")
     void 쉼표만_입력되었을_때() {
         assertThatThrownBy(() -> {
             new Name("");
@@ -23,6 +25,7 @@ public class NameTest {
     }
 
     @Test
+    @SuppressWarnings("NonAsciiCharacters")
     void 같은_이름인지_확인() {
         Name name = new Name("brown");
         boolean result = name.equals("brown");
@@ -30,6 +33,7 @@ public class NameTest {
     }
 
     @Test
+    @SuppressWarnings("NonAsciiCharacters")
     void 다른_이름인지_확인() {
         Name name = new Name("brown");
         boolean result = name.equals("pobi");
@@ -37,6 +41,7 @@ public class NameTest {
     }
 
     @Test
+    @SuppressWarnings("NonAsciiCharacters")
     void NULL이_들어왔을_때() {
         assertThatThrownBy(() -> {
             Name name = new Name(null);

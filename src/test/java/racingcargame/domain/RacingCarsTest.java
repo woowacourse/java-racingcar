@@ -11,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class RacingCarsTest {
 
     @Test
+    @SuppressWarnings("NonAsciiCharacters")
     void 최종우승자_추출() {
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("pobi",3));
@@ -25,6 +26,7 @@ public class RacingCarsTest {
     }
 
     @Test
+    @SuppressWarnings("NonAsciiCharacters")
     void 중복이름_RacingCars_생성() {
         assertThatThrownBy(() -> {
             String duplicatedInput = "pobi, pobi, jason";
@@ -33,6 +35,7 @@ public class RacingCarsTest {
     }
 
     @Test
+    @SuppressWarnings("NonAsciiCharacters")
     void 이름_입력이_한개_들어왔을_때() {
         assertThatThrownBy(() -> {
             String oneSizeInput = "pobi";
@@ -41,6 +44,7 @@ public class RacingCarsTest {
     }
 
     @Test
+    @SuppressWarnings("NonAsciiCharacters")
     void 이름입력이_안들어왔을때() {
         assertThatThrownBy(() -> {
             String zeroInput = "";
@@ -49,6 +53,7 @@ public class RacingCarsTest {
     }
 
     @Test
+    @SuppressWarnings("NonAsciiCharacters")
     void 공백으로_이름_입력이_들어왔을_때() {
         assertThatThrownBy(() -> {
             String duplicatedInput = "    ";

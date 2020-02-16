@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class TryLimitNumberTest {
     @Test
+    @SuppressWarnings("NonAsciiCharacters")
     void 범위초과_마이너스_숫자입력() {
         int input = -1;
         assertThatThrownBy(() ->
@@ -14,6 +15,7 @@ class TryLimitNumberTest {
     }
 
     @Test
+    @SuppressWarnings("NonAsciiCharacters")
     void 범위초과_제로_숫자입력() {
         int input = 0;
         assertThatThrownBy(() ->
