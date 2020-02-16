@@ -11,6 +11,12 @@ public class RacingGame {
     CarLineUp lineUp = new CarLineUp();
     TrialTime trialTime;
 
+    public void play(){
+        enrollLineUp();
+        initializeTrialTime();
+        race();
+    }
+
     private void enrollLineUp(){
         for (String name : InputView.inputCarNames()){
             checkNameDuplicate(lineUp, name);
@@ -25,7 +31,6 @@ public class RacingGame {
     private void race(){
         OutputView.printResultMessage();
         trialTime.raceByTrialTime(lineUp);
-        OutputView.printNewLine();
     }
 
     public void checkNameDuplicate(CarLineUp lineUp, String name) {

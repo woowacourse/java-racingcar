@@ -2,8 +2,6 @@ package racing.view;
 
 public class OutputView {
 
-    public static final String NEW_LINE = "\n";
-
     public static void printInputCarNamesMessage() {
         System.out.println("경주할 자동차 이름을 입력하세(이름은 쉼표(,)를 기준으로 구분");
     }
@@ -17,7 +15,7 @@ public class OutputView {
     }
 
     public static void printNewLine() {
-        System.out.println(NEW_LINE);
+        System.out.println();
     }
 
     public static void printResultMessage() {

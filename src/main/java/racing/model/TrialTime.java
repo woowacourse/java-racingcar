@@ -1,5 +1,7 @@
 package racing.model;
 
+import racing.view.OutputView;
+
 public class TrialTime {
 
     private int trialTime;
@@ -18,6 +20,7 @@ public class TrialTime {
     public void raceByTrialTime(CarLineUp lineUp) {
         for (int index = 0; index < trialTime; index++){
             lineUp.raceOneTime();
+            OutputView.printNewLine();
         }
     }
 }
