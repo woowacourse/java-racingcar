@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static java.util.stream.Collectors.joining;
-
 import racingcar.View.OutputView;
 
 /**
@@ -23,9 +21,7 @@ public class Car {
 	private static final int CRITERIA_FOR_GO = 4;
 	private static final String POSITION_INDICATOR = "-";
 	private static final String COLON = " : ";
-	private static final String NAME_DIVIDER = ", ";
 
-	public static List<String> winners = new ArrayList<>();
 	private final Name carName;
 	private final Position position;
 
@@ -62,7 +58,7 @@ public class Car {
 		OutputView.printPositionByDash(outputValue.toString());
 	}
 
-	public boolean isSamePosition(int targetCarPosition) {
+	public boolean isSamePosition(final int targetCarPosition) {
 		return this.position.getPosition() == targetCarPosition;
 	}
 

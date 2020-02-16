@@ -3,13 +3,16 @@ package racingcar.Domain;
 import java.util.Objects;
 
 /**
- * 클래스 이름 : .java
+ * 클래스 이름 : Position.java
  *
- * @author
- * @version 1.0
+ * @author 보스독
+ * @author 작은곰
+ * @author 토니
+ * * @version 1.0
  * <p>
  * 날짜 : 2020/02/15
  */
+
 public class Position {
 	private static final String POSITION_CAN_NOT_BE_NULL_EXCEPTION_MESSAGE = "자동차 위치는 null일 수 없습니다.";
 	private static final String POSITION_CAN_BE_ONLY_POSITIVE_EXCEPTION_MESSAGE = "양수만 입력해야합니다.";

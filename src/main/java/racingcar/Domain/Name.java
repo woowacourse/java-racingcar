@@ -3,13 +3,16 @@ package racingcar.Domain;
 import java.util.Objects;
 
 /**
- * 클래스 이름 : .java
+ * 클래스 이름 : Name.java
  *
- * @author
- * @version 1.0
+ * @author 보스독
+ * @author 작은곰
+ * @author 토니
+ * * @version 1.0
  * <p>
- * 날짜 : 2020/02/14
+ * 날짜 : 2020/02/15
  */
+
 public class Name {
 	private static final String CAR_NAME_CAN_NOT_HAVE_A_BLANK_STRING_EXCEPTION_MESSAGE = "자동차 이름에 공백이 포함될 수 없습니다.";
 	private static final String CAR_NAME_CAN_NOT_BE_AN_EMPTY_STRING_EXCEPTION_MESSAGE = "자동차 이름이 빈문자열일 수 없습니다.";

@@ -6,13 +6,16 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 /**
- * 클래스 이름 : .java
+ * 클래스 이름 : TrialTimeTest.java
  *
- * @author
- * @version 1.0
+ * @author 보스독
+ * @author 작은곰
+ * @author 토니
+ * * @version 1.0
  * <p>
  * 날짜 : 2020/02/15
  */
+
 public class TrialTimeTest {
 
 	@Test
