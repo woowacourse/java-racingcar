@@ -1,4 +1,4 @@
-package racingcargame.view;
+package racingcargame;
 
 import static racingcargame.view.InputView.*;
 import static racingcargame.view.OutputView.*;
@@ -6,8 +6,8 @@ import static racingcargame.view.OutputView.*;
 import java.util.List;
 
 import racingcargame.controller.RacingCarController;
-import racingcargame.domain.RacingResult;
 import racingcargame.domain.RepeatTimes;
+import racingcargame.domain.RacingResult;
 
 public class RacingCarApp {
 	public static void main(String[] args) {

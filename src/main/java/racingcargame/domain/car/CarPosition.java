@@ -1,7 +1,6 @@
-package racingcargame.domain;
+package racingcargame.domain.car;
 
 class CarPosition {
-
 	private static final int DEFAULT_POSITION = 0;
 	private static final int MOVE_UNIT = 1;
 

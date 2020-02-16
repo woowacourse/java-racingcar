@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcargame.domain.car.Car;
+
 public class RacingStatus {
 	private List<Car> racingStatus;
 

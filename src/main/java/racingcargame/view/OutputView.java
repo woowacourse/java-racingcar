@@ -2,11 +2,11 @@ package racingcargame.view;
 
 import java.util.List;
 
-import racingcargame.domain.Car;
+import racingcargame.domain.car.Car;
 import racingcargame.domain.RacingResult;
 import racingcargame.domain.RacingStatus;
 
-class OutputView {
+public class OutputView {
 	private static final String MARK = "-";
 	private static final String SEPARATOR = " : ";
 	private static final String DELIMITER = ", ";
@@ -14,7 +14,7 @@ class OutputView {
 	private OutputView() {
 	}
 
-	static void printRaceResultMessage() {
+	public static void printRaceResultMessage() {
 		System.out.println("\n실행 결과");
 	}
 
@@ -33,7 +33,7 @@ class OutputView {
 		}
 	}
 
-	static void printRaceResult(RacingResult racingResult) {
+	public static void printRaceResult(RacingResult racingResult) {
 		racingResult.getRacingResult().stream()
 			.map(RacingStatus::getRacingStatus)
 			.forEach(cars -> {
@@ -42,7 +42,7 @@ class OutputView {
 			});
 	}
 
-	static void printWinner(List<String> winners) {
+	public static void printWinner(List<String> winners) {
 		System.out.println(String.join(DELIMITER, winners) + "가 최종 우승했습니다.");
 	}
 }

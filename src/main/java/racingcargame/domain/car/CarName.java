@@ -1,7 +1,6 @@
-package racingcargame.domain;
+package racingcargame.domain.car;
 
-public class CarName {
-
+class CarName {
 	private static final int ZERO = 0;
 	private static final int NAME_UPPER_LIMIT = 5;
 	private static final String BLANK = " ";
@@ -9,9 +8,9 @@ public class CarName {
 	private String name;
 
 	CarName(String name) {
-		validateNotNull(name);
+		validateNull(name);
 		validateLength(name);
-		validateNoBlank(name);
+		validateBlank(name);
 		this.name = name;
 	}
 
@@ -21,19 +20,19 @@ public class CarName {
 		}
 	}
 
-	private void validateNotNull(String name) {
+	private void validateNull(String name) {
 		if (name == null) {
 			throw new IllegalArgumentException("이름은 null값이 될 수 없습니다.");
 		}
 	}
 
-	private void validateNoBlank(String name) {
+	private void validateBlank(String name) {
 		if (name.contains(BLANK)) {
 			throw new IllegalArgumentException("이름에는 띄어쓰기가 포함될 수 없습니다.");
 		}
 	}
 
-	public String getName() {
+	String getName() {
 		return name;
 	}
 }

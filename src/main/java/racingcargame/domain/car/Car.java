@@ -1,9 +1,8 @@
-package racingcargame.domain;
+package racingcargame.domain.car;
+
+import racingcargame.domain.MoveDecider;
 
 public class Car implements Comparable<Car> {
-
-	private static final int GO_CONDITION = 4;
-
 	private CarName carName;
 	private CarPosition carPosition;
 
@@ -12,19 +11,19 @@ public class Car implements Comparable<Car> {
 		this.carPosition = new CarPosition();
 	}
 
-	Car(Car car) {
+	public Car(Car car) {
 		this.carName = new CarName(car.getCarName());
 		this.carPosition = new CarPosition(car.getCarPosition());
 	}
 
 	public void decideGoOrStop(MoveDecider moveDecider) {
-		if (moveDecider.getNumber() >= GO_CONDITION) {
+		if (moveDecider.isMovable()) {
 			carPosition.increase();
 			this.carPosition = new CarPosition(carPosition.getPosition());
 		}
 	}
 
-	boolean isMaxPosition(int position) {
+	public boolean isMaxPosition(int position) {
 		return this.carPosition.getPosition() == position;
 	}
 
