@@ -8,10 +8,9 @@ public class RandomNumber {
     private static final int LIMIT_FOR_MOVE = 4;
 
     private static final Random random = new Random();
-
     private static int randomNumber;
 
-    RandomNumber() {
+    public RandomNumber() {
         int randomNumber = generateRandom();
         if(validateRandomNumber(randomNumber)){
             this.randomNumber = randomNumber;

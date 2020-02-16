@@ -5,7 +5,7 @@ import racingcar.domian.RandomNumber;
 public class Position {
     private int distance;
 
-    Position(int distance) {
+    public Position(int distance) {
         this.distance = distance;
     }
 

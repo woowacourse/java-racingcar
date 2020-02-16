@@ -4,9 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domian.car.Car;
 import racingcar.domian.Cars;
-
-import java.util.Arrays;
-import java.util.List;
+import racingcar.domian.car.Position;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -18,9 +16,8 @@ public class CarsTest {
     void 가장_먼_자동차의_거리() {
         String inputNames = "user1,user2,user3,user4";
         Cars cars = new Cars(inputNames);
-        Car testCar = cars.getCars().get(0);
-        testCar.moveByRandom(5);
-        assertThat(cars.findMaxPosition()).isEqualTo(1);
+        cars.getCars().add(new Car(new Position(3), "user5"));
+        assertThat(cars.findMaxPosition()).isEqualTo(3);
     }
 
     @DisplayName("예외 케이스: 게임에 참여하는 자동차(유저 이름)가 5대를 초과하는 경우")
@@ -31,13 +28,5 @@ public class CarsTest {
             new Cars(names);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차 5대 초과");
-    }
-
-    @Test
-    void hello() {
-        String inputNames = "user1,user2,user3,user4";
-        Cars cars = new Cars(inputNames);
-        List<Car> hello =
-        list.stream().max();
     }
 }

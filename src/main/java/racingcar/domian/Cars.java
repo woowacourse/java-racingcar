@@ -3,7 +3,6 @@ package racingcar.domian;
 import racingcar.domian.car.Car;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,6 +10,7 @@ public class Cars {
 
     private static final String EMPTY_STRING = "";
     private static final CarFactory carFactory = new CarFactory();
+
     private final List<Car> cars;
 
     public Cars(String inputNames) {

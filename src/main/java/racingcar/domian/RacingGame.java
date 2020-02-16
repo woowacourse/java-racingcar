@@ -14,15 +14,15 @@ public class RacingGame {
         startGame();
     }
 
-    public void setUpCars(String carNames) {
+    private void setUpCars(String carNames) {
         this.cars = new Cars(carNames);
     }
 
-    public void setUpRound(String gameRound) {
+    private void setUpRound(String gameRound) {
         this.gameRound = new GameRound(gameRound);
     }
 
-    public void startGame() {
+    private void startGame() {
         for (int i = ZERO; i < gameRound.getGameRound(); i++) {
             cars.moveAll();
             OutputView.printCurrentRound(cars.getCars());
