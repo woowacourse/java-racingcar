@@ -9,7 +9,7 @@ public class RaceCount {
 
 	public RaceCount(String raceCount) {
 		validateRaceCountInteger(raceCount);
-		validateRaceCountNaturalNumber(raceCount);
+		validateRaceCountNaturalNumber(Integer.parseInt(raceCount));
 
 		this.raceCount = Integer.parseInt(raceCount);
 		this.currentCount = INITIAL_COUNT;
@@ -23,8 +23,8 @@ public class RaceCount {
 		}
 	}
 
-	private void validateRaceCountNaturalNumber(String raceCount) {
-		if (Integer.parseInt(raceCount) < MINIMUM_NATURAL_NUMBER) {
+	private void validateRaceCountNaturalNumber(int raceCount) {
+		if (raceCount < MINIMUM_NATURAL_NUMBER) {
 			throw new IllegalArgumentException(raceCount + "는 자연수가 아닙니다.");
 		}
 	}
