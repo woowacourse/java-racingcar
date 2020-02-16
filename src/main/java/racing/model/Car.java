@@ -7,6 +7,7 @@ public class Car {
     private Position position;
 
     public Car(String name) {
+        name = name.trim();
         checkNameLengthUnderSix(name);
         checkNullOrEmptyName(name);
         this.name = name;
