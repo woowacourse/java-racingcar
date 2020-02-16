@@ -37,25 +37,25 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static void validateNames(String input) throws IllegalArgumentException {
-        if (input.isEmpty()) {
+    public static void validateNames(String carNames) throws IllegalArgumentException {
+        if (carNames.isEmpty()) {
             throw new IllegalArgumentException("입력값은 빈 문자열일 수 없습니다.");
         }
     }
 
 
-    public static void validateDuplicatedNames(String input) throws IllegalArgumentException {
-        String[] splitInput = input.split(DELIMITER);
+    public static void validateDuplicatedNames(String carNames) throws IllegalArgumentException {
+        String[] splitInput = carNames.split(DELIMITER);
         if (isDuplicatedNames(splitInput)) {
             throw new IllegalArgumentException("이름들은 중복될 수 없습니다.");
         }
     }
 
-    private static boolean isDuplicatedNames(String[] splitInput) {
-        return Arrays.stream(splitInput)
+    private static boolean isDuplicatedNames(String[] splitcarNames) {
+        return Arrays.stream(splitcarNames)
                 .map(s -> s.trim())
                 .distinct()
-                .count() != splitInput.length;
+                .count() != splitcarNames.length;
     }
 
     public void play() {
