@@ -66,4 +66,9 @@ public class CarLineUp {
     private boolean isSingleLineUp(int lineUpSize) {
         return lineUpSize == SINGLE_SIZE;
     }
+
+    @Override
+    public String toString(){
+        return lineUp.toString();
+    }
 }

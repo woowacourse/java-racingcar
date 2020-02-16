@@ -36,8 +36,8 @@ public class Car {
         }
     }
 
-    public boolean isNameEqual(String name) {
-        return this.name == name;
+    public boolean isNameEqual(String targetName) {
+        return this.name.equals(targetName);
     }
 
     public void move(RandomNo randomNo){
