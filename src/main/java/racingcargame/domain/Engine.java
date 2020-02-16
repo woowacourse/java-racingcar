@@ -1,29 +1,25 @@
 package racingcargame.domain;
 
-import racingcargame.util.RandomFactory;
-
 public class Engine {
-    public static final int LIMIT = 4;
-    private int power;
+	private static final int MIN_GO_POWER = 4;
+	private static final int MAX_NUMBER = 10;
 
-    private Engine(int power) {
-        this.power = power;
-    }
+	private int power;
 
-    public int getPower() {
-        return power;
-    }
+	private Engine(int power) {
+		this.power = power;
+	}
 
-    public static Engine createRandomEngine() {
-        int power = RandomFactory.getRandom();
-        return new Engine(power);
-    }
+	public static Engine create() {
+		int power = (int)(Math.random() * MAX_NUMBER);
+		return new Engine(power);
+	}
 
-    public static Engine createEngineSetBy(int power) {
-        return new Engine(power);
-    }
+	public static Engine createBy(int power) {
+		return new Engine(power);
+	}
 
-    public boolean isHigherThanLimit() {
-        return LIMIT <= power;
-    }
+	public boolean canMove() {
+		return MIN_GO_POWER <= power;
+	}
 }
