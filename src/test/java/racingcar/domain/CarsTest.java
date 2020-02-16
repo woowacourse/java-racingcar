@@ -40,7 +40,7 @@ public class CarsTest {
 	@DisplayName("우승자 명단이 반환되는지")
 	void getWinners() {
 		Cars cars = new Cars(carList);
-		assertThat(cars.getWinners()).containsExactly("pobi", null, null, null);
+		assertThat(cars.getWinners()).containsExactly(pobi);
 	}
 
 	@Test

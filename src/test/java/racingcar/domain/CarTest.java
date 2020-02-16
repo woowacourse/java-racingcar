@@ -68,15 +68,6 @@ public class CarTest {
 	}
 
 	@Test
-	@DisplayName("포지션 동점자의 이름을 반환")
-	void getCoWinnersNameTest() {
-		Car anotherCar = new Car("young");
-		anotherCar.move(GOING_NUMBER);
-		pobi.move(GOING_NUMBER);
-		assertThat(pobi.getCoWinnersName(anotherCar)).isEqualTo("young");
-	}
-
-	@Test
 	@DisplayName("toString()")
 	void toStringTest() {
 		assertThat(pobi).hasToString("pobi : \n");

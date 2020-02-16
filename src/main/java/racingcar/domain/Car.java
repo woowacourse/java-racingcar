@@ -34,17 +34,13 @@ public class Car implements Comparable<Car> {
 		return compareTo(anotherCar) == 0;
 	}
 
-	// TODO: 2020/02/14 Optional
-	public String getCoWinnersName(Car anotherCar) {
-		if (isOnSamePosition(anotherCar)) {
-			return anotherCar.name;
-		}
-		return null;
+	public String getName() {
+		return name;
 	}
 
 	@Override
 	public int compareTo(Car anotherCar) {
-		return anotherCar.position - position;
+		return position - anotherCar.position;
 	}
 
 	@Override

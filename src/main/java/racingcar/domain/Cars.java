@@ -20,8 +20,7 @@ public class Cars {
 	}
 
 	public Car getCarOnMaxPosition() {
-		Collections.sort(cars);
-		return cars.get(FIRST);
+		return Collections.max(cars);
 	}
 
 	public void move(Times times) {
@@ -38,11 +37,12 @@ public class Cars {
 		}
 	}
 
-	public List<String> getWinners() {
-		List<String> winner = new ArrayList<>();
+	public List<Car> getWinners() {
+		List<Car> winner = new ArrayList<>();
 		Car max = getCarOnMaxPosition();
 		for (Car car : cars) {
-			winner.add(max.getCoWinnersName(car));
+			if (max.isOnSamePosition(car))
+				winner.add(car);
 		}
 		return winner;
 	}
