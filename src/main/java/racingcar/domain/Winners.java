@@ -12,11 +12,9 @@ public class Winners {
         Car maxDistanceCar = cars.stream()
                 .max(Car::compareTo)
                 .get();
-        for (Car car : cars) {
-            if (car.isMaxPosition(maxDistanceCar)) {
-                winners.add(car);
-            }
-        }
+        winners = cars.stream()
+                .filter(car -> car.isMaxPosition(maxDistanceCar))
+                .collect(Collectors.toList());
     }
 
     public static String getWinners() {

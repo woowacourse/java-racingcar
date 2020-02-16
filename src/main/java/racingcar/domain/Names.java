@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,6 @@ public class Names {
     }
 
     public List<Name> getNames() {
-        return names;
+        return Collections.unmodifiableList(names);
     }
 }
