@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameResult {
-    private List<Car> result = new ArrayList<>();
+    private List<Car> result;
 
     public GameResult(List<Car> result) {
         this.result = result;
     }
 
     public void printResult() {
-        for(Car car : result) {
+        for (Car car : result) {
             OutputView.printPositionByDash(car);
         }
     }

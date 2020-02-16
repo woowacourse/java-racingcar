@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import racingcar.Model.Car;
-import racingcar.Model.Name;
 import racingcar.Model.TrialTime;
 
 /**

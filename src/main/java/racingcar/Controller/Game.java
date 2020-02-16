@@ -17,7 +17,6 @@ import racingcar.Model.GameResult;
  */
 
 public class Game {
-
     private static List<Car> gamecars = new ArrayList<>();
 
     public static void initialize(List<Car> cars) {
@@ -42,11 +41,10 @@ public class Game {
 
     public static int findTopPositionCar(List<Car> cars) {
         List<Integer> carPosition = new ArrayList<>();
-        for(Car car : cars) {
+        for (Car car : cars) {
             carPosition.add(car.getPosition());
         }
         int topPosition = carPosition.stream().max(Integer::compare).orElse(-1);
-
         return topPosition;
     }
 }
