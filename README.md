@@ -24,9 +24,6 @@
 - Position
 - RandomNumber
 - TrialTime
-- WinnerCalculator
-  - isMaxPosition
-  - isWinner
   
 [View]
 - InputView
