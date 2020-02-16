@@ -13,7 +13,7 @@ public class Game {
         OutputView.printCurrentResultTitle();
         for (int i = 0; i < trial.getTrial(); i++) {
             cars.moveCars();
-            OutputView.printCurrentResult(cars.getCurrentResult());
+            OutputView.printIntermediateResult(cars);
         }
         Winners.selectWinners(cars.getCars());
         OutputView.printWinnerResult();

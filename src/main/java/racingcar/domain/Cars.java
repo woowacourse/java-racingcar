@@ -25,15 +25,6 @@ public class Cars {
         }
     }
 
-    public String getCurrentResult() {
-        StringBuilder currentResult = new StringBuilder();
-        for (Car car : cars) {
-            currentResult.append(car.getCurrentPosition());
-            currentResult.append("\n");
-        }
-        return currentResult.toString();
-    }
-
     public List<Car> getCars() {
         return cars;
     }
