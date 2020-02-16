@@ -6,7 +6,7 @@ public class Car {
 	private static final int INITIAL_POSITION = 0;
 
 	private final String name;
-	private Position position;
+	private final Position position;
 
 	public Car(final String name) {
 		validateNullName(name);
