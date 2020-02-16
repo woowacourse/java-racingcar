@@ -42,6 +42,18 @@ public class Car {
         return otherCar;
     }
 
+    boolean isSamePosition(Car maxPositionCar) {
+        return position == maxPositionCar.position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -56,17 +68,5 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name, position);
-    }
-
-    boolean isSamePosition(Car maxPositionCar) {
-        return position == maxPositionCar.position;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
     }
 }

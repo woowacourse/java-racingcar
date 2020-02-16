@@ -33,7 +33,7 @@ public class Application {
             playGame(cars, round);
             Winner winner = new Winner(cars.findWinner());
             OutputView.printWinner(winner);
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             System.exit(1);
         }
@@ -49,7 +49,7 @@ public class Application {
 
     public static void playGame(Cars cars, Round round) {
         OutputView.printGameResultMessage();
-        while (!round.isFinalRound()) {
+        while (!round.isNotFinalRound()) {
             cars.run();
             OutputView.printRoundResult(cars);
             round.goNextRound();

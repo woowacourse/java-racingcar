@@ -27,6 +27,8 @@ public class OutputView {
     private static final char TRACE_OF_CAR = '-';
     private static final String WINNER_NAME_JOIN_DELIMITER = ",";
 
+    private OutputView(){}
+
     public static void printRoundResult(Cars cars) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Car car : cars) {

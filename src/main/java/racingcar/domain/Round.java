@@ -32,7 +32,7 @@ public class Round {
         currentRound++;
     }
 
-    public boolean isFinalRound() {
+    public boolean isNotFinalRound() {
         return currentRound == totalRound;
     }
 }

@@ -21,7 +21,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  *
  */
 class RoundTest {
-    Round round;
+    private Round round;
 
     @BeforeEach
     void setUp() {
@@ -50,7 +50,7 @@ class RoundTest {
         for (int i = 0; i < 4; i++) {
             round.goNextRound();
         }
-        assertThat(round.isFinalRound()).isTrue();
+        assertThat(round.isNotFinalRound()).isTrue();
     }
 
     @DisplayName("마지막 라운드 체크 - 실패")
@@ -59,6 +59,6 @@ class RoundTest {
         for (int i = 0; i < 2; i++) {
             round.goNextRound();
         }
-        assertThat(round.isFinalRound()).isFalse();
+        assertThat(round.isNotFinalRound()).isFalse();
     }
 }

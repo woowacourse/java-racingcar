@@ -22,7 +22,7 @@ public enum Message {
     EXCEPTION_DUPLICATED_NAME("name can not be duplicated"),
     ROUND_START("실행 결과");
 
-    private String messageText;
+    private final String messageText;
 
     Message(String messageText) {
         this.messageText = messageText;
