@@ -2,12 +2,13 @@ package racingCar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCar {
     private static final int ZERO_INDEX = 0;
     private static final int ONE_FOR_RANDOM = 1;
 
-    public static Players players;
+    private static Players players;
 
     private RacingCar() {
     }
@@ -29,5 +30,25 @@ public class RacingCar {
             randoms.add((int) (Math.random() * (Decider.MAX + ONE_FOR_RANDOM)));
         }
         return new Deciders(randoms);
+    }
+
+    public static List<String> getWinners() {
+        return players.getWinners().stream()
+                .map(Player::getName)
+                .map(Name::toString)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public static List<String> getPlayerNames() {
+        return players.getUnmodifiableList().stream()
+                .map(Player::getName)
+                .map(Name::toString)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public static List<Integer> getPlayerPositions() {
+        return players.getUnmodifiableList().stream()
+                .map(Player::getPosition)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -8,27 +8,30 @@ public class OutputView {
         System.out.println(RESULT_TITLE);
     }
 
-    private static void printRoundResult(Players players) {
-        for (Player player : players.getUnmodifiableList()) {
-            System.out.println(player.getName() + COLON_WRAPPED_WITH_SPACE + getHyphens(player));
+    public static void printRoundNum(int round) {
+        System.out.println();
+        if (round == 0) {
+            System.out.println(ROUND_START_TEXT);
+            return;
+        }
+        System.out.println(round + ROUND_TAIL);
+    }
+
+    public static void printRoundResult(List<String> names, List<Integer> positions) {
+        for (int i = ZERO_INDEX; i < names.size(); i++) {
+            System.out.println(names.get(i) + COLON_WRAPPED_WITH_SPACE + positionToHyphens(positions.get(i)));
         }
     }
 
-    public static void printWinners(Players players) {
+    public static void printWinners(List<String> names) {
         System.out.println();
         System.out.print(PRINT_WINNERS_HEAD);
-        System.out.print(createWinnerList(players));
+        System.out.print(createWinnerList(names));
         System.out.println(PRINT_WINNERS_TAIL);
     }
 
-    private static String createWinnerList(Players players) {
-        return players.getWinners().stream()
-                .map((t) -> t.getName().toString())
-                .collect(Collectors.joining(", "));
-    }
-
-    private static String getHyphens(Player player) {
-        return positionToHyphens(player.getPosition());
+    private static String createWinnerList(List<String> names) {
+        return String.join(", ", names);
     }
 
     private static String positionToHyphens(int position) {
@@ -39,25 +42,11 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    private static void printRoundNum(int round) {
-        if (round == 0) {
-            System.out.println(ROUND_START_TEXT);
-            return;
-        }
-        System.out.println(round + ROUND_TAIL);
-    }
-
     public static void printInvalidNameWarning() {
         System.out.println(INVALID_NAME_WARNING);
     }
 
     public static void printInvalidRoundNumWarning() {
         System.out.println(REINPUT_REQUEST_TEXT);
-    }
-
-    public static void printRoundResultWithRoundNum(int roundNum, Players players) {
-        System.out.println();
-        printRoundNum(roundNum);
-        printRoundResult(players);
     }
 }

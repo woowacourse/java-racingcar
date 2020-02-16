@@ -12,21 +12,25 @@ public class Application {
 
         inputUserNameAndInitRacingCar();
         roundNum = inputRoundNumWithHandleException();
-        playEachRoundAndOutputIncludingTitleAndWinners(roundNum);
+        playEachRoundWithOutputRelating(roundNum);
     }
 
-    private static void playEachRoundAndOutputIncludingTitleAndWinners(int roundNum) {
+    private static void playEachRoundWithOutputRelating(int roundNum) {
         OutputView.printResultTitle();
-        playEachRoundAndOutput(roundNum);
-        OutputView.printWinners(RacingCar.players);
+        playEachRoundWithOutput(roundNum);
+        OutputView.printWinners(RacingCar.getWinners());
     }
 
-    private static void playEachRoundAndOutput(int roundNum) {
+    private static void playEachRoundWithOutput(int roundNum) {
         for (int round = 0; round < roundNum; round++) {
-            OutputView.printRoundResultWithRoundNum(round, RacingCar.players);
+            OutputView.printRoundNum(roundNum);
+            OutputView.printRoundResult(RacingCar.getPlayerNames(),
+                    RacingCar.getPlayerPositions());
             RacingCar.playWithRandoms();
         }
-        OutputView.printRoundResultWithRoundNum(roundNum, RacingCar.players);
+        OutputView.printRoundNum(roundNum);
+        OutputView.printRoundResult(RacingCar.getPlayerNames(),
+                RacingCar.getPlayerPositions());
     }
 
     private static int inputRoundNumWithHandleException() {
