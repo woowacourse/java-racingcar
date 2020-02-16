@@ -24,6 +24,6 @@ class GameManagerTest {
 
     @Test
     void getWinner() {
-        System.out.println(gameManager.getWinners());
+        Assertions.assertThat(gameManager.getWinners()).isEqualTo("pobi, jason, cu");
     }
 }

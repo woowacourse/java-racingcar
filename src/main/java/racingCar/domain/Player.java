@@ -19,8 +19,8 @@ public class Player {
         this.position = position;
     }
 
-    void play(boolean shouldGo) {
-        if (shouldGo) {
+    void play() {
+        if (RandomGenerator.decideGoOrStop()) {
             goOneStep();
         }
     }
@@ -44,7 +44,7 @@ public class Player {
         return a.position - b.position;
     }
 
-    boolean isWinner(int max) {
+    boolean hasMaxPosition(int max) {
         return position == max;
     }
 

@@ -8,13 +8,8 @@ import java.util.stream.IntStream;
 
 public class Application {
     public static void main(String[] args) throws Exception {
-
-        String namesInput;
-        int roundInput;
-        GameManager gameManager;
-        gameManager = createGameManager();
-
-        roundInput = InputView.InputNumberOfRound();
+        GameManager gameManager = createGameManager();
+        int roundInput = InputView.InputNumberOfRound();
         OutputView.printTitle();
 
         IntStream.rangeClosed(1, roundInput)

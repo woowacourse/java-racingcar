@@ -23,7 +23,7 @@ public class GameManager {
     }
 
     public void play() {
-        players.forEach((t) -> t.play(RandomGenerator.decideGoOrStop()));
+        players.forEach((t) -> t.play());
     }
 
     public String toString() {
@@ -43,19 +43,10 @@ public class GameManager {
     public String getWinners() {
         int max = getMax();
 
-        List<Player> winnerList = players.stream()
-                .filter((t) -> t.isWinner(max))
-                .collect(Collectors.toList());
-
-        StringBuilder stringBuilder = new StringBuilder();
-
-        winnerList.stream()
-                .peek((t) -> stringBuilder.append(t.getName()))
-                .forEach((t) -> stringBuilder.append(", "));
-
-        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
-
-        return stringBuilder.toString();
+        return players.stream()
+                .filter((t) -> t.hasMaxPosition(max))
+                .map((t) -> t.getName().toString())
+                .collect(Collectors.joining(", "));
     }
 
     private int getMax() {
