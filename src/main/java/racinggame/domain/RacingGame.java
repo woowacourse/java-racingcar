@@ -40,11 +40,6 @@ public class RacingGame {
         throw new AssertionError();
     }
 
-    /**
-     * generateRandom 메서드는 random 인스턴스를 통해 정해진 범위 내에서 정수형 난수값을 생성해 반환한다.
-     *
-     * @return 정수형의 난수 값을 반환한다.
-     */
     public static int generateRandomNumber() {
         return random.nextInt(RANDOM_NUMBER_BOUND);
     }

@@ -39,12 +39,6 @@ public class Position {
         }
     }
 
-    /**
-     * match 메서드는 정수값을 전달받아, 이 값과 현재 이 클래스가 가지는 position의 값이 같은지 검사한다.
-     *
-     * @param position 이 클래스의 인스턴스가 가지는 position 값과 비교할 정수형 값이다.
-     * @return 두 값이 같다면 true를, 다르다면 false를 반환한다.
-     */
     public boolean match(int position) {
         return position == this.position;
     }

@@ -46,7 +46,6 @@ public class RacingGameTest {
         names = new Names(NAMES);
         repeat = new Repeat(REPEAT);
         gameStatus = new GameStatus(names.splitNamesByComma());
-        Car.initWinnerRecord();
     }
 
     @ParameterizedTest
@@ -67,13 +66,17 @@ public class RacingGameTest {
     @Test
     void 우승자_확인_테스트() {
         initList();
-        boolean chkWinner = carList.get(0).isWinner();
+        for(Car car : carList){
+            car.passingLog(gameStatus);
+        }
+        gameStatus.makeWinnerNames();
+        boolean chkWinner = gameStatus.isContainName("pobi");
         Assertions.assertThat(chkWinner).isEqualTo(true);
 
-        chkWinner = carList.get(1).isWinner();
+        chkWinner = gameStatus.isContainName("kim");
         Assertions.assertThat(chkWinner).isEqualTo(true);
 
-        chkWinner = carList.get(2).isWinner();
+        chkWinner = gameStatus.isContainName("park");
         Assertions.assertThat(chkWinner).isEqualTo(false);
     }
 
