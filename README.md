@@ -127,6 +127,14 @@
 - [x] indent의 최대 깊이는 1이다.
 - [x] Game class로부터 입력을 분리하자.
 - [x] null인 경우, 빈 문자열인 경우에 대해 테스트를 분리하자
+
+### 두번째 피드백
+- [ ] Game 클래스 내 출력문을 Main으로 옮겨보자.
+- [ ] topPositionCar보다는 지역 변수인 topPosition을 구현해보자.
+- [ ] 상수를 사용하자.
+- [ ] RandomNumber 생성을 Car 클래스 밖에서 하자.
+- [ ] Car 클래스의 생성자에서 String name을 인자로 받아보자. Name과 Car의 길이 체크하는 중복 로직을 없애보자.
+- [ ] RandomNumberTest를 CarTest로 옮기게 될 것이다.
         
 # 문자열 계산기 미션 저장소
 

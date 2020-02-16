@@ -18,7 +18,7 @@ public class Car {
     private Position position;
 
     public Car(Name carName) {
-        checkEmptyCarName(carName.getName());
+        checkEmptyCarName();
         checkSmallerThanSix(carName.getName());
         this.carName = carName;
         this.position = new Position();
