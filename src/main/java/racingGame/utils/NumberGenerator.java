@@ -3,11 +3,11 @@ package racingGame.utils;
 public class NumberGenerator {
     private NumberGenerateStrategy numberGenerateStrategy;
 
-    public int generate() {
-        return numberGenerateStrategy.generateNumber();
+    public NumberGenerator(NumberGenerateStrategy numberGenerateStrategy) {
+        this.numberGenerateStrategy = numberGenerateStrategy;
     }
 
-    public void setNumberGenerateStrategy(NumberGenerateStrategy numberGenerateStrategy) {
-        this.numberGenerateStrategy = numberGenerateStrategy;
+    public int generate() {
+        return numberGenerateStrategy.generateNumber();
     }
 }

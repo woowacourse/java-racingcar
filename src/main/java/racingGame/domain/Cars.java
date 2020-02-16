@@ -23,8 +23,7 @@ public class Cars {
     }
 
     public void moveCars() {
-        NumberGenerator numberGenerator = new NumberGenerator();
-        numberGenerator.setNumberGenerateStrategy(new RandomStrategy());
+        NumberGenerator numberGenerator = new NumberGenerator(new RandomStrategy());
         cars.stream().forEach(car -> car.move(numberGenerator.generate()));
     }
 

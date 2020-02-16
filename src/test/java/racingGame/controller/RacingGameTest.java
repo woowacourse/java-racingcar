@@ -18,8 +18,7 @@ public class RacingGameTest {
     void getWinners_우승한_자동차() {
         List<Car> inGameCars = new ArrayList<>();
         Cars cars;
-        NumberGenerator numberGenerator = new NumberGenerator();
-        numberGenerator.setNumberGenerateStrategy(new FixedMovableStrategy());
+        NumberGenerator numberGenerator = new NumberGenerator(new FixedMovableStrategy());
 
         inGameCars.add(new Car(new Name("car1")));
         inGameCars.add(new Car(new Name("car2")));
