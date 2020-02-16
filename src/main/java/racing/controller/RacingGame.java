@@ -4,6 +4,7 @@ import racing.model.Car;
 import racing.model.CarLineUp;
 import racing.model.TrialTime;
 import racing.view.InputView;
+import racing.view.OutputView;
 
 public class RacingGame {
 
@@ -22,7 +23,9 @@ public class RacingGame {
     }
 
     private void race(){
+        OutputView.printResultMessage();
         trialTime.raceByTrialTime(lineUp);
+        OutputView.printNewLine();
     }
 
     public void checkNameDuplicate(CarLineUp lineUp, String name) {
