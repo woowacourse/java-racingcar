@@ -17,10 +17,9 @@ import java.util.List;
 public class CarFactory {
 
     private final static String DELIMITER = ",";
-    private static List<Car> cars = new ArrayList<>();
 
     public static List<Car> createCar(String input) {
-        cars.clear();
+        List<Car> cars = new ArrayList<>();
         List<String> inputs = Arrays.asList(input.split(DELIMITER));
         for (String carName : inputs) {
             cars.add(new Car(carName, 0));

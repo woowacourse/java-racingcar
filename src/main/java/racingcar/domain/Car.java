@@ -14,6 +14,7 @@ public class Car {
 
     private final static String BLANK = " ";
     private final static int NAME_LENGTH_LIMIT = 5;
+    private final static int BASE_NUMBER = 4;
     private final static String HYPHEN = "-";
     private final static String COLON = " : ";
     private final static String NEW_LINE = "\n";
@@ -36,7 +37,7 @@ public class Car {
 
     private void validateNameLength(String name) {
         if (name.length() > NAME_LENGTH_LIMIT) {
-            throw new IllegalArgumentException("5자 이상 이름은 허용되지 않습니다.");
+            throw new IllegalArgumentException("6자 이상 이름은 허용되지 않습니다.");
         }
     }
 
@@ -44,11 +45,13 @@ public class Car {
         return name;
     }
 
-    public void forward() {
-        position++;
+    public void move(int randomNo) {
+        if (randomNo >= BASE_NUMBER) {
+            position++;
+        }
     }
 
-    public int getForwardCount() {
+    public int getPosition() {
         return position;
     }
 

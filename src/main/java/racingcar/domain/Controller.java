@@ -37,16 +37,14 @@ public class Controller {
     private void playRacing(StringBuilder racingProgress) {
         racingProgress.append(NEW_LINE);
         for (Car car : cars) {
-            if (isForwardByRandom()) {
-                car.forward();
-            }
+            car.move(getRandomNo());
             racingProgress.append(car.toString());
         }
     }
 
-    private boolean isForwardByRandom() {
+    private int getRandomNo() {
         Random random = new Random();
-        return BehaviorJudgment.isForward(random.nextInt(RANDOM_NUMBER_RANGE));
+        return random.nextInt(RANDOM_NUMBER_RANGE);
     }
 
     public String getWinner() {

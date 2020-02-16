@@ -15,6 +15,7 @@ public class TryCount {
     private final static String EXCEPTION_MESSAGE = "1부터 1000까지의 숫자만 입력 가능합니다.";
     private final static int MINIMUM_NUMBER = 0;
     private final static int MAXIMUM_NUMBER = 1000;
+
     private int tryCount;
 
     public TryCount(String count) {

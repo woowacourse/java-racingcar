@@ -16,28 +16,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarFactoryTest {
 
-    @DisplayName("공백 포함시 예외발생")
-    @ParameterizedTest
-    @ValueSource(strings = {"asd ,qwe,zxc", " asd,qwe,zxc", "asd,qwe,zxc ", "asd ,qwe ,z x c"})
-    void hasBlankException(String input) {
-        assertThatThrownBy(() -> new CarFactory(input)).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("공백");
-    }
-
-    @DisplayName("문자열을 리스트로 나누는지 확인")
+    @DisplayName("문자열을 리스트로 만드는지 테스트")
     @Test
-    void split() throws Exception {
+    void split() {
         String input = "aaa,bbb,ccc,ddd";
-        CarFactory car = new CarFactory(input);
-        List<String> inputList = car.getCarNames();
-        assertThat(inputList.get(0)).isEqualTo("aaa");
-        assertThat(inputList.get(1)).isEqualTo("bbb");
-        assertThat(inputList.get(2)).isEqualTo("ccc");
-        assertThat(inputList.get(3)).isEqualTo("ddd");
+        List<Car> car = CarFactory.createCar(input);
+        assertThat(car.get(0).getName()).isEqualTo("aaa");
+        assertThat(car.get(1).getName()).isEqualTo("bbb");
+        assertThat(car.get(2).getName()).isEqualTo("ccc");
+        assertThat(car.get(3).getName()).isEqualTo("ddd");
     }
 }

@@ -16,6 +16,7 @@ import java.util.List;
 public class Winner {
 
     private final static String COMMA_SPACE = ", ";
+
     private static List<String> winnerNames = new ArrayList<>();
     private static int count;
 
@@ -28,14 +29,15 @@ public class Winner {
     }
 
     private static void putWinnerNames(Car car) {
-        int forwardCount = car.getForwardCount();
+        int position = car.getPosition();
         String carName = car.getName();
-        if (count == forwardCount) {
+
+        if (count == position) {
             winnerNames.add(carName);
         }
-        if (count < forwardCount) {
+        if (count < position) {
             winnerNames.clear();
-            count = forwardCount;
+            count = position;
             winnerNames.add(carName);
         }
     }

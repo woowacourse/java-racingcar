@@ -15,6 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WinnerTest {
@@ -25,27 +27,28 @@ public class WinnerTest {
     @BeforeAll
     static void makeCars() {
         String input = "asd,zxc,qwe";
-        List<String> carNames = new CarFactory(input).getCarNames();
-        for (String carName : carNames) {
-            cars1.add(new Car(carName));
-            cars2.add(new Car(carName));
-        }
-        cars1.get(0).forward();
-        cars1.get(1).forward();
-        cars1.get(1).forward();
-        cars1.get(1).forward();
-        cars1.get(2).forward();
-        cars1.get(2).forward();
-        cars2.get(0).forward();
-        cars2.get(1).forward();
-        cars2.get(1).forward();
-        cars2.get(2).forward();
-        cars2.get(2).forward();
+        cars1 = CarFactory.createCar(input);
+        cars2 = CarFactory.createCar(input);
+
+        cars1.get(1).move(3);
+        cars1.get(1).move(4);
+        cars1.get(1).move(4);
+
+        cars2.get(0).move(4);
+        cars2.get(0).move(4);
+        cars2.get(1).move(4);
+        cars2.get(1).move(4);
     }
 
+    @DisplayName("우승자가 한명일 때")
     @Test
-    void winners() {
+    void getWinner_one() {
         assertThat(Winner.getWinner(cars1)).isEqualTo("zxc");
-        assertThat(Winner.getWinner(cars2)).isEqualTo("zxc, qwe");
+    }
+
+    @DisplayName("우승자가 두명일 때")
+    @Test
+    void getWinner_two() {
+        assertThat(Winner.getWinner(cars2)).isEqualTo("asd, zxc");
     }
 }
