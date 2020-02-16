@@ -17,11 +17,11 @@ public class Controller {
 
     private final static String NEW_LINE = "\n";
     private final static int RANDOM_NUMBER_RANGE = 10;
-    private final List<Car> cars;
+    private final Cars cars;
     private final int tryCount;
 
     public Controller(List<Car> cars, int tryCount) {
-        this.cars = cars;
+        this.cars = new Cars(cars);
         this.tryCount = tryCount;
     }
 
@@ -36,7 +36,7 @@ public class Controller {
 
     private void playRacing(StringBuilder racingProgress) {
         racingProgress.append(NEW_LINE);
-        for (Car car : cars) {
+        for (Car car : cars.getCars()) {
             car.move(getRandomNo());
             racingProgress.append(car.toString());
         }

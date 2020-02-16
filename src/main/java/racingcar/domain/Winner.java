@@ -20,9 +20,9 @@ public class Winner {
     private static List<String> winnerNames = new ArrayList<>();
     private static int count;
 
-    public static String getWinner(List<Car> cars) {
+    public static String getWinner(Cars cars) {
         count = 0;
-        for (Car car : cars) {
+        for (Car car : cars.getCars()) {
             putWinnerNames(car);
         }
         return String.join(COMMA_SPACE, winnerNames);
