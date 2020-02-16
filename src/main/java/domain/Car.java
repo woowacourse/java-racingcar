@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class Car {
     private static final int MIN_MOVABLE_NUM = 4;
-
+    private static final int INITIAL_POSITION = 0;
     private final Name name;
     private int position;
 
     public Car(String name) {
-        this(name, 0);
+        this(name, INITIAL_POSITION);
     }
 
     public Car(String name, int position) {
