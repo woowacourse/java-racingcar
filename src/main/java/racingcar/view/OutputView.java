@@ -3,7 +3,6 @@ package racingcar.view;
 import java.util.List;
 
 import racingcar.domain.Car;
-import racingcar.domain.Cars;
 
 public class OutputView {
 	private static final String NEW_LINE = "\n";
@@ -19,13 +18,21 @@ public class OutputView {
 		StringBuilder stringBuilder = new StringBuilder();
 
 		for (Car car : cars) {
-			stringBuilder.append(car.getName()).append(COLON);
-			for (int i = 0; i < car.getPosition(); i++) {
-				stringBuilder.append(POSITION_BAR);
-			}
-			stringBuilder.append(NEW_LINE);
+			stringBuilder.append(car.getName())
+				.append(COLON)
+				.append(makeCarPositionToBar(car))
+				.append(NEW_LINE);
 		}
 		System.out.println(stringBuilder);
+	}
+
+	public static String makeCarPositionToBar(Car car) {
+		StringBuilder stringBuilder = new StringBuilder();
+
+		for (int i = 0; i < car.getPosition(); i++) {
+			stringBuilder.append(POSITION_BAR);
+		}
+		return stringBuilder.toString();
 	}
 
 	public static void printRaceStart() {
