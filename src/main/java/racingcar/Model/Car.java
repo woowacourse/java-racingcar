@@ -18,10 +18,10 @@ public class Car {
     private Name carName;
     private Position position;
 
-    public Car(Name carName) {
-        checkEmptyCarName();
-        checkSmallerThanSix(carName.getName());
-        this.carName = carName;
+    public Car(String carName) {
+        checkEmptyCarName(carName);
+        checkSmallerThanSix(carName);
+        this.carName = new Name(carName);
         this.position = new Position();
     }
 
