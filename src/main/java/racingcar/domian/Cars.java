@@ -1,5 +1,7 @@
 package racingcar.domian;
 
+import racingcar.domian.car.Car;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,7 +47,8 @@ public class Cars {
 
     public void moveAll() {
         for (Car car : cars) {
-            car.moveByRandom(RandomNumberGenerator.generateRandom());
+            RandomNumber randomNumber = new RandomNumber();
+            car.moveByRandom(RandomNumber.generateRandom());
         }
     }
 

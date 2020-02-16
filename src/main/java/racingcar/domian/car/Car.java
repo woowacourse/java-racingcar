@@ -1,26 +1,27 @@
-package racingcar.domian;
+package racingcar.domian.car;
+
+import com.sun.xml.internal.ws.util.StringUtils;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car>{
     private static final String EMPTY_STRING = "";
     private static final int INIT_POSITION = 0;
-    private static final int LIMIT_FOR_MOVE = 4;
     private static final int NAME_LENGTH_LIMIT = 5;
 
-    private int position;
     private String name;
+    private Position position;
 
     public Car(String name) {
-        this(INIT_POSITION, name);
+        this(new Position(INIT_POSITION), name);
     }
 
-    public Car(int position, String name) {
+    public Car(Position position, String name) {
         this.position = position;
         this.name = validateName(name);
     }
 
-    public int getPosition() {
+    public Position getPosition() {
         return this.position;
     }
 
@@ -29,10 +30,9 @@ public class Car {
     }
 
     private static String validateName(String name) {
-        name = name.trim();
         validateNullOrEmpty(name);
         validateNameLength(name);
-        return name;
+        return name.trim();
     }
 
     private static void validateNullOrEmpty(String input) {
@@ -44,12 +44,6 @@ public class Car {
     private static void validateNameLength(String name) {
         if (name.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("이름 길이 5자 초과입니다!");
-        }
-    }
-
-    public void moveByRandom(int inputValue) {
-        if (inputValue >= LIMIT_FOR_MOVE) {
-            this.position++;
         }
     }
 
@@ -76,5 +70,10 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(position, name);
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return this.position - car.position;
     }
 }

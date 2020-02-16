@@ -11,6 +11,11 @@ public class RacingCar {
     private Cars cars;
     private int round;
 
+    public RacingCar() {
+        setUpPlayer();
+        setUpRound();
+    }
+
     public void setUpPlayer() {
         cars = new Cars(InputView.inputCarName());
     }

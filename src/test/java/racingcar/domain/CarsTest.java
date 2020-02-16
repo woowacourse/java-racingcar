@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domian.Car;
+import racingcar.domian.car.Car;
 import racingcar.domian.Cars;
 
 import static org.assertj.core.api.Assertions.assertThat;
