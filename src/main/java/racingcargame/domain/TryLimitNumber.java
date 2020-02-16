@@ -14,7 +14,7 @@ public class TryLimitNumber {
     private void checkExceedRange(int number) {
         if (number < MIN_TRY_NUMBER) {
             System.out.println(TRY_LIMIT_ERROR_MESSAGE);
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
     }
 

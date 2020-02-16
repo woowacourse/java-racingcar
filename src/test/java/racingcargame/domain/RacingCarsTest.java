@@ -33,6 +33,30 @@ public class RacingCarsTest {
         assertThatThrownBy(() -> {
             String duplicatedInput = "pobi, pobi, jason";
             RacingCars.createRacingCars(duplicatedInput);
-        }).isInstanceOf(RuntimeException.class);
+        }).isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
+    void 이름_입력이_한개_들어왔을_때() {
+        assertThatThrownBy(() -> {
+            String oneSizeInput = "pobi";
+            RacingCars.createRacingCars(oneSizeInput);
+        }).isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
+    void 이름입력이_안들어왔을때() {
+        assertThatThrownBy(() -> {
+            String zeroInput = "";
+            RacingCars.createRacingCars(zeroInput);
+        }).isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
+    void 공백으로_이름_입력이_들어왔을_때() {
+        assertThatThrownBy(() -> {
+            String duplicatedInput = "    ";
+            RacingCars.createRacingCars(duplicatedInput);
+        }).isInstanceOf(IllegalStateException.class);
     }
 }

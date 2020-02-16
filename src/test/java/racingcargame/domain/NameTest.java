@@ -12,7 +12,7 @@ public class NameTest {
     void 자동차_이름의_길이가_5를_초과할때() {
         assertThatThrownBy(() -> {
             new Name("123456");
-        }).isInstanceOf(RuntimeException.class);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

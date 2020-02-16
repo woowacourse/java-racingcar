@@ -2,7 +2,6 @@ package racingcargame.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class TryLimitNumberTest {
@@ -11,7 +10,7 @@ class TryLimitNumberTest {
         int input = -1;
         assertThatThrownBy(() ->
                 new TryLimitNumber(input))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -19,7 +18,7 @@ class TryLimitNumberTest {
         int input = 0;
         assertThatThrownBy(() ->
                 new TryLimitNumber(input))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 
