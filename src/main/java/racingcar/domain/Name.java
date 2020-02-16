@@ -17,6 +17,7 @@ import java.util.Objects;
 public class Name {
 	private static final int MINIMUM_LENGTH_OF_NAME = 1;
 	private static final int MAXIMUM_LENGTH_OF_NAME = 5;
+
 	private static final String NULL_OR_BLANK_NAME_EXCEPTION_MESSAGE = "name can not be null or blank";
 	private static final String NAME_LENGTH_EXCEPTION_MESSAGE = "name must be between 1-5";
 

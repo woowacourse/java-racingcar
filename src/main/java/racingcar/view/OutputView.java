@@ -22,6 +22,7 @@ public class OutputView {
 	private static final char LINE_FEED = '\n';
 	private static final char COLON = ':';
 	private static final char TRACE_OF_CAR = '-';
+
 	private static final String WINNER_NAME_JOIN_DELIMITER = ",";
 	private static final String ROUND_START_MESSAGE = "실행 결과";
 

@@ -20,6 +20,10 @@ public class Calculator {
 	private static final Pattern DEFAULT_INPUT_PATTERN = Pattern.compile("-?[0-9]+([:,]-?[0-9]+)*");
 	private static final Pattern CUSTOM_INPUT_PATTERN = Pattern.compile("//(.)\n(.*)");
 
+	private static final int ZERO = 0;
+	private static final int DELIMITER_INDEX_IN_MATCHER = 1;
+	private static final int EXPRESSION_GROUP_IN_MATCHER = 2;
+
 	private static final String EXCEPTION_INAPPROPRIATE_CUSTOM_FORMAT = "inappropriate custom format";
 
 	private Calculator() {
@@ -53,14 +57,14 @@ public class Calculator {
 		if (!matcher.find()) {
 			throw new IllegalArgumentException(EXCEPTION_INAPPROPRIATE_CUSTOM_FORMAT);
 		}
-		String customDelimiter = matcher.group(1);
+		String customDelimiter = matcher.group(DELIMITER_INDEX_IN_MATCHER);
 
-		String expressions = matcher.group(2);
+		String expressions = matcher.group(EXPRESSION_GROUP_IN_MATCHER);
 		return expressions.split(customDelimiter);
 	}
 
 	private static int plus(String[] numbers) {
-		Operand result = Operand.valueOf(0);
+		Operand result = Operand.valueOf(ZERO);
 		for (String number : numbers) {
 			result = result.add(number);
 		}

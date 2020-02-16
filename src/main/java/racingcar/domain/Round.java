@@ -14,6 +14,7 @@ package racingcar.domain;
  */
 public class Round {
 	private static final int MINIMUM_NUMBER_OF_ROUND = 1;
+
 	private static final String NON_POSITIVE_ROUND_EXCEPTION_MESSAGE = "round number must be positive";
 
 	private final int totalRound;

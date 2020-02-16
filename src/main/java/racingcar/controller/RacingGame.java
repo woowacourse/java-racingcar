@@ -20,6 +20,8 @@ import racingcar.view.OutputView;
  */
 
 public class RacingGame {
+	public static final int FIRST_ROUND_INDEX = 0;
+
 	private final PowerGenerator powerGenerator;
 
 	public RacingGame(PowerGenerator generator) {
@@ -29,7 +31,7 @@ public class RacingGame {
 	public void start(Cars cars, Round round) {
 		OutputView.printGameResultMessage();
 
-		for (int i = 0; round.isNonFinalRound(i); i++) {
+		for (int i = FIRST_ROUND_INDEX; round.isNonFinalRound(i); i++) {
 			cars.moveAll(powerGenerator);
 			OutputView.printRoundResult(cars);
 		}

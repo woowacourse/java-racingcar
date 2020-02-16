@@ -22,9 +22,9 @@ public class Position {
 
 	private static final String ILLEGAL_CAR_POSITION_EXCEPTION_MESSAGE = "position can not be negative";
 
-	private static final int CACHE_MINIMUM = 0;
-	private static final int CACHE_MAXIMUM = 256;
 	private static final Map<Integer, Position> positionCache = new HashMap<>();
+	private static final int CACHE_MINIMUM = 0;
+	private static final int CACHE_MAXIMUM = 255;
 
 	static {
 		initPositionCache();

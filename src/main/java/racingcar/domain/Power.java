@@ -18,6 +18,7 @@ public class Power {
 	private static final int MINIMUM_POWER_TO_RUN = 4;
 	private static final int MINIMUM_POWER = 0;
 	private static final int MAXIMUM_POWER = 9;
+
 	private static final String ILLEGAL_ENGINE_LEVEL_EXCEPTION_MASSAGE = "illegal engine level detected";
 
 	private final int powerLevel;
