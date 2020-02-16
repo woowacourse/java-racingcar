@@ -1,38 +1,43 @@
 package calculator.domain;
 
 public class Calculator {
+    public static final String DEFAULT_DELIMITER = ",|:";
+    public static final char STARTS_OF_CUSTOM_DELIMITER = '/';
+    public static final int ZERO = 0;
+    public static final int EXPRESSION = 5;
+    public static final int CUSTOM_DELIMITER_BEGIN_INDEX = 2;
+    public static final int CUSTOM_DELIMITER_END_INDEX = 3;
+
     public static String[] splitString(String input) {
-        String delimiter = ",|:";
-
-        if (input.charAt(0) == '/') {
-            delimiter = input.substring(2, 3);
-            input = input.substring(5);
+        String delimiter = DEFAULT_DELIMITER;
+        if (isCustomDelimiter(input)) {
+            delimiter = input.substring(CUSTOM_DELIMITER_BEGIN_INDEX, CUSTOM_DELIMITER_END_INDEX);
+            input = input.substring(EXPRESSION);
         }
-
         return input.split(delimiter);
+    }
+
+    private static boolean isCustomDelimiter(String input) {
+        return input.charAt(ZERO) == STARTS_OF_CUSTOM_DELIMITER;
     }
 
     public static int calculate(String[] numbers) throws NumberFormatException {
         int result = 0;
-
         for (String number : numbers) {
             int parsedNumber = Integer.parseInt(number);
-
             validatePositiveNumber(parsedNumber);
-
             result += parsedNumber;
         }
-
         return result;
     }
 
     private static void validatePositiveNumber(int parsedNumber) {
         if (isNegativeNumber(parsedNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("음수의 숫자는 입력이 불가능합니다.");
         }
     }
 
     private static boolean isNegativeNumber(int parsedNumber) {
-        return parsedNumber < 0;
+        return parsedNumber < ZERO;
     }
 }
