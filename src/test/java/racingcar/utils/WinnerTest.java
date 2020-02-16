@@ -14,10 +14,11 @@ import racingcar.domain.Winner;
 
 class WinnerTest {
 
-    private List<Car> carList;
+    private  List<Car> carList;
     private Car carPobi;
     private Car carCrong;
     private MoveNumber moveNumber;
+    private Winner winner;
 
     @BeforeEach
     void setUp() {
@@ -25,6 +26,7 @@ class WinnerTest {
         carPobi = new Car(new CarName("pobi"));
         carCrong = new Car(new CarName("crong"));
         moveNumber = new MoveNumber(4);
+        winner = new Winner();
     }
 
     @Test
@@ -35,7 +37,7 @@ class WinnerTest {
         carCrong.move(moveNumber);
         carCrong.move(moveNumber);
 
-        Assertions.assertThat(Winner.findWinners(carList)).contains("crong");
+        Assertions.assertThat(winner.findWinners(carList)).contains("crong");
     }
 
     @Test
@@ -45,6 +47,6 @@ class WinnerTest {
         carPobi.move(moveNumber);
         carCrong.move(moveNumber);
 
-        Assertions.assertThat(Winner.findWinners(carList)).contains("crong", "pobi");
+        Assertions.assertThat(winner.findWinners(carList)).contains("crong", "pobi");
     }
 }

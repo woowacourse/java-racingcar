@@ -23,7 +23,8 @@ public class Application {
             RacingStadium racingStadium = new RacingStadium();
             racingStadium.startRace(GameRound, racingGame);
 
-            final List<String> winners = Winner.findWinners(racingCars);
+            Winner winner = new Winner();
+            final List<String> winners = winner.findWinners(racingCars);
             OutputView.printWinners(winners);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Winner {
-    private static final List<String> winners = new ArrayList<>();
+    private final List<String> winners = new ArrayList<>();
 
-    private Winner() {
-    }
-
-    public static List<String> findWinners(List<Car> carList) {
+    public List<String> findWinners(List<Car> carList) {
         int max = findWinnerPosition(carList);
 
         carList.stream()
@@ -19,7 +16,7 @@ public class Winner {
         return winners;
     }
 
-    private static int findWinnerPosition(List<Car> cars) {
+    private int findWinnerPosition(List<Car> cars) {
         return cars.stream()
             .map(Car::getPosition)
             .reduce(Integer::max)
