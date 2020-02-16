@@ -10,7 +10,7 @@ import java.util.*;
  * 데이터의 검증과 변형, OutputView 메서드 호출 등을 포함한다.
  * 또한 출력에 쓰이는 자동차의 주행 기록과 승자 목록 을 포장하여 타 클래스에서 접근할 수 없도록 한다.
  */
-public class Output {
+public class GameStatus {
     /**
      * LOG_DELIMITER 는 문자열 상수 값으로, 자동차 주행 기록에 들어가는 양식이다.
      */
@@ -35,17 +35,15 @@ public class Output {
      * carStatus 는 자동차의 주행 기록을 담은 Map이다.
      * 각 차의 이름과 그 차의 위치값을 매핑시키고, 값의 변화 발생시 이를 업데이트한다.
      */
-    private Map<String, Integer> carStatus;
+    private Map<String, Integer> carStatus = new LinkedHashMap<>();
 
-    /**
-     * initCarStatus 는 필드에 존재하는 carStatus의 값을 생성하고,
-     * 전달받은 이름 목록을 바탕으로 초기화된 값을 삽입한다.
-     *
-     * @param names 게임에 참여하는 사용자의 이름을 담은 List이다.
-     */
-    public void initCarStatus(List<String> names) {
-        carStatus = new LinkedHashMap<>();
-        names.stream().forEach(name -> carStatus.put(name, 0));
+    private int maxDistance=0;
+
+
+    public GameStatus(List<String> names) {
+        for(String name : names){
+            carStatus.put(name,0);
+        }
     }
 
     /**
@@ -72,11 +70,20 @@ public class Output {
      *
      * @param cars 게임에 참여한 Car 인스턴스의 목록이다.
      */
-    public void makeWinnerNames(List<Car> cars) {
-        cars.stream().forEach(car -> car.addWinnerName(winners));
+    public void makeWinnerNames() {
+        for (Map.Entry<String, Integer> entry : carStatus.entrySet()) {
+            if (maxDistance == entry.getValue()) {
+                winners.add(entry.getKey());
+            }
+        }
+    }
 
-        String winnerNames = String.join(SPLIT_DELIMITER, winners);
-        OutputView.printWinners(winnerNames);
+    public String getWinnerNames(){
+        StringBuilder log = new StringBuilder();
+        for(String name : winners){
+            log.append(name);
+        }
+        return log.toString();
     }
 
     /**
@@ -87,6 +94,7 @@ public class Output {
      */
     public void updateCarStatus(String name, int position) {
         carStatus.put(name, position);
+        maxDistance = Integer.max(maxDistance,position);
     }
 
     /**

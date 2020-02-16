@@ -1,7 +1,7 @@
 package racinggame.domain;
 
 import racinggame.domain.data.Names;
-import racinggame.domain.data.Output;
+import racinggame.domain.data.GameStatus;
 import racinggame.domain.car.Car;
 import racinggame.domain.data.Repeat;
 import racinggame.view.OutputView;
@@ -56,19 +56,18 @@ public class RacingGame {
      * 이 과정에서 양식에 맞게 OutputView를 통한 포맷, 여백 출력 메서드를 호출한다.
      *
      * @param input  입력값을 저장하는 Input 인스턴스이다.
-     * @param output 출력값을 저장하는 Output 인스턴스이다.
+     * @param gameStatus 출력값을 저장하는 Output 인스턴스이다.
      */
-    public static void play(Names names, Repeat repeat, Output output) {
+    public static void play(Names names, Repeat repeat, GameStatus gameStatus) {
         List<String> splitName = names.splitNamesByComma();
         List<Car> cars = new ArrayList<>();
 
-        output.initCarStatus(splitName);
         for(String name : splitName){
             cars.add(new Car(name));
         }
         OutputView.printResultFormat();
-        moveCars(repeat, output, cars);
-        output.makeWinnerNames(cars);
+        moveCars(repeat, gameStatus, cars);
+        gameStatus.makeWinnerNames();//출력 왜 안되는지 확인!!!!!
     }
 
     /**
@@ -81,15 +80,15 @@ public class RacingGame {
      * @param cars   Car 객체를 저장하는 List 이다.
      * @param repeat 반복할 횟수를 저장하는 정수형 변수이다.
      */
-    private static void moveCars(Repeat repeat, Output output, List<Car> cars) {
+    private static void moveCars(Repeat repeat, GameStatus gameStatus, List<Car> cars) {
         int cnt = 0;
         while(repeat.isLoopDone(cnt)){
             cnt++;
             cars.stream().forEach(car -> {
                 car.accelerate(generateRandomNumber(), FORWARD_NUMBER);
-                car.passingLog(output);
+                car.passingLog(gameStatus);
             });
-            output.printStatusLog();
+            gameStatus.printStatusLog();
         }
     }
 }

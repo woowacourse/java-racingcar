@@ -1,6 +1,7 @@
 package racinggame.domain.car;
 
-import racinggame.domain.data.Output;
+import racinggame.domain.data.GameStatus;
+import racinggame.domain.data.GameStatus;
 
 import java.util.List;
 
@@ -116,8 +117,8 @@ public class Car {
      *
      * @param output 출력값을 저장하는 Output 인스턴스이다.
      */
-    public void passingLog(Output output) {
-        output.updateCarStatus(name, position.getPosition());
+    public void passingLog(GameStatus gameStatus) {
+        gameStatus.updateCarStatus(name, position.getPosition());
     }
 
     /**

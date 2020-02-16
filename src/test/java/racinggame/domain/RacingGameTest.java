@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racinggame.domain.data.Names;
-import racinggame.domain.data.Output;
+import racinggame.domain.data.GameStatus;
 import racinggame.domain.car.Car;
 import racinggame.domain.data.Repeat;
 
@@ -18,7 +18,7 @@ public class RacingGameTest {
     private static final List<Car> carList = new ArrayList<>();
     Names names;
     Repeat repeat;
-    Output output;
+    GameStatus gameStatus;
     private final String NAMES = "pobi,crong,honux";
     private final String REPEAT = "5";
 
@@ -45,7 +45,7 @@ public class RacingGameTest {
     void initInput() {
         names = new Names(NAMES);
         repeat = new Repeat(REPEAT);
-        output = new Output();
+        gameStatus = new GameStatus(names.splitNamesByComma());
         Car.initWinnerRecord();
     }
 
@@ -77,12 +77,12 @@ public class RacingGameTest {
         Assertions.assertThat(chkWinner).isEqualTo(false);
     }
 
-    @RepeatedTest(value = 1000)
+    @RepeatedTest(value = 100)
     void 레이싱게임_실행_결과_테스트() {
-        RacingGame.play(names, repeat, output);
-        boolean result1 = output.isContainName("pobi");
-        boolean result2 = output.isContainName("crong");
-        boolean result3 = output.isContainName("honux");
+        RacingGame.play(names, repeat, gameStatus);
+        boolean result1 = gameStatus.isContainName("pobi");
+        boolean result2 = gameStatus.isContainName("crong");
+        boolean result3 = gameStatus.isContainName("honux");
 
         Assertions.assertThat(result1 || result2 || result3).isTrue();
     }
