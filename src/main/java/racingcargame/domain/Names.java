@@ -10,8 +10,8 @@ public class Names implements Iterable<Name> {
     private List<Name> names;
 
     public Names(List<Name> names) {
-        if (names == null || names.isEmpty()) {
-            throw new IllegalArgumentException("빈 값 또는 null이 입력되었습니다.");
+        if (names == null) {
+            throw new IllegalArgumentException("null값을 입력하지 마시요.");
         }
         this.names = names;
     }

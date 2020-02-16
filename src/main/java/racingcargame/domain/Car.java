@@ -7,12 +7,15 @@ public class Car {
     private Name name;
     private Position position;
 
-    public Car(Name name) {
-        this(name.toString());
+    public Car(String name) {
+        this(new Name(name));
     }
 
-    public Car(String name) {
-        this.name = new Name(name);
+    public Car(Name name) {
+        if (name == null) {
+            throw new IllegalArgumentException("null값을 입력하지 마시오.");
+        }
+        this.name = name;
         this.position = new Position(INITIAL_POSITION);
     }
 

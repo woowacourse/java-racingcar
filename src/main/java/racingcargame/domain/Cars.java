@@ -11,6 +11,9 @@ public class Cars {
     private List<Car> cars = new ArrayList<>();
 
     public Cars(Names carNames) {
+        if (carNames == null) {
+            throw new IllegalArgumentException("null값을 입력하지 마시요.");
+        }
         for (Name name : carNames) {
             cars.add(new Car(name));
         }

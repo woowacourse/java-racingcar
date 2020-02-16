@@ -2,16 +2,23 @@ package racingcargame.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
-
     @Test
     void 자동차는_이름을_입력받아_생성() {
         String name = "라테";
         Car car = new Car(name);
-        assertThat(car).isNotNull();
+        assertThat(car)
+                .extracting("name")
+                .hasFieldOrPropertyWithValue("name", "라테");
+    }
+
+    @Test
+    void null방어로직_확인() {
+        Name name = null;
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new Car(name));
     }
 
     @Test

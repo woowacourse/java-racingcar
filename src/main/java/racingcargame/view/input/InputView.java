@@ -14,13 +14,17 @@ public class InputView {
     public static int askTotalRounds() {
         System.out.println("시도 횟수를 입력하세요.");
         String string = scanner.nextLine();
-        for (int i = 0; i < string.length(); i++) {
-            isNumericChar(string.charAt(i));
-        }
+        validateNumeric(string);
         return Integer.parseInt(string);
     }
 
-    private static void isNumericChar(char character) {
+    private static void validateNumeric(String string) {
+        for (int i = 0; i < string.length(); i++) {
+            validateNumericChar(string.charAt(i));
+        }
+    }
+
+    private static void validateNumericChar(char character) {
         if (character < '0' || character > '9') {
             throw new IllegalArgumentException("숫자만 입력하세요");
         }
