@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class StringCalculator {
     static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
     static final String COMA_OR_COLON = ",|:";
+    private static Matcher matcher;
 
     public static int splitAndSum(String input) {
         if (input == null || input.isEmpty()) {
@@ -35,10 +36,10 @@ public class StringCalculator {
     }
 
     private static String[] getSplitValues (String input) {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(input);
-        if (m.find()) {
-            String customDelimiter = m.group(1);
-            return m.group(2).split(customDelimiter);
+        matcher = Pattern.compile(CUSTOM_DELIMITER).matcher(input);
+        if (matcher.find()) {
+            String customDelimiter = matcher.group(1);
+            return matcher.group(2).split(customDelimiter);
         }
         return input.split(COMA_OR_COLON);
     }
