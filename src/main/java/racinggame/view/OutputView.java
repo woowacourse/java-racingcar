@@ -5,26 +5,9 @@ package racinggame.view;
  * OutputView 인스턴스를 만드는 것을 고려하지 않고 설계하였다.
  */
 public class OutputView {
-    /**
-     * NAME_FORMAT 는 문자열 상수 값으로, InputView에서 이름을 입력받을 때 출된다.
-     */
     private static final String NAME_FORMAT = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)";
-
-    /**
-     * REPEAT_FORMAT 은 문자열 상수 값으로, InputView에서 게임 횟수를 입력받을 때 출력된다.
-     */
     private static final String REPEAT_FORMAT = "시도할 회수는 몇회인가요?";
-
-    /**
-     * RESULT_FORMAT 은 문자열 상수 값으로, 실행 결과(printStatusLog 실행) 출력 전에 출력되어야 하는 양식값이다.
-     * RacingGame 클래스의 메인 로직을 통해 출력된다.
-     */
     private static final String RESULT_FORMAT = "\n실행 결과";
-
-    /**
-     * WINNER_FORMAT 은 우승자 출력 전에 출력되는 포맷 값이다.
-     * RacingGame 클래스의 메인 로직을 통해 출력된다.
-     */
     private static final String WINNER_FORMAT = "가 최종 우승했습니다.";
 
     /**

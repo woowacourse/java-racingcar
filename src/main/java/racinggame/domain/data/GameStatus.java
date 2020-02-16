@@ -8,20 +8,8 @@ import java.util.*;
  * 또한 출력에 쓰이는 자동차의 주행 기록과 승자 목록 을 포장하여 타 클래스에서 접근할 수 없도록 한다.
  */
 public class GameStatus {
-    /**
-     * LOG_DELIMITER 는 문자열 상수 값으로, 자동차 주행 기록에 들어가는 양식이다.
-     */
     private static final String LOG_DELIMITER = " : ";
-
-    /**
-     * POSITION_CHARACTER 는 문자열 상수 값으로, 자동차 주행 기록에 들어가는 양식이다.
-     */
     private static final String POSITION_CHARACTER = "-";
-
-    /**
-     * SPLIT_DELIMITER 는 문자열 상수 값으로, 승자 목록 출력 시에 들어가는 양식이다.
-     */
-    private static final String SPLIT_DELIMITER = ",";
 
     /**
      * winners 는 게임이 종료된 뒤 출력되는, 승자의 이름 값을 모은 리스트이다.

@@ -82,8 +82,9 @@ public class RacingGameTest {
 
     @RepeatedTest(value = 100)
     void 레이싱게임_실행_결과_테스트() {
+        RacingGame racingGame = new RacingGame(names);
         for(int repeatIterator = 0; repeat.isLoopDone(repeatIterator); repeatIterator++){
-            RacingGame.moveCars(gameStatus, carList);
+            racingGame.moveCars(gameStatus);
         }
         gameStatus.makeWinnerNames();
         boolean result1 = gameStatus.isContainName("pobi");

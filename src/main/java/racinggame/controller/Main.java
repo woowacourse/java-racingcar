@@ -1,14 +1,11 @@
 package racinggame.controller;
 
 import racinggame.domain.game.RacingGame;
-import racinggame.domain.car.Car;
 import racinggame.domain.data.GameStatus;
 import racinggame.domain.data.Names;
 import racinggame.domain.data.Repeat;
 import racinggame.view.InputView;
 import racinggame.view.OutputView;
-
-import java.util.List;
 
 /**
  * Main 클래스는 메인 로직의 최상위 운영을 담당하는 클래스이다.
@@ -22,11 +19,11 @@ public class Main {
         Repeat repeat = new Repeat(InputView.inputRepeat());
         GameStatus gameStatus = new GameStatus(names.splitNamesByComma());
 
-        List<Car> cars = RacingGame.initCars(names);
+        RacingGame racingGame = new RacingGame(names);
         OutputView.printResultFormat();
 
         for(int repeatIterator = 0; repeat.isLoopDone(repeatIterator); repeatIterator++){
-            RacingGame.moveCars(gameStatus, cars);
+            racingGame.moveCars(gameStatus);
             OutputView.printLog(gameStatus.getStatusLog());
         }
         gameStatus.makeWinnerNames();
