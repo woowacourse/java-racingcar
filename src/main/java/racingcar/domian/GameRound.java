@@ -1,33 +1,30 @@
 package racingcar.domian;
 
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
-
-public class RacingCar {
-    private static final int ZERO = 0;
+public class GameRound {
     private static final int COUNT_LOWER_LIMIT = 1;
     private static final int COUNT_UPPER_LIMIT = 10;
 
-    private Cars cars;
-    private int round;
+    private int gameRound;
 
-    public RacingCar() {
-        setUpPlayer();
-        setUpRound();
+    public GameRound(String gameRound) {
+        this.gameRound = validateRound(gameRound);
     }
 
-    public void setUpPlayer() {
-        cars = new Cars(InputView.inputCarName());
-    }
-
-    public void setUpRound() {
-        round = validateRound(InputView.inputGameRound());
+    public int getGameRound() {
+        return gameRound;
     }
 
     private int validateRound(String inputRound) {
+        validateNullOrEmpty(inputRound);
         int round = validateNumber(inputRound.trim());
         validateCount(round);
         return round;
+    }
+
+    private static void validateNullOrEmpty(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("빈 값 혹은 Null 입력입니다!");
+        }
     }
 
     private int validateNumber(String input) {
@@ -46,14 +43,4 @@ public class RacingCar {
         }
     }
 
-    public void startGame() {
-        for (int i = ZERO; i < round; i++) {
-            cars.moveAll();
-            OutputView.printCurrentRound(cars.getCars());
-        }
-    }
-
-    public String getResult() {
-        return cars.getResult();
-    }
 }

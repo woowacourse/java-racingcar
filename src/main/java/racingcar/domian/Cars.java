@@ -3,6 +3,7 @@ package racingcar.domian;
 import racingcar.domian.car.Car;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,8 +21,6 @@ public class Cars {
         return cars;
     }
 
-
-
     private static boolean isNotEmpty(String maybeWinner) {
         return !EMPTY_STRING.equals(maybeWinner);
     }
@@ -29,15 +28,14 @@ public class Cars {
     public int findMaxPosition() {
         int max = 0;
         for (Car car : cars) {
-            max = Math.max(max, car.getPosition());
+            max = Math.max(max, car.getPosition().getDistance());
         }
         return max;
     }
 
     public void moveAll() {
         for (Car car : cars) {
-            RandomNumber randomNumber = new RandomNumber();
-            car.moveByRandom(RandomNumber.generateRandom());
+            car.getPosition().moveByRandom(new RandomNumber());
         }
     }
 

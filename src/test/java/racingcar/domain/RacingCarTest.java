@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domian.RacingCar;
+import racingcar.domian.RacingGame;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -13,11 +13,11 @@ import java.io.InputStream;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RacingCarTest {
-    private static RacingCar game;
+    private static RacingGame game;
 
     @BeforeAll
     static void setUp() {
-        game = new RacingCar();
+        game = new RacingGame();
     }
 
     @ParameterizedTest

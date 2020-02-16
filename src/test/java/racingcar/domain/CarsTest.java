@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import racingcar.domian.car.Car;
 import racingcar.domian.Cars;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -28,5 +31,13 @@ public class CarsTest {
             new Cars(names);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차 5대 초과");
+    }
+
+    @Test
+    void hello() {
+        String inputNames = "user1,user2,user3,user4";
+        Cars cars = new Cars(inputNames);
+        List<Car> hello =
+        list.stream().max();
     }
 }

@@ -3,20 +3,20 @@ package racingcar.domian.car;
 import racingcar.domian.RandomNumber;
 
 public class Position {
-    private int position;
+    private int distance;
 
-    Position(int position) {
-        this.position = position;
+    Position(int distance) {
+        this.distance = distance;
     }
 
     public void moveByRandom(RandomNumber randomNumber) {
         if(randomNumber.isMovable()) {
-            this.position++;
+            this.distance++;
         }
     }
 
-    public int getPosition() {
-        return this.position;
+    public int getDistance() {
+        return this.distance;
     }
 
 }

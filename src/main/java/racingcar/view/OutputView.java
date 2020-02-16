@@ -16,7 +16,7 @@ public class OutputView {
     public static void printCurrentRound(List<Car> cars) {
         for (Car car : cars) {
             System.out.print(car.getName() + COLON);
-            for (int i = ZERO; i < car.getPosition(); i++) {
+            for (int i = ZERO; i < car.getPosition().getDistance(); i++) {
                 System.out.print(DASH);
             }
             System.out.println();

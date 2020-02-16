@@ -4,7 +4,7 @@ import com.sun.xml.internal.ws.util.StringUtils;
 
 import java.util.Objects;
 
-public class Car implements Comparable<Car>{
+public class Car {
     private static final String EMPTY_STRING = "";
     private static final int INIT_POSITION = 0;
     private static final int NAME_LENGTH_LIMIT = 5;
@@ -55,7 +55,7 @@ public class Car implements Comparable<Car>{
     }
 
     private boolean isMaxPosition(int max) {
-        return this.position == max;
+        return this.getPosition().getDistance() == max;
     }
 
     @Override
@@ -70,10 +70,5 @@ public class Car implements Comparable<Car>{
     @Override
     public int hashCode() {
         return Objects.hash(position, name);
-    }
-
-    @Override
-    public int compareTo(Car car) {
-        return this.position - car.position;
     }
 }
