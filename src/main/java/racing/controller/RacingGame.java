@@ -8,17 +8,27 @@ import racing.view.OutputView;
 
 public class RacingGame {
 
-    CarLineUp lineUp = new CarLineUp();
+    CarLineUp lineUp;
     TrialTime trialTime;
 
     public void play(){
-        enrollLineUp();
+        initializeLineUp();
         initializeTrialTime();
         race();
         showWinners();
     }
 
-    private void enrollLineUp(){
+    private void initializeLineUp(){
+        try {
+            lineUp = new CarLineUp();
+            enrollCarToLineUp();
+        } catch (Exception e){
+            OutputView.printExceptionMessage(e);
+            initializeLineUp();
+        }
+    }
+
+    private void enrollCarToLineUp() {
         for (String name : InputView.inputCarNames()){
             checkNameDuplicate(lineUp, name);
             lineUp.add(new Car(name));
@@ -26,7 +36,12 @@ public class RacingGame {
     }
 
     private void initializeTrialTime(){
-        trialTime = InputView.inputTrialTime();
+        try {
+            trialTime = InputView.inputTrialTime();
+        } catch(Exception e){
+            OutputView.printExceptionMessage(e);
+            initializeLineUp();
+        }
     }
 
     private void race(){
