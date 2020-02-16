@@ -31,7 +31,7 @@ public class RacingGame {
 	public void start(Cars cars, Round round) {
 		OutputView.printGameResultMessage();
 
-		for (int i = FIRST_ROUND_INDEX; round.isNonFinalRound(i); i++) {
+		for (int i = FIRST_ROUND_INDEX; round.nonFinalRound(i); i++) {
 			cars.moveAll(powerGenerator);
 			OutputView.printRoundResult(cars);
 		}

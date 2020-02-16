@@ -30,7 +30,7 @@ public class Round {
 		}
 	}
 
-	public boolean isNonFinalRound(int round) {
+	public boolean nonFinalRound(int round) {
 		return round < totalRound;
 	}
 }

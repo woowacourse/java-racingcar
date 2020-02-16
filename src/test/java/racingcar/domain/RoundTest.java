@@ -34,6 +34,6 @@ class RoundTest {
 	@CsvSource({"3,true", "4,false"})
 	void isNonFinalRound_test(int currentRound, boolean expected) {
 		Round round = new Round(4);
-		assertThat(round.isNonFinalRound(currentRound)).isEqualTo(expected);
+		assertThat(round.nonFinalRound(currentRound)).isEqualTo(expected);
 	}
 }
