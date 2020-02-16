@@ -11,7 +11,8 @@
 package racingcar;
 
 import java.util.List;
-import racingcar.domain.CarNames;
+import racingcar.domain.Car;
+import racingcar.domain.CarFactory;
 import racingcar.domain.Controller;
 import racingcar.domain.TryCount;
 import racingcar.view.InputView;
@@ -20,9 +21,9 @@ import racingcar.view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        List<String> carNames = inputCarNames();
+        List<Car> cars = inputCarNames();
         int tryCount = inputTryCount();
-        Controller controller = new Controller(carNames, tryCount);
+        Controller controller = new Controller(cars, tryCount);
 
         String racingProgress = controller.run();
         OutputView.printExecutionResult();
@@ -32,13 +33,12 @@ public class Application {
         OutputView.printWinner(winner);
     }
 
-    private static List<String> inputCarNames() {
+    private static List<Car> inputCarNames() {
         while (true) {
             try {
                 OutputView.printInputCarNames();
                 String carName = InputView.input();
-                CarNames carNames = new CarNames(carName);
-                return carNames.getCarNames();
+                return CarFactory.createCar(carName);
             } catch (IllegalArgumentException ioe) {
                 OutputView.printString(ioe.getMessage());
             }

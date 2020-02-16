@@ -10,7 +10,6 @@
 
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -21,18 +20,11 @@ public class Controller {
     private final List<Car> cars;
     private final int tryCount;
 
-    public Controller(List<String> carNames, int tryCount) {
-        this.cars = setCars(carNames);
+    public Controller(List<Car> cars, int tryCount) {
+        this.cars = cars;
         this.tryCount = tryCount;
     }
 
-    private List<Car> setCars(List<String> carNames) {
-        List<Car> carList = new ArrayList<>();
-        for (String carName : carNames) {
-            carList.add(new Car(carName));
-        }
-        return carList;
-    }
 
     public String run() {
         StringBuilder executionResult = new StringBuilder();

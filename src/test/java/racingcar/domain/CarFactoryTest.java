@@ -19,13 +19,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class CarNamesTest {
+public class CarFactoryTest {
 
     @DisplayName("공백 포함시 예외발생")
     @ParameterizedTest
     @ValueSource(strings = {"asd ,qwe,zxc", " asd,qwe,zxc", "asd,qwe,zxc ", "asd ,qwe ,z x c"})
     void hasBlankException(String input) {
-        assertThatThrownBy(() -> new CarNames(input)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new CarFactory(input)).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("공백");
     }
 
@@ -33,7 +33,7 @@ public class CarNamesTest {
     @Test
     void split() throws Exception {
         String input = "aaa,bbb,ccc,ddd";
-        CarNames car = new CarNames(input);
+        CarFactory car = new CarFactory(input);
         List<String> inputList = car.getCarNames();
         assertThat(inputList.get(0)).isEqualTo("aaa");
         assertThat(inputList.get(1)).isEqualTo("bbb");

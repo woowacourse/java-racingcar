@@ -25,7 +25,7 @@ public class WinnerTest {
     @BeforeAll
     static void makeCars() {
         String input = "asd,zxc,qwe";
-        List<String> carNames = new CarNames(input).getCarNames();
+        List<String> carNames = new CarFactory(input).getCarNames();
         for (String carName : carNames) {
             cars1.add(new Car(carName));
             cars2.add(new Car(carName));

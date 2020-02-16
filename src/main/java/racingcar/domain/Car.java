@@ -12,14 +12,32 @@ package racingcar.domain;
 
 public class Car {
 
+    private final static String BLANK = " ";
+    private final static int NAME_LENGTH_LIMIT = 5;
     private final static String HYPHEN = "-";
     private final static String COLON = " : ";
     private final static String NEW_LINE = "\n";
-    private final String name;
-    private int position = 0;
 
-    public Car(String name) {
+    private final String name;
+    private int position;
+
+    public Car(String name, int position) {
+        validateHasBlank(name);
+        validateNameLength(name);
         this.name = name;
+        this.position = position;
+    }
+
+    private void validateHasBlank(String name) {
+        if (name.contains(BLANK)) {
+            throw new IllegalArgumentException("공백은 허용되지 않습니다.");
+        }
+    }
+
+    private void validateNameLength(String name) {
+        if (name.length() > NAME_LENGTH_LIMIT) {
+            throw new IllegalArgumentException("5자 이상 이름은 허용되지 않습니다.");
+        }
     }
 
     public String getName() {
