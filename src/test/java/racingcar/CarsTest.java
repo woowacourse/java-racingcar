@@ -4,10 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.Name;
-import racingcar.domain.RandomNumberGeneratorStrategy;
+import racingcar.domain.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,11 +68,10 @@ public class CarsTest {
     @Test
     @DisplayName("moveAll 테스트")
     void moveAll() {
-        List<Integer> powers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        List<Integer> expectingPositions = Arrays.asList(1, 1, 1, 2, 2, 2);
+        List<Integer> expectingPositions = Arrays.asList(1, 1, 1, 1, 1, 1);
         Cars carsObject = new Cars(cars);
-        carsObject.setNumberGeneratorStrategy(new RandomNumberGeneratorStrategy());
-        carsObject.moveAll(powers);
+        carsObject.setNumberGeneratorStrategy(new DefaultNumberGeneratorStrategy());
+        carsObject.moveAll();
         Assertions.assertThat(carsObject.isPostionsOf(expectingPositions))
                 .isTrue();
     }
