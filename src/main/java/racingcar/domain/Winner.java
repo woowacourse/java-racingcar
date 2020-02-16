@@ -23,21 +23,25 @@ public class Winner {
     public static String getWinner(Cars cars) {
         count = 0;
         for (Car car : cars.getCars()) {
-            putWinnerNames(car);
+            putWinnerNames(car.getName(), car.getPosition());
         }
         return String.join(COMMA_SPACE, winnerNames);
     }
 
-    private static void putWinnerNames(Car car) {
-        int position = car.getPosition();
-        String carName = car.getName();
+    private static void putWinnerNames(String carName, int position) {
+        setCountAndWinnerNames(position);
+        addCarName(carName, position);
+    }
 
-        if (count == position) {
-            winnerNames.add(carName);
-        }
+    private static void setCountAndWinnerNames(int position) {
         if (count < position) {
-            winnerNames.clear();
             count = position;
+            winnerNames.clear();
+        }
+    }
+
+    private static void addCarName(String carName, int position) {
+        if (count <= position) {
             winnerNames.add(carName);
         }
     }
