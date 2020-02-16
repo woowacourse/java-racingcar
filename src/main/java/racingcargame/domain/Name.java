@@ -1,65 +1,63 @@
 package racingcargame.domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Objects;
+
+import racingcargame.exception.CarNameInputException;
+import racingcargame.view.OutputView;
 
 public class Name {
-    private static final Set<String> CAR_NAMES = new HashSet<>();
-    private static final int NAME_MAX_LENGTH = 5;
-    private static final String BLANK = "";
+	private static final int MAX_NAME_LENGTH = 5;
 
-    private String name;
+	private String name;
 
-    public Name(String name) {
-        name = name.trim();
-        isDuplicatedNames(name);
-        addName(name);
-        valid(name);
-        this.name = name;
-    }
+	public Name(String name) {
+		validate(name);
+		this.name = name.trim();
+	}
 
-    private void valid(String name) {
-        isExceededMaxLength(name);
-        checkBlankInput(name);
-    }
+	private void validate(String name) {
+		checkNullInput(name);
+		name = name.trim();
+		checkOverMaxNameLength(name);
+		checkBlankInput(name);
+	}
 
-    private void addName(String name) {
-        CAR_NAMES.add(name);
-    }
+	private void checkNullInput(String name) {
+		if (name == null) {
+			throw new CarNameInputException("※자동차 이름으로 Null값이 들어옴");
+		}
+	}
 
-    private void isDuplicatedNames(String input) {
-        if (CAR_NAMES.contains(input)) {
-            System.out.println("중복된 이름을 가지고 있습니다.");
-            throw new RuntimeException();
-        }
-    }
+	private void checkOverMaxNameLength(String name) {
+		if (MAX_NAME_LENGTH < name.length()) {
+			OutputView.printTooLongNameErrorMessage();
+			throw new CarNameInputException("※허용된 길이(5자)를 초과하는 자동차 이름이 존재");
+		}
+	}
 
-    private void isExceededMaxLength(String name) {
-        if (name.length() > NAME_MAX_LENGTH) {
-            System.out.println("길이 최대치를 초과하는 이름을 가지고 있습니다.");
-            throw new RuntimeException();
-        }
-    }
+	private void checkBlankInput(String name) {
+		if (name.isEmpty()) {
+			OutputView.printBlankInputErrorMessage();
+			throw new CarNameInputException("※이름이 없는 자동차가 존재");
+		}
+	}
 
-    private void checkBlankInput(String name) {
-        if (name.isEmpty()) {
-            System.out.println("공백 이름을 가지고 있습니다.");
-            throw new RuntimeException();
-        }
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Name name1 = (Name)o;
+		return name.equals(name1.name);
+	}
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        String anotherName = (String) obj;
-        return anotherName == this.name;
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
 }
