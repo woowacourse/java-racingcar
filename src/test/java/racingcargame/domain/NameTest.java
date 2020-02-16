@@ -18,7 +18,7 @@ public class NameTest {
 
     @Test
     @SuppressWarnings("NonAsciiCharacters")
-    void 쉼표만_입력되었을_때() {
+    void 공백만_입력되었을_때() {
         assertThatThrownBy(() -> {
             new Name("");
         }).isInstanceOf(NullPointerException.class);
