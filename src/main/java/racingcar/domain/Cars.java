@@ -12,10 +12,20 @@ public class Cars {
 	private final List<Car> cars = new ArrayList<>();
 
 	public Cars(final List<String> carsName) {
+		validateCarsName(carsName);
+		carsName.forEach(carName -> cars.add(new Car(carName)));
+	}
+
+	private void validateCarsName(List<String> carsName) {
+		validateNullCarsName(carsName);
 		validateDuplicateCarName(carsName);
 		validateNumberOfCars(carsName);
+	}
 
-		carsName.forEach(carName -> cars.add(new Car(carName)));
+	private void validateNullCarsName(List<String> carsName) {
+		if (carsName == null) {
+			throw new IllegalArgumentException("carsName이 null일 수 없습니다.");
+		}
 	}
 
 	private void validateDuplicateCarName(List<String> carsName) {
