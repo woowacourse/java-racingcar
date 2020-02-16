@@ -12,7 +12,7 @@ public class Cars {
 	private List<Car> cars;
 
 	public Cars(List<String> carNames) {
-		cars = carNames.stream()
+		this.cars = carNames.stream()
 				.map(Car::new)
 				.collect(Collectors.toList());
 	}
