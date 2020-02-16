@@ -31,6 +31,16 @@ public class WinnerTest {
         assertThat(winner.getMaxPosition(cars)).isEqualTo(2);
     }
 
+    @DisplayName("우승자 Car 객체 리스트 구하기")
+    @Test
+    void getWinner() {
+        List<String> result = new ArrayList<>();
+        result.add("a");
+        result.add("b");
+        winner.setWinners(cars);
+        assertThat(winner.getWinners()).isEqualTo(result);
+    }
+
 //    private List<Car> cars = new ArrayList<>();
 //    private Winner winner = new Winner();
 //
