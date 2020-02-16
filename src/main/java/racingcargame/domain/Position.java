@@ -19,7 +19,7 @@ public class Position {
         value++;
     }
 
-    public static int compare(Position a, Position b) {
-        return Integer.compare(a.value, b.value);
+    public int compare(Position b) {
+        return Integer.compare(this.value, b.value);
     }
 }
