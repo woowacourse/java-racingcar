@@ -2,18 +2,18 @@ package model;
 
 public class Position {
 
-    public static final int MIN_MOVE_DELIMITER = 4;
-    public static final int MIN_POSITION = 0;
-    public static final int MOVE = 1;
+    private static final int MIN_MOVE_DELIMITER = 4;
+    private static final int MIN_POSITION = 0;
+    private static final int MOVE = 1;
     private int position;
 
 
-    public Position() {
+    Position() {
         this.position = MIN_POSITION;
     }
 
 
-    public void move(int randomNumber) {
+    void move(int randomNumber) {
         if (validateMove(randomNumber)) {
             this.position += MOVE;
         }
