@@ -1,5 +1,7 @@
 package racingcar.View;
 
+import racingcar.Model.Car;
+
 /**
  * 클래스 이름 : OutputView.java
  *
@@ -31,10 +33,10 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public static void printPositionByDash(String carName, int position) {
+    public static void printPositionByDash(Car car) {
         StringBuilder outputValue = new StringBuilder();
-        outputValue.append(carName).append(COLON);
-        for (int i = 0; i < position; i++) {
+        outputValue.append(car.getName()).append(COLON);
+        for (int i = 0; i < car.getPosition(); i++) {
             outputValue.append(DASH);
         }
         System.out.println(outputValue);

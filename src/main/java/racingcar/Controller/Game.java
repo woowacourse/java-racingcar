@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import racingcar.Model.Car;
-import racingcar.View.InputView;
 import racingcar.View.OutputView;
 
 /**
@@ -21,18 +20,16 @@ import racingcar.View.OutputView;
 public class Game {
     private static final int INDEX_START = 0;
 
-    private static List<Car> cars = new ArrayList<>();
+    private static List<Car> gamecars = new ArrayList<>();
     private static int trialTime;
 
-    public static void initialize() {
-        String[] carNames = InputView.inputCarName();
-        for (String name : carNames) {
-            cars.add(new Car(name));
-        }
-        trialTime = InputView.inputTrialTime().getTrialTime();
+    public static void initialize(List<Car> cars, int tryNo) {
+        gamecars = cars;
+        trialTime = tryNo;
+
     }
 
-    public static void race() { // TODO : 출력 분리
+    public static void race() {
         OutputView.printResultMessage();
         for (int index = INDEX_START; index < trialTime; index++) {
             raceOneRound();
@@ -41,15 +38,15 @@ public class Game {
     }
 
     private static void raceOneRound() {
-        for (Car car : cars) {
+        for (Car car : gamecars) {
             car.goOrNot();
-            car.showCurrentPosition();
+            OutputView.printPositionByDash(car);
         }
     }
 
     public static void showWinner() {
-        Car topPositionCar = findTopPositionCar(cars);
-        for (Car car : cars) {
+        Car topPositionCar = findTopPositionCar(gamecars);
+        for (Car car : gamecars) {
             topPositionCar.findWinners(car);
         }
         OutputView.printWinners(Car.winners.toString());
@@ -58,14 +55,21 @@ public class Game {
     public static Car findTopPositionCar(List<Car> cars) {
         Car winner = cars.get(0);
         int carSize = cars.size();
+
         if (carSize == 1) {
             return winner;
         }
-        // TODO 힌트 : 우승자를 알기 위해서는 가장 먼 position의 위치, 이 위치와 동일한 자동차들
+
         for (int i = 1; i < carSize; i++) {
-            if (!winner.comparePosition(cars.get(i))) {
-                winner = cars.get(i);
-            }
+            winner = findWinner(cars, winner, i);
+        }
+
+        return winner;
+    }
+
+    private static Car findWinner(List<Car> cars, Car winner, int i) {
+        if (!winner.comparePosition(cars.get(i))) {
+            winner = cars.get(i);
         }
         return winner;
     }

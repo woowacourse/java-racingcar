@@ -18,21 +18,21 @@ public class Car {
 
     public static StringBuilder winners = new StringBuilder();
 
-    private String carName;
-    private int position;
+    private Name carName;
+    private Position position;
 
-    public Car(String carName) {
-        checkEmptyCarName(carName);
-        checkSmallerThanSix(carName);
+    public Car(Name carName) {
+        checkEmptyCarName(carName.getName());
+        checkSmallerThanSix(carName.getName());
         this.carName = carName;
-        this.position = INITIAL_POSITION;
+        this.position = new Position();
     }
 
-    public Car(String carName, int position) {
-        checkEmptyCarName(carName);
-        checkSmallerThanSix(carName);
+    public Car(Name carName, int position) {
+        checkEmptyCarName(carName.getName());
+        checkSmallerThanSix(carName.getName());
         this.carName = carName;
-        this.position = position;
+        this.position = new Position(position);
     }
 
     public static void checkEmptyCarName(String carName) {
@@ -49,7 +49,7 @@ public class Car {
 
     public void goOrNot() {
         if (isGo()) {
-            position++;
+            position.go();
         }
     }
 
@@ -59,11 +59,7 @@ public class Car {
     }
 
     public boolean comparePosition(Car target) {
-        return this.position > target.position;
-    }
-
-    public void showCurrentPosition() {
-        OutputView.printPositionByDash(carName, position);
+        return this.position.getPosition() > target.position.getPosition();
     }
 
     public void findWinners(Car car) {
@@ -71,5 +67,13 @@ public class Car {
             winners.append(", ");
             winners.append(car.carName);
         }
+    }
+
+    public String getName() {
+        return this.carName.getName();
+    }
+
+    public int getPosition() {
+        return this.position.getPosition();
     }
 }

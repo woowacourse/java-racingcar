@@ -1,6 +1,11 @@
 package racingcar;
 
 import racingcar.Controller.Game;
+import racingcar.Model.Car;
+import racingcar.View.InputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 클래스 이름 : Main.java
@@ -15,7 +20,9 @@ import racingcar.Controller.Game;
 
 public class Main {
     public static void main(String[] args) {
-        Game.initialize();
+        List<Car> cars = InputView.inputCarName();
+        int tryNo = InputView.inputTrialTime().getTrialTime();
+        Game.initialize(cars, tryNo);
         Game.race();
         Game.showWinner();
     }
