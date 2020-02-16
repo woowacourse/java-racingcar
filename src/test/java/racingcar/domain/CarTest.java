@@ -19,7 +19,7 @@ class CarTest {
     void getCarNameAndPosition() {
         int position = 0;
 
-        Assertions.assertThat(car).extracting("name", "position").contains(TEST_NAME, position);
+        Assertions.assertThat(car).extracting("name", "position").contains("pobi", position);
     }
 
     @ParameterizedTest

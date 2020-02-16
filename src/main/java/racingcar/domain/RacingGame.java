@@ -9,6 +9,7 @@ import racingcar.view.InputView;
 
 public class RacingGame {
 
+    private static final int ZERO = 0;
     private List<Car> racingCars;
 
     public RacingGame(List<Car> racingCars) {
@@ -33,7 +34,7 @@ public class RacingGame {
     }
 
     private static void checkNameNull(String[] carNames) {
-        if (carNames.length == 0) {
+        if (carNames.length == ZERO) {
             throw new IllegalArgumentException("자동차 이름이 없습니다.");
         }
     }
