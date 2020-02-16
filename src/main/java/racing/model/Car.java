@@ -35,4 +35,11 @@ public class Car {
         }
     }
 
+    public String getPositionByDash(int position) {
+        StringBuilder dash = new StringBuilder();
+        for (int index = 0; index < position; index++){
+            dash.append("-");
+        }
+        return dash.toString();
+    }
 }
