@@ -3,7 +3,6 @@ package racingGame.domain;
 import org.junit.jupiter.api.Test;
 import racingGame.utils.ImmovableNumberGenerator;
 import racingGame.utils.MovableNumberGenerator;
-import racingGame.utils.NumberGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,10 +12,9 @@ public class CarTest {
     @Test
     void move_랜덤_값이_3_이하() {
         Car car = new Car(new Name("test"));
-        NumberGenerator numberGenerator = new ImmovableNumberGenerator();
         final int initPosition = car.getPosition();
 
-        car.move(numberGenerator.generateNumber());
+        car.move(new ImmovableNumberGenerator());
         final int actual = car.getPosition();
 
         final int expected = initPosition;
@@ -27,10 +25,9 @@ public class CarTest {
     @Test
     void move_랜덤_값이_4_이상() {
         Car car = new Car(new Name("test"));
-        NumberGenerator numberGenerator = new MovableNumberGenerator();
         final int initPosition = car.getPosition();
 
-        car.move(numberGenerator.generateNumber());
+        car.move(new MovableNumberGenerator());
         final int actual = car.getPosition();
 
         final int expected = initPosition + MOVING_UNIT;
@@ -41,11 +38,10 @@ public class CarTest {
     @Test
     void isWinnerPosition_우승한_위치의_자동차() {
         Car car = new Car(new Name("test"));
-        NumberGenerator numberGenerator = new MovableNumberGenerator();
         final int winnerPosition = 2;
 
-        car.move(numberGenerator.generateNumber());
-        car.move(numberGenerator.generateNumber());
+        car.move(new MovableNumberGenerator());
+        car.move(new MovableNumberGenerator());
 
         assertThat(car.isSamePosition(winnerPosition)).isTrue();
     }
@@ -53,10 +49,9 @@ public class CarTest {
     @Test
     void isWinnerPosition_우승하지_못한_위치의_자동차() {
         Car car = new Car(new Name("test"));
-        NumberGenerator numberGenerator = new MovableNumberGenerator();
         final int winnerPosition = 2;
 
-        car.move(numberGenerator.generateNumber());
+        car.move(new MovableNumberGenerator());
 
         assertThat(car.isSamePosition(winnerPosition)).isFalse();
     }

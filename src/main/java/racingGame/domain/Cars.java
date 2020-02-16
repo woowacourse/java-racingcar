@@ -1,6 +1,5 @@
 package racingGame.domain;
 
-import racingGame.utils.NumberGenerator;
 import racingGame.utils.RandomNumberGenerator;
 
 import java.util.*;
@@ -23,12 +22,11 @@ public class Cars {
     }
 
     public void moveCars() {
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-        cars.stream().forEach(car -> car.move(numberGenerator.generateNumber()));
+        cars.stream().forEach(car -> car.move(new RandomNumberGenerator()));
     }
 
-    public void updateMaximumPosition() {
-        maximumPosition = cars.stream()
+    public int getMaximumPosition() {
+        return cars.stream()
                 .max(Comparator.comparingInt(Car::getPosition))
                 .get()
                 .getPosition();
@@ -37,13 +35,12 @@ public class Cars {
     public List<Car> getWinnersList() {
         List<Car> winners = new ArrayList<>();
 
-        updateMaximumPosition();
         cars.forEach(car -> addIfWinner(winners, car));
         return winners;
     }
 
     private void addIfWinner(List<Car> winners, final Car car) {
-        if (car.isSamePosition(maximumPosition)) {
+        if (car.isSamePosition(getMaximumPosition())) {
             winners.add(car);
         }
     }

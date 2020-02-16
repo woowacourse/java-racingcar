@@ -21,10 +21,10 @@ public class StringUtilTest {
     @Test
     void convertPositionToString_자동차_위치를_문자로_변환() {
         final Car car = new Car(new Name("test"));
-        car.move(9);
-        car.move(9);
-        car.move(9);
-        car.move(9);
+        car.move(new MovableNumberGenerator());
+        car.move(new MovableNumberGenerator());
+        car.move(new MovableNumberGenerator());
+        car.move(new MovableNumberGenerator());
 
         final String actual = StringUtil.convertPositionToString(car.getPosition());
 

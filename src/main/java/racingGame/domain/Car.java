@@ -1,5 +1,6 @@
 package racingGame.domain;
 
+import racingGame.utils.NumberGenerator;
 import racingGame.utils.StringUtil;
 
 import java.util.Objects;
@@ -16,8 +17,8 @@ public class Car {
         this.name = name;
     }
 
-    public void move(final int randomNumber) {
-        if (isMove(randomNumber)) {
+    public void move(final NumberGenerator numberGenerator) {
+        if (isMove(numberGenerator.generateNumber())) {
             this.position++;
         }
     }
