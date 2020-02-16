@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class GameParser {
 
     private static final String NAME_INPUT_DELIMITER = ",";
+    private static final String NOT_NUMBER_EXCEPTION = "시도 횟수는 숫자만 입력 가능합니다.";
 
     public static CarRace generateCarRace(String carNamesInput) {
         List<String> names = Arrays.asList(carNamesInput.split(NAME_INPUT_DELIMITER));
@@ -24,7 +25,7 @@ public class GameParser {
         try {
             return new TrialTimes(Integer.parseInt(trialTimesInput));
         } catch (NumberFormatException ne) {
-            throw new IllegalArgumentException("시도 횟수는 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(NOT_NUMBER_EXCEPTION);
         }
     }
 }

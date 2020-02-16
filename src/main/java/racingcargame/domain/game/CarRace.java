@@ -15,7 +15,8 @@ import java.util.stream.Collectors;
 
 public class CarRace {
 
-    private static final int MINIMUM_NUMBER_OF_CARS = 2;
+    private static final String CARS_IS_EMPTY_EXCEPTION = "자동차 경주는 최소 2대 이상의 자동차가 있을 경우 가능합니다.";
+    private static final String CAR_NAME_DUPLICATE_EXCEPTION = "자동차 이름에 중복이 있습니다.";
 
     private final List<Car> cars;
 
@@ -25,13 +26,13 @@ public class CarRace {
     }
 
     private void validate(List<Car> cars) {
-        if (cars.size() < MINIMUM_NUMBER_OF_CARS) {
-            throw new IllegalArgumentException("자동차 경주는 최소 2대 이상의 자동차가 있을 경우 가능합니다.");
+        if (cars == null || cars.isEmpty()) {
+            throw new IllegalArgumentException(CARS_IS_EMPTY_EXCEPTION);
         }
 
         Set<Car> carSet = new HashSet<>(cars);
         if (carSet.size() != cars.size()) {
-            throw new IllegalArgumentException("자동차 이름에 중복이 있습니다.");
+            throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION);
         }
     }
 

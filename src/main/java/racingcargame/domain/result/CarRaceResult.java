@@ -4,6 +4,7 @@ import java.util.List;
 
 public class CarRaceResult {
 
+    public static final int ROUND_INDEX_DIFFERENCE = 1;
     private final List<RoundResult> roundResultList;
 
     public CarRaceResult(List<RoundResult> roundResultList) {
@@ -20,6 +21,6 @@ public class CarRaceResult {
     }
 
     private int getLastIndex() {
-        return roundResultList.size() - 1;
+        return roundResultList.size() - ROUND_INDEX_DIFFERENCE;
     }
 }

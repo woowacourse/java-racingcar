@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 public class RoundResult {
 
     private static final String CAR_STATUS_DELIMITER = "\n";
+    private static final int DEFAULT_POSITION = 0;
+
     private final List<CarSnapShot> carSnapShots;
 
     public RoundResult(List<CarSnapShot> carSnapShots) {
@@ -30,7 +32,7 @@ public class RoundResult {
     }
 
     private int getMaxPosition() {
-        return carSnapShots.stream().mapToInt(CarSnapShot::getPosition).max().orElse(0);
+        return carSnapShots.stream().mapToInt(CarSnapShot::getPosition).max().orElse(DEFAULT_POSITION);
     }
 
 }
