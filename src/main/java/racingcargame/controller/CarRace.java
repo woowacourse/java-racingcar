@@ -1,6 +1,5 @@
 package racingcargame.controller;
 
-import jdk.internal.util.xml.impl.Input;
 import racingcargame.domain.Cars;
 import racingcargame.domain.Names;
 import racingcargame.view.input.InputView;
