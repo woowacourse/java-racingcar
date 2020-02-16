@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /*
@@ -17,11 +19,26 @@ import java.util.Objects;
 public class Position {
 	private static final int MIN_POSITION_VALUE = 0;
 	private static final int MOVING_DISTANCE = 1;
+
 	private static final String ILLEGAL_CAR_POSITION_EXCEPTION_MESSAGE = "position can not be negative";
 
-	private int position;
+	private static final int CACHE_MINIMUM = 0;
+	private static final int CACHE_MAXIMUM = 256;
+	private static final Map<Integer, Position> positionCache = new HashMap<>();
 
-	public Position(int position) {
+	static {
+		initPositionCache();
+	}
+
+	private static void initPositionCache() {
+		for (int i = CACHE_MINIMUM; i <= CACHE_MAXIMUM; i++) {
+			positionCache.put(i, new Position(i));
+		}
+	}
+
+	private final int position;
+
+	private Position(int position) {
 		validatePositionRange(position);
 		this.position = position;
 	}
@@ -32,8 +49,15 @@ public class Position {
 		}
 	}
 
-	void moveForward() {
-		position += MOVING_DISTANCE;
+	static Position ofValue(int position) {
+		if (positionCache.containsKey(position)) {
+			return positionCache.get(position);
+		}
+		return new Position(position);
+	}
+
+	Position moveForward() {
+		return ofValue(position + MOVING_DISTANCE);
 	}
 
 	boolean isGreaterThanOrEqualTo(Position otherPosition) {

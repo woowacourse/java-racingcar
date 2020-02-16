@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /*
@@ -17,23 +18,26 @@ import org.junit.jupiter.api.Test;
  *
  */
 class PositionTest {
+	@DisplayName("포지션 예외 테스트")
 	@Test
-	void 포지션_예외_테스트() {
-		assertThatThrownBy(() -> new Position(-1))
+	void invalid_position_test() {
+		assertThatThrownBy(() -> Position.ofValue(-1))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
+	@DisplayName("포지션 이동 테스트")
 	@Test
-	void 포지션_Move_테스트() {
-		Position position = new Position(0);
-		position.moveForward();
-		assertThat(position).extracting("position").isEqualTo(1);
+	void valid_position_test() {
+		Position position = Position.ofValue(0);
+		Position newPosition = position.moveForward();
+		assertThat(newPosition).extracting("position").isEqualTo(1);
 	}
 
+	@DisplayName("두 포지션 간 위치 비교 테스트")
 	@Test
-	void 두포지션_비교_테스트() {
-		Position positionFirst = new Position(10);
-		Position positionSecond = new Position(5);
+	void compare_each_position_test() {
+		Position positionFirst = Position.ofValue(10);
+		Position positionSecond = Position.ofValue(5);
 		assertThat(positionFirst.isGreaterThanOrEqualTo(positionSecond)).isTrue();
 	}
 }

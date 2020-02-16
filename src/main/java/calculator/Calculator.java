@@ -16,10 +16,11 @@ import java.util.regex.Pattern;
  *
  */
 public class Calculator {
-	public static final String DEFAULT_DELIMITER = "[:,]";
-	public static final Pattern DEFAULT_INPUT_PATTERN = Pattern.compile("-?[0-9]+([:,]-?[0-9]+)*");
-	public static final Pattern CUSTOM_INPUT_PATTERN = Pattern.compile("//(.)\n(.*)");
-	public static final String EXCEPTION_INAPPROPRIATE_CUSTOM_FORMAT = "inappropriate custom format";
+	private static final String DEFAULT_DELIMITER = "[:,]";
+	private static final Pattern DEFAULT_INPUT_PATTERN = Pattern.compile("-?[0-9]+([:,]-?[0-9]+)*");
+	private static final Pattern CUSTOM_INPUT_PATTERN = Pattern.compile("//(.)\n(.*)");
+
+	private static final String EXCEPTION_INAPPROPRIATE_CUSTOM_FORMAT = "inappropriate custom format";
 
 	private Calculator() {
 	}

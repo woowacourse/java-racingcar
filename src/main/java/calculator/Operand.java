@@ -18,11 +18,17 @@ import java.util.Map;
 public class Operand {
 	private static final int MINIMUM_NUMBER = 0;
 	private static final String EXCEPTION_NEGATIVE_NUMBER = "negative number is not able to use";
-	private static final Map<Integer, Operand> operandCache;
+
+	private static final Map<Integer, Operand> operandCache = new HashMap<>();
+	private static final int CACHE_MINIMUM = 0;
+	private static final int CACHE_MAXIMUM = 255;
 
 	static {
-		operandCache = new HashMap<>();
-		for (int i = 0; i < 256; i++) {
+		initCache();
+	}
+
+	private static void initCache() {
+		for (int i = CACHE_MINIMUM; i <= CACHE_MAXIMUM; i++) {
 			operandCache.put(i, new Operand(i));
 		}
 	}

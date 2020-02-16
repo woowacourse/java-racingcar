@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /*
@@ -17,8 +18,9 @@ import org.junit.jupiter.api.Test;
  *
  */
 class PowerGeneratorTest {
+	@DisplayName("동력이 정상적으로 생성되었는지 테스트")
 	@Test
-	void testGeneratingPower() {
+	void generatingPowerTest() {
 		PowerGenerator generator = () -> new Power(5);
 		Power powerLevel = generator.generatePower();
 		assertThat(powerLevel).isEqualTo(new Power(5));

@@ -16,7 +16,7 @@ import java.util.Objects;
  */
 public class Car {
 	private final Name name;
-	private final Position position;
+	private Position position;
 
 	public Car(String name) {
 		this(name, 0);
@@ -24,12 +24,12 @@ public class Car {
 
 	public Car(String name, int position) {
 		this.name = new Name(name);
-		this.position = new Position(position);
+		this.position = Position.ofValue(position);
 	}
 
 	public void move(Power power) {
 		if (power.isMovable()) {
-			position.moveForward();
+			this.position = position.moveForward();
 		}
 	}
 

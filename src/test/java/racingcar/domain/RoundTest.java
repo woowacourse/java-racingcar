@@ -2,10 +2,9 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 /*
@@ -21,14 +20,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  *
  */
 class RoundTest {
-	private Round round;
-
-	@BeforeEach
-	void setUp() {
-		round = new Round(4);
-	}
-
-	@DisplayName("부적절한 라운드 횟수 입력")
+	@DisplayName("부적절한 라운드 횟수 입력시 예외 발생 테스트")
 	@ParameterizedTest
 	@ValueSource(ints = {0, -1})
 	void testRound(int numberOfRound) {
@@ -37,17 +29,11 @@ class RoundTest {
 			.hasMessage("round number must be positive");
 	}
 
-	@DisplayName("마지막 라운드 아닌가 체크 - True")
-	@Test
-	void testisFinalRound_success() {
-		int checkRound = 3;
-		assertThat(round.isNonFinalRound(checkRound)).isTrue();
-	}
-
-	@DisplayName("마지막 라운드 맞는지 체크 - False")
-	@Test
-	void testisFinalRound_fail() {
-		int checkRound = 4;
-		assertThat(round.isNonFinalRound(checkRound)).isFalse();
+	@DisplayName("현재 라운드가 마지막 라운드가 아닌지 체크 하는 테스트")
+	@ParameterizedTest
+	@CsvSource({"3,true", "4,false"})
+	void isNonFinalRound_test(int currentRound, boolean expected) {
+		Round round = new Round(4);
+		assertThat(round.isNonFinalRound(currentRound)).isEqualTo(expected);
 	}
 }

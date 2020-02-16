@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 /*
@@ -22,15 +23,11 @@ import org.junit.jupiter.params.provider.ValueSource;
  */
 public class CalculatorTest {
 	@DisplayName("빈 문자열 혹은 null값이 들어온 경우 0 반환")
-	@Test
-	void calculate_emptyOrNull_success() {
-		int result = Calculator.calculate("");
-		assertThat(result).isEqualTo(0);
-
-		result = Calculator.calculate(null);
-		assertThat(result).isEqualTo(0);
-
-		result = Calculator.calculate("  ");
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = {"    ", "  ", " ", "\n", "\t"})
+	void calculate_emptyOrNull_success(String input) {
+		int result = Calculator.calculate(input);
 		assertThat(result).isEqualTo(0);
 	}
 

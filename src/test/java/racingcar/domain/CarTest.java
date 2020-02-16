@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 /*
@@ -36,33 +37,26 @@ public class CarTest {
 		assertThat(car).isNotNull();
 	}
 
-	@Test
-	void testRun() {
-		car.move(new Power(4));
-		assertThat(car).extracting("position").isEqualTo(1);
+	@DisplayName("동력이 주어진 경우, 자동차가 움직이는지 테스트")
+	@ParameterizedTest
+	@CsvSource(value = {"4,1", "9,1", "3,0", "0,0"})
+	void testRunOrStop(int powerLevel, int expectedPosition) {
+		car.move(new Power(powerLevel));
+		assertThat(car).extracting("position").isEqualTo(expectedPosition);
 	}
 
-	@Test
-	void testStop() {
-		car.move(new Power(0));
-		assertThat(car).extracting("position").isEqualTo(0);
-	}
-
+	@DisplayName("두 자동차중 더 멀리나간 자동차를 반환하는지 테스트")
 	@Test
 	void getFartherCarTest() {
 		Car car2 = new Car("붕붕2", 2);
 		assertThat(car.getFartherCar(car2)).isEqualTo(car2);
 	}
 
-	@Test
-	void isSamePositionCarTest_true() {
-		Car car2 = new Car("붕붕2", 0);
-		assertThat(car.isSamePosition(car2)).isTrue();
-	}
-
-	@Test
-	void isSamePositionCarTest_false() {
-		Car car2 = new Car("붕붕2",2);
-		assertThat(car.isSamePosition(car2)).isFalse();
+	@DisplayName("두 자동차가 같은 위치에 있는지 반환하는 테스트")
+	@ParameterizedTest
+	@CsvSource(value = {"0,true", "2,false"})
+	void isSamePositionCar_test(int position, boolean expected) {
+		Car car2 = new Car("붕붕2", position);
+		assertThat(car.isSamePosition(car2)).isEqualTo(expected);
 	}
 }
