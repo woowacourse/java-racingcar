@@ -20,6 +20,15 @@ public class CarLineUpTest {
     }
 
     @Test
+    void 중복이름여부_확인(){
+        boolean result = lineUp.isContainAlready("토니");
+        assertThat(result).isTrue();
+
+        result = lineUp.isContainAlready("토니22");
+        assertThat(result).isFalse();
+    }
+
+    @Test
     void 우승자_찾기(){
         String winner = lineUp.findWinner();
         assertThat(winner).isEqualTo("보스독");
