@@ -25,4 +25,8 @@ public class OutputView {
     public static void printCurrentDashResult(String currentResult) {
         System.out.println(currentResult);
     }
+
+    public static void printWinners(String winners) {
+        System.out.println(winners);
+    }
 }

@@ -26,4 +26,20 @@ public class CarLineUp {
             OutputView.printCurrentDashResult(car.getCurrentResult());
         }
     }
+
+    public String findWinner() {
+        Position topPosition = lineUp.get(0).getPosition();
+        for (int index = 1; index < lineUp.size(); index++){
+            topPosition = topPosition.comparePositionSize(lineUp.get(index).getPosition());
+        }
+
+        StringBuilder winner = new StringBuilder();
+        for (Car car : lineUp){
+            if (car.getPosition().equals(topPosition)){
+                winner.append(", ");
+                winner.append(car);
+            }
+        }
+        return winner.toString();
+    }
 }

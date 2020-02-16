@@ -14,6 +14,14 @@ public class Car {
         position = new Position();
     }
 
+    public Car(String name, int position) {
+        name = name.trim();
+        checkNameLengthUnderSix(name);
+        checkNullOrEmptyName(name);
+        this.name = name;
+        this.position = new Position(position);
+    }
+
 
     private void checkNullOrEmptyName(String name) {
         if (name == null || name.isEmpty()){
@@ -49,5 +57,14 @@ public class Car {
         result.append(name).append(" : ");
         result.append(position.getPositionByDash());
         return result.toString();
+    }
+
+    public Position getPosition() {
+        return this.position;
+    }
+
+    @Override
+    public String toString(){
+        return name;
     }
 }

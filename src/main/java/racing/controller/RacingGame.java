@@ -15,6 +15,7 @@ public class RacingGame {
         enrollLineUp();
         initializeTrialTime();
         race();
+        showWinners();
     }
 
     private void enrollLineUp(){
@@ -32,6 +33,11 @@ public class RacingGame {
         OutputView.printResultMessage();
         trialTime.raceByTrialTime(lineUp);
     }
+
+    private void showWinners() {
+        OutputView.printWinners(lineUp.findWinner() + "가 최종 우승했습니다.");
+    }
+
 
     public void checkNameDuplicate(CarLineUp lineUp, String name) {
         if (lineUp.isContainAlready(name)){
