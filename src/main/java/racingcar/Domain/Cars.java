@@ -1,6 +1,7 @@
 package racingcar.Domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 클래스 이름 : .java
@@ -26,15 +27,23 @@ public class Cars {
 		}
 	}
 
-	public List<Car> getCars() {
-		return this.cars;
-	}
-
 	public int findTopCarPosition() {
 		return cars.stream()
 				.map(Car::getPosition)
 				.map(Position::getPosition)
 				.max(Integer::compare)
 				.orElseThrow(IllegalArgumentException::new);
+	}
+
+	public List<Name> findWinners(int topCarPosition) {
+		return cars.stream()
+				.filter(car -> {
+					return car.isSamePosition(topCarPosition);
+				})
+				.map(Car::getCarName)
+				.collect(Collectors.toList());
+	}
+	public List<Car> getCars() {
+		return this.cars;
 	}
 }

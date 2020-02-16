@@ -61,4 +61,19 @@ public class CarsTest {
 		assertThat(cars.findTopCarPosition()).isEqualTo(8);
 	}
 
+	@Test
+	@DisplayName("가장 멀리간 자동차들을 찾는 테스트")
+	void findWinners_우승자_찾기() {
+		//given
+		inputCars.add(new Car("babo", 8));
+		Cars cars = new Cars(inputCars);
+		int topCarPosition = cars.findTopCarPosition();
+		//when
+		List<Name> winnerNames = cars.findWinners(topCarPosition);
+		//then
+		assertThat(winnerNames).isEqualTo(new ArrayList<Name>(
+				Arrays.asList(new Name("pobi"),
+						new Name("babo"))
+		));
+	}
 }

@@ -61,17 +61,21 @@ public class Car {
 		}
 		OutputView.printPositionByDash(outputValue.toString());
 	}
-//
-//	public void findWinners(final Car car) {
-//		if (this.position.equals(car.position)) {
-//			winners.add(car.carName.getName());
-//		}
-//	}
+
+	public void findWinners(final Car car) {
+		if (this.position.equals(car.position)) {
+			winners.add(car.carName.getName());
+		}
+	}
 // TODO 지금할건 일든 차 찾는걸 cars로 위임하기
 	public String getWinners() {
 		return winners.stream()
 				.map(String::valueOf)
 				.collect(joining(NAME_DIVIDER));
+	}
+
+	public boolean isSamePosition(int targetCarPosition) {
+		return this.position.getPosition() == targetCarPosition;
 	}
 
 	@Override
@@ -91,6 +95,10 @@ public class Car {
 
 	public Position getPosition() {
 		return this.position;
+	}
+
+	public Name getCarName() {
+		return this.carName;
 	}
 
 }
