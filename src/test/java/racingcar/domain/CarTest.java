@@ -19,8 +19,9 @@ public class CarTest {
     @Test
     void 생성된_랜덤값이_4이상이면_이동한다() {
         Position position = new Position(0);
-        position.moveByRandom(new RandomNumber());
-        if(position.getDistance() >= 4) {
+        RandomNumber randomNumber = new RandomNumber();
+        position.moveByRandom(randomNumber);
+        if(randomNumber.getRandomNumber() >= 4) {
             assertThat(position.getDistance() == 1).isTrue();
         }
     }

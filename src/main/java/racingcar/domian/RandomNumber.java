@@ -17,6 +17,10 @@ public class RandomNumber {
         }
     }
 
+    public static int getRandomNumber() {
+        return randomNumber;
+    }
+
     private static int generateRandom() {
         return random.nextInt(RANDOM_MAX_LIMIT_NUMBER);
     }
