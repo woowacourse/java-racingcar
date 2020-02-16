@@ -22,16 +22,6 @@ import racingcar.Model.Car;
  */
 
 public class CarTest {
-    private static Car car = new Car("보스독");
-
-    @ParameterizedTest
-    @DisplayName("isGo 테스트")
-    @CsvSource(value = {
-            "1,false", "2,false", "3,false", "4,true", "5,true", "6,true", "7,true", "8,true", "9,true"
-    })
-    void isGo_랜덤숫자가_4이상일때만_true_반환(int randomNumber, Boolean result) {
-        assertThat(car.isGo(randomNumber)).isEqualTo(result);
-    }
 
     @Test
     @DisplayName("포지션이 더 크면 true 반환")

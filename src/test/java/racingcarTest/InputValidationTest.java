@@ -21,15 +21,20 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputValidationTest {
     @Test
-    @DisplayName("null 또는 빈 문자열 입력 시")
+    @DisplayName("null 입력 시 예외 처리")
     void inputValidation_null_또는_빈문자열_입력() {
         String[] nullResult = null;
-        String[] emptyResult = {""};
 
         assertThatThrownBy(() -> {
             InputValidation.checkNullOrEmptyInput(nullResult);
         }).isInstanceOf(NullPointerException.class)
                 .hasMessage("입력이 null 이나 빈 문자열입니다.");
+    }
+
+    @Test
+    @DisplayName("빈 문자열 입력 시 예외 처리")
+    void inputValidation_빈문자열_입력() {
+        String[] emptyResult = {""};
 
         assertThatThrownBy(() -> {
             InputValidation.checkNullOrEmptyInput(emptyResult);
