@@ -29,4 +29,12 @@ public class Cars {
 	public List<Car> getCars() {
 		return this.cars;
 	}
+
+	public int findTopCarPosition() {
+		return cars.stream()
+				.map(Car::getPosition)
+				.map(Position::getPosition)
+				.max(Integer::compare)
+				.orElseThrow(IllegalArgumentException::new);
+	}
 }

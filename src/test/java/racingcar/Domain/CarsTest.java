@@ -19,15 +19,16 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
  * <p>
  * 날짜 : 2020/02/16
  */
+
 public class CarsTest {
 	private List<Car> inputCars;
 
 	@BeforeEach
 	void setUp() {
 		inputCars = new ArrayList<>(Arrays.asList(
-				new Car("toney"),
-				new Car("pobi"),
-				new Car("cozy")
+				new Car("toney", 5),
+				new Car("pobi", 8),
+				new Car("cozy", 2)
 		));
 	}
 
@@ -44,10 +45,20 @@ public class CarsTest {
 	@DisplayName("Car 중복 이름시 예외처리 테스트")
 	void Cars_중복_이름_있다면_예외처리() {
 		//given
-		System.out.println(inputCars.toString());
 		inputCars.add(new Car("pobi"));
-		System.out.println(inputCars.toString());
 		//when then
 		assertThatIllegalArgumentException().isThrownBy(() -> new Cars(inputCars));
 	}
+
+	@Test
+	@DisplayName("가장 멀리간 자동차의 position 찾는 테스트")
+	void findTopCarPosition_가장_멀리간_자동차의_position_찾기() {
+		//given
+		inputCars.add(new Car("babo", 8));
+		//when
+		Cars cars = new Cars(inputCars);
+		//then
+		assertThat(cars.findTopCarPosition()).isEqualTo(8);
+	}
+
 }
