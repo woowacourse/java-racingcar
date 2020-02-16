@@ -28,8 +28,7 @@ public class Car {
 
     /**
      * accelerate 메서드는 랜덤한 값과 기준이 되는 값을 전달받아,
-     * 랜덤한 값이 기준이 되는 값을 넘은 경우 position을 증가시킨다.
-     * 또한 이 증가 메서드 호출 시, Car 인스턴스 전체에 공유되는 winnerRecord값을 갱신해준다.
+     * 랜덤한 값이 기준이 되는 값을 넘은 경우 position의 가속 메서드를 호출한다.
      *
      * @param random 비교를 위한 임의의 정수형 변수이다.
      * @param bound  가속을 위한 비교의 기준값인 정수형 변수이다.

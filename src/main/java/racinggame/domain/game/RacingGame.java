@@ -47,6 +47,14 @@ public class RacingGame {
         return random.nextInt(RANDOM_NUMBER_BOUND);
     }
 
+    /**
+     * moveCars는 RacingGame에 포함되어 있는 자동차 인스턴스들 전체에 대해 accelerate를 호출하여,
+     * 전진하거나 혹은 그 자리에 멈추도록 하는 메서드이다.
+     * 각각의 Car 인스턴스의 accelerate 호출이 종료되면, 파라미터로 전달받은 gameStatus에 로그를 전달한다.
+     * 이를 통해 자동차의 진행을 컨트롤러에서 뷰로 전달할 수 있다.
+     *
+     * @param gameStatus
+     */
     public void moveCars(GameStatus gameStatus) {
         for (Car car : cars) {
             car.accelerate(generateRandomNumber(), FORWARD_NUMBER);

@@ -30,7 +30,7 @@ public class Input {
     }
 
     private String getDelimiter() {
-        if(expression.matches(CUSTOM_DELIMITER)) {
+        if (expression.matches(CUSTOM_DELIMITER)) {
             Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(expression);
             if (m.find()) {
                 changeInput(m.group(2));

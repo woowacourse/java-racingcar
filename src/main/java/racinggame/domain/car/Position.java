@@ -45,8 +45,6 @@ public class Position {
 
     /**
      * accelerate는 position에 값을 더해주는 메서드이다.
-     * position 값은 0 이상의 정수이며, 더하는 것만 가능하다.
-     * 그렇기 때문에 accelerate 메서드를 통해서만 조작할 수 있도록 설계하였다.
      * 만약 파라미터 없이 호출될 경우, 상수로 정의된 값만큼 position을 올려준다.
      */
     public void accelerate() {

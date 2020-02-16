@@ -22,12 +22,12 @@ public class GameStatus {
      */
     private Map<String, Integer> carStatus = new LinkedHashMap<>();
 
-    private int maxDistance=0;
+    private int maxDistance = 0;
 
 
     public GameStatus(List<String> names) {
-        for(String name : names){
-            carStatus.put(name,0);
+        for (String name : names) {
+            carStatus.put(name, 0);
         }
     }
 
@@ -61,9 +61,9 @@ public class GameStatus {
         }
     }
 
-    public String getWinnerNames(){
+    public String getWinnerNames() {
         StringBuilder log = new StringBuilder();
-        for(String name : winners){
+        for (String name : winners) {
             log.append(name);
         }
         return log.toString();
@@ -77,7 +77,7 @@ public class GameStatus {
      */
     public void updateCarStatus(String name, int position) {
         carStatus.put(name, position);
-        maxDistance = Integer.max(maxDistance,position);
+        maxDistance = Integer.max(maxDistance, position);
     }
 
     /**
