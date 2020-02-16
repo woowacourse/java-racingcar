@@ -32,13 +32,6 @@ public class CarTest {
 
     @Test
     @SuppressWarnings("NonAsciiCharacters")
-    void 포지션만큼출력() {
-        Car car = new Car("pobi", 3);
-        assertThat(OutputView.printPosition(car)).isEqualTo("pobi : ---\n");
-    }
-
-    @Test
-    @SuppressWarnings("NonAsciiCharacters")
     void 자동차이름이_같은지_확인() {
         Car car = new Car("pobi");
         String name = "pobi";
