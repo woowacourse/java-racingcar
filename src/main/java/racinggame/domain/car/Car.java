@@ -17,23 +17,10 @@ public class Car {
      */
     private static final int START_POSITION = 0;
 
-    /**
-     * 생성자 메서드는 이름을 입력받아, position이 0이고 name이 name(param)인 Car 인스턴스를 생성한다.
-     * 이름과 포지션 모두를 파라미터로 받는 다른 생성자 메서드를 오버로딩한다.
-     *
-     * @param name 이름값을 저장하는 문자열 인스턴스이다.
-     */
     public Car(String name) {
         this(name, START_POSITION);
     }
 
-    /**
-     * 생성자 메서드는 이름과 위치값을 입력받아, position이 position(param)이고 name이 name(param)인 Car 인스턴스를 생성한다.
-     * 테스트 코드에서 사용되며, 기본 생성자에서도 상수값을 파라미터로 하여 호출된다.
-     *
-     * @param name     이름값을 저장하는 문자열 인스턴스이다.
-     * @param position 위치값을 저장하는 정수형 변수이다.
-     */
     public Car(String name, int position) {
         this.name = name;
         this.position = new Position(position);

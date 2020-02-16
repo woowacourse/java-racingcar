@@ -40,7 +40,7 @@ public class Position {
     }
 
     public boolean match(int position) {
-        return position == this.position;
+        return this.position == position;
     }
 
     /**

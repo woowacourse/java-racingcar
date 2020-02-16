@@ -1,8 +1,5 @@
 package racinggame.domain.data;
 
-import racinggame.domain.car.Car;
-import racinggame.view.OutputView;
-
 import java.util.*;
 
 /**
@@ -67,8 +64,6 @@ public class GameStatus {
     /**
      * makeWinnerNames 는 Car 인스턴스의 목록을 받아, 이들 중 경주에서 승리한 인스턴스의 이름 값을
      * 필드에 있는 winners에 추가한다.
-     *
-     * @param cars 게임에 참여한 Car 인스턴스의 목록이다.
      */
     public void makeWinnerNames() {
         for (Map.Entry<String, Integer> entry : carStatus.entrySet()) {
@@ -103,13 +98,15 @@ public class GameStatus {
      * map에 저장된 모든 값에 대해 makeStatusLog를 수행하여 이 값들을 OutputView에 전달한다.
      * 모든 값이 출력된 뒤에는 양식에 맞추어 개행 출력 메서드를 호출한다.
      */
-    public void printStatusLog() {
+    public String getStatusLog() {
+        StringBuilder resultLog = new StringBuilder();
         for (Map.Entry<String, Integer> entry : carStatus.entrySet()) {
             String name = entry.getKey();
             String log = makeStatusLog(name, carStatus.get(name));
-            OutputView.printLog(log);
+            resultLog.append(log);
+            resultLog.append("\n");
         }
-        OutputView.printLine();
+        return resultLog.toString();
     }
 
     /**

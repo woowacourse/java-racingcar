@@ -43,14 +43,7 @@ public class OutputView {
      * @param log 출력할 자동차 주행 기록을 저장한 String 인스턴스이다.
      */
     public static void printLog(String log) {
-        System.out.println(log);
-    }
-
-    /**
-     * printLine 은 줄바꿈 문자를 출력하는 메서드이다.
-     */
-    public static void printLine() {
-        System.out.println();
+        System.out.println(log+"\n");
     }
 
     /**

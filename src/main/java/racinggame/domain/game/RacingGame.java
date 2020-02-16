@@ -1,4 +1,4 @@
-package racinggame.domain;
+package racinggame.domain.game;
 
 import racinggame.domain.data.Names;
 import racinggame.domain.data.GameStatus;
@@ -44,25 +44,14 @@ public class RacingGame {
         return random.nextInt(RANDOM_NUMBER_BOUND);
     }
 
-    /**
-     * play 메서드는 Input 인스턴스를 통해 입력값을 전달받아 Car 인스턴스의 리스트를 만든다.
-     * 이후 이 값을 바탕으로 moveCars를 호출하여 cars에 소속된 Car 인스턴스들을 임의로 가속시킨다.
-     * 이후 이를 바탕으로 output 인스턴스에 승자 목록을 만들 수 있도록 cars를 전달한다.
-     * 이 과정에서 양식에 맞게 OutputView를 통한 포맷, 여백 출력 메서드를 호출한다.
-     *
-     * @param input  입력값을 저장하는 Input 인스턴스이다.
-     * @param gameStatus 출력값을 저장하는 Output 인스턴스이다.
-     */
-    public static void play(Names names, Repeat repeat, GameStatus gameStatus) {
+    public static List<Car> initCars(Names names){
         List<String> splitName = names.splitNamesByComma();
         List<Car> cars = new ArrayList<>();
 
         for(String name : splitName){
             cars.add(new Car(name));
         }
-        OutputView.printResultFormat();
-        moveCars(repeat, gameStatus, cars);
-        gameStatus.makeWinnerNames();//출력 왜 안되는지 확인!!!!!
+        return cars;
     }
 
     /**
@@ -75,15 +64,10 @@ public class RacingGame {
      * @param cars   Car 객체를 저장하는 List 이다.
      * @param repeat 반복할 횟수를 저장하는 정수형 변수이다.
      */
-    private static void moveCars(Repeat repeat, GameStatus gameStatus, List<Car> cars) {
-        int cnt = 0;
-        while(repeat.isLoopDone(cnt)){
-            cnt++;
-            cars.stream().forEach(car -> {
-                car.accelerate(generateRandomNumber(), FORWARD_NUMBER);
-                car.passingLog(gameStatus);
-            });
-            gameStatus.printStatusLog();
+    public static void moveCars(GameStatus gameStatus, List<Car> cars) {
+        for(Car car : cars) {
+            car.accelerate(generateRandomNumber(), FORWARD_NUMBER);
+            car.passingLog(gameStatus);
         }
     }
 }

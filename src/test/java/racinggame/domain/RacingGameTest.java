@@ -10,12 +10,13 @@ import racinggame.domain.data.Names;
 import racinggame.domain.data.GameStatus;
 import racinggame.domain.car.Car;
 import racinggame.domain.data.Repeat;
+import racinggame.domain.game.RacingGame;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGameTest {
-    private static final List<Car> carList = new ArrayList<>();
+    private List<Car> carList = new ArrayList<>();
     Names names;
     Repeat repeat;
     GameStatus gameStatus;
@@ -23,7 +24,6 @@ public class RacingGameTest {
     private final String REPEAT = "5";
 
     void initList() {
-        carList.clear();
         carList.add(new Car("pobi", 0));
         carList.add(new Car("kim", 0));
         carList.add(new Car("park", 0));
@@ -82,7 +82,10 @@ public class RacingGameTest {
 
     @RepeatedTest(value = 100)
     void 레이싱게임_실행_결과_테스트() {
-        RacingGame.play(names, repeat, gameStatus);
+        for(int repeatIterator = 0; repeat.isLoopDone(repeatIterator); repeatIterator++){
+            RacingGame.moveCars(gameStatus, carList);
+        }
+        gameStatus.makeWinnerNames();
         boolean result1 = gameStatus.isContainName("pobi");
         boolean result2 = gameStatus.isContainName("crong");
         boolean result3 = gameStatus.isContainName("honux");
