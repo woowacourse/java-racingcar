@@ -5,15 +5,15 @@ public class AttemptNumber {
     private static final String NOT_POSITIVE_MESSAGE = "양수가 아닙니다.";
     private static final int MIN_ATTEMPT_NUMBER = 1;
 
-    private final int number;
+    private int number;
 
-    public AttemptNumber(String number) {
+    public AttemptNumber(final String number) {
         validateInteger(number);
         validatePositive(number);
         this.number = Integer.parseInt(number);
     }
 
-    public void validateInteger(String number) {
+    private void validateInteger(final String number) {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
@@ -21,13 +21,17 @@ public class AttemptNumber {
         }
     }
 
-    public void validatePositive(String number) {
+    private void validatePositive(final String number) {
         if (Integer.parseInt(number) < MIN_ATTEMPT_NUMBER) {
             throw new IllegalArgumentException(NOT_POSITIVE_MESSAGE);
         }
     }
 
-    public int getNumber() {
-        return number;
+    public boolean isEnd() {
+        if (this.number >= MIN_ATTEMPT_NUMBER) {
+            this.number--;
+            return true;
+        }
+        return false;
     }
 }

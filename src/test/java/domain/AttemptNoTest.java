@@ -1,9 +1,9 @@
 package domain;
 
-import calculator.StringCalculator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.*;
 
 public class AttemptNumberTest {
     @Test
@@ -22,4 +22,15 @@ public class AttemptNumberTest {
         assertThatThrownBy(() -> new AttemptNumber("-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void isEndTest_성공() {
+        assertThat(new AttemptNumber("1").isEnd()).isTrue();
+    }
+
+    @Test
+    void isEndTest_실패() {
+        assertThat(new AttemptNumber("0").isEnd()).isFalse();
+    }
+
 }
