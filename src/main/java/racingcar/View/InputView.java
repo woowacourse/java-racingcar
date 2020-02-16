@@ -2,7 +2,6 @@ package racingcar.View;
 
 import java.util.Scanner;
 
-import racingcar.Controller.InputValidation;
 import racingcar.Model.TrialTime;
 
 /**

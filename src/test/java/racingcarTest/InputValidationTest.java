@@ -2,7 +2,10 @@ package racingcarTest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.Controller.InputValidation;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import racingcar.Model.Name;
+import racingcar.Model.TrialTime;
 
 import java.util.InputMismatchException;
 
@@ -20,34 +23,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  */
 
 public class InputValidationTest {
-    @Test
-    @DisplayName("null 입력 시 예외 처리")
-    void inputValidation_null_또는_빈문자열_입력() {
-        String[] nullResult = null;
-
-        assertThatThrownBy(() -> {
-            InputValidation.checkNullOrEmptyInput(nullResult);
-        }).isInstanceOf(NullPointerException.class)
-                .hasMessage("입력이 null 이나 빈 문자열입니다.");
-    }
-
-    @Test
-    @DisplayName("빈 문자열 입력 시 예외 처리")
-    void inputValidation_빈문자열_입력() {
-        String[] emptyResult = {""};
-
-        assertThatThrownBy(() -> {
-            InputValidation.checkNullOrEmptyInput(emptyResult);
-        }).isInstanceOf(NullPointerException.class)
-                .hasMessage("입력이 null 이나 빈 문자열입니다.");
-    }
-
-    @Test
+    @ParameterizedTest
+    @CsvSource(value = {"a", "", "c"})
     @DisplayName("차 이름에 빈 문자열 입력 시")
-    void inputValidation_차_이름_빈_문자열() {
-        String[] carNames = {"a", "", "c"};
+    void inputValidation_차_이름_빈_문자열(String carNames) {
         assertThatThrownBy(() -> {
-            InputValidation.checkEmptyCarName(carNames);
+            Name.checkEmptyCarName(carNames);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("차 이름은 빈 문자열일 수 없습니다.");
 
@@ -57,8 +38,8 @@ public class InputValidationTest {
     @DisplayName("차 이름이 5글자 이내")
     void inputValidation_차_이름_글자수() {
         assertThatThrownBy(() -> {
-            String[] result = {"Maserati"};
-            InputValidation.checkSmallerThanSix(result);
+            String result = "Maserati";
+            Name.checkSmallerThanSix(result);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차 이름의 길이가 6 이상입니다.");
     }
@@ -68,13 +49,13 @@ public class InputValidationTest {
     void inputValidation_시도횟수가_0이하() {
         assertThatThrownBy(() -> {
             String trialTime = "-4";
-            InputValidation.checkNegativeAndZeroInput(trialTime);
+            TrialTime.checkNegativeAndZeroInput(trialTime);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("음수 또는 0을 입력할 수 없습니다.");
 
         assertThatThrownBy(() -> {
             String trialTime = "0";
-            InputValidation.checkNegativeAndZeroInput(trialTime);
+            TrialTime.checkNegativeAndZeroInput(trialTime);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("음수 또는 0을 입력할 수 없습니다.");
     }
@@ -84,7 +65,7 @@ public class InputValidationTest {
     void inputValidation_시도횟수가_타입_범위초과() {
         assertThatThrownBy(() -> {
             String trialTime = "100000000000";
-            InputValidation.checkIntegerOverflow(trialTime);
+            TrialTime.checkIntegerOverflow(trialTime);
         }).isInstanceOf(ArithmeticException.class)
                 .hasMessage("입력 범위를 초과했습니다.");
     }
@@ -94,7 +75,7 @@ public class InputValidationTest {
     void inputValidation_시도횟수가_소수_입력() {
         assertThatThrownBy(() -> {
             String trialTime = "3.5";
-            InputValidation.checkDecimalNumber(trialTime);
+            TrialTime.checkDecimalNumber(trialTime);
         }).isInstanceOf(InputMismatchException.class)
                 .hasMessage("소수는 입력할 수 없습니다.");
     }
@@ -104,7 +85,7 @@ public class InputValidationTest {
     void inputValidation_시도횟수가_문자_입력() {
         assertThatThrownBy(() -> {
             String trialTime = "abc";
-            InputValidation.checkNotNumber(trialTime);
+            TrialTime.checkNotNumber(trialTime);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("문자는 입력할 수 없습니다.");
     }
