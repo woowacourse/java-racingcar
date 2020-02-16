@@ -9,21 +9,17 @@ public class Name {
     private static final int NAME_MAX_LENGTH = 5;
     private static final String DUPLICATE_NAME_ERROR_MESSAGE = "중복된 이름을 가지고 있습니다.";
     private static final String LENGTH_LIMIT_EXCEED_ERROR_MESSAGE = "RR길이 최대치를 초과하는 이름을 가지고 있습니다.";
-    private static final String SPACE_ERROR_MESSAGE = "공백 이름을 가지고 있습니다.";
+    private static final String SPACE_ERROR_MESSAGE = "공백 혹은 null 이름을 가지고 있습니다.";
 
     private String name;
 
     public Name(String name) {
+        checkBlankOrNullInput(name);
         name = name.trim();
         isDuplicatedNames(name);
         addName(name);
-        valid(name);
-        this.name = name;
-    }
-
-    private void valid(String name) {
         isExceededMaxLength(name);
-        checkBlankInput(name);
+        this.name = name;
     }
 
     private void addName(String name) {
@@ -46,11 +42,11 @@ public class Name {
         }
     }
 
-    private void checkBlankInput(String name) {
-        if (name.isEmpty()) {
+    private void checkBlankOrNullInput(String name) {
+        if (name == null || name.isEmpty()) {
             CAR_NAMES.clear();
             System.out.println(SPACE_ERROR_MESSAGE);
-            throw new RuntimeException();
+            throw new NullPointerException();
         }
     }
 
