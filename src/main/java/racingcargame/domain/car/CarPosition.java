@@ -10,10 +10,6 @@ class CarPosition {
 		this.position = DEFAULT_POSITION;
 	}
 
-	CarPosition(int position) {
-		this.position = position;
-	}
-
 	void increase() {
 		this.position += MOVE_UNIT;
 	}

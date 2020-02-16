@@ -2,9 +2,9 @@ package racingcargame.view;
 
 import java.util.List;
 
-import racingcargame.domain.car.Car;
 import racingcargame.domain.RacingResult;
 import racingcargame.domain.RacingStatus;
+import racingcargame.domain.car.CarDto;
 
 public class OutputView {
 	private static final String MARK = "-";
@@ -18,17 +18,17 @@ public class OutputView {
 		System.out.println("\n실행 결과");
 	}
 
-	private static void printRaceStatus(Car car) {
+	private static void printRaceStatus(CarDto carDto) {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(car.getCarName());
+		sb.append(carDto.getName());
 		sb.append(SEPARATOR);
-		markRaceStatus(car, sb);
+		markRaceStatus(carDto, sb);
 		System.out.println(sb);
 	}
 
-	private static void markRaceStatus(Car car, StringBuilder sb) {
-		for (int i = 0; i < car.getCarPosition(); i++) {
+	private static void markRaceStatus(CarDto carDto, StringBuilder sb) {
+		for (int i = 0; i < carDto.getPosition(); i++) {
 			sb.append(MARK);
 		}
 	}
@@ -36,8 +36,8 @@ public class OutputView {
 	public static void printRaceResult(RacingResult racingResult) {
 		racingResult.getRacingResult().stream()
 			.map(RacingStatus::getRacingStatus)
-			.forEach(cars -> {
-				cars.forEach(OutputView::printRaceStatus);
+			.forEach(carDtos -> {
+				carDtos.forEach(OutputView::printRaceStatus);
 				System.out.println();
 			});
 	}

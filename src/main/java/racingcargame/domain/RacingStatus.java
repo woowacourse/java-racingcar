@@ -1,36 +1,38 @@
 package racingcargame.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcargame.domain.car.Car;
+import racingcargame.domain.car.CarDto;
 
 public class RacingStatus {
-	private List<Car> racingStatus;
+	private List<CarDto> racingStatus;
 
-	RacingStatus(List<Car> racingStatus) {
-		this.racingStatus = cloneCars(racingStatus);
+	RacingStatus(List<Car> cars) {
+		this.racingStatus = createCarDtos(cars);
 	}
 
-	private List<Car> cloneCars(List<Car> cars) {
-		List<Car> tempCars = new ArrayList<>();
-		cars.forEach(car -> tempCars.add(new Car(car)));
-		return tempCars;
+	private List<CarDto> createCarDtos(List<Car> cars) {
+		return cars.stream().map(Car::convertToCarDto).collect(Collectors.toList());
 	}
 
 	List<String> getWinners() {
-		Collections.sort(racingStatus);
-		int maxPosition = racingStatus.get(0).getCarPosition();
+		int maxPosition = calculateMaxPosition();
 
 		return racingStatus.stream()
-			.filter(car -> car.isMaxPosition(maxPosition))
-			.map(Car::getCarName)
+			.filter(carDto -> carDto.isPositionOf(maxPosition))
+			.map(CarDto::getName)
 			.collect(Collectors.toList());
 	}
 
-	public List<Car> getRacingStatus() {
+	private int calculateMaxPosition() {
+		Collections.sort(racingStatus);
+		return racingStatus.get(0).getPosition();
+	}
+
+	public List<CarDto> getRacingStatus() {
 		return racingStatus;
 	}
 }
