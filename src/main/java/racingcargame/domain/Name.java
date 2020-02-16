@@ -1,5 +1,7 @@
 package racingcargame.domain;
 
+import java.util.Objects;
+
 public class Name {
     private static final int NAME_MAX_LENGTH = 5;
     private static final String LENGTH_LIMIT_EXCEED_ERROR_MESSAGE = "길이 최대치를 초과하는 이름을 가지고 있습니다.";
@@ -38,7 +40,13 @@ public class Name {
 
     @Override
     public boolean equals(Object obj) {
-        String anotherName = (String) obj;
-        return anotherName.equals(this.name);
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Name name = (Name) obj;
+        return this.name.equals(name.name);
     }
 }

@@ -1,5 +1,7 @@
 package racingcargame.domain;
 
+import java.util.Objects;
+
 public class Car implements Comparable<Car> {
     private final Name name;
     private Position position;
@@ -43,5 +45,22 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(Car o) {
         return this.position.compare(o.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return Objects.equals(name, car.name);
     }
 }

@@ -1,7 +1,6 @@
 package racingcargame.domain;
 
 import org.junit.jupiter.api.Test;
-import racingcargame.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +19,9 @@ public class RacingCarsTest {
         cars.add(new Car("coil",4));
         RacingCars racingCars = new RacingCars(cars);
         Winners winners = new Winners(racingCars.extractWinners());
-        boolean result = winners.contain("brown");
-        assertThat(result).isTrue();
-        result = winners.contain("coil");
-        assertThat(result).isTrue();
-        result = winners.contain("pobi");
-        assertThat(result).isFalse();
+        List<Car> winnersValues = winners.getValues();
+        assertThat(winnersValues).contains(new Car("brown"), new Car("coil"));
+        assertThat(winnersValues).hasSize(2);
     }
 
     @Test
