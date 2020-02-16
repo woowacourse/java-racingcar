@@ -53,7 +53,9 @@ public class Calculator {
 			throw new IllegalArgumentException(EXCEPTION_INAPPROPRIATE_CUSTOM_FORMAT);
 		}
 		String customDelimiter = matcher.group(1);
-		return matcher.group(2).split(customDelimiter);
+
+		String expressions = matcher.group(2);
+		return expressions.split(customDelimiter);
 	}
 
 	private static int plus(String[] numbers) {

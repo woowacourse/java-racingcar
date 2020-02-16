@@ -2,10 +2,10 @@ package racingcar;
 
 import racingcar.controller.RacingGame;
 import racingcar.domain.Cars;
-import racingcar.domain.Round;
+import racingcar.domain.CarsFactory;
 import racingcar.domain.PowerGenerator;
 import racingcar.domain.RandomPowerGenerator;
-import racingcar.domain.CarsFactory;
+import racingcar.domain.Round;
 import racingcar.view.InputView;
 
 /*

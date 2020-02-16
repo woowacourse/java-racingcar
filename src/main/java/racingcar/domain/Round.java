@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.message.RacingCarMessage;
-
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
@@ -16,6 +14,7 @@ import racingcar.message.RacingCarMessage;
  */
 public class Round {
 	private static final int MINIMUM_NUMBER_OF_ROUND = 1;
+	private static final String NON_POSITIVE_ROUND_EXCEPTION_MESSAGE = "round number must be positive";
 
 	private final int totalRound;
 
@@ -26,7 +25,7 @@ public class Round {
 
 	private void validateRound(int totalRound) {
 		if (totalRound < MINIMUM_NUMBER_OF_ROUND) {
-			throw new IllegalArgumentException(RacingCarMessage.EXCEPTION_ROUND_IS_NOT_POSITIVE.getMessageText());
+			throw new IllegalArgumentException(NON_POSITIVE_ROUND_EXCEPTION_MESSAGE);
 		}
 	}
 

@@ -2,8 +2,6 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-import racingcar.message.RacingCarMessage;
-
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
@@ -19,6 +17,8 @@ import racingcar.message.RacingCarMessage;
 public class Name {
 	private static final int MINIMUM_LENGTH_OF_NAME = 1;
 	private static final int MAXIMUM_LENGTH_OF_NAME = 5;
+	private static final String NULL_OR_BLANK_NAME_EXCEPTION_MESSAGE = "name can not be null or blank";
+	private static final String NAME_LENGTH_EXCEPTION_MESSAGE = "name must be between 1-5";
 
 	private final String name;
 
@@ -34,13 +34,13 @@ public class Name {
 
 	private void validateNullOrBlank(String name) {
 		if (name == null || name.trim().isEmpty()) {
-			throw new IllegalArgumentException(RacingCarMessage.EXCEPTION_NAME_NULL_OR_BLANK.getMessageText());
+			throw new IllegalArgumentException(NULL_OR_BLANK_NAME_EXCEPTION_MESSAGE);
 		}
 	}
 
 	private void validateLength(String name) {
 		if (name.length() < MINIMUM_LENGTH_OF_NAME || name.length() > MAXIMUM_LENGTH_OF_NAME) {
-			throw new IllegalArgumentException(RacingCarMessage.EXCEPTION_LENGTH_OF_NAME.getMessageText());
+			throw new IllegalArgumentException(NAME_LENGTH_EXCEPTION_MESSAGE);
 		}
 	}
 

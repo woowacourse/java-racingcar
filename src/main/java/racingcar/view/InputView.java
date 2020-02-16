@@ -1,7 +1,5 @@
 package racingcar.view;
 
-import racingcar.message.RacingCarMessage;
-
 import java.util.Scanner;
 
 /*
@@ -18,17 +16,19 @@ import java.util.Scanner;
  */
 public class InputView {
 	private static final Scanner scanner = new Scanner(System.in);
+	private static final String INPUT_CAR_NAMES_MESSAGE = "자동차 이름을 입력하세요 (1 - 5글자) :";
+	private static final String INPUT_NUMBER_OF_ROUND_MESSAGE = "게임라운드를 입력하세요 :";
 
 	private InputView() {
 	}
 
 	public static String inputCarNames() {
-		System.out.println(RacingCarMessage.INPUT_CAR_NAMES.getMessageText());
+		System.out.print(INPUT_CAR_NAMES_MESSAGE);
 		return scanner.nextLine();
 	}
 
 	public static int inputNumberOfRound() {
-		System.out.println(RacingCarMessage.INPUT_NUMBER_OF_ROUND.getMessageText());
+		System.out.print(INPUT_NUMBER_OF_ROUND_MESSAGE);
 		return scanner.nextInt();
 	}
 }

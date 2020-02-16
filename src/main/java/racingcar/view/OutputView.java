@@ -1,11 +1,10 @@
 package racingcar.view;
 
+import java.util.List;
+
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Winner;
-import racingcar.message.RacingCarMessage;
-
-import java.util.List;
 
 /*
  * Copyright (c) 2020 by 또동페어
@@ -24,6 +23,7 @@ public class OutputView {
 	private static final char COLON = ':';
 	private static final char TRACE_OF_CAR = '-';
 	private static final String WINNER_NAME_JOIN_DELIMITER = ",";
+	private static final String ROUND_START_MESSAGE = "실행 결과";
 
 	private OutputView() {
 	}
@@ -49,7 +49,7 @@ public class OutputView {
 	}
 
 	public static void printGameResultMessage() {
-		System.out.println(RacingCarMessage.ROUND_START.getMessageText());
+		System.out.println(ROUND_START_MESSAGE);
 	}
 
 	public static void printWinner(Winner winner) {

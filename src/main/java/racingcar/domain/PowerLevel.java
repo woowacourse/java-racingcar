@@ -2,8 +2,6 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-import racingcar.message.RacingCarMessage;
-
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
@@ -20,6 +18,7 @@ public class PowerLevel {
 	private static final int MINIMUM_POWER_TO_RUN = 4;
 	private static final int MINIMUM_POWER = 0;
 	private static final int MAXIMUM_POWER = 9;
+	private static final String ILLEGAL_ENGINE_LEVEL_EXCEPTION_MASSAGE = "illegal engine level detected";
 
 	private final int powerLevel;
 
@@ -30,7 +29,7 @@ public class PowerLevel {
 
 	private void validatePowerLevel(int powerLevel) {
 		if (powerLevel < MINIMUM_POWER || powerLevel > MAXIMUM_POWER) {
-			throw new IllegalArgumentException(RacingCarMessage.ILLEGAL_ENGINE_LEVEL.getMessageText());
+			throw new IllegalArgumentException(ILLEGAL_ENGINE_LEVEL_EXCEPTION_MASSAGE);
 		}
 	}
 

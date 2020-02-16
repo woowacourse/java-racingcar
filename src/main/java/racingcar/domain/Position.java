@@ -2,8 +2,6 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-import racingcar.message.RacingCarMessage;
-
 /*
  * Copyright (c) 2020 by 또동페어
  * All rights reserved.
@@ -19,6 +17,7 @@ import racingcar.message.RacingCarMessage;
 public class Position {
 	private static final int MIN_POSITION_VALUE = 0;
 	private static final int MOVING_DISTANCE = 1;
+	private static final String ILLEGAL_CAR_POSITION_EXCEPTION_MESSAGE = "position can not be negative";
 
 	private int position;
 
@@ -29,7 +28,7 @@ public class Position {
 
 	private void validatePositionRange(int position) {
 		if (position < MIN_POSITION_VALUE) {
-			throw new IllegalArgumentException(RacingCarMessage.ILLEGAL_CAR_POSITION.getMessageText());
+			throw new IllegalArgumentException(ILLEGAL_CAR_POSITION_EXCEPTION_MESSAGE);
 		}
 	}
 

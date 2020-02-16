@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.message.RacingCarMessage;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -23,6 +21,9 @@ import java.util.stream.Collectors;
  */
 public class Cars implements Iterable<Car> {
 	private static final int MINIMUM_NUMBER_OF_CARS = 2;
+	private static final String CARS_NULL_EXCEPTION_MESSAGE = "max position car is null";
+	private static final String DUPLICATED_CARS_NAME_EXCEPTION_MESSAGE = "name can not be duplicated";
+	private static final String NOT_ENOUGH_CAR_EXCEPTION_MESSAGE = "car must be at least one";
 
 	private final List<Car> cars;
 
@@ -38,14 +39,14 @@ public class Cars implements Iterable<Car> {
 
 	private static void validateNumberOfName(List<Car> cars) {
 		if (cars.size() < MINIMUM_NUMBER_OF_CARS) {
-			throw new IllegalArgumentException(RacingCarMessage.EXCEPTION_NOT_ENOUGH_CAR.getMessageText());
+			throw new IllegalArgumentException(NOT_ENOUGH_CAR_EXCEPTION_MESSAGE);
 		}
 	}
 
 	private static void validateDuplicatedName(List<Car> cars) {
 		Set<Car> carsWithDistinctName = new HashSet<>(cars);
 		if (carsWithDistinctName.size() != cars.size()) {
-			throw new IllegalArgumentException(RacingCarMessage.EXCEPTION_DUPLICATED_NAME.getMessageText());
+			throw new IllegalArgumentException(DUPLICATED_CARS_NAME_EXCEPTION_MESSAGE);
 		}
 	}
 
@@ -59,7 +60,7 @@ public class Cars implements Iterable<Car> {
 	private Car findMaxPositionCar() {
 		return cars.stream()
 			.reduce(Car::getFartherCar)
-			.orElseThrow(() -> new NullPointerException(RacingCarMessage.EXCEPTION_CAR_IS_NULL.getMessageText()));
+			.orElseThrow(() -> new NullPointerException(CARS_NULL_EXCEPTION_MESSAGE));
 	}
 
 	public void moveAll(PowerGenerator powerGenerator) {
