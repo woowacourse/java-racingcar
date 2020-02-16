@@ -16,24 +16,29 @@ import java.util.List;
  */
 public class RacingCarApplication {
     public static void main(String[] args) {
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         try {
             Cars cars = makeCars();
             Round round = new Round(InputView.inputRound());
             OutputView.printFirstRoundResult(cars);
-            while (!round.isFinal()) {
-                cars.moveAll(randomNumberGenerator);
-                round.next();
-                OutputView.printRoundResult(cars);
-            }
+            runRound(cars, round);
             showWinnerNames(cars.getWinningRule());
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
         }
     }
 
+    private static void runRound(Cars cars, Round round) {
+        while (!round.isFinal()) {
+            cars.moveAll();
+            round.next();
+            OutputView.printRoundResult(cars);
+        }
+    }
+
     private static Cars makeCars() {
-        return new Cars(CarNameSplitter.split(InputView.inputNames()));
+        Cars cars = new Cars(CarNameSplitter.split(InputView.inputNames()));
+        cars.setNumberGeneratorStrategy(new RandomNumberGeneratorStrategy());
+        return cars;
     }
 
     private static void showWinnerNames(WinningRule winningRule) {
