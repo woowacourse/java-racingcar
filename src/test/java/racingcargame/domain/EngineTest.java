@@ -1,14 +1,17 @@
 package racingcargame.domain;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class EngineTest {
 
-    @Test
-    void 엔진_랜덤_생성_테스트() {
-        Engine engine = Engine.createRandomEngine();
-        assertThat(engine.getPower()).isBetween(0, 9);
-    }
+	@ParameterizedTest
+	@CsvSource(value = {"3:false", "4:true", "5:true"}, delimiter = ':')
+	void 전진가능한_엔진인지_검사(int power, boolean result) {
+		Engine engine = Engine.createBy(power);
+		assertThat(engine.canMove()).isEqualTo(result);
+	}
 }
