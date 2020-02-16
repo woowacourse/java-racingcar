@@ -1,6 +1,36 @@
 package model;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class WinnerTest {
+
+    private List<Car> cars = new ArrayList<>();
+    private Winner winner = new Winner();
+
+    @BeforeEach
+    void setUp() {
+        cars.add(new Car("a"));
+        cars.add(new Car("b"));
+        cars.add(new Car("c"));
+        cars.get(0).position.move(4);
+        cars.get(0).position.move(4);
+        cars.get(1).position.move(4);
+        cars.get(1).position.move(4);
+    }
+
+    @Test
+    @DisplayName("우승자의(최대의) 포지션 구하기")
+    void getMaxPosition() {
+        assertThat(winner.getMaxPosition(cars)).isEqualTo(2);
+    }
+
 //    private List<Car> cars = new ArrayList<>();
 //    private Winner winner = new Winner();
 //
