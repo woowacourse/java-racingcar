@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 
 import java.util.Collections;
@@ -13,13 +14,12 @@ public class Winners {
 
     public Winners(Cars cars) {
         int maxLocation = findMaxLocation(cars);
-        List<String> winners = findWinners(cars, maxLocation);
-        this.winners = winners;
+        this.winners = findWinners(cars, maxLocation);
     }
 
     public int findMaxLocation(Cars cars) {
         List<Integer> locationOfCars = cars.getCars().stream()
-                .map(car -> car.getLocation())
+                .map(Car::getLocation)
                 .collect(Collectors.toList());
         return Collections.max(locationOfCars);
     }
@@ -27,7 +27,7 @@ public class Winners {
     public List<String> findWinners(Cars cars, int maxLocation) {
         List<String> winners = cars.getCars().stream()
                 .filter(car -> car.isLocation(maxLocation))
-                .map(car -> car.getName())
+                .map(Car::getName)
                 .collect(Collectors.toList());
         return winners;
     }
