@@ -55,10 +55,10 @@ public class Car {
         return this.position.getPosition() > target.position.getPosition();
     }
 
-    public void findWinners(Car car) {
-        if (this.position.getPosition() == car.position.getPosition()) {
+    public void findWinners(int topPosition) {
+        if (this.position.getPosition() == topPosition) {
             winners.append(", ");
-            winners.append(car.carName.getName());
+            winners.append(this.carName.getName());
         }
     }
 

@@ -129,8 +129,8 @@
 - [x] null인 경우, 빈 문자열인 경우에 대해 테스트를 분리하자
 
 ### 두번째 피드백
-- [ ] Game 클래스 내 출력문을 Main으로 옮겨보자.
-- [ ] topPositionCar보다는 지역 변수인 topPosition을 구현해보자.
+- [x] Game 클래스 내 출력문을 Main으로 옮겨보자.
+- [x] topPositionCar보다는 지역 변수인 topPosition을 구현해보자.
 - [x] 상수를 사용하자.
 - [x] RandomNumber 생성을 Car 클래스 밖에서 하자.
 - [x] Car 클래스의 생성자에서 String name을 인자로 받아보자. Name과 Car의 길이 체크하는 중복 로직을 없애보자.

@@ -2,7 +2,9 @@ package racingcar;
 
 import racingcar.Controller.Game;
 import racingcar.Model.Car;
+import racingcar.Model.GameResult;
 import racingcar.View.InputView;
+import racingcar.View.OutputView;
 
 import java.util.List;
 
@@ -16,11 +18,20 @@ import java.util.List;
  */
 
 public class Main {
+    private static final int INDEX_START = 0;
+
     public static void main(String[] args) {
         List<Car> cars = InputView.inputCarName();
         int tryNo = InputView.inputTrialTime().getTrialTime();
-        Game.initialize(cars, tryNo);
-        Game.race();
-        Game.showWinner();
+        Game.initialize(cars);
+
+        OutputView.printResultMessage();
+        for (int index = INDEX_START; index < tryNo; index++) {
+            GameResult result = Game.race();
+            result.printResult();
+            OutputView.printNewLine();
+        }
+
+        OutputView.printWinners(Game.showWinner());
     }
 }

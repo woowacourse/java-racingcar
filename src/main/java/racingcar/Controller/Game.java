@@ -5,7 +5,7 @@ import java.util.List;
 
 import racingcar.Model.Car;
 import racingcar.Model.RandomNumber;
-import racingcar.View.OutputView;
+import racingcar.Model.GameResult;
 
 /**
  * 클래스 이름 : Game.java
@@ -17,61 +17,36 @@ import racingcar.View.OutputView;
  */
 
 public class Game {
-    private static final int INDEX_START = 0;
 
     private static List<Car> gamecars = new ArrayList<>();
-    private static int trialTime;
 
-    public static void initialize(List<Car> cars, int tryNo) {
+    public static void initialize(List<Car> cars) {
         gamecars = cars;
-        trialTime = tryNo;
-
     }
 
-    public static void race() {
-        OutputView.printResultMessage();
-        for (int index = INDEX_START; index < trialTime; index++) {
-            raceOneRound();
-            OutputView.printNewLine();
-        }
-    }
-
-    private static void raceOneRound() {
+    public static GameResult race() {
         for (Car car : gamecars) {
             RandomNumber randomNumber = new RandomNumber();
             car.goOrNot(randomNumber);
-            OutputView.printPositionByDash(car);
         }
+        return new GameResult(gamecars);
     }
 
-    public static void showWinner() {
-        Car topPositionCar = findTopPositionCar(gamecars);
+    public static String showWinner() {
+        int topPosition = findTopPositionCar(gamecars);
         for (Car car : gamecars) {
-            topPositionCar.findWinners(car);
+            car.findWinners(topPosition);
         }
-        OutputView.printWinners(Car.winners.toString());
+        return Car.winners.toString();
     }
 
-    public static Car findTopPositionCar(List<Car> cars) {
-        Car winner = cars.get(0);
-        int carSize = cars.size();
-
-        if (carSize == 1) {
-            return winner;
+    public static int findTopPositionCar(List<Car> cars) {
+        List<Integer> carPosition = new ArrayList<>();
+        for(Car car : cars) {
+            carPosition.add(car.getPosition());
         }
+        int topPosition = carPosition.stream().max(Integer::compare).orElse(-1);
 
-        for (int i = 1; i < carSize; i++) {
-            winner = findWinner(cars, winner, i);
-        }
-
-        return winner;
+        return topPosition;
     }
-
-    private static Car findWinner(List<Car> cars, Car winner, int i) {
-        if (!winner.comparePosition(cars.get(i))) {
-            winner = cars.get(i);
-        }
-        return winner;
-    }
-
 }
