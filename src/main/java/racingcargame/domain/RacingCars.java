@@ -1,14 +1,13 @@
 package racingcargame.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class RacingCars {
     private static final String DELIMITER = ",";
     private static final String NO_CAR_ERROR_MESSAGE = "입력된 자동차가 없습니다.";
     private static final String ONE_CAR_ERROR_MESSAGE = "하나의 자동차만 입력되었습니다.";
+    private static final String NAME_DUPLICATE_ERROR_MESSAGE = "자동차의 이름이 중복되었습니다.\"";
 
     private final List<Car> cars = new ArrayList<>();
 
@@ -35,12 +34,32 @@ public class RacingCars {
 
     public static RacingCars createRacingCars(String inputCarNames) {
         String[] splicedInputCarNames = inputCarNames.split(DELIMITER);
+        trimName(splicedInputCarNames);
         validCarAmount(splicedInputCarNames);
+        validCarNameDuplicate(splicedInputCarNames);
         List<Car> cars = new ArrayList<>();
         for (String inputCarName : splicedInputCarNames) {
             cars.add(new Car(inputCarName));
         }
         return new RacingCars(cars);
+    }
+
+    private static void validCarNameDuplicate(String[] names) {
+        Set<String> carNames = new HashSet<>();
+        for (String name: names) {
+            if(carNames.contains(name)) {
+                System.out.println("이름이 중복됩니다.");
+                throw new RuntimeException(NAME_DUPLICATE_ERROR_MESSAGE);
+            }
+            carNames.add(name);
+        }
+        carNames.clear();
+    }
+
+    private static void trimName(String[] names) {
+        for (int i = 0; i < names.length; i++) {
+            names[i] = names[i].trim();
+        }
     }
 
     private static void validCarAmount(String[] splicedInputCarNames) {

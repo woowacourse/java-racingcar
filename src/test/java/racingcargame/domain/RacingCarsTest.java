@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RacingCarsTest {
 
@@ -25,5 +26,13 @@ public class RacingCarsTest {
         assertThat(result).isTrue();
         result = winners.contain("pobi");
         assertThat(result).isFalse();
+    }
+
+    @Test
+    void 중복이름_RacingCars_생성() {
+        assertThatThrownBy(() -> {
+            String duplicatedInput = "pobi, pobi, jason";
+            RacingCars.createRacingCars(duplicatedInput);
+        }).isInstanceOf(RuntimeException.class);
     }
 }
