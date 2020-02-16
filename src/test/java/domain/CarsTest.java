@@ -40,13 +40,6 @@ public class CarsTest {
     }
 
     @Test
-    @DisplayName("Cars 리스트의 원소가 적절한지 검증한다.")
-    void getCarTest() {
-        assertThat(cars.getCar(0)).isEqualTo(car1);
-        assertThat(cars.getCar(1)).isEqualTo(car2);
-    }
-
-    @Test
     void getSizeTest() {
         assertThat(cars.getSize()).isEqualTo(EXPECTED_SIZE);
     }
