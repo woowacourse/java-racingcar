@@ -19,7 +19,8 @@ public class OutputView {
 
     public static void printRoundResult(List<String> names, List<Integer> positions) {
         for (int i = ZERO_INDEX; i < names.size(); i++) {
-            System.out.println(names.get(i) + COLON_WRAPPED_WITH_SPACE + positionToHyphens(positions.get(i)));
+            System.out.println(names.get(i) + COLON_WRAPPED_WITH_SPACE
+                    + positionToHyphens(positions.get(i)));
         }
     }
 

@@ -6,8 +6,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Players {
-    private static final int ZERO_INDEX = 0;
-
     private final List<Player> players;
 
     public Players(List<Name> names) {
@@ -40,22 +38,6 @@ public class Players {
         return !players.isEmpty();
     }
 
-    public List<Player> play(Deciders deciders) {
-        checkIsSameSize(deciders.size());
-
-        int bound = players.size();
-        for (int i = ZERO_INDEX; i < bound; i++) {
-            players.get(i).goOrWait(deciders.getUnmodifiableList().get(i));
-        }
-        return Collections.unmodifiableList(players);
-    }
-
-    private void checkIsSameSize(int num) {
-        if (isSizeNotEqual(num)) {
-            throw new RuntimeException();
-        }
-    }
-
     public List<Player> getWinners() {
         int max = getMax();
 
@@ -73,10 +55,6 @@ public class Players {
 
     private boolean isSizeNotEqual(int size) {
         return players.size() != size;
-    }
-
-    public int size() {
-        return players.size();
     }
 
     public List<Player> getUnmodifiableList() {

@@ -19,11 +19,7 @@ public class Name {
     }
 
     public boolean equals(Name name) {
-        return equals(name.name);
-    }
-
-    public boolean equals(String name) {
-        return this.name.equals(name);
+        return this.name.equals(name.name);
     }
 
     public String toString() {
