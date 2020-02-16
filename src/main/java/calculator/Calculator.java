@@ -49,7 +49,8 @@ public class Calculator {
 			throw new IllegalArgumentException("inappropriate custom format");
 		}
 		String customDelimiter = matcher.group(1);
-		return matcher.group(2).split(customDelimiter);
+		String rawExpression = matcher.group(2);
+		return rawExpression.split(customDelimiter);
 	}
 
 	private static int plus(String[] numbers) {
