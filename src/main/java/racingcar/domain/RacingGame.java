@@ -1,22 +1,33 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomGenerator;
-import racingcar.view.OutputView;
+import java.util.List;
+
+import racingcar.utils.NumberGenerator;
 
 public class RacingGame {
-	private static final int INDEX_INIT = 0;
+	private final int gameCount;
+	private final Cars cars;
+	private int progressCount;
 
-	public static void showEachRaceResult(Cars cars, int count) {
-		for (int i = INDEX_INIT; i < count; i++) {
-			race(cars);
-			OutputView.showRace(cars.getCars());
-		}
+	public RacingGame(Cars cars, int gameCount) {
+		this.cars = cars;
+		this.gameCount = gameCount;
+		this.progressCount = 0;
 	}
 
-	private static void race(Cars cars) {
+	public void race(NumberGenerator numberGenerator) {
 		for (Car car : cars.getCars()) {
-			int randomValue = RandomGenerator.getRandomNumber();
+			int randomValue = numberGenerator.getNumber();
 			car.movePositionAccordingToCondition(randomValue);
 		}
+		this.progressCount++;
+	}
+
+	public boolean isEnd() {
+		return this.progressCount == this.gameCount;
+	}
+
+	public List<Car> getCars() {
+		return cars.getCars();
 	}
 }
