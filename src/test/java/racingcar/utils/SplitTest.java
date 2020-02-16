@@ -13,7 +13,7 @@ class SplitTest {
 		String values = "pobi,crong,honux";
 		String[] expected = {"pobi", "crong", "honux"};
 		// when
-		String[] result = Split.splitInputName(values);
+		String[] result = StringUtils.splitInputName(values);
 		//then
 		Assertions.assertArrayEquals(expected,result);
 	}

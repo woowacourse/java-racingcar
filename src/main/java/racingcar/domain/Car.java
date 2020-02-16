@@ -1,41 +1,30 @@
 package racingcar.domain;
 
 public class Car {
-	public static final int StartPosition = 0;
-	private final String name;
-	private int position;
+    private static final int START_POSITION = 0;
+    private final String name;
+    private int position;
 
-	public Car(String name) {
-		this.name = name;
-		position = StartPosition;
-	}
+    public Car(String name) {
+        this.name = name;
+        position = START_POSITION;
+    }
 
-	public void move(RandomNo RandomNo) {
-		if (RandomNo.isMove()) {
-			position++;
-		}
-	}
+    public void move(RandomNumber RandomNumber) {
+        if (RandomNumber.isMove()) {
+            position++;
+        }
+    }
 
-	public boolean isWinner(int winnerPosition) {
-		return winnerPosition == position;
-	}
+    public boolean isWinner(int winnerPosition) {
+        return winnerPosition == position;
+    }
 
-	public int getPosition() {
-		return position;
-	}
+    public int getPosition() {
+        return position;
+    }
 
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder trace = new StringBuilder();
-		for (int i = StartPosition; i < position; i++) {
-			trace.append("-");
-		}
-
-		return name + ": " + trace.toString();
-	}
-
+    public String getName() {
+        return name;
+    }
 }

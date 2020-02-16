@@ -36,14 +36,14 @@ public class Validator {
     }
 
     private static boolean isNotValidName(String name) {
-        String trimedName = TrimName.removeAllBlankInName(name);
-        return trimedName.equals("");
+        String nameRemovedAllBlank = StringUtils.removeAllBlank(name);
+        return nameRemovedAllBlank.isEmpty();
     }
 
     // 시도 횟수 오류검증
     public static void validatePlayRound(String playRound) {
         if (!isValidPlayRound(playRound)) {
-            throw new IllegalArgumentException("음수 입력 불가합니다.");
+            throw new IllegalArgumentException("0이하 입력 불가합니다.");
         }
     }
 
@@ -51,7 +51,7 @@ public class Validator {
         try {
             return Integer.parseInt(playRound) > ZERO;
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("1이상의 자연수만 입력 가능합니다.");
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
         }
     }
 }

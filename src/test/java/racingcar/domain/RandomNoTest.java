@@ -6,18 +6,16 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class RandomNoTest {
-    RandomNo no;
-
     @Test
     void throw_isValid_RandomNumber() {
         Assertions.assertThatCode(() ->
-                no = new RandomNo(3)).doesNotThrowAnyException();
+                new RandomNumber(3)).doesNotThrowAnyException();
     }
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 10})
     void throw_isNotValid_RandomNumber(int value) {
         Assertions.assertThatThrownBy(() ->
-                no = new RandomNo(value)).isInstanceOf(IllegalArgumentException.class);
+                new RandomNumber(value)).isInstanceOf(IllegalArgumentException.class);
     }
 }

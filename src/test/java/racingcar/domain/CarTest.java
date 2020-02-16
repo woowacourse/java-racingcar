@@ -20,7 +20,7 @@ class CarTest {
 	@CsvSource(value = {"3,0", "4,1"})
 	void Should_move_when_bigger_than_3(int value, int expected) {
 		Car car = new Car("pobi");
-		RandomNo no = new RandomNo(value);
+		RandomNumber no = new RandomNumber(value);
 
 		car.move(no);
 

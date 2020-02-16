@@ -8,15 +8,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
-import racingcar.domain.RandomNo;
+import racingcar.domain.RandomNumber;
+import racingcar.domain.Winner;
 
 class WinnerTest {
     private static final int MOVE_FORWARD_NUMBER = 8;
-    RandomNo no;
+    RandomNumber no;
+    Winner winners;
 
     @BeforeEach
     void init() {
-        no = new RandomNo(MOVE_FORWARD_NUMBER);
+        no = new RandomNumber(MOVE_FORWARD_NUMBER);
     }
 
     @Test
@@ -29,7 +31,8 @@ class WinnerTest {
         carList.add(carCrong);
         carPobi.move(no);
 
-        Assertions.assertThat(Winner.getWinners(carList)).contains("pobi");
+        winners = new Winner();
+        Assertions.assertThat(winners.getWinners(carList)).contains("pobi");
     }
 
     @Test
@@ -43,6 +46,7 @@ class WinnerTest {
         carPobi.move(no);
 		carCrong.move(no);
 
-        Assertions.assertThat(Winner.getWinners(carList)).contains("crong", "pobi");
+        winners = new Winner();
+        Assertions.assertThat(winners.getWinners(carList)).contains("crong", "pobi");
     }
 }
