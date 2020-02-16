@@ -3,7 +3,9 @@ package com.woowacourse.racingGame.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,9 +19,13 @@ public class ResultTest {
 			new Car(new Name("car3"), Position.valueOf(1)));
 		final Result result = new Result(new Cars(racingCar));
 
-		final List<String> actual = result.getRacingCarStatus();
+		final Map<String, Integer> actual = result.getRacingCarStatus();
 
-		final List<String> expected = Arrays.asList("car1 : ---", "car2 : --", "car3 : -");
+		final Map<String, Integer> expected = new HashMap<String, Integer>() {{
+			put("car1", 3);
+			put("car2", 2);
+			put("car3", 1);
+		}};
 
 		assertThat(actual).isEqualTo(expected);
 	}

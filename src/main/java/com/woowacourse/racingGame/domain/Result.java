@@ -1,25 +1,24 @@
 package com.woowacourse.racingGame.domain;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.woowacourse.racingGame.utils.StringUtil;
-
 public class Result {
+	public static final int INIT_POSITION = 0;
+
 	private final Cars cars;
-	private final List<String> racingCarStatus;
+	private final Map<String, Integer> racingCarStatus;
 
 	public Result(final Cars cars) {
 		this.cars = cars;
 		racingCarStatus = generateRacingCarStatus();
 	}
 
-	private List<String> generateRacingCarStatus() {
-		return cars.getCars().stream()
-			.map(car -> car.getName()
-				+ " : "
-				+ StringUtil.convertIntoDashBy(car.getPosition()))
-			.collect(Collectors.toList());
+	private Map<String, Integer> generateRacingCarStatus() {
+		return cars.getCars()
+			.stream()
+			.collect(Collectors.toMap(Car::getName, Car::getPosition, (a, b) -> b));
 	}
 
 	public List<String> getWinners() {
@@ -30,18 +29,18 @@ public class Result {
 			.collect(Collectors.toList());
 	}
 
-	private Integer getMaxPosition() {
+	private int getMaxPosition() {
 		return cars.getCars().stream()
 			.map(Car::getPosition)
 			.max(Integer::compareTo)
-			.get();
+			.orElse(INIT_POSITION);
 	}
 
 	private boolean isWinner(final Car car, final int maxPosition) {
 		return car.isSamePosition(maxPosition);
 	}
 
-	public List<String> getRacingCarStatus() {
+	public Map<String, Integer> getRacingCarStatus() {
 		return racingCarStatus;
 	}
 }

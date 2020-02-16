@@ -1,6 +1,7 @@
 package com.woowacourse.racingGame.view;
 
 import java.util.List;
+import java.util.Map;
 
 import com.woowacourse.racingGame.domain.Result;
 import com.woowacourse.racingGame.utils.StringUtil;
@@ -17,12 +18,13 @@ public class OutputView {
 	}
 
 	private void printRacingCarStatus(final Result result) {
-		final List<String> racingCarStatus = result.getRacingCarStatus();
+		final Map<String, Integer> racingCarStatus = result.getRacingCarStatus();
 
-		for (String carStatus : racingCarStatus) {
-			System.out.println(carStatus);
-		}
-		System.out.println("");
+		racingCarStatus.forEach((name, position) ->
+			System.out.println(name
+				+ " : "
+				+ StringUtil.convertIntoDashBy(position)));
+		System.out.println();
 	}
 
 	public void printWinners(final Result finalResult) {
