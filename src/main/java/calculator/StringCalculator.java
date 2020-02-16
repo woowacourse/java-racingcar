@@ -4,12 +4,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+
+    public static final String NGATIVE_SIGN = "-";
+
     public static int calculate(String text) {
         if (text == null || text.isEmpty()) {
             return 0;
         }
-        if (text.contains("-")) {
-            throw new RuntimeException("message");
+        if (text.contains(NGATIVE_SIGN)) {
+            throw new RuntimeException("음수는 입력할 수 없습니다.");
         }
         return splitAndSum(text);
     }
