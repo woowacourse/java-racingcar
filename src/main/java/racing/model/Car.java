@@ -4,6 +4,7 @@ public class Car {
 
     public static final int MAX_NAME_SIZE = 5;
     private String name;
+    private int position;
 
     public Car(String name) {
         checkNameLengthUnderSix(name);
@@ -26,5 +27,9 @@ public class Car {
 
     public boolean isNameEqual(String name) {
         return this.name == name;
+    }
+
+    public boolean isMovable(int randomNo) {
+        return randomNo >= 4;
     }
 }

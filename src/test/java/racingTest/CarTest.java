@@ -3,6 +3,7 @@ package racingTest;
 import org.junit.jupiter.api.Test;
 import racing.model.Car;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
@@ -23,5 +24,13 @@ public class CarTest {
         }).isInstanceOf(NullPointerException.class)
         .hasMessage("차이름은 공백 또는 빈 문자열일 수 없습니다.");
     }
+
+    @Test
+    void 랜덤넘버_4이상일_경우_true_반환(){
+        Car car = new Car("보스독");
+        assertThat(car.isMovable(4)).isTrue();
+        assertThat(car.isMovable(3)).isFalse();
+    }
+
 
 }
