@@ -49,11 +49,11 @@ public class Cars {
         }
     }
 
-    private static boolean isDuplicatedNames(String[] splitcarNames) {
-        return Arrays.stream(splitcarNames)
+    private static boolean isDuplicatedNames(String[] splitCarNames) {
+        return Arrays.stream(splitCarNames)
                 .map(s -> s.trim())
                 .distinct()
-                .count() != splitcarNames.length;
+                .count() != splitCarNames.length;
     }
 
     public void play() {
