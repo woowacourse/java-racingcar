@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class CarLineUp {
-    public static final String COMMA = ", ";
     public static final int SINGLE_SIZE = 1;
 
     private List<Car> lineUp = new ArrayList<>();
@@ -30,20 +29,19 @@ public class CarLineUp {
         }
     }
 
-    public String findWinner() {
+    public List<Car> findWinner() {
         Car topPositionCar = findTopPositionCar();
-        StringBuilder winners = new StringBuilder();
-        winners.append(topPositionCar);
+        List<Car> winners = new ArrayList<>();
+        winners.add(topPositionCar);
         for (Car car : lineUp){
             findAnotherWinners(topPositionCar, winners, car);
         }
-        return winners.toString();
+        return winners;
     }
 
-    private void findAnotherWinners(Car topPositionCar, StringBuilder winners, Car car) {
+    private void findAnotherWinners(Car topPositionCar, List<Car> winners, Car car) {
         if (isAnotherWinner(topPositionCar, car)){
-            winners.append(COMMA);
-            winners.append(car);
+            winners.add(car);
         }
     }
 

@@ -7,12 +7,13 @@ public class Car {
     private Position position;
 
     public Car(String name) {
-        checkNullName(name);
-        checkEmptyName(name);
-        name = name.trim();
-        checkNameLengthUnderSix(name);
-        this.name = name;
-        position = new Position();
+//        checkNullName(name);
+//        checkEmptyName(name);
+//        name = name.trim();
+//        checkNameLengthUnderSix(name);
+//        this.name = name;
+        this(name, 0);
+//        position = new Position();
     }
 
     public Car(String name, int position) {

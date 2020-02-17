@@ -1,6 +1,10 @@
 package racing.view;
 
+import racing.model.Car;
 import racing.model.Position;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -10,6 +14,7 @@ public class OutputView {
     private static final String INPUT_TRIAL_TIME_GUIDE_MESSAGE = "시도할 횟수는 몇회인가요?";
     private static final String RESULT_HEADING = "실행 결과";
     private static final String WINNER_SUB_MESSAGE = "가 최종 우승했습니다.";
+    public static final String DELIMITER = ", ";
 
     public static void printInputCarNamesMessage() {
         System.out.println(INPUT_CAR_NAMES_GUIDE_MESSAGE);
@@ -41,7 +46,13 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void printWinners(String winners) {
-        System.out.println(winners + WINNER_SUB_MESSAGE);
+    public static void printWinners(List<Car> winners) {
+        List<String> winnersName = winners.stream()
+                                    .map(Car::getName)
+                                    .collect(Collectors.toList());
+        StringBuilder result = new StringBuilder();
+        result.append(String.join(DELIMITER, winnersName))
+                .append(WINNER_SUB_MESSAGE);
+        System.out.println(result);
     }
 }

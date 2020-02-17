@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import racing.model.Car;
 import racing.model.CarLineUp;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarLineUpTest {
@@ -30,8 +32,8 @@ public class CarLineUpTest {
 
     @Test
     void 우승자_찾기(){
-        String winner = lineUp.findWinner();
-        assertThat(winner).isEqualTo("보스독");
+        List<Car> winner = lineUp.findWinner();
+        assertThat(winner).contains(new Car("보스독", 7));
     }
 
 }
