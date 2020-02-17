@@ -19,11 +19,15 @@ public class Position {
         }
     }
 
+    boolean isMaxPosition(int maxPosition) {
+        return position == maxPosition;
+    }
+
     private boolean validateMove(int randomNumber) {
         return randomNumber >= MIN_MOVE_DELIMITER;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return this.position;
     }
 }
