@@ -11,11 +11,10 @@
 package racingcar.domain;
 
 import java.util.List;
-import java.util.Random;
+import racingcar.view.OutputView;
 
 public class RacingGame {
 
-    private final static String NEW_LINE = "\n";
     private final Cars cars;
     private final int tryCount;
 
@@ -24,20 +23,18 @@ public class RacingGame {
         this.tryCount = tryCount;
     }
 
-    public String getRacingProgress() {
-        StringBuilder executionResult = new StringBuilder();
+    public void getRacingProgress() {
         for (int i = 0; i < tryCount; i++) {
-            playRacing(executionResult);
+            playRacing();
         }
-        return executionResult.toString();
     }
 
-    private void playRacing(StringBuilder racingProgress) {
-        racingProgress.append(NEW_LINE);
+    private void playRacing() {
         for (Car car : cars.getCars()) {
             car.move(RandomNumber.getRandomNo());
-            racingProgress.append(car.toString());
+            OutputView.printCarPosition(car.getName(), car.getPosition());
         }
+        OutputView.printNextLine();
     }
 
     public String getWinner() {

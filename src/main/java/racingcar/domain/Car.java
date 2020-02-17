@@ -15,9 +15,6 @@ public class Car {
     private final static String BLANK = " ";
     private final static int NAME_LENGTH_LIMIT = 5;
     private final static int BASE_NUMBER = 4;
-    private final static String HYPHEN = "-";
-    private final static String COLON = " : ";
-    private final static String NEW_LINE = "\n";
 
     private final String name;
     private int position;
@@ -60,14 +57,5 @@ public class Car {
 
     public int getPosition() {
         return position;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            stringBuilder.append(HYPHEN);
-        }
-        return name + COLON + stringBuilder.toString() + NEW_LINE;
     }
 }

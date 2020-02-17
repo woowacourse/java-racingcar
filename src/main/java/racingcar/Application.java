@@ -25,9 +25,8 @@ public class Application {
         int tryCount = inputTryCount();
         RacingGame racingGame = new RacingGame(cars, tryCount);
 
-        String racingProgress = racingGame.getRacingProgress();
         OutputView.printExecutionResult();
-        OutputView.printString(racingProgress);
+        racingGame.getRacingProgress();
 
         String winner = racingGame.getWinner();
         OutputView.printWinner(winner);

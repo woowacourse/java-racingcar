@@ -61,14 +61,4 @@ public class CarTest {
         car.move(randomNo);
         assertThat(car.getPosition()).isEqualTo(expected);
     }
-
-    @DisplayName("차가 전진하면 스트링으로 출력이 되는지 확인하는 테스트")
-    @Test
-    void toStringCar() {
-        Car car = new Car("가나다", 0);
-        car.move(4);
-        car.move(4);
-        car.move(4);
-        assertThat(car.toString()).isEqualTo("가나다 : ---\n");
-    }
 }

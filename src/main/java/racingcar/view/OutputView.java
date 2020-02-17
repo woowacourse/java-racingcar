@@ -21,14 +21,26 @@ public class OutputView {
     }
 
     public static void printExecutionResult() {
-        System.out.print("\n실행 결과");
+        System.out.println("\n실행 결과");
     }
 
-    public static void printString(String string) {
+    public static void printCarPosition(String name, int position) {
+        System.out.print(name + " : ");
+        for (int i = 0; i < position; i ++) {
+            System.out.print("-");
+        }
+        System.out.println();
+    }
+
+   public static void printString(String string) {
         System.out.println(string);
     }
 
     public static void printWinner(String winners) {
         System.out.println(winners + "가 최종 우승했습니다.");
+    }
+
+    public static void printNextLine() {
+        System.out.println();
     }
 }
