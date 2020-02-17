@@ -4,14 +4,14 @@ import racingcar.domain.Generator.CarMoveValueGenerator;
 
 public class Car implements Comparable<Car> {
     private static final int FORWARD_NUMBER = 4;
-    public static final int RANDOM_LIMIT_VALUE = 10;
     private Name name;
     private int position;
-    private CarMoveValueGenerator carMoveValueGenerator = () -> (int)(Math.random() * RANDOM_LIMIT_VALUE);
+    private CarMoveValueGenerator carMoveValueGenerator;
 
-    public Car(Name name) {
+    public Car(Name name, CarMoveValueGenerator carMoveValueGenerator) {
         this.name = name;
         this.position = 0;
+        this.carMoveValueGenerator = carMoveValueGenerator;
     }
 
     public int movePosition() {

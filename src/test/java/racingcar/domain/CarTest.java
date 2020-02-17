@@ -6,13 +6,21 @@ import racingcar.domain.Generator.CarMoveValueGenerator;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
-    Name name = new Name("pobi");
-    Car car = new Car(name);
 
     @Test
     void 전진하기() {
-        CarMoveValueGenerator carMoveValueGenerator = () -> 5;
+        Name name = new Name("pobi");
+        CarMoveValueGenerator carMoveValueGenerator = () -> 10;
+        Car car = new Car(name, carMoveValueGenerator);
         assertThat(car.movePosition()).isEqualTo(1);
+    }
+
+    @Test
+    void 정지하기() {
+        Name name = new Name("pobi");
+        CarMoveValueGenerator carMoveValueGenerator = () -> 3;
+        Car car = new Car(name, carMoveValueGenerator);
+        assertThat(car.movePosition()).isEqualTo(0);
     }
 
     @Test
