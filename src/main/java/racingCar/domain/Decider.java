@@ -4,10 +4,11 @@ public class Decider {
     public static final int MIN = 0;
     public static final int MAX = 9;
 
-    private int value;
+    private final int value;
 
-    public Decider(int value) {
-        setValue(value);
+    public Decider(final int value) {
+        checkOutOfRange(value);
+        this.value = value;
     }
 
     private void checkOutOfRange(int input) {
@@ -24,8 +25,4 @@ public class Decider {
         return value;
     }
 
-    private void setValue(int input) {
-        checkOutOfRange(input);
-        this.value = input;
-    }
 }
