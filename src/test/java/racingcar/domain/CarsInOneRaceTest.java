@@ -39,7 +39,7 @@ public class CarsInOneRaceTest {
     @NullSource
     @DisplayName("이름 문자열이 null 인게 하나라도 있는 경우")
     void nullNamesTest(String name) {
-        String[] names = {name};
+        String[] names = {name, "히히"};
         List<String> nameList = Arrays.asList(names);
 
         assertThatThrownBy(() -> new CarsInOneRace(nameList))
