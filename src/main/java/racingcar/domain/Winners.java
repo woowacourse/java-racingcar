@@ -12,7 +12,7 @@ public class Winners {
                 .max(Car::compareTo)
                 .orElseThrow(RuntimeException::new);
         for (Car car : cars) {
-            if (car.isWinnerWith(maxDistanceCar)) {
+            if (car.isSamePositionWith(maxDistanceCar)) {
                 winners.add(car);
             }
         }
