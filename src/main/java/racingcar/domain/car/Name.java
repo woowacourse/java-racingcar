@@ -8,7 +8,7 @@ public class Name {
     Name(String name) {
         validateEmptyName(name);
         validateNameLength(name);
-        this.name = name;
+        this.name = removeWhiteSpaceInName(name);
     }
 
     public static void validateEmptyName(String inputName) throws IllegalArgumentException {
@@ -25,6 +25,10 @@ public class Name {
 
     private static boolean isOverLength(String inputName) {
         return inputName.length() > MAX_NAME_LENGTH;
+    }
+
+    private String removeWhiteSpaceInName(String inputName) {
+        return inputName.trim();
     }
 
     @Override
