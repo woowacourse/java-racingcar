@@ -1,26 +1,12 @@
 package racingcargame;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import racingcargame.domain.RacingCars;
-import racingcargame.domain.car.Car;
 
-public class RacingCarsTest {
-	private List<Car> cars;
-
-	@BeforeEach
-	void setUp() {
-		cars = new ArrayList<>();
-		cars.add(new Car("pobi"));
-		cars.add(new Car("cronx"));
-	}
-
+class RacingCarsTest {
 	@Test
 	@DisplayName("생성자를 통한 createCars 테스트")
 	void constructorTest() {
@@ -35,7 +21,7 @@ public class RacingCarsTest {
 	}
 
 	@Test
-	@DisplayName("processOneRaceTest")
+	@DisplayName("processOneRace 테스트")
 	void processOneRaceTest() {
 	}
 }

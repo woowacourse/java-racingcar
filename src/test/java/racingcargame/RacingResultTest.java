@@ -8,17 +8,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import racingcargame.domain.MoveStrategy;
+import racingcargame.domain.NumberGenerator;
 import racingcargame.domain.RacingLog;
 import racingcargame.domain.RacingResult;
 import racingcargame.domain.car.Car;
 
-public class RacingResultTest {
+class RacingResultTest {
+	private MoveStrategy moveStrategy;
 	private RacingResult racingResult;
 	private List<RacingLog> racingLogs;
 
 	@BeforeEach
 	void setUp() {
-
+		moveStrategy = new NumberGenerator();
+		racingLogs = new ArrayList<>();
 	}
 
 	@Test
@@ -31,24 +35,23 @@ public class RacingResultTest {
 	@DisplayName("getWinners 테스트")
 	void getWinnersTest() {
 		//given
-		racingLogs = new ArrayList<>();
 		List<Car> cars = new ArrayList<>();
 		cars.add(new Car("car1"));
 		cars.add(new Car("car2"));
 		cars.add(new Car("car3"));
 
-		cars.get(0).move();
-		cars.get(2).move();
+		cars.get(0).decideMoveOrStop(moveStrategy.getMoveNo());
+		cars.get(2).decideMoveOrStop(moveStrategy.getMoveNo());
 		racingLogs.add(new RacingLog(cars));
 
-		cars.get(2).move();
+		cars.get(2).decideMoveOrStop(moveStrategy.getMoveNo());
 		racingLogs.add(new RacingLog(cars));
 
 		//when
 		racingResult = new RacingResult(racingLogs);
 		Assertions.assertThat(racingResult.getWinners()).contains("car3");
 
-		cars.get(0).move();
+		cars.get(0).decideMoveOrStop(moveStrategy.getMoveNo());
 		racingLogs.add(new RacingLog(cars));
 
 		racingResult = new RacingResult(racingLogs);

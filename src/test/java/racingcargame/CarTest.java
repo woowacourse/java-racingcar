@@ -5,14 +5,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import racingcargame.domain.MoveStrategy;
+import racingcargame.domain.NumberGenerator;
 import racingcargame.domain.car.Car;
 import racingcargame.domain.car.CarDto;
 
-public class CarTest {
+class CarTest {
+	private MoveStrategy moveStrategy;
 	private Car car;
 
 	@BeforeEach
 	void setUp() {
+		moveStrategy = new NumberGenerator();
 		car = new Car("car");
 	}
 
@@ -26,14 +30,14 @@ public class CarTest {
 	@DisplayName("convertToCarDto 테스트")
 	void convertToCarDtoTest() {
 		Assertions.assertThat(car.convertToCarDto()).isEqualTo(new CarDto("car", 0));
-		car.move();
+		car.decideMoveOrStop(moveStrategy.getMoveNo());
 		Assertions.assertThat(car.convertToCarDto()).isEqualTo(new CarDto("car", 1));
 	}
 
 	@Test
-	@DisplayName("move 테스트")
-	void moveTest() {
-		Assertions.assertThat(car.move()).isNotEqualTo(0);
-		Assertions.assertThat(car.move()).isEqualTo(2);
+	@DisplayName("decideMoveOrStop 테스트")
+	void decideMoveOrStopTest() {
+		Assertions.assertThat(car.decideMoveOrStop(moveStrategy.getMoveNo())).isNotEqualTo(0);
+		Assertions.assertThat(car.decideMoveOrStop(moveStrategy.getStopNo())).isEqualTo(1);
 	}
 }

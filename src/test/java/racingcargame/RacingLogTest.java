@@ -8,15 +8,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import racingcargame.domain.MoveStrategy;
+import racingcargame.domain.NumberGenerator;
 import racingcargame.domain.RacingLog;
 import racingcargame.domain.car.Car;
 
-public class RacingLogTest {
+class RacingLogTest {
+	private MoveStrategy moveStrategy;
 	private List<Car> cars;
-	private RacingLog racingLog;
 
 	@BeforeEach
 	void setUp() {
+		moveStrategy = new NumberGenerator();
 		cars = new ArrayList<>();
 		cars.add(new Car("car1"));
 		cars.add(new Car("car2"));
@@ -37,11 +40,11 @@ public class RacingLogTest {
 		cars.add(new Car("car2"));
 		cars.add(new Car("car3"));
 
-		cars.get(0).move();
-		racingLog = new RacingLog(cars);
+		cars.get(0).decideMoveOrStop(moveStrategy.getMoveNo());
+		RacingLog racingLog = new RacingLog(cars);
 		Assertions.assertThat(racingLog.getWinners()).contains("car1");
 
-		cars.get(2).move();
+		cars.get(2).decideMoveOrStop(moveStrategy.getMoveNo());
 		racingLog = new RacingLog(cars);
 		Assertions.assertThat(racingLog.getWinners()).containsExactly("car1", "car3");
 	}

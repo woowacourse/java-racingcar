@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import racingcargame.domain.RepeatTimes;
 
-public class RepeatTimesTest {
-	private RepeatTimes repeatTimes;
-
+class RepeatTimesTest {
 	@Test
 	@DisplayName("생성자 테스트")
 	void constructor() {

@@ -9,8 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcargame.domain.car.Car;
 
-public class CarNameTest {
-
+class CarNameTest {
 	@ParameterizedTest
 	@DisplayName("이름이 올바른지 확인")
 	@ValueSource(strings = {"abcdef", ""})

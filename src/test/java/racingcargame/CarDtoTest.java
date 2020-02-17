@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import racingcargame.domain.car.CarDto;
 
-public class CarDtoTest {
-	private CarDto carDto;
-
+class CarDtoTest {
 	@Test
 	@DisplayName("생성자 테스트")
 	void constructorTest() {
@@ -21,7 +19,7 @@ public class CarDtoTest {
 	@Test
 	@DisplayName("isPositionOf 테스트")
 	void isPositionOfTest() {
-		carDto = new CarDto("car", 6);
+		CarDto carDto = new CarDto("car", 6);
 		Assertions.assertThat(carDto.isPositionOf(6)).isTrue();
 		Assertions.assertThat(carDto.isPositionOf(4)).isFalse();
 	}
