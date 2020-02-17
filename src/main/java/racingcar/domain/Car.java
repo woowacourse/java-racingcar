@@ -1,8 +1,7 @@
 package racingcar.domain;
 
 public class Car implements Comparable<Car> {
-    private static final int RANDOM_VALUE_LIMIT = 10;
-    public static final int FORWARD_NUMBER = 4;
+    private static final int FORWARD_NUMBER = 4;
     private static final String POSITION_MARK = "-";
     private static final String BETWEEN_CAR_AND_POSITION = " : ";
 
@@ -14,20 +13,11 @@ public class Car implements Comparable<Car> {
         this.position = 0;
     }
 
-    public int movePosition() {
-        if (isMovable()) {
+    public int movePosition(MoveController movingNumber) {
+        if (movingNumber.generateMovingNumber() > FORWARD_NUMBER) {
             position++;
         }
         return position;
-    }
-
-    public int movePosition(int fixedNumber) {
-        return position++;
-    }
-
-    private boolean isMovable() {
-        int randomNumber = (int) (Math.random() * RANDOM_VALUE_LIMIT);
-        return randomNumber >= FORWARD_NUMBER;
     }
 
     public String getCurrentPosition() {

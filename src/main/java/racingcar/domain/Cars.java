@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    public static final int RANDOM_NUMBER_MAX = 10;
+
     private List<Car> cars;
+    private MoveController movingNumber = () -> (int) (Math.random() * RANDOM_NUMBER_MAX);
 
     public Cars(Names names) {
         this.cars = names.getNames()
@@ -16,7 +19,7 @@ public class Cars {
 
     public void moveCars() {
         for (Car car : cars) {
-            car.movePosition();
+            car.movePosition(movingNumber);
         }
     }
 
