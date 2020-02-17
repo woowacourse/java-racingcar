@@ -28,14 +28,7 @@ public class Cars {
     }
 
     public boolean moveEachCar(Car car) {
-        int rand = generateRandom();
-        try {
-
-            /* 랜덤 시드를 시간으로 설정시 너무 빠른 속도로 랜덤값 발생시 중복되는 경우 제거 */
-            Thread.sleep(20);
-        } catch (InterruptedException e) {
-        }
-        boolean isMove = car.move(rand);
+        boolean isMove = car.move(generateRandom());
         String log = car.makeLog();
         OutputView.printLog(log);
         return isMove;

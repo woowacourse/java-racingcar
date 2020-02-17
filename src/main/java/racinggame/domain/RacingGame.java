@@ -14,7 +14,7 @@ public class RacingGame {
 
     public static int generateRandom() {
         Random rand = new Random();
-        rand.setSeed(System.currentTimeMillis());
+        rand.setSeed(System.nanoTime());
         return rand.nextInt(NUMBER_BOUND);
     }
 
