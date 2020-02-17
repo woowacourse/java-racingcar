@@ -13,7 +13,7 @@ public class Winners {
         }
     }
 
-    public List<String> getNames() {
+    public List<String> getWinners() {
         return winners;
     }
 }

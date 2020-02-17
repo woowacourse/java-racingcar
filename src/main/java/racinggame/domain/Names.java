@@ -32,7 +32,7 @@ public class Names {
     }
 
     public static List<String> splitInputByComma(String inputNames) {
-            String[] splitName = inputNames.split(SPLIT_DELIMITER);
+        String[] splitName = inputNames.split(SPLIT_DELIMITER);
         return Arrays.asList(splitName);
     }
 

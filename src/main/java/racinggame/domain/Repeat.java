@@ -9,15 +9,15 @@ public class Repeat {
             " 정수만 가능합니다.";
     private final int repeat;
 
-    public Repeat(){
+    public Repeat() {
         this(InputView.inputRepeat());
     }
 
-    public Repeat(int repeat){
+    public Repeat(int repeat) {
         this.repeat = repeat;
     }
 
-    public Repeat(String repeat){
+    public Repeat(String repeat) {
         this(validateRepeat(repeat));
     }
 
@@ -36,6 +36,7 @@ public class Repeat {
             throw new IllegalArgumentException(NOT_POSITIVE_ERROR_MESSAGE);
         }
     }
+
     public int getRepeat() {
         return repeat;
     }
