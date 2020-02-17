@@ -1,5 +1,8 @@
 package domain;
 
+import view.OutputView;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,5 +45,14 @@ public class Cars {
         return cars.stream()
                 .filter(car -> car.isSamePosition(position))
                 .collect(Collectors.toList());
+    }
+
+    public void moveCars() {
+        int carsSize = cars.size();
+        for (int count = 0; count < carsSize; count++) {
+            cars.get(count).move(RandomNumber.getRandomNumber());
+            OutputView.printCurrentPosition(cars.get(count).getName(), cars.get(count).getPosition());
+        }
+        OutputView.println();
     }
 }
