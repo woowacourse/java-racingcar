@@ -14,12 +14,15 @@ public class CarLineUp {
         lineUp.add(car);
     }
 
-    public boolean isContainAlready(String name){
-        for (Car carAlready : lineUp){
-            if (carAlready.isNameEqual(name)){
-                return true;
-            }
-        }return false;
+    public boolean isAlready(String name){
+        int count = (int)lineUp.stream()
+                .filter(c -> c.isNameEqual(name))
+                .count();
+        if (count == 0){
+            return false;
+        }
+        return true;
+
     }
 
     public void raceOneTime() {

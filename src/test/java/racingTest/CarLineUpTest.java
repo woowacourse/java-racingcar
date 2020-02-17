@@ -23,10 +23,10 @@ public class CarLineUpTest {
 
     @Test
     void 중복이름여부_확인(){
-        boolean result = lineUp.isContainAlready("토니");
+        boolean result = lineUp.isAlready("토니");
         assertThat(result).isTrue();
 
-        result = lineUp.isContainAlready("토니22");
+        result = lineUp.isAlready("토니22");
         assertThat(result).isFalse();
     }
 
