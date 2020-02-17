@@ -11,21 +11,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class RaceTest {
-    private RaceParticipants raceParticipants;
-    private RacingLabConsoleInput racingLabConsoleInput = mock(RacingLabConsoleInput.class);
-    private RacingCarConsoleInput racingCarConsoleInput = mock(RacingCarConsoleInput.class);
+public class RaceResultTest {
+    private RaceParticipants raceParticipants = mock(RaceParticipants.class);
     private List<Car> cars;
-    private Race race;
+    private RaceResult raceResult;
     private Car pobi;
     private Car lavin;
     private Car ramen;
 
     @BeforeEach
     void setUp() {
-        raceParticipants = new RaceParticipants(racingCarConsoleInput);
         cars = new ArrayList<>();
-        race = new Race();
+        raceResult = new RaceResult();
         pobi = new Car("pobi");
         lavin = new Car("lavin");
         ramen = new Car("ramen");
@@ -36,10 +33,9 @@ public class RaceTest {
 
     @Test
     void run_메서드가_올바르게_작동한다() {
-        List<String> winners = Arrays.asList("pobi");
-        when(racingCarConsoleInput.getCarNames()).thenReturn("pobi");
-        when(racingLabConsoleInput.getRacingLabValue()).thenReturn("2");
-        assertThat(race.run(raceParticipants, racingLabConsoleInput)).isEqualTo(winners);
+        List<String> winners = Arrays.asList("pobi","lavin","ramen");
+        when(raceParticipants.getCars()).thenReturn(cars);
+        assertThat(raceResult.run(raceParticipants, 0)).isEqualTo(winners);
     }
 
 }

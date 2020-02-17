@@ -8,11 +8,11 @@ public class RacingGame {
         List<String> winners;
         while(true) {
             try {
-                RacingCarConsoleInput racingCarConsoleInput = new RacingCarConsoleInput();
-                RacingLabConsoleInput racingLabConsoleInput = new RacingLabConsoleInput();
-                RaceParticipants raceParticipants = new RaceParticipants(racingCarConsoleInput);
-                Race race = new Race();
-                winners = race.run(raceParticipants, racingLabConsoleInput);
+                List<String> carNames = InputRacingInformation.getCarNames();
+                int racingLabs = InputRacingInformation.getRacingLab();
+                RaceParticipants raceParticipants = new RaceParticipants(carNames);
+                RaceResult raceResult = new RaceResult();
+                winners = raceResult.run(raceParticipants, racingLabs);
                 break;
             } catch (Exception e) {
                 OutputRacingView.printErrorMessage(e.getMessage());

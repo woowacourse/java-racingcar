@@ -2,31 +2,23 @@ package application.racingGame;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class Race {
+public class RaceResult {
 
-    public static final int MAXIMUM_RANDOM_NUMBER_RANGE = 9;
-    public static final int MINIMUM_NUMBER_OF_MOVE_FORWARD = 4;
+    private static final int MAXIMUM_RANDOM_NUMBER_RANGE = 10;
 
-    public List<String> run(RaceParticipants raceParticipants, RacingLabConsoleInput racingLabConsoleInput) {
-        raceParticipants.init();
-        List<String> winners = startRacing(raceParticipants, racingLabConsoleInput.getRacingLabValue());
+    public List<String> run(RaceParticipants raceParticipants,int racingLab ) {
+        List<String> winners = startRacing(raceParticipants, racingLab);
         return winners;
     }
 
-    private List<String> startRacing(RaceParticipants raceParticipants, String racingLabValue) {
-        int racingLab = getRacingLab(racingLabValue);
-
+    private List<String> startRacing(RaceParticipants raceParticipants, int racingLab) {
         for (int i = 0; i<racingLab; i++) {
             moveCarForward(raceParticipants.getCars());
             OutputRacingView.printPositionDuringRacing(raceParticipants.getCars());
         }
-
         return getNamesOfWinners(raceParticipants.getCars());
-    }
-
-    private int getRacingLab(String racingLabValue) {
-        return RacingInformationValidator.validateRacingLab(racingLabValue);
     }
 
     private List<String> getNamesOfWinners(List<Car> cars) {
@@ -67,22 +59,12 @@ public class Race {
     private void moveCarForward(List<Car> cars) {
         for (Car car : cars) {
             int randomNumber = generateRandomNumber();
-            checkCarConditionByRandomNumber(car, randomNumber);
+            car.moveForward(randomNumber);
         }
     }
 
     private int generateRandomNumber() {
-        double randomValue = Math.random();
-        return (int) (randomValue * MAXIMUM_RANDOM_NUMBER_RANGE);
-    }
-
-    private void checkCarConditionByRandomNumber(Car car, int randomNumber) {
-        if (isOverMinimumNumberOfMoveForward(randomNumber)) {
-            car.moveForward();
-        }
-    }
-
-    private boolean isOverMinimumNumberOfMoveForward(int randomNumber) {
-        return randomNumber >= MINIMUM_NUMBER_OF_MOVE_FORWARD;
+        Random randomNumber = new Random();
+        return randomNumber.nextInt(MAXIMUM_RANDOM_NUMBER_RANGE);
     }
 }
