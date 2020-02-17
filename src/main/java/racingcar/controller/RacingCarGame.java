@@ -20,7 +20,7 @@ public class RacingCarGame {
 
     private static void playRounds(Cars cars, Round round) {
         String result;
-        while (round.isGoing()) {
+        while (round.reduceRounds()) {
             cars.play();
             result = cars.getResult();
             OutputView.printResult(result);

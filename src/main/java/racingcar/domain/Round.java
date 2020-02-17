@@ -29,7 +29,7 @@ public class Round {
         return parsedNumber <= ZERO;
     }
 
-    public boolean isGoing() {
+    public boolean reduceRounds() {
         if (round > ZERO) {
             round--;
             return true;
