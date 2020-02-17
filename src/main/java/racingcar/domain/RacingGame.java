@@ -16,7 +16,6 @@ import java.util.Random;
 public class RacingGame {
 
     private final static String NEW_LINE = "\n";
-    private final static int RANDOM_NUMBER_RANGE = 10;
     private final Cars cars;
     private final int tryCount;
 
@@ -36,14 +35,9 @@ public class RacingGame {
     private void playRacing(StringBuilder racingProgress) {
         racingProgress.append(NEW_LINE);
         for (Car car : cars.getCars()) {
-            car.move(getRandomNo());
+            car.move(RandomNumber.getRandomNo());
             racingProgress.append(car.toString());
         }
-    }
-
-    private int getRandomNo() {
-        Random random = new Random();
-        return random.nextInt(RANDOM_NUMBER_RANGE);
     }
 
     public String getWinner() {
