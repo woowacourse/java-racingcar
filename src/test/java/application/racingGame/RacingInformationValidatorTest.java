@@ -12,7 +12,6 @@ import java.util.List;
 public class RacingInformationValidatorTest {
 
     private List<Car> cars;
-    private RaceResult raceResult;
     private Car pobi;
     private Car lavin;
     private Car ramen;
@@ -20,7 +19,6 @@ public class RacingInformationValidatorTest {
     @BeforeEach
     void setUp() {
         cars = new ArrayList<>();
-        raceResult = new RaceResult();
         pobi = new Car("pobi");
         lavin = new Car("lavin");
         ramen = new Car("ramen");
