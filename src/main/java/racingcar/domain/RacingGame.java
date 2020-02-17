@@ -10,7 +10,6 @@
 
 package racingcar.domain;
 
-import java.util.List;
 import racingcar.view.OutputView;
 
 public class RacingGame {
@@ -18,8 +17,8 @@ public class RacingGame {
     private final Cars cars;
     private final int tryCount;
 
-    public RacingGame(List<Car> cars, int tryCount) {
-        this.cars = new Cars(cars);
+    public RacingGame(Cars cars, int tryCount) {
+        this.cars = cars;
         this.tryCount = tryCount;
     }
 
