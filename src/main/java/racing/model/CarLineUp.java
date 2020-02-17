@@ -1,6 +1,5 @@
 package racing.model;
 
-import racing.view.OutputView;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -28,7 +27,6 @@ public class CarLineUp {
     public void raceOneTime() {
         for (Car car : lineUp){
             car.move(new RandomNo());
-            OutputView.printCurrentDashResult(car.getName(), car.getPosition());
         }
     }
 

@@ -5,7 +5,9 @@ public class Position {
 
     private int position;
 
-    public Position (){}
+    public Position (){
+        this(0);
+    }
 
     public Position (int position){
         this.position = position;
