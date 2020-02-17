@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Objects;
-
 public class Car {
     private static final int MIN_MOVABLE_NUM = 4;
     private static final int INITIAL_POSITION = 0;
