@@ -2,8 +2,8 @@ package racingcargame.view;
 
 import java.util.List;
 
-import racingcargame.domain.RacingResult;
 import racingcargame.domain.RacingLog;
+import racingcargame.domain.RacingResult;
 import racingcargame.domain.car.CarDto;
 
 public class OutputView {

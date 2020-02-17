@@ -30,8 +30,8 @@ public class RacingCars {
 			.collect(Collectors.toList());
 	}
 
-	public RacingLog processOneRace(MoveDecider moveDecider) {
-		cars.forEach(car -> car.decideMoveOrStop(moveDecider));
+	public RacingLog processOneRace(MoveStrategy moveStrategy) {
+		cars.forEach(car -> car.decideMoveOrStop(moveStrategy.getRandomNo()));
 		return new RacingLog(cars);
 	}
 }

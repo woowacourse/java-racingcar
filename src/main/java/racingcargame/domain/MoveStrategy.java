@@ -1,9 +1,9 @@
 package racingcargame.domain;
 
 public interface MoveStrategy {
-	boolean isMovable();
+	int getRandomNo();
 
-	int getMoveNumber();
+	int getMoveNo();
 
-	int getStopNumber();
+	int getStopNo();
 }
