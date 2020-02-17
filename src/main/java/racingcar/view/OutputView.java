@@ -39,10 +39,6 @@ public class OutputView {
         System.out.println();
     }
 
-//    public static void printCurrentResult(String result) {
-//        System.out.println(result);
-//    }
-
     public static void printWinnerResult() {
         System.out.println(Winners.getWinners() + "가 최종 우승했습니다.");
     }
