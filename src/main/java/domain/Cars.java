@@ -26,10 +26,6 @@ public class Cars {
         }
     }
 
-    public Car getCar(int index) {
-        return cars.get(index);
-    }
-
     public int getSize() {
         return cars.size();
     }
@@ -54,5 +50,14 @@ public class Cars {
             OutputView.printCurrentPosition(cars.get(count).getName(), cars.get(count).getPosition());
         }
         OutputView.println();
+    }
+
+    public String getFormattedAllNames() {
+        List<String> names = new ArrayList<>();
+        for (int count = 0; count < cars.size(); count++) {
+            names.add(cars.get(count).getName());
+        }
+        String formattedName = String.join(",", names);
+        return formattedName;
     }
 }

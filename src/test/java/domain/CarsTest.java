@@ -6,9 +6,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import java.util.List;
 import java.util.Arrays;
 
-import calculator.StringCalculator;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
@@ -37,13 +35,6 @@ public class CarsTest {
         Car duplicatedCar2 = new Car("던둥");
         assertThatThrownBy(() -> new Cars(Arrays.asList(duplicatedCar1, duplicatedCar2)))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("Cars 리스트의 원소가 적절한지 검증한다.")
-    void getCarTest() {
-        assertThat(cars.getCar(0)).isEqualTo(car1);
-        assertThat(cars.getCar(1)).isEqualTo(car2);
     }
 
     @Test
