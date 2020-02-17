@@ -18,11 +18,10 @@ public class Cars {
     public static final String CAR_NUMBERS_OUT_OF_RANGE_MESSAGE = "Car numbers out of range(0,10).";
 
     private final List<Car> cars;
-    private NumberGeneratorStrategy numberGeneratorStrategy;
 
     public Cars(final List<Car> cars) {
-        validateNotDuplicate(cars);
         validateCarsSize(cars);
+        validateNotDuplicate(cars);
         this.cars = Collections.unmodifiableList(cars);
     }
 
@@ -49,19 +48,9 @@ public class Cars {
         return true;
     }
 
-    public void setNumberGeneratorStrategy(NumberGeneratorStrategy numberGeneratorStrategy) {
-        this.numberGeneratorStrategy = numberGeneratorStrategy;
-    }
-
     public void moveAll() {
-        List<Integer> numbers = numberGeneratorStrategy.generateNumbers(cars.size());
-        moveAll(numbers);
-    }
-
-    public void moveAll(final List<Integer> powers) {
-        validateSize(powers);
-        for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).move(powers.get(i));
+        for (Car car : cars) {
+            car.move();
         }
     }
 
