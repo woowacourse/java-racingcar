@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,12 +34,14 @@ public class CarsInOneRace {
         cars.forEach(car -> car.move(RandomNumber.getRandomNumber()));
     }
 
-    public List<Car> getWinners() {
+    public RacingGameWinners getWinners() {
         final int maxDistance = getMaxDistance();
 
-        return cars.stream()
+        List<Car> winners = cars.stream()
             .filter(car -> car.isWinner(maxDistance))
             .collect(Collectors.toList());
+
+        return new RacingGameWinners(winners);
     }
 
     private int getMaxDistance() {

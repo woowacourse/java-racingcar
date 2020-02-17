@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
 
@@ -46,10 +47,11 @@ public class CarsInOneRaceTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
+    @ParameterizedTest
+    @EmptySource
     @DisplayName("빈 문자열인 이름 문자열이 하나라도 있을 때")
-    void emptyNamesTest() {
-        String[] names = {"", "d"};
+    void emptyNamesTest(String name) {
+        String[] names = {name, "d"};
         List<String> nameList = Arrays.asList(names);
 
         assertThatThrownBy(() -> new CarsInOneRace(nameList))
