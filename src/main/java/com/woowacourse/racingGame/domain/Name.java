@@ -14,7 +14,7 @@ public class Name {
 	}
 
 	private void checkNullOrEmpty(final String name) {
-		if (name == null || name.isEmpty()) {
+		if (Objects.isNull(name) || name.isEmpty()) {
 			throw new IllegalArgumentException("null 또는 빈 문자열입니다.");
 		}
 	}

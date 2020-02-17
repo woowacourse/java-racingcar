@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,13 +43,19 @@ public class CarsTest {
 	void attemptMove_전부_이동() {
 		//given
 		movableStrategy = new PlannedMovableStrategy(new Power(9));
-		List<Car> nonDuplicatedCars = Arrays.asList(
-			new Car(new Name("a"), movableStrategy),
-			new Car(new Name("bb"), movableStrategy),
-			new Car(new Name("ccc"), movableStrategy));
-		Cars cars = new Cars(nonDuplicatedCars);
+		List<Car> plannedCars = Arrays.asList(
+			new Car(new Name("a"), new Position(1), movableStrategy),
+			new Car(new Name("bb"), new Position(2), movableStrategy),
+			new Car(new Name("ccc"), new Position(3), movableStrategy));
+		Cars cars = new Cars(plannedCars);
+		cars.attemptMove();
 
-		//when
-		//then
+		List<Integer> actual = cars.getCars().stream()
+			.map(Car::getPosition)
+			.collect(Collectors.toList());
+
+		List<Integer> expected = Arrays.asList(2, 3, 4);
+
+		assertThat(actual).isEqualTo(expected);
 	}
 }
