@@ -60,7 +60,7 @@ public class Car {
         return name;
     }
 
-    public Car comparePositionSize(Car targetCar) {
+    public Car getBiggerPositionCar(Car targetCar) {
         if (position.isBiggerThan(targetCar.getPosition())){
             return this;
         }

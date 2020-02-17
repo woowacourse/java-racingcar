@@ -58,7 +58,7 @@ public class CarLineUp {
             return topPositionCar;
         }
         for (int index  =  1; index < lineUpSize; index++){
-            topPositionCar = topPositionCar.comparePositionSize(lineUp.get(index));
+            topPositionCar = topPositionCar.getBiggerPositionCar(lineUp.get(index));
         }
         return topPositionCar;
     }
