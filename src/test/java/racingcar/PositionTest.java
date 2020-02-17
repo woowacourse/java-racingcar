@@ -29,7 +29,7 @@ public class PositionTest {
     void constructor_범위를_벗어난_경우(int position) {
         Assertions.assertThatThrownBy(() -> new Position(position))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("car의 position이 범위를 벗어났습니다.");
+                .hasMessage("Car's position out of range(1,101)");
     }
 
     @Test
@@ -47,6 +47,6 @@ public class PositionTest {
         Position position = new Position(101);
         Assertions.assertThatThrownBy(() -> position.moveForward())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("car의 position이 범위를 벗어났습니다.");
+                .hasMessage("Car's position out of range(1,101)");
     }
 }

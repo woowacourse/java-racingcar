@@ -29,7 +29,7 @@ public class RoundTest {
     void constructor_이동_횟수의_범위를_벗어난_경우(int totalRound) {
         Assertions.assertThatThrownBy(() -> new Round(totalRound))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("총 라운드 수가 범위를 벗어났습니다.");
+                .hasMessage("Input total round out of range(1,100)");
     }
 
     @Test
@@ -47,7 +47,7 @@ public class RoundTest {
         Round round = new Round(1);
         Assertions.assertThatThrownBy(() -> round.next())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("최종 라운드입니다.");
+                .hasMessage("Current round is last round.");
     }
 
     @Test
