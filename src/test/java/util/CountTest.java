@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class CountTest {
     @Test
-    @DisplayName("횟수를 0으로 하여 횟수(Count) 객체생성 시도")
+    @DisplayName("횟수를 양수로 하여 횟수(Count) 객체생성 시도")
     void createPositiveCount() {
         Assertions.assertThat(new Count(1).getMoveCount()).isEqualTo(1);
     }

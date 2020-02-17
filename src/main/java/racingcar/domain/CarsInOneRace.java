@@ -7,7 +7,20 @@ public class CarsInOneRace {
     private final List<Car> cars;
 
     public CarsInOneRace(List<String> carNames) {
-        this.cars = carNames.stream()
+        checkNullNameList(carNames);
+        this.cars = createCarsByNames(carNames);
+    }
+
+    private void checkNullNameList(List<String> carNames) {
+        if (carNames == null) {
+            throw new IllegalArgumentException(
+                "경주에 참여할 자동차가 한 대 이상 존재해야 합니다."
+            );
+        }
+    }
+
+    private List<Car> createCarsByNames(List<String> carNames) {
+        return carNames.stream()
             .map(Car::new)
             .collect(Collectors.toList());
     }

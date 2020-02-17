@@ -13,7 +13,18 @@ public class Car {
         this.position = INITIAL_POSITION;
     }
 
-    public static void checkValidName(String name) {
+    public static void checkValidName(final String name) {
+        checkEmptyName(name);
+        checkNameLength(name);
+    }
+
+    private static void checkEmptyName(final String name) {
+        if (name == null || name.equals("")) {
+            throw new IllegalArgumentException("자동차 이름은 반드시 1자 이상 존재해야 합니다.");
+        }
+    }
+
+    private static void checkNameLength(final String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
         }
