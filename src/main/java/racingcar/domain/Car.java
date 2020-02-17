@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import racingcar.movingstrategy.MovingStrategy;
+import racingcar.movingstrategy.RandomMovingStrategy;
+
 import java.util.Objects;
 
 /*
@@ -15,20 +18,24 @@ import java.util.Objects;
  *
  */
 public class Car {
+    private static final int DEFAULT_POSITION = 0;
+
     private final String name;
     private int position;
+    private MovingStrategy movingStrategy;
 
     public Car(String name) {
-        this(name, 0);
+        this(name, DEFAULT_POSITION, RandomMovingStrategy.getInstance());
     }
 
-    public Car(String name, int position) {
+    Car(String name, int position, MovingStrategy movingStrategy) {
         this.name = name;
         this.position = position;
+        this.movingStrategy = movingStrategy;
     }
 
-    public void run(int randomValue) {
-        if (new RandomNumber(randomValue).isMovable()) {
+    public void run() {
+        if (movingStrategy.isMovable()) {
             position++;
         }
     }

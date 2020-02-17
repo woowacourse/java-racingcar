@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.message.Message;
+
 /*
  * Copyright (c) 2020 by 또링
  * All rights reserved.
@@ -15,21 +17,21 @@ package racingcar.domain;
 public class RandomNumber {
     private static final int MINIMUM_OF_NUMBER = 0;
     private static final int MAXIMUM_OF_NUMBER = 9;
-    private static final int MINIMUM_NUMBER_TO_GO = 4;
     private final int number;
 
-    RandomNumber(int number) {
-        if (isCorrectRange(number)) {
-            throw new IllegalArgumentException();
+    public RandomNumber(int number) {
+        if (isWrongRange(number)) {
+            throw new IllegalArgumentException(Message.EXCEPTION_WRONG_RANGE_OF_RANDOM.getMessageText());
         }
         this.number = number;
+
     }
 
-    private boolean isCorrectRange(int number) {
+    private boolean isWrongRange(int number) {
         return (number < MINIMUM_OF_NUMBER) || (number > MAXIMUM_OF_NUMBER);
     }
 
-    public boolean isMovable() {
-        return number >= MINIMUM_NUMBER_TO_GO;
+    public int getNumber() {
+        return number;
     }
 }

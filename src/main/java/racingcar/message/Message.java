@@ -20,6 +20,7 @@ public enum Message {
     EXCEPTION_NOT_ENOUGH_CAR("car must be at least one"),
     EXCEPTION_LENGTH_OF_NAME("name must be between 1-5"),
     EXCEPTION_DUPLICATED_NAME("name can not be duplicated"),
+    EXCEPTION_WRONG_RANGE_OF_RANDOM("The random number must be between 0 and 9"),
     ROUND_START("실행 결과");
 
     private final String messageText;

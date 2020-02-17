@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.generator.RandomNumberGenerator;
 import racingcar.message.Message;
 import racingcar.splitter.NameSplitter;
 
@@ -53,7 +52,7 @@ public class Cars implements Iterable<Car> {
 
     public void run() {
         for (Car car : cars) {
-            car.run(RandomNumberGenerator.getRandomNumber());
+            car.run();
         }
     }
 

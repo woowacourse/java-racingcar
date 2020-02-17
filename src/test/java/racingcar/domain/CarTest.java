@@ -3,9 +3,11 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.movingstrategy.ForwardMovingStrategy;
+import racingcar.movingstrategy.MovingStrategy;
 
 /*
  * Copyright (c) 2020 by 또동페어
@@ -19,7 +21,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  * @date        12 Feb 2020
  *
  */
-public class CarTest {
+class CarTest {
     private Car car;
 
     @DisplayName("이름을 받아 car 객체를 정상적으로 생성")
@@ -30,13 +32,15 @@ public class CarTest {
         assertThat(car).isNotNull();
     }
 
-    @DisplayName("입력받은 수에 따라 자동차가 동작")
-    @ParameterizedTest
-    @CsvSource(value = {"0:0", "1:0", "2:0", "3:0",
-            "4:1", "5:1", "6:1", "7:1", "8:1", "9:1"}, delimiter = ':')
-    void testRun(int randomNumber, int position) {
-        car = new Car("붕붕");
-        car.run(randomNumber);
-        assertThat(car).extracting("position").isEqualToComparingOnlyGivenFields(position);
+    @DisplayName("무조건 전진하는 전략을 사용했을 때, 자동차가 실제로 전진하는지 테스트")
+    @Test
+    void testRun() {
+        MovingStrategy movingStrategy = ForwardMovingStrategy.getInstance();
+        car = new Car("붕붕", 0, movingStrategy);
+
+        car.run();
+        car.run();
+
+        assertThat(car).extracting("position").isEqualTo(2);
     }
 }
