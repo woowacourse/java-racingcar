@@ -24,6 +24,6 @@ public class WinnersTest {
 
         Cars cars = new Cars("무늬,두강,코일,쿨라임", 1);
         Winners winners = new Winners(cars);
-        assertThat(winners.findWinners(cars, 4)).isEqualTo(result);
+        assertThat(winners.findWinners(cars)).isEqualTo(result);
     }
 }

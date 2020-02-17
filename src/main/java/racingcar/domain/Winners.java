@@ -14,8 +14,16 @@ public class Winners {
     private static List<String> winners = new ArrayList<>();
 
     public Winners(Cars cars) {
+        this.winners = findWinners(cars);
+    }
+
+    public List<String> findWinners(Cars cars) {
         int maxLocation = findMaxLocation(cars);
-        this.winners = findWinners(cars, maxLocation);
+        List<String> winners = cars.getCars().stream()
+                .filter(car -> car.isLocation(maxLocation))
+                .map(Car::getName)
+                .collect(Collectors.toList());
+        return winners;
     }
 
     public int findMaxLocation(Cars cars) {
@@ -23,14 +31,6 @@ public class Winners {
                 .map(Car::getLocation)
                 .collect(Collectors.toList());
         return Collections.max(locationOfCars);
-    }
-
-    public List<String> findWinners(Cars cars, int maxLocation) {
-        List<String> winners = cars.getCars().stream()
-                .filter(car -> car.isLocation(maxLocation))
-                .map(Car::getName)
-                .collect(Collectors.toList());
-        return winners;
     }
 
     public static String getWinnerNames() {
