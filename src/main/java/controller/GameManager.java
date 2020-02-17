@@ -1,13 +1,33 @@
 package controller;
 
+import model.Car;
+import model.Round;
+import model.Winner;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class GameManager {
 
-    public static final String NO_NAME_ERROR_MESSAGE = "이름 입력값이 없습니다.";
-    public static final String INVALID_NAME_ERROR_MESSAGE = "유효하지 않은 이름입니다.";
+    private static final String NO_NAME_ERROR_MESSAGE = "이름 입력값이 없습니다.";
+    private static final String INVALID_NAME_ERROR_MESSAGE = "유효하지 않은 이름입니다.";
     private static final String NOT_INTEGER_ERROR_MESSAGE = "숫자가 아니라 문자입니다.";
+    private List<Car> cars = new ArrayList<>();
+    private Winner winner = new Winner();
+    private Round round;
+
+    public GameManager(String carNames, String round) {
+        validateInput(carNames, round);
+        initiateCars(carNames.split(","));
+        this.round = new Round(Integer.parseInt(round));
+    }
+
+    private void initiateCars(String[] carNames) {
+        for (String carName : carNames) {
+            this.cars.add(new Car(carName));
+        }
+    }
 
     static void validateInput(String carNames, String round) {
         checkCarNames(carNames);
