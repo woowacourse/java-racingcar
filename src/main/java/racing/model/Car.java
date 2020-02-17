@@ -7,25 +7,32 @@ public class Car {
     private Position position;
 
     public Car(String name) {
+        checkNullName(name);
+        checkEmptyName(name);
         name = name.trim();
         checkNameLengthUnderSix(name);
-        checkNullOrEmptyName(name);
         this.name = name;
         position = new Position();
     }
 
     public Car(String name, int position) {
+        checkNullName(name);
+        checkEmptyName(name);
         name = name.trim();
         checkNameLengthUnderSix(name);
-        checkNullOrEmptyName(name);
         this.name = name;
         this.position = new Position(position);
     }
 
+    private void checkNullName(String name) {
+        if (name == null){
+            throw new NullPointerException("차이름이 입력되지 않았습니다.");
+        }
+    }
 
-    private void checkNullOrEmptyName(String name) {
-        if (name == null || name.isEmpty()){
-            throw new NullPointerException("차이름은 공백 또는 빈 문자열일 수 없습니다.");
+    private void checkEmptyName(String name) {
+        if (name.isEmpty()){
+            throw new IllegalArgumentException("차이름은 공백 또는 빈 문자열일 수 없습니다.");
         }
     }
 
