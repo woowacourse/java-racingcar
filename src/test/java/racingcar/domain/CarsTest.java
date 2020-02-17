@@ -22,11 +22,11 @@ public class CarsTest {
     @DisplayName("생성자를 만들어 값을 잘 불러오는지 테스트")
     @Test
     void getCars() {
-        List<Car> cars = Arrays.asList(
+        List<Car> CarClass  = Arrays.asList(
             new Car("asd", 0), new Car("zxc", 0)
         );
-        Cars carsCollection = new Cars(cars);
+        Cars carsClass = new Cars(CarClass);
 
-        assertThat(carsCollection.getCars()).isEqualTo(cars);
+        assertThat(carsClass.getCars()).isEqualTo(CarClass);
     }
 }
