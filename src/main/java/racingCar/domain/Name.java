@@ -1,6 +1,8 @@
 package racingCar.domain;
 
 public class Name {
+    private static final int FIVE = 5;
+
     private final String name;
 
     public Name(final String name) throws IllegalArgumentException {
@@ -15,7 +17,7 @@ public class Name {
     }
 
     private boolean isGreaterThanFive(String name) {
-        return name.length() > 5;
+        return name.length() > FIVE;
     }
 
     public boolean equals(Name name) {
