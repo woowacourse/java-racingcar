@@ -3,6 +3,7 @@ package racingcar.domain;
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int INITIAL_POSITION = 0;
+    private static final int MOVE_THRESHOLD = 4;
 
     private final String name;
     private int position;
@@ -30,10 +31,20 @@ public class Car {
         }
     }
 
-    public void move(RandomNumberWhetherMove random) {
-        if (random.canMove()) {
+    public void move(MovingStrategy movingStrategy) {
+        if (movingStrategy.movable()) {
+            position++;
+        }
+    }
+
+    public void _move(RandomNumber random) {
+        if (canMove(random)) {
             this.position++;
         }
+    }
+
+    private boolean canMove(RandomNumber random) {
+        return random.getRandomNumber() > MOVE_THRESHOLD;
     }
 
     public boolean isWinner(int maxDistance) {
