@@ -21,17 +21,15 @@ public class Cars {
     public void moveAllCars() {
         for (Car car : cars) {
             if (moveEachCar(car)) {
-                maxPosition = car.updateMaxPosition(maxPosition);
+                maxPosition = car.getMaxPosition(maxPosition);
             }
+            OutputView.printEachCarLog(car);
         }
         OutputView.printLine();
     }
 
     public boolean moveEachCar(Car car) {
-        boolean isMove = car.move(generateRandom());
-        String log = car.makeLog();
-        OutputView.printLog(log);
-        return isMove;
+        return car.move(generateRandom());
     }
 
     public Winners makeWinners() {

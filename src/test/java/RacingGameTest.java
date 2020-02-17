@@ -4,7 +4,6 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racinggame.domain.Output;
 import racinggame.domain.Car;
 import racinggame.domain.Input;
 import racinggame.domain.RacingGame;
@@ -15,13 +14,10 @@ import java.util.List;
 public class RacingGameTest {
     private static final List<Car> carList = new ArrayList<>();
     private static final int WINNER_POSITION = 3;
-    private final String[] testNames = {"pobi", "crong", "honux"};
     private final String NAMES = "pobi,crong,honux";
     private final String REPEAT = "5";
 
     Input input;
-    Output output;
-
 
     void initList() {
         carList.clear();
@@ -51,7 +47,7 @@ public class RacingGameTest {
     @CsvSource(value = {"3,true", "2,false"})
     void 이동_테스트(int position, boolean expected) {
         initList();
-        boolean result = carList.get(0).match(position);
+        boolean result = carList.get(0).isSamePosition(position);
         Assertions.assertThat(result).isEqualTo(expected);
     }
 
@@ -73,15 +69,5 @@ public class RacingGameTest {
 
         chkWinner = carList.get(2).isSamePosition(WINNER_POSITION);
         Assertions.assertThat(chkWinner).isEqualTo(false);
-    }
-
-    @RepeatedTest(value = 100)
-    void 레이싱게임_실행_결과_테스트() {
-        output = RacingGame.play(input);
-        boolean result = false;
-        for (String name : testNames) {
-            result = result || output.hasWinnersName(name);
-        }
-        Assertions.assertThat(result).isTrue();
     }
 }

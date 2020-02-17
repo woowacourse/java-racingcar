@@ -18,7 +18,7 @@ public class RacingGame {
         return rand.nextInt(NUMBER_BOUND);
     }
 
-    public static Output play(Input input) {
+    public static void play(Input input) {
         List<String> names = input.splitInputByComma();
         int repeat = input.parseRepeatToInt();
         Cars cars = new Cars(names);
@@ -27,7 +27,6 @@ public class RacingGame {
             cars.moveAllCars();
         }
         Winners winners = cars.makeWinners();
-        Output output = new Output(winners);
-        return output;
+        OutputView.printWinnersLog(winners);
     }
 }

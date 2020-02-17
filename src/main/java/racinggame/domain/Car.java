@@ -1,7 +1,5 @@
 package racinggame.domain;
 
-import java.util.List;
-
 public class Car {
     private static final int FORWARD_NUMBER = 4;
     private static final int START_POSITION = 0;
@@ -25,28 +23,19 @@ public class Car {
         return false;
     }
 
-    public boolean match(int position) {
-        return position == this.position;
-    }
-
     public boolean isSamePosition(int position) {
         return this.position == position;
     }
 
-    public String makeLog() {
-        StringBuilder log = new StringBuilder(name);
-        log.append(" : ");
-        for (int i = 0; i < position; i++) {
-            log.append("-");
-        }
-        return log.toString();
+    public String getName() {
+        return name;
     }
 
-    public String makeWinnerLog() {
-        return this.name;
+    public int getPosition() {
+        return position;
     }
 
-    public int updateMaxPosition(int maxPosition) {
+    public int getMaxPosition(int maxPosition) {
         return Math.max(position, maxPosition);
     }
 }

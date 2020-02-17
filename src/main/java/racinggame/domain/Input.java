@@ -1,6 +1,5 @@
 package racinggame.domain;
 
-import com.sun.tools.javac.util.StringUtils;
 import racinggame.view.InputView;
 
 import java.util.Arrays;
@@ -15,6 +14,7 @@ public class Input {
     public static final String NOT_POSITIVE_ERROR_MESSAGE = "횟수는 1이상의" +
             " 정수만 가능합니다.";
     private static final String SPLIT_DELIMITER = ",";
+
     public static final int NAME_LENGTH_LIMIT = 5;
 
     private String names;
@@ -81,8 +81,8 @@ public class Input {
     }
 
     private void validateRepeatPositive() {
-        int castingRepeat = parseRepeatToInt();
-        if (castingRepeat <= 0) {
+        int repeat = parseRepeatToInt();
+        if (repeat <= 0) {
             throw new IllegalArgumentException(NOT_POSITIVE_ERROR_MESSAGE);
         }
     }

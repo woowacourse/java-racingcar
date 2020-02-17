@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Winners {
-    List<Car> winners;
+    List<String> winners;
 
     public Winners(List<Car> winnerCars) {
         winners = new ArrayList<>();
         for (Car car : winnerCars) {
-            winners.add(car);
+            winners.add(car.getName());
         }
     }
 
-    public List<String> makeWinnerNames() {
-        List<String> winnerNames = new ArrayList<>();
-        for (Car car : winners) {
-            winnerNames.add(car.makeWinnerLog());
-        }
-        return winnerNames;
+    public List<String> getNames() {
+        return winners;
     }
 }
