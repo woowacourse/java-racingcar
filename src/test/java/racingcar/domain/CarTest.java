@@ -11,16 +11,16 @@ public class CarTest {
     void 전진하기() {
         Name name = new Name("pobi");
         CarMoveValueGenerator carMoveValueGenerator = () -> 10;
-        Car car = new Car(name, carMoveValueGenerator);
-        assertThat(car.movePosition()).isEqualTo(1);
+        Car car = new Car(name);
+        assertThat(car.movePosition(carMoveValueGenerator)).isEqualTo(1);
     }
 
     @Test
     void 정지하기() {
         Name name = new Name("pobi");
         CarMoveValueGenerator carMoveValueGenerator = () -> 3;
-        Car car = new Car(name, carMoveValueGenerator);
-        assertThat(car.movePosition()).isEqualTo(0);
+        Car car = new Car(name);
+        assertThat(car.movePosition(carMoveValueGenerator)).isEqualTo(0);
     }
 
     @Test

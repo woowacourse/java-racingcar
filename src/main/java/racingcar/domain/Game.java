@@ -1,12 +1,15 @@
 package racingcar.domain;
 
+import racingcar.domain.Generator.CarMoveValueGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class Game {
-    private Names names;
+    public static final int RANDOM_LIMIT_VALUE = 10;
+
     private Trial trial;
     private Cars cars;
+    private CarMoveValueGenerator carMoveValueGenerator = () -> (int) (Math.random() * RANDOM_LIMIT_VALUE);
 
     public void run() {
         prepareGame();
@@ -14,8 +17,8 @@ public class Game {
         printFinalResult();
     }
 
-    private void prepareGame(){
-        names = InputView.getNames();
+    private void prepareGame() {
+        Names names = InputView.getNames();
         trial = InputView.getTrial();
         cars = new Cars(names);
     }
@@ -23,7 +26,7 @@ public class Game {
     private void playGaming() {
         OutputView.printCurrentResultTitle();
         for (int i = 0; i < trial.getTrial(); i++) {
-            cars.moveCars();
+            cars.moveCars(carMoveValueGenerator);
             OutputView.printIntermediateResult(cars);
         }
     }

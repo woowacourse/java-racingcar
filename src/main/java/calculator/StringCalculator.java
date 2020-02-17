@@ -7,7 +7,7 @@ public class StringCalculator {
 
     private static final String NGATIVE_SIGN = "-";
     public static final String DELIMITER = ",|:";
-    private static Matcher m;
+    private static Matcher matcher;
 
     public static int calculate(String text) {
         if (text == null || text.isEmpty()) {
@@ -20,11 +20,11 @@ public class StringCalculator {
     }
 
     private static int splitAndSum(String text) {
-        m = Pattern.compile("//(.)\n(.*)").matcher(text);
+        matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
 
-        if (m.find()) {
-            String customDelimiter = m.group(1);
-            String[] tokens = m.group(2).split(customDelimiter);
+        if (matcher.find()) {
+            String customDelimiter = matcher.group(1);
+            String[] tokens = matcher.group(2).split(customDelimiter);
             return sum(tokens);
         }
 

@@ -6,15 +6,13 @@ public class Car implements Comparable<Car> {
     private static final int FORWARD_NUMBER = 4;
     private Name name;
     private int position;
-    private CarMoveValueGenerator carMoveValueGenerator;
 
-    public Car(Name name, CarMoveValueGenerator carMoveValueGenerator) {
+    public Car(Name name) {
         this.name = name;
         this.position = 0;
-        this.carMoveValueGenerator = carMoveValueGenerator;
     }
 
-    public int movePosition() {
+    public int movePosition(CarMoveValueGenerator carMoveValueGenerator) {
         if (carMoveValueGenerator.generateCarMoveValue() > FORWARD_NUMBER) {
             this.position++;
         }
