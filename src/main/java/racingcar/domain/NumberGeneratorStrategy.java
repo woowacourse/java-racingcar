@@ -11,5 +11,5 @@ import java.util.List;
  */
 
 public interface NumberGeneratorStrategy {
-    public List<Integer> generateNumbers(final int size);
+    public int generateNumber();
 }

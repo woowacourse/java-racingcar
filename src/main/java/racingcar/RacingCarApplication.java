@@ -37,7 +37,6 @@ public class RacingCarApplication {
 
     private static Cars makeCars() {
         Cars cars = new Cars(CarNameSplitter.split(InputView.inputNames()));
-        cars.setNumberGeneratorStrategy(new RandomNumberGeneratorStrategy());
         return cars;
     }
 

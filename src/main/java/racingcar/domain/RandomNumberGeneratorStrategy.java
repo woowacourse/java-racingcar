@@ -15,16 +15,8 @@ import java.util.Random;
 public class RandomNumberGeneratorStrategy implements NumberGeneratorStrategy {
     private final Random random = new Random();
 
-    private int generateRandomNumber() {
-        return random.nextInt(10);
-    }
-
     @Override
-    public List<Integer> generateNumbers(final int size) {
-        List<Integer> numbers = new ArrayList<>();
-        for (int index = 0; index < size; index++) {
-            numbers.add(generateRandomNumber());
-        }
-        return numbers;
+    public int generateNumber() {
+        return random.nextInt(10);
     }
 }

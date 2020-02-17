@@ -14,11 +14,7 @@ public class DefaultNumberGeneratorStrategy implements NumberGeneratorStrategy {
     public static final int DEFAULT_NUMBER= 1;
 
     @Override
-    public List<Integer> generateNumbers(final int size) {
-        List<Integer> numbers = new ArrayList<>();
-        for (int index = 0; index < size; index++) {
-            numbers.add(DEFAULT_NUMBER);
-        }
-        return numbers;
+    public int generateNumber() {
+        return DEFAULT_NUMBER;
     }
 }
