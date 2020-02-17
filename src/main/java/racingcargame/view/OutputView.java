@@ -3,7 +3,7 @@ package racingcargame.view;
 import java.util.List;
 
 import racingcargame.domain.RacingResult;
-import racingcargame.domain.RacingStatus;
+import racingcargame.domain.RacingLog;
 import racingcargame.domain.car.CarDto;
 
 public class OutputView {
@@ -35,7 +35,7 @@ public class OutputView {
 
 	public static void printRaceResult(RacingResult racingResult) {
 		racingResult.getRacingResult().stream()
-			.map(RacingStatus::getRacingStatus)
+			.map(RacingLog::getRacingLog)
 			.forEach(carDtos -> {
 				carDtos.forEach(OutputView::printRaceStatus);
 				System.out.println();

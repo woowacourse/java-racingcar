@@ -1,17 +1,18 @@
 package racingcargame.domain;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import racingcargame.domain.car.Car;
 import racingcargame.domain.car.CarDto;
 
-public class RacingStatus {
-	private List<CarDto> racingStatus;
+public class RacingLog {
+	private List<CarDto> racingLog;
 
-	RacingStatus(List<Car> cars) {
-		this.racingStatus = createCarDtos(cars);
+	public RacingLog(List<Car> cars) {
+		Objects.requireNonNull(cars);
+		this.racingLog = createCarDtos(cars);
 	}
 
 	private List<CarDto> createCarDtos(List<Car> cars) {
@@ -21,18 +22,17 @@ public class RacingStatus {
 	List<String> getWinners() {
 		int maxPosition = calculateMaxPosition();
 
-		return racingStatus.stream()
+		return racingLog.stream()
 			.filter(carDto -> carDto.isPositionOf(maxPosition))
 			.map(CarDto::getName)
 			.collect(Collectors.toList());
 	}
 
 	private int calculateMaxPosition() {
-		Collections.sort(racingStatus);
-		return racingStatus.get(0).getPosition();
+		return racingLog.stream().max(CarDto::compareTo).get().getPosition();
 	}
 
-	public List<CarDto> getRacingStatus() {
-		return racingStatus;
+	public List<CarDto> getRacingLog() {
+		return racingLog;
 	}
 }

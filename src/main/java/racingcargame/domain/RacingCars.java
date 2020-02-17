@@ -8,12 +8,19 @@ import java.util.stream.Collectors;
 import racingcargame.domain.car.Car;
 
 public class RacingCars {
-	private static final String DELIMITER = ",";
+	public static final String DELIMITER = ",";
 
 	private List<Car> cars;
 
 	public RacingCars(String names) {
+		validateOnlyDelimiter(names);
 		this.cars = createCars(names);
+	}
+
+	private void validateOnlyDelimiter(String names) {
+		if (names.equals(DELIMITER)) {
+			throw new IllegalArgumentException("구분자를 기준으로 이름을 입력해주세요.");
+		}
 	}
 
 	private List<Car> createCars(String names) {
@@ -23,8 +30,8 @@ public class RacingCars {
 			.collect(Collectors.toList());
 	}
 
-	public RacingStatus processOneRace(MoveDecider moveDecider) {
+	public RacingLog processOneRace(MoveDecider moveDecider) {
 		cars.forEach(car -> car.decideMoveOrStop(moveDecider));
-		return new RacingStatus(cars);
+		return new RacingLog(cars);
 	}
 }

@@ -7,7 +7,7 @@ import racingcargame.domain.MoveDecider;
 import racingcargame.domain.RepeatTimes;
 import racingcargame.domain.RacingCars;
 import racingcargame.domain.RacingResult;
-import racingcargame.domain.RacingStatus;
+import racingcargame.domain.RacingLog;
 
 public class RacingCarController {
 	public RacingResult run(String names, RepeatTimes repeatTimes) {
@@ -18,10 +18,10 @@ public class RacingCarController {
 	}
 
 	private RacingResult processGame(RepeatTimes repeatTimes, RacingCars racingCars, MoveDecider moveDecider) {
-		List<RacingStatus> racingStatuses = new ArrayList<>();
+		List<RacingLog> racingLogs = new ArrayList<>();
 		for (int i = 0; i < repeatTimes.getRepeatTimes(); i++) {
-			racingStatuses.add(racingCars.processOneRace(moveDecider));
+			racingLogs.add(racingCars.processOneRace(moveDecider));
 		}
-		return new RacingResult(racingStatuses);
+		return new RacingResult(racingLogs);
 	}
 }

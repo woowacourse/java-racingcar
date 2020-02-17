@@ -23,7 +23,7 @@ public class CarDto implements Comparable<CarDto> {
 
 	@Override
 	public int compareTo(CarDto c) {
-		return c.position - position;
+		return position - c.position;
 	}
 
 	@Override
