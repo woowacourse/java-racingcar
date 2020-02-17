@@ -1,60 +1,47 @@
 package view;
 
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ValidateInput {
 
-    private static final String NUMBER_FORMAT = "^\\d+$";
-    private static final Pattern pattern = Pattern.compile(NUMBER_FORMAT);
-    public static final int ZERO = 0;
-    private static final int MAX_NAME_LENGTH = 5;
+    private static final String NO_NAME_ERROR_MESSAGE = "이름 입력값이 없습니다.";
+    private static final String INVALID_NAME_ERROR_MESSAGE = "유효하지 않은 이름입니다.";
+    private static final String NOT_INTEGER_ERROR_MESSAGE = "입력된 횟수가 숫자가 아니라 문자입니다.";
 
-    public static String[] validateName(String[] names) {
-        if (names == null) {
-            IllegalNameException();
+    public static void validateInput(String carNames, String round) {
+        checkCarNames(carNames);
+        checkRound(round);
+    }
+
+    private static void checkRound(String round) {
+        isInteger(round);
+    }
+
+    static void isInteger(String round) {
+        try {
+            Integer.parseInt(round);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(NOT_INTEGER_ERROR_MESSAGE);
         }
-        for (String name : names) {
-            if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
-                names = IllegalNameException();
-                break;
-            }
+    }
+
+    static void checkCarNames(String carNames) {
+        if (carNames == null || carNames.isEmpty()) {
+            throw new IllegalArgumentException(NO_NAME_ERROR_MESSAGE);
         }
-        return names;
+        ArrayList<String> tempCarNames = new ArrayList<>(Arrays.asList(carNames.split(",")));
+        checkNameEmpty(tempCarNames);
     }
 
-    public static int ValidateCount(String input) {
-        int integerInput = Integer.parseInt(input);
-
-        if (isNotInteger(input)) {
-            return IllegalNotIntegerException();
+    private static void checkNameEmpty(ArrayList<String> tempCarNames) {
+        if (tempCarNames == null || tempCarNames.isEmpty()) {
+            throw new IllegalArgumentException(NO_NAME_ERROR_MESSAGE);
         }
-        if (isUnderZero(integerInput)) {
-            integerInput = IllegalNegativeNumberException();
-        }
-        return integerInput;
-    }
-
-    private static int IllegalNotIntegerException() {
-        ValidationView.printNotIntegerErrorMessage();
-        return InputView.inputRound();
-    }
-
-    private static int IllegalNegativeNumberException() {
-        ValidationView.printMinRoundNumberErrorMessage();
-        return InputView.inputRound();
-    }
-
-    private static String[] IllegalNameException() {
-        ValidationView.printNameErrorMessage();
-        return InputView.inputCarName();
-    }
-
-    public static boolean isUnderZero(int round) {
-        return round <= ZERO;
-    }
-
-
-    private static boolean isNotInteger(String input) {
-        return !pattern.matcher(input).matches();
+        tempCarNames.stream()
+                .filter(x -> x == null || x.isEmpty())
+                .forEach(x -> {
+                    throw new IllegalArgumentException(INVALID_NAME_ERROR_MESSAGE);
+                });
     }
 }
