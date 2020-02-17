@@ -11,25 +11,18 @@ public class StringCalculator {
         if (isBlank(expression)) {
             return 0;
         }
-        if (isOnlyOneNumber(expression)) {
-            return stringToInteger(expression);
-        }
-        Integer resultWithOtherDelimiter = splitWithOtherDelimiter(expression);
-        if (resultWithOtherDelimiter != null) {
-            return splitWithOtherDelimiter(expression);
-        }
-        String[] separatedNumber = expression.split(",|:");
-        return addArrayElements(separatedNumber);
+        return splitWithDelimiter(expression);
     }
 
-    private static Integer splitWithOtherDelimiter(String s) {
-        Matcher m = newDelimiterPattern.matcher(s);
+    private static Integer splitWithDelimiter(String expression) {
+        Matcher m = newDelimiterPattern.matcher(expression);
         if (m.find()) {
             String customDelimiter = m.group(1);
             String[] tokens = m.group(2).split(customDelimiter);
             return addArrayElements(tokens);
         }
-        return null;
+        String[] separatedNum = expression.split(",|:");
+        return addArrayElements(separatedNum);
     }
 
     private static int addArrayElements(String[] array) {
@@ -60,7 +53,4 @@ public class StringCalculator {
         return s == null || s.isEmpty();
     }
 
-    private static boolean isOnlyOneNumber(String s) {
-        return s.length() == ONE;
-    }
 }
