@@ -1,9 +1,9 @@
 package racing;
 
-
 import racing.domain.Car;
 import racing.domain.CarGenerator;
 import racing.domain.Cars;
+import racing.utils.RandomNumberGenerator;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class Main {
 		int rounds = inputRoundNumber();
 
 		for (int i = 0; i < rounds; i++) {
-			cars.playRound();
+			cars.playRound(new RandomNumberGenerator());
 			printAllPosition(cars.getCars());
 		}
 
