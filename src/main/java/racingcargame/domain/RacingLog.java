@@ -1,5 +1,6 @@
 package racingcargame.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -33,6 +34,19 @@ public class RacingLog {
 	}
 
 	public List<CarDto> getRacingLog() {
-		return racingLog;
+		return Collections.unmodifiableList(racingLog);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder info = new StringBuilder();
+		for (CarDto carDto : racingLog) {
+			info.append("(");
+			info.append(carDto.getName());
+			info.append(" : ");
+			info.append(carDto.getPosition());
+			info.append(")");
+		}
+		return info.toString();
 	}
 }
