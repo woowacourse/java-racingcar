@@ -2,7 +2,10 @@ package racingGame.domain;
 
 import racingGame.utils.RandomNumberGenerator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 public class Cars {
     private final List<Car> cars;
@@ -24,9 +27,9 @@ public class Cars {
 
     public int getMaximumPosition() {
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getPosition))
-                .get()
-                .getPosition();
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
     }
 
     public List<Car> getWinnersList() {
