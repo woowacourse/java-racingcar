@@ -18,7 +18,7 @@ public class RacingCar {
 
     public static void playWithRandoms() {
         players.getUnmodifiableList().forEach((t) -> {
-            t.goOrWait(new Decider(Decider.getRandomValueFromZeroToNine()));
+            t.goOrWait(DeciderFactory.createRandomDecider());
         });
     }
 

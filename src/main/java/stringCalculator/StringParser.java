@@ -45,6 +45,7 @@ public class StringParser {
     private static String getCustomDelimiter(String input) {
         int startOfCustomDelimiter = input.indexOf(FRONT_SIGN) + TWO_STEP;
         int endOfCustomDelimiter = input.indexOf(BACK_SIGN);
+
         return input.substring(startOfCustomDelimiter, endOfCustomDelimiter);
     }
 
