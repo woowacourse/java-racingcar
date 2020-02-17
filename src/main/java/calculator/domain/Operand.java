@@ -1,8 +1,8 @@
 package calculator.domain;
 
 public class Operand {
-
 	private static final int MIN_BOUND = 0;
+	static final Operand ZERO = new Operand(0);
 
 	private int number;
 

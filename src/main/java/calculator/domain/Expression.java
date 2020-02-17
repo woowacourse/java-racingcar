@@ -11,9 +11,9 @@ public class Expression {
 
 	public Operand calculate() {
 		if (operands == null || operands.isEmpty()) {
-			return new Operand(0);
+			return Operand.ZERO;
 		}
 		return operands.stream()
-			.reduce(new Operand(0), Operand::sum);
+			.reduce(Operand.ZERO, Operand::sum);
 	}
 }
