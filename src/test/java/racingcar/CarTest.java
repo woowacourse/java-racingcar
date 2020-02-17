@@ -33,11 +33,10 @@ public class CarTest {
 
     @ParameterizedTest
     @DisplayName("move 테스트")
-    @CsvSource(value = {"1,1", "5,2"})
-    void move(int power, int position) {
+    void move(int position) {
         Car car = new Car(new Name("pobi"));
-        car.move(power);
+        car.move();
         Assertions.assertThat(car.isPositionOf(position))
-                .isTrue();
+                .isEqualTo(2);
     }
 }

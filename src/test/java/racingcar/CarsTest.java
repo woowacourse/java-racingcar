@@ -23,12 +23,13 @@ public class CarsTest {
 
     @BeforeEach
     void initialize() {
-        cars.add(new Car(new Name("pobi")));
-        cars.add(new Car(new Name("alt")));
-        cars.add(new Car(new Name("habi")));
-        cars.add(new Car(new Name("honux")));
-        cars.add(new Car(new Name("tony")));
-        cars.add(new Car(new Name("sth")));
+        DefaultNumberGeneratorStrategy numberGeneratorStrategy = new DefaultNumberGeneratorStrategy();
+        cars.add(new Car(new Name("pobi"), numberGeneratorStrategy));
+        cars.add(new Car(new Name("alt"), numberGeneratorStrategy));
+        cars.add(new Car(new Name("habi"), numberGeneratorStrategy));
+        cars.add(new Car(new Name("honux"), numberGeneratorStrategy));
+        cars.add(new Car(new Name("tony"), numberGeneratorStrategy));
+        cars.add(new Car(new Name("sth"), numberGeneratorStrategy));
     }
 
     @Test
@@ -70,20 +71,8 @@ public class CarsTest {
     void moveAll() {
         List<Integer> expectingPositions = Arrays.asList(1, 1, 1, 1, 1, 1);
         Cars carsObject = new Cars(cars);
-        carsObject.setNumberGeneratorStrategy(new DefaultNumberGeneratorStrategy());
         carsObject.moveAll();
         Assertions.assertThat(carsObject.isPostionsOf(expectingPositions))
                 .isTrue();
-    }
-
-    @Test
-    @DisplayName("moveAll에 일치하지 않는 크기의 powers를 입력한 경우")
-    void moveAll_일치하지_않는_크기의_리스트를_입력한_경우() {
-        List<Integer> powers = Arrays.asList(1, 2, 3, 4, 5);
-        Cars carsObject = new Cars(cars);
-        carsObject.setNumberGeneratorStrategy(new RandomNumberGeneratorStrategy());
-        Assertions.assertThatThrownBy(() -> carsObject.moveAll(powers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Car 리스트와 입력 리스트의 사이즈가 같지 않습니다.");
     }
 }
