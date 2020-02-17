@@ -11,10 +11,12 @@ public class Cars {
 
 	private List<Car> cars;
 
-	public Cars(List<String> carNames) {
-		this.cars = carNames.stream()
-				.map(Car::new)
-				.collect(Collectors.toList());
+	public Cars(List<Car> cars) {
+		if (cars == null) {
+			throw new IllegalArgumentException("List<Car>가 null입니다.");
+		}
+
+		this.cars = cars;
 	}
 
 	public int randomGenerate() {

@@ -16,20 +16,20 @@ import racing.domain.Car;
 import racing.domain.Cars;
 
 public class CarsTest {
-	@Test
-	public void randomGenerateTest() {
-		Cars cars = new Cars(Arrays.asList("1","2"));
-		assertThat(cars.randomGenerate()).isBetween(0, 9);
-	}
 
 	@Test
 	public void winnerTest() {
-		Cars cars = new Cars(Arrays.asList("자동차1", "자동차2", "자동차3"));
-		cars.getCars().get(1).goForward(5);
+		Cars cars = new Cars(Arrays.asList(
+				new Car("자동차1", 10),
+				new Car("자동차2", 3),
+				new Car("자동차3", 10)
+		));
+
 		List<String> winners = cars.findWinner();
 		String winnersName = String.join(",", winners);
 
-		assertThat(winnersName).contains("자동차2");
-		assertThat(winnersName).doesNotContain("자동차1");
+		assertThat(winnersName).contains("자동차1");
+		assertThat(winnersName).contains("자동차3");
+		assertThat(winnersName).doesNotContain("자동차2");
 	}
 }

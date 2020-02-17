@@ -19,7 +19,9 @@ public class CarTest {
 	@Test
 	public void carInitTest() {
 		List<String> input = Arrays.asList("A", "B", "C");
-		Cars cars = new Cars(input);
+		CarGenerator carGenerator = new CarGenerator();
+		List<Car> car = carGenerator.carGenerate(input);
+		Cars cars = new Cars(car);
 
 		assertThat(cars.getSize()).isEqualTo(input.size());
 		assertThat(cars.getAllNames()).isEqualTo(input);
