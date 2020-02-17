@@ -23,13 +23,14 @@ public class CarsTest {
 
     @BeforeEach
     void initialize() {
-        DefaultNumberGeneratorStrategy numberGeneratorStrategy = new DefaultNumberGeneratorStrategy();
-        cars.add(new Car(new Name("pobi"), numberGeneratorStrategy));
-        cars.add(new Car(new Name("alt"), numberGeneratorStrategy));
-        cars.add(new Car(new Name("habi"), numberGeneratorStrategy));
-        cars.add(new Car(new Name("honux"), numberGeneratorStrategy));
-        cars.add(new Car(new Name("tony"), numberGeneratorStrategy));
-        cars.add(new Car(new Name("sth"), numberGeneratorStrategy));
+        MovableNumberGeneratorStrategy movableNumberGeneratorStrategy = new MovableNumberGeneratorStrategy();
+        UnmovableNumberGeneratorStrategy unmovableNumberGeneratorStrategy = new UnmovableNumberGeneratorStrategy();
+        cars.add(new Car(new Name("pobi"), movableNumberGeneratorStrategy));
+        cars.add(new Car(new Name("alt"), movableNumberGeneratorStrategy));
+        cars.add(new Car(new Name("habi"), movableNumberGeneratorStrategy));
+        cars.add(new Car(new Name("honux"), unmovableNumberGeneratorStrategy));
+        cars.add(new Car(new Name("tony"), unmovableNumberGeneratorStrategy));
+        cars.add(new Car(new Name("sth"), unmovableNumberGeneratorStrategy));
     }
 
     @Test
@@ -69,7 +70,7 @@ public class CarsTest {
     @Test
     @DisplayName("moveAll 테스트")
     void moveAll() {
-        List<Integer> expectingPositions = Arrays.asList(1, 1, 1, 1, 1, 1);
+        List<Integer> expectingPositions = Arrays.asList(2, 2, 2, 1, 1, 1);
         Cars carsObject = new Cars(cars);
         carsObject.moveAll();
         Assertions.assertThat(carsObject.isPostionsOf(expectingPositions))

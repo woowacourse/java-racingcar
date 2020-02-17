@@ -3,17 +3,15 @@ package racingcar;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.domain.Car;
 import racingcar.domain.Name;
 
 /**
  * 자동차 테스트 클래스
  *
- * @version 1.0.0
  * @author K.S.KIM
  * @author HyoChan
+ * @version 1.0.0
  * @since 2020/02/13
  */
 public class CarTest {
@@ -31,12 +29,21 @@ public class CarTest {
                 .isInstanceOf(NullPointerException.class);
     }
 
-    @ParameterizedTest
-    @DisplayName("move 테스트")
-    void move(int position) {
-        Car car = new Car(new Name("pobi"));
+    @Test
+    @DisplayName("움직이는 move 테스트")
+    void move_움직이는_경우() {
+        Car car = new Car(new Name("pobi"), new MovableNumberGeneratorStrategy());
         car.move();
-        Assertions.assertThat(car.isPositionOf(position))
-                .isEqualTo(2);
+        Assertions.assertThat(car.isPositionOf(2))
+                .isTrue();
+    }
+
+    @Test
+    @DisplayName("움직이지 않는 move 테스트")
+    void move_움직이지_않는_경우() {
+        Car car = new Car(new Name("pobi"), new UnmovableNumberGeneratorStrategy());
+        car.move();
+        Assertions.assertThat(car.isPositionOf(1))
+                .isTrue();
     }
 }
