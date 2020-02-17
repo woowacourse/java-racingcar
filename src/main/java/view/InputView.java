@@ -19,28 +19,8 @@ public class InputView {
 
     public static String inputRound() {
         System.out.println(ROUND_INPUT_MESSAGE);
-        return SCANNER.nextLine();
+        return SCANNER.nextLine()
+                .trim();
     }
 
-
-//    private static final String ROUND_INPUT_MESSAGE = "시도할 횟수를 입력하세요";
-//    private static final String SPLIT_DELIMITER = ",";
-//    private static final Scanner SCANNER = new Scanner(System.in);
-
-//    public static String[] inputCarName() {
-//        System.out.println(CAR_NAME_INPUT_MESSAGE);
-//        String input = SCANNER.nextLine()
-//                .replace(" ", "");
-//        return ValidateInput.validateName(nameSplit(input));
-//    }
-//
-//    public static int inputRound() {
-//        System.out.println(ROUND_INPUT_MESSAGE);
-//        String input = SCANNER.next();
-//        return ValidateInput.ValidateCount(input);
-//    }
-//
-//    public static String[] nameSplit(String input) {
-//        return input.split(SPLIT_DELIMITER);
-//    }
 }
