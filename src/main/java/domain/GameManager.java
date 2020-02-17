@@ -16,5 +16,8 @@ public class GameManager {
         }
     }
 
+    public Cars findWinners() {
+        int maxPosition = cars.getMaxPosition();
+        return new Cars(cars.findByPosition(maxPosition));
     }
 }
