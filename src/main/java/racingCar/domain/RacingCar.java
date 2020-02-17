@@ -11,7 +11,9 @@ public class RacingCar {
 
     public static boolean init(String userNames) {
         List<Name> names = StringParser.parseToNameList(userNames);
-        players = new Players(names);
+        players = new Players(names.stream()
+                .map(Player::new)
+                .collect(Collectors.toList()));
 
         return players.isReady();
     }

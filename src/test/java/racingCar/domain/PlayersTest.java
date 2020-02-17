@@ -1,17 +1,13 @@
 package racingCar.domain;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 class PlayersTest {
 
@@ -20,9 +16,13 @@ class PlayersTest {
     void isReady_ShouldReturnFalseWhenInputAreDuplicatedNames(String input) {
         // given
         List<Name> names = StringParser.parseToNameList(input);
+        List<Player> given = names
+                .stream()
+                .map(Player::new)
+                .collect(Collectors.toList());
 
         // when
-        Players gameManager = new Players(names);
+        Players gameManager = new Players(given);
 
         // then
         Assertions.assertThat(gameManager.isReady())
@@ -34,7 +34,12 @@ class PlayersTest {
         // given
         String input = "a,b,c,d";
         List<Name> names = StringParser.parseToNameList(input);
-        Players players = new Players(names);
+        List<Player> given = names
+                .stream()
+                .map(Player::new)
+                .collect(Collectors.toList());
+
+        Players players = new Players(given);
         players.getUnmodifiableList().get(0).goOrWait(new Decider(5));
         players.getUnmodifiableList().get(1).goOrWait(new Decider(5));
         players.getUnmodifiableList().get(1).goOrWait(new Decider(5));
@@ -54,7 +59,11 @@ class PlayersTest {
     void getUnmodifiableList(String input, int expected) {
         // given
         List<Name> names = StringParser.parseToNameList(input);
-        Players players = new Players(names);
+        List<Player> given = names
+                .stream()
+                .map(Player::new)
+                .collect(Collectors.toList());
+        Players players = new Players(given);
 
         // when
         List<Player> result = players.getUnmodifiableList();

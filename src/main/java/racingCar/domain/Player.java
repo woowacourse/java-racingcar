@@ -12,9 +12,6 @@ public class Player {
         this.position = DEFAULT_POSITION;
     }
 
-    /**
-     * @return position after action
-     */
     public int goOrWait(Decider decider) {
         if (decider.isBiggerThan(THREE_FOR_DECIDING)) {
             goOneStep();
