@@ -1,8 +1,8 @@
 package racinggame.domain.game;
 
 import racinggame.domain.car.Cars;
-import racinggame.domain.car.GenerateNumberService;
-import racinggame.domain.car.GenerateRandomNumber;
+import racinggame.domain.car.generatenumber.GenerateNumberService;
+import racinggame.domain.car.generatenumber.GenerateRandomNumber;
 import racinggame.domain.data.Names;
 import racinggame.domain.data.GameStatus;
 import racinggame.domain.car.Car;
@@ -21,7 +21,7 @@ public class RacingGame {
         initCars(names);
     }
 
-    public RacingGame(Names names, GenerateNumberService generateNumberService){
+    public RacingGame(Names names, GenerateNumberService generateNumberService) {
         cars = new Cars(generateNumberService);
         initCars(names);
     }

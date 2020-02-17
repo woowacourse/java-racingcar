@@ -1,13 +1,12 @@
 package racinggame.domain;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racinggame.domain.car.Cars;
-import racinggame.domain.car.GenerateNumberService;
-import racinggame.domain.car.GenerateRandomNumber;
+import racinggame.domain.car.generatenumber.GenerateNumberService;
+import racinggame.domain.car.generatenumber.GenerateRandomNumber;
 import racinggame.domain.data.Names;
 import racinggame.domain.data.GameStatus;
 import racinggame.domain.car.Car;
@@ -21,7 +20,7 @@ public class RacingGameTest {
     @ParameterizedTest
     @CsvSource(value = {"pobi,true", "kim,false"})
     void 이동_테스트(String name, boolean expected) {
-        gameStatus = new GameStatus( new Names("pobi,kim").splitNamesByComma());
+        gameStatus = new GameStatus(new Names("pobi,kim").splitNamesByComma());
         cars.add(new Car("pobi", 0));
         cars.moveCars(gameStatus);
         cars.add(new Car("kim", 0));

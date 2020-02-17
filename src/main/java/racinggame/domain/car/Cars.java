@@ -1,10 +1,10 @@
 package racinggame.domain.car;
 
+import racinggame.domain.car.generatenumber.GenerateNumberService;
 import racinggame.domain.data.GameStatus;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Cars {
     private List<Car> cars = new ArrayList<>();
