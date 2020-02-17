@@ -10,7 +10,7 @@ public class Winners {
     public static void selectWinners(List<Car> cars) {
         Car maxDistanceCar = cars.stream()
                 .max(Car::compareTo)
-                .orElse(cars.get(0));
+                .orElseThrow(RuntimeException::new);
         for (Car car : cars) {
             if (car.isWinnerWith(maxDistanceCar)) {
                 winners.add(car);

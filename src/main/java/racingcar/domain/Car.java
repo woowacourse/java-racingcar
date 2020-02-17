@@ -1,8 +1,8 @@
 package racingcar.domain;
 
 public class Car implements Comparable<Car> {
-    public static final String POSITION_MARK = "-";
-    public static final String BETWEEN_CAR_AND_POSITION = " : ";
+    private static final String POSITION_MARK = "-";
+    private static final String BETWEEN_CAR_AND_POSITION = " : ";
 
     private Name name;
     private int position;

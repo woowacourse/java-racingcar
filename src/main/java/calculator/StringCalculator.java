@@ -4,8 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    public static final String S = "-";
-    public static final String MINUS = S;
+    public static final String MINUS = "-";
 
     public static int calculate(String text) {
         if (text == null || text.isEmpty()) {
@@ -18,7 +17,6 @@ public class StringCalculator {
     }
 
     private static int splitAndSum(String text) {
-
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (m.find()) {
             String customDelimiter = m.group(1);

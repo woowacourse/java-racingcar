@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Names {
-    public static final String COMMA = ",";
+    private static final String DELIMITER = ",";
 
     private final List<Name> names;
 
@@ -16,8 +16,8 @@ public class Names {
     }
 
     private String[] nameSplitValidation(String carNames) {
-        String[] splittedNames = carNames.split(COMMA);
-        if (splittedNames.length == 0 || carNames.contains(",,")) {
+        String[] splittedNames = carNames.split(DELIMITER);
+        if (splittedNames.length == 0) {
             throw new IllegalArgumentException("이름을 입력해주세요.");
         }
         return splittedNames;
