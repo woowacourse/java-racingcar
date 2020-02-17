@@ -9,7 +9,7 @@ public class Names {
 
     private final List<Name> names;
 
-    public Names(String carNames) throws IllegalArgumentException {
+    public Names(String carNames) {
         this.names = Arrays.stream(nameSplitValidation(carNames))
                 .map(Name::new)
                 .collect(Collectors.toList());

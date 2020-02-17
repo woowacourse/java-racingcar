@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,9 +10,9 @@ public class Winners {
     public static void selectWinners(List<Car> cars) {
         Car maxDistanceCar = cars.stream()
                 .max(Car::compareTo)
-                .get();
+                .orElse(cars.get(0));
         for (Car car : cars) {
-            if (car.isMaxPosition(maxDistanceCar)) {
+            if (car.isWinnerWith(maxDistanceCar)) {
                 winners.add(car);
             }
         }

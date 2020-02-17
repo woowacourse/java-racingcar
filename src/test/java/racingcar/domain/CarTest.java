@@ -9,31 +9,24 @@ public class CarTest {
     Car car = new Car(name);
 
     @Test
-    void 전진하기() {
-        assertThat(car.movePosition(4)).isEqualTo(1);
-    }
-
-    @Test
-    void 멈추기() {
-        assertThat(car.movePosition(3)).isEqualTo(0);
+    void 전진_또는_멈춤() {
+        NumberGenerator number = new FixedNumber();
+        assertThat(car.movePosition(number)).isEqualTo(1);
     }
 
     @Test
     void 현재_위치_가져오기() {
-        car.movePosition(5);
+        car.movePosition(new FixedNumber());
         assertThat(car.getCurrentPosition()).isEqualTo("pobi : -");
     }
 
     @Test
-    void 최대_위치인지_비교_테스트() {
-        Names names = new Names("pobi,elly,rutgo");
-        Cars cars = new Cars(names);
-        Car firstCar = cars.getCars().get(0);
-        Car secondCar = cars.getCars().get(1);
-        firstCar.movePosition(5);
-        firstCar.movePosition(5);
-        secondCar.movePosition(5);
-
-        assertThat(firstCar.isMaxPosition(secondCar)).isTrue();
+    void Winner와_position이_같은지_테스트() {
+        NumberGenerator number = new FixedNumber();
+        Car car1 = new Car(new Name("pobi"));
+        Car car2 = new Car(new Name("elly"));
+        car1.movePosition(number);
+        car2.movePosition(number);
+        car1.isWinnerWith(car2);
     }
 }
