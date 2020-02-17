@@ -1,19 +1,11 @@
 package racing.domain;
 
-import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import racing.domain.Car;
-import racing.domain.Cars;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
 	@Test
