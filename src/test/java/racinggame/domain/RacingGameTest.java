@@ -41,13 +41,13 @@ public class RacingGameTest {
         boolean result = carList.get(0).match(position);
         Assertions.assertThat(result).isEqualTo(expected);
     }
-
+/*
     @RepeatedTest(value = 50)
     void 랜덤_테스트() {
         int result = RacingGame.generateRandomNumber();
 
         Assertions.assertThat(result).isBetween(0, 9);
-    }
+    }*/
 
     @RepeatedTest(value = 100)
     void 레이싱게임_실행_결과_테스트() {

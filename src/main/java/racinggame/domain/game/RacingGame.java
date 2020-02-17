@@ -1,5 +1,6 @@
 package racinggame.domain.game;
 
+import racinggame.domain.car.Cars;
 import racinggame.domain.data.Names;
 import racinggame.domain.data.GameStatus;
 import racinggame.domain.car.Car;
@@ -13,23 +14,9 @@ import java.util.Random;
  * 클래스 메서드를 통해 수행되도록 설계되었다.
  */
 public class RacingGame {
-    private List<Car> cars = new ArrayList<>();
+    //private List<Car> cars = new ArrayList<>();
+    private Cars cars = new Cars();
 
-    private static final Random random = new Random(System.currentTimeMillis());
-
-    /**
-     * RANDOM_NUMBER_BOUND는 랜덤값의 생성 범위를 지정하는 정수형 상수값이다.
-     * 이 값이 변경될 수 있고, 기본적으로 레이싱 게임의 룰에 속해있는 값이므로
-     * RacingGame 클래스 내에 존재하도록 설계하였다.
-     */
-    private static final int RANDOM_NUMBER_BOUND = 10;
-
-    /**
-     * FORWARD_NUMBER는 자동차의 가속 여부를 결정할 경계값을 지정하는 정수형 상수값이다.
-     * 이 값이 변경될 수 있고, 기본적으로 레이싱 게임의 룰에 속해있는 값이므로
-     * RacingGame 클래스 내에 존재하도록 설계하였다.
-     */
-    private static final int FORWARD_NUMBER = 4;
 
     public RacingGame(Names names) {
         initCars(names);
@@ -43,9 +30,6 @@ public class RacingGame {
         }
     }
 
-    public static int generateRandomNumber() {
-        return random.nextInt(RANDOM_NUMBER_BOUND);
-    }
 
     /**
      * moveCars는 RacingGame에 포함되어 있는 자동차 인스턴스들 전체에 대해 accelerate를 호출하여,
@@ -56,9 +40,6 @@ public class RacingGame {
      * @param gameStatus
      */
     public void moveCars(GameStatus gameStatus) {
-        for (Car car : cars) {
-            car.accelerate(generateRandomNumber(), FORWARD_NUMBER);
-            car.passingLog(gameStatus);
-        }
+        cars.moveCars(gameStatus);
     }
 }
