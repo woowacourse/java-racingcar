@@ -22,6 +22,12 @@ public class Car {
     private final String name;
     private int position;
 
+    public Car(String name) {
+        validateHasBlank(name);
+        validateNameLength(name);
+        this.name = name;
+    }
+
     public Car(String name, int position) {
         validateHasBlank(name);
         validateNameLength(name);
