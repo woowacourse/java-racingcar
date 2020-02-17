@@ -19,7 +19,7 @@ public class RacingLog {
 		return cars.stream().map(Car::convertToCarDto).collect(Collectors.toList());
 	}
 
-	List<String> getWinners() {
+	public List<String> getWinners() {
 		int maxPosition = calculateMaxPosition();
 
 		return racingLog.stream()
