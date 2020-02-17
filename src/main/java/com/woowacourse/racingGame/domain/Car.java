@@ -3,32 +3,31 @@ package com.woowacourse.racingGame.domain;
 import java.util.Objects;
 
 public class Car {
+	private final MovableStrategy movableStrategy;
 	private final Name name;
 	private Position position;
 
-	public Car(Name name) {
+	public Car(Name name, MovableStrategy movableStrategy) {
 		this.position = Position.ZERO;
 		this.name = name;
+		this.movableStrategy = movableStrategy;
 	}
 
-	public Car(Name name, Position position) {
+	Car(Name name, Position position, MovableStrategy movableStrategy) {
 		this.position = position;
 		this.name = name;
+		this.movableStrategy = movableStrategy;
 	}
 
-	public void attemptMoveThrough(final RandomNo randomNo) {
-		if (isMovable(randomNo)) {
-			this.position = this.position.increaseByMovingUnit();
+	public void attemptMoveThrough() {
+		if (movableStrategy.isMovable()) {
+			position = position.increaseByMovingUnit();
 		}
-	}
-
-	private boolean isMovable(final RandomNo randomNo) {
-		return randomNo.isMovable();
 	}
 
 	// NOTE : 불변객체의 이점?
 	public boolean isSamePosition(final int winnerPosition) {
-		return this.position.getPosition() == winnerPosition;
+		return position.getPosition() == winnerPosition;
 	}
 
 	public String getName() {

@@ -8,26 +8,14 @@ import org.junit.jupiter.api.Test;
 public class CarTest {
 	private static final int MOVING_UNIT = 1;
 
-	@Test
-	void attemptMoveThrough_범위_밖의_수() {
-		final int lowerNumber = -1;
-		final Car car = new Car(new Name("test"), Position.valueOf(4));
-
-		assertThatThrownBy(() -> car.attemptMoveThrough(RandomNo.valueOf(lowerNumber)))
-			.isInstanceOf(IllegalArgumentException.class);
-
-		final int higherNumber = 10;
-		final Car car1 = new Car(new Name("test"), Position.valueOf(4));
-
-		assertThatThrownBy(() -> car1.attemptMoveThrough(RandomNo.valueOf(higherNumber)))
-			.isInstanceOf(IllegalArgumentException.class);
-	}
+	private MovableStrategy movableStrategy;
 
 	@Test
 	void attemptMoveThrough_랜덤_값이_3_이하() {
 		final int stoppedRandomNumber = 3;
-		final Car car = new Car(new Name("test"), Position.valueOf(4));
-		car.attemptMoveThrough(RandomNo.valueOf(stoppedRandomNumber));
+		movableStrategy = new PlannedMovableStrategy(new Power(stoppedRandomNumber));
+		final Car car = new Car(new Name("test"), Position.valueOf(4), movableStrategy);
+		car.attemptMoveThrough();
 
 		final int actual = car.getPosition();
 
@@ -39,8 +27,9 @@ public class CarTest {
 	@Test
 	void attemptMoveThrough_랜덤_값이_4_이상() {
 		final int movedRandomNumber = 7;
-		final Car car = new Car(new Name("test"), Position.valueOf(4));
-		car.attemptMoveThrough(RandomNo.valueOf(movedRandomNumber));
+		final MovableStrategy movableStrategy = new PlannedMovableStrategy(new Power(movedRandomNumber));
+		final Car car = new Car(new Name("test"), Position.valueOf(4), movableStrategy);
+		car.attemptMoveThrough();
 
 		final int actual = car.getPosition();
 
@@ -52,7 +41,8 @@ public class CarTest {
 	@Test
 	void isSamePosition_우승한_위치의_자동차() {
 		final int winnerPosition = 7;
-		final Car car = new Car(new Name("test"), Position.valueOf(7));
+		final MovableStrategy movableStrategy = new RandomMovableStrategy();
+		final Car car = new Car(new Name("test"), Position.valueOf(7), movableStrategy);
 
 		assertThat(car.isSamePosition(winnerPosition)).isTrue();
 	}
@@ -60,7 +50,8 @@ public class CarTest {
 	@Test
 	void isSamePosition_우승하지_못한_위치의_자동차() {
 		final int winnerPosition = 7;
-		final Car car = new Car(new Name("test"), Position.valueOf(6));
+		final MovableStrategy movableStrategy = new RandomMovableStrategy();
+		final Car car = new Car(new Name("test"), Position.valueOf(6), movableStrategy);
 
 		assertThat(car.isSamePosition(winnerPosition)).isFalse();
 	}

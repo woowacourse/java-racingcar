@@ -6,6 +6,7 @@ import java.util.List;
 import com.woowacourse.racingGame.domain.Cars;
 import com.woowacourse.racingGame.domain.CarsFactory;
 import com.woowacourse.racingGame.domain.MovementNumber;
+import com.woowacourse.racingGame.domain.RandomMovableStrategy;
 import com.woowacourse.racingGame.domain.Result;
 import com.woowacourse.racingGame.view.InputView;
 import com.woowacourse.racingGame.view.OutputView;
@@ -31,7 +32,7 @@ public class Application {
 	private static Cars generateCars() {
 		try {
 			final String carName = inputview.inputCarName();
-			return CarsFactory.generate(carName);
+			return CarsFactory.generate(carName, new RandomMovableStrategy());
 		} catch (IllegalArgumentException e) {
 			outputView.printExceptionMessage(e.getMessage());
 			return generateCars();

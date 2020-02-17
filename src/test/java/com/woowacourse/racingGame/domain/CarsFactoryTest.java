@@ -12,13 +12,14 @@ public class CarsFactoryTest {
 	@Test
 	void generate_Cars_생성() {
 		final String inputCarName = "car1,car2,car3,car4";
+		final MovableStrategy movableStrategy = new RandomMovableStrategy();
 		final List<Car> cars = Arrays.asList(
-			new Car(new Name("car1")),
-			new Car(new Name("car2")),
-			new Car(new Name("car3")),
-			new Car(new Name("car4")));
+			new Car(new Name("car1"), movableStrategy),
+			new Car(new Name("car2"), movableStrategy),
+			new Car(new Name("car3"), movableStrategy),
+			new Car(new Name("car4"), movableStrategy));
 
-		final Cars actual = CarsFactory.generate(inputCarName);
+		final Cars actual = CarsFactory.generate(inputCarName, movableStrategy);
 
 		final Cars expect = new Cars(cars);
 
