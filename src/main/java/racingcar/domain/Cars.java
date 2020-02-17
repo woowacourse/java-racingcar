@@ -5,6 +5,7 @@ import racingcar.util.NumberGenerator;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
     private List<Car> cars;
@@ -29,14 +30,17 @@ public class Cars {
 
     public List<String> findWinner() {
         Car carInMaxPosition = cars.get(0);
-        List<String> winners = new ArrayList<>();
         int size = cars.size();
         for (int i = 1; i < size - 1; i++) {
             carInMaxPosition = carInMaxPosition.comparePosition(cars.get(i));
         }
-        for (Car car : cars) {
-            carInMaxPosition.checkMoreWinners(car, winners);
-        }
+        return checkMoreWinners(carInMaxPosition);
+    }
+
+    public List<String> checkMoreWinners(Car carInMaxPosition) {
+        List<String> winners = cars.stream()
+                .filter(x -> x.getPosition() == carInMaxPosition.getPosition())
+                .map(car -> car.getName()).collect(Collectors.toList());
         return winners;
     }
 }

@@ -48,12 +48,4 @@ public class Car {
         }
         return this;
     }
-
-    public List<String> checkMoreWinners(Car car, List<String> winners) {
-        if (car.position == this.position) {
-            winners.add(car.name);
-        }
-        return winners;
-    }
-
 }
