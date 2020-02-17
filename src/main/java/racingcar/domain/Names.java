@@ -18,7 +18,7 @@ public class Names {
 
     private String[] nameSplitValidation(String carNames) {
         String[] splittedNames = carNames.split(COMMA);
-        if (splittedNames.length == 0 || carNames.contains(",,")) {
+        if (splittedNames.length == 0) {
             throw new IllegalArgumentException("이름을 입력해주세요.");
         }
         return splittedNames;

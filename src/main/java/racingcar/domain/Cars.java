@@ -1,11 +1,13 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
     private List<Car> cars;
+    public static List<Car> winners = new ArrayList<>();
 
     public Cars(Names names) {
         this.cars = names.getNames()
@@ -18,6 +20,16 @@ public class Cars {
         for (Car car : cars) {
             car.movePosition(new Random());
         }
+    }
+
+    public List<Car> selectWinners() {
+        Car maxDistanceCar = cars.stream()
+                .max(Car::compareTo)
+                .get();
+        winners = cars.stream()
+                .filter(car -> car.isMaxPosition(maxDistanceCar))
+                .collect(Collectors.toList());
+        return Collections.unmodifiableList(winners);
     }
 
     public List<Car> getCars() {

@@ -15,7 +15,8 @@ public class Game {
             cars.moveCars();
             OutputView.printIntermediateResult(cars);
         }
-        Winners.selectWinners(cars.getCars());
+        cars.selectWinners();
         OutputView.printWinnerResult();
     }
 }
+

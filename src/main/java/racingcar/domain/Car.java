@@ -3,7 +3,6 @@ package racingcar.domain;
 import racingcar.domain.Generator.RandomGenerator;
 
 public class Car implements Comparable<Car> {
-    public static final int FORWARD_NUMBER = 4;
     private Name name;
     private int position;
 
@@ -14,7 +13,7 @@ public class Car implements Comparable<Car> {
 
     public int movePosition(RandomGenerator randomGenerator) {
         if (randomGenerator.isMovable()) {
-            position++;
+            this.position++;
         }
         return position;
     }
@@ -23,17 +22,16 @@ public class Car implements Comparable<Car> {
         return this.position == maxPositionCar.position;
     }
 
-    @Override
-    public String toString() {
+    public int getPosition() {
+        return position;
+    }
+
+    public String getName() {
         return name.getName();
     }
 
     @Override
     public int compareTo(Car car) {
         return this.position - car.position;
-    }
-
-    public int getPosition() {
-        return position;
     }
 }
