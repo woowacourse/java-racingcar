@@ -8,8 +8,7 @@ import java.util.Random;
 
 public class Cars {
     private List<Car> cars = new ArrayList<>();
-
-    private static final Random random = new Random(System.currentTimeMillis());
+    GenerateNumberService generateNumberService;
 
     /**
      * RANDOM_NUMBER_BOUND는 랜덤값의 생성 범위를 지정하는 정수형 상수값이다.
@@ -25,20 +24,16 @@ public class Cars {
      */
     private static final int FORWARD_NUMBER = 4;
 
-    public Cars() {
+    public Cars(GenerateNumberService generateNumberService) {
+        this.generateNumberService = generateNumberService;
     }
-
-    public static int generateRandomNumber() {
-        return random.nextInt(RANDOM_NUMBER_BOUND);
-    }
-
     public void add(Car car){
         cars.add(car);
     }
 
     public void moveCars(GameStatus gameStatus){
         for (Car car : cars) {
-            car.accelerate(generateRandomNumber(), FORWARD_NUMBER);
+            car.accelerate(generateNumberService.generateNumber(RANDOM_NUMBER_BOUND), FORWARD_NUMBER);
             car.passingLog(gameStatus);
         }
     }

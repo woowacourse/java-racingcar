@@ -1,24 +1,28 @@
 package racinggame.domain.game;
 
 import racinggame.domain.car.Cars;
+import racinggame.domain.car.GenerateNumberService;
+import racinggame.domain.car.GenerateRandomNumber;
 import racinggame.domain.data.Names;
 import racinggame.domain.data.GameStatus;
 import racinggame.domain.car.Car;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * RacingGame 클래스는 자동차 리스트를 만들어 경주를 진행하고 그 결과를 출력한다.
  * 클래스 메서드를 통해 수행되도록 설계되었다.
  */
 public class RacingGame {
-    //private List<Car> cars = new ArrayList<>();
-    private Cars cars = new Cars();
-
+    private Cars cars;
 
     public RacingGame(Names names) {
+        cars = new Cars(new GenerateRandomNumber());
+        initCars(names);
+    }
+
+    public RacingGame(Names names, GenerateNumberService generateNumberService){
+        cars = new Cars(generateNumberService);
         initCars(names);
     }
 
