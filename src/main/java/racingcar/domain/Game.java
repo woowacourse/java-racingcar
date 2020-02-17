@@ -19,4 +19,3 @@ public class Game {
         OutputView.printWinnerResult();
     }
 }
-

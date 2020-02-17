@@ -22,7 +22,7 @@ public class InputView {
     public static Trial getTrial() {
         try {
             OutputView.askTrial();
-            String trial = scanner.nextLine();
+            String trial= scanner.nextLine();
             return new Trial(trial);
         } catch (Exception e) {
             OutputView.printErrorMessage(e.getMessage());

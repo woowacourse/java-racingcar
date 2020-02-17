@@ -18,7 +18,7 @@ public class Cars {
 
     public void moveCars() {
         for (Car car : cars) {
-            car.movePosition(new Random());
+            car.movePosition();
         }
     }
 

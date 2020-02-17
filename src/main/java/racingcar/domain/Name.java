@@ -5,7 +5,7 @@ public class Name {
 
     private String name;
 
-    public Name(String name) throws IllegalArgumentException {
+    public Name(String name) {
         this.name = name;
         isCorrectName();
     }

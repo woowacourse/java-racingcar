@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Generator.RandomGenerator;
+import racingcar.domain.Generator.CarMoveValueGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,7 +11,8 @@ public class CarTest {
 
     @Test
     void 전진하기() {
-        assertThat(car.movePosition(new FixedNumber())).isEqualTo(1);
+        CarMoveValueGenerator carMoveValueGenerator = () -> 5;
+        assertThat(car.movePosition()).isEqualTo(1);
     }
 
     @Test
