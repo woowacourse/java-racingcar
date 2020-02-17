@@ -4,7 +4,6 @@ import racingcar.domain.RandomNumber;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
-    public static final String IS = " : ";
 
     private final Name name;
     private Location location;
@@ -57,17 +56,11 @@ public class Car {
         location.moveForward();
     }
 
-    public String getResult() {
-        StringBuilder result = new StringBuilder();
-        result.append(name);
-        result.append(IS);
-        result.append(location);
-        return result.toString();
-    }
-
     public String getName() {
         return name.toString();
     }
+
+    public String getLocationMarks() { return location.toString(); }
 
     public boolean isLocation(int maxLocation) {
         return this.location.equals(new Location(maxLocation));

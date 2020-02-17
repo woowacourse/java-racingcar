@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Cars {
     private static final String DELIMITER = ",";
-    public static final String ENTER = System.lineSeparator();
 
     private final List<Car> cars;
 
@@ -43,7 +42,6 @@ public class Cars {
         }
     }
 
-
     public static void validateDuplicatedNames(String carNames) throws IllegalArgumentException {
         String[] splitInput = carNames.split(DELIMITER);
         if (isDuplicatedNames(splitInput)) {
@@ -62,15 +60,6 @@ public class Cars {
         for (Car car : cars) {
             car.play();
         }
-    }
-
-    public String getResult() {
-        StringBuilder results = new StringBuilder();
-        for (Car car : cars) {
-            results.append(car.getResult());
-            results.append(ENTER);
-        }
-        return results.toString();
     }
 
     public List<Car> getCars() {

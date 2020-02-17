@@ -13,18 +13,15 @@ public class RacingCarGame {
         System.out.println("실행 결과");
         playRounds(cars, round);
 
-        System.out.println("우승자 명단");
         Winners winners = new Winners(cars);
-        OutputView.printResult(winners.getWinnerNames());
+        System.out.println("우승자 명단");
+        OutputView.printWinners(winners);
     }
 
     private static void playRounds(Cars cars, Round round) {
-        String result;
         while (round.reduceRounds()) {
             cars.play();
-            result = cars.getResult();
-            OutputView.printResult(result);
-            System.out.println();
+            OutputView.printResult(cars);
         }
     }
 }

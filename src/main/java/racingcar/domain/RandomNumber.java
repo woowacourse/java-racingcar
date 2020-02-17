@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class RandomNumber {
