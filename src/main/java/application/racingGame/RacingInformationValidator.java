@@ -17,15 +17,15 @@ public class RacingInformationValidator {
         return validateRacingLab(racingLabValue);
     }
 
-    private static int validateRacingLab(String input) {
-        int racingLab = checkRacingLabValue(input);
-        return racingLab;
-    }
-
     public static List<String> checkCarNames(String inputCarNames) {
         List<String> carNames = Arrays.asList(inputCarNames.split(CAR_NAME_DELIMITER));
         RacingInformationValidator.validateCarName(carNames);
         return carNames;
+    }
+
+    private static int validateRacingLab(String input) {
+        int racingLab = checkRacingLabValue(input);
+        return racingLab;
     }
 
     private static void validateCarName(List<String> carNames) {
@@ -78,6 +78,7 @@ public class RacingInformationValidator {
         }
         return false;
     }
+
     private static boolean isNull(String input) {
         return input == null;
     }
@@ -106,5 +107,4 @@ public class RacingInformationValidator {
     private static boolean isNegativeNumber(int racingLab) {
         return racingLab < ZERO;
     }
-
 }
