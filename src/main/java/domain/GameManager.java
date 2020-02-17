@@ -1,20 +1,15 @@
 package domain;
 
-import java.util.Random;
 
 import view.OutputView;
 
 public class GameManager {
-    private static final int RANDOM_BOUND = 10;
-
-    private final Random random;
     private final Cars cars;
     private final AttemptNumber attemptNumber;
 
     public GameManager(Cars cars, AttemptNumber attemptNumber) {
         this.cars = cars;
         this.attemptNumber = attemptNumber;
-        this.random = new Random();
     }
 
     public void playGame() {
@@ -34,7 +29,5 @@ public class GameManager {
         OutputView.println();
     }
 
-    private int getRandomNumber() {
-        return random.nextInt(RANDOM_BOUND);
     }
 }
