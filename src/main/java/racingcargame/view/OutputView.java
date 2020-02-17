@@ -1,6 +1,10 @@
 package racingcargame.view;
 
 import racingcargame.domain.Car;
+import racingcargame.domain.EachRaceResultDto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OutputView {
 
@@ -21,7 +25,7 @@ public class OutputView {
     public static void carNameAndPosition(Car car) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(car.getCarName());
+        sb.append(car.getName());
         sb.append(" : ");
         for (int i = 0; i < car.getCarPosition(); i++) {
             sb.append(MARK);
@@ -29,8 +33,12 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    public static void winnerInstruction(String winnerName) {
-        System.out.println(winnerName + "가 최종 우승했습니다.");
+    public static void winnerInstruction(List<Car> cars) {
+        List<String> carName = new ArrayList<>();
+        for (Car car: cars) {
+            carName.add(car.getName());
+        }
+        System.out.println(String.join(", ", carName) + "가 최종 우승했습니다.");
     }
 
     public static void newLine() {
@@ -40,6 +48,13 @@ public class OutputView {
     public static void errorMessage(String errorMessage) {
         System.out.println(errorMessage);
         System.out.println("프로그램을 다시 실행해 주세요.");
+    }
+
+    public static void printEachRaceStatus(EachRaceResultDto eachRaceResultDto) {
+        for (Car car: eachRaceResultDto.getCar()) {
+            OutputView.carNameAndPosition(car);
+        }
+        OutputView.newLine();
     }
 
 }

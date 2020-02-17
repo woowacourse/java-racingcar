@@ -8,7 +8,7 @@ import racingcargame.domain.Car;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class CarNameTest {
+public class NameTest {
     @ParameterizedTest
     @DisplayName("이름이 올바른지 확인")
     @ValueSource(strings = {"abcdef", ""})
@@ -16,7 +16,7 @@ public class CarNameTest {
         assertThatThrownBy(() -> {
             Car car = new Car(name);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 1자 이상 5자 이하로 해주세요.");
+                .hasMessage("이름은 1자 이상 5자 이하여야 합니다.");
     }
 
     @Test

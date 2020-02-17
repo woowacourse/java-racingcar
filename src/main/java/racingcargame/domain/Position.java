@@ -1,16 +1,16 @@
 package racingcargame.domain;
 
-public class CarPosition {
+public class Position {
     public static final int DEFAULT_POSITION = 0;
     public static final int MOVE_UNIT = 1;
 
     private int position;
 
-    public CarPosition() {
+    public Position() {
         this.position = DEFAULT_POSITION;
     }
 
-    public CarPosition(int pos) {
+    public Position(int pos) {
         this.position = pos;
     }
 

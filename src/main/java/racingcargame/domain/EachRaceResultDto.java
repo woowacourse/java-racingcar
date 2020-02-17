@@ -1,14 +1,12 @@
 package racingcargame.domain;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
-public class CarDto {
+public class EachRaceResultDto {
 
     private List<Car> cars;
 
-    public CarDto(List<Car> cars) {
+    public EachRaceResultDto(List<Car> cars) {
         this.cars = cloneCars(cars);
     }
 
@@ -22,8 +20,8 @@ public class CarDto {
         return tempCars;
     }
 
-    public List<Car> getCar() {
-        return cars;
+    public Collection<Car> getCar() {
+        return Collections.unmodifiableCollection(cars);
     }
 
 

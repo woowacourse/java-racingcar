@@ -7,12 +7,13 @@ import racingcargame.domain.Car;
 import racingcargame.domain.RacingCars;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarRacingGameTest {
 
-    ArrayList<Car> cars = new ArrayList<>();
+    List<Car> cars = new ArrayList<>();
     RacingCars racingCars;
 
     @BeforeEach
@@ -28,7 +29,7 @@ public class CarRacingGameTest {
         cars.get(0).decideGoOrStop(8);
         cars.get(1).decideGoOrStop(1);
         cars.get(2).decideGoOrStop(0);
-        assertThat(racingCars.getWinner()).isEqualTo("car1");
+        assertThat(racingCars.getWinners()).contains(cars.get(0));
     }
 
     @Test
@@ -37,6 +38,6 @@ public class CarRacingGameTest {
         cars.get(0).decideGoOrStop(8);
         cars.get(1).decideGoOrStop(5);
         cars.get(2).decideGoOrStop(0);
-        assertThat(racingCars.getWinner()).isEqualTo("car1, car2");
+        assertThat(racingCars.getWinners()).isEqualTo("car1, car2");
     }
 }

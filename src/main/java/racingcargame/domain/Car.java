@@ -3,24 +3,23 @@ package racingcargame.domain;
 public class Car implements Comparable<Car> {
     private static final int GO_CONDITION = 4;
 
-    private CarName carName;
-    private CarPosition carPosition;
+    private Name name;
+    private Position carPosition;
 
     public Car(String name) {
-        this.carName = new CarName(name);
-        this.carPosition = new CarPosition();
+        this.name = new Name(name);
+        this.carPosition = new Position();
     }
 
     public Car(Car car) {
-        this.carName = new CarName(car.getCarName());
-        this.carPosition = new CarPosition(car.getCarPosition());
+        this.name = new Name(car.getName());
+        this.carPosition = new Position(car.getCarPosition());
     }
 
-
-    public void decideGoOrStop(int randomNumber) {
-        if (randomNumber >= GO_CONDITION) {
+    public void decideGoOrStop(int number) {
+        if (number >= GO_CONDITION) {
             carPosition.increase();
-            this.carPosition = new CarPosition(this.getCarPosition());
+            this.carPosition = new Position(this.getCarPosition());
         }
     }
 
@@ -28,8 +27,8 @@ public class Car implements Comparable<Car> {
         return carPosition.getPosition();
     }
 
-    public String getCarName() {
-        return carName.getName();
+    public String getName() {
+        return name.getName();
     }
 
     @Override

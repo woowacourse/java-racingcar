@@ -1,23 +1,28 @@
 package racingcargame.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RacingCarGame {
-    public String winner;
+    private List<Car> winner;
 
-    public ArrayList<CarDto> run(String userInputName, int userInputRepeat) {
+    public List<EachRaceResultDto> run(String userInputName, int userInputRepeat) {
         final RacingCars cars = new RacingCars(userInputName);
-        ArrayList<CarDto> carStatus = processGame(userInputRepeat, cars);
-        winner = cars.getWinner();
+        List<EachRaceResultDto> carStatus = processGame(userInputRepeat, cars);
+        winner = cars.getWinners();
         return carStatus;
     }
 
-    private ArrayList<CarDto> processGame(int repeat, RacingCars cars) {
-        ArrayList<CarDto> carStatus = new ArrayList<>();
+    private List<EachRaceResultDto> processGame(int repeat, RacingCars cars) {
+        List<EachRaceResultDto> carStatus = new ArrayList<>();
         for (int i = 0; i < repeat; i++) {
             carStatus.add(cars.processOneRace());
         }
         return carStatus;
+    }
+
+    public List<Car> getWinner() {
+        return winner;
     }
 
 

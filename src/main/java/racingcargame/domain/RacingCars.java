@@ -1,10 +1,7 @@
 package racingcargame.domain;
 
-import racingcargame.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,12 +12,11 @@ public class RacingCars {
     private List<Car> cars;
 
     public RacingCars(String userInput) {
-        this.cars = setCars(userInput);
+        this.cars = carsNameSettingFinished(userInput);
     }
 
-    private List<Car> setCars(String userInput) {
+    private List<Car> carsNameSettingFinished(String userInput) {
         cars = new ArrayList<>();
-
         String[] carNames = splitName(userInput);
         for (String carName : carNames) {
             cars.add(new Car(carName));
@@ -32,25 +28,24 @@ public class RacingCars {
         return userInput.split(DELIMITER);
     }
 
-    public CarDto processOneRace() {
+    public EachRaceResultDto processOneRace() {
         for (Car car : cars) {
             car.decideGoOrStop(createRandomNumber());
         }
-        return new CarDto(cars);
+        return new EachRaceResultDto(cars);
     }
 
     private int createRandomNumber() {
         return (int) (Math.random() * NUMBER_RANGE);
     }
 
-    public String getWinner() {
+    public List<Car> getWinners() {
         Collections.sort(cars);
         int maxPosition = cars.get(0).getCarPosition();
 
-        List<String> winnerCar = cars.stream()
+        List<Car> winnerCar = cars.stream()
                 .filter(car -> car.getCarPosition() == maxPosition)
-                .map(car -> car.getCarName())
                 .collect(Collectors.toList());
-        return String.join(", ", winnerCar);
+        return winnerCar;
     }
 }

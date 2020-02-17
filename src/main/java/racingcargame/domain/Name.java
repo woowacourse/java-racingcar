@@ -1,12 +1,12 @@
 package racingcargame.domain;
 
-public class CarName {
+public class Name {
     private static final int ZERO = 0;
     private static final int NAME_UPPER_LIMIT = 5;
 
     private String name;
 
-    public CarName(String name) {
+    public Name(String name) {
         validateNotNull(name);
         validateLength(name);
         validateNoBlank(name);
