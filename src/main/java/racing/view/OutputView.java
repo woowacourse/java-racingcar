@@ -1,10 +1,10 @@
 package racing.view;
 
+import racing.domain.Car;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import racing.domain.Car;
 
 public class OutputView {
 	private static final String WINNER_NAME_DELIMITER = ",";

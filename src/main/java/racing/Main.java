@@ -7,8 +7,10 @@ import racing.domain.Cars;
 
 import java.util.List;
 
-import static racing.view.InputView.*;
-import static racing.view.OutputView.*;
+import static racing.view.InputView.inputCarNames;
+import static racing.view.InputView.inputRoundNumber;
+import static racing.view.OutputView.printAllPosition;
+import static racing.view.OutputView.printWinner;
 
 public class Main {
 	public static void main(String[] args) {
