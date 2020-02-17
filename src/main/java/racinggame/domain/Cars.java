@@ -1,38 +1,27 @@
 package racinggame.domain;
 
-import racinggame.view.OutputView;
-
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-import static racinggame.domain.RacingGame.generateRandom;
-
-public class Cars {
+public class Cars implements Iterable<Car>{
     private List<Car> cars;
-    private int maxPosition = 0;
 
-    public Cars(List<String> names) {
-        cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name, 0));
-        }
+    public Cars(Names names) {
+        cars = names.makeCars();
     }
-
+/*
     public void moveAllCars() {
         for (Car car : cars) {
-            if (moveEachCar(car)) {
+            if (car.move(generateRandom())) {
                 maxPosition = car.getMaxPosition(maxPosition);
             }
             OutputView.printEachCarLog(car);
         }
         OutputView.printLine();
-    }
+    }*/
 
-    public boolean moveEachCar(Car car) {
-        return car.move(generateRandom());
-    }
-
-    public Winners makeWinners() {
+    public Winners makeWinners(int maxPosition) {
         List<Car> winners = new ArrayList<>();
 
         for (Car car : cars) {
@@ -42,4 +31,9 @@ public class Cars {
         }
         return new Winners(winners);
     }
+
+    public Iterator<Car> iterator(){
+        return cars.iterator();
+    }
+
 }

@@ -1,6 +1,7 @@
 package racinggame.view;
 
 import racinggame.domain.Car;
+import racinggame.domain.Cars;
 import racinggame.domain.Winners;
 
 import java.util.List;
@@ -19,6 +20,12 @@ public class OutputView {
 
     }
 
+    public static void printCarsLog(Cars cars){
+        for(Car car : cars){
+            OutputView.printEachCarLog(car);
+        }
+        printLine();
+    }
     public static void printEachCarLog(Car car){
         String name = car.getName();
         int position = car.getPosition();

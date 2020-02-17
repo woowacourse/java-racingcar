@@ -5,8 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racinggame.domain.Car;
-import racinggame.domain.Input;
+import racinggame.domain.Names;
 import racinggame.domain.RacingGame;
+import racinggame.domain.Repeat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,8 @@ public class RacingGameTest {
     private final String NAMES = "pobi,crong,honux";
     private final String REPEAT = "5";
 
-    Input input;
+    Names names = new Names(NAMES);
+    Repeat repeat = new Repeat(REPEAT);
 
     void initList() {
         carList.clear();
@@ -36,11 +38,6 @@ public class RacingGameTest {
         carList.get(2).move(4);
         carList.get(2).move(2);
         carList.get(2).move(1);
-    }
-
-    @BeforeEach
-    void initInput() {
-        input = new Input(NAMES, REPEAT);
     }
 
     @ParameterizedTest

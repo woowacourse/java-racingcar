@@ -2,7 +2,6 @@ package racinggame.domain;
 
 import racinggame.view.OutputView;
 
-import java.util.List;
 import java.util.Random;
 
 public class RacingGame {
@@ -18,15 +17,16 @@ public class RacingGame {
         return rand.nextInt(NUMBER_BOUND);
     }
 
-    public static void play(Input input) {
-        List<String> names = input.splitInputByComma();
-        int repeat = input.parseRepeatToInt();
-        Cars cars = new Cars(names);
-        OutputView.printResultFormat();
-        for (int i = 0; i < repeat; i++) {
-            cars.moveAllCars();
+    public static Cars makeCars(Names names){
+        return new Cars(names);
+    }
+
+    public static int moveCars(Cars cars, int maxPosition) {
+        for(Car car: cars){
+            if(car.move(generateRandom())){
+                maxPosition = car.getMaxPosition(maxPosition);
+            }
         }
-        Winners winners = cars.makeWinners();
-        OutputView.printWinnersLog(winners);
+        return maxPosition;
     }
 }
