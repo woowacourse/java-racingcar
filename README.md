@@ -136,6 +136,13 @@
 - [x] Car 클래스의 생성자에서 String name을 인자로 받아보자. Name과 Car의 길이 체크하는 중복 로직을 없애보자.
 - [x] RandomNumberTest를 CarTest로 옮기게 될 것이다.
         
+### 세번째 피드백
+- [ ] ParameterizedTest를 사용하자. 
+- [ ] 체이닝에서 컨벤션 -> 한 줄에 점을 하나만 찍는다.
+- [ ] InputView에서 객체 생성을 하지 말자.
+- [ ] Car 객체 내에서는 위치 확인만 해보자.
+- [x] Car와 Name의 유효성 검사가 중복된다.
+
 # 문자열 계산기 미션 저장소
 
 ## 요구사항

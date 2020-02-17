@@ -19,29 +19,13 @@ public class Car {
     private Position position;
 
     public Car(String carName) {
-        checkEmptyCarName(carName);
-        checkSmallerThanSix(carName);
         this.carName = new Name(carName);
         this.position = new Position();
     }
 
     public Car(Name carName, int position) {
-        checkEmptyCarName(carName.getName());
-        checkSmallerThanSix(carName.getName());
         this.carName = carName;
         this.position = new Position(position);
-    }
-
-    public static void checkEmptyCarName(String carName) {
-        if (carName.isEmpty()) {
-            throw new IllegalArgumentException("차 이름은 빈 문자열일 수 없습니다.");
-        }
-    }
-
-    public static void checkSmallerThanSix(String carName) {
-        if (carName.length() > MAX_CAR_NAME_LENGTH) {
-            throw new IllegalArgumentException("차 이름의 길이가 6 이상입니다.");
-        }
     }
 
     public void goOrNot(RandomNumber randomNumber) {
