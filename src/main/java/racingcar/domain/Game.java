@@ -12,7 +12,7 @@ public class Game {
 
         OutputView.printCurrentResultTitle();
         for (int i = 0; i < trial.getTrial(); i++) {
-            cars.moveCars(Random.createRandomValue());
+            cars.moveCars();
             OutputView.printIntermediateResult(cars);
         }
         Winners.selectWinners(cars.getCars());

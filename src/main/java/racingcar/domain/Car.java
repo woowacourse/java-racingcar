@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.domain.Generator.RandomGenerator;
+
 public class Car implements Comparable<Car> {
     public static final int FORWARD_NUMBER = 4;
     private Name name;
@@ -10,8 +12,8 @@ public class Car implements Comparable<Car> {
         this.position = 0;
     }
 
-    public int movePosition(int moveValue) {
-        if (moveValue >= FORWARD_NUMBER) {
+    public int movePosition(RandomGenerator randomGenerator) {
+        if (randomGenerator.isMovable()) {
             position++;
         }
         return position;
@@ -25,6 +27,7 @@ public class Car implements Comparable<Car> {
     public String toString() {
         return name.getName();
     }
+
     @Override
     public int compareTo(Car car) {
         return this.position - car.position;

@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Generator.RandomGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,12 +11,7 @@ public class CarTest {
 
     @Test
     void 전진하기() {
-        assertThat(car.movePosition(4)).isEqualTo(1);
-    }
-
-    @Test
-    void 멈추기() {
-        assertThat(car.movePosition(3)).isEqualTo(0);
+        assertThat(car.movePosition(new FixedNumber())).isEqualTo(1);
     }
 
     @Test
@@ -24,9 +20,6 @@ public class CarTest {
         Cars cars = new Cars(names);
         Car firstCar = cars.getCars().get(0);
         Car secondCar = cars.getCars().get(1);
-        firstCar.movePosition(5);
-        firstCar.movePosition(5);
-        secondCar.movePosition(5);
 
         assertThat(firstCar.isMaxPosition(secondCar)).isTrue();
     }

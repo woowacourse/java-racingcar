@@ -14,7 +14,7 @@ public class Name {
         return name;
     }
 
-    public void isCorrectName() throws IllegalArgumentException {
+    public void isCorrectName() {
         isBlankValidation();
         isOverSixLetters();
     }

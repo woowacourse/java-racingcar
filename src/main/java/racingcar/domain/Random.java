@@ -1,12 +1,18 @@
 package racingcar.domain;
 
-public class Random {
-    public static final int RANDOM_VALUE_LIMIT = 10;
+import racingcar.domain.Generator.RandomGenerator;
 
-    private Random() { }
+public class Random implements RandomGenerator {
+    private static final int RANDOM_VALUE_LIMIT = 10;
 
-    public static int createRandomValue() {
-        return (int) (Math.random() * RANDOM_VALUE_LIMIT);
+    private int randomValue;
+
+    Random() {
+        this.randomValue = (int) (Math.random() * RANDOM_VALUE_LIMIT);
     }
 
+    @Override
+    public boolean isMovable() {
+        return this.randomValue >= RANDOM_VALUE_LIMIT;
+    }
 }

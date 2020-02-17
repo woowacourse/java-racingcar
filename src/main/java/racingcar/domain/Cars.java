@@ -14,9 +14,9 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void moveCars(int randomValue) {
+    public void moveCars() {
         for (Car car : cars) {
-            car.movePosition(randomValue);
+            car.movePosition(new Random());
         }
     }
 

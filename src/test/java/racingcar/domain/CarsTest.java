@@ -17,7 +17,7 @@ public class CarsTest {
 
     @Test
     void Cars_차가_움직이는지_확인(){
-        cars.moveCars(5);
+        cars.moveCars();
         assertThat(cars.getCars().get(0).getPosition()).isEqualTo(1);
         assertThat(cars.getCars().get(1).getPosition()).isEqualTo(1);
         assertThat(cars.getCars().get(2).getPosition()).isEqualTo(1);
