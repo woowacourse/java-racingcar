@@ -30,7 +30,7 @@ public class CarsInOneRace {
     }
 
     public void move() {
-        cars.forEach(car -> car._move(new RandomNumber()));
+        cars.forEach(car -> car.move(RandomNumber.getRandomNumber()));
     }
 
     public List<Car> getWinners() {

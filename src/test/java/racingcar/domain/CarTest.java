@@ -50,8 +50,11 @@ public class CarTest {
     @MethodSource("getMoveValues")
     void move(int moveValue, int afterPosition) {
         Car car = new Car("히히");
-        car.move(new MovingStrategyForTest(moveValue));
-        assertThat(car.getPosition()).isEqualTo(afterPosition);
+        int beforePosition = car.getPosition();
+
+        car.move(moveValue);
+        assertThat(car.getPosition() - beforePosition)
+            .isEqualTo(afterPosition);
     }
 
     private static Stream<Arguments> getMoveValues() {
@@ -63,20 +66,5 @@ public class CarTest {
             Arguments.of(6, 1),
             Arguments.of(9, 1)
         );
-    }
-
-    class MovingStrategyForTest implements MovingStrategy {
-        private static final int MOVE_THRESHOLD = 4;
-
-        private int value;
-
-        public MovingStrategyForTest(int value) {
-            this.value = value;
-        }
-
-        @Override
-        public boolean movable() {
-            return value >= MOVE_THRESHOLD;
-        }
     }
 }
