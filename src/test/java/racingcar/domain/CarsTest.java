@@ -29,15 +29,20 @@ class CarsTest {
 
     @BeforeEach
     void setUp() {
-        List<Car> carList = Arrays.asList(new Car("또링", 20, movingStrategy), new Car("동글", 20, movingStrategy),
+        List<Car> carList = Arrays.asList(
+                new Car("또링", 20, movingStrategy),
+                new Car("동글", 20, movingStrategy),
                 new Car("알트", 15, movingStrategy));
+
         cars = new Cars(carList);
     }
 
     @DisplayName("우승자 목록 구하기 테스트")
     @Test
     void testFindWinner() {
-        assertThat(cars.findWinner()).containsExactly(new Car("또링", 20, movingStrategy), new Car("동글", 20, movingStrategy));
+        assertThat(cars.findWinner()).containsExactly(
+                new Car("또링", 20, movingStrategy),
+                new Car("동글", 20, movingStrategy));
     }
 
     @DisplayName("run 메소드 실행 시, 모든 자동차가 제대로 동작하는지 테스트")
@@ -46,7 +51,9 @@ class CarsTest {
         cars.run();
         cars.run();
 
-        assertThat(cars).containsExactly(new Car("또링", 22, movingStrategy), new Car("동글", 22, movingStrategy),
+        assertThat(cars).containsExactly(
+                new Car("또링", 22, movingStrategy),
+                new Car("동글", 22, movingStrategy),
                 new Car("알트", 17, movingStrategy));
     }
 }

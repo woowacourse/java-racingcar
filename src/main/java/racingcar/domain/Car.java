@@ -26,7 +26,7 @@ public class Car {
 
     public Car(String name) {
         this(name, DEFAULT_POSITION, RandomMovingStrategy.getInstance());
-    }
+}
 
     Car(String name, int position, MovingStrategy movingStrategy) {
         this.name = name;

@@ -27,7 +27,9 @@ class WinnerTest {
     @Test
     void TestGetWinnerNames() {
         MovingStrategy movingStrategy = ForwardMovingStrategy.getInstance();
-        List<Car> winners = Arrays.asList(new Car("또동", 20, movingStrategy), new Car("두둥", 20, movingStrategy));
+        List<Car> winners = Arrays.asList(
+                new Car("또동", 20, movingStrategy),
+                new Car("두둥", 20, movingStrategy));
         Winner winner = new Winner(winners);
 
         assertThat(winner.getWinnerNames()).containsExactly("또동", "두둥");
