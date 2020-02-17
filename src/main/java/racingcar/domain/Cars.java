@@ -21,9 +21,9 @@ public class Cars {
         });
     }
 
-    public LinkedHashMap<String, String> notifyStatus() {
-        LinkedHashMap<String, String> status = new LinkedHashMap<>();
-        cars.forEach(car -> status.put(car.currentPosition().get(0), car.currentPosition().get(1)));
+    public LinkedHashMap<String, Integer> notifyStatus() {
+        LinkedHashMap<String, Integer> status = new LinkedHashMap<>();
+        cars.forEach(car -> status.put(car.getName(), car.getPosition()));
         return status;
     }
 

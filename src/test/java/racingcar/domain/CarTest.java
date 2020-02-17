@@ -46,7 +46,7 @@ public class CarTest {
         for (int i = 0; i < 4; i++) {
             car.proceed();
         }
-        assertThat(car.currentPosition().get(1)).isEqualTo("----");
+        assertThat(car.getPosition()).isEqualTo(4);
     }
 
     @ParameterizedTest
@@ -74,7 +74,7 @@ public class CarTest {
             car2.proceed();
         }
         assertThat(car1.comparePosition(car2)
-                .currentPosition().get(0)).isEqualTo(winnerName);
+                .getName()).isEqualTo(winnerName);
     }
 
     @Test

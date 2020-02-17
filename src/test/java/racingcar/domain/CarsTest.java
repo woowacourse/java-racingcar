@@ -14,11 +14,11 @@ public class CarsTest {
         CarFactory carFactory = new CarFactory("alan, bart, carol, don, eddy");
         Cars cars = carFactory.enrollCars();
         cars.playTurn(test);
-        assertThat(cars.notifyStatus().get("alan")).isEqualTo("-");
-        assertThat(cars.notifyStatus().get("bart")).isEqualTo("");
-        assertThat(cars.notifyStatus().get("carol")).isEqualTo("");
-        assertThat(cars.notifyStatus().get("don")).isEqualTo("-");
-        assertThat(cars.notifyStatus().get("eddy")).isEqualTo("-");
+        assertThat(cars.notifyStatus().get("alan")).isEqualTo(1);
+        assertThat(cars.notifyStatus().get("bart")).isEqualTo(0);
+        assertThat(cars.notifyStatus().get("carol")).isEqualTo(0);
+        assertThat(cars.notifyStatus().get("don")).isEqualTo(1);
+        assertThat(cars.notifyStatus().get("eddy")).isEqualTo(1);
     }
 
     @Test
