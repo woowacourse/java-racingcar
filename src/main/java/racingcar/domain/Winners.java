@@ -13,21 +13,21 @@ public class Winners {
 
     private static List<String> winners = new ArrayList<>();
 
-    public Winners(Cars cars) {
+    public Winners(List<Car> cars) {
         this.winners = findWinners(cars);
     }
 
-    public List<String> findWinners(Cars cars) {
+    public List<String> findWinners(List<Car> cars) {
         int maxLocation = findMaxLocation(cars);
-        List<String> winners = cars.getCars().stream()
-                .filter(car -> car.isLocation(maxLocation))
+        List<String> winners = cars.stream()
+                .filter(car -> car.isMaxLocation(maxLocation))
                 .map(Car::getName)
                 .collect(Collectors.toList());
         return winners;
     }
 
-    public int findMaxLocation(Cars cars) {
-        List<Integer> locationOfCars = cars.getCars().stream()
+    public int findMaxLocation(List<Car> cars) {
+        List<Integer> locationOfCars = cars.stream()
                 .map(Car::getLocation)
                 .collect(Collectors.toList());
         return Collections.max(locationOfCars);

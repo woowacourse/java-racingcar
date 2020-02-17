@@ -1,5 +1,6 @@
 package racingcar.domain.car;
 
+import racingcar.domain.NumberGenerator;
 import racingcar.domain.RandomNumber;
 
 public class Car {
@@ -11,19 +12,12 @@ public class Car {
         this.location = new Location();
     }
 
-    public Car(String name, int location) {
-        this.name = new Name(name);
-        this.location = new Location(location);
-    }
-
     public int getLocation() {
         return location.getLocation();
     }
 
-    public void play() {
-        RandomNumber randomNumber = new RandomNumber();
-        int randomNo = randomNumber.getRandomNumber();
-        if (randomNumber.canMove(randomNo)) {
+    public void play(NumberGenerator randomNumber) {
+        if (RandomNumber.canMove(randomNumber.generateNumber())) {
             move();
         }
     }
@@ -32,13 +26,13 @@ public class Car {
         location.moveForward();
     }
 
+    public boolean isMaxLocation(int maxLocation) {
+        return this.location.isMaxLocation(maxLocation);
+    }
+
     public String getName() {
         return name.toString();
     }
 
     public String getLocationMarks() { return location.toString(); }
-
-    public boolean isLocation(int maxLocation) {
-        return this.location.equals(new Location(maxLocation));
-    }
 }

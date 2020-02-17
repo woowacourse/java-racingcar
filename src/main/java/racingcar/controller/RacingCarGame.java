@@ -13,7 +13,7 @@ public class RacingCarGame {
         System.out.println("실행 결과");
         playRounds(cars, round);
 
-        Winners winners = new Winners(cars);
+        Winners winners = new Winners(cars.getCars());
         System.out.println("우승자 명단");
         OutputView.printWinners(winners);
     }

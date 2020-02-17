@@ -1,5 +1,8 @@
 package racingcar.domain.car;
 
+import racingcar.domain.NumberGenerator;
+import racingcar.domain.RandomNumber;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,19 +21,6 @@ public class Cars {
 
         for (String name : names.split(DELIMITER)) {
             cars.add(new Car(name));
-        }
-
-        this.cars = cars;
-    }
-
-    public Cars(String names, int location) {
-        List<Car> cars = new ArrayList<>();
-
-        validateNames(names);
-        validateDuplicatedNames(names);
-
-        for (String name : names.split(DELIMITER)) {
-            cars.add(new Car(name, location++));
         }
 
         this.cars = cars;
@@ -57,8 +47,9 @@ public class Cars {
     }
 
     public void play() {
+        NumberGenerator randomNumber = new RandomNumber();
         for (Car car : cars) {
-            car.play();
+            car.play(randomNumber);
         }
     }
 

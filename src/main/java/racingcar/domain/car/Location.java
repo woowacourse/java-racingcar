@@ -9,10 +9,6 @@ public class Location {
         this.location = 0;
     }
 
-    Location(int location) {
-        this.location = location;
-    }
-
     public int getLocation() {
         return location;
     }
@@ -30,11 +26,7 @@ public class Location {
         return result.toString();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o instanceof Location) {
-            return location == ((Location) o).location;
-        }
-        return false;
+    public boolean isMaxLocation(int maxLocation) {
+        return this.location == maxLocation;
     }
 }
