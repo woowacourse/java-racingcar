@@ -2,17 +2,23 @@ package calculator;
 
 import calculator.StringCalculator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class StringCalculatorTest {
+    static Stream<String> nullOrBlank() {
+        return Stream.of("", null);
+    }
 
-    @Test
-    public void splitAndSum_null_또는_빈문자() {
-        int result = StringCalculator.splitAndSum(null);
-        assertThat(result).isEqualTo(0);
-
-        result = StringCalculator.splitAndSum("");
+    @ParameterizedTest
+    @MethodSource("nullOrBlank")
+    public void splitAndSum_null_또는_빈문자(String testValue) {
+        int result = StringCalculator.splitAndSum(testValue);
         assertThat(result).isEqualTo(0);
     }
 

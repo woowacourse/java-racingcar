@@ -17,6 +17,6 @@ public class CarTest {
     @Test
     void isMove_전진_실패() {
         Car car = new Car("타미");
-        assertThat(car.move(0)).isFalse();
+        assertThat(car.move(3)).isFalse();
     }
 }
