@@ -137,7 +137,7 @@
 - [x] RandomNumberTest를 CarTest로 옮기게 될 것이다.
         
 ### 세번째 피드백
-- [ ] ParameterizedTest를 사용하자. 
+- [x] ParameterizedTest를 사용하자. 
 - [ ] 체이닝에서 컨벤션 -> 한 줄에 점을 하나만 찍는다.
 - [ ] InputView에서 객체 생성을 하지 말자.
 - [ ] Car 객체 내에서는 위치 확인만 해보자.

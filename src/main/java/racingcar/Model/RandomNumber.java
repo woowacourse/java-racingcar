@@ -12,17 +12,8 @@ package racingcar.Model;
 public class RandomNumber {
     public static final int RANDOM_UPPER_LIMIT = 9;
     public static final int RANDOM_LOWER_LIMIT = 1;
-    private int randomNumber;
 
-    public RandomNumber() {
-        this.randomNumber = (int) (Math.random() * RANDOM_UPPER_LIMIT) + RANDOM_LOWER_LIMIT;
-    }
-
-    public RandomNumber(int setNumber) {
-        this.randomNumber = setNumber;
-    }
-
-    public int getRandomNumber() {
-        return randomNumber;
+    public static int randomNumberCreate() {
+        return (int) (Math.random() * RANDOM_UPPER_LIMIT) + RANDOM_LOWER_LIMIT;
     }
 }

@@ -25,7 +25,7 @@ public class Game {
 
     public static GameResult race() {
         for (Car car : gamecars) {
-            RandomNumber randomNumber = new RandomNumber();
+            int randomNumber = RandomNumber.randomNumberCreate();
             car.goOrNot(randomNumber);
         }
         return new GameResult(gamecars);

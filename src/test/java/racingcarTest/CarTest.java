@@ -34,9 +34,8 @@ public class CarTest {
     @DisplayName("숫자가 4 이상인 경우 움직인다")
     @CsvSource(value = {"3, 0", "4, 1"})
     void goOrNot_숫자가_4_이상이면_움직인다(int randomNo, int result) {
-        RandomNumber randomNumber = new RandomNumber(randomNo);
         Car car = new Car("작은곰");
-        car.goOrNot(randomNumber);
+        car.goOrNot(randomNo);
         assertThat(car.getPosition()).isEqualTo(result);
     }
 }

@@ -10,7 +10,6 @@ package racingcar.Model;
  */
 
 public class Car {
-    public static final int MAX_CAR_NAME_LENGTH = 5;
     private static final int CRITERIA_FOR_GO = 4;
 
     public static StringBuilder winners = new StringBuilder();
@@ -28,8 +27,8 @@ public class Car {
         this.position = new Position(position);
     }
 
-    public void goOrNot(RandomNumber randomNumber) {
-        if (randomNumber.getRandomNumber() >= CRITERIA_FOR_GO) {
+    public void goOrNot(int randomNumber) {
+        if (randomNumber >= CRITERIA_FOR_GO) {
             position.go();
         }
     }
