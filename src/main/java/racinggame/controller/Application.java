@@ -1,6 +1,6 @@
 package racinggame.controller;
 
-import racinggame.domain.car.generatenumber.RandomMovableStrategy;
+import racinggame.domain.car.movable.RandomMovableStrategy;
 import racinggame.domain.game.RacingGame;
 import racinggame.domain.data.GameStatus;
 import racinggame.domain.data.Names;

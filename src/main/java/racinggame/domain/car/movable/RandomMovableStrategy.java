@@ -1,4 +1,4 @@
-package racinggame.domain.car.generatenumber;
+package racinggame.domain.car.movable;
 
 import java.util.Random;
 

@@ -10,7 +10,7 @@ public class StringAdder {
     public static int add(String value) {
         try {
             Input input = new Input(value);
-            List<Integer> values = input.splitInput();
+            List<Integer> values = input.getExpression();
             validateValues(values);
             return values.stream()
                     .reduce(0, Integer::sum);

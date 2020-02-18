@@ -1,6 +1,6 @@
 package racinggame.domain.car;
 
-import racinggame.domain.car.generatenumber.MovAbleStrategy;
+import racinggame.domain.car.movable.MovAbleStrategy;
 import racinggame.domain.data.GameStatus;
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Cars {
     private List<Car> cars = new ArrayList<>();
-    MovAbleStrategy movAbleStrategy;
+    private MovAbleStrategy movAbleStrategy;
 
     public Cars(MovAbleStrategy movAbleStrategy) {
         this.movAbleStrategy = movAbleStrategy;

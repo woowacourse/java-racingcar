@@ -1,7 +1,7 @@
 package racinggame.domain.game;
 
 import racinggame.domain.car.Cars;
-import racinggame.domain.car.generatenumber.MovAbleStrategy;
+import racinggame.domain.car.movable.MovAbleStrategy;
 import racinggame.domain.data.Names;
 import racinggame.domain.data.GameStatus;
 import racinggame.domain.car.Car;

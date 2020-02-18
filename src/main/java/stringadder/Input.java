@@ -9,15 +9,18 @@ import java.util.stream.Collectors;
 public class Input {
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
+    private static final Pattern pattern = Pattern.compile(CUSTOM_DELIMITER);
 
     private String expression;
+    private List<Integer> splitExperssion;
 
     public Input(String value) {
         this.expression = value;
-        validateInput();
+        validateInput(value);
+        splitExperssion = splitInput();
     }
 
-    private void validateInput() {
+    private void validateInput(String expression) {
         if (expression == null || expression.isEmpty()) {
             throw new NullPointerException("식을 입력해 주세요.");
         }
@@ -31,7 +34,7 @@ public class Input {
 
     private String getDelimiter() {
         if (expression.matches(CUSTOM_DELIMITER)) {
-            Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(expression);
+            Matcher m = pattern.matcher(expression);
             if (m.find()) {
                 changeInput(m.group(2));
                 return m.group(1);
@@ -41,8 +44,8 @@ public class Input {
     }
 
     private void changeInput(String group) {
-        expression = group;
-        validateInput();
+        validateInput(group);
+        this.expression = group;
     }
 
     private List<Integer> parseIntList(String delimiter) {
@@ -63,5 +66,9 @@ public class Input {
 
         validateList(list);
         return list;
+    }
+
+    public List<Integer> getExpression() {
+        return splitExperssion;
     }
 }

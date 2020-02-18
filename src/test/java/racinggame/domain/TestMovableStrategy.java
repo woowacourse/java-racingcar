@@ -1,6 +1,6 @@
 package racinggame.domain;
 
-import racinggame.domain.car.generatenumber.MovAbleStrategy;
+import racinggame.domain.car.movable.MovAbleStrategy;
 
 public class TestMovableStrategy implements MovAbleStrategy {
     public boolean isMovable() {
