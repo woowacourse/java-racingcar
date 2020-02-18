@@ -29,20 +29,19 @@ public class GameTest {
             new Car(new Name("작은곰"), 14),
             new Car(new Name("보스독"), 15)
     );
-    private Car topPositionCar = cars.get(1);
 
     @Test
     @DisplayName("포지션이 가장 큰 차 선별")
     void findTopPositionCar() {
-        Car topPositionCar = Game.findTopPositionCar(cars);
-        assertThat(topPositionCar).isEqualTo(cars.get(3));
+        int topPosition = Game.findTopPositionCar(cars);
+        assertThat(topPosition).isEqualTo(15);
     }
 
     @Test
     @DisplayName("우승자들 선발")
     void findWinners() {
         for (Car car : cars) {
-            topPositionCar.findWinners(car);
+            car.findWinners(15);
         }
         assertThat(Car.winners.toString()).isEqualTo(", 포비, 보스독");
     }
