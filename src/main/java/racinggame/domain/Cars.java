@@ -11,6 +11,10 @@ public class Cars implements Iterable<Car> {
         cars = names.makeCars();
     }
 
+    public Cars(List<Car> cars){
+        this.cars = cars;
+    }
+
     public Winners makeWinners(int maxPosition) {
         List<Car> winners = new ArrayList<>();
 

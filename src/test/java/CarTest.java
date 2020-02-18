@@ -1,9 +1,11 @@
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racinggame.domain.Car;
+import racinggame.domain.MoveGenerator;
+import racinggame.domain.StopGenerator;
 
 public class CarTest {
     Car car;
@@ -14,34 +16,23 @@ public class CarTest {
     @BeforeEach
     void initCar() {
         car = new Car("moveTest");
-        pobiCar = new Car("pobi");
-        crongCar = new Car("crong");
-        honuxCar = new Car("honux");
+        pobiCar = new Car("pobi", 4);
+        crongCar = new Car("crong", 3);
+        honuxCar = new Car("honux", 7);
+    }
 
-        pobiCar.move(4);
+    @Test
+    void 이동_테스트(){
+        Assertions.assertThat(car.move(new MoveGenerator())).isTrue();
+    }
 
-        crongCar.move(7);
-        crongCar.move(7);
-
-        honuxCar.move(1);
-        honuxCar.move(2);
-        honuxCar.move(3);
-        honuxCar.move(4);
-        honuxCar.move(5);
-        honuxCar.move(6);
-        honuxCar.move(7);
-
+    @Test
+    void 정지_테스트(){
+        Assertions.assertThat(car.move(new StopGenerator())).isFalse();
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0,false", "3,false", "4,true", "9,true"})
-    void moveTest(int random, boolean expected) {
-        boolean actual = car.move(random);
-        Assertions.assertThat(actual).isEqualTo(expected);
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = {"1,true,false,false", "2,false,true,false", "4,false," +
+    @CsvSource(value = {"4,true,false,false", "3,false,true,false", "7,false," +
             "false,true"})
     void samePositionTest(int random, boolean expected1, boolean expected2,
                           boolean expected3) {

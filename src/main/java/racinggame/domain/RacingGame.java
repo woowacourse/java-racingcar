@@ -1,19 +1,17 @@
 package racinggame.domain;
 
-import java.util.Random;
-
-public class RacingGame implements Strategy {
+public class RacingGame {
     public static final int NUMBER_BOUND = 10;
+    private Cars cars;
 
-    public static int generateRandom() {
-        Random rand = new Random();
-        rand.setSeed(System.nanoTime());
-        return rand.nextInt(NUMBER_BOUND);
+    public RacingGame(Cars cars) {
+        this.cars = cars;
     }
 
-    public int moveCars(Cars cars, int maxPosition) {
+    public int moveCars(Strategy randomGenerator) {
+        int maxPosition = 0;
         for (Car car : cars) {
-            if (car.move(generateRandom())) {
+            if (car.move(randomGenerator)) {
                 maxPosition = car.getMaxPosition(maxPosition);
             }
         }

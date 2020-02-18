@@ -6,28 +6,29 @@ import racinggame.domain.Cars;
 import racinggame.domain.Names;
 import racinggame.domain.Winners;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WinnersTest {
-    private final Names names = new Names("pobi,crong,honux");
-    private Cars cars = new Cars(names);
+    private Cars cars;
     private Winners winners;
-    private String winnerName = "honux";
+    private String winnerName = "crong";
 
     @BeforeEach
-    void initCarsPosition() {
-        int i = 0;
-        for (Car car : cars) {
-            car.move(6);
-            car.move(i);
-            i += 3;
-        }
+    void initList() {
+        List<Car> carList = new ArrayList<>();
+        carList.add(new Car("pobi", 4));
+        carList.add(new Car("crong", 7));
+        carList.add(new Car("honux", 3));
+        cars = new Cars(carList);
     }
 
     @Test
     void makeWinnersTest() {
-        winners = cars.makeWinners(2);
+        winners = cars.makeWinners(7);
         List<String> winnerNames = winners.getWinners();
         Assertions.assertThat(winnerNames.contains(winnerName)).isTrue();
+        Assertions.assertThat(winnerNames.contains("pobi")).isFalse();
+        Assertions.assertThat(winnerNames.contains("honux")).isFalse();
     }
 }

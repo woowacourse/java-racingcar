@@ -1,8 +1,8 @@
 package racinggame.domain;
 
 public class Car {
-    private static final int FORWARD_NUMBER = 4;
-    private static final int START_POSITION = 0;
+    private static int FORWARD_NUMBER = 4;
+    private static int START_POSITION = 0;
     private final String name;
     private int position;
 
@@ -15,7 +15,8 @@ public class Car {
         this.position = position;
     }
 
-    public boolean move(int random) {
+    public boolean move(Strategy strategy) {
+        int random = strategy.generateRandom();
         if (random >= FORWARD_NUMBER) {
             position++;
             return true;
