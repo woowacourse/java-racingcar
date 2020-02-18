@@ -24,7 +24,7 @@ public class RacingGameTest {
     @Test
     void 차이름_중복될_경우_예외처리(){
         assertThatThrownBy(() -> {
-            game.checkNameDuplicate(lineUp, "포비");
+            game.checkNameDuplicate(lineUp, new Car("포비"));
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("차이름이 중복되었습니다.");
     }
