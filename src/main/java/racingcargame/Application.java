@@ -9,22 +9,15 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        try {
-            OutputView.inputNameInstruction();
-            final String userInputName = InputView.inputNames();
-            OutputView.inputRepeatInstruction();
-            final int userInputRepeat = InputView.inputRepeat();
+        final String userInputName = InputView.inputNames();
+        final int userInputRepeat = InputView.inputRepeat();
 
-            RacingCarGame game = new RacingCarGame();
-            List<EachRaceResultDto> carStatus = game.run(userInputName, userInputRepeat);
-            OutputView.resultInstruction();
-            for (EachRaceResultDto eachRaceResultDto : carStatus) {
-                OutputView.printEachRaceStatus(eachRaceResultDto);
-            }
-            OutputView.winnerInstruction(game.getWinner());
+        RacingCarGame game = new RacingCarGame();
+        List<EachRaceResultDto> carStatus = game.run(userInputName, userInputRepeat);
+        OutputView.resultInstruction();
+        for (EachRaceResultDto eachRaceResultDto : carStatus) {
+            OutputView.printEachRaceStatus(eachRaceResultDto);
         }
-        catch (Exception e) {
-            OutputView.errorMessage(e.getMessage());
-        }
+        OutputView.winnerInstruction(game.getWinner());
     }
 }

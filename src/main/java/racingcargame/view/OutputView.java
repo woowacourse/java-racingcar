@@ -35,7 +35,7 @@ public class OutputView {
 
     public static void winnerInstruction(List<Car> cars) {
         List<String> carName = new ArrayList<>();
-        for (Car car: cars) {
+        for (Car car : cars) {
             carName.add(car.getName());
         }
         System.out.println(String.join(", ", carName) + "가 최종 우승했습니다.");
@@ -47,11 +47,10 @@ public class OutputView {
 
     public static void errorMessage(String errorMessage) {
         System.out.println(errorMessage);
-        System.out.println("프로그램을 다시 실행해 주세요.");
     }
 
     public static void printEachRaceStatus(EachRaceResultDto eachRaceResultDto) {
-        for (Car car: eachRaceResultDto.getCar()) {
+        for (Car car : eachRaceResultDto.getCar()) {
             OutputView.carNameAndPosition(car);
         }
         OutputView.newLine();
