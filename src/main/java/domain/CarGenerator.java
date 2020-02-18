@@ -12,7 +12,7 @@ public class CarGenerator {
         String[] carNames = carsName.split(COMMA);
         validateLength(carNames);
 
-        List<Car> cars = Arrays.stream(carNames).map(o -> new Car(o)).collect(Collectors.toList());
+        List<Car> cars = Arrays.stream(carNames).map(Car::new).collect(Collectors.toList());
         return cars;
     }
 
