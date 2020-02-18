@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * 날짜 : 2020.02.13 목요일
  */
 
-public class InputValidationTest {
+public class NameTest {
     @Test
     @DisplayName("차 이름에 빈 문자열 입력 시")
     void inputValidation_차_이름_빈_문자열() {
