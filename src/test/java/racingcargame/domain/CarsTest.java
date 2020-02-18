@@ -1,16 +1,16 @@
 package racingcargame.domain;
 
-import static org.assertj.core.api.Assertions.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-
 import racingcargame.exception.CarsNameInputException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarsTest {
@@ -42,7 +42,7 @@ public class CarsTest {
 	@Test
 	void 자동차_정상생성_확인() {
 		Cars cars = Cars.create("pobi, jason, crong");
-		List<Car> resultCars = cars.getUnmodifiableCars();
+		List<Car> resultCars = cars.getDeepCopiedCars();
 		assertThat(resultCars).hasSize(3);
 	}
 
