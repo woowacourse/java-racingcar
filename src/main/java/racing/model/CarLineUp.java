@@ -13,9 +13,9 @@ public class CarLineUp {
         lineUp.add(car);
     }
 
-    public boolean isAlready(final String name){
+    public boolean isAlready(final Car car){
         int count = (int)lineUp.stream()
-                .filter(c -> c.isNameEqual(name))
+                .filter(c -> c.isNameEqual(car))
                 .count();
         if (count == 0){
             return false;

@@ -13,8 +13,8 @@ public class Car {
 
     public Car(String name, int position) {
         checkNullName(name);
-        checkEmptyName(name);
         name = name.trim();
+        checkEmptyName(name);
         checkNameLengthUnderSix(name);
         this.name = name;
         this.position = new Position(position);
@@ -38,8 +38,8 @@ public class Car {
         }
     }
 
-    public boolean isNameEqual(final String targetName) {
-        return this.name.equals(targetName);
+    public boolean isNameEqual(final Car car) {
+        return this.name.equals(car.getName());
     }
 
     public void move(final RandomNo randomNo){

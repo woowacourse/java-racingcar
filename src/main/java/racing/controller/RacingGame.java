@@ -29,7 +29,8 @@ public class RacingGame {
 
     private void enrollCarToLineUp() {
         for (String name : InputView.inputCarNames()){
-            checkNameDuplicate(lineUp, name);
+            Car car = new Car(name);
+            checkNameDuplicate(lineUp, car);
             lineUp.add(new Car(name));
         }
     }
@@ -56,8 +57,8 @@ public class RacingGame {
     }
 
 
-    public void checkNameDuplicate(CarLineUp lineUp, String name) {
-        if (lineUp.isAlready(name)){
+    public void checkNameDuplicate(CarLineUp lineUp, Car car) {
+        if (lineUp.isAlready(car)){
             throw new IllegalArgumentException("차이름이 중복되었습니다.");
         }
     }
