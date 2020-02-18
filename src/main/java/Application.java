@@ -1,4 +1,5 @@
 import domain.*;
+
 import view.InputView;
 import view.OutputView;
 
@@ -8,7 +9,10 @@ public class Application {
         AttemptNumber attemptNumber = createAttemptNumberByInput();
 
         GameManager gameManager = new GameManager(cars, attemptNumber);
-        gameManager.playGame();
+        while (!gameManager.isEnd()) {
+            OutputView.printCurrentPosition(gameManager.playGame());
+            System.out.println();
+        }
 
         Cars winners = gameManager.findWinners();
         OutputView.printWinners(winners);

@@ -1,17 +1,20 @@
 package view;
 
 import domain.Cars;
+import domain.RacingResults;
 
-import java.awt.*;
 import java.util.List;
 import java.util.ArrayList;
 
 public class OutputView {
     private static final char MOVE_SIGN = '-';
 
-    public static void printCurrentPosition(String name, int position) {
-        String carState = String.format("%s : %s", name, makeMoveSigns(position));
-        System.out.println(carState);
+    public static void printCurrentPosition(RacingResults racingResults) {
+        for (int i = 0; i < racingResults.getSize(); i++) {
+            String carState = String.format("%s : %s",
+                    racingResults.get(i).getName(), makeMoveSigns(racingResults.get(i).getPosition()));
+            System.out.println(carState);
+        }
     }
 
     private static String makeMoveSigns(int position) {

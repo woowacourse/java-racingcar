@@ -1,8 +1,5 @@
 package domain;
 
-import view.OutputView;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,13 +40,14 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void moveCars() {
+    public RacingResults moveCars() {
+        RacingResults racingResults = new RacingResults();
         int carsSize = cars.size();
         for (int count = 0; count < carsSize; count++) {
             cars.get(count).move(RandomNumber.getRandomNumber());
-            OutputView.printCurrentPosition(cars.get(count).getName(), cars.get(count).getPosition());
+            racingResults.add(new RacingResult(cars.get(count).getName(), cars.get(count).getPosition()));
         }
-        OutputView.println();
+        return racingResults;
     }
 
     public Car get(int index) {

@@ -3,9 +3,10 @@ package domain;
 public class AttemptNumber {
     private static final String NOT_INTEGER_MESSAGE = "정수가 아닙니다.";
     private static final String NOT_POSITIVE_MESSAGE = "양수가 아닙니다.";
+    private static final String OVER_ATTEPT_NUMBER = "시도 횟수를 초과했습니다.";
     private static final int MIN_ATTEMPT_NUMBER = 1;
 
-    private final int number;
+    private int number;
 
     public AttemptNumber(String number) {
         validateInteger(number);
@@ -27,7 +28,18 @@ public class AttemptNumber {
         }
     }
 
-    public int getNumber() {
-        return number;
+    public boolean reduce() {
+        if (this.number > 0) {
+            this.number--;
+            return true;
+        }
+        throw new IllegalArgumentException(OVER_ATTEPT_NUMBER);
+    }
+
+    public boolean isEnd() {
+        if (this.number > 0) {
+            return false;
+        }
+        return true;
     }
 }

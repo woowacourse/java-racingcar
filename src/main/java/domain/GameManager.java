@@ -9,15 +9,18 @@ public class GameManager {
         this.attemptNumber = attemptNumber;
     }
 
-    public void playGame() {
-        int repeatCount = attemptNumber.getNumber();
-        for (int count = 0; count < repeatCount; count++) {
-            cars.moveCars();
-        }
+    public RacingResults playGame() {
+        if (attemptNumber.reduce())
+            return cars.moveCars();
+        return null;
     }
 
     public Cars findWinners() {
         int maxPosition = cars.getMaxPosition();
         return new Cars(cars.findByPosition(maxPosition));
+    }
+
+    public boolean isEnd() {
+        return attemptNumber.isEnd();
     }
 }
