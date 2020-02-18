@@ -75,4 +75,9 @@ public class Car {
     public String toString(){
         return name;
     }
+
+    @Override
+    public boolean equals(Object o){
+        return this.name.equals(((Car)o).name);
+    }
 }
