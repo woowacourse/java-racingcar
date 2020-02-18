@@ -12,21 +12,6 @@ public class RacingCarsTest {
 
     @Test
     @SuppressWarnings("NonAsciiCharacters")
-    void 최종우승자_추출() {
-        List<Car> cars = new ArrayList<>();
-        cars.add(new Car("pobi",3));
-        cars.add(new Car("jason",1));
-        cars.add(new Car("brown",4));
-        cars.add(new Car("coil",4));
-        RacingCars racingCars = new RacingCars(cars);
-        Winners winners = new Winners(racingCars.extractWinners());
-        List<Car> winnersValues = winners.getValues();
-        assertThat(winnersValues).contains(new Car("brown"), new Car("coil"));
-        assertThat(winnersValues).hasSize(2);
-    }
-
-    @Test
-    @SuppressWarnings("NonAsciiCharacters")
     void 중복이름_RacingCars_생성() {
         assertThatThrownBy(() -> {
             String duplicatedInput = "pobi, pobi, jason";

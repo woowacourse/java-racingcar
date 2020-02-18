@@ -22,4 +22,13 @@ public class Winners {
         return Collections.unmodifiableList(winners);
     }
 
+    public static Winners extractWinners(List<Car> cars) {
+        List<Car> racingCars = new ArrayList<>(cars);
+        Collections.sort(racingCars);
+        Car firstScoreCar = racingCars.get(racingCars.size() - 1);
+        List<Car> winners = racingCars.stream()
+                .filter(car -> car.isSameToPosition(firstScoreCar))
+                .collect(Collectors.toList());
+        return new Winners(winners);
+    }
 }

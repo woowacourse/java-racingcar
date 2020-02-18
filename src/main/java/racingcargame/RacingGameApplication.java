@@ -15,7 +15,7 @@ public class RacingGameApplication {
 
         doMoveCycle(racingCars, tryLimitNumber);
 
-        Winners winners = new Winners(racingCars.extractWinners());
+        Winners winners = Winners.extractWinners(racingCars.getUnmodifiableCars());
         OutputView.printWinners(winners);
     }
 

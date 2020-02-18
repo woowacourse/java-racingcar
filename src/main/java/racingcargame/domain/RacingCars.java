@@ -35,15 +35,6 @@ public class RacingCars {
         cars.forEach(car -> car.go(Engine.createRandomEngine()));
     }
 
-    public List<Car> extractWinners() {
-        Collections.sort(cars);
-        Car firstScoreCar = cars.get(cars.size() - 1);
-        List<Car> winners = cars.stream()
-                .filter(car -> car.isSameToPosition(firstScoreCar))
-                .collect(Collectors.toList());
-        return Collections.unmodifiableList(winners);
-    }
-
     public List<Car> getUnmodifiableCars() {
         return Collections.unmodifiableList(cars);
     }
