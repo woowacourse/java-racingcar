@@ -3,6 +3,7 @@ package domain;
 import calculator.StringCalculator;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class AttemptNumberTest {
@@ -21,5 +22,21 @@ public class AttemptNumberTest {
     void createAttemptNumber_부적합한_횟수_음수() {
         assertThatThrownBy(() -> new AttemptNumber("-1"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void reduce() {
+        AttemptNumber attemptNumber = new AttemptNumber("1");
+        assertThat(attemptNumber.reduce()).isTrue();
+        assertThat(attemptNumber.reduce()).isFalse();
+    }
+
+    @Test
+    void isEnd() {
+        AttemptNumber attemptNumber = new AttemptNumber("1");
+        assertThat(attemptNumber.isEnd()).isFalse();
+
+        attemptNumber.reduce();
+        assertThat(attemptNumber.isEnd()).isTrue();
     }
 }
