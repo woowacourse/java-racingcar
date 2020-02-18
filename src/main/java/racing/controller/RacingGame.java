@@ -2,14 +2,13 @@ package racing.controller;
 
 import racing.model.Car;
 import racing.model.CarLineUp;
-import racing.model.TrialTime;
 import racing.view.InputView;
 import racing.view.OutputView;
 
 public class RacingGame {
 
     private CarLineUp lineUp;
-    private TrialTime trialTime;
+    private int trialTime;
 
     public void play(){
         initializeLineUp();
@@ -46,7 +45,9 @@ public class RacingGame {
 
     private void race(){
         OutputView.printResultMessage();
-        trialTime.raceByTrialTime(lineUp);
+        for (int index = 0; index < trialTime; index++){
+            lineUp.raceOneTime();
+        }
     }
 
     private void showWinners() {

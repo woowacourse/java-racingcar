@@ -29,4 +29,12 @@ public class RacingGameTest {
                 .hasMessage("차이름이 중복되었습니다.");
     }
 
+//    @Test
+//    void 시도횟수_0이하일_경우_예외발생(){
+//        assertThatThrownBy(() -> {
+//            int trialTime =-4;
+//        }).isInstanceOf(IllegalArgumentException.class)
+//                .hasMessage("시도횟수는 음수가 입력될 수 없습니다.");
+//    }
+
 }

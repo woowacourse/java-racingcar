@@ -1,7 +1,5 @@
 package racing.view;
 
-import racing.model.TrialTime;
-
 import java.util.Scanner;
 
 public class InputView {
@@ -30,13 +28,14 @@ public class InputView {
         return carNames.split(DELIMITER);
     }
 
-    public static TrialTime inputTrialTime() {
+    public static int inputTrialTime() {
         OutputView.printInputTrialTimeMessage();
         String trialTime = scanner.nextLine();
         try {
             checkTrialTimeNullOrEmpty(trialTime);
             checkTrialTimeNotNumber(trialTime);
-            return new TrialTime(Integer.parseInt(trialTime));
+            checkTrialTimeNegativeOrZero(trialTime);
+            return Integer.parseInt(trialTime);
         } catch(Exception e){
             OutputView.printExceptionMessage(e);
         }
@@ -54,6 +53,13 @@ public class InputView {
     private static void checkTrialTimeNullOrEmpty(String trialTime) {
         if (trialTime == null || trialTime.isEmpty()){
             throw new NullPointerException("시도 횟수가 입력되지 않았습니다.");
+        }
+    }
+
+    private static void checkTrialTimeNegativeOrZero(String trialTime) {
+        int trialTimeIntegerValue = Integer.parseInt(trialTime);
+        if (trialTimeIntegerValue <= 0) {
+            throw new IllegalArgumentException("시도횟수는 음수가 입력될 수 없습니다.");
         }
     }
 }
