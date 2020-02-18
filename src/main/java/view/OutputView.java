@@ -2,6 +2,10 @@ package view;
 
 import domain.Cars;
 
+import java.awt.*;
+import java.util.List;
+import java.util.ArrayList;
+
 public class OutputView {
     private static final char MOVE_SIGN = '-';
 
@@ -19,7 +23,11 @@ public class OutputView {
     }
 
     public static void printWinners(Cars winners) {
-        String winnerNames = winners.getFormattedAllNames();
+        List<String> names = new ArrayList<String>();
+        for (int count = 0; count < winners.getSize(); count++) {
+            names.add(winners.get(count).getName());
+        }
+        String winnerNames = String.join(",", names);
         System.out.println(winnerNames + "(이)가 우승했습니다.");
     }
 

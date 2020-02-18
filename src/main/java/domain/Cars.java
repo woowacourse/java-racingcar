@@ -52,12 +52,9 @@ public class Cars {
         OutputView.println();
     }
 
-    public String getFormattedAllNames() {
-        List<String> names = new ArrayList<>();
-        for (int count = 0; count < cars.size(); count++) {
-            names.add(cars.get(count).getName());
-        }
-        String formattedName = String.join(",", names);
-        return formattedName;
+    public Car get(int index) {
+        if (index < 0 || index > cars.size())
+            throw new ArrayIndexOutOfBoundsException("Cars index가 잘못되었습니다.");
+        return cars.get(index);
     }
 }
