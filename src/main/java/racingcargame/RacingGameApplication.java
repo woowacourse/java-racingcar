@@ -1,6 +1,7 @@
 package racingcargame;
 
 import racingcargame.domain.Cars;
+import racingcargame.domain.RacingGameResult;
 import racingcargame.domain.TryNumber;
 import racingcargame.domain.Winners;
 import racingcargame.exception.CarNameInputException;
@@ -9,44 +10,53 @@ import racingcargame.exception.InvalidTryNumberException;
 import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RacingGameApplication {
-	public static void main(String[] args) {
-		Cars cars = inputCars();
+    public static void main(String[] args) {
+        Cars cars = inputCars();
 
-		TryNumber tryNumber = inputTryNumber();
+        TryNumber tryNumber = inputTryNumber();
 
-		doMoveCycle(cars, tryNumber);
+        List<RacingGameResult> results = doMoveCycle(cars, tryNumber);
 
-		Winners winners = new Winners(cars.extractWinners());
-		OutputView.printWinners(winners);
-	}
+        OutputView.printAllPositions(results);
 
-	private static Cars inputCars() {
-		try {
-			String inputCarNames = InputView.inputCarNames();
-			return Cars.create(inputCarNames);
-		} catch (CarsNameInputException | CarNameInputException e) {
-			return inputCars();
-		}
-	}
+        Winners winners = new Winners(cars.extractWinners());
+        OutputView.printWinners(winners);
+    }
 
-	private static TryNumber inputTryNumber() {
-		try {
-			String tryNumberInput = InputView.inputTryNumber();
-			return new TryNumber(tryNumberInput);
-		} catch (InvalidTryNumberException e) {
-			OutputView.printInvalidTryNumberErrorMessage();
-			return inputTryNumber();
-		}
-	}
+    private static Cars inputCars() {
+        try {
+            String inputCarNames = InputView.inputCarNames();
+            return Cars.create(inputCarNames);
+        } catch (CarsNameInputException e) {
+            OutputView.printErrorMessage(e.getType());
+        } catch (CarNameInputException e) {
+            OutputView.printErrorMessage(e.getType());
+        }
+        return inputCars();
+    }
 
-	private static void doMoveCycle(Cars cars, TryNumber tryNumber) {
-		OutputView.printHead();
-		int number = 0;
-		while (tryNumber.isBiggerThan(number)) {
-			cars.move();
-			OutputView.printPositions(cars);
-			number++;
-		}
-	}
+    private static TryNumber inputTryNumber() {
+        try {
+            String tryNumberInput = InputView.inputTryNumber();
+            return new TryNumber(tryNumberInput);
+        } catch (NumberFormatException e) {
+            OutputView.printNotNumberFormatErrorMessage();
+        } catch (InvalidTryNumberException e) {
+            OutputView.printInvalidTryNumberErrorMessage();
+        }
+        return inputTryNumber();
+    }
+
+    private static List<RacingGameResult> doMoveCycle(Cars cars, TryNumber tryNumber) {
+        List<RacingGameResult> results = new ArrayList<>();
+        while (tryNumber.next()) {
+            cars.move();
+            results.add(new RacingGameResult(cars));
+        }
+        return results;
+    }
 }
