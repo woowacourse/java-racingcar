@@ -2,6 +2,7 @@ package racingcar.domian.car;
 
 public class Position {
     private static final int LIMIT_FOR_MOVE = 4;
+
     private int distance;
 
     public Position(int distance) {
@@ -19,5 +20,4 @@ public class Position {
     public int getDistance() {
         return this.distance;
     }
-
 }

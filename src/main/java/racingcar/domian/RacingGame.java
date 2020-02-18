@@ -1,6 +1,9 @@
 package racingcar.domian;
 
+import racingcar.domian.car.Car;
 import racingcar.view.OutputView;
+
+import java.util.List;
 
 public class RacingGame {
     private static final int ZERO = 0;
@@ -29,7 +32,7 @@ public class RacingGame {
         }
     }
 
-    public String getResult() {
-        return cars.getResult();
+    public List<Car> getResult() {
+        return Winners.findWinner(cars.getCars());
     }
 }

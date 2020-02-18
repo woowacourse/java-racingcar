@@ -3,7 +3,6 @@ package racingcar.domian.car;
 import java.util.Objects;
 
 public class Car {
-    private static final String EMPTY_STRING = "";
     private static final int INIT_POSITION = 0;
     private static final int NAME_LENGTH_LIMIT = 5;
 
@@ -19,18 +18,18 @@ public class Car {
         this.name = validateName(name);
     }
 
-    public void move(int number) {
-        if(position.isMovable(number)) {
-            position.move();
-        }
-    }
-
-    public Position getPosition() {
-        return this.position;
+    public int getDistance() {
+        return this.position.getDistance();
     }
 
     public String getName() {
         return name;
+    }
+
+    public void move(int number) {
+        if(position.isMovable(number)) {
+            position.move();
+        }
     }
 
     private static String validateName(String name) {
@@ -51,15 +50,19 @@ public class Car {
         }
     }
 
-    public String isWinner(int max) {
-        if (isMaxPosition(max)) {
-            return name;
+    public int getBiggerNumber(int maxPosition) {
+        if(isBiggerThanMaxPosition(maxPosition)) {
+            return position.getDistance();
         }
-        return EMPTY_STRING;
+        return maxPosition;
     }
 
-    private boolean isMaxPosition(int max) {
-        return this.getPosition().getDistance() == max;
+    private boolean isBiggerThanMaxPosition(int maxPosition) {
+        return position.getDistance() > maxPosition;
+    }
+
+    public boolean isWinner(int maxPosition) {
+        return position.getDistance() == maxPosition;
     }
 
     @Override
