@@ -2,7 +2,9 @@ package racingTest;
 
 import org.junit.jupiter.api.Test;
 import racing.model.Car;
+import racing.model.RandomNo;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
@@ -22,5 +24,18 @@ public class CarTest {
             Car car = new Car("");
         }).isInstanceOf(NullPointerException.class)
         .hasMessage("차이름은 공백 또는 빈 문자열일 수 없습니다.");
+    }
+
+    @Test
+    void 차_움직이는지_여부_확인(){
+        Car car = new Car("보스독");
+        RandomNo randomNo = new RandomNo(4);
+
+        int currentPosition = car.getPosition().getPosition();
+        assertThat(currentPosition).isEqualTo(0);
+
+        car.move(randomNo);
+        currentPosition = car.getPosition().getPosition();
+        assertThat(currentPosition).isEqualTo(1);
     }
 }
