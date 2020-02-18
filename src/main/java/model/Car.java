@@ -21,8 +21,8 @@ public class Car {
         }
     }
 
-    public void moveOrNot(int RandomNumber) {
-        this.position.move(RandomNumber);
+    public void moveOrNot(int number) {
+        this.position.move(number);
     }
 
     public String getName() {

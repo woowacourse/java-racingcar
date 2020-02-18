@@ -11,13 +11,15 @@ import java.util.List;
 
 public class GameManager {
 
+    public static final String COMMA = ",";
     private List<Car> cars = new ArrayList<>();
-    private Winner winner = new Winner();
+    private Winner winner;
     private Round round;
 
     public GameManager(String carNames, String round) {
         ValidateInput.validateInput(carNames, round);
-        initiateCars(carNames.split(","));
+        initiateCars(carNames.split(COMMA));
+        winner = new Winner();
         this.round = new Round(Integer.parseInt(round));
     }
 
@@ -39,7 +41,7 @@ public class GameManager {
     }
 
     public List<String> whoIsWinner() {
-        winner.setWinners(cars);
+        winner.determineWinners(cars);
         return winner.getWinners();
     }
 

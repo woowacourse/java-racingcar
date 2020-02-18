@@ -22,7 +22,7 @@ public class Winner {
         return this.winners;
     }
 
-    public void setWinners(List<Car> cars) {
+    public void determineWinners(List<Car> cars) {
         cars.stream()
                 .filter(x -> x.position.isMaxPosition(getMaxPosition(cars)))
                 .forEach(x -> winners.add(x.getName()));

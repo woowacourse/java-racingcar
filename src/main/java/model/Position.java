@@ -13,8 +13,8 @@ public class Position {
     }
 
 
-    void move(int randomNumber) {
-        if (validateMove(randomNumber)) {
+    void move(int number) {
+        if (validateMove(number)) {
             this.position += MOVE;
         }
     }
