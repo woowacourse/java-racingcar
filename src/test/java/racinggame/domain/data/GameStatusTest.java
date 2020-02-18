@@ -20,15 +20,6 @@ public class GameStatusTest {
         gameStatus = new GameStatus(names.splitNamesByComma());
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {"pobi,3,pobi : ---", "crong,4,crong : ----", "honux,0,honux : "})
-    void 로그_테스트(String name, int position, String log) {
-        if (position == 0) {
-            log += " ";
-        }
-        Assertions.assertThat(gameStatus.makeStatusLog(name, position)).isEqualTo(log);
-    }
-
     @Test
     void 우승자_확인_테스트() {
         List<Car> carList= new ArrayList<>();
@@ -43,13 +34,13 @@ public class GameStatusTest {
             car.passingLog(gameStatus);
         }
         gameStatus.makeWinnerNames();
-        boolean chkWinner = gameStatus.isContainName("pobi");
+        boolean chkWinner = gameStatus.makeWinnerNames().contains("pobi");
         Assertions.assertThat(chkWinner).isEqualTo(true);
 
-        chkWinner = gameStatus.isContainName("crong");
+        chkWinner = gameStatus.makeWinnerNames().contains("crong");
         Assertions.assertThat(chkWinner).isEqualTo(true);
 
-        chkWinner = gameStatus.isContainName("honux");
+        chkWinner = gameStatus.makeWinnerNames().contains("honux");
         Assertions.assertThat(chkWinner).isEqualTo(false);
     }
 }

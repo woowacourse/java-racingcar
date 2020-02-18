@@ -7,6 +7,7 @@ import racinggame.domain.data.GameStatus;
 import racinggame.domain.car.Car;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * RacingGame 클래스는 자동차 리스트를 만들어 경주를 진행하고 그 결과를 출력한다.
@@ -14,6 +15,7 @@ import java.util.List;
  */
 public class RacingGame {
     private Cars cars;
+    private final GameStatus gameStatus;
 
     /**
      * 이 메서드는 이름 인스턴스 외에 숫자 생성 인터페이스를 추가로 받고,
@@ -25,6 +27,7 @@ public class RacingGame {
      */
     public RacingGame(Names names, MovAbleStrategy movAbleStrategy) {
         cars = new Cars(movAbleStrategy);
+        gameStatus = new GameStatus(names.splitNamesByComma());
         initCars(names);
     }
 
@@ -45,7 +48,12 @@ public class RacingGame {
      *
      * @param gameStatus
      */
-    public void moveCars(GameStatus gameStatus) {
+    public Map<String, Integer> moveCars() {
         cars.moveCars(gameStatus);
+        return gameStatus.getStatusLog();
+    }
+
+    public List<String> getWinners() {
+        return gameStatus.makeWinnerNames();
     }
 }

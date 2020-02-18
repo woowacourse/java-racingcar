@@ -17,17 +17,14 @@ public class Application {
     public static void main(String... args) {
         Names names = new Names(InputView.inputName());
         Repeat repeat = new Repeat(InputView.inputRepeat());
-        GameStatus gameStatus = new GameStatus(names.splitNamesByComma());
 
         RacingGame racingGame = new RacingGame(names, new RandomMovableStrategy());
         OutputView.printResultFormat();
 
         for (int repeatIterator = 0; repeat.isLoopDone(repeatIterator); repeatIterator++) {
-            racingGame.moveCars(gameStatus);
-            OutputView.printLog(gameStatus.getStatusLog());
+            OutputView.printLog(racingGame.moveCars());
         }
-        gameStatus.makeWinnerNames();
-        OutputView.printWinners(gameStatus.getWinnerNames());
+        OutputView.printWinners(racingGame.getWinners());
     }
 }
 

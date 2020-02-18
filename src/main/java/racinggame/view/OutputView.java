@@ -1,5 +1,8 @@
 package racinggame.view;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * OutputView 클래스는 메세지를 콘솔에 출력하 부분만 담당하는(MVC 구조에 View를 담당하는) 클래스이다.
  * OutputView 인스턴스를 만드는 것을 고려하지 않고 설계하였다.
@@ -9,6 +12,9 @@ public class OutputView {
     private static final String REPEAT_FORMAT = "시도할 회수는 몇회인가요?";
     private static final String RESULT_FORMAT = "\n실행 결과";
     private static final String WINNER_FORMAT = "가 최종 우승했습니다.";
+    private static final String LOG_DELIMITER = " : ";
+    private static final String POSITION_CHARACTER = "-";
+    private static final String WINNER_DELIMITER = ",";
 
     /**
      * 생성자 메서드는 호출되지 않는 것이 정상이므로 private으로 설정하였다.
@@ -19,14 +25,11 @@ public class OutputView {
         throw new AssertionError();
     }
 
-    /**
-     * printStatusLog 는 자동차의 주행 기록을 출력하기 위한 메서드이다.
-     * 문자열을 입력받은 후, 줄바꿈을 포함하여 출력해 준다.
-     *
-     * @param log 출력할 자동차 주행 기록을 저장한 String 인스턴스이다.
-     */
-    public static void printLog(String log) {
-        System.out.println(log+"\n");
+    public static void printWinners(List<String> names) {
+        for(String name : names){
+            System.out.println(name = WINNER_DELIMITER);
+        }
+        System.out.println(WINNER_FORMAT);
     }
 
     /**
@@ -53,12 +56,14 @@ public class OutputView {
         System.out.println(RESULT_FORMAT);
     }
 
-    /**
-     * printWinners는 게임에서 이긴 유저들의 이름을 받아 이를 출력하는 메서드이다.
-     *
-     * @param winnerNames 게임에서 이긴 유저들의 이름을 합친 String 인스턴스이다.
-     */
-    public static void printWinners(String winnerNames) {
-        System.out.println(winnerNames + WINNER_FORMAT);
+    public static void printLog(Map<String,Integer> status) {
+        for (Map.Entry<String, Integer> entry : status.entrySet()) {
+            int position = entry.getValue();
+            System.out.println(entry.getKey() + LOG_DELIMITER);
+            for (int i = 0; i < position; i++) {
+                System.out.println(POSITION_CHARACTER);
+            }
+            System.out.println("\n");
+        }
     }
 }
