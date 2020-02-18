@@ -49,7 +49,7 @@ public class Cars {
 
     public void moveAll() {
         for (Car car : cars) {
-            car.getPosition().moveByRandom(new RandomNumber());
+            car.move(RandomNumber.generateRandom());
         }
     }
 

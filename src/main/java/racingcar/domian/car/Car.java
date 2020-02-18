@@ -7,8 +7,8 @@ public class Car {
     private static final int INIT_POSITION = 0;
     private static final int NAME_LENGTH_LIMIT = 5;
 
-    private String name;
     private Position position;
+    private String name;
 
     public Car(String name) {
         this(new Position(INIT_POSITION), name);
@@ -17,6 +17,12 @@ public class Car {
     public Car(Position position, String name) {
         this.position = position;
         this.name = validateName(name);
+    }
+
+    public void move(int number) {
+        if(position.isMovable(number)) {
+            position.move();
+        }
     }
 
     public Position getPosition() {
