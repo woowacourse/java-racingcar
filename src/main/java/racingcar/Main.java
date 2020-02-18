@@ -6,6 +6,7 @@ import racingcar.Model.GameResult;
 import racingcar.View.InputView;
 import racingcar.View.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class Main {
     private static final int INDEX_START = 0;
 
     public static void main(String[] args) {
-        List<Car> cars = InputView.inputCarName();
+        List<Car> cars = carsCreate(InputView.inputCarName());
         int tryNo = InputView.inputTrialTime().getTrialTime();
         Game.initialize(cars);
 
@@ -33,5 +34,13 @@ public class Main {
         }
 
         OutputView.printWinners(Game.showWinner());
+    }
+
+    private static List<Car> carsCreate(String[] carNames) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : carNames) {
+            cars.add(new Car(name));
+        }
+        return cars;
     }
 }

@@ -20,15 +20,11 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static Scanner sc = new Scanner(System.in);
 
-    public static List<Car> inputCarName() {
+    public static String[] inputCarName() {
         OutputView.printInputCarNamesMessage();
         String[] carNames = sc.nextLine().split(DELIMITER);
         trimCarNames(carNames);
-        List<Car> cars = new ArrayList<>();
-        for (String name : carNames) {
-            cars.add(new Car(name));
-        }
-        return cars;
+        return carNames;
     }
 
     private static void trimCarNames(String[] carNames) {
