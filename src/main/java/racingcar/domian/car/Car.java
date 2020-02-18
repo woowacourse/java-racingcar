@@ -50,7 +50,7 @@ public class Car {
         }
     }
 
-    public int getBiggerNumber(int maxPosition) {
+    public int getBiggerPosition(int maxPosition) {
         if(isBiggerThanMaxPosition(maxPosition)) {
             return position.getDistance();
         }

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-import racingcar.domian.RandomNumber;
 import racingcar.domian.car.Car;
 import racingcar.domian.car.Position;
 
@@ -16,20 +15,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CarTest {
 
     @DisplayName("랜덤 생성된 값이 4이상일 때 이동 테스트")
-    @Test
-    void 생성된_랜덤값이_4이상이면_이동한다() {
-        Position position = new Position(0);
-        RandomNumber randomNumber = new RandomNumber();
-        position.moveByRandom(randomNumber);
-        if(randomNumber.getRandomNumber() >= 4) {
-            assertThat(position.getDistance() == 1).isTrue();
-        }
+    @ParameterizedTest
+    @CsvSource(value = {"0,false", "3,false", "4,true", "9,true"})
+    void 생성된_랜덤값이_4이상이면_이동한다(int moveNumber, boolean expected) {
+        Car car = new Car("hello");
+        car.move(moveNumber);
+        assertThat(car.getDistance() == 1).isEqualTo(expected);
     }
 
     @DisplayName("최대 위치에 있는 자동차의 이름을 우승자로 리턴하는 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"1,user1,''", "2,user2,''", "3,user3,user3"})
-    void 우승자_찾기(int position, String name, String expected) {
+    @CsvSource(value = {"1,user1,false", "2,user2,false", "3,user3,true"})
+    void 우승자_찾기(int position, String name, boolean expected) {
         int max = 3;
         Car car = new Car(new Position(position), name);
         assertThat(car.isWinner(max)).isEqualTo(expected);

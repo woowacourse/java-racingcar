@@ -15,9 +15,18 @@ public class CarsTest {
     @Test
     void 가장_먼_자동차의_거리() {
         String inputNames = "user1,user2,user3,user4";
+        int maxPosition = 3;
         Cars cars = new Cars(inputNames);
-        cars.getCars().add(new Car(new Position(3), "user5"));
-        assertThat(cars.findMaxPosition()).isEqualTo(3);
+        cars.getCars()
+                .add(new Car(new Position(maxPosition), "user5"));
+
+        assertThat(cars.getCars()
+                .stream()
+                .filter(car -> car.isWinner(maxPosition))
+                .findFirst()
+                .get()
+                .getName())
+                .isEqualTo("user5");
     }
 
     @DisplayName("예외 케이스: 게임에 참여하는 자동차(유저 이름)가 5대를 초과하는 경우")

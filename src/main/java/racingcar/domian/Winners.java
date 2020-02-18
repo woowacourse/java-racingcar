@@ -9,7 +9,7 @@ public class Winners {
     public static List<Car> findWinner(List<Car> cars) {
         int maxPosition = 0;
         for(Car car : cars) {
-            maxPosition = car.getBiggerNumber(maxPosition);
+            maxPosition = car.getBiggerPosition(maxPosition);
         }
         return getWinners(cars, maxPosition);
     }
