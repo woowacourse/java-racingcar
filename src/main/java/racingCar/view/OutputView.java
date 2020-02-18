@@ -8,20 +8,25 @@ public class OutputView {
         System.out.println(RESULT_TITLE);
     }
 
-    public static void printRoundNum(int round) {
+    private static void printRoundNum(int round) {
         System.out.println();
-        if (round == 0) {
+        if (round == ZERO_ROUND) {
             System.out.println(ROUND_START_TEXT);
             return;
         }
         System.out.println(round + ROUND_TAIL);
     }
 
-    public static void printRoundResult(List<String> names, List<Integer> positions) {
+    private static void printRoundInfo(List<String> names, List<Integer> positions) {
         for (int i = ZERO_INDEX; i < names.size(); i++) {
             System.out.println(names.get(i) + COLON_WRAPPED_WITH_SPACE
                     + positionToHyphens(positions.get(i)));
         }
+    }
+
+    public static void printEachRound(int round, List<String> names, List<Integer> positions) {
+        printRoundNum(round);
+        printRoundInfo(names, positions);
     }
 
     public static void printWinners(List<String> names) {
@@ -37,7 +42,7 @@ public class OutputView {
 
     private static String positionToHyphens(int position) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < position; i++) {
+        for (int i = ZERO_INDEX; i < position; i++) {
             stringBuilder.append(HYPHEN);
         }
         return stringBuilder.toString();
@@ -47,7 +52,4 @@ public class OutputView {
         System.out.println(INVALID_NAME_WARNING);
     }
 
-    public static void printInvalidRoundNumWarning() {
-        System.out.println(REINPUT_REQUEST_TEXT);
-    }
 }
