@@ -23,5 +23,4 @@ public class CarGeneratorTest {
         assertThatThrownBy(() -> CarGenerator.create(carNames) )
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }

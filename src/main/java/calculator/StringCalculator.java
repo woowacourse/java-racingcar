@@ -31,8 +31,9 @@ public class StringCalculator {
         } catch (NumberFormatException e) {
             throw new RuntimeException ("숫자가 아닙니다.");
         }
-        if (Integer.parseInt(input) < 0)
-            throw new RuntimeException ("음수입니다.");
+        if (Integer.parseInt(input) < 0) {
+            throw new RuntimeException("음수입니다.");
+        }
     }
 
     private static String[] getSplitValues (String input) {
