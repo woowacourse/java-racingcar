@@ -1,6 +1,7 @@
 package racingCar.domain;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -74,4 +75,18 @@ class PlayerTest {
                 .isEqualTo(input);
     }
 
+    @Test
+    void equals() {
+        // given
+        String input = "kueni";
+        Player a = new Player(new Name(input));
+        Player b = new Player(new Name(input));
+
+        // when
+        boolean bool = a.equals(b);
+
+        // then
+        Assertions.assertThat(bool).isTrue();
+
+    }
 }

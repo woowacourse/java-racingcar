@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingCar.utils.StringParser;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,6 +76,22 @@ class PlayersTest {
         Assertions.assertThatThrownBy(() -> {
            result.add(new Player(new Name("woowa")));
         });
+    }
 
+    @Test
+    void equals() {
+        // given
+        String input = "kueni";
+        String input2 = "pobi";
+        Player a = new Player(new Name(input));
+        Player b = new Player(new Name(input2));
+        Players c = new Players(Arrays.asList(a, b));
+        Players d = new Players(Arrays.asList(new Player(new Name(input)), new Player(new Name(input2))));
+
+        // when
+        boolean bool = c.equals(d);
+
+        // then
+        Assertions.assertThat(bool).isTrue();
     }
 }

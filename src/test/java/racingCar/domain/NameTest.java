@@ -88,4 +88,18 @@ class NameTest {
         Assertions.assertThat(result.equals(string))
                 .isTrue();
     }
+
+    @Test
+    void equals() {
+        // given
+        String input = "kueni";
+        Name a = new Name(input);
+        Name b = new Name(input);
+
+        // when
+        boolean bool = a.equals(b);
+
+        // then
+        Assertions.assertThat(bool).isTrue();
+    }
 }
