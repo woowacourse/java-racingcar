@@ -11,11 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinnerTest {
 
-    private List<Car> cars = new ArrayList<>();
-    private Winner winner = new Winner();
+    private Winner winner;
+    private List<Car> cars;
 
     @BeforeEach
     void setUp() {
+        winner = new Winner();
+        cars = new ArrayList<>();
         cars.add(new Car("a"));
         cars.add(new Car("b"));
         cars.add(new Car("c"));
