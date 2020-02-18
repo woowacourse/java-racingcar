@@ -9,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.Model.Car;
 import racingcar.Model.Name;
-import racingcar.Model.RandomNumber;
 
 /**
  * 클래스 이름 : CarTest.java

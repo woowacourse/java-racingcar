@@ -40,9 +40,13 @@ public class GameTest {
     @Test
     @DisplayName("우승자들 선발")
     void findWinners() {
+        StringBuilder winners = new StringBuilder();
         for (Car car : cars) {
-            car.isWinner(15);
+            if(car.isWinner(15)) {
+                winners.append(", ");
+                winners.append(car.getName());
+            }
         }
-        assertThat(Car.winners.toString()).isEqualTo(", 포비, 보스독");
+        assertThat(winners.toString()).isEqualTo(", 포비, 보스독");
     }
 }

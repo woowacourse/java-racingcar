@@ -48,11 +48,10 @@ public class Game {
     }
 
     public static int findTopPositionCar(List<Car> cars) {
-        List<Integer> carPosition = new ArrayList<>();
-        for (Car car : cars) {
-            carPosition.add(car.getPosition());
-        }
-        int topPosition = carPosition.stream().max(Integer::compare).orElse(-1);
+        int topPosition = cars.stream()
+                .mapToInt(Car -> Car.getPosition())
+                .max()
+                .orElse(0);
         return topPosition;
     }
 }
