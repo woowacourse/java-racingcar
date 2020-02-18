@@ -1,14 +1,13 @@
-package racingCar.domain;
+package racingCar.utils;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import racingCar.domain.Name;
+import racingCar.utils.StringParser;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class StringParserTest {
 
