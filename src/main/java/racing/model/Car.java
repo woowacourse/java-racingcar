@@ -5,7 +5,7 @@ public class Car {
     private static final int MAX_NAME_SIZE = 5;
     public static final int CRITERIA_NUMBER = 4;
     private final String name;
-    private Position position;
+    private final Position position;
 
     public Car(String name) {
         this(name, 0);
@@ -20,35 +20,35 @@ public class Car {
         this.position = new Position(position);
     }
 
-    private void checkNullName(String name) {
+    private void checkNullName(final String name) {
         if (name == null){
             throw new NullPointerException("차이름이 입력되지 않았습니다.");
         }
     }
 
-    private void checkEmptyName(String name) {
+    private void checkEmptyName(final String name) {
         if (name.isEmpty()){
             throw new IllegalArgumentException("차이름은 공백 또는 빈 문자열일 수 없습니다.");
         }
     }
 
-    private void checkNameLengthUnderSix(String name) {
+    private void checkNameLengthUnderSix(final String name) {
         if (name.length() > MAX_NAME_SIZE){
             throw new IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.");
         }
     }
 
-    public boolean isNameEqual(String targetName) {
+    public boolean isNameEqual(final String targetName) {
         return this.name.equals(targetName);
     }
 
-    public void move(RandomNo randomNo){
+    public void move(final RandomNo randomNo){
         if (isMovable(randomNo)){
             position.add();
         }
     }
 
-    private boolean isMovable(RandomNo randomNo) {
+    private boolean isMovable(final RandomNo randomNo) {
         return randomNo.getNumber() >= CRITERIA_NUMBER;
     }
 
@@ -60,14 +60,14 @@ public class Car {
         return name;
     }
 
-    public Car getBiggerPositionCar(Car targetCar) {
+    public Car getBiggerPositionCar(final Car targetCar) {
         if (position.isBiggerThan(targetCar.getPosition())){
             return this;
         }
         return targetCar;
     }
 
-    public boolean isSamePosition(Car targetCar) {
+    public boolean isSamePosition(final Car targetCar) {
         return getPosition().equals(targetCar.getPosition());
     }
 

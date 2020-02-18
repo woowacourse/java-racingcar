@@ -7,13 +7,13 @@ import java.util.ArrayList;
 public class CarLineUp {
     public static final int SINGLE_SIZE = 1;
 
-    private List<Car> lineUp = new ArrayList<>();
+    private final List<Car> lineUp = new ArrayList<>();
 
-    public void add(Car car){
+    public void add(final Car car){
         lineUp.add(car);
     }
 
-    public boolean isAlready(String name){
+    public boolean isAlready(final String name){
         int count = (int)lineUp.stream()
                 .filter(c -> c.isNameEqual(name))
                 .count();
@@ -30,7 +30,7 @@ public class CarLineUp {
         }
     }
 
-    public void raceOneTime(int number) {
+    public void raceOneTime(final int number) {
         RandomNo randomNo = new RandomNo(number);
         for (Car car : lineUp){
             car.move(randomNo);
@@ -47,13 +47,13 @@ public class CarLineUp {
         return winners;
     }
 
-    private void findAnotherWinners(Car topPositionCar, List<Car> winners, Car car) {
+    private void findAnotherWinners(final Car topPositionCar, final List<Car> winners, final Car car) {
         if (isAnotherWinner(topPositionCar, car)){
             winners.add(car);
         }
     }
 
-    private boolean isAnotherWinner(Car topPositionCar, Car car) {
+    private boolean isAnotherWinner(final Car topPositionCar, final Car car) {
         return !car.equals(topPositionCar) && car.isSamePosition(topPositionCar);
     }
 
@@ -69,7 +69,7 @@ public class CarLineUp {
         return topPositionCar;
     }
 
-    private boolean isSingleLineUp(int lineUpSize) {
+    private boolean isSingleLineUp(final int lineUpSize) {
         return lineUpSize == SINGLE_SIZE;
     }
 

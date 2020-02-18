@@ -33,7 +33,7 @@ public class OutputView {
         System.out.println(RESULT_HEADING);
     }
 
-    public static void printWinners(List<Car> winners) {
+    public static void printWinners(final List<Car> winners) {
         List<String> winnersName = winners.stream()
                                     .map(Car::getName)
                                     .collect(Collectors.toList());
@@ -43,7 +43,7 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void printOneRoundResult(CarLineUp lineUp) {
+    public static void printOneRoundResult(final CarLineUp lineUp) {
         for (Car car : lineUp.getLineUp()){
             StringBuilder result = new StringBuilder();
             result.append(car.getName()).append(COLON);
@@ -55,7 +55,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void presentPositionByDash(StringBuilder result, Position currentPosition) {
+    private static void presentPositionByDash(final StringBuilder result, final Position currentPosition) {
         for (int index = 0; index < currentPosition.getPosition(); index++){
             result.append(DASH);
         }

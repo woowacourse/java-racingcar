@@ -29,7 +29,7 @@ public class Position {
         return false;
     }
 
-    public boolean isBiggerThan(Position targetPosition) {
+    public boolean isBiggerThan(final Position targetPosition) {
         return this.position > targetPosition.position;
     }
 }
