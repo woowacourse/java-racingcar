@@ -47,6 +47,7 @@ public class RacingGame {
         OutputView.printResultMessage();
         for (int index = 0; index < trialTime; index++){
             lineUp.raceOneTime();
+            OutputView.printOneRoundResult(lineUp);
         }
     }
 

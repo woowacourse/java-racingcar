@@ -70,4 +70,8 @@ public class CarLineUp {
     public String toString(){
         return lineUp.toString();
     }
+
+    public List<Car> getLineUp() {
+        return lineUp;
+    }
 }

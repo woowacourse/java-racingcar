@@ -1,6 +1,7 @@
 package racing.view;
 
 import racing.model.Car;
+import racing.model.CarLineUp;
 import racing.model.Position;
 
 import java.util.List;
@@ -28,22 +29,8 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public static void printNewLine() {
-        System.out.println();
-    }
-
     public static void printResultMessage() {
         System.out.println(RESULT_HEADING);
-    }
-
-    public static void printCurrentDashResult(String name, Position position) {
-        StringBuilder result = new StringBuilder();
-        result.append(name);
-        result.append(COLON);
-        for (int index = 0; index < position.getPosition(); index++){
-            result.append(DASH);
-        }
-        System.out.println(result);
     }
 
     public static void printWinners(List<Car> winners) {
@@ -54,5 +41,23 @@ public class OutputView {
         result.append(String.join(COMMA, winnersName))
                 .append(WINNER_SUB_MESSAGE);
         System.out.println(result);
+    }
+
+    public static void printOneRoundResult(CarLineUp lineUp) {
+        for (Car car : lineUp.getLineUp()){
+            StringBuilder result = new StringBuilder();
+            result.append(car.getName()).append(COLON);
+
+            Position currentPosition = car.getPosition();
+            presentPositionByDash(result, currentPosition);
+            System.out.println(result.toString());
+        }
+        System.out.println();
+    }
+
+    private static void presentPositionByDash(StringBuilder result, Position currentPosition) {
+        for (int index = 0; index < currentPosition.getPosition(); index++){
+            result.append(DASH);
+        }
     }
 }
