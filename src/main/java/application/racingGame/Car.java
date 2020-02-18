@@ -1,15 +1,14 @@
 package application.racingGame;
 
 public class Car {
-
     private static final int MINIMUM_NUMBER_OF_MOVE_FORWARD = 4;
 
     private final String name;
     private int position;
 
-    public Car(String name) {
+    public Car(String name, int position) {
         this.name = name;
-        this.position = 0;
+        this.position = position;
     }
 
     public String getName() {
@@ -30,4 +29,7 @@ public class Car {
         return randomNumber >= MINIMUM_NUMBER_OF_MOVE_FORWARD;
     }
 
+    public boolean isSameMaxPosition(int maxPosition) {
+        return maxPosition == this.position;
+    }
 }

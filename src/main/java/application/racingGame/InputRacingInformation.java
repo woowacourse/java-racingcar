@@ -3,7 +3,6 @@ package application.racingGame;
 import java.util.*;
 
 public class InputRacingInformation {
-
     private static Scanner scanner = new Scanner(System.in);
 
     public static int getRacingLab() {

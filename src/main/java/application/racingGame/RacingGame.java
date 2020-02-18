@@ -11,8 +11,8 @@ public class RacingGame {
                 List<String> carNames = InputRacingInformation.getCarNames();
                 int racingLabs = InputRacingInformation.getRacingLab();
                 RaceParticipants raceParticipants = new RaceParticipants(carNames);
-                RaceResult raceResult = new RaceResult();
-                winners = raceResult.run(raceParticipants, racingLabs);
+                Race race = new Race();
+                winners = race.run(raceParticipants, racingLabs);
                 break;
             } catch (Exception e) {
                 OutputRacingView.printErrorMessage(e.getMessage());

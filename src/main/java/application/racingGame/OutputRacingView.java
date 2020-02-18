@@ -3,7 +3,6 @@ package application.racingGame;
 import java.util.List;
 
 public class OutputRacingView {
-
     public static final String MOVE_FORWARD = "-";
     public static final String CAR_NAME_DELIMITER = ", ";
 

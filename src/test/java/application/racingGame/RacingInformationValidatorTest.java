@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingInformationValidatorTest {
-
     private List<Car> cars;
     private Car pobi;
     private Car lavin;
@@ -19,9 +18,9 @@ public class RacingInformationValidatorTest {
     @BeforeEach
     void setUp() {
         cars = new ArrayList<>();
-        pobi = new Car("pobi");
-        lavin = new Car("lavin");
-        ramen = new Car("ramen");
+        pobi = new Car("pobi",0);
+        lavin = new Car("lavin",0);
+        ramen = new Car("ramen",0);
         cars.add(pobi);
         cars.add(lavin);
         cars.add(ramen);
@@ -29,7 +28,7 @@ public class RacingInformationValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", "a", "-1", "a,sd,fd"})
-    void validateRacingLab_시도_횟수값이_잘못입력될경우_익셉션을_발생한(String input) {
+    void validateRacingLab_시도_횟수값이_잘못입력될경우_익셉션을_발생한다(String input) {
         Assertions.assertThatThrownBy(() -> {
             RacingInformationValidator.checkRacingLab(input);
         }).isInstanceOf(IllegalArgumentException.class);

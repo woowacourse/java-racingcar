@@ -6,12 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 public class RacingInformationValidator {
-
     private static final int ZERO = 0;
     private static final int MAX_CAR_LENGTH = 5;
     private static final String LETTERING_SEPARATOR = "";
     private static final String BLANK = " ";
-    public static final String CAR_NAME_DELIMITER = ",";
+    private static final String CAR_NAME_DELIMITER = ",";
 
     public static int checkRacingLab(String racingLabValue) {
         return validateRacingLab(racingLabValue);

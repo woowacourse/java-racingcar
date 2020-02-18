@@ -9,8 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RaceResultParticipantTest {
-
+public class RaceParticipantTest {
     private RaceParticipants raceParticipants;
     private List<Car> cars;
     private Car pobi;
@@ -22,9 +21,9 @@ public class RaceResultParticipantTest {
         List<String> carNames = Arrays.asList("pobi","lavin","ramen");
         cars = new ArrayList<>();
         raceParticipants = new RaceParticipants(carNames);
-        pobi = new Car("pobi");
-        lavin = new Car("lavin");
-        ramen = new Car("ramen");
+        pobi = new Car("pobi",0);
+        lavin = new Car("lavin",0);
+        ramen = new Car("ramen",0);
         cars.add(pobi);
         cars.add(lavin);
         cars.add(ramen);
