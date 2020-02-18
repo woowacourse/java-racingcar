@@ -40,10 +40,9 @@ public class ValidateInput {
         if (tempCarNames == null || tempCarNames.isEmpty()) {
             throw new IllegalArgumentException(NO_NAME_ERROR_MESSAGE);
         }
-        tempCarNames.stream()
-                .filter(x -> x == null || x.isEmpty())
-                .forEach(x -> {
-                    throw new IllegalArgumentException(INVALID_NAME_ERROR_MESSAGE);
-                });
+        if (tempCarNames.stream()
+                .anyMatch(x -> x == null || x.isEmpty())) {
+            throw new IllegalArgumentException(INVALID_NAME_ERROR_MESSAGE);
+        }
     }
 }
