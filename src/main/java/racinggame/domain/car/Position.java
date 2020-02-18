@@ -1,14 +1,6 @@
 package racinggame.domain.car;
 
-/**
- * Position 클래스는 Car 클래스에서 사용되는 position 변수를 감싸는 클래스이다.
- * position의 예외값에 대한 검증을 수행하고, 제한적인 동작(이동) 만 가능하도록 설계하였다.
- */
 public class Position {
-    /**
-     * position은 자동차의 위치를 표현하는 정수형 변수이다.
-     * 0 이상의 정수형이고, 감산되지 않음을 보장한다.
-     */
     private int position;
 
     /**

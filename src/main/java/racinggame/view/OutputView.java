@@ -25,7 +25,7 @@ public class OutputView {
     }
 
     public static void printWinners(List<String> names) {
-        for(String name : names){
+        for (String name : names) {
             System.out.print(name + " ");
         }
         System.out.println(WINNER_FORMAT);
@@ -55,7 +55,7 @@ public class OutputView {
         System.out.println(RESULT_FORMAT);
     }
 
-    public static void printLog(Map<String,Integer> status) {
+    public static void printLog(Map<String, Integer> status) {
         for (Map.Entry<String, Integer> entry : status.entrySet()) {
             int position = entry.getValue();
             System.out.print(entry.getKey() + LOG_DELIMITER);

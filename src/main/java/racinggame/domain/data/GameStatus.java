@@ -27,6 +27,7 @@ public class GameStatus {
             carStatus.put(name, 0);
         }
     }
+
     /**
      * makeWinnerNames 는 Car 인스턴스의 목록을 받아, 이들 중 경주에서 승리한 인스턴스의 이름 값을
      * 필드에 있는 winners에 추가한다.

@@ -34,6 +34,7 @@ public class RacingGame {
     /**
      * moveCars는 Cars가 보유한 자동차들에 대해서 이동을 수행하고, 이를 gameStatus에 기록하는 메서드이다.
      * 이후 gameStatus에서 정리된 기록값을 Map형태로 컨트롤러에 반환한다.
+     *
      * @return 게임 기록이 정리된 Map<String, Integer> 인스턴스를 반환한다.
      */
     public Map<String, Integer> moveCars() {

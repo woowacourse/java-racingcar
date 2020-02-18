@@ -13,13 +13,14 @@ public class Cars {
     public Cars(MovAbleStrategy movAbleStrategy) {
         this.movAbleStrategy = movAbleStrategy;
     }
-    public void add(Car car){
+
+    public void add(Car car) {
         cars.add(car);
     }
 
-    public void moveCars(GameStatus gameStatus){
+    public void moveCars(GameStatus gameStatus) {
         for (Car car : cars) {
-            if(movAbleStrategy.isMovable()){
+            if (movAbleStrategy.isMovable()) {
                 car.accelerate();
             }
             car.passingLog(gameStatus);

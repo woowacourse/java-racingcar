@@ -1,10 +1,9 @@
-package racinggame.domain;
+package racinggame.domain.car;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racinggame.domain.car.Position;
 
 public class PositionTest {
     @ParameterizedTest
@@ -17,10 +16,6 @@ public class PositionTest {
     @ParameterizedTest
     @ValueSource(strings = {"-1", "-214"})
     void 위치값_오류_테스트(int value) {
-        /*
-        String 값도 넣어 보려고 했는데, 파라미터가 int형으로 지정되어 있어 NumberFormatException 발생함.
-        이는 position이 아닌 position을 호출하는 상위클래스에서 체크해야할듯....
-        */
         Assertions.assertThatThrownBy(() -> {
             Position position = new Position(value);
         }).isInstanceOf(IllegalArgumentException.class)

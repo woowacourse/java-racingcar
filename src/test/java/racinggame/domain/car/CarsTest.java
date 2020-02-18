@@ -1,8 +1,9 @@
-package racinggame.domain;
+package racinggame.domain.car;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import racinggame.domain.TestMovableStrategy;
 import racinggame.domain.car.Cars;
 import racinggame.domain.data.Names;
 import racinggame.domain.data.GameStatus;

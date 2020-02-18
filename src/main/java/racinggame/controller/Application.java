@@ -2,7 +2,6 @@ package racinggame.controller;
 
 import racinggame.domain.car.movable.RandomMovableStrategy;
 import racinggame.domain.game.RacingGame;
-import racinggame.domain.data.GameStatus;
 import racinggame.domain.data.Names;
 import racinggame.domain.data.Repeat;
 import racinggame.view.InputView;
@@ -17,7 +16,6 @@ public class Application {
     public static void main(String... args) {
         Names names = new Names(InputView.inputName());
         Repeat repeat = new Repeat(InputView.inputRepeat());
-
         RacingGame racingGame = new RacingGame(names, new RandomMovableStrategy());
         OutputView.printResultFormat();
 
