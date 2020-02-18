@@ -9,12 +9,20 @@ import java.util.stream.Collectors;
 public class Cars {
 
     private static final String EMPTY_STRING = "";
-    private static final CarFactory carFactory = new CarFactory();
+    private static final String DELIMITER = ",";
+    private static final String CAR_COUNT_STR = "자동차 5대 초과입니다!";
+    private static final int CAR_LIMIT = 5;
 
     private final List<Car> cars;
 
     public Cars(String inputNames) {
-        cars = carFactory.createCars(inputNames);
+        String[] names = inputNames.split(DELIMITER);
+        validateCarCount(names.length);
+        List<Car> cars = new ArrayList<>();
+        for (String name : names) {
+            cars.add(new Car(name));
+        }
+        this.cars = cars;
     }
 
     public List<Car> getCars() {
@@ -23,6 +31,12 @@ public class Cars {
 
     private static boolean isNotEmpty(String maybeWinner) {
         return !EMPTY_STRING.equals(maybeWinner);
+    }
+
+    private static void validateCarCount(int carCount) {
+        if (carCount > CAR_LIMIT) {
+            throw new IllegalArgumentException(CAR_COUNT_STR);
+        }
     }
 
     public int findMaxPosition() {
