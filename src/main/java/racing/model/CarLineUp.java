@@ -30,6 +30,13 @@ public class CarLineUp {
         }
     }
 
+    public void raceOneTime(int number) {
+        RandomNo randomNo = new RandomNo(number);
+        for (Car car : lineUp){
+            car.move(randomNo);
+        }
+    }
+
     public List<Car> findWinner() {
         Car topPositionCar = findTopPositionCar();
         List<Car> winners = new ArrayList<>();

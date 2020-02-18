@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racing.model.Car;
 import racing.model.CarLineUp;
+import racing.model.Position;
 
 import java.util.List;
 
@@ -28,6 +29,18 @@ public class CarLineUpTest {
 
         result = lineUp.isAlready("토니22");
         assertThat(result).isFalse();
+    }
+
+    @Test
+    void 레이스_원_타임_테스트(){
+        assertThat(lineUp.getLineUp().get(0).getPosition()).isEqualTo(new Position(5));
+        assertThat(lineUp.getLineUp().get(1).getPosition()).isEqualTo(new Position(6));
+        assertThat(lineUp.getLineUp().get(2).getPosition()).isEqualTo(new Position(7));
+
+        lineUp.raceOneTime(4);
+        assertThat(lineUp.getLineUp().get(0).getPosition()).isEqualTo(new Position(6));
+        assertThat(lineUp.getLineUp().get(1).getPosition()).isEqualTo(new Position(7));
+        assertThat(lineUp.getLineUp().get(2).getPosition()).isEqualTo(new Position(8));
     }
 
     @Test
