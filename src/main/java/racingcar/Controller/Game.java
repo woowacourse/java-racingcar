@@ -32,11 +32,19 @@ public class Game {
     }
 
     public static String showWinner() {
+        StringBuilder winners = new StringBuilder();
         int topPosition = findTopPositionCar(gamecars);
         for (Car car : gamecars) {
-            car.findWinners(topPosition);
+            findWinners(winners, topPosition, car);
         }
-        return Car.winners.toString();
+        return winners.toString();
+    }
+
+    private static void findWinners(StringBuilder winners, int topPosition, Car car) {
+        if(car.isWinner(topPosition)){
+            winners.append(", ");
+            winners.append(car.getName());
+        }
     }
 
     public static int findTopPositionCar(List<Car> cars) {

@@ -41,7 +41,7 @@ public class GameTest {
     @DisplayName("우승자들 선발")
     void findWinners() {
         for (Car car : cars) {
-            car.findWinners(15);
+            car.isWinner(15);
         }
         assertThat(Car.winners.toString()).isEqualTo(", 포비, 보스독");
     }

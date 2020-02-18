@@ -12,8 +12,6 @@ package racingcar.Model;
 public class Car {
     private static final int CRITERIA_FOR_GO = 4;
 
-    public static StringBuilder winners = new StringBuilder();
-
     private Name carName;
     private Position position;
 
@@ -37,11 +35,8 @@ public class Car {
         return this.position.getPosition() > target.position.getPosition();
     }
 
-    public void findWinners(int topPosition) {
-        if (this.position.getPosition() == topPosition) {
-            winners.append(", ");
-            winners.append(this.carName.getName());
-        }
+    public boolean isWinner(int topPosition) {
+        return this.position.getPosition() == topPosition;
     }
 
     public String getName() {
