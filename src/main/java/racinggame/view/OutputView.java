@@ -14,7 +14,6 @@ public class OutputView {
     private static final String WINNER_FORMAT = "가 최종 우승했습니다.";
     private static final String LOG_DELIMITER = " : ";
     private static final String POSITION_CHARACTER = "-";
-    private static final String WINNER_DELIMITER = ",";
 
     /**
      * 생성자 메서드는 호출되지 않는 것이 정상이므로 private으로 설정하였다.
@@ -27,7 +26,7 @@ public class OutputView {
 
     public static void printWinners(List<String> names) {
         for(String name : names){
-            System.out.println(name = WINNER_DELIMITER);
+            System.out.print(name + " ");
         }
         System.out.println(WINNER_FORMAT);
     }
@@ -59,11 +58,11 @@ public class OutputView {
     public static void printLog(Map<String,Integer> status) {
         for (Map.Entry<String, Integer> entry : status.entrySet()) {
             int position = entry.getValue();
-            System.out.println(entry.getKey() + LOG_DELIMITER);
+            System.out.print(entry.getKey() + LOG_DELIMITER);
             for (int i = 0; i < position; i++) {
-                System.out.println(POSITION_CHARACTER);
+                System.out.print(POSITION_CHARACTER);
             }
-            System.out.println("\n");
+            System.out.println("");
         }
     }
 }

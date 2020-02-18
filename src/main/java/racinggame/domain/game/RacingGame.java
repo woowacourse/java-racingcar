@@ -17,14 +17,6 @@ public class RacingGame {
     private Cars cars;
     private final GameStatus gameStatus;
 
-    /**
-     * 이 메서드는 이름 인스턴스 외에 숫자 생성 인터페이스를 추가로 받고,
-     * 이 인터페이스를 Car에 적용시킨다.
-     * 이 생성자를 이용한다.
-     *
-     * @param names Cars 생성을 위한 이름 인스턴스이다.
-     * @param movAbleStrategy Cars에서 이동 여부를 판단하기 위한 숫자 생성 인터페이스이다.
-     */
     public RacingGame(Names names, MovAbleStrategy movAbleStrategy) {
         cars = new Cars(movAbleStrategy);
         gameStatus = new GameStatus(names.splitNamesByComma());
@@ -39,14 +31,10 @@ public class RacingGame {
         }
     }
 
-
     /**
-     * moveCars는 RacingGame에 포함되어 있는 자동차 인스턴스들 전체에 대해 accelerate를 호출하여,
-     * 전진하거나 혹은 그 자리에 멈추도록 하는 메서드이다.
-     * 각각의 Car 인스턴스의 accelerate 호출이 종료되면, 파라미터로 전달받은 gameStatus에 로그를 전달한다.
-     * 이를 통해 자동차의 진행을 컨트롤러에서 뷰로 전달할 수 있다.
-     *
-     * @param gameStatus
+     * moveCars는 Cars가 보유한 자동차들에 대해서 이동을 수행하고, 이를 gameStatus에 기록하는 메서드이다.
+     * 이후 gameStatus에서 정리된 기록값을 Map형태로 컨트롤러에 반환한다.
+     * @return 게임 기록이 정리된 Map<String, Integer> 인스턴스를 반환한다.
      */
     public Map<String, Integer> moveCars() {
         cars.moveCars(gameStatus);
