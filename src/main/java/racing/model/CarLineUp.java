@@ -47,7 +47,7 @@ public class CarLineUp {
     }
 
     private boolean isAnotherWinner(Car topPositionCar, Car car) {
-        return !car.equals(topPositionCar) && car.getPosition().equals(topPositionCar.getPosition());
+        return !car.equals(topPositionCar) && car.isSamePosition(topPositionCar);
     }
 
     private Car findTopPositionCar() {

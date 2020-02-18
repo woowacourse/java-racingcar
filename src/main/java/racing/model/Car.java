@@ -62,6 +62,10 @@ public class Car {
         return targetCar;
     }
 
+    public boolean isSamePosition(Car targetCar) {
+        return getPosition().equals(targetCar.getPosition());
+    }
+
     @Override
     public String toString(){
         return name;
