@@ -13,9 +13,16 @@ public class Name {
     private String name;
 
     public Name(final String name) {
+        checkNullCarName(name);
         checkEmptyCarName(name);
         checkSmallerThanSix(name);
         this.name = name;
+    }
+
+    public static void checkNullCarName(String carName) {
+        if (carName == null) {
+            throw new IllegalArgumentException("차 이름은 NULL 값일 수 없습니다.");
+        }
     }
 
     public static void checkEmptyCarName(String carName) {

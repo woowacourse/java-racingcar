@@ -22,6 +22,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NameTest {
     @Test
+    @DisplayName("차 이름에 null 값 입력 시")
+    void inputValidation_차_이름_null() {
+        String carNames = null;
+        assertThatThrownBy(() -> {
+            Name.checkNullCarName(carNames);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("차 이름은 NULL 값일 수 없습니다.");
+    }
+
+    @Test
     @DisplayName("차 이름에 빈 문자열 입력 시")
     void inputValidation_차_이름_빈_문자열() {
         String carNames = "";
@@ -29,7 +39,6 @@ public class NameTest {
             Name.checkEmptyCarName(carNames);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("차 이름은 빈 문자열일 수 없습니다.");
-
     }
 
     @Test
