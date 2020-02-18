@@ -25,18 +25,8 @@ public class Car {
         this.name = name;
         this.position = new Position(position);
     }
-
-    /**
-     * accelerate 메서드는 랜덤한 값과 기준이 되는 값을 전달받아,
-     * 랜덤한 값이 기준이 되는 값을 넘은 경우 position의 가속 메서드를 호출한다.
-     *
-     * @param random 비교를 위한 임의의 정수형 변수이다.
-     * @param bound  가속을 위한 비교의 기준값인 정수형 변수이다.
-     */
-    public void accelerate(int random, int bound) {
-        if (random >= bound) {
-            position.accelerate();
-        }
+    public void accelerate() {
+        position.accelerate();
     }
 
     public boolean match(int position) {

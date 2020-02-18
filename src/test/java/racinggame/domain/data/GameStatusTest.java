@@ -36,9 +36,9 @@ public class GameStatusTest {
         carList.add(new Car("crong", 0));
         carList.add(new Car("honux", 0));
 
-        carList.get(0).accelerate(4, 4);
-        carList.get(1).accelerate(6, 4);
-        carList.get(2).accelerate(2, 4);
+        carList.get(0).accelerate();
+        carList.get(1).accelerate();
+        //carList.get(2).accelerate();
         for (Car car : carList) {
             car.passingLog(gameStatus);
         }

@@ -1,5 +1,6 @@
 package racinggame.controller;
 
+import racinggame.domain.car.generatenumber.RandomMovableStrategy;
 import racinggame.domain.game.RacingGame;
 import racinggame.domain.data.GameStatus;
 import racinggame.domain.data.Names;
@@ -18,7 +19,7 @@ public class Application {
         Repeat repeat = new Repeat(InputView.inputRepeat());
         GameStatus gameStatus = new GameStatus(names.splitNamesByComma());
 
-        RacingGame racingGame = new RacingGame(names);
+        RacingGame racingGame = new RacingGame(names, new RandomMovableStrategy());
         OutputView.printResultFormat();
 
         for (int repeatIterator = 0; repeat.isLoopDone(repeatIterator); repeatIterator++) {

@@ -1,8 +1,7 @@
 package racinggame.domain.game;
 
 import racinggame.domain.car.Cars;
-import racinggame.domain.car.generatenumber.GenerateNumberService;
-import racinggame.domain.car.generatenumber.GenerateRandomNumber;
+import racinggame.domain.car.generatenumber.MovAbleStrategy;
 import racinggame.domain.data.Names;
 import racinggame.domain.data.GameStatus;
 import racinggame.domain.car.Car;
@@ -16,23 +15,16 @@ import java.util.List;
 public class RacingGame {
     private Cars cars;
 
-    public RacingGame(Names names) {
-        cars = new Cars(new GenerateRandomNumber());
-        initCars(names);
-    }
-
     /**
-     * 이 메서드는 테스트용 생성자 메서드이다.
-     * 이름 인스턴스 외에 숫자 생성 인터페이스를 추가로 받고,
+     * 이 메서드는 이름 인스턴스 외에 숫자 생성 인터페이스를 추가로 받고,
      * 이 인터페이스를 Car에 적용시킨다.
-     * 테스트에서는 GenerateRandomNumber 대신 GenerateTestNumber를 Cars에 주입하기 위해
      * 이 생성자를 이용한다.
      *
      * @param names Cars 생성을 위한 이름 인스턴스이다.
-     * @param generateNumberService Cars에서 이동 여부를 판단하기 위한 숫자 생성 인터페이스이다.
+     * @param movAbleStrategy Cars에서 이동 여부를 판단하기 위한 숫자 생성 인터페이스이다.
      */
-    public RacingGame(Names names, GenerateNumberService generateNumberService) {
-        cars = new Cars(generateNumberService);
+    public RacingGame(Names names, MovAbleStrategy movAbleStrategy) {
+        cars = new Cars(movAbleStrategy);
         initCars(names);
     }
 

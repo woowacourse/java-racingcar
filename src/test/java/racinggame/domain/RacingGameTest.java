@@ -5,8 +5,8 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racinggame.domain.car.Cars;
-import racinggame.domain.car.generatenumber.GenerateNumberService;
-import racinggame.domain.car.generatenumber.GenerateRandomNumber;
+import racinggame.domain.car.generatenumber.MovAbleStrategy;
+import racinggame.domain.car.generatenumber.RandomMovableStrategy;
 import racinggame.domain.data.Names;
 import racinggame.domain.data.GameStatus;
 import racinggame.domain.car.Car;
@@ -14,7 +14,7 @@ import racinggame.domain.data.Repeat;
 import racinggame.domain.game.RacingGame;
 
 public class RacingGameTest {
-    private Cars cars = new Cars(new GenerateTestNumber());
+    private Cars cars = new Cars(new TestMovableStrategy());
     private GameStatus gameStatus;
 
     @ParameterizedTest
@@ -32,20 +32,12 @@ public class RacingGameTest {
         Assertions.assertThat(result).isEqualTo(expected);
     }
 
-    @RepeatedTest(value = 50)
-    void 랜덤_테스트() {
-        GenerateNumberService generateNumberService = new GenerateRandomNumber();
-        int result = generateNumberService.generateNumber(10);
-
-        Assertions.assertThat(result).isBetween(0, 9);
-    }
-
     @RepeatedTest(value = 100)
     void 레이싱게임_실행_결과_테스트() {
         Names names = new Names("pobi,crong,honux");
         Repeat repeat = new Repeat("5");
         gameStatus = new GameStatus(names.splitNamesByComma());
-        RacingGame racingGame = new RacingGame(names, new GenerateTestNumber());
+        RacingGame racingGame = new RacingGame(names, new TestMovableStrategy());
         for (int repeatIterator = 0; repeat.isLoopDone(repeatIterator); repeatIterator++) {
             racingGame.moveCars(gameStatus);
         }
