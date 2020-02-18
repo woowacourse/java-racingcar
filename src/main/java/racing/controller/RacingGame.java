@@ -21,7 +21,7 @@ public class RacingGame {
         try {
             lineUp = new CarLineUp();
             enrollCarToLineUp();
-        } catch (Exception e){
+        } catch (NullPointerException | IllegalArgumentException e){
             OutputView.printExceptionMessage(e);
             initializeLineUp();
         }

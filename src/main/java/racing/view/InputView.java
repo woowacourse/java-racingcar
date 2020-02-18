@@ -12,7 +12,7 @@ public class InputView {
         try {
             checkCarNamesNullOrEmpty(carNames);
             return splitByDelimiter(carNames);
-        } catch (Exception e){
+        } catch (NullPointerException e){
             OutputView.printExceptionMessage(e);
         }
         return inputCarNames();
@@ -32,11 +32,12 @@ public class InputView {
         OutputView.printInputTrialTimeMessage();
         String trialTime = scanner.nextLine();
         try {
-            checkTrialTimeNullOrEmpty(trialTime);
+            checkTrialTimeNull(trialTime);
+            checkTrialTimeEmpty(trialTime);
             checkTrialTimeNotNumber(trialTime);
             checkTrialTimeNegativeOrZero(trialTime);
             return Integer.parseInt(trialTime);
-        } catch(Exception e){
+        } catch(NullPointerException | IllegalArgumentException e){
             OutputView.printExceptionMessage(e);
         }
         return inputTrialTime();
@@ -50,9 +51,15 @@ public class InputView {
         }
     }
 
-    private static void checkTrialTimeNullOrEmpty(final String trialTime) {
-        if (trialTime == null || trialTime.isEmpty()){
+    private static void checkTrialTimeNull(final String trialTime) {
+        if (trialTime == null){
             throw new NullPointerException("시도 횟수가 입력되지 않았습니다.");
+        }
+    }
+
+    private static void checkTrialTimeEmpty(final String trialTime) {
+        if (trialTime.isEmpty()){
+            throw new IllegalArgumentException("시도 횟수가 입력되지 않았습니다.");
         }
     }
 
