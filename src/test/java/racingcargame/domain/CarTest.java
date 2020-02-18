@@ -2,7 +2,6 @@ package racingcargame.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcargame.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,23 +9,32 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
-
     @DisplayName("랜덤값이 4 이상이면 자동차의 position 증가 테스트")
     @Test
     @SuppressWarnings("NonAsciiCharacters")
     void testIfRandomValueIs4ThenCarGo() {
-        Engine engine = Engine.createEngineSetBy(4);
-        Car car = new Car("pobi");
-        car.go(engine);
+        Engine movableEngine = new Engine() {
+            @Override
+            public boolean isMovable() {
+                return true;
+            }
+        };
+        Car car = new Car("pobi", 0, movableEngine);
+        car.go();
         assertThat(car.isSameToPosition(new Position(1))).isEqualTo(true);
     }
 
     @Test
     @SuppressWarnings("NonAsciiCharacters")
     void 랜덤값이_기준_이하_일_경우_자동차의_position변화_없음_테스트() {
-        Engine engine = Engine.createEngineSetBy(3);
-        Car car = new Car("pobi");
-        car.go(engine);
+        Engine immovableEngine = new Engine() {
+            @Override
+            public boolean isMovable() {
+                return false;
+            }
+        };
+        Car car = new Car("pobi", 0, immovableEngine);
+        car.go();
         assertThat(car.isSameToPosition(new Position(0))).isEqualTo(true);
     }
 

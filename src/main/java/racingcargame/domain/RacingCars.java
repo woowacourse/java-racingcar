@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
 public class RacingCars {
     private static final String DELIMITER = ",";
@@ -32,7 +31,7 @@ public class RacingCars {
     }
 
     public void move() {
-        cars.forEach(car -> car.go(Engine.createRandomEngine()));
+        cars.forEach(car -> car.go());
     }
 
     public List<Car> getUnmodifiableCars() {

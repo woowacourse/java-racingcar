@@ -2,29 +2,25 @@ package racingcargame.domain;
 
 import racingcargame.util.RandomFactory;
 
-public class Engine {
+public class RandomEngine implements Engine {
     private static final int LIMIT = 4;
 
     private int power;
 
-    private Engine(int power) {
-        this.power = power;
+    public RandomEngine() {
+        this.power = RandomFactory.getRandom();
+    }
+
+    public void setPowerToRandomValue() {
+        this.power = RandomFactory.getRandom();
     }
 
     public int getPower() {
         return power;
     }
 
-    public static Engine createRandomEngine() {
-        int power = RandomFactory.getRandom();
-        return new Engine(power);
-    }
-
-    public static Engine createEngineSetBy(int power) {
-        return new Engine(power);
-    }
-
-    public boolean isHigherThanLimit() {
+    @Override
+    public boolean isMovable() {
         return LIMIT <= power;
     }
 }

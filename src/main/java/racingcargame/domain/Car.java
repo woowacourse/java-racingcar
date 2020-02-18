@@ -5,19 +5,32 @@ import java.util.Objects;
 public class Car implements Comparable<Car> {
     private final Name name;
     private Position position;
+    private Engine engine;
 
     public Car(String name) {
-        this(name, 0);
+        this(name, 0, new RandomEngine());
     }
 
     public Car(String name, int position) {
-        this.name = new Name(name);
-        this.position = new Position(position);
+        this(name, position, new RandomEngine());
     }
 
-    public void go(Engine engine) {
-        if (engine.isHigherThanLimit()) {
+    public Car(String name, int position, Engine engine) {
+        this.name = new Name(name);
+        this.position = new Position(position);
+        this.engine = engine;
+    }
+
+    public void go() {
+        setEngineToRandom();
+        if (engine.isMovable()) {
             position.plus();
+        }
+    }
+
+    private void setEngineToRandom() {
+        if (engine instanceof RandomEngine) {
+            ((RandomEngine) engine).setPowerToRandomValue();
         }
     }
 
@@ -29,16 +42,16 @@ public class Car implements Comparable<Car> {
         return position.isSameToPosition(car.position);
     }
 
+    public boolean isSame(String name) {
+        return this.name.equals(name);
+    }
+
     public int getPosition() {
         return position.getValue();
     }
 
     public String getName() {
         return name.getName();
-    }
-
-    public boolean isSame(String name) {
-        return this.name.equals(name);
     }
 
     @Override
