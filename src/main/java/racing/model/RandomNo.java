@@ -5,14 +5,15 @@ import java.util.Random;
 public class RandomNo {
     private static final int UPPER_BOUND = 9;
     private static final int LOWER_BOUND = 1;
-    private static final int CRITERIA_NUMBER = 4;
+    private static final Random random = new Random();
+
     private int randomNo;
 
     public RandomNo(){
-        randomNo = new Random().nextInt(UPPER_BOUND) + LOWER_BOUND;
+        randomNo = random.nextInt(UPPER_BOUND) + LOWER_BOUND;
     }
 
-    public boolean isMovable() {
-        return randomNo >= CRITERIA_NUMBER;
+    public int getNumber() {
+        return randomNo;
     }
 }

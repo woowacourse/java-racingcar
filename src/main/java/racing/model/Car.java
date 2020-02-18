@@ -3,6 +3,7 @@ package racing.model;
 public class Car {
 
     private static final int MAX_NAME_SIZE = 5;
+    public static final int CRITERIA_NUMBER = 4;
     private final String name;
     private Position position;
 
@@ -42,9 +43,13 @@ public class Car {
     }
 
     public void move(RandomNo randomNo){
-        if (randomNo.isMovable()){
+        if (isMovable(randomNo)){
             position.add();
         }
+    }
+
+    private boolean isMovable(RandomNo randomNo) {
+        return randomNo.getNumber() >= CRITERIA_NUMBER;
     }
 
     public Position getPosition() {
