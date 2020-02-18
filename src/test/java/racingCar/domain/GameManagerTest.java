@@ -17,9 +17,9 @@ class GameManagerTest {
 
     @Test
     void play() {
-        gameManager.play();
-        List<Player> players = gameManager.getState();
-        Assertions.assertThat(players.size()).isEqualTo(3);
+        Player player = new Player(new PlayerName("pobi"));
+        player.play(new FixedNumberGenerator());
+        Assertions.assertThat(player.getPosition()).isEqualTo(0);
     }
 
     @Test

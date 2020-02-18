@@ -15,7 +15,7 @@ public class Application {
         IntStream.rangeClosed(1, roundInput)
                 .forEach((t) -> {
                     OutputView.printRound(t);
-                    gameManager.play();
+                    gameManager.playersPlay();
                     OutputView.printEachRound(gameManager.toString());
                 });
         OutputView.printWinners(gameManager.getWinners());

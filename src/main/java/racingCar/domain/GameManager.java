@@ -1,9 +1,6 @@
 package racingCar.domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class GameManager {
@@ -22,8 +19,8 @@ public class GameManager {
         }
     }
 
-    public void play() {
-        players.forEach((t) -> t.play());
+    public void playersPlay() {
+        players.forEach((t) -> t.play(new RandomNumberGenerator()));
     }
 
     public String toString() {
@@ -44,7 +41,7 @@ public class GameManager {
         int max = getMax();
 
         return players.stream()
-                .filter((t) -> t.hasMaxPosition(max))
+                .filter((t) -> t.isLocatedAt(max))
                 .map((t) -> t.getName().toString())
                 .collect(Collectors.joining(", "));
     }

@@ -6,6 +6,7 @@ public class Player {
     private static final String COLON_WRAPPED_WITH_SPACE = " : ";
     private static final String HYPHEN = "-";
     private static final int DEFAULT_POSITION = 0;
+    private static final int BOUND = 4;
 
     private PlayerName name;
     private int position;
@@ -19,8 +20,8 @@ public class Player {
         this.position = position;
     }
 
-    void play() {
-        if (RandomGenerator.decideGoOrStop()) {
+    void play(NumberGenerator numberGenerator) {
+        if (numberGenerator.generateNumber() > BOUND) {
             goOneStep();
         }
     }
@@ -44,7 +45,7 @@ public class Player {
         return a.position - b.position;
     }
 
-    boolean hasMaxPosition(int max) {
+    boolean isLocatedAt(int max) {
         return position == max;
     }
 
