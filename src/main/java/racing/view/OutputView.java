@@ -46,7 +46,8 @@ public class OutputView {
     public static void printOneRoundResult(final CarLineUp lineUp) {
         for (Car car : lineUp.getLineUp()){
             StringBuilder result = new StringBuilder();
-            result.append(car.getName()).append(COLON);
+            result.append(car.getName())
+                    .append(COLON);
 
             Position currentPosition = car.getPosition();
             presentPositionByDash(result, currentPosition);
