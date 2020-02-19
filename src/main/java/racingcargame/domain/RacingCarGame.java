@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCarGame {
-    private List<Car> winner;
+    private List<Car> winner = new ArrayList<>();
 
     public List<EachRaceResultDto> run(String userInputName, int userInputRepeat) {
         final RacingCars cars = new RacingCars(userInputName);
@@ -24,6 +24,5 @@ public class RacingCarGame {
     public List<Car> getWinner() {
         return winner;
     }
-
 
 }

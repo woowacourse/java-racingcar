@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class InputView {
     private static final int ZERO = 0;
     private static final int NAME_UPPER_LIMIT = 5;
+    public static final String COMMA = ",";
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -15,7 +16,7 @@ public class InputView {
         OutputView.inputNameInstruction();
         try {
             String userInput = scanner.nextLine();
-            String[] names = userInput.split(",");
+            String[] names = userInput.split(COMMA);
             checkNames(names);
             return userInput;
         } catch (Exception e) {
