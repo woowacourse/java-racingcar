@@ -37,9 +37,6 @@ public class AttemptNumber {
     }
 
     public boolean isEnd() {
-        if (this.number > 0) {
-            return false;
-        }
-        return true;
+        return this.number <= 0;
     }
 }
