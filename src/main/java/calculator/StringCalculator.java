@@ -4,8 +4,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
-    static final String COMA_OR_COLON = ",|:";
+    private static final String NOT_NUMBER_MESSAGE = "숫자가 아닙니다.";
+    private static final String NOT_POSITIVE_MESSAGE = "음수입니다.";
+    private static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
+    private static final String COMA_OR_COLON = ",|:";
+    private static final int MIN_NUMBER = 0;
     private static Matcher matcher;
 
     public static int splitAndSum(String input) {
@@ -29,10 +32,10 @@ public class StringCalculator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new RuntimeException ("숫자가 아닙니다.");
+            throw new RuntimeException (NOT_NUMBER_MESSAGE);
         }
-        if (Integer.parseInt(input) < 0) {
-            throw new RuntimeException("음수입니다.");
+        if (Integer.parseInt(input) < MIN_NUMBER) {
+            throw new RuntimeException(NOT_POSITIVE_MESSAGE);
         }
     }
 

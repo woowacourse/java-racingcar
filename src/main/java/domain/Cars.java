@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private static final String DUPLICATED_NAME_MESSAGE = "중복된 이름이 있습니다.";
-    private static final String OUT_OF_CARS_INDEX = "자동차 배열에 잘못된 접근입니다.";
+    private static final String OUT_OF_CARS_INDEX_MESSAGE = "자동차 배열에 잘못된 접근입니다.";
 
     private final List<Car> cars;
 
@@ -53,7 +53,7 @@ public class Cars {
 
     public Car get(int index) {
         if (index < 0 || index > cars.size())
-            throw new ArrayIndexOutOfBoundsException(OUT_OF_CARS_INDEX);
+            throw new ArrayIndexOutOfBoundsException(OUT_OF_CARS_INDEX_MESSAGE);
         return cars.get(index);
     }
 }
