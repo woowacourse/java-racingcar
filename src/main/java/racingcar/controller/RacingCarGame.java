@@ -19,7 +19,8 @@ public class RacingCarGame {
     }
 
     private static void playRounds(Cars cars, Round round) {
-        while (round.reduceRounds()) {
+        while (round.canGo()) {
+            round.reduce();
             cars.play();
             OutputView.printResult(cars);
         }

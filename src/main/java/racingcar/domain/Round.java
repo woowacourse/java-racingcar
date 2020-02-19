@@ -6,9 +6,8 @@ public class Round {
     private int round;
 
     public Round(String input) {
-        int tempRound = validateIsNumber(input);
-        validateIsNegativeNumber(tempRound);
-        this.round = tempRound;
+        this.round = validateIsNumber(input);
+        this.round = validateIsNegativeNumber(this.round);
     }
 
     public static int validateIsNumber(String input) throws IllegalArgumentException {
@@ -19,21 +18,22 @@ public class Round {
        }
     }
 
-    public static void validateIsNegativeNumber(int parsedNumber) {
+    public static int validateIsNegativeNumber(int parsedNumber) {
         if (isNotPositiveNumber(parsedNumber)) {
             throw new IllegalArgumentException("시도할 회수는 양수이어야 합니다.");
         }
+        return parsedNumber;
     }
 
     private static boolean isNotPositiveNumber(int parsedNumber) {
         return parsedNumber <= ZERO;
     }
 
-    public boolean reduceRounds() {
-        if (round > ZERO) {
-            round--;
-            return true;
-        }
-        return false;
+    public boolean canGo() {
+        return this.round > ZERO;
+    }
+
+    public int reduce() {
+        return this.round--;
     }
 }
