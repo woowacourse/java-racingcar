@@ -14,14 +14,8 @@ public class CarLineUp {
     }
 
     public boolean isAlready(final Car car){
-        int count = (int)lineUp.stream()
-                .filter(c -> c.isNameEqual(car))
-                .count();
-        if (count == 0){
-            return false;
-        }
-        return true;
-
+        return lineUp.stream()
+                .anyMatch(c -> c.isNameEqual(car));
     }
 
     public void raceOneTime() {
