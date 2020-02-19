@@ -37,7 +37,7 @@ public class CarLineUpTest {
         assertThat(lineUp.getLineUp().get(1).getPosition()).isEqualTo(new Position(6));
         assertThat(lineUp.getLineUp().get(2).getPosition()).isEqualTo(new Position(7));
 
-        lineUp.raceOneTime(4);
+        lineUp.raceOneTime();
         assertThat(lineUp.getLineUp().get(0).getPosition()).isEqualTo(new Position(6));
         assertThat(lineUp.getLineUp().get(1).getPosition()).isEqualTo(new Position(7));
         assertThat(lineUp.getLineUp().get(2).getPosition()).isEqualTo(new Position(8));

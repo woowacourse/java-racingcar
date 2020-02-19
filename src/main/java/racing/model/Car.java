@@ -42,14 +42,14 @@ public class Car {
         return this.name.equals(car.getName());
     }
 
-    public void move(final RandomNo randomNo){
-        if (isMovable(randomNo)){
+    public void move(final int number){
+        if (isMovable(number)){
             position.add();
         }
     }
 
-    private boolean isMovable(final RandomNo randomNo) {
-        return randomNo.getNumber() >= CRITERIA_NUMBER;
+    private boolean isMovable(final int number) {
+        return number >= CRITERIA_NUMBER;
     }
 
     public Position getPosition() {

@@ -25,15 +25,9 @@ public class CarLineUp {
     }
 
     public void raceOneTime() {
+        RandomNo randomNo = new RandomNo();
         for (Car car : lineUp){
-            car.move(new RandomNo());
-        }
-    }
-
-    public void raceOneTime(final int number) {
-        RandomNo randomNo = new RandomNo(number);
-        for (Car car : lineUp){
-            car.move(randomNo);
+            car.move(randomNo.getNumber());
         }
     }
 

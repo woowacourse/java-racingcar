@@ -29,12 +29,11 @@ public class CarTest {
     @Test
     void 차_움직이는지_여부_확인(){
         Car car = new Car("보스독");
-        RandomNo randomNo = new RandomNo(4);
 
         int currentPosition = car.getPosition().getPosition();
         assertThat(currentPosition).isEqualTo(0);
 
-        car.move(randomNo);
+        car.move(4);
         currentPosition = car.getPosition().getPosition();
         assertThat(currentPosition).isEqualTo(1);
     }

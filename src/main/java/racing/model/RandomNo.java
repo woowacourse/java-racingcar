@@ -13,10 +13,6 @@ public class RandomNo {
         randomNo = random.nextInt(UPPER_BOUND) + LOWER_BOUND;
     }
 
-    public RandomNo(int number){
-        randomNo = number;
-    }
-
     public int getNumber() {
         return randomNo;
     }
