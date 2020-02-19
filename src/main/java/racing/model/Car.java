@@ -61,6 +61,7 @@ public class Car {
     }
 
     public Car getBiggerPositionCar(final Car targetCar) {
+        checkTargetCarNull(targetCar);
         if (position.isBiggerThan(targetCar.getPosition())){
             return this;
         }
@@ -68,7 +69,14 @@ public class Car {
     }
 
     public boolean isSamePosition(final Car targetCar) {
+        checkTargetCarNull(targetCar);
         return getPosition().equals(targetCar.getPosition());
+    }
+
+    private void checkTargetCarNull(final Car targetCar) {
+        if (targetCar == null){
+            throw new NullPointerException("비교할 차가 없습니다.");
+        }
     }
 
     @Override
