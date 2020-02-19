@@ -9,6 +9,7 @@ import racing.model.Position;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarLineUpTest {
 
@@ -24,11 +25,11 @@ public class CarLineUpTest {
 
     @Test
     void 중복이름여부_확인(){
-        boolean result = lineUp.isAlready(new Car("토니"));
-        assertThat(result).isTrue();
-
-        result = lineUp.isAlready(new Car("토니22"));
-        assertThat(result).isFalse();
+        assertThatThrownBy(() -> {
+            Car car = new Car("토니");
+            lineUp.add(car);
+        }).isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("차 이름이 중복되었습니다.");
     }
 
     @Test
@@ -46,7 +47,7 @@ public class CarLineUpTest {
     @Test
     void 우승자_찾기(){
         List<Car> winner = lineUp.findWinner();
-        assertThat(winner).contains(new Car("보스독", 7));
+        assertThat(winner).contains(lineUp.getLineUp().get(2));
     }
 
 }

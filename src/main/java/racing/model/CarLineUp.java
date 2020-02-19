@@ -10,17 +10,24 @@ public class CarLineUp {
     private final List<Car> lineUp = new ArrayList<>();
 
     public void add(final Car car){
+        checkNameDuplicate(car);
         lineUp.add(car);
     }
 
-    public boolean isAlready(final Car car){
+    private void checkNameDuplicate(Car car) {
+        if (isAlready(car)){
+            throw new IllegalArgumentException("차 이름이 중복되었습니다.");
+        }
+    }
+
+    private boolean isAlready(final Car car){
         return lineUp.stream()
                 .anyMatch(c -> c.isNameEqual(car));
     }
 
     public void raceOneTime() {
-        RandomNo randomNo = new RandomNo();
         for (Car car : lineUp){
+            RandomNo randomNo = new RandomNo();
             car.move(randomNo.getNumber());
         }
     }
