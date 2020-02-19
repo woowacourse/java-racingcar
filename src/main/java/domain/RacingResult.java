@@ -1,8 +1,8 @@
 package domain;
 
 public class RacingResult {
-    String name;
-    int position;
+    private String name;
+    private int position;
 
     public RacingResult(String name, int position) {
         this.name = name;
