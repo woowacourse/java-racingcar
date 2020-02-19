@@ -2,11 +2,12 @@ package racing.model;
 
 public class Position {
     private static final int STEP = 1;
+    public static final int INITIAL_POSITION = 0;
 
     private int position;
 
     public Position (){
-        this(0);
+        this(INITIAL_POSITION);
     }
 
     public Position (int position){
