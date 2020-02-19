@@ -12,7 +12,7 @@ public class GameManager {
     public RacingResults playGame() {
         if (attemptNumber.reduce())
             return cars.moveCars();
-        return null;
+        throw new IllegalArgumentException("시도횟수를 초과햇습니다.");
     }
 
     public Cars findWinners() {
