@@ -76,8 +76,7 @@ public class Car {
         return name;
     }
 
-    @Override
-    public boolean equals(Object o){
-        return this.name.equals(((Car)o).name);
+    public boolean equals(Car targetCar){
+        return this.name.equals(targetCar.name);
     }
 }
