@@ -42,6 +42,7 @@ public class OutputView {
     }
 
     public static void printWinners(Winners winners) {
+        System.out.println("우승자 명단");
         System.out.println(winners.getWinnerNames());
     }
 }

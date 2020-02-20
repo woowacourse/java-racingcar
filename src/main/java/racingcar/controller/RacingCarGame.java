@@ -7,15 +7,33 @@ import racingcar.view.OutputView;
 
 public class RacingCarGame {
     public static void main(String[] args) {
-        Cars cars = InputView.inputCarNames();
-        Round round = InputView.inputRoundNumber();
+        Cars cars = inputCarNames();
+        Round round = inputRound();
 
         System.out.println("실행 결과");
         playRounds(cars, round);
 
         Winners winners = new Winners(cars.getCars());
-        System.out.println("우승자 명단");
+
         OutputView.printWinners(winners);
+    }
+
+    private static Round inputRound() {
+        try {
+            return new Round(InputView.inputRound());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return inputRound();
+    }
+
+    private static Cars inputCarNames() {
+        try {
+            return new Cars(InputView.inputCarNames());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return inputCarNames();
     }
 
     private static void playRounds(Cars cars, Round round) {
