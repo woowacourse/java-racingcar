@@ -24,7 +24,7 @@ public class OutputView {
         return results.toString();
     }
 
-    public static String getResult(Car car) {
+    private static String getResult(Car car) {
         StringBuilder result = new StringBuilder();
         result.append(car.getName());
         result.append(IS);
@@ -33,7 +33,7 @@ public class OutputView {
         return result.toString();
     }
 
-    public static String getLocationMarks(Car car) {
+    private static String getLocationMarks(Car car) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < car.getLocation(); i++) {
             result.append(MARK);

@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import racingcar.domain.car.Car;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +9,7 @@ import java.util.stream.Collectors;
 public class Winners {
     public static final String AND = ", ";
 
-    private static List<String> winners = new ArrayList<>();
+    private List<String> winners;
 
     public Winners(List<Car> cars) {
         this.winners = findWinners(cars);
@@ -32,7 +31,7 @@ public class Winners {
         return Collections.max(locationOfCars);
     }
 
-    public static String getWinnerNames() {
+    public String getWinnerNames() {
         return String.join(AND, winners);
     }
 }
