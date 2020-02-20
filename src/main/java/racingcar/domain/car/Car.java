@@ -22,17 +22,13 @@ public class Car {
         }
     }
 
-    private void move() {
-        location.moveForward();
-    }
+    private void move() { location.moveForward(); }
 
     public boolean isMaxLocation(int maxLocation) {
-        return this.location.isMaxLocation(maxLocation);
+        return this.location.isMatch(maxLocation);
     }
 
     public String getName() {
         return name.toString();
     }
-
-    public String getLocationMarks() { return location.toString(); }
 }

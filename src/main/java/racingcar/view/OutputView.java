@@ -7,6 +7,7 @@ import racingcar.domain.Winners;
 public class OutputView {
     public static final String ENTER = System.lineSeparator();
     public static final String IS = " : ";
+    private static final String MARK = "-";
 
     private OutputView() {}
 
@@ -27,8 +28,16 @@ public class OutputView {
         StringBuilder result = new StringBuilder();
         result.append(car.getName());
         result.append(IS);
-        result.append(car.getLocationMarks());
+        result.append(getLocationMarks(car));
 
+        return result.toString();
+    }
+
+    public static String getLocationMarks(Car car) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < car.getLocation(); i++) {
+            result.append(MARK);
+        }
         return result.toString();
     }
 
