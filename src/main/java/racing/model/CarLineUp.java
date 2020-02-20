@@ -1,6 +1,7 @@
 package racing.model;
 
 
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -23,13 +24,6 @@ public class CarLineUp {
     private boolean isAlready(final Car car){
         return lineUp.stream()
                 .anyMatch(c -> c.isNameEqual(car));
-    }
-
-    public void raceOneTime() {
-        for (Car car : lineUp){
-            RandomNo randomNo = new RandomNo();
-            car.move(randomNo.getNumber());
-        }
     }
 
     public List<Car> findWinner() {
@@ -74,6 +68,6 @@ public class CarLineUp {
     }
 
     public List<Car> getLineUp() {
-        return lineUp;
+        return Collections.unmodifiableList(lineUp);
     }
 }

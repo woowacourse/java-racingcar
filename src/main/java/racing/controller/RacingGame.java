@@ -2,6 +2,7 @@ package racing.controller;
 
 import racing.model.Car;
 import racing.model.CarLineUp;
+import racing.model.RandomNo;
 import racing.view.InputView;
 import racing.view.OutputView;
 
@@ -45,8 +46,14 @@ public class RacingGame {
     private void race(){
         OutputView.printResultMessage();
         for (int index = 0; index < trialTime; index++){
-            lineUp.raceOneTime();
+            raceOneTime();
             OutputView.printOneRoundResult(lineUp);
+        }
+    }
+
+    private void raceOneTime() {
+        for (Car car : lineUp.getLineUp()){
+            car.move(RandomNo.getNumber());
         }
     }
 
