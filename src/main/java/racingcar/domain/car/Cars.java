@@ -1,8 +1,5 @@
 package racingcar.domain.car;
 
-import racingcar.domain.NumberGenerator;
-import racingcar.domain.RandomNumber;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,19 +8,15 @@ import java.util.List;
 public class Cars {
     private static final String DELIMITER = ",";
 
-    private final List<Car> cars;
+    private final List<Car> cars = new ArrayList<>();
 
     public Cars(String names) {
-        List<Car> cars = new ArrayList<>();
-
         validateNames(names);
         validateDuplicatedNames(names);
 
         for (String name : names.split(DELIMITER)) {
-            cars.add(new Car(name));
+            this.cars.add(new Car(name));
         }
-
-        this.cars = cars;
     }
 
     public static void validateNames(String carNames) throws IllegalArgumentException {
@@ -44,13 +37,6 @@ public class Cars {
                 .map(s -> s.trim())
                 .distinct()
                 .count() != splitCarNames.length;
-    }
-
-    public void play() {
-        NumberGenerator randomNumber = new RandomNumber();
-        for (Car car : cars) {
-            car.play(randomNumber);
-        }
     }
 
     public List<Car> getCars() {

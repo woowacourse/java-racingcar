@@ -1,7 +1,6 @@
 package racingcar.domain.car;
 
-import racingcar.domain.NumberGenerator;
-import racingcar.domain.RandomNumber;
+import racingcar.domain.Power;
 
 public class Car {
     private final Name name;
@@ -16,8 +15,8 @@ public class Car {
         return location.getLocation();
     }
 
-    public void play(NumberGenerator randomNumber) {
-        if (RandomNumber.canMove(randomNumber.generateNumber())) {
+    public void play(int goOrStopNumber) {
+        if (Power.canMove(goOrStopNumber)) {
             move();
         }
     }

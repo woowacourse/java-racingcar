@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.*;
+import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -39,8 +40,15 @@ public class RacingCarGame {
     private static void playRounds(Cars cars, Round round) {
         while (round.canGo()) {
             round.reduce();
-            cars.play();
+            play(cars);
             OutputView.printResult(cars);
+        }
+    }
+
+    private static void play(Cars cars) {
+        RandomNumber randomNumber = new RandomNumber();
+        for (Car car : cars.getCars()) {
+            car.play(randomNumber.generateNumber());
         }
     }
 }
