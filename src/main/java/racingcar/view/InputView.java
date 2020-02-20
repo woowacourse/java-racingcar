@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    private InputView() {}
+    private InputView() {
+    }
 
     public static String inputCarNames() {
         System.out.println("경주할 자동차 이름을 입력해주세요.(이름은 쉼표(,)를 기준으로 구분합니다.)");

@@ -1,15 +1,16 @@
 package racingcar.view;
 
+import racingcar.domain.Winners;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
-import racingcar.domain.Winners;
 
 public class OutputView {
     public static final String ENTER = System.lineSeparator();
     public static final String IS = " : ";
     private static final String MARK = "-";
 
-    private OutputView() {}
+    private OutputView() {
+    }
 
     public static void printResult(Cars cars) {
         System.out.println(getResults(cars));

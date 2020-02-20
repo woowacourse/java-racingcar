@@ -11,11 +11,11 @@ public class Round {
     }
 
     public static int validateIsNumber(String input) throws IllegalArgumentException {
-       try {
-           return Integer.parseInt(input);
-       } catch (NumberFormatException e) {
-           throw new IllegalArgumentException("시도할 회수는 숫자이어야 합니다.");
-       }
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("시도할 회수는 숫자이어야 합니다.");
+        }
     }
 
     public static int validateIsNegativeNumber(int parsedNumber) {
