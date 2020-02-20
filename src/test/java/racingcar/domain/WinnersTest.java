@@ -1,15 +1,16 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.car.Car;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+@SuppressWarnings("NonAsciiCharacters")
 public class WinnersTest {
     @Test
-    @SuppressWarnings("NonAsciiCharacters")
     void 자동차들의_위치중_가장_큰_값을_반환() {
         Car car1 = new Car("두강");
         Car car2 = new Car("무늬");
@@ -32,7 +33,6 @@ public class WinnersTest {
     }
 
     @Test
-    @SuppressWarnings("NonAsciiCharacters")
     void 위치가_가장_큰_자동차들의_이름을_반환() {
         Car car1 = new Car("두강");
         Car car2 = new Car("무늬");

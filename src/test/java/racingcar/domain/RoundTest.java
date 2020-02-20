@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class RoundTest {
     @Test
     void 시도할_회수가_숫자가_아닌_경우_예외_처리() {

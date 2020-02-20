@@ -49,7 +49,7 @@ public class CalculatorTest {
     void 숫자_이외의_값인_경우_예외_발생() {
         String[] numbers = Calculator.splitString("a,2,3");
 
-        assertThatThrownBy(()-> {
+        assertThatThrownBy(() -> {
             Calculator.calculate(numbers);
         }).isInstanceOf(RuntimeException.class);
     }
@@ -58,7 +58,7 @@ public class CalculatorTest {
     void 음수인_경우_예외_발생() {
         String[] numbers = Calculator.splitString("-2,2,3");
 
-        assertThatThrownBy(()-> {
+        assertThatThrownBy(() -> {
             Calculator.calculate(numbers);
         }).isInstanceOf(RuntimeException.class);
     }
