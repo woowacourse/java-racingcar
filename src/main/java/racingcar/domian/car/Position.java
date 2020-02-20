@@ -1,8 +1,6 @@
 package racingcar.domian.car;
 
 public class Position {
-    private static final int LIMIT_FOR_MOVE = 4;
-
     private int distance;
 
     public Position(int distance) {
@@ -11,10 +9,6 @@ public class Position {
 
     public void move() {
         this.distance++;
-    }
-
-    public boolean isMovable(int number) {
-        return number >= LIMIT_FOR_MOVE;
     }
 
     public int getDistance() {

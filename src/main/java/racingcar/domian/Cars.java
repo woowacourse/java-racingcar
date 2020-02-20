@@ -3,6 +3,7 @@ package racingcar.domian;
 import racingcar.domian.car.Car;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Cars {
@@ -14,16 +15,25 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(String inputNames) {
-        String[] names = inputNames.split(DELIMITER);
+        String[] names = splitInputNames(inputNames);
         validateCarCount(names.length);
         List<Car> cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
+        createCars(names, cars);
         this.cars = cars;
     }
 
     public List<Car> getCars() {
+        return cars;
+    }
+
+    private String[] splitInputNames(String inputNames) {
+        return inputNames.split(DELIMITER);
+    }
+
+    private List<Car> createCars(String[] names, List<Car> cars) {
+        for (String name : names) {
+            cars.add(new Car(name));
+        }
         return cars;
     }
 
@@ -35,7 +45,7 @@ public class Cars {
 
     public void moveAll() {
         for (Car car : cars) {
-            car.move(RandomNumberGenerator.generateRandom());
+            car.isMovable(RandomNumberGenerator.generateRandom());
         }
     }
 }

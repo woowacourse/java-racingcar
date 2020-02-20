@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Car {
     private static final int INIT_POSITION = 0;
     private static final int NAME_LENGTH_LIMIT = 5;
+    private static final int LIMIT_FOR_MOVE = 4;
 
     private Position position;
     private String name;
@@ -26,8 +27,8 @@ public class Car {
         return name;
     }
 
-    public void move(int number) {
-        if(position.isMovable(number)) {
+    public void isMovable(int number) {
+        if (number >= LIMIT_FOR_MOVE) {
             position.move();
         }
     }
@@ -51,7 +52,7 @@ public class Car {
     }
 
     public int getBiggerPosition(int maxPosition) {
-        if(isBiggerThanMaxPosition(maxPosition)) {
+        if (isBiggerThanMaxPosition(maxPosition)) {
             return position.getDistance();
         }
         return maxPosition;
