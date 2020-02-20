@@ -2,7 +2,7 @@ package racingcar.domian;
 
 import java.util.Random;
 
-public class RandomNumber {
+public class RandomNumberGenerator {
     private static final int RANDOM_LIMIT_NUMBER = 10;
 
     private static final Random random = new Random();
