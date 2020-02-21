@@ -16,15 +16,15 @@ public class OutputView {
 
 
     public static void printWinners(Winners winners) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.join(DELIMITER, winners.getNames()));
-        sb.append(WINNERS_PRINT_TAIL);
-        System.out.println(sb.toString());
+        String sb = String.join(DELIMITER, winners.getNames()) +
+                WINNERS_PRINT_TAIL;
+        System.out.println(sb);
     }
 
-    public static String printPosition(Car car) {
+    private static String printPosition(Car car) {
         StringBuilder sb = new StringBuilder();
-        sb.append(car.getName() + COLON);
+        sb.append(car.getName())
+                .append(COLON);
         int position = car.getPosition();
         for (int i = 0; i < position; i++) {
             sb.append(DISTANCE);

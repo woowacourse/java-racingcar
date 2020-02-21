@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Winners {
     private final List<Car> winners = new ArrayList<>();
 
-    public Winners(List<Car> winnerCars) {
+    private Winners(List<Car> winnerCars) {
         winners.addAll(winnerCars);
     }
 
