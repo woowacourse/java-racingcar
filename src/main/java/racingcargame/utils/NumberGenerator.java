@@ -1,9 +1,9 @@
-package racingcargame.domain;
+package racingcargame.utils;
 
 public class NumberGenerator implements MovingConditionGenerator {
     private static final int NUMBER_RANGE = 10;
-    public static final int MOVE_RANGE = 6;
-    public static final int STOP_RANGE = 4;
+    private static final int MOVE_RANGE = 6;
+    private static final int STOP_RANGE = 4;
 
     @Override
     public int createRandomNumber() {

@@ -9,8 +9,8 @@ public class Car {
         this.position = new Position();
     }
 
-    public void decideGoOrStop(int num) {
-        position.decideGoOrStop(num);
+    public void decideGoOrStop(int number) {
+        position.decideGoOrStop(number);
     }
 
     public Position getPosition() {

@@ -8,6 +8,7 @@ public class Name {
     private static final String COMMA = ",";
     private static final int ZERO = 0;
     private static final int NAME_UPPER_LIMIT = 5;
+    public static final String SPACE = " ";
 
     private final String name;
 
@@ -31,7 +32,7 @@ public class Name {
     }
 
     private void validateNoBlank(String name) {
-        if (name.contains(" ")) {
+        if (name.contains(SPACE)) {
             throw new IllegalArgumentException("이름에는 띄어쓰기가 포함될 수 없습니다.");
         }
     }
@@ -43,7 +44,7 @@ public class Name {
             throw new IllegalArgumentException("자동차 이름을 입력해주세요.");
         }
         for (String name : names) {
-            nameList.add(new Name(name));
+            nameList.add(new Name(name.trim()));
         }
         return nameList;
     }

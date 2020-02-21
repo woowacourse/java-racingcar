@@ -1,12 +1,9 @@
-package controller;
+package racingcargame.domain;
 
 import java.util.List;
 
 import racingcargame.domain.car.Car;
-import racingcargame.domain.GameLog;
-import racingcargame.domain.MovingConditionGenerator;
-import racingcargame.domain.RacingCars;
-import racingcargame.domain.Repeat;
+import racingcargame.utils.MovingConditionGenerator;
 
 public class RacingCarGame {
 

@@ -10,7 +10,7 @@ public class GameLog {
         return gameLog;
     }
 
-    public void putGameResult(EachRaceResult eachRaceResult) {
+    void putGameResult(EachRaceResult eachRaceResult) {
         gameLog.add(eachRaceResult);
     }
 }

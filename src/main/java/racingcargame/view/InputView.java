@@ -3,8 +3,8 @@ package racingcargame.view;
 import java.util.List;
 import java.util.Scanner;
 
-import racingcargame.domain.car.Name;
 import racingcargame.domain.Repeat;
+import racingcargame.domain.car.Name;
 
 public class InputView {
     private static Scanner scanner = new Scanner(System.in);

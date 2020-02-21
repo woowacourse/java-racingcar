@@ -24,7 +24,7 @@ public class Repeat {
         }
     }
 
-    public int getNumber() {
+    int getNumber() {
         return number;
     }
 }

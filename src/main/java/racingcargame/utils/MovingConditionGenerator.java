@@ -1,4 +1,4 @@
-package racingcargame.domain;
+package racingcargame.utils;
 
 public interface MovingConditionGenerator {
 
