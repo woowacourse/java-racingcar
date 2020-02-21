@@ -19,7 +19,7 @@ public class CarTest {
     @CsvSource(value = {"0,false", "3,false", "4,true", "9,true"})
     void 생성된_랜덤값이_4이상이면_이동한다(int moveNumber, boolean expected) {
         Car car = new Car("hello");
-        car.move(moveNumber);
+        car.isMovable(moveNumber);
         assertThat(car.getDistance() == 1).isEqualTo(expected);
     }
 
