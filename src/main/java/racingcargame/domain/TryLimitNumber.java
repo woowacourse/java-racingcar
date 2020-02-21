@@ -1,5 +1,8 @@
 package racingcargame.domain;
 
+import java.util.Iterator;
+import java.util.function.Consumer;
+
 public class TryLimitNumber {
     private static final int MIN_TRY_NUMBER = 1;
     private static final String TRY_LIMIT_ERROR_MESSAGE = "1 이상의 숫자만 입력 가능합니다.";

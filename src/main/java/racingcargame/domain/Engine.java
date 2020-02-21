@@ -1,5 +1,5 @@
 package racingcargame.domain;
 
 public interface Engine {
-    public boolean isMovable();
+    boolean isMovable(int power);
 }

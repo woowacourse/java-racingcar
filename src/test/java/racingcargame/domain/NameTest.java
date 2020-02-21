@@ -28,7 +28,7 @@ public class NameTest {
     @SuppressWarnings("NonAsciiCharacters")
     void 같은_이름인지_확인() {
         Name name = new Name("brown");
-        boolean result = name.equals("brown");
+        boolean result = name.equals(new Name("brown"));
         assertThat(result).isTrue();
     }
 

@@ -8,11 +8,11 @@ public class Car implements Comparable<Car> {
     private Engine engine;
 
     public Car(String name) {
-        this(name, 0, new RandomEngine());
+        this(name, 0, new LimitEngine());
     }
 
     public Car(String name, int position) {
-        this(name, position, new RandomEngine());
+        this(name, position, new LimitEngine());
     }
 
     public Car(String name, int position, Engine engine) {
@@ -21,29 +21,14 @@ public class Car implements Comparable<Car> {
         this.engine = engine;
     }
 
-    public void go() {
-        setEngineToRandom();
-        if (engine.isMovable()) {
+    public void go(int randomValue) {
+        if (engine.isMovable(randomValue)) {
             position.plus();
         }
     }
 
-    private void setEngineToRandom() {
-        if (engine instanceof RandomEngine) {
-            ((RandomEngine) engine).setPowerToRandomValue();
-        }
-    }
-
-    public boolean isSameToPosition(Position position) {
-        return position.isSameToPosition(position);
-    }
-
     public boolean isSameToPosition(Car car) {
         return position.isSameToPosition(car.position);
-    }
-
-    public boolean isSame(String name) {
-        return this.name.equals(name);
     }
 
     public int getPosition() {

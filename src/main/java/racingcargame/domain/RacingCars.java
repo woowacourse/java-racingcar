@@ -1,5 +1,7 @@
 package racingcargame.domain;
 
+import racingcargame.util.RandomFactory;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,28 +16,24 @@ public class RacingCars {
 
     private final List<Car> cars = new ArrayList<>();
 
-    RacingCars(List<Car> cars) {
+    private RacingCars(List<Car> cars) {
         this.cars.addAll(cars);
     }
 
-    public static RacingCars createRacingCars(String inputCarNames) {
+    public static RacingCars createRacingCars(String inputCarNames, Engine engine) {
         String[] splicedInputCarNames = inputCarNames.split(DELIMITER);
         trimName(splicedInputCarNames);
         validCarAmount(splicedInputCarNames);
         validCarNameDuplicate(splicedInputCarNames);
         List<Car> cars = new ArrayList<>();
         for (String inputCarName : splicedInputCarNames) {
-            cars.add(new Car(inputCarName));
+            cars.add(new Car(inputCarName, 0, engine));
         }
         return new RacingCars(cars);
     }
 
     public void move() {
-        cars.forEach(car -> car.go());
-    }
-
-    public List<Car> getUnmodifiableCars() {
-        return Collections.unmodifiableList(cars);
+        cars.forEach(car -> car.go(RandomFactory.getRandom()));
     }
 
     private static void validCarNameDuplicate(String[] names) {
@@ -65,5 +63,9 @@ public class RacingCars {
             System.out.println(ONE_CAR_ERROR_MESSAGE);
             throw new IllegalStateException(ONE_CAR_ERROR_MESSAGE);
         }
+    }
+
+    public List<Car> getUnmodifiableCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

@@ -1,5 +1,6 @@
 package racingcargame;
 
+import racingcargame.domain.LimitEngine;
 import racingcargame.domain.RacingCars;
 import racingcargame.domain.TryLimitNumber;
 import racingcargame.domain.Winners;
@@ -22,7 +23,7 @@ public class RacingGameApplication {
     private static RacingCars inputRacingCars() {
         try {
             String inputCarNames = InputView.inputCarNames();
-            return RacingCars.createRacingCars(inputCarNames);
+            return RacingCars.createRacingCars(inputCarNames, new LimitEngine());
         } catch (RuntimeException e) {
             return inputRacingCars();
         }

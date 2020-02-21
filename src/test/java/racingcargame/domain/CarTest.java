@@ -13,38 +13,17 @@ public class CarTest {
     @Test
     @SuppressWarnings("NonAsciiCharacters")
     void testIfRandomValueIs4ThenCarGo() {
-        Engine movableEngine = new Engine() {
-            @Override
-            public boolean isMovable() {
-                return true;
-            }
-        };
-        Car car = new Car("pobi", 0, movableEngine);
-        car.go();
-        assertThat(car.isSameToPosition(new Position(1))).isEqualTo(true);
+        Car car = new Car("pobi", 0, new LimitEngine());
+        car.go(4);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
     @SuppressWarnings("NonAsciiCharacters")
     void 랜덤값이_기준_이하_일_경우_자동차의_position변화_없음_테스트() {
-        Engine immovableEngine = new Engine() {
-            @Override
-            public boolean isMovable() {
-                return false;
-            }
-        };
-        Car car = new Car("pobi", 0, immovableEngine);
-        car.go();
-        assertThat(car.isSameToPosition(new Position(0))).isEqualTo(true);
-    }
-
-    @Test
-    @SuppressWarnings("NonAsciiCharacters")
-    void 자동차이름이_같은지_확인() {
-        Car car = new Car("pobi");
-        String name = "pobi";
-        boolean result = car.isSame(name);
-        assertThat(result).isTrue();
+        Car car = new Car("pobi", 0, new LimitEngine());
+        car.go(3);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
     @Test
