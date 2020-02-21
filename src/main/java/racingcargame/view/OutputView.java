@@ -1,59 +1,61 @@
 package racingcargame.view;
 
-import racingcargame.domain.Car;
-import racingcargame.domain.EachRaceResultDto;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import racingcargame.domain.car.Car;
+import racingcargame.domain.car.CarDto;
+import racingcargame.domain.EachRaceResult;
+import racingcargame.domain.GameLog;
+
 public class OutputView {
+    private static final String MARK = "-";
 
-    public static final String MARK = "-";
-
-    public static void inputNameInstruction() {
+    public static void nameInputInstruction() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
 
-    public static void inputRepeatInstruction() {
-        System.out.println("시도할 회수는 몇회인가요?");
+    public static void repeatInputInstruction() {
+        System.out.println("시도할 수는 몇회인가요?");
     }
 
-    public static void resultInstruction() {
-        System.out.println("\n실행 결과");
+    public static void printPlayResult() {
+        System.out.println("실행 결과");
     }
 
-    public static void carNameAndPosition(Car car) {
+    public static void printWinnerResult(List<Car> winners) {
+        List<String> winnerNames = new ArrayList<>();
+        for (Car winner : winners) {
+            winnerNames.add(winner.getName());
+        }
+        System.out.println(String.join(", ", winnerNames) + "가 최종 우승했습니다.");
+    }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
+    private static void printEachRaceResultDto(EachRaceResult eachRaceResult) {
+        for (CarDto carDto : eachRaceResult.getCar()) {
+            OutputView.printCarNameAndPosition(carDto);
+        }
+        System.out.println();
+    }
+
+    public static void printGameLog(GameLog gameLog) {
+        for (EachRaceResult eachRaceResult : gameLog.getGameLog()) {
+            OutputView.printEachRaceResultDto(eachRaceResult);
+        }
+
+    }
+
+    private static void printCarNameAndPosition(CarDto car) {
         StringBuilder sb = new StringBuilder();
-
         sb.append(car.getName());
         sb.append(" : ");
-        for (int i = 0; i < car.getCarPosition(); i++) {
+        for (int i = 0; i < car.getPosition(); i++) {
             sb.append(MARK);
         }
         System.out.println(sb);
     }
-
-    public static void winnerInstruction(List<Car> cars) {
-        List<String> carName = new ArrayList<>();
-        for (Car car : cars) {
-            carName.add(car.getName());
-        }
-        System.out.println(String.join(", ", carName) + "가 최종 우승했습니다.");
-    }
-
-    public static void newLine() {
-        System.out.println();
-    }
-
-    public static void errorMessage(String errorMessage) {
-        System.out.println(errorMessage);
-    }
-
-    public static void printEachRaceStatus(EachRaceResultDto eachRaceResultDto) {
-        for (Car car : eachRaceResultDto.getCar()) {
-            OutputView.carNameAndPosition(car);
-        }
-        OutputView.newLine();
-    }
-
 }

@@ -1,23 +1,46 @@
 package racingcargame;
 
-import racingcargame.domain.EachRaceResultDto;
-import racingcargame.domain.RacingCarGame;
-import racingcargame.view.InputView;
-import racingcargame.view.OutputView;
-
 import java.util.List;
+
+import controller.RacingCarGame;
+import racingcargame.domain.car.Car;
+import racingcargame.domain.car.Name;
+import racingcargame.domain.MovingConditionGenerator;
+import racingcargame.domain.NumberGenerator;
+import racingcargame.domain.RacingCars;
+import racingcargame.domain.Repeat;
+import racingcargame.view.*;
 
 public class Application {
     public static void main(String[] args) {
-        final String userInputName = InputView.inputNames();
-        final int userInputRepeat = InputView.inputRepeat();
+        List<Name> nameObjects = inputNames();
+        Repeat repeat = inputRepeats();
 
-        RacingCarGame game = new RacingCarGame();
-        List<EachRaceResultDto> carStatus = game.run(userInputName, userInputRepeat);
-        OutputView.resultInstruction();
-        for (EachRaceResultDto eachRaceResultDto : carStatus) {
-            OutputView.printEachRaceStatus(eachRaceResultDto);
+        RacingCarGame racingCarGame = new RacingCarGame(new RacingCars(nameObjects));
+        MovingConditionGenerator movingCondition = new NumberGenerator();
+        List<Car> winners = racingCarGame.run(repeat, movingCondition);
+        OutputView.printPlayResult();
+        OutputView.printGameLog(racingCarGame.getGameLog());
+        OutputView.printWinnerResult(winners);
+    }
+
+    private static Repeat inputRepeats() {
+        try {
+            OutputView.repeatInputInstruction();
+            return InputView.inputRepeats();
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return inputRepeats();
         }
-        OutputView.winnerInstruction(game.getWinner());
+    }
+
+    private static List<Name> inputNames() {
+        try {
+            OutputView.nameInputInstruction();
+            return InputView.inputNames();
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return inputNames();
+        }
     }
 }
