@@ -16,7 +16,7 @@ public class OutputView {
     private static final String WINNER_SUB_MESSAGE = "가 최종 우승했습니다.";
     private static final String COMMA = ", ";
     private static final String NEW_LINE = System.lineSeparator();
-    public static final int START_INDEX = 0;
+    private static final int START_INDEX = 0;
 
     public static void printInputCarNamesMessage() {
         System.out.println(INPUT_CAR_NAMES_GUIDE_MESSAGE);

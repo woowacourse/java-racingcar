@@ -1,13 +1,23 @@
 package racing.model;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class RandomNo {
     private static final int UPPER_BOUND = 9;
     private static final int LOWER_BOUND = 1;
-    private static final Random random = new Random();
+    private static final int FIRST_INDEX = 0;
+    private static final List<Integer> randomNumbers = new ArrayList<>();
+
+    static {
+        for (int no = LOWER_BOUND; no <= UPPER_BOUND; no++){
+            randomNumbers.add(no);
+        }
+    }
 
     public static int getNumber() {
-        return random.nextInt(UPPER_BOUND) + LOWER_BOUND;
+        Collections.shuffle(randomNumbers);
+        return randomNumbers.get(FIRST_INDEX);
     }
 }
