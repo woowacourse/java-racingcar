@@ -20,10 +20,12 @@
 ## 아키텍처
 [Model]
 - Car
-- CarLineUp ... <Car>
+- CarLineUp
 - Position
-- RandomNumber
 - TrialTime
+- RandomNoGenerator
+- ManualNoGenerator
+- NumberGenerator [interface]
   
 [View]
 - InputView
