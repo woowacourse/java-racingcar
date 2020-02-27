@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racing.model.Car;
 import racing.model.CarLineUp;
+import racing.model.ManualNoGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -38,6 +39,17 @@ public class CarLineUpTest {
         CarLineUp lineUp = new CarLineUp(inputCarNames, positions);
         assertThat(lineUp.findWinner()).contains(new Car("작은곰"));
         assertThat(lineUp.findWinner()).contains(new Car("보스독"));
+    }
+
+    @Test
+    @DisplayName("시도횟수 1회 돌았을 때, 각 차들의 이동 여부 확인")
+    void raceOneTimeTest(){
+        String[] inputCarNames = {"토니"};
+        CarLineUp lineUp = new CarLineUp(inputCarNames);
+
+        lineUp.raceOneTime(new ManualNoGenerator(4));
+        int currentPosition = lineUp.getLineUp().peek().getPosition();
+        assertThat(currentPosition).isEqualTo(1);
     }
 
 }

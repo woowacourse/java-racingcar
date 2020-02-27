@@ -31,6 +31,12 @@ public class CarLineUp {
         }
     }
 
+    public void raceOneTime(NumberGenerator numberGenerator) {
+        for (Car car : lineUp){
+            car.move(numberGenerator.getNumber());
+        }
+    }
+
     public List<Car> findWinner() {
         Car topPositionCar = findTopPositionCar();
         List<Car> winners = new ArrayList<>();
