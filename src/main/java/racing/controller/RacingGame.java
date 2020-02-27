@@ -3,49 +3,43 @@ package racing.controller;
 import racing.model.Car;
 import racing.model.CarLineUp;
 import racing.model.RandomNo;
+import racing.model.TrialTime;
 import racing.view.InputView;
 import racing.view.OutputView;
 
 public class RacingGame {
 
     private CarLineUp lineUp;
-    private int trialTime;
+    private TrialTime trialTime;
 
     public void play(){
         initializeLineUp();
         initializeTrialTime();
         race();
-//        showWinners();
+        showWinners();
     }
 
     private void initializeLineUp(){
         try {
-            lineUp = new CarLineUp();
-            enrollCarToLineUp();
+            this.lineUp = new CarLineUp(InputView.inputCarNames());
         } catch (NullPointerException | IllegalArgumentException e){
             OutputView.printExceptionMessage(e);
             initializeLineUp();
         }
     }
 
-    private void enrollCarToLineUp() {
-        for (String name : InputView.inputCarNames()){
-            lineUp.add(new Car(name));
-        }
-    }
-
     private void initializeTrialTime(){
         try {
-            trialTime = InputView.inputTrialTime();
-        } catch(Exception e){
+            this.trialTime = new TrialTime(InputView.inputTrialTime());
+        } catch(NullPointerException | IllegalArgumentException e){
             OutputView.printExceptionMessage(e);
-            initializeLineUp();
+            initializeTrialTime();
         }
     }
 
     private void race(){
         OutputView.printResultMessage();
-        for (int index = 0; index < trialTime; index++){
+        for (int index = 0; index < trialTime.getTrialTime(); index++){
             raceOneTime();
             OutputView.printOneRoundResult(lineUp);
         }
@@ -57,8 +51,10 @@ public class RacingGame {
         }
     }
 
-//    private void showWinners() {
-//        OutputView.printWinners(lineUp.findTopWinner());
-//    }
+    private void showWinners() {
+        OutputView.printWinners(lineUp.findWinner());
+    }
+
+
 
 }

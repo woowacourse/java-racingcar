@@ -1,6 +1,6 @@
 package racingTest;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racing.model.Car;
 import racing.model.CarLineUp;
@@ -10,29 +10,34 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarLineUpTest {
 
-    private CarLineUp lineUp;
-
-    @BeforeEach
-    void setUp(){
-        lineUp = new CarLineUp();
-        lineUp.add(new Car("토니", 5));
-        lineUp.add(new Car("작은곰", 6));
-        lineUp.add(new Car("보스독", 7));
-    }
-
     @Test
-    void 중복이름여부_확인(){
+    @DisplayName("차 이름 중복 여부 확인")
+    void checkDuplicatedNameTest() {
         assertThatThrownBy(() -> {
-            Car car = new Car("토니");
-            lineUp.add(car);
+            String[] inputCarNames = {"토니", "작은곰", "보스독", "작은곰"};
+            new CarLineUp(inputCarNames);
         }).isInstanceOf(IllegalArgumentException.class)
-        .hasMessage("차 이름이 중복되었습니다.");
+                .hasMessage("차 이름이 중복되었습니다.");
     }
 
     @Test
-    void 우승자_찾기(){
-        Car car = lineUp.findTopPositionCar();
-        assertThat(car).isEqualTo(new Car("보스독"));
+    @DisplayName("포지션 값 기준으로 우승자 찾기")
+    void findTopPositionCarTest() {
+        String[] inputCarNames = {"토니", "작은곰", "보스독"};
+        int[] positions = {5, 6, 9};
+        CarLineUp lineUp = new CarLineUp(inputCarNames, positions);
+
+        assertThat(lineUp.findTopPositionCar()).isEqualTo(new Car("보스독"));
+    }
+
+    @Test
+    @DisplayName("공동 우승자 찾기")
+    void findWinnerTest() {
+        String[] inputCarNames = {"토니", "작은곰", "보스독"};
+        int[] positions = {5, 7, 7};
+        CarLineUp lineUp = new CarLineUp(inputCarNames, positions);
+        assertThat(lineUp.findWinner()).contains(new Car("작은곰"));
+        assertThat(lineUp.findWinner()).contains(new Car("보스독"));
     }
 
 }

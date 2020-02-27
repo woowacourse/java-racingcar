@@ -1,29 +1,34 @@
 package racing.model;
 
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class CarLineUp {
-    public static final int SINGLE_SIZE = 1;
 
     private final PriorityQueue<Car> lineUp = new PriorityQueue<>();
 
-    public void add(final Car car) {
-        checkNameDuplicate(car);
-        lineUp.add(car);
+    public CarLineUp(final String[] lineUp) {
+        this(lineUp, new int[lineUp.length]);
     }
 
-    private void checkNameDuplicate(Car car) {
-        if (isAlready(car)) {
-            throw new IllegalArgumentException("차 이름이 중복되었습니다.");
+    public CarLineUp(final String[] lineUp, final int[] positions) {
+        checkCarNamesOrPositionsNull(lineUp, positions);
+        for (int index = 0; index < lineUp.length; index++){
+            this.lineUp.add(new Car(lineUp[index], positions[index]));
+        }
+        checkDuplicatedName();
+    }
+
+    private void checkCarNamesOrPositionsNull(final String[] lineUp, final int[] positions) {
+        if (lineUp == null | positions == null){
+            throw new NullPointerException("차 이름이 입력되지 않았습니다.");
         }
     }
 
-    private boolean isAlready(final Car car) {
-        return lineUp.stream()
-                .anyMatch(c -> c.isNameEqual(car));
+    private void checkDuplicatedName() {
+        Set<Car> set = new HashSet<>(lineUp);
+        if (set.size() < lineUp.size()) {
+            throw new IllegalArgumentException("차 이름이 중복되었습니다.");
+        }
     }
 
     public List<Car> findWinner() {
@@ -36,15 +41,9 @@ public class CarLineUp {
     }
 
     private void isWinnerPosition(Car topPositionCar, List<Car> winners, Car car) {
-        if (!car.isSamePosition(topPositionCar)) {
+        if (car.isSamePosition(topPositionCar)) {
             winners.add(car);
         }
-    }
-
-
-    @Override
-    public String toString() {
-        return lineUp.toString();
     }
 
     public Car findTopPositionCar() {
@@ -54,4 +53,11 @@ public class CarLineUp {
     public PriorityQueue<Car> getLineUp() {
         return lineUp;
     }
+
+    @Override
+    public String toString() {
+        return lineUp.toString();
+    }
+
+
 }
