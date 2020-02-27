@@ -1,8 +1,8 @@
 package racingTest;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racing.model.Car;
-import racing.model.RandomNo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -11,23 +11,26 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CarTest {
 
     @Test
-    void 글자수_5글자_이하만_생성(){
+    @DisplayName("자동차 이름 5글자 이하인지 확인")
+    void checkNameLengthUnderFiveTest(){
         assertThatThrownBy(() -> {
-            Car car = new Car("6글자이름니다.");
+            new Car("6글자이름니다.");
         }).isInstanceOf(IllegalArgumentException.class)
         .hasMessage("이름은 5글자를 초과할 수 없습니다.");
     }
 
     @Test
-    void 차이름_공백_또는_빈문자열_예외처리(){
+    @DisplayName("차 이름 공백 또는 빈 문자열인 경우 예외 발생")
+    void checkNameEmptyTest(){
         assertThatThrownBy(() -> {
-            Car car = new Car("");
-        }).isInstanceOf(NullPointerException.class)
+            new Car("");
+        }).isInstanceOf(IllegalArgumentException.class)
         .hasMessage("차이름은 공백 또는 빈 문자열일 수 없습니다.");
     }
 
     @Test
-    void 차_움직이는지_여부_확인(){
+    @DisplayName("4이상의 숫자를 인자로 받을 경우 position 증가 여부 확인")
+    void moveAndPositionChangeTest(){
         Car car = new Car("보스독");
 
         int currentPosition = car.getPosition().getPosition();
