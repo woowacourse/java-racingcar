@@ -13,7 +13,6 @@ public class PositionTest {
     void checkSamePositionByIntegerValue() {
         Position position1 = new Position(5);
         Position position2 = new Position(5);
-
         assertThat(position1).isEqualTo(position2);
     }
 
@@ -25,5 +24,4 @@ public class PositionTest {
 
         assertThat(position.getPosition()).isEqualTo(1);
     }
-
 }
