@@ -15,6 +15,8 @@ public class OutputView {
     private static final String RESULT_HEADING = "실행 결과";
     private static final String WINNER_SUB_MESSAGE = "가 최종 우승했습니다.";
     private static final String COMMA = ", ";
+    private static final String NEW_LINE = System.lineSeparator();
+    public static final int START_INDEX = 0;
 
     public static void printInputCarNamesMessage() {
         System.out.println(INPUT_CAR_NAMES_GUIDE_MESSAGE);
@@ -44,16 +46,14 @@ public class OutputView {
             StringBuilder result = new StringBuilder();
             result.append(car)
                     .append(COLON);
-
-            int currentPosition = car.getPosition();
-            presentPositionByDash(result, currentPosition);
+            presentPositionByDash(result, car.getPosition());
             System.out.println(result);
         }
-        System.out.println();
+        System.out.print(NEW_LINE);
     }
 
     private static void presentPositionByDash(final StringBuilder result, final int currentPosition) {
-        for (int index = 0; index < currentPosition; index++){
+        for (int index = START_INDEX; index < currentPosition; index++){
             result.append(DASH);
         }
     }
