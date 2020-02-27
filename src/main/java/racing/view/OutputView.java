@@ -2,7 +2,6 @@ package racing.view;
 
 import racing.model.Car;
 import racing.model.CarLineUp;
-import racing.model.Position;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,7 +34,7 @@ public class OutputView {
 
     public static void printWinners(final List<Car> winners) {
         List<String> winnersName = winners.stream()
-                                    .map(Car::getName)
+                                    .map(Car::toString)
                                     .collect(Collectors.toList());
         StringBuilder result = new StringBuilder();
         result.append(String.join(COMMA, winnersName))
@@ -46,18 +45,18 @@ public class OutputView {
     public static void printOneRoundResult(final CarLineUp lineUp) {
         for (Car car : lineUp.getLineUp()){
             StringBuilder result = new StringBuilder();
-            result.append(car.getName())
+            result.append(car)
                     .append(COLON);
 
-            Position currentPosition = car.getPosition();
+            int currentPosition = car.getPosition();
             presentPositionByDash(result, currentPosition);
             System.out.println(result.toString());
         }
         System.out.println();
     }
 
-    private static void presentPositionByDash(final StringBuilder result, final Position currentPosition) {
-        for (int index = 0; index < currentPosition.getPosition(); index++){
+    private static void presentPositionByDash(final StringBuilder result, final int currentPosition) {
+        for (int index = 0; index < currentPosition; index++){
             result.append(DASH);
         }
     }

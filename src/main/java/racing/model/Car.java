@@ -1,6 +1,6 @@
 package racing.model;
 
-public class Car {
+public class Car implements Comparable {
 
     private static final int MAX_NAME_SIZE = 5;
     public static final int CRITERIA_NUMBER = 4;
@@ -21,29 +21,29 @@ public class Car {
     }
 
     private void checkNullName(final String name) {
-        if (name == null){
+        if (name == null) {
             throw new NullPointerException("차이름이 입력되지 않았습니다.");
         }
     }
 
     private void checkEmptyName(final String name) {
-        if (name.isEmpty()){
+        if (name.isEmpty()) {
             throw new IllegalArgumentException("차이름은 공백 또는 빈 문자열일 수 없습니다.");
         }
     }
 
     private void checkNameLengthUnderSix(final String name) {
-        if (name.length() > MAX_NAME_SIZE){
+        if (name.length() > MAX_NAME_SIZE) {
             throw new IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.");
         }
     }
 
     public boolean isNameEqual(final Car car) {
-        return this.name.equals(car.getName());
+        return this.name.equals(car.toString());
     }
 
-    public void move(final int number){
-        if (isMovable(number)){
+    public void move(final int number) {
+        if (isMovable(number)) {
             position.add();
         }
     }
@@ -52,39 +52,35 @@ public class Car {
         return number >= CRITERIA_NUMBER;
     }
 
-    public Position getPosition() {
-        return this.position;
+    public int getPosition() {
+        return position.getPosition();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Car getBiggerPositionCar(final Car targetCar) {
-        checkTargetCarNull(targetCar);
-        if (position.isBiggerThan(targetCar.getPosition())){
-            return this;
-        }
-        return targetCar;
-    }
-
-    public boolean isSamePosition(final Car targetCar) {
-        checkTargetCarNull(targetCar);
-        return getPosition().equals(targetCar.getPosition());
-    }
-
-    private void checkTargetCarNull(final Car targetCar) {
-        if (targetCar == null){
-            throw new NullPointerException("비교할 차가 없습니다.");
-        }
+    public boolean isSamePosition(Car topPositionCar) {
+        return position.equals(topPositionCar.position);
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 
-    public boolean equals(Car targetCar){
-        return this.name.equals(targetCar.name);
+    @Override
+    public boolean equals(Object o) {
+        return this.name.equals(((Car) o).name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if (this.getPosition() < ((Car) o).getPosition()) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }

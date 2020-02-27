@@ -33,11 +33,11 @@ public class CarTest {
     void moveAndPositionChangeTest(){
         Car car = new Car("보스독");
 
-        int currentPosition = car.getPosition().getPosition();
+        int currentPosition = car.getPosition();
         assertThat(currentPosition).isEqualTo(0);
 
         car.move(4);
-        currentPosition = car.getPosition().getPosition();
+        currentPosition = car.getPosition();
         assertThat(currentPosition).isEqualTo(1);
     }
 }

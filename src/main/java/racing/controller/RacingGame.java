@@ -15,7 +15,7 @@ public class RacingGame {
         initializeLineUp();
         initializeTrialTime();
         race();
-        showWinners();
+//        showWinners();
     }
 
     private void initializeLineUp(){
@@ -57,8 +57,8 @@ public class RacingGame {
         }
     }
 
-    private void showWinners() {
-        OutputView.printWinners(lineUp.findWinner());
-    }
+//    private void showWinners() {
+//        OutputView.printWinners(lineUp.findTopWinner());
+//    }
 
 }
