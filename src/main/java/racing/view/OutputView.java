@@ -36,13 +36,13 @@ public class OutputView {
 
     public static void printWinners(final List<Car> winners) {
         String winnersName = winners.stream()
-                                    .map(Car::toString)
-                                    .collect(Collectors.joining(COMMA));
+                .map(Car::toString)
+                .collect(Collectors.joining(COMMA));
         System.out.println(winnersName + WINNER_SUB_MESSAGE);
     }
 
     public static void printOneRoundResult(final CarLineUp lineUp) {
-        for (Car car : lineUp.getLineUp()){
+        for (Car car : lineUp.getLineUp()) {
             StringBuilder result = new StringBuilder();
             result.append(car)
                     .append(COLON);
@@ -53,7 +53,7 @@ public class OutputView {
     }
 
     private static void presentPositionByDash(final StringBuilder result, final int currentPosition) {
-        for (int index = START_INDEX; index < currentPosition; index++){
+        for (int index = START_INDEX; index < currentPosition; index++) {
             result.append(DASH);
         }
     }

@@ -43,7 +43,7 @@ public class CarLineUpTest {
 
     @Test
     @DisplayName("시도횟수 1회 돌았을 때, 각 차들의 이동 여부 확인")
-    void raceOneTimeTest(){
+    void raceOneTimeTest() {
         String[] inputCarNames = {"토니"};
         CarLineUp lineUp = new CarLineUp(inputCarNames);
 

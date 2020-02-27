@@ -6,7 +6,7 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String DELIMITER = ",";
 
-    public static String[] inputCarNames(){
+    public static String[] inputCarNames() {
         OutputView.printInputCarNamesMessage();
         return scanner.nextLine()
                 .split(DELIMITER);

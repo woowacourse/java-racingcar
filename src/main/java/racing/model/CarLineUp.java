@@ -12,14 +12,14 @@ public class CarLineUp {
 
     public CarLineUp(final String[] lineUp, final int[] positions) {
         checkCarNamesOrPositionsNull(lineUp, positions);
-        for (int index = 0; index < lineUp.length; index++){
+        for (int index = 0; index < lineUp.length; index++) {
             this.lineUp.add(new Car(lineUp[index], positions[index]));
         }
         checkDuplicatedName();
     }
 
     private void checkCarNamesOrPositionsNull(final String[] lineUp, final int[] positions) {
-        if (lineUp == null | positions == null){
+        if (lineUp == null | positions == null) {
             throw new NullPointerException("차 이름이 입력되지 않았습니다.");
         }
     }
@@ -32,7 +32,7 @@ public class CarLineUp {
     }
 
     public void raceOneTime(NumberGenerator numberGenerator) {
-        for (Car car : lineUp){
+        for (Car car : lineUp) {
             car.move(numberGenerator.getNumber());
         }
     }

@@ -5,11 +5,11 @@ public class Position {
 
     private int position;
 
-    public Position (int position){
+    public Position(int position) {
         this.position = position;
     }
 
-    public void add(){
+    public void add() {
         position += STEP;
     }
 
@@ -18,7 +18,7 @@ public class Position {
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         return this.position == ((Position) o).position;
     }
 }
