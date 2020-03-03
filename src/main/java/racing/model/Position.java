@@ -1,5 +1,7 @@
 package racing.model;
 
+import java.util.Objects;
+
 public class Position {
     private static final int STEP = 1;
 
@@ -19,6 +21,18 @@ public class Position {
 
     @Override
     public boolean equals(Object o) {
-        return this.position == ((Position) o).position;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Position targetPosition = (Position) o;
+        return position == targetPosition.position;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position);
     }
 }

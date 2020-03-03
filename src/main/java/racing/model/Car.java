@@ -1,6 +1,6 @@
 package racing.model;
 
-public class Car implements Comparable {
+public class Car implements Comparable<Car> {
 
     private static final int MAX_NAME_SIZE = 5;
     public static final int CRITERIA_NUMBER = 4;
@@ -38,10 +38,6 @@ public class Car implements Comparable {
         }
     }
 
-    public boolean isNameEqual(final Car car) {
-        return this.name.equals(car.toString());
-    }
-
     public void move(final int number) {
         if (isMovable(number)) {
             position.add();
@@ -76,11 +72,7 @@ public class Car implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        if (this.getPosition() < ((Car) o).getPosition()) {
-            return 1;
-        } else {
-            return -1;
-        }
+    public int compareTo(Car car) {
+        return this.getPosition() - car.getPosition();
     }
 }

@@ -35,8 +35,8 @@ public class RacingGame {
 
     private void race() {
         OutputView.printResultMessage();
+        NumberGenerator numberGenerator = new RandomNoGenerator();
         for (int index = 0; index < trialTime.getTrialTime(); index++) {
-            NumberGenerator numberGenerator = new RandomNoGenerator();
             lineUp.raceOneTime(numberGenerator);
             OutputView.printOneRoundResult(lineUp);
         }

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class CarLineUp {
 
-    private final PriorityQueue<Car> lineUp = new PriorityQueue<>();
+    private final Queue<Car> lineUp = new PriorityQueue<>();
 
     public CarLineUp(final String[] lineUp) {
         this(lineUp, new int[lineUp.length]);
@@ -56,8 +56,8 @@ public class CarLineUp {
         return lineUp.peek();
     }
 
-    public PriorityQueue<Car> getLineUp() {
-        return lineUp;
+    public List<Car> getLineUp() {
+        return new ArrayList<>(lineUp);
     }
 
     @Override
