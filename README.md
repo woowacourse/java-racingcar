@@ -16,24 +16,5 @@
 - **else 예약어를 쓰지 않는다.**
 - **함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.**
 
-
-## 아키텍처
-[Model]
-- Car
-- CarLineUp
-- Position
-- TrialTime
-- RandomNoGenerator
-- ManualNoGenerator
-- NumberGenerator [interface]
-  
-[View]
-- InputView
-- OutputView
-
-[Controller]
-- RacingGame ...(main)
-
-
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
