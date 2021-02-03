@@ -18,7 +18,11 @@ public class RacingGame {
     }
 
     public void makeCars(List<String> names) {
-        names.forEach(name -> cars.add(new Car(name)));
+        names.forEach(name -> addCar(new Car(name)));
+    }
+
+    public void addCar(Car car){
+        cars.add(car);
     }
 
     public void playRound() {
@@ -26,7 +30,27 @@ public class RacingGame {
         round++;
     }
 
+    public String calculateWinner(){
+        List<Car> winners = new ArrayList<>();
+        int maxPosition = getMaxPosition();
+        return cars.stream().
+                filter(car -> car.getPosition() == maxPosition).
+                map(Car::getName).
+                collect(Collectors.joining(", "));
+    }
+
+    private int getMaxPosition() {
+        return cars.stream().
+                mapToInt(Car::getPosition).
+                max().
+                orElseThrow(NoSuchElementException::new);
+    }
+
     public List<Car> getCars() {
         return cars;
+    }
+
+    public int getRound(){
+        return round;
     }
 }
