@@ -34,11 +34,11 @@ public class StringCalculator {
 
     public static void loop(String[] numbers) {
         for (String number : numbers) {
-            throwIfNegative(number);
+            throwExceptionIfNegative(number);
         }
     }
 
-    public static void throwIfNegative(String number) {
+    public static void throwExceptionIfNegative(String number) {
         if (Integer.parseInt(number) < 0) {
             throw new RuntimeException();
         }
