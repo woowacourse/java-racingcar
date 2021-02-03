@@ -12,4 +12,10 @@ public class StringTest {
         assertThat(values[1]).isEqualTo("2");
         assertThat(values).containsExactly("1", "2");
     }
+
+    @Test
+    void substring() {
+        String value = "(1,2)".substring(1, 4);
+        assertThat(value).isEqualTo("1,2");
+    }
 }
