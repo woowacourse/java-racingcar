@@ -1,5 +1,7 @@
 package stringcalculator.domain;
 
+import stringcalculator.exception.IllegalCustomDelimiterPositionException;
+
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,7 +19,13 @@ public class StringCalculator {
             return Integer.parseInt(input);
         }
 
-        String delimiter = extractCustomDelimiterOrGetDefaultDelimiter(input);
+        String delimiter = DEFAULT_DELIMITER;
+
+        if(isUsingCustomDelimiter(input)) {
+            checkPrefixedCustomDelimiterFormat(input);
+            delimiter = extractCustomDelimiter(input);
+        }
+
         input = extractElementString(input);
 
         String[] inputs = input.split(delimiter);
@@ -32,8 +40,13 @@ public class StringCalculator {
         return input.substring(input.indexOf("\n") + 1);
     }
 
-    private static String extractCustomDelimiterOrGetDefaultDelimiter(String input) {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER_FORMAT).matcher(input);
+    private static boolean isUsingCustomDelimiter(String input) {
+        Matcher matcher = createCustomDelimiterMatcher(input);
+        return matcher.find();
+    }
+
+    private static String extractCustomDelimiter(String input) {
+        Matcher m = createCustomDelimiterMatcher(input);
         if (m.find()) {
             return m.group(1);
         }
@@ -48,6 +61,19 @@ public class StringCalculator {
         return false;
     }
 
+    private static void checkPrefixedCustomDelimiterFormat(String input) {
+        int index = -1;
+        Matcher matcher = createCustomDelimiterMatcher(input);
+
+        if (!matcher.find()) {
+            index = matcher.start();
+        }
+
+        if (index != 0) {
+            throw new IllegalCustomDelimiterPositionException();
+        }
+    }
+
     private static void checkNegativeNumber(String[] inputs) {
        long sizeOfNegative = Arrays.stream(inputs)
                .mapToInt(Integer::parseInt)
@@ -57,5 +83,9 @@ public class StringCalculator {
        if (sizeOfNegative > 0) {
            throw new IllegalArgumentException();
        }
+    }
+
+    private static Matcher createCustomDelimiterMatcher(String input) {
+        return Pattern.compile(CUSTOM_DELIMITER_FORMAT).matcher(input);
     }
 }
