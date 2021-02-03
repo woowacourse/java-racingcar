@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import stringcalculator.exception.IllegalCustomDelimiterException;
 import stringcalculator.exception.IllegalCustomDelimiterPositionException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -61,4 +62,11 @@ public class StringCalculatorTest {
                 .isThrownBy(() -> StringCalculator.splitAndSum(input));
     }
 
+    @ParameterizedTest
+    @DisplayName("구분자가 숫자로 들어올 경우 예외")
+    @ValueSource(strings = {"//1\n1;2;3"})
+    public void splitAndSum_custom_구분자가_숫자로_들어올_경우_예외(String input) {
+        assertThatThrownBy(() -> StringCalculator.splitAndSum(input))
+                .isInstanceOf(IllegalCustomDelimiterException.class);
+    }
 }
