@@ -19,4 +19,19 @@ public class StringTest {
         String value = "(1,2)".substring(1, 4);
         assertThat(value).isEqualTo("1,2");
     }
+
+    @Test
+    public void getStringByIndex() {
+        char value = "abc".charAt(1);
+        assertThat(value).isEqualTo('b');
+    }
+
+    @Test
+    @DisplayName("특정 위치의 문자를 가져올때 위치값을 벗어나면 예외발생")
+    public void throwsStringIndexOutOfBoundsException() {
+        assertThatThrownBy(() -> {
+            "abc".charAt(10);
+        }).isInstanceOf(StringIndexOutOfBoundsException.class)
+        ;
+    }
 }
