@@ -15,17 +15,21 @@ public class StringCalculator {
         }
         Matcher matcher = PATTERN.matcher(expression);
         if (matcher.find()) {
-            String customDelimiter = matcher.group(1);
-            String[] values = matcher.group(2)
-                    .split(customDelimiter);
+            String[] values = splitValuesByCustomDelimiter(matcher);
             return sumValues(values);
         }
-        String[] values = expression.split(DEFAULT_DELIMITER);
+        String[] values = splitValuesByDefaultDelimiter(expression);
         return sumValues(values);
     }
 
     private static boolean isNullOrEmpty(String expression) {
         return Objects.isNull(expression) || expression.isEmpty();
+    }
+
+    private static String[] splitValuesByCustomDelimiter(Matcher matcher) {
+        String customDelimiter = matcher.group(1);
+        return matcher.group(2)
+                .split(customDelimiter);
     }
 
     private static int sumValues(String[] values) {
@@ -41,5 +45,9 @@ public class StringCalculator {
         if (isWrongValues) {
             throw new RuntimeException();
         }
+    }
+
+    private static String[] splitValuesByDefaultDelimiter(String expression) {
+        return expression.split(DEFAULT_DELIMITER);
     }
 }
