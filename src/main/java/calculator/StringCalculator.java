@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    private static final StringBuilder sb = new StringBuilder();
+    private static final StringBuilder SB = new StringBuilder();
     private static final int ZERO = 0;
     private static final int FIRST = 1;
     private static final int SECOND = 2;
@@ -26,15 +26,15 @@ public class StringCalculator {
     }
 
     private static String[] init(String text) {
-        sb.append(DEFAULT_DELIMITER);
+        SB.append(DEFAULT_DELIMITER);
         Matcher m = Pattern.compile(CUSTOM_PATTERN).matcher(text);
         if (m.find()) {
-            sb.append(MULTIPLE_SEPARATOR);
-            sb.append(m.group(FIRST));
+            SB.append(MULTIPLE_SEPARATOR);
+            SB.append(m.group(FIRST));
             text = m.group(SECOND);
         }
-        String[] numbers = text.split(sb.toString());
-        sb.setLength(ZERO);
+        String[] numbers = text.split(SB.toString());
+        SB.setLength(ZERO);
         return numbers;
     }
 
