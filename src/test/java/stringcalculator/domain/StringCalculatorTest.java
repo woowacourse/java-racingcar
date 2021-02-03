@@ -30,10 +30,11 @@ public class StringCalculatorTest {
         assertThat(result).isEqualTo(3);
     }
 
-    @Test
-    public void splitAndSum_쉼표_또는_콜론_구분자() throws Exception {
-        int result = StringCalculator.splitAndSum("1,2:3");
-        assertThat(result).isEqualTo(6);
+    @ParameterizedTest
+    @CsvSource(value = {"1,2:3|6", "1,2,3|6", "1:2:3|6", "4,5:6|15"}, delimiter = '|')
+    public void splitAndSum_쉼표_또는_콜론_구분자(String input, int expected) throws Exception {
+        int result = StringCalculator.splitAndSum(input);
+        assertThat(result).isEqualTo(expected);
     }
 
     @Test
