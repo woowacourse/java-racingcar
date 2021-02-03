@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
     @Test
-    void split_string() {
+    void split_ShouldGenerateExpectedSplitValue() {
         String[] values = "1,2".split(",");
         assertThat(values[0]).isEqualTo("1");
         assertThat(values[1]).isEqualTo("2");
@@ -16,14 +16,14 @@ public class StringTest {
     }
 
     @Test
-    void substringParentheses_string() {
+    void substringParentheses_ShouldGenerateExpectedSubstringValue() {
         String value = "(1,2)".substring(1, 4);
         assertThat(value).isEqualTo("1,2");
     }
 
     @Test
     @DisplayName("test string index")
-    void charAt_char() {
+    void charAt_ShouldEqualToCharAccordingToIndex() {
         String value = "abc";
         assertThat(value.charAt(0)).isEqualTo('a');
         assertThat(value.charAt(1)).isEqualTo('b');
@@ -32,7 +32,7 @@ public class StringTest {
 
     @Test
     @DisplayName("test index out of range")
-    void charAt_indexOutOfBoundsException() {
+    void charAt_ShouldThrowIndexOutOfBoundsException() {
         String value = "abc";
         assertThatThrownBy(() -> {
             value.charAt(3);
