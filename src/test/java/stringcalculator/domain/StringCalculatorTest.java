@@ -1,6 +1,8 @@
 package stringcalculator.domain;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -15,10 +17,11 @@ public class StringCalculatorTest {
         assertThat(result).isEqualTo(0);
     }
 
-    @Test
-    public void splitAndSum_숫자하나() throws Exception {
-        int result = StringCalculator.splitAndSum("1");
-        assertThat(result).isEqualTo(1);
+    @ParameterizedTest
+    @CsvSource(value = {"1:1", "2:2", "3:3", "4:4", "5:5","6:6","7:7","8:8","9:9","0:0"}, delimiter = ':')
+    public void splitAndSum_숫자하나(String input, int expected) throws Exception {
+        int result = StringCalculator.splitAndSum(input);
+        assertThat(result).isEqualTo(expected);
     }
 
     @Test

@@ -5,6 +5,13 @@ public class StringCalculator {
         if(isNullOrBlank(input)) {
             return 0;
         }
+
+        if (input.length() == 1) {
+            return Integer.parseInt(input);
+        }
+
+
+
         return 1;
     }
 
