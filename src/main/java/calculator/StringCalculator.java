@@ -9,13 +9,13 @@ public class StringCalculator {
         if (input == null || input.isEmpty()) {
             return 0;
         }
-
+        String delimiter = ",|:";
         Matcher m = Pattern.compile("//(.)\\n(.*)").matcher(input);
         if (m.find()) {
-            String customDelimiter = m.group(1);
-            return calculate(m.group(2), customDelimiter);
+            delimiter += "|" + m.group(1);
+            return calculate(m.group(2), delimiter);
         }
-        return calculate(input, ",|:");
+        return calculate(input, delimiter);
     }
 
     public static int calculate(String input, String delimiter) {
