@@ -31,7 +31,6 @@ public class StringTest {
     public void throwsStringIndexOutOfBoundsException() {
         assertThatThrownBy(() -> {
             "abc".charAt(10);
-        }).isInstanceOf(StringIndexOutOfBoundsException.class)
-        ;
+        }).isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }
