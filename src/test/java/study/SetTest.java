@@ -23,24 +23,41 @@ public class SetTest {
         numbers.add(3);
     }
     
-    
     @Test
     void sizeTest() {
-        assertThat(numbers.size()).isEqualTo(3);
+        
+        // when
+        int size = 3;
+        
+        // then
+        assertThat(size).isEqualTo(3);
     }
     
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
     void containsTest(int input) {
-        assertThat(numbers.contains(input)).isTrue();
+        
+        // when
+        boolean hasNumber = numbers.contains(input);
+    
+        // then
+        assertThat(hasNumber).isTrue();
     }
     
     @ParameterizedTest
     @CsvSource(value = {"1,2,3:true", "4,5:false"}, delimiter = ':')
     void compareTest(String input, boolean expected) {
+        
+        // given
         String[] inputNumbers = input.split(",");
+        
         for (String number : inputNumbers) {
-            assertThat(numbers.contains(Integer.parseInt(number))).isEqualTo(expected);
+            
+            // when
+            boolean hasNumber = numbers.contains(Integer.parseInt(number));
+            
+            // then
+            assertThat(hasNumber).isEqualTo(expected);
         }
     }
 }
