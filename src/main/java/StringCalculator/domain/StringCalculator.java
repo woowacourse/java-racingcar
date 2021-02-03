@@ -1,5 +1,6 @@
 package stringcalculator.domain;
 
+import stringcalculator.exception.IllegalCustomDelimiterException;
 import stringcalculator.exception.IllegalCustomDelimiterPositionException;
 
 import java.util.Arrays;
@@ -24,6 +25,7 @@ public class StringCalculator {
         if(isUsingCustomDelimiter(input)) {
             checkPrefixedCustomDelimiterFormat(input);
             delimiter = extractCustomDelimiter(input);
+            checkNumericDelimiter(delimiter);
         }
 
         input = extractElementString(input);
@@ -36,21 +38,40 @@ public class StringCalculator {
                 .sum();
     }
 
+    private static void checkNumericDelimiter(String delimiter) {
+        if (isNumeric(delimiter)) {
+            throw new IllegalCustomDelimiterException();
+        }
+    }
+
     private static String extractElementString(String input) {
         return input.substring(input.indexOf("\n") + 1);
     }
 
     private static boolean isUsingCustomDelimiter(String input) {
         Matcher matcher = createCustomDelimiterMatcher(input);
+
         return matcher.find();
     }
 
     private static String extractCustomDelimiter(String input) {
         Matcher m = createCustomDelimiterMatcher(input);
+
         if (m.find()) {
             return m.group(1);
         }
+
         return DEFAULT_DELIMITER;
+    }
+
+    private static boolean isNumeric(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return true;
     }
 
     private static boolean isNullOrBlank(String input) {
