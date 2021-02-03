@@ -62,24 +62,31 @@ class StringCalculatorTest {
             Matcher matcher = PATTERN.matcher(expression);
             if (matcher.find()) {
                 String customDelimiter = matcher.group(1);
-                String[] tokens = matcher.group(2)
+                String[] values = matcher.group(2)
                         .split(customDelimiter);
-                return sumValues(tokens);
-
+                return sumValues(values);
             }
-
             String[] values = expression.split(DEFAULT_DELIMITER);
             return sumValues(values);
         }
 
-        public static boolean isNullOrEmpty(String expression) {
+        private static boolean isNullOrEmpty(String expression) {
             return Objects.isNull(expression) || expression.isEmpty();
         }
 
-        public static int sumValues(String[] values) {
+        private static int sumValues(String[] values) {
+            validateValues(values);
             return Arrays.stream(values)
                     .mapToInt(Integer::parseInt)
                     .sum();
+        }
+
+        private static void validateValues(String[] values) {
+            boolean isWrongValues = Arrays.stream(values)
+                    .anyMatch(value -> Integer.parseInt(value) < 0);
+            if (isWrongValues) {
+                throw new RuntimeException();
+            }
         }
     }
 }
