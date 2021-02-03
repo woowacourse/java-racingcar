@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import stringcalculator.exception.IllegalCustomDelimiterFormatException;
-
-import java.util.IllegalFormatException;
+import stringcalculator.exception.IllegalCustomDelimiterPositionException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -59,7 +57,8 @@ public class StringCalculatorTest {
     @DisplayName("커스텀 구분자가 입력의 제일 앞이 아니라면 예외")
     @ValueSource(strings = {"3;//;\n1;2;3", "1;2;3//;\n"})
     public void splitAndSum_custom_구분자가_맨_앞이_아니면_예외(String input) {
-        assertThatExceptionOfType(IllegalCustomDelimiterFormatException.class)
+        assertThatExceptionOfType(IllegalCustomDelimiterPositionException.class)
                 .isThrownBy(() -> StringCalculator.splitAndSum(input));
     }
+
 }
