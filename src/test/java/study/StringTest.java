@@ -31,7 +31,7 @@ public class StringTest {
         assertThatThrownBy(() -> {
             value.charAt(3);
         }).isInstanceOf(IndexOutOfBoundsException.class)
-        .hasMessageContaining("String index out of range: 3");
+            .hasMessageContaining("String index out of range: 3");
 
         assertThatExceptionOfType(IndexOutOfBoundsException.class)
             .isThrownBy(() -> {
