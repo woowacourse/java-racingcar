@@ -1,5 +1,8 @@
 package calculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringCalculator {
     private static final String COMMA = ",";
     private static final String COLON = ":";
@@ -16,12 +19,14 @@ public class StringCalculator {
 
         String[] numbers = string.split(COMMA + VERTICAL_LINE + COLON);
         int result = 0;
-        for (String number : numbers) {
-            if (!checkDigit(number)) {
-                throw new RuntimeException();
-            }
-            result += Integer.parseInt(number);
+
+        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(string);
+        if (matcher.find()) {
+            String delimiter = matcher.group(1);
+            numbers = matcher.group(2).split(delimiter);
         }
+
+        result = sum(numbers);
 
         return result;
     }
@@ -33,5 +38,16 @@ public class StringCalculator {
             }
         }
         return true;
+    }
+
+    private static int sum(String[] numbers) {
+        int sum = 0;
+        for (String number : numbers) {
+            if (!checkDigit(number)) {
+                throw new RuntimeException();
+            }
+            sum += Integer.parseInt(number);
+        }
+        return sum;
     }
 }
