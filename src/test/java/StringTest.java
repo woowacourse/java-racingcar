@@ -4,7 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class StringTest {
     @Test
-    void split() {
+    void split1() {
         String value = "1,2";
         String separator = ",";
 
@@ -18,5 +18,19 @@ public class StringTest {
         assertThat(value.split(separator)[testIndexTwo]).contains(expectResultTwo);
 
         assertThat(value.split(separator)).containsExactly(expectResultOne, expectResultTwo);
+    }
+
+    @Test
+    void split2() {
+        String value = "1";
+        String separator = ",";
+
+        int testIndexOne = 0;
+
+        String[] values = value.split(separator);
+        String expectResultOne = "1";
+
+        assertThat(values[testIndexOne]).contains(expectResultOne);
+        assertThat(values).containsExactly(expectResultOne);
     }
 }
