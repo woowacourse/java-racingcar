@@ -1,11 +1,17 @@
 package stringcalculator.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+import stringcalculator.exception.IllegalCustomDelimiterFormatException;
+
+import java.util.IllegalFormatException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 public class StringCalculatorTest {
     @Test
@@ -47,5 +53,13 @@ public class StringCalculatorTest {
     public void splitAndSum_negative() throws Exception {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("커스텀 구분자가 입력의 제일 앞이 아니라면 예외")
+    @ValueSource(strings = {"3;//;\n1;2;3", "1;2;3//;\n"})
+    public void splitAndSum_custom_구분자가_맨_앞이_아니면_예외(String input) {
+        assertThatExceptionOfType(IllegalCustomDelimiterFormatException.class)
+                .isThrownBy(() -> StringCalculator.splitAndSum(input));
     }
 }
