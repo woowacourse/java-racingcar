@@ -2,10 +2,10 @@ package calculator;
 
 public class StringCalculator {
 
-    public static int splitAndSum(String str) {
-        if (str == null || str.isEmpty()) {
+    public static int splitAndSum(String text) {
+        if (text == null || text.isEmpty()) {
             return 0;
         }
-        return 1;
+        return Integer.parseInt(text);
     }
 }
