@@ -36,7 +36,7 @@ public class SetTest {
     @ParameterizedTest
     @DisplayName("Set이 1,2,3 값을 가지고 있어야 한다")
     @ValueSource(ints = {1,2,3})
-    void setShouldHave1And2And3Elements(int element) {
+    void setShouldHaveOneAndTwoAndThree(int element) {
         //assertThat(numbers).contains(element);
         assertTrue(numbers.contains(element));
     }
@@ -44,7 +44,7 @@ public class SetTest {
     @ParameterizedTest
     @DisplayName("Set이 1,2,3 이외의 값을 가지면 안된다.")
     @CsvSource(value = {"1:true", "2:true", "3:true", "true:false", "4:false", "5:false"}, delimiter = ':')
-    void setMustHave1And2And3Elements(String input, boolean expected) {
+    void setMustNotHaveOthersThanOneAndTwoAndThree(String input, boolean expected) {
         if (!isNumeric(input)) {
            assertEquals(isNumeric(input), expected);
            return;
