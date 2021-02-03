@@ -18,11 +18,14 @@ public class StringCalculator {
             sb.append(m.group(1));
             text = m.group(2);
         }
-        System.out.println(sb.toString());
         String[] numbers = text.split(sb.toString());
         int sum = 0;
         for (String number: numbers) {
-            sum += Integer.parseInt(number);
+            int intNumber = Integer.parseInt(number);
+            if (intNumber < 0) {
+                throw new RuntimeException();
+            }
+            sum += intNumber;
         }
         sb.setLength(0);
         return sum;
