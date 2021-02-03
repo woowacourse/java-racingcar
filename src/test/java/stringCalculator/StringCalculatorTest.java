@@ -2,6 +2,7 @@ package stringCalculator;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,16 +50,24 @@ class StringCalculatorTest {
     }
 
     static class StringCalculator {
+        private static final String DEFAULT_DELIMITER = ",";
 
         public static int splitAndSum(String expression) {
             if (isNullOrEmpty(expression)) {
                 return 0;
             }
-            return Integer.parseInt(expression);
+            String[] values = expression.split(DEFAULT_DELIMITER);
+            return sumValues(values);
         }
 
         public static boolean isNullOrEmpty(String expression) {
             return Objects.isNull(expression) || expression.isEmpty();
+        }
+
+        public static int sumValues(String[] values) {
+            return Arrays.stream(values)
+                    .mapToInt(Integer::parseInt)
+                    .sum();
         }
     }
 }
