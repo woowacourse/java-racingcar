@@ -35,10 +35,18 @@ public class StringTest {
     }
 
     @Test
-    void name() {
+    void substring() {
         String value = "(1,2)";
         String newValue = value.substring(1,4);
 
         assertThat(newValue).isEqualTo("1,2");
+    }
+
+    @Test
+    void charAt() {
+        String value = "abc";
+        int testIndex = 2;
+
+        assertThat(value.charAt(testIndex)).isEqualTo('c');
     }
 }
