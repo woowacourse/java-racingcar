@@ -1,7 +1,7 @@
 package study;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -28,17 +28,28 @@ public class CollectionTest {
 
     // Test Case 구현
 
+    @DisplayName("Set 크기 확인")
     @Test
     void size() {
         assertThat(numbers.size()).isEqualTo(3);
     }
 
+    @DisplayName("1, 2, 3 존재 확인 중복 코드")
+    @Test
+    void containsDuplicated() {
+        assertThat(numbers.contains(1)).isTrue();
+        assertThat(numbers.contains(2)).isTrue();
+        assertThat(numbers.contains(3)).isTrue();
+    }
+
+    @DisplayName("1, 2, 3 존재 확인 중복 제거 코드")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
     void contains(int number) {
         assertTrue(numbers.contains(number));
     }
 
+    @DisplayName("입력 값에 따라 결과 값이 다른 경우")
     @ParameterizedTest
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
     void containsValidate(String input, String expected) {
