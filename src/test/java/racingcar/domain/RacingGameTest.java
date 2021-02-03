@@ -20,4 +20,16 @@ class RacingGameTest {
             assertThat(cars.get(i).getName()).isEqualTo(names.get(i));
         }
     }
+
+    @DisplayName("라운드가 진행되는지 확인")
+    @Test
+    void 레이싱게임_라운드_진행(){
+        RacingGame racingGame = new RacingGame();
+
+        int beforeRound = racingGame.getRound();
+        racingGame.playRound();
+        int afterRound = racingGame.getRound();
+
+        assertThat(beforeRound + 1).isEqualTo(afterRound);
+    }
 }
