@@ -65,7 +65,7 @@ public class StringCalculator {
         int index = -1;
         Matcher matcher = createCustomDelimiterMatcher(input);
 
-        if (!matcher.find()) {
+        if (matcher.find()) {
             index = matcher.start();
         }
 
