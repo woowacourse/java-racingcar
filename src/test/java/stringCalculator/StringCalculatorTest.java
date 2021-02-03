@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -51,11 +53,21 @@ class StringCalculatorTest {
 
     static class StringCalculator {
         private static final String DEFAULT_DELIMITER = ",|:";
+        private static final Pattern PATTERN = Pattern.compile("//(.)\n(.*)");
 
         public static int splitAndSum(String expression) {
             if (isNullOrEmpty(expression)) {
                 return 0;
             }
+            Matcher matcher = PATTERN.matcher(expression);
+            if (matcher.find()) {
+                String customDelimiter = matcher.group(1);
+                String[] tokens = matcher.group(2)
+                        .split(customDelimiter);
+                return sumValues(tokens);
+
+            }
+
             String[] values = expression.split(DEFAULT_DELIMITER);
             return sumValues(values);
         }
