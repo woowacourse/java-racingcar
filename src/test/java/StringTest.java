@@ -33,4 +33,12 @@ public class StringTest {
         assertThat(values[testIndexOne]).contains(expectResultOne);
         assertThat(values).containsExactly(expectResultOne);
     }
+
+    @Test
+    void name() {
+        String value = "(1,2)";
+        String newValue = value.substring(1,4);
+
+        assertThat(newValue).isEqualTo("1,2");
+    }
 }
