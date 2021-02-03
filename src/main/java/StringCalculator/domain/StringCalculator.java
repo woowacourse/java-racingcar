@@ -1,6 +1,10 @@
 package stringcalculator.domain;
 
+import java.util.Arrays;
+
 public class StringCalculator {
+    private static final String DEFAULT_DELIMITER = ",|:";
+
     public static int splitAndSum(String input) {
         if(isNullOrBlank(input)) {
             return 0;
@@ -10,9 +14,11 @@ public class StringCalculator {
             return Integer.parseInt(input);
         }
 
+        String[] inputs = input.split(DEFAULT_DELIMITER);
 
-
-        return 1;
+        return Arrays.stream(inputs)
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 
     private static boolean isNullOrBlank(String input) {
