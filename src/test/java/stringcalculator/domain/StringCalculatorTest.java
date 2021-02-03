@@ -46,6 +46,6 @@ public class StringCalculatorTest {
     @Test
     public void splitAndSum_negative() throws Exception {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
