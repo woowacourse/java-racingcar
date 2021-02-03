@@ -7,7 +7,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
-
     public static final String DELIMITER = ",";
 
     @DisplayName("스플릿 메소드 학습테스트")
