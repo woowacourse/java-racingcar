@@ -19,9 +19,10 @@ public class StringCalculator {
 
         String delimiter = extractCustomDelimiterOrGetDefaultDelimiter(input);
         input = extractElementString(input);
-        System.out.println(input);
 
         String[] inputs = input.split(delimiter);
+        checkNegativeNumber(inputs);
+
         return Arrays.stream(inputs)
                 .mapToInt(Integer::parseInt)
                 .sum();
@@ -45,5 +46,16 @@ public class StringCalculator {
         }
 
         return false;
+    }
+
+    private static void checkNegativeNumber(String[] inputs) {
+       long sizeOfNegative = Arrays.stream(inputs)
+               .mapToInt(Integer::parseInt)
+               .filter(input -> input < 0)
+               .count();
+
+       if (sizeOfNegative > 0) {
+           throw new IllegalArgumentException();
+       }
     }
 }
