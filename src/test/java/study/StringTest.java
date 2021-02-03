@@ -30,7 +30,7 @@ public class StringTest {
         char b = value.charAt(1);
 
         assertThat(b).isEqualTo('b');
-        assertThatThrownBy( () ->  value.charAt(5))
+        assertThatThrownBy(() -> value.charAt(5))
                 .isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }
