@@ -54,7 +54,7 @@ class StringCalculatorTest {
             if (isNullOrEmpty(expression)) {
                 return 0;
             }
-            return 1;
+            return Integer.parseInt(expression);
         }
 
         public static boolean isNullOrEmpty(String expression) {
