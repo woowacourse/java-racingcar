@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class StringCalculator {
     static final String DEFAULT_DELIMITER = "[,:]";
     static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
+    static final String NEGATIVE_NUM_ERROR = "Has Negative Number ";
 
     static int splitAndSum(String input) {
         if (checkIfNull(input) || checkIfEmpty(input)) {
@@ -26,6 +27,9 @@ public class StringCalculator {
     static private int calculateTotalSum(String[] tokens) {
         return Arrays.stream(tokens)
                      .mapToInt(Integer::parseInt)
+                     .peek(n -> {
+                         if (n < 0) throw new RuntimeException(NEGATIVE_NUM_ERROR + n);
+                     })
                      .sum();
     }
 
