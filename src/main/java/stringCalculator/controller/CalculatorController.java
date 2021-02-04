@@ -26,7 +26,6 @@ public class CalculatorController {
             delimiters += ("|" + getCustomDelimiter(input));
         }
         // 커스톰 없는 경우
-
         System.out.println(getCustomDelimiter(input));
     }
 
@@ -59,8 +58,37 @@ public class CalculatorController {
     public List<Integer> splitNumbers(String value, String delimiters) {
         String[] numbers = value.split(delimiters);
 
+        isValidNumbers(numbers);
+
         return Arrays.stream(numbers)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private void isValidNumbers(String[] numbers) {
+        for (String number : numbers) {
+            checkNullOrBlank(number);
+            checkNumber(number);
+        }
+    }
+
+    private void checkNullOrBlank(String value) {
+        if (value == null || value.equals("")) {
+            throw new RuntimeException("숫자 문자열만 입력해 주세요");
+        }
+    }
+
+    private void checkNumber(String value) {
+        int number = 0;
+
+        try {
+            number = Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("숫자 문자열만 입력해 주세요");
+        }
+
+        if (number < 0) {
+            throw new RuntimeException("양수 문자열만 입력해 주세요");
+        }
     }
 }

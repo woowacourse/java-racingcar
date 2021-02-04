@@ -14,7 +14,6 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CalculatorControllerTest {
     private CalculatorController calculatorController;
@@ -24,6 +23,10 @@ class CalculatorControllerTest {
                 Arguments.of("1,2:3;4", ",|:|;", Arrays.asList(1, 2, 3, 4)),
                 Arguments.of("1,2:3#4", ",|:|#", Arrays.asList(1, 2, 3, 4))
         );
+    }
+
+    private static Stream<String> provideInvalidNumbersForSplit() {
+        return Stream.of("1,:3", "-1,2:3", null, "a,b,c");
     }
 
     @BeforeEach
@@ -56,5 +59,16 @@ class CalculatorControllerTest {
         List<Integer> numbers = calculatorController.splitNumbers(value, delimiters);
 
         assertThat(numbers).isEqualTo(expected);
+    }
+
+    @DisplayName("정상적인 숫자 문자열이 아닌 경우 분리 실패")
+    @ParameterizedTest
+    @MethodSource("provideInvalidNumbersForSplit")
+    public void splitNumbers_정상적인_숫자가_아닌_경우(String value) {
+        String delimiters = ",|:";
+
+        assertThatThrownBy(() -> {
+            calculatorController.splitNumbers(value, delimiters);
+        }).isInstanceOf(RuntimeException.class);
     }
 }
