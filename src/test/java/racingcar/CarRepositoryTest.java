@@ -1,12 +1,13 @@
 package racingcar;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class RacingRepositoryTest {
+public class CarRepositoryTest {
 
     @DisplayName("우승자 결과 테스트 한 명")
     @Test
@@ -18,11 +19,13 @@ public class RacingRepositoryTest {
 
         winner.goForward();
 
-        cars.add(winner);
-        cars.add(loser);
+        CarRepository.save(winner);
+        CarRepository.save(loser);
 
-        Assertions.assertThat(cars.size()).isEqualTo(1);
-        Assertions.assertThat(cars.get(0)).isEqualTo(winner);
+        List<Car> winners = CarRepository.getWinners();
+
+        Assertions.assertThat(winners.size()).isEqualTo(1);
+        Assertions.assertThat(winners.get(0)).isEqualTo(winner);
     }
 
     @DisplayName("우승자 결과 테스트 여러명")
@@ -40,16 +43,18 @@ public class RacingRepositoryTest {
         winner2.goForward();
         winner3.goForward();
 
-        cars.add(winner1);
-        cars.add(winner2);
-        cars.add(winner3);
-        cars.add(loser);
+        CarRepository.save(winner1);
+        CarRepository.save(winner2);
+        CarRepository.save(winner3);
+        CarRepository.save(loser);
 
-        winners.add(winner1);
-        winners.add(winner2);
-        winners.add(winner3);
+        expectedWinners.add(winner1);
+        expectedWinners.add(winner2);
+        expectedWinners.add(winner3);
 
-        Assertions.assertThat(cars.size()).isEqualTo(3);
-        Assertions.assertTrue(cars.containsAll(winners));
+        List<Car> actualWinners = CarRepository.getWinners();
+
+        Assertions.assertThat(actualWinners.size()).isEqualTo(3);
+        Assertions.assertThat(actualWinners.containsAll(expectedWinners)).isTrue();
     }
 }
