@@ -22,27 +22,33 @@ public class StringCalculator {
     private static int isCustom(Matcher m) {
         String customDelimiter = m.group(1);
         String[] tokens = m.group(2).split(customDelimiter);
-        int sum = 0;
-        for (int i=0; i<tokens.length;i++){
-            sum += Integer.parseInt(tokens[i]);
-        }
-        return sum;
+        return addSplitNumbers(tokens);
     }
 
-    private static int isCommaOrColon(String number) {
+    private static int isDelimiterOrNumber(String number) {
         String[] numbers = number.split(",|:");
+        return addSplitNumbers(numbers);
+    }
+
+    private static int addSplitNumbers(String[] tokens) {
         int sum = 0;
-        for (int i=0; i<numbers.length; i++) {
-            sum += Integer.parseInt(numbers[i]);
+        for (String token : tokens) {
+            sum += getNumber(token);
         }
         return sum;
     }
 
-    private static int isLengthOne(String number) {
-        return Integer.parseInt(number);
+    private static int getNumber(String token) {
+        if (!isNumber(token)) {
+            throw new RuntimeException();
+        }
+        return Integer.parseInt(token);
     }
 
-    private static int isNullOrZero() {
-        return 0;
+    private static boolean isNullOrZero(String number) {
+        if (number == null || number.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }
