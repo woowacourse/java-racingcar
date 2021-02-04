@@ -2,9 +2,12 @@ package stringCalculator.controller;
 
 import stringCalculator.view.InputView;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class CalculatorController {
     private static final String PATTERN = "//(.)\\\\n(.*)";         // 정규표현식 \\ -> \ , 자바 리터럴 \\ -> \
@@ -51,5 +54,13 @@ public class CalculatorController {
         if (customDelimiter.equals(",") || customDelimiter.equals(":")) {
             throw new RuntimeException("커스텀 구분자로 기본 구분자가 지정될 수 없습니다.");
         }
+    }
+
+    public List<Integer> splitNumbers(String value, String delimiters) {
+        String[] numbers = value.split(delimiters);
+
+        return Arrays.stream(numbers)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }
