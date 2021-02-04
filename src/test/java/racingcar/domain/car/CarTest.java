@@ -1,8 +1,10 @@
 package racingcar.domain.car;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import racingcar.domain.game.CarState;
 import racingcar.domain.rule.Condition;
 
 import java.util.Arrays;
@@ -26,10 +28,34 @@ public class CarTest {
             }
         });
 
-        for(int i=0; i<inputs.length; i++) {
+        for (int i = 0; i < inputs.length; i++) {
             car.move();
         }
 
         assertEquals(expected, car.getPosition());
+    }
+
+    @Test
+    @DisplayName("자동차의 현재 상태를 출력")
+    public void getState_자동차의_현재_상태를_출력() {
+        Car car1 = createCarForGetState_자동차의_현재_상태를_출력("포비", 3);
+        Car car2 = createCarForGetState_자동차의_현재_상태를_출력("포비", 1);
+        Car car3 = createCarForGetState_자동차의_현재_상태를_출력("포비", 5);
+        Car car4 = createCarForGetState_자동차의_현재_상태를_출력("포비", 0);
+
+        assertEquals(car1.getState().toString(), "포비 : ---");
+        assertEquals(car2.getState().toString(), "포비 : -");
+        assertEquals(car3.getState().toString(), "포비 : -----");
+        assertEquals(car4.getState().toString(), "포비 : ");
+    }
+
+    private Car createCarForGetState_자동차의_현재_상태를_출력(String name, int position) {
+        Car car = new Car(new CarName(name), () -> true);
+
+        for (int i = 0; i < position; i++) {
+            car.move();
+        }
+
+        return car;
     }
 }

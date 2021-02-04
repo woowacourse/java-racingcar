@@ -1,5 +1,6 @@
 package racingcar.domain.car;
 
+import racingcar.domain.game.CarState;
 import racingcar.domain.rule.Condition;
 
 public class Car {
@@ -31,6 +32,10 @@ public class Car {
 
     public boolean isSamePosition(int position) {
         return this.position == position;
+    }
+
+    public CarState getState() {
+        return CarState.withNameAndPosition(name, position);
     }
 
     @Override
