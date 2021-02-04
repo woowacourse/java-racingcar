@@ -1,9 +1,9 @@
 package calculator;
 
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import org.junit.jupiter.api.Test;
 
 public class StringCalculatorTest {
     @Test
@@ -19,6 +19,12 @@ public class StringCalculatorTest {
     public void splitAndSum_숫자하나() throws Exception {
         int result = StringCalculator.splitAndSum("1");
         assertThat(result).isEqualTo(1);
+    }
+
+    @Test
+    public void splitAndSum_숫자하나_음수() throws Exception {
+        assertThatThrownBy(() -> StringCalculator.splitAndSum("-1"))
+                .isInstanceOf(RuntimeException.class);
     }
 
     @Test
@@ -40,8 +46,15 @@ public class StringCalculatorTest {
     }
 
     @Test
+    public void splitAndSum_custom_구분자2() throws Exception {
+        int result = StringCalculator.splitAndSum("//#\n0#2:3,4");
+        assertThat(result).isEqualTo(9);
+    }
+
+    @Test
     public void splitAndSum_negative() throws Exception {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
                 .isInstanceOf(RuntimeException.class);
     }
+
 }
