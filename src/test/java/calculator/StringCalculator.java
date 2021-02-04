@@ -2,15 +2,19 @@ package calculator;
 
 public class StringCalculator {
     public static int splitAndSum(String input) {
-        int result = 0;
         if (input == null || input.isEmpty()) {
             return 0;
         }
         String[] numbers = input.split("[,:]");
-        for (String number : numbers) {
-            result += Integer.parseInt(number);
-        }
+        return sum(numbers);
+    }
 
-        return result;
+    private static int sum(String[] numbers) {
+        int sum = 0;
+
+        for (String number : numbers) {
+            sum += Integer.parseInt(number);
+        }
+        return sum;
     }
 }
