@@ -1,6 +1,5 @@
 package study;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +13,7 @@ public class StringTest {
         assertThat(values).containsExactly("1", "2");
     }
 
+    @Test
     void substring() {
         String value = "(1,2)".substring(1, 4);
         assertThat(value).isEqualTo("1,2");
@@ -40,14 +40,4 @@ public class StringTest {
                 .hasMessageContaining("index");
     }
 
-    @DisplayName("String의 indexOf 기능을 테스트한다")
-    @Test
-    void testIndexOf() {
-        String string = "//;\n";
-        int startIndex = string.indexOf("//");
-        int endIndex = string.indexOf("\n");
-
-        String delimiter = string.substring(endIndex);
-        assertThat(delimiter).isEqualTo(";");
-    }
 }
