@@ -14,7 +14,7 @@ public class StringCalculator {
             return 0;
         }
 
-        if (text.length() == 1 && Character.isDigit(text.charAt(0))) {
+        if (checkLengthAndIsDigit(text)) {
             return Integer.parseInt(text);
         }
 
@@ -39,12 +39,16 @@ public class StringCalculator {
         return text == null || text.isEmpty();
     }
 
+    private static boolean checkLengthAndIsDigit(String text) {
+        return text.length() == 1 && Character.isDigit(text.charAt(0));
+    }
+
     private static boolean checkAllDigit(String[] numbers) {
         return Arrays.stream(numbers).allMatch(n -> n.matches("\\d+"));
     }
 
 
     private static int sum(String[] numbers) {
-         return Arrays.stream(numbers).mapToInt(Integer::parseInt).sum();
+        return Arrays.stream(numbers).mapToInt(Integer::parseInt).sum();
     }
 }
