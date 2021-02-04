@@ -10,11 +10,21 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.*;
 
 class CarsTest {
+
     @Test
-    void Cars_쉼표로_구분된_문저열_받으면_객체가_생성된() {
+    void Cars_쉼표로_구분된_문자열_받으면_객체가_생성된다() {
         String carNames = "pobi,brown";
-        assertThatCode( () -> Cars.generate(input))
+        assertThatCode( () -> Cars.generate(carNames))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    void Cars_잘못된_이름이_포함된_문자열_받으면_예외가_발생한다() {
+        String carNames = "pobi,bro.wn,";
+
+        assertThatCode(() -> {
+            Cars.generate(carNames);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     static class Cars {
