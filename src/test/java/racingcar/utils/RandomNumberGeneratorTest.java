@@ -20,6 +20,4 @@ public class RandomNumberGeneratorTest {
             assertTrue(value >= DOWN_LIMIT);
         }
     }
-
-
 }
