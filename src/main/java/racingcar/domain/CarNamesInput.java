@@ -6,18 +6,18 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Input {
+public class CarNamesInput {
     private static final String DELIMITER = ",";
 
     private List<String> carNames;
 
-    private Input(String input) {
+    private CarNamesInput(String input) {
         carNames = Arrays.asList(input.split(DELIMITER));
         validateCarNameDuplicate();
     }
 
-    public static Input valueOf(String input) {
-        return new Input(input);
+    public static CarNamesInput valueOf(String input) {
+        return new CarNamesInput(input);
     }
 
     public List<String> getCarNames() {
