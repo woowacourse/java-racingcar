@@ -2,10 +2,15 @@ package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
 public class RacingCarTest {
 
@@ -31,7 +36,13 @@ public class RacingCarTest {
     @ParameterizedTest
     @CsvSource(value = {"pobi,crong,honux:3", "mungto:1", "oz,mungto:2"}, delimiter = ':')
     void carCreateLengthTest(String input, String expected) {
-
+        List<Car> carList = new ArrayList<>();
+        String[] carNames = input.split(",");
+        for (String carName : carNames) {
+            carList.add(new Car(carName));
+        }
+        Cars cars = new Cars(carList);
+        assertEquals(cars.getCars().size(), Integer.parseInt(expected));
     }
 
     @ParameterizedTest
