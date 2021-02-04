@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.AttemptNumber;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
@@ -70,12 +71,6 @@ public class RacingCarTest {
             .isThrownBy(() -> {
                 new AttemptNumber(number);
             });
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"0", "7", "b", "a"})
-    void attemptsNumberTypeErrorTest(int text) {
-        // 타입에러가 잘 출력되는지 테스트
     }
 
     @ParameterizedTest
