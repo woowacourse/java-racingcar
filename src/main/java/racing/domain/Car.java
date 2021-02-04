@@ -4,10 +4,9 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Car {
+public class Car {
     private static final Pattern PATTERN = Pattern.compile("[a-zA-Z]{1,5}");
     private static final int MINIMUM_MOVE_NUMBER = 4;
-
     private static final int DEFAULT_POSITION = 0;
 
     private final String name;

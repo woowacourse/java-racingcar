@@ -63,7 +63,7 @@ public class Cars {
 
     public List<CarDto> getCarDtos() {
         return cars.stream()
-                .map(car -> new CarDto(car.getName(), car.getPosition()))
+                .map(CarDto::of)
                 .collect(Collectors.toList());
     }
 }
