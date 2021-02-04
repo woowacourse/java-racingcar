@@ -3,6 +3,7 @@ package racingcar.domain;
 public class Car {
     private static final String MARKER_BETWEEN_NAME_AND_POSITION = " : ";
     private static final String MARKER_OF_POSITION = "-";
+    private static final int MOVING_BASELINE = 4;
 
     private final Name name;
     private Position position;
@@ -13,7 +14,9 @@ public class Car {
     }
 
     public void movePosition(int value) {
-        position.move(value);
+        if (value >= MOVING_BASELINE) {
+            position.move();
+        }
     }
 
     public String getCurrentPosition() {

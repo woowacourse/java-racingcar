@@ -11,7 +11,7 @@ public class Position {
         return position;
     }
 
-    public void move(int value) {
-        this.position += value;
+    public void move() {
+        this.position++;
     }
 }
