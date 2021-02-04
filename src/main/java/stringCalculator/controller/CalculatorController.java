@@ -21,6 +21,15 @@ public class CalculatorController {
 
     public int run() {
         String input = inputView.scanInput();
+
+        return getResult(input);
+    }
+
+    public int getResult(String input) {
+        if (checkNullOrEmpty(input)) {
+            return NULL_OR_EMPTY_RESULT;
+        }
+
         String delimiters = ",|:";
 
         String numbers = getNumbers(input);
@@ -29,11 +38,7 @@ public class CalculatorController {
             delimiters += ("|" + getCustomDelimiter(input));
         }
 
-        if (checkNullOrEmpty(numbers)) {
-            return NULL_OR_EMPTY_RESULT;
-        }
-
-        return 0;
+        return splitAndSum(numbers, delimiters);
     }
 
     private boolean hasCustomDelimiter(String input) {
@@ -73,6 +78,14 @@ public class CalculatorController {
         return input;
     }
 
+    public int splitAndSum(String value, String delimiters) {
+        List<Integer> numbers = splitNumbers(value, delimiters);
+
+        return numbers.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+    }
+
     public List<Integer> splitNumbers(String value, String delimiters) {
         String[] numbers = value.split(delimiters);
 
@@ -85,13 +98,13 @@ public class CalculatorController {
 
     private void isValidNumbers(String[] numbers) {
         for (String number : numbers) {
-            checkNullOrBlank(number);
+            checkCharacterNullOrEmpty(number);
             checkNumber(number);
         }
     }
 
-    private void checkNullOrBlank(String value) {
-        if (value == null || value.equals("")) {
+    private void checkCharacterNullOrEmpty(String value) {
+        if (value == null || value.isEmpty()) {
             throw new RuntimeException("숫자 문자열만 입력해 주세요");
         }
     }

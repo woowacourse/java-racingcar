@@ -2,6 +2,7 @@ package stringCalculator.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -16,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CalculatorControllerTest {
+    private static final String DEFAULT_DELIMITERS = ",|:";
     private CalculatorController calculatorController;
 
     private static Stream<Arguments> provideNumbersForSplit() {
@@ -74,10 +76,45 @@ class CalculatorControllerTest {
     @ParameterizedTest
     @MethodSource("provideInvalidNumbersForSplit")
     public void splitNumbers_정상적인_숫자가_아닌_경우(String value) {
-        String delimiters = ",|:";
-
         assertThatThrownBy(() -> {
-            calculatorController.splitNumbers(value, delimiters);
+            calculatorController.splitNumbers(value, DEFAULT_DELIMITERS);
         }).isInstanceOf(RuntimeException.class);
+    }
+
+    @DisplayName("숫자 하나를 문자열로 입력할 경우 해당 숫자를 반환")
+    @Test
+    public void splitAndSum_숫자하나() {
+        int result = calculatorController.splitAndSum("1", DEFAULT_DELIMITERS);
+        assertThat(result).isEqualTo(1);
+    }
+
+    @DisplayName("정상적인 숫자 문자열이 입력된 경우 숫자를 분리 후 더하여 반환")
+    @ParameterizedTest
+    @CsvSource(value = {"1,2,3=6", "1,2:3=6"}, delimiter = '=')
+    public void splitAndSum_정상적인_문자열(String value, String expected) {
+        int result = calculatorController.splitAndSum(value, DEFAULT_DELIMITERS);
+        int expectedNumber = Integer.parseInt(expected);
+
+        assertThat(result).isEqualTo(expectedNumber);
+    }
+
+    @DisplayName("정상적인 숫자 문자열이 입력된 경우 숫자를 분리 후 더하여 반환")
+    @ParameterizedTest
+    @CsvSource(value = {"1,2,3=6", "1,2:3=6", "//;\\n1;2,3=6"}, delimiter = '=')
+    public void getResult_정상적인_문자열(String value, String expected) {
+        int result = calculatorController.getResult(value);
+        int expectedNumber = Integer.parseInt(expected);
+
+        assertThat(result).isEqualTo(expectedNumber);
+    }
+
+    @DisplayName("숫자 문자열이 null 또는 빈문자인 경우 0을 반환")
+    @Test
+    public void getResult_null_또는_빈문자() {
+        int result = calculatorController.getResult(null);
+        assertThat(result).isEqualTo(0);
+
+        result = calculatorController.getResult("");
+        assertThat(result).isEqualTo(0);
     }
 }
