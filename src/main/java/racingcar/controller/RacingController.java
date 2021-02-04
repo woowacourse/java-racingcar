@@ -7,7 +7,11 @@ import racingcar.view.OutputView;
 public class RacingController {
 
     public void start() {
-        OutputView.enterCarNames();
-        Names names = InputView.getNames();
+        try {
+            OutputView.enterCarNames();
+            Names names = InputView.getNames();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+        }
     }
 }

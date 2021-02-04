@@ -15,9 +15,9 @@ public class Names {
     }
 
     private String[] splitNames(String names) {
-        return Stream.of(names.split(","))
-                .map(s -> s.replaceAll(" ", ""))
+        String[] carNames = Stream.of(names.split(","))
                 .toArray(String[]::new);
-    }
 
+        return carNames;
+    }
 }

@@ -6,4 +6,8 @@ public class OutputView {
     public static void enterCarNames() {
         System.out.println(ENTER_CAR_NAMES);
     }
+
+    public static void printErrorMessage(String e) {
+        System.out.println(e);
+    }
 }
