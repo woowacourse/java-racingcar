@@ -6,11 +6,15 @@ import java.util.regex.Pattern;
 
 class Car {
     private static final Pattern PATTERN = Pattern.compile("[a-zA-Z]{1,5}");
+    private static final int MINIMUM_MOVE_NUMBER = 4;
+    private static final int DEFAULT_POSITION = 0;
 
     private final String name;
+    private int position;
 
     public Car(String name) {
         this.name = name;
+        this.position = DEFAULT_POSITION;
         validateName();
     }
 
@@ -22,6 +26,14 @@ class Car {
         if (!matcher.matches()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public boolean move(int randomNumber) {
+        if (randomNumber >= MINIMUM_MOVE_NUMBER) {
+            this.position++;
+            return true;
+        }
+        return false;
     }
 }
 

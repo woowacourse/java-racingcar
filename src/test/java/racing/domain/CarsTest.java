@@ -1,13 +1,14 @@
 package racing.domain;
 
 import org.junit.jupiter.api.Test;
+import racing.utils.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 class CarsTest {
 
@@ -30,6 +31,8 @@ class CarsTest {
     static class Cars {
         private static final String DELIMITER = ",";
         private static final int SPLIT_THRESHOLD = -1;
+        private static final int START_NUMBER = 0;
+        private static final int END_NUMBER = 9;
 
         private final List<Car> cars;
 
@@ -47,6 +50,10 @@ class CarsTest {
 
         private static String[] splitCarNames(String carNames) {
             return carNames.split(DELIMITER, SPLIT_THRESHOLD);
+        }
+
+        public void race(){
+            cars.forEach( car -> car.move(RandomUtils.getRandomNumber(START_NUMBER, END_NUMBER)));
         }
     }
 }
