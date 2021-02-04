@@ -2,6 +2,9 @@ package study;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.*;
@@ -19,13 +22,15 @@ public class StringTest {
         assertThat(values).isEqualTo("1,2");
     }
 
-    @Test
-    void charAt() {
+    @DisplayName("Proper_charAt_Test")
+    @ParameterizedTest
+    @CsvSource(value = {"0,a", "1,b", "2,c"})
+    void charAtProper(int testIndex, char testCharacter) {
         String values = "abc";
-        assertThat(values.charAt(1)).isEqualTo('b');
+        assertThat(values.charAt(testIndex)).isEqualTo(testCharacter);
     }
 
-    @DisplayName("charAt Test")
+    @DisplayName("Exceptional_charAt_Test")
     @Test
     void charAtException() {
         assertThatThrownBy(() -> {
@@ -37,4 +42,20 @@ public class StringTest {
         }).isInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessageContaining("Index: 3, Size: 3");
     }
+
+    @DisplayName("Exceptional_charAt_Test")
+    @ParameterizedTest
+    @ValueSource(ints = {3,4,-1})
+    void charAtException2(int testIndex) {
+        String values = "abc";
+        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+            .isThrownBy(() -> {
+            try {
+                char value = values.charAt(testIndex);
+            } catch(Exception e) {
+                throw new IndexOutOfBoundsException("Index: " + testIndex + ", Size: " + values.length());
+            }
+        }).withMessageMatching("Index: (-?[0-9]*), Size: \\d+");
+    }
+
 }
