@@ -32,4 +32,5 @@ public class StringCalculator {
 
         return input.split("[,:]");
     }
+
 }
