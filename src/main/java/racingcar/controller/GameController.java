@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.CarRepository;
 import racingcar.domain.car.Game;
+import racingcar.view.GamePage;
 
 public class GameController {
 
@@ -10,7 +11,7 @@ public class GameController {
 
     public void startGame(Game game) {
         this.game = game;
-
+        GamePage.printResult();
         while (game.notFinished()) {
             game.incrementCount();
             playSingleRound();
@@ -22,6 +23,6 @@ public class GameController {
         for (Car car : CarRepository.cars()) {
             car.tryToMoveForward(Game.generateRandomInteger());
         }
-        // 한 라운드 결과 출력
+        GamePage.printSingleRoundResult();
     }
 }
