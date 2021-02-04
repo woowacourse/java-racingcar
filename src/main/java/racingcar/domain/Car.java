@@ -27,4 +27,8 @@ public class Car {
         }
         return current.toString();
     }
+
+    public boolean isSamePositionWith(int pos) {
+        return position.getPosition() == pos;
+    }
 }
