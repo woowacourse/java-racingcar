@@ -11,4 +11,8 @@ public class InputView {
     public static String getNextLine() {
         return SCANNER.nextLine();
     }
+
+    public static int getNextInt() {
+        return Integer.parseInt(SCANNER.nextLine());
+    }
 }
