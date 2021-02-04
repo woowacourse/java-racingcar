@@ -6,7 +6,11 @@ import java.util.Optional;
 public class StringCalculator {
 
     public int stringSum(String str) {
+        if (str == null) {
+            return 0;
+        }
         String separatorRegex = getSeparatorRegex(str);
+
         if (isCustomSeparatorExists(str)) {
             str = str.substring(4);
         }
