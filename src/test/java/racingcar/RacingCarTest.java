@@ -47,8 +47,18 @@ public class RacingCarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"pobi,crong,honux", "mungto,oz", "oz,mungto"})
-    void multiCarNameEqualTest(int text) {
+    void multiCarNameEqualTest(String text) {
         // 입력한 이름과 객체들의 이름이 같은지 테스트
+        List<Car> carList = new ArrayList<>();
+        String[] carNames = text.split(",");
+        for (String carName : carNames) {
+            carList.add(new Car(carName));
+        }
+        Cars cars = new Cars(carList);
+        carList = cars.getCars();
+        for (int i = 0; i < carList.size(); i++) {
+            assertEquals(carList.get(i).getName(), carNames[i]);
+        }
     }
 
     @ParameterizedTest
