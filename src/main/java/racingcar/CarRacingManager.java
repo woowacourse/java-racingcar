@@ -2,6 +2,7 @@ package racingcar;
 
 import racingcar.view.InputView;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class CarRacingManager {
@@ -18,7 +19,8 @@ public class CarRacingManager {
 
     public void start() {
         String carNames = InputView.printInputCarName(scanner);
-        carRegister.registerCars(carNames);
+        List<Car> cars = carRegister.registerCars(carNames);
+        CarRepository.saveAll(cars);
 
         String tryTime = InputView.printInputRaceTime(scanner);
         racingTimeRegister.registerRacingTime(tryTime);

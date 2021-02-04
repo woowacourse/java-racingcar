@@ -23,7 +23,21 @@ public class CarRepository {
     public static void race(int tryTime) {
         for (int i = 0; i < tryTime; i++) {
             updateAllCarsPosition();
+            showAllCarsPosition(cars);
+            OutputView.printNewLine();
         }
+
+        OutputView.printWinner(getWinnerNames());
+    }
+
+    private static List<String> getWinnerNames() {
+        return getWinners().stream().map(Car::getName).collect(Collectors.toList());
+    }
+
+    private static void showAllCarsPosition(List<Car> cars) {
+        cars.forEach(car -> {
+            OutputView.printRaceResultEachCar(car.getName(), car.getPosition());
+        });
     }
 
     private static void updateAllCarsPosition() {

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class OutputView {
     private static final String NEW_LINE = "\n";
+    private static final String POSITION_SIGN = "-";
 
     public static void printRaceResult() {
         System.out.println(NEW_LINE + "실행 결과");
