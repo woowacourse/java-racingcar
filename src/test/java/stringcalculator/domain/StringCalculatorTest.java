@@ -13,6 +13,7 @@ import stringcalculator.exception.IllegalCustomDelimiterPositionException;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.in;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -81,6 +82,16 @@ public class StringCalculatorTest {
     public void splitAndSum_구분자로_구분된_숫자들의_합을_반환(String input, String expected) {
         assertEquals(Integer.valueOf(expected), StringCalculator.splitAndSum(input));
     }
+
+    @ParameterizedTest
+    @DisplayName("분리 된 문자열 중 숫자가 아닌 것이 있는지 체크 한다.")
+    @ValueSource(strings = {"//|\na|b|c", "a,b:c", "//;\n|;|;3", "1,b:3"})
+    public void splitAndSum_분리_된_문자가_숫자가_아니면_예외(String input) {
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
+                () -> StringCalculator.splitAndSum(input)
+        );
+    }
+
 
     private static Stream<Arguments> provideInputsFor_구분자로_구분된_숫자들의_합을_반환() {
         return Stream.of(
