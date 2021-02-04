@@ -12,7 +12,7 @@ public class ZeroAndPositiveNumber {
         if (number.isEmpty()) {
             return 0;
         }
-    
+        
         int parsedNumber = Integer.parseInt(number);
         if (parsedNumber < 0) {
             throw new RuntimeException();

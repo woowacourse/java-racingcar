@@ -39,7 +39,7 @@ public class SetTest {
         
         // when
         boolean hasNumber = numbers.contains(input);
-    
+        
         // then
         assertThat(hasNumber).isTrue();
     }
