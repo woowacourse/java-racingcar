@@ -6,31 +6,46 @@ import java.util.regex.*;
 
 public class StringCalculator {
     public static int splitAndSum(String text) {
-
+        // 빈거
         if (isEmpty(text)) {
             return 0;
         }
-        if(isOneDigit(text)){
+        // 한자리
+        if (isOneDigit(text)) {
             return Integer.parseInt(text);
         }
         List<String> tokens;
+        // 커스텀
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (m.find()) {
             String customDelimiter = m.group(1);   // group 1-> //랑 \n사이에 거를 딜리미터로 받고 (.) (.) 문자하나 아무거나
             tokens = Arrays.asList(m.group(2).split(customDelimiter));   //나머지 (.*)는 group2
-            // 덧셈 구현
-            return 1;
+            if(containsNegative(tokens)){
+                throw new RuntimeException();
+            }
+            return getSum(tokens);
         }
+        // 일반
         tokens = Arrays.asList(text.split(",|:"));
-        int sum = 0;
-//        tokens.stream().;
+        if(containsNegative(tokens)){
+            throw new RuntimeException();
+        }
+        int sum = getSum(tokens);
+        return sum;
+    }
 
-        //https://www.baeldung.com/java-stream-sum
+    public static boolean containsNegative(List<String> tokens) {
+        if (tokens.stream()
+                .filter(token -> Integer.parseInt(token) < 0)
+                .findAny()
+                .isPresent()) {
+            return true;
+        }
+        return false;
+    }
 
-        // java.util.regex 패키지의 Matcher, Pattern import
-
-        //음수 전달 예외처리
-        return 0;
+    public static int getSum(List<String> tokens) {
+        return tokens.stream().mapToInt(Integer::valueOf).sum();
     }
 
     public static boolean isEmpty(String text) {
@@ -43,15 +58,10 @@ public class StringCalculator {
         return false;
     }
 
-    public static boolean isOneDigit(String text){
-        if(text.length() == 1 && Character.isDigit(text.charAt(0))){
+    public static boolean isOneDigit(String text) {
+        if (text.length() == 1 && Character.isDigit(text.charAt(0))) {
             return true;
         }
-        return false;
-    }
-
-    public static boolean isContainSeparator(String text){
-
         return false;
     }
 }
