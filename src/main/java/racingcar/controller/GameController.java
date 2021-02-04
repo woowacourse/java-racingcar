@@ -1,5 +1,7 @@
 package racingcar.controller;
 
+import racingcar.domain.car.Car;
+import racingcar.domain.car.CarRepository;
 import racingcar.domain.car.Game;
 
 public class GameController {
@@ -8,10 +10,18 @@ public class GameController {
 
     public void startGame(Game game) {
         this.game = game;
-        // 랜덤 값 설정
-        // round 진행
-        // 결과 출력
+
+        while (game.notFinished()) {
+            game.incrementCount();
+            playSingleRound();
+        }
+        // 최종 결과 출력
     }
 
-
+    public void playSingleRound() {
+        for (Car car : CarRepository.cars()) {
+            car.tryToMoveForward(Game.generateRandomInteger());
+        }
+        // 한 라운드 결과 출력
+    }
 }

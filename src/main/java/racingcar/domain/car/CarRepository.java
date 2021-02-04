@@ -30,4 +30,8 @@ public class CarRepository {
                 .filter(car -> car.checkPosition(position))
                 .collect(Collectors.toList());
     }
+
+    public static int getSize() {
+        return cars.size();
+    }
 }
