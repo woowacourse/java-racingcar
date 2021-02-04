@@ -3,8 +3,10 @@ package StringCalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -12,10 +14,22 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class StringCalculatorTest {
 
     @DisplayName("커스텀 구분자를 적용한 문자열 덧셈 기능")
-    @Test
-    void splitAndSumWhenApplyCustomDelimiter() {
-        String string = "//;\n1;2;3";
-        assertThat(StringCalculator.splitAndSum(string)).isEqualTo(6);
+    @ParameterizedTest
+    @MethodSource
+    void splitAndSumWhenApplyCustomDelimiter(String input) {
+        String[] stringAndResult = input.split("#");
+        String string = stringAndResult[0];
+        String result = stringAndResult[1];
+        assertThat(StringCalculator.splitAndSum(string)).isEqualTo(Integer.parseInt(result));
+    }
+
+    private static Stream<String> splitAndSumWhenApplyCustomDelimiter() {
+        return Stream.of(
+                "//;\n1;2;3#6",
+                "//@\n1@3@6#10",
+                "//!\n1!3!5#9",
+                "//%\n20%4%1#25"
+        );
     }
 
     @DisplayName("기본 구분자를 적용한 문자열 덧셈 기능")
@@ -27,8 +41,7 @@ class StringCalculatorTest {
 
     @DisplayName("null 또는 비어있는 문자열을 더하면 0을 반환한다")
     @ParameterizedTest
-    @NullSource
-    @EmptySource
+    @NullAndEmptySource
     void splitAndSumWhenStringIsNullAndEmpty(String input) {
         assertThat(StringCalculator.splitAndSum(input)).isEqualTo(0);
     }
