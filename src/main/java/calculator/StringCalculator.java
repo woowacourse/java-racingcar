@@ -1,27 +1,30 @@
 package calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
     private static final int ZERO = 0;
     private static final int INIT_NUMBER = -1;
-    private static final String DELIMITER = ",";
-//    private static final String[] delimiters = {",", ":"};
 
-//    public enum delimiters {
-//        COMMA(","),
-//        COLON(":");
-//
-//        private final String delimiter;
-//        private delimiters(String delimiter) {
-//            this.delimiter = delimiter;
-//        }
-//
-//        public boolean isIncludeComma(String text){
-//            if (text.contains(COMMA)){
-//                return true;
-//            }
-//            return false;
-//        }
-//    }
+    private enum Delimiters{
+        COMMA(","),
+        COLON(":");
+
+        private final String delimiter;
+
+        private Delimiters(String delimiter) {
+            this.delimiter = delimiter;
+        }
+
+        private static String getAllDelimiters(){
+            List<String> delimiters = new ArrayList<String>();
+            for(Delimiters delimiter : Delimiters.values()){
+                delimiters.add(delimiter.delimiter);
+            }
+            return String.join("|\\", delimiters);
+        }
+    }
 
     public static int splitAndSum(String text) {
         int result = INIT_NUMBER;
@@ -37,21 +40,7 @@ public class StringCalculator {
             result = Integer.parseInt(text);
             return result;
         }
-        return splitByDelimiter(text, DELIMITER);
-        //return result;
-    }
-
-    private static int splitByDelimiter(String text, String delimiter) {
-        String[] numbers = text.split(delimiter);
-        return sumNumbers(numbers);
-    }
-
-    private static int sumNumbers(String[] numbers) {
-        int result = 0;
-        for (String number : numbers){
-            result += Integer.parseInt(number);
-        }
-        return result;
+        return splitByDelimiters(text);
     }
 
     private static boolean isNull(String text) {
@@ -78,5 +67,18 @@ public class StringCalculator {
             return false;
         }
         return true;
+    }
+
+    private static int splitByDelimiters(String text) {
+        String[] numbers = text.split(Delimiters.getAllDelimiters());
+        return sumNumbers(numbers);
+    }
+
+    private static int sumNumbers(String[] numbers) {
+        int result = 0;
+        for (String number : numbers){
+            result += Integer.parseInt(number);
+        }
+        return result;
     }
 }
