@@ -20,7 +20,7 @@ class RacingResultTest {
 
   @Test
   void appendLog() {
-    String expectedLog = "pobi : - " + ENTER + "spring : - " + ENTER + ENTER;
+    String expectedLog = "pobi : -" + ENTER + "spring : -" + ENTER + ENTER;
     participants.getCars().forEach(car -> {
       car.fillInFuel(Car.MIN_RUNNABLE_FUEL);
       car.run();
