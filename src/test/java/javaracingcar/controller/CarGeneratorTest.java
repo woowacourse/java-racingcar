@@ -11,7 +11,20 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CarFactoryTest {
+class CarGeneratorTest {
+
+    @Test
+    void generateCarList_자동차리스트생성 () {
+        List<String> cars = new ArrayList<>();
+        cars.add("carA");
+        cars.add("carB");
+        cars.add("carC");
+        List<Car> generatedCars = CarGenerator.generateCars(Arrays.asList("CarA", "CarB", "CarC"));
+        for (int i = 0; i < cars.size(); i++) {
+            assertEquals(generatedCars.get(i).getName(), cars.get(i));
+        }
+    }
+
     @Test
     void generateCarWithName_null() {
         assertThatThrownBy(() -> CarGenerator.generateCar(null))
