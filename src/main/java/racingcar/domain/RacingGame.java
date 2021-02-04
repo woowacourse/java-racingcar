@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import racingcar.dto.CarsResponseDto;
+
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -3,7 +3,6 @@ package racingcar.domain;
 import racingcar.dto.CarsResponseDto;
 import racingcar.utils.RandomGenerator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;

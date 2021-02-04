@@ -25,7 +25,7 @@ public class RacingGameController {
         OutputView.announceWinners(racingGame.findWinners());
     }
 
-    private void executeRound(RacingGame racingGame){
+    private void executeRound(RacingGame racingGame) {
         int round = inputRound();
         OutputView.output(EXECUTE_RESULT_MSG);
         for (int i = 0; i < round; i++) {
@@ -34,7 +34,7 @@ public class RacingGameController {
         }
     }
 
-    private List<String> takeNameInput(){
+    private List<String> takeNameInput() {
         OutputView.output(INPUT_CARS_NAME_MSG);
         String input = InputView.nextLine();
         validateBlank(input);
@@ -56,11 +56,11 @@ public class RacingGameController {
         }
     }
 
-    private int inputRound(){
+    private int inputRound() {
         OutputView.output(INPUT_NUMBER_OF_ROUNDS_MSG);
-        try{
+        try {
             return Integer.parseInt(InputView.nextLine());
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(IS_NOT_NUMBER_ERROR_MSG);
         }
     }
