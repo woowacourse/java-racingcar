@@ -48,8 +48,16 @@ public class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {",0"}) //"null,0", "1,1"
+    @MethodSource("provideNullAndEmptyTestCase")
     void emptyOrNullCaseTest(String input, Integer expected) {
         assertThat(stringCalculator.stringSum(input)).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> provideNullAndEmptyTestCase() {
+        return Stream.of(
+                Arguments.of("", 0),
+                Arguments.of(null, 0),
+                Arguments.of("1", 1)
+        );
     }
 }
