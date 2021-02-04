@@ -36,10 +36,4 @@ class RacingGameTest {
 
         assertThat(beforeRound + 1).isEqualTo(afterRound);
     }
-
-    @DisplayName("우승자 확인 테스트")
-    @Test
-    void 우승자_확인_테스트(){
-
-    }
 }
