@@ -14,39 +14,31 @@ public class StringCalculator {
             return 0;
         }
 
-        if (checkLengthAndIsDigit(text)) {
-            return Integer.parseInt(text);
-        }
+        String[] numbers = splitNumber(text);
 
-        String[] numbers = text.split(COMMA + VERTICAL_LINE + COLON);
-        int result = 0;
+        checkAllDigit(numbers);
 
+        return sum(numbers);
+    }
+
+    private static String[] splitNumber(String text) {
         Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (matcher.find()) {
             String delimiter = matcher.group(1);
-            numbers = matcher.group(2).split(delimiter);
+            return matcher.group(2).split(delimiter);
         }
-
-        if (!checkAllDigit(numbers)) {
-            throw new RuntimeException();
-        }
-        result = sum(numbers);
-
-        return result;
+        return text.split(COMMA + VERTICAL_LINE + COLON);
     }
 
     private static boolean checkEmptyOrNullString(String text) {
         return text == null || text.isEmpty();
     }
 
-    private static boolean checkLengthAndIsDigit(String text) {
-        return text.length() == 1 && Character.isDigit(text.charAt(0));
+    private static void checkAllDigit(String[] numbers) {
+        if (!Arrays.stream(numbers).allMatch(n -> n.matches("\\d+"))) {
+            throw new RuntimeException();
+        }
     }
-
-    private static boolean checkAllDigit(String[] numbers) {
-        return Arrays.stream(numbers).allMatch(n -> n.matches("\\d+"));
-    }
-
 
     private static int sum(String[] numbers) {
         return Arrays.stream(numbers).mapToInt(Integer::parseInt).sum();
