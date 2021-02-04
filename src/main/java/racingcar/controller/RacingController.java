@@ -17,7 +17,12 @@ public class RacingController {
             OutputView.enterTrials();
             Trial trial = InputView.getTrial();
 
-
+            for (int i = 0; i < trial.getTrial(); i++) {
+                // drive
+                cars.moveCars();
+                // show
+                OutputView.printCurrentResult(cars.getCurrentPosition());
+            }
 
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());

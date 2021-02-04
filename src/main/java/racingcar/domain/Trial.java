@@ -29,4 +29,8 @@ public class Trial {
             throw new IllegalArgumentException(COUNT_ERR_MSG);
         }
     }
+
+    public int getTrial() {
+        return trial;
+    }
 }

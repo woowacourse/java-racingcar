@@ -17,6 +17,10 @@ public class Name {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void checkNameValidation(String name) {
         isEmpty(name);
         isLetterMoreThan1LessThan5(name);
