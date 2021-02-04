@@ -31,8 +31,6 @@ public class StringCalculatorTest {
     @DisplayName("커스텀 구분자 테스트: CsvSource 사용")
     @MethodSource("provideCustomSeparatorTestCase")
     void customSeparatorTest(String input, Integer expected) {
-        //1. 커스텀 구분자가 있을 때 구분자 배열 확인 : , custom
-        //2. 커스텀 구분자가 없을 때 구분자 배열 확인 : ,
         assertThat(stringCalculator.stringSum(input)).isEqualTo(expected);
     }
 
