@@ -25,4 +25,13 @@ public class CarName {
             throw new CarNameBlankOrEmptyException();
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || !(o instanceof CarName)) {
+            return false;
+        }
+
+        return name.equals(((CarName) o).name);
+    }
 }

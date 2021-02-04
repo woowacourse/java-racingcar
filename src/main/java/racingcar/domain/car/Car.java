@@ -6,9 +6,11 @@ public class Car {
 
     private int position;
     private Condition moveCondition;
+    private CarName name;
 
-    public Car(Condition moveCondition) {
+    public Car(CarName name, Condition moveCondition) {
         this.moveCondition = moveCondition;
+        this.name = name;
     }
 
     public void move() {
@@ -21,5 +23,22 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public CarName getName() {
+        return name;
+    }
+
+    public boolean isSamePosition(int position) {
+        return this.position == position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || !(o instanceof Car)) {
+            return false;
+        }
+
+        return name.equals(((Car) o).name);
     }
 }
