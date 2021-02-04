@@ -10,7 +10,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOf
 public class MoveCountInputTest {
     @ParameterizedTest
     @DisplayName("이동횟수가_숫자가_아닐_경우_예외")
-    @ValueSource(strings = {"a","b", "|", "★"})
+    @ValueSource(strings = {"a","b", "|", "★", " ", "  ", "          "})
     public void 이동횟수가_숫자가_아닐_경우_예외(String input) {
         assertThatExceptionOfType(CarMoveCountNonNumericException.class)
                 .isThrownBy(() -> new MoveCountInput(input))
