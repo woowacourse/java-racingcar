@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.CarRepository;
+import racingcar.domain.car.Game;
 import racingcar.utils.ErrorUtils;
 import racingcar.view.ErrorMessages;
 import racingcar.view.Main;
@@ -17,13 +18,50 @@ public class MainController {
     private static final Scanner scanner = new Scanner(System.in);
 
     public void run() {
+        userInputNames();
+        userInputTurnQuantity();
+    }
+
+    private void userInputNames() {
         try {
             Main.printMainPage();
             String userInput = scanner.nextLine();
             splitNames(userInput);
         } catch (IllegalArgumentException e) {
             ErrorUtils.printError(e);
-            run();
+            userInputNames();
+        }
+    }
+
+    private void userInputTurnQuantity() {
+        try {
+            Main.askTurnQuantity();
+            String userInput = scanner.nextLine();
+            int turnQuantity = validateTurnQuantity(userInput);
+            GameController gameController = new GameController();
+            gameController.startGame(new Game(turnQuantity));
+        } catch (IllegalArgumentException e) {
+            userInputTurnQuantity();
+        }
+    }
+
+    private int validateTurnQuantity(String userInput) {
+        int parsedInt = validateNumeric(userInput);
+        validatePositive(parsedInt);
+        return parsedInt;
+    }
+
+    private int validateNumeric(String userInput) {
+        try {
+            return Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessages.ERROR_TURN_NOT_INTEGER);
+        }
+    }
+
+    private void validatePositive(int parsedInt) {
+        if (parsedInt <= 0) {
+            throw new IllegalArgumentException(ErrorMessages.ERROR_TURN_NOT_POSITIVE);
         }
     }
 
