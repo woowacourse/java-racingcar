@@ -10,5 +10,4 @@ public class Cars {
         carNameList.stream()
         .map(carName -> carList.add(new Car(carName)));
     }
-
 }

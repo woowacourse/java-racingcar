@@ -11,4 +11,18 @@ public class Car {
         name = this.name;
         position = INITIAL_POSITION;
     }
+
+    public void oneTurn(int randomTurnNumber) {
+        if (randomTurnNumber >= GO_CRITERIA) {
+            progressPosition();
+        }
+    }
+
+    private void progressPosition() {
+        this.position++;
+    }
+
+    public int getPosition() {
+        return this.position;
+    }
 }
