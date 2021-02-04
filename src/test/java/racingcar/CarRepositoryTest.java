@@ -12,8 +12,6 @@ public class CarRepositoryTest {
     @DisplayName("우승자 결과 테스트 한 명")
     @Test
     void singleWinnerResult() {
-        List<Car> cars = new ArrayList<Car>();
-
         Car winner = new Car("pobi");
         Car loser = new Car("crong");
 
@@ -31,8 +29,7 @@ public class CarRepositoryTest {
     @DisplayName("우승자 결과 테스트 여러명")
     @Test
     void multiWinnerResult() {
-        List<Car> cars = new ArrayList<Car>();
-        List<Car> winners = new ArrayList<Car>();
+        List<Car> expectedWinners = new ArrayList<>();
 
         Car winner1 = new Car("pobi");
         Car winner2 = new Car("poci");

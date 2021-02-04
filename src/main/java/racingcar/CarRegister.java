@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 
 public class CarRegister {
 
+    private static final String CAR_NAME_DELIMITER = ",";
+    private static final int INVALID_NUMBER_OF_CARS_ZERO = 0;
+
     public List<Car> registerCars(String input) {
         List<String> carNames = validateCarNames(input);
 
@@ -16,7 +19,7 @@ public class CarRegister {
     }
 
     private List<String> validateCarNames(String input) {
-        List<String> carNames = Arrays.stream(input.split(","))
+        List<String> carNames = Arrays.stream(input.split(CAR_NAME_DELIMITER))
                 .collect(Collectors.toList());
 
         validateNumberOfRegisteredCars(carNames);
@@ -26,7 +29,7 @@ public class CarRegister {
     }
 
     private void validateNumberOfRegisteredCars(List<String> carNames) {
-        if (carNames.size() == 0) {
+        if (carNames.size() == INVALID_NUMBER_OF_CARS_ZERO) {
             throw new InvalidNumberOfRegisteredCarsException();
         }
     }
