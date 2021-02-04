@@ -21,40 +21,40 @@ public class StringCalculator {
             return Integer.parseInt(input);
         }
 
-        if(isUsingCustomDelimiter(input)) {
+        if (isUsingCustomDelimiter(input)) {
             checkPrefixedCustomDelimiterFormat(input);
             String customDelimiter = extractCustomDelimiter(input);
             checkNumericDelimiter(customDelimiter);
             input = input.replaceAll(Pattern.quote(customDelimiter), COLON);
         }
 
-        System.out.println(input);
-
         input = extractElementString(input);
 
-        System.out.println(input);
-
-        String[] inputs = input.split(DEFAULT_DELIMITER);
-
-        for(String s : inputs) {
-            System.out.println(s);
-        }
-
+        String[] inputs = getSplitInput(input);
         checkNegativeNumber(inputs);
 
-        int a = 0;
-        for(String s : inputs) {
-            a += Integer.parseInt(s);
-        }
-
-        System.out.println(a);
-
-        return a;
+        return Arrays.stream(inputs).mapToInt(Integer::parseInt).sum();
     }
 
     private static void checkNumericDelimiter(String delimiter) {
         if (isNumeric(delimiter)) {
             throw new IllegalCustomDelimiterException();
+        }
+    }
+
+    private static String[] getSplitInput(String input) {
+        String[] inputs = input.split(DEFAULT_DELIMITER);
+        validateNonNumericInput(inputs);
+
+        return inputs;
+    }
+
+    private static void validateNonNumericInput(String[] inputs) {
+        long invalidInputCount = Arrays.stream(inputs)
+                .filter(element -> !isNumeric(element)).count();
+
+        if (invalidInputCount > 0) {
+            throw new IllegalArgumentException();
         }
     }
 
@@ -110,14 +110,14 @@ public class StringCalculator {
     }
 
     private static void checkNegativeNumber(String[] inputs) {
-       long sizeOfNegative = Arrays.stream(inputs)
-               .mapToInt(Integer::parseInt)
-               .filter(input -> input < 0)
-               .count();
+        long sizeOfNegative = Arrays.stream(inputs)
+                .mapToInt(Integer::parseInt)
+                .filter(input -> input < 0)
+                .count();
 
-       if (sizeOfNegative > 0) {
-           throw new IllegalArgumentException();
-       }
+        if (sizeOfNegative > 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private static Matcher createCustomDelimiterMatcher(String input) {
