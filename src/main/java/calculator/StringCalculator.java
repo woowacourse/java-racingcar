@@ -7,13 +7,16 @@ import java.util.stream.Collectors;
 
 public class StringCalculator {
 
+  private final static int ZERO = 0;
+  private final static List<String> DEFAULT_DELIMITERS = Arrays.asList(",", ":");
   private final static String START_SIGN_CUSTOMER_DELIMITER = "//";
   private final static String END_SIGN_CUSTOMER_DELIMITER = "\n";
+  private final static String JOIN_DELIMITER = "|";
   private final static String NEGATIVE_NUMBER_ERROR_MESSAGE = "음수를 입력할 수 없습니다.";
 
   public static int splitAndSum(String input) {
     if (isNullOrEmpty(input)) {
-      return 0;
+      return ZERO;
     }
     List<Integer> numbers = splitNumbers(input);
     if (containsNegativeNumber(numbers)) {
@@ -30,17 +33,16 @@ public class StringCalculator {
 
   private static boolean containsNegativeNumber(List<Integer> numbers) {
     return numbers.stream()
-        .anyMatch(number -> number < 0);
+        .anyMatch(number -> number < ZERO);
   }
 
   private static List<Integer> splitNumbers(String input) {
-    List<String> delimiters = new ArrayList<>(Arrays.asList(",", ":"));
+    List<String> delimiters = new ArrayList<>(DEFAULT_DELIMITERS);
     if (containsCustomerDelimiter(input)) {
       addCustomerDelimiter(input, delimiters);
-      input = input.substring(
-          input.indexOf(END_SIGN_CUSTOMER_DELIMITER) + END_SIGN_CUSTOMER_DELIMITER.length());
+      input = input.substring(input.indexOf(END_SIGN_CUSTOMER_DELIMITER) + END_SIGN_CUSTOMER_DELIMITER.length());
     }
-    String finalDelimiters = String.join("|", delimiters);
+    String finalDelimiters = String.join(JOIN_DELIMITER, delimiters);
     return Arrays.stream(input.split(finalDelimiters))
         .mapToInt(Integer::parseInt)
         .boxed()
