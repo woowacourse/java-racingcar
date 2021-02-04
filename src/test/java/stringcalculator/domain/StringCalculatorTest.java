@@ -3,14 +3,19 @@ package stringcalculator.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import stringcalculator.exception.IllegalCustomDelimiterException;
 import stringcalculator.exception.IllegalCustomDelimiterPositionException;
 
+import java.util.stream.Stream;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringCalculatorTest {
     @Test
@@ -23,7 +28,7 @@ public class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1:1", "2:2", "3:3", "4:4", "5:5","6:6","7:7","8:8","9:9","0:0"}, delimiter = ':')
+    @CsvSource(value = {"1:1", "2:2", "3:3", "4:4", "5:5", "6:6", "7:7", "8:8", "9:9", "0:0"}, delimiter = ':')
     public void splitAndSum_숫자하나(String input, int expected) throws Exception {
         int result = StringCalculator.splitAndSum(input);
         assertThat(result).isEqualTo(expected);
@@ -68,5 +73,23 @@ public class StringCalculatorTest {
     public void splitAndSum_custom_구분자가_숫자로_들어올_경우_예외(String input) {
         assertThatThrownBy(() -> StringCalculator.splitAndSum(input))
                 .isInstanceOf(IllegalCustomDelimiterException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("입력 데이터를 분리하고 덧셈하여 출력한")
+    @MethodSource("provideInputsFor_구분자로_구분된_숫자들의_합을_반환")
+    public void splitAndSum_구분자로_구분된_숫자들의_합을_반환(String input, String expected) {
+        assertEquals(Integer.valueOf(expected), StringCalculator.splitAndSum(input));
+    }
+
+    private static Stream<Arguments> provideInputsFor_구분자로_구분된_숫자들의_합을_반환() {
+        return Stream.of(
+                Arguments.of("//|\n1|2|3", "6"),
+                Arguments.of("//!\n1!2!3", "6"),
+                Arguments.of("1,2:3", "6"),
+                Arguments.of("1:2,3", "6"),
+                Arguments.of("1:2:3", "6"),
+                Arguments.of("1,2,3", "6")
+        );
     }
 }
