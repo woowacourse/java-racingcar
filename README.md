@@ -1,4 +1,4 @@
-# java-racingcar
+# java-racingCar
 자동차 경주 게임 미션 저장소
 
 ## 우아한테크코스 코드리뷰
