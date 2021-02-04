@@ -47,6 +47,5 @@ public class SetTest {
     void contains2(int number, boolean expected){
         assertEquals(expected, numbers.contains(number));
         assertThat(numbers.contains(number)).isEqualTo(expected);
-        assertThat(numbers.contains(number)).isTrue();
     }
 }
