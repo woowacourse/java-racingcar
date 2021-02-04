@@ -1,7 +1,9 @@
 package calculator;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 public class StringCalculator {
     private static final String COMMA = ",";
@@ -26,28 +28,20 @@ public class StringCalculator {
             numbers = matcher.group(2).split(delimiter);
         }
 
+        if (!checkAllDigit(numbers)) {
+            throw new RuntimeException();
+        }
         result = sum(numbers);
 
         return result;
     }
 
-    private static boolean checkDigit(String number) {
-        for (int i = 0; i < number.length(); i++) {
-            if (!Character.isDigit(number.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
+    private static boolean checkAllDigit(String[] numbers) {
+        return Arrays.stream(numbers).allMatch(n -> n.matches("\\d+"));
     }
 
+
     private static int sum(String[] numbers) {
-        int sum = 0;
-        for (String number : numbers) {
-            if (!checkDigit(number)) {
-                throw new RuntimeException();
-            }
-            sum += Integer.parseInt(number);
-        }
-        return sum;
+         return Arrays.stream(numbers).mapToInt(Integer::parseInt).sum();
     }
 }
