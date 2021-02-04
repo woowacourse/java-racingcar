@@ -38,6 +38,6 @@ public class RacingCarViewTest {
         Car sampleCar = new Car(SAMPLE_CAR_NAME);
         sampleCar.oneTurn(CRITERIA);
         RacingCarView.displayPosition(sampleCar);
-        assertEquals("sample : -", outputStreamCaptor.toString());
+        assertEquals("sample : -\n", outputStreamCaptor.toString());
     }
 }

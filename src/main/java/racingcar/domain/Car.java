@@ -8,7 +8,7 @@ public class Car {
     private static final int INITIAL_POSITION = 0;
 
     public Car(String name) {
-        name = this.name;
+        this.name = name;
         position = INITIAL_POSITION;
     }
 
@@ -20,6 +20,10 @@ public class Car {
 
     private void progressPosition() {
         this.position++;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public int getPosition() {
