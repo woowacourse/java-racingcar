@@ -77,6 +77,8 @@ public class RacingCarTest {
     @ValueSource(ints = {1, 2, 5, 8, 10})
     void attemptsNumberTest(int number) {
         // 에러가 출력이 안되고 잘 동작하는지 테스트
+        AttemptNumber attemptNumber = new AttemptNumber(number);
+        assertThat(attemptNumber.getAttemptNumber()).isEqualTo(number);
     }
 
     @ParameterizedTest
