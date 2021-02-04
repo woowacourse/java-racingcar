@@ -1,6 +1,7 @@
 package calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,6 +49,7 @@ public class StringCalculatorTest {
     }
 
     @ParameterizedTest
+    @DisplayName("빈문자열, null 입력 테스트")
     @MethodSource("provideNullAndEmptyTestCase")
     void emptyOrNullCaseTest(String input, Integer expected) {
         assertThat(stringCalculator.stringSum(input)).isEqualTo(expected);

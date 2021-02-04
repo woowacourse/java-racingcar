@@ -19,6 +19,11 @@ public class StringCalculator {
         String[] numbers = str.split(separatorRegex);
         return Arrays.stream(numbers)
                 .mapToInt(Integer::parseInt)
+                .peek(integer -> {
+                    if (integer < 0) {
+                        throw new RuntimeException();
+                    }
+                })
                 .sum();
     }
 
