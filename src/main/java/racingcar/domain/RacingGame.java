@@ -1,53 +1,30 @@
 package racingcar.domain;
 
 import racingcar.dto.CarsResponseDto;
-import racingcar.utils.RandomGenerator;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 public class RacingGame {
-    private List<Car> cars = new ArrayList<>();
+    private Cars cars;
     private int round;
 
     private final int INIT_ROUND = 1;
 
-    public RacingGame() {
+    public RacingGame(List<String> names) {
+        this.cars = new Cars(names);
         this.round = INIT_ROUND;
     }
 
-    public void makeCars(List<String> names) {
-        names.forEach(name -> addCar(new Car(name)));
-    }
-
-    public void addCar(Car car) {
-        cars.add(car);
-    }
-
     public void playRound() {
-        cars.forEach(car -> car.move(RandomGenerator.generateRandomNumber()));
+        cars.moveCars();
         round++;
     }
 
-    public String decideWinner() {
-        int maxPosition = getMaxPosition();
-        return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .map(Car::getName)
-                .collect(Collectors.joining(", "));
-    }
-
-    private int getMaxPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElseThrow(NoSuchElementException::new);
+    public CarsResponseDto findWinners() {
+        return cars.findWinners();
     }
 
     public CarsResponseDto getCarsResponseDto() {
-        return new CarsResponseDto(cars);
+        return new CarsResponseDto(cars.getCars());
     }
 
     public int getRound() {

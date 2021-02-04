@@ -17,17 +17,12 @@ public class RacingGameController {
     private static final String BLANK = " ";
 
     public void start() {
-        RacingGame racingGame = new RacingGame();
-
-        createCars(racingGame);
+        List<String> nameInput = takeNameInput();
+        RacingGame racingGame = new RacingGame(nameInput);
 
         executeRound(racingGame);
 
-        OutputView.output(racingGame.decideWinner());
-    }
-
-    private void createCars(RacingGame racingGame) {
-        racingGame.makeCars(takeNameInput());
+        OutputView.announceWinners(racingGame.findWinners());
     }
 
     private void executeRound(RacingGame racingGame){
