@@ -63,4 +63,24 @@ public class RacingCarController {
         String turnsInput = scanner.nextLine();
         int intTurns = Integer.parseInt(turnsInput);
     }
+
+    public static void checkTurns(String turnCandidate) {
+        int integerCandidate = checkInteger(turnCandidate);
+        checkNegative(integerCandidate);
+    }
+
+    private static int checkInteger(String turnCandidate) {
+        try {
+            return Integer.parseInt(turnCandidate);
+        } catch (Exception e){
+            RacingCarError.notInteger();
+            return ZERO_VALUE;
+        }
+    }
+
+    private static void checkNegative(int integerCandidate) {
+        if (integerCandidate < ZERO_VALUE) {
+            RacingCarError.negativeInteger();
+        }
+    }
 }
