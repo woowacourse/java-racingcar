@@ -26,4 +26,14 @@ public class InputView {
         }
         return cars;
     }
+
+    public static int getUserTrialNumberInput(Scanner scanner) {
+        OutputView.readTrialNumber();
+        String userInput = scanner.nextLine();
+        try {
+            return Integer.parseInt(userInput); //정규식도입? 예외처리?
+        } catch (Exception e) {
+            return getUserTrialNumberInput(scanner);
+        }
+    }
 }
