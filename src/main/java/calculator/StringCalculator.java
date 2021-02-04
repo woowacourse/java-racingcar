@@ -17,7 +17,17 @@ public class StringCalculator {
         if (InputStrValidator.isOnlyOneNumber(inputStr)) {
             return Integer.parseInt(inputStr);
         }
-        return -1;
+        return sumNumbers(splitInputStr(inputStr));
+    }
+
+    private static int sumNumbers(List<Integer> numbers) {
+        return 0;
+    }
+
+    private static List<Integer> splitInputStr(String inputStr) {
+        List<Integer> numbers = new ArrayList<>();
+        List<String> splitStings = Arrays.asList(inputStr.split(getDelimiter(inputStr)));
+        return numbers;
     }
 
     private static String findCustomDelimiter(String inputStr) {
@@ -28,5 +38,11 @@ public class StringCalculator {
             customDelimiter = m.group(1);
         }
         return customDelimiter;
+    }
+
+    private static String getDelimiter(String inputStr) {
+        String delimiter = ",|;";
+        delimiter = delimiter + '|' + findCustomDelimiter(inputStr);
+        return delimiter;
     }
 }
