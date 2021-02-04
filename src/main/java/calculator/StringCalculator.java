@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
 
@@ -25,11 +26,9 @@ public class StringCalculator {
     }
 
     private static List<Integer> splitInputStr(String inputStr) {
-        List<Integer> numbers = new ArrayList<>();
-        List<String> splitStings = Arrays.asList(inputStr.split(getDelimiter(inputStr)));
-        InputStrValidator.checkValidNumbers(splitStings);
-
-        return numbers;
+        List<String> splitStrings = Arrays.asList(inputStr.split(getDelimiter(inputStr)));
+        InputStrValidator.checkValidNumbers(splitStrings);
+        return parseNumbers(splitStrings);
     }
 
     private static String findCustomDelimiter(String inputStr) {
@@ -47,4 +46,11 @@ public class StringCalculator {
         delimiter = delimiter + '|' + findCustomDelimiter(inputStr);
         return delimiter;
     }
+
+    private static List<Integer> parseNumbers(List<String> splitStrings) {
+        return splitStrings.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
 }
