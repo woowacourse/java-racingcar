@@ -1,6 +1,7 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -65,6 +66,10 @@ public class RacingCarTest {
     @ValueSource(ints = {0, -1, -2, -3})
     void attemptsNumberErrorTest(int number) {
         // 에러가 잘 출력되는지 테스트
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> {
+                new AttemptNumber(number);
+            });
     }
 
     @ParameterizedTest
