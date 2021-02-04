@@ -3,14 +3,22 @@ package racingCar.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class RacingManagerTest {
 
-  private final int MIN_RUNNABLE_FUEL = 4;
-  private Participants participants = new Participants("pobi", "spring", "on");
-  private GasStation gasStation = new GasStation(() -> 5);
-  private RacingManager racingManager = new RacingManager(participants, 3, gasStation);
+  private static final int MIN_RUNNABLE_FUEL = 4;
+  private Participants participants;
+  private GasStation gasStation;
+  private RacingManager racingManager;
+
+  @BeforeEach
+  void init() {
+    participants = new Participants("pobi", "spring", "on");
+    gasStation = new GasStation(() -> MIN_RUNNABLE_FUEL);
+    racingManager = new RacingManager(participants, 3, gasStation);
+  }
 
   @Test
   void start_우승자_1명() {
