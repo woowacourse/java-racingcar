@@ -32,4 +32,13 @@ public class CarRegisterTest {
             CarRegister.registerCars(input);
         }).isInstanceOf(InvalidNumberOfRegisteredCarsException.class);
     }
+
+    @DisplayName("이름 중복 검사")
+    @Test
+    void validateDuplicateCarName() {
+        String input = "pobi,pobi,crong";
+        assertThatThrownBy(() -> {
+            CarRegister.registerCars(input);
+        }).isInstanceOf(InvalidDuplicateCarNameException.class);
+    }
 }
