@@ -14,15 +14,11 @@ public class StringCalculator {
             result = ZERO;
             return result;
         }
+        if(isOnlyNumber(text)){
+            result = Integer.parseInt(text);
+            return result;
+        }
         return result;
-    }
-
-    private static boolean isEmpty(String text) {
-        return text.isEmpty();
-    }
-
-    private static void checkForNull(String text) {
-        text.isEmpty();
     }
 
     private static boolean isNull(String text) {
@@ -32,5 +28,22 @@ public class StringCalculator {
             return true;
         }
         return false;
+    }
+
+    private static void checkForNull(String text) {
+        text.isEmpty();
+    }
+
+    private static boolean isEmpty(String text) {
+        return text.isEmpty();
+    }
+
+    private static boolean isOnlyNumber(String text) {
+        try{
+            Integer.parseInt(text);
+        } catch(NumberFormatException e){
+            return false;
+        }
+        return true;
     }
 }
