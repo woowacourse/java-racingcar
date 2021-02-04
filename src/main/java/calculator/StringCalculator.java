@@ -27,6 +27,8 @@ public class StringCalculator {
     private static List<Integer> splitInputStr(String inputStr) {
         List<Integer> numbers = new ArrayList<>();
         List<String> splitStings = Arrays.asList(inputStr.split(getDelimiter(inputStr)));
+        InputStrValidator.checkValidNumbers(splitStings);
+
         return numbers;
     }
 
