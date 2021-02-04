@@ -1,5 +1,6 @@
 package racingcar.domain.car;
 
+import java.util.stream.Collectors;
 import racingcar.utils.RandomUtils;
 
 public class Game {
@@ -27,4 +28,12 @@ public class Game {
     public void incrementCount() {
         ++count;
     }
+
+    public String collectWinners(){
+        return CarRepository.cars().stream()
+                .filter(car -> car.isMaxPosition(CarRepository.selectMaxPosition()))
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+    }
+
 }

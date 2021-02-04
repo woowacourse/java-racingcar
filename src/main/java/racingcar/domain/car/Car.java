@@ -17,8 +17,8 @@ public class Car {
         return name;
     }
 
-    public boolean checkPosition(int guessPosition) {
-        return position == guessPosition;
+    public int getPosition() {
+        return position;
     }
 
     public static boolean checkMaxName(Car car) {
@@ -33,10 +33,15 @@ public class Car {
 
     @Override
     public String toString() {
-        String visualPosition = "";
+        StringBuilder visualPosition = new StringBuilder();
         while (visualPosition.length() < position) {
-            visualPosition += SINGLE_VISUAL_POSITION;
+            visualPosition.append(SINGLE_VISUAL_POSITION);
         }
         return name + " : " + visualPosition;
     }
+
+    public boolean isMaxPosition(int maxDistance){
+        return position == maxDistance;
+    }
+
 }

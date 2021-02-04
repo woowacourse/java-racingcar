@@ -11,12 +11,12 @@ public class GameController {
 
     public void startGame(Game game) {
         this.game = game;
-        GamePage.printResult();
+        GamePage.printResultPage();
         while (game.notFinished()) {
             game.incrementCount();
             playSingleRound();
         }
-        // 최종 결과 출력
+        GamePage.printFinalResult(game.collectWinners());
     }
 
     public void playSingleRound() {
