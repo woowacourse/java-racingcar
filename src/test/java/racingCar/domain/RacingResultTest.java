@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 class RacingResultTest {
 
   private static final String ENTER = "\n";
-  private static final int MIN_RUNNABLE_FUEL = 4;
   private Participants participants;
   private RacingResult racingResult;
 
@@ -23,7 +22,7 @@ class RacingResultTest {
   void appendLog() {
     String expectedLog = "pobi : - " + ENTER + "spring : - " + ENTER + ENTER;
     participants.getCars().forEach(car -> {
-      car.fillInFuel(MIN_RUNNABLE_FUEL);
+      car.fillInFuel(Car.MIN_RUNNABLE_FUEL);
       car.run();
     });
     racingResult.appendLog();
@@ -34,7 +33,7 @@ class RacingResultTest {
   void getWinner_우승자_1명() {
     String expectedLog = "pobi";
     List<Car> cars = participants.getCars();
-    cars.get(0).fillInFuel(MIN_RUNNABLE_FUEL);
+    cars.get(0).fillInFuel(Car.MIN_RUNNABLE_FUEL);
     cars.get(0).run();
     assertThat(racingResult.getWinner().getWinnerName()).isEqualTo(expectedLog);
   }

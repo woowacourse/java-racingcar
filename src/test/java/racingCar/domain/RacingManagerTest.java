@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 class RacingManagerTest {
 
-  private static final int MIN_RUNNABLE_FUEL = 4;
   private Participants participants;
   private GasStation gasStation;
   private RacingManager racingManager;
@@ -16,7 +15,7 @@ class RacingManagerTest {
   @BeforeEach
   void init() {
     participants = new Participants("pobi", "spring", "on");
-    gasStation = new GasStation(() -> MIN_RUNNABLE_FUEL);
+    gasStation = new GasStation(() -> Car.MIN_RUNNABLE_FUEL);
     racingManager = new RacingManager(participants, 3, gasStation);
   }
 
@@ -25,7 +24,7 @@ class RacingManagerTest {
     String expectedLog = "pobi";
 
     List<Car> cars = participants.getCars();
-    cars.get(0).fillInFuel(MIN_RUNNABLE_FUEL);
+    cars.get(0).fillInFuel(Car.MIN_RUNNABLE_FUEL);
     cars.get(0).run();
 
     RacingResult racingResult = racingManager.start();

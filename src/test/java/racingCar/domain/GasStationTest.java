@@ -10,7 +10,7 @@ class GasStationTest {
   @Test
   void fillInFuel_success() {
     Car car = new Car("Pobi");
-    new GasStation(() -> 4).fillInFuel(car);
+    new GasStation(() -> Car.MIN_RUNNABLE_FUEL).fillInFuel(car);
     car.run();
     assertThat(car.getPosition()).isEqualTo(1);
   }

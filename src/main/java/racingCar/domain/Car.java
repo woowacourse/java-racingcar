@@ -2,7 +2,7 @@ package racingCar.domain;
 
 public class Car {
 
-  private static final int MIN_RUNNABLE_FUEL = 4;
+  public static final int MIN_RUNNABLE_FUEL = 4;
   private final String name;
   private int position = 0;
   private int fuel = 0;
