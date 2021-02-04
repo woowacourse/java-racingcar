@@ -24,10 +24,11 @@ public class StringCalculator {
             return ZERO;
         }
 
-        return sum(string);
+        String[] numbers = splitStringNumbers(string);
+        return addAllNumbers(numbers);
     }
 
-    private static int sum(String string) {
+    private static String[] splitStringNumbers(String string) {
         Matcher matcher = Pattern.compile(PREFIX + DELIMITER + SUFFIX + FILTERED_STRING).matcher(string);
         if (matcher.find()) {
             return sumSplitByCustomDelimiter(matcher);
@@ -36,19 +37,18 @@ public class StringCalculator {
         return sumSplitByDefaultDelimiter(string);
     }
 
-    private static int sumSplitByDefaultDelimiter(String string) {
-        String[] numbers = string.split(BASIC_DELIMITER);
-        return addAllNumbers(numbers);
+    private static String[] sumSplitByDefaultDelimiter(String string) {
+        return string.split(BASIC_DELIMITER);
     }
 
-    private static int sumSplitByCustomDelimiter(Matcher matcher) {
+    private static String[] sumSplitByCustomDelimiter(Matcher matcher) {
         String customDelimiter = matcher.group(DELIMITER_SEQUENCE_NUMBER);
-        String[] numbers = matcher.group(FILTERED_STRING_SEQUENCE_NUMBER).split(customDelimiter);
-        return addAllNumbers(numbers);
+        return matcher.group(FILTERED_STRING_SEQUENCE_NUMBER).split(customDelimiter);
     }
 
     private static int addAllNumbers(String[] numbers) {
         validateNumbers(numbers);
+
         if (numbers.length == ONLY_ONE_NUMBER) {
             return Integer.parseInt(numbers[FIRST_INDEX]);
         }
