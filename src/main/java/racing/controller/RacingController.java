@@ -20,7 +20,8 @@ public class RacingController {
             List<CarDto> carDtos = racingGameMachine.getCarDtos();
             gameScreen.showCarStatus2(carDtos);
         }
-        racingGameMachine.findWinnerNames();
+        List<String> winnerNames = racingGameMachine.findWinnerNames();
+        gameScreen.showWinners(winnerNames);
     }
 
     private RacingGameMachine initializeRacingGame() {
