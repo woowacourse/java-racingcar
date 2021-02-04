@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.trynumber;
 
 public class TryNumber {
     private static final int MIN_TRY_NUMBER_LIMIT = 1;

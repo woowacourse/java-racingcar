@@ -1,4 +1,6 @@
-package racingcar.domain;
+package racingcar.domain.car;
+
+import java.util.Objects;
 
 public class Car {
     private static final String ERROR_NAME_NOT_PERMIT_NULL_MESSAGE = "[ERROR] 자동차 이름은 null을 허용하지 않습니다.";
@@ -6,7 +8,6 @@ public class Car {
     private static final String ERROR_NAME_NOT_PERMIT_EMPTY_MESSAGE = "[ERROR] 자동차 이름은 공백을 허용하지 않습니다.";
     private static final String ERROR_NAME_NOT_LONGER_THAN_NAME_LIMIT_MESSAGE = "[ERROR] 자동차 이름의 길이는 최대 5글자 입니다.";
     private static final int NAME_LENGTH_MAX_LIMIT = 5;
-
 
     private final String name;
 
@@ -57,5 +58,18 @@ public class Car {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

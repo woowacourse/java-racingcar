@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.domain.TryNumber;
+import racingcar.domain.trynumber.TryNumber;
 
 import java.util.Arrays;
 import java.util.List;
