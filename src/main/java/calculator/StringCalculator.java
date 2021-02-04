@@ -5,27 +5,18 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
     static int splitAndSum(String number) {
-        if (number==null || number.isEmpty()) {
-            return isNullOrZero();
-        }
-        if (number.contains("-")) {
-            throw new RuntimeException();
-        }
-        if (isNumber(number)) {
-            return isLengthOne(number);
-        }
-        if (number.contains(",") || number.contains(":")) {
-            return isCommaOrColon(number);
+        if (isNullOrZero(number)) {
+            return 0;
         }
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(number);
         if (m.find()) {
             return isCustom(m);
         }
-        return -1;
+        return isDelimiterOrNumber(number);
     }
 
     private static boolean isNumber(String number) {
-        return number.chars().allMatch( Character::isDigit );
+        return number.chars().allMatch(Character::isDigit);
     }
 
     private static int isCustom(Matcher m) {
