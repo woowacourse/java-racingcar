@@ -12,10 +12,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class StringCalculatorTest {
-    StringCalculator stringCalculator;
 
-    // 테스트를 작성(테스트가 통과되지 않을 정도만)
-    // 실제 코드 작성(작성한 테스트가 통과될 때 까지만)
+    StringCalculator stringCalculator;
 
     @BeforeEach
     void setUp() {
@@ -40,10 +38,10 @@ public class StringCalculatorTest {
 
     private static Stream<Arguments> provideCustomSeparatorTestCase() {
         return Stream.of(
-                Arguments.of("//c\n1c2", 3),
-                Arguments.of("//c\n1,2c3", 6),
-                Arguments.of("//c\n2c5", 7),
-                Arguments.of("//-\n2,5-1", 8)
+                Arguments.of("//c\n1,2", 3),
+                Arguments.of("//c\n1,2,3", 6),
+                Arguments.of("//c\n2,5", 7),
+                Arguments.of("//-\n2,5:1", 8)
         );
     }
 
@@ -66,8 +64,8 @@ public class StringCalculatorTest {
     @DisplayName("음수 입력 테스트")
     @MethodSource("provideNegativeNumberTestCase")
     void negativeNumberCaseTest(String input) {
-        assertThatThrownBy(()->{
-           stringCalculator.stringSum(input);
+        assertThatThrownBy(() -> {
+            stringCalculator.stringSum(input);
         }).isInstanceOf(RuntimeException.class);
     }
 

@@ -47,7 +47,8 @@ public class StringCalculator {
     }
 
     private boolean isCustomSeparatorExists(String input) {
-        return input.startsWith(CUSTOM_SEPARATOR_PREFIX) && input.charAt(3) == CUSTOM_SEPARATOR_SUFFIX;
+        return input.startsWith(CUSTOM_SEPARATOR_PREFIX)
+                && input.charAt(3) == CUSTOM_SEPARATOR_SUFFIX;
     }
 
     private String getSeparatorRegex(String input) {
@@ -61,7 +62,7 @@ public class StringCalculator {
 
     private Optional<String> getCustomSeparator(String input) {
         if (isCustomSeparatorExists(input)) {
-            return Optional.of(input.substring(2, 3));
+            return Optional.of(Character.toString(input.charAt(2)));
         }
         return Optional.empty();
     }
