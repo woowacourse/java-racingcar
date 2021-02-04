@@ -52,6 +52,15 @@ class CalculatorControllerTest {
         }).isInstanceOf(RuntimeException.class);
     }
 
+    @DisplayName("전체 문자열에서 숫자 분리")
+    @ParameterizedTest
+    @CsvSource(value = {"1,2,3=1,2,3", "1:2:3=1:2:3", "//;\\n1;2;3=1;2;3"}, delimiter = '=')
+    public void getNumbers_숫자_분리(String value, String expected) {
+        String numbers = calculatorController.getNumbers(value);
+
+        assertThat(numbers).isEqualTo(expected);
+    }
+
     @DisplayName("숫자 문자열에서 구분자를 기준으로 숫자 분리")
     @ParameterizedTest
     @MethodSource("provideNumbersForSplit")
