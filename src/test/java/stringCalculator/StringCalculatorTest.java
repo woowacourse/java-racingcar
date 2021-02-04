@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class StringCalculatorTest {
-
     @Test
     void splitAndSum_null_또는_빈문자() {
         int result = StringCalculator.splitAndSum(null);

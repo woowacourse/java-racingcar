@@ -1,7 +1,6 @@
 package racing.view;
 
 public class OutputView {
-
     private OutputView() {
     }
 

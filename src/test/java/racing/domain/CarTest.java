@@ -12,7 +12,6 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
-
     private static Stream<Arguments> moveTest() {
         return Stream.of(Arguments.of(1, false),
                 Arguments.of(2, false),

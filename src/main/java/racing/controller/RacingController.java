@@ -10,7 +10,6 @@ import racing.view.InputView;
 import java.util.List;
 
 public class RacingController {
-
     public void run() {
         RacingGameMachine racingGameMachine = initializeRacingGame();
         GameScreen gameScreen = new GameScreen();

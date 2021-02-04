@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 class CarsTest {
-
     @Test
     void Cars_쉼표로_구분된_문자열_받으면_객체가_생성된다() {
         String carNames = "pobi,brown";
