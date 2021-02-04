@@ -15,20 +15,27 @@ public class StringCalculator {
         if (InputStrValidator.isEmptyOrNull(inputStr)) {
             return 0;
         }
-        if (InputStrValidator.isNumber(inputStr)) {
+        if (InputStrValidator.isHasOnlyOneNumber(inputStr)) {
             return Integer.parseInt(inputStr);
         }
         return sumNumbers(splitInputStr(inputStr));
     }
 
+
     private static int sumNumbers(List<Integer> numbers) {
-        return 0;
+        return numbers.stream().reduce(0, Integer::sum);
     }
 
     private static List<Integer> splitInputStr(String inputStr) {
         List<String> splitStrings = Arrays.asList(inputStr.split(getDelimiter(inputStr)));
         InputStrValidator.checkValidNumbers(splitStrings);
         return parseNumbers(splitStrings);
+    }
+
+    private static String getDelimiter(String inputStr) {
+        String delimiter = ",|;";   // ,|;|
+        delimiter = delimiter + '|' + findCustomDelimiter(inputStr);
+        return delimiter;
     }
 
     private static String findCustomDelimiter(String inputStr) {
@@ -39,12 +46,6 @@ public class StringCalculator {
             customDelimiter = m.group(1);
         }
         return customDelimiter;
-    }
-
-    private static String getDelimiter(String inputStr) {
-        String delimiter = ",|;";
-        delimiter = delimiter + '|' + findCustomDelimiter(inputStr);
-        return delimiter;
     }
 
     private static List<Integer> parseNumbers(List<String> splitStrings) {

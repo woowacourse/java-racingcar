@@ -9,9 +9,8 @@ public class InputStrValidator {
         return ("".equals(inputStr) || inputStr == null);
     }
 
-    public static boolean isNumber(String inputStr) {
-        String pattern = "^[0-9]*$";
-        return Pattern.matches(pattern, inputStr);
+    public static boolean isHasOnlyOneNumber(String inputStr) {
+        return InputStrValidator.isNumber(inputStr);
     }
 
     public static void checkValidNumbers(List<String> splitStrings) {
@@ -20,5 +19,10 @@ public class InputStrValidator {
         if (!result) {
             throw new RuntimeException();
         }
+    }
+
+    private static boolean isNumber(String inputStr) {
+        String pattern = "^[0-9]*$";
+        return Pattern.matches(pattern, inputStr);
     }
 }
