@@ -1,95 +1,64 @@
 package calculator;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
     private static final int ZERO = 0;
-    private static final int INIT_NUMBER = -1;
+    private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\\n(.*)";
 
-    private enum Delimiters{
-        COMMA(","),
-        COLON(":");
+    private static Delimiters delimiters = new Delimiters();
 
-        private final String delimiter;
-
-        private Delimiters(String delimiter) {
-            this.delimiter = delimiter;
-        }
-
-        private static String getAllDelimiters(){
-            List<String> delimiters = new ArrayList<String>();
-            for(Delimiters delimiter : Delimiters.values()){
-                delimiters.add(delimiter.delimiter);
-            }
-            return String.join("|", delimiters);
-        }
-    }
-
-    public static int splitByCustomDelimiter(String text) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
-        if (m.find()) {
-            String customDelimiter = m.group(1);
-            String[] tokens= m.group(2).split(customDelimiter);
-            return sumNumbers(tokens);
-        }
-        return splitByDelimiters(text);
-    }
     public static int splitAndSum(String text) {
-        int result = INIT_NUMBER;
-        if(isNull(text)){
-            result = ZERO;
-            return result;
+        if(isNull(text) || isEmpty(text)){
+            return ZERO;
         }
-        if(isEmpty(text)) {
-            result = ZERO;
-            return result;
+        Matcher matchedPattern = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(text);
+        if(matchedPattern.find()){
+            delimiters.addCustomDelimiters(matchedPattern.group(1));
+            text = matchedPattern.group(2);
         }
-        if(isOnlyNumber(text)){
-            result = Integer.parseInt(text);
-            return result;
-        }
-        return splitByCustomDelimiter(text);
+        return splitAndSumByDelimiters(text);
     }
 
     private static boolean isNull(String text) {
         try{
-            checkForNull(text);
+            isEmpty(text);
         } catch (NullPointerException e){
             return true;
         }
         return false;
     }
 
-    private static void checkForNull(String text) {
-        text.isEmpty();
-    }
-
     private static boolean isEmpty(String text) {
         return text.isEmpty();
     }
 
-    private static boolean isOnlyNumber(String text) {
-        try{
-            Integer.parseInt(text);
-        } catch(NumberFormatException e){
-            return false;
-        }
-        return true;
-    }
-
-    private static int splitByDelimiters(String text) {
-        String[] numbers = text.split(Delimiters.getAllDelimiters());
+    private static int splitAndSumByDelimiters(String text) {
+        String[] numbers = text.split(delimiters.getDelimiters());
         return sumNumbers(numbers);
     }
 
     private static int sumNumbers(String[] numbers) {
         int result = 0;
-        for (String number : numbers){
-            result += Integer.parseInt(number);
+        for (String numberText : numbers){
+            result += getValidatedNumber(numberText);
         }
         return result;
+    }
+
+    private static int getValidatedNumber(String numberText){
+        try{
+            return getPositiveNumber(Integer.parseInt(numberText));
+        } catch(NumberFormatException e){
+            throw new RuntimeException();
+        }
+    }
+
+    private static int getPositiveNumber(int number) {
+        if(number < 0){
+            throw new RuntimeException();
+        }
+        return number;
     }
 }
