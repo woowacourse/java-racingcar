@@ -1,8 +1,6 @@
 package calculator;
 
 import calculator.util.InputStrValidator;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -21,25 +19,45 @@ public class StringCalculator {
         return sumNumbers(splitInputStr(inputStr));
     }
 
-
     private static int sumNumbers(List<Integer> numbers) {
         return numbers.stream().reduce(0, Integer::sum);
     }
 
     private static List<Integer> splitInputStr(String inputStr) {
-        List<String> splitStrings = Arrays.asList(inputStr.split(getDelimiter(inputStr)));
+        List<String> splitStrings = Arrays.asList(removeCustomDelimiterDefiner(inputStr)
+                .split(getDelimiter(inputStr)));
+
+        splitStrings = getOnlyNumbers(splitStrings);
         InputStrValidator.checkValidNumbers(splitStrings);
         return parseNumbers(splitStrings);
     }
 
+    private static String removeCustomDelimiterDefiner(String inputStr) {
+        return inputStr.replace("//", "")
+                .replace("\n","");
+    }
+
+    private static List<String> getOnlyNumbers(List<String> splitStrings) {
+        return splitStrings.stream()
+                .filter(s -> !"".equals(s))
+                .collect(Collectors.toList());
+    }
+
     private static String getDelimiter(String inputStr) {
-        String delimiter = ",|;";   // ,|;|
-        delimiter = delimiter + '|' + findCustomDelimiter(inputStr);
+        String delimiter = ",|:";
+        String customDelimiter = findCustomDelimiter(inputStr);
+        if(isNoCustomDelimiter(customDelimiter)){
+            return delimiter;
+        }
+        delimiter = delimiter + ('|' + customDelimiter);
         return delimiter;
     }
 
+    private static boolean isNoCustomDelimiter(String customDelimiter) {
+        return "".equals(customDelimiter);
+    }
+
     private static String findCustomDelimiter(String inputStr) {
-        //“//;\n1;2;3” => ;
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(inputStr);
         String customDelimiter = "";
         if (m.find()) {
@@ -53,5 +71,4 @@ public class StringCalculator {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
-
 }
