@@ -1,9 +1,7 @@
 package racingcar.domain;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -35,5 +33,9 @@ public class Names {
         String[] carNames = Stream.of(names.split(COMMA))
                 .toArray(String[]::new);
         return carNames;
+    }
+
+    public List<Name> getNames() {
+        return names;
     }
 }
