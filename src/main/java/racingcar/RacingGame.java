@@ -9,6 +9,7 @@ public class RacingGame {
 
     public void race() {
         prepareCars();
+        prepareTrial();
         //play
         //finish
     }
@@ -18,4 +19,8 @@ public class RacingGame {
         cars = exceptionHandler.setCars(input);
     }
 
+    private void prepareTrial() {
+        String input = RacingGameView.requestTrial();
+        trial = exceptionHandler.setTrial(input);
+    }
 }

@@ -14,4 +14,8 @@ public class ExceptionHandler {
             .map(Car::new)
             .collect(Collectors.toList());
     }
+
+    public int setTrial(String input) {
+        return Integer.parseInt(input);
+    }
 }

@@ -20,4 +20,10 @@ public class RacingGameView {
         String result = scanner.nextLine();
         return result;
     }
+
+    public static String requestTrial() {
+        System.out.println(TRIAL_MESSAGE);
+        String result = scanner.nextLine();
+        return result;
+    }
 }

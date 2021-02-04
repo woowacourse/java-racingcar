@@ -20,4 +20,14 @@ public class RacingCarTest {
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
+
+    @Test
+    void setTrialTest() {
+        ExceptionHandler exceptionHandler = new ExceptionHandler();
+        int expected = 3;
+
+        int actual = exceptionHandler.setTrial("3");
+
+        assertThat(actual).isEqualTo(expected);
+    }
 }
