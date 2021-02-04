@@ -22,7 +22,7 @@ public class RacingGame {
         names.forEach(name -> addCar(new Car(name)));
     }
 
-    public void addCar(Car car){
+    public void addCar(Car car) {
         cars.add(car);
     }
 
@@ -31,27 +31,26 @@ public class RacingGame {
         round++;
     }
 
-    public String decideWinner(){
-        List<Car> winners = new ArrayList<>();
+    public String decideWinner() {
         int maxPosition = getMaxPosition();
-        return cars.stream().
-                filter(car -> car.getPosition() == maxPosition).
-                map(Car::getName).
-                collect(Collectors.joining(", "));
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
     }
 
     private int getMaxPosition() {
-        return cars.stream().
-                mapToInt(Car::getPosition).
-                max().
-                orElseThrow(NoSuchElementException::new);
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow(NoSuchElementException::new);
     }
 
     public CarsResponseDto getCarsResponseDto() {
         return new CarsResponseDto(cars);
     }
 
-    public int getRound(){
+    public int getRound() {
         return round;
     }
 }

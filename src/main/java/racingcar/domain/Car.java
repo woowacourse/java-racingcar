@@ -12,17 +12,17 @@ public class Car {
         this.position = INIT_POSITION;
     }
 
-    public void move(int number){
-        if(isMovable(number)) {
+    public void move(int number) {
+        if (isMovable(number)) {
             position++;
         }
     }
 
-    private boolean isMovable(int number){
+    private boolean isMovable(int number) {
         return number >= MOVABLE_VALUE;
     }
 
-    public int getPosition(){
+    public int getPosition() {
         return position;
     }
 

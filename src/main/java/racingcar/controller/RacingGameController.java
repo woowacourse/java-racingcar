@@ -13,35 +13,39 @@ public class RacingGameController {
     private static final String INPUT_NUMBER_OF_ROUNDS_MSG = "시도할 회수는 몇회인가요?";
     private static final String IS_NOT_NUMBER_ERROR_MSG = "[ERROR] 숫자를 입력해 주세요.";
     private static final String EXECUTE_RESULT_MSG = "실행 결과";
+    private static final String COMMA = ",";
+    private static final String BLANK = " ";
 
-    public void start(Scanner scanner) {
+    public void start() {
         RacingGame racingGame = new RacingGame();
-        InputView inputView = new InputView(scanner);
 
-        OutputView.output(INPUT_CARS_NAME_MSG);
-        String input = inputView.nextLine();
-        createCars(racingGame, input);
+        createCars(racingGame);
 
-        OutputView.output(INPUT_NUMBER_OF_ROUNDS_MSG);
-        int round = inputRound(inputView);
+        executeRound(racingGame);
 
+        OutputView.output(racingGame.decideWinner());
+    }
+
+    private void createCars(RacingGame racingGame) {
+        racingGame.makeCars(takeNameInput());
+    }
+
+    private void executeRound(RacingGame racingGame){
+        int round = inputRound();
         OutputView.output(EXECUTE_RESULT_MSG);
         for (int i = 0; i < round; i++) {
             racingGame.playRound();
             OutputView.printLeaderBoard(racingGame.getCarsResponseDto());
         }
-
-        String winners = racingGame.decideWinner();
-
-        OutputView.output(winners);
     }
 
-    private void createCars(RacingGame racingGame, String input) {
+    private List<String> takeNameInput(){
+        OutputView.output(INPUT_CARS_NAME_MSG);
+        String input = InputView.nextLine();
         validateBlank(input);
-        List<String> names = Arrays.asList(input.split(","));
+        List<String> names = Arrays.asList(input.split(COMMA));
         validateDuplicate(names);
-
-        racingGame.makeCars(names);
+        return names;
     }
 
     private void validateDuplicate(List<String> names) {
@@ -52,14 +56,15 @@ public class RacingGameController {
     }
 
     private void validateBlank(String input) {
-        if (input.contains(" ")) {
+        if (input.contains(BLANK)) {
             throw new IllegalArgumentException(BLANK_INPUT_ERROR_MSG);
         }
     }
 
-    private int inputRound(InputView inputView){
+    private int inputRound(){
+        OutputView.output(INPUT_NUMBER_OF_ROUNDS_MSG);
         try{
-            return Integer.parseInt(inputView.nextLine());
+            return Integer.parseInt(InputView.nextLine());
         } catch(NumberFormatException e){
             throw new IllegalArgumentException(IS_NOT_NUMBER_ERROR_MSG);
         }

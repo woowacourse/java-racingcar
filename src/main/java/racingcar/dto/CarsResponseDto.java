@@ -19,8 +19,4 @@ public class CarsResponseDto {
     public List<CarResponseDto> getCarResponseDtoList(){
         return carResponseDtoList;
     }
-
-    public void setCarResponseDtoList(List<CarResponseDto> carResponseDtoList){
-        this.carResponseDtoList = carResponseDtoList;
-    }
 }

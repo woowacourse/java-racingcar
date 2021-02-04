@@ -4,27 +4,16 @@ public class CarResponseDto {
     private String name;
     private int position;
 
-    public CarResponseDto(){
-    }
-
-    public CarResponseDto(String name, int position){
+    public CarResponseDto(String name, int position) {
         this.name = name;
         this.position = position;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public int getPosition(){
+    public int getPosition() {
         return position;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public void setPosition(int position){
-        this.position = position;
     }
 }
