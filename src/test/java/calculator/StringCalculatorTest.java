@@ -47,18 +47,16 @@ public class StringCalculatorTest {
     }
     
     @Test
-    public void test() throws Exception {
+    public void splitAndSum_두_자리수() throws Exception {
         int result = StringCalculator.splitAndSum("15,16");
         assertThat(result).isEqualTo(31);
     }
     
-    // 예외 추가
     @Test
     public void splitAndSum_minus_커스텀_구분자() throws Exception {
         StringCalculator.splitAndSum("//-\n1:2,3");
     }
     
-    // 예외 추가
     @Test
     public void splitAndSum_only_커스텀_구분자() throws Exception {
         StringCalculator.splitAndSum("//;\n");
