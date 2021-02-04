@@ -1,5 +1,7 @@
 package racingcar;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -8,9 +10,11 @@ public class RacingCarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"benz", "bmw", "suv"})
-    void carNameLengthTest(String text) {
-        // 자동차 객체가 만들어질때 에러가 안나는가?
+    void carNameTest(String text) {
+        // 자동차 객체가 만들어질때 에러가 안나고, 이름이 잘 저장되는가?
         // 5글자 이하만 넣었을때
+        Car car = new Car(text);
+        assertThat(car.getName()).isEqualTo(text);
     }
 
     @ParameterizedTest
@@ -27,9 +31,9 @@ public class RacingCarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"pobi,crong,honux", "mungto", "oz,mungto"})
-    void carNameEqualTest(int text) {
-        // 입력한 이름과 객체의 이름이 같은지 테스트
+    @ValueSource(strings = {"pobi,crong,honux", "mungto,oz", "oz,mungto"})
+    void multiCarNameEqualTest(int text) {
+        // 입력한 이름과 객체들의 이름이 같은지 테스트
     }
 
     @ParameterizedTest
