@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 class Car {
     private static final Pattern PATTERN = Pattern.compile("[a-zA-Z]{1,5}");
     private static final int MINIMUM_MOVE_NUMBER = 4;
+
     private static final int DEFAULT_POSITION = 0;
 
     private final String name;
@@ -34,6 +35,14 @@ class Car {
             return true;
         }
         return false;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public String getName() {
+        return name;
     }
 }
 
