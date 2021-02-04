@@ -27,6 +27,11 @@ public class CarName {
     }
 
     @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || !(o instanceof CarName)) {
             return false;
