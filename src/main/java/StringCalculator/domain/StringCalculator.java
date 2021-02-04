@@ -44,9 +44,22 @@ public class StringCalculator {
 
     private static String[] getSplitInput(String input) {
         String[] inputs = input.split(DEFAULT_DELIMITER);
+
         validateNonNumericInput(inputs);
+        validateNegativeNumber(inputs);
 
         return inputs;
+    }
+
+    private static void validateNegativeNumber(String[] inputs) {
+        long negativeElementsCount = Arrays.stream(inputs)
+                .mapToInt(Integer::parseInt)
+                .filter(input -> input < 0)
+                .count();
+
+        if(negativeElementsCount > 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private static void validateNonNumericInput(String[] inputs) {
