@@ -12,6 +12,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.*;
 
 public class SetTest {
+
     private Set<Integer> numbers;
 
     @BeforeEach
@@ -25,7 +26,8 @@ public class SetTest {
 
     @Test
     public void size() {
-        assertThat(numbers.size()).isEqualTo(3);
+        assertThat(numbers).hasSize(3);
+//        assertThat(numbers.size()).isEqualTo(3);
     }
 
     @ParameterizedTest
@@ -35,7 +37,7 @@ public class SetTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1,true","2,true","3,true","4, false","5, false"}, delimiter = ',')
+    @CsvSource(value = {"1,true", "2,true", "3,true", "4, false", "5, false"}, delimiter = ',')
     public void contain2(Integer input, Boolean expected) {
         assertThat(numbers.contains(input)).isEqualTo(expected);
     }

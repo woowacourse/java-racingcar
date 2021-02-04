@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
+
     @Test
     public void split() {
         String[] strings = "1,2".split(",");
@@ -30,6 +31,7 @@ public class StringTest {
         assertThat(string.charAt(1)).isEqualTo('b');
         assertThatThrownBy(() -> {
             string.charAt(6);
-        }).isInstanceOf(IndexOutOfBoundsException.class).hasMessageContaining("String index out of range: 6");
+        }).isInstanceOf(IndexOutOfBoundsException.class)
+            .hasMessageContaining("String index out of range: 6");
     }
 }
