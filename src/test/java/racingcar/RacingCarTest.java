@@ -1,6 +1,7 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -22,12 +23,15 @@ public class RacingCarTest {
     void carNameLengthErrorTest(String text) {
         // 자동차 객체가 만들어질때 에러가 나는가?
         // 5글자 이상을 넣었을때
+        assertThatThrownBy(() -> {
+            new Car(text);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"pobi,crong,honux:3", "mungto:1", "oz,mungto:2"}, delimiter = ':')
     void carCreateLengthTest(String input, String expected) {
-        // 객체 갯수가 원하는대로 잘 나오는가?
+
     }
 
     @ParameterizedTest
