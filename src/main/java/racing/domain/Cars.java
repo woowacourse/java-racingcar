@@ -1,5 +1,6 @@
 package racing.domain;
 
+import racing.domain.dto.CarDto;
 import racing.utils.RandomUtils;
 
 import java.util.ArrayList;
@@ -58,5 +59,11 @@ public class Cars {
                 .max(Comparator.comparingInt(Car::getPosition))
                 .orElseThrow(IllegalStateException::new)
                 .getPosition();
+    }
+
+    public List<CarDto> getCarDtos() {
+        return cars.stream()
+                .map(car -> new CarDto(car.getName(), car.getPosition()))
+                .collect(Collectors.toList());
     }
 }
