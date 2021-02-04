@@ -18,7 +18,7 @@ public class RacingController {
         while (racingGameMachine.canPlay()) {
             racingGameMachine.play();
             List<CarDto> carDtos = racingGameMachine.getCarDtos();
-            gameScreen.showCarStatus2(carDtos);
+            gameScreen.showCarStatus(carDtos);
         }
         List<String> winnerNames = racingGameMachine.findWinnerNames();
         gameScreen.showWinners(winnerNames);
