@@ -92,6 +92,14 @@ public class StringCalculatorTest {
         );
     }
 
+    @ParameterizedTest
+    @DisplayName("분리 된문자열 중 음수가 있다면 예외")
+    @ValueSource(strings = {"1,2:-3", "1,2:-3:3", "1,-2:-1", "-1,2:-3", "//|\n1|1|-1", "//|\n1|-1|-1", "//|\n-1|1|-1"})
+    public void splitAndSum_분리_된_문자열_중_음수가_있다면_예외(String input) {
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
+                () -> StringCalculator.splitAndSum(input)
+        );
+    }
 
     private static Stream<Arguments> provideInputsFor_구분자로_구분된_숫자들의_합을_반환() {
         return Stream.of(
