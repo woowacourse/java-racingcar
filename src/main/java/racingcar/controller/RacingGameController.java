@@ -1,6 +1,8 @@
 package racingcar.controller;
 
 import racingcar.domain.RacingGame;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,21 +10,23 @@ import java.util.List;
 public class RacingGameController {
     public void start() {
         RacingGame racingGame = new RacingGame();
+        InputView inputView = new InputView(scanner);
 
-        //이름 Input 받아옴
-        createCars(racingGame);
+        OutputView.output(INPUT_CARS_NAME_MSG);
+        String input = inputView.nextLine();
+        createCars(racingGame, input);
 
-        //round Input 받아옴
-        int round = 5;
+        OutputView.output(INPUT_NUMBER_OF_ROUNDS_MSG);
+        int round = inputRound(inputView);
 
+        OutputView.output(EXECUTE_RESULT_MSG);
         for (int i = 0; i < round; i++) {
             racingGame.playRound();
         }
 
         String winners = racingGame.decideWinner();
 
-        //output으로 내보냄
-        System.out.println(winners);
+        OutputView.output(winners);
     }
 
     private void createCars(RacingGame racingGame) {
