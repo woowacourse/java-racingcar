@@ -24,7 +24,7 @@ public class SetTest {
     }
     
     @Test
-    void sizeTest() {
+    public void sizeTest() {
         
         // when
         int size = 3;
