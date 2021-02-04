@@ -1,11 +1,10 @@
-package racingcar;
-
-import racingcar.utils.RandomNumberGenerator;
+package racingcar.utils;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class RacingCarTest {
+public class RandomNumberGeneratorTest {
 
     private static final int FIRST_TRYING = 0;
     private static final int LAST_TRYING = 100;
