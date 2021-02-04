@@ -2,11 +2,11 @@ package racingCar.domain;
 
 public class RacingManager {
 
-  private Participants participants;
-  private int turn;
-  private GasStation gasStation;
+  private final Participants participants;
+  private final int turn;
+  private final GasStation gasStation;
 
-  public RacingManager(Participants participants, int turn, GasStation gasStation) {
+  public RacingManager(final Participants participants, final int turn, final GasStation gasStation) {
     this.participants = participants;
     this.turn = turn;
     this.gasStation = gasStation;
@@ -20,7 +20,7 @@ public class RacingManager {
     return racingResult;
   }
 
-  private void race(RacingResult racingResult) {
+  private void race(final RacingResult racingResult) {
     participants.getCars().forEach(car -> {
       gasStation.fillInFuel(car);
       car.run();

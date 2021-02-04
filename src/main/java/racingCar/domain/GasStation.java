@@ -4,13 +4,13 @@ import java.util.function.Supplier;
 
 public class GasStation {
 
-  private Supplier<Integer> supplier;
+  private final Supplier<Integer> supplier;
 
-  public GasStation(Supplier<Integer> supplier) {
+  public GasStation(final Supplier<Integer> supplier) {
     this.supplier = supplier;
   }
 
-  public void fillInFuel(Car car) {
+  public void fillInFuel(final Car car) {
     car.fillInFuel(supplier.get());
   }
 }

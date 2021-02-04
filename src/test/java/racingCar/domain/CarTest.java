@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class CarTest {
 
-  private final static int MIN_RUNNABLE_FUEL = 4;
+  private static final int MIN_RUNNABLE_FUEL = 4;
   private Car car;
 
   @BeforeEach

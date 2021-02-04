@@ -6,13 +6,13 @@ import java.util.List;
 
 public class Participants {
 
-  private List<Car> cars;
+  private final List<Car> cars;
 
   private Participants() {
     cars = new ArrayList<>();
   }
 
-  public Participants(String... names) {
+  public Participants(final String... names) {
     this();
     for (String name : names) {
       cars.add(new Car(name));

@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 public class Winner {
 
   private static final String WINNER_NAME_DELIMITER = ", ";
-  private List<Car> cars;
+  private final List<Car> cars;
 
-  public Winner(List<Car> cars) {
+  public Winner(final List<Car> cars) {
     this.cars = cars;
   }
 

@@ -9,10 +9,10 @@ public class RacingResult {
   private static final String DISTANCE_SIGN = "-";
   private static final String ENTER = "\n";
   private static final int DEFAULT_MAX_POSITION = 0;
-  private StringBuilder log = new StringBuilder();
-  private Participants participants;
+  private final StringBuilder log = new StringBuilder();
+  private final Participants participants;
 
-  public RacingResult(Participants participants) {
+  public RacingResult(final Participants participants) {
     this.participants = participants;
   }
 
@@ -24,7 +24,7 @@ public class RacingResult {
     log.append(ENTER);
   }
 
-  private String convertToDistanceSign(int position) {
+  private String convertToDistanceSign(final int position) {
     StringBuilder sign = new StringBuilder();
     for (int i = 0; i < position; i++) {
       sign.append(DISTANCE_SIGN);

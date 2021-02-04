@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 
 class RacingResultTest {
 
-  private final static String ENTER = "\n";
-  private final int MIN_RUNNABLE_FUEL = 4;
+  private static final String ENTER = "\n";
+  private static final int MIN_RUNNABLE_FUEL = 4;
   private Participants participants;
   private RacingResult racingResult;
 
