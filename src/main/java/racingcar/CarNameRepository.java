@@ -14,12 +14,14 @@ public class CarNameRepository {
     private CarNameRepository(){
     }
 
-    public void validateNumberOfCar() {
+    public static void addCarNames(List<String> carNamesInput) {
+        carNamesInput.stream().map(carName -> carNames.add(new CarName(carName)));
+        validateNumberOfCar();
+    }
+
+    private static void validateNumberOfCar() {
         if (carNames.size() < MINIMUM_CAR_AMOUNT) {
             throw new IllegalArgumentException("자동차는 2대 이상이어야 합니다.");
         }
     }
-
-
-
 }
