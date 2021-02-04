@@ -1,6 +1,6 @@
 package racingCar.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,14 +17,23 @@ class CarTest {
 
   @Test
   void run_success() {
-    car.run(MIN_RUNNABLE_FUEL);
-    Assertions.assertThat(car.getPosition()).isEqualTo(1);
+    car.fillInFuel(MIN_RUNNABLE_FUEL);
+    car.run();
+    assertThat(car.getPosition()).isEqualTo(1);
   }
 
   @Test
   void run_failure() {
-    car.run(MIN_RUNNABLE_FUEL-1);
-    Assertions.assertThat(car.getPosition()).isEqualTo(0);
+    car.fillInFuel(MIN_RUNNABLE_FUEL - 1);
+    car.run();
+    assertThat(car.getPosition()).isEqualTo(0);
+  }
+
+  @Test
+  void checkFuelWhenRun() {
+    car.fillInFuel(MIN_RUNNABLE_FUEL);
+    car.run();
+    assertThat(car.getFuel()).isEqualTo(0);
   }
 
 }
