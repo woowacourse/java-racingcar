@@ -12,6 +12,7 @@ public class RacingCarViewTest {
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     private static final String INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n";
+    private static final String TURN_INPUT_MESSAGE = "시도할 회수는 몇회인가요?\n";
 
     @BeforeEach
     public void setUp() {
@@ -22,5 +23,11 @@ public class RacingCarViewTest {
     void carListInput() {
         RacingCarView.carListInput();
         assertEquals(INPUT_MESSAGE, outputStreamCaptor.toString());
+    }
+
+    @Test
+    void turnNumberInput() {
+        RacingCarView.turnNumberInput();
+        assertEquals(TURN_INPUT_MESSAGE, outputStreamCaptor.toString());
     }
 }
