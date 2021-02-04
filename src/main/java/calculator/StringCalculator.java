@@ -6,9 +6,10 @@ import java.util.Optional;
 public class StringCalculator {
 
     public int stringSum(String str) {
-        if (str == null) {
+        if (isStringNullOrEmpty(str)) {
             return 0;
         }
+
         String separatorRegex = getSeparatorRegex(str);
 
         if (isCustomSeparatorExists(str)) {
@@ -19,6 +20,10 @@ public class StringCalculator {
         return Arrays.stream(numbers)
                 .mapToInt(Integer::parseInt)
                 .sum();
+    }
+
+    private boolean isStringNullOrEmpty(String str) {
+        return str == null || str.equals("");
     }
 
     private boolean isCustomSeparatorExists(String str) {
