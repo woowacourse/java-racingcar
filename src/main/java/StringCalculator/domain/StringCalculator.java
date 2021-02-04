@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+    private static final String COLON = ":";
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final String CUSTOM_DELIMITER_FORMAT = "//(.)\n(.*)";
 
@@ -20,22 +21,35 @@ public class StringCalculator {
             return Integer.parseInt(input);
         }
 
-        String delimiter = DEFAULT_DELIMITER;
-
         if(isUsingCustomDelimiter(input)) {
             checkPrefixedCustomDelimiterFormat(input);
-            delimiter = extractCustomDelimiter(input);
-            checkNumericDelimiter(delimiter);
+            String customDelimiter = extractCustomDelimiter(input);
+            checkNumericDelimiter(customDelimiter);
+            input = input.replaceAll(Pattern.quote(customDelimiter), COLON);
         }
+
+        System.out.println(input);
 
         input = extractElementString(input);
 
-        String[] inputs = input.split(delimiter);
+        System.out.println(input);
+
+        String[] inputs = input.split(DEFAULT_DELIMITER);
+
+        for(String s : inputs) {
+            System.out.println(s);
+        }
+
         checkNegativeNumber(inputs);
 
-        return Arrays.stream(inputs)
-                .mapToInt(Integer::parseInt)
-                .sum();
+        int a = 0;
+        for(String s : inputs) {
+            a += Integer.parseInt(s);
+        }
+
+        System.out.println(a);
+
+        return a;
     }
 
     private static void checkNumericDelimiter(String delimiter) {
