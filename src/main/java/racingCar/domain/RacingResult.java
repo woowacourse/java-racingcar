@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 
 public class RacingResult {
 
-  private static final String LOG_FORM = "%s : %s \n";
-  private static final String DISTANCE_SIGN = "-";
   private static final String ENTER = "\n";
+  private static final String LOG_FORM = "%s : %s " + ENTER;
+  private static final String DISTANCE_SIGN = "-";
   private static final int DEFAULT_MAX_POSITION = 0;
   private final StringBuilder log = new StringBuilder();
   private final Participants participants;
