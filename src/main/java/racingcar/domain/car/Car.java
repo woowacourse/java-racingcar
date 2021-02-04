@@ -6,7 +6,7 @@ public class Car {
     public static final int MOVE_CONDITION = 4;
     public static final char SINGLE_VISUAL_POSITION = '-';
 
-    private String name;
+    private final String name;
     private int position = 0;
 
     public Car(String name) {
@@ -31,6 +31,10 @@ public class Car {
         }
     }
 
+    public boolean isMaxPosition(int maxDistance) {
+        return position == maxDistance;
+    }
+
     @Override
     public String toString() {
         StringBuilder visualPosition = new StringBuilder();
@@ -39,9 +43,4 @@ public class Car {
         }
         return name + " : " + visualPosition;
     }
-
-    public boolean isMaxPosition(int maxDistance){
-        return position == maxDistance;
-    }
-
 }
