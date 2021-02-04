@@ -11,7 +11,6 @@ public class StringCalculator {
         }
 
         String[] numbers = splitAndGetNumbers(input);
-
         return sum(numbers);
     }
 
@@ -29,7 +28,7 @@ public class StringCalculator {
         int sum = 0;
 
         for (String number : numbers) {
-            int num = Integer.parseInt(number);
+            int num = parseInt(number);
             validateNegativeNumber(num);
             sum += num;
         }
@@ -39,6 +38,14 @@ public class StringCalculator {
     private static void validateNegativeNumber(int num) {
         if (num < 0) {
             throw new RuntimeException("음수를 입력하시면 안 됩니다.");
+        }
+    }
+
+    private static int parseInt(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException();
         }
     }
 }
