@@ -7,7 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class StringCalculatorTest {
     StringCalculator stringCalculator;
@@ -45,10 +47,9 @@ public class StringCalculatorTest {
         );
     }
 
-    @Test
-    @DisplayName("커스텀 구분자 테스트")
-    void customSeparatorTest() {
-        String input = "//c\n1,2";
-        assertThat(stringCalculator.stringSum(input)).isEqualTo(3);
+    @ParameterizedTest
+    @CsvSource(value = {",0"}) //"null,0", "1,1"
+    void emptyOrNullCaseTest(String input, Integer expected) {
+        assertThat(stringCalculator.stringSum(input)).isEqualTo(expected);
     }
 }
