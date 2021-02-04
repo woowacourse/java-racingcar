@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import racingcar.dto.CarsResponseDto;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingGame {
     private Cars cars;
@@ -10,7 +11,10 @@ public class RacingGame {
     private final int INIT_ROUND = 1;
 
     public RacingGame(List<String> names) {
-        this.cars = new Cars(names);
+        List<Car> cars = names.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
+        this.cars = new Cars(cars);
         this.round = INIT_ROUND;
     }
 

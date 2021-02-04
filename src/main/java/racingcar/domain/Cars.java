@@ -10,10 +10,10 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
-    public Cars(List<String> names) {
-        names.forEach(name -> cars.add(new Car(name)));
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public List<Car> getCars() {

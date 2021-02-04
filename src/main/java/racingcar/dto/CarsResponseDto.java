@@ -2,6 +2,7 @@ package racingcar.dto;
 
 import racingcar.domain.Car;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,6 @@ public class CarsResponseDto {
     }
 
     public List<CarResponseDto> getCarResponseDtoList(){
-        return carResponseDtoList;
+        return Collections.unmodifiableList(carResponseDtoList);
     }
 }
