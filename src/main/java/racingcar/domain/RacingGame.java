@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGame {
-    private Cars cars;
+    private final Cars cars;
     private int round;
 
-    private final int INIT_ROUND = 1;
+    private static final int INIT_ROUND = 1;
 
     public RacingGame(List<String> names) {
         List<Car> cars = names.stream()

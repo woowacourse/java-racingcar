@@ -7,10 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarsResponseDto {
-    private List<CarResponseDto> carResponseDtoList;
-
-    public CarsResponseDto() {
-    }
+    private final List<CarResponseDto> carResponseDtoList;
 
     public CarsResponseDto(List<Car> cars) {
         this.carResponseDtoList = cars.stream()

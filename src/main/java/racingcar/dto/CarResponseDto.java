@@ -1,8 +1,8 @@
 package racingcar.dto;
 
 public class CarResponseDto {
-    private String name;
-    private int position;
+    private final String name;
+    private final int position;
 
     public CarResponseDto(String name, int position) {
         this.name = name;

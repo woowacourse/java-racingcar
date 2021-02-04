@@ -2,10 +2,10 @@ package racingcar.domain;
 
 public class Car {
     private int position;
-    private String name;
+    private final String name;
 
-    private final int INIT_POSITION = 0;
-    private final int MOVABLE_VALUE = 4;
+    private static final int INIT_POSITION = 0;
+    private static final int MOVABLE_VALUE = 4;
 
     public Car(String name) {
         this.name = name;
