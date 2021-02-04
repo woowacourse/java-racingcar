@@ -8,10 +8,13 @@ import java.util.regex.Pattern;
 public class StringCalculator {
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final Pattern PATTERN = Pattern.compile("//(.)\n(.*)");
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
+    private static final int TWO = 2;
 
     public static int splitAndSum(String expression) {
         if (isNullOrEmpty(expression)) {
-            return 0;
+            return ZERO;
         }
         Matcher matcher = PATTERN.matcher(expression);
         if (matcher.find()) {
@@ -27,8 +30,8 @@ public class StringCalculator {
     }
 
     private static String[] splitValuesByCustomDelimiter(Matcher matcher) {
-        String customDelimiter = matcher.group(1);
-        return matcher.group(2)
+        String customDelimiter = matcher.group(ONE);
+        return matcher.group(TWO)
                 .split(customDelimiter);
     }
 
@@ -41,7 +44,7 @@ public class StringCalculator {
 
     private static void validateValues(String[] values) {
         boolean isWrongValues = Arrays.stream(values)
-                .anyMatch(value -> Integer.parseInt(value) < 0);
+                .anyMatch(value -> Integer.parseInt(value) < ZERO);
         if (isWrongValues) {
             throw new RuntimeException();
         }
