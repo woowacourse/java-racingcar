@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarRepositoryTest {
+
+    @AfterEach
+    void afterEach() {
+        CarRepository.deleteAll();
+    }
 
     @DisplayName("우승자 결과 테스트 한 명")
     @Test

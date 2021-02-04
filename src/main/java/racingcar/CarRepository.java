@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,11 +12,15 @@ public class CarRepository {
         cars.add(car);
     }
 
+    public static void deleteAll() {
+        cars.clear();
+    }
+
     public static List<Car> getWinners() {
         int maxPosition = getMaxPosition();
-        return cars.stream()
+        return Collections.unmodifiableList(cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     private static int getMaxPosition() {
