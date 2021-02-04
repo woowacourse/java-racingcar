@@ -62,4 +62,23 @@ public class StringCalculatorTest {
                 Arguments.of("1", 1)
         );
     }
+
+    @ParameterizedTest
+    @DisplayName("음수 입력 테스트")
+    @MethodSource("provideNegativeNumberTestCase")
+    void negativeNumberCaseTest(String input) {
+        assertThatThrownBy(()->{
+           stringCalculator.stringSum(input);
+        }).isInstanceOf(RuntimeException.class);
+    }
+
+    private static Stream<Arguments> provideNegativeNumberTestCase() {
+        return Stream.of(
+                Arguments.of("-2"),
+                Arguments.of("1,-2"),
+                Arguments.of("1,-2:4,-5"),
+                Arguments.of("//*\n-2"),
+                Arguments.of("//*\n-2,2")
+        );
+    }
 }
