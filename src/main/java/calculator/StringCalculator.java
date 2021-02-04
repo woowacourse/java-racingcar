@@ -34,9 +34,9 @@ public class StringCalculator {
         return String.format(separatorRegex, customSeparator.get());
     }
 
-    private Optional<Character> getCustomSeparator(String str) {
-        if (str.charAt(0) == '/') {
-            return Optional.of(str.charAt(2));
+    private Optional<String> getCustomSeparator(String str) {
+        if (isCustomSeparatorExists(str)) {
+            return Optional.of(str.substring(2, 3));
         }
         return Optional.empty();
     }
