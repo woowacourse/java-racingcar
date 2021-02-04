@@ -28,16 +28,33 @@ class CarsTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void Cars_1명인_경우_예외가_발생한다() {
+        String carNames = "pobi";
+
+        assertThatCode(() -> {
+            Cars.generate(carNames);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
     static class Cars {
         private static final String DELIMITER = ",";
         private static final int SPLIT_THRESHOLD = -1;
         private static final int START_NUMBER = 0;
         private static final int END_NUMBER = 9;
+        private static final int MINIMUM_CAR_COUNTS = 2;
 
         private final List<Car> cars;
 
         private Cars(List<Car> cars){
             this.cars = new ArrayList<>(cars);
+            validateCars();
+        }
+
+        private void validateCars() {
+            if (cars.size() < MINIMUM_CAR_COUNTS) {
+                throw new IllegalArgumentException();
+            }
         }
 
         public static Cars generate(String carNames) {
