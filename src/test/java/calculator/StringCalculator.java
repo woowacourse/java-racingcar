@@ -8,15 +8,8 @@ public class StringCalculator {
         if (input == null || input.isEmpty()) {
             return 0;
         }
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
-        if (m.find()) {
-            String customDelimiter = m.group(1);
-            String[] numbers = m.group(2).split(customDelimiter);
-            return sum(numbers);
-        }
 
-        String[] numbers;
-        numbers = input.split("[,:]");
+        String[] numbers = splitAndGetNumbers(input);
 
         return sum(numbers);
     }
@@ -28,5 +21,15 @@ public class StringCalculator {
             sum += Integer.parseInt(number);
         }
         return sum;
+    }
+
+    private static String[] splitAndGetNumbers(String input) {
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            return m.group(2).split(customDelimiter);
+        }
+
+        return input.split("[,:]");
     }
 }
