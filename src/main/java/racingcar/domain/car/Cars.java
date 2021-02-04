@@ -15,6 +15,14 @@ public class Cars {
         return new Cars(cars);
     }
 
+    public CarStates getCarStates() {
+        List<CarState> carStates = cars.stream()
+                .map(car -> CarState.withNameAndPosition(car.getName(), car.getPosition()))
+                .collect(Collectors.toList());
+
+        return CarStates.of(carStates);
+    }
+
     public List<CarName> getWinners() {
        int maxPosition = cars.stream()
                .mapToInt(Car::getPosition)

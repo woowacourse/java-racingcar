@@ -1,6 +1,4 @@
-package racingcar.domain.game;
-
-import racingcar.domain.car.CarName;
+package racingcar.domain.car;
 
 public class CarState {
     private static final String LINE = "-";
