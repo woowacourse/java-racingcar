@@ -14,7 +14,7 @@ public class StringCalculator {
         if (InputStrValidator.isEmptyOrNull(inputStr)) {
             return 0;
         }
-        if (InputStrValidator.isOnlyOneNumber(inputStr)) {
+        if (InputStrValidator.isNumber(inputStr)) {
             return Integer.parseInt(inputStr);
         }
         return sumNumbers(splitInputStr(inputStr));
