@@ -6,6 +6,10 @@ import java.util.regex.*;
 
 public class StringCalculator {
     public static List<String> tokens;
+    private static String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
+    private static String DEFAULT_DELIMITER = ",|:";
+    private static int DELIMITER_POSITION = 1;
+    private static int TOKENS_POSITION = 2;
 
     public static int splitAndSum(String text) {
 
@@ -23,7 +27,7 @@ public class StringCalculator {
     }
 
     public static void divideByDelimiter(String text) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+        Matcher m = Pattern.compile(CUSTOM_DELIMITER_REGEX).matcher(text);
 
         if (m.find()) {
             divideByCustomDelimiter(m);
@@ -34,12 +38,12 @@ public class StringCalculator {
     }
 
     public static void divideByCustomDelimiter(Matcher m) {
-        String customDelimiter = m.group(1);
-        tokens = Arrays.asList(m.group(2).split(customDelimiter));
+        String customDelimiter = m.group(DELIMITER_POSITION);
+        tokens = Arrays.asList(m.group(TOKENS_POSITION).split(customDelimiter));
     }
 
     public static void divideByDefaultDelimiter(String text) {
-        tokens = Arrays.asList(text.split(",|:"));
+        tokens = Arrays.asList(text.split(DEFAULT_DELIMITER));
     }
 
     public static void throwRuntimeExceptionWhenContainsNegative() {
@@ -74,7 +78,7 @@ public class StringCalculator {
         if (text.length() == 1 && Character.isDigit(text.charAt(0))) {
             return true;
         }
-        
+
         return false;
     }
 }
