@@ -4,8 +4,10 @@ import racingcar.exception.InvalidRacingTimeException;
 
 public class RacingTimeRegister {
 
+    private static final int MIN_RACING_TIME = 0;
+
     public int registerRacingTime(String input) {
-        int racingTime = 0;
+        int racingTime;
 
         try {
             racingTime = Integer.parseInt(input);
