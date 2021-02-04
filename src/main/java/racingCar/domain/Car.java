@@ -1,4 +1,4 @@
-package racingCar.service;
+package racingCar.domain;
 
 public class Car {
 
@@ -23,7 +23,7 @@ public class Car {
   }
 
   private boolean isRunnable(int fuel) {
-   return fuel >= MIN_RUNNABLE_FUEL;
+    return fuel >= MIN_RUNNABLE_FUEL;
   }
 
   public int getPosition() {
@@ -34,4 +34,7 @@ public class Car {
     return fuel;
   }
 
+  public String getName() {
+    return name;
+  }
 }

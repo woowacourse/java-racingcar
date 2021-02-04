@@ -1,8 +1,9 @@
-package racingCar.service;
+package racingCar.domain;
 
 import java.util.function.Supplier;
 
 public class GasStation {
+
   private Supplier<Integer> supplier;
 
   public GasStation(Supplier<Integer> supplier) {

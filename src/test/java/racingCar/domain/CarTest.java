@@ -1,12 +1,12 @@
-package racingCar.service;
+package racingCar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CarTest {
+
   private final static int MIN_RUNNABLE_FUEL = 4;
   private Car car;
 
