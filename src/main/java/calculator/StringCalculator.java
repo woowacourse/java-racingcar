@@ -6,21 +6,32 @@ import java.util.Optional;
 public class StringCalculator {
 
     public int stringSum(String str) {
-        Optional<Character> customSeparator = getCustomSeparator(str);
-        if (!customSeparator.equals(Optional.empty())) {
+        String separatorRegex = getSeparatorRegex(str);
+        if (isCustomSeparatorExists(str)) {
             str = str.substring(4);
         }
 
-        // 커스텀 구분자 null
-        if (!customSeparator.isPresent()) {
-            return 0;
-        }
-
-        String separatorRegex = "[" + "," + ":" + customSeparator.get() + "]";
         String[] numbers = str.split(separatorRegex);
         return Arrays.stream(numbers)
                 .mapToInt(Integer::parseInt)
                 .sum();
+    }
+
+    private boolean isCustomSeparatorExists(String str) {
+        return str.startsWith("//") && str.charAt(3) == '\n';
+    }
+
+    private String getSeparatorRegex(String str) {
+        Optional<String> customSeparator = getCustomSeparator(str);
+
+        String separatorRegex = "[,:%s]";
+
+        if (!customSeparator.isPresent()) {
+            // 커스텀 구분자 없음
+            return String.format(separatorRegex, "");
+        }
+
+        return String.format(separatorRegex, customSeparator.get());
     }
 
     private Optional<Character> getCustomSeparator(String str) {
