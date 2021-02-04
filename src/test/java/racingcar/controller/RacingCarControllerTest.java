@@ -35,4 +35,22 @@ public class RacingCarControllerTest {
         }).isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("[ERROR] 경주할 자동차를 1대 이상 입력해주세요");
     }
+
+    @Test
+    void checkInteger() {
+        String turns = "";
+        assertThatThrownBy(()-> {
+            RacingCarController.checkTurns(turns);
+        }).isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR] 시도 횟수는 숫자여야 합니다");
+    }
+
+    @Test
+    void checkNegative() {
+        String turns = "-1";
+        assertThatThrownBy(()-> {
+            RacingCarController.checkTurns(turns);
+        }).isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR] 시도 횟수는 음수일 수 없습니다");
+    }
 }
