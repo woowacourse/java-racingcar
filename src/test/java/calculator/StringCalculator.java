@@ -1,11 +1,23 @@
 package calculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringCalculator {
     public static int splitAndSum(String input) {
         if (input == null || input.isEmpty()) {
             return 0;
         }
-        String[] numbers = input.split("[,:]");
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            String[] numbers = m.group(2).split(customDelimiter);
+            return sum(numbers);
+        }
+
+        String[] numbers;
+        numbers = input.split("[,:]");
+
         return sum(numbers);
     }
 
