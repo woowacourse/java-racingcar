@@ -24,32 +24,4 @@ class RacingGameMachineTest {
         assertThatThrownBy(() -> new RacingGameMachine(DUMMY_CARS, tryCounts))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    private static class RacingGameMachine {
-        private static final int ZERO = 0;
-
-        private final Cars cars;
-        private int tryCounts;
-
-        RacingGameMachine(Cars cars, int tryCounts) {
-            this.cars = cars;
-            this.tryCounts = tryCounts;
-            validateTryCounts();
-        }
-
-        private void validateTryCounts() {
-            if (tryCounts <= ZERO) {
-                throw new IllegalArgumentException();
-            }
-        }
-
-        public void play() {
-            tryCounts--;
-            cars.race();
-        }
-
-        public boolean canPlay() {
-            return tryCounts > ZERO;
-        }
-    }
 }
