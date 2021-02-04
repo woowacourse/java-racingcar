@@ -58,4 +58,9 @@ public class RacingCarController {
             RacingCarError.nullCar();
         }
     }
+
+    public void receiveTurns() {
+        String turnsInput = scanner.nextLine();
+        int intTurns = Integer.parseInt(turnsInput);
+    }
 }
