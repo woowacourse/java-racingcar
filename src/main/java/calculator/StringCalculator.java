@@ -36,10 +36,7 @@ public class StringCalculator {
     }
 
     private static boolean checkEmptyOrNullString(String text) {
-        if (text == null || text.isEmpty()) {
-            return true;
-        }
-        return false;
+        return text == null || text.isEmpty();
     }
 
     private static boolean checkAllDigit(String[] numbers) {
