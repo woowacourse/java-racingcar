@@ -8,9 +8,13 @@ public class StringCalculatorTest {
 
     @Test
     public void splitAndSum_null() {
-        StringCalculator stringCalculator = new StringCalculator();
         int result = StringCalculator.splitAndSum(null);
         assertThat(result).isEqualTo(0);
     }
 
+    @Test
+    public void splitAndSum_빈문자() {
+        int result = StringCalculator.splitAndSum("");
+        assertThat(result).isEqualTo(0);
+    }
 }
