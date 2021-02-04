@@ -11,6 +11,5 @@ public class InputScreen extends Screen {
 
     public void showCountMessage(){
         OutputView.printMessage(INPUT_TRY_COUNTS_MESSAGE);
-
     }
 }

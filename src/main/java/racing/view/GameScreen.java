@@ -23,9 +23,16 @@ public class GameScreen extends Screen{
         OutputView.printMessage(stringBuilder.toString());
     }
 
+    public void showWinners(List<String> winnerNames){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.join(DELIMITER, winnerNames));
+        stringBuilder.append(WINNER);
+        OutputView.printMessage(stringBuilder.toString());
+    }
+
     private void showEachCarStatus(CarDto carDto, StringBuilder stringBuilder) {
-        String distance = getDistance(carDto);
         String carName = carDto.getCarName();
+        String distance = getDistance(carDto);
         String message = String.format(STATUS_FORMAT, carName, distance);
         stringBuilder.append(message);
     }
@@ -37,12 +44,5 @@ public class GameScreen extends Screen{
             stringBuilder.append(DISTANCE);
         }
         return stringBuilder.toString();
-    }
-
-    public void showWinners(List<String> winnerNames){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.join(DELIMITER, winnerNames));
-        stringBuilder.append(WINNER);
-        OutputView.printMessage(stringBuilder.toString());
     }
 }
