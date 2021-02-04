@@ -15,6 +15,11 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public static String getLap(){
+        OutputView.showLapGuideMessage();
+        return scanner.nextLine();
+    }
+
 
 
 }
