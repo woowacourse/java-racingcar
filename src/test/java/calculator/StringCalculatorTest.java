@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -41,10 +40,10 @@ public class StringCalculatorTest {
 
     private static Stream<Arguments> provideCustomSeparatorTestCase() {
         return Stream.of(
-                Arguments.of("//c\n1,2", 3),
-                Arguments.of("//c\n1,2,3", 6),
-                Arguments.of("//c\n2,5", 7),
-                Arguments.of("//-\n2,5:1", 8)
+                Arguments.of("//c\n1c2", 3),
+                Arguments.of("//c\n1,2c3", 6),
+                Arguments.of("//c\n2c5", 7),
+                Arguments.of("//-\n2,5-1", 8)
         );
     }
 

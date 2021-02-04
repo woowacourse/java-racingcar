@@ -5,52 +5,63 @@ import java.util.Optional;
 
 public class StringCalculator {
 
-    public int stringSum(String str) {
-        if (isStringNullOrEmpty(str)) {
+    public static final String CUSTOM_SEPARATOR_PREFIX = "//";
+    public static final char CUSTOM_SEPARATOR_SUFFIX = '\n';
+    public static final String EMPTY_STRING = "";
+    public static final String DEFAULT_SEPARATOR_REGEX = "[,:%s]";
+
+    public int stringSum(String input) {
+        if (isInputNullOrEmpty(input)) {
             return 0;
         }
+        String[] numbers = splitBySeparator(input);
+        return getSumNumbers(numbers);
+    }
 
-        String separatorRegex = getSeparatorRegex(str);
+    private String[] splitBySeparator(String input) {
+        return getTargetString(input).split(getSeparatorRegex(input));
+    }
 
-        if (isCustomSeparatorExists(str)) {
-            str = str.substring(4);
-        }
-
-        String[] numbers = str.split(separatorRegex);
+    private int getSumNumbers(String[] numbers) {
         return Arrays.stream(numbers)
                 .mapToInt(Integer::parseInt)
-                .peek(integer -> {
-                    if (integer < 0) {
-                        throw new RuntimeException();
-                    }
-                })
+                .peek(this::validatePositiveNumber)
                 .sum();
     }
 
-    private boolean isStringNullOrEmpty(String str) {
-        return str == null || str.equals("");
+    private void validatePositiveNumber(Integer number) {
+        if (number < 0) {
+            throw new RuntimeException();
+        }
     }
 
-    private boolean isCustomSeparatorExists(String str) {
-        return str.startsWith("//") && str.charAt(3) == '\n';
+    private String getTargetString(String input) {
+        if (isCustomSeparatorExists(input)) {
+            return input.substring(4);
+        }
+        return input;
     }
 
-    private String getSeparatorRegex(String str) {
-        Optional<String> customSeparator = getCustomSeparator(str);
+    private boolean isInputNullOrEmpty(String input) {
+        return input == null || input.equals(EMPTY_STRING);
+    }
 
-        String separatorRegex = "[,:%s]";
+    private boolean isCustomSeparatorExists(String input) {
+        return input.startsWith(CUSTOM_SEPARATOR_PREFIX) && input.charAt(3) == CUSTOM_SEPARATOR_SUFFIX;
+    }
+
+    private String getSeparatorRegex(String input) {
+        Optional<String> customSeparator = getCustomSeparator(input);
 
         if (!customSeparator.isPresent()) {
-            // 커스텀 구분자 없음
-            return String.format(separatorRegex, "");
+            return String.format(DEFAULT_SEPARATOR_REGEX, "");
         }
-
-        return String.format(separatorRegex, customSeparator.get());
+        return String.format(DEFAULT_SEPARATOR_REGEX, customSeparator.get());
     }
 
-    private Optional<String> getCustomSeparator(String str) {
-        if (isCustomSeparatorExists(str)) {
-            return Optional.of(str.substring(2, 3));
+    private Optional<String> getCustomSeparator(String input) {
+        if (isCustomSeparatorExists(input)) {
+            return Optional.of(input.substring(2, 3));
         }
         return Optional.empty();
     }
