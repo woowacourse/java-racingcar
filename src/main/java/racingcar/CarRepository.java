@@ -20,6 +20,26 @@ public class CarRepository {
         cars.clear();
     }
 
+    public static void race(int tryTime) {
+        for (int i = 0; i < tryTime; i++) {
+            updateAllCarsPosition();
+        }
+    }
+
+    private static void updateAllCarsPosition() {
+        for (Car car : cars) {
+            goForwardOrStopRandomly(car);
+        }
+    }
+
+    private static void goForwardOrStopRandomly(Car car) {
+        int randomNumber = RandomGenerator.generateRandomNumber(0, 9);
+
+        if (GoForwardOrStop.isGoForward(randomNumber)) {
+            car.goForward();
+        }
+    }
+
     public static List<Car> getWinners() {
         int maxPosition = getMaxPosition();
         return Collections.unmodifiableList(cars.stream()
