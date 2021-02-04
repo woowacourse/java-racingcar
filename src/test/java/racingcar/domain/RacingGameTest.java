@@ -3,11 +3,12 @@ package racingcar.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.dto.CarsResponseDto;
+
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RacingGameTest {
     private RacingGame racingGame;
@@ -22,9 +23,9 @@ class RacingGameTest {
     void 자동차_생성되는지() {
         List<String> names = Arrays.asList("a","b","c");
         racingGame.makeCars(names);
-        List<Car> cars = racingGame.getCars();
+        CarsResponseDto cars = racingGame.getCarsResponseDto();
         for (int i = 0; i < names.size(); i++) {
-            assertThat(cars.get(i).getName()).isEqualTo(names.get(i));
+            assertThat(cars.getCarResponseDtoList().get(i).getName()).isEqualTo(names.get(i));
         }
     }
 
@@ -52,7 +53,7 @@ class RacingGameTest {
         racingGame.addCar(testCar2);
         racingGame.addCar(testCar3);
 
-        String result = racingGame.calculateWinner();
+        String result = racingGame.decideWinner();
         assertThat(result).isEqualTo("똘이, 멍이");
     }
 }

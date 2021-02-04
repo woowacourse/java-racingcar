@@ -31,7 +31,7 @@ public class RacingGame {
         round++;
     }
 
-    public String calculateWinner(){
+    public String decideWinner(){
         List<Car> winners = new ArrayList<>();
         int maxPosition = getMaxPosition();
         return cars.stream().
