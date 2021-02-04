@@ -1,7 +1,20 @@
-package javaracingcar.domain;
+package javaracingcar.controller;
 
-public class CarFactory {
+import javaracingcar.domain.Car;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CarGenerator {
     private static final int CAR_NAME_LENGTH_MAX_SIZE = 4;
+    public static List<Car> generateCars(List<String> carNames) {
+        List<Car> cars =  new ArrayList<>();
+        for (String name : carNames) {
+            cars.add(generateCar(name));
+        }
+        return cars;
+    }
+
     public static Car generateCar(String name) {
         validateNull(name);
         String trimmedName = name.trim();
