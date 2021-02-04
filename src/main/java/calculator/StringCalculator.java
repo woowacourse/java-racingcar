@@ -2,6 +2,8 @@ package calculator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
     private static final int ZERO = 0;
@@ -22,10 +24,19 @@ public class StringCalculator {
             for(Delimiters delimiter : Delimiters.values()){
                 delimiters.add(delimiter.delimiter);
             }
-            return String.join("|\\", delimiters);
+            return String.join("|", delimiters);
         }
     }
 
+    public static int splitByCustomDelimiter(String text) {
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            String[] tokens= m.group(2).split(customDelimiter);
+            return sumNumbers(tokens);
+        }
+        return splitByDelimiters(text);
+    }
     public static int splitAndSum(String text) {
         int result = INIT_NUMBER;
         if(isNull(text)){
@@ -40,7 +51,7 @@ public class StringCalculator {
             result = Integer.parseInt(text);
             return result;
         }
-        return splitByDelimiters(text);
+        return splitByCustomDelimiter(text);
     }
 
     private static boolean isNull(String text) {
