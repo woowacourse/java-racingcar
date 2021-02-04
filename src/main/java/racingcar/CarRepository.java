@@ -12,6 +12,10 @@ public class CarRepository {
         cars.add(car);
     }
 
+    public static void saveAll(List<Car> carsToSave) {
+        cars.addAll(carsToSave);
+    }
+
     public static void deleteAll() {
         cars.clear();
     }
