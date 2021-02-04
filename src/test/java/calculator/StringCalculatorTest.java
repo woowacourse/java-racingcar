@@ -2,6 +2,7 @@ package calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,16 +27,26 @@ public class StringCalculatorTest {
         assertThat(stringCalculator.stringSum(input)).isEqualTo(expected);
     }
 
-//    @ParameterizedTest
-//    @DisplayName("커스텀 구분자 테스트")
-//    @CsvSource(value = {"//c\n1,2=3"}, delimiter = '=')
-//    void customSeparatorTest(String input, Integer expected) {
-//        //1. 커스텀 구분자가 있을 때 구분자 배열 확인 : , custom
-//        //2. 커스텀 구분자가 없을 때 구분자 배열 확인 : ,
-//        assertThat(stringCalculator.stringSum(input)).isEqualTo(expected);
-//    }
+    @ParameterizedTest
+    @DisplayName("커스텀 구분자 테스트: CsvSource 사용")
+    @MethodSource("provideCustomSeparatorTestCase")
+    void customSeparatorTest(String input, Integer expected) {
+        //1. 커스텀 구분자가 있을 때 구분자 배열 확인 : , custom
+        //2. 커스텀 구분자가 없을 때 구분자 배열 확인 : ,
+        assertThat(stringCalculator.stringSum(input)).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> provideCustomSeparatorTestCase() {
+        return Stream.of(
+                Arguments.of("//c\n1,2", 3),
+                Arguments.of("//c\n1,2,3", 6),
+                Arguments.of("//c\n2,5", 7),
+                Arguments.of("//-\n2,5:1", 8)
+        );
+    }
 
     @Test
+    @DisplayName("커스텀 구분자 테스트")
     void customSeparatorTest() {
         String input = "//c\n1,2";
         assertThat(stringCalculator.stringSum(input)).isEqualTo(3);
