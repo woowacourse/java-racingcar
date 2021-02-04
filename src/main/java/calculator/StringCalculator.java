@@ -19,4 +19,14 @@ public class StringCalculator {
         }
         return -1;
     }
+
+    private static String findCustomDelimiter(String inputStr) {
+        //“//;\n1;2;3” => ;
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(inputStr);
+        String customDelimiter = "";
+        if (m.find()) {
+            customDelimiter = m.group(1);
+        }
+        return customDelimiter;
+    }
 }
