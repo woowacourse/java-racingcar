@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.dto.CarsResponseDto;
 import racingcar.utils.RandomGenerator;
 
 import java.util.ArrayList;
@@ -46,8 +47,8 @@ public class RacingGame {
                 orElseThrow(NoSuchElementException::new);
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public CarsResponseDto getCarsResponseDto() {
+        return new CarsResponseDto(cars);
     }
 
     public int getRound(){

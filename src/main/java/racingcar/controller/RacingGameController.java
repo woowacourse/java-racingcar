@@ -22,7 +22,7 @@ public class RacingGameController {
         OutputView.output(EXECUTE_RESULT_MSG);
         for (int i = 0; i < round; i++) {
             racingGame.playRound();
-            OutputView.printLeaderBoard(racingGame.getCars());
+            OutputView.printLeaderBoard(racingGame.getCarsResponseDto());
         }
 
         String winners = racingGame.decideWinner();
