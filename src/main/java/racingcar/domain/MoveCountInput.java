@@ -15,6 +15,12 @@ public class MoveCountInput {
     }
 
     private boolean isNumeric(String input) {
-        return input.replaceAll(" ","").chars().allMatch(Character::isDigit);
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return true;
     }
 }
