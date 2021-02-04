@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.exception.CarNameDuplicateException;
 import racingcar.exception.CarNameLengthException;
 
 import java.util.Arrays;
@@ -26,13 +27,20 @@ public class InputTest {
         assertEquals(expected, carNamesInput.getCarNames());
     }
 
-
-
     private static Stream<Arguments> provideInputsFor_자동차_이름_리스트_반환() {
         return Stream.of(
                 Arguments.of("포비,로이드,워니", Arrays.asList("포비", "로이드", "워니")),
                 Arguments.of("a,d", Arrays.asList("a", "d")),
                 Arguments.of("q,d,e,g,c,s", Arrays.asList("q", "d", "e", "g", "c", "s"))
         );
+    }
+
+    @ParameterizedTest
+    @DisplayName("자동차 이름에 중복이 있으면 예외")
+    @ValueSource(strings = {"a,a,a", "a,b,c,a", "a,b,c,d,e,f,f"})
+    public void getCarNames_자동차_이름에_중복이_있으면_예외(String input) {
+        assertThatExceptionOfType(CarNameDuplicateException.class)
+                .isThrownBy(() -> Input.valueOf(input))
+                .withMessageContaining(new CarNameDuplicateException().getMessage());
     }
 }
