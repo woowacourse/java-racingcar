@@ -5,11 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.domain.car.Car;
 import racingcar.domain.car.CarName;
-import racingcar.domain.car.CarsTest;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -35,7 +32,6 @@ public class GameResultTest {
         GameResult gameResult = GameResult.valueOf(input, null);
         assertEquals(expected, gameResult.getWinnersString());
     }
-
 
     private static Stream<Arguments> provideInputsFor_우승자가_여러명일_경우_쉼표로_구분하여_출력한다() {
         return Stream.of(
