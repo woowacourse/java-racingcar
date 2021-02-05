@@ -12,7 +12,7 @@ public class AttemptNumber {
 
     private void validateNumberRange(int attemptNumber) {
         if (attemptNumber < MIN_ATTEMPT_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("시도 횟수는 1회 이상이여야 합니다.");
         }
     }
 
