@@ -3,8 +3,6 @@ package racingcar;
 import utils.RandomUtils;
 
 public class Car {
-    private static final int MINIMUM_RPM = 0;
-    private static final int MAXIMUM_RPM = 9;
     private static final int MOVABLE_MINIMUM_RPM = 3;
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
@@ -16,15 +14,10 @@ public class Car {
         this.name = name;
     }
 
-    public void tryToMove() {
-        int currentRPM = getRandomRPM();
+    public void tryToMove(int currentRPM) {
         if (movementCheck(currentRPM)) {
             move();
         }
-    }
-
-    private int getRandomRPM() {
-        return RandomUtils.nextInt(MINIMUM_RPM, MAXIMUM_RPM);
     }
 
     private boolean movementCheck(int currentRPM) {

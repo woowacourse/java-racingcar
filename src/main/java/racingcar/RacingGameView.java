@@ -26,4 +26,20 @@ public class RacingGameView {
         String result = scanner.nextLine();
         return result;
     }
+
+    public static void printResult() {
+        System.out.println(RESULT_MESSAGE);
+    }
+
+    public static void printCarPosition(Car car) {
+        String movement = "";
+        for (int p=0; p<car.getPosition(); p++){
+            movement = movement.concat(MOVEMENT);
+        }
+        System.out.printf(CAR_SITUATION_MESSAGE_FORMAT, car.getName(), movement);
+    }
+
+    public static void printNewLine() {
+        System.out.println();
+    }
 }
