@@ -22,4 +22,14 @@ public class InputView {
 
         return Arrays.asList(carNames.split(Message.COMMA.toString()));
     }
+
+    public int scanTimes() {
+        String times = scanner.nextLine();
+
+        try {
+            return Integer.parseInt(times);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Message.NON_DIGIT_ERROR.toString());
+        }
+    }
 }
