@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class NameTest {
 
     @Test
-    void name_공백으로_들어온경우() {
+    void 이름이_공백으로_들어온경우() {
         assertThatThrownBy(() -> {
             new Name(" ");
         }).isInstanceOf(IllegalArgumentException.class)
@@ -16,7 +16,7 @@ class NameTest {
     }
 
     @Test
-    public void name_자동차이름은_5자이하() {
+    public void 자동차이름은_5자이하() {
         assertThatThrownBy(() -> {
             new Name("joanne");
         }).isInstanceOf(IllegalArgumentException.class)

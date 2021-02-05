@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class TrialTest {
     @ParameterizedTest
     @ValueSource(strings = {"123aa", "a1231", "11a11"})
-    void isNumber(String trial) {
+    void 시도_횟수가_문자로_들어왔을_때(String trial) {
         assertThatThrownBy(() -> {
             new Trial(trial);
         }).isInstanceOf(IllegalArgumentException.class)
@@ -19,7 +19,7 @@ class TrialTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1"})
-    public void isTrialMoreThan1(String trial) {
+    public void 시도_횟수가_1보다_작거나_숫자가_아닐때(String trial) {
         assertThatThrownBy(() -> {
             new Trial(trial);
         }).isInstanceOf(IllegalArgumentException.class)

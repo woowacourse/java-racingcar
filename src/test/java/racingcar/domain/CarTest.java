@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CarTest {
     @Test
@@ -22,5 +23,14 @@ class CarTest {
 
         //when-then
         assertThat(car.movePosition(3)).isEqualTo(0);
+    }
+
+    @Test
+    public void winner와_position이_같은지_확인() {
+        Car car1 = new Car(new Name("anne"));
+        Car car2 = new Car(new Name("jo"));
+        car1.movePosition(5);
+        car2.movePosition(5);
+        assertEquals(true, car1.hasSamePositionWith(car2));
     }
 }
