@@ -12,4 +12,8 @@ public class RandomNumber {
     public RandomNumber() {
         this.number = START + RANDOM.nextInt(END - START);
     }
+
+    public int getNumber() {
+        return this.number;
+    }
 }
