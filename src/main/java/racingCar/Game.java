@@ -1,8 +1,6 @@
 package racingCar;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Game {
     private static final int MINIMUM_VALUE = 0;
@@ -11,7 +9,7 @@ public class Game {
     public void run() {
         String input = InputChecker.getInput();
         String[] carNames = input.split(",");
-        for(String carName : carNames) {
+        for (String carName : carNames) {
             Cars.carAdd(new Car(carName));
         }
         playGame(InputChecker.getNumber());
@@ -42,9 +40,9 @@ public class Game {
         }
     }
 
-    private static void showStatus() {
-        for (Car car : Cars.cars) {
-            System.out.println(car.name + " : " + bar(car.distance));
+    public void showStatus() {
+        for (Car car : Cars.getCars()) {
+            System.out.println(car.getName() + " : " + bar(car.getDistance()));
         }
         System.out.println();
     }
@@ -57,9 +55,9 @@ public class Game {
         return sb.toString();
     }
 
-    private static void playCar() {
-        for(int i=0;i<Cars.cars.size();i++){
-            int number = RandomUtils.nextInt(0,9);
+    public void playCar() {
+        for (int i = 0; i < Cars.getSize(); i++) {
+            int number = RandomUtils.nextInt(MINIMUM_VALUE, MAXIMUM_VALUE);
             Cars.cars.get(i).move(number);
         }
         showStatus();
