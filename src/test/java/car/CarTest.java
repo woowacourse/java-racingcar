@@ -12,48 +12,48 @@ class CarTest {
     void move_RandomValueMoreThanCondition_Move() {
         
         // given
-        Engine engine = new Engine.Fake(4);
-        Car car = new Car("tico", 0, engine);
-        Car expectedCar = new Car("tico", 1, engine);
-    
+        Car car = new Car.Builder("tico").withFakeEngine(4)
+                                         .build();
+        
+        Car movedCar = new Car.Builder("tico").withPosition(1)
+                                              .withFakeEngine(4)
+                                              .build();
+        
         // when
         car = car.move();
         
+        
         // then
-        assertThat(car).isEqualTo(expectedCar);
+        assertThat(car).isEqualTo(movedCar);
     }
     
     @Test
     @DisplayName("랜덤값이 주어진 조건보다 작다면 멈춤")
-    void move_RandomValueLessThanCondition_Stop() {
+    void move_RandomValueLessThanCondition_DoNotMove() {
         
         // given
-        Engine engine = new Engine.Fake(3);
-        Car car = new Car("tico", 0, engine);
+        Car car = new Car.Builder("tico").withFakeEngine(3)
+                                         .build();
         
         // when
-        Car expectedCar = car.move();
+        Car didNotMoveCar = car.move();
         
         // then
-        assertThat(car).isEqualTo(expectedCar);
+        assertThat(car).isEqualTo(didNotMoveCar);
     }
     
     @Test
     void carNameTest() {
-        assertThatCode(() -> ValidCheck.carNameValid("a,b,c,d124,e"))
-                .doesNotThrowAnyException();
+        assertThatCode(() -> ValidCheck.carNameValid("a,b,c,d124,e")).doesNotThrowAnyException();
         
-        assertThatThrownBy(() -> ValidCheck.carNameValid("a,b,c,d1 24,e"))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidCheck.carNameValid("a,b,c,d1 24,e")).isInstanceOf(IllegalArgumentException.class);
     }
     
     @Test
     void roundTest() {
         assertThatCode(() -> ValidCheck.round("15")).doesNotThrowAnyException();
         
-        assertThatThrownBy(() -> ValidCheck.carNameValid(" "))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> ValidCheck.carNameValid("0"))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidCheck.carNameValid(" ")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidCheck.carNameValid("0")).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -15,9 +15,14 @@ class ScoreBoardTest {
     void findWinners_UniqueMaxPosition_onlyOneWinner() {
         
         // given
-        final Car pobi = new Car("pobi", 2);
-        final Car honux = new Car("honux", 3);
-        final Car crong = new Car("crong", 4);
+        final Car pobi = new Car.Builder("pobi").withPosition(2)
+                                                .build();
+        
+        final Car honux = new Car.Builder("honux").withPosition(3)
+                                                  .build();
+        
+        final Car crong = new Car.Builder("crong").withPosition(4)
+                                                  .build();
         
         final Cars cars = new Cars(Arrays.asList(pobi, honux, crong));
         final ScoreBoard scoreBoard = cars.recordScore();
@@ -34,9 +39,14 @@ class ScoreBoardTest {
     void findWinners_SameMaxPosition_Winners() {
         
         // given
-        final Car pobi = new Car("pobi", 2);
-        final Car honux = new Car("honux", 3);
-        final Car crong = new Car("crong", 3);
+        final Car pobi = new Car.Builder("pobi").withPosition(2)
+                                                .build();
+        
+        final Car honux = new Car.Builder("honux").withPosition(3)
+                                                  .build();
+        
+        final Car crong = new Car.Builder("crong").withPosition(3)
+                                                  .build();
         
         final Cars cars = new Cars(Arrays.asList(pobi, honux, crong));
         final ScoreBoard scoreBoard = cars.recordScore();

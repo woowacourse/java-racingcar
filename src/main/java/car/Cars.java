@@ -18,11 +18,12 @@ public final class Cars {
     }
     
     public static Cars from(String carNames) {
-        return Cars.of(carNames, Car::fromNameWithRacingEngine);
+        return Cars.of(carNames, carName -> new Car.Builder(carName).build());
     }
     
     static Cars fromCarNamesWithFakeEngine(String carNames, int moveCondition) {
-        final Function<String, Car> nameToCarFunction = carName -> Car.fromNameWithFakeEngine(carName, moveCondition);
+        final Function<String, Car> nameToCarFunction = name -> new Car.Builder(name).withFakeEngine(moveCondition)
+                                                                                     .build();
         
         return of(carNames, nameToCarFunction);
     }

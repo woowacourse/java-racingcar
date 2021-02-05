@@ -11,6 +11,10 @@ public class Parser {
     
     private static final String OR = "|";
     
+    private static final int CUSTOM_DELIMITER_GROUP_INDEX = 1;
+    
+    private static final int NUMBERS_GROUP_INDEX = 2;
+    
     private final String input;
     
     public Parser(String input) {
@@ -30,7 +34,7 @@ public class Parser {
         String regex = DEFAULT_REGEX;
         
         if (matcher.matches()) {
-            String customDelimiter = matcher.group(1);
+            String customDelimiter = matcher.group(CUSTOM_DELIMITER_GROUP_INDEX);
             regex = customDelimiter + OR + DEFAULT_REGEX;
         }
         
@@ -39,7 +43,7 @@ public class Parser {
     
     private String findNumbersAndDelimiter(Matcher matcher) {
         if (matcher.matches()) {
-            return matcher.group(2);
+            return matcher.group(NUMBERS_GROUP_INDEX);
         }
         
         return input;

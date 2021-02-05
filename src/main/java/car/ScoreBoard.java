@@ -30,11 +30,15 @@ public final class ScoreBoard {
     }
     
     public List<String> findWinners() {
-        int max = retrieveMaxPosition();
+        int position = retrieveMaxPosition();
         
+        return getWinners(position);
+    }
+    
+    private List<String> getWinners(int maxPosition) {
         return scores.stream()
                      .collect(groupingBy(Score::getPosition, mapping(Score::getName, toList())))
-                     .get(max);
+                     .get(maxPosition);
     }
     
     private int retrieveMaxPosition() {
