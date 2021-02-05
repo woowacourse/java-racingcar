@@ -6,6 +6,8 @@ public class Car {
     private final String name;
 
     private Car(String name) {
+        CarValidator.validateCarNameIsNullOrEmpty(name);
+
         String trimmedName = name.trim();
         CarValidator.validateCarNameLength(trimmedName);
         this.name = trimmedName;

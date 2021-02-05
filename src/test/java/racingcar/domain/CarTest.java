@@ -29,4 +29,11 @@ public class CarTest {
         Car car = Car.of(name);
         assertThat(car.getName()).isEqualTo(name.trim());
     }
+
+    @Test
+    public void 자동차이름은_null이거나_빈문자일수_없다() {
+        assertThatThrownBy(() -> {
+            Car.of(null);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
