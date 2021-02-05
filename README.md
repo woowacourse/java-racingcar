@@ -4,7 +4,7 @@
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
-## 구현할 기능 목록 작성
+## 요구 사항 정의
 ### Car
 - [x] 자동차는 위치와 이름 정보를 가져야 한다.
 - [x] 전진할 조건을 만족할 경우 전진한다.
