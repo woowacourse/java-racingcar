@@ -37,13 +37,13 @@ public class RacingResult {
   }
 
   public Winner getWinner() {
-    int max = participants.getCars().stream()
+    int maxPosition = participants.getCars().stream()
         .mapToInt(Car::getPosition)
         .max()
         .orElse(DEFAULT_MAX_POSITION);
 
     List<Car> winners = participants.getCars().stream()
-        .filter(car -> car.getPosition() == max)
+        .filter(car -> car.getPosition() == maxPosition)
         .collect(Collectors.toList());
     return new Winner(winners);
   }
