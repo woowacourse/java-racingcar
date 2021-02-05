@@ -15,7 +15,7 @@ class RacingManagerTest {
   @BeforeEach
   void init() {
     participants = new Participants("pobi", "sp", "on");
-    racingManager = new RacingManager(participants, 3, () -> Car.MIN_RUNNABLE_FUEL);
+    racingManager = new RacingManager(participants, new Round(3), () -> Car.MIN_RUNNABLE_FUEL);
   }
 
   @Test
