@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class RacingResultTest {
 
-  private static final String ENTER = "\n";
+  private static final String ENTER = System.lineSeparator();
   private Participants participants;
   private RacingResult racingResult;
 
