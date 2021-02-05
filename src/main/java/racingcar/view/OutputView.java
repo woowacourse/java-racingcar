@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import static racingcar.input.utils.CarNamesSplitterUtils.CAR_NAMES_DELIMITER;
+
 import java.util.List;
 
 public class OutputView {
@@ -27,6 +29,6 @@ public class OutputView {
     public static void printWinner(List<String> names) {
         System.out.print("최종 우승자 : ");
 
-        System.out.println(String.join(", ", names));
+        System.out.println(String.join(CAR_NAMES_DELIMITER + " ", names));
     }
 }
