@@ -17,6 +17,7 @@ public class RacingController {
             OutputView.enterTrials();
             Trial trial = InputView.getTrial();
 
+            OutputView.printResultTitle();
             for (int i = 0; i < trial.getTrial(); i++) {
                 cars.moveCars();
                 OutputView.printCurrentResult(cars.getCurrentPosition());
