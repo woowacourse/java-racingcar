@@ -1,6 +1,8 @@
 package racingcar;
 
-import static racingcar.CarGoForwardOrStopUtils.MIN_NUMBER_TO_GO_FORWARD;
+import static racingcar.GoForwardOrStopUtils.MIN_GO_FORWARD_VALUE;
+import static racingcar.RandomNumbersGeneratorUtils.MAX_RANDOM_NUMBER;
+import static racingcar.RandomNumbersGeneratorUtils.MIN_RANDOM_NUMBER;
 
 import racingcar.output.OutputPrinter;
 
@@ -79,7 +81,7 @@ public class CarRepository {
 
     private static void goForwardIfRandomNumberOfCarIsFourOrMore(Car car,
         int randomNumberOfCar) {
-        if (MIN_NUMBER_TO_GO_FORWARD <= randomNumberOfCar) {
+        if (MIN_GO_FORWARD_VALUE <= randomNumberOfCar) {
             car.goForward();
         }
     }

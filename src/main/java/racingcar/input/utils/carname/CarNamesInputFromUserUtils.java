@@ -8,6 +8,10 @@ import racingcar.input.utils.carname.validators.CarNamesNotDuplicateValidatorUti
 import racingcar.input.utils.carname.validators.TwoOrMoreCarNamesValidatorUtils;
 
 public class CarNamesInputFromUserUtils {
+
+    private CarNamesInputFromUserUtils() {
+    }
+
     public static List<String> getAllCarNames(Scanner scanner) {
         InputPrinter.printCarNamesInputMessage();
         String inputCarNames = scanner.next();

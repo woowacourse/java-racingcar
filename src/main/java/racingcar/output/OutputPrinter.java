@@ -11,6 +11,9 @@ public class OutputPrinter {
     private static final String NEW_LINE = "\n";
     private static final String POSITION_SIGN = "-";
 
+    private OutputPrinter() {
+    }
+
     public static void printStartMessageOfAllCarRacing() {
         printNewLine();
         System.out.println("실행 결과");
