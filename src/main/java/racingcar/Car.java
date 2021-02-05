@@ -5,12 +5,11 @@ import java.util.stream.IntStream;
 public class Car {
 
     private int position;
-    private String name;
+    private final String name;
 
-    public Car(String name) {
-        name = validateName(name);
+    public Car(final String name) {
         this.position = 1;
-        this.name = name;
+        this.name = validateName(name);
     }
 
     private String validateName(String name) {

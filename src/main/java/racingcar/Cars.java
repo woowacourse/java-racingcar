@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import utils.RandomUtils;
 
 public class Cars {
 
@@ -39,5 +40,12 @@ public class Cars {
 
     private static String[] splitCarsName(String carsName) {
         return carsName.split(",", -1);
+    }
+
+    public void driveAll() {
+        for (Car car : cars) {
+            car.drive(RandomUtils.nextInt(0, 9));
+        }
+        OutputView.printCars(cars);
     }
 }
