@@ -16,12 +16,12 @@ class CarTest {
     @Test
     public void movePosition_4_이상_전진() {
         car.movePosition(4);
-        assertEquals(true, car.isSamePositionWith(1));
+        assertEquals(true, car.hasSamePositionWith(1));
     }
 
     @Test
-    public void movePosition_3_이하_전진() {
+    public void movePosition_3_이하_멈춤() {
         car.movePosition(3);
-        assertEquals(true, car.isSamePositionWith(0));
+        assertEquals(true, car.hasSamePositionWith(0));
     }
 }
