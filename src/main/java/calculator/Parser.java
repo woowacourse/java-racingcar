@@ -33,7 +33,7 @@ public class Parser {
             String customDelimiter = matcher.group(1);
             regex = customDelimiter + OR + DEFAULT_REGEX;
         }
-    
+        
         return regex;
     }
     
