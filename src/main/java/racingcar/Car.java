@@ -1,7 +1,5 @@
 package racingcar;
 
-import racingcar.exception.InvalidCarNameException;
-
 public class Car {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
@@ -10,10 +8,6 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new InvalidCarNameException();
-        }
-
         this.name = name;
     }
 
