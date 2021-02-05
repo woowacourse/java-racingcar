@@ -20,4 +20,10 @@ public class InputView {
         inputValidation.validateName(name);
         return name;
     }
+
+    public int inputTime() {
+        String input = scanner.next();
+        inputValidation.validateTime(input);
+        return 0;
+    }
 }

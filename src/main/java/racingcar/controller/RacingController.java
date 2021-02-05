@@ -1,19 +1,24 @@
 package racingcar.controller;
 
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class RacingController {
     private CarController carController;
     private InputView inputView;
+    private OutputView outputView;
 
     public RacingController() {
         carController = new CarController();
         inputView = new InputView();
+        outputView = new OutputView();
     }
 
     public void run() {
-//        String name = inputView.inputCarName(); // TODO : 자동차 입력 기능 구현
-        // TODO : 메뉴 표시
+        outputView.askCarName();
+        String[] name = inputView.inputCarName();
+        outputView.askTime();
+        int time = inputView.inputTime();
         // TODO : 자동차 이름 입력
 //        carController.createCars(names);
     }

@@ -1,9 +1,7 @@
 package racingcar.utils;
 
-import racingcar.utils.exception.DuplicateNameException;
-import racingcar.utils.exception.InvalidNameLengthException;
-import racingcar.utils.exception.InvalidTextException;
-import racingcar.utils.exception.NotEnoughCarException;
+import javafx.scene.shape.PathElement;
+import racingcar.utils.exception.*;
 
 import java.util.Arrays;
 import java.util.regex.Pattern;
@@ -58,5 +56,12 @@ public class InputValidation {
                 .ifPresent(s -> {
                     throw new InvalidTextException();
                 });
+    }
+
+    public void validateTime(String input) {
+        String pattern = "^[0-9]*$";
+        if (!Pattern.matches(pattern, input) || input.equals("0")) {
+            throw new InvalidTimeException();
+        }
     }
 }
