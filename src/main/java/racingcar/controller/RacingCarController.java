@@ -1,31 +1,33 @@
 package racingcar.controller;
 
-import racingcar.view.RacingCarError;
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.view.RacingCarError;
+import racingcar.view.RacingCarView;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class RacingCarController {
     private Scanner scanner;
+    private Cars cars;
+    private int turns;
+
     private static final String DELIMITER = ",";
     private static final int ZERO_VALUE = 0;
     private static final int UPPER_LIMIT = 5;
     private static final long LONG_ZERO_VALUE = 0L;
 
     public RacingCarController(Scanner scanner) {
-        scanner = this.scanner;
+        this.scanner = scanner;
     }
 
-    public void receiveNames() {
+    public void generateCars() {
+        RacingCarView.carListInput();
         String carsInput = scanner.nextLine();
         String[] parsedCarsInput = carsInput.split(DELIMITER);
         List<String> carNameCandidates = Arrays.asList(parsedCarsInput);
         checkNames(carNameCandidates);
-        Cars cars = new Cars(carNameCandidates);
+        this.cars = new Cars(carNameCandidates);
     }
 
     public static void checkNames(List<String> nameCandidates) {
@@ -36,7 +38,6 @@ public class RacingCarController {
 
     private static void checkOverlappedNames(List<String> nameCandidates) {
         Set<String> targetSet = new HashSet<>(nameCandidates);
-
         if (nameCandidates.size() != targetSet.size()) {
             RacingCarError.overlapped();
         }
@@ -52,7 +53,6 @@ public class RacingCarController {
             .mapToInt(carName -> carName.length())
             .filter(carNameLength -> carNameLength > UPPER_LIMIT)
             .count();
-
         if (nameFilters != LONG_ZERO_VALUE) {
             RacingCarError.upperLength();
         }
@@ -61,9 +61,8 @@ public class RacingCarController {
     private static void checkLowerLimit(List<String> nameCandidates) {
         long nameFilters = nameCandidates.stream()
                 .mapToInt(carName -> carName.length())
-                .filter(carNameLength -> carNameLength > ZERO_VALUE)
+                .filter(carNameLength -> carNameLength <= ZERO_VALUE)
                 .count();
-
         if (nameFilters != LONG_ZERO_VALUE) {
             RacingCarError.lowerLength();
         }
@@ -76,8 +75,10 @@ public class RacingCarController {
     }
 
     public void receiveTurns() {
+        RacingCarView.turnNumberInput();
         String turnsInput = scanner.nextLine();
         int intTurns = Integer.parseInt(turnsInput);
+        this.turns = intTurns;
     }
 
     public static void checkTurns(String turnCandidate) {
@@ -98,5 +99,20 @@ public class RacingCarController {
         if (integerCandidate < ZERO_VALUE) {
             RacingCarError.negativeInteger();
         }
+    }
+
+    public void playGame() {
+        RacingCarView.showResultMessage();
+        for (int i = ZERO_VALUE; i < this.turns; i++) {
+            cars.processOneTurn();
+            List<Car> carList = cars.getList();
+            carList.stream()
+                .forEach(RacingCarView::displayPosition);
+            RacingCarView.displayTurnInterval();
+        }
+    }
+
+    public void endGame() {
+        RacingCarView.showWinner(cars.findWinners());
     }
 }

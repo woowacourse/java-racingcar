@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class RandomNumberGenerator {
     private static Random random = new Random();
+
     private static final int DOWN_LIMIT = 0;
     private static final int UP_LIMIT = 9;
     private static final int CALIBRATION_NUMBER = 1;

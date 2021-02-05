@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.utils.RandomNumberGenerator;
-import racingcar.view.RacingCarView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +10,12 @@ public class Cars {
 
     public Cars(List<String> carNameList) {
         carNameList.stream()
-                .forEach(carName -> carList.add(new Car(carName)));
-    }
-
-    public void showCarsPosition() {
-        carList.stream()
-                .forEach(car -> RacingCarView.displayPosition(car));
-
+            .forEach(carName -> carList.add(new Car(carName)));
     }
 
     public void processOneTurn() {
         carList.stream()
-                .forEach(car -> car.oneTurn(RandomNumberGenerator.turnNumber()));
+            .forEach(car -> car.oneTurn(RandomNumberGenerator.turnNumber()));
     }
 
     public List<Car> getList() {
@@ -35,7 +28,7 @@ public class Cars {
         carList.stream()
             .filter(carElement -> (carElement.getPosition() == maxPosition))
             .map(carElement -> carElement.getName())
-            .forEach(carWinner->winnerList.add(carWinner));
+            .forEach(winnerList::add);
         return String.join(", ", winnerList);
     }
 
