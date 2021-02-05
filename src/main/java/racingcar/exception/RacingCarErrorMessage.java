@@ -5,7 +5,7 @@ public enum RacingCarErrorMessage {
   TURN("시도 횟수는 1 이상의 자연수이어야 합니다.");
   private String message;
 
-  RacingCarErrorMessage(String message) {
+  RacingCarErrorMessage(final String message) {
     this.message = message;
   }
 

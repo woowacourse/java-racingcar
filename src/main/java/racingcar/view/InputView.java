@@ -35,7 +35,7 @@ public class InputView {
     }
   }
 
-  private static void validateTurn(int turn) {
+  private static void validateTurn(final int turn) {
     if (turn < MIN_TURN) {
       throw new IllegalStateException(RacingCarErrorMessage.TURN.getMessage());
     }
