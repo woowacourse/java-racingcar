@@ -56,5 +56,4 @@ public class StringCalculatorTest {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
                 .isInstanceOf(RuntimeException.class);
     }
-
 }
