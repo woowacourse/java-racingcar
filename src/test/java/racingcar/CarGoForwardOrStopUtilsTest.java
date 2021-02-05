@@ -20,7 +20,7 @@ public class CarGoForwardOrStopUtilsTest {
     @DisplayName("생성된 랜덤 숫자가 3 이하인 경우, 자동차는 한 칸 앞으로 전진해야 한다.")
     @Test
     void carStop() {
-        int generatedRandomNumber = 4;
+        int generatedRandomNumber = 3;
         Car car = new Car("111");
         int positionBeforeStop = car.getPosition();
         CarGoForwardOrStopUtils.goForwardIfRandomNumberIsFourOrMore(car, generatedRandomNumber);
