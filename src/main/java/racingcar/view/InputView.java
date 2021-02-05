@@ -14,7 +14,9 @@ public class InputView {
     }
 
     public String[] inputCarName() {
-        String[] name = scanner.next().split(",");
+        String[] name = scanner.next()
+                .replace(" ", "")
+                .split(",");
         inputValidation.validateName(name);
         return name;
     }
