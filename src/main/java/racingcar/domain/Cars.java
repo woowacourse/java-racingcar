@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.utils.RandomUtils;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +22,12 @@ public class Cars {
             currentPosition.append("\n");
         }
         return currentPosition.toString();
+    }
+
+    public void moveCars() {
+        for (Car car: cars) {
+            car.movePosition(RandomUtils.generateRandomValue());
+        }
     }
 
     public Car getMaxPositionCar() {

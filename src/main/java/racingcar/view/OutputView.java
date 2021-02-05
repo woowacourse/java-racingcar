@@ -14,7 +14,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void enterCarNames() {
+    public static void getCarNames() {
         System.out.println(ENTER_CAR_NAMES);
     }
 
@@ -22,7 +22,7 @@ public class OutputView {
         System.out.println(e);
     }
 
-    public static void enterTrials() {
+    public static void getTrials() {
         System.out.println(ENTER_TRIALS);
     }
 
@@ -34,11 +34,16 @@ public class OutputView {
         System.out.println(RESULT_TITLE);
     }
 
+    public static void showResult(List<Car> winners) {
+        printWinnerTitle();
+        printWinners(winners);
+    }
+
     public static void printWinnerTitle() {
         System.out.print(WINNER_TITLE);
     }
 
-    public static void printWinners(List<Car> winnerCars) {
-        System.out.println(winnerCars.stream().map(Car::getName).collect(Collectors.joining(",")));
+    public static void printWinners(List<Car> winners) {
+        System.out.println(winners.stream().map(Car::getName).collect(Collectors.joining(",")));
     }
 }
