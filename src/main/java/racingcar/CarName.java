@@ -2,6 +2,7 @@ package racingcar;
 
 public class CarName {
 
+    public static final int MINIMUN_LENGTH = 1;
     public static final int MAXIMUM_LENGTH = 5;
     private final String name;
 
@@ -18,7 +19,7 @@ public class CarName {
     }
 
     private void validateLength(String name) {
-        if(name.length() > MAXIMUM_LENGTH) {
+        if(name.length() < MINIMUN_LENGTH || MAXIMUM_LENGTH < name.length()) {
             throw new IllegalArgumentException();
         }
     }

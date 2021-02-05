@@ -10,16 +10,16 @@ public class CarNames {
     public static final char COMMA = ',';
     private final List<CarName> names = new ArrayList<>();
 
-    public CarNames(String names) {
-        if(names.charAt(0)==COMMA || names.charAt(names.length()-1)==COMMA){
+    public CarNames(String inputNames) {
+        if(inputNames.charAt(0)==COMMA || inputNames.charAt(inputNames.length()-1)==COMMA){
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }
         Set<String> unDuplicateNames = new HashSet<>();
-        for(String name : names.split(COMMA_DELIMITER)){
+        for(String name : inputNames.split(COMMA_DELIMITER)){
             unDuplicateNames.add(name);
-            this.names.add(new CarName(name));
+            names.add(new CarName(name));
         }
-        if(names.length() != unDuplicateNames.size()){
+        if(names.size() != unDuplicateNames.size()){
             throw new IllegalArgumentException("이름이 중복됩니다.");
         }
     }
