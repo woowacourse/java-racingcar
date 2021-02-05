@@ -19,7 +19,6 @@ public class RacingController {
         String[] name = inputView.inputCarName();
         outputView.askTime();
         int time = inputView.inputTime();
-        // TODO : 자동차 이름 입력
 //        carController.createCars(names);
     }
 }
