@@ -14,6 +14,9 @@ public class InputView {
     private static final String ERROR_NOT_INPUT_EMPTY_VALUE_MESSAGE = "[ERROR] 빈 값은 입력할 수 없습니다.";
     private static final String ERROR_NOT_INPUT_NULL_VALUE_MESSAGE = "[ERROR] 시도회수는 null이 될 수 없습니다.";
 
+    private InputView() {
+    }
+
     public static List<String> inputCarNames(Scanner scanner) {
         System.out.println(PLEASE_INPUT_CAR_NAMES_MESSAGE);
         String input = scanner.nextLine();
