@@ -1,11 +1,8 @@
 package car;
 
-import java.util.Scanner;
-
 public class Application {
     public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
-        GameController game = new GameController(scanner);
-        game.start();
+        GameController controller = new GameController();
+        controller.run();
     }
 }

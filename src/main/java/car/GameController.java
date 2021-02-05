@@ -1,46 +1,47 @@
 package car;
 
-import sun.awt.util.IdentityLinkedList;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import car.domain.Cars;
+import car.domain.Round;
+import car.domain.ScoreBoard;
+import car.view.InputView;
+import car.view.OutputView;
 
 public class GameController {
-    private Scanner scanner;
     
-    public GameController(Scanner scanner) {
-        this.scanner = scanner;
+    private final InputView inputView;
+    
+    private final OutputView outputView;
+    
+    public GameController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
     
-    public void start() {
-        final String delimiter = ",";
-        int round = 0;
-        List<Car> carNames = new ArrayList<>();
-        String[] carNamesSplit = null;
-        
-        String carNamesInput = scanner.nextLine();
-        
-        try {
-            ValidCheck.carNameValid(carNamesInput);
-            carNamesSplit = carNamesInput.split(delimiter);
-            
-            String roundInput = scanner.nextLine();
-            
-            ValidCheck.round(roundInput);
-            round = Integer.parseInt(roundInput);
-            
-        } catch(IllegalArgumentException error){
-            //ERROR
-        }
-        for (String carName : carNamesSplit) {
-            carNames.add(new Car(carName));
-        }
-        
-        nextStep(carNames, round);
+    public void run() {
+        race(setCars(), setRound());
     }
     
-    private void nextStep(List<Car> carNames, int round) {
+    private Cars setCars() {
+        return Cars.from(inputView.readCarNames());
+    }
     
+    private int setRound() {
+        return Round.from(inputView.readRound())
+                    .getRound();
+    }
+    
+    private void race(Cars cars, int round) {
+        ScoreBoard scoreBoard = null;
+        
+        outputView.printResultTitle();
+        
+        for (int i = 0; i < round; i++) {
+            scoreBoard = cars.race()
+                             .recordScore();
+            
+            outputView.printRoundResult(scoreBoard);
+        }
+        
+        outputView.printWinners(scoreBoard);
     }
 }
