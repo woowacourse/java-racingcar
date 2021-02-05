@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    static List<Car> cars = new ArrayList<>();
+    public static List<Car> cars = new ArrayList<>();
 
-    static void carAdd(Car car){
+    public static void carAdd(Car car){
         cars.add(car);
     }
 
