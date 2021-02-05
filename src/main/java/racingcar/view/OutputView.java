@@ -21,4 +21,8 @@ public class OutputView {
     public static void printCarStateMessage(String carName, String carPosition) {
         System.out.println(String.format("%s : %s", carName, carPosition));
     }
+
+    public static void printNextLine() {
+        System.out.println();
+    }
 }
