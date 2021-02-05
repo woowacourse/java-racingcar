@@ -85,12 +85,16 @@ public class RacingCarTest {
     @CsvSource(value = {"9:1", "3:0", "5:1"}, delimiter = ':')
     void randomNumberPositionTest(String input, String expected) {
         // 랜덤한 숫자에 따른 자동차 위치변환 상태확인
+        Car car = new Car("temp");
+        car.move(Integer.parseInt(input));
+        assertThat(car.getPosition()).isEqualTo(Integer.parseInt(expected));
     }
 
     @ParameterizedTest
     @CsvSource(value = {"9:1", "3:0", "5:1"}, delimiter = ':')
     void winnerTestAfterFixingRandomSeed(String input, String expected) {
         // 시드를 고정할때 우승자가 원하는대로 잘 나오는가?
+
     }
 
     @ParameterizedTest
