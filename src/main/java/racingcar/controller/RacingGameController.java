@@ -1,15 +1,23 @@
 package racingcar.controller;
 
 import racingcar.model.Car;
-import racingcar.view.InputView;
+import racingcar.utils.RandomUtils;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class RacingGameController {
-    public void play(Scanner scanner) {
-        ArrayList<Car> carsInGame = InputView.getUserCarInput(scanner);
-        int trialNumber = InputView.getUserTrialNumberInput(scanner);
+    public void play(final ArrayList<Car> carsInGame, final int trialNumber) {
+        race(carsInGame, trialNumber);
+    }
+
+    private void race(final ArrayList<Car> carsInGame, final int trialNumber) {
+        for (int i=0; i<trialNumber; i++) {
+            for (Car car : carsInGame) {
+                car.move(RandomUtils.generateRandomNumber());
+                OutputView.printCarInformation(car);
+            }
+            OutputView.printNewLine();
+        }
     }
 }
