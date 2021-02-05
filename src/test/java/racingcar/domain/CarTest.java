@@ -3,25 +3,24 @@ package racingcar.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
-    private Car car;
+    @Test
+    public void 값이_4_이상이면_전진() {
+        //given
+        Car car = new Car(new Name("anne"));
 
-    @BeforeEach
-    void setUp() {
-        car = new Car(new Name("pobi"));
+        //when-then
+        assertThat(car.movePosition(4)).isEqualTo(1);
     }
 
     @Test
-    public void movePosition_4_이상_전진() {
-        car.movePosition(4);
-        assertEquals(true, car.hasSamePositionWith(1));
-    }
+    public void 값이_3_이하이면_멈춤() {
+        //given
+        Car car = new Car(new Name("anne"));
 
-    @Test
-    public void movePosition_3_이하_멈춤() {
-        car.movePosition(3);
-        assertEquals(true, car.hasSamePositionWith(0));
+        //when-then
+        assertThat(car.movePosition(3)).isEqualTo(0);
     }
 }

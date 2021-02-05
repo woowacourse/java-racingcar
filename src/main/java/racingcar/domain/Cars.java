@@ -26,11 +26,7 @@ public class Cars {
         return cars.stream().max(Car::compareTo).get();
     }
 
-    public List<Car> getWinnerCars(Car maxPositionCar) {
+    public List<Car> getWinners(Car maxPositionCar) {
         return cars.stream().filter(car -> car.hasSamePositionWith(maxPositionCar)).collect(Collectors.toList());
-    }
-
-    public List<Car> getCars() {
-        return cars;
     }
 }
