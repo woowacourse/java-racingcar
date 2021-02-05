@@ -26,7 +26,7 @@ public class CarRepositoryTest {
 
         List<Integer> randomNumbers = getRandomNumbers(numberOfCars);
 
-        CarRepository.raceOneTime(randomNumbers);
+        //CarRepository.raceOneTime(randomNumbers);
 
         for (int i = 0; i < numberOfCars; i++) {
             assertGoForwardOrStop(cars.get(i), randomNumbers.get(i));
