@@ -5,27 +5,27 @@ import java.util.Objects;
 public class Car {
     private final Name carName;
     
-    private final Position position;
+    private int position;
     
     public Car(String carName) {
         this(new Name(carName));
     }
     
     public Car(Name carName) {
-        this(carName, new Position());
+        this(carName, 0);
     }
     
     public Car(String carName, int position) {
-        this(new Name(carName), new Position(position));
+        this(new Name(carName), position);
     }
     
-    public Car(Name carName, Position position) {
+    public Car(Name carName, int position) {
         this.carName = carName;
         this.position = position;
     }
     
-    public Car move() {
-        return new Car(carName, position.move());
+    public void move() {
+        this.position++;
     }
     
     @Override
@@ -33,7 +33,7 @@ public class Car {
         if (this == o) { return true; }
         if (o == null || getClass() != o.getClass()) { return false; }
         Car car = (Car) o;
-        return Objects.equals(carName, car.carName) && Objects.equals(position, car.position);
+        return position == car.position && Objects.equals(carName, car.carName);
     }
     
     @Override
