@@ -18,16 +18,11 @@ public class RacingGame {
 
     public GameResult start() {
         moveUntilMoveCount();
-        clearCarStateBuffer();
 
         return GameResult.valueOf(
                 cars.getWinners(),
                 carStatesBuffer
         );
-    }
-
-    private void clearCarStateBuffer() {
-        carStatesBuffer.clear();
     }
 
     private void moveUntilMoveCount() {
