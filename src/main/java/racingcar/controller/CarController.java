@@ -5,7 +5,7 @@ import racingcar.domain.Cars;
 public class CarController {
     private Cars cars;
 
-    void createCars(String names) {
+    void createCars(String[] names) {
         this.cars = new Cars(names);
     }
 }

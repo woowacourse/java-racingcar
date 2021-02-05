@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 public class Cars {
     private List<Car> carList;
 
-    public Cars(String names) {
+    public Cars(String[] names) {
         carList = new ArrayList<>();
-        this.carList.addAll(Arrays.stream(names.split(","))
+        this.carList.addAll(Arrays.stream(names)
                 .map(name -> new Car(name))
                 .collect(Collectors.toList()));
     }
