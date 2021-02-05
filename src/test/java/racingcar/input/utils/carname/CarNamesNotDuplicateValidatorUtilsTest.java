@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.input.utils.carname.exception.InvalidDuplicateCarNamesException;
+import racingcar.input.utils.carname.exception.DuplicateCarNamesException;
 
 public class CarNamesNotDuplicateValidatorUtilsTest {
 
@@ -28,7 +28,7 @@ public class CarNamesNotDuplicateValidatorUtilsTest {
         carNames.add("111");
         carNames.add("222");
         carNames.add("111");
-        assertThrows(InvalidDuplicateCarNamesException.class,
+        assertThrows(DuplicateCarNamesException.class,
             () -> CarNamesNotDuplicateValidatorUtils.isAllCarNamesNotDuplicate(carNames));
     }
 }

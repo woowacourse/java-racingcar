@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.input.utils.carname.exception.InvalidLessThanTwoCarNamesException;
+import racingcar.input.utils.carname.exception.LessThanTwoCarNamesException;
 
 public class TwoOrMoreCarNamesValidatorUtilsTest {
 
@@ -24,7 +24,7 @@ public class TwoOrMoreCarNamesValidatorUtilsTest {
     void invalidLessThanTwoCarNamesException() {
         List<String> carNames = new ArrayList<>();
         carNames.add("111");
-        assertThrows(InvalidLessThanTwoCarNamesException.class,
+        assertThrows(LessThanTwoCarNamesException.class,
             () -> TwoOrMoreCarNamesValidatorUtils.isTwoOrMoreCarNames(carNames));
     }
 }
