@@ -29,7 +29,7 @@ class RacingResultTest {
   }
 
   @Test
-  void getWinner_우승자_1명() {
+  void getWinner_one_winner() {
     String expectedLog = "pobi";
     List<Car> cars = participants.getCars();
     cars.get(0).run(Car.MIN_RUNNABLE_FUEL);
@@ -37,7 +37,7 @@ class RacingResultTest {
   }
 
   @Test
-  void getWinner_우승자_여러명() {
+  void getWinner_several_winner() {
     String expectedLog = "pobi, sp";
     assertThat(racingResult.getWinner()).isEqualTo(expectedLog);
   }

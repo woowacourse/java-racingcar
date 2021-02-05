@@ -19,7 +19,7 @@ class RacingManagerTest {
   }
 
   @Test
-  void start_우승자_1명() {
+  void start_one_winner() {
     String expectedLog = "pobi";
 
     List<Car> cars = participants.getCars();
@@ -30,7 +30,7 @@ class RacingManagerTest {
   }
 
   @Test
-  void start_우승자_여러명() {
+  void start_several_winner() {
     String expectedLog = "pobi, sp, on";
     RacingResult racingResult = racingManager.start();
     assertThat(racingResult.getWinner()).isEqualTo(expectedLog);
