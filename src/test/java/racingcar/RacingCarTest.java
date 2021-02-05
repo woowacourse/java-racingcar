@@ -36,7 +36,7 @@ public class RacingCarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"pobi,crong,honux:3", "mungto:1", "oz,mungto:2"}, delimiter = ':')
+    @CsvSource(value = {"pobi,crong,honux:3", "mt:1", "oz,mt:2"}, delimiter = ':')
     void carCreateLengthTest(String input, String expected) {
         List<Car> carList = new ArrayList<>();
         String[] carNames = input.split(",");
@@ -48,7 +48,7 @@ public class RacingCarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"pobi,crong,honux", "mungto,oz", "oz,mungto"})
+    @ValueSource(strings = {"pobi,crong,honux", "mt,oz", "oz,mt"})
     void multiCarNameEqualTest(String text) {
         // 입력한 이름과 객체들의 이름이 같은지 테스트
         List<Car> carList = new ArrayList<>();
