@@ -15,27 +15,36 @@ public class RacingController {
 
     public void start() {
         try {
-            OutputView.enterCarNames();
-            Names names = InputView.getNames();
-            Cars cars = new Cars(names);
-
-            OutputView.enterTrials();
-            Trial trial = InputView.getTrial();
-
-            OutputView.printResultTitle();
-
+            Cars cars = generateCars();
+            Trial trial = setTrial();
             runTrial(cars, trial);
 
             List<Car> winnerCars = cars.getWinnerCars(cars.getMaxPositionCar());
-            OutputView.printWinnerTitle();
-            OutputView.printWinners(winnerCars);
-            running = false;
+            result(winnerCars);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
         }
     }
 
+    private void result(List<Car> winnerCars) {
+        OutputView.printWinnerTitle();
+        OutputView.printWinners(winnerCars);
+        running = false;
+    }
+
+    private Cars generateCars() {
+        OutputView.enterCarNames();
+        Names names = InputView.getNames();
+        return new Cars(names);
+    }
+
+    private Trial setTrial() {
+        OutputView.enterTrials();
+        return InputView.getTrial();
+    }
+
     private void runTrial(Cars cars, Trial trial) {
+        OutputView.printResultTitle();
         for (int i = 0; i < trial.getTrial(); i++) {
             goEachCar(cars);
             OutputView.printCurrentResult(cars.getCurrentPosition());
