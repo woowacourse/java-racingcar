@@ -106,6 +106,6 @@ public class CarStatesBufferTest {
                 "\n" +
                 "pobi : -----\n" +
                 "crong : ----\n" +
-                "honux : -----";
+                "honux : -----\n";
     }
 }
