@@ -18,12 +18,24 @@ public class CarRacingManager {
     }
 
     public void start() {
+        createCar();
+        race(applyRaceTime());
+    }
+
+    private void createCar() {
         String carNames = InputView.inputCarName(scanner);
         List<Car> cars = carRegister.registerCars(carNames);
-        CarRepository.saveAll(cars);
 
+        CarRepository.saveAll(cars);
+    }
+
+    private int applyRaceTime() {
         String inputTryTime = InputView.inputRaceTime(scanner);
-        int tryTime = racingTimeRegister.registerRacingTime(inputTryTime);
+
+        return racingTimeRegister.registerRacingTime(inputTryTime);
+    }
+
+    private void race(int tryTime) {
         CarRepository.race(tryTime);
     }
 }
