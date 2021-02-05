@@ -101,5 +101,10 @@ public class RacingCarTest {
     @CsvSource(value = {"3:---", "2:--", "5:-----"}, delimiter = ':')
     void carPositionToStringTest(String input, String expected) {
         // 전진한 거리만큼의 문자열이 잘 반환되는가?
+        Car car = new Car("temp");
+        for (int i = 0; i < Integer.parseInt(input); i++) {
+            car.move(4);
+        }
+        assertThat(car.positionToString()).isEqualTo(expected);
     }
 }
