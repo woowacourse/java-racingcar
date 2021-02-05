@@ -12,6 +12,7 @@ public class OutputView {
     private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
     private static final String MARKER_BETWEEN_NAME_AND_POSITION = " : ";
     private static final String MARKER_OF_POSITION = "-";
+    private static final String DELIMITER_COMMA = ",";
 
     private OutputView() {
     }
@@ -42,7 +43,7 @@ public class OutputView {
     }
 
     public static void printWinners(List<Car> winnerCars) {
-        String winner = winnerCars.stream().map(Car::getName).collect(Collectors.joining(","));
+        String winner = winnerCars.stream().map(Car::getName).collect(Collectors.joining(DELIMITER_COMMA));
         System.out.println(winner + WINNER_MESSAGE);
     }
 
