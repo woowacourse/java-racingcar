@@ -8,9 +8,9 @@ import java.util.Random;
 import racingcar.view.OutputView;
 
 public class Cars {
+    private static final int BOUND = 10;
 
     private List<Car> cars;
-    private static final int BOUND = 10;
 
     public Cars(List<Car> cars) {
         this.cars = cars;

@@ -4,8 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-
     private static final StringBuilder SB = new StringBuilder();
+
     private static final int ZERO = 0;
     private static final int FIRST = 1;
     private static final int SECOND = 2;
