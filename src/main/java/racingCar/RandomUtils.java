@@ -6,11 +6,8 @@ public class RandomUtils {
     final static Random RANDOM = new Random();
 
     static int nextInt(int start, int end) {
-        if(start < 0){
-            throw new RuntimeException();
-        }
-        if(start > end){
-            throw new RuntimeException();
+        if(start < 0 || start > end){
+            throw new RuntimeException("입력 값을 확인해주세요.");
         }
         if(start == end){
             return start;
