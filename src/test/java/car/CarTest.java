@@ -7,8 +7,6 @@ import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
     
-    private java.util.Scanner Scanner;
-    
     @Test
     @DisplayName("랜덤값이 주어진 조건보다 크다면 전진")
     void move_RandomValueMoreThanCondition_ShouldMove() {
@@ -16,9 +14,9 @@ class CarTest {
         // given
         Car car = new Car("tico");
         Car expectedCar = new Car("tico", 1);
-        
+    
         // when
-        car.move();
+        car = car.move();
         
         // then
         assertThat(car).isEqualTo(expectedCar);
