@@ -1,17 +1,21 @@
-package racingcar.domain;
+package racingcar.controller;
 
+import racingcar.domain.Car;
+import racingcar.domain.CarRegister;
+import racingcar.domain.CarRepository;
+import racingcar.domain.RacingTimeRegister;
 import racingcar.view.InputView;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class CarRacingManager {
+public class RacingController {
 
     private final Scanner scanner;
     private final CarRegister carRegister;
     private final RacingTimeRegister racingTimeRegister;
 
-    public CarRacingManager(Scanner scanner) {
+    public RacingController(Scanner scanner) {
         this.scanner = scanner;
         this.carRegister = new CarRegister();
         this.racingTimeRegister = new RacingTimeRegister();
