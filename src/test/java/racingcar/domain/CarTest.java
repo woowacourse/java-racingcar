@@ -14,9 +14,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = {"중간곰", "다니", "포비", "씨유", "브라운", "harry"})
     public void createCar_정상적인_이름인_경우(String name) {
-        final int START_POSITION = 0;
-
-        assertThatCode(() -> new Car(name, START_POSITION))
+        assertThatCode(() -> new Car(name))
                 .doesNotThrowAnyException();
     }
 
@@ -24,13 +22,12 @@ class CarTest {
     @Test
     public void createCar_이름의_길이가_범위를_벗어난_경우() {
         final String SHORT_CAR_NAME = "";
-        final int START_POSITION = 0;
         final int MAXIMUM_LENGTH = Digit.MAXIMUM_CAR_NAME_LENGTH.getDigit();
         final String LONG_CAR_NAME = new String(new char[MAXIMUM_LENGTH + 1]);
 
         assertThatThrownBy(() -> {
-            new Car(SHORT_CAR_NAME, START_POSITION);
-            new Car(LONG_CAR_NAME, START_POSITION);
+            new Car(SHORT_CAR_NAME);
+            new Car(LONG_CAR_NAME);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -7,6 +7,10 @@ public class Car {
     private final String name;
     private final int position;
 
+    public Car(String name) {
+        this(name, Digit.START_POSITION.getDigit());
+    }
+
     public Car(String name, int position) {
         validateLength(name);
         this.name = name;
