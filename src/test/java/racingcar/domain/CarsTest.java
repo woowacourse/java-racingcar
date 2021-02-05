@@ -14,7 +14,7 @@ public class CarsTest {
     void Cars_중복된_자동차_이름() {
         List<String> carNames = Arrays.asList("pobi", "pobi", "pobi");
         assertThatThrownBy(() -> {
-            Cars cars = new Cars(carNames);
+            Cars.setCars(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
