@@ -20,6 +20,7 @@ public class GameController {
         inputCarNames();
         inputRacingRound();
 
+        OutputView.printRaceResultMessage();
         RacingGame racingGame = new RacingGame(cars, numOfRacingRound);
         while (!racingGame.isEnd()) {
             racingGame.race();
