@@ -4,7 +4,7 @@ import utils.RandomUtils;
 
 public class Car {
 
-    private String name;
+    private final String name;
     private int position;
 
     public Car(String name) {
