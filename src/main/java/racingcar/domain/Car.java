@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.exception.RacingCarErrorMessage;
+
 public class Car {
 
   public static final int MIN_RUNNABLE_FUEL = 4;
@@ -8,7 +10,14 @@ public class Car {
   private int fuel = 0;
 
   public Car(final String name) {
+    validateName(name);
     this.name = name;
+  }
+
+  private void validateName(String name) {
+    if (name.length() < 1 || name.length() > 5) {
+      throw new IllegalStateException(RacingCarErrorMessage.CAR_NAME.getMessage());
+    }
   }
 
   public void run() {
