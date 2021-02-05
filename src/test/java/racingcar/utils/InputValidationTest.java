@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.utils.exception.DuplicateNameException;
 import racingcar.utils.exception.InvalidNameLengthException;
 import racingcar.utils.exception.InvalidTextException;
+import racingcar.utils.exception.NotEnoughCarException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -39,5 +40,12 @@ class InputValidationTest {
         String[] duplicateInput = {"pobi", "brown", "pobi"};
         assertThatThrownBy(() -> inputValidation.validateName(duplicateInput))
                 .isInstanceOf(DuplicateNameException.class);
+    }
+
+    @Test
+    public void 자동차가_1대인_경우_예외처리() {
+        String[] input = {"pobi"};
+        assertThatThrownBy(() -> inputValidation.validateName(input))
+                .isInstanceOf(NotEnoughCarException.class);
     }
 }

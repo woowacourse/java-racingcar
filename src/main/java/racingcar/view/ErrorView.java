@@ -12,4 +12,8 @@ public class ErrorView {
     public static void duplicateName() {
         System.out.println("이름이 중복됩니다.");
     }
+
+    public static void notEnoughCar(int number) {
+        System.out.println("자동차가 " + number + "대 이상이어야 합니다.");
+    }
 }

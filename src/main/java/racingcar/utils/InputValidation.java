@@ -3,17 +3,26 @@ package racingcar.utils;
 import racingcar.utils.exception.DuplicateNameException;
 import racingcar.utils.exception.InvalidNameLengthException;
 import racingcar.utils.exception.InvalidTextException;
+import racingcar.utils.exception.NotEnoughCarException;
 
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class InputValidation {
     private static int NAME_MAX_LENGTH = 5;
+    private static int CAR_MIN_NUMBER = 2;
 
     public void validateName(String[] name) {
         isValidText(name);
         isValidLength(name);
         isDuplicateName(name);
+        notEnoughCars(name);
+    }
+
+    private void notEnoughCars(String[] name) {
+        if (name.length < CAR_MIN_NUMBER) {
+            throw new NotEnoughCarException(CAR_MIN_NUMBER);
+        }
     }
 
     private void isDuplicateName(String[] name) {
