@@ -4,7 +4,7 @@ package racingcar;
 import java.util.List;
 import java.util.Scanner;
 import racingcar.input.utils.carname.CarNamesInputFromUserUtils;
-import racingcar.view.OutputView;
+import racingcar.output.OutputPrinter;
 
 public class CarRacing {
     private final Scanner scanner;
@@ -18,7 +18,7 @@ public class CarRacing {
         int racingTryTime = RacingTryTimeInputFromUserUtils.getRacingTryTime(scanner);
         List<Car> cars = CarCreatorUtils.createCars(carNames);
         CarRepository.saveAll(cars);
-        CarRepository.runAllRaces();
-        OutputView.printWinners();
+        CarRepository.runAllRaces(racingTryTime);
+        OutputPrinter.printWinners();
     }
 }

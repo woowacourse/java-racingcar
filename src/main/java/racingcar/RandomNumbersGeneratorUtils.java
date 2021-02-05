@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomNumbersGeneratorUtils {
-    private static final int MIN_RANDOM_NUMBER = 0;
-    private static final int MAX_RANDOM_NUMBER = 9;
+    public static final int MIN_RANDOM_NUMBER = 0;
+    public static final int MAX_RANDOM_NUMBER = 9;
 
     private RandomNumbersGeneratorUtils() {
     }

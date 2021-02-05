@@ -1,6 +1,8 @@
 package racingcar;
 
-import racingcar.view.OutputView;
+import static racingcar.CarGoForwardOrStopUtils.MIN_NUMBER_TO_GO_FORWARD;
+
+import racingcar.output.OutputPrinter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class CarRepository {
     private static final List<Car> cars = new ArrayList<>();
-    private static final int MIN_NUMBER_TO_GO_FORWARD = 4;
 
     private CarRepository() {
     }
@@ -26,26 +27,14 @@ public class CarRepository {
         cars.clear();
     }
 
-    public static void race(int tryTime) {
-        OutputView.printRaceResult();
+    public static void runAllRaces(int racingTryTime) {
+        OutputPrinter.printStartMessageOfAllCarRacing();
 
-        for (int i = 0; i < tryTime; i++) {
+        for (int i = 0; i < racingTryTime; i++) {
             updateAllCarsPosition();
-            showAllCarsPosition(cars);
-            OutputView.printNewLine();
+            printCurrentPositionStateOfAllCars();
+            OutputPrinter.printNewLine();
         }
-
-        OutputView.printWinners(getWinnerNames());
-    }
-
-    private static List<String> getWinnerNames() {
-        return getWinners().stream().map(Car::getName).collect(Collectors.toList());
-    }
-
-    private static void showAllCarsPosition(List<Car> cars) {
-        cars.forEach(car -> {
-            OutputView.printRaceResultEachCar(car.getName(), car.getPosition());
-        });
     }
 
     private static void updateAllCarsPosition() {
@@ -55,15 +44,21 @@ public class CarRepository {
     }
 
     private static void goForwardOrStopRandomly(Car car) {
-        int randomNumber = OneRandomNumberGeneratorUtils.generateOneRandomNumber(0, 9);
+        int randomNumber = OneRandomNumberGeneratorUtils
+            .generateOneRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
 
-        if (GoForwardOrStop.isGoForward(randomNumber)) {
+        if (GoForwardOrStopUtils.isGoForward(randomNumber)) {
             car.goForward();
         }
     }
 
+    private static void printCurrentPositionStateOfAllCars() {
+        cars.forEach(OutputPrinter::printCurrentPositionStateOfCar);
+    }
+
     public static List<Car> getWinners() {
         int maxPosition = getMaxPosition();
+
         return Collections.unmodifiableList(cars.stream()
             .filter(car -> car.getPosition() == maxPosition)
             .collect(Collectors.toList()));
