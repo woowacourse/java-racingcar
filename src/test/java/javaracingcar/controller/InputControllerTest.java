@@ -10,34 +10,36 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class InputControllerTest {
     @Test
-    void splitInput_null_입력() {
-        assertThatThrownBy(() -> InputController.splitInput(null))
+    void getCarNames_null_입력() {
+        assertThatThrownBy(() -> InputController.getCarNames(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("null");
     }
 
     @Test
-    void splitInput_정상입력() {
+    void getCarNames_정상입력() {
         String input = ",,A,B,C";
         List<String> names = Arrays.asList("", "", "A", "B", "C");
-        assertEquals(InputController.splitInput(input)
+        assertEquals(InputController.getCarNames(input)
                                     .size(), names.size());
-        assertEquals(names, InputController.splitInput(input));
+        assertEquals(names, InputController.getCarNames(input));
+    }
+
+    //중복 체크 -> string[] "a,b,c,,m  투싼" "투싼" "투  싼"
+
+   @Test
+    void getTrial_자연수가아닌경우() {
+        assertThatThrownBy(() -> InputController.getTrial("abc"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("양의 정수");
+        assertThatThrownBy(() -> InputController.getTrial("-1"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("양의 정수");
     }
 
     @Test
-    void getTrialInput_자연수가아닌경우() {
-        assertThatThrownBy(() -> InputController.getTrialInput("abc"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("양의 정수");
-        assertThatThrownBy(() -> InputController.getTrialInput("-1"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("양의 정수");
-    }
-
-    @Test
-    void getTrialInput_정상입력인경우() {
-        assertEquals(InputController.getTrialInput("30"), 30);
-        assertEquals(InputController.getTrialInput("3"), 3);
+    void getTrial_정상입력인경우() {
+        assertEquals(InputController.getTrial("30"), 30);
+        assertEquals(InputController.getTrial("3"), 3);
     }
 }

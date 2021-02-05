@@ -22,10 +22,9 @@ public class Car {
 
     public static Car generateCar(String name) {
         validateNull(name);
-        String trimmedName = name.trim();
-        validateEmptyString(trimmedName);
-        validateNameLength(trimmedName);
-        return new Car(trimmedName);
+        validateEmptyString(name);
+        validateNameLength(name);
+        return new Car(name);
     }
 
     private static void validateNull(String name) {
