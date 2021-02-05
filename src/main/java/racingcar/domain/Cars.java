@@ -1,9 +1,5 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtils;
-
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,12 +11,6 @@ public class Cars {
                 stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
-    }
-
-    public void moveCars() {
-        for (Car car : cars) {
-            car.movePosition(RandomUtils.generateRandomValue());
-        }
     }
 
     public String getCurrentPosition() {
@@ -38,5 +28,9 @@ public class Cars {
 
     public List<Car> getWinnerCars(Car maxPositionCar) {
         return cars.stream().filter(car -> car.hasSamePositionWith(maxPositionCar)).collect(Collectors.toList());
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }

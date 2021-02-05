@@ -33,6 +33,3 @@
 - 가장 많이 전진한 자동차의 이름을 출력한다.
     - 동점자가 있는 경우 모두 출력한다.
     - 마지막 자동차를 출력할 때에는 `,` 없이 출력한다.
-
-## 우아한테크코스 코드리뷰
-* [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
