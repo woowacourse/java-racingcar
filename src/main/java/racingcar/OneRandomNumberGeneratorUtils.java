@@ -2,14 +2,14 @@ package racingcar;
 
 import java.util.Random;
 
-public class RandomGeneratorUtils {
+public class OneRandomNumberGeneratorUtils {
     private static final Random RANDOM = new Random();
     private static final int MIN_START_INCLUSIVE_NUMBER = 0;
 
-    private RandomGeneratorUtils() {
+    private OneRandomNumberGeneratorUtils() {
     }
 
-    public static int generateRandomNumber(final int startInclusive, final int endInclusive) {
+    public static int generateOneRandomNumber(final int startInclusive, final int endInclusive) {
         if (startInclusive > endInclusive) {
             throw new IllegalArgumentException();
         }
