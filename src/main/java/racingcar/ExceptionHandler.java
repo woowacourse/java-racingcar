@@ -10,14 +10,17 @@ public class ExceptionHandler {
     private static final Integer MIN_TRIAL = 1;
     private static final Integer MAX_TRIAL = Integer.MAX_VALUE;
 
-    public List<Car> setCars(String input) {
+    private ExceptionHandler() {
+    }
+
+    public static List<Car> setCars(String input) {
         String[] carNames = input.split(NAME_SPLIT_DELIMITER, -1);
         return Arrays.stream(carNames)
             .map(Car::new)
             .collect(Collectors.toList());
     }
 
-    public Integer setTrial(String input) {
+    public static Integer setTrial(String input) {
         try {
             Integer trial = Integer.parseInt(input);
             return isValidTrialBound(trial);
@@ -26,7 +29,7 @@ public class ExceptionHandler {
         }
     }
 
-    private int isValidTrialBound(Integer trial) {
+    private static int isValidTrialBound(Integer trial) {
         if (trial < MIN_TRIAL || trial > MAX_TRIAL) {
             throw new IllegalArgumentException("1 이상의 정수만 입력할 수 있습니다.");
         }

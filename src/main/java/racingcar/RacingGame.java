@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.ArrayList;
 import java.util.List;
 import utils.RandomUtils;
 
@@ -9,24 +10,23 @@ public class RacingGame {
 
     private List<Car> cars;
     private int trial;
-    private ExceptionHandler exceptionHandler = new ExceptionHandler();
+    private List<String> winners = new ArrayList<>();
+    private int maxPosition = -1;
 
     public void race() {
         prepareCars();
         prepareTrial();
         play();
-        //play
-        //finish
     }
 
     private void prepareCars() {
         String input = RacingGameView.requestCars();
-        cars = exceptionHandler.setCars(input);
+        cars = ExceptionHandler.setCars(input);
     }
 
     private void prepareTrial() {
         String input = RacingGameView.requestTrial();
-        trial = exceptionHandler.setTrial(input);
+        trial = ExceptionHandler.setTrial(input);
     }
 
     private void play() {
