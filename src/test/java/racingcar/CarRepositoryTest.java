@@ -64,13 +64,13 @@ public class CarRepositoryTest {
     @DisplayName("우승자 결과 테스트 한 명")
     @Test
     void singleWinnerResult() {
-        Car winner = new Car("pobi");
-        Car loser = new Car("crong");
-
-        winner.goForward();
+        Car winner = new Car("111");
+        Car loser = new Car("222");
 
         CarRepository.save(winner);
         CarRepository.save(loser);
+
+        winner.goForward();
 
         List<Car> winners = CarRepository.getWinners();
 
@@ -83,19 +83,19 @@ public class CarRepositoryTest {
     void multiWinnerResult() {
         List<Car> expectedWinners = new ArrayList<>();
 
-        Car winner1 = new Car("pobi");
-        Car winner2 = new Car("poci");
-        Car winner3 = new Car("podi");
-        Car loser = new Car("crong");
-
-        winner1.goForward();
-        winner2.goForward();
-        winner3.goForward();
+        Car winner1 = new Car("111");
+        Car winner2 = new Car("222");
+        Car winner3 = new Car("333");
+        Car loser = new Car("444");
 
         CarRepository.save(winner1);
         CarRepository.save(winner2);
         CarRepository.save(winner3);
         CarRepository.save(loser);
+
+        winner1.goForward();
+        winner2.goForward();
+        winner3.goForward();
 
         expectedWinners.add(winner1);
         expectedWinners.add(winner2);
