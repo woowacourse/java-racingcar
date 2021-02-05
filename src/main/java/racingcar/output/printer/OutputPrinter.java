@@ -30,13 +30,13 @@ public class OutputPrinter {
     }
 
     public static void printWinners() {
-        System.out.print("최종 우승자 : ");
         List<Car> winners = CarRepository.getWinners();
         List<String> winnerNames = winners.stream().map(Car::getName).collect(Collectors.toList());
-        System.out.println(String.join(CAR_NAMES_DELIMITER + " ", winnerNames));
+        System.out.print(String.join(CAR_NAMES_DELIMITER + " ", winnerNames));
+        System.out.println("가 최종 우승했습니다.");
     }
 
     public static void printNewLine() {
-        System.out.println(NEW_LINE);
+        System.out.print(NEW_LINE);
     }
 }

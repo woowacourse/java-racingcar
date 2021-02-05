@@ -13,15 +13,12 @@ public class OneRandomNumberGeneratorUtils {
         if (startInclusive > endInclusive) {
             throw new IllegalArgumentException();
         }
-
         if (startInclusive < MIN_START_INCLUSIVE_NUMBER) {
             throw new IllegalArgumentException();
         }
-
         if (startInclusive == endInclusive) {
             return startInclusive;
         }
-
         return startInclusive + RANDOM.nextInt(endInclusive - startInclusive + 1);
     }
 }

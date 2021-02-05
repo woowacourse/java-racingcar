@@ -3,10 +3,10 @@ package racingcar.domain;
 
 import java.util.List;
 import java.util.Scanner;
-import racingcar.utils.CarCreatorUtils;
-import racingcar.input.utils.racingtrytime.RacingTryTimeInputFromUserUtils;
 import racingcar.input.utils.carname.CarNamesInputFromUserUtils;
+import racingcar.input.utils.racingtrytime.RacingTryTimeInputFromUserUtils;
 import racingcar.output.printer.OutputPrinter;
+import racingcar.utils.CarCreatorUtils;
 
 public class CarRacing {
     private final Scanner scanner;

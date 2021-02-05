@@ -8,7 +8,6 @@ import static racingcar.utils.randomnumber.RandomNumbersGeneratorUtils.MIN_RANDO
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.utils.GoForwardOrStopUtils;
 
 class GoForwardOrStopUtilsTest {
 
