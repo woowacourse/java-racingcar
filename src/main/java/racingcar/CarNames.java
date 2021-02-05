@@ -7,9 +7,13 @@ import java.util.Set;
 
 public class CarNames {
     public static final String COMMA_DELIMITER = ",";
+    public static final char COMMA = ',';
     private final List<CarName> names = new ArrayList<>();
 
     public CarNames(String names) {
+        if(names.charAt(0)==COMMA || names.charAt(names.length()-1)==COMMA){
+            throw new IllegalArgumentException("잘못된 입력입니다.");
+        }
         Set<String> unDuplicateNames = new HashSet<>();
         for(String name : names.split(COMMA_DELIMITER)){
             unDuplicateNames.add(name);

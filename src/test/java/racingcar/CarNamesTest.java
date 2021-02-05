@@ -21,4 +21,12 @@ class CarNamesTest {
     void carNames_duplicate_exception() {
         assertThatThrownBy(()->new CarNames("1,1,2,3")).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("양 끝에 쉼표가 있는 경우")
+    void carNames_양_끝_예외처리() {
+        assertThatThrownBy(() -> new CarNames(",샐리")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new CarNames("샐리,")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new CarNames(",샐리,")).isInstanceOf(IllegalArgumentException.class);
+    }
 }
