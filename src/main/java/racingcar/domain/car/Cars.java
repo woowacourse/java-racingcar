@@ -23,6 +23,12 @@ public class Cars {
         return CarStates.of(carStates);
     }
 
+    public void move() {
+        for (Car car : cars) {
+            car.move();
+        }
+    }
+
     public List<CarName> getWinners() {
        int maxPosition = cars.stream()
                .mapToInt(Car::getPosition)
