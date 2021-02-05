@@ -1,4 +1,4 @@
-package racingCar.domain;
+package racingcar.domain;
 
 public class RacingManager {
 
