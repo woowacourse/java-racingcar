@@ -1,5 +1,7 @@
 package car;
 
+import sun.awt.util.IdentityLinkedList;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,15 +21,18 @@ public class GameController {
         
         String carNamesInput = scanner.nextLine();
         
-        if (ValidCheck.carNameValid(carNamesInput)) {
+        try {
+            ValidCheck.carNameValid(carNamesInput);
             carNamesSplit = carNamesInput.split(delimiter);
-        }
-        String roundInput = scanner.nextLine();
-        
-        if (ValidCheck.round(roundInput)) {
+            
+            String roundInput = scanner.nextLine();
+            
+            ValidCheck.round(roundInput);
             round = Integer.parseInt(roundInput);
+            
+        } catch(IllegalArgumentException error){
+            //ERROR
         }
-        
         for (String carName : carNamesSplit) {
             carNames.add(new Car(carName));
         }

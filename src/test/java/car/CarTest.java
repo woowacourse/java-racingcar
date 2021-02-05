@@ -3,7 +3,7 @@ package car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
     
@@ -19,21 +19,27 @@ class CarTest {
         
         // when
         car.move();
-    
+        
         // then
         assertThat(car).isEqualTo(expectedCar);
     }
     
     @Test
     void carNameTest() {
-        assertThat(ValidCheck.carNameValid("a,b,c,d124,e")).isTrue();
-        assertThat(ValidCheck.carNameValid("a,b,c,d1 24,e")).isFalse();
+        assertThatCode(() -> ValidCheck.carNameValid("a,b,c,d124,e"))
+                .doesNotThrowAnyException();
+        
+        assertThatThrownBy(() -> ValidCheck.carNameValid("a,b,c,d1 24,e"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
     
     @Test
-    void roundTest(){
-        assertThat(ValidCheck.round("15")).isTrue();
-        assertThat(ValidCheck.round(" ")).isFalse();
-        assertThat(ValidCheck.round("0")).isFalse();
+    void roundTest() {
+        assertThatCode(() -> ValidCheck.round("15")).doesNotThrowAnyException();
+        
+        assertThatThrownBy(() -> ValidCheck.carNameValid(" "))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidCheck.carNameValid("0"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

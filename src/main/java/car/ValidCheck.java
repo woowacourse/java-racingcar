@@ -10,14 +10,17 @@ public class ValidCheck {
     
     }
     
-    public static boolean carNameValid(String carNamesInput) {
-        return !isSpace(carNamesInput) && !isNameLength(carNamesInput);
+    public static void carNameValid(String carNamesInput) {
+        if (isSpace(carNamesInput) || isNameLength(carNamesInput)) {
+            throw new IllegalArgumentException();
+        }
     }
     
-    public static boolean round(String roundInput) {
+    public static void round(String roundInput) {
         final String pattern = "[1-9]+[0-9]*";
-        return Pattern.matches(pattern,roundInput);
-        
+        if (!Pattern.matches(pattern, roundInput)) {
+            throw new IllegalArgumentException();
+        }
     }
     
     private static boolean isSpace(String carNamesInput) {
