@@ -2,6 +2,7 @@ package racingcar.exception;
 
 public class InvalidCarNameLengthException extends RuntimeException {
 
-    public InvalidCarNameLengthException() {
+    public InvalidCarNameLengthException(String message) {
+        super(message);
     }
 }

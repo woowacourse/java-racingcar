@@ -30,13 +30,15 @@ public class CarRegister {
 
     private void validateNumberOfRegisteredCars(List<String> carNames) {
         if (carNames.size() == INVALID_NUMBER_OF_CARS_ZERO) {
-            throw new InvalidNumberOfRegisteredCarsException();
+            throw new InvalidNumberOfRegisteredCarsException(
+                    "[ERROR] 경주 참가자는 1명 이상 이어야 합니다.");
         }
     }
 
     private void validateDuplicateCarNames(List<String> carNames) {
         if (carNames.stream().distinct().count() != carNames.size()) {
-            throw new InvalidDuplicateCarNameException();
+            throw new InvalidDuplicateCarNameException(
+                    "[ERROR] 중복된 경주 참가자의 이름이 있습니다.");
         }
     }
 }

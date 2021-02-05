@@ -14,13 +14,15 @@ public class RacingTimeRegister {
 
             return racingTime;
         } catch (Exception e) {
-            throw new InvalidRacingTimeException();
+            throw new InvalidRacingTimeException(
+                    "[ERROR] 레이스 횟수는 0이 될 수 없습니다.");
         }
     }
 
     private void validateRacingTimeZeroOrLess(int racingTime) {
         if (racingTime <= MIN_RACING_TIME) {
-            throw new InvalidRacingTimeException();
+            throw new InvalidRacingTimeException(
+                    "[ERROR] 레이스 횟수는 자연수만 입력 가능합니다.");
         }
     }
 }
