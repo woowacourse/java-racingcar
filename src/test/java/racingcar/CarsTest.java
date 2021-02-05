@@ -9,14 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 class CarsTest {
-
-    String carsName;
-
-    @BeforeEach
-    void setUp() {
-        carsName = "pobi,crong,joy,poz";
-    }
 
     @ParameterizedTest
     @DisplayName("Car들이 올바르게 생성")

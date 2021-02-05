@@ -3,34 +3,33 @@ package racingcar;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import utils.RandomUtils;
 
-public class Cars {
+import static java.util.Comparator.*;
 
+public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
         this.cars = new ArrayList<>(cars);
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
-
     public static Cars from(String inputCarName) {
         String[] carNames = splitCarsName(inputCarName);
         validate(carNames);
-
         List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
+        Arrays.stream(carNames)
+                .forEach(carName -> cars.add(new Car(carName)));
+
         return new Cars(cars);
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 
     private static void validate(String[] carNames) {
@@ -44,11 +43,9 @@ public class Cars {
         return carsName.split(",", -1);
     }
 
-    public void driveAll() {
-        for (Car car : cars) {
-            car.drive(RandomUtils.nextInt(0, 9));
-        }
-        OutputView.printCarsAfterRace(cars);
+    public void allCarsDrive() {
+        cars.forEach(car -> car.drive(RandomUtils.nextInt(0, 9)));
+        OutputView.printCarsAfterEachTurn(cars);
     }
 
     public List<Car> getWinners() {
@@ -60,6 +57,8 @@ public class Cars {
 
     private int getMaxPosition() {
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getPosition)).get().getPosition();
+                .max(comparingInt(Car::getPosition))
+                .get()
+                .getPosition();
     }
 }

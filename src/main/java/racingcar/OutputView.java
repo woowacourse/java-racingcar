@@ -31,7 +31,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printCarsAfterRace(List<Car> cars) {
+    public static void printCarsAfterEachTurn(List<Car> cars) {
         cars.forEach(System.out::println);
         System.out.println();
     }

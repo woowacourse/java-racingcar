@@ -3,7 +3,6 @@ package racingcar;
 import java.util.stream.IntStream;
 
 public class Car {
-
     private int position;
     private final String name;
 
@@ -53,17 +52,17 @@ public class Car {
         position++;
     }
 
-    @Override
-    public String toString() {
-        String a = name + " : ";
-        return a + getPositionToString();
-    }
-
     private String getPositionToString() {
         StringBuilder sb = new StringBuilder();
         IntStream.range(0, position)
                 .forEach(i -> sb.append("-"));
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        String a = name + " : ";
+        return a + getPositionToString();
     }
 
     @Override

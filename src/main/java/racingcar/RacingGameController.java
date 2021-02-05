@@ -25,7 +25,7 @@ public class RacingGameController {
         OutputView.printResultPrefix();
         OutputView.printCarsBeforeRace(cars.getCars());
         for (int i = 0; i < turns; i++) {
-            cars.driveAll();
+            cars.allCarsDrive();
         }
     }
 
