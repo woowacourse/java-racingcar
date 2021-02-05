@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.exception.InvalidCarNameException;
+import racingcar.exception.InvalidCarNamesException;
 
 public class CarNameFormatValidatorUtilsTest {
 
@@ -29,7 +29,7 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("bbb111");
         inputCarNames.add("가나다1");
         inputCarNames.add("aaa1");
-        assertThrows(InvalidCarNameException.class,
+        assertThrows(InvalidCarNamesException.class,
             () -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames));
     }
 
@@ -40,7 +40,7 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("aaa");
         inputCarNames.add("");
         inputCarNames.add("ccc");
-        assertThrows(InvalidCarNameException.class,
+        assertThrows(InvalidCarNamesException.class,
             () -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames));
     }
 
@@ -51,7 +51,7 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("aaa");
         inputCarNames.add("b b");
         inputCarNames.add("ccc");
-        assertThrows(InvalidCarNameException.class,
+        assertThrows(InvalidCarNamesException.class,
             () -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames));
     }
 }
