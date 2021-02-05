@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +23,8 @@ public class CarRepository {
     }
 
     public static void race(int tryTime) {
+        OutputView.printRaceResult();
+
         for (int i = 0; i < tryTime; i++) {
             updateAllCarsPosition();
             showAllCarsPosition(cars);

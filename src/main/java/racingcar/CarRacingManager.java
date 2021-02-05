@@ -22,7 +22,8 @@ public class CarRacingManager {
         List<Car> cars = carRegister.registerCars(carNames);
         CarRepository.saveAll(cars);
 
-        String tryTime = InputView.printInputRaceTime(scanner);
-        racingTimeRegister.registerRacingTime(tryTime);
+        String inputTryTime = InputView.printInputRaceTime(scanner);
+        int tryTime = racingTimeRegister.registerRacingTime(inputTryTime);
+        CarRepository.race(tryTime);
     }
 }

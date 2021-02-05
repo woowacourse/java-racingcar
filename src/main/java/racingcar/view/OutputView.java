@@ -10,8 +10,14 @@ public class OutputView {
         System.out.println(NEW_LINE + "실행 결과");
     }
 
-    public static void printRaceResultEachCar(String name, String currentPosition) {
-        System.out.println(name + " : " + currentPosition);
+    public static void printRaceResultEachCar(String name, int currentPosition) {
+        System.out.print(name + " : ");
+
+        for(int i = 0; i < currentPosition; i++) {
+            System.out.print(POSITION_SIGN);
+        }
+
+        printNewLine();
     }
 
     public static void printNewLine() {
