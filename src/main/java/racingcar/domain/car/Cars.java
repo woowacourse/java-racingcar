@@ -21,14 +21,14 @@ public class Cars {
         }
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
+    public Cars play(RandomNumberGenerator randomNumberGenerator) {
+        List<Car> cars = new ArrayList<>();
 
-    public void play(RandomNumberGenerator randomNumberGenerator) {
-        for (Car car : cars) {
-            car.move(randomNumberGenerator.generate());
+        for (Car car : this.cars) {
+            cars.add(car.move(randomNumberGenerator.generate()));
         }
+
+        return new Cars(cars);
     }
 
     public int extractMaxPosition() {
@@ -60,5 +60,9 @@ public class Cars {
         if (car.equalToPosition(maxPosition)) {
             cars.add(car);
         }
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

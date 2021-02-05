@@ -2,6 +2,7 @@ package racingcar.domain.car;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.car.util.RandomNumberGenerator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,5 +49,22 @@ class CarsTest {
 
         //then
         assertThat(maxPosition).isEqualTo(3);
+    }
+
+    @DisplayName("Cars 객체를 실행하는 기능을 테스트한다")
+    @Test
+    void testPlay() {
+        //given
+        List<Car> carGroup = Arrays.asList(new Car("benz"), new Car("kia"), new Car("bmw"));
+        Cars cars = new Cars(carGroup);
+
+        //when
+        Cars movedCars = cars.play(new RandomNumberGenerator());
+
+        //then
+        List<Car> carsValue = movedCars.getCars();
+        assertThat(carsValue.get(0).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(1);
+        assertThat(carsValue.get(1).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(1);
+        assertThat(carsValue.get(2).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(1);
     }
 }

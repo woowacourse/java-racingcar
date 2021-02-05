@@ -5,11 +5,12 @@ import racingcar.domain.car.Cars;
 import racingcar.domain.car.util.RandomNumberGenerator;
 import racingcar.domain.trynumber.TryNumber;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCarGame {
 
-    private final Cars cars;
+    private Cars cars;
     private final TryNumber tryNumber;
 
     public RacingCarGame(Cars cars, TryNumber tryNumber) {
@@ -17,18 +18,18 @@ public class RacingCarGame {
         this.tryNumber = tryNumber;
     }
 
-    public void execute(RandomNumberGenerator randomNumberGenerator) {
+    public List<Cars> execute(RandomNumberGenerator randomNumberGenerator) {
+        List<Cars> runResult = new ArrayList<>();
         while (tryNumber.isMovable()) {
-            cars.play(randomNumberGenerator);
+            cars = cars.play(randomNumberGenerator);
+            runResult.add(cars);
         }
+
+        return runResult;
     }
 
     public List<Car> findWinners() {
         int maxPosition = cars.extractMaxPosition();
         return cars.extractSamePosition(maxPosition);
-    }
-
-    public Cars getCars() {
-        return cars;
     }
 }

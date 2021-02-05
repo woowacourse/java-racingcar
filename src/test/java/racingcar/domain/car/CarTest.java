@@ -61,10 +61,10 @@ class CarTest {
         Car car = new Car("BENZ");
 
         //when
-        car.move(4);
+        Car movedCar = car.move(4);
 
         //then
-        assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(movedCar.getPosition()).isEqualTo(1);
     }
 
     @DisplayName("move가 받은 값이 기준값 이상이면 전진한다")
@@ -74,10 +74,10 @@ class CarTest {
         Car car = new Car("BENZ");
 
         //when
-        car.move(3);
+        Car unmovedCar = car.move(3);
 
         //then
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(unmovedCar.getPosition()).isEqualTo(0);
     }
 
     @DisplayName("car의 position이 특정 position과 일치하는지 판별하는 기능을 테스트한다")

@@ -12,7 +12,7 @@ public class Car {
     private static final int INITIAL_POSITION = 0;
 
     private final String name;
-    private int position;
+    private final int position;
 
     public Car(String name) {
         this(name, INITIAL_POSITION);
@@ -63,10 +63,12 @@ public class Car {
         }
     }
 
-    public void move(int randomNumber) {
+    public Car move(int randomNumber) {
         if (randomNumber >= FORWARD_MOVEMENT_BOUNDARY_VALUE) {
-            position++;
+            return new Car(name, position + 1);
         }
+
+        return this;
     }
 
     public boolean equalToPosition(int maxPosition) {

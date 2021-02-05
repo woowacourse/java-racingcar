@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class RacingCarGameTest {
 
@@ -18,18 +19,24 @@ class RacingCarGameTest {
     @Test
     void testExecute() {
         //given
-        Cars cars = new Cars(Arrays.asList(new Car("benz"), new Car("test"), new Car("kia")));
-        TryNumber tryNumber = new TryNumber(4);
+        Cars cars = new Cars(Arrays.asList(new Car("benz"), new Car("test")));
+        TryNumber tryNumber = new TryNumber(2);
 
         //when
         RacingCarGame racingCarGame = new RacingCarGame(cars, tryNumber);
-        racingCarGame.execute(new RandomNumberGenerator());
+        List<Cars> runResult = racingCarGame.execute(new RandomNumberGenerator());
 
         //then
-        List<Car> resultCars = racingCarGame.getCars().getCars();
-        assertThat(resultCars.get(0).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(4);
-        assertThat(resultCars.get(1).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(4);
-        assertThat(resultCars.get(2).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(4);
+        Cars firstRunResult = runResult.get(0);
+        List<Car> firstRunResultCars = firstRunResult.getCars();
+        Cars secondRunResult = runResult.get(1);
+        List<Car> secondRunResultCars = secondRunResult.getCars();
+        assertAll(
+                () -> assertThat(firstRunResultCars.get(0).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(2),
+                () -> assertThat(firstRunResultCars.get(1).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(2),
+                () -> assertThat(secondRunResultCars.get(0).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(2),
+                () -> assertThat(secondRunResultCars.get(1).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(2)
+        );
     }
 
     @DisplayName("우승자를 찾는 기능을 테스트한다")
