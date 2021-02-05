@@ -1,6 +1,6 @@
-package stringCalculator;
+package stringcalculator;
 
-import stringCalculator.controller.CalculatorController;
+import stringcalculator.controller.CalculatorController;
 
 import java.util.Scanner;
 

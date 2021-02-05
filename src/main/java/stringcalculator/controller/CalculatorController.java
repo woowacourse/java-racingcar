@@ -1,6 +1,6 @@
-package stringCalculator.controller;
+package stringcalculator.controller;
 
-import stringCalculator.view.InputView;
+import stringcalculator.view.InputView;
 
 import java.util.Arrays;
 import java.util.List;
