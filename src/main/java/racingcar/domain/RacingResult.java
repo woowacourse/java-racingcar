@@ -36,7 +36,7 @@ public class RacingResult {
     return log.toString();
   }
 
-  public Winner getWinner() {
+  public String getWinner() {
     int maxPosition = participants.getCars().stream()
         .mapToInt(Car::getPosition)
         .max()
@@ -45,6 +45,6 @@ public class RacingResult {
     List<Car> winners = participants.getCars().stream()
         .filter(car -> car.getPosition() == maxPosition)
         .collect(Collectors.toList());
-    return new Winner(winners);
+    return new Winner(winners).getWinnerName();
   }
 }
