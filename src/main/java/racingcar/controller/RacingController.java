@@ -33,8 +33,21 @@ public class RacingController {
     }
 
     private Trial setTrial() {
-        OutputView.enterTrials();
-        return InputView.getTrial();
+        Trial trial = null;
+        while (trial == null) {
+            trial = receiveTrial(trial);
+        }
+        return trial;
+    }
+
+    private Trial receiveTrial(Trial trial) {
+        try {
+            OutputView.enterTrials();
+            trial = InputView.getTrial();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+        }
+        return trial;
     }
 
     private void runTrial(Cars cars, Trial trial) {
