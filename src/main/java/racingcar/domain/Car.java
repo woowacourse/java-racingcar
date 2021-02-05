@@ -22,15 +22,12 @@ public class Car {
     }
   }
 
-  public void run() {
+  public void run(final int fuel) {
+    this.fuel = fuel;
     if (isRunnable(fuel)) {
       this.position++;
     }
-    fuel = 0;
-  }
-
-  public void fillInFuel(final int fuel) {
-    this.fuel = fuel;
+    this.fuel = 0;
   }
 
   private boolean isRunnable(final int fuel) {

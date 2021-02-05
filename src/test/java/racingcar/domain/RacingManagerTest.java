@@ -23,8 +23,7 @@ class RacingManagerTest {
     String expectedLog = "pobi";
 
     List<Car> cars = participants.getCars();
-    cars.get(0).fillInFuel(Car.MIN_RUNNABLE_FUEL);
-    cars.get(0).run();
+    cars.get(0).run(Car.MIN_RUNNABLE_FUEL);
 
     RacingResult racingResult = racingManager.start();
     assertThat(racingResult.getWinner()).isEqualTo(expectedLog);

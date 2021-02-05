@@ -6,12 +6,12 @@ public class RacingManager {
 
   private final Participants participants;
   private final int turn;
-  private final Supplier<Integer> fuel;
+  private final Supplier<Integer> randomFuel;
 
-  public RacingManager(final Participants participants, final int turn, final Supplier<Integer> fuel) {
+  public RacingManager(final Participants participants, final int turn, final Supplier<Integer> randomFuel) {
     this.participants = participants;
     this.turn = turn;
-    this.fuel = fuel;
+    this.randomFuel = randomFuel;
   }
 
   public RacingResult start() {
@@ -24,8 +24,7 @@ public class RacingManager {
 
   private void race(final RacingResult racingResult) {
     participants.getCars().forEach(car -> {
-      car.fillInFuel(fuel.get());
-      car.run();
+      car.run(randomFuel.get());
     });
     racingResult.appendLog();
   }
