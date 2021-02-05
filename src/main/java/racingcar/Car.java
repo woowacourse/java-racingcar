@@ -7,8 +7,29 @@ public class Car {
     private int position;
     private String name;
 
-    public Car() {
-        this.position = 0;
+    public Car(String name) {
+        name = validateName(name);
+        this.position = 1;
+        this.name = name;
+    }
+
+    private String validateName(String name) {
+        name = name.trim();
+        validateNameLength(name);
+        validateNameNullOrEmpty(name);
+        return name;
+    }
+
+    private void validateNameNullOrEmpty(String name) {
+        if (name == null || "".equals(name)) {
+            throw new RuntimeException();
+        }
+    }
+
+    private void validateNameLength(String name) {
+        if (name.length() < 1 || name.length() > 5) {
+            throw new RuntimeException();
+        }
     }
 
     public void drive(int randomValue) {
@@ -19,6 +40,10 @@ public class Car {
         if (randomValue >= 4) {
             accelerate();
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getPosition() {
@@ -40,5 +65,20 @@ public class Car {
         IntStream.range(0, position)
                 .forEach(i -> sb.append("-"));
         return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) return true;
+        if (obj instanceof Car) {
+            Car car = (Car) obj;
+            return this.name.equals(car.name);
+        }
+        return false;
     }
 }

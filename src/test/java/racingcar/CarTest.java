@@ -5,8 +5,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
@@ -31,6 +33,23 @@ class CarTest {
     void drive_invalidNumber(Integer input) {
         assertThatThrownBy(() -> {
             car.drive(input);
+        }).isInstanceOf(RuntimeException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("올바른 이름으로 Car 생성 성공")
+    @ValueSource(strings = {"bepoz  ", "12345", " joy", "b ank"})
+    void generate_validName(String input) {
+        Car car = new Car(input);
+        assertThat(car.getName()).isEqualTo(input.trim());
+    }
+
+    @ParameterizedTest
+    @DisplayName("올바르지 않은 이름으로 Car 생성 실패")
+    @ValueSource(strings = {"123456", "", " "})
+    void generate_invalidName(String input) {
+        assertThatThrownBy(() -> {
+            new Car(input);
         }).isInstanceOf(RuntimeException.class);
     }
 }

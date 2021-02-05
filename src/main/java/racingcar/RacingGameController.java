@@ -1,6 +1,7 @@
 package racingcar;
 
 public class RacingGameController {
+
     private final InputView inputView;
 
     public RacingGameController() {
@@ -8,6 +9,7 @@ public class RacingGameController {
     }
 
     public void startRace() {
-
+        String carsName = inputView.getInputCarsName();
+        Cars.makeCar(carsName);
     }
 }
