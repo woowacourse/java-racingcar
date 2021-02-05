@@ -12,10 +12,9 @@ public class RacingController {
     }
 
     public void run() {
-        String name = inputView.inputCarName(); // TODO : 자동차 입력 기능 구현
-        String names = "임시";
+//        String name = inputView.inputCarName(); // TODO : 자동차 입력 기능 구현
         // TODO : 메뉴 표시
         // TODO : 자동차 이름 입력
-        carController.createCars(names);
+//        carController.createCars(names);
     }
 }
