@@ -12,10 +12,10 @@ public class Application {
   public static void main(String[] args) {
     Participants participants = InputView.getNames();
     int turn = InputView.getTurn();
-
     RacingManager racingManager = new RacingManager(participants, turn, new RandomSupplier());
 
     RacingResult racingResult = racingManager.start();
+
     OutputView.printProgressResult(racingResult.log());
     OutputView.printWinner(racingResult.winner());
   }
