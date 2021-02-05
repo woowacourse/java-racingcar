@@ -7,7 +7,7 @@ import racingcar.input.utils.carname.exception.InvalidCarNameFormatException;
 public class CarNameFormatValidatorUtils {
     private final static String VALID_CAR_NAME_PATTERN = "^[a-zA-Z0-9가-힣]{1,5}$";
 
-    public static void isAllValidCarNames(List<String> inputCarNames) {
+    public static void vaidateAllCarNamesFormat(List<String> inputCarNames) {
         if (!inputCarNames.stream()
             .allMatch(name -> Pattern.matches(VALID_CAR_NAME_PATTERN, name))) {
             throw new InvalidCarNameFormatException(

@@ -18,7 +18,7 @@ public class CarNamesNotDuplicateValidatorUtilsTest {
         carNames.add("222");
         carNames.add("333");
         assertThatCode(
-            () -> CarNamesNotDuplicateValidatorUtils.isAllCarNamesNotDuplicate(carNames))
+            () -> CarNamesNotDuplicateValidatorUtils.validateAllCarNamesNotDuplicate(carNames))
             .doesNotThrowAnyException();
 
     }
@@ -31,7 +31,7 @@ public class CarNamesNotDuplicateValidatorUtilsTest {
         carNames.add("222");
         carNames.add("111");
         assertThatThrownBy(
-            () -> CarNamesNotDuplicateValidatorUtils.isAllCarNamesNotDuplicate(carNames))
+            () -> CarNamesNotDuplicateValidatorUtils.validateAllCarNamesNotDuplicate(carNames))
             .isInstanceOf(DuplicateCarNamesException.class);
     }
 }

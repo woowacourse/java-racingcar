@@ -17,7 +17,7 @@ public class TwoOrMoreCarNamesValidatorUtilsTest {
         carNames.add("111");
         carNames.add("222");
         assertThatCode(
-            () -> TwoOrMoreCarNamesValidatorUtils.isTwoOrMoreCarNames(carNames))
+            () -> TwoOrMoreCarNamesValidatorUtils.validateTwoOrMoreCarNames(carNames))
             .doesNotThrowAnyException();
     }
 
@@ -27,7 +27,7 @@ public class TwoOrMoreCarNamesValidatorUtilsTest {
         List<String> carNames = new ArrayList<>();
         carNames.add("111");
         assertThatThrownBy(
-            () -> TwoOrMoreCarNamesValidatorUtils.isTwoOrMoreCarNames(carNames))
+            () -> TwoOrMoreCarNamesValidatorUtils.validateTwoOrMoreCarNames(carNames))
             .isInstanceOf(LessThanTwoCarNamesException.class);
     }
 }
