@@ -15,30 +15,48 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingController {
+    private String carNamesInput;
+    private String moveCountInput;
+    
     public void run() {
-        String carNamesInput = InputView.inputFormUser(Messages.REQUEST_CAR_NAME);
-        String moveCountInput = InputView.inputFormUser(Messages.REQUEST_MOVE_COUNT);
+        GameResult gameResult = null;
 
-        Cars cars = createCarsFromCarNamesInput(carNamesInput);
-        GameResult gameResult = startGameAndGetGameResult(cars, moveCountInput);
+        try {
+            gameResult = getInputFromUserAndStartGameAndGetResult();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            controlError(e.getMessage());
+            return;
+        }
 
         printGameResult(gameResult);
     }
 
-
-    private Cars createCarsFromCarNamesInput(String carNamesInput) {
-        List<String> carNames = CarNamesInput.valueOf(carNamesInput).getCarNames();
-
-        return Cars.of(makeCarListFromCarNames(carNames));
+    private void controlError(String errorMessage) {
+        OutputView.print(errorMessage);
+        run();
     }
 
+    private GameResult getInputFromUserAndStartGameAndGetResult() {
+        getCarNamesAndMoveCountFromUser();
+        return startGameAndGetGameResult();
+    }
+
+
+    private void getCarNamesAndMoveCountFromUser() {
+        carNamesInput = InputView.inputFormUser(Messages.REQUEST_CAR_NAME);
+        moveCountInput = InputView.inputFormUser(Messages.REQUEST_MOVE_COUNT);
+    }
+    
     private List<Car> makeCarListFromCarNames(List<String> carNames) {
         return carNames.stream()
                 .map(name -> new Car(name, new MoveCondition()))
                 .collect(Collectors.toList());
+
     }
 
-    private GameResult startGameAndGetGameResult(Cars cars, String moveCountInput) {
+    private GameResult startGameAndGetGameResult() {
+        Cars cars = createCarsFromCarNamesInput();
         int moveCount = MoveCountInput.valueOf(moveCountInput).getMoveCount();
 
         RacingGame racingGame = new RacingGame(cars, moveCount);
@@ -46,6 +64,13 @@ public class RacingController {
         return racingGame.start();
     }
 
+
+    private Cars createCarsFromCarNamesInput() {
+        List<String> carNames = CarNamesInput.valueOf(carNamesInput).getCarNames();
+
+        return Cars.of(makeCarListFromCarNames(carNames));
+    }
+    
     private void printGameResult(GameResult gameResult) {
         OutputView.print(gameResult.getExecutionResultString());
         OutputView.print(gameResult.getWinnersString());
