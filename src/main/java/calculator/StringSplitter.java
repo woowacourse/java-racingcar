@@ -17,7 +17,7 @@ public class StringSplitter {
         this.input = input;
     }
     
-    public String[] getStringSplitter() {
+    public String[] getNumbers() {
         final String delimiter = getDelimiter();
         
         return input.split(delimiter);

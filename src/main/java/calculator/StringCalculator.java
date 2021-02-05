@@ -6,15 +6,15 @@ public class StringCalculator {
             return 0;
         }
         
-        String[] tokens = new StringSplitter(input).getStringSplitter();
+        String[] numbers = new StringSplitter(input).getNumbers();
         
-        return sum(tokens);
+        return sum(numbers);
     }
     
-    private static int sum(String[] tokens) {
+    private static int sum(String[] numbers) {
         int result = 0;
         
-        for (String token : tokens) {
+        for (String token : numbers) {
             result += new ZeroAndPositiveNumber(token).getValue();
         }
         
