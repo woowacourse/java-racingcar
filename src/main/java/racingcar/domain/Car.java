@@ -4,24 +4,24 @@ public class Car {
     private static final int MINIMUM_NUMBER_TO_MOVE = 4;
 
     private final CarName carName;
-    private int position;
+    private Position position;
 
-    public Car(String name){
+    public Car(String name) {
         this.carName = new CarName(name);
-        this.position = 0;
+        this.position = new Position();
+    }
+
+    public void moveByRandomNumber(int number) {
+        if (number >= MINIMUM_NUMBER_TO_MOVE) {
+            position.moveForward();
+        }
     }
 
     public String getName() {
         return carName.getName();
     }
 
-    public int getPosition() {
-        return position;
-    }
-
-    public void moveCar(int number){
-        if (number >= MINIMUM_NUMBER_TO_MOVE) {
-            position += 1;
-        }
+    public String getPosition() {
+        return position.getPosition();
     }
 }
