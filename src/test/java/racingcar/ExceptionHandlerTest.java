@@ -14,8 +14,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class ExceptionHandlerTest {
 
     @Test
-    @DisplayName("입력한 이름대로 올바르게 Car 리스트가 만들어지는지 확인")
-    void setCarsTest() {
+    void setCarsTest_정상입력() {
         List<Car> expected = new ArrayList<>();
         expected.add(new Car("루트"));
         expected.add(new Car("소롱"));
@@ -43,15 +42,6 @@ public class ExceptionHandlerTest {
             .hasMessageContaining("중복되는 이름을 입력할 수 없습니다.");
     }
 
-
-    @Test
-    @DisplayName("입력한 시도 회수가 정상적인 값인지 확인")
-    void setTrialTest() {
-        int expected = 3;
-        int actual = ExceptionHandler.setTrial("3");
-        assertThat(actual).isEqualTo(expected);
-    }
-
     @ParameterizedTest
     @CsvSource(value = {"1,1", "2,2", "50,50","2147483647,2147483647"}, delimiter = ',')
     void setTrial_정상입력(String input, Integer expected) {
@@ -60,10 +50,19 @@ public class ExceptionHandlerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"2147483648", "", "2-1", "abc", "894-"})
-    void setTrial_비정상입력(String input) {
+    @ValueSource(strings = {"2147483648", "0"})
+    void setTrial_범위_밖의_숫자(String input) {
         assertThatThrownBy(() -> {
             ExceptionHandler.setTrial(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("이하여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"2-1", "abc", "894-"})
+    void setTrial_정수가_아닌_입력(String input) {
+        assertThatThrownBy(() -> {
+            ExceptionHandler.setTrial(input);
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("숫자만 입력할 수 있습니다.");
     }
 }
