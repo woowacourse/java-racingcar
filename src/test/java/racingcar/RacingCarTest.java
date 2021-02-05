@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -99,5 +100,24 @@ public class RacingCarTest {
             car.move(4);
         }
         assertThat(car.positionToString()).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"mt,oz,pobi@0,2:mt, pobi", "pobi,crong,honux@0:pobi",
+        "pobi,crong,honux@1:crong", "pobi,crong,honux@2:honux", "pobi,crong,honux@1,2:crong, honux",
+        "pobi,crong,honux@0,1,2:pobi, crong, honux"}, delimiter = ':')
+    void winnerCarTest(String input, String expected) {
+        String[] inputArray = input.split("@");
+        String[] carNames = inputArray[0].split(",");
+        List<Car> carList = new ArrayList<>();
+        for (int i = 0; i < carNames.length; i++) {
+            carList.add(new Car(carNames[i]));
+        }
+        String[] indexArray = inputArray[1].split(",");
+        for (String index : indexArray) {
+            carList.get(Integer.parseInt(index)).move(4);
+        }
+        Cars cars = new Cars(carList);
+        assertThat(cars.getWinners()).isEqualTo(expected);
     }
 }
