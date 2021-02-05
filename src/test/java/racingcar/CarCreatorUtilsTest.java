@@ -1,6 +1,6 @@
 package racingcar;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +24,10 @@ public class CarCreatorUtilsTest {
 
         List<Car> createdCars = CarCreatorUtils.createCars(carNames);
 
-        assertEquals(3, createdCars.size());
+        assertThat(createdCars.size()).isEqualTo(3);
 
-        assertEquals(firstCarName, createdCars.get(0).getName());
-        assertEquals(secondCarName, createdCars.get(1).getName());
-        assertEquals(thirdCarName, createdCars.get(2).getName());
+        assertThat(createdCars.get(0).getName()).isEqualTo(firstCarName);
+        assertThat(createdCars.get(1).getName()).isEqualTo(secondCarName);
+        assertThat(createdCars.get(2).getName()).isEqualTo(thirdCarName);
     }
 }

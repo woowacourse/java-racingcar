@@ -1,6 +1,6 @@
 package racingcar.input.utils.carname;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -13,8 +13,8 @@ public class CarNamesSplitterUtilsTest {
     void splitCarNames() {
         String carNamesInput = "aaa,bbb,ccc";
         List<String> splitCarNames = CarNamesSplitterUtils.splitCarNames(carNamesInput);
-        assertEquals("aaa", splitCarNames.get(0));
-        assertEquals("bbb", splitCarNames.get(1));
-        assertEquals("ccc", splitCarNames.get(2));
+        assertThat(splitCarNames.get(0)).isEqualTo("aaa");
+        assertThat(splitCarNames.get(1)).isEqualTo("bbb");
+        assertThat(splitCarNames.get(2)).isEqualTo("ccc");
     }
 }

@@ -1,6 +1,6 @@
 package racingcar.input.utils.carname;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,10 @@ public class CarNamesNotDuplicateValidatorUtilsTest {
         carNames.add("111");
         carNames.add("222");
         carNames.add("333");
-        assertDoesNotThrow(
-            () -> CarNamesNotDuplicateValidatorUtils.isAllCarNamesNotDuplicate(carNames));
+        assertThatCode(
+            () -> CarNamesNotDuplicateValidatorUtils.isAllCarNamesNotDuplicate(carNames))
+            .doesNotThrowAnyException();
+
     }
 
     @DisplayName("자동차 이름들 중에 중복된 이름이 있을 경우 예외 발생")
@@ -28,7 +30,8 @@ public class CarNamesNotDuplicateValidatorUtilsTest {
         carNames.add("111");
         carNames.add("222");
         carNames.add("111");
-        assertThrows(DuplicateCarNamesException.class,
-            () -> CarNamesNotDuplicateValidatorUtils.isAllCarNamesNotDuplicate(carNames));
+        assertThatThrownBy(
+            () -> CarNamesNotDuplicateValidatorUtils.isAllCarNamesNotDuplicate(carNames))
+            .isInstanceOf(DuplicateCarNamesException.class);
     }
 }

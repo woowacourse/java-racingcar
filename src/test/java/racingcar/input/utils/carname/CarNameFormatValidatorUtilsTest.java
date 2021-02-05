@@ -1,6 +1,6 @@
 package racingcar.input.utils.carname;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,8 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("bbb1");
         inputCarNames.add("가나다1");
         inputCarNames.add("aaa1");
-        assertDoesNotThrow(() -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames));
+        assertThatCode(() -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames))
+            .doesNotThrowAnyException();
     }
 
     @DisplayName("5자 초과의 이름인 자동차가 있으면 예외 발생")
@@ -29,8 +30,8 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("bbb111");
         inputCarNames.add("가나다1");
         inputCarNames.add("aaa1");
-        assertThrows(InvalidCarNameFormatException.class,
-            () -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames));
+        assertThatThrownBy(() -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames))
+            .isInstanceOf(InvalidCarNameFormatException.class);
     }
 
     @DisplayName("빈 문자열의 이름인 자동차가 있으면 예외 발생")
@@ -40,8 +41,8 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("aaa");
         inputCarNames.add("");
         inputCarNames.add("ccc");
-        assertThrows(InvalidCarNameFormatException.class,
-            () -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames));
+        assertThatThrownBy(() -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames))
+            .isInstanceOf(InvalidCarNameFormatException.class);
     }
 
     @DisplayName("공백 문자가 포함되어있는 이름인 자동차가 있으면 예외 발생")
@@ -51,7 +52,7 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("aaa");
         inputCarNames.add("b b");
         inputCarNames.add("ccc");
-        assertThrows(InvalidCarNameFormatException.class,
-            () -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames));
+        assertThatThrownBy(() -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames))
+            .isInstanceOf(InvalidCarNameFormatException.class);
     }
 }

@@ -17,7 +17,8 @@ public class RandomGeneratorUtilsTest {
             int randomNumber = RandomGeneratorUtils.generateRandomNumber(0, 9);
             addRandomNumberIfNotContains(randomNumbers, randomNumber);
         }
-        assertThat(randomNumbers.stream().allMatch(number -> 0 <= number && number <= 9)).isTrue();
+        assertThat(randomNumbers.stream().allMatch(number -> 0 <= number && number <= 9))
+            .isTrue();
     }
 
     private void addRandomNumberIfNotContains(List<Integer> randomNumbers, int randomNumber) {

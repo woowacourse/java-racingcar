@@ -46,7 +46,7 @@ public class StringTest {
         assertThatThrownBy(() -> {
             value.charAt(4);
         }).isInstanceOf(IndexOutOfBoundsException.class)
-                .hasMessageContaining("String index out of range: 4");
+            .hasMessageContaining("String index out of range: 4");
     }
 
     @DisplayName("특정 위치의 문자 찾기 에러")
@@ -55,8 +55,8 @@ public class StringTest {
         String value = "abc";
 
         assertThatExceptionOfType(IndexOutOfBoundsException.class)
-                .isThrownBy(() -> {
-                    value.charAt(4);
-                }).withMessageMatching("String index out of range: \\d+");
+            .isThrownBy(() -> {
+                value.charAt(4);
+            }).withMessageMatching("String index out of range: \\d+");
     }
 }

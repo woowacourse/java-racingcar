@@ -17,7 +17,7 @@ public class CarRegister {
 
     private List<String> validateCarNames(String input) {
         List<String> carNames = Arrays.stream(input.split(CAR_NAME_DELIMITER))
-                .collect(Collectors.toList());
+            .collect(Collectors.toList());
 
         validateNumberOfRegisteredCars(carNames);
         validateDuplicateCarNames(carNames);

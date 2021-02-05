@@ -1,6 +1,6 @@
 package racingcar.input.utils.carname;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,9 @@ public class TwoOrMoreCarNamesValidatorUtilsTest {
         List<String> carNames = new ArrayList<>();
         carNames.add("111");
         carNames.add("222");
-        assertDoesNotThrow(() -> TwoOrMoreCarNamesValidatorUtils.isTwoOrMoreCarNames(carNames));
+        assertThatCode(
+            () -> TwoOrMoreCarNamesValidatorUtils.isTwoOrMoreCarNames(carNames))
+            .doesNotThrowAnyException();
     }
 
     @DisplayName("자동차 이름이 2개 미만이면 예외가 발생한다.")
@@ -24,7 +26,8 @@ public class TwoOrMoreCarNamesValidatorUtilsTest {
     void invalidLessThanTwoCarNamesException() {
         List<String> carNames = new ArrayList<>();
         carNames.add("111");
-        assertThrows(LessThanTwoCarNamesException.class,
-            () -> TwoOrMoreCarNamesValidatorUtils.isTwoOrMoreCarNames(carNames));
+        assertThatThrownBy(
+            () -> TwoOrMoreCarNamesValidatorUtils.isTwoOrMoreCarNames(carNames))
+            .isInstanceOf(LessThanTwoCarNamesException.class);
     }
 }

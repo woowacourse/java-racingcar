@@ -15,7 +15,7 @@ public class OutputView {
     public static void printRaceResultEachCar(String name, int currentPosition) {
         System.out.print(name + " : ");
 
-        for(int i = 0; i < currentPosition; i++) {
+        for (int i = 0; i < currentPosition; i++) {
             System.out.print(POSITION_SIGN);
         }
 

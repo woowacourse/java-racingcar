@@ -61,14 +61,14 @@ public class CarRepository {
     public static List<Car> getWinners() {
         int maxPosition = getMaxPosition();
         return Collections.unmodifiableList(cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .collect(Collectors.toList()));
+            .filter(car -> car.getPosition() == maxPosition)
+            .collect(Collectors.toList()));
     }
 
     private static int getMaxPosition() {
         return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElseThrow(RuntimeException::new);
+            .mapToInt(Car::getPosition)
+            .max()
+            .orElseThrow(RuntimeException::new);
     }
 }
