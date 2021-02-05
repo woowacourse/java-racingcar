@@ -45,13 +45,12 @@ public class Cars {
         cars.forEach(car -> car.move(RandomUtils.getRandomNumber(START_NUMBER, END_NUMBER)));
     }
 
-    public List<String> findWinnerNames() {
+    public Winners findWinners() {
         int maxPosition = getMaxPosition();
-        List<String> winners = cars.stream()
+        List<Car> winners = cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
-                .map(Car::getName)
                 .collect(Collectors.toList());
-        return winners;
+        return new Winners(winners);
     }
 
     private int getMaxPosition() {

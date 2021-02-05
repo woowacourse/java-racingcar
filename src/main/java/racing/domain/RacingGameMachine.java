@@ -1,6 +1,7 @@
 package racing.domain;
 
 import racing.domain.dto.CarDto;
+import racing.domain.dto.WinnersDto;
 
 import java.util.List;
 
@@ -31,8 +32,9 @@ public class RacingGameMachine {
         return tryCounts > ZERO;
     }
 
-    public List<String> findWinnerNames(){
-        return cars.findWinnerNames();
+    public WinnersDto getWinnersDtos(){
+        List<String> winnersName = cars.findWinners().getWinnersName();
+        return new WinnersDto(winnersName);
     }
 
     public List<CarDto> getCarDtos() {

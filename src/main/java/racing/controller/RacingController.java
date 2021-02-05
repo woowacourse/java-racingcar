@@ -3,6 +3,7 @@ package racing.controller;
 import racing.domain.Cars;
 import racing.domain.RacingGameMachine;
 import racing.domain.dto.CarDto;
+import racing.domain.dto.WinnersDto;
 import racing.view.GameScreen;
 import racing.view.InputScreen;
 import racing.view.InputView;
@@ -19,8 +20,8 @@ public class RacingController {
             List<CarDto> carDtos = racingGameMachine.getCarDtos();
             gameScreen.showCarStatus(carDtos);
         }
-        List<String> winnerNames = racingGameMachine.findWinnerNames();
-        gameScreen.showWinners(winnerNames);
+        WinnersDto winnersDtos = racingGameMachine.getWinnersDtos();
+        gameScreen.showWinners(winnersDtos.getWinnersName());
     }
 
     private RacingGameMachine initializeRacingGame() {
