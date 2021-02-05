@@ -26,12 +26,6 @@ public class RacingController {
         }
     }
 
-    private void result(List<Car> winnerCars) {
-        OutputView.printWinnerTitle();
-        OutputView.printWinners(winnerCars);
-        running = false;
-    }
-
     private Cars generateCars() {
         OutputView.enterCarNames();
         Names names = InputView.getNames();
@@ -55,6 +49,12 @@ public class RacingController {
         for (Car car : cars.getCars()) {
             car.movePosition(RandomUtils.generateRandomValue());
         }
+    }
+
+    private void result(List<Car> winnerCars) {
+        OutputView.printWinnerTitle();
+        OutputView.printWinners(winnerCars);
+        running = false;
     }
 
     public boolean isRunning() {
