@@ -1,9 +1,12 @@
 package racingcar.domain;
 
+import racingcar.util.CarValidator;
+
 public class Car {
-    private String name;
+    private final String name;
 
     public Car(String name) {
+        CarValidator.validateCarNameLength(name);
         this.name = name;
     }
 
