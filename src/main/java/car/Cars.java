@@ -1,6 +1,9 @@
 package car;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -9,6 +12,10 @@ public final class Cars {
     private static final String NAME_DELIMITER = ",";
     
     private final List<Car> racingCars;
+    
+    Cars(List<Car> racingCars) {
+        this.racingCars = racingCars;
+    }
     
     public static Cars from(String carNames) {
         return Cars.of(carNames, Car::fromNameWithRacingEngine);
@@ -34,10 +41,6 @@ public final class Cars {
                      .collect(Collectors.toCollection(LinkedList::new));
     }
     
-    private Cars(List<Car> racingCars) {
-        this.racingCars = racingCars;
-    }
-    
     public Cars race() {
         for (int i = 0, size = racingCars.size(); i < size; i++) {
             final Car car = racingCars.get(i);
@@ -45,6 +48,10 @@ public final class Cars {
         }
         
         return new Cars(racingCars);
+    }
+    
+    public ScoreBoard recordScore() {
+        return ScoreBoard.record(racingCars);
     }
     
     @Override
