@@ -1,10 +1,9 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-import racingcar.domain.car.Car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -53,5 +52,31 @@ class CarTest {
         //when //then
         assertThatThrownBy(() -> new Car(name))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("move가 받은 값이 기준값 이상이면 전진한다")
+    @Test
+    void testMoveIfRandomNumberMoreThanStandard() {
+        //given
+        Car car = new Car("BENZ");
+
+        //when
+        car.move(4);
+
+        //then
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @DisplayName("move가 받은 값이 기준값 이상이면 전진한다")
+    @Test
+    void testMoveIfRandomNumberUnderStandard() {
+        //given
+        Car car = new Car("BENZ");
+
+        //when
+        car.move(3);
+
+        //then
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }
