@@ -18,8 +18,8 @@ public class StringCalculator {
     private static int sum(String[] numbers) {
         int result = 0;
         
-        for (String token : numbers) {
-            result += new ZeroAndPositiveNumber(token).getValue();
+        for (String number : numbers) {
+            result += ZeroAndPositiveNumber.from(number).getNumber();
         }
         
         return result;

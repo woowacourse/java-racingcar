@@ -2,22 +2,30 @@ package calculator;
 
 public class ZeroAndPositiveNumber {
     
-    private final String number;
+    private final int number;
     
-    public ZeroAndPositiveNumber(String number) {
-        this.number = number;
-    }
-    
-    public int getValue() {
+    public static ZeroAndPositiveNumber from(String number) {
         if (number.isEmpty()) {
-            return 0;
+            return new ZeroAndPositiveNumber(0);
         }
         
         int parsedNumber = Integer.parseInt(number);
-        if (parsedNumber < 0) {
+        if (isNegative(parsedNumber)) {
             throw new RuntimeException();
         }
-        
-        return parsedNumber;
+    
+        return new ZeroAndPositiveNumber(parsedNumber);
+    }
+    
+    private static boolean isNegative(int parsedNumber) {
+        return parsedNumber < 0;
+    }
+    
+    private ZeroAndPositiveNumber(int number) {
+        this.number = number;
+    }
+    
+    public int getNumber() {
+        return number;
     }
 }
