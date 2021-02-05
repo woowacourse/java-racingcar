@@ -7,7 +7,6 @@ public class Car {
   public static final int MIN_RUNNABLE_FUEL = 4;
   private final String name;
   private int position = 0;
-  private int fuel = 0;
 
   public Car(final String name) {
     validateName(name);
@@ -16,34 +15,25 @@ public class Car {
 
   private void validateName(String name) {
     if (name.length() < 1 || name.length() > 5) {
-      throw new IllegalStateException(RacingCarErrorMessage.CAR_NAME.getMessage());
+      throw new IllegalStateException(RacingCarErrorMessage.CAR_NAME_LENGTH.message());
     }
   }
 
-  public void run() {
-    if (isRunnable(fuel)) {
+  public void run(int fuel) {
+    if (runnable(fuel)) {
       this.position++;
     }
-    fuel = 0;
   }
 
-  public void fillInFuel(final int fuel) {
-    this.fuel = fuel;
-  }
-
-  private boolean isRunnable(final int fuel) {
+  private boolean runnable(final int fuel) {
     return fuel >= MIN_RUNNABLE_FUEL;
   }
 
-  public int getPosition() {
+  public int position() {
     return position;
   }
 
-  public int getFuel() {
-    return fuel;
-  }
-
-  public String getName() {
+  public String name() {
     return name;
   }
 }

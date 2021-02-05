@@ -21,26 +21,24 @@ class RacingResultTest {
   @Test
   void appendLog() {
     String expectedLog = "pobi : -" + ENTER + "sp : -" + ENTER + ENTER;
-    participants.getCars().forEach(car -> {
-      car.fillInFuel(Car.MIN_RUNNABLE_FUEL);
-      car.run();
+    participants.cars().forEach(car -> {
+      car.run(Car.MIN_RUNNABLE_FUEL);
     });
     racingResult.appendLog();
-    assertThat(racingResult.getLog()).isEqualTo(expectedLog);
+    assertThat(racingResult.log()).isEqualTo(expectedLog);
   }
 
   @Test
   void getWinner_우승자_1명() {
     String expectedLog = "pobi";
-    List<Car> cars = participants.getCars();
-    cars.get(0).fillInFuel(Car.MIN_RUNNABLE_FUEL);
-    cars.get(0).run();
-    assertThat(racingResult.getWinner()).isEqualTo(expectedLog);
+    List<Car> cars = participants.cars();
+    cars.get(0).run(Car.MIN_RUNNABLE_FUEL);
+    assertThat(racingResult.winner()).isEqualTo(expectedLog);
   }
 
   @Test
   void getWinner_우승자_여러명() {
     String expectedLog = "pobi, sp";
-    assertThat(racingResult.getWinner()).isEqualTo(expectedLog);
+    assertThat(racingResult.winner()).isEqualTo(expectedLog);
   }
 }

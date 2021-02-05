@@ -12,9 +12,9 @@ public class Winner {
     this.cars = cars;
   }
 
-  public String getWinnerName() {
+  public String winnerName() {
     return cars.stream()
-        .map(Car::getName)
+        .map(Car::name)
         .collect(Collectors.joining(WINNER_NAME_DELIMITER));
   }
 }

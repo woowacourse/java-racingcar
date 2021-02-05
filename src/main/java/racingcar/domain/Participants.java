@@ -8,7 +8,7 @@ public class Participants {
 
   private final List<Car> cars;
 
-  private Participants() {
+  public Participants() {
     cars = new ArrayList<>();
   }
 
@@ -19,7 +19,7 @@ public class Participants {
     }
   }
 
-  public List<Car> getCars() {
+  public List<Car> cars() {
     return Collections.unmodifiableList(cars);
   }
 }

@@ -3,7 +3,7 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
-import java.util.function.Supplier;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,18 +22,17 @@ class RacingManagerTest {
   void start_우승자_1명() {
     String expectedLog = "pobi";
 
-    List<Car> cars = participants.getCars();
-    cars.get(0).fillInFuel(Car.MIN_RUNNABLE_FUEL);
-    cars.get(0).run();
+    List<Car> cars = participants.cars();
+    cars.get(0).run(Car.MIN_RUNNABLE_FUEL);
 
     RacingResult racingResult = racingManager.start();
-    assertThat(racingResult.getWinner()).isEqualTo(expectedLog);
+    assertThat(racingResult.winner()).isEqualTo(expectedLog);
   }
 
   @Test
   void start_우승자_여러명() {
     String expectedLog = "pobi, sp, on";
     RacingResult racingResult = racingManager.start();
-    assertThat(racingResult.getWinner()).isEqualTo(expectedLog);
+    assertThat(racingResult.winner()).isEqualTo(expectedLog);
   }
 }

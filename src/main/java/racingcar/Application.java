@@ -16,7 +16,7 @@ public class Application {
     RacingManager racingManager = new RacingManager(participants, turn, new RandomSupplier());
 
     RacingResult racingResult = racingManager.start();
-    OutputView.printProgressResult(racingResult.getLog());
-    OutputView.printWinner(racingResult.getWinner());
+    OutputView.printProgressResult(racingResult.log());
+    OutputView.printWinner(racingResult.winner());
   }
 }
