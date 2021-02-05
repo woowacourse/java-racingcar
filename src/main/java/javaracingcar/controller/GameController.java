@@ -19,7 +19,7 @@ public class GameController {
         return cars;
     }
 
-    public static void run(List<String> carNames, int trial) {
+    public static void run(List<String> carNames, int trial) throws IllegalArgumentException {
         Game game = Game.init(carNames, trial);
         race(game);
         OutputView.printWinners(getWinners(game));

@@ -11,7 +11,7 @@ public class OutputView {
     }
 
     public static void printResultTitle() {
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
     }
 
     public static void printRoundResult(Game game) {
@@ -38,5 +38,9 @@ public class OutputView {
                                           .collect(Collectors.toList());
         System.out.print(String.join(", ", winnerNames));
         System.out.println("가 최종 우승했습니다.");
+    }
+
+    public static void printError(String message) {
+        System.out.println("[ERROR] " + message);
     }
 }

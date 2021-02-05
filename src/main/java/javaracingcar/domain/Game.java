@@ -8,17 +8,22 @@ import java.util.stream.Collectors;
 public class Game {
     private List<Car> cars;
     private int trial;
-    private int maxPosition;
 
     private Game(List<Car> cars, int trial) {
         this.cars = cars;
         this.trial = trial;
-        this.maxPosition = 0;
     }
 
     public static Game init(List<String> carNames, int trial) {
+        validateNonZeroElement(carNames);
         validateDistinctNames(carNames);
         return new Game(GameController.generateCars(carNames), trial);
+    }
+
+    private static void validateNonZeroElement(List<String> carNames) {
+        if (carNames.size() < 1) {
+            throw new IllegalArgumentException("입력된 자동차 이름이 없습니다.");
+        }
     }
 
     private static void validateDistinctNames(List<String> carNames) {
@@ -41,10 +46,6 @@ public class Game {
 
     public int getTrial() {
         return trial;
-    }
-
-    public int getMaxPosition() {
-        return maxPosition;
     }
 
     public void reduceOneTrial() {

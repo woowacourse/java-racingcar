@@ -42,11 +42,13 @@ public class StringCalculator {
     }
 
     static private Matcher getMatcher(String input) {
-        return Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
+        return Pattern.compile(CUSTOM_DELIMITER_PATTERN)
+                      .matcher(input);
     }
 
     static private String[] getTokensByCustomDelimiter(Matcher m) {
         String customDelimiter = m.group(1);
-        return m.group(2).split(customDelimiter);
+        return m.group(2)
+                .split(customDelimiter);
     }
 }
