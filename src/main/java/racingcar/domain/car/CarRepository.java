@@ -9,12 +9,12 @@ public class CarRepository {
 
     private static final List<Car> cars = new ArrayList<>();
 
-    public static List<Car> cars() {
-        return Collections.unmodifiableList(cars);
-    }
-
     public static void addCars(List<Car> copyingCars) {
         cars.addAll(copyingCars);
+    }
+
+    public static List<Car> cars() {
+        return Collections.unmodifiableList(cars);
     }
 
     public static String collectWinners() {
