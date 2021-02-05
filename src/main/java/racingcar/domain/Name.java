@@ -12,7 +12,7 @@ public class Name {
 
     private String name;
 
-    public Name(String name) {
+    public Name(final String name) {
         checkNameValidation(name);
         this.name = name;
     }
@@ -21,18 +21,18 @@ public class Name {
         return name;
     }
 
-    private void checkNameValidation(String name) {
+    private void checkNameValidation(final String name) {
         isEmpty(name);
         isLetterMoreThan1LessThan5(name);
     }
 
-    private void isEmpty(String name) {
+    private void isEmpty(final String name) {
         if (name.equals(EMPTY)) {
             throw new IllegalArgumentException(EMPTY_ERR_MSG);
         }
     }
 
-    private void isLetterMoreThan1LessThan5(String name) {
+    private void isLetterMoreThan1LessThan5(final String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(LENGTH_ERR_MSG);
         }

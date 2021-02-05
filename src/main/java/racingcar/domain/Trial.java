@@ -8,23 +8,23 @@ public class Trial {
     private static final String NUMBER_REGEX = "[+-]?\\d*(\\.\\d+)?";
     private int trial;
 
-    public Trial(String trial) {
+    public Trial(final String trial) {
         checkTrialValidation(trial);
         this.trial = Integer.parseInt(trial);
     }
 
-    private void checkTrialValidation(String trial) {
+    private void checkTrialValidation(final String trial) {
         isNumber(trial);
         isTrialMoreThan1(trial);
     }
 
-    private void isNumber(String trial) {
+    private void isNumber(final String trial) {
         if (!trial.matches(NUMBER_REGEX)) {
             throw new IllegalArgumentException(NUMBER_ERR_MSG);
         }
     }
 
-    private void isTrialMoreThan1(String trial) {
+    private void isTrialMoreThan1(final String trial) {
         if (Integer.parseInt(trial) < MIN_TRIAL_COUNT) {
             throw new IllegalArgumentException(COUNT_ERR_MSG);
         }

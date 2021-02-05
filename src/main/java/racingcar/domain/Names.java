@@ -11,10 +11,11 @@ public class Names {
     private static final String COMMA = ",";
     private List<Name> names;
 
-    public Names(String names) {
+    public Names(final String names) {
         List<Name> carNames = Arrays.stream(splitNames(names))
                 .map(Name::new)
                 .collect(Collectors.toList());
+
         isDuplicate(carNames);
         this.names = carNames;
     }
@@ -29,7 +30,7 @@ public class Names {
         }
     }
 
-    private String[] splitNames(String names) {
+    private String[] splitNames(final String names) {
         String[] carNames = Stream.of(names.split(COMMA))
                 .toArray(String[]::new);
         return carNames;
