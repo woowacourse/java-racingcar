@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class CarRepository {
     private static final List<Car> cars = new ArrayList<>();
+    private static final int MIN_NUMBER_TO_GO_FORWARD = 4;
 
     private CarRepository() {
     }
@@ -73,5 +74,18 @@ public class CarRepository {
             .mapToInt(Car::getPosition)
             .max()
             .orElseThrow(RuntimeException::new);
+    }
+
+    public static void raceOneTime(List<Integer> randomNumbers) {
+        for (int i = 0; i < cars.size(); i++) {
+            goForwardIfRandomNumberOfCarIsFourOrMore(cars.get(i), randomNumbers.get(i));
+        }
+    }
+
+    private static void goForwardIfRandomNumberOfCarIsFourOrMore(Car car,
+        int randomNumberOfCar) {
+        if (MIN_NUMBER_TO_GO_FORWARD <= randomNumberOfCar) {
+            car.goForward();
+        }
     }
 }

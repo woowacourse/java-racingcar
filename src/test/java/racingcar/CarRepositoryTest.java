@@ -19,14 +19,14 @@ public class CarRepositoryTest {
     @DisplayName("1회 경주 - 모든 자동차들이 랜덤값에 따라 전진하거나 전진하지 않아야 한다.")
     @Test
     void allCarsGoForwardOrStop() {
-        int numberOfCars = 10;
+        int numberOfCars = 1000;
 
         List<Car> cars = createCars(numberOfCars);
         CarRepository.saveAll(cars);
 
         List<Integer> randomNumbers = getRandomNumbers(numberOfCars);
 
-        //CarRepository.raceOneTime(randomNumbers);
+        CarRepository.raceOneTime(randomNumbers);
 
         for (int i = 0; i < numberOfCars; i++) {
             assertGoForwardOrStop(cars.get(i), randomNumbers.get(i));
@@ -54,7 +54,7 @@ public class CarRepositoryTest {
         int positionAfterGoForward = 1;
         int positionAfterStop = 0;
 
-        if (randomNumber >= minNumberToGoForward) {
+        if (minNumberToGoForward <= randomNumber) {
             assertThat(car.getPosition()).isEqualTo(positionAfterGoForward);
             return;
         }
