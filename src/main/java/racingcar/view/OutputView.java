@@ -14,4 +14,7 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
+    public static void printWinnerCarNamesMessage(String carNames) {
+        System.out.println(String.format("%s가 최종우승 했습니다.", carNames));
+    }
 }
