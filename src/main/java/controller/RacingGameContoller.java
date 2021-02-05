@@ -1,6 +1,6 @@
 package controller;
 
-import model.CarRepository;
+import model.Cars;
 import view.InputView;
 import view.OutputView;
 
@@ -10,63 +10,47 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGameContoller {
-    public static void start() {
-        List<String> carNames = getCarNames();
-        int trials = getTrials();
-//        CarRepository.moveCars();
-    }
+    public static Cars cars;
+    public static int trials;
 
-    public static List<String> getCarNames() {
+    public static void start() {
         while (true) {
-            OutputView.printUserPromptCarNames();
-            String input = InputView.askUserInput();
-            List<String> splittedInput = splitInput(input)
-                    .stream()
-                    .map(String::trim)
-                    .collect(Collectors.toList());
-            if (validateCarNames(splittedInput)) {
-                return splittedInput;
+            if (initializeCars()) {
+                break;
             }
         }
+        while (true) {
+            if (getTrials()) {
+                break;
+            }
+        }
+    }
+
+    public static boolean initializeCars() {
+        try {
+            OutputView.printUserPromptCarNames();
+            cars = new Cars(splitInput(InputView.askUserInput())
+                    .stream()
+                    .map(String::trim)
+                    .collect(Collectors.toList()));
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return true;
     }
 
     public static List<String> splitInput(String input) {
         return Arrays.asList(input.split(","));
     }
 
-    public static boolean validateCarNames(List<String> splittedInput) {
-        try {
-            if (splittedInput.size() <= 1) {
-                throw new IllegalArgumentException();
-            }
-            if (splittedInput.stream()
-                    .filter(name -> name.length() > 5)
-                    .findAny()
-                    .isPresent()) {
-                throw new IllegalArgumentException();
-            }
-            if (!splittedInput.stream()
-                    .filter(count -> Collections.frequency(splittedInput, count) > 1)
-                    .collect(Collectors.toSet())
-                    .isEmpty()) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
-            System.err.println(e);
-            OutputView.printErrorRetrialMessage();
-            return false;
+    public static boolean getTrials() {
+        OutputView.printUserPromptTrials();
+        String input = InputView.askUserInput().trim();
+        if (validateTrials(input)) {
+            trials = Integer.parseInt(input);
+            return true;
         }
-        return true;
-    }
-
-    public static int getTrials() {
-        while (true) {
-            OutputView.printUserPromptTrials();
-            String input = InputView.askUserInput().trim();
-            if (validateTrials(input)) {
-                return Integer.parseInt(input);
-            }
-        }
+        return false;
     }
 
     public static boolean validateTrials(String input) {

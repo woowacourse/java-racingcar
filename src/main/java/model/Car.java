@@ -8,8 +8,15 @@ public class Car {
     private int position;
 
     public Car(String name) {
+        validateCarName(name);
         this.name = name;
         this.position = 0;
+    }
+
+    public void validateCarName(String name) {
+        if(name.length() > 5){
+            throw new IllegalArgumentException("잘못된~~~");
+        }
     }
 
     public void movePosition() {
