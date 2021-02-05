@@ -5,11 +5,13 @@ import javaracingcar.domain.Game;
 import utils.RandomUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameController {
     public static List<Car> generateCars(List<String> carNames) {
-        List<Car> cars =  new ArrayList<>();
+        List<Car> cars = new ArrayList<>();
         for (String name : carNames) {
             cars.add(Car.generateCar(name));
         }
@@ -31,8 +33,9 @@ public class GameController {
 
     private static void playOneRound(Game game) {
         playMoveOrStop(game.getCars());
-        //printResult(game);
+        OutputView.printRoundResult(game);
     }
+
     private static void playMoveOrStop(List<Car> cars) {
         cars.forEach(GameController::playMoveOrStop);
     }
