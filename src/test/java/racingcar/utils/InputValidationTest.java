@@ -9,9 +9,15 @@ class InputValidationTest {
     final InputValidation inputValidation = new InputValidation();
 
     @Test
+    public void 정상_입력_시() {
+        String[] validInput = {"pobi", "brown"};
+        inputValidation.validateName(validInput);   // 정상 처리 시 예외가 발생하지 않음
+    }
+
+    @Test
     public void 문자_외의_입력_시_예외처리() {
-        String[] input = {"pobi#", "brown"};
-        assertThatThrownBy(() -> inputValidation.validateName(input))
+        String[] invalidInput = {"pobi#", "brown"};
+        assertThatThrownBy(() -> inputValidation.validateName(invalidInput))
         .isInstanceOf(InvalidTextException.class);
     }
 }

@@ -14,7 +14,7 @@ public class InputValidation {
     private void isValidText(String[] names) {
         String pattern = "^[a-zA-Z가-힣0-9]*$";
         Arrays.stream(names)
-                .filter(name -> !Pattern.matches(name, pattern))
+                .filter(name -> !Pattern.matches(pattern, name))
                 .findAny()
                 .ifPresent(s -> {
                     throw new InvalidTextException();
