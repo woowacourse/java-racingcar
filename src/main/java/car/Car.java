@@ -5,6 +5,8 @@ import java.util.Objects;
 public class Car {
     private final Name carName;
     
+    private static final int CONDITION = 4;
+    
     private int position;
     
     public Car(String carName) {
@@ -25,7 +27,9 @@ public class Car {
     }
     
     public void move() {
-        this.position++;
+        if (RandomUtil.getRandomValue() >= CONDITION) {
+            this.position++;
+        }
     }
     
     @Override
@@ -39,5 +43,13 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(carName, position);
+    }
+    
+    public int getPosition() {
+        return position;
+    }
+    
+    public String getName() {
+        return carName.getName();
     }
 }
