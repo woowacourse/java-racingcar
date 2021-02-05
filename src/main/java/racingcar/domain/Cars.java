@@ -29,3 +29,13 @@ public class Cars {
         }
     }
 }
+/*
+* move() --> getRanomNO() : 난수 생성으로 인해서 테스가 어려움 즉, 테스트 하고자 하는게
+* "4 이상이면 position++ " 기능을 테스트하고 싶음.
+*
+* 4 이상인 경우 (즉, 규칙에 대한 검증)
+* RuleTest : 규칙이 완료됐으면 true/false
+*
+* position++ (이동 거리 검증)
+* car.move(true) / car.move(false) :: car.position == 원래 거리 + 1
+* */

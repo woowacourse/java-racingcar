@@ -2,11 +2,8 @@ package racingcar.domain;
 
 import racingcar.utils.RandomNumberGenerator;
 
-public class Rule {
+public class Rule implements RuleStrategy {
     private RandomNumberGenerator randomGenerator;
-    private int MIN_NUMBER = 0;
-    private int MAX_NUMBER = 9;
-    private int MOVE_LIMIT = 3;
 
     public boolean execute() {
         return generate() > MOVE_LIMIT;
