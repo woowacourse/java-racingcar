@@ -1,6 +1,7 @@
 package racingcar.utils;
 
 import org.junit.jupiter.api.Test;
+import racingcar.utils.exception.DuplicateNameException;
 import racingcar.utils.exception.InvalidNameLengthException;
 import racingcar.utils.exception.InvalidTextException;
 
@@ -22,7 +23,6 @@ class InputValidationTest {
         .isInstanceOf(InvalidTextException.class);
     }
 
-
     @Test
     public void 이름_길이가_잘못된_경우_예외처리() {
         String[] overLength = {"poooobi", "brown"};
@@ -32,5 +32,12 @@ class InputValidationTest {
         String[] lessLength = {"pobi", ""};
         assertThatThrownBy(() -> inputValidation.validateName(overLength))
                 .isInstanceOf(InvalidNameLengthException.class);
+    }
+
+    @Test
+    public void 이름이_중복되는_경우_예외처리() {
+        String[] duplicateInput = {"pobi", "brown", "pobi"};
+        assertThatThrownBy(() -> inputValidation.validateName(duplicateInput))
+                .isInstanceOf(DuplicateNameException.class);
     }
 }

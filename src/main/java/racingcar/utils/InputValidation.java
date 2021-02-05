@@ -25,7 +25,7 @@ public class InputValidation {
     private boolean equalsNameLength(String[] name) {
         return Arrays.stream(name)
                 .distinct()
-                .count() != name.length;
+                .count() == name.length;
     }
 
     private void isValidLength(String[] names) {
