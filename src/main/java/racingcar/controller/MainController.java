@@ -22,7 +22,7 @@ public class MainController {
         userInputTurnQuantity();
     }
 
-    protected void userInputNames() {
+    public void userInputNames() {
         try {
             MainPage.printMainPage();
             String userInput = scanner.nextLine();

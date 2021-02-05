@@ -3,6 +3,7 @@ package racingcar.domain.car;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarRepository {
 
@@ -16,7 +17,14 @@ public class CarRepository {
         cars.addAll(copyingCars);
     }
 
-    public static int selectMaxPosition() {
+    public static String collectWinners() {
+        return CarRepository.cars().stream()
+                .filter(car -> car.isMaxPosition(CarRepository.selectMaxPosition()))
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+    }
+
+    private static int selectMaxPosition() {
         return cars().stream()
                 .mapToInt(Car::getPosition)
                 .max()

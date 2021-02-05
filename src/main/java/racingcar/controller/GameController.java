@@ -13,7 +13,7 @@ public class GameController {
             game.incrementCount();
             playSingleRound();
         }
-        GamePage.printFinalResult(game.collectWinners());
+        GamePage.printFinalResult(game.winners());
     }
 
     public void playSingleRound() {
