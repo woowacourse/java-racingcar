@@ -16,28 +16,24 @@ public class StringCalculator {
         if (input == null || input.isEmpty()) {
             return EMPTY_RESULT;
         }
-
         return getSplitNumbersSum(input);
     }
 
     private static int getSplitNumbersSum(String input) {
         Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
-
         if (m.find()) {
             String customDelimiter = m.group(FIRST_MATCH);
             return validateAndSumNumbers(m.group(SECOND_MATCH).split(customDelimiter));
         }
-
         return validateAndSumNumbers(input.split(DEFAULT_DELIMITER_PATTERN));
     }
 
     private static int validateAndSumNumbers(String[] values) {
         if (Arrays.stream(values)
-                .mapToInt(Integer::parseInt)
-                .anyMatch(number -> number < ALLOWED_MIN_NUMBER)) {
+            .mapToInt(Integer::parseInt)
+            .anyMatch(number -> number < ALLOWED_MIN_NUMBER)) {
             throw new RuntimeException();
         }
-
         return Arrays.stream(values).mapToInt(Integer::parseInt).sum();
     }
 }
