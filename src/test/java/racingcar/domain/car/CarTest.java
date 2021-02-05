@@ -79,4 +79,18 @@ class CarTest {
         //then
         assertThat(car.getPosition()).isEqualTo(0);
     }
+
+    @DisplayName("car의 position이 특정 position과 일치하는지 판별하는 기능을 테스트한다")
+    @Test
+    void testEqualToPosition() {
+        //given
+        Car car = new Car("benz", 2);
+        int targetPosition = 2;
+
+        //when
+        boolean result = car.equalToPosition(targetPosition);
+
+        //then
+        assertThat(result).isTrue();
+    }
 }

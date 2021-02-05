@@ -69,6 +69,10 @@ public class Car {
         }
     }
 
+    public boolean equalToPosition(int maxPosition) {
+        return this.position == maxPosition;
+    }
+
     public String getName() {
         return name;
     }

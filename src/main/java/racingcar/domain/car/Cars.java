@@ -30,4 +30,35 @@ public class Cars {
             car.move(randomNumberGenerator.generate());
         }
     }
+
+    public int extractMaxPosition() {
+        int maxPosition = 0;
+        for (Car car : cars) {
+            maxPosition = getMaxPosition(maxPosition, car.getPosition());
+        }
+        return maxPosition;
+    }
+
+    private int getMaxPosition(int maxPosition, int position) {
+        if (maxPosition < position) {
+            return position;
+        }
+
+        return maxPosition;
+    }
+
+    public List<Car> extractSamePosition(int maxPosition) {
+        List<Car> cars = new ArrayList<>();
+        for (Car car : this.cars) {
+            addSamePositionCar(maxPosition, cars, car);
+        }
+
+        return cars;
+    }
+
+    private void addSamePositionCar(int maxPosition, List<Car> cars, Car car) {
+        if (car.equalToPosition(maxPosition)) {
+            cars.add(car);
+        }
+    }
 }

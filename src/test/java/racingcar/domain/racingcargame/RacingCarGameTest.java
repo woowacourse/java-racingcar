@@ -31,4 +31,21 @@ class RacingCarGameTest {
         assertThat(resultCars.get(1).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(4);
         assertThat(resultCars.get(2).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(4);
     }
+
+    @DisplayName("우승자를 찾는 기능을 테스트한다")
+    @Test
+    void testFindWinners() {
+        //given
+        Cars playedCars = new Cars(Arrays.asList(new Car("benz", 3),
+                new Car("kia", 1), new Car("bmw", 0)));
+        TryNumber tryNumber = new TryNumber(1);
+
+        //when
+        RacingCarGame racingCarGame = new RacingCarGame(playedCars, tryNumber);
+        List<Car> cars = racingCarGame.findWinners();
+
+        //then
+        assertThat(cars).hasSize(1);
+        assertThat(cars.get(0)).isEqualTo(new Car("benz", 3));
+    }
 }

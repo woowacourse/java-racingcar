@@ -34,4 +34,19 @@ class CarsTest {
         assertThatThrownBy(() -> new Cars(carGroup))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("Cars 객체의 최대 거리를 얻는 기능을 테스트한다")
+    @Test
+    void testExtractMaxPosition() {
+        //given
+        List<Car> carGroup = Arrays.asList(new Car("benz", 3),
+                new Car("kia", 2), new Car("bmw", 0));
+        Cars cars = new Cars(carGroup);
+
+        //when
+        int maxPosition = cars.extractMaxPosition();
+
+        //then
+        assertThat(maxPosition).isEqualTo(3);
+    }
 }
