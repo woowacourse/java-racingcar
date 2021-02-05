@@ -12,7 +12,7 @@ public class Participants {
     cars = new ArrayList<>();
   }
 
-  public Participants(final String... names) {
+  public Participants(final String ... names) {
     this();
     for (String name : names) {
       cars.add(new Car(name));
