@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.domain.CarName;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,6 +10,7 @@ import java.util.Set;
 public class CarNames {
     public static final String COMMA_DELIMITER = ",";
     public static final char COMMA = ',';
+
     private final List<CarName> names = new ArrayList<>();
 
     public CarNames(String inputNames) {
