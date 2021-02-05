@@ -9,7 +9,7 @@ public class OutputView {
     private static final String ENTER_CAR_NAMES = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
     private static final String ENTER_TRIALS = "시도할 횟수는 몇 회인가요?";
     private static final String RESULT_TITLE = "실행 결과";
-    private static final String WINNER_TITLE = "최종 우승자: ";
+    private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
 
     private OutputView() {
     }
@@ -34,11 +34,8 @@ public class OutputView {
         System.out.println(RESULT_TITLE);
     }
 
-    public static void printWinnerTitle() {
-        System.out.print(WINNER_TITLE);
-    }
-
     public static void printWinners(List<Car> winnerCars) {
-        System.out.println(winnerCars.stream().map(Car::getName).collect(Collectors.joining(",")));
+        String winner = winnerCars.stream().map(Car::getName).collect(Collectors.joining(","));
+        System.out.println(winner + WINNER_MESSAGE);
     }
 }

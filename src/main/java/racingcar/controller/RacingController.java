@@ -52,7 +52,6 @@ public class RacingController {
     }
 
     private void result(List<Car> winnerCars) {
-        OutputView.printWinnerTitle();
         OutputView.printWinners(winnerCars);
         running = false;
     }
