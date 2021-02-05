@@ -44,7 +44,7 @@ public class CarNameFormatValidatorUtilsTest {
             () -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames));
     }
 
-    @DisplayName("공백 문자가 포함되어있는 이름인 자동차가 있으면 false 반환")
+    @DisplayName("공백 문자가 포함되어있는 이름인 자동차가 있으면 예외 발생")
     @Test
     void invalidCarNamesWithSpaceCharacter() {
         List<String> inputCarNames = new ArrayList<>();
