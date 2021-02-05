@@ -1,4 +1,4 @@
-package racingcar.input.utils.carname;
+package racingcar.input.utils.carname.validators;
 
 import java.util.List;
 import java.util.regex.Pattern;
