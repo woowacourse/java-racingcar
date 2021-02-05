@@ -36,7 +36,9 @@ public class CarRepository {
     }
 
     private static List<String> getWinnerNames() {
-        return getWinners().stream().map(Car::getName).collect(Collectors.toList());
+        return getWinners().stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     private static void showAllCarsPosition(List<Car> cars) {
@@ -61,6 +63,7 @@ public class CarRepository {
 
     public static List<Car> getWinners() {
         int maxPosition = getMaxPosition();
+
         return Collections.unmodifiableList(cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .collect(Collectors.toList()));
