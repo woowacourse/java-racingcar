@@ -21,13 +21,21 @@ public class CarController {
         List<Car> carList = new ArrayList<>();
         OutputView.printInputCarNamesMessage();
         String carNames = InputView.getCarNames();
-        String[] carNamesArray = carNames.split(",");
+        String[] carNamesArray = carNamesSplit(carNames);
         for (String carName : carNamesArray) {
             carList.add(new Car(carName));
         }
         cars = new Cars(carList);
         OutputView.printInputAttemptNumberMessage();
         attemptNumber = new AttemptNumber(InputView.getAttemptNumber());
+    }
+
+    private String[] carNamesSplit(String carNames) {
+        String[] carNamesArray = carNames.split(",");
+        if (carNamesArray.length == 0) {
+            throw new IllegalArgumentException("자동차 이름은 없을 수 없습니다.");
+        }
+        return carNamesArray;
     }
 
     public void play() {
