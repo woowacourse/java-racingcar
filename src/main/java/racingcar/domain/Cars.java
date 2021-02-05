@@ -49,4 +49,14 @@ public class Cars {
         }
         return maxPosition;
     }
+
+    private String getWinnerNames(List<String> winners) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(winners.get(0));
+        for (int i = 1; i < winners.size(); i++) {
+            sb.append(", ");
+            sb.append(winners.get(i));
+        }
+        return sb.toString();
+    }
 }
