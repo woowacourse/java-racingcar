@@ -1,5 +1,6 @@
 package racingcar.utils;
 
+import racingcar.utils.exception.DuplicateNameException;
 import racingcar.utils.exception.InvalidNameLengthException;
 import racingcar.utils.exception.InvalidTextException;
 
@@ -12,6 +13,19 @@ public class InputValidation {
     public void validateName(String[] name) {
         isValidText(name);
         isValidLength(name);
+        isDuplicateName(name);
+    }
+
+    private void isDuplicateName(String[] name) {
+        if (!equalsNameLength(name)) {
+            throw new DuplicateNameException();
+        }
+    }
+
+    private boolean equalsNameLength(String[] name) {
+        return Arrays.stream(name)
+                .distinct()
+                .count() != name.length;
     }
 
     private void isValidLength(String[] names) {
