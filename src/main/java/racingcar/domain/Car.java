@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final String MARKER_BETWEEN_NAME_AND_POSITION = " : ";
     private static final String MARKER_OF_POSITION = "-";
     private static final int MOVING_BASELINE = 4;
@@ -11,6 +11,10 @@ public class Car {
     public Car(Name name) {
         this.name = name;
         this.position = new Position(0);
+    }
+
+    public String getName() {
+        return this.name.getName();
     }
 
     public void movePosition(int value) {
@@ -30,5 +34,14 @@ public class Car {
 
     public boolean hasSamePositionWith(int pos) {
         return position.getPosition() == pos;
+    }
+
+    public boolean hasSamePositionWith(Car car) {
+        return this.position.getPosition() == car.position.getPosition();
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return Integer.compare(this.position.getPosition(), car.position.getPosition());
     }
 }
