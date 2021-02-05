@@ -2,12 +2,13 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Cars {
     private static List<Car> cars = new ArrayList<>();
 
-    private Cars(){
+    private Cars() {
     }
 
     public static void setCars(List<String> names) {
@@ -19,6 +20,12 @@ public class Cars {
 
     public static List<Car> getCars() {
         return Collections.unmodifiableList(cars);
+    }
+
+    public static int getMaxPositionByCars() {
+        return cars.stream()
+                .max(Comparator.comparingInt(Car::getPosition))
+                .get().getPosition();
     }
 
     private static void validateNonDuplicatedNames(List<String> names) {
