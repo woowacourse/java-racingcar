@@ -1,5 +1,6 @@
-package racingcar;
+package racingcar.domain;
 
+import racingcar.util.RandomGenerator;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
