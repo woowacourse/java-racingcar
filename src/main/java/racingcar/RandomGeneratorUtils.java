@@ -2,21 +2,26 @@ package racingcar;
 
 import java.util.Random;
 
-public class RandomGenerator {
-    private static final int MIN_START_VALUE = 0;
+public class RandomGeneratorUtils {
+    private static final Random RANDOM = new Random();
+    private static final int MIN_START_INCLUSIVE_NUMBER = 0;
 
-    public static int generateRandomNumber(int start, int end) {
-        Random random = new Random();
-        validateRandomNumberRange(start, end);
-        return start + random.nextInt(end - start + 1);
+    private RandomGeneratorUtils() {
     }
 
-    private static void validateRandomNumberRange(int start, int end) {
-        if (start > end) {
+    public static int generateRandomNumber(final int startInclusive, final int endInclusive) {
+        if (startInclusive > endInclusive) {
             throw new IllegalArgumentException();
         }
-        if (start < MIN_START_VALUE) {
+
+        if (startInclusive < MIN_START_INCLUSIVE_NUMBER) {
             throw new IllegalArgumentException();
         }
+
+        if (startInclusive == endInclusive) {
+            return startInclusive;
+        }
+
+        return startInclusive + RANDOM.nextInt(endInclusive - startInclusive + 1);
     }
 }

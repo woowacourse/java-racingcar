@@ -51,7 +51,7 @@ public class CarRepository {
     }
 
     private static void goForwardOrStopRandomly(Car car) {
-        int randomNumber = RandomGenerator.generateRandomNumber(0, 9);
+        int randomNumber = RandomGeneratorUtils.generateRandomNumber(0, 9);
 
         if (GoForwardOrStop.isGoForward(randomNumber)) {
             car.goForward();
