@@ -41,13 +41,14 @@ public class RacingController {
         OutputView.printResultTitle();
         for (int i = 0; i < trial.getTrial(); i++) {
             goEachCar(cars);
-            OutputView.printCurrentResult(cars.getCurrentPosition());
+            OutputView.printEmptyLine();
         }
     }
 
     private void goEachCar(Cars cars) {
         for (Car car : cars.getCars()) {
             car.movePosition(RandomUtils.generateRandomValue());
+            OutputView.printCurrentResult(car);
         }
     }
 

@@ -16,15 +16,6 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public String getCurrentPosition() {
-        StringBuilder currentPosition = new StringBuilder();
-        for (Car car : cars) {
-            currentPosition.append(car.getCurrentPosition());
-            currentPosition.append("\n");
-        }
-        return currentPosition.toString();
-    }
-
     public Car getMaxPositionCar() {
         return cars.stream().max(Car::compareTo).get();
     }

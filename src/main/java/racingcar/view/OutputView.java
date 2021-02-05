@@ -10,6 +10,8 @@ public class OutputView {
     private static final String ENTER_TRIALS = "시도할 횟수는 몇 회인가요?";
     private static final String RESULT_TITLE = "실행 결과";
     private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
+    private static final String MARKER_BETWEEN_NAME_AND_POSITION = " : ";
+    private static final String MARKER_OF_POSITION = "-";
 
     private OutputView() {
     }
@@ -26,8 +28,13 @@ public class OutputView {
         System.out.println(ENTER_TRIALS);
     }
 
-    public static void printCurrentResult(String currentPosition) {
-        System.out.println(currentPosition);
+    public static void printCurrentResult(Car car) {
+        StringBuilder currentResult = new StringBuilder(car.getName());
+        currentResult.append(MARKER_BETWEEN_NAME_AND_POSITION);
+        for (int i = 0; i < car.getPosition(); i++) {
+            currentResult.append(MARKER_OF_POSITION);
+        }
+        System.out.println(currentResult.toString());
     }
 
     public static void printResultTitle() {
@@ -37,5 +44,9 @@ public class OutputView {
     public static void printWinners(List<Car> winnerCars) {
         String winner = winnerCars.stream().map(Car::getName).collect(Collectors.joining(","));
         System.out.println(winner + WINNER_MESSAGE);
+    }
+
+    public static void printEmptyLine() {
+        System.out.println();
     }
 }

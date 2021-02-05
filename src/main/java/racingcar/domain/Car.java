@@ -1,8 +1,6 @@
 package racingcar.domain;
 
 public class Car implements Comparable<Car> {
-    private static final String MARKER_BETWEEN_NAME_AND_POSITION = " : ";
-    private static final String MARKER_OF_POSITION = "-";
     private static final int MOVING_BASELINE = 4;
 
     private final Name name;
@@ -23,13 +21,8 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public String getCurrentPosition() {
-        StringBuilder current = new StringBuilder(name.getName());
-        current.append(MARKER_BETWEEN_NAME_AND_POSITION);
-        for (int i = 0; i < position.getPosition(); i++) {
-            current.append(MARKER_OF_POSITION);
-        }
-        return current.toString();
+    public int getPosition() {
+        return position.getPosition();
     }
 
     public boolean hasSamePositionWith(int pos) {
