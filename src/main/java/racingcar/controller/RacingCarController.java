@@ -43,13 +43,29 @@ public class RacingCarController {
     }
 
     private static void checkNameLength(List<String> nameCandidates) {
+        checkUpperLimit(nameCandidates);
+        checkLowerLimit(nameCandidates);
+    }
+
+    private static void checkUpperLimit(List<String> nameCandidates) {
         long nameFilters = nameCandidates.stream()
             .mapToInt(carName -> carName.length())
             .filter(carNameLength -> carNameLength > UPPER_LIMIT)
             .count();
 
         if (nameFilters != LONG_ZERO_VALUE) {
-            RacingCarError.length();
+            RacingCarError.upperLength();
+        }
+    }
+
+    private static void checkLowerLimit(List<String> nameCandidates) {
+        long nameFilters = nameCandidates.stream()
+                .mapToInt(carName -> carName.length())
+                .filter(carNameLength -> carNameLength > ZERO_VALUE)
+                .count();
+
+        if (nameFilters != LONG_ZERO_VALUE) {
+            RacingCarError.lowerLength();
         }
     }
 
