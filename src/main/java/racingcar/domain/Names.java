@@ -10,6 +10,7 @@ public class Names {
     private static final String COMMA = ",";
     private static final String WHITESPACE = " ";
     private static final String EMPTY = "";
+
     private List<Name> names;
 
     public Names(String names) {

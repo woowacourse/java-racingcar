@@ -17,10 +17,6 @@ public class Name {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     private void checkNameValidation(String name) {
         isEmpty(name);
         isLetterMoreThan1LessThan5(name);
@@ -36,6 +32,10 @@ public class Name {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(LENGTH_ERR_MSG);
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

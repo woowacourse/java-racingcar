@@ -6,6 +6,7 @@ public class Trial {
     private static final String COUNT_ERR_MSG = ERROR_PREFIX + "시도 횟수는 1이상의 양수만 입력가능합니다.";
     private static final String NUMBER_ERR_MSG = ERROR_PREFIX + "시도 횟수는 숫자여야합니다.";
     private static final String NUMBER_REGEX = "[+-]?\\d*(\\.\\d+)?";
+
     private int trial;
 
     public Trial(String trial) {

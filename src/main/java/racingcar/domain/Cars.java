@@ -17,11 +17,15 @@ public class Cars {
     }
 
     public Car getMaxPositionCar() {
-        return cars.stream().max(Car::compareTo).get();
+        return cars.stream()
+                .max(Car::compareTo)
+                .get();
     }
 
     public List<Car> getWinnerCars(Car maxPositionCar) {
-        return cars.stream().filter(car -> car.hasSamePositionWith(maxPositionCar)).collect(Collectors.toList());
+        return cars.stream()
+                .filter(car -> car.hasSamePositionWith(maxPositionCar))
+                .collect(Collectors.toList());
     }
 
     public List<Car> getCars() {
