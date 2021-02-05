@@ -9,14 +9,30 @@ class CarTest {
     
     @Test
     @DisplayName("랜덤값이 주어진 조건보다 크다면 전진")
-    void move_RandomValueMoreThanCondition_ShouldMove() {
+    void move_RandomValueMoreThanCondition_Move() {
         
         // given
-        Car car = new Car("tico");
-        Car expectedCar = new Car("tico", 1);
+        Engine engine = new Engine.Fake(4);
+        Car car = new Car("tico", 0, engine);
+        Car expectedCar = new Car("tico", 1, engine);
     
         // when
         car = car.move();
+        
+        // then
+        assertThat(car).isEqualTo(expectedCar);
+    }
+    
+    @Test
+    @DisplayName("랜덤값이 주어진 조건보다 작다면 멈춤")
+    void move_RandomValueLessThanCondition_Stop() {
+        
+        // given
+        Engine engine = new Engine.Fake(3);
+        Car car = new Car("tico", 0, engine);
+        
+        // when
+        Car expectedCar = car.move();
         
         // then
         assertThat(car).isEqualTo(expectedCar);

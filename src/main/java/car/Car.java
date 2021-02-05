@@ -4,27 +4,32 @@ import java.util.Objects;
 
 public class Car {
     
-    private static final int CONDITION = 4;
-    
     private final Name carName;
     
     private final Position position;
     
+    private final Engine engine;
+    
     public Car(String carName) {
-        this(carName, 0);
+        this(carName, 0, new RacingEngine());
     }
     
-    public Car(String carName, int position) {
-        this(new Name(carName), new Position(position));
+    public Car(String carName, int position, Engine engine) {
+        this(new Name(carName), new Position(position), engine);
     }
     
-    public Car(Name carName, Position position) {
+    public Car(Name carName, Position position, Engine engine) {
         this.carName = carName;
         this.position = position;
+        this.engine = engine;
     }
     
     public Car move() {
-        return new Car(carName, position.increase());
+        if (engine.isEnoughFuel()) {
+            return new Car(carName, position.increase(), engine);
+        }
+        
+        return this;
     }
     
     @Override
