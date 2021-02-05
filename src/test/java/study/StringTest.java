@@ -14,7 +14,7 @@ public class StringTest {
     }
 
     @Test
-    void name() {
+    void substirng() {
         String values = "(1,2)".substring(1,4);
         assertThat(values).isEqualTo("1,2");
     }
