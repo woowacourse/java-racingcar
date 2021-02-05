@@ -5,6 +5,7 @@ import racingcar.domain.Car;
 public class RacingCarView {
     private static final String INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n";
     private static final String TURN_INPUT_MESSAGE = "시도할 회수는 몇회인가요?\n";
+    private static final String WIN_MESSAGE = "가 최종 우승했습니다.\n";
     private static final String DASH = "-";
     private static final String VOID = "";
     private static final String POSITION_MESSAGE = "%s : %s\n";
@@ -29,5 +30,10 @@ public class RacingCarView {
 
     public static void displayTurnInterval() {
         System.out.printf(VOID_NULL);
+    }
+
+    public static void showWinner(String winners) {
+        String winnerShowMessage = winners + WIN_MESSAGE;
+        System.out.printf(winners + WIN_MESSAGE);
     }
 }
