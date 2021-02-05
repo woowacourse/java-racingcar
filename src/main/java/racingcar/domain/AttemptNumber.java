@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 public class AttemptNumber {
+
     private static final int MIN_ATTEMPT_NUMBER = 1;
 
     private int attemptNumber;

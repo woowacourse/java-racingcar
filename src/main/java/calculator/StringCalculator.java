@@ -19,7 +19,7 @@ public class StringCalculator {
         }
         String[] numbers = init(text);
         int sum = ZERO;
-        for (String number: numbers) {
+        for (String number : numbers) {
             sum += parseIntegerNumber(number);
         }
         return sum;
