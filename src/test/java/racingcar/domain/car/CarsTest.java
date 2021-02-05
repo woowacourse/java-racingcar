@@ -1,25 +1,28 @@
 package racingcar.domain.car;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.domain.rule.Condition;
-import racingcar.domain.rule.MoveCondition;
+import racingcar.exception.EmptyCarException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 
 public class CarsTest {
+
+    @Test
+    @DisplayName("자동차는 적어도 한대 이상 있어야 한다.")
+    public void 자동차는_적어도_한대_이상_있어야_한다() {
+        assertThatExceptionOfType(EmptyCarException.class)
+                .isThrownBy(() -> Cars.of(Collections.EMPTY_LIST))
+                .withMessageContaining(new EmptyCarException().getMessage());
+    }
 
     @ParameterizedTest
     @DisplayName("가장 많이 움직인 자동차를 판별한다")
@@ -93,5 +96,4 @@ public class CarsTest {
             this.position = position;
         }
     }
-
 }
