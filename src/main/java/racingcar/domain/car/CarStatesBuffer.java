@@ -8,7 +8,7 @@ public class CarStatesBuffer {
     private static final String DELIMITER = "\n\n";
     private static final String EXECUTION_RESULT = "실행 결과\n";
 
-    List<CarStates> carStatesLog;
+    private List<CarStates> carStatesLog;
 
     public CarStatesBuffer() {
        this.carStatesLog = new ArrayList<>();
@@ -16,6 +16,10 @@ public class CarStatesBuffer {
 
     public void append(CarStates carStates) {
         carStatesLog.add(carStates);
+    }
+
+    public void clear() {
+        carStatesLog.clear();
     }
 
     @Override
