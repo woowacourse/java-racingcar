@@ -1,7 +1,7 @@
 package racing.domain;
 
 import racing.domain.dto.CarDto;
-import racing.domain.dto.WinnersDto;
+import racing.view.GameScreen;
 
 import java.util.List;
 
@@ -24,20 +24,21 @@ public class RacingGameMachine {
     }
 
     public void play() {
-        tryCounts--;
-        cars.race();
+        GameScreen gameScreen = new GameScreen();
+        gameScreen.showMessage();
+        while (tryCounts-- > ZERO) {
+            cars.race();
+            gameScreen.showCarStatus(getCarDtos());
+        }
+        Winners winners = cars.findWinners();
+        gameScreen.showWinners(winners.getWinnersName());
     }
 
     public boolean canPlay() {
         return tryCounts > ZERO;
     }
 
-    public WinnersDto getWinnersDtos(){
-        List<String> winnersName = cars.findWinners().getWinnersName();
-        return new WinnersDto(winnersName);
-    }
-
-    public List<CarDto> getCarDtos() {
+    private List<CarDto> getCarDtos() {
         return cars.getCarDtos();
     }
 }

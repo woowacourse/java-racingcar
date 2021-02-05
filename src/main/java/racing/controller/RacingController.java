@@ -2,26 +2,13 @@ package racing.controller;
 
 import racing.domain.Cars;
 import racing.domain.RacingGameMachine;
-import racing.domain.dto.CarDto;
-import racing.domain.dto.WinnersDto;
-import racing.view.GameScreen;
 import racing.view.InputScreen;
 import racing.view.InputView;
-
-import java.util.List;
 
 public class RacingController {
     public void run() {
         RacingGameMachine racingGameMachine = initializeRacingGame();
-        GameScreen gameScreen = new GameScreen();
-        gameScreen.showMessage();
-        while (racingGameMachine.canPlay()) {
-            racingGameMachine.play();
-            List<CarDto> carDtos = racingGameMachine.getCarDtos();
-            gameScreen.showCarStatus(carDtos);
-        }
-        WinnersDto winnersDtos = racingGameMachine.getWinnersDtos();
-        gameScreen.showWinners(winnersDtos.getWinnersName());
+        racingGameMachine.play();
     }
 
     private RacingGameMachine initializeRacingGame() {
