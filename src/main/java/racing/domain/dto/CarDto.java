@@ -3,20 +3,21 @@ package racing.domain.dto;
 import racing.domain.Car;
 
 public class CarDto {
-    private String carName;
-    private int position;
 
-    private CarDto(String carName, int position) {
-        this.carName = carName;
+    private final String name;
+    private final int position;
+
+    private CarDto(String name, int position) {
+        this.name = name;
         this.position = position;
     }
 
-    public static CarDto of(Car car) {
+    public static CarDto from(Car car) {
         return new CarDto(car.getName(), car.getPosition());
     }
 
-    public String getCarName() {
-        return carName;
+    public String getName() {
+        return name;
     }
 
     public int getPosition() {

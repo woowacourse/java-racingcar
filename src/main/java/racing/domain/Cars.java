@@ -47,11 +47,10 @@ public class Cars {
 
     public List<String> findWinnerNames() {
         int maxPosition = getMaxPosition();
-        List<String> winners = cars.stream()
+        return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
                 .collect(Collectors.toList());
-        return winners;
     }
 
     private int getMaxPosition() {
@@ -63,7 +62,7 @@ public class Cars {
 
     public List<CarDto> getCarDtos() {
         return cars.stream()
-                .map(CarDto::of)
+                .map(CarDto::from)
                 .collect(Collectors.toList());
     }
 }
