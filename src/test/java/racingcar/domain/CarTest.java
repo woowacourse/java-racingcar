@@ -15,18 +15,18 @@ public class CarTest {
         assertThat(car.getName()).isEqualTo("bmw");
     }
 
-    @ParameterizedTest(name = "carName_1자리_이하이거나_5자리를_초과하면_RuntimeException이_발생(carName = {arguments})")
-    @ValueSource(strings = {"", "abcdef"})
-    public void carName_1자리_이하이거나_5자리를_초과하면_RuntimeException이_발생(String name) {
+    @ParameterizedTest(name = "양쪽끝 공백을 제거한 자동차 이름이 1자리 미만거나 5자리를 초과하면 RuntimeException이 발생(carName = {arguments})")
+    @ValueSource(strings = {"", "abcdef",  "  "})
+    public void 양쪽끝_공백을_제거한_자동차_이름이_1자리_미만이거나_5자리를_초과하면_RuntimeException이_발생(String name) {
         assertThatThrownBy(() -> {
             Car.of(name);
         }).isInstanceOf(RuntimeException.class);
     }
 
-    @ParameterizedTest(name = "carName_1자리이상_5자리이하(carName = {arguments})")
-    @ValueSource(strings = {"a", "abcde"})
-    public void carName_1자리이상_5자리이하(String name) {
+    @ParameterizedTest(name = "양쪽끝 공백을 제거한 자동차 이름이 1자리이상 5자리이하(carName = {arguments})")
+    @ValueSource(strings = {"a", "abcde", " abcde "})
+    public void 양쪽끝_공백을_제거한_자동차_이름이_1자리이상_5자리이하(String name) {
         Car car = Car.of(name);
-        assertThat(car.getName()).isEqualTo(name);
+        assertThat(car.getName()).isEqualTo(name.trim());
     }
 }
