@@ -1,5 +1,6 @@
 package car;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -7,16 +8,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CarTest {
     
     @Test
-    void moveTest() {
+    @DisplayName("랜덤값이 주어진 조건보다 크다면 전진")
+    void move_RandomValueMoreThanCondition_ShouldMove() {
         
         // given
         Car car = new Car("tico");
+        Car expectedCar = new Car("tico", 1);
         
         // when
-        Car movedCar = car.move();
+        car = car.move();
         
         // then
-        assertThat(movedCar).extracting("position")
-                            .isEqualTo(1);
+        assertThat(car).isEqualTo(expectedCar);
     }
 }
