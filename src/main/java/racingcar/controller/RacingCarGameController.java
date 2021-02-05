@@ -6,11 +6,16 @@ import racingcar.view.OutputView;
 
 public class RacingCarGameController {
     public void playGame() {
-        Cars cars = new Cars(InputView.inputCarNames());
-        Lap lap = new Lap(InputView.inputLap());
-
-        race(cars, lap);
-        OutputView.printWinners(Winners.makeWinners(cars.getCars()));
+        try {
+            Cars cars = new Cars(InputView.inputCarNames());
+            Lap lap = new Lap(InputView.inputLap());
+            race(cars, lap);
+            Winners winners = new Winners();
+            OutputView.printWinners(winners.makeWinners(cars.getCars()));
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            playGame();
+        }
     }
 
     private void race(Cars cars, Lap lap) {
@@ -26,7 +31,7 @@ public class RacingCarGameController {
     private void raceOneLap(Cars cars) {
         for (Car car : cars.getCars()) {
             car.moveByRandomNumber(RandomNumber.make());
-            OutputView.printCarInfo(car.getName(), car.getPosition());
+            OutputView.printCarInfo(car.getName().getName(), car.getPosition().toString());
         }
     }
 }

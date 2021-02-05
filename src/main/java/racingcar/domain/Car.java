@@ -4,7 +4,7 @@ public class Car {
     private static final int MINIMUM_NUMBER_TO_MOVE = 4;
 
     private final CarName carName;
-    private Position position;
+    private final Position position;
 
     public Car(String name) {
         this.carName = new CarName(name);
@@ -17,11 +17,11 @@ public class Car {
         }
     }
 
-    public String getName() {
-        return carName.getName();
+    public CarName getName() {
+        return carName;
     }
 
-    public String getPosition() {
-        return position.getPosition();
+    public Position getPosition() {
+        return position;
     }
 }

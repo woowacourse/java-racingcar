@@ -18,4 +18,8 @@ public class OutputView {
     public static void printWinners(List<String> winnersName) {
         System.out.println(String.join(", ", winnersName) + "가 최종 우승했습니다.");
     }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message + "다시 입력해주세요");
+    }
 }

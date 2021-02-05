@@ -14,13 +14,13 @@ public class CarName {
 
     private void validateBlank(String name) {
         if (name.contains(" ")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("옳지 않은 입력입니다.");
         }
     }
 
     private void validateLength(String name) {
         if (name.length() < MINIMUM_LENGTH || MAXIMUM_LENGTH < name.length()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름은 0~5 이내입니다.");
         }
     }
 
