@@ -91,13 +91,6 @@ public class RacingCarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"9:1", "3:0", "5:1"}, delimiter = ':')
-    void winnerTestAfterFixingRandomSeed(String input, String expected) {
-        // 시드를 고정할때 우승자가 원하는대로 잘 나오는가?
-
-    }
-
-    @ParameterizedTest
     @CsvSource(value = {"3:---", "2:--", "5:-----"}, delimiter = ':')
     void carPositionToStringTest(String input, String expected) {
         // 전진한 거리만큼의 문자열이 잘 반환되는가?
