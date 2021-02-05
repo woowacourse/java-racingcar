@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import static racingcar.input.utils.CarNamesSplitterUtils.CAR_NAMES_DELIMITER;
+import static racingcar.input.utils.carname.CarNamesSplitterUtils.CAR_NAMES_DELIMITER;
 
 import java.util.List;
 

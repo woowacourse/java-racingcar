@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.exception.InvalidCarNamesException;
+import racingcar.input.utils.carname.exception.InvalidCarNameFormatException;
+import racingcar.input.utils.carname.CarNameFormatValidatorUtils;
 
 public class CarNameFormatValidatorUtilsTest {
 
@@ -29,7 +30,7 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("bbb111");
         inputCarNames.add("가나다1");
         inputCarNames.add("aaa1");
-        assertThrows(InvalidCarNamesException.class,
+        assertThrows(InvalidCarNameFormatException.class,
             () -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames));
     }
 
@@ -40,7 +41,7 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("aaa");
         inputCarNames.add("");
         inputCarNames.add("ccc");
-        assertThrows(InvalidCarNamesException.class,
+        assertThrows(InvalidCarNameFormatException.class,
             () -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames));
     }
 
@@ -51,7 +52,7 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("aaa");
         inputCarNames.add("b b");
         inputCarNames.add("ccc");
-        assertThrows(InvalidCarNamesException.class,
+        assertThrows(InvalidCarNameFormatException.class,
             () -> CarNameFormatValidatorUtils.isAllValidCarNames(inputCarNames));
     }
 }

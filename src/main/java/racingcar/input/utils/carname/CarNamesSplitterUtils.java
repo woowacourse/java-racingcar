@@ -1,4 +1,4 @@
-package racingcar.input.utils;
+package racingcar.input.utils.carname;
 
 import java.util.Arrays;
 import java.util.List;

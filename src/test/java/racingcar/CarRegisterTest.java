@@ -3,7 +3,7 @@ package racingcar;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.exception.InvalidCarNamesException;
+import racingcar.input.utils.carname.exception.InvalidCarNameFormatException;
 import racingcar.exception.InvalidDuplicateCarNameException;
 import racingcar.exception.InvalidNumberOfRegisteredCarsException;
 
@@ -26,7 +26,7 @@ public class CarRegisterTest {
         String input = "pobi,crong,honuxxxx";
         assertThatThrownBy(() -> {
             carRegister.registerCars(input);
-        }).isInstanceOf(InvalidCarNamesException.class);
+        }).isInstanceOf(InvalidCarNameFormatException.class);
     }
 
     @DisplayName("등록된 자동차 개수 검사")
