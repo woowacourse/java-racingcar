@@ -1,17 +1,20 @@
 package racingCar;
 
 public class Car {
+    private static final int THRESHOLD = 4;
+    private static final int MINIMUM_LENGTH = 0;
+    private static final int MAXIMUM_LENGTH = 5;
 
-    String name;
-    int distance;
+    private String name;
+    private int distance = 0;
 
     public Car(String name){
         validate(name);
         this.name = name;
     }
 
-    void move(int number){
-        if(number >= 4){
+    public void move(int number){
+        if(number >= THRESHOLD){
             distance++;
         }
     }
