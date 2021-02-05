@@ -7,7 +7,7 @@ public class Trial {
     private static final String NUMBER_ERR_MSG = ERROR_PREFIX + "시도 횟수는 숫자여야합니다.";
     private static final String NUMBER_REGEX = "[+-]?\\d*(\\.\\d+)?";
 
-    private int trial;
+    private final int trial;
 
     public Trial(String trial) {
         checkTrialValidation(trial);
