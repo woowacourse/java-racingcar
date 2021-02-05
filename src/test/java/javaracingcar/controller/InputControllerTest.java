@@ -25,8 +25,6 @@ class InputControllerTest {
         assertEquals(names, InputController.getCarNames(input));
     }
 
-    //중복 체크 -> string[] "a,b,c,,m  투싼" "투싼" "투  싼"
-
    @Test
     void getTrial_자연수가아닌경우() {
         assertThatThrownBy(() -> InputController.getTrial("abc"))

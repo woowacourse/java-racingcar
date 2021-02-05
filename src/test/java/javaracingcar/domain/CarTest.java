@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CarTest {
     @Test
@@ -26,7 +27,7 @@ class CarTest {
     @Test
     void generateCarWithName_최대길이이하() {
         Car car = Car.generateCar("Benz");
-        Assertions.assertEquals(car.getName(), "Benz");
+        assertEquals(car.getName(), "Benz");
     }
 
     @Test
