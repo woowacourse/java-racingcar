@@ -17,4 +17,8 @@ public class OutputView {
     public static void printWinnerCarNamesMessage(String carNames) {
         System.out.println(String.format("%s가 최종우승 했습니다.", carNames));
     }
+
+    public static void printCarStateMessage(String carName, String carPosition) {
+        System.out.println(String.format("%s : %s", carName, carPosition));
+    }
 }
