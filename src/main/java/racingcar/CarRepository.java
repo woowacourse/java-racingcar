@@ -33,23 +33,23 @@ public class CarRepository {
         OutputPrinter.printStartMessageOfAllCarRacing();
 
         for (int i = 0; i < racingTryTime; i++) {
-            updateAllCarsPosition();
+            List<Integer> randomNumbers
+                = RandomNumbersGeneratorUtils.generateRandomNumbersSizeOf(cars.size());
+            raceOneTime(randomNumbers);
             printCurrentPositionStateOfAllCars();
             OutputPrinter.printNewLine();
         }
     }
 
-    private static void updateAllCarsPosition() {
-        for (Car car : cars) {
-            goForwardOrStopRandomly(car);
+    public static void raceOneTime(List<Integer> randomNumbers) {
+        for (int i = 0; i < cars.size(); i++) {
+            goForwardIfRandomNumberOfCarIsFourOrMore(cars.get(i), randomNumbers.get(i));
         }
     }
 
-    private static void goForwardOrStopRandomly(Car car) {
-        int randomNumber = OneRandomNumberGeneratorUtils
-            .generateOneRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
-
-        if (GoForwardOrStopUtils.isGoForward(randomNumber)) {
+    private static void goForwardIfRandomNumberOfCarIsFourOrMore(Car car,
+        int randomNumberOfCar) {
+        if (GoForwardOrStopUtils.isGoForward(randomNumberOfCar)) {
             car.goForward();
         }
     }
@@ -71,18 +71,5 @@ public class CarRepository {
             .mapToInt(Car::getPosition)
             .max()
             .orElseThrow(RuntimeException::new);
-    }
-
-    public static void raceOneTime(List<Integer> randomNumbers) {
-        for (int i = 0; i < cars.size(); i++) {
-            goForwardIfRandomNumberOfCarIsFourOrMore(cars.get(i), randomNumbers.get(i));
-        }
-    }
-
-    private static void goForwardIfRandomNumberOfCarIsFourOrMore(Car car,
-        int randomNumberOfCar) {
-        if (MIN_GO_FORWARD_VALUE <= randomNumberOfCar) {
-            car.goForward();
-        }
     }
 }
