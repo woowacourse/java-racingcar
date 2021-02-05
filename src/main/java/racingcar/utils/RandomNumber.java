@@ -1,10 +1,23 @@
 package racingcar.utils;
 
-public class RandomNumber {
-    private static int NUMBER_MIN = 0;
-    private static int NUMBER_MAX = 9;
+import java.util.Random;
 
-    public int generate() {
-        return (int) (Math.random() * NUMBER_MAX + NUMBER_MIN);
+public class RandomNumber {
+    Random random = new Random();
+
+    public int generate(int minNumber, int maxNumber) {
+        if (minNumber > maxNumber) {
+            throw new IllegalArgumentException();
+        }
+
+        if (minNumber < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        if (minNumber == maxNumber) {
+            return minNumber;
+        }
+
+        return minNumber + random.nextInt(maxNumber - minNumber + 1);
     }
 }
