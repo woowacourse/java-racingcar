@@ -1,4 +1,4 @@
-package racingcar.input.utils.racingtrytime;
+package racingcar.input.utils.racingtrytime.validators;
 
 import racingcar.input.utils.racingtrytime.exception.NotNaturalNumberRacingTimeException;
 
