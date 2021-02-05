@@ -30,7 +30,17 @@ public class ExceptionHandlerTest {
     void setCarsTest_자동차_입력_수(String input) {
         assertThatThrownBy(() -> {
             ExceptionHandler.setCars(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("자동차는 두 대 이상 입력해야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"루트,소롱,루트", "루트,루트,루트"})
+    void setCarsTest_중복되는_자동차_입력(String input) {
+        assertThatThrownBy(() -> {
+            ExceptionHandler.setCars(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("중복되는 이름을 입력할 수 없습니다.");
     }
 
 
