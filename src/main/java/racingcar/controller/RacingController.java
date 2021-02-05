@@ -43,8 +43,11 @@ public class RacingController {
     }
 
     private void getCarNamesAndMoveCountFromUser() {
-        carNamesInput = InputView.inputFormUser(Messages.REQUEST_CAR_NAME);
-        moveCountInput = InputView.inputFormUser(Messages.REQUEST_MOVE_COUNT);
+        OutputView.print(Messages.REQUEST_CAR_NAME);
+        carNamesInput = InputView.requestCarName();
+
+        OutputView.print(Messages.REQUEST_MOVE_COUNT);
+        moveCountInput = InputView.requestMoveCount();
     }
 
     private GameResult startGameAndGetGameResult() {
