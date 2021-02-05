@@ -1,6 +1,6 @@
 package racingcar.domain.car;
 
-import java.util.ArrayList;
+import racingcar.exception.EmptyCarException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,12 +8,20 @@ public class Cars {
     private static List<Car> cars;
 
     private Cars(List<Car> cars) {
+        validateEmptyCarList(cars);
         this.cars = cars;
     }
 
     public static Cars of(List<Car> cars) {
         return new Cars(cars);
     }
+
+    private void validateEmptyCarList(List<Car> cars) {
+        if (cars.isEmpty()) {
+            throw new EmptyCarException();
+        }
+    }
+
 
     public CarStates getCarStates() {
         List<CarState> carStates = cars.stream()
