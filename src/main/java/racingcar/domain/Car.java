@@ -24,13 +24,13 @@ public class Car {
 
   public void run(final int fuel) {
     this.fuel = fuel;
-    if (isRunnable(fuel)) {
+    if (isRunnable()) {
       this.position++;
     }
     this.fuel = 0;
   }
 
-  private boolean isRunnable(final int fuel) {
+  private boolean isRunnable() {
     return fuel >= MIN_RUNNABLE_FUEL;
   }
 
