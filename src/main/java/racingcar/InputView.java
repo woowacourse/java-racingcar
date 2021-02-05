@@ -13,4 +13,13 @@ public class InputView {
         OutputView.printAskCarNames();
         return scanner.nextLine().trim();
     }
+
+    public Integer getInputTurns() {
+        OutputView.printAskTurns();
+        int turns = scanner.nextInt();
+        if (turns <= 0) {
+            throw new RuntimeException();
+        }
+        return turns;
+    }
 }

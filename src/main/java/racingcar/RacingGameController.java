@@ -9,7 +9,7 @@ public class RacingGameController {
     }
 
     public void startRace() {
-        String carsName = inputView.getInputCarsName();
-        Cars.makeCar(carsName);
+        Cars cars = Cars.makeCar(inputView.getInputCarsName());
+        Integer turns = inputView.getInputTurns();
     }
 }
