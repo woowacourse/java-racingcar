@@ -26,7 +26,7 @@ public class Car implements Comparable<Car> {
     }
 
     public boolean hasSamePositionWith(Car car) {
-        return this.position.getPosition() == car.position.getPosition();
+        return position.isSame(car.getPosition());
     }
 
     @Override
