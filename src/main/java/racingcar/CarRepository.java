@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 public class CarRepository {
     private static final List<Car> cars = new ArrayList<>();
 
+    private CarRepository() {
+    }
+
     public static void save(Car car) {
         cars.add(car);
     }
