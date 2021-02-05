@@ -8,7 +8,7 @@ public class Cars {
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
-        CarsValidator.validateCarsSize(cars);
+        CarsValidator.validate(cars);
         this.cars = cars;
     }
 

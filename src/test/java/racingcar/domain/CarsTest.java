@@ -18,4 +18,15 @@ public class CarsTest {
             Cars.of(cars);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void 자동차_이름은_중복되면_IllegalArgumentException_발생() {
+        List<Car> cars = new ArrayList<>();
+        cars.add(Car.of("bmw"));
+        cars.add(Car.of(" bmw "));
+
+        assertThatThrownBy(() -> {
+            Cars.of(cars);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
