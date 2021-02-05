@@ -26,4 +26,14 @@ public class Cars {
         }
         OutputView.printNextLine();
     }
+
+    public String getWinners() {
+        HashMap<Integer, List<String>> carPositionHashMap = new HashMap<>();
+        int maxPosition = 0;
+        for (Car car : cars) {
+            maxPosition = findWinnerPosition(car, carPositionHashMap, maxPosition);
+        }
+        List<String> winners = carPositionHashMap.get(maxPosition);
+        return getWinnerNames(winners);
+    }
 }
