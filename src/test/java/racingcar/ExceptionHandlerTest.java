@@ -2,7 +2,6 @@ package racingcar;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,6 +24,15 @@ public class ExceptionHandlerTest {
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"한대의자동차", "자동차#;"})
+    void setCarsTest_자동차_입력_수(String input) {
+        assertThatThrownBy(() -> {
+            ExceptionHandler.setCars(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
 
     @Test
     @DisplayName("입력한 시도 회수가 정상적인 값인지 확인")

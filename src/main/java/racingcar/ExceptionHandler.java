@@ -15,6 +15,9 @@ public class ExceptionHandler {
 
     public static List<Car> setCars(String input) {
         String[] carNames = input.split(NAME_SPLIT_DELIMITER, -1);
+        if (carNames.length < 2) {
+            throw new IllegalArgumentException("자동차는 두 대 이상 입력해야 합니다.");
+        }
         return Arrays.stream(carNames)
             .map(Car::new)
             .collect(Collectors.toList());
