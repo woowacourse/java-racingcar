@@ -10,12 +10,8 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarController {
-
     private Cars cars;
     private AttemptNumber attemptNumber;
-
-    public CarController() {
-    }
 
     private void init() {
         List<Car> carList = new ArrayList<>();
