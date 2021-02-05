@@ -15,6 +15,18 @@ public class Car {
         this.name = name;
     }
 
+    public void carMove() {
+        this.position++;
+    }
+
+    public int getPosition(){
+        return this.position;
+    }
+
+    public boolean isMaxPosition(int maxPosition) {
+        return this.position == maxPosition;
+    }
+
     private void validateName(final String name) {
         if (isNullName(name) || isContainInvalidChar(name) || isExceedNameLength(name)) {
             throw new IllegalArgumentException("잘못된 자동차 이름입니다.");
