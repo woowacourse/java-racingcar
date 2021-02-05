@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Participants {
-
+  private static final int DEFAULT_MAX_POSITION = 0;
   private final List<Car> cars;
 
   private Participants() {
@@ -28,7 +28,7 @@ public class Participants {
     int maxPosition = cars.stream()
         .mapToInt(Car::getPosition)
         .max()
-        .orElse(0);
+        .orElse(DEFAULT_MAX_POSITION);
 
     List<Car> winners = cars.stream()
         .filter(car -> car.getPosition() == maxPosition)
