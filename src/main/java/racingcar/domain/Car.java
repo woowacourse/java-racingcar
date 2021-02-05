@@ -1,7 +1,8 @@
 package racingcar.domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String ERROR_MAX_NAME_LENGTH = "자동차 이름의 길이는 " + MAX_NAME_LENGTH + "자를 초과할 수 없습니다.";
 
     private final String name;
     private int position = 0;
@@ -12,9 +13,15 @@ public class Car {
 
     public static Car from(String name) {
         if (MAX_NAME_LENGTH < name.length()) {
-            throw new IllegalArgumentException("자동차 이름의 길이는 " + MAX_NAME_LENGTH + "자를 넘어가서는 안 됩니다.");
+            throw new IllegalArgumentException(ERROR_MAX_NAME_LENGTH);
         }
         return new Car(name);
+    }
+
+    void move() {
+        if (DecisionMaker.makeDecision()) {
+            this.position++;
+        }
     }
 
     @Override
@@ -33,4 +40,10 @@ public class Car {
     public int hashCode() {
         return this.name.hashCode();
     }
+
+    @Override
+    public int compareTo(Car o) {
+        return Integer.compare(this.position, o.position);
+    }
+
 }
