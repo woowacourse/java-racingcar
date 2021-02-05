@@ -2,6 +2,7 @@ package javaracingcar.controller;
 
 import javaracingcar.domain.Car;
 import javaracingcar.domain.Game;
+import javaracingcar.view.OutputView;
 import utils.RandomUtils;
 
 import java.util.ArrayList;
@@ -21,10 +22,11 @@ public class GameController {
     public static void run(List<String> carNames, int trial) {
         Game game = Game.init(carNames, trial);
         race(game);
-        //printWinner
+        OutputView.printWinners(getWinners(game));
     }
 
     private static void race(Game game) {
+        OutputView.printResultTitle();
         while (!game.isEnd()) {
             playOneRound(game);
             game.reduceOneTrial();
@@ -44,5 +46,20 @@ public class GameController {
         if (RandomUtils.nextInt(0, 9) >= 4) { //TODO constant로 변경
             car.move();
         }
+    }
+
+    public static List<Car> getWinners(Game game) {
+        return game.getCars()
+                   .stream()
+                   .filter(car -> car.getPosition() == getMaxPosition(game))
+                   .collect(Collectors.toList());
+    }
+
+    private static int getMaxPosition(Game game) {
+        List<Integer> positions = game.getCars()
+                                      .stream()
+                                      .map(Car::getPosition)
+                                      .collect(Collectors.toList());
+        return Collections.max(positions);
     }
 }
