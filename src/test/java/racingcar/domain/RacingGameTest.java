@@ -12,9 +12,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class RacingGameTest {
     private RacingGame racingGame;
-    private List<String> testCases = Arrays.asList("똘이","멍이","순이");
+    private List<String> testCases = Arrays.asList("똘이", "멍이", "순이");
+
     @BeforeEach
-    void setUp(){
+    void setUp() {
         racingGame = new RacingGame(testCases);
     }
 
@@ -29,7 +30,7 @@ class RacingGameTest {
 
     @DisplayName("라운드가 진행되는지 확인")
     @Test
-    void 레이싱게임_라운드_진행(){
+    void 레이싱게임_라운드_진행() {
         int beforeRound = racingGame.getRound();
         racingGame.playRound();
         int afterRound = racingGame.getRound();

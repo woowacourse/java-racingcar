@@ -67,8 +67,6 @@ public class StringCalculator {
         String pattern = String.join("|", delimiterList);
         return inputText.split(pattern);
     }
-
-
 }
 
 
