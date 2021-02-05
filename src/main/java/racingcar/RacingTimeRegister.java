@@ -1,7 +1,5 @@
 package racingcar;
 
-import racingcar.exception.InvalidRacingTimeException;
-
 public class RacingTimeRegister {
 
     private static final int MIN_RACING_TIME = 0;
@@ -14,13 +12,14 @@ public class RacingTimeRegister {
 
             return racingTime;
         } catch (Exception e) {
-            throw new InvalidRacingTimeException();
+            //throw new InvalidRacingTimeException();
         }
+        return 0;
     }
 
     private void validateRacingTimeZeroOrLess(int racingTime) {
         if (racingTime <= MIN_RACING_TIME) {
-            throw new InvalidRacingTimeException();
+            //throw new InvalidRacingTimeException();
         }
     }
 }

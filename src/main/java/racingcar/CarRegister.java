@@ -1,8 +1,5 @@
 package racingcar;
 
-import racingcar.input.utils.carname.exception.InvalidDuplicateCarNamesException;
-import racingcar.exception.InvalidNumberOfRegisteredCarsException;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +27,7 @@ public class CarRegister {
 
     private void validateNumberOfRegisteredCars(List<String> carNames) {
         if (carNames.size() == INVALID_NUMBER_OF_CARS_ZERO) {
-            throw new InvalidNumberOfRegisteredCarsException();
+            // throw new InvalidNumberOfRegisteredCarsException();
         }
     }
 
