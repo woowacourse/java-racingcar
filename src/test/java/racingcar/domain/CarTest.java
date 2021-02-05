@@ -11,14 +11,14 @@ public class CarTest {
     void car_create() {
         Car car1 = new Car("샐리");
         assertThat(car1.getName()).isEqualTo("샐리");
-        assertThat(car1.getPosition()).isEqualTo(0);
+        assertThat(car1.getPosition().length()).isEqualTo(0);
     }
 
     @Test
     @DisplayName("자동차 전진 구현")
     void car_move() {
         Car car1 = new Car("샐리");
-        car1.moveCar(5);
-        assertThat(car1.getPosition()).isEqualTo(1);
+        car1.moveByRandomNumber(5);
+        assertThat(car1.getPosition().length()).isEqualTo(1);
     }
 }

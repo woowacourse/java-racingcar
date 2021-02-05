@@ -25,4 +25,18 @@ class LapTest {
     void lap_1보다_작은_경우_예외처리() {
         assertThatThrownBy(()->new Lap("0")).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("lap이 끝났는지 확인")
+    void lap_끝_확인() {
+        int testNumber = 5;
+        Lap lap = new Lap(Integer.toString(testNumber));
+        assertThat(lap.getLap()).isEqualTo(testNumber);
+
+        while(!lap.isFinishAll()){
+            testNumber -= 1;
+            lap.finishOneLap();
+        }
+        assertThat(lap.getLap()).isEqualTo(testNumber);
+    }
 }
