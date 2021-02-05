@@ -3,6 +3,7 @@ package racingcar;
 
 import java.util.List;
 import java.util.Scanner;
+import racingcar.input.utils.carname.CarNamesInputFromUserUtils;
 import racingcar.view.OutputView;
 
 public class CarRacing {
@@ -14,6 +15,7 @@ public class CarRacing {
 
     public void start() {
         List<String> carNames = CarNamesInputFromUserUtils.getAllCarNames(scanner);
+        int racingTryTime = RacingTryTimeInputFromUserUtils.getRacingTryTime(scanner);
         List<Car> cars = CarCreatorUtils.createCars(carNames);
         CarRepository.saveAll(cars);
         CarRepository.runAllRaces();
