@@ -37,14 +37,6 @@ public class RacingResult {
   }
 
   public String getWinner() {
-    int maxPosition = participants.getCars().stream()
-        .mapToInt(Car::getPosition)
-        .max()
-        .orElse(DEFAULT_MAX_POSITION);
-
-    List<Car> winners = participants.getCars().stream()
-        .filter(car -> car.getPosition() == maxPosition)
-        .collect(Collectors.toList());
-    return new Winner(winners).getWinnerName();
+    return participants.getWinner();
   }
 }
