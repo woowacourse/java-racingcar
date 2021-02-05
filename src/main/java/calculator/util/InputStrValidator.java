@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputStrValidator {
+    private InputStrValidator() {
+    }
+
     public static boolean isEmptyOrNull(String inputStr) {
         return ("".equals(inputStr) || inputStr == null);
     }

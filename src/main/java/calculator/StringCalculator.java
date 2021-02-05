@@ -1,6 +1,8 @@
 package calculator;
 
+import calculator.resource.Constants;
 import calculator.util.InputStrValidator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -8,7 +10,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class StringCalculator {
-
     public static int splitAndSum(String inputStr) {
         if (InputStrValidator.isEmptyOrNull(inputStr)) {
             return 0;
@@ -34,7 +35,7 @@ public class StringCalculator {
 
     private static String removeCustomDelimiterDefiner(String inputStr) {
         return inputStr.replace("//", "")
-                .replace("\n","");
+                .replace("\n", "");
     }
 
     private static List<String> getOnlyNumbers(List<String> splitStrings) {
@@ -44,12 +45,12 @@ public class StringCalculator {
     }
 
     private static String getDelimiter(String inputStr) {
-        String delimiter = ",|:";
+        String delimiter = Constants.BASIC_DELIMITER;
         String customDelimiter = findCustomDelimiter(inputStr);
-        if(isNoCustomDelimiter(customDelimiter)){
+        if (isNoCustomDelimiter(customDelimiter)) {
             return delimiter;
         }
-        delimiter = delimiter + ('|' + customDelimiter);
+        delimiter = delimiter + (Constants.DELIMITER_DIVIDER + customDelimiter);
         return delimiter;
     }
 
