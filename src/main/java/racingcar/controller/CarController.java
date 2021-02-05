@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import racingcar.domain.AttemptNumber;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
@@ -33,8 +34,9 @@ public class CarController {
         init();
         OutputView.printNextLine();
         OutputView.printExecutionResultMessage();
+        Random random = new Random();
         for (int i = 0; i < attemptNumber.getAttemptNumber(); i++) {
-            cars.move();
+            cars.move(random);
         }
         OutputView.printWinnerCarNamesMessage(cars.getWinners());
     }
