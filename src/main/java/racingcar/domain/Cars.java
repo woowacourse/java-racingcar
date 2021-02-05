@@ -6,16 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
+
     private List<Car> carList = new ArrayList<>();
 
     public Cars(List<String> carNameList) {
-        carNameList.stream()
-            .forEach(carName -> carList.add(new Car(carName)));
+        carNameList.forEach(carName -> carList.add(new Car(carName)));
     }
 
     public void processOneTurn() {
-        carList.stream()
-            .forEach(car -> car.oneTurn(RandomNumberGenerator.turnNumber()));
+        carList.forEach(car -> car.oneTurn(RandomNumberGenerator.turnNumber()));
     }
 
     public List<Car> getList() {
@@ -27,7 +26,7 @@ public class Cars {
         List<String> winnerList = new ArrayList<>();
         carList.stream()
             .filter(carElement -> (carElement.getPosition() == maxPosition))
-            .map(carElement -> carElement.getName())
+            .map(Car::getName)
             .forEach(winnerList::add);
         return String.join(", ", winnerList);
     }

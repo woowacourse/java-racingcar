@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
+
     private static final String SAMPLE_CAR_NAME = "sample";
     private static final int CRITERIA = 4;
     private static final int ONE_PROGRESS_POSITION = 1;

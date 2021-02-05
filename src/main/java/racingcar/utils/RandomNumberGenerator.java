@@ -3,6 +3,7 @@ package racingcar.utils;
 import java.util.Random;
 
 public class RandomNumberGenerator {
+
     private static Random random = new Random();
 
     private static final int DOWN_LIMIT = 0;
@@ -13,6 +14,6 @@ public class RandomNumberGenerator {
     }
 
     public static int turnNumber() {
-        return DOWN_LIMIT + random.nextInt(UP_LIMIT +CALIBRATION_NUMBER);
+        return DOWN_LIMIT + random.nextInt(UP_LIMIT + CALIBRATION_NUMBER);
     }
 }

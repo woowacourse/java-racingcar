@@ -8,6 +8,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarsTest {
+
     private static final String[] SAMPLE_CAR_LIST = {"pobi", "whyb", "bada"};
     private static final String SAMPLE_WINNER = "pobi";
     private static final int CRITERIA = 4;
