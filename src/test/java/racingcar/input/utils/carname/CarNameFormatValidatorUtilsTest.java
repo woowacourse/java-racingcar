@@ -19,7 +19,7 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("bbb1");
         inputCarNames.add("가나다1");
         inputCarNames.add("aaa1");
-        assertThatCode(() -> CarNameFormatValidatorUtils.vaidateAllCarNamesFormat(inputCarNames))
+        assertThatCode(() -> CarNameFormatValidatorUtils.validateAllCarNamesFormat(inputCarNames))
             .doesNotThrowAnyException();
     }
 
@@ -31,7 +31,7 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("bbb111");
         inputCarNames.add("가나다1");
         inputCarNames.add("aaa1");
-        assertThatThrownBy(() -> CarNameFormatValidatorUtils.vaidateAllCarNamesFormat(inputCarNames))
+        assertThatThrownBy(() -> CarNameFormatValidatorUtils.validateAllCarNamesFormat(inputCarNames))
             .isInstanceOf(InvalidCarNameFormatException.class);
     }
 
@@ -42,7 +42,7 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("aaa");
         inputCarNames.add("");
         inputCarNames.add("ccc");
-        assertThatThrownBy(() -> CarNameFormatValidatorUtils.vaidateAllCarNamesFormat(inputCarNames))
+        assertThatThrownBy(() -> CarNameFormatValidatorUtils.validateAllCarNamesFormat(inputCarNames))
             .isInstanceOf(InvalidCarNameFormatException.class);
     }
 
@@ -53,7 +53,7 @@ public class CarNameFormatValidatorUtilsTest {
         inputCarNames.add("aaa");
         inputCarNames.add("b b");
         inputCarNames.add("ccc");
-        assertThatThrownBy(() -> CarNameFormatValidatorUtils.vaidateAllCarNamesFormat(inputCarNames))
+        assertThatThrownBy(() -> CarNameFormatValidatorUtils.validateAllCarNamesFormat(inputCarNames))
             .isInstanceOf(InvalidCarNameFormatException.class);
     }
 }
