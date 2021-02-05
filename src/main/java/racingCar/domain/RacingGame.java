@@ -11,7 +11,7 @@ public class RacingGame {
     private List<Car> cars;
     private int numOfRacingRound;
 
-    public RacingGame(String[] carNames, int numOfRacingRound){
+    public RacingGame(String[] carNames, int numOfRacingRound) {
         this.cars = prepareCars(carNames);
         this.numOfRacingRound = numOfRacingRound;
     }
@@ -54,6 +54,6 @@ public class RacingGame {
             .collect(Collectors.toList());
         return traces.stream()
             .max(Integer::compare)
-            .orElseThrow(()->new RuntimeException("no Winner"));
+            .orElseThrow(() -> new RuntimeException("no Winner"));
     }
 }

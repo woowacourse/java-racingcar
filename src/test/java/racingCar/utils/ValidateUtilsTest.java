@@ -16,12 +16,12 @@ class ValidateUtilsTest {
 
     @DisplayName("경주하는 자동차는 2개 이상이어야 한다")
     @Test
-    public void 자동차_갯수_2개_이상_테스트_negative() {
+    public void 자동차_이름_5자_이상_테스트_negative() {
         // given, when
-        String[] carNames = {"pobi"};
+        String[] carNames = {"pobi", "hong", "gil", "mark", "honggildong"};
 
         // then
-        assertThrows(RuntimeException.class, ()->{
+        assertThrows(RuntimeException.class, () -> {
             ValidateUtils.validateCarNames(carNames);
         });
     }
@@ -40,10 +40,10 @@ class ValidateUtilsTest {
     @Test
     public void 자동차_이름_공백_테스트_negative() {
         // given, when
-        String[] carNames = {"pobi","hong","gil","",null};
+        String[] carNames = {"pobi", "hong", "gil", "", null};
 
         // then
-        assertThrows(RuntimeException.class, ()->{
+        assertThrows(RuntimeException.class, () -> {
             ValidateUtils.validateCarNames(carNames);
         });
     }
@@ -59,9 +59,10 @@ class ValidateUtilsTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1:1","2:2","3:3","4:4","5:5"},delimiter = ':')
+    @CsvSource(value = {"1:1", "2:2", "3:3", "4:4", "5:5"}, delimiter = ':')
     public void 시도횟수_성공케이스(String input, String expected) {
-        assertThat(ValidateUtils.validateRacingRoundCount(input)).isEqualTo(Integer.parseInt(expected));
+        assertThat(ValidateUtils.validateRacingRoundCount(input))
+            .isEqualTo(Integer.parseInt(expected));
     }
 
 }

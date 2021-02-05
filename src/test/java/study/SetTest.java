@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
+
     private Set<Integer> numbers;
 
     @BeforeEach
@@ -34,7 +35,7 @@ public class SetTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1:true","2:true","3:true","4:false","5:false"},delimiter = ':')
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
     void contains2(String input, String expected) {
         assertEquals(numbers.contains(Integer.parseInt(input)), Boolean.valueOf(expected));
     }

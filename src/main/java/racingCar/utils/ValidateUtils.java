@@ -44,7 +44,7 @@ public class ValidateUtils {
     }
 
     private static void validateNotNegitive(int count) {
-        if(count > 0){
+        if (count > 0) {
             return;
         }
         throw new InvalidNumOfMoveException("시도횟수는 자연수이어야 합니다.");

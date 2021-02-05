@@ -23,11 +23,11 @@ public class StringCalculator {
         return sumNumbers(splitedNumbers);
     }
 
-    private static boolean checkEmpty(String s){
+    private static boolean checkEmpty(String s) {
         return s == null || s.isEmpty();
     }
 
-    private static String[] splitString(String s){
+    private static String[] splitString(String s) {
         Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(s);
         if (m.find()) {
             String customDelimiter = m.group(DELIMITER_INDEX);
@@ -38,20 +38,20 @@ public class StringCalculator {
         return s.split(DEFAULT_DELIMITER);
     }
 
-    private static int sumNumbers(String[] numbers){
+    private static int sumNumbers(String[] numbers) {
         return Arrays.stream(numbers)
             .mapToInt(Integer::parseInt)
             .sum();
     }
 
-    private static void checkMinusValue(String[] numbers){
+    private static void checkMinusValue(String[] numbers) {
         if (Arrays.stream(numbers)
-            .anyMatch(number-> isMinus(Integer.parseInt(number)))) {
+            .anyMatch(number -> isMinus(Integer.parseInt(number)))) {
             throw new RuntimeException(MINUS_ERROR_MESSAGE);
         }
     }
 
-    private static boolean isMinus(int number){
+    private static boolean isMinus(int number) {
         return number < ZERO;
     }
 }
