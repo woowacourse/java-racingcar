@@ -2,13 +2,17 @@ package calculator;
 
 public class StringCalculator {
     public static int splitAndSum(String input) {
-        if (input == null) {
+        if (isNull(input)) {
             return 0;
         }
-        
-        String[] numbers = new StringSplitter(input).getNumbers();
+    
+        final String[] numbers = new Parser(input).parse();
         
         return sum(numbers);
+    }
+    
+    private static boolean isNull(String input) {
+        return input == null;
     }
     
     private static int sum(String[] numbers) {
