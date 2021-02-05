@@ -14,8 +14,21 @@ public class RacingGameContoller {
     public static int trials;
 
     public static void start() {
-        while (!initializeCars());
-        while (!getTrials());
+        while (!initializeCars()) ;
+        while (!getTrials()) ;
+        OutputView.printResultMessage();
+        playRounds();
+    }
+
+    public static void playRounds() {
+        for (int i = 0; i < trials; i++) {
+            playRound();
+            OutputView.printRoundResult(cars);
+        }
+    }
+
+    public static void playRound() {
+        cars.moveCars();
     }
 
     public static boolean initializeCars() {
