@@ -10,7 +10,10 @@ public enum Message {
     TWO_COMMAS_ERROR(ERROR + "2개 이상의 쉼표가 연속으로 올 수 없습니다."),
     NON_DIGIT_ERROR(ERROR + "숫자만 입력해 주세요."),
     NON_POSITIVE_ERROR(ERROR + "양수만 입력해 주세요."),
-    LIMITATION_ERROR(ERROR + "한계값 이하만 입력해 주세요.");
+    LIMITATION_ERROR(ERROR + "한계값 이하만 입력해 주세요."),
+    CAR_NAME_LENGTH_ERROR(ERROR + "자동차 이름은 "
+            + Digit.MINIMUM_CAR_NAME_LENGTH.getDigit() + " 이상 "
+            + Digit.MAXIMUM_CAR_NAME_LENGTH.getDigit() + " 이하로 입력해 주세요.");
 
     private final String message;
 
