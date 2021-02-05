@@ -16,9 +16,9 @@ class ValidateUtilsTest {
 
     @DisplayName("경주하는 자동차는 2개 이상이어야 한다")
     @Test
-    public void 자동차_이름_5자_이상_테스트_negative() {
+    public void 자동차_갯수_2개_이상_테스트_negative() {
         // given, when
-        String[] carNames = {"pobi", "hong", "gil", "mark", "honggildong"};
+        String[] carNames = {"pobi"};
 
         // then
         assertThrows(RuntimeException.class, () -> {
@@ -53,7 +53,7 @@ class ValidateUtilsTest {
     @ValueSource(strings = {"-2", "d"})
     @NullAndEmptySource
     void invalidRoundInput(String invalidInput) {
-        assertThatThrownBy(()->{
+        assertThatThrownBy(() -> {
             ValidateUtils.validateRacingRoundCount(invalidInput);
         }).isInstanceOf(RuntimeException.class);
     }
