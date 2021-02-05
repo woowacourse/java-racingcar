@@ -31,7 +31,7 @@ public class CarTest {
     }
 
     @Test
-    public void 자동차이름은_null이거나_빈문자일수_없다() {
+    public void 자동차이름이_null이거나_빈문자일_경우에_IllegalArgumentException_발생() {
         assertThatThrownBy(() -> {
             Car.of(null);
         }).isInstanceOf(IllegalArgumentException.class);
