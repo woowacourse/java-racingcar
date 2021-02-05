@@ -25,10 +25,6 @@ public class Car implements Comparable<Car> {
         return position.getPosition();
     }
 
-    public boolean hasSamePositionWith(int pos) {
-        return position.getPosition() == pos;
-    }
-
     public boolean hasSamePositionWith(Car car) {
         return this.position.getPosition() == car.position.getPosition();
     }
