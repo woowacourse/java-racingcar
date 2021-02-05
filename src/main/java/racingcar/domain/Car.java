@@ -38,7 +38,7 @@ public class Car {
     }
 
     private boolean isContainInvalidChar(final String name) {
-        return !Pattern.matches(REGEX_ALPHA, name) || !Pattern.matches(REGEX_KOREAN, name);
+        return !Pattern.matches(REGEX_ALPHA, name) && !Pattern.matches(REGEX_KOREAN, name);
     }
 
     private boolean isExceedNameLength(final String name) {
