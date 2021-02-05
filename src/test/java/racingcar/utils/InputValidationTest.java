@@ -1,6 +1,7 @@
 package racingcar.utils;
 
 import org.junit.jupiter.api.Test;
+import racingcar.utils.exception.InvalidNameLengthException;
 import racingcar.utils.exception.InvalidTextException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -19,5 +20,17 @@ class InputValidationTest {
         String[] invalidInput = {"pobi#", "brown"};
         assertThatThrownBy(() -> inputValidation.validateName(invalidInput))
         .isInstanceOf(InvalidTextException.class);
+    }
+
+
+    @Test
+    public void 이름_길이가_잘못된_경우_예외처리() {
+        String[] overLength = {"poooobi", "brown"};
+        assertThatThrownBy(() -> inputValidation.validateName(overLength))
+                .isInstanceOf(InvalidNameLengthException.class);
+
+        String[] lessLength = {"pobi", ""};
+        assertThatThrownBy(() -> inputValidation.validateName(overLength))
+                .isInstanceOf(InvalidNameLengthException.class);
     }
 }
