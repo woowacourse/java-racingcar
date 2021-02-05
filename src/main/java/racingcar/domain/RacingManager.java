@@ -1,15 +1,17 @@
 package racingcar.domain;
 
+import java.util.function.Supplier;
+
 public class RacingManager {
 
   private final Participants participants;
   private final int turn;
-  private final GasStation gasStation;
+  private final Supplier<Integer> fuel;
 
-  public RacingManager(final Participants participants, final int turn, final GasStation gasStation) {
+  public RacingManager(final Participants participants, final int turn, final Supplier<Integer> fuel) {
     this.participants = participants;
     this.turn = turn;
-    this.gasStation = gasStation;
+    this.fuel = fuel;
   }
 
   public RacingResult start() {
@@ -22,7 +24,7 @@ public class RacingManager {
 
   private void race(final RacingResult racingResult) {
     participants.getCars().forEach(car -> {
-      gasStation.fillInFuel(car);
+      car.fillInFuel(fuel.get());
       car.run();
     });
     racingResult.appendLog();

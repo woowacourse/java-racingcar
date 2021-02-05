@@ -14,13 +14,13 @@ class RacingResultTest {
 
   @BeforeEach
   void init() {
-    participants = new Participants("pobi", "spring");
+    participants = new Participants("pobi", "sp");
     racingResult = new RacingResult(participants);
   }
 
   @Test
   void appendLog() {
-    String expectedLog = "pobi : -" + ENTER + "spring : -" + ENTER + ENTER;
+    String expectedLog = "pobi : -" + ENTER + "sp : -" + ENTER + ENTER;
     participants.getCars().forEach(car -> {
       car.fillInFuel(Car.MIN_RUNNABLE_FUEL);
       car.run();
@@ -35,12 +35,12 @@ class RacingResultTest {
     List<Car> cars = participants.getCars();
     cars.get(0).fillInFuel(Car.MIN_RUNNABLE_FUEL);
     cars.get(0).run();
-    assertThat(racingResult.getWinner().getWinnerName()).isEqualTo(expectedLog);
+    assertThat(racingResult.getWinner()).isEqualTo(expectedLog);
   }
 
   @Test
   void getWinner_우승자_여러명() {
-    String expectedLog = "pobi, spring";
-    assertThat(racingResult.getWinner().getWinnerName()).isEqualTo(expectedLog);
+    String expectedLog = "pobi, sp";
+    assertThat(racingResult.getWinner()).isEqualTo(expectedLog);
   }
 }

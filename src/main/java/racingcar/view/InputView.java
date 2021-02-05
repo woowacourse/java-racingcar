@@ -1,9 +1,7 @@
 package racingcar.view;
 
 import java.util.Scanner;
-import racingcar.domain.GasStation;
 import racingcar.domain.Participants;
-import racingcar.domain.RacingManager;
 import racingcar.exception.RacingCarErrorMessage;
 
 public class InputView {
