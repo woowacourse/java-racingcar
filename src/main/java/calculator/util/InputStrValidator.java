@@ -7,15 +7,15 @@ public class InputStrValidator {
     private InputStrValidator() {
     }
 
-    public static boolean isEmptyOrNull(String inputStr) {
+    public static boolean isEmptyOrNull(final String inputStr) {
         return ("".equals(inputStr) || inputStr == null);
     }
 
-    public static boolean isHasOnlyOneNumber(String inputStr) {
+    public static boolean isHasOnlyOneNumber(final String inputStr) {
         return InputStrValidator.isNumber(inputStr);
     }
 
-    public static void checkValidNumbers(List<String> splitStrings) {
+    public static void checkValidNumbers(final List<String> splitStrings) {
         boolean result = splitStrings.stream()
                 .allMatch(InputStrValidator::isNumber);
         if (!result) {
@@ -23,7 +23,7 @@ public class InputStrValidator {
         }
     }
 
-    private static boolean isNumber(String inputStr) {
+    private static boolean isNumber(final String inputStr) {
         String pattern = "^[0-9]*$";
         return Pattern.matches(pattern, inputStr);
     }
