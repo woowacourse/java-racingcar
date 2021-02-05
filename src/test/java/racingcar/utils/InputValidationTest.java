@@ -1,10 +1,9 @@
 package racingcar.utils;
 
 import org.junit.jupiter.api.Test;
-import racingcar.utils.exception.DuplicateNameException;
-import racingcar.utils.exception.InvalidNameLengthException;
-import racingcar.utils.exception.InvalidTextException;
-import racingcar.utils.exception.NotEnoughCarException;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.utils.exception.*;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -47,5 +46,12 @@ class InputValidationTest {
         String[] input = {"pobi"};
         assertThatThrownBy(() -> inputValidation.validateName(input))
                 .isInstanceOf(NotEnoughCarException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "-1", "0"})
+    public void 시도_횟수가_자연수가_아닌_경우_예외처리(String input) {
+        assertThatThrownBy(() -> inputValidation.validateTime(input))
+                .isInstanceOf(InvalidTimeException.class);
     }
 }
