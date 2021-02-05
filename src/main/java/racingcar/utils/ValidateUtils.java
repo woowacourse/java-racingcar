@@ -51,6 +51,10 @@ public class ValidateUtils {
     }
 
     private static int validateInteger(String count) {
-        return Integer.parseInt(count);
+        try {
+            return Integer.parseInt(count);
+        } catch (NumberFormatException e) {
+            throw new InvalidNumOfMoveException("시도횟수는 숫자이어야 합니다.");
+        }
     }
 }
