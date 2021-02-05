@@ -12,4 +12,10 @@ public class Car {
     public String getName() {
         return this.name;
     }
+
+    public void move(boolean isMoving) {
+        if (isMoving) {
+            position++;
+        }
+    }
 }

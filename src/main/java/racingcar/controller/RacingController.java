@@ -20,6 +20,6 @@ public class RacingController {
         carController.createCars(name);
         outputView.askTime();
         int time = inputView.inputTime();
-
+        carController.race(time);
     }
 }

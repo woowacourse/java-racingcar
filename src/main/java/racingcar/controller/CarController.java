@@ -8,4 +8,10 @@ public class CarController {
     void createCars(String[] names) {
         this.cars = new Cars(names);
     }
+
+    public void race(int time) {
+        for (int i = 0; i < time; i++) {
+            cars.startRace();
+        }
+    }
 }
