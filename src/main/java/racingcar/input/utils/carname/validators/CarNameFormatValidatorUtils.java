@@ -2,7 +2,7 @@ package racingcar.input.utils.carname.validators;
 
 import java.util.List;
 import java.util.regex.Pattern;
-import racingcar.input.utils.carname.exception.InvalidCarNameFormatException;
+import racingcar.input.utils.carname.validators.exceptions.InvalidCarNameFormatException;
 
 public class CarNameFormatValidatorUtils {
     private final static String VALID_CAR_NAME_PATTERN = "^[a-zA-Z0-9가-힣]{1,5}$";

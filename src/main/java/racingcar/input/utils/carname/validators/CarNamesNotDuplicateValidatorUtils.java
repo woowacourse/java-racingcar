@@ -1,7 +1,7 @@
 package racingcar.input.utils.carname.validators;
 
 import java.util.List;
-import racingcar.input.utils.carname.exception.DuplicateCarNamesException;
+import racingcar.input.utils.carname.validators.exceptions.DuplicateCarNamesException;
 
 public class CarNamesNotDuplicateValidatorUtils {
 

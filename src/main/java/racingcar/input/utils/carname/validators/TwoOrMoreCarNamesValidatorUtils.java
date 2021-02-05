@@ -1,7 +1,7 @@
 package racingcar.input.utils.carname.validators;
 
 import java.util.List;
-import racingcar.input.utils.carname.exception.LessThanTwoCarNamesException;
+import racingcar.input.utils.carname.validators.exceptions.LessThanTwoCarNamesException;
 
 public class TwoOrMoreCarNamesValidatorUtils {
     private static final int ALLOWED_MIN_NUMBER_OF_CARS = 2;

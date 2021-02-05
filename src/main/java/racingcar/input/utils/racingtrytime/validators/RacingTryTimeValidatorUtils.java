@@ -1,6 +1,6 @@
 package racingcar.input.utils.racingtrytime.validators;
 
-import racingcar.input.utils.racingtrytime.exception.NotNaturalNumberRacingTimeException;
+import racingcar.input.utils.racingtrytime.validators.exceptions.NotNaturalNumberRacingTimeException;
 
 public class RacingTryTimeValidatorUtils {
     private static final String ERROR_MESSAGE = "경주 시도 횟수는 자연수여야 합니다.";
