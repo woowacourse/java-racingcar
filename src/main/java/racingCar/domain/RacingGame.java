@@ -28,9 +28,8 @@ public class RacingGame {
     }
 
     public void race() {
-        for(int i=0; i<numOfRacingRound; i++){
-            racePerRound();
-        }
+        racePerRound();
+        numOfRacingRound--;
     }
 
     private void racePerRound() {
