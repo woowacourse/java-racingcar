@@ -5,55 +5,39 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Game {
-    static final Scanner scanner = new Scanner(System.in);
+    private static final int MINIMUM_VALUE = 0;
+    private static final int MAXIMUM_VALUE = 9;
 
-    public static void main(String[] args){
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input = scanner.nextLine();
-        if(!NameSpliter.inputChecker(input)){
-            throw new RuntimeException();
-        }
+    public void run() {
+        String input = InputChecker.getInput();
         String[] carNames = input.split(",");
         for(String carName : carNames) {
             Cars.carAdd(new Car(carName));
         }
-        int count = getNumber();
-        playGame(count);
+        playGame(InputChecker.getNumber());
         showResult();
     }
 
-    private static void showResult() {
-        List<String> winners = new ArrayList<>();
-        int max = findMax();
-        for (Car car : Cars.cars) {
-            if (car.distance == max) {
-                winners.add(car.name);
-            }
-        }
-        String result = "";
-        for (int i=0; i<winners.size(); i++) {
-            result += winners.get(i);
-            if (i==winners.size()-1) {
-                break;
-            }
-            result += ", ";
-        }
-        result += "가 최종 우승했습니다.";
-        System.out.println(result);
+    public void showResult() {
+        List<String> winners = getWinners(findMax());
+        System.out.println(String.join(",", winners) + "가 최종 우승했습니다.");
     }
 
-    private static int findMax() {
-        int max = 0;
-        for (Car car : Cars.cars) {
-            if (car.distance > max) {
-                max = car.distance;
-            }
-        }
-        return max;
+    public List<String> getWinners(int max) {
+        List<String> winners = Cars.findWinners(max);
+        return winners;
     }
 
-    private static void playGame(int count) {
-        for(int i=0;i<count;i++){
+    public int findMax() {
+        int maxNumber = 0;
+        for (Car car : Cars.getCars()) {
+            maxNumber = Math.max(maxNumber, car.getDistance());
+        }
+        return maxNumber;
+    }
+
+    public void playGame(int count) {
+        for (int i = 0; i < count; i++) {
             playCar();
         }
     }
@@ -65,12 +49,12 @@ public class Game {
         System.out.println();
     }
 
-    private static String bar(int distance) {
-        String bars = "";
-        for (int i=0; i<distance; i++) {
-            bars += "-";
+    public String bar(int distance) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < distance; i++) {
+            sb.append("-");
         }
-        return bars;
+        return sb.toString();
     }
 
     private static void playCar() {
@@ -79,19 +63,5 @@ public class Game {
             Cars.cars.get(i).move(number);
         }
         showStatus();
-    }
-
-    private static int getNumber() {
-        System.out.println("시도할 회수는 몇회인가요?");
-        int number;
-        try{
-            number = scanner.nextInt();
-            if(number < 1){
-                throw new RuntimeException();
-            }
-        }catch(RuntimeException e){
-            throw new RuntimeException();
-        }
-        return number;
     }
 }
