@@ -1,10 +1,20 @@
 package racingCar.utils;
 
+import racingCar.exception.InvalidCarNameException;
+import racingCar.exception.InvalidNumOfMoveException;
+
 public class ValidateUtils {
 
     public static void validateCarNames(String[] carNames) {
+        validateNumOfCarNames(carNames);
         for (String carName : carNames) {
             validateCarName(carName);
+        }
+    }
+
+    private static void validateNumOfCarNames(String[] carNames) {
+        if (carNames.length < 2) {
+            throw new InvalidCarNameException("자동차 이름은 1개 이상이어야 합니다.");
         }
     }
 
@@ -17,14 +27,14 @@ public class ValidateUtils {
         if (carName.length() >= 1 && carName.length() <= 5) {
             return;
         }
-        throw new RuntimeException("[에러] 자동차 이름은 1자 이상 5자 이하여야 합니다.");
+        throw new InvalidCarNameException("자동차 이름은 1자 이상 5자 이하여야 합니다.");
     }
 
     private static void validateCarNameNotEmpty(String carName) {
         if (!carName.isEmpty()) {
             return;
         }
-        throw new RuntimeException("[에러] 자동차 이름은 공백이 안됩니다.");
+        throw new InvalidCarNameException("자동차 이름은 공백이 안됩니다.");
     }
 
     public static int validateRacingRoundCount(String input) {
@@ -37,7 +47,7 @@ public class ValidateUtils {
         if(count > 0){
             return;
         }
-        throw new RuntimeException("[에러] 시도횟수는 자연수이어야 합니다.");
+        throw new InvalidNumOfMoveException("시도횟수는 자연수이어야 합니다.");
     }
 
     private static int validateInteger(String count) {
