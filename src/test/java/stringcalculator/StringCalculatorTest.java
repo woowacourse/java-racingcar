@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class   StringCalculatorTest {
+class StringCalculatorTest {
 
     @DisplayName("커스텀 구분자를 적용한 문자열 덧셈 기능")
     @ParameterizedTest

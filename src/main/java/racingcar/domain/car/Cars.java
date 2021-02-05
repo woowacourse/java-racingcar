@@ -1,5 +1,7 @@
 package racingcar.domain.car;
 
+import racingcar.domain.car.util.RandomNumberGenerator;
+
 import java.util.*;
 
 public class Cars {
@@ -21,5 +23,11 @@ public class Cars {
 
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
+    }
+
+    public void play(RandomNumberGenerator randomNumberGenerator) {
+        for (Car car : cars) {
+            car.move(randomNumberGenerator.generate());
+        }
     }
 }
