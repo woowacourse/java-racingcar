@@ -20,13 +20,13 @@ public class CarNamesInput {
         return new CarNamesInput(input);
     }
 
-    public List<String> getCarNames() {
-        return Collections.unmodifiableList(carNames);
-    }
-
     private void validateCarNameDuplicate() {
         if (carNames.stream().distinct().count() != carNames.size()) {
             throw new CarNameDuplicateException();
         }
+    }
+
+    public List<String> getCarNames() {
+        return Collections.unmodifiableList(carNames);
     }
 }

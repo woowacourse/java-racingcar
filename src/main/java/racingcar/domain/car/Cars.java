@@ -22,19 +22,12 @@ public class Cars {
         }
     }
 
-
     public CarStates getCarStates() {
         List<CarState> carStates = cars.stream()
                 .map(car -> CarState.withNameAndPosition(car.getName(), car.getPosition()))
                 .collect(Collectors.toList());
 
         return CarStates.of(carStates);
-    }
-
-    public void move() {
-        for (Car car : cars) {
-            car.move();
-        }
     }
 
     public List<CarName> getWinners() {
@@ -47,6 +40,12 @@ public class Cars {
                .filter(car -> car.isSamePosition(maxPosition))
                .map(Car::getName)
                .collect(Collectors.toList());
+    }
+
+    public void move() {
+        for (Car car : cars) {
+            car.move();
+        }
     }
 }
 

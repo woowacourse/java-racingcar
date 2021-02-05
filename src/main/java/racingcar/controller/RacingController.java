@@ -19,7 +19,7 @@ public class RacingController {
     private String moveCountInput;
     
     public void run() {
-        GameResult gameResult = null;
+        GameResult gameResult;
 
         try {
             gameResult = getInputFromUserAndStartGameAndGetResult();
@@ -38,20 +38,13 @@ public class RacingController {
 
     private GameResult getInputFromUserAndStartGameAndGetResult() {
         getCarNamesAndMoveCountFromUser();
+
         return startGameAndGetGameResult();
     }
-
 
     private void getCarNamesAndMoveCountFromUser() {
         carNamesInput = InputView.inputFormUser(Messages.REQUEST_CAR_NAME);
         moveCountInput = InputView.inputFormUser(Messages.REQUEST_MOVE_COUNT);
-    }
-    
-    private List<Car> makeCarListFromCarNames(List<String> carNames) {
-        return carNames.stream()
-                .map(name -> new Car(name, new MoveCondition()))
-                .collect(Collectors.toList());
-
     }
 
     private GameResult startGameAndGetGameResult() {
@@ -69,7 +62,14 @@ public class RacingController {
 
         return Cars.of(makeCarListFromCarNames(carNames));
     }
-    
+
+    private List<Car> makeCarListFromCarNames(List<String> carNames) {
+        return carNames.stream()
+                .map(name -> new Car(name, new MoveCondition()))
+                .collect(Collectors.toList());
+
+    }
+
     private void printGameResult(GameResult gameResult) {
         OutputView.print(gameResult.getExecutionResultString());
         OutputView.print(gameResult.getWinnersString());

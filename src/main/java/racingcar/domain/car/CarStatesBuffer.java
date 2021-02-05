@@ -31,5 +31,4 @@ public class CarStatesBuffer {
 
         return stringBuffer.toString();
     }
-
 }

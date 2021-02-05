@@ -3,7 +3,6 @@ package racingcar.domain.car;
 import racingcar.domain.rule.Condition;
 
 public class Car {
-
     private int position;
     private Condition moveCondition;
     private CarName name;
@@ -29,12 +28,12 @@ public class Car {
         return name;
     }
 
-    public boolean isSamePosition(int position) {
-        return this.position == position;
-    }
-
     public CarState getState() {
         return CarState.withNameAndPosition(name, position);
+    }
+
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 
     @Override
