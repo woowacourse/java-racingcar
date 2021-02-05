@@ -12,12 +12,17 @@ public class CarStates {
         this.carStates = carStates;
     }
 
-    public static CarStates of(List<CarState> carStates) {
+    public static CarStates valueOf(List<CarState> carStates) {
         return new CarStates(carStates);
     }
 
     @Override
     public String toString() {
-        return String.join(DELIMITER, carStates.stream().map(CarState::toString).collect(Collectors.toList()));
+        return String.join(
+                DELIMITER,
+                carStates.stream()
+                        .map(CarState::toString)
+                        .collect(Collectors.toList())
+        );
     }
 }

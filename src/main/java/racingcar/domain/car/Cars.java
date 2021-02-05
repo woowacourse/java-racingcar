@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static List<Car> cars;
+    private List<Car> cars;
 
     private Cars(List<Car> cars) {
         validateEmptyCarList(cars);
@@ -24,10 +24,10 @@ public class Cars {
 
     public CarStates getCarStates() {
         List<CarState> carStates = cars.stream()
-                .map(car -> CarState.withNameAndPosition(car.getName(), car.getPosition()))
+                .map(CarState::withNameAndPosition)
                 .collect(Collectors.toList());
 
-        return CarStates.of(carStates);
+        return CarStates.valueOf(carStates);
     }
 
     public List<CarName> getWinners() {
@@ -43,9 +43,7 @@ public class Cars {
     }
 
     public void move() {
-        for (Car car : cars) {
-            car.move();
-        }
+        cars.forEach(Car::move);
     }
 }
 

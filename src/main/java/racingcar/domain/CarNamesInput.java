@@ -12,15 +12,18 @@ public class CarNamesInput {
     private List<String> carNames;
 
     private CarNamesInput(String input) {
-        carNames = Arrays.asList(input.split(DELIMITER));
-        validateCarNameDuplicate();
+        List<String> carNames = Arrays.asList(input.split(DELIMITER));
+
+        validateCarNameDuplicate(carNames);
+
+        this.carNames = carNames;
     }
 
     public static CarNamesInput valueOf(String input) {
         return new CarNamesInput(input);
     }
 
-    private void validateCarNameDuplicate() {
+    private void validateCarNameDuplicate(List<String> carNames) {
         if (carNames.stream().distinct().count() != carNames.size()) {
             throw new CarNameDuplicateException();
         }

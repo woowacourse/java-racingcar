@@ -72,6 +72,6 @@ public class RacingController {
 
     private void printGameResult(GameResult gameResult) {
         OutputView.print(gameResult.getExecutionResultString());
-        OutputView.print(gameResult.getWinnersString());
+        OutputView.print(gameResult.getWinnersAsString());
     }
 }

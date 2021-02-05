@@ -23,8 +23,11 @@ public class GameResult {
         return new GameResult(winners, carStatesBuffer);
     }
 
-    public String getWinnersString() {
-        List<String> winnerNames = winners.stream().map(CarName::toString).collect(Collectors.toList());
+    public String getWinnersAsString() {
+        List<String> winnerNames = winners.stream()
+                .map(CarName::toString)
+                .collect(Collectors.toList());
+
         Collections.sort(winnerNames);
 
         return String.join(DELIMITER, winnerNames) + MESSAGE_GAME_RESULT;

@@ -21,7 +21,7 @@ public class GameResultTest {
     @MethodSource("provideInputsFor_우승자가_여러명일_경우_쉼표로_구분하여_출력한다")
     public void 우승자가_여러명일_경우_쉼표로_구분하여_출력한다(List<CarName> input, String expected) {
         GameResult gameResult = GameResult.valueOf(input, null);
-        assertEquals(expected, gameResult.getWinnersString());
+        assertEquals(expected, gameResult.getWinnersAsString());
     }
 
 
@@ -30,7 +30,7 @@ public class GameResultTest {
     @MethodSource("provideInputsFor_우승자가_여러명일_경우_오른차순으로_정렬_후_출력한다")
     public void 우승자가_여러명일_경우_오른차순으로_정렬_후_출력한다(List<CarName> input, String expected) {
         GameResult gameResult = GameResult.valueOf(input, null);
-        assertEquals(expected, gameResult.getWinnersString());
+        assertEquals(expected, gameResult.getWinnersAsString());
     }
 
     private static Stream<Arguments> provideInputsFor_우승자가_여러명일_경우_쉼표로_구분하여_출력한다() {

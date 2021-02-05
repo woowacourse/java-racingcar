@@ -6,13 +6,13 @@ public class CarState {
     private CarName carName;
     private int position;
 
-    private CarState(CarName carName, int position) {
-        this.carName = carName;
-        this.position = position;
+    private CarState(Car car) {
+        this.carName = car.getName();
+        this.position = car.getPosition();
     }
 
-    public static CarState withNameAndPosition(CarName carName, int position) {
-        return new CarState(carName, position);
+    public static CarState withNameAndPosition(Car car) {
+        return new CarState(car);
     }
 
     @Override

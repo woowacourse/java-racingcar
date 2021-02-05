@@ -5,7 +5,7 @@ import racingcar.exception.CarMoveCountNonNumericException;
 
 public class MoveCountInput {
 
-    private int moveCount;
+    private final int moveCount;
 
     private MoveCountInput(String input) {
         validateMoveCountInputNumeric(input);
