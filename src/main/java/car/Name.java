@@ -3,22 +3,25 @@ package car;
 import java.util.Objects;
 
 public class Name {
+    
+    private static final int NAME_RANGE = 5;
+    
     private final String name;
     
-    public Name(String name) {
-        this.name = name;
-    }
-    
-    public String getName() {
-        if (!isValid()) {
+    public static Name from(String name) {
+        if (!isOutOfBounds(name)) {
             throw new IllegalArgumentException();
         }
         
-        return name;
+        return new Name(name);
     }
     
-    private boolean isValid() {
-        return name.length() <= 5 && !name.isEmpty();
+    private static boolean isOutOfBounds(String name) {
+        return name.length() <= NAME_RANGE && !name.isEmpty();
+    }
+    
+    private Name(String name) {
+        this.name = name;
     }
     
     @Override

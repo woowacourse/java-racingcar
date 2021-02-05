@@ -6,7 +6,19 @@ public class Position {
     
     private final int position;
     
-    public Position(int position) {
+    public static Position from(int position) {
+        if (!isNegative(position)) {
+            throw new IllegalArgumentException();
+        }
+    
+        return new Position(position);
+    }
+    
+    private static boolean isNegative(int position) {
+        return position < 0;
+    }
+    
+    private Position(int position) {
         this.position = position;
     }
     

@@ -15,7 +15,7 @@ public class Car {
     }
     
     public Car(String carName, int position, Engine engine) {
-        this(new Name(carName), new Position(position), engine);
+        this(Name.from(carName), Position.from(position), engine);
     }
     
     public Car(Name carName, Position position, Engine engine) {
