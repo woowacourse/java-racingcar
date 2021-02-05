@@ -24,7 +24,6 @@ public class RacingController {
         try {
             gameResult = getInputFromUserAndStartGameAndGetResult();
         } catch (RuntimeException e) {
-            e.printStackTrace();
             controlError(e.getMessage());
             return;
         }
