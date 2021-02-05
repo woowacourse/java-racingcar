@@ -16,7 +16,10 @@ public class RacingCarGame {
     public void start() {
         String carNamesInput = InputView.getCarNamesInput();
         List<String> splittedCarNames = SplitUtil.splitCarNames(carNamesInput);
-        CarNameRepository.addCarNames(splittedCarNames);
+        CarRepository.addCars(splittedCarNames);
+        String lapInput = InputView.getLap();
+        int laps = validateLaps(lapInput);
+        race(laps);
     }
 
     public int validateLaps(String lapInput){
@@ -29,5 +32,11 @@ public class RacingCarGame {
             throw new IllegalArgumentException(NOT_OVER_ONE_ERROR_MESSAGE);
         }
         return laps;
+    }
+
+    private void race(int laps) {
+        for (int i = 0; i < laps; i++) {
+            CarRepository.raceOneLap();
+        }
     }
 }
