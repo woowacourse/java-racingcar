@@ -16,7 +16,6 @@ public class RacingCarController {
     public void run() {
         List<String> carNames = inputView.scanCarNames();
         Times times = getTimes();
-
     }
 
     private Times getTimes() {

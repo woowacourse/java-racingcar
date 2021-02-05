@@ -13,7 +13,8 @@ public enum Message {
     LIMITATION_ERROR(ERROR + "한계값 이하만 입력해 주세요."),
     CAR_NAME_LENGTH_ERROR(ERROR + "자동차 이름은 "
             + Digit.MINIMUM_CAR_NAME_LENGTH.getDigit() + " 이상 "
-            + Digit.MAXIMUM_CAR_NAME_LENGTH.getDigit() + " 이하로 입력해 주세요.");
+            + Digit.MAXIMUM_CAR_NAME_LENGTH.getDigit() + " 이하로 입력해 주세요."),
+    CAR_NAME_DUPLICATION_ERROR(ERROR + "자동차 이름은 중복되지 않게 입력해 주세요.");
 
     private final String message;
 
