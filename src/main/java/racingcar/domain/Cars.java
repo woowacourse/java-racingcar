@@ -7,8 +7,11 @@ public class Cars {
     private List<Car> cars;
 
     public Cars(Names names) {
-        this.cars = names.getNames().
-                stream()
+        this.cars = generateCars(names);
+    }
+
+    private List<Car> generateCars(Names names) {
+        return names.getNames().stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
