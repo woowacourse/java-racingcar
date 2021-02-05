@@ -3,8 +3,6 @@ package car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Scanner;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
@@ -30,5 +28,12 @@ class CarTest {
     void carNameTest() {
         assertThat(ValidCheck.carNameValid("a,b,c,d124,e")).isTrue();
         assertThat(ValidCheck.carNameValid("a,b,c,d1 24,e")).isFalse();
+    }
+    
+    @Test
+    void roundTest(){
+        assertThat(ValidCheck.round("15")).isTrue();
+        assertThat(ValidCheck.round(" ")).isFalse();
+        assertThat(ValidCheck.round("0")).isFalse();
     }
 }

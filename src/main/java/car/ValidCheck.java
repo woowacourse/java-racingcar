@@ -1,6 +1,7 @@
 package car;
 
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class ValidCheck {
     
@@ -11,6 +12,12 @@ public class ValidCheck {
     
     public static boolean carNameValid(String carNamesInput) {
         return !isSpace(carNamesInput) && !isNameLength(carNamesInput);
+    }
+    
+    public static boolean round(String roundInput) {
+        final String pattern = "[1-9]+[0-9]*";
+        return Pattern.matches(pattern,roundInput);
+        
     }
     
     private static boolean isSpace(String carNamesInput) {
@@ -24,6 +31,7 @@ public class ValidCheck {
         return Arrays.stream(carNames)
                      .anyMatch(name -> name.length() > 5);
     }
+    
     
 }
 
