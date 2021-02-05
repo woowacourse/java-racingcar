@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Game {
-    List<Car> cars;
-    int trial;
+    private List<Car> cars;
+    private int trial;
 
     private Game(List<Car> cars, int trial) {
         this.cars = cars;
@@ -33,7 +33,19 @@ public class Game {
                    .collect(Collectors.toList());
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     public int getTrial() {
         return trial;
+    }
+
+    public void reduceOneTrial() {
+        trial--;
+    }
+
+    public boolean isEnd() {
+        return trial == 0;
     }
 }

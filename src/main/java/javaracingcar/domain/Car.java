@@ -44,4 +44,8 @@ public class Car {
             throw new IllegalArgumentException("이름이 최대길이를 초과했습니다.");
         }
     }
+
+    public void move() {
+        position++;
+    }
 }
