@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Winners {
     private Winners() {
@@ -15,6 +16,11 @@ public class Winners {
         for (Car car : cars) {
             setWinner(car);
         }
+    }
+
+    public static List<String> getWinnersNames() {
+        return winners.stream()
+                .map(Car::getName).collect(Collectors.toList());
     }
 
     private static void setWinnerPosition(List<Car> cars) {

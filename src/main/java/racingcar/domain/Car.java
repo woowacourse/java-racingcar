@@ -15,11 +15,15 @@ public class Car {
         this.name = name;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public void carMove() {
         this.position++;
     }
 
-    public int getPosition(){
+    public int getPosition() {
         return this.position;
     }
 
