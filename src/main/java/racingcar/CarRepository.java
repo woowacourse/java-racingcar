@@ -35,7 +35,7 @@ public class CarRepository {
             OutputView.printNewLine();
         }
 
-        OutputView.printWinner(getWinnerNames());
+        OutputView.printWinners(getWinnerNames());
     }
 
     private static List<String> getWinnerNames() {

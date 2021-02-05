@@ -26,7 +26,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinner(List<String> names) {
+    public static void printWinners(List<String> names) {
         System.out.print("최종 우승자 : ");
 
         System.out.println(String.join(CAR_NAMES_DELIMITER + " ", names));
