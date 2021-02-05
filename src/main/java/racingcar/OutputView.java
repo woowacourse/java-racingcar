@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -10,6 +11,8 @@ public class OutputView {
             "시도할 회수는 몇회인가요?";
     public static final String RESULT_PREFIX =
             "\n실행 결과";
+    public static final String PRINT_WINNERS =
+            "%s가 최종 우승했습니다.";
 
     public static void printAskCarNames() {
         System.out.println(ASK_CAR_NAMES);
@@ -23,8 +26,21 @@ public class OutputView {
         System.out.println(RESULT_PREFIX);
     }
 
-    public static void printCars(List<Car> cars) {
+    public static void printCarsBeforeRace(List<Car> cars) {
         cars.forEach(System.out::println);
         System.out.println();
+    }
+
+    public static void printCarsAfterRace(List<Car> cars) {
+        cars.forEach(System.out::println);
+        System.out.println();
+    }
+
+    public static void printWinners(List<Car> winners) {
+        String winnersName = winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+
+        System.out.printf((PRINT_WINNERS) + "%n", winnersName);
     }
 }

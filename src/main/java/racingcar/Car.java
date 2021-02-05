@@ -73,7 +73,9 @@ public class Car {
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) return true;
+        if (this == obj) {
+            return true;
+        }
         if (obj instanceof Car) {
             Car car = (Car) obj;
             return this.name.equals(car.name);

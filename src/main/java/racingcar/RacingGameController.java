@@ -13,17 +13,23 @@ public class RacingGameController {
     public void race() {
         setUpRace();
         startRace();
+        showResult();
+    }
+
+    private void setUpRace() {
+        cars = Cars.from(inputView.getInputCarsName());
+        turns = inputView.getInputTurns();
     }
 
     private void startRace() {
         OutputView.printResultPrefix();
+        OutputView.printCarsBeforeRace(cars.getCars());
         for (int i = 0; i < turns; i++) {
             cars.driveAll();
         }
     }
 
-    private void setUpRace() {
-        cars = Cars.makeCar(inputView.getInputCarsName());
-        turns = inputView.getInputTurns();
+    private void showResult() {
+        OutputView.printWinners(cars.getWinners());
     }
 }
