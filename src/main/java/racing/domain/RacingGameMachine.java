@@ -31,7 +31,7 @@ public class RacingGameMachine {
             gameScreen.showCarStatus(getCarDtos());
         }
         Winners winners = cars.findWinners();
-        gameScreen.showWinners(winners.getWinnersName());
+        gameScreen.showWinners(winners.getWinnersDto());
     }
 
     public boolean canPlay() {

@@ -8,4 +8,8 @@ public class WinnersDto {
     public WinnersDto(List<String> winnersName) {
         this.winnersName = winnersName;
     }
+
+    public List<String> getWinnersName() {
+        return winnersName;
+    }
 }

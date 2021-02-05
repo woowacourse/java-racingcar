@@ -1,6 +1,7 @@
 package racing.view;
 
 import racing.domain.dto.CarDto;
+import racing.domain.dto.WinnersDto;
 
 import java.util.List;
 
@@ -23,9 +24,9 @@ public class GameScreen extends Screen{
         OutputView.printMessage(stringBuilder.toString());
     }
 
-    public void showWinners(List<String> winnerNames){
+    public void showWinners(WinnersDto winnersDto){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.join(DELIMITER, winnerNames));
+        stringBuilder.append(String.join(DELIMITER, winnersDto.getWinnersName()));
         stringBuilder.append(WINNER);
         OutputView.printMessage(stringBuilder.toString());
     }
