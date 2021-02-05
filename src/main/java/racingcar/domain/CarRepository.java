@@ -1,15 +1,12 @@
-package racingcar;
-
-import static racingcar.GoForwardOrStopUtils.MIN_GO_FORWARD_VALUE;
-import static racingcar.RandomNumbersGeneratorUtils.MAX_RANDOM_NUMBER;
-import static racingcar.RandomNumbersGeneratorUtils.MIN_RANDOM_NUMBER;
-
-import racingcar.output.OutputPrinter;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.output.printer.OutputPrinter;
+import racingcar.utils.GoForwardOrStopUtils;
+import racingcar.utils.randomnumber.RandomNumbersGeneratorUtils;
 
 public class CarRepository {
     private static final List<Car> cars = new ArrayList<>();

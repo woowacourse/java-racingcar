@@ -1,13 +1,14 @@
-package racingcar;
+package racingcar.utils;
 
 
-import static racingcar.GoForwardOrStopUtils.MIN_GO_FORWARD_VALUE;
-import static racingcar.RandomNumbersGeneratorUtils.MAX_RANDOM_NUMBER;
-import static racingcar.RandomNumbersGeneratorUtils.MIN_RANDOM_NUMBER;
+import static racingcar.utils.GoForwardOrStopUtils.MIN_GO_FORWARD_VALUE;
+import static racingcar.utils.randomnumber.RandomNumbersGeneratorUtils.MAX_RANDOM_NUMBER;
+import static racingcar.utils.randomnumber.RandomNumbersGeneratorUtils.MIN_RANDOM_NUMBER;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.utils.GoForwardOrStopUtils;
 
 class GoForwardOrStopUtilsTest {
 

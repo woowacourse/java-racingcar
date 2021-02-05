@@ -2,7 +2,7 @@ package racingcar.input.utils.carname;
 
 import java.util.List;
 import java.util.Scanner;
-import racingcar.input.InputPrinter;
+import racingcar.input.printer.InputPrinter;
 import racingcar.input.utils.carname.validators.CarNameFormatValidatorUtils;
 import racingcar.input.utils.carname.validators.CarNamesNotDuplicateValidatorUtils;
 import racingcar.input.utils.carname.validators.TwoOrMoreCarNamesValidatorUtils;

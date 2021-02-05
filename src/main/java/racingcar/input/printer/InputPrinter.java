@@ -1,4 +1,4 @@
-package racingcar.input;
+package racingcar.input.printer;
 
 public class InputPrinter {
 

@@ -1,11 +1,11 @@
-package racingcar.output;
+package racingcar.output.printer;
 
 import static racingcar.input.utils.carname.CarNamesSplitterUtils.CAR_NAMES_DELIMITER;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.Car;
-import racingcar.CarRepository;
+import racingcar.domain.Car;
+import racingcar.domain.CarRepository;
 
 public class OutputPrinter {
     private static final String NEW_LINE = "\n";
