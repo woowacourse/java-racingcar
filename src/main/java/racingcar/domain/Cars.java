@@ -8,6 +8,7 @@ import java.util.Random;
 import racingcar.view.OutputView;
 
 public class Cars {
+
     private List<Car> cars;
     private static final int BOUND = 10;
 
@@ -20,7 +21,7 @@ public class Cars {
     }
 
     public void move(Random random) {
-        for(Car car : cars) {
+        for (Car car : cars) {
             car.move(random.nextInt(BOUND));
             OutputView.printCarStateMessage(car.getName(), car.positionToString());
         }
@@ -35,5 +36,17 @@ public class Cars {
         }
         List<String> winners = carPositionHashMap.get(maxPosition);
         return getWinnerNames(winners);
+    }
+
+    private int findWinnerPosition(Car car, HashMap<Integer, List<String>> carPositionHashMap,
+        int maxPosition) {
+        if (!carPositionHashMap.containsKey(car.getPosition())) {
+            carPositionHashMap.put(car.getPosition(), new ArrayList<>());
+        }
+        carPositionHashMap.get(car.getPosition()).add(car.getName());
+        if (maxPosition < car.getPosition()) {
+            maxPosition = car.getPosition();
+        }
+        return maxPosition;
     }
 }
