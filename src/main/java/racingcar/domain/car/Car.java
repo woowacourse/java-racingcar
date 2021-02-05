@@ -1,6 +1,5 @@
 package racingcar.domain.car;
 
-import racingcar.domain.game.CarState;
 import racingcar.domain.rule.Condition;
 
 public class Car {
@@ -9,9 +8,9 @@ public class Car {
     private Condition moveCondition;
     private CarName name;
 
-    public Car(CarName name, Condition moveCondition) {
+    public Car(String name, Condition moveCondition) {
         this.moveCondition = moveCondition;
-        this.name = name;
+        this.name = new CarName(name);
     }
 
     public void move() {
