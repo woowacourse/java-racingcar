@@ -15,7 +15,7 @@ public class SetTest {
     private Set<Integer> numbers;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         numbers = new HashSet<>();
         numbers.add(1);
         numbers.add(2);
@@ -24,7 +24,7 @@ public class SetTest {
     }
 
     @Test
-    void checkSizeOfSet(){
+    void checkSizeOfSet() {
         assertThat(numbers.size()).isEqualTo(4);
     }
 
