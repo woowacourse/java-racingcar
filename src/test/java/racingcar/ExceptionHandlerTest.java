@@ -2,7 +2,6 @@ package racingcar;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -20,7 +19,6 @@ public class ExceptionHandlerTest {
         expected.add(new Car("소롱"));
 
         List<Car> actual = ExceptionHandler.setCars("루트,소롱");
-
         assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
 
@@ -43,7 +41,7 @@ public class ExceptionHandlerTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1,1", "2,2", "50,50","2147483647,2147483647"}, delimiter = ',')
+    @CsvSource(value = {"1,1", "2,2", "50,50", "2147483647,2147483647"}, delimiter = ',')
     void setTrial_정상입력(String input, Integer expected) {
         Integer actual = ExceptionHandler.setTrial(input);
         assertThat(actual).isEqualTo(expected);

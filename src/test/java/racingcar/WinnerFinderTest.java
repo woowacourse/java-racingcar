@@ -22,14 +22,11 @@ public class WinnerFinderTest {
 
     @Test
     void getWinnersTest_한명() {
-        Car firstCar = cars.get(0);
-        Car secondCar = cars.get(1);
-
-        firstCar.tryToMove(5);
-        secondCar.tryToMove(3);
+        cars.get(0).tryToMove(5);
+        cars.get(1).tryToMove(3);
 
         List<String> expected = new ArrayList<>();
-        expected.add(firstCar.getName());
+        expected.add(cars.get(0).getName());
 
         List<String> actual = winnerFinder.getWinners(cars);
         assertThat(actual).isEqualTo(expected);
@@ -37,14 +34,11 @@ public class WinnerFinderTest {
 
     @Test
     void getWinnersTest_두명_이상() {
-        Car firstCar = cars.get(0);
-        Car secondCar = cars.get(1);
-
-        firstCar.tryToMove(5);
-        secondCar.tryToMove(5);
+        cars.get(0).tryToMove(5);
+        cars.get(1).tryToMove(5);
 
         List<String> expected = new ArrayList<>();
-        for (Car car: cars) {
+        for (Car car : cars) {
             expected.add(car.getName());
         }
 
@@ -55,12 +49,11 @@ public class WinnerFinderTest {
     @Test
     void getWinnerTest_모두_움직이지_않음() {
         List<String> expected = new ArrayList<>();
-        for (Car car: cars) {
+        for (Car car : cars) {
             expected.add(car.getName());
         }
 
         List<String> actual = winnerFinder.getWinners(cars);
-
         assertThat(actual).isEqualTo(expected);
     }
 }

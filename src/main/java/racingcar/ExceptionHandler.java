@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ExceptionHandler {
+
     private static final String NAME_SPLIT_DELIMITER = ",";
     private static final Integer MIN_TRIAL = 1;
     private static final Integer MAX_TRIAL = Integer.MAX_VALUE;
@@ -46,20 +46,22 @@ public class ExceptionHandler {
             Integer trial = Integer.parseInt(input);
             return validateBound(trial);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자는 " + MIN_TRIAL + "이상 " + MAX_TRIAL + "이하여야 합니다.");
+            throw new IllegalArgumentException(
+                "숫자는 " + MIN_TRIAL + "이상 " + MAX_TRIAL + "이하여야 합니다.");
         }
     }
 
     private static void validateNumber(String input) {
         String numberPattern = "[0-9]+";
-        if(!Pattern.matches(numberPattern, input)) {
+        if (!Pattern.matches(numberPattern, input)) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
         }
     }
 
     private static int validateBound(Integer trial) {
         if (trial < MIN_TRIAL) {
-            throw new IllegalArgumentException("숫자는 " + MIN_TRIAL + "이상 " + MAX_TRIAL + "이하여야 합니다.");
+            throw new IllegalArgumentException(
+                "숫자는 " + MIN_TRIAL + "이상 " + MAX_TRIAL + "이하여야 합니다.");
         }
         return trial;
     }

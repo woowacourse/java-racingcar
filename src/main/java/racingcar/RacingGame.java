@@ -1,16 +1,15 @@
 package racingcar;
 
-import java.util.ArrayList;
 import java.util.List;
 import utils.RandomUtils;
 
 public class RacingGame {
+
     private static final int MINIMUM_RANDOM_RPM = 0;
     private static final int MAXIMUM_RANDOM_RPM = 9;
 
     private List<Car> cars;
     private int trial;
-
 
     public void race() {
         prepareCars();

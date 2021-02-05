@@ -12,18 +12,17 @@ public class RacingGameView {
     private static final String WINNERS_MESSAGE_FORMAT = "%s가 최종 우승했습니다.%n";
     private static final String LIST_SEPARATOR = ", ";
     private static final String MOVEMENT = "-";
-
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public static String requestCars() {
         System.out.println(START_MESSAGE);
-        String result = scanner.nextLine();
+        String result = SCANNER.nextLine();
         return result;
     }
 
     public static String requestTrial() {
         System.out.println(TRIAL_MESSAGE);
-        String result = scanner.nextLine();
+        String result = SCANNER.nextLine();
         return result;
     }
 
@@ -33,7 +32,7 @@ public class RacingGameView {
 
     public static void printCarPosition(Car car) {
         String movement = "";
-        for (int p=0; p<car.getPosition(); p++){
+        for (int p = 0; p < car.getPosition(); p++) {
             movement = movement.concat(MOVEMENT);
         }
         System.out.printf(CAR_SITUATION_MESSAGE_FORMAT, car.getName(), movement);

@@ -1,8 +1,7 @@
 package racingcar;
 
-import utils.RandomUtils;
-
 public class Car {
+
     private static final int MOVABLE_MINIMUM_RPM = 3;
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
@@ -38,7 +37,8 @@ public class Car {
 
     private void isValidCarName(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
-            throw new IllegalArgumentException("자동차 이름은 " + MIN_NAME_LENGTH + "자 이상 " + MAX_NAME_LENGTH + "자 이하로 입력해주세요.");
+            throw new IllegalArgumentException(
+                "자동차 이름은 " + MIN_NAME_LENGTH + "자 이상 " + MAX_NAME_LENGTH + "자 이하로 입력해주세요.");
         }
     }
 }
