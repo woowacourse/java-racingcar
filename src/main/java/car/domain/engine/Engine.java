@@ -1,4 +1,4 @@
-package car;
+package car.domain.engine;
 
 public interface Engine {
     
@@ -9,11 +9,11 @@ public interface Engine {
     class Fake implements Engine {
         
         private final int condition;
-    
+        
         public Fake(int condition) {
             this.condition = condition;
         }
-    
+        
         @Override
         public boolean isEnoughFuel() {
             return condition >= MOVE_CONDITION;

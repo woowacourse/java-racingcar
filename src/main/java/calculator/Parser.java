@@ -3,7 +3,7 @@ package calculator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Parser {
+class Parser {
     
     private static final Pattern PATTERN = Pattern.compile("//(.)\n(.*)");
     

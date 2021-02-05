@@ -1,8 +1,8 @@
-package car;
+package car.domain.engine;
 
 import java.util.Random;
 
-public class RacingEngine implements Engine {
+public final class RacingEngine implements Engine {
     
     private static final int RANDOM_UPPER_BOUND = 10;
     

@@ -1,9 +1,9 @@
-package car;
+package car.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
     
@@ -40,20 +40,5 @@ class CarTest {
         
         // then
         assertThat(car).isEqualTo(didNotMoveCar);
-    }
-    
-    @Test
-    void carNameTest() {
-        assertThatCode(() -> ValidCheck.carNameValid("a,b,c,d124,e")).doesNotThrowAnyException();
-        
-        assertThatThrownBy(() -> ValidCheck.carNameValid("a,b,c,d1 24,e")).isInstanceOf(IllegalArgumentException.class);
-    }
-    
-    @Test
-    void roundTest() {
-        assertThatCode(() -> ValidCheck.round("15")).doesNotThrowAnyException();
-        
-        assertThatThrownBy(() -> ValidCheck.carNameValid(" ")).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> ValidCheck.carNameValid("0")).isInstanceOf(IllegalArgumentException.class);
     }
 }

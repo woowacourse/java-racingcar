@@ -1,8 +1,11 @@
-package car;
+package car.domain;
+
+import car.domain.engine.Engine;
+import car.domain.engine.RacingEngine;
 
 import java.util.Objects;
 
-public final class Car {
+final class Car {
     
     private static final int DEFAULT_POSITION = 0;
     
@@ -57,7 +60,7 @@ public final class Car {
         return Objects.hash(carName, position);
     }
     
-    public static class Builder {
+    static class Builder {
         
         private final Name carName;
         

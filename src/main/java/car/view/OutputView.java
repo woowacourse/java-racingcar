@@ -1,6 +1,9 @@
-package car;
+package car.view;
 
-public class OutputView {
+import car.domain.Score;
+import car.domain.ScoreBoard;
+
+public final class OutputView {
     
     private static final String MOVE_SYMBOL = "-";
     
@@ -12,16 +15,18 @@ public class OutputView {
     
     private static final String COLON = " : ";
     
-    private static final String ROUND_RESULT = "\n실행 결과";
+    private static final String RESULT_TITLE = "\n실행 결과";
     
-    public void printResult(ScoreBoard scoreBoard) {
-        System.out.println(ROUND_RESULT);
-
+    public void printResultTitle() {
+        System.out.println(RESULT_TITLE);
+    }
+    
+    public void printRoundResult(ScoreBoard scoreBoard) {
         for (Score score : scoreBoard.getScores()) {
             String movedDistance = repeatSymbol(score.getPosition());
             System.out.println(score.getName() + COLON + movedDistance);
         }
-
+        
         System.out.println();
     }
     

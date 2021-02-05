@@ -1,12 +1,16 @@
-package car;
+package car.domain;
 
 import java.util.Objects;
 
-public class Name {
+final class Name {
     
     private static final int NAME_RANGE = 5;
     
     private final String name;
+    
+    private Name(String name) {
+        this.name = name;
+    }
     
     public static Name from(String name) {
         if (!isOutOfBounds(name)) {
@@ -20,8 +24,8 @@ public class Name {
         return name.length() <= NAME_RANGE && !name.isEmpty();
     }
     
-    private Name(String name) {
-        this.name = name;
+    public String getName() {
+        return name;
     }
     
     @Override

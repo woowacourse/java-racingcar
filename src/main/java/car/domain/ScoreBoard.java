@@ -1,4 +1,4 @@
-package car;
+package car.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,9 +30,7 @@ public final class ScoreBoard {
     }
     
     public List<String> findWinners() {
-        int position = retrieveMaxPosition();
-        
-        return getWinners(position);
+        return getWinners(retrieveMaxPosition());
     }
     
     private List<String> getWinners(int maxPosition) {

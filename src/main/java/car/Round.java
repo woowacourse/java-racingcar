@@ -1,6 +1,6 @@
-package car.domain;
+package car;
 
-public class Round {
+public final class Round {
     
     private final int round;
     

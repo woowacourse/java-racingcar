@@ -1,12 +1,11 @@
 package car;
 
 import car.domain.Cars;
-import car.domain.Round;
 import car.domain.ScoreBoard;
 import car.view.InputView;
 import car.view.OutputView;
 
-public class GameController {
+public final class GameController {
     
     private final InputView inputView;
     

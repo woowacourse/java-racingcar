@@ -1,6 +1,6 @@
-package car;
+package car.domain;
 
-public class Score {
+public final class Score {
     
     private final String name;
     

@@ -1,6 +1,6 @@
 package calculator;
 
-public class ZeroAndPositiveNumber {
+class ZeroAndPositiveNumber {
     
     private final int number;
     
