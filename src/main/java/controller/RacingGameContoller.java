@@ -14,16 +14,8 @@ public class RacingGameContoller {
     public static int trials;
 
     public static void start() {
-        while (true) {
-            if (initializeCars()) {
-                break;
-            }
-        }
-        while (true) {
-            if (getTrials()) {
-                break;
-            }
-        }
+        while (!initializeCars());
+        while (!getTrials());
     }
 
     public static boolean initializeCars() {
