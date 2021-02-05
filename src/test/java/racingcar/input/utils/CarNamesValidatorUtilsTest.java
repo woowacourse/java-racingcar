@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.exception.InvalidCarNameException;
 
 public class CarNamesValidatorUtilsTest {
 
@@ -17,7 +18,7 @@ public class CarNamesValidatorUtilsTest {
         inputCarNames.add("bbb1");
         inputCarNames.add("가나다1");
         inputCarNames.add("aaa1");
-        assertTrue(CarNamesValidatorUtils.isAllValidCarNames(inputCarNames));
+        assertDoesNotThrow(() -> CarNamesValidatorUtils.isAllValidCarNames(inputCarNames));
     }
 
     @DisplayName("5자 초과의 이름인 자동차가 있으면 false 반환")
@@ -28,7 +29,8 @@ public class CarNamesValidatorUtilsTest {
         inputCarNames.add("bbb111");
         inputCarNames.add("가나다1");
         inputCarNames.add("aaa1");
-        assertFalse(CarNamesValidatorUtils.isAllValidCarNames(inputCarNames));
+        assertThrows(InvalidCarNameException.class,
+            () -> CarNamesValidatorUtils.isAllValidCarNames(inputCarNames));
     }
 
     @DisplayName("빈 문자열의 이름인 자동차가 있으면 false 반환")
@@ -38,7 +40,8 @@ public class CarNamesValidatorUtilsTest {
         inputCarNames.add("aaa");
         inputCarNames.add("");
         inputCarNames.add("ccc");
-        assertFalse(CarNamesValidatorUtils.isAllValidCarNames(inputCarNames));
+        assertThrows(InvalidCarNameException.class,
+            () -> CarNamesValidatorUtils.isAllValidCarNames(inputCarNames));
     }
 
     @DisplayName("공백 문자가 포함되어있는 이름인 자동차가 있으면 false 반환")
@@ -48,6 +51,7 @@ public class CarNamesValidatorUtilsTest {
         inputCarNames.add("aaa");
         inputCarNames.add("b b");
         inputCarNames.add("ccc");
-        assertFalse(CarNamesValidatorUtils.isAllValidCarNames(inputCarNames));
+        assertThrows(InvalidCarNameException.class,
+            () -> CarNamesValidatorUtils.isAllValidCarNames(inputCarNames));
     }
 }
