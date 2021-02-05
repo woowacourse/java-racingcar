@@ -14,7 +14,7 @@ public class MoveCountInputTest {
     @ValueSource(strings = {"a","b", "|", "★", " ", "  ", "          "})
     public void 이동횟수가_숫자가_아닐_경우_예외(String input) {
         assertThatExceptionOfType(CarMoveCountNonNumericException.class)
-                .isThrownBy(() -> new MoveCountInput(input))
+                .isThrownBy(() -> MoveCountInput.valueOf(input))
                 .withMessageContaining(new CarMoveCountNonNumericException().getMessage());
     }
 
@@ -23,7 +23,7 @@ public class MoveCountInputTest {
     @ValueSource(strings = {"-1","-4", "-3"})
     public void 이동횟수가_양의_정수가_아닐_경우_예외(String input) {
         assertThatExceptionOfType(CarMoveCountNegativeException.class)
-                .isThrownBy(() -> new MoveCountInput(input))
+                .isThrownBy(() -> MoveCountInput.valueOf(input))
                 .withMessageContaining(new CarMoveCountNegativeException().getMessage());
     }
 }

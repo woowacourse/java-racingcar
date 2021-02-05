@@ -23,8 +23,8 @@ public class GameResultTest {
     @DisplayName("우승자가 여러명일 경우 쉼표로 구분하여 출력한다")
     @MethodSource("provideInputsFor_우승자가_여러명일_경우_쉼표로_구분하여_출력한다")
     public void 우승자가_여러명일_경우_쉼표로_구분하여_출력한다(List<CarName> input, String expected) {
-        GameResult gameResult = GameResult.valueOf(input);
-        assertEquals(expected, gameResult.toString());
+        GameResult gameResult = GameResult.valueOf(input, null);
+        assertEquals(expected, gameResult.getWinnersString());
     }
 
 
@@ -32,8 +32,8 @@ public class GameResultTest {
     @DisplayName("우승자가_여러명일_경우_오른차순으로_정렬_후_출력한다")
     @MethodSource("provideInputsFor_우승자가_여러명일_경우_오른차순으로_정렬_후_출력한다")
     public void 우승자가_여러명일_경우_오른차순으로_정렬_후_출력한다(List<CarName> input, String expected) {
-        GameResult gameResult = GameResult.valueOf(input);
-        assertEquals(expected, gameResult.toString());
+        GameResult gameResult = GameResult.valueOf(input, null);
+        assertEquals(expected, gameResult.getWinnersString());
     }
 
 

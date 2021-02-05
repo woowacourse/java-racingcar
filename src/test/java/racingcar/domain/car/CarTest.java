@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racingcar.domain.game.CarState;
 import racingcar.domain.rule.Condition;
 
 import java.util.Arrays;
@@ -18,7 +17,7 @@ public class CarTest {
     public void move_랜덤_값이_4_이상일_경우_전진하고_3_이하의_값이면_멈춘다(String input, int expected) {
         int[] inputs = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
 
-        Car car = new Car(new CarName("포비"), new Condition() {
+        Car car = new Car("포비", new Condition() {
             private int[] randomNumbers = inputs;
             private int index = 0;
 
@@ -50,7 +49,7 @@ public class CarTest {
     }
 
     private Car createCarForGetState_자동차의_현재_상태를_출력(String name, int position) {
-        Car car = new Car(new CarName(name), () -> true);
+        Car car = new Car(name, () -> true);
 
         for (int i = 0; i < position; i++) {
             car.move();
