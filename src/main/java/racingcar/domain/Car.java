@@ -1,5 +1,11 @@
 package racingcar.domain;
 
+/**
+ * Car.java
+ * 자동차 클래스
+ *
+ * @author Kimun Kim, github.com/tributetothemoon
+ */
 public class Car implements Comparable<Car> {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String ERROR_MAX_NAME_LENGTH = "자동차 이름의 길이는 " + MAX_NAME_LENGTH + "자를 초과할 수 없습니다.";

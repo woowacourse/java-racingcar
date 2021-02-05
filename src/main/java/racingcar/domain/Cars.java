@@ -3,6 +3,12 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Cars.java
+ * 자동차 객체들을 담는 일급 컬렉션
+ *
+ * @author Kimun Kim, github.com/tributetothemoon
+ */
 public class Cars {
     private static final int MIN_SIZE = 2;
     private static final String ERROR_MIN_SIZE = "최소 " + MIN_SIZE + "대 이상의 이름을 입력하세요.";

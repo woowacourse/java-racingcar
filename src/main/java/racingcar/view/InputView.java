@@ -5,6 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * InputView.java
+ * 입력과 출력이 섞인 로직을 담당하는 View 클래스
+ *
+ * @author Kimun Kim / kkm97351@gmail.com
+ */
 public class InputView {
     private static final String MSG_ASK_CAR_NAMES = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
     private static final String ERROR_NONE_INPUT_VALUE = "입력값이 없습니다.";
