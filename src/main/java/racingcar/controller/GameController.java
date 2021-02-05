@@ -9,16 +9,14 @@ import racingcar.view.OutputView;
 public class GameController {
 
     private InputView inputView;
-    private static String[] cars;
-    private static int numOfRacingRound;
 
     public GameController(Scanner scanner) {
         inputView = new InputView(scanner);
     }
 
     public void play() {
-        inputCarNames();
-        inputRacingRound();
+        String[] cars = inputCarNames();
+        int numOfRacingRound = inputRacingRound();
 
         OutputView.printRaceResultMessage();
         RacingGame racingGame = new RacingGame(cars, numOfRacingRound);
@@ -29,24 +27,25 @@ public class GameController {
         OutputView.printWinners(racingGame.getWinners());
     }
 
-    private void inputRacingRound() {
+    private int inputRacingRound() {
         try {
             OutputView.printInputNumOfRoundMessage();
-            numOfRacingRound = ValidateUtils.validateRacingRoundCount(inputView.inputValue());
+            return ValidateUtils.validateRacingRoundCount(inputView.inputValue());
         } catch (RuntimeException e) {
             OutputView.printExceptionMessage(e);
-            inputRacingRound();
+            return inputRacingRound();
         }
     }
 
-    private void inputCarNames() {
+    private String[] inputCarNames() {
         try {
             OutputView.printInputCarNameMessage();
-            cars = inputView.inputCarNames();
+            String[] cars = inputView.inputCarNames();
             ValidateUtils.validateCarNames(cars);
+            return cars;
         } catch (RuntimeException e) {
             OutputView.printExceptionMessage(e);
-            inputCarNames();
+            return inputCarNames();
         }
     }
 }
