@@ -42,4 +42,9 @@ public class RacingGameView {
     public static void printNewLine() {
         System.out.println();
     }
+
+    public static void printWinners(List<String> winners) {
+        String winnerNames = String.join(LIST_SEPARATOR, winners);
+        System.out.printf(WINNERS_MESSAGE_FORMAT, winnerNames);
+    }
 }

@@ -10,13 +10,13 @@ public class RacingGame {
 
     private List<Car> cars;
     private int trial;
-    private List<String> winners = new ArrayList<>();
-    private int maxPosition = -1;
+
 
     public void race() {
         prepareCars();
         prepareTrial();
         play();
+        finish();
     }
 
     private void prepareCars() {
@@ -48,5 +48,10 @@ public class RacingGame {
             RacingGameView.printCarPosition(car);
         }
         RacingGameView.printNewLine();
+    }
+
+    private void finish() {
+        WinnerFinder winnerFinder = new WinnerFinder();
+        RacingGameView.printWinners(winnerFinder.getWinners(cars));
     }
 }
