@@ -19,6 +19,7 @@ public class Cars {
         List<Car> cars = new ArrayList<>();
         carNames.stream()
                 .map(Car::from)
+                .filter(car -> isNotAlreadyExistOrThrowException(cars, car))
                 .forEach(cars::add);
         return new Cars(cars);
     }
@@ -27,5 +28,12 @@ public class Cars {
         if (carNames.size() < MIN_SIZE) {
             throw new IllegalArgumentException(ERROR_MIN_SIZE);
         }
+    }
+
+    private static boolean isNotAlreadyExistOrThrowException(List<Car> destination, Car car) {
+        if (destination.contains(car)) {
+            throw new IllegalArgumentException("자동차 이름이 중복됩니다.");
+        }
+        return true;
     }
 }

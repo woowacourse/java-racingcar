@@ -16,4 +16,12 @@ public class CarsTest {
 
         assertThatThrownBy(() -> Cars.of(cars)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("Cars 생성 메소드 - 중복된 자동차 이름에 의한 예외 발생 테스트")
+    @Test
+    public void duplicatedCarNamesExceptionTest() {
+        List<String> cars = Arrays.asList("car", "car");
+
+        assertThatThrownBy(() -> Cars.of(cars)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
