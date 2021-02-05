@@ -15,7 +15,6 @@ class CarsTest {
     @Test
     void Cars_잘못된_이름이_포함된_문자열_받으면_예외가_발생한다() {
         String carNames = "pobi,bro.wn,";
-
         assertThatCode(() -> {
             Cars.generate(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
@@ -24,7 +23,6 @@ class CarsTest {
     @Test
     void Cars_1명인_경우_예외가_발생한다() {
         String carNames = "pobi";
-
         assertThatCode(() -> {
             Cars.generate(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
