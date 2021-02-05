@@ -1,7 +1,7 @@
-package racingCar.utils;
+package racingcar.utils;
 
-import racingCar.exception.InvalidCarNameException;
-import racingCar.exception.InvalidNumOfMoveException;
+import racingcar.exception.InvalidCarNameException;
+import racingcar.exception.InvalidNumOfMoveException;
 
 public class ValidateUtils {
 

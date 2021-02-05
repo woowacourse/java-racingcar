@@ -1,10 +1,10 @@
-package racingCar.domain;
+package racingcar.domain;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingCar.domain.Engine.Engine;
-import racingCar.domain.Engine.RandomEngine;
+import racingcar.domain.Engine.Engine;
+import racingcar.domain.Engine.RandomEngine;
 
 public class RacingGame {
 

@@ -1,6 +1,6 @@
-package racingCar.domain.Engine;
+package racingcar.domain.Engine;
 
-import racingCar.utils.RandomUtils;
+import racingcar.utils.RandomUtils;
 
 public class RandomEngine implements Engine {
 

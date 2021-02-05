@@ -1,6 +1,6 @@
-package racingCar.domain;
+package racingcar.domain;
 
-import racingCar.domain.Engine.Engine;
+import racingcar.domain.Engine.Engine;
 
 public class Car {
 

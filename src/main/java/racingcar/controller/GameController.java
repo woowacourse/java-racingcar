@@ -1,10 +1,10 @@
-package racingCar.controller;
+package racingcar.controller;
 
 import java.util.Scanner;
-import racingCar.domain.RacingGame;
-import racingCar.utils.ValidateUtils;
-import racingCar.view.InputView;
-import racingCar.view.OutputView;
+import racingcar.domain.RacingGame;
+import racingcar.utils.ValidateUtils;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class GameController {
 
