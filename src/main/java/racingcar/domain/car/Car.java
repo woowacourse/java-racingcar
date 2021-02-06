@@ -1,13 +1,13 @@
 package racingcar.domain.car;
 
-import racingcar.domain.rule.Condition;
+import racingcar.domain.rule.MoveCondition;
 
 public class Car {
     private int position;
-    private Condition moveCondition;
+    private MoveCondition moveCondition;
     private CarName name;
 
-    public Car(String name, Condition moveCondition) {
+    public Car(String name, MoveCondition moveCondition) {
         this.moveCondition = moveCondition;
         this.name = new CarName(name);
     }
