@@ -16,6 +16,10 @@ public class OutputView {
         System.out.print(ENTER_TRIAL_NUMBER);
     }
 
+    public static void printErrorMessage(final String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public static void printOutputMessage() {
         System.out.println(OUTPUT_MESSAGE);
     }

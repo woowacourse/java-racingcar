@@ -12,6 +12,7 @@ public class InputView {
             String[] carNames = userInput.split(",");
             return makeCars(carNames);
         } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
             return getUserCarInput(scanner);
         }
     }
@@ -26,6 +27,7 @@ public class InputView {
         try {
             return Integer.parseInt(userInput); //정규식도입? 예외처리?
         } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
             return getUserTrialNumberInput(scanner);
         }
     }
