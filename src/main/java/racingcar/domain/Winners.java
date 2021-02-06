@@ -5,28 +5,31 @@ import java.util.List;
 import racingcar.domain.car.Car;
 
 public class Winners {
+
     private Winners() {
     }
 
-    public static List<String> makeWinners(List<Car> cars) {
-        int winnerPosition = 0;
+    public static List<String> award(final List<Car> cars) {
+        int maxPosition = 0;
         List<String> winners = new ArrayList<>();
 
         for (Car car : cars) {
-            winnerPosition = makeWinnerPosition(winners, winnerPosition, car);
+            maxPosition = renewMaxPosition(maxPosition, winners, car);
         }
+
         return winners;
     }
 
-    private static int makeWinnerPosition(List<String> winners, int winnerPosition, Car car) {
-        if (car.getPosition().length() < winnerPosition) {
-            return winnerPosition;
+    private static int renewMaxPosition(int maxPosition, final List<String> winners, final Car car) {
+        if (car.getPosition().length() < maxPosition) {
+            return maxPosition;
         }
-        if (car.getPosition().length() > winnerPosition) {
+        if (car.getPosition().length() > maxPosition) {
             winners.clear();
-            winnerPosition = car.getPosition().length();
+            maxPosition = car.getPosition().length();
         }
         winners.add(car.getName());
-        return winnerPosition;
+        return maxPosition;
     }
+
 }

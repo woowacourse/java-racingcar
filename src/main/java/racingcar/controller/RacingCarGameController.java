@@ -1,9 +1,9 @@
 package racingcar.controller;
 
-import racingcar.domain.*;
+import racingcar.domain.Lap;
+import racingcar.domain.Winners;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
-import racingcar.utils.RandomNumber;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -13,22 +13,22 @@ public class RacingCarGameController {
         Lap lap = new Lap(InputView.inputLap());
 
         race(cars, lap);
-        OutputView.printWinners(Winners.makeWinners(cars.getCars()));
+        OutputView.printWinners(Winners.award(cars.getCars()));
     }
 
     private void race(Cars cars, Lap lap) {
         OutputView.printOneLine();
         OutputView.printStartRace();
-        while (!lap.isFinishAll()) {
+        while (!lap.isFinish()) {
             raceOneLap(cars);
             OutputView.printOneLine();
-            lap.finishOneLap();
+            lap.passOneLap();
         }
     }
 
     private void raceOneLap(Cars cars) {
         for (Car car : cars.getCars()) {
-            car.moveByRandomNumber(RandomNumber.make());
+            car.forward();
             OutputView.printCarInfo(car.getName(), car.getPosition());
         }
     }

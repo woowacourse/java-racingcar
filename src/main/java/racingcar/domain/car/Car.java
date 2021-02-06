@@ -25,4 +25,5 @@ public class Car {
     public String getPosition() {
         return position.toString();
     }
+
 }

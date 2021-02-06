@@ -18,7 +18,7 @@ public class Cars {
         this.cars = validateDuplicate(inputNames);
     }
 
-    private void validateNull(String inputNames) {
+    private void validateNull(final String inputNames) {
         if (inputNames == null) {
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }
