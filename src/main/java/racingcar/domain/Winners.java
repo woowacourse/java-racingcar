@@ -11,10 +11,10 @@ public class Winners {
     private static List<Car> winners = new ArrayList<>();
     private static int winnerPosition;
 
-    public static void setWinners(List<Car> cars) {
+    public static void allocateWinners(List<Car> cars) {
         setWinnerPosition(cars);
         for (Car car : cars) {
-            setWinner(car);
+            allocateWinner(car);
         }
     }
 
@@ -29,8 +29,8 @@ public class Winners {
         }
     }
 
-    private static void setWinner(Car car) {
-        if (car.getPosition() == winnerPosition) {
+    private static void allocateWinner(Car car) {
+        if (car.isMaxPosition(winnerPosition)) {
             winners.add(car);
         }
     }
