@@ -20,20 +20,20 @@ public class RacingCar {
         progressTryCount(tryCount, gameRule);
     }
 
-    private static void progressTryCount(TryCount tryCount, GameRule gameRule) {
+    private static void progressTryCount(final TryCount tryCount, final GameRule gameRule) {
         for (int i = 0; i < tryCount.getCount(); i++) {
             progressRacing(gameRule);
             RacingCarView.printProgressResult(Cars.getCars());
         }
     }
 
-    private static void progressRacing(GameRule gameRule) {
+    private static void progressRacing(final GameRule gameRule) {
         for (Car car : Cars.getCars()) {
             moveMovableCar(car, gameRule);
         }
     }
 
-    private static void moveMovableCar(Car car, GameRule gameRule) {
+    private static void moveMovableCar(final Car car, final GameRule gameRule) {
         CarController carController = new CarController(car);
         RandomNumber randomNumber = new RandomNumber();
         if (gameRule.isMoveNumber(randomNumber.getNumber())) {
