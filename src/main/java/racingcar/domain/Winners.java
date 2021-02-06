@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,28 +9,26 @@ public class Winners {
     private Winners() {
     }
 
-    private static List<Car> winners = new ArrayList<>();
+    private static final List<Car> winners = new ArrayList<>();
     private static int winnerPosition;
 
-    public static void setWinners(List<Car> cars) {
-        setWinnerPosition(cars);
-        for (Car car : cars) {
+    public static void setWinners() {
+        winnerPosition = getWinnerPosition();
+        for (Car car : Cars.getCars()) {
             setWinner(car);
         }
     }
 
     public static List<String> getWinnersNames() {
-        return winners.stream()
-                .map(Car::getName).collect(Collectors.toList());
+        return Collections.unmodifiableList(winners.stream()
+                .map(Car::getName).collect(Collectors.toList()));
     }
 
-    private static void setWinnerPosition(List<Car> cars) {
-        for (Car car : cars) {
-            winnerPosition = Math.max(winnerPosition, car.getPosition());
-        }
+    private static int getWinnerPosition() {
+        return Cars.getMaxPositionByCars();
     }
 
-    private static void setWinner(Car car) {
+    private static void setWinner(final Car car) {
         if (car.isWinnerPosition(winnerPosition)) {
             winners.add(car);
         }
