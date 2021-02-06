@@ -6,8 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.constant.Digit;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
     @DisplayName("정상적인 이름인 경우 객체 생성 성공")
@@ -29,5 +28,20 @@ class CarTest {
             new Car(SHORT_CAR_NAME);
             new Car(LONG_CAR_NAME);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("자동차 전진 성공")
+    @Test
+    public void moveCar() {
+        final int MOVEMENT = 10;
+
+        Car car = new Car("pobi");
+
+        for (int i = 0; i < MOVEMENT; i++) {
+            car.move();
+        }
+
+        assertThat(car.getPosition())
+                .isEqualTo(MOVEMENT);
     }
 }

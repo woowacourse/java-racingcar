@@ -5,7 +5,7 @@ import racingcar.constant.Message;
 
 public class Car {
     private final String name;
-    private final int position;
+    private int position;
 
     public Car(String name) {
         this(name, Digit.START_POSITION.getDigit());
@@ -22,5 +22,13 @@ public class Car {
                 || (name.length() > Digit.MAXIMUM_CAR_NAME_LENGTH.getDigit())) {
             throw new IllegalArgumentException(Message.CAR_NAME_LENGTH_ERROR.toString());
         }
+    }
+
+    public void move() {
+        position++;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
