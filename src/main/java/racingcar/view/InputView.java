@@ -26,16 +26,21 @@ public class InputView {
     }
 
     public static TryNumber inputTryNumber(Scanner scanner) {
-        System.out.println(PLEASE_INPUT_TRY_NUMBER_MESSAGE);
-        String input = scanner.nextLine();
+        String input = inputTryNumberValue(scanner);
         try {
             validateTryNumber(input);
-
             return new TryNumber(Integer.parseInt(input));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputTryNumber(scanner);
         }
+    }
+
+    private static String inputTryNumberValue(Scanner scanner) {
+        System.out.println(PLEASE_INPUT_TRY_NUMBER_MESSAGE);
+        String input = scanner.nextLine();
+        System.out.println();
+        return input;
     }
 
     private static void validateTryNumber(String input) {
