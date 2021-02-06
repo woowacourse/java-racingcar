@@ -4,18 +4,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RacingGameMachineTest {
     private static final Cars DUMMY_CARS = Cars.generate("pobi,brown");
 
     @Test
-    void Machine_tryCounts가_줄어든다() {
-        int tryCounts = 1;
+    void Machine_Cars_객체와_tryCounts를_입력받으면_게임이_시작된다() {
+        int tryCounts = 3;
         RacingGameMachine racingGameMachine = new RacingGameMachine(DUMMY_CARS, tryCounts);
-        racingGameMachine.play();
-        assertThat(racingGameMachine.canPlay()).isFalse();
+        assertThatCode(() -> racingGameMachine.play())
+                .doesNotThrowAnyException();
     }
 
     @ParameterizedTest

@@ -37,10 +37,6 @@ public class RacingGameMachine {
         gameScreen.showWinners(new WinnersDto(winners.getWinnersName()));
     }
 
-    public boolean canPlay() {
-        return tryCounts > ZERO;
-    }
-
     private List<CarDto> getCarDtos() {
         return cars.getCars().stream()
                 .map(car -> CarDto.of(car))
