@@ -2,20 +2,20 @@ package car.domain;
 
 public final class Score {
     
-    private final String name;
+    private final Name name;
     
-    private final int position;
+    private final Position position;
     
-    public Score(String name, int position) {
+    public Score(Name name, Position position) {
         this.name = name;
         this.position = position;
     }
     
     public String getName() {
-        return name;
+        return name.getName();
     }
     
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 }
