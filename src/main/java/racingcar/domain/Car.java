@@ -18,6 +18,10 @@ public class Car {
         }
     }
 
+    public boolean isSamePosition(int thatPosition){
+        return this.position == thatPosition;
+    }
+
     private boolean isMovable(int number) {
         return number >= MOVABLE_VALUE;
     }

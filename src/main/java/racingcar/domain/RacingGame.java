@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.dto.CarsResponseDto;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,12 +22,12 @@ public class RacingGame {
         round++;
     }
 
-    public CarsResponseDto findWinners() {
+    public Cars findWinners() {
         return cars.findWinners();
     }
 
-    public CarsResponseDto getCarsResponseDto() {
-        return new CarsResponseDto(cars.getCars());
+    public Cars getCars() {
+        return cars;
     }
 
     public int getRound() {

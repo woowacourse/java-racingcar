@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.dto.CarsResponseDto;
 import racingcar.utils.RandomGenerator;
 
 import java.util.Collections;
@@ -23,10 +22,10 @@ public class Cars {
         cars.forEach(car -> car.move(RandomGenerator.generateRandomNumber()));
     }
 
-    public CarsResponseDto findWinners() {
+    public Cars findWinners() {
         int maxPosition = getMaxPosition();
-        return new CarsResponseDto(cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+        return new Cars(cars.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList()));
     }
 

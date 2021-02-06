@@ -1,12 +1,11 @@
 package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.dto.CarResponseDto;
-import racingcar.dto.CarsResponseDto;
+import racingcar.dto.CarDto;
+import racingcar.dto.CarsDto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,11 +20,11 @@ class CarsTest {
     @MethodSource("provideRaceWinnerCases")
     void findWinners_우승자_올바르게_가려내는지(List<Car> racedCars, List<String> expectedWinnerNames) {
         Cars cars = new Cars(racedCars);
-        CarsResponseDto winnersDto = cars.findWinners();
+        Cars winnersDto = cars.findWinners();
         List<String> winnerNames = winnersDto
-                .getCarResponseDtoList()
+                .getCars()
                 .stream()
-                .map(CarResponseDto::getName)
+                .map(Car::getName)
                 .collect(Collectors.toList());
         assertThat(winnerNames).isEqualTo(expectedWinnerNames);
     }
