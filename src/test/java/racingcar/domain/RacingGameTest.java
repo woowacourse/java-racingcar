@@ -23,7 +23,7 @@ class RacingGameTest {
     void 자동차_생성되는지() {
         CarsResponseDto cars = racingGame.cars.getCarsResponseDto();
         for (int i = 0; i < testCases.size(); i++) {
-            assertThat(cars.getCarResponseDtoList().get(i).getName()).isEqualTo(testCases.get(i));
+            assertThat(cars.getCarsResponseDto().get(i).getName()).isEqualTo(testCases.get(i));
         }
     }
 

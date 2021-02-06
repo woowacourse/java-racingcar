@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     public static void printLeaderBoard(CarsResponseDto carsResponseDto) {
-        for (CarResponseDto car : carsResponseDto.getCarResponseDtoList()) {
+        for (CarResponseDto car : carsResponseDto.getCarsResponseDto()) {
             String positionStick = makeStick(car);
             System.out.printf(LEADER_BOARD_DATA_FORMAT, car.getName(), positionStick);
         }
@@ -37,7 +37,7 @@ public class OutputView {
 
     public static void announceWinners(CarsResponseDto carsResponseDto) {
         System.out.println(carsResponseDto
-                .getCarResponseDtoList()
+                .getCarsResponseDto()
                 .stream()
                 .map(CarResponseDto::getName)
                 .collect(Collectors.joining(COMMA_AND_BLANK)).concat("가 최종 우승했습니다."));

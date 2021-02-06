@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -25,8 +24,10 @@ class CarsTest {
         Cars cars = proceedRaceAccordingToWinnerNames(new Cars(carNames), expectedWinnerNames);
         CarsResponseDto winnersDto = Cars.getCarsResponseDto(cars.findWinners());
 
+        //TODO
+        // WinnersDto 따로 만들어줘
         List<String> winnerNames = winnersDto
-                .getCarResponseDtoList()
+                .getCarsResponseDto()
                 .stream()
                 .map(CarResponseDto::getName)
                 .collect(Collectors.toList());
