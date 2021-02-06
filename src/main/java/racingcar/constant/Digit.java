@@ -5,7 +5,10 @@ public enum Digit {
     TIMES_LIMITATION((int) 1e8),
     MINIMUM_CAR_NAME_LENGTH(1),
     MAXIMUM_CAR_NAME_LENGTH(5),
-    START_POSITION(0);
+    START_POSITION(0),
+    MINIMUM_RANDOM_VALUE(0),
+    MAXIMUM_RANDOM_VALUE(9),
+    MOVEMENT_CRITERION(4);
 
     private final int digit;
 
