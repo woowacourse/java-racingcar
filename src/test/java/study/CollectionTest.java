@@ -26,8 +26,6 @@ public class CollectionTest {
         numbers.add(3);
     }
 
-    // Test Case 구현
-
     @DisplayName("Set 크기 확인")
     @Test
     void size() {
