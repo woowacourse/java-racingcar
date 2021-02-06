@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingCar.domain.Engine.Engine;
 import racingCar.domain.Engine.RandomEngine;
+import racingCar.exception.NoWinnerException;
 
 public class RacingGame {
 
+    public static final String ERROR_MESSAGE_NO_WINNER = "우승자가 존재하지 않습니다.";
+    public static final String DELIMITER = ",";
     private final List<Car> cars;
     private int numOfRacingRound;
 
@@ -45,7 +48,7 @@ public class RacingGame {
         return cars.stream()
             .filter(car -> car.isOn(max))
             .map(Car::getName)
-            .collect(Collectors.joining(","));
+            .collect(Collectors.joining(DELIMITER));
     }
 
     private int findMaxMove() {
@@ -54,6 +57,6 @@ public class RacingGame {
             .collect(Collectors.toList());
         return traces.stream()
             .max(Integer::compare)
-            .orElseThrow(() -> new RuntimeException("no Winner"));
+            .orElseThrow(() -> new NoWinnerException(ERROR_MESSAGE_NO_WINNER));
     }
 }
