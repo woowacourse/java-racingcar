@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import racingcar.exception.InvalidRacingTimeException;
+import racingcar.exception.InvalidRacingTimeTypeException;
 
 public class RacingTimeRegister {
 
@@ -13,9 +14,9 @@ public class RacingTimeRegister {
             validateRacingTimeZeroOrLess(racingTime);
 
             return racingTime;
-        } catch (Exception e) {
-            throw new InvalidRacingTimeException(
-                    "[ERROR] 레이스 횟수는 0이 될 수 없습니다.");
+        } catch (IllegalArgumentException e) {
+            throw new InvalidRacingTimeTypeException(
+                    "[ERROR] 레이스 횟수는 int 형 타입이어야 합니다.");
         }
     }
 
