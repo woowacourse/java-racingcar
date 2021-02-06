@@ -33,12 +33,12 @@ class RacingResultTest {
     String expectedLog = "pobi";
     List<Car> cars = participants.getCars();
     cars.get(0).fillInFulAndRun(Car.MIN_RUNNABLE_FUEL);
-    assertThat(racingResult.getWinner()).isEqualTo(expectedLog);
+    assertThat(racingResult.decideWinner()).isEqualTo(expectedLog);
   }
 
   @Test
   void getWinner_several_winner() {
     String expectedLog = "pobi, sp";
-    assertThat(racingResult.getWinner()).isEqualTo(expectedLog);
+    assertThat(racingResult.decideWinner()).isEqualTo(expectedLog);
   }
 }

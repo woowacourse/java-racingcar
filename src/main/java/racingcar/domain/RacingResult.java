@@ -32,7 +32,7 @@ public class RacingResult {
     return log.toString();
   }
 
-  public String getWinner() {
-    return participants.getWinner();
+  public String decideWinner() {
+    return participants.decideWinner();
   }
 }

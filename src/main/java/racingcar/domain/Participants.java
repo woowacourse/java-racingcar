@@ -24,7 +24,7 @@ public class Participants {
     return Collections.unmodifiableList(cars);
   }
 
-  public String getWinner() {
+  public String decideWinner() {
     int maxPosition = cars.stream()
         .mapToInt(Car::getPosition)
         .max()

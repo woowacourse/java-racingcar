@@ -17,6 +17,6 @@ public class Application {
 
     RacingResult racingResult = racingManager.start();
     OutputView.printProgressResult(racingResult.getLog());
-    OutputView.printWinner(racingResult.getWinner());
+    OutputView.printWinner(racingResult.decideWinner());
   }
 }
