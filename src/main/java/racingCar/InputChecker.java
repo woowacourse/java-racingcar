@@ -6,7 +6,10 @@ public class InputChecker {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void inputValidate(String input) {
-        if (input.charAt(0) == ',' || input.charAt(input.length()-1) == ',') {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("입력값이 있어야 합니다.");
+        }
+        if (input.charAt(0) == ',' || input.charAt(input.length() - 1) == ',') {
             throw new IllegalArgumentException("시작이나 끝에 콤마(,)가 올 수 없습니다.");
         }
     }
@@ -21,8 +24,8 @@ public class InputChecker {
     public static int getNumber() {
         System.out.println("시도할 회수는 몇회인가요?");
         String stringNum = scanner.next();
-        if(!stringNum.chars().allMatch(Character::isDigit) ||
-                Integer.parseInt(stringNum) < 1){
+        if (!stringNum.chars().allMatch(Character::isDigit) ||
+                Integer.parseInt(stringNum) < 1) {
             throw new IllegalArgumentException("1 이상의 숫자를 입력해주세요.");
         }
         return Integer.parseInt(stringNum);
