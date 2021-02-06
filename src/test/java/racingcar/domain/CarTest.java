@@ -29,8 +29,7 @@ public class CarTest {
     public void compareTest() {
         Car car1 = Car.from("car1");
         Car car2 = Car.from("car2");
-        IntStream.rangeClosed(0, Integer.MAX_VALUE / 256)
-                .forEach(i -> car2.move()); // 높은 확률로
+        car2.setPosition(Integer.MAX_VALUE);
         assertThat(car1.compareTo(car2)).isEqualTo(-1);
     }
 }

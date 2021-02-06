@@ -30,6 +30,19 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
+    }
+
+    /* 테스팅을 위한 setter 메소드 */
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     public CarDTO toDTO() {
         return new CarDTO(this.name, this.position);
     }

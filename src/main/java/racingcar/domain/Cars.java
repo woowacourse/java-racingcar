@@ -48,6 +48,10 @@ public class Cars {
         this.cars.forEach(Car::move);
     }
 
+    public List<Car> toList() {
+        return this.cars;
+    }
+
     public CarsDTO toDTO() {
         return CarsDTO.of(this.cars);
     }
