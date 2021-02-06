@@ -1,7 +1,6 @@
 package car.domain;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -18,17 +17,10 @@ public final class Cars {
     }
     
     public static Cars from(String carNames) {
-        return Cars.of(carNames, carName -> new Car.Builder(carName).build());
+        return Cars.of(carNames, Car::new);
     }
     
-    static Cars fromCarNamesWithFakeEngine(String carNames, int moveCondition) {
-        final Function<String, Car> nameToCarFunction = name -> new Car.Builder(name).withFakeEngine(moveCondition)
-                                                                                     .build();
-        
-        return of(carNames, nameToCarFunction);
-    }
-    
-    private static Cars of(String carNames, Function<String, Car> nameToCarFunction) {
+    static Cars of(String carNames, Function<String, Car> nameToCarFunction) {
         final String[] racingCarNames = carNames.split(NAME_DELIMITER);
         
         final List<Car> racingCars = mapNameToCar(racingCarNames, nameToCarFunction);
@@ -36,10 +28,10 @@ public final class Cars {
         return new Cars(racingCars);
     }
     
-    private static LinkedList<Car> mapNameToCar(String[] racingCarNames, Function<String, Car> nameToCarFunction) {
+    private static List<Car> mapNameToCar(String[] racingCarNames, Function<String, Car> nameToCarFunction) {
         return Arrays.stream(racingCarNames)
                      .map(nameToCarFunction)
-                     .collect(Collectors.toCollection(LinkedList::new));
+                     .collect(Collectors.toList());
     }
     
     public Cars race() {

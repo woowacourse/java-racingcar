@@ -1,5 +1,6 @@
 package car.domain;
 
+import car.domain.engine.Engine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,21 +11,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ScoreBoardTest {
     
+    private final Engine mockEngine = new MockEngine(4);
+    
     @Test
     @DisplayName("우승자가 한 명")
     void findWinners_UniqueMaxPosition_onlyOneWinner() {
         
         // given
-        final Car pobi = new Car.Builder("pobi").withPosition(2)
-                                                .build();
-        
-        final Car honux = new Car.Builder("honux").withPosition(3)
-                                                  .build();
-        
-        final Car crong = new Car.Builder("crong").withPosition(4)
-                                                  .build();
+        final Car pobi = new Car("pobi", 2, mockEngine);
+        final Car honux = new Car("honux", 3, mockEngine);
+        final Car crong = new Car("crong", 4, mockEngine);
         
         final Cars cars = new Cars(Arrays.asList(pobi, honux, crong));
+        
         final ScoreBoard scoreBoard = cars.recordScore();
         
         // when
@@ -39,16 +38,12 @@ class ScoreBoardTest {
     void findWinners_SameMaxPosition_Winners() {
         
         // given
-        final Car pobi = new Car.Builder("pobi").withPosition(2)
-                                                .build();
-        
-        final Car honux = new Car.Builder("honux").withPosition(3)
-                                                  .build();
-        
-        final Car crong = new Car.Builder("crong").withPosition(3)
-                                                  .build();
+        final Car pobi = new Car("pobi", 2, mockEngine);
+        final Car honux = new Car("honux", 3, mockEngine);
+        final Car crong = new Car("crong", 3, mockEngine);
         
         final Cars cars = new Cars(Arrays.asList(pobi, honux, crong));
+        
         final ScoreBoard scoreBoard = cars.recordScore();
         
         // when

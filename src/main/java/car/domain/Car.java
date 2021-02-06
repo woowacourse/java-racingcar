@@ -1,6 +1,7 @@
 package car.domain;
 
 import car.domain.engine.Engine;
+import car.domain.engine.RacingEngine;
 
 import java.util.Objects;
 
@@ -11,6 +12,18 @@ final class Car {
     private final Position position;
     
     private final Engine engine;
+    
+    public Car(String carName) {
+        this(carName, new RacingEngine());
+    }
+    
+    public Car(String carName, Engine engine) {
+        this(Name.from(carName), new Position(), engine);
+    }
+    
+    public Car(String carName, int position, Engine engine) {
+        this(Name.from(carName), Position.from(position), engine);
+    }
     
     private Car(Name carName, Position position, Engine engine) {
         this.carName = carName;

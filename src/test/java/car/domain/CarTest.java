@@ -1,5 +1,6 @@
 package car.domain;
 
+import car.domain.engine.Engine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +13,10 @@ class CarTest {
     void move_RandomValueMoreThanCondition_Move() {
         
         // given
-        Car car = new Car.Builder("tico").withFakeEngine(4)
-                                         .build();
+        final Engine engine = new MockEngine(4);
         
-        Car movedCar = new Car.Builder("tico").withPosition(1)
-                                              .withFakeEngine(4)
-                                              .build();
+        Car car = new Car("tico", engine);
+        Car movedCar = new Car("tico", 1, engine);
         
         // when
         car = car.move();
@@ -32,8 +31,9 @@ class CarTest {
     void move_RandomValueLessThanCondition_DoNotMove() {
         
         // given
-        Car car = new Car.Builder("tico").withFakeEngine(3)
-                                         .build();
+        final Engine engine = new MockEngine(3);
+    
+        Car car = new Car("tico", engine);
         
         // when
         Car didNotMoveCar = car.move();
