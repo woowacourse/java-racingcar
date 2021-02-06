@@ -1,15 +1,17 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
-import racingcar.domain.CarRegister;
-import racingcar.domain.CarRepository;
-import racingcar.domain.RacingTimeRegister;
+import racingcar.domain.*;
+import racingcar.util.RandomGenerator;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class RacingController {
+
+    private static final int MIN_RANDOM_VALUE = 0;
+    private static final int MAX_RANDOM_VALUE = 9;
 
     private final Scanner scanner;
     private final CarRegister carRegister;
@@ -39,7 +41,30 @@ public class RacingController {
         return racingTimeRegister.registerRacingTime(inputTryTime);
     }
 
-    private void race(int tryTime) {
-        CarRepository.race(tryTime);
+    public void race(int tryTime) {
+        List<Car> cars = CarRepository.cars();
+
+        OutputView.printRaceResult();
+
+        for (int i = 0; i < tryTime; i++) {
+            updateAllCarsPosition(cars);
+            CarRepository.showAllCarsPosition();
+            OutputView.printNewLine();
+        }
+
+        OutputView.printWinner(CarRepository.winnerNames());
+    }
+
+    private void updateAllCarsPosition(List<Car> cars) {
+        for (Car car : cars) {
+            car.goForward(goForwardOrStopRandomly());
+        }
+    }
+
+    private boolean goForwardOrStopRandomly() {
+        int randomNumber = RandomGenerator
+                .generateRandomNumber(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
+
+        return GoForwardOrStop.isGoForward(randomNumber);
     }
 }

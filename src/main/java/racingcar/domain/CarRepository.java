@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.util.RandomGenerator;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
@@ -23,45 +22,22 @@ public class CarRepository {
         cars.clear();
     }
 
-    public static void race(int tryTime) {
-        OutputView.printRaceResult();
-
-        for (int i = 0; i < tryTime; i++) {
-            updateAllCarsPosition();
-            showAllCarsPosition(cars);
-            OutputView.printNewLine();
-        }
-
-        OutputView.printWinner(getWinnerNames());
+    public static void showAllCarsPosition() {
+        cars.forEach(car ->
+                OutputView.printRaceResultEachCar(car.getName(), car.getPosition()));
     }
 
-    private static List<String> getWinnerNames() {
-        return getWinners().stream()
+    public static List<Car> cars() {
+        return Collections.unmodifiableList(cars);
+    }
+
+    public static List<String> winnerNames() {
+        return winners().stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    private static void showAllCarsPosition(List<Car> cars) {
-        cars.forEach(car -> {
-            OutputView.printRaceResultEachCar(car.getName(), car.getPosition());
-        });
-    }
-
-    private static void updateAllCarsPosition() {
-        for (Car car : cars) {
-            goForwardOrStopRandomly(car);
-        }
-    }
-
-    private static void goForwardOrStopRandomly(Car car) {
-        int randomNumber = RandomGenerator.generateRandomNumber(0, 9);
-
-        if (GoForwardOrStop.isGoForward(randomNumber)) {
-            car.goForward();
-        }
-    }
-
-    public static List<Car> getWinners() {
+    public static List<Car> winners() {
         int maxPosition = getMaxPosition();
 
         return Collections.unmodifiableList(cars.stream()

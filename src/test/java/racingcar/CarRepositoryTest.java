@@ -23,12 +23,12 @@ public class CarRepositoryTest {
         Car winner = new Car("pobi");
         Car loser = new Car("crong");
 
-        winner.goForward();
+        winner.goForward(true);
 
         CarRepository.save(winner);
         CarRepository.save(loser);
 
-        List<Car> winners = CarRepository.getWinners();
+        List<Car> winners = CarRepository.winners();
 
         Assertions.assertThat(winners.size()).isEqualTo(1);
         Assertions.assertThat(winners.get(0)).isEqualTo(winner);
@@ -44,9 +44,9 @@ public class CarRepositoryTest {
         Car winner3 = new Car("podi");
         Car loser = new Car("crong");
 
-        winner1.goForward();
-        winner2.goForward();
-        winner3.goForward();
+        winner1.goForward(true);
+        winner2.goForward(true);
+        winner3.goForward(true);
 
         CarRepository.save(winner1);
         CarRepository.save(winner2);
@@ -57,7 +57,7 @@ public class CarRepositoryTest {
         expectedWinners.add(winner2);
         expectedWinners.add(winner3);
 
-        List<Car> actualWinners = CarRepository.getWinners();
+        List<Car> actualWinners = CarRepository.winners();
 
         Assertions.assertThat(actualWinners.size()).isEqualTo(3);
         Assertions.assertThat(actualWinners.containsAll(expectedWinners)).isTrue();
