@@ -60,8 +60,9 @@ public class Game {
 
     public void playCar() {
         for (int i = 0; i < Cars.getSize(); i++) {
-            int number = RandomUtils.nextInt(MINIMUM_VALUE, MAXIMUM_VALUE);
-            Cars.cars.get(i).move(number);
+            Cars.getCars()
+                    .get(i)
+                    .move(RandomUtils.nextInt(MINIMUM_VALUE, MAXIMUM_VALUE));
         }
         showStatus();
     }
