@@ -1,23 +1,28 @@
 package racingcar.controller;
 
 import racingcar.model.Car;
+import racingcar.model.Cars;
 import racingcar.utils.RandomUtils;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
-
 public class RacingGameController {
-    public void play(final ArrayList<Car> carsInGame, final int trialNumber) {
-        race(carsInGame, trialNumber);
+
+    private int maxDistance;
+
+    public void play(final Cars carsInGame, final int trialNumber) {
+        OutputView.printOutputMessage();
+        for (int i=0; i<trialNumber; i++) {
+            singleMove(carsInGame);
+        }
+        OutputView.printWinner(carsInGame.getWinner(maxDistance));
     }
 
-    private void race(final ArrayList<Car> carsInGame, final int trialNumber) {
-        for (int i=0; i<trialNumber; i++) {
-            for (Car car : carsInGame) {
-                car.move(RandomUtils.generateRandomNumber());
-                OutputView.printCarInformation(car);
-            }
-            OutputView.printNewLine();
+    public void singleMove(final Cars carsInGame) {
+        for (Car car : carsInGame.getCars()) {
+            maxDistance = Math.max(car.move(RandomUtils.generateRandomNumber()), maxDistance);
+            OutputView.printCarInformation(car);
         }
+        OutputView.printNewLine();
     }
 }
+
