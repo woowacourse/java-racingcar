@@ -27,8 +27,8 @@ public class Car {
         return this.position;
     }
 
-    public boolean isMaxPosition(int maxPosition) {
-        return this.position == maxPosition;
+    public boolean isWinnerPosition(int winnerPosition) {
+        return this.position == winnerPosition;
     }
 
     private void validateName(final String name) {

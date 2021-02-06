@@ -30,7 +30,7 @@ public class Winners {
     }
 
     private static void setWinner(Car car) {
-        if (car.getPosition() == winnerPosition) {
+        if (car.isWinnerPosition(winnerPosition)) {
             winners.add(car);
         }
     }
