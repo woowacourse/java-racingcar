@@ -12,12 +12,12 @@ public class RacingGameController {
     public void play(final Cars cars, final int attemptNumber) {
         OutputView.printPlayResultMessage();
         for (int i = 0; i < attemptNumber; i++) {
-            race(cars);
+            totalCarMove(cars);
         }
         OutputView.printWinners(cars.getWinners(maxDistance));
     }
 
-    public void race(final Cars cars) {
+    public void totalCarMove(final Cars cars) {
         for (Car car : cars.getCars()) {
             maxDistance = Math.max(car.move(RandomUtils.getRandomNumber()), maxDistance);
             OutputView.printCarInformation(car);
