@@ -64,4 +64,21 @@ public class InputUtilsTest {
             InputValidator.isDuplicatedNames(names);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("Exception test for invalid tryCount")
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "not_numeric"})
+    void checkIsValidTryCount(String inputNumber) {
+        assertThatThrownBy(() -> {
+            InputValidator.isValidTryCount(inputNumber);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("Test for valid tryCount")
+    @ParameterizedTest
+    @CsvSource(value = {"1 : 1", "23 : 23"}, delimiter = ':' )
+    void checkIsValidTryCount(String inputNumber, int i) {
+        assertThat(InputValidator.isValidTryCount(inputNumber))
+            .isEqualTo(i);
+    }
 }
