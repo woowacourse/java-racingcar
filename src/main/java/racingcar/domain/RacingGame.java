@@ -4,16 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGame {
+    private static final int INIT_ROUND = 1;
+
     private final Cars cars;
     private int round;
 
-    private static final int INIT_ROUND = 1;
-
     public RacingGame(List<String> names) {
-        List<Car> cars = names.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
-        this.cars = new Cars(cars);
+        this.cars = Cars.createCarsByNames(names);
         this.round = INIT_ROUND;
     }
 
