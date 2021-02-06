@@ -46,13 +46,13 @@ public class StringTest {
         final int secondIndex = 4;
         final String expectResult = "1,2";
 
-        assertThat(testString.substring(firstIndex,secondIndex))
+        assertThat(testString.substring(firstIndex, secondIndex))
             .isEqualTo(expectResult);
     }
 
     @Test
     @DisplayName("String.charAt 문자열 특정 위치의 값 반환 테스트")
-    void testCharAt() {
+    void testSuccessCharAt() {
         final String testString = "abc";
         final int testIndex = 2;
         final char expectResult = 'c';
@@ -61,20 +61,22 @@ public class StringTest {
     }
 
     @Test
-    @DisplayName("문자열의 올바르지 않은 위치 호출 시 예외 처리")
-    void charAtException() {
-        String value = "abc";
-        int testIndex = 4;
+    @DisplayName("String.charAt 문자열 잘못된 위치 호출시 예외 처리")
+    void testCharAtException() {
+        final String testString = "abc";
+        final int testIndex = 4;
         final String expectMessage = "String index out of range: ";
+        final String expectMessageFormat = "\\d+";
 
         assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
             .isThrownBy(() -> {
-                value.charAt(testIndex);
-            }).withMessageMatching(expectMessage + "\\d+");
+                testString.charAt(testIndex);
+            }).withMessageMatching(expectMessage + expectMessageFormat);
 
         assertThatThrownBy(() -> {
-            value.charAt(testIndex);
-        }).isInstanceOf(StringIndexOutOfBoundsException.class)
+            testString.charAt(testIndex);
+        })
+            .isInstanceOf(StringIndexOutOfBoundsException.class)
             .hasMessageContaining(expectMessage + testIndex);
     }
 }
