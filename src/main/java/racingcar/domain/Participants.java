@@ -6,15 +6,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Participants {
+
   private static final int DEFAULT_MAX_POSITION = 0;
-  private final List<Car> cars;
+  private final List<Car> cars = new ArrayList<>();
 
-  private Participants() {
-    cars = new ArrayList<>();
-  }
-
-  public Participants(final String ... names) {
-    this();
+  public Participants(final String... names) {
     for (String name : names) {
       cars.add(new Car(name));
     }
