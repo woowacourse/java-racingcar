@@ -15,7 +15,9 @@ public class CarRegister {
     public List<Car> registerCars(String input) {
         List<String> carNames = validateCarNames(input);
 
-        return carNames.stream().map(Car::new).collect(Collectors.toList());
+        return carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     private List<String> validateCarNames(String input) {
