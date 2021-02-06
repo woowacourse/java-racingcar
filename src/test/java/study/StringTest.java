@@ -6,16 +6,18 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class StringTest {
+class StringTest {
     @Test
-    void split(){
+    @DisplayName("split 학습 테스트")
+    void split() {
         String[] values = "1,2".split(",");
-        assertThat(values).containsExactly("1","2");
+        assertThat(values).containsExactly("1", "2");
     }
 
     @Test
+    @DisplayName("substring 학습 테스트")
     void substirng() {
-        String values = "(1,2)".substring(1,4);
+        String values = "(1,2)".substring(1, 4);
         assertThat(values).isEqualTo("1,2");
     }
 
@@ -23,9 +25,8 @@ public class StringTest {
     @DisplayName("charAt 학습 테스트")
     void charAt() {
         assertThat("abc".charAt(0)).isEqualTo('a');
-        assertThatThrownBy(() -> {
-            "abc".charAt(3);
-        }).isInstanceOf(IndexOutOfBoundsException.class)
+        assertThatThrownBy(() -> "abc".charAt(3))
+                .isInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessageContaining("index");
     }
 }
