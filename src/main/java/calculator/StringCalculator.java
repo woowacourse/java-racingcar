@@ -14,7 +14,7 @@ public class StringCalculator {
         if (matcher.find()) {
             return getNumberFromCustom(matcher);
         }
-        return getNumberFromDelimeter(number);
+        return getNumberFromDefault(number);
     }
 
     private static boolean isNumber(String number) {
@@ -27,7 +27,7 @@ public class StringCalculator {
         return addSplitNumbers(tokens);
     }
 
-    private static int getNumberFromDelimeter(String number) {
+    private static int getNumberFromDefault(String number) {
         String[] numbers = number.split(",|:");
         return addSplitNumbers(numbers);
     }
