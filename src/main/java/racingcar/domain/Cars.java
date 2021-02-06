@@ -47,4 +47,8 @@ public class Cars {
     public void moveCars() {
         this.cars.forEach(Car::move);
     }
+
+    public CarsDTO toDTO() {
+        return CarsDTO.of(this.cars);
+    }
 }
