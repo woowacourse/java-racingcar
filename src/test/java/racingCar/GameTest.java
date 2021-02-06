@@ -1,6 +1,7 @@
 package racingCar;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,28 +13,22 @@ class GameTest {
 
     @BeforeEach
     void setUp() {
-        Cars.carAdd(new Car("car1"));
-        Cars.carAdd(new Car("car2"));
-        Cars.carAdd(new Car("car3"));
-        Cars.getCars().get(1).move(4);
-        Cars.getCars().get(2).move(4);
-        game = new Game();
+        game = new Game("car1,car2", 5);
+        game.run();
     }
 
     @Test
-    void findMax() {
-        assertThat(game.findMax()).isEqualTo(1);
-    }
-
-    @Test
+    @DisplayName("올바른 길이의 막대가 생성되는지 테스트")
     void bar() {
         assertThat(game.bar(3)).isEqualTo("---");
     }
 
     @Test
-    void getWinners() {
-        List<String> winners = game.getWinners(1);
-        assertThat(winners.get(0)).isEqualTo("car2");
-        assertThat(winners.get(1)).isEqualTo("car3");
+    @DisplayName("자동차가 생성되는지 테스트")
+    void makeCars() {
+        String[] carNames = {"car1", "car2"};
+        List<Car> cars = game.makeCars(carNames);
+        assertThat(cars.get(0).getName()).isEqualTo("car1");
+        assertThat(cars.get(1).getName()).isEqualTo("car2");
     }
 }
