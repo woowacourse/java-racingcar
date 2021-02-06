@@ -32,7 +32,7 @@ public class Game {
 
     public void showResult(Cars cars) {
         List<String> winnerNames = cars.getWinnerNames();
-        System.out.println(String.join(",", winnerNames) + "가 최종 우승했습니다.");
+        System.out.println(String.join(", ", winnerNames) + "가 최종 우승했습니다.");
     }
 
     public void playGame(Cars cars) {
