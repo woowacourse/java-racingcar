@@ -40,8 +40,8 @@ public class StringCalculatorTest {
     public void splitAndSum_custom_구분자() throws Exception {
         int result = StringCalculator.splitAndSum("//;\n1;2;3");
         assertThat(result).isEqualTo(6);
-        int result2 = StringCalculator.splitAndSum("//%\n4%%1%");
-        assertThat(result2).isEqualTo(5);
+        result = StringCalculator.splitAndSum("//%\n4%%1%");
+        assertThat(result).isEqualTo(5);
     }
 
     @Test
