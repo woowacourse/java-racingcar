@@ -16,13 +16,13 @@ public class Input {
 
     private void setNullOrBlankInput() {
         this.input = "0";
-        this.delimiter = Delimiter.DEFAULT();
+        this.delimiter = DelimiterFactory.DEFAULT();
     }
 
     private void setNormalInput(String input) {
-        this.delimiter = Delimiter.from(input);
+        this.delimiter = DelimiterFactory.valueOf(input);
 
-        if (delimiter.isCustom()) {
+        if (delimiter instanceof CustomDelimiter) {
             input = extractElementString(input);
         }
 
@@ -34,18 +34,14 @@ public class Input {
     }
 
     private boolean isNullOrBlank(String input) {
-        if (input == null || input.isEmpty()) {
-            return true;
-        }
-
-        return false;
+        return input == null || input.isEmpty();
     }
 
     public Numbers getNumbers() {
         if (isNullOrBlank(input)) {
             return new Numbers(new String[]{"0"});
         }
-
+        System.out.println(input);
         String[] inputs = input.split(delimiter.getDelimiter());
 
         return new Numbers(inputs);
