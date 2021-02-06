@@ -1,10 +1,11 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.GameResult;
 import racingcar.domain.RacingGame;
 import racingcar.dto.CarDto;
 import racingcar.dto.CarsDto;
+import racingcar.dto.WinnersDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -22,11 +23,8 @@ public class RacingGameController {
         RacingGame racingGame = new RacingGame(carNames);
 
         executeRound(racingGame);
-        CarsDto winners = racingGame.findWinners().getCars().stream()
-                .map(car -> new CarDto(car.getName(), car.getPosition()))
-                .collect(Collectors.collectingAndThen(Collectors.toList(), CarsDto::new));
-
-        OutputView.announceWinners(winners);
+        GameResult winners = racingGame.findWinners();
+        OutputView.announceWinners(new WinnersDto(winners.getWinnerNames(), winners.getWinnersPosition()));
     }
 
     private void executeRound(RacingGame racingGame) {

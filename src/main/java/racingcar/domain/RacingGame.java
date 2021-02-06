@@ -22,7 +22,7 @@ public class RacingGame {
         round++;
     }
 
-    public Cars findWinners() {
+    public GameResult findWinners() {
         return cars.findWinners();
     }
 

@@ -22,9 +22,9 @@ public class Cars {
         cars.forEach(car -> car.move(RandomGenerator.generateRandomNumber()));
     }
 
-    public Cars findWinners() {
+    public GameResult findWinners() {
         int maxPosition = getMaxPosition();
-        return new Cars(cars.stream()
+        return new GameResult(cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList()));
     }

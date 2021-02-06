@@ -2,9 +2,9 @@ package racingcar.view;
 
 import racingcar.dto.CarDto;
 import racingcar.dto.CarsDto;
+import racingcar.dto.WinnersDto;
 
 import java.util.Collections;
-import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String DASH = "-";
@@ -27,19 +27,16 @@ public class OutputView {
         return String.join("", Collections.nCopies(car.getPosition(), DASH));
     }
 
-    public static void announceWinners(CarsDto carsDto) {
-        println(carsDto
-                .getCarDtoList()
-                .stream()
-                .map(CarDto::getName)
-                .collect(Collectors.joining(COMMA_AND_BLANK)).concat(WINNER_ANNOUNCE_MSG));
+    public static void announceWinners(WinnersDto winnersDto) {
+        println(String.join(COMMA_AND_BLANK, winnersDto.getNames())
+                .concat(WINNER_ANNOUNCE_MSG));
     }
 
     public static void printResultMessage() {
         println(EXECUTE_RESULT_MSG);
     }
 
-    public static void printInputCarsNameMessage(){
+    public static void printInputCarsNameMessage() {
         println(INPUT_CARS_NAME_MSG);
     }
 
@@ -47,15 +44,15 @@ public class OutputView {
         println(INPUT_NUMBER_OF_ROUNDS_MSG);
     }
 
-    public static void println(){
+    public static void println() {
         println("");
     }
 
-    public static void println(String message){
+    public static void println(String message) {
         System.out.println(message);
     }
 
-    public static void printf(String format, Object... args){
+    public static void printf(String format, Object... args) {
         System.out.printf(format, args);
     }
 }

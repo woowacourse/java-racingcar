@@ -4,12 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.dto.CarDto;
-import racingcar.dto.CarsDto;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -20,12 +17,9 @@ class CarsTest {
     @MethodSource("provideRaceWinnerCases")
     void findWinners_우승자_올바르게_가려내는지(List<Car> racedCars, List<String> expectedWinnerNames) {
         Cars cars = new Cars(racedCars);
-        Cars winnersDto = cars.findWinners();
-        List<String> winnerNames = winnersDto
-                .getCars()
-                .stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
+        GameResult gameResult = cars.findWinners();
+        List<String> winnerNames = gameResult.getWinnerNames();
+
         assertThat(winnerNames).isEqualTo(expectedWinnerNames);
     }
 
