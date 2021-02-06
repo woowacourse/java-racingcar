@@ -2,19 +2,22 @@ package racingcar.service;
 
 import racingcar.constant.Digit;
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
 import racingcar.utils.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarService {
-    public void decideMovableCar(List<Car> cars, List<Integer> randoms) {
+    public void decideMovableCar(Cars cars, List<Integer> randoms) {
+        List<Car> carList = cars.getCars();
+
         if (randoms == null) {
-            randoms = getRandoms(cars);
+            randoms = getRandoms(carList);
         }
 
-        for (int i = 0; i < cars.size(); i++) {
-            moveIfPossible(cars.get(i), randoms.get(i));
+        for (int i = 0; i < carList.size(); i++) {
+            moveIfPossible(carList.get(i), randoms.get(i));
         }
     }
 
