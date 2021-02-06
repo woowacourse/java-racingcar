@@ -16,11 +16,14 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class CarsTest {
+    private static final List<String> defaultCarNames = Arrays.asList("포비", "웨지", "삭정");
+
     @DisplayName("우승자 가려내는지 테스트")
     @ParameterizedTest
     @MethodSource("provideRaceWinnerCases")
-    void findWinners_우승자_올바르게_가려내는지(List<Car> racedCars, List<String> expectedWinnerNames) {
-        Cars cars = new Cars(racedCars);
+    void findWinners_우승자_올바르게_가려내는지(List<String> carNames, List<String> expectedWinnerNames) {
+        Cars cars = proceedRaceAccordingToWinnerNames(new Cars(carNames), expectedWinnerNames);
+
         CarsResponseDto winnersDto = cars.findWinners();
         List<String> winnerNames = winnersDto
                 .getCarResponseDtoList()
@@ -37,20 +40,16 @@ class CarsTest {
         List<String> winnerNames4 = Arrays.asList("포비", "웨지", "삭정");
 
         return Stream.of(
-                Arguments.of(createRacedCars(winnerNames1), winnerNames1),
-                Arguments.of(createRacedCars(winnerNames2), winnerNames2),
-                Arguments.of(createRacedCars(winnerNames3), winnerNames3),
-                Arguments.of(createRacedCars(winnerNames4), winnerNames4)
+                Arguments.of(defaultCarNames, winnerNames1),
+                Arguments.of(defaultCarNames, winnerNames2),
+                Arguments.of(defaultCarNames, winnerNames3),
+                Arguments.of(defaultCarNames, winnerNames4)
         );
     }
 
-    private static List<Car> createRacedCars(List<String> winnerNames) {
-        Car car1 = new Car("포비");
-        Car car2 = new Car("웨지");
-        Car car3 = new Car("삭정");
-        List<Car> cars = Arrays.asList(car1, car2, car3);
-
-        cars.stream()
+    private static Cars proceedRaceAccordingToWinnerNames(Cars cars, List<String> winnerNames) {
+        cars.getCars()
+                .stream()
                 .filter(car -> winnerNames.contains(car.getName()))
                 .forEach(car -> car.move(5));
 

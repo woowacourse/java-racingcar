@@ -8,11 +8,21 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+//TODO
+// 차 생성을 담당하는 로직을 cars로 위임하기
+// validation을 cars에서 해주기 (쌩성자에서)
+
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
-        this.cars = cars;
+    public Cars(List<String> names) {
+        this.cars = createCars(names);
+    }
+
+    public List<Car> createCars(List<String> names) {
+        return names.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public List<Car> getCars() {

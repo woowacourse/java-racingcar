@@ -3,7 +3,6 @@ package racingcar.domain;
 import racingcar.dto.CarsResponseDto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGame {
     private final Cars cars;
@@ -12,10 +11,7 @@ public class RacingGame {
     private static final int INIT_ROUND = 1;
 
     public RacingGame(List<String> names) {
-        List<Car> cars = names.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
-        this.cars = new Cars(cars);
+        this.cars = new Cars(names);
         this.round = INIT_ROUND;
     }
 
