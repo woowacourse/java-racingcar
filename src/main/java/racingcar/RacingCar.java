@@ -8,12 +8,12 @@ import racingcar.view.RacingCarView;
 
 public class RacingCar {
     public static void run() {
-        racingCarSetting();
-        pickWinners();
+        setUpRacingCar();
+        selectWinners();
         RacingCarView.printFinalResult(Winners.getWinnersNames());
     }
 
-    private static void racingCarSetting() {
+    private static void setUpRacingCar() {
         Cars.assignCars(RacingCarUtils.splitInputString(InputView.getCarNameInput()));
         TryCount tryCount = new TryCount(InputView.getTryCountInput());
         GameRule gameRule = new GameRule();
@@ -41,7 +41,7 @@ public class RacingCar {
         }
     }
 
-    private static void pickWinners() {
-        Winners.setWinners(Cars.getCars());
+    private static void selectWinners() {
+        Winners.allocateWinners(Cars.getCars());
     }
 }
