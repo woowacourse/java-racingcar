@@ -11,10 +11,10 @@ import racingcar.domain.car.Car;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class WinnersTest {
-    @Test
-    @DisplayName("우승자 생성 확인")
-    void winners_make() {
-        AssertionsForClassTypes.assertThat(
-            Winners.makeWinners(Arrays.asList(new Car("1"), new Car("2"), new Car("3"))).size()).isEqualTo(3);
-    }
+//    @Test
+//    @DisplayName("우승자 생성 확인")
+//    void winners_make() {
+//        AssertionsForClassTypes.assertThat(
+//            Winners.makeWinners(Arrays.asList(new Car("1"), new Car("2"), new Car("3"))).size()).isEqualTo(3);
+//    }
 }

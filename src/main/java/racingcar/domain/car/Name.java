@@ -1,9 +1,9 @@
 package racingcar.domain.car;
 
 public class Name {
-    public static final String BLANK = " ";
-    public static final int MINIMUM_LENGTH = 1;
-    public static final int MAXIMUM_LENGTH = 5;
+    private static final String BLANK = " ";
+    private static final int MINIMUM_LENGTH = 1;
+    private static final int MAXIMUM_LENGTH = 5;
 
     private final String name;
 

@@ -1,12 +1,12 @@
 package racingcar.domain.car;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import racingcar.domain.car.Car;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 public class CarTest {
+
     @Test
     @DisplayName("자동차 생성 확인")
     void car_create() {
@@ -19,7 +19,7 @@ public class CarTest {
     @DisplayName("자동차 전진 구현")
     void car_move() {
         Car car1 = new Car("샐리");
-        car1.moveByRandomNumber(5);
+        car1.forward();
         assertThat(car1.getPosition().length()).isEqualTo(1);
     }
 }

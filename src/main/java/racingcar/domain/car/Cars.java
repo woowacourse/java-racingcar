@@ -8,13 +8,20 @@ import java.util.Set;
 
 public class Cars {
 
-    public static final String COMMA = ",";
+    private static final String COMMA = ",";
 
     private final List<Car> cars;
 
     public Cars(final String inputNames) {
+        validateNull(inputNames);
         validateBothEnds(inputNames);
         this.cars = validateDuplicate(inputNames);
+    }
+
+    private void validateNull(String inputNames) {
+        if (inputNames == null) {
+            throw new IllegalArgumentException("잘못된 입력입니다.");
+        }
     }
 
     private void validateBothEnds(final String inputNames) {
@@ -26,7 +33,7 @@ public class Cars {
     private List<Car> validateDuplicate(final String inputNames) {
         List<String> namesList = new ArrayList<>(Arrays.asList(inputNames.split(COMMA)));
         Set<String> namesSet = new HashSet<>(namesList);
-        if (cars.size() != namesSet.size()) {
+        if (namesList.size() != namesSet.size()) {
             throw new IllegalArgumentException("이름이 중복됩니다.");
         }
         return convertToCars(namesList);
