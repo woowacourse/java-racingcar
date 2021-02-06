@@ -41,7 +41,7 @@ public class Input {
         if (isNullOrBlank(input)) {
             return new Numbers(new String[]{"0"});
         }
-        System.out.println(input);
+
         String[] inputs = input.split(delimiter.getDelimiter());
 
         return new Numbers(inputs);

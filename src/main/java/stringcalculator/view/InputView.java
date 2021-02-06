@@ -9,8 +9,7 @@ public class InputView {
         String input = scanner.nextLine();
 
         if(input.startsWith("//")) {
-            input += System.lineSeparator() +
-                    scanner.nextLine();
+            input += "\n" + scanner.nextLine();
         }
 
         return input;

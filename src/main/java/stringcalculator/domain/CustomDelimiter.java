@@ -5,6 +5,7 @@ import stringcalculator.exception.IllegalCustomDelimiterException;
 import stringcalculator.exception.IllegalCustomDelimiterPositionException;
 
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static stringcalculator.Utils.isNumeric;
 
@@ -18,7 +19,7 @@ public class CustomDelimiter implements Delimiter {
 
         validateNumericDelimiter(delimiter);
 
-        this.delimiter = delimiter;
+        this.delimiter = Pattern.quote(delimiter);
     }
 
     public static CustomDelimiter valueOf(String input) {
