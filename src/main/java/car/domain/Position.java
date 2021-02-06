@@ -4,11 +4,15 @@ import java.util.Objects;
 
 final class Position {
     
-    private static final int ZERO = 0;
+    private static final int DEFAULT_POSITION = 0;
     
     private static final int ONE_STEP = 1;
     
     private final int position;
+    
+    public Position() {
+        this(DEFAULT_POSITION);
+    }
     
     private Position(int position) {
         this.position = position;
@@ -23,7 +27,7 @@ final class Position {
     }
     
     private static boolean isNegative(int position) {
-        return position < ZERO;
+        return position < 0;
     }
     
     public int getPosition() {
