@@ -3,9 +3,6 @@ package racingcar.domain;
 import racingcar.constant.Digit;
 import racingcar.constant.Message;
 
-import java.util.Arrays;
-import java.util.stream.IntStream;
-
 public class Car {
     private final String name;
     private int position;
@@ -29,6 +26,10 @@ public class Car {
 
     public void move() {
         position++;
+    }
+
+    public boolean isMaxPosition(int maxPosition) {
+        return position == maxPosition;
     }
 
     public String getName() {

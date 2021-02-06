@@ -2,10 +2,7 @@ package racingcar.domain;
 
 import racingcar.constant.Message;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -17,6 +14,16 @@ public class Cars {
         this.cars = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
+    }
+
+    public Cars(List<String> carNames, List<Integer> positions) {
+        validateDuplication(carNames);
+
+        cars = new ArrayList<>();
+
+        for (int i = 0; i < carNames.size(); i++) {
+            cars.add(new Car(carNames.get(i), positions.get(i)));
+        }
     }
 
     private void validateDuplication(List<String> carNames) {
