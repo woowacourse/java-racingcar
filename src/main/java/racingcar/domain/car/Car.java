@@ -6,10 +6,14 @@ public class Car {
     private final Position position;
     private final GasTank gasTank;
 
-    Car(final String name) {
+    private Car(final String name) {
         this.name = new Name(name);
         this.position = new Position();
         this.gasTank = new GasTank();
+    }
+
+    static Car enrollWithName(final String name){
+        return new Car(name);
     }
 
     public void forward() {

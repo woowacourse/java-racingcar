@@ -42,7 +42,7 @@ public class Cars {
     private List<Car> convertToCars(final List<String> names) {
         List<Car> cars = new ArrayList<>();
         for (String name : names) {
-            cars.add(new Car(name));
+            cars.add(Car.enrollWithName(name));
         }
         return cars;
     }

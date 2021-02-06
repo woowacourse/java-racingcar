@@ -9,7 +9,7 @@ public class Winners {
     private Winners() {
     }
 
-    public static List<String> award(final List<Car> cars) {
+    public static List<String> toList(final List<Car> cars) {
         int maxPosition = 0;
         List<String> winners = new ArrayList<>();
 

@@ -3,6 +3,7 @@ package racingcar.utils;
 import java.util.Random;
 
 public class RandomUtils {
+
     private static final Random RANDOM = new Random();
 
     private RandomUtils() {
@@ -23,5 +24,6 @@ public class RandomUtils {
 
         return startInclusive + RANDOM.nextInt(endInclusive - startInclusive + 1);
     }
+
 }
 

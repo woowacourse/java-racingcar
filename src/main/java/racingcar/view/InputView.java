@@ -3,6 +3,7 @@ package racingcar.view;
 import java.util.Scanner;
 
 public class InputView {
+
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String inputCarNames() {
@@ -14,4 +15,5 @@ public class InputView {
         System.out.println("시도할 회수는 몇회인가요?");
         return scanner.nextLine();
     }
+
 }

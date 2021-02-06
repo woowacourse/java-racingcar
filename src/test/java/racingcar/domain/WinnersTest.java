@@ -11,7 +11,7 @@ public class WinnersTest {
     @DisplayName("우승자 생성 확인")
     void winners_make() {
         AssertionsForClassTypes.assertThat(
-            Winners.award(new Cars("1,2,3").getCars()).size()).isEqualTo(3);
+            Winners.toList(new Cars("1,2,3").getCars()).size()).isEqualTo(3);
     }
 
 }
