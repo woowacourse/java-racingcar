@@ -1,21 +1,16 @@
 package racingcar.domain.util;
 
-import racingcar.exception.MoveConditionOutOfBoundException;
+import racingcar.domain.rule.RandomMoveCondition;
 
 import java.util.Random;
 
-public class RandomNumber {
-    private static final int MINIMUM = 0;
-
+public class RandomNumber implements RandomUtils<Integer> {
     private static final Random random = new Random();
 
-    public static int generate(int bound) {
-        int randomNumber = random.nextInt(bound + 1);
+    private final int maximumBound = RandomMoveCondition.MAXIMUM_BOUND;
 
-        if (!(MINIMUM <= randomNumber && randomNumber <= bound)) {
-            throw new MoveConditionOutOfBoundException();
-        }
-
-        return randomNumber;
+    @Override
+    public Integer generate() {
+        return random.nextInt(maximumBound + 1);
     }
 }

@@ -8,6 +8,7 @@ import racingcar.domain.game.GameResult;
 import racingcar.domain.game.RacingGame;
 import racingcar.domain.rule.MoveCondition;
 import racingcar.domain.rule.RandomMoveCondition;
+import racingcar.domain.util.RandomNumber;
 import racingcar.view.InputView;
 import racingcar.view.Messages;
 import racingcar.view.OutputView;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 public class RacingController {
     private String carNamesInput;
     private String moveCountInput;
-    
+
     public void run() {
         GameResult gameResult;
 
@@ -69,7 +70,7 @@ public class RacingController {
 
     private List<Car> makeCarListFromCarNames(List<String> carNames) {
         return carNames.stream()
-                .map(name -> new Car(name, new RandomMoveCondition()))
+                .map(name -> new Car(name, new RandomMoveCondition(new RandomNumber())))
                 .collect(Collectors.toList());
 
     }
