@@ -6,12 +6,12 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Cars {
-    private static List<Car> cars = new ArrayList<>();
+    private static final List<Car> cars = new ArrayList<>();
 
     private Cars() {
     }
 
-    public static void setCars(List<String> names) {
+    public static void setCarsByName(List<String> names) {
         validateNonDuplicatedNames(names);
         for (String name : names) {
             cars.add(new Car(name));
