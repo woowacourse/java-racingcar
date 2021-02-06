@@ -1,7 +1,5 @@
 package racing.domain;
 
-import racing.view.dto.WinnersDto;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,11 +12,10 @@ public class Winners {
         validateWinners();
     }
 
-    public WinnersDto getWinnersDto() {
-        List<String> winnersName = cars.stream()
+    public List<String> getWinnersName() {
+        return cars.stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
-        return new WinnersDto(winnersName);
     }
 
     private void validateWinners() {

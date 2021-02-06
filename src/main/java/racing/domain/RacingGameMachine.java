@@ -1,7 +1,8 @@
 package racing.domain;
 
-import racing.view.dto.CarDto;
 import racing.view.GameScreen;
+import racing.view.dto.CarDto;
+import racing.view.dto.WinnersDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,8 +32,9 @@ public class RacingGameMachine {
             cars.race();
             gameScreen.showCarStatus(getCarDtos());
         }
+
         Winners winners = cars.findWinners();
-        gameScreen.showWinners(winners.getWinnersDto());
+        gameScreen.showWinners(new WinnersDto(winners.getWinnersName()));
     }
 
     public boolean canPlay() {
