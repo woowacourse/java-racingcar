@@ -3,6 +3,7 @@ package calculator;
 public class Number {
 
     public static final int NUMBER_ZERO = 0;
+    
     private final int number;
 
     public Number(String number) {
