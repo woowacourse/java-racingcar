@@ -30,18 +30,18 @@ public class Game {
         return cars;
     }
 
-    public void showResult(Cars cars) {
+    private void showResult(Cars cars) {
         List<String> winnerNames = cars.getWinnerNames();
         System.out.println(String.join(", ", winnerNames) + "가 최종 우승했습니다.");
     }
 
-    public void playGame(Cars cars) {
+    private void playGame(Cars cars) {
         for (int i = 0; i < count; i++) {
             playCar(cars);
         }
     }
 
-    public void showStatus(Cars cars) {
+    private void showStatus(Cars cars) {
         for (Car car : cars.getCars()) {
             System.out.println(car.getName() + " : " + bar(car.getDistance()));
         }
@@ -56,7 +56,7 @@ public class Game {
         return sb.toString();
     }
 
-    public void playCar(Cars cars) {
+    private void playCar(Cars cars) {
         for (Car car : cars.getCars()) {
             int number = RandomUtils.nextInt(MINIMUM_VALUE, MAXIMUM_VALUE);
             car.move(number);
