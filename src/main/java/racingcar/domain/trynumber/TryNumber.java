@@ -15,7 +15,7 @@ public class TryNumber {
         this.tryNumber = tryNumber;
     }
 
-    public boolean isMovable() {
+    public boolean isRunnable() {
         if (tryNumber > FINISH_VALUE) {
             tryNumber--;
             return true;

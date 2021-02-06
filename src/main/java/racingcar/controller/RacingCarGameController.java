@@ -16,13 +16,19 @@ public class RacingCarGameController {
 
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
-        List<String> carNames = InputView.inputCarNames(scanner);
-        Cars cars = new Cars(makeCarGroup(carNames));
+        Cars cars = askCarNames(scanner);
         TryNumber tryNumber = InputView.inputTryNumber(scanner);
         RacingCarGame racingCarGame = new RacingCarGame(cars, tryNumber);
 
         OutputView.printRunResult(racingCarGame.execute(new RandomNumberGenerator()));
         OutputView.printWinners(racingCarGame.findWinners());
+    }
+
+    private static Cars askCarNames(Scanner scanner) {
+        List<String> carNames = InputView.inputCarNames(scanner);
+        List<Car> carGroup = makeCarGroup(carNames);
+        Cars cars = new Cars(carGroup);
+        return cars;
     }
 
     private static List<Car> makeCarGroup(List<String> carNames) {

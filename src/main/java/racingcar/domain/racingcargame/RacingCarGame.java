@@ -20,7 +20,7 @@ public class RacingCarGame {
 
     public List<Cars> execute(RandomNumberGenerator randomNumberGenerator) {
         List<Cars> runResult = new ArrayList<>();
-        while (tryNumber.isMovable()) {
+        while (tryNumber.isRunnable()) {
             cars = cars.play(randomNumberGenerator);
             runResult.add(cars);
         }
