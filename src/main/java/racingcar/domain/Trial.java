@@ -30,6 +30,14 @@ public class Trial {
         }
     }
 
+    public boolean decrement() {
+        if (trial > 0) {
+            trial--;
+            return true;
+        }
+        return false;
+    }
+
     public int getTrial() {
         return trial;
     }

@@ -26,7 +26,7 @@ public class Cars {
 
     public void moveCars() {
         for (Car car: cars) {
-            car.movePosition(RandomUtils.generateRandomValue());
+            car.movePosition(RandomUtils.generateRandomNumber());
         }
     }
 
@@ -34,7 +34,10 @@ public class Cars {
         return cars.stream().max(Car::compareTo).get();
     }
 
-    public List<Car> getWinners(Car maxPositionCar) {
-        return cars.stream().filter(car -> car.hasSamePositionWith(maxPositionCar)).collect(Collectors.toList());
+    public List<Car> getWinners() {
+        Car maxPositionCar = getMaxPositionCar();
+        return cars.stream()
+                .filter(car -> car.hasSamePositionWith(maxPositionCar))
+                .collect(Collectors.toList());
     }
 }

@@ -7,34 +7,31 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingController {
-    private static boolean running = true;
+    private boolean running = true;
 
-    private RacingController() {
-    }
-
-    public static void start() {
+    public void start() {
         try {
             Names names = InputView.getNames();
             Trial trial = InputView.getTrial();
             Cars cars = new Cars(names);
 
             run(cars, trial);
-            OutputView.showResult(cars.getWinners(cars.getMaxPositionCar()));
+            OutputView.showResult(cars.getWinners());
             running = false;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
         }
     }
 
-    private static void run(Cars cars, Trial trial) {
+    private void run(Cars cars, Trial trial) {
         OutputView.printResultTitle();
-        for (int i = 0; i < trial.getTrial(); i++) {
+        while (trial.decrement()) {
             cars.moveCars();
             OutputView.printCurrentResult(cars.getCurrentPosition());
         }
     }
 
-    public static boolean isRunning() {
+    public boolean isRunning() {
         return running;
     }
 }
