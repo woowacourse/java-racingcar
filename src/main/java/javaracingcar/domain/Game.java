@@ -2,6 +2,7 @@ package javaracingcar.domain;
 
 import javaracingcar.controller.GameController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,7 @@ public class Game {
     public static Game init(List<String> carNames, int trial) {
         validateNonZeroElement(carNames);
         validateDistinctNames(carNames);
-        return new Game(GameController.generateCars(carNames), trial);
+        return new Game(generateCars(carNames), trial);
     }
 
     private static void validateNonZeroElement(List<String> carNames) {
@@ -32,6 +33,14 @@ public class Game {
                     .count() != carNames.size()) {
             throw new IllegalArgumentException("중복된 이름이 있습니다.");
         }
+    }
+
+    public static List<Car> generateCars(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : carNames) {
+            cars.add(Car.generateCar(name));
+        }
+        return cars;
     }
 
     public List<String> getCarNames() {
