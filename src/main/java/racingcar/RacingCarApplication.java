@@ -1,6 +1,8 @@
 package racingcar;
 
+import racingcar.domain.Cars;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.Scanner;
 
@@ -15,8 +17,17 @@ public class RacingCarApplication {
         Scanner scanner = new Scanner(System.in);
         InputView.setScanner(scanner);
 
-        // TODO 자동차 이름 입력 및 Cars 객체 생성
+        Cars cars = createCarsFromUser();
         // TODO 회차 입력 및 Round 객체 생성
         // TODO RacingCarGame 객체 생성 및 실행
+    }
+
+    private static Cars createCarsFromUser() {
+        try{
+            return Cars.of(InputView.getCarNames());
+        }catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return createCarsFromUser();
+        }
     }
 }
