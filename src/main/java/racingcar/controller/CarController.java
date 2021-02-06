@@ -9,7 +9,7 @@ public class CarController {
         this.car = car;
     }
 
-    public void carMove(){
+    public void carMove() {
         car.carMove();
     }
 }
