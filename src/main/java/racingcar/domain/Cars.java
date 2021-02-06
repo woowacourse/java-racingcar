@@ -25,7 +25,7 @@ public class Cars {
         int maxPosition = findMaxPosition(this.carList);
         List<String> winnerList = new ArrayList<>();
         carList.stream()
-            .filter(carElement -> (carElement.getPosition() == maxPosition))
+            .filter(carElement -> (carElement.isSamePosition(maxPosition)))
             .map(Car::getName)
             .forEach(winnerList::add);
         return String.join(", ", winnerList);
