@@ -25,10 +25,18 @@ public class InputView {
         OutputView.readTrialNumber();
         String userInput = scanner.nextLine();
         try {
-            return Integer.parseInt(userInput); //정규식도입? 예외처리?
+            return validatePositive(Integer.parseInt(userInput));
         } catch (Exception e) {
-            OutputView.printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage("[Error] 횟수는 자연수여야 합니다.\n");
             return getUserTrialNumberInput(scanner);
         }
     }
+
+    private static int validatePositive(int userInput) {
+        if (userInput < 0) {
+            throw new IllegalArgumentException();
+        }
+        return userInput;
+    }
+
 }
