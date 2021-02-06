@@ -7,7 +7,9 @@ public class RandomUtils {
     private static final int RANDOM_START = 0;
     private static final int RANDOM_END = 9;
 
-    private RandomUtils() { }
+    private RandomUtils() {
+    }
+
     public static int generateRandomNumber() {
         return RANDOM_START + RANDOM.nextInt(RANDOM_END - RANDOM_START + 1);
     }

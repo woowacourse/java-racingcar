@@ -13,6 +13,6 @@ public class Application {
         int trialNumber = InputView.getUserTrialNumberInput(scanner);
 
         RacingGameController racingGame = new RacingGameController();
-        racingGame.play(carsInGame,trialNumber);
+        racingGame.play(carsInGame, trialNumber);
     }
 }

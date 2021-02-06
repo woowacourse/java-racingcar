@@ -1,13 +1,13 @@
 package racingcar.model;
 
 public class Car {
+    private static final int MOVE_POINT_NUMBER = 4;
+    private static final int NAME_LEN = 5;
+
     private String name;
     private int distance;
     private StringBuilder distanceIndicator = new StringBuilder();
     private String DASH = "-";
-
-    private static final int MOVE_POINT_NUMBER = 4;
-    private static final int NAME_LEN = 5;
 
     public Car(String name) {
         this(name, 0);
@@ -17,6 +17,12 @@ public class Car {
         validateName(name);
         this.name = name;
         this.distance = distance;
+    }
+
+    private void validateName(String name) {
+        if (name.length() > NAME_LEN) {
+            throw new IllegalArgumentException("[Error] 자동차 이름은 5자이하여야 합니다.");
+        }
     }
 
     public int move(int randomNumber) {
@@ -31,12 +37,6 @@ public class Car {
         return (randomNumber >= MOVE_POINT_NUMBER);
     }
 
-    private void validateName(String name) {
-        if (name.length() > NAME_LEN) {
-            throw new IllegalArgumentException("[Error] 자동차 이름은 5자이하여야 합니다.");
-        }
-    }
-
     @Override
     public String toString() {
         return (this.name + " : " + this.distanceIndicator);
@@ -48,9 +48,5 @@ public class Car {
 
     public String getCarName() {
         return this.name;
-    }
-
-    public int getDistance(){
-        return this.distance;
     }
 }

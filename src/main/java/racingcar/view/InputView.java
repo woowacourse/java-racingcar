@@ -5,15 +5,13 @@ import racingcar.model.Cars;
 import java.util.Scanner;
 
 public class InputView {
-
-    public static Cars getUserCarInput(Scanner scanner){
+    public static Cars getUserCarInput(Scanner scanner) {
         OutputView.readCarName();
         String userInput = scanner.nextLine();
         try {
             String[] carNames = userInput.split(",");
             return makeCars(carNames);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             return getUserCarInput(scanner);
         }
     }

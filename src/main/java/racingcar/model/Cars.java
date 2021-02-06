@@ -10,12 +10,12 @@ public class Cars {
     }
 
     public Cars(String[] carNames, int[] distance) {
-        for (int i = 0; i< carNames.length; i++) {
+        for (int i = 0; i < carNames.length; i++) {
             carsInGame.add(new Car(carNames[i], distance[i]));
         }
     }
 
-    public ArrayList<Car> getCars(){
+    public ArrayList<Car> getCars() {
         return carsInGame;
     }
 
