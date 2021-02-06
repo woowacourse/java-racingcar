@@ -3,14 +3,14 @@ package calculator;
 public class Number {
 
     public static final int NUMBER_ZERO = 0;
-    
+
     private final int number;
 
-    public Number(String number) {
+    public Number(final String number) {
         this.number = validateNumber(number);
     }
 
-    private int validateNumber(String number) {
+    private int validateNumber(final String number) {
         if (number == null || number.isEmpty()) {
             return NUMBER_ZERO;
         }
@@ -22,7 +22,7 @@ public class Number {
         }
     }
 
-    private int validatePositiveNumber(String number) {
+    private int validatePositiveNumber(final String number) {
         int result = Integer.parseInt(number);
         if (result < NUMBER_ZERO) {
             throw new RuntimeException();
