@@ -30,9 +30,7 @@ public class CarTest {
     @NullAndEmptySource
     @ValueSource(strings = {"abcdef", "ab.de", "   "})
     void Car_유효하지_않은_이름_예외가_발생한다(String name) {
-        assertThatThrownBy(() -> {
-            new Car(name);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
