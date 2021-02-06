@@ -1,7 +1,7 @@
 package racing.view;
 
-import racing.domain.dto.CarDto;
-import racing.domain.dto.WinnersDto;
+import racing.view.dto.CarDto;
+import racing.view.dto.WinnersDto;
 
 import java.util.List;
 

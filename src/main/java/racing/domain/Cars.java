@@ -1,6 +1,5 @@
 package racing.domain;
 
-import racing.domain.dto.CarDto;
 import racing.utils.RandomUtils;
 
 import java.util.*;

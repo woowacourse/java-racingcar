@@ -1,6 +1,6 @@
 package racing.domain;
 
-import racing.domain.dto.CarDto;
+import racing.view.dto.CarDto;
 import racing.view.GameScreen;
 
 import java.util.List;

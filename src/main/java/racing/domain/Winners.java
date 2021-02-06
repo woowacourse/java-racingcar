@@ -1,6 +1,6 @@
 package racing.domain;
 
-import racing.domain.dto.WinnersDto;
+import racing.view.dto.WinnersDto;
 
 import java.util.ArrayList;
 import java.util.List;
