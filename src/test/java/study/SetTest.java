@@ -4,12 +4,13 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 @DisplayName("Test Set for studying JUnit and AssertJ")
 public class SetTest {
@@ -45,10 +46,31 @@ public class SetTest {
         assertThat(numbers.contains(input)).isEqualTo(expected);
     }
 
+    private static Stream<Arguments> integerInSetTable() {
+        return Stream.of(
+                Arguments.of(0, false),
+                Arguments.of(1, true),
+                Arguments.of(2, true),
+                Arguments.of(3, true),
+                Arguments.of(4, false),
+                Arguments.of(5, false),
+                Arguments.of(6, false)
+        );
+    }
+
+    @DisplayName("Test for contain each numbers")
+    @ParameterizedTest
+    @MethodSource("integerInSetTable")
+    void compareWithTable(int input, boolean isExist) {
+        assertThat(numbers.contains(input)).isEqualTo(isExist);
+    }
+
+    @DisplayName("Test for null source")
+    @ParameterizedTest
+    @NullSource
+    void expectNullPointerException(Integer i) {
+        assertThatThrownBy(() -> {
+            i.toString();
+        }).isInstanceOf(NullPointerException.class);
+    }
 }
-/*
-앞의 기본 구분자(쉼표, 콜론)외에 커스텀 구분자를 지정할 수 있다.
-커스텀 구분자는 문자열 앞부분의 “//”와 “\n” 사이에 위치하는 문자를 커스텀 구분자로 사용한다.
-예를 들어 “1;2;3//;\n과 같이 값을 입력할 경우 커스텀 구분자는 세미콜론(;)이며,
-'더하기를 실행하는' 결과 값은 6이 반환되어야 한다
- */
