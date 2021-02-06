@@ -12,8 +12,10 @@ import java.util.Scanner;
  * @author Kimun Kim / kkm97351@gmail.com
  */
 public class InputView {
-    private static final String MSG_ASK_CAR_NAMES = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
+    private static final String MESSAGE_REQUEST_CAR_NAMES = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
+    private static final String MESSAGE_REQUEST_ROUND_NUMBER = "시도할 회수는 몇회인가요?";
     private static final String ERROR_NONE_INPUT_VALUE = "입력값이 없습니다.";
+    private static final String ERROR_INVALID_INPUT_VALUE = "유효하지 않은 입력입니다.";
 
     private static Scanner scanner;
 
@@ -44,8 +46,25 @@ public class InputView {
     }
 
     public static List<String> getCarNames() {
-        String rawString = getInputWithMessage(MSG_ASK_CAR_NAMES);
+        String rawString = getInputWithMessage(MESSAGE_REQUEST_CAR_NAMES);
         return new ArrayList<>(Arrays.asList(rawString.split(",")));
     }
 
+    public static int getRoundNumber() {
+        String rawString = getInputWithMessage(MESSAGE_REQUEST_ROUND_NUMBER);
+        try {
+            return parseIntOrThrowException(rawString);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return getRoundNumber();
+        }
+    }
+
+    private static int parseIntOrThrowException(String string) {
+        try {
+            return Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_INVALID_INPUT_VALUE);
+        }
+    }
 }

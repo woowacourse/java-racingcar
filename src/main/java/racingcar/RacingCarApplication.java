@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.domain.Cars;
+import racingcar.domain.Round;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -18,7 +19,7 @@ public class RacingCarApplication {
         InputView.setScanner(scanner);
 
         Cars cars = createCarsFromUser();
-        // TODO 회차 입력 및 Round 객체 생성
+        Round round = createRoundFromUser();
         // TODO RacingCarGame 객체 생성 및 실행
     }
 
@@ -28,6 +29,15 @@ public class RacingCarApplication {
         }catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return createCarsFromUser();
+        }
+    }
+
+    private static Round createRoundFromUser() {
+        try{
+            return Round.from(InputView.getRoundNumber());
+        }catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return createRoundFromUser();
         }
     }
 }
