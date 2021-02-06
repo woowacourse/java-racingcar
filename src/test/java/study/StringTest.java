@@ -39,11 +39,15 @@ public class StringTest {
     }
 
     @Test
-    void substring() {
-        String value = "(1,2)";
-        String newValue = value.substring(1, 4);
+    @DisplayName("String.substring 성공 테스트")
+    void testSuccessSubstring() {
+        final String testString = "(1,2)";
+        final int firstIndex = 1;
+        final int secondIndex = 4;
+        final String expectResult = "1,2";
 
-        assertThat(newValue).isEqualTo("1,2");
+        assertThat(testString.substring(firstIndex,secondIndex))
+            .isEqualTo(expectResult);
     }
 
     @Test
