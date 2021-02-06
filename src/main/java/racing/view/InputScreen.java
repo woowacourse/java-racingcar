@@ -9,7 +9,7 @@ public class InputScreen implements Screen {
         OutputView.printMessage(INPUT_CAR_NAMES_MESSAGE);
     }
 
-    public void showCountMessage(){
+    public void showCountMessage() {
         OutputView.printMessage(INPUT_TRY_COUNTS_MESSAGE);
     }
 }

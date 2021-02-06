@@ -5,7 +5,7 @@ import racing.view.dto.WinnersDto;
 
 import java.util.List;
 
-public class GameScreen implements Screen{
+public class GameScreen implements Screen {
     private static final String RESULT = "\n실행 결과";
     private static final String DISTANCE = "-";
     private static final String STATUS_FORMAT = "%s : %s\n";
@@ -24,7 +24,7 @@ public class GameScreen implements Screen{
         OutputView.printMessage(stringBuilder.toString());
     }
 
-    public void showWinners(WinnersDto winnersDto){
+    public void showWinners(WinnersDto winnersDto) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.join(DELIMITER, winnersDto.getWinnersName()));
         stringBuilder.append(WINNER);
