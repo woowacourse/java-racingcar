@@ -20,12 +20,12 @@ public class Cars {
         return cars;
     }
 
-    public String getWinners(int maxDistance) {
-        ArrayList<String> winners = new ArrayList<String>();
+    public ArrayList<Car> getWinners(int maxDistance) {
+        ArrayList<Car> winners = new ArrayList<Car>();
         cars.stream()
             .filter(it -> it.isWinner(maxDistance))
-            .forEach(it -> winners.add(it.getCarName()));
-        return String.join(",", winners);
+            .forEach(it -> winners.add(it));
+        return winners;
     }
 
 }
