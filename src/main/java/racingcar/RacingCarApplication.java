@@ -13,6 +13,7 @@ import java.util.Scanner;
  * 자동차 경주 게임
  *
  * @author Kimun Kim, github.com/tributetothemoon
+ * @author TaeHyeok Lee , github.com/taelee42
  */
 public class RacingCarApplication {
     public static void main(String[] arg) {

@@ -9,7 +9,8 @@ import java.util.Scanner;
  * InputView.java
  * 입력과 출력이 섞인 로직을 담당하는 View 클래스
  *
- * @author Kimun Kim / kkm97351@gmail.com
+ * @author Kimun Kim, github.com/tributetothemoon
+ * @author TaeHyeok Lee , github.com/taelee42
  */
 public class InputView {
     private static final String MESSAGE_REQUEST_CAR_NAMES = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
