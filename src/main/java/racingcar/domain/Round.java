@@ -26,4 +26,12 @@ public class Round {
         }
         return true;
     }
+
+    public void nextRound() {
+        this.currentRound++;
+    }
+
+    public boolean isEnd() {
+        return this.finalRound <= this.currentRound;
+    }
 }
