@@ -4,28 +4,30 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+    private static final Pattern CUSTOM = Pattern.compile("//(.)\n(.*)");
+
     static int splitAndSum(String number) {
         if (isNullOrZero(number)) {
             return 0;
         }
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(number);
-        if (m.find()) {
-            return isCustom(m);
+        Matcher matcher = CUSTOM.matcher(number);
+        if (matcher.find()) {
+            return getNumberFromCustom(matcher);
         }
-        return isDelimiterOrNumber(number);
+        return getNumberFromDelimeter(number);
     }
 
     private static boolean isNumber(String number) {
         return number.chars().allMatch(Character::isDigit);
     }
 
-    private static int isCustom(Matcher m) {
+    private static int getNumberFromCustom(Matcher m) {
         String customDelimiter = m.group(1);
         String[] tokens = m.group(2).split(customDelimiter);
         return addSplitNumbers(tokens);
     }
 
-    private static int isDelimiterOrNumber(String number) {
+    private static int getNumberFromDelimeter(String number) {
         String[] numbers = number.split(",|:");
         return addSplitNumbers(numbers);
     }
@@ -46,9 +48,6 @@ public class StringCalculator {
     }
 
     private static boolean isNullOrZero(String number) {
-        if (number == null || number.isEmpty()) {
-            return true;
-        }
-        return false;
+        return number == null || number.isEmpty();
     }
 }
