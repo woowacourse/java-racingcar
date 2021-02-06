@@ -10,7 +10,7 @@ public class RacingGameController {
         inputView = new InputView();
     }
 
-    public void race() {
+    public void startGame() {
         setUpRace();
         startRace();
         showResult();
@@ -24,8 +24,14 @@ public class RacingGameController {
     private void startRace() {
         OutputView.printResultPrefix();
         OutputView.printCarsBeforeRace(cars.getCars());
+
+        race();
+    }
+
+    private void race() {
         for (int i = 0; i < turns; i++) {
             cars.driveAll();
+            OutputView.printCarsAfterRace(cars.getCars());
         }
     }
 

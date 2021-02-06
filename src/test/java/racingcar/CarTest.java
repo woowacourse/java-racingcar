@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -50,5 +51,19 @@ class CarTest {
         assertThatThrownBy(() -> {
             Car.from(input);
         }).isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    @DisplayName("Car객체 -> 이름 : 포지션 변환")
+    void toString_position1() {
+        assertThat(Car.from("joy").toString()).isEqualTo("joy : -");
+    }
+
+    @Test
+    @DisplayName("Car객체 -> 이름 : 포지션 변환")
+    void toString_position2() {
+        Car car = Car.from("joy");
+        car.drive(5);
+        assertThat(car.toString()).isEqualTo("joy : --");
     }
 }

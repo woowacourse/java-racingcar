@@ -4,7 +4,10 @@ import java.util.stream.IntStream;
 
 public class Car {
 
-    private int position;
+    public static final int RANDOM_MINIMUM_VALUE = 0;
+    public static final int RANDOM_MAXIMUM_VALUE = 9;
+    public static final int MOVE_FORWARD_BOUNDARY = 4;
+    private Integer position;
     private final String name;
 
     private Car(final String name) {
@@ -14,6 +17,16 @@ public class Car {
 
     public static Car from(final String name) {
         return new Car(getValidatedName(name));
+    }
+
+    public void drive(final int randomValue) {
+        if (randomValue < RANDOM_MINIMUM_VALUE || RANDOM_MAXIMUM_VALUE < randomValue) {
+            throw new RuntimeException();
+        }
+
+        if (randomValue >= MOVE_FORWARD_BOUNDARY) {
+            moveForward();
+        }
     }
 
     private static String getValidatedName(String name) {
@@ -35,14 +48,8 @@ public class Car {
         }
     }
 
-    public void drive(int randomValue) {
-        if (randomValue < 0 || randomValue > 9) {
-            throw new RuntimeException();
-        }
-
-        if (randomValue >= 4) {
-            accelerate();
-        }
+    private void moveForward() {
+        position++;
     }
 
     public String getName() {
@@ -53,14 +60,9 @@ public class Car {
         return position;
     }
 
-    private void accelerate() {
-        position++;
-    }
-
     @Override
     public String toString() {
-        String a = name + " : ";
-        return a + getPositionToString();
+        return String.format("%s : %s", name, getPositionToString());
     }
 
     private String getPositionToString() {
@@ -72,7 +74,10 @@ public class Car {
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        int result = 17;
+        result = 31 * result + position.hashCode();
+        result = 31 * result + name.hashCode();
+        return result;
     }
 
     @Override
@@ -82,7 +87,7 @@ public class Car {
         }
         if (obj instanceof Car) {
             Car car = (Car) obj;
-            return this.name.equals(car.name);
+            return this.name.equals((car).name) && this.position.equals((car).position);
         }
         return false;
     }

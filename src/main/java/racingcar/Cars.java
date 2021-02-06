@@ -14,7 +14,7 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    private Cars(List<Car> cars) {
         this.cars = new ArrayList<>(cars);
     }
 
@@ -24,16 +24,16 @@ public class Cars {
 
     public static Cars from(String inputCarName) {
         String[] carNames = splitCarsName(inputCarName);
-        validate(carNames);
+        validateDuplicatedName(carNames);
 
-        List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(Car.from(carName));
-        }
-        return new Cars(cars);
+        return new Cars(
+                Arrays.stream(carNames)
+                        .map(Car::from)
+                        .collect(Collectors.toList())
+        );
     }
 
-    private static void validate(String[] carNames) {
+    private static void validateDuplicatedName(String[] carNames) {
         Set<String> set = new HashSet<>(Arrays.asList(carNames));
         if (set.size() != carNames.length) {
             throw new RuntimeException();
@@ -48,7 +48,6 @@ public class Cars {
         for (Car car : cars) {
             car.drive(RandomUtils.nextInt(0, 9));
         }
-        OutputView.printCarsAfterRace(cars);
     }
 
     public List<Car> getWinners() {
