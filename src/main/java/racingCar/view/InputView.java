@@ -1,11 +1,10 @@
 package racingCar.view;
 
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class InputView {
 
+    public static final String DELIMITER = ",";
     private final Scanner scanner;
 
     public InputView(Scanner scanner) {
@@ -18,7 +17,7 @@ public class InputView {
 
     public String[] inputCarNames() {
         String cars = scanner.nextLine();
-        return cars.split(",");
+        return cars.split(DELIMITER);
     }
 
 }
