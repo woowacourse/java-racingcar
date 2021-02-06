@@ -1,4 +1,4 @@
-package controller;
+package racingcar.controller;
 
 import java.util.List;
 import racingcar.view.RacingGameView;
@@ -15,9 +15,9 @@ public class RacingGameController {
     private List<Car> cars;
     private int trial;
 
-    public void race() {
+    public void play() {
         prepare();
-        play();
+        race();
         finish();
     }
 
@@ -29,7 +29,7 @@ public class RacingGameController {
         trial = ParsingUtils.parseTrial(input);
     }
 
-    private void play() {
+    private void race() {
         RacingGameView.printNewLine();
         RacingGameView.printResult();
         raceByTrial();
@@ -51,6 +51,7 @@ public class RacingGameController {
     }
 
     private void finish() {
-        RacingGameView.printWinners(WinnerUtils.getWinners(cars));
+        List<String> winnerNames = WinnerUtils.findWinners(cars);
+        RacingGameView.printWinners(winnerNames);
     }
 }

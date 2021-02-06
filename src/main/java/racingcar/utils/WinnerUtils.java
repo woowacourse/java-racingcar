@@ -12,7 +12,7 @@ public class WinnerUtils {
     private WinnerUtils() {
     }
 
-    public static List<String> getWinners(List<Car> cars) {
+    public static List<String> findWinners(List<Car> cars) {
         winners = new ArrayList<>();
         maxPosition = -1;
         for (Car car : cars) {

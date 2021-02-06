@@ -28,7 +28,7 @@ public class WinnerUtilsTest {
         List<String> expected = new ArrayList<>();
         expected.add(cars.get(0).getName());
 
-        List<String> actual = WinnerUtils.getWinners(cars);
+        List<String> actual = WinnerUtils.findWinners(cars);
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -42,7 +42,7 @@ public class WinnerUtilsTest {
             expected.add(car.getName());
         }
 
-        List<String> actual = WinnerUtils.getWinners(cars);
+        List<String> actual = WinnerUtils.findWinners(cars);
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -53,7 +53,7 @@ public class WinnerUtilsTest {
             expected.add(car.getName());
         }
 
-        List<String> actual = WinnerUtils.getWinners(cars);
+        List<String> actual = WinnerUtils.findWinners(cars);
         assertThat(actual).isEqualTo(expected);
     }
 }

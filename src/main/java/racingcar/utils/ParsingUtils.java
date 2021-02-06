@@ -47,6 +47,7 @@ public class ParsingUtils {
             Integer trial = Integer.parseInt(input);
             return validateBound(trial);
         } catch (NumberFormatException e) {
+            // int　범위 밖의 입력의 경우 예외처리
             throw new IllegalArgumentException(
                 "숫자는 " + MIN_TRIAL + "이상 " + MAX_TRIAL + "이하여야 합니다.");
         }
