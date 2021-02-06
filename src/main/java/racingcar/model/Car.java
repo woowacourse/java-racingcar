@@ -19,13 +19,13 @@ public class Car {
         this.distance = distance;
     }
 
-    private void validateName(String name) {
+    private void validateName(final String name) {
         if (name.length() > NAME_LEN) {
             throw new IllegalArgumentException("[Error] 자동차 이름은 5자 이하여야 합니다.\n");
         }
     }
 
-    public int move(int randomNumber) {
+    public int move(final int randomNumber) {
         if (checkMoveCondition(randomNumber)) {
             this.distance++;
             this.distanceIndicator.append(DASH);
@@ -33,7 +33,7 @@ public class Car {
         return this.distance;
     }
 
-    private boolean checkMoveCondition(int randomNumber) {
+    private boolean checkMoveCondition(final int randomNumber) {
         return (randomNumber >= MOVE_POINT_NUMBER);
     }
 
@@ -42,7 +42,7 @@ public class Car {
         return (this.name + " : " + this.distanceIndicator);
     }
 
-    public boolean isWinner(int maxDistance) {
+    public boolean isWinner(final int maxDistance) {
         return (maxDistance == this.distance);
     }
 

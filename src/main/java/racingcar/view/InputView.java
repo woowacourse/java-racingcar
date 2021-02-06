@@ -17,7 +17,7 @@ public class InputView {
         }
     }
 
-    private static Cars makeCars(String[] carNames) {
+    private static Cars makeCars(final String[] carNames) {
         return new Cars(carNames);
     }
 
@@ -32,7 +32,7 @@ public class InputView {
         }
     }
 
-    private static int validatePositive(int userInput) {
+    private static int validatePositive(final int userInput) {
         if (userInput < 0) {
             throw new IllegalArgumentException();
         }

@@ -49,7 +49,7 @@ public class Cars {
         return carsInGame;
     }
 
-    public String getWinner(int maxDistance) {
+    public String getWinner(final int maxDistance) {
         ArrayList<String> winners = new ArrayList<String>();
         carsInGame.stream()
                 .filter(it -> it.isWinner(maxDistance))
