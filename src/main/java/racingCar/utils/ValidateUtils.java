@@ -59,6 +59,10 @@ public class ValidateUtils {
     }
 
     private static int validateInteger(String count) {
-        return Integer.parseInt(count);
+        try{
+            return Integer.parseInt(count);
+        } catch (NumberFormatException e){
+            throw new InvalidNumOfMoveException(ERROR_MESSAGE_ROUND_COUNT_NATURAL_NUMBER);
+        }
     }
 }
