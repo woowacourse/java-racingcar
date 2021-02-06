@@ -6,11 +6,14 @@ import javaracingcar.view.OutputView;
 import utils.RandomUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameController {
+    public static final int MIN_CAN_MOVE_NUMBER = 4;
+    public static final int MIN_RANDOM_NUMBER = 0;
+    public static final int MAX_RANDOM_NUMBER = 9;
+
     public static List<Car> generateCars(List<String> carNames) {
         List<Car> cars = new ArrayList<>();
         for (String name : carNames) {
@@ -43,23 +46,28 @@ public class GameController {
     }
 
     private static void playMoveOrStop(Car car) {
-        if (RandomUtils.nextInt(0, 9) >= 4) { //TODO constant로 변경
+        if (generateRandomNumber() >= MIN_CAN_MOVE_NUMBER) {
             car.move();
         }
     }
 
+    private static int generateRandomNumber() {
+        return RandomUtils.nextInt(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
+    }
+
     public static List<Car> getWinners(Game game) {
+        int maxPosition = getMaxPosition(game);
         return game.getCars()
                    .stream()
-                   .filter(car -> car.getPosition() == getMaxPosition(game))
+                   .filter(car -> car.getPosition() == maxPosition)
                    .collect(Collectors.toList());
     }
 
     private static int getMaxPosition(Game game) {
-        List<Integer> positions = game.getCars()
-                                      .stream()
-                                      .map(Car::getPosition)
-                                      .collect(Collectors.toList());
-        return Collections.max(positions);
+        return game.getCars()
+                   .stream()
+                   .mapToInt(Car::getPosition)
+                   .max()
+                   .orElseThrow(() -> new IllegalArgumentException("Max Position 구하는데에 실패했습니다."));
     }
 }

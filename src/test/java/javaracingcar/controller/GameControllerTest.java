@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameControllerTest {
     Game game;
@@ -20,6 +20,7 @@ class GameControllerTest {
         int trial = 5;
         game = Game.init(carNames, trial);
     }
+    // TODO: GameController 테스트를 구현해야 함.
 
     @Test
     void generateCars_자동차리스트생성() {
@@ -32,10 +33,5 @@ class GameControllerTest {
             assertEquals(generatedCars.get(i)
                                       .getName(), cars.get(i));
         }
-    }
-
-    @Test
-    void name() {
-//        playMoveOrStop(3)
     }
 }

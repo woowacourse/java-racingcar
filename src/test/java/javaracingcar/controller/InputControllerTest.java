@@ -25,7 +25,7 @@ class InputControllerTest {
         assertEquals(names, InputController.getCarNames(input));
     }
 
-   @Test
+    @Test
     void getTrial_자연수가아닌경우() {
         assertThatThrownBy(() -> InputController.getTrial("abc"))
                 .isInstanceOf(IllegalArgumentException.class)

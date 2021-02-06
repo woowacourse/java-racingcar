@@ -20,6 +20,7 @@ public class RacingMain {
     private static void start() {
         List<String> carNames = InputController.getCarNames(InputView.receiveCarNamesFromUser());
         int trial = InputController.getTrial(InputView.receiveTrialFromUser());
-        GameController.run(carNames,trial);
+
+        GameController.run(carNames, trial);
     }
 }
