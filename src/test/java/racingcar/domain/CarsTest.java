@@ -15,7 +15,7 @@ public class CarsTest {
     void cars_중복된_자동차_이름() {
         List<String> carNames = Arrays.asList("pobi", "pobi", "pobi");
         assertThatThrownBy(() -> {
-            Cars.setCars(carNames);
+            Cars.setCarsByName(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -23,7 +23,7 @@ public class CarsTest {
     @Test
     void carsGetMaxPosition() {
         List<String> carNames = Arrays.asList("pobi", "amaz");
-        Cars.setCars(carNames);
+        Cars.setCarsByName(carNames);
         assertThat(Cars.getMaxPositionByCars()).isEqualTo(0);
     }
 }

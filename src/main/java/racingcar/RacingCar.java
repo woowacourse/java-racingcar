@@ -6,6 +6,8 @@ import racingcar.utils.RacingCarUtils;
 import racingcar.view.InputView;
 import racingcar.view.RacingCarView;
 
+import java.util.List;
+
 public class RacingCar {
     public static void run() {
         racingCarSetting();
@@ -14,10 +16,14 @@ public class RacingCar {
     }
 
     private static void racingCarSetting() {
-        Cars.setCars(RacingCarUtils.splitInputString(InputView.getCarNameInput()));
+        Cars.setCarsByName(getCarNames());
         TryCount tryCount = new TryCount(InputView.getTryCountInput());
         GameRule gameRule = new GameRule();
         progressTryCount(tryCount, gameRule);
+    }
+
+    private static List<String> getCarNames() {
+        return RacingCarUtils.splitInputString(InputView.getCarNameInput());
     }
 
     private static void progressTryCount(TryCount tryCount, GameRule gameRule) {
@@ -42,6 +48,6 @@ public class RacingCar {
     }
 
     private static void pickWinners() {
-        Winners.setWinners(Cars.getCars());
+        Winners.setWinners();
     }
 }
