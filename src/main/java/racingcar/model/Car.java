@@ -1,13 +1,13 @@
 package racingcar.model;
 
 public class Car {
-    private String name;
-    private int distance;
-    private StringBuilder distanceIndicator = new StringBuilder();
-    private String DASH = "-";
 
     private static final int MOVE_POINT_NUMBER = 4;
     private static final int NAME_LEN = 5;
+    private static final String DASH = "-";
+    private String name;
+    private StringBuilder distanceIndicator;
+    private int distance;
 
     public Car(String name) {
         this(name, 0);
@@ -17,6 +17,7 @@ public class Car {
         validateName(name);
         this.name = name;
         this.distance = distance;
+        this.distanceIndicator = new StringBuilder();
     }
 
     public int move(int randomNumber) {
@@ -50,7 +51,4 @@ public class Car {
         return this.name;
     }
 
-    public int getDistance(){
-        return this.distance;
-    }
 }

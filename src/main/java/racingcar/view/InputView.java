@@ -6,29 +6,29 @@ import java.util.Scanner;
 
 public class InputView {
 
-    public static Cars getUserCarInput(Scanner scanner){
-        OutputView.readCarName();
-        String userInput = scanner.nextLine();
-        try {
-            String[] carNames = userInput.split(",");
-            return makeCars(carNames);
-        }
-        catch(Exception e) {
-            return getUserCarInput(scanner);
-        }
-    }
-
     private static Cars makeCars(String[] carNames) {
         return new Cars(carNames);
     }
 
-    public static int getUserTrialNumberInput(Scanner scanner) {
-        OutputView.readTrialNumber();
+    public static Cars getCars(Scanner scanner) {
+        OutputView.printCarNameReadMessage();
         String userInput = scanner.nextLine();
         try {
-            return Integer.parseInt(userInput); //정규식도입? 예외처리?
+            String[] carNames = userInput.split(",");
+            return makeCars(carNames);
         } catch (Exception e) {
-            return getUserTrialNumberInput(scanner);
+            return getCars(scanner);
         }
     }
+
+    public static int getAttemptNumber(Scanner scanner) {
+        OutputView.printAttemptNumberReadMessage();
+        String userInput = scanner.nextLine();
+        try {
+            return Integer.parseInt(userInput);
+        } catch (Exception e) {
+            return getAttemptNumber(scanner);
+        }
+    }
+
 }

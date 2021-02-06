@@ -9,20 +9,21 @@ public class RacingGameController {
 
     private int maxDistance;
 
-    public void play(final Cars carsInGame, final int trialNumber) {
-        OutputView.printOutputMessage();
-        for (int i=0; i<trialNumber; i++) {
-            singleMove(carsInGame);
+    public void play(final Cars cars, final int attemptNumber) {
+        OutputView.printPlayResultMessage();
+        for (int i = 0; i < attemptNumber; i++) {
+            race(cars);
         }
-        OutputView.printWinner(carsInGame.getWinner(maxDistance));
+        OutputView.printWinners(cars.getWinners(maxDistance));
     }
 
-    public void singleMove(final Cars carsInGame) {
-        for (Car car : carsInGame.getCars()) {
-            maxDistance = Math.max(car.move(RandomUtils.generateRandomNumber()), maxDistance);
+    public void race(final Cars cars) {
+        for (Car car : cars.getCars()) {
+            maxDistance = Math.max(car.move(RandomUtils.getRandomNumber()), maxDistance);
             OutputView.printCarInformation(car);
         }
         OutputView.printNewLine();
     }
+
 }
 

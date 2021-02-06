@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+
     private static int number;
     private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
     private static final String SPLIT_REGEX = ",|:";
@@ -29,11 +30,11 @@ public class StringCalculator {
         return (text == null || text.isEmpty());
     }
 
-    private static int parseByCustomDelimiter(String text){
+    private static int parseByCustomDelimiter(String text) {
         Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(text);
         if (m.find()) {
             String customDelimiter = m.group(1);
-            String[] tokens= m.group(2).split(customDelimiter);
+            String[] tokens = m.group(2).split(customDelimiter);
             return addElements(tokens);
         }
         return -1;
@@ -41,7 +42,7 @@ public class StringCalculator {
 
     private static int parseBySplitRegex(String text) {
         String[] numbers = text.split(SPLIT_REGEX);
-        if (numbers.length >= 2){
+        if (numbers.length >= 2) {
             return addElements(numbers);
         }
         return -1;
@@ -49,7 +50,7 @@ public class StringCalculator {
 
     private static int addElements(String[] numbers) throws RuntimeException {
         int number = 0;
-        for (int i = 0; i < numbers.length; i++){
+        for (int i = 0; i < numbers.length; i++) {
             number += validateNegative(numbers[i]);
         }
         return number;
@@ -62,4 +63,5 @@ public class StringCalculator {
         }
         return parsedNumber;
     }
+
 }

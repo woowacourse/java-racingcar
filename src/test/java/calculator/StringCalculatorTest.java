@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
+
     @Test
     public void splitAndSum_null_또는_빈문자() {
         int result = StringCalculator.splitAndSum(null);
@@ -38,16 +39,6 @@ public class StringCalculatorTest {
         assertThat(result).isEqualTo(expectedResult);
     }
 
-//    @ParameterizedTest
-//    @CsvSource(value = {"//;\n1;2;3=6", "//!\n12!23=35", "//&\n1&2&3&4=10"}, delimiter = '=')
-//    public void splitAndSum_custom_구분자(String input, int expectedResult) throws Exception {
-//        String test = "//;\n1;2;3";
-//        System.out.println(input.equals(test));
-//        System.out.println(input);
-//        int result = StringCalculator.splitAndSum(input);
-//        assertThat(result).isEqualTo(expectedResult);
-//    }
-
     @Test
     public void splitAndSum_custom_구분자2() throws Exception {
         int result = StringCalculator.splitAndSum("//!\n12!23");
@@ -57,6 +48,7 @@ public class StringCalculatorTest {
     @Test
     public void splitAndSum_negative() throws Exception {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
-                .isInstanceOf(RuntimeException.class);
+            .isInstanceOf(RuntimeException.class);
     }
+
 }
