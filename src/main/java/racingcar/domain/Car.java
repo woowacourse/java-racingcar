@@ -19,15 +19,15 @@ public class Car {
         return this.name;
     }
 
-    public void carMove() {
-        this.position++;
-    }
-
     public int getPosition() {
         return this.position;
     }
 
-    public boolean isMaxPosition(int maxPosition) {
+    public void moveForward() {
+        this.position++;
+    }
+
+    public boolean isMaxPosition(final int maxPosition) {
         return this.position == maxPosition;
     }
 
