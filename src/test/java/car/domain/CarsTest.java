@@ -24,7 +24,7 @@ public class CarsTest {
         assertThat(didNotRacedCars).isNotEqualTo(racedCars);
     }
     
-    private static Cars makeCarsWithFakeEngine(String carNames, int moveCondition) {
+    private Cars makeCarsWithFakeEngine(String carNames, int moveCondition) {
         final Function<String, Car> nameToCarFunction = name -> new Car(name, new MockEngine(moveCondition));
         
         return Cars.of(carNames, nameToCarFunction);

@@ -32,7 +32,7 @@ class CarTest {
         
         // given
         final Engine engine = new MockEngine(3);
-    
+        
         Car car = new Car("tico", engine);
         
         // when
