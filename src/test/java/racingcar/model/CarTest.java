@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,7 +9,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CarTest {
 
     @Test
-    public void Car_객체_생성자_예외_테스트() {
+    @DisplayName("자동차 이름이 5자보다 길경우 예외가 발생하는지 테스")
+    public void check_car_name_exception() {
         String carName = "testException";
         assertThatThrownBy(() -> new Car(carName))
             .isInstanceOf(RuntimeException.class)
@@ -16,21 +18,14 @@ public class CarTest {
     }
 
     @Test
-    public void Car_move_작동_테스트_랜덤_숫자가_4이상일때() {
+    @DisplayName("car move 테스트 (랜덤 숫자가 4이상일 경우에만 전진)")
+    public void check_car_move_by_random_number() {
         Car car = new Car("test");
-        int randomNumber = 4;
 
-        car.move(randomNumber);
+        car.move(4);
         assertThat(car.toString()).isEqualTo("test : -");
-    }
-
-    @Test
-    public void Car_move_작동_테스트_랜덤_숫자가_4미만일때() {
-        Car car = new Car("test");
-        int randomNumber = 1;
-
-        car.move(randomNumber);
-        assertThat(car.toString()).isEqualTo("test : ");
+        car.move(1);
+        assertThat(car.toString()).isEqualTo("test : -");
     }
 
 }
