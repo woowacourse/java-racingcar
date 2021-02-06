@@ -4,22 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Delimiters {
-    private static final String COMMA = ",";
-    private static final String COLON = ":";
-    private static final String OR = "|";
 
-    private static List<String> delimiters = new ArrayList<String>();
+    private static final String DELIMITER_COMMA = ",";
+    private static final String DELIMITER_COLON = ":";
+    private static final String JOIN_WITH_OR = "|";
+
+    private static List<String> delimiters;
 
     public Delimiters() {
-        delimiters.add(COMMA);
-        delimiters.add(COLON);
+        delimiters = new ArrayList<String>();
+        delimiters.add(DELIMITER_COMMA);
+        delimiters.add(DELIMITER_COLON);
     }
 
-    public void addCustomDelimiters(String customDelimiter){
+    public void addCustomDelimiters(final String customDelimiter) {
         delimiters.add(customDelimiter);
     }
 
-    public String getDelimiters(){
-        return String.join(OR, delimiters);
+    public String toString() {
+        return String.join(JOIN_WITH_OR, delimiters);
     }
 }
