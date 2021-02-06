@@ -3,6 +3,7 @@ package racingcar.domain;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class NameTest {
 
@@ -16,12 +17,18 @@ class NameTest {
     }
 
     @Test
-    public void name_자동차이름은_5자이하() {
-        assertThatThrownBy(() -> {
-            new Name("joanne");
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]")
-                .hasMessageContaining("이름은 1자 이상, 5자 이내만 가능합니다.");
+    public void name_자동차이름은_1에서_5자사이() {
+        assertAll(
+                () -> assertThatThrownBy(() -> {
+                    new Name("joanne");
+                }).isInstanceOf(IllegalArgumentException.class)
+                        .hasMessageContaining("[ERROR]")
+                        .hasMessageContaining("이름은 1자 이상, 5자 이내만 가능합니다."),
+                () -> assertThatThrownBy(() -> {
+                    new Name("");
+                }).isInstanceOf(IllegalArgumentException.class)
+                        .hasMessageContaining("[ERROR]")
+                        .hasMessageContaining("이름은 1자 이상, 5자 이내만 가능합니다.")
+        );
     }
-
 }
