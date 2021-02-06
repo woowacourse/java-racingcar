@@ -22,11 +22,6 @@ public class Car {
         }
     }
 
-    @Override
-    public String toString() {
-        return name + " : " + displayCurrentPosition();
-    }
-
     private String displayCurrentPosition() {
         StringBuilder currentPosition = new StringBuilder();
         for (int i = 0; i < position; i++) {
@@ -37,6 +32,11 @@ public class Car {
 
     public boolean isOn(int max) {
         return position == max;
+    }
+
+    @Override
+    public String toString() {
+        return name + " : " + displayCurrentPosition();
     }
 
     public int getPosition() {

@@ -26,10 +26,6 @@ public class RacingGame {
             .collect(Collectors.toList());
     }
 
-    public boolean isEnd() {
-        return numOfRacingRound == 0;
-    }
-
     public void race() {
         racePerRound();
         numOfRacingRound--;
@@ -39,8 +35,17 @@ public class RacingGame {
         cars.forEach(Car::run);
     }
 
-    public List<Car> getCars() {
-        return cars;
+    private int findMaxMove() {
+        List<Integer> traces = cars.stream()
+            .map(Car::getPosition)
+            .collect(Collectors.toList());
+        return traces.stream()
+            .max(Integer::compare)
+            .orElseThrow(() -> new NoWinnerException(ERROR_MESSAGE_NO_WINNER));
+    }
+
+    public boolean isEnd() {
+        return numOfRacingRound == 0;
     }
 
     public String getWinners() {
@@ -51,12 +56,7 @@ public class RacingGame {
             .collect(Collectors.joining(DELIMITER));
     }
 
-    private int findMaxMove() {
-        List<Integer> traces = cars.stream()
-            .map(Car::getPosition)
-            .collect(Collectors.toList());
-        return traces.stream()
-            .max(Integer::compare)
-            .orElseThrow(() -> new NoWinnerException(ERROR_MESSAGE_NO_WINNER));
+    public List<Car> getCars() {
+        return cars;
     }
 }
