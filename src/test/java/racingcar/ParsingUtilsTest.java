@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class ParsingUtilsTest {
 
     @Test
-    void setCarsTest_정상입력() {
+    void parseCarNamesTest_정상입력() {
         List<Car> expected = new ArrayList<>();
         expected.add(new Car("루트"));
         expected.add(new Car("소롱"));
@@ -26,7 +26,7 @@ public class ParsingUtilsTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"한대의자동차", "자동차#;"})
-    void setCarsTest_자동차_입력_수(String input) {
+    void parseCarNamesTest_자동차_입력_수(String input) {
         assertThatThrownBy(() -> {
             ParsingUtils.parseCarNames(input);
         }).isInstanceOf(IllegalArgumentException.class)
@@ -35,7 +35,7 @@ public class ParsingUtilsTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"루트,소롱,루트", "루트,루트,루트"})
-    void setCarsTest_중복되는_자동차_입력(String input) {
+    void parseCarNamesTest_중복되는_자동차_입력(String input) {
         assertThatThrownBy(() -> {
             ParsingUtils.parseCarNames(input);
         }).isInstanceOf(IllegalArgumentException.class)
@@ -44,14 +44,14 @@ public class ParsingUtilsTest {
 
     @ParameterizedTest
     @CsvSource(value = {"1,1", "2,2", "50,50", "2147483647,2147483647"}, delimiter = ',')
-    void setTrial_정상입력(String input, Integer expected) {
+    void parseTrialTest_정상입력(String input, Integer expected) {
         Integer actual = ParsingUtils.parseTrial(input);
         assertThat(actual).isEqualTo(expected);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"2147483648", "0"})
-    void setTrial_범위_밖의_숫자(String input) {
+    void parseTrialTest_범위_밖의_숫자(String input) {
         assertThatThrownBy(() -> {
             ParsingUtils.parseTrial(input);
         }).isInstanceOf(IllegalArgumentException.class)
@@ -59,8 +59,8 @@ public class ParsingUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"2-1", "abc", "894-"})
-    void setTrial_정수가_아닌_입력(String input) {
+    @ValueSource(strings = {"2-1", "abc", "894-", "+3"})
+    void parseTrialTest_정수가_아닌_입력(String input) {
         assertThatThrownBy(() -> {
             ParsingUtils.parseTrial(input);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("숫자만 입력할 수 있습니다.");

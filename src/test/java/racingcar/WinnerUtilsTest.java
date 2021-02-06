@@ -21,7 +21,7 @@ public class WinnerUtilsTest {
     }
 
     @Test
-    void getWinnersTest_한명() {
+    void findWinnersTest_한명() {
         cars.get(0).tryToMove(5);
         cars.get(1).tryToMove(3);
 
@@ -33,12 +33,12 @@ public class WinnerUtilsTest {
     }
 
     @Test
-    void getWinnersTest_두명_이상() {
-        cars.get(0).tryToMove(5);
-        cars.get(1).tryToMove(5);
+    void findWinnersTest_두명_이상() {
+        cars.add(new Car("포비"));
 
         List<String> expected = new ArrayList<>();
         for (Car car : cars) {
+            car.tryToMove(5);
             expected.add(car.getName());
         }
 
@@ -47,7 +47,7 @@ public class WinnerUtilsTest {
     }
 
     @Test
-    void getWinnerTest_모두_움직이지_않음() {
+    void findWinnerTest_모두_움직이지_않음() {
         List<String> expected = new ArrayList<>();
         for (Car car : cars) {
             expected.add(car.getName());
