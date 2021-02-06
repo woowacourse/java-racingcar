@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class ExceptionHandler {
+public class GameSetter {
 
     private static final String NAME_SPLIT_DELIMITER = ",";
     private static final Integer MIN_TRIAL = 1;
     private static final Integer MAX_TRIAL = Integer.MAX_VALUE;
     private static final int MIN_CARS_LENGTH = 2;
 
-    private ExceptionHandler() {
+    private GameSetter() {
     }
 
     public static List<Car> setCars(String input) {

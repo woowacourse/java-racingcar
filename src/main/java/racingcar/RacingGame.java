@@ -20,12 +20,12 @@ public class RacingGame {
 
     private void prepareCars() {
         String input = RacingGameView.requestCars();
-        cars = ExceptionHandler.setCars(input);
+        cars = GameSetter.setCars(input);
     }
 
     private void prepareTrial() {
         String input = RacingGameView.requestTrial();
-        trial = ExceptionHandler.setTrial(input);
+        trial = GameSetter.setTrial(input);
     }
 
     private void play() {
