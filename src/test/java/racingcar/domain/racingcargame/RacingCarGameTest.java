@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.util.RandomNumberGenerator;
 import racingcar.domain.trynumber.TryNumber;
 
 import java.util.Arrays;
@@ -19,12 +18,12 @@ class RacingCarGameTest {
     @Test
     void testExecute() {
         //given
-        Cars cars = new Cars(Arrays.asList(new Car("benz"), new Car("test")));
+        Cars cars = new Cars(Arrays.asList(new Car("benz"), new Car("bmw")));
         TryNumber tryNumber = new TryNumber(2);
 
         //when
         RacingCarGame racingCarGame = new RacingCarGame(cars, tryNumber);
-        List<Cars> runResult = racingCarGame.execute(new RandomNumberGenerator());
+        List<Cars> runResult = racingCarGame.execute(() -> 4);
 
         //then
         Cars firstRunResult = runResult.get(0);
@@ -32,10 +31,10 @@ class RacingCarGameTest {
         Cars secondRunResult = runResult.get(1);
         List<Car> secondRunResultCars = secondRunResult.getCars();
         assertAll(
-                () -> assertThat(firstRunResultCars.get(0).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(2),
-                () -> assertThat(firstRunResultCars.get(1).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(2),
-                () -> assertThat(secondRunResultCars.get(0).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(2),
-                () -> assertThat(secondRunResultCars.get(1).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(2)
+                () -> assertThat(firstRunResultCars.get(0).getPosition()).isEqualTo(1),
+                () -> assertThat(firstRunResultCars.get(1).getPosition()).isEqualTo(1),
+                () -> assertThat(secondRunResultCars.get(0).getPosition()).isEqualTo(2),
+                () -> assertThat(secondRunResultCars.get(1).getPosition()).isEqualTo(2)
         );
     }
 
