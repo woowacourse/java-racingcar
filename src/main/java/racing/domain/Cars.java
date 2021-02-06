@@ -3,10 +3,7 @@ package racing.domain;
 import racing.domain.dto.CarDto;
 import racing.utils.RandomUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -60,9 +57,7 @@ public class Cars {
                 .getPosition();
     }
 
-    public List<CarDto> getCarDtos() {
-        return cars.stream()
-                .map(CarDto::of)
-                .collect(Collectors.toList());
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

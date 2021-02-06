@@ -4,6 +4,7 @@ import racing.domain.dto.CarDto;
 import racing.view.GameScreen;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingGameMachine {
     private static final int ZERO = 0;
@@ -39,6 +40,8 @@ public class RacingGameMachine {
     }
 
     private List<CarDto> getCarDtos() {
-        return cars.getCarDtos();
+        return cars.getCars().stream()
+                .map(car -> CarDto.of(car))
+                .collect(Collectors.toList());
     }
 }
