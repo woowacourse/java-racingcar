@@ -8,7 +8,6 @@ public class RacingResult {
   private static final String ENTER = "\n";
   private static final String LOG_FORM = "%s : %s\n";
   private static final String DISTANCE_SIGN = "-";
-  private static final int DEFAULT_MAX_POSITION = 0;
   private final StringBuilder log;
   private final Participants participants;
 
@@ -38,14 +37,6 @@ public class RacingResult {
   }
 
   public String winner() {
-    int maxPosition = participants.cars().stream()
-        .mapToInt(Car::position)
-        .max()
-        .orElse(DEFAULT_MAX_POSITION);
-
-    List<Car> winners = participants.cars().stream()
-        .filter(car -> car.position() == maxPosition)
-        .collect(Collectors.toList());
-    return new Winner(winners).winnerName();
+    return new Winner(participants).winnerName();
   }
 }

@@ -6,15 +6,21 @@ import java.util.stream.Collectors;
 public class Winner {
 
   private static final String WINNER_NAME_DELIMITER = ", ";
-  private final List<Car> cars;
+  private final Participants participants;
 
-  public Winner(final List<Car> cars) {
-    this.cars = cars;
+  public Winner(final Participants participants) {
+    this.participants = participants;
   }
 
   public String winnerName() {
-    return cars.stream()
+    return winner().stream()
         .map(Car::name)
         .collect(Collectors.joining(WINNER_NAME_DELIMITER));
   }
+  private List<Car> winner() {
+    return participants.cars().stream()
+        .filter(car -> car.position() == participants.maxPosition())
+        .collect(Collectors.toList());
+  }
 }
+

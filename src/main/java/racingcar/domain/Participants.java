@@ -19,6 +19,13 @@ public class Participants {
     }
   }
 
+  public int maxPosition() {
+    return cars().stream()
+        .mapToInt(Car::position)
+        .max()
+        .getAsInt();
+  }
+
   public List<Car> cars() {
     return Collections.unmodifiableList(cars);
   }
