@@ -1,0 +1,19 @@
+package car.domain.engine;
+
+import java.util.Random;
+
+public final class RacingEngine implements Engine {
+    
+    private static final int RANDOM_UPPER_BOUND = 10;
+    
+    private final Random random;
+    
+    public RacingEngine() {
+        this.random = new Random();
+    }
+    
+    @Override
+    public boolean isEnoughFuel() {
+        return random.nextInt(RANDOM_UPPER_BOUND) >= MOVE_CONDITION;
+    }
+}
