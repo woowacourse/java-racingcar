@@ -1,28 +1,31 @@
 package racingCar;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    public static List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
-    public static void carAdd(Car car){
-        cars.add(car);
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
-    public static List<String> findWinners(int max){
+    public List<String> getWinnerNames() {
         return cars.stream()
-                .filter(car -> car.isWinner(max))
-                .map(car -> car.getName())
+                .filter(car -> car.isWinner(getMaxDistance()))
+                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    public static int getSize() {
-        return cars.size();
+    public List<Car> getCars() {
+        return cars;
     }
 
-    public static List<Car> getCars() {
-        return cars;
+    public int getMaxDistance() {
+        int maxDistance = 0;
+        for (Car car : cars) {
+            maxDistance = Math.max(maxDistance, car.getDistance());
+        }
+        return maxDistance;
     }
 }
