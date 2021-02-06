@@ -22,11 +22,6 @@ public class CarRepository {
         cars.clear();
     }
 
-    public static void showAllCarsPosition() {
-        cars.forEach(car ->
-                OutputView.printRaceResultEachCar(car.getName(), car.getPosition()));
-    }
-
     public static List<Car> cars() {
         return Collections.unmodifiableList(cars);
     }

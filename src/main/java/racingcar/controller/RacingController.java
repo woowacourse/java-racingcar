@@ -48,7 +48,7 @@ public class RacingController {
 
         for (int i = 0; i < tryTime; i++) {
             updateAllCarsPosition(cars);
-            CarRepository.showAllCarsPosition();
+            showAllCarsPosition(cars);
             OutputView.printNewLine();
         }
 
@@ -66,5 +66,11 @@ public class RacingController {
                 .generateRandomNumber(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
 
         return GoForwardOrStop.isGoForward(randomNumber);
+    }
+
+    private void showAllCarsPosition(List<Car> cars) {
+        cars.forEach(car ->
+                OutputView.printRaceResultEachCar(
+                        car.getName(), car.getPosition()));
     }
 }
