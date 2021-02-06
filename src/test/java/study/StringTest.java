@@ -26,17 +26,16 @@ public class StringTest {
     }
 
     @Test
-    void split2() {
-        String value = "1";
-        String separator = ",";
+    @DisplayName("String.split 특수 상황 테스트")
+    void testUnusualSplitString() {
+        final String testString = "1";
+        final String testSaparator = ",";
+        final int firstIndex = 0;
+        final String expectResult = "1";
 
-        int testIndexOne = 0;
-
-        String[] values = value.split(separator);
-        String expectResultOne = "1";
-
-        assertThat(values[testIndexOne]).contains(expectResultOne);
-        assertThat(values).containsExactly(expectResultOne);
+        assertThat(testString.split(testSaparator)).contains(expectResult);
+        assertThat(testString.split(testSaparator)).containsExactly(expectResult);
+        assertThat(testString.split(testSaparator)[firstIndex]).isEqualTo(expectResult);
     }
 
     @Test
