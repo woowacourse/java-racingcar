@@ -1,5 +1,6 @@
 package racingcar;
 
+import racingcar.controller.RacingCarGame;
 import racingcar.domain.Cars;
 import racingcar.domain.Round;
 import racingcar.view.InputView;
@@ -20,7 +21,8 @@ public class RacingCarApplication {
 
         Cars cars = createCarsFromUser();
         Round round = createRoundFromUser();
-        // TODO RacingCarGame 객체 생성 및 실행
+        RacingCarGame racingCarGame = RacingCarGame.createNewGame(cars, round);
+        racingCarGame.play();
     }
 
     private static Cars createCarsFromUser() {

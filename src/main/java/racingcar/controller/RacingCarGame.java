@@ -2,8 +2,15 @@ package racingcar.controller;
 
 import racingcar.domain.Cars;
 import racingcar.domain.Round;
+import racingcar.domain.Winners;
 import racingcar.view.OutputView;
 
+/**
+ * RaicingCarGame.java
+ * 경주가 진행되는 도중의 로직을 관장하는 클래스
+ *
+ * @author Kimun Kim, github.com/tributetothemoon
+ */
 public class RacingCarGame {
     private final Cars cars;
     private final Round Round;
@@ -18,13 +25,15 @@ public class RacingCarGame {
     }
 
     public void play() {
-        // TODO 실행 결과 출력
+        OutputView.printResultMessage();
+
         while (!Round.isEnd()) {
             cars.moveCars();
             OutputView.printCarsPosition(cars.toDTO());
             Round.nextRound();
         }
 
-        // TODO 우승자 출력
+        Winners winners = Winners.of(cars);
+        OutputView.printWinners(winners.toListOfNames());
     }
 }
