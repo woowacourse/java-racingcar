@@ -51,12 +51,13 @@ public class StringTest {
     }
 
     @Test
-    @DisplayName("문자열 특정 위치의 값 반환 테스트")
-    void charAt() {
-        String value = "abc";
-        int testIndex = 2;
+    @DisplayName("String.charAt 문자열 특정 위치의 값 반환 테스트")
+    void testCharAt() {
+        final String testString = "abc";
+        final int testIndex = 2;
+        final char expectResult = 'c';
 
-        assertThat(value.charAt(testIndex)).isEqualTo('c');
+        assertThat(testString.charAt(testIndex)).isEqualTo(expectResult);
     }
 
     @Test
