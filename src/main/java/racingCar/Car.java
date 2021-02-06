@@ -5,10 +5,10 @@ public class Car {
     private static final int MINIMUM_LENGTH = 0;
     private static final int MAXIMUM_LENGTH = 5;
 
-    private String name;
+    private final String name;
     private int distance = 0;
 
-    public Car(String name){
+    public Car(final String name){
         validate(name);
         this.name = name;
     }
