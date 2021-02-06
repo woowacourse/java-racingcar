@@ -3,6 +3,9 @@ package racingcar.domain;
 import racingcar.constant.Digit;
 import racingcar.constant.Message;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 public class Car {
     private final String name;
     private int position;
@@ -28,7 +31,22 @@ public class Car {
         position++;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder hyphens = new StringBuilder();
+
+        for (int i = 0; i < position; i++) {
+            hyphens.append(Message.HYPHEN);
+        }
+
+        return name + Message.COLON_WITH_BLANK + hyphens.toString();
     }
 }
