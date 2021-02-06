@@ -24,9 +24,9 @@ class CarsTest {
     void from_valid(String input) {
         assertThat(Cars.from(input).getCars())
                 .containsExactly(
-                        new Car("pobi"),
-                        new Car("joy"),
-                        new Car("poz"));
+                        Car.from("pobi"),
+                        Car.from("joy"),
+                        Car.from("poz"));
     }
 
     @ParameterizedTest

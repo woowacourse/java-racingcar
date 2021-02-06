@@ -15,7 +15,7 @@ class CarTest {
 
     @BeforeEach
     void setUp() {
-        car = new Car("joy");
+        car = Car.from("joy");
     }
 
     @ParameterizedTest
@@ -39,7 +39,7 @@ class CarTest {
     @DisplayName("올바른 이름으로 Car 생성 성공")
     @ValueSource(strings = {"bepoz  ", "12345", " joy", "b ank"})
     void generate_validName(String input) {
-        Car car = new Car(input);
+        Car car = Car.from(input);
         assertThat(car.getName()).isEqualTo(input.trim());
     }
 
@@ -48,7 +48,7 @@ class CarTest {
     @ValueSource(strings = {"123456", "", " "})
     void generate_invalidName(String input) {
         assertThatThrownBy(() -> {
-            new Car(input);
+            Car.from(input);
         }).isInstanceOf(RuntimeException.class);
     }
 }

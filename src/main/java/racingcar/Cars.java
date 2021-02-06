@@ -28,7 +28,7 @@ public class Cars {
 
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
-            cars.add(new Car(carName));
+            cars.add(Car.from(carName));
         }
         return new Cars(cars);
     }

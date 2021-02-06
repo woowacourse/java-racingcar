@@ -7,25 +7,29 @@ public class Car {
     private int position;
     private final String name;
 
-    public Car(final String name) {
+    private Car(final String name) {
         this.position = 1;
-        this.name = validateName(name);
+        this.name = name;
     }
 
-    private String validateName(String name) {
+    public static Car from(final String name) {
+        return new Car(getValidatedName(name));
+    }
+
+    private static String getValidatedName(String name) {
         name = name.trim();
         validateNameLength(name);
         validateNameNullOrEmpty(name);
         return name;
     }
 
-    private void validateNameNullOrEmpty(String name) {
+    private static void validateNameNullOrEmpty(String name) {
         if (name == null || "".equals(name)) {
             throw new RuntimeException();
         }
     }
 
-    private void validateNameLength(String name) {
+    private static void validateNameLength(String name) {
         if (name.length() < 1 || name.length() > 5) {
             throw new RuntimeException();
         }
