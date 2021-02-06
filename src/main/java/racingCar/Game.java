@@ -1,5 +1,8 @@
 package racingCar;
 
+import utils.InputChecker;
+import utils.RandomUtils;
+
 import java.util.List;
 
 public class Game {

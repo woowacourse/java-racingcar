@@ -2,6 +2,7 @@ package racingCar;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import utils.InputChecker;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
