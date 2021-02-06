@@ -1,13 +1,12 @@
 package racingcar.view;
 
-import racingcar.model.Car;
+import racingcar.model.Cars;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InputView {
 
-    public static ArrayList<Car> getUserCarInput(Scanner scanner){
+    public static Cars getUserCarInput(Scanner scanner){
         OutputView.readCarName();
         String userInput = scanner.nextLine();
         try {
@@ -19,12 +18,8 @@ public class InputView {
         }
     }
 
-    private static ArrayList<Car> makeCars(String[] carNames) {
-        ArrayList<Car> cars = new ArrayList<Car>();
-        for(String carName : carNames) {
-            cars.add(new Car(carName));
-        }
-        return cars;
+    private static Cars makeCars(String[] carNames) {
+        return new Cars(carNames);
     }
 
     public static int getUserTrialNumberInput(Scanner scanner) {
