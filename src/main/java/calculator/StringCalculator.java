@@ -17,7 +17,7 @@ public class StringCalculator {
     }
 
     public static int splitAndSum(String text) {
-        if(text == null || text.isEmpty()){
+        if (text == null || text.isEmpty()) {
             return NUMBER_ZERO;
         }
 
@@ -26,22 +26,31 @@ public class StringCalculator {
             delimiters.addCustomDelimiters(matchedPattern.group(CUSTOM_DELIMITER));
             text = matchedPattern.group(NUMBERS);
         }
-
         return splitAndSumByDelimiters(text);
     }
 
-    private static int splitAndSumByDelimiters(final String text) {
-        String[] numbers = text.split(delimiters.toString());
-        return sumNumbers(numbers);
-    }
-
-    private static int sumNumbers(final String[] numbers) {
-        int result = NUMBER_ZERO;
-
-        for (String number : numbers) {
-            result += new Number(number).getNumber();
+    private static int splitAndSumByDelimiters(final String numbers) {
+        int result = 0;
+        for (String number : numbers.split(delimiters.toString())) {
+            result += toValidNumber(number);
         }
-
         return result;
     }
+
+    private static int toValidNumber(final String number) {
+        try {
+            return validatePositiveNumber(number);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException();
+        }
+    }
+
+    private static int validatePositiveNumber(String number) {
+        int result = Integer.parseInt(number);
+        if (result < NUMBER_ZERO) {
+            throw new RuntimeException();
+        }
+        return result;
+    }
+
 }
