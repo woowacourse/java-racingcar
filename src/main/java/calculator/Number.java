@@ -1,7 +1,8 @@
 package calculator;
 
 public class Number {
-    public static final int ZERO = 0;
+
+    public static final int NUMBER_ZERO = 0;
     private final int number;
 
     public Number(String number) {
@@ -9,20 +10,20 @@ public class Number {
     }
 
     private int validateNumber(String number) {
-        if(number == null || number.isEmpty()){
-            return ZERO;
+        if (number == null || number.isEmpty()) {
+            return NUMBER_ZERO;
         }
 
-        try{
-            return makePositiveNumber(number);
-        } catch(NumberFormatException e){
+        try {
+            return validatePositiveNumber(number);
+        } catch (NumberFormatException e) {
             throw new RuntimeException();
         }
     }
 
-    private int makePositiveNumber(String number) {
+    private int validatePositiveNumber(String number) {
         int result = Integer.parseInt(number);
-        if(result < ZERO){
+        if (result < NUMBER_ZERO) {
             throw new RuntimeException();
         }
         return result;
@@ -31,4 +32,5 @@ public class Number {
     public int getNumber() {
         return number;
     }
+
 }
