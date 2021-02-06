@@ -10,12 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class WinnerFinderTest {
 
     private List<Car> cars;
-    private WinnerFinder winnerFinder;
 
     @BeforeEach
     void setUp() {
         cars = new ArrayList<>();
-        winnerFinder = new WinnerFinder();
         cars.add(new Car("루트"));
         cars.add(new Car("소롱"));
     }
@@ -28,7 +26,7 @@ public class WinnerFinderTest {
         List<String> expected = new ArrayList<>();
         expected.add(cars.get(0).getName());
 
-        List<String> actual = winnerFinder.getWinners(cars);
+        List<String> actual = WinnerFinder.getWinners(cars);
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -42,7 +40,7 @@ public class WinnerFinderTest {
             expected.add(car.getName());
         }
 
-        List<String> actual = winnerFinder.getWinners(cars);
+        List<String> actual = WinnerFinder.getWinners(cars);
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -53,7 +51,7 @@ public class WinnerFinderTest {
             expected.add(car.getName());
         }
 
-        List<String> actual = winnerFinder.getWinners(cars);
+        List<String> actual = WinnerFinder.getWinners(cars);
         assertThat(actual).isEqualTo(expected);
     }
 }

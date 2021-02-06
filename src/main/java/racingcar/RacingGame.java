@@ -47,7 +47,6 @@ public class RacingGame {
     }
 
     private void finish() {
-        WinnerFinder winnerFinder = new WinnerFinder();
-        RacingGameView.printWinners(winnerFinder.getWinners(cars));
+        RacingGameView.printWinners(WinnerFinder.getWinners(cars));
     }
 }

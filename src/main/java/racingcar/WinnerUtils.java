@@ -5,17 +5,22 @@ import java.util.List;
 
 public class WinnerFinder {
 
-    private List<String> winners = new ArrayList<>();
-    private int maxPosition = -1;
+    private static List<String> winners;
+    private static int maxPosition;
 
-    public List<String> getWinners(List<Car> cars) {
+    private WinnerFinder() {
+    }
+
+    public static List<String> getWinners(List<Car> cars) {
+        winners = new ArrayList<>();
+        maxPosition = -1;
         for (Car car : cars) {
             updateWinners(car);
         }
         return winners;
     }
 
-    private void updateWinners(Car car) {
+    private static void updateWinners(Car car) {
         if (car.getPosition() < maxPosition) {
             return;
         }
