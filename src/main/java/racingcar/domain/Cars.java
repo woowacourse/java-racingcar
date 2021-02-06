@@ -9,8 +9,8 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 //TODO
-// 차 생성을 담당하는 로직을 cars로 위임하기
 // validation을 cars에서 해주기 (쌩성자에서)
+// getMaxPosition말고 메세지를 보내는 쪽으로 해보자
 
 public class Cars {
     private final List<Car> cars;
@@ -33,11 +33,11 @@ public class Cars {
         cars.forEach(car -> car.move(RandomGenerator.generateRandomNumber()));
     }
 
-    public CarsResponseDto findWinners() {
+    public List<Car> findWinners() {
         int maxPosition = getMaxPosition();
-        return new CarsResponseDto(cars.stream()
+        return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 
     private int getMaxPosition() {
@@ -45,5 +45,13 @@ public class Cars {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElseThrow(NoSuchElementException::new);
+    }
+
+    public CarsResponseDto getCarsResponseDto() {
+        return new CarsResponseDto(cars);
+    }
+
+    public static CarsResponseDto getCarsResponseDto(List<Car> cars) {
+        return new CarsResponseDto(cars);
     }
 }

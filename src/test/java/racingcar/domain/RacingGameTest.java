@@ -21,7 +21,7 @@ class RacingGameTest {
     @DisplayName("주어진 이름대로 자동차 생성되는지 테스트")
     @Test
     void 자동차_생성되는지() {
-        CarsResponseDto cars = racingGame.getCarsResponseDto();
+        CarsResponseDto cars = racingGame.cars.getCarsResponseDto();
         for (int i = 0; i < testCases.size(); i++) {
             assertThat(cars.getCarResponseDtoList().get(i).getName()).isEqualTo(testCases.get(i));
         }

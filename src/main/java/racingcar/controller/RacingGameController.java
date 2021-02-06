@@ -27,7 +27,7 @@ public class RacingGameController {
         OutputView.printResultMessage();
         for (int i = 0; i < round; i++) {
             racingGame.playRound();
-            OutputView.printLeaderBoard(racingGame.getCarsResponseDto());
+            OutputView.printLeaderBoard(racingGame.cars.getCarsResponseDto());
         }
     }
 
