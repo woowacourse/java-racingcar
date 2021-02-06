@@ -15,15 +15,13 @@ public class RacingTimeRegister {
 
             return racingTime;
         } catch (IllegalArgumentException e) {
-            throw new InvalidRacingTimeTypeException(
-                    "[ERROR] 레이스 횟수는 int 형 타입이어야 합니다.");
+            throw new InvalidRacingTimeTypeException();
         }
     }
 
     private void validateRacingTimeZeroOrLess(int racingTime) {
         if (racingTime <= MIN_RACING_TIME) {
-            throw new InvalidRacingTimeException(
-                    "[ERROR] 레이스 횟수는 자연수만 입력 가능합니다.");
+            throw new InvalidRacingTimeException();
         }
     }
 }

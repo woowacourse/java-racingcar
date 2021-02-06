@@ -12,9 +12,7 @@ public class Car {
     public Car(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new InvalidCarNameLengthException(
-                    "[ERROR] 경주 참가자의 이름의 길이는"
-                            + MIN_NAME_LENGTH + "자 이상 "
-                            + MAX_NAME_LENGTH + "자 이하여야 합니다.");
+                    MIN_NAME_LENGTH, MAX_NAME_LENGTH);
         }
 
         this.name = name;
