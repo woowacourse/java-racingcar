@@ -29,7 +29,7 @@ public class RacingCarController {
         OutputView.printNewLine();
         OutputView.printResultMessage();
 
-        for (int i = 0; i < 5; i++) {
+        while (!times.isZero()) {
             carService.decideMovableCar(cars, null);
             OutputView.printResult(cars);
         }

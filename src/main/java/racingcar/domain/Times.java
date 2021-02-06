@@ -28,4 +28,8 @@ public class Times {
         }
         throw new IllegalArgumentException(Message.LIMITATION_ERROR.toString());
     }
+
+    public boolean isZero() {
+        return times == Digit.ZERO.getDigit();
+    }
 }
