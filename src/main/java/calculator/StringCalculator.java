@@ -11,6 +11,7 @@ public class StringCalculator {
     private static final int SECOND_MATCH = 2;
     private static final String DEFAULT_DELIMITER_PATTERN = "[,:]";
     private static final int ALLOWED_MIN_NUMBER = 0;
+    private static final Pattern PATTERN = Pattern.compile(CUSTOM_DELIMITER_PATTERN);
 
     public static int splitAndSum(String input) {
         if (input == null || input.isEmpty()) {
@@ -21,7 +22,7 @@ public class StringCalculator {
     }
 
     private static int getSplitNumbersSum(String input) {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
+        Matcher m = PATTERN.matcher(input);
 
         if (m.find()) {
             String customDelimiter = m.group(FIRST_MATCH);
