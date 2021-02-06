@@ -12,8 +12,8 @@ class NameTest {
     void carName_생성_테스트(){
         Name name1 = new Name("샐리");
         Name name2 = new Name("현구막");
-        assertThat(name1.getName()).isEqualTo("샐리");
-        assertThat(name2.getName()).isEqualTo("현구막");
+        assertThat(name1.toString()).isEqualTo("샐리");
+        assertThat(name2.toString()).isEqualTo("현구막");
     }
 
     @Test

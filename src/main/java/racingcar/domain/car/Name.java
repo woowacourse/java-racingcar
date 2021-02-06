@@ -1,19 +1,20 @@
 package racingcar.domain.car;
 
 public class Name {
+    public static final String BLANK = " ";
     public static final int MINIMUM_LENGTH = 1;
     public static final int MAXIMUM_LENGTH = 5;
 
     private final String name;
 
-    public Name(String name) {
+    Name(String name) {
         validateBlank(name);
         validateLength(name);
         this.name = name;
     }
 
     private void validateBlank(String name) {
-        if (name.contains(" ")) {
+        if (name.contains(BLANK)) {
             throw new IllegalArgumentException();
         }
     }
@@ -24,7 +25,7 @@ public class Name {
         }
     }
 
-    public String getName() {
+    public String toString() {
         return name;
     }
 }

@@ -1,27 +1,28 @@
 package racingcar.domain.car;
 
 public class Car {
-    private static final int MINIMUM_NUMBER_TO_MOVE = 4;
 
     private final Name name;
-    private Position position;
+    private final Position position;
+    private final GasTank gasTank;
 
-    public Car(String name) {
+    Car(final String name) {
         this.name = new Name(name);
         this.position = new Position();
+        this.gasTank = new GasTank();
     }
 
-    public void moveByRandomNumber(int number) {
-        if (number >= MINIMUM_NUMBER_TO_MOVE) {
-            position.moveForward();
+    public void forward() {
+        if (gasTank.isEnoughGas()) {
+            position.forward();
         }
     }
 
     public String getName() {
-        return name.getName();
+        return name.toString();
     }
 
     public String getPosition() {
-        return position.getPosition();
+        return position.toString();
     }
 }

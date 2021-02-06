@@ -5,15 +5,15 @@ public class Position {
 
     private final StringBuilder position;
 
-    public Position() {
+    Position() {
         this.position = new StringBuilder();
     }
 
-    public void moveForward() {
+    void forward() {
         position.append(UNIT_OF_POSITION);
     }
 
-    public String getPosition() {
+    public String toString() {
         return position.toString();
     }
 }

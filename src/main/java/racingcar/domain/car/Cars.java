@@ -1,35 +1,47 @@
 package racingcar.domain.car;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Cars {
-    public static final String COMMA_DELIMITER = ",";
-    public static final char COMMA = ',';
 
-    private final List<Car> cars = new ArrayList<>();
+    public static final String COMMA = ",";
 
-    public Cars(String inputNames) {
+    private final List<Car> cars;
+
+    public Cars(final String inputNames) {
         validateBothEnds(inputNames);
-        for (String name : inputNames.split(COMMA_DELIMITER)) {
-            cars.add(new Car(name));
-        }
-        validateDuplicate(inputNames);
+        this.cars = validateDuplicate(inputNames);
     }
 
-    private void validateBothEnds(String inputNames) {
-        if (inputNames.charAt(0) == COMMA || inputNames.charAt(inputNames.length() - 1) == COMMA) {
+    private void validateBothEnds(final String inputNames) {
+        if (inputNames.startsWith(COMMA) || inputNames.endsWith(COMMA)) {
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }
     }
 
-    private void validateDuplicate(String inputNames) {
-        Set<String> unDuplicateNames = new HashSet<>(Arrays.asList(inputNames.split(COMMA_DELIMITER)));
-        if (cars.size() != unDuplicateNames.size()) {
+    private List<Car> validateDuplicate(final String inputNames) {
+        List<String> namesList = new ArrayList<>(Arrays.asList(inputNames.split(COMMA)));
+        Set<String> namesSet = new HashSet<>(namesList);
+        if (cars.size() != namesSet.size()) {
             throw new IllegalArgumentException("이름이 중복됩니다.");
         }
+        return convertToCars(namesList);
+    }
+
+    private List<Car> convertToCars(final List<String> names) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : names) {
+            cars.add(new Car(name));
+        }
+        return cars;
     }
 
     public List<Car> getCars() {
         return cars;
     }
+
 }
