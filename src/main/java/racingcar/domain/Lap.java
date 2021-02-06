@@ -9,9 +9,13 @@ public class Lap {
     private final int goalLap;
     private int currentLap;
 
-    public Lap(final String inputLap) {
+    private Lap(final String inputLap) {
         this.goalLap = validatePositiveNumber(inputLap);
         this.currentLap = INIT_LAP;
+    }
+
+    public static Lap initGoalLap(final String inputLap) {
+        return new Lap(inputLap);
     }
 
     private int validatePositiveNumber(final String inputLap) {

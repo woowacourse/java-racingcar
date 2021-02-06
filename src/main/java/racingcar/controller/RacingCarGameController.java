@@ -10,13 +10,11 @@ import racingcar.view.OutputView;
 public class RacingCarGameController {
 
     public void playGame() {
-        Cars cars = new Cars(InputView.inputCarNames());
-        Lap lap = new Lap(InputView.inputLap());
+        Cars cars = Cars.enrollCarsWithNames(InputView.inputCarNames());
+        Lap lap = Lap.initGoalLap(InputView.inputLap());
 
         OutputView.printStartRace();
-
         racing(cars, lap);
-
         OutputView.printWinners(Winners.toList(cars.getCars()));
     }
 

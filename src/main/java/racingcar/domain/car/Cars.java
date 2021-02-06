@@ -12,10 +12,14 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(final String inputNames) {
+    private Cars(final String inputNames) {
         validateNull(inputNames);
         validateBothEnds(inputNames);
         this.cars = validateDuplicate(inputNames);
+    }
+
+    public static Cars enrollCarsWithNames(final String inputNames) {
+        return new Cars(inputNames);
     }
 
     private void validateNull(final String inputNames) {
