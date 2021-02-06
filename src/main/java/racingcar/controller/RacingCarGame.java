@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.Cars;
 import racingcar.domain.Round;
+import racingcar.view.OutputView;
 
 public class RacingCarGame {
     private final Cars cars;
@@ -20,7 +21,7 @@ public class RacingCarGame {
         // TODO 실행 결과 출력
         while (!Round.isEnd()) {
             cars.moveCars();
-            // TODO 자동차 현 위치 출력
+            OutputView.printCarsPosition(cars.toDTO());
             Round.nextRound();
         }
 
