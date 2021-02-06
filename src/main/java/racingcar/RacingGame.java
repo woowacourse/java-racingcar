@@ -12,20 +12,17 @@ public class RacingGame {
     private int trial;
 
     public void race() {
-        prepareCars();
-        prepareTrial();
+        prepare();
         play();
         finish();
     }
 
-    private void prepareCars() {
+    private void prepare() {
         String input = RacingGameView.requestCars();
-        cars = ExceptionHandler.setCars(input);
-    }
+        cars = ExceptionHandler.parseCarNames(input);
 
-    private void prepareTrial() {
-        String input = RacingGameView.requestTrial();
-        trial = ExceptionHandler.setTrial(input);
+        input = RacingGameView.requestTrial();
+        trial = ExceptionHandler.parseTrial(input);
     }
 
     private void play() {

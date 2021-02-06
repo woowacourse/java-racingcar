@@ -17,7 +17,7 @@ public class ExceptionHandler {
     private ExceptionHandler() {
     }
 
-    public static List<Car> setCars(String input) {
+    public static List<Car> parseCarNames(String input) {
         String[] carNames = input.split(NAME_SPLIT_DELIMITER, -1);
         validateCarsLength(carNames);
         validateDuplication(carNames);
@@ -40,7 +40,7 @@ public class ExceptionHandler {
         }
     }
 
-    public static Integer setTrial(String input) {
+    public static Integer parseTrial(String input) {
         validateNumber(input);
         try {
             Integer trial = Integer.parseInt(input);
