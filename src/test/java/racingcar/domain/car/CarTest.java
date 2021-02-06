@@ -67,7 +67,7 @@ class CarTest {
         assertThat(movedCar.getPosition()).isEqualTo(1);
     }
 
-    @DisplayName("move가 받은 값이 기준값 이상이면 전진한다")
+    @DisplayName("move가 받은 값이 기준값 이하이면 전진하지않는다")
     @Test
     void testMoveIfRandomNumberUnderStandard() {
         //given
