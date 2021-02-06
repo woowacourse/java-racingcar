@@ -26,9 +26,9 @@ public class SetTest {
     }
 
     @Test
-    @DisplayName("집합 크기 확인")
+    @DisplayName("집합 크기 확인 테스트")
     void size() {
-        int expectSize = 3;
+        final int expectSize = 3;
 
         assertThat(numbers.size()).isEqualTo(expectSize);
     }
@@ -36,15 +36,15 @@ public class SetTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    @DisplayName("집합 원소 포함 확인")
-    void contains(int number) {
+    @DisplayName("집합 원소 포함 확인 테스트")
+    void contains(final int number) {
         assertThat(numbers.contains(number)).isTrue();
     }
 
     @ParameterizedTest
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
-    @DisplayName("집합 원소 포함과 미포함 모두 확인")
-    void contains2(int number, boolean expected){
+    @DisplayName("집합 원소 포함/미포함 확인 테스트")
+    void contains2(final int number, final boolean expected){
         assertEquals(expected, numbers.contains(number));
         assertThat(numbers.contains(number)).isEqualTo(expected);
     }
