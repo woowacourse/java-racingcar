@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SetTest {
+
     private Set<Integer> numbers;
 
     @BeforeEach
@@ -30,14 +31,15 @@ public class SetTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3})
+    @ValueSource(ints = {1, 2, 3})
     void setContainsTest(int number) {
         assertThat(numbers.contains(number)).isTrue();
     }
 
     @ParameterizedTest
     @CsvSource(value = {"1,true", "2,true", "3,true", "4,false", "5,false"})
-    void setContainsTest_입력값에따라결과값이다른경우(Integer number, Boolean isTrue) {
+    void setContainsTest_입력값에따라_결과값이_다른_경우(Integer number, Boolean isTrue) {
         assertEquals(numbers.contains(number), isTrue);
     }
+
 }
