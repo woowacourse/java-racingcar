@@ -4,7 +4,7 @@ import racingcar.constant.Digit;
 import racingcar.constant.Message;
 
 public class Times {
-    private final int times;
+    private int times;
 
     public Times(int times) {
         validate(times);
@@ -27,6 +27,10 @@ public class Times {
             return;
         }
         throw new IllegalArgumentException(Message.LIMITATION_ERROR.toString());
+    }
+
+    public void reduce() {
+        times--;
     }
 
     public boolean isZero() {
