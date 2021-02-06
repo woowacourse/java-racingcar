@@ -26,12 +26,6 @@ class CarTest {
     assertThat(car.getPosition()).isEqualTo(expected);
   }
 
-  @Test
-  void checkFuelAfterRun() {
-    car.fillInFulAndRun(Car.MIN_RUNNABLE_FUEL);
-    assertThat(car.getFuel()).isEqualTo(0);
-  }
-
   @ParameterizedTest
   @ValueSource(strings = {"", "spring"})
   @DisplayName("이름 길이가 0 이하 또는 5 이상일 때 에러 확인")

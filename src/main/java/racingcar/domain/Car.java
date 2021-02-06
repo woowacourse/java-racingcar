@@ -9,7 +9,6 @@ public class Car {
   private static final int MAX_NAME_LENGTH = 5;
   private final String name;
   private int position = 0;
-  private int fuel = 0;
 
   public Car(final String name) {
     validateName(name);
@@ -23,23 +22,17 @@ public class Car {
   }
 
   public void fillInFulAndRun(final int fuel) {
-    this.fuel = fuel;
-    if (isRunnable()) {
+    if (isRunnable(fuel)) {
       this.position++;
     }
-    this.fuel = 0;
   }
 
-  private boolean isRunnable() {
+  private boolean isRunnable(final int fuel) {
     return fuel >= MIN_RUNNABLE_FUEL;
   }
 
   public int getPosition() {
     return position;
-  }
-
-  public int getFuel() {
-    return fuel;
   }
 
   public String getName() {
