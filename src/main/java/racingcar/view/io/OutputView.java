@@ -1,4 +1,4 @@
-package racingcar.view;
+package racingcar.view.io;
 
 public class OutputView {
     public static void printMessage(final String message) {

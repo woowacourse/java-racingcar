@@ -3,7 +3,7 @@ package racingcar;
 import racingcar.controller.CarController;
 import racingcar.domain.*;
 import racingcar.utils.RacingCarUtils;
-import racingcar.view.InputView;
+import racingcar.view.io.InputView;
 import racingcar.view.RacingCarView;
 
 public class RacingCar {
