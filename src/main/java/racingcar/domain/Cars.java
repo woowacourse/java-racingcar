@@ -12,6 +12,7 @@ import java.util.List;
 public class Cars {
     private static final int MIN_SIZE = 2;
     private static final String ERROR_MIN_SIZE = "최소 " + MIN_SIZE + "대 이상의 이름을 입력하세요.";
+    private static final String ERROR_DUPLICATED_CAR_NAMES = "자동차 이름이 중복됩니다.";
 
     private final List<Car> cars;
 
@@ -38,7 +39,7 @@ public class Cars {
 
     private static boolean isNotAlreadyExistOrThrowException(List<Car> destination, Car car) {
         if (destination.contains(car)) {
-            throw new IllegalArgumentException("자동차 이름이 중복됩니다.");
+            throw new IllegalArgumentException(ERROR_DUPLICATED_CAR_NAMES);
         }
         return true;
     }

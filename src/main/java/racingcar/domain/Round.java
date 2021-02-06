@@ -7,6 +7,8 @@ package racingcar.domain;
  * @author Kimun Kim, github.com/tributetothemoon
  */
 public class Round {
+    private static final String ERROR_INVALID_RANGE = "회수는 양의 정수만 가능합니다.";
+
     private final int finalRound;
     private int currentRound;
 
@@ -22,7 +24,7 @@ public class Round {
 
     public static boolean isValidValueOrThrowException(int finalRound) {
         if (finalRound <= 0) {
-            throw new IllegalArgumentException("회수는 양의 정수만 가능합니다.");
+            throw new IllegalArgumentException(ERROR_INVALID_RANGE);
         }
         return true;
     }
