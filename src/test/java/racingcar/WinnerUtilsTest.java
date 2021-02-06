@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Car;
+import racingcar.utils.WinnerUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class WinnerFinderTest {
+public class WinnerUtilsTest {
 
     private List<Car> cars;
 
@@ -26,7 +28,7 @@ public class WinnerFinderTest {
         List<String> expected = new ArrayList<>();
         expected.add(cars.get(0).getName());
 
-        List<String> actual = WinnerFinder.getWinners(cars);
+        List<String> actual = WinnerUtils.getWinners(cars);
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -40,7 +42,7 @@ public class WinnerFinderTest {
             expected.add(car.getName());
         }
 
-        List<String> actual = WinnerFinder.getWinners(cars);
+        List<String> actual = WinnerUtils.getWinners(cars);
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -51,7 +53,7 @@ public class WinnerFinderTest {
             expected.add(car.getName());
         }
 
-        List<String> actual = WinnerFinder.getWinners(cars);
+        List<String> actual = WinnerUtils.getWinners(cars);
         assertThat(actual).isEqualTo(expected);
     }
 }

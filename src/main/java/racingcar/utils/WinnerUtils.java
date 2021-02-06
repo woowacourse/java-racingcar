@@ -1,14 +1,15 @@
-package racingcar;
+package racingcar.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import racingcar.domain.Car;
 
-public class WinnerFinder {
+public class WinnerUtils {
 
     private static List<String> winners;
     private static int maxPosition;
 
-    private WinnerFinder() {
+    private WinnerUtils() {
     }
 
     public static List<String> getWinners(List<Car> cars) {

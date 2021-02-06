@@ -1,9 +1,13 @@
-package racingcar;
+package controller;
 
 import java.util.List;
+import racingcar.view.RacingGameView;
+import racingcar.domain.Car;
+import racingcar.utils.ParsingUtils;
+import racingcar.utils.WinnerUtils;
 import utils.RandomUtils;
 
-public class RacingGame {
+public class RacingGameController {
 
     private static final int MINIMUM_RANDOM_RPM = 0;
     private static final int MAXIMUM_RANDOM_RPM = 9;
@@ -19,10 +23,10 @@ public class RacingGame {
 
     private void prepare() {
         String input = RacingGameView.requestCars();
-        cars = ExceptionHandler.parseCarNames(input);
+        cars = ParsingUtils.parseCarNames(input);
 
         input = RacingGameView.requestTrial();
-        trial = ExceptionHandler.parseTrial(input);
+        trial = ParsingUtils.parseTrial(input);
     }
 
     private void play() {
@@ -47,6 +51,6 @@ public class RacingGame {
     }
 
     private void finish() {
-        RacingGameView.printWinners(WinnerFinder.getWinners(cars));
+        RacingGameView.printWinners(WinnerUtils.getWinners(cars));
     }
 }

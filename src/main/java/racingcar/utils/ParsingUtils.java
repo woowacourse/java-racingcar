@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.utils;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -6,15 +6,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import racingcar.domain.Car;
 
-public class ExceptionHandler {
+public class ParsingUtils {
 
     private static final String NAME_SPLIT_DELIMITER = ",";
     private static final Integer MIN_TRIAL = 1;
     private static final Integer MAX_TRIAL = Integer.MAX_VALUE;
     private static final int MIN_CARS_LENGTH = 2;
 
-    private ExceptionHandler() {
+    private ParsingUtils() {
     }
 
     public static List<Car> parseCarNames(String input) {
