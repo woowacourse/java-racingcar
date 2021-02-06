@@ -5,7 +5,6 @@ import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
     public static void printCarNamesRequest() {
@@ -17,6 +16,7 @@ public class OutputView {
     }
 
     public static void printResultMessage() {
+        printNewLine();
         System.out.println(Message.RESULT_MESSAGE);
     }
 
@@ -29,12 +29,7 @@ public class OutputView {
         printNewLine();
     }
 
-    public static void printWinner(Cars cars) {
-        List<String> carNames = cars.getCars()
-                .stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
-
+    public static void printWinner(List<String> carNames) {
         System.out.print(String.join(Message.COMMA_WITH_BLANK.toString(), carNames));
         System.out.println(Message.WINNER_MESSAGE);
     }
