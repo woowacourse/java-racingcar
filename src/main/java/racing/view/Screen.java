@@ -1,5 +1,5 @@
 package racing.view;
 
-public abstract class Screen {
-    public abstract void showMessage();
+public interface Screen {
+    void showMessage();
 }

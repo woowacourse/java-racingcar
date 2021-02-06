@@ -5,7 +5,7 @@ import racing.domain.dto.WinnersDto;
 
 import java.util.List;
 
-public class GameScreen extends Screen{
+public class GameScreen implements Screen{
     private static final String RESULT = "\n실행 결과";
     private static final String DISTANCE = "-";
     private static final String STATUS_FORMAT = "%s : %s\n";
