@@ -1,13 +1,13 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 public class Car {
     private static final int MINIMUM_NUMBER_TO_MOVE = 4;
 
-    private final CarName carName;
+    private final Name name;
     private Position position;
 
     public Car(String name) {
-        this.carName = new CarName(name);
+        this.name = new Name(name);
         this.position = new Position();
     }
 
@@ -18,7 +18,7 @@ public class Car {
     }
 
     public String getName() {
-        return carName.getName();
+        return name.getName();
     }
 
     public String getPosition() {

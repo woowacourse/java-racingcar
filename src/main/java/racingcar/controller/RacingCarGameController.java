@@ -1,6 +1,9 @@
 package racingcar.controller;
 
 import racingcar.domain.*;
+import racingcar.domain.car.Car;
+import racingcar.domain.car.Cars;
+import racingcar.utils.RandomNumber;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

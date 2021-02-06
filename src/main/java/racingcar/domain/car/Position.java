@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 public class Position {
     public static final String UNIT_OF_POSITION = "-";

@@ -1,12 +1,12 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
-public class CarName {
+public class Name {
     public static final int MINIMUM_LENGTH = 1;
     public static final int MAXIMUM_LENGTH = 5;
 
     private final String name;
 
-    public CarName(String name) {
+    public Name(String name) {
         validateBlank(name);
         validateLength(name);
         this.name = name;
