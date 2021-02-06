@@ -1,6 +1,6 @@
 package car.domain;
 
-public final class Score {
+public final class Score implements Comparable<Score> {
     
     private final Name name;
     
@@ -17,5 +17,10 @@ public final class Score {
     
     public int getPosition() {
         return position.getPosition();
+    }
+    
+    @Override
+    public int compareTo(Score o) {
+        return getPosition() - o.getPosition();
     }
 }
