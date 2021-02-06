@@ -42,4 +42,8 @@ public class Cars {
         }
         return true;
     }
+
+    public void moveCars() {
+        this.cars.forEach(Car::move);
+    }
 }
