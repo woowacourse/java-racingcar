@@ -9,21 +9,54 @@ public class StringCalculator {
     private static final String defaultSeparator = ",|:";
     private static final String delimiterSeparator = "|";
 
-    public static int splitAndSum(String input) {
-        if(checkIsNull(input)){
+    public static int calculate(String input) {
+        if (isNullOrEmpty(input)) {
             return 0;
         }
 
-        if (checkIsEmpty(input)) {
-            return 0;
+        if (isNumeric(input)) {
+            int pos = Integer.parseInt(input);
+            checkPositive(pos);
+            return pos;
         }
 
-        if(isOnlyNumber(input)) {
-            return Integer.parseInt(input);
+        int[] numbers = splitByNumbers(input);
+        checkAllPositive(numbers);
+        return addAll(numbers);
+    }
+
+    private static boolean isNullOrEmpty(String input) {
+        if (input == null) {
+            return true;
         }
 
-        // custom 구분자가 있는 경우
+        return input.trim().isEmpty();
+    }
+
+    private static boolean isNumeric(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private static void checkPositive(int n) {
+        if (n < 0) {
+            throw new RuntimeException("음수 입력");
+        }
+    }
+
+    private static int[] splitByNumbers(String line) {
+        String[] strings = splitBySeparator(line);
+        checkAllNumeric(strings);
+        return parseToIntegerArray(strings);
+    }
+
+    private static String[] splitBySeparator(String input) {
         StringBuilder customSeparator = new StringBuilder();
+
         Matcher matcher = Pattern.compile("//(.+)\n(.*)").matcher(input);
         if (matcher.find()) {
             customSeparator.append(delimiterSeparator);
@@ -31,61 +64,29 @@ public class StringCalculator {
             input = matcher.group(2);
         }
 
-        // split by delimiter
-        String[] strings = splitBySeparator(input, defaultSeparator + customSeparator.toString());
-
-        // check each string is numeric
-
-        // check each string is zero or positive number
-        int[] nums = parseToIntegerArray(strings);
-        return addNums(nums);
+        return input.split(defaultSeparator + customSeparator.toString());
     }
 
-    private static boolean checkIsNull(String input) {
-        return input == null;
-    }
-
-    private static boolean checkIsEmpty(String input) {
-        return input.isEmpty();
-    }
-
-    private static boolean isOnlyNumber(String input) {
-        for (char c : input.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                return false;
-            }
+    private static void checkAllNumeric(String[] numericStrings) {
+        if (!Arrays.stream(numericStrings).allMatch(n -> isNumeric(n))) {
+            throw new IllegalArgumentException("정수가 아닌 숫자 입력");
         }
-        return true;
     }
 
-    private static boolean isNegativeNumber(int num) {
-        return num < 0;
-    }
-
-    private static String[] splitBySeparator(String input, String separator){
-        return input.split(separator);
-    }
-
-    private static int[] parseToIntegerArray(String[] strings){
+    private static int[] parseToIntegerArray(String[] strings) {
         return Arrays.stream(strings)
-                .peek(s -> {
-                    if(!isOnlyNumber(s)) {
-                        throw new RuntimeException();
-                    }
-                })
                 .mapToInt(Integer::parseInt)
-                .peek(s -> {
-                    if(isNegativeNumber(s)) {
-                        throw new RuntimeException();
-                    }
-                })
                 .toArray();
     }
 
-    private static int addNums(int[] nums){
-        int sum =0;
+    private static void checkAllPositive(int[] posArr) {
+        Arrays.stream(posArr).forEach(n -> checkPositive(n));
+    }
 
-        for(int num : nums){
+    private static int addAll(int[] intArr) {
+        int sum = 0;
+
+        for (int num : intArr) {
             sum += num;
         }
 
