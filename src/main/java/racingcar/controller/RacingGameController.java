@@ -7,23 +7,20 @@ import racingcar.view.OutputView;
 import java.util.*;
 
 public class RacingGameController {
-    private static final String DUPLICATE_NAME_ERROR_MESSAGE = "[ERROR] 동일한 이름이 있습니다.";
-    private static final String BLANK_ERROR_MESSAGE = "[ERROR] 공백을 입력할 수 없습니다.";
     private static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
     private static final String COMMA = ",";
-    private static final String BLANK = " ";
 
     public void start() {
         List<String> nameInput = takeNameInput();
         RacingGame racingGame = new RacingGame(nameInput);
 
-        executeRound(racingGame);
+        playRacingGame(racingGame);
 
         OutputView.announceWinners(racingGame.findWinners());
     }
 
-    private void executeRound(RacingGame racingGame) {
-        int round = inputRound();
+    private void playRacingGame(RacingGame racingGame) {
+        int round = takeRoundInput();
         OutputView.printResultMessage();
         for (int i = 0; i < round; i++) {
             racingGame.playRound();
@@ -34,26 +31,14 @@ public class RacingGameController {
     private List<String> takeNameInput() {
         OutputView.printCarNameInputRequestMessage();
         String input = InputView.nextLine();
-        validateBlank(input);
-        List<String> names = Arrays.asList(input.split(COMMA));
-        validateDuplicate(names);
-        return names;
+        return Arrays.asList(input.split(COMMA));
     }
 
-    private void validateDuplicate(List<String> names) {
-        Set<String> nameSet = new HashSet<>(names);
-        if (nameSet.size() != names.size()) {
-            throw new IllegalArgumentException(DUPLICATE_NAME_ERROR_MESSAGE);
-        }
-    }
+    // TODO
+    // 라운드 인풋을 validate 하는 것은 racingGame에서 해줘야하지 않을까?
+    // 그리고 racingGame 생성자에서 라운드 인풋을 받아서 관리하는 것은?
 
-    private void validateBlank(String input) {
-        if (input.contains(BLANK)) {
-            throw new IllegalArgumentException(BLANK_ERROR_MESSAGE);
-        }
-    }
-
-    private int inputRound() {
+    private int takeRoundInput() {
         OutputView.printNumberOfRoundsInputRequestMessage();
         try {
             return Integer.parseInt(InputView.nextLine());

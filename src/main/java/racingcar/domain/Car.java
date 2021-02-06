@@ -1,15 +1,26 @@
 package racingcar.domain;
 
-public class Car {
-    private int position;
-    private final String name;
+import java.util.List;
 
+public class Car {
+    private static final String BLANK = " ";
+    private static final String BLANK_ERROR_MESSAGE = "[ERROR] 공백을 입력할 수 없습니다.";
     private static final int INIT_POSITION = 0;
     private static final int MOVABLE_VALUE = 4;
 
+    private int position;
+    private final String name;
+
     public Car(String name) {
+        validateBlank(name);
         this.name = name;
         this.position = INIT_POSITION;
+    }
+
+    private void validateBlank(String name) {
+        if (name.contains(BLANK)) {
+            throw new IllegalArgumentException(BLANK_ERROR_MESSAGE);
+        }
     }
 
     public void move(int number) {

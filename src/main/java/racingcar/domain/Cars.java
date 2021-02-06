@@ -3,26 +3,33 @@ package racingcar.domain;
 import racingcar.dto.CarsResponseDto;
 import racingcar.utils.RandomGenerator;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 //TODO
-// validation을 cars에서 해주기 (쌩성자에서)
 // getMaxPosition말고 메세지를 보내는 쪽으로 해보자
 
 public class Cars {
+    private static final String DUPLICATE_NAME_ERROR_MESSAGE = "[ERROR] 동일한 이름이 있습니다.";
+
     private final List<Car> cars;
 
     public Cars(List<String> names) {
+        validateDuplicate(names);
         this.cars = createCars(names);
     }
 
-    public List<Car> createCars(List<String> names) {
+    private List<Car> createCars(List<String> names) {
         return names.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
+    }
+
+    private void validateDuplicate(List<String> names) {
+        Set<String> nameSet = new HashSet<>(names);
+        if (nameSet.size() != names.size()) {
+            throw new IllegalArgumentException(DUPLICATE_NAME_ERROR_MESSAGE);
+        }
     }
 
     public List<Car> getCars() {
