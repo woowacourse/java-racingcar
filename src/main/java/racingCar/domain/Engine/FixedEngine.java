@@ -2,7 +2,7 @@ package racingCar.domain.Engine;
 
 public class FixedEngine implements Engine {
 
-    private int num;
+    private final int num;
 
     public FixedEngine(int num) {
         this.num = num;

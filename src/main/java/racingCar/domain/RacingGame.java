@@ -8,7 +8,7 @@ import racingCar.domain.Engine.RandomEngine;
 
 public class RacingGame {
 
-    private List<Car> cars;
+    private final List<Car> cars;
     private int numOfRacingRound;
 
     public RacingGame(String[] carNames, int numOfRacingRound) {

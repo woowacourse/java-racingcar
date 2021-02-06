@@ -7,8 +7,8 @@ public class Car {
     private static final String GO_FORWARD_MARKING = "-";
     private static final int GO_FORWARD_DISTANCE = 1;
 
-    private String name;
-    private Engine engine;
+    private final String name;
+    private final Engine engine;
     private int position = 0;
 
     public Car(String name, Engine engine) {

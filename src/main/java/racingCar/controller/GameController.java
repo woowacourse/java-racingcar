@@ -8,7 +8,7 @@ import racingCar.view.OutputView;
 
 public class GameController {
 
-    private InputView inputView;
+    private final InputView inputView;
     private static String[] cars;
     private static int numOfRacingRound;
 
