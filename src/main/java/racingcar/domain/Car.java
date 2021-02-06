@@ -22,7 +22,7 @@ public class Car {
     }
   }
 
-  public void run(final int fuel) {
+  public void fillInFulAndRun(final int fuel) {
     this.fuel = fuel;
     if (isRunnable()) {
       this.position++;

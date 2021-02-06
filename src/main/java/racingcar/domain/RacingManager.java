@@ -24,7 +24,7 @@ public class RacingManager {
 
   private void race(final RacingResult racingResult) {
     participants.getCars().forEach(car -> {
-      car.run(randomFuel.get());
+      car.fillInFulAndRun(randomFuel.get());
     });
     racingResult.appendLog();
   }
