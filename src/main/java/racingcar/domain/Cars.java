@@ -11,7 +11,7 @@ public class Cars {
     private Cars() {
     }
 
-    public static void setCars(List<String> names) {
+    public static void assignCars(final List<String> names) {
         validateNonDuplicatedNames(names);
         for (String name : names) {
             cars.add(new Car(name));
@@ -28,7 +28,7 @@ public class Cars {
                 .get().getPosition();
     }
 
-    private static void validateNonDuplicatedNames(List<String> names) {
+    private static void validateNonDuplicatedNames(final List<String> names) {
         if (names.stream().distinct().count() != names.size()) {
             throw new IllegalArgumentException("중복된 자동차 이름입니다.");
         }

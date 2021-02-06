@@ -14,7 +14,7 @@ public class RacingCar {
     }
 
     private static void racingCarSetting() {
-        Cars.setCars(RacingCarUtils.splitInputString(InputView.getCarNameInput()));
+        Cars.assignCars(RacingCarUtils.splitInputString(InputView.getCarNameInput()));
         TryCount tryCount = new TryCount(InputView.getTryCountInput());
         GameRule gameRule = new GameRule();
         progressTryCount(tryCount, gameRule);
@@ -37,7 +37,7 @@ public class RacingCar {
         CarController carController = new CarController(car);
         RandomNumber randomNumber = new RandomNumber();
         if (gameRule.isMoveNumber(randomNumber.getNumber())) {
-            carController.carMove();
+            carController.moveCar();
         }
     }
 
