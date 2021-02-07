@@ -14,6 +14,7 @@ public class CarRacing {
         racingPrinter.printRacingStartMessage();
         for (int i = 0; i < racingTryTime; i++) {
             raceCars();
+            racingPrinter.printNewLine();
         }
         racingPrinter.printWinners();
     }

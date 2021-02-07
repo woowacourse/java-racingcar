@@ -18,7 +18,7 @@ public class RawCarNamesInputFromUser {
 
     public List<String> getAllCarNames() {
         carNamesInputFromUserPrinter.printCarNamesInputMessage();
-        String inputCarNames = scanner.next();
+        String inputCarNames = scanner.nextLine();
         return Arrays.stream(inputCarNames.split(CAR_NAMES_DELIMITER))
             .collect(Collectors.toList());
     }

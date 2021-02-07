@@ -14,6 +14,6 @@ public class RawRacingTryTimeInputFromUser {
 
     public String getRacingTryTimeInput() {
         racingTryTimeInputFromUserPrinter.printRacingTryTimeInputMessage();
-        return scanner.next();
+        return scanner.nextLine();
     }
 }

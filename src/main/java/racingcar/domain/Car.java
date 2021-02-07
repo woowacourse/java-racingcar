@@ -12,11 +12,11 @@ public class Car {
 
     public Car(String name) {
         Matcher carNameFormatPatternMatcher = CAR_NAME_FORMAT_PATTERN.matcher(name);
-        if (carNameFormatPatternMatcher.find()) {
-            this.name = name;
+        if (!carNameFormatPatternMatcher.find()) {
+            throw new InvalidCarNameFormatException(
+                "자동차 이름은 1자 이상, 5자 이하의 숫자나 문자로만 구성되어야 합니다.");
         }
-        throw new InvalidCarNameFormatException(
-            "자동차 이름은 1자 이상, 5자 이하의 숫자나 문자로만 구성되어야 합니다.");
+        this.name = name;
     }
 
     public String getName() {

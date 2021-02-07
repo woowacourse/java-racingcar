@@ -24,9 +24,9 @@ public class RacingPrinter {
     }
 
     private void printEachCarCurrentPosition(Car car) {
-        System.out.println(car.getName() + " : ");
+        System.out.print(car.getName() + " : ");
         for (int i = 0; i < car.getPosition(); i++) {
-            System.out.println(POSITION_SIGN);
+            System.out.print(POSITION_SIGN);
         }
         printNewLine();
     }
@@ -38,7 +38,7 @@ public class RacingPrinter {
         System.out.println("가 최종 우승했습니다.");
     }
 
-    private void printNewLine() {
+    public void printNewLine() {
         System.out.print("\n");
     }
 }
