@@ -16,8 +16,8 @@ public class CarRacingBeforeSetter {
 
     public void set() {
         List<String> carNames = validInputFromUserGetter.getCarNames();
-        racingTryTime = validInputFromUserGetter.getRacingTryTime();
         List<Car> cars = createCars(carNames);
+        racingTryTime = validInputFromUserGetter.getRacingTryTime();
         carRepository.saveAll(cars);
     }
 
