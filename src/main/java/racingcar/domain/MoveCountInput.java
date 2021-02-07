@@ -25,7 +25,7 @@ public class MoveCountInput {
     }
 
     private void validateMoveCountPositive(String input) {
-        if(Integer.parseInt(input) < 0) {
+        if (Integer.parseInt(input) < 0) {
             throw new CarMoveCountNegativeException();
         }
     }
