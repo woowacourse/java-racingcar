@@ -37,7 +37,6 @@ public class SetTest {
     @DisplayName("Set이 1,2,3 값을 가지고 있어야 한다")
     @ValueSource(ints = {1,2,3})
     void setShouldHaveOneAndTwoAndThree(int element) {
-        //assertThat(numbers).contains(element);
         assertTrue(numbers.contains(element));
     }
 

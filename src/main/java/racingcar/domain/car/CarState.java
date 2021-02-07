@@ -24,5 +24,3 @@ public class CarState {
         return String.valueOf(new char[position]).replace("\0", LINE);
     }
 }
-
-

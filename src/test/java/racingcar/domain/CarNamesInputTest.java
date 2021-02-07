@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarNamesInputTest {
-
     @ParameterizedTest
     @DisplayName("자동차 이름은 쉼표로 구분한다")
     @MethodSource("provideInputsFor_자동차_이름_리스트_반환")

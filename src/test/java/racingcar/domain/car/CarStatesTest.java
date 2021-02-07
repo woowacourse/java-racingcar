@@ -10,7 +10,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarStatesTest {
-
     @Test
     @DisplayName("자동차들의 현재 상태를 출력.")
     public void toString_자동차들의_현재_상태를_출력() {

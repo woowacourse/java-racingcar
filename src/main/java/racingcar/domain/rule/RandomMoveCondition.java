@@ -1,6 +1,5 @@
 package racingcar.domain.rule;
 
-import racingcar.domain.util.RandomNumber;
 import racingcar.domain.util.RandomUtils;
 import racingcar.exception.MoveConditionOutOfBoundException;
 

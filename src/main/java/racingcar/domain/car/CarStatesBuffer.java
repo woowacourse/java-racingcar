@@ -11,7 +11,7 @@ public class CarStatesBuffer {
     private List<CarStates> carStatesLog;
 
     public CarStatesBuffer() {
-       this.carStatesLog = new ArrayList<>();
+        this.carStatesLog = new ArrayList<>();
     }
 
     public void append(CarStates carStates) {

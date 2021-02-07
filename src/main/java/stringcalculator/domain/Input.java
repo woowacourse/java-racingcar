@@ -1,7 +1,6 @@
 package stringcalculator.domain;
 
 public class Input {
-
     private String input;
     private Delimiter delimiter;
 

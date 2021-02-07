@@ -6,7 +6,6 @@ import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 import racingcar.domain.game.GameResult;
 import racingcar.domain.game.RacingGame;
-import racingcar.domain.rule.MoveCondition;
 import racingcar.domain.rule.RandomMoveCondition;
 import racingcar.domain.util.RandomNumber;
 import racingcar.view.InputView;

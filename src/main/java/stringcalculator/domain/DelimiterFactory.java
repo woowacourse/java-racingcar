@@ -4,7 +4,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DelimiterFactory {
-    private static final String DEFAULT_DELIMITER = ",|:";
     private static final String CUSTOM_DELIMITER_FORMAT = "//(.)\n(.*)";
     static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(CUSTOM_DELIMITER_FORMAT);
 

@@ -11,7 +11,6 @@ public class StringTest {
         String[] values = "1,2".split(",");
         assertThat(values[0]).isEqualTo("1");
         assertThat(values[1]).isEqualTo("2");
-
     }
 
     @Test
@@ -36,7 +35,5 @@ public class StringTest {
                 .isThrownBy(() -> {
                     "abc".charAt(4);
                 }).withMessageMatching("String index out of range: \\d");
-
     }
-
 }

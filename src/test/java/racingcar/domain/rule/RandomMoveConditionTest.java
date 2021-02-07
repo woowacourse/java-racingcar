@@ -8,7 +8,6 @@ import racingcar.exception.MoveConditionOutOfBoundException;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 public class RandomMoveConditionTest {
-
     @ParameterizedTest
     @ValueSource(ints = {10,11,12})
     @DisplayName("전진조건이 0-9사이 값이 아닌 경우 예외")

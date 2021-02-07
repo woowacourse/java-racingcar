@@ -9,7 +9,6 @@ import racingcar.exception.CarNameLengthException;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class CarNameTest {
-
     @ParameterizedTest
     @DisplayName("자동차 이름은 5자 이하가 아니면 예외")
     @ValueSource(strings = {"qqqqqq", "qqqqqqq", "qdssdq"})
