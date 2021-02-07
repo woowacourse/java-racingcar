@@ -10,9 +10,9 @@ import racingcar.view.OutputView;
 import java.util.*;
 
 public class RacingGameController {
-    public void start() {
-        List<String> names = generateNames();
-        int numberOfRounds = generateNumberOfRounds();
+    public void start(Scanner scanner) {
+        List<String> names = generateNames(scanner);
+        int numberOfRounds = generateNumberOfRounds(scanner);
 
         RacingGame racingGame = new RacingGame(new Cars(names), numberOfRounds);
 
@@ -21,14 +21,14 @@ public class RacingGameController {
         OutputView.announceWinners(new WinnersDto(racingGame.getWinners()));
     }
 
-    private List<String> generateNames() {
+    private List<String> generateNames(Scanner scanner) {
         OutputView.printCarNameInputRequestMessage();
-        return InputView.takeNameInput();
+        return InputView.takeNameInput(scanner);
     }
 
-    private int generateNumberOfRounds() {
+    private int generateNumberOfRounds(Scanner scanner) {
         OutputView.printNumberOfRoundsInputRequestMessage();
-        return InputView.takeNumberOfRoundsInput();
+        return InputView.takeNumberOfRoundsInput(scanner);
     }
 
     private void playRacingGame(RacingGame racingGame) {

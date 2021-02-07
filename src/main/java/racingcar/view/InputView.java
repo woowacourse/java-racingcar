@@ -8,9 +8,8 @@ import static racingcar.domain.RacingGame.*;
 
 public class InputView {
     private static final String COMMA = ",";
-    private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> takeNameInput() {
+    public static List<String> takeNameInput(Scanner scanner) {
         String input = scanner.nextLine();
         List<String> names = Arrays.asList(input.split(COMMA));
 
@@ -22,8 +21,6 @@ public class InputView {
         return names;
     }
 
-    //TODO
-    // 검증 Test 구현
     private static void validateBlankInName(String name) {
         if (name.contains(BLANK)) {
             throw new IllegalArgumentException(BLANK_ERROR_MESSAGE);
@@ -43,7 +40,7 @@ public class InputView {
         }
     }
 
-    public static int takeNumberOfRoundsInput() {
+    public static int takeNumberOfRoundsInput(Scanner scanner) {
         String numberOfRoundsInput = scanner.nextLine();
         validateIntegerNumber(numberOfRoundsInput);
         int numberOfRounds = Integer.parseInt(numberOfRoundsInput);
@@ -51,8 +48,6 @@ public class InputView {
         return numberOfRounds;
     }
 
-    //TODO
-    // 검증 Test 구현
     private static void validateIntegerNumber(String numberOfRoundsInput) {
         try {
             Integer.parseInt(numberOfRoundsInput);

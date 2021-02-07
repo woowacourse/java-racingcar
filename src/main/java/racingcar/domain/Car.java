@@ -9,7 +9,6 @@ public class Car {
     private static final int INIT_POSITION = 0;
     private static final int MOVABLE_VALUE = 4;
 
-
     private int position;
     private final String name;
 
