@@ -15,7 +15,7 @@ public class ValidCarNamesInputFromUserGetter {
 
     public List<String> getCarNames() {
         List<String> carNames = carNamesInputFromUser.getAllCarNames();
-        carNamesValidator.validateNotDuplicate(carNames);
+        carNamesValidator.validate(carNames);
         return carNames;
     }
 }
