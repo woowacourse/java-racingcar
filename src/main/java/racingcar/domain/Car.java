@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import racingcar.input.utils.carname.validators.exceptions.InvalidCarNameFormatException;
+import racingcar.input.carname.validator.exception.InvalidCarNameFormatException;
 
 public class Car {
     private final String name;

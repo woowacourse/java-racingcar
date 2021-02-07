@@ -1,9 +1,9 @@
-package racingcar.domain;
+package racingcar.input.carname.validator;
 
 import java.util.HashSet;
 import java.util.List;
-import racingcar.input.utils.carname.validators.exceptions.DuplicateCarNamesException;
-import racingcar.input.utils.carname.validators.exceptions.LessThanTwoCarNamesException;
+import racingcar.input.carname.validator.exception.DuplicateCarNamesException;
+import racingcar.input.carname.validator.exception.LessThanTwoCarNamesException;
 
 public class CarNamesValidator {
     private final int ALLOWED_MIN_NUMBER_OF_CARS = 2;

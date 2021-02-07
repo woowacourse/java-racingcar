@@ -1,13 +1,13 @@
-package racingcar.input.utils.racingtrytime;
+package racingcar.input.racingtrytime;
 
 import java.util.Scanner;
-import racingcar.input.printer.RacingTryTimeInputFromUserPrinter;
+import racingcar.input.racingtrytime.printer.RacingTryTimeInputFromUserPrinter;
 
-public class RacingTryTimeInputFromUser {
+public class RawRacingTryTimeInputFromUser {
     private final RacingTryTimeInputFromUserPrinter racingTryTimeInputFromUserPrinter;
     private final Scanner scanner;
 
-    public RacingTryTimeInputFromUser(Scanner scanner) {
+    public RawRacingTryTimeInputFromUser(Scanner scanner) {
         this.racingTryTimeInputFromUserPrinter = new RacingTryTimeInputFromUserPrinter();
         this.scanner = scanner;
     }

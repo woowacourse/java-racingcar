@@ -1,15 +1,15 @@
-package racingcar.domain;
+package racingcar.input.carname;
 
 import java.util.List;
 import java.util.Scanner;
-import racingcar.input.utils.carname.CarNamesInputFromUser;
+import racingcar.input.carname.validator.CarNamesValidator;
 
 public class ValidCarNamesInputFromUserGetter {
-    private final CarNamesInputFromUser carNamesInputFromUser;
+    private final RawCarNamesInputFromUser carNamesInputFromUser;
     private final CarNamesValidator carNamesValidator;
 
     public ValidCarNamesInputFromUserGetter(Scanner scanner) {
-        this.carNamesInputFromUser = new CarNamesInputFromUser(scanner);
+        this.carNamesInputFromUser = new RawCarNamesInputFromUser(scanner);
         this.carNamesValidator = new CarNamesValidator();
     }
 

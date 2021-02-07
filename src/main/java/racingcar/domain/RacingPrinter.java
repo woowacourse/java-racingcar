@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import static racingcar.input.utils.carname.CarNamesInputFromUser.CAR_NAMES_DELIMITER;
+import static racingcar.input.carname.RawCarNamesInputFromUser.CAR_NAMES_DELIMITER;
 
 import java.util.List;
 import java.util.stream.Collectors;

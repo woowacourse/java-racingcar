@@ -1,4 +1,4 @@
-package racingcar.input.utils.carname;
+package racingcar.input.carname;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

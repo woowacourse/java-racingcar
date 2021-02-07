@@ -1,4 +1,4 @@
-package racingcar.input.utils.carname.validators.exceptions;
+package racingcar.input.carname.validator.exception;
 
 public class LessThanTwoCarNamesException extends RuntimeException {
     public LessThanTwoCarNamesException(String message) {

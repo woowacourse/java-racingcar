@@ -1,4 +1,4 @@
-package racingcar.input.printer;
+package racingcar.input.racingtrytime.printer;
 
 public class RacingTryTimeInputFromUserPrinter {
     public void printRacingTryTimeInputMessage() {

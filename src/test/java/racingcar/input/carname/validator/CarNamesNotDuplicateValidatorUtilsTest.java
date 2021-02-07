@@ -1,4 +1,4 @@
-package racingcar.input.utils.carname.validators;
+package racingcar.input.carname.validator;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.input.utils.carname.validators.exceptions.DuplicateCarNamesException;
+import racingcar.input.carname.validator.exception.DuplicateCarNamesException;
 
 public class CarNamesNotDuplicateValidatorUtilsTest {
 

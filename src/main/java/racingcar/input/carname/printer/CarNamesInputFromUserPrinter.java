@@ -1,4 +1,4 @@
-package racingcar.input.printer;
+package racingcar.input.carname.printer;
 
 public class CarNamesInputFromUserPrinter {
     public void printCarNamesInputMessage() {

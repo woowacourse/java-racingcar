@@ -1,4 +1,4 @@
-package racingcar.input.utils.racingtrytime.validators.exceptions;
+package racingcar.input.racingtrytime.validator.exception;
 
 public class NotNaturalNumberRacingTimeException extends RuntimeException {
     public NotNaturalNumberRacingTimeException(String message) {

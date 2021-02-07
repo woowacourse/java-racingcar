@@ -1,14 +1,14 @@
-package racingcar.domain;
+package racingcar.input.racingtrytime;
 
 import java.util.Scanner;
-import racingcar.input.utils.racingtrytime.RacingTryTimeInputFromUser;
+import racingcar.input.racingtrytime.validator.RacingTryTimeValidator;
 
 public class ValidRacingTryTimeFromUserGetter {
-    private final RacingTryTimeInputFromUser racingTryTimeInputFromUser;
+    private final RawRacingTryTimeInputFromUser racingTryTimeInputFromUser;
     private final RacingTryTimeValidator racingTryTimeValidator;
 
     public ValidRacingTryTimeFromUserGetter(Scanner scanner) {
-        this.racingTryTimeInputFromUser = new RacingTryTimeInputFromUser(scanner);
+        this.racingTryTimeInputFromUser = new RawRacingTryTimeInputFromUser(scanner);
         this.racingTryTimeValidator = new RacingTryTimeValidator();
     }
 

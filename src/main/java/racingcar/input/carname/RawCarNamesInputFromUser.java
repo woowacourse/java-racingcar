@@ -1,17 +1,17 @@
-package racingcar.input.utils.carname;
+package racingcar.input.carname;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import racingcar.input.printer.CarNamesInputFromUserPrinter;
+import racingcar.input.carname.printer.CarNamesInputFromUserPrinter;
 
-public class CarNamesInputFromUser {
+public class RawCarNamesInputFromUser {
     private final CarNamesInputFromUserPrinter carNamesInputFromUserPrinter;
     private final Scanner scanner;
     public static final String CAR_NAMES_DELIMITER = ",";
 
-    public CarNamesInputFromUser(Scanner scanner) {
+    public RawCarNamesInputFromUser(Scanner scanner) {
         this.carNamesInputFromUserPrinter = new CarNamesInputFromUserPrinter();
         this.scanner = scanner;
     }

@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import java.util.List;
 import java.util.Scanner;
+import racingcar.input.carname.ValidCarNamesInputFromUserGetter;
+import racingcar.input.racingtrytime.ValidRacingTryTimeFromUserGetter;
 
 public class ValidInputFromUserGetter {
     private final ValidCarNamesInputFromUserGetter validCarNamesInputFromUserGetter;
