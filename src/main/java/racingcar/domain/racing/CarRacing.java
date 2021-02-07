@@ -1,6 +1,8 @@
-package racingcar.domain;
+package racingcar.domain.racing;
 
 
+import racingcar.domain.CarRepository;
+import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.output.RacingPrinter;
 
 public class CarRacing {

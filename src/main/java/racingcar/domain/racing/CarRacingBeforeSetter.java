@@ -1,8 +1,11 @@
-package racingcar.domain;
+package racingcar.domain.racing;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import racingcar.domain.Car;
+import racingcar.domain.CarRepository;
+import racingcar.domain.input.ValidInputFromUserGetter;
 
 public class CarRacingBeforeSetter {
     private final ValidInputFromUserGetter validInputFromUserGetter;

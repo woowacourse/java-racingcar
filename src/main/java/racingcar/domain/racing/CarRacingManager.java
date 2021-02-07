@@ -1,6 +1,8 @@
-package racingcar.domain;
+package racingcar.domain.racing;
 
 import java.util.Scanner;
+import racingcar.domain.CarRepository;
+import racingcar.domain.numbergenerator.RandomNumberGenerator;
 
 public class CarRacingManager {
     private final CarRacingBeforeSetter carRacingBeforeSetter;

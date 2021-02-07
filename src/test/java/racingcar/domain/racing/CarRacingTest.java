@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.racing;
 
 
 import java.util.ArrayList;
@@ -9,8 +9,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import racingcar.domain.Car;
+import racingcar.domain.CarRepository;
+import racingcar.domain.numbergenerator.FixedNumberGenerator;
 
-class NumberApplicatorToCarTest {
+class CarRacingTest {
     private final CarRepository carRepository = new CarRepository();
     private final int CARS_SIZE = 10;
 
@@ -42,27 +45,27 @@ class NumberApplicatorToCarTest {
         return cars;
     }
 
-    @DisplayName("생성된 정수가 4 이상일 때, 모든 자동차들이 한 칸 전진하고, 4 미만이면 전진하지 않는다.")
+    @DisplayName("생성된 숫자와 자동차 경주 횟수에 따라 모든 자동차들이 예상한 값 만큼 전진 또는 정지 하는가?")
     @ParameterizedTest
-    @CsvSource(value = {"4:1", "3:0"}, delimiter = ':')
-    void applyGeneratedNumberToCar(String generatedFixedNumberStr, String expectedCarPositionStr) {
-        int generatedFixedNumber = Integer.parseInt(generatedFixedNumberStr);
-        int expectedCarPosition = Integer.parseInt(expectedCarPositionStr);
+    @CsvSource(value = {"1:5:0", "2:12:0", "4:5:5", "8:12:12"}, delimiter = ':')
+    void doAllRaces(String generatedNumberStr, String racingTryTimeStr,
+        String expectedFinalPositionStr) {
+        int generatedNumber = Integer.parseInt(generatedNumberStr);
+        int racingTryTime = Integer.parseInt(racingTryTimeStr);
+        int expectedFinalPosition = Integer.parseInt(expectedFinalPositionStr);
 
-        FixedNumberGenerator fixedNumberGenerator
-            = new FixedNumberGenerator(generatedFixedNumber);
-        NumberApplicatorToCar numberApplicatorToCar
-            = new NumberApplicatorToCar(carRepository, fixedNumberGenerator);
+        FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(generatedNumber);
+        CarRacing carRacing = new CarRacing(carRepository, fixedNumberGenerator);
 
-        numberApplicatorToCar.apply();
+        carRacing.doAllRaces(racingTryTime);
 
-        assertAllCarsPosition(expectedCarPosition);
+        assertAllCarsPositions(expectedFinalPosition);
     }
 
-    private void assertAllCarsPosition(int expectedCarPosition) {
+    private void assertAllCarsPositions(int expectedFinalPosition) {
         List<Car> allCars = carRepository.getAllCars();
         for (Car car : allCars) {
-            Assertions.assertThat(car.getPosition()).isEqualTo(expectedCarPosition);
+            Assertions.assertThat(car.getPosition()).isEqualTo(expectedFinalPosition);
         }
     }
 }

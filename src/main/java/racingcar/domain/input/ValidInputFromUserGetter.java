@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.input;
 
 import java.util.List;
 import java.util.Scanner;
