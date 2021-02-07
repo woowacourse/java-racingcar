@@ -6,7 +6,7 @@ public class RacingGame {
     public static final int MINIMUM_NUMBER_OF_ROUNDS = 1;
     public static final String UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE = "[ERROR] 라운드 횟수는 1이상이어야 합니다";
     public static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
-    private static final int INIT_ROUND = 1;
+    private static final int INIT_ROUND = 0;
 
     private final Cars cars;
     private final int numberOfRounds;
@@ -25,9 +25,13 @@ public class RacingGame {
         }
     }
 
-    public void playRound() {
+    public void playAnotherRound() {
         cars.moveCars();
         currentRound++;
+    }
+
+    public boolean isFinished() {
+        return currentRound == numberOfRounds;
     }
 
     public List<Car> getWinners() {
@@ -36,10 +40,6 @@ public class RacingGame {
 
     public Cars getCars() {
         return cars;
-    }
-
-    public int getNumberOfRounds() {
-        return numberOfRounds;
     }
 
     public int getCurrentRound() {

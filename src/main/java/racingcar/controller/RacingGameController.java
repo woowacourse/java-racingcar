@@ -10,9 +10,6 @@ import racingcar.view.OutputView;
 import java.util.*;
 
 public class RacingGameController {
-
-    private static final String COMMA = ",";
-
     public void start() {
         List<String> names = generateNames();
         int numberOfRounds = generateNumberOfRounds();
@@ -35,10 +32,9 @@ public class RacingGameController {
     }
 
     private void playRacingGame(RacingGame racingGame) {
-        int round = generateNumberOfRounds();
         OutputView.printResultMessage();
-        for (int i = 0; i < round; i++) {
-            racingGame.playRound();
+        while (!racingGame.isFinished()) {
+            racingGame.playAnotherRound();
             OutputView.printLeaderBoard(new CarsDto(racingGame.getCars()));
         }
     }

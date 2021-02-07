@@ -33,7 +33,7 @@ class RacingGameTest {
     @Test
     void playRound_playOneRound_currentRoundShouldIncreaseByOne(){
         int beforeRound = racingGame.getCurrentRound();
-        racingGame.playRound();
+        racingGame.playAnotherRound();
         int afterRound = racingGame.getCurrentRound();
 
         assertThat(beforeRound + 1).isEqualTo(afterRound);
