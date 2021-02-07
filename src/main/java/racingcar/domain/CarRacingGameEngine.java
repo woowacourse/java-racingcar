@@ -33,15 +33,17 @@ public class CarRacingGameEngine {
 
     private void updateAllCarsPosition(List<Car> cars) {
         for (Car car : cars) {
-            car.goForward(goForwardOrStopRandomly());
+            goForwardOrStopRandomly(car);
         }
     }
 
-    private boolean goForwardOrStopRandomly() {
+    private void goForwardOrStopRandomly(Car car) {
         int randomNumber = RandomUtils
                 .generateRandomNumber(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
 
-        return GoForwardOrStop.isGoForward(randomNumber);
+        if (GoForwardOrStop.isGoForward(randomNumber)) {
+            car.goForward();
+        }
     }
 
     private void showAllCarsPosition(List<Car> cars) {

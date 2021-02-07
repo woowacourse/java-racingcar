@@ -18,14 +18,12 @@ public class Car {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public void goForward() {
+        position++;
     }
 
-    public void goForward(boolean isGoForward) {
-        if (isGoForward) {
-            position++;
-        }
+    public String getName() {
+        return name;
     }
 
     public int getPosition() {

@@ -23,7 +23,7 @@ public class CarRepositoryTest {
         Car winner = new Car("pobi");
         Car loser = new Car("crong");
 
-        winner.goForward(true);
+        winner.goForward();
 
         CarRepository.save(winner);
         CarRepository.save(loser);
@@ -44,9 +44,9 @@ public class CarRepositoryTest {
         Car winner3 = new Car("podi");
         Car loser = new Car("crong");
 
-        winner1.goForward(true);
-        winner2.goForward(true);
-        winner3.goForward(true);
+        winner1.goForward();
+        winner2.goForward();
+        winner3.goForward();
 
         CarRepository.save(winner1);
         CarRepository.save(winner2);
