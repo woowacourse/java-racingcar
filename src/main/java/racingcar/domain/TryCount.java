@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.regex.Pattern;
 
 public class TryCount {
-    private static final String REGEX_DIGIT = "^[0-9]*$";
+    private static final Pattern IS_NUMBER = Pattern.compile("^[0-9]*$");
 
     public int count;
 
@@ -23,6 +23,6 @@ public class TryCount {
     }
 
     private static boolean isValidNumber(final String tryNumber) {
-        return Pattern.matches(REGEX_DIGIT, tryNumber);
+        return IS_NUMBER.matcher(tryNumber).matches();
     }
 }
