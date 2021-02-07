@@ -28,7 +28,7 @@ public class Car {
 
     private static void validateNull(String name) {
         if (name == null) {
-            throw new IllegalArgumentException("null이 입력되었습니다."); //TODO enum으로 변경
+            throw new IllegalArgumentException("null이 입력되었습니다.");
         }
     }
 

@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class InputController {
     public static List<String> getCarNames(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("null이 입력되었습니다."); //TODO enum
+            throw new IllegalArgumentException("null이 입력되었습니다.");
         }
         return splitInput(input.replace(" ", ""));
     }
