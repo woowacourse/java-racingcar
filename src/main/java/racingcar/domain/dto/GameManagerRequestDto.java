@@ -10,10 +10,10 @@ public class GameManagerRequestDto {
     }
 
     public String getCarNames() {
-        return carNames;
+        return this.carNames;
     }
 
     public int getRound() {
-        return round;
+        return this.round;
     }
 }

@@ -12,8 +12,7 @@ public class GameManager {
     private Winners winners;
 
     public void playGame(GameManagerRequestDto requestDto) {
-        String carNames = requestDto.getCarNames();
-        this.cars = Cars.of(carNames);
+        this.cars = Cars.of(requestDto.getCarNames());
         this.round = Round.of(requestDto.getRound());
         this.results = moveAndGetResults();
         this.winners = Winners.of(this.results.getResults());

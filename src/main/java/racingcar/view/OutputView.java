@@ -9,6 +9,7 @@ import java.util.List;
 
 public class OutputView {
     private static final String ONE_STEP = "-";
+    private static final String WINNERS_DELIMITER = ", ";
 
     public static void printResults(Results roundResults) {
         System.out.println("실행 결과");
@@ -38,7 +39,7 @@ public class OutputView {
 
     public static void printWinners(Winners winners) {
         List<String> winnerNames = winners.getWinners();
-        String result = String.join(", ", winnerNames);
+        String result = String.join(WINNERS_DELIMITER, winnerNames);
         System.out.println(result + "가 최종 우승했습니다.");
     }
 

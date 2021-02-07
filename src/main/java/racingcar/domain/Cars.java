@@ -32,7 +32,7 @@ public class Cars {
     }
 
     public void tryToMove() {
-        for (Car car : cars) {
+        for (Car car : this.cars) {
             int randomValue = RandomUtils.nextInt(MIN_RANDOM_RANGE, MAX_RANDOM_RANGE);
             car.tryToMove(randomValue);
         }
@@ -40,7 +40,7 @@ public class Cars {
 
     public Result getResultOfCars() {
         List<CarState> carStates = new ArrayList<>();
-        for (Car car : cars) {
+        for (Car car : this.cars) {
             carStates.add(car.getCarState());
         }
         return Result.of(carStates);

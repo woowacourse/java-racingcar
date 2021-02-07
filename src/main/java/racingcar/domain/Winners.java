@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Winners {
     private static final int GAP_WITH_SIZE_AND_INDEX = 1;
+
     private final List<String> winners;
 
     private Winners(List<String> winners) {

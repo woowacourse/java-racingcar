@@ -1,12 +1,17 @@
 package racingcar.domain;
 
 import racingcar.validator.RoundValidator;
+import racingcar.view.InputView;
 
 public class Round {
     private final int count;
 
     private Round(int count) {
-        RoundValidator.validateRoundCount(count);
+        try {
+            RoundValidator.validateRoundCount(count);
+        }catch (Exception e) {
+            InputView.inputRoundCount();
+        }
         this.count = count;
     }
 
@@ -15,6 +20,6 @@ public class Round {
     }
 
     public int getCount() {
-        return count;
+        return this.count;
     }
 }

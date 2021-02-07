@@ -15,6 +15,6 @@ public class Results {
     }
 
     public List<Result> getResults() {
-        return Collections.unmodifiableList(results);
+        return Collections.unmodifiableList(this.results);
     }
 }

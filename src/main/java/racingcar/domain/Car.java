@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Car {
     private static final int MIN_VALUE_TO_MOVE = 4;
+
     private final String name;
     private int position = 0;
 
@@ -21,20 +22,20 @@ public class Car {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public int getPosition() {
-        return position;
+        return this.position;
     }
 
     public CarState getCarState() {
-        return CarState.of(name, position);
+        return CarState.of(this.name, this.position);
     }
 
     public void tryToMove(int randomValue) {
         if (randomValue >= MIN_VALUE_TO_MOVE) {
-            position++;
+            this.position++;
         }
     }
 
@@ -43,11 +44,11 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return Objects.equals(name, car.name);
+        return Objects.equals(this.name, car.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(this.name);
     }
 }
