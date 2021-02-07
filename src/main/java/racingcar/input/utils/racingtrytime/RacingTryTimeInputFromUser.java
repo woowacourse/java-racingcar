@@ -4,12 +4,13 @@ import java.util.Scanner;
 import racingcar.input.printer.InputPrinter;
 import racingcar.input.utils.racingtrytime.validators.RacingTryTimeValidatorUtils;
 
-public class RacingTryTimeInputFromUserUtils {
+public class RacingTryTimeInputFromUser {
+    private final Scanner scanner;
 
-    private RacingTryTimeInputFromUserUtils() {
+    public RacingTryTimeInputFromUser(Scanner scanner) {
+        this.scanner = scanner;
     }
-
-    public static int getRacingTryTime(Scanner scanner) {
+    public int getRacingTryTime() {
         InputPrinter.printRacingTryTimeInputMessage();
         String racingTryTimeInput = scanner.next();
         RacingTryTimeValidatorUtils.validateNaturalNumberRacingTime(racingTryTimeInput);

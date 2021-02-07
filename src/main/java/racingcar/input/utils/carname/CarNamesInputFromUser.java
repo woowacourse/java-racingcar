@@ -7,12 +7,14 @@ import racingcar.input.utils.carname.validators.CarNameFormatValidatorUtils;
 import racingcar.input.utils.carname.validators.CarNamesNotDuplicateValidatorUtils;
 import racingcar.input.utils.carname.validators.TwoOrMoreCarNamesValidatorUtils;
 
-public class CarNamesInputFromUserUtils {
+public class CarNamesInputFromUser {
+    private final Scanner scanner;
 
-    private CarNamesInputFromUserUtils() {
+    public CarNamesInputFromUser(Scanner scanner) {
+        this.scanner = scanner;
     }
 
-    public static List<String> getAllCarNames(Scanner scanner) {
+    public List<String> getAllCarNames() {
         InputPrinter.printCarNamesInputMessage();
         String inputCarNames = scanner.next();
         List<String> carNames = CarNamesSplitterUtils.splitCarNames(inputCarNames);
@@ -20,7 +22,7 @@ public class CarNamesInputFromUserUtils {
         return carNames;
     }
 
-    private static void validateAllCarNames(List<String> carNames) {
+    private void validateAllCarNames(List<String> carNames) {
         CarNameFormatValidatorUtils.validateAllCarNamesFormat(carNames);
         TwoOrMoreCarNamesValidatorUtils.validateTwoOrMoreCarNames(carNames);
         CarNamesNotDuplicateValidatorUtils.validateAllCarNamesNotDuplicate(carNames);
