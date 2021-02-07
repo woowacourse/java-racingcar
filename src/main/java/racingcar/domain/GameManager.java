@@ -15,7 +15,6 @@ public class GameManager {
         this.cars = Cars.of(carNames);
         this.round = Round.of(requestDto.getRound());
         results = moveAndGetResults();
-        // results를 활용한 결과 출력
     }
 
     private Results moveAndGetResults() {
