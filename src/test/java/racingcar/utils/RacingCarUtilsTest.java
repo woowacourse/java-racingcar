@@ -13,7 +13,7 @@ public class RacingCarUtilsTest {
     @ParameterizedTest
     @DisplayName("자동차 이름을 `,` 로 구분 하기")
     @ValueSource(strings = "pobi,amazzi,fortune")
-    void split_string(String inputString) {
+    void splitString(String inputString) {
         String result = RacingCarUtils.splitInputString(inputString).toString();
         assertThat(result.equals(Arrays.asList("pobi", "amazzi", "fortune").toString())).isTrue();
     }

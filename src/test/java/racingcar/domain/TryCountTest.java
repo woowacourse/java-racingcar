@@ -9,7 +9,7 @@ public class TryCountTest {
 
     @Test
     @DisplayName("시도 횟수가 영어 일때")
-    public void tryCount_영어() {
+    public void tryCountEng() {
         assertThatThrownBy(() -> {
             TryCount tryCount = new TryCount("abc");
         }).isInstanceOf(IllegalArgumentException.class);
@@ -17,7 +17,7 @@ public class TryCountTest {
 
     @Test
     @DisplayName("시도 횟수가 음수 일때")
-    public void tryCount_음수() {
+    public void tryCountNegativeNum() {
         assertThatThrownBy(() -> {
             TryCount tryCount = new TryCount("-1");
         }).isInstanceOf(IllegalArgumentException.class);

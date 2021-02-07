@@ -12,7 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 public class CarsTest {
     @Test
     @DisplayName("자동차 이름이 중복되었을 경우")
-    void cars_중복된_자동차_이름() {
+    void carsDuplicateNames() {
         List<String> carNames = Arrays.asList("pobi", "pobi", "pobi");
         assertThatThrownBy(() -> {
             Cars.setCarsByName(carNames);
