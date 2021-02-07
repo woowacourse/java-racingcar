@@ -13,6 +13,7 @@ public class GameManagerController {
         GameManager gameManager = new GameManager();
         gameManager.playGame(gameManagerRequestDto);
         OutputView.printResults(gameManager.getResults());
+        OutputView.printWinners(gameManager.getWinners());
     }
 
     private String[] getInputCarNames() {

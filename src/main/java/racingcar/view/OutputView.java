@@ -3,6 +3,7 @@ package racingcar.view;
 import racingcar.domain.CarState;
 import racingcar.domain.Result;
 import racingcar.domain.Results;
+import racingcar.domain.Winners;
 
 import java.util.List;
 
@@ -33,6 +34,12 @@ public class OutputView {
             sb.append(ONE_STEP);
         }
         System.out.println(sb);
+    }
+
+    public static void printWinners(Winners winners) {
+        List<String> winnerNames = winners.getWinners();
+        String result = String.join(", ", winnerNames);
+        System.out.println(result + "가 최종 우승했습니다.");
     }
 
     private static void printEmptyLine() {

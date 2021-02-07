@@ -9,12 +9,14 @@ public class GameManager {
     private Cars cars;
     private Round round;
     private Results results;
+    private Winners winners;
 
     public void playGame(GameManagerRequestDto requestDto) {
         String[] carNames = requestDto.getCarNames();
         this.cars = Cars.of(carNames);
         this.round = Round.of(requestDto.getRound());
-        results = moveAndGetResults();
+        this.results = moveAndGetResults();
+        this.winners = Winners.of(this.results.getResults());
     }
 
     private Results moveAndGetResults() {
@@ -29,5 +31,9 @@ public class GameManager {
 
     public Results getResults() {
         return results;
+    }
+
+    public Winners getWinners() {
+        return winners;
     }
 }
