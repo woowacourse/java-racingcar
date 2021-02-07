@@ -37,7 +37,7 @@ public class RacingCarGame {
     }
 
     private void race(int laps) {
-        OutputView.showResult();
+        OutputView.showResultMessage();
         for (int i = 0; i < laps; i++) {
             CarRepository.raceOneLap();
             OutputView.showOneLapResult();

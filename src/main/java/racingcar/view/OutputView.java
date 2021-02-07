@@ -3,7 +3,6 @@ package racingcar.view;
 import racingcar.Car;
 import racingcar.CarRepository;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
@@ -31,7 +30,7 @@ public class OutputView {
         System.out.println(String.join(", ", CarRepository.getWinners()) + "가 최종 우승했습니다.");
     }
 
-    public static void showResult() {
+    public static void showResultMessage() {
         System.out.println();
         System.out.println("실행 결과");
     }
