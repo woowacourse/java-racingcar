@@ -1,36 +1,36 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
-
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 class CarTest {
 
-    @DisplayName("Test for a valid name length")
+    @DisplayName("이름의 길이가 유효하지 않는 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"1", "12", "123", "1234", "12345"})
-    void checkLengthTest(String name) {
-        assertThatCode(() -> Car.createByName(name))
-            .doesNotThrowAnyException();
+    @ValueSource(strings = {"", " ", "  ", "abcdefg"})
+    void expectInvalidLengthExceptionTest(String name) {
+        assertThatThrownBy(() ->
+                Car.createByName(Name.create(name)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("Exception test for null name")
-    @Test
-    void checkNullExceptionTest() {
-        Assertions.assertThatThrownBy(() -> Car.createByName(null))
-            .isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("이름으로 null이 입력된 경우")
+    @ParameterizedTest
+    @NullSource
+    void expectNullExceptionTest(String name) {
+        assertThatThrownBy(() ->
+                Car.createByName(Name.create(name)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("Exception test for over name length limit")
+    @DisplayName("이름이 유효한 경우의 Car 객체 생성")
     @ParameterizedTest
-    @ValueSource(strings = {"", "    ", "123456"})
-    void checkLengthExceptionTest(String name) {
-        Assertions.assertThatThrownBy(() -> {
-            Car.createByName(name);
-        }).isInstanceOf(IllegalArgumentException.class);
+    @ValueSource(strings = {"pobi", "jin", "corgi"})
+    void checkInstanceWithValidName(String name) {
+        Car.createByName(Name.create(name));
     }
 }

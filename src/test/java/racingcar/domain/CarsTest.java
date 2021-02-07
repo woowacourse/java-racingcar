@@ -1,49 +1,44 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.utils.InputUtils;
-import racingcar.validator.NameValidator;
+import racingcar.utils.NameHandler;
 
 class CarsTest {
-
-    private Cars cars;
-
-    @DisplayName("Exception test for over duplicated name")
+    @DisplayName("입력한 이름이 중복되는 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"pobi, pobi, pobi"})
-    void checkDuplicatedExceptionTest(String nameString) {
+    @ValueSource(strings = {"pobi, pobi , pobi "})
+    void expectDuplicatedExceptionTest(String nameString) {
         assertThatThrownBy(() -> {
-            String[] names = InputUtils.splitNames(nameString);
-            NameValidator.isDuplicatedNames(names);
+            Name[] names = NameHandler.splitNames(nameString);
+            Cars.createByNames(names);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-//    @DisplayName("특정 자동차가 우승을 하는 상황을 만들어놓고 그 우승자가 정상적으로 나오는지 확인")
-//    @ParameterizedTest
-//    @ValueSource(strings = {"pobi, pobi, pobi"})
-//    void checkWinner() {
-//        setUp();
-//    }
-//
-//    public void setUp() {
-//        Car car1 = Car.createByName("jino");
-//        car1.movePosition();
-//        car1.movePosition();
-//        Car car2 = Car.createByName("cogi");
-//        car2.movePosition();
-//        car2.movePosition();
-//        car2.movePosition();
-//
-//        List<Car> carList = new ArrayList<>();
-//
-//        carList.add(car1);
-//        carList.add(car2);
-//
-//         cars = Cars.createByNames()
-//    }
+    @DisplayName("입력한 이름이 하나 뿐인 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi"})
+    void expectOnlyCarExceptionTest(String onlyName) {
+        assertThatThrownBy(() -> {
+            Cars.createByNames(new Name[]{Name.create(onlyName)});
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력한 이름 문자열에 이상이 없는 경우의 Cars 생성")
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi, jin, corgi"})
+    void checkInstanceWithValidNames(String input) {
+        Name[] names = NameHandler.splitNames(input);
+        Cars cars = Cars.createByNames(names);
+
+        for (Name name : names) {
+            assertThat(cars.contains(Car.createByName(name))).isEqualTo(true);
+        }
+    }
+
+    // XXX :: 우승 자동차를 검증할 수 있는 방법에 대한 고민
 }
