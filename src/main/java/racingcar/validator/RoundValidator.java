@@ -14,7 +14,7 @@ public class RoundValidator {
         try {
             Integer.parseInt(inputCount);
         }catch (NumberFormatException ne) {
-            throw new NumberFormatException("시도할 횟수는 숫자여야 합니다.");
+            throw new NumberFormatException("시도할 횟수는 숫자여야 합니다.(입력가능범위 : 1 ~ 2147483647)");
         }
     }
 
