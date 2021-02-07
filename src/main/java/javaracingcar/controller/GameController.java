@@ -53,7 +53,7 @@ public class GameController {
     public static List<Car> getWinners(Game game) {
         return game.getCars()
                    .stream()
-                   .filter(car -> car.getPosition() == getMaxPosition(game))
+                   .filter(car -> car.isWinner(getMaxPosition(game)))
                    .collect(Collectors.toList());
     }
 

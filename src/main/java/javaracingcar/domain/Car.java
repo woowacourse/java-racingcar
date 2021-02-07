@@ -5,7 +5,6 @@ public class Car {
     private int position;
 
     private Car(String name) {
-
         this.name = name;
         this.position = 0;
     }
@@ -47,5 +46,9 @@ public class Car {
 
     public void move() {
         position++;
+    }
+
+    public boolean isWinner(int maxPosition) {
+        return position == maxPosition;
     }
 }
