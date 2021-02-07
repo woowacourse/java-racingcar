@@ -1,9 +1,11 @@
 package javaracingcar.domain;
 
+import javaracingcar.controller.GameController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,5 +30,19 @@ class GameTest {
         Game game = Game.init(carNames, trial);
         assertEquals(game.getCarNames(), carNames);
         assertEquals(game.getTrial(), trial);
+    }
+
+    @Test
+    @DisplayName("Game의 자동차 생성 메서드 테스트")
+    void generateCars_NonDuplicatedCarNames_Success() {
+        List<String> cars = new ArrayList<>();
+        cars.add("CarA");
+        cars.add("CarB");
+        cars.add("CarC");
+        List<Car> generatedCars = Game.generateCars(Arrays.asList("CarA", "CarB", "CarC"));
+        for (int i = 0; i < cars.size(); i++) {
+            assertEquals(generatedCars.get(i)
+                    .getName(), cars.get(i));
+        }
     }
 }

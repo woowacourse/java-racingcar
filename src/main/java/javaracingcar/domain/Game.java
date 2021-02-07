@@ -1,11 +1,15 @@
 package javaracingcar.domain;
 
-import javaracingcar.controller.GameController;
+import utils.RandomUtils;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Game {
+    private static final int CAR_MOVES = 4;
+
     private List<Car> cars;
     private int trial;
 
@@ -13,11 +17,24 @@ public class Game {
         this.cars = cars;
         this.trial = trial;
     }
+    public List<String> getCarNames() {
+        return cars.stream()
+                   .map(Car::getName)
+                   .collect(Collectors.toList());
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public int getTrial() {
+        return trial;
+    }
 
     public static Game init(List<String> carNames, int trial) {
         validateNonZeroElement(carNames);
         validateDistinctNames(carNames);
-        return new Game(GameController.generateCars(carNames), trial);
+        return new Game(generateCars(carNames), trial);
     }
 
     private static void validateNonZeroElement(List<String> carNames) {
@@ -34,22 +51,41 @@ public class Game {
         }
     }
 
-    public List<String> getCarNames() {
-        return cars.stream()
-                   .map(Car::getName)
-                   .collect(Collectors.toList());
-    }
-
-    public List<Car> getCars() {
+    public static List<Car> generateCars(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : carNames) {
+            cars.add(Car.generateCar(name));
+        }
         return cars;
     }
 
-    public int getTrial() {
-        return trial;
+    public void playMoveOrStop() {
+        cars.forEach(Game::playMoveOrStop);
+    }
+
+    private static void playMoveOrStop(Car car) {
+        if (RandomUtils.getSingleDigitRandomNumber() >= CAR_MOVES) {
+            car.move();
+        }
     }
 
     public void reduceOneTrial() {
         trial--;
+    }
+
+    public List<Car> getWinners() {
+        int maxPosition = getMaxPosition();
+        return cars.stream()
+                .filter(car -> car.isWinner(maxPosition))
+                .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        List<Integer> positions = cars
+                .stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toList());
+        return Collections.max(positions);
     }
 
     public boolean isEnd() {
