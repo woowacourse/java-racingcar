@@ -16,6 +16,10 @@ public class CarRepository {
         cars.clear();
     }
 
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
+    }
+
     public List<Car> getWinners() {
         int maxPosition = getMaxPosition();
         return Collections.unmodifiableList(cars.stream()

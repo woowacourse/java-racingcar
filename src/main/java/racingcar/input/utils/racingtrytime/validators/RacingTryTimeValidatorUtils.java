@@ -3,8 +3,8 @@ package racingcar.input.utils.racingtrytime.validators;
 import racingcar.input.utils.racingtrytime.validators.exceptions.NotNaturalNumberRacingTimeException;
 
 public class RacingTryTimeValidatorUtils {
-    private static final String ERROR_MESSAGE = "경주 시도 횟수는 자연수여야 합니다.";
-    private static final int MIN_NATURAL_NUMBER = 1;
+    private final String ERROR_MESSAGE = "경주 시도 횟수는 자연수여야 합니다.";
+    private final int MIN_NATURAL_NUMBER = 1;
 
     private RacingTryTimeValidatorUtils() {
     }

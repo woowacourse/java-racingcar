@@ -9,10 +9,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CarRepositoryTest {
+    private final CarRepository carRepository = new CarRepository();
 
     @AfterEach
     void deleteAllCars() {
-        CarRepository.deleteAll();
+        carRepository.deleteAll();
     }
 
     @DisplayName("1회 경주 - 모든 자동차들이 랜덤값에 따라 전진하거나 전진하지 않아야 한다.")
@@ -21,11 +22,9 @@ public class CarRepositoryTest {
         int numberOfCars = 1000;
 
         List<Car> cars = createCars(numberOfCars);
-        CarRepository.saveAll(cars);
+        carRepository.saveAll(cars);
 
         List<Integer> randomNumbers = getRandomNumbers(numberOfCars);
-
-        CarRepository.raceOneTime(randomNumbers);
 
         for (int i = 0; i < numberOfCars; i++) {
             assertGoForwardOrStop(cars.get(i), randomNumbers.get(i));
@@ -70,11 +69,11 @@ public class CarRepositoryTest {
         cars.add(winner);
         cars.add(loser);
 
-        CarRepository.saveAll(cars);
+        carRepository.saveAll(cars);
 
         winner.goForward();
 
-        List<Car> winners = CarRepository.getWinners();
+        List<Car> winners = carRepository.getWinners();
 
         assertThat(winners.size()).isEqualTo(1);
         assertThat(winners.get(0)).isEqualTo(winner);
@@ -96,7 +95,7 @@ public class CarRepositoryTest {
         cars.add(winner3);
         cars.add(loser);
 
-        CarRepository.saveAll(cars);
+        carRepository.saveAll(cars);
 
         winner1.goForward();
         winner2.goForward();
@@ -106,7 +105,7 @@ public class CarRepositoryTest {
         expectedWinners.add(winner2);
         expectedWinners.add(winner3);
 
-        List<Car> actualWinners = CarRepository.getWinners();
+        List<Car> actualWinners = carRepository.getWinners();
 
         assertThat(actualWinners.size()).isEqualTo(3);
         assertThat(actualWinners.containsAll(expectedWinners)).isTrue();

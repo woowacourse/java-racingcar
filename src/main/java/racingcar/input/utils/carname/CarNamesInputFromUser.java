@@ -1,30 +1,25 @@
 package racingcar.input.utils.carname;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import racingcar.input.printer.InputPrinter;
-import racingcar.input.utils.carname.validators.CarNameFormatValidatorUtils;
-import racingcar.input.utils.carname.validators.CarNamesNotDuplicateValidatorUtils;
-import racingcar.input.utils.carname.validators.TwoOrMoreCarNamesValidatorUtils;
+import java.util.stream.Collectors;
+import racingcar.input.printer.CarNamesInputFromUserPrinter;
 
 public class CarNamesInputFromUser {
+    private final CarNamesInputFromUserPrinter carNamesInputFromUserPrinter;
     private final Scanner scanner;
+    public static final String CAR_NAMES_DELIMITER = ",";
 
     public CarNamesInputFromUser(Scanner scanner) {
+        this.carNamesInputFromUserPrinter = new CarNamesInputFromUserPrinter();
         this.scanner = scanner;
     }
 
     public List<String> getAllCarNames() {
-        InputPrinter.printCarNamesInputMessage();
+        carNamesInputFromUserPrinter.printCarNamesInputMessage();
         String inputCarNames = scanner.next();
-        List<String> carNames = CarNamesSplitterUtils.splitCarNames(inputCarNames);
-        validateAllCarNames(carNames);
-        return carNames;
-    }
-
-    private void validateAllCarNames(List<String> carNames) {
-        CarNameFormatValidatorUtils.validateAllCarNamesFormat(carNames);
-        TwoOrMoreCarNamesValidatorUtils.validateTwoOrMoreCarNames(carNames);
-        CarNamesNotDuplicateValidatorUtils.validateAllCarNamesNotDuplicate(carNames);
+        return Arrays.stream(inputCarNames.split(CAR_NAMES_DELIMITER))
+            .collect(Collectors.toList());
     }
 }
