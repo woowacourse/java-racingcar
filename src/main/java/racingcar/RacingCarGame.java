@@ -2,6 +2,7 @@ package racingcar;
 
 import racingcar.utils.SplitUtil;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class RacingCarGame {
     public void start() {
         String carNamesInput = InputView.getCarNamesInput();
         List<String> splittedCarNames = SplitUtil.splitCarNames(carNamesInput);
+        System.out.println(splittedCarNames);
         CarRepository.addCars(splittedCarNames);
         String lapInput = InputView.getLap();
         int laps = validateLaps(lapInput);
@@ -37,6 +39,7 @@ public class RacingCarGame {
     private void race(int laps) {
         for (int i = 0; i < laps; i++) {
             CarRepository.raceOneLap();
+            OutputView.showOneLapResult();
         }
     }
 }
