@@ -9,15 +9,19 @@ import java.util.List;
 
 public class RacingMain {
     public static void main(String[] args) {
+        runApplication();
+    }
+
+    private static void runApplication() {
         try {
-            start();
+            startGame();
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
-            start();
+            runApplication();
         }
     }
 
-    private static void start() {
+    private static void startGame() {
         List<String> carNames = InputController.getCarNames(InputView.receiveCarNamesFromUser());
         int trial = InputController.getTrial(InputView.receiveTrialFromUser());
         GameController.run(carNames,trial);
