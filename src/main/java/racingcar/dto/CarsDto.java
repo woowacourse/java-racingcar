@@ -1,6 +1,5 @@
 package racingcar.dto;
 
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
 import java.util.Collections;
