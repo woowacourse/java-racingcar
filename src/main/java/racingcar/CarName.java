@@ -10,6 +10,10 @@ public class CarName {
         this.carName = carName;
     }
 
+    public String getCarName() {
+        return this.carName;
+    }
+
     private void validateCarName(String carName) {
         checkCarNameLength(carName);
     }
