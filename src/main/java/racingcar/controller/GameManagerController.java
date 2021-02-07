@@ -7,22 +7,12 @@ import racingcar.view.OutputView;
 
 public class GameManagerController {
     public void run() {
-        String[] carNames = getInputCarNames();
-        int roundCount = getInputRoundCount();
+        String carNames = InputView.inputCarNames();
+        int roundCount = InputView.inputRoundCount();
         GameManagerRequestDto gameManagerRequestDto = new GameManagerRequestDto(carNames, roundCount);
         GameManager gameManager = new GameManager();
         gameManager.playGame(gameManagerRequestDto);
         OutputView.printResults(gameManager.getResults());
         OutputView.printWinners(gameManager.getWinners());
-    }
-
-    private String[] getInputCarNames() {
-        String input = InputView.inputCarNames();
-        String[] carNames = input.split(",");
-        return carNames;
-    }
-
-    private int getInputRoundCount() {
-        return InputView.inputRoundCount();
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 public class Cars {
     private static final int MIN_RANDOM_RANGE = 0;
     private static final int MAX_RANDOM_RANGE = 9;
+    private static final String DELIMITER = ",";
 
     private final List<Car> cars;
 
@@ -21,7 +22,8 @@ public class Cars {
         return new Cars(cars);
     }
 
-    public static Cars of(String[] carNames) {
+    public static Cars of(String inputCarNames) {
+        String[] carNames = inputCarNames.split(DELIMITER);
         List<Car> cars = new ArrayList<>();
         for (String name : carNames) {
             cars.add(Car.of(name));
