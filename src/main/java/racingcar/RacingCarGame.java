@@ -17,11 +17,11 @@ public class RacingCarGame {
     public void start() {
         String carNamesInput = InputView.getCarNamesInput();
         List<String> splittedCarNames = SplitUtil.splitCarNames(carNamesInput);
-        System.out.println(splittedCarNames);
         CarRepository.addCars(splittedCarNames);
         String lapInput = InputView.getLap();
         int laps = validateLaps(lapInput);
         race(laps);
+        OutputView.showWinners();
     }
 
     public int validateLaps(String lapInput){
@@ -37,6 +37,7 @@ public class RacingCarGame {
     }
 
     private void race(int laps) {
+        OutputView.showResult();
         for (int i = 0; i < laps; i++) {
             CarRepository.raceOneLap();
             OutputView.showOneLapResult();

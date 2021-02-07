@@ -26,4 +26,13 @@ public class OutputView {
         RacingCars.forEach(System.out::println);
         System.out.println();
     }
+
+    public static void showWinners() {
+        System.out.println(String.join(", ", CarRepository.getWinners()) + "가 최종 우승했습니다.");
+    }
+
+    public static void showResult() {
+        System.out.println();
+        System.out.println("실행 결과");
+    }
 }
