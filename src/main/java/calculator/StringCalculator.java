@@ -22,11 +22,11 @@ public class StringCalculator {
     }
 
     private static int getSplitNumbersSum(String input) {
-        Matcher m = PATTERN.matcher(input);
+        Matcher matcher = PATTERN.matcher(input);
 
-        if (m.find()) {
-            String customDelimiter = m.group(FIRST_MATCH);
-            return validateAndSumNumbers(m.group(SECOND_MATCH).split(customDelimiter));
+        if (matcher.find()) {
+            String customDelimiter = matcher.group(FIRST_MATCH);
+            return validateAndSumNumbers(matcher.group(SECOND_MATCH).split(customDelimiter));
         }
 
         return validateAndSumNumbers(input.split(DEFAULT_DELIMITER_PATTERN));
