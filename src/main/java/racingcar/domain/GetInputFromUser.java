@@ -21,7 +21,7 @@ public class GetInputFromUser {
         return carNamesInputFromUser.getAllCarNames();
     }
 
-    public int getInputRacingTryTimeFromUser() {
-        return racingTryTimeInputFromUser.getRacingTryTime();
+    public String getInputRacingTryTimeFromUser() {
+        return racingTryTimeInputFromUser.getRacingTryTimeInput();
     }
 }

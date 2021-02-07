@@ -12,10 +12,8 @@ public class RacingTryTimeInputFromUser {
         this.scanner = scanner;
     }
 
-    public int getRacingTryTime() {
+    public String getRacingTryTimeInput() {
         racingTryTimeInputFromUserPrinter.printRacingTryTimeInputMessage();
-        String racingTryTimeInput = scanner.next();
-        validateNaturalNumberRacingTime(racingTryTimeInput);
-        return Integer.parseInt(racingTryTimeInput);
+        return scanner.next();
     }
 }
