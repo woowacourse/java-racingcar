@@ -15,6 +15,6 @@ public class CarRacingManager {
     public void start() {
         carRacingBeforeSetter.set();
         int racingTryTime = carRacingBeforeSetter.getRacingTryTime();
-        carRacing.start(racingTryTime);
+        carRacing.doAllRaces(racingTryTime);
     }
 }

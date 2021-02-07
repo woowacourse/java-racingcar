@@ -1,26 +1,28 @@
 package racingcar.domain;
 
 
+import racingcar.domain.output.RacingPrinter;
+
 public class CarRacing {
-    private final CarRepository carRepository;
+    private final ApplicatorRandomNumberToCar applicatorRandomNumberToCar;
     private final RacingPrinter racingPrinter;
 
     public CarRacing(CarRepository carRepository) {
-        this.carRepository = carRepository;
+        this.applicatorRandomNumberToCar = new ApplicatorRandomNumberToCar(carRepository);
         this.racingPrinter = new RacingPrinter(carRepository);
     }
 
-    public void start(int racingTryTime) {
+    public void doAllRaces(int racingTryTime) {
         racingPrinter.printRacingStartMessage();
         for (int i = 0; i < racingTryTime; i++) {
-            raceCars();
+            doOnlyOneTimeRace();
             racingPrinter.printNewLine();
         }
         racingPrinter.printWinners();
     }
 
-    private void raceCars() {
+    private void doOnlyOneTimeRace() {
+        applicatorRandomNumberToCar.apply();
         racingPrinter.printAllCarsCurrentPosition();
     }
-
 }

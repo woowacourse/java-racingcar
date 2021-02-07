@@ -16,7 +16,7 @@ public class CarRepository {
         cars.clear();
     }
 
-    public List<Car> getCars() {
+    public List<Car> getAllCars() {
         return Collections.unmodifiableList(cars);
     }
 
