@@ -13,11 +13,15 @@ public class RacingMain {
     }
 
     private static void runApplication() {
-        try {
-            startGame();
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            runApplication();
+        boolean isDone = false;
+
+        while (!isDone) {
+            try {
+                startGame();
+                isDone = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
     }
 
