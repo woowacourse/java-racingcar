@@ -27,9 +27,11 @@ public class RoundTest {
 
 
     // TODO - 질문 : int 범위를 벗어나는 경우는 어떻게 테스트 하죠 ? 컴파일 에러가 나네요.
+//    @Test
 //    public void roundCountShouldBeInIntRange() {
 //        assertThatThrownBy(() -> {
-//            Round.of(1000000000000000);
-//        }).isInstanceOf(IllegalArgumentException.class);
+//            String str = "100000000000000000000";
+//            Round.of(Integer.parseInt(str));
+//        }).isInstanceOf(NumberFormatException.class);
 //    }
 }
