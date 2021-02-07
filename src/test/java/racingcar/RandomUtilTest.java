@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.junit.jupiter.api.RepeatedTest;
+import racingcar.utils.RandomUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
