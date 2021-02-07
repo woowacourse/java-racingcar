@@ -9,15 +9,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RacingGameContoller {
+public class RacingGameController {
     public static Cars cars;
     public static int trials;
 
     public static void start() {
         while (!initializeCars()) ;
         while (!getTrials()) ;
-        OutputView.printResultMessage();
+        OutputView.printRoundMessage();
         playRounds();
+    }
+
+    public static void findWinner() {
+        
     }
 
     public static void playRounds() {
