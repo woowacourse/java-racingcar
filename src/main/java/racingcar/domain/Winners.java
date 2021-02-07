@@ -22,13 +22,12 @@ public class Winners {
                     .mapToInt(CarState::getPosition)
                     .max()
                     .orElseThrow(NoSuchElementException::new);
-
     }
 
     private static List<String> getWinners(Result result) {
         List<CarState> carStates = result.getCarStates();
         List<String> winners = carStates.stream()
-                .filter(carState -> carState.getPosition() == getMaxPosition(result))
+                .filter(carState -> carState.isMaxPosition(getMaxPosition(result)))
                 .map(CarState::getName)
                 .collect(Collectors.toList());
         return winners;
