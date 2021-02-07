@@ -21,7 +21,7 @@ public class Input {
     private void setNormalInput(String input) {
         this.delimiter = DelimiterFactory.valueOf(input);
 
-        if (delimiter instanceof CustomDelimiter) {
+        if (!delimiter.isDefault()) {
             input = extractElementString(input);
         }
 
@@ -41,7 +41,7 @@ public class Input {
             return new Numbers(new String[]{"0"});
         }
 
-        String[] inputs = input.split(delimiter.getDelimiter());
+        String[] inputs = delimiter.split(input);
 
         return new Numbers(inputs);
     }

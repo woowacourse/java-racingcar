@@ -56,7 +56,12 @@ public class CustomDelimiter implements Delimiter {
     }
 
     @Override
-    public String getDelimiter() {
-        return delimiter;
+    public boolean isDefault() {
+        return false;
+    }
+
+    @Override
+    public String[] split(String input) {
+        return input.split(delimiter);
     }
 }

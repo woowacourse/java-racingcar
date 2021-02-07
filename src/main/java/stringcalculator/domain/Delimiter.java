@@ -1,5 +1,6 @@
 package stringcalculator.domain;
 
 public interface Delimiter {
-    String getDelimiter();
+    boolean isDefault();
+    String[] split(String input);
 }
