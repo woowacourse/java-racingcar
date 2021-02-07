@@ -31,7 +31,7 @@ public class Cars {
 
     public void tryToMove() {
         for (Car car : cars) {
-            int randomValue = RandomUtils.nextInt(MIN_RANDOM_RANGE, MAX_RANDOM_RANGE)
+            int randomValue = RandomUtils.nextInt(MIN_RANDOM_RANGE, MAX_RANDOM_RANGE);
             car.tryToMove(randomValue);
         }
     }
