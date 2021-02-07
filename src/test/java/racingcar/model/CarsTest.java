@@ -14,7 +14,7 @@ public class CarsTest {
         int distance[] = {8, 1, 3};
         Cars cars = new Cars(carNames, distance);
 
-        assertThat(cars.getWinners(8)).isEqualTo("test1");
+        assertThat(cars.getWinners().get(0).getCarName()).isEqualTo("test1");
     }
 
 }

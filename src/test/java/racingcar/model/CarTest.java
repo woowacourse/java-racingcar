@@ -23,9 +23,9 @@ public class CarTest {
         Car car = new Car("test");
 
         car.move(4);
-        assertThat(car.toString()).isEqualTo("test : -");
+        assertThat(car.getCarName()).isEqualTo("test");
         car.move(1);
-        assertThat(car.toString()).isEqualTo("test : -");
+        assertThat(car.getCarName()).isEqualTo("test");
     }
 
 }
