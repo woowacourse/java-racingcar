@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -19,18 +19,16 @@ public class RacingCarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"benz", "bmw", "suv"})
+    @DisplayName("자동차 이름이 잘 들어갔는지 테스트")
     void carNameTest(String text) {
-        // 자동차 객체가 만들어질때 에러가 안나고, 이름이 잘 저장되는가?
-        // 5글자 이하만 넣었을때
         Car car = new Car(text);
         assertThat(car.getName()).isEqualTo(text);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"grandeur", "sportsCar", "sonata"})
+    @DisplayName("자동차 이름길이에 따른 에러가 나는지 테스트")
     void carNameLengthErrorTest(String text) {
-        // 자동차 객체가 만들어질때 에러가 나는가?
-        // 5글자 이상을 넣었을때
         assertThatThrownBy(() -> {
             new Car(text);
         }).isInstanceOf(IllegalArgumentException.class);
@@ -38,6 +36,7 @@ public class RacingCarTest {
 
     @ParameterizedTest
     @CsvSource(value = {"pobi,crong,honux:3", "mt:1", "oz,mt:2"}, delimiter = ':')
+    @DisplayName("자동차를 여러대 생성할때 생성된 사이즈 테스트")
     void carCreateLengthTest(String input, String expected) {
         List<Car> carList = new ArrayList<>();
         String[] carNames = input.split(",");
@@ -50,8 +49,8 @@ public class RacingCarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"pobi,crong,honux", "mt,oz", "oz,mt"})
+    @DisplayName("입력한 이름과 객체의 이름이 같은지 테스트")
     void multiCarNameEqualTest(String text) {
-        // 입력한 이름과 객체들의 이름이 같은지 테스트
         List<Car> carList = new ArrayList<>();
         String[] carNames = text.split(",");
         for (String carName : carNames) {
@@ -66,8 +65,8 @@ public class RacingCarTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, -1, -2, -3})
+    @DisplayName("시도횟수가 0 이하일대 에러가 나는지 테스트")
     void attemptsNumberErrorTest(int number) {
-        // 에러가 잘 출력되는지 테스트
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
                 new AttemptNumber(number);
@@ -76,16 +75,16 @@ public class RacingCarTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 5, 8, 10})
+    @DisplayName("시도횟수가 잘 입력되었는지 테스트")
     void attemptsNumberTest(int number) {
-        // 에러가 출력이 안되고 잘 동작하는지 테스트
         AttemptNumber attemptNumber = new AttemptNumber(number);
         assertThat(attemptNumber.getAttemptNumber()).isEqualTo(number);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"9:1", "3:0", "5:1"}, delimiter = ':')
+    @DisplayName("랜덤한 숫자에 따라서 이동이 되는지 안되는지 테스트")
     void randomNumberPositionTest(String input, String expected) {
-        // 랜덤한 숫자에 따른 자동차 위치변환 상태확인
         Car car = new Car("temp");
         car.move(Integer.parseInt(input));
         assertThat(car.getPosition()).isEqualTo(Integer.parseInt(expected));
@@ -93,8 +92,8 @@ public class RacingCarTest {
 
     @ParameterizedTest
     @CsvSource(value = {"3:---", "2:--", "5:-----"}, delimiter = ':')
+    @DisplayName("전진한 거리만큼 문자열이 잘 반환되는지 테스트")
     void carPositionToStringTest(String input, String expected) {
-        // 전진한 거리만큼의 문자열이 잘 반환되는가?
         Car car = new Car("temp");
         for (int i = 0; i < Integer.parseInt(input); i++) {
             car.move(4);
@@ -106,6 +105,7 @@ public class RacingCarTest {
     @CsvSource(value = {"mt,oz,pobi@0,2:mt, pobi", "pobi,crong,honux@0:pobi",
         "pobi,crong,honux@1:crong", "pobi,crong,honux@2:honux", "pobi,crong,honux@1,2:crong, honux",
         "pobi,crong,honux@0,1,2:pobi, crong, honux"}, delimiter = ':')
+    @DisplayName("우승한 자동차가 잘 출력되는지 테스트")
     void winnerCarTest(String input, String expected) {
         String[] inputArray = input.split("@");
         String[] carNames = inputArray[0].split(",");

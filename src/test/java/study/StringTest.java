@@ -2,6 +2,7 @@ package study;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class StringTest {
@@ -22,6 +23,7 @@ public class StringTest {
     }
 
     @Test
+    @DisplayName("특정 위치의 문자를 가져오는 테스트")
     void getCharacter() {
         String value = "abc";
         assertThat(value.charAt(0)).isEqualTo('a');
