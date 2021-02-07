@@ -4,12 +4,12 @@ package racingcar.domain;
 import racingcar.domain.output.RacingPrinter;
 
 public class CarRacing {
-    private final ApplicatorNumbersToCar applicatorRandomNumberToCar;
+    private final NumberApplicatorToCar applicatorRandomNumberToCar;
     private final RacingPrinter racingPrinter;
 
     public CarRacing(CarRepository carRepository) {
         this.applicatorRandomNumberToCar
-            = new ApplicatorNumbersToCar(carRepository, new RandomNumberGenerator());
+            = new NumberApplicatorToCar(carRepository, new RandomNumberGenerator());
         this.racingPrinter = new RacingPrinter(carRepository);
     }
 

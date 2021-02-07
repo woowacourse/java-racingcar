@@ -1,13 +1,14 @@
 package racingcar.domain;
 
 import java.util.List;
-// TODO: ApplicatorNumbersToCar -> NumberApplicatorToCar
-public class ApplicatorNumbersToCar {
+
+
+public class NumberApplicatorToCar {
     private final CarRepository carRepository;
     private final NumberGenerator numberGenerator;
     private final int MIN_NUMBER_TO_GO_FORWARD = 4;
 
-    public ApplicatorNumbersToCar(CarRepository carRepository, NumberGenerator numberGenerator) {
+    public NumberApplicatorToCar(CarRepository carRepository, NumberGenerator numberGenerator) {
         this.carRepository = carRepository;
         this.numberGenerator = numberGenerator;
     }

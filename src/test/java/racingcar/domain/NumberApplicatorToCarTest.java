@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class ApplicatorNumbersToCarTest {
+class NumberApplicatorToCarTest {
     private final CarRepository carRepository = new CarRepository();
     private final int CARS_SIZE = 10;
 
@@ -51,10 +51,10 @@ class ApplicatorNumbersToCarTest {
 
         FixedNumberGenerator fixedNumberGenerator
             = new FixedNumberGenerator(generatedFixedNumber);
-        ApplicatorNumbersToCar applicatorNumbersToCar
-            = new ApplicatorNumbersToCar(carRepository, fixedNumberGenerator);
+        NumberApplicatorToCar numberApplicatorToCar
+            = new NumberApplicatorToCar(carRepository, fixedNumberGenerator);
 
-        applicatorNumbersToCar.apply();
+        numberApplicatorToCar.apply();
 
         assertAllCarsPosition(expectedCarPosition);
     }
