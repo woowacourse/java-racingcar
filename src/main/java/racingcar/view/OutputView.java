@@ -5,7 +5,7 @@ import java.util.List;
 public class OutputView {
 
     public static void printStartRace() {
-        System.out.println("\n실행 결과");
+        System.out.println(System.lineSeparator() + "실행 결과");
     }
 
     public static void printCarInfo(String name, String position) {
