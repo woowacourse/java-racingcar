@@ -1,14 +1,14 @@
 package racingcar.dto;
 
-public class CarDto {
-    private final String name;
-    private final int position;
+import racingcar.domain.Car;
 
-    //TODO
-    // Car 객체를 생성자 매개변수로 받기
-    public CarDto(String name, int position) {
-        this.name = name;
-        this.position = position;
+public class CarDto {
+    private String name;
+    private int position;
+
+    public CarDto(Car car) {
+        this.name = car.getName();
+        this.position = car.getPosition();
     }
 
     public String getName() {
@@ -17,5 +17,9 @@ public class CarDto {
 
     public int getPosition() {
         return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }

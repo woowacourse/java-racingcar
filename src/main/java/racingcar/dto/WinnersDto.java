@@ -14,7 +14,7 @@ public class WinnersDto {
 
     private List<CarDto> convertCarsToWinnersDto(List<Car> cars) {
         return cars.stream()
-                .map(car -> new CarDto(car.getName(), car.getPosition()))
+                .map(CarDto::new)
                 .collect(Collectors.toList());
     }
 
