@@ -18,7 +18,7 @@ public class RacingGameController {
 
         playRacingGame(racingGame);
 
-        OutputView.announceWinners(new WinnersDto(racingGame.findWinners()));
+        OutputView.announceWinners(new WinnersDto(racingGame.getWinners()));
     }
 
     private void playRacingGame(RacingGame racingGame) {

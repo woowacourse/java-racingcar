@@ -69,5 +69,3 @@ public class StringCalculator {
         return inputText.split(pattern);
     }
 }
-
-

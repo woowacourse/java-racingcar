@@ -20,7 +20,7 @@ public class RacingGame {
         round++;
     }
 
-    public List<Car> findWinners() {
+    public List<Car> getWinners() {
         return cars.findWinners();
     }
 
