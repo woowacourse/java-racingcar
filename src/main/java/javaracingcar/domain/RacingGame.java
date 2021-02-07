@@ -1,24 +1,28 @@
 package javaracingcar.domain;
 
-import javaracingcar.controller.GameController;
+import javaracingcar.view.OutputView;
+import utils.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Game {
+public class RacingGame {
+    private static final int MIN_CAN_MOVE_NUMBER = 4;
+    private static final int MIN_RANDOM_NUMBER = 0;
+    private static final int MAX_RANDOM_NUMBER = 9;
     private List<Car> cars;
     private int trial;
 
-    private Game(List<Car> cars, int trial) {
+    private RacingGame(List<Car> cars, int trial) {
         this.cars = cars;
         this.trial = trial;
     }
 
-    public static Game init(List<String> carNames, int trial) {
+    public static RacingGame init(List<String> carNames, int trial) {
         validateNonZeroElement(carNames);
         validateDistinctNames(carNames);
-        return new Game(generateCars(carNames), trial);
+        return new RacingGame(generateCars(carNames), trial);
     }
 
     private static void validateNonZeroElement(List<String> carNames) {
@@ -61,11 +65,29 @@ public class Game {
         return trial;
     }
 
-    public void reduceOneTrial() {
-        trial--;
+    public void playRace() {
+        while (trial > 0) {
+            playOneRound();
+            trial--;
+        }
     }
 
-    public boolean isEnd() {
-        return trial == 0;
+    private void playOneRound() {
+        playMoveOrStop();
+        OutputView.printRoundResult(cars); // TODO:Domain 로직에서 View 를 호출하는 것이 부자연스러움 -> Controller를 호출하여 해결?
+    }
+
+    private void playMoveOrStop() {
+        cars.forEach(this::playMoveOrStop);
+    }
+
+    private void playMoveOrStop(Car car) {
+        if (generateRandomNumber() >= MIN_CAN_MOVE_NUMBER) {
+            car.move();
+        }
+    }
+
+    private int generateRandomNumber() {
+        return RandomUtils.nextInt(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
     }
 }

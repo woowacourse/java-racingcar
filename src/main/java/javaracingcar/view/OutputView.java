@@ -1,7 +1,6 @@
 package javaracingcar.view;
 
 import javaracingcar.domain.Car;
-import javaracingcar.domain.Game;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,9 +13,8 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public static void printRoundResult(Game game) {
-        game.getCars()
-            .forEach(OutputView::printRoundResult);
+    public static void printRoundResult(List<Car> cars) {
+        cars.forEach(OutputView::printRoundResult);
         System.out.println();
     }
 
