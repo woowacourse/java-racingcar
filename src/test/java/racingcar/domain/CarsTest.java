@@ -20,7 +20,7 @@ public class CarsTest {
     }
 
     @Test
-    public void 자동차_이름은_중복되면_IllegalArgumentException_발생() {
+    public void 양쪽끝_공백을_제거한_자동차_이름이_서로_중복되면_IllegalArgumentException_발생() {
         List<Car> cars = new ArrayList<>();
         cars.add(Car.of("bmw"));
         cars.add(Car.of(" bmw "));
