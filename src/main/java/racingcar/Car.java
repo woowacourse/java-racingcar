@@ -9,6 +9,15 @@ public class Car {
         this.carName = carName;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder positionBar = new StringBuilder();
+        for (int i = 0; i < this.position; i++) {
+            positionBar.append("-");
+        }
+        return this.carName.getCarName() + " : " + positionBar;
+    }
+
     public void moveForwardByRandomNumber(int randomNumber) {
         if (randomNumber >= CONDITION) {
             position += 1;
