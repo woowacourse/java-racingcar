@@ -20,9 +20,6 @@ public class Car {
         this.position = INIT_POSITION;
     }
 
-
-    //TODO
-    // 예외 잘 던지는지 Test 짜기
     private void validateBlankInName(String name) {
         if (name.contains(BLANK)) {
             throw new IllegalArgumentException(BLANK_ERROR_MESSAGE);

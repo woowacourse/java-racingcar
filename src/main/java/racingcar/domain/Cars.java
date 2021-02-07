@@ -21,8 +21,6 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    //TODO
-    // 예외 검증 Test 짜기
     private void validateDuplicate(List<String> names) {
         Set<String> nameSet = new HashSet<>(names);
         if (nameSet.size() != names.size()) {
