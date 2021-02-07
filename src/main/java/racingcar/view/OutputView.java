@@ -30,7 +30,7 @@ public class OutputView {
 
     private static void printCarSteps(int position) {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < position; i++) {
+        for (int i = 0; i < position; i++) {
             sb.append(ONE_STEP);
         }
         System.out.println(sb);

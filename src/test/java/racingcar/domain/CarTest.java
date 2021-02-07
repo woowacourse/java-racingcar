@@ -11,28 +11,23 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CarTest {
 
     @Test
-    public void 경주할_자동차_이름_입력_체크() {
+    @DisplayName("경주할 자동차 이름 입력 체크")
+    public void getNameTest() {
         Car car = Car.of("bmw");
         assertThat(car.getName()).isEqualTo("bmw");
     }
 
     @ParameterizedTest(name = "양쪽끝 공백을 제거한 자동차 이름이 1자리 미만거나 5자리를 초과하면 RuntimeException이 발생(carName = {arguments})")
-    @ValueSource(strings = {"", "abcdef",  "  "})
-    public void 양쪽끝_공백을_제거한_자동차_이름이_1자리_미만이거나_5자리를_초과하면_RuntimeException이_발생(String name) {
+    @ValueSource(strings = {"", "abcdef", "  "})
+    public void carNameLengthShouldNotBeUnderOneAndOverFive(String name) {
         assertThatThrownBy(() -> {
             Car.of(name);
         }).isInstanceOf(RuntimeException.class);
     }
 
-    @ParameterizedTest(name = "양쪽끝 공백을 제거한 자동차 이름이 1자리이상 5자리이하(carName = {arguments})")
-    @ValueSource(strings = {"a", "abcde", " abcde "})
-    public void 양쪽끝_공백을_제거한_자동차_이름이_1자리이상_5자리이하(String name) {
-        Car car = Car.of(name);
-        assertThat(car.getName()).isEqualTo(name.trim());
-    }
-
     @Test
-    public void 자동차이름이_null이거나_빈문자일_경우에_IllegalArgumentException_발생() {
+    @DisplayName("자동차 이름이 null이거나 빈문자일 경우에 IllegalArgumentException 발생")
+    public void carNameShouldNotBeNullOrEmptyTest() {
         assertThatThrownBy(() -> {
             Car.of(null);
         }).isInstanceOf(IllegalArgumentException.class);
@@ -40,7 +35,7 @@ public class CarTest {
 
     @Test
     @DisplayName("숫자가 4이상이면 자동차가 전진한다.")
-    public void moveCar() {
+    public void moveCarTest() {
         Car car = Car.of("test");
         int beforePosition = car.getPosition();
         car.tryToMove(4);
