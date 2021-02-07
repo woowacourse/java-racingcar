@@ -5,11 +5,7 @@ import java.util.*;
 import static racingcar.domain.Car.*;
 import static racingcar.domain.Cars.DUPLICATE_NAME_ERROR_MESSAGE;
 import static racingcar.domain.RacingGame.*;
-import static sun.tools.jconsole.Messages.BLANK;
 
-
-//TODO
-// validation 도메인에 있는것들 iputview에도 추가하기
 public class InputView {
     private static final String COMMA = ",";
     private static final Scanner scanner = new Scanner(System.in);

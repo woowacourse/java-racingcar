@@ -6,18 +6,17 @@ public class RacingGame {
     public static final int MINIMUM_NUMBER_OF_ROUNDS = 1;
     public static final String UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE = "[ERROR] 라운드 횟수는 1이상이어야 합니다";
     public static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
+    private static final int INIT_ROUND = 1;
 
     private final Cars cars;
     private final int numberOfRounds;
+    private int currentRound;
 
-    private static final int INIT_ROUND = 1;
-
-    //TODO
-    // 생성자에 numberOfRounds도 매개변수로 받기
     public RacingGame(List<String> names, int numberOfRounds) {
         validatePositiveNumber(numberOfRounds);
         this.cars = new Cars(names);
         this.numberOfRounds = numberOfRounds;
+        this.currentRound = INIT_ROUND;
     }
 
     private static void validatePositiveNumber(int numberOfRounds) {
@@ -28,6 +27,7 @@ public class RacingGame {
 
     public void playRound() {
         cars.moveCars();
+        currentRound++;
     }
 
     public List<Car> getWinners() {
@@ -40,5 +40,9 @@ public class RacingGame {
 
     public int getNumberOfRounds() {
         return numberOfRounds;
+    }
+
+    public int getCurrentRound() {
+        return currentRound;
     }
 }

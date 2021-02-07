@@ -30,14 +30,12 @@ class RacingGameTest {
         }
     }
 
-    //TODO
-    // current round 변수 추가해서 대체하기
     @DisplayName("라운드가 진행되는지 확인")
     @Test
     void 레이싱게임_라운드_진행(){
-        int beforeRound = racingGame.getNumberOfRounds();
+        int beforeRound = racingGame.getCurrentRound();
         racingGame.playRound();
-        int afterRound = racingGame.getNumberOfRounds();
+        int afterRound = racingGame.getCurrentRound();
 
         assertThat(beforeRound + 1).isEqualTo(afterRound);
     }
