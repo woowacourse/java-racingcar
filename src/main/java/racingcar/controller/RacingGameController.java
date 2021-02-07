@@ -12,32 +12,47 @@ import racingcar.view.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RacingGameController {
-
+public class RacingGameController implements Controller {
+    private RacingGame racingGame;
 
     public void start() {
         CarsDto carDtos = InputView.getCarsName();
         List<String> carNames = carDtos.getCarDtoList().stream()
                 .map(CarDto::getName)
                 .collect(Collectors.toList());
-        RacingGame racingGame = new RacingGame(carNames);
 
-        executeRound(racingGame);
-        GameResult winners = racingGame.findWinners();
-        OutputView.announceWinners(new WinnersDto(winners.getWinnerNames(), winners.getWinnersPosition()));
+        int targetRound = InputView.getNumberOfRounds();
+        racingGame = new RacingGame(carNames, targetRound);
+
+        while (racingGame.isEnd()) {
+            OutputView.printLeaderBoard(executeRound());
+        }
+
+        OutputView.announceWinners(findWinners());
     }
 
-    private void executeRound(RacingGame racingGame) {
-        int round = InputView.getNumberOfRounds();
-        OutputView.printResultMessage();
-        for (int i = 0; i < round; i++) {
-            racingGame.playRound();
-            Cars cars = racingGame.getCars();
-            CarsDto roundResult = cars.getCars()
-                    .stream()
-                    .map(car -> new CarDto(car.getName(), car.getPosition()))
-                    .collect(Collectors.collectingAndThen(Collectors.toList(), CarsDto::new));
-            OutputView.printLeaderBoard(roundResult);
-        }
+    @Override
+    public void setUpGame(List<String> userNames, int goalRound) {
+        racingGame = new RacingGame(userNames, goalRound);
+    }
+
+    public void setUpGame(Cars cars, int goalRound) {
+        racingGame = new RacingGame(cars, goalRound);
+    }
+
+    @Override
+    public CarsDto executeRound() {
+        racingGame.playRound();
+        Cars cars = racingGame.getCars();
+        return cars.getCars()
+                .stream()
+                .map(car -> new CarDto(car.getName(), car.getPosition()))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), carDtos -> new CarsDto(carDtos, cars.getCurrentRound())));
+    }
+
+    @Override
+    public WinnersDto findWinners() {
+        GameResult winners = racingGame.findWinners();
+        return new WinnersDto(winners.getWinnerNames(), winners.getWinnersPosition());
     }
 }

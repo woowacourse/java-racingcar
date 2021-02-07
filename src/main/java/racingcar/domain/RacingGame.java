@@ -1,22 +1,37 @@
 package racingcar.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGame {
-    private static final int INIT_ROUND = 1;
+    private static final String ROUND_MUST_POSITIVE_ERROR_MSG_FORMAT = "[ERROR] 라운드 수는 음수일 수 없습니다. 입력받은 라운드 수 : %d";
 
     private final Cars cars;
-    private int round;
+    private final int goalRound;
 
-    public RacingGame(List<String> names) {
+    public RacingGame(List<String> names, int goalRound) {
+        validateTargetRound(goalRound);
         this.cars = Cars.createCarsByNames(names);
-        this.round = INIT_ROUND;
+        this.goalRound = goalRound;
+    }
+
+    public RacingGame(Cars cars, int goalRound) {
+        validateTargetRound(goalRound);
+        this.cars = cars;
+        this.goalRound = goalRound;
+    }
+
+    private void validateTargetRound(int goalRound) {
+        if (goalRound < 0) {
+            throw new IllegalArgumentException(String.format(ROUND_MUST_POSITIVE_ERROR_MSG_FORMAT, goalRound));
+        }
     }
 
     public void playRound() {
         cars.moveCars();
-        round++;
+    }
+
+    public boolean isEnd() {
+        return cars.isEnd(goalRound);
     }
 
     public GameResult findWinners() {
@@ -27,7 +42,7 @@ public class RacingGame {
         return cars;
     }
 
-    public int getRound() {
-        return round;
+    public int getCurrentRound() {
+        return cars.getCurrentRound();
     }
 }

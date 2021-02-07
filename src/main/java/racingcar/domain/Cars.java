@@ -15,23 +15,30 @@ import static java.util.stream.Collectors.groupingBy;
 public class Cars {
     public static final String SAME_NAME_ERROR_MSG_FORMAT = "[ERROR] 중복된 이름이 있습니다 : %s";
     public static final String COMMA_AND_BLANK = ", ";
+    private static final int INIT_ROUND = 1;
 
     private final List<Car> cars;
+    private int currentRound;
 
-    private Cars(List<Car> cars) {
+    private Cars(List<Car> cars, int currentRound) {
         List<String> sameNameList = new ArrayList<>();
         validateSameName(cars, sameNameList);
         this.cars = cars;
+        this.currentRound = currentRound;
+    }
+
+    public static Cars createCars(List<Car> cars, int currentRound) {
+        return new Cars(cars, currentRound);
     }
 
     public static Cars createCars(List<Car> cars) {
-        return new Cars(cars);
+        return createCars(cars, INIT_ROUND);
     }
 
     public static Cars createCarsByNames(List<String> carNames) {
         return new Cars(carNames.stream()
                 .map(Car::new)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList()), INIT_ROUND);
     }
 
     private void validateSameName(List<Car> cars, List<String> sameNameList) {
@@ -54,6 +61,7 @@ public class Cars {
 
     public void moveCars() {
         cars.forEach(car -> car.move(RandomGenerator.generateRandomNumber()));
+        currentRound++;
     }
 
     public GameResult findWinners() {
@@ -68,5 +76,13 @@ public class Cars {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElseThrow(NoSuchElementException::new);
+    }
+
+    public boolean isEnd(int goalRound) {
+        return currentRound > goalRound;
+    }
+
+    public int getCurrentRound(){
+        return currentRound;
     }
 }
