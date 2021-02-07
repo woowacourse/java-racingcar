@@ -7,6 +7,9 @@ import java.util.List;
 public class CarsValidator {
     private static final int MINIMUM_CARS_SIZE = 2;
 
+    private CarsValidator() {
+    }
+
     public static void checkIsValidCars(final List<Car> cars) {
         checkIsDuplicated(cars);
         checkValidCarSize(cars);

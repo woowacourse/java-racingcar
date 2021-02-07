@@ -3,6 +3,9 @@ package racingcar.view;
 public class OutputView {
     private static final String WINNER_NAME_SEPARATOR = ",";
 
+    private OutputView() {
+    }
+
     public static void println(final String msg) {
         System.out.println(msg);
     }

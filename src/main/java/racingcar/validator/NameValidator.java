@@ -3,6 +3,9 @@ package racingcar.validator;
 public class NameValidator {
     private static final int LIMIT_NAME_LEN = 5;
 
+    private NameValidator() {
+    }
+
     public static void checkIsValid(final String name) {
         if (name == null) {
             throw new IllegalArgumentException("Name can't be null");

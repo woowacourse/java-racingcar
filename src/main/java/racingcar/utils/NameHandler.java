@@ -7,6 +7,9 @@ import java.util.Arrays;
 public class NameHandler {
     private static final String nameSeparator = ",";
 
+    private NameHandler() {
+    }
+
     public static Name[] splitNames(final String line) {
         return Arrays.stream(line.split(nameSeparator))
                 .map(String::trim)
