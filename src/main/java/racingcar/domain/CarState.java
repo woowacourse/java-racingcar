@@ -12,4 +12,12 @@ public class CarState {
     public static CarState of(String name, int position) {
         return new CarState(name, position);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
 }

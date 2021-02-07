@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtils;
 import racingcar.validator.CarValidator;
 
 import java.util.Objects;

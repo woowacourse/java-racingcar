@@ -4,9 +4,7 @@ import racingcar.utils.RandomUtils;
 import racingcar.validator.CarsValidator;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Cars {
     private static final int MIN_RANDOM_RANGE = 0;

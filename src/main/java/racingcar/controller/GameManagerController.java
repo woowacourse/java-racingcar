@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.domain.GameManager;
 import racingcar.domain.dto.GameManagerRequestDto;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class GameManagerController {
     public void run() {
@@ -11,6 +12,7 @@ public class GameManagerController {
         GameManagerRequestDto gameManagerRequestDto = new GameManagerRequestDto(carNames, roundCount);
         GameManager gameManager = new GameManager();
         gameManager.playGame(gameManagerRequestDto);
+        OutputView.printResults(gameManager.getResults());
     }
 
     private String[] getInputCarNames() {
