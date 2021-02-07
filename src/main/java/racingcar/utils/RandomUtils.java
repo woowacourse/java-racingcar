@@ -7,6 +7,7 @@ public class RandomUtils {
     private static final Random RANDOM = new Random();
 
     private RandomUtils() {
+        throw new IllegalStateException("RandomUtils is an utility class");
     }
 
     public static int nextInt(final int startInclusive, final int endInclusive) {
