@@ -1,11 +1,14 @@
 package racingcar.domain;
 
+import racingcar.utils.RandomUtils;
 import racingcar.validator.CarValidator;
 
 import java.util.Objects;
 
 public class Car {
+    private static final int MIN_VALUE_TO_MOVE = 4;
     private final String name;
+    private int position = 0;
 
     private Car(String name) {
         CarValidator.validateCarNameIsNullOrEmpty(name);
@@ -20,6 +23,16 @@ public class Car {
 
     public String getName() {
         return name;
+    }
+
+    public void tryToMove(int randomValue) {
+        if (randomValue >= MIN_VALUE_TO_MOVE) {
+            position++;
+        }
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override

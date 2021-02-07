@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -35,5 +36,14 @@ public class CarTest {
         assertThatThrownBy(() -> {
             Car.of(null);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("숫자가 4이상이면 자동차가 전진한다.")
+    public void moveCar() {
+        Car car = Car.of("test");
+        int beforePosition = car.getPosition();
+        car.tryToMove(4);
+        assertThat(car.getPosition()).isEqualTo(beforePosition + 1);
     }
 }
