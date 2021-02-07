@@ -5,63 +5,61 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
     private static final String SPLIT_REGEX = ",|:";
-    private static int number;
+    private static final String CUSTOM_DELIMITER_FORMAT = "//(.)\n(.*)";
+    private static final Pattern CUSTOM_DELIMITER = Pattern.compile(CUSTOM_DELIMITER_FORMAT);
+    private static int result;
+
+    private StringCalculator() {
+    }
 
     public static int splitAndSum(String text) throws RuntimeException {
+        result = 0;
         if (checkNullOrEmpty(text)) {
             return 0;
         }
-        if ((number = parseByCustomDelimiter(text)) != -1) {
-            return number;
+        if (parseByCustomDelimiter(text) || parseBySplitRegex(text)) {
+            return result;
         }
-        if ((number = parseBySplitRegex(text)) != -1) {
-            return number;
-        }
-        return parseSingleTextToInt(text);
-    }
-
-    private static int parseSingleTextToInt(String text) {
-        return validateNegative(text);
+        return Integer.parseInt(text);
     }
 
     private static boolean checkNullOrEmpty(String text) {
         return (text == null || text.isEmpty());
     }
 
-    private static int parseByCustomDelimiter(String text) {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(text);
+    private static boolean parseByCustomDelimiter(String text) {
+        Matcher m = CUSTOM_DELIMITER.matcher(text);
         if (m.find()) {
             String customDelimiter = m.group(1);
             String[] tokens = m.group(2).split(customDelimiter);
-            return addElements(tokens);
+            addElements(tokens);
+            return true;
         }
-        return -1;
+        return false;
     }
 
-    private static int parseBySplitRegex(String text) {
+    private static boolean parseBySplitRegex(String text) {
         String[] numbers = text.split(SPLIT_REGEX);
         if (numbers.length >= 2) {
-            return addElements(numbers);
+            addElements(numbers);
+            return true;
         }
-        return -1;
+        return false;
     }
 
-    private static int addElements(String[] numbers) throws RuntimeException {
-        int number = 0;
+    private static void addElements(String[] numbers) throws RuntimeException {
         for (int i = 0; i < numbers.length; i++) {
-            number += validateNegative(numbers[i]);
+            int number = Integer.parseInt(numbers[i]);
+            validateNegative(number);
+            result += number;
         }
-        return number;
     }
 
-    private static int validateNegative(String numberText) throws RuntimeException {
-        int parsedNumber = Integer.parseInt(numberText);
-        if (parsedNumber < 0) {
+    private static void validateNegative(int number) throws RuntimeException {
+        if (number < 0) {
             throw new RuntimeException();
         }
-        return parsedNumber;
     }
 
 }
