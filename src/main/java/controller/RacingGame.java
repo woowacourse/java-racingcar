@@ -49,12 +49,10 @@ public class RacingGame {
             OutputView.printUserPromptCarNames();
             cars = new Cars(splitInput(InputView.askUserInput())
                     .stream()
-                    .map(String::trim)
                     .collect(Collectors.toList()));
         } catch (IllegalArgumentException e) {
             return false;
-        }
-        return true;
+        }return true;
     }
 
     public static List<String> splitInput(String input) {

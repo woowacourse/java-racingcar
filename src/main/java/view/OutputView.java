@@ -24,7 +24,9 @@ public class OutputView {
     }
 
     public static void printRoundResult(Cars cars) {
-        cars.getCars().stream().forEach(car -> printCarStatus(car.getName(), car.getPosition()));
+        cars.getCars()
+                .stream()
+                .forEach(car -> printCarStatus(car.getName(), car.getPosition()));
         System.out.println();
     }
 

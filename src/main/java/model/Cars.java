@@ -19,13 +19,15 @@ public class Cars {
 
     public void validateUserCount(List<String> carNames) {
         if (carNames.size() <= 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차 이름이 유효하지 않습니다.");
         }
     }
 
     public void validateDuplicate(List<String> carNames) {
-        if (!carNames.stream().filter(count -> Collections.frequency(carNames, count) > 1).collect(Collectors.toSet()).isEmpty()) {
-            throw new IllegalArgumentException();
+        if (!carNames.stream()
+                .filter(count -> Collections.frequency(carNames, count) > 1)
+                .collect(Collectors.toSet()).isEmpty()) {
+            throw new IllegalArgumentException("자동차 이름이 유효하지 않습니다.");
         }
     }
 
@@ -48,7 +50,8 @@ public class Cars {
     }
 
     public void makeCars(List<String> names) {
-        names.stream().forEach(name -> cars.add(new Car(name)));
+        names.stream()
+                .forEach(name -> cars.add(new Car(name)));
     }
 
     public int getMaxDistance() {
