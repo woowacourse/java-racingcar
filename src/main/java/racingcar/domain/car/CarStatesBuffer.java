@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarStatesBuffer {
-    private static final String DELIMITER = "\n";
-    private static final String EXECUTION_RESULT = "실행 결과\n";
+    private static final String DELIMITER = System.lineSeparator();
+    private static final String EXECUTION_RESULT = "실행 결과" + DELIMITER;
 
     private List<CarStates> carStatesLog;
 

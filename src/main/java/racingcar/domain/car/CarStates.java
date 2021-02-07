@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarStates {
-    private static final String DELIMITER = "\n";
+    private static final String DELIMITER = System.lineSeparator();
 
     private final List<CarState> carStates;
 

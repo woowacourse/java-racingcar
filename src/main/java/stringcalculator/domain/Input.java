@@ -47,6 +47,6 @@ public class Input {
     }
 
     private static String extractElementString(String input) {
-        return input.substring(input.indexOf("\n") + 1);
+        return input.substring(input.indexOf(System.lineSeparator()) + 1);
     }
 }
