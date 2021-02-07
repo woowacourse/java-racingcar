@@ -1,16 +1,16 @@
 package racingcar;
 
-import racingcar.view.InputView;
-import sun.nio.cs.CharsetMapping;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class CarNameRepository {
     private static final int MINIMUM_CAR_AMOUNT = 2;
     private static final List<CarName> carNames = new ArrayList<>();
 
     private CarNameRepository() {
+    }
+
+    public static List<CarName> getCarNames() {
+        return Collections.unmodifiableList(carNames);
     }
 
     public static void addCarNames(List<String> carNamesInput) {
