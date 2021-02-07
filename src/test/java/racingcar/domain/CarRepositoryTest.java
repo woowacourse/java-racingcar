@@ -66,8 +66,11 @@ public class CarRepositoryTest {
         Car winner = new Car("111");
         Car loser = new Car("222");
 
-        CarRepository.save(winner);
-        CarRepository.save(loser);
+        List<Car> cars = new ArrayList<>();
+        cars.add(winner);
+        cars.add(loser);
+
+        CarRepository.saveAll(cars);
 
         winner.goForward();
 
@@ -87,10 +90,13 @@ public class CarRepositoryTest {
         Car winner3 = new Car("333");
         Car loser = new Car("444");
 
-        CarRepository.save(winner1);
-        CarRepository.save(winner2);
-        CarRepository.save(winner3);
-        CarRepository.save(loser);
+        List<Car> cars = new ArrayList<>();
+        cars.add(winner1);
+        cars.add(winner2);
+        cars.add(winner3);
+        cars.add(loser);
+
+        CarRepository.saveAll(cars);
 
         winner1.goForward();
         winner2.goForward();

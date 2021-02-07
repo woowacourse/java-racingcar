@@ -14,10 +14,6 @@ public class CarRepository {
     private CarRepository() {
     }
 
-    public static void save(Car car) {
-        cars.add(car);
-    }
-
     public static void saveAll(List<Car> carsToSave) {
         cars.addAll(carsToSave);
     }
