@@ -34,7 +34,7 @@ public class Car {
     }
 
     private static void validateEmptyString(String name) {
-        if (name.equals("")) {
+        if (name.replaceAll(" ", "").equals("")) {
             throw new IllegalArgumentException("빈 문자열이 입력되었습니다.");
         }
     }
