@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import java.util.List;
-
+// TODO: ApplicatorNumbersToCar -> NumberApplicatorToCar
 public class ApplicatorNumbersToCar {
     private final CarRepository carRepository;
     private final NumberGenerator numberGenerator;

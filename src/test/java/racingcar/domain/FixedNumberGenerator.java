@@ -2,7 +2,11 @@ package racingcar.domain;
 
 
 public class FixedNumberGenerator implements NumberGenerator {
-    private final int FIXED_NUMBER = 5;
+    private final int FIXED_NUMBER;
+
+    public FixedNumberGenerator(int FIXED_NUMBER) {
+        this.FIXED_NUMBER = FIXED_NUMBER;
+    }
 
     public int generate() {
         return FIXED_NUMBER;
