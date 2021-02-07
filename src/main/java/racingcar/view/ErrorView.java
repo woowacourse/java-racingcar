@@ -18,6 +18,6 @@ public class ErrorView {
     }
 
     public static void invalidTime() {
-        System.out.println("횟수는 자연수이어야합니다.");
+        System.out.println("횟수는 자연수이어야합니다.\n");
     }
 }

@@ -5,6 +5,10 @@ import racingcar.utils.RandomNumberGenerator;
 public class Rule implements RuleStrategy {
     private RandomNumberGenerator randomGenerator;
 
+    public Rule() {
+        randomGenerator = new RandomNumberGenerator();
+    }
+
     public boolean execute() {
         return generate() > MOVE_LIMIT;
     }

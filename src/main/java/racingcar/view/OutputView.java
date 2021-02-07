@@ -10,4 +10,19 @@ public class OutputView {
     public void askTime() {
         System.out.println("시도할 회수는 몇회인가요?");
     }
+
+    public void printResult() {
+        System.out.println("\n실행 결과");
+    }
+
+    public void showState(List<String> states) {
+        for (String state : states) {
+            System.out.println(state);
+        }
+        System.out.println();
+    }
+
+    public void printWinners(List<String> winners) {
+        System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
+    }
 }

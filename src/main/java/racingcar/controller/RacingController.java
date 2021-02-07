@@ -15,11 +15,29 @@ public class RacingController {
     }
 
     public void run() {
-        outputView.askCarName();
-        String[] name = inputView.inputCarName();
-        carController.createCars(name);
-        outputView.askTime();
-        int time = inputView.inputTime();
-        carController.race(time);
+        inputCarNames();
+        int time = inputTime();
+        carController.race(time, outputView);
+        carController.showWinners(outputView);
+    }
+
+    public void inputCarNames() {
+        try {
+            outputView.askCarName();
+            String[] name = inputView.inputCarName();
+            carController.createCars(name);
+        } catch (RuntimeException e) {
+            inputCarNames();
+        }
+    }
+
+    public int inputTime() {
+        try {
+            outputView.askTime();
+            int time = inputView.inputTime();
+            return time;
+        } catch (RuntimeException e) {
+            return inputTime();
+        }
     }
 }
