@@ -42,6 +42,7 @@ public class GameController {
 
     private void moveCar(List<Car> carNames, int round) {
         OutputView outputView = new OutputView();
+        outputView.roundStart();
         for (int i = 0; i < round; i++) {
             carNames.forEach(Car::moveOrStop);
             outputView.printResult(carNames);
