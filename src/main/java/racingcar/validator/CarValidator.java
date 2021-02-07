@@ -1,4 +1,4 @@
-package racingcar.util;
+package racingcar.validator;
 
 public class CarValidator {
     private static final int MIN_CAR_NAME_LENGTH = 1;
