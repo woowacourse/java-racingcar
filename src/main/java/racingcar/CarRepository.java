@@ -3,6 +3,7 @@ package racingcar;
 import racingcar.utils.RandomUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CarRepository {
@@ -16,10 +17,14 @@ public class CarRepository {
 
     public static void addCars(List<String> splittedCarNames){
         CarNameRepository.addCarNames(splittedCarNames);
-        CarNameRepository.getCarNames().stream().map(carName -> cars.add(new Car(carName)));
+        CarNameRepository.getCarNames().forEach(carName -> cars.add(new Car(carName)));
     }
 
     public static void raceOneLap() {
         cars.forEach(car -> car.moveForwardByRandomNumber(RandomUtil.nextInt(START, END)));
+    }
+
+    public static List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }
