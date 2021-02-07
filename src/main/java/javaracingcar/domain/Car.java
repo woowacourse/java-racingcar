@@ -1,6 +1,7 @@
 package javaracingcar.domain;
 
 public class Car {
+    private static final int CAR_NAME_LENGTH_MAX_SIZE = 4;
     private String name;
     private int position;
 
@@ -18,7 +19,6 @@ public class Car {
         return position;
     }
 
-    private static final int CAR_NAME_LENGTH_MAX_SIZE = 4;
 
     public static Car generateCar(String name) {
         validateNull(name);
@@ -34,7 +34,7 @@ public class Car {
     }
 
     private static void validateEmptyString(String name) {
-        if (name.equals("")) {
+        if ("".equals(name)) {
             throw new IllegalArgumentException("빈 문자열이 입력되었습니다.");
         }
     }
@@ -47,5 +47,9 @@ public class Car {
 
     public void move() {
         position++;
+    }
+
+    public boolean isAtPosition(int position) {
+        return this.position == position;
     }
 }

@@ -22,17 +22,21 @@ public class Game {
     }
 
     private static void validateNonZeroElement(List<String> carNames) {
-        if (carNames.size() < 1) {
+        if (carNames.isEmpty()) {
             throw new IllegalArgumentException("입력된 자동차 이름이 없습니다.");
         }
     }
 
     private static void validateDistinctNames(List<String> carNames) {
-        if (carNames.stream()
-                    .distinct()
-                    .count() != carNames.size()) {
+        if (isDistinctNames(carNames)) {
             throw new IllegalArgumentException("중복된 이름이 있습니다.");
         }
+    }
+
+    private static boolean isDistinctNames(List<String> carNames) {
+        return carNames.stream()
+                       .distinct()
+                       .count() != carNames.size();
     }
 
     public static List<Car> generateCars(List<String> carNames) {

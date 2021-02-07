@@ -67,7 +67,7 @@ public class GameController {
         int maxPosition = getMaxPosition(game);
         return game.getCars()
                    .stream()
-                   .filter(car -> car.getPosition() == maxPosition)
+                   .filter(car -> car.isAtPosition(maxPosition))
                    .collect(Collectors.toList());
     }
 
