@@ -28,7 +28,7 @@ public class CarsTest {
     @MethodSource("provideInputsFor_가장_많이_움직인_자동차를_판별한다")
     public void 가장_많이_움직인_자동차를_판별한다(List<Car> raceFinishedCars, List<String> expected) {
         Cars cars = Cars.of(raceFinishedCars);
-        List<CarName> winners = cars.getWinners();
+        List<CarName> winners = cars.getWinners().getWinners();
 
         assertArrayEquals(expected.toArray(), winners.toArray());
     }

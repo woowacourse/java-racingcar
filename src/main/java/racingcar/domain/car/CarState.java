@@ -15,12 +15,11 @@ public class CarState {
         return new CarState(car);
     }
 
-    @Override
-    public String toString() {
-        return carName.toString() + " : " + createLines();
+    public CarName getCarName() {
+        return carName;
     }
 
-    private String createLines() {
-        return String.valueOf(new char[position]).replace("\0", LINE);
+    public int getPosition() {
+        return position;
     }
 }

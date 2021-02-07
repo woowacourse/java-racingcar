@@ -9,7 +9,6 @@ import racingcar.domain.game.RacingGame;
 import racingcar.domain.rule.RandomMoveCondition;
 import racingcar.domain.util.RandomNumber;
 import racingcar.view.InputView;
-import racingcar.view.Messages;
 import racingcar.view.OutputView;
 
 import java.util.List;
@@ -25,15 +24,15 @@ public class RacingController {
         try {
             gameResult = getInputFromUserAndStartGameAndGetResult();
         } catch (RuntimeException e) {
-            controlError(e.getMessage());
+            controlError(e);
             return;
         }
 
         printGameResult(gameResult);
     }
 
-    private void controlError(String errorMessage) {
-        OutputView.print(errorMessage);
+    private void controlError(RuntimeException runtimeException) {
+        OutputView.printError(runtimeException);
         run();
     }
 
@@ -44,10 +43,10 @@ public class RacingController {
     }
 
     private void getCarNamesAndMoveCountFromUser() {
-        OutputView.print(Messages.REQUEST_CAR_NAME);
+        OutputView.printRequestCarName();
         carNamesInput = InputView.requestCarName();
 
-        OutputView.print(Messages.REQUEST_MOVE_COUNT);
+        OutputView.printRequestMoveCount();
         moveCountInput = InputView.requestMoveCount();
     }
 
@@ -75,7 +74,7 @@ public class RacingController {
     }
 
     private void printGameResult(GameResult gameResult) {
-        OutputView.print(gameResult.getExecutionResultString());
-        OutputView.print(gameResult.getWinnersAsString());
+        OutputView.printExecutionResult(gameResult.getExecutionResult());
+        OutputView.printWinners(gameResult.getWinners());
     }
 }

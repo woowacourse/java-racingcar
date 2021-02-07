@@ -1,11 +1,8 @@
 package racingcar.domain.car;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CarStates {
-    private static final String DELIMITER = System.lineSeparator();
-
     private final List<CarState> carStates;
 
     private CarStates(List<CarState> carStates) {
@@ -16,13 +13,7 @@ public class CarStates {
         return new CarStates(carStates);
     }
 
-    @Override
-    public String toString() {
-        return String.join(
-                DELIMITER,
-                carStates.stream()
-                        .map(CarState::toString)
-                        .collect(Collectors.toList())
-        );
+    public List<CarState> getCarStates() {
+        return carStates;
     }
 }
