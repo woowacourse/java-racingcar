@@ -1,22 +1,17 @@
 package racingcar.domain;
 
 import racingcar.validator.RoundValidator;
-import racingcar.view.InputView;
 
 public class Round {
     private final int count;
 
-    private Round(int count) {
-        try {
-            RoundValidator.validateRoundCount(count);
-        }catch (Exception e) {
-            InputView.inputRoundCount();
-        }
-        this.count = count;
+    private Round(String inputCount) {
+        RoundValidator.validateRound(inputCount);
+        this.count = Integer.parseInt(inputCount);
     }
 
-    public static Round of(int count) {
-        return new Round(count);
+    public static Round of(String inputCount) {
+        return new Round(inputCount);
     }
 
     public int getCount() {

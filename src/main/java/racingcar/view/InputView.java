@@ -12,9 +12,9 @@ public class InputView {
         return input;
     }
 
-    public static int inputRoundCount() {
+    public static String inputRoundCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        int input = scanner.nextInt();
+        String input = scanner.nextLine();
         printEmptyLine();
         return input;
     }

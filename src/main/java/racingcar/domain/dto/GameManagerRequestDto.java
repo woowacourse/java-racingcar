@@ -2,9 +2,9 @@ package racingcar.domain.dto;
 
 public class GameManagerRequestDto {
     private String carNames;
-    private int round;
+    private String round;
 
-    public GameManagerRequestDto(String carNames, int round) {
+    public GameManagerRequestDto(String carNames, String round) {
         this.carNames = carNames;
         this.round = round;
     }
@@ -13,7 +13,7 @@ public class GameManagerRequestDto {
         return this.carNames;
     }
 
-    public int getRound() {
+    public String getRound() {
         return this.round;
     }
 }
