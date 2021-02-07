@@ -9,48 +9,47 @@ import racingcar.view.RacingCarView;
 import java.util.List;
 
 public class RacingCar {
-    private static TryCount tryCount;
-    private static GameRule gameRule;
+    private Cars cars;
+    private TryCount tryCount;
 
-    public static void run() {
+    public void run() {
         racingCarSetting();
-        racing(tryCount, gameRule);
+        racing();
         pickWinners();
-        RacingCarView.printFinalResult(Winners.getWinnersNames());
     }
 
-    private static void racingCarSetting() {
-        Cars.setCarsByName(getCarNames());
+    private void racingCarSetting() {
+        cars = new Cars(getCarNames());
         tryCount = new TryCount(InputView.getTryCountInput());
-        gameRule = new GameRule();
     }
 
-    private static List<String> getCarNames() {
+    private List<String> getCarNames() {
         return RacingCarUtils.splitInputString(InputView.getCarNameInput());
     }
 
-    private static void racing(final TryCount tryCount, final GameRule gameRule) {
+    private void racing() {
         for (int i = 0; i < tryCount.getCount(); i++) {
-            changeCarsStatus(gameRule);
-            RacingCarView.printProgressResult(Cars.getCars());
+            changeCarsStatus();
+            RacingCarView.printProgressResult(cars.getCars());
         }
     }
 
-    private static void changeCarsStatus(final GameRule gameRule) {
-        for (Car car : Cars.getCars()) {
-            moveMovableCar(car, gameRule);
+    private void changeCarsStatus() {
+        for (Car car : cars.getCars()) {
+            moveMovableCar(car);
         }
     }
 
-    private static void moveMovableCar(final Car car, final GameRule gameRule) {
+    private void moveMovableCar(final Car car) {
         CarController carController = new CarController(car);
         RandomNumber randomNumber = new RandomNumber();
-        if (gameRule.isMoveNumber(randomNumber.getNumber())) {
+        if (GameRule.isMoveNumber(randomNumber.getNumber())) {
             carController.carMove();
         }
     }
 
-    private static void pickWinners() {
-        Winners.setWinners();
+    private void pickWinners() {
+        Winners winners = new Winners(cars);
+        RacingCarView.printFinalResult(winners.getWinnersNames());
     }
 }
