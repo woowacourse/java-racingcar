@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import java.util.ArrayList;
+import java.util.List;
 import racingcar.model.Car;
 
 public class OutputView {
@@ -9,6 +10,9 @@ public class OutputView {
     private static final String ENTER_TRIAL_NUMBER_MESSAGE = "시도할 회수는 몇회인가요?\n";
     private static final String OUTPUT_MESSAGE = "\n실행 결과\n";
     private static final String WINNER_MESSAGE = "가 최종 우승했습니다.\n";
+    private static final String DASH = "-";
+    private static final String CAR_NAME_DISTANCE_DELIMITER = " : ";
+    private static final String CAR_NAME_DELIMITER = ",";
 
     public static void printCarNameReadMessage() {
         System.out.print(ENTER_CAR_NAME_MESSAGE);
@@ -23,14 +27,18 @@ public class OutputView {
     }
 
     public static void printCarInformation(final Car car) {
-        System.out.println(car);
+        StringBuilder distanceIndicator = new StringBuilder();
+
+        for (int i = 0; i < car.getDistance(); i++) {
+            distanceIndicator.append(DASH);
+        }
+        System.out.println(car.getCarName() + CAR_NAME_DISTANCE_DELIMITER + distanceIndicator);
     }
 
-    public static void printWinners(final ArrayList<Car> winners) {
-        ArrayList<String> winnersNames = new ArrayList<String>();
-        winners.stream()
-            .forEach(it -> winnersNames.add(it.getCarName()));
-        System.out.print(String.join(",", winnersNames) + WINNER_MESSAGE);
+    public static void printWinners(final List<Car> winners) {
+        List<String> winnersNames = new ArrayList<>();
+        winners.forEach(it -> winnersNames.add(it.getCarName()));
+        System.out.print(String.join(CAR_NAME_DELIMITER, winnersNames) + WINNER_MESSAGE);
     }
 
     public static void printNewLine() {
