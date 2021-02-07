@@ -3,50 +3,59 @@ package calculator;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class StringCalculatorTest {
+class StringCalculatorTest {
+
     @Test
-    public void splitAndSum_null_또는_빈문자() {
+    @DisplayName("splitAndSum null 또는 빈문자")
+    void splitAndSum_null_or_empty() {
         int result = StringCalculator.splitAndSum(null);
-        assertThat(result).isEqualTo(0);
+        assertThat(result).isZero();
 
         result = StringCalculator.splitAndSum("");
-        assertThat(result).isEqualTo(0);
+        assertThat(result).isZero();
     }
 
     @Test
-    public void splitAndSum_숫자하나() throws Exception {
+    @DisplayName("splitAndSum 숫자 하나")
+    void splitAndSum_single_number() {
         int result = StringCalculator.splitAndSum("1");
         assertThat(result).isEqualTo(1);
     }
 
     @Test
-    public void splitAndSum_쉼표구분자() throws Exception {
+    @DisplayName("splitAndSum ','구분자")
+    void splitAndSum_comma_delimiter() {
         int result = StringCalculator.splitAndSum("1,2");
         assertThat(result).isEqualTo(3);
     }
 
     @Test
-    public void splitAndSum_쉼표_또는_콜론_구분자() throws Exception {
+    @DisplayName("splitAndSum ',' 또는 ':' 구분자")
+    void splitAndSum_comma_or_colon_delimiter() {
         int result = StringCalculator.splitAndSum("1,2:3");
         assertThat(result).isEqualTo(6);
     }
 
     @Test
-    public void splitAndSum_custom_구분자() throws Exception {
+    @DisplayName("splitAndSum 커스텀 구분자")
+    void splitAndSum_custom_delimiter() {
         int result = StringCalculator.splitAndSum("//;\n1;2;3");
         assertThat(result).isEqualTo(6);
     }
 
     @Test
-    public void splitAndSum_negative() throws Exception {
+    @DisplayName("splitAndSum 음수 포함")
+    void splitAndSum_negative() {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
                 .isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    public void splitAndSum_custom_구분자_and_쉼표() throws Exception {
+    @DisplayName("splitAndSum 커스텀 구분자와 ',' 구분자 모두 포함")
+    void splitAndSum_custom_delimiter_and_comma() {
         int result = StringCalculator.splitAndSum("//;\n1;2,3");
         assertThat(result).isEqualTo(6);
     }

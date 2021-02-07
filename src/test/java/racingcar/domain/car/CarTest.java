@@ -34,6 +34,6 @@ class CarTest {
         for (int i = 0; i < 3; ++i) {
             testingCar.tryToMoveForward(5);
         }
-        assertEquals(testingCar.toString(), "java : ---");
+        assertEquals("java : ---", testingCar.toString());
     }
 }
