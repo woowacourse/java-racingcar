@@ -16,7 +16,7 @@ public class OutputView {
 
     public static void printRoundResult(Game game) {
         game.getCars()
-            .forEach(OutputView::printRoundResult);
+                .forEach(OutputView::printRoundResult);
         System.out.println();
     }
 
@@ -33,11 +33,10 @@ public class OutputView {
     }
 
     public static void printWinners(List<Car> winners) {
-        List<String> winnerNames = winners.stream()
-                                          .map(Car::getName)
-                                          .collect(Collectors.toList());
-        System.out.print(String.join(", ", winnerNames));
-        System.out.println("가 최종 우승했습니다.");
+        String winnerNames = winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+        System.out.println(winnerNames + " 가 최종 우승했습니다.");
     }
 
     public static void printError(String message) {
