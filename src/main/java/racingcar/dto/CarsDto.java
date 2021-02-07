@@ -7,23 +7,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarsResponseDto {
-    private final List<CarResponseDto> carsResponseDto;
+public class CarsDto {
+    private final List<CarDto> carsResponseDto;
 
-    public CarsResponseDto(List<Car> cars) {
+    public CarsDto(List<Car> cars) {
         this.carsResponseDto = cars.stream()
-                .map(car -> new CarResponseDto(car.getName(), car.getPosition()))
+                .map(car -> new CarDto(car.getName(), car.getPosition()))
                 .collect(Collectors.toList());
     }
 
-    public CarsResponseDto(Cars cars) {
+    public CarsDto(Cars cars) {
         this.carsResponseDto = cars.getCars()
                 .stream()
-                .map(car -> new CarResponseDto(car.getName(), car.getPosition()))
+                .map(car -> new CarDto(car.getName(), car.getPosition()))
                 .collect(Collectors.toList());
     }
 
-    public List<CarResponseDto> getCarsResponseDto() {
+    public List<CarDto> getCarsResponseDto() {
         return Collections.unmodifiableList(carsResponseDto);
     }
 }

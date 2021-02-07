@@ -3,7 +3,7 @@ package racingcar.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.dto.CarsResponseDto;
+import racingcar.dto.CarsDto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +21,7 @@ class RacingGameTest {
     @DisplayName("주어진 이름대로 자동차 생성되는지 테스트")
     @Test
     void 자동차_생성되는지() {
-        CarsResponseDto cars = new CarsResponseDto(racingGame.getCars());
+        CarsDto cars = new CarsDto(racingGame.getCars());
         for (int i = 0; i < testCases.size(); i++) {
             assertThat(cars.getCarsResponseDto().get(i).getName()).isEqualTo(testCases.get(i));
         }

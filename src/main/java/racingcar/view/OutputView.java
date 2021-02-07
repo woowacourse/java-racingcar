@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import racingcar.dto.CarResponseDto;
-import racingcar.dto.CarsResponseDto;
+import racingcar.dto.CarDto;
+import racingcar.dto.CarsDto;
 
 import java.util.Collections;
 import java.util.stream.Collectors;
@@ -23,23 +23,23 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public static void printLeaderBoard(CarsResponseDto carsResponseDto) {
-        for (CarResponseDto car : carsResponseDto.getCarsResponseDto()) {
+    public static void printLeaderBoard(CarsDto carsDto) {
+        for (CarDto car : carsDto.getCarsResponseDto()) {
             String positionStick = makeStick(car);
             System.out.printf(LEADER_BOARD_DATA_FORMAT, car.getName(), positionStick);
         }
         System.out.println();
     }
 
-    public static String makeStick(CarResponseDto car) {
+    public static String makeStick(CarDto car) {
         return String.join("", Collections.nCopies(car.getPosition(), DASH));
     }
 
-    public static void announceWinners(CarsResponseDto carsResponseDto) {
-        System.out.println(carsResponseDto
+    public static void announceWinners(CarsDto carsDto) {
+        System.out.println(carsDto
                 .getCarsResponseDto()
                 .stream()
-                .map(CarResponseDto::getName)
+                .map(CarDto::getName)
                 .collect(Collectors.joining(COMMA_AND_BLANK)).concat("가 최종 우승했습니다."));
     }
 }

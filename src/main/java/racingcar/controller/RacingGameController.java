@@ -1,9 +1,7 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
-import racingcar.dto.CarsResponseDto;
+import racingcar.dto.CarsDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -27,7 +25,7 @@ public class RacingGameController {
         OutputView.printResultMessage();
         for (int i = 0; i < round; i++) {
             racingGame.playRound();
-            OutputView.printLeaderBoard(new CarsResponseDto(racingGame.getCars()));
+            OutputView.printLeaderBoard(new CarsDto(racingGame.getCars()));
         }
     }
 

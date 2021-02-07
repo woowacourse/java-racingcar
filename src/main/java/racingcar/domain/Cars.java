@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.dto.CarsResponseDto;
 import racingcar.utils.RandomGenerator;
 
 import java.util.*;
