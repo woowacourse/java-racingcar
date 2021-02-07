@@ -15,7 +15,7 @@ public class Car {
 
     public void validateCarName(String name) {
         if(name.length() > 5){
-            throw new IllegalArgumentException("잘못된~~~");
+            throw new IllegalArgumentException("잘못된 길이입니다.");
         }
     }
 
@@ -33,6 +33,10 @@ public class Car {
 
     public int getPosition() {
         return this.position;
+    }
+
+    public boolean isMaxPosition(int max) {
+        return max == position;
     }
 
 //    @Override

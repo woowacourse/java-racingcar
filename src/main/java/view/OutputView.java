@@ -1,6 +1,10 @@
 package view;
 
+import model.Car;
 import model.Cars;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     public static void printUserPromptCarNames() {
@@ -15,9 +19,8 @@ public class OutputView {
         System.out.println("다시 입력해주세요.");
     }
 
-    public static void printResultMessage() {
+    public static void printRoundMessage() {
         System.out.println("실행결과");
-
     }
 
     public static void printRoundResult(Cars cars) {
@@ -31,6 +34,15 @@ public class OutputView {
             System.out.print("-");
         }
         System.out.println();
+    }
+
+    public static void printWinners(List<Car> winners) {
+        StringBuilder winnerMessage = new StringBuilder(winners
+                .stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(",")));
+        winnerMessage.append("가 최종 우승했습니다.");
+        System.out.println(winnerMessage);
     }
 
 }

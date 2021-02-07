@@ -1,5 +1,6 @@
 package controller;
 
+import model.Car;
 import model.Cars;
 import view.InputView;
 import view.OutputView;
@@ -9,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RacingGameController {
+public class RacingGame {
     public static Cars cars;
     public static int trials;
 
@@ -18,10 +19,18 @@ public class RacingGameController {
         while (!getTrials()) ;
         OutputView.printRoundMessage();
         playRounds();
+        OutputView.printWinners(findWinners());
     }
 
-    public static void findWinner() {
-        
+    public static List<Car> findWinners() {
+        int max = cars.getMaxDistance();
+        cars.getCars()
+                .stream()
+                .forEach(car -> car.isMaxPosition(max));
+        return cars.getCars()
+                .stream()
+                .filter(car -> car.isMaxPosition(max))
+                .collect(Collectors.toList());
     }
 
     public static void playRounds() {
