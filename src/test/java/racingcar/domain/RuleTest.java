@@ -7,7 +7,7 @@ public class RuleTest implements RuleStrategy {
 
     @Override
     public boolean execute() {
-        return  5 > MOVE_LIMIT;
+        return number > MOVE_LIMIT;
     }
 
     @Test
