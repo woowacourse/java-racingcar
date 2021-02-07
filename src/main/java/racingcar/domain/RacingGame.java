@@ -12,9 +12,9 @@ public class RacingGame {
     private final int numberOfRounds;
     private int currentRound;
 
-    public RacingGame(List<String> names, int numberOfRounds) {
+    public RacingGame(Cars cars, int numberOfRounds) {
         validatePositiveNumber(numberOfRounds);
-        this.cars = new Cars(names);
+        this.cars = cars;
         this.numberOfRounds = numberOfRounds;
         this.currentRound = INIT_ROUND;
     }

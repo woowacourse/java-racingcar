@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
 import racingcar.dto.CarsDto;
 import racingcar.dto.WinnersDto;
@@ -15,7 +16,8 @@ public class RacingGameController {
     public void start() {
         List<String> names = generateNames();
         int numberOfRounds = generateNumberOfRounds();
-        RacingGame racingGame = new RacingGame(names, numberOfRounds);
+
+        RacingGame racingGame = new RacingGame(new Cars(names), numberOfRounds);
 
         playRacingGame(racingGame);
 

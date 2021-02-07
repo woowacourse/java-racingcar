@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,19 +13,19 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class RacingGameTest {
     private final int numberOfRounds = 5;
     private RacingGame racingGame;
-    private final List<String> testCases = Arrays.asList("똘이","멍이","순이");
+    private final List<String> carNamesForTest = Arrays.asList("똘이","멍이","순이");
 
     @BeforeEach
     void setUp(){
-        this.racingGame = new RacingGame(testCases, numberOfRounds);
+        this.racingGame = new RacingGame(new Cars(carNamesForTest), numberOfRounds);
     }
 
     @DisplayName("주어진 이름대로 자동차 생성되는지 테스트")
     @Test
     void racingGameConstructor_givenCarNames_createCarsByGivenCarNames() {
         CarsDto cars = new CarsDto(racingGame.getCars());
-        for (int i = 0; i < testCases.size(); i++) {
-            assertThat(cars.getCarsDto().get(i).getName()).isEqualTo(testCases.get(i));
+        for (int i = 0; i < carNamesForTest.size(); i++) {
+            assertThat(cars.getCarsDto().get(i).getName()).isEqualTo(carNamesForTest.get(i));
         }
     }
 
