@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.regex.Pattern;
 
 public class Car {
-    private static final Pattern IS_CONSIST_OF_KOREAN_OR_ALPHA = Pattern.compile("[a-zA-Z가-힣]*$");
+    private static final Pattern IS_CONSIST_OF_KOREAN_OR_ALPHA = Pattern.compile("^[a-zA-Z가-힣]*$");
     private static final int NAME_LENGTH_LIMIT = 5;
 
     private String name;
