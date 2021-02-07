@@ -14,13 +14,9 @@ public class CarRacingBeforeSetter {
         this.carRepository = carRepository;
     }
 
-    public CarRacingBeforeSetter(Scanner scanner) {
-
-    }
-
     public void set() {
         List<String> carNames = getInputFromUser.getInputCarNamesFromUser();
-        int racingTryTime = getInputFromUser.getInputRacingTryTimeFromUser();
+        racingTryTime = getInputFromUser.getInputRacingTryTimeFromUser();
         List<Car> cars = createCars(carNames);
         carRepository.saveAll(cars);
     }
