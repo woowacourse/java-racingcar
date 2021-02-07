@@ -8,6 +8,9 @@ public class InputView {
 
     private static final String CAR_NAME_DELIMITER = ",";
 
+    private InputView() {
+    }
+
     public static Cars getCars(Scanner scanner) {
         OutputView.printCarNameReadMessage();
         try {
