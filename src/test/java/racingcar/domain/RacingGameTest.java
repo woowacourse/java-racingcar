@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,11 +12,13 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class RacingGameTest {
+    private final int numberOfRounds = 5;
     private RacingGame racingGame;
-    private List<String> testCases = Arrays.asList("똘이","멍이","순이");
+    private final List<String> testCases = Arrays.asList("똘이","멍이","순이");
+
     @BeforeEach
     void setUp(){
-        racingGame = new RacingGame(testCases);
+        this.racingGame = new RacingGame(testCases, numberOfRounds);
     }
 
     @DisplayName("주어진 이름대로 자동차 생성되는지 테스트")
@@ -27,12 +30,14 @@ class RacingGameTest {
         }
     }
 
+    //TODO
+    // current round 변수 추가해서 대체하기
     @DisplayName("라운드가 진행되는지 확인")
     @Test
     void 레이싱게임_라운드_진행(){
-        int beforeRound = racingGame.getRound();
+        int beforeRound = racingGame.getNumberOfRounds();
         racingGame.playRound();
-        int afterRound = racingGame.getRound();
+        int afterRound = racingGame.getNumberOfRounds();
 
         assertThat(beforeRound + 1).isEqualTo(afterRound);
     }
