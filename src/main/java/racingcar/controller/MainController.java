@@ -1,7 +1,7 @@
 package racingcar.controller;
 
-import static racingcar.utils.ValidateUtils.validateNames;
 import static racingcar.utils.ValidateUtils.validateTurnQuantity;
+import static racingcar.utils.ValidateUtils.validateUniqueCarNames;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,18 +22,18 @@ public class MainController {
         userInputTurnQuantity();
     }
 
-    public void userInputNames() {
+    private void userInputNames() {
         try {
             MainPage.printMainPage();
             String userInput = scanner.nextLine();
-            splitNames(userInput);
+            registerCars(userInput);
         } catch (IllegalArgumentException e) {
             ErrorUtils.printError(e);
             userInputNames();
         }
     }
 
-    public void userInputTurnQuantity() {
+    private void userInputTurnQuantity() {
         try {
             MainPage.askTurnQuantity();
             String userInput = scanner.nextLine();
@@ -44,15 +44,17 @@ public class MainController {
         }
     }
 
-    public void splitNames(String names) {
-        List<Car> cars = Arrays.stream(names.split(","))
+    private void registerCars(String names) {
+        List<String> carNames = Arrays.asList(names.split(","));
+        validateUniqueCarNames(carNames);
+
+        List<Car> cars = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
-        validateNames(cars);
         CarRepository.addCars(cars);
     }
 
-    public void initiateGameWithTurn(String userInput) {
+    private void initiateGameWithTurn(String userInput) {
         int turnQuantity = validateTurnQuantity(userInput);
         GameController gameController = new GameController();
         gameController.startGame(new Game(turnQuantity));

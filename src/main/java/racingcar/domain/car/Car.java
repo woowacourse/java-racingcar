@@ -1,5 +1,7 @@
 package racingcar.domain.car;
 
+import static racingcar.utils.ValidateUtils.validateCarName;
+
 public class Car {
 
     public static final int MAX_NAME_LENGTH = 5;
@@ -10,6 +12,7 @@ public class Car {
     private int position = 0;
 
     public Car(String name) {
+        validateCarName(name);
         this.name = name;
     }
 
@@ -19,10 +22,6 @@ public class Car {
 
     public int getPosition() {
         return position;
-    }
-
-    public static boolean checkMaxName(Car car) {
-        return car.name.length() <= MAX_NAME_LENGTH;
     }
 
     public void tryToMoveForward(int randomInteger) {

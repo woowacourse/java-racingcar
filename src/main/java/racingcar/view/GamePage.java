@@ -4,6 +4,10 @@ import racingcar.domain.car.CarRepository;
 
 public class GamePage {
 
+    private GamePage() {
+        throw new IllegalStateException("GamePage is an utility class");
+    }
+
     public static void printResultPage() {
         System.out.println("\n실행 결과");
     }
