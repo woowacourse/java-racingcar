@@ -6,9 +6,6 @@ import racingcar.utils.RandomGenerator;
 import java.util.*;
 import java.util.stream.Collectors;
 
-//TODO
-// getMaxPosition말고 메세지를 보내는 쪽으로 해보자
-
 public class Cars {
     private static final String DUPLICATE_NAME_ERROR_MESSAGE = "[ERROR] 동일한 이름이 있습니다.";
 
@@ -52,16 +49,5 @@ public class Cars {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElseThrow(NoSuchElementException::new);
-    }
-
-    //TODO
-    // 도메인에서 CarsResponseDto를 직접 만들어 주는 것이 옳을까?
-    // 그럼 어디서 만들어 줘야할까?
-    public CarsResponseDto getCarsResponseDto() {
-        return new CarsResponseDto(cars);
-    }
-
-    public static CarsResponseDto getCarsResponseDto(List<Car> cars) {
-        return new CarsResponseDto(cars);
     }
 }

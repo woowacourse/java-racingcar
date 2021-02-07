@@ -1,6 +1,7 @@
 package racingcar.dto;
 
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +12,13 @@ public class CarsResponseDto {
 
     public CarsResponseDto(List<Car> cars) {
         this.carsResponseDto = cars.stream()
+                .map(car -> new CarResponseDto(car.getName(), car.getPosition()))
+                .collect(Collectors.toList());
+    }
+
+    public CarsResponseDto(Cars cars) {
+        this.carsResponseDto = cars.getCars()
+                .stream()
                 .map(car -> new CarResponseDto(car.getName(), car.getPosition()))
                 .collect(Collectors.toList());
     }

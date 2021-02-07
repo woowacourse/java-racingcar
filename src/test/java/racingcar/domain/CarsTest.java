@@ -22,7 +22,7 @@ class CarsTest {
     @MethodSource("provideRaceWinnerCases")
     void findWinners_우승자_올바르게_가려내는지(List<String> carNames, List<String> expectedWinnerNames) {
         Cars cars = proceedRaceAccordingToWinnerNames(new Cars(carNames), expectedWinnerNames);
-        CarsResponseDto winnersDto = Cars.getCarsResponseDto(cars.findWinners());
+        CarsResponseDto winnersDto = new CarsResponseDto(cars.findWinners());
 
         //TODO
         // WinnersDto 따로 만들어줘

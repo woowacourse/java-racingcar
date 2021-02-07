@@ -5,7 +5,7 @@ import racingcar.dto.CarsResponseDto;
 import java.util.List;
 
 public class RacingGame {
-    public final Cars cars;
+    private final Cars cars;
     private int round;
 
     private static final int INIT_ROUND = 1;
@@ -23,6 +23,10 @@ public class RacingGame {
     public CarsResponseDto findWinners() {
         List<Car> winners = cars.findWinners();
         return new CarsResponseDto(winners);
+    }
+
+    public Cars getCars() {
+        return cars;
     }
 
     public int getRound() {

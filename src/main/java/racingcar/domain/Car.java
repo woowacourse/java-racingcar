@@ -5,6 +5,7 @@ public class Car {
     private static final String BLANK_ERROR_MESSAGE = "[ERROR] 공백을 입력할 수 없습니다.";
     private static final int INIT_POSITION = 0;
     private static final int MOVABLE_VALUE = 4;
+    private static final int MAXIMUM_NAME_LENGTH = 5;
 
     private int position;
     private final String name;
@@ -17,6 +18,12 @@ public class Car {
 
     private void validateBlankInName(String name) {
         if (name.contains(BLANK)) {
+            throw new IllegalArgumentException(BLANK_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateNameLength(String name) {
+        if (MAXIMUM_NAME_LENGTH < name.length()) {
             throw new IllegalArgumentException(BLANK_ERROR_MESSAGE);
         }
     }
