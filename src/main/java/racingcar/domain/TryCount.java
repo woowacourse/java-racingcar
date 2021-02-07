@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class TryCount {
     private static final Pattern IS_NUMBER = Pattern.compile("^[0-9]*$");
 
-    public int count;
+    private int count;
 
     public TryCount(final String count) {
         validateCount(count);
@@ -22,7 +22,7 @@ public class TryCount {
         }
     }
 
-    private static boolean isValidNumber(final String tryNumber) {
+    private boolean isValidNumber(final String tryNumber) {
         return IS_NUMBER.matcher(tryNumber).matches();
     }
 }
