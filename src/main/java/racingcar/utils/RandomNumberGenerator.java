@@ -3,9 +3,9 @@ package racingcar.utils;
 import java.util.Random;
 
 public class RandomNumberGenerator {
-    Random random = new Random();
+    static Random random = new Random();
 
-    public int generate(int minNumber, int maxNumber) {
+    public static int generate(int minNumber, int maxNumber) {
         if (minNumber > maxNumber) {
             throw new IllegalArgumentException();
         }
