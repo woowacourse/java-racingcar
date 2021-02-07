@@ -1,15 +1,15 @@
 package racingcar.domain;
 
-import java.util.Map;
+import java.util.List;
 
 public class Result {
-    private Map<String, Integer> result;
+    private List<CarState> result;
 
-    private Result(Map<String, Integer> result) {
+    private Result(List<CarState> result) {
         this.result = result;
     }
 
-    private static Result of(Map<String, Integer> result) {
+    public static Result of(List<CarState> result) {
         return new Result(result);
     }
 }

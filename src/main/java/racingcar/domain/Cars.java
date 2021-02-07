@@ -4,7 +4,9 @@ import racingcar.utils.RandomUtils;
 import racingcar.validator.CarsValidator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Cars {
     private static final int MIN_RANDOM_RANGE = 0;
@@ -34,5 +36,13 @@ public class Cars {
             int randomValue = RandomUtils.nextInt(MIN_RANDOM_RANGE, MAX_RANDOM_RANGE);
             car.tryToMove(randomValue);
         }
+    }
+
+    public Result getResultOfCars() {
+        List<CarState> carStates = new ArrayList<>();
+        for (Car car : cars) {
+            carStates.add(car.getCarState());
+        }
+        return Result.of(carStates);
     }
 }

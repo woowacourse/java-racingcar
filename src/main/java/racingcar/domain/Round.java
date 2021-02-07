@@ -13,4 +13,8 @@ public class Round {
     public static Round of(int count) {
         return new Round(count);
     }
+
+    public int getCount() {
+        return count;
+    }
 }

@@ -25,14 +25,18 @@ public class Car {
         return name;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public CarState getCarState() {
+        return CarState.of(name, position);
+    }
+
     public void tryToMove(int randomValue) {
         if (randomValue >= MIN_VALUE_TO_MOVE) {
             position++;
         }
-    }
-
-    public int getPosition() {
-        return position;
     }
 
     @Override
