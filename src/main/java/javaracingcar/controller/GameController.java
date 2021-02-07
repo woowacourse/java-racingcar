@@ -45,7 +45,7 @@ public class GameController {
     }
 
     private static void playMoveOrStop(Car car) {
-        if (RandomUtils.nextInt(0, 9) >= CAR_MOVES) {
+        if (RandomUtils.getSingleDigitRandomNumber() >= CAR_MOVES) {
             car.move();
         }
     }
