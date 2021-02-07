@@ -62,7 +62,7 @@ public class Car {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (o instanceof Car) {
             return this.name.equals(((Car) o).name);
         }

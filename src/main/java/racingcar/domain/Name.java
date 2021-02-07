@@ -15,7 +15,7 @@ public class Name {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (o instanceof Name) {
             return this.name.equals(((Name) o).name);
         }

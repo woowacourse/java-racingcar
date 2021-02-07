@@ -45,7 +45,7 @@ public class Cars {
     }
 
     // XXX :: 테스트만을 위한 메소드
-    public boolean contains(Car car) {
+    public boolean contains(final Car car) {
         return this.cars.contains(car);
     }
 }
