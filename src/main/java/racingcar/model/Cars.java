@@ -1,10 +1,11 @@
 package racingcar.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cars {
 
-    private ArrayList<Car> cars = new ArrayList<Car>();
+    private List<Car> cars = new ArrayList<>();
 
     public Cars(String[] carNames) {
         this(carNames, new int[carNames.length]);
@@ -16,16 +17,26 @@ public class Cars {
         }
     }
 
-    public ArrayList<Car> getCars() {
+    public List<Car> getCars() {
         return cars;
     }
 
-    public ArrayList<Car> getWinners(int maxDistance) {
-        ArrayList<Car> winners = new ArrayList<Car>();
+    public List<Car> getWinners() {
+        int maxDistance = getMaxDistance();
+        List<Car> winners = new ArrayList<>();
+
         cars.stream()
             .filter(it -> it.isWinner(maxDistance))
-            .forEach(it -> winners.add(it));
+            .forEach(winners::add);
         return winners;
+    }
+
+    private int getMaxDistance() {
+        int maxDistance = 0;
+        for (Car car : cars) {
+            maxDistance = Math.max(maxDistance, car.getDistance());
+        }
+        return maxDistance;
     }
 
 }
