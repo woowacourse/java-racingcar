@@ -20,7 +20,7 @@ public class RandomMoveCondition implements MoveCondition {
 
         validateTRandomNumberBound(randomNumber);
 
-        return randomUtils.generate() >= MOVABLE_BOUND;
+        return randomNumber >= MOVABLE_BOUND;
     }
 
     private void validateTRandomNumberBound(int randomNumber) {
