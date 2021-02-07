@@ -2,7 +2,6 @@ package racingcar.domain.game;
 
 import racingcar.domain.car.CarName;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Winners {

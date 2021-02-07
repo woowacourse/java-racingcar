@@ -19,7 +19,7 @@ public class CarNamesInputTest {
     @DisplayName("자동차 이름은 쉼표로 구분한다")
     @MethodSource("provideInputsFor_자동차_이름_리스트_반환")
     public void getCarNames_자동차_이름은_쉼표로_구분한다(String input, List<String> expected) {
-        CarNamesInput carNamesInput =  CarNamesInput.valueOf(input);
+        CarNamesInput carNamesInput = CarNamesInput.valueOf(input);
         assertEquals(expected, carNamesInput.getCarNames());
     }
 

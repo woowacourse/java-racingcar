@@ -19,7 +19,7 @@ public class CarNamesInput {
 
     public static CarNamesInput valueOf(String input) {
         List<String> carNames = Arrays.asList(input.split(DELIMITER));
-        
+
         return new CarNamesInput(carNames);
     }
 

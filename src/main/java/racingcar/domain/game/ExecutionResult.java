@@ -1,6 +1,5 @@
 package racingcar.domain.game;
 
-import racingcar.domain.car.CarState;
 import racingcar.domain.car.CarStates;
 import racingcar.domain.car.CarStatesBuffer;
 

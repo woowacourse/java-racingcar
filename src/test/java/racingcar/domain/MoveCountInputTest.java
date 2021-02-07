@@ -11,7 +11,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOf
 public class MoveCountInputTest {
     @ParameterizedTest
     @DisplayName("이동횟수가_숫자가_아닐_경우_예외")
-    @ValueSource(strings = {"a","b", "|", "★", " ", "  ", "          "})
+    @ValueSource(strings = {"a", "b", "|", "★", " ", "  ", "          "})
     public void 이동횟수가_숫자가_아닐_경우_예외(String input) {
         assertThatExceptionOfType(CarMoveCountNonNumericException.class)
                 .isThrownBy(() -> MoveCountInput.valueOf(input))
@@ -20,7 +20,7 @@ public class MoveCountInputTest {
 
     @ParameterizedTest
     @DisplayName("이동횟수가_양의 정수가_아닐_경우_예외")
-    @ValueSource(strings = {"-1","-4", "-3"})
+    @ValueSource(strings = {"-1", "-4", "-3"})
     public void 이동횟수가_양의_정수가_아닐_경우_예외(String input) {
         assertThatExceptionOfType(CarMoveCountNegativeException.class)
                 .isThrownBy(() -> MoveCountInput.valueOf(input))

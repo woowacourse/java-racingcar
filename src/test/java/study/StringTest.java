@@ -15,7 +15,7 @@ public class StringTest {
 
     @Test
     public void name() {
-        String[] values = "(1,2)".substring(1,4).split(",");
+        String[] values = "(1,2)".substring(1, 4).split(",");
         assertThat(values).containsExactly("1", "2");
     }
 

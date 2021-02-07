@@ -19,6 +19,7 @@ public class OutputView {
     public static void printError(RuntimeException runtimeException) {
         System.out.printf(runtimeException.getMessage());
     }
+
     public static void printRequestCarName() {
         System.out.println(Messages.REQUEST_CAR_NAME.getMessage());
     }
