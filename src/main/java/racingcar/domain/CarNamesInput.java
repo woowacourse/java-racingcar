@@ -11,16 +11,16 @@ public class CarNamesInput {
 
     private List<String> carNames;
 
-    private CarNamesInput(String input) {
-        List<String> carNames = Arrays.asList(input.split(DELIMITER));
-
+    private CarNamesInput(List<String> carNames) {
         validateCarNameDuplicate(carNames);
 
         this.carNames = carNames;
     }
 
     public static CarNamesInput valueOf(String input) {
-        return new CarNamesInput(input);
+        List<String> carNames = Arrays.asList(input.split(DELIMITER));
+        
+        return new CarNamesInput(carNames);
     }
 
     private void validateCarNameDuplicate(List<String> carNames) {
