@@ -9,7 +9,7 @@ public class CarRacingManager {
     public CarRacingManager(Scanner scanner) {
         CarRepository carRepository = new CarRepository();
         this.carRacingBeforeSetter = new CarRacingBeforeSetter(scanner, carRepository);
-        this.carRacing = new CarRacing(carRepository);
+        this.carRacing = new CarRacing(carRepository, new RandomNumberGenerator());
     }
 
     public void start() {

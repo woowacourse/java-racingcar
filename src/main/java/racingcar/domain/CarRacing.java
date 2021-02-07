@@ -7,9 +7,9 @@ public class CarRacing {
     private final NumberApplicatorToCar applicatorRandomNumberToCar;
     private final RacingPrinter racingPrinter;
 
-    public CarRacing(CarRepository carRepository) {
+    public CarRacing(CarRepository carRepository, NumberGenerator numberGenerator) {
         this.applicatorRandomNumberToCar
-            = new NumberApplicatorToCar(carRepository, new RandomNumberGenerator());
+            = new NumberApplicatorToCar(carRepository, numberGenerator);
         this.racingPrinter = new RacingPrinter(carRepository);
     }
 
