@@ -11,7 +11,7 @@ public class OutputView {
     }
 
     public static void printResultTitle() {
-        System.out.println("\n실행 결과");
+        System.out.println(System.lineSeparator() + "실행 결과");
     }
 
     public static void printRoundResult(Game game) {
