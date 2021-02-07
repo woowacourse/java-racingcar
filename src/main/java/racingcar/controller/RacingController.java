@@ -1,7 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.*;
-import racingcar.util.RandomGenerator;
+import racingcar.util.RandomUtils;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -62,7 +62,7 @@ public class RacingController {
     }
 
     private boolean goForwardOrStopRandomly() {
-        int randomNumber = RandomGenerator
+        int randomNumber = RandomUtils
                 .generateRandomNumber(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
 
         return GoForwardOrStop.isGoForward(randomNumber);
