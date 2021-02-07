@@ -11,7 +11,7 @@ public class CarTest {
     @DisplayName("주어진 숫자에 따라 자동차가 움직이는지 테스트")
     @ParameterizedTest
     @CsvSource({"2, false","3,false", "4,true", "5,true"})
-    void 자동차가_움직이는지(int given, boolean result){
+    void move_givenNumberToMoveCars_moveAccordingToNumber(int given, boolean result){
         Car car = new Car("TEST");
         car.move(given);
 

@@ -21,7 +21,7 @@ class CarsTest {
     @DisplayName("우승자 가려내는지 테스트")
     @ParameterizedTest
     @MethodSource("provideRaceWinnerCases")
-    void findWinners_우승자_올바르게_가려내는지(List<String> carNames, List<String> expectedWinnerNames) {
+    void findWinners_proceedRacingAccordingToGivenWinnerNames_retrieveWinnersCorrectly(List<String> carNames, List<String> expectedWinnerNames) {
         Cars cars = proceedRaceAccordingToWinnerNames(new Cars(carNames), expectedWinnerNames);
         WinnersDto winnersDto = new WinnersDto(cars.findWinners());
 

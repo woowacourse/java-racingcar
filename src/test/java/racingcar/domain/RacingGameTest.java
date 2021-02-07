@@ -23,7 +23,7 @@ class RacingGameTest {
 
     @DisplayName("주어진 이름대로 자동차 생성되는지 테스트")
     @Test
-    void 자동차_생성되는지() {
+    void racingGameConstructor_givenCarNames_createCarsByGivenCarNames() {
         CarsDto cars = new CarsDto(racingGame.getCars());
         for (int i = 0; i < testCases.size(); i++) {
             assertThat(cars.getCarsDto().get(i).getName()).isEqualTo(testCases.get(i));
@@ -32,7 +32,7 @@ class RacingGameTest {
 
     @DisplayName("라운드가 진행되는지 확인")
     @Test
-    void 레이싱게임_라운드_진행(){
+    void playRound_playOneRound_currentRoundShouldIncreaseByOne(){
         int beforeRound = racingGame.getCurrentRound();
         racingGame.playRound();
         int afterRound = racingGame.getCurrentRound();
