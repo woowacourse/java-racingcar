@@ -14,8 +14,8 @@ public class Car {
     }
 
     public void validateCarName(String name) {
-        if(name.length() > 5){
-            throw new IllegalArgumentException("잘못된 길이입니다.");
+        if(name.length() > 5 || name.length() <= 0){
+            throw new IllegalArgumentException();
         }
     }
 
@@ -38,17 +38,4 @@ public class Car {
     public boolean isMaxPosition(int max) {
         return max == position;
     }
-
-//    @Override
-//    public int compareTo(Car car) {
-//        if (this.getPosition() < car.getPosition()) {
-//            return -1;
-//        }
-//
-//        if (this.getPosition() > car.getPosition()) {
-//            return 1;
-//        }
-//
-//        return 0;
-//    }
 }
