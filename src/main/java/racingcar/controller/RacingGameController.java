@@ -13,8 +13,8 @@ public class RacingGameController {
     private static final String COMMA = ",";
 
     public void start() {
-        List<String> nameInput = takeNameInput();
-        RacingGame racingGame = new RacingGame(nameInput);
+        List<String> names = generateNames();
+        RacingGame racingGame = new RacingGame(names);
 
         playRacingGame(racingGame);
 
@@ -30,10 +30,9 @@ public class RacingGameController {
         }
     }
 
-    private List<String> takeNameInput() {
+    private List<String> generateNames() {
         OutputView.printCarNameInputRequestMessage();
-        String input = InputView.nextLine();
-        return Arrays.asList(input.split(COMMA));
+        return InputView.takeNameInput();
     }
 
     //TODO

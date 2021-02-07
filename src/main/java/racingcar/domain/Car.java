@@ -1,13 +1,14 @@
 package racingcar.domain;
 
 public class Car {
-    private static final String BLANK = " ";
-    private static final String BLANK_ERROR_MESSAGE = "[ERROR] 공백을 입력할 수 없습니다.";
-    private static final String NAME_LENGTH_ERROR_MESSAGE = "[ERROR] 공백을 입력할 수 없습니다.";
+    public static final String BLANK = " ";
+    public static final String BLANK_ERROR_MESSAGE = "[ERROR] 공백을 입력할 수 없습니다.";
+    public static final String NAME_LENGTH_ERROR_MESSAGE = "[ERROR] 공백을 입력할 수 없습니다.";
+    public static final int MINIMUM_NAME_LENGTH = 1;
+    public static final int MAXIMUM_NAME_LENGTH = 5;
     private static final int INIT_POSITION = 0;
     private static final int MOVABLE_VALUE = 4;
-    private static final int MINIMUM_NAME_LENGTH = 1;
-    private static final int MAXIMUM_NAME_LENGTH = 5;
+
 
     private int position;
     private final String name;

@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final String DUPLICATE_NAME_ERROR_MESSAGE = "[ERROR] 동일한 이름이 있습니다.";
+    public static final String DUPLICATE_NAME_ERROR_MESSAGE = "[ERROR] 동일한 이름이 있습니다.";
 
     private final List<Car> cars;
 
@@ -21,6 +21,8 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
+    //TODO
+    // 예외 검증 Test 짜기
     private void validateDuplicate(List<String> names) {
         Set<String> nameSet = new HashSet<>(names);
         if (nameSet.size() != names.size()) {
