@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameController {
+    private static final int CAR_MOVES = 4;
+
     public static List<Car> generateCars(List<String> carNames) {
         List<Car> cars = new ArrayList<>();
         for (String name : carNames) {
@@ -43,7 +45,7 @@ public class GameController {
     }
 
     private static void playMoveOrStop(Car car) {
-        if (RandomUtils.nextInt(0, 9) >= 4) { //TODO constant로 변경
+        if (RandomUtils.nextInt(0, 9) >= CAR_MOVES) {
             car.move();
         }
     }
