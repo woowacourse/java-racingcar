@@ -1,11 +1,9 @@
 package racingcar.validator;
 
-import java.util.Arrays;
-
 public class NameValidator {
     private static final int LIMIT_NAME_LEN = 5;
 
-    public static void checkValidName(String name) {
+    public static void checkIsValid(final String name) {
         if (name == null) {
             throw new IllegalArgumentException("Name can't be null");
         }
@@ -15,13 +13,7 @@ public class NameValidator {
         }
     }
 
-    private static boolean isValidLength(String name) {
+    private static boolean isValidLength(final String name) {
         return name.trim().length() <= LIMIT_NAME_LEN && name.trim().length() > 0;
-    }
-
-    public static void isDuplicatedNames(String[] names) {
-        if (Arrays.stream(names).distinct().count() != names.length) {
-            throw new IllegalArgumentException("Duplicated Name exception");
-        }
     }
 }

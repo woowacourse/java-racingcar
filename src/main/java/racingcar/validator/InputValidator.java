@@ -1,13 +1,11 @@
 package racingcar.validator;
 
-import java.util.Arrays;
-
 public class InputValidator {
-    public static void isOnlyNumber(String round) {
-        for (char c : round.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                throw new IllegalArgumentException("Round must be integer");
-            }
+    public static void checkIsNumeric(final String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Enter numeric value");
         }
     }
 }

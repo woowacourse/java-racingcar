@@ -2,9 +2,13 @@ package racingcar.validator;
 
 public class RoundValidator {
 
-    public static void isPositive(int round) {
-        if(round <= 0) {
-            throw new IllegalArgumentException("Round must be positive");
+    public static void checkIsValid(int round) {
+        if (!isPositive(round)) {
+            throw new IllegalArgumentException("Rounds must be positive");
         }
+    }
+
+    private static boolean isPositive(int round) {
+        return round > 0;
     }
 }
