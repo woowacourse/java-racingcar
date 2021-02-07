@@ -43,7 +43,7 @@ public class Cars {
     public List<Car> findWinners() {
         int maxPosition = getMaxPosition();
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
     }
 
@@ -54,6 +54,9 @@ public class Cars {
                 .orElseThrow(NoSuchElementException::new);
     }
 
+    //TODO
+    // 도메인에서 CarsResponseDto를 직접 만들어 주는 것이 옳을까?
+    // 그럼 어디서 만들어 줘야할까?
     public CarsResponseDto getCarsResponseDto() {
         return new CarsResponseDto(cars);
     }
