@@ -18,7 +18,7 @@ class CarTest {
         Car expectedCar = new Car("tico", 1);
         
         // when
-        car.move();
+        car.moveOrStop();
         
         // then
         assertThat(car).isEqualTo(expectedCar);

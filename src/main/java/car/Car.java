@@ -26,7 +26,7 @@ public class Car {
         this.position = position;
     }
     
-    public void move() {
+    public void moveOrStop() {
         if (RandomUtil.getRandomValue() >= CONDITION) {
             this.position++;
         }
