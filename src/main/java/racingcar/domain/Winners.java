@@ -6,29 +6,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Winners {
-    private Winners() {
-    }
 
-    private static final List<Car> winners = new ArrayList<>();
-    private static int winnerPosition;
+    private final List<Car> winners = new ArrayList<>();
+    private int winnerPosition;
 
-    public static void setWinners() {
-        winnerPosition = getWinnerPosition();
-        for (Car car : Cars.getCars()) {
+    public Winners(Cars cars) {
+        winnerPosition = getWinnerPosition(cars);
+        for (Car car : cars.getCars()) {
             setWinner(car);
         }
     }
 
-    public static List<String> getWinnersNames() {
+    public List<String> getWinnersNames() {
         return Collections.unmodifiableList(winners.stream()
                 .map(Car::getName).collect(Collectors.toList()));
     }
 
-    private static int getWinnerPosition() {
-        return Cars.getMaxPositionByCars();
+    private int getWinnerPosition(final Cars cars) {
+        return cars.getMaxPositionByCars();
     }
 
-    private static void setWinner(final Car car) {
+    private void setWinner(final Car car) {
         if (car.isWinnerPosition(winnerPosition)) {
             winners.add(car);
         }
