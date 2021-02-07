@@ -10,11 +10,15 @@ public class OutputView {
     private static final String DELIMITER = ",";
     private static final String COLON = " : ";
     private static final String ROUND_RESULT = "실행 결과";
+    private static final String ERROR_RESULT = "올바른 값을 입력하여 주십시오.";
 
     public void roundStart() {
         System.out.println(ROUND_RESULT);
     }
 
+    public void errorPrint(){
+        System.out.println(ERROR_RESULT);
+    }
     public void printResult(List<Car> cars) {
         for (Car car : cars) {
             String movedDistance = repeat(car.getPosition());

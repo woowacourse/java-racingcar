@@ -30,7 +30,9 @@ public class GameController {
             round = Integer.parseInt(roundInput);
 
         } catch (IllegalArgumentException error) {
-            //ERROR
+            OutputView message = new OutputView();
+            message.errorPrint();
+            start();
         }
 
         for (String carName : carNamesSplit) {
