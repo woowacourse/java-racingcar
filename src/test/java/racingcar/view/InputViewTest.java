@@ -67,7 +67,7 @@ class InputViewTest {
 
     @DisplayName("총 라운드 횟수 입력 받을 떄 0이나 음수인 것을 검증해주는지")
     @ParameterizedTest
-    @ValueSource(strings = {"0","-2"})
+    @ValueSource(strings = {"0", "-2"})
     void takeNumberOfRoundsInput_zeroOrNegativeInteger_throwIllegalArgumentException(String input) {
         InputStream in = generateUserInput(input);
         System.setIn(in);

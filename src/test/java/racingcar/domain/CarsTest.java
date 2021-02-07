@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.dto.CarDto;
-import racingcar.dto.CarsDto;
 import racingcar.dto.WinnersDto;
 
 import java.util.Arrays;
@@ -28,7 +26,7 @@ class CarsTest {
                 .hasMessage(DUPLICATE_NAME_ERROR_MESSAGE);
     }
 
-    @DisplayName("우승자 가려내는지 테스트")
+    @DisplayName("우승자 제대로 가려내는지 테스트")
     @ParameterizedTest
     @MethodSource("provideRaceWinnerCases")
     void findWinners_proceedRacingAccordingToGivenWinnerNames_returnExpectedWinners(List<String> carNames, List<String> expectedWinnerNames) {

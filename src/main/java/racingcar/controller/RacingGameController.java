@@ -9,6 +9,8 @@ import racingcar.view.OutputView;
 
 import java.util.*;
 
+//TODO
+// Controller 관련 테스트 해보자
 public class RacingGameController {
     public void start(Scanner scanner) {
         List<String> names = generateNames(scanner);

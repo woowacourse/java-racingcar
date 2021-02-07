@@ -6,13 +6,14 @@ import racingcar.dto.WinnersDto;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String DASH = "-";
     private static final String LEADER_BOARD_DATA_FORMAT = "%s : %s%n";
     private static final String COMMA_AND_BLANK = ", ";
 
+    //TODO
+    // OutputView 테스트 작성해보자
     public static void printCarNameInputRequestMessage() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
@@ -39,7 +40,6 @@ public class OutputView {
 
     public static void announceWinners(WinnersDto winnersDto) {
         List<String> winnerNames = winnersDto.getWinnerNames();
-        System.out.println(winnerNames.stream()
-                .collect(Collectors.joining(COMMA_AND_BLANK)).concat("가 최종 우승했습니다."));
+        System.out.println(String.join(COMMA_AND_BLANK, winnerNames).concat("가 최종 우승했습니다."));
     }
 }
