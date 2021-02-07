@@ -30,7 +30,7 @@ class InputValidationTest {
                 .isInstanceOf(InvalidNameLengthException.class);
 
         String[] lessLength = {"pobi", ""};
-        assertThatThrownBy(() -> inputValidation.validateName(overLength))
+        assertThatThrownBy(() -> inputValidation.validateName(lessLength))
                 .isInstanceOf(InvalidNameLengthException.class);
     }
 
