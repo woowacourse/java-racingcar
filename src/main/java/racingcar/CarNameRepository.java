@@ -14,22 +14,20 @@ public class CarNameRepository {
     }
 
     public static void addCarNames(List<String> carNamesInput) {
+        validateNumberOfCar(carNamesInput);
+        validateSameName(carNamesInput);
         carNamesInput.forEach(carName -> carNames.add(new CarName(carName)));
-        validateNumberOfCar();
-        validateSameName();
     }
 
-    private static void validateNumberOfCar() {
-        if (carNames.size() < MINIMUM_CAR_AMOUNT) {
-            System.out.println(carNames);
-            System.out.println(carNames.size());
+    private static void validateNumberOfCar(List<String> carNamesInput) {
+        if (carNamesInput.size() < MINIMUM_CAR_AMOUNT) {
             throw new IllegalArgumentException("자동차는 2대 이상이어야 합니다.");
         }
     }
 
-    private static void validateSameName() {
-        Set<CarName> uniqueCarNames = new HashSet<>(carNames);
-        if (uniqueCarNames.size() != carNames.size()) {
+    private static void validateSameName(List<String> carNamesInput) {
+        Set<String> uniqueCarNames = new HashSet<>(carNamesInput);
+        if (uniqueCarNames.size() != carNamesInput.size()) {
             throw new IllegalArgumentException("중복되는 자동차 이름이 있습니다.");
         }
     }
