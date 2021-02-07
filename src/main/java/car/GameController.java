@@ -18,19 +18,19 @@ public class GameController {
         List<Car> carNames = new ArrayList<>();
         String[] carNamesSplit = null;
 
-        String carNamesInput = scanner.nextLine();
 
+        OutputView message = new OutputView();
         try {
+            message.carNameGuidePrint();
+            String carNamesInput = scanner.nextLine();
             ValidCheck.carNameValid(carNamesInput);
             carNamesSplit = carNamesInput.split(delimiter);
 
+            message.repeatGuidePrint();
             String roundInput = scanner.nextLine();
-
             ValidCheck.round(roundInput);
             round = Integer.parseInt(roundInput);
-
         } catch (IllegalArgumentException error) {
-            OutputView message = new OutputView();
             message.errorPrint();
             start();
         }
@@ -49,6 +49,5 @@ public class GameController {
             carNames.forEach(Car::moveOrStop);
             outputView.printResult(carNames);
         }
-        outputView.printWinners(carNames);
     }
 }

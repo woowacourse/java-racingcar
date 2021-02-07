@@ -11,6 +11,8 @@ public class OutputView {
     private static final String COLON = " : ";
     private static final String ROUND_RESULT = "실행 결과";
     private static final String ERROR_RESULT = "올바른 값을 입력하여 주십시오.";
+    private static final String CAR_NAME_GUIDE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private static final String REPEAT_GUDIE = "시도할 회수는 몇회인가요?.";
 
     public void roundStart() {
         System.out.println(ROUND_RESULT);
@@ -19,6 +21,15 @@ public class OutputView {
     public void errorPrint(){
         System.out.println(ERROR_RESULT);
     }
+
+    public void carNameGuidePrint(){
+        System.out.println(CAR_NAME_GUIDE);
+    }
+
+    public void repeatGuidePrint(){
+        System.out.println(REPEAT_GUDIE);
+    }
+
     public void printResult(List<Car> cars) {
         for (Car car : cars) {
             String movedDistance = repeat(car.getPosition());
