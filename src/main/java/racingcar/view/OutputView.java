@@ -2,8 +2,10 @@ package racingcar.view;
 
 import racingcar.dto.CarDto;
 import racingcar.dto.CarsDto;
+import racingcar.dto.WinnersDto;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -24,7 +26,7 @@ public class OutputView {
     }
 
     public static void printLeaderBoard(CarsDto carsDto) {
-        for (CarDto car : carsDto.getCarsResponseDto()) {
+        for (CarDto car : carsDto.getCarsDto()) {
             String positionStick = makeStick(car);
             System.out.printf(LEADER_BOARD_DATA_FORMAT, car.getName(), positionStick);
         }
@@ -35,11 +37,9 @@ public class OutputView {
         return String.join("", Collections.nCopies(car.getPosition(), DASH));
     }
 
-    public static void announceWinners(CarsDto carsDto) {
-        System.out.println(carsDto
-                .getCarsResponseDto()
-                .stream()
-                .map(CarDto::getName)
+    public static void announceWinners(WinnersDto winnersDto) {
+        List<String> winnerNames = winnersDto.getWinnerNames();
+        System.out.println(winnerNames.stream()
                 .collect(Collectors.joining(COMMA_AND_BLANK)).concat("가 최종 우승했습니다."));
     }
 }

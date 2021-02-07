@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.RacingGame;
 import racingcar.dto.CarsDto;
+import racingcar.dto.WinnersDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -17,7 +18,7 @@ public class RacingGameController {
 
         playRacingGame(racingGame);
 
-        OutputView.announceWinners(racingGame.findWinners());
+        OutputView.announceWinners(new WinnersDto(racingGame.findWinners()));
     }
 
     private void playRacingGame(RacingGame racingGame) {

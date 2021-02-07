@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.dto.CarDto;
 import racingcar.dto.CarsDto;
+import racingcar.dto.WinnersDto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,15 +23,9 @@ class CarsTest {
     @MethodSource("provideRaceWinnerCases")
     void findWinners_우승자_올바르게_가려내는지(List<String> carNames, List<String> expectedWinnerNames) {
         Cars cars = proceedRaceAccordingToWinnerNames(new Cars(carNames), expectedWinnerNames);
-        CarsDto winnersDto = new CarsDto(cars.findWinners());
+        WinnersDto winnersDto = new WinnersDto(cars.findWinners());
 
-        //TODO
-        // WinnersDto 따로 만들어줘
-        List<String> winnerNames = winnersDto
-                .getCarsResponseDto()
-                .stream()
-                .map(CarDto::getName)
-                .collect(Collectors.toList());
+        List<String> winnerNames = winnersDto.getWinnerNames();
         assertThat(winnerNames).isEqualTo(expectedWinnerNames);
     }
 

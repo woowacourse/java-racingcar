@@ -20,9 +20,8 @@ public class RacingGame {
         round++;
     }
 
-    public CarsDto findWinners() {
-        List<Car> winners = cars.findWinners();
-        return new CarsDto(winners);
+    public List<Car> findWinners() {
+        return cars.findWinners();
     }
 
     public Cars getCars() {
