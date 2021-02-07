@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class Cars {
     private List<Car> carList;
     private RuleStrategy rule;
+    private int maxPosition = 0;
 
     public Cars(String[] names, RuleStrategy strategy) {
         carList = new ArrayList<>();
@@ -26,6 +27,7 @@ public class Cars {
     public void startRace() {
         for (Car car : carList) {
             car.move(rule.execute());
+            maxPosition = car.aboveMaxPosition(maxPosition);
         }
     }
 }

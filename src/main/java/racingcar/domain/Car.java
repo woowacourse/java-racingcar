@@ -26,4 +26,18 @@ public class Car {
     private String repeat(String str, int num) {
         return new String(new char[num]).replace("\0", str);
     }
+
+    public int aboveMaxPosition(int maxPosition) {
+        if (this.position > maxPosition) {
+            return this.position;
+        }
+        return maxPosition;
+    }
+
+    public boolean isMaxPosition(int maxPosition) {
+        if (maxPosition == this.position) {
+            return true;
+        }
+        return false;
+    }
 }
