@@ -5,20 +5,21 @@ import racing.dto.CarDto;
 import java.util.List;
 
 public class RacingGameMachine {
+    private static final String INVALID_TRY_COUNTS = "게임 시도 회수는 양의 정수여야 합니다.";
     private static final int ZERO = 0;
 
     private final Cars cars;
     private int tryCounts;
 
     public RacingGameMachine(Cars cars, int tryCounts) {
+        validateTryCounts(tryCounts);
         this.cars = cars;
         this.tryCounts = tryCounts;
-        validateTryCounts();
     }
 
-    private void validateTryCounts() {
+    private void validateTryCounts(int tryCounts) {
         if (tryCounts <= ZERO) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_TRY_COUNTS);
         }
     }
 
