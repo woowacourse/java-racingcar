@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
   public static final int MIN_RUNNABLE_FUEL = 4;
   private final Name name;
@@ -24,11 +24,16 @@ public class Car {
     return position;
   }
 
-  public boolean isSamePosition(final int position) {
-    return this.position == position;
+  public boolean isSamePosition(final Car car) {
+    return position == car.position;
   }
 
   public String getName() {
     return name.getName();
+  }
+
+  @Override
+  public int compareTo(Car car) {
+    return position - car.position;
   }
 }

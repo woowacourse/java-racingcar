@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
-  private static final int DEFAULT_MAX_POSITION = 0;
   private final List<Car> cars = new ArrayList<>();
 
   public Participants(final String... names) {
@@ -21,13 +20,11 @@ public class Participants {
   }
 
   public String decideWinner() {
-    int maxPosition = cars.stream()
-        .mapToInt(Car::getPosition)
-        .max()
-        .orElse(DEFAULT_MAX_POSITION);
+    Collections.sort(cars);
+    Car winnerCar = cars.get(0);
 
     List<Car> winners = cars.stream()
-        .filter(car -> car.isSamePosition(maxPosition))
+        .filter(car -> car.isSamePosition(winnerCar))
         .collect(Collectors.toList());
     return new Winner(winners).getWinnerName();
   }
