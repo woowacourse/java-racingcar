@@ -1,6 +1,9 @@
 package racingcar.domain;
 
 public class Car {
+    private static final String CAR_STATUS_DELIMITER = " : ";
+    private static final String CAR_POSITION_STATUS = "-";
+
     private String name;
     private int position;
 
@@ -20,7 +23,7 @@ public class Car {
     }
 
     public String toString() {
-        return this.name + " : " + repeat("-", this.position);
+        return this.name + CAR_STATUS_DELIMITER + repeat(CAR_POSITION_STATUS, this.position);
     }
 
     private String repeat(String str, int num) {

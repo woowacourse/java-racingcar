@@ -5,6 +5,10 @@ import racingcar.utils.InputValidation;
 import java.util.Scanner;
 
 public class InputView {
+    private static final String BLANK = " ";
+    private static final String NON_BLANK = "";
+    private static final String DELIMITER = ",";
+
     private Scanner scanner;
 
     public InputView() {
@@ -13,8 +17,8 @@ public class InputView {
 
     public String[] inputCarName() {
         String[] name = scanner.nextLine()
-                .replace(" ", "")
-                .split(",");
+                .replace(BLANK, NON_BLANK)
+                .split(DELIMITER);
         InputValidation.validateName(name);
         return name;
     }

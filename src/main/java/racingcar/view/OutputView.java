@@ -3,6 +3,8 @@ package racingcar.view;
 import java.util.List;
 
 public class OutputView {
+    private static final String DELIMITER_BETWEEN_WINNERS = ",";
+
     public void askCarName() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
@@ -23,6 +25,6 @@ public class OutputView {
     }
 
     public void printWinners(List<String> winners) {
-        System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
+        System.out.println(String.join(DELIMITER_BETWEEN_WINNERS, winners) + "가 최종 우승했습니다.");
     }
 }
