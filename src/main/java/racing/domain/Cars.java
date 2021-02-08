@@ -15,8 +15,9 @@ public class Cars {
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
-        this.cars = new ArrayList<>(cars);
-        validateCars();
+        List<Car> copy = new ArrayList<>(cars);
+        validateCars(copy);
+        this.cars = copy;
     }
 
     public static Cars generate(String carNames) {
@@ -31,7 +32,7 @@ public class Cars {
         return carNames.split(DELIMITER, SPLIT_THRESHOLD);
     }
 
-    private void validateCars() {
+    private void validateCars(List<Car> cars) {
         if (cars.size() < MINIMUM_CAR_COUNTS) {
             throw new IllegalArgumentException("자동차 이름은 1개 이상이어야 합니다");
         }
