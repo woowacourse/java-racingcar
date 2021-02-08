@@ -38,7 +38,7 @@ class RacingGameControllerTest {
     @DisplayName("잘못된 인풋이 주어 졌을 때 에러를 반환하는지")
     @ParameterizedTest
     @MethodSource("provideNameAndNumberOfRoundsInput")
-    void startRacingGameController_wrongNameAndNumberOfRoundsInput_throwError(String nameInput, String numberOfRounds) {
+    void startRacingGameController_wrongNameAndNumberOfRoundsInput_validateInputsCorrectly(String nameInput, String numberOfRounds) {
         InputStream in = createInputStream(nameInput, numberOfRounds);
         System.setIn(in);
         scanner = new Scanner(System.in);
@@ -48,7 +48,7 @@ class RacingGameControllerTest {
 
     private static Stream<Arguments> provideNameAndNumberOfRoundsInput() {
         return Stream.of(
-                Arguments.of("포비,웨지, 삭정\n", "4"), // when blank is in the name input
+                Arguments.of("포비,웨지,삭정 \n", "4"), // when blank is in the name input
                 Arguments.of("포비,웨지\n", "0"), // when number of rounds is out of bounds
                 Arguments.of("포비,삭정,삭정\n", "2") // when names are duplicate
         );

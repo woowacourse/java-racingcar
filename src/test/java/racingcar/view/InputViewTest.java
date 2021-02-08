@@ -27,7 +27,8 @@ public class InputViewTest {
         System.setIn(in);
         scanner = new Scanner(System.in);
 
-        assertThatThrownBy(() -> InputView.takeNameInput(scanner)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> InputView.takeNameInput(scanner))
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BLANK_ERROR_MESSAGE);
     }
 
@@ -39,7 +40,8 @@ public class InputViewTest {
         System.setIn(in);
         scanner = new Scanner(System.in);
 
-        assertThatThrownBy(() -> InputView.takeNameInput(scanner)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> InputView.takeNameInput(scanner))
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NAME_LENGTH_ERROR_MESSAGE);
     }
 
@@ -50,7 +52,8 @@ public class InputViewTest {
         System.setIn(in);
         scanner = new Scanner(System.in);
 
-        assertThatThrownBy(() -> InputView.takeNameInput(scanner)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> InputView.takeNameInput(scanner))
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(DUPLICATE_NAME_ERROR_MESSAGE);
     }
 
@@ -61,7 +64,8 @@ public class InputViewTest {
         System.setIn(in);
         scanner = new Scanner(System.in);
 
-        assertThatThrownBy(() -> InputView.takeNumberOfRoundsInput(scanner)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> InputView.takeNumberOfRoundsInput(scanner))
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_NUMBER_ERROR_MESSAGE);
     }
 
@@ -73,7 +77,8 @@ public class InputViewTest {
         System.setIn(in);
         scanner = new Scanner(System.in);
 
-        assertThatThrownBy(() -> InputView.takeNumberOfRoundsInput(scanner)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> InputView.takeNumberOfRoundsInput(scanner))
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE);
     }
 
