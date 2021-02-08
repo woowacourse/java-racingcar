@@ -13,7 +13,7 @@ public class InputUtils {
         return splitNames(names);
     }
 
-    public static int getInteger(Scanner scanner){
+    public static int getInteger(Scanner scanner) {
         String next = scanner.next();
         InputValidator.isOnlyNumber(next);
         return Integer.parseInt(next);

@@ -6,12 +6,12 @@ public class Round {
 
     private int count;
 
-    private Round(int count){
+    private Round(int count) {
         RoundValidator.isPositive(count);
         this.count = count;
     }
 
-    public static Round create(int inputNumber){
+    public static Round create(int inputNumber) {
         return new Round(inputNumber);
     }
 
@@ -19,7 +19,7 @@ public class Round {
         count--;
     }
 
-    public boolean isEnd(){
-        return count < 0;
+    public boolean isEnd() {
+        return count <= 0;
     }
 }

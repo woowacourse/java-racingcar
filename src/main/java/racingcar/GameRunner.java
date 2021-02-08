@@ -25,7 +25,7 @@ public class GameRunner {
         round = Round.create(InputUtils.getInteger(scanner));
 
         PrintUtils.printInfo("실행 결과");
-        while(!round.isEnd()){
+        while (!round.isEnd()) {
             cars.tryMoveCars();
             PrintUtils.printResult(cars.getAllCarsPosition());
             round.next();
