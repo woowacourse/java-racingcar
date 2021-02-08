@@ -1,10 +1,13 @@
 package racingcar.view;
 
+import racingcar.domain.car.Car;
+import racingcar.domain.car.Cars;
 import racingcar.domain.trynumber.TryNumber;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
     private static final String CAR_NAME_DELIMITER = ",";
@@ -17,12 +20,22 @@ public class InputView {
     private InputView() {
     }
 
-    public static List<String> inputCarNames(Scanner scanner) {
+    public static Cars inputCarNames(Scanner scanner) {
         System.out.println(PLEASE_INPUT_CAR_NAMES_MESSAGE);
         String input = scanner.nextLine();
-        String[] carNames = input.split(CAR_NAME_DELIMITER);
 
-        return Arrays.asList(carNames);
+        try {
+            return new Cars(makeCarGroup(input));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputCarNames(scanner);
+        }
+    }
+
+    private static List<Car> makeCarGroup(String input) {
+        return Arrays.stream(input.split(CAR_NAME_DELIMITER))
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public static TryNumber inputTryNumber(Scanner scanner) {
