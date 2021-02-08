@@ -1,35 +1,25 @@
 package racingcar.utils;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import racingcar.domain.Car;
 
 public class WinnerUtils {
-
-    private static List<String> winners;
-    private static int maxPosition;
 
     private WinnerUtils() {
     }
 
     public static List<String> findWinners(List<Car> cars) {
-        winners = new ArrayList<>();
-        maxPosition = -1;
-        for (Car car : cars) {
-            updateWinners(car);
-        }
-        return winners;
+        int maxPosition = findMaxPosition(cars);
+        return findCarsLocatedAt(cars, maxPosition);
     }
 
-    private static void updateWinners(Car car) {
-        if (car.getPosition() < maxPosition) {
-            return;
-        }
-        if (car.getPosition() > maxPosition) {
-            maxPosition = car.getPosition();
-            winners.clear();
-        }
-        winners.add(car.getName());
+    private static int findMaxPosition(List<Car> cars) {
+        return cars.stream().map(Car::getPosition).reduce(Integer::max).orElse(-1);
     }
 
+    private static List<String> findCarsLocatedAt(List<Car> cars, int position) {
+        return cars.stream().filter(car -> car.getPosition() == position).map(Car::getName).collect(
+            Collectors.toList());
+    }
 }
