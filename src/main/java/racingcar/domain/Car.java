@@ -6,10 +6,11 @@ public class Car {
 
     private static final String GO_FORWARD_MARKING = "-";
     private static final int GO_FORWARD_DISTANCE = 1;
+    public static final int DEFAULT_CAR_POSITION = 0;
 
     private String name;
     private Engine engine;
-    private int position = 0;
+    private int position = DEFAULT_CAR_POSITION;
 
     public Car(String name, Engine engine) {
         this.name = name;

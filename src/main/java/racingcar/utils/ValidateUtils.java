@@ -5,6 +5,10 @@ import racingcar.exception.InvalidNumOfMoveException;
 
 public class ValidateUtils {
 
+    private static final int CAR_NAME_LENGTH_STARTINCLUSIVE = 1;
+    private static final int CAR_NAME_LENGTH_ENDINCLUSIVE = 5;
+    public static final int THE_LOWEST_NUM_OF_CAR_NAMES = 2;
+
     private ValidateUtils() {}
 
     public static void validateCarNames(String[] carNames) {
@@ -15,7 +19,7 @@ public class ValidateUtils {
     }
 
     private static void validateNumOfCarNames(String[] carNames) {
-        if (carNames.length < 2) {
+        if (carNames.length < THE_LOWEST_NUM_OF_CAR_NAMES) {
             throw new InvalidCarNameException("자동차 이름은 1개 이상이어야 합니다.");
         }
     }
@@ -26,7 +30,7 @@ public class ValidateUtils {
     }
 
     private static void validateCarNameLength(String carName) {
-        if (carName.length() >= 1 && carName.length() <= 5) {
+        if (carName.length() >= CAR_NAME_LENGTH_STARTINCLUSIVE && carName.length() <= CAR_NAME_LENGTH_ENDINCLUSIVE) {
             return;
         }
         throw new InvalidCarNameException("자동차 이름은 1자 이상 5자 이하여야 합니다.");
