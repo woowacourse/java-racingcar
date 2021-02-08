@@ -14,6 +14,8 @@ public class CalculatorController {
     private static final Pattern PATTERN = Pattern.compile(CUSTOM_DELIMITER_PATTERN);
     private static final int ZERO = 0;
     private static final String DELIMITER_SEPARATOR = "|";
+    private static final String COMMA = ",";
+    private static final String COLON = ":";
 
     private final InputView inputView;
 
@@ -64,7 +66,7 @@ public class CalculatorController {
     }
 
     private void isValidDelimiter(String customDelimiter) {
-        if (customDelimiter.equals(",") || customDelimiter.equals(":")) {
+        if (COMMA.equals(customDelimiter) || COLON.equals(customDelimiter)) {
             throw new RuntimeException("커스텀 구분자로 기본 구분자가 지정될 수 없습니다.");
         }
     }
