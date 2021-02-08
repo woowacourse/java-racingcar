@@ -35,7 +35,11 @@ public class RacingGameController {
         OutputView.printResultMessage();
         while (!racingGame.isFinished()) {
             racingGame.playAnotherRound();
-            OutputView.printLeaderBoard(new CarsDto(racingGame.getCars()));
+            OutputView.printLeaderBoard(createCarsDto(racingGame));
         }
+    }
+
+    private CarsDto createCarsDto(RacingGame racingGame) {
+        return new CarsDto(racingGame.getCars());
     }
 }
