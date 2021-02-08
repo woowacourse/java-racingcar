@@ -17,7 +17,7 @@ public class Turn {
     }
   }
 
-  public int getTurn() {
+  public int get() {
     return turn;
   }
 }

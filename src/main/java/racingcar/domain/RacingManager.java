@@ -16,7 +16,7 @@ public class RacingManager {
 
   public RacingResult start() {
     RacingResult racingResult = new RacingResult(participants);
-    for (int i = 0; i < turn.getTurn(); i++) {
+    for (int i = 0; i < turn.get(); i++) {
       race(racingResult);
     }
     return racingResult;
