@@ -3,6 +3,8 @@ package racingcar;
 import java.util.Objects;
 
 public class CarName {
+    private static final String NUMBER_RANGE_ERROR_MESSAGE = "1~5 사이의 값을 입력해주세요.";
+
     private String carName;
 
     public CarName(String carName) {
@@ -20,7 +22,7 @@ public class CarName {
 
     private void checkCarNameLength(String carName) {
         if (carName.length() < 1 || carName.length() > 5) {
-            throw new IllegalArgumentException("1~5 사이의 값을 입력해주세요.");
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
         }
     }
 
