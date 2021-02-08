@@ -2,7 +2,6 @@ package car.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import static java.util.stream.Collectors.*;
@@ -41,7 +40,7 @@ public final class ScoreBoard {
     
     private int retrieveMaxPosition() {
         return scores.stream()
-                     .max(Comparator.comparingInt(Score::getPosition))
+                     .max(Score::compareTo)
                      .orElseThrow(IllegalArgumentException::new)
                      .getPosition();
     }

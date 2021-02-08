@@ -30,6 +30,14 @@ class Parser {
         return numbersAndDelimiter.split(delimiter);
     }
     
+    private String findNumbersAndDelimiter(Matcher matcher) {
+        if (matcher.matches()) {
+            return matcher.group(NUMBERS_GROUP_INDEX);
+        }
+        
+        return input;
+    }
+    
     private String findDelimiterRegex(Matcher matcher) {
         String regex = DEFAULT_REGEX;
         
@@ -39,13 +47,5 @@ class Parser {
         }
         
         return regex;
-    }
-    
-    private String findNumbersAndDelimiter(Matcher matcher) {
-        if (matcher.matches()) {
-            return matcher.group(NUMBERS_GROUP_INDEX);
-        }
-        
-        return input;
     }
 }

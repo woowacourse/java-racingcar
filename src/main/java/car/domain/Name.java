@@ -13,14 +13,18 @@ final class Name {
     }
     
     public static Name from(String name) {
-        if (!isOutOfBounds(name)) {
+        if (!isValidName(name)) {
             throw new IllegalArgumentException();
         }
         
         return new Name(name);
     }
     
-    private static boolean isOutOfBounds(String name) {
+    private static boolean isValidName(String name) {
+        return !Objects.isNull(name) && isValidNameLength(name);
+    }
+    
+    private static boolean isValidNameLength(String name) {
         return name.length() <= NAME_RANGE && !name.isEmpty();
     }
     
