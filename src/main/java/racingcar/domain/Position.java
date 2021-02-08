@@ -1,8 +1,8 @@
 package racingcar.domain;
 
 public class Position {
-    public static final String UNIT_OF_POSITION = "-";
-    public static final int UNIT_OF_MOVE = 1;
+    private static final String UNIT_OF_POSITION = "-";
+    private static final int UNIT_OF_MOVE = 1;
 
     private int position;
 

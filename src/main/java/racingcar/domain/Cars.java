@@ -2,9 +2,12 @@ package racingcar.domain;
 
 import java.util.*;
 
+import static racingcar.domain.CarName.ERROR_MESSAGE_OF_INVALID_INPUT;
+
 public class Cars {
-    public static final String COMMA_DELIMITER = ",";
-    public static final char COMMA = ',';
+    private static final char COMMA = ',';
+    private static final String COMMA_DELIMITER = ",";
+    private static final String ERROR_MESSAGE_OF_DUPLICATED_NAME = "이름이 중복됩니다.";
 
     private final List<Car> cars = new ArrayList<>();
 
@@ -18,14 +21,14 @@ public class Cars {
 
     private void validateBothEnds(String inputNames) {
         if (inputNames.charAt(0) == COMMA || inputNames.charAt(inputNames.length() - 1) == COMMA) {
-            throw new IllegalArgumentException("잘못된 입력입니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_OF_INVALID_INPUT);
         }
     }
 
     private void validateDuplicate(String inputNames) {
         Set<String> unDuplicateNames = new HashSet<>(Arrays.asList(inputNames.split(COMMA_DELIMITER)));
         if (cars.size() != unDuplicateNames.size()) {
-            throw new IllegalArgumentException("이름이 중복됩니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_OF_DUPLICATED_NAME);
         }
     }
 

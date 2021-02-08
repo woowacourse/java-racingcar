@@ -1,9 +1,11 @@
 package racingcar.domain;
 
 public class Lap {
-    public static final int MINIMUM_LAP = 1;
-    public static final int UNIT_OF_ONE_LAP = 1;
-    public static final int FINISH_FLAG = 0;
+    private static final int FINISH_FLAG = 0;
+    private static final int MINIMUM_LAP = 1;
+    private static final int UNIT_OF_ONE_LAP = 1;
+    private static final String ERROR_MESSAGE_OF_NEGATIVE_NUMBER = "1 미만의 입력입니다.";
+    private static final String ERROR_MESSAGE_OF_NOT_NUMBER = "숫자가 아닌 입력입니다.";
 
     private int lap;
 
@@ -16,13 +18,13 @@ public class Lap {
         try {
             return Integer.parseInt(inputLap);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자가 아닌 입력입니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_OF_NOT_NUMBER);
         }
     }
 
     private int validatePositiveLap(int numberLap) {
         if (numberLap < MINIMUM_LAP) {
-            throw new IllegalArgumentException("1 미만의 입력입니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_OF_NEGATIVE_NUMBER);
         }
         return numberLap;
     }
