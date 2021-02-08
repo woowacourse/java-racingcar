@@ -5,28 +5,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Winners {
-    private Winners() {
-    }
+    private final List<Car> winners = new ArrayList<>();
 
-    private static List<Car> winners = new ArrayList<>();
-
-    public static void allocateWinners() {
-        Car maxPositionCar = Cars.getMaxPositionCar();
-        for (Car car : Cars.getCars()) {
+    public Winners(Cars cars) {
+        Car maxPositionCar = cars.getMaxPositionCar();
+        for (Car car : cars.cars()) {
             allocateWinner(car, maxPositionCar);
         }
     }
 
-    public static List<String> getWinnersNames() {
-        return winners.stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
-    }
-
-    private static void allocateWinner(Car car, Car maxPositionCar) {
+    private void allocateWinner(Car car, Car maxPositionCar) {
         if (car.isMaxPosition(maxPositionCar)) {
             winners.add(car);
         }
+    }
+
+    public List<String> getWinnersNames() {
+        return winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 }
 

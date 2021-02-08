@@ -6,29 +6,26 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Cars {
-    private static List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
-    private Cars() {
-    }
-
-    public static void assignCars(final List<String> names) {
+    public Cars(List<String> names) {
         validateNonDuplicatedNames(names);
         for (String name : names) {
             cars.add(new Car(name));
         }
     }
 
-    public static List<Car> getCars() {
+    public List<Car> cars() {
         return Collections.unmodifiableList(cars);
     }
 
-    public static Car getMaxPositionCar() {
+    public Car getMaxPositionCar() {
         return cars.stream()
                 .max(Car::compareTo)
                 .orElseThrow(IllegalStateException::new);
     }
 
-    private static void validateNonDuplicatedNames(final List<String> names) {
+    private void validateNonDuplicatedNames(final List<String> names) {
         if (new HashSet<>(names).size() != names.size()) {
             throw new IllegalArgumentException("중복된 자동차 이름입니다.");
         }

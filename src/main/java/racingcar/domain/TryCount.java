@@ -22,7 +22,7 @@ public class TryCount {
         }
     }
 
-    private static boolean isValidNumber(final String tryNumber) {
+    private boolean isValidNumber(final String tryNumber) {
         return Pattern.matches(REGEX_DIGIT, tryNumber);
     }
 }
