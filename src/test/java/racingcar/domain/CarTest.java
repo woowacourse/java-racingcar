@@ -1,8 +1,8 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +21,7 @@ class CarTest {
     @DisplayName("Exception test for null name")
     @Test
     void checkNullExceptionTest() {
-        Assertions.assertThatThrownBy(() -> Car.createByName(null))
+        assertThatThrownBy(() -> Car.createByName(null))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,8 +29,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = {"", "    ", "123456"})
     void checkLengthExceptionTest(String name) {
-        Assertions.assertThatThrownBy(() -> {
-            Car.createByName(name);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Car.createByName(name))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }
