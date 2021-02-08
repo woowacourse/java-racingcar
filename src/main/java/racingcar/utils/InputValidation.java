@@ -8,6 +8,9 @@ import java.util.regex.Pattern;
 public class InputValidation {
     private static final int NAME_MAX_LENGTH = 5;
     private static final int CAR_MIN_NUMBER = 2;
+    private static final Pattern VALID_TEXT_PATTERN = Pattern.compile("^[a-zA-Z가-힣0-9]*$");
+    private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
+    private static final String ZERO_TIME = "0";
 
     private InputValidation() {}
 
@@ -50,9 +53,8 @@ public class InputValidation {
     }
 
     private static void isValidText(String[] names) {
-        String pattern = "^[a-zA-Z가-힣0-9]*$";
         Arrays.stream(names)
-                .filter(name -> !Pattern.matches(pattern, name))
+                .filter(name -> !VALID_TEXT_PATTERN.matcher(name).matches())
                 .findAny()
                 .ifPresent(s -> {
                     throw new InvalidTextException();
@@ -60,8 +62,7 @@ public class InputValidation {
     }
 
     public static void validateTime(String input) {
-        String pattern = "^[0-9]*$";
-        if (!Pattern.matches(pattern, input) || input.equals("0")) {
+        if (!NUMBER_PATTERN.matcher(input).matches() || input.equals(ZERO_TIME)) {
             throw new InvalidTimeException();
         }
     }
