@@ -9,15 +9,18 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
+    private static final MovingStrategy MOVING_STRATEGY = () -> true;
 
-    @DisplayName("자동차 객체의 유효한 이름 형식은 5자 이하의 영어로 구성된다.")
+    @DisplayName("자동차 객체의 유효한 이름 형식은 5자 이하의 영어로 구성되며, 위치 초기값은 0이다.")
     @Test
     void makeCar() {
         assertThatCode(() -> {
-            Car car = new Car("pobi");
+            Car car = new Car("pobi", MOVING_STRATEGY);
             String name = car.getName();
+            int position = car.getPosition();
 
             assertThat(name).isEqualTo("pobi");
+            assertThat(position).isZero();
         }).doesNotThrowAnyException();
     }
 
@@ -27,8 +30,34 @@ class CarTest {
     @ValueSource(strings = {"abcdef", "ab.de", "   "})
     void cannotMakeCar(String name) {
         assertThatThrownBy(() -> {
-            new Car(name);
+            new Car(name, MOVING_STRATEGY);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차 이름은 빈 문자열이 아닌 5자 이하의 영어로 구성되어야 합니다.");
+    }
+
+    @DisplayName("자동차 객체가 항상 이동하는 전략을 가지면 move 요청시 위치가 증가한다")
+    @Test
+    void moveCarAlways() {
+        MovingStrategy alwaysMovingStrategy = () -> true;
+        Car car = new Car("dummy", alwaysMovingStrategy);
+
+        boolean isMoved = car.move();
+        int position = car.getPosition();
+
+        assertThat(isMoved).isTrue();
+        assertThat(position).isEqualTo(1);
+    }
+
+    @DisplayName("자동차 객체가 항상 이동하지 않는 전략을 가지면 move 요청시 움직이지 않는다")
+    @Test
+    void moveCarNever() {
+        MovingStrategy neverMovingStrategy = () -> false;
+        Car car = new Car("dummy", neverMovingStrategy);
+
+        boolean isMoved = car.move();
+        int position = car.getPosition();
+
+        assertThat(isMoved).isFalse();
+        assertThat(position).isZero();
     }
 }
