@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.dto.CarDto;
+import racingcar.dto.CarsDto;
 import racingcar.dto.WinnersDto;
 
 import java.util.Arrays;
@@ -13,10 +15,26 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static racingcar.domain.Car.INIT_POSITION;
 import static racingcar.domain.Cars.DUPLICATE_NAME_ERROR_MESSAGE;
 
 class CarsTest {
     private static final int MOVABLE_NUMBER_FOR_TEST = 5;
+
+    @DisplayName("정상적인 차 이름이 들어왔을 때 차들을 잘 생성하는지")
+    @Test
+    void carsConstructor_properCarNames_createCars() {
+        List<String> names = Arrays.asList("포비", "데이브", "삭정");
+        Cars cars = new Cars(names);
+
+        assertThat(cars).isInstanceOf(Cars.class);
+
+        List<CarDto> carsDto = new CarsDto(cars).getCarsDto();
+        for (int i = 0; i < names.size(); i++) {
+            assertThat(carsDto.get(i).getName()).isEqualTo(names.get(i));
+            assertThat(carsDto.get(i).getPosition()).isEqualTo(INIT_POSITION);
+        }
+    }
 
     @DisplayName("중복되는 차 이름이 들어왔을 때 예외 반환 하는지")
     @Test
