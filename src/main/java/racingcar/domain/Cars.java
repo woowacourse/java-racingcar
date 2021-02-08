@@ -38,14 +38,18 @@ public class Cars {
 
     private int findWinnerPosition(Car car, HashMap<Integer, List<String>> carPositionHashMap,
         int maxPosition) {
-        if (!carPositionHashMap.containsKey(car.getPosition())) {
-            carPositionHashMap.put(car.getPosition(), new ArrayList<>());
-        }
+        initCarPositionHashMap(car, carPositionHashMap);
         carPositionHashMap.get(car.getPosition()).add(car.getName());
         if (maxPosition < car.getPosition()) {
             maxPosition = car.getPosition();
         }
         return maxPosition;
+    }
+
+    private void initCarPositionHashMap(Car car, HashMap<Integer, List<String>> carPositionHashMap) {
+        if (!carPositionHashMap.containsKey(car.getPosition())) {
+            carPositionHashMap.put(car.getPosition(), new ArrayList<>());
+        }
     }
 
     private String getWinnerNames(List<String> winners) {
