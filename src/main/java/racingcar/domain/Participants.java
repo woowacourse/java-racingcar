@@ -27,7 +27,7 @@ public class Participants {
         .orElse(DEFAULT_MAX_POSITION);
 
     List<Car> winners = cars.stream()
-        .filter(car -> car.getPosition() == maxPosition)
+        .filter(car -> car.isSamePosition(maxPosition))
         .collect(Collectors.toList());
     return new Winner(winners).getWinnerName();
   }
