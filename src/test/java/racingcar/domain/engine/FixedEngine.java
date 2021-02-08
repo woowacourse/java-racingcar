@@ -1,7 +1,6 @@
-package racingcar.domain.Engine;
+package racingcar.domain.engine;
 
-public class FixedEngine implements Engine {
-
+public class FixedEngine implements Engine{
     private int num;
 
     public FixedEngine(int num) {

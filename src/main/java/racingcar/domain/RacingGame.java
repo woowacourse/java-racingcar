@@ -3,8 +3,8 @@ package racingcar.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.domain.Engine.Engine;
-import racingcar.domain.Engine.RandomEngine;
+import racingcar.domain.engine.Engine;
+import racingcar.domain.engine.RandomEngine;
 
 public class RacingGame {
 
