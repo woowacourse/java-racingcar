@@ -38,16 +38,6 @@ public class StringCalculatorTest {
         assertThat(result).isEqualTo(expectedResult);
     }
 
-//    @ParameterizedTest
-//    @CsvSource(value = {"//;\n1;2;3=6", "//!\n12!23=35", "//&\n1&2&3&4=10"}, delimiter = '=')
-//    public void splitAndSum_custom_구분자(String input, int expectedResult) throws Exception {
-//        String test = "//;\n1;2;3";
-//        System.out.println(input.equals(test));
-//        System.out.println(input);
-//        int result = StringCalculator.splitAndSum(input);
-//        assertThat(result).isEqualTo(expectedResult);
-//    }
-
     @Test
     public void splitAndSum_custom_구분자2() throws Exception {
         int result = StringCalculator.splitAndSum("//!\n12!23");
