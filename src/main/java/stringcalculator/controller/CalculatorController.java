@@ -19,10 +19,10 @@ public class CalculatorController {
         this.inputView = new InputView(scanner);
     }
 
-    public int run() {
+    public void run() {
         String input = inputView.scanInput();
 
-        return getResult(input);
+        getResult(input);
     }
 
     public int getResult(String input) {
