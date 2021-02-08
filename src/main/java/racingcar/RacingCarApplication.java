@@ -9,7 +9,7 @@ import racingcar.view.OutputView;
 import java.util.Scanner;
 
 /**
- * Application.java
+ * RacingCarApplication.java
  * 자동차 경주 게임
  *
  * @author Kimun Kim, github.com/tributetothemoon

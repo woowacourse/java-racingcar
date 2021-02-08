@@ -13,11 +13,11 @@ import racingcar.view.OutputView;
  */
 public class RacingCarGame {
     private final Cars cars;
-    private final Round Round;
+    private final Round round;
 
     private RacingCarGame(Cars cars, Round round) {
         this.cars = cars;
-        this.Round = round;
+        this.round = round;
     }
 
     public static RacingCarGame createNewGame(Cars cars, Round round) {
@@ -27,10 +27,10 @@ public class RacingCarGame {
     public void play() {
         OutputView.printResultMessage();
 
-        while (!Round.isEnd()) {
+        while (!round.isEnd()) {
             cars.moveCars();
             OutputView.printCarsPosition(cars.toDTO());
-            Round.nextRound();
+            round.nextRound();
         }
 
         Winners winners = Winners.of(cars);
