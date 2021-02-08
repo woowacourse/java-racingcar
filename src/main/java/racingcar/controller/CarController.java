@@ -13,6 +13,8 @@ public class CarController {
 
     private Cars cars;
     private AttemptNumber attemptNumber;
+    private static final String Separator = ",";
+    private static final String ERROR_MESSAGE = "자동차 이름은 없을 수 없습니다.";
 
     public CarController() {
     }
@@ -31,9 +33,9 @@ public class CarController {
     }
 
     private String[] carNamesSplit(String carNames) {
-        String[] carNamesArray = carNames.split(",");
+        String[] carNamesArray = carNames.split(Separator);
         if (carNamesArray.length == 0) {
-            throw new IllegalArgumentException("자동차 이름은 없을 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
         return carNamesArray;
     }
