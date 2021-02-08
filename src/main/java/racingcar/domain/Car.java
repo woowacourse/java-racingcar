@@ -4,7 +4,7 @@ import racingcar.exception.RacingCarErrorMessage;
 
 public class Car {
 
-  public static final int MIN_RUNNABLE_FUEL = 4;
+  private static final int MIN_RUNNABLE_FUEL = 4;
   private static final int MIN_NAME_LENGTH = 1;
   private static final int MAX_NAME_LENGTH = 5;
   private final String name;
