@@ -9,17 +9,26 @@ import java.util.stream.Collectors;
 
 public class RacingGameMachine {
     private static final int ZERO = 0;
+    private static final int MINIMUM_CAR_COUNTS = 2;
 
     private final Cars cars;
     private int tryCounts;
 
     public RacingGameMachine(Cars cars, int tryCounts) {
-        this.cars = cars;
+        Cars copy = cars.clone();
+        validateCars(copy);
+        validateTryCounts(tryCounts);
+        this.cars = copy;
         this.tryCounts = tryCounts;
-        validateTryCounts();
     }
 
-    private void validateTryCounts() {
+    private void validateCars(Cars cars) {
+        if (cars.getSize() < MINIMUM_CAR_COUNTS) {
+            throw new IllegalArgumentException("자동차 이름은 1개 이상이어야 합니다");
+        }
+    }
+
+    private void validateTryCounts(int tryCounts) {
         if (tryCounts <= ZERO) {
             throw new IllegalArgumentException("시도횟수는 1회 이상이어야 합니다");
         }

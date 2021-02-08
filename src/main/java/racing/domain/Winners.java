@@ -20,7 +20,7 @@ public class Winners {
 
     private void validateWinners() {
         if (this.cars.isEmpty()) {
-            throw new IllegalStateException("우승자는 1명 이상이어야 합니다.");
+            throw new IllegalStateException("우승자는 1명 이상이어야 합니다");
         }
     }
 }

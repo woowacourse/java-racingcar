@@ -5,7 +5,7 @@ import racing.utils.RandomUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Cars {
+public class Cars implements Cloneable{
     private static final String DELIMITER = ",";
     private static final int SPLIT_THRESHOLD = -1;
     private static final int START_NUMBER = 0;
@@ -18,6 +18,17 @@ public class Cars {
         List<Car> copy = new ArrayList<>(cars);
         validateCars(copy);
         this.cars = copy;
+    }
+
+    @Override
+    protected Cars clone(){
+        Cars copy = null;
+        try {
+            copy = (Cars) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return copy;
     }
 
     public static Cars generate(String carNames) {
@@ -59,5 +70,9 @@ public class Cars {
 
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
+    }
+
+    public int getSize() {
+        return cars.size();
     }
 }
