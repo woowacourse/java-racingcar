@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.controller.CarController;
 import racingcar.domain.AttemptNumber;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
@@ -118,6 +119,7 @@ public class CarTest {
             carList.get(Integer.parseInt(index)).move(4);
         }
         Cars cars = new Cars(carList);
-        assertThat(cars.getWinners()).isEqualTo(expected);
+        String winners = CarController.winnerListToString(cars.getWinners());
+        assertThat(winners).isEqualTo(expected);
     }
 }
