@@ -1,4 +1,4 @@
-package stringcalculator.domain;
+package stringcalculator.domain.Delimiter;
 
 import stringcalculator.exception.ExtractCustomDelimiterException;
 import stringcalculator.exception.IllegalCustomDelimiterException;
@@ -53,11 +53,6 @@ public class CustomDelimiter implements Delimiter {
         if (isNumeric(delimiter)) {
             throw new IllegalCustomDelimiterException();
         }
-    }
-
-    @Override
-    public boolean isDefault() {
-        return false;
     }
 
     @Override

@@ -1,5 +1,9 @@
 package stringcalculator.domain;
 
+import stringcalculator.domain.Delimiter.DefaultDelimiter;
+import stringcalculator.domain.Delimiter.Delimiter;
+import stringcalculator.domain.Delimiter.DelimiterFactory;
+
 public class Input {
     private String input;
     private Delimiter delimiter;
@@ -25,7 +29,7 @@ public class Input {
     private void setNormalInput(String input) {
         this.delimiter = DelimiterFactory.valueOf(input);
 
-        if (!delimiter.isDefault()) {
+        if (!(delimiter instanceof DefaultDelimiter)) {
             input = extractElementString(input);
         }
 
