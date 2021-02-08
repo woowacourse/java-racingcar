@@ -10,6 +10,8 @@ import java.util.List;
 public class OutputView {
     private static final String ONE_STEP = "-";
 
+    private OutputView() {};
+
     public static void printResults(Results roundResults) {
         System.out.println("실행 결과");
         List<Result> results = roundResults.getResults();

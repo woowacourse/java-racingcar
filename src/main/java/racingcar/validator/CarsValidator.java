@@ -9,6 +9,8 @@ import java.util.HashSet;
 public class CarsValidator {
     private static final int MIN_CARS_SIZE = 2;
 
+    private CarsValidator() {};
+
     public static void validate(List<Car> cars) {
         validateCarsSize(cars);
         validateDuplicatedCarNames(cars);
