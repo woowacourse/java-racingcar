@@ -5,6 +5,8 @@ import racingcar.exception.InvalidNumOfMoveException;
 
 public class ValidateUtils {
 
+    private ValidateUtils() {}
+
     public static void validateCarNames(String[] carNames) {
         validateNumOfCarNames(carNames);
         for (String carName : carNames) {

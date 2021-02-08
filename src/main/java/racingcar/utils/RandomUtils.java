@@ -6,8 +6,7 @@ public class RandomUtils {
 
     private static final Random RANDOM = new Random();
 
-    private RandomUtils() {
-    }
+    private RandomUtils() {}
 
     public static int nextInt(final int startInclusive, final int endInclusive) {
         if (startInclusive > endInclusive) {
