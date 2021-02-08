@@ -25,6 +25,6 @@ class RacingGameMachineTest {
     @ValueSource(ints = {-1, 0})
     void Machine_시도횟수가_양수가_아니면_에러가_발생한다(int tryCounts) {
         assertThatThrownBy(() -> new RacingGameMachine(DUMMY_CARS, tryCounts))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("시도횟수는 1회 이상이어야 합니다.");
     }
 }
