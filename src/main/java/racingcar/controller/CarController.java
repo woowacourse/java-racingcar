@@ -16,6 +16,17 @@ public class CarController {
     private Cars cars;
     private AttemptNumber attemptNumber;
 
+    public void play() {
+        init();
+        OutputView.printNextLine();
+        OutputView.printExecutionResultMessage();
+        Random random = new Random();
+        for (int i = 0; i < attemptNumber.getAttemptNumber(); i++) {
+            cars.move(random);
+        }
+        OutputView.printWinnerCarNamesMessage(cars.getWinners());
+    }
+
     private void init() {
         List<Car> carList = new ArrayList<>();
         OutputView.printInputCarNamesMessage();
@@ -35,16 +46,5 @@ public class CarController {
             throw new IllegalArgumentException(NO_NAME_ERROR);
         }
         return carNamesArray;
-    }
-
-    public void play() {
-        init();
-        OutputView.printNextLine();
-        OutputView.printExecutionResultMessage();
-        Random random = new Random();
-        for (int i = 0; i < attemptNumber.getAttemptNumber(); i++) {
-            cars.move(random);
-        }
-        OutputView.printWinnerCarNamesMessage(cars.getWinners());
     }
 }
