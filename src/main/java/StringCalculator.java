@@ -3,9 +3,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    static String pre_delimiter = "[,:";
-    static String end_delimiter = "]";
-    static int BLANK = 0;
+    private static final String PRE_DELIMITER = "[,:";
+    private static final String END_DELIMITER = "]";
+    private static final int BLANK = 0;
 
     public static int calculate(String input) {
         if (isBlank(input)) {
@@ -26,7 +26,7 @@ public class StringCalculator {
 
     private static int sum(String[] numbers) {
         return Arrays.stream(numbers)
-                .mapToInt(number -> Integer.parseInt(number))
+                .mapToInt(Integer::parseInt)
                 .sum();
     }
 
@@ -45,8 +45,8 @@ public class StringCalculator {
         if (m.find()) {
             String customDelimiter = m.group(1);
             String number = m.group(2);
-            return number.split(pre_delimiter + customDelimiter + end_delimiter);
+            return number.split(PRE_DELIMITER + customDelimiter + END_DELIMITER);
         }
-        return input.split(pre_delimiter + end_delimiter);
+        return input.split(PRE_DELIMITER + END_DELIMITER);
     }
 }
