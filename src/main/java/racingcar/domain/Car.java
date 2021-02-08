@@ -31,6 +31,10 @@ public class Car {
     return fuel >= MIN_RUNNABLE_FUEL;
   }
 
+  public boolean isSamePosition(int position) {
+    return this.position == position;
+  }
+
   public int position() {
     return position;
   }

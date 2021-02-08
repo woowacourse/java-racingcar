@@ -18,9 +18,7 @@ public class Winner {
         .collect(Collectors.joining(WINNER_NAME_DELIMITER));
   }
   private List<Car> winner() {
-    return participants.cars().stream()
-        .filter(car -> car.position() == participants.maxPosition())
-        .collect(Collectors.toList());
+    return participants.winner();
   }
 }
 
