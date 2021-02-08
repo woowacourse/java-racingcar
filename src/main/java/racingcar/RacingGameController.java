@@ -4,7 +4,7 @@ public class RacingGameController {
 
     private final InputView inputView;
     private Cars cars;
-    private Integer turns;
+    private int turns;
 
     public RacingGameController() {
         inputView = new InputView();
@@ -31,7 +31,7 @@ public class RacingGameController {
     private void race() {
         for (int i = 0; i < turns; i++) {
             cars.driveAll();
-            OutputView.printCarsAfterRace(cars.getCars());
+            OutputView.printCars(cars.getCars());
         }
     }
 

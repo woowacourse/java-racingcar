@@ -1,12 +1,14 @@
 package racingcar;
 
-import java.util.stream.IntStream;
+import static racingcar.Rule.MOVE_FORWARD_BOUNDARY;
+import static racingcar.Rule.DRIVE_MAXIMUM_VALUE;
+import static racingcar.Rule.DRIVE_MINIMUM_VALUE;
 
 public class Car {
 
-    public static final int RANDOM_MINIMUM_VALUE = 0;
-    public static final int RANDOM_MAXIMUM_VALUE = 9;
-    public static final int MOVE_FORWARD_BOUNDARY = 4;
+    public static final int MINIMUM_CAR_NAME_LENGTH = 1;
+    public static final int MAXIMUM_CAR_NAME_LENGTH = 5;
+
     private Integer position;
     private final String name;
 
@@ -15,25 +17,25 @@ public class Car {
         this.name = name;
     }
 
-    public static Car from(final String name) {
-        return new Car(getValidatedName(name));
+    public static Car from(String name) {
+        name = name.trim();
+        validateName(name);
+        return new Car(name);
     }
 
-    public void drive(final int randomValue) {
-        if (randomValue < RANDOM_MINIMUM_VALUE || RANDOM_MAXIMUM_VALUE < randomValue) {
+    public void drive(final int value) {
+        if (value < DRIVE_MINIMUM_VALUE || DRIVE_MAXIMUM_VALUE < value) {
             throw new RuntimeException();
         }
 
-        if (randomValue >= MOVE_FORWARD_BOUNDARY) {
+        if (value >= MOVE_FORWARD_BOUNDARY) {
             moveForward();
         }
     }
 
-    private static String getValidatedName(String name) {
-        name = name.trim();
+    private static void validateName(String name) {
         validateNameLength(name);
         validateNameNullOrEmpty(name);
-        return name;
     }
 
     private static void validateNameNullOrEmpty(String name) {
@@ -43,7 +45,7 @@ public class Car {
     }
 
     private static void validateNameLength(String name) {
-        if (name.length() < 1 || name.length() > 5) {
+        if (name.length() < MINIMUM_CAR_NAME_LENGTH || MAXIMUM_CAR_NAME_LENGTH < name.length()) {
             throw new RuntimeException();
         }
     }
@@ -58,18 +60,6 @@ public class Car {
 
     public int getPosition() {
         return position;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s : %s", name, getPositionToString());
-    }
-
-    private String getPositionToString() {
-        StringBuilder sb = new StringBuilder();
-        IntStream.range(0, position)
-                .forEach(i -> sb.append("-"));
-        return sb.toString();
     }
 
     @Override
