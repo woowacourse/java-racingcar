@@ -54,7 +54,7 @@ public class Cars {
             maxDistance = Math.max(car.move(RandomUtils.generateRandomNumber()), maxDistance);
             carsAfterSingleTrial.add(car);
         }
-        return carsAfterSingleTrial;
+        return Collections.unmodifiableList(carsAfterSingleTrial);
     }
 
     public String getWinner() {
