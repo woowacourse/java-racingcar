@@ -8,6 +8,8 @@ public class StringCalculator {
     private static final int CUSTOM_DELIMITER = 1;
     private static final int CALCULATION_FORMULA = 2;
     private static final String SPLIT_STANDARD = ",|:";
+    private static final String PATTERN_REGEX = "//(.)\n(.*)";
+    private static final Pattern PATTERN = Pattern.compile(PATTERN_REGEX);
 
     public static int splitAndSum(String text) {
         if (checkEmptyOrNullString(text)) {
@@ -22,7 +24,7 @@ public class StringCalculator {
     }
 
     private static String[] splitNumber(String text) {
-        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
+        Matcher matcher = PATTERN.matcher(text);
         if (matcher.find()) {
             String delimiter = matcher.group(CUSTOM_DELIMITER);
             return matcher.group(CALCULATION_FORMULA).split(delimiter);
