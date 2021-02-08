@@ -48,6 +48,17 @@ public class CarController {
         for (int i = 0; i < attemptNumber.getAttemptNumber(); i++) {
             cars.move(random);
         }
-        OutputView.printWinnerCarNamesMessage(cars.getWinners());
+        List<String> winners = cars.getWinners();
+        OutputView.printWinnerCarNamesMessage(winnerListToString(winners));
+    }
+
+    public static String winnerListToString(List<String> winners) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(winners.get(0));
+        for (int i = 1; i < winners.size(); i++) {
+            stringBuilder.append(", ");
+            stringBuilder.append(winners.get(i));
+        }
+        return stringBuilder.toString();
     }
 }
