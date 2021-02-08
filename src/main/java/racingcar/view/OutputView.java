@@ -28,7 +28,7 @@ public class OutputView {
     }
 
     public static void printCars(List<Car> cars) {
-        cars.forEach(car -> System.out.println(car.toString()));
+        cars.forEach(car -> System.out.println(car.displayCurrentStatus()));
         System.out.println();
     }
 

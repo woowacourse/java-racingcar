@@ -19,7 +19,7 @@ class CarTest {
         }
 
         // then
-        assertThat(car.toString()).isEqualTo("pobi : -----");
+        assertThat(car.displayCurrentStatus()).isEqualTo("pobi : -----");
     }
 
     @Test
@@ -34,7 +34,7 @@ class CarTest {
         }
 
         // then
-        assertThat(car.toString()).isEqualTo("pobi : ");
+        assertThat(car.displayCurrentStatus()).isEqualTo("pobi : ");
     }
 
 }

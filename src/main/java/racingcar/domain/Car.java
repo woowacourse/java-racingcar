@@ -22,8 +22,7 @@ public class Car {
         }
     }
 
-    @Override
-    public String toString() {
+    public String displayCurrentStatus() {
         return name + " : " + displayCurrentPosition();
     }
 
