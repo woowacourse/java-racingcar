@@ -7,7 +7,7 @@ public class RacingResult {
   private static final String DISTANCE_SIGN = "-";
   private final StringBuilder log = new StringBuilder();
 
-  public void appendLog(Participants participants) {
+  public void appendLog(final Participants participants) {
     participants.getCars()
         .forEach(car -> log.append(
             String.format(LOG_FORM, car.getName(), convertToDistanceSign(car.getPosition()))
