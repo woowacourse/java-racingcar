@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import racingcar.view.OutputView;
 
 public class Cars {
     private static final int BOUND = 10;
@@ -24,9 +23,7 @@ public class Cars {
     public void move(Random random) {
         for (Car car : cars) {
             car.move(random.nextInt(BOUND));
-            OutputView.printCarStateMessage(car.getName(), car.positionToString());
         }
-        OutputView.printNextLine();
     }
 
     public String getWinners() {

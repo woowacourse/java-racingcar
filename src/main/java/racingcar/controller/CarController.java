@@ -23,6 +23,7 @@ public class CarController {
         Random random = new Random();
         for (int i = 0; i < attemptNumber.getAttemptNumber(); i++) {
             cars.move(random);
+            OutputView.printCarStateMessage(cars);
         }
         OutputView.printWinnerCarNamesMessage(cars.getWinners());
     }

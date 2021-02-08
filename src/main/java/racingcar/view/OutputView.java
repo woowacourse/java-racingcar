@@ -1,5 +1,8 @@
 package racingcar.view;
 
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+
 public class OutputView {
     private static final String INPUT_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String INPUT_ATTEMPT_NUMBER_MESSAGE = "시도할 횟수는 몇회인가요?";
@@ -23,8 +26,11 @@ public class OutputView {
         System.out.println(String.format(WINNER_MESSAGE, carNames));
     }
 
-    public static void printCarStateMessage(String carName, String carPosition) {
-        System.out.println(String.format(CAR_STATE_MESSAGE, carName, carPosition));
+    public static void printCarStateMessage(Cars cars) {
+        for (Car car : cars.getCars()) {
+            System.out.println(String.format(CAR_STATE_MESSAGE, car.getName(), car.positionToString()));
+        }
+        System.out.println();
     }
 
     public static void printNextLine() {
