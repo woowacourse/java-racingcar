@@ -13,15 +13,15 @@ public class Car {
         this.name = name;
     }
 
-    public void move(int number){
-        if(number >= THRESHOLD){
-            distance++;
-        }
-    }
-
     public void validate(String name) {
         if (name.length() <= MINIMUM_LENGTH || name.length() > MAXIMUM_LENGTH) {
             throw new IllegalArgumentException("길이가 1에서 5사이의 이름을 입력해주세요.");
+        }
+    }
+
+    public void move(int number){
+        if(number >= THRESHOLD){
+            distance++;
         }
     }
 
