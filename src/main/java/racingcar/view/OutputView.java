@@ -3,8 +3,8 @@ package racingcar.view;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String RUN_RESULT_MESSAGE = "실행 결과";
@@ -18,16 +18,11 @@ public class OutputView {
 
     public static void printRunResult(List<Cars> runResult) {
         System.out.println(RUN_RESULT_MESSAGE);
-        for (Cars cars : runResult) {
-            printCars(cars);
-        }
+        runResult.forEach(OutputView::printCars);
     }
 
     private static void printCars(Cars cars) {
-        List<Car> carsValue = cars.getCars();
-        for (Car car : carsValue) {
-            System.out.println(car.getName() + DELIMITER_COLON + printPosition(car.getPosition()));
-        }
+        cars.getCars().forEach(OutputView::printCarsStatus);
         System.out.println();
     }
 
@@ -41,11 +36,15 @@ public class OutputView {
     }
 
     public static void printWinners(List<Car> winners) {
-        List<String> carNames = new ArrayList<>();
-        for (Car winner : winners) {
-            carNames.add(winner.getName());
-        }
+        List<String> carNames = winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+
         String winnerNames = String.join(DELIMITER_COMMA, carNames);
         System.out.println(winnerNames + WINNER_MESSAGE);
+    }
+
+    private static void printCarsStatus(Car car) {
+        System.out.println(car.getName() + DELIMITER_COLON + printPosition(car.getPosition()));
     }
 }
