@@ -14,7 +14,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private static String bar(int distance) {
+    public static String bar(int distance) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < distance; i++) {
             sb.append("-");
@@ -28,7 +28,7 @@ public class OutputView {
         System.out.println(String.join(",", winners) + "가 최종 우승했습니다.");
     }
 
-    private static List<String> getWinners(int max) {
+    static List<String> getWinners(int max) {
         List<String> winners = Cars.findWinners(max);
         return winners;
     }
