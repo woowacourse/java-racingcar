@@ -17,7 +17,7 @@ public class RacingGameController {
     }
 
     private void setUpRace() {
-        cars = Cars.from(inputView.getInputCarsName());
+        cars = Cars.of(inputView.getInputCarsName(), new RandomNumberGeneratingStrategy());
         turns = inputView.getInputTurns();
     }
 

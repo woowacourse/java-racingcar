@@ -39,8 +39,6 @@ public class SetTest {
     @ParameterizedTest
     @CsvSource(value = {"1,true", "2,true", "3,true", "4,false", "5,false", "6,false"})
     void toLowerCase_ShouldGenerateExpectedLowercaseValue(Integer input, Boolean expected) {
-        String isValid = "true";
-        System.out.println(Boolean.getBoolean(isValid));
         assertThat(numbers.contains(input)).isEqualTo(expected);
     }
 }

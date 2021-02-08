@@ -8,29 +8,32 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import utils.RandomUtils;
 
 public class Cars {
 
     private final List<Car> cars;
+    private final NumberGeneratingStrategy numberGeneratingStrategy;
 
-    private Cars(List<Car> cars) {
+    private Cars(List<Car> cars, NumberGeneratingStrategy numberGeneratingStrategy) {
         this.cars = new ArrayList<>(cars);
+        this.numberGeneratingStrategy = numberGeneratingStrategy;
     }
 
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
 
-    public static Cars from(String inputCarName) {
+    public static Cars of(String inputCarName,
+            NumberGeneratingStrategy numberGeneratingStrategy) {
+
         String[] carNames = splitCarsName(inputCarName);
         validateDuplicatedName(carNames);
 
         return new Cars(
                 Arrays.stream(carNames)
                         .map(Car::from)
-                        .collect(Collectors.toList())
-        );
+                        .collect(Collectors.toList()),
+                numberGeneratingStrategy);
     }
 
     private static void validateDuplicatedName(String[] carNames) {
@@ -45,9 +48,7 @@ public class Cars {
     }
 
     public void driveAll() {
-        for (Car car : cars) {
-            car.drive(RandomUtils.nextInt(0, 9));
-        }
+        cars.forEach(car -> car.drive(numberGeneratingStrategy.generateNumber()));
     }
 
     public List<Car> getWinners() {
