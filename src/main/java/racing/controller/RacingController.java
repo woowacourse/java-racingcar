@@ -2,7 +2,7 @@ package racing.controller;
 
 import racing.domain.Cars;
 import racing.domain.RacingGameMachine;
-import racing.domain.dto.CarDto;
+import racing.dto.CarDto;
 import racing.view.InputView;
 import racing.view.OutputView;
 
