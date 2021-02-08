@@ -3,8 +3,11 @@ package racingcar;
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
-    private final CarName carName;
     private static final int CONDITION = 4;
+    private static final String BAR = "-";
+    private static final String COLON = " : ";
+
+    private final CarName carName;
     private int position = 0;
 
     public Car(CarName carName) {
@@ -13,7 +16,7 @@ public class Car implements Comparable<Car> {
 
     public void moveForwardByRandomNumber(int randomNumber) {
         if (randomNumber >= CONDITION) {
-            position += 1;
+            position++;
         }
     }
 
@@ -51,8 +54,8 @@ public class Car implements Comparable<Car> {
     public String toString() {
         StringBuilder positionBar = new StringBuilder();
         for (int i = 0; i < this.position; i++) {
-            positionBar.append("-");
+            positionBar.append(BAR);
         }
-        return this.carName.getCarName() + " : " + positionBar;
+        return this.carName.getCarName() + COLON + positionBar;
     }
 }
