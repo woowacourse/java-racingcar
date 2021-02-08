@@ -1,5 +1,8 @@
 package racingcar.model;
 
+import racingcar.utils.RandomUtils;
+import racingcar.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,6 +14,7 @@ public class Cars {
     private static final int NO_DUPLICATE = 0;
 
     private final List<Car> carsInGame = new ArrayList<>();
+    private int maxDistance;
 
     public Cars(String[] carNames) {
         this(carNames, new int[carNames.length]);
@@ -45,11 +49,15 @@ public class Cars {
         }
     }
 
-    public List<Car> getCars() {
-        return carsInGame;
+    public void singleMove() {
+        for (Car car : carsInGame) {
+            maxDistance = Math.max(car.move(RandomUtils.generateRandomNumber()), maxDistance);
+            OutputView.printCarInformation(car);
+        }
+        OutputView.printNewLine();
     }
 
-    public String getWinner(final int maxDistance) {
+    public String getWinner() {
         ArrayList<String> winners = new ArrayList<String>();
         carsInGame.stream()
                 .filter(it -> it.isWinner(maxDistance))
