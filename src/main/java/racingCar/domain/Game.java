@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private static final int MINIMUM_VALUE = 0;
-    private static final int MAXIMUM_VALUE = 9;
-
     private Cars cars;
     private int raceCount;
 
@@ -20,7 +17,7 @@ public class Game {
 
     public void race() {
         for (Car car : cars.getCars()) {
-            int number = RandomUtils.nextInt(MINIMUM_VALUE, MAXIMUM_VALUE);
+            int number = RandomUtils.getRandomNumber();
             car.move(number);
         }
         raceCount--;
