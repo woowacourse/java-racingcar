@@ -3,6 +3,7 @@ package racingcar.domain.car;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -40,11 +41,19 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("총합테스트")
+    @DisplayName("예외처리 총합테스트")
     void carNames_연속된_쉼표_예외처리() {
         assertThatThrownBy(() -> Cars.enrollCarsWithNames(",")).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> Cars.enrollCarsWithNames(" ")).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> Cars.enrollCarsWithNames(" , ")).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> Cars.enrollCarsWithNames(", ,  ,")).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("우승자 생성 확인")
+    void winners_make() {
+        AssertionsForClassTypes.assertThat(
+            Cars.enrollCarsWithNames("1,2,3").getWinners().size())
+            .isEqualTo(3);
     }
 }

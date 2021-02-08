@@ -18,4 +18,7 @@ public class Position {
         return position.toString();
     }
 
+    public boolean isWinner(int maxPosition) {
+        return position.length() == maxPosition;
+    }
 }

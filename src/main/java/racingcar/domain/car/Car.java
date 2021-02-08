@@ -12,8 +12,12 @@ public class Car {
         this.gasTank = new GasTank();
     }
 
-    static Car enrollWithName(final String name){
+    static Car enrollWithName(final String name) {
         return new Car(name);
+    }
+
+    public void fillUpGas(final int gas) {
+        gasTank.fillUpGas(gas);
     }
 
     public void forward() {
@@ -30,4 +34,7 @@ public class Car {
         return position.toString();
     }
 
+    public boolean isWinner(int maxPosition) {
+        return position.isWinner(maxPosition);
+    }
 }

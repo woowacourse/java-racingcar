@@ -19,6 +19,11 @@ public class CarTest {
     @DisplayName("자동차 전진 구현")
     void car_move() {
         Car car1 = Car.enrollWithName("샐리");
+        car1.fillUpGas(4);
+        car1.forward();
+        assertThat(car1.getPosition().length()).isEqualTo(1);
+
+        car1.fillUpGas(3);
         car1.forward();
         assertThat(car1.getPosition().length()).isEqualTo(1);
     }

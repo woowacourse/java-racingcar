@@ -9,9 +9,16 @@ public class Name {
     private final String name;
 
     Name(final String name) {
+        validateNull(name);
         validateBlank(name);
         validateLength(name);
         this.name = name;
+    }
+
+    private void validateNull(final String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("잘못된 입력입니다.");
+        }
     }
 
     private void validateBlank(final String name) {
