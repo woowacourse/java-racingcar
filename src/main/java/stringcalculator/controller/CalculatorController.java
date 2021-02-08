@@ -14,6 +14,8 @@ public class CalculatorController {
     private static final Pattern PATTERN = Pattern.compile(CUSTOM_DELIMITER_PATTERN);
     private static final int ZERO = 0;
     private static final String DELIMITER_SEPARATOR = "|";
+    private static final int DELIMITER_INDEX = 1;
+    private static final int NUMBERS_INDEX = 2;
     private static final String COMMA = ",";
     private static final String COLON = ":";
 
@@ -52,13 +54,12 @@ public class CalculatorController {
     }
 
     public String getCustomDelimiter(String input) {
-        final int delimiterIndex = 1;
         String customDelimiter = "";
 
         Matcher m = PATTERN.matcher(input);
 
         if (m.find()) {
-            customDelimiter = m.group(delimiterIndex);
+            customDelimiter = m.group(DELIMITER_INDEX);
             isValidDelimiter(customDelimiter);
         }
 
@@ -72,12 +73,10 @@ public class CalculatorController {
     }
 
     public String getNumbers(String input) {
-        final int numbersIndex = 2;
-
         Matcher m = PATTERN.matcher(input);
 
         if (m.find()) {
-            return m.group(numbersIndex);
+            return m.group(NUMBERS_INDEX);
         }
         return input;
     }
