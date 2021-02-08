@@ -24,7 +24,6 @@ public class CarController {
 
     private void init() {
         cars = Cars.createCars(InputView.getCarNames());
-        OutputView.printInputAttemptNumberMessage();
-        attemptNumber = new AttemptNumber(InputView.getAttemptNumber());
+        attemptNumber = InputView.getAttemptNumber();
     }
 }

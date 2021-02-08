@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import racingcar.domain.AttemptNumber;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -13,10 +15,11 @@ public class InputView {
         return SCANNER.nextLine();
     }
 
-    public static int getAttemptNumber() {
+    public static AttemptNumber getAttemptNumber() {
         try {
+            OutputView.printInputAttemptNumberMessage();
             int attemptNumber = SCANNER.nextInt();
-            return attemptNumber;
+            return new AttemptNumber(attemptNumber);
         } catch (Exception e) {
             throw new IllegalArgumentException(INCORRECT_NUMBER_ERROR);
         }
