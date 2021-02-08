@@ -34,7 +34,7 @@ class CarServiceTest {
         List<Integer> randoms = Arrays.stream(new int[numberOfCars])
                 .boxed()
                 .collect(Collectors.toList());
-        List<String> carNames = new ArrayList();
+        List<String> carNames = new ArrayList<>();
 
         for (int i = 0; i < numberOfMovableCar; i++) {
             randoms.set(i, Digit.MOVEMENT_CRITERION.getDigit());

@@ -23,7 +23,7 @@ public class CarService {
     }
 
     private List<Integer> getRandoms(List<Car> cars) {
-        List<Integer> randoms = new ArrayList();
+        List<Integer> randoms = new ArrayList<>();
 
         for (int i = 0; i < cars.size(); i++) {
             int random = RandomUtils.nextInt(Digit.MINIMUM_RANDOM_VALUE.getDigit(),
