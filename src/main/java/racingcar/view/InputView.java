@@ -11,7 +11,7 @@ public class InputView {
         try {
             String[] carNames = userInput.split(",");
             return makeCars(carNames);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getUserCarInput(scanner);
         }
@@ -26,7 +26,7 @@ public class InputView {
         String userInput = scanner.nextLine();
         try {
             return validatePositive(Integer.parseInt(userInput));
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage("[Error] 횟수는 자연수여야 합니다.\n");
             return getUserTrialNumberInput(scanner);
         }
