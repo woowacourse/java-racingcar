@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.*;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +20,17 @@ public class RacingController {
     }
 
     public void start() {
-        new CarRacingGameEngine(createCar(), applyRaceTime()).race();
+        CarRacingGameEngine carRacingGameEngine = new CarRacingGameEngine(createCar());
+        int raceTime = applyRaceTime();
+
+        showRaceResult();
+
+        for (int i = 0; i < raceTime; i++) {
+            carRacingGameEngine.race();
+            showRaceState(CarRepository.cars());
+        }
+
+        showRaceWinner();
     }
 
     private List<Car> createCar() {
@@ -32,5 +43,24 @@ public class RacingController {
         String inputTryTime = InputView.inputRaceTime(scanner);
 
         return racingTimeRegister.registerRacingTime(inputTryTime);
+    }
+
+    private void showRaceResult() {
+        OutputView.printRaceResult();
+    }
+
+    private void showRaceState(List<Car> cars) {
+        showAllCarsPosition(cars);
+        OutputView.printNewLine();
+    }
+
+    private void showAllCarsPosition(List<Car> cars) {
+        cars.forEach(car ->
+                OutputView.printRaceResultEachCar(
+                        car.getName(), car.getPosition()));
+    }
+
+    private void showRaceWinner() {
+        OutputView.printWinner(CarRepository.winnerNames());
     }
 }
