@@ -13,6 +13,8 @@ public class GameSetter {
     private static final Integer MIN_TRIAL = 1;
     private static final Integer MAX_TRIAL = Integer.MAX_VALUE;
     private static final int MIN_CARS_LENGTH = 2;
+    private static final String numberPattern = "[0-9]+";
+
 
     private GameSetter() {
     }
@@ -52,7 +54,6 @@ public class GameSetter {
     }
 
     private static void validateNumber(String input) {
-        String numberPattern = "[0-9]+";
         if (!Pattern.matches(numberPattern, input)) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
         }
