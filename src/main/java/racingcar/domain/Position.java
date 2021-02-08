@@ -16,6 +16,14 @@ public class Position {
     }
 
     public boolean isSame(Position position) {
-        return this.position == position.getPosition();
+        return this.position == getCurrentPosition(position);
+    }
+
+    public int comparePosition(Position position) {
+        return Integer.compare(this.position, getCurrentPosition(position));
+    }
+
+    public int getCurrentPosition(Position position) {
+        return position.position;
     }
 }
