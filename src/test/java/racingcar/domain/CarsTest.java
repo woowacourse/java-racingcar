@@ -16,7 +16,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static racingcar.domain.Cars.DUPLICATE_NAME_ERROR_MESSAGE;
 
 class CarsTest {
-    private static final List<String> defaultCarNames = Arrays.asList("포비", "웨지", "삭정");
+    private static final int MOVABLE_NUMBER_FOR_TEST = 5;
 
     @DisplayName("중복되는 차 이름이 들어왔을 때 예외 반환 하는지")
     @Test
@@ -29,8 +29,9 @@ class CarsTest {
     @DisplayName("우승자 제대로 가려내는지 테스트")
     @ParameterizedTest
     @MethodSource("provideRaceWinnerCases")
-    void findWinners_proceedRacingAccordingToGivenWinnerNames_returnExpectedWinners(List<String> carNames, List<String> expectedWinnerNames) {
-        Cars cars = proceedRaceAccordingToWinnerNames(new Cars(carNames), expectedWinnerNames);
+    void findWinners_proceedRacingAccordingToGivenWinnerNames_returnExpectedWinners(List<String> names, List<String> expectedWinnerNames) {
+        Cars cars = new Cars(names);
+        setWinnersAccordingToGivenWinnerNames(cars, expectedWinnerNames);
         WinnersDto winnersDto = new WinnersDto(cars.findWinners());
 
         List<String> winnerNames = winnersDto.getWinnerNames();
@@ -38,25 +39,25 @@ class CarsTest {
     }
 
     private static Stream<Arguments> provideRaceWinnerCases() {
+        List<String> carNamesForTest = Arrays.asList("포비", "웨지", "삭정");
+
         List<String> winnerNames1 = Arrays.asList("포비");
         List<String> winnerNames2 = Arrays.asList("웨지");
         List<String> winnerNames3 = Arrays.asList("포비", "웨지");
         List<String> winnerNames4 = Arrays.asList("포비", "웨지", "삭정");
 
         return Stream.of(
-                Arguments.of(defaultCarNames, winnerNames1),
-                Arguments.of(defaultCarNames, winnerNames2),
-                Arguments.of(defaultCarNames, winnerNames3),
-                Arguments.of(defaultCarNames, winnerNames4)
+                Arguments.of(carNamesForTest, winnerNames1),
+                Arguments.of(carNamesForTest, winnerNames2),
+                Arguments.of(carNamesForTest, winnerNames3),
+                Arguments.of(carNamesForTest, winnerNames4)
         );
     }
 
-    private static Cars proceedRaceAccordingToWinnerNames(Cars cars, List<String> winnerNames) {
+    private void setWinnersAccordingToGivenWinnerNames(Cars cars, List<String> winnerNames) {
         cars.getCars()
                 .stream()
                 .filter(car -> winnerNames.contains(car.getName()))
-                .forEach(car -> car.move(5));
-
-        return cars;
+                .forEach(car -> car.move(MOVABLE_NUMBER_FOR_TEST));
     }
 }
