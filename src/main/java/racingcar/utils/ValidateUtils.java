@@ -8,6 +8,9 @@ import racingcar.view.ErrorMessages;
 
 public class ValidateUtils {
 
+    private ValidateUtils(){
+    }
+
     public static void validateNames(List<Car> cars) {
         validateMaxNameLength(cars);
         validateNoName(cars);
