@@ -1,4 +1,4 @@
-package racingCar;
+package racingCar.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,14 +13,7 @@ class GameTest {
 
     @BeforeEach
     void setUp() {
-        game = new Game("car1,car2", 5);
-        game.run();
-    }
-
-    @Test
-    @DisplayName("올바른 길이의 막대가 생성되는지 테스트")
-    void bar() {
-        assertThat(game.bar(3)).isEqualTo("---");
+        game = new Game("car1,car2", 1);
     }
 
     @Test
@@ -30,5 +23,13 @@ class GameTest {
         List<Car> cars = game.makeCars(carNames);
         assertThat(cars.get(0).getName()).isEqualTo("car1");
         assertThat(cars.get(1).getName()).isEqualTo("car2");
+    }
+
+    @Test
+    @DisplayName("시도 횟수가 감소하는지 테스트")
+    void hasRaceCount() {
+        assertThat(game.hasRaceCount()).isTrue();
+        game.race();
+        assertThat(game.hasRaceCount()).isFalse();
     }
 }
