@@ -30,8 +30,7 @@ public class CarTest {
 
     @DisplayName("유효하지 않은 Car 객체 생성시 에러가 발생한다")
     @ParameterizedTest
-    @NullAndEmptySource
-    @ValueSource(strings = {"abcdef", "ab.de", "   "})
+    @ValueSource(strings = {"abcdef", "ab.de", "   ", ""})
     void Car_유효하지_않은_이름_예외가_발생한다(String name) {
         assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
     }

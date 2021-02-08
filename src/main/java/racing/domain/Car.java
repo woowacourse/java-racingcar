@@ -13,18 +13,19 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        this.name = name;
+        String copy = new String(name);
+        validateName(copy);
+        this.name = copy;
         this.position = DEFAULT_POSITION;
-        validateName();
     }
 
-    private void validateName() {
-        if (Objects.isNull(this.name)) {
+    private void validateName(String name) {
+        if (Objects.isNull(name)) {
             throw new IllegalArgumentException("자동차 이름을 입력해주세요");
         }
-        Matcher matcher = PATTERN.matcher(this.name);
+        Matcher matcher = PATTERN.matcher(name);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException(String.format("%s는 유효하지 않은 이름입니다. 영어 대소문자만 입력해주세요.", this.name));
+            throw new IllegalArgumentException(String.format("%s는 유효하지 않은 이름입니다. 영어 대소문자만 입력해주세요.", name));
         }
     }
 
