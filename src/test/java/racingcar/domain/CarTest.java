@@ -9,20 +9,29 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.dto.CarDto;
 
 public class CarTest {
-    @DisplayName("정상적인 이름이 들어왔을 떄 Car가 잘 생성 되는지")
+    @DisplayName("정상적인 이름이 들어왔을 떄 Car가 잘 생성되는지")
     @Test
     void carConstructor_properName_createCar() {
         String name = "포비";
         Car car = new Car(name);
 
         assertThat(car).isInstanceOf(Car.class);
+        assertThat(car.getName()).isEqualTo(name);
+        assertThat(car.getPosition()).isEqualTo(INIT_POSITION);
+    }
 
-        CarDto carDto = new CarDto(car);
-        assertThat(carDto.getName()).isEqualTo(name);
-        assertThat(carDto.getPosition()).isEqualTo(INIT_POSITION);
+    @DisplayName("적합한 이름과 포지션이 둘다 주어졌을떄 Car가 잘 생성되는지")
+    @Test
+    void carConstructor_properNameAndPosition_createCar() {
+        String name = "데이브";
+        int position = 4;
+        Car car = new Car(name, position);
+
+        assertThat(car).isInstanceOf(Car.class);
+        assertThat(car.getName()).isEqualTo(name);
+        assertThat(car.getPosition()).isEqualTo(position);
     }
 
     @DisplayName("이름에 공백이 있을 때 에러를 반환 하는지")

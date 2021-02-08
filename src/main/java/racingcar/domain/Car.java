@@ -12,8 +12,6 @@ public class Car {
     private int position;
     private final String name;
 
-    //TODO
-    // 새로운 생성자 테스트
     public Car(String name) {
         this(name, INIT_POSITION);
     }
