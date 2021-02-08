@@ -26,7 +26,6 @@ public class OutputView {
 
     public static void printCars(List<Car> cars) {
         cars.forEach(OutputView::printCurrentPosition);
-        System.out.println(System.lineSeparator());
     }
 
     public static void printWinners(String winners) {

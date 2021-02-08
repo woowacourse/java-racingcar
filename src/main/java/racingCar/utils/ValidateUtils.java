@@ -13,11 +13,12 @@ public class ValidateUtils {
     public static final String ERROR_MESSAGE_CAR_NAME_NULL_OR_EMPTY = "자동차 이름은 공백이 안됩니다.";
     public static final String ERROR_MESSAGE_ROUND_COUNT_NATURAL_NUMBER = "시도횟수는 자연수이어야 합니다.";
 
-    public static void validateCarNames(String[] carNames) {
+    public static String[] validateCarNames(String[] carNames) {
         validateNumOfCarNames(carNames);
         for (String carName : carNames) {
             validateCarName(carName);
         }
+        return carNames;
     }
 
     private static void validateNumOfCarNames(String[] carNames) {
@@ -45,9 +46,10 @@ public class ValidateUtils {
         throw new InvalidCarNameException(ERROR_MESSAGE_CAR_NAME_NULL_OR_EMPTY);
     }
 
-    public static void validateRacingRoundCount(String input) {
+    public static int validateRacingRoundCount(String input) {
         int count = validateInteger(input);
         validateNotNegative(count);
+        return count;
     }
 
     private static void validateNotNegative(int count) {

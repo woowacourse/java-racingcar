@@ -9,14 +9,16 @@ import racingCar.view.OutputView;
 public class GameController {
 
     private final InputView inputView;
+    private int numOfRacingRound;
+    private String[] cars;
 
     public GameController(Scanner scanner) {
         inputView = new InputView(scanner);
     }
 
     public void play() {
-        String[] cars = inputCarNames();
-        int numOfRacingRound = inputRacingRound();
+        inputCarNames();
+        inputRacingRound();
         RacingGame racingGame = new RacingGame(cars, numOfRacingRound);
         while (!racingGame.isEnd()) {
             racingGame.race();
@@ -25,27 +27,22 @@ public class GameController {
         OutputView.printWinners(racingGame.getWinners());
     }
 
-    private int inputRacingRound() {
-        OutputView.printInputNumOfRoundMessage();
-        String input = inputView.inputValue();
+    private void inputRacingRound() {
         try {
-            ValidateUtils.validateRacingRoundCount(input);
+            OutputView.printInputNumOfRoundMessage();
+            numOfRacingRound = ValidateUtils.validateRacingRoundCount(inputView.inputValue());
         } catch (RuntimeException e) {
             OutputView.printExceptionMessage(e);
             inputRacingRound();
         }
-        return Integer.parseInt(input);
     }
 
-    private String[] inputCarNames() {
-        OutputView.printInputCarNameMessage();
-        String[] inputs = inputView.inputCarNames();
+    private void inputCarNames(){
         try {
-            ValidateUtils.validateCarNames(inputs);
+            OutputView.printInputCarNameMessage();
+            cars = ValidateUtils.validateCarNames(inputView.inputCarNames());
         } catch (RuntimeException e) {
             OutputView.printExceptionMessage(e);
-            inputCarNames();
         }
-        return inputs;
     }
 }
