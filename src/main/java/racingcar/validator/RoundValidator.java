@@ -10,7 +10,7 @@ public class RoundValidator {
         validateRoundCount(Integer.parseInt(inputCount));
     }
 
-    public static void validateInteger(String inputCount) {
+    private static void validateInteger(String inputCount) {
         try {
             Integer.parseInt(inputCount);
         }catch (NumberFormatException ne) {
@@ -18,7 +18,7 @@ public class RoundValidator {
         }
     }
 
-    public static void validateRoundCount(int count) {
+    private static void validateRoundCount(int count) {
         if (count < MIN_COUNT_SIZE) {
             throw new IllegalArgumentException("시도할 횟수는 1이상 이어야 합니다.");
         }
