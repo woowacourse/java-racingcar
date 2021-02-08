@@ -29,12 +29,10 @@ public class Car {
         }
     }
 
-    public boolean move() {
-        boolean isMovable = movingStrategy.isMovable();
-        if (isMovable) {
+    public void move() {
+        if (movingStrategy.isMovable()) {
             this.position++;
         }
-        return isMovable;
     }
 
     public boolean isSamePosition(Car target) {

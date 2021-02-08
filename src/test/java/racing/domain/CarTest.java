@@ -41,10 +41,9 @@ class CarTest {
         MovingStrategy alwaysMovingStrategy = () -> true;
         Car car = new Car("dummy", alwaysMovingStrategy);
 
-        boolean isMoved = car.move();
+        car.move();
         int position = car.getPosition();
 
-        assertThat(isMoved).isTrue();
         assertThat(position).isEqualTo(1);
     }
 
@@ -54,10 +53,8 @@ class CarTest {
         MovingStrategy neverMovingStrategy = () -> false;
         Car car = new Car("dummy", neverMovingStrategy);
 
-        boolean isMoved = car.move();
         int position = car.getPosition();
 
-        assertThat(isMoved).isFalse();
         assertThat(position).isZero();
     }
 
