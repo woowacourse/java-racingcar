@@ -4,7 +4,6 @@ import racingcar.domain.car.CarName;
 import racingcar.domain.car.CarState;
 import racingcar.domain.car.CarStates;
 import racingcar.domain.game.ExecutionResult;
-import racingcar.domain.game.Winners;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,8 +60,8 @@ public class OutputView {
         return String.valueOf(new char[position]).replace("\0", POINTER);
     }
 
-    public static void printWinners(Winners winners) {
-        List<String> winnerNames = winners.getWinners().stream()
+    public static void printWinners(List<CarName> winners) {
+        List<String> winnerNames = winners.stream()
                 .map(CarName::toString)
                 .collect(Collectors.toList());
 
