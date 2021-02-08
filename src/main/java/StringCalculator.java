@@ -6,7 +6,7 @@ public class StringCalculator {
     private static final String PRE_DELIMITER = "[,:";
     private static final String END_DELIMITER = "]";
     private static final int BLANK = 0;
-    private static final Pattern NUMBERS = Pattern.compile("^[0-9]*$");
+    private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
 
     public static int calculate(String input) {
@@ -34,7 +34,7 @@ public class StringCalculator {
 
     public static void exceptionHandler(String[] input) {
         Arrays.stream(input)
-                .filter(number -> !NUMBERS.matcher(number).matches())
+                .filter(number -> !NUMBER_PATTERN.matcher(number).matches())
                 .findAny()
                 .ifPresent(s -> {
                     throw new RuntimeException();
