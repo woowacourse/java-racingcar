@@ -9,28 +9,22 @@ public class Winners {
     }
 
     private static List<Car> winners = new ArrayList<>();
-    private static int winnerPosition;
 
-    public static void allocateWinners(List<Car> cars) {
-        setWinnerPosition(cars);
-        for (Car car : cars) {
-            allocateWinner(car);
+    public static void allocateWinners() {
+        Car maxPositionCar = Cars.getMaxPositionCar();
+        for (Car car : Cars.getCars()) {
+            allocateWinner(car, maxPositionCar);
         }
     }
 
     public static List<String> getWinnersNames() {
         return winners.stream()
-                .map(Car::getName).collect(Collectors.toList());
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
-    private static void setWinnerPosition(List<Car> cars) {
-        for (Car car : cars) {
-            winnerPosition = Math.max(winnerPosition, car.getPosition());
-        }
-    }
-
-    private static void allocateWinner(Car car) {
-        if (car.isMaxPosition(winnerPosition)) {
+    private static void allocateWinner(Car car, Car maxPositionCar) {
+        if (car.isMaxPosition(maxPositionCar)) {
             winners.add(car);
         }
     }

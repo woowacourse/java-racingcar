@@ -42,6 +42,6 @@ public class RacingCar {
     }
 
     private static void selectWinners() {
-        Winners.allocateWinners(Cars.getCars());
+        Winners.allocateWinners();
     }
 }
