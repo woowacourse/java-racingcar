@@ -16,7 +16,7 @@ public class RandomMoveCondition implements MoveCondition {
 
     @Override
     public boolean isMovable() {
-        int randomNumber = randomUtils.generate();
+        int randomNumber = randomUtils.generate(MAXIMUM_BOUND);
 
         validateTRandomNumberBound(randomNumber);
 

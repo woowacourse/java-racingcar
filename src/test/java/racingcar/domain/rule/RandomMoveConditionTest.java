@@ -14,7 +14,7 @@ public class RandomMoveConditionTest {
     public void 전진조건이_0_9_사이의_값이_아닌_경우_예외(int condition) {
         assertThatExceptionOfType(MoveConditionOutOfBoundException.class)
                 .isThrownBy(
-                        () -> new RandomMoveCondition(() -> condition).isMovable()
+                        () -> new RandomMoveCondition(bound -> condition).isMovable()
                 ).withMessageContaining(new MoveConditionOutOfBoundException().getMessage());
     }
 }
