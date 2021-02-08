@@ -41,4 +41,8 @@ public class Car {
         }
         return sb.toString();
     }
+
+    public boolean isMaxPosition(int maxPosition) {
+        return position == maxPosition;
+    }
 }
