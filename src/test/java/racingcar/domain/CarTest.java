@@ -23,7 +23,10 @@ class CarTest {
   @CsvSource(value = {MIN_RUNNABLE_FUEL + ":1", MIN_RUNNABLE_FUEL - 1 + ":0"}, delimiter = ':')
   @DisplayName("최소 달릴 수 있는 연료를 차에 주입했을 때 1 만큼 전진을 하였는 지 확인")
   void run(int fuel, int expected) {
+    //when
     car.run(fuel);
+
+    //then
     assertThat(car.position()).isEqualTo(expected);
   }
 
