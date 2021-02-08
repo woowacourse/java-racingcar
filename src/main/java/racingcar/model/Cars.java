@@ -10,7 +10,7 @@ public class Cars {
     private static final int NO_CARS_IN_GAME = 0;
     private static final int NO_DUPLICATE = 0;
 
-    private ArrayList<Car> carsInGame = new ArrayList<Car>();
+    private final List<Car> carsInGame = new ArrayList<>();
 
     public Cars(String[] carNames) {
         this(carNames, new int[carNames.length]);
@@ -45,7 +45,7 @@ public class Cars {
         }
     }
 
-    public ArrayList<Car> getCars() {
+    public List<Car> getCars() {
         return carsInGame;
     }
 

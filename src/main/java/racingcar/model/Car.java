@@ -4,7 +4,7 @@ public class Car {
     private static final int MOVE_POINT_NUMBER = 4;
     private static final int NAME_LEN = 5;
 
-    private String name;
+    private final String name;
     private int distance;
     private StringBuilder distanceIndicator = new StringBuilder();
     private String DASH = "-";
