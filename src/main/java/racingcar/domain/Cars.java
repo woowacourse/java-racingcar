@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import racingcar.view.OutputView;
@@ -29,35 +28,26 @@ public class Cars {
         OutputView.printNextLine();
     }
 
-    public String getWinners() {
-        HashMap<Integer, List<String>> carPositionHashMap = new HashMap<>();
-        int maxPosition = 0;
+    public List<String> getWinners() {
+        int maxPosition = findWinnerPosition();
+        List<String> winners = new ArrayList<>();
         for (Car car : cars) {
-            maxPosition = findWinnerPosition(car, carPositionHashMap, maxPosition);
+            addWinner(car, maxPosition, winners);
         }
-        List<String> winners = carPositionHashMap.get(maxPosition);
-        return getWinnerNames(winners);
+        return winners;
     }
 
-    private int findWinnerPosition(Car car, HashMap<Integer, List<String>> carPositionHashMap,
-        int maxPosition) {
-        if (!carPositionHashMap.containsKey(car.getPosition())) {
-            carPositionHashMap.put(car.getPosition(), new ArrayList<>());
-        }
-        carPositionHashMap.get(car.getPosition()).add(car.getName());
-        if (maxPosition < car.getPosition()) {
-            maxPosition = car.getPosition();
+    private int findWinnerPosition() {
+        int maxPosition = 0;
+        for (Car car : cars) {
+            maxPosition = Math.max(maxPosition, car.getPosition());
         }
         return maxPosition;
     }
 
-    private String getWinnerNames(List<String> winners) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(winners.get(0));
-        for (int i = 1; i < winners.size(); i++) {
-            sb.append(", ");
-            sb.append(winners.get(i));
+    private void addWinner(Car car, int maxPosition, List<String> winners) {
+        if (maxPosition == car.getPosition()) {
+            winners.add(car.getName());
         }
-        return sb.toString();
     }
 }
