@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
+  private static final int DEFAULT_POSITION = 0;
   private final List<Car> cars;
 
   public Participants() {
@@ -31,7 +32,7 @@ public class Participants {
     return cars().stream()
         .mapToInt(Car::position)
         .max()
-        .getAsInt();
+        .orElse(DEFAULT_POSITION);
   }
 
   public List<Car> cars() {
