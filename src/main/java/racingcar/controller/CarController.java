@@ -20,6 +20,11 @@ public class CarController {
     }
 
     private void init() {
+        getCarNames();
+        getAttemptNumber();
+    }
+
+    private void getCarNames() {
         List<Car> carList = new ArrayList<>();
         OutputView.printInputCarNamesMessage();
         String carNames = InputView.getCarNames();
@@ -28,6 +33,9 @@ public class CarController {
             carList.add(new Car(carName));
         }
         cars = new Cars(carList);
+    }
+
+    private void getAttemptNumber() {
         OutputView.printInputAttemptNumberMessage();
         attemptNumber = new AttemptNumber(InputView.getAttemptNumber());
     }
