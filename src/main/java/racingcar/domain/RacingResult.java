@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.List;
-
 public class RacingResult {
 
   private static final String ENTER = System.lineSeparator();
