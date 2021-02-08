@@ -8,6 +8,7 @@ public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static String getCarNames() {
+        OutputView.printInputCarNamesMessage();
         return SCANNER.nextLine();
     }
 
