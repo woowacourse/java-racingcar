@@ -35,8 +35,7 @@ public class Car {
         return position == maxDistance;
     }
 
-    @Override
-    public String toString() {
+    public String formatSingleRoundInformation() {
         StringBuilder visualPosition = new StringBuilder();
         while (visualPosition.length() < position) {
             visualPosition.append(SINGLE_VISUAL_POSITION);
