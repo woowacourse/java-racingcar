@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-public class Name {
+public class Racer {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String EMPTY = " ";
     private static final String EMPTY_ERR_MSG = ERROR_PREFIX + "이름으로 공백을 입력할 수 없습니다.";
@@ -12,7 +12,7 @@ public class Name {
 
     private final String name;
 
-    public Name(String name) {
+    public Racer(String name) {
         checkNameValidation(name);
         this.name = name;
     }
@@ -43,11 +43,11 @@ public class Name {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Name)) {
+        if (!(o instanceof Racer)) {
             return false;
         }
-        Name newName = (Name) o;
-        return name.equals(newName.name);
+        Racer newRacer = (Racer) o;
+        return name.equals(newRacer.name);
     }
 
     @Override

@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(Names names) {
-        this.cars = generateCars(names);
+    public Cars(Racers racers) {
+        this.cars = generateCars(racers);
     }
 
-    private List<Car> generateCars(Names names) {
-        return names.getNames().stream()
+    private List<Car> generateCars(Racers racers) {
+        return racers.getNames().stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }

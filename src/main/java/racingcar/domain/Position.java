@@ -15,7 +15,7 @@ public class Position {
         this.position++;
     }
 
-    public boolean isSame(int position) {
-        return this.position == position;
+    public boolean isSame(Position position) {
+        return this.position == position.getPosition();
     }
 }

@@ -3,16 +3,16 @@ package racingcar.domain;
 public class Car implements Comparable<Car> {
     private static final int MOVING_BASELINE = 4;
 
-    private final Name name;
+    private final Racer racer;
     private final Position position;
 
-    public Car(Name name) {
-        this.name = name;
+    public Car(Racer racer) {
+        this.racer = racer;
         this.position = new Position(0);
     }
 
-    public String getName() {
-        return this.name.getName();
+    public Racer getRacer() {
+        return racer;
     }
 
     public void movePosition(int value) {
@@ -21,8 +21,8 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public int getPosition() {
-        return position.getPosition();
+    public Position getPosition() {
+        return position;
     }
 
     public boolean hasSamePositionWith(Car car) {

@@ -11,7 +11,7 @@ public class CarsTest {
     @Test
     void maxPositionCar() {
         String carsName = "pobi, jun, aaa";
-        Cars cars = new Cars(new Names(carsName));
+        Cars cars = new Cars(new Racers(carsName));
         List<Car> carList = cars.getCars();
 
         carList.get(0).movePosition(5);

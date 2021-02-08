@@ -2,7 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.Names;
+import racingcar.domain.Racers;
 import racingcar.domain.Trial;
 import racingcar.utils.RandomUtils;
 import racingcar.view.InputView;
@@ -25,9 +25,9 @@ public class RacingController {
     }
 
     private Cars generateCars() {
-        OutputView.enterCarNames();
-        Names names = InputView.getNames();
-        return new Cars(names);
+        OutputView.enterRacerNames();
+        Racers racers = InputView.getRacerNames();
+        return new Cars(racers);
     }
 
     private Trial setTrial() {

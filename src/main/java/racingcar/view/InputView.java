@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.domain.Names;
+import racingcar.domain.Racers;
 import racingcar.domain.Trial;
 
 import java.util.Scanner;
@@ -11,9 +11,9 @@ public class InputView {
     private InputView() {
     }
 
-    public static Names getNames() {
+    public static Racers getRacerNames() {
         String names = scanner.nextLine();
-        return new Names(names);
+        return new Racers(names);
     }
 
     public static Trial getTrial() {
