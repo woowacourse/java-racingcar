@@ -3,9 +3,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    static String pre_delimiter = "[,:";
-    static String end_delimiter = "]";
-    static int BLANK = 0;
+    private static String pre_delimiter = "[,:";
+    private static String end_delimiter = "]";
+    private static int BLANK = 0;
+    private static final Pattern TEXT_PATTERN = Pattern.compile("^[0-9]*$");
+    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
 
     public static int calculate(String input) {
         if (isBlank(input)) {
@@ -31,9 +33,8 @@ public class StringCalculator {
     }
 
     public static void exceptionHandler(String[] input) {
-        String pattern = "^[0-9]*$";
         Arrays.stream(input)
-                .filter(number -> !Pattern.matches(pattern, number))
+                .filter(number -> !TEXT_PATTERN.matcher(number).matches())
                 .findAny()
                 .ifPresent(s -> {
                     throw new RuntimeException();
@@ -41,7 +42,7 @@ public class StringCalculator {
     }
 
     public static String[] splitInput(String input) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        Matcher m = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if (m.find()) {
             String customDelimiter = m.group(1);
             String number = m.group(2);
