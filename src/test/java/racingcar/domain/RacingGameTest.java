@@ -11,13 +11,14 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class RacingGameTest {
-    private final int numberOfRounds = 5;
+    private static final int NUMBER_OF_ROUNDS = 5;
+
     private RacingGame racingGame;
     private final List<String> carNamesForTest = Arrays.asList("똘이","멍이","순이");
 
     @BeforeEach
     void setUp(){
-        this.racingGame = new RacingGame(new Cars(carNamesForTest), numberOfRounds);
+        this.racingGame = new RacingGame(new Cars(carNamesForTest), NUMBER_OF_ROUNDS);
     }
 
     @DisplayName("주어진 이름대로 자동차 생성되는지 테스트")

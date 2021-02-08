@@ -32,7 +32,7 @@ class RacingGameControllerTest {
         System.setIn(in);
         scanner = new Scanner(System.in);
 
-        assertThat(isRacingGameControlSuccessful(new RacingGameController())).isTrue();
+        assertThat(isControllerRunningSuccessfully(new RacingGameController())).isTrue();
     }
 
     @DisplayName("잘못된 인풋이 주어 졌을 때 에러를 반환하는지")
@@ -43,7 +43,7 @@ class RacingGameControllerTest {
         System.setIn(in);
         scanner = new Scanner(System.in);
 
-        assertThat(isRacingGameControlSuccessful(new RacingGameController())).isFalse();
+        assertThat(isControllerRunningSuccessfully(new RacingGameController())).isFalse();
     }
 
     private static Stream<Arguments> provideNameAndNumberOfRoundsInput() {
@@ -61,7 +61,7 @@ class RacingGameControllerTest {
         return new SequenceInputStream(Collections.enumeration(streams));
     }
 
-    private boolean isRacingGameControlSuccessful(RacingGameController racingGameController) {
+    private boolean isControllerRunningSuccessfully(RacingGameController racingGameController) {
         try {
             racingGameController.start(scanner);
             return true;
