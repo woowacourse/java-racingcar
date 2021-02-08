@@ -20,13 +20,6 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarServiceTest {
-    private CarService carService;
-
-    @BeforeEach
-    public void setUp() {
-        carService = new CarService();
-    }
-
     private static Stream<Arguments> initializeDecideMovableCar() {
         int numberOfCars = 4;
         int numberOfMovableCar = 2;
@@ -57,7 +50,7 @@ class CarServiceTest {
                 .filter(random -> random.compareTo(Digit.MOVEMENT_CRITERION.getDigit()) >= 0)
                 .count();
 
-        carService.decideMovableCar(cars, randoms);
+        cars.decideMovableCar(randoms);
 
         List<Car> carList = cars.getCars();
 
@@ -69,17 +62,21 @@ class CarServiceTest {
     }
 
     @DisplayName("자동차가 조건을 만족하면 전진 성공")
-    @Test
-    void moveIfPossible_자동차가_조건을_만족하면_전진() {
+    @ParameterizedTest
+    @MethodSource("initializeDecideMovableCar")
+    void moveIfPossible_자동차가_조건을_만족하면_전진(Cars cars) {
         int random = RandomUtils.nextInt(Digit.MINIMUM_RANDOM_VALUE.getDigit(),
                 Digit.MAXIMUM_RANDOM_VALUE.getDigit());
         int expectedPosition = 0;
+
         Car car = new Car("pobi");
 
         if (random >= Digit.MOVEMENT_CRITERION.getDigit()) {
             expectedPosition++;
         }
-        carService.moveIfPossible(car, random);
+
+        cars.moveIfPossible(car, random);
+
         assertThat(car.getPosition()).isEqualTo(expectedPosition);
     }
 }

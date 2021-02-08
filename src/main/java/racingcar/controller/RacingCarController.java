@@ -4,7 +4,6 @@ import racingcar.constant.Message;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Times;
-import racingcar.service.CarService;
 import racingcar.service.WinnerService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -16,12 +15,10 @@ import java.util.Scanner;
 
 public class RacingCarController {
     private final InputView inputView;
-    private final CarService carService;
     private final WinnerService winnerService;
 
     public RacingCarController(Scanner scanner) {
         this.inputView = new InputView(scanner);
-        this.carService = new CarService();
         this.winnerService = new WinnerService();
     }
 
@@ -50,14 +47,13 @@ public class RacingCarController {
 
     public void playUntilDone(Cars cars, Times times) {
         while (times.hasTurn()) {
-            carService.decideMovableCar(cars, Collections.EMPTY_LIST);
+            cars.decideMovableCar(Collections.EMPTY_LIST);
 
             List<Car> carList = cars.getCars();
             List<String> names = getNames(carList);
             List<StringBuilder> hyphens = getHyphens(carList);
 
             OutputView.printResult(names, hyphens);
-
             times.reduce();
         }
     }
