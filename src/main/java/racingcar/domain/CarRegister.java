@@ -4,6 +4,7 @@ import racingcar.exception.InvalidDuplicateCarNameException;
 import racingcar.exception.InvalidNumberOfRegisteredCarsException;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +38,7 @@ public class CarRegister {
     }
 
     private void validateDuplicateCarNames(List<String> carNames) {
-        if (carNames.stream().distinct().count() != carNames.size()) {
+        if (new HashSet<>(carNames).size() != carNames.size()) {
             throw new InvalidDuplicateCarNameException();
         }
     }
