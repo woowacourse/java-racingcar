@@ -4,6 +4,9 @@ import java.util.*;
 
 public class CarNameRepository {
     private static final int MINIMUM_CAR_AMOUNT = 2;
+    private static final String MINIMUM_CAR_AMOUNT_ERROR_MESSAGE = "자동차는 2대 이상이어야 합니다.";
+    private static final String CAR_DUPLICATION_ERROR_MESSAGE = "중복되는 자동차 이름이 있습니다.";
+
     private static final List<CarName> carNames = new ArrayList<>();
 
     private CarNameRepository() {
@@ -21,14 +24,14 @@ public class CarNameRepository {
 
     private static void validateNumberOfCar(List<String> carNamesInput) {
         if (carNamesInput.size() < MINIMUM_CAR_AMOUNT) {
-            throw new IllegalArgumentException("자동차는 2대 이상이어야 합니다.");
+            throw new IllegalArgumentException(MINIMUM_CAR_AMOUNT_ERROR_MESSAGE);
         }
     }
 
     private static void validateSameName(List<String> carNamesInput) {
         Set<String> uniqueCarNames = new HashSet<>(carNamesInput);
         if (uniqueCarNames.size() != carNamesInput.size()) {
-            throw new IllegalArgumentException("중복되는 자동차 이름이 있습니다.");
+            throw new IllegalArgumentException(CAR_DUPLICATION_ERROR_MESSAGE);
         }
     }
 }
