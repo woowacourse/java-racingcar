@@ -9,18 +9,18 @@ public class Car {
     private int position = 0;
 
     public Car(String name) {
-        isValidCarName(name);
+        validateCarName(name);
         this.name = name;
     }
 
-    public void tryToMove(int currentRPM) {
-        if (movementCheck(currentRPM)) {
+    public void tryToMove(int rpm) {
+        if (isMovable(rpm)) {
             move();
         }
     }
 
-    private boolean movementCheck(int currentRPM) {
-        return currentRPM > MOVABLE_MINIMUM_RPM;
+    private boolean isMovable(int rpm) {
+        return rpm > MOVABLE_MINIMUM_RPM;
     }
 
     private void move() {
@@ -35,7 +35,7 @@ public class Car {
         return position;
     }
 
-    private void isValidCarName(String name) {
+    private void validateCarName(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(
                 "자동차 이름은 " + MIN_NAME_LENGTH + "자 이상 " + MAX_NAME_LENGTH + "자 이하로 입력해주세요.");
