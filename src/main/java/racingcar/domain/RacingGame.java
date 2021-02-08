@@ -49,11 +49,9 @@ public class RacingGame {
     }
 
     private int findMaxMove() {
-        List<Integer> traces = cars.stream()
+        return cars.stream()
             .map(Car::getPosition)
-            .collect(Collectors.toList());
-        return traces.stream()
             .max(Integer::compare)
-            .orElseThrow(() -> new RuntimeException("no Winner"));
+            .orElseThrow(() -> new RuntimeException("No Winner"));
     }
 }
