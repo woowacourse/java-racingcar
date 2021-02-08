@@ -17,7 +17,7 @@ import static racingcar.domain.Cars.DUPLICATE_NAME_ERROR_MESSAGE;
 import static racingcar.domain.RacingGame.NOT_NUMBER_ERROR_MESSAGE;
 import static racingcar.domain.RacingGame.UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE;
 
-class InputViewTest {
+public class InputViewTest {
     private Scanner scanner;
 
     @DisplayName("name 입력 받을 떄 이름에 공백이 있는 것을 검증해주는지")
@@ -77,7 +77,7 @@ class InputViewTest {
                 .hasMessage(UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE);
     }
 
-    private InputStream generateUserInput(String input) {
+    public static InputStream generateUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }
 
