@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("Test split and substring for studying JUnit and AssertJ")
 public class StringTest {
@@ -28,13 +30,11 @@ public class StringTest {
     }
 
     @DisplayName("Test for StringIndexOutOfBoundException")
-    @Test
-    public void getChar() {
+    @ParameterizedTest
+    @ValueSource(ints = {-1})
+    public void getChar(int index) {
         String value = "abc";
-        int index = -1;
-
-        assertThatThrownBy(() -> {
-            assertThat(value.charAt(index)).isEqualTo('b');
-        }).isInstanceOf(StringIndexOutOfBoundsException.class);
+        assertThatThrownBy(() -> value.charAt(index))
+            .isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }
