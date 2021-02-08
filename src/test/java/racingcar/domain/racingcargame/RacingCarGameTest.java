@@ -5,14 +5,13 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.CarPosition;
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.util.RandomNumberGenerator;
+import racingcar.domain.car.FixedMovingStrategy;
 import racingcar.domain.trynumber.TryNumber;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 class RacingCarGameTest {
 
@@ -21,23 +20,18 @@ class RacingCarGameTest {
     void testExecute() {
         //given
         Cars cars = new Cars(Arrays.asList(new Car("benz"), new Car("test")));
-        TryNumber tryNumber = new TryNumber(2);
+        TryNumber tryNumber = new TryNumber(5);
+        FixedMovingStrategy fixedMovingStrategy = new FixedMovingStrategy(4);
 
         //when
         RacingCarGame racingCarGame = new RacingCarGame(cars, tryNumber);
-        List<Cars> runResult = racingCarGame.execute(new RandomNumberGenerator());
+        List<Cars> runResult = racingCarGame.execute(fixedMovingStrategy);
+        List<Car> playedCars = runResult.get(4).getCars();
 
         //then
-        Cars firstRunResult = runResult.get(0);
-        List<Car> firstRunResultCars = firstRunResult.getCars();
-        Cars secondRunResult = runResult.get(1);
-        List<Car> secondRunResultCars = secondRunResult.getCars();
-        assertAll(
-                () -> assertThat(firstRunResultCars.get(0).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(2),
-                () -> assertThat(firstRunResultCars.get(1).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(2),
-                () -> assertThat(secondRunResultCars.get(0).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(2),
-                () -> assertThat(secondRunResultCars.get(1).getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(2)
-        );
+        assertThat(playedCars.get(0).getPosition()).isEqualTo(5);
+        assertThat(playedCars.get(1).getPosition()).isEqualTo(5);
+
     }
 
     @DisplayName("우승자를 찾는 기능을 테스트한다")

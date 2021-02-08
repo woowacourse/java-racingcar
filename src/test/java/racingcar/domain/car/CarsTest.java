@@ -2,7 +2,7 @@ package racingcar.domain.car;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.car.util.RandomNumberGenerator;
+import racingcar.domain.car.util.RandomMovingStrategy;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,7 +59,7 @@ class CarsTest {
         Cars cars = new Cars(carGroup);
 
         //when
-        Cars movedCars = cars.play(new RandomNumberGenerator());
+        Cars movedCars = cars.play(new RandomMovingStrategy());
 
         //then
         List<Car> carsValue = movedCars.getCars();

@@ -59,9 +59,10 @@ class CarTest {
     void testMoveIfRandomNumberMoreThanStandard() {
         //given
         Car car = new Car("BENZ");
+        FixedMovingStrategy fixedMovingStrategy = new FixedMovingStrategy(4);
 
         //when
-        Car movedCar = car.move(4);
+        Car movedCar = car.move(fixedMovingStrategy);
 
         //then
         assertThat(movedCar.getPosition()).isEqualTo(1);
@@ -72,12 +73,13 @@ class CarTest {
     void testMoveIfRandomNumberUnderStandard() {
         //given
         Car car = new Car("BENZ");
+        FixedMovingStrategy fixedMovingStrategy = new FixedMovingStrategy(4);
 
         //when
-        Car unmovedCar = car.move(3);
+        Car unmovedCar = car.move(fixedMovingStrategy);
 
         //then
-        assertThat(unmovedCar.getPosition()).isEqualTo(0);
+        assertThat(unmovedCar.getPosition()).isEqualTo(1);
     }
 
     @DisplayName("car의 position이 특정 position과 일치하는지 판별하는 기능을 테스트한다")
