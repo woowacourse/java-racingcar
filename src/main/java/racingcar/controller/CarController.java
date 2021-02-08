@@ -1,14 +1,13 @@
 package racingcar.controller;
 
 import racingcar.domain.Cars;
-import racingcar.domain.CarMoveRule;
 import racingcar.view.OutputView;
 
 public class CarController {
     private Cars cars;
 
     void createCars(String[] names) {
-        this.cars = new Cars(names, new CarMoveRule());
+        this.cars = new Cars(names);
     }
 
     public void race(int time, OutputView outputView) {

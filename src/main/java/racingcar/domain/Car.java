@@ -6,18 +6,20 @@ public class Car {
 
     private String name;
     private int position;
+    private CarMoveRuleStrategy rule;
 
     public Car(String name) {
         this.name = name;
         this.position = 0;
+        this.rule = new CarMoveRule();
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void move(boolean isMoving) {
-        if (isMoving) {
+    public void move() {
+        if (rule.execute()) {
             position++;
         }
     }
