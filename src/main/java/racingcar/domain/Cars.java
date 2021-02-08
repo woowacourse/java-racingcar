@@ -4,7 +4,9 @@ import racingcar.utils.RandomUtils;
 import racingcar.validator.CarsValidator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
     private static final int MIN_RANDOM_RANGE = 0;
@@ -24,10 +26,7 @@ public class Cars {
 
     public static Cars of(String inputCarNames) {
         String[] carNames = inputCarNames.split(DELIMITER);
-        List<Car> cars = new ArrayList<>();
-        for (String name : carNames) {
-            cars.add(Car.of(name));
-        }
+        List<Car> cars = Arrays.stream(carNames).map(Car::of).collect(Collectors.toList());
         return new Cars(cars);
     }
 

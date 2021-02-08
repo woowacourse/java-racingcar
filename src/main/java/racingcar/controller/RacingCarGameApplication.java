@@ -5,8 +5,8 @@ import racingcar.domain.dto.GameManagerRequestDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class GameManagerController {
-    public void run() {
+public class RacingCarGameApplication {
+    public static void main(String[] args) {
         String carNames = InputView.inputCarNames();
         String roundCount = InputView.inputRoundCount();
         GameManagerRequestDto gameManagerRequestDto = new GameManagerRequestDto(carNames, roundCount);
