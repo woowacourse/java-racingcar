@@ -24,6 +24,7 @@ class WinnersTest {
     @Test
     void Winners_우승자가_한명도_없으면_에러가_발생한다() {
         assertThatThrownBy(() -> new Winners(new ArrayList<>()))
-                .isInstanceOf(IllegalStateException.class);
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("우승자는 1명 이상이어야 합니다");
     }
 }
