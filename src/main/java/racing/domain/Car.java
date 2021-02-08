@@ -20,11 +20,11 @@ public class Car {
 
     private void validateName() {
         if (Objects.isNull(this.name)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차 이름을 입력해주세요");
         }
         Matcher matcher = PATTERN.matcher(this.name);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format("%s는 유효하지 않은 이름입니다. 영어 대소문자만 입력해주세요.", this.name));
         }
     }
 
