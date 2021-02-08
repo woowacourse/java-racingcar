@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class CalculatorController {
-    private static final String PATTERN = "//(.)\\\\n(.*)";         // 정규표현식 \\ -> \ , 자바 리터럴 \\ -> \
+    private static final String PATTERN = "//(.)\\\\n(.*)";
     private static final int NULL_OR_EMPTY_RESULT = 0;
 
     private final InputView inputView;
