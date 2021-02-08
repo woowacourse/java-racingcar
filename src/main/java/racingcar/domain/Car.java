@@ -24,10 +24,7 @@ public class Car {
     }
 
     public boolean isSamePosition(int targetPosition) {
-        if (this.position == targetPosition) {
-            return true;
-        }
-        return false;
+        return this.position == targetPosition;
     }
 
     public String getName() {

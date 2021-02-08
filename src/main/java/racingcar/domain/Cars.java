@@ -31,7 +31,7 @@ public class Cars {
         return String.join(", ", winnerList);
     }
 
-    private static int findMaxPosition(List<Car> carList) {
+    private int findMaxPosition(List<Car> carList) {
         int maxPosition = 0;
         for (Car car : carList) {
             maxPosition = Math.max(maxPosition, car.getPosition());
