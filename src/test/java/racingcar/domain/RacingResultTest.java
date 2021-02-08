@@ -15,7 +15,7 @@ class RacingResultTest {
   @BeforeEach
   void init() {
     participants = new Participants("pobi", "sp");
-    racingResult = new RacingResult(participants);
+    racingResult = new RacingResult();
   }
 
   @Test
@@ -24,7 +24,7 @@ class RacingResultTest {
     participants.getCars().forEach(car -> {
       car.fillInFulAndRun(Car.MIN_RUNNABLE_FUEL);
     });
-    racingResult.appendLog();
+    racingResult.appendLog(participants);
     assertThat(racingResult.getLog()).isEqualTo(expectedLog);
   }
 
@@ -33,12 +33,12 @@ class RacingResultTest {
     String expectedLog = "pobi";
     List<Car> cars = participants.getCars();
     cars.get(0).fillInFulAndRun(Car.MIN_RUNNABLE_FUEL);
-    assertThat(racingResult.decideWinner()).isEqualTo(expectedLog);
+    assertThat(racingResult.decideWinner(participants)).isEqualTo(expectedLog);
   }
 
   @Test
   void getWinner_several_winner() {
     String expectedLog = "pobi, sp";
-    assertThat(racingResult.decideWinner()).isEqualTo(expectedLog);
+    assertThat(racingResult.decideWinner(participants)).isEqualTo(expectedLog);
   }
 }

@@ -18,6 +18,6 @@ public class Application {
 
     RacingResult racingResult = racingManager.start();
     OutputView.printProgressResult(racingResult.getLog());
-    OutputView.printWinner(racingResult.decideWinner());
+    OutputView.printWinner(racingResult.decideWinner(participants));
   }
 }

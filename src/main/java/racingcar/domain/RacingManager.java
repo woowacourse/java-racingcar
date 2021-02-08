@@ -15,7 +15,7 @@ public class RacingManager {
   }
 
   public RacingResult start() {
-    RacingResult racingResult = new RacingResult(participants);
+    RacingResult racingResult = new RacingResult();
     for (int i = 0; i < turn.get(); i++) {
       race(racingResult);
     }
@@ -24,7 +24,7 @@ public class RacingManager {
 
   private void race(final RacingResult racingResult) {
     participants.getCars().forEach(car -> car.fillInFulAndRun(randomFuel.get()));
-    racingResult.appendLog();
+    racingResult.appendLog(participants);
   }
 
 }

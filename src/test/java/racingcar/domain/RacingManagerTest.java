@@ -26,13 +26,13 @@ class RacingManagerTest {
     cars.get(0).fillInFulAndRun(Car.MIN_RUNNABLE_FUEL);
 
     RacingResult racingResult = racingManager.start();
-    assertThat(racingResult.decideWinner()).isEqualTo(expectedLog);
+    assertThat(racingResult.decideWinner(participants)).isEqualTo(expectedLog);
   }
 
   @Test
   void start_several_winner() {
     String expectedLog = "pobi, sp, on";
     RacingResult racingResult = racingManager.start();
-    assertThat(racingResult.decideWinner()).isEqualTo(expectedLog);
+    assertThat(racingResult.decideWinner(participants)).isEqualTo(expectedLog);
   }
 }
