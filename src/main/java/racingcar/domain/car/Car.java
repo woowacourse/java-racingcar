@@ -25,8 +25,8 @@ public class Car {
         return car.name.length() <= MAX_NAME_LENGTH;
     }
 
-    public void tryToMoveForward(int randomInteger) {
-        if (randomInteger >= MOVE_CONDITION) {
+    public void tryToMoveForward(int fuel) {
+        if (fuel >= MOVE_CONDITION) {
             ++position;
         }
     }
