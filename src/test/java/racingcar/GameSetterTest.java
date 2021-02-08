@@ -57,7 +57,7 @@ public class GameSetterTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"2-1", "abc", "894-"})
+    @ValueSource(strings = {"2-1", "abc", "894-", "1.3"})
     void setTrial_정수가_아닌_입력(String input) {
         assertThatThrownBy(() -> {
             GameSetter.setTrial(input);

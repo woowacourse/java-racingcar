@@ -42,10 +42,10 @@ public class GameSetter {
         }
     }
 
-    public static Integer setTrial(String input) {
+    public static int setTrial(String input) {
         validateNumber(input);
         try {
-            Integer trial = Integer.parseInt(input);
+            int trial = Integer.parseInt(input);
             return validateBound(trial);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
@@ -59,7 +59,7 @@ public class GameSetter {
         }
     }
 
-    private static int validateBound(Integer trial) {
+    private static int validateBound(int trial) {
         if (trial < MIN_TRIAL) {
             throw new IllegalArgumentException(
                 "숫자는 " + MIN_TRIAL + "이상 " + MAX_TRIAL + "이하여야 합니다.");
