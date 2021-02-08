@@ -7,11 +7,9 @@ import racingcar.view.OutputView;
 
 public class RacingCarGameApplication {
     public static void main(String[] args) {
-        String carNames = InputView.inputCarNames();
-        String roundCount = InputView.inputRoundCount();
-        GameManagerRequestDto gameManagerRequestDto = new GameManagerRequestDto(carNames, roundCount);
+        GameManagerRequestDto requestDto = InputView.inputFromUser();
         GameManager gameManager = new GameManager();
-        gameManager.playGame(gameManagerRequestDto);
+        gameManager.playGame(requestDto);
         OutputView.printResults(gameManager.getResults());
         OutputView.printWinners(gameManager.getWinners());
     }
