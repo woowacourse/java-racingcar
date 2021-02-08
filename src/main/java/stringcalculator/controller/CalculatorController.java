@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class CalculatorController {
     private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\\\\n(.*)";
+    private static final Pattern PATTERN = Pattern.compile(CUSTOM_DELIMITER_PATTERN);
     private static final int ZERO = 0;
     private static final String DELIMITER_SEPARATOR = "|";
 
@@ -43,7 +44,7 @@ public class CalculatorController {
     }
 
     private boolean hasCustomDelimiter(String input) {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
+        Matcher m = PATTERN.matcher(input);
 
         return m.find();
     }
@@ -52,7 +53,7 @@ public class CalculatorController {
         final int delimiterIndex = 1;
         String customDelimiter = "";
 
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
+        Matcher m = PATTERN.matcher(input);
 
         if (m.find()) {
             customDelimiter = m.group(delimiterIndex);
@@ -71,7 +72,7 @@ public class CalculatorController {
     public String getNumbers(String input) {
         final int numbersIndex = 2;
 
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
+        Matcher m = PATTERN.matcher(input);
 
         if (m.find()) {
             return m.group(numbersIndex);
