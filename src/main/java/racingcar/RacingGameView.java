@@ -16,14 +16,12 @@ public class RacingGameView {
 
     public static String requestCars() {
         System.out.println(START_MESSAGE);
-        String result = SCANNER.nextLine();
-        return result;
+        return SCANNER.nextLine();
     }
 
     public static String requestTrial() {
         System.out.println(TRIAL_MESSAGE);
-        String result = SCANNER.nextLine();
-        return result;
+        return SCANNER.nextLine();
     }
 
     public static void printResult() {
