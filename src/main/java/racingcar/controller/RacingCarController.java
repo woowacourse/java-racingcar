@@ -7,6 +7,7 @@ import racingcar.service.WinnerService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -46,7 +47,7 @@ public class RacingCarController {
 
     public void playUntilDone(Cars cars, Times times) {
         while (!times.isZero()) {
-            carService.decideMovableCar(cars, null);
+            carService.decideMovableCar(cars, Collections.EMPTY_LIST);
             OutputView.printResult(cars);
             times.reduce();
         }

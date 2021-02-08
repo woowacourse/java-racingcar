@@ -6,13 +6,14 @@ import racingcar.domain.Cars;
 import racingcar.utils.RandomUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CarService {
     public void decideMovableCar(Cars cars, List<Integer> randoms) {
         List<Car> carList = cars.getCars();
 
-        if (randoms == null) {
+        if (Collections.EMPTY_LIST.equals(randoms)) {
             randoms = getRandoms(carList);
         }
 
