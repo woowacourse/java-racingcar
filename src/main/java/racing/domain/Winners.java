@@ -8,8 +8,9 @@ public class Winners {
     private final List<Car> cars;
 
     public Winners(List<Car> cars) {
-        this.cars = new ArrayList<>(cars);
-        validateWinners();
+        List<Car> copy = new ArrayList<>(cars);
+        validateWinners(copy);
+        this.cars = copy;
     }
 
     public List<String> getWinnersName() {
@@ -18,8 +19,8 @@ public class Winners {
                 .collect(Collectors.toList());
     }
 
-    private void validateWinners() {
-        if (this.cars.isEmpty()) {
+    private void validateWinners(List<Car> copy) {
+        if (copy.isEmpty()) {
             throw new IllegalStateException("우승자는 1명 이상이어야 합니다");
         }
     }
