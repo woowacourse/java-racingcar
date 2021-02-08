@@ -12,6 +12,7 @@ public class StringCalculator {
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final String CUSTOM_PATTERN = "//(.)\\n(.*)";
     private static final String MULTIPLE_SEPARATOR = "|";
+    private static final Pattern pattern = Pattern.compile(CUSTOM_PATTERN);
 
     public static int splitAndSum(String text) {
         if (text == null || text.isEmpty()) {
@@ -27,7 +28,7 @@ public class StringCalculator {
 
     private static String[] init(String text) {
         SB.append(DEFAULT_DELIMITER);
-        Matcher m = Pattern.compile(CUSTOM_PATTERN).matcher(text);
+        Matcher m = pattern.matcher(text);
         if (m.find()) {
             SB.append(MULTIPLE_SEPARATOR);
             SB.append(m.group(FIRST));
