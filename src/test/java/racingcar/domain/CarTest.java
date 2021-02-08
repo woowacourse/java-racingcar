@@ -29,7 +29,7 @@ class CarTest {
 
   @ParameterizedTest
   @ValueSource(strings = {"", "spring"})
-  @DisplayName("이름 길이가 0 이하 또는 5 이상일 때 에러 확인")
+  @DisplayName("이름 길이가 0 이하 또는 5 초과일 때 에러 확인")
   void car_name_exception(String name) {
     assertThatThrownBy(() -> new Car(name))
         .isInstanceOf(IllegalStateException.class);
