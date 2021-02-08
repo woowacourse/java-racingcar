@@ -19,7 +19,7 @@ public class CarsTest {
     void invalidCreate(List<String> carNames) {
         assertThrows(IllegalArgumentException.class, ()-> new Cars(carNames));
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new Cars(carNames));
-        assertThat(e.getMessage()).isEqualTo("자동차 이름이 유효하지 않습니다.");
+        assertThat(e.getMessage()).isEqualTo(Cars.CAR_NAME_INVALID);
     }
 
     static Stream<Arguments> invalidParameters() throws Throwable {
