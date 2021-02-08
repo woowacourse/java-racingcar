@@ -9,8 +9,9 @@ import racingcar.view.OutputView;
 
 public class Cars {
 
-    private List<Car> cars;
     private static final int BOUND = 10;
+
+    private List<Car> cars;
 
     public Cars(List<Car> cars) {
         this.cars = cars;
