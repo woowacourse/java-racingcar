@@ -20,10 +20,11 @@ public class CarsTest {
     }
 
     @Test
-    @DisplayName("자동차들 중 최대 position")
+    @DisplayName("자동차들 중 최대 position car 확인")
     void carsGetMaxPosition() {
         List<String> carNames = Arrays.asList("pobi", "amaz");
         Cars cars = new Cars(carNames);
-        assertThat(cars.getMaxPositionCar()).isEqualTo(0);
+        assertThat(cars.getMaxPositionCar())
+                .isExactlyInstanceOf(Car.class);
     }
 }
