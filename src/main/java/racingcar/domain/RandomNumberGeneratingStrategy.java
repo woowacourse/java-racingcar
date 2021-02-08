@@ -1,7 +1,7 @@
-package racingcar;
+package racingcar.domain;
 
-import static racingcar.Rule.DRIVE_MAXIMUM_VALUE;
-import static racingcar.Rule.DRIVE_MINIMUM_VALUE;
+import static racingcar.domain.Rule.DRIVE_MAXIMUM_VALUE;
+import static racingcar.domain.Rule.DRIVE_MINIMUM_VALUE;
 
 import utils.RandomUtils;
 
