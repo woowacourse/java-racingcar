@@ -9,19 +9,18 @@ public class Car {
     private static final String ERROR_NAME_NOT_LONGER_THAN_NAME_LIMIT_MESSAGE = "[ERROR] 자동차 이름의 길이는 최대 5글자 입니다.";
     private static final int NAME_LENGTH_MAX_LIMIT = 5;
     private static final int FORWARD_MOVEMENT_BOUNDARY_VALUE = 4;
-    private static final int INITIAL_POSITION = 0;
 
     private final String name;
-    private final int position;
+    private final CarPosition carPosition;
 
     public Car(String name) {
-        this(name, INITIAL_POSITION);
+        this(name, new CarPosition());
     }
 
-    public Car(String name, int position) {
+    public Car(String name, CarPosition carPosition) {
         validateName(name);
         this.name = name;
-        this.position = position;
+        this.carPosition = carPosition;
     }
 
     private void validateName(String name) {
@@ -65,14 +64,14 @@ public class Car {
 
     public Car move(int randomNumber) {
         if (randomNumber >= FORWARD_MOVEMENT_BOUNDARY_VALUE) {
-            return new Car(name, position + 1);
+            return new Car(name, carPosition.move());
         }
 
         return this;
     }
 
     public boolean equalToPosition(int maxPosition) {
-        return this.position == maxPosition;
+        return carPosition.equalToPosition(maxPosition);
     }
 
     public String getName() {
@@ -80,7 +79,7 @@ public class Car {
     }
 
     public int getPosition() {
-        return position;
+        return carPosition.getPosition();
     }
 
     @Override

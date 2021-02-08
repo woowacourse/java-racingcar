@@ -84,7 +84,7 @@ class CarTest {
     @Test
     void testEqualToPosition() {
         //given
-        Car car = new Car("benz", 2);
+        Car car = new Car("benz", new CarPosition(2));
         int targetPosition = 2;
 
         //when
