@@ -33,7 +33,7 @@ public class CarTest {
 
     @ParameterizedTest
     @DisplayName("매직 넘버에대한 자동차 이동")
-    @CsvSource(value = {"5, 1", "2, 0", "4, 1", "100, 1"}, delimiter = ',')
+    @CsvSource(value = {"5, 1", "3, 0", "4, 1", "100, 1"}, delimiter = ',')
     void tryToMoveTest(int input, int expected) {
         Car car = new Car("테스트");
         car.tryToMove(input);
