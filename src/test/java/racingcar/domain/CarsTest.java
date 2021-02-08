@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.dto.CarDto;
-import racingcar.dto.CarsDto;
 import racingcar.dto.WinnersDto;
 
 import java.util.Arrays;
@@ -29,10 +27,10 @@ class CarsTest {
 
         assertThat(cars).isInstanceOf(Cars.class);
 
-        List<CarDto> carsDto = new CarsDto(cars).getCarsDto();
+        List<Car> carCandidates = cars.getCars();
         for (int i = 0; i < names.size(); i++) {
-            assertThat(carsDto.get(i).getName()).isEqualTo(names.get(i));
-            assertThat(carsDto.get(i).getPosition()).isEqualTo(INIT_POSITION);
+            assertThat(carCandidates.get(i).getName()).isEqualTo(names.get(i));
+            assertThat(carCandidates.get(i).getPosition()).isEqualTo(INIT_POSITION);
         }
     }
 
