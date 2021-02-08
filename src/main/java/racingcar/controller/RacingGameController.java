@@ -10,13 +10,13 @@ public class RacingGameController {
     public void play(final Cars carsInGame, final int trialNumber) {
         OutputView.printOutputMessage();
         for (int i = 0; i < trialNumber; i++) {
-            printSingleMoveResult(carsInGame.singleMove());
+            printSingleTrialResult(carsInGame.singleTrial());
         }
         OutputView.printWinner(carsInGame.getWinner());
     }
 
-    private void printSingleMoveResult(final List<Car> carsAfterSingleMove) {
-        for (Car car : carsAfterSingleMove) {
+    private void printSingleTrialResult(final List<Car> carsAfterSingleTrial) {
+        for (Car car : carsAfterSingleTrial) {
             OutputView.printCarInformation(car.getName(), car.getDistance());
         }
         OutputView.printNewLine();

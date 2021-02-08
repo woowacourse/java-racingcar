@@ -48,13 +48,13 @@ public class Cars {
         }
     }
 
-    public List<Car> singleMove() {
-        List<Car> carsAfterSingleMove = new ArrayList<>();
+    public List<Car> singleTrial() {
+        List<Car> carsAfterSingleTrial = new ArrayList<>();
         for (Car car : carsInGame) {
             maxDistance = Math.max(car.move(RandomUtils.generateRandomNumber()), maxDistance);
-            carsAfterSingleMove.add(car);
+            carsAfterSingleTrial.add(car);
         }
-        return carsAfterSingleMove;
+        return carsAfterSingleTrial;
     }
 
     public String getWinner() {
