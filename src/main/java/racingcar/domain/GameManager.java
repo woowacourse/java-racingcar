@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import racingcar.domain.dto.GameManagerRequestDto;
+import racingcar.domain.dto.GameManagerResponseDto;
 import racingcar.utils.RandomUtils;
 
 import java.util.ArrayList;
@@ -12,14 +13,14 @@ public class GameManager {
 
     private Cars cars;
     private Round round;
-    private Results results;
-    private Winners winners;
 
-    public void playGame(GameManagerRequestDto requestDto) {
+    public GameManagerResponseDto playGame(GameManagerRequestDto requestDto) {
         this.cars = Cars.of(requestDto.getCarNames());
         this.round = Round.of(requestDto.getRound());
-        this.results = moveAndGetResults();
-        this.winners = Winners.of(this.results.getResults());
+        Results results = moveAndGetResults();
+        Winners winners = Winners.of(results.getResults());
+
+        return new GameManagerResponseDto(results, winners);
     }
 
     private Results moveAndGetResults() {
@@ -42,13 +43,5 @@ public class GameManager {
 
     private int createRandomNumber() {
         return RandomUtils.nextInt(MIN_RANDOM_RANGE, MAX_RANDOM_RANGE);
-    }
-
-    public Results getResults() {
-        return results;
-    }
-
-    public Winners getWinners() {
-        return winners;
     }
 }
