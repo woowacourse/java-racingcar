@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtils;
 import racingcar.validator.CarsValidator;
 
 import java.util.ArrayList;
@@ -9,8 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final int MIN_RANDOM_RANGE = 0;
-    private static final int MAX_RANDOM_RANGE = 9;
     private static final String DELIMITER = ",";
 
     private final List<Car> cars;
@@ -30,11 +27,14 @@ public class Cars {
         return new Cars(cars);
     }
 
-    public void tryToMove() {
-        for (Car car : this.cars) {
-            int randomValue = RandomUtils.nextInt(MIN_RANDOM_RANGE, MAX_RANDOM_RANGE);
-            car.tryToMove(randomValue);
+    public void tryToMoveCars(List<Integer> randomNumbers) {
+        for (int i = 0; i < cars.size(); i++) {
+            cars.get(i).tryToMove(randomNumbers.get(i));
         }
+    }
+
+    public int size() {
+        return cars.size();
     }
 
     public Result getResultOfCars() {
@@ -43,5 +43,9 @@ public class Cars {
             carStates.add(car.getCarState());
         }
         return Result.of(carStates);
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }
