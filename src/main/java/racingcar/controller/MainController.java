@@ -23,9 +23,9 @@ public class MainController {
     }
 
     public void userInputNames() {
+        MainPage.printMainPage();
+        String userInput = scanner.nextLine();
         try {
-            MainPage.printMainPage();
-            String userInput = scanner.nextLine();
             splitNames(userInput);
         } catch (IllegalArgumentException e) {
             ErrorUtils.printError(e);
@@ -34,9 +34,9 @@ public class MainController {
     }
 
     public void userInputTurnQuantity() {
+        MainPage.askTurnQuantity();
+        String userInput = scanner.nextLine();
         try {
-            MainPage.askTurnQuantity();
-            String userInput = scanner.nextLine();
             initiateGameWithTurn(userInput);
         } catch (IllegalArgumentException e) {
             ErrorUtils.printError(e);
