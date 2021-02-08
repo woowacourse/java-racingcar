@@ -21,19 +21,11 @@ public class StringCalculator {
 
     public static int calculate(String input, String delimiter) {
         String[] numbers = input.split(delimiter);
-        loop(numbers);
+        validateNegativeNumber(numbers);
         return sum(numbers);
     }
 
-    public static int sum(String[] numbers) {
-        int result = 0;
-        for (String number : numbers) {
-            result += Integer.parseInt(number);
-        }
-        return result;
-    }
-
-    public static void loop(String[] numbers) {
+    public static void validateNegativeNumber(String[] numbers) {
         for (String number : numbers) {
             throwExceptionIfNegative(number);
         }
@@ -43,5 +35,13 @@ public class StringCalculator {
         if (Integer.parseInt(number) < 0) {
             throw new RuntimeException();
         }
+    }
+
+    public static int sum(String[] numbers) {
+        int result = 0;
+        for (String number : numbers) {
+            result += Integer.parseInt(number);
+        }
+        return result;
     }
 }
