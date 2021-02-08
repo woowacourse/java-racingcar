@@ -52,7 +52,8 @@ public class RacingGame {
                     .collect(Collectors.toList()));
         } catch (IllegalArgumentException e) {
             return false;
-        }return true;
+        }
+        return true;
     }
 
     public static List<String> splitInput(String input) {
@@ -71,12 +72,18 @@ public class RacingGame {
 
     public static boolean validateTrials(String input) {
         try {
-            Integer.parseInt(input);
+            isPositiveNumber(Integer.parseInt(input));
         } catch (IllegalArgumentException e) {
-            System.err.println(e);
+            System.err.println(e.getMessage());
             OutputView.printErrorRetrialMessage();
             return false;
         }
         return true;
+    }
+
+    public static void isPositiveNumber(int trials){
+        if(trials < 1){
+            throw new IllegalArgumentException("시행 횟수는 1회 이상이어야 합니다.");
+        }
     }
 }

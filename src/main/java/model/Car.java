@@ -6,6 +6,7 @@ public class Car {
 
     private final String name;
     private int position;
+    public static final String CAR_NAME_INVALID = "자동차 이름이 유효하지 않습니다.";
 
     public Car(String name) {
         validateCarName(name.trim());
@@ -15,7 +16,7 @@ public class Car {
 
     public void validateCarName(String name) {
         if(name.length() > 5 || name.length() <= 0){
-            throw new IllegalArgumentException("자동차 이름이 유효하지 않습니다.");
+            throw new IllegalArgumentException(CAR_NAME_INVALID);
         }
     }
 

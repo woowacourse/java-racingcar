@@ -10,6 +10,7 @@ public class Cars {
 
     private final List<Car> cars = new ArrayList<>();
     private int maxDistance = 0;
+    public static final String CAR_NAME_INVALID = "자동차 이름이 유효하지 않습니다.";
 
     public Cars(List<String> carNames) {
         validateUserCount(carNames);
@@ -19,7 +20,7 @@ public class Cars {
 
     public void validateUserCount(List<String> carNames) {
         if (carNames.size() <= 1) {
-            throw new IllegalArgumentException("자동차 이름이 유효하지 않습니다.");
+            throw new IllegalArgumentException(CAR_NAME_INVALID);
         }
     }
 
@@ -27,7 +28,7 @@ public class Cars {
         if (!carNames.stream()
                 .filter(count -> Collections.frequency(carNames, count) > 1)
                 .collect(Collectors.toSet()).isEmpty()) {
-            throw new IllegalArgumentException("자동차 이름이 유효하지 않습니다.");
+            throw new IllegalArgumentException(CAR_NAME_INVALID);
         }
     }
 
@@ -46,7 +47,7 @@ public class Cars {
         maxDistance = cars.stream()
                 .max(Comparator.comparing(Car::getPosition))
                 .map(Car::getPosition)
-                .orElse(-1);
+                .orElse(0);
     }
 
     public void makeCars(List<String> names) {
