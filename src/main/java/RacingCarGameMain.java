@@ -1,7 +1,7 @@
 import racingCar.Car;
 import racingCar.Cars;
-import utils.InputChecker;
 import utils.RandomUtils;
+import view.InputView;
 
 import java.util.List;
 
@@ -10,12 +10,12 @@ public class RacingCarGameMain {
     private static final int MAXIMUM_VALUE = 9;
 
     public static void main(String[] args) {
-        String input = InputChecker.getInput();
+        String input = InputView.getInput();
         String[] carNames = input.split(",");
         for (String carName : carNames) {
             Cars.carAdd(new Car(carName));
         }
-        playGame(InputChecker.getNumber());
+        playGame(InputView.getTryNumber());
         showResult();
     }
 
