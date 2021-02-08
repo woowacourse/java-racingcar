@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,14 +16,14 @@ import static racingcar.domain.RacingGame.UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE;
 class RacingGameTest {
     private static final int NUMBER_OF_ROUNDS_FOR_TEST = 5;
 
-    private final List<String> carNamesForTest = Arrays.asList("똘이", "멍이", "순이");
+    private final List<String> carNamesForTest = Arrays.asList("포비", "데이브", "삭정");
 
     @DisplayName("주어진 이름대로 자동차 생성되는지 테스트")
     @Test
     void racingGameConstructor_givenCarNames_createCarsByGivenCarNames() {
-        RacingGame racingGame = createDefaultRacingGame();
-
+        RacingGame racingGame = createRacingGame();
         CarsDto cars = new CarsDto(racingGame.getCars());
+
         for (int i = 0; i < carNamesForTest.size(); i++) {
             assertThat(cars.getCarsDto().get(i).getName()).isEqualTo(carNamesForTest.get(i));
         }
@@ -43,7 +42,7 @@ class RacingGameTest {
     @DisplayName("라운드가 진행되는지 확인")
     @Test
     void playRound_playOneRound_currentRoundShouldIncreaseByOne() {
-        RacingGame racingGame = createDefaultRacingGame();
+        RacingGame racingGame = createRacingGame();
 
         int beforeRound = racingGame.getCurrentRound();
         racingGame.playAnotherRound();
@@ -52,8 +51,26 @@ class RacingGameTest {
         assertThat(beforeRound + 1).isEqualTo(afterRound);
     }
 
-    private RacingGame createDefaultRacingGame() {
+    @DisplayName("라운드 횟수에 맞게 경기가 수행되는지")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 3})
+    void isFinished_numberOfRounds_true(int numberOfRounds) {
+        RacingGame racingGame = createRacingGame(numberOfRounds);
+
+        for (int currentRound = 0; currentRound < numberOfRounds; currentRound++) {
+            racingGame.playAnotherRound();
+        }
+
+        assertThat(racingGame.isFinished()).isTrue();
+    }
+
+    private RacingGame createRacingGame() {
         Cars cars = new Cars(carNamesForTest);
         return new RacingGame(cars, NUMBER_OF_ROUNDS_FOR_TEST);
+    }
+
+    private RacingGame createRacingGame(int numberOfRounds) {
+        Cars cars = new Cars(carNamesForTest);
+        return new RacingGame(cars, numberOfRounds);
     }
 }
