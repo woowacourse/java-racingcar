@@ -1,16 +1,19 @@
 package racingcar.view;
 
-import racingcar.domain.car.CarRepository;
+import racingcar.domain.car.Car;
+
+import java.util.List;
 
 public class GamePage {
 
     public static void printResultPage() {
-        System.out.println("\n실행 결과");
+        System.out.println(System.lineSeparator() + "실행 결과");
     }
 
-    public static void printSingleRoundResult() {
-        CarRepository.cars()
-                .forEach(System.out::println);
+    public static void printSingleRoundResult(List<Car> cars) {
+        for (Car car : cars) {
+            System.out.println(car.formatSingleRoundInformation());
+        }
         System.out.println();
     }
 
