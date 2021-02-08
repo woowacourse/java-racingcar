@@ -1,11 +1,14 @@
 package racingcar.domain;
 
+import racingcar.utils.RandomUtils;
+
 import java.util.regex.Pattern;
 
 public class Car implements Comparable<Car> {
     private static final String REGEX_ALPHA = "^[a-zA-z]*$";
     private static final String REGEX_KOREAN = "[가-힣]*$";
     private static final int NAME_LENGTH_LIMIT = 5;
+    private static final int MOVE_PIVOT = 4;
 
     private String name;
     private int position;
@@ -38,19 +41,25 @@ public class Car implements Comparable<Car> {
         return name.length() > NAME_LENGTH_LIMIT;
     }
 
-    public String getName() {
-        return this.name;
+    public void moveForward() {
+        if (isMoveNumber(RandomUtils.createRandomNumber())) {
+            this.position++;
+        }
     }
 
-    public int getPosition() {
-        return this.position;
+    private boolean isMoveNumber(final int randomNumber) {
+        return MOVE_PIVOT <= randomNumber;
     }
 
     public boolean isMaxPosition(final Car maxPositionCar) {
         return this.position == maxPositionCar.getPosition();
     }
 
-    public void moveForward() {
-        this.position++;
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 }
