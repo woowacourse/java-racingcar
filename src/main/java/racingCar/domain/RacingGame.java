@@ -19,11 +19,15 @@ public class RacingGame {
         this.numOfRacingRound = numOfRacingRound;
     }
 
-    private List<Car> prepareCars(String[] carNames) {
-        Engine engine = new RandomEngine();
+    public static List<Car> prepareCars(String[] carNames) {
         return Arrays.stream(carNames)
-            .map(carName -> new Car(carName, engine))
+            .map(RacingGame::makeCar)
             .collect(Collectors.toList());
+    }
+
+    private static Car makeCar(String carName){
+        Engine engine = new RandomEngine();
+        return new Car(carName,engine);
     }
 
     public void race() {
