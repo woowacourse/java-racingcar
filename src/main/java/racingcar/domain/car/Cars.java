@@ -1,6 +1,6 @@
 package racingcar.domain.car;
 
-import racingcar.domain.car.util.RandomNumberGenerator;
+import racingcar.domain.car.util.MovingStrategy;
 
 import java.util.*;
 
@@ -21,11 +21,11 @@ public class Cars {
         }
     }
 
-    public Cars play(RandomNumberGenerator randomNumberGenerator) {
+    public Cars play(MovingStrategy movingStrategy) {
         List<Car> cars = new ArrayList<>();
 
         for (Car car : this.cars) {
-            cars.add(car.move(randomNumberGenerator.generate()));
+            cars.add(car.move(movingStrategy));
         }
 
         return new Cars(cars);

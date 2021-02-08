@@ -1,7 +1,8 @@
 package racingcar.controller;
 
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.util.RandomNumberGenerator;
+import racingcar.domain.car.util.MovingStrategy;
+import racingcar.domain.car.util.RandomMovingStrategy;
 import racingcar.domain.racingcargame.RacingCarGame;
 import racingcar.domain.trynumber.TryNumber;
 import racingcar.view.InputView;
@@ -18,8 +19,8 @@ public class RacingCarGameController {
 
         RacingCarGame racingCarGame = new RacingCarGame(cars, tryNumber);
 
-        OutputView.printRunResult(racingCarGame.execute(new RandomNumberGenerator()));
+        MovingStrategy movingStrategy = new RandomMovingStrategy();
+        OutputView.printRunResult(racingCarGame.execute(movingStrategy));
         OutputView.printWinners(racingCarGame.findWinners());
     }
-
 }

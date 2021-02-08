@@ -1,5 +1,7 @@
 package racingcar.domain.car;
 
+import racingcar.domain.car.util.MovingStrategy;
+
 import java.util.Objects;
 
 public class Car {
@@ -8,7 +10,6 @@ public class Car {
     private static final String ERROR_NAME_NOT_PERMIT_EMPTY_MESSAGE = "[ERROR] 자동차 이름은 공백을 허용하지 않습니다.";
     private static final String ERROR_NAME_NOT_LONGER_THAN_NAME_LIMIT_MESSAGE = "[ERROR] 자동차 이름의 길이는 최대 5글자 입니다.";
     private static final int NAME_LENGTH_MAX_LIMIT = 5;
-    private static final int FORWARD_MOVEMENT_BOUNDARY_VALUE = 4;
 
     private final String name;
     private final CarPosition carPosition;
@@ -62,8 +63,8 @@ public class Car {
         }
     }
 
-    public Car move(int randomNumber) {
-        if (randomNumber >= FORWARD_MOVEMENT_BOUNDARY_VALUE) {
+    public Car move(MovingStrategy movingStrategy) {
+        if (movingStrategy.canMove()) {
             return new Car(name, carPosition.move());
         }
 

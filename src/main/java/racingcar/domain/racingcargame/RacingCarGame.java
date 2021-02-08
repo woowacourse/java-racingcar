@@ -2,7 +2,7 @@ package racingcar.domain.racingcargame;
 
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.util.RandomNumberGenerator;
+import racingcar.domain.car.util.MovingStrategy;
 import racingcar.domain.trynumber.TryNumber;
 
 import java.util.ArrayList;
@@ -18,10 +18,10 @@ public class RacingCarGame {
         this.tryNumber = tryNumber;
     }
 
-    public List<Cars> execute(RandomNumberGenerator randomNumberGenerator) {
+    public List<Cars> execute(MovingStrategy movingStrategy) {
         List<Cars> runResult = new ArrayList<>();
         while (tryNumber.isRunnable()) {
-            cars = cars.play(randomNumberGenerator);
+            cars = cars.play(movingStrategy);
             runResult.add(cars);
         }
 
