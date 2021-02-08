@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class CalculatorController {
-    private static final String PATTERN = "//(.)\\\\n(.*)";
-    private static final int NULL_OR_EMPTY_RESULT = 0;
+    private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\\\\n(.*)";
+    private static final int ZERO = 0;
 
     private final InputView inputView;
 
@@ -27,7 +27,7 @@ public class CalculatorController {
 
     public int getResult(String input) {
         if (checkNullOrEmpty(input)) {
-            return NULL_OR_EMPTY_RESULT;
+            return ZERO;
         }
 
         String delimiters = ",|:";
@@ -42,7 +42,7 @@ public class CalculatorController {
     }
 
     private boolean hasCustomDelimiter(String input) {
-        Matcher m = Pattern.compile(PATTERN).matcher(input);
+        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
 
         return m.find();
     }
@@ -51,7 +51,7 @@ public class CalculatorController {
         final int delimiterIndex = 1;
         String customDelimiter = "";
 
-        Matcher m = Pattern.compile(PATTERN).matcher(input);
+        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
 
         if (m.find()) {
             customDelimiter = m.group(delimiterIndex);
@@ -70,7 +70,7 @@ public class CalculatorController {
     public String getNumbers(String input) {
         final int numbersIndex = 2;
 
-        Matcher m = Pattern.compile(PATTERN).matcher(input);
+        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
 
         if (m.find()) {
             return m.group(numbersIndex);
