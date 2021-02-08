@@ -20,22 +20,6 @@ public class Car implements Comparable<Car> {
         return Integer.compare(this.getPosition(), anotherCar.getPosition());
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public int getPosition() {
-        return this.position;
-    }
-
-    public void moveForward() {
-        this.position++;
-    }
-
-    public boolean isMaxPosition(final Car maxPositionCar) {
-        return this.position == maxPositionCar.getPosition();
-    }
-
     private void validateName(final String name) {
         if (isNullName(name) || isContainInvalidChar(name) || isExceedNameLength(name)) {
             throw new IllegalArgumentException("잘못된 자동차 이름입니다.");
@@ -52,5 +36,21 @@ public class Car implements Comparable<Car> {
 
     private boolean isExceedNameLength(final String name) {
         return name.length() > NAME_LENGTH_LIMIT;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
+    }
+
+    public boolean isMaxPosition(final Car maxPositionCar) {
+        return this.position == maxPositionCar.getPosition();
+    }
+
+    public void moveForward() {
+        this.position++;
     }
 }
