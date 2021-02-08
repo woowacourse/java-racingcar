@@ -18,27 +18,27 @@ public class GameScreen implements Screen {
         OutputView.printMessage(RESULT);
     }
 
-    public void showCarStatus(List<CarDto> carDtos) {
+    public void showCarStatus(final List<CarDto> carDtos) {
         StringBuilder stringBuilder = new StringBuilder();
         carDtos.forEach(carDto -> showEachCarStatus(carDto, stringBuilder));
         OutputView.printMessage(stringBuilder.toString());
     }
 
-    public void showWinners(WinnersDto winnersDto) {
+    public void showWinners(final WinnersDto winnersDto) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.join(DELIMITER, winnersDto.getWinnersName()));
         stringBuilder.append(WINNER);
         OutputView.printMessage(stringBuilder.toString());
     }
 
-    private void showEachCarStatus(CarDto carDto, StringBuilder stringBuilder) {
+    private void showEachCarStatus(final CarDto carDto, final StringBuilder stringBuilder) {
         String carName = carDto.getCarName();
         String distance = getDistance(carDto);
         String message = String.format(STATUS_FORMAT, carName, distance);
         stringBuilder.append(message);
     }
 
-    private String getDistance(CarDto carDto) {
+    private String getDistance(final CarDto carDto) {
         StringBuilder stringBuilder = new StringBuilder();
         int position = carDto.getPosition();
         for (int i = ZERO; i < position; i++) {

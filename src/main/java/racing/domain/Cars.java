@@ -5,7 +5,7 @@ import racing.utils.RandomUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Cars implements Cloneable{
+public class Cars implements Cloneable {
     private static final String DELIMITER = ",";
     private static final int SPLIT_THRESHOLD = -1;
     private static final int START_NUMBER = 0;
@@ -14,14 +14,26 @@ public class Cars implements Cloneable{
 
     private final List<Car> cars;
 
-    private Cars(List<Car> cars) {
+    private Cars(final List<Car> cars) {
         List<Car> copy = new ArrayList<>(cars);
         validateCars(copy);
         this.cars = copy;
     }
 
+    public static Cars generate(final String carNames) {
+        String[] splitCarNames = splitCarNames(carNames);
+        List<Car> cars = Arrays.stream(splitCarNames)
+                .map(Car::new)
+                .collect(Collectors.toList());
+        return new Cars(cars);
+    }
+
+    private static String[] splitCarNames(final String carNames) {
+        return carNames.split(DELIMITER, SPLIT_THRESHOLD);
+    }
+
     @Override
-    protected Cars clone(){
+    protected Cars clone() {
         Cars copy = null;
         try {
             copy = (Cars) super.clone();
@@ -31,19 +43,7 @@ public class Cars implements Cloneable{
         return copy;
     }
 
-    public static Cars generate(String carNames) {
-        String[] splitCarNames = splitCarNames(carNames);
-        List<Car> cars = Arrays.stream(splitCarNames)
-                .map(Car::new)
-                .collect(Collectors.toList());
-        return new Cars(cars);
-    }
-
-    private static String[] splitCarNames(String carNames) {
-        return carNames.split(DELIMITER, SPLIT_THRESHOLD);
-    }
-
-    private void validateCars(List<Car> cars) {
+    private void validateCars(final List<Car> cars) {
         if (cars.size() < MINIMUM_CAR_COUNTS) {
             throw new IllegalArgumentException("자동차 이름은 1개 이상이어야 합니다");
         }

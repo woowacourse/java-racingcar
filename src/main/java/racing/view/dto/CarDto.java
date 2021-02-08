@@ -6,12 +6,12 @@ public class CarDto {
     private String carName;
     private int position;
 
-    private CarDto(String carName, int position) {
+    private CarDto(final String carName, final int position) {
         this.carName = carName;
         this.position = position;
     }
 
-    public static CarDto of(Car car) {
+    public static CarDto of(final Car car) {
         return new CarDto(car.getName(), car.getPosition());
     }
 

@@ -12,14 +12,14 @@ public class Car {
     private final String name;
     private int position;
 
-    public Car(String name) {
+    public Car(final String name) {
         String copy = new String(name);
         validateName(copy);
         this.name = copy;
         this.position = DEFAULT_POSITION;
     }
 
-    private void validateName(String name) {
+    private void validateName(final String name) {
         if (Objects.isNull(name)) {
             throw new IllegalArgumentException("자동차 이름을 입력해주세요");
         }
@@ -29,7 +29,7 @@ public class Car {
         }
     }
 
-    public boolean move(int randomNumber) {
+    public boolean move(final int randomNumber) {
         if (randomNumber >= MINIMUM_MOVE_NUMBER) {
             this.position++;
             return true;

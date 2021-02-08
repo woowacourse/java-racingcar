@@ -14,7 +14,7 @@ public class RacingGameMachine {
     private final Cars cars;
     private int tryCounts;
 
-    public RacingGameMachine(Cars cars, int tryCounts) {
+    public RacingGameMachine(final Cars cars, final int tryCounts) {
         Cars copy = cars.clone();
         validateCars(copy);
         validateTryCounts(tryCounts);
@@ -22,13 +22,13 @@ public class RacingGameMachine {
         this.tryCounts = tryCounts;
     }
 
-    private void validateCars(Cars cars) {
+    private void validateCars(final Cars cars) {
         if (cars.getSize() < MINIMUM_CAR_COUNTS) {
             throw new IllegalArgumentException("자동차 이름은 1개 이상이어야 합니다");
         }
     }
 
-    private void validateTryCounts(int tryCounts) {
+    private void validateTryCounts(final int tryCounts) {
         if (tryCounts <= ZERO) {
             throw new IllegalArgumentException(String.format("시도횟수는 1회 이상이어야 합니다 현재 입력값: %d", tryCounts));
         }

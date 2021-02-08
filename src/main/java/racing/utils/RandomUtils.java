@@ -8,7 +8,7 @@ public class RandomUtils {
     private RandomUtils() {
     }
 
-    public static int getRandomNumber(int startNumber, int endNumber) {
+    public static int getRandomNumber(final int startNumber, final int endNumber) {
         if (startNumber > endNumber) {
             throw new IllegalArgumentException();
         }
