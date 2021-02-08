@@ -23,6 +23,8 @@ class OutputViewTest {
     @Test
     @DisplayName("게임 승리자 반환 테스트")
     public void winnerTest(){
+        Cars cars = new Cars();
+
         Car car1 = new Car("car1");
         Car car2 = new Car("car2");
         Car car3 = new Car("car3");
@@ -31,11 +33,11 @@ class OutputViewTest {
         car2.move(4);
         car3.move(0);
 
-        Cars.carAdd(car1);
-        Cars.carAdd(car2);
-        Cars.carAdd(car3);
+        cars.carAdd(car1);
+        cars.carAdd(car2);
+        cars.carAdd(car3);
 
-        List<String> winners = OutputView.getWinners(1);
+        List<String> winners = OutputView.getWinners(1, cars);
 
         assertThat(winners.size()).isEqualTo(2);
     }

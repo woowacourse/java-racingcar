@@ -1,5 +1,8 @@
 package view;
 
+import racingCar.Car;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
