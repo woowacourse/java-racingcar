@@ -12,8 +12,6 @@ public class OutputView {
     private static final String LEADER_BOARD_DATA_FORMAT = "%s : %s%n";
     private static final String COMMA_AND_BLANK = ", ";
 
-    //TODO
-    // OutputView 테스트 작성해보자
     public static void printCarNameInputRequestMessage() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
