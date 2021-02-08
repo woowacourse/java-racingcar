@@ -3,37 +3,40 @@ package racingcar;
 import racingcar.controller.CarController;
 import racingcar.domain.*;
 import racingcar.utils.RacingCarUtils;
-import racingcar.view.io.InputView;
 import racingcar.view.RacingCarView;
+import racingcar.view.io.InputView;
 
 public class RacingCar {
-    public static void run() {
+    private Cars cars;
+    private TryCount tryCount;
+
+    public void run() {
         setUpRacingCar();
         selectWinners();
-        RacingCarView.printFinalResult(Winners.getWinnersNames());
+        RacingCarView.printFinalResult(selectWinners().getWinnersNames());
     }
 
-    private static void setUpRacingCar() {
-        Cars.assignCars(RacingCarUtils.splitInputString(InputView.getCarNameInput()));
-        TryCount tryCount = new TryCount(InputView.getTryCountInput());
+    private void setUpRacingCar() {
+        cars = new Cars(RacingCarUtils.splitInputString(InputView.getCarNameInput()));
+        tryCount = new TryCount(InputView.getTryCountInput());
         GameRule gameRule = new GameRule();
-        progressTryCount(tryCount, gameRule);
+        progressTryCount(gameRule);
     }
 
-    private static void progressTryCount(final TryCount tryCount, final GameRule gameRule) {
+    private void progressTryCount(final GameRule gameRule) {
         for (int i = 0; i < tryCount.getCount(); i++) {
             progressRacing(gameRule);
-            RacingCarView.printProgressResult(Cars.getCars());
+            RacingCarView.printProgressResult(cars.cars());
         }
     }
 
-    private static void progressRacing(final GameRule gameRule) {
-        for (Car car : Cars.getCars()) {
+    private void progressRacing(final GameRule gameRule) {
+        for (Car car : cars.cars()) {
             moveMovableCar(car, gameRule);
         }
     }
 
-    private static void moveMovableCar(final Car car, final GameRule gameRule) {
+    private void moveMovableCar(final Car car, final GameRule gameRule) {
         CarController carController = new CarController(car);
         RandomNumber randomNumber = new RandomNumber();
         if (gameRule.isMoveNumber(randomNumber.getNumber())) {
@@ -41,7 +44,8 @@ public class RacingCar {
         }
     }
 
-    private static void selectWinners() {
-        Winners.allocateWinners();
+    private Winners selectWinners() {
+        Winners winners = new Winners(cars);
+        return winners;
     }
 }
