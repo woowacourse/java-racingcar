@@ -10,13 +10,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class StringTest {
     @Test
-    public void split() {
+    void split() {
         String[] values = "1,2".split(",");
         assertThat(values).containsExactly("1", "2");
     }
 
     @Test
-    public void bracket() {
+    void bracket() {
         String value = "(1,2)".substring(1, 4);
         assertThat(value).isEqualTo("1,2");
     }

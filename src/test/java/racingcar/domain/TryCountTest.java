@@ -8,7 +8,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 public class TryCountTest {
     @Test
     @DisplayName("시도 횟수가 영어인 경우")
-    public void tryCount_영어() {
+    void tryCount_영어() {
         assertThatThrownBy(() -> {
             TryCount tryCount = new TryCount("abc");
         }).isInstanceOf(IllegalArgumentException.class);
@@ -16,7 +16,7 @@ public class TryCountTest {
 
     @Test
     @DisplayName("시도 횟수가 음수인 경우")
-    public void tryCount_음수() {
+    void tryCount_음수() {
         assertThatThrownBy(() -> {
             TryCount tryCount = new TryCount("-1");
         }).isInstanceOf(IllegalArgumentException.class);
