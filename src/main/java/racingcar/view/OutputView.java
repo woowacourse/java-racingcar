@@ -5,8 +5,6 @@ import racingcar.constant.Message;
 import java.util.List;
 
 public class OutputView {
-    private static final String HYPHEN = "-";
-
     public static void printCarNamesRequest() {
         System.out.println(Message.CAR_NAMES_REQUEST);
     }
