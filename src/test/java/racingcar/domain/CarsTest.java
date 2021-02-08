@@ -18,14 +18,14 @@ class CarsTest {
 
     @Test
     @DisplayName("이름이 중복되는 경우")
-    void carNames_duplicate_exception() {
-        assertThatThrownBy(()->new Cars("1,,2,3")).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(()->new Cars("1,,,,2,3")).isInstanceOf(IllegalArgumentException.class);
+    void carNames_duplicated() {
+        assertThatThrownBy(() -> new Cars("1,,2,3")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Cars("1,,,,2,3")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("양 끝에 쉼표가 있는 경우")
-    void carNames_양_끝_예외처리() {
+    void carNames_both_end() {
         assertThatThrownBy(() -> new Cars(",샐리")).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Cars("샐리,df,")).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Cars(",샐리,")).isInstanceOf(IllegalArgumentException.class);
@@ -33,7 +33,7 @@ class CarsTest {
 
     @Test
     @DisplayName("총합테스트")
-    void carNames_연속된_쉼표_예외처리() {
+    void carNames_comma_blank() {
         assertThatThrownBy(() -> new Cars(",")).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Cars(" ")).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Cars(" , ")).isInstanceOf(IllegalArgumentException.class);

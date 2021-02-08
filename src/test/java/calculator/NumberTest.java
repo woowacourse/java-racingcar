@@ -9,7 +9,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 public class NumberTest {
     @Test
     @DisplayName("숫자 객체 생성")
-    public void number_생성() {
+    public void number_create() {
         Number number = new Number("3");
         assertThat(number.getNumber()).isEqualTo(3);
     }
@@ -34,7 +34,6 @@ public class NumberTest {
         assertThatThrownBy(() -> new Number("d"))
                 .isInstanceOf(RuntimeException.class);
     }
-
 
     @Test
     @DisplayName("음수 입력 시 예외 처리")
