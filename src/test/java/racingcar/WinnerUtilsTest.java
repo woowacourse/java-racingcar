@@ -3,6 +3,7 @@ package racingcar;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.utils.WinnerUtils;
@@ -21,6 +22,7 @@ public class WinnerUtilsTest {
     }
 
     @Test
+    @DisplayName("우승자가 한명인 경우")
     void findWinnersTest_한명() {
         cars.get(0).tryToMove(5);
         cars.get(1).tryToMove(3);
@@ -33,6 +35,7 @@ public class WinnerUtilsTest {
     }
 
     @Test
+    @DisplayName("우승자가 두명인 경우")
     void findWinnersTest_두명_이상() {
         cars.add(new Car("포비"));
 
@@ -47,6 +50,7 @@ public class WinnerUtilsTest {
     }
 
     @Test
+    @DisplayName("모두 움직이지 않은 경우")
     void findWinnerTest_모두_움직이지_않음() {
         List<String> expected = new ArrayList<>();
         for (Car car : cars) {
