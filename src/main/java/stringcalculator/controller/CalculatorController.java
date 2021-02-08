@@ -116,7 +116,7 @@ public class CalculatorController {
     }
 
     private void checkCharacterNullOrEmpty(String value) {
-        if (value == null || value.isEmpty()) {
+        if (checkNullOrEmpty(value)) {
             throw new RuntimeException("숫자 문자열만 입력해 주세요");
         }
     }
