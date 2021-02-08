@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
     @ParameterizedTest
-    @ValueSource(strings={",apple,pear","apple,pear,"})
+    @ValueSource(strings = {",apple,pear", "apple,pear,"})
     void inputValidate(String input) {
         assertThatThrownBy(() -> {
             InputView.inputValidate(input);

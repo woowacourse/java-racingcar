@@ -13,7 +13,7 @@ public class Cars {
 
     private List<Car> cars = new ArrayList<>();
 
-    public void carAdd(Car car){
+    public void carAdd(Car car) {
         cars.add(car);
     }
 
@@ -21,7 +21,7 @@ public class Cars {
         return cars;
     }
 
-    public List<String> findWinners(int maxDistance){
+    public List<String> findWinners(int maxDistance) {
         return cars.stream()
                 .filter(car -> car.isWinner(maxDistance))
                 .map(car -> car.getName())
@@ -39,13 +39,14 @@ public class Cars {
     public void playGame(int count) {
         for (int i = 0; i < count; i++) {
             moveCar();
+            OutputView.showStatus(cars);
         }
     }
+
     public void moveCar() {
         for (Car car : cars) {
             car.move(RandomUtils.nextInt(MINIMUM_VALUE, MAXIMUM_VALUE));
         }
-        OutputView.showStatus(cars);
     }
 
 

@@ -8,14 +8,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
     @Test
-    void split(){
+    void split() {
         String[] values = "1,2".split(",");
-        assertThat(values).containsExactly("1","2");
+        assertThat(values).containsExactly("1", "2");
     }
 
     @Test
     void substirng() {
-        String values = "(1,2)".substring(1,4);
+        String values = "(1,2)".substring(1, 4);
         assertThat(values).isEqualTo("1,2");
     }
 

@@ -17,6 +17,4 @@ public class RacingCarGameMain {
 
         OutputView.showResult(cars);
     }
-
-
 }

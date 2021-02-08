@@ -14,7 +14,7 @@ class OutputViewTest {
 
     @Test
     @DisplayName(" '-' 생성 확인 테스트")
-    public void barTest(){
+    public void barTest() {
         String bars = OutputView.bar(3);
 
         assertThat(bars.length()).isEqualTo(3);
@@ -22,7 +22,7 @@ class OutputViewTest {
 
     @Test
     @DisplayName("게임 승리자 반환 테스트")
-    public void winnerTest(){
+    public void winnerTest() {
         Cars cars = new Cars();
 
         Car car1 = new Car("car1");

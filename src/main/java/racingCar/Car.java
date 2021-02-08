@@ -8,7 +8,7 @@ public class Car {
     private final String name;
     private int distance = 0;
 
-    public Car(final String name){
+    public Car(final String name) {
         validate(name);
         this.name = name;
     }
@@ -19,13 +19,13 @@ public class Car {
         }
     }
 
-    public void move(int number){
-        if(number >= THRESHOLD){
+    public void move(int number) {
+        if (number >= THRESHOLD) {
             distance++;
         }
     }
 
-    public boolean isWinner(int max){
+    public boolean isWinner(int max) {
         if (distance == max) {
             return true;
         }
