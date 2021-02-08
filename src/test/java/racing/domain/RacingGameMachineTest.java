@@ -17,7 +17,7 @@ class RacingGameMachineTest {
         int tryCounts = 1;
         RacingGameMachine racingGameMachine = new RacingGameMachine(DUMMY_CARS, tryCounts);
 
-        racingGameMachine.play();
+        racingGameMachine.race();
         boolean isPlayable = racingGameMachine.canPlay();
 
         assertThat(isPlayable).isFalse();

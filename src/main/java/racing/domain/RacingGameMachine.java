@@ -23,7 +23,7 @@ public class RacingGameMachine {
         }
     }
 
-    public void play() {
+    public void race() {
         tryCounts--;
         cars.race();
     }
