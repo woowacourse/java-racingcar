@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -32,7 +33,7 @@ public class CarTest {
     @DisplayName("랜덤 값이 4이상 일때 자동차 위치가 변하는지 테스트")
     void randomNumberPositionTest(String input, String expected) {
         Car car = new Car("temp");
-        car.move(Integer.parseInt(input));
+        car.move(() -> Integer.parseInt(input));
         assertThat(car.getPosition()).isEqualTo(Integer.parseInt(expected));
     }
 
@@ -42,8 +43,15 @@ public class CarTest {
     void carPositionToStringTest(String input, String expected) {
         Car car = new Car("temp");
         for (int i = 0; i < Integer.parseInt(input); i++) {
-            car.move(4);
+            car.move(() -> 4);
         }
         assertThat(car.positionToString()).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("범위에 맞는 랜덤 값이 생성하는지 테스트")
+    void randomValueRangeTest() {
+        RandomValueGenerator randomValueGenerator = new RandomValueGenerator();
+        assertThat(randomValueGenerator.createMoveValue()).isBetween(0, 9);
     }
 }

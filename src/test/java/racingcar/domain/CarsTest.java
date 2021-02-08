@@ -49,16 +49,11 @@ public class CarsTest {
     @DisplayName("원하는 자동차 이동 후 우승자 문자열이 잘 반환되는지 테스트")
     void winnerCarTest(String input, String expected) {
         String[] inputArray = input.split("@");
-        String[] carNames = inputArray[0].split(",");
-        List<Car> carList = new ArrayList<>();
-        for (int i = 0; i < carNames.length; i++) {
-            carList.add(new Car(carNames[i]));
-        }
+        Cars cars = Cars.createCars(inputArray[0]);
         String[] indexArray = inputArray[1].split(",");
         for (String index : indexArray) {
-            carList.get(Integer.parseInt(index)).move(4);
+            cars.getCars().get(Integer.parseInt(index)).move(() -> 4);
         }
-        Cars cars = new Cars(carList);
         assertThat(cars.getWinners()).isEqualTo(expected);
     }
 }
