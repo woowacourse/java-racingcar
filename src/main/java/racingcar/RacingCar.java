@@ -16,7 +16,7 @@ public class RacingCar {
     public void run() {
         setUpRacingCar();
         selectWinners();
-        RacingCarView.printFinalResult(selectWinners().getWinnersNames());
+        RacingCarView.printFinalResult(selectWinners());
     }
 
     private void setUpRacingCar() {

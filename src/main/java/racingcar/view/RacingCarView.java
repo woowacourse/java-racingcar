@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
+import racingcar.domain.Winners;
 import racingcar.view.io.OutputView;
 
 import java.util.List;
@@ -17,8 +18,8 @@ public class RacingCarView {
         OutputView.printBlankLine();
     }
 
-    public static void printFinalResult(final List<String> winnersNames) {
-        OutputView.printString(String.join(", ", winnersNames) + FINAL_RESULT_MESSAGE);
+    public static void printFinalResult(final Winners winners) {
+        OutputView.printString(String.join(", ", winners.getWinnersNames()) + FINAL_RESULT_MESSAGE);
     }
 
     private static void printCarStatus(final Car car) {
