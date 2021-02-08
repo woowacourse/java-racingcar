@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.Test;
 
-public class RuleTest implements RuleStrategy {
+public class RandomNumberRuleTest implements RandomNumberRuleStrategy {
     static int number = 3;
 
     @Override

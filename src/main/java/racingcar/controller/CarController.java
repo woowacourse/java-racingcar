@@ -1,14 +1,14 @@
 package racingcar.controller;
 
 import racingcar.domain.Cars;
-import racingcar.domain.Rule;
+import racingcar.domain.RandomNumberRule;
 import racingcar.view.OutputView;
 
 public class CarController {
     private Cars cars;
 
     void createCars(String[] names) {
-        this.cars = new Cars(names, new Rule());
+        this.cars = new Cars(names, new RandomNumberRule());
     }
 
     public void race(int time, OutputView outputView) {
