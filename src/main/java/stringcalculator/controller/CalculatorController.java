@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class CalculatorController {
     private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\\\\n(.*)";
     private static final int ZERO = 0;
+    private static final String DELIMITER_SEPARATOR = "|";
 
     private final InputView inputView;
 
@@ -30,12 +31,12 @@ public class CalculatorController {
             return ZERO;
         }
 
-        String delimiters = ",|:";
+        String delimiters = "," + DELIMITER_SEPARATOR + ":";
 
         String numbers = getNumbers(input);
 
         if (hasCustomDelimiter(input)) {
-            delimiters += ("|" + getCustomDelimiter(input));
+            delimiters += (DELIMITER_SEPARATOR + getCustomDelimiter(input));
         }
 
         return splitAndSum(numbers, delimiters);
