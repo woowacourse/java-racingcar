@@ -25,4 +25,8 @@ public class ResultView {
         }
         return sb.toString();
     }
+
+    public static void showGameStart() {
+        System.out.println("실행 결과");
+    }
 }

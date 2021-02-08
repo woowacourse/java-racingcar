@@ -4,9 +4,8 @@ import racingCar.view.ResultView;
 
 public class Application {
     public static void main(String[] args) {
-        String carNames = InputView.getCarNames();
-        int raceCount = InputView.getRaceCount();
-        Game game = new Game(carNames, raceCount);
+        Game game = new Game(InputView.getCarNames(), InputView.getRaceCount());
+        ResultView.showGameStart();
         while (game.hasRaceCount()) {
             game.race();
             ResultView.showStatus(game.getCars());
