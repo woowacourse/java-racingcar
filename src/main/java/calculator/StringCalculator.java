@@ -67,15 +67,6 @@ public class StringCalculator {
         return true;
     }
 
-    private static boolean isNumeric(String input) {
-        try {
-            Integer.parseInt(input);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
     private static boolean isNegativeNumber(int num) {
         return num < 0;
     }
