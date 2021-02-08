@@ -23,7 +23,7 @@ public class Cars {
 
     public void startRace() {
         for (Car car : carList) {
-            car.move();
+            car.moveByDefaultRule();
             maxPosition = car.aboveMaxPosition(maxPosition);
         }
     }

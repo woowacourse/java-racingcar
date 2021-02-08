@@ -1,12 +1,14 @@
 package racingcar.domain;
 
+import java.util.function.Predicate;
+
 public class Car {
     private static final String CAR_STATUS_DELIMITER = " : ";
     private static final String CAR_POSITION_STATUS = "-";
 
     private String name;
     private int position;
-    private CarMoveRuleStrategy rule;
+    private CarMoveRule rule;
 
     public Car(String name) {
         this.name = name;
@@ -18,8 +20,14 @@ public class Car {
         return this.name;
     }
 
-    public void move() {
-        if (rule.execute()) {
+    public int getPosition() { return this.position; }
+
+    public void moveByDefaultRule() {
+        move(rule.getDefaultRule());
+    }
+
+    public void move(Predicate<CarMoveRule> rulePredicate) {
+        if (rulePredicate.test(this.rule)) {
             position++;
         }
     }
