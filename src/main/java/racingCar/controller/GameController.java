@@ -26,9 +26,9 @@ public class GameController {
     }
 
     private int inputRacingRound() {
+        OutputView.printInputNumOfRoundMessage();
         String input = inputView.inputValue();
         try {
-            OutputView.printInputNumOfRoundMessage();
             ValidateUtils.validateRacingRoundCount(input);
         } catch (RuntimeException e) {
             OutputView.printExceptionMessage(e);
@@ -38,9 +38,9 @@ public class GameController {
     }
 
     private String[] inputCarNames() {
+        OutputView.printInputCarNameMessage();
         String[] inputs = inputView.inputCarNames();
         try {
-            OutputView.printInputCarNameMessage();
             ValidateUtils.validateCarNames(inputs);
         } catch (RuntimeException e) {
             OutputView.printExceptionMessage(e);
