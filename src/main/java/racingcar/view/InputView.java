@@ -1,10 +1,8 @@
 package racingcar.view;
 
+import java.util.Scanner;
 import racingcar.domain.Participants;
 import racingcar.domain.Round;
-import racingcar.exception.RacingCarErrorMessage;
-
-import java.util.Scanner;
 
 public class InputView {
 
@@ -29,7 +27,7 @@ public class InputView {
       OutputView.printMessage(GET_TURN_MESSAGE);
       return new Round(Integer.parseInt(scanner.nextLine().trim()));
     } catch (NumberFormatException | IllegalStateException e) {
-      OutputView.printMessage(RacingCarErrorMessage.ROUND_ONLY_NUMBER.message());
+      OutputView.printMessage("1 이상의 숫자를 입력해주세요.");
       return getRound();
     }
   }
