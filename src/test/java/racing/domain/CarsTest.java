@@ -29,6 +29,7 @@ class CarsTest {
         String carNames = "pobi";
         assertThatCode(() -> {
             Cars.generate(carNames);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("자동차 이름은 1개 이상이어야 합니다");
     }
 }

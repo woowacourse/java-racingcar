@@ -33,7 +33,7 @@ public class Cars {
 
     private void validateCars() {
         if (cars.size() < MINIMUM_CAR_COUNTS) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차 이름은 1개 이상이어야 합니다");
         }
     }
 
