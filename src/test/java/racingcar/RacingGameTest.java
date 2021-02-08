@@ -7,13 +7,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
-import racingcar.utils.WinnerUtils;
+import racingcar.domain.RacingGame;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class WinnerUtilsTest {
+public class RacingGameTest {
 
     private List<Car> cars;
+    private RacingGame racingGame;
 
     @BeforeEach
     void setUp() {
@@ -34,11 +35,12 @@ public class WinnerUtilsTest {
         cars.add(newCar("루트", 5));
         cars.add(newCar("소롱", 3));
         cars.add(newCar("포비", 1));
+        racingGame = new RacingGame(cars, 0);
 
         List<String> expected = new ArrayList<>();
         expected.add(cars.get(0).getName());
 
-        List<String> actual = WinnerUtils.findWinners(cars);
+        List<String> actual = racingGame.getWinners();
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -48,8 +50,8 @@ public class WinnerUtilsTest {
         cars.add(newCar("루트", 5));
         cars.add(newCar("소롱", 5));
         cars.add(newCar("포비", 1));
-
-        List<String> actual = WinnerUtils.findWinners(cars);
+        racingGame = new RacingGame(cars, 0);
+        List<String> actual = racingGame.getWinners();
         List<String> expected = new ArrayList<>();
         expected.add(cars.get(0).getName());
         expected.add(cars.get(1).getName());
@@ -63,10 +65,10 @@ public class WinnerUtilsTest {
         cars.add(new Car("루트"));
         cars.add(new Car("소롱"));
         cars.add(new Car("포비"));
+        racingGame = new RacingGame(cars, 0);
 
         List<String> expected = cars.stream().map(Car::getName).collect(Collectors.toList());
-
-        List<String> actual = WinnerUtils.findWinners(cars);
+        List<String> actual = racingGame.getWinners();
         assertThat(actual).isEqualTo(expected);
     }
 }

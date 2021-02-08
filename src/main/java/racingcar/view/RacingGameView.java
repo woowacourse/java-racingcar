@@ -3,6 +3,7 @@ package racingcar.view;
 import java.util.Scanner;
 import java.util.List;
 import racingcar.domain.Car;
+import racingcar.domain.RacingGame;
 
 public class RacingGameView {
 
@@ -31,12 +32,20 @@ public class RacingGameView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printCarPosition(Car car) {
-        String movement = "";
-        for (int p = 0; p < car.getPosition(); p++) {
-            movement = movement.concat(MOVEMENT);
+    public static void printCarPositions(RacingGame racingGame) {
+        for (Car car : racingGame.getCars()) {
+            String progressBar = makeProgressBar(car.getPosition());
+            System.out.printf(CAR_SITUATION_MESSAGE_FORMAT, car.getName(), progressBar);
         }
-        System.out.printf(CAR_SITUATION_MESSAGE_FORMAT, car.getName(), movement);
+    }
+
+    private static String makeProgressBar(int length) {
+        String result = "";
+        for (int p = 0; p < length; p++) {
+            result = result.concat(MOVEMENT);
+        }
+
+        return result;
     }
 
     public static void printNewLine() {
