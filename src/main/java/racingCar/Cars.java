@@ -25,4 +25,12 @@ public class Cars {
     public static List<Car> getCars() {
         return cars;
     }
+
+    public static int findMaxDistance() {
+        int maxNumber = 0;
+        for (Car car : cars) {
+            maxNumber = Math.max(maxNumber, car.getDistance());
+        }
+        return maxNumber;
+    }
 }
