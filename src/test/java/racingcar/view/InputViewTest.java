@@ -15,7 +15,7 @@ import static racingcar.domain.Car.BLANK_ERROR_MESSAGE;
 import static racingcar.domain.Car.NAME_LENGTH_ERROR_MESSAGE;
 import static racingcar.domain.Cars.DUPLICATE_NAME_ERROR_MESSAGE;
 import static racingcar.domain.RacingGame.NOT_NUMBER_ERROR_MESSAGE;
-import static racingcar.domain.RacingGame.UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE;
+import static racingcar.domain.RacingGame.INVALID_NUMBER_OF_ROUNDS_MESSAGE;
 
 public class InputViewTest {
     private Scanner scanner;
@@ -79,7 +79,7 @@ public class InputViewTest {
 
         assertThatThrownBy(() -> InputView.takeNumberOfRoundsInput(scanner))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE);
+                .hasMessage(INVALID_NUMBER_OF_ROUNDS_MESSAGE);
     }
 
     public static InputStream generateUserInput(String input) {

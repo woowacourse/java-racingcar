@@ -4,9 +4,9 @@ import java.util.List;
 
 public class RacingGame {
     public static final int MINIMUM_NUMBER_OF_ROUNDS = 1;
-    public static final String UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE = "[ERROR] 라운드 횟수는 1이상이어야 합니다";
+    public static final String INVALID_NUMBER_OF_ROUNDS_MESSAGE = "[ERROR] 라운드 횟수는 1이상이어야 합니다";
     public static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
-    private static final int INIT_ROUND = 0;
+    public static final int INIT_ROUND = 0;
 
     private final Cars cars;
     private final int numberOfRounds;
@@ -21,7 +21,7 @@ public class RacingGame {
 
     private static void validatePositiveNumber(int numberOfRounds) {
         if (numberOfRounds < MINIMUM_NUMBER_OF_ROUNDS) {
-            throw new IllegalArgumentException(UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE);
+            throw new IllegalArgumentException(INVALID_NUMBER_OF_ROUNDS_MESSAGE);
         }
     }
 

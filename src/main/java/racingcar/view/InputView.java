@@ -58,7 +58,7 @@ public class InputView {
 
     private static void validatePositiveNumber(int numberOfRounds) {
         if (numberOfRounds < MINIMUM_NUMBER_OF_ROUNDS) {
-            throw new IllegalArgumentException(UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE);
+            throw new IllegalArgumentException(INVALID_NUMBER_OF_ROUNDS_MESSAGE);
         }
     }
 }
