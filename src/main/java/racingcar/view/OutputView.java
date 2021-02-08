@@ -10,6 +10,8 @@ public class OutputView {
     private static final String WINNER_MESSAGE = "%s가 최종우승 했습니다.";
     private static final String CAR_STATE_MESSAGE = "%s : %s";
 
+    private OutputView() {}
+
     public static void printInputCarNamesMessage() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
     }
