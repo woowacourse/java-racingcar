@@ -8,7 +8,7 @@ public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
 
-        RacingController carRacingManager = new RacingController(scanner);
-        carRacingManager.start();
+        RacingController carRacingController = new RacingController(scanner);
+        carRacingController.start();
     }
 }
