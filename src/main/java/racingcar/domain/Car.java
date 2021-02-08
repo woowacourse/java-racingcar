@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.regex.Pattern;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final String REGEX_ALPHA = "^[a-zA-z]*$";
     private static final String REGEX_KOREAN = "[가-힣]*$";
     private static final int NAME_LENGTH_LIMIT = 5;
@@ -13,6 +13,11 @@ public class Car {
     public Car(final String name) {
         validateName(name);
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(Car anotherCar) {
+        return Integer.compare(this.getPosition(), anotherCar.getPosition());
     }
 
     public String getName() {
@@ -27,8 +32,8 @@ public class Car {
         this.position++;
     }
 
-    public boolean isMaxPosition(final int maxPosition) {
-        return this.position == maxPosition;
+    public boolean isMaxPosition(final Car maxPositionCar) {
+        return this.position == maxPositionCar.getPosition();
     }
 
     private void validateName(final String name) {

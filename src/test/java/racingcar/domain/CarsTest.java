@@ -24,6 +24,6 @@ public class CarsTest {
     void carsGetMaxPosition() {
         List<String> carNames = Arrays.asList("pobi", "amaz");
         Cars.assignCars(carNames);
-        assertThat(Cars.getMaxPositionByCars()).isEqualTo(0);
+        assertThat(Cars.getMaxPositionCar()).isEqualTo(0);
     }
 }
