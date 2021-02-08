@@ -13,6 +13,10 @@ public class Input {
         setNormalInput(input);
     }
 
+    private boolean isNullOrBlank(String input) {
+        return input == null || input.isEmpty();
+    }
+
     private void setNullOrBlankInput() {
         this.input = "0";
         this.delimiter = DelimiterFactory.DEFAULT();
@@ -30,10 +34,6 @@ public class Input {
 
     public static Input valueOf(String input) {
         return new Input(input);
-    }
-
-    private boolean isNullOrBlank(String input) {
-        return input == null || input.isEmpty();
     }
 
     public Numbers getNumbers() {
