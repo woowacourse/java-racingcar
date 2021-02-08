@@ -9,6 +9,8 @@ public class InputValidation {
     private static final int NAME_MAX_LENGTH = 5;
     private static final int CAR_MIN_NUMBER = 2;
 
+    private InputValidation() {}
+
     public static void validateName(String[] name) {
         isValidText(name);
         isValidLength(name);

@@ -5,6 +5,8 @@ import java.util.Random;
 public class RandomNumberGenerator {
     private static final Random RANDOM = new Random();
 
+    private RandomNumberGenerator() {}
+
     public static int generate(int minNumber, int maxNumber) {
         if (minNumber > maxNumber) {
             throw new IllegalArgumentException();
