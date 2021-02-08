@@ -4,9 +4,12 @@ import racingcar.constant.Message;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
+    private static final String HYPHEN = "-";
+
     public static void printCarNamesRequest() {
         System.out.println(Message.CAR_NAMES_REQUEST);
     }
@@ -20,11 +23,9 @@ public class OutputView {
         System.out.println(Message.RESULT_MESSAGE);
     }
 
-    public static void printResult(Cars cars) {
-        List<Car> carList = cars.getCars();
-
-        for (Car car : carList) {
-            System.out.println(car);
+    public static void printResult(List<String> names, List<StringBuilder> hyphens) {
+        for (int i = 0; i < names.size(); i++) {
+            System.out.println(names.get(i) + Message.COLON_WITH_BLANK + hyphens.get(i));
         }
         printNewLine();
     }

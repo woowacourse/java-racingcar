@@ -39,15 +39,4 @@ public class Car {
     public int getPosition() {
         return position;
     }
-
-    @Override
-    public String toString() {
-        StringBuilder hyphens = new StringBuilder();
-
-        for (int i = 0; i < position; i++) {
-            hyphens.append(Message.HYPHEN);
-        }
-
-        return name + Message.COLON_WITH_BLANK + hyphens.toString();
-    }
 }
