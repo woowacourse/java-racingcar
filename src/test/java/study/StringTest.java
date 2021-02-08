@@ -36,7 +36,7 @@ public class StringTest {
         assertThatThrownBy(() -> {
             try {
                 char values = "abc".charAt(3);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 throw new IndexOutOfBoundsException("Index: 3, Size: 3");
             }
         }).isInstanceOf(IndexOutOfBoundsException.class)
@@ -45,17 +45,17 @@ public class StringTest {
 
     @DisplayName("Exceptional_charAt_Test")
     @ParameterizedTest
-    @ValueSource(ints = {3,4,-1})
+    @ValueSource(ints = {3, 4, -1})
     void charAtException2(int testIndex) {
         String values = "abc";
         assertThatExceptionOfType(IndexOutOfBoundsException.class)
-            .isThrownBy(() -> {
-            try {
-                char value = values.charAt(testIndex);
-            } catch(Exception e) {
-                throw new IndexOutOfBoundsException("Index: " + testIndex + ", Size: " + values.length());
-            }
-        }).withMessageMatching("Index: (-?[0-9]*), Size: \\d+");
+                .isThrownBy(() -> {
+                    try {
+                        char value = values.charAt(testIndex);
+                    } catch (Exception e) {
+                        throw new IndexOutOfBoundsException("Index: " + testIndex + ", Size: " + values.length());
+                    }
+                }).withMessageMatching("Index: (-?[0-9]*), Size: \\d+");
     }
 
 }

@@ -26,7 +26,7 @@ public class OutputView {
 
     public static void printCarInformation(final String carName, final int carDistance) {
         StringBuilder carDistanceIndicator = new StringBuilder();
-        for (int i=0 ;i<carDistance; i++) {
+        for (int i = 0; i < carDistance; i++) {
             carDistanceIndicator.append(DASH);
         }
         System.out.println(carName + STATUS_INDICATOR + carDistanceIndicator);

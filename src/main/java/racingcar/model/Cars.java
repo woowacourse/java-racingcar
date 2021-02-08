@@ -25,7 +25,7 @@ public class Cars {
             carsInGame.add(new Car(carNames[i], distance[i]));
         }
     }
-    
+
     private void validateCarNames(final String[] carNames) {
         validateCarNamesEmpty(carNames);
         validateCarNamesDuplicate(carNames);

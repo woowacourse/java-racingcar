@@ -17,7 +17,7 @@ public class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {4,5,6,7,8,9})
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     public void Car_move_작동_테스트_랜덤_숫자가_4이상일때(int randomNumber) {
         Car car = new Car("test");
         car.move(randomNumber);
@@ -25,7 +25,7 @@ public class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0,1,2,3})
+    @ValueSource(ints = {0, 1, 2, 3})
     public void Car_move_작동_테스트_랜덤_숫자가_4미만일때(int randomNumber) {
         Car car = new Car("test");
         car.move(randomNumber);
