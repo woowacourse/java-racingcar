@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class InputValidation {
-    private static int NAME_MAX_LENGTH = 5;
     private static int CAR_MIN_NUMBER = 2;
 
     private InputValidation() {
@@ -14,7 +13,6 @@ public class InputValidation {
 
     public static void validateName(String[] name) {
         isValidText(name);
-        isValidLength(name);
         isDuplicateName(name);
         notEnoughCars(name);
     }
@@ -35,19 +33,6 @@ public class InputValidation {
         return Arrays.stream(name)
                 .distinct()
                 .count() == name.length;
-    }
-
-    private static void isValidLength(String[] names) {
-        Arrays.stream(names)
-                .filter(name -> checkLength(name))
-                .findAny()
-                .ifPresent(s -> {
-                    throw new InvalidNameLengthException(NAME_MAX_LENGTH);
-                });
-    }
-
-    private static boolean checkLength(String name) {
-        return name.length() <= 0 || name.length() > NAME_MAX_LENGTH;
     }
 
     private static void isValidText(String[] names) {

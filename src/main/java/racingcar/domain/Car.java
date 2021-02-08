@@ -1,12 +1,22 @@
 package racingcar.domain;
 
+import racingcar.utils.exception.InvalidNameLengthException;
+
 public class Car {
+    private static int NAME_MAX_LENGTH = 5;
     private String name;
     private int position;
 
     public Car(String name) {
         this.name = name;
         this.position = 0;
+        isValidNameLength();
+    }
+
+    private void isValidNameLength() {
+        if (name.length() <= 0 || name.length() > NAME_MAX_LENGTH) {
+            throw new InvalidNameLengthException(NAME_MAX_LENGTH);
+        }
     }
 
     public String getName() {

@@ -22,17 +22,6 @@ class InputValidationTest {
     }
 
     @Test
-    public void 이름_길이가_잘못된_경우_예외처리() {
-        String[] overLength = {"poooobi", "brown"};
-        assertThatThrownBy(() -> InputValidation.validateName(overLength))
-                .isInstanceOf(InvalidNameLengthException.class);
-
-        String[] lessLength = {"pobi", ""};
-        assertThatThrownBy(() -> InputValidation.validateName(lessLength))
-                .isInstanceOf(InvalidNameLengthException.class);
-    }
-
-    @Test
     public void 이름이_중복되는_경우_예외처리() {
         String[] duplicateInput = {"pobi", "brown", "pobi"};
         assertThatThrownBy(() -> InputValidation.validateName(duplicateInput))
