@@ -23,7 +23,7 @@ public class GameSetterTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"한대의자동차", "자동차#;"})
+    @ValueSource(strings = {"한대", "자동차#;"})
     void setCarsTest_자동차_입력_수(String input) {
         assertThatThrownBy(() -> {
             GameSetter.setCars(input);
