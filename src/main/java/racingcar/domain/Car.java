@@ -4,6 +4,7 @@ import racingcar.utils.exception.InvalidNameLengthException;
 
 public class Car {
     private static int NAME_MAX_LENGTH = 5;
+    private static RandomNumberRuleStrategy rule;
     private String name;
     private int position;
 
@@ -11,6 +12,11 @@ public class Car {
         this.name = name;
         this.position = 0;
         isValidNameLength();
+        setStrategy(new RandomNumberRule());
+    }
+
+    public void setStrategy(RandomNumberRuleStrategy randomNumberRule) {
+        this.rule = randomNumberRule;
     }
 
     private void isValidNameLength() {
@@ -23,8 +29,12 @@ public class Car {
         return this.name;
     }
 
-    public void move(boolean isMoving) {
-        if (isMoving) {
+    public int getPosition() {
+        return this.position;
+    }
+
+    public void move() {
+        if (rule.execute()) {
             position++;
         }
     }

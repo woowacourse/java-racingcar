@@ -2,30 +2,23 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
     private List<Car> carList;
-    private RandomNumberRuleStrategy rule;
     private int maxPosition = 0;
 
-    public Cars(String[] names, RandomNumberRuleStrategy strategy) {
+    public Cars(String[] names) {
         carList = new ArrayList<>();
         this.carList.addAll(Arrays.stream(names)
                 .map(name -> new Car(name))
                 .collect(Collectors.toList()));
-        rule = strategy;
-    }
-
-    public List<Car> carList() {
-        return Collections.unmodifiableList(carList);
     }
 
     public void startRace() {
         for (Car car : carList) {
-            car.move(rule.execute());
+            car.move();
             maxPosition = car.aboveMaxPosition(maxPosition);
         }
     }
