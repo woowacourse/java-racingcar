@@ -6,8 +6,6 @@ public class Car {
 
     private final String name;
     private int distance;
-    private StringBuilder distanceIndicator = new StringBuilder();
-    private String DASH = "-";
 
     public Car(String name) {
         this(name, 0);
@@ -28,7 +26,6 @@ public class Car {
     public int move(final int randomNumber) {
         if (checkMoveCondition(randomNumber)) {
             this.distance++;
-            this.distanceIndicator.append(DASH);
         }
         return this.distance;
     }
@@ -37,16 +34,15 @@ public class Car {
         return (randomNumber >= MOVE_POINT_NUMBER);
     }
 
-    @Override
-    public String toString() {
-        return (this.name + " : " + this.distanceIndicator);
-    }
-
     public boolean isWinner(final int maxDistance) {
         return (maxDistance == this.distance);
     }
 
-    public String getCarName() {
+    public String getName() {
         return this.name;
+    }
+
+    public int getDistance() {
+        return this.distance;
     }
 }
