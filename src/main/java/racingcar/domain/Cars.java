@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private List<Car> carList;
-    private RuleStrategy rule;
+    private CarMoveRuleStrategy rule;
     private int maxPosition = 0;
 
-    public Cars(String[] names, RuleStrategy strategy) {
+    public Cars(String[] names, CarMoveRuleStrategy strategy) {
         carList = new ArrayList<>();
         this.carList.addAll(Arrays.stream(names)
                 .map(name -> new Car(name))

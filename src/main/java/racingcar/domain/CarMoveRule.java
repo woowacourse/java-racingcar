@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import racingcar.utils.RandomNumberGenerator;
 
-public class Rule implements RuleStrategy {
+public class CarMoveRule implements CarMoveRuleStrategy {
     public boolean execute() {
         return generate() > MOVE_LIMIT;
     }
