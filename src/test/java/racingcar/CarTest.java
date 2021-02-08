@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,13 +16,12 @@ import racingcar.domain.AttemptNumber;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
-public class RacingCarTest {
+public class CarTest {
 
-    @ParameterizedTest
-    @ValueSource(strings = {"benz", "bmw", "suv"})
+    @Test
     @DisplayName("자동차 이름이 잘 들어갔는지 테스트")
     void carNameTest(String text) {
-        Car car = new Car(text);
+        Car car = new Car("benz");
         assertThat(car.getName()).isEqualTo(text);
     }
 
