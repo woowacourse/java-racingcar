@@ -7,14 +7,14 @@ public class Car {
     private final String name;
     private int position;
 
-    public Car(String name) {
-        this(name, Digit.START_POSITION.getDigit());
+    public Car(String name, int position) {
+        this(name);
+        this.position = position;
     }
 
-    public Car(String name, int position) {
+    public Car(String name) {
         validateLength(name);
         this.name = name;
-        this.position = position;
     }
 
     private void validateLength(String name) {
