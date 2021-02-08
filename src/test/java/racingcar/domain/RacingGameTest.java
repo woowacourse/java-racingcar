@@ -20,7 +20,7 @@ class RacingGameTest {
 
     private final List<String> carNamesForTest = Arrays.asList("포비", "데이브", "삭정");
 
-    @DisplayName("주어진 이름을 토대로 racingGame 과 자동차를 생성하는 지 테스트")
+    @DisplayName("올바른 이름이 주어졌을 때 이를 토대로 racingGame 과 자동차를 생성하는 지 테스트")
     @Test
     void racingGameConstructor_givenCarNames_createCarsByGivenCarNames() {
         RacingGame racingGame = createRacingGame();

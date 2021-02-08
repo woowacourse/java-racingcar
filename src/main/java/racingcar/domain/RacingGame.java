@@ -41,7 +41,11 @@ public class RacingGame {
     }
 
     public Cars getCars() {
-        return cars;
+        return cars.copy();
+    }
+
+    public int getNumberOfRounds() {
+        return numberOfRounds;
     }
 
     public int getCurrentRound() {

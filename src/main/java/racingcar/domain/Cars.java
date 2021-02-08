@@ -8,7 +8,11 @@ import java.util.stream.Collectors;
 public class Cars {
     public static final String DUPLICATE_NAME_ERROR_MESSAGE = "[ERROR] 동일한 이름이 있습니다.";
 
-    private final List<Car> cars;
+    private List<Car> cars;
+
+    public Cars() {
+        this(null);
+    }
 
     public Cars(List<String> names) {
         validateDuplicate(names);
@@ -30,6 +34,15 @@ public class Cars {
 
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
+    }
+
+    public Cars copy() {
+        Cars carsCopied = new Cars();
+        carsCopied.cars = cars.stream()
+                .map(car -> new Car(car.getName(),car.getPosition()))
+                .collect(Collectors.toList());
+
+        return carsCopied;
     }
 
     public void moveCars() {

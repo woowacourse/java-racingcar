@@ -12,11 +12,17 @@ public class Car {
     private int position;
     private final String name;
 
+    //TODO
+    // 새로운 생성자 테스트
     public Car(String name) {
+        this(name, INIT_POSITION);
+    }
+
+    public Car(String name, int position) {
         validateBlankInName(name);
         validateNameLength(name);
         this.name = name;
-        this.position = INIT_POSITION;
+        this.position = position;
     }
 
     private void validateBlankInName(String name) {
