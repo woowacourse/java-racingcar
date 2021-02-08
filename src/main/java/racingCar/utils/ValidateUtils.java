@@ -45,10 +45,9 @@ public class ValidateUtils {
         throw new InvalidCarNameException(ERROR_MESSAGE_CAR_NAME_NULL_OR_EMPTY);
     }
 
-    public static int validateRacingRoundCount(String input) {
+    public static void validateRacingRoundCount(String input) {
         int count = validateInteger(input);
         validateNotNegative(count);
-        return count;
     }
 
     private static void validateNotNegative(int count) {

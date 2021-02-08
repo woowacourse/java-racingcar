@@ -8,8 +8,6 @@ import racingCar.view.OutputView;
 
 public class GameController {
 
-    private static String[] cars;
-    private static int numOfRacingRound;
     private final InputView inputView;
 
     public GameController(Scanner scanner) {
@@ -17,9 +15,8 @@ public class GameController {
     }
 
     public void play() {
-        inputCarNames();
-        inputRacingRound();
-
+        String[] cars = inputCarNames();
+        int numOfRacingRound = inputRacingRound();
         RacingGame racingGame = new RacingGame(cars, numOfRacingRound);
         while (!racingGame.isEnd()) {
             racingGame.race();
@@ -28,24 +25,27 @@ public class GameController {
         OutputView.printWinners(racingGame.getWinners());
     }
 
-    private void inputRacingRound() {
+    private int inputRacingRound() {
+        String input = inputView.inputValue();
         try {
             OutputView.printInputNumOfRoundMessage();
-            numOfRacingRound = ValidateUtils.validateRacingRoundCount(inputView.inputValue());
+            ValidateUtils.validateRacingRoundCount(input);
         } catch (RuntimeException e) {
             OutputView.printExceptionMessage(e);
             inputRacingRound();
         }
+        return Integer.parseInt(input);
     }
 
-    private void inputCarNames() {
+    private String[] inputCarNames() {
+        String[] inputs = inputView.inputCarNames();
         try {
             OutputView.printInputCarNameMessage();
-            cars = inputView.inputCarNames();
-            ValidateUtils.validateCarNames(cars);
+            ValidateUtils.validateCarNames(inputs);
         } catch (RuntimeException e) {
             OutputView.printExceptionMessage(e);
             inputCarNames();
         }
+        return inputs;
     }
 }
