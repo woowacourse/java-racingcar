@@ -35,12 +35,17 @@ public class StringCalculator {
     }
 
     private static void checkAllDigit(String[] numbers) {
-        if (!Arrays.stream(numbers).allMatch(n -> n.matches("\\d+"))) {
+        boolean condition = Arrays.stream(numbers)
+                .allMatch(n -> n.matches("\\d+"));
+
+        if (!condition) {
             throw new RuntimeException();
         }
     }
 
     private static int sum(String[] numbers) {
-        return Arrays.stream(numbers).mapToInt(Integer::parseInt).sum();
+        return Arrays.stream(numbers)
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 }
