@@ -27,7 +27,7 @@ public class RacingController {
 
         for (int i = 0; i < raceTime; i++) {
             carRacingGameEngine.race();
-            showRaceState(CarRepository.cars());
+            showRaceState();
         }
 
         showRaceWinner();
@@ -49,13 +49,13 @@ public class RacingController {
         OutputView.printRaceResult();
     }
 
-    private void showRaceState(List<Car> cars) {
-        showAllCarsPosition(cars);
+    private void showRaceState() {
+        showAllCarsPosition();
         OutputView.printNewLine();
     }
 
-    private void showAllCarsPosition(List<Car> cars) {
-        cars.forEach(car ->
+    private void showAllCarsPosition() {
+        CarRepository.cars().forEach(car ->
                 OutputView.printRaceResultEachCar(
                         car.getName(), car.getPosition()));
     }
