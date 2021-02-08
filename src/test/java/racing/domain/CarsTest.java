@@ -49,6 +49,17 @@ class CarsTest {
                 .hasMessageContaining("게임 참가자는 최소 2명 이상이어야 합니다.");
     }
 
+    @DisplayName("Cars 컬렉션 생성시 필요한 자동차 이름들 중 중복이 있으면 예외가 발생한다.")
+    @Test
+    void cannotMakeCarsWithDuplication() {
+        String carNames = "pobi,brown,jiko,pobi";
+
+        assertThatCode(() -> {
+            Cars.generate(carNames, ALWAYS_MOVING_STRATEGY);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복된 자동차 이름이 존재합니다.");
+    }
+
     @DisplayName("Cars 컬렉션 원소들 중 가장 멀리 이동한 자동차 명단이 우승자 명단이다.")
     @Test
     void findWinnerNames() {
