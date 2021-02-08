@@ -46,7 +46,7 @@ public class RacingCarController {
     }
 
     public void playUntilDone(Cars cars, Times times) {
-        while (!times.isZero()) {
+        while (times.hasTurn()) {
             carService.decideMovableCar(cars, Collections.EMPTY_LIST);
             OutputView.printResult(cars);
             times.reduce();

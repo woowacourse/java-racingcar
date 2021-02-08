@@ -33,7 +33,7 @@ public class Times {
         times--;
     }
 
-    public boolean isZero() {
-        return times == Digit.ZERO.getDigit();
+    public boolean hasTurn() {
+        return times != Digit.ZERO.getDigit();
     }
 }
