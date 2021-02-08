@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 import stringcalculator.exception.IllegalCustomDelimiterException;
 import stringcalculator.exception.IllegalCustomDelimiterPositionException;
 
@@ -85,24 +84,6 @@ public class StringCalculatorTest {
         assertEquals(Integer.valueOf(expected), StringCalculator.splitAndSum(input));
     }
 
-    @ParameterizedTest
-    @DisplayName("분리 된 문자열 중 숫자가 아닌 것이 있는지 체크 한다.")
-    @ValueSource(strings = {"//|\na|b|c", "a,b:c", "//;\n|;|;3", "1,b:3"})
-    public void splitAndSum_분리_된_문자가_숫자가_아니면_예외(String input) {
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
-                () -> StringCalculator.splitAndSum(input)
-        );
-    }
-
-    @ParameterizedTest
-    @DisplayName("분리 된문자열 중 음수가 있다면 예외")
-    @ValueSource(strings = {"1,2:-3", "1,2:-3:3", "1,-2:-1", "-1,2:-3", "//|\n1|1|-1", "//|\n1|-1|-1", "//|\n-1|1|-1"})
-    public void splitAndSum_분리_된_문자열_중_음수가_있다면_예외(String input) {
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
-                () -> StringCalculator.splitAndSum(input)
-        );
-    }
-
     private static Stream<Arguments> provideInputsFor_구분자로_구분된_숫자들의_합을_반환() {
         return Stream.of(
                 Arguments.of("//|" + System.lineSeparator() + "1|2|3", "6"),
@@ -111,6 +92,45 @@ public class StringCalculatorTest {
                 Arguments.of("1:2,3", "6"),
                 Arguments.of("1:2:3", "6"),
                 Arguments.of("1,2,3", "6")
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("분리 된 문자열 중 숫자가 아닌 것이 있는지 체크 한다.")
+    @MethodSource("provideInputsFor_분리_된_문자가_숫자가_아니면_예외")
+    public void splitAndSum_분리_된_문자가_숫자가_아니면_예외(String input) {
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
+                () -> StringCalculator.splitAndSum(input)
+        );
+    }
+
+    private static Stream<Arguments> provideInputsFor_분리_된_문자가_숫자가_아니면_예외() {
+        return Stream.of(
+                Arguments.of("//|" + System.lineSeparator() + "a|b|c"),
+                Arguments.of("a,b:c"),
+                Arguments.of("//;" + System.lineSeparator() + "|;|;3"),
+                Arguments.of("1,b:3")
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("분리 된문자열 중 음수가 있다면 예외")
+    @MethodSource("provideInputsFor_분리_된_문자열_중_음수가_있다면_예외")
+    public void splitAndSum_분리_된_문자열_중_음수가_있다면_예외(String input) {
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
+                () -> StringCalculator.splitAndSum(input)
+        );
+    }
+
+    private static Stream<Arguments> provideInputsFor_분리_된_문자열_중_음수가_있다면_예외() {
+        return Stream.of(
+                Arguments.of("1,2:-3"),
+                Arguments.of("1,2:-3:3"),
+                Arguments.of("1,-2:-1"),
+                Arguments.of("-1,2:-3"),
+                Arguments.of("//|" + System.lineSeparator() + "1|1|-1"),
+                Arguments.of("//|" + System.lineSeparator() + "1|-1|-1"),
+                Arguments.of("//|" + System.lineSeparator() + "-1|1|-1")
         );
     }
 }
