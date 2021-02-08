@@ -46,7 +46,7 @@ public class Cars {
     }
 
     private void addWinner(Car car, int maxPosition, List<String> winners) {
-        if (maxPosition == car.getPosition()) {
+        if (car.isMaxPosition(maxPosition)) {
             winners.add(car.getName());
         }
     }
