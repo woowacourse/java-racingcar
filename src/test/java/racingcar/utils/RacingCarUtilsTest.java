@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -13,7 +14,7 @@ public class RacingCarUtilsTest {
     @ValueSource(strings = "pobi,amazzi,fortune")
     @DisplayName("자동차 이름을 `,` 로 구분 하기")
     void split_string(String inputString) {
-        String result = RacingCarUtils.splitInputString(inputString).toString();
-        assertThat(result.equals(Arrays.asList("pobi", "amazzi", "fortune").toString())).isTrue();
+        List<String> result = RacingCarUtils.splitInputString(inputString);
+        assertThat(result).isEqualTo(Arrays.asList("pobi", "amazzi", "fortune"));
     }
 }
