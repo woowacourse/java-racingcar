@@ -14,13 +14,9 @@ public class Car {
     }
 
     public void tryToMove(int currentRPM) {
-        if (movementCheck(currentRPM)) {
+        if (currentRPM >= MOVABLE_MINIMUM_RPM) {
             move();
         }
-    }
-
-    private boolean movementCheck(int currentRPM) {
-        return currentRPM >= MOVABLE_MINIMUM_RPM;
     }
 
     private void move() {
