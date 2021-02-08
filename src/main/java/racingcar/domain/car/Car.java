@@ -12,7 +12,7 @@ public class Car {
         this.gasTank = new GasTank();
     }
 
-    static Car enrollWithName(final String name) {
+    public static Car enrollWithName(final String name) {
         return new Car(name);
     }
 

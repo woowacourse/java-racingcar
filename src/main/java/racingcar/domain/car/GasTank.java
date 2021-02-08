@@ -5,15 +5,15 @@ public class GasTank {
 
     private int gas;
 
-    GasTank() {
+    public GasTank() {
         this.gas = 0;
     }
 
-    void fillUpGas(final int gas) {
+    public void fillUpGas(final int gas) {
         this.gas = gas;
     }
 
-    boolean isEnoughGas() {
+    public boolean isEnoughGas() {
         return this.gas >= ENOUGH_GAS;
     }
 

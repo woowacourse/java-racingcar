@@ -6,11 +6,11 @@ public class Position {
 
     private final StringBuilder position;
 
-    Position() {
+    public Position() {
         this.position = new StringBuilder();
     }
 
-    void forward() {
+    public void forward() {
         position.append(UNIT_OF_POSITION);
     }
 
