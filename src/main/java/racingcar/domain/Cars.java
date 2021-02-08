@@ -9,6 +9,7 @@ import racingcar.view.OutputView;
 
 public class Cars {
     private static final int BOUND = 10;
+    private static final String COMMA_SPACE = ", ";
 
     private List<Car> cars;
 
@@ -54,7 +55,7 @@ public class Cars {
         StringBuilder sb = new StringBuilder();
         sb.append(winners.get(0));
         for (int i = 1; i < winners.size(); i++) {
-            sb.append(", ");
+            sb.append(COMMA_SPACE);
             sb.append(winners.get(i));
         }
         return sb.toString();
