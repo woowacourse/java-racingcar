@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import java.util.List;
 
+//TODO
+// racingGameDto
 public class RacingGame {
     public static final int MINIMUM_NUMBER_OF_ROUNDS = 1;
     public static final String UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE = "[ERROR] 라운드 횟수는 1이상이어야 합니다";

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.dto.CarDto;
 import racingcar.dto.CarsDto;
 
 import java.util.Arrays;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static racingcar.domain.Car.INIT_POSITION;
 import static racingcar.domain.RacingGame.UNAVAILABLE_NUMBER_OF_ROUNDS_MESSAGE;
 
 class RacingGameTest {
@@ -18,14 +20,18 @@ class RacingGameTest {
 
     private final List<String> carNamesForTest = Arrays.asList("포비", "데이브", "삭정");
 
-    @DisplayName("주어진 이름대로 자동차 생성되는지 테스트")
+    @DisplayName("주어진 이름을 토대로 racingGame 과 자동차를 생성하는 지 테스트")
     @Test
     void racingGameConstructor_givenCarNames_createCarsByGivenCarNames() {
         RacingGame racingGame = createRacingGame();
-        CarsDto cars = new CarsDto(racingGame.getCars());
+
+        assertThat(racingGame).isInstanceOf(RacingGame.class);
+
+        List<CarDto> carsDto = new CarsDto(racingGame.getCars()).getCarsDto();
 
         for (int i = 0; i < carNamesForTest.size(); i++) {
-            assertThat(cars.getCarsDto().get(i).getName()).isEqualTo(carNamesForTest.get(i));
+            assertThat(carsDto.get(i).getName()).isEqualTo(carNamesForTest.get(i));
+            assertThat(carsDto.get(i).getPosition()).isEqualTo(INIT_POSITION);
         }
     }
 
