@@ -58,7 +58,7 @@ public class Cars {
     }
 
     public String getWinner() {
-        ArrayList<String> winners = new ArrayList<String>();
+        List<String> winners = new ArrayList<>();
         carsInGame.stream()
                 .filter(it -> it.isWinner(maxDistance))
                 .forEach(it -> winners.add(it.getName()));
