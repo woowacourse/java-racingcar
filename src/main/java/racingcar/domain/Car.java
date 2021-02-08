@@ -29,8 +29,8 @@ public class Car {
         return position;
     }
 
-    public void move(int randomNumber) {
-        if (randomNumber >= MOVE_BOUND) {
+    public void move(MoveValueStrategy moveValueStrategy) {
+        if (moveValueStrategy.createMoveValue() >= MOVE_BOUND) {
             position++;
         }
     }

@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 public class Cars {
     private static final String NO_NAME_ERROR = "반드시 자동차 이름을 입력하셔야 합니다.";
     private static final String COMMA = ",";
-    private static final int BOUND = 10;
     private static final String COMMA_SPACE = ", ";
 
     private List<Car> cars;
@@ -39,9 +37,9 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    public void move(Random random) {
+    public void move(MoveValueStrategy moveValueStrategy) {
         for (Car car : cars) {
-            car.move(random.nextInt(BOUND));
+            car.move(moveValueStrategy);
         }
     }
 
