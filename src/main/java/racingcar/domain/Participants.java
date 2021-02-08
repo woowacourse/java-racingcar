@@ -10,12 +10,8 @@ public class Participants {
   private static final int DEFAULT_POSITION = 0;
   private final List<Car> cars;
 
-  public Participants() {
-    cars = new ArrayList<>();
-  }
-
   public Participants(final String... names) {
-    this();
+    cars = new ArrayList<>();
     for (String name : names) {
       cars.add(new Car(name));
     }
