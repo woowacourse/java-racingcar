@@ -1,5 +1,6 @@
 package racing.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -19,6 +20,7 @@ public class CarTest {
                 Arguments.of(9, true));
     }
 
+    @DisplayName("유효한 이름으로 Car 객체 생성시 정상 생성된다")
     @Test
     void Car_유효한_이름_정상_생성된다() {
         assertThatCode(() -> {
@@ -26,6 +28,7 @@ public class CarTest {
         }).doesNotThrowAnyException();
     }
 
+    @DisplayName("유효하지 않은 Car 객체 생성시 에러가 발생한다")
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {"abcdef", "ab.de", "   "})
@@ -33,6 +36,7 @@ public class CarTest {
         assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("값이 4이상이면 이동, 아니면 이동하지 않는다")
     @ParameterizedTest
     @MethodSource("moveTest")
     void Car_값이_4_이상일때_이동한다(int randomNumber, boolean isMoved) {
