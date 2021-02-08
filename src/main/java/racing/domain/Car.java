@@ -37,6 +37,10 @@ public class Car {
         return isMovable;
     }
 
+    public boolean isSamePosition(Car target) {
+        return this.position == target.position;
+    }
+
     public String getName() {
         return name;
     }

@@ -9,13 +9,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
-    private static final MovingStrategy MOVING_STRATEGY = () -> true;
+    private static final MovingStrategy ALWAYS_MOVING_STRATEGY = () -> true;
 
     @DisplayName("자동차 객체의 유효한 이름 형식은 5자 이하의 영어로 구성되며, 위치 초기값은 0이다.")
     @Test
     void makeCar() {
         assertThatCode(() -> {
-            Car car = new Car("pobi", MOVING_STRATEGY);
+            Car car = new Car("pobi", ALWAYS_MOVING_STRATEGY);
             String name = car.getName();
             int position = car.getPosition();
 
@@ -30,7 +30,7 @@ class CarTest {
     @ValueSource(strings = {"abcdef", "ab.de", "   "})
     void cannotMakeCar(String name) {
         assertThatThrownBy(() -> {
-            new Car(name, MOVING_STRATEGY);
+            new Car(name, ALWAYS_MOVING_STRATEGY);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차 이름은 빈 문자열이 아닌 5자 이하의 영어로 구성되어야 합니다.");
     }
@@ -59,5 +59,28 @@ class CarTest {
 
         assertThat(isMoved).isFalse();
         assertThat(position).isZero();
+    }
+
+    @DisplayName("두 자동차 객체의 위치가 같으면 true를 반환한다")
+    @Test
+    void isSamePosition() {
+        Car car = new Car("pobi", ALWAYS_MOVING_STRATEGY);
+        Car target = new Car("brown", ALWAYS_MOVING_STRATEGY);
+
+        boolean isSamePosition = car.isSamePosition(target);
+
+        assertThat(isSamePosition).isTrue();
+    }
+
+    @DisplayName("두 자동차 객체의 위치가 다르면 false를 반환한다")
+    @Test
+    void isDifferentPosition() {
+        Car car = new Car("pobi", ALWAYS_MOVING_STRATEGY);
+        Car target = new Car("brown", ALWAYS_MOVING_STRATEGY);
+
+        target.move();
+        boolean isSamePosition = car.isSamePosition(target);
+
+        assertThat(isSamePosition).isFalse();
     }
 }
