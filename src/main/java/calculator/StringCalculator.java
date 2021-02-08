@@ -52,6 +52,7 @@ public class StringCalculator {
 
     private static String parseCustomDelimiter(String inputText) {
         Matcher m = patternForCustomDelimiter.matcher(inputText);
+
         if (m.find()) {
             String customDelimiter = m.group(1);
             delimiterList.add(customDelimiter);
