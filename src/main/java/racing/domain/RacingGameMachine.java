@@ -30,7 +30,7 @@ public class RacingGameMachine {
 
     private void validateTryCounts(int tryCounts) {
         if (tryCounts <= ZERO) {
-            throw new IllegalArgumentException("시도횟수는 1회 이상이어야 합니다");
+            throw new IllegalArgumentException(String.format("시도횟수는 1회 이상이어야 합니다 현재 입력값: %d", tryCounts));
         }
     }
 
