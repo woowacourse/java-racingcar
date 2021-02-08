@@ -7,7 +7,7 @@ public class RacingCarUtils {
     private RacingCarUtils() {
     }
 
-    public static List<String> splitInputString(String inputString) {
+    public static List<String> splitInputString(final String inputString) {
         return Arrays.asList(inputString.split(","));
     }
 }
