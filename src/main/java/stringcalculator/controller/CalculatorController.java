@@ -28,23 +28,41 @@ public class CalculatorController {
     public void run() {
         String input = inputView.scanInput();
 
-        getResult(input);
+        System.out.println(parseAndSum(input));
     }
 
-    public int getResult(String input) {
+    public int parseAndSum(String input) {
         if (checkNullOrEmpty(input)) {
             return ZERO;
         }
 
-        String delimiters = "," + DELIMITER_SEPARATOR + ":";
-
         String numbers = getNumbers(input);
-
-        if (hasCustomDelimiter(input)) {
-            delimiters += (DELIMITER_SEPARATOR + getCustomDelimiter(input));
-        }
+        String delimiters = getDelimiters(input);
 
         return splitAndSum(numbers, delimiters);
+    }
+
+    private boolean checkNullOrEmpty(String numbers) {
+        return numbers == null || numbers.isEmpty();
+    }
+
+    public String getNumbers(String input) {
+        Matcher m = PATTERN.matcher(input);
+
+        if (m.find()) {
+            return m.group(NUMBERS_INDEX);
+        }
+        return input;
+    }
+
+    private String getDelimiters(String input) {
+        String delimiters = COMMA + DELIMITER_SEPARATOR + COLON;
+
+        if (hasCustomDelimiter(input)) {
+            return delimiters + (DELIMITER_SEPARATOR + getCustomDelimiter(input));
+        }
+
+        return delimiters;
     }
 
     private boolean hasCustomDelimiter(String input) {
@@ -70,15 +88,6 @@ public class CalculatorController {
         if (COMMA.equals(customDelimiter) || COLON.equals(customDelimiter)) {
             throw new RuntimeException("커스텀 구분자로 기본 구분자가 지정될 수 없습니다.");
         }
-    }
-
-    public String getNumbers(String input) {
-        Matcher m = PATTERN.matcher(input);
-
-        if (m.find()) {
-            return m.group(NUMBERS_INDEX);
-        }
-        return input;
     }
 
     public int splitAndSum(String value, String delimiters) {
@@ -124,9 +133,5 @@ public class CalculatorController {
         if (number < 0) {
             throw new RuntimeException("양수 문자열만 입력해 주세요");
         }
-    }
-
-    private boolean checkNullOrEmpty(String numbers) {
-        return numbers == null || numbers.isEmpty();
     }
 }
