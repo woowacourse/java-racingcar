@@ -12,9 +12,8 @@ public class CarTest {
     @ParameterizedTest
     @ValueSource(strings = {"너무 긴 이름", ""})
     void carNameTest(String input) {
-        assertThatThrownBy(() -> {
-            new Car(input);
-        }).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() ->
+            new Car(input)).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("자 이하로 입력해주세요.");
     }
 
