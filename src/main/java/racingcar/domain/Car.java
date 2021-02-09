@@ -2,38 +2,39 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-public class Car implements Comparable<Car> {
+public class Car {
     private static final int CONDITION = 4;
 
     private final CarName carName;
 
-    private int position = 0;
+    private Position position;
 
     public Car(String carNameValue) {
+        this(carNameValue, 0);
+    }
+
+    public Car(String carNameValue, int position) {
         this.carName = new CarName(carNameValue);
+        this.position = new Position(position);
+
     }
 
     public void move(int randomNumber) {
         if (randomNumber >= CONDITION) {
-            position += 1;
+            this.position = position.move();
         }
     }
 
     public boolean isMaxPosition(int maxDistance) {
-        return this.position == maxDistance;
+        return position.isMaxPosition(maxDistance);
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     public String getCarName() {
         return carName.getCarName();
-    }
-
-    @Override
-    public int compareTo(Car o) {
-        return o.getPosition() - this.getPosition();
     }
 
     @Override
