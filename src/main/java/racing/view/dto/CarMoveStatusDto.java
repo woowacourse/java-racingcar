@@ -1,6 +1,7 @@
 package racing.view.dto;
 
 import racing.domain.Car;
+import racing.domain.number.Position;
 
 public class CarMoveStatusDto {
     private String carName;

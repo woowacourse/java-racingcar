@@ -1,6 +1,8 @@
 package racing.domain.number;
 
-public class Position implements Number {
+import java.util.Objects;
+
+public class Position implements Number, Comparable<Position> {
     private static final int ZERO = 0;
 
     private int value;
@@ -31,5 +33,26 @@ public class Position implements Number {
     @Override
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public int compareTo(Position o) {
+        if (this.value > o.value) {
+            return 1;
+        }
+        return -1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return value == position.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }

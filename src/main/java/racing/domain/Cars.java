@@ -1,5 +1,6 @@
 package racing.domain;
 
+import racing.domain.number.Position;
 import racing.utils.RandomUtils;
 
 import java.util.*;
@@ -54,18 +55,18 @@ public class Cars implements Cloneable {
     }
 
     public Winners findWinners() {
-        int maxPosition = getMaxPosition();
+        Position maxPosition = getMaxPosition();
         List<Car> winners = cars.stream()
-                .filter(car -> car.getPositionValue() == maxPosition)
+                .filter(car -> car.isSamePosition(maxPosition) )
                 .collect(Collectors.toList());
         return new Winners(winners);
     }
 
-    private int getMaxPosition() {
+    private Position getMaxPosition() {
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getPositionValue))
+                .max(Comparator.comparing(Car::getPosition))
                 .orElseThrow(IllegalStateException::new)
-                .getPositionValue();
+                .getPosition();
     }
 
     public List<Car> getCars() {

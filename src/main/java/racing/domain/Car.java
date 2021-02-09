@@ -42,8 +42,16 @@ public class Car {
         return position.getValue();
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public boolean isSamePosition(Position maxPosition) {
+        return position.equals(maxPosition);
     }
 }
 
