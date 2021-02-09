@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 import static stringcalculator.Utils.isNumeric;
 
 public class CustomDelimiter implements Delimiter {
+    private static final String FORMAT = "//(.)\r\n(.*)";
+    private static final Pattern PATTERN = Pattern.compile(FORMAT);
     private final String delimiter;
 
     private CustomDelimiter(String input) {
@@ -26,8 +28,12 @@ public class CustomDelimiter implements Delimiter {
         return new CustomDelimiter(input);
     }
 
+    public static boolean isSupport(String input) {
+        return PATTERN.matcher(input).find();
+    }
+
     private void validateCustomDelimiterPosition(String input) {
-        Matcher matcher = DelimiterFactory.CUSTOM_DELIMITER_PATTERN.matcher(input);
+        Matcher matcher = PATTERN.matcher(input);
 
         if (matcher.find() && matcher.start() == 0) {
             return;
@@ -37,7 +43,7 @@ public class CustomDelimiter implements Delimiter {
     }
 
     private String extractCustomDelimiter(String input) {
-        Matcher matcher = DelimiterFactory.CUSTOM_DELIMITER_PATTERN.matcher(input);
+        Matcher matcher = PATTERN.matcher(input);
 
         if (matcher.find()) {
             return matcher.group(1);

@@ -23,7 +23,7 @@ public class Input {
 
     private void setNullOrBlankInput() {
         this.input = "0";
-        this.delimiter = DelimiterFactory.DEFAULT();
+        this.delimiter = DelimiterFactory.getDefault();
     }
 
     private void setNormalInput(String input) {
