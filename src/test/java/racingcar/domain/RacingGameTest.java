@@ -38,10 +38,10 @@ class RacingGameTest {
     @DisplayName("라운드가 진행되는지 확인")
     @Test
     void 레이싱게임_라운드_진행() {
-        int beforeRound = racingGame.getCurrentRound();
+        Round beforeRound = racingGame.getCurrentRound();
         racingGame.playRound();
-        int afterRound = racingGame.getCurrentRound();
+        Round afterRound = racingGame.getCurrentRound();
 
-        assertThat(beforeRound + 1).isEqualTo(afterRound);
+        assertThat(afterRound.isBiggerThan(beforeRound)).isTrue();
     }
 }

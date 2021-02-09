@@ -4,20 +4,21 @@ import java.util.List;
 
 public class RacingGame {
     private static final String ROUND_MUST_POSITIVE_ERROR_MSG_FORMAT = "[ERROR] 라운드 수는 음수일 수 없습니다. 입력받은 라운드 수 : %d";
+    private static final int ONE = 1;
 
     private final Cars cars;
-    private final int goalRound;
+    private final Round goalRound;
+    private final Round currentRound;
 
     public RacingGame(List<String> names, int goalRound) {
-        validateTargetRound(goalRound);
-        this.cars = Cars.createCarsByNames(names);
-        this.goalRound = goalRound;
+        this(Cars.createCarsByNames(names),goalRound);
     }
 
     public RacingGame(Cars cars, int goalRound) {
         validateTargetRound(goalRound);
         this.cars = cars;
-        this.goalRound = goalRound;
+        this.goalRound = new Round(goalRound);
+        this.currentRound = new Round(ONE);
     }
 
     private void validateTargetRound(int goalRound) {
@@ -31,7 +32,7 @@ public class RacingGame {
     }
 
     public boolean isEnd() {
-        return cars.isEnd(goalRound);
+        return currentRound.isBiggerThan(goalRound);
     }
 
     public GameResult findWinners() {
@@ -42,7 +43,7 @@ public class RacingGame {
         return cars;
     }
 
-    public int getCurrentRound() {
-        return cars.getCurrentRound();
+    public Round getCurrentRound() {
+        return currentRound;
     }
 }

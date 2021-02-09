@@ -11,6 +11,8 @@ import racingcar.dto.WinnersDto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.collectingAndThen;
+
 public class RacingGameService implements GameService {
     private RacingGame racingGame;
 
@@ -31,7 +33,7 @@ public class RacingGameService implements GameService {
         return cars.getCars()
                 .stream()
                 .map(car -> new CarDto(car.getName(), car.getPosition()))
-                .collect(Collectors.collectingAndThen(Collectors.toList(), carDtos -> new CarsDto(carDtos, cars.getCurrentRound())));
+                .collect(collectingAndThen(Collectors.toList(), carDtos -> new CarsDto(carDtos, racingGame.getCurrentRound().getRound())));
     }
 
     @Override

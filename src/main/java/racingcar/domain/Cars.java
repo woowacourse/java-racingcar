@@ -18,26 +18,20 @@ public class Cars {
     private static final int INIT_ROUND = 1;
 
     private final List<Car> cars;
-    private int currentRound;
 
-    private Cars(List<Car> cars, int currentRound) {
+    private Cars(List<Car> cars) {
         validateSameName(cars);
         this.cars = cars;
-        this.currentRound = currentRound;
-    }
-
-    public static Cars createCars(List<Car> cars, int currentRound) {
-        return new Cars(cars, currentRound);
     }
 
     public static Cars createCars(List<Car> cars) {
-        return createCars(cars, INIT_ROUND);
+        return createCars(cars);
     }
 
     public static Cars createCarsByNames(List<String> carNames) {
         return new Cars(carNames.stream()
                 .map(Car::new)
-                .collect(Collectors.toList()), INIT_ROUND);
+                .collect(Collectors.toList()));
     }
 
     private void validateSameName(List<Car> cars) {
@@ -61,7 +55,6 @@ public class Cars {
 
     public void moveCars() {
         cars.forEach(car -> car.move(RandomGenerator.generateRandomNumber()));
-        currentRound++;
     }
 
     public GameResult findWinners() {
@@ -76,13 +69,5 @@ public class Cars {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElseThrow(NoSuchElementException::new);
-    }
-
-    public boolean isEnd(int goalRound) {
-        return currentRound > goalRound;
-    }
-
-    public int getCurrentRound() {
-        return currentRound;
     }
 }
