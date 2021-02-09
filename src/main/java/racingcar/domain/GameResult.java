@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameResult {
-    private List<Car> winners;
+    private final List<Car> winners;
 
     public GameResult(List<Car> winners) {
         this.winners = winners;

@@ -20,7 +20,7 @@ public class Cars {
 
     private Cars(List<Car> cars) {
         validateSameName(cars);
-        this.cars = cars;
+        this.cars = new ArrayList<>(cars);
     }
 
     public static Cars createCars(List<Car> cars) {
@@ -48,10 +48,6 @@ public class Cars {
         }
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
-
     public void moveCars() {
         cars.forEach(car -> car.move(RandomGenerator.generateRandomNumber()));
     }
@@ -69,5 +65,9 @@ public class Cars {
                 .mapToInt(Position::index)
                 .max()
                 .orElseThrow(NoSuchElementException::new));
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }
