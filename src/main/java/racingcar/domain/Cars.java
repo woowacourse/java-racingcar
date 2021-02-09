@@ -1,13 +1,13 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import racingcar.utils.RandomUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Cars {
+
     private static final int MIN_RANDOM_RANGE = 0;
     private static final int MAX_RANDOM_RANGE = 9;
     private static final int MIN_CARS_SIZE = 2;

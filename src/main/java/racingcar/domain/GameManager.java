@@ -1,11 +1,11 @@
 package racingcar.domain;
 
-import racingcar.domain.dto.GameManagerRequestDto;
-
 import java.util.ArrayList;
 import java.util.List;
+import racingcar.domain.dto.GameManagerRequestDto;
 
 public class GameManager {
+
     private Cars cars;
     private Round round;
     private Results results;

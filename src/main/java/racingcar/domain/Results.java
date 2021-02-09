@@ -2,10 +2,10 @@ package racingcar.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Results {
+
     private static final int GAP_WITH_SIZE_AND_INDEX = 1;
     private final List<Result> results;
 

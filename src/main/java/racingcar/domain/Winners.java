@@ -2,10 +2,10 @@ package racingcar.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Winners {
+
     private final List<String> winners;
 
     private Winners(List<String> winners) {

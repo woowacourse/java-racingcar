@@ -1,6 +1,7 @@
 package racingcar.domain.dto;
 
 public class GameManagerRequestDto {
+
     private final String[] carNames;
     private final int round;
 

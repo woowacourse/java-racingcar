@@ -1,16 +1,19 @@
 package racingcar.view;
 
+import java.util.List;
 import racingcar.domain.CarState;
 import racingcar.domain.Result;
 import racingcar.domain.Results;
 import racingcar.domain.Winners;
 
-import java.util.List;
-
 public class OutputView {
+
     private static final String ONE_STEP = "-";
 
-    private OutputView() {};
+    private OutputView() {
+    }
+
+    ;
 
     public static void printResults(Results roundResults) {
         System.out.println("실행 결과");

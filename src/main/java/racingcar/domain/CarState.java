@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 public class CarState {
+
     private final String name;
     private final int position;
 

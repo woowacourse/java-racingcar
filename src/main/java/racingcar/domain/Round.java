@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 public class Round {
+
     private static final int MIN_COUNT_SIZE = 1;
     private final int count;
 

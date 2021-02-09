@@ -3,9 +3,9 @@ package racingcar.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 public class Result {
+
     private final List<CarState> result;
 
     private Result(List<CarState> result) {
