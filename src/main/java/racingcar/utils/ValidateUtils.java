@@ -9,7 +9,8 @@ public class ValidateUtils {
     private static final int CAR_NAME_LENGTH_ENDINCLUSIVE = 5;
     public static final int THE_LOWEST_NUM_OF_CAR_NAMES = 2;
 
-    private ValidateUtils() {}
+    private ValidateUtils() {
+    }
 
     public static void validateCarNames(String[] carNames) {
         validateNumOfCarNames(carNames);
@@ -30,7 +31,8 @@ public class ValidateUtils {
     }
 
     private static void validateCarNameLength(String carName) {
-        if (carName.length() >= CAR_NAME_LENGTH_STARTINCLUSIVE && carName.length() <= CAR_NAME_LENGTH_ENDINCLUSIVE) {
+        if (carName.length() >= CAR_NAME_LENGTH_STARTINCLUSIVE
+            && carName.length() <= CAR_NAME_LENGTH_ENDINCLUSIVE) {
             return;
         }
         throw new InvalidCarNameException("자동차 이름은 1자 이상 5자 이하여야 합니다.");

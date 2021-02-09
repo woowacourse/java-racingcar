@@ -10,7 +10,8 @@ public class OutputView {
     public static final String INPUT_NUM_OF_ROUND_MESSAGE = "시도할 회수는 몇회인가요?";
     public static final String RACING_RESULT_MESSAGE = "실행 결과";
 
-    private OutputView() {}
+    private OutputView() {
+    }
 
     public static void printRaceResultMessage() {
         System.out.println();
