@@ -40,7 +40,7 @@ public class Car {
     }
 
     public Name getName() {
-        return Name.of(name.getValue());
+        return Name.valueOf(name.getValue());
     }
 
     public Position getPosition() {

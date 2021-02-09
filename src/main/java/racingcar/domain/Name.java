@@ -12,7 +12,7 @@ public class Name {
         this.value = value;
     }
 
-    public static Name of(final String value) {
+    public static Name valueOf(final String value) {
         validateCarNameIsNullOrEmpty(value);
         String trimmedValue = value.trim();
         validateNameLength(trimmedValue);
