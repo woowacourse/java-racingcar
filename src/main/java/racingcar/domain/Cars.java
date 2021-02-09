@@ -23,7 +23,7 @@ public class Cars {
 
     public static Cars from(String inputCarName) {
         String[] carNames = splitCarsName(inputCarName);
-        validate(carNames);
+        validateDuplicated(carNames);
         List<Car> cars = new ArrayList<>();
         Arrays.stream(carNames)
                 .forEach(carName -> cars.add(new Car(carName)));
@@ -35,7 +35,7 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    private static void validate(String[] carNames) {
+    private static void validateDuplicated(String[] carNames) {
         Set<String> set = new HashSet<>(Arrays.asList(carNames));
         if (set.size() != carNames.length) {
             throw new RuntimeException();

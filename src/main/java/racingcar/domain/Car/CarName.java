@@ -6,10 +6,10 @@ public class CarName {
     private final String name;
 
     public CarName(final String name) {
-        this.name = validate(name);
+        this.name = validateName(name);
     }
 
-    private String validate(String name) {
+    private String validateName(String name) {
         name = name.trim();
         validateNameLength(name);
         validateNameNullOrEmpty(name);
