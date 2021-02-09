@@ -52,15 +52,8 @@ public class RacingController {
     private void doRace(Cars cars, Trial trial) {
         OutputView.printResultTitle();
         for (int i = 0; i < trial.getTrial(); i++) {
-            goEachCar(cars);
+            cars.move();
             OutputView.printEmptyLine();
-        }
-    }
-
-    private void goEachCar(Cars cars) {
-        for (Car car : cars.getCars()) {
-            car.movePosition(RandomUtils.generateRandomValue());
-            OutputView.printCurrentResult(car);
         }
     }
 
