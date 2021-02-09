@@ -15,7 +15,6 @@ public class CarTest {
     @DisplayName("자동차 이름은 5글자이하여야하며 빈칸은 허용하지 않는다.")
     @ValueSource(strings = {" ", "abcdefg", "  "})
     void createCarExceptionTest(String name) {
-        assertThrows(IllegalArgumentException.class, () -> new Car(name));
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new Car(name));
         assertThat(e.getMessage()).isEqualTo(Car.CAR_NAME_INVALID);
     }
