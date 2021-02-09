@@ -8,15 +8,9 @@ import racingcar.utils.ParsingUtils;
 
 public class RacingGameController {
 
-    RacingGame racingGame;
+    final RacingGame racingGame;
 
-    public void play() {
-        prepare();
-        race();
-        finish();
-    }
-
-    private void prepare() {
+    public RacingGameController() {
         String input = RacingGameView.requestCars();
         List<Car> cars = ParsingUtils.parseCarNames(input);
 
@@ -24,6 +18,11 @@ public class RacingGameController {
         int trial = ParsingUtils.parseTrial(input);
 
         racingGame = new RacingGame(cars, trial);
+    }
+
+    public void play() {
+        race();
+        finish();
     }
 
     private void race() {
@@ -38,7 +37,7 @@ public class RacingGameController {
     }
 
     private void finish() {
-        List<String> winnerNames = racingGame.getWinners();
+        final List<String> winnerNames = racingGame.getWinners();
         RacingGameView.printWinners(winnerNames);
     }
 }

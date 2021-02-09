@@ -18,11 +18,11 @@ public class ParsingUtilsTest {
     @Test
     @DisplayName("정상적인 경주할 자동차 이름들 입력")
     void parseCarNamesTest_정상입력() {
-        List<Car> expected = new ArrayList<>();
+        final List<Car> expected = new ArrayList<>();
         expected.add(new Car("루트"));
         expected.add(new Car("소롱"));
 
-        List<Car> actual = ParsingUtils.parseCarNames("루트,소롱");
+        final List<Car> actual = ParsingUtils.parseCarNames("루트,소롱");
         assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
 
@@ -50,7 +50,7 @@ public class ParsingUtilsTest {
     @DisplayName("정상적인 이동 시도할 회수 입력")
     @CsvSource(value = {"1,1", "2,2", "50,50", "2147483647,2147483647"}, delimiter = ',')
     void parseTrialTest_정상입력(String input, Integer expected) {
-        Integer actual = ParsingUtils.parseTrial(input);
+        final Integer actual = ParsingUtils.parseTrial(input);
         assertThat(actual).isEqualTo(expected);
     }
 

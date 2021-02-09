@@ -32,14 +32,14 @@ public class RacingGameView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printCarPositions(RacingGame racingGame) {
+    public static void printCarPositions(final RacingGame racingGame) {
         for (Car car : racingGame.getCars()) {
-            String progressBar = makeProgressBar(car.getPosition());
+            final String progressBar = makeProgressBar(car.getPosition());
             System.out.printf(CAR_SITUATION_MESSAGE_FORMAT, car.getName(), progressBar);
         }
     }
 
-    private static String makeProgressBar(int length) {
+    private static String makeProgressBar(final int length) {
         String result = "";
         for (int p = 0; p < length; p++) {
             result = result.concat(MOVEMENT);
@@ -52,8 +52,8 @@ public class RacingGameView {
         System.out.println();
     }
 
-    public static void printWinners(List<String> winners) {
-        String winnerNames = String.join(LIST_SEPARATOR, winners);
+    public static void printWinners(final List<String> winners) {
+        final String winnerNames = String.join(LIST_SEPARATOR, winners);
         System.out.printf(WINNERS_MESSAGE_FORMAT, winnerNames);
     }
 }

@@ -22,7 +22,7 @@ public class RacingGameTest {
     }
 
     private Car newCar(String name, int position) {
-        Car car = new Car(name);
+        final Car car = new Car(name);
         for (int i = 0; i < position; i++) {
             car.tryToMove(4);
         }
@@ -37,10 +37,10 @@ public class RacingGameTest {
         cars.add(newCar("포비", 1));
         racingGame = new RacingGame(cars, 0);
 
-        List<String> expected = new ArrayList<>();
+        final List<String> expected = new ArrayList<>();
         expected.add(cars.get(0).getName());
 
-        List<String> actual = racingGame.getWinners();
+        final List<String> actual = racingGame.getWinners();
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -51,8 +51,8 @@ public class RacingGameTest {
         cars.add(newCar("소롱", 5));
         cars.add(newCar("포비", 1));
         racingGame = new RacingGame(cars, 0);
-        List<String> actual = racingGame.getWinners();
-        List<String> expected = new ArrayList<>();
+        final List<String> actual = racingGame.getWinners();
+        final List<String> expected = new ArrayList<>();
         expected.add(cars.get(0).getName());
         expected.add(cars.get(1).getName());
 

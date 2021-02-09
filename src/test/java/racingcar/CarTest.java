@@ -35,9 +35,9 @@ public class CarTest {
     @DisplayName("매직 넘버에대한 자동차 이동")
     @CsvSource(value = {"5, 1", "3, 0", "4, 1", "100, 1"}, delimiter = ',')
     void tryToMoveTest(int input, int expected) {
-        Car car = new Car("테스트");
+        final Car car = new Car("테스트");
         car.tryToMove(input);
-        int actual = car.getPosition();
+        final int actual = car.getPosition();
         assertThat(actual).isEqualTo(expected);
     }
 }

@@ -10,21 +10,21 @@ public class RacingGame {
     private final int trial;
     private int currentTrial = 0;
 
-    public RacingGame(List<Car> cars, int trial) {
+    public RacingGame(final List<Car> cars, final int trial) {
         this.cars = cars;
         this.trial = trial;
     }
 
     public void tryToMove() {
         for (Car car : cars) {
-            int currentRpm = RandomUtils.nextNumber();
+            final int currentRpm = RandomUtils.nextNumber();
             car.tryToMove(currentRpm);
         }
         currentTrial++;
     }
 
     public List<String> getWinners() {
-        int maxPosition = findMaxPosition();
+        final int maxPosition = findMaxPosition();
         return findCarNamesLocatedAt(maxPosition);
     }
 

@@ -14,12 +14,13 @@ public class ParsingUtils {
     private static final Integer MIN_TRIAL = 1;
     private static final Integer MAX_TRIAL = Integer.MAX_VALUE;
     private static final int MIN_CARS_LENGTH = 2;
+    private static final String NUMBER_PATTERN = "[0-9]+";
 
     private ParsingUtils() {
     }
 
-    public static List<Car> parseCarNames(String input) {
-        String[] carNames = input.split(NAME_SPLIT_DELIMITER, -1);
+    public static List<Car> parseCarNames(final String input) {
+        final String[] carNames = input.split(NAME_SPLIT_DELIMITER, -1);
         validateCarsLength(carNames);
         validateDuplication(carNames);
         return Arrays.stream(carNames)
@@ -27,24 +28,24 @@ public class ParsingUtils {
             .collect(Collectors.toList());
     }
 
-    private static void validateCarsLength(String[] carNames) {
+    private static void validateCarsLength(final String[] carNames) {
         if (carNames.length < MIN_CARS_LENGTH) {
             throw new IllegalArgumentException("자동차는 두 대 이상 입력해야 합니다.");
         }
     }
 
-    private static void validateDuplication(String[] carNames) {
-        HashSet<String> nameSet = new HashSet<>();
-        Collections.addAll(nameSet, carNames);
-        if (carNames.length != nameSet.size()) {
+    private static void validateDuplication(final String[] carNames) {
+        HashSet<String> nonDuplicatedNames = new HashSet<>();
+        Collections.addAll(nonDuplicatedNames, carNames);
+        if (carNames.length != nonDuplicatedNames.size()) {
             throw new IllegalArgumentException("중복되는 이름을 입력할 수 없습니다.");
         }
     }
 
-    public static Integer parseTrial(String input) {
+    public static Integer parseTrial(final String input) {
         validateNumber(input);
         try {
-            Integer trial = Integer.parseInt(input);
+            final Integer trial = Integer.parseInt(input);
             return validateBound(trial);
         } catch (NumberFormatException e) {
             // int　범위 밖의 입력의 경우 예외처리
@@ -53,14 +54,13 @@ public class ParsingUtils {
         }
     }
 
-    private static void validateNumber(String input) {
-        String numberPattern = "[0-9]+";
-        if (!Pattern.matches(numberPattern, input)) {
+    private static void validateNumber(final String input) {
+        if (!Pattern.matches(NUMBER_PATTERN, input)) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
         }
     }
 
-    private static int validateBound(Integer trial) {
+    private static int validateBound(final Integer trial) {
         if (trial < MIN_TRIAL) {
             throw new IllegalArgumentException(
                 "숫자는 " + MIN_TRIAL + "이상 " + MAX_TRIAL + "이하여야 합니다.");
