@@ -15,11 +15,11 @@ public class Racers {
 
     public Racers(String names) {
         List<Racer> carRacers = splitNames(names);
-        isDuplicate(carRacers);
+        checkDuplicate(carRacers);
         this.racers = carRacers;
     }
 
-    private void isDuplicate(List<Racer> carRacers) {
+    private void checkDuplicate(List<Racer> carRacers) {
         boolean duplicated = carRacers.stream()
                 .distinct()
                 .count() != carRacers.size();
