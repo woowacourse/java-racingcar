@@ -25,7 +25,9 @@ public class CarRacingBeforeSetter {
     }
 
     private List<Car> createCars(List<String> carNames) {
-        return carNames.stream().map(Car::new).collect(Collectors.toList());
+        return carNames.stream()
+            .map(Car::new)
+            .collect(Collectors.toList());
     }
 
     public int getRacingTryTime() {

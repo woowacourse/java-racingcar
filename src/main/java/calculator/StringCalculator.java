@@ -36,6 +36,8 @@ public class StringCalculator {
             .anyMatch(number -> number < ALLOWED_MIN_NUMBER)) {
             throw new RuntimeException();
         }
-        return Arrays.stream(values).mapToInt(Integer::parseInt).sum();
+        return Arrays.stream(values)
+            .mapToInt(Integer::parseInt)
+            .sum();
     }
 }
