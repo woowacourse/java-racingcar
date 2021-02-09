@@ -19,3 +19,12 @@ bin/
 *.iws
 *.iml
 *.ipr
+
+.idea
+settings.gradle
+gradlew.bat
+gradlew
+gradle
+build.gradle
+.gradle
+build
