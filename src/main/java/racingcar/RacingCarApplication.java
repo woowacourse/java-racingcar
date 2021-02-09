@@ -27,18 +27,18 @@ public class RacingCarApplication {
     }
 
     private static Cars createCarsFromUser() {
-        try{
+        try {
             return Cars.of(InputView.getCarNames());
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return createCarsFromUser();
         }
     }
 
     private static Round createRoundFromUser() {
-        try{
+        try {
             return Round.from(InputView.getRoundNumber());
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return createRoundFromUser();
         }
