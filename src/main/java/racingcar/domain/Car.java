@@ -11,12 +11,16 @@ public class Car {
         = Pattern.compile("^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{1,5}$");
 
     public Car(String name) {
+        validateCarNameFormat(name);
+        this.name = name;
+    }
+
+    private void validateCarNameFormat(String name) {
         Matcher carNameFormatPatternMatcher = CAR_NAME_FORMAT_PATTERN.matcher(name);
         if (!carNameFormatPatternMatcher.find()) {
             throw new InvalidCarNameFormatException(
                 "자동차 이름은 1자 이상, 5자 이하의 숫자나 문자로만 구성되어야 합니다.");
         }
-        this.name = name;
     }
 
     public String getName() {
