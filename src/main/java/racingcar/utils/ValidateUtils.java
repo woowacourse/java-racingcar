@@ -1,14 +1,15 @@
 package racingcar.utils;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import racingcar.domain.car.Car;
 import racingcar.view.ErrorMessages;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class ValidateUtils {
 
-    private ValidateUtils(){
+    private ValidateUtils() {
     }
 
     public static void validateNames(List<Car> cars) {
