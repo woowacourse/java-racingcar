@@ -6,7 +6,7 @@ package racingcar.domain;
  *
  * @author Kimun Kim, github.com/tributetothemoon
  */
-public class CarDTO {
+public class CarDto {
     private final String name;
     private final int position;
 
