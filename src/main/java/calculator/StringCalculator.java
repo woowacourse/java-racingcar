@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    private static final String defaultSeparator = ",|:";
-    private static final String delimiterSeparator = "|";
+    private static final String DEFAULT_SEPARATOR = ",|:";
+    private static final String DELIMITER_SEPARATOR = "|";
 
     public static int calculate(String input) {
         if (isNullOrEmpty(input)) {
@@ -59,12 +59,12 @@ public class StringCalculator {
 
         Matcher matcher = Pattern.compile("//(.+)\n(.*)").matcher(input);
         if (matcher.find()) {
-            customSeparator.append(delimiterSeparator);
+            customSeparator.append(DELIMITER_SEPARATOR);
             customSeparator.append(matcher.group(1));
             input = matcher.group(2);
         }
 
-        return input.split(defaultSeparator + customSeparator.toString());
+        return input.split(DEFAULT_SEPARATOR + customSeparator.toString());
     }
 
     private static void checkAllNumeric(String[] numericStrings) {
