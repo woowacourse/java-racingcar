@@ -10,7 +10,7 @@ class CarTest {
 
     @ParameterizedTest
     @CsvSource(value = {"java:True", "python:False"}, delimiter = ':')
-    @DisplayName("Car 인스턴스의 이름의 제한조건인 5자 이상인 경우 false 테스트")
+    @DisplayName("Car 인스턴스의 이름의 제한조건인 5자 초과인 경우 false 테스트")
     void checkMaxName(String input, boolean result) {
         Car testingCar = new Car(input);
         assertEquals(Car.checkMaxName(testingCar), result);
@@ -19,9 +19,9 @@ class CarTest {
     @ParameterizedTest
     @CsvSource(value = {"0:False", "1:False", "3:False", "4:True", "9:True"}, delimiter = ':')
     @DisplayName("조건에 따른 Car 인스턴스의 전진 테스트")
-    void tryToMoveForward(int randomInteger, boolean result) {
+    void tryToMoveForward(int fuel, boolean result) {
         Car testingCar = new Car("java");
-        testingCar.tryToMoveForward(randomInteger);
+        testingCar.tryToMoveForward(fuel);
         assertEquals(testingCar.getPosition() == 1, result);
     }
 
