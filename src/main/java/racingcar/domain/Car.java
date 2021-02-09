@@ -25,9 +25,7 @@ public class Car implements Comparable<Car> {
     }
 
     void move() {
-        if (DecisionMaker.makeDecision()) {
-            this.position++;
-        }
+        position++;
     }
 
     public String getName() {
@@ -36,11 +34,6 @@ public class Car implements Comparable<Car> {
 
     public int getPosition() {
         return this.position;
-    }
-
-    /* 테스팅을 위한 setter 메소드 */
-    public void setPosition(int position) {
-        this.position = position;
     }
 
     public CarDTO toDTO() {

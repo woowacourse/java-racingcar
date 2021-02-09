@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.utils.RandomUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,8 @@ import java.util.List;
  * @author Kimun Kim, github.com/tributetothemoon
  */
 public class Cars {
+    private static final int MIN_INCLUSIVE = 0;
+    private static final int MAX_INCLUSIVE = 9;
     private static final int MIN_SIZE = 2;
     private static final String ERROR_MIN_SIZE = "최소 " + MIN_SIZE + "대 이상의 이름을 입력하세요.";
     private static final String ERROR_DUPLICATED_CAR_NAMES = "자동차 이름이 중복됩니다.";
@@ -46,7 +50,9 @@ public class Cars {
     }
 
     public void moveCars() {
-        this.cars.forEach(Car::move);
+        cars.stream()
+                .filter(car -> DecisionMaker.makeDecisionByNumber(RandomUtils.nextInt(MIN_INCLUSIVE, MAX_INCLUSIVE)))
+                .forEach(Car::move);
     }
 
     public List<Car> toList() {

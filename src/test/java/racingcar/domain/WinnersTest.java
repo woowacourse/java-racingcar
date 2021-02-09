@@ -27,7 +27,7 @@ class WinnersTest {
     @DisplayName("단일 우승자 산출 테스트")
     @Test
     public void singleWinnerTest() {
-        car1.setPosition(Integer.MAX_VALUE);
+        car1.move();
         Winners winners = Winners.of(cars);
         assertThat(winners.toListOfNames().get(0)).isEqualTo(car1.getName());
         assertThat(winners.toListOfNames().contains(car2.getName())).isEqualTo(false);
@@ -37,8 +37,8 @@ class WinnersTest {
     @DisplayName("복수 우승자 산출 테스트")
     @Test
     public void multipleWinnerTest() {
-        car1.setPosition(Integer.MAX_VALUE);
-        car2.setPosition(Integer.MAX_VALUE);
+        car1.move();
+        car2.move();
         Winners winners = Winners.of(cars);
         assertThat(winners.toListOfNames().contains(car1.getName())).isEqualTo(true);
         assertThat(winners.toListOfNames().contains(car2.getName())).isEqualTo(true);
