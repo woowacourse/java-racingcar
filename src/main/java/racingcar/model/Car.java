@@ -4,9 +4,12 @@ import java.util.Objects;
 
 public class Car {
 
+    public static final String CAR_NAME_INVALID = "자동차 이름이 유효하지 않습니다.";
+    public static final int NAME_MAX_LENGTH = 5;
+    public static final int MOVE_RANDOM_NUMBER = 4;
+
     private final String name;
     private int position;
-    public static final String CAR_NAME_INVALID = "자동차 이름이 유효하지 않습니다.";
 
     public Car(String name) {
         this(name, 0);
@@ -19,13 +22,13 @@ public class Car {
     }
 
     public void validateCarName(String name) {
-        if(name.length() > 5 || name.length() <= 0){
+        if(name.length() > NAME_MAX_LENGTH || name.length() <= 0){
             throw new IllegalArgumentException(CAR_NAME_INVALID);
         }
     }
 
     public void movePosition(int number) {
-        if(number >= 4) {
+        if(number >= MOVE_RANDOM_NUMBER) {
             this.position++;
         }
     }
