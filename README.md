@@ -73,10 +73,12 @@ Guide to JUnit 5 Parameterized Tests
 ## 리팩토링 대상 목록
 - 컨트롤러에서 수행하고 있는 뷰의 역할을 뷰로 이관
 - 오타, 무의미한 공백, 잘못 된 코드블럭 위치 수정
-- 요청Dto 추가 및 관련 로직 수정
+- Dto 추가 및 관련 로직 수정
 - 각종 getter 사용 로직들 객체지향적으로 수정
 - 컨트롤러에게 요청 파라미터 전달 및 변화한 상태에 대한 리턴을 받도록 수정
 - 검증로직을 알맞은 곳(도메인, 뷰)에서 수행하도록 수정
+- Dto를 전달하는 로직을 서비스로 이관 (도메인 로직 보호)  
+- 원시타입 객체 랩핑
 
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
