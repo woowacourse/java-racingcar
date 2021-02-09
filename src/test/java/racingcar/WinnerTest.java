@@ -1,5 +1,6 @@
 package racingcar;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -8,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WinnerTest {
-
+    @DisplayName("우승자 리스트 테스트")
     @Test
     void winnerTest() {
         List<String> splittedCarNames = Arrays.asList("pho", "crong", "honux");

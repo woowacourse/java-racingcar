@@ -29,7 +29,10 @@ public class CarRepository {
 
     public static List<String> getWinners() {
         int maxDistance = getMaxDistance();
-        return cars.stream().filter(car -> car.isMaxPosition(maxDistance)).map(Car::getCarName).collect(Collectors.toList());
+        return cars.stream()
+            .filter(car -> car.isMaxPosition(maxDistance))
+            .map(Car::getCarName)
+            .collect(Collectors.toList());
     }
 
     private static int getMaxDistance() {

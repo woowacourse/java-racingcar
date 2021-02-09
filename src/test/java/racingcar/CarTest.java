@@ -1,15 +1,21 @@
 package racingcar;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
+    @DisplayName("전진조건 테스트")
     @Test
     void moveForward() {
+        // given(준비)
         Car car = new Car(new CarName("ser"));
         int previous = car.getPosition();
+
+        // when(실행)
         car.moveForwardByRandomNumber(5);
-        assertEquals(car.getPosition(), previous + 1);
+
+        // then(검증)
+        assertThat(car.getPosition()).isEqualTo(previous + 1);
     }
 }
