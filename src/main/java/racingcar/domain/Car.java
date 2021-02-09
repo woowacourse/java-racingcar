@@ -47,17 +47,13 @@ public class Car {
         position++;
     }
 
-    private String getPositionBar() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
-        return sb.toString();
+    public RaceResultDTO getRaceResults() {
+        return new RaceResultDTO(name, position);
     }
 
     @Override
     public String toString() {
-        return this.name + " : " + getPositionBar();
+        return this.name.toString();
     }
 
     @Override

@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +25,12 @@ public class Cars {
         this.cars.forEach(Car::tryToMove);
     }
 
+    public List<RaceResultDTO> getAllResults() {
+        return this.cars.stream()
+                .map(Car::getRaceResults)
+                .collect(Collectors.toList());
+    }
+
     private int findWinnerPosition() {
         int max = Integer.MIN_VALUE;
 
@@ -42,12 +47,6 @@ public class Cars {
                 .filter(car -> car.isOnPosition(winnerPosition))
                 .map(Car::getName)
                 .toArray(String[]::new);
-    }
-
-    public String getAllCarsPosition() {
-        return this.cars.stream()
-                .map(Car::toString)
-                .collect(Collectors.joining("\n"));
     }
 
     // XXX :: 테스트만을 위한 메소드

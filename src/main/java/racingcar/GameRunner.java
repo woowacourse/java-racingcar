@@ -29,7 +29,9 @@ public class GameRunner {
         OutputView.println("실행 결과");
         while (!rounds.isEnd()) {
             this.cars.tryMoveCars();
-            OutputView.printResult(this.cars.getAllCarsPosition());
+
+            List raceResults = cars.getAllResults();
+            OutputView.printResults(raceResults);
             this.rounds.next();
         }
 

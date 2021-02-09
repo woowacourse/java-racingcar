@@ -1,5 +1,9 @@
 package racingcar.view;
 
+import racingcar.domain.RaceResultDTO;
+
+import java.util.List;
+
 public class OutputView {
     private static final String WINNER_NAME_SEPARATOR = ",";
 
@@ -10,9 +14,23 @@ public class OutputView {
         System.out.println(msg);
     }
 
-    public static void printResult(final String result) {
-        println(result);
+    public static void printResults(final List<RaceResultDTO> raceResults) {
+        raceResults.stream()
+                .map(OutputView::makeResultLine)
+                .forEach(OutputView::println);
         printLineBreak();
+    }
+
+    private static String makeResultLine(RaceResultDTO result) {
+        return result.getName() + " : " + makePositionBar(result.getPosition());
+    }
+
+    private static String makePositionBar(int position) {
+        StringBuilder sb = new StringBuilder();
+        while (position-- > 0) {
+            sb.append("-");
+        }
+        return sb.toString();
     }
 
     public static void printWinner(final String[] winnerNames) {
