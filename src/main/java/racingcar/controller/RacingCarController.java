@@ -1,10 +1,8 @@
 package racingcar.controller;
 
 import racingcar.constant.Message;
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Times;
-import racingcar.service.WinnerService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -15,32 +13,28 @@ import java.util.Scanner;
 
 public class RacingCarController {
     private final InputView inputView;
-    private final WinnerService winnerService;
 
     public RacingCarController(Scanner scanner) {
         this.inputView = new InputView(scanner);
-        this.winnerService = new WinnerService();
     }
 
     public void run() {
-        List<String> carNames = getCarNames();
-        Times times = getTimes();
+        List<String> carNames = giveCarNames();
+        Times times = giveTimes();
+
         Cars cars = new Cars(carNames);
 
         OutputView.printResultMessage();
-
         playUntilDone(cars, times);
-
-        List<String> winnerNames = winnerService.getWinnerNames(cars);
-        OutputView.printWinner(winnerNames);
+        OutputView.printWinner(cars.giveWinners());
     }
 
-    public List<String> getCarNames() {
+    public List<String> giveCarNames() {
         OutputView.printCarNamesRequest();
         return inputView.scanCarNames();
     }
 
-    private Times getTimes() {
+    private Times giveTimes() {
         OutputView.printTimesRequest();
         return new Times(inputView.scanTimes());
     }
@@ -48,46 +42,18 @@ public class RacingCarController {
     public void playUntilDone(Cars cars, Times times) {
         while (times.hasTurn()) {
             cars.decideMovableCar(Collections.EMPTY_LIST);
-
-            List<Car> carList = cars.getCars();
-            List<String> names = getNames(carList);
-            List<StringBuilder> hyphens = getHyphens(carList);
-
-            OutputView.printResult(names, hyphens);
+            OutputView.printResult(cars.extractNames(), extractHyphens(cars));
             times.reduce();
         }
     }
 
-    private List<String> getNames(List<Car> carList) {
-        List<String> names = new ArrayList<>();
-
-        for (Car car : carList) {
-            names.add(car.getName());
-        }
-
-        return names;
-    }
-
-    private List<StringBuilder> getHyphens(List<Car> carList) {
+    private List<StringBuilder> extractHyphens(Cars cars) {
         List<StringBuilder> hyphens = new ArrayList<>();
-        List<Integer> positions = getPositions(carList);
 
-        for (Integer position : positions) {
-            StringBuilder hyphen = drawHyphens(position);
-            hyphens.add(hyphen);
+        for (Integer position : cars.extractPositions()) {
+            hyphens.add(drawHyphens(position));
         }
-
         return hyphens;
-    }
-
-    private List<Integer> getPositions(List<Car> carList) {
-        List<Integer> positions = new ArrayList<>();
-
-        for (Car car : carList) {
-            positions.add(car.getPosition());
-        }
-
-        return positions;
     }
 
     private StringBuilder drawHyphens(Integer position) {
@@ -96,7 +62,6 @@ public class RacingCarController {
         for (int i = 0; i < position; i++) {
             hyphens.append(Message.HYPHEN);
         }
-
         return hyphens;
     }
 }

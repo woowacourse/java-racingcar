@@ -36,13 +36,9 @@ public class Cars {
         }
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
-
     public void decideMovableCar(List<Integer> randoms) {
         if (Collections.EMPTY_LIST.equals(randoms)) {
-            randoms = getRandoms(cars);
+            randoms = extractRandoms(cars);
         }
 
         for (int i = 0; i < cars.size(); i++) {
@@ -50,16 +46,13 @@ public class Cars {
         }
     }
 
-    private List<Integer> getRandoms(List<Car> cars) {
+    private List<Integer> extractRandoms(List<Car> cars) {
         List<Integer> randoms = new ArrayList<>();
 
         for (int i = 0; i < cars.size(); i++) {
-            int random = RandomUtils.nextInt(Digit.MINIMUM_RANDOM_VALUE.getDigit(),
-                    Digit.MAXIMUM_RANDOM_VALUE.getDigit());
-
-            randoms.add(random);
+            randoms.add(RandomUtils.nextInt(Digit.MINIMUM_RANDOM_VALUE.getDigit(),
+                    Digit.MAXIMUM_RANDOM_VALUE.getDigit()));
         }
-
         return randoms;
     }
 
@@ -67,5 +60,43 @@ public class Cars {
         if (random >= Digit.MOVEMENT_CRITERION.getDigit()) {
             car.move();
         }
+    }
+
+    public List<String> extractNames() {
+        List<String> names = new ArrayList<>();
+
+        for (Car car : cars) {
+            names.add(car.getName());
+        }
+        return names;
+    }
+
+    public List<Integer> extractPositions() {
+        List<Integer> positions = new ArrayList<>();
+
+        for (Car car : cars) {
+            positions.add(car.getPosition());
+        }
+        return positions;
+    }
+
+    public List<String> giveWinners() {
+        return cars
+                .stream()
+                .filter(car -> car.isMaxPosition(extractMaxPosition()))
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private int extractMaxPosition() {
+        return cars
+                .stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(Digit.ZERO.getDigit());
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }
