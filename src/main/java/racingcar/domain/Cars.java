@@ -31,10 +31,11 @@ public class Cars {
         return new Cars(cars);
     }
 
-    private static void isValidNumberOfCarsOrThrow(List<String> carNames) {
+    private static boolean isValidNumberOfCarsOrThrow(List<String> carNames) {
         if (carNames.size() < MIN_SIZE) {
             throw new IllegalArgumentException(ERROR_MIN_SIZE);
         }
+        return true;
     }
 
     private static boolean isNotAlreadyExistOrThrow(List<Car> destination, Car car) {
