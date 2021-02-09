@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class GameController {
     final Scanner scanner = new Scanner(System.in);
     final String delimiter = ",";
-    OutputView message = new OutputView();
+    private OutputView message = new OutputView();
 
     public void start() {
         int round = 0;
