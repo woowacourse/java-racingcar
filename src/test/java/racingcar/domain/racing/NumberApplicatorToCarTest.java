@@ -1,7 +1,6 @@
 package racingcar.domain.racing;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,32 +10,15 @@ import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.domain.Car;
 import racingcar.domain.CarRepository;
 import racingcar.domain.numbergenerator.FixedNumberGenerator;
+import racingcar.domain.racing.utils.CarsCreatorTestUtils;
 
 class NumberApplicatorToCarTest {
     private final CarRepository carRepository = new CarRepository();
-    private static final int CARS_SIZE = 10;
 
     @BeforeEach
     void saveCarsToCarRepository() {
-        List<String> carNames = createCarNames(CARS_SIZE);
-        List<Car> cars = createCars(carNames);
+        List<Car> cars = CarsCreatorTestUtils.createCars();
         carRepository.saveAll(cars);
-    }
-
-    private List<String> createCarNames(int carSize) {
-        List<String> carNames = new ArrayList<>();
-        for (int i = 1; i <= carSize; i++) {
-            carNames.add(String.valueOf(i));
-        }
-        return carNames;
-    }
-
-    private List<Car> createCars(List<String> carNames) {
-        List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
-        return cars;
     }
 
     @DisplayName("생성된 정수가 4 이상일 때, 모든 자동차들이 한 칸 전진하고, 4 미만이면 전진하지 않는다.")
