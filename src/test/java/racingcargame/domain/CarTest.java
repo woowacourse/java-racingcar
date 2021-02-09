@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-
 class CarTest {
     @ParameterizedTest
     @DisplayName("자동차가 3이하면 멈추고 4이상이면 움직이는지 테스트")
