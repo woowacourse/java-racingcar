@@ -8,7 +8,7 @@ import racingcar.util.RandomUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomGeneratorTest {
+public class RandomUtilsTest {
 
     @DisplayName("0 ~ 9 사이 생성")
     @Test
