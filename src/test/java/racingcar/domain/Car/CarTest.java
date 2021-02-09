@@ -35,21 +35,4 @@ class CarTest {
             car.drive(input);
         }).isInstanceOf(RuntimeException.class);
     }
-
-    @ParameterizedTest
-    @DisplayName("올바른 이름으로 Car 생성 성공")
-    @ValueSource(strings = {"bepoz  ", "12345", " joy", "b ank"})
-    void generate_validName(String input) {
-        Car car = new Car(input);
-        assertThat(car.getCarName().getName()).isEqualTo(input.trim());
-    }
-
-    @ParameterizedTest
-    @DisplayName("올바르지 않은 이름으로 Car 생성 실패")
-    @ValueSource(strings = {"123456", "", " "})
-    void generate_invalidName(String input) {
-        assertThatThrownBy(() -> {
-            new Car(input);
-        }).isInstanceOf(RuntimeException.class);
-    }
 }

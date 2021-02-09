@@ -13,7 +13,7 @@ import racingcar.domain.Cars;
 class CarsTest {
 
     @ParameterizedTest
-    @DisplayName("Car들이 올바르게 생성")
+    @DisplayName("CarName Input이 올바른 이름들로만 주어질 때의 테스트")
     @ValueSource(strings = {"pobi,joy,poz", "pobi,joy , poz"})
     void from_valid(String input) {
         assertThat(Cars.from(input).getCars())
@@ -24,7 +24,7 @@ class CarsTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Car들이 올바르지 않게 생성")
+    @DisplayName("CarName Input에서 빈 문자열이 들어있어 올바르지 않게 생성 테스트")
     @ValueSource(strings = {"aa,,bb"})
     void from_invalid(String input) {
         assertThatThrownBy(() -> {
@@ -33,7 +33,7 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("Car 이름 중복")
+    @DisplayName("CarName Input에서 중복된 이름이 있을 때의 테스트")
     void from_duplicatedName() {
         assertThatThrownBy(() -> {
             Cars.from("joy,joy").getCars();
