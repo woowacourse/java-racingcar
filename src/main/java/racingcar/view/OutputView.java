@@ -9,6 +9,7 @@ public class OutputView {
     private static final String EXECUTION_RESULT_MESSAGE = "실행 결과";
     private static final String WINNER_MESSAGE = "%s가 최종우승 했습니다.";
     private static final String CAR_STATE_MESSAGE = "%s : %s";
+    private static final String HYPHEN = "-";
 
     private OutputView() {}
 
@@ -30,9 +31,17 @@ public class OutputView {
 
     public static void printCarStateMessage(Cars cars) {
         for (Car car : cars.getCars()) {
-            System.out.println(String.format(CAR_STATE_MESSAGE, car.getName(), car.positionToString()));
+            System.out.println(String.format(CAR_STATE_MESSAGE, car.getName(), positionToHyphen(car)));
         }
         System.out.println();
+    }
+
+    private static String positionToHyphen(Car car) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < car.getPosition(); i++) {
+            sb.append(HYPHEN);
+        }
+        return sb.toString();
     }
 
     public static void printNextLine() {
