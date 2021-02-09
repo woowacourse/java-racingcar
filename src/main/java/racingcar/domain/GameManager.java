@@ -14,11 +14,9 @@ public class GameManager {
     private Cars cars;
     private Round round;
 
-    public GameManagerResponseDto playGame(GameManagerRequestDto requestDto) {
+    public Results playGame(GameManagerRequestDto requestDto) {
         initSet(requestDto);
-        Results results = move();
-        Winners winners = Winners.of(cars);
-        return new GameManagerResponseDto(results, winners);
+        return move();
     }
 
     private void initSet(GameManagerRequestDto requestDto) {
