@@ -19,7 +19,7 @@ class RoundTest {
     @DisplayName("Round 진행 회수에 따른 종료 여부 리턴 테스트")
     @ParameterizedTest
     @CsvSource(value = {"1:3:false", "2:3:false", "3:3:true"}, delimiter = ':')
-    void roundProceedTest(String currentRound, String finalRound, String expected) {
+    void roundProceedTest(int currentRound, int finalRound, boolean expected) {
         int currentRoundNumber = Integer.parseInt(currentRound);
         int finalRoundNumber = Integer.parseInt(finalRound);
 
