@@ -1,9 +1,9 @@
 package racingcar.controller;
 
 import java.util.List;
+import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
 import racingcar.view.RacingGameView;
-import racingcar.domain.Car;
 import racingcar.utils.ParsingUtils;
 
 public class RacingGameController {
@@ -12,7 +12,7 @@ public class RacingGameController {
 
     public RacingGameController() {
         String input = RacingGameView.requestCars();
-        List<Car> cars = ParsingUtils.parseCarNames(input);
+        Cars cars = ParsingUtils.parseCarNames(input);
 
         input = RacingGameView.requestTrial();
         int trial = ParsingUtils.parseTrial(input);

@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,30 +40,30 @@ public class RacingGameTest {
         );
     }
 
-    private static List<Car> provideCars_우승자_한명() {
-        List<Car> cars = new ArrayList<>();
-        cars.add(newCar("루트", 5));
-        cars.add(newCar("소롱", 3));
-        cars.add(newCar("포비", 1));
+    private static Cars provideCars_우승자_한명() {
+        List<Car> value = new ArrayList<>();
+        value.add(newCar("루트", 5));
+        value.add(newCar("소롱", 3));
+        value.add(newCar("포비", 1));
 
-        return cars;
+        return new Cars(value);
     }
 
-    private static List<Car> provideCars_우승자_두명() {
-        List<Car> cars = new ArrayList<>();
-        cars.add(newCar("루트", 5));
-        cars.add(newCar("소롱", 5));
-        cars.add(newCar("포비", 1));
+    private static Cars provideCars_우승자_두명() {
+        List<Car> value = new ArrayList<>();
+        value.add(newCar("루트", 5));
+        value.add(newCar("소롱", 5));
+        value.add(newCar("포비", 1));
 
-        return cars;
+        return new Cars(value);
     }
 
-    private static List<Car> provideCars_모두_움직이지_않음() {
-        List<Car> cars = new ArrayList<>();
-        cars.add(new Car("루트"));
-        cars.add(new Car("소롱"));
-        cars.add(new Car("포비"));
+    private static Cars provideCars_모두_움직이지_않음() {
+        List<Car> value = new ArrayList<>();
+        value.add(new Car("루트"));
+        value.add(new Car("소롱"));
+        value.add(new Car("포비"));
 
-        return cars;
+        return new Cars(value);
     }
 }

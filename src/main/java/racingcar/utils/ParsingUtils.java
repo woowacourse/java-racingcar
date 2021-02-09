@@ -7,39 +7,24 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
 public class ParsingUtils {
 
     private static final String NAME_SPLIT_DELIMITER = ",";
     private static final Integer MIN_TRIAL = 1;
     private static final Integer MAX_TRIAL = Integer.MAX_VALUE;
-    private static final int MIN_CARS_LENGTH = 2;
+
     private static final String NUMBER_PATTERN = "[0-9]+";
 
     private ParsingUtils() {
     }
 
-    public static List<Car> parseCarNames(final String input) {
+    public static Cars parseCarNames(final String input) {
         final String[] carNames = input.split(NAME_SPLIT_DELIMITER, -1);
-        validateCarsLength(carNames);
-        validateDuplication(carNames);
-        return Arrays.stream(carNames)
+        return new Cars(Arrays.stream(carNames)
             .map(Car::new)
-            .collect(Collectors.toList());
-    }
-
-    private static void validateCarsLength(final String[] carNames) {
-        if (carNames.length < MIN_CARS_LENGTH) {
-            throw new IllegalArgumentException("자동차는 두 대 이상 입력해야 합니다.");
-        }
-    }
-
-    private static void validateDuplication(final String[] carNames) {
-        HashSet<String> nonDuplicatedNames = new HashSet<>();
-        Collections.addAll(nonDuplicatedNames, carNames);
-        if (carNames.length != nonDuplicatedNames.size()) {
-            throw new IllegalArgumentException("중복되는 이름을 입력할 수 없습니다.");
-        }
+            .collect(Collectors.toList()));
     }
 
     public static Integer parseTrial(final String input) {
