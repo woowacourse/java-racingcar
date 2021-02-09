@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Cars;
 import racingcar.utils.ParsingUtils;
@@ -12,6 +13,7 @@ public class CarsTest {
 
     @ParameterizedTest
     @DisplayName("경주할 자동차 이름이 하나인 경우 예외 처리")
+    @EmptySource
     @ValueSource(strings = {"한자동차", "자동차#;"})
     void parseCarNamesTest_자동차_입력_수(String input) {
         assertThatThrownBy(() -> {

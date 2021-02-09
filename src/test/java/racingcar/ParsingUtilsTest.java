@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
@@ -48,6 +50,7 @@ public class ParsingUtilsTest {
 
     @ParameterizedTest
     @DisplayName("이동 시도할 회수가 숫자가 아닌 입력을 한 경우 예외 처리")
+    @EmptySource
     @ValueSource(strings = {"2-1", "abc", "894-", "+3"})
     void parseTrialTest_정수가_아닌_입력(String input) {
         assertThatThrownBy(() -> {
