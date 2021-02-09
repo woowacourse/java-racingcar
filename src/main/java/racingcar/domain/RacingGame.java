@@ -7,7 +7,7 @@ public class RacingGame {
 
     private final Cars cars;
     private final Round goalRound;
-    private final Round currentRound;
+    private Round currentRound;
 
     public RacingGame(List<String> names, int goalRound) {
         this(Cars.createCarsByNames(names),goalRound);
@@ -19,9 +19,9 @@ public class RacingGame {
         this.currentRound = new Round(INIT_ROUND);
     }
 
-
     public void playRound() {
         cars.moveCars();
+        this.currentRound = currentRound.nextRound();
     }
 
     public boolean isEnd() {
