@@ -2,10 +2,7 @@ package racingcar.domain.racingcargame;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.car.Car;
-import racingcar.domain.car.CarPosition;
-import racingcar.domain.car.Cars;
-import racingcar.domain.car.FixedMovingStrategy;
+import racingcar.domain.car.*;
 import racingcar.domain.trynumber.TryNumber;
 
 import java.util.Arrays;
@@ -38,8 +35,10 @@ class RacingCarGameTest {
     @Test
     void testFindWinners() {
         //given
-        Cars playedCars = new Cars(Arrays.asList(new Car("benz", new CarPosition(3)),
-                new Car("kia", new CarPosition(1)), new Car("bmw", new CarPosition(0))));
+        Cars playedCars = new Cars(Arrays.asList(
+                new Car(new CarName("benz"), new CarPosition(3)),
+                new Car(new CarName("kia"), new CarPosition(1)),
+                new Car(new CarName("bmw"), new CarPosition(0))));
         TryNumber tryNumber = new TryNumber(1);
 
         //when
@@ -48,6 +47,6 @@ class RacingCarGameTest {
 
         //then
         assertThat(cars).hasSize(1);
-        assertThat(cars.get(0)).isEqualTo(new Car("benz", new CarPosition(3)));
+        assertThat(cars.get(0)).isEqualTo(new Car(new CarName("benz"), new CarPosition(3)));
     }
 }

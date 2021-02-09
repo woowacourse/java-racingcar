@@ -40,8 +40,10 @@ class CarsTest {
     @Test
     void testExtractMaxPosition() {
         //given
-        List<Car> carGroup = Arrays.asList(new Car("benz", new CarPosition(3)),
-                new Car("kia", new CarPosition(2)), new Car("bmw", new CarPosition(0)));
+        List<Car> carGroup = Arrays.asList(
+                new Car(new CarName("benz"), new CarPosition(3)),
+                new Car(new CarName("kia"), new CarPosition(2)),
+                new Car(new CarName("bmw"), new CarPosition(0)));
         Cars cars = new Cars(carGroup);
 
         //when
