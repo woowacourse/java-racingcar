@@ -10,7 +10,7 @@ public class RacingGame {
     private Round currentRound;
 
     public RacingGame(List<String> names, int goalRound) {
-        this(Cars.createCarsByNames(names),goalRound);
+        this(Cars.createCarsByNames(names), goalRound);
     }
 
     public RacingGame(Cars cars, int goalRound) {

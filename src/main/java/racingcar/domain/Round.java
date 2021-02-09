@@ -11,11 +11,11 @@ public class Round {
         this.round = round;
     }
 
-    public boolean isBiggerThan(Round that){
+    public boolean isBiggerThan(Round that) {
         return this.round > that.round;
     }
 
-    public int getRound(){
+    public int getRound() {
         return round;
     }
 

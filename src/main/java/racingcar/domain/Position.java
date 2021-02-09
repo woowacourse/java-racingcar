@@ -17,7 +17,7 @@ public class Position {
         return new Position(this.position + ONE);
     }
 
-    public int index(){
+    public int index() {
         return position;
     }
 

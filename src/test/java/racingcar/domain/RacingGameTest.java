@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class RacingGameTest {
@@ -18,8 +17,6 @@ class RacingGameTest {
     void setUp() {
         racingGame = new RacingGame(testCases, 5);
     }
-
-
 
     @DisplayName("주어진 이름대로 자동차 생성되는지 테스트")
     @Test

@@ -10,8 +10,8 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class RoundTest {
     @DisplayName("라운드가 음수일 때 에러가 나는지")
     @Test
-    void 라운드가_음수이면_에러(){
+    void 라운드가_음수이면_에러() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new RacingGame(Arrays.asList("똘이","똘순"), -1));
+                .isThrownBy(() -> new RacingGame(Arrays.asList("똘이", "똘순"), -1));
     }
 }
