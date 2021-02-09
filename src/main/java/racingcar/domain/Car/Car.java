@@ -3,6 +3,10 @@ package racingcar.domain.Car;
 import java.util.stream.IntStream;
 
 public class Car {
+    private final int ACCELERATE_THRESHOLD = 4;
+    private final int MIN_VALUE = 0;
+    private final int MAX_VALUE = 9;
+
     private int position;
     private final CarName carName;
 
@@ -11,12 +15,12 @@ public class Car {
         this.carName = new CarName(name);
     }
 
-    public void drive(int randomValue) {
-        if (randomValue < 0 || randomValue > 9) {
-            throw new RuntimeException();
+    public void drive(int value) {
+        if (value < MIN_VALUE || value > MAX_VALUE) {
+            throw new RuntimeException("0과 9사이의 값이어야만 합니다.");
         }
 
-        if (randomValue >= 4) {
+        if (value >= ACCELERATE_THRESHOLD) {
             accelerate();
         }
     }
