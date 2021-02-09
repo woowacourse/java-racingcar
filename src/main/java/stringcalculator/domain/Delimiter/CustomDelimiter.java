@@ -27,16 +27,13 @@ public class CustomDelimiter implements Delimiter {
     }
 
     private void validateCustomDelimiterPosition(String input) {
-        int index = -1;
         Matcher matcher = DelimiterFactory.CUSTOM_DELIMITER_PATTERN.matcher(input);
 
-        if (matcher.find()) {
-            index = matcher.start();
+        if (matcher.find() && matcher.start() == 0) {
+            return;
         }
 
-        if (index != 0) {
-            throw new IllegalCustomDelimiterPositionException();
-        }
+        throw new IllegalCustomDelimiterPositionException();
     }
 
     private String extractCustomDelimiter(String input) {
