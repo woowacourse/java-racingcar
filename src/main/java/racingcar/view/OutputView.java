@@ -25,6 +25,7 @@ public class OutputView {
     }
 
     public static void printExecutionResultMessage() {
+        System.out.println();
         System.out.println(EXECUTION_RESULT_MESSAGE);
     }
 
@@ -55,9 +56,5 @@ public class OutputView {
             sb.append(winners.get(i).getName());
         }
         return sb.toString();
-    }
-
-    public static void printNextLine() {
-        System.out.println();
     }
 }

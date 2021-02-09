@@ -12,7 +12,6 @@ public class CarController {
 
     public void play() {
         init();
-        OutputView.printNextLine();
         OutputView.printExecutionResultMessage();
         for (int i = 0; i < attemptNumber.getAttemptNumber(); i++) {
             cars.move(new RandomValueGenerator());
@@ -20,7 +19,6 @@ public class CarController {
         }
         OutputView.printWinnerCarNamesMessage(cars.getWinners());
     }
-
 
     private void init() {
         cars = Cars.createCars(InputView.getCarNames());
