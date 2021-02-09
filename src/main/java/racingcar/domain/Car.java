@@ -25,16 +25,12 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
-    public Position getPosition(Car car) {
-        return car.position;
-    }
-
     public boolean hasSamePositionWith(Car car) {
-        return position.isSame(getPosition(car));
+        return position.isSame(car.position);
     }
 
     @Override
     public int compareTo(Car car) {
-        return position.comparePosition(getPosition(car));
+        return position.compareTo(car.position);
     }
 }
