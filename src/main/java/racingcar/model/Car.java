@@ -15,20 +15,20 @@ public class Car {
         this(name, 0);
     }
 
-    public Car(String name, int position){
+    public Car(String name, int position) {
         validateCarName(name.trim());
         this.name = name;
         this.position = position;
     }
 
     public void validateCarName(String name) {
-        if(name.length() > NAME_MAX_LENGTH || name.length() <= 0){
+        if (name.length() > NAME_MAX_LENGTH || name.length() <= 0) {
             throw new IllegalArgumentException(CAR_NAME_INVALID);
         }
     }
 
     public void movePosition(int number) {
-        if(number >= MOVE_RANDOM_NUMBER) {
+        if (number >= MOVE_RANDOM_NUMBER) {
             this.position++;
         }
     }

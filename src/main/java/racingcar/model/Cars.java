@@ -11,7 +11,6 @@ public class Cars {
     public static final int MAX_RANDOM_RANGE = 9;
     public static final int MIN_RANDOM_RANGE = 0;
 
-
     private List<Car> cars;
     private int maxDistance = 0;
 
@@ -35,6 +34,13 @@ public class Cars {
         return maxDistance;
     }
 
+    public void updateMaxDistance() {
+        maxDistance = cars.stream()
+                .max(Comparator.comparing(Car::getPosition))
+                .map(Car::getPosition)
+                .orElse(0);
+    }
+
     private void validateUserCount(List<Car> cars) {
         if (cars.size() <= 1) {
             throw new IllegalArgumentException(CAR_NAME_INVALID);
@@ -46,19 +52,11 @@ public class Cars {
      * Car이라는 클래스에 .Equals와 .hascode를 오버라이드한 후 List.contains를 활용하여 중복체크를 하는 것,
      * 둘 중 어느 것이 나은가요?
      */
-
     private void validateDuplicate(List<Car> cars) {
         if (!cars.stream()
                 .filter(count -> Collections.frequency(cars, count) > 1)
                 .collect(Collectors.toSet()).isEmpty()) {
             throw new IllegalArgumentException(CAR_NAME_INVALID);
         }
-    }
-
-    public void updateMaxDistance() {
-        maxDistance = cars.stream()
-                .max(Comparator.comparing(Car::getPosition))
-                .map(Car::getPosition)
-                .orElse(0);
     }
 }
