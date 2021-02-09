@@ -17,6 +17,12 @@ public class Cars {
         }
     }
 
+    private void validateNonDuplicatedNames(final List<String> names) {
+        if (new HashSet<>(names).size() != names.size()) {
+            throw new IllegalArgumentException("중복된 자동차 이름입니다.");
+        }
+    }
+
     public List<Car> cars() {
         return Collections.unmodifiableList(cars);
     }
@@ -29,11 +35,5 @@ public class Cars {
         return cars.stream()
                 .max(Car::compareTo)
                 .orElseThrow(IllegalStateException::new);
-    }
-
-    private void validateNonDuplicatedNames(final List<String> names) {
-        if (new HashSet<>(names).size() != names.size()) {
-            throw new IllegalArgumentException("중복된 자동차 이름입니다.");
-        }
     }
 }
