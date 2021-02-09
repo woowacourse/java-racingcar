@@ -1,5 +1,6 @@
-import model.Car;
-import model.Cars;
+package racingcar;
+
+import racingcar.model.Cars;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;

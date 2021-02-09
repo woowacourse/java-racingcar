@@ -1,4 +1,4 @@
-package controller;
+package racingcar.controller;
 
 public class Application {
 

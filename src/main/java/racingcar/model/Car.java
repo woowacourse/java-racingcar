@@ -1,6 +1,6 @@
-package model;
+package racingcar.model;
 
-import utils.RandomUtils;
+import racingcar.utils.RandomUtils;
 
 public class Car {
 

@@ -1,5 +1,7 @@
-import controller.RacingGame;
-import model.Car;
+package racingcar;
+
+import racingcar.controller.RacingGame;
+import racingcar.model.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
