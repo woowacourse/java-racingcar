@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class CarRepository {
+
     private static final int START = 0;
     private static final int END = 9;
 

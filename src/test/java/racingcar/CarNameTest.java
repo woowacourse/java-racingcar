@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
 
 public class CarNameTest {
+
     @DisplayName("1~5 범위 넘어가는 이름 체크")
     @ParameterizedTest
     @ValueSource(strings = {"sixsix", ""})

@@ -9,6 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WinnerTest {
+
     @DisplayName("우승자 리스트 테스트")
     @Test
     void winnerTest() {

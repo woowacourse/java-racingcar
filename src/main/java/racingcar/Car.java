@@ -3,6 +3,7 @@ package racingcar;
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
+
     private static final int CONDITION = 4;
 
     private final CarName carName;
@@ -38,8 +39,12 @@ public class Car implements Comparable<Car> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return Objects.equals(carName, car.carName);
     }
@@ -50,7 +55,7 @@ public class Car implements Comparable<Car> {
     }
 
     //todo : toString은 개발자가 보는 용도도
-   @Override
+    @Override
     public String toString() {
         StringBuilder positionBar = new StringBuilder();
         for (int i = 0; i < this.position; i++) {

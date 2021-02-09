@@ -3,6 +3,7 @@ package racingcar;
 import java.util.*;
 
 public class CarNameRepository {
+
     private static final int MINIMUM_CAR_AMOUNT = 2;
     private static final List<CarName> carNames = new ArrayList<>();
 
