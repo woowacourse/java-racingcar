@@ -59,7 +59,7 @@ public class RacingGameController implements GameController {
 
     private void iterateRounds() {
         while (!gameService.isEnd()) {
-            progressRound();
+            outputable.printLeaderBoard(progressRound());
         }
     }
 
@@ -75,9 +75,7 @@ public class RacingGameController implements GameController {
 
     @Override
     public CarsDto progressRound() {
-        CarsDto roundResult = gameService.executeRound();
-        outputable.printLeaderBoard(roundResult);
-        return roundResult;
+        return gameService.executeRound();
     }
 
     @Override
