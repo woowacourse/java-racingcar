@@ -17,8 +17,7 @@ public class Name {
     }
 
     private void isValidName(String name) {
-
-        if (name.length() <= CAR_NAME_LIMIT && !name.isEmpty()) {
+        if (!(name.length() <= CAR_NAME_LIMIT && !name.isEmpty())) {
             throw new IllegalArgumentException();
         }
     }
