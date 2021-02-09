@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class NameTest {
 
     @Test
-    @DisplayName("이름 생성")
+    @DisplayName("Name 객체 생성")
     void create() {
         final Name name = new Name("pobi");
         assertThat(name).isEqualTo(new Name("pobi"));

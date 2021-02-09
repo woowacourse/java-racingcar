@@ -1,5 +1,7 @@
 package racingcar.domain.car;
 
+import java.util.Objects;
+
 public class Position {
 
     public static final Position ZERO = new Position(0);
@@ -7,7 +9,7 @@ public class Position {
     private final int value;
 
     private Position() {
-        throw new IllegalStateException("Position 은 위치값을 필요로 합니다.");
+        throw new IllegalStateException("Position은 위치값을 필요로 합니다.");
     }
 
     public Position(final int value) {
@@ -30,11 +32,6 @@ public class Position {
     }
 
     @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -44,5 +41,10 @@ public class Position {
         }
         final Position position = (Position) obj;
         return value == position.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
