@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.domain.dto.GameManagerRequestDto;
-import racingcar.domain.dto.GameManagerResponseDto;
 import racingcar.utils.RandomUtils;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ public class GameManager {
 
     public Results playGame(GameManagerRequestDto requestDto) {
         initSet(requestDto);
-        return move();
+        return startRace();
     }
 
     private void initSet(GameManagerRequestDto requestDto) {
@@ -24,7 +23,7 @@ public class GameManager {
         this.round = Round.of(requestDto.getRound());
     }
 
-    private Results move() {
+    private Results startRace() {
         List<Result> results = new ArrayList<>();
         for (int i = 0; i < this.round.getCount(); i++) {
             this.cars.tryToMoveCars(createRandomNumbers());

@@ -11,23 +11,23 @@ public class Car {
     private int position;
 
     private Car(String name) {
-        CarValidator.validateCarNameIsNullOrEmpty(name);
-        String trimmedName = name.trim();
-        CarValidator.validateCarNameLength(trimmedName);
-        this.name = trimmedName;
+        this(name, 0);
     }
 
     private Car(String name, int position) {
-        this.name = name;
+        this.name = name.trim();
         this.position = position;
     }
 
     public static Car of(String name) {
-        return new Car(name);
+        return Car.of(name, 0);
     }
 
     public static Car of(String name, int position) {
-        return new Car(name, position);
+        CarValidator.validateCarNameIsNullOrEmpty(name);
+        String trimmedName = name.trim();
+        CarValidator.validateCarNameLength(trimmedName);
+        return new Car(trimmedName, position);
     }
 
     public static Car getInstance(Car car) {
