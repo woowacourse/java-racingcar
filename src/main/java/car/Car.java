@@ -3,7 +3,8 @@ package car;
 import java.util.Objects;
 
 public class Car {
-    private static final int CONDITION = 4;
+
+    private static final int CAR_MOVE_BOUNDARY = 4;
     private final Name carName;
     private int position;
 
@@ -25,7 +26,7 @@ public class Car {
     }
 
     public void moveOrStop() {
-        if (RandomUtil.getRandomValue() >= CONDITION) {
+        if (RandomUtil.getRandomValue() >= CAR_MOVE_BOUNDARY) {
             this.position++;
         }
     }
