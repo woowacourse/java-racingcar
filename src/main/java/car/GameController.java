@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GameController {
+
     final String delimiter = ",";
     private Scanner scanner;
     OutputView message = new OutputView();
@@ -39,7 +40,7 @@ public class GameController {
         message.carNameGuidePrint();
         String carNamesInput = scanner.nextLine();
         ValidCheck.carNameValid(carNamesInput);
-        for(String carName : carNamesInput.split(delimiter)){
+        for (String carName : carNamesInput.split(delimiter)) {
             carNames.add(new Car(carName));
         }
         return carNames;
