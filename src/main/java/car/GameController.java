@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GameController {
+
     final Scanner scanner = new Scanner(System.in);
     final String delimiter = ",";
     private OutputView message = new OutputView();
@@ -15,11 +16,11 @@ public class GameController {
         try {
             carNames = inputCarName();
             round = inputRound();
+            moveCar(carNames, round);
         } catch (IllegalArgumentException error) {
             message.errorPrint();
             start();
         }
-        moveCar(carNames, round);
     }
 
     private int inputRound() {
