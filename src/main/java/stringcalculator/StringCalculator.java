@@ -44,9 +44,24 @@ public class StringCalculator {
     }
 
     private static void checkMinusValue(String[] numbers) {
+        checkNonNumber(numbers);
         if (Arrays.stream(numbers)
             .anyMatch(number -> isMinus(Integer.parseInt(number)))) {
             throw new RuntimeException(MINUS_ERROR_MESSAGE);
+        }
+    }
+
+    private static void checkNonNumber(String[] numbers) {
+        for (String number : numbers) {
+            isInteger(number);
+        }
+    }
+
+    private static void isInteger(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException();
         }
     }
 
