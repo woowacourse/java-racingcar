@@ -17,7 +17,7 @@ public class RacingCarGame {
     public void start() {
         String carNamesInput = InputView.getCarNamesInput();
         List<String> splittedCarNames = SplitUtil.splitCarNames(carNamesInput);
-        CarRepository.addCars(splittedCarNames);
+        Cars.addCars(splittedCarNames);
         String lapInput = InputView.getLap();
         int laps = validateLaps(lapInput);
         race(laps);
@@ -39,7 +39,7 @@ public class RacingCarGame {
     private void race(int laps) {
         OutputView.showResultMessage();
         for (int i = 0; i < laps; i++) {
-            CarRepository.raceOneLap();
+            Cars.raceOneLap();
             OutputView.showOneLapResult();
         }
     }

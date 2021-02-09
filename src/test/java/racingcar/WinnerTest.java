@@ -12,10 +12,10 @@ public class WinnerTest {
     @Test
     void winnerTest() {
         List<String> splittedCarNames = Arrays.asList("pho", "crong", "honux");
-        CarRepository.addCars(splittedCarNames);
-        List<Car> cars = CarRepository.getCars();
+        Cars.addCars(splittedCarNames);
+        List<Car> cars = Cars.getCars();
         racing(cars);
-        assertEquals(CarRepository.getWinners().size(), 2);
+        assertEquals(Cars.getWinners().size(), 2);
     }
 
     private void racing(List<Car> cars) {

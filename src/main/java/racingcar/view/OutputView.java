@@ -1,7 +1,7 @@
 package racingcar.view;
 
 import racingcar.Car;
-import racingcar.CarRepository;
+import racingcar.Cars;
 
 import java.util.List;
 
@@ -23,13 +23,13 @@ public class OutputView {
     }
 
     public static void showOneLapResult() {
-        List<Car> RacingCars = CarRepository.getCars();
+        List<Car> RacingCars = Cars.getCars();
         RacingCars.forEach(System.out::println);
         System.out.println();
     }
 
     public static void showWinners() {
-        System.out.println(String.join(", ", CarRepository.getWinners()) + RESULT_MESSAGE);
+        System.out.println(String.join(", ", Cars.getWinners()) + RESULT_MESSAGE);
     }
 
     public static void showResultMessage() {

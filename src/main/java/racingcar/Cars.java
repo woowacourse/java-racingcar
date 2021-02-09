@@ -7,13 +7,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarRepository {
+public class Cars {
     private static final int START = 0;
     private static final int END = 9;
 
     private static final List<Car> cars = new ArrayList<>();
 
-    private CarRepository() {
+    private Cars() {
     }
 
     public static void addCars(List<String> splittedCarNames) {
