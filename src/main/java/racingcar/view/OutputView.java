@@ -5,6 +5,7 @@ import racingcar.domain.Car.CarName;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class OutputView {
 
@@ -13,7 +14,7 @@ public class OutputView {
     public static final String ASK_TURNS =
             "시도할 회수는 몇회인가요?";
     public static final String RESULT_PREFIX =
-            "\n실행 결과";
+            "실행 결과";
     public static final String PRINT_WINNERS =
             "%s가 최종 우승했습니다.";
 
@@ -26,17 +27,25 @@ public class OutputView {
     }
 
     public static void printResultPrefix() {
-        System.out.println(RESULT_PREFIX);
+        System.out.println(System.lineSeparator() + RESULT_PREFIX);
     }
 
-    public static void printCarsBeforeRace(List<Car> cars) {
-        cars.forEach(System.out::println);
+    public static void printCarsStatus(List<Car> cars) {
+        cars.forEach(car -> System.out.println(getCarStatus(car)));
         System.out.println();
     }
 
-    public static void printCarsAfterEachTurn(List<Car> cars) {
-        cars.forEach(System.out::println);
-        System.out.println();
+    private static String getCarStatus(Car car) {
+        StringBuilder sb = new StringBuilder(car.getCarName().getName() + " : ");
+        sb.append(getPositionToString(car.getPosition()));
+        return sb.toString();
+    }
+
+    private static String getPositionToString(int position) {
+        StringBuilder sb = new StringBuilder();
+        IntStream.range(0, position)
+                .forEach(i -> sb.append("-"));
+        return sb.toString();
     }
 
     public static void printWinners(List<Car> winners) {

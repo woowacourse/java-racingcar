@@ -25,23 +25,16 @@ public class Car {
         }
     }
 
+    private void accelerate() {
+        position++;
+    }
+
     public CarName getCarName() {
         return carName;
     }
 
     public int getPosition() {
         return position;
-    }
-
-    private void accelerate() {
-        position++;
-    }
-
-    private String getPositionToString() {
-        StringBuilder sb = new StringBuilder();
-        IntStream.range(0, position)
-                .forEach(i -> sb.append("-"));
-        return sb.toString();
     }
 
     @Override

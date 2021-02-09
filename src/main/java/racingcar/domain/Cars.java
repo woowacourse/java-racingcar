@@ -46,9 +46,9 @@ public class Cars {
         return carsName.split(",", -1);
     }
 
-    public void allCarsDrive() {
+    public List<Car> getCarsAfterDrive() {
         cars.forEach(car -> car.drive(RandomUtils.nextInt(0, 9)));
-        OutputView.printCarsAfterEachTurn(cars);
+        return getCars();
     }
 
     public List<Car> getWinners() {
