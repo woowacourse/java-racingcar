@@ -7,10 +7,6 @@ public class Position implements Comparable<Position> {
         this.position = position;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public void move() {
         this.position++;
     }
@@ -22,5 +18,9 @@ public class Position implements Comparable<Position> {
     @Override
     public int compareTo(Position position) {
         return Integer.compare(this.position, position.position);
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

@@ -4,7 +4,6 @@ import racingcar.utils.RandomUtils;
 import racingcar.view.OutputView;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -30,10 +29,6 @@ public class Cars {
         return cars.stream()
                 .filter(car -> car.hasSamePositionWith(maxPositionCar))
                 .collect(Collectors.toList());
-    }
-
-    public List<Car> getCars() {
-        return cars;
     }
 
     public void move() {

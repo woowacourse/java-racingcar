@@ -11,18 +11,10 @@ public class Car implements Comparable<Car> {
         this.position = new Position(0);
     }
 
-    public Racer getRacer() {
-        return racer;
-    }
-
     public void movePosition(int value) {
         if (value >= MOVING_BASELINE) {
             position.move();
         }
-    }
-
-    public Position getPosition() {
-        return position;
     }
 
     public boolean hasSamePositionWith(Car car) {
@@ -32,5 +24,13 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(Car car) {
         return position.compareTo(car.position);
+    }
+
+    public Racer getRacer() {
+        return racer;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }
