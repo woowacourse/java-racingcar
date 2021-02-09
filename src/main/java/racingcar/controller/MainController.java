@@ -1,17 +1,18 @@
 package racingcar.controller;
 
-import static racingcar.utils.ValidateUtils.validateNames;
-import static racingcar.utils.ValidateUtils.validateTurnQuantity;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.CarRepository;
 import racingcar.domain.game.Game;
 import racingcar.utils.ErrorUtils;
 import racingcar.view.MainPage;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+import static racingcar.utils.ValidateUtils.validateNames;
+import static racingcar.utils.ValidateUtils.validateTurnQuantity;
 
 public class MainController {
 
