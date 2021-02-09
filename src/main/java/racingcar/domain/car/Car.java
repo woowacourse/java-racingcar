@@ -29,7 +29,7 @@ public class Car {
     }
 
     public CarState getState() {
-        return CarState.withNameAndPosition(this);
+        return CarState.valueOf(this);
     }
 
     public boolean isSamePosition(int position) {

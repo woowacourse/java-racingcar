@@ -1,8 +1,6 @@
 package racingcar.domain.car;
 
 public class CarState {
-    private static final String LINE = "-";
-
     private CarName carName;
     private int position;
 
@@ -11,7 +9,7 @@ public class CarState {
         this.position = car.getPosition();
     }
 
-    public static CarState withNameAndPosition(Car car) {
+    public static CarState valueOf(Car car) {
         return new CarState(car);
     }
 
