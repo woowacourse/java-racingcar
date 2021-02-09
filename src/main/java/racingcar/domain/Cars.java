@@ -4,6 +4,7 @@ import racingcar.utils.RandomUtils;
 import racingcar.view.OutputView;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -22,7 +23,7 @@ public class Cars {
     public Car getMaxPositionCar() {
         return cars.stream()
                 .max(Car::compareTo)
-                .get();
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public List<Car> getWinnerCars(Car maxPositionCar) {
