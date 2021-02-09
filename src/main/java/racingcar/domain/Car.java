@@ -23,13 +23,13 @@ public class Car {
         this.position = position;
     }
 
-    private void validateBlankInName(String name) {
+    public static void validateBlankInName(String name) {
         if (name.contains(BLANK)) {
             throw new IllegalArgumentException(BLANK_ERROR_MESSAGE);
         }
     }
 
-    private void validateNameLength(String name) {
+    public static void validateNameLength(String name) {
         if (name.length() < MINIMUM_NAME_LENGTH || MAXIMUM_NAME_LENGTH < name.length()) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR_MESSAGE);
         }

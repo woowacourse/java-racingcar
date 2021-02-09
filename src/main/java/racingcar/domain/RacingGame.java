@@ -12,15 +12,24 @@ public class RacingGame {
     private final int numberOfRounds;
     private int currentRound;
 
-    public RacingGame(Cars cars, int numberOfRounds) {
+    public RacingGame(Cars cars, String numberOfRounds) {
+        validateIntegerNumber(numberOfRounds);
         validatePositiveNumber(numberOfRounds);
         this.cars = cars;
-        this.numberOfRounds = numberOfRounds;
+        this.numberOfRounds = Integer.parseInt(numberOfRounds);
         this.currentRound = INIT_ROUND;
     }
 
-    private static void validatePositiveNumber(int numberOfRounds) {
-        if (numberOfRounds < MINIMUM_NUMBER_OF_ROUNDS) {
+    public static void validateIntegerNumber(String numberOfRoundsInput) {
+        try {
+            Integer.parseInt(numberOfRoundsInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
+        }
+    }
+
+    public static void validatePositiveNumber(String numberOfRounds) {
+        if (Integer.parseInt(numberOfRounds) < MINIMUM_NUMBER_OF_ROUNDS) {
             throw new IllegalArgumentException(INVALID_NUMBER_OF_ROUNDS_MESSAGE);
         }
     }

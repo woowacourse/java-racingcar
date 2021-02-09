@@ -13,8 +13,7 @@ import java.util.*;
 public class RacingGameController {
     public void start(Scanner scanner) {
         List<String> names = generateNames(scanner);
-        int numberOfRounds = generateNumberOfRounds(scanner);
-
+        String numberOfRounds = generateNumberOfRounds(scanner);
         RacingGame racingGame = new RacingGame(new Cars(names), numberOfRounds);
 
         playRacingGame(racingGame);
@@ -27,7 +26,7 @@ public class RacingGameController {
         return InputView.takeNameInput(scanner);
     }
 
-    private int generateNumberOfRounds(Scanner scanner) {
+    private String generateNumberOfRounds(Scanner scanner) {
         OutputView.printNumberOfRoundsInputRequestMessage();
         return InputView.takeNumberOfRoundsInput(scanner);
     }

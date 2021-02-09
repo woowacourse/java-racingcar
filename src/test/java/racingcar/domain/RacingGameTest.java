@@ -17,7 +17,7 @@ import static racingcar.domain.RacingGame.INIT_ROUND;
 import static racingcar.domain.RacingGame.INVALID_NUMBER_OF_ROUNDS_MESSAGE;
 
 class RacingGameTest {
-    private static final int NUMBER_OF_ROUNDS_FOR_TEST = 5;
+    private static final String NUMBER_OF_ROUNDS_FOR_TEST = "5";
 
     private final List<String> carNamesForTest = Arrays.asList("포비", "데이브", "삭정");
 
@@ -27,7 +27,7 @@ class RacingGameTest {
         RacingGame racingGame = createRacingGame();
 
         assertThat(racingGame).isInstanceOf(RacingGame.class);
-        assertThat(racingGame.getNumberOfRounds()).isEqualTo(NUMBER_OF_ROUNDS_FOR_TEST);
+        assertThat(racingGame.getNumberOfRounds()).isEqualTo(Integer.parseInt(NUMBER_OF_ROUNDS_FOR_TEST));
         assertThat(racingGame.getCurrentRound()).isEqualTo(INIT_ROUND);
 
         List<CarDto> carsDto = new CarsDto(racingGame.getCars()).getCarsDto();
@@ -39,8 +39,8 @@ class RacingGameTest {
 
     @DisplayName("음수나 0 인 라운드 횟수가 입력됐을 떄 에러 반환 하는지")
     @ParameterizedTest
-    @ValueSource(ints = {0,-3})
-    void racingGameConstructor_NonPositiveIntegerNumberOfRounds_ThrowException(int numberOfRounds) {
+    @ValueSource(strings = {"0","-3"})
+    void racingGameConstructor_NonPositiveIntegerNumberOfRounds_ThrowException(String numberOfRounds) {
         assertThatThrownBy(() -> createRacingGame(numberOfRounds)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_NUMBER_OF_ROUNDS_MESSAGE);
     }
@@ -59,11 +59,11 @@ class RacingGameTest {
 
     @DisplayName("라운드 횟수에 맞게 총 경기가 수행되는지")
     @ParameterizedTest
-    @ValueSource(ints = {1, 3})
-    void isFinished_numberOfRounds_true(int numberOfRounds) {
+    @ValueSource(strings = {"1", "3"})
+    void isFinished_numberOfRounds_true(String numberOfRounds) {
         RacingGame racingGame = createRacingGame(numberOfRounds);
 
-        for (int currentRound = 0; currentRound < numberOfRounds; currentRound++) {
+        for (int currentRound = 0; currentRound < racingGame.getNumberOfRounds(); currentRound++) {
             racingGame.playAnotherRound();
         }
 
@@ -75,7 +75,7 @@ class RacingGameTest {
         return new RacingGame(cars, NUMBER_OF_ROUNDS_FOR_TEST);
     }
 
-    private RacingGame createRacingGame(int numberOfRounds) {
+    private RacingGame createRacingGame(String numberOfRounds) {
         Cars cars = new Cars(carNamesForTest);
         return new RacingGame(cars, numberOfRounds);
     }

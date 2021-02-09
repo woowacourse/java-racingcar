@@ -14,7 +14,7 @@ public class Cars {
     }
 
     public Cars(List<String> names) {
-        validateDuplicate(names);
+        validateDuplicateNames(names);
         createCars(names);
     }
 
@@ -24,7 +24,7 @@ public class Cars {
                 .forEach(cars::add);
     }
 
-    private void validateDuplicate(List<String> names) {
+    public static void validateDuplicateNames(List<String> names) {
         Set<String> nameSet = new HashSet<>(names);
         if (nameSet.size() != names.size()) {
             throw new IllegalArgumentException(DUPLICATE_NAME_ERROR_MESSAGE);
