@@ -1,6 +1,10 @@
 package racingcar;
 
-import racingcar.domain.*;
+import racingcar.domain.Participants;
+import racingcar.domain.RacingManager;
+import racingcar.domain.RacingResult;
+import racingcar.domain.RandomSupplier;
+import racingcar.domain.Round;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
