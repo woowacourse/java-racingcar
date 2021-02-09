@@ -10,7 +10,7 @@ class CarsTest {
     @Test
     @DisplayName("이름 리스트 생성 확인")
     void carNames() {
-        Cars cars = new Cars("1,2,3");
+        final Cars cars = new Cars("1,2,3");
         assertThat(cars.getCars().get(0).getName().getName()).isEqualTo("1");
         assertThat(cars.getCars().get(1).getName().getName()).isEqualTo("2");
         assertThat(cars.getCars().get(2).getName().getName()).isEqualTo("3");

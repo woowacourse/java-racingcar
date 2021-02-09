@@ -10,7 +10,7 @@ public class CarTest {
     @Test
     @DisplayName("자동차 생성 확인")
     void car_create() {
-        Car car1 = new Car("샐리");
+        final Car car1 = new Car("샐리");
         assertThat(car1.getName().getName()).isEqualTo("샐리");
         assertTrue(car1.getPosition().isSameThan(0));
     }
@@ -18,7 +18,7 @@ public class CarTest {
     @Test
     @DisplayName("자동차 전진 구현")
     void car_move() {
-        Car car1 = new Car("샐리");
+        final Car car1 = new Car("샐리");
         car1.moveByRandomNumber(5);
         assertTrue(car1.getPosition().isSameThan(1));
     }

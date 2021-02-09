@@ -10,8 +10,8 @@ class CarNameTest {
     @Test
     @DisplayName("이름 입력받는 기능")
     void carName_create() {
-        CarName carName1 = new CarName("샐리");
-        CarName carName2 = new CarName("현구막");
+        final CarName carName1 = new CarName("샐리");
+        final CarName carName2 = new CarName("현구막");
         assertThat(carName1.getName()).isEqualTo("샐리");
         assertThat(carName2.getName()).isEqualTo("현구막");
     }

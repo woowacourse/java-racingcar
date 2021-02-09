@@ -7,10 +7,10 @@ import racingcar.view.OutputView;
 public class RacingCarGameController {
     public void playGame() {
         try {
-            Cars cars = new Cars(InputView.inputCarNames());
-            Lap lap = new Lap(InputView.inputLap());
+            final Cars cars = new Cars(InputView.inputCarNames());
+            final Lap lap = new Lap(InputView.inputLap());
             race(cars, lap);
-            Winners winners = new Winners();
+            final Winners winners = new Winners();
             OutputView.printWinners(winners.makeWinners(cars.getCars()));
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
@@ -35,4 +35,3 @@ public class RacingCarGameController {
         }
     }
 }
-

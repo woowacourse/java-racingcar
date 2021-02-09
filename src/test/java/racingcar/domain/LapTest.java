@@ -10,7 +10,7 @@ class LapTest {
     @Test
     @DisplayName("횟수 생성 확인")
     public void lap_create() {
-        Lap lap = new Lap("10");
+        final Lap lap = new Lap("10");
         assertThat(lap.getLap()).isEqualTo(10);
     }
 
