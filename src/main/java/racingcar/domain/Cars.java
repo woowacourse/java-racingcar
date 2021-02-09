@@ -10,7 +10,7 @@ public class Cars {
 
     private final List<Car> cars = new ArrayList<Car>();
 
-    public Cars() {
+    private Cars() {
     }
 
     public Cars(List<String> names) {
