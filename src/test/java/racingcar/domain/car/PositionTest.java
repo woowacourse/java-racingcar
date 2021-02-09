@@ -13,4 +13,13 @@ public class PositionTest {
 
         Assertions.assertThat(new Position(1)).isEqualTo(position);
     }
+
+    @DisplayName("위치 이동 테스트")
+    @Test
+    void movePosition() {
+        Position position = new Position(0);
+
+        position.goForward();
+        Assertions.assertThat(position.getValue()).isEqualTo(1);
+    }
 }
