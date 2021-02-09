@@ -18,4 +18,5 @@ public class InputView {
         OutputView.showLapGuideMessage();
         return scanner.nextLine();
     }
+
 }

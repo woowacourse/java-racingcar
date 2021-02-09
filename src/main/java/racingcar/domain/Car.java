@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.Objects;
 
@@ -10,7 +10,8 @@ public class Car implements Comparable<Car> {
 
     private int position = 0;
 
-    public Car(CarName carName) {
+    public Car(String carNameValue) {
+        CarName carName = new CarName(carNameValue);
         this.carName = carName;
     }
 
@@ -54,13 +55,9 @@ public class Car implements Comparable<Car> {
         return Objects.hash(carName);
     }
 
-    //todo : toString은 개발자가 보는 용도도
     @Override
     public String toString() {
-        StringBuilder positionBar = new StringBuilder();
-        for (int i = 0; i < this.position; i++) {
-            positionBar.append("-");
-        }
-        return this.carName.getCarName() + " : " + positionBar;
+        return this.carName.getCarName() + " : " + position;
     }
+
 }

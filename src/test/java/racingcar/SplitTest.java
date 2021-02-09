@@ -14,4 +14,5 @@ public class SplitTest {
     void split() {
         assertEquals(SplitUtil.splitCarNames("car,papi,  bet, pobi").size(), 4);
     }
+
 }

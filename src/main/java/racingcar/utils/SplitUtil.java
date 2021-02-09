@@ -8,4 +8,5 @@ public class SplitUtil {
     public static List<String> splitCarNames(String carNamesInput) {
         return Arrays.asList(carNamesInput.replace(" ", "").split(","));
     }
+
 }

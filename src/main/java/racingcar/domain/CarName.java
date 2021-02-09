@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.Objects;
 
@@ -44,4 +44,5 @@ public class CarName {
     public int hashCode() {
         return Objects.hash(carName);
     }
+
 }

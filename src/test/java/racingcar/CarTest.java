@@ -2,6 +2,8 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Car;
+import racingcar.domain.CarName;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -11,7 +13,7 @@ public class CarTest {
     @Test
     void moveForward() {
         // given(준비)
-        Car car = new Car(new CarName("ser"));
+        Car car = new Car("ser");
         int previous = car.getPosition();
 
         // when(실행)
@@ -20,4 +22,5 @@ public class CarTest {
         // then(검증)
         assertThat(car.getPosition()).isEqualTo(previous + 1);
     }
+
 }

@@ -3,6 +3,7 @@ package racingcar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import racingcar.domain.RacingCarGame;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -18,4 +19,5 @@ public class RacingCarGameTest {
             racingCarGame.validateLaps(value);
         }).isInstanceOf(RuntimeException.class);
     }
+
 }

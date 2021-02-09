@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,10 +16,10 @@ public class WinnerTest {
     @Test
     void winnerTest() {
         List<String> splittedCarNames = Arrays.asList("pho", "crong", "honux");
-        CarRepository.addCars(splittedCarNames);
-        List<Car> cars = CarRepository.getCars();
-        racing(cars);
-        assertEquals(CarRepository.getWinners().size(), 2);
+        Cars cars = new Cars(splittedCarNames);
+        List<Car> unmodifiableCars = cars.getCars();
+        racing(unmodifiableCars);
+        assertEquals(cars.getWinners().size(), 2);
     }
 
     private void racing(List<Car> cars) {
@@ -28,4 +30,5 @@ public class WinnerTest {
         cars.get(1).moveForwardByRandomNumber(4);
         cars.get(2).moveForwardByRandomNumber(5);
     }
+
 }

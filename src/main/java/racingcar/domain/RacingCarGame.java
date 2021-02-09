@@ -1,10 +1,6 @@
-package racingcar;
+package racingcar.domain;
 
-import racingcar.utils.SplitUtil;
-import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.util.List;
 
 public class RacingCarGame {
 
@@ -15,15 +11,6 @@ public class RacingCarGame {
     public RacingCarGame() {
     }
 
-    public void start() {
-        String carNamesInput = InputView.getCarNamesInput();
-        List<String> splittedCarNames = SplitUtil.splitCarNames(carNamesInput);
-        CarRepository.addCars(splittedCarNames);
-        String lapInput = InputView.getLap();
-        int laps = validateLaps(lapInput);
-        race(laps);
-        OutputView.showWinners();
-    }
 
     public int validateLaps(String lapInput) {
         if (!lapInput.matches(NUMERIC_REGULAR_EXPRESSION)) {
@@ -37,11 +24,12 @@ public class RacingCarGame {
         return laps;
     }
 
-    private void race(int laps) {
+    public void race(Cars cars, int laps) {
         OutputView.showResult();
         for (int i = 0; i < laps; i++) {
-            CarRepository.raceOneLap();
-            OutputView.showOneLapResult();
+            cars.raceOneLap();
+            OutputView.showOneLapResult(cars);
         }
     }
+
 }

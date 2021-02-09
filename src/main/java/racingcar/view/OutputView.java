@@ -1,9 +1,8 @@
 package racingcar.view;
 
-import racingcar.Car;
-import racingcar.CarRepository;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
@@ -22,18 +21,25 @@ public class OutputView {
         System.out.println(LAP_GUIDE_MESSAGE);
     }
 
-    public static void showOneLapResult() {
-        List<Car> RacingCars = CarRepository.getCars();
-        RacingCars.forEach(System.out::println);
+    public static void showOneLapResult(Cars cars) {
+        List<Car> RacingCars = cars.getCars();
+        RacingCars.forEach(car -> {
+            StringBuilder positionBar = new StringBuilder();
+            for (int i = 0; i < car.getPosition(); i++) {
+                positionBar.append("-");
+            }
+            System.out.println(car.getCarName() + " : " + positionBar);
+        });
         System.out.println();
     }
 
-    public static void showWinners() {
-        System.out.println(String.join(", ", CarRepository.getWinners()) + "가 최종 우승했습니다.");
+    public static void showWinners(Cars cars) {
+        System.out.println(String.join(", ", cars.getWinners()) + "가 최종 우승했습니다.");
     }
 
     public static void showResult() {
         System.out.println();
         System.out.println("실행 결과");
     }
+
 }
