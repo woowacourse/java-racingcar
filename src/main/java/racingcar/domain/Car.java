@@ -30,14 +30,17 @@ public class Car {
         return new Car(name, position);
     }
 
+    public static Car getInstance(Car car) {
+        return new Car(car.getName(), car.getPosition());
+    }
+
     public void tryToMove(int number) {
         if (number >= MIN_VALUE_TO_MOVE) {
             this.position++;
         }
     }
 
-    //TODO 메서드명을 MaxPosition과 Position이 같다는걸 증명한다는 늬앙스로 변경하기
-    public boolean isMaxPosition(int maxPosition) {
+    public boolean isSamePosition(int maxPosition) {
         return this.position == maxPosition;
     }
 
@@ -46,7 +49,11 @@ public class Car {
     }
 
     public int getPosition() {
-        return this.position;
+        return position;
+    }
+
+    public int getMaxPosition(int position) {
+        return Math.max(this.position, position);
     }
 
     @Override

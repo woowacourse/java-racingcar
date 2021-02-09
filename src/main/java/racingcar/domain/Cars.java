@@ -33,22 +33,23 @@ public class Cars {
 
     public List<String> findWinners() {
         return cars.stream()
-                .filter(car -> car.isMaxPosition(getMaxPosition()))
+                .filter(car -> car.isSamePosition(getMaxPosition()))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
     public int getMaxPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElseThrow(NoSuchElementException::new);
+        int maxPosition = 0;
+        for (Car car : cars) {
+            maxPosition = car.getMaxPosition(maxPosition);
+        }
+        return maxPosition;
     }
 
     public Result getResultOfCars() {
         List<Car> cars = new ArrayList<>();
         for (Car car : this.cars) {
-            cars.add(Car.of(car.getName(), car.getPosition()));
+            cars.add(Car.getInstance(car));
         }
         return Result.of(cars);
     }

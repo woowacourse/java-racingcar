@@ -41,12 +41,12 @@ public class CarsTest {
     public void carsTryToMoveTest() {
         //given
         Cars cars = Cars.of("bmw,tico,k5");
-        List<Integer> numbers = Arrays.asList(1,3,7);
+        List<Integer> numbers = Arrays.asList(1, 3, 7);
 
         //when
         cars.tryToMoveCars(numbers);
         List<Car> carsForTest = cars.getCars();
-        List<Integer> resultNumbers = Arrays.asList(0,0,1);
+        List<Integer> resultNumbers = Arrays.asList(0, 0, 1);
 
         //then
         assertAll(() -> {
@@ -55,6 +55,22 @@ public class CarsTest {
                     }
                 }
         );
+    }
 
+    @Test
+    @DisplayName("우승자 판별을 위한 MaxPosition 값 가져오기")
+    public void getMaxPositionTest() {
+        //given
+        Cars cars = Cars.of(Arrays.asList(
+                Car.of("bmw", 3),
+                Car.of("tico", 1),
+                Car.of("k5", 10)
+        ));
+
+        //when
+        int maxPosition = cars.getMaxPosition();
+
+        //then
+        assertThat(maxPosition).isEqualTo(10);
     }
 }
