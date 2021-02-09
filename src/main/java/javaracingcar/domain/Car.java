@@ -3,7 +3,7 @@ package javaracingcar.domain;
 public class Car {
     private static final int CAR_NAME_LENGTH_MAX_SIZE = 4;
 
-    private String name;
+    private final String name;
     private int position;
 
     private Car(String name) {

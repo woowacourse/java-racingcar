@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class Game {
     private static final int CAR_MOVES = 4;
 
-    private List<Car> cars;
+    private final List<Car> cars;
     private int trial;
 
     private Game(List<Car> cars, int trial) {
