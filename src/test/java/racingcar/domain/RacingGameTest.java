@@ -12,7 +12,6 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static racingcar.domain.Car.INIT_POSITION;
 import static racingcar.domain.RacingGame.INIT_ROUND;
 import static racingcar.domain.RacingGame.INVALID_NUMBER_OF_ROUNDS_MESSAGE;
 
@@ -30,16 +29,12 @@ class RacingGameTest {
         assertThat(racingGame.getNumberOfRounds()).isEqualTo(Integer.parseInt(NUMBER_OF_ROUNDS_FOR_TEST));
         assertThat(racingGame.getCurrentRound()).isEqualTo(INIT_ROUND);
 
-        List<CarDto> carsDto = new CarsDto(racingGame.getCars()).toList();
-        for (int i = 0; i < carNamesForTest.size(); i++) {
-            assertThat(carsDto.get(i).getNameAsString()).isEqualTo(carNamesForTest.get(i));
-            assertThat(carsDto.get(i).getPosition()).isEqualTo(INIT_POSITION);
-        }
+        assertThat(racingGame.getCars()).isEqualTo(new Cars(carNamesForTest));
     }
 
     @DisplayName("음수나 0 인 라운드 횟수가 입력됐을 떄 에러 반환 하는지")
     @ParameterizedTest
-    @ValueSource(strings = {"0","-3"})
+    @ValueSource(strings = {"0", "-3"})
     void racingGameConstructor_NonPositiveIntegerNumberOfRounds_ThrowException(String numberOfRounds) {
         assertThatThrownBy(() -> createRacingGame(numberOfRounds)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_NUMBER_OF_ROUNDS_MESSAGE);

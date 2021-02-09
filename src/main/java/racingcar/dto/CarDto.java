@@ -17,10 +17,6 @@ public class CarDto {
         return name.getName();
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
     public int getPositionAsInt() {
         return position.getPosition();
     }

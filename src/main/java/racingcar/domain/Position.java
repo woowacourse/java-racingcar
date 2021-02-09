@@ -3,14 +3,15 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Position {
-    private final int position;
+    public static final int INIT_POSITION = 0;
+    private int position;
 
     public Position(int position) {
         this.position = position;
     }
 
-    public Position getPositionAfterMove() {
-        return new Position(position + 1);
+    public void movePosition() {
+        position++;
     }
 
     public int getPosition() {
@@ -22,7 +23,7 @@ public class Position {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Position position1 = (Position) o;
-        return this.position == position1.position;
+        return position == position1.position;
     }
 
     @Override

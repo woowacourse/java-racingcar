@@ -2,15 +2,16 @@ package racingcar.domain;
 
 import java.util.Objects;
 
+import static racingcar.domain.Position.INIT_POSITION;
+
 public class Car {
-    public static final Position INIT_POSITION = new Position(0);
-    private static final int MOVABLE_VALUE = 4;
+    private static final int MOVABLE_THRESHOLD = 4;
 
     private final Name name;
-    private Position position;
+    private final Position position;
 
     public Car(Name name) {
-        this(name, INIT_POSITION);
+        this(name, new Position(INIT_POSITION));
     }
 
     public Car(Name name, Position position) {
@@ -20,12 +21,12 @@ public class Car {
 
     public void move(int number) {
         if (isMovable(number)) {
-            this.position = position.getPositionAfterMove();
+            position.movePosition();
         }
     }
 
     private boolean isMovable(int number) {
-        return number >= MOVABLE_VALUE;
+        return MOVABLE_THRESHOLD <= number;
     }
 
     public boolean isSamePosition(Position position) {
