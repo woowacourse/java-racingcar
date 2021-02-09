@@ -1,18 +1,12 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import racingcar.domain.Car.Car;
-import racingcar.view.OutputView;
 import utils.RandomUtils;
 
-import static java.util.Comparator.*;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparingInt;
 
 public class Cars {
     private final List<Car> cars;

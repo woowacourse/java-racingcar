@@ -1,14 +1,11 @@
 package racingcar.domain.Car;
 
-import java.util.stream.IntStream;
-
 public class Car {
     private final int ACCELERATE_THRESHOLD = 4;
     private final int MIN_VALUE = 0;
     private final int MAX_VALUE = 9;
-
-    private int position;
     private final CarName carName;
+    private int position;
 
     public Car(final String name) {
         this.position = 1;

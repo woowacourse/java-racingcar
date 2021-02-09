@@ -36,9 +36,7 @@ public class OutputView {
     }
 
     private static String getCarStatus(Car car) {
-        StringBuilder sb = new StringBuilder(car.getCarName().getName() + " : ");
-        sb.append(getPositionToString(car.getPosition()));
-        return sb.toString();
+        return car.getCarName().getName() + " : " + getPositionToString(car.getPosition());
     }
 
     private static String getPositionToString(int position) {
