@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.utils.RandomUtils;
 import racingcar.view.RacingCarView;
 
 public class RacingCar {
@@ -24,7 +25,7 @@ public class RacingCar {
 
     private void race() {
         for (Car car : cars.cars()) {
-            car.moveForward();
+            car.moveForward(RandomUtils.createRandomNumber());
         }
     }
 

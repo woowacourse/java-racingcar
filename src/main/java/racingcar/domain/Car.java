@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtils;
-
 import java.util.regex.Pattern;
 
 public class Car implements Comparable<Car> {
@@ -41,8 +39,8 @@ public class Car implements Comparable<Car> {
         return name.length() > NAME_LENGTH_LIMIT;
     }
 
-    public void moveForward() {
-        if (isMoveNumber(RandomUtils.createRandomNumber())) {
+    public void moveForward(int randomNumber) {
+        if (isMoveNumber(randomNumber)) {
             this.position++;
         }
     }
