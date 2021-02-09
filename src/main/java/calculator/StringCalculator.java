@@ -5,6 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+    private static final int CUSTOM_DELIMITER_INDEX = 1;
+    private static final int INPUT_STRING_INDEX = 2;
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final String OR = "|";
     private static final Pattern pattern = Pattern.compile("//(.)\n(.*)");
@@ -15,7 +17,7 @@ public class StringCalculator {
         }
 
         String[] arr = split(input);
-        for (String element: arr) {
+        for (String element : arr) {
             validateNegativeNumber(element);
         }
 
@@ -26,8 +28,8 @@ public class StringCalculator {
         String delimeter = DEFAULT_DELIMITER;
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
-            delimeter = delimeter.concat(OR + matcher.group(1));
-            input = matcher.group(2);
+            delimeter = delimeter.concat(OR + matcher.group(CUSTOM_DELIMITER_INDEX));
+            input = matcher.group(INPUT_STRING_INDEX);
         }
         return input.split(delimeter);
     }
