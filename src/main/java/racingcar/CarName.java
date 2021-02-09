@@ -5,7 +5,7 @@ import java.util.Objects;
 public class CarName {
     private static final String NUMBER_RANGE_ERROR_MESSAGE = "1~5 사이의 값을 입력해주세요.";
 
-    private String carName;
+    private final String carName;
 
     public CarName(String carName) {
         validateCarName(carName);

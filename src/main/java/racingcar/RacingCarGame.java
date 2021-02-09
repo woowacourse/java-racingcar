@@ -24,13 +24,13 @@ public class RacingCarGame {
         OutputView.showWinners();
     }
 
-    public int validateLaps(String lapInput){
-        if(!lapInput.matches(NUMERIC_REGULAR_EXPRESSION)) {
+    public int validateLaps(String lapInput) {
+        if (!lapInput.matches(NUMERIC_REGULAR_EXPRESSION)) {
             throw new IllegalArgumentException(NOT_NUMERIC_ERROR_MESSAGE);
         }
         int laps = Integer.parseInt(lapInput);
 
-        if(laps < 1) {
+        if (laps < 1) {
             throw new IllegalArgumentException(NOT_OVER_ONE_ERROR_MESSAGE);
         }
         return laps;

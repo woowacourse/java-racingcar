@@ -8,12 +8,12 @@ public class InputView {
     private InputView() {
     }
 
-    public static String getCarNamesInput () {
+    public static String getCarNamesInput() {
         OutputView.showCarNameGuideMessage();
         return scanner.nextLine();
     }
 
-    public static String getLap(){
+    public static String getLap() {
         OutputView.showLapGuideMessage();
         return scanner.nextLine();
     }
