@@ -18,7 +18,7 @@ public class GameManager {
     }
 
     private void initSet(GameManagerRequestDto requestDto) {
-        String carNames = requestDto.getCarNames();
+        String[] carNames = requestDto.getCarNames();
         this.cars = Cars.from(carNames);
         this.round = Round.from(requestDto.getRound());
     }

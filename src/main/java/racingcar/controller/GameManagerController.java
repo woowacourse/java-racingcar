@@ -7,7 +7,7 @@ import racingcar.view.OutputView;
 
 public class GameManagerController {
     public void run() {
-        String carNames = InputView.inputCarNames();
+        String[] carNames = InputView.inputCarNames();
         int roundCount = InputView.inputRoundCount();
         GameManagerRequestDto gameManagerRequestDto = new GameManagerRequestDto(carNames, roundCount);
         GameManager gameManager = new GameManager();

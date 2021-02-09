@@ -25,10 +25,9 @@ public class Cars {
         return new Cars(cars);
     }
 
-    public static Cars from(String inputCarNames) {
-        String[] carNames = inputCarNames.split(DELIMITER);
+    public static Cars from(String[] names) {
         List<Car> cars = new ArrayList<>();
-        for (String name : carNames) {
+        for (String name : names) {
             cars.add(Car.from(name));
         }
         return new Cars(cars);
