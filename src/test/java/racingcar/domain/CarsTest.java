@@ -12,7 +12,7 @@ public class CarsTest {
     void maxPositionCar() {
         String carsName = "pobi, jun, aaa";
         Cars cars = new Cars(new Racers(carsName));
-        List<Car> carList = cars.getCars();
+        List<Car> carList = cars.toList();
 
         carList.get(0).movePosition(5);
         carList.get(1).movePosition(3);

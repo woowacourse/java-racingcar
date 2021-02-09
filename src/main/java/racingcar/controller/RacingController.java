@@ -4,7 +4,6 @@ import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Racers;
 import racingcar.domain.Trial;
-import racingcar.utils.RandomUtils;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -53,7 +52,7 @@ public class RacingController {
         OutputView.printResultTitle();
         for (int i = 0; i < trial.getTrial(); i++) {
             cars.move();
-            OutputView.printEmptyLine();
+            OutputView.printCurrentResult(cars);
         }
     }
 

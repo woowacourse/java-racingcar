@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.utils.RandomUtils;
-import racingcar.view.OutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,7 +33,10 @@ public class Cars {
     public void move() {
         for (Car car : cars) {
             car.movePosition(RandomUtils.generateRandomValue());
-            OutputView.printCurrentResult(car);
         }
+    }
+
+    public List<Car> toList() {
+        return cars;
     }
 }
