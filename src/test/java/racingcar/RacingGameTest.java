@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.model.Cars;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,5 +29,20 @@ public class RacingGameTest {
     @ValueSource(strings = {"  ", " as", "b3"})
     void isValidNumberTest(String number){
         assertThrows(IllegalArgumentException.class, () -> RacingGame.isValidNumber(number));
+    }
+
+    @Test
+    @DisplayName("가장 멀리 이동한 자동차가 우승한다.")
+    void findWinnersTest() {
+        Cars cars = new Cars(Arrays.asList(
+                new Car("Babo", 5),
+                new Car("Ryan", 3),
+                new Car("Pika", 5)
+        ));
+        RacingGame.cars = cars;
+        cars.updateMaxDistance();
+        assertThat(RacingGame.findWinners()).isEqualTo(Arrays.asList(
+                new Car("Babo", 5),
+                new Car("Pika", 5)));
     }
 }
