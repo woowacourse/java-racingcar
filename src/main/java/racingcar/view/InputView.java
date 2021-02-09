@@ -18,7 +18,8 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static void closeScanner(){
+    public static void closeScanner() {
         scanner.close();
     }
+
 }

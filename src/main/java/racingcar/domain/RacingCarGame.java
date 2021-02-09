@@ -11,8 +11,8 @@ public class RacingCarGame {
     private final int laps;
 
     public RacingCarGame(Cars cars, String lapInput) {
-        this.laps =validateLaps(lapInput);
-        this.cars =cars;
+        this.laps = validateLaps(lapInput);
+        this.cars = cars;
     }
 
     public int validateLaps(String lapInput) {
