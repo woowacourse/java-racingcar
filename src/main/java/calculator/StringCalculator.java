@@ -16,12 +16,12 @@ public class StringCalculator {
             return 0;
         }
 
-        String[] arr = split(input);
-        for (String element : arr) {
-            validateNegativeNumber(element);
-        }
+        int[] numbers = Arrays.stream(split(input))
+                .mapToInt(StringCalculator::parseIntegerOrThrow)
+                .filter(StringCalculator::isPositiveIntegerOrThrow)
+                .toArray();
 
-        return sum(arr);
+        return sum(numbers);
     }
 
     private static String[] split(String input) {
@@ -34,9 +34,8 @@ public class StringCalculator {
         return input.split(delimeter);
     }
 
-    private static int sum(String[] arr) {
-        return Arrays.stream(arr)
-                .map(Integer::parseInt)
+    private static int sum(int[] numbers) {
+        return Arrays.stream(numbers)
                 .reduce(0, Integer::sum);
     }
 
@@ -47,10 +46,18 @@ public class StringCalculator {
         return true;
     }
 
-    private static void validateNegativeNumber(String s) {
-        int number = Integer.parseInt(s);
+    private static boolean isPositiveIntegerOrThrow(int number) {
         if (number < 0) {
             throw new RuntimeException("양수만 입력하세요.");
+        }
+        return true;
+    }
+
+    private static int parseIntegerOrThrow(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("정수가 아닌 입력입니다.");
         }
     }
 }
