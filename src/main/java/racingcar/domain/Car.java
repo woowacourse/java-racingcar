@@ -27,6 +27,10 @@ public class Car {
         return this.position;
     }
 
+    public int getFatherPosition(int position) {
+        return Math.max(this.position, position);
+    }
+
     public boolean isInWinnerPosition(int winnerPosition) {
         return winnerPosition == this.position;
     }

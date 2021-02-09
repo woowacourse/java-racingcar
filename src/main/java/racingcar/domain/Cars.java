@@ -8,7 +8,6 @@ import racingcar.validator.CarsValidator;
 
 public class Cars {
     private final List<Car> cars;
-    private int winnerPosition = 0;
 
     private Cars(final List<Car> cars) {
         CarsValidator.checkIsValidCars(cars);
@@ -23,15 +22,20 @@ public class Cars {
 
     public void tryMoveCars() {
         this.cars.forEach(Car::tryToMove);
-        updateWinnerPosition();
     }
 
-    private void updateWinnerPosition() {
-        this.cars.forEach(car -> winnerPosition
-                = Math.max(winnerPosition, car.getPosition()));
+    private int findWinnerPosition() {
+        int max = Integer.MIN_VALUE;
+
+        for (Car car : cars) {
+            max = car.getFatherPosition(max);
+        }
+
+        return max;
     }
 
     public String[] getWinners() {
+        int winnerPosition = findWinnerPosition();
         return this.cars.stream()
                 .filter(car -> car.isInWinnerPosition(winnerPosition))
                 .map(Car::getName)
