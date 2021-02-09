@@ -14,11 +14,15 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static racingcar.domain.Car.BLANK_ERROR_MESSAGE;
 import static racingcar.domain.Car.NAME_LENGTH_ERROR_MESSAGE;
 import static racingcar.domain.Cars.DUPLICATE_NAME_ERROR_MESSAGE;
-import static racingcar.domain.RacingGame.NOT_NUMBER_ERROR_MESSAGE;
 import static racingcar.domain.RacingGame.INVALID_NUMBER_OF_ROUNDS_MESSAGE;
+import static racingcar.domain.RacingGame.NOT_NUMBER_ERROR_MESSAGE;
 
 public class InputViewTest {
     private Scanner scanner;
+
+    public static InputStream generateUserInput(String input) {
+        return new ByteArrayInputStream(input.getBytes());
+    }
 
     @DisplayName("name 입력 받을 떄 이름에 공백이 있는 것을 검증해주는지")
     @Test
@@ -80,10 +84,6 @@ public class InputViewTest {
         assertThatThrownBy(() -> InputView.takeNumberOfRoundsInput(scanner))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_NUMBER_OF_ROUNDS_MESSAGE);
-    }
-
-    public static InputStream generateUserInput(String input) {
-        return new ByteArrayInputStream(input.getBytes());
     }
 
     @AfterEach

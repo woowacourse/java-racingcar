@@ -49,16 +49,19 @@ public class Cars {
     }
 
     public List<Car> findWinners() {
-        int maxPosition = getMaxPosition();
+        Position maxPosition = getMaxPosition();
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
     }
 
-    private int getMaxPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
+    private Position getMaxPosition() {
+        int maxPosition = cars.stream()
+                .map(Car::getPosition)
+                .mapToInt(Position::getPosition)
                 .max()
                 .orElseThrow(NoSuchElementException::new);
+
+        return new Position(maxPosition);
     }
 }

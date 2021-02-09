@@ -1,22 +1,28 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 public class Car {
     public static final String BLANK = " ";
     public static final String BLANK_ERROR_MESSAGE = "[ERROR] 공백을 입력할 수 없습니다.";
     public static final String NAME_LENGTH_ERROR_MESSAGE = "[ERROR] 공백을 입력할 수 없습니다.";
     public static final int MINIMUM_NAME_LENGTH = 1;
     public static final int MAXIMUM_NAME_LENGTH = 5;
-    public static final int INIT_POSITION = 0;
+    public static final Position INIT_POSITION = new Position(0);
     private static final int MOVABLE_VALUE = 4;
 
-    private int position;
+    //TODO
+    // 원시타입을 포장해보자
+    // Position
+    // Name
+    private Position position;
     private final String name;
 
     public Car(String name) {
         this(name, INIT_POSITION);
     }
 
-    public Car(String name, int position) {
+    public Car(String name, Position position) {
         validateBlankInName(name);
         validateNameLength(name);
         this.name = name;
@@ -37,7 +43,7 @@ public class Car {
 
     public void move(int number) {
         if (isMovable(number)) {
-            position++;
+            this.position = position.getPositionAfterMove();
         }
     }
 
@@ -45,15 +51,28 @@ public class Car {
         return number >= MOVABLE_VALUE;
     }
 
-    public boolean isSamePosition(int maxPosition) {
-        return position == maxPosition;
+    public boolean isSamePosition(Position position) {
+        return this.position.equals(position);
     }
 
-    public int getPosition() {
-        return position;
+    public Position getPosition() {
+        return new Position(position.getPosition());
     }
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position.equals(car.position) && name.equals(car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, name);
     }
 }

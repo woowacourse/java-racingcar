@@ -33,7 +33,7 @@ public class OutputView {
     }
 
     public static String makeStick(CarDto car) {
-        return String.join("", Collections.nCopies(car.getPosition(), DASH));
+        return String.join("", Collections.nCopies(car.getPositionAsInt(), DASH));
     }
 
     public static void announceWinners(WinnersDto winnersDto) {

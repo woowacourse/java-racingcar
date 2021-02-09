@@ -26,12 +26,10 @@ public class CarTest {
     @Test
     void carConstructor_properNameAndPosition_createCar() {
         String name = "데이브";
-        int position = 4;
+        Position position = new Position(4);
         Car car = new Car(name, position);
 
-        assertThat(car).isInstanceOf(Car.class);
-        assertThat(car.getName()).isEqualTo(name);
-        assertThat(car.getPosition()).isEqualTo(position);
+        assertThat(car).isInstanceOf(Car.class).isEqualTo(new Car(name, position));
     }
 
     @DisplayName("이름에 공백이 있을 때 에러를 반환 하는지")
@@ -56,6 +54,6 @@ public class CarTest {
         Car car = new Car("TEST");
         car.move(given);
 
-        assertThat(car.getPosition() == 1).isEqualTo(result);
+        assertThat(car.getPosition().equals(new Position(1))).isEqualTo(result);
     }
 }

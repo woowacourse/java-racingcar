@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.Position;
 import racingcar.dto.CarDto;
 import racingcar.dto.CarsDto;
 import racingcar.dto.WinnersDto;
@@ -38,7 +39,7 @@ class OutputViewTest {
     @CsvSource({"포비,3,---", "웨지,2,--", "삭정,1,-"})
     void makeStick_givenProperCarNameAndPosition_returnStickAccordingToTheValueOfPosition(String name, int position, String stick) {
         CarDto car = new CarDto(new Car(name));
-        car.setPosition(position);
+        car.setPosition(new Position(position));
         assertThat(OutputView.makeStick(car)).isEqualTo(stick);
     }
 
@@ -59,7 +60,7 @@ class OutputViewTest {
     private void setCarPositionForTest(CarsDto carsDto, int carIndex, int targetPosition) {
         carsDto.getCarsDto()
                 .get(carIndex)
-                .setPosition(targetPosition);
+                .setPosition(new Position(targetPosition));
     }
 
     @DisplayName("우승자 발표를 형식에 맞게 제대로 출력하는지")

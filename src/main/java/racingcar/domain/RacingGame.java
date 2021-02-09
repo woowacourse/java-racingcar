@@ -8,6 +8,10 @@ public class RacingGame {
     public static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
     public static final int INIT_ROUND = 0;
 
+    //TODO
+    // 원시타입을 포장해보자
+    // numberOfRounds
+    // currentRound
     private final Cars cars;
     private final int numberOfRounds;
     private int currentRound;
