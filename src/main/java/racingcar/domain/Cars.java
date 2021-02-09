@@ -32,8 +32,8 @@ public class Cars {
         }
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+    public List<Car> toList() {
+        return Collections.unmodifiableList(new ArrayList<>(cars));
     }
 
     public Cars copy() {

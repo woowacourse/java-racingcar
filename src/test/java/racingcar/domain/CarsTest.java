@@ -66,7 +66,7 @@ class CarsTest {
     }
 
     private void setWinnersAccordingToGivenWinnerNames(Cars cars, List<String> winnerNames) {
-        cars.getCars()
+        cars.toList()
                 .stream()
                 .filter(car -> winnerNames.contains(new CarDto(car).getNameAsString()))
                 .forEach(car -> car.move(MOVABLE_NUMBER_FOR_TEST));

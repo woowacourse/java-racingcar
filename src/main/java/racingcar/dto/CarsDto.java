@@ -14,7 +14,7 @@ public class CarsDto {
     }
 
     private List<CarDto> convertCarsToCarsDto(Cars cars) {
-        return cars.getCars()
+        return cars.toList()
                 .stream()
                 .map(CarDto::new)
                 .collect(Collectors.toList());

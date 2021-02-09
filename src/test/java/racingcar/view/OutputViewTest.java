@@ -68,7 +68,7 @@ class OutputViewTest {
     void announceWinners_givenWinners_printFormattedAnnounceMessage() {
         List<String> winnerNames = Arrays.asList("포비", "삭정", "데이브");
         Cars winners = new Cars(winnerNames);
-        WinnersDto winnersDto = new WinnersDto(winners.getCars());
+        WinnersDto winnersDto = new WinnersDto(winners.toList());
 
         OutputView.announceWinners(winnersDto);
         String expectedAnnounceMessage = "포비, 삭정, 데이브가 최종 우승했습니다.\n";
