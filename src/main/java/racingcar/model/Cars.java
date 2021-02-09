@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import racingcar.utils.RandomUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,6 +26,11 @@ public class Cars {
         }
     }
 
+    /*
+    * 중복을 검사할 때 validateDuplicate 메소드 안에 Collections.frequency를 쓰는 것과
+    * Car이라는 클래스에 .Equals와 .hascode를 오버라이드한 후 List.contains를 활용하여 중복체크를 하는 것,
+    * 둘 중 어느 것이 나은가요?
+    */
     public void validateDuplicate(List<String> carNames) {
         if (!carNames.stream()
                 .filter(count -> Collections.frequency(carNames, count) > 1)
@@ -38,8 +45,7 @@ public class Cars {
 
     public void moveCars() {
         cars.stream()
-                .filter(car -> car.getRandomNumber() >= 4)
-                .forEach(car -> car.movePosition());
+                .forEach(car -> car.movePosition(RandomUtils.nextInt(0, 9)));
         updateMaxDistance();
     }
 

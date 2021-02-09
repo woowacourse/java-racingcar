@@ -20,12 +20,10 @@ public class Car {
         }
     }
 
-    public void movePosition() {
-        this.position++;
-    }
-
-    public int getRandomNumber() {
-        return RandomUtils.nextInt(0, 9);
+    public void movePosition(int number) {
+        if(number >= 4) {
+            this.position++;
+        }
     }
 
     public String getName() {
