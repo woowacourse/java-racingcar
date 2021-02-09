@@ -64,7 +64,7 @@ public class Game {
     }
 
     private static void playMoveOrStop(Car car) {
-        if (RandomUtils.getSingleDigitRandomNumber() >= CAR_MOVES) {
+        if (RandomUtils.getSingleDigitNumber() >= CAR_MOVES) {
             car.move();
         }
     }
