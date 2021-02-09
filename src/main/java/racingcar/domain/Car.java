@@ -9,6 +9,7 @@ public class Car {
     private int position;
     private static final Pattern CAR_NAME_FORMAT_PATTERN
         = Pattern.compile("^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{1,5}$");
+    private static final int MIN_NUMBER_TO_GO_FORWARD = 4;
 
     public Car(String name) {
         validateCarNameFormat(name);
@@ -27,8 +28,10 @@ public class Car {
         return name;
     }
 
-    public void goForward() {
-        position++;
+    public void goForwardDependsOnNumber(int number) {
+        if (number >= MIN_NUMBER_TO_GO_FORWARD) {
+            position++;
+        }
     }
 
     public int getPosition() {

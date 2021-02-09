@@ -29,37 +29,4 @@ class CarRepositoryTest {
         List<Car> allSavedCars = carRepository.getAllCars();
         Assertions.assertThat(allSavedCars.containsAll(cars)).isTrue();
     }
-
-    @DisplayName("우승 자동차들 반환 - 우승자 : car1")
-    @Test
-    void getWinners1() {
-        car1.goForward();
-        List<Car> winners = carRepository.getWinners();
-        Assertions.assertThat(winners.size()).isEqualTo(1);
-        Assertions.assertThat(winners.contains(car1)).isTrue();
-    }
-
-    @DisplayName("우승 자동차들 반환 - 우승자 : car1, car2")
-    @Test
-    void getWinners2() {
-        car1.goForward();
-        car2.goForward();
-        List<Car> winners = carRepository.getWinners();
-        Assertions.assertThat(winners.size()).isEqualTo(2);
-        Assertions.assertThat(winners.contains(car1)).isTrue();
-        Assertions.assertThat(winners.contains(car2)).isTrue();
-    }
-
-    @DisplayName("우승 자동차들 반환 - 우승자 : car1, car2, car3")
-    @Test
-    void getWinners3() {
-        car1.goForward();
-        car2.goForward();
-        car3.goForward();
-        List<Car> winners = carRepository.getWinners();
-        Assertions.assertThat(winners.size()).isEqualTo(3);
-        Assertions.assertThat(winners.contains(car1)).isTrue();
-        Assertions.assertThat(winners.contains(car2)).isTrue();
-        Assertions.assertThat(winners.contains(car3)).isTrue();
-    }
 }
