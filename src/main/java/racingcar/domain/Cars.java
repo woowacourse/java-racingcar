@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import racingcar.utils.RandomUtils;
+import racingcar.view.OutputView;
 
 public class Cars {
 
@@ -29,6 +31,13 @@ public class Cars {
             .filter(it -> it.isWinner(maxDistance))
             .forEach(winners::add);
         return winners;
+    }
+
+    public void move() {
+        for (Car car : cars) {
+            car.move(RandomUtils.getRandomNumber());
+            OutputView.printCarInformation(car);
+        }
     }
 
     private int getMaxDistance() {
