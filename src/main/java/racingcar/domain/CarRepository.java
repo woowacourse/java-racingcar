@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import racingcar.domain.car.Car;
+import racingcar.domain.car.Position;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,21 +29,21 @@ public class CarRepository {
 
     public static List<String> winnerNames() {
         return winners().stream()
-                .map(Car::getName)
+                .map(car -> car.getName().getValue())
                 .collect(Collectors.toList());
     }
 
     public static List<Car> winners() {
-        int maxPosition = getMaxPosition();
+        Position maxPosition = new Position(getMaxPosition());
 
         return Collections.unmodifiableList(cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList()));
     }
 
     private static int getMaxPosition() {
         return cars.stream()
-                .mapToInt(Car::getPosition)
+                .mapToInt(car -> car.getPosition().getValue())
                 .max()
                 .orElseThrow(RuntimeException::new);
     }

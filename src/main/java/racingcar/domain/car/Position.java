@@ -4,10 +4,18 @@ import java.util.Objects;
 
 public class Position {
 
-    private final int position;
+    private int position;
 
     public Position(final int position) {
         this.position = position;
+    }
+
+    public Position goForward() {
+        return new Position(++position);
+    }
+
+    public int getValue() {
+        return position;
     }
 
     @Override

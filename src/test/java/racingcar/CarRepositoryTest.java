@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.car.Car;
 import racingcar.domain.CarRepository;
+import racingcar.domain.car.Name;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,8 @@ public class CarRepositoryTest {
     @DisplayName("우승자 결과 테스트 한 명")
     @Test
     void singleWinnerResult() {
-        Car winner = new Car("pobi");
-        Car loser = new Car("crong");
+        Car winner = new Car(new Name("pobi"));
+        Car loser = new Car(new Name("crong"));
 
         winner.goForward();
 
@@ -39,10 +40,10 @@ public class CarRepositoryTest {
     void multiWinnerResult() {
         List<Car> expectedWinners = new ArrayList<>();
 
-        Car winner1 = new Car("pobi");
-        Car winner2 = new Car("poci");
-        Car winner3 = new Car("podi");
-        Car loser = new Car("crong");
+        Car winner1 = new Car(new Name("pobi"));
+        Car winner2 = new Car(new Name("poci"));
+        Car winner3 = new Car(new Name("podi"));
+        Car loser = new Car(new Name("crong"));
 
         winner1.goForward();
         winner2.goForward();

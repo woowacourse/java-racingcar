@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import racingcar.domain.car.Car;
+import racingcar.domain.car.Name;
 import racingcar.exception.InvalidDuplicateCarNameException;
 import racingcar.exception.InvalidNumberOfRegisteredCarsException;
 
@@ -18,7 +19,7 @@ public class CarRegister {
         List<String> carNames = validateCarNames(input);
 
         return carNames.stream()
-                .map(Car::new)
+                .map(name -> new Car(new Name(name)))
                 .collect(Collectors.toList());
     }
 

@@ -1,32 +1,34 @@
 package racingcar.domain.car;
 
-import racingcar.exception.InvalidCarNameLengthException;
-
 public class Car {
-    private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
 
-    private final String name;
-    private int position;
+    private static final int START_POSITION = 0;
 
-    public Car(String name) {
-        if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new InvalidCarNameLengthException(
-                    MIN_NAME_LENGTH, MAX_NAME_LENGTH);
-        }
+    private final Name name;
+    private final Position position;
 
+    public Car(final Name name) {
+        this(new Name(name), new Position(START_POSITION));
+    }
+
+    public Car(final Name name, final Position position) {
         this.name = name;
+        this.position = position;
+    }
+
+    public boolean isSamePosition(Position position) {
+        return this.position == position;
     }
 
     public void goForward() {
-        position++;
+        position.goForward();
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public int getPosition() {
+    public Position getPosition() {
         return position;
     }
 }
