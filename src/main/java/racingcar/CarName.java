@@ -10,7 +10,7 @@ public class CarName {
     private final String carName;
 
     public CarName(String carName) {
-        validateCarName(carName);
+        validateCarNameLength(carName);
         this.carName = carName;
     }
 
@@ -18,11 +18,7 @@ public class CarName {
         return this.carName;
     }
 
-    private void validateCarName(String carName) {
-        checkCarNameLength(carName);
-    }
-
-    private void checkCarNameLength(String carName) {
+    private void validateCarNameLength(String carName) {
         if (carName.length() < MINIMUM_CAR_NAME_LENGTH || carName.length() > MAXIMUM_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
         }
