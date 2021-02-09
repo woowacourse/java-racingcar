@@ -30,23 +30,26 @@ public class CalculatorController {
     public int run() {
         String input = inputView.scanInput();
 
-        return getResult(input);
+        return parseAndSum(input);
     }
 
-    public int getResult(String input) {
+    public int parseAndSum(String input) {
         if (checkNullOrEmpty(input)) {
             return NULL_OR_EMPTY_RESULT;
         }
 
-        String delimiters = DEFAULT_DELIMITERS;
-
         String numbers = getNumbers(input);
+        String delimiters = getDelimiters(input);
+        return splitAndSum(numbers, delimiters);
+    }
+
+    private String getDelimiters(String input) {
+        String delimiters = DEFAULT_DELIMITERS;
 
         if (hasCustomDelimiter(input)) {
             delimiters += (DELIMITER_DIVIDER + getCustomDelimiter(input));
         }
-
-        return splitAndSum(numbers, delimiters);
+        return delimiters;
     }
 
     private boolean hasCustomDelimiter(String input) {
