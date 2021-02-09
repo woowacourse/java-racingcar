@@ -1,45 +1,38 @@
 package racingcar.domain.car;
 
-import static racingcar.utils.ValidateUtils.validateCarName;
-
 public class Car {
 
-    public static final int MAX_NAME_LENGTH = 5;
     public static final int MOVE_CONDITION = 4;
     public static final char SINGLE_VISUAL_POSITION = '-';
 
-    private final String name;
-    private int position = 0;
+    private final Name name;
+    private final Position position;
 
     public Car(String name) {
-        validateCarName(name);
-        this.name = name;
+        this.name = new Name(name);
+        position = Position.ZERO;
     }
 
     public String getName() {
-        return name;
+        return name.getLiteral();
     }
 
     public int getPosition() {
-        return position;
+        return position.getValue();
     }
 
-    public void tryToMoveForward(int randomInteger) {
-        if (randomInteger >= MOVE_CONDITION) {
-            ++position;
+    public void move(int integer) {
+        if (integer >= MOVE_CONDITION) {
+            position.move();
         }
     }
 
-    public boolean isMaxPosition(int maxDistance) {
-        return position == maxDistance;
+    public boolean isPosition(int position) {
+        return this.position.is(position);
     }
 
     @Override
     public String toString() {
-        StringBuilder visualPosition = new StringBuilder();
-        while (visualPosition.length() < position) {
-            visualPosition.append(SINGLE_VISUAL_POSITION);
-        }
-        return name + " : " + visualPosition;
+        return String.valueOf(name);
     }
 }

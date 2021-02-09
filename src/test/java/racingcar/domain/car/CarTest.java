@@ -14,7 +14,7 @@ class CarTest {
     @DisplayName("조건에 따른 한 칸 전진")
     void tryToMoveForward(int randomInteger, boolean result) {
         Car testingCar = new Car("java");
-        testingCar.tryToMoveForward(randomInteger);
+        testingCar.move(randomInteger);
         assertEquals(testingCar.getPosition() == 1, result);
     }
 
@@ -23,8 +23,8 @@ class CarTest {
     @DisplayName("주어진 포지션에 있는지 여부 반환")
     void isMaxPosition(int maxPosition, boolean result) {
         Car testingCar = new Car("java");
-        testingCar.tryToMoveForward(5);
-        assertEquals(testingCar.isMaxPosition(maxPosition), result);
+        testingCar.move(5);
+        assertEquals(testingCar.isPosition(maxPosition), result);
     }
 
     @Test
@@ -32,7 +32,7 @@ class CarTest {
     void testToString() {
         Car testingCar = new Car("java");
         for (int i = 0; i < 3; ++i) {
-            testingCar.tryToMoveForward(5);
+            testingCar.move(5);
         }
         assertEquals("java : ---", testingCar.toString());
     }
