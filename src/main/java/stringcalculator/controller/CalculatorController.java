@@ -65,14 +65,16 @@ public class CalculatorController {
 
         if (matcher.find()) {
             customDelimiter = matcher.group(DELIMITER_INDEX);
-            isValidDelimiter(customDelimiter);
+            validateDelimiter(customDelimiter);
         }
 
         return customDelimiter;
     }
 
-    private void isValidDelimiter(String customDelimiter) {
-        if (customDelimiter.equals(",") || customDelimiter.equals(":")) {
+    private void validateDelimiter(String customDelimiter) {
+        List<String> defaultDelimiters = Arrays.asList(DEFAULT_DELIMITERS.split(DELIMITER_DIVIDER));
+
+        if (defaultDelimiters.contains(customDelimiter)) {
             throw new RuntimeException("커스텀 구분자로 기본 구분자가 지정될 수 없습니다.");
         }
     }
