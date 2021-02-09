@@ -9,7 +9,7 @@ public class Application {
 
         final Scanner scanner = new Scanner(System.in);
 
-        RacingController carRacingController = new RacingController(scanner);
-        carRacingController.start();
+        RacingController racingController = new RacingController(scanner);
+        racingController.start();
     }
 }
