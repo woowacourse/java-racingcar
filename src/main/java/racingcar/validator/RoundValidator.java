@@ -5,7 +5,7 @@ public class RoundValidator {
 
     private RoundValidator() {}
 
-    public static void validateRound(String inputCount) {
+    public static void validate(String inputCount) {
         validateInteger(inputCount);
         validateRoundCount(Integer.parseInt(inputCount));
     }
