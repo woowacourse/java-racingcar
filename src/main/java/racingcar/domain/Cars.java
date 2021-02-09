@@ -58,5 +58,4 @@ public class Cars {
                 .orElseThrow(() -> new RuntimeException("Cars에 값이 없습니다."))
                 .getPosition();
     }
-
 }
