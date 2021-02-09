@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class StringCalculator {
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final String OR = "|";
+    private static final Pattern pattern = Pattern.compile("//(.)\n(.*)");
 
     public static int splitAndSum(String input) {
         if (!isEmpty(input)) {
@@ -23,10 +24,10 @@ public class StringCalculator {
 
     private static String[] split(String input) {
         String delimeter = DEFAULT_DELIMITER;
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
-        if (m.find()) {
-            delimeter = delimeter.concat(OR + m.group(1));
-            input = m.group(2);
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            delimeter = delimeter.concat(OR + matcher.group(1));
+            input = matcher.group(2);
         }
         return input.split(delimeter);
     }
