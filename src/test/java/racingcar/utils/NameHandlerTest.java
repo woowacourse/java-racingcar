@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Name;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -14,13 +15,13 @@ public class NameHandlerTest {
     @ParameterizedTest
     @ValueSource(strings = {"pobi,crong,honux"})
     void splitNamesTest(String line) {
-        Name[] names = NameHandler.splitNames(line);
+        List<Name> names = NameHandler.splitNames(line);
 
         String[] namesWithString = line.split(",");
-        assertThat(names.length).isEqualTo(namesWithString.length);
+        assertThat(names.size()).isEqualTo(namesWithString.length);
 
         for (String name : namesWithString) {
-            boolean isIncluded = Arrays.stream(names)
+            boolean isIncluded = names.stream()
                     .anyMatch(n -> n.equals(Name.create(name)));
             assertThat(isIncluded).isEqualTo(true);
         }

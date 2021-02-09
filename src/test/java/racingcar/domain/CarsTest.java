@@ -8,13 +8,16 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.utils.NameHandler;
 
+import java.util.Arrays;
+import java.util.List;
+
 class CarsTest {
     @DisplayName("입력한 이름이 중복되는 경우")
     @ParameterizedTest
     @ValueSource(strings = {"pobi, pobi , pobi "})
     void expectDuplicatedExceptionTest(String nameString) {
         assertThatThrownBy(() -> {
-            Name[] names = NameHandler.splitNames(nameString);
+            List names = NameHandler.splitNames(nameString);
             Cars.createByNames(names);
         }).isInstanceOf(IllegalArgumentException.class);
     }
@@ -24,7 +27,8 @@ class CarsTest {
     @ValueSource(strings = {"pobi"})
     void expectOnlyCarExceptionTest(String onlyName) {
         assertThatThrownBy(() -> {
-            Cars.createByNames(new Name[]{Name.create(onlyName)});
+            List names = Arrays.asList(new Name[]{Name.create(onlyName)});
+            Cars.createByNames(names);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -32,7 +36,7 @@ class CarsTest {
     @ParameterizedTest
     @ValueSource(strings = {"pobi, jin, corgi"})
     void checkInstanceWithValidNames(String input) {
-        Name[] names = NameHandler.splitNames(input);
+        List<Name> names = NameHandler.splitNames(input);
         Cars cars = Cars.createByNames(names);
 
         for (Name name : names) {

@@ -3,6 +3,8 @@ package racingcar.utils;
 import racingcar.domain.Name;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class NameHandler {
     private static final String nameSeparator = ",";
@@ -10,10 +12,10 @@ public class NameHandler {
     private NameHandler() {
     }
 
-    public static Name[] splitNames(final String line) {
+    public static List<Name> splitNames(final String line) {
         return Arrays.stream(line.split(nameSeparator))
                 .map(String::trim)
                 .map(name -> Name.create(name))
-                .toArray(Name[]::new);
+                .collect(Collectors.toList());
     }
 }

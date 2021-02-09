@@ -14,10 +14,12 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars createByNames(final Name[] names) {
-        return new Cars(Arrays.stream(names)
-                .map(Car::createByName)
-                .collect(Collectors.toList()));
+    public static Cars createByNames(final List<Name> names) {
+        List<Car> cars = names.stream()
+                .map(name -> Car.createByName(name))
+                .collect(Collectors.toList());
+
+        return new Cars(cars);
     }
 
     public void tryMoveCars() {

@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.List;
 import java.util.Scanner;
 
 import racingcar.domain.Cars;
@@ -20,7 +21,7 @@ public class GameRunner {
     }
 
     public void run() {
-        Name[] names = InputView.receiveNames(scanner);
+        List<Name> names = InputView.receiveNames(scanner);
         this.cars = Cars.createByNames(names);
 
         this.rounds = InputView.receiveRounds(scanner);
