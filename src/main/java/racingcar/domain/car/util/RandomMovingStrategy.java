@@ -3,8 +3,8 @@ package racingcar.domain.car.util;
 import java.util.Random;
 
 public class RandomMovingStrategy implements MovingStrategy {
-    private final Random RANDOM = new Random();
-    private final int END_EXCLUSIVE_NUMBER = 10;
+    private static final Random RANDOM = new Random();
+    private static final int END_EXCLUSIVE_NUMBER = 10;
 
     @Override
     public boolean canMove() {

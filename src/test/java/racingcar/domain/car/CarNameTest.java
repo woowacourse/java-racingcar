@@ -14,7 +14,7 @@ class CarNameTest {
         CarName carName = new CarName("test");
 
         //when //then
-        assertThat(carName).isEqualTo(new CarName("test"));
+        assertThat(carName.toStringName()).isEqualTo(new CarName("test").toStringName());
     }
 
     @DisplayName("toStringName 메서드 테스트")

@@ -16,8 +16,11 @@ public class Cars {
     }
 
     private void validateCars(List<Car> cars) {
-        Set<Car> distinctCars = new HashSet<>(cars);
-        if (distinctCars.size() != cars.size()) {
+        List<String> carNames = cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+
+        if (new HashSet<>(carNames).size() != carNames.size()) {
             throw new IllegalArgumentException(ERROR_EXIST_DUPLICATED_CAR_NAMES_MESSAGE);
         }
     }

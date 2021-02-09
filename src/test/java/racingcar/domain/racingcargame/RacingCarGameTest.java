@@ -47,6 +47,6 @@ class RacingCarGameTest {
 
         //then
         assertThat(cars).hasSize(1);
-        assertThat(cars.get(0)).isEqualTo(new Car(new CarName("benz"), new CarPosition(3)));
+        assertThat(cars.get(0).getName()).isEqualTo(new Car(new CarName("benz"), new CarPosition(3)).getName());
     }
 }
