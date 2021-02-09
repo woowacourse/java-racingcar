@@ -9,27 +9,27 @@ public class Cars {
     private static final String NO_NAME_ERROR = "반드시 자동차 이름을 입력하셔야 합니다.";
     private static final String COMMA = ",";
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<Car> cars) {
         this.cars = cars;
     }
 
     public static Cars createCars(String carNames) {
-        List<Car> carList = new ArrayList<>();
-        String[] carNamesArray = carNamesSplit(carNames);
-        for (String carName : carNamesArray) {
-            carList.add(new Car(carName));
+        List<Car> inputCars = new ArrayList<>();
+        String[] splitCarNames = carNamesSplit(carNames);
+        for (String carName : splitCarNames) {
+            inputCars.add(new Car(carName));
         }
-        return new Cars(carList);
+        return new Cars(inputCars);
     }
 
     private static String[] carNamesSplit(String carNames) {
-        String[] carNamesArray = carNames.split(COMMA);
-        if (carNamesArray.length == 0) {
+        String[] splitCarNames = carNames.split(COMMA);
+        if (splitCarNames.length == 0) {
             throw new IllegalArgumentException(NO_NAME_ERROR);
         }
-        return carNamesArray;
+        return splitCarNames;
     }
 
     public List<Car> getCars() {
