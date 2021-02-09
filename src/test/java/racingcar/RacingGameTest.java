@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RacingGameTest {
@@ -25,10 +25,8 @@ public class RacingGameTest {
 
     @ParameterizedTest
     @DisplayName("게임 시행 횟수는 1 이상의 숫자여야 한다.")
-    @ValueSource(strings = {" ", "abcdefg", "  "})
-    void createCarExceptionTest(String name){
-        assertThrows(IllegalArgumentException.class, ()-> new Car(name));
-        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new Car(name));
-        assertThat(e.getMessage()).isEqualTo(Car.CAR_NAME_INVALID);
+    @ValueSource(strings = {"  ", " as", "b3"})
+    void isValidNumberTest(String number){
+        assertThrows(IllegalArgumentException.class, () -> RacingGame.isValidNumber(number));
     }
 }
