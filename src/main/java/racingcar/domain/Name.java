@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 public class Name {
     private static final String NAME_LENGTH_RANGE_ERROR = "자동차 이름은 1글자 이상 5글자 이하입니다.";
     private static final int MIN_NAME_LENGTH = 1;
@@ -20,5 +22,18 @@ public class Name {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

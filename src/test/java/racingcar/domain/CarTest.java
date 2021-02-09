@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.view.OutputView;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -45,7 +46,7 @@ public class CarTest {
         for (int i = 0; i < Integer.parseInt(input); i++) {
             car.move(() -> 4);
         }
-        assertThat(car.positionToString()).isEqualTo(expected);
+        assertThat(OutputView.positionToHyphen(car)).isEqualTo(expected);
     }
 
     @Test
