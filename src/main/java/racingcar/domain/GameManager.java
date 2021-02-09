@@ -15,11 +15,11 @@ public class GameManager {
         String carNames = requestDto.getCarNames();
         this.cars = Cars.from(carNames);
         this.round = Round.from(requestDto.getRound());
-        this.results = moveAndGetResults();
+        this.results = move();
         this.winners = Winners.from(this.results.getResults());
     }
 
-    private Results moveAndGetResults() {
+    private Results move() {
         List<Result> results = new ArrayList<>();
         for (int i = 0; i < this.round.getCount(); i++) {
             this.cars.tryToMove();

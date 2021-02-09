@@ -33,8 +33,8 @@ public class Car {
         return CarState.of(name, position);
     }
 
-    public void tryToMove(int randomValue) {
-        if (randomValue >= MIN_VALUE_TO_MOVE) {
+    public void tryToMove(int value) {
+        if (value >= MIN_VALUE_TO_MOVE) {
             position++;
         }
     }
