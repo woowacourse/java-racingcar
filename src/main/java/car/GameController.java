@@ -5,14 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GameController {
-
+    final Scanner scanner = new Scanner(System.in);
     final String delimiter = ",";
-    private Scanner scanner;
     OutputView message = new OutputView();
-
-    public GameController(Scanner scanner) {
-        this.scanner = scanner;
-    }
 
     public void start() {
         int round = 0;
