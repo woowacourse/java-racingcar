@@ -3,6 +3,8 @@ package racingcar;
 import java.util.Objects;
 
 public class CarName {
+    private static final int MINIMUM_CAR_NAME_LENGTH = 1;
+    private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
     private static final String NUMBER_RANGE_ERROR_MESSAGE = "1~5 사이의 값을 입력해주세요.";
 
     private final String carName;
@@ -21,7 +23,7 @@ public class CarName {
     }
 
     private void checkCarNameLength(String carName) {
-        if (carName.length() < 1 || carName.length() > 5) {
+        if (carName.length() < MINIMUM_CAR_NAME_LENGTH || carName.length() > MAXIMUM_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
         }
     }
