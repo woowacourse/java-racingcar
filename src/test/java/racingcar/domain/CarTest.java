@@ -17,7 +17,7 @@ public class CarTest {
         assertThat(car).isEqualTo(new Car(name));
     }
 
-    @DisplayName("적합한 이름과 포지션이 둘다 주어졌을떄 Car가 잘 생성되는지")
+    @DisplayName("정상적인 이름과 포지션이 둘다 주어졌을떄 Car가 잘 생성되는지")
     @Test
     void carConstructor_properNameAndPosition_createCar() {
         Name name = new Name("데이브");

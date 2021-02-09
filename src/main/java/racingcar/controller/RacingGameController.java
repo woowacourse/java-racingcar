@@ -2,19 +2,20 @@ package racingcar.controller;
 
 import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
+import racingcar.domain.Round;
 import racingcar.dto.CarsDto;
 import racingcar.dto.WinnersDto;
-
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 
 public class RacingGameController {
     public void start(Scanner scanner) {
         List<String> names = generateNames(scanner);
         String numberOfRounds = generateNumberOfRounds(scanner);
-        RacingGame racingGame = new RacingGame(new Cars(names), numberOfRounds);
+        RacingGame racingGame = new RacingGame(new Cars(names), new Round(numberOfRounds));
 
         playRacingGame(racingGame);
 

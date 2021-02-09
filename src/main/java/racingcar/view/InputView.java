@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 import static racingcar.domain.Name.validateBlankInName;
 import static racingcar.domain.Name.validateNameLength;
-import static racingcar.domain.RacingGame.validateIntegerNumber;
-import static racingcar.domain.RacingGame.validatePositiveNumber;
+import static racingcar.domain.Round.validateIntegerNumber;
+import static racingcar.domain.Round.validateNonNegativeNumber;
 
 public class InputView {
     private static final String COMMA = ",";
@@ -38,6 +38,6 @@ public class InputView {
 
     private static void validateNumberOfRoundsInput(String numberOfRoundsInput) {
         validateIntegerNumber(numberOfRoundsInput);
-        validatePositiveNumber(numberOfRoundsInput);
+        validateNonNegativeNumber(numberOfRoundsInput);
     }
 }

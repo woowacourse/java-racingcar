@@ -11,11 +11,11 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static racingcar.domain.Cars.DUPLICATE_NAME_ERROR_MESSAGE;
 import static racingcar.domain.Name.BLANK_ERROR_MESSAGE;
 import static racingcar.domain.Name.NAME_LENGTH_ERROR_MESSAGE;
-import static racingcar.domain.Cars.DUPLICATE_NAME_ERROR_MESSAGE;
-import static racingcar.domain.RacingGame.INVALID_NUMBER_OF_ROUNDS_MESSAGE;
-import static racingcar.domain.RacingGame.NOT_NUMBER_ERROR_MESSAGE;
+import static racingcar.domain.Round.INVALID_NUMBER_OF_ROUNDS_MESSAGE;
+import static racingcar.domain.Round.NOT_INTEGER_ERROR_MESSAGE;
 
 public class InputViewTest {
     private Scanner scanner;
@@ -70,14 +70,13 @@ public class InputViewTest {
 
         assertThatThrownBy(() -> InputView.takeNumberOfRoundsInput(scanner))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NOT_NUMBER_ERROR_MESSAGE);
+                .hasMessage(NOT_INTEGER_ERROR_MESSAGE);
     }
 
-    @DisplayName("총 라운드 횟수 입력 받을 떄 0이나 음수인 것을 검증해주는지")
-    @ParameterizedTest
-    @ValueSource(strings = {"0", "-2"})
-    void takeNumberOfRoundsInput_zeroOrNegativeInteger_throwIllegalArgumentException(String input) {
-        InputStream in = generateUserInput(input);
+    @DisplayName("총 라운드 횟수 입력 받을 떄 음수인 것을 검증해주는지")
+    @Test
+    void takeNumberOfRoundsInput_zeroOrNegativeInteger_throwIllegalArgumentException() {
+        InputStream in = generateUserInput("-5");
         System.setIn(in);
         scanner = new Scanner(System.in);
 

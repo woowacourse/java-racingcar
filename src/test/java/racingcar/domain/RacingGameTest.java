@@ -4,20 +4,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.dto.CarDto;
-import racingcar.dto.CarsDto;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static racingcar.domain.RacingGame.INIT_ROUND;
-import static racingcar.domain.RacingGame.INVALID_NUMBER_OF_ROUNDS_MESSAGE;
+import static racingcar.domain.Round.INVALID_NUMBER_OF_ROUNDS_MESSAGE;
 
 class RacingGameTest {
-    private static final String NUMBER_OF_ROUNDS_FOR_TEST = "5";
-
     private final List<String> carNamesForTest = Arrays.asList("포비", "데이브", "삭정");
 
     @DisplayName("올바른 이름이 주어졌을 때 이를 토대로 racingGame 과 그 안에 자동차를 생성하는 지 테스트")
@@ -25,18 +20,14 @@ class RacingGameTest {
     void racingGameConstructor_givenCarNames_createCarsByGivenCarNames() {
         RacingGame racingGame = createRacingGame();
 
-        assertThat(racingGame).isInstanceOf(RacingGame.class);
-        assertThat(racingGame.getNumberOfRounds()).isEqualTo(Integer.parseInt(NUMBER_OF_ROUNDS_FOR_TEST));
-        assertThat(racingGame.getCurrentRound()).isEqualTo(INIT_ROUND);
-
+        assertThat(racingGame).isEqualTo(createRacingGame());
         assertThat(racingGame.getCars()).isEqualTo(new Cars(carNamesForTest));
     }
 
-    @DisplayName("음수나 0 인 라운드 횟수가 입력됐을 떄 에러 반환 하는지")
-    @ParameterizedTest
-    @ValueSource(strings = {"0", "-3"})
-    void racingGameConstructor_NonPositiveIntegerNumberOfRounds_ThrowException(String numberOfRounds) {
-        assertThatThrownBy(() -> createRacingGame(numberOfRounds)).isInstanceOf(IllegalArgumentException.class)
+    @DisplayName("음수인 라운드 횟수가 입력됐을 떄 에러 반환 하는지")
+    @Test
+    void racingGameConstructor_NonPositiveIntegerNumberOfRounds_ThrowException() {
+        assertThatThrownBy(() -> createRacingGame("-1")).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_NUMBER_OF_ROUNDS_MESSAGE);
     }
 
@@ -45,9 +36,9 @@ class RacingGameTest {
     void playAnotherRound_playRoundOnce_currentRoundShouldIncreaseByOne() {
         RacingGame racingGame = createRacingGame();
 
-        int beforeRound = racingGame.getCurrentRound();
+        int beforeRound = racingGame.getCurrentRoundAsInt();
         racingGame.playAnotherRound();
-        int afterRound = racingGame.getCurrentRound();
+        int afterRound = racingGame.getCurrentRoundAsInt();
 
         assertThat(beforeRound + 1).isEqualTo(afterRound);
     }
@@ -58,7 +49,7 @@ class RacingGameTest {
     void isFinished_numberOfRounds_true(String numberOfRounds) {
         RacingGame racingGame = createRacingGame(numberOfRounds);
 
-        for (int currentRound = 0; currentRound < racingGame.getNumberOfRounds(); currentRound++) {
+        for (int currentRound = 0; currentRound < racingGame.getNumberOfRoundsAsInt(); currentRound++) {
             racingGame.playAnotherRound();
         }
 
@@ -67,11 +58,12 @@ class RacingGameTest {
 
     private RacingGame createRacingGame() {
         Cars cars = new Cars(carNamesForTest);
-        return new RacingGame(cars, NUMBER_OF_ROUNDS_FOR_TEST);
+        String numberOfRoundsForTest = "5";
+        return new RacingGame(cars, new Round(numberOfRoundsForTest));
     }
 
     private RacingGame createRacingGame(String numberOfRounds) {
         Cars cars = new Cars(carNamesForTest);
-        return new RacingGame(cars, numberOfRounds);
+        return new RacingGame(cars, new Round(numberOfRounds));
     }
 }

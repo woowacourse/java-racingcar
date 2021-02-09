@@ -49,7 +49,7 @@ class RacingGameControllerTest {
     private static Stream<Arguments> provideNameAndNumberOfRoundsInput() {
         return Stream.of(
                 Arguments.of("포비,웨지,삭정 \n", "4"), // when blank is in the name input
-                Arguments.of("포비,웨지\n", "0"), // when number of rounds is out of bounds
+                Arguments.of("포비,웨지\n", "-1"), // when number of rounds is out of bounds
                 Arguments.of("포비,삭정,삭정\n", "2") // when names are duplicate
         );
     }
