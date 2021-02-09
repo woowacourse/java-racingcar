@@ -25,7 +25,7 @@ public class Cars {
 
     public CarStates getCarStates() {
         List<CarState> carStates = cars.stream()
-                .map(CarState::withNameAndPosition)
+                .map(Car::getState)
                 .collect(Collectors.toList());
 
         return CarStates.valueOf(carStates);
