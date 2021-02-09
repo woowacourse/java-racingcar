@@ -16,7 +16,7 @@ public class TryNumber {
     }
 
     public boolean isRunnable() {
-        return tryNumber > FINISH_VALUE;
+        return tryNumber-- > FINISH_VALUE;
     }
 
     public int getTryNumber() {
