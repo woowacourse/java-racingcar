@@ -33,6 +33,10 @@ public class Car {
         return this.position.equals(position);
     }
 
+    public Car copy() {
+        return new Car(this.getName(), this.getPosition());
+    }
+
     public Position getPosition() {
         return new Position(position.getPosition());
     }

@@ -39,7 +39,7 @@ public class Cars {
     public Cars copy() {
         Cars carsCopied = new Cars();
         cars.stream()
-                .map(car -> new Car(car.getName(), car.getPosition()))
+                .map(Car::copy)
                 .forEach(carsCopied.cars::add);
 
         return carsCopied;
