@@ -3,14 +3,17 @@ package racingcar.domain.car;
 public class Car {
 
     public static final int MOVE_CONDITION = 4;
-    public static final char SINGLE_VISUAL_POSITION = '-';
 
     private final Name name;
-    private final Position position;
+    private Position position;
 
-    public Car(String name) {
-        this.name = new Name(name);
-        position = Position.ZERO;
+    private Car(final Name name, final Position position) {
+        this.name = name;
+        this.position = position;
+    }
+
+    public Car(final String name) {
+        this(new Name(name), Position.ZERO);
     }
 
     public String getName() {
@@ -21,9 +24,9 @@ public class Car {
         return position.getValue();
     }
 
-    public void move(int integer) {
-        if (integer >= MOVE_CONDITION) {
-            position.move();
+    public void move(int conditionNumber) {
+        if (conditionNumber >= MOVE_CONDITION) {
+            position = position.move();
         }
     }
 
