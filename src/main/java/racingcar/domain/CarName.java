@@ -3,7 +3,6 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class CarName {
-
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAM_NAME_LENGTH = 5;
 

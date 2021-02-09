@@ -3,7 +3,6 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
-
     private static final int CONDITION = 4;
 
     private final CarName carName;
@@ -11,11 +10,10 @@ public class Car implements Comparable<Car> {
     private int position = 0;
 
     public Car(String carNameValue) {
-        CarName carName = new CarName(carNameValue);
-        this.carName = carName;
+        this.carName = new CarName(carNameValue);
     }
 
-    public void moveForwardByRandomNumber(int randomNumber) {
+    public void move(int randomNumber) {
         if (randomNumber >= CONDITION) {
             position += 1;
         }

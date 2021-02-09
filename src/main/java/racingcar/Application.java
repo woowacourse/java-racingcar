@@ -19,6 +19,7 @@ public class Application {
         racingCarGame.race(cars, laps);
 
         OutputView.showWinners(cars);
+        InputView.closeScanner();
     }
 
 }

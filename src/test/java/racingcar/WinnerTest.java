@@ -23,12 +23,12 @@ public class WinnerTest {
     }
 
     private void racing(List<Car> cars) {
-        cars.get(0).moveForwardByRandomNumber(1);
-        cars.get(1).moveForwardByRandomNumber(4);
-        cars.get(2).moveForwardByRandomNumber(5);
-        cars.get(0).moveForwardByRandomNumber(1);
-        cars.get(1).moveForwardByRandomNumber(4);
-        cars.get(2).moveForwardByRandomNumber(5);
+        cars.get(0).move(1);
+        cars.get(1).move(4);
+        cars.get(2).move(5);
+        cars.get(0).move(1);
+        cars.get(1).move(4);
+        cars.get(2).move(5);
     }
 
 }

@@ -3,7 +3,6 @@ package racingcar.utils;
 import java.util.Random;
 
 public class RandomUtil {
-
     private static final Random RANDOM = new Random();
 
     private RandomUtil() {

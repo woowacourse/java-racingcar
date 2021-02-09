@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.utils.RandomUtil;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -19,7 +18,7 @@ public class Cars {
     }
 
     public void raceOneLap() {
-        cars.forEach(car -> car.moveForwardByRandomNumber(RandomUtil.nextInt(START, END)));
+        cars.forEach(car -> car.move(RandomUtil.nextInt(START, END)));
     }
 
     public List<Car> getCars() {
@@ -37,7 +36,6 @@ public class Cars {
     private int getMaxDistance() {
         return cars.stream().collect(Collectors.summarizingInt(Car::getPosition)).getMax();
     }
-
 
     private void validateNumberOfCar(List<String> carNamesInput) {
         if (carNamesInput.size() < MINIMUM_CAR_AMOUNT) {
