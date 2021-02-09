@@ -1,4 +1,4 @@
-package racingCar.domain;
+package racingcargame.domain;
 
 public class Car {
     private static final int THRESHOLD = 4;
