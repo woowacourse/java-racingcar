@@ -3,10 +3,12 @@ package racingcar.domain.car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CarTest {
 
@@ -55,31 +57,19 @@ class CarTest {
     }
 
     @DisplayName("move가 받은 값이 기준값 이상이면 전진한다")
-    @Test
-    void testMoveIfRandomNumberMoreThanStandard() {
+    @ParameterizedTest
+    @CsvSource(value = {"1:0", "4:1", "10:1"}, delimiter = ':')
+    void testMoveIfRandomNumberMoreThanStandard(int num, int expected) {
         //given
         Car car = new Car("BENZ");
-        FixedMovingStrategy fixedMovingStrategy = new FixedMovingStrategy(4);
+        FixedMovingStrategy fixedMovingStrategy = new FixedMovingStrategy(num);
 
         //when
         Car movedCar = car.move(fixedMovingStrategy);
+        int actual = movedCar.getPosition();
 
         //then
-        assertThat(movedCar.getPosition()).isEqualTo(1);
-    }
-
-    @DisplayName("move가 받은 값이 기준값 이상이면 전진한다")
-    @Test
-    void testMoveIfRandomNumberUnderStandard() {
-        //given
-        Car car = new Car("BENZ");
-        FixedMovingStrategy fixedMovingStrategy = new FixedMovingStrategy(4);
-
-        //when
-        Car unmovedCar = car.move(fixedMovingStrategy);
-
-        //then
-        assertThat(unmovedCar.getPosition()).isEqualTo(1);
+        assertEquals(actual, expected);
     }
 
     @DisplayName("car의 position이 특정 position과 일치하는지 판별하는 기능을 테스트한다")
