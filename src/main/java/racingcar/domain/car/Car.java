@@ -18,7 +18,7 @@ public class Car {
         this.position = Position.of(DEFAULT_CAR_POSITION);
     }
 
-    public void run() {
+    public void move() {
         if (engine.isMove()) {
             this.position = position.plus(GO_FORWARD_DISTANCE);
         }

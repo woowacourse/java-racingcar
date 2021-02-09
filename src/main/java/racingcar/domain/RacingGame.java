@@ -4,12 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.car.Car;
+import racingcar.domain.car.Cars;
 import racingcar.domain.engine.Engine;
 import racingcar.domain.engine.RandomEngine;
 
 public class RacingGame {
 
-    private List<Car> cars;
+    private Cars cars;
     private int numOfRacingRound;
 
     public RacingGame(String[] carNames, int numOfRacingRound) {
@@ -17,11 +18,11 @@ public class RacingGame {
         this.numOfRacingRound = numOfRacingRound;
     }
 
-    private List<Car> prepareCars(String[] carNames) {
+    private Cars prepareCars(String[] carNames) {
         Engine engine = new RandomEngine();
-        return Arrays.stream(carNames)
+        return new Cars(Arrays.stream(carNames)
             .map(carName -> new Car(carName, engine))
-            .collect(Collectors.toList());
+            .collect(Collectors.toList()));
     }
 
     public boolean isEnd() {
@@ -34,25 +35,14 @@ public class RacingGame {
     }
 
     private void racePerRound() {
-        cars.forEach(Car::run);
+        cars.move();
     }
 
     public List<Car> getCars() {
-        return cars;
+        return cars.getCars();
     }
 
     public String getWinners() {
-        int max = findMaxMove();
-        return cars.stream()
-            .filter(car -> car.isOn(max))
-            .map(Car::getName)
-            .collect(Collectors.joining(","));
-    }
-
-    private int findMaxMove() {
-        return cars.stream()
-            .map(Car::getPosition)
-            .max(Integer::compare)
-            .orElseThrow(() -> new RuntimeException("No Winner"));
+        return cars.getWinners();
     }
 }

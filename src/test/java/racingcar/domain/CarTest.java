@@ -16,7 +16,7 @@ class CarTest {
         // when
         int numOfRacingRound = 5;
         for (int i = 0; i < numOfRacingRound; i++) {
-            car.run();
+            car.move();
         }
 
         // then
@@ -31,7 +31,7 @@ class CarTest {
         // when
         int numOfRacingRound = 5;
         for (int i = 0; i < numOfRacingRound; i++) {
-            car.run();
+            car.move();
         }
 
         // then
