@@ -10,20 +10,20 @@ import java.util.stream.Collectors;
  *
  * @author Kimun Kim, github.com/tributetothemoon
  */
-public class CarsDTO {
-    private final List<CarDTO> cars;
+public class CarsDto {
+    private final List<CarDto> cars;
 
-    private CarsDTO(List<CarDTO> cars) {
+    private CarsDto(List<CarDto> cars) {
         this.cars = Collections.unmodifiableList(cars);
     }
 
-    public static CarsDTO of(List<Car> cars) {
-        return new CarsDTO(cars.stream()
-                .map(Car::toDTO)
+    public static CarsDto of(List<Car> cars) {
+        return new CarsDto(cars.stream()
+                .map(Car::toDto)
                 .collect(Collectors.toList()));
     }
 
-    public List<CarDTO> toList() {
+    public List<CarDto> toList() {
         return cars;
     }
 }

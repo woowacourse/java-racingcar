@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import racingcar.domain.CarDTO;
-import racingcar.domain.CarsDTO;
+import racingcar.domain.CarDto;
+import racingcar.domain.CarsDto;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -37,17 +37,17 @@ public class OutputView {
         System.out.println(EXECUTION_RESULT);
     }
 
-    public void printCarsPosition(CarsDTO carsDTO) {
-        carsDTO.toList().forEach(this::printCarPosition);
+    public void printCarsPosition(CarsDto carsDto) {
+        carsDto.toList().forEach(this::printCarPosition);
         System.out.println();
     }
 
-    private void printCarPosition(CarDTO carDTO) {
+    private void printCarPosition(CarDto carDto) {
         StringBuffer positionStringBuffer = new StringBuffer();
-        for (int i = 0; i < carDTO.getPosition(); i++) {
+        for (int i = 0; i < carDto.getPosition(); i++) {
             positionStringBuffer.append(POSITION_CHARACTER);
         }
-        System.out.print(String.format(POSITION_FORMAT, carDTO.getName(), positionStringBuffer));
+        System.out.print(String.format(POSITION_FORMAT, carDto.getName(), positionStringBuffer));
         System.out.println();   // 개행
     }
 

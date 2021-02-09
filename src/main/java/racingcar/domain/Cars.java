@@ -59,7 +59,7 @@ public class Cars {
         return this.cars;
     }
 
-    public CarsDTO toDTO() {
-        return CarsDTO.of(this.cars);
+    public CarsDto toDto() {
+        return CarsDto.of(this.cars);
     }
 }

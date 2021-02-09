@@ -30,7 +30,7 @@ public class RacingCarGame {
 
         while (!round.isEnd()) {
             cars.moveCars();
-            outputView.printCarsPosition(cars.toDTO());
+            outputView.printCarsPosition(cars.toDto());
             round.nextRound();
         }
 

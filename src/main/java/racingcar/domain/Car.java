@@ -36,8 +36,8 @@ public class Car implements Comparable<Car> {
         return this.position;
     }
 
-    public CarDTO toDTO() {
-        return new CarDTO(this.name, this.position);
+    public CarDto toDto() {
+        return new CarDto(this.name, this.position);
     }
 
     @Override
