@@ -10,8 +10,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class CalculatorController {
-    private static final String PATTERN = "//(.)\\\\n(.*)";         // 정규표현식 \\ -> \ , 자바 리터럴 \\ -> \
     private static final int NULL_OR_EMPTY_RESULT = 0;
+    private static final String REGEX = "//(.)\\\\n(.*)";
+    private static final Pattern PATTERN = Pattern.compile(REGEX);
 
     private final InputView inputView;
 
@@ -42,19 +43,19 @@ public class CalculatorController {
     }
 
     private boolean hasCustomDelimiter(String input) {
-        Matcher m = Pattern.compile(PATTERN).matcher(input);
+        Matcher matcher = PATTERN.matcher(input);
 
-        return m.find();
+        return matcher.find();
     }
 
     public String getCustomDelimiter(String input) {
         final int delimiterIndex = 1;
         String customDelimiter = "";
 
-        Matcher m = Pattern.compile(PATTERN).matcher(input);
+        Matcher matcher = PATTERN.matcher(input);
 
-        if (m.find()) {
-            customDelimiter = m.group(delimiterIndex);
+        if (matcher.find()) {
+            customDelimiter = matcher.group(delimiterIndex);
             isValidDelimiter(customDelimiter);
         }
 
@@ -70,10 +71,10 @@ public class CalculatorController {
     public String getNumbers(String input) {
         final int numbersIndex = 2;
 
-        Matcher m = Pattern.compile(PATTERN).matcher(input);
+        Matcher matcher = PATTERN.matcher(input);
 
-        if (m.find()) {
-            return m.group(numbersIndex);
+        if (matcher.find()) {
+            return matcher.group(numbersIndex);
         }
         return input;
     }
