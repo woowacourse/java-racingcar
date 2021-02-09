@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtils;
 import racingcar.view.RacingCarView;
 
 public class RacingCar {
@@ -18,15 +17,9 @@ public class RacingCar {
 
     private void raceByTryCount() {
         while (tryCount.isRemainCount()) {
-            race();
+            cars.race();
             RacingCarView.printProgressResult(cars.cars());
             tryCount.deductCount();
-        }
-    }
-
-    private void race() {
-        for (Car car : cars.cars()) {
-            car.moveForward(RandomUtils.createRandomNumber());
         }
     }
 

@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.utils.RandomUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,6 +19,10 @@ public class Cars {
 
     public List<Car> cars() {
         return Collections.unmodifiableList(cars);
+    }
+
+    public void race() {
+        cars.forEach(car -> car.moveForward(RandomUtils.createRandomNumber()));
     }
 
     public Car getMaxPositionCar() {
