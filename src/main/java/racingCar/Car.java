@@ -26,10 +26,7 @@ public class Car {
     }
 
     public boolean isWinner(int max) {
-        if (distance == max) {
-            return true;
-        }
-        return false;
+        return distance == max;
     }
 
     public String getName() {

@@ -11,7 +11,11 @@ public class Cars {
     private static final int MINIMUM_VALUE = 0;
     private static final int MAXIMUM_VALUE = 9;
 
-    private List<Car> cars = new ArrayList<>();
+    private List<Car> cars;
+
+    public Cars(List<Car> cars) {
+        this.cars = cars;
+    }
 
     public void carAdd(Car car) {
         cars.add(car);
@@ -24,7 +28,7 @@ public class Cars {
     public List<String> findWinners(int maxDistance) {
         return cars.stream()
                 .filter(car -> car.isWinner(maxDistance))
-                .map(car -> car.getName())
+                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
