@@ -1,28 +1,18 @@
 package racingcar.domain;
 
 public class Car {
-    private static final String NAME_LENGTH_RANGE_ERROR = "자동차 이름은 1글자 이상 5글자 이하입니다.";
-    private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
     private static final int MOVE_BOUND = 4;
     private static final String DASH = "-";
 
-    private String name;
+    private final Name name;
     private int position = 0;
 
     public Car(String name) {
-        validateNameLength(name);
-        this.name = name;
-    }
-
-    private void validateNameLength(String name) {
-        if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
-            throw new IllegalArgumentException(NAME_LENGTH_RANGE_ERROR);
-        }
+        this.name = new Name(name);
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public int getPosition() {
