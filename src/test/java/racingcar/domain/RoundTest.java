@@ -20,14 +20,11 @@ class RoundTest {
     @ParameterizedTest
     @CsvSource(value = {"1:3:false", "2:3:false", "3:3:true"}, delimiter = ':')
     void roundProceedTest(int currentRound, int finalRound, boolean expected) {
-        int currentRoundNumber = Integer.parseInt(currentRound);
-        int finalRoundNumber = Integer.parseInt(finalRound);
-
-        Round round = Round.from(finalRoundNumber);
-        for (int i = 0; i < currentRoundNumber; i++) {
+        Round round = Round.from(finalRound);
+        for (int i = 0; i < currentRound; i++) {
             round.nextRound();
         }
 
-        assertEquals(round.isEnd(), Boolean.parseBoolean(expected));
+        assertEquals(round.isEnd(), expected);
     }
 }
