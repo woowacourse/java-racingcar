@@ -45,8 +45,8 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    private boolean isMoveNumber(final int randomNumber) {
-        return MOVE_PIVOT <= randomNumber;
+    private boolean isMoveNumber(final int number) {
+        return MOVE_PIVOT <= number;
     }
 
     public boolean isMaxPosition(final Car maxPositionCar) {
