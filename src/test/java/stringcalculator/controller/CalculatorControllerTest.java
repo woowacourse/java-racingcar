@@ -101,8 +101,8 @@ class CalculatorControllerTest {
     @DisplayName("정상적인 숫자 문자열이 입력된 경우 숫자를 분리 후 더하여 반환")
     @ParameterizedTest
     @CsvSource(value = {"1,2,3=6", "1,2:3=6", "//;\\n1;2,3=6"}, delimiter = '=')
-    public void getResult_정상적인_문자열(String value, String expected) {
-        int result = calculatorController.getResult(value);
+    public void parseAndSum_정상적인_문자열(String value, String expected) {
+        int result = calculatorController.parseAndSum(value);
         int expectedNumber = Integer.parseInt(expected);
 
         assertThat(result).isEqualTo(expectedNumber);
@@ -110,11 +110,11 @@ class CalculatorControllerTest {
 
     @DisplayName("숫자 문자열이 null 또는 빈문자인 경우 0을 반환")
     @Test
-    public void getResult_null_또는_빈문자() {
-        int result = calculatorController.getResult(null);
+    public void parseAndSum_null_또는_빈문자() {
+        int result = calculatorController.parseAndSum(null);
         assertThat(result).isEqualTo(0);
 
-        result = calculatorController.getResult("");
+        result = calculatorController.parseAndSum("");
         assertThat(result).isEqualTo(0);
     }
 }
