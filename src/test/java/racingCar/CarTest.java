@@ -27,7 +27,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings={"","banana"})
+    @ValueSource(strings = {"", "banana"})
     void validate(String input) {
         assertThatThrownBy(() -> {
             new Car(input);
@@ -36,7 +36,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value={"3:0","4:1"},delimiter=':')
+    @CsvSource(value = {"3:0", "4:1"}, delimiter = ':')
     public void move(int input, int expected) {
         Car car3 = new Car("car3");
         car3.move(input);
@@ -52,7 +52,7 @@ class CarTest {
     }
 
     @Test
-    public void get_name(){
+    public void get_name() {
         String name = car1.getName();
         String name2 = car2.getName();
 
@@ -61,7 +61,7 @@ class CarTest {
     }
 
     @Test
-    public void get_distance(){
+    public void get_distance() {
         int distance1 = car1.getDistance();
         int distance2 = car2.getDistance();
 

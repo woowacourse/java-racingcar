@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import racingCar.Car;
 import racingCar.Cars;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,11 +24,17 @@ class OutputViewTest {
     @Test
     @DisplayName("게임 승리자 반환 테스트")
     public void winnerTest() {
-        Cars cars = new Cars();
 
+        List<Car> testCars = new ArrayList<>();
         Car car1 = new Car("car1");
         Car car2 = new Car("car2");
         Car car3 = new Car("car3");
+
+        testCars.add(car1);
+        testCars.add(car2);
+        testCars.add(car3);
+
+        Cars cars = new Cars(testCars);
 
         car1.move(4);
         car2.move(4);

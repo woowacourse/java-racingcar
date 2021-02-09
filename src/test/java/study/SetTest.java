@@ -33,15 +33,15 @@ public class SetTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints={1,2,3})
+    @ValueSource(ints = {1, 2, 3})
     void setContains(int input) {
         assertTrue(numbers.contains(input));
     }
 
     @ParameterizedTest
-    @CsvSource(value={"1:true","2:true","3:true","4:false","5:false"},delimiter=':')
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
     void setContains2(int input, boolean expected) {
         boolean actualValue = numbers.contains(input);
-        assertEquals(expected,actualValue);
+        assertEquals(expected, actualValue);
     }
 }

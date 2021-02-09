@@ -1,8 +1,11 @@
 package racingCar;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,10 +18,14 @@ class CarsTest {
 
     @BeforeEach
     void setUp() {
-        cars = new Cars();
-
         car1 = new Car("test");
         car2 = new Car("car2");
+
+        List<Car> testCars = new ArrayList<>();
+        testCars.add(car1);
+        testCars.add(car2);
+
+        cars = new Cars(testCars);
 
         car2.move(4);
         car2.move(5);
@@ -28,10 +35,11 @@ class CarsTest {
     }
 
     @Test
+    @DisplayName("BeforeEach 가 제대로 동작하여 cars에 Car가 제대로 들어갔는지 확인")
     public void get_cars() {
         List<Car> gameCars = cars.getCars();
 
-        assertThat(gameCars.size()).isEqualTo(2);
+        assertThat(gameCars).isEqualTo(Arrays.asList(car1, car2));
     }
 
     @Test
