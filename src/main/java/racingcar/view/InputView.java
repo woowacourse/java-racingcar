@@ -39,7 +39,7 @@ public class InputView {
         return string.replaceAll("\\s+", "");
     }
 
-    private String getInputWithMessage(String message) {
+    private String requestUserInputWithMessage(String message) {
         System.out.println(message);
         try {
             String rawString = deleteWhiteSpaces(scanner.nextLine());
@@ -47,7 +47,7 @@ public class InputView {
             return rawString;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getInputWithMessage(message);
+            return requestUserInputWithMessage(message);
         }
     }
 
@@ -57,18 +57,18 @@ public class InputView {
         }
     }
 
-    public List<String> getCarNames() {
-        String rawString = getInputWithMessage(MESSAGE_REQUEST_CAR_NAMES);
+    public List<String> requestCarNames() {
+        String rawString = requestUserInputWithMessage(MESSAGE_REQUEST_CAR_NAMES);
         return new ArrayList<>(Arrays.asList(rawString.split(",")));
     }
 
-    public int getRoundNumber() {
-        String rawString = getInputWithMessage(MESSAGE_REQUEST_ROUND_NUMBER);
+    public int requestRoundNumber() {
+        String rawString = requestUserInputWithMessage(MESSAGE_REQUEST_ROUND_NUMBER);
         try {
             return parseIntOrThrowException(rawString);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return getRoundNumber();
+            return requestRoundNumber();
         }
     }
 

@@ -6,8 +6,6 @@ import racingcar.domain.Round;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.Scanner;
-
 /**
  * RacingCarApplication.java
  * 자동차 경주 게임
@@ -21,27 +19,27 @@ public class RacingCarApplication {
 
     public static void main(String[] arg) {
 
-        Cars cars = createCarsFromUser();
-        Round round = createRoundFromUser();
+        Cars cars = createCarsFromUserInput();
+        Round round = createRoundFromUserInput();
         RacingCarGame racingCarGame = RacingCarGame.createNewGame(cars, round);
         racingCarGame.play();
     }
 
-    private static Cars createCarsFromUser() {
+    private static Cars createCarsFromUserInput() {
         try {
-            return Cars.of(inputView.getCarNames());
+            return Cars.of(inputView.requestCarNames());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return createCarsFromUser();
+            return createCarsFromUserInput();
         }
     }
 
-    private static Round createRoundFromUser() {
+    private static Round createRoundFromUserInput() {
         try {
-            return Round.from(inputView.getRoundNumber());
+            return Round.from(inputView.requestRoundNumber());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return createRoundFromUser();
+            return createRoundFromUserInput();
         }
     }
 }
