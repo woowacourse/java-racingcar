@@ -3,6 +3,7 @@ package racingcar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
+import racingcar.domain.Position;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -17,7 +18,7 @@ public class CarTest {
         car.move(5);
         // then(검증)
         assertThat(car.getPosition()).isEqualTo(previous + 1);
-        assertThat(car).isEqualTo(new Car("mini",1));
+        assertThat(car).isEqualTo(new Car("mini",new Position(1)));
     }
 
 }

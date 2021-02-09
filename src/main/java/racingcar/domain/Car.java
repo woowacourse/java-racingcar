@@ -10,12 +10,12 @@ public class Car {
     private Position position;
 
     public Car(String carNameValue) {
-        this(carNameValue, 0);
+        this(carNameValue, Position.getZeroPosition());
     }
 
-    public Car(String carNameValue, int position) {
+    public Car(String carNameValue, Position position) {
         this.carName = new CarName(carNameValue);
-        this.position = new Position(position);
+        this.position = position;
 
     }
 
