@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Winners {
-    private List<String> winners = new ArrayList<>();
+    private final List<String> winners = new ArrayList<>();
 
     public List<String> makeWinners(List<Car> cars) {
         int winnerPosition = 0;
@@ -21,7 +21,7 @@ public class Winners {
     }
 
     private void addWinners(int winnerPosition, Car car) {
-        if(car.getPosition().isSameThan(winnerPosition)){
+        if (car.getPosition().isSameThan(winnerPosition)) {
             winners.add(car.getName().getName());
         }
     }

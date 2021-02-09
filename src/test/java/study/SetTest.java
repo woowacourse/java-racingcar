@@ -44,7 +44,7 @@ public class SetTest {
     @ParameterizedTest
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
     @DisplayName("집합 원소 포함과 미포함 모두 확인")
-    void contains2(int number, boolean expected){
+    void contains2(int number, boolean expected) {
         assertEquals(expected, numbers.contains(number));
         assertThat(numbers.contains(number)).isEqualTo(expected);
     }

@@ -40,7 +40,7 @@ public class StringTest {
     @Test
     void substring() {
         String value = "(1,2)";
-        String newValue = value.substring(1,4);
+        String newValue = value.substring(1, 4);
 
         assertThat(newValue).isEqualTo("1,2");
     }
@@ -62,11 +62,11 @@ public class StringTest {
         final String expectMessage = "String index out of range: ";
 
         assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
-                .isThrownBy(()->{
+                .isThrownBy(() -> {
                     value.charAt(testIndex);
                 }).withMessageMatching(expectMessage + "\\d+");
 
-        assertThatThrownBy(()->{
+        assertThatThrownBy(() -> {
             value.charAt(testIndex);
         }).isInstanceOf(StringIndexOutOfBoundsException.class)
                 .hasMessageContaining(expectMessage + testIndex);
