@@ -9,8 +9,8 @@ public class RacingGameController {
         OutputView.printPlayResultMessage();
         for (int i = 0; i < tryNumber; i++) {
             cars.move();
+            OutputView.printNewLine();
         }
-        OutputView.printNewLine();
         OutputView.printWinners(cars.getWinners());
     }
 
