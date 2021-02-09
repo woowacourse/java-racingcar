@@ -9,6 +9,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RacingController {
     private boolean running = true;
@@ -16,7 +17,7 @@ public class RacingController {
     public void start() {
         try {
             Cars cars = generateCars();
-            Trial trial = setTrial();
+            Trial trial = trialSetting();
             doRace(cars, trial);
             showResult(cars);
         } catch (IllegalArgumentException e) {
@@ -30,22 +31,22 @@ public class RacingController {
         return new Cars(racers);
     }
 
-    private Trial setTrial() {
-        Trial trial = null;
-        while (trial == null) {
-            trial = receiveTrial(trial);
+    private Trial trialSetting() {
+        Optional<Trial> trial = Optional.empty();
+        while (trial.equals(Optional.empty())) {
+            trial = receiveTrial();
         }
-        return trial;
+        return trial.orElseThrow(IllegalArgumentException::new);
     }
 
-    private Trial receiveTrial(Trial trial) {
+    private Optional<Trial> receiveTrial() {
         try {
             OutputView.enterTrials();
-            trial = InputView.getTrial();
+            return Optional.of(InputView.getTrial());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
+            return Optional.empty();
         }
-        return trial;
     }
 
     private void doRace(Cars cars, Trial trial) {
