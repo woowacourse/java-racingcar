@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -8,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class RacerTest {
 
     @Test
-    void name_공백으로_들어온경우() {
+    @DisplayName("이름이 공백으로 들어온 경우 예외처리")
+    void emptyName() {
         assertThatThrownBy(() -> {
             new Racer(" ");
         }).isInstanceOf(IllegalArgumentException.class)
@@ -17,7 +19,8 @@ class RacerTest {
     }
 
     @Test
-    public void name_자동차이름은_1에서_5자사이() {
+    @DisplayName("이름이 1미만 5초과의 길이로 들어온 경우")
+    void checkNameLength() {
         assertAll(
                 () -> assertThatThrownBy(() -> {
                     new Racer("joanne");

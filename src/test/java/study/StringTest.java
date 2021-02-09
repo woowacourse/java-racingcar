@@ -8,6 +8,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class StringTest {
     @Test
+    @DisplayName("문자열 분리")
     void split() {
         String[] values ="1,2".split(",");
         assertThat(values[0]).isEqualTo("1");
@@ -16,6 +17,7 @@ public class StringTest {
     }
 
     @Test
+    @DisplayName("문자열 일부 추출")
     void substring() {
         String value = "(1,2)".substring(1, 4);
         assertThat(value).isEqualTo("1,2");

@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,14 +15,18 @@ class CarTest {
     }
 
     @Test
-    public void movePosition_4_이상_전진() {
+    @DisplayName("4이상의 값이 들어간 경우 전진하는지 확인")
+    public void checkMoveTrue() {
         car.movePosition(4);
-        assertEquals(1, car.getPosition());
+        Position position = car.getPosition();
+        assertEquals(1, position.getPosition());
     }
 
     @Test
-    public void movePosition_3_이하_멈춤() {
+    @DisplayName("3이의 값이 들어간 경우 전진하지 않았는지 확인")
+    public void checkMoveFalse() {
         car.movePosition(3);
-        assertEquals(0, car.getPosition());
+        Position position = car.getPosition();
+        assertEquals(0, position.getPosition());
     }
 }
