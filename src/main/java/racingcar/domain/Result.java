@@ -10,7 +10,7 @@ public class Result {
         this.result = result;
     }
 
-    public static Result of(List<CarState> result) {
+    public static Result from(List<CarState> result) {
         return new Result(result);
     }
 

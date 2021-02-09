@@ -21,15 +21,15 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars of(List<Car> cars) {
+    public static Cars from(List<Car> cars) {
         return new Cars(cars);
     }
 
-    public static Cars of(String inputCarNames) {
+    public static Cars from(String inputCarNames) {
         String[] carNames = inputCarNames.split(DELIMITER);
         List<Car> cars = new ArrayList<>();
         for (String name : carNames) {
-            cars.add(Car.of(name));
+            cars.add(Car.from(name));
         }
         return new Cars(cars);
     }
@@ -59,6 +59,6 @@ public class Cars {
         for (Car car : cars) {
             carStates.add(car.getCarState());
         }
-        return Result.of(carStates);
+        return Result.from(carStates);
     }
 }

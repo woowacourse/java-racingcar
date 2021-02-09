@@ -10,7 +10,7 @@ public class RoundTest {
     @ValueSource(ints = {0, -1, -5})
     public void roundCountShouldBeBiggerThanOneTest(int count) {
         assertThatThrownBy(() -> {
-            Round.of(count);
+            Round.from(count);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

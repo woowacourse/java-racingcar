@@ -14,10 +14,10 @@ public class CarsTest {
     @DisplayName("경주할 자동차는 1대 이하일 경우에 IllegalArgumentException 발생")
     public void carsShouldBeMoreThanOneTest() {
         List<Car> cars = new ArrayList<>();
-        cars.add(Car.of("bmw"));
+        cars.add(Car.from("bmw"));
 
         assertThatThrownBy(() -> {
-            Cars.of(cars);
+            Cars.from(cars);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -25,11 +25,11 @@ public class CarsTest {
     @DisplayName("양쪽끝 공백을 제거한 자동차 이름이 서로 중복되면 IllegalArgumentException 발생")
     public void carsShouldNotUseDuplicatedNameTest() {
         List<Car> cars = new ArrayList<>();
-        cars.add(Car.of("bmw"));
-        cars.add(Car.of(" bmw "));
+        cars.add(Car.from("bmw"));
+        cars.add(Car.from(" bmw "));
 
         assertThatThrownBy(() -> {
-            Cars.of(cars);
+            Cars.from(cars);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

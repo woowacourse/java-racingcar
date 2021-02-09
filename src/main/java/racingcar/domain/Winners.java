@@ -13,7 +13,7 @@ public class Winners {
         this.winners = winners;
     }
 
-    public static Winners of(List<Result> results) {
+    public static Winners from(List<Result> results) {
         int lastIndex = results.size() - GAP_WITH_SIZE_AND_INDEX;
         Result result = results.get(lastIndex);
         List<CarState> carStates = result.getCarStates();

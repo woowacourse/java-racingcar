@@ -10,7 +10,7 @@ public class Results {
         this.results = results;
     }
 
-    public static Results of(List<Result> results) {
+    public static Results from(List<Result> results) {
         return new Results(results);
     }
 

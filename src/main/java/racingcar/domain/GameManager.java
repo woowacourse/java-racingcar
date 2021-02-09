@@ -13,10 +13,10 @@ public class GameManager {
 
     public void playGame(GameManagerRequestDto requestDto) {
         String carNames = requestDto.getCarNames();
-        this.cars = Cars.of(carNames);
-        this.round = Round.of(requestDto.getRound());
+        this.cars = Cars.from(carNames);
+        this.round = Round.from(requestDto.getRound());
         this.results = moveAndGetResults();
-        this.winners = Winners.of(this.results.getResults());
+        this.winners = Winners.from(this.results.getResults());
     }
 
     private Results moveAndGetResults() {
@@ -26,7 +26,7 @@ public class GameManager {
             Result result = this.cars.getResultOfCars();
             results.add(result);
         }
-        return Results.of(results);
+        return Results.from(results);
     }
 
     public Results getResults() {

@@ -17,7 +17,7 @@ public class Car {
         this.name = trimmedName;
     }
 
-    public static Car of(String name) {
+    public static Car from(String name) {
         return new Car(name);
     }
 
