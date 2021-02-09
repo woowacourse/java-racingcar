@@ -1,6 +1,6 @@
 package racingcar.model;
 
-import racingcar.utils.RandomUtils;
+import java.util.Objects;
 
 public class Car {
 
@@ -9,9 +9,13 @@ public class Car {
     public static final String CAR_NAME_INVALID = "자동차 이름이 유효하지 않습니다.";
 
     public Car(String name) {
+        this(name, 0);
+    }
+
+    public Car(String name, int position){
         validateCarName(name.trim());
         this.name = name;
-        this.position = 0;
+        this.position = position;
     }
 
     public void validateCarName(String name) {
@@ -36,5 +40,18 @@ public class Car {
 
     public boolean isMaxPosition(int max) {
         return max == position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position == car.position && Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }

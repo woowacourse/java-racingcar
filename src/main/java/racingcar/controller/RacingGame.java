@@ -5,6 +5,7 @@ import racingcar.model.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,9 +24,6 @@ public class RacingGame {
 
     public static List<Car> findWinners() {
         int max = cars.getMaxDistance();
-        cars.getCars()
-                .stream()
-                .forEach(car -> car.isMaxPosition(max));
         return cars.getCars()
                 .stream()
                 .filter(car -> car.isMaxPosition(max))
@@ -46,9 +44,11 @@ public class RacingGame {
     public static boolean initializeCars() {
         try {
             OutputView.printUserPromptCarNames();
-            cars = new Cars(splitInput(InputView.askUserInput())
+            List<Car> carsList = new ArrayList<>();
+            splitInput(InputView.askUserInput())
                     .stream()
-                    .collect(Collectors.toList()));
+                    .forEach(carName -> carsList.add(new Car(carName)));
+            cars = new Cars(carsList);
         } catch (IllegalArgumentException e) {
             return false;
         }
