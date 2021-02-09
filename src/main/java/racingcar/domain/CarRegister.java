@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.domain.car.Car;
 import racingcar.exception.InvalidDuplicateCarNameException;
 import racingcar.exception.InvalidNumberOfRegisteredCarsException;
 
