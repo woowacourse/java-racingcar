@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.domain.car.Car;
 import racingcar.domain.engine.Engine;
 import racingcar.domain.engine.RandomEngine;
 

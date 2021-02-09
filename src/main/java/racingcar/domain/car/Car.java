@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import racingcar.domain.engine.Engine;
 
@@ -8,12 +8,12 @@ public class Car {
     private static final int GO_FORWARD_DISTANCE = 1;
     public static final int DEFAULT_CAR_POSITION = 0;
 
-    private String name;
+    private Name name;
     private Engine engine;
     private int position = DEFAULT_CAR_POSITION;
 
     public Car(String name, Engine engine) {
-        this.name = name;
+        this.name = Name.of(name);
         this.engine = engine;
     }
 
@@ -24,7 +24,7 @@ public class Car {
     }
 
     public String displayCurrentStatus() {
-        return name + " : " + displayCurrentPosition();
+        return name.getValue() + " : " + displayCurrentPosition();
     }
 
     private String displayCurrentPosition() {
@@ -44,6 +44,6 @@ public class Car {
     }
 
     public String getName() {
-        return name;
+        return name.getValue();
     }
 }

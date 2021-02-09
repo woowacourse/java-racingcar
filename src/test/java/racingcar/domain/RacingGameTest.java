@@ -1,11 +1,10 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.car.Car;
 import racingcar.domain.engine.FixedEngine;
 
 class RacingGameTest {
