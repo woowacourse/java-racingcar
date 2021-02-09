@@ -14,7 +14,7 @@ public class Cars {
     }
 
     private List<Car> generateCars(Racers racers) {
-        return racers.getNames().stream()
+        return racers.streams()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }

@@ -36,7 +36,7 @@ public class Racers {
                 .collect(Collectors.toList());
     }
 
-    public List<Racer> getNames() {
-        return racers;
+    public Stream<Racer> streams() {
+        return racers.stream();
     }
 }
