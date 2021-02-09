@@ -99,22 +99,22 @@ public class CalculatorController {
     public List<Integer> splitNumbers(String value, String delimiters) {
         String[] numbers = value.split(delimiters);
 
-        isValidNumbers(numbers);
+        validateNumbers(numbers);
 
         return Arrays.stream(numbers)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-    private void isValidNumbers(String[] numbers) {
+    private void validateNumbers(String[] numbers) {
         for (String number : numbers) {
-            checkCharacterNullOrEmpty(number);
+            checkNotEmpty(number);
             checkNumber(number);
         }
     }
 
-    private void checkCharacterNullOrEmpty(String value) {
-        if (value == null || value.isEmpty()) {
+    private void checkNotEmpty(String value) {
+        if (checkNullOrEmpty(value)) {
             throw new RuntimeException("숫자 문자열만 입력해 주세요");
         }
     }
