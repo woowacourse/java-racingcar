@@ -14,10 +14,7 @@ public class CarTest {
         Name name = new Name("포비");
         Car car = new Car(name);
 
-        assertThat(car).isInstanceOf(Car.class)
-                .isEqualTo(new Car(name));
-//        assertThat(car.getName()).isEqualTo(name);
-//        assertThat(car.getPosition()).isEqualTo(INIT_POSITION);
+        assertThat(car).isEqualTo(new Car(name));
     }
 
     @DisplayName("적합한 이름과 포지션이 둘다 주어졌을떄 Car가 잘 생성되는지")
@@ -27,8 +24,7 @@ public class CarTest {
         Position position = new Position(4);
         Car car = new Car(name, position);
 
-        assertThat(car).isInstanceOf(Car.class)
-                .isEqualTo(new Car(name, position));
+        assertThat(car).isEqualTo(new Car(name, position));
     }
 
     @DisplayName("주어진 숫자에 따라 자동차가 움직이는지 테스트")
@@ -38,6 +34,7 @@ public class CarTest {
         Car car = new Car(new Name("TEST"));
         car.move(given);
 
-        assertThat(car.getPosition().equals(new Position(1))).isEqualTo(result);
+        assertThat(car.getPosition().equals(new Position(1)))
+                .isEqualTo(result);
     }
 }

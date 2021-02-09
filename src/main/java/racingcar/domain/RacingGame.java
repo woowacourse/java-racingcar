@@ -5,7 +5,7 @@ import java.util.List;
 public class RacingGame {
     public static final int MINIMUM_NUMBER_OF_ROUNDS = 1;
     public static final String INVALID_NUMBER_OF_ROUNDS_MESSAGE = "[ERROR] 라운드 횟수는 1이상이어야 합니다";
-    public static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
+    public static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자 (정수)를 입력해 주세요.";
     public static final int INIT_ROUND = 0;
 
     //TODO
