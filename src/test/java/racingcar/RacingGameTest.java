@@ -34,13 +34,18 @@ public class RacingGameTest {
     @Test
     @DisplayName("가장 멀리 이동한 자동차가 우승한다.")
     void findWinnersTest() {
-        Cars cars = new Cars(Arrays.asList(
+        List<Car> cars = Arrays.asList(
                 new Car("Babo", 5),
                 new Car("Ryan", 3),
                 new Car("Pika", 5)
-        ));
-        RacingGame.cars = cars;
-        cars.updateMaxDistance();
+        );
+        RacingGame.assignCars(cars);
+
+        /*
+        * 여기서 getCars() 메소드는 테스트케이스를 위한 메소드라고 생각이 됩니다. (나중에 확장하다보면 쓰일 수 있겠지만 현재로는)
+        * RacingGame 내부에있는 변수에 직접 접근하는 것보다 메소드를 사용하는 것이 낫다고 판단되어 사용했는데 테스트 케이스를 위한 메소드를 만들어도 될까요?
+        */
+        RacingGame.getCars().updateMaxDistance();
         assertThat(RacingGame.findWinners()).isEqualTo(Arrays.asList(
                 new Car("Babo", 5),
                 new Car("Pika", 5)));
