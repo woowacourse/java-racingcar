@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGame {
+    public static final String DELIMITER = ",";
     public static Cars cars;
     public static int trials;
 
@@ -22,44 +23,46 @@ public class RacingGame {
         OutputView.printWinners(findWinners());
     }
 
+    public static void assignCars(List<Car> temporaryCars) {
+        cars = new Cars(temporaryCars);
+    }
+
+    public static Cars getCars() {
+        return cars;
+    }
+
     public static List<Car> findWinners() {
-        int max = cars.getMaxDistance();
         return cars.getCars()
                 .stream()
-                .filter(car -> car.isMaxPosition(max))
+                .filter(car -> car.isMaxPosition(cars.getMaxDistance()))
                 .collect(Collectors.toList());
     }
 
-    public static void playRounds() {
-        for (int i = 0; i < trials; i++) {
-            playRound();
-            OutputView.printRoundResult(cars);
+    public static List<String> splitInput(String input) {
+        return Arrays.asList(input.split(DELIMITER));
+    }
+
+    public static void isValidNumber(String input) {
+        if (Integer.parseInt(input) < 1) {
+            throw new IllegalArgumentException("시행 횟수는 1회 이상이어야 합니다.");
         }
     }
 
-    public static void playRound() {
-        cars.moveCars();
-    }
-
-    public static boolean initializeCars() {
+    private static boolean initializeCars() {
         try {
             OutputView.printUserPromptCarNames();
-            List<Car> carsList = new ArrayList<>();
+            List<Car> temporaryCars = new ArrayList<>();
             splitInput(InputView.askUserInput())
                     .stream()
-                    .forEach(carName -> carsList.add(new Car(carName)));
-            cars = new Cars(carsList);
+                    .forEach(carName -> temporaryCars.add(new Car(carName)));
+            assignCars(temporaryCars);
         } catch (IllegalArgumentException e) {
             return false;
         }
         return true;
     }
 
-    public static List<String> splitInput(String input) {
-        return Arrays.asList(input.split(","));
-    }
-
-    public static boolean getTrials() {
+    private static boolean getTrials() {
         OutputView.printUserPromptTrials();
         String input = InputView.askUserInput().trim();
         if (validateTrials(input)) {
@@ -69,7 +72,18 @@ public class RacingGame {
         return false;
     }
 
-    public static boolean validateTrials(String input) {
+    private static void playRounds() {
+        for (int i = 0; i < trials; i++) {
+            playRound();
+            OutputView.printRoundResult(cars);
+        }
+    }
+
+    private static void playRound() {
+        cars.moveCars();
+    }
+
+    private static boolean validateTrials(String input) {
         try {
             isValidNumber(input);
         } catch (IllegalArgumentException e) {
@@ -78,11 +92,5 @@ public class RacingGame {
             return false;
         }
         return true;
-    }
-
-    public static void isValidNumber(String input){
-        if(Integer.parseInt(input) < 1){
-            throw new IllegalArgumentException("시행 횟수는 1회 이상이어야 합니다.");
-        }
     }
 }
