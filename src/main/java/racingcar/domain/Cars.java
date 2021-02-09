@@ -13,16 +13,15 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
 public class Cars {
-    public static final String SAME_NAME_ERROR_MSG_FORMAT = "[ERROR] 중복된 이름이 있습니다 : %s";
-    public static final String COMMA_AND_BLANK = ", ";
+    private static final String SAME_NAME_ERROR_MSG_FORMAT = "[ERROR] 중복된 이름이 있습니다 : %s";
+    private static final String COMMA_AND_BLANK = ", ";
     private static final int INIT_ROUND = 1;
 
     private final List<Car> cars;
     private int currentRound;
 
     private Cars(List<Car> cars, int currentRound) {
-        List<String> sameNameList = new ArrayList<>();
-        validateSameName(cars, sameNameList);
+        validateSameName(cars);
         this.cars = cars;
         this.currentRound = currentRound;
     }
@@ -41,7 +40,8 @@ public class Cars {
                 .collect(Collectors.toList()), INIT_ROUND);
     }
 
-    private void validateSameName(List<Car> cars, List<String> sameNameList) {
+    private void validateSameName(List<Car> cars) {
+        List<String> sameNameList = new ArrayList<>();
         cars.stream()
                 .map(Car::getName)
                 .collect(groupingBy(Function.identity(), counting()))
@@ -82,7 +82,7 @@ public class Cars {
         return currentRound > goalRound;
     }
 
-    public int getCurrentRound(){
+    public int getCurrentRound() {
         return currentRound;
     }
 }

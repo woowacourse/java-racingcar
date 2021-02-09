@@ -6,7 +6,7 @@ import racingcar.dto.WinnersDto;
 
 import java.util.Collections;
 
-public class OutputView {
+public class OutputView implements Outputable {
     private static final String DASH = "-";
     private static final String LEADER_BOARD_DATA_FORMAT = "%s : %s%n";
     private static final String WINNER_ANNOUNCE_MSG = "가 최종 우승했습니다.";
@@ -16,7 +16,8 @@ public class OutputView {
     private static final String COMMA_AND_BLANK = ", ";
     private static final String EMPTY = "";
 
-    public static void printLeaderBoard(CarsDto carsDto) {
+    @Override
+    public void printLeaderBoard(CarsDto carsDto) {
         for (CarDto car : carsDto.getCarDtoList()) {
             String positionStick = makeStick(car);
             printf(LEADER_BOARD_DATA_FORMAT, car.getName(), positionStick);
@@ -24,37 +25,39 @@ public class OutputView {
         println();
     }
 
-    public static String makeStick(CarDto car) {
+    public String makeStick(CarDto car) {
         return String.join("", Collections.nCopies(car.getPosition(), DASH));
     }
 
-    public static void announceWinners(WinnersDto winnersDto) {
+    @Override
+    public void announceWinners(WinnersDto winnersDto) {
         printResultMessage();
         println(String.join(COMMA_AND_BLANK, winnersDto.getNames())
                 .concat(WINNER_ANNOUNCE_MSG));
     }
 
-    public static void printInputCarsNameMessage() {
+    @Override
+    public void printInputCarsNameMessage() {
         println(INPUT_CARS_NAME_MSG);
     }
 
-    public static void printInputNumberOfRoundsMessage() {
+    public void printInputNumberOfRoundsMessage() {
         println(INPUT_NUMBER_OF_ROUNDS_MSG);
     }
 
-    public static void println() {
+    public void println() {
         println(EMPTY);
     }
 
-    public static void println(String message) {
+    public void println(String message) {
         System.out.println(message);
     }
 
-    public static void printf(String format, Object... args) {
+    public void printf(String format, Object... args) {
         System.out.printf(format, args);
     }
 
-    private static void printResultMessage() {
+    private void printResultMessage() {
         println(EXECUTE_RESULT_MSG);
     }
 }

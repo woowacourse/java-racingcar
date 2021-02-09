@@ -12,7 +12,8 @@ class OutputViewTest {
     @ParameterizedTest
     @CsvSource({"포비,3,---", "웨지,2,--", "삭정,1,-"})
     void makeStick_스틱_생성_제대로_되는지(String name, int position, String stick) {
+        OutputView outputView = new OutputView();
         CarDto car = new CarDto(name, position);
-        assertThat(OutputView.makeStick(car)).isEqualTo(stick);
+        assertThat(outputView.makeStick(car)).isEqualTo(stick);
     }
 }

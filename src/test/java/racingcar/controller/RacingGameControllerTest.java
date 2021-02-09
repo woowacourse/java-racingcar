@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ControllerTest {
+public class RacingGameControllerTest {
     RacingGameController racingGameController;
     List<String> names = Arrays.asList("똘이", "멍이", "순이");
 
@@ -27,10 +26,10 @@ public class ControllerTest {
     @DisplayName("라운드 진행 테스트")
     @Test
     void 라운드_진행_테스트() {
-        CarsDto before = racingGameController.executeRound();
+        CarsDto before = racingGameController.progressRound();
         int beforeRound = before.getCurrentRound();
 
-        CarsDto after = racingGameController.executeRound();
+        CarsDto after = racingGameController.progressRound();
         int afterRound = after.getCurrentRound();
 
         assertThat(beforeRound).isLessThan(afterRound);
@@ -48,7 +47,7 @@ public class ControllerTest {
         Cars cars = Cars.createCars(Arrays.asList(car, car2, car3));
 
         racingGameController.setUpGame(cars, 5);
-        WinnersDto winners = racingGameController.findWinners();
+        WinnersDto winners = racingGameController.announceWinners();
 
         assertThat(String.join(",", winners.getNames())).isEqualTo("웨지");
     }

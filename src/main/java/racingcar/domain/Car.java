@@ -5,9 +5,8 @@ public class Car {
     private static final int ZERO = 0;
     private static final int MAX_LENGTH = 5;
     private static final int MOVABLE_VALUE = 5;
-
-    private int position;
     private final String name;
+    private int position;
 
     public Car(String name) {
         name = name.trim();
