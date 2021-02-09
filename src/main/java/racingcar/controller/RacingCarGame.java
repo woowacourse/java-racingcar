@@ -12,6 +12,7 @@ import racingcar.view.OutputView;
  * @author Kimun Kim, github.com/tributetothemoon
  */
 public class RacingCarGame {
+    private final OutputView outputView = OutputView.getInstance();
     private final Cars cars;
     private final Round round;
 
@@ -25,15 +26,15 @@ public class RacingCarGame {
     }
 
     public void play() {
-        OutputView.printResultMessage();
+        outputView.printResultMessage();
 
         while (!round.isEnd()) {
             cars.moveCars();
-            OutputView.printCarsPosition(cars.toDTO());
+            outputView.printCarsPosition(cars.toDTO());
             round.nextRound();
         }
 
         Winners winners = Winners.of(cars);
-        OutputView.printWinners(winners.toListOfNames());
+        outputView.printWinners(winners.toListOfNames());
     }
 }

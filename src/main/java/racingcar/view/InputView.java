@@ -18,17 +18,28 @@ public class InputView {
     private static final String ERROR_NONE_INPUT_VALUE = "입력값이 없습니다.";
     private static final String ERROR_INVALID_INPUT_VALUE = "유효하지 않은 입력입니다.";
 
-    private static Scanner scanner;
+    private static InputView instance;
 
-    public static void setScanner(Scanner scanner) {
-        InputView.scanner = scanner;
+    private final Scanner scanner;
+    private final OutputView outputView;
+
+    private InputView(Scanner scanner) {
+        this.scanner = scanner;
+        this.outputView = OutputView.getInstance();
     }
 
-    private static String deleteWhiteSpaces(String string) {
+    public static InputView getInstance() {
+        if (instance == null) {
+            instance = new InputView(new Scanner(System.in));
+        }
+        return instance;
+    }
+
+    private String deleteWhiteSpaces(String string) {
         return string.replaceAll("\\s+", "");
     }
 
-    private static String getInputWithMessage(String message) {
+    private String getInputWithMessage(String message) {
         System.out.println(message);
         try {
             String rawString = deleteWhiteSpaces(scanner.nextLine());
@@ -40,28 +51,28 @@ public class InputView {
         }
     }
 
-    private static void isNotEmptyStringOrThrowException(String string) {
+    private void isNotEmptyStringOrThrowException(String string) {
         if (string.equals("")) {
             throw new IllegalArgumentException(ERROR_NONE_INPUT_VALUE);
         }
     }
 
-    public static List<String> getCarNames() {
+    public List<String> getCarNames() {
         String rawString = getInputWithMessage(MESSAGE_REQUEST_CAR_NAMES);
         return new ArrayList<>(Arrays.asList(rawString.split(",")));
     }
 
-    public static int getRoundNumber() {
+    public int getRoundNumber() {
         String rawString = getInputWithMessage(MESSAGE_REQUEST_ROUND_NUMBER);
         try {
             return parseIntOrThrowException(rawString);
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e);
+            outputView.printErrorMessage(e);
             return getRoundNumber();
         }
     }
 
-    private static int parseIntOrThrowException(String string) {
+    private int parseIntOrThrowException(String string) {
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException e) {

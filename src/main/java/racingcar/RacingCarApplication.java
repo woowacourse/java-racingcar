@@ -16,9 +16,10 @@ import java.util.Scanner;
  * @author TaeHyeok Lee , github.com/taelee42
  */
 public class RacingCarApplication {
+    public static InputView inputView = InputView.getInstance();
+    public static OutputView outputView = OutputView.getInstance();
+
     public static void main(String[] arg) {
-        Scanner scanner = new Scanner(System.in);
-        InputView.setScanner(scanner);
 
         Cars cars = createCarsFromUser();
         Round round = createRoundFromUser();
@@ -28,18 +29,18 @@ public class RacingCarApplication {
 
     private static Cars createCarsFromUser() {
         try {
-            return Cars.of(InputView.getCarNames());
+            return Cars.of(inputView.getCarNames());
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e);
+            outputView.printErrorMessage(e);
             return createCarsFromUser();
         }
     }
 
     private static Round createRoundFromUser() {
         try {
-            return Round.from(InputView.getRoundNumber());
+            return Round.from(inputView.getRoundNumber());
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e);
+            outputView.printErrorMessage(e);
             return createRoundFromUser();
         }
     }

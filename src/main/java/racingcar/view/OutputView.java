@@ -20,20 +20,29 @@ public class OutputView {
     private static final String EXECUTION_RESULT = "실행 결과";
     private static final char POSITION_CHARACTER = '-';
 
-    public static void printErrorMessage(Exception e) {
+    private static OutputView instance;
+
+    public static OutputView getInstance() {
+        if (instance == null) {
+            instance = new OutputView();
+        }
+        return instance;
+    }
+
+    public void printErrorMessage(Exception e) {
         System.out.println(String.format(ERROR_MESSAGE_FORMAT, e.getMessage()));
     }
 
-    public static void printResultMessage() {
+    public void printResultMessage() {
         System.out.println(EXECUTION_RESULT);
     }
 
-    public static void printCarsPosition(CarsDTO carsDTO) {
-        carsDTO.toList().forEach(OutputView::printCarPosition);
+    public void printCarsPosition(CarsDTO carsDTO) {
+        carsDTO.toList().forEach(this::printCarPosition);
         System.out.println();
     }
 
-    private static void printCarPosition(CarDTO carDTO) {
+    private void printCarPosition(CarDTO carDTO) {
         StringBuffer positionStringBuffer = new StringBuffer();
         for (int i = 0; i < carDTO.getPosition(); i++) {
             positionStringBuffer.append(POSITION_CHARACTER);
@@ -42,7 +51,7 @@ public class OutputView {
         System.out.println();   // 개행
     }
 
-    public static void printWinners(List<String> winners) {
+    public void printWinners(List<String> winners) {
         Collections.sort(winners);
         System.out.print(WINNERS_LIST);
 
