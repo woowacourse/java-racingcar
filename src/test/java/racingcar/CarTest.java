@@ -17,6 +17,7 @@ public class CarTest {
         car.move(5);
         // then(검증)
         assertThat(car.getPosition()).isEqualTo(previous + 1);
+        assertThat(car).isEqualTo(new Car("mini",1));
     }
 
 }
