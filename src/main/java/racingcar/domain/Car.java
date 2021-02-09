@@ -7,7 +7,7 @@ import racingcar.domain.input.carname.validator.exception.InvalidCarNameFormatEx
 public class Car {
     private final String name;
     private int position;
-    private final static Pattern CAR_NAME_FORMAT_PATTERN
+    private static final Pattern CAR_NAME_FORMAT_PATTERN
         = Pattern.compile("^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{1,5}$");
 
     public Car(String name) {
