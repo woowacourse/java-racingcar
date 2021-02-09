@@ -16,7 +16,7 @@ public class CalculatorController {
     private static final int DELIMITER_INDEX = 1;
     private static final int NUMBERS_INDEX = 2;
     private static final String COMMA = ",";
-    private static final String COLON = ",";
+    private static final String COLON = ":";
     private static final String DELIMITER_DIVIDER = "|";
     private static final String DEFAULT_DELIMITERS = COMMA + DELIMITER_DIVIDER + COLON;
     private static final String EMPTY_STRING = "";
