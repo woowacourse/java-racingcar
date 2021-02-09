@@ -10,7 +10,7 @@ import racingcar.view.OutputView;
 
 public class GameRunner {
 
-    final Scanner scanner;
+    private final Scanner scanner;
 
     private Cars cars;
     private Rounds rounds;
