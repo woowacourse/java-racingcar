@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import racingcar.view.OutputView;
 import utils.RandomUtils;
 
 import static java.util.Comparator.*;
