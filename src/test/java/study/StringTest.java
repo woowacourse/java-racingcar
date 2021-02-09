@@ -8,24 +8,23 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
     @Test
-    void split() {
+    void split(){
         String[] values = "1,2".split(",");
-        assertThat(values).containsExactly("1", "2");
+        assertThat(values).containsExactly("1","2");
     }
 
     @Test
-    void substirng() {
-        String values = "(1,2)".substring(1, 4);
+    void name() {
+        String values = "(1,2)".substring(1,4);
         assertThat(values).isEqualTo("1,2");
     }
 
     @Test
-    @DisplayName("charAt 학습 테스트")
-    void charAt() {
-        assertThat("abc".charAt(0)).isEqualTo('a');
+    @DisplayName("요구사항3")
+    void name3() {
         assertThatThrownBy(() -> {
-            "abc".charAt(3);
+            throw new IndexOutOfBoundsException(String.valueOf("abc".charAt(4)));
         }).isInstanceOf(IndexOutOfBoundsException.class)
-                .hasMessageContaining("index");
+                .hasMessageContaining("a");
     }
 }

@@ -36,13 +36,6 @@ public class Cars {
         return maxNumber;
     }
 
-    public void playGame(int count) {
-        for (int i = 0; i < count; i++) {
-            moveCar();
-            OutputView.showStatus(cars);
-        }
-    }
-
     public void moveCar() {
         for (Car car : cars) {
             car.move(RandomUtils.nextInt(MINIMUM_VALUE, MAXIMUM_VALUE));
