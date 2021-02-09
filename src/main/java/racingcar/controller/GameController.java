@@ -11,15 +11,15 @@ public class GameController {
         GamePage.printResultPage();
         while (game.notFinished()) {
             game.incrementCount();
-            playSingleRound();
+            playSingleRound(game);
         }
-        GamePage.printFinalResult(game.winners());
+        GamePage.printFinalResult(game.joinWinnerNames(CarRepository.collectWinners()));
     }
 
-    public void playSingleRound() {
+    public void playSingleRound(Game game) {
         for (Car car : CarRepository.cars()) {
-            car.tryToMoveForward(Game.generateRandomInteger());
+            car.tryToMoveForward(game.generateRandomInteger());
         }
-        GamePage.printSingleRoundResult();
+        GamePage.printSingleRoundResult(CarRepository.cars());
     }
 }
