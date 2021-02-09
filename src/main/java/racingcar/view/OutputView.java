@@ -39,7 +39,7 @@ public class OutputView {
     }
 
     public static void printWinners(Winners winners) {
-        List<String> winnerNames = winners.getWinners();
+        List<String> winnerNames = winners.toList();
         String result = String.join(", ", winnerNames);
         System.out.println(result + "가 최종 우승했습니다.");
     }

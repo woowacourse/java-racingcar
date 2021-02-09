@@ -16,7 +16,7 @@ public class GameManager {
         this.cars = Cars.from(carNames);
         this.round = Round.from(requestDto.getRound());
         this.results = move();
-        this.winners = Winners.from(this.results.getResults());
+        this.winners = Winners.from(this.results);
     }
 
     private Results move() {

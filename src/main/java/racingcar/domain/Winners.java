@@ -6,32 +6,23 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Winners {
-    private static final int GAP_WITH_SIZE_AND_INDEX = 1;
     private final List<String> winners;
 
     private Winners(List<String> winners) {
         this.winners = winners;
     }
 
-    public static Winners from(List<Result> results) {
-        int lastIndex = results.size() - GAP_WITH_SIZE_AND_INDEX;
-        Result result = results.get(lastIndex);
+    public static Winners from(Results results) {
+        Result result = results.getLastResult();
         List<CarState> carStates = result.getCarStates();
         List<String> winners = carStates.stream()
-                .filter(carState -> carState.isMaxPosition(getMaxPosition(result)))
-                .map(CarState::getName)
-                .collect(Collectors.toList());
+            .filter(carState -> results.isMaxPosition(carState.getPosition()))
+            .map(CarState::getName)
+            .collect(Collectors.toList());
         return new Winners(winners);
     }
 
-    private static int getMaxPosition(Result result) {
-        return result.getCarStates().stream()
-                .mapToInt(CarState::getPosition)
-                .max()
-                .orElseThrow(NoSuchElementException::new);
-    }
-
-    public List<String> getWinners() {
+    public List<String> toList() {
         return Collections.unmodifiableList(winners);
     }
 }
