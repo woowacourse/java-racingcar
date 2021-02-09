@@ -9,7 +9,7 @@ class GameTest {
     void notFinished() {
         Game testingGame = new Game(1);
         assertTrue(testingGame.notFinished());
-        testingGame.incrementCount();
+        testingGame.play();
         assertFalse(testingGame.notFinished());
     }
 }

@@ -1,7 +1,5 @@
 package racingcar.controller;
 
-import static racingcar.domain.game.Game.*;
-
 import racingcar.domain.car.Car;
 import racingcar.domain.car.CarRepository;
 import racingcar.domain.game.Game;
@@ -13,15 +11,15 @@ public class GameController {
     public void startGame(Game game) {
         GamePage.printResultPage();
         while (game.notFinished()) {
-            game.incrementCount();
+            game.play();
             playSingleRound();
         }
-        GamePage.printFinalResult(CarRepository.collectWinnerNames());
+        GamePage.printFinalResult(CarRepository.cars());
     }
 
     public void playSingleRound() {
         for (Car car : CarRepository.cars()) {
-            car.tryToMoveForward(RandomUtils.nextInt(START_INCLUSIVE, END_INCLUSIVE));
+            car.move(RandomUtils.nextInt(0, 9));
         }
         GamePage.printSingleRoundResult();
     }
