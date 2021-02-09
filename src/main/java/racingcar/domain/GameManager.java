@@ -12,11 +12,15 @@ public class GameManager {
     private Winners winners;
 
     public void playGame(GameManagerRequestDto requestDto) {
+        initSet(requestDto);
+        this.results = move();
+        this.winners = Winners.from(this.results);
+    }
+
+    private void initSet(GameManagerRequestDto requestDto) {
         String carNames = requestDto.getCarNames();
         this.cars = Cars.from(carNames);
         this.round = Round.from(requestDto.getRound());
-        this.results = move();
-        this.winners = Winners.from(this.results);
     }
 
     private Results move() {
