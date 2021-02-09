@@ -54,14 +54,15 @@ public class Cars {
     public List<Car> getWinners() {
         int maxPosition = getMaxPosition();
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
     }
 
     private int getMaxPosition() {
         return cars.stream()
                 .max(comparingInt(Car::getPosition))
-                .get()
+                .orElseThrow(() -> new RuntimeException("Cars에 값이 없습니다."))
                 .getPosition();
     }
+
 }
