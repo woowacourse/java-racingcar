@@ -1,5 +1,7 @@
 package racing.domain;
 
+import racing.domain.number.Position;
+
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,16 +9,15 @@ import java.util.regex.Pattern;
 public class Car {
     private static final Pattern PATTERN = Pattern.compile("[a-zA-Z]{1,5}");
     private static final int MINIMUM_MOVE_NUMBER = 4;
-    private static final int DEFAULT_POSITION = 0;
 
     private final String name;
-    private int position;
+    private final Position position;
 
     public Car(final String name) {
         String copy = new String(name);
         validateName(copy);
         this.name = copy;
-        this.position = DEFAULT_POSITION;
+        this.position = Position.of();
     }
 
     private void validateName(final String name) {
@@ -31,14 +32,14 @@ public class Car {
 
     public boolean move(final int randomNumber) {
         if (randomNumber >= MINIMUM_MOVE_NUMBER) {
-            this.position++;
+            position.add();
             return true;
         }
         return false;
     }
 
-    public int getPosition() {
-        return position;
+    public int getPositionValue() {
+        return position.getValue();
     }
 
     public String getName() {

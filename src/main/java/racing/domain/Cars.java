@@ -56,16 +56,16 @@ public class Cars implements Cloneable {
     public Winners findWinners() {
         int maxPosition = getMaxPosition();
         List<Car> winners = cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.getPositionValue() == maxPosition)
                 .collect(Collectors.toList());
         return new Winners(winners);
     }
 
     private int getMaxPosition() {
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getPosition))
+                .max(Comparator.comparingInt(Car::getPositionValue))
                 .orElseThrow(IllegalStateException::new)
-                .getPosition();
+                .getPositionValue();
     }
 
     public List<Car> getCars() {

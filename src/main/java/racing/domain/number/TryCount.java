@@ -1,6 +1,6 @@
 package racing.domain.number;
 
-public class TryCount {
+public class TryCount implements Number{
     private static final int ZERO = 0;
 
     private int value;
@@ -22,5 +22,10 @@ public class TryCount {
         }
         this.value--;
         return true;
+    }
+
+    @Override
+    public int getValue() {
+        return value;
     }
 }
