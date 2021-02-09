@@ -6,9 +6,7 @@ import java.util.regex.Pattern;
 public class StringSplitter {
     
     private static final Pattern PATTERN = Pattern.compile("//(.)\n(.*)");
-    
     private static final String DEFAULT_REGEX = ",|:";
-    
     private static final String OR = "|";
     
     private String input;
