@@ -59,7 +59,7 @@ public class InputView {
 
     public List<String> requestCarNames() {
         String rawString = requestUserInputWithMessage(MESSAGE_REQUEST_CAR_NAMES);
-        return new ArrayList<>(Arrays.asList(rawString.split(",")));
+        return Arrays.asList(rawString.split(","));
     }
 
     public int requestRoundNumber() {
