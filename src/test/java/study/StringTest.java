@@ -27,7 +27,6 @@ public class StringTest {
         assertThat(value).isEqualTo('b');
         assertThatThrownBy(() -> "abc".charAt(4))
                 .isInstanceOf(IndexOutOfBoundsException.class);
-//                .hasMessageContaining("abc");
     }
 
 
