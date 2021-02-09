@@ -1,33 +1,28 @@
 package racingcar.domain;
 
-import racingcar.validator.CarValidator;
-
 import java.util.Objects;
 
 public class Car {
     private static final int MIN_VALUE_TO_MOVE = 4;
 
-    private final String name;
+    private final Name name;
     private int position;
 
-    private Car(String name) {
+    private Car(Name name) {
         this(name, 0);
     }
 
-    private Car(String name, int position) {
-        this.name = name.trim();
+    private Car(Name name, int position) {
+        this.name = name;
         this.position = position;
     }
 
-    public static Car of(String name) {
+    public static Car of(Name name) {
         return Car.of(name, 0);
     }
 
-    public static Car of(String name, int position) {
-        CarValidator.validateCarNameIsNullOrEmpty(name);
-        String trimmedName = name.trim();
-        CarValidator.validateCarNameLength(trimmedName);
-        return new Car(trimmedName, position);
+    public static Car of(Name name, int position) {
+        return new Car(name, position);
     }
 
     public static Car getInstance(Car car) {
@@ -48,8 +43,8 @@ public class Car {
         return Math.max(this.position, position);
     }
 
-    public String getName() {
-        return this.name;
+    public Name getName() {
+        return Name.of(name.getValue());
     }
 
     public int getPosition() {

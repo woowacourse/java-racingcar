@@ -19,7 +19,7 @@ public class OutputView {
     private static void printResult(Result result) {
         List<Car> cars = result.getResult();
         for (Car car : cars) {
-            System.out.print(car.getName());
+            System.out.print(car.getName().getValue());
             System.out.print(" : ");
             printCarSteps(car.getPosition());
         }

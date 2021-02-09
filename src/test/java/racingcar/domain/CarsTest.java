@@ -17,7 +17,7 @@ public class CarsTest {
     @DisplayName("경주할 자동차는 1대 이하일 경우에 IllegalArgumentException 발생")
     public void carsShouldBeMoreThanOneTest() {
         List<Car> cars = new ArrayList<>();
-        cars.add(Car.of("bmw"));
+        cars.add(Car.of(Name.of("bmw")));
 
         assertThatThrownBy(() -> {
             Cars.of(cars);
@@ -28,8 +28,8 @@ public class CarsTest {
     @DisplayName("양쪽끝 공백을 제거한 자동차 이름이 서로 중복되면 IllegalArgumentException 발생")
     public void carsShouldNotUseDuplicatedNameTest() {
         List<Car> cars = new ArrayList<>();
-        cars.add(Car.of("bmw"));
-        cars.add(Car.of(" bmw "));
+        cars.add(Car.of(Name.of("bmw")));
+        cars.add(Car.of(Name.of("bmw")));
 
         assertThatThrownBy(() -> {
             Cars.of(cars);
@@ -62,9 +62,9 @@ public class CarsTest {
     public void getMaxPositionTest() {
         //given
         Cars cars = Cars.of(Arrays.asList(
-                Car.of("bmw", 3),
-                Car.of("tico", 1),
-                Car.of("k5", 10)
+                Car.of(Name.of("bmw"), 3),
+                Car.of(Name.of("tico"), 1),
+                Car.of(Name.of("k5"), 10)
         ));
 
         //when

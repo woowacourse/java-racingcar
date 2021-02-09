@@ -20,8 +20,8 @@ public class Cars {
     }
 
     public static Cars of(String inputCarNames) {
-        String[] carNames = inputCarNames.split(DELIMITER);
-        List<Car> cars = Arrays.stream(carNames).map(Car::of).collect(Collectors.toList());
+        List<Name> carNames = Arrays.stream(inputCarNames.split(",")).map(Name::of).collect(Collectors.toList());
+        List<Car> cars = carNames.stream().map(Car::of).collect(Collectors.toList());
         return new Cars(cars);
     }
 
@@ -29,13 +29,6 @@ public class Cars {
         for (int i = 0; i < cars.size(); i++) {
             cars.get(i).tryToMove(numbers.get(i));
         }
-    }
-
-    public List<String> findWinners() {
-        return cars.stream()
-                .filter(car -> car.isSamePosition(getMaxPosition()))
-                .map(Car::getName)
-                .collect(Collectors.toList());
     }
 
     public int getMaxPosition() {

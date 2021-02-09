@@ -23,6 +23,7 @@ public class Results {
         return cars.stream()
                 .filter(car -> car.isSamePosition(getMaxPosition(cars)))
                 .map(Car::getName)
+                .map(Name::getValue)
                 .collect(Collectors.toList());
     }
 
