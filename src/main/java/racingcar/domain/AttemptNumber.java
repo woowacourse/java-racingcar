@@ -1,10 +1,13 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 public class AttemptNumber {
     private static final String NUMBER_RANGE_ERROR = "시도 횟수는 1회 이상이여야 합니다.";
     private static final int MIN_ATTEMPT_NUMBER = 1;
+    private static final int ZERO = 0;
 
-    private final int attemptNumber;
+    private int attemptNumber;
 
     public AttemptNumber(int attemptNumber) {
         validateNumberRange(attemptNumber);
@@ -17,7 +20,24 @@ public class AttemptNumber {
         }
     }
 
-    public int getAttemptNumber() {
-        return attemptNumber;
+    public boolean canAttempt() {
+        if (attemptNumber == ZERO) {
+            return false;
+        }
+        attemptNumber--;
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AttemptNumber that = (AttemptNumber) o;
+        return attemptNumber == that.attemptNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(attemptNumber);
     }
 }

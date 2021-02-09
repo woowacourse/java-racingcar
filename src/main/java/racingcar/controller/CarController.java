@@ -13,7 +13,7 @@ public class CarController {
     public void play() {
         init();
         OutputView.printExecutionResultMessage();
-        for (int i = 0; i < attemptNumber.getAttemptNumber(); i++) {
+        while (attemptNumber.canAttempt()) {
             cars.move(new RandomValueGenerator());
             OutputView.printCarStateMessage(cars);
         }

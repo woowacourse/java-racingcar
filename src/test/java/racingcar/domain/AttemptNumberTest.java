@@ -26,6 +26,6 @@ public class AttemptNumberTest {
     void attemptsNumberTest(int number) {
         // 에러가 출력이 안되고 잘 동작하는지 테스트
         AttemptNumber attemptNumber = new AttemptNumber(number);
-        assertThat(attemptNumber.getAttemptNumber()).isEqualTo(number);
+        assertThat(attemptNumber).isEqualTo(new AttemptNumber(number));
     }
 }
