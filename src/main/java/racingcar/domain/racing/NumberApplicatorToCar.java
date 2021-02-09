@@ -9,7 +9,7 @@ import racingcar.domain.numbergenerator.NumberGenerator;
 public class NumberApplicatorToCar {
     private final CarRepository carRepository;
     private final NumberGenerator numberGenerator;
-    private final int MIN_NUMBER_TO_GO_FORWARD = 4;
+    private static final int MIN_NUMBER_TO_GO_FORWARD = 4;
 
     public NumberApplicatorToCar(CarRepository carRepository, NumberGenerator numberGenerator) {
         this.carRepository = carRepository;

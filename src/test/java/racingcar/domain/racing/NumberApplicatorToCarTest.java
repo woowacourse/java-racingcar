@@ -4,7 +4,6 @@ package racingcar.domain.racing;
 import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +14,7 @@ import racingcar.domain.numbergenerator.FixedNumberGenerator;
 
 class NumberApplicatorToCarTest {
     private final CarRepository carRepository = new CarRepository();
-    private final int CARS_SIZE = 10;
+    private static final int CARS_SIZE = 10;
 
     @BeforeEach
     void saveCarsToCarRepository() {

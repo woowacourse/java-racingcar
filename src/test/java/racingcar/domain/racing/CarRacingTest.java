@@ -14,7 +14,7 @@ import racingcar.domain.numbergenerator.FixedNumberGenerator;
 
 class CarRacingTest {
     private final CarRepository carRepository = new CarRepository();
-    private final int CARS_SIZE = 10;
+    private static final int CARS_SIZE = 10;
 
     @BeforeEach
     void saveCarsToCarRepository() {

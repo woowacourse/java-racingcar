@@ -6,7 +6,7 @@ import racingcar.domain.input.carname.validator.exception.DuplicateCarNamesExcep
 import racingcar.domain.input.carname.validator.exception.LessThanTwoCarNamesException;
 
 public class CarNamesValidator {
-    private final int ALLOWED_MIN_NUMBER_OF_CARS = 2;
+    private static final int ALLOWED_MIN_NUMBER_OF_CARS = 2;
 
     public void validate(List<String> carNames) {
         validateCountOfCarNames(carNames);
