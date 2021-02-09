@@ -13,6 +13,7 @@ public class GameResult {
     public List<String> getWinnerNames() {
         return winners.stream()
                 .map(Car::getName)
+                .map(Name::toString)
                 .collect(Collectors.toList());
     }
 

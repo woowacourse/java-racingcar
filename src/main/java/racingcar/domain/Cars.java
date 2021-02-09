@@ -40,7 +40,7 @@ public class Cars {
                 .collect(groupingBy(Function.identity(), counting()))
                 .forEach((name, count) -> {
                     if (count > 1) {
-                        sameNameList.add(name);
+                        sameNameList.add(name.toString());
                     }
                 });
         if (sameNameList.size() > 0) {
