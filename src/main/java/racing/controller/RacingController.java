@@ -2,6 +2,7 @@ package racing.controller;
 
 import racing.domain.Cars;
 import racing.domain.RacingGameMachine;
+import racing.domain.number.TryCount;
 import racing.view.InputScreen;
 import racing.view.InputView;
 
@@ -17,7 +18,7 @@ public class RacingController {
         String carNames = InputView.getNextLine();
         Cars cars = Cars.generate(carNames);
         inputScreen.showCountMessage();
-        int tryCounts = InputView.getNextInt();
-        return new RacingGameMachine(cars, tryCounts);
+        int tryCount = InputView.getNextInt();
+        return new RacingGameMachine(cars, new TryCount(tryCount));
     }
 }

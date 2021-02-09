@@ -1,5 +1,6 @@
 package racing.domain;
 
+import racing.domain.number.TryCount;
 import racing.view.GameScreen;
 import racing.view.dto.CarDto;
 import racing.view.dto.WinnersDto;
@@ -8,18 +9,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGameMachine {
-    private static final int ZERO = 0;
     private static final int MINIMUM_CAR_COUNTS = 2;
 
     private final Cars cars;
-    private int tryCounts;
+    private final TryCount tryCount;
 
-    public RacingGameMachine(final Cars cars, final int tryCounts) {
+    public RacingGameMachine(final Cars cars, final TryCount tryCount) {
         Cars copy = cars.clone();
         validateCars(copy);
-        validateTryCounts(tryCounts);
         this.cars = copy;
-        this.tryCounts = tryCounts;
+        this.tryCount = tryCount;
     }
 
     private void validateCars(final Cars cars) {
@@ -28,16 +27,10 @@ public class RacingGameMachine {
         }
     }
 
-    private void validateTryCounts(final int tryCounts) {
-        if (tryCounts <= ZERO) {
-            throw new IllegalArgumentException(String.format("시도횟수는 1회 이상이어야 합니다 현재 입력값: %d", tryCounts));
-        }
-    }
-
     public void play() {
         GameScreen gameScreen = new GameScreen();
         gameScreen.showMessage();
-        while (tryCounts-- > ZERO) {
+        while (tryCount.reduce()){
             cars.race();
             gameScreen.showCarStatus(getCarDtos());
         }
