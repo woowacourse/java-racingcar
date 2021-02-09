@@ -2,7 +2,7 @@ package racingcar.domain.util;
 
 import java.util.Random;
 
-public class RandomNumber implements RandomUtils<Integer> {
+public class RandomNumber implements RandomUtil<Integer> {
     private static final Random random = new Random();
 
     @Override

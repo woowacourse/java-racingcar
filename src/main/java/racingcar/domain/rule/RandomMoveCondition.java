@@ -1,6 +1,6 @@
 package racingcar.domain.rule;
 
-import racingcar.domain.util.RandomUtils;
+import racingcar.domain.util.RandomUtil;
 import racingcar.exception.MoveConditionOutOfBoundException;
 
 public class RandomMoveCondition implements MoveCondition {
@@ -8,15 +8,15 @@ public class RandomMoveCondition implements MoveCondition {
     public static final int MAXIMUM_BOUND = 9;
     private final static int MOVABLE_BOUND = 4;
 
-    private final RandomUtils<Integer> randomUtils;
+    private final RandomUtil<Integer> randomUtil;
 
-    public RandomMoveCondition(RandomUtils<Integer> randomUtils) {
-        this.randomUtils = randomUtils;
+    public RandomMoveCondition(RandomUtil<Integer> randomUtils) {
+        this.randomUtil = randomUtils;
     }
 
     @Override
     public boolean isMovable() {
-        int randomNumber = randomUtils.generate(MAXIMUM_BOUND);
+        int randomNumber = randomUtil.generate(MAXIMUM_BOUND);
 
         validateTRandomNumberBound(randomNumber);
 
