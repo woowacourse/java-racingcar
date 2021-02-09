@@ -4,7 +4,6 @@ package racingcar.domain.racing;
 import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,11 +21,6 @@ class CarRacingTest {
         List<String> carNames = createCarNames(CARS_SIZE);
         List<Car> cars = createCars(carNames);
         carRepository.saveAll(cars);
-    }
-
-    @AfterEach
-    void deleteAllCars() {
-        carRepository.deleteAll();
     }
 
     private List<String> createCarNames(int carSize) {

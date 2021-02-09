@@ -12,10 +12,6 @@ public class CarRepository {
         cars.addAll(carsToSave);
     }
 
-    public void deleteAll() {
-        cars.clear();
-    }
-
     public List<Car> getAllCars() {
         return Collections.unmodifiableList(cars);
     }

@@ -4,7 +4,6 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,24 +23,11 @@ class CarRepositoryTest {
         carRepository.saveAll(cars);
     }
 
-    @AfterEach
-    void deleteAll() {
-        carRepository.deleteAll();
-    }
-
     @DisplayName("리스트의 자동차 객체들 모두 저장 및 반환")
     @Test
     void saveAllCars() {
         List<Car> allSavedCars = carRepository.getAllCars();
         Assertions.assertThat(allSavedCars.containsAll(cars)).isTrue();
-    }
-
-    @DisplayName("저장되어있는 자동차들 모두 삭제")
-    @Test
-    void deleteAllCars() {
-        carRepository.deleteAll();
-        List<Car> allSavedCars = carRepository.getAllCars();
-        Assertions.assertThat(allSavedCars.isEmpty()).isTrue();
     }
 
     @DisplayName("우승 자동차들 반환 - 우승자 : car1")

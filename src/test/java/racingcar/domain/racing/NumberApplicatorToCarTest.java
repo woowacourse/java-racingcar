@@ -24,11 +24,6 @@ class NumberApplicatorToCarTest {
         carRepository.saveAll(cars);
     }
 
-    @AfterEach
-    void deleteAllCars() {
-        carRepository.deleteAll();
-    }
-
     private List<String> createCarNames(int carSize) {
         List<String> carNames = new ArrayList<>();
         for (int i = 1; i <= carSize; i++) {
