@@ -30,8 +30,8 @@ public class Car {
         position++;
     }
 
-    public CarName getCarName() {
-        return carName;
+    public String getCarName() {
+        return carName.getName();
     }
 
     public int getPosition() {

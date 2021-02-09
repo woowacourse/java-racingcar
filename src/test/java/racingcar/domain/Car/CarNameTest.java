@@ -27,7 +27,7 @@ class CarNameTest {
     @ValueSource(strings = {"bepoz  ", "12345", " joy", "b ank"})
     void generate_validName(String input) {
         Car car = new Car(input);
-        assertThat(car.getCarName().getName()).isEqualTo(input.trim());
+        assertThat(car.getCarName()).isEqualTo(input.trim());
     }
 
     @ParameterizedTest

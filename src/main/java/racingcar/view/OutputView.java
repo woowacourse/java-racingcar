@@ -36,7 +36,7 @@ public class OutputView {
     }
 
     private static String getCarStatus(Car car) {
-        return car.getCarName().getName() + " : " + getPositionToString(car.getPosition());
+        return car.getCarName() + " : " + getPositionToString(car.getPosition());
     }
 
     private static String getPositionToString(int position) {
@@ -49,7 +49,6 @@ public class OutputView {
     public static void printWinners(List<Car> winners) {
         String winnersName = winners.stream()
                 .map(Car::getCarName)
-                .map(CarName::getName)
                 .collect(Collectors.joining(", "));
 
         System.out.printf((PRINT_WINNERS) + "%n", winnersName);

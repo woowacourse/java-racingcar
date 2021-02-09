@@ -11,7 +11,7 @@ import static java.util.Comparator.comparingInt;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    private Cars(List<Car> cars) {
         this.cars = new ArrayList<>(cars);
     }
 
@@ -32,7 +32,7 @@ public class Cars {
     private static void validateDuplicated(String[] carNames) {
         Set<String> set = new HashSet<>(Arrays.asList(carNames));
         if (set.size() != carNames.length) {
-            throw new RuntimeException();
+            throw new RuntimeException("중복 사용자는 허용하지 않습니다.");
         }
     }
 
@@ -41,7 +41,7 @@ public class Cars {
     }
 
     public List<Car> getCarsAfterDrive() {
-        cars.forEach(car -> car.drive(RandomUtils.nextInt(0, 9)));
+        cars.forEach(car -> car.drive(RandomUtils.value()));
         return getCars();
     }
 
