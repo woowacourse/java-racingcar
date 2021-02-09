@@ -30,9 +30,9 @@ class RacingGameTest {
         assertThat(racingGame.getNumberOfRounds()).isEqualTo(Integer.parseInt(NUMBER_OF_ROUNDS_FOR_TEST));
         assertThat(racingGame.getCurrentRound()).isEqualTo(INIT_ROUND);
 
-        List<CarDto> carsDto = new CarsDto(racingGame.getCars()).getCarsDto();
+        List<CarDto> carsDto = new CarsDto(racingGame.getCars()).toList();
         for (int i = 0; i < carNamesForTest.size(); i++) {
-            assertThat(carsDto.get(i).getName()).isEqualTo(carNamesForTest.get(i));
+            assertThat(carsDto.get(i).getNameAsString()).isEqualTo(carNamesForTest.get(i));
             assertThat(carsDto.get(i).getPosition()).isEqualTo(INIT_POSITION);
         }
     }

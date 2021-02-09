@@ -1,6 +1,7 @@
 package racingcar.dto;
 
 import racingcar.domain.Car;
+import racingcar.domain.Name;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +21,7 @@ public class WinnersDto {
 
     public List<String> getWinnerNames() {
         return winnersDto.stream()
-                .map(CarDto::getName)
+                .map(CarDto::getNameAsString)
                 .collect(Collectors.toList());
     }
 }

@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.Name;
 import racingcar.domain.Position;
 import racingcar.dto.CarDto;
 import racingcar.dto.CarsDto;
@@ -38,8 +39,7 @@ class OutputViewTest {
     @ParameterizedTest
     @CsvSource({"포비,3,---", "웨지,2,--", "삭정,1,-"})
     void makeStick_givenProperCarNameAndPosition_returnStickAccordingToTheValueOfPosition(String name, int position, String stick) {
-        CarDto car = new CarDto(new Car(name));
-        car.setPosition(new Position(position));
+        CarDto car = new CarDto(new Car(new Name(name), new Position(position)));
         assertThat(OutputView.makeStick(car)).isEqualTo(stick);
     }
 
@@ -58,7 +58,7 @@ class OutputViewTest {
     }
 
     private void setCarPositionForTest(CarsDto carsDto, int carIndex, int targetPosition) {
-        carsDto.getCarsDto()
+        carsDto.toList()
                 .get(carIndex)
                 .setPosition(new Position(targetPosition));
     }

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Cars {
     public static final String DUPLICATE_NAME_ERROR_MESSAGE = "[ERROR] 동일한 이름이 있습니다.";
 
-    private final List<Car> cars = new ArrayList<Car>();
+    private final List<Car> cars = new ArrayList<>();
 
     private Cars() {
     }
@@ -20,6 +20,7 @@ public class Cars {
 
     private void createCars(List<String> names) {
         names.stream()
+                .map(Name::new)
                 .map(Car::new)
                 .forEach(cars::add);
     }
@@ -63,5 +64,18 @@ public class Cars {
                 .orElseThrow(NoSuchElementException::new);
 
         return new Position(maxPosition);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cars cars1 = (Cars) o;
+        return cars.equals(cars1.cars);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cars);
     }
 }

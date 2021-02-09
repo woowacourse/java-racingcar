@@ -11,8 +11,8 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static racingcar.domain.Car.BLANK_ERROR_MESSAGE;
-import static racingcar.domain.Car.NAME_LENGTH_ERROR_MESSAGE;
+import static racingcar.domain.Name.BLANK_ERROR_MESSAGE;
+import static racingcar.domain.Name.NAME_LENGTH_ERROR_MESSAGE;
 import static racingcar.domain.Cars.DUPLICATE_NAME_ERROR_MESSAGE;
 import static racingcar.domain.RacingGame.INVALID_NUMBER_OF_ROUNDS_MESSAGE;
 import static racingcar.domain.RacingGame.NOT_NUMBER_ERROR_MESSAGE;

@@ -20,7 +20,7 @@ public class CarsDto {
                 .collect(Collectors.toList());
     }
 
-    public List<CarDto> getCarsDto() {
+    public List<CarDto> toList() {
         return Collections.unmodifiableList(carsDto);
     }
 }

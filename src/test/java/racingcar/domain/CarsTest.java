@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.dto.CarDto;
+import racingcar.dto.CarsDto;
 import racingcar.dto.WinnersDto;
 
 import java.util.Arrays;
@@ -25,13 +27,8 @@ class CarsTest {
         List<String> names = Arrays.asList("포비", "데이브", "삭정");
         Cars cars = new Cars(names);
 
-        assertThat(cars).isInstanceOf(Cars.class);
-
-        List<Car> carCandidates = cars.getCars();
-        for (int i = 0; i < names.size(); i++) {
-            assertThat(carCandidates.get(i).getName()).isEqualTo(names.get(i));
-            assertThat(carCandidates.get(i).getPosition()).isEqualTo(INIT_POSITION);
-        }
+        assertThat(cars).isInstanceOf(Cars.class)
+                .isEqualTo(new Cars(names));
     }
 
     @DisplayName("중복되는 차 이름이 들어왔을 때 예외 반환 하는지")
@@ -73,7 +70,7 @@ class CarsTest {
     private void setWinnersAccordingToGivenWinnerNames(Cars cars, List<String> winnerNames) {
         cars.getCars()
                 .stream()
-                .filter(car -> winnerNames.contains(car.getName()))
+                .filter(car -> winnerNames.contains(new CarDto(car).getNameAsString()))
                 .forEach(car -> car.move(MOVABLE_NUMBER_FOR_TEST));
     }
 }

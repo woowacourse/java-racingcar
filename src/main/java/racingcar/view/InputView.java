@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import static racingcar.domain.Car.validateBlankInName;
-import static racingcar.domain.Car.validateNameLength;
+import static racingcar.domain.Name.validateBlankInName;
+import static racingcar.domain.Name.validateNameLength;
 import static racingcar.domain.RacingGame.validateIntegerNumber;
 import static racingcar.domain.RacingGame.validatePositiveNumber;
 

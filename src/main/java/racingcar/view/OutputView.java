@@ -25,9 +25,9 @@ public class OutputView {
     }
 
     public static void printLeaderBoard(CarsDto carsDto) {
-        for (CarDto car : carsDto.getCarsDto()) {
+        for (CarDto car : carsDto.toList()) {
             String positionStick = makeStick(car);
-            System.out.printf(LEADER_BOARD_DATA_FORMAT, car.getName(), positionStick);
+            System.out.printf(LEADER_BOARD_DATA_FORMAT, car.getNameAsString(), positionStick);
         }
         System.out.println();
     }
