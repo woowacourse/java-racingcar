@@ -12,8 +12,12 @@ public class TryCount {
         this.count = Integer.parseInt(count);
     }
 
-    public int getCount() {
-        return count;
+    public boolean isRemainCount() {
+        return this.count > 0;
+    }
+
+    public void deductCount() {
+        this.count--;
     }
 
     private void validateCount(final String tryCount) {

@@ -17,9 +17,10 @@ public class RacingCar {
     }
 
     private void raceByTryCount() {
-        for (int i = 0; i < tryCount.getCount(); i++) {
+        while (tryCount.isRemainCount()) {
             race();
             RacingCarView.printProgressResult(cars.cars());
+            tryCount.deductCount();
         }
     }
 
