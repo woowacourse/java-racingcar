@@ -1,9 +1,6 @@
 package racingcar.view;
 
-import racingcar.domain.CarState;
-import racingcar.domain.Result;
-import racingcar.domain.Results;
-import racingcar.domain.Winners;
+import racingcar.domain.*;
 
 import java.util.List;
 
@@ -20,11 +17,11 @@ public class OutputView {
     }
 
     private static void printResult(Result result) {
-        List<CarState> carStates = result.getCarStates();
-        for (CarState carState : carStates) {
-            System.out.print(carState.getName());
+        List<Car> cars = result.getResult();
+        for (Car car : cars) {
+            System.out.print(car.getName());
             System.out.print(" : ");
-            printCarSteps(carState.getPosition());
+            printCarSteps(car.getPosition());
         }
         printEmptyLine();
     }

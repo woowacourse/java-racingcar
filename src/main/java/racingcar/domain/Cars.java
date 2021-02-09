@@ -2,9 +2,7 @@ package racingcar.domain;
 
 import racingcar.validator.CarsValidator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -27,25 +25,39 @@ public class Cars {
         return new Cars(cars);
     }
 
-    public void tryToMoveCars(List<Integer> randomNumbers) {
+    public void tryToMoveCars(List<Integer> numbers) {
         for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).tryToMove(randomNumbers.get(i));
+            cars.get(i).tryToMove(numbers.get(i));
         }
+    }
+
+    public List<String> findWinners() {
+        return cars.stream()
+                .filter(car -> car.isMaxPosition(getMaxPosition()))
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    public int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow(NoSuchElementException::new);
+    }
+
+    public Result getResultOfCars() {
+        List<Car> cars = new ArrayList<>();
+        for (Car car : this.cars) {
+            cars.add(Car.of(car.getName(), car.getPosition()));
+        }
+        return Result.of(cars);
     }
 
     public int size() {
         return cars.size();
     }
 
-    public Result getResultOfCars() {
-        List<CarState> carStates = new ArrayList<>();
-        for (Car car : this.cars) {
-            carStates.add(car.getCarState());
-        }
-        return Result.of(carStates);
-    }
-
     public List<Car> getCars() {
-        return cars;
+        return Collections.unmodifiableList(this.cars);
     }
 }

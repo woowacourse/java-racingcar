@@ -8,7 +8,7 @@ public class Car {
     private static final int MIN_VALUE_TO_MOVE = 4;
 
     private final String name;
-    private int position = 0;
+    private int position;
 
     private Car(String name) {
         CarValidator.validateCarNameIsNullOrEmpty(name);
@@ -17,8 +17,28 @@ public class Car {
         this.name = trimmedName;
     }
 
+    private Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
     public static Car of(String name) {
         return new Car(name);
+    }
+
+    public static Car of(String name, int position) {
+        return new Car(name, position);
+    }
+
+    public void tryToMove(int number) {
+        if (number >= MIN_VALUE_TO_MOVE) {
+            this.position++;
+        }
+    }
+
+    //TODO 메서드명을 MaxPosition과 Position이 같다는걸 증명한다는 늬앙스로 변경하기
+    public boolean isMaxPosition(int maxPosition) {
+        return this.position == maxPosition;
     }
 
     public String getName() {
@@ -27,16 +47,6 @@ public class Car {
 
     public int getPosition() {
         return this.position;
-    }
-
-    public CarState getCarState() {
-        return CarState.of(this.name, this.position);
-    }
-
-    public void tryToMove(int randomValue) {
-        if (randomValue >= MIN_VALUE_TO_MOVE) {
-            this.position++;
-        }
     }
 
     @Override
