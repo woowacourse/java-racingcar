@@ -21,23 +21,23 @@ public class Cars {
     }
 
     public static Cars of (List<String> carNames) {
-        isValidNumberOfCarsOrThrowException(carNames);
+        isValidNumberOfCarsOrThrow(carNames);
 
         List<Car> cars = new ArrayList<>();
         carNames.stream()
                 .map(Car::from)
-                .filter(car -> isNotAlreadyExistOrThrowException(cars, car))
+                .filter(car -> isNotAlreadyExistOrThrow(cars, car))
                 .forEach(cars::add);
         return new Cars(cars);
     }
 
-    private static void isValidNumberOfCarsOrThrowException(List<String> carNames) {
+    private static void isValidNumberOfCarsOrThrow(List<String> carNames) {
         if (carNames.size() < MIN_SIZE) {
             throw new IllegalArgumentException(ERROR_MIN_SIZE);
         }
     }
 
-    private static boolean isNotAlreadyExistOrThrowException(List<Car> destination, Car car) {
+    private static boolean isNotAlreadyExistOrThrow(List<Car> destination, Car car) {
         if (destination.contains(car)) {
             throw new IllegalArgumentException(ERROR_DUPLICATED_CAR_NAMES);
         }

@@ -1,6 +1,5 @@
 package racingcar.view;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -43,7 +42,7 @@ public class InputView {
         System.out.println(message);
         try {
             String rawString = deleteWhiteSpaces(scanner.nextLine());
-            isNotEmptyStringOrThrowException(rawString);
+            isNotEmptyStringOrThrow(rawString);
             return rawString;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -51,7 +50,7 @@ public class InputView {
         }
     }
 
-    private void isNotEmptyStringOrThrowException(String string) {
+    private void isNotEmptyStringOrThrow(String string) {
         if (string.equals("")) {
             throw new IllegalArgumentException(ERROR_NONE_INPUT_VALUE);
         }
@@ -65,14 +64,14 @@ public class InputView {
     public int requestRoundNumber() {
         String rawString = requestUserInputWithMessage(MESSAGE_REQUEST_ROUND_NUMBER);
         try {
-            return parseIntOrThrowException(rawString);
+            return parseIntOrThrow(rawString);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return requestRoundNumber();
         }
     }
 
-    private int parseIntOrThrowException(String string) {
+    private int parseIntOrThrow(String string) {
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException e) {

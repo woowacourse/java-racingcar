@@ -18,11 +18,11 @@ public class Round {
     }
 
     public static Round from(int finalRound) {
-        isValidValueOrThrowException(finalRound);
+        isValidValueOrThrow(finalRound);
         return new Round(finalRound);
     }
 
-    public static boolean isValidValueOrThrowException(int finalRound) {
+    public static boolean isValidValueOrThrow(int finalRound) {
         if (finalRound <= 0) {
             throw new IllegalArgumentException(ERROR_INVALID_RANGE);
         }
