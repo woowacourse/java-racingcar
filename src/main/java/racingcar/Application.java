@@ -1,7 +1,7 @@
 package racingcar;
 
 import racingcar.controller.RacingGameController;
-import racingcar.model.Cars;
+import racingcar.domain.Cars;
 import racingcar.view.InputView;
 
 import java.util.Scanner;

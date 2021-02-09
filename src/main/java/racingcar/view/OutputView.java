@@ -2,7 +2,7 @@ package racingcar.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import racingcar.model.Car;
+import racingcar.domain.Car;
 
 public class OutputView {
 
