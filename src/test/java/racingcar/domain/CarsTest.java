@@ -56,21 +56,4 @@ public class CarsTest {
                 }
         );
     }
-
-    @Test
-    @DisplayName("우승자 판별을 위한 MaxPosition 값 가져오기")
-    public void getMaxPositionTest() {
-        //given
-        Cars cars = Cars.of(Arrays.asList(
-                Car.of(Name.of("bmw"), 3),
-                Car.of(Name.of("tico"), 1),
-                Car.of(Name.of("k5"), 10)
-        ));
-
-        //when
-        int maxPosition = cars.getMaxPosition();
-
-        //then
-        assertThat(maxPosition).isEqualTo(10);
-    }
 }

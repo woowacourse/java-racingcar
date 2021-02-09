@@ -21,7 +21,7 @@ public class OutputView {
         for (Car car : cars) {
             System.out.print(car.getName().getValue());
             System.out.print(" : ");
-            printCarSteps(car.getPosition());
+            printCarSteps(car.getPosition().getValue());
         }
         printEmptyLine();
     }

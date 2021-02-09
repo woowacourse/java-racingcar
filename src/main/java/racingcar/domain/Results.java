@@ -27,8 +27,8 @@ public class Results {
                 .collect(Collectors.toList());
     }
 
-    public int getMaxPosition(List<Car> cars) {
-        int maxPosition = 0;
+    public Position getMaxPosition(List<Car> cars) {
+        Position maxPosition = Position.valueOf(0);
         for (Car car : cars) {
             maxPosition = car.getMaxPosition(maxPosition);
         }

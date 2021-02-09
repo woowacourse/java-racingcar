@@ -25,6 +25,6 @@ public class CarTest {
         car.tryToMove(4);
 
         //then
-        assertThat(car).isEqualTo(Car.of(Name.of("test"), 1));
+        assertThat(car).isEqualTo(Car.of(Name.of("test"), Position.valueOf(1)));
     }
 }

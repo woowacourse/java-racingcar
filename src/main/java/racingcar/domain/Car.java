@@ -3,25 +3,23 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Car {
-    private static final int MIN_VALUE_TO_MOVE = 4;
-
     private final Name name;
-    private int position;
+    private Position position;
 
     private Car(Name name) {
-        this(name, 0);
+        this(name, Position.valueOf(0));
     }
 
-    private Car(Name name, int position) {
+    private Car(Name name, Position position) {
         this.name = name;
         this.position = position;
     }
 
     public static Car of(Name name) {
-        return Car.of(name, 0);
+        return Car.of(name, Position.valueOf(0));
     }
 
-    public static Car of(Name name, int position) {
+    public static Car of(Name name, Position position) {
         return new Car(name, position);
     }
 
@@ -29,26 +27,24 @@ public class Car {
         return new Car(car.getName(), car.getPosition());
     }
 
-    public void tryToMove(int number) {
-        if (number >= MIN_VALUE_TO_MOVE) {
-            this.position++;
-        }
+    public void tryToMove(int value) {
+        this.position.move(value);
     }
 
-    public boolean isSamePosition(int maxPosition) {
-        return this.position == maxPosition;
+    public boolean isSamePosition(Position maxPosition) {
+        return this.position.equals(maxPosition);
     }
 
-    public int getMaxPosition(int position) {
-        return Math.max(this.position, position);
+    public Position getMaxPosition(Position position) {
+        return Position.valueOf(this.position.getMaxValue(position));
     }
 
     public Name getName() {
         return Name.of(name.getValue());
     }
 
-    public int getPosition() {
-        return position;
+    public Position getPosition() {
+        return Position.valueOf(this.position.getValue());
     }
 
     @Override

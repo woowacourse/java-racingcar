@@ -31,14 +31,6 @@ public class Cars {
         }
     }
 
-    public int getMaxPosition() {
-        int maxPosition = 0;
-        for (Car car : cars) {
-            maxPosition = car.getMaxPosition(maxPosition);
-        }
-        return maxPosition;
-    }
-
     public Result getResultOfCars() {
         List<Car> cars = new ArrayList<>();
         for (Car car : this.cars) {
