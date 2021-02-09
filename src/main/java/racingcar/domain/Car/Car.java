@@ -1,33 +1,14 @@
-package racingcar.domain;
+package racingcar.domain.Car;
 
 import java.util.stream.IntStream;
 
 public class Car {
     private int position;
-    private final String name;
+    private final CarName carName;
 
     public Car(final String name) {
         this.position = 1;
-        this.name = validateName(name);
-    }
-
-    private String validateName(String name) {
-        name = name.trim();
-        validateNameLength(name);
-        validateNameNullOrEmpty(name);
-        return name;
-    }
-
-    private void validateNameNullOrEmpty(String name) {
-        if (name == null || "".equals(name)) {
-            throw new RuntimeException();
-        }
-    }
-
-    private void validateNameLength(String name) {
-        if (name.length() < 1 || name.length() > 5) {
-            throw new RuntimeException();
-        }
+        this.carName = new CarName(name);
     }
 
     public void drive(int randomValue) {
@@ -40,8 +21,8 @@ public class Car {
         }
     }
 
-    public String getName() {
-        return name;
+    public CarName getCarName() {
+        return carName;
     }
 
     public int getPosition() {
@@ -61,13 +42,12 @@ public class Car {
 
     @Override
     public String toString() {
-        String a = name + " : ";
-        return a + getPositionToString();
+        return "CarName: " + carName + ", Position: " + position;
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return carName.hashCode();
     }
 
     @Override
@@ -77,7 +57,7 @@ public class Car {
         }
         if (obj instanceof Car) {
             Car car = (Car) obj;
-            return this.name.equals(car.name);
+            return this.carName.equals(car.carName);
         }
         return false;
     }

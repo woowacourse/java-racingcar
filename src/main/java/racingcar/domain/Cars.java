@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import racingcar.domain.Car.Car;
 import racingcar.view.OutputView;
 import utils.RandomUtils;
 

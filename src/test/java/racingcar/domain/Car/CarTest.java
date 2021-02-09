@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain.Car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.Car;
+import racingcar.domain.Car.Car;
 
 class CarTest {
 
@@ -41,7 +41,7 @@ class CarTest {
     @ValueSource(strings = {"bepoz  ", "12345", " joy", "b ank"})
     void generate_validName(String input) {
         Car car = new Car(input);
-        assertThat(car.getName()).isEqualTo(input.trim());
+        assertThat(car.getCarName().getName()).isEqualTo(input.trim());
     }
 
     @ParameterizedTest
