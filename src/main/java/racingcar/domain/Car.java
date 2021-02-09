@@ -4,16 +4,16 @@ public class Car {
     private static final String NAME_LENGTH_ERROR_MSG_FORMAT = "[ERROR] 이름은 %d자 초과 %d자 이하이어야 합니다. 오류 이름 : %s";
     private static final int ZERO = 0;
     private static final int MAX_LENGTH = 5;
-    private static final int MOVABLE_VALUE = 5;
+    private static final int MOVABLE_VALUE = 4;
 
     private final String name;
-    private int position;
+    private Position position;
 
     public Car(String name) {
         name = name.trim();
         validateNameLength(name);
         this.name = name;
-        this.position = ZERO;
+        this.position = Position.ZERO;
     }
 
     private void validateNameLength(String name) {
@@ -24,19 +24,19 @@ public class Car {
 
     public void move(int number) {
         if (isMovable(number)) {
-            position++;
+            position = position.nextPosition();
         }
     }
 
-    public boolean isSamePosition(int thatPosition) {
-        return this.position == thatPosition;
+    public boolean isSamePosition(Position thatPosition) {
+        return this.position.equals(thatPosition);
     }
 
     private boolean isMovable(int number) {
         return number >= MOVABLE_VALUE;
     }
 
-    public int getPosition() {
+    public Position getPosition() {
         return position;
     }
 

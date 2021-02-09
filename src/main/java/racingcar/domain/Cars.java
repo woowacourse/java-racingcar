@@ -57,16 +57,17 @@ public class Cars {
     }
 
     public GameResult findWinners() {
-        int maxPosition = getMaxPosition();
+        Position maxPosition = getMaxPosition();
         return new GameResult(cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList()));
     }
 
-    private int getMaxPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
+    private Position getMaxPosition() {
+        return new Position(cars.stream()
+                .map(Car::getPosition)
+                .mapToInt(Position::index)
                 .max()
-                .orElseThrow(NoSuchElementException::new);
+                .orElseThrow(NoSuchElementException::new));
     }
 }

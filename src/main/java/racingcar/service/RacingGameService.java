@@ -32,7 +32,7 @@ public class RacingGameService implements GameService {
         Cars cars = racingGame.getCars();
         return cars.getCars()
                 .stream()
-                .map(car -> new CarDto(car.getName(), car.getPosition()))
+                .map(car -> new CarDto(car.getName(), car.getPosition().index()))
                 .collect(collectingAndThen(Collectors.toList(), carDtos -> new CarsDto(carDtos, racingGame.getCurrentRound().getRound())));
     }
 
