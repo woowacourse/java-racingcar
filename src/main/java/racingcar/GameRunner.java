@@ -20,10 +20,10 @@ public class GameRunner {
     }
 
     public void run() {
-        Name[] names = InputView.getNames(scanner);
+        Name[] names = InputView.receiveNames(scanner);
         this.cars = Cars.createByNames(names);
 
-        this.rounds = InputView.getRounds(scanner);
+        this.rounds = InputView.receiveRounds(scanner);
 
         OutputView.println("실행 결과");
         while (!rounds.isEnd()) {
