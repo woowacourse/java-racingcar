@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
+    private static final Pattern CUSTOM_PATTERN = Pattern.compile("//(.+)\n(.*)");
     private static final String DEFAULT_SEPARATOR = ",|:";
     private static final String DELIMITER_SEPARATOR = "|";
 
@@ -57,11 +58,14 @@ public class StringCalculator {
     private static String[] splitBySeparator(String input) {
         StringBuilder customSeparator = new StringBuilder();
 
-        Matcher matcher = Pattern.compile("//(.+)\n(.*)").matcher(input);
+        Matcher matcher = CUSTOM_PATTERN.matcher(input);
         if (matcher.find()) {
+            int separatorGroupIndex = 1;
+            int leftInputGroupIndex = 2;
+
             customSeparator.append(DELIMITER_SEPARATOR);
-            customSeparator.append(matcher.group(1));
-            input = matcher.group(2);
+            customSeparator.append(matcher.group(separatorGroupIndex));
+            input = matcher.group(leftInputGroupIndex);
         }
 
         return input.split(DEFAULT_SEPARATOR + customSeparator.toString());
