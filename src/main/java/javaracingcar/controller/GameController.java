@@ -1,16 +1,12 @@
 package javaracingcar.controller;
 
-import javaracingcar.domain.Car;
 import javaracingcar.domain.RacingGame;
 import javaracingcar.view.InputView;
 import javaracingcar.view.OutputView;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GameController {
-
-
     public static void start() {
         try {
             run();
@@ -23,7 +19,7 @@ public class GameController {
     public static void run() {
         RacingGame racingGame = initGame();
         playRace(racingGame);
-        OutputView.printWinners(getWinners(racingGame));
+        printWinners(racingGame);
     }
 
     private static RacingGame initGame() {
@@ -38,19 +34,7 @@ public class GameController {
         racingGame.playRace();
     }
 
-    public static List<Car> getWinners(RacingGame racingGame) {
-        int maxPosition = getMaxPosition(racingGame);
-        return racingGame.getCars()
-                         .stream()
-                         .filter(car -> car.isAtPosition(maxPosition))
-                         .collect(Collectors.toList());
-    }
-
-    private static int getMaxPosition(RacingGame racingGame) {
-        return racingGame.getCars()
-                         .stream()
-                         .mapToInt(Car::getPosition)
-                         .max()
-                         .orElseThrow(() -> new IllegalArgumentException("Max Position 구하는데에 실패했습니다."));
+    private static void printWinners(RacingGame racingGame) {
+        OutputView.printWinners(racingGame.getWinners());
     }
 }

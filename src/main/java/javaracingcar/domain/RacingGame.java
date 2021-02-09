@@ -90,4 +90,18 @@ public class RacingGame {
     private int generateRandomNumber() {
         return RandomUtils.nextInt(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
     }
+
+    public List<Car> getWinners() {
+        int maxPosition = getMaxPosition();
+        return cars.stream()
+                   .filter(car -> car.isAtPosition(maxPosition))
+                   .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return cars.stream()
+                   .mapToInt(Car::getPosition)
+                   .max()
+                   .orElseThrow(() -> new IllegalArgumentException("Max Position 구하는데에 실패했습니다."));
+    }
 }
