@@ -1,6 +1,5 @@
 package racingcar;
 
-import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingCarGame;
 import racingcar.utils.SplitUtil;
@@ -10,16 +9,28 @@ import racingcar.view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        String carNamesInput = InputView.getCarNamesInput();
-        String lapInput = InputView.getLap();
+        runApplicationUntilValid();
+        InputView.closeScanner();
+    }
 
+    private static void runApplicationUntilValid() {
+        try {
+            runApplication();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            runApplicationUntilValid();
+        }
+    }
+
+    private static void runApplication() {
+        String carNamesInput = InputView.getCarNamesInput();
         Cars cars = new Cars(SplitUtil.splitCarNames(carNamesInput));
-        RacingCarGame racingCarGame = new RacingCarGame();
-        int laps = racingCarGame.validateLaps(lapInput);
-        racingCarGame.race(cars, laps);
+
+        String lapInput = InputView.getLap();
+        RacingCarGame racingCarGame = new RacingCarGame(cars, lapInput);
+        racingCarGame.race();
 
         OutputView.showWinners(cars);
-        InputView.closeScanner();
     }
 
 }

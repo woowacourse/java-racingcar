@@ -7,7 +7,12 @@ public class RacingCarGame {
     private static final String NOT_NUMERIC_ERROR_MESSAGE = "숫자를 입력하세요.";
     private static final String NOT_OVER_ONE_ERROR_MESSAGE = "1 이상의 숫자를 입력하세요.";
 
-    public RacingCarGame() {
+    private final Cars cars;
+    private final int laps;
+
+    public RacingCarGame(Cars cars, String lapInput) {
+        this.laps =validateLaps(lapInput);
+        this.cars =cars;
     }
 
     public int validateLaps(String lapInput) {
@@ -22,7 +27,7 @@ public class RacingCarGame {
         return laps;
     }
 
-    public void race(Cars cars, int laps) {
+    public void race() {
         OutputView.showResult();
         for (int i = 0; i < laps; i++) {
             cars.raceOneLap();
