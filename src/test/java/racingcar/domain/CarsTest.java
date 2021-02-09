@@ -18,8 +18,12 @@ public class CarsTest {
             new Name("test3")
         );
 
-        int distance[] = {8, 1, 3};
-        Cars cars = new Cars(names, distance);
+        List<Position> positions = Arrays.asList(
+            new Position(8),
+            new Position(1),
+            new Position(3)
+        );
+        Cars cars = new Cars(names, positions);
         assertThat(cars.getWinners().get(0).getName()).isEqualTo("test1");
     }
 

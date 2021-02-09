@@ -5,9 +5,9 @@ import java.util.Objects;
 public class Name {
 
     private static final int NAME_LEN = 5;
-    private String value;
+    private final String value;
 
-    public Name(String value) {
+    public Name(final String value) {
         if (value.length() > NAME_LEN) {
             throw new IllegalArgumentException("[Error] 자동차 이름은 5자이하여야 합니다.\n");
         }

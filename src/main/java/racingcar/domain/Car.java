@@ -1,33 +1,35 @@
 package racingcar.domain;
 
+import static racingcar.domain.Position.ZERO;
+
 public class Car {
 
     private static final int MOVE_POINT_NUMBER = 4;
-    private Name name;
-    private int distance;
+    private final Name name;
+    private Position position;
 
     public Car(Name name) {
-        this(name, 0);
+        this(name, ZERO);
     }
 
-    public Car(Name name, int distance) {
+    public Car(Name name, Position position) {
         this.name = name;
-        this.distance = distance;
+        this.position = position;
     }
 
-    public int move(int randomNumber) {
+    public int move(final int randomNumber) {
         if (checkMoveCondition(randomNumber)) {
-            this.distance++;
+            position = position.move();
         }
-        return this.distance;
+        return position.getValue();
     }
 
-    private boolean checkMoveCondition(int randomNumber) {
+    private boolean checkMoveCondition(final int randomNumber) {
         return (randomNumber >= MOVE_POINT_NUMBER);
     }
 
-    public boolean isWinner(int maxDistance) {
-        return (maxDistance == this.distance);
+    public boolean isWinner(final int maxPosition) {
+        return position.isSamePosition(maxPosition);
     }
 
     public String getName() {
@@ -35,7 +37,7 @@ public class Car {
     }
 
     public int getDistance() {
-        return this.distance;
+        return position.getValue();
     }
 
 }

@@ -2,21 +2,23 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import racingcar.utils.RandomUtils;
 import racingcar.view.OutputView;
 
 public class Cars {
 
-    private List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
-    public Cars(List<Name> names) {
-        this(names, new int[names.size()]);
+    public Cars(final List<Name> names) {
+        for (Name name : names) {
+            cars.add(new Car(name, Position.ZERO));
+        }
     }
 
-    public Cars(List<Name> names, int[] distance) {
-        for (int i = 0; i < names.size(); i++) {
-            cars.add(new Car(names.get(i), distance[i]));
-        }
+    public Cars(final List<Name> names, final List<Position> positions) {
+        IntStream.range(0, names.size())
+            .forEach(i -> cars.add(new Car(names.get(i), positions.get(i))));
     }
 
     public List<Car> getWinners() {
