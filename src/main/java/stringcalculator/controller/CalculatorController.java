@@ -35,18 +35,14 @@ public class CalculatorController {
         if (checkNullOrEmpty(input)) {
             return ZERO;
         }
-
-        String numbers = getNumbers(input);
-        String delimiters = getDelimiters(input);
-
-        return splitAndSum(numbers, delimiters);
+        return splitAndSum(extractNumbers(input), extractDelimiters(input));
     }
 
     private boolean checkNullOrEmpty(String numbers) {
         return numbers == null || numbers.isEmpty();
     }
 
-    public String getNumbers(String input) {
+    public String extractNumbers(String input) {
         Matcher m = PATTERN.matcher(input);
 
         if (m.find()) {
@@ -55,23 +51,21 @@ public class CalculatorController {
         return input;
     }
 
-    private String getDelimiters(String input) {
+    private String extractDelimiters(String input) {
         String delimiters = COMMA + DELIMITER_SEPARATOR + COLON;
 
         if (hasCustomDelimiter(input)) {
-            return delimiters + (DELIMITER_SEPARATOR + getCustomDelimiter(input));
+            return delimiters + (DELIMITER_SEPARATOR + extractCustomDelimiter(input));
         }
-
         return delimiters;
     }
 
     private boolean hasCustomDelimiter(String input) {
         Matcher m = PATTERN.matcher(input);
-
         return m.find();
     }
 
-    public String getCustomDelimiter(String input) {
+    public String extractCustomDelimiter(String input) {
         String customDelimiter = "";
 
         Matcher m = PATTERN.matcher(input);
@@ -80,7 +74,6 @@ public class CalculatorController {
             customDelimiter = m.group(DELIMITER_INDEX);
             isValidDelimiter(customDelimiter);
         }
-
         return customDelimiter;
     }
 

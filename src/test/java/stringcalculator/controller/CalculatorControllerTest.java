@@ -39,8 +39,8 @@ class CalculatorControllerTest {
     @DisplayName("정상적인 구분자인 경우 커스텀 구분자 얻기 성공")
     @ParameterizedTest
     @CsvSource(value = {"//;\\n1;2;3=;", "//#\\n3#6#4=#", "//&\\n3&4&9=&"}, delimiter = '=')
-    public void getCustomDelimiter_정상적인_구분자인_경우(String value, String expected) {
-        String customDelimiter = calculatorController.getCustomDelimiter(value);
+    public void extractCustomDelimiter_정상적인_구분자인_경우(String value, String expected) {
+        String customDelimiter = calculatorController.extractCustomDelimiter(value);
 
         assertThat(customDelimiter).isEqualTo(expected);
     }
@@ -48,17 +48,17 @@ class CalculatorControllerTest {
     @DisplayName("정상적인 구분자가 아닌 경우 커스텀 구분자 얻기 실패")
     @ParameterizedTest
     @ValueSource(strings = {"//,\\n1,2,3=,", "//:\\n1,2,3=,"})
-    public void getCustomDelimiter_정상적인_구분자가_아닌_경우(String value) {
+    public void extractCustomDelimiter_정상적인_구분자가_아닌_경우(String value) {
         assertThatThrownBy(() -> {
-            calculatorController.getCustomDelimiter(value);
+            calculatorController.extractCustomDelimiter(value);
         }).isInstanceOf(RuntimeException.class);
     }
 
     @DisplayName("전체 문자열에서 숫자 분리")
     @ParameterizedTest
     @CsvSource(value = {"1,2,3=1,2,3", "1:2:3=1:2:3", "//;\\n1;2;3=1;2;3"}, delimiter = '=')
-    public void getNumbers_숫자_분리(String value, String expected) {
-        String numbers = calculatorController.getNumbers(value);
+    public void extractNumbers_숫자_분리(String value, String expected) {
+        String numbers = calculatorController.extractNumbers(value);
 
         assertThat(numbers).isEqualTo(expected);
     }
@@ -101,7 +101,7 @@ class CalculatorControllerTest {
     @DisplayName("정상적인 숫자 문자열이 입력된 경우 숫자를 분리 후 더하여 반환")
     @ParameterizedTest
     @CsvSource(value = {"1,2,3=6", "1,2:3=6", "//;\\n1;2,3=6"}, delimiter = '=')
-    public void getResult_정상적인_문자열(String value, String expected) {
+    public void extractResult_정상적인_문자열(String value, String expected) {
         int result = calculatorController.parseAndSum(value);
         int expectedNumber = Integer.parseInt(expected);
 
@@ -110,7 +110,7 @@ class CalculatorControllerTest {
 
     @DisplayName("숫자 문자열이 null 또는 빈문자인 경우 0을 반환")
     @Test
-    public void getResult_null_또는_빈문자() {
+    public void extractResult_null_또는_빈문자() {
         int result = calculatorController.parseAndSum(null);
         assertThat(result).isEqualTo(0);
 
