@@ -37,7 +37,7 @@ public class Cars {
     public String[] getWinners() {
         int winnerPosition = findWinnerPosition();
         return this.cars.stream()
-                .filter(car -> car.isInWinnerPosition(winnerPosition))
+                .filter(car -> car.isOnPosition(winnerPosition))
                 .map(Car::getName)
                 .toArray(String[]::new);
     }

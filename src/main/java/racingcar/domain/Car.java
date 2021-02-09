@@ -31,8 +31,8 @@ public class Car {
         return Math.max(this.position, position);
     }
 
-    public boolean isInWinnerPosition(int winnerPosition) {
-        return winnerPosition == this.position;
+    public boolean isOnPosition(int position) {
+        return position == this.position;
     }
 
     public void tryToMove() {
