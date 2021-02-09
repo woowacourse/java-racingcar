@@ -3,8 +3,7 @@ package racingcar.domain;
 import java.util.List;
 
 public class RacingGame {
-    private static final String ROUND_MUST_POSITIVE_ERROR_MSG_FORMAT = "[ERROR] 라운드 수는 음수일 수 없습니다. 입력받은 라운드 수 : %d";
-    private static final int ONE = 1;
+    private static final int INIT_ROUND = 1;
 
     private final Cars cars;
     private final Round goalRound;
@@ -15,17 +14,11 @@ public class RacingGame {
     }
 
     public RacingGame(Cars cars, int goalRound) {
-        validateTargetRound(goalRound);
         this.cars = cars;
         this.goalRound = new Round(goalRound);
-        this.currentRound = new Round(ONE);
+        this.currentRound = new Round(INIT_ROUND);
     }
 
-    private void validateTargetRound(int goalRound) {
-        if (goalRound < 0) {
-            throw new IllegalArgumentException(String.format(ROUND_MUST_POSITIVE_ERROR_MSG_FORMAT, goalRound));
-        }
-    }
 
     public void playRound() {
         cars.moveCars();

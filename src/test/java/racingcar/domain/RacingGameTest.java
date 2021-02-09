@@ -19,12 +19,7 @@ class RacingGameTest {
         racingGame = new RacingGame(testCases, 5);
     }
 
-    @DisplayName("목표 라운드가 음수일 때 에러가 나는지")
-    @Test
-    void 목표_라운드가_음수이면_에러(){
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new RacingGame(testCases, -1));
-    }
+
 
     @DisplayName("주어진 이름대로 자동차 생성되는지 테스트")
     @Test

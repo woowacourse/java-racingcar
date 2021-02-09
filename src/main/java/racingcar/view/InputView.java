@@ -35,7 +35,7 @@ public class InputView implements Inputable {
         return new CarsDto(names
                 .stream()
                 .map(name -> new CarDto(name, ZERO))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList()), ZERO);
     }
 
     @Override

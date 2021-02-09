@@ -15,7 +15,6 @@ import static java.util.stream.Collectors.groupingBy;
 public class Cars {
     private static final String SAME_NAME_ERROR_MSG_FORMAT = "[ERROR] 중복된 이름이 있습니다 : %s";
     private static final String COMMA_AND_BLANK = ", ";
-    private static final int INIT_ROUND = 1;
 
     private final List<Car> cars;
 
