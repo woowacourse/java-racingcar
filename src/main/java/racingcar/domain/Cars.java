@@ -9,18 +9,14 @@ public class Cars {
 
     private List<Car> cars = new ArrayList<>();
 
-    public Cars(String[] carNames) {
-        this(carNames, new int[carNames.length]);
+    public Cars(List<Name> names) {
+        this(names, new int[names.size()]);
     }
 
-    public Cars(String[] carNames, int[] distance) {
-        for (int i = 0; i < carNames.length; i++) {
-            cars.add(new Car(carNames[i], distance[i]));
+    public Cars(List<Name> names, int[] distance) {
+        for (int i = 0; i < names.size(); i++) {
+            cars.add(new Car(names.get(i), distance[i]));
         }
-    }
-
-    public List<Car> getCars() {
-        return cars;
     }
 
     public List<Car> getWinners() {

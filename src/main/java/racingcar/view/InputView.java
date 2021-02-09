@@ -1,8 +1,11 @@
 package racingcar.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import racingcar.domain.Cars;
 
 import java.util.Scanner;
+import racingcar.domain.Name;
 
 public class InputView {
 
@@ -16,7 +19,12 @@ public class InputView {
         try {
             String carNamesInput = scanner.nextLine();
             String[] carNames = carNamesInput.split(CAR_NAME_DELIMITER);
-            return new Cars(carNames);
+
+            List<Name> names = new ArrayList<>();
+            for(int i = 0; i < carNames.length; i++){
+                names.add(new Name(carNames[i]));
+            }
+            return new Cars(names);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return getCars(scanner);
