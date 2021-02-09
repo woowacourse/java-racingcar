@@ -10,16 +10,17 @@ public class Car {
 
     private Name name;
     private Engine engine;
-    private int position = DEFAULT_CAR_POSITION;
+    private Position position;
 
     public Car(String name, Engine engine) {
         this.name = Name.of(name);
         this.engine = engine;
+        this.position = Position.of(DEFAULT_CAR_POSITION);
     }
 
     public void run() {
         if (engine.isMove()) {
-            position += GO_FORWARD_DISTANCE;
+            this.position = position.plus(GO_FORWARD_DISTANCE);
         }
     }
 
@@ -29,18 +30,18 @@ public class Car {
 
     private String displayCurrentPosition() {
         StringBuilder currentPosition = new StringBuilder();
-        for (int i = 0; i < position; i++) {
+        for (int i = 0; i < position.getValue(); i++) {
             currentPosition.append(GO_FORWARD_MARKING);
         }
         return currentPosition.toString();
     }
 
     public boolean isOn(int max) {
-        return position == max;
+        return position.getValue() == max;
     }
 
     public int getPosition() {
-        return position;
+        return position.getValue();
     }
 
     public String getName() {
