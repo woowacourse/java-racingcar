@@ -13,6 +13,13 @@ public class CalculatorController {
     private static final int NULL_OR_EMPTY_RESULT = 0;
     private static final String REGEX = "//(.)\\\\n(.*)";
     private static final Pattern PATTERN = Pattern.compile(REGEX);
+    private static final int DELIMITER_INDEX = 1;
+    private static final int NUMBERS_INDEX = 2;
+    private static final String COMMA = ",";
+    private static final String COLON = ",";
+    private static final String DELIMITER_DIVIDER = "|";
+    private static final String DEFAULT_DELIMITERS = COMMA + DELIMITER_DIVIDER + COLON;
+    private static final String EMPTY_STRING = "";
 
     private final InputView inputView;
 
@@ -31,12 +38,12 @@ public class CalculatorController {
             return NULL_OR_EMPTY_RESULT;
         }
 
-        String delimiters = ",|:";
+        String delimiters = DEFAULT_DELIMITERS;
 
         String numbers = getNumbers(input);
 
         if (hasCustomDelimiter(input)) {
-            delimiters += ("|" + getCustomDelimiter(input));
+            delimiters += (DELIMITER_DIVIDER + getCustomDelimiter(input));
         }
 
         return splitAndSum(numbers, delimiters);
@@ -49,13 +56,12 @@ public class CalculatorController {
     }
 
     public String getCustomDelimiter(String input) {
-        final int delimiterIndex = 1;
-        String customDelimiter = "";
+        String customDelimiter = EMPTY_STRING;
 
         Matcher matcher = PATTERN.matcher(input);
 
         if (matcher.find()) {
-            customDelimiter = matcher.group(delimiterIndex);
+            customDelimiter = matcher.group(DELIMITER_INDEX);
             isValidDelimiter(customDelimiter);
         }
 
@@ -69,12 +75,10 @@ public class CalculatorController {
     }
 
     public String getNumbers(String input) {
-        final int numbersIndex = 2;
-
         Matcher matcher = PATTERN.matcher(input);
 
         if (matcher.find()) {
-            return matcher.group(numbersIndex);
+            return matcher.group(NUMBERS_INDEX);
         }
         return input;
     }
