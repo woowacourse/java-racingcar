@@ -29,7 +29,6 @@ public class CalculatorController {
 
     public int run() {
         String input = inputView.scanInput();
-
         return parseAndSum(input);
     }
 
@@ -54,20 +53,17 @@ public class CalculatorController {
 
     private boolean hasCustomDelimiter(String input) {
         Matcher matcher = PATTERN.matcher(input);
-
         return matcher.find();
     }
 
     public String getCustomDelimiter(String input) {
         String customDelimiter = EMPTY_STRING;
-
         Matcher matcher = PATTERN.matcher(input);
 
         if (matcher.find()) {
             customDelimiter = matcher.group(DELIMITER_INDEX);
             validateDelimiter(customDelimiter);
         }
-
         return customDelimiter;
     }
 
