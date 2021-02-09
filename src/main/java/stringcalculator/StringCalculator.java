@@ -1,4 +1,4 @@
-package stringCalculator;
+package stringcalculator;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -31,8 +31,7 @@ public class StringCalculator {
         Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(s);
         if (m.find()) {
             String customDelimiter = m.group(DELIMITER_INDEX);
-            String[] numbers = m.group(TOKENS_INDEX).split(customDelimiter);
-            return numbers;
+            return m.group(TOKENS_INDEX).split(customDelimiter);
         }
 
         return s.split(DEFAULT_DELIMITER);
