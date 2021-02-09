@@ -42,7 +42,10 @@ public class Car {
 
     @Override
     public String toString() {
-        return "CarName: " + carName + ", Position: " + position;
+        return "Car{" +
+                "position=" + position +
+                ", carName=" + carName +
+                '}';
     }
 
     @Override
