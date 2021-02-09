@@ -11,10 +11,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CarTest {
 
     @Test
-    @DisplayName("경주할 자동차 이름 입력 체크")
+    @DisplayName("경주할 자동차 이름 저장")
     public void getNameTest() {
         Car car = Car.of("bmw");
-        assertThat(car.getName()).isEqualTo("bmw");
+
+        assertThat(car).isEqualTo(Car.of("bmw"));
     }
 
     @ParameterizedTest(name = "양쪽끝 공백을 제거한 자동차 이름이 1자리 미만거나 5자리를 초과하면 RuntimeException이 발생(carName = {arguments})")
@@ -36,9 +37,14 @@ public class CarTest {
     @Test
     @DisplayName("숫자가 4이상이면 자동차가 전진한다.")
     public void moveCarTest() {
+        //given
         Car car = Car.of("test");
         int beforePosition = car.getPosition();
+
+        //when
         car.tryToMove(4);
-        assertThat(car.getPosition()).isEqualTo(beforePosition + 1);
+
+        //then
+        assertThat(car).isEqualTo(Car.of("test", 1));
     }
 }
