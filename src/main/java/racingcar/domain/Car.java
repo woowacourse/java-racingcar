@@ -44,16 +44,16 @@ public class Car {
         return this.position == maxPosition;
     }
 
+    public int getMaxPosition(int position) {
+        return Math.max(this.position, position);
+    }
+
     public String getName() {
         return this.name;
     }
 
     public int getPosition() {
         return position;
-    }
-
-    public int getMaxPosition(int position) {
-        return Math.max(this.position, position);
     }
 
     @Override
