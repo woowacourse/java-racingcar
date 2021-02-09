@@ -3,8 +3,6 @@ package racingcar.utils;
 import java.util.Random;
 
 public class RandomUtils {
-    private static final int MIN_NUMBER = 0;
-    private static final int MAX_NUMBER = 9;
     private static final Random RANDOM = new Random();
 
     private RandomUtils() {
@@ -24,9 +22,5 @@ public class RandomUtils {
         }
 
         return startInclusive + RANDOM.nextInt(endInclusive - startInclusive + 1);
-    }
-
-    public static int generateRandomValue() {
-        return nextInt(MIN_NUMBER, MAX_NUMBER);
     }
 }

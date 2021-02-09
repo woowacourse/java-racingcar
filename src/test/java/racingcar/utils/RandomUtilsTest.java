@@ -10,7 +10,7 @@ class RandomUtilsTest {
     void between0And9() {
         int min = 0;
         int max = 9;
-        int value = RandomUtils.generateRandomValue();
+        int value = RandomUtils.nextInt(min, max);
         assertTrue(max >= value);
         assertTrue(min <= value);
     }

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final int MIN_NUMBER = 0;
+    private static final int MAX_NUMBER = 9;
     private final List<Car> cars;
 
     public Cars(Racers racers) {
@@ -32,7 +34,7 @@ public class Cars {
 
     public void move() {
         for (Car car : cars) {
-            car.movePosition(RandomUtils.generateRandomValue());
+            car.movePosition(RandomUtils.nextInt(MIN_NUMBER, MAX_NUMBER));
         }
     }
 
