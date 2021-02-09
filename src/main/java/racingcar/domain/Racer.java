@@ -23,7 +23,7 @@ public class Racer {
     }
 
     private void isEmpty(String name) {
-        if (name.equals(EMPTY)) {
+        if (EMPTY.equals(name)) {
             throw new IllegalArgumentException(EMPTY_ERR_MSG);
         }
     }
