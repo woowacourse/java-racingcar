@@ -15,14 +15,18 @@ public class GameManager {
     private Round round;
 
     public GameManagerResponseDto playGame(GameManagerRequestDto requestDto) {
-        this.cars = Cars.of(requestDto.getCarNames());
-        this.round = Round.of(requestDto.getRound());
-        Results results = moveAndGetResults();
+        initSet(requestDto);
+        Results results = move();
         Winners winners = Winners.of(cars);
         return new GameManagerResponseDto(results, winners);
     }
 
-    private Results moveAndGetResults() {
+    private void initSet(GameManagerRequestDto requestDto) {
+        this.cars = Cars.of(requestDto.getCarNames());
+        this.round = Round.of(requestDto.getRound());
+    }
+
+    private Results move() {
         List<Result> results = new ArrayList<>();
         for (int i = 0; i < this.round.getCount(); i++) {
             this.cars.tryToMoveCars(createRandomNumbers());
