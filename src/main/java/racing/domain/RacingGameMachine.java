@@ -2,8 +2,8 @@ package racing.domain;
 
 import racing.domain.number.TryCount;
 import racing.view.GameScreen;
-import racing.view.dto.CarDto;
-import racing.view.dto.WinnersDto;
+import racing.view.dto.CarMoveStatusDto;
+import racing.view.dto.WinnersStatusDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,12 +36,12 @@ public class RacingGameMachine {
         }
 
         Winners winners = cars.findWinners();
-        gameScreen.showWinners(new WinnersDto(winners.getWinnersName()));
+        gameScreen.showWinners(new WinnersStatusDto(winners.getWinnersName()));
     }
 
-    private List<CarDto> getCarDtos() {
+    private List<CarMoveStatusDto> getCarDtos() {
         return cars.getCars().stream()
-                .map(car -> CarDto.of(car))
+                .map(car -> CarMoveStatusDto.of(car))
                 .collect(Collectors.toList());
     }
 }

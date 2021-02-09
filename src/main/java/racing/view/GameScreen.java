@@ -1,7 +1,7 @@
 package racing.view;
 
-import racing.view.dto.CarDto;
-import racing.view.dto.WinnersDto;
+import racing.view.dto.CarMoveStatusDto;
+import racing.view.dto.WinnersStatusDto;
 
 import java.util.List;
 
@@ -18,29 +18,29 @@ public class GameScreen implements Screen {
         OutputView.printMessage(RESULT);
     }
 
-    public void showCarStatus(final List<CarDto> carDtos) {
+    public void showCarStatus(final List<CarMoveStatusDto> carMoveStatusDtos) {
         StringBuilder stringBuilder = new StringBuilder();
-        carDtos.forEach(carDto -> showEachCarStatus(carDto, stringBuilder));
+        carMoveStatusDtos.forEach(carMoveStatusDto -> showEachCarStatus(carMoveStatusDto, stringBuilder));
         OutputView.printMessage(stringBuilder.toString());
     }
 
-    public void showWinners(final WinnersDto winnersDto) {
+    public void showWinners(final WinnersStatusDto winnersStatusDto) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.join(DELIMITER, winnersDto.getWinnersName()));
+        stringBuilder.append(String.join(DELIMITER, winnersStatusDto.getWinnersName()));
         stringBuilder.append(WINNER);
         OutputView.printMessage(stringBuilder.toString());
     }
 
-    private void showEachCarStatus(final CarDto carDto, final StringBuilder stringBuilder) {
-        String carName = carDto.getCarName();
-        String distance = getDistance(carDto);
+    private void showEachCarStatus(final CarMoveStatusDto carMoveStatusDto, final StringBuilder stringBuilder) {
+        String carName = carMoveStatusDto.getCarName();
+        String distance = getDistance(carMoveStatusDto);
         String message = String.format(STATUS_FORMAT, carName, distance);
         stringBuilder.append(message);
     }
 
-    private String getDistance(final CarDto carDto) {
+    private String getDistance(final CarMoveStatusDto carMoveStatusDto) {
         StringBuilder stringBuilder = new StringBuilder();
-        int position = carDto.getPosition();
+        int position = carMoveStatusDto.getPosition();
         for (int i = ZERO; i < position; i++) {
             stringBuilder.append(DISTANCE);
         }

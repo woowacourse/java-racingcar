@@ -2,10 +2,10 @@ package racing.view.dto;
 
 import java.util.List;
 
-public class WinnersDto {
+public class WinnersStatusDto {
     private final List<String> winnersName;
 
-    public WinnersDto(final List<String> winnersName) {
+    public WinnersStatusDto(final List<String> winnersName) {
         this.winnersName = winnersName;
     }
 

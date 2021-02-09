@@ -2,17 +2,17 @@ package racing.view.dto;
 
 import racing.domain.Car;
 
-public class CarDto {
+public class CarMoveStatusDto {
     private String carName;
     private int position;
 
-    private CarDto(final String carName, final int position) {
+    private CarMoveStatusDto(final String carName, final int position) {
         this.carName = carName;
         this.position = position;
     }
 
-    public static CarDto of(final Car car) {
-        return new CarDto(car.getName(), car.getPositionValue());
+    public static CarMoveStatusDto of(final Car car) {
+        return new CarMoveStatusDto(car.getName(), car.getPositionValue());
     }
 
     public String getCarName() {
