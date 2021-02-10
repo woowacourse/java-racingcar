@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import racingcar.domain.Cars;
 import racingcar.view.RacingCarError;
 
@@ -39,26 +40,24 @@ public class CarsSetGenerator {
     }
 
     private static void checkNameLength(List<String> nameCandidates) {
-        checkUpperLimit(nameCandidates);
-        checkLowerLimit(nameCandidates);
+        List<Integer> namesLength = nameCandidates.stream()
+            .map(String::length)
+            .collect(Collectors.toList());
+
+        for (Integer nameLength : namesLength) {
+            checkLowerLimit(nameLength);
+            checkUpperLimit(nameLength);
+        }
     }
 
-    private static void checkUpperLimit(List<String> nameCandidates) {
-        long nameFilters = nameCandidates.stream()
-            .mapToInt(String::length)
-            .filter(carNameLength -> carNameLength > UPPER_LIMIT)
-            .count();
-        if (nameFilters != LONG_ZERO_VALUE) {
+    private static void checkUpperLimit(Integer nameLength) {
+        if (nameLength > UPPER_LIMIT) {
             RacingCarError.upperLength();
         }
     }
 
-    private static void checkLowerLimit(List<String> nameCandidates) {
-        long nameFilters = nameCandidates.stream()
-            .mapToInt(String::length)
-            .filter(carNameLength -> carNameLength <= ZERO_VALUE)
-            .count();
-        if (nameFilters != LONG_ZERO_VALUE) {
+    private static void checkLowerLimit(Integer nameLength) {
+        if (nameLength <= ZERO_VALUE) {
             RacingCarError.lowerLength();
         }
     }
