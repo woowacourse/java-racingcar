@@ -6,15 +6,25 @@ import java.util.List;
 
 public class GamePage {
 
+    private static final char SINGLE_VISUAL_POSITION = '-';
+
     public static void printResultPage() {
         System.out.println(System.lineSeparator() + "실행 결과");
     }
 
     public static void printSingleRoundResult(List<Car> cars) {
         for (Car car : cars) {
-            System.out.println(car.formatSingleRoundInformation());
+            System.out.println(formatSingleRoundInformation(car));
         }
         System.out.println();
+    }
+
+    public static String formatSingleRoundInformation(Car car) {
+        StringBuilder visualPosition = new StringBuilder();
+        while (visualPosition.length() < car.getPosition()) {
+            visualPosition.append(SINGLE_VISUAL_POSITION);
+        }
+        return car.getName() + " : " + visualPosition;
     }
 
     public static void printFinalResult(String winners) {
