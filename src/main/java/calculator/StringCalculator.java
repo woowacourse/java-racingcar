@@ -7,15 +7,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    private static final List<String> delimiterList = new ArrayList<>();
+    private static final List<String> delimiters = new ArrayList<>();
 
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
     private static final String COLON = ":";
     private static final String COMMA = ",";
 
     static {
-        delimiterList.add(COLON);
-        delimiterList.add(COMMA);
+        delimiters.add(COLON);
+        delimiters.add(COMMA);
     }
 
     public static int splitAndSum(String inputText) {
@@ -57,7 +57,7 @@ public class StringCalculator {
         Matcher m = CUSTOM_DELIMITER_PATTERN.matcher(inputText);
         if (m.find()) {
             String customDelimiter = m.group(1);
-            delimiterList.add(customDelimiter);
+            delimiters.add(customDelimiter);
             return m.group(2);
         }
         return inputText;
@@ -68,7 +68,7 @@ public class StringCalculator {
     }
 
     private static String[] split(String inputText) {
-        String pattern = String.join("|", delimiterList);
+        String pattern = String.join("|", delimiters);
         return inputText.split(pattern);
     }
 }
