@@ -3,7 +3,7 @@ package racingcar.utils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.utils.exception.*;
+import racingcar.utils.exception.InvalidTimeException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -13,38 +13,6 @@ class InputValidationTest {
     public void 정상_입력_시() {
         String[] validInput = {"pobi", "brown"};
         InputValidation.validateCars(validInput);   // 정상 처리 시 예외가 발생하지 않음
-    }
-
-    @Test
-    public void 문자_외의_입력_시_예외처리() {
-        String[] invalidInput = {"pobi#", "brown"};
-        assertThatThrownBy(() -> InputValidation.validateCars(invalidInput))
-        .isInstanceOf(InvalidTextException.class);
-    }
-
-    @Test
-    public void 이름_길이가_잘못된_경우_예외처리() {
-        String[] overLength = {"poooobi", "brown"};
-        assertThatThrownBy(() -> InputValidation.validateCars(overLength))
-                .isInstanceOf(InvalidNameLengthException.class);
-
-        String[] lessLength = {"pobi", ""};
-        assertThatThrownBy(() -> InputValidation.validateCars(lessLength))
-                .isInstanceOf(InvalidNameLengthException.class);
-    }
-
-    @Test
-    public void 이름이_중복되는_경우_예외처리() {
-        String[] duplicateInput = {"pobi", "brown", "pobi"};
-        assertThatThrownBy(() -> InputValidation.validateCars(duplicateInput))
-                .isInstanceOf(DuplicateNameException.class);
-    }
-
-    @Test
-    public void 자동차가_1대인_경우_예외처리() {
-        String[] input = {"pobi"};
-        assertThatThrownBy(() -> InputValidation.validateCars(input))
-                .isInstanceOf(NotEnoughCarException.class);
     }
 
     @ParameterizedTest
