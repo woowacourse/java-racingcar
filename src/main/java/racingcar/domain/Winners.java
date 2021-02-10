@@ -18,8 +18,11 @@ public class Winners {
     }
 
     public List<String> getWinnersNames() {
-        return Collections.unmodifiableList(winners.stream()
-                .map(Car::getName).collect(Collectors.toList()));
+        return Collections.unmodifiableList(
+                winners.stream()
+                        .map(Car::getName)
+                        .map(Name::value)
+                        .collect(Collectors.toList()));
     }
 
     private int getWinnerPosition(final Cars cars) {
