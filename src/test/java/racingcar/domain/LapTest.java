@@ -15,7 +15,7 @@ class LapTest {
         Lap lap = Lap.initGoalLap(Integer.toString(testNumber));
 
         for (int i = 0; i < testNumber; i++) {
-            lap.passOneLap();
+            lap = lap.passOneLap();
         }
 
         assertThat(lap.isFinish()).isTrue();
@@ -41,7 +41,7 @@ class LapTest {
 
         while (!lap.isFinish()) {
             testNumber -= 1;
-            lap.passOneLap();
+            lap = lap.passOneLap();
         }
         assertThat(lap.isFinish()).isTrue();
     }

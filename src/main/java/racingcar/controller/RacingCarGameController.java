@@ -1,7 +1,6 @@
 package racingcar.controller;
 
 import racingcar.domain.Lap;
-import racingcar.domain.Winners;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 import racingcar.view.InputView;
@@ -12,25 +11,24 @@ public class RacingCarGameController {
     public void playGame() {
         Cars cars = Cars.enrollCarsWithNames(InputView.inputCarNames());
         Lap lap = Lap.initGoalLap(InputView.inputLap());
-
         OutputView.printStartRace();
-        racing(cars, lap);
-        OutputView.printWinners(Winners.toList(cars.getCars()));
+        OutputView.printWinners(racing(cars, lap).findWinners());
     }
 
-    private void racing(Cars cars, Lap lap) {
+    private Cars racing(Cars cars, Lap lap) {
         while (!lap.isFinish()) {
-            passOneLap(cars, lap);
+            cars = cars.passOneLap();
+            lap = lap.passOneLap();
+            printCarInfo(cars);
+            OutputView.printPassOneLap();
         }
+        return cars;
     }
 
-    private void passOneLap(Cars cars, Lap lap) {
+    private void printCarInfo(Cars cars) {
         for (Car car : cars.getCars()) {
-            car.forward();
             OutputView.printCarInfo(car.getName(), car.getPosition());
         }
-        lap.passOneLap();
-        OutputView.printPassOneLap();
     }
 
 }

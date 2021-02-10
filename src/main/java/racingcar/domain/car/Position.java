@@ -1,21 +1,45 @@
 package racingcar.domain.car;
 
+import java.util.Objects;
+
 public class Position {
 
-    private static final String UNIT_OF_POSITION = "-";
+    private final int value;
 
-    private final StringBuilder position;
-
-    Position() {
-        this.position = new StringBuilder();
+    public Position() {
+        this(0);
     }
 
-    void forward() {
-        position.append(UNIT_OF_POSITION);
+    public Position(int value) {
+        this.value = value;
     }
 
-    public String toString() {
-        return position.toString();
+    public Position forward() {
+        return new Position(value + 1);
     }
 
+    public Position getMaxPosition(Position position) {
+        return new Position(Integer.max(this.value, position.value));
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Position position1 = (Position) o;
+        return value == position1.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
 }

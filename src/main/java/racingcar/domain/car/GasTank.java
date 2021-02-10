@@ -1,18 +1,25 @@
 package racingcar.domain.car;
 
-import racingcar.utils.RandomUtils;
-
 public class GasTank {
 
-    private static final int MINIMUM_GAS = 0;
-    private static final int MAXIMUM_GAS = 9;
     private static final int ENOUGH_GAS = 4;
+    private static final int INIT_GAS = 0;
 
-    GasTank() {
+    private final int gas;
+
+    public GasTank() {
+        this(INIT_GAS);
     }
 
-    boolean isEnoughGas() {
-        return RandomUtils.nextPositiveInt(MINIMUM_GAS, MAXIMUM_GAS) >= ENOUGH_GAS;
+    public GasTank(final int gas) {
+        this.gas = gas;
     }
 
+    public GasTank fillUp(final int gas) {
+        return new GasTank(gas);
+    }
+
+    public boolean isEnough() {
+        return this.gas >= ENOUGH_GAS;
+    }
 }
