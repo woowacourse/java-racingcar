@@ -24,11 +24,11 @@ public class Car {
         position.goForward();
     }
 
-    public Name getName() {
-        return name;
+    public String getValueOfName() {
+        return name.getValue();
     }
 
-    public Position getPosition() {
-        return position;
+    public int getValueOfPosition() {
+        return position.getValue();
     }
 }

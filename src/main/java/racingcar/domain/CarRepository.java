@@ -29,7 +29,7 @@ public class CarRepository {
 
     public static List<String> winnerNames() {
         return winners().stream()
-                .map(car -> car.getName().getValue())
+                .map(Car::getValueOfName)
                 .collect(Collectors.toList());
     }
 
@@ -43,7 +43,7 @@ public class CarRepository {
 
     private static int getMaxPosition() {
         return cars.stream()
-                .mapToInt(car -> car.getPosition().getValue())
+                .mapToInt(Car::getValueOfPosition)
                 .max()
                 .orElseThrow(RuntimeException::new);
     }
