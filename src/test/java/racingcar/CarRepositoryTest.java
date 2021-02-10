@@ -10,25 +10,19 @@ import racingcar.domain.car.Name;
 import racingcar.domain.car.Position;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CarRepositoryTest {
 
-    @AfterEach
-    void afterEach() {
-        CarRepository.deleteAll();
-    }
-
     @DisplayName("우승자 결과 테스트 한 명")
     @Test
     void singleWinnerResult() {
-        Car winner = new Car(new Name("pobi"), new Position(4));
-        Car loser = new Car(new Name("crong"), new Position(2));
-
-        CarRepository.save(winner);
-        CarRepository.save(loser);
-
-        List<Car> winners = CarRepository.winners();
+        final Car winner = new Car(new Name("pobi"), new Position(4));
+        final Car loser = new Car(new Name("crong"), new Position(2));
+        final CarRepository carRepository
+                = new CarRepository(Arrays.asList(winner, loser));
+        final List<Car> winners = carRepository.winners();
 
         Assertions.assertThat(winners.size()).isEqualTo(1);
         Assertions.assertThat(winners.get(0)).isEqualTo(winner);
@@ -37,23 +31,15 @@ public class CarRepositoryTest {
     @DisplayName("우승자 결과 테스트 여러명")
     @Test
     void multiWinnerResult() {
-        List<Car> expectedWinners = new ArrayList<>();
+        final Car winner1 = new Car(new Name("pobi"), new Position(3));
+        final Car winner2 = new Car(new Name("poci"), new Position(3));
+        final Car winner3 = new Car(new Name("podi"), new Position(3));
+        final Car loser = new Car(new Name("crong"), new Position(1));
+        final CarRepository carRepository
+                = new CarRepository(Arrays.asList(winner1, winner2, winner3, loser));
+        final List<Car> expectedWinners = Arrays.asList(winner1, winner2, winner3);
 
-        Car winner1 = new Car(new Name("pobi"), new Position(3));
-        Car winner2 = new Car(new Name("poci"), new Position(3));
-        Car winner3 = new Car(new Name("podi"), new Position(3));
-        Car loser = new Car(new Name("crong"), new Position(1));
-
-        CarRepository.save(winner1);
-        CarRepository.save(winner2);
-        CarRepository.save(winner3);
-        CarRepository.save(loser);
-
-        expectedWinners.add(winner1);
-        expectedWinners.add(winner2);
-        expectedWinners.add(winner3);
-
-        List<Car> actualWinners = CarRepository.winners();
+        final List<Car> actualWinners = carRepository.winners();
 
         Assertions.assertThat(actualWinners.size()).isEqualTo(3);
         Assertions.assertThat(actualWinners.containsAll(expectedWinners)).isTrue();
