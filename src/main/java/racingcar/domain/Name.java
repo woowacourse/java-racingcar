@@ -14,7 +14,7 @@ public class Name {
 
     public Name(final String name) {
         checkNameValidation(name);
-        this.name = name;
+        this.name = name.trim();
     }
 
     public String getName() {

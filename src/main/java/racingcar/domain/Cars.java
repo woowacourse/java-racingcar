@@ -18,7 +18,7 @@ public class Cars {
 
     public HashMap<String, Integer> getCurrentCarsInfo() {
         HashMap<String, Integer> info = new HashMap<>();
-        for (Car car: cars) {
+        for (Car car : cars) {
             info.put(car.getName(), car.getPosition());
         }
         return info;
@@ -32,11 +32,10 @@ public class Cars {
 
     private int getMaxPosition() {
         int maxPosition = 0;
-        for (Car car:cars) {
+        for (Car car : cars) {
             maxPosition = car.getMaxPosition(maxPosition);
         }
         return maxPosition;
-//        return cars.stream().max(Car::compareTo).get();
     }
 
     public List<Car> getWinners() {
