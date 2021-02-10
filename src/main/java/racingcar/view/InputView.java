@@ -16,11 +16,10 @@ public class InputView {
     }
 
     public String[] inputCarName() {
-        String[] name = scanner.nextLine()
+        String[] names = scanner.nextLine()
                 .replace(BLANK, NON_BLANK)
                 .split(DELIMITER);
-        InputValidation.validateName(name);
-        return name;
+        return names;
     }
 
     public int inputTime() {

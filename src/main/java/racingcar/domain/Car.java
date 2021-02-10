@@ -1,20 +1,22 @@
 package racingcar.domain;
 
+import racingcar.domain.car.Name;
+
 public class Car {
     private static final String CAR_STATUS_DELIMITER = " : ";
     private static final String CAR_POSITION_STATUS = "-";
 
-    private String name;
+    private final Name name;
     private int position;
     private CarMoveRule rule;
 
     public Car(String name) {
-        this.name = name;
+        this.name = new Name(name);
         this.position = 0;
         this.rule = new CarMoveRule();
     }
 
-    public String getName() {
+    public Name getName() {
         return this.name;
     }
 

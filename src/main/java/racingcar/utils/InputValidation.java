@@ -14,11 +14,14 @@ public class InputValidation {
 
     private InputValidation() {}
 
-    public static void validateName(String[] name) {
-        isValidText(name);
-        isValidLength(name);
+    public static void validateCars(String[] name) {
         isDuplicateName(name);
         notEnoughCars(name);
+    }
+
+    public static void validateCarName(String name) {
+        isValidText(name);
+        isValidLength(name);
     }
 
     private static void notEnoughCars(String[] name) {
@@ -39,26 +42,20 @@ public class InputValidation {
                 .count() == name.length;
     }
 
-    private static void isValidLength(String[] names) {
-        Arrays.stream(names)
-                .filter(name -> checkLength(name))
-                .findAny()
-                .ifPresent(s -> {
-                    throw new InvalidNameLengthException(NAME_MAX_LENGTH);
-                });
+    private static void isValidLength(String name) {
+        if (checkLength(name)) {
+            throw new InvalidNameLengthException(NAME_MAX_LENGTH);
+        }
     }
 
     private static boolean checkLength(String name) {
         return name.length() <= 0 || name.length() > NAME_MAX_LENGTH;
     }
 
-    private static void isValidText(String[] names) {
-        Arrays.stream(names)
-                .filter(name -> !VALID_TEXT_PATTERN.matcher(name).matches())
-                .findAny()
-                .ifPresent(s -> {
-                    throw new InvalidTextException();
-                });
+    private static void isValidText(String name) {
+        if (!VALID_TEXT_PATTERN.matcher(name).matches()) {
+            throw new InvalidTextException();
+        }
     }
 
     public static void validateTime(String input) {
