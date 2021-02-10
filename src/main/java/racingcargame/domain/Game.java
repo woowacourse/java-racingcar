@@ -23,7 +23,7 @@ public class Game {
         return raceCount != 0;
     }
 
-    public List<Car> makeCars(String[] carNames) {
+    private List<Car> makeCars(String[] carNames) {
         return Arrays.stream(carNames).map(Car::new).collect(Collectors.toList());
     }
 
