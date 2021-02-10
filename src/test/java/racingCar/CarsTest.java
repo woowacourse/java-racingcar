@@ -52,9 +52,9 @@ class CarsTest {
 
     @Test
     public void find_winner() {
-        List<String> winners = cars.findWinners(2);
+        List<Name> winners = cars.findWinners(2);
 
-        assertThat(winners.get(0)).isEqualTo("car2");
+        assertThat(winners.get(0)).isEqualTo(new Car("car2"));
     }
 
     @Test

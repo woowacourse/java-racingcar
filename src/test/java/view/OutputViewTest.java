@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingCar.Car;
 import racingCar.Cars;
+import racingCar.Name;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ class OutputViewTest {
         cars.carAdd(car2);
         cars.carAdd(car3);
 
-        List<String> winners = OutputView.getWinners(1, cars);
+        List<Name> winners = OutputView.getWinners(1, cars);
 
         assertThat(winners.size()).isEqualTo(2);
     }

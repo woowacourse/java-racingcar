@@ -53,11 +53,11 @@ class CarTest {
 
     @Test
     public void get_name() {
-        String name = car1.getName();
-        String name2 = car2.getName();
+        Name name = car1.getName();
+        Name name2 = car2.getName();
 
-        assertThat(name).isEqualTo("test");
-        assertThat(name2).isEqualTo("car2");
+        assertThat(name).isEqualTo(new Name("car1"));
+        assertThat(name2).isEqualTo(new Name("car2"));
     }
 
     @Test

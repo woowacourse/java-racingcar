@@ -17,8 +17,8 @@ public class Car {
         return distance.isMaxDistance(max);
     }
 
-    public String getName() {
-        return name.getName();
+    public Name getName() {
+        return name;
     }
 
     public int getDistance() {
