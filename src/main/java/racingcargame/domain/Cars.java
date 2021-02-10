@@ -17,11 +17,10 @@ public class Cars {
     }
 
     public int getMaxDistance() {
-        int maxDistance = 0;
-        for (Car car : cars) {
-            maxDistance = Math.max(maxDistance, car.getDistance());
-        }
-        return maxDistance;
+        return cars.stream()
+                .mapToInt(Car::getDistance)
+                .max()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public void race() {
