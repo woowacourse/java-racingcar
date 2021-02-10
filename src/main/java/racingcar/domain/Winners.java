@@ -6,7 +6,7 @@ import java.util.List;
 public class Winners {
     private final List<Car> winners;
 
-    public Winners(List<Car> cars) {
+    public Winners(final List<Car> cars) {
         this.winners = new ArrayList<>();
         int winnerPosition = findWinnerPosition(cars);
         for (Car car : cars) {
@@ -14,7 +14,7 @@ public class Winners {
         }
     }
 
-    private int findWinnerPosition(List<Car> cars) {
+    private int findWinnerPosition(final List<Car> cars) {
         int winnerPosition = 0;
         for (Car car : cars) {
             winnerPosition = findMaxPosition(winnerPosition, car);
@@ -22,11 +22,11 @@ public class Winners {
         return winnerPosition;
     }
 
-    private int findMaxPosition(int winnerPosition, Car car) {
+    private int findMaxPosition(final int winnerPosition, final Car car) {
         return car.findBiggerPosition(winnerPosition);
     }
 
-    private void addWinners(int winnerPosition, Car car) {
+    private void addWinners(final int winnerPosition, final Car car) {
         if (car.isSamePosition(winnerPosition)) {
             winners.add(car);
         }

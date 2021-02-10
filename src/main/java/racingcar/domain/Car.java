@@ -8,22 +8,22 @@ public class Car {
     private final CarName carName;
     private Position position;
 
-    public Car(String name) {
+    public Car(final String name) {
         this.carName = new CarName(name);
         this.position = new Position();
     }
 
-    public void moveByNumber(int number) {
+    public void moveByNumber(final int number) {
         if (number >= MINIMUM_NUMBER_TO_MOVE) {
             position = position.moveForward();
         }
     }
 
-    public int findBiggerPosition(int winnerPosition) {
+    public int findBiggerPosition(final int winnerPosition) {
         return position.findBiggerPosition(winnerPosition);
     }
 
-    public boolean isSamePosition(int winnerPosition) {
+    public boolean isSamePosition(final int winnerPosition) {
         return position.isSameThan(winnerPosition);
     }
 

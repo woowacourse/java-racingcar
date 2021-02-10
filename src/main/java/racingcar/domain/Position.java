@@ -3,15 +3,13 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Position {
-    private static final int UNIT_OF_MOVE = 1;
-
     private final int position;
 
     public Position() {
         this(0);
     }
 
-    private Position(int position) {
+    private Position(final int position) {
         this.position = position;
     }
 
@@ -19,11 +17,11 @@ public class Position {
        return new Position(position + 1);
     }
 
-    public boolean isSameThan(int winnerPosition) {
+    public boolean isSameThan(final int winnerPosition) {
         return position == winnerPosition;
     }
 
-    public int findBiggerPosition(int winnerPosition) {
+    public int findBiggerPosition(final int winnerPosition) {
         return Integer.max(winnerPosition, position);
     }
 

@@ -19,7 +19,7 @@ public class RacingCarGameController {
         }
     }
 
-    private void playRace(Cars cars, Lap lap) {
+    private void playRace(final Cars cars, final Lap lap) {
         OutputView.printStartRace();
         int nowLapNumber = 0;
         while (!lap.isSameNumber(nowLapNumber)) {
@@ -28,7 +28,7 @@ public class RacingCarGameController {
         }
     }
 
-    private void playOneLap(Cars cars) {
+    private void playOneLap(final Cars cars) {
         cars.moveAllCars();
         for (Car car : cars.toList()) {
             OutputView.printCarInfo(car.getName(), car.getPosition());

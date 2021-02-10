@@ -12,7 +12,7 @@ class CarNameTest {
     @ParameterizedTest
     @DisplayName("이름 입력받는 기능")
     @ValueSource(strings = {"샐리", "현구"})
-    void carName_create(String value) {
+    void carName_create(final String value) {
         final CarName carName1 = new CarName(value);
         assertThat(carName1.getName()).isEqualTo(value);
     }

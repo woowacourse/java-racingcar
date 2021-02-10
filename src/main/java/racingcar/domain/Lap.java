@@ -7,12 +7,12 @@ public class Lap {
 
     private final int lap;
 
-    public Lap(String inputLap) {
+    public Lap(final String inputLap) {
         int numberLap = validateNumberLap(inputLap);
         this.lap = validatePositiveLap(numberLap);
     }
 
-    private int validateNumberLap(String inputLap) {
+    private int validateNumberLap(final String inputLap) {
         try {
             return Integer.parseInt(inputLap);
         } catch (NumberFormatException e) {
@@ -20,14 +20,14 @@ public class Lap {
         }
     }
 
-    private int validatePositiveLap(int numberLap) {
+    private int validatePositiveLap(final int numberLap) {
         if (numberLap < MINIMUM_LAP) {
             throw new IllegalArgumentException(ERROR_MESSAGE_OF_NEGATIVE_NUMBER);
         }
         return numberLap;
     }
 
-    public boolean isSameNumber(int lapNumber) {
+    public boolean isSameNumber(final int lapNumber) {
         return lap == lapNumber;
     }
 

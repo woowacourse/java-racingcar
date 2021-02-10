@@ -31,14 +31,14 @@ class CarsTest {
     @ParameterizedTest
     @DisplayName("양 끝에 쉼표가 있는 경우")
     @ValueSource(strings = {",샐리", "샐리,df,", ",샐리,"})
-    void carNames_both_end(String value) {
+    void carNames_both_end(final String value) {
         assertThatThrownBy(() -> new Cars(value)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @DisplayName("총합테스트")
     @ValueSource(strings = {",", " ", " , ", ", ,  ,"})
-    void carNames_comma_blank(String value) {
+    void carNames_comma_blank(final String value) {
         assertThatThrownBy(() -> new Cars(value)).isInstanceOf(IllegalArgumentException.class);
     }
 }

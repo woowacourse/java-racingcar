@@ -11,19 +11,19 @@ public class CarName {
 
     private final String name;
 
-    public CarName(String name) {
+    public CarName(final String name) {
         validateBlank(name);
         validateLength(name);
         this.name = name;
     }
 
-    private void validateBlank(String name) {
+    private void validateBlank(final String name) {
         if (name.contains(SPACE)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_OF_INVALID_INPUT);
         }
     }
 
-    private void validateLength(String name) {
+    private void validateLength(final String name) {
         if (name.length() < MINIMUM_LENGTH || MAXIMUM_LENGTH < name.length()) {
             System.out.println(name);
             throw new IllegalArgumentException(ERROR_MESSAGE_OF_NAME_LENGTH);

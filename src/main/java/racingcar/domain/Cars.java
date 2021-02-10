@@ -11,22 +11,22 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(String inputNames) {
+    public Cars(final String inputNames) {
         this.cars = new ArrayList<>();
         validateBothEnds(inputNames);
         for (String name : inputNames.split(COMMA_DELIMITER)) {
-            cars.add(new Car(validateDuplicate(cars, name)));
+            cars.add(new Car(validateDuplicate(name)));
         }
     }
 
-    private void validateBothEnds(String inputNames) {
+    private void validateBothEnds(final String inputNames) {
         if (inputNames.charAt(0) == COMMA || inputNames.charAt(inputNames.length() - 1) == COMMA) {
             throw new IllegalArgumentException(ERROR_MESSAGE_OF_INVALID_INPUT);
         }
     }
 
-    private String validateDuplicate(List<Car> createdCars, String name) {
-        if (createdCars.contains(new Car(name))) {
+    private String validateDuplicate(final String name) {
+        if (cars.contains(new Car(name))) {
             throw new IllegalArgumentException(ERROR_MESSAGE_OF_DUPLICATED_NAME);
         }
         return name;
