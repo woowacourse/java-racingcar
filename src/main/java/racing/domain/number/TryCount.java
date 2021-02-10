@@ -1,6 +1,6 @@
 package racing.domain.number;
 
-public class TryCount implements Number{
+public class TryCount implements Number {
     private static final int ZERO = 0;
 
     private int value;

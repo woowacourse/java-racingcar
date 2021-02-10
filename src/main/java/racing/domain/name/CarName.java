@@ -4,13 +4,13 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CarName implements Name{
+public class CarName implements Name {
     private static final Pattern PATTERN = Pattern.compile("[a-zA-Z]{1,5}");
 
     private final String name;
 
     public CarName(final String name) {
-        String copy = new String(name);
+        String copy = name;
         validateName(copy);
         this.name = copy;
     }

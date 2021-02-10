@@ -30,7 +30,7 @@ public class RacingGameMachine {
     public void play() {
         GameScreen gameScreen = new GameScreen();
         gameScreen.showMessage();
-        while (tryCount.reduce()){
+        while (tryCount.reduce()) {
             cars.race();
             gameScreen.showCarStatus(getCarDtos());
         }

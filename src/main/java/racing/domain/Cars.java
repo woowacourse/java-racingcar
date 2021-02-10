@@ -23,11 +23,6 @@ public class Cars implements Cloneable {
         validateCars(copy);
         this.cars = copy;
     }
-    private void validateCars(List<Car> cars) {
-        if (cars.size() < MINIMUM_CAR_SIZE) {
-            throw new IllegalArgumentException("자동차는 1개 이상이어야 합니다");
-        }
-    }
 
     public static Cars generate(final CarNames inputCarNames) {
         List<CarName> carNames = inputCarNames.getCarNames();
@@ -35,6 +30,12 @@ public class Cars implements Cloneable {
                 .map(carName -> new Car(carName))
                 .collect(Collectors.toList());
         return new Cars(cars);
+    }
+
+    private void validateCars(List<Car> cars) {
+        if (cars.size() < MINIMUM_CAR_SIZE) {
+            throw new IllegalArgumentException("자동차는 1개 이상이어야 합니다");
+        }
     }
 
     @Override

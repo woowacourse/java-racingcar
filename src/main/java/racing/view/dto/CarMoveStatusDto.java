@@ -3,8 +3,8 @@ package racing.view.dto;
 import racing.domain.Car;
 
 public class CarMoveStatusDto {
-    private String carName;
-    private int position;
+    private final String carName;
+    private final int position;
 
     private CarMoveStatusDto(final String carName, final int position) {
         this.carName = carName;

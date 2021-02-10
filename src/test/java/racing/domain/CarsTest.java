@@ -17,6 +17,6 @@ class CarsTest {
         assertThatCode(() -> {
             Cars.generate(carNames);
         }).isInstanceOf(IllegalArgumentException.class)
-        .hasMessage("자동차는 1개 이상이어야 합니다");
+                .hasMessage("자동차는 1개 이상이어야 합니다");
     }
 }
