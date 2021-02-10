@@ -35,7 +35,7 @@ public class Car {
     }
 
     private void validateNullAndEmpty(String name) {
-        if (name == null || StringUtils.isBlank(name)) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(ERROR_NAME_NOT_PERMIT_NULL_AND_EMPTY_MESSAGE);
         }
     }
