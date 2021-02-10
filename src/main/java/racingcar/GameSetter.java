@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -10,8 +11,7 @@ public class GameSetter {
     private static final Integer MIN_TRIAL = 1;
     private static final Integer MAX_TRIAL = Integer.MAX_VALUE;
     private static final int MIN_CARS_LENGTH = 2;
-    private static final String numberPattern = "[0-9]+";
-
+    private static final Pattern NUMBER_PATTERN = Pattern.compile("[0-9]+");
 
     private GameSetter() {
     }
@@ -54,7 +54,8 @@ public class GameSetter {
     }
 
     private static void validateNumber(String input) {
-        if (!Pattern.matches(numberPattern, input)) {
+        Matcher matcher = NUMBER_PATTERN.matcher(input);
+        if (!matcher.matches()) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
         }
     }
