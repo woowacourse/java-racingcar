@@ -10,7 +10,7 @@ public class RaceResultDTO {
     }
 
     public String getName() {
-        return getName();
+        return name.toString();
     }
 
     public int getPosition() {

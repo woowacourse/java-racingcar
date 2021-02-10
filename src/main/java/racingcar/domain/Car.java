@@ -19,14 +19,6 @@ public class Car {
         return new Car(name);
     }
 
-    public String getName() {
-        return this.name.toString();
-    }
-
-    public int getPosition() {
-        return this.position;
-    }
-
     public int getFatherPosition(int position) {
         return Math.max(this.position, position);
     }

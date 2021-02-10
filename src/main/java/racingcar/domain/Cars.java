@@ -31,6 +31,14 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
+    public String[] getWinners() {
+        int winnerPosition = findWinnerPosition();
+        return this.cars.stream()
+                .filter(car -> car.isOnPosition(winnerPosition))
+                .map(Car::toString)
+                .toArray(String[]::new);
+    }
+
     private int findWinnerPosition() {
         int max = Integer.MIN_VALUE;
 
@@ -39,14 +47,6 @@ public class Cars {
         }
 
         return max;
-    }
-
-    public String[] getWinners() {
-        int winnerPosition = findWinnerPosition();
-        return this.cars.stream()
-                .filter(car -> car.isOnPosition(winnerPosition))
-                .map(Car::getName)
-                .toArray(String[]::new);
     }
 
     // XXX :: 테스트만을 위한 메소드
