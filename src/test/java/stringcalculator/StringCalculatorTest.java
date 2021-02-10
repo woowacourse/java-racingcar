@@ -43,7 +43,7 @@ class StringCalculatorTest {
     @ParameterizedTest
     @NullAndEmptySource
     void splitAndSumWhenStringIsNullAndEmpty(String input) {
-        assertThat(StringCalculator.splitAndSum(input)).isEqualTo(0);
+        assertThat(StringCalculator.splitAndSum(input)).isZero();
     }
 
     @DisplayName("기본 구분자가 섞여있는 문자열의 문자열 덧셈")
