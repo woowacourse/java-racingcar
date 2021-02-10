@@ -2,12 +2,13 @@ package racingcar.domain;
 
 public class Trial {
     private static final int MIN_TRIAL_COUNT = 1;
+    private static final int TRIAL_END_POINT = 0;
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String COUNT_ERR_MSG = ERROR_PREFIX + "시도 횟수는 1이상의 양수만 입력가능합니다.";
     private static final String NUMBER_ERR_MSG = ERROR_PREFIX + "시도 횟수는 숫자여야합니다.";
     private static final String NUMBER_REGEX = "[+-]?\\d*(\\.\\d+)?";
 
-    private final int trial;
+    private int trial;
 
     public Trial(String trial) {
         checkTrialValidation(trial);
@@ -31,7 +32,11 @@ public class Trial {
         }
     }
 
-    public int getTrial() {
-        return trial;
+    public boolean isRemain() {
+        if (trial > TRIAL_END_POINT) {
+            trial--;
+            return true;
+        }
+        return false;
     }
 }

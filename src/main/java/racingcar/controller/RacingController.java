@@ -48,7 +48,7 @@ public class RacingController {
     private void doRace(Cars cars, Trial trial) {
         RandomMove randomMove = new RandomMove();
         OutputView.printResultTitle();
-        for (int i = 0; i < trial.getTrial(); i++) {
+        while (trial.isRemain()) {
             cars.move(randomMove);
             OutputView.printCurrentResult(cars);
         }
