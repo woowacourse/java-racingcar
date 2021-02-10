@@ -25,7 +25,7 @@ public class InputView {
     }
 
     private static int readInteger(final Scanner scanner) {
-        String numeric = scanner.next();
+        String numeric = scanner.nextLine();
         InputValidator.checkIsNumeric(numeric);
         return Integer.parseInt(numeric);
     }
