@@ -50,7 +50,7 @@ class CarsTest {
         assertThat(maxPosition).isEqualTo(3);
     }
 
-    @DisplayName("Cars 객체를 실행하는 기능을 테스트한다")
+    @DisplayName("Cars 객체의 1회 경주를 실행하는 기능을 테스트한다")
     @Test
     void testPlay() {
         //given
