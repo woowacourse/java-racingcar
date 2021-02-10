@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ import racingcar.utils.RandomUtils;
 public class Cars {
 
     private static final int MIN_VALUE_LENGTH = 2;
+    private static final String NAME_SPLIT_DELIMITER = ",";
 
     private final List<Car> value;
 
@@ -18,17 +20,24 @@ public class Cars {
         this.value = new ArrayList<>(value);
     }
 
-    static void validateValueLength(final List<Car> value) {
+    private static void validateValueLength(final List<Car> value) {
         if (value.size() < MIN_VALUE_LENGTH) {
             throw new IllegalArgumentException("자동차는 두 대 이상 입력해야 합니다.");
         }
     }
 
-    static void validateDuplication(final List<Car> value) {
+    private static void validateDuplication(final List<Car> value) {
         final HashSet<Car> nonDuplicatedValue = new HashSet<>(value);
         if (nonDuplicatedValue.size() != value.size()) {
             throw new IllegalArgumentException("중복되는 이름을 입력할 수 없습니다.");
         }
+    }
+
+    public static Cars getInstance(final String input) {
+        final String[] carNames = input.split(NAME_SPLIT_DELIMITER, -1);
+        return new Cars(Arrays.stream(carNames)
+            .map(Car::new)
+            .collect(Collectors.toList()));
     }
 
     public void tryToMove() {

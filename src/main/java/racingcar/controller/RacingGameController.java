@@ -5,7 +5,6 @@ import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
 import racingcar.domain.Trial;
 import racingcar.view.RacingGameView;
-import racingcar.utils.ParsingUtils;
 
 public class RacingGameController {
 
@@ -13,10 +12,10 @@ public class RacingGameController {
 
     public RacingGameController() {
         String input = RacingGameView.requestCars();
-        Cars cars = ParsingUtils.parseCars(input);
+        Cars cars = Cars.getInstance(input);
 
         input = RacingGameView.requestTrial();
-        Trial trial = ParsingUtils.parseTrial(input);
+        Trial trial = Trial.getInstance(input);
 
         racingGame = new RacingGame(cars, trial);
     }

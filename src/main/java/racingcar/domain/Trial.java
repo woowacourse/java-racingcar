@@ -1,9 +1,11 @@
 package racingcar.domain;
 
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class Trial {
 
+    private static final String NUMBER_PATTERN = "[0-9]+";
     private static final Integer MIN_TRIAL = 1;
     private static final Integer MAX_TRIAL = Integer.MAX_VALUE;
 
@@ -20,6 +22,23 @@ public class Trial {
         if (value < MIN_TRIAL || value > MAX_TRIAL) {
             throw new IllegalArgumentException(
                 "숫자는 " + MIN_TRIAL + "이상 " + MAX_TRIAL + "이하여야 합니다.");
+        }
+    }
+
+    public static Trial getInstance(final String input) {
+        validateNumber(input);
+        try {
+            int trialNumber = Integer.parseInt(input);
+            return new Trial(trialNumber);
+        } catch (NumberFormatException e) {
+            // int　범위 밖의 입력의 경우 예외처리
+            throw new IllegalArgumentException("Integer 범위 밖의 입력입니다.");
+        }
+    }
+
+    private static void validateNumber(final String input) {
+        if (!Pattern.matches(NUMBER_PATTERN, input)) {
+            throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
         }
     }
 

@@ -1,11 +1,14 @@
 package racingcar;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -32,6 +35,18 @@ public class CarsTest {
             Cars cars = new Cars(input);
         }).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("중복되는 이름을 입력할 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("정상적인 경주할 자동차 이름들 입력")
+    void getInstanceTest() {
+        final List<Car> cars = new ArrayList<>();
+        cars.add(new Car("루트"));
+        cars.add(new Car("소롱"));
+        final Cars expected = new Cars(cars);
+
+        final Cars actual = Cars.getInstance("루트,소롱");
+        assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
 
     private static Stream<List<Car>> provideCarsForNewCarsTest() {
