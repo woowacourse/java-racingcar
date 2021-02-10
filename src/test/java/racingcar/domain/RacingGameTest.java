@@ -23,7 +23,7 @@ class RacingGameTest {
         // when
         cars.replaceAll((car) -> new Car(car.getName().getValue(), new FixedEngine(5)));
         cars.add(new Car("loser", new FixedEngine(0)));
-        while (!racingGame.isEnd()) {
+        while (racingGame.isContinue()) {
             racingGame.race();
         }
 

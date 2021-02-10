@@ -23,8 +23,8 @@ public class RacingGame {
             .collect(Collectors.toList()));
     }
 
-    public boolean isEnd() {
-        return numOfRacingRound == 0;
+    public boolean isContinue() {
+        return numOfRacingRound != 0;
     }
 
     public void race() {
