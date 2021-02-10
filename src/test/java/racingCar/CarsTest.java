@@ -28,7 +28,7 @@ class CarsTest {
         car2.move(4);
         car2.move(5);
 
-        cars = new Cars(Arrays.asList(car1,car2));
+        cars = new Cars(Arrays.asList(car1, car2));
     }
 
     @Test

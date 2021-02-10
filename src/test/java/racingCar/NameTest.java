@@ -19,11 +19,11 @@ class NameTest {
     @Test
     @DisplayName("자동차 이름 유효성 검사")
     public void name_length() {
-        assertThatThrownBy(()->{
+        assertThatThrownBy(() -> {
             new Name("abcdefg");
         }).isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(()->{
+        assertThatThrownBy(() -> {
             new Name("");
         }).isInstanceOf(IllegalArgumentException.class);
     }

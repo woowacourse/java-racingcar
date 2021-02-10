@@ -3,12 +3,12 @@ package racingCar;
 public class Distance {
     int distance;
 
-    public Distance(int distance){
+    public Distance(int distance) {
         this.distance = distance;
     }
 
     public void move(int number) {
-        if(number >= 4){
+        if (number >= 4) {
             distance++;
         }
     }
