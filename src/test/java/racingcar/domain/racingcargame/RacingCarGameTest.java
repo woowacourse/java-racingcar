@@ -16,7 +16,9 @@ class RacingCarGameTest {
     @Test
     void testExecute() {
         //given
-        Cars cars = new Cars(Arrays.asList(new Car("benz"), new Car("test")));
+        Cars cars = new Cars(Arrays.asList(
+                new Car("benz"), new Car("test")
+        ));
         TryNumber tryNumber = new TryNumber(5);
         FixedMovingStrategy fixedMovingStrategy = new FixedMovingStrategy(4);
 
@@ -27,9 +29,9 @@ class RacingCarGameTest {
 
         //then
         assertThat(playedCars.get(0))
-                .isEqualTo(new Car(new CarName("benz"), new CarPosition(5)));
+                .isEqualTo(new Car("benz", 5));
         assertThat(playedCars.get(1))
-                .isEqualTo(new Car(new CarName("test"), new CarPosition(5)));
+                .isEqualTo(new Car("test", 5));
 
     }
 
@@ -38,9 +40,10 @@ class RacingCarGameTest {
     void testFindWinners() {
         //given
         Cars playedCars = new Cars(Arrays.asList(
-                new Car(new CarName("benz"), new CarPosition(3)),
-                new Car(new CarName("kia"), new CarPosition(1)),
-                new Car(new CarName("bmw"), new CarPosition(0))));
+                new Car("benz", 3),
+                new Car("kia", 1),
+                new Car("bmw", 0)
+        ));
         TryNumber tryNumber = new TryNumber(1);
 
         //when
@@ -49,6 +52,6 @@ class RacingCarGameTest {
 
         //then
         assertThat(cars).hasSize(1);
-        assertThat(cars.get(0)).isEqualTo(new Car(new CarName("benz"), new CarPosition(3)));
+        assertThat(cars.get(0)).isEqualTo(new Car("benz", 3));
     }
 }
