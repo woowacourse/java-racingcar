@@ -27,8 +27,7 @@ public class Cars {
     }
 
     public void processOneTurn() {
-        carList.stream()
-                .forEach(car -> car.oneTurn(RandomNumberGenerator.turnNumber()));
+        carList.forEach(car -> car.oneTurn(RandomNumberGenerator.turnNumber()));
     }
 
     public List<Car> getList() {
