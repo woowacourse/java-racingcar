@@ -1,6 +1,9 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.domain.Position;
+import racingcar.domain.Racer;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +20,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void enterCarNames() {
+    public static void enterRacerNames() {
         System.out.println(ENTER_CAR_NAMES);
     }
 
@@ -29,10 +32,20 @@ public class OutputView {
         System.out.println(ENTER_TRIALS);
     }
 
-    public static void printCurrentResult(Car car) {
-        StringBuilder currentResult = new StringBuilder(car.getName());
+    public static void printCurrentResult(Cars cars) {
+        List<Car> allCars = cars.toList();
+        for (Car car : allCars) {
+            printEachCarCurrentPosition(car);
+        }
+        System.out.println();
+    }
+
+    public static void printEachCarCurrentPosition(Car car) {
+        Racer racer = car.getRacer();
+        Position position = car.getPosition();
+        StringBuilder currentResult = new StringBuilder(racer.getName());
         currentResult.append(MARKER_BETWEEN_NAME_AND_POSITION);
-        for (int i = 0; i < car.getPosition(); i++) {
+        for (int i = 0; i < position.getPosition(); i++) {
             currentResult.append(MARKER_OF_POSITION);
         }
         System.out.println(currentResult.toString());
@@ -43,11 +56,10 @@ public class OutputView {
     }
 
     public static void printWinners(List<Car> winnerCars) {
-        String winner = winnerCars.stream().map(Car::getName).collect(Collectors.joining(DELIMITER_COMMA));
+        String winner = winnerCars.stream()
+                .map(Car::getRacer)
+                .map(Racer::getName)
+                .collect(Collectors.joining(DELIMITER_COMMA));
         System.out.println(winner + WINNER_MESSAGE);
-    }
-
-    public static void printEmptyLine() {
-        System.out.println();
     }
 }

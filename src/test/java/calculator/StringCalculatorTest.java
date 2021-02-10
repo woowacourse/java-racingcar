@@ -1,5 +1,6 @@
 package calculator;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -7,7 +8,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
     @Test
-    public void splitAndSum_null_또는_빈문자() {
+    @DisplayName("null 또는 빈문자가 들어온 경우")
+    public void nullOrEmpty() {
         int result = StringCalculator.splitAndSum(null);
         assertThat(result).isEqualTo(0);
 
@@ -16,31 +18,36 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void splitAndSum_숫자하나() throws Exception {
+    @DisplayName("숫자 하나가 들어온 경우")
+    public void oneNumber() throws Exception {
         int result = StringCalculator.splitAndSum("1");
         assertThat(result).isEqualTo(1);
     }
 
     @Test
-    public void splitAndSum_쉼표구분자() throws Exception {
+    @DisplayName("구분자로 쉼표가 들어온 경우")
+    public void commaDelimiter() throws Exception {
         int result = StringCalculator.splitAndSum("1,2");
         assertThat(result).isEqualTo(3);
     }
 
     @Test
-    public void splitAndSum_쉼표_또는_콜론_구분자() throws Exception {
+    @DisplayName("구분자로 쉼표나 콜론이 들어온 경우")
+    public void commaOrColonDelimiter() throws Exception {
         int result = StringCalculator.splitAndSum("1,2:3");
         assertThat(result).isEqualTo(6);
     }
 
     @Test
-    public void splitAndSum_custom_구분자() throws Exception {
+    @DisplayName("커스텀 구분자가 주어진 경우")
+    public void customDelimiter() throws Exception {
         int result = StringCalculator.splitAndSum("//;\n11;2;3");
         assertThat(result).isEqualTo(16);
     }
 
     @Test
-    public void splitAndSum_negative() throws Exception {
+    @DisplayName("음수가 들어온 경우")
+    public void negative() throws Exception {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
                 .isInstanceOf(RuntimeException.class);
     }

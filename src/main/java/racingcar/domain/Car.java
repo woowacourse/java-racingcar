@@ -2,35 +2,36 @@ package racingcar.domain;
 
 public class Car implements Comparable<Car> {
     private static final int MOVING_BASELINE = 4;
+    private static final int START_POSITION = 0;
 
-    private final Name name;
-    private final Position position;
+    private final Racer racer;
+    private Position position;
 
-    public Car(Name name) {
-        this.name = name;
-        this.position = new Position(0);
+    public Car(Racer racer) {
+        this.racer = racer;
+        this.position = new Position(START_POSITION);
     }
 
-    public String getName() {
-        return this.name.getName();
-    }
-
-    public void movePosition(int value) {
-        if (value >= MOVING_BASELINE) {
-            position.move();
+    public void move(MoveStrategy moveStrategy) {
+        if (moveStrategy.moveValue() >= MOVING_BASELINE) {
+            this.position = position.move();
         }
     }
 
-    public int getPosition() {
-        return position.getPosition();
-    }
-
     public boolean hasSamePositionWith(Car car) {
-        return position.isSame(car.getPosition());
+        return position.isSame(car.position);
     }
 
     @Override
     public int compareTo(Car car) {
-        return Integer.compare(this.position.getPosition(), car.position.getPosition());
+        return position.compareTo(car.position);
+    }
+
+    public Racer getRacer() {
+        return racer;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }

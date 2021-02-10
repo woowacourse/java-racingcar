@@ -5,9 +5,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    private static final String COMMA = ",";
-    private static final String COLON = ":";
-    private static final String VERTICAL_LINE = "|";
+    private static final int CUSTOM_DELIMITER = 1;
+    private static final int CALCULATION_FORMULA = 2;
+    private static final String SPLIT_STANDARD = ",|:";
+    private static final String DIGIT_REGEX = "\\d+";
+    private static final String PATTERN_REGEX = "//(.)\n(.*)";
+    private static final Pattern PATTERN = Pattern.compile(PATTERN_REGEX);
 
     public static int splitAndSum(String text) {
         if (checkEmptyOrNullString(text)) {
@@ -22,12 +25,12 @@ public class StringCalculator {
     }
 
     private static String[] splitNumber(String text) {
-        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
+        Matcher matcher = PATTERN.matcher(text);
         if (matcher.find()) {
-            String delimiter = matcher.group(1);
-            return matcher.group(2).split(delimiter);
+            String delimiter = matcher.group(CUSTOM_DELIMITER);
+            return matcher.group(CALCULATION_FORMULA).split(delimiter);
         }
-        return text.split(COMMA + VERTICAL_LINE + COLON);
+        return text.split(SPLIT_STANDARD);
     }
 
     private static boolean checkEmptyOrNullString(String text) {
@@ -35,12 +38,17 @@ public class StringCalculator {
     }
 
     private static void checkAllDigit(String[] numbers) {
-        if (!Arrays.stream(numbers).allMatch(n -> n.matches("\\d+"))) {
+        boolean condition = Arrays.stream(numbers)
+                .allMatch(n -> n.matches(DIGIT_REGEX));
+
+        if (!condition) {
             throw new RuntimeException();
         }
     }
 
     private static int sum(String[] numbers) {
-        return Arrays.stream(numbers).mapToInt(Integer::parseInt).sum();
+        return Arrays.stream(numbers)
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 }

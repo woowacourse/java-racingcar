@@ -1,14 +1,11 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.Names;
-import racingcar.domain.Trial;
-import racingcar.utils.RandomUtils;
+import racingcar.domain.*;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RacingController {
     private boolean running = true;
@@ -16,7 +13,7 @@ public class RacingController {
     public void start() {
         try {
             Cars cars = generateCars();
-            Trial trial = setTrial();
+            Trial trial = trialSetting();
             doRace(cars, trial);
             showResult(cars);
         } catch (IllegalArgumentException e) {
@@ -25,46 +22,40 @@ public class RacingController {
     }
 
     private Cars generateCars() {
-        OutputView.enterCarNames();
-        Names names = InputView.getNames();
-        return new Cars(names);
+        OutputView.enterRacerNames();
+        Racers racers = InputView.getRacerNames();
+        return new Cars(racers);
     }
 
-    private Trial setTrial() {
-        Trial trial = null;
-        while (trial == null) {
-            trial = receiveTrial(trial);
+    private Trial trialSetting() {
+        Optional<Trial> trial = Optional.empty();
+        while (trial.equals(Optional.empty())) {
+            trial = receiveTrial();
         }
-        return trial;
+        return trial.orElseThrow(IllegalArgumentException::new);
     }
 
-    private Trial receiveTrial(Trial trial) {
+    private Optional<Trial> receiveTrial() {
         try {
             OutputView.enterTrials();
-            trial = InputView.getTrial();
+            return Optional.of(InputView.getTrial());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
+            return Optional.empty();
         }
-        return trial;
     }
 
     private void doRace(Cars cars, Trial trial) {
+        RandomMove randomMove = new RandomMove();
         OutputView.printResultTitle();
-        for (int i = 0; i < trial.getTrial(); i++) {
-            goEachCar(cars);
-            OutputView.printEmptyLine();
-        }
-    }
-
-    private void goEachCar(Cars cars) {
-        for (Car car : cars.getCars()) {
-            car.movePosition(RandomUtils.generateRandomValue());
-            OutputView.printCurrentResult(car);
+        while (trial.isRemain()) {
+            cars.move(randomMove);
+            OutputView.printCurrentResult(cars);
         }
     }
 
     private void showResult(Cars cars) {
-        List<Car> winnerCars = cars.getWinnerCars(cars.getMaxPositionCar());
+        List<Car> winnerCars = cars.getWinnerCars();
         OutputView.printWinners(winnerCars);
         running = false;
     }
