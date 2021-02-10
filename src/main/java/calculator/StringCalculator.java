@@ -8,6 +8,7 @@ public class StringCalculator {
     private static final int CUSTOM_DELIMITER = 1;
     private static final int CALCULATION_FORMULA = 2;
     private static final String SPLIT_STANDARD = ",|:";
+    private static final String DIGIT_REGEX = "\\d+";
     private static final String PATTERN_REGEX = "//(.)\n(.*)";
     private static final Pattern PATTERN = Pattern.compile(PATTERN_REGEX);
 
@@ -38,7 +39,7 @@ public class StringCalculator {
 
     private static void checkAllDigit(String[] numbers) {
         boolean condition = Arrays.stream(numbers)
-                .allMatch(n -> n.matches("\\d+"));
+                .allMatch(n -> n.matches(DIGIT_REGEX));
 
         if (!condition) {
             throw new RuntimeException();
