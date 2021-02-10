@@ -81,6 +81,55 @@ class CarRacingTest {
         assertAllCarsPosition(carRacing.getCars(), expectedFinalPosition);
     }
 
+    @DisplayName("우승자 결정 - 우승자가 한 명일 때")
+    @Test
+    void getWinnersWhenSingleWinner() {
+        List<String> carNames = CarsCreatorTestUtils.createCarNamesSizeOf(10);
+        int racingTryTime = 5;
+
+        CarRacingRequestDto carRacingRequestDto
+            = new CarRacingRequestDto(carNames, racingTryTime);
+        FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(6);
+
+        CarRacing carRacing = new CarRacing(carRacingRequestDto, fixedNumberGenerator);
+        List<Car> allCars = carRacing.getCars();
+
+        Car winner = allCars.get(0);
+        int goForwardNumber = 4;
+        winner.goForwardDependsOnNumber(goForwardNumber);
+
+        Assertions.assertThat(carRacing.getWinners().size()).isEqualTo(1);
+        Assertions.assertThat(carRacing.getWinners().contains(winner)).isTrue();
+    }
+
+    @DisplayName("우승자 결정 - 우승자가 세 명일 때")
+    @Test
+    void getWinnersWhenMultiWinners() {
+        List<String> carNames = CarsCreatorTestUtils.createCarNamesSizeOf(10);
+        int racingTryTime = 5;
+
+        CarRacingRequestDto carRacingRequestDto
+            = new CarRacingRequestDto(carNames, racingTryTime);
+        FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(6);
+
+        CarRacing carRacing = new CarRacing(carRacingRequestDto, fixedNumberGenerator);
+        List<Car> allCars = carRacing.getCars();
+
+        Car winner1 = allCars.get(0);
+        Car winner2 = allCars.get(3);
+        Car winner3 = allCars.get(7);
+
+        int goForwardNumber = 4;
+        winner1.goForwardDependsOnNumber(goForwardNumber);
+        winner2.goForwardDependsOnNumber(goForwardNumber);
+        winner3.goForwardDependsOnNumber(goForwardNumber);
+
+        Assertions.assertThat(carRacing.getWinners().size()).isEqualTo(3);
+        Assertions.assertThat(carRacing.getWinners().contains(winner1)).isTrue();
+        Assertions.assertThat(carRacing.getWinners().contains(winner2)).isTrue();
+        Assertions.assertThat(carRacing.getWinners().contains(winner3)).isTrue();
+    }
+
     private void assertAllCarsPosition(List<Car> allCars, int expectedCarPosition) {
         Assertions.assertThat(
             allCars.stream()
