@@ -1,11 +1,12 @@
 package racingcar.domain.car;
 
+import org.junit.platform.commons.util.StringUtils;
+
 import java.util.Objects;
 
 public class Car {
-    private static final String ERROR_NAME_NOT_PERMIT_NULL_MESSAGE = "[ERROR] 자동차 이름은 null을 허용하지 않습니다.";
+    private static final String ERROR_NAME_NOT_PERMIT_NULL_AND_EMPTY_MESSAGE = "[ERROR] 자동차 이름은 null or 공백을 허용하지 않습니다.";
     private static final String ERROR_NAME_HAS_NOT_SPECIAL_CHARACTER_MESSAGE = "[ERROR] 자동차 이름에 특수문자를 사용할 수 없습니다.";
-    private static final String ERROR_NAME_NOT_PERMIT_EMPTY_MESSAGE = "[ERROR] 자동차 이름은 공백을 허용하지 않습니다.";
     private static final String ERROR_NAME_NOT_LONGER_THAN_NAME_LIMIT_MESSAGE = "[ERROR] 자동차 이름의 길이는 최대 5글자 입니다.";
     private static final int NAME_LENGTH_MAX_LIMIT = 5;
     private static final int FORWARD_MOVEMENT_BOUNDARY_VALUE = 4;
@@ -25,10 +26,21 @@ public class Car {
     }
 
     private void validateName(String name) {
-        validateNull(name);
-        validateEmpty(name);
+        validateNullAndEmpty(name);
         validateLength(name);
         validateSpecialCharacters(name);
+    }
+
+    private void validateNullAndEmpty(String name) {
+        if (name == null || StringUtils.isBlank(name)) {
+            throw new IllegalArgumentException(ERROR_NAME_NOT_PERMIT_NULL_AND_EMPTY_MESSAGE);
+        }
+    }
+
+    private void validateLength(String name) {
+        if (name.length() > NAME_LENGTH_MAX_LIMIT) {
+            throw new IllegalArgumentException(ERROR_NAME_NOT_LONGER_THAN_NAME_LIMIT_MESSAGE);
+        }
     }
 
     private void validateSpecialCharacters(String name) {
@@ -43,24 +55,6 @@ public class Car {
         }
 
         throw new IllegalArgumentException(ERROR_NAME_HAS_NOT_SPECIAL_CHARACTER_MESSAGE);
-    }
-
-    private void validateNull(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException(ERROR_NAME_NOT_PERMIT_NULL_MESSAGE);
-        }
-    }
-
-    private void validateEmpty(String name) {
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException(ERROR_NAME_NOT_PERMIT_EMPTY_MESSAGE);
-        }
-    }
-
-    private void validateLength(String name) {
-        if (name.length() > NAME_LENGTH_MAX_LIMIT) {
-            throw new IllegalArgumentException(ERROR_NAME_NOT_LONGER_THAN_NAME_LIMIT_MESSAGE);
-        }
     }
 
     public Car move(int randomNumber) {
