@@ -18,7 +18,7 @@ public class OutputView implements Outputable {
 
     @Override
     public void printLeaderBoard(CarsDto carsDto) {
-        for (CarDto car : carsDto.getCarDtoList()) {
+        for (CarDto car : carsDto.getCarsDto()) {
             String positionStick = makeStick(car);
             printf(LEADER_BOARD_DATA_FORMAT, car.getName(), positionStick);
         }

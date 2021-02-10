@@ -4,11 +4,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class CarsDto {
-    private final List<CarDto> carDtoList;
+    private final List<CarDto> carsDto;
     private final int currentRound;
 
-    public CarsDto(List<CarDto> carDtos, int currentRound) {
-        this.carDtoList = carDtos;
+    public CarsDto(List<CarDto> carsDto, int currentRound) {
+        this.carsDto = carsDto;
         this.currentRound = currentRound;
     }
 
@@ -16,7 +16,7 @@ public class CarsDto {
         return currentRound;
     }
 
-    public List<CarDto> getCarDtoList() {
-        return Collections.unmodifiableList(carDtoList);
+    public List<CarDto> getCarsDto() {
+        return Collections.unmodifiableList(carsDto);
     }
 }

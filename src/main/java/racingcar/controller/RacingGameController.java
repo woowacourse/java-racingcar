@@ -50,7 +50,7 @@ public class RacingGameController implements GameController {
     private List<String> getUserNames() {
         outputable.printInputCarsNameMessage();
         return inputable.getCarsName()
-                .getCarDtoList()
+                .getCarsDto()
                 .stream()
                 .map(CarDto::getName)
                 .collect(Collectors.toList());
