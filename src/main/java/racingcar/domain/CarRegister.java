@@ -19,7 +19,7 @@ public class CarRegister {
         List<String> carNames = validateCarNames(input);
 
         return carNames.stream()
-                .map(name -> new Car(new Name(name)))
+                .map(Car::new)
                 .collect(Collectors.toList());
     }
 
