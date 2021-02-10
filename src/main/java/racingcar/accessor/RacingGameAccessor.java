@@ -1,4 +1,4 @@
-package racingcar.service;
+package racingcar.accessor;
 
 
 import racingcar.domain.Cars;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.collectingAndThen;
 
-public class RacingGameService implements GameService {
+public class RacingGameAccessor implements GameAccessor {
     private RacingGame racingGame;
 
     @Override

@@ -4,8 +4,8 @@ import racingcar.domain.Cars;
 import racingcar.dto.CarDto;
 import racingcar.dto.CarsDto;
 import racingcar.dto.WinnersDto;
-import racingcar.service.GameService;
-import racingcar.service.RacingGameService;
+import racingcar.accessor.GameAccessor;
+import racingcar.accessor.RacingGameAccessor;
 import racingcar.view.InputView;
 import racingcar.view.Inputable;
 import racingcar.view.OutputView;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGameController implements GameController {
-    private final GameService gameService = new RacingGameService();
+    private final GameAccessor gameAccessor = new RacingGameAccessor();
     private final Inputable inputable;
     private final Outputable outputable;
 
@@ -44,7 +44,7 @@ public class RacingGameController implements GameController {
 
     private void setUpGame(List<String> carNames) {
         outputable.printInputNumberOfRoundsMessage();
-        gameService.setUpGame(carNames, inputable.getNumberOfRounds());
+        gameAccessor.setUpGame(carNames, inputable.getNumberOfRounds());
     }
 
     private List<String> getUserNames() {
@@ -57,28 +57,28 @@ public class RacingGameController implements GameController {
     }
 
     private void iterateRounds() {
-        while (!gameService.isEnd()) {
+        while (!gameAccessor.isEnd()) {
             outputable.printLeaderBoard(progressRound());
         }
     }
 
     @Override
     public void setUpGame(List<String> carNames, int goalRound) {
-        gameService.setUpGame(carNames, goalRound);
+        gameAccessor.setUpGame(carNames, goalRound);
     }
 
     @Override
     public void setUpGame(Cars cars, int goalRound) {
-        gameService.setUpGame(cars, goalRound);
+        gameAccessor.setUpGame(cars, goalRound);
     }
 
     @Override
     public CarsDto progressRound() {
-        return gameService.executeRound();
+        return gameAccessor.executeRound();
     }
 
     @Override
     public WinnersDto announceWinners() {
-        return gameService.findWinners();
+        return gameAccessor.findWinners();
     }
 }
