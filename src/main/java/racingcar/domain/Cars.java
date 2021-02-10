@@ -52,7 +52,7 @@ public class Cars {
         List<String> winnerList = new ArrayList<>();
         carList.stream()
                 .filter(carElement -> (carElement.checkPosition(maxPosition)))
-                .map(carElement -> carElement.getName())
+                .map(Car::getName)
                 .forEach(winnerList::add);
         return String.join(", ", winnerList);
     }
