@@ -1,12 +1,12 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtils;
+import racingcar.utils.RandomValueGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(Names names) {
         this.cars = names.getNames().
@@ -25,8 +25,8 @@ public class Cars {
     }
 
     public void moveCars() {
-        for (Car car: cars) {
-            car.movePosition(RandomUtils.generateRandomNumber());
+        for (Car car : cars) {
+            car.move(RandomValueGenerator.generateRandomNumber());
         }
     }
 

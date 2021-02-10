@@ -9,7 +9,7 @@ public class Names {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String DUPLICATE_NAME = ERROR_PREFIX + "이름이 중복되었습니다";
     private static final String COMMA = ",";
-    private List<Name> names;
+    private final List<Name> names;
 
     public Names(final String names) {
         List<Name> carNames = Arrays.stream(splitNames(names))

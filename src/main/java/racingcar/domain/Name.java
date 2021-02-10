@@ -10,7 +10,7 @@ public class Name {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
 
-    private String name;
+    private final String name;
 
     public Name(final String name) {
         checkNameValidation(name);
@@ -40,14 +40,10 @@ public class Name {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Name)) {
-            return false;
-        }
-        Name newName = (Name) o;
-        return name.equals(newName.name);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
     }
 
     @Override
