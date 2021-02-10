@@ -19,7 +19,6 @@ public class PositionTest {
     void movePosition() {
         Position position = new Position(0);
 
-        position.goForward();
-        Assertions.assertThat(position.getValue()).isEqualTo(1);
+        Assertions.assertThat(position.goForward().getValue()).isEqualTo(1);
     }
 }
