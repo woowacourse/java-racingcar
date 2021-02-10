@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomValueGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

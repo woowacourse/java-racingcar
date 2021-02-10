@@ -31,15 +31,15 @@ public class Car {
 
     public void move(int number) {
         if (number >= MOVING_BASELINE) {
-            position.move();
+            this.position = position.move();
         }
     }
 
-    public boolean hasSamePositionWith(Car positionCar) {
-        return this.position == positionCar.position;
+    public boolean isSamePosition(int position) {
+        return this.position.isSamePosition(position);
     }
 
-    public int compareTo(Car car) {
-        return this.position - car.position;
+    public int getMaxPosition(int position) {
+        return this.position.getMaxPosition(position);
     }
 }

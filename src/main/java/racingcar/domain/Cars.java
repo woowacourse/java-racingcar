@@ -30,14 +30,20 @@ public class Cars {
         }
     }
 
-    public Car getMaxPositionCar() {
-        return cars.stream().max(Car::compareTo).get();
+    private int getMaxPosition() {
+        int maxPosition = 0;
+        for (Car car:cars) {
+            maxPosition = car.getMaxPosition(maxPosition);
+        }
+        return maxPosition;
+//        return cars.stream().max(Car::compareTo).get();
     }
 
     public List<Car> getWinners() {
-        Car maxPositionCar = getMaxPositionCar();
+        int maxPosition = getMaxPosition();
+
         return cars.stream()
-                .filter(car -> car.hasSamePositionWith(maxPositionCar))
+                .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
     }
 }
