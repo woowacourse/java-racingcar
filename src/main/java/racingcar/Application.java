@@ -4,6 +4,7 @@ import racingcar.domain.Participants;
 import racingcar.domain.RandomSupplier;
 import racingcar.domain.Round;
 import racingcar.view.InputView;
+import racingcar.view.LogToGraph;
 import racingcar.view.OutputView;
 
 public class Application {
@@ -15,7 +16,10 @@ public class Application {
 
     RacingResult racingResult = racingManager.start();
 
-    OutputView.printProgressResult(racingResult.log());
-    OutputView.printWinner(racingResult.winner());
+    OutputView.printStartProgress();
+    for (int i = 0; i < round.get(); i++) {
+      OutputView.printProgressResult(new LogToGraph(racingResult.logByRound(i + 1)));
+    }
+    OutputView.printWinner(racingResult.logByRound(round.get()).winners());
   }
 }

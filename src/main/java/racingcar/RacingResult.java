@@ -1,42 +1,25 @@
 package racingcar;
 
-import racingcar.domain.Participants;
-import racingcar.domain.Winner;
+import java.util.HashMap;
+import java.util.Map;
+import racingcar.domain.Car;
+import racingcar.domain.Round;
 
 public class RacingResult {
 
-  private static final String ENTER = "\n";
-  private static final String LOG_FORM = "%s : %s\n";
-  private static final String DISTANCE_SIGN = "-";
-  private final StringBuilder log;
-  private final Participants participants;
+  private final Map<Round, RacingLogPerRound> logs;
 
-  public RacingResult(final Participants participants) {
-    this.participants = participants;
-    this.log = new StringBuilder();
+  public RacingResult() {
+    this.logs = new HashMap<>();
   }
 
-  public void appendLog() {
-    participants.cars()
-        .forEach(car -> log.append(
-            String.format(LOG_FORM, car.name(), convertToDistanceSign(car.position()))
-        ));
-    log.append(ENTER);
+  public void appendLog(int round, Car car) {
+    Round key = new Round(round);
+    logs.put(key, logs.getOrDefault(key, new RacingLogPerRound()));
+    logs.get(key).addLog(new RacingLogDTO(car));
   }
 
-  private String convertToDistanceSign(final int position) {
-    StringBuilder sign = new StringBuilder();
-    for (int i = 0; i < position; i++) {
-      sign.append(DISTANCE_SIGN);
-    }
-    return sign.toString();
-  }
-
-  public String log() {
-    return log.toString();
-  }
-
-  public String winner() {
-    return new Winner(participants).winnerName();
+  public RacingLogPerRound logByRound(int round) {
+    return logs.get(new Round(round));
   }
 }

@@ -10,23 +10,26 @@ public class RacingManager {
   private final Round round;
   private final Supplier<Integer> fuel;
 
-  public RacingManager(final Participants participants, final Round round, final Supplier<Integer> fuel) {
+  public RacingManager(final Participants participants, final Round round,
+      final Supplier<Integer> fuel) {
     this.participants = participants;
     this.round = round;
     this.fuel = fuel;
   }
 
   public RacingResult start() {
-    RacingResult racingResult = new RacingResult(participants);
+    RacingResult racingResult = new RacingResult();
     for (int i = 0; i < round.get(); i++) {
-      race(racingResult);
+      race(racingResult, i + 1);
     }
     return racingResult;
   }
 
-  private void race(final RacingResult racingResult) {
-    participants.cars().forEach(car -> car.run(fuel.get()));
-    racingResult.appendLog();
+  private void race(final RacingResult racingResult, final int round) {
+    participants.cars().forEach(car -> {
+      car.run(fuel.get());
+      racingResult.appendLog(round, car);
+    });
   }
 
 }
