@@ -39,15 +39,4 @@ class OutputViewTest {
 
         assertThat(bars.length()).isEqualTo(3);
     }
-
-    @Test
-    @DisplayName("게임 승리자 반환 테스트")
-    public void winnerTest() {
-        Cars cars = new Cars(testCars);
-
-        List<Name> winners = OutputView.getWinners(1, cars);
-
-        assertThat(winners).isEqualTo(Arrays.asList(new Name("car1"), new Name("car2")));
-    }
-
 }

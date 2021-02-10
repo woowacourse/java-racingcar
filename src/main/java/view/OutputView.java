@@ -23,15 +23,7 @@ public class OutputView {
         return sb.toString();
     }
 
-
-    public static void showResult(Cars cars) {
-        List<Name> winners = getWinners(cars.findMaxDistance(), cars);
+    public static void showResult(List<Name> winners) {
         System.out.println(String.join(",", winners.toString()) + "가 최종 우승했습니다.");
     }
-
-    static List<Name> getWinners(int max, Cars cars) {
-        return cars.findWinners(max);
-    }
-
-
 }

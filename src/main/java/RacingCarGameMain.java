@@ -1,5 +1,6 @@
 import racingCar.Car;
 import racingCar.Cars;
+import racingCar.Name;
 import view.InputView;
 import view.OutputView;
 
@@ -12,7 +13,9 @@ public class RacingCarGameMain {
 
         racingStart(cars);
 
-        OutputView.showResult(cars);
+        List<Name> winners = cars.findWinners(cars.findMaxDistance());
+
+        OutputView.showResult(winners);
     }
 
     private static List<Car> initCars() {
@@ -31,5 +34,4 @@ public class RacingCarGameMain {
             OutputView.showStatus(cars.getCars());
         }
     }
-
 }
