@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -16,7 +17,7 @@ public class Racers {
     public Racers(String names) {
         List<Racer> carRacers = splitNames(names);
         checkDuplicate(carRacers);
-        this.racers = carRacers;
+        this.racers = new ArrayList<>(carRacers);
     }
 
     private void checkDuplicate(List<Racer> carRacers) {

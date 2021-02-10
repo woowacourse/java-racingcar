@@ -5,7 +5,7 @@ public class Car implements Comparable<Car> {
     private static final int START_POSITION = 0;
 
     private final Racer racer;
-    private final Position position;
+    private Position position;
 
     public Car(Racer racer) {
         this.racer = racer;
@@ -14,7 +14,7 @@ public class Car implements Comparable<Car> {
 
     public void move(MoveStrategy moveStrategy) {
         if (moveStrategy.moveValue() >= MOVING_BASELINE) {
-            position.move();
+            this.position = position.move();
         }
     }
 

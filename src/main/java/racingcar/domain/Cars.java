@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,7 +9,7 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(Racers racers) {
-        this.cars = generateCars(racers);
+        this.cars = new ArrayList<>(generateCars(racers));
     }
 
     private List<Car> generateCars(Racers racers) {
@@ -36,6 +38,6 @@ public class Cars {
     }
 
     public List<Car> toList() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 }
