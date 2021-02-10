@@ -7,17 +7,16 @@ public class InputView {
     private static final String NON_BLANK = "";
     private static final String DELIMITER = ",";
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public InputView() {
         this.scanner = new Scanner(System.in);
     }
 
     public String[] inputCarName() {
-        String[] names = scanner.nextLine()
+        return scanner.nextLine()
                 .replace(BLANK, NON_BLANK)
                 .split(DELIMITER);
-        return names;
     }
 
     public String inputTime() {

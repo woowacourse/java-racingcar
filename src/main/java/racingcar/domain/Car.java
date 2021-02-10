@@ -9,7 +9,7 @@ public class Car {
 
     private final Name name;
     private Position position;
-    private CarMoveRule rule;
+    private final CarMoveRule rule;
 
     public Car(String name) {
         this.name = new Name(name);
@@ -44,16 +44,10 @@ public class Car {
     }
 
     public int aboveMaxPosition(int maxPosition) {
-        if (this.position.getPosition() > maxPosition) {
-            return this.position.getPosition();
-        }
-        return maxPosition;
+        return Math.max(this.position.getPosition(), maxPosition);
     }
 
     public boolean isMaxPosition(int maxPosition) {
-        if (maxPosition == this.position.getPosition()) {
-            return true;
-        }
-        return false;
+        return maxPosition == this.position.getPosition();
     }
 }

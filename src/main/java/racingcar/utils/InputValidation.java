@@ -12,7 +12,8 @@ public class InputValidation {
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
     private static final String ZERO_TIME = "0";
 
-    private InputValidation() {}
+    private InputValidation() {
+    }
 
     public static void validateCars(String[] name) {
         isDuplicateName(name);
