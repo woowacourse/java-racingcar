@@ -19,7 +19,7 @@ public class Car {
         return this.name;
     }
 
-    public void carMove(int number) {
+    public void carMove(final int number) {
         if (number > MOVE_PIVOT) {
             this.position++;
         }
@@ -29,7 +29,7 @@ public class Car {
         return this.position;
     }
 
-    public boolean isWinnerPosition(int winnerPosition) {
+    public boolean isWinnerPosition(final int winnerPosition) {
         return this.position == winnerPosition;
     }
 

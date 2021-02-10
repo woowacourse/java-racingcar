@@ -10,7 +10,7 @@ public class Winners {
     private final List<Car> winners = new ArrayList<>();
     private int winnerPosition;
 
-    public Winners(Cars cars) {
+    public Winners(final Cars cars) {
         winnerPosition = getWinnerPosition(cars);
         for (Car car : cars.getCars()) {
             setWinner(car);
