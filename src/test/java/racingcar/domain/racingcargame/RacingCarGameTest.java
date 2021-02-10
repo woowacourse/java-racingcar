@@ -26,8 +26,10 @@ class RacingCarGameTest {
         List<Car> playedCars = runResult.get(4).getCars();
 
         //then
-        assertThat(playedCars.get(0).getPosition()).isEqualTo(5);
-        assertThat(playedCars.get(1).getPosition()).isEqualTo(5);
+        assertThat(playedCars.get(0))
+                .isEqualTo(new Car(new CarName("benz"), new CarPosition(5)));
+        assertThat(playedCars.get(1))
+                .isEqualTo(new Car(new CarName("test"), new CarPosition(5)));
 
     }
 
@@ -47,6 +49,6 @@ class RacingCarGameTest {
 
         //then
         assertThat(cars).hasSize(1);
-        assertThat(cars.get(0).getName()).isEqualTo(new Car(new CarName("benz"), new CarPosition(3)).getName());
+        assertThat(cars.get(0)).isEqualTo(new Car(new CarName("benz"), new CarPosition(3)));
     }
 }

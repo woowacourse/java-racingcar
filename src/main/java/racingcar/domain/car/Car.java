@@ -34,7 +34,7 @@ public class Car {
         return name.toStringName();
     }
 
-    public int getPosition() {
+    public int toIntPosition() {
         return carPosition.getPosition();
     }
 

@@ -22,7 +22,7 @@ class CarTest {
         Car car = new Car(name);
 
         //then
-        assertThat(car.getName()).isEqualTo(name);
+        assertThat(car).isEqualTo(new Car(name));
     }
 
     @DisplayName("Car의 이름이 Car의 이름제한길이보다 크면 예외를 발생시킨다.")
@@ -66,7 +66,7 @@ class CarTest {
 
         //when
         Car movedCar = car.move(fixedMovingStrategy);
-        int actual = movedCar.getPosition();
+        int actual = movedCar.toIntPosition();
 
         //then
         assertEquals(actual, expected);
