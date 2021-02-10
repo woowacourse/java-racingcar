@@ -1,46 +1,35 @@
 package racingcar;
 
-import racingcar.utils.SplitUtil;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCarGame {
-    private static final String NUMERIC_REGULAR_EXPRESSION = "\\d+";
-    private static final String NOT_NUMERIC_ERROR_MESSAGE = "숫자를 입력하세요.";
-    private static final String NOT_OVER_ONE_ERROR_MESSAGE = "1 이상의 숫자를 입력하세요.";
-
-    public RacingCarGame() {
-    }
-
     public void start() {
-        String carNamesInput = InputView.getCarNamesInput();
-        List<String> splittedCarNames = SplitUtil.splitCarNames(carNamesInput);
-        Cars.addCars(splittedCarNames);
-        String lapInput = InputView.getLap();
-        int laps = validateLaps(lapInput);
-        race(laps);
-        OutputView.showWinners();
+        try {
+            List<String> splittedCarNames = InputView.getCarNamesInput();
+            Cars cars = createRacingCars(splittedCarNames);
+            int lap = InputView.getLapInput();
+            race(cars, lap);
+            OutputView.showWinners(cars.getWinners());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public int validateLaps(String lapInput) {
-        if (!lapInput.matches(NUMERIC_REGULAR_EXPRESSION)) {
-            throw new IllegalArgumentException(NOT_NUMERIC_ERROR_MESSAGE);
-        }
-        int laps = Integer.parseInt(lapInput);
-
-        if (laps < 1) {
-            throw new IllegalArgumentException(NOT_OVER_ONE_ERROR_MESSAGE);
-        }
-        return laps;
+    private Cars createRacingCars(List<String> carNames) {
+        List<Car> value = new ArrayList<>();
+        carNames.forEach(carName -> value.add(new Car(new CarName(carName))));
+        return new Cars(value);
     }
 
-    private void race(int laps) {
+    private void race(Cars cars, int lap) {
         OutputView.showResultMessage();
-        for (int i = 0; i < laps; i++) {
-            Cars.raceOneLap();
-            OutputView.showOneLapResult();
+        for (int i = 0; i < lap; i++) {
+            cars.raceOneLap();
+            OutputView.showOneLapResult(cars.getStatus());
         }
     }
 }

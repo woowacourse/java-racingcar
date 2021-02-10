@@ -1,8 +1,9 @@
 package racingcar;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import racingcar.utils.RandomUtil;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Cars {
     private static final int MINIMUM_CAR_AMOUNT = 2;
@@ -15,6 +16,37 @@ public class Cars {
         validateCarAmount(cars);
         validateCarNameDuplication(cars);
         this.cars = cars;
+    }
+
+    public void raceOneLap() {
+        cars.forEach(car -> car.moveForwardByNumber(RandomUtil.generateRandomNumber()));
+    }
+
+    public Map<String, Integer> getStatus() {
+        Map<String, Integer> carStatus = new HashMap<>();
+        cars.forEach(car -> carStatus.put(car.getName(), car.getPosition()));
+        return carStatus;
+    }
+
+    public List<String> getWinners() {
+        int maxPosition = getMaxPosition();
+        List<Car> winners = getMaxPositionCar(maxPosition);
+
+        return winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private List<Car> getMaxPositionCar(int maxPosition) {
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return cars.stream()
+                .collect(Collectors.summarizingInt(Car::getPosition))
+                .getMax();
     }
 
     private void validateCarAmount(List<Car> cars) {
