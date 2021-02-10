@@ -12,13 +12,23 @@ public class InputValidation {
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
     private static final String ZERO_TIME = "0";
 
-    private InputValidation() {}
+    private InputValidation() {
+    }
 
-    public static void validateName(String[] name) {
-        isValidText(name);
-        isValidLength(name);
+    public static void validateCars(String[] name) {
         isDuplicateName(name);
         notEnoughCars(name);
+    }
+
+    public static void validateCarName(String name) {
+        isValidText(name);
+        isValidLength(name);
+    }
+
+    public static void validateTrials(String input) {
+        if (!NUMBER_PATTERN.matcher(input).matches() || input.equals(ZERO_TIME) || input.isEmpty()) {
+            throw new InvalidTimeException();
+        }
     }
 
     private static void notEnoughCars(String[] name) {
@@ -39,31 +49,19 @@ public class InputValidation {
                 .count() == name.length;
     }
 
-    private static void isValidLength(String[] names) {
-        Arrays.stream(names)
-                .filter(name -> checkLength(name))
-                .findAny()
-                .ifPresent(s -> {
-                    throw new InvalidNameLengthException(NAME_MAX_LENGTH);
-                });
+    private static void isValidLength(String name) {
+        if (checkLength(name)) {
+            throw new InvalidNameLengthException(NAME_MAX_LENGTH);
+        }
     }
 
     private static boolean checkLength(String name) {
         return name.length() <= 0 || name.length() > NAME_MAX_LENGTH;
     }
 
-    private static void isValidText(String[] names) {
-        Arrays.stream(names)
-                .filter(name -> !VALID_TEXT_PATTERN.matcher(name).matches())
-                .findAny()
-                .ifPresent(s -> {
-                    throw new InvalidTextException();
-                });
-    }
-
-    public static void validateTime(String input) {
-        if (!NUMBER_PATTERN.matcher(input).matches() || input.equals(ZERO_TIME)) {
-            throw new InvalidTimeException();
+    private static void isValidText(String name) {
+        if (!VALID_TEXT_PATTERN.matcher(name).matches()) {
+            throw new InvalidTextException();
         }
     }
 }

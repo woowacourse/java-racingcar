@@ -10,9 +10,9 @@ public class CarController {
         this.cars = new Cars(names);
     }
 
-    public void race(int time, OutputView outputView) {
+    public void race(int trials, OutputView outputView) {
         outputView.printResult();
-        for (int i = 0; i < time; i++) {
+        for (int i = 0; i < trials; i++) {
             cars.startRace();
             outputView.showState(cars.getStates());
         }

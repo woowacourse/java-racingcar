@@ -1,39 +1,42 @@
 package racingcar.domain;
 
-import java.util.function.Predicate;
+import racingcar.domain.car.Name;
+import racingcar.domain.car.Position;
 
 public class Car {
     private static final String CAR_STATUS_DELIMITER = " : ";
     private static final String CAR_POSITION_STATUS = "-";
 
-    private String name;
-    private int position;
-    private CarMoveRule rule;
+    private final Name name;
+    private Position position;
+    private final CarMoveRule rule;
 
     public Car(String name) {
-        this.name = name;
-        this.position = 0;
+        this.name = new Name(name);
+        this.position = Position.ZERO;
         this.rule = new CarMoveRule();
     }
 
-    public String getName() {
+    public Name getName() {
         return this.name;
     }
 
-    public int getPosition() { return this.position; }
-
-    public void moveByDefaultRule() {
-        move(rule.getDefaultRule());
+    public int getPosition() {
+        return this.position.getPosition();
     }
 
-    public void move(Predicate<CarMoveRule> rulePredicate) {
-        if (rulePredicate.test(this.rule)) {
-            position++;
+    public void moveByDefaultRule() {
+        move(rule.applyDefaultRule());
+    }
+
+    public void move(boolean moveRule) {
+        if (moveRule) {
+            this.position = position.move();
         }
     }
 
     public String toString() {
-        return this.name + CAR_STATUS_DELIMITER + repeat(CAR_POSITION_STATUS, this.position);
+        return this.name + CAR_STATUS_DELIMITER + repeat(CAR_POSITION_STATUS, this.position.getPosition());
     }
 
     private String repeat(String str, int num) {
@@ -41,16 +44,10 @@ public class Car {
     }
 
     public int aboveMaxPosition(int maxPosition) {
-        if (this.position > maxPosition) {
-            return this.position;
-        }
-        return maxPosition;
+        return Math.max(this.position.getPosition(), maxPosition);
     }
 
     public boolean isMaxPosition(int maxPosition) {
-        if (maxPosition == this.position) {
-            return true;
-        }
-        return false;
+        return maxPosition == this.position.getPosition();
     }
 }

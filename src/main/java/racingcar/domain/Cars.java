@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.utils.InputValidation;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,10 +9,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private List<Car> carList;
+    private final List<Car> carList;
     private int maxPosition = 0;
 
     public Cars(String[] names) {
+        InputValidation.validateCars(names);
+
         carList = new ArrayList<>();
         this.carList.addAll(Arrays.stream(names)
                 .map(name -> new Car(name))
@@ -37,7 +41,7 @@ public class Cars {
     public List<String> showWinners() {
         return carList.stream()
                 .filter(car -> car.isMaxPosition(maxPosition))
-                .map(car -> car.getName())
+                .map(car -> car.getName().toString())
                 .collect(Collectors.toList());
     }
 }
