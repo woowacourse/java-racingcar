@@ -2,11 +2,11 @@ package javaracingcar.domain;
 
 public class Car {
     private static final int CAR_NAME_LENGTH_MAX_SIZE = 4;
+    private static final int MIN_CAN_MOVE_NUMBER = 4;
     private String name;
     private int position;
 
-    private Car(String name) {
-
+    public Car(String name) {
         this.name = name;
         this.position = 0;
     }
@@ -29,7 +29,7 @@ public class Car {
 
     private static void validateNull(String name) {
         if (name == null) {
-            throw new IllegalArgumentException("null이 입력되었습니다."); //TODO enum으로 변경
+            throw new IllegalArgumentException("null이 입력되었습니다.");
         }
     }
 
@@ -45,8 +45,10 @@ public class Car {
         }
     }
 
-    public void move() {
-        position++;
+    public void move(int number) {
+        if (number >= MIN_CAN_MOVE_NUMBER) {
+            position++;
+        }
     }
 
     public boolean isAtPosition(int position) {

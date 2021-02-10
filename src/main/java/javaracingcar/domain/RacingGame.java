@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGame {
-    private static final int MIN_CAN_MOVE_NUMBER = 4;
     private static final int MIN_RANDOM_NUMBER = 0;
     private static final int MAX_RANDOM_NUMBER = 9;
     private List<Car> cars;
@@ -82,9 +81,7 @@ public class RacingGame {
     }
 
     private void playMoveOrStop(Car car) {
-        if (generateRandomNumber() >= MIN_CAN_MOVE_NUMBER) {
-            car.move();
-        }
+        car.move(generateRandomNumber());
     }
 
     private int generateRandomNumber() {
