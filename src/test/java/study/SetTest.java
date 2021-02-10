@@ -32,7 +32,7 @@ public class SetTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3})
+    @ValueSource(ints = {1, 2, 3})
     @DisplayName("해당 값이 포함되어있는지 확인")
     void numberContainTrue(int number) {
         assertThat(numbers.contains(number)).isTrue();

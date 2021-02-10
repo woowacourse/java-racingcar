@@ -23,12 +23,12 @@ class RacerTest {
     void checkNameLength() {
         assertAll(
                 () -> assertThatThrownBy(() ->
-                    new Racer("joanne")
+                        new Racer("joanne")
                 ).isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining("[ERROR]")
                         .hasMessageContaining("이름은 1자 이상, 5자 이내만 가능합니다."),
                 () -> assertThatThrownBy(() ->
-                    new Racer("")
+                        new Racer("")
                 ).isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining("[ERROR]")
                         .hasMessageContaining("이름은 1자 이상, 5자 이내만 가능합니다.")
