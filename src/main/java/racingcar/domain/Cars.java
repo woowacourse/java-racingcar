@@ -6,21 +6,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
-    public Cars(List<String> names) {
-        validateNonDuplicatedNames(names);
-        for (String name : names) {
-            cars.add(new Car(name));
+    public Cars(final List<Car> cars) {
+        this.cars = new ArrayList<>(cars);
+        validateNonDuplicatedNames(cars);
+    }
+
+    private static void validateNonDuplicatedNames(final List<Car> cars) {
+        List<String> carNames = cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+        if (new HashSet<>(carNames).size() != carNames.size()) {
+            throw new IllegalArgumentException("중복된 자동차 이름입니다.");
         }
     }
 
-    private void validateNonDuplicatedNames(final List<String> names) {
-        if (new HashSet<>(names).size() != names.size()) {
-            throw new IllegalArgumentException("중복된 자동차 이름입니다.");
-        }
+    public static Cars makeFromCarNames(final List<Name> carNames) {
+        List<Car> cars = carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
+        return new Cars(cars);
     }
 
     public List<Car> cars() {
