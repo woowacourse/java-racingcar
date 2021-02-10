@@ -16,8 +16,15 @@ public class Game {
     }
 
     public static Game init(String carNames, String trial) {
+        validateNotNull(trial);
         validatePositiveInt(trial);
         return new Game(carNames, Integer.parseInt(trial));
+    }
+
+    private static void validateNotNull(String trial) {
+        if (trial == null) {
+            throw new IllegalArgumentException("null이 입력되었습니다.");
+        }
     }
 
     private static int validatePositiveInt(String input) {

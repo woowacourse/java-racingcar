@@ -15,13 +15,6 @@ public class InputView {
 
     public static String receiveTrialFromUser() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return getTrial(scanner.nextLine());
-    }
-
-    private static String getTrial(String input) {
-        if (input == null) {
-            throw new IllegalArgumentException("null이 입력되었습니다.");
-        }
-        return input.replace(" ", "");
+        return scanner.nextLine();
     }
 }

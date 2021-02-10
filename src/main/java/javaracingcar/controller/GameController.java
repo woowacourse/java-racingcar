@@ -4,17 +4,23 @@ import javaracingcar.domain.Game;
 import javaracingcar.view.InputView;
 import javaracingcar.view.OutputView;
 
-import java.util.List;
-
 public class GameController {
 
     public static void startGame() {
         String carNames = InputView.receiveCarNamesFromUser();
         String trial = InputView.receiveTrialFromUser();
-        GameController.run(carNames, trial);
+        validateNotNull(carNames);
+        validateNotNull(trial);
+        GameController.run(carNames, trial.replaceAll(" ", ""));
     }
 
-    private static void run(String carNames, String trial) throws IllegalArgumentException {
+    private static void validateNotNull(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("null 이 입력되었습니다.");
+        }
+    }
+
+    private static void run(String carNames, String trial) {
         Game game = Game.init(carNames, trial);
         race(game);
         OutputView.printWinners(game.getCars().getWinners());
