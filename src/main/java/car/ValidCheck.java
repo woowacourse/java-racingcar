@@ -11,11 +11,6 @@ public class ValidCheck {
 
     }
 
-    private boolean isNotValid(String carName) {
-        return !(carName.length() <= CAR_NAME_LIMIT &&
-            !carName.isEmpty());
-    }
-
     public static void carNameValid(String carNamesInput) {
         if (isSpace(carNamesInput) || isNameLength(carNamesInput)) {
             throw new IllegalArgumentException();
@@ -38,7 +33,7 @@ public class ValidCheck {
         String[] carNames = carNamesInput.split(delimiter);
 
         return Arrays.stream(carNames)
-            .anyMatch(name -> name.length() > 5);
+            .anyMatch(name -> name.length() > CAR_NAME_LIMIT);
     }
 
 
