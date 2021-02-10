@@ -4,9 +4,16 @@ import java.util.Random;
 
 public class RandomUtils {
 
+    private static final int NUMBER_ZERO = 0;
+    private static final int NUMBER_NINE = 9;
+
     private static final Random RANDOM = new Random();
 
     private RandomUtils() {
+    }
+
+    public static int betweenZeroToNine() {
+        return nextPositiveInt(NUMBER_ZERO, NUMBER_NINE);
     }
 
     public static int nextPositiveInt(final int startInclusive, final int endInclusive) {
@@ -24,6 +31,5 @@ public class RandomUtils {
 
         return startInclusive + RANDOM.nextInt(endInclusive - startInclusive + 1);
     }
-
 }
 
