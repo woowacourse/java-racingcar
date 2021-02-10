@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import racingcar.domain.data.Car;
+import racingcar.utils.exception.DuplicateNameException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,9 +12,17 @@ public class Cars {
 
     public Cars(String[] names) {
         cars = new ArrayList<>();
-        this.cars.addAll(Arrays.stream(names)
-                .map(name -> new Car(name, new RandomNumberRule()))
-                .collect(Collectors.toList()));
+        for (String name : names) {
+            Car car = new Car(name, new RandomNumberRule());
+            isDuplicate(car);
+            cars.add(car);
+        }
+    }
+
+    private void isDuplicate(Car car) {
+        if (cars.contains(car)) {
+            throw new DuplicateNameException();
+        }
     }
 
     public void startRace() {

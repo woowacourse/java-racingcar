@@ -12,8 +12,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CarTest {
     @Test
     public void 자동차_객체_생성_테스트() {
-        Car car = new Car("pobi", new RandomNumberRule());
-        assertThat(car.getName()).isEqualTo("pobi");
+        Car pobi = new Car("pobi", new RandomNumberRule());
+        assertThat(pobi).isEqualTo(new Car("pobi", new RandomNumberRule()));
     }
 
     @ParameterizedTest
