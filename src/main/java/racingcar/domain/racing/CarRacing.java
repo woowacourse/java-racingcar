@@ -12,14 +12,14 @@ public class CarRacing {
     private final CarRepository carRepository;
     private final NumberApplicatorToCar numberApplicatorToCar;
     private final int totalRacingTryTime;
-    private int currentRacingTime;
+    private int finishedRacingTime;
 
     public CarRacing(CarRacingRequestDto carRacingRequestDto, NumberGenerator numberGenerator) {
         this.carRepository = new CarRepository();
         this.numberApplicatorToCar
             = new NumberApplicatorToCar(carRepository, numberGenerator);
         this.totalRacingTryTime = carRacingRequestDto.getRacingTryTime();
-        this.currentRacingTime = 0;
+        this.finishedRacingTime = 0;
         setCarsBeforeRacing(carRacingRequestDto.getCarNames());
     }
 
@@ -36,11 +36,11 @@ public class CarRacing {
 
     public void raceOneTime() {
         numberApplicatorToCar.apply();
-        currentRacingTime++;
+        finishedRacingTime++;
     }
 
     public boolean isEnd() {
-        return currentRacingTime == totalRacingTryTime;
+        return finishedRacingTime == totalRacingTryTime;
     }
 
     public List<Car> getCars() {
