@@ -14,9 +14,9 @@ public class MainController {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
 
-        List<Name> carNames = InputView.receiveNames(scanner);
+        List<Name> carNames = InputView.inputNames(scanner);
         Cars cars = Cars.createByNames(carNames);
-        Rounds rounds = InputView.receiveRounds(scanner);
+        Rounds rounds = InputView.inputRounds(scanner);
 
         RacingGame racingGame = new RacingGame(cars, rounds);
 
