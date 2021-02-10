@@ -8,23 +8,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import racingcar.utils.NumberGeneratingStrategy;
 
 public class Cars {
 
     private final List<Car> cars;
-    private final NumberGeneratingStrategy numberGeneratingStrategy;
 
-    private Cars(List<Car> cars, NumberGeneratingStrategy numberGeneratingStrategy) {
+    private Cars(List<Car> cars) {
         this.cars = new ArrayList<>(cars);
-        this.numberGeneratingStrategy = numberGeneratingStrategy;
     }
 
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
 
-    public static Cars of(String inputCarName,
-            NumberGeneratingStrategy numberGeneratingStrategy) {
+    public static Cars from(String inputCarName) {
 
         String[] carNames = splitCarsName(inputCarName);
         validateDuplicatedName(carNames);
@@ -32,8 +30,7 @@ public class Cars {
         return new Cars(
                 Arrays.stream(carNames)
                         .map(Car::from)
-                        .collect(Collectors.toList()),
-                numberGeneratingStrategy);
+                        .collect(Collectors.toList()));
     }
 
     private static void validateDuplicatedName(String[] carNames) {
@@ -47,7 +44,7 @@ public class Cars {
         return carsName.split(",", -1);
     }
 
-    public void driveAll() {
+    public void driveAll(NumberGeneratingStrategy numberGeneratingStrategy) {
         cars.forEach(car -> car.drive(numberGeneratingStrategy.generateNumber()));
     }
 
@@ -60,6 +57,8 @@ public class Cars {
 
     private int getMaxPosition() {
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getPosition)).get().getPosition();
+                .max(Comparator.comparingInt(Car::getPosition))
+                .orElseThrow(() -> new RuntimeException(""))
+                .getPosition();
     }
 }

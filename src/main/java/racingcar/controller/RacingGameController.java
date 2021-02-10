@@ -1,41 +1,36 @@
 package racingcar.controller;
 
 import racingcar.domain.Cars;
-import racingcar.domain.RandomNumberGeneratingStrategy;
+import racingcar.utils.RandomNumberGeneratingStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGameController {
 
-    private final InputView inputView;
     private Cars cars;
     private int turns;
 
-    public RacingGameController() {
-        inputView = new InputView();
-    }
-
     public void startGame() {
-        setUpRace();
+        setUpGame();
         startRace();
         showResult();
     }
 
-    private void setUpRace() {
-        cars = Cars.of(inputView.getInputCarsName(), new RandomNumberGeneratingStrategy());
-        turns = inputView.getInputTurns();
+    private void setUpGame() {
+        cars = Cars.from(InputView.getInputCarsName());
+        turns = InputView.getInputTurns();
     }
 
     private void startRace() {
         OutputView.printResultPrefix();
-        OutputView.printCarsBeforeRace(cars.getCars());
+        OutputView.printCarsBeforeRace(cars);
 
         race();
     }
 
     private void race() {
         for (int i = 0; i < turns; i++) {
-            cars.driveAll();
+            cars.driveAll(RandomNumberGeneratingStrategy.getInstance());
             OutputView.printCars(cars.getCars());
         }
     }

@@ -4,18 +4,17 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private final Scanner scanner;
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public InputView() {
-        this.scanner = new Scanner(System.in);
+    private InputView() {
     }
 
-    public String getInputCarsName() {
+    public static String getInputCarsName() {
         OutputView.printAskCarNames();
         return scanner.nextLine().trim();
     }
 
-    public Integer getInputTurns() {
+    public static Integer getInputTurns() {
         OutputView.printAskTurns();
         int turns = scanner.nextInt();
         if (turns <= 0) {

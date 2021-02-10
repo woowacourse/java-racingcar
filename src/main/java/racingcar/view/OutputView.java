@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.domain.RacingGameResult;
 
 public class OutputView {
 
@@ -28,8 +30,8 @@ public class OutputView {
         System.out.println(RESULT_PREFIX);
     }
 
-    public static void printCarsBeforeRace(List<Car> carList) {
-        printCars(carList);
+    public static void printCarsBeforeRace(Cars cars) {
+        printCars(cars.getCars());
         System.out.println();
     }
 
@@ -52,6 +54,15 @@ public class OutputView {
         String winnersName = winners.stream()
                 .map(Car::getName)
                 .collect(Collectors.joining(", "));
+
+        System.out.printf(PRINT_WINNERS, winnersName);
+    }
+
+    public static void printGameResult(RacingGameResult gameResult) {
+        String winnersName = gameResult.getWinners().stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+
         System.out.printf(PRINT_WINNERS, winnersName);
     }
 }

@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.utils;
 
 public interface NumberGeneratingStrategy {
 

@@ -1,8 +1,10 @@
 package racingcar.domain;
 
-import static racingcar.domain.Rule.MOVE_FORWARD_BOUNDARY;
-import static racingcar.domain.Rule.DRIVE_MAXIMUM_VALUE;
-import static racingcar.domain.Rule.DRIVE_MINIMUM_VALUE;
+import static racingcar.domain.RacingGameRule.DRIVE_BOUNDARY;
+import static racingcar.domain.RacingGameRule.DRIVE_MAXIMUM_VALUE;
+import static racingcar.domain.RacingGameRule.DRIVE_MINIMUM_VALUE;
+
+import java.util.Objects;
 
 public class Car {
 
@@ -25,10 +27,10 @@ public class Car {
 
     public void drive(final int value) {
         if (value < DRIVE_MINIMUM_VALUE || DRIVE_MAXIMUM_VALUE < value) {
-            throw new RuntimeException();
+            throw new RuntimeException("");
         }
 
-        if (value >= MOVE_FORWARD_BOUNDARY) {
+        if (DRIVE_BOUNDARY <= value) {
             moveForward();
         }
     }
@@ -63,22 +65,20 @@ public class Car {
     }
 
     @Override
-    public int hashCode() {
-        int result = 17;
-        result = 31 * result + position.hashCode();
-        result = 31 * result + name.hashCode();
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return Objects.equals(position, car.position) && Objects
+                .equals(name, car.name);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof Car) {
-            Car car = (Car) obj;
-            return this.name.equals((car).name) && this.position.equals((car).position);
-        }
-        return false;
+    public int hashCode() {
+        return Objects.hash(position, name);
     }
 }

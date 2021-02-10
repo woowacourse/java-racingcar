@@ -7,9 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.FixedNumberGeneratingStrategy;
+import racingcar.utils.FixedNumberGeneratingStrategy;
 
 class CarsTest {
 
@@ -17,7 +15,7 @@ class CarsTest {
     @DisplayName("생성 성공 - 올바른 입력")
     @ValueSource(strings = {"pobi,joy,poz", "pobi,joy , poz"})
     void from_valid(String input) {
-        assertThat(Cars.of(input, new FixedNumberGeneratingStrategy()).getCars())
+        assertThat(Cars.from(input).getCars())
                 .containsExactly(
                         Car.from("pobi"),
                         Car.from("joy"),
@@ -28,21 +26,21 @@ class CarsTest {
     @DisplayName("생성 실패 - (,)중복")
     @ValueSource(strings = {"aa,,bb"})
     void from_invalid(String input) {
-        assertThatThrownBy(() -> Cars.of(input, new FixedNumberGeneratingStrategy()).getCars())
+        assertThatThrownBy(() -> Cars.from(input).getCars())
                 .isInstanceOf(RuntimeException.class);
     }
 
     @Test
     @DisplayName("생성 실패 - Car 이름 중복")
     void from_duplicatedName() {
-        assertThatThrownBy(() -> Cars.of("joy,joy", new FixedNumberGeneratingStrategy()).getCars())
+        assertThatThrownBy(() -> Cars.from("joy,joy").getCars())
                 .isInstanceOf(RuntimeException.class);
     }
 
     @Test
     void driveAll() {
-        Cars cars = Cars.of("joy, poz", new FixedNumberGeneratingStrategy());
-        cars.driveAll();
+        Cars cars = Cars.from("joy, poz");
+        cars.driveAll(FixedNumberGeneratingStrategy.getInstance());
 
         cars.getCars().forEach(car -> assertThat(car.getPosition()).isEqualTo(2));
     }
