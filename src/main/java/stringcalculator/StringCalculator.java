@@ -59,11 +59,7 @@ public class StringCalculator {
     }
 
     private static void isInteger(String number) {
-        try {
-            Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException();
-        }
+        Integer.parseInt(number);
     }
 
     private static boolean isMinus(int number) {
