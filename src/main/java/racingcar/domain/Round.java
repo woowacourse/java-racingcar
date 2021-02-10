@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import racingcar.domain.car.Cars;
+import racingcar.domain.result.Result;
+import racingcar.domain.result.Results;
 import racingcar.utils.RandomUtils;
 import racingcar.validator.RoundValidator;
 
@@ -23,17 +26,17 @@ public class Round {
 
     public Results startRace(Cars cars) {
         List<Result> results = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            cars.tryToMoveCars(createRandomNumbers(cars));
+        for (int i = 0 ; i < count; i++) {
+            cars.tryToMoveCars(createRandomNumbers(cars.size()));
             Result result = cars.getResultOfCars();
             results.add(result);
         }
         return Results.of(results);
     }
 
-    private List<Integer> createRandomNumbers(Cars cars) {
+    private List<Integer> createRandomNumbers(int size) {
         List<Integer> randomNumbers = new ArrayList<>();
-        for (int i = 0; i < cars.size(); i++) {
+        for (int i = 0; i < size; i++) {
             randomNumbers.add(createRandomNumber());
         }
         return randomNumbers;

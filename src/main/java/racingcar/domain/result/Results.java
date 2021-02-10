@@ -1,4 +1,8 @@
-package racingcar.domain;
+package racingcar.domain.result;
+
+import racingcar.domain.car.Car;
+import racingcar.domain.car.Name;
+import racingcar.domain.car.Position;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +31,7 @@ public class Results {
                 .collect(Collectors.toList());
     }
 
-    public Position getMaxPosition(List<Car> cars) {
+    private Position getMaxPosition(List<Car> cars) {
         Position maxPosition = Position.valueOf(0);
         for (Car car : cars) {
             maxPosition = car.getMaxPosition(maxPosition);
