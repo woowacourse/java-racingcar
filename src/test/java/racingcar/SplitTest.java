@@ -13,7 +13,7 @@ public class SplitTest {
     @DisplayName("콤마를 포함하지 않는 문자열 테스트")
     @Test
     void nonCommaTest() {
-        assertEquals(SplitUtil.splitCarNames("asdfasdf").size(), 1);
+        assertEquals(SplitUtil.splitCarNames("nonCommaCarNamesInput").size(), 1);
     }
 
     @DisplayName("콤마 뒤에 공백을 포함하는 문자열 테스트")
