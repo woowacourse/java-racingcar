@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import racingcar.utils.RandomUtils;
 
 public class Cars {
 
-    private static final int MIN_RANDOM_RANGE = 0;
-    private static final int MAX_RANDOM_RANGE = 9;
     private static final int MIN_CARS_SIZE = 2;
-    private static final String DELIMITER = ",";
 
     private final List<Car> cars;
 
@@ -46,10 +42,14 @@ public class Cars {
         }
     }
 
-    public void tryToMove() {
-        for (Car car : cars) {
-            int randomValue = RandomUtils.nextInt(MIN_RANDOM_RANGE, MAX_RANDOM_RANGE);
-            car.tryToMove(randomValue);
+    public void tryToMove(List<Integer> values) {
+        if (values.size() != cars.size()) {
+            throw new IllegalArgumentException("경주할 자동차의 수의 크기만큼 숫자 배열을 입력해주셔야 합니다.");
+        }
+        for (int i = 0; i < cars.size(); i++) {
+            Car car = cars.get(i);
+            int value = values.get(i);
+            car.tryToMove(value);
         }
     }
 
@@ -59,5 +59,9 @@ public class Cars {
             carStates.add(car.getCarState());
         }
         return Result.from(carStates);
+    }
+
+    public int size() {
+        return cars.size();
     }
 }
