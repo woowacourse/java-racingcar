@@ -1,7 +1,5 @@
 package racingcar.view;
 
-import racingcar.utils.InputValidation;
-
 import java.util.Scanner;
 
 public class InputView {
@@ -22,9 +20,7 @@ public class InputView {
         return names;
     }
 
-    public int inputTime() {
-        String input = scanner.nextLine();
-        InputValidation.validateTime(input);
-        return Integer.parseInt(input);
+    public String inputTime() {
+        return scanner.nextLine();
     }
 }

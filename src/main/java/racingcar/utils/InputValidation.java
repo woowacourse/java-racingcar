@@ -24,8 +24,8 @@ public class InputValidation {
         isValidLength(name);
     }
 
-    public static void validateTime(String input) {
-        if (!NUMBER_PATTERN.matcher(input).matches() || input.equals(ZERO_TIME)) {
+    public static void validateTrials(String input) {
+        if (!NUMBER_PATTERN.matcher(input).matches() || input.equals(ZERO_TIME) || input.isEmpty()) {
             throw new InvalidTimeException();
         }
     }

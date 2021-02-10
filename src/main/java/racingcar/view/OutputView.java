@@ -10,7 +10,7 @@ public class OutputView {
     }
 
     public void askTime() {
-        System.out.println("\n시도할 회수는 몇회인가요?");
+        System.out.println("\n시도할 횟수는 몇회인가요?");
     }
 
     public void printResult() {

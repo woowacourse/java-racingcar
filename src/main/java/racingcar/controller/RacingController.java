@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.domain.RaceTrials;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -16,8 +17,8 @@ public class RacingController {
 
     public void run() {
         inputCarNames();
-        int time = inputTime();
-        carController.race(time, outputView);
+        RaceTrials trials = inputTrials();
+        carController.race(trials.getTrials(), outputView);
         carController.showWinners(outputView);
     }
 
@@ -31,13 +32,12 @@ public class RacingController {
         }
     }
 
-    public int inputTime() {
+    public RaceTrials inputTrials() {
         try {
             outputView.askTime();
-            int time = inputView.inputTime();
-            return time;
+            return new RaceTrials(inputView.inputTime());
         } catch (RuntimeException e) {
-            return inputTime();
+            return inputTrials();
         }
     }
 }
