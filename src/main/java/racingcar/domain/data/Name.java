@@ -9,6 +9,7 @@ public class Name {
     private final String value;
 
     public Name(String value) {
+        value = value.trim();
         NameValidation.validateName(value, NAME_MAX_LENGTH);
         this.value = value;
     }
