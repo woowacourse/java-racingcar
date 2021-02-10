@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class TurnsGeneratorTest {
@@ -12,6 +13,7 @@ public class TurnsGeneratorTest {
     private static final String VOID_SAMPLE = "";
 
     @Test
+    @DisplayName("정수 여부 확인 테스트")
     void checkInteger() {
         assertThatThrownBy(() -> {
             TurnsGenerator.checkTurns(VOID_SAMPLE);
@@ -20,6 +22,7 @@ public class TurnsGeneratorTest {
     }
 
     @Test
+    @DisplayName("음수 여부 확인 테스트")
     void checkNegative() {
         assertThatThrownBy(() -> {
             TurnsGenerator.checkTurns(MINUS_TURN_SAMPLE);

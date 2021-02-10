@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CarsSetGeneratorTest {
@@ -16,6 +17,7 @@ public class CarsSetGeneratorTest {
     private static final String NULL_MESSAGE = "[ERROR] 경주할 자동차를 1대 이상 입력해주세요";
 
     @Test
+    @DisplayName("자동차 중복된 이름있는지 체크 테스트")
     void checkOverlappedNames() {
         List<String> falseList = Arrays.asList(OVERLAPPED_SAMPLE);
         assertThatThrownBy(() -> {
@@ -25,6 +27,7 @@ public class CarsSetGeneratorTest {
     }
 
     @Test
+    @DisplayName("자동차 이름 길이 체크 테스트")
     void checkNameLength() {
         List<String> falseList = Arrays.asList(LONGNAME_SAMPLE);
         assertThatThrownBy(() -> {
@@ -34,6 +37,7 @@ public class CarsSetGeneratorTest {
     }
 
     @Test
+    @DisplayName("자동차 빈 이름 체크 테스트")
     void checkNull() {
         List<String> falseList = new ArrayList<>();
         assertThatThrownBy(() -> {

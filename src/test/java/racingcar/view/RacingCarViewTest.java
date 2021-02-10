@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 
@@ -55,6 +56,7 @@ public class RacingCarViewTest {
     }
 
     @Test
+    @DisplayName("레이싱카 리스트 입력 테스트")
     void carListInput() {
         provideInput(SAMPLE_CAR_NAME);
         scanner = new Scanner(System.in);
@@ -65,6 +67,7 @@ public class RacingCarViewTest {
     }
 
     @Test
+    @DisplayName("게임 횟수 입력 테스트")
     void turnNumberInput() {
         provideInput(SAMPLE_TURN);
         scanner = new Scanner(System.in);
@@ -74,6 +77,7 @@ public class RacingCarViewTest {
     }
 
     @Test
+    @DisplayName("자동차 위치 확인 테스트")
     void displayPosition() {
         Car sampleCar = new Car(SAMPLE_CAR_NAME);
         sampleCar.oneTurn(CRITERIA);
@@ -82,6 +86,7 @@ public class RacingCarViewTest {
     }
 
     @Test
+    @DisplayName("우승자 출력 테스트")
     void showWinner() {
         RacingCarView.showWinner(SAMPLE_WINNERS);
         assertEquals(CONNECTED_SAMPLE_WINNER + WIN_MESSAGE, getOutput());

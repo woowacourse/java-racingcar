@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -16,6 +17,7 @@ public class CarsTest {
     private static final int SAMPLE_WHYB_POSITION = 1;
 
     @Test
+    @DisplayName("우승자 확인 테스트")
     void findWinners() {
         List<String> carNameList = Arrays.asList(SAMPLE_CAR_LIST);
         Cars cars = new Cars(carNameList);

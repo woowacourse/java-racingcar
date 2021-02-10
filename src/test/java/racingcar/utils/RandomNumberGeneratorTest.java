@@ -1,5 +1,6 @@
 package racingcar.utils;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,6 +13,7 @@ public class RandomNumberGeneratorTest {
     private static final int UP_LIMIT = 9;
 
     @Test
+    @DisplayName("무작위 숫자 생성 테스트")
     void randomNumberGenerator() {
         for (int i = FIRST_TRYING; i < LAST_TRYING; i++) {
             int value = RandomNumberGenerator.turnNumber();
