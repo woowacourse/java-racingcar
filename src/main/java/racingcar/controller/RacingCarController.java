@@ -10,7 +10,7 @@ import java.util.*;
 public class RacingCarController {
     private static final String DELIMITER = ",";
     private static final int UPPER_LIMIT = 5;
-    private Scanner scanner;
+    private static Scanner scanner;
     private Cars cars;
     private int turns;
 
@@ -82,7 +82,7 @@ public class RacingCarController {
         }
     }
 
-    public void generateCars() {
+    public static void generateCars() {
         RacingCarView.carListInput();
         String carsInput = scanner.nextLine();
         String[] parsedCarsInput = carsInput.split(DELIMITER);
