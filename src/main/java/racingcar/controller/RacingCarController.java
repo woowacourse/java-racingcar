@@ -10,18 +10,12 @@ import java.util.*;
 public class RacingCarController {
     private static final String DELIMITER = ",";
     private static Scanner scanner;
-    private Cars cars;
+    private static Cars cars;
     private int turns;
 
     public RacingCarController(Scanner scanner) {
         this.scanner = scanner;
     }
-
-//    public static void checkNames(List<String> nameCandidates) {
-//        checkOverlappedNames(nameCandidates);
-//        checkNameLength(nameCandidates);
-//        checkNull(nameCandidates);
-//    }
 
     public static void checkTurns(String turnCandidate) {
         int integerCandidate = checkInteger(turnCandidate);
@@ -43,14 +37,13 @@ public class RacingCarController {
         }
     }
 
-//    public static void generateCars() {
-//        RacingCarView.carListInput();
-//        String carsInput = scanner.nextLine();
-//        String[] parsedCarsInput = carsInput.split(DELIMITER);
-//        List<String> carNameCandidates = Arrays.asList(parsedCarsInput);
-//        checkNames(carNameCandidates);
-//        this.cars = new Cars(carNameCandidates);
-//    }
+    public void generateCars() {
+        RacingCarView.carListInput();
+        String carsInput = scanner.nextLine();
+        String[] parsedCarsInput = carsInput.split(DELIMITER);
+        List<String> carNameCandidates = Arrays.asList(parsedCarsInput);
+        this.cars = new Cars(carNameCandidates);
+    }
 
     public void receiveTurns() {
         RacingCarView.turnNumberInput();
