@@ -28,11 +28,11 @@ class RacingGameTest {
         }
 
         // then
-        List<Name> winnersName = racingGame.findWinners()
+        List<Name> winnerNames = racingGame.findWinners()
             .stream()
             .map(car -> car.getName())
             .collect(Collectors.toList());
-        assertThat(winnersName).isEqualTo(Arrays.asList(Name.of("pobi"), Name.of("jason")));
+        assertThat(winnerNames).isEqualTo(Arrays.asList(Name.of("pobi"), Name.of("jason")));
     }
 
 }

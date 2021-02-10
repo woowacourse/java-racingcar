@@ -1,7 +1,6 @@
 package racingcar.domain.car;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,8 +31,11 @@ class CarsTest {
         }
 
         // then
-        assertThat(cars.getCars().get(0).getPosition()).isEqualTo(Position.of(5));
-        assertThat(cars.getCars().get(1).getPosition()).isEqualTo(Position.of(0));
+        List<Position> carPositions = cars.getCars()
+            .stream()
+            .map(car -> car.getPosition())
+            .collect(Collectors.toList());
+        assertThat(carPositions).isEqualTo(Arrays.asList(Position.of(5), Position.of(0)));
     }
 
     @Test
@@ -43,7 +45,8 @@ class CarsTest {
         Car movableCar3 = new Car("kim", new FixedEngine(9));
 
         Car nonMovableCar2 = new Car("lose2", new FixedEngine(0));
-        Cars cars = new Cars(Arrays.asList(movableCar1, movableCar2, movableCar3, nonMovableCar1, nonMovableCar2));
+        Cars cars = new Cars(
+            Arrays.asList(movableCar1, movableCar2, movableCar3, nonMovableCar1, nonMovableCar2));
 
         // when
         for (int i = 0; i < 5; i++) {
@@ -51,11 +54,12 @@ class CarsTest {
         }
 
         // then
-        List<Name> winnersName = cars.findWinners()
+        List<Name> winnerNames = cars.findWinners()
             .stream()
             .map(car -> car.getName())
             .collect(Collectors.toList());
-        assertThat(winnersName).isEqualTo(Arrays.asList(Name.of("pobi"), Name.of("crong"), Name.of("kim")));
+        assertThat(winnerNames)
+            .isEqualTo(Arrays.asList(Name.of("pobi"), Name.of("crong"), Name.of("kim")));
     }
 
 }

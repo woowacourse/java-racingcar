@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
-import racingcar.domain.engine.Engine;
 import racingcar.domain.engine.RandomEngine;
 
 public class RacingGame {

@@ -20,7 +20,8 @@ public class Name {
     }
 
     private static void validationName(String name) {
-        if (name.length() < CAR_NAME_LENGTH_START_INCLUSIVE || name.length() > CAR_NAME_LENGTH_END_INCLUSIVE) {
+        if (name.length() < CAR_NAME_LENGTH_START_INCLUSIVE
+            || name.length() > CAR_NAME_LENGTH_END_INCLUSIVE) {
             throw new InvalidCarNameException("자동차 이름은 1자 이상 5자 이하여야 합니다.");
         }
     }

@@ -33,7 +33,8 @@ public class OutputView {
     }
 
     public static void printCarsStatus(List<Car> cars) {
-        cars.forEach(car -> System.out.println(car.getName().getValue() + " : " + renderingCarCurrentPosition(car)));
+        cars.forEach(car -> System.out
+            .println(car.getName().getValue() + " : " + renderingCarCurrentPosition(car)));
         System.out.println();
     }
 
@@ -47,7 +48,8 @@ public class OutputView {
     }
 
     public static void printWinners(List<Car> winners) {
-        String winnersName = winners.stream().map(car -> car.getName().getValue()).collect(Collectors.joining(","));
+        String winnersName = winners.stream().map(car -> car.getName().getValue())
+            .collect(Collectors.joining(","));
         System.out.println(winnersName + RACING_GAME_WINNERS_MESSAGE);
     }
 }
