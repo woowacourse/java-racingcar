@@ -16,6 +16,7 @@ public class ResultView {
 
     public void printCars(List<Car> cars) {
         cars.forEach(this::printEachCarCurrentPosition);
+        printNewLine();
     }
 
     private void printEachCarCurrentPosition(Car car) {
