@@ -7,7 +7,7 @@ public class RacingTimeRegister {
 
     private static final int MIN_RACING_TIME = 0;
 
-    public int registerRacingTime(String input) {
+    public int registerRacingTime(final String input) {
         try {
             int racingTime = Integer.parseInt(input);
 
@@ -19,7 +19,7 @@ public class RacingTimeRegister {
         }
     }
 
-    private void validateRacingTimeZeroOrLess(int racingTime) {
+    private void validateRacingTimeZeroOrLess(final int racingTime) {
         if (racingTime <= MIN_RACING_TIME) {
             throw new InvalidRacingTimeException();
         }

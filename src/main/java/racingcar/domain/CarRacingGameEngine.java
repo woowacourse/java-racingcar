@@ -12,7 +12,7 @@ public class CarRacingGameEngine {
 
     private final CarRepository carRepository;
 
-    public CarRacingGameEngine(List<Car> cars) {
+    public CarRacingGameEngine(final List<Car> cars) {
         carRepository = new CarRepository(cars);
     }
 
@@ -28,13 +28,13 @@ public class CarRacingGameEngine {
         return carRepository.winnerNames();
     }
 
-    private void updateAllCarsPosition(List<Car> cars) {
+    private void updateAllCarsPosition(final List<Car> cars) {
         for (Car car : cars) {
             goForwardOrStopRandomly(car);
         }
     }
 
-    private void goForwardOrStopRandomly(Car car) {
+    private void goForwardOrStopRandomly(final Car car) {
         int randomNumber = RandomUtils
                 .generateRandomNumber(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
 

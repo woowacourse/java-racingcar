@@ -21,8 +21,9 @@ public class RacingController {
     }
 
     public void start() {
-        CarRacingGameEngine carRacingGameEngine = new CarRacingGameEngine(createCar());
-        int raceTime = applyRaceTime();
+        final CarRacingGameEngine carRacingGameEngine
+                = new CarRacingGameEngine(createCar());
+        final int raceTime = applyRaceTime();
 
         showRaceResult();
 
@@ -55,13 +56,13 @@ public class RacingController {
         OutputView.printNewLine();
     }
 
-    private void showAllCarsPosition(List<Car> cars) {
+    private void showAllCarsPosition(final List<Car> cars) {
         cars.forEach(car ->
                 OutputView.printRaceResultEachCar(
                         car.getValueOfName(), car.getValueOfPosition()));
     }
 
-    private void showRaceWinner(List<String> winnerNames) {
+    private void showRaceWinner(final List<String> winnerNames) {
         OutputView.printWinner(winnerNames);
     }
 }

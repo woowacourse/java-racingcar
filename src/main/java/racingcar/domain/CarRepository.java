@@ -25,7 +25,7 @@ public class CarRepository {
     }
 
     public List<Car> winners() {
-        Position maxPosition = new Position(getMaxPosition());
+        final Position maxPosition = new Position(getMaxPosition());
 
         return cars().stream()
                 .filter(car -> car.isSamePosition(maxPosition))
