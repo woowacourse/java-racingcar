@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-import racingcar.constant.Message;
 import racingcar.domain.Cars;
 import racingcar.domain.Times;
 import racingcar.view.InputView;
@@ -12,6 +11,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RacingCarController {
+    private static final String HYPHEN = "-";
+
     private final InputView inputView;
 
     public RacingCarController(Scanner scanner) {
@@ -60,7 +61,7 @@ public class RacingCarController {
         StringBuilder hyphens = new StringBuilder();
 
         for (int i = 0; i < position; i++) {
-            hyphens.append(Message.HYPHEN);
+            hyphens.append(HYPHEN);
         }
         return hyphens;
     }

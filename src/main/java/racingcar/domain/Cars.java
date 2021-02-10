@@ -1,13 +1,18 @@
 package racingcar.domain;
 
-import racingcar.constant.Digit;
-import racingcar.constant.Message;
 import racingcar.utils.RandomUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final int ZERO = 0;
+    private static final int MINIMUM_RANDOM_VALUE = 0;
+    private static final int MAXIMUM_RANDOM_VALUE = 9;
+    private static final int MOVEMENT_CRITERION = 4;
+    private static final String ERROR = "[ERROR] ";
+    private static final String CAR_NAME_DUPLICATION_ERROR = ERROR + "자동차 이름은 중복되지 않게 입력해 주세요.";
+
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {
@@ -32,7 +37,7 @@ public class Cars {
         Set<String> nonDuplicatedNames = new HashSet<>(carNames);
 
         if (nonDuplicatedNames.size() != carNames.size()) {
-            throw new IllegalArgumentException(Message.CAR_NAME_DUPLICATION_ERROR.toString());
+            throw new IllegalArgumentException(CAR_NAME_DUPLICATION_ERROR);
         }
     }
 
@@ -50,14 +55,13 @@ public class Cars {
         List<Integer> randoms = new ArrayList<>();
 
         for (int i = 0; i < cars.size(); i++) {
-            randoms.add(RandomUtils.nextInt(Digit.MINIMUM_RANDOM_VALUE.getDigit(),
-                    Digit.MAXIMUM_RANDOM_VALUE.getDigit()));
+            randoms.add(RandomUtils.nextInt(MINIMUM_RANDOM_VALUE, MAXIMUM_RANDOM_VALUE));
         }
         return randoms;
     }
 
     public void moveIfPossible(Car car, int random) {
-        if (random >= Digit.MOVEMENT_CRITERION.getDigit()) {
+        if (random >= MOVEMENT_CRITERION) {
             car.move();
         }
     }
@@ -93,7 +97,7 @@ public class Cars {
                 .stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElse(Digit.ZERO.getDigit());
+                .orElse(ZERO);
     }
 
     public List<Car> getCars() {

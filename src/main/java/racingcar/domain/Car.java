@@ -1,9 +1,13 @@
 package racingcar.domain;
 
-import racingcar.constant.Digit;
-import racingcar.constant.Message;
-
 public class Car {
+    private static final int MINIMUM_CAR_NAME_LENGTH = 1;
+    private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
+    private static final String ERROR = "[ERROR] ";
+    private static final String CAR_NAME_LENGTH_ERROR = ERROR + "자동차 이름은 " +
+            MINIMUM_CAR_NAME_LENGTH + " 이상 " +
+            MAXIMUM_CAR_NAME_LENGTH + " 이하로 입력해 주세요.";
+
     private final String name;
     private int position;
 
@@ -18,9 +22,8 @@ public class Car {
     }
 
     private void validateLength(String name) {
-        if ((name.length() < Digit.MINIMUM_CAR_NAME_LENGTH.getDigit())
-                || (name.length() > Digit.MAXIMUM_CAR_NAME_LENGTH.getDigit())) {
-            throw new IllegalArgumentException(Message.CAR_NAME_LENGTH_ERROR.toString());
+        if ((name.length() < MINIMUM_CAR_NAME_LENGTH) || (name.length() > MAXIMUM_CAR_NAME_LENGTH)) {
+            throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR);
         }
     }
 

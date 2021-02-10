@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.constant.Digit;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -21,7 +20,7 @@ class CarTest {
     @Test
     public void createCar_이름의_길이가_범위를_벗어난_경우() {
         final String SHORT_CAR_NAME = "";
-        final int MAXIMUM_LENGTH = Digit.MAXIMUM_CAR_NAME_LENGTH.getDigit();
+        final int MAXIMUM_LENGTH = 5;
         final String LONG_CAR_NAME = new String(new char[MAXIMUM_LENGTH + 1]);
 
         assertThatThrownBy(() -> {

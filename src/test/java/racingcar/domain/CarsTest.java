@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.constant.Digit;
 import racingcar.utils.RandomUtils;
 
 import java.util.ArrayList;
@@ -18,6 +17,8 @@ import static org.assertj.core.api.Assertions.*;
 
 class CarsTest {
     private static Stream<Arguments> initializeDecideMovableCar() {
+        final int MOVEMENT_CRITERION = 4;
+
         int numberOfCars = 4;
         int numberOfMovableCar = 2;
 
@@ -27,7 +28,7 @@ class CarsTest {
         List<String> carNames = new ArrayList<>();
 
         for (int i = 0; i < numberOfMovableCar; i++) {
-            randoms.set(i, Digit.MOVEMENT_CRITERION.getDigit());
+            randoms.set(i, MOVEMENT_CRITERION);
         }
         for (int i = 0; i < numberOfCars; i++) {
             carNames.add("pobi" + i);
@@ -61,9 +62,11 @@ class CarsTest {
     @ParameterizedTest
     @MethodSource("initializeDecideMovableCar")
     void decideMovableCar_자동차가_전진할지_멈출지_판단(Cars cars, List<Integer> randoms) {
+        final int MOVEMENT_CRITERION = 4;
+
         int movedPosition = 1;
         int numberOfMovableCar = (int) randoms.stream()
-                .filter(random -> random.compareTo(Digit.MOVEMENT_CRITERION.getDigit()) >= 0)
+                .filter(random -> random.compareTo(MOVEMENT_CRITERION) >= 0)
                 .count();
 
         cars.decideMovableCar(randoms);
@@ -80,13 +83,16 @@ class CarsTest {
     @ParameterizedTest
     @MethodSource("initializeDecideMovableCar")
     void moveIfPossible_자동차가_조건을_만족하면_전진(Cars cars) {
-        int random = RandomUtils.nextInt(Digit.MINIMUM_RANDOM_VALUE.getDigit(),
-                Digit.MAXIMUM_RANDOM_VALUE.getDigit());
+        final int MINIMUM_RANDOM_VALUE = 0;
+        final int MAXIMUM_RANDOM_VALUE = 9;
+        final int MOVEMENT_CRITERION = 4;
+
+        int random = RandomUtils.nextInt(MINIMUM_RANDOM_VALUE, MAXIMUM_RANDOM_VALUE);
         int expectedPosition = 0;
 
         Car car = new Car("pobi");
 
-        if (random >= Digit.MOVEMENT_CRITERION.getDigit()) {
+        if (random >= MOVEMENT_CRITERION) {
             expectedPosition++;
         }
 
