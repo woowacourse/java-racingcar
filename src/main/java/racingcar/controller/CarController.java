@@ -14,7 +14,7 @@ public class CarController {
         outputView.printResult();
         for (int i = 0; i < time; i++) {
             cars.startRace();
-            outputView.showState(cars.getStates());
+            outputView.showStates(cars.getStates());
         }
     }
 

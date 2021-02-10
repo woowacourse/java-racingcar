@@ -1,8 +1,6 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -23,10 +21,12 @@ public class Cars {
         }
     }
 
-    public List<String> getStates() {
-        return cars.stream()
-                .map(car -> car.toString())
-                .collect(Collectors.toList());
+    public Map<String, Integer> getStates() {
+        Map<String, Integer> states = new HashMap<>();
+        for (Car car : cars) {
+            states.put(car.getName(), car.getPosition());
+        }
+        return states;
     }
 
     public List<String> showWinners() {

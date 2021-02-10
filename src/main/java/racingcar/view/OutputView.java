@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public void askCarName() {
@@ -15,11 +16,15 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public void showState(List<String> states) {
-        for (String state : states) {
-            System.out.println(state);
+    public void showStates(Map<String, Integer> states) {
+        for (String name : states.keySet()) {
+            System.out.println(name + " : " + repeat("-", states.get(name)));
         }
         System.out.println();
+    }
+
+    private String repeat(String str, int num) {
+        return new String(new char[num]).replace("\0", str);
     }
 
     public void printWinners(List<String> winners) {

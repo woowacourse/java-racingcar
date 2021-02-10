@@ -35,14 +35,6 @@ public class Car {
         }
     }
 
-    public String toString() {
-        return this.name + " : " + repeat("-", this.position);
-    }
-
-    private String repeat(String str, int num) {
-        return new String(new char[num]).replace("\0", str);
-    }
-
     public int aboveMaxPosition(int maxPosition) {
         if (this.position > maxPosition) {
             return this.position;
