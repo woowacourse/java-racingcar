@@ -5,13 +5,12 @@ import racingcar.utils.InputValidation;
 import java.util.Scanner;
 
 public class InputView {
-    private static Scanner scanner;
+    private static Scanner scanner = new Scanner(System.in);;
     private static String BLANK = " ";
     private static String EMPTY = "";
     private static String DELIMITER = ",";
 
-    public InputView() {
-        this.scanner = new Scanner(System.in);
+    private InputView() {
     }
 
     public static String[] inputCarName() {
