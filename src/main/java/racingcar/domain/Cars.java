@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.utils.RandomNumberGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,6 +25,13 @@ public class Cars {
                 .map(Car::getPosition)
                 .max(Integer::compareTo)
                 .orElse(0);
+    }
+
+    public void moveCars() {
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        for (Car car : cars) {
+            car.carMove(randomNumberGenerator.getNumber());
+        }
     }
 
     private void validateNonDuplicatedNames(List<String> names) {

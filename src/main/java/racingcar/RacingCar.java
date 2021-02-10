@@ -1,7 +1,8 @@
 package racingcar;
 
-import racingcar.controller.CarController;
-import racingcar.domain.*;
+import racingcar.domain.Cars;
+import racingcar.domain.TryCount;
+import racingcar.domain.Winners;
 import racingcar.utils.RacingCarUtils;
 import racingcar.view.InputView;
 import racingcar.view.RacingCarView;
@@ -29,23 +30,13 @@ public class RacingCar {
 
     private void racing() {
         for (int i = 0; i < tryCount.getCount(); i++) {
-            changeCarsStatus();
+            moveMovableCar();
             RacingCarView.printProgressResult(cars.getCars());
         }
     }
 
-    private void changeCarsStatus() {
-        for (Car car : cars.getCars()) {
-            moveMovableCar(car);
-        }
-    }
-
-    private void moveMovableCar(final Car car) {
-        CarController carController = new CarController(car);
-        RandomNumber randomNumber = new RandomNumber();
-        if (GameRule.isMoveNumber(randomNumber.getNumber())) {
-            carController.carMove();
-        }
+    private void moveMovableCar() {
+        cars.moveCars();
     }
 
     private void pickWinners() {
