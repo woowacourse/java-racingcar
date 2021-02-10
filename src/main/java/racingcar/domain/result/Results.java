@@ -22,7 +22,7 @@ public class Results {
     }
 
     public List<String> findWinners() {
-        Result lastResult = results.get(results.size() - GAP_WITH_SIZE_AND_INDEX);
+        Result lastResult = getLastResult();
         Position maxPosition = lastResult.getMaxPosition();
         List<Car> cars = lastResult.getResult();
         return cars.stream()
@@ -30,6 +30,10 @@ public class Results {
                 .map(Car::getName)
                 .map(Name::getValue)
                 .collect(Collectors.toList());
+    }
+
+    private Result getLastResult() {
+        return results.get(results.size() - GAP_WITH_SIZE_AND_INDEX);
     }
 
     public List<Result> getResults() {
