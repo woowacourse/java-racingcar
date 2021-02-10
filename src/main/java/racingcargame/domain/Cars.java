@@ -12,13 +12,6 @@ public class Cars {
         this.cars = cars;
     }
 
-    public List<String> getWinnerNames() {
-        return cars.stream()
-                .filter(car -> car.isWinner(getMaxDistance()))
-                .map(Car::getName)
-                .collect(Collectors.toList());
-    }
-
     public List<Car> getCars() {
         return cars;
     }
@@ -33,5 +26,11 @@ public class Cars {
 
     public void race() {
         cars.forEach(car -> car.move(RandomUtils.getRandomNumber()));
+    }
+
+    public List<Car> findWinners() {
+        return cars.stream()
+                .filter(car -> car.isWinner(getMaxDistance()))
+                .collect(Collectors.toList());
     }
 }

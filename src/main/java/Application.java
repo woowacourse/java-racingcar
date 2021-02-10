@@ -8,8 +8,8 @@ public class Application {
         ResultView.showGameStart();
         while (game.hasRaceCount()) {
             game.race();
-            ResultView.showStatus(game.getCars());
+            ResultView.showStatus(game.Cars());
         }
-        ResultView.showResult(game.getCars());
+        ResultView.showResult(game.Winners());
     }
 }

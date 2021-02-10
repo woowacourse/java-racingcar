@@ -34,13 +34,13 @@ class CarsTest {
     @Test
     @DisplayName("우승자의 이름을 잘 가져오는지 테스트")
     void getWinnerNames() {
-        List<String> winnerNames = cars.getWinnerNames();
-        assertThat(winnerNames.size()).isEqualTo(2);
-        assertThat(winnerNames.get(0)).isEqualTo("car2");
-        assertThat(winnerNames.get(1)).isEqualTo("car3");
+        List<Car> winners = cars.findWinners();
+        assertThat(winners.size()).isEqualTo(2);
+        assertThat(winners.get(0).getName()).isEqualTo("car2");
+        assertThat(winners.get(1).getName()).isEqualTo("car3");
         cars.getCars().get(2).move(4);
-        winnerNames = cars.getWinnerNames();
-        assertThat(winnerNames.size()).isEqualTo(1);
-        assertThat(winnerNames.get(0)).isEqualTo("car3");
+        winners = cars.findWinners();
+        assertThat(winners.size()).isEqualTo(1);
+        assertThat(winners.get(0).getName()).isEqualTo("car3");
     }
 }

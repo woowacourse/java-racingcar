@@ -24,10 +24,14 @@ public class Game {
     }
 
     public List<Car> makeCars(String[] carNames) {
-        return Arrays.stream(carNames).map(carName -> new Car(carName)).collect(Collectors.toList());
+        return Arrays.stream(carNames).map(Car::new).collect(Collectors.toList());
     }
 
-    public Cars getCars() {
+    public Cars Cars() {
         return cars;
+    }
+
+    public List<Car> Winners() {
+        return cars.findWinners();
     }
 }
