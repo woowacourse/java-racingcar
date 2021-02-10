@@ -25,13 +25,10 @@ class CarsTest {
         testCars.add(car1);
         testCars.add(car2);
 
-        cars = new Cars(testCars);
-
         car2.move(4);
         car2.move(5);
 
-        cars.carAdd(car1);
-        cars.carAdd(car2);
+        cars = new Cars(Arrays.asList(car1,car2));
     }
 
     @Test
@@ -43,21 +40,15 @@ class CarsTest {
     }
 
     @Test
-    public void car_add() {
-        List<Car> gameCars = cars.getCars();
-
-        assertThat(gameCars.get(0).getName()).isEqualTo("test");
-        assertThat(gameCars.get(1).getName()).isEqualTo("car2");
-    }
-
-    @Test
+    @DisplayName("우승자의 이름을 제대로 반환하는지 확인")
     public void find_winner() {
         List<Name> winners = cars.findWinners(2);
 
-        assertThat(winners.get(0)).isEqualTo(new Car("car2"));
+        assertThat(winners).isEqualTo(Arrays.asList(new Name("car2")));
     }
 
     @Test
+    @DisplayName("자동차 경주의 우승자의 이동 거리를 반환하는지 확인")
     public void find_max_distance() {
         int maxDistance = cars.findMaxDistance();
 

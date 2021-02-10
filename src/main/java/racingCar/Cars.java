@@ -1,9 +1,6 @@
 package racingCar;
 
 import utils.RandomUtils;
-import view.OutputView;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,10 +12,6 @@ public class Cars {
 
     public Cars(List<Car> cars) {
         this.cars = cars;
-    }
-
-    public void carAdd(Car car) {
-        cars.add(car);
     }
 
     public List<Car> getCars() {

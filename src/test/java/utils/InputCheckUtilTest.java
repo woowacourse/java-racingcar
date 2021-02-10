@@ -1,4 +1,4 @@
-package view;
+package utils;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -7,7 +7,7 @@ import utils.InputCheckUtil;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
-class InputViewTest {
+class InputCheckUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {",apple,pear", "apple,pear,"})
     void inputValidate(String input) {

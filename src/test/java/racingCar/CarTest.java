@@ -27,16 +27,8 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "banana"})
-    void validate(String input) {
-        assertThatThrownBy(() -> {
-            new Car(input);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("길이가 1에서 5사이의 이름을 입력해주세요.");
-    }
-
-    @ParameterizedTest
     @CsvSource(value = {"3:0", "4:1"}, delimiter = ':')
+    @DisplayName("랜덤값으로 입력되는 값이 4이상일경우 전진 아닐경우 정지인지 확인")
     public void move(int input, int expected) {
         Car car3 = new Car("car3");
         car3.move(input);
@@ -50,24 +42,4 @@ class CarTest {
         assertFalse(car1.isWinner(2));
         assertTrue(car2.isWinner(2));
     }
-
-    @Test
-    public void get_name() {
-        Name name = car1.getName();
-        Name name2 = car2.getName();
-
-        assertThat(name).isEqualTo(new Name("car1"));
-        assertThat(name2).isEqualTo(new Name("car2"));
-    }
-
-    @Test
-    public void get_distance() {
-        int distance1 = car1.getDistance();
-        int distance2 = car2.getDistance();
-
-        assertThat(distance1).isEqualTo(0);
-        assertThat(distance2).isEqualTo(2);
-    }
-
-
 }
