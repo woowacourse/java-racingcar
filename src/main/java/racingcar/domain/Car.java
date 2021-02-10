@@ -1,16 +1,18 @@
 package racingcar.domain;
 
-import racingcar.domain.utils.RandomUtils;
-
 public class Car {
     private static final int MINIMUM_TO_MOVE = 4;
 
     private final Name name;
-
     private int position = 0;
 
-    private Car(final Name name) {
+    public Car(final Name name) {
+        this(name, 0);
+    }
+
+    public Car(final Name name, int position) {
         this.name = name;
+        this.position = position;
     }
 
     public static Car createByName(final Name name) {

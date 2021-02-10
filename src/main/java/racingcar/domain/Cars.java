@@ -12,7 +12,7 @@ public class Cars {
 
     private final List<Car> cars;
 
-    private Cars(final List<Car> cars) {
+    public Cars(final List<Car> cars) {
         CarsValidator.checkIsValidCars(cars);
         this.cars = cars;
     }
@@ -39,15 +39,24 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public String[] getWinnerNames() {
+    public List<Name> getWinnerNames() {
+        List<Car> winners = getWinners();
+        return getCarsNames(winners);
+    }
+
+    private List<Name> getCarsNames(List<Car> cars) {
+        return cars.stream()
+                .map(Car::toString)
+                .map(Name::create)
+                .collect(Collectors.toList());
+    }
+
+    private List<Car> getWinners() {
         int winnerPosition = findWinnerPosition();
 
-        String[] names = cars.stream()
+        return cars.stream()
                 .filter(car -> car.isOnPosition(winnerPosition))
-                .map(Car::toString)
-                .toArray(String[]::new);
-
-        return names;
+                .collect(Collectors.toList());
     }
 
     private int findWinnerPosition() {

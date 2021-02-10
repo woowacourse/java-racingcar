@@ -1,8 +1,11 @@
 package racingcar.view;
 
+import racingcar.domain.Car;
+import racingcar.domain.Name;
 import racingcar.domain.RaceResultDTO;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String WINNER_NAME_SEPARATOR = ",";
@@ -33,8 +36,12 @@ public class OutputView {
         return sb.toString();
     }
 
-    public static void printWinners(final String[] winnerNames) {
-        String winningMsg = String.join(WINNER_NAME_SEPARATOR, winnerNames) + "가 최종 우승했습니다.";
+    public static void printWinners(final List<Name> winnerNames) {
+        String names = winnerNames.stream()
+                .map(Name::toString)
+                .collect(Collectors.joining(WINNER_NAME_SEPARATOR));
+
+        String winningMsg = names + "가 최종 우승했습니다.";
         println(winningMsg);
     }
 

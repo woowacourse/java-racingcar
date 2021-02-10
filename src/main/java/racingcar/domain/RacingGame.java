@@ -25,7 +25,7 @@ public class RacingGame {
         return cars.getResults();
     }
 
-    public String[] getWinners() {
+    public List<Name> getWinners() {
         return cars.getWinnerNames();
     }
 }

@@ -1,13 +1,16 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.utils.NameHandler;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,5 +47,24 @@ class CarsTest {
         }
     }
 
-    // XXX :: 우승 자동차를 검증할 수 있는 방법에 대한 고민
+    @DisplayName("우승 자동차 기능 검증")
+    @Test
+    void checkGetWinner() {
+        Car[] tmpCars = new Car[]{
+                new Car(Name.create("t1"), 1),
+                new Car(Name.create("t2"), 3),
+                new Car(Name.create("t3"), 1),
+                new Car(Name.create("t4"), 3),
+                new Car(Name.create("t5"), 2)
+        };
+
+        Cars testCars = new Cars(Arrays.asList(tmpCars));
+        Cars winnerCars = Cars.createByNames(testCars.getWinnerNames());
+
+        assertThat(winnerCars.contains(tmpCars[0])).isFalse();
+        assertThat(winnerCars.contains(tmpCars[1])).isTrue();
+        assertThat(winnerCars.contains(tmpCars[2])).isFalse();
+        assertThat(winnerCars.contains(tmpCars[3])).isTrue();
+        assertThat(winnerCars.contains(tmpCars[4])).isFalse();
+    }
 }
