@@ -1,48 +1,30 @@
 package javaracingcar.domain;
 
 public class Car {
-    private static final int CAR_NAME_LENGTH_MAX_SIZE = 4;
     private static final int MIN_CAN_MOVE_NUMBER = 4;
-    private String name;
+
+    private Name name;
     private int position;
 
     public Car(String name) {
+        this(new Name(name), 0);
+    }
+
+    public Car(String name, int position) {
+        this(new Name(name), position);
+    }
+
+    public Car(Name name, int position) {
         this.name = name;
-        this.position = 0;
+        this.position = position;
     }
 
     public String getName() {
-        return name;
+        return name.toString();
     }
 
     public int getPosition() {
         return position;
-    }
-
-
-    public static Car generateCar(String name) {
-        validateNull(name);
-        validateEmptyString(name);
-        validateNameLength(name);
-        return new Car(name);
-    }
-
-    private static void validateNull(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException("null이 입력되었습니다.");
-        }
-    }
-
-    private static void validateEmptyString(String name) {
-        if ("".equals(name)) {
-            throw new IllegalArgumentException("빈 문자열이 입력되었습니다.");
-        }
-    }
-
-    private static void validateNameLength(String name) {
-        if (name.length() > CAR_NAME_LENGTH_MAX_SIZE) {
-            throw new IllegalArgumentException("이름이 최대길이를 초과했습니다.");
-        }
     }
 
     public void move(int number) {

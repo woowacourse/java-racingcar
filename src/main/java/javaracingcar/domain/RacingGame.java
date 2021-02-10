@@ -45,7 +45,7 @@ public class RacingGame {
     public static List<Car> generateCars(List<String> carNames) {
         List<Car> cars = new ArrayList<>();
         for (String name : carNames) {
-            cars.add(Car.generateCar(name));
+            cars.add(new Car(name));
         }
         return cars;
     }
