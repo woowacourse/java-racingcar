@@ -3,6 +3,8 @@ package racingcar.domain.car;
 import org.junit.platform.commons.util.StringUtils;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Car {
     private static final String ERROR_NAME_NOT_PERMIT_NULL_AND_EMPTY_MESSAGE = "[ERROR] 자동차 이름은 null or 공백을 허용하지 않습니다.";
@@ -11,6 +13,7 @@ public class Car {
     private static final int NAME_LENGTH_MAX_LIMIT = 5;
     private static final int FORWARD_MOVEMENT_BOUNDARY_VALUE = 4;
     private static final int INITIAL_POSITION = 0;
+    private static final String WITHOUT_NUMBER_AND_ALPHABET_CHARACTERS = "\\W";
 
     private final String name;
     private final int position;
@@ -44,17 +47,10 @@ public class Car {
     }
 
     private void validateSpecialCharacters(String name) {
-        for (char partOfName : name.toCharArray()) {
-            validateSpecialCharacter(partOfName);
+        Matcher matcher = Pattern.compile(WITHOUT_NUMBER_AND_ALPHABET_CHARACTERS).matcher(name);
+        if (matcher.find()) {
+            throw new IllegalArgumentException(ERROR_NAME_HAS_NOT_SPECIAL_CHARACTER_MESSAGE);
         }
-    }
-
-    private void validateSpecialCharacter(char partOfName) {
-        if (Character.isLetterOrDigit(partOfName)) {
-            return;
-        }
-
-        throw new IllegalArgumentException(ERROR_NAME_HAS_NOT_SPECIAL_CHARACTER_MESSAGE);
     }
 
     public Car move(int randomNumber) {
