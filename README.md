@@ -79,6 +79,11 @@ Guide to JUnit 5 Parameterized Tests
 - 검증로직을 알맞은 곳(도메인, 뷰)에서 수행하도록 수정
 - Dto를 전달하는 로직을 서비스로 이관 (도메인 로직 보호)  
 - 원시타입 객체 랩핑
+- 자료형이 드러나는 변수명 수정
+- 각 클래스가 주 생성자를 하나만 가지도록 수정
+- Car의 move 조건을 주입하도록 수정
+- 일부 스트림 적확한 문법으로 변경
+- Car 중복검출 로직 개선
 
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
