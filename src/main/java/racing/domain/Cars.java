@@ -1,32 +1,29 @@
 package racing.domain;
 
-import racing.domain.dto.CarDto;
-import racing.utils.RandomUtils;
-
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
     private static final String DELIMITER = ",";
+    private static final String INVALID_CAR_COUNTS = "게임 참가자는 최소 2명 이상이어야 합니다.";
+    private static final String DUPLICATED_CAR_NAMES = "중복된 자동차 이름이 존재합니다.";
     private static final int SPLIT_THRESHOLD = -1;
-    private static final int START_NUMBER = 0;
-    private static final int END_NUMBER = 9;
     private static final int MINIMUM_CAR_COUNTS = 2;
 
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
-        this.cars = new ArrayList<>(cars);
-        validateCars();
+        this.cars = cars;
     }
 
-    public static Cars generate(String carNames) {
+    public static Cars generate(String carNames, MovingStrategy movingStrategy) {
         String[] splitCarNames = splitCarNames(carNames);
+        validateCarNames(splitCarNames);
         List<Car> cars = Arrays.stream(splitCarNames)
-                .map(Car::new)
+                .map(name -> new Car(name, movingStrategy))
                 .collect(Collectors.toList());
         return new Cars(cars);
     }
@@ -35,20 +32,30 @@ public class Cars {
         return carNames.split(DELIMITER, SPLIT_THRESHOLD);
     }
 
-    private void validateCars() {
-        if (cars.size() < MINIMUM_CAR_COUNTS) {
-            throw new IllegalArgumentException();
+    private static void validateCarNames(String[] splitCarNames) {
+        int carCounts = splitCarNames.length;
+        if (carCounts < MINIMUM_CAR_COUNTS) {
+            throw new IllegalArgumentException(INVALID_CAR_COUNTS);
+        }
+        if (isDuplicated(splitCarNames)) {
+            throw new IllegalArgumentException(DUPLICATED_CAR_NAMES);
         }
     }
 
+    private static boolean isDuplicated(String[] splitCarNames) {
+        return Arrays.stream(splitCarNames)
+                .distinct()
+                .count() != splitCarNames.length;
+    }
+
     public void race() {
-        cars.forEach(car -> car.move(RandomUtils.getRandomNumber(START_NUMBER, END_NUMBER)));
+        cars.forEach(Car::move);
     }
 
     public List<String> findWinnerNames() {
         int maxPosition = getMaxPosition();
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isSamePosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
@@ -60,9 +67,7 @@ public class Cars {
                 .getPosition();
     }
 
-    public List<CarDto> getCarDtos() {
-        return cars.stream()
-                .map(CarDto::from)
-                .collect(Collectors.toList());
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

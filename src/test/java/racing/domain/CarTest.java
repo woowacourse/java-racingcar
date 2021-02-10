@@ -1,47 +1,80 @@
 package racing.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.stream.Stream;
-
 import static org.assertj.core.api.Assertions.*;
 
-public class CarTest {
+class CarTest {
+    private static final MovingStrategy ALWAYS_MOVING_STRATEGY = () -> true;
 
-    private static Stream<Arguments> moveTest() {
-        return Stream.of(Arguments.of(1, false),
-                Arguments.of(2, false),
-                Arguments.of(4, true),
-                Arguments.of(9, true));
-    }
-
+    @DisplayName("자동차 객체의 유효한 이름 형식은 5자 이하의 알파벳으로 구성되며, 위치 초기값은 0이다.")
     @Test
-    void Car_유효한_이름_정상_생성된다() {
+    void makeCar() {
         assertThatCode(() -> {
-            new Car("pobi");
+            Car car = new Car("pobi", ALWAYS_MOVING_STRATEGY);
+            String name = car.getName();
+            int position = car.getPosition();
+
+            assertThat(name).isEqualTo("pobi");
+            assertThat(position).isZero();
         }).doesNotThrowAnyException();
     }
 
+    @DisplayName("자동차 객체의 이름이 null, 빈문자열, 알파벳 아닌 문자 포함, 6자 이상인 경우 생성 예외가 발생한다.")
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {"abcdef", "ab.de", "   "})
-    void Car_유효하지_않은_이름_예외가_발생한다(String name) {
+    void cannotMakeCar(String name) {
         assertThatThrownBy(() -> {
-            new Car(name);
-        }).isInstanceOf(IllegalArgumentException.class);
+            new Car(name, ALWAYS_MOVING_STRATEGY);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("자동차 이름은 5자 이하의 알파벳으로 구성되어야 합니다.");
     }
 
-    @ParameterizedTest
-    @MethodSource("moveTest")
-    void Car_값이_4_이상일때_이동한다(int randomNumber, boolean isMoved) {
-        Car pobiCar = new Car("pobi");
-        boolean moveResult = pobiCar.move(randomNumber);
+    @DisplayName("자동차 객체가 항상 이동하는 전략을 가지면 move 요청시 위치가 증가한다")
+    @Test
+    void moveCarAlways() {
+        MovingStrategy alwaysMovingStrategy = () -> true;
+        Car car = new Car("dummy", alwaysMovingStrategy);
 
-        assertThat(moveResult).isEqualTo(isMoved);
+        car.move();
+        int position = car.getPosition();
+
+        assertThat(position).isEqualTo(1);
+    }
+
+    @DisplayName("자동차 객체가 항상 이동하지 않는 전략을 가지면 move 요청시 움직이지 않는다")
+    @Test
+    void moveCarNever() {
+        MovingStrategy neverMovingStrategy = () -> false;
+        Car car = new Car("dummy", neverMovingStrategy);
+
+        int position = car.getPosition();
+
+        assertThat(position).isZero();
+    }
+
+    @DisplayName("두 자동차 객체의 위치가 같으면 true를 반환한다")
+    @Test
+    void isSamePosition() {
+        Car car = new Car("pobi", ALWAYS_MOVING_STRATEGY);
+
+        boolean isSamePosition = car.isSamePosition(0);
+
+        assertThat(isSamePosition).isTrue();
+    }
+
+    @DisplayName("두 자동차 객체의 위치가 다르면 false를 반환한다")
+    @Test
+    void isDifferentPosition() {
+        Car car = new Car("pobi", ALWAYS_MOVING_STRATEGY);
+
+        boolean isSamePosition = car.isSamePosition(1);
+
+        assertThat(isSamePosition).isFalse();
     }
 }

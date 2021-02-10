@@ -6,42 +6,45 @@ import java.util.regex.Pattern;
 
 public class Car {
     private static final Pattern PATTERN = Pattern.compile("[a-zA-Z]{1,5}");
-    private static final int MINIMUM_MOVE_NUMBER = 4;
+    private static final String INVALID_NAME_FORMAT = "자동차 이름은 5자 이하의 알파벳으로 구성되어야 합니다.";
     private static final int DEFAULT_POSITION = 0;
 
     private final String name;
-    private int position;
+    private final MovingStrategy movingStrategy;
+    private int position = DEFAULT_POSITION;
 
-    public Car(String name) {
+    public Car(String name, MovingStrategy movingStrategy) {
+        validateName(name);
         this.name = name;
-        this.position = DEFAULT_POSITION;
-        validateName();
+        this.movingStrategy = movingStrategy;
     }
 
-    private void validateName() {
-        if (Objects.isNull(this.name)) {
-            throw new IllegalArgumentException();
+    private void validateName(String name) {
+        if (Objects.isNull(name)) {
+            throw new IllegalArgumentException(INVALID_NAME_FORMAT);
         }
-        Matcher matcher = PATTERN.matcher(this.name);
+        Matcher matcher = PATTERN.matcher(name);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_NAME_FORMAT);
         }
     }
 
-    public boolean move(int randomNumber) {
-        if (randomNumber >= MINIMUM_MOVE_NUMBER) {
+    public void move() {
+        if (movingStrategy.isMovable()) {
             this.position++;
-            return true;
         }
-        return false;
     }
 
-    public int getPosition() {
-        return position;
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
 
