@@ -3,60 +3,64 @@ package racingcar.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarsTest {
 
-    @ParameterizedTest
-    @CsvSource(value = {"pobi,crong,honux:3", "mt:1", "oz,mt:2"}, delimiter = ':')
-    @DisplayName("자동차 여러 대를 만들 때 Cars 리스트에 정상적으로 추가가 되었는지 테스트")
-    void carCreateLengthTest(String input, String expected) {
-        List<Car> carList = new ArrayList<>();
-        String[] carNames = input.split(",");
-        for (String carName : carNames) {
-            carList.add(new Car(carName));
-        }
-        Cars cars = new Cars(carList);
-        assertEquals(cars.getCars().size(), Integer.parseInt(expected));
-    }
-
+    @DisplayName("자동차 여러 대를 만들 때 이름이 일치하는지 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"pobi,crong,honux", "mt,oz", "oz,mt"})
-    @DisplayName("자동차 여러 대를 만들 때 이름이 일치하는지 테스트")
     void multiCarNameEqualTest(String text) {
-        List<Car> carList = new ArrayList<>();
         String[] carNames = text.split(",");
-        for (String carName : carNames) {
-            carList.add(new Car(carName));
-        }
+        List<Car> carList = Arrays.stream(carNames)
+                .map(carName -> new Car(carName))
+                .collect(Collectors.toList());
         Cars cars = new Cars(carList);
-        carList = cars.getCars();
-        for (int i = 0; i < carList.size(); i++) {
-            assertEquals(carList.get(i).getName(), carNames[i]);
+        for (String carName : carNames) {
+            assertThat(cars.getCars()).contains(new Car(carName));
         }
     }
 
+    @DisplayName("자동차 여러 대가 전진했는지를 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"mt,oz,pobi@0,2:mt, pobi", "pobi,crong,honux@0:pobi",
-            "pobi,crong,honux@1:crong", "pobi,crong,honux@2:honux", "pobi,crong,honux@1,2:crong, honux",
-            "pobi,crong,honux@0,1,2:pobi, crong, honux"}, delimiter = ':')
-    @DisplayName("원하는 자동차 이동 후 우승자 문자열이 잘 반환되는지 테스트")
-    void winnerCarTest(String input, String expected) {
-        String[] inputArray = input.split("@");
-        Cars cars = Cars.createCars(inputArray[0]);
-        String[] indexArray = inputArray[1].split(",");
-        for (String index : indexArray) {
-            cars.getCars().get(Integer.parseInt(index)).move(() -> 4);
+    @ValueSource(strings = {"pobi,crong,honux", "mt,oz", "oz,mt"})
+    void carsMoveTest(String text) {
+        List<Car> carList = Arrays.stream(text.split(","))
+                .map(carName -> new Car(carName))
+                .collect(Collectors.toList());
+        Cars cars = new Cars(carList);
+        cars.move(() -> 4);
+        for (Car car : cars.getCars()) {
+            assertThat(car.getPosition()).isEqualTo(1);
         }
-        assertThat(OutputView.getWinnerNames(cars.getWinners())).isEqualTo(expected);
+    }
+
+    @DisplayName("자동차 여러 대가 정지했는지를 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi,crong,honux", "mt,oz", "oz,mt"})
+    void carsStopTest(String text) {
+        List<Car> carList = Arrays.stream(text.split(","))
+                .map(carName -> new Car(carName))
+                .collect(Collectors.toList());
+        Cars cars = new Cars(carList);
+        cars.move(() -> 3);
+        for (Car car : cars.getCars()) {
+            assertThat(car.getPosition()).isEqualTo(0);
+        }
+    }
+
+    @DisplayName("위치값이 가장 높은 우승자가 잘 반환되는지 테스트")
+    @Test
+    void winnerCarTest() {
+        Cars cars = new Cars(Arrays.asList(new Car("pobi", 1),
+                new Car("crong", 0),
+                new Car("honux", 1)));
+        assertThat(cars.getWinners()).contains(new Car("pobi"), new Car("honux"));
     }
 }

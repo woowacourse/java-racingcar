@@ -6,30 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final String NO_NAME_ERROR = "반드시 자동차 이름을 입력하셔야 합니다.";
-    private static final String COMMA = ",";
-
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
         this.cars = new ArrayList<>(cars);
-    }
-
-    public static Cars createCars(String carNames) {
-        List<Car> inputCars = new ArrayList<>();
-        String[] splitCarNames = carNamesSplit(carNames);
-        for (String carName : splitCarNames) {
-            inputCars.add(new Car(carName));
-        }
-        return new Cars(inputCars);
-    }
-
-    private static String[] carNamesSplit(String carNames) {
-        String[] splitCarNames = carNames.split(COMMA);
-        if (splitCarNames.length == 0) {
-            throw new IllegalArgumentException(NO_NAME_ERROR);
-        }
-        return splitCarNames;
     }
 
     public List<Car> getCars() {
