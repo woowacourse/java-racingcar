@@ -17,11 +17,14 @@ public class TryNumber {
 
     public boolean isMovable() {
         if (tryNumber > FINISH_VALUE) {
-            tryNumber--;
             return true;
         }
 
         return false;
+    }
+
+    public void decrease() {
+        tryNumber--;
     }
 
     public int getTryNumber() {
