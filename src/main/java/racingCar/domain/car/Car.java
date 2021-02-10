@@ -13,11 +13,15 @@ public class Car {
 
 
     public Car(String name, Engine engine){
-        this(name, ZERO, engine);
+        this(new Name(name), ZERO, engine);
     }
 
-    public Car(String name, Position position, Engine engine) {
-        this.name = new Name(name);
+    public Car(String name, int position, Engine engine){
+        this(new Name(name), new Position(position), engine);
+    }
+
+    public Car(Name name, Position position, Engine engine) {
+        this.name = name;
         this.engine = engine;
         this.position = position;
     }
@@ -29,7 +33,7 @@ public class Car {
     }
 
     public boolean isOn(int max) {
-        return position.getPosition() == max;
+        return position.isEqualTo(max);
     }
 
     public int getPosition() {
@@ -41,7 +45,7 @@ public class Car {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -57,5 +61,9 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name, engine, position);
+    }
+
+    public int getMaxValue(final int position) {
+        return this.position.getMaxValue(position);
     }
 }

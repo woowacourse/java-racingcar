@@ -14,12 +14,16 @@ public class Position {
         this.position = position;
     }
 
-    public int getPosition() {
-        return position;
+    public boolean isEqualTo(int max) {
+        return this.position == max;
     }
 
     public Position goForward() {
         return new Position(position + 1);
+    }
+
+    public int getMaxValue(final int value) {
+        return Integer.max(this.position,value);
     }
 
     @Override
@@ -37,5 +41,9 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(position);
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
