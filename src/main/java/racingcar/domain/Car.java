@@ -17,11 +17,10 @@ public class Car {
         this.position = position;
     }
 
-    public int move(final int randomNumber) {
+    public void move(final int randomNumber) {
         if (checkMoveCondition(randomNumber)) {
             position = position.move();
         }
-        return position.getValue();
     }
 
     private boolean checkMoveCondition(final int randomNumber) {
