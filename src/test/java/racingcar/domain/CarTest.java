@@ -11,28 +11,26 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CarTest {
     @Test
     public void 자동차_객체_생성_테스트() {
-        Car car = new Car("pobi");
+        Car car = new Car("pobi", new RandomNumberRule());
         assertThat(car.getName()).isEqualTo("pobi");
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"poooobi", ""})
     public void 이름_길이가_잘못된_경우_예외처리(String name) {
-        assertThatThrownBy(() -> new Car(name))
+        assertThatThrownBy(() -> new Car(name, new RandomNumberRule()))
                 .isInstanceOf(InvalidNameLengthException.class);
     }
 
     @Test
     public void 랜덤_숫자에_따른_전진_멈춤_테스트() {
-        Car pobi = new Car("pobi");
         RandomNumberRuleStrategy forwardCase = () -> true;
-        pobi.setStrategy(forwardCase);
+        Car pobi = new Car("pobi", forwardCase);
         pobi.move();
         assertThat(pobi.getPosition()).isEqualTo(1);
 
-        Car brown = new Car("brown");
         RandomNumberRuleStrategy stopCase = () -> false;
-        brown.setStrategy(stopCase);
+        Car brown = new Car("brown", stopCase);
         brown.move();
         assertThat(brown.getPosition()).isEqualTo(0);
     }

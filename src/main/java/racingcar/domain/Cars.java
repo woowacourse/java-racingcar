@@ -12,7 +12,7 @@ public class Cars {
     public Cars(String[] names) {
         carList = new ArrayList<>();
         this.carList.addAll(Arrays.stream(names)
-                .map(name -> new Car(name))
+                .map(name -> new Car(name, new RandomNumberRule()))
                 .collect(Collectors.toList()));
     }
 

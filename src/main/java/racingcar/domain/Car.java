@@ -8,14 +8,10 @@ public class Car {
     private String name;
     private int position;
 
-    public Car(String name) {
+    public Car(String name, RandomNumberRuleStrategy randomNumberRule) {
         this.name = name;
         this.position = 0;
         isValidNameLength();
-        setStrategy(new RandomNumberRule());
-    }
-
-    public void setStrategy(RandomNumberRuleStrategy randomNumberRule) {
         this.rule = randomNumberRule;
     }
 
