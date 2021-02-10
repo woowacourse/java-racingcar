@@ -1,9 +1,6 @@
 package racing.domain.name;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CarNames {
@@ -14,6 +11,7 @@ public class CarNames {
 
     private CarNames(final List<CarName> carNames) {
         ArrayList<CarName> copy = new ArrayList<>(carNames);
+        validateCarNames(copy);
         this.carNames = copy;
     }
 
@@ -31,6 +29,18 @@ public class CarNames {
 
     public static String[] splitInputName(final String carNames) {
         return carNames.split(DELIMITER, SPLIT_THRESHOLD);
+    }
+
+    private void validateCarNames(List<CarName> carNames) {
+        if (!isUnique(carNames)) {
+            throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
+        }
+    }
+
+    private boolean isUnique(List<CarName> carNames) {
+        return carNames.stream()
+                .map(CarName::getName)
+                .allMatch(new HashSet<>()::add);
     }
 
     public List<CarName> getCarNames() {

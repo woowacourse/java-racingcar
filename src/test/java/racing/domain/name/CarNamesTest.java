@@ -31,4 +31,14 @@ class CarNamesTest {
             CarNames.of(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("중복된 문자열이 들어오면 에러가 발생한다")
+    @Test
+    void CarNames_중복된_문자열_에러가_발생한다() {
+        String carNames = "pobi,pobi,brown";
+        assertThatCode(() -> {
+            CarNames.of(carNames);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 이름은 중복될 수 없습니다.");
+    }
 }
