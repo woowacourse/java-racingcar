@@ -12,7 +12,10 @@ import java.util.List;
 public class RacingCarController {
     public void run() {
         RacingCar racingCar = setUpRacingCar();
-        racingCar.start();
+        while (racingCar.isNotFinish()){
+            racingCar.start();
+            RacingCarView.printProgressResult(racingCar.getNowCars());
+        }
         RacingCarView.printFinalResult(racingCar.calculateResult());
     }
 

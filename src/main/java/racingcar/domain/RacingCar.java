@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.view.RacingCarView;
+import java.util.List;
 
 public class RacingCar {
     private Cars cars;
@@ -15,12 +15,17 @@ public class RacingCar {
         raceByTryCount();
     }
 
+    public List<Car> getNowCars() {
+        return this.cars.cars();
+    }
+
     private void raceByTryCount() {
-        while (tryCount.isRemainCount()) {
-            cars.race();
-            RacingCarView.printProgressResult(cars.cars());
-            tryCount.deductCount();
-        }
+        cars.race();
+        tryCount.deductCount();
+    }
+
+    public boolean isNotFinish(){
+        return tryCount.isRemainCount();
     }
 
     public Winners calculateResult() {
