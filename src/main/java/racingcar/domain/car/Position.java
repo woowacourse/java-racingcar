@@ -13,9 +13,7 @@ public class Position {
     }
 
     public Position(final int value) {
-        if (value < 0) {
-            throw new IllegalArgumentException("위치는 0부터 시작합니다.");
-        }
+        validate(value);
         this.value = value;
     }
 
@@ -23,12 +21,22 @@ public class Position {
         return new Position(value + 1);
     }
 
-    public boolean is(int position) {
+    public boolean is(final int position) {
         return value == position;
     }
 
     public int getValue() {
         return value;
+    }
+
+    private void validate(final int value) {
+        validateMinimum(value);
+    }
+
+    private void validateMinimum(final int value) {
+        if (value < 0) {
+            throw new IllegalArgumentException("위치는 0부터 시작합니다.");
+        }
     }
 
     @Override

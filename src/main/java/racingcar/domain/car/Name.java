@@ -9,18 +9,30 @@ public class Name {
 
     private final String literal;
 
-    public Name(String literal) {
-        if (literal.length() == 0) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_NONAME);
-        }
-        if (literal.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_NAME_LENGTH);
-        }
+    public Name(final String literal) {
+        validate(literal);
         this.literal = literal;
     }
 
     public String getLiteral() {
         return literal;
+    }
+
+    private void validate(final String literal) {
+        validateMinimum(literal);
+        validateMaximum(literal);
+    }
+
+    private void validateMaximum(final String literal) {
+        if (literal.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessages.ERROR_NAME_LENGTH);
+        }
+    }
+
+    private void validateMinimum(final String literal) {
+        if (literal.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessages.ERROR_NONAME);
+        }
     }
 
     @Override
