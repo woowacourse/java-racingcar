@@ -53,7 +53,7 @@ public class Cars {
         }
     }
 
-    public Result getResultOfCars() {
+    public Result getResult() {
         List<CarState> carStates = new ArrayList<>();
         for (Car car : cars) {
             carStates.add(car.getCarState());
