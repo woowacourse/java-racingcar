@@ -2,11 +2,11 @@ package racingcar.utils;
 
 import java.util.Random;
 
-public class RandomUtils {
+public class RandomValueGenerator {
     private static final int MAX_NUMBER = 9;
     private static final Random RANDOM = new Random();
 
-    private RandomUtils() {
+    private RandomValueGenerator() {
     }
 
     public static int generateRandomNumber() {

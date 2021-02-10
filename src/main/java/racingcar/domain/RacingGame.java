@@ -1,12 +1,10 @@
-package racingcar.controller;
+package racingcar.domain;
 
-import racingcar.domain.Cars;
-import racingcar.domain.Names;
-import racingcar.domain.Trial;
+import racingcar.utils.RandomValueGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class RacingController {
+public class RacingGame {
     private boolean running = true;
 
     public void start() {

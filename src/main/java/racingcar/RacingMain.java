@@ -1,13 +1,13 @@
 package racingcar;
 
-import racingcar.controller.RacingController;
+import racingcar.domain.RacingGame;
 
-public class Application {
+public class RacingMain {
     public static void main(String[] args) {
-        RacingController racingController = new RacingController();
+        RacingGame racingGame = new RacingGame();
 
-        while (racingController.isRunning()) {
-            racingController.start();
+        while (racingGame.isRunning()) {
+            racingGame.start();
         }
     }
 }
