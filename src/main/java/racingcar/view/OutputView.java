@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import racingcar.domain.CarDto;
-import racingcar.domain.CarsDto;
+import racingcar.dto.CarDto;
+import racingcar.dto.CarsDto;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     public void printErrorMessage(Exception e) {
-        System.out.println(String.format(ERROR_MESSAGE_FORMAT, e.getMessage()));
+        System.err.println(String.format(ERROR_MESSAGE_FORMAT, e.getMessage()));
     }
 
     public void printResultMessage() {
@@ -57,7 +57,7 @@ public class OutputView {
 
         Iterator<String> iterator = winners.iterator();
         System.out.print(iterator.next());
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             System.out.print(", " + iterator.next());
         }
     }
