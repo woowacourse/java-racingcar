@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.function.Predicate;
-
 public class Car {
     private static final String CAR_STATUS_DELIMITER = " : ";
     private static final String CAR_POSITION_STATUS = "-";
@@ -23,11 +21,11 @@ public class Car {
     public int getPosition() { return this.position; }
 
     public void moveByDefaultRule() {
-        move(rule.getDefaultRule());
+        move(rule.applyDefaultRule());
     }
 
-    public void move(Predicate<CarMoveRule> rulePredicate) {
-        if (rulePredicate.test(this.rule)) {
+    public void move(boolean moveRule) {
+        if (moveRule) {
             position++;
         }
     }

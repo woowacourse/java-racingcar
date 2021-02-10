@@ -17,7 +17,7 @@ public class CarTest {
     public void 자동차_전진전략_이동_테스트() {
         Car car = new Car("pobi");
         for (int i=0; i<10; i++) {
-            car.move(rule.alwaysMoveRule());
+            car.move(rule.applyMoveRule());
         }
         assertThat(car.getPosition()).isEqualTo(10);
     }
@@ -26,7 +26,7 @@ public class CarTest {
     public void 자동차_정지전략_이동_테스트() {
         Car car = new Car("pobi");
         for (int i=0; i<10; i++) {
-            car.move(rule.noMoveRule());
+            car.move(rule.applyStopRule());
         }
         assertThat(car.getPosition()).isEqualTo(0);
     }
