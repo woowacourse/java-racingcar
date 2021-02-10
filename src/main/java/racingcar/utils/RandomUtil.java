@@ -3,6 +3,7 @@ package racingcar.utils;
 import java.util.Random;
 
 public class RandomUtil {
+    private static final int MAXIMUM_BOUND = 10;
     private static final Random RANDOM = new Random();
 
     private RandomUtil() {
@@ -21,6 +22,6 @@ public class RandomUtil {
             return startInclusive;
         }
 
-        return startInclusive + RANDOM.nextInt(endInclusive - startInclusive + 1);
+        return RANDOM.nextInt(MAXIMUM_BOUND);
     }
 }
