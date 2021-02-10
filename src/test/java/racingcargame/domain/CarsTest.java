@@ -24,22 +24,14 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("최대거리가 제대로 계산되는지 테스트")
-    void getMaxPosition() {
-        assertThat(cars.getMaxDistance()).isEqualTo(1);
-        cars.getCars().get(2).move(4);
-        assertThat(cars.getMaxDistance()).isEqualTo(2);
-    }
-
-    @Test
     @DisplayName("우승자의 이름을 잘 가져오는지 테스트")
     void getWinnerNames() {
-        List<Car> winners = cars.findWinners();
+        List<Car> winners = cars.winners();
         assertThat(winners.size()).isEqualTo(2);
         assertThat(winners.get(0).getName()).isEqualTo("car2");
         assertThat(winners.get(1).getName()).isEqualTo("car3");
         cars.getCars().get(2).move(4);
-        winners = cars.findWinners();
+        winners = cars.winners();
         assertThat(winners.size()).isEqualTo(1);
         assertThat(winners.get(0).getName()).isEqualTo("car3");
     }

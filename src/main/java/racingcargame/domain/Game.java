@@ -32,6 +32,6 @@ public class Game {
     }
 
     public List<Car> Winners() {
-        return cars.findWinners();
+        return cars.winners();
     }
 }

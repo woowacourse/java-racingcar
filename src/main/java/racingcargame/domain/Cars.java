@@ -16,7 +16,7 @@ public class Cars {
         return cars;
     }
 
-    public int getMaxDistance() {
+    private int maxDistance() {
         return cars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
@@ -27,9 +27,9 @@ public class Cars {
         cars.forEach(car -> car.move(RandomUtils.getRandomNumber()));
     }
 
-    public List<Car> findWinners() {
+    public List<Car> winners() {
         return cars.stream()
-                .filter(car -> car.isWinner(getMaxDistance()))
+                .filter(car -> car.isWinner(maxDistance()))
                 .collect(Collectors.toList());
     }
 }
