@@ -5,7 +5,7 @@ public class Car {
     private static final int START_POSITION = 0;
 
     private final Name name;
-    private final Position position;
+    private Position position;
 
     public Car(final String name) {
         this(new Name(name), new Position(START_POSITION));
@@ -21,7 +21,7 @@ public class Car {
     }
 
     public void goForward() {
-        position.goForward();
+        this.position = position.goForward();
     }
 
     public String getValueOfName() {
