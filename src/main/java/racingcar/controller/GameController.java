@@ -10,7 +10,7 @@ import racingcar.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarController {
+public class GameController {
     private static final String NO_NAME_ERROR = "반드시 자동차 이름을 입력하셔야 합니다.";
     private static final String COMMA = ",";
 
