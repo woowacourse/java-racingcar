@@ -27,9 +27,9 @@ public class StringTest {
     @DisplayName("특정 위치의 문자 가져오기")
     public void charAt() {
         String value = "abc";
-        assertThatThrownBy(() -> {
-            char c = value.charAt(5);
-        }).isInstanceOf(StringIndexOutOfBoundsException.class)
+        assertThatThrownBy(() ->
+            value.charAt(5)
+        ).isInstanceOf(StringIndexOutOfBoundsException.class)
                 .hasMessageContaining("String index out of range: 5");
     }
 }
