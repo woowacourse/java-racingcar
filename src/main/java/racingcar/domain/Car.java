@@ -6,7 +6,7 @@ public class Car {
     private static final int GO_CRITERIA = 4;
     private static final int INITIAL_POSITION = 0;
     private static final int UPPER_LIMIT = 5;
-    private String name;
+    private final String name;
     private int position;
 
     public Car(String name) {
@@ -32,8 +32,8 @@ public class Car {
         }
     }
 
-    public void oneTurn(int randomTurnNumber) {
-        if (randomTurnNumber >= GO_CRITERIA)
+    public void oneTurn(int number) {
+        if (number >= GO_CRITERIA)
             progressPosition();
     }
 

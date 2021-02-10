@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Cars {
-    private List<Car> carList = new ArrayList<>();
+    private final List<Car> carList = new ArrayList<>();
 
     public Cars(List<String> carNameList) {
         checkOverlappedNames(carNameList);
@@ -26,14 +26,6 @@ public class Cars {
         return maxPosition;
     }
 
-    public void processOneTurn() {
-        carList.forEach(car -> car.oneTurn(RandomNumberGenerator.turnNumber()));
-    }
-
-    public List<Car> getList() {
-        return this.carList;
-    }
-
     private static void checkOverlappedNames(List<String> nameCandidates) {
         Set<String> targetSet = new HashSet<>(nameCandidates);
         if (nameCandidates.size() != targetSet.size()) {
@@ -45,6 +37,14 @@ public class Cars {
         if (nameCandidates.size() == 0) {
             RacingCarError.nullCar();
         }
+    }
+
+    public void processOneTurn() {
+        carList.forEach(car -> car.oneTurn(RandomNumberGenerator.turnNumber()));
+    }
+
+    public List<Car> getList() {
+        return this.carList;
     }
 
     public String findWinners() {

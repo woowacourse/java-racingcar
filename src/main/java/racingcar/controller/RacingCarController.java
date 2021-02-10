@@ -5,7 +5,9 @@ import racingcar.domain.Cars;
 import racingcar.view.RacingCarError;
 import racingcar.view.RacingCarView;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class RacingCarController {
     private static final String DELIMITER = ",";
@@ -14,7 +16,7 @@ public class RacingCarController {
     private int turns;
 
     public RacingCarController(Scanner scanner) {
-        this.scanner = scanner;
+        RacingCarController.scanner = scanner;
     }
 
     public static void checkTurns(String turnCandidate) {
@@ -42,7 +44,7 @@ public class RacingCarController {
         String carsInput = scanner.nextLine();
         String[] parsedCarsInput = carsInput.split(DELIMITER);
         List<String> carNameCandidates = Arrays.asList(parsedCarsInput);
-        this.cars = new Cars(carNameCandidates);
+        cars = new Cars(carNameCandidates);
     }
 
     public void receiveTurns() {
