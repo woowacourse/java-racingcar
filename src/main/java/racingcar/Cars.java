@@ -1,40 +1,32 @@
 package racingcar;
 
-import racingcar.utils.RandomUtil;
-
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 public class Cars {
-    private static final int START = 0;
-    private static final int END = 9;
+    private static final int MINIMUM_CAR_AMOUNT = 2;
+    private static final String CAR_AMOUNT_LACK_ERROR_MESSAGE = "자동차는 두 대 이상이어야 합니다.";
+    private static final String CAR_NAME_DUPLICATION_ERROR_MESSAGE = "자동차의 이름은 중복되지 않아야 합니다.";
 
-    private static final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
-    private Cars() {
+    public Cars(List<Car> cars) {
+        validateCarAmount(cars);
+        validateCarNameDuplication(cars);
+        this.cars = cars;
     }
 
-    public static void addCars(List<String> splittedCarNames) {
-        CarNameRepository.addCarNames(splittedCarNames);
-        CarNameRepository.getCarNames().forEach(carName -> cars.add(new Car(carName)));
+    private void validateCarAmount(List<Car> cars) {
+        if (cars.size() < MINIMUM_CAR_AMOUNT) {
+            throw new IllegalArgumentException(CAR_AMOUNT_LACK_ERROR_MESSAGE);
+        }
     }
 
-    public static void raceOneLap() {
-        cars.forEach(car -> car.moveForwardByRandomNumber(RandomUtil.nextInt(START, END)));
-    }
-
-    public static List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
-
-    public static List<String> getWinners() {
-        int maxDistance = getMaxDistance();
-        return cars.stream().filter(car -> car.isMaxPosition(maxDistance)).map(Car::getCarName).collect(Collectors.toList());
-    }
-
-    private static int getMaxDistance() {
-        return cars.stream().collect(Collectors.summarizingInt(Car::getPosition)).getMax();
+    private void validateCarNameDuplication(List<Car> cars) {
+        Set<Car> carsWithoutDuplication = new HashSet<>(cars);
+        if (carsWithoutDuplication.size() != cars.size()) {
+            throw new IllegalArgumentException(CAR_NAME_DUPLICATION_ERROR_MESSAGE);
+        }
     }
 }
