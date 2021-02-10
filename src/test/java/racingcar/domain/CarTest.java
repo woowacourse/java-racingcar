@@ -4,12 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import racingcar.domain.car.Car;
+import racingcar.domain.car.Position;
 import racingcar.domain.engine.FixedEngine;
 
 class CarTest {
 
     @Test
-    public void 자동차_움직임_및_현재상태출력_테스트() {
+    public void 자동차_움직임_및_현재상태_테스트() {
         // given
         Car car = new Car("pobi", new FixedEngine(9));
 
@@ -20,7 +21,7 @@ class CarTest {
         }
 
         // then
-        assertThat(car.getPosition().getValue()).isEqualTo(5);
+        assertThat(car.getPosition()).isEqualTo(Position.of(5));
     }
 
     @Test
@@ -35,7 +36,7 @@ class CarTest {
         }
 
         // then
-        assertThat(car.getPosition().getValue()).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(Position.of(0));
     }
 
 }
