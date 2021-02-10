@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 import racingcar.domain.car.Name;
+import racingcar.domain.car.Position;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +50,7 @@ public class CarsTest {
         //when
         cars.tryToMoveCars(numbers);
         List<Car> carsForTest = cars.getCars();
-        List<Integer> resultNumbers = Arrays.asList(0, 0, 1);
+        List<Position> resultNumbers = Arrays.asList(Position.valueOf(0), Position.valueOf(0), Position.valueOf(1));
 
         //then
         assertAll(() -> {
