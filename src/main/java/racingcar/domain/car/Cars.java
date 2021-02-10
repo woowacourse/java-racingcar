@@ -2,11 +2,12 @@ package racingcar.domain.car;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import racingcar.utils.RandomUtils;
 
 public class Cars {
 
@@ -15,17 +16,29 @@ public class Cars {
     private final List<Car> cars;
 
     private Cars(final String names) {
-        validateNull(names);
+        this(convertToCars(names));
         validateBothEnds(names);
         validateDuplicate(names);
-        this.cars = convertToCars(names);
+    }
+
+    private Cars(final List<Car> cars) {
+        this.cars = new ArrayList<>(cars);
     }
 
     public static Cars enrollCarsWithNames(final String names) {
+        validateNull(names);
         return new Cars(names);
     }
 
-    private void validateNull(final String names) {
+    private static List<Car> convertToCars(final String names) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : names.split(COMMA)) {
+            cars.add(Car.enrollWithName(name));
+        }
+        return cars;
+    }
+
+    private static void validateNull(final String names) {
         if (names == null) {
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }
@@ -45,31 +58,48 @@ public class Cars {
         }
     }
 
-    private List<Car> convertToCars(final String names) {
-        final List<Car> cars = new ArrayList<>();
-        for (String name : names.split(COMMA)) {
-            cars.add(Car.enrollWithName(name));
+    public Cars passOneLap() {
+        List<Car> passedCars = new ArrayList<>();
+        for (Car car : cars) {
+            car = car.fillUpGas(RandomUtils.betweenZeroToNine());
+            passedCars.add(car.forward());
         }
-        return cars;
+        return new Cars(passedCars);
     }
 
-    public List<String> getWinners() {
-        return getCars().stream()
-            .filter(car -> car.isWinner(getMaxPosition()))
+    public List<String> findWinners() {
+        int maxPosition = getMaxPosition();
+        return cars.stream()
+            .filter(car -> car.isWinner(maxPosition))
             .map(Car::getName)
             .collect(Collectors.toList());
     }
 
     private int getMaxPosition() {
-        return getCars().stream()
+        return cars.stream()
             .map(Car::getPosition)
-            .mapToInt(String::length)
-            .max()
-            .getAsInt();
+            .max(Integer::compareTo)
+            .get();
     }
 
     public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+        return new ArrayList<>(cars);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Cars cars1 = (Cars) o;
+        return Objects.equals(cars, cars1.cars);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cars);
+    }
 }
