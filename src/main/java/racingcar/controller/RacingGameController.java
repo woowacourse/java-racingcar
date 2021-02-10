@@ -23,8 +23,7 @@ public class RacingGameController implements GameController {
      * Outputable과 Inputable을 주입하지 않을 경우 default로 {@link OutputView} 와 {@link InputView} 를 생성합니다.
      */
     public RacingGameController() {
-        this.inputable = new InputView();
-        this.outputable = new OutputView();
+        this(new OutputView(), new InputView());
     }
 
     public RacingGameController(Outputable outputable, Inputable inputable) {
