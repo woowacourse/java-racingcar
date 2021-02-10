@@ -5,11 +5,11 @@ import racingcar.domain.TryCount;
 import racingcar.domain.Winners;
 import racingcar.utils.RacingCarUtils;
 import racingcar.view.InputView;
-import racingcar.view.RacingCarView;
+import racingcar.view.ResultView;
 
 import java.util.List;
 
-public class RacingCar {
+public class RacingCarGame {
     private Cars cars;
     private TryCount tryCount;
 
@@ -31,7 +31,7 @@ public class RacingCar {
     private void racing() {
         for (int i = 0; i < tryCount.getCount(); i++) {
             moveMovableCar();
-            RacingCarView.printProgressResult(cars.getCars());
+            ResultView.printProgressResult(cars.getCars());
         }
     }
 
@@ -41,6 +41,6 @@ public class RacingCar {
 
     private void pickWinners() {
         Winners winners = new Winners(cars);
-        RacingCarView.printFinalResult(winners.getWinnersNames());
+        ResultView.printFinalResult(winners.getWinnersNames());
     }
 }
