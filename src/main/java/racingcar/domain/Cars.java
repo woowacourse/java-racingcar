@@ -22,7 +22,8 @@ public class Cars {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public List<Car> getWinnerCars(Car maxPositionCar) {
+    public List<Car> getWinnerCars() {
+        Car maxPositionCar = this.getMaxPositionCar();
         return cars.stream()
                 .filter(car -> car.hasSamePositionWith(maxPositionCar))
                 .collect(Collectors.toList());
