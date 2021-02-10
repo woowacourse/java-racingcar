@@ -18,7 +18,7 @@ class TryNumberTest {
         TryNumber tryNumber = new TryNumber(tryNumberValue);
 
         //then
-        assertThat(tryNumber.getTryNumber()).isEqualTo(tryNumberValue);
+        assertThat(tryNumber.getValue()).isEqualTo(tryNumberValue);
     }
 
     @DisplayName("시도횟수가 최소 시도횟수보다 작으면 예외를 발생시킨다")

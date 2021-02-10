@@ -23,6 +23,7 @@ public class RacingCarGame {
         while (tryNumber.isMovable()) {
             cars = cars.play(numberGenerator);
             runResult.add(cars);
+            tryNumber.decrease();
         }
 
         return runResult;

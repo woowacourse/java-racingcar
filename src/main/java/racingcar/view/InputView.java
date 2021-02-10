@@ -16,18 +16,19 @@ public class InputView {
     private static final String ERROR_ONLY_INPUT_NUMBER_MESSAGE = "[ERROR] 숫자가 아닌 값은 입력할 수 없습니다.";
     private static final String ERROR_NOT_INPUT_EMPTY_VALUE_MESSAGE = "[ERROR] 빈 값은 입력할 수 없습니다.";
     private static final String ERROR_NOT_INPUT_NULL_VALUE_MESSAGE = "[ERROR] 시도회수는 null이 될 수 없습니다.";
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     private InputView() {
     }
 
-    public static Cars inputCarNames(Scanner scanner) {
+    public static Cars inputCarNames() {
         System.out.println(PLEASE_INPUT_CAR_NAMES_MESSAGE);
-        String input = scanner.nextLine();
+        String input = SCANNER.nextLine();
         try {
             return new Cars(wrapCarNamesToCars(input));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputCarNames(scanner);
+            return inputCarNames();
         }
     }
 
@@ -37,14 +38,14 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public static TryNumber inputTryNumber(Scanner scanner) {
-        String input = inputTryNumberValue(scanner);
+    public static TryNumber inputTryNumber() {
+        String input = inputTryNumberValue(SCANNER);
         try {
             validateTryNumber(input);
             return new TryNumber(Integer.parseInt(input));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputTryNumber(scanner);
+            return inputTryNumber();
         }
     }
 
