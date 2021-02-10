@@ -1,7 +1,5 @@
 package racingcar.domain.car;
 
-import org.junit.platform.commons.util.StringUtils;
-
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
