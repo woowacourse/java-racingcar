@@ -45,7 +45,7 @@ public class Cars {
     public List<Car> getWinners() {
         int maxPosition = getMaxPosition();
         List<Car> winners = cars.stream()
-                .filter(car -> car.isSamePosition(maxPosition))
+                .filter(car -> car.isSamePosition(new Position(maxPosition)))
                 .collect(Collectors.toList());
         return winners;
     }
@@ -53,7 +53,7 @@ public class Cars {
     private int getMaxPosition() {
         int position = 0;
         for (Car car : cars) {
-            position = car.findMaxPosition(position);
+            position = car.findMaxPosition(new Position(position));
         }
         return position;
     }

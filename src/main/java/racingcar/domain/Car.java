@@ -6,10 +6,11 @@ public class Car {
     private static final int MOVE_BOUND = 4;
 
     private final Name name;
-    private int position = 0;
+    private Position position;
 
     public Car(String name) {
         this.name = new Name(name);
+        this.position = new Position(0);
     }
 
     public String getName() {
@@ -17,21 +18,21 @@ public class Car {
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     public void move(MoveValueStrategy moveValueStrategy) {
         if (moveValueStrategy.createMoveValue() >= MOVE_BOUND) {
-            position++;
+            position = position.move();
         }
     }
 
-    public int findMaxPosition(int position) {
-        return Math.max(this.position, position);
+    public int findMaxPosition(Position position) {
+        return this.position.getMaxValue(position);
     }
 
-    public boolean isSamePosition(int position) {
-        return this.position == position;
+    public boolean isSamePosition(Position position) {
+        return this.position.equals(position);
     }
 
 
