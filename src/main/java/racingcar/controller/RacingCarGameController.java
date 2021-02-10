@@ -1,6 +1,8 @@
 package racingcar.controller;
 
-import racingcar.domain.*;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.domain.Lap;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -9,29 +11,28 @@ public class RacingCarGameController {
         try {
             final Cars cars = new Cars(InputView.inputCarNames());
             final Lap lap = new Lap(InputView.inputLap());
-            race(cars, lap);
-            final Winners winners = new Winners();
-            OutputView.printWinners(winners.makeWinners(cars.getCars()));
+            playRace(cars, lap);
+            OutputView.printWinners(cars.getWinnersNames());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             playGame();
         }
     }
 
-    private void race(Cars cars, Lap lap) {
-        OutputView.printOneLine();
+    private void playRace(Cars cars, Lap lap) {
         OutputView.printStartRace();
-        while (!lap.isFinishAll()) {
-            raceOneLap(cars);
-            OutputView.printOneLine();
-            lap.finishOneLap();
+        int nowLapNumber = 0;
+        while (!lap.isSameNumber(nowLapNumber)) {
+            playOneLap(cars);
+            nowLapNumber++;
         }
     }
 
-    private void raceOneLap(Cars cars) {
-        for (Car car : cars.getCars()) {
-            car.moveByRandomNumber(RandomNumber.make());
-            OutputView.printCarInfo(car.getName().getName(), car.getPosition().toString());
+    private void playOneLap(Cars cars) {
+        cars.moveAllCars();
+        for (Car car : cars.toList()) {
+            OutputView.printCarInfo(car.getName(), car.getPosition());
         }
+        OutputView.printOneLine();
     }
 }

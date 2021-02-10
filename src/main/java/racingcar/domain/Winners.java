@@ -4,35 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Winners {
-    private final List<String> winners = new ArrayList<>();
+    private final List<Car> winners = new ArrayList<>();
 
-    public List<String> makeWinners(List<Car> cars) {
-        int winnerPosition = 0;
-
-        for (Car car : cars) {
-            winnerPosition = findMaxPosition(winnerPosition, car);
-        }
-
+    public Winners(List<Car> cars) {
+        int winnerPosition = findWinnerPosition(cars);
         for (Car car : cars) {
             addWinners(winnerPosition, car);
         }
-
-        return this.winners;
     }
 
-    private void addWinners(int winnerPosition, Car car) {
-        if (car.getPosition().isSameThan(winnerPosition)) {
-            winners.add(car.getName().getName());
+    private int findWinnerPosition(List<Car> cars) {
+        int winnerPosition = 0;
+        for (Car car : cars) {
+            winnerPosition = findMaxPosition(winnerPosition, car);
         }
+        return winnerPosition;
     }
 
     private int findMaxPosition(int winnerPosition, Car car) {
-        if (car.getPosition().isSmallerThan(winnerPosition)) {
-            return winnerPosition;
+        return car.findBiggerPosition(winnerPosition);
+    }
+
+    private void addWinners(int winnerPosition, Car car) {
+        if (car.isSamePosition(winnerPosition)) {
+            winners.add(car);
         }
-        if (car.getPosition().isBiggerThan(winnerPosition)) {
-            winnerPosition = car.getPosition().getPosition();
-        }
-        return winnerPosition;
+    }
+
+    public List<Car> toList() {
+        return winners;
     }
 }

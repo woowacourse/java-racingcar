@@ -1,13 +1,11 @@
 package racingcar.domain;
 
 public class Lap {
-    private static final int FINISH_FLAG = 0;
     private static final int MINIMUM_LAP = 1;
-    private static final int UNIT_OF_ONE_LAP = 1;
     private static final String ERROR_MESSAGE_OF_NEGATIVE_NUMBER = "1 미만의 입력입니다.";
     private static final String ERROR_MESSAGE_OF_NOT_NUMBER = "숫자가 아닌 입력입니다.";
 
-    private int lap;
+    private final int lap;
 
     public Lap(String inputLap) {
         int numberLap = validateNumberLap(inputLap);
@@ -29,12 +27,8 @@ public class Lap {
         return numberLap;
     }
 
-    public void finishOneLap() {
-        this.lap -= UNIT_OF_ONE_LAP;
-    }
-
-    public boolean isFinishAll() {
-        return this.lap == FINISH_FLAG;
+    public boolean isSameNumber(int lapNumber) {
+        return lap == lapNumber;
     }
 
     public int getLap() {
