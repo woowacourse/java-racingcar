@@ -25,7 +25,7 @@ public class Trial {
         }
     }
 
-    public static Trial getInstance(final String input) {
+    public static Trial newInstance(final String input) {
         validateNumber(input);
         try {
             int trialNumber = Integer.parseInt(input);

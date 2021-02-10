@@ -22,7 +22,7 @@ public class CarsTest {
         cars.add(new Car("소롱"));
         final Cars expected = new Cars(cars);
 
-        final Cars actual = Cars.getInstance("루트,소롱");
+        final Cars actual = Cars.newInstance("루트,소롱");
         assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
 
@@ -31,7 +31,7 @@ public class CarsTest {
     @ValueSource(strings = {"한자동차", "자동차#;"})
     void getInstanceTest_자동차_하나(String input) {
         assertThatThrownBy(() -> {
-            final Cars cars = Cars.getInstance(input);
+            final Cars cars = Cars.newInstance(input);
         }).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("자동차는 두 대 이상 입력해야 합니다.");
     }
@@ -41,7 +41,7 @@ public class CarsTest {
     @ValueSource(strings = {"루트,소롱,루트", "루트,루트,루트"})
     void getInstance_중복되는_자동차_입력(String input) {
         assertThatThrownBy(() -> {
-            final Cars cars = Cars.getInstance(input);
+            final Cars cars = Cars.newInstance(input);
         }).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("중복되는 이름을 입력할 수 없습니다.");
     }

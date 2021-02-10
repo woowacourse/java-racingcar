@@ -12,10 +12,10 @@ public class RacingGameController {
 
     public RacingGameController() {
         String input = RacingGameView.requestCars();
-        Cars cars = Cars.getInstance(input);
+        Cars cars = Cars.newInstance(input);
 
         input = RacingGameView.requestTrial();
-        Trial trial = Trial.getInstance(input);
+        Trial trial = Trial.newInstance(input);
 
         racingGame = new RacingGame(cars, trial);
     }

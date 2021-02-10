@@ -33,7 +33,7 @@ public class Cars {
         }
     }
 
-    public static Cars getInstance(final String input) {
+    public static Cars newInstance(final String input) {
         final String[] carNames = input.split(NAME_SPLIT_DELIMITER, -1);
         return new Cars(Arrays.stream(carNames)
             .map(Car::new)

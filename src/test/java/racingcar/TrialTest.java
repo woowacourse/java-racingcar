@@ -16,7 +16,7 @@ public class TrialTest {
     @DisplayName("정상적인 이동 시도할 회수 입력")
     @CsvSource(value = {"1,1", "2,2", "50,50", "2147483647,2147483647"}, delimiter = ',')
     void getInstanceTest_정상입력(String input, Integer expected) {
-        final Trial actual = Trial.getInstance(input);
+        final Trial actual = Trial.newInstance(input);
         assertThat(actual).isEqualTo(new Trial(expected));
     }
 
@@ -25,7 +25,7 @@ public class TrialTest {
     @ValueSource(strings = {"2147483648", "9999999999"})
     void getInstanceTest_Integer_밖의_숫자(String input) {
         assertThatThrownBy(() -> {
-            final Trial trial = Trial.getInstance(input);
+            final Trial trial = Trial.newInstance(input);
         }).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("Integer");
     }
@@ -35,7 +35,7 @@ public class TrialTest {
     @ValueSource(strings = {"0"})
     void getInstanceTest_범위_밖의_숫자(String input) {
         assertThatThrownBy(() -> {
-            final Trial trial = Trial.getInstance(input);
+            final Trial trial = Trial.newInstance(input);
         }).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("Integer");
     }
@@ -46,7 +46,7 @@ public class TrialTest {
     @ValueSource(strings = {"2-1", "abc", "894-", "+3"})
     void getInstanceTest_정수가_아닌_입력(String input) {
         assertThatThrownBy(() -> {
-            final Trial trial = Trial.getInstance(input);
+            final Trial trial = Trial.newInstance(input);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("숫자만 입력할 수 있습니다.");
     }
 }
