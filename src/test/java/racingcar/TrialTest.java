@@ -37,7 +37,7 @@ public class TrialTest {
         assertThatThrownBy(() -> {
             final Trial trial = Trial.newInstance(input);
         }).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("Integer");
+            .hasMessageContaining("이하여야 합니다.");
     }
 
     @ParameterizedTest
