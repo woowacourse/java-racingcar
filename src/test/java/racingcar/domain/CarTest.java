@@ -14,8 +14,8 @@ public class CarTest {
         Car car = new Car(name);
 
         car.move(4);
-        assertThat(car.getDistance()).isEqualTo(1);
         car.move(0);
+
         assertThat(car.getDistance()).isEqualTo(1);
     }
 
