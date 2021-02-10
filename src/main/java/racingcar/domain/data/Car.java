@@ -1,4 +1,6 @@
-package racingcar.domain;
+package racingcar.domain.data;
+
+import racingcar.domain.RandomNumberRuleStrategy;
 
 public class Car {
     private static RandomNumberRuleStrategy rule;

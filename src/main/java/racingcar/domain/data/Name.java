@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.data;
 
 import racingcar.utils.exception.InvalidNameLengthException;
 
