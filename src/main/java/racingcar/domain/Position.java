@@ -5,14 +5,26 @@ import java.util.Objects;
 public class Position {
     public static final Position ZERO = new Position(0);
 
-    private int value;
+    private final int value;
 
     public Position(int value) {
         this.value = value;
     }
 
-    public void move() {
-        value++;
+    public Position move() {
+        return new Position(value + 1);
+    }
+
+    public int getPosition() {
+        return value;
+    }
+
+    public int getMaxPosition(int position) {
+        return Integer.max(value, position);
+    }
+
+    public boolean isSamePosition(int position) {
+        return value == position;
     }
 
     @Override
@@ -26,9 +38,5 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    public int getPosition() {
-        return value;
     }
 }
