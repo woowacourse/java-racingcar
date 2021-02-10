@@ -12,9 +12,9 @@ import java.util.List;
 public class RacingCarController {
     public void run() {
         RacingCar racingCar = setUpRacingCar();
-        while (racingCar.isNotFinish()){
+        while (racingCar.isNotFinish()) {
             racingCar.start();
-            RacingCarView.printProgressResult(racingCar.getNowCars());
+            RacingCarView.printNowProgressResult(racingCar);
         }
         RacingCarView.printFinalResult(racingCar.calculateResult());
     }
