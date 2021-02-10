@@ -1,8 +1,5 @@
 package racingCar.utils;
 
-import java.util.List;
-import racingCar.domain.car.Car;
-import racingCar.domain.car.Cars;
 import racingCar.exception.InvalidCarNameException;
 import racingCar.exception.InvalidNumOfMoveException;
 

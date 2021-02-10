@@ -40,6 +40,10 @@ public class Car {
         return position.getPosition();
     }
 
+    public int getMaxValue(final int position) {
+        return this.position.getMaxValue(position);
+    }
+
     public String getName() {
         return name.getName();
     }
@@ -61,9 +65,5 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name, engine, position);
-    }
-
-    public int getMaxValue(final int position) {
-        return this.position.getMaxValue(position);
     }
 }

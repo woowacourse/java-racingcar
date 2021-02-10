@@ -34,7 +34,7 @@ public class GameController {
     }
 
     private void inputCars() {
-        try{
+        try {
             OutputView.printInputCarNameMessage();
             String[] carNames = ValidateUtils.validateNumOfCarNames(inputView.inputCarNames());
             cars = makeCars(carNames);
@@ -47,7 +47,7 @@ public class GameController {
     public Cars makeCars(String[] carNames) {
         Engine engine = new RandomEngine();
         return new Cars(Arrays.stream(carNames)
-            .map(carName->new Car(carName,engine))
+            .map(carName -> new Car(carName, engine))
             .collect(Collectors.toList()));
     }
 

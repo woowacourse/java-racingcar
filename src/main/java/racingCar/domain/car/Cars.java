@@ -41,7 +41,7 @@ public class Cars {
 
     public String findWinners() {
         String winners = matchSamePosition(findMaxMove());
-        if (winners.isEmpty()){
+        if (winners.isEmpty()) {
             throw new NoWinnerException(ERROR_MESSAGE_NO_WINNER);
         }
         return winners;

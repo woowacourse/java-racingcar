@@ -17,10 +17,10 @@ public class InputView {
 
     public String[] inputCarNames() {
         String cars = scanner.nextLine();
-        return deleteSpace(cars.split(DELIMITER));
+        return removeSpace(cars.split(DELIMITER));
     }
 
-    public String[] deleteSpace(String[] carNames) {
+    public String[] removeSpace(String[] carNames) {
         for (int i = 0; i < carNames.length; i++) {
             carNames[i] = carNames[i].trim();
         }
