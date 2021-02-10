@@ -9,12 +9,13 @@ public class Cars {
     private static final String COMMA_DELIMITER = ",";
     public static final String ERROR_MESSAGE_OF_DUPLICATED_NAME = "이름이 중복됩니다.";
 
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
     public Cars(String inputNames) {
+        this.cars = new ArrayList<>();
         validateBothEnds(inputNames);
         for (String name : inputNames.split(COMMA_DELIMITER)) {
-            cars.add(new Car(validateDuplicate(name)));
+            cars.add(new Car(validateDuplicate(cars, name)));
         }
     }
 
@@ -24,8 +25,8 @@ public class Cars {
         }
     }
 
-    private String validateDuplicate(String name) {
-        if (cars.contains(new Car(name))) {
+    private String validateDuplicate(List<Car> createdCars, String name) {
+        if (createdCars.contains(new Car(name))) {
             throw new IllegalArgumentException(ERROR_MESSAGE_OF_DUPLICATED_NAME);
         }
         return name;
@@ -38,7 +39,7 @@ public class Cars {
     }
 
     public List<Car> toList() {
-        return cars;
+        return new ArrayList<>(cars);
     }
 
     public List<String> getWinnersNames() {
@@ -47,6 +48,6 @@ public class Cars {
         for (Car winnerCar : winners.toList()) {
             winnersNames.add(winnerCar.getName());
         }
-        return winnersNames;
+        return new ArrayList<>(winnersNames);
     }
 }

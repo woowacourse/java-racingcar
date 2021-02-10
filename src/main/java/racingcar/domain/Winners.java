@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Winners {
-    private final List<Car> winners = new ArrayList<>();
+    private final List<Car> winners;
 
     public Winners(List<Car> cars) {
+        this.winners = new ArrayList<>();
         int winnerPosition = findWinnerPosition(cars);
         for (Car car : cars) {
             addWinners(winnerPosition, car);
@@ -32,6 +33,6 @@ public class Winners {
     }
 
     public List<Car> toList() {
-        return winners;
+        return new ArrayList<>(winners);
     }
 }
