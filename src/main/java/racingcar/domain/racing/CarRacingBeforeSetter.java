@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.domain.CarRepository;
-import racingcar.domain.input.ValidInputFromUserGetter;
+import racingcar.view.input.ValidInputFromUserGetter;
 
 public class CarRacingBeforeSetter {
     private final ValidInputFromUserGetter validInputFromUserGetter;

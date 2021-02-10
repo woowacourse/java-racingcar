@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.input.carname.validator.exception.InvalidCarNameFormatException;
+import racingcar.view.input.carname.validator.exception.InvalidCarNameFormatException;
 
 class CarTest {
     @DisplayName("자동차 이름은 1자 이상, 5자 이하의 숫자나 문자로만 구성되어야 한다.")
