@@ -1,9 +1,6 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.Racers;
-import racingcar.domain.Trial;
+import racingcar.domain.*;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -49,9 +46,10 @@ public class RacingController {
     }
 
     private void doRace(Cars cars, Trial trial) {
+        RandomMove randomMove = new RandomMove();
         OutputView.printResultTitle();
         for (int i = 0; i < trial.getTrial(); i++) {
-            cars.move();
+            cars.move(randomMove);
             OutputView.printCurrentResult(cars);
         }
     }

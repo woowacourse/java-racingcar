@@ -1,13 +1,9 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtils;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final int MIN_NUMBER = 0;
-    private static final int MAX_NUMBER = 9;
     private final List<Car> cars;
 
     public Cars(Racers racers) {
@@ -32,9 +28,9 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void move() {
+    public void move(MoveStrategy moveStrategy) {
         for (Car car : cars) {
-            car.movePosition(RandomUtils.nextInt(MIN_NUMBER, MAX_NUMBER));
+            car.move(moveStrategy);
         }
     }
 

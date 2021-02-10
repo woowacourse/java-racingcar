@@ -19,7 +19,8 @@ class CarTest {
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     @DisplayName("4이상의 값이 들어간 경우 전진하는지 확인")
     public void checkMoveTrue(int number) {
-        car.movePosition(number);
+        MoveStrategy moveStrategy = () -> number;
+        car.move(moveStrategy);
         Position position = car.getPosition();
         assertEquals(1, position.getPosition());
     }
@@ -28,7 +29,8 @@ class CarTest {
     @ValueSource(ints = {0, 1, 2, 3})
     @DisplayName("3이하의 값이 들어간 경우 전진하지 않았는지 확인")
     public void checkMoveFalse(int number) {
-        car.movePosition(number);
+        MoveStrategy moveStrategy = () -> number;
+        car.move(moveStrategy);
         Position position = car.getPosition();
         assertEquals(0, position.getPosition());
     }

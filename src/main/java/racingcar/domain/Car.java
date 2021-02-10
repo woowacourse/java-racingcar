@@ -11,8 +11,8 @@ public class Car implements Comparable<Car> {
         this.position = new Position(0);
     }
 
-    public void movePosition(int value) {
-        if (value >= MOVING_BASELINE) {
+    public void move(MoveStrategy moveStrategy) {
+        if (moveStrategy.moveValue() >= MOVING_BASELINE) {
             position.move();
         }
     }
