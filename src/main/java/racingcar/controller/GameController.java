@@ -7,11 +7,11 @@ import racingcar.domain.car.RandomValueGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameController {
-    private static final String NO_NAME_ERROR = "반드시 자동차 이름을 입력하셔야 합니다.";
     private static final String COMMA = ",";
 
     private Cars cars;
@@ -33,19 +33,10 @@ public class GameController {
     }
 
     private Cars makeCars(String carNames) {
-        List<Car> inputCars = new ArrayList<>();
-        String[] splitCarNames = carNamesSplit(carNames);
-        for (String carName : splitCarNames) {
-            inputCars.add(new Car(carName));
-        }
-        return new Cars(inputCars);
-    }
-
-    private String[] carNamesSplit(String carNames) {
         String[] splitCarNames = carNames.split(COMMA);
-        if (splitCarNames.length == 0) {
-            throw new IllegalArgumentException(NO_NAME_ERROR);
-        }
-        return splitCarNames;
+        List<Car> inputCars = Arrays.stream(splitCarNames)
+                .map(carName -> new Car(carName))
+                .collect(Collectors.toList());
+        return new Cars(inputCars);
     }
 }
