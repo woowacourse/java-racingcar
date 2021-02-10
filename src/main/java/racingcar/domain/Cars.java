@@ -6,15 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.Set;
 
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.*;
 
 public class Cars {
-    private static final String SAME_NAME_ERROR_MSG_FORMAT = "[ERROR] 중복된 이름이 있습니다 : %s";
-    private static final String COMMA_AND_BLANK = ", ";
+    private static final String SAME_NAME_ERROR_MSG = "[ERROR] 중복된 이름이 있습니다.";
 
     private final List<Car> cars;
 
@@ -30,21 +27,17 @@ public class Cars {
     public static Cars createCarsByNames(List<String> carNames) {
         return new Cars(carNames.stream()
                 .map(Car::new)
-                .collect(Collectors.toList()));
+                .collect(toList()));
     }
 
     private void validateSameName(List<Car> cars) {
-        List<String> sameNameList = new ArrayList<>();
-        cars.stream()
+        Set<String> sameNameChecker = cars.stream()
                 .map(Car::getName)
-                .collect(groupingBy(Function.identity(), counting()))
-                .forEach((name, count) -> {
-                    if (count > 1) {
-                        sameNameList.add(name.toString());
-                    }
-                });
-        if (sameNameList.size() > 0) {
-            throw new IllegalArgumentException(String.format(SAME_NAME_ERROR_MSG_FORMAT, String.join(COMMA_AND_BLANK, sameNameList)));
+                .map(Name::toString)
+                .collect(toSet());
+
+        if (sameNameChecker.size() < cars.size()) {
+            throw new IllegalArgumentException(SAME_NAME_ERROR_MSG);
         }
     }
 
@@ -54,9 +47,9 @@ public class Cars {
 
     public GameResult findWinners() {
         Position maxPosition = getMaxPosition();
-        return new GameResult(cars.stream()
+        return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
-                .collect(Collectors.toList()));
+                .collect(collectingAndThen(toList(), GameResult::new));
     }
 
     private Position getMaxPosition() {
