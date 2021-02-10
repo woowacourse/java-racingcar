@@ -1,22 +1,16 @@
 package racingcar.domain;
 
-import java.util.regex.Pattern;
-
 public class Car implements Comparable<Car> {
-    private static final Pattern PATTERN_ALPHA = Pattern.compile("^[a-zA-z]*$");
-    private static final Pattern PATTERN_KOREAN = Pattern.compile("^[가-힣]*$");
-    private static final int NAME_LENGTH_LIMIT = 5;
     private static final int MOVE_PIVOT = 4;
 
-    private String name;
+    private Name name;
     private int position;
 
-    public Car(final String name) {
+    public Car(final Name name) {
         this(name, 0);
     }
 
-    public Car(final String name, final int position) {
-        validateName(name);
+    public Car(final Name name, final int position) {
         this.name = name;
         this.position = position;
     }
@@ -24,24 +18,6 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(final Car anotherCar) {
         return Integer.compare(this.getPosition(), anotherCar.getPosition());
-    }
-
-    private void validateName(final String name) {
-        if (isNullName(name) || isContainInvalidChar(name) || isExceedNameLength(name)) {
-            throw new IllegalArgumentException("잘못된 자동차 이름입니다.");
-        }
-    }
-
-    private boolean isNullName(final String name) {
-        return "".equals(name);
-    }
-
-    private boolean isContainInvalidChar(final String name) {
-        return !PATTERN_ALPHA.matcher(name).matches() && !PATTERN_KOREAN.matcher(name).matches();
-    }
-
-    private boolean isExceedNameLength(final String name) {
-        return name.length() > NAME_LENGTH_LIMIT;
     }
 
     public void moveForward(int randomNumber) {
@@ -59,7 +35,7 @@ public class Car implements Comparable<Car> {
     }
 
     public String getName() {
-        return this.name;
+        return name.getName();
     }
 
     public int getPosition() {
