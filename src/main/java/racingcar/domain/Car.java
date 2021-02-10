@@ -3,8 +3,8 @@ package racingcar.domain;
 import java.util.regex.Pattern;
 
 public class Car implements Comparable<Car> {
-    private static final String REGEX_ALPHA = "^[a-zA-z]*$";
-    private static final String REGEX_KOREAN = "[가-힣]*$";
+    private static final Pattern PATTERN_ALPHA = Pattern.compile("^[a-zA-z]*$");
+    private static final Pattern PATTERN_KOREAN = Pattern.compile("^[가-힣]*$");
     private static final int NAME_LENGTH_LIMIT = 5;
     private static final int MOVE_PIVOT = 4;
 
@@ -37,7 +37,7 @@ public class Car implements Comparable<Car> {
     }
 
     private boolean isContainInvalidChar(final String name) {
-        return !Pattern.matches(REGEX_ALPHA, name) && !Pattern.matches(REGEX_KOREAN, name);
+        return !PATTERN_ALPHA.matcher(name).matches() && !PATTERN_KOREAN.matcher(name).matches();
     }
 
     private boolean isExceedNameLength(final String name) {
