@@ -7,14 +7,11 @@ import racingcar.domain.trynumber.TryNumber;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.Scanner;
-
 public class RacingCarGameController {
 
     public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
-        Cars cars = InputView.inputCarNames(scanner);
-        TryNumber tryNumber = InputView.inputTryNumber(scanner);
+        Cars cars = InputView.inputCarNames();
+        TryNumber tryNumber = InputView.inputTryNumber();
         RacingCarGame racingCarGame = new RacingCarGame(cars, tryNumber);
 
         OutputView.printRunResult(racingCarGame.execute(new RandomNumberGenerator()));
