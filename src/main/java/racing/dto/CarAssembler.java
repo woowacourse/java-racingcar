@@ -12,11 +12,11 @@ public class CarAssembler {
 
     public static List<CarDto> writeCarDtos(List<Car> cars) {
         return cars.stream()
-                .map(CarAssembler::assembleCar)
+                .map(CarAssembler::writeCarDto)
                 .collect(Collectors.toList());
     }
 
-    private static CarDto assembleCar(Car car) {
+    private static CarDto writeCarDto(Car car) {
         return new CarDto(car.getName(), car.getPosition());
     }
 }
