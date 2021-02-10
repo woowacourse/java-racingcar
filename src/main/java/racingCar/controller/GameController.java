@@ -1,5 +1,6 @@
 package racingCar.controller;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import java.util.Scanner;
 import racingCar.domain.RacingGame;
 import racingCar.utils.ValidateUtils;
@@ -31,7 +32,7 @@ public class GameController {
         try {
             OutputView.printInputNumOfRoundMessage();
             numOfRacingRound = ValidateUtils.validateRacingRoundCount(inputView.inputValue());
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e);
             inputRacingRound();
         }
@@ -41,7 +42,7 @@ public class GameController {
         try {
             OutputView.printInputCarNameMessage();
             cars = ValidateUtils.validateCarNames(inputView.inputCarNames());
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e);
         }
     }
