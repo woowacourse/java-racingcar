@@ -20,7 +20,7 @@ public class RacingGame {
 
     private void prepareCars() {
         String input = RacingGameView.requestCars();
-        cars = GameSetter.setCars(input);
+        cars = new Cars(input).getCars();
     }
 
     private void prepareTrial() {

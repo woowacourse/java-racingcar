@@ -1,0 +1,45 @@
+package racingcar;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+
+public class Cars {
+
+    private static final String NAME_SPLIT_DELIMITER = ",";
+    private static final int MIN_CARS_LENGTH = 2;
+    private final List<Car> cars = new ArrayList<>();
+
+    public Cars(String input) {
+        String[] carNames = splitInput(input);
+        for (String name: carNames) {
+            this.cars.add(new Car(name, 0));
+        }
+    }
+
+    public List<Car> getCars() {
+        return this.cars;
+    }
+
+    private String[] splitInput(String input) {
+        String[] carNames = input.split(NAME_SPLIT_DELIMITER, -1);
+        validateCarsLength(carNames);
+        validateDuplication(carNames);
+        return carNames;
+    }
+
+    private static void validateCarsLength(String[] carNames) {
+        if (carNames.length < MIN_CARS_LENGTH) {
+            throw new IllegalArgumentException("자동차는 두 대 이상 입력해야 합니다.");
+        }
+    }
+
+    private static void validateDuplication(String[] carNames) {
+        HashSet<String> nameSet = new HashSet<>();
+        Collections.addAll(nameSet, carNames);
+        if (carNames.length != nameSet.size()) {
+            throw new IllegalArgumentException("중복되는 이름을 입력할 수 없습니다.");
+        }
+    }
+}
