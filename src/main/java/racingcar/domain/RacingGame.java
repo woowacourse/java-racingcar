@@ -6,13 +6,13 @@ import racingcar.view.OutputView;
 public class RacingGame {
     private boolean running = true;
 
-    public void start() {
+    public void run() {
         try {
             Names names = InputView.getNames();
             Trial trial = InputView.getTrial();
             Cars cars = new Cars(names);
 
-            run(cars, trial);
+            race(cars, trial);
             OutputView.showResult(cars.getWinners());
             running = false;
         } catch (IllegalArgumentException e) {
@@ -20,7 +20,7 @@ public class RacingGame {
         }
     }
 
-    private void run(Cars cars, Trial trial) {
+    private void race(Cars cars, Trial trial) {
         OutputView.printResultTitle();
         while (trial.decrement()) {
             cars.moveCars();

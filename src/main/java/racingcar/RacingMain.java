@@ -7,7 +7,7 @@ public class RacingMain {
         RacingGame racingGame = new RacingGame();
 
         while (racingGame.isRunning()) {
-            racingGame.start();
+            racingGame.run();
         }
     }
 }
