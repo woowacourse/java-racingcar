@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 public class Car {
     private static final Pattern IS_CONSIST_OF_KOREAN_OR_ALPHA = Pattern.compile("^[a-zA-Z가-힣]*$");
     private static final int NAME_LENGTH_LIMIT = 5;
+    private static final int MOVE_PIVOT = 4;
 
     private String name;
     private int position;
@@ -18,8 +19,10 @@ public class Car {
         return this.name;
     }
 
-    public void carMove() {
-        this.position++;
+    public void carMove(int number) {
+        if (number > MOVE_PIVOT) {
+            this.position++;
+        }
     }
 
     public int getPosition() {
