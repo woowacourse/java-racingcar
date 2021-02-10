@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.view.RacingCarError;
 import racingcar.view.RacingCarView;
 
 import java.util.*;
@@ -20,14 +19,12 @@ public class RacingCarController {
     }
 
     public void generateCars() {
-        RacingCarView.carListInput();
-        String carsInput = scanner.nextLine();
+        String carsInput = RacingCarView.carListInput(this.scanner);
         this.cars = CarsSetGenerator.generateSet(carsInput);
     }
 
     public void receiveTurns() {
-        RacingCarView.turnNumberInput();
-        String candidateTurn = scanner.nextLine();
+        String candidateTurn = RacingCarView.turnNumberInput(this.scanner);
         this.turns = TurnsGenerator.generateTurn(candidateTurn);
     }
 

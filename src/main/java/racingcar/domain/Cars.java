@@ -21,14 +21,14 @@ public class Cars {
         return this.carList;
     }
 
-    public String findWinners() {
+    public List<String> findWinners() {
         int maxPosition = findMaxPosition(this.carList);
         List<String> winnerList = new ArrayList<>();
         carList.stream()
             .filter(carElement -> (carElement.isSamePosition(maxPosition)))
             .map(Car::getName)
             .forEach(winnerList::add);
-        return String.join(", ", winnerList);
+        return winnerList;
     }
 
     private int findMaxPosition(List<Car> carList) {

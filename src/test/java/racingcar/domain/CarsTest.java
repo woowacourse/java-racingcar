@@ -21,8 +21,9 @@ public class CarsTest {
         Cars cars = new Cars(carNameList);
         List<Car> carList = cars.getList();
         setSamplePosition(carList);
-        String testWinner = cars.findWinners();
-        assertThat(SAMPLE_WINNER).isEqualTo(testWinner);
+        List<String> sampleWinnerList = Arrays.asList(SAMPLE_WINNER);
+        List<String> testWinnerList = cars.findWinners();
+        assertThat(sampleWinnerList).isEqualTo(testWinnerList);
     }
 
     private void setSamplePosition(List<Car> carList) {
