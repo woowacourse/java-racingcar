@@ -2,18 +2,19 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class CarNameTest {
-    @Test
+    @ParameterizedTest
     @DisplayName("이름 입력받는 기능")
-    void carName_create() {
-        final CarName carName1 = new CarName("샐리");
-        final CarName carName2 = new CarName("현구막");
-        assertThat(carName1.getName()).isEqualTo("샐리");
-        assertThat(carName2.getName()).isEqualTo("현구막");
+    @ValueSource(strings = {"샐리", "현구"})
+    void carName_create(String value) {
+        final CarName carName1 = new CarName(value);
+        assertThat(carName1.getName()).isEqualTo(value);
     }
 
     @Test
