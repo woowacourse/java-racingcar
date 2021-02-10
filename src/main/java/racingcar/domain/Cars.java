@@ -2,12 +2,14 @@ package racingcar.domain;
 
 import racingcar.domain.data.Car;
 import racingcar.utils.exception.DuplicateNameException;
+import racingcar.utils.exception.NotEnoughCarException;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private List<Car> cars;
+    private static int CAR_MIN_NUMBER = 2;
+    private static List<Car> cars;
     private int maxPosition = 0;
 
     public Cars(String[] names) {
@@ -16,6 +18,13 @@ public class Cars {
             Car car = new Car(name, new RandomNumberRule());
             isDuplicate(car);
             cars.add(car);
+        }
+        notEnoughCar(cars);
+    }
+
+    private void notEnoughCar(List<Car> cars) {
+        if (cars.size() < CAR_MIN_NUMBER) {
+            throw new NotEnoughCarException(CAR_MIN_NUMBER);
         }
     }
 
