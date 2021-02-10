@@ -1,10 +1,15 @@
 package racingcar.domain.car;
 
 import racingcar.domain.rule.MoveCondition;
+import racingcar.exception.MoveConditionOutOfBoundException;
 
 public class Car {
+    private static final int MIN_BOUND = 0;
+    private static final int MAX_BOUND = 9;
+    private static final int MOVE_THRESHOLD = 4;
+
     private int position;
-    private MoveCondition moveCondition;
+    private MoveCondition<Integer> moveCondition;
     private CarName name;
 
     public Car(String name, MoveCondition moveCondition) {
@@ -13,11 +18,21 @@ public class Car {
     }
 
     public void move() {
-        if (!moveCondition.isMovable()) {
+        if (!isMovable()) {
             return;
         }
 
         position++;
+    }
+
+    private boolean isMovable() {
+        int generatedNumber = moveCondition.generate(MAX_BOUND);
+
+        if(!(MIN_BOUND <= generatedNumber && generatedNumber <= MAX_BOUND)) {
+            throw new MoveConditionOutOfBoundException();
+        }
+
+        return generatedNumber >= MOVE_THRESHOLD;
     }
 
     public int getPosition() {

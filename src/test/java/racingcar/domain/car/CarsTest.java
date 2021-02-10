@@ -77,7 +77,7 @@ public class CarsTest {
     }
 
     private static Car createRaceFinishedCar(CarNameAndPosition carNameAndPosition) {
-        Car car = new Car(carNameAndPosition.name, () -> true);
+        Car car = new Car(carNameAndPosition.name, i -> 6);
 
         for (int i = 0; i < carNameAndPosition.position; i++) {
             car.move();

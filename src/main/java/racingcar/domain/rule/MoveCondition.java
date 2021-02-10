@@ -1,6 +1,5 @@
 package racingcar.domain.rule;
 
-@FunctionalInterface
-public interface MoveCondition {
-    boolean isMovable();
+public interface MoveCondition<T> {
+    T generate(int bound);
 }

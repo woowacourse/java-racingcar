@@ -7,7 +7,6 @@ import racingcar.domain.car.Cars;
 import racingcar.domain.game.GameResult;
 import racingcar.domain.game.RacingGame;
 import racingcar.domain.rule.RandomMoveCondition;
-import racingcar.domain.util.RandomNumber;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -68,7 +67,7 @@ public class RacingController {
 
     private List<Car> makeCarListFromCarNames(List<String> carNames) {
         return carNames.stream()
-                .map(name -> new Car(name, new RandomMoveCondition(new RandomNumber())))
+                .map(name -> new Car(name, new RandomMoveCondition()))
                 .collect(Collectors.toList());
 
     }

@@ -1,35 +1,18 @@
 package racingcar.domain.car;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import racingcar.domain.rule.MoveCondition;
+import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CarTest {
-    @ParameterizedTest
+    @Test
     @DisplayName("랜덤 값이 4 이상일 경우 전진하고 3 이하의 값이면 멈춘다.")
-    @CsvSource(value = {"1,1,1:0", "1,6,3:1", "6,5,7:3"}, delimiter = ':')
-    public void move_랜덤_값이_4_이상일_경우_전진하고_3_이하의_값이면_멈춘다(String input, int expected) {
-        int[] inputs = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
+    public void move_랜덤_값이_4_이상일_경우_전진하고_3_이하의_값이면_멈춘다() {
+        Car car = new Car("pobi", i -> 6);
+        assertTrue(car.isSamePosition(1));
 
-        Car car = new Car("포비", new MoveCondition() {
-            private int[] randomNumbers = inputs;
-            private int index = 0;
-
-            @Override
-            public boolean isMovable() {
-                return randomNumbers[index++] >= 4;
-            }
-        });
-
-        for (int i = 0; i < inputs.length; i++) {
-            car.move();
-        }
-
-        assertEquals(expected, car.getPosition());
+        car = new Car("pobi", i -> 3);
+        assertTrue(car.isSamePosition(0));
     }
 }
