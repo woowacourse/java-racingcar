@@ -1,9 +1,6 @@
 package racingcar;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -23,9 +20,12 @@ public class GameSetter {
         String[] carNames = input.split(NAME_SPLIT_DELIMITER, -1);
         validateCarsLength(carNames);
         validateDuplication(carNames);
-        return Arrays.stream(carNames)
-            .map(Car::new)
-            .collect(Collectors.toList());
+
+        List<Car> cars = new ArrayList<>();
+        for (String name: carNames) {
+            cars.add(new Car(name, 0));
+        }
+        return cars;
     }
 
     private static void validateCarsLength(String[] carNames) {

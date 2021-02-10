@@ -15,8 +15,8 @@ public class GameSetterTest {
     @Test
     void setCarsTest_정상입력() {
         List<Car> expected = new ArrayList<>();
-        expected.add(new Car("루트"));
-        expected.add(new Car("소롱"));
+        expected.add(new Car("루트", 0));
+        expected.add(new Car("소롱", 0));
 
         List<Car> actual = GameSetter.setCars("루트,소롱");
         assertThat(actual).usingRecursiveComparison().isEqualTo(expected);

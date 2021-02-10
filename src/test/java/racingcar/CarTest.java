@@ -13,14 +13,14 @@ public class CarTest {
     @ValueSource(strings = {"너무 긴 이름", ""})
     void carNameTest(String input) {
         assertThatThrownBy(() ->
-            new Car(input)).isInstanceOf(IllegalArgumentException.class)
+            new Car(input, 0)).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("자 이하로 입력해주세요.");
     }
 
     @ParameterizedTest
     @CsvSource(value = {"5, 1", "2, 0", "100, 1"}, delimiter = ',')
     void tryToMoveTest(int input, int expected) {
-        Car car = new Car("테스트");
+        Car car = new Car("테스트", 0);
         car.move(input);
         int actual = car.getPosition();
         assertThat(actual).isEqualTo(expected);
