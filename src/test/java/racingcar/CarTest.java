@@ -15,7 +15,7 @@ public class CarTest {
 
     @Test
     @DisplayName("정상적인 자동차 이름 읿력")
-    void carNameTest_정상_입력() {
+    void generateCarTest_정상_입력() {
         assertThatCode(() -> {
             new Car("루트");
         }).doesNotThrowAnyException();
@@ -24,7 +24,7 @@ public class CarTest {
     @ParameterizedTest
     @DisplayName("기능 요구사항보다 너무 길거나 짧은 자동차 이름 입력")
     @ValueSource(strings = {"너무 긴 이름", ""})
-    void carNameTest_잘못된_길이_입력(String input) {
+    void generateCarTest_잘못된_길이_입력(String input) {
         assertThatThrownBy(() -> {
             new Car(input);
         }).isInstanceOf(IllegalArgumentException.class)

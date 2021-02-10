@@ -9,7 +9,7 @@ import racingcar.utils.RandomUtils;
 
 public class Cars {
 
-    private static final int MIN_VALUE_LENGTH = 2;
+    private static final int VALUE_LENGTH_MIN = 2;
     private static final String NAME_SPLIT_DELIMITER = ",";
 
     private final List<Car> value;
@@ -21,7 +21,7 @@ public class Cars {
     }
 
     private static void validateValueLength(final List<Car> value) {
-        if (value.size() < MIN_VALUE_LENGTH) {
+        if (value.size() < VALUE_LENGTH_MIN) {
             throw new IllegalArgumentException("자동차는 두 대 이상 입력해야 합니다.");
         }
     }
@@ -47,7 +47,7 @@ public class Cars {
         }
     }
 
-    public int findMaxPosition() {
+    public int findPositionMax() {
         return value.stream().map(Car::getPosition).reduce(Integer::max).orElse(-1);
     }
 

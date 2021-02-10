@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 public class Trial {
 
     private static final String NUMBER_PATTERN = "[0-9]+";
-    private static final Integer MIN_TRIAL = 1;
-    private static final Integer MAX_TRIAL = Integer.MAX_VALUE;
+    private static final Integer TRIAL_MIN = 1;
+    private static final Integer TRIAL_MAX = Integer.MAX_VALUE;
 
     private final int finalTrialNumber;
     private int currentTrialNumber;
@@ -19,9 +19,9 @@ public class Trial {
     }
 
     private static void validateBound(final int value) {
-        if (value < MIN_TRIAL || value > MAX_TRIAL) {
+        if (value < TRIAL_MIN || value > TRIAL_MAX) {
             throw new IllegalArgumentException(
-                "숫자는 " + MIN_TRIAL + "이상 " + MAX_TRIAL + "이하여야 합니다.");
+                "숫자는 " + TRIAL_MIN + "이상 " + TRIAL_MAX + "이하여야 합니다.");
         }
     }
 

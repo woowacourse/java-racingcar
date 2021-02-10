@@ -18,8 +18,8 @@ public class RacingGame {
     }
 
     public List<String> getWinners() {
-        final int maxPosition = cars.findMaxPosition();
-        return cars.findCarNamesLocatedAt(maxPosition);
+        final int positionMax = cars.findPositionMax();
+        return cars.findCarNamesLocatedAt(positionMax);
     }
 
     public boolean isFinished() {
