@@ -13,27 +13,23 @@ class CarsTest {
     @DisplayName("자동차 중복 테스트")
     @Test
     void CarNameDuplicationTest() {
-        assertThatThrownBy(this::createCarDuplication).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    void createCarDuplication() {
-        List<Car> value = Arrays.asList(
-                new Car(new CarName("CAR")),
-                new Car(new CarName("CAR"))
-        );
-        Cars cars = new Cars(value);
+        assertThatThrownBy(() -> {
+            List<Car> value = Arrays.asList(
+                    new Car(new CarName("CAR")),
+                    new Car(new CarName("CAR"))
+            );
+            Cars cars = new Cars(value);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("자동차 개수 테스트")
     @Test
     void MinimumCarAmountTest() {
-        assertThatThrownBy(this::createLessThanMinimumCarAmount).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    void createLessThanMinimumCarAmount() {
-        List<Car> value = Arrays.asList(
-                new Car(new CarName("CAR"))
-        );
-        Cars cars = new Cars(value);
+        assertThatThrownBy(() -> {
+            List<Car> value = Arrays.asList(
+                    new Car(new CarName("CAR"))
+            );
+            Cars cars = new Cars(value);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
