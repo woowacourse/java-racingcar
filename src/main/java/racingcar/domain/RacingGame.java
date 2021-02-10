@@ -19,9 +19,8 @@ public class RacingGame {
     }
 
     private Cars prepareCars(String[] carNames) {
-        Engine engine = new RandomEngine();
         return new Cars(Arrays.stream(carNames)
-            .map(carName -> new Car(carName, engine))
+            .map(carName -> new Car(carName, new RandomEngine()))
             .collect(Collectors.toList()));
     }
 
