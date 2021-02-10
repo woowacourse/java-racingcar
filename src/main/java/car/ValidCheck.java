@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class ValidCheck {
 
-    final static int CAR_NAME_LIMIT = 5;
+    private static final int CAR_NAME_LIMIT = 5;
 
     private ValidCheck() {
 

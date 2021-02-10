@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class GameController {
 
-    final Scanner scanner = new Scanner(System.in);
-    final String delimiter = ",";
+    private static final String delimiter = ",";
+    private final Scanner scanner = new Scanner(System.in);
     private OutputView message = new OutputView();
 
     public void start() {
