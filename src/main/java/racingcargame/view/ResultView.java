@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 public class ResultView {
     private ResultView() {
-
     }
 
     public static void showResult(List<Car> cars) {
