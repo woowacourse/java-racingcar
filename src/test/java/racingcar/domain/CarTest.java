@@ -25,18 +25,14 @@ public class CarTest {
 
     @Test
     public void 랜덤_숫자에_따른_전진_멈춤_테스트() {
-        int successNumber = 5;
-        RandomNumberRuleStrategy forwardCase = () -> successNumber > MOVE_LIMIT;
-
         Car pobi = new Car("pobi");
+        RandomNumberRuleStrategy forwardCase = () -> true;
         pobi.setStrategy(forwardCase);
         pobi.move();
         assertThat(pobi.getPosition()).isEqualTo(1);
 
-        int failNumber = 3;
-        RandomNumberRuleStrategy stopCase = () -> failNumber > MOVE_LIMIT;
-
         Car brown = new Car("brown");
+        RandomNumberRuleStrategy stopCase = () -> false;
         brown.setStrategy(stopCase);
         brown.move();
         assertThat(brown.getPosition()).isEqualTo(0);
