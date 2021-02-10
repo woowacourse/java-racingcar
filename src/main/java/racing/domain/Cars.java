@@ -65,7 +65,7 @@ public class Cars {
                 .max(Comparator.comparingInt(Car::getPosition))
                 .orElseThrow(IllegalStateException::new);
     }
-    
+
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
