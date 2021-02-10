@@ -1,28 +1,40 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CarsTest {
+    private Cars cars;
+    private Car car1;
+    private Car car2;
+    private Car car3;
+
+    @BeforeEach
+    void setUp() {
+        String carsName = "pobi, jun, aaa";
+        cars = new Cars(new Racers(carsName));
+        List<Car> allCars = cars.toList();
+        car1 = allCars.get(0);
+        car2 = allCars.get(1);
+        car3 = allCars.get(2);
+    }
 
     @Test
     @DisplayName("가장 멀리 전진한 자동차 찾기")
     void maxPositionCar() {
-        String carsName = "pobi, jun, aaa";
-        Cars cars = new Cars(new Racers(carsName));
-        List<Car> carList = cars.toList();
-
         MoveStrategy winnerMoveStrategy = () -> 5;
         MoveStrategy loserMoveStrategy = () -> 3;
 
-        carList.get(0).move(winnerMoveStrategy);
-        carList.get(1).move(loserMoveStrategy);
-        carList.get(2).move(loserMoveStrategy);
+        car1.move(winnerMoveStrategy);
+        car2.move(loserMoveStrategy);
+        car3.move(loserMoveStrategy);
 
-        assertEquals(carList.get(0), cars.getMaxPositionCar());
+        List<Car> winnerCars = cars.getWinnerCars();
+        assertTrue(winnerCars.contains(car1));
     }
 }

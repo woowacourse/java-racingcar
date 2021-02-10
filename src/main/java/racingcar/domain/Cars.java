@@ -16,7 +16,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public Car getMaxPositionCar() {
+    private Car getMaxPositionCar() {
         return cars.stream()
                 .max(Car::compareTo)
                 .orElseThrow(IllegalArgumentException::new);
