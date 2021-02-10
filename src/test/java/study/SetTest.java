@@ -3,7 +3,8 @@ package study;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -36,7 +37,7 @@ public class SetTest {
 
     @ParameterizedTest
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
-    void contains2(String input, String expected) {
-        assertEquals(numbers.contains(Integer.parseInt(input)), Boolean.valueOf(expected));
+    void contains2(int input, boolean expected) {
+        assertEquals(numbers.contains(input), expected);
     }
 }

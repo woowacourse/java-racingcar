@@ -1,4 +1,4 @@
-package stringCalculator;
+package stringcalculator;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class StringCalculator {
 
     private static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
+    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(CUSTOM_DELIMITER);
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final int ZERO = 0;
     private static final int DELIMITER_INDEX = 1;
@@ -28,11 +29,10 @@ public class StringCalculator {
     }
 
     private static String[] splitString(String s) {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER).matcher(s);
+        Matcher m = CUSTOM_DELIMITER_PATTERN.matcher(s);
         if (m.find()) {
             String customDelimiter = m.group(DELIMITER_INDEX);
-            String[] numbers = m.group(TOKENS_INDEX).split(customDelimiter);
-            return numbers;
+            return m.group(TOKENS_INDEX).split(customDelimiter);
         }
 
         return s.split(DEFAULT_DELIMITER);
@@ -45,10 +45,21 @@ public class StringCalculator {
     }
 
     private static void checkMinusValue(String[] numbers) {
+        checkNonNumber(numbers);
         if (Arrays.stream(numbers)
             .anyMatch(number -> isMinus(Integer.parseInt(number)))) {
             throw new RuntimeException(MINUS_ERROR_MESSAGE);
         }
+    }
+
+    private static void checkNonNumber(String[] numbers) {
+        for (String number : numbers) {
+            isInteger(number);
+        }
+    }
+
+    private static void isInteger(String number) {
+        Integer.parseInt(number);
     }
 
     private static boolean isMinus(int number) {

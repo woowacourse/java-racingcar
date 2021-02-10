@@ -1,4 +1,4 @@
-package racingcar.domain.Engine;
+package racingcar.domain.engine;
 
 public class FixedEngine implements Engine {
 

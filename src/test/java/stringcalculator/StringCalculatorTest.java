@@ -1,4 +1,4 @@
-package stringCalculator;
+package stringcalculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -6,6 +6,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.Test;
 
 public class StringCalculatorTest {
+
+    @Test
+    public void splitAndSum_숫자가_아닌_입력값() {
+        assertThatThrownBy(() -> StringCalculator.splitAndSum("a,1,2,3"))
+            .isInstanceOf(NumberFormatException.class);
+    }
 
     @Test
     public void splitAndSum_null_또는_빈문자() {

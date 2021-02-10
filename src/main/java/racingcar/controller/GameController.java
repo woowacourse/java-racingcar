@@ -20,11 +20,11 @@ public class GameController {
 
         OutputView.printRaceResultMessage();
         RacingGame racingGame = new RacingGame(cars, numOfRacingRound);
-        while (!racingGame.isEnd()) {
+        while (racingGame.isContinue()) {
             racingGame.race();
-            OutputView.printCars(racingGame.getCars());
+            OutputView.printCarsStatus(racingGame.getCars());
         }
-        OutputView.printWinners(racingGame.getWinners());
+        OutputView.printWinners(racingGame.findWinners());
     }
 
     private int inputRacingRound() {
