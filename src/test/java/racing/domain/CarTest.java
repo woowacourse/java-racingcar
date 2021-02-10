@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.*;
 class CarTest {
     private static final MovingStrategy ALWAYS_MOVING_STRATEGY = () -> true;
 
-    @DisplayName("자동차 객체의 유효한 이름 형식은 5자 이하의 영어로 구성되며, 위치 초기값은 0이다.")
+    @DisplayName("자동차 객체의 유효한 이름 형식은 5자 이하의 알파벳으로 구성되며, 위치 초기값은 0이다.")
     @Test
     void makeCar() {
         assertThatCode(() -> {
@@ -24,7 +24,7 @@ class CarTest {
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("자동차 객체의 이름이 null, 빈문자열, 영어가 아닌 문자 포함, 6자 이상의 영문자인 경우 생성 예외가 발생한다.")
+    @DisplayName("자동차 객체의 이름이 null, 빈문자열, 알파벳 아닌 문자 포함, 6자 이상인 경우 생성 예외가 발생한다.")
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {"abcdef", "ab.de", "   "})
@@ -32,7 +32,7 @@ class CarTest {
         assertThatThrownBy(() -> {
             new Car(name, ALWAYS_MOVING_STRATEGY);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자동차 이름은 빈 문자열이 아닌 5자 이하의 영어로 구성되어야 합니다.");
+                .hasMessageContaining("자동차 이름은 5자 이하의 알파벳으로 구성되어야 합니다.");
     }
 
     @DisplayName("자동차 객체가 항상 이동하는 전략을 가지면 move 요청시 위치가 증가한다")

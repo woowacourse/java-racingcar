@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class Car {
     private static final Pattern PATTERN = Pattern.compile("[a-zA-Z]{1,5}");
-    private static final String INVALID_NAME_FORMAT = "자동차 이름은 빈 문자열이 아닌 5자 이하의 영어로 구성되어야 합니다.";
+    private static final String INVALID_NAME_FORMAT = "자동차 이름은 5자 이하의 알파벳으로 구성되어야 합니다.";
     private static final int DEFAULT_POSITION = 0;
 
     private final String name;
