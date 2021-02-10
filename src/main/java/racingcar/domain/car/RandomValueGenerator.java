@@ -1,8 +1,8 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import java.util.Random;
 
-public class RandomValueGenerator implements MoveValueStrategy{
+public class RandomValueGenerator implements MoveValueStrategy {
     private static final int BOUND = 10;
 
     private final Random random = new Random();

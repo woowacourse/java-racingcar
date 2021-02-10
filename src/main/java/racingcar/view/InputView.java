@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.domain.AttemptNumber;
+import racingcar.domain.attemptnumber.AttemptNumber;
 
 import java.util.Scanner;
 

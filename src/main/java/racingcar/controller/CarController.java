@@ -1,9 +1,9 @@
 package racingcar.controller;
 
-import racingcar.domain.AttemptNumber;
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.RandomValueGenerator;
+import racingcar.domain.attemptnumber.AttemptNumber;
+import racingcar.domain.car.Car;
+import racingcar.domain.car.Cars;
+import racingcar.domain.car.RandomValueGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

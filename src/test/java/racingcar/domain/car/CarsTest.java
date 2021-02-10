@@ -1,9 +1,11 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.car.Car;
+import racingcar.domain.car.Cars;
 
 import java.util.Arrays;
 import java.util.List;
