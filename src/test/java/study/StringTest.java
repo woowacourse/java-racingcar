@@ -10,7 +10,7 @@ public class StringTest {
     @Test
     @DisplayName("문자열 분리")
     void split() {
-        String[] values ="1,2".split(",");
+        String[] values = "1,2".split(",");
         assertThat(values[0]).isEqualTo("1");
         assertThat(values[1]).isEqualTo("2");
         assertThat(values).containsExactly("1", "2");
@@ -28,7 +28,7 @@ public class StringTest {
     public void charAt() {
         String value = "abc";
         assertThatThrownBy(() ->
-            value.charAt(5)
+                value.charAt(5)
         ).isInstanceOf(StringIndexOutOfBoundsException.class)
                 .hasMessageContaining("String index out of range: 5");
     }

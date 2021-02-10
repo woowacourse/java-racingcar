@@ -12,7 +12,7 @@ class RacerTest {
     @DisplayName("이름이 공백으로 들어온 경우 예외처리")
     void emptyName() {
         assertThatThrownBy(() ->
-            new Racer(" ")
+                new Racer(" ")
         ).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]")
                 .hasMessageContaining("이름으로 공백을 입력할 수 없습니다.");
