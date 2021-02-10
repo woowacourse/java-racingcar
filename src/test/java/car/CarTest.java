@@ -1,13 +1,13 @@
 package car;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
-
 class CarTest {
-    
-    private java.util.Scanner Scanner;
     
     @Test
     @DisplayName("랜덤값이 주어진 조건보다 크다면 전진")
