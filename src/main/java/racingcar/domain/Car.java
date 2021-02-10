@@ -12,8 +12,13 @@ public class Car implements Comparable<Car> {
     private int position;
 
     public Car(final String name) {
+        this(name, 0);
+    }
+
+    public Car(final String name, final int position) {
         validateName(name);
         this.name = name;
+        this.position = position;
     }
 
     @Override
