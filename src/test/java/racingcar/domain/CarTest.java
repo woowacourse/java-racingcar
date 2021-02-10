@@ -20,7 +20,7 @@ class CarTest {
         }
 
         // then
-        assertThat(car.displayCurrentStatus()).isEqualTo("pobi : -----");
+        assertThat(car.getPosition().getValue()).isEqualTo(5);
     }
 
     @Test
@@ -35,7 +35,7 @@ class CarTest {
         }
 
         // then
-        assertThat(car.displayCurrentStatus()).isEqualTo("pobi : ");
+        assertThat(car.getPosition().getValue()).isEqualTo(0);
     }
 
 }

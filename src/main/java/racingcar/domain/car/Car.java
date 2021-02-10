@@ -4,7 +4,6 @@ import racingcar.domain.engine.Engine;
 
 public class Car {
 
-    private static final String GO_FORWARD_MARKING = "-";
     private static final int GO_FORWARD_DISTANCE = 1;
     public static final int DEFAULT_CAR_POSITION = 0;
 
@@ -24,27 +23,15 @@ public class Car {
         }
     }
 
-    public String displayCurrentStatus() {
-        return name.getValue() + " : " + displayCurrentPosition();
-    }
-
-    private String displayCurrentPosition() {
-        StringBuilder currentPosition = new StringBuilder();
-        for (int i = 0; i < position.getValue(); i++) {
-            currentPosition.append(GO_FORWARD_MARKING);
-        }
-        return currentPosition.toString();
-    }
-
     public boolean isOn(int max) {
         return position.isOn(max);
     }
 
-    public int getPosition() {
-        return position.getValue();
+    public Position getPosition() {
+        return position;
     }
 
-    public String getName() {
-        return name.getValue();
+    public Name getName() {
+        return name;
     }
 }

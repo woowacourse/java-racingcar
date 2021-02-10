@@ -18,7 +18,7 @@ class RacingGameTest {
         List<Car> cars = racingGame.getCars();
 
         // when
-        cars.replaceAll((car) -> new Car(car.getName(), new FixedEngine(5)));
+        cars.replaceAll((car) -> new Car(car.getName().getValue(), new FixedEngine(5)));
         cars.add(new Car("loser", new FixedEngine(0)));
         while (!racingGame.isEnd()) {
             racingGame.race();

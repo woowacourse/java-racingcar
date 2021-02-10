@@ -19,13 +19,13 @@ public class Cars {
         int max = findMaxMove();
         return cars.stream()
             .filter(car -> car.isOn(max))
-            .map(Car::getName)
+            .map(car -> car.getName().getValue())
             .collect(Collectors.joining(","));
     }
 
     private int findMaxMove() {
         return cars.stream()
-            .map(Car::getPosition)
+            .map(car -> car.getPosition().getValue())
             .max(Integer::compare)
             .orElseThrow(() -> new RuntimeException("No Winner"));
     }
