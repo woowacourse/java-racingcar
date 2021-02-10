@@ -5,6 +5,13 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
+    public static String getCarNames() {
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        String carNamesInput = scanner.nextLine();
+        validateCarNamesInput(carNamesInput);
+        return carNamesInput;
+    }
+
     public static void validateCarNamesInput(String carNamesInput) {
         validateNullOrEmpty(carNamesInput);
         if (carNamesInput.charAt(0) == ',' || carNamesInput.charAt(carNamesInput.length() - 1) == ',') {
@@ -16,13 +23,6 @@ public class InputView {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException("입력값이 있어야 합니다.");
         }
-    }
-
-    public static String getCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String carNamesInput = scanner.nextLine();
-        validateCarNamesInput(carNamesInput);
-        return carNamesInput;
     }
 
     public static int getRaceCount() {
