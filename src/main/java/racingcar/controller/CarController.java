@@ -10,13 +10,13 @@ public class CarController {
         this.cars = new Cars(names);
     }
 
-    public void race() {
+    void race() {
         OutputView.printResult();
         cars.startRace();
         OutputView.showStates(cars.getStates());
     }
 
-    public void showWinners() {
+    void showWinners() {
         OutputView.printWinners(cars.showWinners());
     }
 }

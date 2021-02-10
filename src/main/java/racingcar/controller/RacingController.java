@@ -18,11 +18,10 @@ public class RacingController {
         carController.showWinners();
     }
 
-    public void inputCarNames() {
+    private void inputCarNames() {
         try {
             OutputView.askCarName();
-            String[] name = inputNames();
-            carController.createCars(name);
+            carController.createCars(inputNames());
         } catch (RuntimeException e) {
             inputCarNames();
         }
@@ -32,7 +31,7 @@ public class RacingController {
         return InputView.input().split(DELIMITER);
     }
 
-    public String inputTime() {
+    private String inputTime() {
         try {
             OutputView.askTime();
             String time = InputView.input();

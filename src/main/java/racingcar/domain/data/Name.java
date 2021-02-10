@@ -8,13 +8,13 @@ public class Name {
     private static int NAME_MAX_LENGTH = 5;
     private final String value;
 
-    public Name(String value) {
+    Name(String value) {
         value = value.trim();
         NameValidation.validateName(value, NAME_MAX_LENGTH);
         this.value = value;
     }
 
-    public String value() {
+    String value() {
         return value;
     }
 
