@@ -1,4 +1,4 @@
-package racingcar.validator;
+package racingcar.domain.validator;
 
 public class NameValidator {
     private static final int LIMIT_NAME_LEN = 5;

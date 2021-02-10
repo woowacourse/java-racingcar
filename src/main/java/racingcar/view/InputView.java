@@ -2,8 +2,8 @@ package racingcar.view;
 
 import racingcar.domain.Name;
 import racingcar.domain.Rounds;
-import racingcar.utils.NameHandler;
-import racingcar.validator.InputValidator;
+import racingcar.domain.utils.NameHandler;
+import racingcar.domain.validator.InputValidator;
 
 import java.util.List;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package racingcar.utils;
+package racingcar.domain.utils;
 
 import racingcar.domain.Name;
 

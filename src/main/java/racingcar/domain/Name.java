@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.validator.NameValidator;
+import racingcar.domain.validator.NameValidator;
 
 public class Name {
     private final String name;

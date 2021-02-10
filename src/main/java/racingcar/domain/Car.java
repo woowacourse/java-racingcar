@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtils;
+import racingcar.domain.utils.RandomUtils;
 
 public class Car {
     private static final int TRY_NUMBER_MIN = 0;

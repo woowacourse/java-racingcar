@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.validator.CarsValidator;
+import racingcar.domain.validator.CarsValidator;
 
 public class Cars {
     private final List<Car> cars;
@@ -25,7 +25,7 @@ public class Cars {
         this.cars.forEach(Car::tryToMove);
     }
 
-    public List<RaceResultDTO> getAllResults() {
+    public List<RaceResultDTO> getResults() {
         return this.cars.stream()
                 .map(Car::getRaceResults)
                 .collect(Collectors.toList());

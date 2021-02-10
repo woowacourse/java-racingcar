@@ -33,7 +33,7 @@ public class OutputView {
         return sb.toString();
     }
 
-    public static void printWinner(final String[] winnerNames) {
+    public static void printWinners(final String[] winnerNames) {
         String winningMsg = String.join(WINNER_NAME_SEPARATOR, winnerNames) + "가 최종 우승했습니다.";
         println(winningMsg);
     }
