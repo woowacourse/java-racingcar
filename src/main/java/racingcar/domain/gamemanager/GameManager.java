@@ -1,7 +1,8 @@
-package racingcar.domain;
+package racingcar.domain.gamemanager;
 
+import racingcar.domain.round.Round;
 import racingcar.domain.car.Cars;
-import racingcar.domain.dto.GameManagerRequestDto;
+import racingcar.domain.gamemanager.dto.GameManagerRequestDto;
 import racingcar.domain.result.Results;
 
 public class GameManager {

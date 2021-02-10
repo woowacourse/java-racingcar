@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.domain.dto.GameManagerRequestDto;
+import racingcar.domain.gamemanager.dto.GameManagerRequestDto;
 
 import java.util.Scanner;
 

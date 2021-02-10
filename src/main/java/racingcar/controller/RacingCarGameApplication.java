@@ -1,8 +1,8 @@
 package racingcar.controller;
 
-import racingcar.domain.GameManager;
+import racingcar.domain.gamemanager.GameManager;
 import racingcar.domain.result.Results;
-import racingcar.domain.dto.GameManagerRequestDto;
+import racingcar.domain.gamemanager.dto.GameManagerRequestDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
