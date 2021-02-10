@@ -5,7 +5,7 @@ import racingcar.domain.Car;
 public class CarView {
 
     public void printCarStatus(final Car car) {
-        StringBuilder carStatus = new StringBuilder(car.getName()).append(" : ");
+        StringBuilder carStatus = new StringBuilder(car.getName().value()).append(" : ");
         carStatus.append(getCarProgressBarStatus(car.getPosition()));
         OutputView.printMessage(carStatus.toString());
     }

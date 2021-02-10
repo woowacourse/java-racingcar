@@ -13,7 +13,7 @@ public class Cars {
     public Cars(final List<String> names) {
         validateNonDuplicatedNames(names);
         for (String name : names) {
-            cars.add(new Car(name));
+            cars.add(new Car(new Name(name)));
         }
     }
 
