@@ -4,6 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+    private static final Pattern PATTERN = Pattern.compile("//(.)\n(.*)");
+
     public static int splitAndSum(String input) {
         if (input == null || input.isEmpty()) {
             return 0;
@@ -14,7 +16,7 @@ public class StringCalculator {
     }
 
     private static String[] splitAndGetNumbers(String input) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        Matcher m = PATTERN.matcher(input);
         if (m.find()) {
             String customDelimiter = m.group(1);
             return m.group(2).split(customDelimiter);
