@@ -1,5 +1,7 @@
 package racingcar;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +14,6 @@ import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
 import racingcar.domain.Trial;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingGameTest {
 
@@ -36,8 +36,10 @@ public class RacingGameTest {
     private static Stream<Arguments> provideRacingGameForFindWinner() {
         return Stream.of(
             Arguments.of(new RacingGame(provideCars_우승자_한명(), new Trial(1)), Arrays.asList("루트")),
-            Arguments.of(new RacingGame(provideCars_우승자_두명(), new Trial(1)), Arrays.asList("루트", "소롱")),
-            Arguments.of(new RacingGame(provideCars_모두_움직이지_않음(), new Trial(1)), Arrays.asList("루트", "소롱", "포비"))
+            Arguments
+                .of(new RacingGame(provideCars_우승자_두명(), new Trial(1)), Arrays.asList("루트", "소롱")),
+            Arguments.of(new RacingGame(provideCars_모두_움직이지_않음(), new Trial(1)),
+                Arrays.asList("루트", "소롱", "포비"))
         );
     }
 

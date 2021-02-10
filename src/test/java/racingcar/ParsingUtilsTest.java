@@ -1,5 +1,8 @@
 package racingcar;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -12,9 +15,6 @@ import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Trial;
 import racingcar.utils.ParsingUtils;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ParsingUtilsTest {
 

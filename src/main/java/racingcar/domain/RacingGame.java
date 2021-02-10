@@ -1,8 +1,6 @@
 package racingcar.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import racingcar.utils.RandomUtils;
 
 public class RacingGame {
 

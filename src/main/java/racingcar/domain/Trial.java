@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Trial {
+
     private static final Integer MIN_TRIAL = 1;
     private static final Integer MAX_TRIAL = Integer.MAX_VALUE;
 
