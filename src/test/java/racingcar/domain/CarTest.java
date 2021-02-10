@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
@@ -32,5 +33,38 @@ class CarTest {
     @ValueSource(strings = {"pobi", "jin", "corgi"})
     void checkInstanceWithValidName(String name) {
         Car.createByName(Name.create(name));
+    }
+
+    private Car testCar;
+
+    @BeforeEach
+    void set() {
+        testCar = Car.createByName(Name.create("test"));
+    }
+
+    @DisplayName("4이상의 값에 자동차 이동")
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 9})
+    void hasToMove(int injectionValue) {
+        int initialPosition = 0;
+
+        assertThat(testCar.isOnPosition(initialPosition)).isEqualTo(true);
+
+        testCar.tryToMove(injectionValue);
+
+        assertThat(testCar.isOnPosition(initialPosition + 1)).isEqualTo(true);
+    }
+
+    @DisplayName("3이하의 값에 자동차 이동")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void hasToStop(int injectionValue) {
+        int initialPosition = 0;
+
+        assertThat(testCar.isOnPosition(initialPosition)).isEqualTo(true);
+
+        testCar.tryToMove(injectionValue);
+
+        assertThat(testCar.isOnPosition(initialPosition)).isEqualTo(true);
     }
 }
