@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CarTest {
     private static final String[] LONGNAME_SAMPLE = {"pobi", "bada", "whybbb"};
     private static final String LENGTH_MESSAGE = "[ERROR] 이름은 5자 이하로 입력해주세요";
-    private static final String SAMPLE_CAR_NAME = "sample";
+    private static final String SAMPLE_CAR_NAME = "bada";
     private static final int CRITERIA = 4;
     private static final int ONE_PROGRESS_POSITION = 1;
 
