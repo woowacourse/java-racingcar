@@ -3,6 +3,7 @@ package racingCar.domain.car;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingCar.exception.NoWinnerException;
 
 public class Cars {
 
@@ -39,7 +40,11 @@ public class Cars {
     }
 
     public String findWinners() {
-        return matchSamePosition(findMaxMove());
+        String winners = matchSamePosition(findMaxMove());
+        if (winners.isEmpty()){
+            throw new NoWinnerException(ERROR_MESSAGE_NO_WINNER);
+        }
+        return winners;
     }
 
 }
