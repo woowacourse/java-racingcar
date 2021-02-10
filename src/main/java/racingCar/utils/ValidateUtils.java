@@ -1,5 +1,8 @@
 package racingCar.utils;
 
+import java.util.List;
+import racingCar.domain.car.Car;
+import racingCar.domain.car.Cars;
 import racingCar.exception.InvalidCarNameException;
 import racingCar.exception.InvalidNumOfMoveException;
 
@@ -12,18 +15,12 @@ public class ValidateUtils {
     public static final String ERROR_MESSAGE_CAR_NAME_NULL_OR_EMPTY = "자동차 이름은 공백이 안됩니다.";
     public static final String ERROR_MESSAGE_ROUND_COUNT_NATURAL_NUMBER = "시도횟수는 자연수이어야 합니다.";
 
-    public static String[] validateCarNames(String[] carNames) {
-        validateNumOfCarNames(carNames);
-        for (String carName : carNames) {
-            validateCarName(carName);
-        }
-        return carNames;
-    }
 
-    private static void validateNumOfCarNames(String[] carNames) {
+    public static String[] validateNumOfCarNames(String[] carNames) {
         if (carNames.length < MIN_NUM_OF_CARS) {
             throw new InvalidCarNameException(ERROR_MESSAGE_CAR_NAMES_COUNT);
         }
+        return carNames;
     }
 
     public static boolean validateCarName(String carName) {

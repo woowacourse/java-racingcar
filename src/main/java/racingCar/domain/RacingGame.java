@@ -10,24 +10,12 @@ import racingCar.domain.car.Engine.RandomEngine;
 
 public class RacingGame {
 
-
     private final Cars cars;
     private int numOfRacingRound;
 
-    public RacingGame(String[] carNames, int numOfRacingRound) {
-        this.cars = new Cars(prepareCars(carNames));
+    public RacingGame(Cars cars, int numOfRacingRound) {
+        this.cars = cars;
         this.numOfRacingRound = numOfRacingRound;
-    }
-
-    public static List<Car> prepareCars(String[] carNames) {
-        return Arrays.stream(carNames)
-            .map(RacingGame::makeCar)
-            .collect(Collectors.toList());
-    }
-
-    private static Car makeCar(String carName) {
-        Engine engine = new RandomEngine();
-        return new Car(carName, engine);
     }
 
     public void race() {
@@ -35,12 +23,7 @@ public class RacingGame {
         numOfRacingRound--;
     }
 
-
     public boolean isEnd() {
         return numOfRacingRound == 0;
-    }
-
-    public List<Car> getCars() {
-        return cars.toList();
     }
 }
