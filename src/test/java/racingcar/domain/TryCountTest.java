@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class TryCountTest {
-
     @Test
     @DisplayName("시도 횟수가 영어 일때")
     public void tryCountEng() {
