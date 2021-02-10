@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import racingcar.utils.RandomValueGenerator;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,13 +16,12 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public String getCurrentPosition() {
-        StringBuilder currentPosition = new StringBuilder();
-        for (Car car : cars) {
-            currentPosition.append(car.getCurrentPosition());
-            currentPosition.append("\n");
+    public HashMap<String, Integer> getCurrentCarsInfo() {
+        HashMap<String, Integer> info = new HashMap<>();
+        for (Car car: cars) {
+            info.put(car.getName(), car.getPosition());
         }
-        return currentPosition.toString();
+        return info;
     }
 
     public void moveCars() {

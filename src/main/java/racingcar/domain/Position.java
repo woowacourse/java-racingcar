@@ -27,4 +27,8 @@ public class Position {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    public int getPosition() {
+        return value;
+    }
 }

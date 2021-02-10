@@ -25,7 +25,7 @@ public class RacingGame {
         OutputView.printResultTitle();
         while (trial.decrement()) {
             cars.moveCars();
-            OutputView.printCurrentResult(cars.getCurrentPosition());
+            OutputView.printCurrentResult(cars.getCurrentCarsInfo());
         }
     }
 
