@@ -7,17 +7,16 @@ import racingcar.utils.RandomUtils;
 public class RacingGame {
 
     private final Cars cars;
-    private final int trial;
-    private int currentTrial = 0;
+    private final Trial trial;
 
-    public RacingGame(final Cars cars, final int trial) {
+    public RacingGame(final Cars cars, final Trial trial) {
         this.cars = cars;
         this.trial = trial;
     }
 
     public void tryToMove() {
         cars.tryToMove();
-        currentTrial++;
+        trial.moveToNextTrial();
     }
 
     public List<String> getWinners() {
@@ -26,7 +25,7 @@ public class RacingGame {
     }
 
     public boolean isFinished() {
-        return currentTrial >= trial;
+        return trial.isFinished();
     }
 
     public Cars getCars() {

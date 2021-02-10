@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import racingcar.utils.RandomUtils;
 
 public class Cars {
+
     private static final int MIN_VALUE_LENGTH = 2;
 
     private final List<Car> value;
@@ -41,8 +42,9 @@ public class Cars {
     }
 
     public List<String> findCarNamesLocatedAt(int position) {
-        return value.stream().filter(car -> car.getPosition() == position).map(Car::getName).collect(
-            Collectors.toList());
+        return value.stream().filter(car -> car.getPosition() == position).map(Car::getName)
+            .collect(
+                Collectors.toList());
     }
 
     public List<Car> getValue() {
