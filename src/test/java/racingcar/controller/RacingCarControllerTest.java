@@ -1,6 +1,8 @@
 package racingcar.controller;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Cars;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,28 +22,31 @@ public class RacingCarControllerTest {
     private static final String VOID_SAMPLE = "";
 
     @Test
+    @DisplayName("중복이름 검증 테스트")
     void checkOverlappedNames() {
         List<String> falseList = Arrays.asList(OVERLAPPED_SAMPLE);
         assertThatThrownBy(()-> {
-            RacingCarController.checkNames(falseList);
+            new Cars(falseList);
         }).isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining(OVERLAPPED_MESSAGE);
     }
 
-    @Test
-    void checkNameLength() {
-        List<String> falseList = Arrays.asList(LONGNAME_SAMPLE);
-        assertThatThrownBy(()-> {
-            RacingCarController.checkNames(falseList);
-        }).isInstanceOf(IllegalArgumentException.class)
-        .hasMessageContaining(LENGTH_MESSAGE);
-    }
+//    @Test
+//    @DisplayName("이름의 글자수 검증 테스트")
+//    void checkNameLength() {
+//        List<String> falseList = Arrays.asList(LONGNAME_SAMPLE);
+//        assertThatThrownBy(()-> {
+//            RacingCarController.checkNames(falseList);
+//        }).isInstanceOf(IllegalArgumentException.class)
+//        .hasMessageContaining(LENGTH_MESSAGE);
+//    }
 
     @Test
+    @DisplayName("차가 0대인지 검증하는 테스트")
     void checkNull() {
         List<String> falseList = new ArrayList<>();
         assertThatThrownBy(()-> {
-            RacingCarController.checkNames(falseList);
+            new Cars(falseList);
         }).isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining(NULL_MESSAGE);
     }
