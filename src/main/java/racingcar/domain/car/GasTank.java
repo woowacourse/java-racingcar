@@ -1,20 +1,25 @@
 package racingcar.domain.car;
 
 public class GasTank {
-    private static final int ENOUGH_GAS = 4;
 
-    private int gas;
+    private static final int ENOUGH_GAS = 4;
+    private static final int INIT_GAS = 0;
+
+    private final int gas;
 
     public GasTank() {
-        this.gas = 0;
+        this(INIT_GAS);
     }
 
-    public void fillUpGas(final int gas) {
+    public GasTank(final int gas) {
         this.gas = gas;
     }
 
-    public boolean isEnoughGas() {
-        return this.gas >= ENOUGH_GAS;
+    public GasTank fillUp(final int gas) {
+        return new GasTank(gas);
     }
 
+    public boolean isEnough() {
+        return this.gas >= ENOUGH_GAS;
+    }
 }
