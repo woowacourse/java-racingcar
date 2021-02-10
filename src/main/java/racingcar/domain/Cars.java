@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +15,7 @@ public class Cars {
     public Cars(final List<Car> value) {
         validateValueLength(value);
         validateDuplication(value);
-        this.value = value;
+        this.value = new ArrayList<>(value);
     }
 
     static void validateValueLength(final List<Car> value) {
@@ -48,6 +49,6 @@ public class Cars {
     }
 
     public List<Car> getValue() {
-        return value;
+        return new ArrayList<>(value);
     }
 }
