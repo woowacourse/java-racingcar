@@ -3,9 +3,9 @@ package racingcar.domain.data;
 import racingcar.domain.RandomNumberRuleStrategy;
 
 public class Car {
-    private static RandomNumberRuleStrategy rule;
     private final Name name;
-    private final Position position;
+    private static RandomNumberRuleStrategy rule;
+    private Position position;
 
     public Car(final String name, final RandomNumberRuleStrategy randomNumberRule) {
         this.name = new Name(name);
@@ -18,24 +18,24 @@ public class Car {
     }
 
     public int getPosition() {
-        return this.position;
+        return position.value();
     }
 
     public void move() {
         if (rule.execute()) {
-            position++;
+            position = position.move();
         }
     }
 
     public int aboveMaxPosition(int maxPosition) {
-        if (this.position > maxPosition) {
-            return this.position;
+        if (position.isBigger(maxPosition)) {
+            return position.value();
         }
         return maxPosition;
     }
 
     public boolean isMaxPosition(int maxPosition) {
-        if (maxPosition == this.position) {
+        if (position.isSameAs(maxPosition)) {
             return true;
         }
         return false;
