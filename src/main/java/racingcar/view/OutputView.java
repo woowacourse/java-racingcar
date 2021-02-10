@@ -37,6 +37,7 @@ public class OutputView {
 
     public static void printWinners(final List<Car> winners) {
         List<String> winnersNames = new ArrayList<>();
+
         winners.forEach(it -> winnersNames.add(it.getName()));
         System.out.print(String.join(CAR_NAME_DELIMITER, winnersNames) + WINNER_MESSAGE);
     }
