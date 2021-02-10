@@ -1,5 +1,6 @@
 package racingcar;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -9,21 +10,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WinnerTest {
 
+    @DisplayName("공동 우승자 테스트")
     @Test
     void winnerTest() {
-        List<String> splittedCarNames = Arrays.asList("pho", "crong", "honux");
-        Cars.addCars(splittedCarNames);
-        List<Car> cars = Cars.getCars();
-        racing(cars);
-        assertEquals(Cars.getWinners().size(), 2);
-    }
+        Car a = new Car(new CarName("a"));
+        Car b = new Car(new CarName("b"));
+        Car c = new Car(new CarName("c"));
+        a.moveForwardByNumber(5);
+        b.moveForwardByNumber(5);
 
-    private void racing(List<Car> cars) {
-        cars.get(0).moveForwardByRandomNumber(1);
-        cars.get(1).moveForwardByRandomNumber(4);
-        cars.get(2).moveForwardByRandomNumber(5);
-        cars.get(0).moveForwardByRandomNumber(1);
-        cars.get(1).moveForwardByRandomNumber(4);
-        cars.get(2).moveForwardByRandomNumber(5);
+        Cars cars = new Cars(Arrays.asList(a,b,c));
+        assertEquals(cars.getWinners().size(), 2);
     }
 }
