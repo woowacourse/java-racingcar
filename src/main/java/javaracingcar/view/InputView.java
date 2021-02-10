@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
-    private InputView(){}
+
+    private InputView() {
+    }
 
     public static String receiveCarNamesFromUser() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -13,6 +15,13 @@ public class InputView {
 
     public static String receiveTrialFromUser() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return scanner.nextLine();
+        return getTrial(scanner.nextLine());
+    }
+
+    private static String getTrial(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("null이 입력되었습니다.");
+        }
+        return input.replace(" ", "");
     }
 }
