@@ -1,4 +1,4 @@
-package racingCar.domain.Engine2;
+package racingCar.domain.car.Engine2;
 
 import racingCar.utils.RandomUtils;
 

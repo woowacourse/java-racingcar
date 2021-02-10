@@ -1,9 +1,9 @@
-package racingCar.domain.Engine;
+package racingCar.domain.car.Engine;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
-import racingCar.domain.Engine2.Engine2;
+import racingCar.domain.car.Engine2.Engine2;
 
 class EngineTest {
 
@@ -21,6 +21,12 @@ class EngineTest {
     @Test
     public void engine2_테스트(){
         //given, when
+        Engine fakeEngine = new Engine() {
+            @Override
+            public boolean isMove() {
+                return true;
+            }
+        };
         Engine2 movingEngine = new Engine2(9);
         Engine2 notMovingEngine = new Engine2(3);
 
