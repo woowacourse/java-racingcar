@@ -12,11 +12,13 @@ public class Car implements Comparable<Car> {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String ERROR_MAX_NAME_LENGTH = "자동차 이름의 길이는 " + MAX_NAME_LENGTH + "자를 초과할 수 없습니다.";
 
+    private final DecisionMaker decisionMaker;
     private final String name;
     private int position = 0;
 
     private Car(String name) {
         this.name = name;
+        decisionMaker = new DecisionMaker();
     }
 
     public static Car from(String name) {
@@ -26,8 +28,10 @@ public class Car implements Comparable<Car> {
         return new Car(name);
     }
 
-    void move() {
-        position++;
+    void move(int number) {
+        if (decisionMaker.makeDecisionByNumber(number)) {
+            position++;
+        }
     }
 
     public String getName() {

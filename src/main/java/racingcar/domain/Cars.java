@@ -52,9 +52,7 @@ public class Cars {
     }
 
     public void moveCars() {
-        cars.stream()
-                .filter(car -> DecisionMaker.makeDecisionByNumber(RandomUtils.nextInt(MIN_INCLUSIVE, MAX_INCLUSIVE)))
-                .forEach(Car::move);
+        cars.forEach(car -> car.move(RandomUtils.nextInt(MIN_INCLUSIVE, MAX_INCLUSIVE)));
     }
 
     public int getTopPosition() {
