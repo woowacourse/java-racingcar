@@ -3,7 +3,7 @@ package racingcar.domain.racing;
 import java.util.List;
 import racingcar.domain.Car;
 import racingcar.domain.CarRepository;
-import racingcar.domain.numbergenerator.NumberGenerator;
+import racingcar.numbergenerator.NumberGenerator;
 
 
 public class NumberApplicatorToCar {

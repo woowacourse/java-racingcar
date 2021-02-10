@@ -9,7 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.domain.Car;
 import racingcar.domain.CarRepository;
-import racingcar.domain.numbergenerator.FixedNumberGenerator;
+import racingcar.numbergenerator.FixedNumberGenerator;
 import racingcar.domain.racing.utils.CarsCreatorTestUtils;
 
 class NumberApplicatorToCarTest {

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.domain.CarRepository;
-import racingcar.domain.numbergenerator.RandomNumberGenerator;
+import racingcar.numbergenerator.RandomNumberGenerator;
 
 public class CarRacing {
     private final CarRepository carRepository;
