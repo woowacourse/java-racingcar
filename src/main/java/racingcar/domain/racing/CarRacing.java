@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.domain.CarRepository;
-import racingcar.numbergenerator.RandomNumberGenerator;
+import racingcar.dto.CarRacingRequestDto;
+import racingcar.numbergenerator.NumberGenerator;
 
 public class CarRacing {
     private final CarRepository carRepository;
@@ -13,13 +14,13 @@ public class CarRacing {
     private final int totalRacingTryTime;
     private int currentRacingTime;
 
-    public CarRacing(List<String> carNames, int totalRacingTryTime) {
+    public CarRacing(CarRacingRequestDto carRacingRequestDto, NumberGenerator numberGenerator) {
         this.carRepository = new CarRepository();
         this.numberApplicatorToCar
-            = new NumberApplicatorToCar(carRepository, new RandomNumberGenerator());
-        this.totalRacingTryTime = totalRacingTryTime;
+            = new NumberApplicatorToCar(carRepository, numberGenerator);
+        this.totalRacingTryTime = carRacingRequestDto.getRacingTryTime();
         this.currentRacingTime = 0;
-        setCarsBeforeRacing(carNames);
+        setCarsBeforeRacing(carRacingRequestDto.getCarNames());
     }
 
     private void setCarsBeforeRacing(List<String> carNames) {
@@ -40,5 +41,25 @@ public class CarRacing {
 
     public boolean isEnd() {
         return currentRacingTime == totalRacingTryTime;
+    }
+
+    public List<Car> getCars() {
+        return carRepository.getAllCars();
+    }
+
+    public List<Car> getWinners() {
+        List<Car> allCars = carRepository.getAllCars();
+        int maxPosition = getMaxPosition(allCars);
+
+        return allCars.stream()
+            .filter(car -> car.getPosition() == maxPosition)
+            .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition(List<Car> cars) {
+        return cars.stream()
+            .mapToInt(Car::getPosition)
+            .max()
+            .orElseThrow(IllegalArgumentException::new);
     }
 }

@@ -5,12 +5,19 @@ import java.util.List;
 import racingcar.domain.Car;
 
 public class CarsCreatorTestUtils {
-    private static final int CARS_SIZE = 10;
+    public static List<String> createCarNamesSizeOf(int carSize) {
+        List<String> carNames = new ArrayList<>();
+        for (int i = 0; i < carSize; i++) {
+            carNames.add(String.valueOf(i));
+        }
+        return carNames;
+    }
 
-    public static List<Car> createCars() {
+    public static List<Car> createCarsSizeOf(int carSize) {
+        List<String> carNames = createCarNamesSizeOf(carSize);
         List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < CARS_SIZE; i++) {
-            cars.add(new Car(String.valueOf(i)));
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
         }
         return cars;
     }
