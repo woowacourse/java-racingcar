@@ -2,7 +2,10 @@ package racingcar.domain.car;
 
 import racingcar.domain.car.util.MovingStrategy;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -16,11 +19,7 @@ public class Cars {
     }
 
     private void validateCars(List<Car> cars) {
-        List<String> carNames = cars.stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
-
-        if (new HashSet<>(carNames).size() != carNames.size()) {
+        if (new HashSet<>(cars).size() != cars.size()) {
             throw new IllegalArgumentException(ERROR_EXIST_DUPLICATED_CAR_NAMES_MESSAGE);
         }
     }
@@ -36,7 +35,7 @@ public class Cars {
     public int extractMaxPosition() {
 
         return cars.stream()
-                .mapToInt(Car::getPosition)
+                .mapToInt(Car::toIntPosition)
                 .max()
                 .orElse(0);
     }
