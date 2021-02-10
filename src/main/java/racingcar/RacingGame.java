@@ -43,7 +43,7 @@ public class RacingGame {
     private void raceByCar() {
         for (Car car : cars) {
             int currentRpm = RandomUtils.nextInt(MINIMUM_RANDOM_RPM, MAXIMUM_RANDOM_RPM);
-            car.tryToMove(currentRpm);
+            car.move(currentRpm);
             RacingGameView.printCarPosition(car);
         }
         RacingGameView.printNewLine();

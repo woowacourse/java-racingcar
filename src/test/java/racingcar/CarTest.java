@@ -21,7 +21,7 @@ public class CarTest {
     @CsvSource(value = {"5, 1", "2, 0", "100, 1"}, delimiter = ',')
     void tryToMoveTest(int input, int expected) {
         Car car = new Car("테스트");
-        car.tryToMove(input);
+        car.move(input);
         int actual = car.getPosition();
         assertThat(actual).isEqualTo(expected);
     }

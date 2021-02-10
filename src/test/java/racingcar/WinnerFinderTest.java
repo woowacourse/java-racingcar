@@ -22,8 +22,8 @@ public class WinnerFinderTest {
 
     @Test
     void getWinnersTest_한명() {
-        cars.get(0).tryToMove(5);
-        cars.get(1).tryToMove(3);
+        cars.get(0).move(5);
+        cars.get(1).move(3);
 
         List<String> expected = new ArrayList<>();
         expected.add(cars.get(0).getName());
@@ -34,8 +34,8 @@ public class WinnerFinderTest {
 
     @Test
     void getWinnersTest_두명_이상() {
-        cars.get(0).tryToMove(5);
-        cars.get(1).tryToMove(5);
+        cars.get(0).move(5);
+        cars.get(1).move(5);
 
         List<String> expected = new ArrayList<>();
         for (Car car : cars) {
