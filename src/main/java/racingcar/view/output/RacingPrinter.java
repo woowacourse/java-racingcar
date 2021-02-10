@@ -8,8 +8,8 @@ import racingcar.domain.Car;
 import racingcar.domain.CarRepository;
 
 public class RacingPrinter {
-    private final CarRepository carRepository;
     private static final String POSITION_SIGN = "-";
+    private final CarRepository carRepository;
 
     public RacingPrinter(CarRepository carRepository) {
         this.carRepository = carRepository;

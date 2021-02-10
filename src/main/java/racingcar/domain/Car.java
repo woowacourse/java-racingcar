@@ -5,11 +5,11 @@ import java.util.regex.Pattern;
 import racingcar.view.input.carname.validator.exception.InvalidCarNameFormatException;
 
 public class Car {
-    private final String name;
-    private int position;
     private static final Pattern CAR_NAME_FORMAT_PATTERN
         = Pattern.compile("^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{1,5}$");
     private static final int MIN_NUMBER_TO_GO_FORWARD = 4;
+    private final String name;
+    private int position;
 
     public Car(String name) {
         validateCarNameFormat(name);

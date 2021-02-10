@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 import racingcar.view.input.carname.printer.CarNamesInputFromUserPrinter;
 
 public class RawCarNamesInputFromUser {
+    public static final String CAR_NAMES_DELIMITER = ",";
     private final CarNamesInputFromUserPrinter carNamesInputFromUserPrinter;
     private final Scanner scanner;
-    public static final String CAR_NAMES_DELIMITER = ",";
 
     public RawCarNamesInputFromUser(Scanner scanner) {
         this.carNamesInputFromUserPrinter = new CarNamesInputFromUserPrinter();
