@@ -8,10 +8,9 @@ public class Name {
     private static int NAME_MAX_LENGTH = 5;
     private final String value;
 
-    Name(String value) {
-        value = value.trim();
-        NameValidation.validateName(value, NAME_MAX_LENGTH);
-        this.value = value;
+    Name(final String value) {
+        NameValidation.validateName(value.trim(), NAME_MAX_LENGTH);
+        this.value = value.trim();
     }
 
     String value() {

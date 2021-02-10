@@ -29,14 +29,14 @@ public class Car {
         }
     }
 
-    public int aboveMaxPosition(int maxPosition) {
+    public int aboveMaxPosition(final int maxPosition) {
         if (position.isBigger(maxPosition)) {
             return position.value();
         }
         return maxPosition;
     }
 
-    public boolean isMaxPosition(int maxPosition) {
+    public boolean isMaxPosition(final int maxPosition) {
         if (position.isSameAs(maxPosition)) {
             return true;
         }
