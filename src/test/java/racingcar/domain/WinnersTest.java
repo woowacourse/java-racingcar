@@ -10,7 +10,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class WinnersTest {
     @Test
     @DisplayName("우승자 생성 확인")
-    void winners_make() {
+    void winnersMake() {
         final Winners winners = new Winners(Arrays.asList(new Car("1"), new Car("2"), new Car("3")));
         assertThat(winners.toList().size()).isEqualTo(3);
     }

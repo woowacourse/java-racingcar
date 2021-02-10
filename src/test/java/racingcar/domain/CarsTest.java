@@ -14,7 +14,7 @@ import static racingcar.domain.Cars.ERROR_MESSAGE_OF_DUPLICATED_NAME;
 class CarsTest {
     @Test
     @DisplayName("이름 리스트 생성 확인")
-    void carNames() {
+    void carNamesCreate() {
         final Cars cars = new Cars("1,2,3");
         assertTrue(cars.toList().containsAll(Arrays.asList(new Car("1"), new Car("2"), new Car("3"))));
     }
@@ -22,7 +22,7 @@ class CarsTest {
     @ParameterizedTest
     @DisplayName("이름이 중복되는 경우")
     @ValueSource(strings = {"1,1,2,3", "1,2,3,2", "1,,2,3", "1,,,,2,3"})
-    void carNames_duplicated() {
+    void carNamesDuplicated() {
         assertThatThrownBy(() -> new Cars("1,1,2,3"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_MESSAGE_OF_DUPLICATED_NAME);
@@ -31,14 +31,14 @@ class CarsTest {
     @ParameterizedTest
     @DisplayName("양 끝에 쉼표가 있는 경우")
     @ValueSource(strings = {",샐리", "샐리,df,", ",샐리,"})
-    void carNames_both_end(final String value) {
+    void carNamesBothEnd(final String value) {
         assertThatThrownBy(() -> new Cars(value)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @DisplayName("총합테스트")
     @ValueSource(strings = {",", " ", " , ", ", ,  ,"})
-    void carNames_comma_blank(final String value) {
+    void carNamesCommaBlank(final String value) {
         assertThatThrownBy(() -> new Cars(value)).isInstanceOf(IllegalArgumentException.class);
     }
 }

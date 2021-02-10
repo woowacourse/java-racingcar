@@ -12,20 +12,20 @@ class CarNameTest {
     @ParameterizedTest
     @DisplayName("이름 입력받는 기능")
     @ValueSource(strings = {"샐리", "현구"})
-    void carName_create(final String value) {
+    void carNameCreate(final String value) {
         final CarName carName1 = new CarName(value);
         assertThat(carName1.getName()).isEqualTo(value);
     }
 
     @Test
     @DisplayName("이름이 5자 초과인 경우")
-    void carName_length() {
+    void carNameLength() {
         assertThatThrownBy(() -> new CarName("샐리와현구막")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("이름에 공백이 존재하는 경우")
-    void carName_space_in_name() {
+    void carNameSpaceInName() {
         assertThatThrownBy(() -> new CarName("샐리 와")).isInstanceOf(IllegalArgumentException.class);
     }
 }
