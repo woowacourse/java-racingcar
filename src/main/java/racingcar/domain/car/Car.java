@@ -18,6 +18,10 @@ public class Car {
         this(new Name(name), Position.ZERO);
     }
 
+    public Car(final Name name) {
+        this(name, Position.ZERO);
+    }
+
     public String getName() {
         return name.getLiteral();
     }
