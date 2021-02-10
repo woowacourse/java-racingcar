@@ -14,16 +14,19 @@ import racingcar.numbergenerator.FixedNumberGenerator;
 import racingcar.numbergenerator.NumberGenerator;
 
 class CarRacingTest {
-    @DisplayName("생성자의 setCarsBeforeRacing() 테스트")
+    @DisplayName("생성자의 setCarsBeforeRacing(), getCars() 테스트")
     @Test
-    void setCarsBeforeRacingInConstructor() {
+    void setCarsBeforeRacingInConstructorAndGetCars() {
         List<String> carNames = CarsCreatorTestUtils.createCarNamesSizeOf(10);
         int racingTryTime = 5;
+
         CarRacingRequestDto carRacingRequestDto
             = new CarRacingRequestDto(carNames, racingTryTime);
         FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(6);
+
         CarRacing carRacing = new CarRacing(carRacingRequestDto, fixedNumberGenerator);
         List<Car> allCars = carRacing.getCars();
+
         Assertions.assertThat(
             allCars.stream()
                 .allMatch(car -> carNames.contains(car.getName()))
@@ -32,10 +35,10 @@ class CarRacingTest {
 
     @DisplayName("raceOneTime() 실행 시,"
         + "생성된 숫자에 따라 모든 자동차에 전진 혹은 정지 적용과,"
-        + "현재까지 완료된 경주 횟수 증가 테스트")
+        + "현재까지 완료된 경주 횟수 증가 (isEnd()로 검증) 테스트")
     @ParameterizedTest
     @CsvSource(value = {"0:0", "3:0", "4:1", "9:1"}, delimiter = ':')
-    void raceOneTime(String generatedNumberStr, String expectedPositionStr) {
+    void raceOneTimeAndIsEnd(String generatedNumberStr, String expectedPositionStr) {
 
         int generatedNumber = Integer.parseInt(generatedNumberStr);
         int expectedPosition = Integer.parseInt(expectedPositionStr);
