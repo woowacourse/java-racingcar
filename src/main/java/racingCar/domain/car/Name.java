@@ -1,4 +1,4 @@
-package racingCar.domain;
+package racingCar.domain.car;
 
 import java.util.Objects;
 import racingCar.exception.InvalidCarNameException;
@@ -6,17 +6,14 @@ import racingCar.utils.ValidateUtils;
 
 public class Name {
 
+    public static final String ERROR_MESSAGE_CAR_NAME_LENGTH = "자동차 이름은 1자 이상 5자 이하여야 합니다.";
     private final String name;
 
     public Name(final String name){
         if(!ValidateUtils.validateCarName(name)){
-            throw new InvalidCarNameException("자동차 이름은 1자 이상 5자 이하이어야 합니다.");
+            throw new InvalidCarNameException(ERROR_MESSAGE_CAR_NAME_LENGTH);
         }
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -34,5 +31,9 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public String getName() {
+        return name;
     }
 }

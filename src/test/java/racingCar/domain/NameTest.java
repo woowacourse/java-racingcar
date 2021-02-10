@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingCar.domain.car.Name;
 import racingCar.exception.InvalidCarNameException;
 
 public class NameTest {
@@ -20,7 +21,7 @@ public class NameTest {
 
     @DisplayName("형식에 맞지 않는 이름인 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"jaaaaaason","pobipobi"})
+    @ValueSource(strings = {"jaaaaaason","po  bi"})
     @NullAndEmptySource
     public void 유효성_검사(String nameValue){
         assertThatThrownBy(() -> {
