@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Position {
     public static final Position ZERO = new Position(0);
 
-    private static final int ONE = 1;
+    private static final int NEXT_POSITION_VALUE = 1;
 
     private final int position;
 
@@ -14,7 +14,7 @@ public class Position {
     }
 
     public Position nextPosition() {
-        return new Position(this.position + ONE);
+        return new Position(this.position + NEXT_POSITION_VALUE);
     }
 
     public int index() {
