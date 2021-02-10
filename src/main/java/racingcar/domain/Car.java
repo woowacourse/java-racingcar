@@ -1,10 +1,10 @@
 package racingcar.domain;
 
-import racingcar.exception.RacingCarErrorMessage;
-
 public class Car {
 
-  public static final int MIN_RUNNABLE_FUEL = 4;
+  private static final int MIN_RUNNABLE_FUEL = 4;
+  private static final int MIN_NAME_LENGTH = 1;
+  private static final int MAX_NAME_LENGTH = 5;
   private final String name;
   private int position = 0;
 
@@ -14,8 +14,8 @@ public class Car {
   }
 
   private void validateName(String name) {
-    if (name.length() < 1 || name.length() > 5) {
-      throw new IllegalStateException(RacingCarErrorMessage.CAR_NAME_LENGTH.message());
+    if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
+      throw new IllegalStateException("1글자 이상 5글자 이하의 이름을 입력해주세요.");
     }
   }
 
@@ -27,6 +27,10 @@ public class Car {
 
   private boolean runnable(final int fuel) {
     return fuel >= MIN_RUNNABLE_FUEL;
+  }
+
+  public boolean isSamePosition(int position) {
+    return this.position == position;
   }
 
   public int position() {

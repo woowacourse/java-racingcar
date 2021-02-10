@@ -40,7 +40,8 @@ public class StringCalculator {
     List<String> delimiters = new ArrayList<>(DEFAULT_DELIMITERS);
     if (containsCustomerDelimiter(input)) {
       addCustomerDelimiter(input, delimiters);
-      input = input.substring(input.indexOf(END_SIGN_CUSTOMER_DELIMITER) + END_SIGN_CUSTOMER_DELIMITER.length());
+      input = input.substring(
+          input.indexOf(END_SIGN_CUSTOMER_DELIMITER) + END_SIGN_CUSTOMER_DELIMITER.length());
     }
     String finalDelimiters = String.join(JOIN_DELIMITER, delimiters);
     return Arrays.stream(input.split(finalDelimiters))
