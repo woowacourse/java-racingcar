@@ -11,7 +11,6 @@ import racingcar.domain.Car;
 import racingcar.domain.racing.utils.CarsCreatorTestUtils;
 import racingcar.dto.CarRacingRequestDto;
 import racingcar.numbergenerator.FixedNumberGenerator;
-import racingcar.numbergenerator.NumberGenerator;
 
 class CarRacingTest {
     @DisplayName("생성자의 setCarsBeforeRacing(), getCars() 테스트")
@@ -57,8 +56,7 @@ class CarRacingTest {
         Assertions.assertThat(carRacing.isEnd()).isTrue();
     }
 
-    @DisplayName("raceOneTime() 실행 시,"
-        + "생성된 숫자에 따라 모든 자동차에 전진 혹은 정지 적용과,"
+    @DisplayName("생성된 숫자와 경주 시도 횟수에 따라 모든 자동차에 전진 혹은 정지 적용과,"
         + "현재까지 완료된 경주 횟수 증가 테스트")
     @ParameterizedTest
     @CsvSource(value = {"1:5:0", "2:12:0", "4:5:5", "8:12:12"}, delimiter = ':')
