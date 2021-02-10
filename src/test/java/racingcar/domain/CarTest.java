@@ -25,14 +25,14 @@ public class CarTest {
 
         car.changeMovableCondition(i -> i > 10);
         car.move(5);
-        int expectZero = car.getPosition().index();
+        int expectZero = car.getPositionIndex();
 
         car.move(11);
-        int expectOne = car.getPosition().index();
+        int expectOne = car.getPositionIndex();
 
         car.changeMovableCondition(i -> i > 4);
         car.move(5);
-        int expectTwo = car.getPosition().index();
+        int expectTwo = car.getPositionIndex();
 
         assertThat(expectZero).isEqualTo(0);
         assertThat(expectOne).isEqualTo(1);

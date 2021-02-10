@@ -32,8 +32,8 @@ public class RacingGameAccessor implements GameAccessor {
         Cars cars = racingGame.getCars();
         return cars.getCars()
                 .stream()
-                .map(car -> new CarDto(car.getName().toString(), car.getPosition().index()))
-                .collect(collectingAndThen(Collectors.toList(), carDtos -> new CarsDto(carDtos, racingGame.getCurrentRound().getRound())));
+                .map(car -> new CarDto(car.getName().toString(), car.getPositionIndex()))
+                .collect(collectingAndThen(Collectors.toList(), carsDto -> new CarsDto(carsDto, racingGame.getCurrentRoundNumber())));
     }
 
     @Override

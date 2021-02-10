@@ -39,4 +39,8 @@ public class RacingGame {
     public Round getCurrentRound() {
         return currentRound;
     }
+
+    public int getCurrentRoundNumber() {
+        return currentRound.getRound();
+    }
 }

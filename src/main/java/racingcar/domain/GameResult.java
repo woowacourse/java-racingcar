@@ -18,6 +18,6 @@ public class GameResult {
     }
 
     public int getWinnersPosition() {
-        return winners.get(0).getPosition().index();
+        return winners.get(0).getPositionIndex();
     }
 }

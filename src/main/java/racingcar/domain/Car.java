@@ -35,6 +35,10 @@ public class Car {
         return position;
     }
 
+    public int getPositionIndex() {
+        return position.index();
+    }
+
     public Name getName() {
         return name;
     }
