@@ -2,7 +2,6 @@ package racing.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racing.dto.CarDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,9 +18,9 @@ class CarsTest {
         String carNames = "pobi,brown";
 
         Cars cars = Cars.generate(carNames, ALWAYS_MOVING_STRATEGY);
-        List<String> names = cars.getCarDtos()
+        List<String> names = cars.getCars()
                 .stream()
-                .map(CarDto::getName)
+                .map(Car::getName)
                 .collect(Collectors.toList());
 
         assertThat(names).containsExactly("pobi", "brown");
@@ -35,7 +34,7 @@ class CarsTest {
         assertThatCode(() -> {
             Cars.generate(carNames, ALWAYS_MOVING_STRATEGY);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자동차 이름은 빈 문자열이 아닌 5자 이하의 영어로 구성되어야 합니다.");
+                .hasMessageContaining("자동차 이름은 5자 이하의 알파벳으로 구성되어야 합니다.");
     }
 
     @DisplayName("Cars 컬렉션 생성시 필요한 최소 플레이 인원이 2명 미만인 경우 예외가 발생한다.")
@@ -67,9 +66,9 @@ class CarsTest {
         Cars cars = Cars.generate(carNames, ALWAYS_MOVING_STRATEGY);
 
         cars.race();
-        List<String> winnerNames = cars.getCarDtos()
+        List<String> winnerNames = cars.getCars()
                 .stream()
-                .map(CarDto::getName)
+                .map(Car::getName)
                 .collect(Collectors.toList());
 
         assertThat(winnerNames).containsExactly("pobi", "brown", "java");

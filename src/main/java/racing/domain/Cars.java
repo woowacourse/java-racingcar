@@ -1,8 +1,7 @@
 package racing.domain;
 
-import racing.dto.CarDto;
-
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -66,10 +65,8 @@ public class Cars {
                 .max(Comparator.comparingInt(Car::getPosition))
                 .orElseThrow(IllegalStateException::new);
     }
-
-    public List<CarDto> getCarDtos() {
-        return cars.stream()
-                .map(CarDto::from)
-                .collect(Collectors.toList());
+    
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }
