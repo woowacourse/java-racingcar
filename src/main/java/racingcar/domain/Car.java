@@ -6,7 +6,7 @@ public class Car {
     private static final int MINIMUM_NUMBER_TO_MOVE = 4;
 
     private final CarName carName;
-    private final Position position;
+    private Position position;
 
     public Car(String name) {
         this.carName = new CarName(name);
@@ -15,7 +15,7 @@ public class Car {
 
     public void moveByNumber(int number) {
         if (number >= MINIMUM_NUMBER_TO_MOVE) {
-            position.moveForward();
+            position = position.moveForward();
         }
     }
 

@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Position {
     private static final int UNIT_OF_MOVE = 1;
 
-    private int position;
+    private final int position;
 
     public Position() {
         this(0);
@@ -15,8 +15,8 @@ public class Position {
         this.position = position;
     }
 
-    public void moveForward() {
-        position += UNIT_OF_MOVE;
+    public Position moveForward() {
+       return new Position(position + 1);
     }
 
     public boolean isSameThan(int winnerPosition) {
