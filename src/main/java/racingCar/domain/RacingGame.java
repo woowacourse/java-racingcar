@@ -7,10 +7,8 @@ import racingCar.domain.car.Car;
 import racingCar.domain.car.Cars;
 import racingCar.domain.car.Engine.Engine;
 import racingCar.domain.car.Engine.RandomEngine;
-import racingCar.exception.NoWinnerException;
 
 public class RacingGame {
-
 
 
     private final Cars cars;
@@ -27,7 +25,7 @@ public class RacingGame {
             .collect(Collectors.toList());
     }
 
-    private static Car makeCar(String carName){
+    private static Car makeCar(String carName) {
         Engine engine = new RandomEngine();
         return new Car(carName, engine);
     }

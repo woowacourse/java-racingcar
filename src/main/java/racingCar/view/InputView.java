@@ -20,8 +20,8 @@ public class InputView {
         return deleteSpace(cars.split(DELIMITER));
     }
 
-    public String[] deleteSpace(String[] carNames){
-        for(int i = 0; i< carNames.length; i++){
+    public String[] deleteSpace(String[] carNames) {
+        for (int i = 0; i < carNames.length; i++) {
             carNames[i] = carNames[i].trim();
         }
         return carNames;

@@ -14,16 +14,16 @@ import racingCar.exception.InvalidCarNameException;
 public class NameTest {
 
     @Test
-    public void create(){
+    public void create() {
         final Name name = new Name("jason");
         assertThat(name).isEqualTo(new Name("jason"));
     }
 
     @DisplayName("형식에 맞지 않는 이름인 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"jaaaaaason","po  bi"})
+    @ValueSource(strings = {"jaaaaaason", "po  bi"})
     @NullAndEmptySource
-    public void 유효성_검사(String nameValue){
+    public void 유효성_검사(String nameValue) {
         assertThatThrownBy(() -> {
             Name name = new Name(nameValue);
         }).isInstanceOf(InvalidCarNameException.class);

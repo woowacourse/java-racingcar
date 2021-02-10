@@ -8,7 +8,7 @@ public class Position {
     private final int position;
 
     public Position(final int position) {
-        if(position < 0){
+        if (position < 0) {
             throw new IllegalArgumentException("위치는 0부터 시작한다.");
         }
         this.position = position;
@@ -23,7 +23,7 @@ public class Position {
     }
 
     public int getMaxValue(final int value) {
-        return Integer.max(this.position,value);
+        return Integer.max(this.position, value);
     }
 
     @Override

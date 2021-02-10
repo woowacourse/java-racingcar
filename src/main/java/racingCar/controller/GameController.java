@@ -1,6 +1,5 @@
 package racingCar.controller;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import java.util.Scanner;
 import racingCar.domain.RacingGame;
 import racingCar.utils.ValidateUtils;
@@ -38,7 +37,7 @@ public class GameController {
         }
     }
 
-    private void inputCarNames(){
+    private void inputCarNames() {
         try {
             OutputView.printInputCarNameMessage();
             cars = ValidateUtils.validateCarNames(inputView.inputCarNames());

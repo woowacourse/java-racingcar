@@ -33,7 +33,7 @@ public class ValidateUtils {
     private static boolean validateCarNameLength(String carName) {
         try {
             return carName.length() >= MIN_NAME_LENGTH && carName.length() <= MAX_NAME_LENGTH;
-        } catch (NullPointerException exception){
+        } catch (NullPointerException exception) {
             throw new InvalidCarNameException(ERROR_MESSAGE_CAR_NAME_NULL_OR_EMPTY);
         }
     }
@@ -56,9 +56,9 @@ public class ValidateUtils {
     }
 
     private static int validateInteger(String count) {
-        try{
+        try {
             return Integer.parseInt(count);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new InvalidNumOfMoveException(ERROR_MESSAGE_ROUND_COUNT_NATURAL_NUMBER);
         }
     }

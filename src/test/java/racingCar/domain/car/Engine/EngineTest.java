@@ -19,7 +19,7 @@ class EngineTest {
     }
 
     @Test
-    public void engine2_테스트(){
+    public void engine2_테스트() {
         //given, when
         Engine fakeEngine = new Engine() {
             @Override

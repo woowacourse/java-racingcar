@@ -12,11 +12,11 @@ public class Car {
     private Position position;
 
 
-    public Car(String name, Engine engine){
+    public Car(String name, Engine engine) {
         this(new Name(name), ZERO, engine);
     }
 
-    public Car(String name, int position, Engine engine){
+    public Car(String name, int position, Engine engine) {
         this(new Name(name), new Position(position), engine);
     }
 
@@ -40,7 +40,7 @@ public class Car {
         return position.getPosition();
     }
 
-    public String getName(){
+    public String getName() {
         return name.getName();
     }
 
