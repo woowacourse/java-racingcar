@@ -1,11 +1,13 @@
 package racingcar.controller;
 
-import racingcar.domain.RacingCar;
 import racingcar.domain.Cars;
+import racingcar.domain.RacingCar;
 import racingcar.domain.TryCount;
 import racingcar.utils.RacingCarUtils;
 import racingcar.view.RacingCarView;
 import racingcar.view.io.InputView;
+
+import java.util.List;
 
 public class RacingCarController {
     public void run() {
@@ -15,7 +17,8 @@ public class RacingCarController {
     }
 
     private RacingCar setUpRacingCar() {
-        Cars cars = new Cars(RacingCarUtils.splitInputString(InputView.getCarNameInput()));
+        List<String> carNames = RacingCarUtils.splitInputString(InputView.getCarNameInput());
+        Cars cars = new Cars(carNames);
         TryCount tryCount = new TryCount(InputView.getTryCountInput());
         return new RacingCar(cars, tryCount);
     }
