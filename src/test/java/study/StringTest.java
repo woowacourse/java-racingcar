@@ -1,25 +1,26 @@
 package study;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.*;
-
 public class StringTest {
 
     @Test
     void split() {
-        String[] values = "1,2".split(",");
+        String[] values = "1,2" .split(",");
         assertThat(values).containsExactly("1", "2");
     }
 
     @Test
     void substring() {
-        String values = "(1,2)".substring(1, 4);
+        String values = "(1,2)" .substring(1, 4);
         assertThat(values).isEqualTo("1,2");
     }
 
@@ -33,10 +34,10 @@ public class StringTest {
 
     @DisplayName("Exceptional_charAt_Test")
     @Test
-    void charAtException() {
+    void charAtException_테스트_1() {
         assertThatThrownBy(() -> {
             try {
-                char values = "abc".charAt(3);
+                char values = "abc" .charAt(3);
             } catch (Exception e) {
                 throw new IndexOutOfBoundsException("Index: 3, Size: 3");
             }
@@ -47,7 +48,7 @@ public class StringTest {
     @DisplayName("Exceptional_charAt_Test")
     @ParameterizedTest
     @ValueSource(ints = {3, 4, -1})
-    void charAtException2(int testIndex) {
+    void charAtException_테스트_2(int testIndex) {
         String values = "abc";
         assertThatExceptionOfType(IndexOutOfBoundsException.class)
             .isThrownBy(() -> {
