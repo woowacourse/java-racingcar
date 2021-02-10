@@ -5,8 +5,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    private static final String REGEX_SEP = "//(.)\n(.*)";
+    private static final Pattern PATTERN_SEP = Pattern.compile("//(.)\n(.*)");
     private static final String REGEX_DIGIT = "\\d+";
+    private static final String DEFAULT_DELIMITER = ",|:";
 
     public static int splitAndSum(String text) {
         if (checkEmptyOrNullString(text)) {
@@ -21,12 +22,12 @@ public class StringCalculator {
     }
 
     private static String[] splitNumber(String text) {
-        Matcher matcher = Pattern.compile(REGEX_SEP).matcher(text);
+        Matcher matcher = PATTERN_SEP.matcher(text);
         if (matcher.find()) {
             String delimiter = matcher.group(1);
             return matcher.group(2).split(delimiter);
         }
-        return text.split(",|:");
+        return text.split(DEFAULT_DELIMITER);
     }
 
     private static boolean checkEmptyOrNullString(String text) {

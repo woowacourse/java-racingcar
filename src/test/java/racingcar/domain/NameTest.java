@@ -2,26 +2,26 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class NameTest {
 
     @Test
     void 이름이_공백으로_들어온경우() {
-        assertThatThrownBy(() -> {
-            new Name(" ");
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]")
-                .hasMessageContaining("이름으로 공백을 입력할 수 없습니다.");
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Name(" "));
+    }
+
+    @Test
+    void 이름의_길이가_0인_경우() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Name(""));
     }
 
     @Test
     public void 자동차이름은_5자이하() {
-        assertThatThrownBy(() -> {
-            new Name("joanne");
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]")
-                .hasMessageContaining("이름은 1자 이상, 5자 이내만 가능합니다.");
+       assertThatIllegalArgumentException()
+               .isThrownBy(() -> new Name("joanne"));
     }
 
 }

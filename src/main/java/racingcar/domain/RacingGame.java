@@ -1,21 +1,18 @@
-package racingcar.controller;
+package racingcar.domain;
 
-import racingcar.domain.Cars;
-import racingcar.domain.Names;
-import racingcar.domain.Trial;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class RacingController {
+public class RacingGame {
     private boolean running = true;
 
-    public void start() {
+    public void run() {
         try {
             Names names = InputView.getNames();
             Trial trial = InputView.getTrial();
             Cars cars = new Cars(names);
 
-            run(cars, trial);
+            race(cars, trial);
             OutputView.showResult(cars.getWinners());
             running = false;
         } catch (IllegalArgumentException e) {
@@ -23,11 +20,11 @@ public class RacingController {
         }
     }
 
-    private void run(Cars cars, Trial trial) {
+    private void race(Cars cars, Trial trial) {
         OutputView.printResultTitle();
         while (trial.decrement()) {
             cars.moveCars();
-            OutputView.printCurrentResult(cars.getCurrentPosition());
+            OutputView.printCurrentResult(cars.getCurrentCarsInfo());
         }
     }
 

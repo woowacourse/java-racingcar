@@ -1,12 +1,13 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtils;
+import racingcar.utils.RandomValueGenerator;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(Names names) {
         this.cars = names.getNames().
@@ -15,29 +16,33 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public String getCurrentPosition() {
-        StringBuilder currentPosition = new StringBuilder();
+    public HashMap<String, Integer> getCurrentCarsInfo() {
+        HashMap<String, Integer> info = new HashMap<>();
         for (Car car : cars) {
-            currentPosition.append(car.getCurrentPosition());
-            currentPosition.append("\n");
+            info.put(car.getName(), car.getPosition());
         }
-        return currentPosition.toString();
+        return info;
     }
 
     public void moveCars() {
-        for (Car car: cars) {
-            car.movePosition(RandomUtils.generateRandomNumber());
+        for (Car car : cars) {
+            car.move(RandomValueGenerator.generateRandomNumber());
         }
     }
 
-    public Car getMaxPositionCar() {
-        return cars.stream().max(Car::compareTo).get();
+    private int getMaxPosition() {
+        int maxPosition = 0;
+        for (Car car : cars) {
+            maxPosition = car.getMaxPosition(maxPosition);
+        }
+        return maxPosition;
     }
 
     public List<Car> getWinners() {
-        Car maxPositionCar = getMaxPositionCar();
+        int maxPosition = getMaxPosition();
+
         return cars.stream()
-                .filter(car -> car.hasSamePositionWith(maxPositionCar))
+                .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
     }
 }
