@@ -1,5 +1,7 @@
 package racingCar.domain.car;
 
+import static racingCar.domain.car.Position.ZERO;
+
 import java.util.Objects;
 import racingCar.domain.car.Engine.Engine;
 
@@ -11,7 +13,7 @@ public class Car {
 
 
     public Car(String name, Engine engine){
-        this(name, new Position(0), engine);
+        this(name, ZERO, engine);
     }
 
     public Car(String name, Position position, Engine engine) {

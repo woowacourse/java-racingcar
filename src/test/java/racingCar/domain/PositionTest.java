@@ -27,4 +27,9 @@ class PositionTest {
         assertThat(actual).isEqualTo(new Position(2));
     }
 
+    @Test
+    public void 같은_인스턴스(){
+        assertThat(Position.ZERO).isSameAs(Position.ZERO);
+    }
+
 }
