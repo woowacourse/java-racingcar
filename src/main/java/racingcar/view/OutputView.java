@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import racingcar.domain.CarDto;
-import racingcar.domain.CarsDto;
+import racingcar.dto.CarDto;
+import racingcar.dto.CarsDto;
 
 import java.util.Collections;
 import java.util.Iterator;

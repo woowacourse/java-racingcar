@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.dto.CarsDto;
 import racingcar.utils.RandomUtils;
 
 import java.util.ArrayList;

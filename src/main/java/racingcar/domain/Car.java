@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.dto.CarDto;
+
 /**
  * Car.java
  * 자동차 클래스
