@@ -1,12 +1,20 @@
 package racingcar.domain.car;
 
+import racingcar.exception.InvalidPositionException;
+
 import java.util.Objects;
 
 public class Position {
 
+    private static final int START_POSITION = 0;
+
     private final int position;
 
     public Position(final int position) {
+        if (position < START_POSITION) {
+            throw new InvalidPositionException();
+        }
+
         this.position = position;
     }
 
