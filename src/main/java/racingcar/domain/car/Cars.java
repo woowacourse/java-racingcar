@@ -3,6 +3,8 @@ package racingcar.domain.car;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import racingcar.utils.RandomUtils;
 import racingcar.view.ErrorMessages;
 
 public class Cars {
@@ -15,6 +17,12 @@ public class Cars {
 
     public Cars(final List<Car> cars) {
         this.container = cars;
+    }
+
+    public Cars(final CarNames carNames) {
+        container = carNames.toList().stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public List<Car> toList() {
@@ -41,6 +49,10 @@ public class Cars {
 
     private boolean alreadyContains(final Car car) {
         return container.contains(car);
+    }
+
+    public void moveIndividuals() {
+        container.forEach(car -> car.move(RandomUtils.nextInt(0, 9)));
     }
 
     public int size() {
