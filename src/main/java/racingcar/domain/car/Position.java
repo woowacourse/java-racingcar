@@ -1,5 +1,6 @@
 package racingcar.domain.car;
 
+import java.util.Objects;
 import racingcar.exception.InvalidNumOfMoveException;
 
 public class Position {
@@ -49,6 +50,6 @@ public class Position {
 
     @Override
     public int hashCode() {
-        return position;
+        return Objects.hashCode(position);
     }
 }

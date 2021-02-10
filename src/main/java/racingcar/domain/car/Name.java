@@ -1,11 +1,12 @@
 package racingcar.domain.car;
 
+import java.util.Objects;
 import racingcar.exception.InvalidCarNameException;
 
 public class Name {
 
-    private static final int CAR_NAME_LENGTH_STARTINCLUSIVE = 1;
-    private static final int CAR_NAME_LENGTH_ENDINCLUSIVE = 5;
+    private static final int CAR_NAME_LENGTH_START_INCLUSIVE = 1;
+    private static final int CAR_NAME_LENGTH_END_INCLUSIVE = 5;
 
     private final String name;
 
@@ -19,7 +20,7 @@ public class Name {
     }
 
     private static void validationName(String name) {
-        if (name.length() < CAR_NAME_LENGTH_STARTINCLUSIVE || name.length() > CAR_NAME_LENGTH_ENDINCLUSIVE) {
+        if (name.length() < CAR_NAME_LENGTH_START_INCLUSIVE || name.length() > CAR_NAME_LENGTH_END_INCLUSIVE) {
             throw new InvalidCarNameException("자동차 이름은 1자 이상 5자 이하여야 합니다.");
         }
     }
@@ -44,6 +45,6 @@ public class Name {
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return Objects.hashCode(name);
     }
 }
