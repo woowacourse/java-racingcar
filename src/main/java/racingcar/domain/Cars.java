@@ -3,9 +3,13 @@ package racingcar.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.domain.utils.RandomUtils;
 import racingcar.domain.validator.CarsValidator;
 
 public class Cars {
+    private static final int INJECTION_NUMBER_MIN = 0;
+    private static final int INJECTION_NUMBER_MAX = 9;
+
     private final List<Car> cars;
 
     private Cars(final List<Car> cars) {
@@ -22,7 +26,11 @@ public class Cars {
     }
 
     public void tryMoveCars() {
-        this.cars.forEach(Car::tryToMove);
+        this.cars.forEach(car -> car.tryToMove(injectNumber()));
+    }
+
+    public int injectNumber() {
+        return RandomUtils.nextInt(INJECTION_NUMBER_MIN, INJECTION_NUMBER_MAX);
     }
 
     public List<RaceResultDTO> getResults() {

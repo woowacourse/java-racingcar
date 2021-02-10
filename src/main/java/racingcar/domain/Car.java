@@ -3,8 +3,6 @@ package racingcar.domain;
 import racingcar.domain.utils.RandomUtils;
 
 public class Car {
-    private static final int TRY_NUMBER_MIN = 0;
-    private static final int TRY_NUMBER_MAX = 9;
     private static final int MINIMUM_TO_MOVE = 4;
 
     private final Name name;
@@ -27,16 +25,10 @@ public class Car {
         return position == this.position;
     }
 
-    public void tryToMove() {
-        int rand = RandomUtils.nextInt(TRY_NUMBER_MIN, TRY_NUMBER_MAX);
-        if (rand >= MINIMUM_TO_MOVE) {
-            movePosition();
+    public void tryToMove(int number) {
+        if (number >= MINIMUM_TO_MOVE) {
+            position++;
         }
-    }
-
-    // XXX :: 테스트를 위한 접근 제한자 고민
-    private void movePosition() {
-        position++;
     }
 
     public RaceResultDTO getRaceResults() {
