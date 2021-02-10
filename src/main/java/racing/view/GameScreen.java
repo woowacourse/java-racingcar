@@ -1,6 +1,8 @@
 package racing.view;
 
 import racing.view.dto.CarMoveStatusDto;
+import racing.view.dto.CarNameDto;
+import racing.view.dto.PositionDto;
 import racing.view.dto.WinnersStatusDto;
 
 import java.util.List;
@@ -32,7 +34,8 @@ public class GameScreen implements Screen {
     }
 
     private void showEachCarStatus(final CarMoveStatusDto carMoveStatusDto, final StringBuilder stringBuilder) {
-        String carName = carMoveStatusDto.getCarName();
+        CarNameDto carNameDto = carMoveStatusDto.getCarNameDto();
+        String carName = carNameDto.getName();
         String distance = getDistance(carMoveStatusDto);
         String message = String.format(STATUS_FORMAT, carName, distance);
         stringBuilder.append(message);
@@ -40,8 +43,8 @@ public class GameScreen implements Screen {
 
     private String getDistance(final CarMoveStatusDto carMoveStatusDto) {
         StringBuilder stringBuilder = new StringBuilder();
-        int position = carMoveStatusDto.getPosition();
-        for (int i = ZERO; i < position; i++) {
+        PositionDto positionDto = carMoveStatusDto.getPositionDto();
+        for (int i = ZERO; i < positionDto.getValue(); i++) {
             stringBuilder.append(DISTANCE);
         }
         return stringBuilder.toString();
