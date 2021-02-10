@@ -1,5 +1,7 @@
 package racingcargame.domain;
 
+import racingcargame.utils.RandomUtils;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,5 +29,9 @@ public class Cars {
             maxDistance = Math.max(maxDistance, car.getDistance());
         }
         return maxDistance;
+    }
+
+    public void race() {
+        cars.forEach(car -> car.move(RandomUtils.getRandomNumber()));
     }
 }

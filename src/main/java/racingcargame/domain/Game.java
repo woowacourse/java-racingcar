@@ -16,10 +16,7 @@ public class Game {
     }
 
     public void race() {
-        for (Car car : cars.getCars()) {
-            int number = RandomUtils.getRandomNumber();
-            car.move(number);
-        }
+        cars.race();
         raceCount--;
     }
 
