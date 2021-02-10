@@ -3,15 +3,13 @@ package racingcar.domain;
 import racingcar.domain.car.Cars;
 import racingcar.domain.result.Result;
 import racingcar.domain.result.Results;
-import racingcar.utils.RandomUtils;
+import racingcar.utils.RandomNumbersUtils;
 import racingcar.validator.RoundValidator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Round {
-    private static final int MIN_RANDOM_RANGE = 0;
-    private static final int MAX_RANDOM_RANGE = 9;
 
     private final int count;
 
@@ -27,23 +25,11 @@ public class Round {
     public Results startRace(Cars cars) {
         List<Result> results = new ArrayList<>();
         for (int i = 0 ; i < count; i++) {
-            cars.tryToMoveCars(createRandomNumbers(cars.size()));
+            cars.tryToMoveCars(RandomNumbersUtils.createRandomNumbers(cars.size()));
             Result result = cars.getResultOfCars();
             results.add(result);
         }
         return Results.of(results);
-    }
-
-    private List<Integer> createRandomNumbers(int size) {
-        List<Integer> randomNumbers = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            randomNumbers.add(createRandomNumber());
-        }
-        return randomNumbers;
-    }
-
-    private int createRandomNumber() {
-        return RandomUtils.nextInt(MIN_RANDOM_RANGE, MAX_RANDOM_RANGE);
     }
 
     public int getCount() {
