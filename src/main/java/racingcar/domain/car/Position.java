@@ -29,6 +29,10 @@ public class Position {
         return position;
     }
 
+    public boolean isOn(int max) {
+        return max == position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -37,7 +37,7 @@ public class Car {
     }
 
     public boolean isOn(int max) {
-        return position.getValue() == max;
+        return position.isOn(max);
     }
 
     public int getPosition() {
