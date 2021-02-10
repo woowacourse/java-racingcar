@@ -1,6 +1,7 @@
 package racingcar.view.input.carname;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -19,7 +20,9 @@ public class RawCarNamesInputFromUser {
     public List<String> getAllCarNames() {
         carNamesInputFromUserPrinter.printCarNamesInputMessage();
         String inputCarNames = scanner.nextLine();
-        return Arrays.stream(inputCarNames.split(CAR_NAMES_DELIMITER))
-            .collect(Collectors.toList());
+        return Collections.unmodifiableList(
+            Arrays.stream(inputCarNames.split(CAR_NAMES_DELIMITER))
+                .collect(Collectors.toList())
+        );
     }
 }

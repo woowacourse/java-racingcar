@@ -1,6 +1,7 @@
 package racingcar.dto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CarRacingRequestDto {
@@ -13,7 +14,7 @@ public class CarRacingRequestDto {
     }
 
     public List<String> getCarNames() {
-        return new ArrayList<>(carNames);
+        return Collections.unmodifiableList(carNames);
     }
 
     public int getRacingTryTime() {
