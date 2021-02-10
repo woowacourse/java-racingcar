@@ -35,6 +35,6 @@ public class GameRunner {
             this.rounds.next();
         }
 
-        OutputView.printWinner(this.cars.getWinners());
+        OutputView.printWinner(this.cars.getWinnerNames());
     }
 }

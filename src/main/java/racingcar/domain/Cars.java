@@ -31,12 +31,15 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public String[] getWinners() {
+    public String[] getWinnerNames() {
         int winnerPosition = findWinnerPosition();
-        return this.cars.stream()
+
+        String[] names = cars.stream()
                 .filter(car -> car.isOnPosition(winnerPosition))
                 .map(Car::toString)
                 .toArray(String[]::new);
+
+        return names;
     }
 
     private int findWinnerPosition() {
