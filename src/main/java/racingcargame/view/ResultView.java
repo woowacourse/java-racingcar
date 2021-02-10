@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
+    private ResultView() {
+
+    }
+
     public static void showResult(List<Car> cars) {
         String message = cars.stream()
                 .map(Car::getName)
@@ -21,7 +25,7 @@ public class ResultView {
         System.out.println();
     }
 
-    public static String createBar(int distance) {
+    private static String createBar(int distance) {
         StringBuilder bar = new StringBuilder();
         for (int i = 0; i < distance; i++) {
             bar.append("-");
