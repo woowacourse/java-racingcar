@@ -4,45 +4,36 @@ import racingcar.domain.car.Car;
 import racingcar.domain.car.Position;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarRepository {
-    private static final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
-    public static void save(Car car) {
-        cars.add(car);
+    public CarRepository(final List<Car> cars) {
+        this.cars = new ArrayList<>(cars);
     }
 
-    public static void saveAll(List<Car> carsToSave) {
-        cars.addAll(carsToSave);
+    public List<Car> cars() {
+        return new ArrayList<>(cars);
     }
 
-    public static void deleteAll() {
-        cars.clear();
-    }
-
-    public static List<Car> cars() {
-        return Collections.unmodifiableList(cars);
-    }
-
-    public static List<String> winnerNames() {
+    public List<String> winnerNames() {
         return winners().stream()
                 .map(Car::getValueOfName)
                 .collect(Collectors.toList());
     }
 
-    public static List<Car> winners() {
+    public List<Car> winners() {
         Position maxPosition = new Position(getMaxPosition());
 
-        return Collections.unmodifiableList(cars.stream()
+        return cars().stream()
                 .filter(car -> car.isSamePosition(maxPosition))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 
-    private static int getMaxPosition() {
-        return cars.stream()
+    private int getMaxPosition() {
+        return cars().stream()
                 .mapToInt(Car::getValueOfPosition)
                 .max()
                 .orElseThrow(RuntimeException::new);

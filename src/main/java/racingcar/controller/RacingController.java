@@ -28,10 +28,10 @@ public class RacingController {
 
         for (int i = 0; i < raceTime; i++) {
             carRacingGameEngine.race();
-            showRaceState();
+            showRaceState(carRacingGameEngine.cars());
         }
 
-        showRaceWinner();
+        showRaceWinner(carRacingGameEngine.winnerNames());
     }
 
     private List<Car> createCar() {
@@ -50,18 +50,18 @@ public class RacingController {
         OutputView.printRaceResult();
     }
 
-    private void showRaceState() {
-        showAllCarsPosition();
+    private void showRaceState(List<Car> cars) {
+        showAllCarsPosition(cars);
         OutputView.printNewLine();
     }
 
-    private void showAllCarsPosition() {
-        CarRepository.cars().forEach(car ->
+    private void showAllCarsPosition(List<Car> cars) {
+        cars.forEach(car ->
                 OutputView.printRaceResultEachCar(
                         car.getValueOfName(), car.getValueOfPosition()));
     }
 
-    private void showRaceWinner() {
-        OutputView.printWinner(CarRepository.winnerNames());
+    private void showRaceWinner(List<String> winnerNames) {
+        OutputView.printWinner(winnerNames);
     }
 }
