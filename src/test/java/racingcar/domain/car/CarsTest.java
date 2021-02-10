@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.engine.FixedEngine;
@@ -50,7 +51,11 @@ class CarsTest {
         }
 
         // then
-        assertThat(cars.getWinners()).isEqualTo("pobi,crong,kim");
+        List<Name> winnersName = cars.findWinners()
+            .stream()
+            .map(car -> car.getName())
+            .collect(Collectors.toList());
+        assertThat(winnersName).isEqualTo(Arrays.asList(Name.of("pobi"), Name.of("crong"), Name.of("kim")));
     }
 
 }

@@ -41,7 +41,7 @@ public class RacingGame {
         return cars.getCars();
     }
 
-    public String getWinners() {
-        return cars.getWinners();
+    public List<Car> findWinners() {
+        return cars.findWinners();
     }
 }

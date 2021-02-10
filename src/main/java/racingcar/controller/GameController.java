@@ -24,7 +24,7 @@ public class GameController {
             racingGame.race();
             OutputView.printCarsStatus(racingGame.getCars());
         }
-        OutputView.printWinners(racingGame.getWinners());
+        OutputView.printWinners(racingGame.findWinners());
     }
 
     private int inputRacingRound() {

@@ -2,9 +2,12 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.car.Car;
+import racingcar.domain.car.Name;
 import racingcar.domain.engine.FixedEngine;
 
 class RacingGameTest {
@@ -25,7 +28,11 @@ class RacingGameTest {
         }
 
         // then
-        assertThat(racingGame.getWinners()).isEqualTo("pobi,jason");
+        List<Name> winnersName = racingGame.findWinners()
+            .stream()
+            .map(car -> car.getName())
+            .collect(Collectors.toList());
+        assertThat(winnersName).isEqualTo(Arrays.asList(Name.of("pobi"), Name.of("jason")));
     }
 
 }
