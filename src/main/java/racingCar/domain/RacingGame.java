@@ -5,19 +5,23 @@ import racingCar.domain.car.Cars;
 public class RacingGame {
 
     private final Cars cars;
-    private int numOfRacingRound;
+    private Round round;
 
-    public RacingGame(Cars cars, int numOfRacingRound) {
+    public RacingGame(Cars cars, int round){
+        this(cars,new Round(round));
+    }
+
+    public RacingGame(Cars cars, Round round) {
         this.cars = cars;
-        this.numOfRacingRound = numOfRacingRound;
+        this.round = round;
     }
 
     public void race() {
         cars.racePerRound();
-        numOfRacingRound--;
+        this.round = round.goOn();
     }
 
     public boolean isEnd() {
-        return numOfRacingRound == 0;
+        return round.isEnd();
     }
 }

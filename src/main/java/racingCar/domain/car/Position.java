@@ -5,11 +5,12 @@ import java.util.Objects;
 public class Position {
 
     public static final Position ZERO = new Position(0);
+    public static final String ERROR_POSITION_STARTING_POINT_LESS_THAN_ZERO = "위치는 0부터 시작합니다.";
     private final int position;
 
     public Position(final int position) {
         if (position < 0) {
-            throw new IllegalArgumentException("위치는 0부터 시작한다.");
+            throw new IllegalArgumentException(ERROR_POSITION_STARTING_POINT_LESS_THAN_ZERO);
         }
         this.position = position;
     }

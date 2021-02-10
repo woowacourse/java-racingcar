@@ -10,7 +10,8 @@ public class ValidateUtils {
     public static final int MAX_NAME_LENGTH = 5;
     public static final String ERROR_MESSAGE_CAR_NAMES_COUNT = "자동차 이름은 1개 이상이어야 합니다.";
     public static final String ERROR_MESSAGE_CAR_NAME_NULL_OR_EMPTY = "자동차 이름은 공백이 안됩니다.";
-    public static final String ERROR_MESSAGE_ROUND_COUNT_NATURAL_NUMBER = "시도횟수는 자연수이어야 합니다.";
+    private static final String ERROR_MESSAGE_ROUND_COUNT_NUMBER = "시도 횟수는 숫자이어야 합니다.";
+
 
     public static String[] validateNumOfCarNames(String[] carNames) {
         if (carNames.length < MIN_NUM_OF_CARS) {
@@ -35,24 +36,11 @@ public class ValidateUtils {
         return !carName.isEmpty();
     }
 
-    public static int validateRacingRoundCount(String input) {
-        int count = validateInteger(input);
-        validateNotNegative(count);
-        return count;
-    }
-
-    private static void validateNotNegative(int count) {
-        if (count > 0) {
-            return;
-        }
-        throw new InvalidNumOfMoveException(ERROR_MESSAGE_ROUND_COUNT_NATURAL_NUMBER);
-    }
-
-    private static int validateInteger(String count) {
+    public static int validateInteger(String count) {
         try {
             return Integer.parseInt(count);
         } catch (NumberFormatException e) {
-            throw new InvalidNumOfMoveException(ERROR_MESSAGE_ROUND_COUNT_NATURAL_NUMBER);
+            throw new InvalidNumOfMoveException(ERROR_MESSAGE_ROUND_COUNT_NUMBER);
         }
     }
 }

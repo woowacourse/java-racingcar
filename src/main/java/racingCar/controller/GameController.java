@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import racingCar.domain.RacingGame;
+import racingCar.domain.Round;
 import racingCar.domain.car.Car;
 import racingCar.domain.car.Cars;
 import racingCar.domain.car.Engine.Engine;
@@ -15,7 +16,7 @@ import racingCar.view.OutputView;
 public class GameController {
 
     private final InputView inputView;
-    private int numOfRacingRound;
+    private Round round;
     private Cars cars;
 
     public GameController(Scanner scanner) {
@@ -25,7 +26,7 @@ public class GameController {
     public void play() {
         inputCars();
         inputRacingRound();
-        RacingGame racingGame = new RacingGame(cars, numOfRacingRound);
+        RacingGame racingGame = new RacingGame(cars, round);
         while (!racingGame.isEnd()) {
             racingGame.race();
             OutputView.printCars(cars.toList());
@@ -54,7 +55,7 @@ public class GameController {
     private void inputRacingRound() {
         try {
             OutputView.printInputNumOfRoundMessage();
-            numOfRacingRound = ValidateUtils.validateRacingRoundCount(inputView.inputValue());
+            round = new Round(ValidateUtils.validateInteger(inputView.inputValue()));
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e);
             inputRacingRound();
