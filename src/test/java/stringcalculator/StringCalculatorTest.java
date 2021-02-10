@@ -55,14 +55,14 @@ class StringCalculatorTest {
 
     @DisplayName("문자열 숫자에 음수가 있으면 예외를 발생시킨다")
     @Test
-    public void splitAndSumWhenNumbersHasNegative() throws Exception {
+    void splitAndSumWhenNumbersHasNegative() throws Exception {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
                 .isInstanceOf(RuntimeException.class);
     }
 
     @DisplayName("문자열 숫자의 개수가 1개인 경우 첫 번째 값을 리턴한다")
     @Test
-    public void splitAndSumWhenNumbersLengthIsOne() throws Exception {
+    void splitAndSumWhenNumbersLengthIsOne() throws Exception {
         int result = StringCalculator.splitAndSum("1");
         assertThat(result).isEqualTo(1);
     }
