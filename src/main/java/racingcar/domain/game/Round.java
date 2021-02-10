@@ -10,22 +10,32 @@ public class Round {
     private int played = 0;
 
     public Round(int value) {
-        if (value < MINIMUM_POSITIVE_VALUE) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_ROUND_NOT_POSITIVE);
-        }
+        validateValue(value);
         this.value = value;
     }
 
     public Round(String value) {
         try {
-            this.value = Integer.parseInt(value);
+            int parsedValue = Integer.parseInt(value);
+            validateValue(parsedValue);
+            this.value = parsedValue;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_ROUND_NOT_INTEGER);
         }
     }
 
-    public void playRound() {
-        ++played;
+    private void validateValue(int value) {
+        if (value < MINIMUM_POSITIVE_VALUE) {
+            throw new IllegalArgumentException(ErrorMessages.ERROR_ROUND_NOT_POSITIVE);
+        }
+    }
+
+    public boolean playRound() {
+        if (!allRoundPlayed()) {
+            ++played;
+            return true;
+        }
+        return false;
     }
 
     public boolean allRoundPlayed() {

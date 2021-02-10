@@ -19,6 +19,9 @@ class RoundTest {
                 }),
                 () -> assertThrows(IllegalArgumentException.class, () -> {
                     new Round("abc");
+                }),
+                () -> assertThrows(IllegalArgumentException.class, () -> {
+                    new Round("0");
                 })
         );
     }
