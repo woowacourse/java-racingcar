@@ -3,10 +3,10 @@ package racingcar.domain;
 import java.util.List;
 
 public class RacingCar {
-    private Cars cars;
+    private final Cars cars;
     private TryCount tryCount;
 
-    public RacingCar(Cars cars, TryCount tryCount) {
+    public RacingCar(final Cars cars, final TryCount tryCount) {
         this.cars = cars;
         this.tryCount = tryCount;
     }
@@ -24,7 +24,7 @@ public class RacingCar {
         tryCount.deductCount();
     }
 
-    public boolean isNotFinish(){
+    public boolean isNotFinish() {
         return tryCount.isRemainCount();
     }
 
