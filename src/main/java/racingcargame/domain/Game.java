@@ -1,9 +1,8 @@
 package racingcargame.domain;
 
-import racingcargame.utils.RandomUtils;
-
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Game {
     private Cars cars;
@@ -25,11 +24,7 @@ public class Game {
     }
 
     public List<Car> makeCars(String[] carNames) {
-        List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
-        return cars;
+        return Arrays.stream(carNames).map(carName -> new Car(carName)).collect(Collectors.toList());
     }
 
     public Cars getCars() {
