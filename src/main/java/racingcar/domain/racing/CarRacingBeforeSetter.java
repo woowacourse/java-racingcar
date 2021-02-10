@@ -5,22 +5,22 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.domain.CarRepository;
-import racingcar.view.input.ValidInputFromUserGetter;
+import racingcar.view.input.InputView;
 
 public class CarRacingBeforeSetter {
-    private final ValidInputFromUserGetter validInputFromUserGetter;
+    private final InputView inputView;
     private final CarRepository carRepository;
     private int racingTryTime;
 
     public CarRacingBeforeSetter(Scanner scanner, CarRepository carRepository) {
-        this.validInputFromUserGetter = new ValidInputFromUserGetter(scanner);
+        this.inputView = new InputView(scanner);
         this.carRepository = carRepository;
     }
 
     public void set() {
-        List<String> carNames = validInputFromUserGetter.getCarNames();
+        List<String> carNames = inputView.getCarNames();
         List<Car> cars = createCars(carNames);
-        racingTryTime = validInputFromUserGetter.getRacingTryTime();
+        racingTryTime = inputView.getRacingTryTime();
         carRepository.saveAll(cars);
     }
 

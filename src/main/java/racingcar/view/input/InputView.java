@@ -5,11 +5,12 @@ import java.util.Scanner;
 import racingcar.view.input.carname.ValidCarNamesInputFromUserGetter;
 import racingcar.view.input.racingtrytime.ValidRacingTryTimeFromUserGetter;
 
-public class ValidInputFromUserGetter {
+public class InputView {
     private final ValidCarNamesInputFromUserGetter validCarNamesInputFromUserGetter;
     private final ValidRacingTryTimeFromUserGetter validRacingTryTimeFromUserGetter;
 
-    public ValidInputFromUserGetter(Scanner scanner) {
+    public InputView() {
+        Scanner scanner = new Scanner(System.in);
         this.validCarNamesInputFromUserGetter = new ValidCarNamesInputFromUserGetter(scanner);
         this.validRacingTryTimeFromUserGetter = new ValidRacingTryTimeFromUserGetter(scanner);
     }
