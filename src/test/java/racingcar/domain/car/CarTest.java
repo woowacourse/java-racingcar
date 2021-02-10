@@ -24,22 +24,31 @@ public class CarTest {
     @DisplayName("자동차 생성 확인")
     void car_create() {
         assertThat(firstCar.getName()).isEqualTo(testNames[0]);
-        assertThat(firstCar.getPosition().length()).isEqualTo(0);
+        assertThat(firstCar.getPosition()).isEqualTo(0);
         assertThat(secondCar.getName()).isEqualTo(testNames[1]);
-        assertThat(secondCar.getPosition().length()).isEqualTo(0);
+        assertThat(secondCar.getPosition()).isEqualTo(0);
         assertThat(thirdCar.getName()).isEqualTo(testNames[2]);
-        assertThat(thirdCar.getPosition().length()).isEqualTo(0);
+        assertThat(thirdCar.getPosition()).isEqualTo(0);
     }
 
     @Test
     @DisplayName("자동차 전진 구현")
     void car_move() {
-        firstCar.fillUpGas(4);
-        firstCar.forward();
-        assertThat(firstCar.getPosition().length()).isEqualTo(1);
+        Car filledCar1 = firstCar.fillUpGas(3);
+        Car forwardedCar1 = filledCar1.forward();
+        assertThat(forwardedCar1.getPosition()).isEqualTo(0);
 
-        secondCar.fillUpGas(3);
-        secondCar.forward();
-        assertThat(secondCar.getPosition().length()).isEqualTo(0);
+        Car filledCar2 = firstCar.fillUpGas(4);
+        Car forwardedCar2 = filledCar2.forward();
+        assertThat(forwardedCar2.getPosition()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("우승자 확인")
+    void car_winner(){
+        Car filledCar = firstCar.fillUpGas(4);
+        Car forwardedCar = filledCar.forward();
+        assertThat(forwardedCar.isWinner(1)).isTrue();
+        assertThat(forwardedCar.isWinner(2)).isFalse();
     }
 }
