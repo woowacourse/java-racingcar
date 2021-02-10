@@ -7,7 +7,7 @@ public class Car {
     private final Name name;
     private final Position position;
 
-    public Car(final Name name) {
+    public Car(final String name) {
         this(new Name(name), new Position(START_POSITION));
     }
 

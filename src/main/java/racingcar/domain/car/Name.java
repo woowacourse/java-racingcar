@@ -11,10 +11,6 @@ public class Name {
 
     private final String name;
 
-    public Name(final Name name) {
-        this.name = name.getValue();
-    }
-
     public Name(final String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new InvalidCarNameLengthException(
