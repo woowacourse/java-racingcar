@@ -49,4 +49,8 @@ public class Car {
     public int getPosition() {
         return this.position;
     }
+
+    public boolean checkPosition(int position) {
+        return this.position == position;
+    }
 }

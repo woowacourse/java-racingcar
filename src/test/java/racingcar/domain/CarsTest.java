@@ -41,6 +41,7 @@ public class CarsTest {
     }
 
     @Test
+    @DisplayName("최종 우승자 계산 기능 테스트")
     void findWinners() {
         List<String> carNameList = Arrays.asList(SAMPLE_CAR_LIST);
         Cars cars = new Cars(carNameList);
