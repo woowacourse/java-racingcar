@@ -1,11 +1,15 @@
-import racingCar.Game;
-import racingCar.InputChecker;
+import racingcargame.domain.Game;
+import racingcargame.view.InputView;
+import racingcargame.view.ResultView;
 
 public class Application {
     public static void main(String[] args) {
-        String input = InputChecker.getInput();
-        int count = InputChecker.getNumber();
-        Game game = new Game(input, count);
-        game.run();
+        Game game = new Game(InputView.getCarNames(), InputView.getRaceCount());
+        ResultView.showGameStart();
+        while (game.hasRaceCount()) {
+            game.race();
+            ResultView.showStatus(game.Cars());
+        }
+        ResultView.showResult(game.Winners());
     }
 }
