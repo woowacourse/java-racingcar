@@ -18,7 +18,6 @@ public class InputView {
         String[] name = scanner.nextLine()
                 .replace(BLANK, EMPTY)
                 .split(DELIMITER);
-        InputValidation.validateName(name);
         return name;
     }
 

@@ -1,6 +1,6 @@
 package racingcar.domain.data;
 
-import racingcar.utils.InputValidation;
+import racingcar.domain.validation.NameValidation;
 
 import java.util.Objects;
 
@@ -9,7 +9,7 @@ public class Name {
     private final String value;
 
     public Name(String value) {
-        InputValidation.validateName(value, NAME_MAX_LENGTH);
+        NameValidation.validateName(value, NAME_MAX_LENGTH);
         this.value = value;
     }
 
