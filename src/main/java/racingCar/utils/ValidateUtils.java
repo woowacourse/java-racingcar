@@ -12,7 +12,6 @@ public class ValidateUtils {
     public static final String ERROR_MESSAGE_CAR_NAME_NULL_OR_EMPTY = "자동차 이름은 공백이 안됩니다.";
     public static final String ERROR_MESSAGE_ROUND_COUNT_NATURAL_NUMBER = "시도횟수는 자연수이어야 합니다.";
 
-
     public static String[] validateNumOfCarNames(String[] carNames) {
         if (carNames.length < MIN_NUM_OF_CARS) {
             throw new InvalidCarNameException(ERROR_MESSAGE_CAR_NAMES_COUNT);

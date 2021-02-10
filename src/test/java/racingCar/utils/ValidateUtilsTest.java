@@ -22,19 +22,7 @@ class ValidateUtilsTest {
 
         // then
         assertThrows(RuntimeException.class, () -> {
-            ValidateUtils.validateCarNames(carNames);
-        });
-    }
-
-    @DisplayName("자동차 이름이 5자 이상인 경우 예외를 발생시킨다.")
-    @Test
-    public void 자동차_이름_5자_이상_테스트_negative() {
-        // given, when
-        String[] carNames = {"pobi", "hong", "gil", "mark", "honggildong"};
-
-        // then
-        assertThrows(RuntimeException.class, () -> {
-            ValidateUtils.validateCarNames(carNames);
+            ValidateUtils.validateNumOfCarNames(carNames);
         });
     }
 
@@ -46,17 +34,6 @@ class ValidateUtilsTest {
         assertThatThrownBy(() -> {
             ValidateUtils.validateRacingRoundCount(invalidInput);
         }).isInstanceOf(RuntimeException.class);
-    }
-
-    @Test
-    public void 자동차_이름_공백_테스트_negative() {
-        // given, when
-        String[] carNames = {"pobi", "hong", "gil", "", null};
-
-        // then
-        assertThrows(RuntimeException.class, () -> {
-            ValidateUtils.validateCarNames(carNames);
-        });
     }
 
     @ParameterizedTest
