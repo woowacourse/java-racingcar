@@ -53,17 +53,18 @@ public class Cars {
     }
 
     public List<String> findWinnerNames() {
-        Car maxPositionCar = getMaxPositionCar();
+        int maxPosition = getMaxPosition();
         return cars.stream()
-                .filter(car -> car.isSamePosition(maxPositionCar))
+                .filter(car -> car.isSamePosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    private Car getMaxPositionCar() {
+    private int getMaxPosition() {
         return cars.stream()
                 .max(Comparator.comparingInt(Car::getPosition))
-                .orElseThrow(IllegalStateException::new);
+                .orElseThrow(IllegalStateException::new)
+                .getPosition();
     }
 
     public List<Car> getCars() {

@@ -62,9 +62,8 @@ class CarTest {
     @Test
     void isSamePosition() {
         Car car = new Car("pobi", ALWAYS_MOVING_STRATEGY);
-        Car target = new Car("brown", ALWAYS_MOVING_STRATEGY);
 
-        boolean isSamePosition = car.isSamePosition(target);
+        boolean isSamePosition = car.isSamePosition(0);
 
         assertThat(isSamePosition).isTrue();
     }
@@ -73,10 +72,8 @@ class CarTest {
     @Test
     void isDifferentPosition() {
         Car car = new Car("pobi", ALWAYS_MOVING_STRATEGY);
-        Car target = new Car("brown", ALWAYS_MOVING_STRATEGY);
 
-        target.move();
-        boolean isSamePosition = car.isSamePosition(target);
+        boolean isSamePosition = car.isSamePosition(1);
 
         assertThat(isSamePosition).isFalse();
     }
