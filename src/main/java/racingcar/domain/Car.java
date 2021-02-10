@@ -11,7 +11,7 @@ public class Car {
         this(name, number -> number > DEFAULT_MOVABLE_VALUE);
     }
 
-    public Car(String name, MoveCondition moveCondition){
+    public Car(String name, MoveCondition moveCondition) {
         this.name = new Name(name);
         this.position = Position.ZERO;
         this.moveCondition = moveCondition;
@@ -23,7 +23,7 @@ public class Car {
         }
     }
 
-    public void changeMovableCondition(MoveCondition moveCondition){
+    public void changeMovableCondition(MoveCondition moveCondition) {
         this.moveCondition = moveCondition;
     }
 
