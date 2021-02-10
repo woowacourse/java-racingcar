@@ -10,15 +10,13 @@ public class CarController {
         this.cars = new Cars(names);
     }
 
-    public void race(int time, OutputView outputView) {
-        outputView.printResult();
-        for (int i = 0; i < time; i++) {
-            cars.startRace();
-            outputView.showStates(cars.getStates());
-        }
+    public void race() {
+        OutputView.printResult();
+        cars.startRace();
+        OutputView.showStates(cars.getStates());
     }
 
-    public void showWinners(OutputView outputView) {
-        outputView.printWinners(cars.showWinners());
+    public void showWinners() {
+        OutputView.printWinners(cars.showWinners());
     }
 }
