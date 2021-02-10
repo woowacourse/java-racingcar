@@ -13,17 +13,17 @@ public class ResultView {
 
     public static void showStatus(Cars cars) {
         for (Car car : cars.getCars()) {
-            System.out.println(car.getName() + " : " + bar(car.getDistance()));
+            System.out.println(car.getName() + " : " + createBar(car.getDistance()));
         }
         System.out.println();
     }
 
-    public static String bar(int distance) {
-        StringBuilder sb = new StringBuilder();
+    public static String createBar(int distance) {
+        StringBuilder bar = new StringBuilder();
         for (int i = 0; i < distance; i++) {
-            sb.append("-");
+            bar.append("-");
         }
-        return sb.toString();
+        return bar.toString();
     }
 
     public static void showGameStart() {
