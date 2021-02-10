@@ -29,7 +29,7 @@ class NameTest {
 
     @DisplayName("문자 외 입력 시 예외처리")
     @ParameterizedTest
-    @ValueSource(strings = {"pobi#", "jaso!ooon"})
+    @ValueSource(strings = {"pobi#", "jaso!ooon", "장세ㅎ"})
     public void invalidTextCreate(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(InvalidTextException.class);

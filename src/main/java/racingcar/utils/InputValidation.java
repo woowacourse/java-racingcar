@@ -24,6 +24,12 @@ public class InputValidation {
         isValidLength(name);
     }
 
+    public static void validateTime(String input) {
+        if (!NUMBER_PATTERN.matcher(input).matches() || input.equals(ZERO_TIME)) {
+            throw new InvalidTimeException();
+        }
+    }
+
     private static void notEnoughCars(String[] name) {
         if (name.length < CAR_MIN_NUMBER) {
             throw new NotEnoughCarException(CAR_MIN_NUMBER);
@@ -55,12 +61,6 @@ public class InputValidation {
     private static void isValidText(String name) {
         if (!VALID_TEXT_PATTERN.matcher(name).matches()) {
             throw new InvalidTextException();
-        }
-    }
-
-    public static void validateTime(String input) {
-        if (!NUMBER_PATTERN.matcher(input).matches() || input.equals(ZERO_TIME)) {
-            throw new InvalidTimeException();
         }
     }
 }
