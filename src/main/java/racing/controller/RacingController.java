@@ -3,8 +3,8 @@ package racing.controller;
 import racing.domain.Cars;
 import racing.domain.RacingGameMachine;
 import racing.domain.RandomMovingStrategy;
+import racing.dto.CarAssembler;
 import racing.dto.CarDto;
-import racing.dto.DtoAssembler;
 import racing.view.InputView;
 import racing.view.OutputView;
 
@@ -17,7 +17,7 @@ public class RacingController {
         OutputView.printGameResultHeader();
         while (racingGameMachine.canPlay()) {
             racingGameMachine.race();
-            List<CarDto> carDtos = DtoAssembler.assembleCars(racingGameMachine.getCars());
+            List<CarDto> carDtos = CarAssembler.writeCarDtos(racingGameMachine.getCars());
             OutputView.printRacingTryResult(carDtos);
         }
         List<String> winnerNames = racingGameMachine.findWinnerNames();

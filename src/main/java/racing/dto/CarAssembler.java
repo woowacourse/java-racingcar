@@ -5,14 +5,14 @@ import racing.domain.Car;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DtoAssembler {
+public class CarAssembler {
 
-    private DtoAssembler() {
+    private CarAssembler() {
     }
 
-    public static List<CarDto> assembleCars(List<Car> cars) {
+    public static List<CarDto> writeCarDtos(List<Car> cars) {
         return cars.stream()
-                .map(DtoAssembler::assembleCar)
+                .map(CarAssembler::assembleCar)
                 .collect(Collectors.toList());
     }
 
