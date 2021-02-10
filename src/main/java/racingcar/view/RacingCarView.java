@@ -21,7 +21,7 @@ public class RacingCarView {
     }
 
     public static void showResultMessage() {
-        System.out.printf(VOID_NULL);
+        System.out.println();
         System.out.printf(RESULT_INDICATION_MESSAGE);
     }
 

@@ -13,7 +13,7 @@ public class RandomNumberGeneratorTest {
 
     @Test
     void randomNumberGenerator() {
-        for(int i = FIRST_TRYING; i <LAST_TRYING ; i++) {
+        for (int i = FIRST_TRYING; i < LAST_TRYING; i++) {
             int value = RandomNumberGenerator.turnNumber();
 
             assertTrue(value <= UP_LIMIT);

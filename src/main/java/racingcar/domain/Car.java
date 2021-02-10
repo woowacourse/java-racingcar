@@ -33,9 +33,8 @@ public class Car {
     }
 
     public void oneTurn(int randomTurnNumber) {
-        if (randomTurnNumber >= GO_CRITERIA) {
+        if (randomTurnNumber >= GO_CRITERIA)
             progressPosition();
-        }
     }
 
     private void progressPosition() {

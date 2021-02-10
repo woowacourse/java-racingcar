@@ -16,28 +16,23 @@ public class StringCalculator {
     private static final String OR = "|";
 
     static int splitAndSum(String text) {
-        if (checkNullValue(text)) {
+        if (checkNullValue(text))
             return ZERO_VALUE;
-        }
         return calculateNumbers(text);
     }
 
     private static boolean checkNullValue(String text) {
-        if (text == NULL_VALUE) {
+        if (text == NULL_VALUE)
             return true;
-        }
-
-        if (text.isEmpty()) {
+        if (text.isEmpty())
             return true;
-        }
-
         return false;
     }
 
     private static int calculateNumbers(String text) {
         List<String> parsedNumbers = parsingNumbers(text);
         List<Integer> integerNumbers = parsedNumbers.stream()
-                .map(stringNumber -> Integer.parseInt(stringNumber))
+                .map(Integer::parseInt)
                 .collect(Collectors.toList());
         checkNegative(integerNumbers);
         return integerNumbers.stream()
@@ -69,9 +64,7 @@ public class StringCalculator {
         long count = numbers.stream()
             .filter(element -> element < ZERO_VALUE)
             .count();
-
-        if (count != ZERO_VALUE) {
+        if (count != ZERO_VALUE)
             throw new RuntimeException();
-        }
     }
 }

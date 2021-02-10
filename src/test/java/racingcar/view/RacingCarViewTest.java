@@ -49,6 +49,6 @@ public class RacingCarViewTest {
     void showWinner() {
         String sampleWinners = SAMPLE_WINNERS;
         RacingCarView.showWinner(sampleWinners);
-        assertEquals(SAMPLE_WINNERS+WIN_MESSAGE, outputStreamCaptor.toString());
+        assertEquals(SAMPLE_WINNERS + WIN_MESSAGE, outputStreamCaptor.toString());
     }
 }
