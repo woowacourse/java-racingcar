@@ -21,11 +21,15 @@ public class AttemptNumber {
     }
 
     public boolean canAttempt() {
-        if (attemptNumber == ZERO) {
-            return false;
+        if (isRemain()) {
+            attemptNumber--;
+            return true;
         }
-        attemptNumber--;
-        return true;
+        return false;
+    }
+
+    private boolean isRemain() {
+        return attemptNumber > ZERO;
     }
 
     @Override
