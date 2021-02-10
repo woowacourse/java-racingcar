@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import racingcar.utils.RandomUtils;
@@ -22,13 +23,12 @@ public class Cars {
     }
 
     public List<Car> getWinners() {
-        int maxDistance = getMaxDistance();
         List<Car> winners = new ArrayList<>();
 
         cars.stream()
-            .filter(it -> it.isWinner(maxDistance))
+            .filter(it -> it.isWinner(getMaxDistance()))
             .forEach(winners::add);
-        return winners;
+        return Collections.unmodifiableList(winners);
     }
 
     public void move() {
