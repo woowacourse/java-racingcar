@@ -23,20 +23,13 @@ public class Results {
 
     public List<String> findWinners() {
         Result lastResult = results.get(results.size() - GAP_WITH_SIZE_AND_INDEX);
+        Position maxPosition = lastResult.getMaxPosition();
         List<Car> cars = lastResult.getResult();
         return cars.stream()
-                .filter(car -> car.isSamePosition(getMaxPosition(cars)))
+                .filter(car -> car.isSamePosition(maxPosition))
                 .map(Car::getName)
                 .map(Name::getValue)
                 .collect(Collectors.toList());
-    }
-
-    private Position getMaxPosition(List<Car> cars) {
-        Position maxPosition = Position.valueOf(0);
-        for (Car car : cars) {
-            maxPosition = car.getMaxPosition(maxPosition);
-        }
-        return maxPosition;
     }
 
     public List<Result> getResults() {
