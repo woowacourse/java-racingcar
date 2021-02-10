@@ -1,4 +1,7 @@
-package racingcar.domain;
+package racingcar;
+
+import racingcar.domain.Participants;
+import racingcar.domain.Winner;
 
 public class RacingResult {
 

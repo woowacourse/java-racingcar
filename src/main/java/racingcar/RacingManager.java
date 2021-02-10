@@ -1,6 +1,8 @@
-package racingcar.domain;
+package racingcar;
 
 import java.util.function.Supplier;
+import racingcar.domain.Participants;
+import racingcar.domain.Round;
 
 public class RacingManager {
 
