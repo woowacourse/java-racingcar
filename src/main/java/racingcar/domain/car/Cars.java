@@ -6,10 +6,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final String DUPLICATE_ERROR = "중복된 이름은 입력할 수 없습니다.";
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
+        validateDuplicate(cars);
         this.cars = new ArrayList<>(cars);
+    }
+
+    private void validateDuplicate(List<Car> cars) {
+        long checkedSize = cars.stream()
+                .distinct().count();
+        if (cars.size() != checkedSize) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR);
+        }
     }
 
     public List<Car> getCars() {

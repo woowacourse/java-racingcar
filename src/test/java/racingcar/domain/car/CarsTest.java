@@ -4,14 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.car.Car;
-import racingcar.domain.car.Cars;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class CarsTest {
 
@@ -27,6 +25,19 @@ public class CarsTest {
         for (String carName : carNames) {
             assertThat(cars.getCars()).contains(new Car(carName));
         }
+    }
+
+    @DisplayName("중복된 자동차 이름이 입력되었을 때 에러 발생하는지 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi,pobi,crong", "mt,mt", "oz,mt,honux,oz"})
+    void duplicateNameErrorTest(String text) {
+        String[] carNames = text.split(",");
+        List<Car> carList = Arrays.stream(carNames)
+                .map(carName -> new Car(carName))
+                .collect(Collectors.toList());
+        assertThatThrownBy(() -> {
+                    new Cars(carList);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("자동차 여러 대가 전진했는지를 테스트")
