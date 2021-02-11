@@ -9,15 +9,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.Car;
+import racingcar.domain.car.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.Name;
+import racingcar.domain.car.Name;
 
 public class CarsTest {
 
     @Test
     @DisplayName("정상적인 경주할 자동차 이름들 입력")
-    void getInstanceTest_정상_입력() {
+    void generateCarsByNamesTest_정상_입력() {
         final List<Car> cars = new ArrayList<>();
         cars.add(new Car(new Name("루트")));
         cars.add(new Car(new Name("소롱")));
@@ -30,7 +30,7 @@ public class CarsTest {
     @ParameterizedTest
     @DisplayName("경주할 자동차 이름이 하나인 경우 예외 처리")
     @ValueSource(strings = {"한자동차", "자동차#;"})
-    void getInstanceTest_자동차_하나(String input) {
+    void generateCarsByNamesTest_자동차_하나(String input) {
         assertThatThrownBy(() -> {
             final Cars cars = Cars.generateCarsByNames(input);
         }).isInstanceOf(IllegalArgumentException.class)
@@ -40,7 +40,7 @@ public class CarsTest {
     @ParameterizedTest
     @DisplayName("중복되는 경주할 자동차 이름이 있는 경우 예외 처리")
     @ValueSource(strings = {"루트,소롱,루트", "루트,루트,루트"})
-    void getInstance_중복되는_자동차_입력(String input) {
+    void generateCarsByNamesTest_중복되는_자동차_입력(String input) {
         assertThatThrownBy(() -> {
             final Cars cars = Cars.generateCarsByNames(input);
         }).isInstanceOf(IllegalArgumentException.class)

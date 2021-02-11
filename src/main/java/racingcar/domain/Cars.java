@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.domain.car.Car;
+import racingcar.domain.car.Name;
 import racingcar.utils.RandomUtils;
 
 public class Cars {
