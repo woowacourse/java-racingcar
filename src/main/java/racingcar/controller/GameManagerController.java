@@ -6,7 +6,7 @@ import racingcar.domain.gamemanager.dto.GameManagerRequestDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class RacingCarGameApplication {
+public class GameManagerController {
     public static void main(String[] args) {
         GameManagerRequestDto requestDto = InputView.inputFromUser();
         GameManager gameManager = new GameManager();
