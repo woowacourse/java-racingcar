@@ -21,7 +21,7 @@ public class Cars {
     }
 
     public static Cars createCars(List<Car> cars) {
-        return createCars(cars);
+        return new Cars(cars);
     }
 
     public static Cars createCarsByNames(List<String> carNames) {
@@ -53,11 +53,10 @@ public class Cars {
     }
 
     private Position getMaxPosition() {
-        return new Position(cars.stream()
+        return cars.stream()
                 .map(Car::getPosition)
-                .mapToInt(Position::index)
-                .max()
-                .orElseThrow(NoSuchElementException::new));
+                .max(Position::compareTo)
+                .orElseThrow(NoSuchElementException::new);
     }
 
     public List<Car> getCars() {
