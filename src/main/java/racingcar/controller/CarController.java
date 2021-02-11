@@ -3,19 +3,20 @@ package racingcar.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import racingcar.domain.AttemptNumber;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.TryNumber;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarController {
 
-    private Cars cars;
-    private AttemptNumber attemptNumber;
     private static final String Separator = ",";
     private static final String ERROR_MESSAGE = "자동차 이름은 없을 수 없습니다.";
 
+    private Cars cars;
+    private TryNumber tryNumber;
+    
     public CarController() {
     }
 
@@ -26,7 +27,6 @@ public class CarController {
 
     private void getCarNames() {
         List<Car> carList = new ArrayList<>();
-        OutputView.printInputCarNamesMessage();
         String carNames = InputView.getCarNames();
         String[] carNamesArray = carNamesSplit(carNames);
         for (String carName : carNamesArray) {
@@ -36,8 +36,7 @@ public class CarController {
     }
 
     private void getAttemptNumber() {
-        OutputView.printInputAttemptNumberMessage();
-        attemptNumber = new AttemptNumber(InputView.getAttemptNumber());
+        tryNumber = new TryNumber(InputView.getTryNumber());
     }
 
     private String[] carNamesSplit(String carNames) {
@@ -53,7 +52,7 @@ public class CarController {
         OutputView.printNextLine();
         OutputView.printExecutionResultMessage();
         Random random = new Random();
-        for (int i = 0; i < attemptNumber.getAttemptNumber(); i++) {
+        for (int i = 0; i < tryNumber.getTryNumber(); i++) {
             cars.move(random);
         }
         List<String> winners = cars.getWinners();
