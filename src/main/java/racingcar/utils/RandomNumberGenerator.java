@@ -3,7 +3,7 @@ package racingcar.utils;
 import java.util.Random;
 
 public class RandomNumberGenerator {
-    static Random random = new Random();
+    static final Random random = new Random();
 
     public static int generate(int minNumber, int maxNumber) {
         if (minNumber > maxNumber) {

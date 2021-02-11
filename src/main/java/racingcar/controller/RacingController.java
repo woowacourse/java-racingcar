@@ -1,43 +1,50 @@
 package racingcar.controller;
 
+import racingcar.domain.data.Time;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingController {
+    private static String DELIMITER = ",";
     private CarController carController;
-    private InputView inputView;
-    private OutputView outputView;
 
     public RacingController() {
         carController = new CarController();
-        inputView = new InputView();
-        outputView = new OutputView();
     }
 
     public void run() {
         inputCarNames();
-        int time = inputTime();
-        carController.race(time, outputView);
-        carController.showWinners(outputView);
+        startRounds(new Time(inputTime()));
+        carController.showWinners();
     }
 
-    public void inputCarNames() {
+    private void inputCarNames() {
         try {
-            outputView.askCarName();
-            String[] name = inputView.inputCarName();
-            carController.createCars(name);
+            OutputView.askCarName();
+            carController.createCars(inputNames());
         } catch (RuntimeException e) {
             inputCarNames();
         }
     }
 
-    public int inputTime() {
+    private String[] inputNames() {
+        return InputView.input().split(DELIMITER);
+    }
+
+    private String inputTime() {
         try {
-            outputView.askTime();
-            int time = inputView.inputTime();
+            OutputView.askTime();
+            String time = InputView.input();
             return time;
         } catch (RuntimeException e) {
             return inputTime();
+        }
+    }
+
+    private void startRounds(Time time) {
+        int current = 0;
+        while (!time.isOver(current++)) {
+            carController.race();
         }
     }
 }
