@@ -19,6 +19,16 @@ public class NameTest {
                 .hasMessageContaining("[Error] 자동차 이름은 1자 이상, 5자 이하여야 합니다.");
     }
 
+    @Test
+    public void Name_내부_인스턴스_name_불변_테스트() {
+        String playerName = "hello";
+        Name name = new Name(playerName);
+        System.out.println(name.getName());
+        //String 클래스가 불변 객체인지를 Test
+        name.getName().replace("hello", "ATTACK!");
+        assertThat(playerName == name.getName());
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {"joel", "woogi", "city"})
     public void Name_getName_테스트(String testName) {
