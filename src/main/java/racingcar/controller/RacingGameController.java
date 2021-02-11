@@ -3,6 +3,7 @@ package racingcar.controller;
 import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
+import racingcar.domain.RacingGameFactory;
 import racingcar.domain.Trial;
 import racingcar.view.RacingGameView;
 
@@ -19,10 +20,10 @@ public class RacingGameController {
 
     private static RacingGame prepare() {
         String input = RacingGameView.requestCars();
-        Cars cars = Cars.generateCarsByNames(input);
+        Cars cars = RacingGameFactory.generateCars(input);
 
         input = RacingGameView.requestTrial();
-        Trial trial = Trial.generateTrialByString(input);
+        Trial trial = RacingGameFactory.generateTrial(input);
 
         return new RacingGame(cars, trial);
     }

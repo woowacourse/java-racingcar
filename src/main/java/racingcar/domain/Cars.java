@@ -1,18 +1,15 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.car.Car;
-import racingcar.domain.car.Name;
 import racingcar.utils.RandomUtils;
 
 public class Cars {
 
     private static final int NUMBER_OF_CARS_MIN = 2;
-    private static final String NAME_SPLIT_DELIMITER = ",";
 
     private final List<Car> cars;
 
@@ -33,14 +30,6 @@ public class Cars {
         if (nonDuplicatedCars.size() != cars.size()) {
             throw new IllegalArgumentException("중복되는 이름을 입력할 수 없습니다.");
         }
-    }
-
-    public static Cars generateCarsByNames(final String names) {
-        final String[] parsedNames = names.split(NAME_SPLIT_DELIMITER, -1);
-        return new Cars(Arrays.stream(parsedNames)
-            .map(Name::new)
-            .map(Car::new)
-            .collect(Collectors.toList()));
     }
 
     public void tryToMove() {
