@@ -11,6 +11,9 @@ public class InputView {
     private static final int NO_DUPLICATE = 0;
     private static final int ZERO = 0;
 
+    private InputView() {
+    }
+
     public static String[] getUserCarInput(final Scanner scanner) {
         OutputView.readCarName();
         final String userInput = scanner.nextLine();

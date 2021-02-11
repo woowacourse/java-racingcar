@@ -11,6 +11,9 @@ public class OutputView {
     private static final String STATUS_INDICATOR = " : ";
     private static final String WINNER_DELIMITER = ",";
 
+    private OutputView() {
+    }
+
     public static void readCarName() {
         System.out.print(ENTER_CAR_NAME);
     }
