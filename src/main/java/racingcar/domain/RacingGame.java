@@ -1,38 +1,46 @@
 package racingcar.domain;
 
-import racingcar.dto.CarsResponseDto;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGame {
-    private final Cars cars;
-    private int round;
-
     private static final int INIT_ROUND = 1;
 
-    public RacingGame(List<String> names) {
-        List<Car> cars = names.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
-        this.cars = new Cars(cars);
-        this.round = INIT_ROUND;
+    private final Cars cars;
+    private final Round goalRound;
+    private Round currentRound;
+
+    public RacingGame(List<String> names, int goalRound) {
+        this(Cars.createCarsByNames(names), goalRound);
+    }
+
+    public RacingGame(Cars cars, int goalRound) {
+        this.cars = cars;
+        this.goalRound = new Round(goalRound);
+        this.currentRound = new Round(INIT_ROUND);
     }
 
     public void playRound() {
         cars.moveCars();
-        round++;
+        this.currentRound = currentRound.nextRound();
     }
 
-    public CarsResponseDto findWinners() {
+    public boolean isEnd() {
+        return currentRound.isBiggerThan(goalRound);
+    }
+
+    public GameResult findWinners() {
         return cars.findWinners();
     }
 
-    public CarsResponseDto getCarsResponseDto() {
-        return new CarsResponseDto(cars.getCars());
+    public Cars getCars() {
+        return cars;
     }
 
-    public int getRound() {
-        return round;
+    public Round getCurrentRound() {
+        return currentRound;
+    }
+
+    public int getCurrentRoundNumber() {
+        return currentRound.getRound();
     }
 }

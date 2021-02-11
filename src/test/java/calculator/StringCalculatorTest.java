@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
-    
+
     @DisplayName("splitAndSum에 null 혹은 빈문자가 왔을 때")
     @Test
     void splitAndSum_null_또는_빈문자() {

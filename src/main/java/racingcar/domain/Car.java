@@ -1,32 +1,47 @@
 package racingcar.domain;
 
 public class Car {
-    private int position;
-    private final String name;
+    private static final int DEFAULT_MOVABLE_VALUE = 4;
 
-    private static final int INIT_POSITION = 0;
-    private static final int MOVABLE_VALUE = 4;
+    private final Name name;
+    private Position position;
+    private MoveCondition moveCondition;
 
     public Car(String name) {
-        this.name = name;
-        this.position = INIT_POSITION;
+        this(name, number -> number >= DEFAULT_MOVABLE_VALUE);
+    }
+
+    public Car(String name, MoveCondition moveCondition) {
+        this.name = new Name(name);
+        this.position = Position.ZERO;
+        this.moveCondition = moveCondition;
     }
 
     public void move(int number) {
-        if (isMovable(number)) {
-            position++;
+        if (moveCondition.isMovable(number)) {
+            position = position.nextPosition();
         }
     }
 
-    private boolean isMovable(int number) {
-        return number >= MOVABLE_VALUE;
+    public void changeMovableCondition(MoveCondition moveCondition) {
+        this.moveCondition = moveCondition;
     }
 
-    public int getPosition() {
+    public boolean isSamePosition(Position thatPosition) {
+        return this.position.equals(thatPosition);
+    }
+
+    public Position getPosition() {
         return position;
     }
 
-    public String getName() {
+    public int getPositionIndex() {
+        return position.index();
+    }
+
+    public Name getName() {
         return name;
     }
+
+
 }

@@ -20,13 +20,13 @@ public class StringTest {
     @DisplayName("substring 메소드 학습테스트")
     @Test
     void substring() {
-        String value = "(1,2)".substring(1,4);
+        String value = "(1,2)".substring(1, 4);
         assertThat(value).isEqualTo("1,2");
     }
 
     @DisplayName("charAt 메소드 학습테스트")
     @Test
-    void charAtTest(){
+    void charAtTest() {
         char value = "abc".charAt(0);
         assertThat(value).isEqualTo('a');
         assertThatThrownBy(() -> "abc".charAt(4))

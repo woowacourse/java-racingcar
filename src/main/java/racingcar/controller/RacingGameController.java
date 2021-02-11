@@ -1,67 +1,84 @@
 package racingcar.controller;
 
-import racingcar.domain.RacingGame;
+import racingcar.accessor.GameAccessor;
+import racingcar.accessor.RacingGameAccessor;
+import racingcar.domain.Cars;
+import racingcar.dto.CarDto;
+import racingcar.dto.CarsDto;
+import racingcar.dto.WinnersDto;
 import racingcar.view.InputView;
+import racingcar.view.Inputable;
 import racingcar.view.OutputView;
+import racingcar.view.Outputable;
 
-import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class RacingGameController {
-    private static final String INPUT_CARS_NAME_MSG = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
-    private static final String BLANK_INPUT_ERROR_MSG = "[ERROR] 공백을 입력할 수 없습니다.";
-    private static final String SAME_NAME_ERROR_MSG = "[ERROR] 동일한 이름이 있습니다.";
-    private static final String INPUT_NUMBER_OF_ROUNDS_MSG = "시도할 회수는 몇회인가요?";
-    private static final String IS_NOT_NUMBER_ERROR_MSG = "[ERROR] 숫자를 입력해 주세요.";
-    private static final String EXECUTE_RESULT_MSG = "실행 결과";
-    private static final String COMMA = ",";
-    private static final String BLANK = " ";
+public class RacingGameController implements GameController {
+    private final GameAccessor gameAccessor = new RacingGameAccessor();
+    private final Inputable inputable;
+    private final Outputable outputable;
 
+    /**
+     * Outputable과 Inputable을 주입하지 않을 경우 default로 {@link OutputView} 와 {@link InputView} 를 생성합니다.
+     */
+    public RacingGameController() {
+        this(new OutputView(), new InputView());
+    }
+
+    public RacingGameController(Outputable outputable, Inputable inputable) {
+        this.outputable = outputable;
+        this.inputable = inputable;
+    }
+
+    @Override
     public void start() {
-        List<String> nameInput = takeNameInput();
-        RacingGame racingGame = new RacingGame(nameInput);
+        List<String> carNames = getUserNames();
 
-        executeRound(racingGame);
+        setUpGame(carNames);
 
-        OutputView.announceWinners(racingGame.findWinners());
+        iterateRounds();
+
+        outputable.announceWinners(announceWinners());
     }
 
-    private void executeRound(RacingGame racingGame) {
-        int round = inputRound();
-        OutputView.output(EXECUTE_RESULT_MSG);
-        for (int i = 0; i < round; i++) {
-            racingGame.playRound();
-            OutputView.printLeaderBoard(racingGame.getCarsResponseDto());
+    private void setUpGame(List<String> carNames) {
+        outputable.printInputNumberOfRoundsMessage();
+        gameAccessor.setUpGame(carNames, inputable.getNumberOfRounds());
+    }
+
+    private List<String> getUserNames() {
+        outputable.printInputCarsNameMessage();
+        return inputable.getCarsName()
+                .getCarsDto()
+                .stream()
+                .map(CarDto::getName)
+                .collect(Collectors.toList());
+    }
+
+    private void iterateRounds() {
+        while (!gameAccessor.isEnd()) {
+            outputable.printLeaderBoard(progressRound());
         }
     }
 
-    private List<String> takeNameInput() {
-        OutputView.output(INPUT_CARS_NAME_MSG);
-        String input = InputView.nextLine();
-        validateBlank(input);
-        List<String> names = Arrays.asList(input.split(COMMA));
-        validateDuplicate(names);
-        return names;
+    @Override
+    public void setUpGame(List<String> carNames, int goalRound) {
+        gameAccessor.setUpGame(carNames, goalRound);
     }
 
-    private void validateDuplicate(List<String> names) {
-        Set<String> nameSet = new HashSet<>(names);
-        if (nameSet.size() != names.size()) {
-            throw new IllegalArgumentException(SAME_NAME_ERROR_MSG);
-        }
+    @Override
+    public void setUpGame(Cars cars, int goalRound) {
+        gameAccessor.setUpGame(cars, goalRound);
     }
 
-    private void validateBlank(String input) {
-        if (input.contains(BLANK)) {
-            throw new IllegalArgumentException(BLANK_INPUT_ERROR_MSG);
-        }
+    @Override
+    public CarsDto progressRound() {
+        return gameAccessor.executeRound();
     }
 
-    private int inputRound() {
-        OutputView.output(INPUT_NUMBER_OF_ROUNDS_MSG);
-        try {
-            return Integer.parseInt(InputView.nextLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(IS_NOT_NUMBER_ERROR_MSG);
-        }
+    @Override
+    public WinnersDto announceWinners() {
+        return gameAccessor.findWinners();
     }
 }
