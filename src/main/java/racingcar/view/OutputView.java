@@ -13,9 +13,8 @@ public class OutputView {
     public static void printResults(Results roundResults) {
         System.out.println("실행 결과");
         List<Result> results = roundResults.getResults();
-        for (Result result : results) {
-            printResult(result);
-        }
+        results.forEach(OutputView::printResult);
+        printWinners(roundResults);
     }
 
     private static void printResult(Result result) {

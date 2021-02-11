@@ -12,6 +12,5 @@ public class GameManagerController {
         GameManager gameManager = new GameManager();
         Results results = gameManager.playGame(requestDto);
         OutputView.printResults(results);
-        OutputView.printWinners(results);
     }
 }

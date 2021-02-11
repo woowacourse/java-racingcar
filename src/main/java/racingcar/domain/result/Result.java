@@ -1,10 +1,12 @@
 package racingcar.domain.result;
 
 import racingcar.domain.car.Car;
+import racingcar.domain.car.Name;
 import racingcar.domain.car.Position;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Result {
     private final List<Car> result;
@@ -23,6 +25,14 @@ public class Result {
             maxPosition = car.getMaxPosition(maxPosition);
         }
         return maxPosition;
+    }
+
+    public List<String> getWinners() {
+        return result.stream()
+                .filter(car -> car.isSamePosition(getMaxPosition()))
+                .map(Car::getName)
+                .map(Name::getValue)
+                .collect(Collectors.toList());
     }
 
     public List<Car> getResult() {
