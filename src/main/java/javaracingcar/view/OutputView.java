@@ -1,12 +1,14 @@
 package javaracingcar.view;
 
 import javaracingcar.domain.Car;
+import javaracingcar.domain.RacingGame;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
     private static String newLine = System.lineSeparator();
+
     private OutputView() {
     }
 
@@ -14,8 +16,10 @@ public class OutputView {
         System.out.println(newLine + "실행 결과");
     }
 
-    public static void printRoundResult(List<Car> cars) {
-        cars.forEach(OutputView::printRoundResult);
+    public static void printRoundResult(RacingGame racingGame) {
+        racingGame.getCars()
+                  .toList()
+                  .forEach(OutputView::printRoundResult);
         System.out.println();
     }
 
@@ -31,10 +35,11 @@ public class OutputView {
         return positionResult.toString();
     }
 
-    public static void printWinners(List<Car> winners) {
-        List<String> winnerNames = winners.stream()
-                                          .map(Car::getName)
-                                          .collect(Collectors.toList());
+    public static void printWinners(RacingGame racingGame) {
+        List<String> winnerNames = racingGame.getWinners()
+                                             .stream()
+                                             .map(Car::getName)
+                                             .collect(Collectors.toList());
         System.out.print(String.join(", ", winnerNames));
         System.out.println("가 최종 우승했습니다.");
     }

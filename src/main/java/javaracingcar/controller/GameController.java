@@ -26,15 +26,19 @@ public class GameController {
         List<String> carNames = InputController.getCarNames(InputView.receiveCarNamesFromUser());
         int trial = InputController.getTrial(InputView.receiveTrialFromUser());
 
-        return RacingGame.init(carNames, trial);
+        return new RacingGame(carNames, trial);
     }
 
     private static void playRace(RacingGame racingGame) {
         OutputView.printResultTitle();
-        racingGame.playRace();
+        while (!racingGame.isEnd()) {
+            racingGame.playOneRound();
+            OutputView.printRoundResult(racingGame);
+        }
     }
 
     private static void printWinners(RacingGame racingGame) {
-        OutputView.printWinners(racingGame.getWinners());
+        OutputView.printWinners(racingGame);
     }
+    // TODO: 고민: racingGame객체 vs List<String> winners객체를 넘기기 (view는 도메인 객체의 구성을 몰라야?)
 }

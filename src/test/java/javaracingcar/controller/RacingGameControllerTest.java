@@ -13,7 +13,7 @@ class RacingGameControllerTest {
     void setup() {
         List<String> carNames = Arrays.asList("a", "b", "c", "a");
         int trial = 5;
-        racingGame = RacingGame.init(carNames, trial);
+//        racingGame = RacingGame.init(carNames, trial);
     }
     // TODO: GameController 테스트를 구현해야 함.
 
