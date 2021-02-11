@@ -1,20 +1,17 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
+import racingcar.domain.RacingCar;
 import racingcar.domain.Winners;
 import racingcar.view.io.OutputView;
-
-import java.util.List;
 
 public class RacingCarView {
     private static final String RESULT_HEADER_MESSAGE = "\n실행 결과";
     private static final String FINAL_RESULT_MESSAGE = "가 최종 우승했습니다.";
 
-    public static void printProgressResult(final List<Car> cars) {
+    public static void printNowProgressResult(final RacingCar racingCar) {
         OutputView.printString(RESULT_HEADER_MESSAGE);
-        for (Car car : cars) {
-            printCarStatus(car);
-        }
+        racingCar.getNowCars().forEach(RacingCarView::printCarStatus);
         OutputView.printBlankLine();
     }
 

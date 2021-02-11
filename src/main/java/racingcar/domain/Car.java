@@ -1,52 +1,30 @@
 package racingcar.domain;
 
-import java.util.regex.Pattern;
+import java.util.Objects;
 
 public class Car implements Comparable<Car> {
-    private static final String REGEX_ALPHA = "^[a-zA-z]*$";
-    private static final String REGEX_KOREAN = "[가-힣]*$";
-    private static final int NAME_LENGTH_LIMIT = 5;
     private static final int MOVE_PIVOT = 4;
 
-    private String name;
+    private Name name;
     private int position;
 
-    public Car(final String name) {
-        validateName(name);
+    public Car(final Name name) {
+        this(name, 0);
+    }
+
+    public Car(final Name name, final int position) {
         this.name = name;
+        this.position = position;
     }
 
-    @Override
-    public int compareTo(final Car anotherCar) {
-        return Integer.compare(this.getPosition(), anotherCar.getPosition());
-    }
-
-    private void validateName(final String name) {
-        if (isNullName(name) || isContainInvalidChar(name) || isExceedNameLength(name)) {
-            throw new IllegalArgumentException("잘못된 자동차 이름입니다.");
-        }
-    }
-
-    private boolean isNullName(final String name) {
-        return "".equals(name);
-    }
-
-    private boolean isContainInvalidChar(final String name) {
-        return !Pattern.matches(REGEX_ALPHA, name) && !Pattern.matches(REGEX_KOREAN, name);
-    }
-
-    private boolean isExceedNameLength(final String name) {
-        return name.length() > NAME_LENGTH_LIMIT;
-    }
-
-    public void moveForward(int randomNumber) {
+    public void moveForward(final int randomNumber) {
         if (isMoveNumber(randomNumber)) {
             this.position++;
         }
     }
 
-    private boolean isMoveNumber(final int randomNumber) {
-        return MOVE_PIVOT <= randomNumber;
+    private boolean isMoveNumber(final int number) {
+        return MOVE_PIVOT <= number;
     }
 
     public boolean isMaxPosition(final Car maxPositionCar) {
@@ -54,10 +32,29 @@ public class Car implements Comparable<Car> {
     }
 
     public String getName() {
-        return this.name;
+        return name.getName();
     }
 
     public int getPosition() {
         return this.position;
+    }
+
+    @Override
+    public int compareTo(final Car anotherCar) {
+        return Integer.compare(this.getPosition(), anotherCar.getPosition());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position == car.position &&
+                Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }

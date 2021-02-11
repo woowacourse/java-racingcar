@@ -1,13 +1,12 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtils;
-import racingcar.view.RacingCarView;
+import java.util.List;
 
 public class RacingCar {
-    private Cars cars;
+    private final Cars cars;
     private TryCount tryCount;
 
-    public RacingCar(Cars cars, TryCount tryCount) {
+    public RacingCar(final Cars cars, final TryCount tryCount) {
         this.cars = cars;
         this.tryCount = tryCount;
     }
@@ -16,18 +15,17 @@ public class RacingCar {
         raceByTryCount();
     }
 
-    private void raceByTryCount() {
-        while (tryCount.isRemainCount()) {
-            race();
-            RacingCarView.printProgressResult(cars.cars());
-            tryCount.deductCount();
-        }
+    public List<Car> getNowCars() {
+        return this.cars.cars();
     }
 
-    private void race() {
-        for (Car car : cars.cars()) {
-            car.moveForward(RandomUtils.createRandomNumber());
-        }
+    private void raceByTryCount() {
+        cars.race();
+        tryCount.deductCount();
+    }
+
+    public boolean isNotFinish() {
+        return tryCount.isRemainCount();
     }
 
     public Winners calculateResult() {
