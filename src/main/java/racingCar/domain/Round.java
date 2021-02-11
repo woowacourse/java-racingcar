@@ -6,6 +6,7 @@ import racingCar.exception.InvalidNumOfMoveException;
 public class Round {
 
     public static final String ERROR_MESSAGE_ROUND_COUNT_NATURAL_NUMBER = "시도횟수는 자연수이어야 합니다.";
+
     private final int round;
 
     public Round(int round) {
@@ -15,11 +16,11 @@ public class Round {
         this.round = round;
     }
 
-    public Round goOn() {
+    public Round next() {
         return new Round(round -1);
     }
 
-    public boolean isEnd() {
+    public boolean isFinish() {
         return round == 0;
     }
 

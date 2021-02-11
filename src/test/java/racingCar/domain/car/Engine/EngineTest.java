@@ -14,8 +14,8 @@ class EngineTest {
         Engine nonMovableEngine = new FixedEngine(3);
 
         // then
-        assertThat(movableEngine.isMove()).isEqualTo(true);
-        assertThat(nonMovableEngine.isMove()).isEqualTo(false);
+        assertThat(movableEngine.movable()).isEqualTo(true);
+        assertThat(nonMovableEngine.movable()).isEqualTo(false);
     }
 
     @Test
@@ -23,7 +23,7 @@ class EngineTest {
         //given, when
         Engine fakeEngine = new Engine() {
             @Override
-            public boolean isMove() {
+            public boolean movable() {
                 return true;
             }
         };

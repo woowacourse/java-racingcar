@@ -22,7 +22,7 @@ class RoundTest {
     @Test
     public void 이동() {
         final Round round = new Round(1);
-        final Round actual = round.goOn();
+        final Round actual = round.next();
         assertThat(actual).isEqualTo(new Round(0));
     }
 

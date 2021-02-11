@@ -17,26 +17,7 @@ public class FixedEngine implements Engine {
     }
 
     @Override
-    public boolean isMove() {
+    public boolean movable() {
         return num > criteria;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        FixedEngine that = (FixedEngine) o;
-        return num == that.num &&
-            criteria == that.criteria;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(num, criteria);
     }
 }

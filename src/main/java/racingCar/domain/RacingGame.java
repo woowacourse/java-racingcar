@@ -14,10 +14,10 @@ public class RacingGame {
 
     public void race() {
         cars.racePerRound();
-        this.round = round.goOn();
+        this.round = round.next();
     }
 
     public boolean isEnd() {
-        return round.isEnd();
+        return round.isFinish();
     }
 }

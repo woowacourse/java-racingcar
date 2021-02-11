@@ -2,5 +2,5 @@ package racingCar.domain.car.Engine;
 
 public interface Engine {
 
-    boolean isMove();
+    boolean movable();
 }
