@@ -52,4 +52,8 @@ public class OutputView {
 
         System.out.printf((PRINT_WINNERS) + "%n", winnersName);
     }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

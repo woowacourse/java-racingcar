@@ -1,5 +1,8 @@
 package racingcar.domain.Car;
 
+import racingcar.domain.Car.Exception.NameLengthException;
+import racingcar.domain.Car.Exception.NameNullOrEmptyException;
+
 import java.util.Objects;
 
 public class Name {
@@ -17,14 +20,14 @@ public class Name {
 
     private void validateNullOrEmpty(String name) {
         if (name == null || "".equals(name.trim())) {
-            throw new RuntimeException("이름은 공백이거나 빈 문자열이 될 수 없습니다.");
+            throw new NameNullOrEmptyException();
         }
     }
 
     private void validateLength(String name) {
         name = name.trim();
         if (name.length() < 1 || name.length() > 5) {
-            throw new RuntimeException("이름은 1글자 이상 5글자 이하여야 합니다.");
+            throw new NameLengthException();
         }
     }
 

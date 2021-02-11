@@ -1,6 +1,7 @@
-package racingcar.domain;
+package racingcar.domain.Cars;
 
 import racingcar.domain.Car.Car;
+import racingcar.domain.Cars.Exception.CarDuplicatedException;
 import utils.RandomUtils;
 
 import java.util.*;
@@ -25,19 +26,19 @@ public class Cars {
         return new Cars(cars);
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
-
     private static void validateDuplicated(String[] carNames) {
         Set<String> set = new HashSet<>(Arrays.asList(carNames));
         if (set.size() != carNames.length) {
-            throw new RuntimeException("중복 사용자는 허용하지 않습니다.");
+            throw new CarDuplicatedException();
         }
     }
 
     private static String[] splitCarsName(String carsName) {
         return carsName.split(",", -1);
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 
     public List<Car> getCarsAfterDrive() {

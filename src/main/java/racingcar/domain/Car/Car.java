@@ -1,5 +1,7 @@
 package racingcar.domain.Car;
 
+import racingcar.domain.Car.Exception.DriveValueInvalidException;
+
 public class Car {
     private final int ACCELERATE_THRESHOLD = 4;
     private final int MIN_VALUE = 0;
@@ -14,7 +16,7 @@ public class Car {
 
     public void drive(int value) {
         if (value < MIN_VALUE || value > MAX_VALUE) {
-            throw new RuntimeException("0과 9사이의 값이어야만 합니다.");
+            throw new DriveValueInvalidException();
         }
 
         if (value >= ACCELERATE_THRESHOLD) {
