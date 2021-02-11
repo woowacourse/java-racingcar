@@ -112,6 +112,6 @@ class CarsTest {
 
         Cars cars = new Cars(carNames, positions);
 
-        assertThat(cars.giveWinners().get(0)).isEqualTo(winnerName);
+        assertThat(cars.giveWinners()).containsExactly(winnerName);
     }
 }
