@@ -16,7 +16,9 @@ public class Cars {
     }
 
     public Cars(final List<Car> cars) {
-        this.container = cars;
+        container = cars.stream()
+                .map(car -> new Car(car.getName()))
+                .collect(Collectors.toList());
     }
 
     public Cars(final CarNames carNames) {

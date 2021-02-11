@@ -4,6 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,6 +28,19 @@ class CarsTest {
                 ).size()).isEqualTo(3),
                 () -> assertTrue(new Cars().isEmpty())
         );
+    }
+
+    @Test
+    @DisplayName("생성자의 방어적 객체 생성 테스트")
+    void checkDeepCopy() {
+        List<Car> carList = Arrays.asList(
+                new Car("java"),
+                new Car("jason"),
+                new Car("pobi")
+        );
+        Cars cars = new Cars(carList);
+        carList.get(0).move(9);
+        assertNotEquals(carList.get(0).getPosition(), cars.toList().get(0).getPosition());
     }
 
     @Test
