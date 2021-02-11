@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import static stringcalculator.Utils.isNumeric;
 
 public class CustomDelimiter implements Delimiter {
-    private static final String FORMAT = "//(.)\r\n(.*)";
+    private static final String FORMAT = "//(.)" + System.lineSeparator() + "(.*)";
     private static final Pattern PATTERN = Pattern.compile(FORMAT);
     private final String delimiter;
 
