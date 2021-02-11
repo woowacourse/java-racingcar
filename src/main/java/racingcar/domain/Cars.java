@@ -19,6 +19,8 @@ public class Cars {
     }
 
     public static Cars createByNames(final List<Name> names) {
+        CarsValidator.checkIsValidNames(names);
+
         List<Car> cars = names.stream()
                 .map(name -> Car.createByName(name))
                 .collect(Collectors.toList());
@@ -41,8 +43,7 @@ public class Cars {
     }
 
     public List<Name> getWinnerNames() {
-        Cars winners = new Cars(getWinners());
-        return winners.getCarsNames();
+        return getWinners().getCarsNames();
     }
 
     private List<Name> getCarsNames() {
@@ -51,12 +52,14 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    private List<Car> getWinners() {
+    private Cars getWinners() {
         int winnerPosition = findWinnerPosition();
 
-        return cars.stream()
+        List<Car> winners = cars.stream()
                 .filter(car -> car.isOnPosition(winnerPosition))
                 .collect(Collectors.toList());
+
+        return new Cars(winners);
     }
 
     private int findWinnerPosition() {
