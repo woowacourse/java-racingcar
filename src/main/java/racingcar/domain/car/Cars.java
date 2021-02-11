@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static List<Car> cars;
+    private final List<Car> cars;
 
     private Cars(List<Car> cars) {
         validateEmptyCarList(cars);
