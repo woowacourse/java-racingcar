@@ -1,16 +1,15 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.utils.NameHandler;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,12 +24,20 @@ class CarsTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력한 이름이 하나 뿐인 경우")
+    @DisplayName("cars가 null인 경우 예외 발생")
     @ParameterizedTest
-    @ValueSource(strings = {"pobi"})
-    void expectOnlyCarExceptionTest(String onlyName) {
+    @NullSource
+    void createCarsWithNull(List<Car> cars) {
         assertThatThrownBy(() -> {
-            List names = Arrays.asList(new Name[]{Name.create(onlyName)});
+            new Cars(cars);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("cars가 null인 names로 생성되는 경우 예외 발생")
+    @ParameterizedTest
+    @NullSource
+    void createCarsWithNullNames(List<Name> names) {
+        assertThatThrownBy(() -> {
             Cars.createByNames(names);
         }).isInstanceOf(IllegalArgumentException.class);
     }
@@ -66,15 +73,5 @@ class CarsTest {
         assertThat(winnerCars.contains(tmpCars[2])).isFalse();
         assertThat(winnerCars.contains(tmpCars[3])).isTrue();
         assertThat(winnerCars.contains(tmpCars[4])).isFalse();
-    }
-
-    @DisplayName("cars가 null인 경우")
-    @Test
-    void checkIsCarsNull() {
-        Cars cars = new Cars(null);
-
-        cars.getWinnerNames();
-        cars.getResults();
-        cars.tryMoveCars();
     }
 }
