@@ -26,13 +26,7 @@ public class Car {
     }
 
     private boolean isMovable() {
-        int generatedNumber = moveCondition.generate(MAX_BOUND);
-
-        if(!(MIN_BOUND <= generatedNumber && generatedNumber <= MAX_BOUND)) {
-            throw new MoveConditionOutOfBoundException();
-        }
-
-        return generatedNumber >= MOVE_THRESHOLD;
+        return moveCondition.generate(MAX_BOUND) >= MOVE_THRESHOLD;
     }
 
     public int getPosition() {
