@@ -9,17 +9,17 @@ import racingcar.domain.Car;
 public class ResultView {
     private static final String POSITION_SIGN = "-";
 
-    public ResultView() {
+    static {
         printNewLine();
         System.out.println("실행 결과");
     }
 
-    public void printCars(List<Car> cars) {
-        cars.forEach(this::printEachCarCurrentPosition);
+    public static void printCars(List<Car> cars) {
+        cars.forEach(ResultView::printEachCarCurrentPosition);
         printNewLine();
     }
 
-    private void printEachCarCurrentPosition(Car car) {
+    private static void printEachCarCurrentPosition(Car car) {
         System.out.print(car.getName() + " : ");
         for (int i = 0; i < car.getPosition(); i++) {
             System.out.print(POSITION_SIGN);
@@ -27,7 +27,7 @@ public class ResultView {
         printNewLine();
     }
 
-    public void printWinners(List<Car> winners) {
+    public static void printWinners(List<Car> winners) {
         List<String> winnerNames = winners.stream()
             .map(Car::getName)
             .collect(Collectors.toList());
@@ -36,7 +36,7 @@ public class ResultView {
         System.out.println("가 최종 우승했습니다.");
     }
 
-    public void printNewLine() {
+    public static void printNewLine() {
         System.out.print("\n");
     }
 }

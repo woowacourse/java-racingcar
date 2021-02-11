@@ -21,11 +21,10 @@ public class Application {
     }
 
     private static void doRace(CarRacing carRacing) {
-        ResultView resultView = new ResultView();
         while (!carRacing.isEnd()) {
             carRacing.raceOneTime();
-            resultView.printCars(carRacing.getCars());
+            ResultView.printCars(carRacing.getCars());
         }
-        resultView.printWinners(carRacing.getWinners());
+        ResultView.printWinners(carRacing.getWinners());
     }
 }
