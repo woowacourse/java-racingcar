@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,7 +15,7 @@ public class Cars {
 
     public Cars(final List<Car> cars) {
         CarsValidator.checkIsValidCars(cars);
-        this.cars = cars;
+        this.cars = Collections.unmodifiableList(cars);
     }
 
     public static Cars createByNames(final List<Name> names) {
