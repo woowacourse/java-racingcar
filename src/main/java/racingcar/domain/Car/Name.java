@@ -2,10 +2,10 @@ package racingcar.domain.Car;
 
 import java.util.Objects;
 
-public class CarName {
+public class Name {
     private final String name;
 
-    public CarName(final String name) {
+    public Name(final String name) {
         this.name = validateName(name);
     }
 
@@ -43,8 +43,8 @@ public class CarName {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CarName carName = (CarName) o;
-        return Objects.equals(name, carName.name);
+        Name name = (Name) o;
+        return Objects.equals(this.name, name.name);
     }
 
     @Override

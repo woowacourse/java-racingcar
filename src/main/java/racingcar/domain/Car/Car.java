@@ -4,12 +4,12 @@ public class Car {
     private final int ACCELERATE_THRESHOLD = 4;
     private final int MIN_VALUE = 0;
     private final int MAX_VALUE = 9;
-    private final CarName carName;
+    private final Name name;
     private int position;
 
     public Car(final String name) {
         this.position = 1;
-        this.carName = new CarName(name);
+        this.name = new Name(name);
     }
 
     public void drive(int value) {
@@ -30,8 +30,8 @@ public class Car {
         position++;
     }
 
-    public String getCarName() {
-        return carName.getName();
+    public String getName() {
+        return name.getName();
     }
 
     public int getPosition() {
@@ -42,13 +42,13 @@ public class Car {
     public String toString() {
         return "Car{" +
                 "position=" + position +
-                ", carName=" + carName +
+                ", carName=" + name +
                 '}';
     }
 
     @Override
     public int hashCode() {
-        return carName.hashCode();
+        return name.hashCode();
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Car {
         }
         if (obj instanceof Car) {
             Car car = (Car) obj;
-            return this.carName.equals(car.carName);
+            return this.name.equals(car.name);
         }
         return false;
     }
