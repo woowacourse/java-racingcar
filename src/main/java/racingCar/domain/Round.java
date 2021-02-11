@@ -10,14 +10,14 @@ public class Round {
     private final int round;
 
     public Round(int round) {
-        if (round < 0 ){
+        if (round < 0) {
             throw new InvalidNumOfMoveException(ERROR_MESSAGE_ROUND_COUNT_NATURAL_NUMBER);
         }
         this.round = round;
     }
 
     public Round next() {
-        return new Round(round -1);
+        return new Round(round - 1);
     }
 
     public boolean isFinish() {

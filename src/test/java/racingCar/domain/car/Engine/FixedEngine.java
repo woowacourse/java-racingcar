@@ -1,7 +1,5 @@
 package racingCar.domain.car.Engine;
 
-import java.util.Objects;
-
 public class FixedEngine implements Engine {
 
     private final int num;

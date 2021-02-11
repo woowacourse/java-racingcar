@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class InputView {
 
     public static final String DELIMITER = ",";
+
     private final Scanner scanner;
 
     public InputView(Scanner scanner) {

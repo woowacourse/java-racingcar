@@ -5,10 +5,8 @@ import racingCar.exception.InvalidNumOfMoveException;
 
 public class ValidateUtils {
 
-
     public static final int MIN_NAME_LENGTH = 1;
     public static final int MAX_NAME_LENGTH = 5;
-
     public static final String ERROR_MESSAGE_CAR_NAME_NULL_OR_EMPTY = "자동차 이름은 공백이 안됩니다.";
     private static final String ERROR_MESSAGE_ROUND_COUNT_NUMBER = "시도 횟수는 숫자이어야 합니다.";
 

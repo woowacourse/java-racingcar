@@ -5,9 +5,9 @@ import racingCar.utils.RandomUtils;
 
 public class RandomEngine implements Engine {
 
+    public static final int CRITERIA = 3;
     private static final int MIN_VALUE = 0;
     private static final int MAX_VALUE = 9;
-    public static final int CRITERIA = 3;
 
     @Override
     public boolean movable() {

@@ -25,7 +25,7 @@ public class Position {
     }
 
     public Position compareTo(Position other) {
-        if(position > other.position){
+        if (position > other.position) {
             return this;
         }
         return other;

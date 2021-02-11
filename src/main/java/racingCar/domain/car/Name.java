@@ -7,6 +7,7 @@ import racingCar.utils.ValidateUtils;
 public class Name {
 
     public static final String ERROR_MESSAGE_CAR_NAME_LENGTH = "자동차 이름은 1자 이상 5자 이하여야 합니다.";
+
     private final String name;
 
     public Name(final String name) {

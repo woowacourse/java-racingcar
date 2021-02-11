@@ -34,7 +34,7 @@ public class CarsTest {
         carList.add(new Car("jason", new FixedEngine(0)));
 
         assertThatIllegalArgumentException()
-            .isThrownBy(()->new Cars(carList));
+            .isThrownBy(() -> new Cars(carList));
     }
 
     @Test

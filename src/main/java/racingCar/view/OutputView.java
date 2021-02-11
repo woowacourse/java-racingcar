@@ -1,7 +1,9 @@
 package racingCar.view;
 
-import java.util.List;
+import java.util.stream.Collectors;
 import racingCar.domain.car.Car;
+import racingCar.domain.car.Cars;
+import racingCar.domain.car.Position;
 
 public class OutputView {
 
@@ -24,8 +26,11 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public static void printCars(List<Car> cars) {
-        cars.forEach(OutputView::printCurrentPosition);
+    public static void printCars(Cars cars) {
+        cars.toList()
+            .stream()
+            .collect(Collectors.toMap(Car::getName, Car::getPosition))
+            .forEach(OutputView::printCurrentPosition);
         System.out.println();
     }
 
@@ -34,11 +39,11 @@ public class OutputView {
         System.out.println(winners + RACING_GAME_WINNERS_MESSAGE);
     }
 
-    public static void printCurrentPosition(Car car) {
+    public static void printCurrentPosition(String name, Position position) {
         StringBuilder currentPosition = new StringBuilder();
-        for (int i = 0; i < car.getPosition(); i++) {
+        for (int i = 0; i < position.getPosition(); i++) {
             currentPosition.append(GO_FORWARD_MARKING);
         }
-        System.out.println(car.getName() + CAR_POSITION_SEPARATOR + currentPosition.toString());
+        System.out.println(name + CAR_POSITION_SEPARATOR + currentPosition.toString());
     }
 }

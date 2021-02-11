@@ -4,8 +4,8 @@ import java.util.Scanner;
 import racingCar.domain.RacingGame;
 import racingCar.domain.Round;
 import racingCar.domain.car.Cars;
-import racingCar.domain.car.factory.CarsFactory;
 import racingCar.domain.car.Engine.RandomEngine;
+import racingCar.domain.car.factory.CarsFactory;
 import racingCar.exception.InvalidCarNameException;
 import racingCar.exception.InvalidNumOfMoveException;
 import racingCar.utils.ValidateUtils;
@@ -26,7 +26,7 @@ public class GameController {
         RacingGame racingGame = new RacingGame(cars, round);
         while (!racingGame.isEnd()) {
             racingGame.race();
-            OutputView.printCars(cars.toList());
+            OutputView.printCars(cars);
         }
         OutputView.printWinners(cars.findWinners());
     }
@@ -35,7 +35,7 @@ public class GameController {
         try {
             OutputView.printInputCarNameMessage();
             String[] carNames = inputView.inputCarNames();
-            return CarsFactory.create(carNames,new RandomEngine());
+            return CarsFactory.create(carNames, new RandomEngine());
         } catch (InvalidCarNameException e) {
             OutputView.printExceptionMessage(e);
             return inputCars();
