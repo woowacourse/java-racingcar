@@ -1,42 +1,48 @@
 package javaracingcar.domain;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RacingGameTest {
+    Car carA, carB, carC;
+    Cars cars;
+    int trial;
+    RacingGame racingGame;
+
+    @BeforeEach
+    void setup() {
+        carA = new Car("CarA", 3);
+        carB = new Car("CarB", 3);
+        carC = new Car("CarC", 2);
+        cars = new Cars(Arrays.asList(carA, carB, carC));
+        trial = 3;
+        racingGame = new RacingGame(cars, trial);
+    }
+
     @Test
-    void generateCars_자동차리스트생성() {
-        List<String> cars = new ArrayList<>();
-        cars.add("CarA");
-        cars.add("CarB");
-        cars.add("CarC");
-        List<Car> generatedCars = RacingGame.generateCars(Arrays.asList("CarA", "CarB", "CarC"));
-        for (int i = 0; i < cars.size(); i++) {
-            assertEquals(generatedCars.get(i)
-                                      .getName(), cars.get(i));
+    @DisplayName("실행 횟수 검증")
+    void trialCountTest() {
+        int cnt = 0;
+        while (!racingGame.isEnd()) {
+            racingGame.playOneRound();
+            cnt++;
         }
+        assertEquals(trial, cnt);
     }
 
     @Test
-    void init_중복된이름() {
-        List<String> carNames = Arrays.asList("a", "b", "c", "a");
-        assertThatThrownBy(() -> RacingGame.init(carNames, 5))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("중복된 이름");
+    @DisplayName("우승자 찾기")
+    void getWinnersTest() {
+        List<Car> winners = racingGame.getWinners();
+        assertTrue(winners.contains(carA));
+        assertTrue(winners.contains(carB));
+        assertFalse(winners.contains(carC));
     }
 
-    @Test
-    void init_정상적인생성() {
-        List<String> carNames = Arrays.asList("a", "b", "c", "d");
-        int trial = 5;
-        RacingGame racingGame = RacingGame.init(carNames, trial);
-        assertEquals(racingGame.getCarNames(), carNames);
-        assertEquals(racingGame.getTrial(), trial);
-    }
 }

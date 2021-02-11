@@ -6,15 +6,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputController {
-    private static Pattern pattern = Pattern.compile("^[1-9]+[0-9]*$");
-    private static String SPLIT_DELIMITER = ",";
+    private static final Pattern pattern = Pattern.compile("^[1-9]+[0-9]*$");
+    private static final String SPLIT_DELIMITER = ",";
 
     private InputController() {
     }
 
     public static List<String> getCarNames(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("null 이 입력되었습니다."); //TODO enum
+            throw new IllegalArgumentException("null 이 입력되었습니다.");
         }
         return splitInput(removeSpace(input));
     }
