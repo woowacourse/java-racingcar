@@ -33,7 +33,7 @@ public class RacingGameView {
     }
 
     public static void printCarPositions(final RacingGame racingGame) {
-        List<Car> cars = racingGame.getCars().getValue();
+        List<Car> cars = racingGame.getCars();
         for (Car car : cars) {
             final String progressBar = makeProgressBar(car.getPosition());
             System.out.printf(CAR_SITUATION_MESSAGE_FORMAT, car.getName(), progressBar);

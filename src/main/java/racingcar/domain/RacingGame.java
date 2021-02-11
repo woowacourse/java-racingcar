@@ -26,7 +26,7 @@ public class RacingGame {
         return trial.isFinished();
     }
 
-    public Cars getCars() {
-        return cars;
+    public List<Car> getCars() {
+        return cars.getCars();
     }
 }
