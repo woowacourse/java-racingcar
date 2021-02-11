@@ -26,13 +26,9 @@ public class Results {
         return result.getMaxPosition();
     }
 
-    public Result getLastResult() {
+    private Result getLastResult() {
         int lastIndex = results.size() - GAP_WITH_SIZE_AND_INDEX;
         return results.get(lastIndex);
-    }
-
-    public boolean isMaxPosition(int position) {
-        return getMaxPosition() == position;
     }
 
     public List<String> getWinners() {
@@ -42,5 +38,9 @@ public class Results {
             .filter(carState -> isMaxPosition(carState.getPosition()))
             .map(CarState::getName)
             .collect(Collectors.toList());
+    }
+
+    private boolean isMaxPosition(int position) {
+        return getMaxPosition() == position;
     }
 }
