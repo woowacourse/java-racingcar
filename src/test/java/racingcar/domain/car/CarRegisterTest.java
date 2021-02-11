@@ -1,9 +1,9 @@
-package racingcar;
+package racingcar.domain.car;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.CarRegister;
+import racingcar.domain.car.CarRegister;
 import racingcar.exception.InvalidCarNameLengthException;
 import racingcar.exception.InvalidDuplicateCarNameException;
 import racingcar.exception.InvalidNumberOfRegisteredCarsException;
