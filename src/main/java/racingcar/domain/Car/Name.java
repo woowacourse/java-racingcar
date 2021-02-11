@@ -6,23 +6,23 @@ public class Name {
     private final String name;
 
     public Name(final String name) {
-        this.name = validateName(name);
+        this.name = validate(name);
     }
 
-    private String validateName(String name) {
-        name = name.trim();
-        validateNameLength(name);
-        validateNameNullOrEmpty(name);
-        return name;
+    private String validate(String name) {
+        validateNullOrEmpty(name);
+        validateLength(name);
+        return name.trim();
     }
 
-    private void validateNameNullOrEmpty(String name) {
-        if (name == null || "".equals(name)) {
+    private void validateNullOrEmpty(String name) {
+        if (name == null || "".equals(name.trim())) {
             throw new RuntimeException("이름은 공백이거나 빈 문자열이 될 수 없습니다.");
         }
     }
 
-    private void validateNameLength(String name) {
+    private void validateLength(String name) {
+        name = name.trim();
         if (name.length() < 1 || name.length() > 5) {
             throw new RuntimeException("이름은 1글자 이상 5글자 이하여야 합니다.");
         }
