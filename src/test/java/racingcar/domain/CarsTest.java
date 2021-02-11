@@ -58,48 +58,48 @@ class CarsTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("조건을 만족하는 자동차는 전진 성공")
-    @ParameterizedTest
-    @MethodSource("initializeDecideMovableCar")
-    void decideMovableCar_자동차가_전진할지_멈출지_판단(Cars cars, List<Integer> randoms) {
-        final int MOVEMENT_CRITERION = 4;
-
-        int movedPosition = 1;
-        int numberOfMovableCar = (int) randoms.stream()
-                .filter(random -> random.compareTo(MOVEMENT_CRITERION) >= 0)
-                .count();
-
-        cars.decideMovableCar(randoms);
-
-        int movedCount = (int) cars.getCars()
-                .stream()
-                .filter(car -> car.getPosition() == movedPosition)
-                .count();
-
-        assertThat(movedCount).isEqualTo(numberOfMovableCar);
-    }
-
-    @DisplayName("자동차가 조건을 만족하면 전진 성공")
-    @ParameterizedTest
-    @MethodSource("initializeDecideMovableCar")
-    void moveIfPossible_자동차가_조건을_만족하면_전진(Cars cars) {
-        final int MINIMUM_RANDOM_VALUE = 0;
-        final int MAXIMUM_RANDOM_VALUE = 9;
-        final int MOVEMENT_CRITERION = 4;
-
-        int random = RandomUtils.nextInt(MINIMUM_RANDOM_VALUE, MAXIMUM_RANDOM_VALUE);
-        int expectedPosition = 0;
-
-        Car car = new Car("pobi");
-
-        if (random >= MOVEMENT_CRITERION) {
-            expectedPosition++;
-        }
-
-        cars.moveIfPossible(car, random);
-
-        assertThat(car.getPosition()).isEqualTo(expectedPosition);
-    }
+//    @DisplayName("조건을 만족하는 자동차는 전진 성공")
+//    @ParameterizedTest
+//    @MethodSource("initializeDecideMovableCar")
+//    void decideMovableCar_자동차가_전진할지_멈출지_판단(Cars cars, List<Integer> randoms) {
+//        final int MOVEMENT_CRITERION = 4;
+//
+//        int movedPosition = 1;
+//        int numberOfMovableCar = (int) randoms.stream()
+//                .filter(random -> random.compareTo(MOVEMENT_CRITERION) >= 0)
+//                .count();
+//
+//        cars.decideMovableCar(randoms);
+//
+//        int movedCount = (int) cars.getCars()
+//                .stream()
+//                .filter(car -> car.getPosition() == movedPosition)
+//                .count();
+//
+//        assertThat(movedCount).isEqualTo(numberOfMovableCar);
+//    }
+//
+//    @DisplayName("자동차가 조건을 만족하면 전진 성공")
+//    @ParameterizedTest
+//    @MethodSource("initializeDecideMovableCar")
+//    void moveIfPossible_자동차가_조건을_만족하면_전진(Cars cars) {
+//        final int MINIMUM_RANDOM_VALUE = 0;
+//        final int MAXIMUM_RANDOM_VALUE = 9;
+//        final int MOVEMENT_CRITERION = 4;
+//
+//        int random = RandomUtils.nextInt(MINIMUM_RANDOM_VALUE, MAXIMUM_RANDOM_VALUE);
+//        int expectedPosition = 0;
+//
+//        Car car = new Car("pobi");
+//
+//        if (random >= MOVEMENT_CRITERION) {
+//            expectedPosition++;
+//        }
+//
+//        cars.moveIfPossible(car, random);
+//
+//        assertThat(car.getPosition()).isEqualTo(expectedPosition);
+//    }
 
 
     @DisplayName("최종 우승자 판단 성공")

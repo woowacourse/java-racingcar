@@ -7,6 +7,7 @@ public class Car {
     private static final String CAR_NAME_LENGTH_ERROR = ERROR + "자동차 이름은 " +
             MINIMUM_CAR_NAME_LENGTH + " 이상 " +
             MAXIMUM_CAR_NAME_LENGTH + " 이하로 입력해 주세요.";
+    private static final int MOVEMENT_CRITERION = 4;
 
     private final String name;
     private int position;
@@ -27,8 +28,10 @@ public class Car {
         }
     }
 
-    public void move() {
-        position++;
+    public void move(Movable movable) {
+        if (movable.extractRandom() >= MOVEMENT_CRITERION) {
+            position++;
+        }
     }
 
     public boolean isMaxPosition(int maxPosition) {

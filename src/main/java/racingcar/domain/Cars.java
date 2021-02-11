@@ -1,15 +1,10 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtils;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
     private static final int ZERO = 0;
-    private static final int MINIMUM_RANDOM_VALUE = 0;
-    private static final int MAXIMUM_RANDOM_VALUE = 9;
-    private static final int MOVEMENT_CRITERION = 4;
     private static final String ERROR = "[ERROR] ";
     private static final String CAR_NAME_DUPLICATION_ERROR = ERROR + "자동차 이름은 중복되지 않게 입력해 주세요.";
 
@@ -41,28 +36,11 @@ public class Cars {
         }
     }
 
-    public void decideMovableCar(List<Integer> randoms) {
-        if (Collections.EMPTY_LIST.equals(randoms)) {
-            randoms = extractRandoms(cars);
-        }
+    public void decideMovableCar() {
+        for (Car car : cars) {
+            MovableImpl movable = new MovableImpl();
 
-        for (int i = 0; i < cars.size(); i++) {
-            moveIfPossible(cars.get(i), randoms.get(i));
-        }
-    }
-
-    private List<Integer> extractRandoms(List<Car> cars) {
-        List<Integer> randoms = new ArrayList<>();
-
-        for (int i = 0; i < cars.size(); i++) {
-            randoms.add(RandomUtils.nextInt(MINIMUM_RANDOM_VALUE, MAXIMUM_RANDOM_VALUE));
-        }
-        return randoms;
-    }
-
-    public void moveIfPossible(Car car, int random) {
-        if (random >= MOVEMENT_CRITERION) {
-            car.move();
+            car.move(movable);
         }
     }
 

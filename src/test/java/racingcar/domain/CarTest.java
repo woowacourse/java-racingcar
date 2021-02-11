@@ -29,18 +29,25 @@ class CarTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("자동차 전진 성공")
-    @Test
-    public void moveCar() {
-        final int MOVEMENT = 10;
-
+    @DisplayName("자동차 전진")
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 9})
+    public void moveCar(int random) {
         Car car = new Car("pobi");
+        Movable movable = () -> random;
 
-        for (int i = 0; i < MOVEMENT; i++) {
-            car.move();
-        }
+        car.move(movable);
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
 
-        assertThat(car.getPosition())
-                .isEqualTo(MOVEMENT);
+    @DisplayName("자동차 멈춤")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 2, 3})
+    public void stopCar(int random) {
+        Car car = new Car("pobi");
+        Movable movable = () -> random;
+
+        car.move(movable);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }

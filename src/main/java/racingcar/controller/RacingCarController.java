@@ -6,7 +6,6 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -42,7 +41,7 @@ public class RacingCarController {
 
     public void playUntilDone(Cars cars, Times times) {
         while (times.hasTurn()) {
-            cars.decideMovableCar(Collections.EMPTY_LIST);
+            cars.decideMovableCar();
             OutputView.printResult(cars.extractNames(), extractHyphens(cars));
             times.reduce();
         }
