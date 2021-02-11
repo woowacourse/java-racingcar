@@ -26,10 +26,10 @@ public class Cars {
     }
 
     public void tryMoveCars() {
-        this.cars.forEach(car -> car.tryToMove(injectNumber()));
+        this.cars.forEach(car -> car.tryToMove(injectRand()));
     }
 
-    public int injectNumber() {
+    private int injectRand() {
         return RandomUtils.nextInt(INJECTION_NUMBER_MIN, INJECTION_NUMBER_MAX);
     }
 
@@ -40,8 +40,8 @@ public class Cars {
     }
 
     public List<Name> getWinnerNames() {
-        List<Car> winners = getWinners();
-        return getCarsNames(winners);
+        Cars winners = new Cars(getWinners());
+        return winners.getCarsNames();
     }
 
     private List<Name> getCarsNames() {
