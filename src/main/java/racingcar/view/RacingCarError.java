@@ -5,7 +5,7 @@ public class RacingCarError {
     private static final String LOWER_LENGTH_MESSAGE = "[ERROR] 이름은 1자 이상으로 입력해주세요";
     private static final String UPPER_LENGTH_MESSAGE = "[ERROR] 이름은 5자 이하로 입력해주세요";
     private static final String NULL_MESSAGE = "[ERROR] 경주할 자동차를 1대 이상 입력해주세요";
-    private static final String INTEGER_TURN_MESSAGE = "[ERROR] 시도 횟수는 정수여야만 합니다.";
+    private static final String INTEGER_TURN_MESSAGE = "[ERROR] 시도 횟수는 정수여야만 합니다";
     private static final String NEGATIVE_TURN_MESSAGE = "[ERROR] 시도 횟수는 음수일 수 없습니다";
 
     public static void overlapped() {

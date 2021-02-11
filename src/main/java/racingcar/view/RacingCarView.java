@@ -11,7 +11,6 @@ public class RacingCarView {
     private static final String VOID = "";
     private static final String POSITION_MESSAGE = "%s : %s\n";
     private static final String VOID_NULL = "\n";
-    private static final int ZERO_VALUE = 0;
 
     public static void carListInput() {
         System.out.printf(INPUT_MESSAGE);
@@ -22,13 +21,13 @@ public class RacingCarView {
     }
 
     public static void showResultMessage() {
-        System.out.printf(VOID_NULL);
+        System.out.println();
         System.out.printf(RESULT_INDICATION_MESSAGE);
     }
 
     public static void displayPosition(Car car) {
         String position = VOID;
-        for (int i = ZERO_VALUE; i < car.getPosition(); i++) {
+        for (int i = 0; i < car.getPosition(); i++) {
             position = position + DASH;
         }
         System.out.printf(POSITION_MESSAGE, car.getName(), position);

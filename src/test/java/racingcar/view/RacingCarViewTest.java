@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RacingCarViewTest {
     private static final String INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n";
     private static final String TURN_INPUT_MESSAGE = "시도할 회수는 몇회인가요?\n";
-    private static final String SAMPLE_CAR_NAME = "sample";
-    private static final String SAMPLE_CAR_MESSAGE = "sample : -\n";
+    private static final String SAMPLE_CAR_NAME = "bada";
+    private static final String SAMPLE_CAR_MESSAGE = "bada : -\n";
     private static final String SAMPLE_WINNERS = "pobi, bada, whyb";
     private static final String WIN_MESSAGE = "가 최종 우승했습니다.\n";
     private static final int CRITERIA = 4;
@@ -49,6 +49,6 @@ public class RacingCarViewTest {
     void showWinner() {
         String sampleWinners = SAMPLE_WINNERS;
         RacingCarView.showWinner(sampleWinners);
-        assertEquals(SAMPLE_WINNERS+WIN_MESSAGE, outputStreamCaptor.toString());
+        assertEquals(SAMPLE_WINNERS + WIN_MESSAGE, outputStreamCaptor.toString());
     }
 }
