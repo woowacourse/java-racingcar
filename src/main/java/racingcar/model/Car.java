@@ -23,15 +23,15 @@ public class Car {
         }
     }
 
-    public int move(final int randomNumber) {
-        if (checkMoveCondition(randomNumber)) {
+    public int move(final int number) {
+        if (checkMoveCondition(number)) {
             this.distance++;
         }
         return this.distance;
     }
 
-    private boolean checkMoveCondition(final int randomNumber) {
-        return (randomNumber >= MOVE_POINT_NUMBER);
+    private boolean checkMoveCondition(final int number) {
+        return (number >= MOVE_POINT_NUMBER);
     }
 
     public boolean isWinner(final int maxDistance) {
