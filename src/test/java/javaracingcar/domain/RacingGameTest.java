@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,9 +39,10 @@ class RacingGameTest {
     @Test
     @DisplayName("우승자 찾기")
     void getWinnersTest() {
-        assertTrue(racingGame.getWinners().contains(carA));
-        assertTrue(racingGame.getWinners().contains(carB));
-        assertFalse(racingGame.getWinners().contains(carC));
+        List<Car> winners = racingGame.getWinners();
+        assertTrue(winners.contains(carA));
+        assertTrue(winners.contains(carB));
+        assertFalse(winners.contains(carC));
     }
 
 }

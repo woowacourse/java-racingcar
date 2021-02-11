@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static String newLine = System.lineSeparator();
+    private static final String newLine = System.lineSeparator();
 
     private OutputView() {
     }

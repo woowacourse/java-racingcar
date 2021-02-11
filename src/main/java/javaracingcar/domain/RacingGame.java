@@ -8,7 +8,7 @@ public class RacingGame {
     private static final int MIN_RANDOM_NUMBER = 0;
     private static final int MAX_RANDOM_NUMBER = 9;
 
-    private Cars cars;
+    private final Cars cars;
     private int trial;
 
     public RacingGame(List<String> carNames, int trial) {

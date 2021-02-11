@@ -40,5 +40,5 @@ public class GameController {
     private static void printWinners(RacingGame racingGame) {
         OutputView.printWinners(racingGame);
     }
-    // TODO: 고민: racingGame객체 vs List<String> winners객체를 넘기기 (view는 도메인 객체의 구성을 몰라야?)
+    // TODO: 고민: racingGame 객체 vs List<String> winners 객체를 넘기기 (view 는 도메인 객체의 구성을 몰라야?)
 }

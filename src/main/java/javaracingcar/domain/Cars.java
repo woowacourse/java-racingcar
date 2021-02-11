@@ -19,10 +19,10 @@ public class Cars {
         validateDistinctNames(this.cars);
     }
 
-    // TODO: 테스트 하기 좋은 코드를 위해서는 Cars(List<Car> car) 생성자가 필요 -> 다양한 포지션의 Car객체를 생성하고 이를 테스트
-    // static method를 이용하는 것이 좋은 접근인가?
+    // TODO: 테스트 하기 좋은 코드를 위해서는 Cars(List<Car> car) 생성자가 필요 -> 다양한 포지션의 Car 객체를 생성하고 이를 테스트
+    // static method 를 이용하는 것이 좋은 접근인가?
     // List<String> List<Car>를 각각 생성자로 생성할 때 문제 발생.
-    // validate의 위치는 어디서?
+    // validate 의 위치는 어디서?
 
     private void validateNonZeroElement(List<Car> cars) {
         if (cars.isEmpty()) {
