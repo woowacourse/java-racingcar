@@ -2,15 +2,15 @@ package racingcar.domain.racing;
 
 import java.util.List;
 import racingcar.domain.Car;
-import racingcar.domain.CarRepository;
+import racingcar.domain.Cars;
 import racingcar.numbergenerator.NumberGenerator;
 
 
 public class NumberApplicatorToCar {
-    private final CarRepository carRepository;
+    private final Cars carRepository;
     private final NumberGenerator numberGenerator;
 
-    public NumberApplicatorToCar(CarRepository carRepository, NumberGenerator numberGenerator) {
+    public NumberApplicatorToCar(Cars carRepository, NumberGenerator numberGenerator) {
         this.carRepository = carRepository;
         this.numberGenerator = numberGenerator;
     }
