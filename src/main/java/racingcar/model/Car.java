@@ -7,11 +7,11 @@ public class Car {
     private final String name;
     private int distance;
 
-    public Car(String name) {
+    public Car(final String name) {
         this(name, 0);
     }
 
-    public Car(String name, int distance) {
+    public Car(final String name, final int distance) {
         validateName(name);
         this.name = name;
         this.distance = distance;

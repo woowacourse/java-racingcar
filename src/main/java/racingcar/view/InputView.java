@@ -5,7 +5,7 @@ import racingcar.model.Cars;
 import java.util.Scanner;
 
 public class InputView {
-    public static Cars getUserCarInput(Scanner scanner) {
+    public static Cars getUserCarInput(final Scanner scanner) {
         OutputView.readCarName();
         String userInput = scanner.nextLine();
         try {
@@ -21,7 +21,7 @@ public class InputView {
         return new Cars(carNames);
     }
 
-    public static int getUserTrialNumberInput(Scanner scanner) {
+    public static int getUserTrialNumberInput(final Scanner scanner) {
         OutputView.readTrialNumber();
         String userInput = scanner.nextLine();
         try {

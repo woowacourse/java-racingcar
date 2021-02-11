@@ -14,11 +14,11 @@ public class Cars {
 
     private final List<Car> carsInGame = new ArrayList<>();
 
-    public Cars(String[] carNames) {
+    public Cars(final String[] carNames) {
         this(carNames, new int[carNames.length]);
     }
 
-    public Cars(String[] carNames, int[] distance) {
+    public Cars(final String[] carNames, final int[] distance) {
         validateCarNames(carNames);
         for (int i = 0; i < carNames.length; i++) {
             carsInGame.add(new Car(carNames[i], distance[i]));

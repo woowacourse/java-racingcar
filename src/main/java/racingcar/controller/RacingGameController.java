@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RacingGameController {
-    public void play(Scanner scanner) {
+    public void play(final Scanner scanner) {
         final Cars carsInGame = InputView.getUserCarInput(scanner);
         final int trialNumber = InputView.getUserTrialNumberInput(scanner);
 
@@ -32,7 +32,7 @@ public class RacingGameController {
         OutputView.printNewLine();
     }
 
-    private void announceWinner(Cars carsInGame) {
+    private void announceWinner(final Cars carsInGame) {
         OutputView.printWinner(carsInGame.getWinner());
     }
 }
