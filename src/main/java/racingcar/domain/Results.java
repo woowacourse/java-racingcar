@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Results {
 
@@ -21,26 +20,13 @@ public class Results {
         return Collections.unmodifiableList(results);
     }
 
-    public int getMaxPosition() {
-        Result result = getLastResult();
-        return result.getMaxPosition();
+    public List<String> getWinners() {
+        Result lastResult = getLastResult();
+        return lastResult.getWinners();
     }
 
     private Result getLastResult() {
         int lastIndex = results.size() - GAP_WITH_SIZE_AND_INDEX;
         return results.get(lastIndex);
-    }
-
-    public List<String> getWinners() {
-        Result result = getLastResult();
-        List<CarState> carStates = result.getCarStates();
-        return carStates.stream()
-            .filter(carState -> isMaxPosition(carState.getPosition()))
-            .map(CarState::getName)
-            .collect(Collectors.toList());
-    }
-
-    private boolean isMaxPosition(int position) {
-        return getMaxPosition() == position;
     }
 }
