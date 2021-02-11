@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Car;
+import racingcar.domain.Winners;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

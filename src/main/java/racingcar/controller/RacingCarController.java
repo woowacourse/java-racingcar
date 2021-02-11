@@ -1,8 +1,13 @@
-package racingcar;
+package racingcar.controller;
 
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.domain.Trial;
+import racingcar.domain.Winners;
+import racingcar.view.RacingCarView;
 import utils.RandomUtils;
 
-public class RacingGame {
+public class RacingCarController {
 
     private static final int MINIMUM_RANDOM_RPM = 0;
     private static final int MAXIMUM_RANDOM_RPM = 9;
@@ -17,18 +22,18 @@ public class RacingGame {
     }
 
     private void prepareCars() {
-        String input = RacingGameView.requestCars();
+        String input = RacingCarView.requestCars();
         cars = new Cars(input);
     }
 
     private void prepareTrial() {
-        String input = RacingGameView.requestTrial();
+        String input = RacingCarView.requestTrial();
         trial = new Trial(input);
     }
 
     private void play() {
-        RacingGameView.printNewLine();
-        RacingGameView.printResult();
+        RacingCarView.printNewLine();
+        RacingCarView.printResult();
         raceByTrial();
     }
 
@@ -42,14 +47,14 @@ public class RacingGame {
         for (Car car : cars.getCars()) {
             int currentRpm = RandomUtils.nextInt(MINIMUM_RANDOM_RPM, MAXIMUM_RANDOM_RPM);
             car.move(currentRpm);
-            RacingGameView.printCarPosition(car);
+            RacingCarView.printCarPosition(car);
         }
-        RacingGameView.printNewLine();
+        RacingCarView.printNewLine();
     }
 
     private void finish() {
         cars.findMaxPosition();
         Winners winners = new Winners(cars.getCars(), cars.getMaxPosition());
-        RacingGameView.printWinners(winners.getWinners());
+        RacingCarView.printWinners(winners.getWinners());
     }
 }
