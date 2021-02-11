@@ -7,10 +7,6 @@ public class RacingGame {
     private final Cars cars;
     private Round round;
 
-    public RacingGame(Cars cars, int round){
-        this(cars,new Round(round));
-    }
-
     public RacingGame(Cars cars, Round round) {
         this.cars = cars;
         this.round = round;

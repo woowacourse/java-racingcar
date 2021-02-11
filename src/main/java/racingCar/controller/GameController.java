@@ -45,7 +45,7 @@ public class GameController {
         }
     }
 
-    public Cars makeCars(String[] carNames) {
+    private Cars makeCars(String[] carNames) {
         Engine engine = new RandomEngine();
         return new Cars(Arrays.stream(carNames)
             .map(carName -> new Car(carName, engine))

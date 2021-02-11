@@ -24,11 +24,10 @@ public class Cars {
     }
 
     private int findMaxMove() {
-        int maxPosition = 0;
-        for (Car car : cars) {
-            maxPosition = car.getMaxValue(maxPosition);
-        }
-        return maxPosition;
+        return cars.stream()
+            .map(Car::getPosition)
+            .reduce(Math::max)
+            .orElseThrow(()->new NoWinnerException(ERROR_MESSAGE_NO_WINNER));
     }
 
     private String matchSamePosition(final int position) {
