@@ -10,7 +10,7 @@ import racingcar.utils.RandomUtils;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class GameController {
+public class GameManagerController {
 
     private static final int MIN_RANDOM_RANGE = 0;
     private static final int MAX_RANDOM_RANGE = 9;
