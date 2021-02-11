@@ -16,29 +16,6 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.*;
 
 class CarsTest {
-    private static Stream<Arguments> initializeDecideMovableCar() {
-        final int MOVEMENT_CRITERION = 4;
-
-        int numberOfCars = 4;
-        int numberOfMovableCar = 2;
-
-        List<Integer> randoms = Arrays.stream(new int[numberOfCars])
-                .boxed()
-                .collect(Collectors.toList());
-        List<String> carNames = new ArrayList<>();
-
-        for (int i = 0; i < numberOfMovableCar; i++) {
-            randoms.set(i, MOVEMENT_CRITERION);
-        }
-        for (int i = 0; i < numberOfCars; i++) {
-            carNames.add("pobi" + i);
-        }
-
-        Cars cars = new Cars(carNames);
-
-        return Stream.of(Arguments.of(cars, randoms));
-    }
-
     @DisplayName("이름이 중복되지 않는 경우 객체 생성 성공")
     @Test
     public void createCars_이름이_중복되지_않는_경우() {
@@ -57,50 +34,6 @@ class CarsTest {
             new Cars(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
     }
-
-//    @DisplayName("조건을 만족하는 자동차는 전진 성공")
-//    @ParameterizedTest
-//    @MethodSource("initializeDecideMovableCar")
-//    void decideMovableCar_자동차가_전진할지_멈출지_판단(Cars cars, List<Integer> randoms) {
-//        final int MOVEMENT_CRITERION = 4;
-//
-//        int movedPosition = 1;
-//        int numberOfMovableCar = (int) randoms.stream()
-//                .filter(random -> random.compareTo(MOVEMENT_CRITERION) >= 0)
-//                .count();
-//
-//        cars.decideMovableCar(randoms);
-//
-//        int movedCount = (int) cars.getCars()
-//                .stream()
-//                .filter(car -> car.getPosition() == movedPosition)
-//                .count();
-//
-//        assertThat(movedCount).isEqualTo(numberOfMovableCar);
-//    }
-//
-//    @DisplayName("자동차가 조건을 만족하면 전진 성공")
-//    @ParameterizedTest
-//    @MethodSource("initializeDecideMovableCar")
-//    void moveIfPossible_자동차가_조건을_만족하면_전진(Cars cars) {
-//        final int MINIMUM_RANDOM_VALUE = 0;
-//        final int MAXIMUM_RANDOM_VALUE = 9;
-//        final int MOVEMENT_CRITERION = 4;
-//
-//        int random = RandomUtils.nextInt(MINIMUM_RANDOM_VALUE, MAXIMUM_RANDOM_VALUE);
-//        int expectedPosition = 0;
-//
-//        Car car = new Car("pobi");
-//
-//        if (random >= MOVEMENT_CRITERION) {
-//            expectedPosition++;
-//        }
-//
-//        cars.moveIfPossible(car, random);
-//
-//        assertThat(car.getPosition()).isEqualTo(expectedPosition);
-//    }
-
 
     @DisplayName("최종 우승자 판단 성공")
     @Test
