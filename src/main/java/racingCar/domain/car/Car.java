@@ -1,7 +1,5 @@
 package racingCar.domain.car;
 
-import static racingCar.domain.car.Position.ZERO;
-
 import java.util.Objects;
 import racingCar.domain.car.Engine.Engine;
 
@@ -11,9 +9,8 @@ public class Car {
     private final Engine engine;
     private Position position;
 
-
     public Car(String name, Engine engine) {
-        this(new Name(name), ZERO, engine);
+        this(new Name(name), Position.ZERO, engine);
     }
 
     public Car(String name, int position, Engine engine) {
@@ -27,21 +24,17 @@ public class Car {
     }
 
     public void run() {
-        if (engine.isMove()) {
+        if (engine.movable()) {
             this.position = position.goForward();
         }
     }
 
-    public boolean isOn(int max) {
-        return position.isEqualTo(max);
+    public boolean isOn(Position position) {
+        return this.position == position;
     }
 
-    public int getPosition() {
-        return position.getPosition();
-    }
-
-    public int getMaxValue(final int position) {
-        return this.position.getMaxValue(position);
+    public Position getPosition() {
+        return position;
     }
 
     public String getName() {
@@ -49,7 +42,7 @@ public class Car {
     }
 
     @Override
-    public boolean equals(final Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -58,12 +51,12 @@ public class Car {
         }
         Car car = (Car) o;
         return Objects.equals(name, car.name) &&
-            Objects.equals(engine, car.engine) &&
             Objects.equals(position, car.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, engine, position);
+        return Objects.hash(name, position);
     }
+
 }

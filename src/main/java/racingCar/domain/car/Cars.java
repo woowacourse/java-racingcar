@@ -3,6 +3,7 @@ package racingCar.domain.car;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.geometry.Pos;
 import racingCar.exception.InvalidCarNameException;
 import racingCar.exception.NoWinnerException;
 
@@ -12,6 +13,7 @@ public class Cars {
     public static final String ERROR_MESSAGE_CAR_NAMES_COUNT = "자동차 이름은 1개 이상이어야 합니다.";
     public static final String ERROR_MESSAGE_NO_WINNER = "우승자가 존재하지 않습니다.";
     public static final int MIN_NUM_OF_CARS = 2;
+    
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -29,14 +31,14 @@ public class Cars {
         cars.forEach(Car::run);
     }
 
-    private int findMaxMove() {
+    private Position findMaxMove() {
         return cars.stream()
             .map(Car::getPosition)
-            .reduce(Math::max)
+            .reduce(Position::compareTo)
             .orElseThrow(()->new NoWinnerException(ERROR_MESSAGE_NO_WINNER));
     }
 
-    private String matchSamePosition(final int position) {
+    private String matchSamePosition(final Position position) {
         return cars
             .stream()
             .filter(car -> car.isOn(position))
