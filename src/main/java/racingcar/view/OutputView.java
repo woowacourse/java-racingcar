@@ -2,7 +2,7 @@ package racingcar.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import racingcar.model.Car;
+import racingcar.domain.Car;
 
 public class OutputView {
 
@@ -32,12 +32,13 @@ public class OutputView {
         for (int i = 0; i < car.getDistance(); i++) {
             distanceIndicator.append(DASH);
         }
-        System.out.println(car.getCarName() + CAR_NAME_DISTANCE_DELIMITER + distanceIndicator);
+        System.out.println(car.getName() + CAR_NAME_DISTANCE_DELIMITER + distanceIndicator);
     }
 
     public static void printWinners(final List<Car> winners) {
         List<String> winnersNames = new ArrayList<>();
-        winners.forEach(it -> winnersNames.add(it.getCarName()));
+
+        winners.forEach(it -> winnersNames.add(it.getName()));
         System.out.print(String.join(CAR_NAME_DELIMITER, winnersNames) + WINNER_MESSAGE);
     }
 

@@ -1,11 +1,11 @@
 package calculator;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
 
@@ -40,7 +40,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void splitAndSum_custom_구분자2() throws Exception {
+    public void splitAndSum_custom_구분자() throws Exception {
         int result = StringCalculator.splitAndSum("//!\n12!23");
         assertThat(result).isEqualTo(35);
     }

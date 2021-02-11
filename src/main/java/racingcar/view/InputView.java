@@ -1,8 +1,12 @@
 package racingcar.view;
 
-import racingcar.model.Cars;
-
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import racingcar.domain.Cars;
+import racingcar.domain.Name;
+import racingcar.domain.TryNumber;
 
 public class InputView {
 
@@ -11,34 +15,30 @@ public class InputView {
     private InputView() {
     }
 
-    public static Cars getCars(Scanner scanner) {
+    public static Cars getCars(final Scanner scanner) {
         OutputView.printCarNameReadMessage();
         try {
-            String carNamesInput = scanner.nextLine();
-            String[] carNames = carNamesInput.split(CAR_NAME_DELIMITER);
-            return new Cars(carNames);
+            String inputValue = scanner.nextLine();
+            return new Cars(getParseNames(inputValue));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return getCars(scanner);
         }
     }
 
-    public static int getAttemptNumber(Scanner scanner) {
-        OutputView.printAttemptNumberReadMessage();
-        try {
-            String attemptNumberInput = scanner.nextLine();
-            int attemptNumber = Integer.parseInt(attemptNumberInput);
-            validateAttemptNumber(attemptNumber);
-            return attemptNumber;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return getAttemptNumber(scanner);
-        }
+    private static List<Name> getParseNames(String inputValue) {
+        List<String> parsedInputValue = Arrays.asList(inputValue.split(CAR_NAME_DELIMITER));
+        return parsedInputValue.stream().map(Name::new).collect(Collectors.toList());
     }
 
-    private static void validateAttemptNumber(int attemptNumber) {
-        if (attemptNumber <= 0) {
-            throw new IllegalArgumentException("[Error] 시도할 횟수는 0보다 커야합니다.\n");
+    public static TryNumber getTryNumber(final Scanner scanner) {
+        OutputView.printAttemptNumberReadMessage();
+        try {
+            String inputValue = scanner.nextLine();
+            return new TryNumber(Integer.parseInt(inputValue));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return getTryNumber(scanner);
         }
     }
 
