@@ -19,7 +19,7 @@ public class Cars {
             carsInGame.add(new Car(carNames[i], distance[i]));
         }
     }
-    
+
     private void validateCarsInput(final String[] carNames, final int[] distance) {
         if (carNames.length != distance.length) {
             throw new IllegalArgumentException("[Error] 주어진 자동차 이름과 거리의 갯수가 다릅니다.\n");

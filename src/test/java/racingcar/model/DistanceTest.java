@@ -20,7 +20,7 @@ public class DistanceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {5,10,15})
+    @ValueSource(ints = {5, 10, 15})
     public void Name_getDistance_테스트(int testDistance) {
         Distance distance = new Distance(testDistance);
         assertThat(testDistance == distance.getDistance()).isTrue();
