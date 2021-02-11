@@ -56,13 +56,13 @@ public class Cars {
         return Collections.unmodifiableList(carsAfterSingleTrial);
     }
 
-    public String getWinner() {
+    public List<String> getWinner() {
         int maxDistance = getMaxDistance();
         List<String> winners = new ArrayList<>();
         carsInGame.stream()
                 .filter(it -> it.isWinner(maxDistance))
                 .forEach(it -> winners.add(it.getName()));
-        return String.join(",", winners);
+        return Collections.unmodifiableList(winners);
     }
 
     private int getMaxDistance() {
