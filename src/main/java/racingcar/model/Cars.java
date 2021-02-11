@@ -29,20 +29,21 @@ public class Cars {
     }
 
     public List<String> getWinner() {
-        int maxDistance = getMaxDistance();
+        Distance maxDistance = getMaxDistance();
         List<String> winners = new ArrayList<>();
         carsInGame.stream()
                 .filter(it -> it.isWinner(maxDistance))
                 .forEach(it -> winners.add(it.getName()));
+
         return Collections.unmodifiableList(winners);
     }
 
-    private int getMaxDistance() {
+    private Distance getMaxDistance() {
         int maxDistance = 0;
         for (Car car : carsInGame) {
             maxDistance = Math.max(car.getDistance(), maxDistance);
         }
-        return maxDistance;
+        return new Distance(maxDistance);
     }
 }
 
