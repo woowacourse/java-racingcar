@@ -35,7 +35,7 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    public static void printWinners(Results results) {
+    private static void printWinners(Results results) {
         List<String> winnerNames = results.findWinners();
         String result = String.join(WINNERS_DELIMITER, winnerNames);
         System.out.println(result + "가 최종 우승했습니다.");
