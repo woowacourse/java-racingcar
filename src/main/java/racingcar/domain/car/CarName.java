@@ -15,7 +15,7 @@ public class CarName {
     }
 
     private void validateCarNameLength(String name) {
-        if(name.length() > CAR_NAME_LENGTH_THRESHOLD) {
+        if (name.length() > CAR_NAME_LENGTH_THRESHOLD) {
             throw new CarNameLengthException();
         }
     }
