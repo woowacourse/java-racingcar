@@ -48,13 +48,17 @@ public class Cars {
     }
 
     public int findPositionMax() {
-        return cars.stream().map(Car::getPosition).reduce(Integer::max).orElse(-1);
+        return cars.stream()
+            .map(Car::getPosition)
+            .reduce(Integer::max)
+            .orElseThrow(() -> new IllegalArgumentException("자동차가 존재하지 않습니다."));
     }
 
     public List<String> findCarNamesLocatedAt(int position) {
-        return cars.stream().filter(car -> car.getPosition() == position).map(Car::getName)
-            .collect(
-                Collectors.toList());
+        return cars.stream()
+            .filter(car -> car.getPosition() == position)
+            .map(Car::getName)
+            .collect(Collectors.toList());
     }
 
     public List<Car> getCars() {
