@@ -32,7 +32,7 @@ public class Cars {
         this.cars.forEach(car -> car.tryToMove(injectRand()));
     }
 
-    private int injectRand() {
+    protected int injectRand() {
         return RandomUtils.nextInt(INJECTION_NUMBER_MIN, INJECTION_NUMBER_MAX);
     }
 

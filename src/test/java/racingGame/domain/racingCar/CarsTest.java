@@ -3,6 +3,7 @@ package racingGame.domain.racingCar;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -54,10 +55,12 @@ class CarsTest {
         }
     }
 
-    @DisplayName("우승 자동차 기능 검증")
-    @Test
-    void checkGetWinner() {
-        Car[] tmpCars = new Car[]{
+    Car[] tmpCars;
+    Cars testCars;
+
+    @BeforeEach
+    void setTestCars() {
+        tmpCars = new Car[]{
                 new Car(Name.create("t1"), 1),
                 new Car(Name.create("t2"), 3),
                 new Car(Name.create("t3"), 1),
@@ -65,7 +68,12 @@ class CarsTest {
                 new Car(Name.create("t5"), 2)
         };
 
-        Cars testCars = new Cars(Arrays.asList(tmpCars));
+        testCars = new Cars(Arrays.asList(tmpCars));
+    }
+
+    @DisplayName("우승 자동차 기능 검증")
+    @Test
+    void checkGetWinner() {
         Cars winnerCars = Cars.createByNames(testCars.getWinnerNames());
 
         assertThat(winnerCars.contains(tmpCars[0])).isFalse();
@@ -73,5 +81,35 @@ class CarsTest {
         assertThat(winnerCars.contains(tmpCars[2])).isFalse();
         assertThat(winnerCars.contains(tmpCars[3])).isTrue();
         assertThat(winnerCars.contains(tmpCars[4])).isFalse();
+    }
+
+    @DisplayName("우승 자동차 기능 검증")
+    @Test
+    void checkGetWinnerWithCars() {
+        final int[] injectionNumber = {1};
+
+        tmpCars = new Car[]{
+                new Car(Name.create("t1")),
+                new Car(Name.create("t2")),
+                new Car(Name.create("t3")),
+                new Car(Name.create("t4")),
+                new Car(Name.create("t5"))
+        };
+
+        Cars testCars = new Cars(Arrays.asList(tmpCars)) {
+            @Override
+            public int injectRand() {
+                return injectionNumber[0]++;
+            }
+        };
+
+        testCars.tryMoveCars();
+        Cars winnerCars = Cars.createByNames(testCars.getWinnerNames());
+
+        assertThat(winnerCars.contains(tmpCars[0])).isFalse(); // injection = 1, position = 0
+        assertThat(winnerCars.contains(tmpCars[1])).isFalse(); // injection = 2, position = 0
+        assertThat(winnerCars.contains(tmpCars[2])).isFalse(); // injection = 3, position = 0
+        assertThat(winnerCars.contains(tmpCars[3])).isTrue();  // injection = 4, position = 1
+        assertThat(winnerCars.contains(tmpCars[4])).isTrue();  // injection = 5, position = 1
     }
 }

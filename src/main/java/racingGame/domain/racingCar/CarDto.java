@@ -16,4 +16,12 @@ public class CarDto {
     public int getPosition() {
         return position;
     }
+
+    @Override
+    public String toString() {
+        return "CarDto{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
+    }
 }
