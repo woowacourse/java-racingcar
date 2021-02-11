@@ -29,7 +29,7 @@ public class RacingController {
         OutputView.printWinner(cars.giveWinners());
     }
 
-    public List<String> giveCarNames() {
+    private List<String> giveCarNames() {
         OutputView.printCarNamesRequest();
         return inputView.scanCarNames();
     }
@@ -39,7 +39,7 @@ public class RacingController {
         return new Times(inputView.scanTimes());
     }
 
-    public void playUntilDone(Cars cars, Times times) {
+    private void playUntilDone(Cars cars, Times times) {
         while (times.hasTurn()) {
             cars.decideMovableCar();
             OutputView.printResult(cars.extractNames(), extractHyphens(cars));
