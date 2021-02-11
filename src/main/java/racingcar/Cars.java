@@ -1,13 +1,13 @@
 package racingcar;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Cars {
 
     private static final String NAME_SPLIT_DELIMITER = ",";
     private static final int MIN_CARS_LENGTH = 2;
     private final List<Car> cars = new ArrayList<>();
+    private int maxPosition;
 
     public Cars(String input) {
         String[] carNames = splitInput(input);
@@ -18,6 +18,17 @@ public class Cars {
 
     public List<Car> getCars() {
         return this.cars;
+    }
+
+    public void findMaxPosition() {
+        maxPosition = cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
+    }
+
+    public int getMaxPosition() {
+        return maxPosition;
     }
 
     private String[] splitInput(String input) {

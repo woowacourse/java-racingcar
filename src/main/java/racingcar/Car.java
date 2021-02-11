@@ -28,6 +28,10 @@ public class Car {
         return position;
     }
 
+    public boolean isPosition(int maxPosition) {
+        return position == maxPosition;
+    }
+
     private void validateName(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(
