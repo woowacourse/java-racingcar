@@ -13,7 +13,6 @@ public class Cars {
     private static final int NO_DUPLICATE = 0;
 
     private final List<Car> carsInGame = new ArrayList<>();
-    private int maxDistance;
 
     public Cars(String[] carNames) {
         this(carNames, new int[carNames.length]);
@@ -51,18 +50,27 @@ public class Cars {
     public List<Car> singleTrial() {
         List<Car> carsAfterSingleTrial = new ArrayList<>();
         for (Car car : carsInGame) {
-            maxDistance = Math.max(car.move(RandomUtils.generateRandomNumber()), maxDistance);
+            car.move(RandomUtils.generateRandomNumber());
             carsAfterSingleTrial.add(car);
         }
         return Collections.unmodifiableList(carsAfterSingleTrial);
     }
 
     public String getWinner() {
+        int maxDistance = getMaxDistance();
         List<String> winners = new ArrayList<>();
         carsInGame.stream()
                 .filter(it -> it.isWinner(maxDistance))
                 .forEach(it -> winners.add(it.getName()));
         return String.join(",", winners);
+    }
+
+    private int getMaxDistance() {
+        int maxDistance = 0;
+        for (Car car : carsInGame) {
+            maxDistance = Math.max(car.getDistance(), maxDistance);
+        }
+        return maxDistance;
     }
 }
 

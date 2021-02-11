@@ -23,11 +23,10 @@ public class Car {
         }
     }
 
-    public int move(final int number) {
+    public void move(final int number) {
         if (checkMoveCondition(number)) {
             this.distance++;
         }
-        return this.distance;
     }
 
     private boolean checkMoveCondition(final int number) {
