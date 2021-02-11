@@ -67,4 +67,14 @@ class CarsTest {
         assertThat(winnerCars.contains(tmpCars[3])).isTrue();
         assertThat(winnerCars.contains(tmpCars[4])).isFalse();
     }
+
+    @DisplayName("cars가 null인 경우")
+    @Test
+    void checkIsCarsNull() {
+        Cars cars = new Cars(null);
+
+        cars.getWinnerNames();
+        cars.getResults();
+        cars.tryMoveCars();
+    }
 }
