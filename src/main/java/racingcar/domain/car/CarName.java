@@ -6,7 +6,7 @@ import racingcar.exception.CarNameLengthException;
 public class CarName {
     private static final int CAR_NAME_LENGTH_THRESHOLD = 5;
 
-    private String name;
+    private final String name;
 
     public CarName(String name) {
         validateCarNameLength(name);
