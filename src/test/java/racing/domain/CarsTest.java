@@ -1,30 +1,22 @@
 package racing.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racing.domain.name.CarName;
+import racing.domain.name.CarNames;
+
+import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 class CarsTest {
-    @Test
-    void Cars_쉼표로_구분된_문자열_받으면_객체가_생성된다() {
-        String carNames = "pobi,brown";
-        assertThatCode(() -> Cars.generate(carNames))
-                .doesNotThrowAnyException();
-    }
-
-    @Test
-    void Cars_잘못된_이름이_포함된_문자열_받으면_예외가_발생한다() {
-        String carNames = "pobi,bro.wn,";
-        assertThatCode(() -> {
-            Cars.generate(carNames);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
+    @DisplayName("Cars의 변수로 할당될 Car객체가 하나인경우 에러가 발생한다")
     @Test
     void Cars_1명인_경우_예외가_발생한다() {
-        String carNames = "pobi";
+        CarNames carNames = CarNames.of(Collections.singletonList(new CarName("pobi")));
         assertThatCode(() -> {
             Cars.generate(carNames);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차는 1개 이상이어야 합니다");
     }
 }

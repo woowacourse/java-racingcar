@@ -1,47 +1,41 @@
 package racing.domain;
 
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import racing.domain.name.CarName;
+import racing.domain.number.Position;
 
 public class Car {
-    private static final Pattern PATTERN = Pattern.compile("[a-zA-Z]{1,5}");
     private static final int MINIMUM_MOVE_NUMBER = 4;
-    private static final int DEFAULT_POSITION = 0;
 
-    private final String name;
-    private int position;
+    private final CarName name;
+    private final Position position;
 
-    public Car(String name) {
+    public Car(final CarName name) {
         this.name = name;
-        this.position = DEFAULT_POSITION;
-        validateName();
+        this.position = Position.of();
     }
 
-    private void validateName() {
-        if (Objects.isNull(this.name)) {
-            throw new IllegalArgumentException();
-        }
-        Matcher matcher = PATTERN.matcher(this.name);
-        if (!matcher.matches()) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public boolean move(int randomNumber) {
+    public boolean move(final int randomNumber) {
         if (randomNumber >= MINIMUM_MOVE_NUMBER) {
-            this.position++;
+            position.add();
             return true;
         }
         return false;
     }
 
-    public int getPosition() {
+    public int getPositionValue() {
+        return position.getValue();
+    }
+
+    public Position getPosition() {
         return position;
     }
 
+    public boolean isSamePosition(Position maxPosition) {
+        return position.equals(maxPosition);
+    }
+
     public String getName() {
-        return name;
+        return name.getName();
     }
 }
 

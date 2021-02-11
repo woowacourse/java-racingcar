@@ -1,44 +1,47 @@
 package racing.domain;
 
-import racing.domain.dto.CarDto;
+import racing.domain.number.TryCount;
 import racing.view.GameScreen;
+import racing.view.dto.CarMoveStatusDto;
+import racing.view.dto.WinnersStatusDto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingGameMachine {
-    private static final int ZERO = 0;
+    private static final int MINIMUM_CAR_COUNTS = 2;
 
     private final Cars cars;
-    private int tryCounts;
+    private final TryCount tryCount;
 
-    public RacingGameMachine(Cars cars, int tryCounts) {
-        this.cars = cars;
-        this.tryCounts = tryCounts;
-        validateTryCounts();
+    public RacingGameMachine(final Cars cars, final TryCount tryCount) {
+        Cars copy = cars.clone();
+        validateCars(copy);
+        this.cars = copy;
+        this.tryCount = tryCount;
     }
 
-    private void validateTryCounts() {
-        if (tryCounts <= ZERO) {
-            throw new IllegalArgumentException();
+    private void validateCars(final Cars cars) {
+        if (cars.getSize() < MINIMUM_CAR_COUNTS) {
+            throw new IllegalArgumentException("자동차 이름은 1개 이상이어야 합니다");
         }
     }
 
     public void play() {
         GameScreen gameScreen = new GameScreen();
         gameScreen.showMessage();
-        while (tryCounts-- > ZERO) {
+        while (tryCount.reduce()) {
             cars.race();
             gameScreen.showCarStatus(getCarDtos());
         }
+
         Winners winners = cars.findWinners();
-        gameScreen.showWinners(winners.getWinnersDto());
+        gameScreen.showWinners(new WinnersStatusDto(winners.getWinnersName()));
     }
 
-    public boolean canPlay() {
-        return tryCounts > ZERO;
-    }
-
-    private List<CarDto> getCarDtos() {
-        return cars.getCarDtos();
+    private List<CarMoveStatusDto> getCarDtos() {
+        return cars.getCars().stream()
+                .map(car -> CarMoveStatusDto.of(car))
+                .collect(Collectors.toList());
     }
 }

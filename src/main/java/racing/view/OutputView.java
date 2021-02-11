@@ -4,7 +4,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printMessage(String message) {
+    public static void printMessage(final String message) {
         System.out.println(message);
     }
 }

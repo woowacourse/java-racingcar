@@ -1,7 +1,5 @@
 package racing.domain;
 
-import racing.domain.dto.WinnersDto;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,21 +7,21 @@ import java.util.stream.Collectors;
 public class Winners {
     private final List<Car> cars;
 
-    public Winners(List<Car> cars) {
-        this.cars = new ArrayList<>(cars);
-        validateWinners();
+    public Winners(final List<Car> cars) {
+        List<Car> copy = new ArrayList<>(cars);
+        validateWinners(copy);
+        this.cars = copy;
     }
 
-    public WinnersDto getWinnersDto() {
-        List<String> winnersName = cars.stream()
+    public List<String> getWinnersName() {
+        return cars.stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
-        return new WinnersDto(winnersName);
     }
 
-    private void validateWinners() {
-        if (this.cars.isEmpty()) {
-            throw new IllegalStateException();
+    private void validateWinners(final List<Car> copy) {
+        if (copy.isEmpty()) {
+            throw new IllegalStateException("우승자는 1명 이상이어야 합니다");
         }
     }
 }

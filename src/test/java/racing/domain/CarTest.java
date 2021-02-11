@@ -1,15 +1,14 @@
 package racing.domain;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.ValueSource;
+import racing.domain.name.CarName;
 
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
     private static Stream<Arguments> moveTest() {
@@ -19,26 +18,12 @@ public class CarTest {
                 Arguments.of(9, true));
     }
 
-    @Test
-    void Car_유효한_이름_정상_생성된다() {
-        assertThatCode(() -> {
-            new Car("pobi");
-        }).doesNotThrowAnyException();
-    }
-
-    @ParameterizedTest
-    @NullAndEmptySource
-    @ValueSource(strings = {"abcdef", "ab.de", "   "})
-    void Car_유효하지_않은_이름_예외가_발생한다(String name) {
-        assertThatThrownBy(() -> {
-            new Car(name);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
+    @DisplayName("값이 4이상이면 이동, 아니면 이동하지 않는다")
     @ParameterizedTest
     @MethodSource("moveTest")
     void Car_값이_4_이상일때_이동한다(int randomNumber, boolean isMoved) {
-        Car pobiCar = new Car("pobi");
+        CarName carName = new CarName("pobi");
+        Car pobiCar = new Car(carName);
         boolean moveResult = pobiCar.move(randomNumber);
 
         assertThat(moveResult).isEqualTo(isMoved);
