@@ -1,9 +1,7 @@
 package racingcar;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -23,7 +21,9 @@ public class Cars {
     }
 
     private String[] splitInput(String input) {
-        String[] carNames = input.split(NAME_SPLIT_DELIMITER, -1);
+        String[] carNames = Arrays.stream(input.split(NAME_SPLIT_DELIMITER, -1))
+                .map(String::trim)
+                .toArray(String[]::new);
         validateCarsLength(carNames);
         validateDuplication(carNames);
         return carNames;
