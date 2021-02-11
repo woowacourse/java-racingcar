@@ -12,13 +12,14 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.Name;
 import racingcar.domain.RacingGame;
 import racingcar.domain.Trial;
 
 public class RacingGameTest {
 
     private static Car newCar(String name, int position) {
-        final Car car = new Car(name);
+        final Car car = new Car(new Name(name));
         for (int i = 0; i < position; i++) {
             car.tryToMove(4);
         }
@@ -65,9 +66,9 @@ public class RacingGameTest {
 
     private static Cars provideCars_모두_움직이지_않음() {
         List<Car> value = new ArrayList<>();
-        value.add(new Car("루트"));
-        value.add(new Car("소롱"));
-        value.add(new Car("포비"));
+        value.add(new Car(new Name("루트")));
+        value.add(new Car(new Name("소롱")));
+        value.add(new Car(new Name("포비")));
 
         return new Cars(value);
     }

@@ -11,6 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.Name;
 
 public class CarsTest {
 
@@ -18,8 +19,8 @@ public class CarsTest {
     @DisplayName("정상적인 경주할 자동차 이름들 입력")
     void getInstanceTest_정상_입력() {
         final List<Car> cars = new ArrayList<>();
-        cars.add(new Car("루트"));
-        cars.add(new Car("소롱"));
+        cars.add(new Car(new Name("루트")));
+        cars.add(new Car(new Name("소롱")));
         final Cars expected = new Cars(cars);
 
         final Cars actual = Cars.generateCarsByNames("루트,소롱");
