@@ -13,10 +13,11 @@ public class InputView {
     private InputView() {
     }
 
-    // XXX :: View에서 도메인 기능을 사용하는 것, 객체를 view에서 생성 후 넘기는 것에 대하여
     public static List<Name> inputNames(final Scanner scanner) {
         OutputView.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        return NameHandler.splitNames(scanner.nextLine());
+        List<Name> names = NameHandler.splitNames(scanner.nextLine());
+        InputValidator.checkIsValidInputNames(names);
+        return names;
     }
 
     public static Rounds inputRounds(final Scanner scanner) {
