@@ -8,7 +8,7 @@ public class Car {
     private MoveCondition moveCondition;
 
     public Car(String name) {
-        this(name, number -> number > DEFAULT_MOVABLE_VALUE);
+        this(name, number -> number >= DEFAULT_MOVABLE_VALUE);
     }
 
     public Car(String name, MoveCondition moveCondition) {
