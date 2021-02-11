@@ -5,17 +5,9 @@ import java.util.Scanner;
 import racingcar.view.input.carname.validator.CarNamesValidator;
 
 public class ValidCarNamesInputFromUserGetter {
-    private final RawCarNamesInputFromUser carNamesInputFromUser;
-    private final CarNamesValidator carNamesValidator;
-
-    public ValidCarNamesInputFromUserGetter(Scanner scanner) {
-        this.carNamesInputFromUser = new RawCarNamesInputFromUser(scanner);
-        this.carNamesValidator = new CarNamesValidator();
-    }
-
-    public List<String> getCarNames() {
-        List<String> carNames = carNamesInputFromUser.getAllCarNames();
-        carNamesValidator.validate(carNames);
+    public static List<String> getCarNames(Scanner scanner) {
+        List<String> carNames = RawCarNamesInputFromUser.getAllCarNames(scanner);
+        CarNamesValidator.validate(carNames);
         return carNames;
     }
 }

@@ -9,13 +9,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.view.input.racingtrytime.validator.exception.NotNaturalNumberRacingTimeException;
 
 class RacingTryTimeValidatorTest {
-    private final RacingTryTimeValidator racingTryTimeValidator = new RacingTryTimeValidator();
-
     @DisplayName("입력받은 경주 시도 횟수는 자연수여야 한다.")
     @Test
     void racingTryTimeNaturalNumber() {
         String racingTryTime = "3";
-        Assertions.assertThatCode(() -> racingTryTimeValidator.validate(racingTryTime))
+        Assertions.assertThatCode(() -> RacingTryTimeValidator.validate(racingTryTime))
             .doesNotThrowAnyException();
     }
 
@@ -23,7 +21,7 @@ class RacingTryTimeValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "\t", "-1", "0", "가", "aa"})
     void racingTryTimeNotNaturalNumberException(String racingTryTime) {
-        Assertions.assertThatThrownBy(() -> racingTryTimeValidator.validate(racingTryTime))
+        Assertions.assertThatThrownBy(() -> RacingTryTimeValidator.validate(racingTryTime))
             .isInstanceOf(NotNaturalNumberRacingTimeException.class);
     }
 }

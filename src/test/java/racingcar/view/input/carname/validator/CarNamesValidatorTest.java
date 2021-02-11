@@ -10,15 +10,13 @@ import racingcar.view.input.carname.validator.exception.DuplicateCarNamesExcepti
 import racingcar.view.input.carname.validator.exception.LessThanTwoCarNamesException;
 
 class CarNamesValidatorTest {
-    private final CarNamesValidator carNamesValidator = new CarNamesValidator();
-
     @DisplayName("경주할 자동차 이름이 두 대 이상이어야 하고, 중복되는 이름이 없어야 한다.")
     @Test
     void carNamesTwoOrMore() {
         List<String> carNames = new ArrayList<>();
         carNames.add("111");
         carNames.add("222");
-        Assertions.assertThatCode(() -> carNamesValidator.validate(carNames))
+        Assertions.assertThatCode(() -> CarNamesValidator.validate(carNames))
             .doesNotThrowAnyException();
     }
 
@@ -27,7 +25,7 @@ class CarNamesValidatorTest {
     void carNamesLessThanTwoException() {
         List<String> carNames = new ArrayList<>();
         carNames.add("111");
-        Assertions.assertThatThrownBy(() -> carNamesValidator.validate(carNames))
+        Assertions.assertThatThrownBy(() -> CarNamesValidator.validate(carNames))
             .isInstanceOf(LessThanTwoCarNamesException.class);
     }
 
@@ -37,7 +35,7 @@ class CarNamesValidatorTest {
         List<String> carNames = new ArrayList<>();
         carNames.add("111");
         carNames.add("111");
-        Assertions.assertThatThrownBy(() -> carNamesValidator.validate(carNames))
+        Assertions.assertThatThrownBy(() -> CarNamesValidator.validate(carNames))
             .isInstanceOf(DuplicateCarNamesException.class);
     }
 }

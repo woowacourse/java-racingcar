@@ -9,16 +9,9 @@ import racingcar.view.input.carname.printer.CarNamesInputFromUserPrinter;
 
 public class RawCarNamesInputFromUser {
     public static final String CAR_NAMES_DELIMITER = ",";
-    private final CarNamesInputFromUserPrinter carNamesInputFromUserPrinter;
-    private final Scanner scanner;
 
-    public RawCarNamesInputFromUser(Scanner scanner) {
-        this.carNamesInputFromUserPrinter = new CarNamesInputFromUserPrinter();
-        this.scanner = scanner;
-    }
-
-    public List<String> getAllCarNames() {
-        carNamesInputFromUserPrinter.printCarNamesInputMessage();
+    public static List<String> getAllCarNames(Scanner scanner) {
+        CarNamesInputFromUserPrinter.printCarNamesInputMessage();
         String inputCarNames = scanner.nextLine();
         return Collections.unmodifiableList(
             Arrays.stream(inputCarNames.split(CAR_NAMES_DELIMITER))

@@ -15,9 +15,8 @@ public class Application {
     }
 
     private static CarRacingRequestDto getInputFromUser() {
-        InputView inputView = new InputView();
-        List<String> carNames = inputView.getCarNames();
-        int racingTryTime = inputView.getRacingTryTime();
+        List<String> carNames = InputView.getCarNames();
+        int racingTryTime = InputView.getRacingTryTime();
         return new CarRacingRequestDto(carNames, racingTryTime);
     }
 

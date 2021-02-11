@@ -6,20 +6,13 @@ import racingcar.view.input.carname.ValidCarNamesInputFromUserGetter;
 import racingcar.view.input.racingtrytime.ValidRacingTryTimeFromUserGetter;
 
 public class InputView {
-    private final ValidCarNamesInputFromUserGetter validCarNamesInputFromUserGetter;
-    private final ValidRacingTryTimeFromUserGetter validRacingTryTimeFromUserGetter;
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public InputView() {
-        Scanner scanner = new Scanner(System.in);
-        this.validCarNamesInputFromUserGetter = new ValidCarNamesInputFromUserGetter(scanner);
-        this.validRacingTryTimeFromUserGetter = new ValidRacingTryTimeFromUserGetter(scanner);
+    public static List<String> getCarNames() {
+        return ValidCarNamesInputFromUserGetter.getCarNames(scanner);
     }
 
-    public List<String> getCarNames() {
-        return validCarNamesInputFromUserGetter.getCarNames();
-    }
-
-    public int getRacingTryTime() {
-        return validRacingTryTimeFromUserGetter.getRacingTryTime();
+    public static int getRacingTryTime() {
+        return ValidRacingTryTimeFromUserGetter.getRacingTryTime(scanner);
     }
 }
