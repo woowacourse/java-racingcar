@@ -3,10 +3,19 @@ package racingcar.model;
 import java.util.Objects;
 
 public class Distance {
+    private static final int MIN_DISTANCE = 0;
+
     private int distance;
 
-    public Distance(int distance) {
+    public Distance(final int distance) {
+        validateDistance(distance);
         this.distance = distance;
+    }
+
+    private void validateDistance(final int distance) {
+        if (distance < MIN_DISTANCE) {
+            throw new IllegalArgumentException("[Error] 거리는 0 미만으로 초기화 할 수 없습니다.\n");
+        }
     }
 
     public int getDistance() {
