@@ -38,7 +38,7 @@ public class Cars {
 
     public List<String> getWinnerNames() {
         return getWinners().stream()
-                .map(Car::getValueOfName)
+                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
@@ -52,7 +52,7 @@ public class Cars {
 
     private int getMaxPosition() {
         return cars.stream()
-                .mapToInt(Car::getValueOfPosition)
+                .mapToInt(Car::getPosition)
                 .max()
                 .orElseThrow(RuntimeException::new);
     }

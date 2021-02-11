@@ -60,7 +60,7 @@ public class RacingController {
     private void showAllCarsPosition(final List<Car> cars) {
         cars.forEach(car ->
                 OutputView.printRaceResultEachCar(
-                        car.getValueOfName(), car.getValueOfPosition()));
+                        car.getName(), car.getPosition()));
     }
 
     private void showRaceWinner(final List<String> winnerNames) {
