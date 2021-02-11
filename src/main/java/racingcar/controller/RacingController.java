@@ -2,6 +2,8 @@ package racingcar.controller;
 
 import racingcar.domain.*;
 import racingcar.domain.car.Car;
+import racingcar.domain.car.CarRegister;
+import racingcar.domain.car.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -21,18 +23,17 @@ public class RacingController {
     }
 
     public void start() {
-        final CarRacingGameEngine carRacingGameEngine
-                = new CarRacingGameEngine(createCar());
+        final Cars cars = new Cars(createCar());
         final int raceTime = applyRaceTime();
 
         showRaceResult();
 
         for (int i = 0; i < raceTime; i++) {
-            carRacingGameEngine.race();
-            showRaceState(carRacingGameEngine.cars());
+            cars.goForwardAllCarsRandomly();
+            showRaceState(cars.getCars());
         }
 
-        showRaceWinner(carRacingGameEngine.winnerNames());
+        showRaceWinner(cars.getWinnerNames());
     }
 
     private List<Car> createCar() {

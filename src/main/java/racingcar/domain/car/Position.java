@@ -38,4 +38,5 @@ public class Position {
     public int hashCode() {
         return Objects.hash(position);
     }
+
 }

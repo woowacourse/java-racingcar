@@ -1,7 +1,5 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
-import racingcar.domain.car.Car;
-import racingcar.domain.car.Name;
 import racingcar.exception.InvalidDuplicateCarNameException;
 import racingcar.exception.InvalidNumberOfRegisteredCarsException;
 
@@ -16,14 +14,14 @@ public class CarRegister {
     private static final int INVALID_NUMBER_OF_CARS_ZERO = 0;
 
     public List<Car> registerCars(final String input) {
-        final List<String> carNames = validateCarNames(input);
+        final List<String> carName = validateCarNames(input);
 
-        return carNames.stream()
+        return carName.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
 
-    private List<String> validateCarNames(final String input) {
+    private static List<String> validateCarNames(final String input) {
         final List<String> carNames = Arrays.stream(input.split(CAR_NAME_DELIMITER))
                 .collect(Collectors.toList());
 
@@ -33,13 +31,13 @@ public class CarRegister {
         return carNames;
     }
 
-    private void validateNumberOfRegisteredCars(List<String> carNames) {
+    private static void validateNumberOfRegisteredCars(List<String> carNames) {
         if (carNames.size() == INVALID_NUMBER_OF_CARS_ZERO) {
             throw new InvalidNumberOfRegisteredCarsException();
         }
     }
 
-    private void validateDuplicateCarNames(List<String> carNames) {
+    private static void validateDuplicateCarNames(List<String> carNames) {
         if (new HashSet<>(carNames).size() != carNames.size()) {
             throw new InvalidDuplicateCarNameException();
         }
