@@ -44,10 +44,9 @@ public class Cars {
         return getCarsNames(winners);
     }
 
-    private List<Name> getCarsNames(List<Car> cars) {
+    private List<Name> getCarsNames() {
         return cars.stream()
-                .map(Car::toString)
-                .map(Name::create)
+                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 

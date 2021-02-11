@@ -19,6 +19,10 @@ public class Car {
         return new Car(name);
     }
 
+    public Name getName() {
+        return name;
+    }
+
     public int getFatherPosition(int position) {
         return Math.max(this.position, position);
     }
@@ -38,11 +42,6 @@ public class Car {
     }
 
     @Override
-    public String toString() {
-        return this.name.toString();
-    }
-
-    @Override
     public int hashCode() {
         return name.hashCode();
     }
@@ -53,5 +52,13 @@ public class Car {
             return this.name.equals(((Car) o).name);
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
     }
 }
