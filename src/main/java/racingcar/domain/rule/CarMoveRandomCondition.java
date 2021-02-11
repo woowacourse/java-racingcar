@@ -2,7 +2,7 @@ package racingcar.domain.rule;
 
 import racingcar.domain.util.RandomNumber;
 
-public class MoveCondition implements Condition {
+public class CarMoveRandomCondition implements CarMoveCondition {
     private final static int DEFAULT_BOUND = 9;
     private final static int MOVABLE = 4;
 

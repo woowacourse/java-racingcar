@@ -1,5 +1,5 @@
 package racingcar.domain.rule;
 
-public interface Condition {
+public interface CarMoveCondition {
     boolean isMovable();
 }
