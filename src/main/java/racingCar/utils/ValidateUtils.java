@@ -10,7 +10,7 @@ public class ValidateUtils {
     public static final String ERROR_MESSAGE_CAR_NAME_NULL_OR_EMPTY = "자동차 이름은 공백이 안됩니다.";
     private static final String ERROR_MESSAGE_ROUND_COUNT_NUMBER = "시도 횟수는 숫자이어야 합니다.";
 
-    public static boolean validateCarName(String carName) {
+    public static boolean isProperName(String carName) {
         return isProperLength(carName) && isNotBlank(carName);
     }
 
@@ -26,7 +26,7 @@ public class ValidateUtils {
         return !carName.isEmpty();
     }
 
-    public static int validateInteger(String count) {
+    public static int numberedCount(String count) {
         try {
             return Integer.parseInt(count);
         } catch (NumberFormatException e) {

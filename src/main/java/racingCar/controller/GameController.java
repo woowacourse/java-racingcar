@@ -45,7 +45,7 @@ public class GameController {
     private Round inputRacingRound() {
         try {
             OutputView.printInputNumOfRoundMessage();
-            return new Round(ValidateUtils.validateInteger(inputView.inputValue()));
+            return new Round(ValidateUtils.numberedCount(inputView.inputValue()));
         } catch (InvalidNumOfMoveException e) {
             OutputView.printExceptionMessage(e);
             return inputRacingRound();

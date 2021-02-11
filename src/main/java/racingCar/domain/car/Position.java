@@ -31,10 +31,6 @@ public class Position {
         return other;
     }
 
-    public int getMaxValue(final int value) {
-        return Integer.max(this.position, value);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

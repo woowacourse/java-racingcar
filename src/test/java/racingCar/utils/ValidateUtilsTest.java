@@ -16,7 +16,7 @@ class ValidateUtilsTest {
     @NullAndEmptySource
     void invalidRoundInput(String invalidInput) {
         assertThatThrownBy(() -> {
-            ValidateUtils.validateInteger(invalidInput);
+            ValidateUtils.numberedCount(invalidInput);
         }).isInstanceOf(RuntimeException.class);
     }
 

@@ -11,7 +11,7 @@ public class Name {
     private final String name;
 
     public Name(final String name) {
-        if (!ValidateUtils.validateCarName(name)) {
+        if (!ValidateUtils.isProperName(name)) {
             throw new InvalidCarNameException(ERROR_MESSAGE_CAR_NAME_LENGTH);
         }
         this.name = name;
