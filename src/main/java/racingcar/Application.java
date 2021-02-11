@@ -3,8 +3,8 @@ package racingcar;
 
 import java.util.List;
 import racingcar.domain.racing.CarRacing;
-import racingcar.dto.CarRacingRequestDto;
 import racingcar.numbergenerator.RandomNumberGenerator;
+import racingcar.view.CarRacingInputs;
 import racingcar.view.input.InputView;
 import racingcar.view.output.ResultView;
 
@@ -14,10 +14,10 @@ public class Application {
         doRace(carRacing);
     }
 
-    private static CarRacingRequestDto getInputFromUser() {
+    private static CarRacingInputs getInputFromUser() {
         List<String> carNames = InputView.getCarNames();
         int racingTryTime = InputView.getRacingTryTime();
-        return new CarRacingRequestDto(carNames, racingTryTime);
+        return new CarRacingInputs(carNames, racingTryTime);
     }
 
     private static void doRace(CarRacing carRacing) {

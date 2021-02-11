@@ -9,8 +9,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.domain.Car;
 import racingcar.domain.racing.utils.CarsCreatorTestUtils;
-import racingcar.dto.CarRacingRequestDto;
 import racingcar.numbergenerator.FixedNumberGenerator;
+import racingcar.view.CarRacingInputs;
 
 class CarRacingTest {
     @DisplayName("생성자의 setCarsBeforeRacing(), getCars() 테스트")
@@ -19,8 +19,8 @@ class CarRacingTest {
         List<String> carNames = CarsCreatorTestUtils.createCarNamesSizeOf(10);
         int racingTryTime = 5;
 
-        CarRacingRequestDto carRacingRequestDto
-            = new CarRacingRequestDto(carNames, racingTryTime);
+        CarRacingInputs carRacingRequestDto
+            = new CarRacingInputs(carNames, racingTryTime);
         FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(6);
 
         CarRacing carRacing = new CarRacing(carRacingRequestDto, fixedNumberGenerator);
@@ -44,8 +44,8 @@ class CarRacingTest {
 
         List<String> carNames = CarsCreatorTestUtils.createCarNamesSizeOf(10);
         final int racingTryTime = 1;
-        CarRacingRequestDto carRacingRequestDto
-            = new CarRacingRequestDto(carNames, racingTryTime);
+        CarRacingInputs carRacingRequestDto
+            = new CarRacingInputs(carNames, racingTryTime);
 
         FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(generatedNumber);
         CarRacing carRacing = new CarRacing(carRacingRequestDto, fixedNumberGenerator);
@@ -68,8 +68,8 @@ class CarRacingTest {
         int expectedFinalPosition = Integer.parseInt(expectedFinalPositionStr);
 
         List<String> carNames = CarsCreatorTestUtils.createCarNamesSizeOf(10);
-        CarRacingRequestDto carRacingRequestDto
-            = new CarRacingRequestDto(carNames, racingTryTime);
+        CarRacingInputs carRacingRequestDto
+            = new CarRacingInputs(carNames, racingTryTime);
 
         FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(generatedNumber);
         CarRacing carRacing = new CarRacing(carRacingRequestDto, fixedNumberGenerator);
@@ -87,8 +87,8 @@ class CarRacingTest {
         List<String> carNames = CarsCreatorTestUtils.createCarNamesSizeOf(10);
         int racingTryTime = 5;
 
-        CarRacingRequestDto carRacingRequestDto
-            = new CarRacingRequestDto(carNames, racingTryTime);
+        CarRacingInputs carRacingRequestDto
+            = new CarRacingInputs(carNames, racingTryTime);
         FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(6);
 
         CarRacing carRacing = new CarRacing(carRacingRequestDto, fixedNumberGenerator);
@@ -108,8 +108,8 @@ class CarRacingTest {
         List<String> carNames = CarsCreatorTestUtils.createCarNamesSizeOf(10);
         int racingTryTime = 5;
 
-        CarRacingRequestDto carRacingRequestDto
-            = new CarRacingRequestDto(carNames, racingTryTime);
+        CarRacingInputs carRacingRequestDto
+            = new CarRacingInputs(carNames, racingTryTime);
         FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator(6);
 
         CarRacing carRacing = new CarRacing(carRacingRequestDto, fixedNumberGenerator);

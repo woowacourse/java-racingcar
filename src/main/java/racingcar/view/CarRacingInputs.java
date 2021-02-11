@@ -1,14 +1,14 @@
-package racingcar.dto;
+package racingcar.view;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CarRacingRequestDto {
+public class CarRacingInputs {
     private final List<String> carNames;
     private final int racingTryTime;
 
-    public CarRacingRequestDto(List<String> carNames, int racingTryTime) {
+    public CarRacingInputs(List<String> carNames, int racingTryTime) {
         this.carNames = new ArrayList<>(carNames);
         this.racingTryTime = racingTryTime;
     }
