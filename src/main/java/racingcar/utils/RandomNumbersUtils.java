@@ -7,6 +7,8 @@ public class RandomNumbersUtils {
     private static final int MIN_RANDOM_RANGE = 0;
     private static final int MAX_RANDOM_RANGE = 9;
 
+    private RandomNumbersUtils() {}
+
     public static List<Integer> createRandomNumbers(int size) {
         List<Integer> randomNumbers = new ArrayList<>();
         for (int i = 0; i < size; i++) {
