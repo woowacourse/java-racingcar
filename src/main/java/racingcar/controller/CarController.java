@@ -3,9 +3,9 @@ package racingcar.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.TryNumber;
+import racingcar.domain.car.Car;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -16,7 +16,7 @@ public class CarController {
 
     private Cars cars;
     private TryNumber tryNumber;
-    
+
     public CarController() {
     }
 

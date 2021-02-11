@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import racingcar.domain.car.Car;
 import racingcar.view.OutputView;
 
 public class Cars {

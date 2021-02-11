@@ -13,9 +13,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.controller.CarController;
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.TryNumber;
+import racingcar.domain.car.Car;
 
 public class CarTest {
 
