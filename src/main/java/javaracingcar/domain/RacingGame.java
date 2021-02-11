@@ -12,7 +12,7 @@ public class RacingGame {
     private int trial;
 
     public RacingGame(List<String> carNames, int trial) {
-        this(new Cars(carNames), trial);
+        this(Cars.createByName(carNames), trial);
     }
 
     public RacingGame(Cars cars, int trial) {
@@ -47,6 +47,6 @@ public class RacingGame {
     }
 
     public List<Car> getWinners() {
-        return cars.getWinners();
+        return cars.atPosition(cars.getMaxPosition());
     }
 }
