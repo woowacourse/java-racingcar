@@ -19,18 +19,18 @@ public class CarNames {
         this.names = names;
     }
 
-    public static CarNames create(String rawNames) {
+    public static CarNames create(final String rawNames) {
         List<Name> names =  Arrays.stream(rawNames.split(DELIMITER, THRESHOLD))
                 .map(Name::new)
                 .collect(Collectors.toList());
         return new CarNames(names);
     }
 
-    private void validate(List<Name> names) {
+    private void validate(final List<Name> names) {
         validateUnique(names);
     }
 
-    private void validateUnique(List<Name> names) {
+    private void validateUnique(final List<Name> names) {
         if (names.size() != new HashSet<>(names).size()) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_CARS_HAVE_DUPLICATE_NAMES);
         }

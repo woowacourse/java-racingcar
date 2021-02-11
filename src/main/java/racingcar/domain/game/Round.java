@@ -9,12 +9,12 @@ public class Round {
     private final int value;
     private int played = 0;
 
-    public Round(int value) {
+    public Round(final int value) {
         validateValue(value);
         this.value = value;
     }
 
-    public Round(String value) {
+    public Round(final String value) {
         try {
             int parsedValue = Integer.parseInt(value);
             validateValue(parsedValue);
@@ -24,7 +24,7 @@ public class Round {
         }
     }
 
-    private void validateValue(int value) {
+    private void validateValue(final int value) {
         if (value < MINIMUM_POSITIVE_VALUE) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_ROUND_NOT_POSITIVE);
         }

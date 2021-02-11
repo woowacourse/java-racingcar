@@ -14,7 +14,7 @@ public class StringCalculator {
         throw new IllegalStateException("StringCalculator is an utility class");
     }
 
-    public static int splitAndSum(String input) {
+    public static int splitAndSum(final String input) {
         if (input == null || input.isEmpty()) {
             return 0;
         }
@@ -25,25 +25,25 @@ public class StringCalculator {
         return calculate(input, DEFAULT_DELIMITERS);
     }
 
-    private static int calculate(String input, String delimiter) {
+    private static int calculate(final String input, final String delimiter) {
         String[] numbers = input.split(delimiter);
         validateAllPositive(numbers);
         return addAll(numbers);
     }
 
-    private static void validateAllPositive(String[] numbers) {
+    private static void validateAllPositive(final String[] numbers) {
         if (containsNegative(numbers)) {
             throw new NegativeFoundRuntimeException("found negative number(s)");
         }
     }
 
-    private static boolean containsNegative(String[] numbers) {
+    private static boolean containsNegative(final String[] numbers) {
         return Arrays.stream(numbers)
                 .map(Integer::parseInt)
                 .anyMatch(number -> number < 0);
     }
 
-    private static int addAll(String[] numbers) {
+    private static int addAll(final String[] numbers) {
         return Arrays.stream(numbers)
                 .mapToInt(Integer::parseInt)
                 .sum();

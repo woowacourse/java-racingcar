@@ -30,13 +30,13 @@ public class Car {
         return position.getValue();
     }
 
-    public void move(int conditionNumber) {
+    public void move(final int conditionNumber) {
         if (conditionNumber >= MOVE_CONDITION) {
             position = position.move();
         }
     }
 
-    public boolean isPosition(int position) {
+    public boolean isPosition(final int position) {
         return this.position.is(position);
     }
 
