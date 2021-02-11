@@ -13,17 +13,17 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.controller.CarController;
-import racingcar.domain.AttemptNumber;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.TryNumber;
 
 public class CarTest {
 
     @Test
     @DisplayName("자동차 이름이 잘 들어갔는지 테스트")
-    void carNameTest(String text) {
+    void carNameTest() {
         Car car = new Car("benz");
-        assertThat(car.getName()).isEqualTo(text);
+        assertThat(car.getName()).isEqualTo("benz");
     }
 
     @ParameterizedTest
@@ -70,7 +70,7 @@ public class CarTest {
     void attemptsNumberErrorTest(int number) {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
-                new AttemptNumber(number);
+                new TryNumber(number);
             });
     }
 
@@ -78,8 +78,8 @@ public class CarTest {
     @ValueSource(ints = {1, 2, 5, 8, 10})
     @DisplayName("시도횟수가 잘 입력되었는지 테스트")
     void attemptsNumberTest(int number) {
-        AttemptNumber attemptNumber = new AttemptNumber(number);
-        assertThat(attemptNumber.getAttemptNumber()).isEqualTo(number);
+        TryNumber attemptNumber = new TryNumber(number);
+        assertThat(attemptNumber.getTryNumber()).isEqualTo(number);
     }
 
     @ParameterizedTest
