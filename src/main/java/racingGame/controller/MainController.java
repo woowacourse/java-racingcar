@@ -1,11 +1,11 @@
-package racingcar.controller;
+package racingGame.controller;
 
-import racingcar.domain.Cars;
-import racingcar.domain.RacingGame;
-import racingcar.domain.Name;
-import racingcar.domain.Rounds;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
+import racingGame.domain.racingCar.Cars;
+import racingGame.domain.game.RacingGame;
+import racingGame.domain.racingCar.Name;
+import racingGame.domain.game.Rounds;
+import racingGame.view.InputView;
+import racingGame.view.OutputView;
 
 import java.util.List;
 import java.util.Scanner;

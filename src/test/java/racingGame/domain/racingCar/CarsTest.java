@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingGame.domain.racingCar;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.utils.NameHandler;
+import racingGame.domain.utils.NameHandler;
 
 import java.util.Arrays;
 import java.util.List;

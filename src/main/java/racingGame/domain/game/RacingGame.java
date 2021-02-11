@@ -1,5 +1,9 @@
-package racingcar.domain;
+package racingGame.domain.game;
 
+
+import racingGame.domain.racingCar.CarDto;
+import racingGame.domain.racingCar.Cars;
+import racingGame.domain.racingCar.Name;
 
 import java.util.List;
 
@@ -21,7 +25,7 @@ public class RacingGame {
         this.rounds.next();
     }
 
-    public List<RaceResultDTO> getRaceResults() {
+    public List<CarDto> getRaceResults() {
         return cars.getResults();
     }
 

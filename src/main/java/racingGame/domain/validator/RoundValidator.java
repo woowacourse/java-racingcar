@@ -1,4 +1,4 @@
-package racingcar.domain.validator;
+package racingGame.domain.validator;
 
 public class RoundValidator {
 

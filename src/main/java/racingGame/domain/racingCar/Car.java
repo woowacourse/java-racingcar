@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingGame.domain.racingCar;
 
 public class Car {
     private static final int MINIMUM_TO_MOVE = 4;
@@ -37,8 +37,8 @@ public class Car {
         }
     }
 
-    public RaceResultDTO getRaceResults() {
-        return new RaceResultDTO(name, position);
+    public CarDto getStatus() {
+        return new CarDto(name, position);
     }
 
     @Override

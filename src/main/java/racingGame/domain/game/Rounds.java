@@ -1,6 +1,6 @@
-package racingcar.domain;
+package racingGame.domain.game;
 
-import racingcar.domain.validator.RoundValidator;
+import racingGame.domain.validator.RoundValidator;
 
 public class Rounds {
     private int round;

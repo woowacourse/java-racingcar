@@ -1,7 +1,7 @@
-package racingcar.domain.validator;
+package racingGame.domain.validator;
 
-import racingcar.domain.Car;
-import racingcar.domain.Name;
+import racingGame.domain.racingCar.Car;
+import racingGame.domain.racingCar.Name;
 
 import java.util.List;
 import java.util.Objects;

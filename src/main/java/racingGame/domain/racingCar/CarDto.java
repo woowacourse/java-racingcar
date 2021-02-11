@@ -1,10 +1,10 @@
-package racingcar.domain;
+package racingGame.domain.racingCar;
 
-public class RaceResultDTO {
+public class CarDto {
     final Name name;
     final int position;
 
-    public RaceResultDTO(final Name name, final int position) {
+    public CarDto(final Name name, final int position) {
         this.name = name;
         this.position = position;
     }

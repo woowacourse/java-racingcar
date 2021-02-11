@@ -1,8 +1,7 @@
-package racingcar.view;
+package racingGame.view;
 
-import racingcar.domain.Car;
-import racingcar.domain.Name;
-import racingcar.domain.RaceResultDTO;
+import racingGame.domain.racingCar.Name;
+import racingGame.domain.racingCar.CarDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,14 +16,14 @@ public class OutputView {
         System.out.println(msg);
     }
 
-    public static void printResults(final List<RaceResultDTO> raceResults) {
+    public static void printResults(final List<CarDto> raceResults) {
         raceResults.stream()
                 .map(OutputView::makeResultLine)
                 .forEach(OutputView::println);
         printLineBreak();
     }
 
-    private static String makeResultLine(RaceResultDTO result) {
+    private static String makeResultLine(CarDto result) {
         return result.getName() + " : " + makePositionBar(result.getPosition());
     }
 

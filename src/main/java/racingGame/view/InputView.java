@@ -1,9 +1,9 @@
-package racingcar.view;
+package racingGame.view;
 
-import racingcar.domain.Name;
-import racingcar.domain.Rounds;
-import racingcar.domain.utils.NameHandler;
-import racingcar.domain.validator.InputValidator;
+import racingGame.domain.racingCar.Name;
+import racingGame.domain.game.Rounds;
+import racingGame.domain.utils.NameHandler;
+import racingGame.domain.validator.InputValidator;
 
 import java.util.List;
 import java.util.Scanner;

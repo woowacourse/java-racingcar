@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingGame.domain.game;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

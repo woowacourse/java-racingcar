@@ -1,11 +1,11 @@
-package racingcar.domain;
+package racingGame.domain.racingCar;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.domain.utils.RandomUtils;
-import racingcar.domain.validator.CarsValidator;
+import racingGame.domain.utils.RandomUtils;
+import racingGame.domain.validator.CarsValidator;
 
 public class Cars {
     private static final int INJECTION_NUMBER_MIN = 0;
@@ -36,9 +36,9 @@ public class Cars {
         return RandomUtils.nextInt(INJECTION_NUMBER_MIN, INJECTION_NUMBER_MAX);
     }
 
-    public List<RaceResultDTO> getResults() {
+    public List<CarDto> getResults() {
         return this.cars.stream()
-                .map(Car::getRaceResults)
+                .map(Car::getStatus)
                 .collect(Collectors.toList());
     }
 
@@ -72,7 +72,6 @@ public class Cars {
         return max;
     }
 
-    // XXX :: 테스트만을 위한 메소드
     public boolean contains(final Car car) {
         return this.cars.contains(car);
     }
