@@ -7,7 +7,7 @@ public class Car {
     private static final int MOVABLE_RPM_MIN = 4;
 
     private final Name name;
-    private int position = 0;
+    private Position position = Position.valueOf(0);
 
     public Car(final Name name) {
         this.name = new Name(name);
@@ -20,7 +20,7 @@ public class Car {
     }
 
     private void move() {
-        position++;
+        position = position.next();
     }
 
     public String getName() {
@@ -28,7 +28,7 @@ public class Car {
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     @Override
