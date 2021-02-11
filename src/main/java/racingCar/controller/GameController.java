@@ -37,7 +37,7 @@ public class GameController {
     private void inputCars() {
         try {
             OutputView.printInputCarNameMessage();
-            String[] carNames = ValidateUtils.validateNumOfCarNames(inputView.inputCarNames());
+            String[] carNames = inputView.inputCarNames();
             cars = makeCars(carNames);
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e);

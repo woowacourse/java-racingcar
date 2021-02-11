@@ -1,10 +1,12 @@
 package racingCar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingCar.domain.car.Car;
 import racingCar.domain.car.Cars;
@@ -22,6 +24,17 @@ public class CarsTest {
         );
         assertThat(cars.toList()).contains(new Car("jason", new FixedEngine(2)),
             new Car("pobi", new FixedEngine(3)));
+    }
+
+    @DisplayName("경주하는 자동차는 2개 이상이어야 한다")
+    @Test
+    public void 자동차_갯수_2개_이상_negative() {
+        // given, when
+        final List<Car> carList = new ArrayList<>();
+        carList.add(new Car("jason", new FixedEngine(0)));
+
+        assertThatIllegalArgumentException()
+            .isThrownBy(()->new Cars(carList));
     }
 
     @Test
