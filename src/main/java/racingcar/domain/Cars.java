@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomGenerator;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -33,7 +31,7 @@ public class Cars {
     }
 
     public List<Car> toList() {
-        return Collections.unmodifiableList(new ArrayList<>(cars));
+        return Collections.unmodifiableList(cars);
     }
 
     public Cars copy() {
@@ -45,8 +43,14 @@ public class Cars {
         return carsCopied;
     }
 
-    public void moveCars() {
-        cars.forEach(car -> car.move(RandomGenerator.generateRandomNumber()));
+    public void moveCars(int[] numbers) {
+        for (int i = 0; i < cars.size(); i++) {
+            cars.get(i).move(numbers[i]);
+        }
+    }
+
+    public int getNumberOfCars() {
+        return cars.size();
     }
 
     public List<Car> findWinners() {

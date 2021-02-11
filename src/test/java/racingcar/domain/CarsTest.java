@@ -53,6 +53,23 @@ class CarsTest {
                 .hasMessage(DUPLICATE_NAME_ERROR_MESSAGE);
     }
 
+    @DisplayName("자동차들이 모두 주어진 숫자에 따라 올바르게 움직이는지")
+    @Test
+    void moveCars_givenNumbersToMoveCars_allCarsGivenNumberOver3MoveForwardOtherwiseStay() {
+        List<String> carNamesForTest = Arrays.asList("포비", "데이브", "삭정");
+        Cars cars = new Cars(carNamesForTest);
+
+        int[] numbersToMoveCars = {1,3,5};
+        cars.moveCars(numbersToMoveCars);
+
+        int[] expectedPosition = {0,0,1};
+
+        List<Car> carsAfterMove = cars.toList();
+        for (int i = 0; i < expectedPosition.length; i++) {
+            assertThat(carsAfterMove.get(i).getPosition()).isEqualTo(new Position(expectedPosition[i]));
+        }
+    }
+
     @DisplayName("우승자 제대로 가려내는지 테스트")
     @ParameterizedTest
     @MethodSource("provideRaceWinnerCases")
