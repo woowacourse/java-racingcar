@@ -3,8 +3,8 @@ package racingcar.domain.rule;
 import racingcar.domain.util.RandomNumber;
 
 public class CarMoveRandomCondition implements CarMoveCondition {
-    private final static int DEFAULT_BOUND = 9;
-    private final static int MOVABLE_BOUND = 4;
+    private static final int DEFAULT_BOUND = 9;
+    private static final int MOVABLE_BOUND = 4;
 
     @Override
     public boolean isMovable() {
