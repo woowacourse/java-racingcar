@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class RacingCarController {
+public class RacingController {
     private static final String HYPHEN = "-";
 
     private final InputView inputView;
 
-    public RacingCarController(Scanner scanner) {
+    public RacingController(Scanner scanner) {
         this.inputView = new InputView(scanner);
     }
 
