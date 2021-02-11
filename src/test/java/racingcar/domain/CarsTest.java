@@ -59,10 +59,10 @@ class CarsTest {
         List<String> carNamesForTest = Arrays.asList("포비", "데이브", "삭정");
         Cars cars = new Cars(carNamesForTest);
 
-        int[] numbersToMoveCars = {1,3,5};
+        int[] numbersToMoveCars = {1, 3, 5};
         cars.moveCars(numbersToMoveCars);
 
-        int[] expectedPosition = {0,0,1};
+        int[] expectedPosition = {0, 0, 1};
 
         List<Car> carsAfterMove = cars.toList();
         for (int i = 0; i < expectedPosition.length; i++) {
