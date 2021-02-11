@@ -6,7 +6,6 @@ import racingcar.domain.Cars;
 import racingcar.domain.Result;
 import racingcar.domain.Results;
 import racingcar.domain.Round;
-import racingcar.domain.Winners;
 import racingcar.utils.RandomUtils;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -20,7 +19,7 @@ public class GameController {
         Cars cars = getInputCarNames();
         Round round = getInputRoundCount();
         Results results = move(round, cars);
-        Winners winners = Winners.from(results);
+        List<String> winners = results.getWinners();
         OutputView.printResults(results);
         OutputView.printWinners(winners);
     }
