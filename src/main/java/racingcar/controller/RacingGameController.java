@@ -8,24 +8,26 @@ import racingcar.view.RacingGameView;
 
 public class RacingGameController {
 
-    final RacingGame racingGame;
+    private RacingGameController() {
+    }
 
-    public RacingGameController() {
+    public static void play() {
+        final RacingGame racingGame = prepare();
+        race(racingGame);
+        finish(racingGame);
+    }
+
+    private static RacingGame prepare() {
         String input = RacingGameView.requestCars();
         Cars cars = Cars.newInstance(input);
 
         input = RacingGameView.requestTrial();
         Trial trial = Trial.newInstance(input);
 
-        racingGame = new RacingGame(cars, trial);
+        return new RacingGame(cars, trial);
     }
 
-    public void play() {
-        race();
-        finish();
-    }
-
-    private void race() {
+    private static void race(final RacingGame racingGame) {
         RacingGameView.printNewLine();
         RacingGameView.printResult();
 
@@ -36,7 +38,7 @@ public class RacingGameController {
         }
     }
 
-    private void finish() {
+    private static void finish(final RacingGame racingGame) {
         final List<String> winnerNames = racingGame.getWinners();
         RacingGameView.printWinners(winnerNames);
     }
