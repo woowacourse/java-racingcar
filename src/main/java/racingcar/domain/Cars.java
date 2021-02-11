@@ -11,7 +11,7 @@ public class Cars {
 
     public Cars(String input) {
         String[] carNames = splitInput(input);
-        for (String name: carNames) {
+        for (String name : carNames) {
             this.cars.add(new Car(name, 0));
         }
     }
@@ -22,9 +22,9 @@ public class Cars {
 
     public void findMaxPosition() {
         maxPosition = cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
+            .mapToInt(Car::getPosition)
+            .max()
+            .orElse(0);
     }
 
     public int getMaxPosition() {
@@ -33,8 +33,8 @@ public class Cars {
 
     private String[] splitInput(String input) {
         String[] carNames = Arrays.stream(input.split(NAME_SPLIT_DELIMITER, -1))
-                .map(String::trim)
-                .toArray(String[]::new);
+            .map(String::trim)
+            .toArray(String[]::new);
         validateCarsLength(carNames);
         validateDuplication(carNames);
         return carNames;

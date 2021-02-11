@@ -22,9 +22,9 @@ public class Winners {
 
     private void findWinner() {
         winners = cars.stream()
-                .filter(car -> isWinner(car))
-                .map(Car::getName)
-                .collect(Collectors.toList());
+            .filter(car -> isWinner(car))
+            .map(Car::getName)
+            .collect(Collectors.toList());
     }
 
     private boolean isWinner(Car car) {
