@@ -44,7 +44,7 @@ public class Cars {
     }
 
     public List<Car> toList() {
-        return cars;
+        return new ArrayList<>(cars);
     }
 
     public List<Car> atPosition(int position) {
