@@ -25,7 +25,7 @@ public class RacingGame {
 
     private void prepareTrial() {
         String input = RacingGameView.requestTrial();
-        trial = GameSetter.setTrial(input);
+        trial = new Trial(input).getTrial();
     }
 
     private void play() {
