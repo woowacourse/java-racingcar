@@ -22,7 +22,7 @@ public class Cars {
         CarsValidator.checkIsValidNames(names);
 
         List<Car> cars = names.stream()
-                .map(name -> Car.createByName(name))
+                .map(Car::createByName)
                 .collect(Collectors.toList());
 
         return new Cars(cars);
@@ -63,13 +63,11 @@ public class Cars {
     }
 
     private int findWinnerPosition() {
-        int max = Integer.MIN_VALUE;
-
-        for (Car car : cars) {
-            max = car.getFatherPosition(max);
-        }
-
-        return max;
+        return cars.stream()
+                .map(Car::getStatus)
+                .mapToInt(CarDto::getPosition)
+                .max()
+                .orElseThrow(() -> new IllegalArgumentException("There isn't winner"));
     }
 
     public boolean contains(final Car car) {
