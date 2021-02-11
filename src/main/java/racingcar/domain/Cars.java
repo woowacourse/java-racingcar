@@ -33,9 +33,9 @@ public class Cars {
         }
     }
 
-    public static Cars newInstance(final String input) {
-        final String[] carNames = input.split(NAME_SPLIT_DELIMITER, -1);
-        return new Cars(Arrays.stream(carNames)
+    public static Cars generateCarsByNames(final String names) {
+        final String[] parsedNames = names.split(NAME_SPLIT_DELIMITER, -1);
+        return new Cars(Arrays.stream(parsedNames)
             .map(Car::new)
             .collect(Collectors.toList()));
     }

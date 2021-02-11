@@ -12,7 +12,7 @@ public class Trial {
     private final int finalTrialNumber;
     private int currentTrialNumber;
 
-    public Trial(final int finalTrialNumber) {
+    private Trial(final int finalTrialNumber) {
         validateBound(finalTrialNumber);
         this.finalTrialNumber = finalTrialNumber;
         this.currentTrialNumber = 0;
@@ -25,7 +25,7 @@ public class Trial {
         }
     }
 
-    public static Trial newInstance(final String input) {
+    public static Trial generateTrialByString(final String input) {
         validateNumber(input);
         try {
             int trialNumber = Integer.parseInt(input);

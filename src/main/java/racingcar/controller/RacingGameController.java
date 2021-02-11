@@ -19,10 +19,10 @@ public class RacingGameController {
 
     private static RacingGame prepare() {
         String input = RacingGameView.requestCars();
-        Cars cars = Cars.newInstance(input);
+        Cars cars = Cars.generateCarsByNames(input);
 
         input = RacingGameView.requestTrial();
-        Trial trial = Trial.newInstance(input);
+        Trial trial = Trial.generateTrialByString(input);
 
         return new RacingGame(cars, trial);
     }
