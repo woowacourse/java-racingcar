@@ -14,7 +14,7 @@ import racingcar.domain.Car;
 public class CarTest {
 
     @Test
-    @DisplayName("정상적인 자동차 이름 읿력")
+    @DisplayName("정상적인 자동차 이름 입력")
     void generateCarTest_정상_입력() {
         assertThatCode(() -> {
             new Car("루트");
