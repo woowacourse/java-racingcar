@@ -1,4 +1,3 @@
-
 package racingcar.controller;
 
 import racingcar.model.Car;
@@ -11,11 +10,29 @@ import java.util.Scanner;
 
 public class RacingGameController {
     public void play(final Scanner scanner) {
-        final Cars carsInGame = InputView.getUserCarInput(scanner);
-        final int trialNumber = InputView.getUserTrialNumberInput(scanner);
+        final Cars carsInGame = getCarsInGame(scanner);
+        final int trialNumber = getTrialNumber(scanner);
 
         playEveryTrial(carsInGame, trialNumber);
         announceWinner(carsInGame);
+    }
+
+    private Cars getCarsInGame(final Scanner scanner) {
+        try {
+            final String[] carNames = InputView.getUserCarInput(scanner);
+            return makeCars(carNames);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getCarsInGame(scanner);
+        }
+    }
+
+    private Cars makeCars(final String[] carNames) {
+        return new Cars(carNames);
+    }
+
+    private int getTrialNumber(final Scanner scanner) {
+        return InputView.getUserTrialNumberInput(scanner);
     }
 
     private void playEveryTrial(final Cars carsInGame, final int trialNumber) {
