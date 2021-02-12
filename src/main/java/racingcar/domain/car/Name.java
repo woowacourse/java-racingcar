@@ -17,11 +17,15 @@ public class Name {
         this.name = name.getName();
     }
 
-    private void validate(final String name) {
+    private static void validate(final String name) {
         if (name.length() > NAME_LENGTH_MAX || name.length() < NAME_LENGTH_MIN) {
             throw new IllegalArgumentException(
                 "자동차 이름은 " + NAME_LENGTH_MIN + "자 이상 " + NAME_LENGTH_MAX + "자 이하로 입력해주세요.");
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -39,9 +43,5 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public String getName() {
-        return name;
     }
 }

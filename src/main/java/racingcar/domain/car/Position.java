@@ -11,7 +11,7 @@ public class Position {
         this.position = position;
     }
 
-    private void validate(final int position) {
+    private static void validate(final int position) {
         if (position < POSITION_MIN) {
             throw new IllegalArgumentException("존재할 수 없는 위치입니다.");
         }

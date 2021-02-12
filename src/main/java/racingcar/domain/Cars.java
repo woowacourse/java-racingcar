@@ -9,7 +9,7 @@ import racingcar.utils.RandomUtils;
 
 public class Cars {
 
-    private static final int NUMBER_OF_CARS_MIN = 2;
+    private static final int CARS_COUNT_MIN = 2;
 
     private final List<Car> cars;
 
@@ -20,7 +20,7 @@ public class Cars {
     }
 
     private static void validateNumberOfCars(final List<Car> cars) {
-        if (cars.size() < NUMBER_OF_CARS_MIN) {
+        if (cars.size() < CARS_COUNT_MIN) {
             throw new IllegalArgumentException("자동차는 두 대 이상 입력해야 합니다.");
         }
     }
