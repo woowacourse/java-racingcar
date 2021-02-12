@@ -4,8 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -53,5 +58,38 @@ public class CollectionTest {
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
     void containsValidate(String input, String expected) {
         assertEquals(expected, String.valueOf(numbers.contains(Integer.parseInt(input))));
+    }
+
+    @DisplayName("unmodifiableList -> stream 으로 변경하면 unmodifiable 조건 풀리는지")
+    @Test
+    void unmodifiableList() {
+        List<String> names = new ArrayList<>();
+        names.add("111");
+        names.add("222");
+
+        List<String> unmodifiableNames = Collections.unmodifiableList(names);
+
+        Assertions.assertThatThrownBy(
+            () -> unmodifiableNames.add("333")
+        ).isInstanceOf(UnsupportedOperationException.class);
+
+        List<String> unmodifiableNames1 = names.stream()
+            .collect(Collectors.toList());
+        List<String> unmodifiableNames2 = new ArrayList<>(names);
+        List<String> unmodifiableNames3 = names.stream()
+            .filter(name -> name.equals("222"))
+            .collect(Collectors.toList());
+
+        Assertions.assertThatCode(
+            () -> unmodifiableNames1.add("333")
+        ).doesNotThrowAnyException();
+
+        Assertions.assertThatCode(
+            () -> unmodifiableNames2.add("333")
+        ).doesNotThrowAnyException();
+
+        Assertions.assertThatCode(
+            () -> unmodifiableNames3.add("333")
+        ).doesNotThrowAnyException();
     }
 }
