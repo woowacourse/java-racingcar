@@ -1,8 +1,8 @@
 package racingcar.domain;
 
 public class Lap {
-    private static final String NUMERIC_REGULAR_EXPRESSION = "\\d+";
     private static final int MINIMUM_LAP_COUNT = 1;
+    private static final String NUMERIC_REGULAR_EXPRESSION = "\\d+";
     private static final String NOT_OVER_ONE_ERROR_MESSAGE = "1 이상의 숫자를 입력하세요.";
     private static final String NOT_NUMERIC_ERROR_MESSAGE = "숫자를 입력하세요.";
 
@@ -20,8 +20,8 @@ public class Lap {
     }
 
     private void validateNumeric(String lapInput) {
-        if (lapInput.matches(NUMERIC_REGULAR_EXPRESSION)) {
-            throw new IllegalArgumentException(NOT_NUMERIC_ERROR_MESSAGE);
+        if (!lapInput.matches(NUMERIC_REGULAR_EXPRESSION)) {
+            throw new NumberFormatException(NOT_NUMERIC_ERROR_MESSAGE);
         }
     }
 
