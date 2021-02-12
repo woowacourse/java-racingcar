@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 public class TryNumber {
 
     private static final int MIN_ATTEMPT_NUMBER = 1;
@@ -20,5 +22,26 @@ public class TryNumber {
 
     public int getTryNumber() {
         return tryNumber;
+    }
+
+    public TryNumber decreaseNumber() {
+        return new TryNumber(tryNumber - 1);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TryNumber tryNumber1 = (TryNumber) o;
+        return tryNumber == tryNumber1.tryNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tryNumber);
     }
 }
