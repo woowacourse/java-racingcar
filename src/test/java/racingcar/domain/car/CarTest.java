@@ -42,10 +42,10 @@ public class CarTest {
         Car car3 = createCarForGetState_자동차의_현재_상태를_출력("포비", 5);
         Car car4 = createCarForGetState_자동차의_현재_상태를_출력("포비", 0);
 
-        assertEquals(car1.getState().toString(), "포비 : ---");
-        assertEquals(car2.getState().toString(), "포비 : -");
-        assertEquals(car3.getState().toString(), "포비 : -----");
-        assertEquals(car4.getState().toString(), "포비 : ");
+        assertEquals(car1.toString(), "포비 : ---");
+        assertEquals(car2.toString(), "포비 : -");
+        assertEquals(car3.toString(), "포비 : -----");
+        assertEquals(car4.toString(), "포비 : ");
     }
 
     private Car createCarForGetState_자동차의_현재_상태를_출력(String name, int position) {
