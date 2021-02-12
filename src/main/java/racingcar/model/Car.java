@@ -2,47 +2,39 @@ package racingcar.model;
 
 public class Car {
     private static final int MOVE_POINT_NUMBER = 4;
-    private static final int NAME_LEN = 5;
+    private static final int MOVE_FORWARD = 1;
 
-    private final String name;
-    private int distance;
+    private final Name name;
+    private Distance distance;
 
-    public Car(String name) {
+    public Car(final String name) {
         this(name, 0);
     }
 
-    public Car(String name, int distance) {
-        validateName(name);
-        this.name = name;
-        this.distance = distance;
+    public Car(final String name, final int distance) {
+        this.name = new Name(name);
+        this.distance = new Distance(distance);
     }
 
-    private void validateName(final String name) {
-        if (name.length() > NAME_LEN) {
-            throw new IllegalArgumentException("[Error] 자동차 이름은 5자 이하여야 합니다.\n");
+    public void move(final int number) {
+        if (checkMoveCondition(number)) {
+            distance = new Distance(distance.getDistance() + MOVE_FORWARD);
         }
     }
 
-    public int move(final int randomNumber) {
-        if (checkMoveCondition(randomNumber)) {
-            this.distance++;
-        }
-        return this.distance;
+    private boolean checkMoveCondition(final int number) {
+        return (number >= MOVE_POINT_NUMBER);
     }
 
-    private boolean checkMoveCondition(final int randomNumber) {
-        return (randomNumber >= MOVE_POINT_NUMBER);
-    }
-
-    public boolean isWinner(final int maxDistance) {
-        return (maxDistance == this.distance);
+    public boolean isWinner(final Distance maxDistance) {
+        return (maxDistance.equals(this.distance));
     }
 
     public String getName() {
-        return this.name;
+        return this.name.getName();
     }
 
     public int getDistance() {
-        return this.distance;
+        return this.distance.getDistance();
     }
 }
