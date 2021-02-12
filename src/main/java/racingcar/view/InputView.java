@@ -23,7 +23,6 @@ public class InputView {
         if (carNames.contains(TWO_COMMAS)) {
             throw new IllegalArgumentException(TWO_COMMAS_ERROR);
         }
-
         return Arrays.asList(carNames.split(COMMA));
     }
 
