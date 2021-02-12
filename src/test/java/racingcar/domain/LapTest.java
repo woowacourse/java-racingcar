@@ -27,7 +27,7 @@ class LapTest {
 
     @DisplayName("시도 횟수 입력이 최소 횟수인 1보다 작을 때 예외 발생")
     @Test
-    void Should_ThorwException_When_LapIsLessThanOne() {
+    void Should_ThrowException_When_LapIsLessThanOne() {
         String lapInput = "0";
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
