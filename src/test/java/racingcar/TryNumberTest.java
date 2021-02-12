@@ -17,9 +17,9 @@ public class TryNumberTest {
     }
 
     @Test
-    @DisplayName("1 미만의 수가 들어갈때 에러")
+    @DisplayName("0 미만의 수가 들어갈때 에러")
     void validateTest() {
-        assertThatThrownBy(() -> new TryNumber(0)).
+        assertThatThrownBy(() -> new TryNumber(-1)).
             isInstanceOf(IllegalArgumentException.class);
     }
 
