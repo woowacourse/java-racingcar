@@ -9,7 +9,7 @@ public class Name {
 
     private final String NAME;
 
-    public Name(String name) {
+    public Name(final String name) {
         validate(name);
         NAME = name;
     }
@@ -20,8 +20,7 @@ public class Name {
         }
     }
 
-    @Override
-    public String toString() {
+    public String getName() {
         return NAME;
     }
 
