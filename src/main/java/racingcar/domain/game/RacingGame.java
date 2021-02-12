@@ -3,7 +3,7 @@ package racingcar.domain.game;
 import racingcar.domain.car.Cars;
 
 public class RacingGame {
-    private Cars cars;
+    private final Cars cars;
     private int moveCount;
 
     public RacingGame(Cars cars, int moveCount) {
