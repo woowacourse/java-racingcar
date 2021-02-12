@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import racingcar.domain.*;
 import racingcar.domain.car.Car;
-import racingcar.domain.car.CarRegister;
 import racingcar.domain.car.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -13,17 +12,15 @@ import java.util.Scanner;
 public class RacingController {
 
     private final Scanner scanner;
-    private final CarRegister carRegister;
     private final RacingTimeRegister racingTimeRegister;
 
     public RacingController(Scanner scanner) {
         this.scanner = scanner;
-        this.carRegister = new CarRegister();
         this.racingTimeRegister = new RacingTimeRegister();
     }
 
     public void start() {
-        final Cars cars = new Cars(createCar());
+        final Cars cars = new Cars(InputView.inputCarName(scanner));
         final int raceTime = applyRaceTime();
 
         showRaceResult();
@@ -34,12 +31,6 @@ public class RacingController {
         }
 
         showRaceWinner(cars.getWinnerNames());
-    }
-
-    private List<Car> createCar() {
-        String carNames = InputView.inputCarName(scanner);
-
-        return carRegister.registerCars(carNames);
     }
 
     private int applyRaceTime() {

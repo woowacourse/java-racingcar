@@ -13,12 +13,8 @@ public class CarRegister {
     private static final String CAR_NAME_DELIMITER = ",";
     private static final int INVALID_NUMBER_OF_CARS_ZERO = 0;
 
-    public List<Car> registerCars(final String input) {
-        final List<String> carName = validateCarNames(input);
-
-        return carName.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
+    public static List<String> splitCarNames(final String input) {
+        return validateCarNames(input);
     }
 
     private static List<String> validateCarNames(final String input) {

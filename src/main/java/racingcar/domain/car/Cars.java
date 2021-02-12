@@ -8,8 +8,14 @@ public class Cars {
 
     private final List<Car> cars;
 
+    public Cars(final String carNames) {
+        this(CarRegister.splitCarNames(carNames).stream()
+                .map(Car::new)
+                .collect(Collectors.toList()));
+    }
+
     public Cars(final List<Car> cars) {
-        this.cars = new ArrayList<>(cars);
+        this.cars = cars;
     }
 
     public void goForwardAllCarsRandomly() {
