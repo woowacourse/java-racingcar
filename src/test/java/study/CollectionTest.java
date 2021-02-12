@@ -91,5 +91,10 @@ public class CollectionTest {
         Assertions.assertThatCode(
             () -> unmodifiableNames3.add("333")
         ).doesNotThrowAnyException();
+
+        List<String> unmodifiableNames4 = Collections.unmodifiableList(unmodifiableNames1);
+        Assertions.assertThatThrownBy(
+            () -> unmodifiableNames4.add("333")
+        ).isInstanceOf(UnsupportedOperationException.class);
     }
 }
