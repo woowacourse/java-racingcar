@@ -6,13 +6,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class CarNamesInput {
-    private static final String DELIMITER = ",";
+import static racingcar.view.Marks.COMMA;
 
+public class CarNamesInput {
     private final List<String> carNames;
 
     private CarNamesInput(String input) {
-        List<String> unCheckedCarNames = Arrays.asList(input.split(DELIMITER));
+        List<String> unCheckedCarNames = Arrays.asList(input.split(COMMA));
         validateCarNameDuplicate(unCheckedCarNames);
         carNames = unCheckedCarNames;
     }
