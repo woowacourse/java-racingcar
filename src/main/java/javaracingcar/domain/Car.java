@@ -21,10 +21,14 @@ public class Car {
     }
 
     public static Car generateCar(String name) {
+        validateName(name);
+        return new Car(name);
+    }
+
+    private static void validateName(String name) {
         validateNull(name);
         validateEmptyString(name);
         validateNameLength(name);
-        return new Car(name);
     }
 
     private static void validateNull(String name) {
