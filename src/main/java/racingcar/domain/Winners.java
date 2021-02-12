@@ -13,14 +13,13 @@ public class Winners {
     public Winners(List<Car> cars, int maxPosition) {
         this.cars = cars;
         this.maxPosition = maxPosition;
-        findWinner();
     }
 
     public List<String> getWinners() {
         return winners;
     }
 
-    private void findWinner() {
+    public void findWinner() {
         winners = cars.stream()
             .filter(car -> isWinner(car))
             .map(Car::getName)

@@ -55,6 +55,7 @@ public class RacingCarController {
     private void finish() {
         cars.findMaxPosition();
         Winners winners = new Winners(cars.getCars(), cars.getMaxPosition());
+        winners.findWinner();
         RacingCarView.printWinners(winners.getWinners());
     }
 }
