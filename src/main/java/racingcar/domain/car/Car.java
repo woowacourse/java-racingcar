@@ -45,4 +45,9 @@ public class Car {
 
         return name.equals(((Car) o).name);
     }
+
+    @Override
+    public String toString() {
+        return name.toString() + " " + colon + " " + Marks.dash.repeat(position);
+    }
 }
