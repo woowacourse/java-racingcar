@@ -1,9 +1,11 @@
 package racingcar.domain.car;
 
 import racingcar.domain.rule.CarMoveCondition;
+import racingcar.view.Marks;
+
+import static racingcar.view.Marks.colon;
 
 public class Car {
-
     private int position;
     private CarMoveCondition moveCondition;
     private CarName name;
@@ -31,10 +33,6 @@ public class Car {
 
     public boolean isSamePosition(int position) {
         return this.position == position;
-    }
-
-    public CarState getState() {
-        return CarState.withNameAndPosition(name, position);
     }
 
     @Override
