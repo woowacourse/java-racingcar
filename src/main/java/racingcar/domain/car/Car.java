@@ -1,7 +1,6 @@
 package racingcar.domain.car;
 
 import racingcar.domain.rule.CarMoveCondition;
-import racingcar.view.Marks;
 
 import static racingcar.view.Marks.COLON;
 import static racingcar.view.Marks.DASH;
