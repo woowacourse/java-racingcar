@@ -18,9 +18,9 @@ public class CarsTest {
     void singleWinnerResult() {
         final Car winner = new Car(new Name("pobi"), new Position(4));
         final Car loser = new Car(new Name("crong"), new Position(2));
-        final Cars carRepository
+        final Cars cars
                 = new Cars(Arrays.asList(winner, loser));
-        final List<Car> winners = carRepository.getWinners();
+        final List<Car> winners = cars.getWinners();
 
         Assertions.assertThat(winners.size()).isEqualTo(1);
         Assertions.assertThat(winners.get(0)).isEqualTo(winner);
