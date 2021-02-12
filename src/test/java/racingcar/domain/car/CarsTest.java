@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 
 public class CarsTest {
-
     @Test
     @DisplayName("자동차는 적어도 한대 이상 있어야 한다.")
     public void 자동차는_적어도_한대_이상_있어야_한다() {
@@ -78,7 +77,7 @@ public class CarsTest {
     }
 
     private static Car createRaceFinishedCar(CarNameAndPosition carNameAndPosition) {
-        Car car = new Car(carNameAndPosition.name, () -> true);
+        Car car = new Car(carNameAndPosition.name, i -> 6);
 
         for (int i = 0; i < carNameAndPosition.position; i++) {
             car.move();

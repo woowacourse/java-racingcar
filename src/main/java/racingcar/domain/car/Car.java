@@ -1,23 +1,32 @@
 package racingcar.domain.car;
 
-import racingcar.domain.rule.Condition;
+import racingcar.domain.rule.MoveCondition;
+import racingcar.exception.MoveConditionOutOfBoundException;
 
 public class Car {
+    private static final int MIN_BOUND = 0;
+    private static final int MAX_BOUND = 9;
+    private static final int MOVE_THRESHOLD = 4;
+
     private int position;
-    private Condition moveCondition;
+    private MoveCondition<Integer> moveCondition;
     private CarName name;
 
-    public Car(String name, Condition moveCondition) {
+    public Car(String name, MoveCondition moveCondition) {
         this.moveCondition = moveCondition;
         this.name = new CarName(name);
     }
 
     public void move() {
-        if (!moveCondition.isMovable()) {
+        if (!isMovable()) {
             return;
         }
 
         position++;
+    }
+
+    private boolean isMovable() {
+        return moveCondition.generate(MAX_BOUND) >= MOVE_THRESHOLD;
     }
 
     public int getPosition() {
@@ -29,7 +38,7 @@ public class Car {
     }
 
     public CarState getState() {
-        return CarState.withNameAndPosition(this);
+        return CarState.valueOf(this);
     }
 
     public boolean isSamePosition(int position) {

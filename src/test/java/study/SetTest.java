@@ -35,9 +35,8 @@ public class SetTest {
 
     @ParameterizedTest
     @DisplayName("Set이 1,2,3 값을 가지고 있어야 한다")
-    @ValueSource(ints = {1,2,3})
+    @ValueSource(ints = {1, 2, 3})
     void setShouldHaveOneAndTwoAndThree(int element) {
-        //assertThat(numbers).contains(element);
         assertTrue(numbers.contains(element));
     }
 
@@ -46,8 +45,8 @@ public class SetTest {
     @CsvSource(value = {"1:true", "2:true", "3:true", "true:false", "4:false", "5:false"}, delimiter = ':')
     void setMustNotHaveOthersThanOneAndTwoAndThree(String input, boolean expected) {
         if (!isNumeric(input)) {
-           assertEquals(isNumeric(input), expected);
-           return;
+            assertEquals(isNumeric(input), expected);
+            return;
         }
 
         int num = Integer.parseInt(input);
@@ -57,7 +56,7 @@ public class SetTest {
     boolean isNumeric(String str) {
         try {
             Integer.parseInt(str);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return false;
         }
         return true;

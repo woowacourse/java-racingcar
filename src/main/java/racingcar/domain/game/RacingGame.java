@@ -19,9 +19,9 @@ public class RacingGame {
     public GameResult start() {
         moveUntilMoveCount();
 
-        return GameResult.valueOf(
+        return new GameResult(
                 cars.getWinners(),
-                carStatesBuffer
+                new ExecutionResult(carStatesBuffer)
         );
     }
 

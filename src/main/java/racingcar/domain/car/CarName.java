@@ -3,7 +3,7 @@ package racingcar.domain.car;
 import racingcar.exception.CarNameBlankOrEmptyException;
 import racingcar.exception.CarNameLengthException;
 
-public class CarName {
+public class CarName implements Comparable<CarName> {
     private static final int CAR_NAME_LENGTH_THRESHOLD = 5;
 
     private String name;
@@ -15,7 +15,7 @@ public class CarName {
     }
 
     private void validateCarNameLength(String name) {
-        if(name.length() > CAR_NAME_LENGTH_THRESHOLD) {
+        if (name.length() > CAR_NAME_LENGTH_THRESHOLD) {
             throw new CarNameLengthException();
         }
     }
@@ -38,5 +38,10 @@ public class CarName {
         }
 
         return name.equals(((CarName) o).name);
+    }
+
+    @Override
+    public int compareTo(CarName o) {
+        return o.name.compareTo(name);
     }
 }

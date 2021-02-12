@@ -1,7 +1,10 @@
 package stringcalculator.domain;
 
-public class Input {
+import stringcalculator.domain.Delimiter.DefaultDelimiter;
+import stringcalculator.domain.Delimiter.Delimiter;
+import stringcalculator.domain.Delimiter.DelimiterFactory;
 
+public class Input {
     private String input;
     private Delimiter delimiter;
 
@@ -14,15 +17,19 @@ public class Input {
         setNormalInput(input);
     }
 
+    private boolean isNullOrBlank(String input) {
+        return input == null || input.isEmpty();
+    }
+
     private void setNullOrBlankInput() {
         this.input = "0";
-        this.delimiter = Delimiter.DEFAULT();
+        this.delimiter = DelimiterFactory.getDefault();
     }
 
     private void setNormalInput(String input) {
-        this.delimiter = Delimiter.from(input);
+        this.delimiter = DelimiterFactory.valueOf(input);
 
-        if (delimiter.isCustom()) {
+        if (!(delimiter instanceof DefaultDelimiter)) {
             input = extractElementString(input);
         }
 
@@ -33,20 +40,12 @@ public class Input {
         return new Input(input);
     }
 
-    private boolean isNullOrBlank(String input) {
-        if (input == null || input.isEmpty()) {
-            return true;
-        }
-
-        return false;
-    }
-
     public Numbers getNumbers() {
         if (isNullOrBlank(input)) {
             return new Numbers(new String[]{"0"});
         }
 
-        String[] inputs = input.split(delimiter.getDelimiter());
+        String[] inputs = delimiter.split(input);
 
         return new Numbers(inputs);
     }

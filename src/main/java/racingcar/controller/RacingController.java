@@ -6,9 +6,8 @@ import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 import racingcar.domain.game.GameResult;
 import racingcar.domain.game.RacingGame;
-import racingcar.domain.rule.MoveCondition;
+import racingcar.domain.rule.RandomMoveCondition;
 import racingcar.view.InputView;
-import racingcar.view.Messages;
 import racingcar.view.OutputView;
 
 import java.util.List;
@@ -17,22 +16,22 @@ import java.util.stream.Collectors;
 public class RacingController {
     private String carNamesInput;
     private String moveCountInput;
-    
+
     public void run() {
         GameResult gameResult;
 
         try {
             gameResult = getInputFromUserAndStartGameAndGetResult();
         } catch (RuntimeException e) {
-            controlError(e.getMessage());
+            controlError(e);
             return;
         }
 
         printGameResult(gameResult);
     }
 
-    private void controlError(String errorMessage) {
-        OutputView.print(errorMessage);
+    private void controlError(RuntimeException runtimeException) {
+        OutputView.printError(runtimeException);
         run();
     }
 
@@ -43,10 +42,10 @@ public class RacingController {
     }
 
     private void getCarNamesAndMoveCountFromUser() {
-        OutputView.print(Messages.REQUEST_CAR_NAME);
+        OutputView.printRequestCarName();
         carNamesInput = InputView.requestCarName();
 
-        OutputView.print(Messages.REQUEST_MOVE_COUNT);
+        OutputView.printRequestMoveCount();
         moveCountInput = InputView.requestMoveCount();
     }
 
@@ -68,13 +67,13 @@ public class RacingController {
 
     private List<Car> makeCarListFromCarNames(List<String> carNames) {
         return carNames.stream()
-                .map(name -> new Car(name, new MoveCondition()))
+                .map(name -> new Car(name, new RandomMoveCondition()))
                 .collect(Collectors.toList());
 
     }
 
     private void printGameResult(GameResult gameResult) {
-        OutputView.print(gameResult.getExecutionResultString());
-        OutputView.print(gameResult.getWinnersAsString());
+        OutputView.printExecutionResult(gameResult.getExecutionResult());
+        OutputView.printWinners(gameResult.getWinners());
     }
 }

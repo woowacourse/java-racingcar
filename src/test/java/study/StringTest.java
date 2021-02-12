@@ -11,12 +11,11 @@ public class StringTest {
         String[] values = "1,2".split(",");
         assertThat(values[0]).isEqualTo("1");
         assertThat(values[1]).isEqualTo("2");
-
     }
 
     @Test
     public void name() {
-        String[] values = "(1,2)".substring(1,4).split(",");
+        String[] values = "(1,2)".substring(1, 4).split(",");
         assertThat(values).containsExactly("1", "2");
     }
 
@@ -36,7 +35,5 @@ public class StringTest {
                 .isThrownBy(() -> {
                     "abc".charAt(4);
                 }).withMessageMatching("String index out of range: \\d");
-
     }
-
 }

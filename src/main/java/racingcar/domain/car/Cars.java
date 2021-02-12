@@ -1,6 +1,7 @@
 package racingcar.domain.car;
 
 import racingcar.exception.EmptyCarException;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,26 +25,26 @@ public class Cars {
 
     public CarStates getCarStates() {
         List<CarState> carStates = cars.stream()
-                .map(CarState::withNameAndPosition)
+                .map(Car::getState)
                 .collect(Collectors.toList());
 
         return CarStates.valueOf(carStates);
     }
 
     public List<CarName> getWinners() {
-       int maxPosition = cars.stream()
-               .mapToInt(Car::getPosition)
-               .max()
-               .getAsInt();
+        int maxPosition = cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .getAsInt();
 
-       return cars.stream()
-               .filter(car -> car.isSamePosition(maxPosition))
-               .map(Car::getName)
-               .collect(Collectors.toList());
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .map(Car::getName)
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public void move() {
         cars.forEach(Car::move);
     }
 }
-
