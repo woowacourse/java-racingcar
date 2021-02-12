@@ -23,13 +23,8 @@ public class Cars {
         }
     }
 
-
-    public CarStates getCarStates() {
-        List<CarState> carStates = cars.stream()
-                .map(car -> CarState.withNameAndPosition(car.getName(), car.getPosition()))
-                .collect(Collectors.toList());
-
-        return CarStates.of(carStates);
+    public List<Car> getCarList() {
+        return cars;
     }
 
     public void move() {
