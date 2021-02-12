@@ -1,8 +1,8 @@
 package racingcar.view;
 
 import racingcar.domain.car.Car;
+import racingcar.controller.dto.GameManagerResponseDto;
 import racingcar.domain.result.Result;
-import racingcar.domain.result.Results;
 
 import java.util.List;
 
@@ -10,11 +10,11 @@ public class OutputView {
     private static final String ONE_STEP = "-";
     private static final String WINNERS_DELIMITER = ", ";
 
-    public static void printResults(Results roundResults) {
+    public static void printResults(GameManagerResponseDto responseDto) {
         System.out.println("실행 결과");
-        List<Result> results = roundResults.getResults();
+        List<Result> results = responseDto.getResults();
         results.forEach(OutputView::printResult);
-        printWinners(roundResults);
+        printWinners(responseDto.getWinners());
     }
 
     private static void printResult(Result result) {
@@ -35,9 +35,8 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    private static void printWinners(Results results) {
-        List<String> winnerNames = results.findWinners();
-        String result = String.join(WINNERS_DELIMITER, winnerNames);
+    private static void printWinners(List<String> winners) {
+        String result = String.join(WINNERS_DELIMITER, winners);
         System.out.println(result + "가 최종 우승했습니다.");
     }
 

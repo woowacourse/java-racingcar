@@ -1,4 +1,4 @@
-package racingcar.domain.gamemanager.dto;
+package racingcar.controller.dto;
 
 public class GameManagerRequestDto {
     private String carNames;

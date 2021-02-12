@@ -1,18 +1,18 @@
 package racingcar.domain.gamemanager;
 
+import racingcar.controller.dto.GameManagerResponseDto;
 import racingcar.domain.round.Round;
 import racingcar.domain.car.Cars;
-import racingcar.domain.gamemanager.dto.GameManagerRequestDto;
-import racingcar.domain.result.Results;
+import racingcar.controller.dto.GameManagerRequestDto;
 
 public class GameManager {
 
     private Cars cars;
     private Round round;
 
-    public Results playGame(GameManagerRequestDto requestDto) {
+    public GameManagerResponseDto playGame(GameManagerRequestDto requestDto) {
         initSet(requestDto);
-        return round.startRace(cars);
+        return new GameManagerResponseDto(round.startRace(cars));
     }
 
     private void initSet(GameManagerRequestDto requestDto) {
