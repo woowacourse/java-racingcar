@@ -35,12 +35,11 @@ class LapTest {
         });
     }
 
-    @DisplayName("시도 횟수 입력으로 숫자 형식의 입력이 들어왔을 때 예외 미발생")
+    @DisplayName("시도 횟수 입력이 최소 횟수인 1 이상일 때 예외 미발생")
     @Test
     void Should_NotThrowException_When_LapIsNotLessThanOne() {
         String lapInput = "1";
 
         assertDoesNotThrow(() -> new Lap(lapInput));
     }
-
 }
