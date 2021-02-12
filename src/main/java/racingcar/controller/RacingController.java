@@ -4,11 +4,10 @@ import racingcar.domain.CarNamesInput;
 import racingcar.domain.MoveCountInput;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
-import racingcar.domain.game.GameResult;
 import racingcar.domain.game.RacingGame;
 import racingcar.domain.rule.CarMoveRandomCondition;
 import racingcar.view.InputView;
-import racingcar.view.Messages;
+import racingcar.view.InputViewMessages;
 import racingcar.view.OutputView;
 
 import java.util.List;
@@ -17,18 +16,18 @@ import java.util.stream.Collectors;
 public class RacingController {
     private String carNamesInput;
     private String moveCountInput;
-    
+
     public void run() {
-        GameResult gameResult = null;
+        Cars cars = null;
 
         try {
-            gameResult = getInputFromUserAndStartGameAndGetResult();
+            cars = getInputFromUserAndStartGameAndGetResult();
         } catch (RuntimeException e) {
             controlError(e.getMessage());
             return;
         }
 
-        printGameResult(gameResult);
+        OutputView.printWinner(cars);
     }
 
     private void controlError(String errorMessage) {
@@ -36,17 +35,17 @@ public class RacingController {
         run();
     }
 
-    private GameResult getInputFromUserAndStartGameAndGetResult() {
+    private Cars getInputFromUserAndStartGameAndGetResult() {
         getCarNamesAndMoveCountFromUser();
         return startGameAndGetGameResult();
     }
 
 
     private void getCarNamesAndMoveCountFromUser() {
-        carNamesInput = InputView.inputFormUser(Messages.REQUEST_CAR_NAME);
-        moveCountInput = InputView.inputFormUser(Messages.REQUEST_MOVE_COUNT);
+        carNamesInput = InputView.inputFormUser(InputViewMessages.REQUEST_CAR_NAME);
+        moveCountInput = InputView.inputFormUser(InputViewMessages.REQUEST_MOVE_COUNT);
     }
-    
+
     private List<Car> makeCarListFromCarNames(List<String> carNames) {
         return carNames.stream()
                 .map(name -> new Car(name, new CarMoveRandomCondition()))
@@ -54,13 +53,23 @@ public class RacingController {
 
     }
 
-    private GameResult startGameAndGetGameResult() {
+    private Cars startGameAndGetGameResult() {
         Cars cars = createCarsFromCarNamesInput();
         int moveCount = MoveCountInput.valueOf(moveCountInput).getMoveCount();
+        return doGameAndGetResult(cars, moveCount);
+    }
+
+    private Cars doGameAndGetResult(Cars cars, int moveCount) {
+        OutputView.print(OutputView.EXECUTION_RESULT);
 
         RacingGame racingGame = new RacingGame(cars, moveCount);
 
-        return racingGame.start();
+        while (!racingGame.isEnd()) {
+            racingGame.race();
+            OutputView.printCarStates(racingGame.getCars());
+        }
+
+        return racingGame.getCars();
     }
 
 
@@ -68,10 +77,5 @@ public class RacingController {
         List<String> carNames = CarNamesInput.valueOf(carNamesInput).getCarNames();
 
         return Cars.of(makeCarListFromCarNames(carNames));
-    }
-    
-    private void printGameResult(GameResult gameResult) {
-        OutputView.print(gameResult.getExecutionResultString());
-        OutputView.print(gameResult.getWinnersString());
     }
 }
