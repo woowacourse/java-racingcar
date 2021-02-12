@@ -27,17 +27,4 @@ class CarsTest {
             new Cars(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
     }
-
-    @DisplayName("최종 우승자 판단 성공")
-    @Test
-    void getWinnerNames_최종_우승자를_판단() {
-        final String winnerName = "dani";
-
-        List<String> carNames = Arrays.asList("dani", "brown", "pobi");
-        List<Integer> positions = Arrays.asList(8, 3, 6);
-
-        Cars cars = new Cars(carNames, positions);
-
-        assertThat(cars.giveWinners()).containsExactly(winnerName);
-    }
 }

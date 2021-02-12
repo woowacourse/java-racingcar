@@ -4,7 +4,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final int ZERO = 0;
     private static final String ERROR = "[ERROR] ";
     private static final String CAR_NAME_DUPLICATION_ERROR = ERROR + "자동차 이름은 중복되지 않게 입력해 주세요.";
 
@@ -16,16 +15,6 @@ public class Cars {
         this.cars = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
-    }
-
-    public Cars(List<String> carNames, List<Integer> positions) {
-        validateDuplication(carNames);
-
-        cars = new ArrayList<>();
-
-        for (int i = 0; i < carNames.size(); i++) {
-            cars.add(new Car(carNames.get(i), positions.get(i)));
-        }
     }
 
     private void validateDuplication(List<String> carNames) {
@@ -60,22 +49,6 @@ public class Cars {
             positions.add(car.getPosition());
         }
         return positions;
-    }
-
-    public List<String> giveWinners() {
-        return cars
-                .stream()
-                .filter(car -> car.isMaxPosition(extractMaxPosition()))
-                .map(Car::getName)
-                .collect(Collectors.toList());
-    }
-
-    private int extractMaxPosition() {
-        return cars
-                .stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(ZERO);
     }
 
     public List<Car> getCars() {

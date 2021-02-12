@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.Cars;
 import racingcar.domain.Times;
+import racingcar.domain.Winners;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -23,10 +24,11 @@ public class RacingController {
         Times times = giveTimes();
 
         Cars cars = new Cars(carNames);
+        Winners winners = new Winners();
 
         OutputView.printResultMessage();
         playUntilDone(cars, times);
-        OutputView.printWinner(cars.giveWinners());
+        OutputView.printWinner(winners.judge(cars));
     }
 
     private List<String> giveCarNames() {
