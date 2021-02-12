@@ -3,35 +3,30 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import racingcar.domain.car.Car;
-import racingcar.view.OutputView;
+import racingcar.utils.RandomUtils;
 
 public class Cars {
 
-    private static final int BOUND = 10;
+    private final List<Car> cars;
 
-    private List<Car> cars;
-
-    public Cars(List<Car> cars) {
-        this.cars = cars;
+    public Cars(final List<Car> cars) {
+        this.cars = new ArrayList<>(cars);
     }
 
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
 
-    public void move(Random random) {
+    public void move() {
         for (Car car : cars) {
-            car.move(random.nextInt(BOUND));
-            OutputView.printCarStateMessage(car.getName(), car.positionToString());
+            car.move(RandomUtils.nextInt());
         }
-        OutputView.printNextLine();
     }
 
-    public List<String> getWinners() {
-        int maxPosition = findWinnerPosition();
-        List<String> winners = new ArrayList<>();
+    public List<Car> getWinners() {
+        final int maxPosition = findWinnerPosition();
+        final List<Car> winners = new ArrayList<>();
         for (Car car : cars) {
             addWinner(car, maxPosition, winners);
         }
@@ -46,9 +41,9 @@ public class Cars {
         return maxPosition;
     }
 
-    private void addWinner(Car car, int maxPosition, List<String> winners) {
-        if (car.isMaxPosition(maxPosition)) {
-            winners.add(car.getName());
+    private void addWinner(Car car, int maxPosition, List<Car> winners) {
+        if (car.isEqualPosition(maxPosition)) {
+            winners.add(car);
         }
     }
 }
