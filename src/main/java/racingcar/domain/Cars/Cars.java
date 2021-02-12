@@ -7,8 +7,6 @@ import utils.RandomUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.Comparator.comparingInt;
-
 public class Cars {
     private final List<Car> cars;
 
@@ -47,16 +45,15 @@ public class Cars {
     }
 
     public List<Car> getWinners() {
-        int maxPosition = getMaxPosition();
+        Car maxPositionCar = getMaxPositionCar();
         return cars.stream()
-                .filter(car -> car.isSamePosition(maxPosition))
+                .filter(maxPositionCar::isSamePosition)
                 .collect(Collectors.toList());
     }
 
-    private int getMaxPosition() {
+    private Car getMaxPositionCar() {
         return cars.stream()
-                .max(comparingInt(Car::getPosition))
-                .orElseThrow(() -> new RuntimeException("Cars에 값이 없습니다."))
-                .getPosition();
+                .max(Car::compareTo)
+                .orElseThrow(() -> new RuntimeException("Cars에 값이 없습니다."));
     }
 }

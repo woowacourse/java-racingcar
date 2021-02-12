@@ -2,7 +2,7 @@ package racingcar.domain.Car;
 
 import racingcar.domain.Car.Exception.DriveValueInvalidException;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final int ACCELERATE_THRESHOLD = 4;
     private final int MIN_VALUE = 0;
     private final int MAX_VALUE = 9;
@@ -24,8 +24,8 @@ public class Car {
         }
     }
 
-    public boolean isSamePosition(int position) {
-        return this.position == position;
+    public boolean isSamePosition(Car otherCar) {
+        return this.position == otherCar.position;
     }
 
     private void accelerate() {
@@ -63,5 +63,10 @@ public class Car {
             return this.name.equals(car.name);
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return o.position - this.position;
     }
 }
