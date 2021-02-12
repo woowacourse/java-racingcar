@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LapTest {
     @DisplayName("시도 횟수 입력으로 숫자 형식이 아닌 입력이 들어왔을 때 예외 발생")
@@ -54,5 +54,15 @@ class LapTest {
         lap.decrement();
 
         assertEquals(lap, expectedLapAfterDecrement);
+    }
+
+    @DisplayName("시도 횟수 0")
+    @Test
+    void Should_True_When_LapIsZero() {
+        Lap lap = new Lap("1");
+
+        lap.decrement();
+
+        assertThat(lap.isZero()).isTrue();
     }
 }
