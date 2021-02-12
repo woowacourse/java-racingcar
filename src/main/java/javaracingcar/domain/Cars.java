@@ -30,7 +30,7 @@ public class Cars {
     }
 
     private void validateNonZeroElement(List<String> carNames) {
-        if (carNames.size() < 1) {
+        if (carNames.isEmpty()) {
             throw new IllegalArgumentException("입력된 자동차 이름이 없습니다.");
         }
     }
