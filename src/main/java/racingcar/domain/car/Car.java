@@ -2,38 +2,33 @@ package racingcar.domain.car;
 
 public class Car {
 
-    private static final int MOVE_BOUND = 4;
+    private static final int START_POSITION = 0;
 
     private final Name name;
-    private int position = 0;
+    private Position position;
 
     public Car(final String name) {
+        this(name, START_POSITION);
+    }
+
+    public Car(final String name, final int position) {
         this.name = new Name(name);
+        this.position = Position.valueOf(position);
     }
 
     public String getName() {
-        return name.toString();
+        return name.getName();
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     public void move(final int randomNumber) {
-        if (randomNumber >= MOVE_BOUND) {
-            position++;
-        }
+        position = position.addPosition(randomNumber);
     }
 
-    public String positionToString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
-        return sb.toString();
-    }
-
-    public boolean isMaxPosition(final int maxPosition) {
-        return position == maxPosition;
+    public boolean isEqualPosition(final int value) {
+        return position.isEqualNumber(value);
     }
 }
