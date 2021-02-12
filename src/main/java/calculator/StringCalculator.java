@@ -5,11 +5,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    private static final int EMPTY_RESULT = 0;
+    private static final String DEFAULT_DELIMITERS = "[,:]";
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
+    private static final int EMPTY_RESULT = 0;
     private static final int FIRST_MATCH = 1;
     private static final int SECOND_MATCH = 2;
-    private static final String DEFAULT_DELIMITERS = "[,:]";
     private static final int ALLOWED_MIN_NUMBER = 0;
 
 
