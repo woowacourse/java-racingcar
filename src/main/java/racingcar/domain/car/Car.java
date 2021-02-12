@@ -3,7 +3,8 @@ package racingcar.domain.car;
 import racingcar.domain.rule.CarMoveCondition;
 import racingcar.view.Marks;
 
-import static racingcar.view.Marks.colon;
+import static racingcar.view.Marks.COLON;
+import static racingcar.view.Marks.DASH;
 
 public class Car {
     private int position;
@@ -46,6 +47,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return name.toString() + " " + colon + " " + Marks.dash.repeat(position);
+        return name.toString() + " " + COLON + " " + DASH.repeat(position);
     }
 }

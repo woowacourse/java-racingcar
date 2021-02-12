@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static racingcar.view.Marks.comma;
+import static racingcar.view.Marks.COMMA;
 
 public class OutputView {
     public static final String EXECUTION_RESULT = "실행 결과";
@@ -28,6 +28,6 @@ public class OutputView {
         List<CarName> winners = cars.getWinnersName();
         List<String> winnerNames = winners.stream().map(CarName::toString).collect(Collectors.toList());
         Collections.sort(winnerNames);
-        System.out.println(String.join(comma, winnerNames) + MESSAGE_GAME_RESULT);
+        System.out.println(String.join(COMMA, winnerNames) + MESSAGE_GAME_RESULT);
     }
 }
