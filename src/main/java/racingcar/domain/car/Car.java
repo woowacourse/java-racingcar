@@ -1,10 +1,13 @@
 package racingcar.domain.car;
 
 import racingcar.domain.car.strategy.RandomMoveStrategy;
+import racingcar.util.RandomUtils;
 
 public class Car {
 
     private static final int START_POSITION = 0;
+    private static final int MIN_RANDOM_VALUE = 0;
+    private static final int MAX_RANDOM_VALUE = 9;
 
     private final Name name;
     private Position position;
@@ -25,7 +28,8 @@ public class Car {
     }
 
     public void goForwardRandomly() {
-        if (randomMoveStrategy.isMovable()) {
+        if (randomMoveStrategy.isMovable(
+                RandomUtils.generateRandomNumber(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE))) {
             this.position = position.goForward();
         }
     }

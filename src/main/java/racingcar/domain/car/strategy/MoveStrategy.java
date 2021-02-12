@@ -1,5 +1,5 @@
 package racingcar.domain.car.strategy;
 
 public interface MoveStrategy {
-    boolean isMovable();
+    boolean isMovable(int moveValue);
 }
