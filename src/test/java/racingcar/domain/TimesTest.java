@@ -9,17 +9,17 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class TimesTest {
-    @DisplayName("정상적인 숫자인 경우 객체 생성 성공")
+    @DisplayName("정상적인 숫자인 경우 Times 객체를 생성한다")
     @ParameterizedTest
     @ValueSource(ints = {1, 10, 100, 10000, 20000})
-    public void createTimes_정상적인_숫자인_경우(int times) {
+    public void createTimes(int times) {
         assertThatCode(() -> new Times(times))
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("음수인 경우 예외 발생")
+    @DisplayName("음수인 경우 예외를 발생시킨다")
     @Test
-    public void createTimes_음수인_경우() {
+    public void createTimesNegativeException() {
         final int NEGATIVE_NUMBER = -1;
 
         assertThatThrownBy(() -> {
@@ -27,9 +27,9 @@ class TimesTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("0인 경우 예외 발생")
+    @DisplayName("0인 경우 예외를 발생시킨다")
     @Test
-    public void createTimes_0인_경우() {
+    public void createTimesZeroException() {
         final int ZERO = 0;
 
         assertThatThrownBy(() -> {
@@ -37,9 +37,9 @@ class TimesTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("한계값을 초과한 경우 예외 발생")
+    @DisplayName("한계값을 초과한 경우 예외를 발생시킨다")
     @Test
-    public void createTimes_한계값을_초과한_경우() {
+    public void createTimesLimitationException() {
         final int TIMES_LIMITATION = (int) 1e8;
         final int LIMIT_OUT_NUMBER = TIMES_LIMITATION + 1;
 
