@@ -14,8 +14,8 @@ public class GameController {
         GameController.run(carNames, trial.replaceAll(" ", ""));
     }
 
-    private static void validateNotNull(String input) {
-        if (input == null) {
+    private static void validateNotNull(String value) {
+        if (value == null) {
             throw new IllegalArgumentException("null 이 입력되었습니다.");
         }
     }

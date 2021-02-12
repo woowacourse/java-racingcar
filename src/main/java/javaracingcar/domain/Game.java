@@ -27,11 +27,11 @@ public class Game {
         }
     }
 
-    private static int validatePositiveInt(String input) {
-        if (!Pattern.matches("^[1-9]+[0-9]*$", input)) {
+    private static int validatePositiveInt(String trial) {
+        if (!Pattern.matches("^[1-9]+[0-9]*$", trial)) {
             throw new IllegalArgumentException("양의 정수가 아닙니다.");
         }
-        return Integer.parseInt(input);
+        return Integer.parseInt(trial);
     }
 
     public void moveCars() {

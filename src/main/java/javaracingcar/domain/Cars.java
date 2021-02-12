@@ -22,11 +22,11 @@ public class Cars {
         return cars;
     }
 
-    private List<String> splitCarNames(String input) {
-        if (input == null) {
+    private List<String> splitCarNames(String names) {
+        if (names == null) {
             throw new IllegalArgumentException("null 이 입력되었습니다.");
         }
-        return Arrays.asList(input.replaceAll(" ", "").split(","));
+        return Arrays.asList(names.replaceAll(" ", "").split(","));
     }
 
     private void validateNonZeroElement(List<String> carNames) {
