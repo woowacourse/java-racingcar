@@ -14,7 +14,6 @@ public class RacingCarGameController {
     }
 
     public void run() {
-        racingCarGame.racingCarGameSetting();
         racingCarGameRacing();
         printFinalResult();
     }
