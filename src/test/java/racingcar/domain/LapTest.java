@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LapTest {
     @DisplayName("시도 횟수 입력으로 숫자 형식이 아닌 입력이 들어왔을 때 예외 발생")
@@ -41,5 +42,17 @@ class LapTest {
         String lapInput = "1";
 
         assertDoesNotThrow(() -> new Lap(lapInput));
+    }
+
+    @DisplayName("시도 횟수 차감")
+    @Test
+    void Should_EqualToExpected_When_LapIsDecremented() {
+        Lap lap = new Lap("4");
+        Lap expectedLapAfterDecrement = new Lap("2");
+
+        lap.decrement();
+        lap.decrement();
+
+        assertEquals(lap, expectedLapAfterDecrement);
     }
 }
