@@ -1,15 +1,10 @@
 package racingcar.domain.car;
 
-import racingcar.util.RandomUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-
-    private static final int MIN_RANDOM_VALUE = 0;
-    private static final int MAX_RANDOM_VALUE = 9;
 
     private final List<Car> cars;
 
@@ -19,16 +14,7 @@ public class Cars {
 
     public void goForwardAllCarsRandomly() {
         for (Car car : cars) {
-            goForwardOrStopRandomly(car);
-        }
-    }
-
-    private void goForwardOrStopRandomly(final Car car) {
-        int randomNumber = RandomUtils
-                .generateRandomNumber(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
-
-        if (GoForwardOrStop.isGoForward(randomNumber)) {
-            car.goForward();
+            car.goForwardRandomly();
         }
     }
 
