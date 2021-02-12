@@ -1,7 +1,9 @@
 package racingcar.domain.racing;
 
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.numbergenerator.NumberGenerator;
@@ -47,6 +49,11 @@ public class CarRacing {
     }
 
     public List<Car> getWinners() {
-        return cars.getWinners();
+        int maxPositionOfAllCars = cars.getMaxPosition();
+        return Collections.unmodifiableList(
+            cars.getAllCars().stream()
+                .filter(car -> car.getPosition() == maxPositionOfAllCars)
+                .collect(Collectors.toList())
+        );
     }
 }

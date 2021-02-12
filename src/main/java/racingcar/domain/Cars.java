@@ -20,17 +20,7 @@ public class Cars {
         cars.addAll(newCars);
     }
 
-    public List<Car> getWinners() {
-        int maxPositionOfAllCars = getMaxPositionOfAllCars();
-
-        return Collections.unmodifiableList(
-            cars.stream()
-                .filter(car -> car.getPosition() == maxPositionOfAllCars)
-                .collect(Collectors.toList())
-        );
-    }
-
-    private int getMaxPositionOfAllCars() {
+    public int getMaxPosition() {
         return cars.stream()
             .mapToInt(Car::getPosition)
             .max()
