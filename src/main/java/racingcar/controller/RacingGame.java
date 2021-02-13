@@ -40,29 +40,12 @@ public class RacingGame {
         return true;
     }
 
-    public static void assignCars(List<Car> temporaryCars) {
-        cars = new Cars(temporaryCars);
-    }
-
-    public static Cars getCars() {
-        return cars;
-    }
-
-    public static List<Car> findWinners() {
-        return cars.getCars()
-                .stream()
-                .filter(car -> car.isSamePosition(cars.getMaxDistance()))
-                .collect(Collectors.toList());
-    }
-
     public static List<String> splitInput(String input) {
         return Arrays.asList(input.split(DELIMITER));
     }
 
-    public static void isValidNumber(String input) {
-        if (Integer.parseInt(input) < 1) {
-            throw new IllegalArgumentException("시행 횟수는 1회 이상이어야 합니다.");
-        }
+    public static void assignCars(List<Car> temporaryCars) {
+        cars = new Cars(temporaryCars);
     }
 
     private static boolean getTrials() {
@@ -75,6 +58,30 @@ public class RacingGame {
         return false;
     }
 
+    private static boolean validateTrials(String input) {
+        try {
+            isValidNumber(input);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            OutputView.printErrorRetrialMessage();
+            return false;
+        }
+        return true;
+    }
+
+    public static void isValidNumber(String input) {
+        if (Integer.parseInt(input) < 1) {
+            throw new IllegalArgumentException("시행 횟수는 1회 이상이어야 합니다.");
+        }
+    }
+
+    public static List<Car> findWinners() {
+        return cars.getCars()
+                .stream()
+                .filter(car -> car.isSamePosition(cars.getMaxDistance()))
+                .collect(Collectors.toList());
+    }
+
     private static void playRounds() {
         OutputView.printRoundMessage();
         for (int i = 0; i < trials; i++) {
@@ -85,17 +92,6 @@ public class RacingGame {
 
     private static void playRound() {
         cars.moveCars();
-    }
-
-    private static boolean validateTrials(String input) {
-        try {
-            isValidNumber(input);
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
-            OutputView.printErrorRetrialMessage();
-            return false;
-        }
-        return true;
     }
 
     private static void printWinners() {
