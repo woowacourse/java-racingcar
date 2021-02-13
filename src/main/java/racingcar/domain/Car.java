@@ -1,32 +1,27 @@
 package racingcar.domain;
 
-import static racingcar.domain.RacingGameRule.DRIVE_BOUNDARY;
-import static racingcar.domain.RacingGameRule.DRIVE_MAXIMUM_VALUE;
-import static racingcar.domain.RacingGameRule.DRIVE_MINIMUM_VALUE;
-
 import java.util.Objects;
 
 public class Car {
 
-    public static final int MINIMUM_CAR_NAME_LENGTH = 1;
-    public static final int MAXIMUM_CAR_NAME_LENGTH = 5;
+    public static final int DRIVE_MINIMUM_VALUE = 0;
+    public static final int DRIVE_MAXIMUM_VALUE = 9;
+    public static final int DRIVE_BOUNDARY = 4;
 
     private Integer position;
-    private final String name;
+    private final CarName name;
 
-    public Car(final String name, final int position) {
+    public Car(final CarName name, final int position) {
         this.position = position;
         this.name = name;
     }
 
-    public Car(final String name) {
+    public Car(final CarName name) {
         this(name, 1);
     }
 
     public static Car from(String name) {
-        name = name.trim();
-        validateName(name);
-        return new Car(name);
+        return new Car(CarName.from(name));
     }
 
     public void drive(final int value) {
@@ -39,29 +34,12 @@ public class Car {
         }
     }
 
-    private static void validateName(String name) {
-        validateNameLength(name);
-        validateNameNullOrEmpty(name);
-    }
-
-    private static void validateNameNullOrEmpty(String name) {
-        if (name == null || "".equals(name)) {
-            throw new RuntimeException();
-        }
-    }
-
-    private static void validateNameLength(String name) {
-        if (name.length() < MINIMUM_CAR_NAME_LENGTH || MAXIMUM_CAR_NAME_LENGTH < name.length()) {
-            throw new RuntimeException();
-        }
-    }
-
     private void moveForward() {
         position++;
     }
 
     public String getName() {
-        return name;
+        return name.toString();
     }
 
     public int getPosition() {

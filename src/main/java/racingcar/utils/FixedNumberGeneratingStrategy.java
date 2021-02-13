@@ -1,11 +1,11 @@
 package racingcar.utils;
 
-import racingcar.domain.RacingGameRule;
+import static racingcar.domain.Car.DRIVE_MAXIMUM_VALUE;
 
 public class FixedNumberGeneratingStrategy implements NumberGeneratingStrategy {
 
     @Override
     public int generateNumber() {
-        return RacingGameRule.DRIVE_MAXIMUM_VALUE;
+        return DRIVE_MAXIMUM_VALUE;
     }
 }
