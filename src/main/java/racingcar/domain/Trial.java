@@ -4,7 +4,7 @@ public class Trial {
 
     private static final Integer MIN_TRIAL = 1;
     private static final Integer MAX_TRIAL = Integer.MAX_VALUE;
-    private static int trial;
+    private int trial;
 
     public Trial(String input) {
         validateNumber(input);
@@ -15,7 +15,7 @@ public class Trial {
         return trial;
     }
 
-    private static void validateNumber(String input) {
+    private void validateNumber(String input) {
         try {
             trial = Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -24,7 +24,7 @@ public class Trial {
         }
     }
 
-    private static void validateBound() {
+    private void validateBound() {
         if (trial < MIN_TRIAL) {
             throw new IllegalArgumentException(
                 MIN_TRIAL + "이상의 숫자를 입력해주세요.");
