@@ -1,13 +1,8 @@
 package racingcar.domain.game;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racingcar.domain.car.Car;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,14 +19,5 @@ class GameTest {
             testingGame.incrementCount();
         }
         assertEquals(testingGame.notFinished(), result);
-    }
-
-    @Test
-    @DisplayName("형태에 맞게 우승자들의 이름이 나오는지 테스트")
-    void joinWinnerNames() {
-        List<Car> winners = new ArrayList<>();
-        winners.add(new Car("java"));
-        winners.add(new Car("html"));
-        assertEquals(testingGame.joinWinnerNames(winners), "java, html");
     }
 }
