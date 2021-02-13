@@ -14,7 +14,7 @@ public class Cars {
     private List<Car> cars;
 
     public Cars(List<Car> cars) {
-        validateUserCount(cars);
+        validateCarsSize(cars);
         validateDuplicate(cars);
         this.cars = cars;
     }
@@ -33,7 +33,7 @@ public class Cars {
                 .max(Comparator.comparingInt(Car::getPosition)).get().getPosition();
     }
 
-    private void validateUserCount(List<Car> cars) {
+    private void validateCarsSize(List<Car> cars) {
         if (cars.size() <= 1) {
             throw new IllegalArgumentException(CAR_NAME_INVALID);
         }
