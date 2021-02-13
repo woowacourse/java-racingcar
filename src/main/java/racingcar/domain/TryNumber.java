@@ -20,10 +20,6 @@ public class TryNumber {
         }
     }
 
-    public int getTryNumber() {
-        return tryNumber;
-    }
-
     public TryNumber decreaseNumber() {
         return new TryNumber(tryNumber - 1);
     }
