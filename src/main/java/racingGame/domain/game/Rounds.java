@@ -15,11 +15,11 @@ public class Rounds {
     }
 
     public void next() {
-        this.round--;
+        round--;
     }
 
     public boolean isEnd() {
-        return this.round <= 0;
+        return round <= 0;
     }
 
     public boolean isMoreThan(int value) {

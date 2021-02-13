@@ -29,7 +29,7 @@ public class Cars {
     }
 
     public void tryMoveCars() {
-        this.cars.forEach(car -> car.tryToMove(injectRand()));
+        cars.forEach(car -> car.tryToMove(injectRand()));
     }
 
     protected int injectRand() {
@@ -37,7 +37,7 @@ public class Cars {
     }
 
     public List<CarDto> getResults() {
-        return this.cars.stream()
+        return cars.stream()
                 .map(Car::getStatus)
                 .collect(Collectors.toList());
     }
@@ -71,7 +71,7 @@ public class Cars {
     }
 
     public boolean contains(final Car car) {
-        return this.cars.contains(car);
+        return cars.contains(car);
     }
 
     public int size() {

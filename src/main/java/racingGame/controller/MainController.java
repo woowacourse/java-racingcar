@@ -14,11 +14,11 @@ public class MainController {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
 
-        List<Name> inputNames = InputView.inputNames(scanner);
-        Cars cars = Cars.createByNames(inputNames);
-        Rounds rounds = InputView.inputRounds(scanner);
+        final List<Name> inputNames = InputView.inputNames(scanner);
+        final Cars cars = Cars.createByNames(inputNames);
+        final Rounds rounds = InputView.inputRounds(scanner);
 
-        RacingGame racingGame = new RacingGame(cars, rounds);
+        final RacingGame racingGame = new RacingGame(cars, rounds);
 
         while (!racingGame.isEnd()) {
             racingGame.race();

@@ -24,8 +24,8 @@ public class RacingGame {
     }
 
     public void race() {
-        this.cars.tryMoveCars();
-        this.rounds.next();
+        cars.tryMoveCars();
+        rounds.next();
     }
 
     public List<CarDto> getRaceResults() {
