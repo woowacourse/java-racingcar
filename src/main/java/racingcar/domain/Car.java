@@ -28,8 +28,8 @@ public class Car {
         return position;
     }
 
-    public boolean isPosition(int maxPosition) {
-        return position == maxPosition;
+    public boolean isPosition(int position) {
+        return this.position == position;
     }
 
     private void validateName(String name) {
