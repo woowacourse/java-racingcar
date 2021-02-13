@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGame {
-    public static final String DELIMITER = ",";
+    private static final String DELIMITER = ",";
     public static Cars cars;
     public static int trials;
 
@@ -21,31 +21,6 @@ public class RacingGame {
         OutputView.printRoundMessage();
         playRounds();
         OutputView.printWinners(findWinners());
-    }
-
-    public static void assignCars(List<Car> temporaryCars) {
-        cars = new Cars(temporaryCars);
-    }
-
-    public static Cars getCars() {
-        return cars;
-    }
-
-    public static List<Car> findWinners() {
-        return cars.getCars()
-                .stream()
-                .filter(car -> car.isEqualPosition(cars.getMaxDistance()))
-                .collect(Collectors.toList());
-    }
-
-    public static List<String> splitInput(String input) {
-        return Arrays.asList(input.split(DELIMITER));
-    }
-
-    public static void isValidNumber(String input) {
-        if (Integer.parseInt(input) < 1) {
-            throw new IllegalArgumentException("시행 횟수는 1회 이상이어야 합니다.");
-        }
     }
 
     private static boolean initializeCars() {
@@ -60,6 +35,31 @@ public class RacingGame {
             return false;
         }
         return true;
+    }
+
+    public static void assignCars(List<Car> temporaryCars) {
+        cars = new Cars(temporaryCars);
+    }
+
+    public static Cars getCars() {
+        return cars;
+    }
+
+    public static List<Car> findWinners() {
+        return cars.getCars()
+                .stream()
+                .filter(car -> car.isSamePosition(cars.getMaxDistance()))
+                .collect(Collectors.toList());
+    }
+
+    public static List<String> splitInput(String input) {
+        return Arrays.asList(input.split(DELIMITER));
+    }
+
+    public static void isValidNumber(String input) {
+        if (Integer.parseInt(input) < 1) {
+            throw new IllegalArgumentException("시행 횟수는 1회 이상이어야 합니다.");
+        }
     }
 
     private static boolean getTrials() {
