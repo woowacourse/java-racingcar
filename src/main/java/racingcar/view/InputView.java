@@ -1,7 +1,11 @@
 package racingcar.view;
 
+import racingcar.domain.Car;
+import racingcar.domain.CarName;
+import racingcar.domain.Cars;
 import racingcar.utils.SplitUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,9 +17,12 @@ public class InputView {
     private InputView() {
     }
 
-    public static List<String> getCarNamesInput() {
+    public static Cars getCarNamesInput() {
         OutputView.showCarNameGuideMessage();
-        return validateCarNamesInput(scanner.nextLine());
+        List<String> carNames = validateCarNamesInput(scanner.nextLine());
+        List<Car> value = new ArrayList<>();
+        carNames.forEach(carName -> value.add(new Car(new CarName(carName))));
+        return new Cars(value);
     }
 
     public static String getLapInput() {

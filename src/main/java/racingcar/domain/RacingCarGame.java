@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,8 +7,8 @@ public class RacingCarGame {
     private final Cars cars;
     private final Lap lap;
 
-    public RacingCarGame(List<String> carNames, Lap lap) {
-        this.cars = createRacingCars(carNames);
+    public RacingCarGame(Cars cars, Lap lap) {
+        this.cars = cars;
         this.lap = lap;
     }
 
@@ -28,11 +27,5 @@ public class RacingCarGame {
 
     public List<String> getWinners() {
         return cars.getWinners();
-    }
-
-    private Cars createRacingCars(List<String> carNames) {
-        List<Car> value = new ArrayList<>();
-        carNames.forEach(carName -> value.add(new Car(new CarName(carName))));
-        return new Cars(value);
     }
 }
