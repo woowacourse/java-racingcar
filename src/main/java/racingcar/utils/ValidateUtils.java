@@ -62,4 +62,14 @@ public class ValidateUtils {
             throw new IllegalArgumentException(ErrorMessages.ERROR_TURN_NOT_POSITIVE);
         }
     }
+
+    public static void validateData(List<Car> winners) {
+        boolean isMaxNameLength = winners.stream().anyMatch(car -> !Car.checkMaxName(car));
+        boolean isNoName = winners.stream().anyMatch(car -> car.getName().length() == 0);
+        Set<String> carNames = new HashSet<>();
+        boolean isDuplicate = winners.stream().anyMatch(car -> !carNames.add(car.getName()));
+        if (isMaxNameLength || isNoName || isDuplicate) {
+            throw new IllegalArgumentException(ErrorMessages.ERROR_DATA);
+        }
+    }
 }
