@@ -8,4 +8,6 @@ public class ErrorMessages {
 
     public static final String ERROR_TURN_NOT_INTEGER = "시도 횟수는 숫자여야 합니다.";
     public static final String ERROR_TURN_NOT_POSITIVE = "시도 횟수는 0보다 커야 합니다.";
+
+    public static final String ERROR_DATA = "올바르지 않은 데이터입니다.";
 }
