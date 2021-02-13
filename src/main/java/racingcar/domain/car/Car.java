@@ -1,17 +1,14 @@
 package racingcar.domain.car;
 
-import racingcar.domain.car.strategy.RandomMoveStrategy;
-import racingcar.util.RandomUtils;
+import racingcar.domain.car.strategy.CarMoveStrategy;
 
 public class Car {
 
     private static final int START_POSITION = 0;
-    private static final int MIN_RANDOM_VALUE = 0;
-    private static final int MAX_RANDOM_VALUE = 9;
 
     private final Name name;
     private Position position;
-    private RandomMoveStrategy randomMoveStrategy;
+    private final CarMoveStrategy carMoveStrategy;
 
     public Car(final String name) {
         this(new Name(name), new Position(START_POSITION));
@@ -20,7 +17,7 @@ public class Car {
     public Car(final Name name, final Position position) {
         this.name = name;
         this.position = position;
-        this.randomMoveStrategy = new RandomMoveStrategy();
+        this.carMoveStrategy = new CarMoveStrategy();
     }
 
     public boolean isSamePosition(final Position position) {
@@ -28,10 +25,13 @@ public class Car {
     }
 
     public void goForwardRandomly() {
-        if (randomMoveStrategy.isMovable(
-                RandomUtils.generateRandomNumber(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE))) {
-            this.position = position.goForward();
+        if (carMoveStrategy.isMovable()) {
+            goForward();
         }
+    }
+
+    public void goForward() {
+        this.position = position.goForward();
     }
 
     public String getName() {
