@@ -34,7 +34,7 @@ public class RacingGame {
     public static List<Car> findWinners() {
         return cars.getCars()
                 .stream()
-                .filter(car -> car.isMaxPosition(cars.getMaxDistance()))
+                .filter(car -> car.isEqualPosition(cars.getMaxDistance()))
                 .collect(Collectors.toList());
     }
 

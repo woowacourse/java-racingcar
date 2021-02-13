@@ -43,8 +43,8 @@ public class Car {
         return this.position;
     }
 
-    public boolean isMaxPosition(int max) {
-        return max == position;
+    public boolean isEqualPosition(int position) {
+        return position == this.position;
     }
 
     @Override
