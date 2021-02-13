@@ -1,7 +1,7 @@
 package racingcar.utils;
 
-import static racingcar.domain.RacingGameRule.DRIVE_MAXIMUM_VALUE;
-import static racingcar.domain.RacingGameRule.DRIVE_MINIMUM_VALUE;
+import static racingcar.domain.Car.DRIVE_MAXIMUM_VALUE;
+import static racingcar.domain.Car.DRIVE_MINIMUM_VALUE;
 
 public class RandomNumberGeneratingStrategy implements NumberGeneratingStrategy {
 
