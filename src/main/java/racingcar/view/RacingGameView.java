@@ -2,7 +2,8 @@ package racingcar.view;
 
 import java.util.Scanner;
 import java.util.List;
-import racingcar.domain.Car;
+import racingcar.domain.car.Car;
+import racingcar.domain.RacingGame;
 
 public class RacingGameView {
 
@@ -31,20 +32,29 @@ public class RacingGameView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printCarPosition(Car car) {
-        String movement = "";
-        for (int p = 0; p < car.getPosition(); p++) {
-            movement = movement.concat(MOVEMENT);
+    public static void printCarPositions(final RacingGame racingGame) {
+        List<Car> cars = racingGame.getCars();
+        for (Car car : cars) {
+            final String progressBar = makeProgressBar(car.getPosition());
+            System.out.printf(CAR_SITUATION_MESSAGE_FORMAT, car.getName(), progressBar);
         }
-        System.out.printf(CAR_SITUATION_MESSAGE_FORMAT, car.getName(), movement);
+    }
+
+    private static String makeProgressBar(final int length) {
+        String result = "";
+        for (int p = 0; p < length; p++) {
+            result = result.concat(MOVEMENT);
+        }
+
+        return result;
     }
 
     public static void printNewLine() {
         System.out.println();
     }
 
-    public static void printWinners(List<String> winners) {
-        String winnerNames = String.join(LIST_SEPARATOR, winners);
+    public static void printWinners(final List<String> winners) {
+        final String winnerNames = String.join(LIST_SEPARATOR, winners);
         System.out.printf(WINNERS_MESSAGE_FORMAT, winnerNames);
     }
 }
