@@ -12,7 +12,6 @@ public class Cars {
     public static final int MIN_RANDOM_RANGE = 0;
 
     private List<Car> cars;
-    private int maxDistance = 0;
 
     public Cars(List<Car> cars) {
         validateUserCount(cars);
@@ -27,18 +26,11 @@ public class Cars {
     public void moveCars() {
         cars.stream()
                 .forEach(car -> car.movePosition(RandomUtils.nextInt(MIN_RANDOM_RANGE, MAX_RANDOM_RANGE)));
-        updateMaxDistance();
     }
 
     public int getMaxDistance() {
-        return maxDistance;
-    }
-
-    public void updateMaxDistance() {
-        maxDistance = cars.stream()
-                .max(Comparator.comparing(Car::getPosition))
-                .map(Car::getPosition)
-                .orElse(0);
+        return cars.stream()
+                .max(Comparator.comparingInt(Car::getPosition)).get().getPosition();
     }
 
     private void validateUserCount(List<Car> cars) {
