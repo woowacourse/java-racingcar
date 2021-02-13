@@ -1,91 +1,45 @@
 package javaracingcar.domain;
 
-import utils.RandomUtils;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.regex.Pattern;
 
 public class Game {
-    private static final int CAR_MOVES = 4;
-
-    private List<Car> cars;
+    private final Cars cars;
     private int trial;
 
-    private Game(List<Car> cars, int trial) {
-        this.cars = cars;
+    private Game(String carNames, int trial) {
+        this.cars = new Cars(carNames);
         this.trial = trial;
     }
-    public List<String> getCarNames() {
-        return cars.stream()
-                   .map(Car::getName)
-                   .collect(Collectors.toList());
-    }
 
-    public List<Car> getCars() {
+    public Cars getCars() {
         return cars;
     }
 
-    public int getTrial() {
-        return trial;
+    public static Game init(String carNames, String trial) {
+        validateNotNull(trial);
+        validatePositiveInt(trial);
+        return new Game(carNames, Integer.parseInt(trial));
     }
 
-    public static Game init(List<String> carNames, int trial) {
-        validateNonZeroElement(carNames);
-        validateDistinctNames(carNames);
-        return new Game(generateCars(carNames), trial);
-    }
-
-    private static void validateNonZeroElement(List<String> carNames) {
-        if (carNames.size() < 1) {
-            throw new IllegalArgumentException("입력된 자동차 이름이 없습니다.");
+    private static void validateNotNull(String trial) {
+        if (trial == null) {
+            throw new IllegalArgumentException("null이 입력되었습니다.");
         }
     }
 
-    private static void validateDistinctNames(List<String> carNames) {
-        if (carNames.stream()
-                    .distinct()
-                    .count() != carNames.size()) {
-            throw new IllegalArgumentException("중복된 이름이 있습니다.");
+    private static int validatePositiveInt(String trial) {
+        if (!Pattern.matches("^[1-9]+[0-9]*$", trial)) {
+            throw new IllegalArgumentException("양의 정수가 아닙니다.");
         }
+        return Integer.parseInt(trial);
     }
 
-    public static List<Car> generateCars(List<String> carNames) {
-        List<Car> cars = new ArrayList<>();
-        for (String name : carNames) {
-            cars.add(Car.generateCar(name));
-        }
-        return cars;
-    }
-
-    public void playMoveOrStop() {
-        cars.forEach(Game::playMoveOrStop);
-    }
-
-    private static void playMoveOrStop(Car car) {
-        if (RandomUtils.getSingleDigitRandomNumber() >= CAR_MOVES) {
-            car.move();
-        }
+    public void moveCars() {
+        cars.playMoveOrStop();
     }
 
     public void reduceOneTrial() {
         trial--;
-    }
-
-    public List<Car> getWinners() {
-        int maxPosition = getMaxPosition();
-        return cars.stream()
-                .filter(car -> car.isWinner(maxPosition))
-                .collect(Collectors.toList());
-    }
-
-    private int getMaxPosition() {
-        List<Integer> positions = cars
-                .stream()
-                .map(Car::getPosition)
-                .collect(Collectors.toList());
-        return Collections.max(positions);
     }
 
     public boolean isEnd() {

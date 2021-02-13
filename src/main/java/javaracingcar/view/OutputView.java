@@ -1,6 +1,7 @@
 package javaracingcar.view;
 
 import javaracingcar.domain.Car;
+import javaracingcar.domain.Cars;
 import javaracingcar.domain.Game;
 
 import java.util.List;
@@ -14,9 +15,9 @@ public class OutputView {
         System.out.println(System.lineSeparator() + "실행 결과");
     }
 
-    public static void printRoundResult(Game game) {
-        game.getCars()
-                .forEach(OutputView::printRoundResult);
+    public static void printRoundResult(Cars cars) {
+        cars.getCars()
+            .forEach(OutputView::printRoundResult);
         System.out.println();
     }
 
@@ -34,8 +35,8 @@ public class OutputView {
 
     public static void printWinners(List<Car> winners) {
         String winnerNames = winners.stream()
-                .map(Car::getName)
-                .collect(Collectors.joining(", "));
+            .map(Car::getName)
+            .collect(Collectors.joining(", "));
         System.out.println(winnerNames + " 가 최종 우승했습니다.");
     }
 

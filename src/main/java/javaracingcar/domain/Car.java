@@ -2,8 +2,9 @@ package javaracingcar.domain;
 
 public class Car {
     private static final int CAR_NAME_LENGTH_MAX_SIZE = 4;
+    private static final int CAR_MOVES = 4;
 
-    private String name;
+    private final String name;
     private int position;
 
     private Car(String name) {
@@ -20,21 +21,20 @@ public class Car {
     }
 
     public static Car generateCar(String name) {
+        validateName(name);
+        return new Car(name);
+    }
+
+    private static void validateName(String name) {
         validateNull(name);
-        name = eraseBlankSpaces(name);
         validateEmptyString(name);
         validateNameLength(name);
-        return new Car(name);
     }
 
     private static void validateNull(String name) {
         if (name == null) {
-            throw new IllegalArgumentException("null이 입력되었습니다.");
+            throw new IllegalArgumentException("null 이 입력되었습니다.");
         }
-    }
-
-    private static String eraseBlankSpaces(String name) {
-        return name.replaceAll(" ", "");
     }
 
     private static void validateEmptyString(String name) {
@@ -49,11 +49,13 @@ public class Car {
         }
     }
 
-    public void move() {
-        position++;
+    public void move(int value) {
+        if (value >= CAR_MOVES) {
+            position++;
+        }
     }
 
-    public boolean isWinner(int maxPosition) {
-        return position == maxPosition;
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 }

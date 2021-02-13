@@ -24,7 +24,7 @@ public class RandomUtils {
         return startInclusive + RANDOM.nextInt(endInclusive - startInclusive + 1);
     }
 
-    public static int getSingleDigitRandomNumber() {
+    public static int getSingleDigitNumber() {
         return RANDOM.nextInt(10);
     }
 }
