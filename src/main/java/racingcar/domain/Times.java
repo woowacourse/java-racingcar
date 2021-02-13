@@ -1,9 +1,12 @@
 package racingcar.domain;
 
-import racingcar.constant.Digit;
-import racingcar.constant.Message;
-
 public class Times {
+    private static final int ZERO = 0;
+    private static final int TIMES_LIMITATION = (int) 1e8;
+    private static final String ERROR = "[ERROR] ";
+    private static final String NON_POSITIVE_ERROR = ERROR + "양수만 입력해 주세요.";
+    private static final String LIMITATION_ERROR = ERROR + "한계값 이하만 입력해 주세요.";
+
     private int times;
 
     public Times(int times) {
@@ -17,16 +20,16 @@ public class Times {
     }
 
     private void validatePositive(int times) {
-        if (times <= Digit.ZERO.getDigit()) {
-            throw new IllegalArgumentException(Message.NON_POSITIVE_ERROR.toString());
+        if (times <= ZERO) {
+            throw new IllegalArgumentException(NON_POSITIVE_ERROR);
         }
     }
 
     private void validateLimitation(int times) {
-        if (times <= Digit.TIMES_LIMITATION.getDigit()) {
+        if (times <= TIMES_LIMITATION) {
             return;
         }
-        throw new IllegalArgumentException(Message.LIMITATION_ERROR.toString());
+        throw new IllegalArgumentException(LIMITATION_ERROR);
     }
 
     public void reduce() {
@@ -34,6 +37,6 @@ public class Times {
     }
 
     public boolean hasTurn() {
-        return times != Digit.ZERO.getDigit();
+        return times != ZERO;
     }
 }

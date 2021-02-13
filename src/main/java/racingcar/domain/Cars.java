@@ -1,13 +1,12 @@
 package racingcar.domain;
 
-import racingcar.constant.Digit;
-import racingcar.constant.Message;
-import racingcar.utils.RandomUtils;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final String ERROR = "[ERROR] ";
+    private static final String CAR_NAME_DUPLICATION_ERROR = ERROR + "자동차 이름은 중복되지 않게 입력해 주세요.";
+
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {
@@ -18,47 +17,19 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public Cars(List<String> carNames, List<Integer> positions) {
-        validateDuplication(carNames);
-
-        cars = new ArrayList<>();
-
-        for (int i = 0; i < carNames.size(); i++) {
-            cars.add(new Car(carNames.get(i), positions.get(i)));
-        }
-    }
-
     private void validateDuplication(List<String> carNames) {
         Set<String> nonDuplicatedNames = new HashSet<>(carNames);
 
         if (nonDuplicatedNames.size() != carNames.size()) {
-            throw new IllegalArgumentException(Message.CAR_NAME_DUPLICATION_ERROR.toString());
+            throw new IllegalArgumentException(CAR_NAME_DUPLICATION_ERROR);
         }
     }
 
-    public void decideMovableCar(List<Integer> randoms) {
-        if (Collections.EMPTY_LIST.equals(randoms)) {
-            randoms = extractRandoms(cars);
-        }
+    public void decideMovableCar() {
+        for (Car car : cars) {
+            MovableImpl movable = new MovableImpl();
 
-        for (int i = 0; i < cars.size(); i++) {
-            moveIfPossible(cars.get(i), randoms.get(i));
-        }
-    }
-
-    private List<Integer> extractRandoms(List<Car> cars) {
-        List<Integer> randoms = new ArrayList<>();
-
-        for (int i = 0; i < cars.size(); i++) {
-            randoms.add(RandomUtils.nextInt(Digit.MINIMUM_RANDOM_VALUE.getDigit(),
-                    Digit.MAXIMUM_RANDOM_VALUE.getDigit()));
-        }
-        return randoms;
-    }
-
-    public void moveIfPossible(Car car, int random) {
-        if (random >= Digit.MOVEMENT_CRITERION.getDigit()) {
-            car.move();
+            car.move(movable);
         }
     }
 
@@ -78,22 +49,6 @@ public class Cars {
             positions.add(car.getPosition());
         }
         return positions;
-    }
-
-    public List<String> giveWinners() {
-        return cars
-                .stream()
-                .filter(car -> car.isMaxPosition(extractMaxPosition()))
-                .map(Car::getName)
-                .collect(Collectors.toList());
-    }
-
-    private int extractMaxPosition() {
-        return cars
-                .stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(Digit.ZERO.getDigit());
     }
 
     public List<Car> getCars() {

@@ -12,15 +12,12 @@ public class RandomUtils {
         if (startInclusive > endInclusive) {
             throw new IllegalArgumentException();
         }
-
         if (startInclusive < 0) {
             throw new IllegalArgumentException();
         }
-
         if (startInclusive == endInclusive) {
             return startInclusive;
         }
-
         return startInclusive + RANDOM.nextInt(endInclusive - startInclusive + 1);
     }
 }

@@ -4,24 +4,23 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.constant.Digit;
 
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
-    @DisplayName("정상적인 이름인 경우 객체 생성 성공")
+    @DisplayName("정상적인 이름인 경우 Car 객체를 생성한다")
     @ParameterizedTest
     @ValueSource(strings = {"중간곰", "다니", "포비", "씨유", "브라운", "harry"})
-    public void createCar_정상적인_이름인_경우(String name) {
+    public void createCar(String name) {
         assertThatCode(() -> new Car(name))
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("이름의 길이가 범위를 벗어난 경우 예외 발생")
+    @DisplayName("이름의 길이가 지정된 범위를 벗어난 경우 예외를 발생시킨다")
     @Test
-    public void createCar_이름의_길이가_범위를_벗어난_경우() {
+    public void createCarException() {
         final String SHORT_CAR_NAME = "";
-        final int MAXIMUM_LENGTH = Digit.MAXIMUM_CAR_NAME_LENGTH.getDigit();
+        final int MAXIMUM_LENGTH = 5;
         final String LONG_CAR_NAME = new String(new char[MAXIMUM_LENGTH + 1]);
 
         assertThatThrownBy(() -> {
@@ -30,18 +29,25 @@ class CarTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("자동차 전진 성공")
-    @Test
-    public void moveCar() {
-        final int MOVEMENT = 10;
-
+    @DisplayName("자동차가 전진한다")
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 9})
+    public void moveCar(int random) {
         Car car = new Car("pobi");
+        Movable movable = () -> random;
 
-        for (int i = 0; i < MOVEMENT; i++) {
-            car.move();
-        }
+        car.move(movable);
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
 
-        assertThat(car.getPosition())
-                .isEqualTo(MOVEMENT);
+    @DisplayName("자동차가 멈춘다")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 2, 3})
+    public void stopCar(int random) {
+        Car car = new Car("pobi");
+        Movable movable = () -> random;
+
+        car.move(movable);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }

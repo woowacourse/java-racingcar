@@ -1,20 +1,21 @@
 package racingcar.controller;
 
-import racingcar.constant.Message;
 import racingcar.domain.Cars;
 import racingcar.domain.Times;
+import racingcar.domain.Winners;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class RacingCarController {
+public class RacingController {
+    private static final String HYPHEN = "-";
+
     private final InputView inputView;
 
-    public RacingCarController(Scanner scanner) {
+    public RacingController(Scanner scanner) {
         this.inputView = new InputView(scanner);
     }
 
@@ -23,13 +24,14 @@ public class RacingCarController {
         Times times = giveTimes();
 
         Cars cars = new Cars(carNames);
+        Winners winners = new Winners();
 
         OutputView.printResultMessage();
         playUntilDone(cars, times);
-        OutputView.printWinner(cars.giveWinners());
+        OutputView.printWinner(winners.judge(cars));
     }
 
-    public List<String> giveCarNames() {
+    private List<String> giveCarNames() {
         OutputView.printCarNamesRequest();
         return inputView.scanCarNames();
     }
@@ -39,9 +41,9 @@ public class RacingCarController {
         return new Times(inputView.scanTimes());
     }
 
-    public void playUntilDone(Cars cars, Times times) {
+    private void playUntilDone(Cars cars, Times times) {
         while (times.hasTurn()) {
-            cars.decideMovableCar(Collections.EMPTY_LIST);
+            cars.decideMovableCar();
             OutputView.printResult(cars.extractNames(), extractHyphens(cars));
             times.reduce();
         }
@@ -60,7 +62,7 @@ public class RacingCarController {
         StringBuilder hyphens = new StringBuilder();
 
         for (int i = 0; i < position; i++) {
-            hyphens.append(Message.HYPHEN);
+            hyphens.append(HYPHEN);
         }
         return hyphens;
     }
