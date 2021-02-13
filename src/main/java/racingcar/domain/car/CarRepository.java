@@ -23,4 +23,8 @@ public class CarRepository {
                 .collect(Collectors.toList());
         return Collections.unmodifiableList(winnerCars);
     }
+
+    public static void deleteAll() {
+        cars.clear();
+    }
 }
