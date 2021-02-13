@@ -26,32 +26,20 @@ class CarRepositoryTest {
         testCars.add(car3);
         expectWinners.add(car2);
         expectWinners.add(car3);
+        CarRepository.addCars(testCars);
     }
 
     @Test
     @DisplayName("addCars 메소드를 이용하여 car들이 추가되는지 테스트")
     void addCars() {
-        CarRepository.addCars(testCars);
         assertThat(testCars.containsAll(CarRepository.cars()));
     }
 
     @Test
     @DisplayName("우승자들이 나오는지 테스트")
-    void collectWinners() {
+    void selectWinners() {
         CarRepository.addCars(testCars);
-        List<Car> actualWinners = CarRepository.collectWinners();
+        List<Car> actualWinners = CarRepository.selectWinners(1);
         assertThat(actualWinners.containsAll(expectWinners));
-    }
-
-    @Test
-    @DisplayName("최대거리값이 제대로 나오는지 테스트")
-    void selectMaxPosition() {
-        CarRepository.addCars(testCars);
-        int expectMaxPosition = expectWinners.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
-        int actualMaxPosition = CarRepository.selectMaxPosition();
-        assertThat(actualMaxPosition).isEqualTo(expectMaxPosition);
     }
 }
