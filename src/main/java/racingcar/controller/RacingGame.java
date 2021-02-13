@@ -16,11 +16,14 @@ public class RacingGame {
     public static int trials;
 
     public static void start() {
+        initSetting();
+        playRounds();
+        printWinners();
+    }
+
+    private static void initSetting() {
         while (!initializeCars()) ;
         while (!getTrials()) ;
-        OutputView.printRoundMessage();
-        playRounds();
-        OutputView.printWinners(findWinners());
     }
 
     private static boolean initializeCars() {
@@ -73,6 +76,7 @@ public class RacingGame {
     }
 
     private static void playRounds() {
+        OutputView.printRoundMessage();
         for (int i = 0; i < trials; i++) {
             playRound();
             OutputView.printRoundResult(cars);
@@ -92,5 +96,9 @@ public class RacingGame {
             return false;
         }
         return true;
+    }
+
+    private static void printWinners() {
+        OutputView.printWinners(findWinners());
     }
 }
