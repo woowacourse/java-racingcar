@@ -14,6 +14,10 @@ public class Car {
         this(new Name(name), new Position(START_POSITION));
     }
 
+    public Car(final String name, final int position) {
+        this(new Name(name), new Position(position));
+    }
+
     public Car(final Name name, final Position position) {
         this.name = name;
         this.position = position;
