@@ -4,11 +4,11 @@ import racingcar.domain.car.Car;
 import racingcar.domain.car.CarRepository;
 import racingcar.domain.game.Game;
 import racingcar.utils.ErrorUtils;
+import racingcar.view.InputView;
 import racingcar.view.MainPage;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import static racingcar.utils.ValidateUtils.validateNames;
@@ -16,18 +16,15 @@ import static racingcar.utils.ValidateUtils.validateTurnQuantity;
 
 public class MainController {
 
-    private static final Scanner scanner = new Scanner(System.in);
-
     public void run() {
         userInputNames();
         userInputTurnQuantity();
     }
 
     public void userInputNames() {
-        MainPage.printMainPage();
-        String userInput = scanner.nextLine();
+        MainPage.askCarNames();
         try {
-            splitNames(userInput);
+            splitNames(InputView.userInput());
         } catch (IllegalArgumentException e) {
             ErrorUtils.printError(e);
             userInputNames();
@@ -36,9 +33,8 @@ public class MainController {
 
     public void userInputTurnQuantity() {
         MainPage.askTurnQuantity();
-        String userInput = scanner.nextLine();
         try {
-            initiateGameWithTurn(userInput);
+            initiateGameWithTurn(InputView.userInput());
         } catch (IllegalArgumentException e) {
             ErrorUtils.printError(e);
             userInputTurnQuantity();
