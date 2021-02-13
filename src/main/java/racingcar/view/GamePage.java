@@ -3,9 +3,9 @@ package racingcar.view;
 import racingcar.domain.car.Car;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GamePage {
-
     private static final char SINGLE_VISUAL_POSITION = '-';
 
     public static void printResultPage() {
@@ -27,7 +27,14 @@ public class GamePage {
         return car.getName() + " : " + visualPosition;
     }
 
-    public static void printFinalResult(String winners) {
-        System.out.println(winners + "가 최종 우승했습니다.");
+    public static void printFinalResult(List<Car> winners) {
+        System.out.println(joinWinnerNames(winners) + "가 최종 우승했습니다.");
     }
+
+    public static String joinWinnerNames(List<Car> winners) {
+        return winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+    }
+
 }
