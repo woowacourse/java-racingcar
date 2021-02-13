@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.regex.*;
 
 public class StringCalculator {
+    private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
+    private static final String DEFAULT_DELIMITER = ",|:";
+    private static final int DELIMITER_POSITION = 1;
+    private static final int TOKENS_POSITION = 2;
+
     public static List<String> tokens;
-    private static String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
-    private static String DEFAULT_DELIMITER = ",|:";
-    private static int DELIMITER_POSITION = 1;
-    private static int TOKENS_POSITION = 2;
 
     public static int splitAndSum(String text) {
 
