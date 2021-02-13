@@ -29,11 +29,11 @@ public class RacingGame {
     private boolean initializeCars() {
         try {
             OutputView.printUserPromptCarNames();
-            List<Car> temporaryCars = new ArrayList<>();
-            splitInput(InputView.askUserInput())
+            assignCars(splitInput(InputView.askUserInput())
                     .stream()
-                    .forEach(carName -> temporaryCars.add(new Car(carName)));
-            assignCars(temporaryCars);
+                    .map(Car::new)
+                    .collect(Collectors.toList())
+            );
         } catch (IllegalArgumentException e) {
             return false;
         }
