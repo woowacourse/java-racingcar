@@ -33,15 +33,4 @@ class CarTest {
         testingCar.tryToMoveForward(5);
         assertEquals(testingCar.isMaxPosition(maxPosition), result);
     }
-
-    @ParameterizedTest
-    @CsvSource(value = {"0:'java : '", "1:'java : -'", "2:'java : --'"}, delimiter = ':')
-    @DisplayName("format에 맞게 return값이 나오는지 테스트")
-    void testFormatSingleRoundInformation(int position, String result) {
-        Car testingCar = new Car("java");
-        for (int i = 0; i < position; ++i) {
-            testingCar.tryToMoveForward(5);
-        }
-        assertEquals(testingCar.formatSingleRoundInformation(), result);
-    }
 }
