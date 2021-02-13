@@ -14,19 +14,20 @@ public class GameController {
     private static final int FULL_FUEL = 9;
 
     public void startGame(Game game) {
-        GamePage.printResultPage();
+        GamePage.printGamePage();
+        playGame(game);
+        endGame();
+    }
+
+    public void playGame(Game game) {
         while (game.notFinished()) {
             game.incrementCount();
             playSingleRound();
         }
-        List<Car> winners = CarRepository.selectWinners(getMaxPosition());
-        GamePage.printFinalResult(winners);
     }
 
     public void playSingleRound() {
-        for (Car car : CarRepository.cars()) {
-            car.tryToMoveForward(fillFuel());
-        }
+        CarRepository.cars().forEach(car -> car.tryToMoveForward(fillFuel()));
         GamePage.printSingleRoundResult(CarRepository.cars());
     }
 
@@ -34,11 +35,15 @@ public class GameController {
         return RandomUtils.nextInt(ZERO_FUEL, FULL_FUEL);
     }
 
-
     public int getMaxPosition() {
         return CarRepository.cars().stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
+    }
+
+    public void endGame() {
+        List<Car> winners = CarRepository.selectWinners(getMaxPosition());
+        GamePage.printFinalResult(winners);
     }
 }
