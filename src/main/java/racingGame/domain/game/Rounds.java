@@ -21,4 +21,8 @@ public class Rounds {
     public boolean isEnd() {
         return this.round <= 0;
     }
+
+    public boolean isMoreThan(int value) {
+        return round >= value;
+    }
 }

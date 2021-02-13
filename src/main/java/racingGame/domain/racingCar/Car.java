@@ -23,10 +23,6 @@ public class Car {
         return name;
     }
 
-    public int getFatherPosition(int position) {
-        return Math.max(this.position, position);
-    }
-
     public boolean isOnPosition(int position) {
         return position == this.position;
     }

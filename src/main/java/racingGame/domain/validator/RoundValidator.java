@@ -12,6 +12,6 @@ public class RoundValidator {
     }
 
     private static boolean isPositive(int round) {
-        return round > 0;
+        return round >= 0;
     }
 }

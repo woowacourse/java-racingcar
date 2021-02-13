@@ -73,4 +73,8 @@ public class Cars {
     public boolean contains(final Car car) {
         return this.cars.contains(car);
     }
+
+    public int size() {
+        return cars.size();
+    }
 }

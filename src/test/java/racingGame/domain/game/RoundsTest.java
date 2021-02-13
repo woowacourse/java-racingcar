@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class RoundsTest {
     @DisplayName("양의 정수가 아닌 수가 시도 횟수로 입력된 경우")
     @ParameterizedTest
-    @ValueSource(ints = {-1, 0})
+    @ValueSource(ints = {-1})
     void expectInvalidRangeException(int inputNumber) {
         assertThatThrownBy(() -> {
             Rounds.create(inputNumber);
@@ -29,13 +29,13 @@ class RoundsTest {
     @ValueSource(ints = {1, 2, 8})
     void checkIsEnd(int expectRounds) {
         Rounds mockRounds = Rounds.create(expectRounds);
-        int nowRound = 0;
+        int thisRound = 0;
 
         while (!mockRounds.isEnd()) {
             mockRounds.next();
-            nowRound++;
+            thisRound++;
         }
 
-        assertThat(nowRound).isEqualTo(expectRounds);
+        assertThat(thisRound).isEqualTo(expectRounds);
     }
 }
