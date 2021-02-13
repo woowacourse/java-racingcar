@@ -13,16 +13,17 @@ public class RacingGameResult {
     }
 
     public List<Car> getWinners() {
-        int maxPosition = getMaxPosition();
+        Position maxPosition = getMaxPosition();
 
         return cars.getCars().stream()
-                .filter(car -> car.getPosition() == maxPosition)
+//                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
     }
 
-    private int getMaxPosition() {
+    private Position getMaxPosition() {
         return cars.getCars().stream()
-                .max(Comparator.comparingInt(Car::getPosition))
+                .max((car1, car2) -> car1.getPosition().compareTo(car2.getPosition()))
                 .orElseThrow(() -> new RuntimeException(""))
                 .getPosition();
     }

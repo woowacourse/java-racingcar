@@ -10,7 +10,7 @@ class CarNameTest {
     @Test
     @DisplayName("이름 검증 - 성공")
     void validateName_success() {
-        CarName name = CarName.from("joy");
+        CarName name = CarName.valueOf("joy");
 
         assertThat(name).hasToString("joy");
     }

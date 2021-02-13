@@ -8,25 +8,25 @@ public class Car {
     public static final int DRIVE_MAXIMUM_VALUE = 9;
     public static final int DRIVE_BOUNDARY = 4;
 
-    private Integer position;
+    private Position position;
     private final CarName name;
 
-    public Car(final CarName name, final int position) {
+    public Car(final CarName name, final Position position) {
         this.position = position;
         this.name = name;
     }
 
-    public Car(final CarName name) {
-        this(name, 1);
+    public Car(final String name) {
+        this(CarName.valueOf(name), Position.valueOf(1));
     }
 
     public static Car from(String name) {
-        return new Car(CarName.from(name));
+        return new Car(name);
     }
 
     public void drive(final int value) {
         if (value < DRIVE_MINIMUM_VALUE || DRIVE_MAXIMUM_VALUE < value) {
-            throw new RuntimeException("");
+            throw new RuntimeException("0 ~ 9 사이의 값이 주어져야 함");
         }
 
         if (DRIVE_BOUNDARY <= value) {
@@ -35,15 +35,19 @@ public class Car {
     }
 
     private void moveForward() {
-        position++;
+        position = position.plusOne();
     }
 
     public String getName() {
         return name.toString();
     }
 
-    public int getPosition() {
+    public Position getPosition() {
         return position;
+    }
+
+    public boolean isSamePosition(Position position) {
+        return this.position.equals(position);
     }
 
     @Override

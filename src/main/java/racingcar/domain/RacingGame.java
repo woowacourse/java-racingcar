@@ -31,7 +31,6 @@ public class RacingGame {
         return new RacingGame(carNames, turns, new RandomNumberGeneratingStrategy());
     }
 
-
     public RacingGameResult startGame() {
         GameResultView.printResultPrefix();
         GameResultView.printCarsBeforeRace(cars);

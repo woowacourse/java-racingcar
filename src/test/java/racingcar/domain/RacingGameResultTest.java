@@ -11,8 +11,8 @@ class RacingGameResultTest {
     @Test
     @DisplayName("우승자 리턴 - 단일 우승자")
     public void getWinners_singleWinner() {
-        Car winner = new Car(CarName.from("car1"), 2);
-        Car loser = new Car(CarName.from("car2"), 1);
+        Car winner = new Car(CarName.valueOf("car1"), Position.valueOf(2));
+        Car loser = new Car(CarName.valueOf("car2"), Position.valueOf(1));
         RacingGameResult gameResult = new RacingGameResult(
                 new Cars(Arrays.asList(winner, loser))
         );

@@ -34,7 +34,7 @@ public class Cars {
     private static void validateDuplicatedName(String[] carNames) {
         Set<String> set = new HashSet<>(Arrays.asList(carNames));
         if (set.size() != carNames.length) {
-            throw new RuntimeException();
+            throw new RuntimeException("중복된 이름이 존재함");
         }
     }
 
@@ -44,19 +44,5 @@ public class Cars {
 
     public void driveAll(NumberGeneratingStrategy numberGeneratingStrategy) {
         cars.forEach(car -> car.drive(numberGeneratingStrategy.generateNumber()));
-    }
-
-    public List<Car> getWinners() {
-        int maxPosition = getMaxPosition();
-        return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .collect(Collectors.toList());
-    }
-
-    private int getMaxPosition() {
-        return cars.stream()
-                .max(Comparator.comparingInt(Car::getPosition))
-                .orElseThrow(() -> new RuntimeException(""))
-                .getPosition();
     }
 }

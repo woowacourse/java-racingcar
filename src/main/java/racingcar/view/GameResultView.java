@@ -33,7 +33,7 @@ public class GameResultView {
 
     private static String getPositionToString(Car car) {
         StringBuilder sb = new StringBuilder();
-        IntStream.range(0, car.getPosition()).forEach(i -> sb.append("-"));
+        IntStream.range(0, car.getPosition().toInt()).forEach(i -> sb.append("-"));
         return sb.toString();
     }
 

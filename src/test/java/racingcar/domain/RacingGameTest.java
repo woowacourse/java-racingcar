@@ -14,7 +14,7 @@ class RacingGameTest {
         RacingGameResult gameResult = racingGame.startGame();
 
         assertThat(gameResult.getWinners()).containsExactly(
-                new Car(CarName.from("joy1"), 2),
-                new Car(CarName.from("joy2"), 2));
+                new Car(CarName.valueOf("joy1"), Position.valueOf(2)),
+                new Car(CarName.valueOf("joy2"), Position.valueOf(2)));
     }
 }

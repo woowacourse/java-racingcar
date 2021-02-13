@@ -6,9 +6,13 @@ public class Application {
     public static void main(String[] args) {
         RacingGameController racingGameController = new RacingGameController();
 
-        racingGameController.startRacingGame(
-                InputView.getInputCarsName(),
-                InputView.getInputTurns()
-        );
+        try {
+            racingGameController.startRacingGame(
+                    InputView.getInputCarsName(),
+                    InputView.getInputTurns()
+            );
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

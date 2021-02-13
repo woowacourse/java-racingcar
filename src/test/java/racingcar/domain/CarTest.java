@@ -24,7 +24,7 @@ class CarTest {
     void drive_validNumber(Integer input, Integer expected) {
         car.drive(input);
 
-        assertThat(car.getPosition()).isEqualTo(expected);
+        assertThat(car.getPosition()).isEqualTo(Position.valueOf(expected));
     }
 
     @ParameterizedTest

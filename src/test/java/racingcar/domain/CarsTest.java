@@ -42,6 +42,6 @@ class CarsTest {
         Cars cars = Cars.from("joy, poz");
         cars.driveAll(new FixedNumberGeneratingStrategy());
 
-        cars.getCars().forEach(car -> assertThat(car.getPosition()).isEqualTo(2));
+        cars.getCars().forEach(car -> assertThat(car.getPosition()).isEqualTo(Position.valueOf(2)));
     }
 }
