@@ -2,9 +2,13 @@ package racingcar.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import javafx.util.Pair;
+import utils.RandomUtils;
 
 public class Cars {
 
+    private static final int MINIMUM_RANDOM_RPM = 0;
+    private static final int MAXIMUM_RANDOM_RPM = 9;
     private static final String NAME_SPLIT_DELIMITER = ",";
     private static final int MIN_CARS_LENGTH = 2;
     private final List<Car> cars = new ArrayList<>();
@@ -19,6 +23,15 @@ public class Cars {
 
     public List<Car> getCars() {
         return this.cars;
+    }
+
+    public List<Pair<String, Integer>> racing() {
+        List<Pair<String, Integer>> racingResult = new ArrayList<>();
+        for (Car car : cars) {
+            car.move(RandomUtils.nextInt(MINIMUM_RANDOM_RPM, MAXIMUM_RANDOM_RPM));
+            racingResult.add(new Pair<>(car.getName(), car.getPosition()));
+        }
+        return racingResult;
     }
 
     public void findMaxPosition() {

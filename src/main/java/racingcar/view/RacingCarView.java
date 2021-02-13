@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import javafx.util.Pair;
 import racingcar.domain.Car;
 
 import java.util.Scanner;
@@ -30,12 +31,14 @@ public class RacingCarView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printCarPosition(Car car) {
+    public static void printCarPosition(Pair<String, Integer> car) {
+        String name = car.getKey();
+        Integer position = car.getValue();
         String movement = "";
-        for (int p = 0; p < car.getPosition(); p++) {
+        for (int p = 0; p < position; p++) {
             movement = movement.concat(MOVEMENT);
         }
-        System.out.printf(CAR_SITUATION_MESSAGE_FORMAT, car.getName(), movement);
+        System.out.printf(CAR_SITUATION_MESSAGE_FORMAT, name, movement);
     }
 
     public static void printNewLine() {

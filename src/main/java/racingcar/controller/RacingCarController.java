@@ -1,15 +1,13 @@
 package racingcar.controller;
 
+import javafx.util.Pair;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Trial;
 import racingcar.view.RacingCarView;
-import utils.RandomUtils;
 
 public class RacingCarController {
 
-    private static final int MINIMUM_RANDOM_RPM = 0;
-    private static final int MAXIMUM_RANDOM_RPM = 9;
     private Cars cars;
     private Trial trial;
 
@@ -43,9 +41,7 @@ public class RacingCarController {
     }
 
     private void raceByCar() {
-        for (Car car : cars.getCars()) {
-            int currentRpm = RandomUtils.nextInt(MINIMUM_RANDOM_RPM, MAXIMUM_RANDOM_RPM);
-            car.move(currentRpm);
+        for (Pair<String, Integer> car : cars.racing()) {
             RacingCarView.printCarPosition(car);
         }
         RacingCarView.printNewLine();
