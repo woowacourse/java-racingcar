@@ -6,7 +6,7 @@ public class Car {
     private static final int CONDITION = 4;
 
     private final CarName carName;
-    private int position = 0;
+    private Position position = Position.ZERO;
 
     public Car(CarName carName) {
         this.carName = carName;
@@ -14,16 +14,16 @@ public class Car {
 
     public void moveForwardByNumber(int number) {
         if (number >= CONDITION) {
-            position++;
+            this.position = position.moveForward();
         }
     }
 
     public boolean isSamePosition(int position) {
-        return this.position == position;
+        return this.position.isSamePosition(position);
     }
 
     public int getPosition() {
-        return position;
+        return this.position.getPosition();
     }
 
     public String getName() {
