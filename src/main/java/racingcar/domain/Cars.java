@@ -14,16 +14,15 @@ public class Cars {
 
     private final List<Car> cars;
 
-    private Cars(List<Car> cars) {
+    public Cars(List<Car> cars) {
         this.cars = new ArrayList<>(cars);
     }
 
     public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+        return new ArrayList<>(cars);
     }
 
     public static Cars from(String inputCarName) {
-
         String[] carNames = splitCarsName(inputCarName);
         validateDuplicatedName(carNames);
 

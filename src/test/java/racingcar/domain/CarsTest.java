@@ -40,7 +40,7 @@ class CarsTest {
     @Test
     void driveAll() {
         Cars cars = Cars.from("joy, poz");
-        cars.driveAll(FixedNumberGeneratingStrategy.getInstance());
+        cars.driveAll(new FixedNumberGeneratingStrategy());
 
         cars.getCars().forEach(car -> assertThat(car.getPosition()).isEqualTo(2));
     }

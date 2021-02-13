@@ -14,9 +14,13 @@ public class Car {
     private Integer position;
     private final String name;
 
-    private Car(final String name) {
-        this.position = 1;
+    public Car(final String name, final int position) {
+        this.position = position;
         this.name = name;
+    }
+
+    public Car(final String name) {
+        this(name, 1);
     }
 
     public static Car from(String name) {

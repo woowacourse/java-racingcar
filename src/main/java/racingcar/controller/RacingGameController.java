@@ -3,7 +3,7 @@ package racingcar.controller;
 import racingcar.domain.Cars;
 import racingcar.utils.RandomNumberGeneratingStrategy;
 import racingcar.view.InputView;
-import racingcar.view.OutputView;
+import racingcar.view.GameResultView;
 
 public class RacingGameController {
 
@@ -22,20 +22,20 @@ public class RacingGameController {
     }
 
     private void startRace() {
-        OutputView.printResultPrefix();
-        OutputView.printCarsBeforeRace(cars);
+        GameResultView.printResultPrefix();
+        GameResultView.printCarsBeforeRace(cars);
 
         race();
     }
 
     private void race() {
         for (int i = 0; i < turns; i++) {
-            cars.driveAll(RandomNumberGeneratingStrategy.getInstance());
-            OutputView.printCars(cars.getCars());
+            cars.driveAll(new RandomNumberGeneratingStrategy());
+            GameResultView.printCars(cars.getCars());
         }
     }
 
     private void showResult() {
-        OutputView.printWinners(cars.getWinners());
+        GameResultView.printWinners(cars.getWinners());
     }
 }
