@@ -15,10 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RacingGameTest {
 
+    RacingGame racingGame = new RacingGame();
     @Test
     @DisplayName("입력값을 쉼표 단위로 나눠서 리스트 객체로 반환한다.")
     public void splitInputTest() throws Exception {
-        List<String> splittedInput = RacingGame.splitInput("Ryan,Pika");
+        List<String> splittedInput = racingGame.splitInput("Ryan,Pika");
         List<String> expected = Arrays.asList("Ryan", "Pika");
         assertThat(splittedInput).isEqualTo(expected);
     }
@@ -27,7 +28,7 @@ public class RacingGameTest {
     @DisplayName("게임 시행 횟수는 1 이상의 숫자여야 한다.")
     @ValueSource(strings = {"  ", " as", "b3"})
     void isValidNumberTest(String number) {
-        assertThrows(IllegalArgumentException.class, () -> RacingGame.isValidNumber(number));
+        assertThrows(IllegalArgumentException.class, () -> racingGame.isValidNumber(number));
     }
 
     @Test
@@ -38,9 +39,9 @@ public class RacingGameTest {
                 new Car("Ryan", 3),
                 new Car("Pika", 5)
         );
-        RacingGame.assignCars(cars);
+        racingGame.assignCars(cars);
 
-        assertThat(RacingGame.findWinners()).isEqualTo(Arrays.asList(
+        assertThat(racingGame.findWinners()).isEqualTo(Arrays.asList(
                 new Car("Babo", 5),
                 new Car("Pika", 5)));
     }

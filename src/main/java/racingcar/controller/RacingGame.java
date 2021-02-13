@@ -12,21 +12,21 @@ import java.util.stream.Collectors;
 
 public class RacingGame {
     private static final String DELIMITER = ",";
-    public static Cars cars;
-    public static int trials;
+    public Cars cars;
+    public int trials;
 
-    public static void start() {
+    public void start() {
         initSetting();
         playRounds();
         printWinners();
     }
 
-    private static void initSetting() {
+    private void initSetting() {
         while (!initializeCars()) ;
         while (!getTrials()) ;
     }
 
-    private static boolean initializeCars() {
+    private boolean initializeCars() {
         try {
             OutputView.printUserPromptCarNames();
             List<Car> temporaryCars = new ArrayList<>();
@@ -40,15 +40,15 @@ public class RacingGame {
         return true;
     }
 
-    public static List<String> splitInput(String input) {
+    public List<String> splitInput(String input) {
         return Arrays.asList(input.split(DELIMITER));
     }
 
-    public static void assignCars(List<Car> temporaryCars) {
+    public void assignCars(List<Car> temporaryCars) {
         cars = new Cars(temporaryCars);
     }
 
-    private static boolean getTrials() {
+    private boolean getTrials() {
         OutputView.printUserPromptTrials();
         String input = InputView.askUserInput().trim();
         if (validateTrials(input)) {
@@ -58,7 +58,7 @@ public class RacingGame {
         return false;
     }
 
-    private static boolean validateTrials(String input) {
+    private boolean validateTrials(String input) {
         try {
             isValidNumber(input);
         } catch (IllegalArgumentException e) {
@@ -69,20 +69,20 @@ public class RacingGame {
         return true;
     }
 
-    public static void isValidNumber(String input) {
+    public void isValidNumber(String input) {
         if (Integer.parseInt(input) < 1) {
             throw new IllegalArgumentException("시행 횟수는 1회 이상이어야 합니다.");
         }
     }
 
-    public static List<Car> findWinners() {
+    public List<Car> findWinners() {
         return cars.getCars()
                 .stream()
                 .filter(car -> car.isSamePosition(cars.getMaxDistance()))
                 .collect(Collectors.toList());
     }
 
-    private static void playRounds() {
+    private void playRounds() {
         OutputView.printRoundMessage();
         for (int i = 0; i < trials; i++) {
             playRound();
@@ -90,11 +90,11 @@ public class RacingGame {
         }
     }
 
-    private static void playRound() {
+    private void playRound() {
         cars.moveCars();
     }
 
-    private static void printWinners() {
+    private void printWinners() {
         OutputView.printWinners(findWinners());
     }
 }
