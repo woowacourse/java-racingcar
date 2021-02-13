@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -27,8 +28,11 @@ public class Cars {
             .orElse(0);
     }
 
-    public int getMaxPosition() {
-        return maxPosition;
+    public List<String> findWinner() {
+        return cars.stream()
+            .filter(car -> isWinner(car))
+            .map(Car::getName)
+            .collect(Collectors.toList());
     }
 
     private String[] splitInput(String input) {
@@ -52,5 +56,9 @@ public class Cars {
         if (carNames.length != nameSet.size()) {
             throw new IllegalArgumentException("중복되는 이름을 입력할 수 없습니다.");
         }
+    }
+
+    private boolean isWinner(Car car) {
+        return car.isPosition(maxPosition);
     }
 }

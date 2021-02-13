@@ -3,7 +3,6 @@ package racingcar.controller;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Trial;
-import racingcar.domain.Winners;
 import racingcar.view.RacingCarView;
 import utils.RandomUtils;
 
@@ -54,8 +53,6 @@ public class RacingCarController {
 
     private void finish() {
         cars.findMaxPosition();
-        Winners winners = new Winners(cars.getCars(), cars.getMaxPosition());
-        winners.findWinner();
-        RacingCarView.printWinners(winners.getWinners());
+        RacingCarView.printWinners(cars.findWinner());
     }
 }
