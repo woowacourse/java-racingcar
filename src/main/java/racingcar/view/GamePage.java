@@ -1,6 +1,10 @@
 package racingcar.view;
 
+import racingcar.controller.MainController;
 import racingcar.domain.car.Car;
+import racingcar.domain.car.CarRepository;
+import racingcar.utils.ErrorUtils;
+import racingcar.utils.ValidateUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,7 +12,7 @@ import java.util.stream.Collectors;
 public class GamePage {
     private static final char SINGLE_VISUAL_POSITION = '-';
 
-    public static void printResultPage() {
+    public static void printGamePage() {
         System.out.println(System.lineSeparator() + "실행 결과");
     }
 
@@ -28,6 +32,14 @@ public class GamePage {
     }
 
     public static void printFinalResult(List<Car> winners) {
+        try {
+            ValidateUtils.validateData(winners);
+        } catch (IllegalArgumentException e) {
+            ErrorUtils.printError(e);
+            CarRepository.deleteAll();
+            MainController mainController = new MainController();
+            mainController.run();
+        }
         System.out.println(joinWinnerNames(winners) + "가 최종 우승했습니다.");
     }
 
