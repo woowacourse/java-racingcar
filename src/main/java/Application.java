@@ -1,4 +1,4 @@
-import racingcar.RacingGameController;
+import racingcar.controller.RacingGameController;
 
 public class Application {
 

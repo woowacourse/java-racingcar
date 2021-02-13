@@ -1,9 +1,5 @@
 package calculator;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,9 +7,41 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 public class StringCalculatorTest {
 
     StringCalculator stringCalculator;
+
+    private static Stream<Arguments> provideCustomSeparatorTestCase() {
+        return Stream.of(
+                Arguments.of("//c\n1,2", 3),
+                Arguments.of("//c\n1,2,3", 6),
+                Arguments.of("//c\n2,5", 7),
+                Arguments.of("//-\n2,5:1", 8)
+        );
+    }
+
+    private static Stream<Arguments> provideNullAndEmptyTestCase() {
+        return Stream.of(
+                Arguments.of("", 0),
+                Arguments.of(null, 0),
+                Arguments.of("1", 1)
+        );
+    }
+
+    private static Stream<Arguments> provideNegativeNumberTestCase() {
+        return Stream.of(
+                Arguments.of("-2"),
+                Arguments.of("1,-2"),
+                Arguments.of("1,-2:4,-5"),
+                Arguments.of("//*\n-2"),
+                Arguments.of("//*\n-2,2")
+        );
+    }
 
     @BeforeEach
     void setUp() {
@@ -34,28 +62,11 @@ public class StringCalculatorTest {
         assertThat(stringCalculator.stringSum(input)).isEqualTo(expected);
     }
 
-    private static Stream<Arguments> provideCustomSeparatorTestCase() {
-        return Stream.of(
-                Arguments.of("//c\n1,2", 3),
-                Arguments.of("//c\n1,2,3", 6),
-                Arguments.of("//c\n2,5", 7),
-                Arguments.of("//-\n2,5:1", 8)
-        );
-    }
-
     @ParameterizedTest
     @DisplayName("빈문자열, null 입력 테스트")
     @MethodSource("provideNullAndEmptyTestCase")
     void emptyOrNullCaseTest(String input, Integer expected) {
         assertThat(stringCalculator.stringSum(input)).isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> provideNullAndEmptyTestCase() {
-        return Stream.of(
-                Arguments.of("", 0),
-                Arguments.of(null, 0),
-                Arguments.of("1", 1)
-        );
     }
 
     @ParameterizedTest
@@ -65,15 +76,5 @@ public class StringCalculatorTest {
         assertThatThrownBy(() -> {
             stringCalculator.stringSum(input);
         }).isInstanceOf(RuntimeException.class);
-    }
-
-    private static Stream<Arguments> provideNegativeNumberTestCase() {
-        return Stream.of(
-                Arguments.of("-2"),
-                Arguments.of("1,-2"),
-                Arguments.of("1,-2:4,-5"),
-                Arguments.of("//*\n-2"),
-                Arguments.of("//*\n-2,2")
-        );
     }
 }

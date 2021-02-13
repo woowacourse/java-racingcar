@@ -1,4 +1,11 @@
-package racingcar;
+package racingcar.controller;
+
+import racingcar.domain.Car.Car;
+import racingcar.domain.Cars.Cars;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
+
+import java.util.List;
 
 public class RacingGameController {
 
@@ -23,9 +30,10 @@ public class RacingGameController {
 
     private void startRace() {
         OutputView.printResultPrefix();
-        OutputView.printCarsBeforeRace(cars.getCars());
+        OutputView.printCarsStatus(cars.getCars());
         for (int i = 0; i < turns; i++) {
-            cars.allCarsDrive();
+            List<Car> afterDriveCars = cars.getCarsAfterDrive();
+            OutputView.printCarsStatus(afterDriveCars);
         }
     }
 
