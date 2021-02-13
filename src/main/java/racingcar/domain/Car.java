@@ -1,7 +1,12 @@
 package racingcar.domain;
 
+import javafx.util.Pair;
+import utils.RandomUtils;
+
 public class Car {
 
+    private static final int MINIMUM_RANDOM_RPM = 0;
+    private static final int MAXIMUM_RANDOM_RPM = 9;
     private static final int MOVABLE_MINIMUM_RPM = 3;
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
@@ -18,6 +23,11 @@ public class Car {
         if (rpm > MOVABLE_MINIMUM_RPM) {
             position++;
         }
+    }
+
+    public Pair<String, Integer> racing() {
+        move(RandomUtils.nextInt(MINIMUM_RANDOM_RPM, MAXIMUM_RANDOM_RPM));
+        return new Pair<>(name, position);
     }
 
     public String getName() {

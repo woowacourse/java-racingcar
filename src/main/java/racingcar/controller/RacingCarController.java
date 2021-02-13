@@ -1,7 +1,6 @@
 package racingcar.controller;
 
 import javafx.util.Pair;
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Trial;
 import racingcar.view.RacingCarView;
@@ -41,7 +40,7 @@ public class RacingCarController {
     }
 
     private void raceByCar() {
-        for (Pair<String, Integer> car : cars.racing()) {
+        for (Pair<String, Integer> car : cars.racingByCar()) {
             RacingCarView.printCarPosition(car);
         }
         RacingCarView.printNewLine();
