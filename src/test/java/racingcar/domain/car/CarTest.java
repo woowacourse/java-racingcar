@@ -28,14 +28,23 @@ class CarTest {
                 .isFalse();
     }
 
-    @DisplayName("위치 이동 테스트")
+    @DisplayName("전 테스트")
     @Test
     void goForward() {
         final Car car = new Car("pobi");
 
-        car.goForward();
-        car.goForward();
+        car.goForwardRandomly(() -> true);
 
-        Assertions.assertThat(car.getPosition()).isEqualTo(2);
+        Assertions.assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @DisplayName("멈춤 테스트")
+    @Test
+    void stop() {
+        final Car car = new Car("pobi");
+
+        car.goForwardRandomly(() -> false);
+
+        Assertions.assertThat(car.getPosition()).isEqualTo(0);
     }
 }
