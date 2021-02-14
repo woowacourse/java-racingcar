@@ -2,6 +2,12 @@ package racingCar.controller;
 
 import java.util.Scanner;
 import racingCar.domain.RacingGame;
+import racingCar.domain.Round;
+import racingCar.domain.car.Cars;
+import racingCar.domain.car.Engine.RandomEngine;
+import racingCar.domain.car.factory.CarsFactory;
+import racingCar.exception.InvalidCarNameException;
+import racingCar.exception.InvalidNumOfMoveException;
 import racingCar.utils.ValidateUtils;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
@@ -9,40 +15,40 @@ import racingCar.view.OutputView;
 public class GameController {
 
     private final InputView inputView;
-    private int numOfRacingRound;
-    private String[] cars;
 
     public GameController(Scanner scanner) {
         inputView = new InputView(scanner);
     }
 
     public void play() {
-        inputCarNames();
-        inputRacingRound();
-        RacingGame racingGame = new RacingGame(cars, numOfRacingRound);
+        Cars cars = inputCars();
+        Round round = inputRacingRound();
+        RacingGame racingGame = new RacingGame(cars, round);
         while (!racingGame.isEnd()) {
             racingGame.race();
-            OutputView.printCars(racingGame.getCars());
+            OutputView.printCars(cars);
         }
-        OutputView.printWinners(racingGame.getWinners());
+        OutputView.printWinners(cars.findWinners());
     }
 
-    private void inputRacingRound() {
-        try {
-            OutputView.printInputNumOfRoundMessage();
-            numOfRacingRound = ValidateUtils.validateRacingRoundCount(inputView.inputValue());
-        } catch (RuntimeException e) {
-            OutputView.printExceptionMessage(e);
-            inputRacingRound();
-        }
-    }
-
-    private void inputCarNames(){
+    private Cars inputCars() {
         try {
             OutputView.printInputCarNameMessage();
-            cars = ValidateUtils.validateCarNames(inputView.inputCarNames());
-        } catch (RuntimeException e) {
+            String[] carNames = inputView.inputCarNames();
+            return CarsFactory.create(carNames, new RandomEngine());
+        } catch (InvalidCarNameException e) {
             OutputView.printExceptionMessage(e);
+            return inputCars();
+        }
+    }
+
+    private Round inputRacingRound() {
+        try {
+            OutputView.printInputNumOfRoundMessage();
+            return new Round(ValidateUtils.numberedCount(inputView.inputValue()));
+        } catch (InvalidNumOfMoveException e) {
+            OutputView.printExceptionMessage(e);
+            return inputRacingRound();
         }
     }
 }

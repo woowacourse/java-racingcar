@@ -3,9 +3,16 @@ package racingCar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
-import racingCar.domain.Engine.FixedEngine;
+import racingCar.domain.car.Car;
+import racingCar.domain.car.Engine.FixedEngine;
 
 class CarTest {
+
+    @Test
+    public void 생성() {
+        final Car car = new Car("jason", new FixedEngine(2));
+        assertThat(car).isEqualTo(new Car("jason", new FixedEngine(2)));
+    }
 
     @Test
     public void 자동차_움직임_및_현재상태출력_테스트() {
@@ -19,7 +26,7 @@ class CarTest {
         }
 
         // then
-        assertThat(car.toString()).isEqualTo("pobi : -----");
+        assertThat(car.getPosition()).isEqualTo(5);
     }
 
     @Test
@@ -34,7 +41,7 @@ class CarTest {
         }
 
         // then
-        assertThat(car.toString()).isEqualTo("pobi : ");
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
 }
