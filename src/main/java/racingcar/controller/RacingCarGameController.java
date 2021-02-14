@@ -1,31 +1,33 @@
 package racingcar.controller;
 
 import racingcar.domain.RacingCarGame;
-import racingcar.view.RacingCarGameView;
+import racingcar.view.RacingCarGameProgressView;
+import racingcar.view.RacingCarGameResultView;
 
 public class RacingCarGameController {
-
     RacingCarGame racingCarGame;
-    RacingCarGameView racingCarGameView;
+    RacingCarGameProgressView racingCarGameProgressView;
+    RacingCarGameResultView racingCarGameResultView;
 
-    public RacingCarGameController(final RacingCarGame racingCarGame, final RacingCarGameView racingCarGameView) {
+    public RacingCarGameController(final RacingCarGame racingCarGame, final RacingCarGameProgressView racingCarGameProgressView, final RacingCarGameResultView racingCarGameResultView) {
         this.racingCarGame = racingCarGame;
-        this.racingCarGameView = racingCarGameView;
+        this.racingCarGameProgressView = racingCarGameProgressView;
+        this.racingCarGameResultView = racingCarGameResultView;
     }
 
-    public void run() {
-        racingCarGameRacing();
-        printFinalResult();
+    public boolean isRacing() {
+        return racingCarGame.isRacing();
     }
 
-    private void racingCarGameRacing() {
-        while (racingCarGame.isRacing()) {
-            racingCarGame.racing();
-            racingCarGameView.printProgressResult(racingCarGame.getCars());
-        }
+    public void race() {
+        racingCarGame.racing();
     }
 
-    private void printFinalResult() {
-        racingCarGameView.printFinalResult(racingCarGame.getWinnersNames());
+    public void printRaceProgress() {
+        racingCarGameProgressView.printProgressResult(racingCarGame.getCars());
+    }
+
+    public void printFinalResult() {
+        racingCarGameResultView.printFinalResult(racingCarGame.getWinnersNames());
     }
 }
