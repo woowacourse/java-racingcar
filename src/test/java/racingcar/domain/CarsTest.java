@@ -26,4 +26,38 @@ public class CarsTest {
         Cars cars = new Cars(carNames);
         assertThat(cars.getMaxPositionByCars()).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("랜덤값을 전부 5로 통제한뒤, 전부 움직였는지 테스트")
+    void carsMoveTestAlwaysMove() {
+        List<String> carNames = Arrays.asList("povi", "pobi", "dave");
+        Cars cars = new Cars(carNames) {
+            @Override
+            protected int getMovePivot() {
+                return 5;
+            }
+        };
+        cars.moveCars();
+
+        for (Car car : cars.getCars()) {
+            assertThat(car.getPosition()).isEqualTo(1);
+        }
+    }
+
+    @Test
+    @DisplayName("랜덤값을 전부 2로 통제한뒤, 전부 움직이지 못했는지 테스트")
+    void carsMoveTestNoMove() {
+        List<String> carNames = Arrays.asList("povi", "pobi", "dave");
+        Cars cars = new Cars(carNames) {
+            @Override
+            protected int getMovePivot() {
+                return 2;
+            }
+        };
+        cars.moveCars();
+
+        for (Car car : cars.getCars()) {
+            assertThat(car.getPosition()).isEqualTo(0);
+        }
+    }
 }

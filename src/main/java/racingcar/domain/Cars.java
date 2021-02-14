@@ -30,8 +30,13 @@ public class Cars {
     public void moveCars() {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         for (Car car : cars) {
-            car.carMove(randomNumberGenerator.getNumber());
+            car.carMove(getMovePivot());
         }
+    }
+
+    protected int getMovePivot() {
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        return randomNumberGenerator.getNumber();
     }
 
     private void validateNonDuplicatedNames(final List<String> names) {
