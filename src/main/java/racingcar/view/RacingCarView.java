@@ -1,9 +1,10 @@
-package racingcar;
+package racingcar.view;
 
+import javafx.util.Pair;
 import java.util.Scanner;
 import java.util.List;
 
-public class RacingGameView {
+public class RacingCarView {
 
     private static final String START_MESSAGE = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
     private static final String TRIAL_MESSAGE = "시도할 회수는 몇회인가요?";
@@ -28,12 +29,14 @@ public class RacingGameView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printCarPosition(Car car) {
+    public static void printCarPosition(Pair<String, Integer> car) {
+        String name = car.getKey();
+        Integer position = car.getValue();
         String movement = "";
-        for (int p = 0; p < car.getPosition(); p++) {
+        for (int p = 0; p < position; p++) {
             movement = movement.concat(MOVEMENT);
         }
-        System.out.printf(CAR_SITUATION_MESSAGE_FORMAT, car.getName(), movement);
+        System.out.printf(CAR_SITUATION_MESSAGE_FORMAT, name, movement);
     }
 
     public static void printNewLine() {
