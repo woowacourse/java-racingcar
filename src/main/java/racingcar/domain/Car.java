@@ -9,8 +9,8 @@ public class Car {
         this.name = name;
     }
 
-    public Name getName() {
-        return this.name;
+    public String getName() {
+        return this.name.value();
     }
 
     public void carMove(final int number) {

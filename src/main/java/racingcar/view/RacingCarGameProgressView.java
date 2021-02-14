@@ -14,9 +14,8 @@ public class RacingCarGameProgressView {
     }
 
     private void printCarStatus(final Car car) {
-        StringBuilder carStatus = new StringBuilder(car.getName().value()).append(" : ");
-        carStatus.append(getCarProgressBarStatus(car.getPosition()));
-        System.out.println(carStatus.toString());
+        String carStatus = String.format("%s : %s", car.getName(), getCarProgressBarStatus(car.getPosition()));
+        System.out.println(carStatus);
     }
 
     private StringBuilder getCarProgressBarStatus(final int carPosition) {

@@ -21,7 +21,6 @@ public class Winners {
         return Collections.unmodifiableList(
                 winners.stream()
                         .map(Car::getName)
-                        .map(Name::value)
                         .collect(Collectors.toList()));
     }
 
