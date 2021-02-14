@@ -14,6 +14,7 @@ public class RacingGame {
     private Cars cars;
     private int trials;
 
+
     public void start() {
         initSetting();
         playRounds();

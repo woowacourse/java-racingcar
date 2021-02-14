@@ -8,7 +8,6 @@ import racingcar.model.Car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 public class CarTest {
 
     @ParameterizedTest
