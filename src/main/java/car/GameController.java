@@ -3,6 +3,7 @@ package car;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import view.OutputView;
 
 public class GameController {
 

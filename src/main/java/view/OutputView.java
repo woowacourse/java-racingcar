@@ -1,6 +1,11 @@
-package car;
+package view;
 
-import java.util.*;
+import car.Car;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
