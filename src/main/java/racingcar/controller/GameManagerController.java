@@ -9,8 +9,7 @@ import racingcar.view.OutputView;
 public class GameManagerController {
     public static void main(String[] args) {
         GameManagerRequestDto requestDto = InputView.inputFromUser();
-        GameManager gameManager = new GameManager();
-        GameManagerResponseDto responseDto = gameManager.playGame(requestDto);
+        GameManagerResponseDto responseDto = new GameManager(requestDto).playGame();
         OutputView.printResults(responseDto);
     }
 }
