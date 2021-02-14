@@ -15,7 +15,7 @@ public class Cars {
     public Cars(List<Car> cars) {
         validateCarAmount(cars);
         validateCarNameDuplication(cars);
-        this.cars = cars;
+        this.cars = new ArrayList<>(cars);
     }
 
     public void raceOneLap() {
@@ -25,22 +25,26 @@ public class Cars {
     public Map<String, Integer> getStatus() {
         Map<String, Integer> carStatus = new HashMap<>();
         cars.forEach(car -> carStatus.put(car.getName(), car.getPosition()));
-        return carStatus;
+        return Collections.unmodifiableMap(carStatus);
     }
 
     public List<String> getWinners() {
         int maxPosition = getMaxPosition();
         List<Car> winners = getMaxPositionCar(maxPosition);
 
-        return winners.stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
+        return Collections.unmodifiableList(
+                winners.stream()
+                        .map(Car::getName)
+                        .collect(Collectors.toList())
+        );
     }
 
     private List<Car> getMaxPositionCar(int maxPosition) {
-        return cars.stream()
-                .filter(car -> car.isSamePosition(maxPosition))
-                .collect(Collectors.toList());
+        return Collections.unmodifiableList(
+                cars.stream()
+                        .filter(car -> car.isSamePosition(maxPosition))
+                        .collect(Collectors.toList())
+        );
     }
 
     private int getMaxPosition() {
