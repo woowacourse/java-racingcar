@@ -13,6 +13,9 @@ public class Position implements Comparable<Position> {
     }
 
     public static Position valueOf(int value) {
+        if (value < 0) {
+            throw new RuntimeException("Position의 값은 0 이상의 자연수만 가능함");
+        }
         if (value == 1) {
             return positionOne;
         }
