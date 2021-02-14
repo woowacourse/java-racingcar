@@ -12,7 +12,7 @@ public class InputView {
     private final Scanner scanner = new Scanner(System.in);
     private OutputView message = new OutputView();
 
-    public List<Car> inputCarName() {
+    public List<Car> getCarNames() {
         List<Car> carNames = new ArrayList<>();
 
         message.carNameGuidePrint();
@@ -24,7 +24,7 @@ public class InputView {
         return carNames;
     }
 
-    public int inputRound() {
+    public int getRound() {
         message.repeatGuidePrint();
         String roundInput = scanner.nextLine();
         ValidCheck.round(roundInput);

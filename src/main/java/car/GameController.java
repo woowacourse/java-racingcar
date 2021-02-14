@@ -14,8 +14,8 @@ public class GameController {
         int round = 0;
         List<Car> carNames = new ArrayList<>();
         try {
-            carNames = inputView.inputCarName();
-            round = inputView.inputRound();
+            carNames = inputView.getCarNames();
+            round = inputView.getRound();
             moveCar(carNames, round);
         } catch (IllegalArgumentException error) {
             message.errorPrint();
