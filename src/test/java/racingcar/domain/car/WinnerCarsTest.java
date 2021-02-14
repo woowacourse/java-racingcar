@@ -12,22 +12,11 @@ class WinnerCarsTest {
     @Test
     @DisplayName("WinnerCars 우승 Car 리스트로 출력")
     void create() {
-        Car winnerCar = new Car("win");
-        winnerCar.move(5);
-        Car loserCar = new Car("lose");
-        Car anotherLoser = new Car("lost");
         Cars cars = new Cars(
-                Arrays.asList(
-                        winnerCar,
-                        loserCar,
-                        anotherLoser
-                )
-        );
-        Cars comparingCars = new Cars(
                 Collections.singletonList(
-                        winnerCar
+                        new Car("win")
                 )
         );
-        assertEquals(new WinnerCars(cars).toList(), comparingCars.toList());
+        assertEquals(cars.toList(), new WinnerCars(cars).toList());
     }
 }

@@ -68,10 +68,8 @@ class CarsTest {
         assertTrue(cars.isEmpty());
         cars.add(new Car("pobi"));
         assertFalse(cars.isEmpty());
-        cars.add("jason");
         List<Car> carList = Arrays.asList(
-                new Car("pobi"),
-                new Car("jason")
+                new Car("pobi")
         );
         assertEquals(carList, cars.toList());
     }
@@ -81,10 +79,7 @@ class CarsTest {
     void addException() {
         Cars cars = new Cars();
         Car car = new Car("jason");
-        cars.add("jason");
-        assertAll(
-                () -> assertThrows(IllegalArgumentException.class, () -> cars.add("jason")),
-                () -> assertThrows(IllegalArgumentException.class, () -> cars.add(car))
-        );
+        cars.add(car);
+        assertThrows(IllegalArgumentException.class, () -> cars.add(car));
     }
 }

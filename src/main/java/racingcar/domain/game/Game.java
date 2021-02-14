@@ -9,7 +9,7 @@ public class Game {
     }
 
     public Game(final String round) {
-        this.round = new Round(round);
+        this(new Round(round));
     }
 
     public Game(final int round) {

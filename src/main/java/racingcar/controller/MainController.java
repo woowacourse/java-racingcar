@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.domain.car.CarNames;
+import racingcar.domain.car.Names;
 import racingcar.domain.car.Cars;
 import racingcar.domain.car.WinnerCars;
 import racingcar.domain.game.Game;
@@ -24,8 +24,8 @@ public class MainController {
 
     private void registerCars() {
         try {
-            CarNames carNames = CarNames.create(InputView.inputNames());
-            cars = new Cars(carNames);
+            Names names = Names.create(InputView.inputNames());
+            cars = new Cars(names);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             registerCars();

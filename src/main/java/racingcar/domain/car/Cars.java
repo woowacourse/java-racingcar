@@ -21,8 +21,8 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public Cars(final CarNames carNames) {
-        container = carNames.toList().stream()
+    public Cars(final Names names) {
+        container = names.toList().stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
@@ -36,17 +36,6 @@ public class Cars {
             throw new IllegalArgumentException(ErrorMessages.ERROR_CARS_HAVE_DUPLICATE_NAMES);
         }
         container.add(car);
-    }
-
-    public void add(final String car) {
-        if (alreadyContains(car)) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_CARS_HAVE_DUPLICATE_NAMES);
-        }
-        container.add(new Car(car));
-    }
-
-    private boolean alreadyContains(final String car) {
-        return container.contains(new Car(car));
     }
 
     private boolean alreadyContains(final Car car) {
