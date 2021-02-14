@@ -22,7 +22,7 @@ public class Cars {
 
     public void goForwardAllCarsRandomly() {
         for (Car car : cars) {
-            car.goForwardRandomly(new CarMoveStrategy());
+            car.goForward(new CarMoveStrategy());
         }
     }
 

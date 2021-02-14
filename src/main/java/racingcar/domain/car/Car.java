@@ -26,7 +26,7 @@ public class Car {
         return this.position.equals(position);
     }
 
-    public void goForwardRandomly(MoveStrategy moveStrategy) {
+    public void goForward(MoveStrategy moveStrategy) {
         if (moveStrategy.isMovable()) {
             goForward();
         }

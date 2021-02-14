@@ -33,7 +33,7 @@ class CarTest {
     void goForward() {
         final Car car = new Car("pobi");
 
-        car.goForwardRandomly(() -> true);
+        car.goForward(() -> true);
 
         Assertions.assertThat(car.getPosition()).isEqualTo(1);
     }
@@ -43,7 +43,7 @@ class CarTest {
     void stop() {
         final Car car = new Car("pobi");
 
-        car.goForwardRandomly(() -> false);
+        car.goForward(() -> false);
 
         Assertions.assertThat(car.getPosition()).isEqualTo(0);
     }
