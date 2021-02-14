@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.validator.InputValidator;
+import racingcar.domain.Cars;
 
 public class InputUtilsTest {
 
@@ -25,7 +25,17 @@ public class InputUtilsTest {
     @ValueSource(strings = {"not_numeric"})
     void checkIsInteger(String inputNumber) {
         assertThatThrownBy(() -> {
-            InputValidator.isOnlyNumber(inputNumber);
+            InputUtils.isOnlyNumber(inputNumber);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("Exception test for duplicated name")
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi, pobi, pobi"})
+    void checkDuplicatedExceptionTest(String nameString) {
+        assertThatThrownBy(() -> {
+            String[] names = InputUtils.splitNames(nameString);
+            Cars.createByNames(names);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 

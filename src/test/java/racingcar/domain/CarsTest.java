@@ -1,48 +1,25 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static java.util.Arrays.asList;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.utils.InputUtils;
-import racingcar.validator.NameValidator;
+import org.junit.jupiter.api.Test;
 
 class CarsTest {
 
-    private Cars cars;
-
-    @DisplayName("Exception test for over duplicated name")
-    @ParameterizedTest
-    @ValueSource(strings = {"pobi, pobi, pobi"})
-    void checkDuplicatedExceptionTest(String nameString) {
-        assertThatThrownBy(() -> {
-            String[] names = InputUtils.splitNames(nameString);
-            NameValidator.isDuplicatedNames(names);
-        }).isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("특정 자동차가 우승을 하는 상황을 만들어놓고 그 우승자가 정상적으로 나오는지 확인")
+    @Test
+    void checkWinner() {
+        Cars cars = winnerSetUp();
+        assertThat(cars.getWinners()).containsExactly("cogi", "pobi");
     }
 
-//    @DisplayName("특정 자동차가 우승을 하는 상황을 만들어놓고 그 우승자가 정상적으로 나오는지 확인")
-//    @ParameterizedTest
-//    @ValueSource(strings = {"pobi, pobi, pobi"})
-//    void checkWinner() {
-//        setUp();
-//    }
-//
-//    public void setUp() {
-//        Car car1 = Car.createByName("jino");
-//        car1.movePosition();
-//        car1.movePosition();
-//        Car car2 = Car.createByName("cogi");
-//        car2.movePosition();
-//        car2.movePosition();
-//        car2.movePosition();
-//
-//        List<Car> carList = new ArrayList<>();
-//
-//        carList.add(car1);
-//        carList.add(car2);
-//
-//         cars = Cars.createByNames()
-//    }
+    public Cars winnerSetUp() {
+        Car car1 = new Car("jino", 2);
+        Car car2 = new Car("cogi", 3);
+        Car car3 = new Car("pobi", 3);
+
+        return new Cars(asList(car1, car2, car3));
+    }
 }

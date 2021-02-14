@@ -7,7 +7,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class RoundTest {
-    @DisplayName("Test for valid round")
+
+    @DisplayName("Round에 대한 입력이 1 이상이 아닌 경우 에러 발생")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
     void checkIsValidRound(int inputNumber) {
