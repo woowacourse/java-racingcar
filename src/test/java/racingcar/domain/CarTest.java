@@ -11,7 +11,7 @@ public class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"너무 긴 이름", ""})
-    void carNameTest(String input) {
+    void 이름길이_유효성_검사(String input) {
         assertThatThrownBy(() ->
             new Car(input, 0)).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("자 이하로 입력해주세요.");
@@ -19,7 +19,7 @@ public class CarTest {
 
     @ParameterizedTest
     @CsvSource(value = {"5, 1", "2, 0", "100, 1"}, delimiter = ',')
-    void tryToMoveTest(int input, int expected) {
+    void 자동차_전진(int input, int expected) {
         Car car = new Car("테스트", 0);
         car.move(input);
         int actual = car.getPosition();
