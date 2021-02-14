@@ -1,28 +1,27 @@
 package racingcar.domain;
 
 import racingcar.exception.InvalidRacingTimeException;
+import racingcar.exception.InvalidRacingTimeTypeException;
 
 public class RacingTimeRegister {
 
     private static final int MIN_RACING_TIME = 0;
 
-    public int registerRacingTime(String input) {
+    public int registerRacingTime(final String input) {
         try {
             int racingTime = Integer.parseInt(input);
 
             validateRacingTimeZeroOrLess(racingTime);
 
             return racingTime;
-        } catch (Exception e) {
-            throw new InvalidRacingTimeException(
-                    "[ERROR] 레이스 횟수는 0이 될 수 없습니다.");
+        } catch (IllegalArgumentException e) {
+            throw new InvalidRacingTimeTypeException();
         }
     }
 
-    private void validateRacingTimeZeroOrLess(int racingTime) {
+    private void validateRacingTimeZeroOrLess(final int racingTime) {
         if (racingTime <= MIN_RACING_TIME) {
-            throw new InvalidRacingTimeException(
-                    "[ERROR] 레이스 횟수는 자연수만 입력 가능합니다.");
+            throw new InvalidRacingTimeException();
         }
     }
 }

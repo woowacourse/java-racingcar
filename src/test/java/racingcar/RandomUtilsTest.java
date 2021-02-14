@@ -3,12 +3,12 @@ package racingcar;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.util.RandomGenerator;
+import racingcar.util.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomGeneratorTest {
+public class RandomUtilsTest {
 
     @DisplayName("0 ~ 9 사이 생성")
     @Test
@@ -24,7 +24,7 @@ public class RandomGeneratorTest {
             return values;
         }
 
-        int randomValue = RandomGenerator.generateRandomNumber(0, 9);
+        int randomValue = RandomUtils.generateRandomNumber(0, 9);
 
         if (values.contains(randomValue)) {
             return generateNumber(values, leftTime);

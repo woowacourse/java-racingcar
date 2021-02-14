@@ -2,7 +2,7 @@ package racingcar.util;
 
 import java.util.Random;
 
-public class RandomGenerator {
+public class RandomUtils {
     private static final int MIN_START_VALUE = 0;
 
     public static int generateRandomNumber(int start, int end) {

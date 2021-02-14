@@ -6,9 +6,10 @@ import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
+
         final Scanner scanner = new Scanner(System.in);
 
-        RacingController carRacingManager = new RacingController(scanner);
-        carRacingManager.start();
+        final RacingController racingController = new RacingController(scanner);
+        racingController.start();
     }
 }

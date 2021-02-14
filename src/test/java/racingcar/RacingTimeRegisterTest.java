@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.RacingTimeRegister;
 import racingcar.exception.InvalidRacingTimeException;
+import racingcar.exception.InvalidRacingTimeTypeException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -34,6 +35,6 @@ public class RacingTimeRegisterTest {
     void validateRacingTimeType() {
         String inputRacingTime = "a";
         assertThatThrownBy(() -> racingTimeRegister.registerRacingTime(inputRacingTime))
-                .isInstanceOf(InvalidRacingTimeException.class);
+                .isInstanceOf(InvalidRacingTimeTypeException.class);
     }
 }
