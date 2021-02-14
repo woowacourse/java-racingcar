@@ -22,6 +22,14 @@ public class RacingGame {
             carNames.forEach(Car::moveOrStop);
             message.printResult(carNames);
         }
+
+    }
+
+    public void getWinner() {
         printWinner(carNames);
+    }
+
+    private void printWinner(List<Car> carNames) {
+        message.printWinners(carNames);
     }
 }

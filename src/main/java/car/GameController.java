@@ -1,6 +1,6 @@
 package car;
 
-import java.util.ArrayList;
+import domain.RacingGame;
 import java.util.List;
 import view.InputView;
 import view.OutputView;
@@ -11,29 +11,16 @@ public class GameController {
     private InputView inputView = new InputView();
 
     public void start() {
-        int round = 0;
-        List<Car> carNames = new ArrayList<>();
         try {
-            carNames = inputView.getCarNames();
-            round = inputView.getRound();
-            moveCar(carNames, round);
+            List<Car> carNames = inputView.getCarNames();
+            int round = inputView.getRound();
+
+            RacingGame racingGame = new RacingGame(carNames, round);
+            racingGame.moveCar(carNames, round);
+            racingGame.getWinner();
         } catch (IllegalArgumentException error) {
             message.errorPrint();
             start();
         }
     }
-
-    private void moveCar(List<Car> carNames, int round) {
-        message.roundStart();
-        for (int i = 0; i < round; i++) {
-            carNames.forEach(Car::moveOrStop);
-            message.printResult(carNames);
-        }
-        printWinner(carNames);
-    }
-
-    private void printWinner(List<Car> carNames) {
-        message.printWinners(carNames);
-    }
-
 }
