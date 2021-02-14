@@ -1,5 +1,7 @@
 package racingcar.domain.car;
 
+import racingcar.domain.car.strategy.CarMoveStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +22,7 @@ public class Cars {
 
     public void goForwardAllCarsRandomly() {
         for (Car car : cars) {
-            car.goForwardRandomly();
+            car.goForwardRandomly(new CarMoveStrategy());
         }
     }
 
