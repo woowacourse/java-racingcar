@@ -1,5 +1,6 @@
-package car;
+package controller;
 
+import car.Car;
 import domain.RacingGame;
 import java.util.List;
 import view.InputView;
