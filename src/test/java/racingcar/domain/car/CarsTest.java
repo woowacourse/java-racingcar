@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,19 +29,6 @@ class CarsTest {
                 ).size()).isEqualTo(3),
                 () -> assertTrue(new Cars().isEmpty())
         );
-    }
-
-    @Test
-    @DisplayName("생성자의 방어적 객체 생성 테스트")
-    void checkDeepCopy() {
-        List<Car> carList = Arrays.asList(
-                new Car("java"),
-                new Car("jason"),
-                new Car("pobi")
-        );
-        Cars cars = new Cars(carList);
-        carList.get(0).move(9);
-        assertNotEquals(carList.get(0).getPosition(), cars.toList().get(0).getPosition());
     }
 
     @Test
@@ -68,7 +56,7 @@ class CarsTest {
         assertTrue(cars.isEmpty());
         cars.add(new Car("pobi"));
         assertFalse(cars.isEmpty());
-        List<Car> carList = Arrays.asList(
+        List<Car> carList = Collections.singletonList(
                 new Car("pobi")
         );
         assertEquals(carList, cars.toList());

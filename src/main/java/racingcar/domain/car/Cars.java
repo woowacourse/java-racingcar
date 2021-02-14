@@ -16,13 +16,12 @@ public class Cars {
     }
 
     public Cars(final List<Car> cars) {
-        container = cars.stream()
-                .map(car -> new Car(car.getName()))
-                .collect(Collectors.toList());
+        container = cars;
     }
 
-    public Cars(final Names names) {
-        container = names.toList().stream()
+    public Cars(final String rawNames) {
+        List<Name> names = Names.create(rawNames);
+        container = names.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
