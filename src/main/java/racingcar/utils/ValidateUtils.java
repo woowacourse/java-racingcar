@@ -1,12 +1,16 @@
 package racingcar.utils;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import racingcar.domain.car.Car;
 import racingcar.view.ErrorMessages;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class ValidateUtils {
+
+    private ValidateUtils() {
+    }
 
     public static void validateNames(List<Car> cars) {
         validateMaxNameLength(cars);
@@ -56,6 +60,16 @@ public class ValidateUtils {
     private static void validatePositive(int parsedInt) {
         if (parsedInt <= 0) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_TURN_NOT_POSITIVE);
+        }
+    }
+
+    public static void validateData(List<Car> winners) {
+        boolean isMaxNameLength = winners.stream().anyMatch(car -> !Car.checkMaxName(car));
+        boolean isNoName = winners.stream().anyMatch(car -> car.getName().length() == 0);
+        Set<String> carNames = new HashSet<>();
+        boolean isDuplicate = winners.stream().anyMatch(car -> !carNames.add(car.getName()));
+        if (isMaxNameLength || isNoName || isDuplicate) {
+            throw new IllegalArgumentException(ErrorMessages.ERROR_DATA);
         }
     }
 }

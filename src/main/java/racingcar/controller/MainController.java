@@ -1,21 +1,20 @@
 package racingcar.controller;
 
-import static racingcar.utils.ValidateUtils.validateNames;
-import static racingcar.utils.ValidateUtils.validateTurnQuantity;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.CarRepository;
 import racingcar.domain.game.Game;
 import racingcar.utils.ErrorUtils;
+import racingcar.view.InputView;
 import racingcar.view.MainPage;
 
-public class MainController {
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    private static final Scanner scanner = new Scanner(System.in);
+import static racingcar.utils.ValidateUtils.validateNames;
+import static racingcar.utils.ValidateUtils.validateTurnQuantity;
+
+public class MainController {
 
     public void run() {
         userInputNames();
@@ -23,10 +22,9 @@ public class MainController {
     }
 
     public void userInputNames() {
+        MainPage.askCarNames();
         try {
-            MainPage.printMainPage();
-            String userInput = scanner.nextLine();
-            splitNames(userInput);
+            splitNames(InputView.userInput());
         } catch (IllegalArgumentException e) {
             ErrorUtils.printError(e);
             userInputNames();
@@ -34,10 +32,9 @@ public class MainController {
     }
 
     public void userInputTurnQuantity() {
+        MainPage.askTurnQuantity();
         try {
-            MainPage.askTurnQuantity();
-            String userInput = scanner.nextLine();
-            initiateGameWithTurn(userInput);
+            initiateGameWithTurn(InputView.userInput());
         } catch (IllegalArgumentException e) {
             ErrorUtils.printError(e);
             userInputTurnQuantity();

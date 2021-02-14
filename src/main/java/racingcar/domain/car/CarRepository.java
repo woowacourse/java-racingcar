@@ -17,17 +17,14 @@ public class CarRepository {
         return Collections.unmodifiableList(cars);
     }
 
-    public static String collectWinners() {
-        return CarRepository.cars().stream()
-                .filter(car -> car.isMaxPosition(CarRepository.selectMaxPosition()))
-                .map(Car::getName)
-                .collect(Collectors.joining(", "));
+    public static List<Car> selectWinners(int maxPosition) {
+        List<Car> winnerCars = cars().stream()
+                .filter(car -> car.isMaxPosition(maxPosition))
+                .collect(Collectors.toList());
+        return Collections.unmodifiableList(winnerCars);
     }
 
-    private static int selectMaxPosition() {
-        return cars().stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
+    public static void deleteAll() {
+        cars.clear();
     }
 }
