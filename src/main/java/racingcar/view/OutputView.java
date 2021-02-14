@@ -3,6 +3,7 @@ package racingcar.view;
 import java.util.stream.Collectors;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
+import racingcar.domain.car.Position;
 import racingcar.domain.car.Winners;
 
 public class OutputView {
@@ -21,13 +22,13 @@ public class OutputView {
     public static void printRoundResult(final Cars cars) {
         System.out.println();
         for (Car car : cars.toList()) {
-            System.out.println(car.getName() + " : " + getVisualPosition(car));
+            System.out.println(car.getName() + " : " + getVisualPosition(car.getPosition()));
         }
     }
 
-    private static String getVisualPosition(final Car car) {
+    private static String getVisualPosition(final Position position) {
         StringBuilder visualPosition = new StringBuilder();
-        for (int i = 0; i < car.getPosition(); ++i) {
+        for (int i = 0; i < position.getValue(); ++i) {
             visualPosition.append("-");
         }
         return visualPosition.toString();
