@@ -1,5 +1,5 @@
 import racingcar.controller.RacingGameController;
-import racingcar.view.InputView;
+import racingcar.view.ConsoleInputView;
 
 public class Application {
 
@@ -8,8 +8,8 @@ public class Application {
 
         try {
             racingGameController.startRacingGame(
-                    InputView.getInputCarsName(),
-                    InputView.getInputTurns()
+                    ConsoleInputView.getInputCarsName(),
+                    ConsoleInputView.getInputTurns()
             );
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
