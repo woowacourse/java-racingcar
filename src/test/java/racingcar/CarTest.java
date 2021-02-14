@@ -1,13 +1,13 @@
 package racingcar;
 
-import org.junit.jupiter.params.provider.CsvSource;
-import racingcar.model.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.model.Car;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
 
@@ -15,8 +15,9 @@ public class CarTest {
     @DisplayName("자동차 이름은 5글자이하여야하며 빈칸은 허용하지 않는다.")
     @ValueSource(strings = {" ", "abcdefg", "  "})
     void createCarExceptionTest(String name) {
-        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new Car(name));
-        assertThat(e.getMessage()).isEqualTo(Car.CAR_NAME_LENGTH_INVALID);
+        assertThatThrownBy(() -> new Car(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Car.CAR_NAME_LENGTH_INVALID);
     }
 
     @ParameterizedTest
