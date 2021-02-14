@@ -43,7 +43,7 @@ public class Cars {
     }
 
     public void moveIndividuals() {
-        container.forEach(car -> car.move(RandomUtils.nextInt(0, 9)));
+        container.forEach(car -> car.move(RandomUtils.generate()));
     }
 
     public Winners collectWinners() {
