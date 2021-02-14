@@ -30,6 +30,4 @@ public class ConsoleInputView {
     public static void printAskTurns() {
         System.out.println(ASK_TURNS);
     }
-
-
 }
