@@ -16,14 +16,13 @@ public class RacingGameResult {
         Position maxPosition = getMaxPosition();
 
         return cars.getCars().stream()
-//                .filter(car -> car.getPosition() == maxPosition)
                 .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
     }
 
     private Position getMaxPosition() {
         return cars.getCars().stream()
-                .max((car1, car2) -> car1.getPosition().compareTo(car2.getPosition()))
+                .max(Comparator.comparing(Car::getPosition))
                 .orElseThrow(() -> new RuntimeException(""))
                 .getPosition();
     }
