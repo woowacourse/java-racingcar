@@ -21,10 +21,8 @@ public class Cars {
     }
 
     public static Cars of(String inputCarNames) {
-        List<CarName> carNames = Arrays.stream(inputCarNames.split(DELIMITER))
+        List<Car> cars = Arrays.stream(inputCarNames.split(DELIMITER))
                 .map(CarName::valueOf)
-                .collect(Collectors.toList());
-        List<Car> cars = carNames.stream()
                 .map(Car::of)
                 .collect(Collectors.toList());
         return new Cars(cars);
