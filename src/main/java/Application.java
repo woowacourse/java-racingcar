@@ -1,4 +1,4 @@
-package car;
+import car.GameController;
 
 public class Application {
 
