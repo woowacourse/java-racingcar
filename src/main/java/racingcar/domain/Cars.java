@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.utils.NumberGenerator;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -43,14 +45,10 @@ public class Cars {
         return carsCopied;
     }
 
-    public void moveCars(int[] numbers) {
-        for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).move(numbers[i]);
+    public void moveCars(NumberGenerator numberGenerator) {
+        for (Car car: cars) {
+            car.move(numberGenerator.generateNumber());
         }
-    }
-
-    public int getNumberOfCars() {
-        return cars.size();
     }
 
     public List<Car> findWinners() {

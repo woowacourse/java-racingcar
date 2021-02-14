@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomGenerator;
+import racingcar.utils.RandomNumberGenerator;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,8 +17,7 @@ public class RacingGame {
     }
 
     public void playAnotherRound() {
-        int[] numbers = RandomGenerator.generateRandomNumbers(cars.getNumberOfCars());
-        cars.moveCars(numbers);
+        cars.moveCars(new RandomNumberGenerator());
         currentRound.increase();
     }
 

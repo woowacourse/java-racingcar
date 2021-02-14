@@ -7,6 +7,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.dto.CarDto;
 import racingcar.dto.WinnersDto;
+import racingcar.utils.FixedNumberGenerator;
+import racingcar.utils.NumberGenerator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -60,7 +62,8 @@ class CarsTest {
         Cars cars = new Cars(carNamesForTest);
 
         int[] numbersToMoveCars = {1, 3, 5};
-        cars.moveCars(numbersToMoveCars);
+        NumberGenerator numberGenerator = new FixedNumberGenerator(numbersToMoveCars);
+        cars.moveCars(numberGenerator);
 
         int[] expectedPosition = {0, 0, 1};
 
