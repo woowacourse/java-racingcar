@@ -17,7 +17,7 @@ public class GameController {
 
             RacingGame racingGame = new RacingGame(carNames, round);
             racingGame.moveCar(carNames, round);
-            racingGame.getWinner();
+            racingGame.result();
         } catch (IllegalArgumentException error) {
             message.errorPrint();
             start();

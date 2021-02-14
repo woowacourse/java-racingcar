@@ -30,7 +30,7 @@ public class RacingGame {
 
     }
 
-    public void getWinner() {
+    public void result() {
         String winner = findWinners(carNames);
         message.printWinner(winner);
     }
