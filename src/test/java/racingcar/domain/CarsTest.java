@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.Name;
+import racingcar.domain.car.CarName;
 import racingcar.domain.car.Position;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class CarsTest {
     @DisplayName("경주할 자동차는 1대 이하일 경우에 IllegalArgumentException 발생")
     public void carsShouldBeMoreThanOneTest() {
         List<Car> cars = new ArrayList<>();
-        cars.add(Car.of(Name.valueOf("bmw")));
+        cars.add(Car.of(CarName.valueOf("bmw")));
 
         assertThatThrownBy(() -> {
             Cars.of(cars);
@@ -32,8 +32,8 @@ public class CarsTest {
     @DisplayName("양쪽끝 공백을 제거한 자동차 이름이 서로 중복되면 IllegalArgumentException 발생")
     public void carsShouldNotUseDuplicatedNameTest() {
         List<Car> cars = new ArrayList<>();
-        cars.add(Car.of(Name.valueOf("bmw")));
-        cars.add(Car.of(Name.valueOf("bmw")));
+        cars.add(Car.of(CarName.valueOf("bmw")));
+        cars.add(Car.of(CarName.valueOf("bmw")));
 
         assertThatThrownBy(() -> {
             Cars.of(cars);

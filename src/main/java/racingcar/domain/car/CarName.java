@@ -2,21 +2,21 @@ package racingcar.domain.car;
 
 import java.util.Objects;
 
-public class Name {
+public class CarName {
     private static final int MIN_CAR_NAME_LENGTH = 1;
     private static final int MAX_CAR_NAME_LENGTH = 5;
 
     private final String value;
 
-    private Name(final String value) {
+    private CarName(final String value) {
         this.value = value;
     }
 
-    public static Name valueOf(final String value) {
+    public static CarName valueOf(final String value) {
         validateCarNameIsNullOrEmpty(value);
         String trimmedValue = value.trim();
         validateNameLength(trimmedValue);
-        return new Name(trimmedValue);
+        return new CarName(trimmedValue);
     }
 
     public static void validateNameLength(String name) {
@@ -39,7 +39,7 @@ public class Name {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Name name = (Name) o;
+        CarName name = (CarName) o;
         return Objects.equals(value, name.value);
     }
 
