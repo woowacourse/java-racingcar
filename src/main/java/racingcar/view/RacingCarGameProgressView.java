@@ -1,13 +1,22 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
-public class CarView {
+public class RacingCarGameProgressView {
+    private static final String RESULT_HEADER_MESSAGE = "\n실행 결과";
 
-    public void printCarStatus(final Car car) {
+    public void printProgressResult(final Cars cars) {
+        System.out.println(RESULT_HEADER_MESSAGE);
+        for (Car car : cars.getCars()) {
+            printCarStatus(car);
+        }
+    }
+
+    private void printCarStatus(final Car car) {
         StringBuilder carStatus = new StringBuilder(car.getName().value()).append(" : ");
         carStatus.append(getCarProgressBarStatus(car.getPosition()));
-        OutputView.printMessage(carStatus.toString());
+        System.out.println(carStatus.toString());
     }
 
     private StringBuilder getCarProgressBarStatus(final int carPosition) {

@@ -8,12 +8,12 @@ public class InputView {
     private static final String INPUT_REQUEST_TRY_COUNT = "시도할 회수는 몇회인가요?";
 
     public static String getCarNameInput() {
-        OutputView.printMessage(INPUT_REQUEST_RACING_CAR_NAME);
+        System.out.println(INPUT_REQUEST_RACING_CAR_NAME);
         return scanner.nextLine();
     }
 
     public static String getTryCountInput() {
-        OutputView.printMessage(INPUT_REQUEST_TRY_COUNT);
+        System.out.println(INPUT_REQUEST_TRY_COUNT);
         return scanner.nextLine();
     }
 }
