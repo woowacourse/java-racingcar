@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.utils.RandomNumberGenerator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,7 @@ public class CarsTest {
         List<String> carNames = Arrays.asList("povi", "pobi", "dave");
         Cars cars = new Cars(carNames) {
             @Override
-            protected int getMovePivot() {
+            protected int getMovePivot(RandomNumberGenerator randomNumberGenerator) {
                 return 5;
             }
         };
@@ -50,7 +51,7 @@ public class CarsTest {
         List<String> carNames = Arrays.asList("povi", "pobi", "dave");
         Cars cars = new Cars(carNames) {
             @Override
-            protected int getMovePivot() {
+            protected int getMovePivot(RandomNumberGenerator randomNumberGenerator) {
                 return 2;
             }
         };

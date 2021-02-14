@@ -30,12 +30,11 @@ public class Cars {
     public void moveCars() {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         for (Car car : cars) {
-            car.carMove(getMovePivot());
+            car.carMove(getMovePivot(randomNumberGenerator));
         }
     }
 
-    protected int getMovePivot() {
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    protected int getMovePivot(final RandomNumberGenerator randomNumberGenerator) {
         return randomNumberGenerator.getNumber();
     }
 
