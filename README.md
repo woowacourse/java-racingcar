@@ -35,5 +35,16 @@
 - 우승자를 구한 후 출력한다
     - 우승자들의 목록에서 괄호(`[`, `]`)를 제거한 후 출력한다
 
+---
+
+# step2 - MVC 패턴 적용 계획
+
+- outputview를 담당하는 view 파일을 분리한다.
+    - 해당 과정에서 출력과 관련된 기능은 모두 outputview로 이동시킨다.
+- inputview를 담당하는 view 파일을 분리한다.
+    - 해당 과정에서 입력과 관련된 기능은 모두 inputview로 이동시킨다.
+- 기능과 관련된 부분을 domain으로 이동시킨다.
+    - 특히 Controller가 domain의 책임까지 지고 있지는 않은지 체크한다
+
 ## 우아한테크코스 코드리뷰
 * [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
