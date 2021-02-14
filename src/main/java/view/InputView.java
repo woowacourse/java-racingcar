@@ -1,7 +1,7 @@
 package view;
 
 import car.Car;
-import car.ValidCheck;
+import domain.ValidCheck;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -27,7 +27,7 @@ public class InputView {
     public int getRound() {
         message.repeatGuidePrint();
         String roundInput = scanner.nextLine();
-        ValidCheck.round(roundInput);
+        ValidCheck.roundValid(roundInput);
         return Integer.parseInt(roundInput);
     }
 }
