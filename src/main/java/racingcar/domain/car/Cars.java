@@ -35,10 +35,9 @@ public class Cars {
     }
 
     public Result getResultOfCars() {
-        List<Car> cars = new ArrayList<>();
-        for (Car car : this.cars) {
-            cars.add(Car.getInstance(car));
-        }
+        List<Car> cars = this.cars.stream()
+                .map(Car::getInstance)
+                .collect(Collectors.toList());
         return Result.of(cars);
     }
 
