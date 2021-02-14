@@ -1,8 +1,6 @@
 package racingcar.view;
 
 import javafx.util.Pair;
-import racingcar.domain.Car;
-
 import java.util.Scanner;
 import java.util.List;
 
