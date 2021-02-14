@@ -28,7 +28,7 @@ class CarTest {
                 .isFalse();
     }
 
-    @DisplayName("전 테스트")
+    @DisplayName("전진 테스트")
     @Test
     void goForward() {
         final Car car = new Car("pobi");
