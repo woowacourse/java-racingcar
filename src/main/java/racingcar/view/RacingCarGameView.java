@@ -1,6 +1,5 @@
 package racingcar.view;
 
-import racingcar.controller.CarController;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
@@ -13,8 +12,8 @@ public class RacingCarGameView {
     public void printProgressResult(final Cars cars) {
         OutputView.printMessage(RESULT_HEADER_MESSAGE);
         for (Car car : cars.getCars()) {
-            CarController carController = new CarController(car);
-            carController.printCarStatus();
+            CarView carView = new CarView();
+            carView.printCarStatus(car);
         }
     }
 

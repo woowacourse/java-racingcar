@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.controller.CarController;
 import racingcar.utils.RandomNumberGenerator;
 
 import java.util.ArrayList;
@@ -31,8 +30,7 @@ public class Cars {
     public void moveCars() {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         for (Car car : cars) {
-            CarController carController = new CarController(car);
-            carController.carMove(randomNumberGenerator.getNumber());
+            car.carMove(randomNumberGenerator.getNumber());
         }
     }
 
