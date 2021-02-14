@@ -45,6 +45,6 @@ public class OutputView {
     }
 
     private static void printCarsStatus(Car car) {
-        System.out.println(car.getName() + DELIMITER_COLON + printPosition(car.getPosition()));
+        System.out.println(car.getName() + DELIMITER_COLON + printPosition(car.toIntPosition()));
     }
 }
