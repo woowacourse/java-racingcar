@@ -1,18 +1,22 @@
 package racingcar.domain;
 
-import racingcar.validator.RoundValidator;
-
 public class Round {
 
     private int count;
 
     private Round(int count) {
-        RoundValidator.isPositive(count);
+        isPositive(count);
         this.count = count;
     }
 
     public static Round create(int inputNumber) {
         return new Round(inputNumber);
+    }
+
+    public static void isPositive(int round) {
+        if (round <= 0) {
+            throw new IllegalArgumentException("Round must be positive");
+        }
     }
 
     public void next() {

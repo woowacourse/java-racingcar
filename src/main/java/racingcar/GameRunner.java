@@ -19,10 +19,10 @@ public class GameRunner {
 
     public void run() {
         PrintUtils.printInfo("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        cars = Cars.createByNames(InputUtils.getNames(scanner));
+        cars = Cars.createByNames(InputUtils.inputToNames(scanner));
 
         PrintUtils.printInfo("시도할 회수는 몇회인가요?");
-        round = Round.create(InputUtils.getInteger(scanner));
+        round = Round.create(InputUtils.inputToInteger(scanner));
 
         PrintUtils.printInfo("실행 결과");
         while (!round.isEnd()) {
