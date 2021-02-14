@@ -1,0 +1,46 @@
+package racingcar.domain;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.round.Round;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+public class RoundTest {
+
+    @Test
+    @DisplayName("생성")
+    public void save() {
+        Round round = Round.of("10");
+
+        assertThat(round.getCount()).isEqualTo(10);
+    }
+
+    @Test
+    @DisplayName("시도할 횟수에 문자를 입력하면 NumberFormatException을 발생시킨다.")
+    public void roundShouldBeNumber() {
+        assertThatThrownBy(() -> {
+            Round.of("a");
+        }).isInstanceOf(NumberFormatException.class);
+    }
+
+    @ParameterizedTest(name = "시도할 횟수는 1이상의 숫자여야 한다")
+    @ValueSource(strings = {"0", "-1", "-5"})
+    public void roundCountShouldBeBiggerThanOneTest(String values) {
+        assertThatThrownBy(() -> {
+            Round.of(values);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("시도할 횟수에 int 타입의 범위를 넘어선 값을 입력하면 NumberFormatException을 발생시킨다.")
+    public void roundCountShouldBeInIntRange() {
+        assertThatThrownBy(() -> {
+            String excessIntegerValue = "100000000000000000000";
+            Round.of(excessIntegerValue);
+        }).isInstanceOf(NumberFormatException.class);
+    }
+}
