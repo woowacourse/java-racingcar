@@ -1,24 +1,24 @@
 package racingcar.domain;
 
-import racingcar.validator.NameValidator;
-import racingcar.utils.RandomUtils;
-
 public class Car {
 
-    private static final int TRY_NUMBER_MIN = 0;
-    private static final int TRY_NUMBER_MAX = 9;
     private static final int MOVE_CONDITION = 4;
+    private static final int LIMIT_NAME_LEN = 5;
 
     private final String name;
-
     private int position = 0;
 
     private Car(String name) {
         this.name = name;
     }
 
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
     public static Car createByName(String name) {
-        NameValidator.checkValidName(name);
+        checkValidName(name);
         return new Car(name);
     }
 
@@ -30,18 +30,31 @@ public class Car {
         return position;
     }
 
+    public static void checkValidName(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("Name can't be null");
+        }
+
+        if (!isValidLength(name)) {
+            throw new IllegalArgumentException("Invalid name length exception");
+        }
+    }
+
+    private static boolean isValidLength(String name) {
+        return name.trim().length() <= LIMIT_NAME_LEN && name.trim().length() > 0;
+    }
+
     public boolean isInWinnerPosition(int winnerPosition) {
         return winnerPosition == this.position;
     }
 
-    public void tryToMove() {
-        int rand = RandomUtils.nextInt(TRY_NUMBER_MIN, TRY_NUMBER_MAX);
-        if (rand >= MOVE_CONDITION) {
+    public void tryMove(int moveNum) {
+        if (moveNum >= MOVE_CONDITION) {
             movePosition();
         }
     }
 
-    public void movePosition() {
+    private void movePosition() {
         position++;
     }
 
@@ -53,8 +66,11 @@ public class Car {
         return sb.toString();
     }
 
-    @Override
-    public String toString() {
+    public String getPositionStatus() {
         return name + " : " + getPositionBar();
+    }
+
+    public int greaterPosition(int winnerPosition) {
+        return Math.max(this.position, winnerPosition);
     }
 }
