@@ -46,6 +46,10 @@ public class Cars {
         container.forEach(car -> car.move(RandomUtils.nextInt(0, 9)));
     }
 
+    public Winners collectWinners() {
+        return new Winners(container);
+    }
+
     public int size() {
         return container.size();
     }

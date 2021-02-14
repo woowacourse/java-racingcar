@@ -3,7 +3,7 @@ package racingcar.view;
 import java.util.stream.Collectors;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.WinnerCars;
+import racingcar.domain.car.Winners;
 
 public class OutputView {
 
@@ -33,7 +33,7 @@ public class OutputView {
         return visualPosition.toString();
     }
 
-    public static void printFinalResult(final WinnerCars winnerCars) {
+    public static void printFinalResult(final Winners winnerCars) {
         String winners = winnerCars.toList().stream()
                 .map(Car::getName)
                 .collect(Collectors.joining(", "));

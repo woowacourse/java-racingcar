@@ -4,19 +4,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class WinnerCarsTest {
+class WinnersTest {
 
     @Test
     @DisplayName("WinnerCars 우승 Car 리스트로 출력")
     void create() {
-        Cars cars = new Cars(
-                Collections.singletonList(
-                        new Car("win")
-                )
+        List<Car> cars = Arrays.asList(
+                new Car("pobi"),
+                new Car("java")
         );
-        assertEquals(cars.toList(), new WinnerCars(cars).toList());
+        assertEquals(cars, new Winners(cars).toList());
     }
 }

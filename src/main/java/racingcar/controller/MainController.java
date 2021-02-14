@@ -1,8 +1,7 @@
 package racingcar.controller;
 
-import racingcar.domain.car.Names;
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.WinnerCars;
+import racingcar.domain.car.Names;
 import racingcar.domain.game.Game;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -48,6 +47,6 @@ public class MainController {
             game.play();
             OutputView.printRoundResult(cars);
         }
-        OutputView.printFinalResult(new WinnerCars(cars));
+        OutputView.printFinalResult(cars.collectWinners());
     }
 }

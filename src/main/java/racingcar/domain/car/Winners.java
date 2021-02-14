@@ -4,18 +4,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WinnerCars {
+public class Winners {
 
     private final List<Car> container;
 
-    public WinnerCars(final Cars cars) {
-        container = cars.toList().stream()
-                .filter(car -> car.isPosition(findMaxPosition(cars)))
+    public Winners(final List<Car> cars) {
+        int maxPosition = findMaxPosition(cars);
+        container = cars.stream()
+                .filter(car -> car.isPosition(maxPosition))
                 .collect(Collectors.toList());
     }
 
-    private int findMaxPosition(final Cars cars) {
-        return cars.toList().stream()
+    private int findMaxPosition(final List<Car> cars) {
+        return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
