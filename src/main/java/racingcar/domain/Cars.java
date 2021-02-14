@@ -9,7 +9,6 @@ public class Cars {
     private static final String NAME_SPLIT_DELIMITER = ",";
     private static final int MIN_CARS_LENGTH = 2;
     private final List<Car> cars = new ArrayList<>();
-    private int maxPosition;
 
     public Cars(String input) {
         String[] carNames = splitInput(input);
@@ -26,16 +25,17 @@ public class Cars {
         return result;
     }
 
-    public void findMaxPosition() {
-        maxPosition = cars.stream()
+    public int getMaxPosition() {
+        return cars.stream()
             .mapToInt(Car::getPosition)
             .max()
             .orElse(0);
     }
 
     public List<String> findWinner() {
+        int maxPosition = getMaxPosition();
         return cars.stream()
-            .filter(car -> isWinner(car))
+            .filter(car -> car.isPosition(maxPosition))
             .map(Car::getName)
             .collect(Collectors.toList());
     }
@@ -61,9 +61,5 @@ public class Cars {
         if (carNames.length != nameSet.size()) {
             throw new IllegalArgumentException("중복되는 이름을 입력할 수 없습니다.");
         }
-    }
-
-    private boolean isWinner(Car car) {
-        return car.isPosition(maxPosition);
     }
 }

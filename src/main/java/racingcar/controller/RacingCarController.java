@@ -47,7 +47,6 @@ public class RacingCarController {
     }
 
     private void finish() {
-        cars.findMaxPosition();
         RacingCarView.printWinners(cars.findWinner());
     }
 }
