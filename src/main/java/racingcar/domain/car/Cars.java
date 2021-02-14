@@ -1,6 +1,5 @@
 package racingcar.domain.car;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,14 +9,6 @@ import racingcar.view.ErrorMessages;
 public class Cars {
 
     private final List<Car> container;
-
-    public Cars() {
-        this.container = new ArrayList<>();
-    }
-
-    public Cars(final List<Car> cars) {
-        container = cars;
-    }
 
     public Cars(final String rawNames) {
         List<Name> names = Names.create(rawNames);

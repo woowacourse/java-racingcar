@@ -12,7 +12,7 @@ public class Names {
     private static final int THRESHOLD = -1;
 
     private Names() {
-        throw new IllegalStateException("Names class is an utility class.");
+        throw new IllegalStateException("Names class is an utility class");
     }
 
     public static List<Name> create(final String rawNames) {
