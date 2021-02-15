@@ -17,7 +17,7 @@ public class RacingGame {
         while (!initializeCars(cars)) ;
 
         int trials = -1;
-        while(trials == -1){
+        while (trials == -1) {
             trials = getTrials();
         }
         OutputView.printRoundMessage();

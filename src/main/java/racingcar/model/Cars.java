@@ -3,7 +3,6 @@ package racingcar.model;
 import racingcar.utils.RandomUtils;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Cars {
 
