@@ -1,40 +1,55 @@
 package racingcar.view;
 
-import racingcar.constant.Message;
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
+import racingcar.dto.CarDto;
+import racingcar.dto.NameDto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
-    public static void printCarNamesRequest() {
-        System.out.println(Message.CAR_NAMES_REQUEST);
+    private static final String RESULT_GUIDE_MESSAGE = "실행 결과";
+    private static final String PROGRESS_GAUGE = "-";
+    private static final String RESULT_CONNECTOR = " : ";
+    private static final String NAME_DELIMITER = ", ";
+    private static final String WINNER_GUIDE_MESSAGE_SUFFIX = "가 최종 우승했습니다.";
+
+    private OutputView() {
     }
 
-    public static void printTimesRequest() {
-        System.out.println(Message.TIMES_REQUEST);
-    }
-
-    public static void printResultMessage() {
+    public static void printResultGuide() {
         printNewLine();
-        System.out.println(Message.RESULT_MESSAGE);
+        System.out.println(RESULT_GUIDE_MESSAGE);
     }
 
-    public static void printResult(Cars cars) {
-        List<Car> carList = cars.getCars();
+    public static void printResults(final List<CarDto> carDtos) {
+        carDtos.stream()
+                .forEach(OutputView::printResult);
 
-        for (Car car : carList) {
-            System.out.println(car);
+        printNewLine();
+    }
+
+    private static void printResult(final CarDto carDto) {
+        final String name = carDto.getNameDto().getName();
+        final int position = carDto.getPositionDto().getPosition();
+
+        final StringBuilder result = new StringBuilder(name + RESULT_CONNECTOR);
+        for (int i = 0; i < position; i++) {
+            result.append(PROGRESS_GAUGE);
         }
-        printNewLine();
+
+        System.out.println(result);
     }
 
-    public static void printWinner(List<String> carNames) {
-        System.out.print(String.join(Message.COMMA_WITH_BLANK.toString(), carNames));
-        System.out.println(Message.WINNER_MESSAGE);
+    public static void printWinnerNames(final List<NameDto> nameDtos) {
+        final List<String> carNames = nameDtos.stream()
+                .map(NameDto::getName)
+                .collect(Collectors.toList());
+
+        System.out.print(String.join(NAME_DELIMITER, carNames));
+        System.out.println(WINNER_GUIDE_MESSAGE_SUFFIX);
     }
 
-    public static void printNewLine() {
+    private static void printNewLine() {
         System.out.println();
     }
 }
