@@ -1,53 +1,48 @@
 package racingcar.domain;
 
-import racingcar.constant.Digit;
-import racingcar.constant.Message;
+import java.util.Objects;
 
-public class Car {
-    private final String name;
-    private int position;
+public class Car implements Comparable<Car> {
+    private final Name name;
+    private final Position position;
 
-    public Car(String name) {
-        this(name, Digit.START_POSITION.getDigit());
+    public Car(final Name name) {
+        this(name, Position.START);
     }
 
-    public Car(String name, int position) {
-        validateLength(name);
+    public Car(final Name name, final Position position) {
         this.name = name;
         this.position = position;
     }
 
-    private void validateLength(String name) {
-        if ((name.length() < Digit.MINIMUM_CAR_NAME_LENGTH.getDigit())
-                || (name.length() > Digit.MAXIMUM_CAR_NAME_LENGTH.getDigit())) {
-            throw new IllegalArgumentException(Message.CAR_NAME_LENGTH_ERROR.toString());
-        }
+    public Car move() {
+        final Position nextPosition = position.move();
+        return new Car(name, nextPosition);
     }
 
-    public void move() {
-        position++;
+    @Override
+    public int compareTo(Car o) {
+        return position.compareTo(o.position);
     }
 
-    public boolean isMaxPosition(int maxPosition) {
-        return position == maxPosition;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(name, car.name) && Objects.equals(position, car.position);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 
     @Override
     public String toString() {
-        StringBuilder hyphens = new StringBuilder();
-
-        for (int i = 0; i < position; i++) {
-            hyphens.append(Message.HYPHEN);
-        }
-
-        return name + Message.COLON_WITH_BLANK + hyphens.toString();
+        return "Car{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
     }
 }
