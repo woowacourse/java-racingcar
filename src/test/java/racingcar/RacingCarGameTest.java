@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingCarGame;
 
@@ -18,13 +19,12 @@ public class RacingCarGameTest {
     @ParameterizedTest
     @CsvSource(value = {"-1", "asdf"})
     void racing(String value) {
-        assertThatThrownBy(() -> {
-            new RacingCarGame(Arrays.asList("pobi", "crong"), value);
-        }).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> new RacingCarGame(Arrays.asList("pobi", "crong"), value))
+            .isInstanceOf(RuntimeException.class);
     }
 
-    @DisplayName("one lap: 한 바퀴 도는 테스트")
     @Test
+    @DisplayName("one lap: 한 바퀴 도는 테스트")
     void raceOneLap() {
         //given
         Cars cars = new Cars(Arrays.asList("gold", "tobi", "nana"));
@@ -34,9 +34,20 @@ public class RacingCarGameTest {
         //then
         List<String> movedCar = cars.getCars().stream()
             .filter(car -> car.getPosition() == 1)
-            .map(car -> car.getCarName())
+            .map(Car::getCarName)
             .collect(Collectors.toList());
         assertThat(movedCar).isEqualTo(Arrays.asList("tobi"));
+    }
+
+    @Test
+    @DisplayName("one lap: 랜덤 숫자와 Cars 갯수 불일치시 exception 발생여부")
+    void raceOneLap_fail() {
+        //given
+        Cars cars = new Cars(Arrays.asList("gold", "tobi", "nana"));
+        List<Integer> randoms = Arrays.asList(1, 4);
+        //when & then
+        assertThatThrownBy(() -> cars.raceOneLap(randoms))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
 }
