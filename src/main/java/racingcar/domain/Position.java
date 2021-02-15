@@ -1,6 +1,8 @@
 package racingcar.domain;
 
 
+import racingcar.dto.PositionDto;
+
 import java.util.Objects;
 
 public class Position implements Comparable<Position> {
@@ -28,6 +30,10 @@ public class Position implements Comparable<Position> {
             return START;
         }
         return new Position(value);
+    }
+
+    public PositionDto toDto() {
+        return new PositionDto(value);
     }
 
     public Position move() {

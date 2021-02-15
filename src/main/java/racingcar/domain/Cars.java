@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import racingcar.dto.CarDto;
+import racingcar.dto.NameDto;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -49,6 +52,18 @@ public class Cars {
         if (nonDuplicatedNames.size() != carNames.size()) {
             throw new IllegalArgumentException(CAR_NAME_DUPLICATION_ERROR_MESSAGE);
         }
+    }
+
+    public List<CarDto> toDtos() {
+        return cars.stream()
+                .map(Car::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<NameDto> toNameDtos() {
+        return cars.stream()
+                .map(Car::toNameDto)
+                .collect(Collectors.toList());
     }
 
     public Cars move() {

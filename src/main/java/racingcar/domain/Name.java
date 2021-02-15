@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.dto.NameDto;
+
 import java.util.Objects;
 
 public class Name {
@@ -28,6 +30,10 @@ public class Name {
         if (value.length() < MINIMUM_LENGTH || value.length() > MAXIMUM_LENGTH) {
             throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE + value);
         }
+    }
+
+    public NameDto toDto() {
+        return new NameDto(value);
     }
 
     @Override

@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import racingcar.domain.movingstrategy.MovingStrategy;
 import racingcar.domain.movingstrategy.RandomMovingStrategy;
+import racingcar.dto.CarDto;
+import racingcar.dto.NameDto;
 
 import java.util.Objects;
 
@@ -27,6 +29,14 @@ public class Car implements Comparable<Car> {
     public Car moveDefinitely() {
         final Position nextPosition = position.move();
         return new Car(name, nextPosition, this.movingStrategy);
+    }
+
+    public CarDto toDto() {
+        return new CarDto(name.toDto(), position.toDto());
+    }
+
+    public NameDto toNameDto() {
+        return name.toDto();
     }
 
     public Car move() {
