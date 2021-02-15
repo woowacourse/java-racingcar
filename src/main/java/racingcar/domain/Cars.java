@@ -49,6 +49,14 @@ public class Cars {
         }
     }
 
+    public Cars move() {
+        List<Car> collect = cars.stream()
+                .map(Car::move)
+                .collect(Collectors.toList());
+
+        return new Cars(collect);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
