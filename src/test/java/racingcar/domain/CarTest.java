@@ -2,7 +2,10 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.movingstrategy.DefinitelyMovingStrategy;
+import racingcar.domain.movingstrategy.SwitchedMovingStrategy;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -43,5 +46,23 @@ class CarTest {
 
         final int compareResult = farCar.compareTo(nearCar);
         assertThat(compareResult).isEqualTo(1);
+    }
+
+    @DisplayName("번갈아가며 자동차 전진")
+    @ParameterizedTest
+    @ValueSource(ints = {10, 11, 50, 101, 200})
+    public void moveUsedSwitchedPattern(final int movingCount) {
+        final Name name = new Name("중간곰");
+        final Position position = Position.from(0);
+        final SwitchedMovingStrategy switchedMovingStrategy = new SwitchedMovingStrategy();
+        final Position expected = Position.from(movingCount / 2);
+        Car car = new Car(name, position, switchedMovingStrategy);
+
+        for (int i = 0; i < movingCount; i++) {
+            car = car.move();
+        }
+
+        assertThat(car.isSamePosition(expected))
+                .isTrue();
     }
 }

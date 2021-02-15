@@ -26,7 +26,7 @@ public class Car implements Comparable<Car> {
 
     public Car moveDefinitely() {
         final Position nextPosition = position.move();
-        return new Car(name, nextPosition);
+        return new Car(name, nextPosition, this.movingStrategy);
     }
 
     public Car move() {
