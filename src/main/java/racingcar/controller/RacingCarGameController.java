@@ -1,8 +1,8 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.Lap;
+import racingcar.domain.*;
+import racingcar.domain.number.NumberGenerator;
+import racingcar.domain.number.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -29,7 +29,9 @@ public class RacingCarGameController {
     }
 
     private void playOneLap(final Cars cars) {
-        cars.moveAllCars();
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        cars.moveAllCars(numberGenerator);
+
         for (Car car : cars.toList()) {
             OutputView.printCarInfo(car.getName(), car.getPosition());
         }

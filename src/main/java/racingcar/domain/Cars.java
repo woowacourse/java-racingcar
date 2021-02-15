@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.domain.number.NumberGenerator;
+
 import java.util.*;
 
 import static racingcar.domain.CarName.ERROR_MESSAGE_OF_INVALID_INPUT;
@@ -32,9 +34,9 @@ public class Cars {
         return name;
     }
 
-    public void moveAllCars() {
+    public void moveAllCars(final NumberGenerator numberGenerator) {
         for (Car car : cars) {
-            car.moveByNumber(RandomNumber.make());
+            car.moveByNumber(numberGenerator.generate());
         }
     }
 
