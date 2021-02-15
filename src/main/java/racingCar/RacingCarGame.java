@@ -1,7 +1,5 @@
 package racingCar;
 
-import view.OutputView;
-
 public class RacingCarGame {
     private Cars cars;
 
