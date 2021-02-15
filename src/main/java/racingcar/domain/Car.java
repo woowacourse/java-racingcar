@@ -56,7 +56,10 @@ public class Car {
 
     @Override
     public String toString() {
-        return this.carName.getCarName() + " : " + position;
+        return "Car{" +
+            "carName=" + carName +
+            ", position=" + position +
+            '}';
     }
 
 }
