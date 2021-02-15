@@ -12,7 +12,7 @@ public class Position implements Comparable<Position> {
 
     private final int value;
 
-    public Position(final int value) {
+    private Position(final int value) {
         validate(value);
         this.value = value;
     }
@@ -21,6 +21,13 @@ public class Position implements Comparable<Position> {
         if (value < ZERO) {
             throw new IllegalArgumentException(MINIMUM_VALUE_ERROR_MESSAGE);
         }
+    }
+
+    public static Position from(final int value) {
+        if (value == ZERO) {
+            return START;
+        }
+        return new Position(value);
     }
 
     public Position move() {

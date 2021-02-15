@@ -16,7 +16,7 @@ public class PositionTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 100})
     public void create_success(final int value) {
-        assertThatCode(() -> new Position(value))
+        assertThatCode(() -> Position.from(value))
                 .doesNotThrowAnyException();
     }
 
@@ -25,7 +25,7 @@ public class PositionTest {
     @ValueSource(ints = {-1, -10, -100})
     public void create_fail(final int value) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Position(value))
+                .isThrownBy(() -> Position.from(value))
                 .withMessageContaining(MINIMUM_VALUE_ERROR_MESSAGE);
     }
 
@@ -33,16 +33,16 @@ public class PositionTest {
     @Test
     public void equal() {
         final int value = 5;
-        final Position position = new Position(value);
+        final Position position = Position.from(value);
 
-        assertThat(position).isEqualTo(new Position(value));
+        assertThat(position).isEqualTo(Position.from(value));
     }
 
     @DisplayName("크기 비교")
     @Test
     public void compareTo() {
-        final Position bigPosition = new Position(20);
-        final Position smallPosition = new Position(10);
+        final Position bigPosition = Position.from(20);
+        final Position smallPosition = Position.from(10);
 
         final int compareResult = bigPosition.compareTo(smallPosition);
         assertThat(compareResult).isEqualTo(1);
@@ -52,7 +52,7 @@ public class PositionTest {
     @Test
     public void move() {
         final Position movedPosition = START.move();
-        final Position expected = new Position(1);
+        final Position expected = Position.from(1);
 
         assertThat(movedPosition)
                 .isEqualTo(expected);
