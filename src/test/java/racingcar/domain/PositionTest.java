@@ -32,18 +32,18 @@ public class PositionTest {
     @Test
     public void equal() {
         final int value = 5;
+        final Position position = new Position(value);
 
-        Position position = new Position(value);
         assertThat(position).isEqualTo(new Position(value));
     }
 
     @DisplayName("크기 비교")
     @Test
     public void compareTo() {
-        Position bigPosition = new Position(20);
-        Position smallPosition = new Position(10);
+        final Position bigPosition = new Position(20);
+        final Position smallPosition = new Position(10);
 
-        int compareResult = bigPosition.compareTo(smallPosition);
+        final int compareResult = bigPosition.compareTo(smallPosition);
         assertThat(compareResult).isEqualTo(1);
     }
 }
