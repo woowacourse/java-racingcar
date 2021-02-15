@@ -13,7 +13,6 @@ public class CarsSetGenerator {
     private static final String DELIMITER = ",";
     private static final int ZERO_VALUE = 0;
     private static final int UPPER_LIMIT = 5;
-    private static final long LONG_ZERO_VALUE = 0L;
 
     public static Cars generateSet(String carsInput) {
         List<String> carNameCandidates = carsNameStringToList(carsInput);

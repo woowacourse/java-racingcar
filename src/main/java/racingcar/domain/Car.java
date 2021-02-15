@@ -19,18 +19,22 @@ public class Car {
     }
 
     private void progressPosition() {
-        this.position.progressOneTime();
+        Position carPosition = this.position;
+        carPosition.progressOneTurn();
     }
 
     public boolean isSamePosition(int targetPosition) {
-        return this.position.isSameValue(targetPosition);
+        Position carPosition = this.position;
+        return carPosition.isSameValue(targetPosition);
     }
 
     public String getName() {
-        return this.name.getValue();
+        Name carName = this.name;
+        return carName.getValue();
     }
 
     public int getPosition() {
-        return this.position.getValue();
+        Position carPosition = this.position;
+        return carPosition.getValue();
     }
 }

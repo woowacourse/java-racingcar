@@ -1,7 +1,6 @@
 package racingcar.controller;
 
 import racingcar.view.RacingCarError;
-import racingcar.view.RacingCarView;
 
 public class TurnsGenerator {
 

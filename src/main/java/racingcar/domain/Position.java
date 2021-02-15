@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 public class Position {
+
     private static final int INITIAL_VALUE = 0;
 
     private int value;
@@ -9,15 +10,12 @@ public class Position {
         this.value = INITIAL_VALUE;
     }
 
-    public void progressOneTime() {
+    public void progressOneTurn() {
         this.value++;
     }
 
     public boolean isSameValue(int targetValue) {
-        if (this.value == targetValue) {
-            return true;
-        }
-        return false;
+        return this.value == targetValue;
     }
 
     public int getValue() {
