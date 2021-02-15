@@ -1,6 +1,7 @@
 package car;
 
 import java.util.Objects;
+import view.OutputView;
 
 public class Name {
 

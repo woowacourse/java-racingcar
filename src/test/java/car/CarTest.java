@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.ValidCheck;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +36,7 @@ class CarTest {
     
     @Test
     void roundTest() {
-        assertThatCode(() -> ValidCheck.round("15")).doesNotThrowAnyException();
+        assertThatCode(() -> ValidCheck.roundValid("15")).doesNotThrowAnyException();
         
         assertThatThrownBy(() -> ValidCheck.carNameValid(" "))
                 .isInstanceOf(IllegalArgumentException.class);

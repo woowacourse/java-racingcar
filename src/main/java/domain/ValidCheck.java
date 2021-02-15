@@ -1,4 +1,4 @@
-package car;
+package domain;
 
 import java.util.Arrays;
 import java.util.regex.Pattern;
@@ -17,7 +17,7 @@ public class ValidCheck {
         }
     }
 
-    public static void round(String roundInput) {
+    public static void roundValid(String roundInput) {
         final String pattern = "[1-9]+[0-9]*";
         if (!Pattern.matches(pattern, roundInput)) {
             throw new IllegalArgumentException();

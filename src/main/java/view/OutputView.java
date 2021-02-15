@@ -1,13 +1,13 @@
-package car;
+package view;
 
-import java.util.*;
+import car.Car;
+import java.util.List;
 
 public class OutputView {
 
     private static final String MOVE_SYMBOL = "-";
     private static final String NULL_CHARACTER = "\0";
     private static final String FINAL_WINNERS = "가 최종 우승했습니다.";
-    private static final String DELIMITER = ",";
     private static final String COLON = " : ";
     private static final String ROUND_RESULT = "실행 결과";
     private static final String ERROR_RESULT = "올바른 값을 입력하여 주십시오.";
@@ -43,25 +43,8 @@ public class OutputView {
         return new String(new char[times]).replace(NULL_CHARACTER, MOVE_SYMBOL);
     }
 
-    public void printWinners(List<Car> cars) {
-        System.out.println(findWinners(cars) + FINAL_WINNERS);
+    public void printWinner(String winnerName) {
+        System.out.println(winnerName + FINAL_WINNERS);
     }
 
-    private String findWinners(List<Car> cars) {
-        final Map<Integer, List<String>> scoreBoard;
-
-        scoreBoard = makeScoreBoard(cars);
-        final int maxPosition = Collections.max(scoreBoard.keySet());
-        return String.join(DELIMITER, scoreBoard.get(maxPosition));
-    }
-
-    private Map<Integer, List<String>> makeScoreBoard(List<Car> cars) {
-        final Map<Integer, List<String>> scoreBoard = new HashMap<>();
-        for (Car racingCar : cars) {
-            final List<String> names =
-                scoreBoard.computeIfAbsent(racingCar.getPosition(), ArrayList::new);
-            names.add(racingCar.getName());
-        }
-        return scoreBoard;
-    }
 }
