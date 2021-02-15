@@ -14,7 +14,7 @@ import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingCarGame;
 
-public class RacingCarGameTest {
+public class RacingTest {
     @DisplayName("laps: 음수나 숫자아닌 값 입력 예외테스트")
     @ParameterizedTest
     @CsvSource(value = {"-1", "asdf"})
@@ -41,7 +41,7 @@ public class RacingCarGameTest {
 
     @Test
     @DisplayName("one lap: 랜덤 숫자와 Cars 갯수 불일치시 exception 발생여부")
-    void raceOneLap_fail() {
+    void raceOneLap_exception_test() {
         //given
         Cars cars = new Cars(Arrays.asList("gold", "tobi", "nana"));
         List<Integer> randoms = Arrays.asList(1, 4);
