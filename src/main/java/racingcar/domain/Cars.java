@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import racingcar.utils.RandomUtil;
 
 public class Cars {
     private static final int MINIMUM_CAR_AMOUNT = 2;
@@ -15,16 +14,18 @@ public class Cars {
     private List<Car> cars;
 
     public Cars(List<String> splitCarNames) {
-        List<Car> carGroup = splitCarNames.stream()
+        List<Car> cars = splitCarNames.stream()
             .map(carName -> new Car(carName))
             .collect(Collectors.toList());
         validateNumberOfCar(splitCarNames);
         validateSameName(splitCarNames);
-        this.cars = carGroup;
+        this.cars = cars;
     }
 
-    public void raceOneLap() {
-        cars.forEach(car -> car.move(RandomUtil.nextInt(START, END)));
+    public void raceOneLap(List<Integer> randoms) {
+        for (int i = 0; i < cars.size(); i++) {
+            cars.get(i).move(randoms.get(i));
+        }
     }
 
     public List<Car> getCars() {
@@ -37,6 +38,10 @@ public class Cars {
             .filter(car -> car.isMaxPosition(maxDistance))
             .map(Car::getCarName)
             .collect(Collectors.toList());
+    }
+
+    public int getCarsCount() {
+        return cars.size();
     }
 
     private int getMaxDistance() {

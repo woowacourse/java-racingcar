@@ -1,6 +1,8 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.List;
+import racingcar.utils.RandomUtil;
 import racingcar.view.OutputView;
 
 public class RacingCarGame {
@@ -32,9 +34,17 @@ public class RacingCarGame {
     public void race() {
         OutputView.showResult();
         for (int i = 0; i < laps; i++) {
-            cars.raceOneLap();
+            cars.raceOneLap(createRandomNumbers());
             OutputView.showOneLapResult(cars);
         }
+    }
+
+    private List<Integer> createRandomNumbers() {
+        List<Integer> counts = new ArrayList<>();
+        for (int i = 0; i < cars.getCarsCount(); i++) {
+            counts.add(RandomUtil.nextInt(0, 9));
+        }
+        return counts;
     }
 
     public List<String> getWinners() {
