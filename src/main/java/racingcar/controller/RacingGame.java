@@ -5,15 +5,15 @@ import racingcar.model.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGame {
     private static final String DELIMITER = ",";
-    public Cars cars;
-    public int trials;
+    private Cars cars;
+    private int trials;
+
 
     public void start() {
         initSetting();
