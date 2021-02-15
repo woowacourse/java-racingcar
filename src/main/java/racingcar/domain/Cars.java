@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -12,17 +13,36 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(final List<String> carNames) {
-        validateDuplication(carNames);
+    private Cars(final List<Car> cars) {
+        this.cars = new ArrayList<>(cars);
+    }
 
-        this.cars = carNames.stream()
+    public static Cars create(final List<Car> cars) {
+        validate(cars);
+        return new Cars(cars);
+    }
+
+    private static void validate(final List<Car> cars) {
+        Set<Car> nonDuplicated = new HashSet<>(cars);
+
+        if (nonDuplicated.size() != cars.size()) {
+            throw new IllegalArgumentException(CAR_NAME_DUPLICATION_ERROR_MESSAGE);
+        }
+    }
+
+    public static Cars createByName(final List<String> carNames) {
+        validateByName(carNames);
+
+        final List<Car> cars = carNames.stream()
                 .map(Name::new)
                 .map(Car::new)
                 .collect(Collectors.toList());
+
+        return new Cars(cars);
     }
 
-    private void validateDuplication(final List<String> carNames) {
-        Set<String> nonDuplicatedNames = new HashSet<>(carNames);
+    private static void validateByName(final List<String> carNames) {
+        final Set<String> nonDuplicatedNames = new HashSet<>(carNames);
 
         if (nonDuplicatedNames.size() != carNames.size()) {
             throw new IllegalArgumentException(CAR_NAME_DUPLICATION_ERROR_MESSAGE);
