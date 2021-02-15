@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResultTest {
 
-    List<Car> cars;
+    private List<Car> cars;
 
     @BeforeEach
     public void setUp() {
