@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static racingcar.domain.Position.MINIMUM_VALUE_ERROR_MESSAGE;
+import static racingcar.domain.Position.START;
 
 public class PositionTest {
     @DisplayName("객체 생성 성공")
@@ -45,5 +46,15 @@ public class PositionTest {
 
         final int compareResult = bigPosition.compareTo(smallPosition);
         assertThat(compareResult).isEqualTo(1);
+    }
+
+    @DisplayName("위치 이동 성공")
+    @Test
+    public void move() {
+        final Position movedPosition = START.move();
+        final Position expected = new Position(1);
+
+        assertThat(movedPosition)
+                .isEqualTo(expected);
     }
 }
