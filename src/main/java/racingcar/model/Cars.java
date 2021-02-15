@@ -15,7 +15,7 @@ public class Cars {
     private int maxDistance = 0;
 
     public Cars(List<Car> cars) {
-        validateUserCount(cars);
+        validateCarsCount(cars);
         validateDuplicate(cars);
         this.cars = cars;
     }
@@ -25,7 +25,7 @@ public class Cars {
     }
 
     public void assignCars(List<Car> cars) {
-        validateUserCount(cars);
+        validateCarsCount(cars);
         validateDuplicate(cars);
         this.cars = cars;
     }
@@ -46,7 +46,7 @@ public class Cars {
                 .orElse(0);
     }
 
-    private void validateUserCount(List<Car> cars) {
+    private void validateCarsCount(List<Car> cars) {
         if (cars.size() <= 1) {
             throw new IllegalArgumentException(CAR_NAME_INVALID);
         }
