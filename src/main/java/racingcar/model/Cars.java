@@ -59,8 +59,7 @@ public class Cars {
     }
 
     private boolean haveDuplicate(List<Car> cars) {
-        return !cars.stream()
-                .filter(count -> Collections.frequency(cars, count) > 1)
-                .collect(Collectors.toSet()).isEmpty();
+        Set<Car> uniqueCars = new HashSet<>(cars);
+        return uniqueCars.size() != cars.size();
     }
 }
