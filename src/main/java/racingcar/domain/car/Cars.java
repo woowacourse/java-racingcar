@@ -29,9 +29,8 @@ public class Cars {
     }
 
     public void tryToMoveCars(List<Integer> numbers) {
-        for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).tryToMove(numbers.get(i));
-        }
+        Iterator<Integer> iterator = numbers.iterator();
+        cars.forEach(car -> car.tryToMove(iterator.next()));
     }
 
     public Result getResultOfCars() {
