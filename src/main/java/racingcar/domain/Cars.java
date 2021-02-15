@@ -15,11 +15,12 @@ public class Cars {
     private List<Car> cars;
 
     public Cars(List<String> splitCarNames) {
-        validateNumberOfCar(splitCarNames);
-        validateSameName(splitCarNames);
-        this.cars = splitCarNames.stream()
+        List<Car> carGroup = splitCarNames.stream()
             .map(carName -> new Car(carName))
             .collect(Collectors.toList());
+        validateNumberOfCar(splitCarNames);
+        validateSameName(splitCarNames);
+        this.cars = carGroup;
     }
 
     public void raceOneLap() {
