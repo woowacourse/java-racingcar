@@ -11,14 +11,17 @@ import java.util.stream.Collectors;
 
 public class RacingGame {
     private static final String DELIMITER = ",";
-    private static int trials;
 
     public void start() {
         Cars cars = new Cars();
         while (!initializeCars(cars)) ;
-        while (!getTrials()) ;
+
+        int trials = -1;
+        while(trials == -1){
+            trials = getTrials();
+        }
         OutputView.printRoundMessage();
-        playRounds(cars);
+        playRounds(cars, trials);
         OutputView.printWinners(findWinners(cars));
     }
 
@@ -54,17 +57,16 @@ public class RacingGame {
         return true;
     }
 
-    private boolean getTrials() {
+    private int getTrials() {
         OutputView.printUserPromptTrials();
         String input = InputView.askUserInput().trim();
         if (validateTrials(input)) {
-            trials = Integer.parseInt(input);
-            return true;
+            return Integer.parseInt(input);
         }
-        return false;
+        return -1;
     }
 
-    private void playRounds(Cars cars) {
+    private void playRounds(Cars cars, int trials) {
         for (int i = 0; i < trials; i++) {
             playRound(cars);
             OutputView.printRoundResult(cars);
