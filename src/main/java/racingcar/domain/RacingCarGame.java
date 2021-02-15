@@ -10,6 +10,8 @@ public class RacingCarGame {
     private static final String NOT_NUMERIC_ERROR_MESSAGE = "숫자를 입력하세요.";
     private static final String NOT_OVER_ONE_ERROR_MESSAGE = "1 이상의 숫자를 입력하세요.";
     private static final int MINIMUM_LAP_COUNT = 1;
+    private static final int START = 0;
+    private static final int END = 9;
 
     private final Cars cars;
     private final int laps;
@@ -42,7 +44,7 @@ public class RacingCarGame {
     private List<Integer> createRandomNumbers() {
         List<Integer> counts = new ArrayList<>();
         for (int i = 0; i < cars.getCarsSize(); i++) {
-            counts.add(RandomUtil.nextInt(0, 9));
+            counts.add(RandomUtil.nextInt(START, END));
         }
         return counts;
     }

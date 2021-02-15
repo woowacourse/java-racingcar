@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private static final int MINIMUM_CAR_AMOUNT = 2;
-    private static final int START = 0;
-    private static final int END = 9;
 
     private List<Car> cars;
 
