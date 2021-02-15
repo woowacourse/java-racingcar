@@ -20,8 +20,8 @@ class CarTest {
     @Test
     public void moveCar() {
         final Name name = new Name("중간곰");
-        final Car movedCar = new Car(name).move();
-        final Car expected = new Car(name, new Position(1));
+        final Car movedCar = new Car(name).moveDefinitely();
+        final Car expected = new Car(name, Position.from(1));
 
         assertThat(movedCar)
                 .isEqualTo(expected);
@@ -32,7 +32,7 @@ class CarTest {
     public void compareTo() {
         final Name name = new Name("중간곰");
         final Car nearCar = new Car(name);
-        final Car farCar = new Car(name, new Position(10));
+        final Car farCar = new Car(name, Position.from(10));
 
         final int compareResult = farCar.compareTo(nearCar);
         assertThat(compareResult).isEqualTo(1);
