@@ -28,10 +28,8 @@ public class Position implements Comparable<Position> {
     }
 
     @Override
-    public String toString() {
-        return "Position{" +
-                "value=" + value +
-                '}';
+    public int compareTo(Position o) {
+        return Integer.compare(value, o.value);
     }
 
     @Override
@@ -48,7 +46,9 @@ public class Position implements Comparable<Position> {
     }
 
     @Override
-    public int compareTo(Position o) {
-        return Integer.compare(value, o.value);
+    public String toString() {
+        return "Position{" +
+                "value=" + value +
+                '}';
     }
 }
