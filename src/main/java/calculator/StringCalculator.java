@@ -15,7 +15,7 @@ public class StringCalculator {
     private static final int CUSTOM_DEFINITION_GROUP = 1;
     private static final int EXCEPT_CUSTOM_GROUP = 2;
 
-    private static final Pattern compiledPattern = Pattern.compile("//(.+)\n(.*)");
+    private static final Pattern COMPILED_PATTERN = Pattern.compile("//(.+)\n(.*)");
 
     public static int splitAndSum(String input) {
         if (isInvalidStringInput(input)) {
@@ -49,14 +49,11 @@ public class StringCalculator {
             return true;
         }
 
-        if (isEmpty(input)) {
-            return true;
-        }
-        return false;
+        return isEmpty(input);
     }
 
     private static Matcher getSeparatorMatcher(String input) {
-        return compiledPattern.matcher(input);
+        return COMPILED_PATTERN.matcher(input);
     }
 
     private static boolean isEmpty(String input) {
