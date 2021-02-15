@@ -33,8 +33,14 @@ public class Car implements Comparable<Car> {
         return movingStrategy.move(this);
     }
 
-    public boolean isSamePosition(Position position) {
-        return this.position.equals(position);
+    public boolean isSamePosition(final Position position) {
+        return this.position
+                .equals(position);
+    }
+
+    public boolean isSamePosition(final Car car) {
+        return this.position
+                .equals(car.position);
     }
 
     @Override

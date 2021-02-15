@@ -2,10 +2,13 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.movingstrategy.DefinitelyMovingStrategy;
+import racingcar.domain.movingstrategy.SwitchedMovingStrategy;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -55,5 +58,26 @@ class CarsTest {
         assertThatThrownBy(() -> {
             Cars.createByName(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("최종 우승자 판단 성공")
+    @Test
+    void getWinners() {
+        final List<Car> carList = Arrays.asList(
+                new Car(new Name("dani"), Position.from(0), DefinitelyMovingStrategy.getInstance()),
+                new Car(new Name("pobi"), Position.from(0), new SwitchedMovingStrategy()),
+                new Car(new Name("bear"), Position.from(0), new SwitchedMovingStrategy())
+        );
+        Cars cars = Cars.create(carList);
+
+        final int movingCount = 10;
+        for (int i = 0; i < movingCount; i++) {
+            cars = cars.move();
+        }
+
+        final List<Car> winners = cars.getWinners();
+        assertThat(winners).containsExactly(
+                new Car(new Name("dani"), Position.from(movingCount), DefinitelyMovingStrategy.getInstance())
+        );
     }
 }
