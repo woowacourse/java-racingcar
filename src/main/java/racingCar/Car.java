@@ -1,11 +1,11 @@
 package racingCar;
 
 public class Car {
-    private final Name name;
+    private final CarName carName;
     private Distance distance;
 
     public Car(final String name) {
-        this.name = new Name(name);
+        this.carName = new CarName(name);
         this.distance = new Distance(0);
     }
 
@@ -17,8 +17,8 @@ public class Car {
         return distance.isMaxDistance(max);
     }
 
-    public Name getName() {
-        return name;
+    public CarName getName() {
+        return carName;
     }
 
     public int getDistance() {

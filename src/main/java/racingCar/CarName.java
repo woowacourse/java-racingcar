@@ -1,10 +1,10 @@
 package racingCar;
 
-public class Name {
+public class CarName {
 
     private String name;
 
-    public Name(String name) {
+    public CarName(String name) {
         validate(name);
         this.name = name;
     }
@@ -23,11 +23,11 @@ public class Name {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Name)) return false;
+        if (!(o instanceof CarName)) return false;
 
-        Name name1 = (Name) o;
+        CarName carName1 = (CarName) o;
 
-        return name.equals(name1.name);
+        return name.equals(carName1.name);
     }
 
     @Override

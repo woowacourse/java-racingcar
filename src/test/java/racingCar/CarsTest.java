@@ -42,9 +42,9 @@ class CarsTest {
     @Test
     @DisplayName("우승자의 이름을 제대로 반환하는지 확인")
     public void find_winner() {
-        List<Name> winners = cars.findWinners(2);
+        List<CarName> winners = cars.findWinners(2);
 
-        assertThat(winners).isEqualTo(Arrays.asList(new Name("car2")));
+        assertThat(winners).isEqualTo(Arrays.asList(new CarName("car2")));
     }
 
     @Test

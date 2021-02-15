@@ -19,7 +19,7 @@ public class Cars {
         return cars;
     }
 
-    public List<Name> findWinners(int maxDistance) {
+    public List<CarName> findWinners(int maxDistance) {
         return cars.stream()
                 .filter(car -> car.isWinner(maxDistance))
                 .map(Car::getName)

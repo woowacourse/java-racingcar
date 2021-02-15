@@ -5,26 +5,25 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-class NameTest {
+class CarNameTest {
 
     @Test
     public void name_equals() {
-        Name name = new Name("aaa");
+        CarName carName = new CarName("aaa");
 
-        assertThat(name).isEqualTo(new Name("aaa"));
+        assertThat(carName).isEqualTo(new CarName("aaa"));
     }
 
     @Test
     @DisplayName("자동차 이름 유효성 검사")
     public void name_length() {
         assertThatThrownBy(() -> {
-            new Name("abcdefg");
+            new CarName("abcdefg");
         }).isInstanceOf(IllegalArgumentException.class);
 
         assertThatThrownBy(() -> {
-            new Name("");
+            new CarName("");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
