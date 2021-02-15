@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static racingcar.view.Marks.COMMA;
+import static racingcar.view.Marks.*;
 
 public class OutputView {
     public static final String EXECUTION_RESULT = "실행 결과";
@@ -19,7 +19,9 @@ public class OutputView {
 
     public static void printCarStates(Cars cars) {
         cars.getCarList().stream().forEach(car -> {
-            System.out.println(car.toString());
+            String name = car.getName().toString();
+            int position = car.getPosition();
+            System.out.println(name + " " + COLON + " " + DASH.repeat(position));
         });
         System.out.println();
     }
