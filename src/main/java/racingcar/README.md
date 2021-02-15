@@ -37,6 +37,6 @@
 - [x] 입력 안내 메세지를 출력하는 기능을 OutputView에서 InputView로 이동
 - [x] InputView에 입력 trimming 하기
 - [x] OutputView에 private 생성자 추가
-- [ ] final 키워드, 불변객체, 방어적 복사를 적용하려고 노력
-- [ ] 예외 메세지를 친절하게 변경
+- [x] final 키워드, 불변객체, 방어적 복사를 적용하려고 노력
+- [x] 예외 메세지를 친절하게 변경
 - [x] Times 리팩토링 (상수, 불변)
