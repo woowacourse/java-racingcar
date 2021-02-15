@@ -6,8 +6,8 @@ import racingcar.domain.result.Results;
 import java.util.List;
 
 public class GameManagerResponseDto {
-    private List<Result> results;
-    private List<String> winners;
+    private final List<Result> results;
+    private final List<String> winners;
 
     public GameManagerResponseDto(Results results) {
         this.results = results.getResults();

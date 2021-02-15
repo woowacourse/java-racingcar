@@ -1,8 +1,8 @@
 package racingcar.controller.dto;
 
 public class GameManagerRequestDto {
-    private String carNames;
-    private String round;
+    private final String carNames;
+    private final String round;
 
     public GameManagerRequestDto(String carNames, String round) {
         this.carNames = carNames;
