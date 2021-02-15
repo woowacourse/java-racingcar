@@ -13,7 +13,7 @@ class CarsTest {
     @DisplayName("이름이 중복되지 않는 경우 객체 생성 성공")
     @Test
     public void createCars_이름이_중복되지_않는_경우() {
-        List<String> carNames = Arrays.asList(new String[]{"dani", "pobi", "bear"});
+        final List<String> carNames = Arrays.asList(new String[]{"dani", "pobi", "bear"});
 
         assertThatCode(() -> new Cars(carNames))
                 .doesNotThrowAnyException();
@@ -22,7 +22,7 @@ class CarsTest {
     @DisplayName("이름이 중복되는 경우 예외 발생")
     @Test
     public void createCars_이름이_중복되는_경우() {
-        List<String> carNames = Arrays.asList(new String[]{"dani", "pobi", "dani", "bear"});
+        final List<String> carNames = Arrays.asList(new String[]{"dani", "pobi", "dani", "bear"});
 
         assertThatThrownBy(() -> {
             new Cars(carNames);
