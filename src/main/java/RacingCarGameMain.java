@@ -1,6 +1,7 @@
 import racingCar.Car;
 import racingCar.Cars;
 import racingCar.CarName;
+import racingCar.RacingCarGame;
 import view.InputView;
 import view.OutputView;
 
@@ -8,14 +9,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCarGameMain {
-    public static void main(String[] args) {
-        Cars cars = new Cars(initCars());
+    private static Cars cars;
 
-        racingStart(cars);
+    public static void main(String[] args) {
+        cars = new Cars(initCars());
+        int tryNumber = InputView.getTryNumber();
+
+        RacingCarGame racingCarGame = new RacingCarGame(cars);
+        start(racingCarGame,tryNumber);
 
         List<CarName> winners = cars.findWinners(cars.findMaxDistance());
 
         OutputView.showResult(winners);
+    }
+
+    private static void start(RacingCarGame racingCarGame, int tryNumber) {
+        for(int i=0;i<tryNumber;i++){
+            racingCarGame.run();
+            OutputView.showStatus(cars.getCars());
+        }
     }
 
     private static List<Car> initCars() {
@@ -25,13 +37,5 @@ public class RacingCarGameMain {
             cars.add(new Car(carName));
         }
         return cars;
-    }
-
-    private static void racingStart(Cars cars) {
-        int count = InputView.getTryNumber();
-        for (int i = 0; i < count; i++) {
-            cars.moveCar();
-            OutputView.showStatus(cars.getCars());
-        }
     }
 }
