@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.utils;
 
 
 import org.junit.jupiter.api.DisplayName;
@@ -8,7 +8,7 @@ import racingcar.utils.SplitUtil;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("자동차 이름 문자열 분리 테스트")
-public class SplitTest {
+public class SplitUtilTest {
 
     @DisplayName("콤마를 포함하지 않는 문자열 테스트")
     @Test
