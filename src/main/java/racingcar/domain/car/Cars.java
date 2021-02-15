@@ -5,6 +5,7 @@ import racingcar.validator.CarsValidator;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Cars {
     private static final String DELIMITER = ",";
@@ -29,8 +30,8 @@ public class Cars {
     }
 
     public void tryToMoveCars(List<Integer> numbers) {
-        Iterator<Integer> iterator = numbers.iterator();
-        cars.forEach(car -> car.tryToMove(iterator.next()));
+        IntStream.range(0, cars.size())
+                .forEach(i -> cars.get(i).tryToMove(numbers.get(i)));
     }
 
     public Result getResultOfCars() {
