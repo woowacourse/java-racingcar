@@ -44,11 +44,11 @@ public class RacingGame {
     private boolean initializeCars(Cars cars) {
         try {
             OutputView.printUserPromptCarNames();
-            List<Car> temporaryCars = new ArrayList<>();
-            splitInput(InputView.askUserInput())
+            List<Car> carsList = splitInput(InputView.askUserInput())
                     .stream()
-                    .forEach(carName -> temporaryCars.add(new Car(carName)));
-            cars.assignCars(temporaryCars);
+                    .map(Car::new)
+                    .collect(Collectors.toList());
+            cars.assignCars(carsList);
         } catch (IllegalArgumentException e) {
             return false;
         }
