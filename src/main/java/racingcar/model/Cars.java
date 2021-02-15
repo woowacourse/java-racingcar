@@ -52,16 +52,15 @@ public class Cars {
         }
     }
 
-    /*
-     * 중복을 검사할 때 validateDuplicate 메소드 안에 Collections.frequency를 쓰는 것과
-     * Car이라는 클래스에 .Equals와 .hascode를 오버라이드한 후 List.contains를 활용하여 중복체크를 하는 것,
-     * 둘 중 어느 것이 나은가요?
-     */
     private void validateDuplicate(List<Car> cars) {
-        if (!cars.stream()
-                .filter(count -> Collections.frequency(cars, count) > 1)
-                .collect(Collectors.toSet()).isEmpty()) {
+        if (haveDuplicate(cars)) {
             throw new IllegalArgumentException(CAR_NAME_INVALID);
         }
+    }
+
+    private boolean haveDuplicate(List<Car> cars) {
+        return !cars.stream()
+                .filter(count -> Collections.frequency(cars, count) > 1)
+                .collect(Collectors.toSet()).isEmpty();
     }
 }
