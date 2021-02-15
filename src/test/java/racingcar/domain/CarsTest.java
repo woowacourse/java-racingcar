@@ -3,7 +3,9 @@ package racingcar.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.number.SpecialNumberGenerator;
 
 import java.util.Arrays;
 
@@ -33,6 +35,16 @@ class CarsTest {
     @ValueSource(strings = {",샐리", "샐리,df,", ",샐리,"})
     void carNamesBothEnd(final String value) {
         assertThatThrownBy(() -> new Cars(value)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("모든 자동차 이동 확인")
+    @CsvSource(value = {"4:1", "3:0", "9:1", "1:0"}, delimiter = ':')
+    void carsMove(int number, int position) {
+        SpecialNumberGenerator numberGenerator = new SpecialNumberGenerator(number);
+        Cars cars = new Cars("샐리,현구막,데이브,차자동");
+        cars.moveAllCars(numberGenerator);
+        assertTrue(cars.toList().stream().allMatch(car -> car.isSamePosition(position)));
     }
 
     @ParameterizedTest
