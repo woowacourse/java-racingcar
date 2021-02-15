@@ -29,7 +29,7 @@
 ## 🛠 리팩터링 목록
 - [x] 원시값을 객체로 포장 (Position, Name)
 - [x] Position과 Name을 이용하도록 Car 클래스 변경
-- [ ] Car가 전략 패턴을 사용하여 움직임을 결정하도록 변경
+- [x] Car가 전략 패턴을 사용하여 움직임을 결정하도록 변경
 - [ ] RandomUtils 클래스 삭제
 - [ ] CarService 클래스를 삭제하고, 적절한 객체에게 역할 분담
 - [ ] WinnerService 클래스를 삭제하고, 적절한 객체에게 역할 분담

@@ -1,23 +1,36 @@
 package racingcar.domain;
 
+import racingcar.domain.movingstrategy.MovingStrategy;
+import racingcar.domain.movingstrategy.RandomMovingStrategy;
+
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
     private final Name name;
     private final Position position;
+    private final MovingStrategy movingStrategy;
 
     public Car(final Name name) {
         this(name, Position.START);
     }
 
     public Car(final Name name, final Position position) {
+        this(name, position, RandomMovingStrategy.getInstance());
+    }
+
+    public Car(final Name name, final Position position, final MovingStrategy movingStrategy) {
         this.name = name;
         this.position = position;
+        this.movingStrategy = movingStrategy;
     }
 
     public Car moveDefinitely() {
         final Position nextPosition = position.move();
         return new Car(name, nextPosition);
+    }
+
+    public Car move() {
+        return movingStrategy.move(this);
     }
 
     @Override
