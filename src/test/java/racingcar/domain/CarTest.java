@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.movingstrategy.DefinitelyMovingStrategy;
 import racingcar.domain.movingstrategy.SwitchedMovingStrategy;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
     @DisplayName("동등 비교")
