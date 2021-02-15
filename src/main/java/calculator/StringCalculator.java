@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.regex.*;
 
 public class StringCalculator {
-    public static List<String> tokens;
-    private static String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
-    private static String DEFAULT_DELIMITER = ",|:";
-    private static int DELIMITER_POSITION = 1;
-    private static int TOKENS_POSITION = 2;
+    private static List<String> tokens;
+    private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
+    private static final String DEFAULT_DELIMITER = ",|:";
+    private static final int DELIMITER_POSITION = 1;
+    private static final int TOKENS_POSITION = 2;
+    private static final Pattern DELIMITER = Pattern.compile(CUSTOM_DELIMITER_REGEX);
+
 
     public static int splitAndSum(String text) {
 
@@ -26,8 +28,8 @@ public class StringCalculator {
         return getSum();
     }
 
-    public static void divideByDelimiter(String text) {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER_REGEX).matcher(text);
+    private static void divideByDelimiter(String text) {
+        Matcher m = DELIMITER.matcher(text);
 
         if (m.find()) {
             divideByCustomDelimiter(m);
@@ -37,16 +39,16 @@ public class StringCalculator {
         divideByDefaultDelimiter(text);
     }
 
-    public static void divideByCustomDelimiter(Matcher m) {
+    private static void divideByCustomDelimiter(Matcher m) {
         String customDelimiter = m.group(DELIMITER_POSITION);
         tokens = Arrays.asList(m.group(TOKENS_POSITION).split(customDelimiter));
     }
 
-    public static void divideByDefaultDelimiter(String text) {
+    private static void divideByDefaultDelimiter(String text) {
         tokens = Arrays.asList(text.split(DEFAULT_DELIMITER));
     }
 
-    public static void throwRuntimeExceptionWhenContainsNegative() {
+    private static void throwRuntimeExceptionWhenContainsNegative() {
 
         if (tokens.stream()
                 .filter(token -> Integer.parseInt(token) < 0)
@@ -56,11 +58,11 @@ public class StringCalculator {
         }
     }
 
-    public static int getSum() {
+    private static int getSum() {
         return tokens.stream().mapToInt(Integer::valueOf).sum();
     }
 
-    public static boolean isEmpty(String text) {
+    private static boolean isEmpty(String text) {
 
         if (text == null) {
             return true;
@@ -73,7 +75,7 @@ public class StringCalculator {
         return false;
     }
 
-    public static boolean isOneDigit(String text) {
+    private static boolean isOneDigit(String text) {
 
         if (text.length() == 1 && Character.isDigit(text.charAt(0))) {
             return true;
