@@ -2,6 +2,7 @@ package racingcar.domain.car;
 
 import racingcar.exception.EmptyCarException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,7 @@ public class Cars {
     }
 
     public List<Car> getCarList() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 
     public void move() {
