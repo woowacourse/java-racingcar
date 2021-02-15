@@ -1,29 +1,28 @@
 package racingcar.domain;
 
-public class Position {
-    public static final String UNIT_OF_POSITION = "-";
-    public static final int UNIT_OF_MOVE = 1;
+import java.util.Objects;
 
-    private int position;
+public class Position {
+    private final int position;
 
     public Position() {
-        this.position = 0;
+        this(0);
     }
 
-    public void moveForward() {
-        position += UNIT_OF_MOVE;
+    private Position(final int position) {
+        this.position = position;
     }
 
-    public boolean isSmallerThan(int winnerPosition) {
-        return position < winnerPosition;
+    public Position moveForward() {
+       return new Position(position + 1);
     }
 
-    public boolean isBiggerThan(int winnerPosition) {
-        return position > winnerPosition;
-    }
-
-    public boolean isSameThan(int winnerPosition) {
+    public boolean isSameThan(final int winnerPosition) {
         return position == winnerPosition;
+    }
+
+    public int findBiggerPosition(final int winnerPosition) {
+        return Integer.max(winnerPosition, position);
     }
 
     public int getPosition() {
@@ -31,11 +30,15 @@ public class Position {
     }
 
     @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            stringBuilder.append(UNIT_OF_POSITION);
-        }
-        return stringBuilder.toString();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position1 = (Position) o;
+        return position == position1.position;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position);
     }
 }

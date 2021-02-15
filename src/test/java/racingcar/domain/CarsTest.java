@@ -2,41 +2,55 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.number.SpecialNumberGenerator;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import java.util.Arrays;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static racingcar.domain.Cars.ERROR_MESSAGE_OF_DUPLICATED_NAME;
 
 class CarsTest {
     @Test
     @DisplayName("이름 리스트 생성 확인")
-    void carNames() {
-        Cars cars = new Cars("1,2,3");
-        assertThat(cars.getCars().get(0).getName().getName()).isEqualTo("1");
-        assertThat(cars.getCars().get(1).getName().getName()).isEqualTo("2");
-        assertThat(cars.getCars().get(2).getName().getName()).isEqualTo("3");
+    void carNamesCreate() {
+        final Cars cars = new Cars("1,2,3");
+        assertTrue(cars.toList().containsAll(Arrays.asList(new Car("1"), new Car("2"), new Car("3"))));
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("이름이 중복되는 경우")
-    void carNames_duplicate_exception() {
-        assertThatThrownBy(()->new Cars("1,,2,3")).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(()->new Cars("1,,,,2,3")).isInstanceOf(IllegalArgumentException.class);
+    @ValueSource(strings = {"1,1,2,3", "1,2,3,2", "1,,2,3", "1,,,,2,3"})
+    void carNamesDuplicated() {
+        assertThatThrownBy(() -> new Cars("1,1,2,3"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_MESSAGE_OF_DUPLICATED_NAME);
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("양 끝에 쉼표가 있는 경우")
-    void carNames_양_끝_예외처리() {
-        assertThatThrownBy(() -> new Cars(",샐리")).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Cars("샐리,df,")).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Cars(",샐리,")).isInstanceOf(IllegalArgumentException.class);
+    @ValueSource(strings = {",샐리", "샐리,df,", ",샐리,"})
+    void carNamesBothEnd(final String value) {
+        assertThatThrownBy(() -> new Cars(value)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
+    @ParameterizedTest
+    @DisplayName("모든 자동차 이동 확인")
+    @CsvSource(value = {"4:1", "3:0", "9:1", "1:0"}, delimiter = ':')
+    void carsMove(int number, int position) {
+        SpecialNumberGenerator numberGenerator = new SpecialNumberGenerator(number);
+        Cars cars = new Cars("샐리,현구막,데이브,차자동");
+        cars.moveAllCars(numberGenerator);
+        assertTrue(cars.toList().stream().allMatch(car -> car.isSamePosition(position)));
+    }
+
+    @ParameterizedTest
     @DisplayName("총합테스트")
-    void carNames_연속된_쉼표_예외처리() {
-        assertThatThrownBy(() -> new Cars(",")).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Cars(" ")).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Cars(" , ")).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Cars(", ,  ,")).isInstanceOf(IllegalArgumentException.class);
+    @ValueSource(strings = {",", " ", " , ", ", ,  ,"})
+    void carNamesCommaBlank(final String value) {
+        assertThatThrownBy(() -> new Cars(value)).isInstanceOf(IllegalArgumentException.class);
     }
 }

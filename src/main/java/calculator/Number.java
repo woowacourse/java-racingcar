@@ -10,20 +10,20 @@ public class Number {
     }
 
     private int validateNumber(String number) {
-        if(number == null || number.isEmpty()){
+        if (number == null || number.isEmpty()) {
             return ZERO;
         }
 
-        try{
+        try {
             return makePositiveNumber(number);
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new RuntimeException();
         }
     }
 
     private int makePositiveNumber(String number) {
         int result = Integer.parseInt(number);
-        if(result < ZERO){
+        if (result < ZERO) {
             throw new RuntimeException();
         }
         return result;

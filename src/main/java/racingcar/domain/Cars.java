@@ -1,35 +1,55 @@
 package racingcar.domain;
 
+import racingcar.domain.number.NumberGenerator;
+
 import java.util.*;
 
+import static racingcar.domain.CarName.ERROR_MESSAGE_OF_INVALID_INPUT;
+
 public class Cars {
-    public static final String COMMA_DELIMITER = ",";
-    public static final char COMMA = ',';
+    private static final char COMMA = ',';
+    private static final String COMMA_DELIMITER = ",";
+    public static final String ERROR_MESSAGE_OF_DUPLICATED_NAME = "이름이 중복됩니다.";
 
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
-    public Cars(String inputNames) {
+    public Cars(final String inputNames) {
+        this.cars = new ArrayList<>();
         validateBothEnds(inputNames);
         for (String name : inputNames.split(COMMA_DELIMITER)) {
-            cars.add(new Car(name));
+            cars.add(new Car(validateDuplicate(name)));
         }
-        validateDuplicate(inputNames);
     }
 
-    private void validateBothEnds(String inputNames) {
+    private void validateBothEnds(final String inputNames) {
         if (inputNames.charAt(0) == COMMA || inputNames.charAt(inputNames.length() - 1) == COMMA) {
-            throw new IllegalArgumentException("잘못된 입력입니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_OF_INVALID_INPUT);
         }
     }
 
-    private void validateDuplicate(String inputNames) {
-        Set<String> unDuplicateNames = new HashSet<>(Arrays.asList(inputNames.split(COMMA_DELIMITER)));
-        if (cars.size() != unDuplicateNames.size()) {
-            throw new IllegalArgumentException("이름이 중복됩니다.");
+    private String validateDuplicate(final String name) {
+        if (cars.contains(new Car(name))) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_OF_DUPLICATED_NAME);
+        }
+        return name;
+    }
+
+    public void moveAllCars(final NumberGenerator numberGenerator) {
+        for (Car car : cars) {
+            car.moveByNumber(numberGenerator.generate());
         }
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<Car> toList() {
+        return new ArrayList<>(cars);
+    }
+
+    public List<String> getWinnersNames() {
+        final Winners winners = new Winners(cars);
+        List<String> winnersNames = new ArrayList<>();
+        for (Car winnerCar : winners.toList()) {
+            winnersNames.add(winnerCar.getName());
+        }
+        return new ArrayList<>(winnersNames);
     }
 }
