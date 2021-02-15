@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.movingstrategy.DefinitelyMovingStrategy;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -21,13 +22,16 @@ class CarTest {
 
     @DisplayName("자동차 전진 성공")
     @Test
-    public void moveCar() {
+    public void moveDefinitely() {
         final Name name = new Name("중간곰");
-        final Car movedCar = new Car(name).moveDefinitely();
-        final Car expected = new Car(name, Position.from(1));
+        final Position position = Position.from(0);
+        final Position expected = Position.from(1);
 
-        assertThat(movedCar)
-                .isEqualTo(expected);
+        Car car = new Car(name, position, DefinitelyMovingStrategy.getInstance());
+        car = car.move();
+
+        assertThat(car.isSamePosition(expected))
+                .isTrue();
     }
 
     @DisplayName("위치 비교")
