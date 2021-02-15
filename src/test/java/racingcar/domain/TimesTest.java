@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class TimesTest {
     @DisplayName("정상적인 숫자인 경우 객체 생성 성공")
     @ParameterizedTest
-    @ValueSource(ints = {1, 10, 100, 10000, 20000})
+    @ValueSource(ints = {0, 1, 10, 100, 10000, 20000})
     public void createTimes_정상적인_숫자인_경우(final int times) {
         assertThatCode(() -> new Times(times))
                 .doesNotThrowAnyException();
@@ -24,16 +24,6 @@ class TimesTest {
 
         assertThatThrownBy(() -> {
             new Times(negativeNumber);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("0인 경우 예외 발생")
-    @Test
-    public void createTimes_0인_경우() {
-        final int ZERO = 0;
-
-        assertThatThrownBy(() -> {
-            new Times(ZERO);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
