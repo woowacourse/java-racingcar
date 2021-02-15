@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 public class Cars {
 
     public static final String CAR_NAME_INVALID = "자동차 이름이 유효하지 않습니다.";
-    public static final int MAX_RANDOM_RANGE = 9;
-    public static final int MIN_RANDOM_RANGE = 0;
+    private static final int MAX_RANDOM_RANGE = 9;
+    private static final int MIN_RANDOM_RANGE = 0;
 
     private List<Car> cars;
     private int maxDistance = 0;

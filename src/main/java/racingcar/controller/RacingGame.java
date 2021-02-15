@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGame {
-    public static final String DELIMITER = ",";
-    public static int trials;
+    private static final String DELIMITER = ",";
+    private static int trials;
 
     public void start() {
         Cars cars = new Cars();
