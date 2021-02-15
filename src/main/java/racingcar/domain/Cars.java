@@ -9,12 +9,14 @@ public class Cars {
     private static final int START = 0;
     private static final int END = 9;
 
-    private final List<Car> cars = new ArrayList<>();
+    private List<Car> cars;
 
     public Cars(List<String> splitCarNames) {
         validateNumberOfCar(splitCarNames);
         validateSameName(splitCarNames);
-        splitCarNames.forEach(carName -> cars.add(new Car(carName)));
+        this.cars = splitCarNames.stream()
+            .map(carName -> new Car(carName))
+            .collect(Collectors.toList());
     }
 
     public void raceOneLap() {
