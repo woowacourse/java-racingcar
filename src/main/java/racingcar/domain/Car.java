@@ -2,13 +2,13 @@ package racingcar.domain;
 
 public class Car {
 
-    private final String name;
+    private final Name name;
     private Position position;
 
     private static final int GO_CRITERIA = 4;
 
     public Car(String name) {
-        this.name = name;
+        this.name = new Name(name);
         position = new Position();
     }
 
@@ -27,7 +27,7 @@ public class Car {
     }
 
     public String getName() {
-        return this.name;
+        return this.name.getValue();
     }
 
     public int getPosition() {
