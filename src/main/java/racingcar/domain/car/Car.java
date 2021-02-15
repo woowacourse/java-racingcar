@@ -2,7 +2,7 @@ package racingcar.domain.car;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     public static final int MOVE_CONDITION = 4;
 
@@ -22,22 +22,22 @@ public class Car {
         this(name, Position.ZERO);
     }
 
-    public String getName() {
-        return name.getLiteral();
-    }
-
-    public int getPosition() {
-        return position.getValue();
-    }
-
     public void move(final int conditionNumber) {
         if (conditionNumber >= MOVE_CONDITION) {
             position = position.move();
         }
     }
 
-    public boolean isPosition(final int position) {
-        return this.position.is(position);
+    public boolean inSamePosition(final Car car) {
+        return this.compareTo(car) == 0;
+    }
+
+    public String getName() {
+        return name.getLiteral();
+    }
+
+    public Position getPosition() {
+        return position;
     }
 
     @Override
@@ -55,6 +55,11 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return this.position.compareTo(o.position);
     }
 
     @Override

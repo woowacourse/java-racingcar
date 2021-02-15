@@ -1,8 +1,6 @@
 package racingcar.controller;
 
-import racingcar.domain.car.CarNames;
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.WinnerCars;
 import racingcar.domain.game.Game;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -24,8 +22,7 @@ public class MainController {
 
     private void registerCars() {
         try {
-            CarNames carNames = CarNames.create(InputView.inputNames());
-            cars = new Cars(carNames);
+            cars = new Cars(InputView.inputNames());
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             registerCars();
@@ -48,6 +45,6 @@ public class MainController {
             game.play();
             OutputView.printRoundResult(cars);
         }
-        OutputView.printFinalResult(new WinnerCars(cars));
+        OutputView.printFinalResult(cars.collectWinners());
     }
 }

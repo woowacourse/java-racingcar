@@ -1,6 +1,5 @@
 package racingcar.domain.car;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,18 +10,9 @@ public class Cars {
 
     private final List<Car> container;
 
-    public Cars() {
-        this.container = new ArrayList<>();
-    }
-
-    public Cars(final List<Car> cars) {
-        container = cars.stream()
-                .map(car -> new Car(car.getName()))
-                .collect(Collectors.toList());
-    }
-
-    public Cars(final CarNames carNames) {
-        container = carNames.toList().stream()
+    public Cars(final String rawNames) {
+        List<Name> names = Names.create(rawNames);
+        container = names.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
@@ -38,23 +28,16 @@ public class Cars {
         container.add(car);
     }
 
-    public void add(final String car) {
-        if (alreadyContains(car)) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_CARS_HAVE_DUPLICATE_NAMES);
-        }
-        container.add(new Car(car));
-    }
-
-    private boolean alreadyContains(final String car) {
-        return container.contains(new Car(car));
-    }
-
     private boolean alreadyContains(final Car car) {
         return container.contains(car);
     }
 
     public void moveIndividuals() {
-        container.forEach(car -> car.move(RandomUtils.nextInt(0, 9)));
+        container.forEach(car -> car.move(RandomUtils.generate()));
+    }
+
+    public Winners collectWinners() {
+        return new Winners(container);
     }
 
     public int size() {
