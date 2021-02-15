@@ -24,7 +24,7 @@ public class Cars {
 
     }
 
-    public void assignCars(List<Car> cars){
+    public void assignCars(List<Car> cars) {
         validateUserCount(cars);
         validateDuplicate(cars);
         this.cars = cars;
@@ -37,15 +37,10 @@ public class Cars {
     public void moveCars() {
         cars.stream()
                 .forEach(car -> car.movePosition(RandomUtils.nextInt(MIN_RANDOM_RANGE, MAX_RANDOM_RANGE)));
-        updateMaxDistance();
     }
 
     public int getMaxDistance() {
-        return maxDistance;
-    }
-
-    public void updateMaxDistance() {
-        maxDistance = cars.stream()
+        return cars.stream()
                 .max(Comparator.comparing(Car::getPosition))
                 .map(Car::getPosition)
                 .orElse(0);
