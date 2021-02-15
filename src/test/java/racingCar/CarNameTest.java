@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class CarNameTest {
 
     @Test
+    @DisplayName("자동차 이름 생성 확인")
     public void name_equals() {
         CarName carName = new CarName("aaa");
 
