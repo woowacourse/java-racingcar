@@ -14,10 +14,8 @@ public class RacingCarGameTest {
     @ParameterizedTest
     @CsvSource(value = {"-1", "asdf"})
     void racing(String value) {
-        Cars cars = new Cars(Arrays.asList("pobi", "crong"));
-
         assertThatThrownBy(() -> {
-            new RacingCarGame(cars, value);
+            new RacingCarGame(Arrays.asList("pobi", "crong"), value);
         }).isInstanceOf(RuntimeException.class);
     }
 

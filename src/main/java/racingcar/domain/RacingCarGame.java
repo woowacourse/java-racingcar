@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.List;
 import racingcar.view.OutputView;
 
 public class RacingCarGame {
@@ -10,9 +11,9 @@ public class RacingCarGame {
     private final Cars cars;
     private final int laps;
 
-    public RacingCarGame(Cars cars, String lapInput) {
+    public RacingCarGame(List<String> carNames, String lapInput) {
         this.laps = validateLaps(lapInput);
-        this.cars = cars;
+        this.cars = new Cars(carNames);
     }
 
     public int validateLaps(String lapInput) {
@@ -33,6 +34,10 @@ public class RacingCarGame {
             cars.raceOneLap();
             OutputView.showOneLapResult(cars);
         }
+    }
+
+    public List<String> getWinners() {
+        return cars.getWinners();
     }
 
 }

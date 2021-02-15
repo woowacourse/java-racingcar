@@ -24,13 +24,13 @@ public class Application {
 
     private static void runApplication() {
         String carNamesInput = InputView.getCarNamesInput();
-        Cars cars = new Cars(SplitUtil.splitCarNames(carNamesInput));
-
         String lapInput = InputView.getLap();
-        RacingCarGame racingCarGame = new RacingCarGame(cars, lapInput);
+
+        RacingCarGame racingCarGame = new RacingCarGame(SplitUtil.splitCarNames(carNamesInput),
+            lapInput);
         racingCarGame.race();
 
-        OutputView.showWinners(cars);
+        OutputView.showWinners(racingCarGame.getWinners());
     }
 
 }
