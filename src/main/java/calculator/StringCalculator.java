@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.regex.*;
 
 public class StringCalculator {
-    public static List<String> tokens;
+    private static List<String> tokens;
     private static String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
     private static String DEFAULT_DELIMITER = ",|:";
     private static int DELIMITER_POSITION = 1;
     private static int TOKENS_POSITION = 2;
+    private static final Pattern DELIMITER = Pattern.compile(CUSTOM_DELIMITER_REGEX);
+
 
     public static int splitAndSum(String text) {
 
@@ -27,7 +29,7 @@ public class StringCalculator {
     }
 
     public static void divideByDelimiter(String text) {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER_REGEX).matcher(text);
+        Matcher m = DELIMITER.matcher(text);
 
         if (m.find()) {
             divideByCustomDelimiter(m);
