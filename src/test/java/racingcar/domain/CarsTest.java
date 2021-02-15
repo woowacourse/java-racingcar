@@ -55,9 +55,8 @@ public class CarsTest {
 
         //then
         assertAll(() -> {
-                    for (int i = 0; i < carsForTest.size(); i++) {
-                        assertThat(carsForTest.get(i).getPosition()).isEqualTo(resultNumbers.get(i).getValue());
-                    }
+                IntStream.range(0, carsForTest.size())
+                        .forEach(i -> assertThat(carsForTest.get(i).getPosition()).isEqualTo(resultNumbers.get(i).getValue()));
                 }
         );
     }
