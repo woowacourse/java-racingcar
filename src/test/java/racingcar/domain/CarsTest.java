@@ -10,6 +10,7 @@ import racingcar.domain.car.Position;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -55,7 +56,7 @@ public class CarsTest {
         //then
         assertAll(() -> {
                     for (int i = 0; i < carsForTest.size(); i++) {
-                        assertThat(carsForTest.get(i).getPosition()).isEqualTo(resultNumbers.get(i));
+                        assertThat(carsForTest.get(i).getPosition()).isEqualTo(resultNumbers.get(i).getValue());
                     }
                 }
         );

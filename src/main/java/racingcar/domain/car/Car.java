@@ -24,7 +24,7 @@ public class Car {
     }
 
     public static Car getInstance(Car car) {
-        return new Car(car.getName(), car.getPosition());
+        return new Car(CarName.valueOf(car.getName()), Position.valueOf(car.getPosition()));
     }
 
     public void tryToMove(int value) {
@@ -39,12 +39,12 @@ public class Car {
         return Position.valueOf(this.position.getMaxValue(position));
     }
 
-    public CarName getName() {
-        return CarName.valueOf(name.getValue());
+    public String getName() {
+        return this.name.getValue();
     }
 
-    public Position getPosition() {
-        return Position.valueOf(this.position.getValue());
+    public int getPosition() {
+        return this.position.getValue();
     }
 
     @Override

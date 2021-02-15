@@ -31,7 +31,6 @@ public class Result {
         return result.stream()
                 .filter(car -> car.isSamePosition(getMaxPosition()))
                 .map(Car::getName)
-                .map(CarName::getValue)
                 .collect(Collectors.toList());
     }
 

@@ -21,7 +21,7 @@ public class CarName {
 
     public static void validateNameLength(String name) {
         if (name.length() < MIN_CAR_NAME_LENGTH || name.length() > MAX_CAR_NAME_LENGTH) {
-            throw new RuntimeException("자동차 이름은 1글자 이상 5글자 이하만 가능다.");
+            throw new RuntimeException("자동차 이름은 1글자 이상 5글자 이하만 가능하다.");
         }
     }
 
