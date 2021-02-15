@@ -1,6 +1,5 @@
 package racingcar;
 
-import racingcar.domain.Cars;
 import racingcar.domain.RacingCarGame;
 import racingcar.utils.SplitUtil;
 import racingcar.view.InputView;
@@ -26,8 +25,8 @@ public class Application {
         String carNamesInput = InputView.getCarNamesInput();
         String lapInput = InputView.getLap();
 
-        RacingCarGame racingCarGame = new RacingCarGame(SplitUtil.splitCarNames(carNamesInput),
-            lapInput);
+        RacingCarGame racingCarGame =
+            new RacingCarGame(SplitUtil.splitCarNames(carNamesInput), lapInput);
         racingCarGame.race();
 
         OutputView.showWinners(racingCarGame.getWinners());
