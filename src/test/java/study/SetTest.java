@@ -41,7 +41,7 @@ public class SetTest {
     @DisplayName("parameter가 1,2,3일 땐 True, 4,5일 땐 false")
     @ParameterizedTest
     @CsvSource({"1,true", "2,true", "3,true", "4,false", "5,false"})
-    void contains값으로_4나_5가_오면_false(int param, boolean result) {
+    void contains_fourOrFive_false(int param, boolean result) {
         assertThat(numbers.contains(param)).isEqualTo(result);
     }
 }
