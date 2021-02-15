@@ -43,12 +43,12 @@ public class Car implements Comparable<Car> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return Objects.equals(name, car.name) && Objects.equals(position, car.position);
+        return Objects.equals(name, car.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, position);
+        return Objects.hash(name);
     }
 
     @Override
@@ -56,6 +56,7 @@ public class Car implements Comparable<Car> {
         return "Car{" +
                 "name=" + name +
                 ", position=" + position +
+                ", movingStrategy=" + movingStrategy +
                 '}';
     }
 }

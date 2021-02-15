@@ -9,11 +9,14 @@ class CarTest {
     @DisplayName("동등 비교")
     @Test
     public void equals() {
-        final Name name = new Name("중간곰");
-        final Car car = new Car(name);
+        final String nameValue = "중간곰";
+        final int positionValue = 10;
+
+        final Car car = new Car(new Name(nameValue), Position.from(positionValue));
+        final Car expected = new Car(new Name(nameValue), Position.from(positionValue + 1));
 
         assertThat(car)
-                .isEqualTo(new Car(name));
+                .isEqualTo(expected);
     }
 
     @DisplayName("자동차 전진 성공")
