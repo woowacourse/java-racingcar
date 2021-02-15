@@ -23,6 +23,9 @@ public class Cars {
     }
 
     public void raceOneLap(List<Integer> randoms) {
+        if (randoms.size() != cars.size()) {
+            throw new IllegalArgumentException("랜덤 숫자 갯수와 자동차 갯수가 다릅니다.");
+        }
         for (int i = 0; i < cars.size(); i++) {
             cars.get(i).move(randoms.get(i));
         }
