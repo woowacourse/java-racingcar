@@ -40,7 +40,7 @@ public class Cars {
             .collect(Collectors.toList());
     }
 
-    public int getCarsCount() {
+    public int getCarsSize() {
         return cars.size();
     }
 

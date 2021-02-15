@@ -41,7 +41,7 @@ public class RacingCarGame {
 
     private List<Integer> createRandomNumbers() {
         List<Integer> counts = new ArrayList<>();
-        for (int i = 0; i < cars.getCarsCount(); i++) {
+        for (int i = 0; i < cars.getCarsSize(); i++) {
             counts.add(RandomUtil.nextInt(0, 9));
         }
         return counts;
