@@ -15,7 +15,7 @@ public class RacingGame {
     public static Cars cars;
     public static int trials;
 
-    public static void start() {
+    public void start() {
         while (!initializeCars()) ;
         while (!getTrials()) ;
         OutputView.printRoundMessage();
@@ -23,32 +23,32 @@ public class RacingGame {
         OutputView.printWinners(findWinners());
     }
 
-    public static void assignCars(List<Car> temporaryCars) {
+    public void assignCars(List<Car> temporaryCars) {
         cars = new Cars(temporaryCars);
     }
 
-    public static Cars getCars() {
+    public Cars getCars() {
         return cars;
     }
 
-    public static List<Car> findWinners() {
+    public List<Car> findWinners() {
         return cars.getCars()
                 .stream()
                 .filter(car -> car.isMaxPosition(cars.getMaxDistance()))
                 .collect(Collectors.toList());
     }
 
-    public static List<String> splitInput(String input) {
+    public List<String> splitInput(String input) {
         return Arrays.asList(input.split(DELIMITER));
     }
 
-    public static void isValidNumber(String input) {
+    public void isValidNumber(String input) {
         if (Integer.parseInt(input) < 1) {
             throw new IllegalArgumentException("시행 횟수는 1회 이상이어야 합니다.");
         }
     }
 
-    private static boolean initializeCars() {
+    private boolean initializeCars() {
         try {
             OutputView.printUserPromptCarNames();
             List<Car> temporaryCars = new ArrayList<>();
@@ -62,7 +62,7 @@ public class RacingGame {
         return true;
     }
 
-    private static boolean getTrials() {
+    private boolean getTrials() {
         OutputView.printUserPromptTrials();
         String input = InputView.askUserInput().trim();
         if (validateTrials(input)) {
@@ -72,18 +72,18 @@ public class RacingGame {
         return false;
     }
 
-    private static void playRounds() {
+    private void playRounds() {
         for (int i = 0; i < trials; i++) {
             playRound();
             OutputView.printRoundResult(cars);
         }
     }
 
-    private static void playRound() {
+    private void playRound() {
         cars.moveCars();
     }
 
-    private static boolean validateTrials(String input) {
+    private boolean validateTrials(String input) {
         try {
             isValidNumber(input);
         } catch (IllegalArgumentException e) {

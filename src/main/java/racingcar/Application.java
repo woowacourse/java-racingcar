@@ -5,6 +5,7 @@ import racingcar.controller.RacingGame;
 public class Application {
 
     public static void main(String[] args) {
-        RacingGame.start();
+        RacingGame newGame = new RacingGame();
+        newGame.start();
     }
 }
