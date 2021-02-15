@@ -1,4 +1,4 @@
-# java-racingcar
+# java-racingGame
 
 Junit5 학습 / 문자열 덧셈 계산기 / 자동차 경주 게임 미션을 위한 저장소
 

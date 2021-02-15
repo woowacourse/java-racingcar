@@ -1,7 +1,8 @@
-package racingcar.validator;
+package racingGame.domain.validator;
 
 public class NameValidator {
-    private static final int LIMIT_NAME_LEN = 5;
+    private static final int LIMIT_NAME_MAX = 5;
+    private static final int LIMIT_NAME_MIN = 1;
 
     private NameValidator() {
     }
@@ -17,6 +18,6 @@ public class NameValidator {
     }
 
     private static boolean isValidLength(final String name) {
-        return name.trim().length() <= LIMIT_NAME_LEN && name.trim().length() > 0;
+        return name.trim().length() <= LIMIT_NAME_MAX && name.trim().length() >= LIMIT_NAME_MIN;
     }
 }

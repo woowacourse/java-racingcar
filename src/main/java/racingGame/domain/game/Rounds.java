@@ -1,6 +1,6 @@
-package racingcar.domain;
+package racingGame.domain.game;
 
-import racingcar.validator.RoundValidator;
+import racingGame.domain.validator.RoundValidator;
 
 public class Rounds {
     private int round;
@@ -15,10 +15,14 @@ public class Rounds {
     }
 
     public void next() {
-        this.round--;
+        round--;
     }
 
     public boolean isEnd() {
-        return this.round <= 0;
+        return round <= 0;
+    }
+
+    public boolean isMoreThan(int value) {
+        return round >= value;
     }
 }
