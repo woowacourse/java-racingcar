@@ -1,6 +1,5 @@
 package view;
 
-import racingCar.Car;
 import utils.InputCheckUtil;
 
 import java.util.Scanner;
