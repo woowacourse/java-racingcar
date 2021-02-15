@@ -20,6 +20,16 @@ public class Cars {
         this.cars = cars;
     }
 
+    public Cars() {
+
+    }
+
+    public void assignCars(List<Car> cars){
+        validateUserCount(cars);
+        validateDuplicate(cars);
+        this.cars = cars;
+    }
+
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }

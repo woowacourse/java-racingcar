@@ -12,26 +12,19 @@ import java.util.stream.Collectors;
 
 public class RacingGame {
     public static final String DELIMITER = ",";
-    public static Cars cars;
     public static int trials;
 
     public void start() {
-        while (!initializeCars()) ;
+        Cars cars = new Cars();
+        while (!initializeCars(cars)) ;
         while (!getTrials()) ;
         OutputView.printRoundMessage();
-        playRounds();
-        OutputView.printWinners(findWinners());
+        playRounds(cars);
+        OutputView.printWinners(findWinners(cars));
     }
 
-    public void assignCars(List<Car> temporaryCars) {
-        cars = new Cars(temporaryCars);
-    }
 
-    public Cars getCars() {
-        return cars;
-    }
-
-    public List<Car> findWinners() {
+    public List<Car> findWinners(Cars cars) {
         return cars.getCars()
                 .stream()
                 .filter(car -> car.isMaxPosition(cars.getMaxDistance()))
@@ -48,14 +41,14 @@ public class RacingGame {
         }
     }
 
-    private boolean initializeCars() {
+    private boolean initializeCars(Cars cars) {
         try {
             OutputView.printUserPromptCarNames();
             List<Car> temporaryCars = new ArrayList<>();
             splitInput(InputView.askUserInput())
                     .stream()
                     .forEach(carName -> temporaryCars.add(new Car(carName)));
-            assignCars(temporaryCars);
+            cars.assignCars(temporaryCars);
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -72,14 +65,14 @@ public class RacingGame {
         return false;
     }
 
-    private void playRounds() {
+    private void playRounds(Cars cars) {
         for (int i = 0; i < trials; i++) {
-            playRound();
+            playRound(cars);
             OutputView.printRoundResult(cars);
         }
     }
 
-    private void playRound() {
+    private void playRound(Cars cars) {
         cars.moveCars();
     }
 
