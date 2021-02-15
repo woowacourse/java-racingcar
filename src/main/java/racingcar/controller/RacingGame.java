@@ -26,7 +26,7 @@ public class RacingGame {
     public List<Car> findWinners(Cars cars) {
         return cars.getCars()
                 .stream()
-                .filter(car -> car.isMaxPosition(cars.getMaxDistance()))
+                .filter(car -> car.isSamePosition(cars.getMaxDistance()))
                 .collect(Collectors.toList());
     }
 

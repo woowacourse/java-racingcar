@@ -15,7 +15,7 @@ public class CarTest {
     @ValueSource(strings = {" ", "abcdefg", "  "})
     void createCarExceptionTest(String name) {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new Car(name));
-        assertThat(e.getMessage()).isEqualTo(Car.CAR_NAME_INVALID);
+        assertThat(e.getMessage()).isEqualTo(Car.CAR_NAME_LENGTH_INVALID);
     }
 
     @ParameterizedTest

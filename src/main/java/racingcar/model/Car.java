@@ -4,7 +4,8 @@ import java.util.Objects;
 
 public class Car {
 
-    public static final String CAR_NAME_INVALID = "자동차 이름이 유효하지 않습니다.";
+    public static final String CAR_NAME_LENGTH_INVALID = "자동차 이름의 길이가 유효하지 않습니다.";
+    private static final int NAME_MIN_LENGTH = 0;
     private static final int NAME_MAX_LENGTH = 5;
     private static final int MOVE_RANDOM_NUMBER = 4;
 
@@ -35,8 +36,8 @@ public class Car {
         return this.position;
     }
 
-    public boolean isMaxPosition(int max) {
-        return max == position;
+    public boolean isSamePosition(int position) {
+        return position == this.position;
     }
 
     @Override
@@ -53,8 +54,8 @@ public class Car {
     }
 
     private void validateCarName(String name) {
-        if (name.length() > NAME_MAX_LENGTH || name.length() <= 0) {
-            throw new IllegalArgumentException(CAR_NAME_INVALID);
+        if (name.length() > NAME_MAX_LENGTH || name.length() <= NAME_MIN_LENGTH) {
+            throw new IllegalArgumentException(CAR_NAME_LENGTH_INVALID);
         }
     }
 }
