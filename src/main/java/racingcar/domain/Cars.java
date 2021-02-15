@@ -4,6 +4,7 @@ import racingcar.dto.CarDto;
 import racingcar.dto.NameDto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -76,10 +77,11 @@ public class Cars {
 
     public List<Car> getWinners() {
         final Car farthestCar = getFarthestCar();
-
-        return cars.stream()
+        final List<Car> cars = this.cars.stream()
                 .filter(car -> car.isSamePosition(farthestCar))
                 .collect(Collectors.toList());
+
+        return Collections.unmodifiableList(cars);
     }
 
     private Car getFarthestCar() {
