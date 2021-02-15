@@ -34,8 +34,8 @@
 - [x] CarService 클래스를 삭제하고, 적절한 객체에게 역할 분담
 - [x] WinnerService 클래스를 삭제하고, 적절한 객체에게 역할 분담
 - [ ] 별도의 패키지로 관리하던 상수들을 각각 클래스로 이동
-- [ ] 입력 안내 메세지를 출력하는 기능을 OutputView에서 InputView로 이동
-- [ ] InputView에 입력 trimming 하기
+- [x] 입력 안내 메세지를 출력하는 기능을 OutputView에서 InputView로 이동
+- [x] InputView에 입력 trimming 하기
 - [ ] OutputView에 private 생성자 추가
 - [ ] final 키워드, 불변객체, 방어적 복사를 적용하려고 노력
 - [ ] 예외 메세지를 친절하게 변경
