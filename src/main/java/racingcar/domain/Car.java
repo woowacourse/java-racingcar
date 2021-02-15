@@ -3,14 +3,13 @@ package racingcar.domain;
 public class Car {
 
     private final String name;
-    private int position;
+    private Position position;
 
     private static final int GO_CRITERIA = 4;
-    private static final int INITIAL_POSITION = 0;
 
     public Car(String name) {
         this.name = name;
-        position = INITIAL_POSITION;
+        position = new Position();
     }
 
     public void oneTurn(int randomTurnNumber) {
@@ -20,11 +19,11 @@ public class Car {
     }
 
     private void progressPosition() {
-        this.position++;
+        this.position.progressOneTime();
     }
 
     public boolean isSamePosition(int targetPosition) {
-        return this.position == targetPosition;
+        return this.position.isSameValue(targetPosition);
     }
 
     public String getName() {
@@ -32,6 +31,6 @@ public class Car {
     }
 
     public int getPosition() {
-        return this.position;
+        return this.position.getValue();
     }
 }
