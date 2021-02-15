@@ -4,50 +4,52 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.utils.RandomUtils;
+import racingcar.view.OutputView;
 
 public class Cars {
 
     private static final int TRY_NUMBER_MIN = 0;
     private static final int TRY_NUMBER_MAX = 9;
 
-    private final List<Car> carList;
+    private final List<Car> cars;
     private int winnerPosition = 0;
 
-    public Cars(List<Car> carList) {
-        this.carList = carList;
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public static Cars createByNames(String[] names) {
-        isDuplicatedNames(names);
+        checkDuplicatedNames(names);
         return new Cars(Arrays.stream(names)
             .map(Car::createByName)
             .collect(Collectors.toList()));
     }
 
-    public static void isDuplicatedNames(String[] names) {
+    public static void checkDuplicatedNames(String[] names) {
         if (Arrays.stream(names).distinct().count() != names.length) {
             throw new IllegalArgumentException("Duplicated Name exception");
         }
     }
 
     public void tryMoveCars() {
-        this.carList.forEach(c -> c.tryMove(generateRandomNumber()));
+        this.cars.forEach(c -> c.tryMove(generateRandomNumber()));
     }
 
     private void updateWinnerPosition() {
-        this.carList.forEach(car -> winnerPosition = car.greaterPosition(winnerPosition));
+        this.cars.forEach(car -> winnerPosition = car.greaterPosition(winnerPosition));
     }
 
-    public String[] getWinners() {
+    public List<String> getWinners() {
         updateWinnerPosition();
-        return this.carList.stream()
+        return this.cars.stream()
             .filter(car -> car.isInWinnerPosition(winnerPosition))
             .map(Car::getName)
-            .toArray(String[]::new);
+            .collect(Collectors.toList());
     }
 
-    public String getAllCarsPosition() {
-        return this.carList.stream().map(Car::getPositionStatus).collect(Collectors.joining("\n"));
+    public void printAllCarsPosition() {
+        this.cars.forEach(OutputView::printRace);
+        OutputView.printLine();
     }
 
     private int generateRandomNumber() {

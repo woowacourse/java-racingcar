@@ -8,15 +8,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Cars;
+import racingcar.view.InputView;
 
-public class InputUtilsTest {
+public class InputViewTest {
 
     @DisplayName("Test for input value split normally")
     @ParameterizedTest
     @ValueSource(strings = {"pobi", "crong", "honux"})
     void splitAllNameTest(String name) {
         String nameString = "pobi,crong,honux";
-        String[] names = InputUtils.splitNames(nameString);
+        String[] names = InputView.splitNames(nameString);
         assertThat(Arrays.asList(names).contains(name)).isTrue();
     }
 
@@ -25,7 +26,7 @@ public class InputUtilsTest {
     @ValueSource(strings = {"not_numeric"})
     void checkIsInteger(String inputNumber) {
         assertThatThrownBy(() -> {
-            InputUtils.isOnlyNumber(inputNumber);
+            InputView.isOnlyNumber(inputNumber);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -34,7 +35,7 @@ public class InputUtilsTest {
     @ValueSource(strings = {"pobi, pobi, pobi"})
     void checkDuplicatedExceptionTest(String nameString) {
         assertThatThrownBy(() -> {
-            String[] names = InputUtils.splitNames(nameString);
+            String[] names = InputView.splitNames(nameString);
             Cars.createByNames(names);
         }).isInstanceOf(IllegalArgumentException.class);
     }

@@ -22,14 +22,6 @@ public class Car {
         return new Car(name);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
     public static void checkValidName(String name) {
         if (name == null) {
             throw new IllegalArgumentException("Name can't be null");
@@ -44,8 +36,8 @@ public class Car {
         return name.trim().length() <= LIMIT_NAME_LEN && name.trim().length() > 0;
     }
 
-    public boolean isInWinnerPosition(int winnerPosition) {
-        return winnerPosition == this.position;
+    private void movePosition() {
+        position++;
     }
 
     public void tryMove(int moveNum) {
@@ -54,23 +46,19 @@ public class Car {
         }
     }
 
-    private void movePosition() {
-        position++;
-    }
-
-    private String getPositionBar() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
-        return sb.toString();
-    }
-
-    public String getPositionStatus() {
-        return name + " : " + getPositionBar();
+    public boolean isInWinnerPosition(int winnerPosition) {
+        return winnerPosition == this.position;
     }
 
     public int greaterPosition(int winnerPosition) {
         return Math.max(this.position, winnerPosition);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
