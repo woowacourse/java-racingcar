@@ -28,8 +28,7 @@ public class OutputView {
 
     public static void printWinner(Cars cars) {
         List<CarName> winners = cars.getWinnersName();
-        List<String> winnerNames = winners.stream().map(CarName::toString).collect(Collectors.toList());
-        Collections.sort(winnerNames);
+        List<String> winnerNames = winners.stream().map(CarName::toString).sorted().collect(Collectors.toList());
         System.out.println(String.join(COMMA, winnerNames) + MESSAGE_GAME_RESULT);
     }
 }
