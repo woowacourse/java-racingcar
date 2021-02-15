@@ -12,7 +12,7 @@ public class TryCount {
         this.count = Integer.parseInt(count);
     }
 
-    public int getCount() {
+    public int value() {
         return count;
     }
 

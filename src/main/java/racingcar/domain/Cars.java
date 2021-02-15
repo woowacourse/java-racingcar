@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.utils.RandomNumberGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,10 +9,10 @@ import java.util.List;
 public class Cars {
     private final List<Car> cars = new ArrayList<>();
 
-    public Cars(List<String> names) {
+    public Cars(final List<String> names) {
         validateNonDuplicatedNames(names);
         for (String name : names) {
-            cars.add(new Car(name));
+            cars.add(new Car(new Name(name)));
         }
     }
 
@@ -25,7 +27,18 @@ public class Cars {
                 .orElse(0);
     }
 
-    private void validateNonDuplicatedNames(List<String> names) {
+    public void moveCars() {
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        for (Car car : cars) {
+            car.carMove(getMovePivot(randomNumberGenerator));
+        }
+    }
+
+    protected int getMovePivot(final RandomNumberGenerator randomNumberGenerator) {
+        return randomNumberGenerator.getNumber();
+    }
+
+    private void validateNonDuplicatedNames(final List<String> names) {
         if (names.stream().distinct().count() != names.size()) {
             throw new IllegalArgumentException("중복된 자동차 이름입니다.");
         }

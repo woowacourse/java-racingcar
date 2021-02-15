@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.utils.RandomNumberGenerator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,5 +26,39 @@ public class CarsTest {
         List<String> carNames = Arrays.asList("pobi", "amaz");
         Cars cars = new Cars(carNames);
         assertThat(cars.getMaxPositionByCars()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("랜덤값을 전부 5로 통제한뒤, 전부 움직였는지 테스트")
+    void carsMoveTestAlwaysMove() {
+        List<String> carNames = Arrays.asList("povi", "pobi", "dave");
+        Cars cars = new Cars(carNames) {
+            @Override
+            protected int getMovePivot(RandomNumberGenerator randomNumberGenerator) {
+                return 5;
+            }
+        };
+        cars.moveCars();
+
+        for (Car car : cars.getCars()) {
+            assertThat(car.getPosition()).isEqualTo(1);
+        }
+    }
+
+    @Test
+    @DisplayName("랜덤값을 전부 2로 통제한뒤, 전부 움직이지 못했는지 테스트")
+    void carsMoveTestNoMove() {
+        List<String> carNames = Arrays.asList("povi", "pobi", "dave");
+        Cars cars = new Cars(carNames) {
+            @Override
+            protected int getMovePivot(RandomNumberGenerator randomNumberGenerator) {
+                return 2;
+            }
+        };
+        cars.moveCars();
+
+        for (Car car : cars.getCars()) {
+            assertThat(car.getPosition()).isEqualTo(0);
+        }
     }
 }

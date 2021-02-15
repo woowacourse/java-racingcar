@@ -10,7 +10,7 @@ public class Winners {
     private final List<Car> winners = new ArrayList<>();
     private int winnerPosition;
 
-    public Winners(Cars cars) {
+    public Winners(final Cars cars) {
         winnerPosition = getWinnerPosition(cars);
         for (Car car : cars.getCars()) {
             setWinner(car);
@@ -18,8 +18,10 @@ public class Winners {
     }
 
     public List<String> getWinnersNames() {
-        return Collections.unmodifiableList(winners.stream()
-                .map(Car::getName).collect(Collectors.toList()));
+        return Collections.unmodifiableList(
+                winners.stream()
+                        .map(Car::getName)
+                        .collect(Collectors.toList()));
     }
 
     private int getWinnerPosition(final Cars cars) {
