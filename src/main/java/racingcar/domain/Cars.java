@@ -1,8 +1,11 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtil;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+import racingcar.utils.RandomUtil;
 
 public class Cars {
     private static final int MINIMUM_CAR_AMOUNT = 2;
@@ -36,7 +39,9 @@ public class Cars {
     }
 
     private int getMaxDistance() {
-        return cars.stream().collect(Collectors.summarizingInt(Car::getPosition)).getMax();
+        return cars.stream()
+            .collect(Collectors.summarizingInt(Car::getPosition))
+            .getMax();
     }
 
     private void validateNumberOfCar(List<String> carNamesInput) {

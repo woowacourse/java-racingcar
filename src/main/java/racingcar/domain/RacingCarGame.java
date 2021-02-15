@@ -7,6 +7,7 @@ public class RacingCarGame {
     private static final String NUMERIC_REGULAR_EXPRESSION = "\\d+";
     private static final String NOT_NUMERIC_ERROR_MESSAGE = "숫자를 입력하세요.";
     private static final String NOT_OVER_ONE_ERROR_MESSAGE = "1 이상의 숫자를 입력하세요.";
+    private static final int MINIMUM_LAP_COUNT = 1;
 
     private final Cars cars;
     private final int laps;
@@ -22,7 +23,7 @@ public class RacingCarGame {
         }
 
         int laps = Integer.parseInt(lapInput);
-        if (laps < 1) {
+        if (laps < MINIMUM_LAP_COUNT) {
             throw new IllegalArgumentException(NOT_OVER_ONE_ERROR_MESSAGE);
         }
         return laps;

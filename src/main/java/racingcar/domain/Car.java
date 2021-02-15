@@ -16,7 +16,6 @@ public class Car {
     public Car(String carNameValue, Position position) {
         this.carName = new CarName(carNameValue);
         this.position = position;
-
     }
 
     public void move(int randomNumber) {
