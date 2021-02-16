@@ -1,14 +1,16 @@
 package racingcar.domain.car;
 
-import racingcar.domain.rule.Condition;
+import racingcar.domain.rule.CarMoveCondition;
+
+import static racingcar.view.Marks.COLON;
+import static racingcar.view.Marks.DASH;
 
 public class Car {
-
     private int position;
-    private Condition moveCondition;
+    private CarMoveCondition moveCondition;
     private CarName name;
 
-    public Car(String name, Condition moveCondition) {
+    public Car(String name, CarMoveCondition moveCondition) {
         this.moveCondition = moveCondition;
         this.name = new CarName(name);
     }
@@ -31,10 +33,6 @@ public class Car {
 
     public boolean isSamePosition(int position) {
         return this.position == position;
-    }
-
-    public CarState getState() {
-        return CarState.withNameAndPosition(name, position);
     }
 
     @Override

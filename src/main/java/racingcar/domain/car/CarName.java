@@ -4,9 +4,9 @@ import racingcar.exception.CarNameBlankOrEmptyException;
 import racingcar.exception.CarNameLengthException;
 
 public class CarName {
-    private static final int CAR_NAME_LENGTH_THRESHOLD = 5;
+    private static final int LENGTH_THRESHOLD = 5;
 
-    private String name;
+    private final String name;
 
     public CarName(String name) {
         validateCarNameLength(name);
@@ -15,7 +15,7 @@ public class CarName {
     }
 
     private void validateCarNameLength(String name) {
-        if (name.length() > CAR_NAME_LENGTH_THRESHOLD) {
+        if (name.length() > LENGTH_THRESHOLD) {
             throw new CarNameLengthException();
         }
     }
