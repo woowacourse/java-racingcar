@@ -25,3 +25,18 @@
 - [x] 경주 완료를 판단하는 기능
 - [x] 최종 우승자를 판단하는 기능
 - [x] 최종 우승자를 출력하는 기능
+
+## 🛠 리팩터링 목록
+- [x] 원시값을 객체로 포장 (Position, Name)
+- [x] Position과 Name을 이용하도록 Car 클래스 변경
+- [x] Car가 전략 패턴을 사용하여 움직임을 결정하도록 변경
+- [x] RandomUtils 클래스 삭제
+- [x] CarService 클래스를 삭제하고, 적절한 객체에게 역할 분담
+- [x] WinnerService 클래스를 삭제하고, 적절한 객체에게 역할 분담
+- [x] 별도의 패키지로 관리하던 상수들을 각각 클래스로 이동
+- [x] 입력 안내 메세지를 출력하는 기능을 OutputView에서 InputView로 이동
+- [x] InputView에 입력 trimming 하기
+- [x] OutputView에 private 생성자 추가
+- [x] final 키워드, 불변객체, 방어적 복사를 적용하려고 노력
+- [x] 예외 메세지를 친절하게 변경
+- [x] Times 리팩토링 (상수, 불변)

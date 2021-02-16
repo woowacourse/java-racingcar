@@ -4,44 +4,65 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.constant.Digit;
+import racingcar.domain.movingstrategy.DefinitelyMovingStrategy;
+import racingcar.domain.movingstrategy.SwitchedMovingStrategy;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
-    @DisplayName("정상적인 이름인 경우 객체 생성 성공")
-    @ParameterizedTest
-    @ValueSource(strings = {"중간곰", "다니", "포비", "씨유", "브라운", "harry"})
-    public void createCar_정상적인_이름인_경우(String name) {
-        assertThatCode(() -> new Car(name))
-                .doesNotThrowAnyException();
-    }
-
-    @DisplayName("이름의 길이가 범위를 벗어난 경우 예외 발생")
+    @DisplayName("동등 비교")
     @Test
-    public void createCar_이름의_길이가_범위를_벗어난_경우() {
-        final String SHORT_CAR_NAME = "";
-        final int MAXIMUM_LENGTH = Digit.MAXIMUM_CAR_NAME_LENGTH.getDigit();
-        final String LONG_CAR_NAME = new String(new char[MAXIMUM_LENGTH + 1]);
+    public void equals() {
+        final String nameValue = "중간곰";
+        final int positionValue = 10;
 
-        assertThatThrownBy(() -> {
-            new Car(SHORT_CAR_NAME);
-            new Car(LONG_CAR_NAME);
-        }).isInstanceOf(IllegalArgumentException.class);
+        final Car car = new Car(new Name(nameValue), Position.from(positionValue));
+        final Car expected = new Car(new Name(nameValue), Position.from(positionValue + 1));
+
+        assertThat(car)
+                .isEqualTo(expected);
     }
 
     @DisplayName("자동차 전진 성공")
     @Test
-    public void moveCar() {
-        final int MOVEMENT = 10;
+    public void moveDefinitely() {
+        final Name name = new Name("중간곰");
+        final Position position = Position.from(0);
+        final Position expected = Position.from(1);
 
-        Car car = new Car("pobi");
+        Car car = new Car(name, position, DefinitelyMovingStrategy.getInstance());
+        car = car.move();
 
-        for (int i = 0; i < MOVEMENT; i++) {
-            car.move();
+        assertThat(car.isSamePosition(expected))
+                .isTrue();
+    }
+
+    @DisplayName("위치 비교")
+    @Test
+    public void compareTo() {
+        final Name name = new Name("중간곰");
+        final Car nearCar = new Car(name);
+        final Car farCar = new Car(name, Position.from(10));
+
+        final int compareResult = farCar.compareTo(nearCar);
+        assertThat(compareResult).isEqualTo(1);
+    }
+
+    @DisplayName("번갈아가며 자동차 전진")
+    @ParameterizedTest
+    @ValueSource(ints = {10, 11, 50, 101, 200})
+    public void moveUsedSwitchedPattern(final int movingCount) {
+        final Name name = new Name("중간곰");
+        final Position position = Position.from(0);
+        final SwitchedMovingStrategy switchedMovingStrategy = new SwitchedMovingStrategy();
+        final Position expected = Position.from(movingCount / 2);
+        Car car = new Car(name, position, switchedMovingStrategy);
+
+        for (int i = 0; i < movingCount; i++) {
+            car = car.move();
         }
 
-        assertThat(car.getPosition())
-                .isEqualTo(MOVEMENT);
+        assertThat(car.isSamePosition(expected))
+                .isTrue();
     }
 }

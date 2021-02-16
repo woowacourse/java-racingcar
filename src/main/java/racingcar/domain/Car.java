@@ -1,53 +1,82 @@
 package racingcar.domain;
 
-import racingcar.constant.Digit;
-import racingcar.constant.Message;
+import racingcar.domain.movingstrategy.MovingStrategy;
+import racingcar.domain.movingstrategy.RandomMovingStrategy;
+import racingcar.dto.CarDto;
+import racingcar.dto.NameDto;
 
-public class Car {
-    private final String name;
-    private int position;
+import java.util.Objects;
 
-    public Car(String name) {
-        this(name, Digit.START_POSITION.getDigit());
+public class Car implements Comparable<Car> {
+    private final Name name;
+    private final Position position;
+    private final MovingStrategy movingStrategy;
+
+    public Car(final Name name) {
+        this(name, Position.START);
     }
 
-    public Car(String name, int position) {
-        validateLength(name);
+    public Car(final Name name, final Position position) {
+        this(name, position, RandomMovingStrategy.getInstance());
+    }
+
+    public Car(final Name name, final Position position, final MovingStrategy movingStrategy) {
         this.name = name;
         this.position = position;
+        this.movingStrategy = movingStrategy;
     }
 
-    private void validateLength(String name) {
-        if ((name.length() < Digit.MINIMUM_CAR_NAME_LENGTH.getDigit())
-                || (name.length() > Digit.MAXIMUM_CAR_NAME_LENGTH.getDigit())) {
-            throw new IllegalArgumentException(Message.CAR_NAME_LENGTH_ERROR.toString());
-        }
+    public Car moveDefinitely() {
+        final Position nextPosition = position.move();
+        return new Car(name, nextPosition, this.movingStrategy);
     }
 
-    public void move() {
-        position++;
+    public CarDto toDto() {
+        return new CarDto(name.toDto(), position.toDto());
     }
 
-    public boolean isMaxPosition(int maxPosition) {
-        return position == maxPosition;
+    public NameDto toNameDto() {
+        return name.toDto();
     }
 
-    public String getName() {
-        return name;
+    public Car move() {
+        return movingStrategy.move(this);
     }
 
-    public int getPosition() {
-        return position;
+    public boolean isSamePosition(final Position position) {
+        return this.position
+                .equals(position);
+    }
+
+    public boolean isSamePosition(final Car car) {
+        return this.position
+                .equals(car.position);
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return position.compareTo(o.position);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     @Override
     public String toString() {
-        StringBuilder hyphens = new StringBuilder();
-
-        for (int i = 0; i < position; i++) {
-            hyphens.append(Message.HYPHEN);
-        }
-
-        return name + Message.COLON_WITH_BLANK + hyphens.toString();
+        return "Car{" +
+                "name=" + name +
+                ", position=" + position +
+                ", movingStrategy=" + movingStrategy +
+                '}';
     }
 }
