@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,12 +14,12 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    private Cars(List<Car> cars) {
         this.cars = new ArrayList<>(cars);
     }
 
     public List<Car> getCars() {
-        return new ArrayList<>(cars);
+        return Collections.unmodifiableList(cars);
     }
 
     public static Cars from(String inputCarName) {
@@ -43,5 +45,21 @@ public class Cars {
 
     public void driveAll(NumberGeneratingStrategy numberGeneratingStrategy) {
         cars.forEach(car -> car.drive(numberGeneratingStrategy.generateNumber()));
+    }
+
+    public List<Car> getWinners() {
+        Position maxPosition = getMaxPosition();
+
+        return Collections.unmodifiableList(
+                cars.stream()
+                        .filter(car -> car.isSamePosition(maxPosition))
+                        .collect(Collectors.toList()));
+    }
+
+    private Position getMaxPosition() {
+        return cars.stream()
+                .max(Comparator.comparing(Car::getPosition))
+                .orElseThrow(() -> new RuntimeException(""))
+                .getPosition();
     }
 }

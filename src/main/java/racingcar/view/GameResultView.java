@@ -37,14 +37,6 @@ public class GameResultView {
         return sb.toString();
     }
 
-    public static void printWinners(List<Car> winners) {
-        String winnersName = winners.stream()
-                .map(Car::getName)
-                .collect(Collectors.joining(", "));
-
-        System.out.printf(PRINT_WINNERS, winnersName);
-    }
-
     public static void printGameResult(RacingGameResult gameResult) {
         String winnersName = gameResult.getWinners().stream()
                 .map(Car::getName)

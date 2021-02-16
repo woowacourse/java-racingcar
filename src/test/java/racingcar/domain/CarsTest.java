@@ -3,6 +3,8 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -43,5 +45,47 @@ class CarsTest {
         cars.driveAll(new FixedNumberGeneratingStrategy());
 
         cars.getCars().forEach(car -> assertThat(car.getPosition()).isEqualTo(Position.valueOf(2)));
+    }
+
+    @Test
+    @DisplayName("우승자 리턴 - 단일 우승자")
+    public void getWinners_singleWinner() {
+        Car winner = new Car(CarName.valueOf("A"), Position.valueOf(2));
+        Car loser = new Car(CarName.valueOf("B"), Position.valueOf(1));
+        RacingGameResult gameResult = new RacingGameResult(Arrays.asList(winner, loser));
+
+        assertThat(gameResult.getWinners()).containsExactly(winner);
+    }
+
+    @Test
+    @DisplayName("우승자 리턴 - 공동 우승자")
+    public void getWinners_manyWinners() {
+        Car carA = Car.from("A");
+        Car carB = Car.from("B");
+        RacingGameResult gameResult = new RacingGameResult(Arrays.asList(carA, carB));
+
+        assertThat(gameResult.getWinners()).containsExactly(carA, carB);
+    }
+
+    @Test
+    @DisplayName("getCars - 수정 불가 리스트 반환")
+    void getCars() {
+        List<Car> cars = Cars.from("A,B").getCars();
+
+        assertThatThrownBy(() -> cars.add(new Car("C")))
+                .isInstanceOf(UnsupportedOperationException.class);
+        assertThatThrownBy(() -> cars.remove(1))
+                .isInstanceOf(UnsupportedOperationException.class);
+    }
+
+    @Test
+    @DisplayName("getWinners - 수정 불가 리스트 반환")
+    void getWinners() {
+        List<Car> cars = Cars.from("A,B").getWinners();
+
+        assertThatThrownBy(() -> cars.add(new Car("C")))
+                .isInstanceOf(UnsupportedOperationException.class);
+        assertThatThrownBy(() -> cars.remove(1))
+                .isInstanceOf(UnsupportedOperationException.class);
     }
 }
