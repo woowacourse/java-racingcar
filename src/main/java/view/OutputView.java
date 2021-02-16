@@ -1,7 +1,7 @@
 package view;
 
 import racingCar.Car;
-import racingCar.Cars;
+import racingCar.CarName;
 
 import java.util.List;
 
@@ -22,16 +22,7 @@ public class OutputView {
         return sb.toString();
     }
 
-
-    public static void showResult(Cars cars) {
-        List<String> winners = getWinners(cars.findMaxDistance(), cars);
-        System.out.println(String.join(",", winners) + "가 최종 우승했습니다.");
+    public static void showResult(List<CarName> winners) {
+        System.out.println(String.join(",", winners.toString()) + "가 최종 우승했습니다.");
     }
-
-    static List<String> getWinners(int max, Cars cars) {
-        List<String> winners = cars.findWinners(max);
-        return winners;
-    }
-
-
 }

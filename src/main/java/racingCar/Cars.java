@@ -1,31 +1,20 @@
 package racingCar;
 
-import utils.RandomUtils;
-import view.OutputView;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final int MINIMUM_VALUE = 0;
-    private static final int MAXIMUM_VALUE = 9;
 
-    private List<Car> cars = new ArrayList<>();
 
-    public void carAdd(Car car) {
-        cars.add(car);
+    private List<Car> cars;
+
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public List<Car> getCars() {
         return cars;
-    }
-
-    public List<String> findWinners(int maxDistance) {
-        return cars.stream()
-                .filter(car -> car.isWinner(maxDistance))
-                .map(car -> car.getName())
-                .collect(Collectors.toList());
     }
 
     public int findMaxDistance() {
@@ -36,18 +25,31 @@ public class Cars {
         return maxNumber;
     }
 
-    public void playGame(int count) {
-        for (int i = 0; i < count; i++) {
-            moveCar();
-            OutputView.showStatus(cars);
+    public void moveCar(int[] randoms) {
+        for (int i = 0; i < cars.size(); i++) {
+            cars.get(i).move(randoms[i]);
         }
     }
 
-    public void moveCar() {
-        for (Car car : cars) {
-            car.move(RandomUtils.nextInt(MINIMUM_VALUE, MAXIMUM_VALUE));
-        }
+    public List<CarName> findWinners(int maxDistance) {
+        return cars.stream()
+                .filter(car -> car.isWinner(maxDistance))
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cars)) return false;
 
+        Cars cars1 = (Cars) o;
+
+        return Objects.equals(cars, cars1.cars);
+    }
+
+    @Override
+    public int hashCode() {
+        return cars != null ? cars.hashCode() : 0;
+    }
 }

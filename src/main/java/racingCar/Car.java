@@ -1,42 +1,52 @@
 package racingCar;
 
-public class Car {
-    private static final int THRESHOLD = 4;
-    private static final int MINIMUM_LENGTH = 0;
-    private static final int MAXIMUM_LENGTH = 5;
+import java.util.Objects;
 
-    private final String name;
-    private int distance = 0;
+public class Car {
+    private final CarName carName;
+    private Distance distance;
 
     public Car(final String name) {
-        validate(name);
-        this.name = name;
+        this.carName = new CarName(name);
+        this.distance = new Distance(0);
     }
 
-    public void validate(String name) {
-        if (name.length() <= MINIMUM_LENGTH || name.length() > MAXIMUM_LENGTH) {
-            throw new IllegalArgumentException("길이가 1에서 5사이의 이름을 입력해주세요.");
-        }
+    public Car(String name, int distance) {
+        this.carName = new CarName(name);
+        this.distance = new Distance(distance);
     }
 
     public void move(int number) {
-        if (number >= THRESHOLD) {
-            distance++;
-        }
+        distance.move(number);
     }
 
     public boolean isWinner(int max) {
-        if (distance == max) {
-            return true;
-        }
-        return false;
+        return distance.isMaxDistance(max);
     }
 
-    public String getName() {
-        return name;
+    public CarName getName() {
+        return carName;
     }
 
     public int getDistance() {
-        return distance;
+        return distance.getDistance();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
+
+        Car car = (Car) o;
+
+        if (!Objects.equals(carName, car.carName)) return false;
+        return Objects.equals(distance, car.distance);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = carName != null ? carName.hashCode() : 0;
+        result = 31 * result + (distance != null ? distance.hashCode() : 0);
+        return result;
     }
 }

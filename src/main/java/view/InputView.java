@@ -1,8 +1,7 @@
 package view;
 
-import racingCar.Car;
+import utils.InputCheckUtil;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -11,14 +10,8 @@ public class InputView {
     public static String getInput() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = scanner.nextLine();
-        inputValidate(input);
+        InputCheckUtil.inputValidate(input);
         return input;
-    }
-
-    public static void inputValidate(String input) {
-        if (input.charAt(0) == ',' || input.charAt(input.length() - 1) == ',') {
-            throw new IllegalArgumentException("시작이나 끝에 콤마(,)가 올 수 없습니다.");
-        }
     }
 
     public static int getTryNumber() {
