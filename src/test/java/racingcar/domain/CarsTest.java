@@ -12,7 +12,8 @@ class CarsTest {
     @Test
     void checkWinner() {
         Cars cars = winnerSetUp();
-        assertThat(cars.getWinners()).containsExactly("cogi", "pobi");
+        assertThat(cars.getWinners().contains("cogi")).isTrue();
+        assertThat(cars.getWinners().contains("pobi")).isTrue();
     }
 
     public Cars winnerSetUp() {

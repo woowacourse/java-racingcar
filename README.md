@@ -36,3 +36,9 @@
 * 자동차 움직임 출력 테스트
 * 랜덤값 범위 테스트
 * 우승자 선정 테스트
+
+## 2차 리팩토링
+* domain과 view 역할을 명확하게 분리
+  - InputUtils와 input을 위한 출력을 InputView 하나로 합침
+  - 모든 출력은 기존 PrintUtils -> OutputView 에서 모두 담당
+  - view 패키지로 InputView, OutputView 이동

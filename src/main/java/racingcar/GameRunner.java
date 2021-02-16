@@ -3,12 +3,12 @@ package racingcar;
 import java.util.Scanner;
 import racingcar.domain.Cars;
 import racingcar.domain.Round;
-import racingcar.utils.InputUtils;
-import racingcar.utils.PrintUtils;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class GameRunner {
 
-    final Scanner scanner;
+    private final Scanner scanner;
 
     private Cars cars;
     private Round round;
@@ -18,18 +18,15 @@ public class GameRunner {
     }
 
     public void run() {
-        PrintUtils.printInfo("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        cars = Cars.createByNames(InputUtils.inputToNames(scanner));
+        cars = Cars.createByNames(InputView.inputToNames(scanner));
+        round = Round.create(InputView.inputToInteger(scanner));
 
-        PrintUtils.printInfo("시도할 회수는 몇회인가요?");
-        round = Round.create(InputUtils.inputToInteger(scanner));
-
-        PrintUtils.printInfo("실행 결과");
+        OutputView.printResultHeader();
         while (!round.isEnd()) {
             cars.tryMoveCars();
-            PrintUtils.printResult(cars.getAllCarsPosition());
+            cars.printAllCarsPosition();
             round.next();
         }
-        PrintUtils.printWinner(cars.getWinners());
+        OutputView.printWinner(cars.getWinners());
     }
 }
