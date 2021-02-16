@@ -28,4 +28,20 @@ class PositionTest {
 
         assertThat(position.plusOne()).isEqualTo(Position.valueOf(2));
     }
+
+    @Test
+    void equals1() {
+        Position position1 = Position.valueOf(1);
+        Position position2 = Position.valueOf(2);
+
+        assertThat(position1).isNotEqualTo(position2);
+    }
+
+    @Test
+    void equals2() {
+        Position position1 = Position.valueOf(1);
+        Position position2 = Position.valueOf(1);
+
+        assertThat(position1).isEqualTo(position2);
+    }
 }

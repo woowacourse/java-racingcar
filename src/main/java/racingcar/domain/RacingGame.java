@@ -20,7 +20,7 @@ public class RacingGame {
 
     public RacingGame(String carNames, int turns,
             NumberGeneratingStrategy numberGeneratingStrategy) {
-        this(Cars.from(carNames), turns, numberGeneratingStrategy);
+        this(Cars.fromString(carNames), turns, numberGeneratingStrategy);
     }
 
     public static RacingGame getFixedNumberRacingGame(String carNames, int turns) {

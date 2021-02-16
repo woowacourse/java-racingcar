@@ -18,18 +18,30 @@ public class Cars {
         this.cars = new ArrayList<>(cars);
     }
 
+    private Cars(String[] carNames) {
+        this(Arrays.stream(carNames)
+                .map(Car::from)
+                .collect(Collectors.toList()));
+    }
+
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
 
-    public static Cars from(String inputCarName) {
+    public static Cars fromString(String inputCarName) {
         String[] carNames = splitCarsName(inputCarName);
         validateDuplicatedName(carNames);
 
-        return new Cars(
-                Arrays.stream(carNames)
-                        .map(Car::from)
-                        .collect(Collectors.toList()));
+        return new Cars(carNames);
+    }
+
+    public static Cars fromList(List<Car> cars) {
+        String[] carNames = cars.stream()
+                .map(Car::getName)
+                .toArray(String[]::new);
+        validateDuplicatedName(carNames);
+
+        return new Cars(new ArrayList<>(cars));
     }
 
     private static void validateDuplicatedName(String[] carNames) {
@@ -59,7 +71,7 @@ public class Cars {
     private Position getMaxPosition() {
         return cars.stream()
                 .max(Comparator.comparing(Car::getPosition))
-                .orElseThrow(() -> new RuntimeException(""))
+                .orElseThrow(() -> new RuntimeException("포지션 값이 없음"))
                 .getPosition();
     }
 }

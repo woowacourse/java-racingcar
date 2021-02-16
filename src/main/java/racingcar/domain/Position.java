@@ -31,7 +31,7 @@ public class Position implements Comparable<Position> {
             return false;
         }
         Position position = (Position) obj;
-        return value == position.value;
+        return this.value == position.value;
     }
 
     @Override
@@ -53,5 +53,10 @@ public class Position implements Comparable<Position> {
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(value);
     }
 }
