@@ -2,6 +2,7 @@ import racingCar.Car;
 import racingCar.Cars;
 import racingCar.CarName;
 import racingCar.RacingCarGame;
+import utils.RandomUtils;
 import view.InputView;
 import view.OutputView;
 
@@ -9,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCarGameMain {
+    private static final int MINIMUM_VALUE = 0;
+    private static final int MAXIMUM_VALUE = 9;
+
     private static Cars cars;
 
     public static void main(String[] args) {
@@ -25,7 +29,7 @@ public class RacingCarGameMain {
 
     private static void start(RacingCarGame racingCarGame, int tryNumber) {
         for(int i=0;i<tryNumber;i++){
-            racingCarGame.run();
+            racingCarGame.run(randoms());
             OutputView.showStatus(cars.getCars());
         }
     }
@@ -37,5 +41,14 @@ public class RacingCarGameMain {
             cars.add(new Car(carName));
         }
         return cars;
+    }
+
+    private static int[] randoms() {
+        int[] randoms = new int[cars.getCars().size()];
+
+        for(int i = 0; i < randoms.length; i++) {
+            randoms[i] = RandomUtils.nextInt(MINIMUM_VALUE,MAXIMUM_VALUE);
+        }
+        return randoms;
     }
 }
