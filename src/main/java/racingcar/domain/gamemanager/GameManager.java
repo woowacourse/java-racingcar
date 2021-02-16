@@ -10,13 +10,12 @@ public class GameManager {
     private Cars cars;
     private Round round;
 
-    public GameManagerResponseDto playGame(GameManagerRequestDto requestDto) {
-        initSet(requestDto);
-        return new GameManagerResponseDto(round.startRace(cars));
-    }
-
-    private void initSet(GameManagerRequestDto requestDto) {
+    public GameManager(GameManagerRequestDto requestDto) {
         this.cars = Cars.of(requestDto.getCarNames());
         this.round = Round.of(requestDto.getRound());
+    }
+
+    public GameManagerResponseDto playGame() {
+        return new GameManagerResponseDto(round.startRace(cars));
     }
 }

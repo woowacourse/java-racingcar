@@ -5,6 +5,7 @@ import racingcar.validator.CarsValidator;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Cars {
     private static final String DELIMITER = ",";
@@ -21,26 +22,22 @@ public class Cars {
     }
 
     public static Cars of(String inputCarNames) {
-        List<Name> carNames = Arrays.stream(inputCarNames.split(DELIMITER))
-                .map(Name::valueOf)
-                .collect(Collectors.toList());
-        List<Car> cars = carNames.stream()
+        List<Car> cars = Arrays.stream(inputCarNames.split(DELIMITER))
+                .map(CarName::valueOf)
                 .map(Car::of)
                 .collect(Collectors.toList());
         return new Cars(cars);
     }
 
     public void tryToMoveCars(List<Integer> numbers) {
-        for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).tryToMove(numbers.get(i));
-        }
+        IntStream.range(0, cars.size())
+                .forEach(i -> cars.get(i).tryToMove(numbers.get(i)));
     }
 
     public Result getResultOfCars() {
-        List<Car> cars = new ArrayList<>();
-        for (Car car : this.cars) {
-            cars.add(Car.getInstance(car));
-        }
+        List<Car> cars = this.cars.stream()
+                .map(Car::getInstance)
+                .collect(Collectors.toList());
         return Result.of(cars);
     }
 

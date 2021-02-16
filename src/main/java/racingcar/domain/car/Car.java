@@ -3,28 +3,28 @@ package racingcar.domain.car;
 import java.util.Objects;
 
 public class Car {
-    private final Name name;
+    private final CarName name;
     private Position position;
 
-    private Car(Name name) {
+    private Car(CarName name) {
         this(name, Position.valueOf(0));
     }
 
-    private Car(Name name, Position position) {
+    private Car(CarName name, Position position) {
         this.name = name;
         this.position = position;
     }
 
-    public static Car of(Name name) {
+    public static Car of(CarName name) {
         return Car.of(name, Position.valueOf(0));
     }
 
-    public static Car of(Name name, Position position) {
+    public static Car of(CarName name, Position position) {
         return new Car(name, position);
     }
 
     public static Car getInstance(Car car) {
-        return new Car(car.getName(), car.getPosition());
+        return new Car(CarName.valueOf(car.getName()), Position.valueOf(car.getPosition()));
     }
 
     public void tryToMove(int value) {
@@ -39,12 +39,12 @@ public class Car {
         return Position.valueOf(this.position.getMaxValue(position));
     }
 
-    public Name getName() {
-        return Name.valueOf(name.getValue());
+    public String getName() {
+        return this.name.getValue();
     }
 
-    public Position getPosition() {
-        return Position.valueOf(this.position.getValue());
+    public int getPosition() {
+        return this.position.getValue();
     }
 
     @Override

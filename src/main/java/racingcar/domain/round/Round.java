@@ -24,7 +24,7 @@ public class Round {
 
     public Results startRace(Cars cars) {
         List<Result> results = new ArrayList<>();
-        for (int i = 0 ; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             cars.tryToMoveCars(RandomNumbersUtils.createRandomNumbers(cars.size()));
             Result result = cars.getResultOfCars();
             results.add(result);

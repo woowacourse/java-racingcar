@@ -9,6 +9,7 @@ import java.util.List;
 public class OutputView {
     private static final String ONE_STEP = "-";
     private static final String WINNERS_DELIMITER = ", ";
+    private static final String STATUS_FORMAT = "%s : %s\n";
 
     public static void printResults(GameManagerResponseDto responseDto) {
         System.out.println("실행 결과");
@@ -20,19 +21,17 @@ public class OutputView {
     private static void printResult(Result result) {
         List<Car> cars = result.getResult();
         for (Car car : cars) {
-            System.out.print(car.getName().getValue());
-            System.out.print(" : ");
-            printCarSteps(car.getPosition().getValue());
+            System.out.printf(STATUS_FORMAT, car.getName(), printCarSteps(car.getPosition()));
         }
         printEmptyLine();
     }
 
-    private static void printCarSteps(int position) {
+    private static StringBuilder printCarSteps(int position) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < position; i++) {
             sb.append(ONE_STEP);
         }
-        System.out.println(sb);
+        return sb;
     }
 
     private static void printWinners(List<String> winners) {

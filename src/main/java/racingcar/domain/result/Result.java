@@ -1,7 +1,7 @@
 package racingcar.domain.result;
 
 import racingcar.domain.car.Car;
-import racingcar.domain.car.Name;
+import racingcar.domain.car.CarName;
 import racingcar.domain.car.Position;
 
 import java.util.Collections;
@@ -31,7 +31,6 @@ public class Result {
         return result.stream()
                 .filter(car -> car.isSamePosition(getMaxPosition()))
                 .map(Car::getName)
-                .map(Name::getValue)
                 .collect(Collectors.toList());
     }
 

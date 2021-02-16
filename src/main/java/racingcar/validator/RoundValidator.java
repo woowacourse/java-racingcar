@@ -3,7 +3,8 @@ package racingcar.validator;
 public class RoundValidator {
     private static final int MIN_COUNT_SIZE = 1;
 
-    private RoundValidator() {}
+    private RoundValidator() {
+    }
 
     public static void validate(String inputCount) {
         validateInteger(inputCount);
@@ -13,7 +14,7 @@ public class RoundValidator {
     private static void validateInteger(String inputCount) {
         try {
             Integer.parseInt(inputCount);
-        }catch (NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             throw new NumberFormatException("시도할 횟수는 숫자여야 합니다.(입력가능범위 : 1 ~ 2147483647)");
         }
     }
