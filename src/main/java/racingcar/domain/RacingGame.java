@@ -37,7 +37,7 @@ public class RacingGame {
 
         race();
 
-        return new RacingGameResult(cars);
+        return new RacingGameResult(cars.getWinners());
     }
 
     private void race() {
