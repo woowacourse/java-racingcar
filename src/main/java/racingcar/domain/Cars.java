@@ -1,24 +1,32 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomUtil;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Cars {
     private static final int MINIMUM_CAR_AMOUNT = 2;
-    private static final int START = 0;
-    private static final int END = 9;
 
-    private final List<Car> cars = new ArrayList<>();
+    private List<Car> cars;
 
     public Cars(List<String> splitCarNames) {
+        List<Car> cars = splitCarNames.stream()
+            .map(carName -> new Car(carName))
+            .collect(Collectors.toList());
         validateNumberOfCar(splitCarNames);
         validateSameName(splitCarNames);
-        splitCarNames.forEach(carName -> cars.add(new Car(carName)));
+        this.cars = cars;
     }
 
-    public void raceOneLap() {
-        cars.forEach(car -> car.move(RandomUtil.nextInt(START, END)));
+    public void raceOneLap(List<Integer> randoms) {
+        if (randoms.size() != cars.size()) {
+            throw new IllegalArgumentException("랜덤 숫자 갯수와 자동차 갯수가 다릅니다.");
+        }
+        for (int i = 0; i < cars.size(); i++) {
+            cars.get(i).move(randoms.get(i));
+        }
     }
 
     public List<Car> getCars() {
@@ -33,8 +41,14 @@ public class Cars {
             .collect(Collectors.toList());
     }
 
+    public int getCarsSize() {
+        return cars.size();
+    }
+
     private int getMaxDistance() {
-        return cars.stream().collect(Collectors.summarizingInt(Car::getPosition)).getMax();
+        return cars.stream()
+            .collect(Collectors.summarizingInt(Car::getPosition))
+            .getMax();
     }
 
     private void validateNumberOfCar(List<String> carNamesInput) {

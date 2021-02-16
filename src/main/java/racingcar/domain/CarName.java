@@ -23,7 +23,7 @@ public class CarName {
 
     private void checkCarNameLength(String carName) {
         if (carName.length() < MIN_NAME_LENGTH || carName.length() > MAM_NAME_LENGTH) {
-            throw new IllegalArgumentException("1~5 사이의 값을 입력해주세요.");
+            throw new IllegalArgumentException("자동차 이름은 1~5 사이의 값을 입력해주세요.");
         }
     }
 
