@@ -24,17 +24,14 @@ public class Car {
     }
 
     public boolean isSamePosition(int targetPosition) {
-        Position carPosition = this.position;
-        return carPosition.isSameValue(targetPosition);
+        return this.position.isSameValue(targetPosition);
     }
 
     public String getName() {
-        Name carName = this.name;
-        return carName.getValue();
+        return this.name.getValue();
     }
 
     public int getPosition() {
-        Position carPosition = this.position;
-        return carPosition.getValue();
+        return this.position.getValue();
     }
 }
