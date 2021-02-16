@@ -11,7 +11,7 @@ public class Car {
         this.distance = new Distance(0);
     }
 
-    public Car(String name, int distance){
+    public Car(String name, int distance) {
         this.carName = new CarName(name);
         this.distance = new Distance(distance);
     }

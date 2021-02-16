@@ -20,7 +20,7 @@ public class RacingCarGameMain {
         int tryNumber = InputView.getTryNumber();
 
         RacingCarGame racingCarGame = new RacingCarGame(cars);
-        start(racingCarGame,tryNumber);
+        start(racingCarGame, tryNumber);
 
         List<CarName> winners = cars.findWinners(cars.findMaxDistance());
 
@@ -28,7 +28,7 @@ public class RacingCarGameMain {
     }
 
     private static void start(RacingCarGame racingCarGame, int tryNumber) {
-        for(int i=0;i<tryNumber;i++){
+        for (int i = 0; i < tryNumber; i++) {
             racingCarGame.run(randoms());
             OutputView.showStatus(cars.getCars());
         }
@@ -46,8 +46,8 @@ public class RacingCarGameMain {
     private static int[] randoms() {
         int[] randoms = new int[cars.getCars().size()];
 
-        for(int i = 0; i < randoms.length; i++) {
-            randoms[i] = RandomUtils.nextInt(MINIMUM_VALUE,MAXIMUM_VALUE);
+        for (int i = 0; i < randoms.length; i++) {
+            randoms[i] = RandomUtils.nextInt(MINIMUM_VALUE, MAXIMUM_VALUE);
         }
         return randoms;
     }

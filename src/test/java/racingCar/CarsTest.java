@@ -57,14 +57,14 @@ class CarsTest {
 
     @Test
     @DisplayName("랜덤값에 따른 자동차 이동 확인 테스트")
-    void move(){
-        int[] randoms = {3,4};
+    void move() {
+        int[] randoms = {3, 4};
         cars.moveCar(randoms);
 
         assertThat(cars).isEqualTo(
                 new Cars(Arrays.asList(
-                        new Car("test",0),
-                        new Car("car2",3)
-        )));
+                        new Car("test", 0),
+                        new Car("car2", 3)
+                )));
     }
 }

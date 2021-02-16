@@ -1,6 +1,5 @@
 package racingCar;
 
-import utils.RandomUtils;
 
 public class RacingCarGame {
 
@@ -11,7 +10,7 @@ public class RacingCarGame {
         this.cars = cars;
     }
 
-    public void run(int[] randoms){
+    public void run(int[] randoms) {
         cars.moveCar(randoms);
     }
 

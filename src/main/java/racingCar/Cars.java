@@ -1,7 +1,5 @@
 package racingCar;
 
-import utils.RandomUtils;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -28,7 +26,7 @@ public class Cars {
     }
 
     public void moveCar(int[] randoms) {
-        for (int i = 0;i<cars.size();i++) {
+        for (int i = 0; i < cars.size(); i++) {
             cars.get(i).move(randoms[i]);
         }
     }
