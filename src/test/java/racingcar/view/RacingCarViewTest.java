@@ -13,6 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RacingCarViewTest {
@@ -25,6 +26,10 @@ public class RacingCarViewTest {
     private static final String SAMPLE_CAR_MESSAGE = "sample : -\n";
     private static final String SAMPLE_TURN = "5";
     private static final String WIN_MESSAGE = "가 최종 우승했습니다.\n";
+    private static final String INTEGER_TURN_MESSAGE = "[ERROR] 시도 횟수는 정수여야만 합니다.";
+    private static final String NEGATIVE_TURN_MESSAGE = "[ERROR] 시도 횟수는 음수일 수 없습니다";
+    private static final String MINUS_TURN_SAMPLE = "-1";
+    private static final String STRING_SAMPLE = "String";
     private static final int CRITERIA = 4;
 
     private final InputStream systemIn = System.in;
@@ -90,5 +95,27 @@ public class RacingCarViewTest {
     void showWinner() {
         RacingCarView.showWinner(SAMPLE_WINNERS);
         assertEquals(CONNECTED_SAMPLE_WINNER + WIN_MESSAGE, getOutput());
+    }
+
+    @Test
+    @DisplayName("정수 여부 확인 테스트")
+    void checkInteger() {
+        provideInput(STRING_SAMPLE);
+        scanner = new Scanner(System.in);
+        assertThatThrownBy(() -> {
+            RacingCarView.turnNumberInput(scanner);
+        }).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(INTEGER_TURN_MESSAGE);
+    }
+
+    @Test
+    @DisplayName("음수 여부 확인 테스트")
+    void checkNegative() {
+        provideInput(MINUS_TURN_SAMPLE);
+        scanner = new Scanner(System.in);
+        assertThatThrownBy(() -> {
+            RacingCarView.turnNumberInput(scanner);
+        }).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(NEGATIVE_TURN_MESSAGE);
     }
 }

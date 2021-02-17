@@ -22,7 +22,9 @@ public class RacingCarView {
 
     public static String turnNumberInput(Scanner scanner) {
         System.out.printf(TURN_INPUT_MESSAGE);
-        return scanner.nextLine();
+        String candidateTurns = scanner.nextLine();
+        checkTurns(candidateTurns);
+        return candidateTurns;
     }
 
     public static void showResultMessage() {
@@ -47,5 +49,24 @@ public class RacingCarView {
         String winners = String.join(", ", winnerList);
         String winnerShowMessage = winners + WIN_MESSAGE;
         System.out.printf(winnerShowMessage);
+    }
+    private static void checkTurns(String turnCandidate) {
+        int integerCandidate = checkInteger(turnCandidate);
+        checkNegative(integerCandidate);
+    }
+
+    private static int checkInteger(String turnCandidate) {
+        try {
+            return Integer.parseInt(turnCandidate);
+        } catch (Exception error) {
+            RacingCarError.notInteger();
+            return ZERO_VALUE;
+        }
+    }
+
+    private static void checkNegative(int integerCandidate) {
+        if (integerCandidate < ZERO_VALUE) {
+            RacingCarError.negativeInteger();
+        }
     }
 }
