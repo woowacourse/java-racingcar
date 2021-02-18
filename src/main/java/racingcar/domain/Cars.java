@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+import racingcar.domain.move.MoveStrategy;
 import racingcar.utils.RandomNumberGenerator;
 
 import java.util.ArrayList;
@@ -21,8 +22,8 @@ public class Cars {
         carNameList.forEach(carName -> carList.add(new Car(carName)));
     }
 
-    public void processOneTurn() {
-        carList.forEach(car -> car.oneTurn(RandomNumberGenerator.turnNumber()));
+    public void processOneTurn(MoveStrategy moveStrategy) {
+        carList.forEach(car -> car.oneTurn(moveStrategy.getCriteria()));
     }
 
     public List<String> findWinners() {
