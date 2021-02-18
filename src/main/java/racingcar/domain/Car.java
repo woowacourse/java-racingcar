@@ -2,15 +2,14 @@ package racingcar.domain;
 
 public class Car {
 
-    private final String name;
-    private int position;
+    private final Name name;
+    private Position position;
 
     private static final int GO_CRITERIA = 4;
-    private static final int INITIAL_POSITION = 0;
 
     public Car(String name) {
-        this.name = name;
-        position = INITIAL_POSITION;
+        this.name = new Name(name);
+        position = new Position();
     }
 
     public void oneTurn(int randomTurnNumber) {
@@ -20,21 +19,19 @@ public class Car {
     }
 
     private void progressPosition() {
-        this.position++;
+        Position carPosition = this.position;
+        carPosition.progressOneTurn();
     }
 
     public boolean isSamePosition(int targetPosition) {
-        if (this.position == targetPosition) {
-            return true;
-        }
-        return false;
+        return this.position.isSameValue(targetPosition);
     }
 
     public String getName() {
-        return this.name;
+        return this.name.getValue();
     }
 
     public int getPosition() {
-        return this.position;
+        return this.position.getValue();
     }
 }

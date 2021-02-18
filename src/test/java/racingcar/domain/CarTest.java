@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,6 +13,7 @@ public class CarTest {
     private static final int ZERO_VALUE = 0;
 
     @Test
+    @DisplayName("자동차 차례 진행 테스트")
     void oneTurn() {
         Car advancedCar = new Car(SAMPLE_CAR_NAME);
         advancedCar.oneTurn(CRITERIA);

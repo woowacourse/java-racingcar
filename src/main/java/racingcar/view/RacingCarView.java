@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import java.util.List;
+import java.util.Scanner;
 import racingcar.domain.Car;
 
 public class RacingCarView {
@@ -11,36 +13,60 @@ public class RacingCarView {
     private static final String DASH = "-";
     private static final String VOID = "";
     private static final String POSITION_MESSAGE = "%s : %s\n";
-    private static final String VOID_NULL = "\n";
     private static final int ZERO_VALUE = 0;
 
-    public static void carListInput() {
+    public static String carListInput(Scanner scanner) {
         System.out.printf(INPUT_MESSAGE);
+        return scanner.nextLine();
     }
 
-    public static void turnNumberInput() {
+    public static String turnNumberInput(Scanner scanner) {
         System.out.printf(TURN_INPUT_MESSAGE);
+        String candidateTurns = scanner.nextLine();
+        checkTurns(candidateTurns);
+        return candidateTurns;
     }
 
     public static void showResultMessage() {
-        System.out.printf(VOID_NULL);
+        System.out.println();
         System.out.printf(RESULT_INDICATION_MESSAGE);
     }
 
     public static void displayPosition(Car car) {
-        String position = VOID;
+        StringBuilder positionBuilder = new StringBuilder(VOID);
         for (int i = ZERO_VALUE; i < car.getPosition(); i++) {
-            position = position + DASH;
+            positionBuilder.append(DASH);
         }
+        String position = positionBuilder.toString();
         System.out.printf(POSITION_MESSAGE, car.getName(), position);
     }
 
     public static void displayTurnInterval() {
-        System.out.printf(VOID_NULL);
+        System.out.println();
     }
 
-    public static void showWinner(String winners) {
+    public static void showWinner(List<String> winnerList) {
+        String winners = String.join(", ", winnerList);
         String winnerShowMessage = winners + WIN_MESSAGE;
         System.out.printf(winnerShowMessage);
+    }
+    private static void checkTurns(String turnCandidate) {
+        int integerCandidate = checkInteger(turnCandidate);
+        checkNegative(integerCandidate);
+    }
+
+    private static int checkInteger(String turnCandidate) {
+        try {
+            return Integer.parseInt(turnCandidate);
+        } catch (Exception error) {
+            RacingCarError.notInteger();
+            return ZERO_VALUE;
+        }
+    }
+
+    private static void checkNegative(int integerCandidate) {
+        if (integerCandidate < ZERO_VALUE) {
+            RacingCarError.negativeInteger();
+        }
     }
 }

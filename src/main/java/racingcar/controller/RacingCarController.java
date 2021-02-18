@@ -2,7 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.view.RacingCarError;
+import racingcar.domain.move.RandomStrategy;
 import racingcar.view.RacingCarView;
 
 import java.util.*;
@@ -20,21 +20,20 @@ public class RacingCarController {
     }
 
     public void generateCars() {
-        RacingCarView.carListInput();
-        String carsInput = scanner.nextLine();
+        String carsInput = RacingCarView.carListInput(this.scanner);
         this.cars = CarsSetGenerator.generateSet(carsInput);
     }
 
     public void receiveTurns() {
-        RacingCarView.turnNumberInput();
-        String candidateTurn = scanner.nextLine();
+        String candidateTurn = RacingCarView.turnNumberInput(this.scanner);
         this.turns = TurnsGenerator.generateTurn(candidateTurn);
     }
 
     public void playGame() {
         RacingCarView.showResultMessage();
+        RandomStrategy randomMoveStartegy = new RandomStrategy();
         for (int i = ZERO_VALUE; i < this.turns; i++) {
-            cars.processOneTurn();
+            cars.processOneTurn(randomMoveStartegy);
             List<Car> carList = cars.getList();
             carList.forEach(RacingCarView::displayPosition);
             RacingCarView.displayTurnInterval();
