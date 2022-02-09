@@ -15,4 +15,10 @@ public class StringCalculatorTest {
 		result = StringCalculator.splitAndSum("");
 		assertThat(result).isEqualTo(0);
 	}
+
+	@Test
+	public void splitAndSum_숫자하나() throws Exception {
+		int result = StringCalculator.splitAndSum("1");
+		assertThat(result).isEqualTo(1);
+	}
 }
