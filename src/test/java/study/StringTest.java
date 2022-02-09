@@ -30,5 +30,11 @@ public class StringTest {
 
         assertThat(result).isEqualTo("1,2");
     }
-    
+
+    @Test
+    void stringCharAtTest() {
+        String input = "abc";
+        char charAtElement = input.charAt(0);
+        assertThat(charAtElement).isEqualTo('a');
+    }
 }
