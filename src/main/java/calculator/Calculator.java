@@ -33,10 +33,14 @@ public class Calculator {
 
     private static int getPositiveNumber(String stringNumber) {
         int number = Integer.parseInt(stringNumber);
+        checkPositiveNumber(number);
+        return number;
+    }
+
+    private static void checkPositiveNumber(int number) {
         if (number < 0) {
             throw new RuntimeException("음수는 입력될 수 없다.");
         }
-        return number;
     }
 
     private static int sumNumbers(List<Integer> numbers) {
