@@ -1,6 +1,5 @@
 package study;
 
-import org.assertj.core.data.Index;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
+
     @DisplayName("split 메서드는 특정 정규표현식을 기준으로 문자열을 배열로 구분한다.")
     @Test
     void splitByComma() {
