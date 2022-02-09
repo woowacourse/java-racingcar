@@ -12,4 +12,4 @@
 ## 예외 상황
 
 - [x] 입력이 숫자가 아닌 경우 `RuntimeException`을 throw 한다.
-- [ ] 입력이 음수인 경우 `RuntimeException`을 throw 한다.
+- [x] 입력이 음수인 경우 `RuntimeException`을 throw 한다.

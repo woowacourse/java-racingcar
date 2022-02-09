@@ -26,7 +26,9 @@ public class Calculator {
   public static int[] toIntegers(String[] stringNumbers) {
     int[] numbers = new int[stringNumbers.length];
     for (int i = 0; i < stringNumbers.length; i++) {
-      numbers[i] = toInteger(stringNumbers[i]);
+      int result = toInteger(stringNumbers[i]);
+      validNegative(result);
+      numbers[i] = result;
     }
     return numbers;
   }
@@ -36,6 +38,12 @@ public class Calculator {
       return Integer.parseInt(stringNumber);
     } catch (NumberFormatException numberFormatException) {
       throw new RuntimeException("숫자가 아닌 입력입니다. 구분자를 이용해서 숫자를 입력해주세요.");
+    }
+  }
+
+  private static void validNegative(int number) {
+    if (number < 0) {
+      throw new RuntimeException("음수 값을 입력했습니다. 양수를 입력해주세요.");
     }
   }
 
