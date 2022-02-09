@@ -56,4 +56,11 @@ public class CalculatorTest {
             .isThrownBy(() -> Calculator.sum(input))
             .withMessageMatching("문자는 입력될 수 없다.");
     }
+
+    @Test
+    @DisplayName("사용자가 지정한 구분자로 덧셈을 진행한다.")
+    void sumCustomDelimiterInput() {
+        String input = "//;\n1;2;3";
+        assertThat(Calculator.sum(input)).isEqualTo(6);
+    }
 }

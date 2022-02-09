@@ -2,16 +2,19 @@ package calculator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Calculator {
 
     private static final String DEFAULT_DELIMITER = ",|:";
+    private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
 
     public static int sum(String input) {
         if (!validateNullAndBlank(input)) {
             return 0;
         }
-        List<Integer> numbers = parseStringsToPositiveInts(splitByDelimiter(input));
+        List<Integer> numbers = parseStringsToPositiveInts(splitInput(input));
         return sumNumbers(numbers);
     }
 
@@ -19,13 +22,23 @@ public class Calculator {
         return input != null && !input.isEmpty();
     }
 
-    private static String[] splitByDelimiter(String input) {
-        return input.split(DEFAULT_DELIMITER);
+    private static String[] splitInput(String input) {
+        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            return splitByDelimiter(m.group(2), customDelimiter);
+        }
+        return splitByDelimiter(input, DEFAULT_DELIMITER);
     }
+
+    private static String[] splitByDelimiter(String input, String delimiter) {
+        return input.split(delimiter);
+    }
+
 
     private static List<Integer> parseStringsToPositiveInts(String[] stringNumbers) {
         List<Integer> numbers = new ArrayList<>();
-        for(String stringNumber : stringNumbers) {
+        for (String stringNumber : stringNumbers) {
             numbers.add(getPositiveNumber(stringNumber));
         }
         return numbers;
