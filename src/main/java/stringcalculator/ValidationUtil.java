@@ -13,9 +13,13 @@ public class ValidationUtil {
 
     public static void checkPositive(String[] numbers) {
         for (String number : numbers) {
-            if (Integer.parseInt(number) < 0) {
-                throw new RuntimeException("음수가 포함돼있습니다!");
-            }
+            checkPositive(number);
+        }
+    }
+
+    private static void checkPositive(String number) {
+        if (Integer.parseInt(number) < 0) {
+            throw new RuntimeException("음수가 포함돼있습니다!");
         }
     }
 }
