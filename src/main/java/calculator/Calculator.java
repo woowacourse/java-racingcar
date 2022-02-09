@@ -7,12 +7,15 @@ import java.util.regex.Pattern;
 
 public class Calculator {
 
+    private static final int DEFAULT_NUMBER = 0;
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
+    private static final int CUSTOM_DELIMITER_INDEX = 1;
+    private static final int CUSTOM_INPUT_INDEX = 2;
 
     public static int sum(String input) {
         if (!validateNullAndBlank(input)) {
-            return 0;
+            return DEFAULT_NUMBER;
         }
         List<Integer> numbers = parseStringsToPositiveInts(splitInput(input));
         return sumNumbers(numbers);
@@ -25,8 +28,7 @@ public class Calculator {
     private static String[] splitInput(String input) {
         Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
         if (m.find()) {
-            String customDelimiter = m.group(1);
-            return splitByDelimiter(m.group(2), customDelimiter);
+            return splitByDelimiter(m.group(CUSTOM_INPUT_INDEX), m.group(CUSTOM_DELIMITER_INDEX));
         }
         return splitByDelimiter(input, DEFAULT_DELIMITER);
     }
