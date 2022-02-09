@@ -14,7 +14,7 @@ public class StringCalculator {
 	}
 
 	public static List<String> splitText(String text) {
-		return Arrays.asList(text.split(","));
+		return Arrays.asList(text.split(",|:"));
 	}
 
 	public static List<Integer> toInt(List<String> list) {
