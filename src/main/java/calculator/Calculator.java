@@ -25,10 +25,18 @@ public class Calculator {
 
   public static int[] toIntegers(String[] stringNumbers) {
     int[] numbers = new int[stringNumbers.length];
-    for(int i=0; i < stringNumbers.length; i++){
-      numbers[i] = Integer.parseInt(stringNumbers[i]);
+    for (int i = 0; i < stringNumbers.length; i++) {
+      numbers[i] = toInteger(stringNumbers[i]);
     }
     return numbers;
+  }
+
+  private static int toInteger(String stringNumber) {
+    try {
+      return Integer.parseInt(stringNumber);
+    } catch (NumberFormatException numberFormatException) {
+      throw new RuntimeException("숫자가 아닌 입력입니다. 구분자를 이용해서 숫자를 입력해주세요.");
+    }
   }
 
   public static int addAll(int[] numbers) {
