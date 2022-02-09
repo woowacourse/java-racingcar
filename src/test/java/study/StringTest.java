@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
     @DisplayName("split 메서드는 특정 정규표현식을 기준으로 문자열을 배열로 구분한다.")
@@ -30,7 +31,7 @@ public class StringTest {
     @Test
     void substringRemoveParenthesis() {
         String input = "(1,2)";
-        String substringResult = input.substring(1,4);
+        String substringResult = input.substring(1, 4);
 
         assertThat(substringResult).isEqualTo("1,2");
     }
@@ -46,5 +47,15 @@ public class StringTest {
         assertThat(charAtResult0).isEqualTo('a');
         assertThat(charAtResult1).isEqualTo('b');
         assertThat(charAtResult2).isEqualTo('c');
+    }
+
+    @DisplayName("charAt 메서드는 문자열의 위치를 벗어나는 경우 IndexOutOfBounds 예외가 발생한다.")
+    @Test
+    void charAtThrowExceptionOnOutOfBounds() {
+        String input = "abc";
+        assertThatThrownBy(() -> {
+            input.charAt(3);
+        }).isInstanceOf(IndexOutOfBoundsException.class)
+          .hasMessageContaining("String index out of range: 3");
     }
 }
