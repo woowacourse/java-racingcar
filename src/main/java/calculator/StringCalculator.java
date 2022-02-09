@@ -41,11 +41,19 @@ public class StringCalculator {
 	}
 
 	private int[] toInts(String[] inputTokens) {
-		int[] numberList = new int[inputTokens.length];
+		int[] numberArray = new int[inputTokens.length];
 		for (int i = 0; i < inputTokens.length; i++) {
-			numberList[i] = Integer.parseInt(inputTokens[i]);
+			numberArray[i] = parseInt(inputTokens[i]);
 		}
-		return numberList;
+		return numberArray;
+	}
+
+	private int parseInt(String inputToken) {
+		int value = Integer.parseInt(inputToken);
+		if (value < 0) {
+			throw new IllegalArgumentException("숫자는 양수 또는 0이여야 합니다.");
+		}
+		return value;
 	}
 
 	private int sum(int[] numbers) {

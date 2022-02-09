@@ -41,4 +41,10 @@ public class StringCalculatorTest {
 	public void 커스텀_구분자를_지정후_합을_반환() {
 		assertThat(calculator.calculate("//;\n1;2;3")).isEqualTo(6);
 	}
+
+	@Test
+	public void 음수를_전달할_경우_예외_발생() {
+		assertThatThrownBy(() -> calculator.calculate("-1,2,3"))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
 }
