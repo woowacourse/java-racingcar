@@ -16,13 +16,12 @@ public class StringCalculator {
 			return Integer.parseInt(input);
 		}
 		List<String> numberStringList = split(input);
-		// 문자나 음수 걸러내기
 		checkRightPositiveInteger(numberStringList);
 		List<Integer> numberArray = numberStringList.stream()
 			.mapToInt(Integer::parseInt)
 			.boxed()
 			.collect(Collectors.toList());
-
+		return numberArray.stream().mapToInt(num -> num).sum();
 	}
 
 	private static void checkRightPositiveInteger(List<String> numberStringList) {
