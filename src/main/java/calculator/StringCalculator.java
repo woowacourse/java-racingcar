@@ -12,6 +12,9 @@ public class StringCalculator {
 			return 0;
 		}
 		List<Integer> numbers = toInt(splitText(text));
+		if (numbers.stream().anyMatch(a -> a < 0)) {
+			throw new RuntimeException();
+		}
 		return numbers.stream().mapToInt(i -> i).sum();
 	}
 
