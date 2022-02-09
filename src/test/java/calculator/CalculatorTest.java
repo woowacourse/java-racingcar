@@ -46,6 +46,13 @@ public class CalculatorTest {
   }
 
   @Test
+  public void toIntegers_음수_입력_test() throws Exception {
+    String[] stringNumbers = {"-1", "-2"};
+    assertThatThrownBy(() -> Calculator.toIntegers(stringNumbers))
+        .isInstanceOf(RuntimeException.class);
+  }
+
+  @Test
   public void addAll_test() throws Exception {
     int[] numbers = {1, 2};
     int result = Calculator.addAll(numbers);
