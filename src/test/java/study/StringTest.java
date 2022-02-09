@@ -31,4 +31,17 @@ public class StringTest {
 
         assertThat(substringResult).isEqualTo("1,2");
     }
+
+    @DisplayName("charAt 메서드는 문자열의 특정 위치에 있는 문자를 추출한다.")
+    @Test
+    void charAtGetsCharByIndex() {
+        String input = "abc";
+        char charAtResult0 = input.charAt(0);
+        char charAtResult1 = input.charAt(1);
+        char charAtResult2 = input.charAt(2);
+
+        assertThat(charAtResult0).isEqualTo('a');
+        assertThat(charAtResult1).isEqualTo('b');
+        assertThat(charAtResult2).isEqualTo('c');
+    }
 }
