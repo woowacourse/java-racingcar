@@ -7,11 +7,19 @@ import org.junit.jupiter.api.Test;
 public class StringTest {
 
     @Test
-    void splitTest() {
+    void splitTestContains() {
         String input = "1,2";
         String[] result = input.split(",");
 
         assertThat(result).contains("2", "1");
         assertThat(result).containsExactly("1", "2");
+    }
+
+    @Test
+    void splitTestContainsOnly1() {
+        String input = "1";
+        String[] result = input.split(",");
+
+        assertThat(result).contains("1");
     }
 }
