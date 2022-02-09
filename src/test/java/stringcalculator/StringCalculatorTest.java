@@ -18,8 +18,8 @@ public class StringCalculatorTest {
 
 	@DisplayName("빈 문자열 입력 시 예외 발생")
 	@Test
-	void inputEmptyString() {
-		assertThatThrownBy(() -> stringCalculator.sum(""))
+	void validateInput() {
+		assertThatThrownBy(() -> stringCalculator.validateInput(""))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("빈 문자열을 입력할 수 없습니다.");
 	}

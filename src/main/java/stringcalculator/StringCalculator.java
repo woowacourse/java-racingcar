@@ -7,11 +7,10 @@ public class StringCalculator {
 	public StringCalculator() {
 	}
 
-	public int sum(String text) {
+	public void validateInput(String text) {
 		if (text.isEmpty()) {
 			throw new IllegalArgumentException("빈 문자열을 입력할 수 없습니다.");
 		}
-		return 0;
 	}
 
 	public String[] split(String text) {
