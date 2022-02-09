@@ -2,6 +2,8 @@ package calculator;
 
 public class Calculator {
 
+    private static final String DEFAULT_DELIMITER = ",|:";
+
     public static int sum(String input) {
         if (!validateNullAndBlank(input)) {
             return 0;
@@ -16,7 +18,7 @@ public class Calculator {
     }
 
     private static String[] splitByDelimiter(String input) {
-        return input.split(",|:");
+        return input.split(DEFAULT_DELIMITER);
     }
 
     private static int[] parseStringsToInts(String[] numbers) {
