@@ -1,7 +1,25 @@
-# java-racingcar
+# 🚀 미션 - TDD 문자열 덧셈 계산기
 
-자동차 경주 미션 저장소
+# 📈 기능 목록
+- [ ] 구분자를 기준으로 구분한다
+  - 쉼표(,), 콜론(:)
+  - 커스텀 구분자("//","\n") -> 여러개 가능
+- [ ] 파라미터가 숫자 이외의 값, 음수이면 예외처리
+  - [예외] null
+  - [예외] 숫자아님
+  - [예외] 구분자 앞뒤에 아무것도 없을 때
+  - RuntimeException
+- [ ] 파라미터들을 더한 값을 리턴한다
+---
 
-## 우아한테크코스 코드리뷰
+## 🔍구현 로직
 
-- [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
+- ### Main diagram
+
+
+- ### Util diagram
+
+
+- ### View diagram
+
+---
