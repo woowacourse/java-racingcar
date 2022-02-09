@@ -5,9 +5,10 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
 
@@ -26,5 +27,11 @@ public class SetTest {
 	void sizeSet() {
 		int size = numbers.size();
 		assertThat(size).isEqualTo(3);
+	}
+
+	@ParameterizedTest
+	@ValueSource(ints = {1, 2, 3})
+	void containsSet(int number) {
+		assertThat(numbers.contains(number)).isTrue();
 	}
 }
