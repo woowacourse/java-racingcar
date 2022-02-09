@@ -16,4 +16,9 @@ public class StringCalculatorTest {
 	public void 널_0반환() {
 		assertThat(calculator.calculate(null)).isEqualTo(0);
 	}
+
+	@Test
+	public void 숫자가_하나_그대로반환() {
+		assertThat(calculator.calculate("1")).isEqualTo(1);
+	}
 }

@@ -1,7 +1,12 @@
 package calculator;
 
 public class StringCalculator {
+
 	public int calculate(String text) {
-		return 0;
+		if (text == null || text.isEmpty()) {
+			return 0;
+		}
+
+		return Integer.parseInt(text);
 	}
 }
