@@ -1,5 +1,7 @@
 package racingcar.validator;
 
+import java.util.Arrays;
+
 public class Validator {
 
 	private static final String EMPTY_CAR_NAME_ERROR_MESSAGE = "자동차의 이름은 1글자 이상이어야 합니다.";
@@ -13,7 +15,12 @@ public class Validator {
 	private static final String SEPARATOR_OF_CAR_NAME = ",";
 	private static final String INTEGER_REGEX = "-?\\d+";
 
-	public static void ofCarName(String name) {
+	public static void ofCarNames(String input) {
+		Arrays.stream(ofCarCount(input))
+			.forEach(Validator::ofCarName);
+	}
+
+	private static void ofCarName(String name) {
 		if (name.isEmpty()) {
 			throw new IllegalArgumentException(EMPTY_CAR_NAME_ERROR_MESSAGE);
 		}
@@ -22,10 +29,12 @@ public class Validator {
 		}
 	}
 
-	public static void ofCarCount(String input) {
-		if (input.split(SEPARATOR_OF_CAR_NAME).length < CAR_COUNT_LIMIT) {
+	private static String[] ofCarCount(String input) {
+		String[] split = input.split(SEPARATOR_OF_CAR_NAME);
+		if (split.length < CAR_COUNT_LIMIT) {
 			throw new IllegalArgumentException(CAR_COUNT_LIMIT_ERROR_MESSAGE);
 		}
+		return split;
 	}
 
 	public static void ofAttemptNumber(String input) {
