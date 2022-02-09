@@ -20,6 +20,12 @@ public class CalculatorTest {
   }
 
   @Test
+  public void sum_입력이_하나인_경우_test() throws Exception {
+    int inputResult = Calculator.sum("3");
+    assertThat(inputResult).isEqualTo(3);
+  }
+
+  @Test
   public void sum_split_test() throws Exception {
     String[] numbers = Calculator.split("1,2");
     assertThat(numbers).contains("1", "2");
