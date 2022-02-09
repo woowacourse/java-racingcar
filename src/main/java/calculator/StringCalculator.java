@@ -39,17 +39,22 @@ public class StringCalculator {
     }
 
     public static int adder(String[] tokens) {
-        if (Arrays.asList(tokens).stream().anyMatch(x -> Integer.parseInt(x) < 0)) {
-            throw new RuntimeException();
-        }
+        negativeCheck(tokens);
         zeroFill();
         Arrays.asList(tokens).forEach(x -> sum += Integer.parseInt(x));
         return sum;
     }
 
-    public static void zeroFill(){
-        sum=0;
+    public static void negativeCheck(String[] tokens) {
+        if (Arrays.asList(tokens).stream().anyMatch(x -> Integer.parseInt(x) < 0)) {
+            throw new RuntimeException();
+        }
     }
+
+    public static void zeroFill() {
+        sum = 0;
+    }
+
     public static boolean isNumber(String s) {
         return s.matches("-?\\d+(\\.\\d+)?");
     }
