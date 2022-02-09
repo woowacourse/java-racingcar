@@ -3,6 +3,7 @@ package stringcalculator;
 import java.util.Arrays;
 
 public class StringCalculator {
+
 	public StringCalculator() {
 	}
 
@@ -15,6 +16,10 @@ public class StringCalculator {
 
 	public String[] split(String text) {
 		return text.split(",|:");
+	}
+
+	public String[] split(String text, String customDelimiter) {
+		return text.split(customDelimiter);
 	}
 
 	public boolean isNumber(String text) {

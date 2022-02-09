@@ -31,6 +31,14 @@ public class StringCalculatorTest {
 		assertThat(stringCalculator.split(input)).containsExactly("1","2","3");
 	}
 
+	@DisplayName("커스텀 구분자로 분리")
+	@ParameterizedTest
+	@CsvSource(value = {"1;2;3,;", "1_2_3,_", "1-2-3,-"})
+	void splitStringWithCustomDelimiter(String input, String delimiter) {
+		assertThat(stringCalculator.split(input, delimiter)).containsExactly("1", "2", "3");
+	}
+
+
 	@DisplayName("구분된 문자열이 숫자인지 확인")
 	@ParameterizedTest
 	@CsvSource(value = {"1,true", "a,false"})
