@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
@@ -39,5 +40,15 @@ public class SetTest {
         boolean containsResult = numbers.contains(number);
 
         assertThat(containsResult).isTrue();
+    }
+
+    @DisplayName("contains 메서드는 Set에 특정 값의 존재 여부에 대해 참/거짓을 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1,true", "2,true", "3,true", "4,false", "5,false"}, delimiter = ',')
+    void containsOrNot(String inputString, String resultString) {
+        int input = Integer.parseInt(inputString);
+        boolean result = Boolean.parseBoolean(resultString);
+
+        assertThat(numbers.contains(input)).isEqualTo(result);
     }
 }
