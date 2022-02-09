@@ -39,6 +39,13 @@ public class CalculatorTest {
 		assertThat(result).isEqualTo(6);
 	}
 
+	@DisplayName("중간에 공백 들어올 때 테스트")
+	@Test
+	public void splitAndSum_중간_공백_테스트() throws Exception {
+		int result = calculator.splitAndSum("1,:3");
+		assertThat(result).isEqualTo(4);
+	}
+
 	@DisplayName("사용자가 추가한 구분자 테스트")
 	@Test
 	public void splitAndSum_custom_구분자() throws Exception {
