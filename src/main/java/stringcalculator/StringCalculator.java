@@ -1,5 +1,7 @@
 package stringcalculator;
 
+import java.util.Arrays;
+
 public class StringCalculator {
 	public StringCalculator() {
 	}
@@ -34,5 +36,9 @@ public class StringCalculator {
 
 	public boolean isNegative(int number) {
 		return number < 0;
+	}
+
+	public String getDelimiterFromText(String text) {
+		return text.split("\\\\n")[0].split("//")[1];
 	}
 }

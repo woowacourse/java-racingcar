@@ -60,4 +60,11 @@ public class StringCalculatorTest {
 	void isNegative(int number, boolean expected) {
 		assertThat(stringCalculator.isNegative(number)).isEqualTo(expected);
 	}
+
+	@DisplayName("구분자 파싱")
+	@ParameterizedTest
+	@CsvSource(value = {"//;\\n,;", "//_\\n,_", "//-\\n,-"})
+	void getDelimiterFromText(String text, String expected) {
+		assertThat(stringCalculator.getDelimiterFromText(text)).isEqualTo(expected);
+	}
 }
