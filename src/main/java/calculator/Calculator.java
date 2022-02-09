@@ -32,9 +32,13 @@ public class Calculator {
     }
 
     private static int getPositiveNumber(String stringNumber) {
-        int number = Integer.parseInt(stringNumber);
-        checkPositiveNumber(number);
-        return number;
+        try {
+            int number = Integer.parseInt(stringNumber);
+            checkPositiveNumber(number);
+            return number;
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("문자는 입력될 수 없다.");
+        }
     }
 
     private static void checkPositiveNumber(int number) {

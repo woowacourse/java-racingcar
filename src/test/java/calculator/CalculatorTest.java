@@ -47,4 +47,13 @@ public class CalculatorTest {
             .isThrownBy(() -> Calculator.sum(input))
             .withMessageMatching("음수는 입력될 수 없다.");
     }
+
+    @Test
+    @DisplayName("문자가 들어온 경우 예외가 발생한다.")
+    void sumStringException() {
+        String input = "문,자,3";
+        assertThatExceptionOfType(RuntimeException.class)
+            .isThrownBy(() -> Calculator.sum(input))
+            .withMessageMatching("문자는 입력될 수 없다.");
+    }
 }
