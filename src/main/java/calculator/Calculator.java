@@ -3,9 +3,13 @@ package calculator;
 public class Calculator {
 
     public static int sum(String input) {
-        if (input == null || input.isEmpty()) {
+        if (!validateNullAndBlank(input)) {
             return 0;
         }
         return -100;
+    }
+
+    private static boolean validateNullAndBlank(String input) {
+        return input != null && !input.isEmpty();
     }
 }
