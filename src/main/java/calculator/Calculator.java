@@ -5,7 +5,7 @@ public class Calculator {
 		if (!isValidValues(text)) {
 			return 0;
 		}
-		String[] numbers = text.split(",");
+		String[] numbers = text.split(",|:");
 
 		return add(numbers);
 	}
