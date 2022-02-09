@@ -17,4 +17,10 @@ public class CalculatorTest {
     int inputResult = Calculator.sum("");
     assertThat(inputResult).isEqualTo(0);
   }
+
+  @Test
+  public void sum_split_test() throws Exception {
+    String[] numbers = Calculator.split("1,2");
+    assertThat(numbers).contains("1", "2");
+  }
 }
