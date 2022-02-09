@@ -1,5 +1,8 @@
 package calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Calculator {
 
     private static final String DEFAULT_DELIMITER = ",|:";
@@ -8,7 +11,7 @@ public class Calculator {
         if (!validateNullAndBlank(input)) {
             return 0;
         }
-        int[] numbers = parseStringsToInts(splitByDelimiter(input));
+        List<Integer> numbers = parseStringsToInts(splitByDelimiter(input));
 
         int result = 0;
         for (int number : numbers) {
@@ -21,12 +24,12 @@ public class Calculator {
         return input.split(DEFAULT_DELIMITER);
     }
 
-    private static int[] parseStringsToInts(String[] numbers) {
-        int[] results = new int[numbers.length];
-        for (int i = 0; i < numbers.length; i++) {
-            results[i] = Integer.parseInt(numbers[i]);
+    private static List<Integer> parseStringsToInts(String[] numbers) {
+        List<Integer> resultList = new ArrayList<>();
+        for(String number : numbers) {
+            resultList.add(Integer.parseInt(number));
         }
-        return results;
+        return resultList;
     }
 
     private static boolean validateNullAndBlank(String input) {
