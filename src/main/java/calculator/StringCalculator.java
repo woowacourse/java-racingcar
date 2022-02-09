@@ -33,7 +33,7 @@ public class StringCalculator {
 	}
 
 	private static boolean isNullOrEmpty(String input) {
-		return input.isBlank() || input == null;
+		return input == null || input.isBlank();
 	}
 
 	private static boolean isPositiveInteger(String input) {
