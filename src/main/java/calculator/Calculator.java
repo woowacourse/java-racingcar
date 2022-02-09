@@ -12,7 +12,6 @@ public class Calculator {
             return 0;
         }
         List<Integer> numbers = parseStringsToInts(splitByDelimiter(input));
-
         int result = 0;
         for (int number : numbers) {
             result += number;
@@ -20,19 +19,19 @@ public class Calculator {
         return result;
     }
 
+    private static boolean validateNullAndBlank(String input) {
+        return input != null && !input.isEmpty();
+    }
+
     private static String[] splitByDelimiter(String input) {
         return input.split(DEFAULT_DELIMITER);
     }
 
-    private static List<Integer> parseStringsToInts(String[] numbers) {
-        List<Integer> resultList = new ArrayList<>();
-        for(String number : numbers) {
-            resultList.add(Integer.parseInt(number));
+    private static List<Integer> parseStringsToInts(String[] stringNumbers) {
+        List<Integer> numbers = new ArrayList<>();
+        for(String stringNumber : stringNumbers) {
+            numbers.add(Integer.parseInt(stringNumber));
         }
-        return resultList;
-    }
-
-    private static boolean validateNullAndBlank(String input) {
-        return input != null && !input.isEmpty();
+        return numbers;
     }
 }
