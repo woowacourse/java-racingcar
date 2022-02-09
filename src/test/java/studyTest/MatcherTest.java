@@ -1,4 +1,4 @@
-package calculator;
+package studyTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
