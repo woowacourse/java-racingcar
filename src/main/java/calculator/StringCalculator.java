@@ -12,26 +12,25 @@ public class StringCalculator {
 			return 0;
 		}
 		List<Integer> numbers = toInt(splitText(text));
-		if (numbers.stream().anyMatch(a -> a < 0)) {
+		if (numbers.stream().anyMatch(number -> number < 0)) {
 			throw new RuntimeException();
 		}
-		return numbers.stream().mapToInt(i -> i).sum();
+		return numbers.stream().mapToInt(number -> number).sum();
 	}
 
 	public static List<String> splitText(String text) {
 		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
 		String customDelimiter = "";
-		String str = text;
 		if (m.find()) {
 			customDelimiter = "|" + m.group(1);
-			str = m.group(2);
+			text = m.group(2);
 		}
-		return Arrays.asList(str.split(",|:" + customDelimiter));
+		return Arrays.asList(text.split(",|:" + customDelimiter));
 	}
 
 	public static List<Integer> toInt(List<String> list) {
 		return list.stream()
-			.map(a -> Integer.parseInt(a))
+			.map(numberStr -> Integer.parseInt(numberStr))
 			.collect(Collectors.toList());
 	}
 }
