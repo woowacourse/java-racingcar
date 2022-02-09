@@ -35,7 +35,6 @@ public class Calculator {
         return input.split(delimiter);
     }
 
-
     private static List<Integer> parseStringsToPositiveInts(String[] stringNumbers) {
         List<Integer> numbers = new ArrayList<>();
         for (String stringNumber : stringNumbers) {
