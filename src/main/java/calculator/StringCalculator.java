@@ -28,8 +28,20 @@ public class StringCalculator {
 	}
 
 	private static int sum(String[] values) {
+		validatePositiveNumber(values);
 		return Arrays.stream(values)
 			.mapToInt(Integer::parseInt)
 			.sum();
+	}
+
+	private static void validatePositiveNumber(String[] values) {
+		long count = Arrays.stream(values)
+			.mapToInt(Integer::parseInt)
+			.filter(value -> value < 0)
+			.count();
+
+		if (count != 0) {
+			throw new RuntimeException();
+		}
 	}
 }
