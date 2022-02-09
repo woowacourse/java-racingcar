@@ -33,28 +33,23 @@ public class SetTest {
     // Test Case 구현
     @Test
     @DisplayName("요구사항 1")
-    void size(){
+    void size() {
         assertThat(numbers.size()).isEqualTo(3);
     }
 
-    @Test
-    @DisplayName("요구사항 2")
-    void contains() {
-        assertThat(numbers.contains(1)).isTrue();
-        assertThat(numbers.contains(2)).isTrue();
-        assertThat(numbers.contains(3)).isTrue();
-    }
 
+    @DisplayName("요구사항 2")
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3})
+    @ValueSource(ints = {1, 2, 3})
     void isContain_ShouldReturnTrueForNumberInNumbers(int input) {
         assertTrue(numbers.contains(input));
     }
 
+    @DisplayName("요구사항 3")
     @ParameterizedTest
-    @CsvSource(value = {"1:true","2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
     void isSmallerThanFour(int input, boolean expected) {
-        assertEquals(expected, input<4);
+        //assertEquals(expected, input < 4);
+        assertThat(numbers.contains(input)).isEqualTo(expected);
     }
-
 }
