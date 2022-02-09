@@ -22,4 +22,12 @@ public class StringCalculatorTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    void 커스텀_구분자() {
+        String[] actual = StringCalculator.splitString("//;\n1;2;3");
+        String[] expected = {"1", "2", "3"};
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
 }
