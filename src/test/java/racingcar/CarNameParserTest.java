@@ -21,4 +21,11 @@ public class CarNameParserTest {
         assertThatThrownBy(() -> parser.parse("pobi,crong,honuxx"))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void 이름이_공백일_경우_예외_발생() {
+        CarNameParser parser = new CarNameParser();
+        assertThatThrownBy(() -> parser.parse("pobi,,honux"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -18,6 +18,13 @@ public class CarNameParser {
         if (isInvalidLength(names)) {
             throw new IllegalArgumentException("자동차 이름은 5글자 이하여야 합니다.");
         }
+        if (isEmptyName(names)) {
+            throw new IllegalArgumentException("자동차 이름은 공백일 수 없습니다.");
+        }
+    }
+
+    private boolean isEmptyName(String names) {
+        return Arrays.stream(splitByComma(names)).anyMatch(String::isEmpty);
     }
 
     private boolean isInvalidLength(String names) {
