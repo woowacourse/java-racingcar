@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringTest {
+    @DisplayName("split 메서드는 특정 정규표현식을 기준으로 문자열을 배열로 구분한다.")
     @Test
     void splitByComma() {
         String input = "1,2";
@@ -16,6 +17,7 @@ public class StringTest {
         assertThat(splitResult).containsExactly("1", "2");
     }
 
+    @DisplayName("split 메서드는 특정 정규표현식이 문자열에 없더라도 예외가 발생하지 않는다.")
     @Test
     void splitByCommaWithoutComma() {
         String input = "1";
@@ -24,6 +26,7 @@ public class StringTest {
         assertThat(splitResult).containsExactly("1");
     }
 
+    @DisplayName("substring 메서드는 문자열로부터 특정 범위를 추출한다.")
     @Test
     void substringRemoveParenthesis() {
         String input = "(1,2)";
