@@ -7,5 +7,8 @@ public class Calculator {
     }
     return 0;
   }
-}
 
+  public static String[] split(String input) {
+    return input.split("[,:]");
+  }
+}
