@@ -18,21 +18,21 @@ public class CalculatorTest {
 
     @Test
     @DisplayName("입력값에 구분자가 없는 숫자를 그대로 반환한다.")
-    void sumNotContainsDelimeterInput() {
+    void sumNotContainsDelimiterInput() {
         String input = "123";
         assertThat(Calculator.sum(input)).isEqualTo(123);
     }
 
     @Test
     @DisplayName("콤마가 구분자로 들어오는 경우 값의 덧셈을 반환한다.")
-    void sumCommaDelimeterInput() {
+    void sumCommaDelimiterInput() {
         String input = "1,2,3";
         assertThat(Calculator.sum(input)).isEqualTo(6);
     }
 
     @Test
     @DisplayName("컬럼이 구분자로 들어오는 경우 값의 덧셈을 반환한다.")
-    void sumColumnDelimeterInput() {
+    void sumColumnDelimiterInput() {
         String input = "1:2:3";
         assertThat(Calculator.sum(input)).isEqualTo(6);
     }

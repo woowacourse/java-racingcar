@@ -6,12 +6,25 @@ public class Calculator {
         if (!validateNullAndBlank(input)) {
             return 0;
         }
-        String[] numbers = input.split(",|:");
+        int[] numbers = parseStringsToInts(splitByDelimiter(input));
+
         int result = 0;
-        for (String number : numbers) {
-            result += Integer.parseInt(number);
+        for (int number : numbers) {
+            result += number;
         }
         return result;
+    }
+
+    private static String[] splitByDelimiter(String input) {
+        return input.split(",|:");
+    }
+
+    private static int[] parseStringsToInts(String[] numbers) {
+        int[] results = new int[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            results[i] = Integer.parseInt(numbers[i]);
+        }
+        return results;
     }
 
     private static boolean validateNullAndBlank(String input) {
