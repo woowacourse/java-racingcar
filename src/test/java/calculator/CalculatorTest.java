@@ -23,4 +23,11 @@ public class CalculatorTest {
     String[] numbers = Calculator.split("1,2");
     assertThat(numbers).contains("1", "2");
   }
+
+  @Test
+  public void toInteger_test() throws Exception {
+    String[] stringNumbers = {"1", "2"};
+    int[] numbers = Calculator.toInteger(stringNumbers);
+    assertThat(numbers).contains(1, 2);
+  }
 }
