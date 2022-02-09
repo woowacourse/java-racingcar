@@ -1,6 +1,7 @@
 package calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +36,13 @@ public class CalculatorTest {
     String[] stringNumbers = {"1", "2"};
     int[] numbers = Calculator.toIntegers(stringNumbers);
     assertThat(numbers).contains(1, 2);
+  }
+
+  @Test
+  public void toIntegers_숫자가_아닌_입력_test() throws Exception {
+    String[] stringNumbers = {"a", "b"};
+    assertThatThrownBy(() -> Calculator.toIntegers(stringNumbers))
+        .isInstanceOf(RuntimeException.class);
   }
 
   @Test
