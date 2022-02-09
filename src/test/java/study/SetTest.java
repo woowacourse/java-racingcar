@@ -8,6 +8,7 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
@@ -33,5 +34,11 @@ public class SetTest {
 	@ValueSource(ints = {1, 2, 3})
 	void containsSet(int number) {
 		assertThat(numbers.contains(number)).isTrue();
+	}
+
+	@ParameterizedTest
+	@CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
+	void containsWithFallibleValues(int number, boolean expected) {
+		assertThat(numbers.contains(number)).isEqualTo(expected);
 	}
 }
