@@ -7,14 +7,17 @@ public class Calculator {
 		}
 		String[] numbers = text.split(",");
 
-		return add(Integer.parseInt(numbers[0]), Integer.parseInt(numbers[1]));
+		return add(numbers);
 	}
 
 	private boolean isValidValues(String text) {
 		return text != null && !text.trim().isEmpty();
 	}
 
-	private int add(int i, int j) {
-		return i + j;
+	private int add(String[] numbers) {
+		if (numbers.length == 1) {
+			return Integer.parseInt(numbers[0]);
+		}
+		return Integer.parseInt(numbers[0]) + Integer.parseInt(numbers[1]);
 	}
 }
