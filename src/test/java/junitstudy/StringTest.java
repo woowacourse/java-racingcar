@@ -8,26 +8,16 @@ public class StringTest {
 
     @Test
     public void 구분자_테스트() {
-        //given
-        String input = "1,2";
-
-        //when
-        String[] result = input.split(",");
-
-        //then
-        assertThat(result).contains("1", "2");
+        assertThat(split("1,2")).contains("1", "2");
     }
 
     @Test
     public void 숫자_한개_테스트() {
-        //given
-        String input = "1";
+        assertThat(split("1")).containsExactly("1");
+    }
 
-        //when
-        String[] result = input.split(",");
-
-        //then
-        assertThat(result).containsExactly("1");
+    private String[] split(String input) {
+        return input.split(",");
     }
 
 }
