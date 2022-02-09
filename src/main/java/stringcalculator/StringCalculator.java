@@ -14,4 +14,13 @@ public class StringCalculator {
 	public String[] split(String text) {
 		return text.split(",|:");
 	}
+
+	public boolean isNumber(String text) {
+		try {
+			Integer.parseInt(text);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
 }

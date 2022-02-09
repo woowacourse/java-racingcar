@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringCalculatorTest {
@@ -30,4 +31,10 @@ public class StringCalculatorTest {
 		assertThat(stringCalculator.split(input)).containsExactly("1","2","3");
 	}
 
+	@DisplayName("구분된 문자열이 숫자인지 확인")
+	@ParameterizedTest
+	@CsvSource(value = {"1,true", "a,false"})
+	void isNumber(String text, Boolean expected) {
+		assertThat(stringCalculator.isNumber(text)).isEqualTo(expected);
+	}
 }
