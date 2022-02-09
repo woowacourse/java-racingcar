@@ -26,9 +26,17 @@ public class Calculator {
     private static List<Integer> parseStringsToInts(String[] stringNumbers) {
         List<Integer> numbers = new ArrayList<>();
         for(String stringNumber : stringNumbers) {
-            numbers.add(Integer.parseInt(stringNumber));
+            numbers.add(getPositiveNumber(stringNumber));
         }
         return numbers;
+    }
+
+    private static int getPositiveNumber(String stringNumber) {
+        int number = Integer.parseInt(stringNumber);
+        if (number < 0) {
+            throw new RuntimeException("음수는 입력될 수 없다.");
+        }
+        return number;
     }
 
     private static int sumNumbers(List<Integer> numbers) {

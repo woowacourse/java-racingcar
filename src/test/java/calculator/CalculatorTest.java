@@ -1,11 +1,13 @@
 package calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CalculatorTest {
 
@@ -35,5 +37,14 @@ public class CalculatorTest {
     void sumColumnDelimiterInput() {
         String input = "1:2:3";
         assertThat(Calculator.sum(input)).isEqualTo(6);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "-1,2,3"})
+    @DisplayName("음수가 들어온 경우 예외가 발생한다.")
+    void sumNagativeNumberException(String input) {
+        assertThatExceptionOfType(RuntimeException.class)
+            .isThrownBy(() -> Calculator.sum(input))
+            .withMessageMatching("음수는 입력될 수 없다.");
     }
 }
