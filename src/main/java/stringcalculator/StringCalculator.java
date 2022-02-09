@@ -18,8 +18,16 @@ public class StringCalculator {
 
 	private static int[] convertStringArrToIntArr(String[] arr) {
 		return Arrays.stream(arr)
-			.mapToInt(Integer::parseInt)
+			.mapToInt(StringCalculator::convertStringToInt)
 			.toArray();
+	}
+
+	private static int convertStringToInt(String string) {
+		int converted = Integer.parseInt(string);
+		if (converted < 0) {
+			throw new RuntimeException();
+		}
+		return converted;
 	}
 
 	private static int getSum(String input) {
