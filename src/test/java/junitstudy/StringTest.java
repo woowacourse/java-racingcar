@@ -19,5 +19,17 @@ public class StringTest {
     private String[] split(String input) {
         return input.split(",");
     }
+    
+    @Test
+    public void 괄호_제거_테스트() throws Exception {
+        //given
+        String input = "(1,2)";
+        
+        //when
+        String result = input.substring(1, input.length()-1);
+        
+        //then
+        assertThat(result).isEqualTo("1,2");
+    }
 
 }
