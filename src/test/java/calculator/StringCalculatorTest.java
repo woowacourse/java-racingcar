@@ -1,5 +1,6 @@
 package calculator;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -19,5 +20,8 @@ public class StringCalculatorTest {
 		assertThat(StringCalculator.splitAndSum(input)).isEqualTo(0);
 	}
 
-
+	@Test
+	public void 쉼표_콜론_구분_테스트() {
+		assertThat(StringCalculator.splitAndSum("1,2:3")).isEqualTo(6);
+	}
 }
