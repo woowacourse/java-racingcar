@@ -6,7 +6,6 @@
 
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
-
 ## 🚀 기능목록
 * 자동차 이름 입력하기
   * 이름은 5자 이하
