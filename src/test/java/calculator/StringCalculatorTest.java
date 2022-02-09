@@ -18,7 +18,6 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	@Disabled
 	public void splitAndSum_숫자하나() throws Exception {
 		int result = StringCalculator.splitAndSum("1");
 		assertThat(result).isEqualTo(1);
