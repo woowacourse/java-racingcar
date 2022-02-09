@@ -8,13 +8,15 @@ public class StringCalculator {
 
 	final static String DEFAULT_SEPARATOR = "[,:]";
 	final static String CUSTOM_PATTERN_REGEX = "//(.)\n(.*)";
+	final static String NEGATIVE_NUMBER_ERROR_MESSAGE = "양수만 입력해주세요.";
 
 	public static int splitAndSum(String input) {
 		if (isBlank(input)) {
 			return 0;
 		}
-
-		return sum(split(input));
+		int[] numbers = split(input);
+		verifyNumbers(numbers);
+		return sum(numbers);
 	}
 
 	public static boolean isBlank(String input) {
@@ -24,6 +26,18 @@ public class StringCalculator {
 	public static int sum(int[] numbers) {
 		return Arrays.stream(numbers)
 			.sum();
+	}
+
+	public static void verifyNumbers(int[] numbers) {
+		Arrays.stream(numbers).forEach(number -> {
+			if (isNegative(number)) {
+				throw new RuntimeException(NEGATIVE_NUMBER_ERROR_MESSAGE);
+			}
+		});
+	}
+
+	public static boolean isNegative(int number) {
+		return number < 0;
 	}
 
 	public static int[] split(String input) {
