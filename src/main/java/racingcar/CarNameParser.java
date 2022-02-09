@@ -21,6 +21,9 @@ public class CarNameParser {
         if (isEmptyName(names)) {
             throw new IllegalArgumentException("자동차 이름은 공백일 수 없습니다.");
         }
+        if (isDuplicateName(names)) {
+            throw new IllegalArgumentException("자동차 이름은 중복일 수 없습니다.");
+        }
     }
 
     private boolean isEmptyName(String names) {
@@ -30,6 +33,10 @@ public class CarNameParser {
     private boolean isInvalidLength(String names) {
         return Arrays.stream(splitByComma(names))
             .anyMatch(n -> n.length() > 5);
+    }
+
+    private boolean isDuplicateName(String names) {
+        return Arrays.stream(splitByComma(names)).distinct().count() != splitByComma(names).length;
     }
 
     private String[] splitByComma(String names) {
