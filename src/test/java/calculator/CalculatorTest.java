@@ -31,9 +31,9 @@ public class CalculatorTest {
   }
 
   @Test
-  public void toInteger_test() throws Exception {
+  public void toIntegers_test() throws Exception {
     String[] stringNumbers = {"1", "2"};
-    int[] numbers = Calculator.toInteger(stringNumbers);
+    int[] numbers = Calculator.toIntegers(stringNumbers);
     assertThat(numbers).contains(1, 2);
   }
 

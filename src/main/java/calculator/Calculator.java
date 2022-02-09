@@ -9,7 +9,7 @@ public class Calculator {
     if (input == null || input.equals("")) {
       return 0;
     }
-    return addAll(toInteger(split(input)));
+    return addAll(toIntegers(split(input)));
   }
 
   public static String[] split(String input) {
@@ -23,7 +23,7 @@ public class Calculator {
     return input.split("[,:" + delimiter + "]");
   }
 
-  public static int[] toInteger(String[] stringNumbers) {
+  public static int[] toIntegers(String[] stringNumbers) {
     int[] numbers = new int[stringNumbers.length];
     for(int i=0; i < stringNumbers.length; i++){
       numbers[i] = Integer.parseInt(stringNumbers[i]);
