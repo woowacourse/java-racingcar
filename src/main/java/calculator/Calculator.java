@@ -6,7 +6,7 @@ public class Calculator {
         if (!validateNullAndBlank(input)) {
             return 0;
         }
-        return -100;
+        return Integer.parseInt(input);
     }
 
     private static boolean validateNullAndBlank(String input) {

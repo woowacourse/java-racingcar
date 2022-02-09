@@ -3,6 +3,7 @@ package calculator;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
@@ -13,5 +14,12 @@ public class CalculatorTest {
     @DisplayName("입력값이 공백 혹은 null인 경우 0을 반환한다.")
     void sumNullAndBlankInput(String input) {
         assertThat(Calculator.sum(input)).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("입력값에 구분자가 없는 숫자를 그대로 반환한다.")
+    void sumNotContainsDelimeterInput() {
+        String input = "123";
+        assertThat(Calculator.sum(input)).isEqualTo(123);
     }
 }
