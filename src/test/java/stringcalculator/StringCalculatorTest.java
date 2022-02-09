@@ -1,6 +1,7 @@
 package stringcalculator;
 
 import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,12 +39,19 @@ public class StringCalculatorTest {
 		assertThat(stringCalculator.split(input, delimiter)).containsExactly("1", "2", "3");
 	}
 
-
-	@DisplayName("구분된 문자열이 숫자인지 확인")
+	@DisplayName("")
 	@ParameterizedTest
-	@CsvSource(value = {"1,true", "a,false"})
-	void isNumber(String text, Boolean expected) {
-		assertThat(stringCalculator.isNumber(text)).isEqualTo(expected);
+	@CsvSource(value = {"a,false,0", "-1,false,0", "1,true,1", "0,true,0"} )
+	void toNumber(String text, boolean isSucceed, int expected) {
+		if (isSucceed) {
+			assertThat(stringCalculator.toNumber(text)).isEqualTo(expected);
+		}
+
+		if (!isSucceed) {
+			assertThatThrownBy(() -> stringCalculator.toNumber(text))
+				.isInstanceOf(RuntimeException.class)
+				.hasMessage("올바른 숫자가 아닙니다.");
+		}
 	}
 
 	@DisplayName("구분된 문자열을 숫자로 변환 - 성공")
@@ -60,13 +68,6 @@ public class StringCalculatorTest {
 		assertThatThrownBy(() -> stringCalculator.toNumber(text))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("숫자를 입력 하셔야합니다.");
-	}
-
-	@DisplayName("입력된 숫자가 양수인지 확인")
-	@ParameterizedTest
-	@CsvSource(value = {"-2,true", "-1,true", "0,false", "1,false", "2,false"})
-	void isNegative(int number, boolean expected) {
-		assertThat(stringCalculator.isNegative(number)).isEqualTo(expected);
 	}
 
 	@DisplayName("구분자 파싱")
