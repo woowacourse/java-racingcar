@@ -24,9 +24,16 @@ public class CalculatorTest {
     }
 
     @Test
+    @DisplayName("콤마가 구분자로 들어오는 경우 값의 덧셈을 반환한다.")
+    void sumCommaDelimeterInput() {
+        String input = "1,2,3";
+        assertThat(Calculator.sum(input)).isEqualTo(6);
+    }
+
+    @Test
     @DisplayName("컬럼이 구분자로 들어오는 경우 값의 덧셈을 반환한다.")
     void sumColumnDelimeterInput() {
-        String input = "1,2,3";
+        String input = "1:2:3";
         assertThat(Calculator.sum(input)).isEqualTo(6);
     }
 }
