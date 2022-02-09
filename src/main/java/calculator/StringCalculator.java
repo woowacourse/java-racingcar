@@ -11,20 +11,25 @@ public class StringCalculator {
 		if (text == null || text.equals("")) {
 			return 0;
 		}
+
 		List<Integer> numbers = toInt(splitText(text));
+
 		if (numbers.stream().anyMatch(number -> number < 0)) {
 			throw new RuntimeException();
 		}
+
 		return numbers.stream().mapToInt(number -> number).sum();
 	}
 
 	public static List<String> splitText(String text) {
 		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
 		String customDelimiter = "";
+
 		if (m.find()) {
 			customDelimiter = "|" + m.group(1);
 			text = m.group(2);
 		}
+
 		return Arrays.asList(text.split(",|:" + customDelimiter));
 	}
 
@@ -33,4 +38,5 @@ public class StringCalculator {
 			.map(numberStr -> Integer.parseInt(numberStr))
 			.collect(Collectors.toList());
 	}
+
 }
