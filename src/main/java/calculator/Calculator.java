@@ -33,12 +33,16 @@ public class Calculator {
 
     private static int getPositiveNumber(String stringNumber) {
         try {
-            int number = Integer.parseInt(stringNumber);
-            checkPositiveNumber(number);
-            return number;
+            return parsePositiveInt(stringNumber);
         } catch (NumberFormatException e) {
             throw new RuntimeException("문자는 입력될 수 없다.");
         }
+    }
+
+    private static int parsePositiveInt(String stringNumber) {
+        int number = Integer.parseInt(stringNumber);
+        checkPositiveNumber(number);
+        return number;
     }
 
     private static void checkPositiveNumber(int number) {
