@@ -50,4 +50,10 @@ class StringCalculatorTest {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("a,2,3"))
                 .isInstanceOf(RuntimeException.class).hasMessage("숫자가 아닙니다!");
     }
+
+    @Test
+    void 커스텀_구분자를_입력하지_않은_경우() {
+        assertThatThrownBy(() -> StringCalculator.splitAndSum("//\n1;2;3"))
+                .isInstanceOf(RuntimeException.class).hasMessage("양식이 올바르지 않습니다.");
+    }
 }

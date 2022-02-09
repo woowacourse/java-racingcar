@@ -3,7 +3,14 @@ package stringcalculator;
 import java.util.Arrays;
 
 public class ValidationUtil {
-    public static void checkNumber(String[] numbers) {
+
+
+    public static void checkFormat(String[] input) {
+        checkNumber(input);
+        checkPositive(input);
+    }
+
+    static void checkNumber(String[] numbers) {
         try {
             Arrays.stream(numbers).forEach(Integer::parseInt);
         } catch (NumberFormatException e) {
@@ -11,7 +18,7 @@ public class ValidationUtil {
         }
     }
 
-    public static void checkPositive(String[] numbers) {
+    static void checkPositive(String[] numbers) {
         for (String number : numbers) {
             checkPositive(number);
         }
