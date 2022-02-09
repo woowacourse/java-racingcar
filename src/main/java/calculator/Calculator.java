@@ -11,7 +11,7 @@ public class Calculator {
         if (!validateNullAndBlank(input)) {
             return 0;
         }
-        List<Integer> numbers = parseStringsToInts(splitByDelimiter(input));
+        List<Integer> numbers = parseStringsToPositiveInts(splitByDelimiter(input));
         return sumNumbers(numbers);
     }
 
@@ -23,7 +23,7 @@ public class Calculator {
         return input.split(DEFAULT_DELIMITER);
     }
 
-    private static List<Integer> parseStringsToInts(String[] stringNumbers) {
+    private static List<Integer> parseStringsToPositiveInts(String[] stringNumbers) {
         List<Integer> numbers = new ArrayList<>();
         for(String stringNumber : stringNumbers) {
             numbers.add(getPositiveNumber(stringNumber));
