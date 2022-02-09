@@ -1,6 +1,5 @@
 package stringcalculator;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,10 +18,19 @@ public class ValidationUtilTest {
 
     @Test
     @DisplayName("입력값이 숫자인 경우")
-    void ValidString() {
+    void validString() {
         String[] numbers = new String[]{"0", "1", "2"};
 
         assertThatCode(() -> ValidationUtil.checkNumber(numbers))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("입력값이 음수인 경우 예외 발생")
+    void negativeInput() {
+        String[] numbers = new String[]{"-1", "2"};
+
+        assertThatThrownBy(() -> ValidationUtil.checkPositive(numbers))
+                .isInstanceOf(RuntimeException.class).hasMessage("음수가 포함돼있습니다!");
     }
 }

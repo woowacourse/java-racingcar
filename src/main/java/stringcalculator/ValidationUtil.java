@@ -10,4 +10,12 @@ public class ValidationUtil {
             throw new RuntimeException("숫자가 아닙니다!");
         }
     }
+
+    public static void checkPositive(String[] numbers) {
+        for (String number : numbers) {
+            if (Integer.parseInt(number) < 0) {
+                throw new RuntimeException("음수가 포함돼있습니다!");
+            }
+        }
+    }
 }
