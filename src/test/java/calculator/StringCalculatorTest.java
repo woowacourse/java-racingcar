@@ -30,7 +30,6 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	@Disabled
 	public void splitAndSum_쉼표_또는_콜론_구분자() throws Exception {
 		int result = StringCalculator.splitAndSum("1,2:3");
 		assertThat(result).isEqualTo(6);
