@@ -10,4 +10,8 @@ public class StringCalculator {
 		}
 		return 0;
 	}
+
+	public String[] split(String text) {
+		return text.split(",|:");
+	}
 }
