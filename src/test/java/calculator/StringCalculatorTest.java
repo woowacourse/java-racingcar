@@ -24,4 +24,9 @@ public class StringCalculatorTest {
 	public void 쉼표_콜론_구분_테스트() {
 		assertThat(StringCalculator.splitAndSum("1,2:3")).isEqualTo(6);
 	}
+
+	@Test
+	public void 숫자_하나_반환_테스트() {
+		assertThat(StringCalculator.splitAndSum("1")).isEqualTo(1);
+	} "test: 숫자 하나 반환 테스트 코드 작성?????"
 }
