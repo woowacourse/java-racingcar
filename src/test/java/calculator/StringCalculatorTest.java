@@ -9,9 +9,17 @@ public class StringCalculatorTest {
     @Test
     void 콤마_구분자() {
         String[] actual = StringCalculator.splitString("1,2");
-        String[] result = {"1", "2"};
+        String[] expected = {"1", "2"};
 
-        assertThat(actual).isEqualTo(result);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void 콜론_구분자() {
+        String[] actual = StringCalculator.splitString("1:2");
+        String[] expected = {"1", "2"};
+
+        assertThat(actual).isEqualTo(expected);
     }
 
 }
