@@ -30,4 +30,11 @@ public class CalculatorTest {
     int[] numbers = Calculator.toInteger(stringNumbers);
     assertThat(numbers).contains(1, 2);
   }
+
+  @Test
+  public void addAll_test() throws Exception {
+    int[] numbers = {1, 2};
+    int result = Calculator.addAll(numbers);
+    assertThat(result).isEqualTo(3);
+  }
 }
