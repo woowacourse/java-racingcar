@@ -26,7 +26,7 @@ public class StringCalculator {
 
 	private static void checkRightPositiveInteger(List<String> numberStringList) {
 		numberStringList.forEach(numberString -> {
-			if (isPositiveInteger(numberString)) {
+			if (!isPositiveInteger(numberString)) {
 				throw new RuntimeException("양의 정수를 입력 해주세요.");
 			}
 		});
