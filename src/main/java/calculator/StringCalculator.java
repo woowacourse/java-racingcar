@@ -5,31 +5,53 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-	public int calculate(String text) {
-		if (text == null || text.isEmpty()) {
+	public int calculate(String input) {
+		if (isNullOrEmpty(input)) {
 			return 0;
 		}
-		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
-		if (m.find()) {
-			String customDelimiter = m.group(1);
-			String[] tokens= m.group(2).split(customDelimiter);
-			return sum(toInts(tokens));
-		}
-		return sum(toInts(text.split(",|:")));
+		return sum(toInts(split(input)));
 	}
 
-	private int[] toInts(String[] values) {
-		int[] numberList = new int[values.length];
-		for (int i = 0; i < values.length; i++) {
-			numberList[i] = Integer.parseInt(values[i]);
+	private boolean isNullOrEmpty(String input) {
+		return input == null || input.isEmpty();
+	}
+
+	private String[] split(String input) {
+		return getText(input).split(getDelimiter(input));
+	}
+
+	private String getText(String input) {
+		Matcher m = getMatcher(input);
+		if (m.find()) {
+			return m.group(2);
+		}
+		return input;
+	}
+
+	private String getDelimiter(String input) {
+		Matcher m = getMatcher(input);
+		if (m.find()) {
+			return m.group(1);
+		}
+		return ",|:";
+	}
+
+	private Matcher getMatcher(String input) {
+		return Pattern.compile("//(.)\n(.*)").matcher(input);
+	}
+
+	private int[] toInts(String[] inputTokens) {
+		int[] numberList = new int[inputTokens.length];
+		for (int i = 0; i < inputTokens.length; i++) {
+			numberList[i] = Integer.parseInt(inputTokens[i]);
 		}
 		return numberList;
 	}
 
-	private int sum(int[] values) {
+	private int sum(int[] numbers) {
 		int total = 0;
-		for (int value : values) {
-			total += value;
+		for (int number : numbers) {
+			total += number;
 		}
 		return total;
 	}
