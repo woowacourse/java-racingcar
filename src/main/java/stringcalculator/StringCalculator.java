@@ -13,7 +13,7 @@ public class StringCalculator {
 	}
 
 	private static int getSum(String input) {
-		String[] numbers = input.split(",");
+		String[] numbers = input.split("[,:]");
 		int sum = 0;
 		for (String number : numbers) {
 			sum += Integer.parseInt(number);
