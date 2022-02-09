@@ -25,6 +25,12 @@ public class CalculatorTest {
   }
 
   @Test
+  public void sum_split_custom_delimiter_test() throws Exception {
+    String[] numbers = Calculator.split("//;\n1;2;3");
+    assertThat(numbers).contains("1", "2", "3");
+  }
+
+  @Test
   public void toInteger_test() throws Exception {
     String[] stringNumbers = {"1", "2"};
     int[] numbers = Calculator.toInteger(stringNumbers);
