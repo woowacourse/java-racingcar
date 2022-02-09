@@ -28,5 +28,20 @@ public class StringCalculatorTest {
 	@Test
 	public void 숫자_하나_반환_테스트() {
 		assertThat(StringCalculator.splitAndSum("1")).isEqualTo(1);
-	} "test: 숫자 하나 반환 테스트 코드 작성?????"
+	}
+
+	@Test
+	public void 빈_배열_예외_테스트() {
+		assertThatExceptionOfType(RuntimeException.class)
+			.isThrownBy(() -> {
+				StringCalculator.splitAndSum("::,,");
+			}).withMessageMatching("전달된 배열에 원소가 없습니다.");
+	}
+
+	@Test
+	public void 음수_예외_테스트() {
+		assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2"))
+			.isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("음수 값은 포함될 수 없습니다.");
+	}
 }
