@@ -13,7 +13,12 @@ public class StringCalculator {
 
 		List<Integer> numbers = new ArrayList<>();
 		for (String s : result) {
-			numbers.add(Integer.parseInt(s));
+			try {
+				numbers.add(Integer.parseInt(s));
+			} catch (NumberFormatException exception) {
+				throw new RuntimeException("전달된 배열의 원소는 반드시 숫자여야 합니다.");
+			}
+
 		}
 
 		if (numbers.isEmpty()) {

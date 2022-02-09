@@ -44,4 +44,11 @@ public class StringCalculatorTest {
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("음수 값은 포함될 수 없습니다.");
 	}
+
+	@Test
+	public void 숫자_아닌_원소_예외_테스트() {
+		assertThatThrownBy(() -> StringCalculator.splitAndSum("1,안녕하세요:3"))
+			.isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("전달된 배열의 원소는 반드시 숫자여야 합니다.");
+	}
 }
