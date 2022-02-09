@@ -5,26 +5,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StringCalculatorTest {
     @Test
     void 콤마_더하기() {
-        int actual = StringCalculator.add("1,2");
+        int actual = StringCalculator.calculate("1,2");
         assertThat(actual).isEqualTo(3);
     }
 
     @Test
     void 콜론_더하기() {
-        int actual = StringCalculator.add("1:2:3");
+        int actual = StringCalculator.calculate("1:2:3");
         assertThat(actual).isEqualTo(6);
     }
 
     @Test
     void 혼합_더하기() {
-        int actual = StringCalculator.add("1,2:3");
+        int actual = StringCalculator.calculate("1,2:3");
         assertThat(actual).isEqualTo(6);
     }
 
     @Test
     void 구분자로_나누기() {
         String radix = ",|:";
-        String[] splitString = StringCalculator.split("1, 2, 3", radix);
+        String[] splitString = "1,2,3".split(radix);
         assertThat(splitString).contains("1", "2", "3");
     }
 
@@ -38,7 +38,7 @@ public class StringCalculatorTest {
     @Test
     void 배열_더하기() {
         int[] numberList = {1, 2, 3};
-        int sum = StringCalculator.sum(numberList);
+        int sum = StringCalculator.sumOfList(numberList);
         assertThat(sum).isEqualTo(6);
     }
 }
