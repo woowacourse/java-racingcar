@@ -22,4 +22,11 @@ public class CalculatorTest {
         String input = "123";
         assertThat(Calculator.sum(input)).isEqualTo(123);
     }
+
+    @Test
+    @DisplayName("컬럼이 구분자로 들어오는 경우 값의 덧셈을 반환한다.")
+    void sumColumnDelimeterInput() {
+        String input = "1,2,3";
+        assertThat(Calculator.sum(input)).isEqualTo(6);
+    }
 }

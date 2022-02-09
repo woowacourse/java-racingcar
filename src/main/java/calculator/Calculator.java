@@ -6,7 +6,12 @@ public class Calculator {
         if (!validateNullAndBlank(input)) {
             return 0;
         }
-        return Integer.parseInt(input);
+        String[] numbers = input.split(",");
+        int result = 0;
+        for (String number : numbers) {
+            result += Integer.parseInt(number);
+        }
+        return result;
     }
 
     private static boolean validateNullAndBlank(String input) {
