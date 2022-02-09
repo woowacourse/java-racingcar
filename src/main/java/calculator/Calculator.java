@@ -21,10 +21,14 @@ public class Calculator {
   private static final String ERROR_NEGATIVE_VALUE = "음수 값을 입력했습니다. 양수를 입력해주세요.";
 
   public static int sum(String input) {
-    if (input == null || input.equals(EMPTY_STRING)) {
+    if (validNullOrEmpty(input)) {
       return ZERO;
     }
     return addAll(toIntegers(split(input)));
+  }
+
+  private static boolean validNullOrEmpty(String input) {
+    return input == null || input.equals(EMPTY_STRING);
   }
 
   public static String[] split(String input) {
