@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 public class StringCalculator {
 
+	final static String DEFAULT_SEPARATOR = "[,:]";
+
 	public static int splitAndSum(String input) {
 		if (isBlank(input)) {
 			return 0;
@@ -21,7 +23,7 @@ public class StringCalculator {
 	}
 
 	public static int[] split(String input) {
-		return Arrays.stream(input.split(","))
+		return Arrays.stream(input.split(DEFAULT_SEPARATOR))
 			.mapToInt(Integer::parseInt)
 			.toArray();
 	}
