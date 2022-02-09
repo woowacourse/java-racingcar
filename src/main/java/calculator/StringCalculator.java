@@ -15,15 +15,28 @@ public class StringCalculator {
 		if(isNumeric(input)){
 			return Integer.parseInt(input);
 		}
-
+		String[] numStrArray = split(input);
 	}
 
 	private static boolean isNullOrEmpty(String input) {
 		return input.isBlank() || input == null;
 	}
 
-	private static boolean isNumeric(String str) {
-		return str.matches("^(0|[1-9][0-9]*)$");
+	private static boolean isNumeric(String input) {
+		return input.matches("^(0|[1-9][0-9]*)$");
 	}
 
+	private static String[] split(String input) {
+		List<String> delimiters = new ArrayList<>();
+		delimiters.add(",");
+		delimiters.add(":");
+
+		if(input.contains("//") && input.contains("\n")){
+			String customDelimiter = input.substring(input.indexOf("//") + 2, input.indexOf("\n"));
+			delimiters.add(customDelimiter);
+			input = input.substring(input.indexOf("\n") + 1);
+		}
+		String delimiter = String.join("|", delimiters);
+		return input.split(delimiter);
+	}
 }
