@@ -59,4 +59,11 @@ public class CalculatorTest {
 		assertThatThrownBy(() -> calculator.splitAndSum("-1,2,3"))
 			.isInstanceOf(RuntimeException.class);
 	}
+
+	@DisplayName("값이 문자일 경우 테스트")
+	@Test
+	public void splitAndSum_string_value_test() throws Exception {
+		assertThatThrownBy(() -> calculator.splitAndSum("1,일곱,3"))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
 }
