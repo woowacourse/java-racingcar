@@ -7,6 +7,11 @@ public class StringCalculator {
 			return 0;
 		}
 
-		return Integer.parseInt(text);
+		String[] values = text.split(",");
+		int total = 0;
+		for (String value : values) {
+			total += Integer.parseInt(value);
+		}
+		return total;
 	}
 }

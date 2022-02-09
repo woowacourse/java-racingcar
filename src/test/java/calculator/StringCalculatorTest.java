@@ -21,4 +21,9 @@ public class StringCalculatorTest {
 	public void 숫자가_하나_그대로반환() {
 		assertThat(calculator.calculate("1")).isEqualTo(1);
 	}
+
+	@Test
+	public void 숫자_두개를_컴마_구분후_합을_반환() {
+		assertThat(calculator.calculate("1,2")).isEqualTo(3);
+	}
 }
