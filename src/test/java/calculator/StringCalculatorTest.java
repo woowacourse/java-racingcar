@@ -51,4 +51,17 @@ public class StringCalculatorTest {
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("전달된 배열의 원소는 반드시 숫자여야 합니다.");
 	}
+
+	@Test
+	public void 커스텀_구분자_테스트() {
+		assertThat(StringCalculator.splitAndSum("//;\n1;2")).isEqualTo(3);
+	}
+
+	@Test
+	public void 커스텀_구분자_예외_테스트() {
+		assertThatThrownBy(() -> StringCalculator.splitAndSum("//3\n1;2"))
+			.isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("정수는 커스텀 구분자로 지정할 수 없습니다.");
+	}
 }
+

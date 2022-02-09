@@ -2,14 +2,24 @@ package calculator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
+	public static final String REGEX = "^//\\D\n.*";
+	public static final String DEFAULT_DELIMITER = ",|:";
 	public static int splitAndSum(String input) {
 		if (input == null || input.isEmpty()) {
 			return 0;
 		}
 
-		String[] result = input.split(",|:");
+		String delimiter = DEFAULT_DELIMITER;
+		if (Pattern.matches(REGEX, input)) {
+			delimiter = String.valueOf(input.charAt(2));
+			input = input.substring(4);
+			System.out.println(input);
+		}
+
+		String[] result = input.split(delimiter);
 
 		List<Integer> numbers = new ArrayList<>();
 		for (String s : result) {
