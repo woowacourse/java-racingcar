@@ -16,13 +16,18 @@ public class StringCalculator {
 		return input == null || input.isBlank();
 	}
 
+	private static int getSum(String input) {
+		return Arrays.stream(convertStringArrToIntArr(checkAndSplit(input)))
+			.sum();
+	}
+
 	private static int[] convertStringArrToIntArr(String[] arr) {
 		return Arrays.stream(arr)
-			.mapToInt(StringCalculator::convertStringToInt)
+			.mapToInt(StringCalculator::convertStringToNaturalNumber)
 			.toArray();
 	}
 
-	private static int convertStringToInt(String string) {
+	private static int convertStringToNaturalNumber(String string) {
 		int converted = Integer.parseInt(string);
 		if (converted < 0) {
 			throw new RuntimeException();
@@ -30,21 +35,12 @@ public class StringCalculator {
 		return converted;
 	}
 
-	private static int getSum(String input) {
-		return Arrays.stream(convertStringArrToIntArr(checkAndSplit(input)))
-			.sum();
-	}
-
-	private static String[] split(String input, String delimiter) {
-		return input.split(delimiter);
-	}
-
 	private static String[] checkAndSplit(String input) {
 		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
 		if (m.find()) {
 			String delimiter = "[" + m.group(1) + ",:]";
-			return split(m.group(2), delimiter);
+			return m.group(2).split(delimiter);
 		}
-		return split(input, "[,:]");
+		return input.split("[,:]");
 	}
 }
