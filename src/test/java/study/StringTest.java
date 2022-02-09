@@ -18,4 +18,10 @@ public class StringTest {
 		assertThat(splitted).contains("1");
 	}
 
+	@Test
+	void subStringByParentheses_Success() {
+		String input = "(1,2)";
+		String result = input.substring(1, input.length() - 1);
+		assertThat(result).isEqualTo("1,2");
+	}
 }
