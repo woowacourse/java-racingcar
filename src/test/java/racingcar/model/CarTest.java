@@ -2,8 +2,6 @@ package racingcar.model;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Random;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -52,5 +50,17 @@ class CarTest {
 
 		// then
 		assertThat(car.getPosition()).isEqualTo(0);
+	}
+
+	@Test
+	public void toString_체크() {
+		// given
+		Car car = new Car("test");
+
+		// when
+		car.go(6);
+
+		// then
+		assertThat(car.toString()).isEqualTo("test : -");
 	}
 }

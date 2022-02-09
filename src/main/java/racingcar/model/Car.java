@@ -26,4 +26,12 @@ public class Car {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return name + " : " + getPositionString();
+	}
+
+	private String getPositionString() {
+		return "-".repeat(Math.max(0, position));
+	}
 }
