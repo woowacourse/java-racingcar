@@ -1,8 +1,11 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.regex.Pattern;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringCalculatorTest {
+
     @Test
     void 콤마_더하기() {
         int actual = StringCalculator.calculate("1,2");
@@ -40,5 +43,12 @@ public class StringCalculatorTest {
         int[] numberList = {1, 2, 3};
         int sum = StringCalculator.sumOfList(numberList);
         assertThat(sum).isEqualTo(6);
+    }
+
+    @Test
+    void 구분자_추출() {
+        String target = "//;\n";
+        String deli = StringCalculator.extract(target);
+        assertThat(deli).isEqualTo(";");
     }
 }
