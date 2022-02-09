@@ -36,4 +36,9 @@ public class StringCalculatorTest {
 	public void 여러개의_숫자를_구분자로_구분후_합을_반환() {
 		assertThat(calculator.calculate("1:2,3:4,5")).isEqualTo(15);
 	}
+
+	@Test
+	public void 커스텀_구분자를_지정후_합을_반환() {
+		assertThat(calculator.calculate("//;\n1;2;3")).isEqualTo(6);
+	}
 }
