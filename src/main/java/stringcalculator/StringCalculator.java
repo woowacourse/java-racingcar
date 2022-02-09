@@ -31,4 +31,8 @@ public class StringCalculator {
 			throw new IllegalArgumentException("숫자를 입력 하셔야합니다.");
 		}
 	}
+
+	public boolean isNegative(int number) {
+		return number < 0;
+	}
 }

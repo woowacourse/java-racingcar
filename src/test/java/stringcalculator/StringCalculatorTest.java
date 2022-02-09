@@ -54,4 +54,10 @@ public class StringCalculatorTest {
 			.hasMessage("숫자를 입력 하셔야합니다.");
 	}
 
+	@DisplayName("입력된 숫자가 양수인지 확인")
+	@ParameterizedTest
+	@CsvSource(value = {"-2,true", "-1,true", "0,false", "1,false", "2,false"})
+	void isNegative(int number, boolean expected) {
+		assertThat(stringCalculator.isNegative(number)).isEqualTo(expected);
+	}
 }
