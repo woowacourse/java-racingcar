@@ -1,0 +1,13 @@
+package stringcalculator;
+
+public class StringCalculator {
+	public StringCalculator() {
+	}
+
+	public int sum(String text) {
+		if (text.isEmpty()) {
+			throw new IllegalArgumentException("빈 문자열을 입력할 수 없습니다.");
+		}
+		return 0;
+	}
+}
