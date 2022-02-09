@@ -6,7 +6,7 @@ public class StringCalculator {
 		if (text == null || text.isEmpty()) {
 			return 0;
 		}
-		return sum(toInts(text.split(",")));
+		return sum(toInts(text.split(",|:")));
 	}
 
 	private int[] toInts(String[] values) {
