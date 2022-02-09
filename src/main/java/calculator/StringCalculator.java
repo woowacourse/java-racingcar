@@ -20,6 +20,10 @@ public class StringCalculator {
 		return getText(input).split(getDelimiter(input));
 	}
 
+	private Matcher getMatcher(String input) {
+		return Pattern.compile("//(.)\n(.*)").matcher(input);
+	}
+
 	private String getText(String input) {
 		Matcher m = getMatcher(input);
 		if (m.find()) {
@@ -34,10 +38,6 @@ public class StringCalculator {
 			return m.group(1);
 		}
 		return ",|:";
-	}
-
-	private Matcher getMatcher(String input) {
-		return Pattern.compile("//(.)\n(.*)").matcher(input);
 	}
 
 	private int[] toInts(String[] inputTokens) {
