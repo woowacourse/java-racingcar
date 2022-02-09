@@ -24,7 +24,6 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	@Disabled
 	public void splitAndSum_쉼표구분자() throws Exception {
 		int result = StringCalculator.splitAndSum("1,2");
 		assertThat(result).isEqualTo(3);
