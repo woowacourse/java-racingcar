@@ -53,6 +53,8 @@
 - view
   - InputView
   - OutputView
+- validator
+  - Validator
 
 
 ###Car
@@ -73,3 +75,5 @@
 ###OutputView
 - 자동차 경주 결과를 출력한다.
 
+###Validator
+- 입력값이 유효한 값인지 검증한다.
