@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
 
@@ -17,8 +18,16 @@ public class StringTest {
         assertThat(split("1")).containsExactly("1");
     }
 
-    private String[] split(String input) {
-        return input.split(",");
+    @Test
+    public void 괄호_제거_테스트() throws Exception {
+        //given
+        String input = "(1,2)";
+        
+        //when
+        String result = input.substring(1, input.length()-1);
+        
+        //then
+        assertThat(result).isEqualTo("1,2");
     }
     
     @Test
