@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.validator.Validator;
 
-public class InputViewTest {
+public class ValidatorTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"abcdef", "abcdefgh"})
