@@ -16,8 +16,7 @@ public class StringCalculator {
         }
 
         if (isCustomDelimiter(input)) {
-            Matcher matcher = pattern.matcher(input);
-            return sum(getNumbersWithCustomDelim(matcher));
+            return sum(getNumbersWithCustomDelim(pattern.matcher(input)));
         }
 
         return sum(getNumbersWithDelim(input));
@@ -47,10 +46,9 @@ public class StringCalculator {
         return numbers;
     }
 
-    private static Integer sum(String[] numbers) {
+    private static int sum(String[] numbers) {
         return Arrays.stream(numbers)
-                .map(Integer::parseInt)
-                .mapToInt(i -> i)
+                .mapToInt(Integer::parseInt)
                 .sum();
     }
 }
