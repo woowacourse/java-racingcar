@@ -9,8 +9,9 @@ public class Calculator {
 		if (!isValidValues(text)) {
 			return 0;
 		}
-		int[] numbers = stringToIntArray(getValues(text));
 
+		int[] numbers = stringToIntArray(getValues(text));
+		checkNumbers(numbers);
 		return add(numbers);
 	}
 
@@ -47,6 +48,18 @@ public class Calculator {
 			return m.group(2).split(String.format("%s|%s", delimiter, m.group(1)));
 		}
 		return text.split(delimiter);
+	}
+
+	private void checkNumbers(int[] numbers) {
+		for (int i : numbers) {
+			checkNegativeNumber(i);
+		}
+	}
+
+	private void checkNegativeNumber(int number) {
+		if (number < 0) {
+			throw new RuntimeException("양수를 입력해주세요.");
+		}
 	}
 
 	private int add(int[] numbers) {
