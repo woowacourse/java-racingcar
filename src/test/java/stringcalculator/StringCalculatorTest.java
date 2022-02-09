@@ -37,4 +37,21 @@ public class StringCalculatorTest {
 	void isNumber(String text, Boolean expected) {
 		assertThat(stringCalculator.isNumber(text)).isEqualTo(expected);
 	}
+
+	@DisplayName("구분된 문자열을 숫자로 변환 - 성공")
+	@ParameterizedTest
+	@CsvSource(value = {"1,1", "2,2", "3,3"})
+	void successToNumber(String text, int expected) {
+		assertThat(stringCalculator.toNumber(text)).isEqualTo(expected);
+	}
+
+	@DisplayName("구분된 문자열을 숫자로 변환 - 실패")
+	@ParameterizedTest
+	@ValueSource(strings = {"a", "b", "c"})
+	void failToNumber(String text) {
+		assertThatThrownBy(() -> stringCalculator.toNumber(text))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("숫자를 입력 하셔야합니다.");
+	}
+
 }

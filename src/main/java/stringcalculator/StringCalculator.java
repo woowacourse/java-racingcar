@@ -23,4 +23,12 @@ public class StringCalculator {
 			return false;
 		}
 	}
+
+	public int toNumber(String text) {
+		try {
+			return Integer.parseInt(text);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("숫자를 입력 하셔야합니다.");
+		}
+	}
 }
