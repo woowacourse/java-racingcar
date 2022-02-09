@@ -12,11 +12,7 @@ public class Calculator {
             return 0;
         }
         List<Integer> numbers = parseStringsToInts(splitByDelimiter(input));
-        int result = 0;
-        for (int number : numbers) {
-            result += number;
-        }
-        return result;
+        return sumNumbers(numbers);
     }
 
     private static boolean validateNullAndBlank(String input) {
@@ -33,5 +29,13 @@ public class Calculator {
             numbers.add(Integer.parseInt(stringNumber));
         }
         return numbers;
+    }
+
+    private static int sumNumbers(List<Integer> numbers) {
+        int result = 0;
+        for (int number : numbers) {
+            result += number;
+        }
+        return result;
     }
 }
