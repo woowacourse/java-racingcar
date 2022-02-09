@@ -9,14 +9,19 @@ public class StringCalculator {
 	private static final String DEFAULT_DELIMITER = ",|:";
 
 	public static int splitAndSum(String input) {
-		if (input == null || input.isEmpty()) {
+		if (isBlank(input)) {
 			return 0;
 		}
+
 		Matcher m = CUSTOM_DELIMITER_PATTERN.matcher(input);
 		if (m.find()) {
 			return splitAndSumByCustomDelimiter(m);
 		}
 		return splitAndSumByDefaultDelimiter(input);
+	}
+
+	private static boolean isBlank(String input) {
+		return input == null || input.isEmpty() || input.isBlank();
 	}
 
 	private static int splitAndSumByDefaultDelimiter(String input) {

@@ -46,4 +46,10 @@ public class StringCalculatorTest {
 		assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
 			.isInstanceOf(RuntimeException.class);
 	}
+
+	@Test
+	public void splitAndSum_whitespaces() throws Exception {
+		int result = StringCalculator.splitAndSum(" ");
+		assertThat(result).isEqualTo(0);
+	}
 }
