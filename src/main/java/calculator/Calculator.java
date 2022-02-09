@@ -1,11 +1,13 @@
 package calculator;
 
+import java.util.Arrays;
+
 public class Calculator {
   public static int sum(String input) {
     if (input == null || input.equals("")) {
       return 0;
     }
-    return 0;
+    return addAll(toInteger(split(input)));
   }
 
   public static String[] split(String input) {
@@ -18,5 +20,10 @@ public class Calculator {
       numbers[i] = Integer.parseInt(stringNumbers[i]);
     }
     return numbers;
+  }
+
+  public static int addAll(int[] numbers) {
+    return Arrays.stream(numbers)
+        .sum();
   }
 }
