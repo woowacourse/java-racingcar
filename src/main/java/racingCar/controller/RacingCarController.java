@@ -1,10 +1,13 @@
 package racingCar.controller;
 
+import static racingCar.constants.RacingCarConstants.*;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import racingCar.domain.Car;
+import racingCar.view.InputView;
+import racingCar.view.OutputView;
 
 public class RacingCarController {
 	private ArrayList<Car> cars = new ArrayList<>();
@@ -18,23 +21,17 @@ public class RacingCarController {
 		makeCars(carNames);
 		race(times);
 		winners = findWinner(cars);
-		printWinners(winners);
+		OutputView.printWinners(winners);
 	}
 
 	private String[] racingCarNames() {
-		String inputCarName = userInput("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+		String inputCarName = InputView.userStringInput(INPUT_CAR_NAME_MESSAGE);
 		return getCarNames(inputCarName);
 	}
 
 	private void racingCarTimes() {
-		String inputRacingTimes = userInput("시도할 횟수는 몇회인가요?");
+		String inputRacingTimes = InputView.userStringInput(INPUT_COUNT_MESSAGE);
 		enterTimes(inputRacingTimes);
-	}
-
-	private String userInput(String message) {
-		System.out.println(message);
-		Scanner scanner = new Scanner(System.in);
-		return scanner.nextLine();
 	}
 
 	public String[] getCarNames(String input) {
@@ -50,7 +47,7 @@ public class RacingCarController {
 		try {
 			isRightLength(name);
 		} catch (RuntimeException e) {
-			System.out.println("[ERROR] 이름이 공백이거나 6자 이상이면 안됩니다. 다시 입력해주세요.");
+			OutputView.printError(e.getMessage());
 			racingCarNames();
 		}
 	}
@@ -66,7 +63,7 @@ public class RacingCarController {
 			isRightTimes(input);
 			times = Integer.parseInt(input);
 		} catch (RuntimeException e) {
-			System.out.println("[ERROR] 시도 횟수는 양수인 정수여야 합니다. 다시 입력해주세요.");
+			OutputView.printError(e.getMessage());
 			racingCarTimes();
 		}
 	}
@@ -85,10 +82,10 @@ public class RacingCarController {
 	}
 
 	private void race(int count) {
-		System.out.println("실행결과");
+		OutputView.startPrintResultMessage();
 		for (int i = 0; i < count; i++) {
 			moveCars();
-			System.out.println();
+			OutputView.printCars(cars);
 		}
 	}
 
@@ -101,7 +98,6 @@ public class RacingCarController {
 	private void moveCar(int idx) {
 		Car car = cars.get(idx);
 		car.moveCar(makeRandom());
-		System.out.println(car);
 	}
 
 	private boolean makeRandom() {
@@ -114,7 +110,6 @@ public class RacingCarController {
 			winners = checkLead(car, winners);
 		}
 		return winners;
-
 	}
 
 	private List<Car> checkLead(Car car, List<Car> winners) {
@@ -128,14 +123,5 @@ public class RacingCarController {
 			winners.add(car);
 		}
 		return winners;
-	}
-
-	private void printWinners(List<Car> winners) {
-		for (int idx = 0; idx < winners.size() - 1; idx++) {
-			winners.get(idx).printName();
-			System.out.print(", ");
-		}
-		winners.get(winners.size() - 1).printName();
-		System.out.println("가 최종 우승했습니다.");
 	}
 }
