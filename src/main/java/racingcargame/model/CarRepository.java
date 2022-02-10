@@ -1,6 +1,7 @@
 package racingcargame.model;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class CarRepository {
@@ -14,5 +15,9 @@ public class CarRepository {
 
     public List<Car> getCars() {
         return cars;
+    }
+
+    public void moveCars() {
+        cars.forEach(Car::moveCar);
     }
 }

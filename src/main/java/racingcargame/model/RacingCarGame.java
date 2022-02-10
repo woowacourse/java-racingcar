@@ -23,6 +23,6 @@ public class RacingCarGame {
 
     public void startRace() {
         RaceCount.reduceRaceCount();
+        carRepository.moveCars();
     }
-
 }
