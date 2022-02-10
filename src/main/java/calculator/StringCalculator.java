@@ -17,7 +17,7 @@ public class StringCalculator {
 
         if (matcher.find()) {
             String customDelimiter = matcher.group(1);
-            String[] token = matcher.group(2).split(customDelimiter);
+            String[] token = matcher.group(2).split(customDelimiter + "|" + DEFAULT_DELIMITERS);
 
             return calculator(token);
         }
