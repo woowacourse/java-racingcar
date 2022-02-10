@@ -20,8 +20,8 @@ public class RacingCarService {
 		printResult();
 		for (int i = 0; i < count; i++) {
 			carsGo();
+			Output.printRoundResult(cars);
 		}
-		Output.printRoundResult(cars);
 	}
 
 	public void carsGo() {
