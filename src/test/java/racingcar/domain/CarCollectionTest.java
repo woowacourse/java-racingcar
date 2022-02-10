@@ -74,6 +74,43 @@ public class CarCollectionTest {
 		for (int i = 0; i < statuses.size(); i++) {
 			assertThat(statuses.get(i)).isEqualTo(expected.get(i));
 		}
+	}
 
+	@Test
+	void 우승자_한명_선정() {
+		CarCollection carCollection = new CarCollection(
+			Arrays.asList("slow", "if", "poby")
+		);
+		CustomNumberPicker customNumberPicker = new CustomNumberPicker(
+			Arrays.asList(0, 5, 8, 2, 2, 7)
+		);
+		carCollection.play(customNumberPicker);
+		carCollection.play(customNumberPicker);
+
+		List<String> winnerNames = carCollection.getWinnerNames();
+		assertThat(winnerNames.size()).isEqualTo(1);
+
+		assertThat(winnerNames.get(0)).isEqualTo("poby");
+	}
+
+	@Test
+	void 우승자_여러명_선정() {
+		CarCollection carCollection = new CarCollection(
+			Arrays.asList("slow", "if", "poby","doby")
+		);
+		CustomNumberPicker customNumberPicker = new CustomNumberPicker(
+			Arrays.asList(0,5,8,2, 2,0,7,6, 3,0,2,9)
+		);
+		carCollection.play(customNumberPicker);
+		carCollection.play(customNumberPicker);
+		carCollection.play(customNumberPicker);
+
+		List<String> winnerNames = carCollection.getWinnerNames();
+		assertThat(winnerNames.size()).isEqualTo(2);
+
+		List<String> expected = Arrays.asList("poby", "doby");
+		for (int i = 0; i < winnerNames.size(); i++) {
+			assertThat(winnerNames.get(i)).isEqualTo(expected.get(i));
+		}
 	}
 }

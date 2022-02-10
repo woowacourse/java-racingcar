@@ -22,4 +22,13 @@ public class Car {
 	public String toString() {
 		return name + " : " + "-".repeat(location);
 	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public int getLocation() {
+		return this.location;
+	}
+
 }
