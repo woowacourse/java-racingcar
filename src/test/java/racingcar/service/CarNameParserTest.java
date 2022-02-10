@@ -5,16 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.service.CarNameParser;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class ParserTest {
-    private static final int MOVING_FORWARD = 4;
-    private static final int STOP = 3;
-
-    private static final String ERROR_MESSAGE = "[ERROR]";
+public class CarNameParserTest {
 
     @ParameterizedTest
     @ValueSource(strings = {",", "#", "panda,", "#philz", ",phobi,"})
