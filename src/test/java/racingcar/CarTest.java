@@ -16,8 +16,8 @@ public class CarTest {
         car.attemptToMove(number);
 
         // then
-        assertThat(beforeMove).isEqualTo(0);
-        assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(beforeMove).isEqualTo(1);
+        assertThat(car.getPosition()).isEqualTo(2);
     }
 
     @Test

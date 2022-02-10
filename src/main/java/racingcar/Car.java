@@ -1,8 +1,17 @@
 package racingcar;
 
 public class Car implements Comparable<Car> {
-    private int position = 0;
+    private static final int INIT_POSITION = 1;
 
+    private int position = INIT_POSITION;
+    private String name;
+
+    protected Car() {
+    }
+
+    public Car(String name) {
+        this.name = name;
+    }
 
     public int getPosition() {
         return position;
@@ -21,5 +30,9 @@ public class Car implements Comparable<Car> {
 
     public boolean isSamePositionWith(Car competitor) {
         return this.position == competitor.position;
+    }
+
+    public String getName() {
+        return name;
     }
 }
