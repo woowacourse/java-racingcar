@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.util;
 
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;

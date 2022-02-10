@@ -1,6 +1,8 @@
 package racingcar;
 
-import java.util.List;
+import racingcar.domain.Cars;
+import racingcar.io.Input;
+import racingcar.io.Output;
 
 public class RacingGame implements Runnable {
     private final Input input;

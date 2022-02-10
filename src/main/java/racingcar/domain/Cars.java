@@ -1,11 +1,12 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.stream.Collectors;
+import racingcar.vo.Name;
+import racingcar.util.RandomUtil;
 
 public class Cars {
     private List<Car> cars;

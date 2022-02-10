@@ -3,6 +3,7 @@ package racingcar;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.vo.Name;
 
 public class InputNameHandler {
     public static List<Name> createNames(String input) {
