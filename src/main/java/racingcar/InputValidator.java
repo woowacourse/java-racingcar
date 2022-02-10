@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputValidator {
-    //TO-DO 검증 나누기
     public void isValidPattern(String input) {
         Pattern pattern = Pattern.compile(Constant.CAR_NAME_PATTERN_REGEX);
         Matcher matcher = pattern.matcher(input);
@@ -18,9 +17,13 @@ public class InputValidator {
 
     public void isValidLength(String[] names) {
         for (String name : names) {
-            if (name.length() > Constant.MAXIMUM_NAME_LENGTH) {
-                throw new IllegalArgumentException(Constant.NOT_ALLOW_LENGTH_ERROR);
-            }
+            checkLength(name);
+        }
+    }
+
+    private void checkLength(String name) {
+        if (name.length() > Constant.MAXIMUM_NAME_LENGTH) {
+            throw new IllegalArgumentException(Constant.NOT_ALLOW_LENGTH_ERROR);
         }
     }
 
