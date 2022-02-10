@@ -5,14 +5,6 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import static racingcar.view.Output.*;
-
-/**
- * - [ ] [ 예외 ] : `공백` - *(입력받은 문자열의 앞 뒤를 제거해준다.)*
- * - [ ] [ 예외 ] : 자동차가 `2대 미만`
- * - [ ] [ 예외 ] : 이름이 `중복`
- * - [ ] [ 예외 ] : `5글자 초과`
- */
 public class Input {
     Scanner scan = new Scanner(System.in);
 
@@ -31,7 +23,18 @@ public class Input {
         }
     }
 
-    private void allCarsValid(String names) {
+    public int attempt() {
+        try {
+            Output.getAttempt();
+            String inputValue = scan.nextLine();
+            return Integer.parseInt(inputValue);
+        } catch (IllegalArgumentException e) {
+            Output.errorMessage(e.getMessage());
+            return attempt();
+        }
+    }
+
+    public void allCarsValid(String names) {
         if (isBlank(names)) {
             throw new IllegalArgumentException("자동차 이름은 공백일 수 없습니다.");
         }
@@ -56,20 +59,24 @@ public class Input {
         }
     }
 
-    private boolean isBlank(String name) {
+    public boolean isBlank(String name) {
         return name.trim().isEmpty();
     }
 
-    private boolean isCars(String[] names) {
+    public boolean isCars(String[] names) {
         return names.length >= 2;
     }
 
-    private boolean isDuplicated(String[] names) {
+    public boolean isDuplicated(String[] names) {
         Set<String> carNames = new HashSet<>(Arrays.asList(names));
         return carNames.size() != names.length;
     }
 
-    private boolean isValidLength(String name) {
+    public boolean isValidLength(String name) {
         return name.length() <= 5;
+    }
+
+    public boolean isNumber(String string) {
+        return string.matches("[+-]?\\d*(\\.\\d+)?");
     }
 }
