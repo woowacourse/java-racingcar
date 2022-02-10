@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.List;
+import racingcar.controller.RacingCarDto;
 
 public class RacingGame {
 
@@ -39,5 +40,9 @@ public class RacingGame {
 
     public List<String> winnerNames() {
         return racingCars.calculateWinnerNames();
+    }
+
+    public List<RacingCarDto> getCurrentRacingCar() {
+        return racingCars.getRacingCars();
     }
 }
