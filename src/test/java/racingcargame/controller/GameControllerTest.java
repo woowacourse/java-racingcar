@@ -3,6 +3,7 @@ package racingcargame.controller;
 import org.junit.jupiter.api.Test;
 import racingcargame.utils.NameInputValidator;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class GameControllerTest {
