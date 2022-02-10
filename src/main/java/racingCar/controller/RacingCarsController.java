@@ -40,4 +40,8 @@ public class RacingCarsController {
 		racingCarService.runGame();
 	}
 
+	public void endGame() {
+		Output.printWinner(racingCarService.findWinner());
+	}
+
 }

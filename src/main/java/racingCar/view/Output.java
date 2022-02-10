@@ -14,16 +14,21 @@ public class Output {
 	}
 
 	public static void printResult() {
-		System.out.println("실행 결과");
+		System.out.println("\n실행 결과");
 	}
 
 	public static void printRoundResult(List<Car> cars) {
 		for (Car car : cars) {
-			System.out.println(
-				car.getName() + " : " + new String(new char[car.getPosition()]).replace("\0", POSITION_SIGNATURE));
+			System.out.println(car.getName() + " : " + POSITION_SIGNATURE.repeat(car.getPosition()));
 		}
 		System.out.println();
 	}
+
+	public static void printWinner(List<String> winner) {
+		StringBuilder Result = new StringBuilder();
+		for (String w : winner) {
+			Result.append(w).append(", ");
+		}
+		System.out.println(Result.substring(0, Result.length() - 2)+"가 최종 우승했습니다.");
+	}
 }
-//"*".repeat(100);
-// new String(new char[i]).replace("\0", "0");
