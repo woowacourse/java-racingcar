@@ -8,6 +8,10 @@ public class Position {
     position = 0;
   }
 
+  public void increase() {
+    position++;
+  }
+
   public int get() {
     return position;
   }
