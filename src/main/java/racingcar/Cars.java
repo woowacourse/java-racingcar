@@ -1,6 +1,5 @@
 package racingcar;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -21,6 +20,22 @@ public class Cars {
 
     public void move() {
         cars.forEach(car -> car.advance(RandomUtil.getNumbersInRange(10)));
+    }
+
+    public List<Name> getWinner() {
+        int maxPosition = getMaxPosition();
+
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return cars.stream()
+            .max(Comparator.comparing(Car::getPosition))
+            .orElseThrow(NoSuchElementException::new)
+            .getPosition();
     }
 
     public List<Car> getCars() {
