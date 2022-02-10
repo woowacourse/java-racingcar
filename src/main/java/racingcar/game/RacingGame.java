@@ -4,6 +4,7 @@ import racingcar.entity.Car;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static racingcar.view.InputView.getAttemptCount;
