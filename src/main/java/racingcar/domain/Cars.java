@@ -3,6 +3,7 @@ package racingcar.domain;
 import racingcar.service.Movement;
 import racingcar.utils.ExceptionMessage;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,5 +25,9 @@ public class Cars {
 
     public void move(Movement movement) {
         cars.forEach(car -> car.move(movement.move()));
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

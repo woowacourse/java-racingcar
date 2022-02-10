@@ -15,4 +15,12 @@ public class Car {
             distance++;
         }
     }
-}
+
+    public String getCarName() {
+        return carName.value();
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+ }

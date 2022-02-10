@@ -23,4 +23,8 @@ public class CarName {
             throw new IllegalArgumentException(ExceptionMessage.BLANK_CAR_NAME);
         }
     }
+
+    public String value() {
+        return value;
+    }
 }
