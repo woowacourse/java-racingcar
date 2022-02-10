@@ -16,4 +16,11 @@ public class StringCalculatorTest {
         result = StringCalculator.splitAndSum("");
         assertThat(result).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("숫자 하나 입력시 변환 후 반환 테스트")
+    void splitAndSum_singleNumber() {
+        int result = StringCalculator.splitAndSum("1");
+        assertThat(result).isEqualTo(1);
+    }
 }
