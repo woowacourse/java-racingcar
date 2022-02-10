@@ -15,6 +15,21 @@ public class Input {
 
     public int inputTrials() {
         System.out.println(INPUT_TRIALS);
-        return scanner.nextInt();
+        return validateNumeric(scanner.nextLine());
+    }
+
+    private int validateNumeric(String numberInput) {
+        if (isNumeric(numberInput)) {
+            throw new IllegalArgumentException("올바른 숫자를 입력해주세요.");
+        }
+        return Integer.parseInt(numberInput);
+    }
+
+    private boolean isNumeric(String numberInput) {
+        return !isDigit(numberInput) || Integer.parseInt(numberInput) < 1;
+    }
+
+    private boolean isDigit(String numberInput) {
+        return numberInput.chars().allMatch(Character::isDigit);
     }
 }
