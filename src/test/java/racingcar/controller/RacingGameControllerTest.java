@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import racingcar.controller.exception.GetWinnerBeforeFinishException;
 import racingcar.controller.exception.RacingGameIsFinishedException;
 import racingcar.domain.Car;
 import racingcar.domain.MidtermResult;
@@ -67,5 +68,13 @@ class RacingGameControllerTest {
         racingGameController.proceedTurn();
         WinnerResult result = racingGameController.getWinnerResult();
         assertThat(result.getWinnerNames()).contains("pobi");
+    }
+
+    @Test
+    public void 게임_종료전에_우승자_반환시_예외_발생() {
+        racingGameController.inputCarNames("pobi,crong");
+        racingGameController.inputTryCount("1");
+        assertThatThrownBy(() -> racingGameController.getWinnerResult())
+            .isInstanceOf(GetWinnerBeforeFinishException.class);
     }
 }
