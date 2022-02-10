@@ -10,8 +10,11 @@ class CarTest {
     @Test
     void 자동차_위치_이동() {
         car.move();
-        assertTrue(car.isSamePosition(1));
+
+        Car other = new Car("pobi");
+        other.move();
+        assertTrue(car.isSamePosition(other));
     }
-    
+
     // TODO: car.hasNext() 테스트 추가
 }
