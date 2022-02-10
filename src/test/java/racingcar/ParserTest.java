@@ -1,12 +1,11 @@
 package racingcar;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.service.CarNameParser;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,7 +21,7 @@ public class ParserTest {
     @DisplayName("이름에 허용되지 않는 문자")
     public void Not_Available_Character(String input) {
         assertThatThrownBy(
-                () -> StringParser.validateCarName(input)
+                () -> CarNameParser.validateCarName(input)
         ).isInstanceOf(RuntimeException.class);
     }
 
@@ -30,7 +29,7 @@ public class ParserTest {
     @DisplayName("이름에 허용되지 않는 문자 : null")
     public void Not_Available_Null() {
         assertThatThrownBy(
-                () -> StringParser.validateCarName(null)
+                () -> CarNameParser.validateCarName(null)
         ).isInstanceOf(RuntimeException.class);
     }
 
@@ -38,7 +37,7 @@ public class ParserTest {
     @DisplayName("한 번 해보는 정상입력")
     public void Available_Character() {
         Assertions.assertDoesNotThrow(() -> {
-            StringParser.validateCarName("polo");
+            CarNameParser.validateCarName("polo");
         });
     }
 
@@ -46,7 +45,7 @@ public class ParserTest {
     @ValueSource(strings = {"panda,philz,java", " panda, philz  , java"})
     @DisplayName("자동차 전체 입력 : 정상")
     public void input_all_car_name(String input) {
-        String[] inputNames = StringParser.readCarNameInputs(input);
+        String[] inputNames = CarNameParser.parseCarNameInputs(input);
         assertThat(inputNames).containsExactly("panda", "philz", "java");
     }
 
@@ -54,7 +53,7 @@ public class ParserTest {
     @DisplayName("자동차 전체 입력 : 예외")
     public void input_all_car_name_exception() {
         assertThatThrownBy(() -> {
-            StringParser.readCarNameInputs("panda,philz,javajigi");
+            CarNameParser.parseCarNameInputs("panda,philz,javajigi");
         });
     }
 }

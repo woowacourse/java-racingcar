@@ -2,6 +2,9 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.controller.GameController;
+import racingcar.domain.Car;
+import racingcar.repository.CarRepository;
 
 import java.util.List;
 
@@ -51,10 +54,11 @@ public class MovingTest {
         car3.moveOrHold(true);
         car3.moveOrHold(true);
 
-        Game game = new Game(new InputView());
-        game.setCars(car1, car2, car3);
+        CarRepository carRepository = new CarRepository();
+        GameController gameController = new GameController(carRepository);
 
-        List<Car> winners = game.decideWinners();
+        carRepository.addCars(List.of(car1, car2, car3));
+        List<Car> winners = gameController.getWinners();
 
         // then
         assertThat(winners).containsExactly(car1);
@@ -79,10 +83,11 @@ public class MovingTest {
         car3.moveOrHold(true);
         car3.moveOrHold(true);
 
-        Game game = new Game(new InputView());
-        game.setCars(car1, car2, car3);
+        CarRepository carRepository = new CarRepository();
+        GameController gameController = new GameController(carRepository);
 
-        List<Car> winners = game.decideWinners();
+        carRepository.addCars(List.of(car1, car2, car3));
+        List<Car> winners = gameController.getWinners();
 
         // then
         assertThat(winners).containsExactly(car1, car3);
