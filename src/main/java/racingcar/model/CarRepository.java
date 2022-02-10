@@ -32,4 +32,24 @@ public class CarRepository {
 			car.move(randomNo.getNumber());
 		}
 	}
+
+	public List<Car> getWinners() {
+		int maxPosition = getMaxPosition();
+
+		List<Car> winnerCars = new ArrayList<>();
+		for (Car car : cars) {
+			if (car.getPosition() == maxPosition) {
+				winnerCars.add(car);
+			}
+		}
+		return winnerCars;
+	}
+
+	private int getMaxPosition() {
+		int maxPosition = 0;
+		for (Car car : cars) {
+			maxPosition = Math.max(maxPosition, car.getPosition());
+		}
+		return maxPosition;
+	}
 }
