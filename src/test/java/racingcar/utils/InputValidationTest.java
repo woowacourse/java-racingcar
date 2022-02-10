@@ -37,4 +37,27 @@ class InputValidationTest {
 		}
 	}
 
+	@Nested
+	@DisplayName("반복할 횟수가 주어졌을 때")
+	class RepeatTest {
+
+		@DisplayName("올바른 반복 횟수면 통과한다")
+		@ParameterizedTest(name = "{index} {displayName} repeats={0}")
+		@ValueSource(strings = {"2", "10"})
+		void checkRightRepeats(final String repeats) {
+			InputValidation validation = mock(InputValidation.class);
+			validation.validateRepeats(repeats);
+			verify(validation).validateRepeats(repeats);
+		}
+
+		@DisplayName("잘못된 반복 횟수면 exception이 발생한다")
+		@ParameterizedTest(name = "{index} {displayName} repeats={0}")
+		@ValueSource(strings = {"-2", "1a0"})
+		void checkWrongRepeats(final String repeats) {
+			InputValidation validation = new InputValidation();
+			assertThatExceptionOfType(RuntimeException.class)
+				.isThrownBy(() -> validation.validateRepeats(repeats))
+				.withMessageMatching("반복횟수는 정수만 입력 가능합니다.");
+		}
+	}
 }
