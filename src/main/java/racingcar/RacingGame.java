@@ -2,9 +2,11 @@ package racingcar;
 
 public class RacingGame implements Runnable {
     private final Input input;
+    private final Output output;
 
-    public RacingGame(Input input) {
+    public RacingGame(Input input, Output output) {
         this.input = input;
+        this.output = output;
     }
 
     @Override
@@ -13,6 +15,7 @@ public class RacingGame implements Runnable {
         int trials = input.inputTrials();
         for (int round = 0; round < trials; round++) {
             cars.move();
+            output.printCurrentPosition(cars.getCars());
         }
     }
 

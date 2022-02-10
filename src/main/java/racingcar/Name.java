@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Name {
     private static final int MAXIMUM_LENGTH = 5;
@@ -25,6 +26,11 @@ public class Name {
 
     public static Name of(String name) {
         return new Name(name);
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 
     @Override

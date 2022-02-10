@@ -1,6 +1,9 @@
 package racingcar;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -18,5 +21,9 @@ public class Cars {
 
     public void move() {
         cars.forEach(car -> car.advance(RandomUtil.getNumbersInRange(10)));
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }
