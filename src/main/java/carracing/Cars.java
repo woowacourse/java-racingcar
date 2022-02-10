@@ -6,6 +6,8 @@ import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
+import carracing.view.OutputView;
+
 public class Cars {
 	private List<Car> cars;
 
@@ -35,7 +37,15 @@ public class Cars {
 	public void moveCars() {
 		cars.stream()
 			.forEach(car -> {
-				car.move((int)Math.random() * 10);
+				car.move((int)(Math.random() * 10));
 			});
+	}
+
+	public void printResult() {
+		cars.stream()
+			.forEach(car -> {
+				OutputView.printCarPosition(car.toString());
+			});
+		OutputView.printNewLine();
 	}
 }

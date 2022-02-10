@@ -14,4 +14,16 @@ public class OutputView {
 	public static void printException(String message) {
 		System.out.println(OutputMessage.ERROR_MESSAGE + message);
 	}
+
+	public static void printResultMessage() {
+		System.out.println(OutputMessage.RESULT_MESSAGE.getMessage());
+	}
+
+	public static void printCarPosition(String carPosition) {
+		System.out.println(carPosition);
+	}
+
+	public static void printNewLine() {
+		System.out.println();
+	}
 }

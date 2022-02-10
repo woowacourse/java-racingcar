@@ -24,8 +24,10 @@ public class RacingGameController {
 	}
 
 	public void play() {
+		OutputView.printResultMessage();
 		while((numberOfGames--) > 0){
 			cars.moveCars();
+			cars.printResult();
 		}
 	}
 

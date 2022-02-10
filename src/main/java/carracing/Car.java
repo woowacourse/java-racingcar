@@ -9,6 +9,7 @@ public class Car {
 			throw new IllegalArgumentException("자동차 이름의 길이는 한 글자 이상, 다섯 글자 이하여야합니다.");
 		}
 		this.name = name;
+		this.position = 0;
 	}
 
 	public String getName() {
@@ -17,11 +18,16 @@ public class Car {
 
 	public void move(int randomNumber) {
 		if (randomNumber >= 4) {
-			position++;
+			this.position++;
 		}
 	}
 
 	public int getPosition() {
 		return this.position;
+	}
+
+	@Override
+	public String toString() {
+		return name + " : " + "-".repeat(this.position);
 	}
 }
