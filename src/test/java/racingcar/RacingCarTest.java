@@ -10,6 +10,7 @@ import java.util.List;
 public class RacingCarTest {
 	public InputManager inputManager = new InputManager();
 	public InputValidator inputValidator = new InputValidator();
+	public RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
 	@Test
 	public void 자동차_이름_분리해서_가져오기_테스트() {
@@ -82,5 +83,11 @@ public class RacingCarTest {
 		assertThatThrownBy(() -> { inputManager.getTrial(trial); })
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("시도 횟수가 음수나 0이 될 수 없습니다.");
+	}
+
+	@Test
+	public void 랜덤값_범위_테스트() {
+		int number = randomNumberGenerator.generate();
+		assertThat(0<= number && number <= 9).isEqualTo(true);
 	}
 }
