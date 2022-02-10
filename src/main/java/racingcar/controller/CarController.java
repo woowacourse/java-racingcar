@@ -13,6 +13,7 @@ public class CarController {
 	private CarRepository carRepository = CarRepository.getInstance();
 
 	public void createCars(String userInputCarNames) {
+		carRepository.clear();
 		String[] carNames = splitCarNames(userInputCarNames);
 		validDuplicationCarNames(carNames);
 		Arrays.stream(carNames)
