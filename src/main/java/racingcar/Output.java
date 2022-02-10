@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Output {
     public void printCurrentPosition(List<Car> cars) {
@@ -18,5 +19,12 @@ public class Output {
             builder.append("-");
         }
         return builder.toString();
+    }
+
+    public void printWinner(List<Name> winners) {
+        String winnersJoinedByComma = winners.stream()
+            .map(Name::toString)
+            .collect(Collectors.joining(", "));
+        System.out.printf("%s가 최종 우승했습니다.", winnersJoinedByComma);
     }
 }

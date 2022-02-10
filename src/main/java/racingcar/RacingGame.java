@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.List;
+
 public class RacingGame implements Runnable {
     private final Input input;
     private final Output output;
@@ -17,6 +19,7 @@ public class RacingGame implements Runnable {
             cars.move();
             output.printCurrentPosition(cars.getCars());
         }
+        output.printWinner(cars.getWinner());
     }
 
 }
