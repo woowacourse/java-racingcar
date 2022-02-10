@@ -1,7 +1,14 @@
-# java-racingcar
+# 우테코 레벨 1 미션
 
-자동차 경주 미션 저장소
+## TDD - 문자열 덧셈 계산기 
+###🚀 기능 요구사항
+- 숫자 하나를 문자열로 입력할 경우 해당 숫자를 반환한다.
+- 쉼표(,) 또는 콜론(:)을 구분자로 가지는 문자열을 전달하는 경우 구분자를 기준으로 분리한 각 숫자의 합을 반환한다.
+- `//`와 `\n` 문자 사이에 커스텀 구분자를 지정할 수 있다.
+- 빈 문자열 또는 null 값을 입력할 경우 0을 반환한다.
+- [예외처리_`RuntimeException`] 숫자 이외의 값 또는 음수를 전달하는 경우
 
-## 우아한테크코스 코드리뷰
+"docs: stringCalculator readme"
 
-- [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
+## 자동차 경주
+###🚀 기능 요구사항
