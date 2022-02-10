@@ -17,4 +17,9 @@ public class Converter {
 			.map(Car::of)
 			.collect(Collectors.toList());
 	}
+
+	public static int toAttemptNumber(String input) {
+		Validator.ofAttemptNumber(input);
+		return Integer.parseInt(input);
+	}
 }
