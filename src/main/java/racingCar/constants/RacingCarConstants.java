@@ -8,4 +8,7 @@ public class RacingCarConstants {
 
 	public static final String COLON_SPACE = ", ";
 
+	public static final String CAR_NAME_WRONG_LENGTH_ERROR = "자동차 이름의 길이는 1~5자여야 한다";
+	public static final String GAME_COUNT_POSITIVE_INTEGER_ERROR = "시도 횟수는 0이상의 정수여야 한다";
+
 }

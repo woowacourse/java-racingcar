@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import racingCar.domain.Car;
+import racingCar.validator.RacingCarValidator;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
@@ -40,34 +41,21 @@ public class RacingCarController {
 
 	private void checkCarName(String name) {
 		try {
-			isRightLength(name);
+			RacingCarValidator.isRightLength(name);
 		} catch (RuntimeException e) {
 			OutputView.printError(e.getMessage());
 			getAndSeparateCarNames();
 		}
 	}
 
-	public void isRightLength(String name) throws RuntimeException {
-		if (name.length() == 0 || name.length() > 5) {
-			throw new RuntimeException();
-		}
-	}
-
 	private void getCarTimes() {
 		String inputRacingTimes = InputView.userStringInput(INPUT_COUNT_MESSAGE);
 		try {
-			isRightTimes(inputRacingTimes);
+			RacingCarValidator.isRightTimes(inputRacingTimes);
 			times = Integer.parseInt(inputRacingTimes);
 		} catch (RuntimeException e) {
 			OutputView.printError(e.getMessage());
 			getCarTimes();
-		}
-	}
-
-	public void isRightTimes(String input) throws RuntimeException {
-		final String REGEX = "[0-9]+";
-		if (!input.matches(REGEX)) {
-			throw new RuntimeException();
 		}
 	}
 
