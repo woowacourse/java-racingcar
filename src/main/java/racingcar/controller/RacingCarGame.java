@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.model.Car;
+import racingcar.model.Cars;
 import racingcar.view.InputView;
 
 public class RacingCarGame {
 	private InputView inputView = new InputView();
+	private Cars cars;
 
 	public List<String> getCarNames() {
 		String inputCarNames = inputView.getCarNames();
@@ -56,5 +58,9 @@ public class RacingCarGame {
 		return carNames.stream()
 			.map(carName -> new Car(carName))
 			.collect(Collectors.toList());
+	}
+
+	public void makeCars() {
+		cars = new Cars(toCar(getCarNames()));
 	}
 }
