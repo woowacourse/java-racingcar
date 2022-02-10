@@ -52,4 +52,8 @@ public class CarRepository {
 		}
 		return maxPosition;
 	}
+
+	public List<Car> getCars() {
+		return cars;
+	}
 }
