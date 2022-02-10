@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputValidator {
+
     public void isValidPattern(String input) {
         Pattern pattern = Pattern.compile(Constant.CAR_NAME_PATTERN_REGEX);
         Matcher matcher = pattern.matcher(input);

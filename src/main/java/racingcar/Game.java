@@ -3,6 +3,7 @@ package racingcar;
 import java.util.*;
 
 public class Game {
+
     private Input input;
     private Output output;
 
@@ -52,15 +53,15 @@ public class Game {
         Comparator<Car> comparatorByPosition = Comparator.comparingInt(Car::getPosition);
 
         return cars.stream()
-                .max(comparatorByPosition).get().getPosition();
+            .max(comparatorByPosition).get().getPosition();
     }
 
     private List<String> findWinnerByPosition(int maxPosition, List<Car> cars) {
         List<String> winners = new ArrayList<>();
 
         cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .forEach(x -> winners.add(x.getName()));
+            .filter(car -> car.getPosition() == maxPosition)
+            .forEach(x -> winners.add(x.getName()));
         return winners;
     }
 

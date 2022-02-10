@@ -1,14 +1,15 @@
 package racingcar;
 
 public class Constant {
+
     public static final int RANDOM_RANGE = 10;
     public static final int MINIMUM_MOVE = 4;
     public static final int START_POSITION = 0;
     public static final int MAXIMUM_NAME_LENGTH = 5;
     public static final int MINIMUM_NATURAL_NUMBER = 1;
+
     public static final String POSITION_FLAG = "-";
     public static final String JOIN_REGEX = ", ";
-
     public static final String COMMA_REGEX = ",";
     public static final String CAR_NAME_PATTERN_REGEX = "^[a-zA-Z,]*$";
     public static final String COIN_PATTERN_REGEX = "^[0-9]*$";

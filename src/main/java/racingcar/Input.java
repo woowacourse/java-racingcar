@@ -3,6 +3,7 @@ package racingcar;
 import java.util.Scanner;
 
 public class Input {
+
     private Scanner scanner;
     private InputValidator inputValidator;
 
