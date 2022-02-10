@@ -17,9 +17,7 @@ public class Checker {
 	}
 
 	private void isOverSize(String[] str) throws IllegalArgumentException {
-		int overSizeCount = (int)Arrays.stream(str)
-			.filter(eachStr -> eachStr.length() > IntegerConst.SIZE_BOUND.getValue())
-			.count();
+		int overSizeCount = (int)Arrays.stream(str).filter(eachStr -> eachStr.length() > IntegerConst.SIZE_BOUND.getValue()).count();
 		if (overSizeCount > IntegerConst.ZERO.getValue()) {
 			throw new IllegalArgumentException(StringConst.ERROR_SIZE.getValue());
 		}
@@ -30,5 +28,13 @@ public class Checker {
 			throw new IllegalArgumentException(StringConst.ERROR_NO_CAR.getValue());
 		}
 	}
+
+	private void isSpecialChar(String[] str) throws IllegalArgumentException {
+		int specialCount = (int)Arrays.stream(str).filter(eachStr -> !eachStr.matches("^[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$")).count();
+		if (specialCount > IntegerConst.ZERO.getValue()) {
+			throw new IllegalArgumentException(StringConst.ERROR_SPECIAL_CHAR.getValue());
+		}
+	}
+
 
 }
