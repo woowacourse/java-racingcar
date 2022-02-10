@@ -77,10 +77,16 @@ public class RacingCarTest {
 
 	@Test
 	void 최종_결과_출력_정상() {
-		List<Car> cars = new ArrayList<Car>();
-		cars.add(new Car("a"));
-		cars.add(new Car("b"));
-		cars.add(new Car("c"));
+		List<Car> cars = new ArrayList<>();
+		List<Car> winners = new ArrayList<>();
+
+		Car car1 = new Car("a");
+		Car car2 = new Car("b");
+		Car car3 = new Car("c");
+
+		cars.add(car1);
+		cars.add(car2);
+		cars.add(car3);
 
 		cars.get(0).moveCar(true);
 		cars.get(0).moveCar(true);
@@ -88,8 +94,11 @@ public class RacingCarTest {
 		cars.get(1).moveCar(true);
 		cars.get(2).moveCar(false);
 
-		String result = racingCar.findWinner(cars);
-		assertThat(result).isEqualTo("a,b");
+		winners.add(car1);
+		winners.add(car2);
+
+		List<Car> result = racingCar.findWinner(cars);
+		assertThat(result).isEqualTo(winners);
 	}
 
 }
