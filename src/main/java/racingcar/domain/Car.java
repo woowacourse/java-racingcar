@@ -1,12 +1,15 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.Objects;
 
 public class Car {
+
     private String name;
+    private int position;
 
     private Car(String name) {
         this.name = name;
+        this.position = 0;
     }
 
     public static Car from(String name) {
@@ -28,5 +31,15 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void move(int randomNumber) {
+        if (randomNumber >= 4) {
+            position++;
+        }
     }
 }
