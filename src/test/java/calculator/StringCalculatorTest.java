@@ -48,4 +48,12 @@ class StringCalculatorTest {
         int result = StringCalculator.splitAndSum(null);
         assertThat(result).isEqualTo(0);
     }
+
+    @DisplayName("숫자 하나를 문자열로 입력할 경우 해당 숫자를 반환한다.")
+    @Test
+    void splitAndSum_숫자하나() {
+        int result = StringCalculator.splitAndSum("1");
+        assertThat(result).isEqualTo(1);
+    }
+
 }

@@ -24,12 +24,13 @@ public class StringCalculator {
             return sum(numbers);
         }
 
-        return 0;
+        return Integer.parseInt(text);
     }
 
     private static int sum(String[] numbers) {
         int total = 0;
         for (String number : numbers) {
+            //
             total += Integer.parseInt(number);
         }
 
