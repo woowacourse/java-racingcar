@@ -1,55 +1,57 @@
 package calculator;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Calculator {
 
-	private String separators = ",:";
+	private final Separator separator;
 
-	public int splitAndSumNumber(String inputValue) {
-		if (inputValue == null || inputValue.isEmpty()) {
+	public Calculator(Separator separator) {
+		this.separator = separator;
+	}
+
+	public int splitAndSum(String targetValue) {
+		if (isNullOrEmpty(targetValue)) {
 			return 0;
 		}
 
-		String[] splitValues = customSplit(inputValue);
+		List<String> splitValues = separator.splitByUnits(targetValue);
+		List<Integer> splitNumbers = parseValuesAsNumber(splitValues);
 
-		return sumNumber(splitValues);
+		return sumNumber(splitNumbers);
 	}
 
-	private String[] customSplit(String inputValue) {
-		Matcher matcher = Pattern.compile("//(.*)\n(.*)").matcher(inputValue);
-		if (matcher.find()) {
-			String customDelimiter = matcher.group(1);
-			inputValue = matcher.group(2);
-			separators += customDelimiter;
-		}
-		String newSeparators = String.join("|", separators.split(""));
-		return inputValue.split(newSeparators);
+	private boolean isNullOrEmpty(String value) {
+		return (value == null || value.isEmpty());
 	}
 
-	private int sumNumber(String[] splitValues) {
-		int totalValue = 0;
-		for (String stringValue : splitValues) {
-			totalValue += toInt(stringValue);
-		}
-		return totalValue;
+	private List<Integer> parseValuesAsNumber(List<String> values) {
+		return values.stream().map(this::parseValueAsNumber).collect(Collectors.toList());
 	}
 
-	private int toInt(String stringValue) {
-		int value = parseIntFromString(stringValue);
-		if (value < 0) {
-			throw new RuntimeException("음수를 입력하셨습니다.");
-		}
-		return value;
-	}
-
-	private int parseIntFromString(String value) {
+	private int parseValueAsNumber(String value) {
 		try {
-			return Integer.parseInt(value);
+			int number = Integer.parseInt(value);
+			validateNumberIsNegative(number);
+			return number;
 		} catch (NumberFormatException exception) {
 			throw new RuntimeException("숫자 이외의 값을 입력하셨습니다.");
 		}
+	}
+
+	private void validateNumberIsNegative(int number) {
+		if (isNumberNegative(number)) {
+			throw new RuntimeException("음수를 입력하셨습니다.");
+		}
+	}
+
+	private boolean isNumberNegative(int number) {
+		return (number < 0);
+	}
+
+	private int sumNumber(List<Integer> splitNumbers) {
+		return splitNumbers.stream().mapToInt(i -> i).sum();
 	}
 
 }

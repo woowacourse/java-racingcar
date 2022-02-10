@@ -15,11 +15,11 @@ public class CalculatorTest {
 
 	@BeforeEach
 	void init() {
-		calculator = new Calculator();
+		calculator = new Calculator(new Separator());
 	}
 
 	private void calculatorExceptionText(String inputValue) {
-		assertThrows(RuntimeException.class, () -> calculator.splitAndSumNumber(inputValue));
+		assertThrows(RuntimeException.class, () -> calculator.splitAndSum(inputValue));
 	}
 
 	@ParameterizedTest
@@ -35,7 +35,7 @@ public class CalculatorTest {
 	}
 
 	private void calculatorSumTest(String inputValue, int expected) {
-		int result = calculator.splitAndSumNumber(inputValue);
+		int result = calculator.splitAndSum(inputValue);
 		assertThat(result).isEqualTo(expected);
 	}
 
@@ -45,11 +45,16 @@ public class CalculatorTest {
 		calculatorSumTest(inputValue, 0);
 	}
 
-
 	@ParameterizedTest
 	@CsvSource(value = {"1,2=3", "1,2:3=6"}, delimiter = '=')
 	void 구분자_작동테스트(String inputValue, String expected) {
 		calculatorSumTest(inputValue, Integer.parseInt(expected));
+	}
+
+	@ParameterizedTest
+	@MethodSource("provideCustomValues")
+	void 커스텀구분자_작동테스트(String inputValue, int expected) {
+		calculatorSumTest(inputValue, expected);
 	}
 
 	private static Stream<Arguments> provideCustomValues() {
@@ -58,12 +63,6 @@ public class CalculatorTest {
 				Arguments.of("//;\n1,2;3", 6),
 				Arguments.of("//;\n1;2;3,4:1", 11)
 		);
-	}
-
-	@ParameterizedTest
-	@MethodSource("provideCustomValues")
-	void 커스텀구분자_작동테스트(String inputValue, int expected) {
-		calculatorSumTest(inputValue, expected);
 	}
 
 }
