@@ -25,9 +25,7 @@ public class Calculator {
 
         String[] tokens = str.split(",|:");
 
-        for (String token : tokens) {
-            sum += Integer.parseInt(token);
-        }
+        sum = getSum (sum, tokens);
 
         return sum;
     }
