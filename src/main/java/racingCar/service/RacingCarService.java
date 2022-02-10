@@ -57,5 +57,14 @@ public class RacingCarService {
 		return max;
 	}
 
-	
+	public List<String> findWinner() {
+		int max = findMaxPosition();
+		List<String> winners = new ArrayList<>();
+		for (Car car : cars) {
+			if (car.isWinner(max)) {
+				winners.add(car.getName());
+			}
+		}
+		return winners;
+	}
 }

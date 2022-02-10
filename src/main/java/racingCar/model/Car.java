@@ -32,4 +32,8 @@ public class Car {
 	public int getPosition() {
 		return position;
 	}
+
+	public boolean isWinner(int max) {
+		return position == max;
+	}
 }
