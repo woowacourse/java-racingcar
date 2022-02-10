@@ -14,4 +14,13 @@ public class Car {
 		}
 	}
 
+	@Override
+	public String toString() {
+		String output = name + " : ";
+		for (int idx = 0; idx < position; idx++) {
+			output += "-";
+		}
+		return output;
+	}
+
 }
