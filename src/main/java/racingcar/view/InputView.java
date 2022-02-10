@@ -7,11 +7,25 @@ import racingcar.util.StringConst;
 public class InputView {
 	public static String[] getCarNameInput() {
 		Scanner scanner = new Scanner(System.in);
-		return scanner.nextLine().split(StringConst.DELIMITER.getValue());
+		String name = scanner.nextLine();
+		Checker checker = new Checker();
+		String flagStr = checker.checkNameConditions(name);
+		if (flagStr.contains("[ERROR]")) {
+			System.out.println(flagStr);
+			return new String[] {"[ERROR]"};
+		}
+		return flagStr.split(StringConst.DELIMITER.getValue());
 	}
 
-	public static int getTurnInput() {
+	public static String getTurnInput() {
 		Scanner scanner = new Scanner(System.in);
-		return Integer.parseInt(scanner.nextLine());
+		String turn = scanner.nextLine();
+		Checker checker = new Checker();
+		String flagStr = checker.checkTurnConditions(turn);
+		if (flagStr.contains("[ERROR]")) {
+			System.out.println(flagStr);
+			return "-1";
+		}
+		return flagStr;
 	}
 }
