@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import racingcar.vo.Name;
 
 public class InputNameHandler {
+    private InputNameHandler() {}
+
     public static List<Name> createNames(String input) {
         String[] split = splitByComma(input);
         validateDuplicate(split);
