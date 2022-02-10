@@ -3,13 +3,17 @@ package racingcar;
 import java.util.Scanner;
 
 public class RacingCar {
+  private Scanner scanner;
 
-  public static String readCarNames() {
-    Scanner scanner = new Scanner(System.in);
-    return scanner.nextLine();
+  public RacingCar(Scanner scanner) {
+    this.scanner =  scanner;
   }
 
-  public static String[] splitCarNames(String carNames) {
+  public String readCarNames() {
+    return this.scanner.nextLine();
+  }
+
+  public String[] splitCarNames(String carNames) {
     return carNames.split(",");
   }
 }
