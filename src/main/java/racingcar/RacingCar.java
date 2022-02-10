@@ -8,4 +8,8 @@ public class RacingCar {
     Scanner scanner = new Scanner(System.in);
     return scanner.nextLine();
   }
+
+  public static String[] splitCarNames(String carNames) {
+    return carNames.split(",");
+  }
 }
