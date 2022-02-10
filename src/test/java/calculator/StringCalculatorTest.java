@@ -31,7 +31,7 @@ public class StringCalculatorTest {
 
 	@Test
 	public void customDividerTest() {
-		int result = StringCalculator.add("//;/n1;2");
+		int result = StringCalculator.add("//;\n1;2");
 		assertThat(result).isEqualTo(3);
 	}
 
@@ -42,8 +42,8 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	public void nonNumberTest(){
-		assertThatThrownBy(()-> StringCalculator.add("023!313"))
+	public void nonNumberTest() {
+		assertThatThrownBy(() -> StringCalculator.add("023!313"))
 			.isInstanceOf(RuntimeException.class);
 	}
 }
