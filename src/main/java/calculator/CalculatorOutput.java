@@ -1,7 +1,7 @@
 package calculator;
 
 public class CalculatorOutput {
-	private final String RESULT_MESSAGE = "결과값: ";
+	private static final String RESULT_MESSAGE = "결과값: ";
 	private final int result;
 
 	public CalculatorOutput(int result) {
