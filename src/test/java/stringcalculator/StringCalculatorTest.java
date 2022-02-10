@@ -1,7 +1,6 @@
 package stringcalculator;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -39,13 +38,6 @@ public class StringCalculatorTest {
         assertThatThrownBy(() -> StringCalculator.toNumber(text))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage("올바른 숫자가 아닙니다.");
-    }
-
-    @DisplayName("커스텀 구분자가 포함된 형태인지 검사")
-    @ParameterizedTest
-    @CsvSource(value = {"1,2,3|false", "1:2:3|false", "//;\\n1;2;3|true", "//_\\n1_2_3|true"}, delimiter = '|')
-    void hasCustomDelimiter(String text, boolean expected) {
-        assertThat(StringCalculator.hasCustomDelimiter(text)).isEqualTo(expected);
     }
 
     @DisplayName("구분자 파싱")

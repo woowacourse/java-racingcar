@@ -1,9 +1,11 @@
 package stringcalculator;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
-    private static final String DELIMITER_PATTERN = "^\\/\\/.\\\\n";
+    private static final String DELIMITER_PATTERN = "^\\/\\/(.)\\\\n";
     private static final String INPUT_FORMAT_PATTERN = DELIMITER_PATTERN + ".+";
     private static final String DELIMITER = ",|:";
 
@@ -26,24 +28,23 @@ public class StringCalculator {
     }
 
     public static String getDelimiterFromText(String text) {
-        return text.split("\\\\n")[0].split("//")[1];
+        Matcher matcher = Pattern.compile(DELIMITER_PATTERN)
+                .matcher(text);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+
+        return DELIMITER;
     }
 
     public static int sum(String text) {
         validateInput(text);
-
-        String delimiter = DELIMITER;
-        if (hasCustomDelimiter(text)) {
-            delimiter = getDelimiterFromText(text);
-        }
+        String delimiter = getDelimiterFromText(text);
 
         return Arrays.stream(split(removeDelimiterFromText(text), delimiter))
                 .map(StringCalculator::toNumber)
                 .reduce(0, Integer::sum);
-    }
-
-    public static boolean hasCustomDelimiter(String text) {
-        return text.matches(INPUT_FORMAT_PATTERN);
     }
 
     public static String removeDelimiterFromText(String text) {
