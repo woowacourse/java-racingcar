@@ -27,4 +27,15 @@ public class ApplicationTest {
             Parser.split(null);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 라운드_입력_예외_테스트() {
+        assertThatThrownBy(() -> {
+            Parser.isValidRounds("0");
+        }).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> {
+            Parser.isValidRounds("a");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
