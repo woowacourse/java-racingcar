@@ -77,4 +77,16 @@ public class Checker {
 		}
 	}
 
+	public String checkTurnConditions(String str) {
+		try {
+			isNull(str);
+			isBlank(str);
+			isIntNum(str);
+			isNegative(Integer.parseInt(str));
+			return str;
+		} catch (IllegalArgumentException error) {
+			return error.getMessage();
+		}
+	}
+
 }
