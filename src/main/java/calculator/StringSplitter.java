@@ -9,7 +9,7 @@ public class StringSplitter {
 
     private StringSplitter(){}
 
-    public StringSplitter getInstance() {
+    public static StringSplitter getInstance() {
         return stringSplitter;
     }
 
