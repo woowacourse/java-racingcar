@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import racingcar.message.ErrorMessages;
 import racingcar.util.RandomGenerator;
 
 public class Cars {
 	private static final String NEW_LINE = System.lineSeparator();
+	private static final String DELIMITER = ",";
 	private static final int MIN = 0;
 	private static final int MAX = 9;
 
 	private final List<Car> cars = new ArrayList<>();
 
 	public Cars(String carNames) {
-		String[] carNameArray = carNames.replaceAll(" ", "").split(",");
+		String[] carNameArray = carNames.replaceAll(" ", "").split(DELIMITER);
 		if (validateDuplicatedName(carNameArray)) {
-			throw new IllegalArgumentException("[ERROR] 중복된 이름이 있습니다");
+			throw new IllegalArgumentException(ErrorMessages.DUPLICATED_NAME);
 		}
 		for (String carName : carNameArray) {
 			cars.add(new Car(carName));

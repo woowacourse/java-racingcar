@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import static racingcar.message.ErrorMessages.*;
+
 import java.util.Objects;
 
 public class TryCount {
@@ -35,13 +37,13 @@ public class TryCount {
 		try {
 			return Integer.parseInt(string);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR] 시도할 횟수는 숫자여야 합니다.");
+			throw new IllegalArgumentException(TRY_CNT_NOT_NUMBER);
 		}
 	}
 
 	private void validatePositive(int count) {
 		if (count <= 0) {
-			throw new IllegalArgumentException("[ERROR] 시도할 횟수는 자연수여야 합니다.");
+			throw new IllegalArgumentException(TRY_CNT_NOT_NATURAL_NUMBER);
 		}
 	}
 }
