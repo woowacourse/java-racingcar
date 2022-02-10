@@ -83,8 +83,10 @@ public class RacingCar {
 	}
 
 	private void race(int count) {
+		System.out.println("실행결과");
 		for (int i = 0; i < count; i++) {
 			moveCars();
+			System.out.println();
 		}
 	}
 
