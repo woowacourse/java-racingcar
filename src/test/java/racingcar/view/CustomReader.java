@@ -8,7 +8,7 @@ public class CustomReader implements DataReader {
 
 	@Override
 	public String readLine() {
-		return text + " ";
+		return text;
 	}
 
 	public void setText(String text) {

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.utils.Delimiter;
 import racingcar.view.reader.DataReader;
 
 public class InputView {
@@ -15,8 +16,17 @@ public class InputView {
 	}
 
 	public List<String> requestCarNames() {
-		return Arrays.stream(dataReader.readLine().split(","))
-			.map(String::trim).collect(Collectors.toList());
+		return parsingNames(dataReader.readLine());
+	}
+
+	private List<String> parsingNames(String inputValue) {
+		inputValue = appendSpaceBeforeSplit(inputValue);
+		return Arrays.stream(Delimiter.splitWithComma(inputValue))
+				.map(String::trim).collect(Collectors.toList());
+	}
+
+	private String appendSpaceBeforeSplit(String targetString) {
+		return Delimiter.appendSpaceBehind(targetString);
 	}
 
 	public String requestGameRound() {
