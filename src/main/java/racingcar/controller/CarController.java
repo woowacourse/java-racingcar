@@ -1,7 +1,9 @@
 package racingcar.controller;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import racingcar.model.Car;
@@ -12,8 +14,16 @@ public class CarController {
 
 	public void createCars(String userInputCarNames) {
 		String[] carNames = splitCarNames(userInputCarNames);
+		validDuplicationCarNames(carNames);
 		Arrays.stream(carNames)
 			.forEach(carName -> carRepository.save(new Car(carName)));
+	}
+
+	private void validDuplicationCarNames(String[] carNames) {
+		Set<String> temp = new HashSet<>(Arrays.asList(carNames));
+		if (temp.size() != carNames.length) {
+			throw new RuntimeException("중복된 자동차 이름이 입력됐습니다.");
+		}
 	}
 
 	public String[] splitCarNames(String input) {

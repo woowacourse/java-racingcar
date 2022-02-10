@@ -7,7 +7,7 @@ public class RacingController {
 	CarController carController = new CarController();
 
 	public RacingController() {
-		carController.createCars(InputView.getCarNames());
+		createCars();
 	}
 
 	public void run() {
@@ -18,5 +18,14 @@ public class RacingController {
 			ResultView.printGameResult(carController.getCars());
 		}
 		ResultView.printWinners(carController.getWinners());
+	}
+
+	private void createCars() {
+		try {
+			carController.createCars(InputView.getCarNames());
+		} catch (RuntimeException e) {
+			System.out.println(e.getMessage());
+			createCars();
+		}
 	}
 }
