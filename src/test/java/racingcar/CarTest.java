@@ -20,4 +20,11 @@ public class CarTest {
 		List<Car> cars = CarFactory.of(names);
 		assertThat(cars.size()).isEqualTo(2);
 	}
+
+	@Test
+	public void 이름_5글자_이상() {
+		assertThatThrownBy(() -> new Car("abcdef"))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageStartingWith("[ERROR]");
+	}
 }
