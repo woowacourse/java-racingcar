@@ -60,12 +60,15 @@ public class StringCalculator {
         } catch (NumberFormatException e) {
             throw new RuntimeException("입력 값은 숫자여야 합니다.");
         }
+        isPositive(value);
 
+        return value;
+    }
+
+    private static void isPositive(int value) {
         if (value < 0) {
             throw new RuntimeException("입력 값은 0 이상의 정수여야 합니다.");
         }
-
-        return value;
     }
 
     public static Integer sumList(List<Integer> numList) {
