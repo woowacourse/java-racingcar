@@ -17,13 +17,13 @@ public class OutPutView {
     }
 
     private static String makeCarStatus(Car car) {
-        String carStatus = car.getName() + " " + ":" + " ";
+        StringBuilder carStatus = new StringBuilder(car.getName());
+        carStatus.append(" : ");
         int position = car.getPosition();
-
         while (position-- > 0) {
-            carStatus += "-";
+            carStatus.append("-");
         }
-        return carStatus;
+        return carStatus.toString();
     }
 
     public static void printResult(List<String> winners) {
