@@ -23,4 +23,11 @@ public class StringCalculatorTest {
         int result = StringCalculator.splitAndSum("1");
         assertThat(result).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("숫자 2개를 콤마로 구분하여 덧셈 테스트")
+    void splitAndSum_twiceNumber() {
+        int result = StringCalculator.splitAndSum("1,2");
+        assertThat(result).isEqualTo(3);
+    }
 }
