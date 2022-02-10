@@ -18,7 +18,7 @@ class GameControllerTest {
 
     @Test
     void 자동차_이름_입력() {
-        String input = "aa, bb, cc";
+        String input = "aa,bb,cc";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         assertThat(gameController.createCarNames()).containsExactly("aa", "bb", "cc");
