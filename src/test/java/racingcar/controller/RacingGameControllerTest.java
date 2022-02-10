@@ -3,10 +3,12 @@ package racingcar.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.controller.exception.RacingGameIsFinishedException;
 import racingcar.domain.Car;
+import racingcar.domain.MidtermResult;
 import racingcar.repository.CarRepository;
 import racingcar.service.RacingGameService;
 import racingcar.service.RacingGameServiceTest;
@@ -45,5 +47,15 @@ class RacingGameControllerTest {
         racingGameController.proceedTurn();
         assertThatThrownBy(() -> racingGameController.proceedTurn())
             .isInstanceOf(RacingGameIsFinishedException.class);
+    }
+
+    @Test
+    public void 중간_실행결과_반환() {
+        racingGameController.inputCarNames("pobi,crong");
+        racingGameController.inputTryCount("1");
+        racingGameController.proceedTurn();
+        MidtermResult result = racingGameController.getMidtermResult();
+        assertThat(result.getPositionByName("pobi")).isEqualTo(1);
+        assertThat(result.getPositionByName("crong")).isEqualTo(0);
     }
 }

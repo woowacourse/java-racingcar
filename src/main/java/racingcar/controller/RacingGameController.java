@@ -3,6 +3,7 @@ package racingcar.controller;
 import java.util.List;
 import racingcar.controller.exception.RacingGameIsFinishedException;
 import racingcar.domain.Car;
+import racingcar.domain.MidtermResult;
 import racingcar.parser.CarNameParser;
 import racingcar.parser.TryCountParser;
 import racingcar.repository.CarRepository;
@@ -38,10 +39,16 @@ public class RacingGameController {
         if (isFinished()) {
             throw new RacingGameIsFinishedException();
         }
+        racingGameService.proceedTurn();
         currentTryCount++;
     }
 
     public boolean isFinished() {
         return currentTryCount == maxTryCount;
+    }
+
+    public MidtermResult getMidtermResult() {
+        List<Car> cars = carRepository.findAll();
+        return new MidtermResult(cars);
     }
 }
