@@ -9,4 +9,4 @@
 
 ## 예외 처리 사항
 
-- [ ] 음수나 문자가 추출된 경우 RuntimeException 예외가 발생해야 한다.
+- [x] 음수나 문자가 추출된 경우 RuntimeException 예외가 발생해야 한다.

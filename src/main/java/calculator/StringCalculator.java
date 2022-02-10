@@ -4,6 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+
+    private static String PATTERN = "\\d+";
+
     public static int splitAndSum(String input) {
         if (input == null || input.isEmpty()) {
             return 0;
@@ -20,10 +23,17 @@ public class StringCalculator {
         return getSum(separatedValues, sum);
     }
 
-    private static int getSum(String[] separatedValues, int sum) {
+    private static int getSum(String[] separatedValues, int sum) throws RuntimeException {
         for (String separatedValue : separatedValues) {
+            checkNaturalNumber(separatedValue);
             sum += Integer.parseInt(separatedValue);
         }
         return sum;
+    }
+
+    private static void checkNaturalNumber(String target) throws RuntimeException {
+        if (!Pattern.matches(PATTERN, target)){
+            throw new RuntimeException();
+        }
     }
 }
