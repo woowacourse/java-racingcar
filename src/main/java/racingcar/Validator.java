@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class Validator {
 
-
     public static void checkName(String nameString) {
         String[] names = nameString.split(",");
 
@@ -35,14 +34,7 @@ public class Validator {
             throw new IllegalArgumentException("이름을 입력해주세요");
         }
 
-        long before = Arrays.stream(nameString.split(","))
-                .count();
-
-        long after = Arrays.stream(nameString.split(","))
-                .distinct()
-                .count();
-
-        if (before != after) {
+        if (hasDuplication(nameString)) {
             throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
         }
     }
