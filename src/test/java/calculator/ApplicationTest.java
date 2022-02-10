@@ -18,5 +18,12 @@ public class ApplicationTest {
         assertThat(number).isEqualTo(0);
     }
 
+    @Test
+    void 구분자_기준_연산() {
+       int number = application.runCalculator("1,2");
+       assertThat(number).isEqualTo(3);
 
+       number = application.runCalculator("1:2");
+       assertThat(number).isEqualTo(3);
+    }
 }
