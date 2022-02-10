@@ -7,6 +7,14 @@ public class Car {
     private Name name;
     private Position position;
 
+    public Car(String name) {
+        this(new Name(name));
+    }
+
+    public Car(Name name) {
+        this(name, new Position());
+    }
+
     public Car(Name name, Position position) {
         this.name = name;
         this.position = position;
