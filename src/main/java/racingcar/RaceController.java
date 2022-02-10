@@ -39,4 +39,12 @@ public class RaceController {
                 .map(Car :: getName)
                 .toArray(String[] :: new);
     }
+
+    public void printPosition() {
+        OutputView.printResult(cars);
+    }
+
+    public void printWinner() {
+        OutputView.printWinner(getWinner());
+    }
 }

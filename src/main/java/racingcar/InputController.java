@@ -8,6 +8,11 @@ public class InputController {
         return carSplit(userCarText);
     }
 
+    public int getUserTryCount() {
+        String userTryCount = scanTryCount();
+        return toInt(userTryCount);
+    }
+
     public String[] carSplit(String cars) {
         return cars.split(",");
     }
