@@ -9,6 +9,7 @@ public class RacingGame {
     private static final String CAR_NAME_DELIMITER = ",";
     private final List<RacingCar> cars;
     private int leftCount;
+    private final RandomGenerator generator = new RandomGenerator();
 
     public RacingGame(String carStringNames, int leftCount) {
         this.cars = makeRacingCars(carStringNames.split(CAR_NAME_DELIMITER));
@@ -38,9 +39,21 @@ public class RacingGame {
         return leftCount;
     }
 
-    public void start() {
+    public void race() {
         for (; leftCount > 0; leftCount--) {
+            moveCars();
+        }
+    }
 
+    private void moveCars() {
+        for (RacingCar car : cars) {
+            moveCar(car);
+        }
+    }
+
+    private void moveCar(RacingCar car) {
+        if (generator.isMovable()) {
+            car.move();
         }
     }
 

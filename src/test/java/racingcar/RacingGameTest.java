@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import calculator.Calculator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,7 +29,7 @@ public class RacingGameTest {
     @DisplayName("게임이 종료되었는지 확인한다.")
     void checkGameEnd() {
         RacingGame game = new RacingGame("pobi,crong,honux", 5);
-        game.start();
+        game.race();
         assertTrue(game.isEnd());
     }
 
