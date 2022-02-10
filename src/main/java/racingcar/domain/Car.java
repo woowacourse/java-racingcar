@@ -14,6 +14,14 @@ public class Car {
 		return new Car(name);
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
 	public void move(int randomNumber) {
 		if (randomNumber >= 4) {
 			position++;
@@ -23,4 +31,5 @@ public class Car {
 	public boolean isSamePosition(int position) {
 		return this.position == position;
 	}
+
 }

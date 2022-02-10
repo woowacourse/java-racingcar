@@ -1,6 +1,7 @@
 package racingcar.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
 import racingcar.repository.CarRepository;
@@ -19,5 +20,14 @@ public class RacingService {
 		for (int i = 0; i < attemptNumber; i++) {
 			cars.forEach(car -> car.move(randomUtil.generate(10)));
 		}
+	}
+
+	public List<String> findWinnerNames() {
+		int maxPosition = carRepository.findMaxPosition();
+
+		return carRepository.findCars().stream()
+			.filter(car -> car.isSamePosition(maxPosition))
+			.map(Car::getName)
+			.collect(Collectors.toList());
 	}
 }

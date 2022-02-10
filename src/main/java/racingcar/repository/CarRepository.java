@@ -19,4 +19,11 @@ public class CarRepository {
 	public List<Car> findCars() {
 		return new ArrayList<>(cars);
 	}
+
+	public int findMaxPosition() {
+		return cars.stream()
+			.mapToInt(Car::getPosition)
+			.max()
+			.orElse(0);
+	}
 }
