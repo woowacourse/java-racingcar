@@ -9,7 +9,7 @@ public class Application {
         application.run();
     }
 
-    private void run() {
+    private void gameStart() throws RuntimeException {
         String[] carNames = inputController.getUserCarNames();
         int tryCount = inputController.getUserTryCount();
         raceController.insertCarFromCarNames(carNames);
@@ -18,5 +18,13 @@ public class Application {
             raceController.printPosition();
         }
         raceController.printWinner();
+    }
+
+    private void run() {
+        try{
+            gameStart();
+        } catch(RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
