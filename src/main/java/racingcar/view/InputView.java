@@ -14,6 +14,25 @@ public class InputView {
 
 	public static int getIterationNo() {
 		System.out.println(GET_ITERATION_NO_MESSAGE);
-		return Integer.parseInt(scanner.nextLine());
+		String input = scanner.nextLine();
+		validIterationNo(input);
+		return Integer.parseInt(input);
+	}
+
+	private static void validIterationNo(String input) {
+		validNumberInput(input);
+		validEmptyInput(input);
+	}
+
+	public static void validNumberInput(String input) {
+		if (!input.matches("[+]?\\d*(\\.\\d+)?")) {
+			throw new RuntimeException("양수를 입력해주세요.");
+		}
+	}
+
+	public static void validEmptyInput(String input) {
+		if (input == null || input.isEmpty()) {
+			throw new RuntimeException("빈 값을 입력하셨습니다. 양수를 입력해주세요.");
+		}
 	}
 }
