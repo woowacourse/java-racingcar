@@ -55,15 +55,16 @@ public class StringTest {
     @Test
     void charAtThrowExceptionOnOutOfBounds() {
         String input = "abc";
+        String exceptionMessage = "String index out of range: 3";
 
         assertThatThrownBy(() -> {
             input.charAt(3);
         }).isInstanceOf(IndexOutOfBoundsException.class)
-                .hasMessageContaining("String index out of range: 3");
+                .hasMessageContaining(exceptionMessage);
 
-        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+        assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
                 .isThrownBy(() -> {
                     input.charAt(3);
-                }).withMessageMatching("String index out of range: 3");
+                }).withMessageMatching(exceptionMessage);
     }
 }
