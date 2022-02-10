@@ -50,6 +50,6 @@ public class RacingCar {
 	}
 
 	public int enterTimes(String input) {
-
+		return Integer.parseInt(input);
 	}
 }
