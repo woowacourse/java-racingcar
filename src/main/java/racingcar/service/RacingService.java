@@ -12,8 +12,8 @@ public class RacingService {
 	private static final int RANDOM_VALUE_RANGE = 10;
 	private static final CarRepository carRepository = new CarRepository();
 
-	public void registerCars(List<Car> carList) {
-		carList.forEach(carRepository::addCar);
+	public void registerCars(List<Car> cars) {
+		cars.forEach(carRepository::addCar);
 	}
 
 	public void race(RandomUtil randomUtil) {

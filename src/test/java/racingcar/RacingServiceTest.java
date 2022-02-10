@@ -42,7 +42,6 @@ public class RacingServiceTest {
 
 	@Test
 	public void 자동차_경주() {
-
 		racingService.race(bound -> 5);
 		racingService.race(bound -> 5);
 
@@ -55,14 +54,9 @@ public class RacingServiceTest {
 
 	@Test
 	public void 우승자_한명_계산() {
-		Car car1 = Car.of("lala");
-		Car car2 = Car.of("good");
-		Car car3 = Car.of("jason");
-
-		car1.move(5);
-		car1.move(5);
-		car1.move(5);
-		car2.move(5);
+		Car car1 = Car.of("lala", 5);
+		Car car2 = Car.of("good", 2);
+		Car car3 = Car.of("jason", 1);
 
 		racingService.registerCars(List.of(car1, car2, car3));
 
