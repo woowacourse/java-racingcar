@@ -5,8 +5,11 @@ import racingcar.model.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Controller {
-    private final Cars cars = new Cars(InputView.getCarNames());
+    private final Cars cars = new Cars(getCars());
     private final int trialNumber = getTrialNumber();
 
     public void run() {
@@ -20,10 +23,22 @@ public class Controller {
             forwardCars();
             OutputView.printCarsPosition(cars);
         }
+
+        OutputView.printWinners(cars.findWinners());
     }
 
     private void forwardCars() {
         cars.forward();
+    }
+
+    private List<Car> getCars() {
+        List<Car> cars = new ArrayList<>();
+
+        InputView.getCarNames()
+                .stream()
+                .forEach(carName -> cars.add(new Car(carName)));
+
+        return cars;
     }
 
     private int getTrialNumber() {
