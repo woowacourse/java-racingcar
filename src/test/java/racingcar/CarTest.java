@@ -11,22 +11,16 @@ public class CarTest {
 	@Test
 	public void 자동차_전진() {
 		Car car = Car.of("pobi");
-
-		int beforePoint = car.getPosition();
 		car.move(4);
-		int afterPoint = car.getPosition();
 
-		assertThat(beforePoint + 1).isEqualTo(afterPoint);
+		assertThat(car.isSamePosition(1)).isTrue();
 	}
 
 	@Test
 	public void 자동차_정지() {
 		Car car = Car.of("pobi");
-
-		int beforePoint = car.getPosition();
 		car.move(2);
-		int afterPoint = car.getPosition();
 
-		assertThat(beforePoint).isEqualTo(afterPoint);
+		assertThat(car.isSamePosition(0)).isTrue();
 	}
 }
