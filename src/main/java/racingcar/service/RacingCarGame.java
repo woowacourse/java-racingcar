@@ -5,6 +5,8 @@ import racingcar.domain.Cars;
 import racingcar.view.Input;
 import racingcar.view.Output;
 
+import java.util.List;
+
 public class RacingCarGame {
     private Cars cars;
     private Attempt attempt;
@@ -19,6 +21,7 @@ public class RacingCarGame {
         init();
         round();
         Output.allRoundResult();
+        win();
     }
 
     private void init() {
@@ -33,5 +36,10 @@ public class RacingCarGame {
             cars.play();
             nowAttempt++;
         }
+    }
+
+    private void win() {
+        List<String> winners = cars.findWinners();
+        Output.showWinners(winners);
     }
 }
