@@ -18,6 +18,12 @@ public class Car {
         return position;
     }
 
+    public void progress(){
+        if(checkMoveOrWait()) {
+            position++;
+        }
+    }
+
     @Override
     public String toString() {
         return "Car{" +

@@ -29,4 +29,19 @@ public class RacingGame {
         totalAttemptCount = Integer.parseInt(getAttemptCount());
     }
 
+    private void run() {
+        for (Car car : carList) {
+            car.progress();
+            printProgress();
+        }
+    }
+
+    private void printProgress() {
+        for (Car car : carList) {
+            String carName = car.getName();
+            int position = car.getPosition();
+
+            OutputView.printProgress(carName, position);
+        }
+    }
 }
