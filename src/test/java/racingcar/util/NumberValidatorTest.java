@@ -26,4 +26,23 @@ public class NumberValidatorTest {
             assertDoesNotThrow(() -> NumberValidator.validateStringIsNumber(input));
         }
     }
+
+    @DisplayName("validateIsPositive 메소드는")
+    @Nested
+    class validateIsPositive {
+        @ParameterizedTest
+        @ValueSource(ints = {-1, -22, 0})
+        void 양수가_아니라면(int input) {
+            assertThatThrownBy(() -> NumberValidator.validateIsPositive(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("숫자는 양수여야 합니다.");
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = {1, 22, 333})
+        void 양수라면(int input) {
+            assertDoesNotThrow(() -> NumberValidator.validateIsPositive(input));
+        }
+
+    }
 }

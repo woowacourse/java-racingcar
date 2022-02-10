@@ -8,4 +8,10 @@ public class NumberValidator {
             throw new IllegalArgumentException("입력은 숫자여야 합니다.");
         }
     }
+
+    public static void validateIsPositive(int input) {
+        if (input <= 0) {
+            throw new IllegalArgumentException("숫자는 양수여야 합니다.");
+        }
+    }
 }
