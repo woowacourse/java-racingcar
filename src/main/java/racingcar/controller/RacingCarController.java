@@ -33,7 +33,7 @@ public class RacingCarController {
 
 	private Round initRound() {
 		outputView.printMessageOfRequestRound();
-		return new Round(inputView.requestGameRound());
+		return new Round(inputView.requestRoundNumber());
 	}
 
 	private void playGame(CarCollection carCollection, Round round) {

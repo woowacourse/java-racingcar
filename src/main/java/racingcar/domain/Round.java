@@ -4,19 +4,9 @@ public class Round {
 
 	private int count;
 
-	public Round(String count) {
-		int value = parseCount(count);
-		validateCountPositive(value);
-		this.count = value;
-	}
-
-	private int parseCount(String count) {
-		try {
-			int value = Integer.parseInt(count);
-			return value;
-		} catch (NumberFormatException exception) {
-			throw new IllegalArgumentException("이동 횟수는 숫자여야 합니다.");
-		}
+	public Round(int count) {
+		validateCountPositive(count);
+		this.count = count;
 	}
 
 	private void validateCountPositive(int count) {

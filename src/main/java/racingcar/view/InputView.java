@@ -29,7 +29,15 @@ public class InputView {
 		return Delimiter.appendSpaceBehind(targetString);
 	}
 
-	public String requestGameRound() {
-		return dataReader.readLine().trim();
+	public int requestRoundNumber() {
+		return parsingNumber(dataReader.readLine());
+	}
+
+	private int parsingNumber(String inputValue) {
+		try {
+			return Integer.parseInt(inputValue.trim());
+		} catch (NumberFormatException exception) {
+			throw new IllegalArgumentException("이동 횟수는 숫자여야 합니다.");
+		}
 	}
 }
