@@ -7,19 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputController {
-    public static void inputData(List<Car> carList) {
-        saveCarList(carList);
-        savaTryNumber();
+    public static List<Car> inputCarList() {
+        return saveCarList();
+    }
+
+    public static int inputTryNum() {
+        return savaTryNumber();
     }
     
-    private static void saveCarList(List<Car> carList) {
+    private static List<Car> saveCarList() {
         while(true){
             String names = Input.inputCarNames();
             
             try{
                 Validation.carNameValidation(names);
-                carList = splitList(names);
-                return;
+                List<Car> carList = splitList(names);
+                return carList;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
@@ -37,8 +40,16 @@ public class InputController {
         return carList;
     }
 
-    private static void savaTryNumber() {
-        String tryValue = Input.inputTry();
-        
+    private static int savaTryNumber() {
+        while(true){
+            String tryValue = Input.inputTry();
+
+            try{
+                Validation.tryNumValidation(tryValue);
+                return Integer.parseInt(tryValue);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

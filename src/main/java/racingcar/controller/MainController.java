@@ -8,12 +8,12 @@ import java.util.List;
 
 public class MainController {
     private List<Car> carList;
-
+    private int tryNum;
     public MainController() {
     }
 
     public void play(){
-        InputController.inputData(carList);
-        
+        carList = InputController.inputCarList();
+        tryNum = InputController.inputTryNum();
     }
 }
