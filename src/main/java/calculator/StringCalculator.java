@@ -11,19 +11,21 @@ public class StringCalculator {
         if (input == null || input.isEmpty()) {
             return 0;
         }
-        int sum = 0;
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
-        if (m.find()) {
-            String customDelimiter = m.group(1);
-            String[] separatedValues = m.group(2).split(customDelimiter);
-            return getSum(separatedValues, sum);
-        }
-
-        String[] separatedValues = input.split(",|:");
-        return getSum(separatedValues, sum);
+        String[] separatedValues = split(input);
+        return getSum(separatedValues);
     }
 
-    private static int getSum(String[] separatedValues, int sum) throws RuntimeException {
+    private static String[] split(String input) {
+        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
+        if (matcher.find()) {
+            String customDelimiter = matcher.group(1);
+            return matcher.group(2).split(customDelimiter);
+        }
+        return input.split(",|:");
+    }
+
+    private static int getSum(String[] separatedValues) {
+        int sum = 0;
         for (String separatedValue : separatedValues) {
             checkNaturalNumber(separatedValue);
             sum += Integer.parseInt(separatedValue);
