@@ -10,7 +10,26 @@ public class RacingCarGame {
 
     private final Input input;
 
-    RacingCarGame() {
+    public RacingCarGame() {
         input = new Input();
+    }
+
+    public void run() {
+        init();
+        round();
+    }
+
+    private void init() {
+        cars = input.carName();
+        attempt = input.attempt();
+    }
+
+    private void round() {
+        int nowAttempt = 0;
+
+        while (!attempt.isSame(nowAttempt)) {
+            cars.play();
+            nowAttempt++;
+        }
     }
 }
