@@ -20,4 +20,4 @@ Car => name, position, 전진 메서드 (난수 생성 호출)
 Cars => List<Car>, toString  
 Winners => List<Car>, 우승자 탐색, toString  
 RandomGenerator => 실행  
-output => 실행결과,
+output => 안내 메시지

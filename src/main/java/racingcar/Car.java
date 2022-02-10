@@ -12,6 +12,14 @@ public class Car {
         position = 0;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
     public void goForward() {
         if (isCarGoForward()) {
             position++;
@@ -25,8 +33,8 @@ public class Car {
         return false;
     }
 
-    public int getPosition() {
-        return position;
+    public boolean isMaxPosition(int maxPosition) {
+        return this.position == maxPosition;
     }
 
     public String toString() {
