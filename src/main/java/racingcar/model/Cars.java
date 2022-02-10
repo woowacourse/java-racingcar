@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
 	private List<Car> cars;
@@ -13,4 +14,9 @@ public class Cars {
 		cars.stream().forEach(Car::move);
 	}
 
+	public List<String> getPosition() {
+		return cars.stream()
+			.map(Car::toString)
+			.collect(Collectors.toList());
+	}
 }

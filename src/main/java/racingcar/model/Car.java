@@ -25,4 +25,13 @@ public class Car {
 	public boolean checkMovingCondition(int randomNumber) {
 		return randomNumber >= 4;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder line = new StringBuilder();
+		for (int i = 0; i < position; i++) {
+			line.append("-");
+		}
+		return name + " : " + line.toString();
+	}
 }
