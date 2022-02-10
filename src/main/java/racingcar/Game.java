@@ -12,16 +12,13 @@ public class Game {
     }
 
     public void start() {
-        //something~
         inputCarNames();
     }
 
     private void inputCarNames() {
         output.inputCarNameMessage();
-        String carNames = input.getNames();
+        String[] carNames = input.getNames();
+        System.out.println(carNames[0]);
     }
 
 }
-/**
- *
- */
