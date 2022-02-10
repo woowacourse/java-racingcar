@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 public class Car implements Comparable<Car> {
-
     private String name;
     private int position;
 
@@ -28,11 +27,11 @@ public class Car implements Comparable<Car> {
         System.out.println("-".repeat(position));
     }
 
-    public int compareTo(Car s) {
-        return position - s.getPosition();
-    }
-
     public boolean isSamePosition(Car maxCar) {
         return position == maxCar.getPosition();
+    }
+
+    public int compareTo(Car s) {
+        return position - s.getPosition();
     }
 }

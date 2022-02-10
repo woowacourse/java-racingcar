@@ -10,6 +10,7 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         CarRepository carRepository=new CarRepository();
+
         GameController game = new GameController(carRepository, inputView, outputView);
         game.play();
     }
