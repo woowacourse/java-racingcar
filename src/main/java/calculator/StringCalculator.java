@@ -13,16 +13,16 @@ public class StringCalculator {
 			return splitByCustomDivider(matcher);
 		}
 		String[] numbers = input.split(",|:");
-		int result = 0;
-		for (String number : numbers) {
-			result += Integer.parseInt(number);
-		}
-		return result;
+		return sum(numbers);
 	}
 
 	public static int splitByCustomDivider(Matcher matcher) {
 		String customDivider = matcher.group(1);
 		String[] numbers = matcher.group(2).split(customDivider + "|,|:");
+		return sum(numbers);
+	}
+
+	public static int sum(String[] numbers) {
 		int result = 0;
 		for (String number : numbers) {
 			result += Integer.parseInt(number);

@@ -43,7 +43,7 @@ public class StringCalculatorTest {
 
 	@Test
 	public void nonNumberTest(){
-		assertThatThrownBy(()-> StringCalculator.add("!"))
+		assertThatThrownBy(()-> StringCalculator.add("023!313"))
 			.isInstanceOf(RuntimeException.class);
 	}
 }
