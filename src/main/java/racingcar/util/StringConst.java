@@ -7,7 +7,8 @@ public enum StringConst {
 	OUTPUT_DELIMITER(" : "),
 	POSITION_DELEIMIER("-"),
 	WINNER_DELIMITER(", "),
-	WINNER_MESSAGE("가 최종 우승했습니다.");
+	WINNER_MESSAGE("가 최종 우승했습니다."),
+	RESULT_MESSAGE("실행 결과");
 
 
 	private final String value;

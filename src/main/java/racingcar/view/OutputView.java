@@ -1,6 +1,7 @@
 package racingcar.view;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import racingcar.util.StringConst;
 
@@ -17,10 +18,15 @@ public class OutputView {
 		for (String eachCarName : carPositions.keySet()) {
 			System.out.println(eachCarName + StringConst.OUTPUT_DELIMITER.getValue() + carPositions.get(eachCarName));
 		}
+		System.out.println();
 	}
 
-	public static void displayWinner(String[] winnerName) {
+	public static void displayWinner(ArrayList<String> winnerName) {
 		System.out.println(
 			String.join(StringConst.WINNER_DELIMITER.getValue(), winnerName) + StringConst.WINNER_MESSAGE.getValue());
+	}
+
+	public static void displayResult() {
+		System.out.println(StringConst.RESULT_MESSAGE.getValue());
 	}
 }
