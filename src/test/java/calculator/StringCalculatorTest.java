@@ -51,6 +51,14 @@ public class StringCalculatorTest {
     }
 
     @Test
+    void 숫자_하나만_입력한_경우_해당_숫자_반환() {
+        int actual = StringCalculator.splitAndSum("15");
+        int expected = 15;
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
     void 빈_문자열_입력한_경우_예외처리() {
         int actual = StringCalculator.splitAndSum("");
         int expected = 0;
