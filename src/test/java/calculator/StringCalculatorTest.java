@@ -3,6 +3,7 @@ package calculator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.Arrays;
@@ -43,8 +44,13 @@ public class StringCalculatorTest {
 
     @Test
     void 숫자_이외의_값을_입력한_경우_예외처리() {
-        assertThatThrownBy(() ->
-                StringCalculator.convertToIntegerArray(new String[]{"a", "b"}))
+        assertThatThrownBy(() -> StringCalculator.convertToIntegerArray(new String[]{"a", "b"}))
+                .isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    void 음수를을_입력한_경우_예외처리() {
+        assertThatThrownBy(() -> StringCalculator.convertToIntegerArray(new String[]{"-1", "-2"}))
                 .isInstanceOf(RuntimeException.class);
     }
 }

@@ -33,7 +33,11 @@ public class StringCalculator {
         try {
             value = Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            throw new RuntimeException("입력값은 숫자여야 합니다.");
+            throw new RuntimeException("입력 값은 숫자여야 합니다.");
+        }
+
+        if (value < 0) {
+            throw new RuntimeException("입력 값은 0 이상의 정수여야 합니다.");
         }
 
         return value;
