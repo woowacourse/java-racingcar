@@ -4,6 +4,8 @@ import java.util.List;
 
 public class RacingGame {
 
+    private static final int END_COUNT = 0;
+
     private final RacingCars racingCars;
     private int leftCount;
 
@@ -14,7 +16,7 @@ public class RacingGame {
     }
 
     private void checkPositiveCount(int leftCount) {
-        if (leftCount <= 0) {
+        if (leftCount <= END_COUNT) {
             throw new IllegalArgumentException("시도횟수는 0이하의 값이 들어올 수 없다.");
         }
     }
@@ -32,7 +34,7 @@ public class RacingGame {
     }
 
     public boolean isEnd() {
-        return leftCount == 0;
+        return leftCount == END_COUNT;
     }
 
     public List<String> winnerNames() {
