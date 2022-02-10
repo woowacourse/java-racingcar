@@ -1,7 +1,7 @@
 package racingcar.controller;
 
-import java.util.Arrays;
-
+import racingcar.utils.validator.CarNamesValidator;
+import racingcar.utils.validator.TryCountValidator;
 import racingcar.view.InputView;
 
 public class GameController {
@@ -17,11 +17,20 @@ public class GameController {
     }
 
     public void run() {
-         createCarNames();
+        carNames = createCarNames();
+        tryCount = createTryCount();
     }
 
     public String[] createCarNames() {
-        return trim(split(inputView.inputCarNames()));
+        while(true) {
+            String[] carNames = trim(split(inputView.inputCarNames()));
+            try {
+                CarNamesValidator.validateCarNames(carNames);
+                return carNames;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private String[] split(String carNames) {
@@ -34,4 +43,13 @@ public class GameController {
         }
         return carNames;
     }
+
+    public int createTryCount() {
+        String inputTryCount;
+        do {
+            inputTryCount = inputView.inputTryCount();
+        } while(!TryCountValidator.isValidated(inputTryCount));
+        return Integer.parseInt(inputTryCount);
+    }
+
 }
