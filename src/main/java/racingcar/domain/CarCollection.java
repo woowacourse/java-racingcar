@@ -37,4 +37,13 @@ public class CarCollection {
 		}
 	}
 
+	public void play(NumberPicker numberPicker) {
+		for (Car car : cars) {
+			car.goForwardOrStop(numberPicker.pickNumber());
+		}
+	}
+
+	public List<String> getStatuses() {
+		return cars.stream().map(Car::toString).collect(Collectors.toList());
+	}
 }

@@ -9,7 +9,17 @@ public class Car {
 		this.name = name;
 	}
 
-	public void increaseLocation() {
+	private void increaseLocation() {
 		this.location++;
+	}
+
+	public void goForwardOrStop(int pickNumber) {
+		if (pickNumber >= 4) {
+			increaseLocation();
+		}
+	}
+
+	public String toString() {
+		return name + " : " + "-".repeat(location);
 	}
 }
