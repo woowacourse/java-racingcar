@@ -3,7 +3,7 @@ package racingcar;
 import java.util.List;
 
 public class InputValidator {
-	public void checkCarNameLength(List<String> carNames) {
+	public static void checkCarNameLength(List<String> carNames) {
 		for (String carName : carNames) {
 			if (carName.length() > 5) {
 				throw new RuntimeException("자동차 이름은 5자 이하여야 합니다.");
@@ -11,7 +11,7 @@ public class InputValidator {
 		}
 	}
 
-	public void validateIsSpace(List<String> carNames) {
+	public static void validateIsSpace(List<String> carNames) {
 		for (String carName : carNames) {
 			if (carName.equals("")) {
 				throw new RuntimeException("모든 자동차 이름은 반드시 존재해야 합니다.");
@@ -22,7 +22,7 @@ public class InputValidator {
 		}
 	}
 
-	public void validateDuplication(List<String> carNames) {
+	public static void validateDuplication(List<String> carNames) {
 		if (carNames.stream().distinct().count() != carNames.size()) {
 			throw new RuntimeException("자동차 이름은 중복될 수 없습니다.");
 		}
