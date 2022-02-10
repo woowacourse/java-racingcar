@@ -30,4 +30,13 @@ public class StringCalculatorTest {
         int result = StringCalculator.splitAndSum("1,2");
         assertThat(result).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("숫자 2개를 콤마 및 콜론으로 구분하여 덧셈 테스트")
+    void splitAndSum_by_commaAndColon() {
+        int result = StringCalculator.splitAndSum("1,2:3");
+        assertThat(result).isEqualTo(6);
+    }
+
+
 }
