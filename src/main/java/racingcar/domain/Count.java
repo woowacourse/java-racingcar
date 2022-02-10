@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 public class Count {
-    private final int count;
+    private int count;
 
     public Count(String input) {
         int number = Integer.parseInt(input);
@@ -13,5 +13,13 @@ public class Count {
         if(number < 0) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public boolean isPositive() {
+        return count > 0;
+    }
+
+    public void subtract() {
+        count--;
     }
 }

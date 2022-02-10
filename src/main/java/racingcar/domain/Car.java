@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class Car {
     private final String name;
     private int position;
@@ -35,5 +37,19 @@ public class Car {
         if (name.length() > 5) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public void move() {
+        if(Randoms.pickNumberInRange(0,9) > 3) {
+            position++;
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
