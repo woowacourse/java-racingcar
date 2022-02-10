@@ -26,13 +26,6 @@ public class StringCalculatorTest {
                 .hasMessage("빈 문자열을 입력할 수 없습니다.");
     }
 
-    @DisplayName("쉼표, 콜론 구분자로 분리")
-    @ParameterizedTest
-    @ValueSource(strings = {"1,2,3", "1:2:3"})
-    void splitString(String input) {
-        assertThat(stringCalculator.split(input)).containsExactly("1", "2", "3");
-    }
-
     @DisplayName("커스텀 구분자로 분리")
     @ParameterizedTest
     @CsvSource(value = {"1;2;3,;", "1_2_3,_", "1-2-3,-"})
