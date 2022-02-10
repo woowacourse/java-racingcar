@@ -14,4 +14,10 @@ public class StringCalculatorTest {
         result = StringCalculator.splitAndSum("");
         assertThat(result).isEqualTo(0);
     }
+
+    @Test
+    public void 숫자하나일때_그대로_반환하는_테스트() throws Exception {
+        int result = StringCalculator.splitAndSum("1");
+        assertThat(result).isEqualTo(1);
+    }
 }
