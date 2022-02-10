@@ -13,13 +13,15 @@ public class Car {
         this.name = name;
     }
 
-    public void move() {
-        Random random = new Random();
-        int randomNumber = random.nextInt(RANGE);
-
+    public void move(int randomNumber) {
         if (randomNumber >= THRESHOLD) {
             position++;
         }
+    }
+
+    public int generateRandomNumber() {
+        Random random = new Random();
+        return random.nextInt(RANGE);
     }
 
     public String getCurrentPosition() {
