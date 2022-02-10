@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
 
@@ -55,5 +56,31 @@ public class StringCalculatorTest {
         String target = "//;\n1;2;3";
         int actual = StringCalculator.calculate(target);
         assertThat(actual).isEqualTo(6);
+    }
+
+    @Test
+    void 숫자가_하나() {
+        int actual = StringCalculator.calculate("3");
+        assertThat(actual).isEqualTo(3);
+    }
+
+    @Test
+    void 숫자가_아닌_경우() {
+        assertThatThrownBy(() -> {
+            StringCalculator.calculate("일;이");
+        }).isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    void 음수인_경우() {
+        assertThatThrownBy(() -> {
+            StringCalculator.calculate("-1;2;3");
+        }).isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    void 공백인_경우() {
+        int actual = StringCalculator.calculate("");
+        assertThat(actual).isEqualTo(0);
     }
 }
