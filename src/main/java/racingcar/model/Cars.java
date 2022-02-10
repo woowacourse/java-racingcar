@@ -9,11 +9,12 @@ public class Cars {
 
 	private final List<Car> cars = new ArrayList<>();
 
-	public Cars(String[] carNames) {
-		if (validateDuplicatedName(carNames)) {
+	public Cars(String carNames) {
+		String[] carNameArray = carNames.split(",");
+		if (validateDuplicatedName(carNameArray)) {
 			throw new IllegalArgumentException("[ERROR] 중복된 이름이 있습니다");
 		}
-		for (String carName : carNames) {
+		for (String carName : carNameArray) {
 			cars.add(new Car(carName));
 		}
 	}
