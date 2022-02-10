@@ -3,6 +3,7 @@ package calculator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
 
@@ -31,5 +32,13 @@ public class StringCalculatorTest {
     public void 커스텀_구분자를_통한_덧셈_테스트() throws Exception {
         int result = StringCalculator.splitAndSum("//;\n1;2;3");
         assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    public void 자연수가_아니면_예외처리_테스트() throws Exception {
+        assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
+                .isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> StringCalculator.splitAndSum("a,2,3"))
+                .isInstanceOf(RuntimeException.class);
     }
 }
