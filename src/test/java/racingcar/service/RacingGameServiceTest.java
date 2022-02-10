@@ -10,7 +10,7 @@ import racingcar.repository.CarRepository;
 
 public class RacingGameServiceTest {
 
-    static class MockRandomNumberGenerator implements RandomNumberGenerator {
+    public static class MockRandomNumberGenerator implements RandomNumberGenerator {
 
         static final int FORWARDING_NUMBER = 4;
         static final int STOPPING_NUMBER = 0;
