@@ -9,10 +9,14 @@ public class InputView {
     private static final String REQUEST_CARS_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String ERROR_CAR_NAME_LENGTH = "자동차의 이름이 5자 이하여야 합니다.";
     private static final String ERROR_CAR_NAME_BLANK = "자동차의 입력은 빈칸일 수 없습니다.";
+    private static final String REQUEST_ROUND_VALUE = "시도할 회수는 몇회인가요?";
+    private static final String ERROR_ROUND_NOT_NUMBER = "입력한 이동 숫자가 숫자의 형태가 아닙니다.";
+    private static final String ERROR_ROUND_MINIMUM_ONE = "입력한 이동 숫자가 0 이하일수는 없습니다.";
     private static final String ERROR = "[ERROR] ";
     private static final String SPLIT_CARS_NAME = ",";
     private static final int SPLIT_LIMIT = -1;
     private static final int CAR_NAME_LIMIT = 5;
+    private static final int ROUND_MINIMUM_ONE = 1;
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -53,6 +57,33 @@ public class InputView {
     private static void validateCarsNameLength(String carName) {
         if (carName.length() > CAR_NAME_LIMIT) {
             throw new IllegalArgumentException(ERROR_CAR_NAME_LENGTH);
+        }
+    }
+
+    public static int getRound() {
+        System.out.println(REQUEST_ROUND_VALUE);
+        try {
+            String inputRound = getInput();
+            validateRoundNumber(inputRound);
+            validateRoundMinimumOne(inputRound);
+            return Integer.parseInt(inputRound);
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e);
+            return getRound();
+        }
+    }
+
+    private static void validateRoundNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_ROUND_NOT_NUMBER);
+        }
+    }
+
+    private static void validateRoundMinimumOne(String inputRound) {
+        if (Integer.parseInt(inputRound) < ROUND_MINIMUM_ONE) {
+            throw new IllegalArgumentException(ERROR_ROUND_MINIMUM_ONE);
         }
     }
 
