@@ -29,6 +29,12 @@ class InputTest {
         validateName(names);
     }
 
+    @Test
+    void 자동차_이름_길이_테스트() {
+        String names = "good";
+        validateName(names);
+    }
+
     void validateName(String names) {
         assertThatThrownBy(() -> {
             Input.carName(names);
