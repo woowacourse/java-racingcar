@@ -1,5 +1,8 @@
 package calculator;
 
+import static calculator.CalculatorValidation.isEmpty;
+import static calculator.CalculatorValidation.isValidTokens;
+
 public class Calculator {
 
     private static StringSplitter stringSplitter = StringSplitter.getInstance();
@@ -29,13 +32,7 @@ public class Calculator {
 
     private static int getSum(int sum, String[] tokens) {
         for (String token : tokens) {
-            int num = Integer.parseInt(token);
-
-            if (num < 0){
-                throw new RuntimeException("음수는 안됩니다!");
-            }
-
-            sum += num;
+            sum += Integer.parseInt(token);
         }
 
         return sum;
