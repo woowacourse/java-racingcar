@@ -15,10 +15,6 @@ public class RacingCars {
     private final List<RacingCar> cars;
     private final RandomGenerator generator = new RandomGenerator();
 
-    public RacingCars(List<RacingCar> cars) {
-        this.cars = cars;
-    }
-
     public RacingCars(String carStringNames) {
         this.cars = makeRacingCars(carStringNames.split(CAR_NAME_DELIMITER));
     }
@@ -37,6 +33,12 @@ public class RacingCars {
     public List<String> getCarNames() {
         return cars.stream()
             .map(RacingCar::getName)
+            .collect(Collectors.toList());
+    }
+
+    public List<RacingCarDto> getRacingCars() {
+        return cars.stream()
+            .map(RacingCarDto::from)
             .collect(Collectors.toList());
     }
 
@@ -62,11 +64,5 @@ public class RacingCars {
         return Collections.max(cars.stream()
             .map(RacingCar::getPosition)
             .collect(Collectors.toList()));
-    }
-
-    public List<RacingCarDto> getRacingCars() {
-        return cars.stream()
-            .map(RacingCarDto::from)
-            .collect(Collectors.toList());
     }
 }
