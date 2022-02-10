@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.List;
 
 public class MidtermResult {
@@ -15,5 +17,9 @@ public class MidtermResult {
 
     private Car findCarByName(String name) {
         return cars.stream().filter(c -> c.getName().equals(name)).findFirst().get();
+    }
+
+    public List<String> getCarNames() {
+        return cars.stream().map(Car::getName).collect(toList());
     }
 }
