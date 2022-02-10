@@ -11,4 +11,11 @@ public class StringCalculatorTest {
 		assertThat(result).isEqualTo(3);
 	}
 
+	@Test
+	public void oneNumberTest() {
+		int result =StringCalculator.add("1");
+		assertThat(result).isEqualTo(1);
+	}
+
+
 }

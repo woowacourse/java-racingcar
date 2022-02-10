@@ -8,7 +8,5 @@
 - 빈 문자열 또는 null 값을 입력할 경우 0을 반환한다.
 - [예외처리_`RuntimeException`] 숫자 이외의 값 또는 음수를 전달하는 경우
 
-"docs: stringCalculator readme"
-
 ## 자동차 경주
 ###🚀 기능 요구사항
