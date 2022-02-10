@@ -26,6 +26,7 @@ public class StringCalculator {
 		int result = 0;
 		for (String number : numbers) {
 			checkNonNumber(number);
+			checkNegativeNumber(number);
 			result += Integer.parseInt(number);
 		}
 		return result;
@@ -38,4 +39,11 @@ public class StringCalculator {
 			throw new RuntimeException("숫자가 아닌 값은 더할 수 없습니다.");
 		}
 	}
+
+	public static void checkNegativeNumber(String number) {
+		if (Integer.parseInt(number) < 0) {
+			throw new RuntimeException("음수는 허용되지 않습니다.");
+		}
+	}
+
 }
