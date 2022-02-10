@@ -21,14 +21,14 @@ public class StringCalculatorTest {
 
     @DisplayName("입력 문자열 포맷 검사 - 성공")
     @ParameterizedTest
-    @ValueSource(strings = {"", "1:2:3", "1,2,3", "//;\\n", "//;\\n1;2;3", "//_\\n1_2_3"})
+    @ValueSource(strings = {"", "1:2:3", "1,2,3", "//;\n", "//;\n1;2;3", "//_\n1_2_3"})
     void validateInputSuccess(String text) {
         Assertions.assertDoesNotThrow(() -> StringCalculator.validateInput(text));
     }
 
     @DisplayName("입력 문자열 포맷 검사 - 실패")
     @ParameterizedTest
-    @ValueSource(strings = {"1:2:", ",2,3", "//;\\n;", "//;\\n1;2;", "/:\\n", "///;\\n1;2", "1::2", ";;;"})
+    @ValueSource(strings = {"1:2:", ",2,3", "//;\n;", "//;\n1;2;", "/:\n", "///;\n1;2", "1::2", ";;;"})
     void validateInputFail(String text) {
         assertThatThrownBy(() -> StringCalculator.validateInput(text))
                 .isInstanceOf(RuntimeException.class)
@@ -66,24 +66,19 @@ public class StringCalculatorTest {
     }
 
     @DisplayName("구분자 파싱")
-    @ParameterizedTest
-    @CsvSource(value = {"//;\\n1;2;3|;", "//_\\n1_2_3|_", "//-\\n1-2-3|-"}, delimiter = '|')
-    void getDelimiterFromText(String text, String expected) {
-        assertThat(StringCalculator.getDelimiterFromText(text)).isEqualTo(expected);
+    @Test
+    void getDelimiterFromText() {
+        assertThat(StringCalculator.getDelimiterFromText("//;\n1;2;3")).isEqualTo(";");
+        assertThat(StringCalculator.getDelimiterFromText("//_\n1_2_3")).isEqualTo("_");
+        assertThat(StringCalculator.getDelimiterFromText("//-\n1-2-3")).isEqualTo("-");
     }
 
     @DisplayName("문자열에서 구분자 제거")
-    @ParameterizedTest
-    @CsvSource(value = {"//;\\n1;2;3|1;2;3", "//_\\n1_2_3|1_2_3", "//-\\n1-2-3|1-2-3"}, delimiter = '|')
-    void removeDelimiterFromText(String text, String expected) {
-        assertThat(StringCalculator.removeDelimiterFromText(text)).isEqualTo(expected);
-    }
-
-    @DisplayName("입력된 문자열의 합 계산")
-    @ParameterizedTest
-    @CsvSource(value = {"1:2:3|6", "//;\\n1;2;3|6"}, delimiter = '|')
-    void sum(String text, int expected) {
-        assertThat(StringCalculator.sum(text)).isEqualTo(expected);
+    @Test
+    void removeDelimiterFromText() {
+        assertThat(StringCalculator.removeDelimiterFromText("//;\n1;2;3")).isEqualTo("1;2;3");
+        assertThat(StringCalculator.removeDelimiterFromText("//_\n1_2_3")).isEqualTo("1_2_3");
+        assertThat(StringCalculator.removeDelimiterFromText("//-\n1-2-3")).isEqualTo("1-2-3");
     }
 
     @DisplayName("String 배열을 Int 로 형변환")
@@ -104,6 +99,45 @@ public class StringCalculatorTest {
 
         assertThat(StringCalculator.sumIntegerArray(new Integer[]{00, 100, 1000}))
                 .isEqualTo(1100);
+    }
+
+    @Test
+    public void splitAndSum_null_또는_빈문자() throws Exception {
+        int result = StringCalculator.sum(null);
+        assertThat(result).isEqualTo(0);
+
+        result = StringCalculator.sum("");
+        assertThat(result).isEqualTo(0);
+    }
+
+    @Test
+    public void splitAndSum_숫자하나() throws Exception {
+        int result = StringCalculator.sum("1");
+        assertThat(result).isEqualTo(1);
+    }
+
+    @Test
+    public void splitAndSum_쉼표구분자() throws Exception {
+        int result = StringCalculator.sum("1,2");
+        assertThat(result).isEqualTo(3);
+    }
+
+    @Test
+    public void splitAndSum_쉼표_또는_콜론_구분자() throws Exception {
+        int result = StringCalculator.sum("1,2:3");
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    public void splitAndSum_custom_구분자() throws Exception {
+        int result = StringCalculator.sum("//;\n1;2;3");
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    public void splitAndSum_negative() throws Exception {
+        assertThatThrownBy(() -> StringCalculator.sum("-1,2,3"))
+                .isInstanceOf(RuntimeException.class);
     }
 }
 
