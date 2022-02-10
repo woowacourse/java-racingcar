@@ -10,7 +10,7 @@ import java.util.List;
 public class RacingCarTest {
 	public InputManager inputManager = new InputManager();
 	public InputValidator inputValidator = new InputValidator();
-	public RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+	public RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator(9, 0);
 
 	@Test
 	public void 자동차_이름_분리해서_가져오기_테스트() {
@@ -89,5 +89,17 @@ public class RacingCarTest {
 	public void 랜덤값_범위_테스트() {
 		int number = randomNumberGenerator.generate();
 		assertThat(0<= number && number <= 9).isEqualTo(true);
+	}
+
+	@Test
+	public void 자동차_멈춤_테스트() {
+		Car car = new Car("클레이", new RandomNumberGenerator(3, 0));
+		assertThat(car.isMove()).isEqualTo(false);
+	}
+
+	@Test
+	public void 자동차_전진_테스트() {
+		Car car = new Car("클레이", new RandomNumberGenerator(9, 4));
+		assertThat(car.isMove()).isEqualTo(true);
 	}
 }
