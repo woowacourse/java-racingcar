@@ -4,6 +4,7 @@ import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.util.InputValidator;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,10 +16,11 @@ public class GameController {
     private int trialNum;
 
     public void run() {
-        gameInit();
+        initGame();
+        runGame();
     }
 
-    private void gameInit() {
+    private void initGame() {
         InputView.inputCarNames();
         Scanner scanner = new Scanner(System.in);
         String carNames = scanner.nextLine();
@@ -39,5 +41,13 @@ public class GameController {
         return new Cars(carNameList.stream()
                 .map(Car::new)
                 .collect(Collectors.toList()));
+    }
+
+    private void runGame() {
+        OutputView.printTrialResult();
+        for (int i = 0; i < trialNum; i++) {
+            cars.race();
+            OutputView.printCarPosition(cars);
+        }
     }
 }
