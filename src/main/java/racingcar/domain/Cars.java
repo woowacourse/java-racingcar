@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 public class Cars {
+    public static final int MOVE_CONDITION = 4;
+    public static final int RANDOM_NUMBER_BOUND = 10;
+
     private final List<Car> cars = new ArrayList<>();
 
     public Cars(String[] carNames) {
@@ -20,7 +23,7 @@ public class Cars {
     }
 
     private void checkAndMove(Car car) {
-        if (makeRandom() >= 4) {
+        if (makeRandom() >= MOVE_CONDITION) {
             car.moveForward();
         }
     }
