@@ -7,17 +7,17 @@ public class StringCalculator {
     private static final String INPUT_FORMAT_PATTERN = DELIMITER_PATTERN + ".+";
     private static final String DELIMITER = ",|:";
 
-    public void validateInput(String text) {
+    public static void validateInput(String text) {
         if (text.isEmpty()) {
             throw new IllegalArgumentException("빈 문자열을 입력할 수 없습니다.");
         }
     }
 
-    public String[] split(String text, String customDelimiter) {
+    public static String[] split(String text, String customDelimiter) {
         return text.split(customDelimiter);
     }
 
-    public int toNumber(String text) {
+    public static int toNumber(String text) {
         try {
             return Integer.parseUnsignedInt(text);
         } catch (NumberFormatException e) {
@@ -25,11 +25,11 @@ public class StringCalculator {
         }
     }
 
-    public String getDelimiterFromText(String text) {
+    public static String getDelimiterFromText(String text) {
         return text.split("\\\\n")[0].split("//")[1];
     }
 
-    public int sum(String text) {
+    public static int sum(String text) {
         validateInput(text);
 
         String delimiter = DELIMITER;
@@ -38,15 +38,15 @@ public class StringCalculator {
         }
 
         return Arrays.stream(split(removeDelimiterFromText(text), delimiter))
-                .map(this::toNumber)
+                .map(StringCalculator::toNumber)
                 .reduce(0, Integer::sum);
     }
 
-    public boolean hasCustomDelimiter(String text) {
+    public static boolean hasCustomDelimiter(String text) {
         return text.matches(INPUT_FORMAT_PATTERN);
     }
 
-    public String removeDelimiterFromText(String text) {
+    public static String removeDelimiterFromText(String text) {
         return text.replaceAll(DELIMITER_PATTERN, "");
     }
 }
