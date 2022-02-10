@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import racingcar.controller.RacingCarGame;
+import racingcar.model.Car;
 
 public class RacingCarTest {
 	RacingCarGame racingCarGame = new RacingCarGame();
@@ -42,5 +43,11 @@ public class RacingCarTest {
 	public void 횟수_양수_확인() throws Exception {
 		assertThatThrownBy(() -> racingCarGame.checkGameTurnNumber("-2"))
 			.isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	public void 자동차_객체_생성() throws Exception {
+		List<Car> result = racingCarGame.toCar(Arrays.asList("배카라", "아스피"));
+		assertThat(result).isEqualTo(Arrays.asList(new Car("배카라"), new Car("아스피")));
 	}
 }

@@ -2,7 +2,9 @@ package racingcar.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import racingcar.model.Car;
 import racingcar.view.InputView;
 
 public class RacingCarGame {
@@ -48,5 +50,11 @@ public class RacingCarGame {
 		if (!gameTurn.matches("[1-9]\\d*")) {
 			throw new IllegalArgumentException("[Error] 숫자를 입력하세요.");
 		}
+	}
+
+	public List<Car> toCar(List<String> carNames) {
+		return carNames.stream()
+			.map(carName -> new Car(carName))
+			.collect(Collectors.toList());
 	}
 }
