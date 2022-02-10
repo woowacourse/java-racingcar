@@ -1,5 +1,8 @@
 package calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
     public static String[] splitString(String s) {
         String regExp = ",|:";
@@ -14,5 +17,14 @@ public class StringCalculator {
 
     private static boolean isCustom(String s) {
         return s.startsWith("//") && s.contains("\n");
+    }
+
+    public static List<Integer> convertToInteger(String[] arr) {
+        List<Integer> numList = new ArrayList<>();
+        for (String num : arr) {
+            numList.add(Integer.parseInt(num));
+        }
+
+        return numList;
     }
 }
