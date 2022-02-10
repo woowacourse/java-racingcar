@@ -24,7 +24,9 @@ public class RacingGameTest {
     @Test
     @DisplayName("게임이 종료되었는지 확인한다.")
     void checkGameEnd() {
-        racingGame.race();
+        for(int i = 0; i < 5; i++) {
+            racingGame.race();
+        }
         assertTrue(racingGame.isEnd());
     }
 
@@ -37,7 +39,7 @@ public class RacingGameTest {
     @ParameterizedTest
     @ValueSource(ints = {0, -1})
     @DisplayName("게임을 생성할 때 시도횟수가 0이하이면 예외가 발생한다.")
-    void nagativeCount(int count) {
+    void negativeCount(int count) {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> new RacingGame(racingCars, count))
             .withMessageMatching("시도횟수는 0이하의 값이 들어올 수 없다.");
@@ -46,7 +48,9 @@ public class RacingGameTest {
     @Test
     @DisplayName("게임이 종료되었는데 race할 경우 exception이 발생한다.")
     void raceEndException() {
-        racingGame.race();
+        for(int i = 0; i < 5; i++) {
+            racingGame.race();
+        }
         assertThatExceptionOfType(RuntimeException.class)
             .isThrownBy(() -> racingGame.race())
             .withMessageMatching("종료된 게임은 더이상 실행할 수 없다.");
