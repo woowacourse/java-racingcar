@@ -10,32 +10,27 @@ public class StringCalculator {
             return 0;
         }
 
-        if (text.contains(",") || text.contains(":")) {
-            String[] numbers = text.split("[,:]");
+        String[] numbers = split(text);
 
-            return sum(numbers);
-        }
+        return sum(numbers);
+    }
 
+    private static String[] split(String text) {
         Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (matcher.find()) {
             String customDelimiter = matcher.group(1);
-            String[] numbers = matcher.group(2).split(customDelimiter);
-
-            return sum(numbers);
+            return matcher.group(2).split(customDelimiter);
         }
 
-        return Integer.parseInt(text);
+        return text.split("[,:]");
     }
 
     private static int sum(String[] numbers) {
         int total = 0;
         for (String number : numbers) {
-            //
             total += Integer.parseInt(number);
         }
 
         return total;
     }
-
-
 }
