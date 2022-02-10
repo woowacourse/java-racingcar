@@ -1,13 +1,14 @@
 package racingcar;
 
 public class Car implements Comparable<Car> {
+
     private static final int INIT_POSITION = 1;
     private static final int LOWER_MOVABLE_BOUND = 4;
 
     private int position = INIT_POSITION;
     private String name;
 
-    protected Car() {
+    Car() {
     }
 
     public Car(String name) {
