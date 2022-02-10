@@ -3,8 +3,8 @@ package carracing;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -71,4 +71,49 @@ public class CarRacingTest {
 		assertThat(changedPosition).isEqualTo(originalPosition);
 	}
 
+	@Test
+	void 최종우승자_결정_한명() {
+		//given
+		Car pobiCar = new Car("pobi");
+		Car eastCar = new Car("east");
+		Car peperCar = new Car("peper");
+		pobiCar.move(9);
+		eastCar.move(9);
+		eastCar.move(9);
+		peperCar.move(9);
+		peperCar.move(9);
+		peperCar.move(9);
+
+		Cars cars = new Cars(Arrays.asList(
+			pobiCar, eastCar, peperCar
+		));
+		//when
+
+		//then
+		List<String> winners = cars.getWinners();
+		assertThat(winners).contains("peper");
+	}
+
+	@Test
+	public void 최종우승자_결정_여러명() throws Exception{
+		//given
+		Car pobiCar = new Car("pobi");
+		Car eastCar = new Car("east");
+		Car peperCar = new Car("peper");
+		pobiCar.move(9);
+		eastCar.move(9);
+		eastCar.move(9);
+		eastCar.move(9);
+		peperCar.move(9);
+		peperCar.move(9);
+		peperCar.move(9);
+
+		Cars cars = new Cars(Arrays.asList(
+			pobiCar, eastCar, peperCar
+		));
+		//when
+	    //then
+		List<String> winners = cars.getWinners();
+		assertThat(winners).contains("peper","east");
+	}
 }
