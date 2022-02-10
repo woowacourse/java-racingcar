@@ -5,8 +5,8 @@ import java.util.List;
 
 public class CarRepository {
 	private static CarRepository instance;
-	private List<Car> cars = new ArrayList<>();
-	private RandomNo randomNo = new RandomNo();
+	private final List<Car> cars = new ArrayList<>();
+	private final RandomNo randomNo = new RandomNo();
 
 	public static CarRepository getInstance() {
 		if (instance == null) {

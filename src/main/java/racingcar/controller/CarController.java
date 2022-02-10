@@ -10,7 +10,9 @@ import racingcar.model.Car;
 import racingcar.model.CarRepository;
 
 public class CarController {
-	private CarRepository carRepository = CarRepository.getInstance();
+	private static final String CAR_NAMES_DUPLICATE_ERROR_MESSAGE = "중복된 자동차 이름이 입력됐습니다.";
+	private static final String CAR_NAME_DELIMITER = ",";
+	private final CarRepository carRepository = CarRepository.getInstance();
 
 	public void createCars(String userInputCarNames) {
 		carRepository.clear();
@@ -23,12 +25,12 @@ public class CarController {
 	private void validDuplicationCarNames(String[] carNames) {
 		Set<String> temp = new HashSet<>(Arrays.asList(carNames));
 		if (temp.size() != carNames.length) {
-			throw new RuntimeException("중복된 자동차 이름이 입력됐습니다.");
+			throw new RuntimeException(CAR_NAMES_DUPLICATE_ERROR_MESSAGE);
 		}
 	}
 
 	public String[] splitCarNames(String input) {
-		return Stream.of(input.split(",")).map(String::trim).toArray(String[]::new);
+		return Stream.of(input.split(CAR_NAME_DELIMITER)).map(String::trim).toArray(String[]::new);
 	}
 
 	public void run() {
