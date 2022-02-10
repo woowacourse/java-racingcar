@@ -12,7 +12,7 @@ public class StringCalculatorTest {
     private final StringCalculator stringCalculator = new StringCalculator();
 
     @Test
-    @DisplayName("정수 파라미터 두개를 더해서 반환한다.")
+    @DisplayName("사용자 지정 구분자로 구분한 값들을 더해서 반환한다.")
     void calculate() {
         String expression = "//;\n1;2;3";
         int actual = stringCalculator.calculate(expression);
