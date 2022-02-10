@@ -15,12 +15,12 @@ public class StringCalculator {
 			return 0;
 		}
 		String delimiter = getDelimiter(input);
-		input = temp(input, delimiter);
+		input = substringRegexPart(input, delimiter);
 		List<Integer> numbers = convertToNumberList(input.split(delimiter));
 		return sumElements(numbers);
 	}
 
-	private static String temp(String input, String delimiter) {
+	private static String substringRegexPart(String input, String delimiter) {
 		if (!delimiter.equals(DEFAULT_DELIMITER)) {
 			input = input.substring(4);
 		}
@@ -36,13 +36,13 @@ public class StringCalculator {
 	private static int sumElements(List<Integer> numbers) {
 		int sum = 0;
 		for (Integer number : numbers) {
-			exception(number);
+			negativeNumberException(number);
 			sum += number;
 		}
 		return sum;
 	}
 
-	private static void exception(Integer number) {
+	private static void negativeNumberException(Integer number) {
 		if (number < 0) {
 			throw new RuntimeException("음수 값은 포함될 수 없습니다.");
 		}
