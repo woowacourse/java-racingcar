@@ -15,4 +15,12 @@ public class RacingCarGame {
     public void orderToSaveRaceCount(int raceCount) {
         RaceCount.storeCount(raceCount);
     }
+
+    public boolean isOverRace(){
+        return RaceCount.getCount() == 0;
+    }
+
+    public void startRace() {
+        RaceCount.reduceRaceCount();
+    }
 }

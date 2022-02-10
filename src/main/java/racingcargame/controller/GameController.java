@@ -22,5 +22,9 @@ public class GameController {
 
         OutputView.showRaceCountInputGuideMessage();
         racingCarGame.orderToSaveRaceCount(inputController.inputRaceCount());
+
+        while (!racingCarGame.isOverRace()) {
+            racingCarGame.startRace();
+        }
     }
 }
