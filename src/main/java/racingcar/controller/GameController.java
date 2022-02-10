@@ -20,6 +20,9 @@ public class GameController {
         String carNames = scanner.nextLine();
         List<String> carNameList = splitCars(carNames);
         List<Car> carList = initCars(carNameList);
+        InputView.inputTrialNum();
+        int trialNum = scanner.nextInt();
+        System.out.println(trialNum);
     }
 
     public List<String> splitCars(String carNames) {
