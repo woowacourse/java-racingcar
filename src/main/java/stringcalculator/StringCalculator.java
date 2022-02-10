@@ -34,8 +34,8 @@ public class StringCalculator {
 
     public int sum(String text) {
         validateInput(text);
-        String delimiter = DELIMITER;
 
+        String delimiter = DELIMITER;
         if (hasCustomDelimiter(text)) {
             delimiter = getDelimiterFromText(text);
         }

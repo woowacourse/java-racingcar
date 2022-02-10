@@ -28,40 +28,25 @@ public class StringCalculatorTest {
 
     @DisplayName("커스텀 구분자로 분리")
     @ParameterizedTest
-    @CsvSource(value = {"1;2;3,;", "1_2_3,_", "1-2-3,-"})
+    @CsvSource(value = {"1;2;3|;", "1_2_3|_", "1-2-3|-"}, delimiter = '|')
     void splitStringWithCustomDelimiter(String input, String delimiter) {
         assertThat(stringCalculator.split(input, delimiter)).containsExactly("1", "2", "3");
     }
 
-    @DisplayName("")
-    @ParameterizedTest
-    @CsvSource(value = {"a,false,0", "-1,false,0", "1,true,1", "0,true,0"})
-    void toNumber(String text, boolean isSucceed, int expected) {
-        if (isSucceed) {
-            assertThat(stringCalculator.toNumber(text)).isEqualTo(expected);
-        }
-
-        if (!isSucceed) {
-            assertThatThrownBy(() -> stringCalculator.toNumber(text))
-                    .isInstanceOf(RuntimeException.class)
-                    .hasMessage("올바른 숫자가 아닙니다.");
-        }
-    }
-
     @DisplayName("구분된 문자열을 숫자로 변환 - 성공")
     @ParameterizedTest
-    @CsvSource(value = {"1,1", "2,2", "3,3"})
-    void successToNumber(String text, int expected) {
+    @CsvSource(value = {"0|0", "1|1", "2|2", "3|3"}, delimiter = '|')
+    void toNumberSuccess(String text, int expected) {
         assertThat(stringCalculator.toNumber(text)).isEqualTo(expected);
     }
 
     @DisplayName("구분된 문자열을 숫자로 변환 - 실패")
     @ParameterizedTest
-    @ValueSource(strings = {"a", "b", "c"})
-    void failToNumber(String text) {
+    @ValueSource(strings = {"a", "b", "c", "-1"})
+    void toNumberFail(String text) {
         assertThatThrownBy(() -> stringCalculator.toNumber(text))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자를 입력 하셔야합니다.");
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("올바른 숫자가 아닙니다.");
     }
 
     @DisplayName("커스텀 구분자가 포함된 형태인지 검사")
@@ -73,21 +58,21 @@ public class StringCalculatorTest {
 
     @DisplayName("구분자 파싱")
     @ParameterizedTest
-    @CsvSource(value = {"//;\\n,;", "//_\\n,_", "//-\\n,-"})
+    @CsvSource(value = {"//;\\n1;2;3|;", "//_\\n1_2_3|_", "//-\\n1-2-3|-"}, delimiter = '|')
     void getDelimiterFromText(String text, String expected) {
         assertThat(stringCalculator.getDelimiterFromText(text)).isEqualTo(expected);
     }
 
     @DisplayName("문자열에서 구분자 제거")
     @ParameterizedTest
-    @CsvSource(value = {"//;\\n1;2;3,1;2;3", "//_\\n1_2_3,1_2_3", "//-\\n1-2-3,1-2-3"})
+    @CsvSource(value = {"//;\\n1;2;3|1;2;3", "//_\\n1_2_3|1_2_3", "//-\\n1-2-3|1-2-3"}, delimiter = '|')
     void removeDelimiterFromText(String text, String expected) {
         assertThat(stringCalculator.removeDelimiterFromText(text)).isEqualTo(expected);
     }
 
     @DisplayName("입력된 문자열의 합 계산")
     @ParameterizedTest
-    @CsvSource(value = {"1:2:3,6", "//;\\n1;2;3,6"})
+    @CsvSource(value = {"1:2:3|6", "//;\\n1;2;3|6"}, delimiter = '|')
     void sum(String text, int expected) {
         assertThat(stringCalculator.sum(text)).isEqualTo(expected);
     }
