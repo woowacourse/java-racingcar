@@ -34,4 +34,10 @@ public class NumberParserTest {
         assertThatThrownBy(() -> parser.parse(input))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void 문자열이_0일때_예외_발생() {
+        assertThatThrownBy(() -> parser.parse("0"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }
