@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 public class RandomGeneratorTest {
+
     @RepeatedTest(10)
     @DisplayName("랜덤값을 생성한다.")
     void generateRandomNumber() {

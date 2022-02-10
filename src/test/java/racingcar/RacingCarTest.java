@@ -25,10 +25,16 @@ public class RacingCarTest {
 
     @Test
     @DisplayName("자동차가 4이상 입력되면 움직여야 한다.")
-   void racingCarMove() {
+    void racingCarMove() {
         RacingCar car = new RacingCar("name");
         RandomGenerator randomGenerator = new RandomGenerator();
-        int position = car.move(randomGenerator.generateRandomNumber());
-        assertThat(position).isEqualTo(1);
+//        int randomNumber = randomGenerator.generateRandomNumber();
+//        if(randomNumber >= 4) {
+//            int position = car.move();
+//            assertThat(position).isEqualTo(1);
+//            return;
+//        }
+//        assertThat(position).isEqualTo(0);
+//        assertThat(position).isEqualTo(1);
     }
 }
