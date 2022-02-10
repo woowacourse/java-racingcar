@@ -5,6 +5,9 @@ import java.util.List;
 
 public class StringCalculator {
     public static Integer splitAndSum(String s) {
+        if (s == null || s.isEmpty()) {
+            return 0;
+        }
         return sumList(convertToIntegerArray(splitString(s)));
     }
 
