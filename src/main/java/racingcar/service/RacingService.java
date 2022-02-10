@@ -8,6 +8,8 @@ import racingcar.repository.CarRepository;
 import racingcar.util.RandomUtil;
 
 public class RacingService {
+
+	private static final int RANDOM_VALUE_RANGE = 10;
 	private static final CarRepository carRepository = new CarRepository();
 
 	public void registerCars(List<Car> carList) {
@@ -16,7 +18,7 @@ public class RacingService {
 
 	public void race(RandomUtil randomUtil) {
 		List<Car> cars = carRepository.findCars();
-		cars.forEach(car -> car.move(randomUtil.generate(10)));
+		cars.forEach(car -> car.move(randomUtil.generate(RANDOM_VALUE_RANGE)));
 	}
 
 	public List<String> findWinnerNames() {

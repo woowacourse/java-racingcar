@@ -22,20 +22,20 @@ public class RacingController {
 		printRacingResult();
 	}
 
-	public List<Car> inputAndRegisterCarInfo() {
+	private List<Car> inputAndRegisterCarInfo() {
 		List<Car> cars = InputView.getCarNames();
 		racingService.registerCars(cars);
 		return cars;
 	}
 
-	public void play(int attemptNumber, List<Car> cars) {
+	private void play(int attemptNumber, List<Car> cars) {
 		for (int i = 0; i < attemptNumber; i++) {
 			racingService.race(randomUtil);
 			OutputView.printRacingInfo(cars);
 		}
 	}
 
-	public void printRacingResult() {
+	private void printRacingResult() {
 		List<String> winnerNames = racingService.findWinnerNames();
 		OutputView.printWinnersMessage(winnerNames);
 	}

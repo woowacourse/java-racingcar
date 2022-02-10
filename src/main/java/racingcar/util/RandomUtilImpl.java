@@ -8,6 +8,6 @@ public class RandomUtilImpl implements RandomUtil {
 
 	@Override
 	public int generate(int bound) {
-		return random.nextInt(bound + 1);
+		return random.nextInt(bound);
 	}
 }

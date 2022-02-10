@@ -6,6 +6,9 @@ import java.util.List;
 import racingcar.domain.Car;
 
 public class CarRepository {
+
+	private static final String EMPTY_CAR_ERROR_MESSAGE = "등록된 자동차가 없습니다.";
+
 	private static final ArrayList<Car> cars = new ArrayList<>();
 
 	public void addCar(Car car) {
@@ -24,7 +27,7 @@ public class CarRepository {
 		return cars.stream()
 			.mapToInt(Car::getPosition)
 			.max()
-			.orElse(0);
+			.orElseThrow(() -> new IllegalStateException(EMPTY_CAR_ERROR_MESSAGE));
 	}
 
 	public void clear() {

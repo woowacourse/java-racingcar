@@ -8,6 +8,7 @@ import racingcar.domain.Car;
 import racingcar.validator.Validator;
 
 public class Converter {
+
 	private static final String SEPARATOR_OF_CAR_NAME = ",";
 
 	public static List<Car> toCarList(String input) {

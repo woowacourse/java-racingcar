@@ -2,12 +2,15 @@ package racingcar.domain;
 
 public class Car {
 
+	private static final int INITIAL_POSITION = 0;
+	private static final int STANDARD_OF_MOVING = 4;
+
 	private final String name;
 	private int position;
 
 	private Car(String name) {
 		this.name = name;
-		this.position = 0;
+		this.position = INITIAL_POSITION;
 	}
 
 	public static Car of(String name) {
@@ -23,7 +26,7 @@ public class Car {
 	}
 
 	public void move(int randomNumber) {
-		if (randomNumber >= 4) {
+		if (randomNumber >= STANDARD_OF_MOVING) {
 			position++;
 		}
 	}

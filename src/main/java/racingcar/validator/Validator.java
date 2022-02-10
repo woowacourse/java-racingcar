@@ -12,15 +12,16 @@ public class Validator {
 
 	private static final int NAME_LENGTH_LIMIT = 5;
 	private static final int CAR_COUNT_LIMIT = 2;
+	private static final int MINIMUM_ATTEMPT_NUMBER = 1;
 	private static final String SEPARATOR_OF_CAR_NAME = ",";
 	private static final String INTEGER_REGEX = "-?\\d+";
 
 	public static void ofCarNames(String input) {
-		Arrays.stream(ofCarCount(input))
-			.forEach(Validator::ofCarName);
+		Arrays.stream(validateCarCount(input))
+			.forEach(Validator::validateCarName);
 	}
 
-	private static void ofCarName(String name) {
+	private static void validateCarName(String name) {
 		if (name.isEmpty()) {
 			throw new IllegalArgumentException(EMPTY_CAR_NAME_ERROR_MESSAGE);
 		}
@@ -29,7 +30,7 @@ public class Validator {
 		}
 	}
 
-	private static String[] ofCarCount(String input) {
+	private static String[] validateCarCount(String input) {
 		String[] split = input.split(SEPARATOR_OF_CAR_NAME);
 		if (split.length < CAR_COUNT_LIMIT) {
 			throw new IllegalArgumentException(CAR_COUNT_LIMIT_ERROR_MESSAGE);
@@ -38,18 +39,18 @@ public class Validator {
 	}
 
 	public static void ofAttemptNumber(String input) {
-		ofAttemptNumberType(input);
-		ofAttemptNumberRange(input);
+		validateAttemptNumberType(input);
+		validateAttemptNumberRange(input);
 	}
 
-	private static void ofAttemptNumberType(String input) {
+	private static void validateAttemptNumberType(String input) {
 		if (!input.matches(INTEGER_REGEX)) {
 			throw new IllegalArgumentException(ATTEMPT_NUMBER_TYPE_ERROR_MESSAGE);
 		}
 	}
 
-	private static void ofAttemptNumberRange(String input) {
-		if (Integer.parseInt(input) < 1) {
+	private static void validateAttemptNumberRange(String input) {
+		if (Integer.parseInt(input) < MINIMUM_ATTEMPT_NUMBER) {
 			throw new IllegalArgumentException(ATTEMPT_NUMBER_RANGE_ERROR_MESSAGE);
 		}
 	}
