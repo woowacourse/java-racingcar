@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.exception.round.RoundNotNumericException;
 import racingcar.utils.Delimiter;
 import racingcar.view.reader.DataReader;
 
@@ -37,7 +38,7 @@ public class InputView {
 		try {
 			return Integer.parseInt(inputValue.trim());
 		} catch (NumberFormatException exception) {
-			throw new IllegalArgumentException("이동 횟수는 숫자여야 합니다.");
+			throw new RoundNotNumericException();
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.exception.round.RoundNotPositiveException;
+
 public class Round {
 
 	private int count;
@@ -11,7 +13,7 @@ public class Round {
 
 	private void validateCountPositive(int count) {
 		if (count <= 0) {
-			throw new IllegalArgumentException("이동 횟수는 양수여야 합니다.");
+			throw new RoundNotPositiveException();
 		}
 	}
 

@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import racingcar.exception.round.RoundNotNumericException;
 import racingcar.view.CustomReader;
 import racingcar.view.InputView;
 
@@ -38,7 +39,7 @@ public class RoundInputTest {
 	@MethodSource("provideValuesForNotNumericException")
 	void 숫자이외의값입력_예외테스트(String inputValue) {
 		customReader.setText(inputValue);
-		assertThrows(IllegalArgumentException.class, inputView::requestRoundNumber);
+		assertThrows(RoundNotNumericException.class, inputView::requestRoundNumber);
 	}
 
 	public static Stream<Arguments> provideValuesForNotNumericException() {

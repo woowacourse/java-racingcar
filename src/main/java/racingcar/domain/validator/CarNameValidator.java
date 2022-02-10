@@ -4,6 +4,9 @@ import java.util.Collections;
 import java.util.List;
 
 import racingcar.domain.CarNameLength;
+import racingcar.exception.car.CarNameDuplicatedException;
+import racingcar.exception.car.CarNameEmptyException;
+import racingcar.exception.car.CarNameTooLongException;
 
 public class CarNameValidator {
 
@@ -17,19 +20,19 @@ public class CarNameValidator {
 
 	private void validateNameIsTooLong(List<String> names) {
 		if (names.stream().anyMatch(CarNameLength::isTooLong)) {
-			throw new IllegalArgumentException("자동차의 이름은 5자 이하여야 합니다.");
+			throw new CarNameTooLongException();
 		}
 	}
 
 	private void validateNameIsEmpty(List<String> names) {
 		if (names.stream().anyMatch(String::isEmpty)) {
-			throw new IllegalArgumentException("자동차의 이름은 공백이 될 수 없습니다.");
+			throw new CarNameEmptyException();
 		}
 	}
 
 	private void validateNameIsDuplicate(List<String> names) {
 		if (names.stream().anyMatch(name -> isNameDuplicated(names, name))) {
-			throw new IllegalArgumentException("자동차의 이름은 중복될 수 없습니다.");
+			throw new CarNameDuplicatedException();
 		}
 	}
 
