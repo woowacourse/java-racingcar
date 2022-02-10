@@ -1,7 +1,6 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -16,7 +15,7 @@ public class RacingCarTest {
     InputStream in = new ByteArrayInputStream(input.getBytes());
     System.setIn(in);
     RacingCar racingCar = new RacingCar(new Scanner(System.in));
-    String carNames = racingCar.readCarNames();
+    String carNames = racingCar.readNextLine();
     assertThat(carNames).isEqualTo(input);
   }
 

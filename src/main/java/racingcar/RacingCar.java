@@ -9,7 +9,12 @@ public class RacingCar {
     this.scanner =  scanner;
   }
 
-  public String readCarNames() {
+  public void run() {
+    String carNames = readNextLine();
+    String[] names = splitCarNames(carNames);
+  }
+
+  public String readNextLine() {
     return this.scanner.nextLine();
   }
 
