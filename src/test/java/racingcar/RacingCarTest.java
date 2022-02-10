@@ -46,4 +46,13 @@ public class RacingCarTest {
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("자동차 이름은 공백으로 설정할 수 없습니다.");
 	}
+
+	@Test
+	public void 자동차_이름_중복_테스트() {
+		List<String> carNames = inputManager.splitAndSaveCarNames("이브,이브,포비");
+
+		assertThatThrownBy(() -> { inputValidator.validateDuplication(carNames); })
+			.isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("자동차 이름은 중복될 수 없습니다.");
+	}
 }

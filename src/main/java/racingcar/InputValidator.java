@@ -21,4 +21,10 @@ public class InputValidator {
 			}
 		}
 	}
+
+	public void validateDuplication(List<String> carNames) {
+		if (carNames.stream().distinct().count() != carNames.size()) {
+			throw new RuntimeException("자동차 이름은 중복될 수 없습니다.");
+		}
+	}
 }
