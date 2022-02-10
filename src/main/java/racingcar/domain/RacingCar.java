@@ -5,7 +5,7 @@ public class RacingCar {
     private static final int NAME_MAX_LENGTH = 5;
     private static final int DEFAULT_POSITION = 0;
 
-    private final RandomGenerator generator = new RandomGenerator();
+    private final RandomMoveGenerator generator = new RandomMoveGenerator();
     private final String name;
     private int position = DEFAULT_POSITION;
 
