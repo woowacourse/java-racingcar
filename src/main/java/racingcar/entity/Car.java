@@ -1,5 +1,7 @@
 package racingcar.entity;
 
+import static racingcar.util.RandomUtil.checkMoveOrWait;
+
 public class Car {
     private final String name;
     private int position = 0;

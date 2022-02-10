@@ -1,6 +1,7 @@
 package racingcar.game;
 
 import racingcar.entity.Car;
+import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ public class RacingGame {
 
     public void start() {
         initRacingCarGame();
+        run();
     }
 
     private void initRacingCarGame() {
