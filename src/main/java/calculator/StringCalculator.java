@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class StringCalculator {
 
     public static final String CUSTOM_SEPARATOR_REGEX = "//(.)\n(.*)";
-    private static final String DEFAULT_SEPARATORS = ",:";
+    private static final String DEFAULT_SEPARATORS = ",|:";
     public static final String KEY_OPERANDS = "OPERANDS";
     public static final String KEY_SEPARATORS = "SEPARATORS";
 
@@ -17,7 +17,7 @@ public class StringCalculator {
         }
 
         HashMap<String, String> inputMap = extractInputMap(rawInput);
-        String[] operands = getSplitResult(inputMap);
+        String[] operands = extractOperands(inputMap);
 
         return sum(operands);
     }
@@ -30,7 +30,7 @@ public class StringCalculator {
         HashMap<String, String> inputMap = setUpInputMap(rawInput);
 
         Matcher matcher = Pattern.compile(CUSTOM_SEPARATOR_REGEX).matcher(rawInput);
-        if (matcher.find()) {
+        if (customSeparatorExists(matcher)) {
             inputMap.replace(KEY_SEPARATORS, getCustomSeparators(matcher));
             inputMap.replace(KEY_OPERANDS, getOperands(matcher));
         }
@@ -40,26 +40,26 @@ public class StringCalculator {
 
     private static HashMap<String, String> setUpInputMap(String rawInput) {
         HashMap<String, String> inputMap = new HashMap<>();
-        inputMap.put(KEY_SEPARATORS, toSeparatorRegexFormat(DEFAULT_SEPARATORS));
+        inputMap.put(KEY_SEPARATORS, DEFAULT_SEPARATORS);
         inputMap.put(KEY_OPERANDS, rawInput);
 
         return inputMap;
     }
 
-    private static String getCustomSeparators(Matcher matcher) {
-        String customSeparator = matcher.group(1);
-        return toSeparatorRegexFormat(DEFAULT_SEPARATORS + customSeparator);
+    private static boolean customSeparatorExists(Matcher matcher) {
+        return matcher.find();
     }
 
-    private static String toSeparatorRegexFormat(String string) {
-        return "[" + string + "]";
+    private static String getCustomSeparators(Matcher matcher) {
+        String customSeparator = matcher.group(1);
+        return DEFAULT_SEPARATORS + "|" + customSeparator;
     }
 
     private static String getOperands(Matcher matcher) {
         return matcher.group(2);
     }
 
-    private static String[] getSplitResult(HashMap<String, String> inputMap) {
+    private static String[] extractOperands(HashMap<String, String> inputMap) {
         String separators = inputMap.get(KEY_SEPARATORS);
         String operands = inputMap.get(KEY_OPERANDS);
 
