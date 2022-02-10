@@ -30,6 +30,11 @@ public class StringCalculator {
 		if (validNullOrEmpty(input)) {
 			return 0;
 		}
+
+		if (input.length() > 2 && input.substring(0, 3).equals("//")) {
+			String[] numbers = customDelimiter(input);
+			return this.sum(numbers);
+		}
 		String[] numbers = split(input);
 		return this.sum(numbers);
 	}
