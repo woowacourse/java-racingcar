@@ -8,7 +8,7 @@ public class StringCalculator {
         }
 
         int sum = 0;
-        String[] splitResult = targetString.split(",");
+        String[] splitResult = targetString.split("[,:]");
         for (String s : splitResult) {
             sum += toInt(s);
         }
