@@ -22,10 +22,13 @@ public class Car {
         return name;
     }
 
+    public boolean isSameWithFarthestPosition(int farthestPosition) {
+        return this.position == farthestPosition;
+    }
+
     @Override
     public String toString() {
-        String result = "";
-        result += name + " : ";
+        String result = name + " : ";
         for (int count = 0; count < this.position; count++) {
             result += "-";
         }
