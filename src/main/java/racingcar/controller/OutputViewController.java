@@ -1,13 +1,13 @@
 package racingcar.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import racingcar.model.CarList;
 
 public class OutputViewController {
 
-	public HashMap<String, String> mapCarList(CarList carList) {
+	public LinkedHashMap<String, String> mapCarList(CarList carList) {
 		return carList.getCarInfo();
 	}
 

@@ -13,7 +13,7 @@ public class OutputView {
 		System.out.println(StringConst.INPUT_TURN_MESSAGE.getValue());
 	}
 
-	public static void displayCarPosition(HashMap<String, String> carPositions) {
+	public static void displayCarPosition(LinkedHashMap<String, String> carPositions) {
 		for (String eachCarName : carPositions.keySet()) {
 			System.out.println(eachCarName + StringConst.OUTPUT_DELIMITER.getValue() + carPositions.get(eachCarName));
 		}
@@ -21,6 +21,6 @@ public class OutputView {
 
 	public static void displayWinner(String[] winnerName) {
 		System.out.println(
-			String.join(StringConst.WINNER_DELIMITER.getValue(), winnerName) + StringConst.WINNER_MESSAGE);
+			String.join(StringConst.WINNER_DELIMITER.getValue(), winnerName) + StringConst.WINNER_MESSAGE.getValue());
 	}
 }

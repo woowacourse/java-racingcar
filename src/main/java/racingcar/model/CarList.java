@@ -1,9 +1,9 @@
 package racingcar.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.stream.Collectors;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import racingcar.util.StringConst;
 
@@ -11,6 +11,7 @@ public class CarList {
 	private ArrayList<Car> carList;
 
 	public CarList(String[] nameList) {
+		carList = new ArrayList<>();
 		for (String name : nameList) {
 			this.carList.add(new Car(name));
 		}
@@ -34,8 +35,8 @@ public class CarList {
 		}
 	}
 
-	public HashMap<String, String> getCarInfo() {
-		HashMap<String, String> carInfo = new HashMap<>();
+	public LinkedHashMap<String, String> getCarInfo() {
+		LinkedHashMap<String, String> carInfo = new LinkedHashMap<>();
 		for (Car car : this.carList) {
 			carInfo.put(car.getName(), StringConst.POSITION_DELEIMIER.getValue().repeat(car.getPosition()));
 		}
