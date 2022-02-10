@@ -17,4 +17,6 @@ public class ApplicationTest {
         number = application.runCalculator(" ");
         assertThat(number).isEqualTo(0);
     }
+
+
 }
