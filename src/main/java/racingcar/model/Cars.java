@@ -14,7 +14,7 @@ public class Cars {
 	private final List<Car> cars = new ArrayList<>();
 
 	public Cars(String carNames) {
-		String[] carNameArray = carNames.split(",");
+		String[] carNameArray = carNames.replaceAll(" ", "").split(",");
 		if (validateDuplicatedName(carNameArray)) {
 			throw new IllegalArgumentException("[ERROR] 중복된 이름이 있습니다");
 		}
