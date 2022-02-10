@@ -80,9 +80,22 @@ public class StringCalculatorTest {
 
     @DisplayName("String 배열을 Int 로 형변환")
     @Test
-    void toIntArray() {
+    void toIntegerArray() {
         assertThat(StringCalculator.toIntegerArray(new String[]{"0", "1", "2", "3"}))
                 .containsExactly(0, 1, 2, 3);
+    }
+
+    @DisplayName("숫자 배열의 합 계산")
+    @Test
+    void sumIntegerArray() {
+        assertThat(StringCalculator.sumIntegerArray(new Integer[]{1, 2, 3}))
+                .isEqualTo(6);
+
+        assertThat(StringCalculator.sumIntegerArray(new Integer[]{0, 0, 0}))
+                .isEqualTo(0);
+
+        assertThat(StringCalculator.sumIntegerArray(new Integer[]{00, 100, 1000}))
+                .isEqualTo(1100);
     }
 }
 

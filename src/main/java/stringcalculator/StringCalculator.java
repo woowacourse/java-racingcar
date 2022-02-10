@@ -47,8 +47,7 @@ public class StringCalculator {
         validateInput(text);
         String delimiter = getDelimiterFromText(text);
 
-        return Arrays.stream(toIntegerArray(split(removeDelimiterFromText(text), delimiter)))
-                .reduce(0, Integer::sum);
+        return sumIntegerArray(toIntegerArray(split(removeDelimiterFromText(text), delimiter)));
     }
 
     public static Integer[] toIntegerArray(String[] strings) {
@@ -56,6 +55,11 @@ public class StringCalculator {
                 .map(Integer::parseInt)
                 .toArray(Integer[]::new);
     }
+
+    public static int sumIntegerArray(Integer[] integers) {
+        return Arrays.stream(integers).mapToInt(Integer::intValue).sum();
+    }
+
 
     public static String removeDelimiterFromText(String text) {
         return text.replaceAll(DELIMITER_PATTERN, "");
