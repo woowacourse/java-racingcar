@@ -16,6 +16,7 @@ public class RacingController {
 			cars = new Cars(InputView.inputCarNames());
 			inputTryCount();
 			race();
+			terminate();
 		} catch (IllegalArgumentException | IOException e) {
 			OutputView.printException(e);
 			start();
@@ -38,6 +39,11 @@ public class RacingController {
 			cars.moveAll();
 			OutputView.printString(cars.toString());
 		}
+	}
+
+	private void terminate() {
+		OutputView.printString(cars.toString());
+		OutputView.printString(cars.getWinners().toString());
 	}
 }
 

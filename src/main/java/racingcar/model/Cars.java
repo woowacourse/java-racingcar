@@ -29,6 +29,10 @@ public class Cars {
 		}
 	}
 
+	public Winners getWinners() {
+		return new Winners(cars);
+	}
+
 	private boolean validateDuplicatedName(String[] carNames) {
 		long distinctSize = Arrays.stream(carNames)
 			.distinct().count();
