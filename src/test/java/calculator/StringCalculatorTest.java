@@ -27,4 +27,11 @@ class StringCalculatorTest {
         int result = StringCalculator.splitAndSum("1:2,3");
         assertThat(result).isEqualTo(6);
     }
+
+    @DisplayName("기본 구분자인 `쉼표(,)`, `콜론(:)`외에 커스텀 구분자를 지정할 수 있다.")
+    @Test
+    public void splitAndSum_커스텀구분자() {
+        int result = StringCalculator.splitAndSum("//;\n1;2;3");
+        assertThat(result).isEqualTo(6);
+    }
 }
