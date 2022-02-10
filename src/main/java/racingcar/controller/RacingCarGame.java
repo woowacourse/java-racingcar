@@ -45,7 +45,7 @@ public class RacingCarGame {
 	}
 
 	public void checkGameTurnNumber(String gameTurn) {
-		if (!gameTurn.matches("\\d+")) {
+		if (!gameTurn.matches("[1-9]\\d*")) {
 			throw new IllegalArgumentException("[Error] 숫자를 입력하세요.");
 		}
 	}

@@ -37,4 +37,10 @@ public class RacingCarTest {
 		assertThatThrownBy(() -> racingCarGame.checkGameTurnNumber("two"))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
+
+	@Test
+	public void 횟수_양수_확인() throws Exception {
+		assertThatThrownBy(() -> racingCarGame.checkGameTurnNumber("-2"))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
 }
