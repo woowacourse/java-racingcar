@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.controller.GameController;
 import racingcar.model.Car;
 import racingcar.util.InputValidator;
+import racingcar.util.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RacingGameTest {
 
+    private static final int TESTCASE_NUM = 10000;
     private GameController gameController = new GameController();
 
     @Test
@@ -32,5 +34,12 @@ public class RacingGameTest {
         List<String> expectedNameList = expected.stream().map(Car::getName).collect(Collectors.toList());
 
         assertThat(expectedNameList).isEqualTo(carNames);
+    }
+
+    @Test
+    void 랜덤_숫자_생셩() {
+        for (int i = 0; i < TESTCASE_NUM; i++) {
+            assertThat(RandomNumberGenerator.generate()).isBetween(0,9);
+        }
     }
 }

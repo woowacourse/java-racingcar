@@ -22,7 +22,6 @@ public class GameController {
         List<Car> carList = initCars(carNameList);
         InputView.inputTrialNum();
         int trialNum = scanner.nextInt();
-        System.out.println(trialNum);
     }
 
     public List<String> splitCars(String carNames) {
