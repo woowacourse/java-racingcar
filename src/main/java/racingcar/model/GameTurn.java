@@ -10,4 +10,8 @@ public class GameTurn {
 	public boolean isPositive() {
 		return gameTurn > 0;
 	}
+
+	public void removeTurn() {
+		gameTurn--;
+	}
 }
