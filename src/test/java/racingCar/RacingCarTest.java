@@ -2,6 +2,9 @@ package racingCar;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 public class RacingCarTest {
@@ -60,4 +63,33 @@ public class RacingCarTest {
 		assertThatThrownBy(() -> racingCar.isRightTimes("-2"))
 			.isInstanceOf(RuntimeException.class);
 	}
+
+	@Test
+	void 자동차_위치_출력_정상() {
+		Car car = new Car("woowahan");
+		car.moveCar(true);
+		assertThat(car.toString()).isEqualTo("woowahan : -");
+		car.moveCar(false);
+		assertThat(car.toString()).isEqualTo("woowahan : -");
+		car.moveCar(true);
+		assertThat(car.toString()).isEqualTo("woowahan : --");
+	}
+
+	@Test
+	void 최종_결과_출력_정상() {
+		List<Car> cars = new ArrayList<Car>();
+		cars.add(new Car("a"));
+		cars.add(new Car("b"));
+		cars.add(new Car("c"));
+
+		cars.get(0).moveCar(true);
+		cars.get(0).moveCar(true);
+		cars.get(1).moveCar(true);
+		cars.get(1).moveCar(true);
+		cars.get(2).moveCar(false);
+
+		String result = racingCar.findWinner(cars);
+		assertThat(result).isEqualTo("a,b");
+	}
+
 }
