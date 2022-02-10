@@ -30,4 +30,15 @@ public class CarTest {
             assertThat(car.getPosition()).isEqualTo(0);
         }
     }
+
+    @Test
+    void 자동차_포지션_출력_성공() {
+        Car car = new Car("jae");
+        try (MockedStatic<RandomGenerator> mockRandom = Mockito.mockStatic(RandomGenerator.class)){
+            mockRandom.when(() -> RandomGenerator.getRandomNumberInRange(9))
+                    .thenReturn(5);
+            car.goForward();
+            assertThat(car.toString()).isEqualTo("jae : -");
+        }
+    }
 }
