@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class StringCalculator {
     static int sum;
-    // CUSTOM_DELIMITERSIGN
     static final String CUSTOM_DELIMETER_SIGN = "//.*\\n.*";
 
     public static void main(String[] args) {
