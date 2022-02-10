@@ -29,21 +29,18 @@ public class CarRepository {
 	}
 
 	public void move() {
-		for (Car car : cars) {
-			car.move(randomNo.getNumber());
-		}
+		cars.forEach(car -> car.move(randomNo.getNumber()));
 	}
 
 	public List<CarDto> getWinners() {
-		int maxPosition = getMaxPosition();
+		List<Car> winnerCars = cars.stream()
+			.filter(car -> car.isSamePosition(getMaxPosition()))
+			.collect(Collectors.toList());
+		return carsToCarDtos(winnerCars);
+	}
 
-		List<Car> winnerCars = new ArrayList<>();
-		for (Car car : cars) {
-			if (car.isSamePosition(maxPosition)) {
-				winnerCars.add(car);
-			}
-		}
-		return winnerCars.stream()
+	private List<CarDto> carsToCarDtos(List<Car> cars) {
+		return cars.stream()
 			.map(Car::toCarDto)
 			.collect(Collectors.toList());
 	}
@@ -57,8 +54,6 @@ public class CarRepository {
 	}
 
 	public List<CarDto> getCars() {
-		return cars.stream()
-			.map(Car::toCarDto)
-			.collect(Collectors.toList());
+		return carsToCarDtos(cars);
 	}
 }
