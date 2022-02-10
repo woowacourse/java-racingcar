@@ -5,28 +5,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
-import racingcar.domain.RandomNumberGenerator;
+import racingcar.domain.MockRandomNumberGenerator;
 import racingcar.repository.CarRepository;
 
 public class RacingGameServiceTest {
-
-    public static class MockRandomNumberGenerator implements RandomNumberGenerator {
-
-        static final int FORWARDING_NUMBER = 4;
-        static final int STOPPING_NUMBER = 0;
-        static final int[] RANDOM_NUMBERS = {
-            FORWARDING_NUMBER, STOPPING_NUMBER,
-            FORWARDING_NUMBER, STOPPING_NUMBER,
-            STOPPING_NUMBER, FORWARDING_NUMBER,
-            STOPPING_NUMBER, FORWARDING_NUMBER
-        };
-        int index = 0;
-
-        @Override
-        public int getRandomNumber() {
-            return RANDOM_NUMBERS[index++];
-        }
-    }
 
     private static final String CAR_1_Name = "pobi";
     private static final String CAR_2_Name = "jason";
