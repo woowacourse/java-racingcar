@@ -2,6 +2,8 @@ package carracing;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,4 +26,25 @@ public class CarRacingTest {
 			}).isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("자동차 이름의 길이는 최소 한글자 이상이어야 합니다.");
 	}
+
+	@Test
+	void validate_자동차이름_중복(){
+		//given
+		//when
+		//then
+		assertThatThrownBy(()-> {
+			Cars cars = new Cars(Arrays.asList(
+				new Car("pobi"),
+				new Car("east"),
+				new Car("peper"),
+				new Car("east")
+			));
+		}).isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("자동차 이름은 중복이 되면 안됩니다.");
+	}
+
+	// private List<Car> cars;
+	// public Cars(List<Car> cars){
+	// 	this.cars = cars;
+	// }
 }
