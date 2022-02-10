@@ -18,4 +18,12 @@ class InputTest {
             Input.carName(inputValue);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 자동차_개수_테스트(){
+        String names = "pobi";
+        assertThatThrownBy(() -> {
+            Input.carName(names);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
