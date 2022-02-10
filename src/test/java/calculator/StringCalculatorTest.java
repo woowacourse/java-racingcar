@@ -23,4 +23,16 @@ public class StringCalculatorTest {
 		assertThat(result).isEqualTo(0);
 	}
 
+	@Test
+	public void nullTest() {
+		int result = StringCalculator.add(null);
+		assertThat(result).isEqualTo(0);
+	}
+
+	@Test
+	public void customDividerTest() {
+		int result = StringCalculator.add("//;/n1;2");
+		assertThat(result).isEqualTo(3);
+	}
+
 }
