@@ -17,8 +17,12 @@ public class Car {
 
 	public void go() {
 		if (Util.getRandomInt() >= 4) {
-			position++;
+			moveCar();
 		}
+	}
+
+	public void moveCar() {
+		position++;
 	}
 
 	public String getName() {

@@ -13,7 +13,7 @@ import racingCar.view.Output;
 
 public class RacingCarService {
 
-	private List<Car> cars = new ArrayList<>();
+	List<Car> cars = new ArrayList<>();
 	private int count;
 
 	public void runGame() {
