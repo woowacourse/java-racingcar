@@ -1,14 +1,17 @@
 package calculator;
 
+import static calculator.Message.*;
+import static calculator.Constants.*;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
 	public static int add(String input) {
 		if (isNullOREmpty(input)) {
-			return 0;
+			return NULL_OR_EMPTY;
 		}
-		Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
+		Matcher matcher = Pattern.compile(REGEX).matcher(input);
 		if (matcher.find()) {
 			return splitByCustomDivider(matcher);
 		}
@@ -17,7 +20,7 @@ public class StringCalculator {
 
 	public static int splitByCustomDivider(Matcher matcher) {
 		String customDivider = matcher.group(1);
-		String[] numbers = matcher.group(2).split(customDivider + "|,|:");
+		String[] numbers = matcher.group(2).split(customDivider + OR + ORIGINAL_DIVIDER);
 		return sum(numbers);
 	}
 
@@ -35,13 +38,13 @@ public class StringCalculator {
 		try {
 			Integer.parseInt(number);
 		} catch (Exception e) {
-			throw new RuntimeException("숫자가 아닌 값은 더할 수 없습니다.");
+			throw new RuntimeException(NON_DIGITS_ERROR_MESSAGE);
 		}
 	}
 
 	public static void checkNegativeNumber(String number) {
 		if (Integer.parseInt(number) < 0) {
-			throw new RuntimeException("음수는 허용되지 않습니다.");
+			throw new RuntimeException(NEGATIVE_NUMBER_ERROR_MESSAGE);
 		}
 	}
 
@@ -50,7 +53,7 @@ public class StringCalculator {
 	}
 
 	private static int splitByDivider(String input) {
-		String[] numbers = input.split(",|:");
+		String[] numbers = input.split(ORIGINAL_DIVIDER);
 		return sum(numbers);
 	}
 
