@@ -1,7 +1,6 @@
 package racingcargame.model;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class RacingCarGame {
     private CarRepository carRepository;
@@ -17,12 +16,18 @@ public class RacingCarGame {
         RaceCount.storeCount(raceCount);
     }
 
-    public boolean isOverRace(){
+    public boolean isOverRace() {
         return RaceCount.getCount() == 0;
     }
 
-    public void startRace() {
+    public List<CarVO> startRace() {
         RaceCount.reduceRaceCount();
         carRepository.moveCars();
+
+        List<CarVO> cars = new ArrayList<>();
+        for (Car car : carRepository.getCars()) {
+            cars.add(new CarVO(car.getName(), car.getPosition()));
+        }
+        return cars;
     }
 }
