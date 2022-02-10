@@ -19,4 +19,7 @@ public class InputView {
 			.map(String::trim).collect(Collectors.toList());
 	}
 
+	public String requestGameRound() {
+		return dataReader.readLine().trim();
+	}
 }
