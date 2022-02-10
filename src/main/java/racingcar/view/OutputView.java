@@ -18,4 +18,8 @@ public class OutputView {
 			System.out.println(eachCarName + StringConst.OUTPUT_DELIMITER.getValue() + carPositions.get(eachCarName));
 		}
 	}
+
+	public static void displayWinner(String[] winnerName) {
+		System.out.println(String.join(StringConst.WINNER_DELIMITER.getValue(), winnerName) + StringConst.WINNER_MESSAGE);
+	}
 }
