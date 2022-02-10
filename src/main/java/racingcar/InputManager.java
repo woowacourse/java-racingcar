@@ -18,6 +18,9 @@ public class InputManager {
 		} catch (NumberFormatException exception) {
 			throw new RuntimeException("시도 횟수가 숫자가 아닙니다.");
 		}
+		if (count <= 0) {
+			throw new RuntimeException("시도 횟수가 음수나 0이 될 수 없습니다.");
+		}
 		return count;
 	}
 }

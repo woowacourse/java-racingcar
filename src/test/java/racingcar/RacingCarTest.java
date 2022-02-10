@@ -75,4 +75,12 @@ public class RacingCarTest {
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("시도 횟수가 숫자가 아닙니다.");
 	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"-1", "0"})
+	public void 시도_횟수_음수_혹은_0_테스트(String trial) {
+		assertThatThrownBy(() -> { inputManager.getTrial(trial); })
+			.isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("시도 횟수가 음수나 0이 될 수 없습니다.");
+	}
 }
