@@ -20,4 +20,18 @@ public class NameGeneratorTest {
         assertThat(names).containsExactly(Name.of("pobi"), Name.of("hoho"), Name.of("richard"));
     }
 
+    @Test
+    @DisplayName("이름 앞 뒤에 공백이 존재하면 제거한다")
+    void removeWhitespaces() {
+        // given
+        String input = " pobi,hoho , richard ";
+
+        // when
+        NameGenerator nameGenerator = new NameGenerator();
+        List<Name> names = nameGenerator.generate(input);
+
+        // then
+        assertThat(names).containsExactly(Name.of("pobi"), Name.of("hoho"), Name.of("richard"));
+    }
+
 }

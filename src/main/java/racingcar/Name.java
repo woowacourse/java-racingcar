@@ -6,7 +6,16 @@ public class Name {
     private final String name;
 
     public Name(String name) {
+        name = removeWhiteSpaces(name);
         this.name = name;
+    }
+
+    private String removeWhiteSpaces(String name) {
+        return name.trim();
+    }
+
+    public static Name of(String name) {
+        return new Name(name);
     }
 
     @Override
@@ -24,9 +33,5 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public static Name of(String name) {
-        return new Name(name);
     }
 }
