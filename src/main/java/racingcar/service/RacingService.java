@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
+import racingcar.domain.CarDto;
 import racingcar.repository.CarRepository;
 import racingcar.util.RandomUtil;
 
@@ -26,7 +27,8 @@ public class RacingService {
 
 		return carRepository.findCars().stream()
 			.filter(car -> car.isSamePosition(maxPosition))
-			.map(Car::getName)
+			.map(Car::toDto)
+			.map(CarDto::getName)
 			.collect(Collectors.toList());
 	}
 }

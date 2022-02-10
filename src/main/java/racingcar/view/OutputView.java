@@ -2,7 +2,7 @@ package racingcar.view;
 
 import java.util.List;
 
-import racingcar.domain.Car;
+import racingcar.domain.CarDto;
 
 public class OutputView {
 
@@ -17,10 +17,10 @@ public class OutputView {
 		System.out.println(RESULT_MESSAGE);
 	}
 
-	public static void printRacingInfo(List<Car> cars) {
-		for (Car car : cars) {
-			System.out.print(car.getName() + SEPARATOR_OF_RACE_INFO);
-			printPositionBar(car.getPosition());
+	public static void printRacingInfo(List<CarDto> carDtos) {
+		for (CarDto carDto : carDtos) {
+			System.out.print(carDto.getName() + SEPARATOR_OF_RACE_INFO);
+			printPositionBar(carDto.getPosition());
 		}
 		System.out.println();
 	}

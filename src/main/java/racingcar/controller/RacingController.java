@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
 import racingcar.service.RacingService;
@@ -31,7 +32,10 @@ public class RacingController {
 	private void play(int attemptNumber, List<Car> cars) {
 		for (int i = 0; i < attemptNumber; i++) {
 			racingService.race(randomUtil);
-			OutputView.printRacingInfo(cars);
+			OutputView.printRacingInfo(cars.stream()
+				.map(Car::toDto)
+				.collect(Collectors.toList())
+			);
 		}
 	}
 

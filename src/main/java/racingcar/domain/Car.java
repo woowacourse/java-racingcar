@@ -26,14 +26,6 @@ public class Car {
 		return new Car(name, position);
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public int getPosition() {
-		return position;
-	}
-
 	public void move(int randomNumber) {
 		if (randomNumber >= STANDARD_OF_MOVING) {
 			position++;
@@ -44,4 +36,7 @@ public class Car {
 		return this.position == position;
 	}
 
+	public CarDto toDto() {
+		return new CarDto(this.name, this.position);
+	}
 }

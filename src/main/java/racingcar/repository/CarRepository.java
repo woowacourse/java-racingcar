@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import racingcar.domain.Car;
+import racingcar.domain.CarDto;
 
 public class CarRepository {
 
@@ -25,7 +26,8 @@ public class CarRepository {
 
 	public int findMaxPosition() {
 		return cars.stream()
-			.mapToInt(Car::getPosition)
+			.map(Car::toDto)
+			.mapToInt(CarDto::getPosition)
 			.max()
 			.orElseThrow(() -> new IllegalStateException(EMPTY_CAR_ERROR_MESSAGE));
 	}
