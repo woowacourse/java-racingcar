@@ -56,6 +56,12 @@ public class Checker {
 		}
 	}
 
+	private void isNegative(int a) throws IllegalArgumentException {
+		if (a <= IntegerConst.ZERO.getValue()) {
+			throw new IllegalArgumentException(StringConst.ERROR_NEGATIVE.getValue());
+		}
+	}
+
 	public String checkNameConditions(String str) {
 		try {
 			isNull(str);
