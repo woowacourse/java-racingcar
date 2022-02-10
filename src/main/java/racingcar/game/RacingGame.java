@@ -9,6 +9,7 @@ import java.util.List;
 
 import static racingcar.view.InputView.getAttemptCount;
 import static racingcar.view.InputView.getCarNames;
+import static racingcar.view.OutputView.*;
 
 public class RacingGame {
 
@@ -24,6 +25,8 @@ public class RacingGame {
         }
 
         getWinners();
+
+        printWinners(winners);
     }
 
     private void initRacingCarGame() {
