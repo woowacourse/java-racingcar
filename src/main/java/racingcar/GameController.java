@@ -1,5 +1,8 @@
 package racingcar;
 
+import racingcar.view.OutputView;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class GameController {
@@ -13,9 +16,12 @@ public class GameController {
         String carNames = InputView.getCarNames(scanner);
         Cars cars = new Cars(carNames.split(","));
         int moveCount = Integer.parseInt(InputView.getMoveCount(scanner));
+        OutputView.printResultMessage();
         for (int i = 0; i < moveCount; i++) {
             cars.startEachRace();
             OutputView.printCarPosition(cars.getCarsToString());
         }
+        List<String> winners = cars.getWinners();
+        OutputView.printWinners(winners);
     }
 }
