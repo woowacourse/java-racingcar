@@ -1,6 +1,9 @@
 package racingcar;
 
 public class Car {
+    private static final String STRING_JOIN_DELIMITER = " : ";
+    private static final String MOVE_EXPRESSION = "-";
+
     private final String name;
     private int position = 0;
 
