@@ -1,13 +1,10 @@
 package calculator;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Calculator {
 
-    public static int splitAndSum(String str) {
-        int sum = 0;
+    private static StringSplitter stringSplitter = StringSplitter.getInstance();
 
+    public static int splitAndSum(String str) {
         if (str == null || str.length() == 0) {
             return 0;
         }
