@@ -3,22 +3,38 @@ package racingcar.controller;
 import racingcar.utils.validator.CarNamesValidator;
 import racingcar.utils.validator.TryCountValidator;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class GameController {
     private static final String CAR_NAMES_SPLIT_REGEX = ",";
 
     private final InputView inputView;
+    private final OutputView outputView;
+    private final CarController carController;
 
     private String[] carNames;
     private int tryCount;
 
     public GameController() {
         inputView = new InputView();
+        outputView = new OutputView();
+        carController = new CarController();
     }
 
     public void run() {
         carNames = createCarNames();
+        carController.createCars(carNames);
         tryCount = createTryCount();
+
+        start();
+    }
+
+    private void start() {
+        outputView.printResultMessage();
+        for (int i = 0; i <tryCount; i++) {
+            carController.moveCars();
+            outputView.printResult(carController.getCars());
+        }
     }
 
     public String[] createCarNames() {
