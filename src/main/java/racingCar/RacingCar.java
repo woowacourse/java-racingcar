@@ -7,13 +7,14 @@ import java.util.Scanner;
 public class RacingCar {
 	private ArrayList<Car> cars = new ArrayList<>();
 	private int maxPosition = Integer.MIN_VALUE;
+	private int times;
 
 	public void start() {
 		List<Car> winners;
 		String[] carNames = racingCarNames();
-		int count = racingCarTimes();
+		racingCarTimes();
 		makeCars(carNames);
-		race(count);
+		race(times);
 		winners = findWinner(cars);
 		printWinners(winners);
 	}
@@ -23,9 +24,9 @@ public class RacingCar {
 		return getCarNames(inputCarName);
 	}
 
-	private int racingCarTimes() {
+	private void racingCarTimes() {
 		String inputRacingTimes = userInput("시도할 횟수는 몇회인가요?");
-		return enterTimes(inputRacingTimes);
+		enterTimes(inputRacingTimes);
 	}
 
 	private String userInput(String message) {
@@ -58,15 +59,14 @@ public class RacingCar {
 		}
 	}
 
-	public int enterTimes(String input) {
+	public void enterTimes(String input) {
 		try {
 			isRightTimes(input);
-
+			times = Integer.parseInt(input);
 		} catch (RuntimeException e) {
 			System.out.println("[ERROR] 시도 횟수는 양수인 정수여야 합니다. 다시 입력해주세요.");
 			racingCarTimes();
 		}
-		return Integer.parseInt(input);
 	}
 
 	public void isRightTimes(String input) throws RuntimeException {

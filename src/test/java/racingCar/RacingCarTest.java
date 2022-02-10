@@ -41,12 +41,6 @@ public class RacingCarTest {
 	}
 
 	@Test
-	void 시도_횟수_정상_입력() {
-		int times = racingCar.enterTimes("5");
-		assertThat(times).isEqualTo(5);
-	}
-
-	@Test
 	void 시도_횟수_숫자_이외의_값_에러() {
 		assertThatThrownBy(() -> racingCar.isRightTimes("!"))
 			.isInstanceOf(RuntimeException.class);
