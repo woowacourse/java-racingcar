@@ -27,10 +27,7 @@ public class RacingGameController {
 
     public void inputCarNames(String carNames) {
         List<String> names = carNameParser.parse(carNames);
-
-        for (String name : names) {
-            carRepository.save(Car.from(name));
-        }
+        names.stream().map(Car::from).forEach(carRepository::save);
     }
 
     public void inputTryCount(String tryCount) {
