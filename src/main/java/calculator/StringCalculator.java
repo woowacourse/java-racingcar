@@ -1,5 +1,9 @@
 package calculator;
 
+import static java.util.stream.Collectors.*;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,9 +14,9 @@ public class StringCalculator {
             return 0;
         }
 
-        String[] numbers = split(text);
+        String[] values = split(text);
 
-        return sum(numbers);
+        return sum(toInts(values));
     }
 
     private static String[] split(String text) {
@@ -25,12 +29,14 @@ public class StringCalculator {
         return text.split("[,:]");
     }
 
-    private static int sum(String[] numbers) {
-        int total = 0;
-        for (String number : numbers) {
-            total += Integer.parseInt(number);
-        }
+    private static List<Integer> toInts(String[] values) {
+        return Arrays.stream(values)
+            .mapToInt(Integer::parseInt)
+            .boxed()
+            .collect(toList());
+    }
 
-        return total;
+    private static int sum(List<Integer> numbers) {
+        return numbers.stream().reduce(0, Integer::sum);
     }
 }
