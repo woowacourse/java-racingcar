@@ -1,6 +1,7 @@
 package racingcargame.model;
 
 import java.util.List;
+import java.util.Random;
 
 public class RacingCarGame {
     private CarRepository carRepository;
@@ -23,4 +24,5 @@ public class RacingCarGame {
     public void startRace() {
         RaceCount.reduceRaceCount();
     }
+
 }
