@@ -3,6 +3,8 @@ package stringcalculator;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringCalculatorTest {
 	StringCalculator calculator = new StringCalculator();
@@ -19,18 +21,12 @@ public class StringCalculatorTest {
 		assertThat(calculator.split("1:2")).isEqualTo(expected);
 	}
 
-	@Test
-	void 커스텀_구분자() {
-		// java.util.regex 패키지의 Matcher, Pattern import
-		String input = "//+\n1+2+3"; // 예약어인 +, *, ^ 는 그냥 쓸 경우 오류
-		String input2 = "//;\n1;2;3";
-
+	@ParameterizedTest
+	@ValueSource(strings = {"//+\n1+2+3", "//;\n1;2;3"})
+	void 커스텀_구분자(String input) {
 		String[] actual = calculator.customDelimiter(input);
-		String[] actual2 = calculator.customDelimiter(input2);
-
 		String[] expected = {"1", "2", "3"};
 		assertThat(actual).isEqualTo(expected);
-		assertThat(actual2).isEqualTo(expected);
 	}
 
 	@Test
@@ -63,23 +59,19 @@ public class StringCalculatorTest {
 		assertThat(actual).isEqualTo(expected);
 	}
 
-	@Test
-	void 숫자_이외의_값() {
-		String input1 = "&&&";
-		String input2 = "1,&,2";
+	@ParameterizedTest
+	@ValueSource(strings = {"&&&", "1,&,2", "//+\n1++3"})
+	void 숫자_이외의_값(String input) {
 		assertThatThrownBy(() -> {
-			calculator.splitAndSum(input1);
-			calculator.splitAndSum(input2);
+			calculator.splitAndSum(input);
 		}).isInstanceOf(RuntimeException.class);
 	}
 
-	@Test
-	void 음수_입력() {
-		String input1 = "-1";
-		String input2 = "-1,1,2";
+	@ParameterizedTest
+	@ValueSource(strings = {"-1", "-1,1,2", "//+\n1+-1+3"})
+	void 음수_입력(String input) {
 		assertThatThrownBy(() -> {
-			calculator.splitAndSum(input1);
-			calculator.splitAndSum(input2);
+			calculator.splitAndSum(input);
 		}).isInstanceOf(RuntimeException.class);
 	}
 }
