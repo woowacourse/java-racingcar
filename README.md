@@ -17,13 +17,10 @@
 2. 랜덤 값 생성 기능
 3. 자동차 이동 기능
    * 값이 4이상인 경우 전진, 미만인 경우 그대로
-4. 최종우승자 계산 기능
-5. 출력 기능
+4. 자동차 저장 기능
+5. 최종우승자 계산 기능
+6. 출력 기능
 
-model Car 
-controller InputController OutputController RaceController
-view InputView, OutputView
-util RandomNumberGenerator
 
 
 <br>
