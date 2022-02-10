@@ -30,7 +30,7 @@ public class TryCountParserTest {
             .hasMessageContaining("시도 횟수는 음수가 될 수 없습니다.");
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "실수의 경우 예외 발생 - 입력값 : {0}")
     @ValueSource(strings = {"1.234", "-123.2345", "+12.674"})
     public void 자연수가_아닐때_예외_발생(String input) {
         assertThatThrownBy(() -> parser.parse(input))
@@ -45,7 +45,7 @@ public class TryCountParserTest {
             .hasMessageContaining("시도 횟수는 0이 될 수 없습니다.");
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "빈 공백일 경우 예외 발생")
     @ValueSource(strings = {"", " ", "        "})
     public void 빈공백일때_예외_발생(String input) {
         assertThatThrownBy(() -> parser.parse(input))
