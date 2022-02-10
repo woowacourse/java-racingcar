@@ -17,7 +17,7 @@ public class CarTest {
 
         // when & then
         assertThatCode(() -> {
-            new Car(input);
+            new Car(input, new RandomMovingPolicy());
         }).doesNotThrowAnyException();
     }
 
@@ -29,7 +29,7 @@ public class CarTest {
 
         // when & then
         assertThatThrownBy(() -> {
-            new Car(input);
+            new Car(input, new RandomMovingPolicy());
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -41,7 +41,7 @@ public class CarTest {
 
         // when & then
         assertThatThrownBy(() -> {
-            new Car(input);
+            new Car(input, new RandomMovingPolicy());
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -51,7 +51,7 @@ public class CarTest {
     void constructor_blank(String input) {
         // given & when & then
         assertThatThrownBy(() -> {
-            new Car(input);
+            new Car(input, new RandomMovingPolicy());
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -63,7 +63,38 @@ public class CarTest {
 
         // when & then
         assertThatThrownBy(() -> {
-            new Car(input);
+            new Car(input, new RandomMovingPolicy());
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("이동 전략이 true이면 이동한다.")
+    @Test
+    void move_이동() {
+        // given
+        String input = "잉";
+        MovingPolicy movingPolicy = () -> true;
+
+        // when
+        Car car = new Car(input, movingPolicy);
+        car.move();
+
+        // then
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+
+    @DisplayName("이동 전략이 false인 경우.")
+    @Test
+    void move_이동실패() {
+        // given
+        String input = "잉";
+        MovingPolicy movingPolicy = () -> false;
+
+        // when
+        Car car = new Car(input, movingPolicy);
+        car.move();
+
+        // then
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }

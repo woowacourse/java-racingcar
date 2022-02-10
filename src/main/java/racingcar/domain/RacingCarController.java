@@ -19,7 +19,7 @@ public class RacingCarController {
 
     private List<Car> getCars() {
         return Arrays.stream(InputView.getCarNames())
-            .map(Car::new)
+            .map(carName -> new Car(carName, new RandomMovingPolicy()))
             .collect(toList());
     }
 

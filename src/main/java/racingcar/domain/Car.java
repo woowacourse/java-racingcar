@@ -1,18 +1,18 @@
 package racingcar.domain;
 
-import racingcar.utils.Randoms;
-
 public class Car {
     private final String name;
     private int position;
+    private MovingPolicy movingPolicy;
 
-    public Car(String name) {
+    public Car(String name, MovingPolicy movingPolicy) {
         validateNull(name);
         validateEmpty(name);
         validateBlank(name);
         validateNameLength(name);
         this.name = name;
         this.position = 0;
+        this.movingPolicy = movingPolicy;
     }
 
     private void validateNull(String name) {
@@ -40,7 +40,7 @@ public class Car {
     }
 
     public void move() {
-        if(Randoms.pickNumberInRange(0, 9) > 3) {
+        if(movingPolicy.isMove()) {
             position++;
         }
     }
