@@ -14,8 +14,8 @@ public class CarsGenerator {
 		return Arrays.asList(userInput.split(NAME_DELIMITER, -1));
 	}
 
-	public static List<Car> generateCars(String names) {
-		List<String> carNames = separateCarNames(names);
+	public static List<Car> generateCars(String userInput) {
+		List<String> carNames = separateCarNames(userInput);
 		carNames.forEach(CarNameValidator::validate);
 		return carNames.stream()
 			.map(Car::new)
