@@ -4,19 +4,31 @@ import java.util.Arrays;
 
 public class Validator {
 
+    private static final String DELIMITER = ",";
+    private static final int MINIMUM_CAR_NAME_QUANTITY = 2;
+    private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
+
     public static void checkName(String nameString) {
-        String[] names = nameString.split(",");
+        String[] names = nameString.split(DELIMITER);
 
         for (String name : names) {
             checkLength(name);
         }
     }
 
-    private static void checkNameLength(String name) {
+    private static void checkLength(String name) {
+        checkMinimumCarName(name);
+        checkMaximumCarNameLength(name);
+    }
+
+    private static void checkMinimumCarName(String name) {
         if (name.isEmpty()) {
             throw new IllegalArgumentException("이름은 1글자 이상이여야 합니다.");
         }
-        if (name.length() > 5) {
+    }
+
+    private static void checkMaximumCarNameLength(String name) {
+        if (name.length() > MAXIMUM_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException("이름 길이는 5글자 이하여야 합니다.");
         }
     }
@@ -26,32 +38,49 @@ public class Validator {
     }
 
     public static void checkInput(String nameString) {
-        if (isBlankOrNull(nameString)) {
-            throw new IllegalArgumentException("입력값은 1글자 이상이여야 합니다");
-        }
+        checkBlankOrNull(nameString);
+        checkInvalidNameString(nameString);
+        checkDuplicateName(nameString);
+        checkMinimumCarNameQuantity(nameString);
+    }
 
-        if (isEmpty(nameString.split(","))) {
+    private static void checkInvalidNameString(String nameString) {
+        if (isEmpty(nameString.split(DELIMITER))) {
             throw new IllegalArgumentException("이름을 입력해주세요");
         }
+    }
 
-        if (hasDuplication(nameString)) {
-            throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
-        }
-
-        if (nameString.split(",").length < 2) {
+    private static void checkMinimumCarNameQuantity(String nameString) {
+        if (hasMinimumCarName(nameString)) {
             throw new IllegalArgumentException("최소 자동차 수는 두 개 이상이어야 합니다.");
         }
     }
 
-    private static boolean hasDuplication(String nameString) {
-        long before = Arrays.stream(nameString.split(","))
+    private static void checkDuplicateName(String nameString) {
+        if (hasDuplicateName(nameString)) {
+            throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
+        }
+    }
+
+    private static void checkBlankOrNull(String nameString) {
+        if (isBlankOrNull(nameString)) {
+            throw new IllegalArgumentException("입력값은 1글자 이상이여야 합니다");
+        }
+    }
+
+    private static boolean hasMinimumCarName(String nameString) {
+        return nameString.split(DELIMITER).length < MINIMUM_CAR_NAME_QUANTITY;
+    }
+
+    private static boolean hasDuplicateName(String nameString) {
+        long origin = Arrays.stream(nameString.split(DELIMITER))
                 .count();
 
-        long after = Arrays.stream(nameString.split(","))
+        long distinct = Arrays.stream(nameString.split(DELIMITER))
                 .distinct()
                 .count();
 
-        return before != after;
+        return origin != distinct;
     }
 
     private static boolean isEmpty(String[] array) {
