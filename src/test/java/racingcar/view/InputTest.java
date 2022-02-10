@@ -1,43 +1,38 @@
 package racingcar.view;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * - [ ] [ 예외 ] : `공백` - *(입력받은 문자열의 앞 뒤를 제거해준다.)*
- * - [ ] [ 예외 ] : 자동차가 `2대 미만`
- * - [ ] [ 예외 ] : 이름이 `중복`
- * - [ ] [ 예외 ] : `5글자 초과`
- */
 class InputTest {
-    @Test
-    void 자동차_이름_공백_테스트() {
-        String inputValue = "";
-        validateName(inputValue);
+
+    static Input input = new Input();
+
+    @ParameterizedTest
+    @ValueSource(strings = {" "})
+    void 자동차_이름_공백_테스트(String name) {
+        assertTrue(input.isBlank(name));
     }
 
     @Test
     void 자동차_개수_테스트() {
-        String names = "pobi";
-        validateName(names);
+        assertFalse(input.isCars(split("pobi")));
     }
 
     @Test
     void 자동차_이름_중복_테스트() {
-        String names = "pobi,pobi";
-        validateName(names);
+        assertTrue(input.isDuplicated(split("pobi,jun,pobi")));
     }
 
     @Test
     void 자동차_이름_길이_테스트() {
-        String names = "good";
-        validateName(names);
+        assertFalse(input.isValidLength("gooddd"));
     }
 
-    void validateName(String names) {
-        assertThatThrownBy(() -> {
-            Input.carName(names);
-        }).isInstanceOf(IllegalArgumentException.class);
+    String[] split(String text) {
+        return text.split(",");
     }
 }
