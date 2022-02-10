@@ -24,4 +24,16 @@ public class StringCalculator {
 		}
 		return m.group(2).split(customDelimiter);
 	}
+
+	public int splitAndSum(String input) {
+		// String[] numbers = customDelimiter(input); // if input == null -> NPE/
+		if (validNullOrEmpty(input)) {
+			return 0;
+		}
+		return 1;
+	}
+
+	private boolean validNullOrEmpty(String input) {
+		return input == null || input.equals("");
+	}
 }

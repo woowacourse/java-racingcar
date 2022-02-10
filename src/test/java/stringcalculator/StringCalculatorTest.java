@@ -29,7 +29,21 @@ public class StringCalculatorTest {
 		String[] actual2 = calculator.customDelimiter(input2);
 
 		String[] expected = {"1", "2", "3"};
-		assertThat(actual).isEqualTo(0);
+		assertThat(actual).isEqualTo(expected);
 		assertThat(actual2).isEqualTo(expected);
+	}
+
+	@Test
+	void 빈문자() {
+		String input = "";
+		int actual = calculator.splitAndSum(input);
+		assertThat(actual).isEqualTo(0);
+	}
+
+	@Test
+	void null_판정() {
+		String input = null;
+		int actual = calculator.splitAndSum(input);
+		assertThat(actual).isEqualTo(0);
 	}
 }
