@@ -1,6 +1,7 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -15,5 +16,12 @@ public class RacingCarTest {
     System.setIn(in);
     String carNames = RacingCar.readCarNames();
     assertThat(carNames).isEqualTo(input);
+  }
+
+  @Test
+  public void splitCarNames_test() throws Exception {
+    String input = "name1,name2,name3";
+    String[] carNames = RacingCar.splitCarNames(input);
+    assertThat(carNames).contains("name1", "name2", "name3");
   }
 }
