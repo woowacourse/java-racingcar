@@ -11,4 +11,11 @@ public class PositionTest {
     Position position = new Position();
     assertThat(position.get()).isEqualTo(0);
   }
+
+  @Test
+  public void increase_test() throws Exception {
+    Position position = new Position();
+    position.increase();
+    assertThat(position.get()).isEqualTo(1);
+  }
 }
