@@ -1,10 +1,12 @@
 package racingcar.controller;
 
+import racingcar.view.InputView;
+
 public class RacingController {
 	CarController carController = new CarController();
 
 	public RacingController() {
-		carController.createCars("범고래,소주캉,고래");
+		carController.createCars(InputView.getCarNames());
 	}
 
 	public void run(int iteration) {
@@ -12,5 +14,4 @@ public class RacingController {
 			carController.run();
 		}
 	}
-
 }
