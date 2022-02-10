@@ -40,7 +40,7 @@ public class RacingGame {
     }
 
     public void race() {
-        for (; leftCount > 0; leftCount--) {
+        while (!isEnd()) {
             moveCars();
         }
     }
@@ -49,6 +49,7 @@ public class RacingGame {
         for (RacingCar car : cars) {
             moveCar(car);
         }
+        leftCount--;
     }
 
     private void moveCar(RacingCar car) {
