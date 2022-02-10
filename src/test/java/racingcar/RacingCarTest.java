@@ -1,5 +1,6 @@
 package racingcar;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.DisplayName;
@@ -13,5 +14,12 @@ public class RacingCarTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> new RacingCar("abcede"))
             .withMessageMatching("자동차 이름은 5자를 초과할 수 없다.");
+    }
+
+    @Test
+    @DisplayName("자동차의 초기 위치는 0이 되어야 한다.")
+    void racingCarDefaultPosition() {
+        RacingCar car = new RacingCar("name");
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }
