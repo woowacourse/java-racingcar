@@ -14,4 +14,11 @@ class RacingCarsTest {
         RacingCars racingCars = new RacingCars("pobi,crong,honux");
         assertThat(racingCars.getCarNames()).containsExactly("pobi", "crong", "honux");
     }
+
+    @Test
+    @DisplayName("자동차 이름의 공백을 제거한다.")
+    void trimBlank() {
+        RacingCars racingCars = new RacingCars("pobi , cr ong , honux");
+        assertThat(racingCars.getCarNames()).containsExactly("pobi", "crong", "honux");
+    }
 }

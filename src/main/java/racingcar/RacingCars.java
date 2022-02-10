@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 public class RacingCars {
 
     private static final String CAR_NAME_DELIMITER = ",";
+    private static final String NAME_BLANK = " ";
+    private static final String NAME_NOT_BLANK = "";
 
     private final List<RacingCar> cars;
     private final RandomGenerator generator = new RandomGenerator();
@@ -21,8 +23,13 @@ public class RacingCars {
 
     private List<RacingCar> makeRacingCars(String[] carNames) {
         return Arrays.stream(carNames)
+            .map(this::removeNameBlank)
             .map(RacingCar::new)
             .collect(Collectors.toList());
+    }
+
+    private String removeNameBlank(String name) {
+        return name.replaceAll(NAME_BLANK, NAME_NOT_BLANK);
     }
 
     public List<String> getCarNames() {
