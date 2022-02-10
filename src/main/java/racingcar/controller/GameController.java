@@ -26,10 +26,17 @@ public class GameController {
         List<String> carNameList = splitCars(carNames);
         cars = initCars(carNameList);
         InputView.inputTrialNum();
-        trialNum = scanner.nextInt();
+        trialNum = convertToInteger(scanner.nextLine());
+    }
+
+    private int convertToInteger(String number) {
+        InputValidator.validateTrialInput(number);
+        return Integer.parseInt(number);
+
     }
 
     public List<String> splitCars(String carNames) {
+        InputValidator.validateNameInput(carNames);
         List<String> carNameList = Arrays.asList(carNames.split(","));
         InputValidator.validateCarName(carNameList);
 

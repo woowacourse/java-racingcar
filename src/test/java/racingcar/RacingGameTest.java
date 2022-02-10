@@ -1,5 +1,6 @@
 package racingcar;
 
+import calculator.StringCalculator;
 import org.junit.jupiter.api.Test;
 import racingcar.controller.GameController;
 import racingcar.model.Car;
@@ -64,5 +65,12 @@ public class RacingGameTest {
 
         String winnerName = gameController.findWinner(cars);
         assertThat(winnerName).contains("sun");
+    }
+
+    @Test
+    void 자동차_이름이_하나도_존재하지_않을_경우() {
+        assertThatThrownBy(() -> {
+            gameController.splitCars("");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
