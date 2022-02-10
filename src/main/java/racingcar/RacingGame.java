@@ -53,9 +53,7 @@ public class RacingGame {
     }
 
     private void moveCars() {
-        for (RacingCar car : cars) {
-            moveCar(car);
-        }
+        cars.forEach(this::moveCar);
         leftCount--;
     }
 
