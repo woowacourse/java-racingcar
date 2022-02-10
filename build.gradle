@@ -5,10 +5,12 @@ plugins {
 version '1.0-SNAPSHOT'
 
 repositories {
+    maven { url 'https://jitpack.io' }
     mavenCentral()
 }
 
 dependencies {
+    implementation('com.github.woowacourse-projects:mission-utils:1.0.0')
     testImplementation 'org.assertj:assertj-core:3.22.0'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
 }
