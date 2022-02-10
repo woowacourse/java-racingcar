@@ -13,9 +13,14 @@ public class StringCalculatorTest {
 
 	@Test
 	public void oneNumberTest() {
-		int result =StringCalculator.add("1");
+		int result = StringCalculator.add("1");
 		assertThat(result).isEqualTo(1);
 	}
 
+	@Test
+	public void emptyStringTest() {
+		int result = StringCalculator.add("");
+		assertThat(result).isEqualTo(0);
+	}
 
 }
