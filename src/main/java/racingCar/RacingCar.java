@@ -5,16 +5,22 @@ import java.util.Scanner;
 public class RacingCar {
 
 	public void start() {
-		RacingCarNames();
+		racingCarNames();
+		racingCarTimes();
 	}
 
-	private void RacingCarNames() {
-		String inputCarName = inputCarNames();
+	private void racingCarNames() {
+		String inputCarName = userInput("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
 		String[] carNames = getCarNames(inputCarName);
 	}
 
-	private String inputCarNames() {
-		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+	private void racingCarTimes() {
+		String inputRacingTimes = userInput("시도할 횟수는 몇회인가요?");
+		int times = enterTimes(inputRacingTimes);
+	}
+
+	private String userInput(String message) {
+		System.out.println(message);
 		Scanner scanner = new Scanner(System.in);
 		return scanner.nextLine();
 	}
@@ -33,7 +39,7 @@ public class RacingCar {
 			isRightLength(name);
 		} catch (RuntimeException e) {
 			System.out.println("[ERROR] 이름이 공백이거나 6자 이상이면 안됩니다. 다시 입력해주세요.");
-			RacingCarNames();
+			racingCarNames();
 		}
 	}
 
@@ -43,4 +49,7 @@ public class RacingCar {
 		}
 	}
 
+	public int enterTimes(String input) {
+
+	}
 }
