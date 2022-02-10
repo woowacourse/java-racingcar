@@ -54,7 +54,7 @@ public class RacingGameController {
         if (!isFinished()) {
             throw new GetWinnerBeforeFinishException();
         }
-        return new WinnerResult(findCars());
+        return new WinnerResult(racingGameService.getWinners());
     }
 
     private List<Car> findCars() {
