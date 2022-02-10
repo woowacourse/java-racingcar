@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import racingcar.utils.Randoms;
 
 public class Car {
     private final String name;
@@ -40,7 +40,7 @@ public class Car {
     }
 
     public void move() {
-        if(Randoms.pickNumberInRange(0,9) > 3) {
+        if(Randoms.pickNumberInRange(0, 9) > 3) {
             position++;
         }
     }
