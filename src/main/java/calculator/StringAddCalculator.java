@@ -6,7 +6,7 @@ public class StringAddCalculator {
         if (checkNull(givenString)) {
             return 0;
         }
-        return 100;
+        return Integer.parseInt(givenString);
     }
 
 
@@ -16,4 +16,6 @@ public class StringAddCalculator {
         }
         return false;
     }
+
+    
 }
