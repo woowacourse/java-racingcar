@@ -7,8 +7,13 @@ public class Validator {
     private static final String DELIMITER = ",";
     private static final int MINIMUM_CAR_NAME_QUANTITY = 2;
     private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
-    private static int MINIMUM_COUNT = 1;
-    private static int MAXIMUM_COUNT = 50;
+    private static final int MINIMUM_COUNT = 1;
+    private static final int MAXIMUM_COUNT = 50;
+
+    public static void checkCarNames(String nameString) {
+        checkInput(nameString);
+        checkName(nameString);
+    }
 
     public static void checkName(String nameString) {
         String[] names = nameString.split(DELIMITER);

@@ -2,6 +2,7 @@ package racingcar;
 
 public class Car implements Comparable<Car> {
     private static final int INIT_POSITION = 1;
+    private static final int LOWER_MOVABLE_BOUND = 4;
 
     private int position = INIT_POSITION;
     private String name;
@@ -18,9 +19,13 @@ public class Car implements Comparable<Car> {
     }
 
     public void attemptToMove(int number) {
-        if (number >= 4) {
+        if (isMovable(number)) {
             position++;
         }
+    }
+
+    private boolean isMovable(int number) {
+        return number >= LOWER_MOVABLE_BOUND;
     }
 
     @Override

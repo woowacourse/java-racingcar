@@ -9,26 +9,31 @@ import static java.util.stream.Collectors.toList;
 
 public class CarController {
 
+    private static final String DELIMITER = ",";
+    private static final int RANDOM_NUMBER_UPPER_BOUND = 10;
+
     public void run() {
-
         String carNames = getCarNamesFromUser();
-
         int count = getCountFromUser();
 
-        String[] names = carNames.split(",");
+        List<Car> cars = makeCars(carNames.split(DELIMITER));
 
-        List<Car> cars = Arrays.stream(names)
-                .map(Car::new)
-                .collect(toList());
+        playGame(count, cars);
+        OutputView.printWinners(findWinners(cars));
+    }
 
+    private void playGame(int count, List<Car> cars) {
         OutputView.printResult(cars);
-
         for (int i = 0; i < count; i++) {
             playRound(cars);
             OutputView.printResult(cars);
         }
+    }
 
-        OutputView.printWinners(findWinners(cars));
+    private List<Car> makeCars(String[] names) {
+        return Arrays.stream(names)
+                .map(Car::new)
+                .collect(toList());
     }
 
     private int getCountFromUser() {
@@ -56,7 +61,7 @@ public class CarController {
     }
 
     private int getRandInt() {
-        return new Random().nextInt(10);
+        return new Random().nextInt(RANDOM_NUMBER_UPPER_BOUND);
     }
 
     public List<Car> findWinners(List<Car> cars) {
@@ -67,7 +72,9 @@ public class CarController {
     }
 
     private Car getMaxPositionCar(List<Car> cars) {
-        cars.sort(Comparator.reverseOrder());
-        return cars.get(0);
+        List<Car> result = new ArrayList<>();
+        result.addAll(cars);
+        result.sort(Comparator.reverseOrder());
+        return result.get(0);
     }
 }
