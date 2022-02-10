@@ -31,7 +31,7 @@ public class StringCalculator {
 			return 0;
 		}
 
-		if (input.length() > 2 && input.substring(0, 3).equals("//")) {
+		if (input.length() > 2 && input.substring(0, 2).equals("//")) {
 			String[] numbers = customDelimiter(input);
 			return this.sum(numbers);
 		}
