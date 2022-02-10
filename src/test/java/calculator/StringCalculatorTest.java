@@ -40,4 +40,10 @@ public class StringCalculatorTest {
 		assertThatThrownBy(() -> StringCalculator.add("-1:2"))
 			.isInstanceOf(RuntimeException.class);
 	}
+
+	@Test
+	public void nonNumberTest(){
+		assertThatThrownBy(()-> StringCalculator.add("!"))
+			.isInstanceOf(RuntimeException.class);
+	}
 }
