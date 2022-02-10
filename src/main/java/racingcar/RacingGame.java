@@ -19,14 +19,6 @@ public class RacingGame {
         }
     }
 
-    public List<String> getCarNames() {
-        return racingCars.getCarNames();
-    }
-
-    public int getLeftCount() {
-        return leftCount;
-    }
-
     public void race() {
         checkCanRace();
         while (!isEnd()) {
@@ -43,5 +35,9 @@ public class RacingGame {
 
     public boolean isEnd() {
         return leftCount == 0;
+    }
+
+    public List<String> winnerNames() {
+        return racingCars.calculateWinnerNames();
     }
 }

@@ -49,7 +49,7 @@ public class RacingCars {
         }
     }
 
-    public List<String> calculateWinners() {
+    public List<String> calculateWinnerNames() {
         int winnerPosition = calculateWinnerPosition();
         return cars.stream()
             .filter(car -> car.comparePosition(winnerPosition))

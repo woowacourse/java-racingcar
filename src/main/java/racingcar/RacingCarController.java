@@ -3,9 +3,11 @@ package racingcar;
 public class RacingCarController {
 
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public RacingCarController(InputView inputView) {
+    public RacingCarController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
@@ -14,5 +16,7 @@ public class RacingCarController {
 
         RacingGame game = new RacingGame(racingCars, tryCount);
         game.race();
+
+        outputView.printWinnerNames(game.winnerNames());
     }
 }
