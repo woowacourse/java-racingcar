@@ -9,7 +9,7 @@ public class TryCountParser {
     public static final String FLOAT_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 실수가 될 수 없습니다.";
     public static final String NEGATIVE_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 음수가 될 수 없습니다.";
     public static final String ZERO_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 0이 될 수 없습니다.";
-    public static final String CHARACTER_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 문자가 될  없습니다.";
+    public static final String CHARACTER_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 문자가 될 수 없습니다.";
     private static final String FLOAT_REG_EXP = "(-|\\+)?[0-9]+\\.[0-9]+";
     private static final String DIGIT_REG_EXP = "(-|\\+)?[0-9]+";
 
