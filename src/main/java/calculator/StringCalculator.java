@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 	public static int add(String input) {
-		if (input == null || input.equals("")) {
+		if (isNullOREmpty(input)) {
 			return 0;
 		}
 		Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
@@ -44,6 +44,10 @@ public class StringCalculator {
 		if (Integer.parseInt(number) < 0) {
 			throw new RuntimeException("음수는 허용되지 않습니다.");
 		}
+	}
+
+	public static boolean isNullOREmpty(String input) {
+		return input == null || input.equals("");
 	}
 
 }
