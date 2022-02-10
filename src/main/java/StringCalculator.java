@@ -2,10 +2,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+    public static final String DELIMITER = ",|:";
+
     public static int calculate(String s) {
-        String[] splitStrings = s.split(",|:");
+        String delimiter = sumOfDelimiter(s);
+        String[] splitStrings = extractTarget(s).split(delimiter);
         int[] splitNumbers = toIntArray(splitStrings);
         return sumOfList(splitNumbers);
+    }
+
+    public static String sumOfDelimiter(String s) {
+        String delimiter = DELIMITER;
+        if (extractCustomDelimiter(s) != "") {
+            delimiter = delimiter + "|" + extractCustomDelimiter(s);
+        }
+        return delimiter;
     }
 
     public static int[] toIntArray(String[] testData) {
