@@ -32,9 +32,9 @@ public class RacingCarTest {
     }
 
     @Test
-    @DisplayName("자동차가 움직일 수 있다.")
+    @DisplayName("자동차가 1칸 움직이거나 멈출 수 있다.")
     void racingCarMove() {
-        assertThat(car.move()).isEqualTo(1);
+        assertThat(car.move()).isIn(0, 1);
     }
 
     @Test
