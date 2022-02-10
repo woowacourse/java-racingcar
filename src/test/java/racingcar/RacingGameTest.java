@@ -56,7 +56,14 @@ public class RacingGameTest {
     }
 
     @Test
-    void 모든_자동차_전진_확인() {
+    void 최종_우승자_출력() {
 
+        List<Car> carList = new ArrayList<>();
+        carList.add(new Car("bom", 3));
+        carList.add(new Car("sun", 4));
+        Cars cars = new Cars(carList);
+
+        String winnerName = gameController.findWinner(cars);
+        assertThat(winnerName).contains("sun");
     }
 }

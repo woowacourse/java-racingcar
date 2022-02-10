@@ -6,9 +6,7 @@ import racingcar.util.InputValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class GameController {
@@ -18,6 +16,7 @@ public class GameController {
     public void run() {
         initGame();
         runGame();
+        endGame();
     }
 
     private void initGame() {
@@ -49,5 +48,15 @@ public class GameController {
             cars.race();
             OutputView.printCarPosition(cars);
         }
+    }
+
+    private void endGame() {
+        OutputView.printWinnerName(findWinner(cars));
+    }
+
+    public String findWinner(Cars cars) {
+        int maxPosition = cars.findMaxPosition();
+
+        return cars.findWinnerName(maxPosition);
     }
 }

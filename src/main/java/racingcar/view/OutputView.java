@@ -4,7 +4,7 @@ import racingcar.model.Car;
 import racingcar.model.Cars;
 
 public class OutputView {
-    private static final String TRIAL_RESULT = "실행결과";
+    private static final String TRIAL_RESULT = "\n실행 결과";
 
     public static void printCarPosition(Cars cars) {
         cars.getCars().forEach(OutputView::printCarResult);
@@ -16,13 +16,14 @@ public class OutputView {
     }
 
     private static String makeDash(int position) {
-        StringBuilder dash = new StringBuilder();
-        dash.append("-".repeat(Math.max(0, position)));
-
-        return dash.toString();
+        return "-".repeat(Math.max(0, position));
     }
 
     public static void printTrialResult() {
         System.out.println(TRIAL_RESULT);
+    }
+
+    public static void printWinnerName(String winnerName) {
+        System.out.println(winnerName + "가 최종 우승했습니다.");
     }
 }
