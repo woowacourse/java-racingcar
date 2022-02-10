@@ -11,8 +11,7 @@ public class StringCalculator {
         if (isEmptyOrNull(expression)) {
             return 0;
         }
-        String[] tokens = splitExpression(expression);
-        int[] numbers = parseToInts(tokens);
+        int[] numbers = splitExpression(expression);
         return Arrays.stream(numbers)
                 .sum();
     }
@@ -21,13 +20,13 @@ public class StringCalculator {
         return expression == null || expression.isEmpty();
     }
 
-    private String[] splitExpression(String expression) {
+    private int[] splitExpression(String expression) {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(expression);
         if (m.find()) {
             String customDelimiter = m.group(1);
-            return m.group(2).split(customDelimiter);
+            return parseToInts(m.group(2).split(customDelimiter));
         }
-        return expression.split(",|:");
+        return parseToInts(expression.split(",|:"));
     }
 
     private int[] parseToInts(final String[] tokens) {
