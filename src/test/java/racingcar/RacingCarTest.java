@@ -68,4 +68,11 @@ public class RacingCarTest {
 		int gameCount = inputManager.getTrial("3");
 		assertThat(gameCount).isEqualTo(3);
 	}
+
+	@Test
+	public void 숫자가_아닌_시도_횟수_테스트() {
+		assertThatThrownBy(() -> { inputManager.getTrial("이브"); })
+			.isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("시도 횟수가 숫자가 아닙니다.");
+	}
 }

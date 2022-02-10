@@ -12,6 +12,12 @@ public class InputManager {
 	}
 
 	public int getTrial(String s) {
-		return Integer.parseInt(s);
+		int count = 0;
+		try {
+			count = Integer.parseInt(s);
+		} catch (NumberFormatException exception) {
+			throw new RuntimeException("시도 횟수가 숫자가 아닙니다.");
+		}
+		return count;
 	}
 }
