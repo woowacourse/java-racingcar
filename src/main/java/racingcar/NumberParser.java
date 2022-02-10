@@ -3,6 +3,9 @@ package racingcar;
 public class NumberParser {
 
     public int parse(String input) {
+        if (input.equals("0")) {
+            throw new IllegalArgumentException("시도 횟수는 0이 될 수 없습니다.");
+        }
         if (input.matches("(-|\\+)?[0-9]+\\.[0-9]+")) {
             throw new IllegalArgumentException("시도 횟수는 실수가 될 수 없습니다.");
         }
