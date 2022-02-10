@@ -17,10 +17,13 @@ public class Car {
     return car.name.equals(this.name);
   }
 
-  public void move() {
+  public boolean move() {
     if (isMoveForward(createNumber())) {
       position.increase();
+      return true;
     }
+    return false;
+  }
   }
 
   @Override
