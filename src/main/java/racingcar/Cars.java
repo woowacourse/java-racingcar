@@ -35,9 +35,12 @@ public class Cars {
 		return winnerNames;
 	}
 
-	public void executeCarRacing() {
+	public List<String> executeCarRacing() {
+		List<String> racingRecord = new ArrayList<>();
 		for (Car car : cars) {
 			car.tryDrive();
+			racingRecord.add(car.toString());
 		}
+		return racingRecord;
 	}
 }
