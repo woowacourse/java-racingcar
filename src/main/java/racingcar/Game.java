@@ -17,6 +17,8 @@ public class Game {
         int coin = inputCoin();
         List<Car> cars = generateCar(names);
         race(coin, cars);
+        List<String> winners = getWinner(cars);
+        output.printWinner(winners);
     }
 
     private void race(int coin, List<Car> cars) {
@@ -39,6 +41,23 @@ public class Game {
             cars.add(new Car(name));
         }
         return cars;
+    }
+
+    public List<String> getWinner(List<Car> cars) {
+        int maxPosition = 0;
+        List<String> winners = new ArrayList<>();
+        //분리
+        for (Car car : cars) {
+            if (maxPosition < car.getPosition()) {
+                maxPosition = car.getPosition();
+            }
+        }
+        for (Car car : cars) {
+            if (car.isSamePosition(maxPosition)) {
+                winners.add(car.getName());
+            }
+        }
+        return winners;
     }
 
     private String[] inputCarNames() {

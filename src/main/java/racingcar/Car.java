@@ -30,4 +30,8 @@ public class Car {
     public String getName() {
         return name;
     }
+
+    public boolean isSamePosition(int number) {
+        return position == number;
+    }
 }

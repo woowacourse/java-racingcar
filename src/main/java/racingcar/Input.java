@@ -1,6 +1,5 @@
 package racingcar;
 
-import java.io.IOError;
 import java.util.Scanner;
 
 public class Input {

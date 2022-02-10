@@ -19,7 +19,7 @@ public class Output {
     public void printPosition(List<Car> cars) {
         for (Car car : cars) {
             String position = makePositionString(car.getPosition());
-            System.out.printf("%s : %s\n", car.getName(), position);
+            System.out.printf("%-5s : %s\n", car.getName(), position);
         }
         System.out.println();
     }
@@ -27,6 +27,10 @@ public class Output {
     private String makePositionString(int position) {
         String positionFlag = "-";
         return positionFlag.repeat(position);
+    }
 
+    public void printWinner(List<String> winnerNames) {
+        System.out.print(String.join(", ", winnerNames));
+        System.out.println("가 최종 우승했습니다.");
     }
 }
