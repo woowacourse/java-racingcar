@@ -13,18 +13,16 @@ public class Controller {
     private final int trialNumber = getTrialNumber();
 
     public void run() {
-        play();
+        OutputView.printResultMessage();
+        forwardCarsByTrialNumber();
+        OutputView.printWinners(cars.findWinners());
     }
 
-    private void play() {
-        OutputView.printResultMessage();
-
+    private void forwardCarsByTrialNumber() {
         for (int i = 0; i < trialNumber; i++) {
             forwardCars();
             OutputView.printCarsPosition(cars);
         }
-
-        OutputView.printWinners(cars.findWinners());
     }
 
     private void forwardCars() {
@@ -35,7 +33,6 @@ public class Controller {
         List<Car> cars = new ArrayList<>();
 
         InputView.getCarNames()
-                .stream()
                 .forEach(carName -> cars.add(new Car(carName)));
 
         return cars;

@@ -20,7 +20,7 @@ public class Cars {
         List<String> winners = new ArrayList<>();
         int farthestPosition = getFarthestPosition();
 
-        cars.stream().filter(car -> car.getPosition() == farthestPosition)
+        cars.stream().filter(car -> car.isSameWithFarthestPosition(farthestPosition))
                 .forEach(car -> winners.add(car.getName()));
         return winners;
     }
