@@ -20,6 +20,11 @@
 4. 최종우승자 계산 기능
 5. 출력 기능
 
+model Car 
+controller InputController OutputController RaceController
+view InputView, OutputView
+util RandomNumberGenerator
+
 
 <br>
 <br>
