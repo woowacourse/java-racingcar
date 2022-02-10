@@ -82,7 +82,6 @@ public class CarTest {
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
-
     @DisplayName("이동 전략이 false인 경우.")
     @Test
     void move_이동실패() {

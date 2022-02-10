@@ -11,7 +11,7 @@ class CarsTest {
     @Test
     void constructor_정상() {
         // given
-        String[] names = new String[]{"pobi", "crong", "honux"};
+        String[] names = new String[] {"pobi", "crong", "honux"};
         MovingPolicy movingPolicy = new RandomMovingPolicy();
 
         // when & then
@@ -24,7 +24,7 @@ class CarsTest {
     @Test
     void constructor_차이름_중복() {
         // given
-        String[] names = new String[]{"pobi", "pobi", "pobi"};
+        String[] names = new String[] {"pobi", "pobi", "pobi"};
         MovingPolicy movingPolicy = new RandomMovingPolicy();
 
         // when & then
@@ -37,7 +37,7 @@ class CarsTest {
     @Test
     void move_전진() {
         // given
-        String[] names = new String[]{"pobi", "crong", "honux"};
+        String[] names = new String[] {"pobi", "crong", "honux"};
         MovingPolicy movingPolicy = () -> true;
         Cars cars = new Cars(names, movingPolicy);
 
@@ -52,7 +52,7 @@ class CarsTest {
     @Test
     void move_정지() {
         // given
-        String[] names = new String[]{"pobi", "crong", "honux"};
+        String[] names = new String[] {"pobi", "crong", "honux"};
         MovingPolicy movingPolicy = () -> false;
         Cars cars = new Cars(names, movingPolicy);
 
@@ -67,7 +67,7 @@ class CarsTest {
     @Test
     void getWinners() {
         // given
-        String[] names = new String[]{"pobi", "crong", "honux"};
+        String[] names = new String[] {"pobi", "crong", "honux"};
         MovingPolicy movingPolicy = new RandomMovingPolicy();
         Cars cars = new Cars(names, movingPolicy);
 
