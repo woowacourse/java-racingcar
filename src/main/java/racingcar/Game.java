@@ -44,6 +44,10 @@ public class Game {
 
     }
 
+    public void setCars(Car... cars) {
+        this.cars = new ArrayList<>(Arrays.asList(cars));
+    }
+
     private void setCars() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         List<String> carNames = Arrays.asList(StringParser.readCarNameInputs(inputView.readCarNamesInput()));
@@ -63,12 +67,12 @@ public class Game {
     }
 
     public void showResult() {
-        List<Car> winners = decideWinner();
+        List<Car> winners = decideWinners();
 
         String winnerNames = winners.stream().map(car -> car.getName()).collect(Collectors.joining(","));
         System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
-    public List<Car> decideWinner() {
+    public List<Car> decideWinners() {
         int maxPosition = cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
