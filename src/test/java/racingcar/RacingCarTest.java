@@ -14,9 +14,9 @@ public class RacingCarTest {
 
 	@Test
 	public void 자동차_이름_공백() throws Exception {
-		assertThatThrownBy(() -> racingCarGame.checkCarNames(""))
+		assertThatThrownBy(() -> racingCarGame.checkCarNamesBlank(""))
 			.isInstanceOf(IllegalArgumentException.class);
-		assertThatThrownBy(() -> racingCarGame.checkCarNames(null))
+		assertThatThrownBy(() -> racingCarGame.checkCarNamesBlank(null))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -24,5 +24,11 @@ public class RacingCarTest {
 	public void 자동차_이름_구분() throws Exception {
 		List<String> result = racingCarGame.splitCarNames("배카라,아스피");
 		assertThat(result).isEqualTo(Arrays.asList("배카라", "아스피"));
+	}
+
+	@Test
+	public void 자동차_이름_예외처리() throws Exception {
+		assertThatThrownBy(() -> racingCarGame.checkCarNamesLength(Arrays.asList("배카라쿠배네", "아스피")))
+			.isInstanceOf(IllegalArgumentException.class);
 	}
 }

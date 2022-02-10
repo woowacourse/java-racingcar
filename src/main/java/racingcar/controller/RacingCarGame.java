@@ -9,19 +9,20 @@ public class RacingCarGame {
 	private InputView inputView = new InputView();
 
 	public List<String> getCarNames() {
-		String carNames = inputView.getCarNames();
-
+		String inputCarNames = inputView.getCarNames();
+		List<String> carNames = splitCarNames(inputCarNames);
 		try {
-			checkCarNames(carNames);
+			checkCarNamesBlank(inputCarNames);
+			checkCarNamesLength(carNames);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return getCarNames();
 		}
 
-		return splitCarNames(carNames);
+		return carNames;
 	}
 
-	public void checkCarNames(String input) {
+	public void checkCarNamesBlank(String input) {
 		if (input == null || input.equals("")) {
 			throw new IllegalArgumentException("[Error] 다시 이름을 입력하세요");
 		}
@@ -34,5 +35,12 @@ public class RacingCarGame {
 	public int getGameTurn() {
 		String gameTurn = inputView.getGameTurn();
 		return Integer.parseInt(gameTurn);
+	}
+
+	public void checkCarNamesLength(List<String> carNames) {
+		if (carNames.stream()
+			.anyMatch(carName -> carName.length() > 5)) {
+			throw new IllegalArgumentException("[Error] 다시 이름을 입력하세요");
+		}
 	}
 }
