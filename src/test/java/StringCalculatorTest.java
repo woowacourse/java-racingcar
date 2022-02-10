@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.regex.Pattern;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringCalculatorTest {

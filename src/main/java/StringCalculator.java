@@ -4,9 +4,17 @@ import java.util.regex.Pattern;
 public class StringCalculator {
     public static final String DELIMITER = ",|:";
 
+    public static boolean isBlank(String s) {
+        return s == null || s.isEmpty();
+    }
+
     public static int calculate(String s) {
+        if (isBlank(s)) {
+            return 0;
+        }
         String delimiter = sumOfDelimiter(s);
-        String[] splitStrings = extractTarget(s).split(delimiter);
+        String target = extractTarget(s);
+        String[] splitStrings = target.split(delimiter);
         int[] splitNumbers = toIntArray(splitStrings);
         return sumOfList(splitNumbers);
     }
@@ -19,9 +27,26 @@ public class StringCalculator {
         return delimiter;
     }
 
+    public static void validateInteger(String data) {
+        try {
+            Integer.parseInt(data);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("[ERROR] 숫자가 아닌 문자가 입력되었습니다.");
+        }
+    }
+
+    public static void validatePositiveInteger(String data) {
+        int target = Integer.parseInt(data);
+        if (target < 0) {
+            throw new RuntimeException("[ERROR] 음수가 입력되었습니다.");
+        }
+    }
+
     public static int[] toIntArray(String[] testData) {
         int[] result = new int[testData.length];
         for (int i = 0; i < testData.length; i++) {
+            validateInteger(testData[i]);
+            validatePositiveInteger(testData[i]);
             result[i] = Integer.parseInt(testData[i]);
         }
         return result;
