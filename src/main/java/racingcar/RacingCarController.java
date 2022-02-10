@@ -7,5 +7,7 @@ public class RacingCarController {
 
 	public void playGame() {
 		cars.generateCars(InputManager.splitAndSaveCarNames(InputView.inputCarNames()));
+		int trialCount = InputManager.getTrial(InputView.inputTrials());
+
 	}
 }
