@@ -20,4 +20,8 @@ public class Car {
 	public void movePosition() {
 		++this.position;
 	}
+
+	public Boolean isMaxPosition(int maxPosition) {
+		return this.position == maxPosition;
+	}
 }
