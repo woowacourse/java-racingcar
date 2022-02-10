@@ -5,15 +5,15 @@ import java.util.List;
 public class Output {
 
     public void inputCarNameMessage() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        System.out.println(Constant.PRINT_INPUT_CAR_NAME_MESSAGE);
     }
 
     public void inputCoinMessage() {
-        System.out.println("시도할 회수는 몇회인가요?");
+        System.out.println(Constant.PRINT_INPUT_COIN_MESSAGE);
     }
 
     public void printResultMessage() {
-        System.out.println("\n실행 결과");
+        System.out.println(Constant.PRINT_RESULT_MESSAGE);
     }
 
     public void printPosition(List<Car> cars) {
@@ -25,12 +25,12 @@ public class Output {
     }
 
     private String makePositionString(int position) {
-        String positionFlag = "-";
+        String positionFlag = Constant.POSITION_FLAG;
         return positionFlag.repeat(position);
     }
 
     public void printWinner(List<String> winnerNames) {
-        System.out.print(String.join(", ", winnerNames));
-        System.out.println("가 최종 우승했습니다.");
+        System.out.print(String.join(Constant.JOIN_REGEX, winnerNames));
+        System.out.println(Constant.PRINT_WINNER_MESSAGE);
     }
 }

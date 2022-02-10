@@ -6,15 +6,15 @@ public class Car {
 
     public Car(String name) {
         this.name = name;
-        this.position = 0;
+        this.position = Constant.START_POSITION;
     }
 
     private int makeRandom() {
-        return (int) (Math.random() * 10);
+        return (int) (Math.random() * Constant.RANDOM_RANGE);
     }
 
     public boolean isMovable() {
-        return makeRandom() >= 4;
+        return makeRandom() >= Constant.MINIMUM_MOVE;
     }
 
     public void movePosition() {

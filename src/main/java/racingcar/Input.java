@@ -6,7 +6,6 @@ public class Input {
     private Scanner scanner;
     private InputValidator inputValidator;
 
-    // Validator
     public Input() {
         scanner = new Scanner(System.in);
         inputValidator = new InputValidator();
@@ -21,7 +20,7 @@ public class Input {
 
     public String[] splitByComma(String input) {
         inputValidator.isValidPattern(input);
-        return input.split(",");
+        return input.split(Constant.COMMA_REGEX);
     }
 
     public int getCoin() {

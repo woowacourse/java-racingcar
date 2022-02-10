@@ -9,17 +9,17 @@ import java.util.regex.Pattern;
 public class InputValidator {
     //TO-DO 검증 나누기
     public void isValidPattern(String input) {
-        Pattern pattern = Pattern.compile("^[a-zA-Z,]*$");
+        Pattern pattern = Pattern.compile(Constant.CAR_NAME_PATTERN_REGEX);
         Matcher matcher = pattern.matcher(input);
         if (!matcher.find()) {
-            throw new IllegalArgumentException("[ERROR]: 잘못된 입력입니다.(입력은 영어 소문자와 쉼표로만 이루어져있습니다.)");
+            throw new IllegalArgumentException(Constant.NOT_ALPHA_AND_COMMA_ERROR);
         }
     }
 
     public void isValidLength(String[] names) {
         for (String name : names) {
-            if (name.length() > 5) {
-                throw new IllegalArgumentException("[ERROR]: 잘못된 입력입니다.(입력은 5자 이하만 가능합니다.)");
+            if (name.length() > Constant.MAXIMUM_NAME_LENGTH) {
+                throw new IllegalArgumentException(Constant.NOT_ALLOW_LENGTH_ERROR);
             }
         }
     }
@@ -27,21 +27,21 @@ public class InputValidator {
     public void isDuplicate(String[] names) {
         Set<String> uniqueNames = new HashSet<>(Arrays.asList(names));
         if (uniqueNames.size() != names.length) {
-            throw new IllegalArgumentException("[ERROR]: 잘못된 입력입니다.(같은 이름의 자동차는 두번 사용할 수 없습니다.)");
+            throw new IllegalArgumentException(Constant.DUPLICATE_NAME_ERROR);
         }
     }
 
     public void isNumeric(String input) {
-        Pattern pattern = Pattern.compile("^[0-9]*$");
+        Pattern pattern = Pattern.compile(Constant.COIN_PATTERN_REGEX);
         Matcher matcher = pattern.matcher(input);
         if (!matcher.find()) {
-            throw new IllegalArgumentException("[ERROR]: 잘못된 입력입니다.(시도 횟수는 숫자만 가능합니다.)");
+            throw new IllegalArgumentException(Constant.NOT_NUMERIC_ERROR);
         }
     }
 
     public void isNaturalNumber(int input) {
-        if (input < 1) {
-            throw new IllegalArgumentException("[ERROR]: 잘못된 입력입니다.(1 이상의 값만 입력이 가능합니다.)");
+        if (input < Constant.MINIMUM_NATURAL_NUMBER) {
+            throw new IllegalArgumentException(Constant.MINIMUM_NATURAL_NUMBER_ERROR);
         }
     }
 }
