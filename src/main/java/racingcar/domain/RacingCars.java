@@ -13,7 +13,6 @@ public class RacingCars {
     private static final String NAME_NOT_BLANK = "";
 
     private final List<RacingCar> cars;
-    private final RandomGenerator generator = new RandomGenerator();
 
     public RacingCars(String carStringNames) {
         this.cars = makeRacingCars(carStringNames.split(CAR_NAME_DELIMITER));
@@ -43,13 +42,7 @@ public class RacingCars {
     }
 
     public void moveCars() {
-        cars.forEach(this::moveCar);
-    }
-
-    private void moveCar(RacingCar car) {
-        if (generator.isMovable()) {
-            car.move();
-        }
+        cars.forEach(RacingCar::move);
     }
 
     public List<String> calculateWinnerNames() {
