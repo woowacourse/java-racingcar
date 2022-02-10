@@ -4,12 +4,15 @@ import java.util.Objects;
 
 public class Car {
 
+    private static final int START_POSITION = 0;
+    private static final int FORWARD_BOUNDARY_NUMBER = 4;
+
     private String name;
     private int position;
 
     private Car(String name) {
         this.name = name;
-        this.position = 0;
+        this.position = START_POSITION;
     }
 
     public static Car from(String name) {
@@ -42,7 +45,7 @@ public class Car {
     }
 
     public void move(int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= FORWARD_BOUNDARY_NUMBER) {
             position++;
         }
     }

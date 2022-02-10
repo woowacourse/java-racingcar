@@ -8,10 +8,16 @@ import racingcar.parser.exception.CarNameException;
 
 public class CarNameParser {
 
+    public static final String INVALID_LENGTH_ERROR_MESSAGE = "자동차 이름은 5글자 이하여야 합니다.";
+    public static final String EMPTY_NAME_ERROR_MESSAGE = "자동차 이름은 공백일 수 없습니다.";
+    public static final String DUPLICATE_NAME_ERROR_MESSAGE = "자동차 이름은 중복일 수 없습니다.";
+    private static final int NAME_UPPER_LENGTH = 5;
+    private static final String NAME_DELIMITER = ",";
+
     public List<String> parse(String names) {
         validateCarNames(names);
 
-        return Arrays.stream(splitByComma(names))
+        return Arrays.stream(splitByDelimiter(names))
             .collect(toList());
     }
 
@@ -23,36 +29,37 @@ public class CarNameParser {
 
     private void checkNameLength(String names) {
         if (isInvalidLength(names)) {
-            throw new CarNameException("자동차 이름은 5글자 이하여야 합니다.");
+            throw new CarNameException(INVALID_LENGTH_ERROR_MESSAGE);
         }
     }
 
     private void checkEmptyName(String names) {
         if (isEmptyName(names)) {
-            throw new CarNameException("자동차 이름은 공백일 수 없습니다.");
+            throw new CarNameException(EMPTY_NAME_ERROR_MESSAGE);
         }
     }
 
     private void checkDuplicateName(String names) {
         if (isDuplicateName(names)) {
-            throw new CarNameException("자동차 이름은 중복일 수 없습니다.");
+            throw new CarNameException(DUPLICATE_NAME_ERROR_MESSAGE);
         }
     }
 
     private boolean isInvalidLength(String names) {
-        return Arrays.stream(splitByComma(names))
-            .anyMatch(n -> n.length() > 5);
+        return Arrays.stream(splitByDelimiter(names))
+            .anyMatch(n -> n.length() > NAME_UPPER_LENGTH);
     }
 
     private boolean isEmptyName(String names) {
-        return Arrays.stream(splitByComma(names)).anyMatch(String::isEmpty);
+        return Arrays.stream(splitByDelimiter(names)).anyMatch(String::isEmpty);
     }
 
     private boolean isDuplicateName(String names) {
-        return Arrays.stream(splitByComma(names)).distinct().count() != splitByComma(names).length;
+        return Arrays.stream(splitByDelimiter(names)).distinct().count() != splitByDelimiter(
+            names).length;
     }
 
-    private String[] splitByComma(String names) {
-        return names.split(",");
+    private String[] splitByDelimiter(String names) {
+        return names.split(NAME_DELIMITER);
     }
 }
