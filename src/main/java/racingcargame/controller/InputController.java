@@ -1,8 +1,8 @@
 package racingcargame.controller;
 
 import racingcargame.utils.NameInputValidator;
+import racingcargame.utils.RaceCountInputValidator;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,5 +20,10 @@ public class InputController {
     public List<String> inputCarName() {
         String carNames = scanner.nextLine();
         return List.of(NameInputValidator.validateCarNames(carNames).split(","));
+    }
+
+    public int inputRaceCount() {
+        String raceCount = scanner.nextLine();
+        return Integer.parseInt(RaceCountInputValidator.validateRaceCount(raceCount));
     }
 }
