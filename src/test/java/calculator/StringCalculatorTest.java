@@ -26,4 +26,10 @@ public class StringCalculatorTest {
         int result = StringCalculator.splitAndSum("1,2:3");
         assertThat(result).isEqualTo(6);
     }
+
+    @Test
+    public void 커스텀_구분자를_통한_덧셈_테스트() throws Exception {
+        int result = StringCalculator.splitAndSum("//;\n1;2;3");
+        assertThat(result).isEqualTo(6);
+    }
 }
