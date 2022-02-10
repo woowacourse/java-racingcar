@@ -20,23 +20,26 @@
        - [x] 난수 생성
        - [x] CarList 움직이는 기능
     - OutputViewController
-       - [ ] OutputView에 CarList 위치를 넘겨주는 기능?
+       - [x] OutputView에 HashMap 형태로 CarList 넘겨주기 
+       - [x] 최종 우승한 자동차 명단 String[] 형태로 넘겨주기
     - 게임 전반적 실행 기능
  4. Utility
     - Const
-      - [ ] 전진 조건(0,4,9)
-      - [ ] 에러 메세지
-      - [ ] 이름 조건(5)
-      - [ ] OutputView 안내 메세지
-      - [ ] 위치 안내(-)
-      - [ ] 구분자(, :)
+      - [x] 전진 조건(0,4,9)
+      - [x] 에러 메세지
+      - [x] 이름 조건(5)
+      - [x] OutputView 안내 메세지
+      - [x] 위치 안내(-)
+      - [x] 구분자(, :)
     - Error
-      - [ ] 차 이름이 5글자 이상일 경우
-      - [ ] 주어진 횟수가 1보다 작은 경우
-      - [ ] 차 이름이 공백 / null
-      - [ ] 차의 개수가 0개인 경우
-      - [ ] 차 이름에 특수기호가 들어간 경우
-      - [ ] 차 이름에 중복이 있는 경우
-
-
-- [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
+      - [x] 차 이름이 5글자 이상일 경우
+      - [x] 주어진 횟수가 1보다 작은 경우
+      - [x] 입력이 공백 / null
+      - [x] 차의 개수가 0개인 경우
+      - [x] 차 이름에 특수기호가 들어간 경우
+      - [x] 차 이름에 중복이 있는 경우
+      - [x] 횟수가 숫자형 문자열이 아닌 경우
+ 5. Test Code
+    - [x] 이름 입력 예외 테스트
+    - [x] 횟수 입력 예외 테스트
+    - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
