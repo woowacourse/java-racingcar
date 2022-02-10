@@ -14,9 +14,7 @@ public class StringCalculator {
             return 0;
         }
 
-        String[] values = split(text);
-
-        return sum(toInts(values));
+        return sum(toInts(split(text)));
     }
 
     private static String[] split(String text) {
@@ -29,14 +27,15 @@ public class StringCalculator {
         return text.split("[,:]");
     }
 
-    private static List<Integer> toInts(String[] values) {
+    private static List<NaturalNumber> toInts(String[] values) {
         return Arrays.stream(values)
-            .mapToInt(Integer::parseInt)
-            .boxed()
+            .map(NaturalNumber::new)
             .collect(toList());
     }
 
-    private static int sum(List<Integer> numbers) {
-        return numbers.stream().reduce(0, Integer::sum);
+    private static int sum(List<NaturalNumber> numbers) {
+        return numbers.stream()
+            .mapToInt(NaturalNumber::get)
+            .sum();
     }
 }
