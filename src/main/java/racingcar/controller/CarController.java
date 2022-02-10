@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import racingcar.model.Car;
+import racingcar.model.CarDto;
 import racingcar.model.CarRepository;
 
 public class CarController {
@@ -30,18 +31,20 @@ public class CarController {
 	}
 
 	public String[] splitCarNames(String input) {
-		return Stream.of(input.split(CAR_NAME_DELIMITER)).map(String::trim).toArray(String[]::new);
+		return Stream.of(input.split(CAR_NAME_DELIMITER))
+			.map(String::trim)
+			.toArray(String[]::new);
 	}
 
 	public void run() {
 		carRepository.move();
 	}
 
-	public List<Car> getWinners() {
+	public List<CarDto> getWinners() {
 		return carRepository.getWinners();
 	}
 
-	public List<Car> getCars() {
+	public List<CarDto> getCars() {
 		return carRepository.getCars();
 	}
 }

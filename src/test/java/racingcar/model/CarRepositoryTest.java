@@ -46,8 +46,6 @@ public class CarRepositoryTest {
 		for (int i = 0; i < 3; i++) {
 			carRepository.move();
 		}
-
-		List<Car> winners = carRepository.getWinners();
 	}
 
 	@AfterEach

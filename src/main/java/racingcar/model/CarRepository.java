@@ -2,6 +2,7 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarRepository {
 	private static CarRepository instance;
@@ -33,7 +34,7 @@ public class CarRepository {
 		}
 	}
 
-	public List<Car> getWinners() {
+	public List<CarDto> getWinners() {
 		int maxPosition = getMaxPosition();
 
 		List<Car> winnerCars = new ArrayList<>();
@@ -42,7 +43,9 @@ public class CarRepository {
 				winnerCars.add(car);
 			}
 		}
-		return winnerCars;
+		return winnerCars.stream()
+			.map(Car::toCarDto)
+			.collect(Collectors.toList());
 	}
 
 	private int getMaxPosition() {
@@ -53,7 +56,9 @@ public class CarRepository {
 		return maxPosition;
 	}
 
-	public List<Car> getCars() {
-		return cars;
+	public List<CarDto> getCars() {
+		return cars.stream()
+			.map(Car::toCarDto)
+			.collect(Collectors.toList());
 	}
 }

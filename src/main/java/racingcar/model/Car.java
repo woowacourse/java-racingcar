@@ -15,14 +15,6 @@ public class Car {
 		this.position = INITIAL_POSITION;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public int getPosition() {
-		return this.position;
-	}
-
 	private void validName(String name) {
 		if (isOverNameLength(name)) {
 			throw new RuntimeException(CAR_NAME_LENGTH_OVER_ERROR_MESSAGE);
@@ -33,7 +25,7 @@ public class Car {
 	}
 
 	private boolean isOverNameLength(String name) {
-			return name.length() > MAX_CAR_NAME_LENGTH;
+		return name.length() > MAX_CAR_NAME_LENGTH;
 	}
 
 	private boolean isEmptyName(String name) {
@@ -52,5 +44,9 @@ public class Car {
 
 	public boolean isSamePosition(int position) {
 		return this.position == position;
+	}
+
+	public CarDto toCarDto() {
+		return new CarDto(this.name, this.position);
 	}
 }
