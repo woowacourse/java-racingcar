@@ -36,6 +36,12 @@ public class Input {
             if (carNames.size() != names.length) {
                 throw new IllegalArgumentException("자동차 이름을 모두 다르게 입력해주세요.");
             }
+
+            for (String name : names) {
+                if (name.length() > 5) {
+                    throw new IllegalArgumentException("자동차의 이름은 5글자를 초과할 수 없습니다.");
+                }
+            }
         } catch (IllegalArgumentException e) {
             return carName();
         }
