@@ -13,4 +13,11 @@ public class RandomGeneratorTest {
         int randomNumber = generator.generateRandomNumber();
         assertThat(randomNumber).isLessThan(10).isGreaterThanOrEqualTo(0);
     }
+
+    @Test
+    @DisplayName("랜덤값을 생성하고 그 값에 따라 전진, 멈춤 여부를 받는다.")
+    void getMovable() {
+        RandomGenerator generator = new RandomGenerator();
+        assertThat(generator.isMovable()).isInstanceOf(Boolean.class);
+    }
 }
