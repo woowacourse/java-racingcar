@@ -78,7 +78,7 @@ public class Input {
     }
 
     public boolean isValidLength(String name) {
-        return name.length() <= 5;
+        return name.trim().length() <= 5;
     }
 
     private void attemptValid(String attempt) {
