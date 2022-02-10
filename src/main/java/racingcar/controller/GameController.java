@@ -11,6 +11,9 @@ public class GameController {
 	public void runRace() {
 		OutputView.askCarName();
 		String[] carName = InputView.getCarNameInput();
+		if (carName[0].equals("[ERROR]")) {
+			return;
+		}
 		CarList carList = new CarList(carName);
 		OutputView.askTurn();
 		int totalTurn = Integer.parseInt(InputView.getTurnInput());
