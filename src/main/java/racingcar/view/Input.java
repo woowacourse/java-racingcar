@@ -27,6 +27,7 @@ public class Input {
         try {
             Output.getAttempt();
             String inputValue = scan.nextLine();
+            attemptValid(inputValue);
             return Integer.parseInt(inputValue);
         } catch (IllegalArgumentException e) {
             Output.errorMessage(e.getMessage());
@@ -76,7 +77,24 @@ public class Input {
         return name.length() <= 5;
     }
 
+    private void attemptValid(String attempt) {
+        if (attempt.isBlank()) {
+            throw new IllegalArgumentException("시도횟수는 공백일 수 없습니다.");
+        }
+        if (!isNumber(attempt)) {
+            throw new IllegalArgumentException("시도횟수는 숫자를 입력해주세요.");
+        }
+        if (isNegative(attempt)) {
+            throw new IllegalArgumentException("시도횟수는 1이상의 수를 입력해주세요.");
+        }
+    }
+
     public boolean isNumber(String string) {
         return string.matches("[+-]?\\d*(\\.\\d+)?");
+    }
+
+    public boolean isNegative(String string) {
+        int attempt = Integer.parseInt(string);
+        return attempt <= 0;
     }
 }
