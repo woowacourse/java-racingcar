@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.controller.RacingCarGame;
 import racingcar.model.Car;
+import racingcar.model.Cars;
 import racingcar.model.GameTurn;
 
 public class RacingCarTest {
@@ -64,5 +65,12 @@ public class RacingCarTest {
 		GameTurn gameTurn = new GameTurn(0);
 		boolean result = gameTurn.isPositive();
 		assertThat(result).isEqualTo(false);
+	}
+
+	@Test
+	public void 우승자_찾기() throws Exception {
+		Cars cars = new Cars(Arrays.asList(new Car("배카라", 4), new Car("아스피", 5), new Car("아놀드", 3)));
+		List<String> result = cars.findWinnerCars();
+		assertThat(result).isEqualTo(Arrays.asList("아스피"));
 	}
 }
