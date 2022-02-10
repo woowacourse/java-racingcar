@@ -9,6 +9,7 @@ import racingcar.controller.exception.RacingGameIsFinishedException;
 import racingcar.domain.Car;
 import racingcar.domain.MidtermResult;
 import racingcar.domain.MockRandomNumberGenerator;
+import racingcar.domain.WinnerResult;
 import racingcar.repository.CarRepository;
 import racingcar.service.RacingGameService;
 
@@ -57,5 +58,14 @@ class RacingGameControllerTest {
         MidtermResult result = racingGameController.getMidtermResult();
         assertThat(result.getPositionByName("pobi")).isEqualTo(1);
         assertThat(result.getPositionByName("crong")).isEqualTo(0);
+    }
+
+    @Test
+    public void 우승자_반환() {
+        racingGameController.inputCarNames("pobi,crong");
+        racingGameController.inputTryCount("1");
+        racingGameController.proceedTurn();
+        WinnerResult result = racingGameController.getWinnerResult();
+        assertThat(result.getWinnerNames()).contains("pobi");
     }
 }
