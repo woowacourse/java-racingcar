@@ -21,10 +21,14 @@ public class RacingCarController {
 
         RacingGame game = new RacingGame(racingCars, tryCount);
         outputView.printGameResultTitle();
+        raceAllRound(racingCars, game);
+        outputView.printWinnerNames(game.winnerNames());
+    }
+
+    private void raceAllRound(RacingCars racingCars, RacingGame game) {
         while (!game.isEnd()) {
             game.race();
             outputView.printCarsPosition(racingCars.getRacingCars());
         }
-        outputView.printWinnerNames(game.winnerNames());
     }
 }
