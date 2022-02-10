@@ -81,9 +81,12 @@ public class StringCalculatorTest {
     @DisplayName("splitAndSum 메서드는 음수가 입력된 경우 예외가 발생한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @ValueSource(strings = {"-1", "-1,2", "1:2:-3"})
-    void splitAndSum_negativeㄷIntegerThrowsException(String input) {
+    void splitAndSum_negativeIntegerThrowsException(String input) {
+        String exceptionMessage = "음수를 입력하면 안 됩니다.";
+
         assertThatThrownBy(() -> StringCalculator.splitAndSum(input))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(exceptionMessage);
     }
 
     private int toInt(String string) {

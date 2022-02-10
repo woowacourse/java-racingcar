@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class StringCalculator {
 
     public static int splitAndSum(String targetString) {
-        if (targetString == null || targetString.isBlank()) {
+        if (targetString == null || targetString.isEmpty()) {
             return 0;
         }
 
@@ -24,7 +24,11 @@ public class StringCalculator {
         splitResult = targetString.split("[" + separators + "]");
 
         for (String s : splitResult) {
-            sum += toInt(s);
+            int integer = toInt(s);
+            if (integer < 0) {
+                throw new RuntimeException("음수를 입력하면 안 됩니다.");
+            }
+            sum += integer;
         }
 
         return sum;
