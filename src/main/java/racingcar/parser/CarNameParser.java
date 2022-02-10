@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.parser;
 
 import static java.util.stream.Collectors.toList;
 
