@@ -10,6 +10,8 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "\n실행 결과";
     private static final String COLON = ":";
     private static final String DASH = "-";
+    private static final String WINNER_MESSAGE = "최종 우승자 : ";
+    private static final String COMMA = ", ";
 
     public void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
@@ -28,5 +30,13 @@ public class OutputView {
         return IntStream.range(0, position)
             .mapToObj(i -> DASH)
             .collect(Collectors.joining());
+    }
+
+    public void printWinners(List<String> winners) {
+        System.out.println(createWinnersString(winners));
+    }
+
+    private String createWinnersString(List<String> winners) {
+        return WINNER_MESSAGE + String.join(COMMA, winners);
     }
 }
