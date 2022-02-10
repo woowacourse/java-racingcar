@@ -13,4 +13,11 @@ public class Car {
 		Car car = (Car)obj;
 		return this.name.equals(car.name);
 	}
+
+	public boolean checkMovingCondition(int randomNumber) {
+		if (randomNumber >= 4) {
+			return true;
+		}
+		return false;
+	}
 }

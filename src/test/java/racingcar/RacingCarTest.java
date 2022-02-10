@@ -50,4 +50,11 @@ public class RacingCarTest {
 		List<Car> result = racingCarGame.toCar(Arrays.asList("배카라", "아스피"));
 		assertThat(result).isEqualTo(Arrays.asList(new Car("배카라"), new Car("아스피")));
 	}
+
+	@Test
+	public void 전진_조건() throws Exception {
+		Car car = new Car("아스피");
+		boolean result = car.checkMovingCondition(4);
+		assertThat(result).isEqualTo(true);
+	}
 }
