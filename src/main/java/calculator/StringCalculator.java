@@ -6,6 +6,10 @@ import java.util.regex.Pattern;
 public class StringCalculator {
 
     public static int splitAndSum(String text) {
+        if (text == null || text.isEmpty()) {
+            return 0;
+        }
+
         if (text.contains(",") || text.contains(":")) {
             String[] numbers = text.split("[,:]");
 

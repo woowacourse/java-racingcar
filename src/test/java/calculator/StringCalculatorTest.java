@@ -34,4 +34,18 @@ class StringCalculatorTest {
         int result = StringCalculator.splitAndSum("//;\n1;2;3");
         assertThat(result).isEqualTo(6);
     }
+
+    @DisplayName("빈 문자열인 경우 0을 반환한다.")
+    @Test
+    void splitAndSum_빈문자열() {
+        int result = StringCalculator.splitAndSum("");
+        assertThat(result).isEqualTo(0);
+    }
+
+    @DisplayName("null인 경우 0을 반환한다.")
+    @Test
+    void splitAndSum_null() {
+        int result = StringCalculator.splitAndSum(null);
+        assertThat(result).isEqualTo(0);
+    }
 }
