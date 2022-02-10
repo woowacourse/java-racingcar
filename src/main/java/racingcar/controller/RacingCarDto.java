@@ -1,9 +1,11 @@
-package racingcar;
+package racingcar.controller;
+
+import racingcar.domain.RacingCar;
 
 public class RacingCarDto {
 
-    private String name;
-    private int position;
+    private final String name;
+    private final int position;
 
     public RacingCarDto(String name, int postition) {
         this.name = name;

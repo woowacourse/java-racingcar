@@ -1,10 +1,11 @@
-package racingcar;
+package racingcar.view;
 
 import static java.lang.String.join;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import racingcar.controller.RacingCarDto;
 
 public class OutputView {
 
@@ -31,7 +32,8 @@ public class OutputView {
         System.out.println();
     }
 
-    private String getCarPosistionBar(int position) { return IntStream.range(0, position)
+    private String getCarPosistionBar(int position) {
+        return IntStream.range(0, position)
             .mapToObj(value -> POSITION_BAR)
             .collect(Collectors.joining());
     }

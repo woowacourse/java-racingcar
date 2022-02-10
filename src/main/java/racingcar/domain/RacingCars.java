@@ -1,9 +1,10 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.controller.RacingCarDto;
 
 public class RacingCars {
 

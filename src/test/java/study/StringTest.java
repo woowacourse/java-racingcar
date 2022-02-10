@@ -48,7 +48,7 @@ public class StringTest {
     @DisplayName("문자열의 길이보다 큰 숫자로 위치를 찾을 때 예외를 발생한다.")
     void stringCharAtExceptionTest() {
         String input = "abc";
-        
+
         assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
             .isThrownBy(() -> input.charAt(5))
             .withMessageMatching("String index out of range: \\d+");
