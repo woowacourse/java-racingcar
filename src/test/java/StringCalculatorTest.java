@@ -28,11 +28,29 @@ public class StringCalculatorTest {
 		String[] splitStringArray = stringCalculator.splitString(str);
 		assertThat(splitStringArray).contains("2", "3", "4");
 	}
-	//https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=jaegoan&logNo=220704651370
+	@Test
+	public void 파라미터가_숫자가_아닌경우(){
+		String str = "1,2,a";
+		String[] splitStringArray = stringCalculator.splitString(str);
+		assertThatThrownBy(() -> {
+			int sumResult = stringCalculator.sumString(splitStringArray);
+		}).isInstanceOf(RuntimeException.class);
+	}
 
-	// @Test
-	// void 구분자_없() {
-	// 	int actual = StringCalculator.spiltAndSum("1");
-	// 	assertThat(actual).isEqualTo(1);
-	// }
+	@Test
+	public void 구분자_앞뒤에_아무것도_없는경우(){
+		String str = "1,2,,,";
+		String[] splitStringArray = stringCalculator.splitString(str);
+		assertThatThrownBy(() -> {
+			int sumResult = stringCalculator.sumString(splitStringArray);
+		}).isInstanceOf(RuntimeException.class);
+	}
+
+	/*
+	*
+	* assertThatThrownBy(() -> {
+    // ...
+}).isInstanceOf(IndexOutOfBoundsException.class)
+  .hasMessageContaining("Index: 2, Size: 2");*/
+
 }
