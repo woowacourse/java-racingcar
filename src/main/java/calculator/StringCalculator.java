@@ -25,8 +25,17 @@ public class StringCalculator {
 	public static int sum(String[] numbers) {
 		int result = 0;
 		for (String number : numbers) {
+			checkNonNumber(number);
 			result += Integer.parseInt(number);
 		}
 		return result;
+	}
+
+	public static void checkNonNumber(String number) {
+		try {
+			Integer.parseInt(number);
+		} catch (Exception e) {
+			throw new RuntimeException("숫자가 아닌 값은 더할 수 없습니다.");
+		}
 	}
 }
