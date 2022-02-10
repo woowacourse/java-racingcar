@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingCarGameTest {
@@ -16,5 +17,13 @@ public class RacingCarGameTest {
         CarRepository carRepository = new CarRepository(carNames);
 
         assertThat(carRepository.getCars().size()).isEqualTo(2);
+    }
+
+    @Test
+    void 입력받은_경주_회수_테스트() {
+        RacingCarGame racingCarGame = new RacingCarGame();
+        racingCarGame.orderToSaveRaceCount(4);
+
+        assertThat(RaceCount.getCount()).isEqualTo(4);
     }
 }
