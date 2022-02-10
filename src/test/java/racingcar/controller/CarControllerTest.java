@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import racingcar.model.Car;
 import racingcar.model.CarRepository;
 
 public class CarControllerTest {
@@ -27,6 +28,14 @@ public class CarControllerTest {
 
 		CarRepository repository = CarRepository.getInstance();
 		assertThat(repository.size()).isEqualTo(3);
+	}
+
+	@Test
+	void 자동차_게임_진행() {
+		CarController carController = new CarController();
+		String userInputCarNames = "범고래,소주캉,고래";
+		carController.createCars(userInputCarNames);
+		carController.run();
 	}
 
 	@AfterEach

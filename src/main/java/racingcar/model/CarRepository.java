@@ -6,6 +6,7 @@ import java.util.List;
 public class CarRepository {
 	private static CarRepository instance;
 	private List<Car> cars = new ArrayList<>();
+	private RandomNo randomNo = new RandomNo();
 
 	public static CarRepository getInstance() {
 		if (instance == null) {
@@ -24,5 +25,11 @@ public class CarRepository {
 
 	public void clear() {
 		cars.clear();
+	}
+
+	public void move() {
+		for (Car car : cars) {
+			car.move(randomNo.getNumber());
+		}
 	}
 }

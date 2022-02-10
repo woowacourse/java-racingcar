@@ -18,4 +18,8 @@ public class CarController {
 	public String[] splitCarNames(String input) {
 		return Stream.of(input.split(",")).map(String::trim).toArray(String[]::new);
 	}
+
+	public void run() {
+		carRepository.move();
+	}
 }
