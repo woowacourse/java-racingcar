@@ -1,9 +1,10 @@
 package calculator;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Calculator {
 
@@ -39,11 +40,9 @@ public class Calculator {
     }
 
     private static List<Integer> parseStringsToPositiveInts(String[] stringNumbers) {
-        List<Integer> numbers = new ArrayList<>();
-        for (String stringNumber : stringNumbers) {
-            numbers.add(getPositiveNumber(stringNumber));
-        }
-        return numbers;
+        return Arrays.stream(stringNumbers)
+            .map(Calculator::getPositiveNumber)
+            .collect(Collectors.toList());
     }
 
     private static int getPositiveNumber(String stringNumber) {
@@ -67,10 +66,7 @@ public class Calculator {
     }
 
     private static int sumNumbers(List<Integer> numbers) {
-        int result = 0;
-        for (int number : numbers) {
-            result += number;
-        }
-        return result;
+        return numbers.stream()
+            .reduce(0, Integer::sum);
     }
 }
