@@ -3,9 +3,10 @@ package racingcar;
 public class RacingCar {
 
     private static final int NAME_MAX_LENGTH = 5;
+    private static final int DEFAULT_POSITION = 0;
 
     private final String name;
-    private int position = 0;
+    private int position = DEFAULT_POSITION;
 
     public RacingCar(String name) {
         checkNameLength(name);
