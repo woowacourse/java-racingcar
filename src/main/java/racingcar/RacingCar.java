@@ -23,10 +23,7 @@ public class RacingCar {
         return position;
     }
 
-    public int move(int command) {
-        if (command < 4) {
-            return position;
-        }
+    public int move() {
         return ++position;
     }
 }

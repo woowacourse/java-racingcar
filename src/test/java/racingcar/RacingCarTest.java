@@ -2,6 +2,7 @@ package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,17 +25,9 @@ public class RacingCarTest {
     }
 
     @Test
-    @DisplayName("자동차가 4이상 입력되면 움직여야 한다.")
+    @DisplayName("자동차가 움직일 수 있다.")
     void racingCarMove() {
         RacingCar car = new RacingCar("name");
-        RandomGenerator randomGenerator = new RandomGenerator();
-//        int randomNumber = randomGenerator.generateRandomNumber();
-//        if(randomNumber >= 4) {
-//            int position = car.move();
-//            assertThat(position).isEqualTo(1);
-//            return;
-//        }
-//        assertThat(position).isEqualTo(0);
-//        assertThat(position).isEqualTo(1);
+        assertThat(car.move()).isEqualTo(1);
     }
 }
