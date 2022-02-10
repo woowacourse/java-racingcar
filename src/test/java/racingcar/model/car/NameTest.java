@@ -9,9 +9,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class NameTest {
-    @DisplayName("validateIsEmpty 메소드는")
+    @DisplayName("from 메소드는")
     @Nested
-    class validateIsEmpty {
+    class from {
         @ParameterizedTest
         @ValueSource(strings = {""})
         void 빈값이라면(String input) {
@@ -24,5 +24,20 @@ public class NameTest {
         void 빈값이_아니라면(String input) {
             assertDoesNotThrow(() -> Name.from(input));
         }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
+        void 한글자_이상_다섯글자_이하_라면(String input) {
+            assertDoesNotThrow(() -> Name.from(input));
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"", "abcdef"})
+        void 한글자_이상_다섯글자_이하가_아니라면(String input) {
+            assertThatThrownBy(() -> Name.from(input))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
     }
+
 }
