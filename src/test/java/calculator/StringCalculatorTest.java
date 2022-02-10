@@ -37,7 +37,7 @@ public class StringCalculatorTest {
 
 	@Test
 	public void negativeNumberExceptionTest() {
-		assertThatThrownBy(()-> StringCalculator.add("-1;2"))
+		assertThatThrownBy(() -> StringCalculator.add("-1:2"))
 			.isInstanceOf(RuntimeException.class);
 	}
 }
