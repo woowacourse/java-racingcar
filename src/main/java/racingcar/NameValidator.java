@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Validator {
+public class NameValidator {
     public static void validateNames(String names) {
         String[] splitName = names.split(",");
         for (String name : splitName) {
