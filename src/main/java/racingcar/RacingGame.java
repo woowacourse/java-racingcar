@@ -21,10 +21,8 @@ public class RacingGame {
 
     public void race() {
         checkCanRace();
-        while (!isEnd()) {
-            racingCars.moveCars();
-            leftCount--;
-        }
+        racingCars.moveCars();
+        leftCount--;
     }
 
     private void checkCanRace() {

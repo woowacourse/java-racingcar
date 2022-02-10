@@ -62,4 +62,10 @@ public class RacingCars {
             .map(RacingCar::getPosition)
             .collect(Collectors.toList()));
     }
+
+    public List<RacingCarDto> getRacingCars() {
+        return cars.stream()
+            .map(RacingCarDto::from)
+            .collect(Collectors.toList());
+    }
 }
