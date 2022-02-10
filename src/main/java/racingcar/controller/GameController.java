@@ -1,5 +1,8 @@
 package racingcar.controller;
 
+import java.util.List;
+
+import racingcar.model.Winner;
 import racingcar.utils.validator.CarNamesValidator;
 import racingcar.utils.validator.TryCountValidator;
 import racingcar.view.InputView;
@@ -22,11 +25,9 @@ public class GameController {
     }
 
     public void run() {
-        carNames = createCarNames();
-        carController.createCars(carNames);
-        tryCount = createTryCount();
-
+        ready();
         start();
+        result();
     }
 
     private void start() {
