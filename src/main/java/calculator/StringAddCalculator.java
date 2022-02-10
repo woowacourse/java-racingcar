@@ -33,11 +33,20 @@ public class StringAddCalculator {
     private int sumStringArray(String[] splitString) {
         int result = 0;
         for (int i = 0; i < splitString.length; i++) {
-            int value = Integer.parseInt(splitString[i]);
+            int value = intValueOf(splitString[i]);
             checkNegativeInteger(value);
             result += value;
         }
         return result;
+    }
+
+    private int intValueOf(String givenString) {
+        try {
+            int result = Integer.parseInt(givenString);
+            return result;
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("숫자값을 입력해주세요");
+        }
     }
 
     private void checkNegativeInteger(int value) {

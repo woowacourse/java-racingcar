@@ -53,4 +53,24 @@ class StringAddCalculatorTest {
         int result = stringAddCalculator.run(stringWithCustomDelimiter);
         assertThat(result).isEqualTo(6);
     }
+
+    @Test
+    @DisplayName("음수를 전달할 경우 RuntimeException 예외가 발생해야 한다.")
+    void negativeNumberErrorTest() {
+        String negativeNumberString = "-1,2,3";
+        StringAddCalculator stringAddCalculator = new StringAddCalculator();
+        assertThatThrownBy(() -> {
+            stringAddCalculator.run(negativeNumberString);
+        }).isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    @DisplayName("숫자가 아닌 값을 전달할 경우 RuntimeException 예외가 발생해야 한다.")
+    void notNumberErrorTest() {
+        String notNumberString = "1,a,3";
+        StringAddCalculator stringAddCalculator = new StringAddCalculator();
+        assertThatThrownBy(() -> {
+            stringAddCalculator.run(notNumberString);
+        }).isInstanceOf(RuntimeException.class);
+    }
 }
