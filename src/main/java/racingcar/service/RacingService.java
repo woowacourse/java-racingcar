@@ -1,15 +1,14 @@
 package racingcar.service;
 
-import java.util.Arrays;
+import java.util.List;
 
 import racingcar.domain.Car;
 import racingcar.repository.CarRepository;
 
 public class RacingService {
-	private static CarRepository carRepository = new CarRepository();
+	private static final CarRepository carRepository = new CarRepository();
 
-	public void registerCars(String input) {
-		Arrays.stream(input.split(","))
-			.forEach(carName -> carRepository.addCar(Car.of(carName)));
+	public void registerCars(List<Car> carList) {
+		carList.forEach(carRepository::addCar);
 	}
 }

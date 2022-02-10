@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.repository.CarRepository;
 import racingcar.service.RacingService;
+import racingcar.util.Converter;
 
 public class RacingServiceTest {
 
@@ -14,7 +15,7 @@ public class RacingServiceTest {
 		String input = "pobi,joon";
 
 		RacingService racingService = new RacingService();
-		racingService.registerCars(input);
+		racingService.registerCars(Converter.toCarList(input));
 
 		CarRepository carRepository = new CarRepository();
 		int carCount = carRepository.count();
