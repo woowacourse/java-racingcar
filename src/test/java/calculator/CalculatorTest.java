@@ -33,4 +33,9 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(6);
     }
 
+    @Test
+    public void splitAndSum_custom_구분자() throws Exception {
+        int result = Calculator.splitAndSum("//;\n1;2;3");
+        assertThat(result).isEqualTo(6);
+    }
 }
