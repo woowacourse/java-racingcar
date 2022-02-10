@@ -2,22 +2,23 @@
 
  1. Model
     - Car
-      - [ ] 이름을 가져오는 기능 (getter)
-      - [ ] 위치 가져오는 기능 (getter)
-      - [ ] 전진하는 기능 (setter)
+      - [x] 이름을 가져오는 기능 (getter)
+      - [x] 위치 가져오는 기능 (getter)
+      - [x] 전진하는 기능 (setter)
+      - [x] 특정 위치와 비교하는 기능
     - CarList
-      - [ ] 자동차 중 가장 먼 위치 구하는 기능
+      - [x] 자동차 중 가장 먼 위치 구하는 기능
  2. View
     - Input
-      - [ ] 자동차 이름
-      - [ ] 움직일 횟수
+      - [X] 자동차 이름
+      - [x] 움직일 횟수
     - Output
-      - [ ] 각 턴마다 자동차의 이름, 위치
-      - [ ] 최종 우승한 자동차들의 이름
+      - [X] 각 턴마다 자동차의 이름, 위치
+      - [x] 최종 우승한 자동차들의 이름
  3. Controller
     - CarListController
-       - [ ] 난수 생성
-       - [ ] CarList 움직이는 기능
+       - [x] 난수 생성
+       - [x] CarList 움직이는 기능
     - OutputViewController
        - [ ] OutputView에 CarList 위치를 넘겨주는 기능?
     - 게임 전반적 실행 기능
