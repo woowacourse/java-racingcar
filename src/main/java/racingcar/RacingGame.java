@@ -12,6 +12,7 @@ public class RacingGame {
 
     public RacingGame(String carStringNames, int leftCount) {
         this.cars = makeRacingCars(carStringNames.split(CAR_NAME_DELIMITER));
+        checkPositiveCount(leftCount);
         this.leftCount = leftCount;
     }
 
@@ -19,6 +20,12 @@ public class RacingGame {
         return Arrays.stream(carNames)
             .map(RacingCar::new)
             .collect(Collectors.toList());
+    }
+
+    private void checkPositiveCount(int leftCount) {
+        if (leftCount <= 0) {
+            throw new IllegalArgumentException("시도횟수는 0이하의 값이 들어올 수 없다.");
+        }
     }
 
     public List<String> getCarNames() {
