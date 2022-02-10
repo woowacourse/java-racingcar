@@ -15,5 +15,9 @@ public class CarTest {
 		Car car = new Car("Car1");
 		car.proceed(PROCEED_FlAG_NUMBER);
 		assertThat(car.getPosition()).isEqualTo(1);
+
+		Car car2 = new Car("Car2");
+		car2.proceed(PROCEED_FlAG_NUMBER - 1);
+		assertThat(car2.getPosition()).isEqualTo(0);
 	}
 }
