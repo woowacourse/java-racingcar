@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
+import racingcar.ui.RacingCarOutput;
 import racingcar.utils.RandomIntegerGenerator;
 
 public class RacingService {
@@ -28,7 +29,8 @@ public class RacingService {
 		cars.forEach(
 			(car) -> car.proceed(RandomIntegerGenerator.random(START_RANDOM_NUMBER, END_RANDOM_NUMBER))
 		);
-		// todo 라운드 결과 출력(자동차 위치)
+		RacingCarOutput.printRoundResult(cars);
+		System.out.println();
 	}
 
 	public List<Car> findWinners() {
