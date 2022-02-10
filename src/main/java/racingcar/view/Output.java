@@ -8,6 +8,6 @@ public class Output {
     }
 
     public static void errorMessage(String message) {
-        System.out.println(message);
+        System.out.println("[ERROR] " + message);
     }
 }
