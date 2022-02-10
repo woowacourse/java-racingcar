@@ -1,5 +1,7 @@
 package racingCar.service;
 
+import static racingCar.view.Output.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +17,7 @@ public class RacingCarService {
 	private int count;
 
 	public void runGame() {
+		printResult();
 		for (int i = 0; i < count; i++) {
 			carsGo();
 		}

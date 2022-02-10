@@ -20,7 +20,7 @@ public class CountValidator {
 	}
 
 	public static void checkCountIsZero(int count) throws Exception {
-		if (count == 0) { = =
+		if (count == 0) {
 			throw new Exception(ERROR);
 		}
 	}
