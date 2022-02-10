@@ -51,4 +51,11 @@ public class StringCalculatorTest {
         String deli = StringCalculator.extractCustomDelimiter(target);
         assertThat(deli).isEqualTo(";");
     }
+
+    @Test
+    void 구분자가_포함된_덧셈() {
+        String target = "//;\n1;2;3";
+        int actual = StringCalculator.calculate(target);
+        assertThat(actual).isEqualTo(6);
+    }
 }
