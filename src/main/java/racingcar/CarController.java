@@ -1,5 +1,8 @@
 package racingcar;
 
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -11,6 +14,11 @@ public class CarController {
 
     private final List<Car> cars = new ArrayList<>();
 
+    public void run() {
+        String carNames = InputView.getCarNames();
+        int count = InputView.getCount();
+
+    }
     public void add(Car car) {
         cars.add(car);
     }
