@@ -48,4 +48,19 @@ public class Checker {
 		}
 	}
 
+	public String checkNameConditions(String str) {
+		try {
+			isNull(str);
+			isBlank(str);
+			String[] commaSeperatedName = str.split(StringConst.DELIMITER.getValue());
+			isDuplicate(commaSeperatedName);
+			isZeroCars(commaSeperatedName);
+			isSpecialChar(commaSeperatedName);
+			isOverSize(commaSeperatedName);
+			return str;
+		} catch (IllegalArgumentException error) {
+			return error.getMessage();
+		}
+	}
+
 }
