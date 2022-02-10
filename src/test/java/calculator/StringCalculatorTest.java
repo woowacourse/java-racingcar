@@ -44,4 +44,11 @@ public class StringCalculatorTest {
         int result = StringCalculator.splitAndSum("//;\n1;2;3");
         assertThat(result).isEqualTo(6);
     }
+
+    @Test
+    @DisplayName("음수 입력시 예외 발생 테스트")
+    void splitAndSum_negative() {
+        assertThatThrownBy(() -> StringCalculator.splitAndSum("//;\n-1;2;3"))
+            .isInstanceOf(RuntimeException.class);
+    }
 }

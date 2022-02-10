@@ -25,10 +25,23 @@ public class StringCalculator {
         return calculator(values);
     }
 
-    private static int calculator(String[] values) {
+    private static int calculator(final String[] values) {
+        validateAllPositive(values);
         int sum = Arrays.stream(values)
             .mapToInt(Integer::parseInt)
             .sum();
         return sum;
+    }
+
+    private static void validateAllPositive(final String[] numbers) {
+        if (containsNegative(numbers)) {
+            throw new RuntimeException();
+        }
+    }
+
+    private static boolean containsNegative(final String[] numbers) {
+        return Arrays.stream(numbers)
+            .map(Integer::parseInt)
+            .anyMatch(number -> number < 0);
     }
 }
