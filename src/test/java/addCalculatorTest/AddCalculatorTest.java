@@ -1,4 +1,4 @@
-package AddCalculatorTest;
+package addCalculatorTest;
 
 import org.junit.jupiter.api.Test;
 
