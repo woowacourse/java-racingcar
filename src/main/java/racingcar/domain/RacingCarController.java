@@ -22,6 +22,20 @@ public class RacingCarController {
             moveCars(cars);
             OutPutView.printStatus(cars);
         }
+
+        int maxPosition = Integer.MIN_VALUE;
+        for (Car car : cars) {
+            maxPosition = Math.max(maxPosition, car.getPosition());
+        }
+
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars) {
+            if (maxPosition == car.getPosition()) {
+                winners.add(car.getName());
+            }
+        }
+
+        OutPutView.printResult(winners);
     }
 
     private void moveCars(List<Car> cars) {
