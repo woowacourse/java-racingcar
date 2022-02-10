@@ -21,4 +21,27 @@ public class Car {
             position++;
         }
     }
+
+    public String getCurrentPosition() {
+        String currentPosition = name + " : ";
+        for (int i = 0; i < position; i++) {
+            currentPosition += "-";
+        }
+        return currentPosition;
+    }
+
+    public int comparePosition(int highScore) {
+        if (position > highScore) {
+            return position;
+        }
+        return highScore;
+    }
+
+    public boolean isChampion(int highScore) {
+        return position == highScore;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

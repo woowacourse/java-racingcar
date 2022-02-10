@@ -17,4 +17,24 @@ public class Cars {
             car.move();
         }
     }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public List<String> getChampions() {
+        int highScore = 0;
+        for (Car car : cars) {
+            highScore = car.comparePosition(highScore);
+        }
+
+        List<String> championNames = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.isChampion(highScore)) {
+                championNames.add(car.getName());
+            }
+        }
+
+        return championNames;
+    }
 }
