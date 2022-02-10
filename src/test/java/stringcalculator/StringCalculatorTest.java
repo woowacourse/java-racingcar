@@ -1,5 +1,6 @@
 package stringcalculator;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -9,12 +10,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
-    @DisplayName("빈 문자열 입력 시 예외 발생")
-    @Test
-    void validateInput() {
-        assertThatThrownBy(() -> StringCalculator.validateInput(""))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("빈 문자열을 입력할 수 없습니다.");
+    @DisplayName("입력 문자열 포맷 검사 - 성공")
+    @ParameterizedTest
+    @ValueSource(strings = {"", "1:2:3", "1,2,3", "//;\\n", "//;\\n1;2;3", "//_\\n1_2_3"})
+    void validateInputSuccess(String text) {
+        Assertions.assertDoesNotThrow(() -> StringCalculator.validateInput(text));
+    }
+
+    @DisplayName("입력 문자열 포맷 검사 - 실패")
+    @ParameterizedTest
+    @ValueSource(strings = {"1:2:", ",2,3", "//;\\n;", "//;\\n1;2;", "/:\\n", "///;\\n1;2", "1::2", ";;;"})
+    void validateInputFail(String text) {
+        assertThatThrownBy(() -> StringCalculator.validateInput(text))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("잘못된 입력 형식입니다.");
     }
 
     @DisplayName("커스텀 구분자로 분리")

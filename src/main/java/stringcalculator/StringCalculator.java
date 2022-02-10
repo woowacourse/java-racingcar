@@ -6,12 +6,12 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
     private static final String DELIMITER_PATTERN = "^\\/\\/(.)\\\\n";
-    private static final String INPUT_FORMAT_PATTERN = DELIMITER_PATTERN + ".+";
+    private static final String INPUT_FORMAT_PATTERN = "(" + DELIMITER_PATTERN + ")?(([0-9]+.{1})+[0-9]+)?";
     private static final String DELIMITER = ",|:";
 
     public static void validateInput(String text) {
-        if (text.isEmpty()) {
-            throw new IllegalArgumentException("빈 문자열을 입력할 수 없습니다.");
+        if (!text.matches(INPUT_FORMAT_PATTERN)) {
+            throw new RuntimeException("잘못된 입력 형식입니다.");
         }
     }
 
