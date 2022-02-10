@@ -1,9 +1,13 @@
 package calculator;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.*;
 
 public class CalculatorTest {
 
@@ -14,70 +18,52 @@ public class CalculatorTest {
 		calculator = new Calculator();
 	}
 
-	@Test
-	void 정상_작동() {
-		String inputValue = "1,2";
-		int expected = 3;
-
-		int answer = calculator.splitAndSumNumber(inputValue);
-		assertThat(answer).isEqualTo(expected);
-	}
-
-	@Test
-	void 빈_문자열() {
-		String inputValue = "";
-		int expected = 0;
-
-		int answer = calculator.splitAndSumNumber(inputValue);
-		assertThat(answer).isEqualTo(expected);
-	}
-
-	@Test
-	void null_입력() {
-		String inputValue = null;
-		int expected = 0;
-
-		int answer = calculator.splitAndSumNumber(inputValue);
-		assertThat(answer).isEqualTo(expected);
-	}
-
-	@Test
-	void 숫자_이외의_값() {
-		String inputValue = "a";
+	private void calculatorExceptionText(String inputValue) {
 		assertThrows(RuntimeException.class, () -> calculator.splitAndSumNumber(inputValue));
 	}
 
-	@Test
-	void 음수값() {
-		String inputValue = "-1";
-		assertThrows(RuntimeException.class, () -> calculator.splitAndSumNumber(inputValue));
+	@ParameterizedTest
+	@ValueSource(strings = {"a", "1,a"})
+	void 숫자이외의값입력시_예외발생(String inputValue) {
+		calculatorExceptionText(inputValue);
 	}
 
-	@Test
-	void 커스텀_구분자(){
-		String inputValue = "//;\n1;2;3";
-		int expected = 6;
-
-		int answer = calculator.splitAndSumNumber(inputValue);
-		assertThat(answer).isEqualTo(expected);
+	@ParameterizedTest
+	@ValueSource(strings = {"-1", "1,-1"})
+	void 음수입력시_예외발생(String inputValue) {
+		calculatorExceptionText(inputValue);
 	}
 
-	@Test
-	void 커스텀_구분자_여러개(){
-		String inputValue = "//;!\n1;2;3!3";
-		int expected = 9;
-
-		int answer = calculator.splitAndSumNumber(inputValue);
-		assertThat(answer).isEqualTo(expected);
+	private void calculatorSumTest(String inputValue, int expected) {
+		int result = calculator.splitAndSumNumber(inputValue);
+		assertThat(result).isEqualTo(expected);
 	}
 
-	@Test
-	void 커스텀_구분자와_기존_구분자_혼합(){
-		String inputValue = "//;\n1;2;3,3:1";
-		int expected = 10;
+	@ParameterizedTest
+	@NullAndEmptySource
+	void null_또는_empty_입력테스트(String inputValue) {
+		calculatorSumTest(inputValue, 0);
+	}
 
-		int answer = calculator.splitAndSumNumber(inputValue);
-		assertThat(answer).isEqualTo(expected);
+
+	@ParameterizedTest
+	@CsvSource(value = {"1,2=3", "1,2:3=6"}, delimiter = '=')
+	void 구분자_작동테스트(String inputValue, String expected) {
+		calculatorSumTest(inputValue, Integer.parseInt(expected));
+	}
+
+	private static Stream<Arguments> provideCustomValues() {
+		return Stream.of(
+				Arguments.of("//;\n1;2;3", 6),
+				Arguments.of("//;\n1,2;3", 6),
+				Arguments.of("//;\n1;2;3,4:1", 11)
+		);
+	}
+
+	@ParameterizedTest
+	@MethodSource("provideCustomValues")
+	void 커스텀구분자_작동테스트(String inputValue, int expected) {
+		calculatorSumTest(inputValue, expected);
 	}
 
 }
