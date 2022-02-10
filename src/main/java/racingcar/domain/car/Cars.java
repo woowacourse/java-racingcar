@@ -3,6 +3,7 @@ package racingcar.domain.car;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import racingcar.exception.CarNamesNotOnlyCommaException;
 
@@ -41,5 +42,21 @@ public class Cars {
 
 	public List<Car> getCarList() {
 		return Collections.unmodifiableList(cars);
+	}
+
+	public List<String> getWinners() {
+		final int max = getMaxPosition();
+		return cars.stream()
+			.filter(car -> car.isSamePosition(max))
+			.map(Car::getName)
+			.collect(Collectors.toList());
+	}
+
+	private int getMaxPosition() {
+		int max = -1;
+		for (Car car : cars) {
+			max = Math.max(car.getPosition(), max);
+		}
+		return max;
 	}
 }

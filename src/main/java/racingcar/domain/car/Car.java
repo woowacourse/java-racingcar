@@ -30,6 +30,10 @@ public class Car {
         return position.getValue();
     }
 
+    public boolean isSamePosition(int max) {
+        return position.isSame(max);
+    }
+
     public void move(MovementStrategy strategy) {
         this.position.move(strategy);
     }
