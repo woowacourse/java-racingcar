@@ -9,10 +9,6 @@ public class RandomGenerator {
     private static final int MOVABLE_NUMBER = 4;
 
     public boolean isMovable() {
-        return generateRandomNumber() >= MOVABLE_NUMBER;
-    }
-
-    public int generateRandomNumber() {
-        return random.nextInt(MAX_NUMBER);
+        return random.nextInt(MAX_NUMBER) >= MOVABLE_NUMBER;
     }
 }
