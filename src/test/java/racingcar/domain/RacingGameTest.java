@@ -13,17 +13,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class RacingGameTest {
 
     private RacingCars racingCars;
-    private RacingGame racingGame;
 
     @BeforeEach
     void setUp() {
         racingCars = new RacingCars("pobi,crong,honux");
-        racingGame = new RacingGame(racingCars, 5);
     }
 
     @Test
     @DisplayName("게임이 종료되었는지 확인한다.")
     void checkGameEnd() {
+        RacingGame racingGame = new RacingGame(racingCars, 1);
         racingGame.race();
         assertTrue(racingGame.isEnd());
     }
@@ -31,6 +30,7 @@ public class RacingGameTest {
     @Test
     @DisplayName("게임이 종료되지 않았는지 확인한다.")
     void checkGameNotEnd() {
+        RacingGame racingGame = new RacingGame(racingCars, 5);
         assertFalse(racingGame.isEnd());
     }
 
@@ -46,6 +46,7 @@ public class RacingGameTest {
     @Test
     @DisplayName("게임이 종료되었는데 race할 경우 exception이 발생한다.")
     void raceEndException() {
+        RacingGame racingGame = new RacingGame(racingCars, 1);
         racingGame.race();
         assertThatExceptionOfType(RuntimeException.class)
             .isThrownBy(() -> racingGame.race())
