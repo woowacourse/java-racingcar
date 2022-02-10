@@ -1,4 +1,4 @@
-## 1단계 - 자동차 경주
+# 1단계 - 자동차 경주
 
 ## 요구사항 기능목록
 
@@ -47,6 +47,7 @@
 ## Class 구조
 - domain
   - Car
+  - CarDto
 - repository
   - CarRepository
 - service 
@@ -58,10 +59,17 @@
   - OutputView
 - validator
   - Validator
+- util
+  - Converter
+  - RandomUtil
+  - RandomUtilImpl
 
 
 ### Car
 - 전진/정지한다.
+
+### CarDto
+- Car 객체의 name, position 필드를 갖는 DTO이다.
 
 ### CarRepository
 - Car 객체를 저장한다.
@@ -80,3 +88,12 @@
 
 ### Validator
 - 입력값이 유효한 값인지 검증한다.
+
+### Converter
+- 데이터를 필요한 형식으로 변환해준다.
+
+### RandomUtil
+- 난수 발생 메소드를 가지고 있는 interface이다.
+
+### RandomUtilImpl
+- RandomUtil 을 구현하는 클래스이다.
