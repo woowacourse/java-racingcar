@@ -31,6 +31,16 @@ class InputTest {
     void 자동차_이름_길이_테스트() {
         assertFalse(input.isValidLength("gooddd"));
     }
+    /**
+     *   - [ ] [ 예외 ] : `공백` - *(입력받은 문자열의 앞 뒤를 제거해준다.)*
+     *   - [ ] [ 예외 ] : 숫자가 아닌 `문자`
+     *   - [ ] [ 예외 ] : `1 미만`
+     */
+
+    @Test
+    void 시도횟수_공백_테스트() {
+        assertTrue(input.isBlank(" "));
+    }
 
     String[] split(String text) {
         return text.split(",");
