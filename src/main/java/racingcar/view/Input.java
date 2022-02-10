@@ -1,5 +1,8 @@
 package racingcar.view;
 
+import racingcar.domain.Attempt;
+import racingcar.domain.Cars;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -11,24 +14,25 @@ public class Input {
     public Input() {
     }
 
-    public String[] carName() {
+    public Cars carName() {
         try {
             Output.getCarName();
             String inputValue = scan.nextLine();
             allCarsValid(inputValue);
-            return inputValue.split(",");
+            return new Cars(
+                    inputValue.split(","));
         } catch (IllegalArgumentException e) {
             Output.errorMessage(e.getMessage());
             return carName();
         }
     }
 
-    public int attempt() {
+    public Attempt attempt() {
         try {
             Output.getAttempt();
             String inputValue = scan.nextLine();
             attemptValid(inputValue);
-            return Integer.parseInt(inputValue);
+            return new Attempt(Integer.parseInt(inputValue));
         } catch (IllegalArgumentException e) {
             Output.errorMessage(e.getMessage());
             return attempt();
