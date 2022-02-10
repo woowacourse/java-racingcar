@@ -11,5 +11,7 @@ public class RacingGameController {
             InputView.getRound(),
             new RandomNumberGeneratePolicy()
         );
+        while (racingGame.isContinue()) {
+        }
     }
 }

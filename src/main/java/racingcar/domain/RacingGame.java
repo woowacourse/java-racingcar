@@ -23,4 +23,8 @@ public class RacingGame {
         NumberGeneratePolicy numberGeneratePolicy) {
         return new RacingGame(carsName, round, numberGeneratePolicy);
     }
+
+    public boolean isContinue() {
+        return round.hasNext();
+    }
 }
