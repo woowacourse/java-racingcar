@@ -1,4 +1,8 @@
-package racingcar;
+package racingcar.controller;
+
+import racingcar.model.Car;
+import racingcar.util.RandomNumberGenerator;
+import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;

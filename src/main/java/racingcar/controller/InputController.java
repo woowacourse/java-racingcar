@@ -1,7 +1,9 @@
-package racingcar;
+package racingcar.controller;
 
-import static racingcar.InputView.scanCarNames;
-import static racingcar.InputView.scanTryCount;
+import racingcar.util.InputValidator;
+
+import static racingcar.view.InputView.scanCarNames;
+import static racingcar.view.InputView.scanTryCount;
 
 public class InputController {
     public String[] getUserCarNames() throws RuntimeException {

@@ -1,6 +1,7 @@
-package racingcar;
+package racingcar.util;
 
 import org.junit.jupiter.api.Test;
+import racingcar.util.RandomNumberGenerator;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

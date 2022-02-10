@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.util;
 
 public class InputValidator {
     private static final String NO_INTEGER_ERROR_MESSAGE = "[ERROR] 정수가 아닌 문자열이 입력되었습니다.";

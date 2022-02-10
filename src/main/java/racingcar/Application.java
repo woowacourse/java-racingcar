@@ -1,5 +1,9 @@
 package racingcar;
 
+import racingcar.controller.InputController;
+import racingcar.controller.RaceController;
+import racingcar.view.OutputView;
+
 public class Application {
     InputController inputController = new InputController();
     RaceController raceController = new RaceController();
