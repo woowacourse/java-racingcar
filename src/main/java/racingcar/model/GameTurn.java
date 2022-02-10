@@ -6,4 +6,8 @@ public class GameTurn {
 	public GameTurn(int gameTurn) {
 		this.gameTurn = gameTurn;
 	}
+
+	public boolean isPositive() {
+		return gameTurn > 0;
+	}
 }
