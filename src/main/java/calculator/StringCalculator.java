@@ -9,58 +9,121 @@ public class StringCalculator {
 	public static final String REGEX = "^//(.*)\n.*";
 	public static final String REGEX_DEL = "^//(.*)\n";
 	public static final String DEFAULT_DELIMITER = ",|:";
+
 	public static int splitAndSum(String input) {
-		if (input == null || input.isEmpty()) {
+		if (isNullOrEmpty(input)) {
 			return 0;
 		}
+		String delimiter = getDelimiter(input);
+		input = temp(input, delimiter);
+		List<Integer> numbers = convertToNumberList(input.split(delimiter));
+		return sumElements(numbers);
+	}
 
-		String delimiter = DEFAULT_DELIMITER;
-
-		if (Pattern.matches(REGEX, input)) {
-			Matcher matcher = Pattern.compile(REGEX_DEL).matcher(input);
-			matcher.find();
-			String regexPart = matcher.group();
-			if (regexPart.length() > 4) {
-				throw new RuntimeException("커스텀 구분자는 한 글자여야 합니다.");
-			}
-			if (regexPart.length() < 4) {
-				throw new RuntimeException("커스텀 구분자가 입력되지 않았습니다.");
-			}
-
-			char delimiterChar = input.charAt(2);
-			if (delimiterChar >= '0' && delimiterChar <= '9') {
-				throw new RuntimeException("정수는 커스텀 구분자로 지정할 수 없습니다.");
-			}
-
-			delimiter = String.valueOf(input.charAt(2));
+	private static String temp(String input, String delimiter) {
+		if (!delimiter.equals(DEFAULT_DELIMITER)) {
 			input = input.substring(4);
-			System.out.println(input);
 		}
-		String[] result = input.split(delimiter);
+		return input;
+	}
 
+	private static List<Integer> convertToNumberList(String[] array) {
+		List<Integer> numbers = getNumbers(array);
+		elementsIsEmptyException(numbers);
+		return numbers;
+	}
+
+	private static int sumElements(List<Integer> numbers) {
+		int sum = 0;
+		for (Integer number : numbers) {
+			exception(number);
+			sum += number;
+		}
+		return sum;
+	}
+
+	private static void exception(Integer number) {
+		if (number < 0) {
+			throw new RuntimeException("음수 값은 포함될 수 없습니다.");
+		}
+	}
+
+	private static List<Integer> getNumbers(String[] result) {
 		List<Integer> numbers = new ArrayList<>();
 		for (String s : result) {
-			try {
-				numbers.add(Integer.parseInt(s));
-			} catch (NumberFormatException exception) {
-				throw new RuntimeException("전달된 배열의 원소는 반드시 숫자여야 합니다.");
-			}
-
+			numbers.add(stringToInteger(s));
 		}
+		return numbers;
+	}
 
+	private static Integer stringToInteger(String input) {
+		Integer result = null;
+		try {
+			result = Integer.parseInt(input);
+		} catch (NumberFormatException exception) {
+			throw new RuntimeException("전달된 배열의 원소는 반드시 숫자여야 합니다.");
+		}
+		return result;
+	}
+
+	private static void elementsIsEmptyException(List<Integer> numbers) {
 		if (numbers.isEmpty()) {
 			throw new RuntimeException("전달된 배열에 원소가 없습니다.");
 		}
+	}
 
-		int sum = 0;
-		for (Integer number : numbers) {
-			if (number < 0) {
-				throw new RuntimeException("음수 값은 포함될 수 없습니다.");
-			}
-
-			sum += number;
+	private static boolean isNullOrEmpty(String input) {
+		if (input == null || input.isEmpty()) {
+			return true;
 		}
+		return false;
+	}
 
-		return sum;
+	private static String getDelimiter(String input) {
+		String delimiter = DEFAULT_DELIMITER;
+		if (Pattern.matches(REGEX, input)) {
+			delimiter = getCustomDelimiter(input);
+		}
+		return delimiter;
+	}
+
+	private static String getCustomDelimiter(String input) {
+		delimiterSizeException(input);
+
+		String delimiter = String.valueOf(input.charAt(2));
+		delimiterNumberException(delimiter);
+
+		return delimiter;
+	}
+
+	private static void delimiterSizeException(String input) {
+		String regexPart = findRegexPart(input);
+		delimiterOverSizeException(regexPart);
+		delimiterNotFoundException(regexPart);
+	}
+
+	private static String findRegexPart(String input) {
+		Matcher matcher = Pattern.compile(REGEX_DEL).matcher(input);
+		matcher.find();
+		return matcher.group();
+	}
+
+	private static void delimiterNotFoundException(String regexPart) {
+		if (regexPart.length() < 4) {
+			throw new RuntimeException("커스텀 구분자가 입력되지 않았습니다.");
+		}
+	}
+
+	private static void delimiterOverSizeException(String regexPart) {
+		if (regexPart.length() > 4) {
+			throw new RuntimeException("커스텀 구분자는 한 글자여야 합니다.");
+		}
+	}
+
+	private static void delimiterNumberException(String delimiter) {
+		char delimiterChar = delimiter.charAt(0);
+		if (delimiterChar >= '0' && delimiterChar <= '9') {
+			throw new RuntimeException("정수는 커스텀 구분자로 지정할 수 없습니다.");
+		}
 	}
 }

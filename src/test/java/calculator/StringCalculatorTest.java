@@ -1,13 +1,12 @@
 package calculator;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.stream.Stream;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class StringCalculatorTest {
 	static Stream<String> blankStrings() {
@@ -58,15 +57,21 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	public void 커스텀_구분자_예외_테스트() {
-		assertThatThrownBy(() -> StringCalculator.splitAndSum("//^^\n1;2"))
-			.isInstanceOf(RuntimeException.class)
-			.hasMessageContaining("커스텀 구분자는 한 글자여야 합니다.");
-
+	public void 커스텀_구분자_없는_경우_예외_테스트() {
 		assertThatThrownBy(() -> StringCalculator.splitAndSum("//\n1;2"))
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("커스텀 구분자가 입력되지 않았습니다.");
+	}
 
+	@Test
+	public void 커스텀_구분자_여러_글자_예외_테스트() {
+		assertThatThrownBy(() -> StringCalculator.splitAndSum("//^^\n1;2"))
+			.isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("커스텀 구분자는 한 글자여야 합니다.");
+	}
+
+	@Test
+	public void 커스텀_구분자_정수가_아닌_글자_예외_테스트() {
 		assertThatThrownBy(() -> StringCalculator.splitAndSum("//3\n1;2"))
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("정수는 커스텀 구분자로 지정할 수 없습니다.");
