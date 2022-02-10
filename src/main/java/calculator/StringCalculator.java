@@ -7,8 +7,10 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 	public static final String REGEX = "^//(.*)\n.*";
-	public static final String REGEX_DEL = "^//(.*)\n";
+	public static final String DELIMITER_REGEX = "^//(.*)\n";
 	public static final String DEFAULT_DELIMITER = ",|:";
+	public static final int VALID_REGEX_PART_LENGTH = 4;
+	public static final int CUSTOM_DELIMITER_INDEX = 2;
 
 	public static int splitAndSum(String input) {
 		if (isNullOrEmpty(input)) {
@@ -22,7 +24,7 @@ public class StringCalculator {
 
 	private static String substringRegexPart(String input, String delimiter) {
 		if (!delimiter.equals(DEFAULT_DELIMITER)) {
-			input = input.substring(4);
+			input = input.substring(VALID_REGEX_PART_LENGTH);
 		}
 		return input;
 	}
@@ -90,7 +92,7 @@ public class StringCalculator {
 	private static String getCustomDelimiter(String input) {
 		delimiterSizeException(input);
 
-		String delimiter = String.valueOf(input.charAt(2));
+		String delimiter = String.valueOf(input.charAt(CUSTOM_DELIMITER_INDEX));
 		delimiterNumberException(delimiter);
 
 		return delimiter;
@@ -103,19 +105,19 @@ public class StringCalculator {
 	}
 
 	private static String findRegexPart(String input) {
-		Matcher matcher = Pattern.compile(REGEX_DEL).matcher(input);
+		Matcher matcher = Pattern.compile(DELIMITER_REGEX).matcher(input);
 		matcher.find();
 		return matcher.group();
 	}
 
 	private static void delimiterNotFoundException(String regexPart) {
-		if (regexPart.length() < 4) {
+		if (regexPart.length() < VALID_REGEX_PART_LENGTH) {
 			throw new RuntimeException("커스텀 구분자가 입력되지 않았습니다.");
 		}
 	}
 
 	private static void delimiterOverSizeException(String regexPart) {
-		if (regexPart.length() > 4) {
+		if (regexPart.length() > VALID_REGEX_PART_LENGTH) {
 			throw new RuntimeException("커스텀 구분자는 한 글자여야 합니다.");
 		}
 	}
