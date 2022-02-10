@@ -1,16 +1,20 @@
 package racingCar;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class RacingCar {
 	private ArrayList<Car> cars = new ArrayList<>();
+	private int maxPosition = Integer.MIN_VALUE;
 
 	public void start() {
+		List<Car> winners;
 		String[] carNames = racingCarNames();
 		int count = racingCarTimes();
 		makeCars(carNames);
 		race(count);
+		winners = findWinner(cars);
 	}
 
 	private String[] racingCarNames() {
@@ -92,10 +96,33 @@ public class RacingCar {
 	private void moveCar(int idx) {
 		Car car = cars.get(idx);
 		car.moveCar(makeRandom());
+		System.out.println(car);
 	}
 
 	private boolean makeRandom() {
 		return ((int)(Math.random() * 10) - 1) >= 4;
+	}
+
+	public List<Car> findWinner(List<Car> cars) {
+		List<Car> winners = new ArrayList<>();
+		for (Car car : cars) {
+			winners = checkLead(car, winners);
+		}
+		return winners;
+
+	}
+
+	private List<Car> checkLead(Car car, List<Car> winners) {
+		if (car.getPosition() > maxPosition) {
+			winners.clear();
+			winners.add(car);
+			maxPosition = car.getPosition();
+			return winners;
+		}
+		if (car.getPosition() == maxPosition) {
+			winners.add(car);
+		}
+		return winners;
 	}
 
 }
