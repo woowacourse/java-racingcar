@@ -7,9 +7,6 @@ public class StringCalculator {
     private static final String INPUT_FORMAT_PATTERN = DELIMITER_PATTERN + ".+";
     private static final String DELIMITER = ",|:";
 
-    public StringCalculator() {
-    }
-
     public void validateInput(String text) {
         if (text.isEmpty()) {
             throw new IllegalArgumentException("빈 문자열을 입력할 수 없습니다.");
