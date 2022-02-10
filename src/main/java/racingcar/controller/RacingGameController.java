@@ -50,15 +50,17 @@ public class RacingGameController {
     }
 
     public MidtermResult getMidtermResult() {
-        List<Car> cars = carRepository.findAll();
-        return new MidtermResult(cars);
+        return new MidtermResult(findCars());
     }
 
     public WinnerResult getWinnerResult() {
         if (!isFinished()) {
             throw new GetWinnerBeforeFinishException();
         }
-        List<Car> cars = carRepository.findAll();
-        return new WinnerResult(cars);
+        return new WinnerResult(findCars());
+    }
+
+    private List<Car> findCars() {
+        return carRepository.findAll();
     }
 }
