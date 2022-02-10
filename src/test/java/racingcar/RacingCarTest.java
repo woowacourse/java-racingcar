@@ -3,6 +3,9 @@ package racingcar;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import java.util.List;
 public class RacingCarTest {
 	public InputManager inputManager = new InputManager();
@@ -23,5 +26,24 @@ public class RacingCarTest {
 		assertThatThrownBy(() -> { inputValidator.checkCarNameLength(carNames); })
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("자동차 이름은 5자 이하여야 합니다.");
+	}
+
+	@Test
+	public void 자동차_이름이_존재하지_않는_경우_테스트() {
+		List<String> carNames = inputManager.splitAndSaveCarNames("이브,,포비");
+
+		assertThatThrownBy(() -> { inputValidator.validateIsSpace(carNames); })
+			.isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("모든 자동차 이름은 반드시 존재해야 합니다.");
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"이브, ,포비", "이브,       ,포비"})
+	public void 자동차_이름이_공백인_경우_테스트(String carNamesLine) {
+		List<String> carNames = inputManager.splitAndSaveCarNames(carNamesLine);
+
+		assertThatThrownBy(() -> { inputValidator.validateIsSpace(carNames); })
+			.isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("자동차 이름은 공백으로 설정할 수 없습니다.");
 	}
 }
