@@ -59,6 +59,23 @@ public class Game {
         setGame();
         playGame();
         inputView.terminate();
+        showResult();
     }
 
+    public void showResult() {
+        List<Car> winners = decideWinner();
+
+        String winnerNames = winners.stream().map(car -> car.getName()).collect(Collectors.joining(","));
+        System.out.println(winnerNames + "가 최종 우승했습니다.");
+    }
+    public List<Car> decideWinner() {
+        int maxPosition = cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow(() -> new RuntimeException(NOT_FOUND_CARS));
+
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .collect(Collectors.toList());
+    }
 }
