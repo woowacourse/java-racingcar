@@ -16,24 +16,36 @@ public class CarNameParser {
     }
 
     private void validateCarNames(String names) {
+        checkNameLength(names);
+        checkEmptyName(names);
+        checkDuplicateName(names);
+    }
+
+    private void checkNameLength(String names) {
         if (isInvalidLength(names)) {
             throw new CarNameException("자동차 이름은 5글자 이하여야 합니다.");
         }
+    }
+
+    private void checkEmptyName(String names) {
         if (isEmptyName(names)) {
             throw new CarNameException("자동차 이름은 공백일 수 없습니다.");
         }
+    }
+
+    private void checkDuplicateName(String names) {
         if (isDuplicateName(names)) {
             throw new CarNameException("자동차 이름은 중복일 수 없습니다.");
         }
     }
 
-    private boolean isEmptyName(String names) {
-        return Arrays.stream(splitByComma(names)).anyMatch(String::isEmpty);
-    }
-
     private boolean isInvalidLength(String names) {
         return Arrays.stream(splitByComma(names))
             .anyMatch(n -> n.length() > 5);
+    }
+
+    private boolean isEmptyName(String names) {
+        return Arrays.stream(splitByComma(names)).anyMatch(String::isEmpty);
     }
 
     private boolean isDuplicateName(String names) {

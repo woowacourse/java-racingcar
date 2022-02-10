@@ -10,15 +10,31 @@ public class TryCountParser {
     }
 
     private void validateTryCount(String input) {
+        checkBlankTryCount(input);
+        checkFloatTryCount(input);
+        checkNegativeTryCount(input);
+        checkZeroTryCount(input);
+    }
+
+    private void checkBlankTryCount(String input) {
         if (isBlankTryCount(input)) {
             throw new TryCountException("시도 횟수는 공백일 수 없습니다.");
         }
+    }
+
+    private void checkFloatTryCount(String input) {
         if (isFloatTryCount(input)) {
             throw new TryCountException("시도 횟수는 실수가 될 수 없습니다.");
         }
+    }
+
+    private void checkNegativeTryCount(String input) {
         if (isNegativeTryCount(input)) {
             throw new TryCountException("시도 횟수는 음수가 될 수 없습니다.");
         }
+    }
+
+    private void checkZeroTryCount(String input) {
         if (isZeroTryCount(input)) {
             throw new TryCountException("시도 횟수는 0이 될 수 없습니다.");
         }
