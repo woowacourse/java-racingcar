@@ -36,8 +36,8 @@ public class ApplicationTest {
 
     @Test
     void 커스컴_구분자_기준_연산() {
-        int number = application.runCalculator("//;\n1;2;3");
-        assertThat(number).isEqualTo(6);
+        int number = application.runCalculator("//;\n12;2;3");
+        assertThat(number).isEqualTo(17);
     }
 
     @Test
