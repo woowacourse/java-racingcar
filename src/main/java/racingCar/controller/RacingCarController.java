@@ -1,10 +1,12 @@
-package racingCar;
+package racingCar.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class RacingCar {
+import racingCar.domain.Car;
+
+public class RacingCarController {
 	private ArrayList<Car> cars = new ArrayList<>();
 	private int maxPosition = Integer.MIN_VALUE;
 	private int times;

@@ -7,8 +7,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import racingCar.controller.RacingCarController;
+import racingCar.domain.Car;
+
 public class RacingCarTest {
-	private final RacingCar racingCar = new RacingCar();
+	private final RacingCarController racingCar = new RacingCarController();
 
 	@Test
 	void 자동차_이름_정상_입력() {
