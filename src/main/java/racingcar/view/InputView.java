@@ -15,13 +15,19 @@ public class InputView {
 	public static int getIterationNo() {
 		System.out.println(GET_ITERATION_NO_MESSAGE);
 		String input = scanner.nextLine();
-		validIterationNo(input);
-		return Integer.parseInt(input);
+		try{
+			validIterationNo(input);
+			return Integer.parseInt(input);
+		} catch(RuntimeException e){
+			System.out.println(e.getMessage());
+			return getIterationNo();
+		}
 	}
 
 	private static void validIterationNo(String input) {
-		validNumberInput(input);
 		validEmptyInput(input);
+		validNumberInput(input);
+		validNonZeroInput(input);
 	}
 
 	public static void validNumberInput(String input) {
@@ -33,6 +39,12 @@ public class InputView {
 	public static void validEmptyInput(String input) {
 		if (input == null || input.isEmpty()) {
 			throw new RuntimeException("빈 값을 입력하셨습니다. 양수를 입력해주세요.");
+		}
+	}
+
+	public static void validNonZeroInput(String input) {
+		if (input.equals("0")) {
+			throw new RuntimeException("0을 입력하셨습니다. 양수를 입력해주세요.");
 		}
 	}
 }

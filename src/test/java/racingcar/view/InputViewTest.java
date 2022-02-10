@@ -21,4 +21,13 @@ public class InputViewTest {
 			}).isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("빈 값");
 	}
+
+	@Test
+	void 시도_횟수_0_입력_검증() {
+		Assertions.assertThatThrownBy(() -> {
+				String input = "0";
+				InputView.validNonZeroInput(input);
+			}).isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("0");
+	}
 }
