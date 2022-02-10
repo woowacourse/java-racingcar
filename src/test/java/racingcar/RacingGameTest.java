@@ -3,6 +3,7 @@ package racingcar;
 import org.junit.jupiter.api.Test;
 import racingcar.controller.GameController;
 import racingcar.model.Car;
+import racingcar.model.Cars;
 import racingcar.util.InputValidator;
 import racingcar.util.RandomNumberGenerator;
 
@@ -29,11 +30,13 @@ public class RacingGameTest {
 
     @Test
     void 자동차_객체_생성() {
-        List<String> carNames = Arrays.asList("bom", "sun");
-        List<Car> expected = gameController.initCars(carNames);
-        List<String> expectedNameList = expected.stream().map(Car::getName).collect(Collectors.toList());
+        List<String> actual = Arrays.asList("bom", "sun");
+        Cars cars = gameController.initCars(actual);
+        List<String> expected = cars.getCars().stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
 
-        assertThat(expectedNameList).isEqualTo(carNames);
+        assertThat(expected).isEqualTo(actual);
     }
 
     @Test
@@ -41,5 +44,10 @@ public class RacingGameTest {
         for (int i = 0; i < TESTCASE_NUM; i++) {
             assertThat(RandomNumberGenerator.generate()).isBetween(0,9);
         }
+    }
+
+    @Test
+    void 자동차_전진_확인() {
+        Car car = new Car("qwer");
     }
 }

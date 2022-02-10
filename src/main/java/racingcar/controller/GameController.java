@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.model.Car;
+import racingcar.model.Cars;
 import racingcar.util.InputValidator;
 import racingcar.view.InputView;
 
@@ -10,6 +11,9 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class GameController {
+    private Cars cars;
+    private int trialNum;
+
     public void run() {
         gameInit();
     }
@@ -19,9 +23,9 @@ public class GameController {
         Scanner scanner = new Scanner(System.in);
         String carNames = scanner.nextLine();
         List<String> carNameList = splitCars(carNames);
-        List<Car> carList = initCars(carNameList);
+        cars = initCars(carNameList);
         InputView.inputTrialNum();
-        int trialNum = scanner.nextInt();
+        trialNum = scanner.nextInt();
     }
 
     public List<String> splitCars(String carNames) {
@@ -31,9 +35,9 @@ public class GameController {
         return carNameList;
     }
 
-    public List<Car> initCars(List<String> carNameList) {
-        return carNameList.stream()
+    public Cars initCars(List<String> carNameList) {
+        return new Cars(carNameList.stream()
                 .map(Car::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 }
