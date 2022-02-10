@@ -4,8 +4,11 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarRacingTest {
 
@@ -43,8 +46,16 @@ public class CarRacingTest {
 			.hasMessageContaining("자동차 이름은 중복이 되면 안됩니다.");
 	}
 
-	// private List<Car> cars;
-	// public Cars(List<Car> cars){
-	// 	this.cars = cars;
-	// }
+	@ParameterizedTest
+	@ValueSource(ints = {4, 5, 6, 7, 8, 9})
+	void 랜덤값_4이상이면_전진(int randomNumber) {
+		//given
+		Car car = new Car("pobi");
+		//when
+		car.move();
+		int position = car.getPosition();
+		//then
+		assertThat(position).isEqualTo(1);
+	}
+
 }
