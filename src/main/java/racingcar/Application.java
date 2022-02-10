@@ -13,6 +13,7 @@ public class Application {
         String[] carNames = inputController.getUserCarNames();
         int tryCount = inputController.getUserTryCount();
         raceController.insertCarFromCarNames(carNames);
+        OutputView.printResultPrefix();
         for (int i = 0; i < tryCount; i++) {
             raceController.moveRound();
             raceController.printPosition();
@@ -21,9 +22,9 @@ public class Application {
     }
 
     private void run() {
-        try{
+        try {
             gameStart();
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
     }

@@ -4,14 +4,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    public static final String DELIMITER = ",|:";
-    public static final String CUSTOM_DELIMITER_EXTRACT_REGEX = "//(.)\n(.*)";
-    public static final String NO_INTEGER_ERROR = "[ERROR] 숫자가 아닌 문자가 입력되었습니다.";
-    public static final String NEGATIVE_INTEGER_ERROR = "[ERROR] 음수가 입력되었습니다.";
-    public static final String BLANK = "";
-    public static final String REGEX_DELIMITER = "|";
-    public static final int CUSTOM_DELIMITER_INDEX = 1;
-    public static final int TEXT_INDEX = 2;
+    private static final String DELIMITER = ",|:";
+    private static final String CUSTOM_DELIMITER_EXTRACT_REGEX = "//(.)\n(.*)";
+    private static final String NO_INTEGER_ERROR = "[ERROR] 숫자가 아닌 문자가 입력되었습니다.";
+    private static final String NEGATIVE_INTEGER_ERROR = "[ERROR] 음수가 입력되었습니다.";
+    private static final String BLANK = "";
+    private static final String REGEX_DELIMITER = "|";
+    private static final int CUSTOM_DELIMITER_INDEX = 1;
+    private static final int TEXT_INDEX = 2;
 
     public static boolean isBlank(String text) {
         return text == null || text.isEmpty();

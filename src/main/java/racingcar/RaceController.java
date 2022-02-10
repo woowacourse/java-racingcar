@@ -30,14 +30,14 @@ public class RaceController {
 
     public String[] getWinner() {
         int maxPosition = cars.stream()
-                .mapToInt(Car :: getPosition)
+                .mapToInt(Car::getPosition)
                 .max()
                 .getAsInt();
 
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
-                .map(Car :: getName)
-                .toArray(String[] :: new);
+                .map(Car::getName)
+                .toArray(String[]::new);
     }
 
     public void printPosition() {

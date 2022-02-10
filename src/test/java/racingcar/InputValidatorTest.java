@@ -8,19 +8,19 @@ public class InputValidatorTest {
     @Test
     public void 정수가_아닌_값_검증() {
         assertThatThrownBy(() -> {
-            InputValidator.validateInteger("일");
+            InputValidator.validateTryCount("일");
         }).isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    public void 빈_이름_검증() {
+    public void 이름_공백_검증() {
         assertThatThrownBy(() -> {
             InputValidator.validateName("");
         }).isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    public void 길이_검증() {
+    public void 이름_길이_검증() {
         assertThatThrownBy(() -> {
             InputValidator.validateName("abcdef");
         }).isInstanceOf(RuntimeException.class);

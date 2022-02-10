@@ -1,14 +1,15 @@
 package racingcar;
 
-import static racingcar.InputView.*;
+import static racingcar.InputView.scanCarNames;
+import static racingcar.InputView.scanTryCount;
 
 public class InputController {
-    public String[] getUserCarNames() throws RuntimeException{
+    public String[] getUserCarNames() throws RuntimeException {
         String userCarText = scanCarNames();
         return carSplit(userCarText);
     }
 
-    public int getUserTryCount() throws RuntimeException{
+    public int getUserTryCount() throws RuntimeException {
         String userTryCount = scanTryCount();
         return toInt(userTryCount);
     }
@@ -21,7 +22,7 @@ public class InputController {
     }
 
     public int toInt(String scanNumber) throws RuntimeException {
-        InputValidator.validateInteger(scanNumber);
+        InputValidator.validateTryCount(scanNumber);
         return Integer.parseInt(scanNumber);
     }
 }

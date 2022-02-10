@@ -10,8 +10,7 @@ public class InputControllerTest {
     @Test
     public void 자동차_이름_나누기() {
         String cars = "pobi,crong,honux";
-        String[] actual = {"pobi", "crong", "honux"};
-        assertThat(inputController.carSplit(cars)).contains("pobi","crong","honux");
+        assertThat(inputController.carSplit(cars)).contains("pobi", "crong", "honux");
     }
 
     @Test
