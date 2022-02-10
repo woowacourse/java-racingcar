@@ -20,6 +20,13 @@ public class RacingCarTest {
 	}
 
 	@Test
+	public void 빈_문자열_입력_테스트() {
+		assertThatThrownBy(() -> { inputManager.splitAndSaveCarNames("");})
+			.isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("빈 문자열을 자동차 이름으로 입력할 수 없습니다.");
+	}
+
+	@Test
 	public void 자동차_이름_글자수_테스트() {
 		List<String> carNames = inputManager.splitAndSaveCarNames("이브,클레이클레이,포비");
 
