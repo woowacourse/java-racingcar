@@ -21,6 +21,15 @@ public class StringCalculatorTest {
     }
 
     @Test
+    @DisplayName("비어있는 문자열 또는 null이 들어오면 0을 반환한다.")
+    void calculate_emptyOrNull() {
+        int expected = 0;
+
+        assertThat(stringCalculator.calculate("")).isEqualTo(expected);
+        assertThat(stringCalculator.calculate(null)).isEqualTo(expected);
+    }
+
+    @Test
     @DisplayName("사용자 지정 구분자로 구분한 값들을 더해서 반환한다.")
     void calculate_customizedDelimiter() {
         String expression = "//;\n1;2;3";
@@ -31,9 +40,9 @@ public class StringCalculatorTest {
 
     @ParameterizedTest
     @DisplayName("피연산자의 위치에 0 혹은 양의 정수가 아닌 값이 들어오면 예외를 발생시킨다.")
-    @ValueSource(strings = {"//;\n-1;2;3","//;\na;2;3"})
+    @ValueSource(strings = {"//;\n-1;2;3", "//;\na;2;3"})
     void calculate_NotPositiveOrZeroOperand(String expression) {
         assertThatThrownBy(() -> stringCalculator.calculate(expression))
-                        .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class);
     }
 }

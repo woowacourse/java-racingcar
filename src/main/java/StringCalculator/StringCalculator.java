@@ -8,10 +8,17 @@ public class StringCalculator {
     private static final String POSITIVE_NUMBER_REGEX = "^[0-9]";
 
     public int calculate(final String expression) {
+        if (isEmptyOrNull(expression)) {
+            return 0;
+        }
         String[] tokens = splitExpression(expression);
         int[] numbers = parseToInts(tokens);
         return Arrays.stream(numbers)
                 .sum();
+    }
+
+    private boolean isEmptyOrNull(String expression) {
+        return expression == null || expression.isEmpty();
     }
 
     private String[] splitExpression(String expression) {
