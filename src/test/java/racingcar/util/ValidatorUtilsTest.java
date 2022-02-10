@@ -7,6 +7,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
+import static racingcar.util.ValidatorUtils.validateNoDuplicates;
+import static racingcar.util.ValidatorUtils.validateNotBlank;
+import static racingcar.util.ValidatorUtils.validateNotOverFiveCharacters;
 import static racingcar.util.ValidatorUtils.validatePositiveInt;
 
 public class ValidatorUtilsTest {
