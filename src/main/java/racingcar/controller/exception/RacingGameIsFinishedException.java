@@ -1,0 +1,10 @@
+package racingcar.controller.exception;
+
+public class RacingGameIsFinishedException extends IllegalStateException {
+
+    public static final String ERROR_MESSAGE = "레이싱 게임이 종료됐습니다.";
+
+    public RacingGameIsFinishedException() {
+        super(ERROR_MESSAGE);
+    }
+}
