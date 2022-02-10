@@ -10,10 +10,11 @@ public class CalculatorValidation {
         return (str == null || str.length() == 0);
     }
 
-    public static boolean isOnlyDigit(String str){
+    public static boolean isOnlyDigit(String str) {
         try {
             isDigit(str);
             isNegativeNumber(str);
+
             return true;
         } catch (RuntimeException e){
             return false;
@@ -27,8 +28,8 @@ public class CalculatorValidation {
         }
     }
 
-    public static void isValidMatcher(Matcher matcher){
-        if(!matcher.find()){
+    public static void isValidMatcher(Matcher matcher) {
+        if (!matcher.find()) {
             throw new RuntimeException("커스텀 형식에 맞지 않는 입력입니다.");
         }
     }

@@ -9,14 +9,15 @@ public class StringSplitter {
 
     private static final StringSplitter stringSplitter = new StringSplitter();
 
-    private StringSplitter(){}
+    private StringSplitter() {
+    }
 
     public static StringSplitter getInstance() {
         return stringSplitter;
     }
 
-    public String[] parseString(String str){
-        if(str.contains(",") || str.contains(":")){
+    public String[] parseString(String str) {
+        if (str.contains(",") || str.contains(":")) {
             return defaultSplit(str);
         }
 
@@ -28,12 +29,12 @@ public class StringSplitter {
     }
 
     private String[] customSplit(String str) {
-
         Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(str);
 
         isValidMatcher(matcher);
 
         String customDelimiter = matcher.group(1);
+
         return matcher.group(2).split(customDelimiter);
     }
 }

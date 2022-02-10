@@ -11,7 +11,7 @@ public class Calculator {
             return 0;
         }
 
-        if(isOnlyDigit(str)){
+        if (isOnlyDigit(str)) {
             return Integer.parseInt(str);
         }
 
