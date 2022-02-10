@@ -8,9 +8,11 @@ import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.GameTurn;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class RacingCarGame {
 	private InputView inputView = new InputView();
+	private OutputView outputView = new OutputView();
 	private Cars cars;
 	private GameTurn gameTurn;
 
@@ -74,5 +76,12 @@ public class RacingCarGame {
 
 	public void saveGameTurn() {
 		gameTurn = new GameTurn(getGameTurn());
+	}
+
+	public void moveCars() {
+		while (gameTurn.isPositive()) {
+			gameTurn.removeTurn();
+			cars.moveCars();
+		}
 	}
 }
