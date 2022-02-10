@@ -22,7 +22,7 @@ public class GameController {
     private void initGame() {
         InputView.inputCarNames();
         Scanner scanner = new Scanner(System.in);
-        String carNames = scanner.nextLine();
+        String carNames = scanner.nextLine().replaceAll(" ", "");
         List<String> carNameList = splitCars(carNames);
         cars = initCars(carNameList);
         InputView.inputTrialNum();

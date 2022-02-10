@@ -57,7 +57,6 @@ public class RacingGameTest {
 
     @Test
     void 최종_우승자_출력() {
-
         List<Car> carList = new ArrayList<>();
         carList.add(new Car("bom", 3));
         carList.add(new Car("sun", 4));
