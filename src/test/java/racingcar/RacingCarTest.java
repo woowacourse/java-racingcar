@@ -30,4 +30,11 @@ public class RacingCarTest {
         RacingCar car = new RacingCar("name");
         assertThat(car.move()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("자동차의 위치를 비교한다.")
+    void compareCarPosition() {
+        RacingCar car = new RacingCar("name");
+        assertTrue(car.comparePosition(0));
+    }
 }

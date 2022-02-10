@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,5 +47,19 @@ public class RacingCars {
         if (generator.isMovable()) {
             car.move();
         }
+    }
+
+    public List<String> calculateWinners() {
+        int winnerPosition = calculateWinnerPosition();
+        return cars.stream()
+            .filter(car -> car.comparePosition(winnerPosition))
+            .map(RacingCar::getName)
+            .collect(Collectors.toList());
+    }
+
+    private int calculateWinnerPosition() {
+        return Collections.max(cars.stream()
+            .map(RacingCar::getPosition)
+            .collect(Collectors.toList()));
     }
 }

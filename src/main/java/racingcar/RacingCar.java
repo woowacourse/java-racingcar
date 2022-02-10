@@ -30,4 +30,8 @@ public class RacingCar {
     public int move() {
         return ++position;
     }
+
+    public boolean comparePosition(int position) {
+        return this.position == position;
+    }
 }
