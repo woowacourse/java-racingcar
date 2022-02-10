@@ -1,38 +1,47 @@
 package calculator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class StringCalculator {
-    public static Integer splitAndSum(String s) {
-        if (s == null || s.isEmpty()) {
+    public static Integer splitAndSum(String input) {
+        if (input == null || input.isEmpty()) {
             return 0;
         }
-        return sumList(convertToIntegerArray(splitString(s)));
+        return sumList(convertToIntegerArray(splitString(input)));
     }
 
-    public static String[] splitString(String s) {
+    public static String[] splitString(String input) {
         String regExp = ",|:";
-        if (isCustom(s)) {
-            int idx = s.indexOf("\n");
-            regExp = s.substring(2, idx);
-            s = s.substring(idx + 1);
+        if (isCustom(input)) {
+            int idx = input.indexOf("\n");
+            regExp = input.substring(2, idx);
+            input = input.substring(idx + 1);
         }
 
-        return s.split(regExp);
+        return input.split(regExp);
     }
 
-    private static boolean isCustom(String s) {
-        return s.startsWith("//") && s.contains("\n");
+    private static boolean isCustom(String input) {
+        return input.startsWith("//") && input.contains("\n");
     }
 
-    public static List<Integer> convertToIntegerArray(String[] arr) {
+    public static List<Integer> convertToIntegerArray(String[] strArr) {
         List<Integer> numList = new ArrayList<>();
-        for (String num : arr) {
+        if (isEmptyList(strArr)) {
+            return numList;
+        }
+
+        for (String num : strArr) {
             numList.add(convertToInt(num));
         }
 
         return numList;
+    }
+
+    private static boolean isEmptyList(String[] strArr) {
+        return Arrays.stream(strArr).count() == 1 && strArr[0].equals("");
     }
 
     private static Integer convertToInt(String str) {
@@ -44,13 +53,13 @@ public class StringCalculator {
         }
 
         if (value < 0) {
-            throw new RuntimeException("력 값은 0 이상의 정수여야 합니다.");
+            throw new RuntimeException("입력 값은 0 이상의 정수여야 합니다.");
         }
 
         return value;
     }
 
-    public static Integer sumList(List<Integer> list) {
-        return list.stream().mapToInt(Integer::intValue).sum();
+    public static Integer sumList(List<Integer> numList) {
+        return numList.stream().mapToInt(Integer::intValue).sum();
     }
 }

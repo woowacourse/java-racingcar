@@ -59,6 +59,22 @@ public class StringCalculatorTest {
     }
 
     @Test
+    void 구분자만_입력한_경우_예외처리() {
+        int actual = StringCalculator.splitAndSum(",");
+        int expected = 0;
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void 커스텀_구분자만_입력한_경우_예외처리() {
+        int actual = StringCalculator.splitAndSum("//\n");
+        int expected = 0;
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
     void 빈_문자열_입력한_경우_예외처리() {
         int actual = StringCalculator.splitAndSum("");
         int expected = 0;
