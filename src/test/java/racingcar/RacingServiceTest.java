@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
@@ -12,6 +13,12 @@ import racingcar.service.RacingService;
 import racingcar.util.Converter;
 
 public class RacingServiceTest {
+
+	@AfterEach
+	public void beforeEach() {
+		CarRepository carRepository = new CarRepository();
+		carRepository.clear();
+	}
 
 	@Test
 	public void 자동차_저장() {
@@ -33,14 +40,14 @@ public class RacingServiceTest {
 		RacingService racingService = new RacingService();
 		racingService.registerCars(Converter.toCarList(input));
 
-		int attemptNumber = 2;
-		racingService.race(attemptNumber, bound -> 5);
+		racingService.race(bound -> 5);
+		racingService.race(bound -> 5);
 
 		CarRepository carRepository = new CarRepository();
 		List<Car> cars = carRepository.findCars();
 
 		cars.forEach(car -> {
-			assertThat(car.isSamePosition(attemptNumber)).isTrue();
+			assertThat(car.isSamePosition(2)).isTrue();
 		});
 	}
 

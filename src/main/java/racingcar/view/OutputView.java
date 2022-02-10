@@ -29,7 +29,7 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public void printWinnersMessage(List<String> winnerNames) {
+	public static void printWinnersMessage(List<String> winnerNames) {
 		String names = String.join(", ", winnerNames);
 		System.out.println(names + WINNER_MESSAGE);
 	}

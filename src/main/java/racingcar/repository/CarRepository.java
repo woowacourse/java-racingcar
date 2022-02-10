@@ -26,4 +26,9 @@ public class CarRepository {
 			.max()
 			.orElse(0);
 	}
+
+	public void clear() {
+		cars.clear();
+	}
+
 }

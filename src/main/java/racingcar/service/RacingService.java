@@ -14,12 +14,9 @@ public class RacingService {
 		carList.forEach(carRepository::addCar);
 	}
 
-	public void race(int attemptNumber, RandomUtil randomUtil) {
+	public void race(RandomUtil randomUtil) {
 		List<Car> cars = carRepository.findCars();
-
-		for (int i = 0; i < attemptNumber; i++) {
-			cars.forEach(car -> car.move(randomUtil.generate(10)));
-		}
+		cars.forEach(car -> car.move(randomUtil.generate(10)));
 	}
 
 	public List<String> findWinnerNames() {
