@@ -1,12 +1,15 @@
 package calculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringCalculator {
 	public static int splitAndSum(String a) {
 		if (checkNull(a)) {
 			return 0;
 		}
 
-		return sum(splitByColon(a));
+		return checkCustomSplit(a);
 	}
 
 	private static boolean checkNull(String a) {
@@ -14,7 +17,7 @@ public class StringCalculator {
 	}
 
 	private static String[] splitByColon(String a) {
-		return a.split(":");
+		return a.replace(",", ":").split(":");
 	}
 
 	private static int sum(String[] numbers) {
@@ -28,4 +31,13 @@ public class StringCalculator {
 		return result;
 	}
 
+	private static int checkCustomSplit(String a) {
+		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(a);
+		if (m.find()) {
+			String customDelimiter = m.group(1);
+			String[] tokens = m.group(2).split(customDelimiter);
+			return sum(tokens);
+		}
+		return sum(splitByColon(a));
+	}
 }
