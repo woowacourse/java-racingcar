@@ -110,4 +110,18 @@ public class RacingCarTest {
 		cars.generateCars(carNames);
 		assertThat(cars.size()).isEqualTo(3);
 	}
+
+	@Test
+	public void 최종_우승자_찾기_테스트() {
+		cars.addCar(new Car("이브", new RandomNumberGenerator(9, 4)));
+		cars.addCar(new Car("클레이", new RandomNumberGenerator(3, 0)));
+		cars.addCar(new Car("포비", new RandomNumberGenerator(9, 4)));
+		cars.executeCarRacing();
+		List<String> winners = cars.findWinners();
+		for (String s : winners) {
+			System.out.println(s);
+		}
+		assertThat(winners.size()).isEqualTo(2);
+		assertThat(winners).contains("이브", "포비");
+	}
 }
