@@ -1,5 +1,6 @@
 package racingcargame.controller;
 
+import racingcargame.model.RacingCarGame;
 import racingcargame.view.OutputView;
 
 public class GameController {
@@ -14,7 +15,9 @@ public class GameController {
     }
 
     public void playGame() {
+        RacingCarGame racingCarGame = new RacingCarGame();
+
         OutputView.showCarNamesInputGuideMessage();
-        inputController.inputCarName();
+        racingCarGame.orderToSaveCars(inputController.inputCarName());
     }
 }
