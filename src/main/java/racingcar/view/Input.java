@@ -1,6 +1,9 @@
 package racingcar.view;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 import static racingcar.view.Output.*;
 
@@ -27,6 +30,11 @@ public class Input {
             String[] names = inputValue.split(",");
             if (names.length < 2) {
                 throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
+            }
+
+            Set<String> carNames = new HashSet<>(Arrays.asList(names));
+            if (carNames.size() != names.length) {
+                throw new IllegalArgumentException("자동차 이름을 모두 다르게 입력해주세요.");
             }
         } catch (IllegalArgumentException e) {
             return carName();
