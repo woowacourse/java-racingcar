@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class StringSplitter {
 
-    private static StringSplitter stringSplitter = new StringSplitter();
+    private static final StringSplitter stringSplitter = new StringSplitter();
 
     private StringSplitter(){}
 

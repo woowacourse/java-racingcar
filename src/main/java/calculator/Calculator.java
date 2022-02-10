@@ -5,7 +5,7 @@ import static calculator.CalculatorValidation.isValidTokens;
 
 public class Calculator {
 
-    private static StringSplitter stringSplitter = StringSplitter.getInstance();
+    private static final StringSplitter stringSplitter = StringSplitter.getInstance();
 
     public static int splitAndSum(String str) {
         if (isEmpty(str)) {
