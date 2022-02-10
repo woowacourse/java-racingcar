@@ -25,4 +25,10 @@ public class Checker {
 		}
 	}
 
+	private void isZeroCars(String[] str) throws IllegalArgumentException {
+		if (str.length == IntegerConst.ZERO.getValue()) {
+			throw new IllegalArgumentException(StringConst.ERROR_NO_CAR.getValue());
+		}
+	}
+
 }
