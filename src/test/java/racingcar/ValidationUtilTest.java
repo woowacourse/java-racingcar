@@ -49,6 +49,14 @@ public class ValidationUtilTest {
         assertThatThrownBy(() -> Validator.checkInput(nameString))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining("중복");
+    }
 
+    @Test
+    void 자동차_이름_수가_하나인_경우_예외발생() {
+        String nameString = "pobi";
+
+        assertThatThrownBy(() -> Validator.checkInput(nameString))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining("최소");
     }
 }

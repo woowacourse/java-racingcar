@@ -37,6 +37,21 @@ public class Validator {
         if (hasDuplication(nameString)) {
             throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
         }
+
+        if (nameString.split(",").length < 2) {
+            throw new IllegalArgumentException("최소 자동차 수는 두 개 이상이어야 합니다.");
+        }
+    }
+
+    private static boolean hasDuplication(String nameString) {
+        long before = Arrays.stream(nameString.split(","))
+                .count();
+
+        long after = Arrays.stream(nameString.split(","))
+                .distinct()
+                .count();
+
+        return before != after;
     }
 
     private static boolean isEmpty(String[] array) {
