@@ -16,34 +16,56 @@ import static racingcar.view.Output.*;
 public class Input {
     Scanner scan = new Scanner(System.in);
 
-    private Input() {
+    public Input() {
     }
 
-    public String carName() {
+    public String[] carName() {
         try {
             Output.getCarName();
             String inputValue = scan.nextLine();
-            if (inputValue.isBlank()) {
-                throw new IllegalArgumentException("자동차 이름은 공백일 수 없습니다.");
-            }
-
-            String[] names = inputValue.split(",");
-            if (names.length < 2) {
-                throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
-            }
-
-            Set<String> carNames = new HashSet<>(Arrays.asList(names));
-            if (carNames.size() != names.length) {
-                throw new IllegalArgumentException("자동차 이름을 모두 다르게 입력해주세요.");
-            }
-
-            for (String name : names) {
-                if (name.length() > 5) {
-                    throw new IllegalArgumentException("자동차의 이름은 5글자를 초과할 수 없습니다.");
-                }
-            }
+            allCarsValid(inputValue);
+            return inputValue.split(",");
         } catch (IllegalArgumentException e) {
             return carName();
         }
+    }
+
+    private void allCarsValid(String names) {
+        String[] cars = names.split(",");
+        if (!isCars(cars)) {
+            throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
+        }
+        if (isDuplicated(cars)) {
+            throw new IllegalArgumentException("자동차 이름을 모두 다르게 입력해주세요.");
+        }
+        nameValid(cars);
+    }
+
+    private void nameValid(String[] cars) {
+        for (String name : cars) {
+            if (isBlank(name)) {
+                throw new IllegalArgumentException("자동차 이름은 공백일 수 없습니다.");
+            }
+            if (!isValidLength(name)) {
+                throw new IllegalArgumentException("자동차의 이름은 5글자를 초과할 수 없습니다.");
+            }
+        }
+    }
+
+    private boolean isBlank(String name) {
+        return name.isBlank();
+    }
+
+    private boolean isCars(String[] names) {
+        return names.length >= 2;
+    }
+
+    private boolean isDuplicated(String[] names) {
+        Set<String> carNames = new HashSet<>(Arrays.asList(names));
+        return carNames.size() != names.length;
+    }
+
+    private boolean isValidLength(String name) {
+        return name.length() < 5;
     }
 }
