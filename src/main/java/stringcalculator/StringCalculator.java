@@ -36,6 +36,19 @@ public class StringCalculator {
         return text.split("\\\\n")[0].split("//")[1];
     }
 
+    public int sum(String text) {
+        validateInput(text);
+        String delimiter = DELIMITER;
+
+        if (hasCustomDelimiter(text)) {
+            delimiter = getDelimiterFromText(text);
+        }
+
+        return Arrays.stream(split(removeDelimiterFromText(text), delimiter))
+                .map(this::toNumber)
+                .reduce(0, Integer::sum);
+    }
+
     public boolean hasCustomDelimiter(String text) {
         return text.matches(INPUT_FORMAT_PATTERN);
     }

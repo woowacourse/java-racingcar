@@ -91,4 +91,11 @@ public class StringCalculatorTest {
     void removeDelimiterFromText(String text, String expected) {
         assertThat(stringCalculator.removeDelimiterFromText(text)).isEqualTo(expected);
     }
+
+    @DisplayName("입력된 문자열의 합 계산")
+    @ParameterizedTest
+    @CsvSource(value = {"1:2:3,6", "//;\\n1;2;3,6"})
+    void sum(String text, int expected) {
+        assertThat(stringCalculator.sum(text)).isEqualTo(expected);
+    }
 }
