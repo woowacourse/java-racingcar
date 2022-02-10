@@ -1,6 +1,9 @@
 package racingcar.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import racingcar.util.StringConst;
 
 public class CarList {
 	private ArrayList<Car> carList;

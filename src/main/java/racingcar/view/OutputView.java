@@ -20,6 +20,7 @@ public class OutputView {
 	}
 
 	public static void displayWinner(String[] winnerName) {
-		System.out.println(String.join(StringConst.WINNER_DELIMITER.getValue(), winnerName) + StringConst.WINNER_MESSAGE);
+		System.out.println(
+			String.join(StringConst.WINNER_DELIMITER.getValue(), winnerName) + StringConst.WINNER_MESSAGE);
 	}
 }
