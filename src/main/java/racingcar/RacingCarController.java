@@ -9,9 +9,10 @@ public class RacingCarController {
     }
 
     public void run() {
-        String carNames = inputView.inputCarNames();
+        RacingCars racingCars = new RacingCars(inputView.inputCarNames());
         int tryCount = inputView.inputTryCount();
-        RacingGame game = new RacingGame(carNames, tryCount);
+
+        RacingGame game = new RacingGame(racingCars, tryCount);
         game.race();
     }
 }

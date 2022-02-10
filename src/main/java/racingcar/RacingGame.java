@@ -1,26 +1,16 @@
 package racingcar;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGame {
 
-    private static final String CAR_NAME_DELIMITER = ",";
-    private final List<RacingCar> cars;
+    private final RacingCars racingCars;
     private int leftCount;
-    private final RandomGenerator generator = new RandomGenerator();
 
-    public RacingGame(String carStringNames, int leftCount) {
-        this.cars = makeRacingCars(carStringNames.split(CAR_NAME_DELIMITER));
+    public RacingGame(RacingCars racingCars, int leftCount) {
+        this.racingCars = racingCars;
         checkPositiveCount(leftCount);
         this.leftCount = leftCount;
-    }
-
-    private List<RacingCar> makeRacingCars(String[] carNames) {
-        return Arrays.stream(carNames)
-            .map(RacingCar::new)
-            .collect(Collectors.toList());
     }
 
     private void checkPositiveCount(int leftCount) {
@@ -30,9 +20,7 @@ public class RacingGame {
     }
 
     public List<String> getCarNames() {
-        return cars.stream()
-            .map(RacingCar::getName)
-            .collect(Collectors.toList());
+        return racingCars.getCarNames();
     }
 
     public int getLeftCount() {
@@ -42,24 +30,14 @@ public class RacingGame {
     public void race() {
         checkCanRace();
         while (!isEnd()) {
-            moveCars();
+            racingCars.moveCars();
+            leftCount--;
         }
     }
 
     private void checkCanRace() {
         if (isEnd()) {
             throw new RuntimeException("종료된 게임은 더이상 실행할 수 없다.");
-        }
-    }
-
-    private void moveCars() {
-        cars.forEach(this::moveCar);
-        leftCount--;
-    }
-
-    private void moveCar(RacingCar car) {
-        if (generator.isMovable()) {
-            car.move();
         }
     }
 
