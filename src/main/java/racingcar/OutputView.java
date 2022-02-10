@@ -14,8 +14,8 @@ public class OutputView {
     public OutputView() {
     }
 
-    public void printWinnerNames(List<String> winnerNames) {
-        System.out.println(join(PRINT_WINNER_DELIMITER, winnerNames) + PRINT_WINNER_MESSAGE);
+    public void printGameResultTitle() {
+        System.out.println("실행 결과");
     }
 
     public void printCarsPosition(List<RacingCarDto> cars) {
@@ -30,5 +30,9 @@ public class OutputView {
         return IntStream.range(0, position)
             .mapToObj(value -> "-")
             .collect(Collectors.joining());
+    }
+
+    public void printWinnerNames(List<String> winnerNames) {
+        System.out.println(join(PRINT_WINNER_DELIMITER, winnerNames) + PRINT_WINNER_MESSAGE);
     }
 }
