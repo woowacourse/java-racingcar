@@ -6,4 +6,8 @@ public class Attempt {
     public Attempt(int attempt) {
         this.attempt = attempt;
     }
+    
+    public boolean isSame(int nowAttempt) {
+        return attempt == nowAttempt;
+    }
 }

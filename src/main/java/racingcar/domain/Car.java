@@ -7,4 +7,19 @@ public class Car {
     public Car(String name) {
         this.name = name;
     }
+
+    private void move() {
+        position++;
+    }
+
+    public void drive() {
+        if (hasNext()) {
+            move();
+        }
+    }
+
+    private boolean hasNext() {
+        int moveFlag = (int) (Math.random() * 100) % 10;
+        return moveFlag > 3;
+    }
 }

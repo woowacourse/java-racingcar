@@ -14,34 +14,34 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
-	private Set<Integer> numbers;
+    private Set<Integer> numbers;
 
-	@BeforeEach
-	void setUp() {
-		numbers = new HashSet<>();
-		numbers.add(1);
-		numbers.add(1);
-		numbers.add(2);
-		numbers.add(3);
-	}
+    @BeforeEach
+    void setUp() {
+        numbers = new HashSet<>();
+        numbers.add(1);
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+    }
 
-	@DisplayName("set 사이즈 확인 test")
-	@Test
-	void sizeValueTest() {
-		assertThat(numbers.size()).isEqualTo(3);
-	}
+    @DisplayName("set 사이즈 확인 test")
+    @Test
+    void sizeValueTest() {
+        assertThat(numbers.size()).isEqualTo(3);
+    }
 
-	@DisplayName("해당 값이 포함되어 있는지 확인하는 테스트")
-	@ParameterizedTest
-	@ValueSource(strings = {"1", "2", "3"})
-	void contains(int input) {
-		assertTrue(numbers.contains(input));
-	}
+    @DisplayName("해당 값이 포함되어 있는지 확인하는 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3"})
+    void contains(int input) {
+        assertTrue(numbers.contains(input));
+    }
 
-	@DisplayName("포함 여부를 확인하는 테스트")
-	@ParameterizedTest
-	@CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
-	void hasValue(int input, boolean expected) {
-		assertEquals(expected, numbers.contains(input));
-	}
+    @DisplayName("포함 여부를 확인하는 테스트")
+    @ParameterizedTest
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
+    void hasValue(int input, boolean expected) {
+        assertEquals(expected, numbers.contains(input));
+    }
 }

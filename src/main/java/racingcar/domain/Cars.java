@@ -13,6 +13,12 @@ public class Cars {
         }
     }
 
+    public void play() {
+        for (Car car : cars) {
+            car.drive();
+        }
+    }
+
     private Car createCar(String name) {
         return new Car(name);
     }
