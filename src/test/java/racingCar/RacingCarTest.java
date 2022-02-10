@@ -37,4 +37,27 @@ public class RacingCarTest {
 			.isInstanceOf(RuntimeException.class);
 	}
 
+	@Test
+	void 시도_횟수_정상_입력() {
+		int times = racingCar.enterTimes("5");
+		assertThat(times).isEqualTo(5);
+	}
+
+	@Test
+	void 시도_횟수_숫자_이외의_값_에러() {
+		assertThatThrownBy(() -> racingCar.isNumber("!"))
+			.isInstanceOf(RuntimeException.class);
+	}
+
+	@Test
+	void 시도_횟수_정수가_아닌_실수값_에러() {
+		assertThatThrownBy(() -> racingCar.isInteger("1.5"))
+			.isInstanceOf(RuntimeException.class);
+	}
+
+	@Test
+	void 시도_횟수_음수_값_에러() {
+		assertThatThrownBy(() -> racingCar.isPositiveNumber("-2"))
+			.isInstanceOf(RuntimeException.class);
+	}
 }
