@@ -9,7 +9,8 @@ public class Calculator {
 
     private static final int DEFAULT_NUMBER = 0;
     private static final String DEFAULT_DELIMITER = ",|:";
-    private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
+    private static final String CUSTOM_DELIMITER_PATTERN_REGEX = "//(.)\n(.*)";
+    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(CUSTOM_DELIMITER_PATTERN_REGEX);
     private static final int CUSTOM_DELIMITER_INDEX = 1;
     private static final int CUSTOM_INPUT_INDEX = 2;
 
@@ -26,7 +27,7 @@ public class Calculator {
     }
 
     private static String[] splitInput(String input) {
-        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
+        Matcher m = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if (m.find()) {
             return splitByDelimiter(m.group(CUSTOM_INPUT_INDEX), m.group(CUSTOM_DELIMITER_INDEX));
         }
