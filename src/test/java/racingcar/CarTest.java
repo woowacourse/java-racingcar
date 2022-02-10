@@ -36,5 +36,11 @@ public class CarTest {
 		}).isInstanceOf(RuntimeException.class);
 	}
 
+	@Test
+	void 자동차_이동() {
+		Car car = new Car("범고래");
+		car.move(4);
+		assertThat(car.getPosition()).isEqualTo(1);
+	}
 
 }

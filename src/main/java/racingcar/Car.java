@@ -3,6 +3,7 @@ package racingcar;
 public class Car {
 	private static final int MAX_CAR_NAME_LENGTH = 5;
 	private static final int INITIAL_POSITION = 0;
+	private static final int MOVE_CONDITION_NO = 4;
 	private final String name;
 	private int position;
 
@@ -35,5 +36,11 @@ public class Car {
 
 	private boolean isEmptyName(String name) {
 		return name.isEmpty();
+	}
+
+	public void move(int number) {
+		if (number >= MOVE_CONDITION_NO) {
+			position++;
+		}
 	}
 }
