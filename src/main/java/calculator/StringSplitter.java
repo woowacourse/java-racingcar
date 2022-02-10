@@ -3,6 +3,8 @@ package calculator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static calculator.CalculatorValidation.isValidMatcher;
+
 public class StringSplitter {
 
     private static final StringSplitter stringSplitter = new StringSplitter();
@@ -14,7 +16,7 @@ public class StringSplitter {
     }
 
     public String[] parseString(String str){
-        if(str.contains(",|:")){
+        if(str.contains(",") || str.contains(":")){
             return defaultSplit(str);
         }
 
@@ -26,10 +28,12 @@ public class StringSplitter {
     }
 
     private String[] customSplit(String str) {
-        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(str);
-        String customDelimiter = matcher.group(1);
-        String[] tokens = matcher.group(2).split(customDelimiter);
 
-        return tokens;
+        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(str);
+
+        isValidMatcher(matcher);
+
+        String customDelimiter = matcher.group(1);
+        return matcher.group(2).split(customDelimiter);
     }
 }

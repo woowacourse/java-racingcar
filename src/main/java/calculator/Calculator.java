@@ -1,7 +1,6 @@
 package calculator;
 
-import static calculator.CalculatorValidation.isEmpty;
-import static calculator.CalculatorValidation.isValidTokens;
+import static calculator.CalculatorValidation.*;
 
 public class Calculator {
 
@@ -10,6 +9,10 @@ public class Calculator {
     public static int splitAndSum(String str) {
         if (isEmpty(str)) {
             return 0;
+        }
+
+        if(isOnlyDigit(str)){
+            return Integer.parseInt(str);
         }
 
         String[] tokens = stringSplitter.parseString(str);
