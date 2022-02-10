@@ -30,8 +30,13 @@ class CarsTest {
 	@Test
 	public void toString_결과_생성() {
 		// given
+		String[] names = {"오찌", "연로그"};
+		Cars cars = new Cars(names);
+		String newLine = System.lineSeparator();
+
 		// when
 		// then
+		assertThat(cars.toString()).isEqualTo("오찌 : " + newLine + "연로그 : " + newLine);
 	}
 
 	// TODO

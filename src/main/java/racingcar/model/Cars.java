@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Cars {
+	private static final String NEW_LINE = System.lineSeparator();
+
 	private final List<Car> cars = new ArrayList<>();
 
 	public Cars(String[] carNames) {
@@ -21,5 +23,15 @@ public class Cars {
 			.distinct().count();
 
 		return distinctSize != carNames.length;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (Car car : cars) {
+			sb.append(car.toString())
+				.append(NEW_LINE);
+		}
+		return sb.toString();
 	}
 }
