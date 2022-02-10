@@ -9,6 +9,9 @@ public class GameController {
 
     private final InputView inputView;
 
+    private String[] carNames;
+    private int tryCount;
+
     public GameController() {
         inputView = new InputView();
     }
