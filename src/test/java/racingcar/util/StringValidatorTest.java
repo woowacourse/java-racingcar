@@ -44,4 +44,22 @@ public class StringValidatorTest {
                     .hasMessage("문자열의 길이가 1 이상 5 이하가 아닙니다.");
         }
     }
+
+    @DisplayName("validateFormat 메소드는")
+    @Nested
+    class validateFormat {
+        @ParameterizedTest
+        @ValueSource(strings = {"hudi", "tonic", "a", "토닉", "후디", "123"})
+        void 올바른_형식의_문자열이라면(String input) {
+            assertDoesNotThrow(() -> StringValidator.validateFormat(input));
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {" ", "ton*&", "?a1"})
+        void 올바른_형식의_문자열이_아니라면(String input) {
+            assertThatThrownBy(() -> StringValidator.validateFormat(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("올바르지 않은 형식의 문자열입니다.");
+        }
+    }
 }
