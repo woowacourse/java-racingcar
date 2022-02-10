@@ -9,7 +9,8 @@ public class RacingController {
 		carController.createCars(InputView.getCarNames());
 	}
 
-	public void run(int iteration) {
+	public void run() {
+		int iteration = InputView.getIterationNo();
 		for (int i = 0; i < iteration; i++) {
 			carController.run();
 		}
