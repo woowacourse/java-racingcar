@@ -4,6 +4,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+naver-checkstyle-rules.xml
 
 ### STS ###
 .apt_generated
