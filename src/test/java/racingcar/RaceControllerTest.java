@@ -11,11 +11,19 @@ public class RaceControllerTest {
     @BeforeEach
     public void beforeEach() {
         raceController = new RaceController();
-        raceController.insertCars(new String[]{"A","B","C"});
     }
 
     @Test
     public void 자동차_저장_확인() {
+        raceController.insertCarFromCarNames(new String[]{"A", "B", "C"});
         assertThat(raceController.carCount()).isEqualTo(3);
+    }
+
+    @Test
+    public void 우승자_확인() {
+        raceController.insertCar(new Car("A", 1, () -> 1));
+        raceController.insertCar(new Car("B", 3, () -> 1));
+        raceController.insertCar(new Car("C", 4, () -> 1));
+        assertThat(raceController.getWinner()).contains("C");
     }
 }

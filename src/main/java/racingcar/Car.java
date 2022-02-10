@@ -6,10 +6,14 @@ public class Car {
     private int position;
     private RandomUtil randomGenerator;
 
-    public Car(String name, RandomUtil randomUtil) {
+    public Car(String name, int position, RandomUtil randomUtil) {
         this.name = name;
-        this.position = 0;
+        this.position = position;
         this.randomGenerator = randomUtil;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public int getPosition() {
