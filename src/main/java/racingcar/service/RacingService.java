@@ -2,6 +2,7 @@ package racingcar.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
 import racingcar.utils.RandomIntegerGenerator;
@@ -14,6 +15,8 @@ public class RacingService {
 	public RacingService(List<Car> cars) {
 		this.cars = cars;
 	}
+
+
 
 	public void race(int round) {
 		for (int i = 0; i < round; i++) {
