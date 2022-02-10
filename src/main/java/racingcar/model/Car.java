@@ -11,6 +11,11 @@ public class Car {
         this.name = name;
     }
 
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
     public void moveForward(int randomNumber) {
         if (randomNumber >= MOVE_FORWARD_CONDITION) {
             position++;

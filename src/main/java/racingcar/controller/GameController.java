@@ -30,12 +30,24 @@ public class GameController {
         result();
     }
 
+    private void ready() {
+        carNames = createCarNames();
+        carController.createCars(carNames);
+        tryCount = createTryCount();
+    }
+
     private void start() {
         outputView.printResultMessage();
         for (int i = 0; i <tryCount; i++) {
             carController.moveCars();
             outputView.printResult(carController.getCars());
         }
+    }
+
+    private void result() {
+        Winner winner = new Winner();
+        List<String> winners = winner.getWinners(carController.getCars());
+        outputView.printWinners(winners);
     }
 
     public String[] createCarNames() {
