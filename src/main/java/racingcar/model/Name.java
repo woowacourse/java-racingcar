@@ -10,7 +10,8 @@ public class Name {
 		validate();
 	}
 
-	public String getName() {
+	@Override
+	public String toString() {
 		return this.name;
 	}
 
