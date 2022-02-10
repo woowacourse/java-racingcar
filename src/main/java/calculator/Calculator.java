@@ -1,5 +1,8 @@
 package calculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Calculator {
 
     public static int splitAndSum(String str) {
@@ -9,10 +12,29 @@ public class Calculator {
             return 0;
         }
 
-        String[] split = str.split(",|:");
+        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(str);
 
-        for (String s : split) {
-            sum += Integer.parseInt(s);
+        if (matcher.find()) {
+            String customDelimiter = matcher.group(1);
+            String[] tokens = matcher.group(2).split(customDelimiter);
+
+            sum = getSum (sum, tokens);
+
+            return sum;
+        }
+
+        String[] tokens = str.split(",|:");
+
+        for (String token : tokens) {
+            sum += Integer.parseInt(token);
+        }
+
+        return sum;
+    }
+
+    private static int getSum(int sum, String[] tokens) {
+        for (String token : tokens) {
+            sum += Integer.parseInt(token);
         }
 
         return sum;
