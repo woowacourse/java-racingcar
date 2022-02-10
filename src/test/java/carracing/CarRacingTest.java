@@ -52,10 +52,23 @@ public class CarRacingTest {
 		//given
 		Car car = new Car("pobi");
 		//when
-		car.move();
+		car.move(randomNumber);
 		int position = car.getPosition();
 		//then
 		assertThat(position).isEqualTo(1);
+	}
+
+	@ParameterizedTest
+	@ValueSource(ints = {0, 1, 2, 3})
+	void 랜덤값_4미만이면_멈춤(int randomNumber) {
+		//given
+		Car car = new Car("pobi");
+		int originalPosition = car.getPosition();
+		//when
+		car.move(randomNumber);
+		int changedPosition = car.getPosition();
+		//then
+		assertThat(changedPosition).isEqualTo(originalPosition);
 	}
 
 }
