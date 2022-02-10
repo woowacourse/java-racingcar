@@ -20,10 +20,6 @@ public class CarRepository {
 		cars.add(car);
 	}
 
-	public int size() {
-		return cars.size();
-	}
-
 	public void clear() {
 		cars.clear();
 	}

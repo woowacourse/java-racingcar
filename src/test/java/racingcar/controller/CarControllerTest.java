@@ -27,7 +27,7 @@ public class CarControllerTest {
 		carController.createCars(userInputCarNames);
 
 		CarRepository repository = CarRepository.getInstance();
-		assertThat(repository.size()).isEqualTo(3);
+		assertThat(repository.getCars().size()).isEqualTo(3);
 	}
 
 	@Test

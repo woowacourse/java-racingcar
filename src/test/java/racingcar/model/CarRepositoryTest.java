@@ -19,7 +19,7 @@ public class CarRepositoryTest {
 	void 저장() {
 		Car car = new Car("범고래");
 		carRepository.save(car);
-		assertThat(carRepository.size()).isEqualTo(1);
+		assertThat(carRepository.getCars().size()).isEqualTo(1);
 	}
 
 	@Test
@@ -31,7 +31,7 @@ public class CarRepositoryTest {
 		carRepository.save(car2);
 		carRepository.save(car3);
 
-		assertThat(carRepository.size()).isEqualTo(3);
+		assertThat(carRepository.getCars().size()).isEqualTo(3);
 	}
 
 	@Test
