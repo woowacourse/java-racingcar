@@ -111,8 +111,8 @@ public class CarRacingTest {
 		Cars cars = new Cars(Arrays.asList(
 			pobiCar, eastCar, peperCar
 		));
-		//when
-	    //then
+		// when
+		// then
 		List<String> winners = cars.getWinners();
 		assertThat(winners).contains("peper","east");
 	}
