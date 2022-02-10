@@ -45,19 +45,19 @@ public class RacingCarTest {
 
 	@Test
 	void 시도_횟수_숫자_이외의_값_에러() {
-		assertThatThrownBy(() -> racingCar.isNumber("!"))
+		assertThatThrownBy(() -> racingCar.isRightTimes("!"))
 			.isInstanceOf(RuntimeException.class);
 	}
 
 	@Test
 	void 시도_횟수_정수가_아닌_실수값_에러() {
-		assertThatThrownBy(() -> racingCar.isInteger("1.5"))
+		assertThatThrownBy(() -> racingCar.isRightTimes("1.5"))
 			.isInstanceOf(RuntimeException.class);
 	}
 
 	@Test
 	void 시도_횟수_음수_값_에러() {
-		assertThatThrownBy(() -> racingCar.isPositiveNumber("-2"))
+		assertThatThrownBy(() -> racingCar.isRightTimes("-2"))
 			.isInstanceOf(RuntimeException.class);
 	}
 }
