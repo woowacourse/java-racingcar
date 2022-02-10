@@ -30,4 +30,9 @@ public class RacingCarGame {
 	public List<String> splitCarNames(String carNames) {
 		return Arrays.asList(carNames.split(","));
 	}
+
+	public int getGameTurn() {
+		String gameTurn = inputView.getGameTurn();
+		return Integer.parseInt(gameTurn);
+	}
 }
