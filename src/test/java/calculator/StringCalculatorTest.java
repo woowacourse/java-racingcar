@@ -35,9 +35,16 @@ public class StringCalculatorTest {
 
     @Test
     void 문자열_배열을_숫자_배열로_변환() {
-        List<Integer> actual = StringCalculator.convertToInteger(new String[]{"1", "2", "3"});
+        List<Integer> actual = StringCalculator.convertToIntegerArray(new String[]{"1", "2", "3"});
         List<Integer> expected = Arrays.asList(1, 2, 3);
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void 숫자_이외의_값을_입력한_경우_예외처리() {
+        assertThatThrownBy(() ->
+                StringCalculator.convertToIntegerArray(new String[]{"a", "b"}))
+                .isInstanceOf(RuntimeException.class);
     }
 }

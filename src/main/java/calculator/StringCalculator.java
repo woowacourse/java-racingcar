@@ -19,12 +19,23 @@ public class StringCalculator {
         return s.startsWith("//") && s.contains("\n");
     }
 
-    public static List<Integer> convertToInteger(String[] arr) {
+    public static List<Integer> convertToIntegerArray(String[] arr) {
         List<Integer> numList = new ArrayList<>();
         for (String num : arr) {
-            numList.add(Integer.parseInt(num));
+            numList.add(convertToInt(num));
         }
 
         return numList;
+    }
+
+    private static Integer convertToInt(String str) {
+        int value;
+        try {
+            value = Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("입력값은 숫자여야 합니다.");
+        }
+
+        return value;
     }
 }
