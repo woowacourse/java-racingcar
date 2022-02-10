@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.parser;
+
+import racingcar.parser.exception.TryCountBlankException;
 
 public class TryCountParser {
 
@@ -8,6 +10,9 @@ public class TryCountParser {
     }
 
     private void validateTryCount(String input) {
+        if (isBlankTryCount(input)) {
+            throw new TryCountBlankException();
+        }
         if (isFloat(input)) {
             throw new IllegalArgumentException("시도 횟수는 실수가 될 수 없습니다.");
         }
@@ -17,6 +22,10 @@ public class TryCountParser {
         if (isZero(input)) {
             throw new IllegalArgumentException("시도 횟수는 0이 될 수 없습니다.");
         }
+    }
+
+    private boolean isBlankTryCount(String input) {
+        return input.isBlank();
     }
 
     private boolean isFloat(String input) {

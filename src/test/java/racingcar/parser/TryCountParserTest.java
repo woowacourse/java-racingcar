@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.parser;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.parser.exception.TryCountBlankException;
 
 public class TryCountParserTest {
 
@@ -39,5 +40,12 @@ public class TryCountParserTest {
     public void 문자열이_0일때_예외_발생() {
         assertThatThrownBy(() -> parser.parse("0"))
             .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "        "})
+    public void 빈공백일때_예외_발생(String input) {
+        assertThatThrownBy(() -> parser.parse(input))
+            .isInstanceOf(TryCountBlankException.class);
     }
 }
