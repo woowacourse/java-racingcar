@@ -22,5 +22,4 @@ public class RacingCarControllerTest {
             .isThrownBy(() -> controller.run())
             .withMessageMatching("시도횟수는 숫자이어야 합니다.");
     }
-
 }
