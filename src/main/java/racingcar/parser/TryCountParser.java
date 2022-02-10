@@ -1,6 +1,6 @@
 package racingcar.parser;
 
-import racingcar.parser.exception.TryCountBlankException;
+import racingcar.parser.exception.TryCountException;
 
 public class TryCountParser {
 
@@ -11,16 +11,16 @@ public class TryCountParser {
 
     private void validateTryCount(String input) {
         if (isBlankTryCount(input)) {
-            throw new TryCountBlankException();
+            throw new TryCountException("시도 횟수는 공백일 수 없습니다.");
         }
-        if (isFloat(input)) {
-            throw new IllegalArgumentException("시도 횟수는 실수가 될 수 없습니다.");
+        if (isFloatTryCount(input)) {
+            throw new TryCountException("시도 횟수는 실수가 될 수 없습니다.");
         }
-        if (isNegative(input)) {
-            throw new IllegalArgumentException("시도 횟수는 음수가 될 수 없습니다.");
+        if (isNegativeTryCount(input)) {
+            throw new TryCountException("시도 횟수는 음수가 될 수 없습니다.");
         }
-        if (isZero(input)) {
-            throw new IllegalArgumentException("시도 횟수는 0이 될 수 없습니다.");
+        if (isZeroTryCount(input)) {
+            throw new TryCountException("시도 횟수는 0이 될 수 없습니다.");
         }
     }
 
