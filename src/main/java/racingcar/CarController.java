@@ -3,27 +3,23 @@ package racingcar;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
 
 public class CarController {
 
-    private List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
     public void add(Car car) {
         cars.add(car);
     }
 
     public List<Car> findWinners() {
-        List<Car> winners = new ArrayList<>();
-
         Car maxPositionCar = getMaxPositionCar();
-        for (Car car : cars) {
-            if (car.isSamePositionWith(maxPositionCar)) {
-                winners.add(car);
-            }
-        }
-
-
-        return winners;
+        return cars.stream()
+                .filter(car -> car.isSamePositionWith(maxPositionCar))
+                .collect(toList());
     }
 
     private Car getMaxPositionCar() {
