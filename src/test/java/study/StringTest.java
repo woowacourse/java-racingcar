@@ -5,10 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
@@ -21,7 +17,6 @@ public class StringTest {
         String[] actual = input.split(",");
 
         assertThat(actual).contains("1", "2");
-
     }
 
     @Test
@@ -32,5 +27,4 @@ public class StringTest {
 
         assertThat(actual).containsExactly("1");
     }
-
 }
