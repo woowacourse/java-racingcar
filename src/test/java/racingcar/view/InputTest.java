@@ -42,6 +42,11 @@ class InputTest {
         assertTrue(input.isBlank(" "));
     }
 
+    @Test
+    void 시도횟수_문자_예외_테스트() {
+        assertFalse(input.isNumber("횟수"));
+    }
+
     String[] split(String text) {
         return text.split(",");
     }
