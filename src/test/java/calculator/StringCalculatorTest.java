@@ -34,4 +34,10 @@ public class StringCalculatorTest {
 		int result = StringCalculator.add("//;/n1;2");
 		assertThat(result).isEqualTo(3);
 	}
+
+	@Test
+	public void negativeNumberExceptionTest() {
+		assertThatThrownBy(()-> StringCalculator.add("-1;2"))
+			.isInstanceOf(RuntimeException.class);
+	}
 }
