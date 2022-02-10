@@ -30,4 +30,14 @@ public class RacingGame {
     public int getLeftCount() {
         return leftCount;
     }
+
+    public void start() {
+        for (; leftCount > 0; leftCount--) {
+
+        }
+    }
+
+    public boolean isEnd() {
+        return leftCount == 0;
+    }
 }
