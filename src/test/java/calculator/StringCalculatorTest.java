@@ -22,7 +22,7 @@ public class StringCalculatorTest {
     @Test
     void 커스텀_구분자_입력_성공() {
         int result = StringCalculator.splitAndSum("//*\n1*2");
-        assertThat(result).isEqualTo(-1);
+        assertThat(result).isEqualTo(3);
     }
 
     @Test
@@ -46,4 +46,17 @@ public class StringCalculatorTest {
                 .hasMessage("구분자로 숫자를 사용할 수 없습니다.");
     }
 
+    @Test
+    void 커스텀_구분자_덧셈_성공() {
+        int result = StringCalculator.splitAndSum("//*\n1*2");
+        assertThat(result).isEqualTo(3);
+    }
+
+
+    @Test
+    void 입력값_음수_실패() {
+        assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("입력값은 0 이상이어야 합니다.");
+    }
 }
