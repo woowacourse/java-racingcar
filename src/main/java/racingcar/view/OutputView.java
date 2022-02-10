@@ -2,6 +2,8 @@ package racingcar.view;
 
 import java.util.List;
 
+import racingcar.utils.Delimiter;
+
 public class OutputView {
 
 	public void printMessage(String message) {
@@ -29,8 +31,7 @@ public class OutputView {
 	}
 
 	public void printMessageOfWinners(List<String> winnerNames) {
-		String message = String.join(", ", winnerNames)
-			+ "가 최종 우승했습니다.";
+		String message = Delimiter.joinWithComma(winnerNames) + "가 최종 우승했습니다.";
 		printMessage(message);
 	}
 }

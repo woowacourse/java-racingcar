@@ -1,5 +1,7 @@
 package racingcar.utils;
 
+import java.util.List;
+
 public enum Delimiter {
 
 	COMMA(","),
@@ -19,6 +21,10 @@ public enum Delimiter {
 
 	public static String appendSpaceBehind(String targetString) {
 		return targetString + SPACE.value;
+	}
+
+	public static String joinWithComma(List<String> strings) {
+		return String.join(COMMA.value + SPACE.value, strings);
 	}
 
 	public static String concatWithColon(String preString, String postString) {
