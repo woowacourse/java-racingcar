@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import racingcar.util.IntegerConst;
+
 public class Car {
 	private final String name;
 	private int position;
@@ -17,8 +19,10 @@ public class Car {
 		return this.position;
 	}
 
-	public void movePosition() {
-		++this.position;
+	public void movePosition(int number) {
+		if (number > IntegerConst.MOVE_BOUND.getValue()) {
+			++this.position;
+		}
 	}
 
 	public Boolean isMaxPosition(int maxPosition) {

@@ -18,4 +18,14 @@ public class CarList {
 		}
 		return maxPos;
 	}
+
+	public int getSize() {
+		return this.carList.size();
+	}
+
+	public void moveCars(ArrayList<Integer> numbers) {
+		for (int index = 0; index < numbers.size(); index++) {
+			this.carList.get(index).movePosition(numbers.get(index));
+		}
+	}
 }
