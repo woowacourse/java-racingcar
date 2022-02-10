@@ -7,6 +7,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
+	private static final String ERROR_MESSAGE = "[ERROR]";
+
 	@Test
 	public void 차_생성() {
 		String name = "forky";
@@ -25,6 +27,13 @@ public class CarTest {
 	public void 이름_5글자_이상() {
 		assertThatThrownBy(() -> new Car("abcdef"))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessageStartingWith("[ERROR]");
+			.hasMessageStartingWith(ERROR_MESSAGE);
+	}
+
+	@Test
+	public void 공백_이름() {
+		assertThatThrownBy(() -> new Car(""))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageStartingWith(ERROR_MESSAGE);
 	}
 }
