@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import racingcar.model.CarList;
@@ -10,4 +11,7 @@ public class OutputViewController {
 		return carList.getCarInfo();
 	}
 
+	public ArrayList<String> mapWinner(CarList carList) {
+		return carList.getWinner();
+	}
 }

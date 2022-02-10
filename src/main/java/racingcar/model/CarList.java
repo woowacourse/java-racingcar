@@ -39,4 +39,16 @@ public class CarList {
 		}
 		return carInfo;
 	}
+
+	public ArrayList<String> getWinner() {
+		List<String> winnerNames = this.carList.stream()
+			.filter(car -> car.isMaxPosition(getMaxPosition()))
+			.map(Car::getName)
+			.collect(Collectors.toList());
+		ArrayList<String> winners = new ArrayList<>();
+		for (String names : winnerNames) {
+			winners.add(names);
+		}
+		return winners;
+	}
 }
