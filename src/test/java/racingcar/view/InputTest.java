@@ -44,7 +44,7 @@ class InputTest {
 
     @Test
     void 시도횟수_음수_테스트() {
-        assertTrue(input.isNegative(-1));
+        assertTrue(input.isNegative("-1"));
     }
 
     String[] split(String text) {
