@@ -17,5 +17,6 @@ public class MainController {
         tryNum = InputController.inputTryNum();
 
         CarController.raceStart(carList, tryNum);
+        CarController.finalWinner(carList);
     }
 }

@@ -18,6 +18,10 @@ public class Car {
         return name;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     public void goForward() {
         if (random.nextInt(10) >= GO_MINIMUM) {
             position += 1;
