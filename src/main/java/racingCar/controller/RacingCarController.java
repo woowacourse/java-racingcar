@@ -17,7 +17,7 @@ public class RacingCarController {
 	public void start() {
 		List<Car> winners;
 		String[] carNames = getAndSeparateCarNames();
-		racingCarTimes();
+		getCarTimes();
 		makeCars(carNames);
 		race(times);
 		winners = findWinner(cars);
@@ -53,18 +53,14 @@ public class RacingCarController {
 		}
 	}
 
-	private void racingCarTimes() {
+	private void getCarTimes() {
 		String inputRacingTimes = InputView.userStringInput(INPUT_COUNT_MESSAGE);
-		enterTimes(inputRacingTimes);
-	}
-
-	public void enterTimes(String input) {
 		try {
-			isRightTimes(input);
-			times = Integer.parseInt(input);
+			isRightTimes(inputRacingTimes);
+			times = Integer.parseInt(inputRacingTimes);
 		} catch (RuntimeException e) {
 			OutputView.printError(e.getMessage());
-			racingCarTimes();
+			getCarTimes();
 		}
 	}
 
