@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.service.Movement;
 import racingcar.utils.ExceptionMessage;
 
 import java.util.List;
@@ -19,5 +20,9 @@ public class Cars {
         if (carNames.stream().distinct().count() != carNames.size()) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_CAR_NAMES);
         }
+    }
+
+    public void move(Movement movement) {
+        cars.forEach(car -> car.move(movement.move()));
     }
 }
