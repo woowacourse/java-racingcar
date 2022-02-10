@@ -21,4 +21,13 @@ public class Parser {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void isValidRounds(String round) {
+        if (!round.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException();
+        }
+        if (Integer.parseInt(round) < 1) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
