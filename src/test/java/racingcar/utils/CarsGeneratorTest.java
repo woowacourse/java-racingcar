@@ -19,9 +19,11 @@ class CarsGeneratorTest {
 		assertThatThrownBy(
 			() -> CarsGenerator.generateCars("pobi,crdong,honux")
 		).isInstanceOf(IllegalArgumentException.class);
+
 		assertThatThrownBy(
 			() -> CarsGenerator.generateCars(" ,   , ")
 		).isInstanceOf(IllegalArgumentException.class);
+
 		assertThatThrownBy(
 			() -> CarsGenerator.generateCars(",,,,")
 		).isInstanceOf(IllegalArgumentException.class);

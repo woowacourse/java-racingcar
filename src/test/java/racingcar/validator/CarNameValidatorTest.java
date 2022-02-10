@@ -16,6 +16,7 @@ public class CarNameValidatorTest {
 	void 이름_유효성_체크(){
 		assertThatThrownBy(()->CarNameValidator.validate(""))
 			.isInstanceOf(IllegalArgumentException.class);
+
 		assertThatThrownBy(()->CarNameValidator.validate("  "))
 			.isInstanceOf(IllegalArgumentException.class);
 	}

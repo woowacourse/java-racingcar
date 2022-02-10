@@ -24,10 +24,13 @@ public class RacingCarOutput {
 	}
 
 	public static void printWinners(List<Car> winners) {
-		String winnerNames = winners.stream()
+		System.out.println(toWinnerNameString(winners) + WINNER_MESSAGE);
+	}
+
+	private static String toWinnerNameString(List<Car> winners) {
+		return winners.stream()
 			.map(Car::getName)
 			.collect(Collectors.joining(", "));
-		System.out.println(winnerNames + WINNER_MESSAGE);
 	}
 
 }

@@ -2,7 +2,6 @@ package racingcar.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
 import racingcar.ui.RacingCarOutput;
@@ -17,12 +16,24 @@ public class RacingService {
 		this.cars = cars;
 	}
 
-
-
 	public void race(int round) {
 		for (int i = 0; i < round; i++) {
 			raceRound();
 		}
+	}
+
+	public List<Car> findWinners() {
+		List<Car> winners = new ArrayList<>();
+		int maxPosition = findMaxPosition();
+		cars.forEach((car) -> addWinner(winners, maxPosition, car));
+		return winners;
+	}
+
+	private int findMaxPosition() {
+		return cars.stream()
+			.mapToInt(Car::getPosition)
+			.max()
+			.orElseThrow(IllegalStateException::new);
 	}
 
 	private void raceRound() {
@@ -31,18 +42,6 @@ public class RacingService {
 		);
 		RacingCarOutput.printRoundResult(cars);
 		System.out.println();
-	}
-
-	public List<Car> findWinners() {
-		List<Car> winners = new ArrayList<>();
-
-		int maxPosition = cars.stream()
-			.mapToInt(Car::getPosition)
-			.max()
-			.orElseThrow(IllegalStateException::new);
-
-		cars.forEach((car) -> addWinner(winners, maxPosition, car));
-		return winners;
 	}
 
 	private void addWinner(List<Car> winners, int maxPosition, Car car) {

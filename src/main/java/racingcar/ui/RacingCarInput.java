@@ -15,8 +15,7 @@ public class RacingCarInput {
 		= "시도할 회수는 몇회인가요?";
 
 	public static List<Car> carNameInput() {
-		System.out.println(CAR_NAME_INPUT_MESSAGE);
-		String userInput = sc.nextLine();
+		String userInput = userCarNameInput();
 		try {
 			return CarsGenerator.generateCars(userInput);
 		} catch (IllegalArgumentException e) {
@@ -25,15 +24,28 @@ public class RacingCarInput {
 		}
 	}
 
+	private static String userCarNameInput() {
+		System.out.println(CAR_NAME_INPUT_MESSAGE);
+		return sc.nextLine();
+	}
+
 	public static int roundInput() {
-		System.out.println(ROUND_INPUT_MESSAGE);
-		String roundNumberString = sc.nextLine();
+		String roundNumberString = userRoundInput();
 		try {
-			RoundNumberValidator.validate(roundNumberString);
-			return Integer.parseInt(roundNumberString);
+			return toIntWithValidate(roundNumberString);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return roundInput();
 		}
+	}
+
+	private static int toIntWithValidate(String roundNumberString) {
+		RoundNumberValidator.validate(roundNumberString);
+		return Integer.parseInt(roundNumberString);
+	}
+
+	private static String userRoundInput() {
+		System.out.println(ROUND_INPUT_MESSAGE);
+		return sc.nextLine();
 	}
 }

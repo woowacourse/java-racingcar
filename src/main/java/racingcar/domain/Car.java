@@ -13,6 +13,24 @@ public class Car {
 		this.position = 0;
 	}
 
+	public void proceed(int randomNumber) {
+		if (randomNumber >= PROCEED_FlAG_NUMBER) {
+			this.position++;
+		}
+	}
+
+	public boolean isWinner(int maxPosition) {
+		return this.position == maxPosition;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -26,23 +44,5 @@ public class Car {
 	@Override
 	public int hashCode() {
 		return Objects.hash(getName(), getPosition());
-	}
-
-	public void proceed(int randomNumber) {
-		if (randomNumber >= PROCEED_FlAG_NUMBER) {
-			this.position++;
-		}
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public int getPosition() {
-		return position;
-	}
-
-	public boolean isWinner(int maxPosition) {
-		return this.position == maxPosition;
 	}
 }
