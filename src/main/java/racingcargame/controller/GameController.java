@@ -19,5 +19,7 @@ public class GameController {
 
         OutputView.showCarNamesInputGuideMessage();
         racingCarGame.orderToSaveCars(inputController.inputCarName());
+
+        OutputView.showRaceCountInputGuideMessage();
     }
 }
