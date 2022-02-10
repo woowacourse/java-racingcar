@@ -11,7 +11,6 @@ public class CheckException extends Throwable {
 	static final String SplitOk2_ERROR_MESSAGE = "2구분자가 올바르지 않은 위치에 있습니다!";
 	static final String SplitOk3_ERROR_MESSAGE = "3구분자가 올바르지 않은 위치에 있습니다!";
 
-
 	public static void check(String[] array) {
 		for (String s : array) {
 			checkNull(s);
@@ -34,18 +33,17 @@ public class CheckException extends Throwable {
 	}
 
 	public static void checkSplitOk(String string, String regex) {
-		if (regex.contains(Character.toString(string.charAt(0)))){
+		if (regex.contains(Character.toString(string.charAt(0)))) {
 			throw new RuntimeException(SplitOk1_ERROR_MESSAGE);
 		}
 		if (regex.contains(Character.toString(string.charAt(string.length() - 1)))) {
 			throw new RuntimeException(SplitOk2_ERROR_MESSAGE);
 		}
-		Matcher mMid= Pattern.compile("(.)[" + regex + "]{2,}(.)*").matcher(string);
+		Matcher mMid = Pattern.compile("(.)[" + regex + "]{2,}(.)*").matcher(string);
 		if (mMid.matches()) {
 			throw new RuntimeException(SplitOk3_ERROR_MESSAGE);
 		}
 
 	}
-
 
 }
