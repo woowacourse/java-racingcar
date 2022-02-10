@@ -10,7 +10,7 @@ public class Count {
     }
 
     private void validateNegative(int number) {
-        if(number < 0) {
+        if (number < 0) {
             throw new IllegalArgumentException();
         }
     }
