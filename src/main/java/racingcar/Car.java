@@ -3,10 +3,10 @@ package racingcar;
 public class Car {
     private static final int ADVANCE_STANDARD = 4;
 
-    private final String name;
+    private final Name name;
     private int position;
 
-    public Car(String name) {
+    public Car(Name name) {
         this.name = name;
     }
 
@@ -16,7 +16,7 @@ public class Car {
         }
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 

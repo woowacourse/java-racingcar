@@ -7,12 +7,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
-
     @Test
     @DisplayName("이름으로 자동차 생성 테스트")
     void carTest() {
         // given
-        String testName = "testCar";
+        Name testName = Name.of("testCar");
 
         // when
         Car car = new Car(testName);
@@ -26,7 +25,7 @@ public class CarTest {
     @DisplayName("자동차 전진 테스트")
     void advanceTest(int number, int expected) {
         // given
-        Car car = new Car("testCar");
+        Car car = new Car(Name.of("testCar"));
 
         // when
         car.advance(number);
@@ -34,7 +33,4 @@ public class CarTest {
         // then
         assertThat(car.getPosition()).isEqualTo(expected);
     }
-
-
-
 }
