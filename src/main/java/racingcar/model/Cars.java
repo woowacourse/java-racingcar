@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import racingcar.util.RandomGenerator;
+
 public class Cars {
 	private static final String NEW_LINE = System.lineSeparator();
+	private static final int MIN = 0;
+	private static final int MAX = 9;
 
 	private final List<Car> cars = new ArrayList<>();
 
@@ -16,6 +20,12 @@ public class Cars {
 		}
 		for (String carName : carNameArray) {
 			cars.add(new Car(carName));
+		}
+	}
+
+	public void moveAll() {
+		for (Car car : cars) {
+			car.go(RandomGenerator.generateNumber(MIN, MAX + 1));
 		}
 	}
 

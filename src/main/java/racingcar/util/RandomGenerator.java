@@ -11,12 +11,4 @@ public class RandomGenerator {
 		}
 		return min + random.nextInt(max - min);
 	}
-
-	public static int[] generateNumbers(int cnt, int min, int max) {
-		int[] numbers = new int[cnt];
-		for (int i = 0; i < cnt; i++) {
-			numbers[i] = generateNumber(min, max);
-		}
-		return numbers;
-	}
 }
