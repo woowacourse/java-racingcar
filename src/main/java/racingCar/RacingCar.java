@@ -1,13 +1,15 @@
 package racingCar;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RacingCar {
+	private ArrayList<Car> cars = new ArrayList<>();
 
 	public void start() {
 		String[] carNames = racingCarNames();
 		int count = racingCarTimes();
-
+		makeCars(carNames);
 	}
 
 	private String[] racingCarNames() {
@@ -68,4 +70,9 @@ public class RacingCar {
 		}
 	}
 
+	private void makeCars(String[] carNames) {
+		for (String carName : carNames) {
+			cars.add(new Car(carName));
+		}
+	}
 }
