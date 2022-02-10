@@ -38,6 +38,19 @@ public class NameTest {
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
+        @ParameterizedTest
+        @ValueSource(strings = {"hudi", "tonic", "a", "토닉", "후디", "123"})
+        void 올바른_형식의_문자열이라면(String input) {
+            assertDoesNotThrow(() -> Name.from(input));
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {" ", "ton*&", "?a1"})
+        void 올바른_형식의_문자열이_아니라면(String input) {
+            assertThatThrownBy(() -> Name.from(input))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
     }
 
 }
