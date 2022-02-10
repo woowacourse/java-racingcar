@@ -12,4 +12,8 @@ public class InputView {
 		return bufferedReader.readLine();
 	}
 
+	public static String inputTryCount() throws IOException {
+		System.out.println("시도할 회수는 몇회인가요?");
+		return bufferedReader.readLine();
+	}
 }
