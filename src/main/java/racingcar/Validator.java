@@ -13,6 +13,12 @@ public class Validator {
     private static String ERROR_NUMBER_OVER_ONE = "[ERROR] 횟수는 1 이상이어야 합니다.";
     private static String ERROR_NUMBER_NOT_DIGIT = "[ERROR] 횟수는 숫자로 입력해야 합니다.";
 
+    public static void validateEachCarName(String[] names) {
+        validateCarCount(names);
+        validateNameLength(names);
+        validateDuplicateName(names);
+    }
+
     public static void validateBlank(String names) {
         for (int i = 0; i < names.length(); i++) {
             checkBlank(names, i);
