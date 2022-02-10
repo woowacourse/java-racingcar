@@ -1,8 +1,8 @@
-package racingcar.controller;
+package racingcar.controller.picker;
 
 import java.util.Random;
 
-public class RandomNumberPicker implements NumberPicker{
+public class RandomNumberPicker implements NumberPicker {
 
 	private final Random random;
 

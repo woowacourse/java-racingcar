@@ -1,4 +1,4 @@
-package racingcar.view;
+package racingcar.view.input;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,18 +6,18 @@ import java.util.stream.Collectors;
 
 import racingcar.exception.round.RoundNotNumericException;
 import racingcar.utils.Delimiter;
-import racingcar.view.reader.DataReader;
+import racingcar.view.input.reader.Reader;
 
 public class InputView {
 
-	private final DataReader dataReader;
+	private final Reader reader;
 
-	public InputView(DataReader dataReader) {
-		this.dataReader = dataReader;
+	public InputView(Reader reader) {
+		this.reader = reader;
 	}
 
 	public List<String> requestCarNames() {
-		return parsingNames(dataReader.readLine());
+		return parsingNames(reader.readLine());
 	}
 
 	private List<String> parsingNames(String inputValue) {
@@ -31,7 +31,7 @@ public class InputView {
 	}
 
 	public int requestRoundNumber() {
-		return parsingNumber(dataReader.readLine());
+		return parsingNumber(reader.readLine());
 	}
 
 	private int parsingNumber(String inputValue) {

@@ -2,10 +2,11 @@ package racingcar.controller;
 
 import java.util.List;
 
+import racingcar.controller.picker.NumberPicker;
 import racingcar.domain.CarCollection;
 import racingcar.domain.Round;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
+import racingcar.view.input.InputView;
+import racingcar.view.output.OutputView;
 
 public class RacingCarController {
 

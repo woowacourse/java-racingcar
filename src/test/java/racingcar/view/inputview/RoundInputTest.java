@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import racingcar.exception.round.RoundNotNumericException;
 import racingcar.view.CustomReader;
-import racingcar.view.InputView;
+import racingcar.view.input.InputView;
 
 public class RoundInputTest {
 

@@ -1,10 +1,10 @@
 package racingcar;
 
 import racingcar.controller.RacingCarController;
-import racingcar.controller.RandomNumberPicker;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
-import racingcar.view.reader.ConsoleReader;
+import racingcar.controller.picker.RandomNumberPicker;
+import racingcar.view.input.InputView;
+import racingcar.view.input.reader.ConsoleReader;
+import racingcar.view.output.OutputView;
 
 public class RacingCarApplication {
 

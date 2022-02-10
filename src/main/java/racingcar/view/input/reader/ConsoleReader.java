@@ -1,4 +1,4 @@
-package racingcar.view.reader;
+package racingcar.view.input.reader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 import racingcar.exception.reader.ReaderIoException;
 
-public class ConsoleReader implements DataReader {
+public class ConsoleReader implements Reader {
 
 	public String readLine() {
 		try {

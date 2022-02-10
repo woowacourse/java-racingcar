@@ -1,8 +1,8 @@
 package racingcar.view;
 
-import racingcar.view.reader.DataReader;
+import racingcar.view.input.reader.Reader;
 
-public class CustomReader implements DataReader {
+public class CustomReader implements Reader {
 
 	private String text = "";
 
