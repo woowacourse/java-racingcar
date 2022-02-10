@@ -52,4 +52,11 @@ public class TryCountParserTest {
             .isInstanceOf(TryCountException.class)
             .hasMessageContaining("시도 횟수는 공백일 수 없습니다.");
     }
+
+    @Test
+    public void 널일때_예외_발생() {
+        assertThatThrownBy(() -> parser.parse(null))
+            .isInstanceOf(TryCountException.class)
+            .hasMessageContaining("시도 횟수는 NULL값일 수 없습니다.");
+    }
 }

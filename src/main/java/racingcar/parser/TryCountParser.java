@@ -10,10 +10,17 @@ public class TryCountParser {
     }
 
     private void validateTryCount(String input) {
+        checkNullTryCount(input);
         checkBlankTryCount(input);
         checkFloatTryCount(input);
         checkNegativeTryCount(input);
         checkZeroTryCount(input);
+    }
+
+    private void checkNullTryCount(String input) {
+        if (input == null) {
+            throw new TryCountException("시도 횟수는 NULL값일 수 없습니다.");
+        }
     }
 
     private void checkBlankTryCount(String input) {
