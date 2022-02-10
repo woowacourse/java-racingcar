@@ -12,7 +12,7 @@ public class RacingGame implements Runnable {
         Cars cars = new Cars(InputNameHandler.createNames(input.inputCarNames()));
         int trials = input.inputTrials();
         for (int round = 0; round < trials; round++) {
-
+            cars.move();
         }
     }
 

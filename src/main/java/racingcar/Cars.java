@@ -15,4 +15,8 @@ public class Cars {
             .map(Car::new)
             .collect(Collectors.toList());
     }
+
+    public void move() {
+        cars.forEach(car -> car.advance(RandomUtil.getNumbersInRange(10)));
+    }
 }
