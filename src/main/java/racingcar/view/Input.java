@@ -40,9 +40,7 @@ public class Input {
     }
 
     public void allCarsValid(String names) {
-        if (isBlank(names)) {
-            throw new IllegalArgumentException("자동차 이름은 공백일 수 없습니다.");
-        }
+        checkBlank(names, "자동차 이름은 공백일 수 없습니다.");
         String[] cars = names.split(",");
         if (!isCars(cars)) {
             throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
@@ -55,17 +53,15 @@ public class Input {
 
     private void nameValid(String[] cars) {
         for (String name : cars) {
-            if (isBlank(name)) {
-                throw new IllegalArgumentException("자동차 이름은 공백일 수 없습니다.");
-            }
-            if (!isValidLength(name)) {
-                throw new IllegalArgumentException("자동차의 이름은 5글자를 초과할 수 없습니다.");
-            }
+            checkBlank(name, "반복횟수는 공백일 수 없습니다.");
+            validLength(name);
         }
     }
 
-    public boolean isBlank(String name) {
-        return name.trim().isEmpty();
+    public void checkBlank(String name, String text) {
+        if (name.trim().isEmpty()) {
+            throw new IllegalArgumentException(text);
+        }
     }
 
     public boolean isCars(String[] names) {
@@ -77,8 +73,10 @@ public class Input {
         return carNames.size() != names.length;
     }
 
-    public boolean isValidLength(String name) {
-        return name.trim().length() <= 5;
+    public void validLength(String name) {
+        if (!(name.trim().length() <= 5)) {
+            throw new IllegalArgumentException("자동차의 이름은 5글자를 초과할 수 없습니다.");
+        }
     }
 
     private void attemptValid(String attempt) {

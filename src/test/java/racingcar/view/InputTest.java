@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -14,7 +15,9 @@ class InputTest {
     @ParameterizedTest
     @ValueSource(strings = {" "})
     void 자동차_이름_공백_테스트(String name) {
-        assertTrue(input.isBlank(name));
+        assertThatThrownBy(() -> {
+            input.checkBlank(name, "자동차 이름은 공백일 수 없습니다.");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -29,12 +32,16 @@ class InputTest {
 
     @Test
     void 자동차_이름_길이_테스트() {
-        assertFalse(input.isValidLength("gooddd"));
+        assertThatThrownBy(() -> {
+            input.validLength("gooddd");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 시도횟수_공백_테스트() {
-        assertTrue(input.isBlank(" "));
+        assertThatThrownBy(() -> {
+            input.checkBlank(" ", "시는수횟도도 공백일 수 없습니다.");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
