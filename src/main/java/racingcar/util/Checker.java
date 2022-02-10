@@ -48,6 +48,14 @@ public class Checker {
 		}
 	}
 
+	private void isIntNum(String str) throws IllegalArgumentException {
+		try {
+			Integer.parseInt(str);
+		} catch (Exception e) {
+			throw new IllegalArgumentException(StringConst.ERROR_INT_NUM.getValue());
+		}
+	}
+
 	public String checkNameConditions(String str) {
 		try {
 			isNull(str);
