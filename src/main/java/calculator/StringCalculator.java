@@ -121,8 +121,7 @@ public class StringCalculator {
 	}
 
 	private static void delimiterNumberException(String delimiter) {
-		char delimiterChar = delimiter.charAt(0);
-		if (delimiterChar >= '0' && delimiterChar <= '9') {
+		if (Character.isDigit(delimiter.charAt(0))) {
 			throw new RuntimeException("정수는 커스텀 구분자로 지정할 수 없습니다.");
 		}
 	}
