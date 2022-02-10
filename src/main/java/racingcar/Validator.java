@@ -97,4 +97,17 @@ public class Validator {
             throw new IllegalArgumentException("입력 횟수는 숫자여야 합니다.");
         }
     }
+
+    private static void checkMaximumCount(int count) {
+        if (count >= MAXIMUM_COUNT) {
+            throw new IllegalArgumentException("입력횟수는 50 이하의 정수여야 합니다.");
+
+        }
+    }
+
+    private static void checkMinimumCount(int count) {
+        if (count < MINIMUM_COUNT) {
+            throw new IllegalArgumentException("입력횟수는 1 이상의 정수여야 합니다.");
+        }
+    }
 }
