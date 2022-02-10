@@ -2,6 +2,8 @@ package racingcar.vo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -37,5 +39,14 @@ public class Cars {
     }
     stringBuilder.append(System.lineSeparator());
     return stringBuilder.toString();
+  }
+
+  public List<Car> getWinners() {
+    Car maxPositionCar = cars.stream()
+        .max(Car::compareTo)
+        .orElseThrow(() -> new NoSuchElementException("car가 없어요!"));
+    return cars.stream()
+        .filter(car -> car.isSamePosition(maxPositionCar))
+        .collect(Collectors.toList());
   }
 }

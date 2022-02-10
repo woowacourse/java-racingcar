@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.List;
 import java.util.Scanner;
 import racingcar.vo.Attempt;
 import racingcar.vo.Car;
@@ -20,6 +21,7 @@ public class RacingCar {
     String attemptInput = readNextLine();
     Attempt attempt = new Attempt(attemptInput);
     String raceResult = cars.repeatRace(attempt);
+    List<Car> winners = cars.getWinners();
   }
 
   public String readNextLine() {

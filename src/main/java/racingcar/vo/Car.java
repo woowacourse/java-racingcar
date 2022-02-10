@@ -3,7 +3,7 @@ package racingcar.vo;
 import static racingcar.util.RandomUtil.createNumber;
 import static racingcar.util.MovementUtil.isMoveForward;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
   private CarName name;
   private Position position;
@@ -17,6 +17,10 @@ public class Car {
     return car.name.equals(this.name);
   }
 
+  public boolean isSamePosition(Car car) {
+    return position.compareTo(car.position) == 0;
+  }
+
   public boolean move() {
     if (isMoveForward(createNumber())) {
       position.increase();
@@ -24,6 +28,10 @@ public class Car {
     }
     return false;
   }
+
+  @Override
+  public int compareTo(Car o) {
+    return position.compareTo(o.position);
   }
 
   @Override
