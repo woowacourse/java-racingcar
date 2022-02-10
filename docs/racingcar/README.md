@@ -1,6 +1,6 @@
-##1단계 - 자동차 경주
+## 1단계 - 자동차 경주
 
-##요구사항 기능목록
+## 요구사항 기능목록
 
 **자동차 이름 입력받기**
 
@@ -44,9 +44,10 @@
 <br>
 
 
-##Class 구조
+## Class 구조
 - domain
   - Car
+  - CarDto
 - repository
   - CarRepository
 - service 
@@ -58,25 +59,41 @@
   - OutputView
 - validator
   - Validator
+- util
+  - Converter
+  - RandomUtil
+  - RandomUtilImpl
 
 
-###Car
+### Car
 - 전진/정지한다.
 
-###CarRepository
+### CarDto
+- Car 객체의 name, position 필드를 가지는 Dto
+
+### CarRepository
 - Car 객체를 저장한다.
 
-###RacingService
+### RacingService
 - 자동차 경주 핵심 로직을 수행한다.
 
-###RacingController
+### RacingController
 - 애플리케이션 흐름을 제어한다.
 
-###InputView
+### InputView
 - 자동차 이름, 시도 횟수를 입력받는다.
 
-###OutputView
+### OutputView
 - 자동차 경주 결과를 출력한다.
 
-###Validator
+### Validator
 - 입력값이 유효한 값인지 검증한다.
+
+### Converter
+- 입력 값을 알맞은 객체나 타입으로 변환한다.
+
+### RandomUtil
+- 랜덤 값 생성 메소드를 가지는 인터페이스
+
+### RandomUtilImpl
+- RandomUtil을 구현한 클래스
