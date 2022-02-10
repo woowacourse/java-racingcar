@@ -5,18 +5,19 @@ import java.util.Scanner;
 public class RacingCar {
 
 	public void start() {
-		racingCarNames();
-		racingCarTimes();
+		String[] carNames = racingCarNames();
+		int count = racingCarTimes();
+
 	}
 
-	private void racingCarNames() {
+	private String[] racingCarNames() {
 		String inputCarName = userInput("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-		String[] carNames = getCarNames(inputCarName);
+		return getCarNames(inputCarName);
 	}
 
-	private void racingCarTimes() {
+	private int racingCarTimes() {
 		String inputRacingTimes = userInput("시도할 횟수는 몇회인가요?");
-		int times = enterTimes(inputRacingTimes);
+		return enterTimes(inputRacingTimes);
 	}
 
 	private String userInput(String message) {
@@ -50,6 +51,21 @@ public class RacingCar {
 	}
 
 	public int enterTimes(String input) {
+		try {
+			isRightTimes(input);
+
+		} catch (RuntimeException e) {
+			System.out.println("[ERROR] 시도 횟수는 양수인 정수여야 합니다. 다시 입력해주세요.");
+			racingCarTimes();
+		}
 		return Integer.parseInt(input);
 	}
+
+	public void isRightTimes(String input) throws RuntimeException {
+		final String REGEX = "[0-9]+";
+		if (!input.matches(REGEX)) {
+			throw new RuntimeException();
+		}
+	}
+
 }
