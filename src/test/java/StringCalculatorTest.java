@@ -11,9 +11,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class StringCalculatorTest {
     private final StringCalculator stringCalculator = new StringCalculator();
 
+    @ParameterizedTest
+    @DisplayName("기본 구분자로 구분한 값들을 더해서 반환하다.")
+    @ValueSource(strings = {"1,2,3", "1:2:3", "1,2:3"})
+    void calculate_basicDelimiter(String expression) {
+        int actual = stringCalculator.calculate(expression);
+        int expected = 6;
+        assertThat(actual).isEqualTo(expected);
+    }
+
     @Test
     @DisplayName("사용자 지정 구분자로 구분한 값들을 더해서 반환한다.")
-    void calculate() {
+    void calculate_customizedDelimiter() {
         String expression = "//;\n1;2;3";
         int actual = stringCalculator.calculate(expression);
         int expected = 6;
