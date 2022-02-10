@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingCarGameTest {
+    RacingCarGame racingCarGame = new RacingCarGame();
 
     @Test
     void 입력받은_자동차_개수_테스트() {
@@ -21,9 +22,14 @@ public class RacingCarGameTest {
 
     @Test
     void 입력받은_경주_회수_테스트() {
-        RacingCarGame racingCarGame = new RacingCarGame();
         racingCarGame.orderToSaveRaceCount(4);
-
         assertThat(RaceCount.getCount()).isEqualTo(4);
+    }
+
+    @Test
+    void 경주_회수_감소_테스트() {
+        racingCarGame.orderToSaveRaceCount(4);
+        RaceCount.reduceRaceCount();
+        assertThat(RaceCount.getCount()).isEqualTo(3);
     }
 }
