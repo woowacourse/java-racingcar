@@ -48,4 +48,14 @@ public class RacingGameTest {
             .isThrownBy(() -> new RacingGame("pobi,crong,honux", count))
             .withMessageMatching("시도횟수는 0이하의 값이 들어올 수 없다.");
     }
+
+    @Test
+    @DisplayName("게임이 종료되었는데 race할 경우 exception이 발생한다.")
+    void raceEndException() {
+        RacingGame game = new RacingGame("pobi,crong,honux", 5);
+        game.race();
+        assertThatExceptionOfType(RuntimeException.class)
+            .isThrownBy(() -> game.race())
+            .withMessageMatching("종료된 게임은 더이상 실행할 수 없다.");
+    }
 }

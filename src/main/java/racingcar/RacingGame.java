@@ -40,6 +40,9 @@ public class RacingGame {
     }
 
     public void race() {
+        if (isEnd()) {
+            throw new RuntimeException("종료된 게임은 더이상 실행할 수 없다.");
+        }
         while (!isEnd()) {
             moveCars();
         }
