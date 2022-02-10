@@ -7,6 +7,7 @@ public class Validator {
 
     private static int MAX_COUNT = 5;
     private static String ERROR_NAME_HAS_BLANK = "[ERROR] 이름에 공백이 존재합니다.";
+    private static String ERROR_NO_NAME = "[ERROR] 이름 입력은 필수입니다.";
     private static String ERROR_CAR_COUNT = "[ERROR] 자동차는 5대 이하이어야 합니다.";
     private static String ERROR_NAME_LENGTH = "[ERROR] 이름은 5자 이하이어야 합니다.";
     private static String ERROR_DUPLICATE_NAME = "[ERROR] 중복된 이름입니다.";
@@ -14,6 +15,7 @@ public class Validator {
     private static String ERROR_NUMBER_NOT_DIGIT = "[ERROR] 횟수는 숫자로 입력해야 합니다.";
 
     public static void validateEachCarName(String[] names) {
+        validateNoNames(names);
         validateCarCount(names);
         validateNameLength(names);
         validateDuplicateName(names);
@@ -28,6 +30,18 @@ public class Validator {
     private static void checkBlank(String names, int i) {
         if (Character.isWhitespace(names.charAt(i))) {
             throw new IllegalArgumentException(ERROR_NAME_HAS_BLANK);
+        }
+    }
+
+    public static void validateNoNames(String[] names) {
+        for (String name : names) {
+            checkNoName(name);
+        }
+    }
+
+    private static void checkNoName(String name) {
+        if (name.length() == 0) {
+            throw new IllegalArgumentException(ERROR_NO_NAME);
         }
     }
 

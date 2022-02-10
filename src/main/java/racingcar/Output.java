@@ -15,7 +15,7 @@ public class Output {
     }
 
     public static void printResultMessage() {
-        System.out.println(RESULT_MESSAGE);
+        System.out.println("\n" + RESULT_MESSAGE);
     }
 
     public static void printMessage(String message) {

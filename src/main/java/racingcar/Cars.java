@@ -11,6 +11,12 @@ public class Cars {
         cars.add(car);
     }
 
+    public void moveCars() {
+        for (Car car : cars) {
+            car.goForward();
+        }
+    }
+
     public String getWinners() {
         int maxPosition = getMaxPosition();
         List<String> names = addWinnerNames(maxPosition);

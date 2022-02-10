@@ -2,6 +2,7 @@ package racingcar;
 
 import java.util.Scanner;
 
+import static racingcar.Output.*;
 import static racingcar.Validator.*;
 
 public class Input {
@@ -10,15 +11,17 @@ public class Input {
     private static String SPLIT_DELIMITER = ",";
 
     public static String[] insertRightName() {
-        String input = scanner.next();
+        printCarNamesMessage();
+        String input = scanner.nextLine();
         validateBlank(input);
-        String[] names = input.split(SPLIT_DELIMITER);
+        String[] names = input.split(SPLIT_DELIMITER, -1);
         validateEachCarName(names);
         return names;
     }
 
     public static int insertRightNumber() {
-        String input = scanner.next();
+        printNumberMessage();
+        String input = scanner.nextLine();
         return toInt(input);
     }
 }
