@@ -10,6 +10,7 @@ public class RacingCar {
 		String[] carNames = racingCarNames();
 		int count = racingCarTimes();
 		makeCars(carNames);
+		race(count);
 	}
 
 	private String[] racingCarNames() {
@@ -75,4 +76,26 @@ public class RacingCar {
 			cars.add(new Car(carName));
 		}
 	}
+
+	private void race(int count) {
+		for (int i = 0; i < count; i++) {
+			moveCars();
+		}
+	}
+
+	private void moveCars() {
+		for (int idx = 0; idx < cars.size(); idx++) {
+			moveCar(idx);
+		}
+	}
+
+	private void moveCar(int idx) {
+		Car car = cars.get(idx);
+		car.moveCar(makeRandom());
+	}
+
+	private boolean makeRandom() {
+		return ((int)(Math.random() * 10) - 1) >= 4;
+	}
+
 }
