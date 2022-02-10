@@ -91,6 +91,13 @@ public class StringCalculatorTest {
     }
 
     @Test
+    void 커스텀_구분자에_숫자가_포함된_경우_예외처리() {
+        assertThatThrownBy(() -> {
+            StringCalculator.splitAndSum("//..2.\n1..2.4");
+        }).isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
     void 숫자_이외의_값을_입력한_경우_예외처리() {
         assertThatThrownBy(() -> StringCalculator.convertToIntegerArray(new String[]{"a", "b"}))
                 .isInstanceOf(RuntimeException.class);

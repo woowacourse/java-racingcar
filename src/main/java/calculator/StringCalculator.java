@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StringCalculator {
+    private static final String CUSTOM_WITH_DIGITAL_REGEX = "(.*)\\d(.*)";
+
     public static Integer splitAndSum(String input) {
         if (input == null || input.isEmpty()) {
             return 0;
@@ -16,11 +18,19 @@ public class StringCalculator {
         String regExp = ",|:";
         if (isCustom(input)) {
             int idx = input.indexOf("\n");
-            regExp = input.substring(2, idx);
+            regExp = makeCustom(input, idx);
             input = input.substring(idx + 1);
         }
 
         return input.split(regExp);
+    }
+
+    private static String makeCustom(String input, int idx) {
+        String custom = input.substring(2, idx);
+        if (custom.matches(CUSTOM_WITH_DIGITAL_REGEX)) {
+            throw new RuntimeException("커스텀 구분자 내에 숫자가 포함되어 있습니다.");
+        }
+        return custom;
     }
 
     private static boolean isCustom(String input) {
