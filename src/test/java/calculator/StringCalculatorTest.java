@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.params.ParameterizedTest.*;
 
 public class StringCalculatorTest {
@@ -67,6 +68,22 @@ public class StringCalculatorTest {
         int result = StringCalculator.splitAndSum("//;\n1;2;3");
 
         assertThat(result).isEqualTo(6);
+    }
+
+    @DisplayName("splitAndSum 메서드는 숫자 이외의 값이 입력된 경우 예외가 발생한다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @ValueSource(strings = {"A", "A,1", "가:2"})
+    void splitAndSum_nonIntegerThrowsException(String input) {
+        assertThatThrownBy(() -> StringCalculator.splitAndSum(input))
+                .isInstanceOf(RuntimeException.class);
+    }
+
+    @DisplayName("splitAndSum 메서드는 음수가 입력된 경우 예외가 발생한다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @ValueSource(strings = {"-1", "-1,2", "1:2:-3"})
+    void splitAndSum_negativeㄷIntegerThrowsException(String input) {
+        assertThatThrownBy(() -> StringCalculator.splitAndSum(input))
+                .isInstanceOf(RuntimeException.class);
     }
 
     private int toInt(String string) {
