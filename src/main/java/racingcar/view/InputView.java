@@ -18,7 +18,7 @@ public class InputView {
 	public static int getIterationNo() {
 		System.out.println(GET_ITERATION_NO_MESSAGE);
 		String input = scanner.nextLine();
-		try{
+		try {
 			validIterationNo(input);
 			return Integer.parseInt(input);
 		} catch(RuntimeException e){
@@ -29,11 +29,11 @@ public class InputView {
 
 	private static void validIterationNo(String input) {
 		validEmptyInput(input);
-		validNumberInput(input);
+		validPositiveInput(input);
 		validNonZeroInput(input);
 	}
 
-	public static void validNumberInput(String input) {
+	public static void validPositiveInput(String input) {
 		if (!input.matches("[+]?\\d*(\\.\\d+)?")) {
 			throw new RuntimeException(ERROR_GET_POSITIVE_MESSAGE);
 		}

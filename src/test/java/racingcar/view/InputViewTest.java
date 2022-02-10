@@ -8,7 +8,7 @@ public class InputViewTest {
 	@Test
 	void 시도_횟수_입력_검증() {
 		Assertions.assertThatThrownBy(() -> {
-				InputView.validNumberInput("-1");
+				InputView.validPositiveInput("-1");
 			}).isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("양수");
 	}
