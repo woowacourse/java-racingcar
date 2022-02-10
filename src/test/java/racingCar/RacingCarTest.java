@@ -9,19 +9,19 @@ public class RacingCarTest {
 
 	@Test
 	void 자동차_이름_정상_입력() {
-		String[] names = racingCar.getCarName("a,bqwer,cdb");
+		String[] names = racingCar.getCarNames("a,bqwer,cdb");
 		assertThat(names).isEqualTo(new String[] {"a", "bqwer", "cdb"});
 	}
 
 	@Test
 	void 자동차_이름_중복() {
-		String[] names = racingCar.getCarName("a,a,c");
+		String[] names = racingCar.getCarNames("a,a,c");
 		assertThat(names).isEqualTo(new String[] {"a", "a", "c"});
 	}
 
 	@Test
 	void 자동차_이름_앞뒤_공백() {
-		String[] names = racingCar.getCarName("   abc, a ,cde  ");
+		String[] names = racingCar.getCarNames("   abc, a ,cde  ");
 		assertThat(names).isEqualTo(new String[] {"abc", "a", "cde"});
 	}
 
