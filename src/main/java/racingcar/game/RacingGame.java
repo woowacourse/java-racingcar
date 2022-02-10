@@ -16,7 +16,11 @@ public class RacingGame {
 
     public void start() {
         initRacingCarGame();
-        run();
+
+        while (totalAttemptCount --> 0) {
+            run();
+        }
+        
     }
 
     private void initRacingCarGame() {
