@@ -33,7 +33,7 @@ class CarTest {
 		Car car = new Car("test");
 
 		// when
-		car.go(random);
+		car.goOrStop(random);
 
 		// then
 		assertThat(car.getPosition()).isEqualTo(1);
@@ -46,7 +46,7 @@ class CarTest {
 		Car car = new Car("test");
 
 		// when
-		car.go(random);
+		car.goOrStop(random);
 
 		// then
 		assertThat(car.getPosition()).isEqualTo(0);
@@ -58,7 +58,7 @@ class CarTest {
 		Car car = new Car("test");
 
 		// when
-		car.go(6);
+		car.goOrStop(6);
 
 		// then
 		assertThat(car.toString()).isEqualTo("test : -");
