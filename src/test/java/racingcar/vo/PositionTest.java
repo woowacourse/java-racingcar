@@ -18,4 +18,12 @@ public class PositionTest {
     position.increase();
     assertThat(position.get()).isEqualTo(1);
   }
+
+  @Test
+  public void compareTo_test() throws Exception {
+    Position position = new Position();
+    Position testPosition = new Position();
+    position.increase();
+    assertThat(position.compareTo(testPosition)).isGreaterThan(0);
+  }
 }
