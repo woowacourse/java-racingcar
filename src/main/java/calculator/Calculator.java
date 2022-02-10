@@ -32,7 +32,13 @@ public class Calculator {
 
     private static int getSum(int sum, String[] tokens) {
         for (String token : tokens) {
-            sum += Integer.parseInt(token);
+            int num = Integer.parseInt(token);
+
+            if (num < 0){
+                throw new RuntimeException("음수는 안됩니다!");
+            }
+
+            sum += num;
         }
 
         return sum;
