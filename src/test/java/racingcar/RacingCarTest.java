@@ -62,4 +62,10 @@ public class RacingCarTest {
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("자동차 이름은 중복될 수 없습니다.");
 	}
+
+	@Test
+	public void 시도_횟수_입력_테스트() {
+		int gameCount = inputManager.getTrial("3");
+		assertThat(gameCount).isEqualTo(3);
+	}
 }

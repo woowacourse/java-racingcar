@@ -10,4 +10,8 @@ public class InputManager {
 		}
 		return Arrays.asList(carNames.split(","));
 	}
+
+	public int getTrial(String s) {
+		return Integer.parseInt(s);
+	}
 }
