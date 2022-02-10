@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class OutputView {
 
-    private static final String GAME_RESULT_TITLE = "실행 결과";
+    private static final String GAME_RESULT_TITLE = "\n실행 결과";
     private static final String CAR_POSITION_INFO_MESSAGE = "%s : %s";
     private static final String POSITION_BAR = "-";
     private static final String PRINT_WINNER_DELIMITER = ", ";
@@ -23,10 +23,12 @@ public class OutputView {
 
     public void printCarsPosition(List<RacingCarDto> cars) {
         cars.forEach(this::printCarPosition);
+        System.out.println();
     }
 
     private void printCarPosition(RacingCarDto car) {
         System.out.printf(CAR_POSITION_INFO_MESSAGE, car.getName(), getCarPosistionBar(car.getPosition()));
+        System.out.println();
     }
 
     private String getCarPosistionBar(int position) { return IntStream.range(0, position)
