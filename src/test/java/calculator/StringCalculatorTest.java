@@ -59,4 +59,11 @@ public class StringCalculatorTest {
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage("입력값은 0 이상이어야 합니다.");
     }
+
+    @Test
+    void 입력값_문자_실패() {
+        assertThatThrownBy(() -> StringCalculator.splitAndSum("a,2,3"))
+                .isInstanceOf(RuntimeException.class);
+    }
+
 }
