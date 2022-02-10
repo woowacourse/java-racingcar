@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.List;
+
 public class Output {
 
     public void inputCarNameMessage() {
@@ -8,5 +10,23 @@ public class Output {
 
     public void inputCoinMessage() {
         System.out.println("시도할 회수는 몇회인가요?");
+    }
+
+    public void printResultMessage() {
+        System.out.println("\n실행 결과");
+    }
+
+    public void printPosition(List<Car> cars) {
+        for (Car car : cars) {
+            String position = makePositionString(car.getPosition());
+            System.out.printf("%s : %s\n", car.getName(), position);
+        }
+        System.out.println();
+    }
+
+    private String makePositionString(int position) {
+        String positionFlag = "-";
+        return positionFlag.repeat(position);
+
     }
 }

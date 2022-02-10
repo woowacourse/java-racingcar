@@ -20,8 +20,10 @@ public class Game {
     }
 
     private void race(int coin, List<Car> cars) {
+        output.printResultMessage();
         for (int index = 0; index < coin; index++) {
             moveCar(cars);
+            output.printPosition(cars);
         }
     }
 
