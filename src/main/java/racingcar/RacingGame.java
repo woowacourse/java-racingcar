@@ -1,18 +1,16 @@
 package racingcar;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+public class RacingGame implements Runnable {
+    private final Input input;
 
-public class RacingGame {
-    public Cars generate(String input) {
-        String[] split = input.split(",");
-        return new Cars(createNames(split));
+    public RacingGame(Input input) {
+        this.input = input;
     }
 
-    private List<Name> createNames(String[] split) {
-        return Arrays.stream(split)
-            .map(Name::of)
-            .collect(Collectors.toList());
+    @Override
+    public void run() {
+        Cars cars = new Cars(InputNameHandler.createNames(input.inputCarNames()));
+
     }
+
 }
