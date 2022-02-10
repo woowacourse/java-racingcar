@@ -22,4 +22,11 @@ public class InputValidator {
             throw new IllegalArgumentException("시도할 횟수는 숫자여야 합니다.");
         }
     }
+
+    public static void validateDuplicateName(List<String> carNameList) {
+        long distinctNum = carNameList.stream().distinct().count();
+        if (distinctNum != carNameList.size()) {
+            throw new IllegalArgumentException("자동차의 이름에 중복이 포함되면 안됩니다.");
+        }
+    }
 }

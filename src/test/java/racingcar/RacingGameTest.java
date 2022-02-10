@@ -68,9 +68,16 @@ public class RacingGameTest {
     }
 
     @Test
-    void 자동차_이름이_하나도_존재하지_않을_경우() {
+    void 자동차_이름이_하나도_존재하지_않을_경우_예외처리() {
         assertThatThrownBy(() -> {
             gameController.splitCars("");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 자동차_이름에_중복이_존재하는_경우() {
+        assertThatThrownBy(() -> {
+            gameController.splitCars("aaa,bbb,aaa");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

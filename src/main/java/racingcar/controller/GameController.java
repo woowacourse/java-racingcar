@@ -39,6 +39,7 @@ public class GameController {
         InputValidator.validateNameInput(carNames);
         List<String> carNameList = Arrays.asList(carNames.split(","));
         InputValidator.validateCarName(carNameList);
+        InputValidator.validateDuplicateName(carNameList);
 
         return carNameList;
     }
