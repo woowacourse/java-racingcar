@@ -20,8 +20,7 @@ public class StringTest {
 
     @Test
     public void remove_round_brackets() {
-        String value = "(1,2)".replace("(", "")
-            .replace(")", "");
+        String value = "(1,2)".replaceAll("[()]", "");
         assertThat(value).isEqualTo("1,2");
     }
 
