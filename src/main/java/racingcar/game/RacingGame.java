@@ -20,6 +20,7 @@ public class RacingGame {
     public void start() {
         initRacingCarGame();
 
+        startMessage();
         while (totalAttemptCount --> 0) {
             run();
         }
@@ -42,8 +43,9 @@ public class RacingGame {
     private void run() {
         for (Car car : carList) {
             car.progress();
-            printProgress();
         }
+        printProgress();
+        printLine();
     }
 
     private void printProgress() {

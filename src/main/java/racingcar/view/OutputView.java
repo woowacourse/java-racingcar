@@ -5,7 +5,8 @@ import java.util.List;
 public class OutputView {
 
     public static void startMessage() {
-        System.out.println("\n실행 결과");
+        printLine();
+        System.out.println("실행 결과");
     }
 
     public static void printProgress(String carName, int position) {
