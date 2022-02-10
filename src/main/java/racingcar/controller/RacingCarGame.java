@@ -6,11 +6,13 @@ import java.util.stream.Collectors;
 
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.GameTurn;
 import racingcar.view.InputView;
 
 public class RacingCarGame {
 	private InputView inputView = new InputView();
 	private Cars cars;
+	private GameTurn gameTurn;
 
 	public List<String> getCarNames() {
 		String inputCarNames = inputView.getCarNames();
@@ -38,6 +40,12 @@ public class RacingCarGame {
 
 	public int getGameTurn() {
 		String gameTurn = inputView.getGameTurn();
+		try {
+			checkGameTurnNumber(gameTurn);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return getGameTurn();
+		}
 		return Integer.parseInt(gameTurn);
 	}
 
@@ -62,5 +70,9 @@ public class RacingCarGame {
 
 	public void makeCars() {
 		cars = new Cars(toCar(getCarNames()));
+	}
+
+	public void saveGameTurn() {
+		gameTurn = new GameTurn(getGameTurn());
 	}
 }
