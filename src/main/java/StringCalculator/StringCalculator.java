@@ -40,7 +40,7 @@ public class StringCalculator {
 
     private void validate(final String[] tokens) {
         if (hasContainsNotPositiveNumber(tokens)) {
-            throw new RuntimeException("피연산자에 양수정의 가 아닌 값이 있습니다.");
+            throw new RuntimeException("피연산자에 양의 정수 혹은 0이 아닌 값이 있습니다.");
         }
     }
 
