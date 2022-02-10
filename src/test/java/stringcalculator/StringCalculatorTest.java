@@ -44,4 +44,12 @@ public class StringCalculatorTest {
 		assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
 			.isInstanceOf(RuntimeException.class);
 	}
+
+	@Test
+	public void splitAndSum_not_number() throws Exception {
+		// exception Message가 우리가 만든 메세지인지 확인해봐야 한다.
+		assertThatThrownBy(() -> StringCalculator.splitAndSum("a,2,3"))
+			.isInstanceOf(NumberFormatException.class)
+			.withFailMessage("test");
+	}
 }

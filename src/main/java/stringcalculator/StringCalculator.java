@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
     private static final String CUSTOM_SEPARATOR_REGEX = "//(.)\n(.*)";
+    private static final String NEGATIVE_ERROR_MESSAGE = "음수를 입력할 수 없습니다.";
 
     public static int splitAndSum(String input) {
         return calculate(castStringToInts(input));
@@ -36,12 +37,19 @@ public class StringCalculator {
 
     private static int[] separate(String input, String separator) {
         return Arrays.stream(input.split(separator))
-            .mapToInt(string ->Integer.parseInt(string))
+            .mapToInt(string -> Integer.parseInt(string))
+            .peek(number -> validatePositive(number))
             .toArray();
     }
 
     private static Matcher getCustomSeparatorMatcher(String input) {
         Pattern pattern = Pattern.compile(CUSTOM_SEPARATOR_REGEX);
         return pattern.matcher(input);
+    }
+
+    private static void validatePositive(int number) {
+        if (number < 0) {
+            throw new RuntimeException(NEGATIVE_ERROR_MESSAGE);
+        }
     }
 }
