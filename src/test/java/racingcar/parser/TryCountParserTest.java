@@ -27,7 +27,7 @@ public class TryCountParserTest {
     public void 음수_숫자_예외_발생() {
         assertThatThrownBy(() -> parser.parse("-1"))
             .isInstanceOf(TryCountException.class)
-            .hasMessageContaining("시도 횟수는 음수가 될 수 없습니다.");
+            .hasMessageContaining(TryCountParser.NEGATIVE_TRY_COUNT_ERROR_MESSAGE);
     }
 
     @ParameterizedTest(name = "실수의 경우 예외 발생 - 입력값 : {0}")
@@ -35,14 +35,14 @@ public class TryCountParserTest {
     public void 자연수가_아닐때_예외_발생(String input) {
         assertThatThrownBy(() -> parser.parse(input))
             .isInstanceOf(TryCountException.class)
-            .hasMessageContaining("시도 횟수는 실수가 될 수 없습니다.");
+            .hasMessageContaining(TryCountParser.FLOAT_TRY_COUNT_ERROR_MESSAGE);
     }
 
     @Test
     public void 문자열이_0일때_예외_발생() {
         assertThatThrownBy(() -> parser.parse("0"))
             .isInstanceOf(TryCountException.class)
-            .hasMessageContaining("시도 횟수는 0이 될 수 없습니다.");
+            .hasMessageContaining(TryCountParser.ZERO_TRY_COUNT_ERROR_MESSAGE);
     }
 
     @ParameterizedTest(name = "빈 공백일 경우 예외 발생")
@@ -50,13 +50,13 @@ public class TryCountParserTest {
     public void 빈공백일때_예외_발생(String input) {
         assertThatThrownBy(() -> parser.parse(input))
             .isInstanceOf(TryCountException.class)
-            .hasMessageContaining("시도 횟수는 공백일 수 없습니다.");
+            .hasMessageContaining(TryCountParser.BLANK_TRY_COUNT_ERROR_MESSAGE);
     }
 
     @Test
     public void 널일때_예외_발생() {
         assertThatThrownBy(() -> parser.parse(null))
             .isInstanceOf(TryCountException.class)
-            .hasMessageContaining("시도 횟수는 NULL값일 수 없습니다.");
+            .hasMessageContaining(TryCountParser.NULL_TRY_COUNT_ERROR_MESSAGE);
     }
 }
