@@ -29,14 +29,14 @@ public class Cars {
         int maxPosition = getMaxPosition();
 
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isEqualPosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
     private int getMaxPosition() {
         return cars.stream()
-            .max(Comparator.comparing(Car::getPosition))
+            .max(Car::compareTo)
             .orElseThrow(NoSuchElementException::new)
             .getPosition();
     }

@@ -1,11 +1,10 @@
 package racingcar.domain;
 
 import java.util.List;
-import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Cars;
 import racingcar.vo.Name;
+import static org.assertj.core.api.Assertions.*;
 
 public class CarsTest {
     @Test
@@ -17,18 +16,4 @@ public class CarsTest {
         // when & then
         assertThatCode(() -> new Cars(names)).doesNotThrowAnyException();
     }
-
-    @Test
-    @DisplayName("우승자 판별")
-    void getWinners() {
-        // given
-        List<Name> names = List.of(Name.of("hoho"), Name.of("rich"), Name.of("pobi"));
-        new Cars(names);
-
-        // when
-
-        // then
-    }
-
-
 }
