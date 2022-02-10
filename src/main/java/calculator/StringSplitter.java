@@ -5,6 +5,14 @@ import java.util.regex.Pattern;
 
 public class StringSplitter {
 
+    private static StringSplitter stringSplitter = new StringSplitter();
+
+    private StringSplitter(){}
+
+    public StringSplitter getInstance() {
+        return stringSplitter;
+    }
+
     public String[] parseString(String str){
         if(str.contains(",|:")){
             return defaultSplit(str);
