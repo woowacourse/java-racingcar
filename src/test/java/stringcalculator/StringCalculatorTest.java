@@ -62,4 +62,24 @@ public class StringCalculatorTest {
 		int expected = 3;
 		assertThat(actual).isEqualTo(expected);
 	}
+
+	@Test
+	void 숫자_이외의_값() {
+		String input1 = "&&&";
+		String input2 = "1,&,2";
+		assertThatThrownBy(() -> {
+			calculator.splitAndSum(input1);
+			calculator.splitAndSum(input2);
+		}).isInstanceOf(RuntimeException.class);
+	}
+
+	@Test
+	void 음수_입력() {
+		String input1 = "-1";
+		String input2 = "-1,1,2";
+		assertThatThrownBy(() -> {
+			calculator.splitAndSum(input1);
+			calculator.splitAndSum(input2);
+		}).isInstanceOf(RuntimeException.class);
+	}
 }

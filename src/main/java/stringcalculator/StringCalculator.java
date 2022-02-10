@@ -44,6 +44,27 @@ public class StringCalculator {
 	}
 
 	public int sum(String[] numbers) {
-		return Arrays.stream(numbers).mapToInt(Integer::parseInt).sum();
+
+		return Arrays.stream(numbers).mapToInt(this::mapToInt).sum();
+	}
+
+	private int mapToInt(String number) {
+		if (validNumber(number)) {
+			return Integer.parseInt(number);
+		}
+		throw new RuntimeException("");
+	}
+
+
+	private boolean validNumber(String number) {
+		try {
+			int i = Integer.parseInt(number);
+			if (i < 0) {
+				throw new RuntimeException("음수의 값이 입력되었습니다. 양수를 입력하세요.");
+			}
+			return true;
+		} catch (NumberFormatException e) {
+			throw new RuntimeException("숫자 이외의 값이 입력되었습니다. 숫자를 입력하세요.");
+		}
 	}
 }
