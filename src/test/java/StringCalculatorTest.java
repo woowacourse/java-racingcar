@@ -48,7 +48,7 @@ public class StringCalculatorTest {
     @Test
     void 구분자_추출() {
         String target = "//;\n";
-        String deli = StringCalculator.extract(target);
+        String deli = StringCalculator.extractCustomDelimiter(target);
         assertThat(deli).isEqualTo(";");
     }
 }

@@ -1,3 +1,6 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringCalculator {
     public static int calculate(String s) {
         String[] splitStrings = s.split(",|:");
@@ -19,5 +22,23 @@ public class StringCalculator {
             total += number;
         }
         return total;
+    }
+
+    public static String extractCustomDelimiter(String target) {
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(target);
+        if (m.find()) {
+            return m.group(1);
+            //String[] tokens = m.group(2).split(customDelimiter);
+            // 덧셈 구현
+        }
+        return "";
+    }
+
+    public static String extractTarget(String target) {
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(target);
+        if (m.find()) {
+            return m.group(2);
+        }
+        return target;
     }
 }
