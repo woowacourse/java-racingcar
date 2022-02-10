@@ -1,9 +1,10 @@
 package racingcar.vo;
 
 public class Attempt {
+
   private int attempt;
 
-  public Attempt(String attempt){
+  public Attempt(String attempt) {
     this.attempt = toInteger(attempt);
   }
 
@@ -11,7 +12,15 @@ public class Attempt {
     return Integer.parseInt(string);
   }
 
-  public int get(){
+  public int get() {
     return attempt;
+  }
+
+  public boolean isLeft() {
+    return attempt > 0;
+  }
+
+  public void decrease() {
+    attempt--;
   }
 }

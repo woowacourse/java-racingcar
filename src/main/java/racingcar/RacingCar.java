@@ -19,6 +19,7 @@ public class RacingCar {
     Cars cars = createCars(splitCarNames(carNamesInput));
     String attemptInput = readNextLine();
     Attempt attempt = new Attempt(attemptInput);
+    String raceResult = cars.repeatRace(attempt);
   }
 
   public String readNextLine() {
