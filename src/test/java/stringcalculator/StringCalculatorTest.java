@@ -84,4 +84,11 @@ public class StringCalculatorTest {
     void getDelimiterFromText(String text, String expected) {
         assertThat(stringCalculator.getDelimiterFromText(text)).isEqualTo(expected);
     }
+
+    @DisplayName("문자열에서 구분자 제거")
+    @ParameterizedTest
+    @CsvSource(value = {"//;\\n1;2;3,1;2;3", "//_\\n1_2_3,1_2_3", "//-\\n1-2-3,1-2-3"})
+    void removeDelimiterFromText(String text, String expected) {
+        assertThat(stringCalculator.removeDelimiterFromText(text)).isEqualTo(expected);
+    }
 }

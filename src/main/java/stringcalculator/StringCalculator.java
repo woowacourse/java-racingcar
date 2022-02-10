@@ -1,7 +1,11 @@
 package stringcalculator;
 
+import java.util.Arrays;
+
 public class StringCalculator {
-    private static final String REGEX_PATTERN = "^\\/\\/.\\\\n.+";
+    private static final String DELIMITER_PATTERN = "^\\/\\/.\\\\n";
+    private static final String INPUT_FORMAT_PATTERN = DELIMITER_PATTERN + ".+";
+    private static final String DELIMITER = ",|:";
 
     public StringCalculator() {
     }
@@ -33,6 +37,10 @@ public class StringCalculator {
     }
 
     public boolean hasCustomDelimiter(String text) {
-        return text.matches(REGEX_PATTERN);
+        return text.matches(INPUT_FORMAT_PATTERN);
+    }
+
+    public String removeDelimiterFromText(String text) {
+        return text.replaceAll(DELIMITER_PATTERN, "");
     }
 }
