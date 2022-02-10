@@ -30,8 +30,8 @@ public class NameValidator {
     }
 
     private static void checkNameLength(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("[ERROR] 이름을 5자 이하로 등록해주세요");
+        if (name.length() > NAME_LENGTH_LIMIT) {
+            throw new IllegalArgumentException(ERROR_LONG_NAME);
         }
     }
 

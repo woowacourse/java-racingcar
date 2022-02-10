@@ -27,7 +27,7 @@ public class Cars {
 
     private int makeRandom() {
         Random random = new Random();
-        return random.nextInt(10);
+        return random.nextInt(RANDOM_NUMBER_BOUND);
     }
 
     private int findMaxPosition() {
