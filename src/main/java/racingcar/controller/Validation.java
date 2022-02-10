@@ -6,6 +6,7 @@ import java.util.List;
 public class Validation {
     public static void carNameValidation(String names) {
         List<String> namesList = Arrays.asList(names.split(",", -1));
+
         for (String name : namesList) {
             checkNameLength(name);
         }

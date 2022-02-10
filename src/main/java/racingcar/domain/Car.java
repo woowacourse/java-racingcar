@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Car {
     private static final int GO_MINIMUM = 4;
-
     private final String name;
     private int position = 0;
     private Random random = new Random();
@@ -30,9 +29,11 @@ public class Car {
 
     public void showInfo() {
         String info = getName() + " : ";
+
         for (int i = 0; i < position; i++) {
             info += "-";
         }
+
         System.out.println(info);
     }
 }

@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.view.Input;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,16 +13,16 @@ public class InputController {
     public static int inputTryNum() {
         return savaTryNumber();
     }
-    
+
     private static List<Car> saveCarList() {
-        while(true){
+        while (true) {
             String names = Input.inputCarNames();
-            
-            try{
+
+            try {
                 Validation.carNameValidation(names);
                 List<Car> carList = splitList(names);
                 return carList;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -41,13 +40,13 @@ public class InputController {
     }
 
     private static int savaTryNumber() {
-        while(true){
+        while (true) {
             String tryValue = Input.inputTry();
 
-            try{
+            try {
                 Validation.tryNumValidation(tryValue);
                 return Integer.parseInt(tryValue);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
