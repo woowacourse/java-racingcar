@@ -22,15 +22,19 @@ public class StringCalculator {
         }
 
         if (hasSingleNumber(text)) {
-            return isMinusNumber(Integer.parseInt(text));
+            return validateNumber(stringToInt(text));
         }
 
         Matcher matcher = pattern.matcher(text);
         if (matcher.find()) {
-            return getResult(getStrings(matcher));
+            return sum(splitByCustomDelimiter(matcher));
         }
 
-        return getResult(text.split(REGEX));
+        return sum(text.split(REGEX));
+    }
+
+    private static int stringToInt(String string) {
+        return Integer.parseInt(string);
     }
 
     private static boolean isNullOrEmpty(String text) {
@@ -41,7 +45,7 @@ public class StringCalculator {
         return text.length() == MINIMUM_LENGTH;
     }
 
-    private static int isMinusNumber(int number) {
+    private static int validateNumber(int number) {
         if (number < MINIMUM_NUMBER) {
             throw new RuntimeException("음수를 입력할 수 없습니다.");
         }
@@ -49,14 +53,14 @@ public class StringCalculator {
         return number;
     }
 
-    private static String[] getStrings(Matcher matcher) {
+    private static String[] splitByCustomDelimiter(Matcher matcher) {
         String delimiter = matcher.group(INDEX_OF_DELIMITER);
         return matcher.group(INDEX_OF_TEXT).split(delimiter);
     }
 
-    private static int getResult(String[] numbersOfString) {
+    private static int sum(String[] numbersOfString) {
         return Arrays.stream(numbersOfString)
-            .mapToInt(number -> isMinusNumber(Integer.parseInt(number)))
+            .mapToInt(stringNumber -> validateNumber(stringToInt(stringNumber)))
             .sum();
     }
 }
