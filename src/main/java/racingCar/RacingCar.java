@@ -15,6 +15,7 @@ public class RacingCar {
 		makeCars(carNames);
 		race(count);
 		winners = findWinner(cars);
+		printWinners(winners);
 	}
 
 	private String[] racingCarNames() {
@@ -125,4 +126,12 @@ public class RacingCar {
 		return winners;
 	}
 
+	private void printWinners(List<Car> winners) {
+		for (int idx = 0; idx < winners.size() - 1; idx++) {
+			winners.get(idx).printName();
+			System.out.print(", ");
+		}
+		winners.get(winners.size() - 1).printName();
+		System.out.println("가 최종 우승했습니다.");
+	}
 }
