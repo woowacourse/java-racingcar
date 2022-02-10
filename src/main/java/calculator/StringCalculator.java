@@ -46,7 +46,6 @@ public class StringCalculator {
         for (String num : strArr) {
             numList.add(convertToInt(num));
         }
-
         return numList;
     }
 
