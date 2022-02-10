@@ -1,16 +1,14 @@
 package racingcar.domain;
 
-import racingcar.domain.Car;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
+import static racingcar.util.ValidatorUtils.validateNoDuplicates;
+import static racingcar.util.ValidatorUtils.validateNotBlank;
+import static racingcar.util.ValidatorUtils.validateNotOverFiveCharacters;
 import static racingcar.util.ValidatorUtils.validatePositiveInt;
 
 public class GameManager {
@@ -34,12 +32,10 @@ public class GameManager {
         String[] carNames = splitUserInputByComma(userInput);
 
         for (String name : carNames) {
-            if (name.trim().isEmpty()) throw new RuntimeException("");
-            if (name.length() > 5) throw new RuntimeException();
+            validateNotBlank(name);
+            validateNotOverFiveCharacters(name);
         }
-
-        Set<String> carNameSet = new HashSet<>(Arrays.asList(carNames));
-        if (carNames.length != carNameSet.size()) throw new RuntimeException();
+        validateNoDuplicates(carNames);
 
         return carNames;
     }
