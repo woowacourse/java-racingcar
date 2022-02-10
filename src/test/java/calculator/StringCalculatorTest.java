@@ -13,7 +13,7 @@ public class StringCalculatorTest {
 
     private final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
             DISPLAY_NAME_PLACEHOLDER + " ["
-            + ARGUMENTS_PLACEHOLDER + "]";
+                    + ARGUMENTS_PLACEHOLDER + "]";
 
     @DisplayName("splitAndSum 메서드는 null 혹은 빈 문자열이 입력된 경우 0을 반환한다.")
     @Test
@@ -59,6 +59,14 @@ public class StringCalculatorTest {
         int result = StringCalculator.splitAndSum(input);
 
         assertThat(result).isEqualTo(toInt(resultString));
+    }
+
+    @DisplayName("splitAndSum 메서드는 커스텀 구분자를 받아 사용할 수 있다.")
+    @Test
+    void splitAndSum_customSeparator() {
+        int result = StringCalculator.splitAndSum("//;\n1;2;3");
+
+        assertThat(result).isEqualTo(6);
     }
 
     private int toInt(String string) {
