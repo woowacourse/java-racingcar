@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.validator;
 
 public class MoveCountValidator {
 

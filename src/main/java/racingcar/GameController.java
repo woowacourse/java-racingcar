@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.domain.Cars;
+import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
@@ -14,7 +16,7 @@ public class GameController {
 
     public void startRace() {
         String carNames = InputView.getCarNames(scanner);
-        Cars cars = new Cars(carNames.split(","));
+        Cars cars = new Cars(Utils.splitAndTrim(carNames));
         int moveCount = Integer.parseInt(InputView.getMoveCount(scanner));
         OutputView.printResultMessage();
         for (int i = 0; i < moveCount; i++) {

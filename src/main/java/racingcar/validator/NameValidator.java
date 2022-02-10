@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.validator;
+
+import racingcar.Utils;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -6,7 +8,7 @@ import java.util.Set;
 
 public class NameValidator {
     public static void validateNames(String names) {
-        String[] splitName = names.split(",");
+        String[] splitName = Utils.splitAndTrim(names);
         for (String name : splitName) {
             checkEmptyName(name);
             checkNameLength(name);
