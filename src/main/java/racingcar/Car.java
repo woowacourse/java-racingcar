@@ -8,6 +8,7 @@ public class Car {
 	private static final String EMPTY_NAME_ERROR = "[ERROR] 이름은 공백일 수 없습니다.";
 
 	private String name;
+	private int position;
 
 	public Car(String name) {
 		validateEmptyName(name);
@@ -17,6 +18,14 @@ public class Car {
 
 	public String getName() {
 		return this.name;
+	}
+
+	public int getPosition() {
+		return this.position;
+	}
+
+	public void move() {
+		position++;
 	}
 
 	private void validateEmptyName(String name) {
@@ -45,4 +54,5 @@ public class Car {
 	public int hashCode() {
 		return Objects.hash(name);
 	}
+
 }
