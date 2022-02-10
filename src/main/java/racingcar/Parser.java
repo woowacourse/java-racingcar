@@ -5,6 +5,8 @@ public class Parser {
     private static final int MAX_NAME_LENGTH = 5;
 
     public static String[] split(String text) {
+        isValidInput(text);
+
         String[] carNames = text.split(",");
         if (carNames.length == EMPTY) {
             throw new IllegalArgumentException();
