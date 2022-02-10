@@ -2,6 +2,8 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Collectors;
+import java.util.List;
 
 import racingcar.util.StringConst;
 
