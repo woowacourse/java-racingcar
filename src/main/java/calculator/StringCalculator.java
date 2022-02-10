@@ -1,5 +1,6 @@
 package calculator;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,7 +9,7 @@ public class StringCalculator {
 		if (checkNull(a)) {
 			return 0;
 		}
-
+		isNegative(splitByColon(a));
 		return checkCustomSplit(a);
 	}
 
@@ -18,6 +19,12 @@ public class StringCalculator {
 
 	private static String[] splitByColon(String a) {
 		return a.replace(",", ":").split(":");
+	}
+
+	private static void isNegative(String[] a) {
+		if (Arrays.stream(a).filter(b -> b.contains("-")).count() > 0) {
+			throw new RuntimeException();
+		}
 	}
 
 	private static int sum(String[] numbers) {
