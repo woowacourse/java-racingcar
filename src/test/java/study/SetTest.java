@@ -11,8 +11,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.params.ParameterizedTest.ARGUMENTS_PLACEHOLDER;
+import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDER;
 
 public class SetTest {
+
+    private final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
+            DISPLAY_NAME_PLACEHOLDER + " ["
+            + ARGUMENTS_PLACEHOLDER + "]";
 
     private Set<Integer> numbers;
 
@@ -34,7 +40,7 @@ public class SetTest {
     }
 
     @DisplayName("contains 메서드는 Set에 특정 값이 존재하는지 확인한다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @ValueSource(ints = {1, 2, 3})
     void contains(int number) {
         boolean containsResult = numbers.contains(number);
@@ -43,7 +49,7 @@ public class SetTest {
     }
 
     @DisplayName("contains 메서드는 Set에 특정 값의 존재 여부에 대해 참/거짓을 반환한다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @CsvSource(value = {"1,true", "2,true", "3,true", "4,false", "5,false"}, delimiter = ',')
     void containsOrNot(String inputString, String resultString) {
         int input = Integer.parseInt(inputString);
