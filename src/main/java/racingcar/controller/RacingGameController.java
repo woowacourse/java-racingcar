@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import java.util.List;
+import racingcar.controller.exception.RacingGameIsFinishedException;
 import racingcar.domain.Car;
 import racingcar.parser.CarNameParser;
 import racingcar.parser.TryCountParser;
@@ -34,6 +35,9 @@ public class RacingGameController {
     }
 
     public void proceedTurn() {
+        if (isFinished()) {
+            throw new RacingGameIsFinishedException();
+        }
         currentTryCount++;
     }
 
