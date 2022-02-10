@@ -1,8 +1,8 @@
 package racingcar;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
-import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class CarTest {
 
@@ -14,10 +14,22 @@ public class CarTest {
         int number = 4;
         // when
         car.attemptToMove(number);
-
         // then
         assertThat(beforeMove).isEqualTo(1);
         assertThat(car.getPosition()).isEqualTo(2);
+    }
+
+    @Test
+    void 자동차는_3이하일_경우_멈춘다() {
+        // given
+        Car car = new Car();
+        int beforeMove = car.getPosition();
+        int number = 3;
+        // when
+        car.attemptToMove(number);
+        // then
+        assertThat(beforeMove).isEqualTo(1);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
