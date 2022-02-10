@@ -1,5 +1,8 @@
 package calculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringAddCalculator {
 
     public int run(String givenString) {
@@ -30,8 +33,16 @@ public class StringAddCalculator {
     private int sumStringArray(String[] splitString) {
         int result = 0;
         for (int i = 0; i < splitString.length; i++) {
-            result += Integer.parseInt(splitString[i]);
+            int value = Integer.parseInt(splitString[i]);
+            checkNegativeInteger(value);
+            result += value;
         }
         return result;
+    }
+
+    private void checkNegativeInteger(int value) {
+        if (value < 0) {
+            throw new RuntimeException("음수는 입력할 수 없습니다.");
+        }
     }
 }
