@@ -59,4 +59,22 @@ public class ValidationUtilTest {
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining("최소");
     }
+
+    @Test
+    void 횟수_입력값이_숫자가_아닌_경우() {
+        String countString = "a";
+
+        assertThatThrownBy(() -> Validator.checkCount(countString))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining("숫자");
+    }
+
+    @Test
+    void 횟수_입력값이_1이하인_경우() {
+        String countString = "0";
+
+        assertThatThrownBy(() -> Validator.checkCount(countString))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining("1 이상");
+    }
 }

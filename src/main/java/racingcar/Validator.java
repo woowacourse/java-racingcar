@@ -86,4 +86,15 @@ public class Validator {
     private static boolean isEmpty(String[] array) {
         return array.length <= 0;
     }
+
+    public static void checkCount(String countString) {
+        try {
+            int count = Integer.parseInt(countString);
+            if (count < 1) {
+                throw new IllegalArgumentException("입력횟수는 1 이상의 정수여야 합니다.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력 횟수는 숫자여야 합니다.");
+        }
+    }
 }
