@@ -13,25 +13,25 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class RacingGameTest {
 
     private RacingCars racingCars;
+    private RacingGame racingGame;
 
     @BeforeEach
     void setUp() {
         racingCars = new RacingCars("pobi,crong,honux");
+        racingGame = new RacingGame(racingCars, 5);
     }
 
     @Test
     @DisplayName("게임이 종료되었는지 확인한다.")
     void checkGameEnd() {
-        RacingGame game = new RacingGame(racingCars, 5);
-        game.race();
-        assertTrue(game.isEnd());
+        racingGame.race();
+        assertTrue(racingGame.isEnd());
     }
 
     @Test
     @DisplayName("게임이 종료되지 않았는지 확인한다.")
     void checkGameNotEnd() {
-        RacingGame game = new RacingGame(racingCars, 5);
-        assertFalse(game.isEnd());
+        assertFalse(racingGame.isEnd());
     }
 
     @ParameterizedTest
@@ -46,10 +46,9 @@ public class RacingGameTest {
     @Test
     @DisplayName("게임이 종료되었는데 race할 경우 exception이 발생한다.")
     void raceEndException() {
-        RacingGame game = new RacingGame(racingCars, 5);
-        game.race();
+        racingGame.race();
         assertThatExceptionOfType(RuntimeException.class)
-            .isThrownBy(() -> game.race())
+            .isThrownBy(() -> racingGame.race())
             .withMessageMatching("종료된 게임은 더이상 실행할 수 없다.");
     }
 }

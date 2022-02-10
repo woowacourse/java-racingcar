@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.controller.RacingCarDto;
 
 class OutputViewTest {
 
@@ -17,6 +18,18 @@ class OutputViewTest {
     @BeforeEach
     void setUp() {
         System.setOut(new PrintStream(outContent));
+    }
+
+    @Test
+    @DisplayName("psotion을 -로 출력한다.")
+    void printCarsPosition() {
+        OutputView outputView = new OutputView();
+        List<RacingCarDto> racingCarDtos = Arrays.asList(
+            new RacingCarDto("pobi", 2),
+            new RacingCarDto("crong", 3)
+        );
+        outputView.printCarsPosition(racingCarDtos);
+        assertThat(outContent.toString()).isEqualTo("pobi : --\ncrong : ---\n\n");
     }
 
     @Test

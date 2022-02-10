@@ -22,13 +22,13 @@ public class OutputView {
         System.out.println(GAME_RESULT_TITLE);
     }
 
-    public void printCarsPosition(List<RacingCarDto> cars) {
-        cars.forEach(this::printCarPosition);
+    public void printCarsPosition(List<RacingCarDto> racingCarDtos) {
+        racingCarDtos.forEach(this::printCarPosition);
         System.out.println();
     }
 
-    private void printCarPosition(RacingCarDto car) {
-        System.out.printf(CAR_POSITION_INFO_MESSAGE, car.getName(), getCarPosistionBar(car.getPosition()));
+    private void printCarPosition(RacingCarDto racingCarDto) {
+        System.out.printf(CAR_POSITION_INFO_MESSAGE, racingCarDto.getName(), getCarPosistionBar(racingCarDto.getPosition()));
         System.out.println();
     }
 
