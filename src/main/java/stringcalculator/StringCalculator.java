@@ -27,7 +27,7 @@ public class StringCalculator {
         if (matcher.find()) {
             return separate(matcher.group(2), matcher.group(1));
         }
-        return null;
+        return separate(input, ":|,");
     }
 
     private static boolean isNullOrEmpty(String input) {
