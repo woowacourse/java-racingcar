@@ -15,6 +15,7 @@ public class RacingCarController {
         this.outputView = outputView;
     }
 
+
     public void run() {
         RacingCars racingCars = new RacingCars(inputView.inputCarNames());
         int tryCount = inputView.inputTryCount();
