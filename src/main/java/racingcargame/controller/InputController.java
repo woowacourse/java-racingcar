@@ -17,14 +17,6 @@ public class InputController {
 
     public String inputCarName() {
         String carNames = scanner.nextLine();
-        checkCarNames(carNames);
-        return carNames;
-    }
-
-    public String checkCarNames(String carNames) {
-        if (NameInputValidator.validateCarNames(carNames)) {
-            return carNames;
-        }
-        throw new IllegalArgumentException("[error] 입력된 자동차 이름이 없습니다.");
+        return NameInputValidator.validateCarNames(carNames);
     }
 }
