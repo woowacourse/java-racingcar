@@ -43,6 +43,14 @@ public class StringCalculatorTest {
     }
 
     @Test
+    void 숫자_배열_더하기() {
+        int actual = StringCalculator.splitAndSum("1,2,3,4");
+        int expected = 10;
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
     void 숫자_이외의_값을_입력한_경우_예외처리() {
         assertThatThrownBy(() -> StringCalculator.convertToIntegerArray(new String[]{"a", "b"}))
                 .isInstanceOf(RuntimeException.class);

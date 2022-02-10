@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StringCalculator {
+    public static Integer splitAndSum(String s) {
+        return sumList(convertToIntegerArray(splitString(s)));
+    }
+
     public static String[] splitString(String s) {
         String regExp = ",|:";
         if (isCustom(s)) {
@@ -37,9 +41,13 @@ public class StringCalculator {
         }
 
         if (value < 0) {
-            throw new RuntimeException("입력 값은 0 이상의 정수여야 합니다.");
+            throw new RuntimeException("력 값은 0 이상의 정수여야 합니다.");
         }
 
         return value;
+    }
+
+    public static Integer sumList(List<Integer> list) {
+        return list.stream().mapToInt(Integer::intValue).sum();
     }
 }
