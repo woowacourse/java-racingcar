@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
-import racingcar.domain.Cars;
+import racingcar.domain.RacingGame;
 
 public class ApplicationTest {
 
@@ -50,13 +50,13 @@ public class ApplicationTest {
 
     @Test
     void 최종_우승자_테스트() {
-        Cars cars = new Cars(new String[] {"car1","car2","car3"});
+        RacingGame cars = new RacingGame(new String[] {"car1","car2","car3"});
 
         cars.getCars().get(0).move(5);
         cars.getCars().get(1).move(5);
         cars.getCars().get(2).move(3);
 
-        assertThat(cars.getChampions())
+        assertThat(cars.getChampionNames())
             .contains("car1")
             .contains("car2")
             .doesNotContain("car3");

@@ -1,6 +1,6 @@
 package racingcar;
 
-import racingcar.domain.Cars;
+import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -9,7 +9,7 @@ public class Application {
         String carNames = InputView.inputCarNames();
         String[] names = Parser.split(carNames);
 
-        Cars cars = new Cars(names);
+        RacingGame cars = new RacingGame(names);
         String rounds = InputView.inputRounds();
         Parser.isValidRounds(rounds);
 

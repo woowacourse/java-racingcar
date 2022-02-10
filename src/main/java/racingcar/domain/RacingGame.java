@@ -3,10 +3,10 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cars {
+public class RacingGame {
     private List<Car> cars = new ArrayList<>();
 
-    public Cars(String[] names) {
+    public RacingGame(String[] names) {
         for (String name : names) {
             cars.add(new Car(name));
         }
@@ -22,13 +22,20 @@ public class Cars {
         return cars;
     }
 
-    public List<String> getChampions() {
+    public int getHighScore() {
         int highScore = 0;
+
         for (Car car : cars) {
             highScore = car.getBiggerPosition(highScore);
         }
 
+        return highScore;
+    }
+
+    public List<String> getChampionNames() {
         List<String> championNames = new ArrayList<>();
+        int highScore = getHighScore();
+
         for (Car car : cars) {
             if (car.isChampion(highScore)) {
                 championNames.add(car.getName());
