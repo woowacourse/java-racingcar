@@ -26,11 +26,15 @@ public class Input {
             allCarsValid(inputValue);
             return inputValue.split(",");
         } catch (IllegalArgumentException e) {
+            Output.errorMessage(e.getMessage());
             return carName();
         }
     }
 
     private void allCarsValid(String names) {
+        if (isBlank(names)) {
+            throw new IllegalArgumentException("자동차 이름은 공백일 수 없습니다.");
+        }
         String[] cars = names.split(",");
         if (!isCars(cars)) {
             throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
@@ -53,7 +57,7 @@ public class Input {
     }
 
     private boolean isBlank(String name) {
-        return name.isBlank();
+        return name.trim().isEmpty();
     }
 
     private boolean isCars(String[] names) {
@@ -66,6 +70,6 @@ public class Input {
     }
 
     private boolean isValidLength(String name) {
-        return name.length() < 5;
+        return name.length() <= 5;
     }
 }
