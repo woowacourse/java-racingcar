@@ -3,6 +3,7 @@ package racingcar.service;
 import racingcar.domain.Attempt;
 import racingcar.domain.Cars;
 import racingcar.view.Input;
+import racingcar.view.Output;
 
 public class RacingCarGame {
     private Cars cars;
@@ -17,6 +18,7 @@ public class RacingCarGame {
     public void run() {
         init();
         round();
+        Output.allRoundResult();
     }
 
     private void init() {

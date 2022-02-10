@@ -8,7 +8,7 @@ public class Car {
         this.name = name;
     }
 
-    private void move() {
+    public void move() {
         position++;
     }
 
@@ -18,8 +18,21 @@ public class Car {
         }
     }
 
-    private boolean hasNext() {
+    public boolean hasNext() {
         int moveFlag = (int) (Math.random() * 100) % 10;
         return moveFlag > 3;
+    }
+
+    public boolean isSamePosition(int other) {
+        return this.position == other;
+    }
+
+    @Override
+    public String toString() {
+        String positions = "";
+        for (int i = 0; i < position; i++) {
+            positions += "-";
+        }
+        return String.format("%s : %s", name, positions);
     }
 }

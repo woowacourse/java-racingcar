@@ -1,7 +1,15 @@
 package racingcar.view;
 
+import racingcar.domain.Car;
+
+import java.util.List;
+
 public class Output {
-    private Output() {}
+
+    private static StringBuilder stringBuilder = new StringBuilder();
+
+    private Output() {
+    }
 
     public static void errorMessage(String message) {
         System.out.println("[ERROR] " + message);
@@ -13,5 +21,17 @@ public class Output {
 
     public static void getAttempt() {
         System.out.println("시도할 회수는 몇회인가요?");
+    }
+
+    public static void roundResult(List<Car> cars) {
+        for (Car car : cars) {
+            stringBuilder.append(car.toString()).append("\n");
+        }
+        stringBuilder.append("\n");
+    }
+
+    public static void allRoundResult() {
+        System.out.println("실행 결과");
+        System.out.println(stringBuilder);
     }
 }
