@@ -10,6 +10,8 @@ public class Validator {
     private static String ERROR_CAR_COUNT = "[ERROR] 자동차는 5대 이하이어야 합니다.";
     private static String ERROR_NAME_LENGTH = "[ERROR] 이름은 5자 이하이어야 합니다.";
     private static String ERROR_DUPLICATE_NAME = "[ERROR] 중복된 이름입니다.";
+    private static String ERROR_NUMBER_OVER_ONE = "[ERROR] 횟수는 1 이상이어야 합니다.";
+    private static String ERROR_NUMBER_NOT_DIGIT = "[ERROR] 횟수는 숫자로 입력해야 합니다.";
 
     public static void validateBlank(String names) {
         for (int i = 0; i < names.length(); i++) {
@@ -49,6 +51,22 @@ public class Validator {
 
         if (tempNameSet.size() < names.length) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_NAME);
+        }
+    }
+
+    public static int toInt(String text) {
+        try {
+            int parseInt = Integer.parseInt(text);
+            checkPositiveNumber(parseInt);
+            return parseInt;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_NUMBER_NOT_DIGIT);
+        }
+    }
+
+    private static void checkPositiveNumber(int parseInt) {
+        if (parseInt <= 0) {
+            throw new IllegalArgumentException(ERROR_NUMBER_OVER_ONE);
         }
     }
 
