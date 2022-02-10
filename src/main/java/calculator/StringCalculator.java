@@ -12,8 +12,7 @@ public class StringCalculator {
 		if (matcher.find()) {
 			return splitByCustomDivider(matcher);
 		}
-		String[] numbers = input.split(",|:");
-		return sum(numbers);
+		return splitByDivider(input);
 	}
 
 	public static int splitByCustomDivider(Matcher matcher) {
@@ -48,6 +47,11 @@ public class StringCalculator {
 
 	public static boolean isNullOREmpty(String input) {
 		return input == null || input.equals("");
+	}
+
+	private static int splitByDivider(String input) {
+		String[] numbers = input.split(",|:");
+		return sum(numbers);
 	}
 
 }
