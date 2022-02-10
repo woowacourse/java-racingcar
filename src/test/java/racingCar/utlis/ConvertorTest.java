@@ -11,7 +11,7 @@ class ConvertorTest {
 	@Test
 	public void 쉼표_기준으로_이름_분리() {
 		String names = "pobi,crong,honux";
-		String[] nameArray = convertor.seperateNamesByDelimeter(names);
+		String[] nameArray = convertor.separateNamesByDelimiter(names);
 		assertArrayEquals(nameArray, new String[] {"pobi", "crong", "honux"});
 	}
 
