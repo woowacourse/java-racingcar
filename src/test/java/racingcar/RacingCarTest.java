@@ -22,4 +22,13 @@ public class RacingCarTest {
         RacingCar car = new RacingCar("name");
         assertThat(car.getPosition()).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("자동차가 4이상 입력되면 움직여야 한다.")
+   void racingCarMove() {
+        RacingCar car = new RacingCar("name");
+        RandomGenerator randomGenerator = new RandomGenerator();
+        int position = car.move(randomGenerator.generateRandomNumber());
+        assertThat(position).isEqualTo(1);
+    }
 }
