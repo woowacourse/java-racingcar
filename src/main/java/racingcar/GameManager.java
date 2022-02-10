@@ -21,7 +21,6 @@ public class GameManager {
     }
 
     private String[] requestAndSplitCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         OutputView.printCarNamesInputRequestMessage();
         String userInput = InputView.requestUserInput();
         return splitUserInputByComma(userInput);
@@ -38,7 +37,7 @@ public class GameManager {
     }
 
     private int requestAndParseTotalRounds() {
-        System.out.println("시도할 회수는 몇회인가요?");
+        OutputView.printTotalRoundsInputRequestMessage();
         String userInput = InputView.requestUserInput();
         return getValidateTotalRounds(userInput);
     }
