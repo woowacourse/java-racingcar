@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import java.util.List;
+import racingcar.controller.exception.GetWinnerBeforeFinishException;
 import racingcar.controller.exception.RacingGameIsFinishedException;
 import racingcar.domain.Car;
 import racingcar.domain.MidtermResult;
@@ -54,6 +55,9 @@ public class RacingGameController {
     }
 
     public WinnerResult getWinnerResult() {
+        if (!isFinished()) {
+            throw new GetWinnerBeforeFinishException();
+        }
         List<Car> cars = carRepository.findAll();
         return new WinnerResult(cars);
     }
