@@ -39,4 +39,16 @@ public class ApplicationTest {
         int number = application.runCalculator("//;\n1;2;3");
         assertThat(number).isEqualTo(6);
     }
+
+    @Test
+    void 음수_입력_예외_처리() {
+        assertThatThrownBy(() -> application.runCalculator("-1,2,3"))
+                .isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    void 문자_입력_예외_처리() {
+        assertThatThrownBy(() -> application.runCalculator("a,2,3"))
+                .isInstanceOf(RuntimeException.class);
+    }
 }
