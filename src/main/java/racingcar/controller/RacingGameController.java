@@ -4,6 +4,7 @@ import java.util.List;
 import racingcar.controller.exception.RacingGameIsFinishedException;
 import racingcar.domain.Car;
 import racingcar.domain.MidtermResult;
+import racingcar.domain.WinnerResult;
 import racingcar.parser.CarNameParser;
 import racingcar.parser.TryCountParser;
 import racingcar.repository.CarRepository;
@@ -50,5 +51,10 @@ public class RacingGameController {
     public MidtermResult getMidtermResult() {
         List<Car> cars = carRepository.findAll();
         return new MidtermResult(cars);
+    }
+
+    public WinnerResult getWinnerResult() {
+        List<Car> cars = carRepository.findAll();
+        return new WinnerResult(cars);
     }
 }
