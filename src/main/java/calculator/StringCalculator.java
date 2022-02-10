@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    private static String PATTERN = "\\d+";
+    private static final String PATTERN = "\\d+";
 
     public static int splitAndSum(String input) {
         if (input == null || input.isEmpty()) {
@@ -31,7 +31,7 @@ public class StringCalculator {
         return sum;
     }
 
-    private static void checkNaturalNumber(String target) throws RuntimeException {
+    private static void checkNaturalNumber(String target) {
         if (!Pattern.matches(PATTERN, target)){
             throw new RuntimeException();
         }
