@@ -2,6 +2,8 @@ package racingcar.domain.car;
 
 import java.util.Objects;
 
+import racingcar.domain.movement.MovementStrategy;
+
 public class Position {
 
     private int value;
@@ -16,6 +18,10 @@ public class Position {
 
     public boolean isSame(int num) {
         return value == num;
+    }
+
+    public void move(MovementStrategy strategy) {
+        value += strategy.move();
     }
 
     @Override

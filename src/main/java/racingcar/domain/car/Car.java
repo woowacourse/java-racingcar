@@ -2,6 +2,8 @@ package racingcar.domain.car;
 
 import java.util.Objects;
 
+import racingcar.domain.movement.MovementStrategy;
+
 public class Car {
 
     private Name name;
@@ -18,6 +20,10 @@ public class Car {
     public Car(Name name, Position position) {
         this.name = name;
         this.position = position;
+    }
+
+    public void move(MovementStrategy strategy) {
+        this.position.move(strategy);
     }
 
     @Override
