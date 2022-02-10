@@ -31,4 +31,10 @@ public class RacingCarTest {
 		assertThatThrownBy(() -> racingCarGame.checkCarNamesLength(Arrays.asList("배카라쿠배네", "아스피")))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
+
+	@Test
+	public void 횟수_숫자_확인() throws Exception {
+		assertThatThrownBy(() -> racingCarGame.checkGameTurnNumber("two"))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
 }

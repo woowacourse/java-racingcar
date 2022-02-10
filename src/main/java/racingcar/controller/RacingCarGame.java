@@ -40,7 +40,13 @@ public class RacingCarGame {
 	public void checkCarNamesLength(List<String> carNames) {
 		if (carNames.stream()
 			.anyMatch(carName -> carName.length() > 5)) {
-			throw new IllegalArgumentException("[Error] 다시 이름을 입력하세요");
+			throw new IllegalArgumentException("[Error] 5자 이하의 이름을 입력하세요.");
+		}
+	}
+
+	public void checkGameTurnNumber(String gameTurn) {
+		if (!gameTurn.matches("\\d+")) {
+			throw new IllegalArgumentException("[Error] 숫자를 입력하세요.");
 		}
 	}
 }
