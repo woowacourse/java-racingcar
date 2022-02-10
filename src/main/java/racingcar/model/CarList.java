@@ -31,4 +31,12 @@ public class CarList {
 			this.carList.get(index).movePosition(numbers.get(index));
 		}
 	}
+
+	public HashMap<String, String> getCarInfo() {
+		HashMap<String, String> carInfo = new HashMap<>();
+		for (Car car : this.carList) {
+			carInfo.put(car.getName(), StringConst.POSITION_DELEIMIER.getValue().repeat(car.getPosition()));
+		}
+		return carInfo;
+	}
 }
