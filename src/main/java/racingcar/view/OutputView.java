@@ -5,12 +5,13 @@ import racingcar.Car;
 import java.util.List;
 
 public class OutputView {
-    public static void getRoundResult(List<Car> cars) {
+    public static void printResult(List<Car> cars) {
         for (Car car : cars) {
             String result = car.getName() + " : ";
             result += makePositionString(car);
             System.out.println(result);
         }
+        System.out.println();
     }
 
     static String makePositionString(Car car) {
@@ -19,5 +20,12 @@ public class OutputView {
             sb.append("-");
         }
         return sb.toString();
+    }
+
+    public static void printWinners(List<Car> winners) {
+        String result = winners.stream()
+                        .map(Car::getName)
+                                .collect(Collectors.joining(", "));
+        System.out.println(result + "가 최종 우승했습니다.");
     }
 }
