@@ -38,4 +38,13 @@ public class ApplicationTest {
             Parser.isValidRounds("a");
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 자동차_전진_테스트() {
+        Car car = new Car("test");
+        car.move(5);
+        assertThat(car.getCurrentPosition()).isEqualTo("test : -");
+        car.move(3);
+        assertThat(car.getCurrentPosition()).isEqualTo("test : -");
+    }
 }
