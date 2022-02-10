@@ -2,7 +2,7 @@ package racingcar.entity;
 
 import static racingcar.util.RandomUtil.checkMoveOrWait;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final String name;
     private int position = 0;
 
@@ -30,5 +30,10 @@ public class Car {
                 "name='" + name + '\'' +
                 ", position=" + position +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Car other) {
+        return other.getPosition() - this.position;
     }
 }
