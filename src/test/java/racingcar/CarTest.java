@@ -10,7 +10,7 @@ public class CarTest {
 
 	@Test
 	public void 자동차_전진() {
-		Car car = new Car("pobi");
+		Car car = Car.of("pobi");
 
 		int beforePoint = car.getPosition();
 		car.move(4);
@@ -21,7 +21,7 @@ public class CarTest {
 
 	@Test
 	public void 자동차_정지() {
-		Car car = new Car("pobi");
+		Car car = Car.of("pobi");
 
 		int beforePoint = car.getPosition();
 		car.move(2);
