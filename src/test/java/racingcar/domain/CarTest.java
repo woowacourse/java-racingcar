@@ -2,11 +2,6 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.controller.GameController;
-import racingcar.domain.Car;
-import racingcar.repository.CarRepository;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
