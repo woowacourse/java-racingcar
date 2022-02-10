@@ -2,6 +2,7 @@ package racingcar.view;
 
 import java.util.Scanner;
 
+import racingcar.util.Checker;
 import racingcar.util.StringConst;
 
 public class InputView {
