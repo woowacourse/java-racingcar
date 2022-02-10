@@ -30,8 +30,4 @@ public class CarTest {
         car.moveOrHold(false);
         assertThat(car.getPosition()).isEqualTo(0);
     }
-
-
-
-
 }

@@ -2,16 +2,18 @@ package racingcar.controller;
 
 import racingcar.repository.CarRepository;
 import racingcar.domain.Car;
-import racingcar.service.CarNameParser;
+import racingcar.validator.CarNameValidator;
 import racingcar.view.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class GameController {
-    public static final String NOT_FOUND_CARS = "[ERROR] 자동차를 찾을 수 없습니다.";
-    private static final int RandomRange = 10;
-    private static final int PivotNumber = 4;
+    private static final String NOT_FOUND_CARS_MESSAGE = "[ERROR] 자동차를 찾을 수 없습니다.";
+    private static final String EXECUTION_RESULT_MESSAGE="실행 결과";
+    private static final int RANDOM_RANGE = 10;
+    private static final int PIVOT_NUMBER = 4;
+    private static final String CAR_NAME_DELIMINATOR = ",";
 
     private InputView inputView;
     private OutputView outputView;
@@ -29,7 +31,7 @@ public class GameController {
     }
 
     public void playGame() {
-        System.out.println("실행 결과");
+        System.out.println(EXECUTION_RESULT_MESSAGE);
         for (int i = 0; i < roundNumber; i++) {
             playRound();
         }
@@ -43,7 +45,7 @@ public class GameController {
     }
 
     private boolean isMove(Random random) {
-        return random.nextInt(RandomRange) < PivotNumber;
+        return random.nextInt(RANDOM_RANGE) < PIVOT_NUMBER;
     }
 
     public void playRound() {
@@ -61,12 +63,19 @@ public class GameController {
         outputView.printAskCarNameInputMessage();
 
         String input = inputView.readCarNamesInput();
-        List<String> carNames = Arrays.asList(CarNameParser.parseCarNameInputs(input));
+        CarNameValidator.parseCarNameInputs(input);
+        String[] strings = parseCarNames(input);
+        List<String> carNames = Arrays.asList(strings);
 
         List<Car> cars = new ArrayList<>();
         carNames.forEach(x -> cars.add(new Car(x)));
 
         carRepository.addCars(cars);
+    }
+
+    private String[] parseCarNames(String input) {
+        input = input.replaceAll(" ", "");
+        return input.split(CAR_NAME_DELIMINATOR);
     }
 
     private void setRoundNumbers() {
@@ -88,7 +97,7 @@ public class GameController {
                 .max(Car::compareTo)
                 .stream()
                 .findAny()
-                .orElseThrow(() -> new RuntimeException(NOT_FOUND_CARS));
+                .orElseThrow(() -> new RuntimeException(NOT_FOUND_CARS_MESSAGE));
 
         List<Car> winners = cars.stream()
                 .filter(car -> car.isSamePosition(maxCar))
