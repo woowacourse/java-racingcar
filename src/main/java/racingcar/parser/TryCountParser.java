@@ -28,15 +28,15 @@ public class TryCountParser {
         return input.isBlank();
     }
 
-    private boolean isFloat(String input) {
+    private boolean isFloatTryCount(String input) {
         return input.matches("(-|\\+)?[0-9]+\\.[0-9]+");
     }
 
-    private boolean isNegative(String input) {
+    private boolean isNegativeTryCount(String input) {
         return Integer.parseInt(input) < 0;
     }
 
-    private boolean isZero(String input) {
+    private boolean isZeroTryCount(String input) {
         return Integer.parseInt(input) == 0;
     }
 }
