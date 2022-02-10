@@ -12,7 +12,7 @@ public class StringCalculator {
 	private static final String JOINING_SEPARATOR_DELIMITER = "|";
 	private static final String BASIC_SEPARATOR_COMMA = ",";
 	private static final String BASIC_SEPARATOR_COLON = ":";
-	private static final String POSITIVE_INTEGER_REGEX = "^(0|[1-9][0-9]*)$";
+	private static final String ZERO_AND_POSITIVE_INTEGER_REGEX = "^(0|[1-9][0-9]*)$";
 	private static final String INVALID_POSITIVE_INTEGER_ERROR_MESSAGE = "양의 정수를 입력 해주세요.";
 
 	public static int calculate(String input) {
@@ -47,7 +47,7 @@ public class StringCalculator {
 	}
 
 	private static boolean isPositiveInteger(String input) {
-		return input.matches(POSITIVE_INTEGER_REGEX);
+		return input.matches(ZERO_AND_POSITIVE_INTEGER_REGEX);
 	}
 
 	private static List<String> split(String input) {
