@@ -35,4 +35,13 @@ class StringAddCalculatorTest {
         int result = stringAddCalculator.run(stringWithComma);
         assertThat(result).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("구분자를 컴마(,) 이외에 콜론(:)을 사용할 수 있다.")
+    void colonSplitTest() {
+        String stringWithCommaAndColon = "1,2:3";
+        StringAddCalculator stringAddCalculator = new StringAddCalculator();
+        int result = stringAddCalculator.run(stringWithCommaAndColon);
+        assertThat(result).isEqualTo(6);
+    }
 }

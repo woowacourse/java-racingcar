@@ -6,7 +6,8 @@ public class StringAddCalculator {
         if (checkNull(givenString)) {
             return 0;
         }
-        return Integer.parseInt(givenString);
+        String[] splitString = split(givenString);
+        return sumStringArray(splitString);
     }
 
 
@@ -18,7 +19,7 @@ public class StringAddCalculator {
     }
 
     private String[] split(String givenString) {
-        return givenString.split("[,]");
+        return givenString.split("[,:]");
     }
 
     private int sumStringArray(String[] splitString) {
