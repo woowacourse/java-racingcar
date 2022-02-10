@@ -26,4 +26,13 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder(this.name + STRING_JOIN_DELIMITER);
+        for (int i = 0; i < this.position; i++) {
+            result.append(MOVE_EXPRESSION);
+        }
+        return result.toString();
+    }
 }
