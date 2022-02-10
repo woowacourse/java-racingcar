@@ -33,6 +33,10 @@ public class Car {
         return Objects.hash(name);
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getPosition() {
         return position;
     }
