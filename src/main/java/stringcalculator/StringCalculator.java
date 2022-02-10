@@ -5,14 +5,25 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-	public StringCalculator() {
+
+	public int splitAndSum(String input) {
+		if (validNullOrEmpty(input)) {
+			return 0;
+		}
+
+		if (isCustomInput(input)) {
+			String[] numbers = splitCustomDelimiter(input);
+			return this.sum(numbers);
+		}
+		String[] numbers = split(input);
+		return this.sum(numbers);
 	}
 
 	public String[] split(String input) {
 		return input.split(",|:");
 	}
 
-	public String[] customDelimiter(String input) {
+	public String[] splitCustomDelimiter(String input) {
 		Matcher m = getMatcher(input);
 		if (!m.find()) {
 			throw new RuntimeException();
@@ -22,6 +33,10 @@ public class StringCalculator {
 			return m.group(2).split(addCustomDelimiterPrefix(customDelimiter));
 		}
 		return m.group(2).split(customDelimiter);
+	}
+
+	public int sum(String[] numbers) {
+		return Arrays.stream(numbers).mapToInt(this::mapToInt).sum();
 	}
 
 	private Matcher getMatcher(String input) {
@@ -36,29 +51,12 @@ public class StringCalculator {
 		return customDelimiter.equals("+") || customDelimiter.equals("*") || customDelimiter.equals("^");
 	}
 
-	public int splitAndSum(String input) {
-		if (validNullOrEmpty(input)) {
-			return 0;
-		}
-
-		if (isCustomInput(input)) {
-			String[] numbers = customDelimiter(input);
-			return this.sum(numbers);
-		}
-		String[] numbers = split(input);
-		return this.sum(numbers);
-	}
-
 	private boolean isCustomInput(String input) {
 		return input.length() > 2 && input.startsWith("//");
 	}
 
 	private boolean validNullOrEmpty(String input) {
 		return input == null || input.equals("");
-	}
-
-	public int sum(String[] numbers) {
-		return Arrays.stream(numbers).mapToInt(this::mapToInt).sum();
 	}
 
 	private int mapToInt(String number) {
