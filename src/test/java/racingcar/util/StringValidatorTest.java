@@ -26,4 +26,22 @@ public class StringValidatorTest {
             assertDoesNotThrow(() -> StringValidator.validateIsEmpty(input));
         }
     }
+
+    @DisplayName("validateLength 메소드는")
+    @Nested
+    class validateLength {
+        @ParameterizedTest
+        @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
+        void 한글자_이상_다섯글자_이하_라면(String input) {
+            assertDoesNotThrow(() -> StringValidator.validateLength(input, 1, 5));
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"", "abcdef"})
+        void 한글자_이상_다섯글자_이하가_아니라면(String input) {
+            assertThatThrownBy(() -> StringValidator.validateLength(input, 1, 5))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("문자열의 길이가 1 이상 5 이하가 아닙니다.");
+        }
+    }
 }
