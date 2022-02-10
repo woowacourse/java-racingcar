@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarController {
+    private static final String PRINT_RESULT = "실행 결과";
+
     public static void raceStart(List<Car> carList, int tryNum) {
-        System.out.println("실행 결과");
+        System.out.println(PRINT_RESULT);
 
         for (int i = 0; i < tryNum; i++) {
             move(carList);

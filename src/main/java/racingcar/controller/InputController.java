@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputController {
+    private static final String SPLIT_DELIM = ",";
+
     public static List<Car> inputCarList() {
         return saveCarList();
     }
 
     public static int inputTryNum() {
-        return savaTryNumber();
+        return saveTryNumber();
     }
 
     private static List<Car> saveCarList() {
@@ -30,7 +32,7 @@ public class InputController {
 
     private static List<Car> splitList(String names) {
         List<Car> carList = new ArrayList<>();
-        String[] carNames = names.split(",");
+        String[] carNames = names.split(SPLIT_DELIM);
 
         for (String carName : carNames) {
             carList.add(new Car(carName));
@@ -39,7 +41,7 @@ public class InputController {
         return carList;
     }
 
-    private static int savaTryNumber() {
+    private static int saveTryNumber() {
         while (true) {
             String tryValue = Input.inputTry();
 
