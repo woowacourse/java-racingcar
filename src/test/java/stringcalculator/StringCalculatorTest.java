@@ -11,6 +11,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
+    @DisplayName("입력 문자열이 null 또는 빈 문자열인지 검사")
+    @Test
+    void isNullOrEmpty() {
+        assertThat(StringCalculator.isNullOrEmpty(null)).isTrue();
+        assertThat(StringCalculator.isNullOrEmpty("")).isTrue();
+        assertThat(StringCalculator.isNullOrEmpty("abc")).isFalse();
+    }
+
     @DisplayName("입력 문자열 포맷 검사 - 성공")
     @ParameterizedTest
     @ValueSource(strings = {"", "1:2:3", "1,2,3", "//;\\n", "//;\\n1;2;3", "//_\\n1_2_3"})

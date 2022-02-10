@@ -43,7 +43,15 @@ public class StringCalculator {
         return DELIMITER;
     }
 
+    public static boolean isNullOrEmpty(String text) {
+        return text == null || text.isEmpty();
+    }
+
     public static int sum(String text) {
+        if (isNullOrEmpty(text)) {
+            return 0;
+        }
+
         validateInput(text);
         String delimiter = getDelimiterFromText(text);
 
