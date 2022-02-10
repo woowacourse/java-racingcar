@@ -3,78 +3,87 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
     public static final String DELIMITER = ",|:";
+    public static final String CUSTOM_DELIMITER_EXTRACT_REGEX = "//(.)\n(.*)";
+    public static final String NO_INTEGER_ERROR = "[ERROR] 숫자가 아닌 문자가 입력되었습니다.";
+    public static final String NEGATIVE_INTEGER_ERROR = "[ERROR] 음수가 입력되었습니다.";
+    public static final String BLANK = "";
+    public static final String REGEX_DELIMITER = "|";
+    public static final int CUSTOM_DELIMITER_INDEX = 1;
+    public static final int TEXT_INDEX = 2;
 
-    public static boolean isBlank(String s) {
-        return s == null || s.isEmpty();
+    public static boolean isBlank(String text) {
+        return text == null || text.isEmpty();
     }
 
-    public static int calculate(String s) {
-        if (isBlank(s)) {
+    public static int calculate(String text) {
+        if (isBlank(text)) {
             return 0;
         }
-        String delimiter = sumOfDelimiter(s);
-        String target = extractTarget(s);
+        String delimiter = sumOfDelimiter(text);
+        String target = extractText(text);
         String[] splitStrings = target.split(delimiter);
         int[] splitNumbers = toIntArray(splitStrings);
         return sumOfList(splitNumbers);
     }
 
-    public static String sumOfDelimiter(String s) {
+    public static String sumOfDelimiter(String text) {
         String delimiter = DELIMITER;
-        if (extractCustomDelimiter(s) != "") {
-            delimiter = delimiter + "|" + extractCustomDelimiter(s);
+        if (extractCustomDelimiter(text) != BLANK) {
+            delimiter = delimiter + REGEX_DELIMITER + extractCustomDelimiter(text);
         }
         return delimiter;
     }
 
-    public static void validateInteger(String data) {
+    public static void validateInteger(String text) {
         try {
-            Integer.parseInt(data);
+            Integer.parseInt(text);
         } catch (NumberFormatException e) {
-            throw new RuntimeException("[ERROR] 숫자가 아닌 문자가 입력되었습니다.");
+            throw new RuntimeException(NO_INTEGER_ERROR);
         }
     }
 
-    public static void validatePositiveInteger(String data) {
-        int target = Integer.parseInt(data);
+    public static void validatePositiveInteger(String text) {
+        int target = Integer.parseInt(text);
         if (target < 0) {
-            throw new RuntimeException("[ERROR] 음수가 입력되었습니다.");
+            throw new RuntimeException(NEGATIVE_INTEGER_ERROR);
         }
     }
 
-    public static int[] toIntArray(String[] testData) {
-        int[] result = new int[testData.length];
-        for (int i = 0; i < testData.length; i++) {
-            validateInteger(testData[i]);
-            validatePositiveInteger(testData[i]);
-            result[i] = Integer.parseInt(testData[i]);
+    public static int[] toIntArray(String[] numbers) {
+        int[] result = new int[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            validateInteger(numbers[i]);
+            validatePositiveInteger(numbers[i]);
+            result[i] = Integer.parseInt(numbers[i]);
         }
         return result;
     }
 
-    public static int sumOfList(int[] numberList) {
+    public static int sumOfList(int[] numbers) {
         int total = 0;
-        for (int number : numberList) {
+        for (int number : numbers) {
             total += number;
         }
         return total;
     }
 
-    public static String extractCustomDelimiter(String target) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(target);
-        if (m.find()) {
-            return m.group(1);
-            //String[] tokens = m.group(2).split(customDelimiter);
-            // 덧셈 구현
-        }
-        return "";
+    public static Matcher getExtractMatcher(String text) {
+        return Pattern.compile(CUSTOM_DELIMITER_EXTRACT_REGEX).matcher(text);
     }
 
-    public static String extractTarget(String target) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(target);
+    public static String extractCustomDelimiter(String text) {
+        Matcher m = getExtractMatcher(text);
         if (m.find()) {
-            return m.group(2);
+            return m.group(CUSTOM_DELIMITER_INDEX);
         }
-        return target;
+        return BLANK;
+    }
+
+    public static String extractText(String text) {
+        Matcher m = getExtractMatcher(text);
+        if (m.find()) {
+            return m.group(TEXT_INDEX);
+        }
+        return text;
     }
 }
