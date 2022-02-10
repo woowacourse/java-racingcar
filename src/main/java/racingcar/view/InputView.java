@@ -9,4 +9,9 @@ public class InputView {
 		Scanner scanner = new Scanner(System.in);
 		return scanner.nextLine().split(StringConst.DELIMITER.getValue());
 	}
+
+	public static int getTurnInput() {
+		Scanner scanner = new Scanner(System.in);
+		return Integer.parseInt(scanner.nextLine());
+	}
 }
