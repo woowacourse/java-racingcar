@@ -21,10 +21,16 @@ public class StringCalculatorTest {
 		assertThat(calculator.split("1:2")).isEqualTo(expected);
 	}
 
+	@Test
+	void 기본_구분자() {
+		String[] expected = {"1", "2", "3"};
+		assertThat(calculator.split("1,2:3")).isEqualTo(expected);
+	}
+
 	@ParameterizedTest
 	@ValueSource(strings = {"//+\n1+2+3", "//;\n1;2;3"})
 	void 커스텀_구분자(String input) {
-		String[] actual = calculator.customDelimiter(input);
+		String[] actual = calculator.splitCustomDelimiter(input);
 		String[] expected = {"1", "2", "3"};
 		assertThat(actual).isEqualTo(expected);
 	}
@@ -73,5 +79,12 @@ public class StringCalculatorTest {
 		assertThatThrownBy(() -> {
 			calculator.splitAndSum(input);
 		}).isInstanceOf(RuntimeException.class);
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"1,2:3","//+\n1+2+3"})
+	void SplitAndSum(String input) {
+		int expected = 6;
+		assertThat(calculator.splitAndSum(input)).isEqualTo(expected);
 	}
 }
