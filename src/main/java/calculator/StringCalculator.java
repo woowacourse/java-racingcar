@@ -28,14 +28,10 @@ public class StringCalculator {
     }
 
     private static List<NaturalNumber> toInts(String[] values) {
-        return Arrays.stream(values)
-            .map(NaturalNumber::new)
-            .collect(toList());
+        return Arrays.stream(values).map(NaturalNumber::new).collect(toList());
     }
 
     private static int sum(List<NaturalNumber> numbers) {
-        return numbers.stream()
-            .mapToInt(NaturalNumber::get)
-            .sum();
+        return numbers.stream().mapToInt(NaturalNumber::get).sum();
     }
 }
