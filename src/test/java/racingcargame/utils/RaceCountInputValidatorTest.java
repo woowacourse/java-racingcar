@@ -19,4 +19,12 @@ public class RaceCountInputValidatorTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[error] 경주횟수를 입력해주세요.");
     }
+
+    @Test
+    void 경주_휫수_0_예외_테스트() {
+        assertThatThrownBy(() -> {
+            RaceCountInputValidator.validateRaceCount("0");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[error] 경주횟수는 1이상의 값을 입력해주세요.");
+    }
 }
