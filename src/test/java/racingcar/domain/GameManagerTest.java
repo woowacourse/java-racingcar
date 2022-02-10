@@ -25,6 +25,46 @@ public class GameManagerTest {
         assertThat(splitResult).containsExactly("a", "bc", "bacon");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"a,bc,bacon", "1,공 백,$!@#^"})
+    void getValidateCarNames_returnSplitResultOnValidInput(String carNamesInput) throws Exception {
+        Method validateCarNamesMethod = getValidateCarNamesMethod();
+
+        assertThatNoException().isThrownBy(
+                () -> validateCarNamesMethod.invoke(gameManager, carNamesInput)
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", " ,a,bc", "ab,,cde"})
+    void getValidateCarNames_errorOnBlank(String carNamesInput) throws Exception {
+        Method validateCarNamesMethod = getValidateCarNamesMethod();
+
+        assertThatThrownBy(
+                () -> validateCarNamesMethod.invoke(gameManager, carNamesInput)
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a,a", "abc,abc,de"})
+    void getValidateCarNames_errorDuplicate(String carNamesInput) throws Exception {
+        Method validateCarNamesMethod = getValidateCarNamesMethod();
+
+        assertThatThrownBy(
+                () -> validateCarNamesMethod.invoke(gameManager, carNamesInput)
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"123456", "carrots,1,2"})
+    void getValidateCarNames_errorOnOverFiveCharacters(String carNamesInput) throws Exception {
+        Method validateCarNamesMethod = getValidateCarNamesMethod();
+
+        assertThatThrownBy(
+                () -> validateCarNamesMethod.invoke(gameManager, carNamesInput)
+        );
+    }
+
     @Test
     void initCars() throws Exception {
         Method privateMethod = getPrivateMethod("initCars", String[].class);
@@ -74,6 +114,11 @@ public class GameManagerTest {
                 .getDeclaredMethod(methodName, argsType);
         privateMethod.setAccessible(true);
         return privateMethod;
+    }
+
+    private Method getValidateCarNamesMethod() throws NoSuchMethodException {
+        String methodName = "getValidateCarNames";
+        return getPrivateMethod(methodName, String.class);
     }
 
     private Method getValidateTotalRoundsMethod() throws NoSuchMethodException {
