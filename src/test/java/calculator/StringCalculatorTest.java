@@ -53,4 +53,10 @@ public class StringCalculatorTest {
         assertThatThrownBy(() -> StringCalculator.convertToIntegerArray(new String[]{"-1", "-2"}))
                 .isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    void 소수값을_입력한_경우_예외처리() {
+        assertThatThrownBy(() -> StringCalculator.convertToIntegerArray(new String[]{"1.1", "2.3"}))
+                .isInstanceOf(RuntimeException.class);
+    }
 }
