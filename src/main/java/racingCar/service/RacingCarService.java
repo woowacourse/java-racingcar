@@ -46,4 +46,16 @@ public class RacingCarService {
 	public void saveCount(int count) {
 		this.count = count;
 	}
+
+	public int findMaxPosition() {
+		int max = 0;
+		for (Car car : cars) {
+			if (car.getPosition() >= max) {
+				max = car.getPosition();
+			}
+		}
+		return max;
+	}
+
+	
 }
