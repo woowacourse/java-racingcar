@@ -33,20 +33,27 @@ public class StringCalculatorTest {
         assertThat(StringCalculator.split(input, delimiter)).containsExactly("1", "2", "3");
     }
 
-    @DisplayName("구분된 문자열을 숫자로 변환 - 성공")
+    @DisplayName("구분된 문자열을 숫자로 변환")
     @ParameterizedTest
     @CsvSource(value = {"0|0", "1|1", "2|2", "3|3"}, delimiter = '|')
-    void toNumberSuccess(String text, int expected) {
+    void toNumber(String text, int expected) {
         assertThat(StringCalculator.toNumber(text)).isEqualTo(expected);
     }
 
-    @DisplayName("구분된 문자열을 숫자로 변환 - 실패")
+    @DisplayName("음수인지 검사 - 성공")
     @ParameterizedTest
-    @ValueSource(strings = {"a", "b", "c", "-1"})
-    void toNumberFail(String text) {
-        assertThatThrownBy(() -> StringCalculator.toNumber(text))
+    @ValueSource(ints = {0, 1, 2})
+    void validateNegativeNumberSuccess(int number) {
+        Assertions.assertDoesNotThrow(() -> StringCalculator.validateNegativeNumber(number));
+    }
+
+    @DisplayName("음수인지 검사 - 실패")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, -2, -3})
+    void validateNegativeNumberFail(int number) {
+        assertThatThrownBy(() -> StringCalculator.validateNegativeNumber(number))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessage("올바른 숫자가 아닙니다.");
+                .hasMessage("음수는 입력할 수 없습니다.");
     }
 
     @DisplayName("구분자 파싱")

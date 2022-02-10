@@ -20,10 +20,15 @@ public class StringCalculator {
     }
 
     public static int toNumber(String text) {
-        try {
-            return Integer.parseUnsignedInt(text);
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("올바른 숫자가 아닙니다.");
+        int number = Integer.parseInt(text);
+        validateNegativeNumber(number);
+
+        return number;
+    }
+
+    public static void validateNegativeNumber(int number) {
+        if (number < 0) {
+            throw new RuntimeException("음수는 입력할 수 없습니다.");
         }
     }
 
