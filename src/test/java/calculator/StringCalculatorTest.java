@@ -38,5 +38,10 @@ public class StringCalculatorTest {
         assertThat(result).isEqualTo(6);
     }
 
-
+    @Test
+    @DisplayName("커스텀 구분자를 지정하여 덧셈 테스트")
+    void splitAndSum_by_custom_delimiter() {
+        int result = StringCalculator.splitAndSum("//;\n1;2;3");
+        assertThat(result).isEqualTo(6);
+    }
 }
