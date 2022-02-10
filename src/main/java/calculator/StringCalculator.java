@@ -58,11 +58,15 @@ public class StringCalculator {
 	}
 
 	private static String getParameterString(String input, List<String> delimiters) {
-		if (input.contains(CUSTOM_SEPARATOR_START_SIGNATURE) && input.contains(CUSTOM_SEPARATOR_END_SIGNATURE)) {
+		if (hasCustomSeparator(input)) {
 			String customDelimiter = input.substring(input.indexOf(CUSTOM_SEPARATOR_START_SIGNATURE) + 2, input.indexOf(CUSTOM_SEPARATOR_END_SIGNATURE));
 			delimiters.add(customDelimiter);
 			return input.substring(input.indexOf(CUSTOM_SEPARATOR_END_SIGNATURE) + 1);
 		}
 		return input;
+	}
+
+	private static boolean hasCustomSeparator(String input) {
+		return input.contains(CUSTOM_SEPARATOR_START_SIGNATURE) && input.contains(CUSTOM_SEPARATOR_END_SIGNATURE);
 	}
 }
