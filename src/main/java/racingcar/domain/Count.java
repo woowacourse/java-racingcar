@@ -15,11 +15,11 @@ public class Count {
         }
     }
 
-    public boolean isPositive() {
-        return count > 0;
-    }
-
-    public void subtract() {
-        count--;
+    public boolean hasNextCount() {
+        if (count > 0) {
+            count--;
+            return true;
+        }
+        return false;
     }
 }
