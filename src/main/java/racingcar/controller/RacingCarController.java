@@ -20,14 +20,25 @@ public class RacingCarController {
 	}
 
 	public void run() {
-		outputView.printMessageOfRequestCarNames();
-		CarCollection carCollection = new CarCollection(inputView.requestCarNames());
+		CarCollection carCollection = initCarCollection();
+		Round round = initRound();
+		playGame(carCollection, round);
+		announceWinners(carCollection);
+	}
 
+	private CarCollection initCarCollection() {
+		outputView.printMessageOfRequestCarNames();
+		return new CarCollection(inputView.requestCarNames());
+	}
+
+	private Round initRound() {
 		outputView.printMessageOfRequestRound();
-		Round round = new Round(inputView.requestGameRound());
+		return new Round(inputView.requestGameRound());
+	}
+
+	private void playGame(CarCollection carCollection, Round round) {
 		outputView.printEmptyLine();
 		outputView.printMessageTitleOfStatus();
-
 		while (!round.isFinish()) {
 			carCollection.play(numberPicker);
 			List<String> carStatuses = carCollection.getStatuses();
@@ -35,10 +46,11 @@ public class RacingCarController {
 			round.decreaseCount();
 			outputView.printEmptyLine();
 		}
+	}
 
+	private void announceWinners(CarCollection carCollection) {
 		List<String> winnerNames = carCollection.getWinnerNames();
 		outputView.printMessageOfWinners(winnerNames);
 	}
-
 
 }
