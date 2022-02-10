@@ -6,6 +6,8 @@ import racingcar.domain.Cars;
 public class OutputView {
 
     public static void printRaceResult(Cars cars) {
+        System.out.println();
+        System.out.println("실행 결과");
         for (Car car : cars.getCars()) {
             System.out.println(car.getCurrentPosition());
         }
