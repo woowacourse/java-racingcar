@@ -47,12 +47,18 @@ public class StringCalculator {
         validateInput(text);
         String delimiter = getDelimiterFromText(text);
 
-        return Arrays.stream(split(removeDelimiterFromText(text), delimiter))
-                .map(StringCalculator::toNumber)
+        return Arrays.stream(toIntegerArray(split(removeDelimiterFromText(text), delimiter)))
                 .reduce(0, Integer::sum);
+    }
+
+    public static Integer[] toIntegerArray(String[] strings) {
+        return Arrays.stream(strings)
+                .map(Integer::parseInt)
+                .toArray(Integer[]::new);
     }
 
     public static String removeDelimiterFromText(String text) {
         return text.replaceAll(DELIMITER_PATTERN, "");
     }
+
 }
