@@ -8,7 +8,7 @@ public class Validator {
         String[] names = nameString.split(",");
 
         for (String name : names) {
-            checkNameLength(name);
+            checkLength(name);
         }
     }
 
