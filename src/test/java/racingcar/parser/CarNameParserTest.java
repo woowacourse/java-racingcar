@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CarNameParserTest {
+
     CarNameParser parser;
 
     @BeforeEach
@@ -24,18 +25,21 @@ public class CarNameParserTest {
     @Test
     public void 이름이_6글자_이상인_경우_예외_발생() {
         assertThatThrownBy(() -> parser.parse("pobi,crong,honuxx"))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("자동차 이름은 5글자 이하여야 합니다.");
     }
 
     @Test
     public void 이름이_공백일_경우_예외_발생() {
         assertThatThrownBy(() -> parser.parse("pobi,,honux"))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("자동차 이름은 공백일 수 없습니다.");
     }
 
     @Test
     public void 이름이_중복일_경우_예외_발생() {
         assertThatThrownBy(() -> parser.parse("pobi,pobi,honux"))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("자동차 이름은 중복일 수 없습니다.");
     }
 }

@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.List;
+import racingcar.parser.exception.CarNameException;
 
 public class CarNameParser {
 
@@ -16,13 +17,13 @@ public class CarNameParser {
 
     private void validateCarNames(String names) {
         if (isInvalidLength(names)) {
-            throw new IllegalArgumentException("자동차 이름은 5글자 이하여야 합니다.");
+            throw new CarNameException("자동차 이름은 5글자 이하여야 합니다.");
         }
         if (isEmptyName(names)) {
-            throw new IllegalArgumentException("자동차 이름은 공백일 수 없습니다.");
+            throw new CarNameException("자동차 이름은 공백일 수 없습니다.");
         }
         if (isDuplicateName(names)) {
-            throw new IllegalArgumentException("자동차 이름은 중복일 수 없습니다.");
+            throw new CarNameException("자동차 이름은 중복일 수 없습니다.");
         }
     }
 
