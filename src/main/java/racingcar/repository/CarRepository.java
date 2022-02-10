@@ -5,6 +5,7 @@ import java.util.List;
 import racingcar.domain.Car;
 
 public class CarRepository {
+
     List<Car> list;
 
     public CarRepository() {
@@ -17,5 +18,9 @@ public class CarRepository {
 
     public Car findByName(String name) {
         return list.stream().filter(c -> c.getName().equals(name)).findFirst().get();
+    }
+
+    public List<Car> findAll() {
+        return list;
     }
 }
