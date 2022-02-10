@@ -23,4 +23,12 @@ class GameControllerTest {
         System.setIn(in);
         assertThat(gameController.createCarNames()).containsExactly("aa", "bb", "cc");
     }
+
+    @Test
+    void 시도_횟수_입력() {
+        String input = "5";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThat(gameController.createTryCount()).isEqualTo(5);
+    }
 }
