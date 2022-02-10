@@ -28,5 +28,19 @@ public class RacingCar {
 		return carNames;
 	}
 
+	private void checkCarName(String name) {
+		try {
+			isRightLength(name);
+		} catch (RuntimeException e) {
+			System.out.println("[ERROR] 이름이 공백이거나 6자 이상이면 안됩니다. 다시 입력해주세요.");
+			RacingCarNames();
+		}
+	}
+
+	public void isRightLength(String name) throws RuntimeException {
+		if (name.length() == 0 || name.length() > 5) {
+			throw new RuntimeException();
+		}
+	}
 
 }
