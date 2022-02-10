@@ -35,4 +35,9 @@ public class RacingCarsController {
 			requestCount();
 		}
 	}
+
+	public void startGame() {
+		racingCarService.runGame();
+	}
+
 }
