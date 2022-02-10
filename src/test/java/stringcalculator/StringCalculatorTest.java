@@ -46,4 +46,20 @@ public class StringCalculatorTest {
 		int actual = calculator.splitAndSum(input);
 		assertThat(actual).isEqualTo(0);
 	}
+
+	@Test
+	void 숫자_하나_입력() {
+		String input = "1";
+		int actual = calculator.splitAndSum(input);
+		int expected = 1;
+		assertThat(actual).isEqualTo(expected);
+	}
+
+	@Test
+	void 합() {
+		String[] input = {"1", "2"};
+		int actual = calculator.sum(input);
+		int expected = 3;
+		assertThat(actual).isEqualTo(expected);
+	}
 }

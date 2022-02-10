@@ -1,5 +1,6 @@
 package stringcalculator;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,14 +27,18 @@ public class StringCalculator {
 	}
 
 	public int splitAndSum(String input) {
-		// String[] numbers = customDelimiter(input); // if input == null -> NPE/
 		if (validNullOrEmpty(input)) {
 			return 0;
 		}
-		return 1;
+		String[] numbers = split(input);
+		return this.sum(numbers);
 	}
 
 	private boolean validNullOrEmpty(String input) {
 		return input == null || input.equals("");
+	}
+
+	public int sum(String[] numbers) {
+		return Arrays.stream(numbers).mapToInt(Integer::parseInt).sum();
 	}
 }
