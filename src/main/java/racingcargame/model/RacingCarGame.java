@@ -11,4 +11,8 @@ public class RacingCarGame {
     public void orderToSaveCars(List<String> carNames) {
         carRepository = new CarRepository(carNames);
     }
+
+    public void orderToSaveRaceCount(int raceCount) {
+        RaceCount.storeCount(raceCount);
+    }
 }
