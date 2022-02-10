@@ -31,4 +31,11 @@ public class Cars {
 			.map(Car::getName)
 			.collect(Collectors.toList());
 	}
+
+	public void moveCars() {
+		cars.stream()
+			.forEach(car -> {
+				car.move((int)Math.random() * 10);
+			});
+	}
 }

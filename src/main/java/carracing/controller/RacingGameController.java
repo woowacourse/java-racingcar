@@ -16,11 +16,17 @@ public class RacingGameController {
 	public RacingGameController() {
 	}
 
-	public void play() {
+	public void init(){
 		OutputView.printInputCarName();
 		getCars();
 		OutputView.printInputNumberOfGames();
 		getNumberOfGames();
+	}
+
+	public void play() {
+		while((numberOfGames--) > 0){
+			cars.moveCars();
+		}
 	}
 
 	private void getNumberOfGames() {
