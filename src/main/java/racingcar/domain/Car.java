@@ -3,40 +3,43 @@ package racingcar.domain;
 import java.util.Random;
 
 public class Car {
-    private static final int RANGE = 10;
-    private static final int THRESHOLD = 4;
+    private static final int RANGE_MAX = 9;
+    private static final int DO_NOT_MOVE_THRESHOLD = 3;
 
     private final String name;
     private int position = 0;
 
-    public Car(String name) {
+    public Car(final String name) {
         this.name = name;
     }
 
-    public void move(int randomNumber) {
-        if (randomNumber >= THRESHOLD) {
+    public void move(int number) {
+        if (number > DO_NOT_MOVE_THRESHOLD) {
             position++;
         }
     }
 
     public int generateRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(RANGE);
+        return new Random().nextInt(RANGE_MAX + 1);
     }
 
     public String getCurrentPosition() {
-        String currentPosition = name + " : ";
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        sb.append(" : ");
+
         for (int i = 0; i < position; i++) {
-            currentPosition += "-";
+            sb.append("-");
         }
-        return currentPosition;
+
+        return sb.toString();
     }
 
-    public int comparePosition(int highScore) {
-        if (position > highScore) {
-            return position;
+    public int getBiggerPosition(int position) {
+        if (this.position > position) {
+            return this.position;
         }
-        return highScore;
+        return position;
     }
 
     public boolean isChampion(int highScore) {

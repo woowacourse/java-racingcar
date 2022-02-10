@@ -25,7 +25,7 @@ public class Cars {
     public List<String> getChampions() {
         int highScore = 0;
         for (Car car : cars) {
-            highScore = car.comparePosition(highScore);
+            highScore = car.getBiggerPosition(highScore);
         }
 
         List<String> championNames = new ArrayList<>();
