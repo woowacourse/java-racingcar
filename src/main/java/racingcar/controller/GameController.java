@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.model.CarList;
+import racingcar.util.IntegerConst;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -12,7 +13,10 @@ public class GameController {
 		String[] carName = InputView.getCarNameInput();
 		CarList carList = new CarList(carName);
 		OutputView.askTurn();
-		int totalTurn = InputView.getTurnInput();
+		int totalTurn = Integer.parseInt(InputView.getTurnInput());
+		if (totalTurn < IntegerConst.ZERO.getValue()) {
+			return;
+		}
 		OutputView.displayResult();
 		for (int eachTurn = 0; eachTurn < totalTurn; eachTurn++) {
 			carListController.moveCarList(carList);
