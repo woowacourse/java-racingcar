@@ -22,16 +22,26 @@ public class StringTest {
 
     @DisplayName("split 메서드는 특정 정규표현식이 문자열에 없더라도 예외가 발생하지 않는다.")
     @Test
-    void splitByCommaWithoutComma() {
+    void splitByComma_noExceptionOnNoComma() {
         String input = "1";
         String[] splitResult = input.split(",");
 
         assertThat(splitResult).containsExactly("1");
     }
 
+    @DisplayName("split 메서드는 구분자 두 개 사이에 문자열에 없는 경우 빈문자열로 간주한다.")
+    @Test
+    void splitByComma_continuousSeparatorsMeansEmpty() {
+        String input = "1,,2";
+        String[] splitResult = input.split(",");
+
+        assertThat(splitResult).containsExactly("1", "", "2");
+        assertThat(splitResult.length).isEqualTo(3);
+    }
+
     @DisplayName("substring 메서드는 문자열로부터 특정 범위를 추출한다.")
     @Test
-    void substringRemoveParenthesis() {
+    void substring_extractRange() {
         String input = "(1,2)";
         String substringResult = input.substring(1, 4);
 
@@ -40,7 +50,7 @@ public class StringTest {
 
     @DisplayName("charAt 메서드는 문자열의 특정 위치에 있는 문자를 추출한다.")
     @Test
-    void charAtGetsCharByIndex() {
+    void charAt_getsCharByIndex() {
         String input = "abc";
         char charAtResult0 = input.charAt(0);
         char charAtResult1 = input.charAt(1);
@@ -53,7 +63,7 @@ public class StringTest {
 
     @DisplayName("charAt 메서드는 문자열의 위치를 벗어나는 경우 IndexOutOfBounds 예외가 발생한다.")
     @Test
-    void charAtThrowExceptionOnOutOfBounds() {
+    void charAt_throwExceptionOnOutOfBounds() {
         String input = "abc";
         String exceptionMessage = "String index out of range: 3";
 
