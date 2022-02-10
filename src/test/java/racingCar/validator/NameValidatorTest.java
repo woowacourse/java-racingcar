@@ -53,9 +53,9 @@ class NameValidatorTest {
 
 	@Test
 	public void 중복된_이름이_있는_경우() {
-		String inputString = "juri,juri";
+		List<String> nameList = new ArrayList<>(Arrays.asList(new String[] {"prodo", "prodo"}));
 		assertThatThrownBy(() -> {
-			nameValidator.checkDuplicatedName(inputString);
+			nameValidator.checkDuplicatedName(nameList);
 		}).isInstanceOf(Exception.class);
 	}
 }
