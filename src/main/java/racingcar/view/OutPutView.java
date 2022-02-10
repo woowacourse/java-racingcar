@@ -5,10 +5,12 @@ import java.util.List;
 import racingcar.domain.Car;
 
 public class OutPutView {
+    private static final String STATUS_MESSAGE = "\n실행 결과";
+    private static final String WINNER_NAME_DELIMITER = ", ";
+    private static final String END_MESSAGE = "가 최종 우승했습니다.";
 
     public static void printStatusMessage() {
-        System.out.println();
-        System.out.println("실행 결과");
+        System.out.println(STATUS_MESSAGE);
     }
 
     public static void printStatus(List<Car> cars) {
@@ -27,6 +29,6 @@ public class OutPutView {
     }
 
     public static void printResult(List<String> winners) {
-        System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
+        System.out.println(String.join(WINNER_NAME_DELIMITER, winners) + END_MESSAGE);
     }
 }

@@ -4,15 +4,19 @@ import racingcar.domain.Count;
 import racingcar.utils.Console;
 
 public class InputView {
+    private static final String INPUT_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private static final String SPLIT_REGEX = ",";
+    private static final int SPLIT_LIMIT = -1;
+    private static final String INPUT_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
 
     public static String[] getCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        System.out.println(INPUT_NAMES_MESSAGE);
         String input = Console.readLine();
-        return input.split(",", -1);
+        return input.split(SPLIT_REGEX, SPLIT_LIMIT);
     }
 
     public static Count getCount() {
-        System.out.println("시도할 회수는 몇회인가요?");
+        System.out.println(INPUT_COUNT_MESSAGE);
         return new Count(Console.readLine());
     }
 }
