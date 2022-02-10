@@ -8,4 +8,10 @@ public class Car {
 		this.name = name;
 	}
 
+	public void moveCar(boolean isGoing) {
+		if (isGoing) {
+			this.position++;
+		}
+	}
+
 }
