@@ -21,13 +21,16 @@ public class Input {
     }
 
     public String[] splitByComma(String input) {
-        System.out.println(input);
         inputValidator.isValidPattern(input);
         return input.split(",");
     }
 
-    public String getCoin() {
-        return scanner.nextLine();
+    public int getCoin() {
+        String input = scanner.nextLine();
+        inputValidator.isNumeric(input);
+        int coin = Integer.parseInt(input);
+        inputValidator.isNaturalNumber(coin);
+        return coin;
     }
 
 }

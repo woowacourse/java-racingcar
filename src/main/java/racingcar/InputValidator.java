@@ -30,4 +30,18 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR]: 잘못된 입력입니다.(같은 이름의 자동차는 두번 사용할 수 없습니다.)");
         }
     }
+
+    public void isNumeric(String input) {
+        Pattern pattern = Pattern.compile("^[0-9]*$");
+        Matcher matcher = pattern.matcher(input);
+        if (!matcher.find()) {
+            throw new IllegalArgumentException("[ERROR]: 잘못된 입력입니다.(시도 횟수는 숫자만 가능합니다.)");
+        }
+    }
+
+    public void isNaturalNumber(int input) {
+        if (input < 1) {
+            throw new IllegalArgumentException("[ERROR]: 잘못된 입력입니다.(1 이상의 값만 입력이 가능합니다.)");
+        }
+    }
 }

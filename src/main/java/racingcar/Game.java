@@ -1,7 +1,5 @@
 package racingcar;
 
-import java.util.Scanner;
-
 public class Game {
     private Input input;
     private Output output;
@@ -12,13 +10,18 @@ public class Game {
     }
 
     public void start() {
-        inputCarNames();
+        String[] names = inputCarNames();
+        int coin = inputCoin();
     }
 
-    private void inputCarNames() {
+    private String[] inputCarNames() {
         output.inputCarNameMessage();
-        String[] carNames = input.getNames();
-        System.out.println(carNames[0]);
+        return input.getNames();
+    }
+
+    private int inputCoin() {
+        output.inputCoinMessage();
+        return input.getCoin();
     }
 
 }
