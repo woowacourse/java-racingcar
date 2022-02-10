@@ -77,7 +77,7 @@ public class ParserTest {
     @ValueSource(strings = {"panda,philz,java", " panda, philz  , java"})
     @DisplayName("자동차 전체 입력 : 정상")
     public void input_all_car_name(String input) {
-        String[] inputNames = StringParser.readCarNameFixedInputs(input);
+        String[] inputNames = StringParser.readCarNameInputs(input);
 
         assertThat(inputNames).containsExactly("panda", "philz", "java");
     }
@@ -86,7 +86,7 @@ public class ParserTest {
     @DisplayName("자동차 전체 입력 : 예외")
     public void input_all_car_name_exception() {
         assertThatThrownBy(() -> {
-            StringParser.readCarNameFixedInputs("panda,philz,javajigi");
+            StringParser.readCarNameInputs("panda,philz,javajigi");
         });
     }
 /*

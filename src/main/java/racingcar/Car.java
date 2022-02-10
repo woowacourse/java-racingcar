@@ -22,4 +22,11 @@ public class Car {
     public void moveOrHold() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

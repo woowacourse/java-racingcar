@@ -11,7 +11,7 @@ public class StringParser {
         }
     }
 
-    public static String[] readCarNameFixedInputs(String inputs) {
+    public static String[] readCarNameInputs(String inputs) {
         inputs=inputs.replaceAll(" ","");
         String[] carNames = inputs.split(",");
         for (String carName : carNames) {
