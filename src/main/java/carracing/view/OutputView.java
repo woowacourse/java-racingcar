@@ -12,7 +12,7 @@ public class OutputView {
 	}
 
 	public static void printException(String message) {
-		System.out.println(OutputMessage.ERROR_MESSAGE + message);
+		System.out.println(OutputMessage.ERROR_MESSAGE.getMessage() + message);
 	}
 
 	public static void printResultMessage() {
@@ -25,5 +25,9 @@ public class OutputView {
 
 	public static void printNewLine() {
 		System.out.println();
+	}
+
+	public static void printWinners(String winners) {
+		System.out.println(winners + OutputMessage.FINAL_WINNER_MESSAGE.getMessage());
 	}
 }

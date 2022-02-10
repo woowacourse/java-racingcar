@@ -17,9 +17,7 @@ public class RacingGameController {
 	}
 
 	public void init(){
-		OutputView.printInputCarName();
 		getCars();
-		OutputView.printInputNumberOfGames();
 		getNumberOfGames();
 	}
 
@@ -29,9 +27,15 @@ public class RacingGameController {
 			cars.moveCars();
 			cars.printResult();
 		}
+		endGame();
+	}
+
+	private void endGame() {
+		OutputView.printWinners(String.join(",", cars.getWinners()));
 	}
 
 	private void getNumberOfGames() {
+		OutputView.printInputNumberOfGames();
 		try{
 			numberOfGames = InputView.getNumberOfGames();
 		}catch (IllegalArgumentException e){
@@ -41,6 +45,7 @@ public class RacingGameController {
 	}
 
 	private void getCars() {
+		OutputView.printInputCarName();
 		try {
 			String readLine = InputView.getCarNames();
 			List<String> carNames = Arrays.asList(readLine.split(","));
