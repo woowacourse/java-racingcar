@@ -1,8 +1,8 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,5 +20,13 @@ class RacingCarsTest {
     void trimBlank() {
         RacingCars racingCars = new RacingCars("pobi , cr ong , honux");
         assertThat(racingCars.getCarNames()).containsExactly("pobi", "crong", "honux");
+    }
+
+    @Test
+    @DisplayName("자동차 우승자 이름을 계산한다.")
+    void calculateWinnerNames() {
+        RacingCars racingCars = new RacingCars("pobi,crong,honux");
+        List<String> winnerNames = racingCars.calculateWinners();
+        assertThat(winnerNames).containsExactly("pobi", "crong", "honux");
     }
 }
