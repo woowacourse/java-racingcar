@@ -1,0 +1,44 @@
+package racingcar.model;
+
+import static org.assertj.core.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class CarsTest {
+	@Test
+	public void 생성_성공() {
+		// given
+		String[] names = {"오찌", "연로그"};
+
+		// when
+		Cars cars = new Cars(names);
+
+		// then
+		assertThat(cars).isNotNull();
+	}
+
+	@Test
+	public void 중복_체크() {
+		// given
+		String[] names = {"오찌", "연로그", "연로그"};
+
+		// when
+		// then
+		assertThatThrownBy(() -> new Cars(names)).isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	public void toString_결과_생성() {
+		// given
+		// when
+		// then
+	}
+
+	// TODO
+	/*@Test
+	public void 우승자_출력() {
+		// given
+		// when
+		// then
+	}*/
+}
