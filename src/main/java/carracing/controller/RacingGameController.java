@@ -11,25 +11,35 @@ import carracing.view.OutputView;
 
 public class RacingGameController {
 	private Cars cars;
+	private int numberOfGames;
 
 	public RacingGameController() {
 	}
 
 	public void play() {
 		OutputView.printInputCarName();
-		try {
-			String readLine = InputView.readLine();
-			validateEmptyString(readLine);
-			List<String> carNames = Arrays.asList(readLine.split(","));
-			createCars(carNames);
-		} catch (IllegalArgumentException e){
-			play();
+		getCars();
+		OutputView.printInputNumberOfGames();
+		getNumberOfGames();
+	}
+
+	private void getNumberOfGames() {
+		try{
+			numberOfGames = InputView.getNumberOfGames();
+		}catch (IllegalArgumentException e){
+			OutputView.printException(e.getMessage());
+			getNumberOfGames();
 		}
 	}
 
-	private void validateEmptyString(String readLine) {
-		if (readLine.isEmpty()) {
-			throw new IllegalArgumentException("차 이름을 하나 이상 입력해야합니다.");
+	private void getCars() {
+		try {
+			String readLine = InputView.getCarNames();
+			List<String> carNames = Arrays.asList(readLine.split(","));
+			createCars(carNames);
+		} catch (IllegalArgumentException e){
+			OutputView.printException(e.getMessage());
+			getCars();
 		}
 	}
 
