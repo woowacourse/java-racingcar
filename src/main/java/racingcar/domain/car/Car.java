@@ -22,6 +22,14 @@ public class Car {
         this.position = position;
     }
 
+    public String getName() {
+        return name.getName();
+    }
+
+    public int getPosition() {
+        return position.getValue();
+    }
+
     public void move(MovementStrategy strategy) {
         this.position.move(strategy);
     }
