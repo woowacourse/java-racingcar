@@ -8,14 +8,24 @@ public class Parser {
         isValidInput(text);
 
         String[] carNames = text.split(",");
-        if (carNames.length == EMPTY) {
-            throw new IllegalArgumentException();
-        }
+        isValidAmount(carNames);
 
         for (String carName : carNames) {
             isValidCarNames(carName);
         }
         return carNames;
+    }
+
+    private static void isValidInput(String text) {
+        if (text == null) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void isValidAmount(String[] carNames) {
+        if (carNames.length == EMPTY) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private static void isValidCarNames(String carName) {
