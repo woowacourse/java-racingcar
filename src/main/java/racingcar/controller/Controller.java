@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.model.Car;
 import racingcar.utils.RandomForwardJudgment;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,11 @@ public class Controller {
     }
 
     private void play() {
+        OutputView.printResultMessage();
+
         for (int i = 0; i < trialNumber; i++) {
             forwardCars();
+            OutputView.printCarsPosition(cars);
         }
     }
 
