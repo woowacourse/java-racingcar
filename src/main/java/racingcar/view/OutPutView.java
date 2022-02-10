@@ -12,11 +12,8 @@ public class OutPutView {
     }
 
     public static void printStatus(List<Car> cars) {
+        cars.forEach(car -> System.out.println(makeCarStatus(car)));
         System.out.println();
-
-        for (Car car : cars) {
-            System.out.println(makeCarStatus(car));
-        }
     }
 
     private static String makeCarStatus(Car car) {
@@ -30,7 +27,6 @@ public class OutPutView {
     }
 
     public static void printResult(List<String> winners) {
-        System.out.println();
         System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
     }
 }

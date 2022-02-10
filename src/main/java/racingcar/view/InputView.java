@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import camp.nextstep.edu.missionutils.Console;
 import racingcar.domain.Count;
+import racingcar.utils.Console;
 
 public class InputView {
 
