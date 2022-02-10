@@ -26,4 +26,13 @@ class StringAddCalculatorTest {
         int result = stringAddCalculator.run(oneString);
         assertThat(result).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("숫자 두개를 컴마(,) 구분자로 입력할 경우 두 숫자의 합을 반환한다.")
+    void commaSplitTest() {
+        String stringWithComma = "1,2";
+        StringAddCalculator stringAddCalculator = new StringAddCalculator();
+        int result = stringAddCalculator.run(stringWithComma);
+        assertThat(result).isEqualTo(3);
+    }
 }
