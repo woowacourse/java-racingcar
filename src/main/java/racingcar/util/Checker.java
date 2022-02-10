@@ -1,6 +1,7 @@
 package racingcar.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class Checker {
 
@@ -17,7 +18,9 @@ public class Checker {
 	}
 
 	private void isOverSize(String[] str) throws IllegalArgumentException {
-		int overSizeCount = (int)Arrays.stream(str).filter(eachStr -> eachStr.length() > IntegerConst.SIZE_BOUND.getValue()).count();
+		int overSizeCount = (int)Arrays.stream(str)
+			.filter(eachStr -> eachStr.length() > IntegerConst.SIZE_BOUND.getValue())
+			.count();
 		if (overSizeCount > IntegerConst.ZERO.getValue()) {
 			throw new IllegalArgumentException(StringConst.ERROR_SIZE.getValue());
 		}
@@ -30,11 +33,19 @@ public class Checker {
 	}
 
 	private void isSpecialChar(String[] str) throws IllegalArgumentException {
-		int specialCount = (int)Arrays.stream(str).filter(eachStr -> !eachStr.matches("^[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$")).count();
+		int specialCount = (int)Arrays.stream(str)
+			.filter(eachStr -> !eachStr.matches("^[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$"))
+			.count();
 		if (specialCount > IntegerConst.ZERO.getValue()) {
 			throw new IllegalArgumentException(StringConst.ERROR_SPECIAL_CHAR.getValue());
 		}
 	}
 
+	private void isDuplicate(String[] str) throws IllegalArgumentException {
+		HashSet<String> set = new HashSet<String>(Arrays.asList(str));
+		if (set.size() != str.length) {
+			throw new IllegalArgumentException(StringConst.ERROR_DUPLICATE.getValue());
+		}
+	}
 
 }
