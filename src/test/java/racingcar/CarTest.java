@@ -16,4 +16,25 @@ public class CarTest {
 		Car car = new Car("소주캉");
 		assertThat(car.getPosition()).isEqualTo(0);
 	}
+
+	@Test
+	void 이름_5글자_초과() {
+		assertThatThrownBy(() -> {
+			Car car = new Car("소주캉범고래");
+		}).isInstanceOf(RuntimeException.class);
+	}
+
+	@Test
+	void 이름_빈문자열() {
+		assertThatThrownBy(() -> {
+			String name = null;
+			Car car = new Car(name);
+		}).isInstanceOf(RuntimeException.class);
+
+		assertThatThrownBy(() -> {
+			Car car = new Car("");
+		}).isInstanceOf(RuntimeException.class);
+	}
+
+
 }
