@@ -42,7 +42,15 @@ public class Car {
 
 	public void move(int number) {
 		if (number >= MOVE_CONDITION_NO) {
-			position++;
+			this.position++;
 		}
+	}
+
+	public int getBiggerPosition(int maxPosition) {
+		return Math.max(maxPosition, this.position);
+	}
+
+	public boolean isSamePosition(int position) {
+		return this.position == position;
 	}
 }

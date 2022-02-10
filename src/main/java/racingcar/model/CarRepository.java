@@ -38,7 +38,7 @@ public class CarRepository {
 
 		List<Car> winnerCars = new ArrayList<>();
 		for (Car car : cars) {
-			if (car.getPosition() == maxPosition) {
+			if (car.isSamePosition(maxPosition)) {
 				winnerCars.add(car);
 			}
 		}
@@ -48,7 +48,7 @@ public class CarRepository {
 	private int getMaxPosition() {
 		int maxPosition = 0;
 		for (Car car : cars) {
-			maxPosition = Math.max(maxPosition, car.getPosition());
+			maxPosition = car.getBiggerPosition(maxPosition);
 		}
 		return maxPosition;
 	}
