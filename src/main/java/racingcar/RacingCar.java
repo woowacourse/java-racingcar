@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.Scanner;
+import racingcar.vo.Attempt;
 
 public class RacingCar {
   private Scanner scanner;
@@ -12,6 +13,7 @@ public class RacingCar {
   public void run() {
     String carNames = readNextLine();
     String[] names = splitCarNames(carNames);
+    Attempt attempt = new Attempt(readNextLine());
   }
 
   public String readNextLine() {
