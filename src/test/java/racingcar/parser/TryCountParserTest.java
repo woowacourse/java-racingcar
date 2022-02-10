@@ -59,4 +59,11 @@ public class TryCountParserTest {
             .isInstanceOf(TryCountException.class)
             .hasMessageContaining(TryCountParser.NULL_TRY_COUNT_ERROR_MESSAGE);
     }
+
+    @Test
+    public void 문자일때_예외_발생() {
+        assertThatThrownBy(() -> parser.parse("abcd"))
+            .isInstanceOf(TryCountException.class)
+            .hasMessageContaining(TryCountParser.CHARACTER_TRY_COUNT_ERROR_MESSAGE);
+    }
 }

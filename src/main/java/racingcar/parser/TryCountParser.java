@@ -9,7 +9,9 @@ public class TryCountParser {
     public static final String FLOAT_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 실수가 될 수 없습니다.";
     public static final String NEGATIVE_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 음수가 될 수 없습니다.";
     public static final String ZERO_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 0이 될 수 없습니다.";
+    public static final String CHARACTER_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 문자가 될  없습니다.";
     private static final String FLOAT_REG_EXP = "(-|\\+)?[0-9]+\\.[0-9]+";
+    private static final String DIGIT_REG_EXP = "(-|\\+)?[0-9]+";
 
     public int parse(String input) {
         validateTryCount(input);
@@ -20,6 +22,7 @@ public class TryCountParser {
         checkNullTryCount(input);
         checkBlankTryCount(input);
         checkFloatTryCount(input);
+        checkCharacterTryCount(input);
         checkNegativeTryCount(input);
         checkZeroTryCount(input);
     }
@@ -42,6 +45,12 @@ public class TryCountParser {
         }
     }
 
+    private void checkCharacterTryCount(String input) {
+        if (isCharacterTryCount(input)) {
+            throw new TryCountException(CHARACTER_TRY_COUNT_ERROR_MESSAGE);
+        }
+    }
+
     private void checkNegativeTryCount(String input) {
         if (isNegativeTryCount(input)) {
             throw new TryCountException(NEGATIVE_TRY_COUNT_ERROR_MESSAGE);
@@ -60,6 +69,10 @@ public class TryCountParser {
 
     private boolean isFloatTryCount(String input) {
         return input.matches(FLOAT_REG_EXP);
+    }
+
+    private boolean isCharacterTryCount(String input) {
+        return !input.matches(DIGIT_REG_EXP);
     }
 
     private boolean isNegativeTryCount(String input) {
