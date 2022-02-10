@@ -1,19 +1,22 @@
 package racingcar;
 
-import java.util.regex.Pattern;
-
 public class StringParser {
-
-    // 테스트를 위한 고정 입력
-    public static String readNameFixedInput(String fixedInput){
-        return fixedInput;
-    }
-
     public static void validateCarName(String input) {
-        // \w 문자이거나 숫자이거나 언더바이거나
-
+        //input=input.trim();
         if (input.matches(".*[^0-9a-zA-Zㄱ-ㅎ가-힣_]+.*")) {
             throw new RuntimeException("올바르지 않은 입력 형식입니다.");
         }
+        if (input.length() > 5) {
+            throw new RuntimeException("이름은 최대 5자입니다.");
+        }
+    }
+
+    public static String[] readCarNameFixedInputs(String inputs) {
+        inputs=inputs.replaceAll(" ","");
+        String[] carNames = inputs.split(",");
+        for (String carName : carNames) {
+            validateCarName(carName);
+        }
+        return carNames;
     }
 }

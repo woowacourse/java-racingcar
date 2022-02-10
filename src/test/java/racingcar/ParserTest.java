@@ -1,9 +1,11 @@
 package racingcar;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,14 +18,14 @@ public class ParserTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
 
     }
 
     /**
      * 파싱 테스트 : 이상한 입력은 예외 처리
      * 예) ,philz,panda
-     *     ,philz,
+     * ,philz,
      * 1) 5자를 초과하는 이름에 대해 예외처리
      * 2) 이동 횟수가 음수일 때 예외처리
      * 3) 앞이나 뒤에 쉼표가 있는 경우 예외처리
@@ -34,32 +36,31 @@ public class ParserTest {
      * 1) 전진한다 : 위치가 1이다
      * 2) 움직이지 않는다 : 위치가 0이다
      * 3) 우승자 판단 - 주어진 입력값에 대해 올바른 우승자를 도출하는지
-     *                 3명의 참가자 중 2명이 완주일 경우: 2명을 이름 순 출력
-     *                 3명의 참가자 중 1명이 완주일 경우: 1명 출력
-      * */
+     * 3명의 참가자 중 2명이 완주일 경우: 2명을 이름 순 출력
+     * 3명의 참가자 중 1명이 완주일 경우: 1명 출력
+     */
 
     // 예외 입력: #, null, 앞뒤로 쉼표
     @ParameterizedTest
     @ValueSource(strings = {",", "#", "panda,", "#philz", ",phobi,"})
     @DisplayName("이름에 허용되지 않는 문자")
-    public void Not_Available_Character(String fixedInput) {
-        String input = StringParser.readNameFixedInput(fixedInput);
+    public void Not_Available_Character(String input) {
         /*assertThatThrownBy(()->{
             input.contains("[;,]");
         }).isInstanceOf(Exception.class);*/
         //assertThat(input.contains("[;,]")).isTrue();
         assertThatThrownBy(
-                ()->StringParser.validateCarName(input)
+                () -> StringParser.validateCarName(input)
         ).isInstanceOf(RuntimeException.class);
     }
 
     @Test
     @DisplayName("이름에 허용되지 않는 문자 : null")
     public void Not_Available_Null() {
-       // then
-       assertThatThrownBy(
-                ()->StringParser.validateCarName(null)
-            ).isInstanceOf(RuntimeException.class);
+        // then
+        assertThatThrownBy(
+                () -> StringParser.validateCarName(null)
+        ).isInstanceOf(RuntimeException.class);
     }
 
     @Test
@@ -67,12 +68,29 @@ public class ParserTest {
     public void Available_Character() {
 
         //StringParser.validateCarName("Keesun");
-        Assertions.assertDoesNotThrow(()->{
-            StringParser.validateCarName("Keesun");
+        Assertions.assertDoesNotThrow(() -> {
+            StringParser.validateCarName("polo");
         });
     }
 
-    /*@Test
+    @ParameterizedTest
+    @ValueSource(strings = {"panda,philz,java", " panda, philz  , java"})
+    @DisplayName("자동차 전체 입력 : 정상")
+    public void input_all_car_name(String input) {
+        String[] inputNames = StringParser.readCarNameFixedInputs(input);
+
+        assertThat(inputNames).containsExactly("panda", "philz", "java");
+    }
+
+    @Test
+    @DisplayName("자동차 전체 입력 : 예외")
+    public void input_all_car_name_exception() {
+        assertThatThrownBy(() -> {
+            StringParser.readCarNameFixedInputs("panda,philz,javajigi");
+        });
+    }
+/*
+    @Test
     @DisplayName("자동차 이동")
     public void move_car() {
        // given
@@ -82,32 +100,6 @@ public class ParserTest {
 
        // then
 
-    }*/
-
-/*
-    @Test
-    void 전진_정지() {
-        assertRandomNumberInRangeTest(
-                () -> {
-                    run("pobi,woni", "1");
-                    assertThat(output()).contains("pobi : -", "woni : ", "최종 우승자 : pobi");
-                },
-                MOVING_FORWARD, STOP
-        );
-    }
-
-    @Test
-    void 이름에_대한_예외_처리() {
-        assertSimpleTest(
-                () -> {
-                    runException("pobi,javaji");
-                    assertThat(output()).contains(ERROR_MESSAGE);
-                }
-        );
     }
 */
-  /*  @Override
-    public void runMain() {
-        Application.main(new String[]{});
-    }*/
 }
