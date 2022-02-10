@@ -1,14 +1,10 @@
 package racingcar.view;
 
-import racingcar.model.Car;
-
-import java.util.List;
+import racingcar.model.Cars;
 
 public class OutputView {
-    public static void printCarsPosition(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.print(car);
-        }
+    public static void printCarsPosition(Cars cars) {
+        System.out.print(cars);
         System.out.println();
     }
 

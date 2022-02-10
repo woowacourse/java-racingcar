@@ -1,15 +1,12 @@
 package racingcar.controller;
 
 import racingcar.model.Car;
-import racingcar.utils.RandomForwardJudgment;
+import racingcar.model.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Controller {
-    private final List<Car> cars = getCars();
+    private final Cars cars = new Cars(InputView.getCarNames());
     private final int trialNumber = getTrialNumber();
 
     public void run() {
@@ -26,17 +23,7 @@ public class Controller {
     }
 
     private void forwardCars() {
-        for (Car car : cars) {
-            car.forward(RandomForwardJudgment.canForward());
-        }
-    }
-
-    private List<Car> getCars() {
-        List<String> carNames = InputView.getCarNames();
-        List<Car> cars = new ArrayList<>();
-
-        carNames.forEach(carName -> cars.add(new Car(carName)));
-        return cars;
+        cars.forward();
     }
 
     private int getTrialNumber() {
