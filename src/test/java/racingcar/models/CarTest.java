@@ -1,14 +1,12 @@
 package racingcar.models;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
-import racingcar.RandomNumber;
+import racingcar.utils.RandomNumber;
 
 @DisplayName("Car 클래스를 테스트한다.")
 class CarTest {

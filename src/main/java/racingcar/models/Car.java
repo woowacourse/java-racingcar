@@ -1,6 +1,6 @@
 package racingcar.models;
 
-import racingcar.RandomNumber;
+import racingcar.utils.RandomNumber;
 
 public class Car {
 	final RandomNumber randomNumber;
