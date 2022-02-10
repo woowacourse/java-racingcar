@@ -85,4 +85,8 @@ public class RacingCarGame {
 			outputView.printResult(cars.getPosition());
 		}
 	}
+
+	public void printWinners() {
+		outputView.printWinners(cars.findWinnerCars());
+	}
 }
