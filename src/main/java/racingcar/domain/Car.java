@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.utils.Delimiter;
+
 public class Car {
 
 	private String name;
@@ -20,7 +22,7 @@ public class Car {
 	}
 
 	public String toString() {
-		return name + " : " + "-".repeat(location);
+		return Delimiter.concatWithColon(name, Delimiter.repeatUnderBar(location));
 	}
 
 	public String getName() {

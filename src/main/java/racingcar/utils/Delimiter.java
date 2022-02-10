@@ -3,7 +3,9 @@ package racingcar.utils;
 public enum Delimiter {
 
 	COMMA(","),
-	SPACE(" ");
+	COLON(":"),
+	SPACE(" "),
+	BAR("-");
 
 	private final String value;
 
@@ -17,6 +19,15 @@ public enum Delimiter {
 
 	public static String appendSpaceBehind(String targetString) {
 		return targetString + SPACE.value;
+	}
+
+	public static String concatWithColon(String preString, String postString) {
+		String separator = SPACE.value + COLON.value + SPACE.value;
+		return preString + separator + postString;
+	}
+
+	public static String repeatUnderBar(int count) {
+		return BAR.value.repeat(count);
 	}
 
 }
