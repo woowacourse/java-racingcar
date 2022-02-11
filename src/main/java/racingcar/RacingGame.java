@@ -16,8 +16,10 @@ public class RacingGame {
     }
 
     public void playGame(RacingCars racingCars, int trialCount) {
+        OutputView.printGameStartMessage();
         for (int i = 0; i < trialCount; i++) {
             moveCar(racingCars);
+            OutputView.printCurrentRacingSituation(racingCars);
         }
     }
 

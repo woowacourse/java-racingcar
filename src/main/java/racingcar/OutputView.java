@@ -2,7 +2,7 @@ package racingcar;
 
 import java.util.List;
 
-public class OuputView {
+public class OutputView {
 
     private static final String TRIAL_RESULT = "실행 결과:";
     private static final String POSITION_LOCATION = "-";
