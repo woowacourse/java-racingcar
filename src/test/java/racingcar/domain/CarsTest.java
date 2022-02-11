@@ -2,8 +2,6 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
 import racingcar.utils.MockRandomGenerator;
 
 import static org.assertj.core.api.Assertions.*;

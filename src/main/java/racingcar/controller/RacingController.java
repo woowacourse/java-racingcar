@@ -11,10 +11,7 @@ public class RacingController {
         Cars cars = Cars.toCars(getRightName());
         int trialCount = getRightNumber();
         printResultMessage();
-        for (int i = 0; i < trialCount; i++) {
-            cars.moveCars();
-            printMessage(cars.toString());
-        }
+        progressTurns(cars, trialCount);
         printMessage(cars.getWinners());
     }
 
@@ -35,4 +32,12 @@ public class RacingController {
             return getRightNumber();
         }
     }
+
+    private void progressTurns(Cars cars, int trialCount) {
+        for (int i = 0; i < trialCount; i++) {
+            cars.moveCars();
+            printMessage(cars.toString());
+        }
+    }
+
 }
