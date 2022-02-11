@@ -17,7 +17,7 @@ public class GameController {
 	}
 
 	public void runGame() {
-		RacingCarGame racingCarGame = setUpGame();
+		final RacingCarGame racingCarGame = setUpGame();
 
 		playGame(racingCarGame);
 
@@ -34,13 +34,13 @@ public class GameController {
 		return new RacingCarGame(carNames, raceCount);
 	}
 
-	private void playGame(RacingCarGame racingCarGame) {
+	private void playGame(final RacingCarGame racingCarGame) {
 		while (!racingCarGame.isOverRace()) {
 			OutputView.showRaceProgress(racingCarGame.startRace());
 		}
 	}
 
-	private void finishGame(RacingCarGame racingCarGame) {
+	private void finishGame(final RacingCarGame racingCarGame) {
 		OutputView.showGameWinner(racingCarGame.findRacingGameWinner());
 	}
 }
