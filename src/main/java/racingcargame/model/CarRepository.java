@@ -6,12 +6,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarRepository {
+    public static final int START_POSITION = 0;
+    public static final int WINNER_POSITION = 0;
+
     private List<Car> cars;
 
     public CarRepository(List<String> carNames) {
         cars = carNames.stream().
-                map(carName -> new Car(carName, 0)).
-                collect(Collectors.toList());
+                map(carName -> new Car(carName, START_POSITION))
+                .collect(Collectors.toList());
     }
 
     public List<Car> getCars() {
@@ -23,9 +26,10 @@ public class CarRepository {
     }
 
     public List<String> findWinner() {
+        cars.sort(Collections.reverseOrder());
+
         List<String> winnerNames = new ArrayList<>();
-        Collections.sort(cars, Collections.reverseOrder());
-        int winnerPosition = cars.get(0).getPosition();
+        int winnerPosition = cars.get(WINNER_POSITION).getPosition();
         cars.stream().
                 filter(car -> car.getPosition() == winnerPosition).
                 forEach(car -> winnerNames.add(car.getName()));

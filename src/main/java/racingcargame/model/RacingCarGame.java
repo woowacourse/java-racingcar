@@ -1,8 +1,11 @@
 package racingcargame.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RacingCarGame {
+    public static final int GAME_OVER = 0;
+
     private CarRepository carRepository;
 
     public RacingCarGame(List<String> carNames, int raceCount) {
@@ -19,7 +22,7 @@ public class RacingCarGame {
     }
 
     public boolean isOverRace() {
-        return RaceCount.getCount() == 0;
+        return RaceCount.getCount() == GAME_OVER;
     }
 
     public List<CarVO> startRace() {
