@@ -17,14 +17,14 @@ public class TryCount {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
-		if (o == null || getClass() != o.getClass()) {
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
 		}
-		TryCount tryCount1 = (TryCount)o;
+		TryCount tryCount1 = (TryCount)obj;
 		return tryCount == tryCount1.tryCount;
 	}
 
