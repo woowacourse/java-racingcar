@@ -1,10 +1,14 @@
 package racingcar.io;
 
 import java.util.Iterator;
+import java.util.stream.Collectors;
 import racingcar.domain.Car;
+import racingcar.vo.Name;
 import racingcar.vo.Winners;
 
 public class Output {
+    private static final String NAME_DELIMITER = ", ";
+
     public void printCurrentPosition(Iterator<Car> cars) {
         cars.forEachRemaining(this::printRacingProgress);
         System.out.println();
@@ -23,6 +27,8 @@ public class Output {
     }
 
     public void printWinner(Winners winners) {
-        System.out.printf("%s가 최종 우승했습니다.", winners.toString());
+        System.out.printf("%s가 최종 우승했습니다.", winners.getWinners().stream()
+            .map(Name::toString)
+            .collect(Collectors.joining(NAME_DELIMITER)));
     }
 }
