@@ -1,4 +1,4 @@
-package racingcar.view;
+package racingcar.view.inputview.reader;
 
 import racingcar.view.input.reader.Reader;
 

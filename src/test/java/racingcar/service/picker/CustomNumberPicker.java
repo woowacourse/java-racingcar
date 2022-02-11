@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.service.picker;
 
 import java.util.Iterator;
 import java.util.List;

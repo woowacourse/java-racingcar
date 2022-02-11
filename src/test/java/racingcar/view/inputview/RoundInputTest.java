@@ -10,9 +10,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import racingcar.exception.round.RoundNotNumericException;
-import racingcar.view.CustomReader;
+import racingcar.view.inputview.reader.CustomReader;
 import racingcar.view.input.InputView;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class RoundInputTest {
 
 	private final CustomReader customReader = new CustomReader();

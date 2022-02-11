@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.round.Round;
 import racingcar.exception.round.RoundNotPositiveException;
 
-public class RoundTest {
+
+@SuppressWarnings("NonAsciiCharacters")public class RoundTest {
 
 	@Test
 	void 음수_예외테스트() {

@@ -16,7 +16,10 @@ import racingcar.domain.car.CarCollection;
 import racingcar.exception.car.CarNameDuplicatedException;
 import racingcar.exception.car.CarNameEmptyException;
 import racingcar.exception.car.CarNameTooLongException;
+import racingcar.service.picker.CustomNumberPicker;
 
+
+@SuppressWarnings("NonAsciiCharacters")
 public class CarCollectionTest {
 
 	private void exceptionTest(Class throwableClass, List<String> carNames) {
