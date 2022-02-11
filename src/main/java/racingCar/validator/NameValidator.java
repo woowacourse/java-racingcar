@@ -29,36 +29,36 @@ public class NameValidator {
 		checkDuplicatedName(nameList);
 	}
 
-	public static void checkNull(String inputString) throws Exception {
+	private static void checkNull(String inputString) throws Exception {
 		if (inputString == null || inputString.isEmpty())
 			throw new Exception(EXCEPTION_NULL_MESSAGE);
 	}
 
-	public static void checkSpace(String name) throws Exception {
+	private static void checkSpace(String name) throws Exception {
 		if (name.trim().isEmpty()) {
 			throw new Exception(EXCEPTION_SPACE_MESSAGE);
 		}
 	}
 
-	public static void checkNameSize(String name) throws Exception {
+	private static void checkNameSize(String name) throws Exception {
 		if (name.length() > 5) {
 			throw new Exception(EXCEPTION_NAME_RANGE);
 		}
 	}
 
-	public static void checkSpecialChar(String name) throws Exception {
+	private static void checkSpecialChar(String name) throws Exception {
 		if (!Pattern.matches("[가-힣\\w_]*", name)) {
 			throw new Exception(EXCEPTION_SPACIAL_MESSAGE);
 		}
 	}
 
-	public static void checkOneName(List<String> nameList) throws Exception {
+	private static void checkOneName(List<String> nameList) throws Exception {
 		if (nameList.size() <= 1) {
 			throw new Exception(EXCEPTION_ONE_NAME_MESSAGE);
 		}
 	}
 
-	public static void checkDuplicatedName(List<String> nameList) throws Exception {
+	private static void checkDuplicatedName(List<String> nameList) throws Exception {
 		Set<String> nameSet = new HashSet<>(nameList);
 		if (nameSet.size() != nameList.size()) {
 			throw new Exception(EXCEPTION_DUPLICATED_NAME_MESSAGE);
