@@ -42,7 +42,7 @@ public class RacingCarsController {
 
 	public void startGame() throws Exception {
 		CountValidator.checkCountIsZero(roundCount);
-		printResultMessege();
+		printResultMessage();
 		for (int i = 0; i < roundCount; i++) {
 			racingCarService.runRound();
 			Output.printRoundResult(racingCarService.findAllCars());

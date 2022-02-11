@@ -13,7 +13,7 @@ public class Output {
 		System.out.println(ERROR_MSG + e);
 	}
 
-	public static void printResultMessege() {
+	public static void printResultMessage() {
 		System.out.println("\n실행 결과");
 	}
 
@@ -29,6 +29,6 @@ public class Output {
 		for (String w : winner) {
 			Result.append(w).append(", ");
 		}
-		System.out.println(Result.substring(0, Result.length() - 2)+"가 최종 우승했습니다.");
+		System.out.println(Result.substring(0, Result.length() - 2) + "가 최종 우승했습니다.");
 	}
 }

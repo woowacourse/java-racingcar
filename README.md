@@ -38,7 +38,7 @@
 # TODO
 
 - [x] RacingCarService Class 역할 분리
-
+- [x] 객체에 메세지 보내도록 수정
 
 ---
 ---

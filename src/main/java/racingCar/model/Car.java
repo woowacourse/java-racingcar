@@ -35,4 +35,8 @@ public class Car {
 	public boolean isWinner(int max) {
 		return position == max;
 	}
+
+	public boolean isMaxPosition(int max) {
+		return position > max;
+	}
 }
