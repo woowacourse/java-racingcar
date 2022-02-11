@@ -18,7 +18,7 @@ public class GameController {
 		if (carName[0].equals("[ERROR]")) {
 			return;
 		}
-		CarList carList = new CarList(carName);
+		ArrayList<Car> carList = generateCarList(carName);
 		OutputView.askTurn();
 		int totalTurn = Integer.parseInt(InputView.getTurnInput());
 		if (totalTurn < IntegerConst.ZERO.getValue()) {
@@ -27,7 +27,7 @@ public class GameController {
 		OutputView.displayResult();
 		for (int eachTurn = 0; eachTurn < totalTurn; eachTurn++) {
 			carListController.moveCarList(carList);
-			OutputView.displayCarPosition(outputViewController.mapCarList(carList));
+			OutputView.displayCarPosition(outputViewController.getCarListInfo(carList));
 		}
 		OutputView.displayWinner(outputViewController.mapWinner(carList));
 	}
@@ -47,13 +47,5 @@ public class GameController {
 			max = Math.max(max, car.getPosition());
 		}
 		return max;
-	}
-
-	public LinkedHashMap<String, String> getCarListInfo(ArrayList<Car> carList) {
-		LinkedHashMap<String, String> carListInfo = new LinkedHashMap<>();
-		for (Car car : carList) {
-			carListInfo.put(car.getName(), StringConst.POSITION_DELEIMIER.getValue().repeat(car.getPosition()));
-		}
-		return carListInfo;
 	}
 }

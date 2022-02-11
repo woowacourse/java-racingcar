@@ -12,11 +12,13 @@ public class CarListController {
 		return random.nextInt(IntegerConst.RANDOM_UPPER_BOUND.getValue());
 	}
 
-	public void moveCarList(CarList carList) {
+	public void moveCarList(ArrayList<Car> carList) {
 		ArrayList<Integer> randomNumberArray = new ArrayList<>();
-		for (int index = 0; index < carList.getSize(); index++) {
+		for (int index = 0; index < carList.size(); index++) {
 			randomNumberArray.add(generateRandNum());
 		}
-		carList.moveCars(randomNumberArray);
+		for (int index = 0; index < carList.size(); index++) {
+			carList.get(index).movePosition(randomNumberArray.get(index));
+		}
 	}
 }
