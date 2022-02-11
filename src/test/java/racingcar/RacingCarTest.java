@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Scanner;
 import org.junit.jupiter.api.Test;
+import racingcar.view.InputView;
 
 public class RacingCarTest {
 
@@ -14,15 +14,14 @@ public class RacingCarTest {
     String input = "name1,name2,name3";
     InputStream in = new ByteArrayInputStream(input.getBytes());
     System.setIn(in);
-    RacingCar racingCar = new RacingCar(new Scanner(System.in));
-    String carNames = racingCar.readNextLine();
+    String carNames = InputView.requestCarName();
     assertThat(carNames).isEqualTo(input);
   }
 
   @Test
   public void splitCarNames_test() throws Exception {
     String input = "name1,name2,name3";
-    RacingCar racingCar = new RacingCar(new Scanner(System.in));
+    RacingCar racingCar = new RacingCar();
     String[] carNames = racingCar.splitCarNames(input);
     assertThat(carNames).contains("name1", "name2", "name3");
   }

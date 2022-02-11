@@ -1,7 +1,10 @@
 package racingcar;
 
-import java.util.List;
-import java.util.Scanner;
+import static racingcar.view.InputView.requestCarName;
+import static racingcar.view.InputView.requestAttempt;
+import static racingcar.view.OutputView.printRaceResult;
+import static racingcar.view.OutputView.printWinners;
+
 import racingcar.vo.Attempt;
 import racingcar.vo.Car;
 import racingcar.vo.CarName;
@@ -9,23 +12,14 @@ import racingcar.vo.Cars;
 
 public class RacingCar {
 
-  private Scanner scanner;
-
-  public RacingCar(Scanner scanner) {
-    this.scanner = scanner;
+  public RacingCar() {
   }
 
   public void run() {
-    String carNamesInput = readNextLine();
-    Cars cars = createCars(splitCarNames(carNamesInput));
-    String attemptInput = readNextLine();
-    Attempt attempt = new Attempt(attemptInput);
-    String raceResult = cars.repeatRace(attempt);
-    List<Car> winners = cars.getWinners();
-  }
-
-  public String readNextLine() {
-    return this.scanner.nextLine();
+    Cars cars = createCars(splitCarNames(requestCarName()));
+    Attempt attempt = new Attempt(requestAttempt());
+    printRaceResult(cars.repeatRace(attempt));
+    printWinners(cars.getWinners());
   }
 
   public String[] splitCarNames(String carNames) {
