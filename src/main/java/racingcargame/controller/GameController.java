@@ -1,9 +1,9 @@
 package racingcargame.controller;
 
+import java.util.List;
+
 import racingcargame.model.RacingCarGame;
 import racingcargame.view.OutputView;
-
-import java.util.List;
 
 public class GameController {
     private static final GameController gameController = new GameController();
@@ -17,18 +17,22 @@ public class GameController {
     }
 
     public void playGame() {
-        OutputView.showCarNamesInputGuideMessage();
-        List<String> carNames = inputController.inputCarName();
-
-        OutputView.showRaceCountInputGuideMessage();
-        int raceCount = inputController.inputRaceCount();
-
-        RacingCarGame racingCarGame = new RacingCarGame(carNames, raceCount);
+        RacingCarGame racingCarGame = makeRacingCarGameObjectByUserInput();
 
         OutputView.showRaceProgressGuideMessage();
         while (!racingCarGame.isOverRace()) {
             OutputView.showRaceProgress(racingCarGame.startRace());
         }
         OutputView.showGameWinner(racingCarGame.findRacingGameWinner());
+    }
+
+    private RacingCarGame makeRacingCarGameObjectByUserInput() {
+        OutputView.showCarNamesInputGuideMessage();
+        List<String> carNames = inputController.inputCarName();
+
+        OutputView.showRaceCountInputGuideMessage();
+        int raceCount = inputController.inputRaceCount();
+
+        return new RacingCarGame(carNames, raceCount);
     }
 }
