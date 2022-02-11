@@ -19,7 +19,7 @@ public class RacingGame {
     public static final String SEPARATOR = ",";
 
     private List<Car> carList = new ArrayList<>();
-    private List<String> winners = new ArrayList<>();
+    private List<String> winnerNameList = new ArrayList<>();
     private int totalAttemptCount;
 
     public void start() throws IllegalArgumentException {
@@ -31,7 +31,7 @@ public class RacingGame {
         }
 
         getWinners();
-        printWinners(winners);
+        printWinners(winnerNameList);
     }
 
     private void initRacingCarGame() throws IllegalArgumentException {
@@ -79,13 +79,13 @@ public class RacingGame {
 
         for (int i = ZERO; i < carList.size(); i++) {
             Car car = carList.get(i);
-            isWinner(car, maxPosition);
+            addWinnerName(maxPosition, car);
         }
     }
 
-    private void isWinner(Car car, int maxPosition) {
-        if (car.getPosition() == maxPosition) {
-            winners.add(car.getName());
+    private void addWinnerName(int maxPosition, Car car) {
+        if (car.isWinner(maxPosition)) {
+            winnerNameList.add(car.getName());
         }
     }
 }

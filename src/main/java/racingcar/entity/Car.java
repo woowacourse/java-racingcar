@@ -27,6 +27,13 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    public boolean isWinner(int maxPosition) {
+        if (this.position == maxPosition) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public int compareTo(Car other) {
         return other.getPosition() - this.position;
