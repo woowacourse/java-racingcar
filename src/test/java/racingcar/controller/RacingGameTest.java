@@ -8,7 +8,6 @@ import java.io.InputStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-
 @DisplayName("RacingGame 클래스")
 class RacingGameTest {
 

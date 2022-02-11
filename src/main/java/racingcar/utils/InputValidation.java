@@ -3,6 +3,7 @@ package racingcar.utils;
 import java.util.regex.Pattern;
 
 public class InputValidation {
+
 	private final static String CAR_NAME_DISTRIBUTOR = ",";
 	private final static int MAX_NAME_LENGTH = 5;
 	private final static String NAME_LENGTH_ERROR = "이름은 5자리 이하만 가능합니다.";

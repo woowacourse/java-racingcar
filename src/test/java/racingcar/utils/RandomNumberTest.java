@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.utils.RandomNumber;
 
 class RandomNumberTest {
+
 	@Test
 	@DisplayName("1~9사이의 난수가 생성되는지 확인한다.")
 	void getRandomNumber() {

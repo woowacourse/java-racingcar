@@ -10,6 +10,7 @@ import racingcar.utils.RandomNumber;
 
 @DisplayName("Car 클래스를 테스트한다.")
 class CarTest {
+
 	RandomNumber randomNumber = mock(RandomNumber.class);
 
 	@Test

@@ -3,6 +3,7 @@ package racingcar.models;
 import racingcar.utils.RandomNumber;
 
 public class Car {
+
 	final RandomNumber randomNumber;
 	final String name;
 	int position;

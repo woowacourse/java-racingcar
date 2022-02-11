@@ -11,6 +11,7 @@ import racingcar.views.Input;
 import racingcar.views.Output;
 
 public class RacingGame {
+
 	final Input input;
 	final Output output;
 	ArrayList<Car> cars;
@@ -72,5 +73,4 @@ public class RacingGame {
 			.toArray(String[]::new);
 		return String.join(", ", winnerNames);
 	}
-
 }

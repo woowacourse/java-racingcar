@@ -5,6 +5,7 @@ import java.util.List;
 import racingcar.models.Car;
 
 public class Output {
+
 	private static final String TURN_RESULT = "\n실행결과";
 	private static final String CAR_POSITION = "-";
 	private static final String WINNER = "가 최종 우승했습니다.";
