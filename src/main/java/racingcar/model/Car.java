@@ -32,11 +32,11 @@ public class Car {
 		return position;
 	}
 
-	public boolean isWinner(int max) {
-		return position == max;
+	public boolean isWinner(int maxPosition) {
+		return position == maxPosition;
 	}
 
-	public boolean isMaxPosition(int max) {
-		return position > max;
+	public boolean isOverMaxPosition(int maxPosition) {
+		return position > maxPosition;
 	}
 }

@@ -13,7 +13,7 @@ public class RacingCarService {
 
 	List<Car> cars = new ArrayList<>();
 
-	public void runRound() {
+	public void playRound() {
 		for (Car car : cars) {
 			car.decideMove();
 		}
@@ -34,7 +34,7 @@ public class RacingCarService {
 	public int findMaxPosition() {
 		int maxPosition = 0;
 		for (Car car : cars) {
-			if (car.isMaxPosition(maxPosition)) {
+			if (car.isOverMaxPosition(maxPosition)) {
 				maxPosition = car.getPosition();
 			}
 		}

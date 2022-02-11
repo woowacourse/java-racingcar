@@ -24,7 +24,7 @@ public class NameValidator {
 	}
 
 	public static void checkNameList(List<String> nameList) throws Exception {
-		checkOneName(nameList);
+		checkNameIsOne(nameList);
 		checkDuplicatedName(nameList);
 	}
 
@@ -52,7 +52,7 @@ public class NameValidator {
 		}
 	}
 
-	public static void checkOneName(List<String> nameList) throws Exception {
+	public static void checkNameIsOne(List<String> nameList) throws Exception {
 		if (nameList.size() <= MINIMUM_NAME_LIST_SIZE) {
 			throw new Exception(CAR_NUMBER_IS_ONE_WARNING_MSG);
 		}

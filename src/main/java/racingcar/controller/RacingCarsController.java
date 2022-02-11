@@ -44,7 +44,7 @@ public class RacingCarsController {
 		CountValidator.checkCountIsZero(roundCount);
 		printResultMessage();
 		for (int i = 0; i < roundCount; i++) {
-			racingCarService.runRound();
+			racingCarService.playRound();
 			Output.printRoundResult(racingCarService.findAllCars());
 		}
 	}
