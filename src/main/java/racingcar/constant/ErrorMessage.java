@@ -1,4 +1,4 @@
-package racingcar.Constant;
+package racingcar.constant;
 
 public class ErrorMessage {
     private static String ERROR = "[ERROR] ";

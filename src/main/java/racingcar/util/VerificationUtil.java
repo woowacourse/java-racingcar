@@ -3,7 +3,7 @@ package racingcar.util;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import racingcar.Constant.ErrorMessage;
+import static racingcar.constant.ErrorMessage.*;
 
 public class VerificationUtil {
 
@@ -20,17 +20,17 @@ public class VerificationUtil {
 
     private static void validateCarNameLength(String carName) {
         if (carName.length() < CAR_NAME_MIN_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.MORE_THAN_ONE_LETTER);
+            throw new IllegalArgumentException(MORE_THAN_ONE_LETTER);
         }
 
         if (carName.length() > CAR_NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.LESS_THAN_FIVE_LETTER);
+            throw new IllegalArgumentException(LESS_THAN_FIVE_LETTER);
         }
     }
 
     private static void validateCarNameSpace(String carName) {
         if (carName.contains(" ")) {
-            throw new IllegalArgumentException(ErrorMessage.NO_SPACE);
+            throw new IllegalArgumentException(NO_SPACE);
         }
     }
 
@@ -38,7 +38,7 @@ public class VerificationUtil {
         HashSet<String> hashSet = new HashSet<>(Arrays.asList(carNames));
 
         if (hashSet.size() < carNames.length) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED);
+            throw new IllegalArgumentException(DUPLICATED);
         }
     }
 
@@ -52,13 +52,13 @@ public class VerificationUtil {
         try {
             return Integer.parseInt(attempt);
         } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.MUST_BE_INTEGER);
+            throw new IllegalArgumentException(MUST_BE_INTEGER);
         }
     }
 
     private static void validatePositiveNumber(int number) {
         if (number <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.MUST_BE_POSITIVE);
+            throw new IllegalArgumentException(MUST_BE_POSITIVE);
         }
     }
 }
