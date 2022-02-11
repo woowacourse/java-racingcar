@@ -50,13 +50,11 @@ public class ApplicationTest {
 
     @Test
     void 최종_우승자_테스트() {
-        RacingGame cars = new RacingGame(new String[] {"car1","car2","car3"});
+        RacingGame racingGame = new RacingGame(new String[] {"car1","car2","car3"});
 
-        cars.getCars().get(0).move(5);
-        cars.getCars().get(1).move(5);
-        cars.getCars().get(2).move(3);
+        //수정
 
-        assertThat(cars.getChampionNames())
+        assertThat(racingGame.getChampionNames())
             .contains("car1")
             .contains("car2")
             .doesNotContain("car3");

@@ -18,8 +18,14 @@ public class RacingGame {
         }
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<String> getAllCurrentPosition() {
+        List<String> positions = new ArrayList<>();
+
+        for (Car car : cars) {
+            positions.add(car.getCurrentPosition());
+        }
+
+        return positions;
     }
 
     public int getHighScore() {

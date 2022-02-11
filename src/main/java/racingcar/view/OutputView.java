@@ -4,12 +4,11 @@ import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
 
 public class OutputView {
+    public static final String RACE_RESULT_MESSAGE = "\n실행 결과";
 
     public static void printRaceResult(RacingGame cars) {
-        System.out.println();
-        System.out.println("실행 결과");
-        for (Car car : cars.getCars()) {
-            System.out.println(car.getCurrentPosition());
+        for (String current : cars.getAllCurrentPosition()) {
+            System.out.println(current);
         }
         System.out.println();
     }

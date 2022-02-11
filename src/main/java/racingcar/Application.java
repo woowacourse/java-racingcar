@@ -9,15 +9,16 @@ public class Application {
         String carNames = InputView.inputCarNames();
         String[] names = Parser.split(carNames);
 
-        RacingGame cars = new RacingGame(names);
+        RacingGame racingGame = new RacingGame(names);
         String rounds = InputView.inputRounds();
         Parser.isValidRounds(rounds);
 
+        System.out.println(OutputView.RACE_RESULT_MESSAGE);
         for (int i = 0; i < Integer.parseInt(rounds); i++) {
-            cars.moveCars();
-            OutputView.printRaceResult(cars);
+            racingGame.moveCars();
+            OutputView.printRaceResult(racingGame);
         }
 
-        OutputView.printChampionList(cars);
+        OutputView.printChampionList(racingGame);
     }
 }
