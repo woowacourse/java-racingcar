@@ -5,6 +5,7 @@ import racingcar.view.Output;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarController {
     private static final String PRINT_RESULT = "실행 결과";
@@ -25,32 +26,20 @@ public class CarController {
     }
 
     public static void finalWinner(List<Car> carList) {
-        int maxPosition = findMaxPosition(carList);
-        List<String> winnerList = getWinnerList(carList, maxPosition);
+        List<String> winnerList = getWinnerList(carList);
         Output.winnerPrint(winnerList);
     }
 
-    private static List<String> getWinnerList(List<Car> carList, int maxPosition) {
+    private static List<String> getWinnerList(List<Car> carList) {
         List<String> winnerList = new ArrayList<>();
+        int winnerPosition = Car.getWinnerPosition(carList);
 
         for (Car car : carList) {
-            if (car.getPosition() == maxPosition) {
+            if (car.isWinner(winnerPosition)) {
                 winnerList.add(car.getName());
             }
         }
 
         return winnerList;
-    }
-
-    private static int findMaxPosition(List<Car> carList) {
-        int maxNum = 0;
-
-        for (Car car : carList) {
-            if (car.getPosition() > maxNum) {
-                maxNum = car.getPosition();
-            }
-        }
-
-        return maxNum;
     }
 }

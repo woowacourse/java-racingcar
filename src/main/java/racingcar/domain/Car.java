@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 
 public class Car {
@@ -16,12 +19,34 @@ public class Car {
         this.position = 0;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    private int getPosition() {
+        return position;
+    }
+
     public void goForward() {
         Random random = new Random();
 
         if (random.nextInt(RANDOM_MAX_RANGE) >= RANDOM_CONDITION) {
             position += 1;
         }
+    }
+
+    public static int getWinnerPosition(List<Car> cars) {
+        return cars.stream()
+                .max(Comparator.comparing(Car::getPosition))
+                .orElseThrow(RuntimeException::new)
+                .position;
+    }
+
+    public boolean isWinner(int winnerPosition) {
+        if (position == winnerPosition) {
+            return true;
+        }
+        return false;
     }
 
     @Override
