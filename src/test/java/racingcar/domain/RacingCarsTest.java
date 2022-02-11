@@ -1,12 +1,15 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class RacingCarsTest {
 
@@ -30,6 +33,15 @@ class RacingCarsTest {
         RacingCars racingCars = new RacingCars("pobi,crong,honux");
         List<String> winnerNames = racingCars.searchWinnerNames();
         assertThat(winnerNames).containsExactly("pobi", "crong", "honux");
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @DisplayName("자동차 입력 값이 존재하지 않으면 예외를 발생한다.")
+    void checkCarNamesNullOrEmpty(String input) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> new RacingCars(input))
+            .withMessageMatching("자동차 입력 값이 존재해야한다.");
     }
 
     @Test

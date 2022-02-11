@@ -16,7 +16,14 @@ public class RacingCars {
     private final RacingCarCommander commander = new RacingCarCommander();
 
     public RacingCars(String carStringNames) {
+        isEmpty(carStringNames);
         this.cars = makeRacingCars(carStringNames.split(CAR_NAME_DELIMITER));
+    }
+
+    private void isEmpty(String stringNames) {
+        if(stringNames == null || stringNames.isEmpty()) {
+            throw new IllegalArgumentException("자동차 입력 값이 존재해야한다.");
+        }
     }
 
     private List<RacingCar> makeRacingCars(String[] carNames) {
@@ -59,6 +66,7 @@ public class RacingCars {
     }
 
     private RacingCar searchAnyWinner() {
+        checkCarsEmpty();
         RacingCar anyWinner = cars.get(0);
         for(RacingCar car : cars) {
             if(car.isGreaterPosition(anyWinner)) {
@@ -66,5 +74,11 @@ public class RacingCars {
             }
         }
         return anyWinner;
+    }
+
+    private void checkCarsEmpty() {
+        if(cars.isEmpty()) {
+            throw new RuntimeException("최소 1개의 자동차가 존재해야 한다.");
+        }
     }
 }

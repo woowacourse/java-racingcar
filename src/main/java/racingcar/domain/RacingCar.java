@@ -9,12 +9,12 @@ public class RacingCar {
     private int position = DEFAULT_POSITION;
 
     public RacingCar(String name) {
-        isBlank(name);
+        isEmpty(name);
         checkNameLength(name);
         this.name = name;
     }
 
-    private void isBlank(String name) {
+    private void isEmpty(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("자동차 이름은 비어있을 수 없다.");
         }
