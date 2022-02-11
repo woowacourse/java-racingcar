@@ -37,6 +37,6 @@ public class Car {
 	}
 
 	public String getStateString() {
-		return name + Constants.ROUND_REGEX + Constants.POSITION_SIGNATURE.repeat(position);
+		return name + Constants.ROUND_REGEX + Constants.POSITION_SIGNATURE.repeat(position) + "\n";
 	}
 }

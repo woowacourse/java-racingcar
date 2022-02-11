@@ -16,7 +16,7 @@ public class Output {
 	}
 
 	public static void printRoundResult(RacingCars cars) {
-		System.out.println(cars.getRoundResult() + "\n");
+		System.out.println(cars.getRoundResult());
 	}
 
 	public static void printWinner(List<String> winner) {
