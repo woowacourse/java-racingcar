@@ -1,7 +1,8 @@
 package racingcar;
 
-import racingcar.io.Input;
-import racingcar.io.Output;
+import racingcar.controller.RacingGame;
+import racingcar.view.Input;
+import racingcar.view.Output;
 
 public class RacingCarApplication {
     public static void main(String[] args) {

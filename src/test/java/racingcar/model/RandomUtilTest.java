@@ -1,9 +1,11 @@
-package racingcar.util;
+package racingcar.model;
 
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import racingcar.model.RandomUtil;
 
 public class RandomUtilTest {
     @Test

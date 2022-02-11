@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.model.vo;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +7,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racingcar.vo.Name;
+
+import racingcar.model.vo.Car;
+import racingcar.model.vo.Name;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -74,9 +76,9 @@ public class CarTest {
         Collections.sort(cars);
 
         // then
-        assertThat(cars.get(0)).isEqualTo(pobi);
+        assertThat(cars.get(0)).isEqualTo(rich);
         assertThat(cars.get(1)).isEqualTo(hoho);
-        assertThat(cars.get(2)).isEqualTo(rich);
+        assertThat(cars.get(2)).isEqualTo(pobi);
     }
     
 }

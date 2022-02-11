@@ -1,4 +1,4 @@
-package racingcar.vo;
+package racingcar.model.vo;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -6,9 +6,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
 
+import racingcar.model.vo.Name;
+
 public class NameTest {
     @ParameterizedTest
-    @CsvSource(value = {" pobi:pobi", "hoho :hoho", " richard :richard"}, delimiter = ':')
+    @CsvSource(value = {" pobi:pobi", "hoho :hoho", " rich :rich"}, delimiter = ':')
     @DisplayName("이름 앞 뒤에 공백이 존재하면 제거한다")
     void removeWhitespaces(String actual, String expected) {
         assertThat(Name.of(actual)).isEqualTo(Name.of(expected));

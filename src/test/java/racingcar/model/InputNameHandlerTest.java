@@ -1,9 +1,11 @@
-package racingcar;
+package racingcar.model;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.vo.Name;
+
+import racingcar.model.InputNameHandler;
+import racingcar.model.vo.Name;
 import static org.assertj.core.api.Assertions.*;
 
 class InputNameHandlerTest {

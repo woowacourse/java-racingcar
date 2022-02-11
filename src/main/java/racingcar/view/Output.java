@@ -1,9 +1,9 @@
-package racingcar.io;
+package racingcar.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.domain.Car;
-import racingcar.vo.Name;
+import racingcar.model.vo.Car;
+import racingcar.model.vo.Name;
 
 public class Output {
     public void printCurrentPosition(List<Car> cars) {

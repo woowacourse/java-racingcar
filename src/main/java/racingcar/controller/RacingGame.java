@@ -1,8 +1,9 @@
-package racingcar;
+package racingcar.controller;
 
-import racingcar.domain.Cars;
-import racingcar.io.Input;
-import racingcar.io.Output;
+import racingcar.model.InputNameHandler;
+import racingcar.model.firstcollection.Cars;
+import racingcar.view.Input;
+import racingcar.view.Output;
 
 public class RacingGame {
     private final Input input;

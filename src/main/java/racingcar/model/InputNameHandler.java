@@ -1,9 +1,9 @@
-package racingcar;
+package racingcar.model;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.vo.Name;
+import racingcar.model.vo.Name;
 
 public class InputNameHandler {
     private InputNameHandler() {}

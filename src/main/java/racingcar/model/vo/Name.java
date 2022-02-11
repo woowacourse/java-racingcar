@@ -1,4 +1,4 @@
-package racingcar.vo;
+package racingcar.model.vo;
 
 import java.util.Objects;
 

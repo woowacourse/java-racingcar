@@ -1,6 +1,4 @@
-package racingcar.domain;
-
-import racingcar.vo.Name;
+package racingcar.model.vo;
 
 public class Car implements Comparable<Car> {
     private static final int ADVANCE_STANDARD = 4;
@@ -32,6 +30,6 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car car) {
-        return car.position - this.position;
+        return this.position - car.position;
     }
 }
