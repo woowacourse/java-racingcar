@@ -2,6 +2,8 @@ package racingcar.controller;
 
 import java.util.Random;
 
+import racingcar.constants.Constants;
+
 public class RandomNumberPicker implements NumberPicker {
 
 	private final Random random;
@@ -13,6 +15,6 @@ public class RandomNumberPicker implements NumberPicker {
 
 	@Override
 	public int pickNumber() {
-		return random.nextInt(10);
+		return random.nextInt(Constants.RANDOM_RANGE);
 	}
 }

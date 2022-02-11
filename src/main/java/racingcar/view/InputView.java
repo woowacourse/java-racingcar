@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.constants.Constants;
 import racingcar.view.reader.DataReader;
 
 public class InputView {
@@ -15,7 +16,7 @@ public class InputView {
 	}
 
 	public List<String> requestCarNames() {
-		return Arrays.stream(dataReader.readLine().split(","))
+		return Arrays.stream(dataReader.readLine().split(Constants.CAR_NAME_DELIMITER))
 			.map(String::trim)
 			.collect(Collectors.toList());
 	}

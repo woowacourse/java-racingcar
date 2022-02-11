@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.constants.Constants;
 import racingcar.controller.NumberPicker;
 import racingcar.exception.DuplicateCarNameException;
 import racingcar.exception.EmptyCarNameException;
@@ -33,7 +34,7 @@ public class Cars {
 	}
 
 	private void validateNameIsDuplicate(List<String> names) {
-		if (names.stream().anyMatch(name -> Collections.frequency(names, name) > 1)) {
+		if (names.stream().anyMatch(name -> Collections.frequency(names, name) > Constants.DUPLICATE)) {
 			throw new DuplicateCarNameException();
 		}
 	}

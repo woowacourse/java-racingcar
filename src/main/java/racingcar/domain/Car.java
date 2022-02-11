@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.constants.Constants;
+
 public class Car {
 
 	private String name;
@@ -14,13 +16,13 @@ public class Car {
 	}
 
 	public void goForwardOrStop(int pickNumber) {
-		if (pickNumber >= 4) {
+		if (pickNumber >= Constants.GO_FORWARD_NUMBER) {
 			increaseLocation();
 		}
 	}
 
 	public String toString() {
-		return name + " : " + "-".repeat(location);
+		return name + Constants.COLON + Constants.PROGRESS_BAR.repeat(location);
 	}
 
 	public String getName() {
