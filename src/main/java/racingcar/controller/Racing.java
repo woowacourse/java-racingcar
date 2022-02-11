@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.model.Car;
 import racingcar.model.Participants;
+import racingcar.model.PlayTime;
 import racingcar.view.Staff;
 
 public class Racing {
@@ -20,5 +21,6 @@ public class Racing {
             Car car = new Car(carName);
             participants.participateInRacing(car);
         }
+        PlayTime playTime = new PlayTime(staff.getPlayTimes());
     }
 }
