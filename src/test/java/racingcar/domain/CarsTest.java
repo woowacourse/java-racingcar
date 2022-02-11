@@ -27,4 +27,22 @@ class CarsTest {
         assertThat(cars.getDriveRecord().get(0).getName()).isEqualTo(name1);
         assertThat(cars.getDriveRecord().get(1).getName()).isEqualTo(name2);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"rookie:is2js"}, delimiter = ':')
+    @DisplayName("자동차 경주 후 가장 많이 전진한 자동차를 구하는 기능")
+    public void drive_result_maxPositionCar(String name1, String name2) {
+        Car car1 = new Car(name1);
+        Car car2 = new Car(name2);
+
+        List<Car> carList = new ArrayList<>();
+        carList.add(car1);
+        carList.add(car2);
+
+        Cars cars = new Cars(carList);
+        car1.drive(5);
+        Car findMaxCar = cars.findMaxPositionCar();
+
+        assertThat(findMaxCar).isEqualTo(car1);
+    }
 }

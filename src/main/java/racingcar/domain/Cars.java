@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import racingcar.util.NumberGeneratePolicy;
 
 public class Cars {
+    private static final String ERROR_CAR_EMPTY = "자동차가 존재하지 않습니다.";
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -21,6 +22,12 @@ public class Cars {
 
     public void driveAll(NumberGeneratePolicy numberGeneratePolicy) {
         cars.forEach(car -> car.drive(numberGeneratePolicy.generateNumber()));
+    }
+
+    public Car findMaxPositionCar() {
+        return cars.stream()
+            .max(Car::compareTo)
+            .orElseThrow(() -> new IllegalArgumentException(ERROR_CAR_EMPTY));
     }
 
     public List<Car> getDriveRecord() {
