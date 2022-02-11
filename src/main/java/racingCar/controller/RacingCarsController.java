@@ -1,6 +1,7 @@
 package racingCar.controller;
 
 import racingCar.service.RacingCarsService;
+import racingCar.service.RequestService;
 import racingCar.utlis.Convertor;
 import racingCar.validator.CountValidator;
 import racingCar.validator.NameValidator;
@@ -8,31 +9,11 @@ import racingCar.view.Input;
 import racingCar.view.Output;
 
 public class RacingCarsController {
-
 	RacingCarsService carsService = new RacingCarsService();
 
-	public void requestNames() {
-		try {
-			String input = Input.inputNames();
-			NameValidator.validateInput(input);
-			carsService.initiateCars(input);
-		} catch (Exception exception) {
-			Output.printError(exception.getMessage());
-			requestNames();
-		}
-	}
-
-	public void requestCount() {
-		try {
-			String input = Input.inputCount();
-			CountValidator.validateInput(input);
-			int count = Convertor.convertToInteger(input);
-			CountValidator.validateInteger(count);
-			carsService.initiateCount(count);
-		} catch (Exception exception) {
-			Output.printError(exception.getMessage());
-			requestCount();
-		}
+	public void request() {
+		RequestService.requestNames(carsService);
+		RequestService.requestCount(carsService);
 	}
 
 	public void startGame() {
@@ -42,5 +23,4 @@ public class RacingCarsController {
 	public void endGame() {
 		Output.printWinner(carsService.findWinner());
 	}
-
 }
