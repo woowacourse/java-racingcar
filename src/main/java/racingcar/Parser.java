@@ -8,38 +8,50 @@ public class Parser {
         isValidInput(text);
 
         String[] carNames = text.split(",");
-        isValidAmount(carNames);
+        isValidNames(carNames);
 
         for (String carName : carNames) {
-            isValidCarNames(carName);
+            isValidCarName(carName);
         }
+
         return carNames;
     }
 
     private static void isValidInput(String text) {
-        if (text == null) {
+        if (text == null || text.isEmpty()) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void isValidAmount(String[] carNames) {
+    private static void isValidNames(String[] carNames) {
         if (carNames.length == EMPTY) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void isValidCarNames(String carName) {
+    private static void isValidCarName(String carName) {
         if (carName == null || carName.isEmpty() || carName.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
 
     public static void isValidRounds(String round) {
-        if (!round.chars().allMatch(Character::isDigit)) {
+        if (!isDigit(round) || !isPositiveNumber(round)) {
             throw new IllegalArgumentException();
         }
-        if (Integer.parseInt(round) < 1) {
-            throw new IllegalArgumentException();
+    }
+
+    private static boolean isDigit(String round) {
+        if (round.chars().allMatch(Character::isDigit)) {
+            return true;
         }
+        return false;
+    }
+
+    private static boolean isPositiveNumber(String round) {
+        if (Integer.parseInt(round) > 0) {
+            return true;
+        }
+        return false;
     }
 }
