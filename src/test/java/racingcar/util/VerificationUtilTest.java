@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static racingcar.util.VerificationUtil.validateCarName;
-import static racingcar.util.VerificationUtil.validateDuplication;
+import static racingcar.util.VerificationUtil.*;
 
 @SuppressWarnings("NonAsciiCharacters")
 class VerificationUtilTest {
