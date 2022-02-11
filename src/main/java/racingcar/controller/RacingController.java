@@ -13,11 +13,15 @@ public class RacingController {
 	public void run() {
 		int iteration = InputView.getIterationNo();
 		ResultView.printBeforeGameResult();
+		runInIteration(iteration);
+		ResultView.printWinners(carController.getWinners());
+	}
+
+	private void runInIteration(int iteration) {
 		for (int i = 0; i < iteration; i++) {
 			carController.run();
 			ResultView.printGameResult(carController.getCars());
 		}
-		ResultView.printWinners(carController.getWinners());
 	}
 
 	private void createCars() {

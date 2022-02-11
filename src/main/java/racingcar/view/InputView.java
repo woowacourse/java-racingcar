@@ -7,7 +7,6 @@ public class InputView {
 	private static final String GET_ITERATION_NO_MESSAGE = "시도할 회수는 몇회인가요?";
 	private static final String ERROR_GET_POSITIVE_MESSAGE = "양수를 입력해주세요.";
 	private static final String ERROR_GET_NOT_EMPTY_MESSAGE = "빈 값을 입력하셨습니다. 양수를 입력해주세요.";
-	private static final String ERROR_GET_NON_ZERO_MESSAGE = "0을 입력하셨습니다. 양수를 입력해주세요.";
 	private static final Scanner scanner = new Scanner(System.in);
 
 	public static String getCarNames() {
@@ -30,11 +29,10 @@ public class InputView {
 	private static void validIterationNo(String input) {
 		validEmptyInput(input);
 		validPositiveInput(input);
-		validNonZeroInput(input);
 	}
 
 	public static void validPositiveInput(String input) {
-		if (!input.matches("[+]?\\d*(\\.\\d+)?")) {
+		if (!input.matches("^[1-9]+[0-9]*$")) {
 			throw new RuntimeException(ERROR_GET_POSITIVE_MESSAGE);
 		}
 	}
@@ -42,12 +40,6 @@ public class InputView {
 	public static void validEmptyInput(String input) {
 		if (input == null || input.isEmpty()) {
 			throw new RuntimeException(ERROR_GET_NOT_EMPTY_MESSAGE);
-		}
-	}
-
-	public static void validNonZeroInput(String input) {
-		if (input.equals("0")) {
-			throw new RuntimeException(ERROR_GET_NON_ZERO_MESSAGE);
 		}
 	}
 }

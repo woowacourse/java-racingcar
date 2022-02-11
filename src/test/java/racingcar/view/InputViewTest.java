@@ -2,13 +2,16 @@ package racingcar.view;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputViewTest {
 
-	@Test
-	void 시도_횟수_입력_검증() {
+	@ParameterizedTest
+	@ValueSource(strings = {"0", "-1"})
+	void 시도_횟수_입력_검증(String input) {
 		Assertions.assertThatThrownBy(() -> {
-				InputView.validPositiveInput("-1");
+				InputView.validPositiveInput(input);
 			}).isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("양수");
 	}
@@ -20,14 +23,5 @@ public class InputViewTest {
 				InputView.validEmptyInput(input);
 			}).isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("빈 값");
-	}
-
-	@Test
-	void 시도_횟수_0_입력_검증() {
-		Assertions.assertThatThrownBy(() -> {
-				String input = "0";
-				InputView.validNonZeroInput(input);
-			}).isInstanceOf(RuntimeException.class)
-			.hasMessageContaining("0");
 	}
 }

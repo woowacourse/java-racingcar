@@ -50,7 +50,6 @@ public class CarRepositoryTest {
 
 	@AfterEach
 	void afterEach() {
-		CarRepository repository = CarRepository.getInstance();
-		repository.clear();
+		carRepository.clear();
 	}
 }
