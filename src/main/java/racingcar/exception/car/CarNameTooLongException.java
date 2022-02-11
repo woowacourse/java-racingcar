@@ -1,11 +1,12 @@
 package racingcar.exception.car;
 
 import racingcar.exception.RacingCarException;
+import racingcar.exception.car.message.CarNameExceptionMessage;
 
 public class CarNameTooLongException extends RacingCarException {
 
 	public CarNameTooLongException() {
-		super("자동차의 이름은 5자 이하여야 합니다.");
+		super(CarNameExceptionMessage.NAME_TOO_LONG_EXCEPTION_MESSAGE);
 	}
 
 }

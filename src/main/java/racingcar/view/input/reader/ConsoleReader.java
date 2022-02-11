@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import racingcar.exception.reader.ReaderIoException;
+import racingcar.exception.reader.ReaderCannotReadException;
 
 public class ConsoleReader implements Reader {
 
@@ -13,7 +13,7 @@ public class ConsoleReader implements Reader {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 			return bufferedReader.readLine();
 		} catch (IOException exception) {
-			throw new ReaderIoException();
+			throw new ReaderCannotReadException();
 		}
 	}
 

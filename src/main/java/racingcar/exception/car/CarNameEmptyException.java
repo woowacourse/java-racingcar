@@ -1,11 +1,12 @@
 package racingcar.exception.car;
 
 import racingcar.exception.RacingCarException;
+import racingcar.exception.car.message.CarNameExceptionMessage;
 
 public class CarNameEmptyException extends RacingCarException {
 
 	public CarNameEmptyException() {
-		super("자동차의 이름은 공백이 될 수 없습니다.");
+		super(CarNameExceptionMessage.NAME_EMPTY_EXCEPTION_MESSAGE);
 	}
 
 }

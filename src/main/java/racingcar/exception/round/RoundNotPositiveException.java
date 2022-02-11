@@ -1,11 +1,12 @@
 package racingcar.exception.round;
 
 import racingcar.exception.RacingCarException;
+import racingcar.exception.round.message.RoundExceptionMessage;
 
 public class RoundNotPositiveException extends RacingCarException {
 
 	public RoundNotPositiveException() {
-		super("이동 횟수는 양수여야 합니다.");
+		super(RoundExceptionMessage.ROUND_NOT_POSITIVE_EXCEPTION_MESSAGE);
 	}
 
 }
