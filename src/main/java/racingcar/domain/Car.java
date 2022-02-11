@@ -1,6 +1,10 @@
 package racingcar.domain;
 
 public class Car {
+
+    private static final int NAME_LIMITED_LENGTH = 5;
+    private static final int POSITION_INIT = 0;
+
     private final String name;
     private int position;
     private MovingPolicy movingPolicy;
@@ -11,7 +15,7 @@ public class Car {
         validateBlank(name);
         validateNameLength(name);
         this.name = name;
-        this.position = 0;
+        this.position = POSITION_INIT;
         this.movingPolicy = movingPolicy;
     }
 
@@ -34,7 +38,7 @@ public class Car {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > 5) {
+        if (name.length() > NAME_LIMITED_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
