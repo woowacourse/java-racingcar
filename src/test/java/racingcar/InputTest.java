@@ -27,7 +27,7 @@ public class InputTest {
         systemIn("abbbbbb,cd,ef,g,h,i");
         assertThatThrownBy(() -> insertRightName())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 자동차는 5대 이하이어야 합니다.");
+                .hasMessage("[ERROR] 자동차는 2대 이상 5대 이하이어야 합니다.");
     }
 
     @Test

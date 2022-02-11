@@ -20,7 +20,7 @@ public class ValidatorTest {
         assertThatThrownBy(() ->
                 validateCarCount(new String[]{"jae ", "hun", "ab", "cd", "ef", "gh"}))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 자동차는 5대 이하이어야 합니다.");
+                .hasMessage("[ERROR] 자동차는 2대 이상 5대 이하이어야 합니다.");
     }
 
     @Test
