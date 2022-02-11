@@ -43,6 +43,24 @@ public class NumberValidatorTest {
         void 양수라면(int input) {
             assertDoesNotThrow(() -> NumberValidator.validateIsPositive(input));
         }
+    }
 
+
+    @DisplayName("validateIsNotNegative 메소드는")
+    @Nested
+    class validateIsNotNegative {
+        @ParameterizedTest
+        @ValueSource(ints = {0, 1, 22, 333})
+        void 음수가_아니라면(int input) {
+            assertDoesNotThrow(() -> NumberValidator.validateIsNotNegative(input));
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = {-1, -22})
+        void 음수라면(int input) {
+            assertThatThrownBy(() -> NumberValidator.validateIsNotNegative(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("숫자는 음수일 수 없습니다.");
+        }
     }
 }

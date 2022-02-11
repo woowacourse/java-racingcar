@@ -19,4 +19,9 @@ public class Name {
 
         return new Name(input);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

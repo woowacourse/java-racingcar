@@ -14,4 +14,10 @@ public class NumberValidator {
             throw new IllegalArgumentException("숫자는 양수여야 합니다.");
         }
     }
+
+    public static void validateIsNotNegative(int input) {
+        if (input < 0) {
+            throw new IllegalArgumentException("숫자는 음수일 수 없습니다.");
+        }
+    }
 }
