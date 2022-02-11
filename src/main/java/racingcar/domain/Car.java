@@ -1,6 +1,6 @@
-package racingcar;
+package racingcar.domain;
 
-import static racingcar.RandomGenerator.*;
+import static racingcar.utils.RandomGenerator.*;
 
 public class Car {
 

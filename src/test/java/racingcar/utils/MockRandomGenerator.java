@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.utils;
 
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;

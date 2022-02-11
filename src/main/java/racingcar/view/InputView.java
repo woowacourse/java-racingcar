@@ -1,10 +1,12 @@
-package racingcar;
+package racingcar.view;
 
 
-import static racingcar.Output.*;
-import static racingcar.Validator.*;
+import racingcar.utils.Console;
 
-public class Input {
+import static racingcar.view.OutputView.*;
+import static racingcar.utils.Validator.*;
+
+public class InputView {
 
     private static final int SPLIT_LIMIT = -1;
 

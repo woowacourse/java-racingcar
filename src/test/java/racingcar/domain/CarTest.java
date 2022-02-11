@@ -1,11 +1,12 @@
-package racingcar;
+package racingcar.domain;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import racingcar.utils.MockRandomGenerator;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class CarTest extends MockRandomGenerator{
+public class CarTest extends MockRandomGenerator {
 
     @Test
     void 자동차_전진_성공() {

@@ -1,15 +1,14 @@
-package racingcar;
+package racingcar.view;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 
 import static org.assertj.core.api.Assertions.*;
-import static racingcar.Input.*;
+import static racingcar.view.InputView.*;
 
 
-public class InputTest {
+public class InputViewTest {
 
     private void systemIn(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));

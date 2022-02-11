@@ -1,7 +1,9 @@
-package racingcar;
+package racingcar.controller;
 
-import static racingcar.Input.*;
-import static racingcar.Output.*;
+import racingcar.domain.Cars;
+
+import static racingcar.view.InputView.*;
+import static racingcar.view.OutputView.*;
 
 public class RacingController {
 
