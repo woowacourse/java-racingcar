@@ -13,10 +13,6 @@ public class Attempt {
     this.attempt = valid(attempt);
   }
 
-  private int toInteger(String string) {
-    return Integer.parseInt(string);
-  }
-
   public int get() {
     return attempt;
   }
@@ -34,6 +30,10 @@ public class Attempt {
     int number = toInteger(attempt);
     validNegative(number);
     return number;
+  }
+
+  private int toInteger(String string) {
+    return Integer.parseInt(string);
   }
 
   private void validNumberFormat(String attempt) {

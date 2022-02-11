@@ -23,16 +23,6 @@ public class Cars {
     cars.add(car);
   }
 
-  private void validDuplicateCarName(Car car) {
-    if (cars.stream().filter(each -> each.isSameName(car)).count() != NONE_DUPLICATION) {
-      throw new RuntimeException(DUPLICATE_CAR_NAME_ERROR_MESSAGE);
-    }
-  }
-
-  public boolean isSize(int size) {
-    return cars.size() == size;
-  }
-
   public String repeatRaceBy(Attempt attempt) {
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder.append(RACE_RESULT_MESSAGE).append(System.lineSeparator());
@@ -62,5 +52,15 @@ public class Cars {
         .filter(car -> car.isSamePosition(maxPositionCar))
         .map(Car::getName)
         .collect(Collectors.toList()));
+  }
+
+  private void validDuplicateCarName(Car car) {
+    if (cars.stream().filter(each -> each.isSameName(car)).count() != NONE_DUPLICATION) {
+      throw new RuntimeException(DUPLICATE_CAR_NAME_ERROR_MESSAGE);
+    }
+  }
+
+  public boolean isSize(int size) {
+    return cars.size() == size;
   }
 }
