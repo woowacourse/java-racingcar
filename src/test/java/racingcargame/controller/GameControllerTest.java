@@ -30,4 +30,12 @@ public class GameControllerTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[error] 자동차 이름을 5자 이하로 입력해주세요.");
     }
+
+    @Test
+    void 중복된_자동차_이름_입력_예외_테스트() {
+        assertThatThrownBy(() -> {
+            NameInputValidator.validateCarNames("gl,gl");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[error] 중복된 자동차 이름이 있습니다.");
+    }
 }
