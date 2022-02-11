@@ -2,7 +2,7 @@ package racingcar.controller;
 
 import java.util.List;
 
-import racingcar.domain.CarCollection;
+import racingcar.domain.Cars;
 import racingcar.domain.Round;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -20,15 +20,15 @@ public class RacingCarController {
 	}
 
 	public void run() {
-		CarCollection carCollection = initCarCollection();
+		Cars cars = initCarCollection();
 		Round round = initRound();
-		playGame(carCollection, round);
-		announceWinners(carCollection);
+		playGame(cars, round);
+		announceWinners(cars);
 	}
 
-	private CarCollection initCarCollection() {
+	private Cars initCarCollection() {
 		outputView.printMessageOfRequestCarNames();
-		return new CarCollection(inputView.requestCarNames());
+		return new Cars(inputView.requestCarNames());
 	}
 
 	private Round initRound() {
@@ -36,20 +36,20 @@ public class RacingCarController {
 		return new Round(inputView.requestGameRound());
 	}
 
-	private void playGame(CarCollection carCollection, Round round) {
+	private void playGame(Cars cars, Round round) {
 		outputView.printEmptyLine();
 		outputView.printMessageTitleOfStatus();
 		while (!round.isFinish()) {
-			carCollection.play(numberPicker);
-			List<String> carStatuses = carCollection.getStatuses();
+			cars.play(numberPicker);
+			List<String> carStatuses = cars.getStatuses();
 			outputView.printCarStatuses(carStatuses);
 			round.decreaseCount();
 			outputView.printEmptyLine();
 		}
 	}
 
-	private void announceWinners(CarCollection carCollection) {
-		List<String> winnerNames = carCollection.getWinnerNames();
+	private void announceWinners(Cars cars) {
+		List<String> winnerNames = cars.getWinnerNames();
 		outputView.printMessageOfWinners(winnerNames);
 	}
 

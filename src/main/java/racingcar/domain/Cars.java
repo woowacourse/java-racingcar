@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 
 import racingcar.controller.NumberPicker;
 
-public class CarCollection {
+public class Cars {
 
 	private final List<Car> cars = new ArrayList<>();
 
-	public CarCollection(List<String> names) {
+	public Cars(List<String> names) {
 		validateCarNames(names);
 		names.forEach(name -> cars.add(new Car(name)));
 	}

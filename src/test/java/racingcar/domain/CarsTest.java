@@ -12,10 +12,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class CarCollectionTest {
+public class CarsTest {
 
 	private void exceptionTest(List<String> carNames) {
-		assertThrows(IllegalArgumentException.class, () -> new CarCollection(carNames)
+		assertThrows(IllegalArgumentException.class, () -> new Cars(carNames)
 		);
 	}
 
@@ -60,14 +60,14 @@ public class CarCollectionTest {
 
 	@Test
 	void 전진_조건이_만족할_때_자동자_전진() {
-		CarCollection carCollection = new CarCollection(
+		Cars cars = new Cars(
 			Arrays.asList("slow", "if", "poby")
 		);
 		CustomNumberPicker customNumberPicker = new CustomNumberPicker(
 			Arrays.asList(0, 5, 8)
 		);
-		carCollection.play(customNumberPicker);
-		List<String> statuses = carCollection.getStatuses();
+		cars.play(customNumberPicker);
+		List<String> statuses = cars.getStatuses();
 		List<String> expected = Arrays.asList("slow : ", "if : -", "poby : -");
 
 		assertThat(statuses.size()).isEqualTo(expected.size());
@@ -78,16 +78,16 @@ public class CarCollectionTest {
 
 	@Test
 	void 우승자_한명_선정() {
-		CarCollection carCollection = new CarCollection(
+		Cars cars = new Cars(
 			Arrays.asList("slow", "if", "poby")
 		);
 		CustomNumberPicker customNumberPicker = new CustomNumberPicker(
 			Arrays.asList(0, 5, 8, 2, 2, 7)
 		);
-		carCollection.play(customNumberPicker);
-		carCollection.play(customNumberPicker);
+		cars.play(customNumberPicker);
+		cars.play(customNumberPicker);
 
-		List<String> winnerNames = carCollection.getWinnerNames();
+		List<String> winnerNames = cars.getWinnerNames();
 		assertThat(winnerNames.size()).isEqualTo(1);
 
 		assertThat(winnerNames.get(0)).isEqualTo("poby");
@@ -95,17 +95,17 @@ public class CarCollectionTest {
 
 	@Test
 	void 우승자_여러명_선정() {
-		CarCollection carCollection = new CarCollection(
+		Cars cars = new Cars(
 			Arrays.asList("slow", "if", "poby","doby")
 		);
 		CustomNumberPicker customNumberPicker = new CustomNumberPicker(
 			Arrays.asList(0,5,8,2, 2,0,7,6, 3,0,2,9)
 		);
-		carCollection.play(customNumberPicker);
-		carCollection.play(customNumberPicker);
-		carCollection.play(customNumberPicker);
+		cars.play(customNumberPicker);
+		cars.play(customNumberPicker);
+		cars.play(customNumberPicker);
 
-		List<String> winnerNames = carCollection.getWinnerNames();
+		List<String> winnerNames = cars.getWinnerNames();
 		assertThat(winnerNames.size()).isEqualTo(2);
 
 		List<String> expected = Arrays.asList("poby", "doby");
