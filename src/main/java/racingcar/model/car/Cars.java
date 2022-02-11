@@ -1,9 +1,14 @@
 package racingcar.model.car;
 
+import racingcar.model.trycount.TryCount;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
+    private static final String TO_STRING_DELIMITER = "\n";
+
     private final List<Car> cars = new ArrayList<>();
 
     private Cars() {
@@ -20,5 +25,18 @@ public class Cars {
         }
 
         cars.add(car);
+    }
+
+    public void moveAll(TryCount tryCount) {
+        for (int i = 0; i < tryCount.toInt(); i++) {
+            cars.forEach(Car::move);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return cars.stream()
+                .map(Car::toString)
+                .collect(Collectors.joining(TO_STRING_DELIMITER));
     }
 }

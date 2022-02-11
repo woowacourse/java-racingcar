@@ -16,4 +16,13 @@ public class TryCount {
         NumberValidator.validateIsPositive(number);
         return new TryCount(number);
     }
+
+    public static TryCount from(int input) {
+        NumberValidator.validateIsPositive(input);
+        return new TryCount(input);
+    }
+
+    public int toInt() {
+        return tryCount;
+    }
 }
