@@ -58,6 +58,12 @@ public class StringCalculatorTest {
 	}
 
 	@Test
+	void 커스텀_구분자_판정() {
+		String input = "/";
+		assertThat(calculator.isCustomInput(input)).isFalse();
+	}
+
+	@Test
 	void 합() {
 		String[] input = {"1", "2"};
 		int actual = calculator.sum(input);
