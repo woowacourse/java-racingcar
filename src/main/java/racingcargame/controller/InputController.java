@@ -1,10 +1,10 @@
 package racingcargame.controller;
 
-import racingcargame.utils.NameInputValidator;
-import racingcargame.utils.RaceCountInputValidator;
-
 import java.util.List;
 import java.util.Scanner;
+
+import racingcargame.utils.NameInputValidator;
+import racingcargame.utils.RaceCountInputValidator;
 
 public class InputController {
     private static final InputController inputController = new InputController();
