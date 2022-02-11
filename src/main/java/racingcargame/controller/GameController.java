@@ -3,7 +3,7 @@ package racingcargame.controller;
 import java.util.List;
 
 import racingcargame.model.RacingCarGame;
-import racingcargame.view.OutputView;
+import racingcargame.view.Display;
 
 public class GameController {
 	private static final GameController gameController = new GameController();
@@ -25,24 +25,24 @@ public class GameController {
 	}
 
 	private RacingCarGame setUpGame() {
-		OutputView.showCarNamesInputGuideMessage();
+		Display.showCarNamesInputGuideMessage();
 		List<String> carNames = inputController.inputCarName();
 
-		OutputView.showRaceCountInputGuideMessage();
+		Display.showRaceCountInputGuideMessage();
 		int raceCount = inputController.inputRaceCount();
 
 		return new RacingCarGame(carNames, raceCount);
 	}
 
 	private void playGame(final RacingCarGame racingCarGame) {
-		OutputView.showRaceProgressGuideMessage();
+		Display.showRaceProgressGuideMessage();
 		while (!racingCarGame.isOverRace()) {
 			racingCarGame.startRace();
-			OutputView.showRaceProgress(racingCarGame.sendCurrentLocationOfCars());
+			Display.showRaceProgress(racingCarGame.sendCurrentLocationOfCars());
 		}
 	}
 
 	private void finishGame(final RacingCarGame racingCarGame) {
-		OutputView.showGameWinner(racingCarGame.findRacingGameWinner());
+		Display.showGameWinner(racingCarGame.findRacingGameWinner());
 	}
 }
