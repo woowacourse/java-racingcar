@@ -5,7 +5,7 @@ import racingcar.util.RandomUtil;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int MIN_RANDOM_BOUND = 0;
     private static final int MAX_RANDOM_BOUND = 9;
     private static final int MIN_MOVABLE_VALUE = 4;
@@ -28,10 +28,18 @@ public class Car {
         return new Car(Name.from(name), Position.from(position), randomUtil);
     }
 
+    public static Car of(String name, int position) {
+        return new Car(Name.from(name), Position.from(position), new RandomNumber());
+    }
+
     public void move() {
         if (randomUtil.createRandom(MIN_RANDOM_BOUND, MAX_RANDOM_BOUND) >= MIN_MOVABLE_VALUE) {
             position = position.increase();
         }
+    }
+
+    public Position getPosition() {
+        return position;
     }
 
     @Override
@@ -44,6 +52,11 @@ public class Car {
         }
         Car car = (Car) o;
         return name.equals(car.name);
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return position.compareTo(car.position);
     }
 
     @Override

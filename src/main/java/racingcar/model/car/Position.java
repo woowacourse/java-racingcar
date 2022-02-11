@@ -4,7 +4,7 @@ import racingcar.util.NumberValidator;
 
 import java.util.Objects;
 
-class Position {
+class Position implements Comparable<Position> {
     private static final int INCREASE_DISTANCE = 1;
     private static final String DISTANCE_BAR = "-";
 
@@ -37,6 +37,11 @@ class Position {
         }
         Position position1 = (Position) o;
         return position == position1.position;
+    }
+
+    @Override
+    public int compareTo(Position otherPosition) {
+        return otherPosition.position - position;
     }
 
     @Override

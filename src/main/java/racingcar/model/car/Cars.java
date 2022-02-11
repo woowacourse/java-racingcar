@@ -3,6 +3,7 @@ package racingcar.model.car;
 import racingcar.model.trycount.TryCount;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,10 +34,19 @@ public class Cars {
         }
     }
 
+    public Position getFirstPosition() {
+        if (cars.isEmpty()) {
+            throw new IllegalArgumentException("아무 차량도 추가되지 않았습니다.");
+        }
+        Collections.sort(cars);
+        return cars.get(0).getPosition();
+    }
+
     @Override
     public String toString() {
         return cars.stream()
                 .map(Car::toString)
                 .collect(Collectors.joining(TO_STRING_DELIMITER));
     }
+
 }

@@ -23,6 +23,28 @@ public class CarsTest {
                 .isEqualTo("car1 : -\ncar2 : \ncar3 : -");
     }
 
+    @DisplayName("getFirstPosition 메소드는")
+    @Nested
+    class GetFirstPosition {
+        @Test
+        void 가장_멀리간_차의_위치를_가져온다() {
+            Cars cars = Cars.create();
+            cars.add(Car.of("car1", 5));
+            cars.add(Car.of("car2", 3));
+            cars.add(Car.of("car3", 8));
+
+            assertThat(cars.getFirstPosition())
+                    .isEqualTo(Position.from(8));
+        }
+
+        @Test
+        void 아무_차가_없다면() {
+            Cars cars = Cars.create();
+            assertThatThrownBy(cars::getFirstPosition)
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
+
     @DisplayName("add 메소드는")
     @Nested
     class Add {
