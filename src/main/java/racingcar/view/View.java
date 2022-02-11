@@ -4,8 +4,8 @@ import static java.util.stream.Collectors.joining;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;
-import racingcar.domain.MidtermResult;
-import racingcar.domain.WinnerResult;
+import racingcar.domain.result.MidtermResult;
+import racingcar.domain.result.WinnerResult;
 
 public class View {
 

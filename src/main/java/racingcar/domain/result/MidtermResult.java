@@ -1,11 +1,12 @@
-package racingcar.domain;
+package racingcar.domain.result;
 
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
+import racingcar.domain.Car;
 
 public class MidtermResult {
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public MidtermResult(List<Car> cars) {
         this.cars = cars;
