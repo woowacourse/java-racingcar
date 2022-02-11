@@ -28,7 +28,7 @@ public class RacingCarsController {
 			CountValidator.validateInput(input);
 			int count = Convertor.convertToInteger(input);
 			CountValidator.validateInteger(count);
-			carsService.saveCount(count);
+			carsService.initiateCount(count);
 		} catch (Exception exception) {
 			Output.printError(exception.getMessage());
 			requestCount();

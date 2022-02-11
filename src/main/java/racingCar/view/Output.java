@@ -3,6 +3,7 @@ package racingCar.view;
 import java.util.List;
 
 import racingCar.model.Car;
+import racingCar.model.RacingCars;
 import racingCar.utlis.Constants;
 
 public class Output {
@@ -15,11 +16,8 @@ public class Output {
 		System.out.println(Constants.RESULT_FRONT_MESSAGE);
 	}
 
-	public static void printRoundResult(List<Car> cars) {
-		for (Car car : cars) {
-			System.out.println(car.getName() + Constants.ROUND_REGEX + Constants.POSITION_SIGNATURE.repeat(car.getPosition()));
-		}
-		System.out.println();
+	public static void printRoundResult(RacingCars cars) {
+		System.out.println(cars.getRoundResult() + "\n");
 	}
 
 	public static void printWinner(List<String> winner) {

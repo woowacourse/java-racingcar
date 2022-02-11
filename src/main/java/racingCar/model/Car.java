@@ -35,4 +35,8 @@ public class Car {
 	public boolean isWinner(int maxPosition) {
 		return position == maxPosition;
 	}
+
+	public String getStateString() {
+		return name + Constants.ROUND_REGEX + Constants.POSITION_SIGNATURE.repeat(position);
+	}
 }
