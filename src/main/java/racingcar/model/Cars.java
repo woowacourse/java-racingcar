@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    public static final int MINIMUM_POSITION = 0;
+    public static final String JOIN_BY_COMMA = ", ";
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -27,13 +29,13 @@ public class Cars {
         return this.cars.stream()
                 .map(Car::getPosition)
                 .max(Comparator.comparing(x -> x))
-                .orElse(0);
+                .orElse(MINIMUM_POSITION);
     }
 
     public String findWinnerName(int maxPosition) {
         return cars.stream()
                 .filter(car -> maxPosition == car.getPosition())
                 .map(Car::getName)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(JOIN_BY_COMMA));
     }
 }

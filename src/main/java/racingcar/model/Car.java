@@ -1,9 +1,9 @@
 package racingcar.model;
 
-import racingcar.util.RandomNumberGenerator;
-
 public class Car {
-    private String name;
+    public static final int MINIMUM_POSITION = 0;
+    public static final int MOVE_FORWARD = 4;
+    private final String name;
     private int position;
 
     public Car(String name, int position) {
@@ -12,7 +12,7 @@ public class Car {
     }
 
     public Car(String name) {
-        this(name, 0);
+        this(name, MINIMUM_POSITION);
     }
 
     public String getName() {
@@ -30,9 +30,6 @@ public class Car {
     }
 
     public boolean canMove(int number) {
-        return number >= 4;
-//        if (number >= 4 && number <= 9) {
-//            this.move();
-//        }
+        return number >= MOVE_FORWARD;
     }
 }

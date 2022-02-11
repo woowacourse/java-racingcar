@@ -10,6 +10,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class GameController {
+    public static final String COMMA = ",";
+    public static final String BLANK = "";
+    public static final String SPACE = " ";
     private Cars cars;
     private int trialNum;
 
@@ -37,7 +40,7 @@ public class GameController {
 
     public List<String> splitCars(String carNames) {
         InputValidator.validateNameInput(carNames);
-        List<String> carNameList = Arrays.asList(carNames.replaceAll(" ", "").split(","));
+        List<String> carNameList = Arrays.asList(carNames.replaceAll(SPACE, BLANK).split(COMMA));
         InputValidator.validateCarName(carNameList);
         InputValidator.validateDuplicateName(carNameList);
 
