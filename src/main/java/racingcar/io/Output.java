@@ -1,20 +1,20 @@
 package racingcar.io;
 
-import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.domain.Car;
+import racingcar.vo.CarValue;
 import racingcar.vo.Name;
 import racingcar.vo.Winners;
 
 public class Output {
     private static final String NAME_DELIMITER = ", ";
 
-    public void printCurrentPosition(Iterator<Car> cars) {
-        cars.forEachRemaining(this::printRacingProgress);
+    public void printCurrentPosition(List<CarValue> cars) {
+        cars.forEach(this::printRacingProgress);
         System.out.println();
     }
 
-    private void printRacingProgress(Car car) {
+    private void printRacingProgress(CarValue car) {
         System.out.printf("%s : %s%n", car.getName(), getPositionString(car.getPosition()));
     }
 

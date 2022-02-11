@@ -1,11 +1,10 @@
 package racingcar.domain;
 
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import racingcar.util.RandomUtil;
+import racingcar.vo.CarValue;
 import racingcar.vo.Name;
 import racingcar.vo.Winners;
 
@@ -46,7 +45,9 @@ public class Cars {
             .collect(Collectors.toList()));
     }
 
-    public Iterator<Car> iterator() {
-        return Collections.unmodifiableList(cars).iterator();
+    public List<CarValue> getCars() {
+        return this.cars.stream()
+            .map(car -> new CarValue(car.getName().toString(), car.getPosition()))
+            .collect(Collectors.toList());
     }
 }

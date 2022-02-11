@@ -24,7 +24,7 @@ public class RacingGame {
     public Winners race(Cars cars, int trials) {
         for (int round = 0; round < trials; round++) {
             cars.move();
-            output.printCurrentPosition(cars.iterator());
+            output.printCurrentPosition(cars.getCars());
         }
         return cars.getWinners();
     }
