@@ -34,4 +34,8 @@ public class CarRepository {
 			forEach(car -> winnerName.add(car.getName()));
 		return winnerName;
 	}
+
+	public List<Car> getCars() {
+		return cars;
+	}
 }
