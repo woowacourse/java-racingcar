@@ -33,6 +33,16 @@ public class CalculatorTest {
 	}
 
 	@Test
+	void 공백_문자열() {
+		String inputValue = " , ";
+
+		assertThatThrownBy(() -> calculator.splitAndSumNumber(inputValue))
+			.isInstanceOf(RuntimeException.class)
+			.hasMessage("숫자 이외의 값을 입력하셨습니다.");
+
+	}
+
+	@Test
 	void null_입력() {
 		String inputValue = null;
 		int expected = 0;
