@@ -74,7 +74,7 @@ public class CarsTest {
 		List<String> winners = cars.getWinners();
 		assertThat(winners).contains("peper", "east");
 	}
-	
+
 	void move(Car car, int cnt) {
 		while ((cnt--) > 0) {
 			car.move(9);
