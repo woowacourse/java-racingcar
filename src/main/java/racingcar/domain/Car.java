@@ -11,10 +11,6 @@ public class Car {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void moveForward() {
         position++;
     }
@@ -23,16 +19,16 @@ public class Car {
         return this.position == position;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getPosition() {
         return position;
     }
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder(this.name + STRING_JOIN_DELIMITER);
-        for (int i = 0; i < this.position; i++) {
-            result.append(MOVE_EXPRESSION);
-        }
-        return result.toString();
+        return this.name + STRING_JOIN_DELIMITER + MOVE_EXPRESSION.repeat(Math.max(0, this.position));
     }
 }
