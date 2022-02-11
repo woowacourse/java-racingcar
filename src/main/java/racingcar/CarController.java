@@ -1,11 +1,14 @@
 package racingcar;
 
+import static java.util.stream.Collectors.*;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Random;
+
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.util.*;
-
-import static java.util.stream.Collectors.toList;
 
 public class CarController {
 
@@ -31,9 +34,7 @@ public class CarController {
     }
 
     private List<Car> makeCars(String[] names) {
-        return Arrays.stream(names)
-                .map(Car::new)
-                .collect(toList());
+        return Arrays.stream(names).map(Car::new).collect(toList());
     }
 
     private int getCountFromUser() {
@@ -66,15 +67,11 @@ public class CarController {
 
     public List<Car> findWinners(List<Car> cars) {
         Car maxPositionCar = getMaxPositionCar(cars);
-        return cars.stream()
-                .filter(car -> car.isSamePositionWith(maxPositionCar))
-                .collect(toList());
+        return cars.stream().filter(car -> car.isSamePositionWith(maxPositionCar))
+            .collect(toList());
     }
 
     private Car getMaxPositionCar(List<Car> cars) {
-        List<Car> result = new ArrayList<>();
-        result.addAll(cars);
-        result.sort(Comparator.reverseOrder());
-        return result.get(0);
+        return cars.stream().max(Car::compareTo).orElseThrow(NoSuchElementException::new);
     }
 }
