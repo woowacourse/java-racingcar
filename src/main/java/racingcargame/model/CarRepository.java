@@ -4,20 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CarRepository {
 	private List<Car> cars;
 
-	public CarRepository(List<String> carNames) {
+	public CarRepository(final List<String> carNames) {
 		cars = carNames.stream().
 			map(carName -> new Car(carName, 0)).
 			collect(Collectors.toList());
-	}
-
-	public List<Car> getCars() {
-		return cars;
 	}
 
 	void moveCars() {
@@ -30,13 +25,13 @@ public class CarRepository {
 		return carsInformation;
 	}
 
-	public List<String> findWinner() {
-		List<String> winnerNames = new ArrayList<>();
-		Collections.sort(cars, Collections.reverseOrder());
+	List<String> findWinner() {
+		List<String> winnerName = new ArrayList<>();
+		cars.sort(Collections.reverseOrder());
 		int winnerPosition = cars.get(0).getPosition();
 		cars.stream().
 			filter(car -> car.getPosition() == winnerPosition).
-			forEach(car -> winnerNames.add(car.getName()));
-		return winnerNames;
+			forEach(car -> winnerName.add(car.getName()));
+		return winnerName;
 	}
 }
