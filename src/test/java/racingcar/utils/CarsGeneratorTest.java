@@ -4,10 +4,11 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 
 class CarsGeneratorTest {
-
 	@Test
 	void 올바른_자동차_생성_검증() {
 		assertThat(CarsGenerator.generateCars("pobi,crong,honux"))
@@ -15,17 +16,17 @@ class CarsGeneratorTest {
 	}
 
 	@Test
-	void 부적절한_이름_자동차_에러_검증() {
+	void 긴_이름_자동차_에러_검증(){
 		assertThatThrownBy(
-			() -> CarsGenerator.generateCars("pobi,crdong,honux")
+				() -> CarsGenerator.generateCars("pobi,crdong,honux")
 		).isInstanceOf(IllegalArgumentException.class);
+	}
 
+	@ParameterizedTest
+	@ValueSource(strings={" ,   , ", ",,,,"})
+	void 공백_빈문자열_이름_자동차_에러_검증(String input) {
 		assertThatThrownBy(
-			() -> CarsGenerator.generateCars(" ,   , ")
-		).isInstanceOf(IllegalArgumentException.class);
-
-		assertThatThrownBy(
-			() -> CarsGenerator.generateCars(",,,,")
+			() -> CarsGenerator.generateCars(input)
 		).isInstanceOf(IllegalArgumentException.class);
 	}
 }
