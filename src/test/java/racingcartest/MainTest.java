@@ -13,6 +13,7 @@ import racingcar.controller.GameController;
 import racingcar.controller.OutputViewController;
 import racingcar.model.Car;
 import racingcar.util.Checker;
+import racingcar.util.StringConst;
 
 public class MainTest {
 	Checker checker = new Checker();
@@ -89,5 +90,17 @@ public class MainTest {
 		carList.get(1).movePosition(4);
 		LinkedHashMap<String, String> realInfo = outputViewController.getCarListInfo(carList);
 		assertThat(realInfo.entrySet()).isEqualTo(testInfo.entrySet());
+	}
+
+	@Test
+	public void controllerDuplicateTest() {
+		String[] names = {"pobi", "jun", "jason"};
+		GameController gameController = new GameController();
+		ArrayList<Car> carList = gameController.generateCarList(names);
+		carList.get(0).movePosition(5);
+		carList.get(1).movePosition(4);
+		OutputViewController outputViewController = new OutputViewController();
+		ArrayList<String> winner = outputViewController.mapWinner(carList);
+		assertThat(String.join(StringConst.WINNER_DELIMITER.getValue(), winner)).isEqualTo("pobi, jun");
 	}
 }
