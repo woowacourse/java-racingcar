@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import stringCalculator.StringCalculator;
-
 @SuppressWarnings("warning:ascki")
 public class StringCalculatorTest {
 	public StringCalculator stringCalculator = new StringCalculator();
@@ -108,11 +106,10 @@ public class StringCalculatorTest {
 		assertThat(result).isEqualTo(2);
 	}
 
-	/*
-	*
-	* assertThatThrownBy(() -> {
-    // ...
-}).isInstanceOf(IndexOutOfBoundsException.class)
-  .hasMessageContaining("Index: 2, Size: 2");*/
-
+	@Test
+	public void 음수_입력(){
+		assertThatThrownBy(() -> {
+			stringCalculator.calculateString("-1,2,3");
+		}).isInstanceOf(RuntimeException.class);
+	}
 }
