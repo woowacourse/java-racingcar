@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.util.RandomUtils;
-import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
@@ -15,21 +14,17 @@ import static racingcar.util.ValidatorUtils.validatePositiveInt;
 public class GameManager {
 
     private final CarRepository carRepository = new CarRepository();
-    private int totalRounds;
+    private final int totalRounds;
 
-    public void run() {
-        String[] carNames = requestAndSplitCarNames();
+    public GameManager(String carNamesInput, String totalRoundsInput) {
+        String[] carNames = getValidateCarNames(carNamesInput);
         initCars(carNames);
-        totalRounds = requestAndParseTotalRounds();
-
-        playAllRounds();
-        OutputView.printWinners(getWinners());
+        totalRounds = getValidateTotalRounds(totalRoundsInput);
     }
 
-    private String[] requestAndSplitCarNames() {
-        OutputView.printCarNamesInputRequestMessage();
-        String userInput = InputView.requestUserInput();
-        return getValidateCarNames(userInput);
+    public void run() {
+        playAllRounds();
+        OutputView.printWinners(getWinners());
     }
 
     private String[] getValidateCarNames(String userInput) {
@@ -52,12 +47,6 @@ public class GameManager {
         for (String name : carNames) {
             carRepository.add(new Car(name));
         }
-    }
-
-    private int requestAndParseTotalRounds() {
-        OutputView.printTotalRoundsInputRequestMessage();
-        String userInput = InputView.requestUserInput();
-        return getValidateTotalRounds(userInput);
     }
 
     private int getValidateTotalRounds(String userInput) {

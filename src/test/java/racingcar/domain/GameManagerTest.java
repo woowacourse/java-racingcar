@@ -3,8 +3,6 @@ package racingcar.domain;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.Car;
-import racingcar.domain.GameManager;
 
 import java.lang.reflect.Method;
 
@@ -14,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class GameManagerTest {
 
-    GameManager gameManager = new GameManager();
+    GameManager gameManager = new GameManager("a,bc","5");
 
     @Test
     void splitUserInputByComma() throws Exception {
@@ -63,20 +61,6 @@ public class GameManagerTest {
         assertThatThrownBy(
                 () -> validateCarNamesMethod.invoke(gameManager, carNamesInput)
         );
-    }
-
-    @Test
-    void initCars() throws Exception {
-        Method privateMethod = getPrivateMethod("initCars", String[].class);
-        String[] carNames = new String[]{"a", "bc", "bacon"};
-
-        privateMethod.invoke(gameManager, (Object) carNames);
-
-        assertThat(gameManager.cars.size()).isEqualTo(3);
-        for (int idx = 0; idx < 3; idx++) {
-            Car car = gameManager.cars.get(idx);
-            assertThat(car.getName()).isEqualTo(carNames[idx]);
-        }
     }
 
     @ParameterizedTest
