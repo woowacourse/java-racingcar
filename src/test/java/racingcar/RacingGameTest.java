@@ -1,6 +1,5 @@
 package racingcar;
 
-import calculator.StringCalculator;
 import org.junit.jupiter.api.Test;
 import racingcar.controller.GameController;
 import racingcar.model.Car;
@@ -17,16 +16,24 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class RacingGameTest {
 
     private static final int TESTCASE_NUM = 10000;
-    private GameController gameController = new GameController();
+    private final GameController gameController = new GameController();
 
     @Test
     void 자동차의_이름이_5자_이상인_경우_예외처리() {
         assertThatThrownBy(() -> {
             InputValidator.validateCarName(Arrays.asList("asd","qwerty"));
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 자동차_입력시_공백이_들어간_경우() {
+        final String actual = "bom, sun";
+        final List<String> expected = Arrays.asList("bom", "sun");
+        assertThat(gameController.splitCars(actual)).isEqualTo(expected);
     }
 
     @Test

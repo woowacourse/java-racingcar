@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import java.util.Arrays;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class StringCalculatorTest {
 
     @Test

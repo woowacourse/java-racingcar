@@ -22,7 +22,7 @@ public class GameController {
     private void initGame() {
         InputView.inputCarNames();
         Scanner scanner = new Scanner(System.in);
-        String carNames = scanner.nextLine().replaceAll(" ", "");
+        String carNames = scanner.nextLine();
         List<String> carNameList = splitCars(carNames);
         cars = initCars(carNameList);
         InputView.inputTrialNum();
@@ -37,7 +37,7 @@ public class GameController {
 
     public List<String> splitCars(String carNames) {
         InputValidator.validateNameInput(carNames);
-        List<String> carNameList = Arrays.asList(carNames.split(","));
+        List<String> carNameList = Arrays.asList(carNames.replaceAll(" ", "").split(","));
         InputValidator.validateCarName(carNameList);
         InputValidator.validateDuplicateName(carNameList);
 
