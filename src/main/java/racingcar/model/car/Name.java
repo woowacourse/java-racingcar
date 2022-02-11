@@ -23,14 +23,14 @@ public class Name {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        Name name1 = (Name) o;
+        Name name1 = (Name) object;
         return Objects.equals(name, name1.name);
     }
 

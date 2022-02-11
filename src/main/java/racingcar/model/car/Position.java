@@ -29,14 +29,14 @@ class Position implements Comparable<Position> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        Position position1 = (Position) o;
+        Position position1 = (Position) object;
         return position == position1.position;
     }
 
