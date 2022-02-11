@@ -13,9 +13,9 @@ public class RacingCarsController {
 
 	public void requestCarsName() {
 		try {
-			String carsNames = Input.inputCarsName();
-			NameValidator.checkNull(carsNames);
-			racingCarService.saveCars(carsNames);
+			String input = Input.inputCarsName();
+			NameValidator.checkNameInput(input);
+			racingCarService.saveCars(input);
 		} catch (Exception exception) {
 			Output.printError(exception.getMessage());
 			requestCarsName();
