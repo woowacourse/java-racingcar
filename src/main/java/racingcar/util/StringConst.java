@@ -17,7 +17,9 @@ public enum StringConst {
 	ERROR_DUPLICATE("[ERROR] 입력값은 중복될 수 없습니다."),
 	ERROR_INT_NUM("[ERROR] 입력값은 문자일 수 없습니다."),
 	ERROR_NEGATIVE("[ERROR] 입력값은 음수일 수 없습니다."),
-	ERROR_NO_CAR("[ERROR] 쉼표를 기준으로 차가 한 대 이상 있어야 합니다.");
+	ERROR_NO_CAR("[ERROR] 쉼표를 기준으로 차가 한 대 이상 있어야 합니다."),
+	REGEX_PATTERN("^[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$"),
+	ERROR_TURN_FLAG("-1");
 
 	private final String value;
 

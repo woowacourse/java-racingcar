@@ -12,7 +12,7 @@ public class Checker {
 	}
 
 	private void isBlank(String str) throws IllegalArgumentException {
-		if (str.equals("")) {
+		if (str.isEmpty()) {
 			throw new IllegalArgumentException(StringConst.ERROR_BLANK.getValue());
 		}
 	}
@@ -34,7 +34,7 @@ public class Checker {
 
 	private void isSpecialChar(String[] str) throws IllegalArgumentException {
 		int specialCount = (int)Arrays.stream(str)
-			.filter(eachStr -> !eachStr.matches("^[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$"))
+			.filter(eachStr -> !eachStr.matches(StringConst.REGEX_PATTERN.getValue()))
 			.count();
 		if (specialCount > IntegerConst.ZERO.getValue()) {
 			throw new IllegalArgumentException(StringConst.ERROR_SPECIAL_CHAR.getValue());

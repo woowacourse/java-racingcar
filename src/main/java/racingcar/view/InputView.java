@@ -11,11 +11,15 @@ public class InputView {
 		String name = scanner.nextLine();
 		Checker checker = new Checker();
 		String flagStr = checker.checkNameConditions(name);
-		if (flagStr.contains("[ERROR]")) {
-			System.out.println(flagStr);
-			return new String[] {"[ERROR]"};
+		return checkNameError(flagStr);
+	}
+
+	private static String[] checkNameError(String str) {
+		if (str.contains(StringConst.ERROR_PREFIX.getValue())) {
+			System.out.println(str);
+			return new String[] {StringConst.ERROR_PREFIX.getValue()};
 		}
-		return flagStr.split(StringConst.DELIMITER.getValue());
+		return str.split(StringConst.DELIMITER.getValue());
 	}
 
 	public static String getTurnInput() {
@@ -23,10 +27,14 @@ public class InputView {
 		String turn = scanner.nextLine();
 		Checker checker = new Checker();
 		String flagStr = checker.checkTurnConditions(turn);
-		if (flagStr.contains("[ERROR]")) {
-			System.out.println(flagStr);
-			return "-1";
+		return checkTurnError(flagStr);
+	}
+
+	private static String checkTurnError(String str) {
+		if (str.contains(StringConst.ERROR_PREFIX.getValue())) {
+			System.out.println(str);
+			return StringConst.ERROR_TURN_FLAG.getValue();
 		}
-		return flagStr;
+		return str;
 	}
 }
