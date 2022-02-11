@@ -5,5 +5,7 @@ public class Application {
         RaceController raceController = new RaceController();
         raceController.setUpCars();
         raceController.setUpTryCount();
+        raceController.raceStart();
+        raceController.raceEnd();
     }
 }

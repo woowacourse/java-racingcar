@@ -3,7 +3,6 @@ package racingcar.model.car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import racingcar.model.trycount.TryCount;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -17,7 +16,7 @@ public class CarsTest {
         cars.add(Car.of("car1", 0, (min, max) -> 5));
         cars.add(Car.of("car2", 0, (min, max) -> 0));
         cars.add(Car.of("car3", 0, (min, max) -> 5));
-        cars.moveAll(TryCount.from(1));
+        cars.moveAll();
 
         assertThat(cars.toString())
                 .isEqualTo("car1 : -\ncar2 : \ncar3 : -");
@@ -34,6 +33,17 @@ public class CarsTest {
 
         assertThat(cars.getCarsByPosition(Position.from(11)))
                 .contains(Car.from("car4"), Car.from("car5"));
+    }
+
+    @DisplayName("getWinnerNames 메소드는")
+    @Test
+    void 우승자들의_이름을_반환한다() {
+        Cars cars = Cars.create();
+        cars.add(Car.of("car1", 5));
+        cars.add(Car.of("car2", 3));
+        cars.add(Car.of("car3", 5));
+
+        assertThat(cars.getWinnersNames().toString()).isEqualTo("car1, car3");
     }
 
     @DisplayName("getFirstPosition 메소드는")

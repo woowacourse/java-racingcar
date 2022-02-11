@@ -42,6 +42,10 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
+    public Name getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

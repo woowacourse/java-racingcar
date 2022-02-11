@@ -23,7 +23,18 @@ public class Names {
                 .collect(Collectors.toList()));
     }
 
+    public static Names from(List<Name> names) {
+        return new Names(names);
+    }
+
     public List<Name> get() {
         return names;
+    }
+
+    @Override
+    public String toString() {
+        return names.stream()
+                .map(Name::toString)
+                .collect(Collectors.joining(", "));
     }
 }

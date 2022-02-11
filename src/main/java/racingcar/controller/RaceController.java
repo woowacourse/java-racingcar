@@ -34,4 +34,17 @@ public class RaceController {
             setUpTryCount();
         }
     }
+
+    public void raceStart() {
+        OutputView.printRaceResultUi();
+        for (int i = 0; i < tryCount.toInt(); i++) {
+            cars.moveAll();
+            OutputView.printCarsUi(cars);
+        }
+    }
+
+    public void raceEnd() {
+        OutputView.printRaceResultUi(cars.getWinnersNames());
+    }
+
 }

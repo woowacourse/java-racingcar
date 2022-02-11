@@ -1,9 +1,7 @@
 package racingcar.view;
 
-import racingcar.model.car.Name;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import racingcar.model.car.Cars;
+import racingcar.model.input.Names;
 
 public class OutputView {
     public static void printInputNamesUi() {
@@ -18,10 +16,13 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public static void printRaceResultUi(List<Name> names) {
-        System.out.printf("%s가 최종 우승했습니다.", names.stream()
-                .map(Name::toString)
-                .collect(Collectors.joining(", ")));
+    public static void printCarsUi(Cars cars) {
+        System.out.println(cars);
+        System.out.println();
+    }
+
+    public static void printRaceResultUi(Names names) {
+        System.out.printf("%s가 최종 우승했습니다.", names);
     }
 
     public static void printErrorUi(Exception exception) {

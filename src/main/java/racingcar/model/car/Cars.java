@@ -1,7 +1,6 @@
 package racingcar.model.car;
 
 import racingcar.model.input.Names;
-import racingcar.model.trycount.TryCount;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,10 +36,8 @@ public class Cars {
         cars.add(car);
     }
 
-    public void moveAll(TryCount tryCount) {
-        for (int i = 0; i < tryCount.toInt(); i++) {
-            cars.forEach(Car::move);
-        }
+    public void moveAll() {
+        cars.forEach(Car::move);
     }
 
     public Position getFirstPosition() {
@@ -64,4 +61,9 @@ public class Cars {
                 .collect(Collectors.joining(TO_STRING_DELIMITER));
     }
 
+    public Names getWinnersNames() {
+        return Names.from(getCarsByPosition(getFirstPosition()).stream()
+                .map(Car::getName)
+                .collect(Collectors.toList()));
+    }
 }
