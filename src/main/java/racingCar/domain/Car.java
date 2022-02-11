@@ -1,5 +1,7 @@
 package racingCar.domain;
 
+import static racingCar.constants.RacingCarConstants.*;
+
 public class Car {
 	String name;
 	int position = 0;
@@ -28,9 +30,9 @@ public class Car {
 
 	@Override
 	public String toString() {
-		String output = name + " : ";
+		String output = name + COLON_WITH_SPACE;
 		for (int idx = 0; idx < position; idx++) {
-			output += "-";
+			output += DASH;
 		}
 		return output;
 	}

@@ -1,5 +1,7 @@
 package racingCar.domain;
 
+import static racingCar.constants.RacingCarConstants.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class RacingCars {
 	}
 
 	private boolean makeRandomNumber() {
-		return ((int)(Math.random() * 10) - 1) >= 4;
+		return ((int)(Math.random() * 10) - 1) >= GO_OR_NOT;
 	}
 
 	private int getMaxDistance() {
@@ -48,7 +50,7 @@ public class RacingCars {
 	public String toString() {
 		StringBuilder output = new StringBuilder();
 		for (Car racingCar : this.racingCars) {
-			output.append(racingCar.toString()).append("\n");
+			output.append(racingCar.toString()).append(NEW_LINE);
 		}
 		return output.toString();
 	}
