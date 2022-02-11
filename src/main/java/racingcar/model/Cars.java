@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Cars {
     private final List<Car> cars;
+
     public Cars(List<Car> cars) {
         this.cars = cars;
     }
@@ -20,7 +21,7 @@ public class Cars {
         List<String> winners = new ArrayList<>();
         int farthestPosition = getFarthestPosition();
 
-        cars.stream().filter(car -> car.isSameWithFarthestPosition(farthestPosition))
+        cars.stream().filter(car -> car.isSamePositionWith(farthestPosition))
                 .forEach(car -> winners.add(car.getName()));
         return winners;
     }

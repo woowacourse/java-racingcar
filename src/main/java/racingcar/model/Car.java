@@ -22,8 +22,8 @@ public class Car {
         return name;
     }
 
-    public boolean isSameWithFarthestPosition(int farthestPosition) {
-        return this.position == farthestPosition;
+    public boolean isSamePositionWith(int position) {
+        return this.position == position;
     }
 
     @Override

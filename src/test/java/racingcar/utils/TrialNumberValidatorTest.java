@@ -13,31 +13,27 @@ public class TrialNumberValidatorTest {
     }
 
     @Test
-    void 시도횟수_0이하() {
-        Assertions.assertAll(
-                () -> {
-                    assertThatThrownBy(() -> TrialNumberValidator.isNotPositive(0))
-                            .isInstanceOf(IllegalArgumentException.class);
-                },
-                () -> {
-                    assertThatThrownBy(() -> TrialNumberValidator.isNotPositive(-1))
-                            .isInstanceOf(IllegalArgumentException.class);
-                }
-        );
+    void 시도횟수_0이하_0() {
+        assertThatThrownBy(() -> TrialNumberValidator.isNotPositive(0))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 시도횟수_문자입력() {
-        Assertions.assertAll(
-                () -> {
-                    assertThatThrownBy(() -> TrialNumberValidator.isNotInteger("a"))
-                            .isInstanceOf(IllegalArgumentException.class);
-                },
-                () -> {
-                    assertThatThrownBy(() -> TrialNumberValidator.isNotInteger("*"))
-                            .isInstanceOf(IllegalArgumentException.class);
-                }
-        );
+    void 시도횟수_0이하_음수() {
+        assertThatThrownBy(() -> TrialNumberValidator.isNotPositive(-1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 시도횟수_문자입력1() {
+        assertThatThrownBy(() -> TrialNumberValidator.isNotInteger("a"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 시도횟수_문자입력2() {
+        assertThatThrownBy(() -> TrialNumberValidator.isNotInteger("*"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
