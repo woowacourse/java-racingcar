@@ -32,7 +32,7 @@
   - 각 계층간 data 전달
 - CarRepository
   - Car Collection 상태 관리
-  - Random 값에 따라 전체 Car 전진
+  - 전달된 int List에 따라 전체 Car 전진
   - 우승자 반환
 - RandNo
   - 0~9 정수 반환 
@@ -41,6 +41,7 @@
 - CarController
   - CarRepository 생성, 관리
   - 각 Car 게임 진행
+  - Random 값 List 생성하여 CarRepository에 전달
 - RacingController
   - InputView, ResultView 사이 데이터 전달
   - Car 이름 CarController에 전달
