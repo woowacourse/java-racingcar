@@ -14,4 +14,8 @@ public class CarRepository {
     public void add(Car car) {
         cars.add(car);
     }
+
+    public void clear() {
+        cars.clear();
+    }
 }

@@ -9,13 +9,25 @@ import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 
 public class GameController {
 
+    private Game game;
+
     public void run() {
         String[] carNames = requestCarNamesInput();
         int totalRounds = requestTotalRoundsInput();
 
-        Game game = new Game(carNames, totalRounds);
-        game.playAllRounds();
+        game = new Game(carNames, totalRounds);
+        playAllRounds();
+
         OutputView.printWinners(game.getWinners());
+    }
+
+    public void playAllRounds() {
+        OutputView.printRoundResultText();
+
+        while(!game.isOver()) {
+            game.playRound();
+            OutputView.printRoundResult(game.getCars());
+        }
     }
 
     private String[] requestCarNamesInput() {

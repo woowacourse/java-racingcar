@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.util.RandomUtils;
-import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,7 @@ import java.util.List;
 public class Game {
 
     private final CarRepository carRepository = new CarRepository();
+    private int currentRound = 0;
     private final int totalRounds;
 
     public Game(String[] carNames, int totalRounds) {
@@ -22,31 +22,21 @@ public class Game {
         }
     }
 
-    public void playAllRounds() {
-        List<Car> cars = carRepository.findAllCars();
-
-        OutputView.printRoundResultText();
-        for (int i = 0; i < totalRounds; i++) {
-            playRound();
-            OutputView.printRoundResult(cars);
-        }
-    }
-
-    private void playRound() {
+    public void playRound() {
         List<Car> cars = carRepository.findAllCars();
 
         for (Car car : cars) {
             car.goOrNot(RandomUtils.generateNumber());
         }
+
+        currentRound += 1;
     }
 
     public List<Car> getWinners() {
         List<Car> winners = new ArrayList<>();
-        List<Car> cars = carRepository.findAllCars();
-
         int maxPosition = 0;
 
-        for (Car car : cars) {
+        for (Car car : getCars()) {
             int currentPosition = car.getPosition();
             if (maxPosition > currentPosition) {
                 continue;
@@ -58,5 +48,13 @@ public class Game {
             maxPosition = currentPosition;
         }
         return winners;
+    }
+
+    public List<Car> getCars() {
+        return carRepository.findAllCars();
+    }
+
+    public boolean isOver() {
+        return currentRound >= totalRounds;
     }
 }
