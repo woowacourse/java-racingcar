@@ -5,19 +5,32 @@
 * 전진하는 조건은 0에서 9 사이에서 random 값을 구한 후 random 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈춘다.
 * 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.
 
-1. 자동차 이름 입력(중복 금지, 빈칸 금지), 쉽표구분, 5자 이하
-2. n번 이동 입력 (숫자만 입력)
-3. 0 ~ 9 난수 생성기 (4이상 전진)
-4. 우승자 알려주기 1명 이상
-5. 실행 결과 출력
 
-입력 -> 자동차 -> 회수 입력 -> 회수 반복 난수 -> 실행결과 -> 우승자
+### ✅ Input
+* 자동차 입력 (검증), 회수 입력 (검증)
 
-Input => 자동차 입력 (검증), 회수 입력 (검증)  
-validate => 인풋에서 호출  (자동차 이름, 횟수)
 
-Car => name, position, 전진 메서드 (난수 생성 호출)   
-Cars => List<Car>, toString  
-Winners => List<Car>, 우승자 탐색, toString  
-RandomGenerator => 실행  
-output => 안내 메시지
+###✅ Output 
+* 안내 메시지
+
+###✅ Validator 
+* 공백 검증, 이름 미입력 검증, 자동차 대수 검증, 이름 길이 검증, 이름 중복 검증
+* 횟수 숫자 검증, 횟수 1이상인지 검증
+
+###✅ RandomGenerator
+* 0 이상 입력한 범위 이하의 난수 생성기
+
+###✅ Console
+* 싱글턴으로 Scanner 만들어 사용
+
+###✅ Car 
+* name, position, 전진 메서드 (난수 생성 호출)
+
+###✅ Cars
+* Car List, Winner List, MaxPosition, GetWinner, toString  
+
+###✅ RacingController
+* 이름, 횟수에 따라 턴에 맞게 게임 실행 (에러 발생시 다시 입력 받기)
+
+###✅ RacingCar
+* 게임 실행
