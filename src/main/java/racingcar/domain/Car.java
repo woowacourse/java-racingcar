@@ -1,34 +1,34 @@
 package racingcar.domain;
 
 public class Car {
-    private static final String STRING_JOIN_DELIMITER = " : ";
-    private static final String MOVE_EXPRESSION = "-";
+	private static final String STRING_JOIN_DELIMITER = " : ";
+	private static final String MOVE_EXPRESSION = "-";
 
-    private final String name;
-    private int position = 0;
+	private final String name;
+	private int position = 0;
 
-    public void moveForward() {
-        position++;
-    }
+	public void moveForward() {
+		position++;
+	}
 
-    public boolean isSamePosition(int position) {
-        return this.position == position;
-    }
+	public boolean isSamePosition(int position) {
+		return this.position == position;
+	}
 
-    public Car(String name) {
-        this.name = name;
-    }
+	public Car(String name) {
+		this.name = name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public int getPosition() {
-        return position;
-    }
+	public int getPosition() {
+		return position;
+	}
 
-    @Override
-    public String toString() {
-        return this.name + STRING_JOIN_DELIMITER + MOVE_EXPRESSION.repeat(Math.max(0, this.position));
-    }
+	@Override
+	public String toString() {
+		return this.name + STRING_JOIN_DELIMITER + MOVE_EXPRESSION.repeat(Math.max(0, this.position));
+	}
 }

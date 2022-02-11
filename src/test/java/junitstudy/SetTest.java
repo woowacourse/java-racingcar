@@ -12,31 +12,31 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.*;
 
 public class SetTest {
-    private Set<Integer> numbers;
+	private Set<Integer> numbers;
 
-    @BeforeEach
-    void setUp() {
-        numbers = new HashSet<>();
-        numbers.add(1);
-        numbers.add(1);
-        numbers.add(2);
-        numbers.add(3);
-    }
+	@BeforeEach
+	void setUp() {
+		numbers = new HashSet<>();
+		numbers.add(1);
+		numbers.add(1);
+		numbers.add(2);
+		numbers.add(3);
+	}
 
-    @Test
-    void rightSize() {
-        assertThat(numbers.size()).isEqualTo(3);
-    }
+	@Test
+	void rightSize() {
+		assertThat(numbers.size()).isEqualTo(3);
+	}
 
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
-    void contains(int argument) {
-        assertThat(numbers.contains(argument)).isTrue();
-    }
+	@ParameterizedTest
+	@ValueSource(ints = {1, 2, 3})
+	void contains(int argument) {
+		assertThat(numbers.contains(argument)).isTrue();
+	}
 
-    @ParameterizedTest
-    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
-    void notContains(int argument, boolean expected) {
-        assertThat(numbers.contains(argument)).isEqualTo(expected);
-    }
+	@ParameterizedTest
+	@CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
+	void notContains(int argument, boolean expected) {
+		assertThat(numbers.contains(argument)).isEqualTo(expected);
+	}
 }
