@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Winners {
+	private static final int MIN_POSITION = 0;
+
 	private final List<Car> winners;
 
 	public Winners(List<Car> cars) {
@@ -15,11 +17,10 @@ public class Winners {
 	}
 
 	private int getMaxPosition(List<Car> cars) {
-		int max = Integer.MIN_VALUE;
-		for (Car car : cars) {
-			max = Math.max(max, car.getPosition());
-		}
-		return max;
+		return cars.stream()
+			.mapToInt(Car::getPosition)
+			.max()
+			.orElse(MIN_POSITION);
 	}
 
 	@Override
