@@ -1,34 +1,33 @@
 package stringcalculator;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+
+	public static final String CUSTOM_REGEX = "//(.)\n(.*)";
+	public static final String OR_STRING = "|";
+	public static final int MATCH_GROUP_INDEX = 1;
+	public static final int MATCH_GROUP_NEXT_INDEX = 2;
+	private String regex = "[,:]";
+
 	public String[] splitString(String str) {
-		if (str == null || str.length() == 0)
+		if (str == null || str.isEmpty()) {
 			return new String[] {"0"};
-		String regex = ",|:";
+		}
 		CheckException.checkSplitOk(str, regex);
-		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(str);
-		if (m.find()) {
-			regex += "|" + m.group(1);
+		Matcher matcher = Pattern.compile(CUSTOM_REGEX).matcher(str);
+		if (matcher.find()) {
+			regex += OR_STRING + matcher.group(MATCH_GROUP_INDEX);
 			CheckException.checkSplitOk(str, regex);
-			return m.group(2).split(regex);
+			return matcher.group(MATCH_GROUP_NEXT_INDEX).split(regex);
 		}
 		return str.split(regex);
 	}
 
 	public int sumString(String[] splitStringArray) {
-		int sumResult = 0;
 		CheckException.check(splitStringArray);
-		for (String s : splitStringArray) {
-			sumResult += Integer.parseInt(s);
-		}
-		return sumResult;
+		return Arrays.stream(splitStringArray).mapToInt(Integer::parseInt).sum();
 	}
-	/*
-	^[regex]
-	((.)[regex]{2,}(.)*
-	$[regex]
-	**/
 }

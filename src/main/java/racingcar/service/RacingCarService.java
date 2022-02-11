@@ -14,9 +14,7 @@ public class RacingCarService {
 	List<Car> cars = new ArrayList<>();
 
 	public void playRound() {
-		for (Car car : cars) {
-			car.decideMove();
-		}
+		cars.forEach(Car::decideMove);
 	}
 
 	public void saveCars(String carsNames) throws Exception {
@@ -51,5 +49,9 @@ public class RacingCarService {
 
 	public List<Car> findAllCars() {
 		return cars;
+	}
+
+	public void resetCars() {
+		cars = new ArrayList<>();
 	}
 }

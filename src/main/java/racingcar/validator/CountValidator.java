@@ -22,8 +22,7 @@ public class CountValidator {
 	}
 
 	public static void checkNotNumber(String inputString) throws Exception {
-		boolean matcher = Pattern.matches(NUMBER_REGEX, inputString);
-		if (!matcher) {
+		if (!Pattern.matches(NUMBER_REGEX, inputString)) {
 			throw new Exception(COUNT_NOT_INTEGER_MSG);
 		}
 	}

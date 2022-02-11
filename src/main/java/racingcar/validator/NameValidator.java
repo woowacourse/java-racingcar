@@ -29,7 +29,7 @@ public class NameValidator {
 	}
 
 	public static void checkNull(String inputString) throws Exception {
-		if (inputString == null || inputString.isEmpty()) {
+		if (inputString == null || inputString.trim().isEmpty()) {
 			throw new Exception(INPUT_STRING_NULL_ERROR_MSG);
 		}
 	}

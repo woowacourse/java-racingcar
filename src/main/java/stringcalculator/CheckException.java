@@ -1,5 +1,6 @@
 package stringcalculator;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,12 +11,14 @@ public class CheckException extends Throwable {
 	static final String SplitOk1_ERROR_MESSAGE = "1구분자가 올바르지 않은 위치에 있습니다!";
 	static final String SplitOk2_ERROR_MESSAGE = "2구분자가 올바르지 않은 위치에 있습니다!";
 	static final String SplitOk3_ERROR_MESSAGE = "3구분자가 올바르지 않은 위치에 있습니다!";
+	public static final String PRONT_REGEX = "(.)[";
+	public static final String BACK_REGEX = "]{2,}(.)*";
 
 	public static void check(String[] array) {
-		for (String s : array) {
+		Arrays.stream(array).forEach(s -> {
 			checkNull(s);
 			checkNumber(s);
-		}
+		});
 	}
 
 	public static void checkNumber(String string) {
@@ -39,7 +42,7 @@ public class CheckException extends Throwable {
 		if (regex.contains(Character.toString(string.charAt(string.length() - 1)))) {
 			throw new RuntimeException(SplitOk2_ERROR_MESSAGE);
 		}
-		Matcher mMid = Pattern.compile("(.)[" + regex + "]{2,}(.)*").matcher(string);
+		Matcher mMid = Pattern.compile(PRONT_REGEX + regex + BACK_REGEX).matcher(string);
 		if (mMid.matches()) {
 			throw new RuntimeException(SplitOk3_ERROR_MESSAGE);
 		}

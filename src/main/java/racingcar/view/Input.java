@@ -10,13 +10,13 @@ public class Input {
 	public static String inputCarsName() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println(REQUEST_CARS_NAME);
-		return scanner.next();
+		return scanner.nextLine();
 	}
 
 	public static String inputCount() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println(REQUEST_COUNT);
-		return scanner.next();
+		return scanner.nextLine();
 	}
 
 }
