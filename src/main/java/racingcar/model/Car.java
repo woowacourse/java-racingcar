@@ -4,6 +4,7 @@ import racingcar.util.RandomUtil;
 
 public class Car {
     private static final int STANDARD = 4;
+
     private String name;
     private int position;
     private RandomUtil randomGenerator;
