@@ -5,17 +5,17 @@ import java.util.stream.Collectors;
 import racingcar.model.vo.Car;
 import racingcar.model.vo.Name;
 
-public class Output {
-    public void printCurrentPosition(List<Car> cars) {
-        cars.forEach(this::printRacingProgress);
+public class OutputView {
+    public static void printCurrentPosition(List<Car> cars) {
+        cars.forEach(OutputView::printRacingProgress);
         System.out.println();
     }
 
-    private void printRacingProgress(Car car) {
+    private static void printRacingProgress(Car car) {
         System.out.printf("%s : %s%n", car.getName(), getPositionString(car.getPosition()));
     }
 
-    private String getPositionString(int position) {
+    private static String getPositionString(int position) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < position; i++) {
             builder.append("-");
@@ -23,7 +23,7 @@ public class Output {
         return builder.toString();
     }
 
-    public void printWinner(List<Name> winners) {
+    public static void printWinner(List<Name> winners) {
         String winnersJoinedByComma = winners.stream()
             .map(Name::toString)
             .collect(Collectors.joining(", "));

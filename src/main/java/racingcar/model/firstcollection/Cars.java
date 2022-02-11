@@ -10,7 +10,7 @@ import racingcar.model.vo.Car;
 import racingcar.model.vo.Name;
 
 public class Cars {
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<Name> names) {
         this.cars = convertNamesToCars(names);
