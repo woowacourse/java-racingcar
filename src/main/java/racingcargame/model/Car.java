@@ -3,39 +3,41 @@ package racingcargame.model;
 import racingcargame.utils.RandomNumberGenerator;
 
 public class Car implements Comparable<Car> {
-    private String name;
-    private int position;
+	private static final int MIN_MOVE_NUMBER = 4;
 
-    public Car(String name, int position) {
-        this.name = name;
-        this.position = position;
-    }
+	private final String name;
+	private int position;
 
-    String getName(){
-        return name;
-    }
+	public Car(final String name, final int position) {
+		this.name = name;
+		this.position = position;
+	}
 
-    int getPosition() {
-        return position;
-    }
+	String getName() {
+		return name;
+	}
 
-    void setPosition(int position) {
-        this.position = position;
-    }
+	int getPosition() {
+		return position;
+	}
 
-    void moveCar() {
-        if (isMoveCar()) {
-            position ++;
-        }
-    }
+	void setPosition(final int position) {
+		this.position = position;
+	}
 
-    private boolean isMoveCar() {
-        int number = RandomNumberGenerator.makeRandomNumber();
-        return number >= 4;
-    }
+	void moveCar() {
+		if (isMoveCar()) {
+			position++;
+		}
+	}
 
-    @Override
-    public int compareTo(Car car) {
-        return Integer.compare(position, car.getPosition());
-    }
+	private boolean isMoveCar() {
+		int number = RandomNumberGenerator.makeRandomNumber();
+		return number >= MIN_MOVE_NUMBER;
+	}
+
+	@Override
+	public int compareTo(Car car) {
+		return Integer.compare(position, car.getPosition());
+	}
 }
