@@ -16,7 +16,7 @@ public class InputView {
 	}
 
 	public List<String> requestCarNames() {
-		return Arrays.stream(dataReader.readLine().split(Constants.CAR_NAME_DELIMITER))
+		return Arrays.stream(dataReader.readLine().split(Constants.CAR_NAME_DELIMITER, -1))
 			.map(String::trim)
 			.collect(Collectors.toList());
 	}

@@ -50,4 +50,18 @@ public class InputViewTest {
 			assertThat(carNames.get(i)).isEqualTo(expected.get(i));
 		}
 	}
+
+	@Test
+	void 자동차이름_콤마로_끝날때_공백_포함해서_split() {
+		customReader.setText("pobi,if  ,  hanul,");
+		List<String> expected = Arrays.asList(
+			"pobi",
+			"if",
+			"hanul"
+		);
+
+		List<String> carNames = inputView.requestCarNames();
+
+		assertThat(carNames.size()).isEqualTo(expected.size() + 1);
+	}
 }
