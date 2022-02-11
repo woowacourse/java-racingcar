@@ -14,6 +14,7 @@ public class RacingCar {
 	public static final String FINAL_WINNER = "가 최종 우승했습니다.";
 	public static final String COMMA = ",";
 	public static final int NAME_MAX_LENGTH = 5;
+	public static final int ZERO_TO_NINE_PROBABILITY = 4;
 	private ArrayList<Car> cars = new ArrayList<>();
 	private int maxPosition = Integer.MIN_VALUE;
 	private int times;
@@ -137,7 +138,7 @@ public class RacingCar {
 	}
 
 	private boolean makeRandom() {
-		return ((int)(Math.random() * 10) - 1) >= 4;
+		return ((int)(Math.random() * 10) - 1) >= ZERO_TO_NINE_PROBABILITY;
 	}
 
 	public List<Car> findWinner(List<Car> cars) {
