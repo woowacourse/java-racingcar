@@ -2,7 +2,7 @@ package racingcar.controller;
 
 import java.util.Random;
 
-public class RandomNumberPicker implements NumberPicker{
+public class RandomNumberPicker implements NumberPicker {
 
 	private final Random random;
 
@@ -15,5 +15,4 @@ public class RandomNumberPicker implements NumberPicker{
 	public int pickNumber() {
 		return random.nextInt(10);
 	}
-
 }

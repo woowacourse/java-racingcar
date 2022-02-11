@@ -13,5 +13,4 @@ public enum CarNameLength {
 	public static boolean isTooLong(String name) {
 		return (name.length() > LENGTH.value);
 	}
-
 }

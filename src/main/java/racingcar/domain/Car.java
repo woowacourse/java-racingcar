@@ -30,5 +30,4 @@ public class Car {
 	public int getLocation() {
 		return this.location;
 	}
-
 }

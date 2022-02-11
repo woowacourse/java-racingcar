@@ -48,7 +48,9 @@ public class Cars {
 	}
 
 	public List<String> getStatuses() {
-		return cars.stream().map(Car::toString).collect(Collectors.toList());
+		return cars.stream()
+			.map(Car::toString)
+			.collect(Collectors.toList());
 	}
 
 	public List<String> getWinnerNames() {
@@ -65,5 +67,4 @@ public class Cars {
 			.max((Comparator.comparingInt(o -> o)))
 			.orElseThrow(IllegalArgumentException::new);
 	}
-
 }

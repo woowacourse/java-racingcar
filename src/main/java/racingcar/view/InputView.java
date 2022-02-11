@@ -16,7 +16,8 @@ public class InputView {
 
 	public List<String> requestCarNames() {
 		return Arrays.stream(dataReader.readLine().split(","))
-			.map(String::trim).collect(Collectors.toList());
+			.map(String::trim)
+			.collect(Collectors.toList());
 	}
 
 	public String requestGameRound() {

@@ -12,8 +12,7 @@ public class Round {
 
 	private int parseCount(String count) {
 		try {
-			int value = Integer.parseInt(count);
-			return value;
+			return Integer.parseInt(count);
 		} catch (NumberFormatException exception) {
 			throw new IllegalArgumentException("이동 횟수는 숫자여야 합니다.");
 		}
