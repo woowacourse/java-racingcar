@@ -5,35 +5,32 @@ import java.util.regex.Pattern;
 
 public class StringAddCalculator {
 
-    public int splitAndSum(String givenString) {
-        if (checkNull(givenString)) {
+    public int splitAndSum(String text) {
+        if (checkNullOrEmpty(text)) {
             return 0;
         }
-        String[] splitString = split(givenString);
-        return sumStringArray(splitString);
+        String[] splitString = split(text);
+        return sum(splitString);
     }
 
 
-    private boolean checkNull(String givenString) {
-        if (givenString == null || givenString.isEmpty()) {
-            return true;
-        }
-        return false;
+    private boolean checkNullOrEmpty(String text) {
+        return text == null || text.isEmpty();
     }
 
-    private String[] split(String givenString) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(givenString);
+    private String[] split(String text) {
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (m.find()) {
             String customDelimiter = m.group(1);
             return m.group(2).split(customDelimiter);
         }
-        return givenString.split("[,:]");
+        return text.split("[,:]");
     }
 
-    private int sumStringArray(String[] splitString) {
+    private int sum(String[] values) {
         int result = 0;
-        for (int i = 0; i < splitString.length; i++) {
-            int value = intValueOf(splitString[i]);
+        for (String s : values) {
+            int value = intValueOf(s);
             checkNegativeInteger(value);
             result += value;
         }
@@ -42,8 +39,7 @@ public class StringAddCalculator {
 
     private int intValueOf(String givenString) {
         try {
-            int result = Integer.parseInt(givenString);
-            return result;
+            return Integer.parseInt(givenString);
         } catch (NumberFormatException e) {
             throw new RuntimeException("숫자값을 입력해주세요");
         }
