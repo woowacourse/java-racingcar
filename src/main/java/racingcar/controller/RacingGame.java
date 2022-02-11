@@ -13,7 +13,7 @@ public class RacingGame {
     public static final String CAR_NAME_DELIMITER = ",";
 
     public void start() {
-        Cars cars = setupCars();
+        final Cars cars = setupCars();
         race(cars, InputView.getTrial());
         OutputView.printWinner(cars.getWinner());
     }
@@ -32,13 +32,13 @@ public class RacingGame {
         return userInput.split(CAR_NAME_DELIMITER);
     }
 
-    private List<Car> getCarsByCarNames(String[] carNames) {
+    private List<Car> getCarsByCarNames(final String[] carNames) {
         return Arrays.stream(carNames)
                     .map(Car::new)
                     .collect(Collectors.toList());
     }
 
-    private void race(Cars cars, int trials) {
+    private void race(final Cars cars, final int trials) {
         for (int round = 0; round < trials; round++) {
             cars.move();
             OutputView.printCurrentPosition(cars.getCars());

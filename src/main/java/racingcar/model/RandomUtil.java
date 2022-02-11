@@ -7,7 +7,7 @@ public class RandomUtil {
 
     private RandomUtil() {}
 
-    public static int getNumbersInRange(int endInclusive) {
+    public static int getNumbersInRange(final int endInclusive) {
         return random.nextInt(endInclusive);
     }
 }

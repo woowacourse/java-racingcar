@@ -18,31 +18,32 @@ public class InputView {
 
     public static int getTrial() {
         System.out.println(INPUT_TRIALS);
-        String trialInput = scanner.nextLine();
+        final String trialInput = scanner.nextLine();
 
         validateTrialInput(trialInput);
         return stringToInt(trialInput);
     }
 
-    private static void validateTrialInput(String trialInput) {
+    private static void validateTrialInput(final String trialInput) {
         if (isNotValidTrialInput(trialInput)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_FOR_INVALID_TRIAL_INPUT);
         }
     }
 
-    private static boolean isNotValidTrialInput(String numberInput) {
+    private static boolean isNotValidTrialInput(final String numberInput) {
         return !isDigit(numberInput) || isSmallerThanOne(numberInput);
     }
 
-    private static boolean isDigit(String numberInput) {
-        return numberInput.chars().allMatch(Character::isDigit);
+    private static boolean isDigit(final String numberInput) {
+        return numberInput.chars()
+                        .allMatch(Character::isDigit);
     }
 
-    private static boolean isSmallerThanOne(String numberInput) {
+    private static boolean isSmallerThanOne(final String numberInput) {
         return stringToInt(numberInput) < MINIMUM_TRIAL;
     }
 
-    private static int stringToInt(String trialInput) {
+    private static int stringToInt(final String trialInput) {
         return Integer.parseInt(trialInput);
     }
 }

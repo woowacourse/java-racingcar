@@ -15,7 +15,7 @@ public class Car implements Comparable<Car> {
         return name.trim();
     }
 
-    private static String validateLength(String name) {
+    private static String validateLength(final String name) {
         if (name.length() > MAXIMUM_LENGTH) {
             throw new IllegalArgumentException(String.format("이름은 %d글자가 넘을 수 없습니다.", MAXIMUM_LENGTH));
         }
@@ -23,7 +23,7 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    public void advance(int number) {
+    public void advance(final int number) {
         if (number >= ADVANCE_STANDARD) {
             this.position++;
         }
@@ -37,12 +37,12 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
-    public boolean isEqualPosition(int position) {
+    public boolean isEqualPosition(final int position) {
         return this.position == position;
     }
 
     @Override
-    public int compareTo(Car car) {
+    public int compareTo(final Car car) {
         return this.position - car.position;
     }
 }

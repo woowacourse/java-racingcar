@@ -22,7 +22,7 @@ public class Cars {
         }
     }
 
-    private static boolean duplicateCarNames(List<Car> cars) {
+    private static boolean duplicateCarNames(final List<Car> cars) {
         return cars.stream()
                 .map(Car::getName)
                 .collect(Collectors.toSet())
@@ -50,7 +50,7 @@ public class Cars {
                 .getPosition();
     }
 
-    private List<String> getWinnerNames(int maxPosition) {
+    private List<String> getWinnerNames(final int maxPosition) {
         return cars.stream()
                 .filter(car -> car.isEqualPosition(maxPosition))
                 .map(Car::getName)
