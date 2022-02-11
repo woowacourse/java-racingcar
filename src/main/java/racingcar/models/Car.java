@@ -4,6 +4,9 @@ import racingcar.utils.RandomNumber;
 
 public class Car {
 
+	private static final int FORWARD_STANDARD = 4;
+	private static final int INITIAL_POSITION = 0;
+
 	final RandomNumber randomNumber;
 	final String name;
 	int position;
@@ -11,11 +14,11 @@ public class Car {
 	public Car(final RandomNumber randomNumber, final String name) {
 		this.randomNumber = randomNumber;
 		this.name = name;
-		position = 0;
+		position = INITIAL_POSITION;
 	}
 
 	public void goForward() {
-		if (randomNumber.getRandomNumber() >= 4) {
+		if (randomNumber.getRandomNumber() >= FORWARD_STANDARD) {
 			position++;
 		}
 	}
