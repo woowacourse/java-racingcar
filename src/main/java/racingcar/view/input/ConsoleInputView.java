@@ -1,4 +1,4 @@
-package racingcar.view;
+package racingcar.view.input;
 
 import racingcar.utils.ExceptionMessage;
 

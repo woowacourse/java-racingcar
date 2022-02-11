@@ -2,8 +2,8 @@ package racingcar;
 
 import racingcar.controller.RacingController;
 import racingcar.service.RandomNumberOverThanFour;
-import racingcar.view.ConsoleInputView;
-import racingcar.view.ConsoleOutputView;
+import racingcar.view.input.ConsoleInputView;
+import racingcar.view.output.ConsoleOutputView;
 
 public class Application {
     public static void main(String[] args) {

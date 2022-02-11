@@ -2,8 +2,8 @@ package racingcar.controller;
 
 import racingcar.domain.Cars;
 import racingcar.service.Movement;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
+import racingcar.view.input.InputView;
+import racingcar.view.output.OutputView;
 
 public class RacingController {
     private final OutputView outputView;
