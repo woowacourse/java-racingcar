@@ -28,7 +28,10 @@ public class RacingCar {
         if (randomNumber >= MOVE_STANDARD) {
             position++;
         }
+    }
 
+    public boolean isSamePosition(RacingCar racingCar){
+        return this.position == racingCar.getPosition();
     }
 
 
