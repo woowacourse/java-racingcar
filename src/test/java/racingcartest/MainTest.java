@@ -32,4 +32,55 @@ public class MainTest {
 	public void turnNullTest() {
 		assertThat(checker.checkTurnConditions(null)).contains("[ERROR]");
 	}
+
+	@Test
+	public void carMoveTest() {
+		Car car = new Car("pobi");
+		car.movePosition(5);
+		assertThat(car.getPosition()).isEqualTo(1);
+	}
+
+	@Test
+	public void carPositionEqualTest() {
+		Car car = new Car("pobi");
+		car.movePosition(5);
+		car.movePosition(6);
+		assertThat(car.isMaxPosition(2)).isEqualTo(true);
+	}
+
+	@Test
+	public void controllerCarCountTest() {
+		String[] names = {"pobi", "jun", "jason"};
+		GameController gameController = new GameController();
+		ArrayList<Car> carList = gameController.generateCarList(names);
+		assertThat(carList.size()).isEqualTo(names.length);
+	}
+
+	@Test
+	public void controllerMaxPosition() {
+		String[] names = {"pobi", "jun", "jason"};
+		GameController gameController = new GameController();
+		ArrayList<Car> carList = gameController.generateCarList(names);
+		carList.get(0).movePosition(5);
+		carList.get(0).movePosition(6);
+		carList.get(1).movePosition(4);
+		int maxPosition = gameController.getMaxPosition(carList);
+		assertThat(maxPosition).isEqualTo(2);
+	}
+
+	@Test
+	public void controllerHashMapTest() {
+		LinkedHashMap<String, String> testInfo = new LinkedHashMap<>();
+		testInfo.put("pobi", "--");
+		testInfo.put("jun", "-");
+		testInfo.put("jason", "");
+		String[] names = {"pobi", "jun", "jason"};
+		GameController gameController = new GameController();
+		ArrayList<Car> carList = gameController.generateCarList(names);
+		carList.get(0).movePosition(5);
+		carList.get(0).movePosition(6);
+		carList.get(1).movePosition(4);
+		LinkedHashMap<String, String> realInfo = gameController.getCarListInfo(carList);
+		assertThat(realInfo.entrySet()).isEqualTo(testInfo.entrySet());
+	}
 }
