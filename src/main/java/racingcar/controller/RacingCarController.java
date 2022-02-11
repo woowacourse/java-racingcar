@@ -39,7 +39,7 @@ public class RacingCarController {
 
 	private void playGame(CarCollection carCollection, Round round) {
 		outputView.printEmptyLine();
-		outputView.printMessageTitleOfStatus();
+		outputView.printMessageStatusTitle();
 		while (!round.isFinish()) {
 			carCollection.play(numberPicker);
 			List<String> carStatuses = carCollection.getStatuses();
