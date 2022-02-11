@@ -28,6 +28,10 @@ public class Car implements Comparable<Car> {
         return name.get();
     }
 
+    public void move(int distance) {
+        position += distance;
+    }
+
     public void move() {
         if (movingStrategy.movable()) {
             this.position++;

@@ -14,33 +14,14 @@ public class CarController {
 
 	private static final String NOT_FOUND_CARS_MESSAGE = "[ERROR] 자동차를 찾을 수 없습니다.";
 
-
 	private final CarRepository carRepository;
-	private int roundNumber;
 	private final MovingStrategy movingStrategy;
 
-	public void playGame() {
-		OutputView.printResultMessage();
-		for (int i = 0; i < roundNumber; i++) {
-			playRound();
-		}
-	}
+	private int roundNumber;
 
 	public CarController(CarRepository carRepository, MovingStrategy movingStrategy) {
 		this.carRepository = carRepository;
 		this.movingStrategy = movingStrategy;
-	}
-
-	public void playRound() {
-		moveCars();
-		List<Car> cars = carRepository.findAll();
-		OutputView.showCurrentStatus(cars);
-	}
-
-	public void moveCars() {
-		for (Car car : carRepository.findAll()) {
-			car.move();
-		}
 	}
 
 	public void initGame() {
@@ -58,6 +39,25 @@ public class CarController {
 
 	private void initRoundNumbers() {
 		roundNumber = InputView.inputRoundNumber();
+	}
+
+	public void playGame() {
+		OutputView.printResultMessage();
+		for (int i = 0; i < roundNumber; i++) {
+			playRound();
+		}
+	}
+
+	public void playRound() {
+		List<Car> cars = carRepository.findAll();
+		moveCars(cars);
+		OutputView.showCurrentStatus(cars);
+	}
+
+	public void moveCars(List<Car> cars) {
+		for (Car car : cars) {
+			car.move();
+		}
 	}
 
 	public List<Car> getWinners() {

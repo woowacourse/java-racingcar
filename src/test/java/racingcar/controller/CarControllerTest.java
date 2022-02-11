@@ -15,7 +15,7 @@ public class CarControllerTest {
 
     private CarRepository carRepository;
     private CarController carController;
-    private MovingStrategy onlyMoveStrategy = () -> true;
+    private final MovingStrategy onlyMoveStrategy = () -> true;
 
     @BeforeEach
     void setUp() {
@@ -32,14 +32,9 @@ public class CarControllerTest {
         Car car3 = new Car("bar", onlyMoveStrategy);
 
         // when
-        car1.move();
-        car1.move();
-        car1.move();
-
-        car2.move();
-
-        car3.move();
-        car3.move();
+        car1.move(3);
+        car2.move(1);
+        car3.move(2);
 
         carRepository.addCars(List.of(car1, car2, car3));
         List<Car> winners = carController.getWinners();
@@ -49,7 +44,7 @@ public class CarControllerTest {
     }
 
     @Test
-    @DisplayName("우승자가 여러일 때")
+    @DisplayName("우승자가 여러명일 때")
     public void Two_Or_More_Winners() {
         // given
         Car car1 = new Car("foo", onlyMoveStrategy);
@@ -57,15 +52,9 @@ public class CarControllerTest {
         Car car3 = new Car("bar", onlyMoveStrategy);
 
         // when
-        car1.move();
-        car1.move();
-        car1.move();
-
-        car2.move();
-
-        car3.move();
-        car3.move();
-        car3.move();
+        car1.move(3);
+        car2.move(1);
+        car3.move(3);
 
         carRepository.addCars(List.of(car1, car2, car3));
         List<Car> winners = carController.getWinners();
