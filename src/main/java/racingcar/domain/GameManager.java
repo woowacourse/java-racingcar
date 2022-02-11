@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.util.RandomUtils;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -20,6 +21,22 @@ public class GameManager {
         String[] carNames = requestAndSplitCarNames();
         initCars(carNames);
         totalRounds = requestAndParseTotalRounds();
+
+        playAllRounds();
+    }
+
+    private void playAllRounds() {
+        OutputView.printRoundResultText();
+        for (int i = 0; i < totalRounds; i++) {
+            playRound();
+            OutputView.printRoundResult(cars);
+        }
+    }
+
+    private void playRound() {
+        for (Car car : cars) {
+            car.goOrNot(RandomUtils.generateNumber());
+        }
     }
 
     private String[] requestAndSplitCarNames() {
