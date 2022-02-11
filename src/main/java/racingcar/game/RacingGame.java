@@ -1,12 +1,14 @@
 package racingcar.game;
 
 import racingcar.entity.Car;
+import racingcar.util.VerificationUtil;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static racingcar.util.VerificationUtil.validateCarName;
 import static racingcar.view.InputView.getAttemptCount;
 import static racingcar.view.InputView.getCarNames;
 import static racingcar.view.OutputView.*;
@@ -19,14 +21,13 @@ public class RacingGame {
 
     public void start() {
         initRacingCarGame();
-
         startMessage();
+
         while (totalAttemptCount --> 0) {
             run();
         }
 
         getWinners();
-
         printWinners(winners);
     }
 
