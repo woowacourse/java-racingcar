@@ -2,7 +2,13 @@ package racingcar.model;
 
 public class Location {
 
+    private int location;
+
     public int getCurrentPosition() {
-        return 0;
+        return location;
+    }
+
+    public void increase() {
+        this.location++;
     }
 }

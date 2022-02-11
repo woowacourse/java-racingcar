@@ -22,5 +22,10 @@ public class Racing {
             participants.participateInRacing(car);
         }
         PlayTime playTime = new PlayTime(staff.getPlayTimes());
+
+        while (!playTime.isZero()) {
+            participants.race();
+            playTime.decreasePlayTime();
+        }
     }
 }

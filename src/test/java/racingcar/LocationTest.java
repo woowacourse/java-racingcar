@@ -12,4 +12,11 @@ class LocationTest {
         Location location = new Location();
         assertThat(location.getCurrentPosition()).isEqualTo(0);
     }
+
+    @Test
+    public void increase() {
+        Location location = new Location();
+        location.increase();
+        assertThat(location.getCurrentPosition()).isEqualTo(1);
+    }
 }

@@ -9,4 +9,12 @@ public class Car {
         this.name = new Name(carName);
         this.location = new Location();
     }
+
+    public void move() {
+        this.location.increase();
+    }
+
+    public Integer getLocation() {
+        return location.getCurrentPosition();
+    }
 }
