@@ -3,11 +3,10 @@ package racingcar.domain;
 import racingcar.util.RandomNumberGenerator;
 
 public class Car implements Comparable<Car> {
+	private static final int OPERATING_STANDARD = 4;
 	private String carName;
 	private int position;
 	private RandomNumberGenerator randomNumberGenerator;
-
-	private static final int OPERATING_STANDARD = 4;
 
 	public Car(String carName, RandomNumberGenerator randomNumberGenerator) {
 		this.carName = carName;
@@ -44,7 +43,7 @@ public class Car implements Comparable<Car> {
 
 	private StringBuilder buildStatusView(StringBuilder stringBuilder) {
 		stringBuilder.append(carName).append(" : ");
-		for (int i = 0 ; i < this.position ; i++) {
+		for (int i = 0; i < this.position; i++) {
 			stringBuilder.append("-");
 		}
 		return stringBuilder;

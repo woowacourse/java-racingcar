@@ -1,17 +1,15 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
 
 import racingcar.util.BoundedRandomNumberGenerator;
-import racingcar.domain.WinnerNames;
 
 public class Cars {
-	private final List<Car> cars = new ArrayList<>();
-
 	private static final int MAX_BOUND = 9;
 	private static final int MIN_BOUND = 0;
+	private final List<Car> cars = new ArrayList<>();
 
 	public void generateCars(List<String> carNames) {
 		for (String carName : carNames) {

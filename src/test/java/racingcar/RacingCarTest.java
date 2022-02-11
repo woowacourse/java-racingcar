@@ -2,11 +2,11 @@ package racingcar;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.List;
 
 import racingcar.controller.RacingCarController;
 import racingcar.domain.Car;
@@ -89,7 +89,7 @@ public class RacingCarTest {
 	@Test
 	public void 랜덤값_범위_테스트() {
 		int number = randomNumberGenerator.generate();
-		assertThat(0<= number && number <= 9).isEqualTo(true);
+		assertThat(0 <= number && number <= 9).isEqualTo(true);
 	}
 
 	@Test

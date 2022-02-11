@@ -3,10 +3,10 @@ package racingcar.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import racingcar.domain.Cars;
 import racingcar.domain.WinnerNames;
 import racingcar.validator.CarNameValidator;
 import racingcar.validator.TrialCountValidator;
-import racingcar.domain.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
