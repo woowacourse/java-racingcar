@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.dto.CarDto;
 import racingcar.service.Movement;
 import racingcar.utils.ExceptionMessage;
 
@@ -26,8 +27,10 @@ public class Cars {
         cars.forEach(car -> car.move(movement.move()));
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+    public List<CarDto> getCarInfos() {
+        return cars.stream()
+                .map(Car::info)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<CarDto> getFarthestCar() {
@@ -38,6 +41,6 @@ public class Cars {
     }
 
     private boolean isHighest(Car standardCar) {
-        return cars.stream().allMatch(another -> standardCar.isFartherThan(standardCar));
+        return cars.stream().allMatch(standardCar::isFartherThan);
     }
 }

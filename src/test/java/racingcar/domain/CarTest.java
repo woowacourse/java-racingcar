@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,22 +13,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CarTest {
     private Car car = new Car("abc");
 
+    @BeforeEach
+    void setUp() {
+        car.move(true);
+    }
+
     @Test
-    @DisplayName("자동차의 이름을 반환한다.")
-    void getCarName() {
-        String actual = car.getCarName();
-        String expected = "abc";
+    @DisplayName("자동차의 이름과 거리를 dto 변환해 반환한다.")
+    void info() {
+        CarDto actual = car.info();
+        CarDto expected = new CarDto("abc", 1);
         assertThat(actual).isEqualTo(expected);
     }
 
-
     @ParameterizedTest
-    @DisplayName("boolean 타입 변수를 받아, true면 전진하고 false면 멈추고 자동차의 거리를 반환한다.")
-    @CsvSource({"true, 1", "false, 0"})
-    void getCarDistance_move(boolean movement, int expected) {
-        car.move(movement);
-        int actual = car.getDistance();
-        assertThat(actual).isEqualTo(expected);
+    @CsvSource({"false, false, true", "false, true, true", "true, true, false"})
+    @DisplayName("다른 자동차를 받아 자기 자신의 거리의 값이 크거나 같으면 true를 반환한다.")
+    void isFartherThan(boolean firstMove, boolean secondMove, boolean expected){
+        Car anotherCar = new Car("def");
+        anotherCar.move(firstMove);
+        anotherCar.move(secondMove);
+        assertThat(car.isFartherThan(anotherCar)).isEqualTo(expected);
     }
 
 }

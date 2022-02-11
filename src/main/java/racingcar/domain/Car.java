@@ -20,8 +20,12 @@ public class Car {
         }
     }
 
-    public CarDto info(){
+    public CarDto info() {
         return new CarDto(carName.value(), distance);
+    }
+
+    public boolean isFartherThan(Car another) {
+        return this.distance >= another.distance;
     }
 
     @Override
