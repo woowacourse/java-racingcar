@@ -29,4 +29,15 @@ class VerificationUtilTest {
             validateCarName(name);
         });
     }
+
+    @Test
+    public void 자동차_이름_공백_테스트() throws Exception {
+        //given
+        String name = "woo   te   co";
+
+        //then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            validateCarName(name);
+        });
+    }
 }
