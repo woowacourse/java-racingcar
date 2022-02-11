@@ -17,4 +17,23 @@ public class VerificationUtil {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 5글자 이하이어야 합니다.");
         }
     }
+
+    public static void validateAttempt(String attempt) {
+        int number = validateInteger(attempt);
+        validatePositiveNumber(number);
+    }
+
+    private static int validateInteger(String attempt) {
+        try {
+            return Integer.parseInt(attempt);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 합니다.");
+        }
+    }
+
+    private static void validatePositiveNumber(int number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException("[ERROR] 양수를 입력해주세요.");
+        }
+    }
 }
