@@ -9,6 +9,7 @@ import java.util.List;
 import racingCar.model.RacingCars;
 import racingCar.utlis.Convertor;
 import racingCar.utlis.Util;
+import racingCar.validator.CountValidator;
 import racingCar.view.Output;
 
 public class RacingCarsService {
@@ -22,7 +23,8 @@ public class RacingCarsService {
 		)));
 	}
 
-	public void initiateCount(int count) {
+	public void initiateCount(int count) throws Exception {
+		CountValidator.validateInteger(count);
 		this.count = count;
 	}
 
