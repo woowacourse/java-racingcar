@@ -15,7 +15,7 @@ public class Car implements Comparable<Car> {
 		this.randomNumberGenerator = randomNumberGenerator;
 	}
 
-	public void tryDrive() {
+	public void tryMoving() {
 		if (isMovable()) {
 			position++;
 		}

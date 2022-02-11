@@ -11,6 +11,7 @@ import java.util.List;
 import racingcar.controller.RacingCarController;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.WinnerNames;
 import racingcar.util.BoundedRandomNumberGenerator;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -18,6 +19,7 @@ public class RacingCarTest {
 	public RacingCarController racingCarController = new RacingCarController();
 	public BoundedRandomNumberGenerator randomNumberGenerator = new BoundedRandomNumberGenerator(9, 0);
 	public Cars cars = new Cars();
+	public WinnerNames winnerNames = new WinnerNames();
 
 	@Test
 	public void 자동차_이름_분리해서_가져오기_테스트() {
@@ -115,7 +117,7 @@ public class RacingCarTest {
 		cars.addCar(new Car("클레이", new BoundedRandomNumberGenerator(3, 0)));
 		cars.addCar(new Car("포비", new BoundedRandomNumberGenerator(9, 4)));
 		cars.executeCarRacing();
-		List<String> winners = cars.findWinners();
+		List<String> winners = cars.findWinners(winnerNames);
 
 		assertThat(winners.size()).isEqualTo(2);
 		assertThat(winners).contains("이브", "포비");

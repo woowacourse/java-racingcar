@@ -5,17 +5,21 @@ import java.util.List;
 import java.util.Collections;
 
 import racingcar.util.BoundedRandomNumberGenerator;
+import racingcar.domain.WinnerNames;
 
 public class Cars {
-	List<Car> cars = new ArrayList<>();
+	private final List<Car> cars = new ArrayList<>();
+
+	private static final int MAX_BOUND = 9;
+	private static final int MIN_BOUND = 0;
 
 	public void generateCars(List<String> carNames) {
 		for (String carName : carNames) {
-			cars.add(new Car(carName, new BoundedRandomNumberGenerator(9, 0)));
+			cars.add(new Car(carName, new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND)));
 		}
 	}
 
-	public int size() {
+	public int getSize() {
 		return cars.size();
 	}
 
@@ -23,24 +27,26 @@ public class Cars {
 		cars.add(car);
 	}
 
-	public List<String> findWinners() {
+	public List<String> findWinners(WinnerNames winnerNames) {
+		return getWinnerNamesWithFirstCar(findFastestCar(), winnerNames);
+	}
+
+	private Car findFastestCar() {
 		Collections.sort(cars);
-		List<String> winnerNames = new ArrayList<>();
-		Car firstCar = cars.get(0);
+		return cars.get(0);
+	}
+
+	private List<String> getWinnerNamesWithFirstCar(Car firstCar, WinnerNames winnerNames) {
 		for (Car car : cars) {
-			if (firstCar.compareTo(car) == 0) {
-				winnerNames.add(car.getCarName());
-				continue;
-			}
-			break;
+			winnerNames.addWinnerByFastestCar(car, firstCar);
 		}
-		return winnerNames;
+		return winnerNames.getWinnerNames();
 	}
 
 	public List<String> executeCarRacing() {
 		List<String> racingRecord = new ArrayList<>();
 		for (Car car : cars) {
-			car.tryDrive();
+			car.tryMoving();
 			racingRecord.add(car.toString());
 		}
 		return racingRecord;

@@ -3,6 +3,7 @@ package racingcar.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import racingcar.domain.WinnerNames;
 import racingcar.validator.CarNameValidator;
 import racingcar.validator.TrialCountValidator;
 import racingcar.domain.Cars;
@@ -11,6 +12,7 @@ import racingcar.view.OutputView;
 
 public class RacingCarController {
 	public final Cars cars = new Cars();
+	public final WinnerNames winnerNames = new WinnerNames();
 
 	public void playGame() {
 		cars.generateCars(getCarNames(InputView.inputCarNames()));
@@ -21,7 +23,7 @@ public class RacingCarController {
 			OutputView.printRacingRecords(cars.executeCarRacing());
 		}
 
-		OutputView.printWinnerNames(cars.findWinners());
+		OutputView.printWinnerNames(cars.findWinners(winnerNames));
 	}
 
 	public List<String> getCarNames(String carNamesLine) {
