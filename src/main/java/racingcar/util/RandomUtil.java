@@ -11,7 +11,7 @@ public class RandomUtil {
 
   private static final Random RANDOM = new Random();
 
-  public static int createNumber() {
+  public static int generateRandomNumber() {
     int randomNumber =
         RANDOM.nextInt(MAXIMUM - MINIMUM + EXCLUSIVE_BOUND_CORRECTION_VALUE) + MINIMUM;
     validRange(randomNumber);

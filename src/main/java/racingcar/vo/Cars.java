@@ -33,28 +33,28 @@ public class Cars {
     return cars.size() == size;
   }
 
-  public String repeatRace(Attempt attempt) {
+  public String repeatRaceBy(Attempt attempt) {
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder.append(RACE_RESULT_MESSAGE).append(System.lineSeparator());
     while (attempt.isLeft()) {
-      stringBuilder.append(raceOnce());
+      stringBuilder.append(raceAll());
       attempt.decrease();
     }
     return stringBuilder.toString();
   }
 
-  private String raceOnce() {
+  private String raceAll() {
     StringBuilder stringBuilder = new StringBuilder();
-    for (Car each : cars) {
-      each.move();
-      stringBuilder.append(each.toString());
+    for (Car car : cars) {
+      car.move();
+      stringBuilder.append(car.toString());
       stringBuilder.append(System.lineSeparator());
     }
     stringBuilder.append(System.lineSeparator());
     return stringBuilder.toString();
   }
 
-  public Winners getWinners() {
+  public Winners judgeWinners() {
     Car maxPositionCar = cars.stream()
         .max(Car::compareTo)
         .orElseThrow(() -> new NoSuchElementException(NO_SUCH_CAR_ERROR_MESSAGE));

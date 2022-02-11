@@ -17,14 +17,14 @@ public class RacingCar {
   public RacingCar() {
   }
 
-  public void run() {
+  public void play() {
     Cars cars = createCars(splitCarNames(requestCarName()));
     Attempt attempt = new Attempt(requestAttempt());
-    printRaceResult(cars.repeatRace(attempt));
-    printWinners(cars.getWinners());
+    printRaceResult(cars.repeatRaceBy(attempt));
+    printWinners(cars.judgeWinners());
   }
 
-  public String[] splitCarNames(String carNames) {
+  private String[] splitCarNames(String carNames) {
     return carNames.split(CAR_NAME_DELIMITER);
   }
 

@@ -3,7 +3,6 @@ package racingcar.vo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import calculator.Calculator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
@@ -21,14 +20,14 @@ public class CarsTest {
   }
 
   @Test
-  public void repeatRace_test() throws Exception {
+  public void repeatRaceBy_test() throws Exception {
     String name = "name1";
     CarName carName = new CarName(name);
     Car car = new Car(carName);
     Cars cars = new Cars();
     cars.add(car);
     Attempt attempt = new Attempt("5");
-    String result = cars.repeatRace(attempt);
+    String result = cars.repeatRaceBy(attempt);
     Matcher matcher = Pattern.compile(name).matcher(result);
     int nameCount = 0;
     while (matcher.find()) {
@@ -40,7 +39,7 @@ public class CarsTest {
   }
 
   @Test
-  public void getWinners_단독우승_test() throws Exception {
+  public void judgeWinners_단독우승_test() throws Exception {
     String winnerName = "name1";
     String looserName = "name2";
     CarName winnerCarName = new CarName(winnerName);
@@ -52,12 +51,12 @@ public class CarsTest {
     Cars cars = new Cars();
     cars.add(winnerCar);
     cars.add(looserCar);
-    Winners winners = cars.getWinners();
+    Winners winners = cars.judgeWinners();
     assertThat(winners.toString().contains(winnerName)).isTrue();
   }
 
   @Test
-  public void getWinners_공동우승_test() throws Exception {
+  public void judgeWinners_공동우승_test() throws Exception {
     String firstName = "name1";
     String secondName = "name2";
     CarName firstCarName = new CarName(firstName);
@@ -67,7 +66,7 @@ public class CarsTest {
     Cars cars = new Cars();
     cars.add(firstCar);
     cars.add(secondCar);
-    Winners winners = cars.getWinners();
+    Winners winners = cars.judgeWinners();
     assertThat(winners.toString().contains(firstName)).isTrue();
     assertThat(winners.toString().contains(secondName)).isTrue();
   }
