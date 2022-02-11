@@ -53,30 +53,28 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("포지션 내림차순 테스트")
-    void sortByPositionDesc() {
+    @DisplayName("pobi 자동차가 가장 많이 전진하여 정렬 후 가장 마지막 인덱스에 위치한다")
+    void sortByPositionAsc() {
         // given
         Car pobi = new Car(Name.of("pobi"));
+        Car hoho = new Car(Name.of("hoho"));
+        Car rich = new Car(Name.of("rich"));
+
         pobi.advance(4);
         pobi.advance(4);
 
-        Car hoho = new Car(Name.of("hoho"));
         hoho.advance(4);
 
-        Car rich = new Car(Name.of("rich"));
-        rich.advance(3);
-
-        // when
         List<Car> cars = new ArrayList<>();
         cars.add(hoho);
         cars.add(rich);
         cars.add(pobi);
+
+        // when
         Collections.sort(cars);
 
         // then
-        assertThat(cars.get(0)).isEqualTo(pobi);
-        assertThat(cars.get(1)).isEqualTo(hoho);
-        assertThat(cars.get(2)).isEqualTo(rich);
+        assertThat(cars).containsExactly(rich, hoho, pobi);
     }
     
 }

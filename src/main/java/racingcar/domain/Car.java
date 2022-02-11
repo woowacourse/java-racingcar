@@ -32,6 +32,6 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car car) {
-        return car.position - this.position;
+        return this.position - car.position;
     }
 }

@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class NameTest {
     @ParameterizedTest
-    @CsvSource(value = {" pobi:pobi", "hoho :hoho", " richard :richard"}, delimiter = ':')
+    @CsvSource(value = {" pobi:pobi", "hoho :hoho", " rich :rich"}, delimiter = ':')
     @DisplayName("이름 앞 뒤에 공백이 존재하면 제거한다")
     void removeWhitespaces(String actual, String expected) {
         assertThat(Name.of(actual)).isEqualTo(Name.of(expected));
