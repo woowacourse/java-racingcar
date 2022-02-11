@@ -28,7 +28,7 @@ class StringTest {
 
     @Test
     @DisplayName("인덱스로 특정 위치의 문자를 가져온다.")
-    public void getCharacterFromStringByIndex_Success() {
+    void getCharacterFromStringByIndex_Success() {
         // given
         String input = "abc";
         // when
@@ -39,7 +39,7 @@ class StringTest {
 
     @Test
     @DisplayName("인덱스로 특정 위치의 문자를 가져올 때 범위를 벗어나면 안된다.")
-    public void getCharacterFromStringByIndexWithOutbound_Fail() {
+    void getCharacterFromStringByIndexWithOutbound_Fail() {
         // given
         String input = "abc";
         int index = 10;

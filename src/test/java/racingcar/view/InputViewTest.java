@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.ConsoleTest;
 import racingcar.config.ViewConfig;
 
-public class InputViewTest extends ConsoleTest {
+class InputViewTest extends ConsoleTest {
 
     private InputView inputView;
 
