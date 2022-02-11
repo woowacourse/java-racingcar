@@ -21,6 +21,14 @@ public class Validator {
 			.forEach(Validator::validateCarName);
 	}
 
+	private static String[] validateCarCount(String input) {
+		String[] split = input.split(SEPARATOR_OF_CAR_NAME);
+		if (split.length < CAR_COUNT_LIMIT) {
+			throw new IllegalArgumentException(CAR_COUNT_LIMIT_ERROR_MESSAGE);
+		}
+		return split;
+	}
+
 	private static void validateCarName(String name) {
 		if (name.isEmpty()) {
 			throw new IllegalArgumentException(EMPTY_CAR_NAME_ERROR_MESSAGE);
@@ -28,14 +36,6 @@ public class Validator {
 		if (name.length() > NAME_LENGTH_LIMIT) {
 			throw new IllegalArgumentException(INVALID_CAR_NAME_ERROR_MESSAGE);
 		}
-	}
-
-	private static String[] validateCarCount(String input) {
-		String[] split = input.split(SEPARATOR_OF_CAR_NAME);
-		if (split.length < CAR_COUNT_LIMIT) {
-			throw new IllegalArgumentException(CAR_COUNT_LIMIT_ERROR_MESSAGE);
-		}
-		return split;
 	}
 
 	public static void ofAttemptNumber(String input) {
