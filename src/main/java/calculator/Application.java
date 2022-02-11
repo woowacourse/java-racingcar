@@ -19,7 +19,7 @@ public class Application {
     public static final int DELIMITER = 1;
     public static final int NUMBERS = 2;
 
-    private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException {
         System.out.println(runCalculator(askInput()));

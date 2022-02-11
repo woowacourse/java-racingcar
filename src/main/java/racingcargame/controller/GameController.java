@@ -7,7 +7,7 @@ import racingcargame.view.OutputView;
 
 public class GameController {
     private static final GameController gameController = new GameController();
-    private static InputController inputController = InputController.getInputController();
+    private static final InputController inputController = InputController.getInputController();
 
     private GameController() {
     }
