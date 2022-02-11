@@ -9,6 +9,11 @@ public class VerificationUtil {
     }
 
     public static void validateCarName(String carName) {
+        validateCarNameLength(carName);
+        validateCarNameSpace(carName);
+    }
+
+    private static void validateCarNameLength(String carName) {
         if (carName.length() < CAR_NAME_MIN_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 1글자 이상이어야 합니다.");
         }
@@ -17,6 +22,13 @@ public class VerificationUtil {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 5글자 이하이어야 합니다.");
         }
     }
+
+    private static void validateCarNameSpace(String carName) {
+        if(carName.contains(" ")){
+            throw new IllegalArgumentException("[ERROR] 공백 없이 입력해주세요.");
+        }
+    }
+
 
     public static void validateAttempt(String attempt) {
         int number = validateInteger(attempt);
