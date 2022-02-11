@@ -3,7 +3,7 @@ package racingcar.domain;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
-import racingcar.domain.game.RandomNumberGenerator;
+import racingcar.domain.random.RandomNumberGenerator;
 import racingcar.domain.result.MidtermResult;
 import racingcar.domain.result.WinnerResult;
 

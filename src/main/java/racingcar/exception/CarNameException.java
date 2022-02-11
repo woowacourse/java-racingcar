@@ -1,4 +1,4 @@
-package racingcar.parser.exception;
+package racingcar.exception;
 
 public class CarNameException extends IllegalArgumentException {
     public CarNameException(String message) {

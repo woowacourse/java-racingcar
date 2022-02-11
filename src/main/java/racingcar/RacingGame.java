@@ -1,10 +1,11 @@
-package racingcar.domain.game;
+package racingcar;
 
 import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
-import racingcar.domain.exception.GetWinnerBeforeFinishException;
-import racingcar.domain.exception.RacingGameIsFinishedException;
+import racingcar.exception.GetWinnerBeforeFinishException;
+import racingcar.exception.RacingGameIsFinishedException;
+import racingcar.domain.random.RandomNumberGenerator;
 import racingcar.domain.result.MidtermResult;
 import racingcar.domain.result.WinnerResult;
 

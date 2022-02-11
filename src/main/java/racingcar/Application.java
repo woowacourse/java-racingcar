@@ -1,10 +1,10 @@
 package racingcar;
 
 import java.util.List;
-import racingcar.domain.game.DefaultRandomNumberGenerator;
+import racingcar.domain.random.DefaultRandomNumberGenerator;
 import racingcar.parser.CarNameParser;
 import racingcar.parser.TryCountParser;
-import racingcar.domain.game.RacingGame;
+import racingcar.util.RetryableTemplate;
 import racingcar.view.View;
 
 public class Application {

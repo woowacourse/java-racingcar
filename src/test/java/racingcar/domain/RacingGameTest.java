@@ -6,9 +6,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.exception.GetWinnerBeforeFinishException;
-import racingcar.domain.exception.RacingGameIsFinishedException;
-import racingcar.domain.game.RacingGame;
+import racingcar.RacingGame;
+import racingcar.exception.GetWinnerBeforeFinishException;
+import racingcar.exception.RacingGameIsFinishedException;
 import racingcar.domain.result.MidtermResult;
 import racingcar.domain.result.WinnerResult;
 

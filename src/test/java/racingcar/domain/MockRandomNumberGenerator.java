@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.domain.game.RandomNumberGenerator;
+import racingcar.domain.random.RandomNumberGenerator;
 
 public class MockRandomNumberGenerator implements RandomNumberGenerator {
 

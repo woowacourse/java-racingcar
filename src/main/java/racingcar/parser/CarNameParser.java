@@ -4,7 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.List;
-import racingcar.parser.exception.CarNameException;
+import racingcar.exception.CarNameException;
 
 public class CarNameParser {
 

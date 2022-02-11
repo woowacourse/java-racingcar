@@ -1,6 +1,6 @@
 package racingcar.parser;
 
-import racingcar.parser.exception.TryCountException;
+import racingcar.exception.TryCountException;
 
 public class TryCountParser {
 
