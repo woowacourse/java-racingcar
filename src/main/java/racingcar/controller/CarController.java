@@ -26,11 +26,11 @@ public class CarController {
         cars.forEach(car -> car.moveForward(pickRandomNumber()));
     }
 
-    private int pickRandomNumber() {
-        return new Random().nextInt(END_EXCLUSIVE);
-    }
-
     public List<Car> getCars() {
         return cars;
+    }
+
+    private int pickRandomNumber() {
+        return new Random().nextInt(END_EXCLUSIVE);
     }
 }

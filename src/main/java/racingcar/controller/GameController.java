@@ -1,11 +1,12 @@
 package racingcar.controller;
 
+import static racingcar.utils.validator.CarNamesValidator.*;
+import static racingcar.utils.validator.TryCountValidator.*;
+
 import java.util.Arrays;
 import java.util.List;
 
 import racingcar.model.Winner;
-import racingcar.utils.validator.CarNamesValidator;
-import racingcar.utils.validator.TryCountValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -54,9 +55,11 @@ public class GameController {
 
     public String[] createCarNames() {
         String[] carNames;
+
         do {
             carNames = trim(split(inputView.inputCarNames()));
         } while (!CarNamesIsValidated(carNames));
+
         return carNames;
     }
 
@@ -72,7 +75,7 @@ public class GameController {
 
     private boolean CarNamesIsValidated(final String[] carNames) {
         try {
-            CarNamesValidator.validateCarNames(carNames);
+            validateCarNames(carNames);
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -82,15 +85,17 @@ public class GameController {
 
     public int createTryCount() {
         String inputTryCount;
+
         do {
             inputTryCount = inputView.inputTryCount();
         } while (!tryCountIsValidated(inputTryCount));
+
         return Integer.parseInt(inputTryCount);
     }
 
     private boolean tryCountIsValidated(final String inputValue) {
         try {
-            TryCountValidator.validatePattern(inputValue);
+            validatePattern(inputValue);
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
