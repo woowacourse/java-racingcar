@@ -1,34 +1,51 @@
 package stringCalculator;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-	public String[] splitString(String str) {
-		if (str == null || str.length() == 0)
-			return new String[] {"0"};
-		String regex = ",|:";
-		CheckException.checkSplitOk(str, regex);
-		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(str);
-		if (m.find()) {
-			regex += "|" + m.group(1);
-			CheckException.checkSplitOk(str, regex);
-			return m.group(2).split(regex);
+
+	public static String regex = "[,:]";
+	public static String text = "";
+	public static final String COMMEND_END = "\n";
+	public static final String CUSTOM_REGEX = "//(.)\n(.*)";
+
+	public int calculateString(String text) {
+		if (text == null || text.length() == 0) {
+			return 0;
 		}
-		return str.split(regex);
+		StringCalculator.text = text;
+		return sum(splitText());
 	}
 
-	public int sumString(String[] splitStringArray) {
-		int sumResult = 0;
-		CheckException.check(splitStringArray);
-		for (String s : splitStringArray) {
-			sumResult += Integer.parseInt(s);
+	private String[] splitText() {
+		if (isCustomDelimiter()) {
+			setCustomDelimiter();
 		}
-		return sumResult;
+		CheckException.checkSplitOk(text, regex);
+		return text.split(regex);
 	}
-	/*
-	^[regex]
-	((.)[regex]{2,}(.)*
-	$[regex]
-	**/
+
+	private int sum(String[] values) {
+		CheckException.check(values);
+		int result = 0;
+		for (String value : values) {
+			result += Integer.parseInt(value);
+		}
+		return result;
+	}
+
+	private boolean isCustomDelimiter() {
+		return Pattern.matches(CUSTOM_REGEX, text);
+	}
+
+	private void setCustomDelimiter() {
+		String[] values = text.split(COMMEND_END);
+		addRegex(values[0].substring(2));
+		text = values[1];
+	}
+
+	private void addRegex(String rg) {
+		regex = regex.substring(0, regex.length()-1);
+		regex += rg + "]";
+	}
 }
