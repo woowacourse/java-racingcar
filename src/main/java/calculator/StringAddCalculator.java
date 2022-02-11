@@ -1,24 +1,24 @@
 package calculator;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringAddCalculator {
 
-    public int run(String givenString) {
-        if (checkNull(givenString)) {
+    public int SplitAndSum(String givenString) {
+        if (checkNullOrEmpty(givenString)) {
             return 0;
         }
         String[] splitString = split(givenString);
-        return sumStringArray(splitString);
+		int[] intValues = stringToInt(splitString);
+		Arrays.stream(intValues).forEach(this::checkNegativeInteger);
+        return Arrays.stream(intValues).sum();
     }
 
 
-    private boolean checkNull(String givenString) {
-        if (givenString == null || givenString.isEmpty()) {
-            return true;
-        }
-        return false;
+    private boolean checkNullOrEmpty(String givenString) {
+        return givenString == null || givenString.isEmpty();
     }
 
     private String[] split(String givenString) {
@@ -30,28 +30,25 @@ public class StringAddCalculator {
         return givenString.split("[,:]");
     }
 
-    private int sumStringArray(String[] splitString) {
-        int result = 0;
-        for (int i = 0; i < splitString.length; i++) {
-            int value = intValueOf(splitString[i]);
-            checkNegativeInteger(value);
-            result += value;
-        }
-        return result;
-    }
+	private int[] stringToInt(String[] values) {
+		int[] intValues = new int[values.length];
+		for (int i = 0; i < values.length; i++) {
+			intValues[i] = intValueOf(values[i]);
+		}
+		return intValues;
+	}
 
-    private int intValueOf(String givenString) {
-        try {
-            int result = Integer.parseInt(givenString);
-            return result;
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("숫자값을 입력해주세요");
-        }
-    }
+	private int intValueOf(String value) {
+		try {
+			return Integer.parseInt(value);
+		} catch (NumberFormatException e) {
+			throw new RuntimeException("숫자값을 입력해주세요");
+		}
+	}
 
-    private void checkNegativeInteger(int value) {
-        if (value < 0) {
-            throw new RuntimeException("음수는 입력할 수 없습니다.");
-        }
-    }
+	private void checkNegativeInteger(int value) {
+		if (value < 0) {
+			throw new RuntimeException("음수는 입력할 수 없습니다.");
+		}
+	}
 }
