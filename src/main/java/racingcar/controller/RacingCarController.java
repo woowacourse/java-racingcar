@@ -1,6 +1,9 @@
-package racingcar;
+package racingcar.controller;
 
-import java.util.Scanner;
+import racingcar.domain.Cars;
+import racingcar.InputManager;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class RacingCarController {
 	public final Cars cars = new Cars();

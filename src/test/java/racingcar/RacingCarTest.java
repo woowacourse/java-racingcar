@@ -8,8 +8,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.util.BoundedRandomNumberGenerator;
+
 public class RacingCarTest {
-	public RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator(9, 0);
+	public BoundedRandomNumberGenerator randomNumberGenerator = new BoundedRandomNumberGenerator(9, 0);
 	public Cars cars = new Cars();
 
 	@Test
@@ -85,14 +89,14 @@ public class RacingCarTest {
 
 	@Test
 	public void 자동차_멈춤_테스트() {
-		Car car = new Car("클레이", new RandomNumberGenerator(3, 0));
-		assertThat(car.isMove()).isEqualTo(false);
+		Car car = new Car("클레이", new BoundedRandomNumberGenerator(3, 0));
+		assertThat(car.isMovable()).isEqualTo(false);
 	}
 
 	@Test
 	public void 자동차_전진_테스트() {
-		Car car = new Car("클레이", new RandomNumberGenerator(9, 4));
-		assertThat(car.isMove()).isEqualTo(true);
+		Car car = new Car("클레이", new BoundedRandomNumberGenerator(9, 4));
+		assertThat(car.isMovable()).isEqualTo(true);
 	}
 
 	@Test
@@ -104,9 +108,9 @@ public class RacingCarTest {
 
 	@Test
 	public void 최종_우승자_찾기_테스트() {
-		cars.addCar(new Car("이브", new RandomNumberGenerator(9, 4)));
-		cars.addCar(new Car("클레이", new RandomNumberGenerator(3, 0)));
-		cars.addCar(new Car("포비", new RandomNumberGenerator(9, 4)));
+		cars.addCar(new Car("이브", new BoundedRandomNumberGenerator(9, 4)));
+		cars.addCar(new Car("클레이", new BoundedRandomNumberGenerator(3, 0)));
+		cars.addCar(new Car("포비", new BoundedRandomNumberGenerator(9, 4)));
 		cars.executeCarRacing();
 		List<String> winners = cars.findWinners();
 

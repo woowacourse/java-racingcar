@@ -1,15 +1,17 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+
+import racingcar.util.BoundedRandomNumberGenerator;
 
 public class Cars {
 	List<Car> cars = new ArrayList<>();
 
 	public void generateCars(List<String> carNames) {
 		for (String carName : carNames) {
-			cars.add(new Car(carName, new RandomNumberGenerator(9, 0)));
+			cars.add(new Car(carName, new BoundedRandomNumberGenerator(9, 0)));
 		}
 	}
 
