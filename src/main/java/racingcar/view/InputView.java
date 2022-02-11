@@ -15,11 +15,11 @@ public class InputView {
 
 	public static List<Car> getCarNames() {
 		System.out.println(CAR_NAMES_MESSAGE);
-		return Converter.toCarList(scanner.next());
+		return Converter.toCarList(scanner.nextLine());
 	}
 
 	public static int getAttemptNumber() {
 		System.out.println(ATTEMPT_NUMBER_MESSAGE);
-		return Converter.toAttemptNumber(scanner.next());
+		return Converter.toAttemptNumber(scanner.nextLine());
 	}
 }
