@@ -8,7 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-
+    private static final String NORMAL_DELIMITER = "[,:]";
+    private static final String CUSTOM_DELIMITER = "//(.)\n(.*)";
 
     public static int splitAndSum(final String text) {
         if (text == null || text.isEmpty()) {
@@ -19,13 +20,13 @@ public class StringCalculator {
     }
 
     private static String[] split(final String text) {
-        final Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
+        final Matcher matcher = Pattern.compile(CUSTOM_DELIMITER).matcher(text);
         if (matcher.find()) {
             final String customDelimiter = matcher.group(1);
             return matcher.group(2).split(customDelimiter);
         }
 
-        return text.split("[,:]");
+        return text.split(NORMAL_DELIMITER);
     }
 
     private static List<NaturalNumber> toInts(final String[] values) {
