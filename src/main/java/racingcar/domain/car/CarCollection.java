@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.controller.picker.NumberPicker;
-import racingcar.domain.validator.CarNameValidator;
+import racingcar.domain.car.validator.CarNameValidator;
 
 public class CarCollection {
 

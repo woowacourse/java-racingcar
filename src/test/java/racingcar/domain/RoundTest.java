@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import racingcar.domain.round.Round;
 import racingcar.exception.round.RoundNotPositiveException;
 
 public class RoundTest {

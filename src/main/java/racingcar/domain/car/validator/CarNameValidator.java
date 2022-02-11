@@ -1,9 +1,9 @@
-package racingcar.domain.validator;
+package racingcar.domain.car.validator;
 
 import java.util.Collections;
 import java.util.List;
 
-import racingcar.domain.CarNameLength;
+import racingcar.domain.car.NameLength;
 import racingcar.exception.car.CarNameDuplicatedException;
 import racingcar.exception.car.CarNameEmptyException;
 import racingcar.exception.car.CarNameTooLongException;
@@ -19,7 +19,7 @@ public class CarNameValidator {
 	}
 
 	private void validateNameIsTooLong(List<String> names) {
-		if (names.stream().anyMatch(CarNameLength::isTooLong)) {
+		if (names.stream().anyMatch(NameLength::isTooLong)) {
 			throw new CarNameTooLongException();
 		}
 	}

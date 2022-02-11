@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.round;
 
 import racingcar.exception.round.RoundNotPositiveException;
 
@@ -12,7 +12,7 @@ public class Round {
 	}
 
 	private void validateCountPositive(int count) {
-		if (count <= 0) {
+		if (RoundRange.isTooSmall(count)) {
 			throw new RoundNotPositiveException();
 		}
 	}

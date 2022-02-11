@@ -1,12 +1,12 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
-public enum CarNameLength {
+public enum NameLength {
 
 	LENGTH(5);
 
-	private int value;
+	private final int value;
 
-	CarNameLength(int value) {
+	NameLength(int value) {
 		this.value = value;
 	}
 

@@ -3,8 +3,8 @@ package racingcar.controller;
 import java.util.List;
 
 import racingcar.controller.picker.NumberPicker;
-import racingcar.domain.CarCollection;
-import racingcar.domain.Round;
+import racingcar.domain.car.CarCollection;
+import racingcar.domain.round.Round;
 import racingcar.view.input.InputView;
 import racingcar.view.output.OutputView;
 

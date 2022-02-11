@@ -1,10 +1,10 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import racingcar.utils.Delimiter;
 
 public class Car {
 
-	private String name;
+	private final String name;
 	private int location;
 
 	public Car(String name) {
