@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import static java.lang.System.*;
+
 import racingcar.domain.Car;
 
 import java.util.List;
@@ -11,16 +13,18 @@ public class OutputView {
 	private static final String EXECUTION_RESULT_MESSAGE = "실행 결과";
 
 	public static void showGameResult(List<Car> winners) {
-		String winnerNames = winners.stream().map(car -> car.getName()).collect(Collectors.joining(","));
-		System.out.println(winnerNames + DECLARE_WINNER_MESSAGE);
+		String winnerNames = winners.stream()
+			.map(Car::getName)
+			.collect(Collectors.joining(","));
+		out.println(winnerNames + DECLARE_WINNER_MESSAGE);
 	}
 
 	public static void showCurrentStatus(List<Car> cars) {
-		cars.forEach(car -> car.printPosition());
-		System.out.println();
+		cars.forEach(out::println);
+		out.println();
 	}
 
 	public static void printResultMessage() {
-		System.out.println(EXECUTION_RESULT_MESSAGE);
+		out.println(EXECUTION_RESULT_MESSAGE);
 	}
 }
