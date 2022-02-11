@@ -4,11 +4,15 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Scanner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.controller.RacingCarController;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class RacingGameTest {
 
@@ -28,12 +32,6 @@ public class RacingGameTest {
             racingGame.race();
         }
         assertTrue(racingGame.isEnd());
-    }
-
-    @Test
-    @DisplayName("게임이 종료되지 않았는지 확인한다.")
-    void checkGameNotEnd() {
-        assertFalse(racingGame.isEnd());
     }
 
     @ParameterizedTest

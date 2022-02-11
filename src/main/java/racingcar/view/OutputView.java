@@ -28,11 +28,11 @@ public class OutputView {
     }
 
     private void printCarPosition(RacingCarDto racingCarDto) {
-        System.out.printf(CAR_POSITION_INFO_MESSAGE, racingCarDto.getName(), getCarPosistionBar(racingCarDto.getPosition()));
+        System.out.printf(CAR_POSITION_INFO_MESSAGE, racingCarDto.getName(), getCarPositionBar(racingCarDto.getPosition()));
         System.out.println();
     }
 
-    private String getCarPosistionBar(int position) {
+    private String getCarPositionBar(int position) {
         return IntStream.range(0, position)
             .mapToObj(value -> POSITION_BAR)
             .collect(Collectors.joining());
