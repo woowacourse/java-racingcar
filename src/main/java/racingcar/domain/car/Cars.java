@@ -36,7 +36,7 @@ public class Cars {
     private List<Car> createCarList(String[] carNames) {
         List<Car> carList = new ArrayList<>();
         for (String carName : carNames) {
-            carList.add(new Car(carName));
+            carList.add(new Car(carName.trim()));
         }
         return carList;
     }
