@@ -51,16 +51,20 @@ public class RacingCars {
     }
 
     public List<String> searchWinnerNames() {
-        int winnerPosition = searchWinnerPosition();
+        RacingCar anyWinner = searchAnyWinner();
         return cars.stream()
-            .filter(car -> car.comparePosition(winnerPosition))
+            .filter(car -> car.samePosition(anyWinner))
             .map(RacingCar::getName)
             .collect(Collectors.toList());
     }
 
-    private int searchWinnerPosition() {
-        return Collections.max(cars.stream()
-            .map(RacingCar::getPosition)
-            .collect(Collectors.toList()));
+    private RacingCar searchAnyWinner() {
+        RacingCar anyWinner = cars.get(0);
+        for(RacingCar car : cars) {
+            if(car.isGreaterPosition(anyWinner)) {
+                anyWinner = car;
+            }
+        }
+        return anyWinner;
     }
 }

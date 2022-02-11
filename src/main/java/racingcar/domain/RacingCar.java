@@ -40,7 +40,11 @@ public class RacingCar {
         }
     }
 
-    public boolean comparePosition(int position) {
-        return this.position == position;
+    public boolean samePosition(RacingCar otherCar) {
+        return this.position == otherCar.getPosition();
+    }
+
+    public boolean isGreaterPosition(RacingCar otherCar) {
+        return this.position > otherCar.getPosition();
     }
 }
