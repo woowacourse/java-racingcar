@@ -30,4 +30,8 @@ public class RacingCarGame {
         }
         return cars;
     }
+
+    public List<String> findRacingGameWinner() {
+        return carRepository.findWinner();
+    }
 }

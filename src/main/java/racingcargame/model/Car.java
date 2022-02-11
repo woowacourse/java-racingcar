@@ -2,7 +2,7 @@ package racingcargame.model;
 
 import racingcargame.utils.RandomNumberGenerator;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private String name;
     private int position;
 
@@ -19,6 +19,10 @@ public class Car {
         return position;
     }
 
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     public void moveCar() {
         if (isMoveCar()) {
             position ++;
@@ -28,5 +32,10 @@ public class Car {
     private boolean isMoveCar() {
         int number = RandomNumberGenerator.makeRandomNumber();
         return number >= 4;
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return Integer.compare(position, car.getPosition());
     }
 }

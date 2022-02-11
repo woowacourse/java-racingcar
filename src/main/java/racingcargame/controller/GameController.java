@@ -27,5 +27,6 @@ public class GameController {
         while (!racingCarGame.isOverRace()) {
             OutputView.showRaceProgress(racingCarGame.startRace());
         }
+        racingCarGame.findRacingGameWinner();
     }
 }
