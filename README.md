@@ -71,3 +71,6 @@ pobi, honux가 최종 우승했습니다.
 
 - Car의 전진여부 판단
 - 우승자 판정
+
+## Reference
+https://brazen-serpent-b4f.notion.site/Lv1-Racing-car-47749ac1c64945f797a0506f4ee0eff9
