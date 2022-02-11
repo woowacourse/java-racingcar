@@ -10,32 +10,6 @@ public class StringCalculatorTest {
 	StringCalculator calculator = new StringCalculator();
 
 	@Test
-	void 쉼표_구분자() {
-		String[] expected = {"1", "2"};
-		assertThat(calculator.split("1,2")).isEqualTo(expected);
-	}
-
-	@Test
-	void 콜론_구분자() {
-		String[] expected = {"1", "2"};
-		assertThat(calculator.split("1:2")).isEqualTo(expected);
-	}
-
-	@Test
-	void 기본_구분자() {
-		String[] expected = {"1", "2", "3"};
-		assertThat(calculator.split("1,2:3")).isEqualTo(expected);
-	}
-
-	@ParameterizedTest
-	@ValueSource(strings = {"//+\n1+2+3", "//;\n1;2;3"})
-	void 커스텀_구분자(String input) {
-		String[] actual = calculator.splitCustomDelimiter(input);
-		String[] expected = {"1", "2", "3"};
-		assertThat(actual).isEqualTo(expected);
-	}
-
-	@Test
 	void 빈문자() {
 		String input = "";
 		int actual = calculator.splitAndSum(input);
@@ -54,20 +28,6 @@ public class StringCalculatorTest {
 		String input = "1";
 		int actual = calculator.splitAndSum(input);
 		int expected = 1;
-		assertThat(actual).isEqualTo(expected);
-	}
-
-	@Test
-	void 커스텀_구분자_판정() {
-		String input = "/";
-		assertThat(calculator.isCustomInput(input)).isFalse();
-	}
-
-	@Test
-	void 합() {
-		String[] input = {"1", "2"};
-		int actual = calculator.sum(input);
-		int expected = 3;
 		assertThat(actual).isEqualTo(expected);
 	}
 
