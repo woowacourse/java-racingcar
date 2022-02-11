@@ -1,5 +1,6 @@
 package racingCar.model;
 
+import racingCar.utlis.Constants;
 import racingCar.utlis.Util;
 import racingCar.validator.NameValidator;
 
@@ -14,7 +15,7 @@ public class Car {
 	}
 
 	public void go() {
-		if (Util.getRandomInteger() >= 4) {
+		if (Util.getRandomInteger() >= Constants.GO_RANDOM_INTEGER) {
 			move();
 		}
 	}

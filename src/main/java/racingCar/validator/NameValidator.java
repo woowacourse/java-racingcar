@@ -5,17 +5,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import racingCar.utlis.Constants;
+
 public class NameValidator {
 
 	public static final int maxNameSize = 5;
-
-	public static final String EXCEPTION_NULL_MESSAGE = "빈 문자열이 입력되었습니다.";
-	public static final String EXCEPTION_SPACE_MESSAGE = "이름이 space 로 이뤄져 있습니다";
-	public static final String EXCEPTION_NAME_RANGE = "이름은 5자 이하만 가능합니다.";
-	public static final String EXCEPTION_SPACIAL_MESSAGE = "이름에는 특수문자가 입력될 수 없습니다.";
-	public static final String EXCEPTION_ONE_NAME_MESSAGE = "이름을 2개 이상 입력해주세요.";
-	public static final String EXCEPTION_DUPLICATED_NAME_MESSAGE = "중복된 이름이 입력되었습니다.";
-	public static final String NOT_SPECIAL_REGEX = "[가-힣\\w_]*";
 
 	public static void validateInput(String inputString) throws Exception {
 		checkNull(inputString);
@@ -34,37 +28,37 @@ public class NameValidator {
 
 	private static void checkNull(String inputString) throws Exception {
 		if (inputString == null || inputString.isEmpty())
-			throw new Exception(EXCEPTION_NULL_MESSAGE);
+			throw new Exception(Constants.EXCEPTION_NULL_MESSAGE);
 	}
 
 	private static void checkSpace(String name) throws Exception {
 		if (name.trim().isEmpty()) {
-			throw new Exception(EXCEPTION_SPACE_MESSAGE);
+			throw new Exception(Constants.EXCEPTION_SPACE_MESSAGE);
 		}
 	}
 
 	private static void checkNameSize(String name) throws Exception {
 		if (name.length() > maxNameSize) {
-			throw new Exception(EXCEPTION_NAME_RANGE);
+			throw new Exception(Constants.EXCEPTION_NAME_RANGE);
 		}
 	}
 
 	private static void checkSpecialChar(String name) throws Exception {
-		if (!Pattern.matches(NOT_SPECIAL_REGEX, name)) {
-			throw new Exception(EXCEPTION_SPACIAL_MESSAGE);
+		if (!Pattern.matches(Constants.NOT_SPECIAL_REGEX, name)) {
+			throw new Exception(Constants.EXCEPTION_SPACIAL_MESSAGE);
 		}
 	}
 
 	private static void checkOneName(List<String> nameList) throws Exception {
 		if (nameList.size() <= 1) {
-			throw new Exception(EXCEPTION_ONE_NAME_MESSAGE);
+			throw new Exception(Constants.EXCEPTION_ONE_NAME_MESSAGE);
 		}
 	}
 
 	private static void checkDuplicatedName(List<String> nameList) throws Exception {
 		Set<String> nameSet = new HashSet<>(nameList);
 		if (nameSet.size() != nameList.size()) {
-			throw new Exception(EXCEPTION_DUPLICATED_NAME_MESSAGE);
+			throw new Exception(Constants.EXCEPTION_DUPLICATED_NAME_MESSAGE);
 		}
 	}
 }
