@@ -43,4 +43,11 @@ public class AttemptTest {
     assertThatThrownBy(() -> new Attempt(input))
         .isInstanceOf(RuntimeException.class);
   }
+
+  @Test
+  public void 음수_minus_3_예외_test() throws Exception {
+    String input = "-3";
+    assertThatThrownBy(() -> new Attempt(input))
+        .isInstanceOf(RuntimeException.class);
+  }
 }
