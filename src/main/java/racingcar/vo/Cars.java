@@ -23,6 +23,37 @@ public class Cars {
     cars.add(car);
   }
 
+  public String repeatRaceBy(Attempt attempt) {
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append(RACE_RESULT_MESSAGE).append(System.lineSeparator());
+    while (attempt.isLeft()) {
+      stringBuilder.append(raceAll());
+      attempt.decrease();
+    }
+    return stringBuilder.toString();
+  }
+
+  private String raceAll() {
+    StringBuilder stringBuilder = new StringBuilder();
+    for (Car car : cars) {
+      car.move();
+      stringBuilder.append(car.toString());
+      stringBuilder.append(System.lineSeparator());
+    }
+    stringBuilder.append(System.lineSeparator());
+    return stringBuilder.toString();
+  }
+
+  public Winners judgeWinners() {
+    Car maxPositionCar = cars.stream()
+        .max(Car::compareTo)
+        .orElseThrow(() -> new NoSuchElementException(NO_SUCH_CAR_ERROR_MESSAGE));
+    return new Winners(cars.stream()
+        .filter(car -> car.isSamePosition(maxPositionCar))
+        .map(Car::getName)
+        .collect(Collectors.toList()));
+  }
+
   private void validDuplicateCarName(Car car) {
     if (cars.stream().filter(each -> each.isSameName(car)).count() != NONE_DUPLICATION) {
       throw new RuntimeException(DUPLICATE_CAR_NAME_ERROR_MESSAGE);
@@ -31,36 +62,5 @@ public class Cars {
 
   public boolean isSize(int size) {
     return cars.size() == size;
-  }
-
-  public String repeatRace(Attempt attempt) {
-    StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append(RACE_RESULT_MESSAGE).append(System.lineSeparator());
-    while (attempt.isLeft()) {
-      stringBuilder.append(raceOnce());
-      attempt.decrease();
-    }
-    return stringBuilder.toString();
-  }
-
-  private String raceOnce() {
-    StringBuilder stringBuilder = new StringBuilder();
-    for (Car each : cars) {
-      each.move();
-      stringBuilder.append(each.toString());
-      stringBuilder.append(System.lineSeparator());
-    }
-    stringBuilder.append(System.lineSeparator());
-    return stringBuilder.toString();
-  }
-
-  public Winners getWinners() {
-    Car maxPositionCar = cars.stream()
-        .max(Car::compareTo)
-        .orElseThrow(() -> new NoSuchElementException(NO_SUCH_CAR_ERROR_MESSAGE));
-    return new Winners(cars.stream()
-        .filter(car -> car.isSamePosition(maxPositionCar))
-        .map(Car::getName)
-        .collect(Collectors.toList()));
   }
 }

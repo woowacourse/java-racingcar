@@ -11,14 +11,6 @@ public class InputView {
 
   private static final Scanner SCANNER = new Scanner(System.in);
 
-  private static String readNextLine() {
-    try {
-      return SCANNER.nextLine();
-    } catch (NoSuchElementException exception) {
-      throw new RuntimeException(EMPTY_INPUT_ERROR_MESSAGE);
-    }
-  }
-
   public static String requestCarName() {
     System.out.println(REQUEST_CAR_NAME_MESSAGE);
     return readNextLine();
@@ -29,5 +21,13 @@ public class InputView {
     String attemptInput = readNextLine();
     System.out.println();
     return attemptInput;
+  }
+
+  private static String readNextLine() {
+    try {
+      return SCANNER.nextLine();
+    } catch (NoSuchElementException exception) {
+      throw new RuntimeException(EMPTY_INPUT_ERROR_MESSAGE);
+    }
   }
 }

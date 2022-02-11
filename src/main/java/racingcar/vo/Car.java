@@ -1,6 +1,6 @@
 package racingcar.vo;
 
-import static racingcar.util.RandomUtil.createNumber;
+import static racingcar.util.RandomUtil.generateRandomNumber;
 import static racingcar.util.MovementUtil.isMoveForward;
 
 public class Car implements Comparable<Car> {
@@ -20,6 +20,16 @@ public class Car implements Comparable<Car> {
     return name;
   }
 
+  @Override
+  public String toString() {
+    return name.get() + RESULT_DELIMITER + position.toString();
+  }
+
+  @Override
+  public int compareTo(Car car) {
+    return position.compareTo(car.position);
+  }
+
   public boolean isSameName(Car car) {
     return car.name.equals(this.name);
   }
@@ -29,20 +39,10 @@ public class Car implements Comparable<Car> {
   }
 
   public boolean move() {
-    if (isMoveForward(createNumber())) {
+    if (isMoveForward(generateRandomNumber())) {
       position.increase();
       return true;
     }
     return false;
-  }
-
-  @Override
-  public int compareTo(Car o) {
-    return position.compareTo(o.position);
-  }
-
-  @Override
-  public String toString() {
-    return name.get() + RESULT_DELIMITER + position.toString();
   }
 }
