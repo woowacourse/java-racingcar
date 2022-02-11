@@ -71,7 +71,7 @@ public class RacingGameTest {
         Cars cars = new Cars(carList);
 
         String winnerName = gameController.findWinner(cars);
-        assertThat(winnerName).contains("sun");
+        assertThat(winnerName).contains("sun").doesNotContain("bom");
     }
 
     @Test
