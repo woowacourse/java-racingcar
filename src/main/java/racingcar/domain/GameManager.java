@@ -23,6 +23,25 @@ public class GameManager {
         totalRounds = requestAndParseTotalRounds();
 
         playAllRounds();
+        OutputView.printWinners(getWinners());
+    }
+
+    private List<Car> getWinners() {
+        List<Car> winners = new ArrayList<>();
+        int maxPosition = 0;
+
+        for (Car car : cars) {
+            int currentPosition = car.getPosition();
+            if (maxPosition > currentPosition) {
+                continue;
+            }
+            if (maxPosition < currentPosition) {
+                winners.clear();
+            }
+            winners.add(car);
+            maxPosition = currentPosition;
+        }
+        return winners;
     }
 
     private void playAllRounds() {
