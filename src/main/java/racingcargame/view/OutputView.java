@@ -43,7 +43,8 @@ public class OutputView {
 	}
 
 	public static void showCarPosition(int carPosition) {
-		IntStream.range(0, carPosition).forEach(index -> System.out.println(CAR_MOVE));
+		IntStream.range(0, carPosition).forEach(index -> System.out.print(CAR_MOVE));
+		newLine();
 	}
 
 	public static void showGameWinner(List<String> winners) {
