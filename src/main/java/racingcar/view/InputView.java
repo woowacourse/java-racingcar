@@ -6,11 +6,11 @@ public class InputView {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public String readCarNamesInput() {
+    public static String readCarNamesInput() {
         return scanner.nextLine();
     }
 
-    public int readRoundNumberInput() {
+    public static int readRoundNumberInput() {
         return Integer.parseInt(scanner.nextLine());
     }
 

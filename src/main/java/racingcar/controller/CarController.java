@@ -15,16 +15,8 @@ public class CarController {
     private static final int PIVOT_NUMBER = 4;
     private static final String CAR_NAME_DELIMINATOR = ",";
 
-    private InputView inputView;
-    private OutputView outputView;
     private final CarRepository carRepository;
     private int roundNumber;
-
-    public CarController(CarRepository carRepository, InputView inputView, OutputView outputView) {
-        this.carRepository = carRepository;
-        this.inputView = inputView;
-        this.outputView = outputView;
-    }
 
     public CarController(CarRepository carRepository) {
         this.carRepository = carRepository;
@@ -51,7 +43,7 @@ public class CarController {
     public void playRound() {
         moveCars();
         List<Car> cars = carRepository.findAll();
-        outputView.showCurrentStatus(cars);
+        OutputView.showCurrentStatus(cars);
     }
 
     public void setGame() {
@@ -60,9 +52,9 @@ public class CarController {
     }
 
     private void setCars() {
-        outputView.printAskCarNameInputMessage();
+        OutputView.printAskCarNameInputMessage();
 
-        String input = inputView.readCarNamesInput();
+        String input = InputView.readCarNamesInput();
         CarNameValidator.parseCarNameInputs(input);
         String[] strings = parseCarNames(input);
         List<String> carNames = Arrays.asList(strings);
@@ -79,15 +71,15 @@ public class CarController {
     }
 
     private void setRoundNumbers() {
-        outputView.printAskRoundNumberMessage();
-        roundNumber = inputView.readRoundNumberInput();
+        OutputView.printAskRoundNumberMessage();
+        roundNumber = InputView.readRoundNumberInput();
     }
 
     public void play() {
         setGame();
         playGame();
-        inputView.terminate();
-        outputView.showGameResult(getWinners());
+        InputView.terminate();
+        OutputView.showGameResult(getWinners());
     }
 
     public List<Car> getWinners() {

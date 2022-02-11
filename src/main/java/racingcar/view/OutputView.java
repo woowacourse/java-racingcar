@@ -10,20 +10,20 @@ public class OutputView {
     private static final String ASK_ROUND_NUMBER_INPUT_MESSAGE = "시도할 회수는 몇회인가요?";
     private static final String DECLARE_WINNER_MESSAGE = "가 최종 우승했습니다.";
 
-    public void printAskCarNameInputMessage() {
+    public static void printAskCarNameInputMessage() {
         System.out.println(ASK_CAR_NAME_INPUT_MESSAGE);
     }
 
-    public void printAskRoundNumberMessage() {
+    public static void printAskRoundNumberMessage() {
         System.out.println(ASK_ROUND_NUMBER_INPUT_MESSAGE);
     }
 
-    public void showGameResult(List<Car> winners) {
+    public static void showGameResult(List<Car> winners) {
         String winnerNames = winners.stream().map(car -> car.getName()).collect(Collectors.joining(","));
         System.out.println(winnerNames + DECLARE_WINNER_MESSAGE);
     }
 
-    public void showCurrentStatus(List<Car> cars) {
+    public static void showCurrentStatus(List<Car> cars) {
         cars.stream().forEach(car -> car.printPosition());
         System.out.println();
     }
