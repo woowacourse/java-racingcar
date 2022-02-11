@@ -12,9 +12,10 @@ import org.junit.jupiter.api.Test;
 
 public class CarRepositoryTest {
 	CarRepository carRepository;
+
 	@BeforeEach
 	void setUp() {
-		carRepository = CarRepository.getInstance();
+		carRepository = new CarRepository();
 	}
 
 	@Test
@@ -27,7 +28,7 @@ public class CarRepositoryTest {
 	@Test
 	void Car_3개_저장() {
 		Car car1 = new Car("범고래");
-		Car car2= new Car("소주캉");
+		Car car2 = new Car("소주캉");
 		Car car3 = new Car("범고래2");
 		carRepository.save(car1);
 		carRepository.save(car2);
@@ -40,7 +41,7 @@ public class CarRepositoryTest {
 	void 게임_진행() {
 		List<Integer> numbers = new ArrayList<>(Arrays.asList(3, 4));
 		Car car1 = new Car("범고래");
-		Car car2= new Car("소주캉");
+		Car car2 = new Car("소주캉");
 		carRepository.save(car1);
 		carRepository.save(car2);
 
@@ -56,7 +57,7 @@ public class CarRepositoryTest {
 	void 우승자() {
 		List<Integer> numbers = new ArrayList<>(Arrays.asList(3, 4));
 		Car car1 = new Car("범고래");
-		Car car2= new Car("소주캉");
+		Car car2 = new Car("소주캉");
 		carRepository.save(car1);
 		carRepository.save(car2);
 
@@ -64,10 +65,5 @@ public class CarRepositoryTest {
 		List<CarDto> winners = carRepository.getWinners();
 		CarDto expected = new CarDto("소주캉", 1);
 		assertThat(winners.contains(expected)).isTrue();
-	}
-
-	@AfterEach
-	void afterEach() {
-		carRepository.clear();
 	}
 }
