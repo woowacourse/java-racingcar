@@ -5,6 +5,8 @@ import java.util.List;
 
 public class RacingGame {
     private List<Car> cars = new ArrayList<>();
+    private List<String> championNames = new ArrayList<>();
+    private int highScore = 0;
 
     public RacingGame(String[] names) {
         for (String name : names) {
@@ -39,15 +41,18 @@ public class RacingGame {
     }
 
     public List<String> getChampionNames() {
-        List<String> championNames = new ArrayList<>();
-        int highScore = getHighScore();
+        highScore = getHighScore();
 
         for (Car car : cars) {
-            if (car.isChampion(highScore)) {
-                championNames.add(car.getName());
-            }
+            addChampionName(car);
         }
 
         return championNames;
+    }
+
+    public void addChampionName(Car car) {
+        if (car.isChampion(highScore)) {
+            championNames.add(car.getName());
+        }
     }
 }
