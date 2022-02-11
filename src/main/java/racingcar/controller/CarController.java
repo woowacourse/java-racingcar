@@ -8,7 +8,7 @@ import racingcar.view.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class GameController {
+public class CarController {
     private static final String NOT_FOUND_CARS_MESSAGE = "[ERROR] 자동차를 찾을 수 없습니다.";
     private static final String EXECUTION_RESULT_MESSAGE="실행 결과";
     private static final int RANDOM_RANGE = 10;
@@ -17,16 +17,16 @@ public class GameController {
 
     private InputView inputView;
     private OutputView outputView;
-    private CarRepository carRepository;
+    private final CarRepository carRepository;
     private int roundNumber;
 
-    public GameController(CarRepository carRepository, InputView inputView, OutputView outputView) {
+    public CarController(CarRepository carRepository, InputView inputView, OutputView outputView) {
         this.carRepository = carRepository;
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public GameController(CarRepository carRepository) {
+    public CarController(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
 

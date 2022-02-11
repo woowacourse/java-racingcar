@@ -10,15 +10,15 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GameControllerTest {
+public class CarControllerTest {
 
-    CarRepository carRepository;
-    GameController gameController;
+    private CarRepository carRepository;
+    private CarController carController;
 
     @BeforeEach
     void setUp() {
         carRepository = new CarRepository();
-        gameController = new GameController(carRepository);
+        carController = new CarController(carRepository);
     }
 
 
@@ -41,8 +41,8 @@ public class GameControllerTest {
         car3.moveOrHold(true);
 
         carRepository.addCars(List.of(car1, car2, car3));
-        List<Car> winners = gameController.getWinners();
-
+        List<Car> winners = carController.getWinners();
+        
         // then
         assertThat(winners).containsExactly(car1);
     }
@@ -67,7 +67,7 @@ public class GameControllerTest {
         car3.moveOrHold(true);
 
         carRepository.addCars(List.of(car1, car2, car3));
-        List<Car> winners = gameController.getWinners();
+        List<Car> winners = carController.getWinners();
 
         // then
         assertThat(winners).containsExactly(car1, car3);

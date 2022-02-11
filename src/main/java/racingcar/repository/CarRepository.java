@@ -12,8 +12,8 @@ public class CarRepository {
         cars = new ArrayList<>();
     }
 
-    public void addCars(List<Car> targetCars) {
-        targetCars.forEach(cars::add);
+    public void addCars(List<Car> cars) {
+        this.cars.addAll(cars);
     }
 
     public List<Car> findAll() {
