@@ -16,7 +16,7 @@ public class GameController {
         return gameController;
     }
 
-    public void playGame() {
+    public void runGame() {
         OutputView.showCarNamesInputGuideMessage();
         List<String> carNames = inputController.inputCarName();
 
