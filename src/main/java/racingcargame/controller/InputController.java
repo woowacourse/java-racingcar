@@ -7,6 +7,8 @@ import racingcargame.utils.NameInputValidator;
 import racingcargame.utils.RaceCountInputValidator;
 
 public class InputController {
+	private static final String COMMA = ",";
+
 	private static final InputController inputController = new InputController();
 	private static final Scanner scanner = new Scanner(System.in);
 
@@ -19,7 +21,7 @@ public class InputController {
 
 	public List<String> inputCarName() {
 		String carNames = scanner.nextLine();
-		return List.of(NameInputValidator.validateCarNames(carNames).split(","));
+		return List.of(NameInputValidator.validateCarNames(carNames).split(COMMA));
 	}
 
 	public int inputRaceCount() {
