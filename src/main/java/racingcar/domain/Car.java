@@ -26,8 +26,8 @@ public class Car {
 		return new Car(name, position);
 	}
 
-	public void move(int randomNumber) {
-		if (randomNumber >= STANDARD_OF_MOVING) {
+	public void move(int movingValue) {
+		if (movingValue >= STANDARD_OF_MOVING) {
 			position++;
 		}
 	}
