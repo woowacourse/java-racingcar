@@ -2,6 +2,7 @@ package racingcar;
 
 import racingcar.domain.RacingCar;
 import racingcar.domain.RacingCars;
+import racingcar.validator.Validator;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
@@ -14,12 +15,23 @@ public class RacingGame {
     public RacingGame() {
     }
 
-    public void playGame(RacingCars racingCars, int trialCount) {
+    public void playGame(RacingCars racingCars, String tryCount) {
+        validatedCarStandard(racingCars);
+        Validator.validateTryCountIsNaturalNumber(tryCount);
+        int trialCount = Integer.parseInt(tryCount);
+
         OutputView.printGameStartMessage();
         for (int i = 0; i < trialCount; i++) {
             moveCar(racingCars);
             OutputView.printCurrentRacingSituation(racingCars);
         }
+    }
+
+    private void validatedCarStandard(RacingCars racingCars) {
+        Validator.validateCarsNameIsEmpty(racingCars);
+        Validator.validateCarsNameSize(racingCars);
+        Validator.validateDuplicatedName(racingCars);
+        Validator.validateCountOfCar(racingCars);
     }
 
     private void moveCar(RacingCars racingCars) {

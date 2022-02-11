@@ -23,7 +23,6 @@ public class Validator {
         }
     }
 
-
     public static void validateCarsNameIsEmpty(RacingCars racingCars) {
         for (RacingCar racingCar : racingCars.getRacingCars()) {
             validatorEmptyName(racingCar.getName());

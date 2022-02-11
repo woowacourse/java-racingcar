@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.domain.RacingCars;
+import racingcar.validator.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -14,7 +15,7 @@ public class Application {
         String tryCount = InputView.askTryCount();
 
         racingCars.join(carNames);
-        racingGame.playGame(racingCars, Integer.parseInt(tryCount));
+        racingGame.playGame(racingCars, tryCount);
 
         String winnersName = racingGame.getWinnersName(racingGame.getWinners(racingCars));
         OutputView.printWinners(winnersName);
