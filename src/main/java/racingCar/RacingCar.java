@@ -5,6 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RacingCar {
+	public static final String ENTER_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+	public static final String WHAT_TIMES = "시도할 횟수는 몇회인가요?";
+	public static final String NAME_ERROR = "[ERROR] 이름이 공백이거나 6자 이상이면 안됩니다. 다시 입력해주세요.";
+	public static final String TIMES_ERROR = "[ERROR] 시도 횟수는 양수인 정수여야 합니다. 다시 입력해주세요.";
+	public static final String RESULT = "실행결과";
+	public static final String COMMA_SPACE = ", ";
+	public static final String FINAL_WINNER = "가 최종 우승했습니다.";
 	private ArrayList<Car> cars = new ArrayList<>();
 	private int maxPosition = Integer.MIN_VALUE;
 	private int times;
@@ -20,12 +27,12 @@ public class RacingCar {
 	}
 
 	private String[] racingCarNames() {
-		String inputCarName = userInput("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-		return getCarNames(inputCarName);
+		String inputCarName = userInput(ENTER_CAR_NAMES);
+		return makeCarNames(inputCarName);
 	}
 
 	private void racingCarTimes() {
-		String inputRacingTimes = userInput("시도할 횟수는 몇회인가요?");
+		String inputRacingTimes = userInput(WHAT_TIMES);
 		enterTimes(inputRacingTimes);
 	}
 
@@ -35,8 +42,12 @@ public class RacingCar {
 		return scanner.nextLine();
 	}
 
-	public String[] getCarNames(String input) {
-		String[] carNames = input.split(",");
+	public String[] makeCarNames(String input) {
+		String[] carNames = splitCarNames(input);
+		return getCarNames(carNames);
+	}
+
+	private String[] getCarNames(String[] carNames) {
 		for (int idx = 0; idx < carNames.length; idx++) {
 			carNames[idx] = carNames[idx].trim();
 			checkCarName(carNames[idx]);
@@ -44,19 +55,28 @@ public class RacingCar {
 		return carNames;
 	}
 
+	private String[] splitCarNames(String input) {
+		String[] carNames = input.split(",");
+		return carNames;
+	}
+
 	private void checkCarName(String name) {
 		try {
-			isRightLength(name);
+			checkRightLength(name);
 		} catch (RuntimeException e) {
-			System.out.println("[ERROR] 이름이 공백이거나 6자 이상이면 안됩니다. 다시 입력해주세요.");
+			System.out.println(NAME_ERROR);
 			racingCarNames();
 		}
 	}
 
-	public void isRightLength(String name) throws RuntimeException {
-		if (name.length() == 0 || name.length() > 5) {
+	public void checkRightLength(String name) throws RuntimeException {
+		if (isRightLength(name)) {
 			throw new RuntimeException();
 		}
+	}
+
+	private boolean isRightLength(String name) {
+		return name.length() == 0 || name.length() > 5;
 	}
 
 	public void enterTimes(String input) {
@@ -64,7 +84,7 @@ public class RacingCar {
 			isRightTimes(input);
 			times = Integer.parseInt(input);
 		} catch (RuntimeException e) {
-			System.out.println("[ERROR] 시도 횟수는 양수인 정수여야 합니다. 다시 입력해주세요.");
+			System.out.println(TIMES_ERROR);
 			racingCarTimes();
 		}
 	}
@@ -83,7 +103,7 @@ public class RacingCar {
 	}
 
 	private void race(int count) {
-		System.out.println("실행결과");
+		System.out.println(RESULT);
 		for (int i = 0; i < count; i++) {
 			moveCars();
 			System.out.println();
@@ -131,9 +151,10 @@ public class RacingCar {
 	private void printWinners(List<Car> winners) {
 		for (int idx = 0; idx < winners.size() - 1; idx++) {
 			winners.get(idx).printName();
-			System.out.print(", ");
+			System.out.print(COMMA_SPACE);
 		}
 		winners.get(winners.size() - 1).printName();
-		System.out.println("가 최종 우승했습니다.");
+		System.out.println(FINAL_WINNER);
 	}
+	
 }
