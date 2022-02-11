@@ -30,7 +30,7 @@ public class CarCollection {
 	public List<String> getWinnerNames() {
 		int farthestLocation = getFarthestLocation();
 		return cars.stream()
-			.filter(car -> car.getLocation() == farthestLocation)
+			.filter(car -> car.isLocationSameWith(farthestLocation))
 			.map(Car::getName)
 			.collect(Collectors.toList());
 	}
@@ -38,7 +38,7 @@ public class CarCollection {
 	private int getFarthestLocation() {
 		return cars.stream()
 			.map(Car::getLocation)
-			.max((Comparator.comparingInt(o -> o)))
+			.max(Comparator.comparingInt(o -> o))
 			.orElseThrow(IllegalArgumentException::new);
 	}
 

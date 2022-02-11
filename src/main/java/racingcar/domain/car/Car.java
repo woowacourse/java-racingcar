@@ -20,6 +20,10 @@ public class Car {
 		this.location++;
 	}
 
+	public boolean isLocationSameWith(int location) {
+		return (this.location == location);
+	}
+
 	public String getName() {
 		return this.name;
 	}
