@@ -1,6 +1,5 @@
 package calculator;
 
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,16 +7,14 @@ public class StringCalculator {
 
     public static final String CUSTOM_SEPARATOR_REGEX = "//(.)\n(.*)";
     private static final String DEFAULT_SEPARATORS = ",|:";
-    public static final String KEY_OPERANDS = "OPERANDS";
-    public static final String KEY_SEPARATORS = "SEPARATORS";
 
     public static int splitAndSum(String rawInput) {
         if (isNullOrEmpty(rawInput)) {
             return 0;
         }
 
-        HashMap<String, String> inputMap = extractInputMap(rawInput);
-        String[] operands = extractOperands(inputMap);
+        String separators = extractSeparators(rawInput);
+        String[] operands = extractOperands(rawInput).split(separators);
 
         return sum(operands);
     }
@@ -26,24 +23,21 @@ public class StringCalculator {
         return string == null || string.isEmpty();
     }
 
-    private static HashMap<String, String> extractInputMap(String rawInput) {
-        HashMap<String, String> inputMap = setUpInputMap(rawInput);
-
+    private static String extractSeparators(String rawInput) {
         Matcher matcher = Pattern.compile(CUSTOM_SEPARATOR_REGEX).matcher(rawInput);
         if (customSeparatorExists(matcher)) {
-            inputMap.replace(KEY_SEPARATORS, getCustomSeparators(matcher));
-            inputMap.replace(KEY_OPERANDS, getOperands(matcher));
+            return getCustomSeparators(matcher);
         }
-
-        return inputMap;
+        return DEFAULT_SEPARATORS;
     }
 
-    private static HashMap<String, String> setUpInputMap(String rawInput) {
-        HashMap<String, String> inputMap = new HashMap<>();
-        inputMap.put(KEY_SEPARATORS, DEFAULT_SEPARATORS);
-        inputMap.put(KEY_OPERANDS, rawInput);
+    private static String extractOperands(String rawInput) {
+        Matcher matcher = Pattern.compile(CUSTOM_SEPARATOR_REGEX).matcher(rawInput);
+        if (customSeparatorExists(matcher)) {
+            return getOperands(matcher);
+        }
 
-        return inputMap;
+        return rawInput;
     }
 
     private static boolean customSeparatorExists(Matcher matcher) {
@@ -59,12 +53,6 @@ public class StringCalculator {
         return matcher.group(2);
     }
 
-    private static String[] extractOperands(HashMap<String, String> inputMap) {
-        String separators = inputMap.get(KEY_SEPARATORS);
-        String operands = inputMap.get(KEY_OPERANDS);
-
-        return operands.split(separators);
-    }
 
     private static int sum(String[] operands) {
         int sum = 0;
