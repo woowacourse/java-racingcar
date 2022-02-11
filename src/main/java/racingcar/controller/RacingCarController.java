@@ -1,10 +1,13 @@
-package racingcar.domain;
+package racingcar.controller;
 
 import static java.util.stream.Collectors.*;
 
 import java.util.Arrays;
 import java.util.List;
 
+import racingcar.domain.Car;
+import racingcar.domain.Count;
+import racingcar.domain.RandomMovingPolicy;
 import racingcar.view.InputView;
 import racingcar.view.OutPutView;
 
@@ -29,6 +32,7 @@ public class RacingCarController {
 
     private void race(List<Car> cars, Count count) {
         OutPutView.printStatusMessage();
+
         while (count.isPositive()) {
             count.subtract();
             moveCars(cars);
