@@ -10,27 +10,27 @@ public class ValidationUtilTest {
     @Test
     @DisplayName("입력값이 숫자가 아닌 경우")
     void invalidString() {
-        String[] notNumber = new String[]{"a", "1", "2"};
+        String[] notNumber = new String[] {"a", "1", "2"};
 
         assertThatThrownBy(() -> ValidationUtil.checkNumber(notNumber))
-                .isInstanceOf(RuntimeException.class).hasMessage("숫자가 아닙니다!");
+            .isInstanceOf(RuntimeException.class).hasMessage("숫자가 아닙니다!");
     }
 
     @Test
     @DisplayName("입력값이 숫자인 경우")
     void validString() {
-        String[] numbers = new String[]{"0", "1", "2"};
+        String[] numbers = new String[] {"0", "1", "2"};
 
         assertThatCode(() -> ValidationUtil.checkNumber(numbers))
-                .doesNotThrowAnyException();
+            .doesNotThrowAnyException();
     }
 
     @Test
     @DisplayName("입력값이 음수인 경우 예외 발생")
     void negativeInput() {
-        String[] numbers = new String[]{"-1", "2"};
+        String[] numbers = new String[] {"-1", "2"};
 
         assertThatThrownBy(() -> ValidationUtil.checkPositive(numbers))
-                .isInstanceOf(RuntimeException.class).hasMessage("음수가 포함돼있습니다!");
+            .isInstanceOf(RuntimeException.class).hasMessage("음수가 포함돼있습니다!");
     }
 }
