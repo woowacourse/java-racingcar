@@ -3,6 +3,7 @@ package racingcar;
 import racingcar.domain.RacingCar;
 import racingcar.domain.RacingCars;
 import racingcar.validator.Validator;
+import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
@@ -21,10 +22,10 @@ public class RacingGame {
         this.racingCars = racingCars;
     }
 
-    public void playGame(String userInputCarNames, String tryCount) {
-        racingCars.join(userInputCarNames);
-
+    public void playGame(RacingCars racingCars) {
         validatedCarStandard(racingCars);
+
+        String tryCount = InputView.askTryCount();
         Validator.checkTryCountIsNaturalNumber(tryCount);
         int trialCount = Integer.parseInt(tryCount);
 
