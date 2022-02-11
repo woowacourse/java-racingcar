@@ -3,47 +3,44 @@ package racingcar;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.validator.NameValidator;
+
+import static racingcar.validator.NameValidator.*;
 
 public class NameValidatorTest {
     @Test
     @DisplayName("입력한 이름값이 한개인 경우")
-    void oneNameTest() {
-        String names = "pobi";
+    void onlyName() {
         Assertions.assertThatThrownBy(() -> {
-                    NameValidator.validateNames(names);
-                }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 이름을 2개 이상 입력해주세요.");
+                validateNames("pobi");
+            }).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR_ONLY_NAME);
     }
 
     @Test
     @DisplayName("이름이 5자 초과일 경우")
-    void nameLengthTest() {
-        String names = "summer,crong";
+    void longName() {
         Assertions.assertThatThrownBy(() -> {
-                    NameValidator.validateNames(names);
-                }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 이름을 5자 이하로 등록해주세요");
+                validateNames("summer,crong");
+            }).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR_LONG_NAME);
     }
 
     @Test
     @DisplayName("중복된 이름이 있을 경우")
-    void nameDuplicationTest() {
-        String names = "pobi,pobi";
+    void duplicateName() {
         Assertions.assertThatThrownBy(() -> {
-                    NameValidator.validateNames(names);
-                }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 중복된 이름이 있습니다.");
+                validateNames("pobi,pobi");
+            }).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR_DUPLICATE_NAME);
     }
 
     @Test
     @DisplayName("빈 이름이 주어지거나 입력값이 없을 경우")
-    void emptyNameTest() {
-        String names = "";
+    void emptyName() {
         Assertions.assertThatThrownBy(() -> {
-                    NameValidator.validateNames(names);
-                }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 빈 이름이 있습니다.");
+                validateNames("");
+            }).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR_EMPTY_NAME);
     }
 
 }
