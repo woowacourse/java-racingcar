@@ -1,5 +1,7 @@
 package racingcar.controller;
 
+import java.util.stream.IntStream;
+
 import racingcar.view.InputView;
 import racingcar.view.ResultView;
 
@@ -19,10 +21,10 @@ public class RacingController {
 	}
 
 	private void runInIteration(int iteration) {
-		for (int i = 0; i < iteration; i++) {
+		IntStream.range(0, iteration).forEach(i -> {
 			carController.run();
 			ResultView.printGameResult(carController.getCars());
-		}
+		});
 	}
 
 	private void createCars() {
