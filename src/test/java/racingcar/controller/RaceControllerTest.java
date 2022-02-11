@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingcar.controller.RaceController;
 import racingcar.model.Car;
 
 import static org.assertj.core.api.Assertions.assertThat;
