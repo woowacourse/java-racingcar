@@ -115,12 +115,18 @@ public class RacingCarTest {
         assertThatThrownBy(() -> Validator.validateDuplicatedName(racingCars)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("유저 인풋이 ',' 로 끝나면 예외 처리")
     @Test
-    public void validateHaveLastInputCommaTest(){
+    @DisplayName("유저 인풋이 ',' 로 끝나면 예외 처리")
+    public void validateHaveLastInputCommaTest() {
         String userInput = "phobi,json,";
 
         assertThatThrownBy(() -> Validator.validateHaveLastInputComma(userInput)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("시도 회수가 자연수가 아니면 예외처리")
+    public void validateTryCountIsNaturalNumberTest() {
+        String tryCountInput = "0";
+        assertThatThrownBy(() -> Validator.validateTryCountIsNaturalNumber(tryCountInput)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
