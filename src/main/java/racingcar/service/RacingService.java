@@ -10,8 +10,11 @@ import racingcar.util.RandomUtil;
 
 public class RacingService {
 
-	private static final int RANDOM_VALUE_RANGE = 10;
+
 	private static final CarRepository carRepository = new CarRepository();
+
+	private static final int RANDOM_VALUE_RANGE = 10;
+	public static final int MINIMUM_NUMBER_OF_RACE_POSSIBLE = 2;
 
 	public void registerCars(List<Car> cars) {
 		cars.forEach(carRepository::addCar);
@@ -19,7 +22,14 @@ public class RacingService {
 
 	public void race(RandomUtil randomUtil) {
 		List<Car> cars = carRepository.findCars();
+		validateRacePossible(cars);
 		cars.forEach(car -> car.move(randomUtil.generate(RANDOM_VALUE_RANGE)));
+	}
+
+	private void validateRacePossible(List<Car> cars) {
+		if (cars.size() < MINIMUM_NUMBER_OF_RACE_POSSIBLE) {
+			throw new IllegalStateException();
+		}
 	}
 
 	public List<String> findWinnerNames() {

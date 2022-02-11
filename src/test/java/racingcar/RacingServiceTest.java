@@ -12,6 +12,7 @@ import racingcar.domain.Car;
 import racingcar.repository.CarRepository;
 import racingcar.service.RacingService;
 import racingcar.util.Converter;
+import racingcar.util.RandomUtilImpl;
 
 public class RacingServiceTest {
 
@@ -33,8 +34,6 @@ public class RacingServiceTest {
 
 	@Test
 	public void 자동차_저장() {
-
-		CarRepository carRepository = new CarRepository();
 		int carCount = carRepository.count();
 
 		assertThat(carCount).isEqualTo(2);
@@ -50,6 +49,15 @@ public class RacingServiceTest {
 		cars.forEach(car -> {
 			assertThat(car.isSamePosition(2)).isTrue();
 		});
+	}
+
+	@Test
+	public void 자동차_경주_자동차_1대() {
+		carRepository.clear();
+		racingService.registerCars(List.of(Car.of("asd")));
+
+		assertThatThrownBy(() -> racingService.race(new RandomUtilImpl()))
+			.isInstanceOf(IllegalStateException.class);
 	}
 
 	@Test

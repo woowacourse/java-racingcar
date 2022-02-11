@@ -8,21 +8,6 @@ import racingcar.validator.Validator;
 
 public class ValidatorTest {
 
-	// @ParameterizedTest
-	// @ValueSource(strings = {"abc", "awer"})
-	// public void 자동차_개수_예외(String input) {
-	// 	Assertions.assertThatThrownBy(() -> {
-	// 			Validator.ofCarNames(input);
-	// 		}).isInstanceOf(IllegalArgumentException.class)
-	// 		.hasMessageContaining("자동차는 2대 이상이어야 합니다");
-	// }
-	//
-	// @ParameterizedTest
-	// @ValueSource(strings = {"abc,a", "awer,b"})
-	// public void 자동차_개수_정상(String input) {
-	// 	Validator.ofCarNames(input);
-	// }
-
 	@ParameterizedTest
 	@ValueSource(strings = {"아라", "abc"})
 	public void 시도횟수_타입_예외(String input) {
