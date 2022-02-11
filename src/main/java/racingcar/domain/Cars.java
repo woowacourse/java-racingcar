@@ -24,6 +24,13 @@ public class Cars {
         cars.forEach(car -> car.drive(numberGeneratePolicy.generateNumber()));
     }
 
+    public List<Car> getWinners() {
+        final Car maxPositionCar = findMaxPositionCar();
+        return cars.stream()
+            .filter(car -> car.isSamePosition(maxPositionCar))
+            .collect(Collectors.toList());
+    }
+
     public Car findMaxPositionCar() {
         return cars.stream()
             .max(Car::compareTo)
