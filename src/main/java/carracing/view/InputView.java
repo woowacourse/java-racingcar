@@ -1,8 +1,12 @@
 package carracing.view;
 
+import static carracing.view.messages.ExceptionMessage.*;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import carracing.view.messages.ExceptionMessage;
 
 public class InputView {
 	private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -41,19 +45,19 @@ public class InputView {
 
 	private static void validateZero(int number) {
 		if (number <= 0) {
-			throw new IllegalArgumentException("시도할 횟수는 1 이상이어야 합니다.");
+			throw new IllegalArgumentException(INPUT_NUMBER_ZERO_EXCEPTION.getMessage());
 		}
 	}
 
 	private static void validateEmptyString(String line) {
 		if (line.isEmpty()) {
-			throw new IllegalArgumentException("빈 문자열을 입력하면 안됩니다.");
+			throw new IllegalArgumentException(INPUT_EMPTY_STRING_EXCEPTION.getMessage());
 		}
 	}
 
 	public static void validateNumber(String line) {
 		if(!line.matches("^[0-9]+$")){
-			throw new IllegalArgumentException("시도할 횟수는 숫자만 입력 가능합니다.");
+			throw new IllegalArgumentException(INPUT_NOT_NUMBER_EXCEPTION.getMessage());
 		}
 	}
 

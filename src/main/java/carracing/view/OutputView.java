@@ -1,5 +1,6 @@
 package carracing.view;
 
+import carracing.view.messages.ExceptionMessage;
 import carracing.view.messages.OutputMessage;
 
 public class OutputView {
@@ -12,7 +13,7 @@ public class OutputView {
 	}
 
 	public static void printException(String message) {
-		System.out.println(OutputMessage.ERROR_MESSAGE.getMessage() + message);
+		System.out.println(ExceptionMessage.PREFIX.getMessage() + message);
 	}
 
 	public static void printResultMessage() {

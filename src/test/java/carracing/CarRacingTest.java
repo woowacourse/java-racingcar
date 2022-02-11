@@ -1,5 +1,6 @@
 package carracing;
 
+import static carracing.view.messages.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
@@ -18,7 +19,7 @@ public class CarRacingTest {
 		assertThatThrownBy(() -> {
 			new Car("pobbiii");
 		}).isInstanceOf(IllegalArgumentException.class)
-			.hasMessageContaining("자동차 이름의 길이는 5를 초과할 수 없습니다.");
+			.hasMessageContaining(CAR_NAME_LENGTH_EXCEPTION.getMessage());
 	}
 
 	@Test
@@ -27,7 +28,7 @@ public class CarRacingTest {
 			assertThatThrownBy(() -> {
 				new Car("");
 			}).isInstanceOf(IllegalArgumentException.class)
-				.hasMessageContaining("자동차 이름의 길이는 최소 한글자 이상이어야 합니다.");
+				.hasMessageContaining(CAR_NAME_LENGTH_EXCEPTION.getMessage());
 	}
 
 	@Test
@@ -43,7 +44,7 @@ public class CarRacingTest {
 				new Car("east")
 			));
 		}).isInstanceOf(IllegalArgumentException.class)
-			.hasMessageContaining("자동차 이름은 중복이 되면 안됩니다.");
+			.hasMessageContaining(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
 	}
 
 	@ParameterizedTest

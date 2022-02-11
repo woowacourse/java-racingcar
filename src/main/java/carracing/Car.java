@@ -1,12 +1,14 @@
 package carracing;
 
+import static carracing.view.messages.ExceptionMessage.*;
+
 public class Car {
 	private String name;
 	private int position;
 
 	public Car(String name) {
 		if (name.length() < 1 || name.length() > 5) {
-			throw new IllegalArgumentException("자동차 이름의 길이는 한 글자 이상, 다섯 글자 이하여야합니다.");
+			throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEPTION.getMessage());
 		}
 		this.name = name;
 		this.position = 0;

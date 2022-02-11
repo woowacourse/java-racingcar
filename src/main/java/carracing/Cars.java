@@ -1,9 +1,9 @@
 package carracing;
 
+import static carracing.view.messages.ExceptionMessage.*;
+
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 import carracing.view.OutputView;
@@ -17,7 +17,7 @@ public class Cars {
 			.distinct()
 			.count() != cars.size();
 		if (isDuplicated) {
-			throw new IllegalArgumentException("자동차 이름은 중복이 되면 안됩니다.");
+			throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
 		}
 		this.cars = cars;
 	}
