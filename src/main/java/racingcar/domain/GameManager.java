@@ -14,8 +14,8 @@ import static racingcar.util.ValidatorUtils.validatePositiveInt;
 
 public class GameManager {
 
-    List<Car> cars = new ArrayList<>();
-    int totalRounds;
+    private final CarRepository carRepository = new CarRepository();
+    private int totalRounds;
 
     public void run() {
         String[] carNames = requestAndSplitCarNames();
@@ -24,38 +24,6 @@ public class GameManager {
 
         playAllRounds();
         OutputView.printWinners(getWinners());
-    }
-
-    private List<Car> getWinners() {
-        List<Car> winners = new ArrayList<>();
-        int maxPosition = 0;
-
-        for (Car car : cars) {
-            int currentPosition = car.getPosition();
-            if (maxPosition > currentPosition) {
-                continue;
-            }
-            if (maxPosition < currentPosition) {
-                winners.clear();
-            }
-            winners.add(car);
-            maxPosition = currentPosition;
-        }
-        return winners;
-    }
-
-    private void playAllRounds() {
-        OutputView.printRoundResultText();
-        for (int i = 0; i < totalRounds; i++) {
-            playRound();
-            OutputView.printRoundResult(cars);
-        }
-    }
-
-    private void playRound() {
-        for (Car car : cars) {
-            car.goOrNot(RandomUtils.generateNumber());
-        }
     }
 
     private String[] requestAndSplitCarNames() {
@@ -82,7 +50,7 @@ public class GameManager {
 
     private void initCars(String[] carNames) {
         for (String name : carNames) {
-            cars.add(new Car(name));
+            carRepository.add(new Car(name));
         }
     }
 
@@ -96,5 +64,43 @@ public class GameManager {
         int totalRoundsInput = Integer.parseInt(userInput);
         validatePositiveInt(totalRoundsInput);
         return totalRoundsInput;
+    }
+
+    private void playAllRounds() {
+        List<Car> cars = carRepository.findAllCars();
+        
+        OutputView.printRoundResultText();
+        for (int i = 0; i < totalRounds; i++) {
+            playRound();
+            OutputView.printRoundResult(cars);
+        }
+    }
+
+    private void playRound() {
+        List<Car> cars = carRepository.findAllCars();
+
+        for (Car car : cars) {
+            car.goOrNot(RandomUtils.generateNumber());
+        }
+    }
+
+    private List<Car> getWinners() {
+        List<Car> winners = new ArrayList<>();
+        List<Car> cars = carRepository.findAllCars();
+
+        int maxPosition = 0;
+
+        for (Car car : cars) {
+            int currentPosition = car.getPosition();
+            if (maxPosition > currentPosition) {
+                continue;
+            }
+            if (maxPosition < currentPosition) {
+                winners.clear();
+            }
+            winners.add(car);
+            maxPosition = currentPosition;
+        }
+        return winners;
     }
 }
