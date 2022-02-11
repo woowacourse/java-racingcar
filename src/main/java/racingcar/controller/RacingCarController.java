@@ -16,15 +16,22 @@ public class RacingCarController {
 	}
 
 	public void run() {
-		String carNames = inputView.inputCarNames();
-		String roundNumber = inputView.inputRoundNumber();
+		RacingCarService service = createRacingService();
+		startRacing(service);
+	}
 
-		RacingCarService service = new RacingCarService(carNames, roundNumber);
+	private void startRacing(RacingCarService service) {
 		outputView.printProcessPrompt();
 		while (!service.isEnd()) {
 			Cars result = service.run();
 			outputView.printCarsPosition(result);
 		}
 		outputView.printWinners(service.getWinners());
+	}
+
+	private RacingCarService createRacingService() {
+		String carNames = inputView.inputCarNames();
+		String roundNumber = inputView.inputRoundNumber();
+		return new RacingCarService(carNames, roundNumber);
 	}
 }

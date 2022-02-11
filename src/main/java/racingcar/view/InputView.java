@@ -13,7 +13,6 @@ public class InputView {
         this.sc = sc;
     }
 
-
     public String inputCarNames() {
         System.out.println(CAR_NAME_PROMPT);
         return sc.nextLine();

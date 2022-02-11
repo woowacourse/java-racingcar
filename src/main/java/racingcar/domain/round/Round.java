@@ -14,10 +14,14 @@ public class Round {
 	}
 
 	public Round(int round) {
+		validate(round);
+		this.round = round;
+	}
+
+	private void validate(int round) {
 		if (round < MIN_NUMBER) {
 			throw new NumberTooSmallException("1 이상의 양수를 입력하세요.");
 		}
-		this.round = round;
 	}
 
 	private static int parseInt(String round) {
