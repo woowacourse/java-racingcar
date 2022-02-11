@@ -13,7 +13,7 @@ public class Cars {
     private final RandomNumberGenerator randomNumberGenerator;
 
     public Cars(List<String> names, RandomNumberGenerator randomNumberGenerator) {
-        cars = names.stream().map(Car::from).collect(toList());
+        cars = names.stream().map(Car::of).collect(toList());
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
