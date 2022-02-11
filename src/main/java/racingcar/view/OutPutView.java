@@ -6,10 +6,10 @@ import racingcar.domain.Car;
 
 public class OutPutView {
     private static final String STATUS_MESSAGE = "실행 결과";
-    public static final String STATUS_FORMAT = " " + ":" + " ";
+    private static final String STATUS_FORMAT = " " + ":" + " ";
     private static final String POSITION_FORMAT = "-";
-    public static final String RESULT_DELIMITER = ", ";
-    public static final String RESULT_MESSAGE = "가 최종 우승했습니다.";
+    private static final String RESULT_DELIMITER = ", ";
+    private static final String RESULT_MESSAGE = "가 최종 우승했습니다.";
 
     public static void printStatusMessage() {
         System.out.println();
