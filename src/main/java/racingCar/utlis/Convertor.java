@@ -1,10 +1,10 @@
 package racingCar.utlis;
 
 public class Convertor {
-	public static final String REGEX = ",";
+	public static final String SEPARATION_REGEX = ",";
 
 	public static String[] separateNamesByDelimiter(String names) {
-		return names.split(REGEX);
+		return names.split(SEPARATION_REGEX);
 	}
 
 	public static int convertStringToInteger(String count) {
