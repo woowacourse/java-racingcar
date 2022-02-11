@@ -2,15 +2,18 @@ package racingcar.view;
 
 import java.util.Scanner;
 
+import static racingcar.constants.OutputMessages.REQUEST_CAR_NAME_INPUT_MESSAGE;
+import static racingcar.constants.OutputMessages.REQUEST_TOTAL_ROUNDS_INPUT_MESSAGE;
+
 public class InputView {
 
     public static String requestCarNameInput() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        System.out.println(REQUEST_CAR_NAME_INPUT_MESSAGE);
         return InputView.requestUserInput();
     }
 
     public static String requestTotalRoundsInput() {
-        System.out.println("시도할 회수는 몇회인가요?");
+        System.out.println(REQUEST_TOTAL_ROUNDS_INPUT_MESSAGE);
         return InputView.requestUserInput();
     }
 

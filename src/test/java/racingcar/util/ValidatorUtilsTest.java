@@ -52,7 +52,6 @@ public class ValidatorUtilsTest {
     @ParameterizedTest
     @ValueSource(strings = {"123456,a,b", "carrots,c,d"})
     void splitAndValidateCarNames_errorOnOverFiveCharacters(String carNamesString) {
-
         assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
                 .withMessageMatching("5글자 이하의 이름을 입력해야 합니다.");

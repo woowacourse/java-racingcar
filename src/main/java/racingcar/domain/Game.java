@@ -5,11 +5,14 @@ import racingcar.util.RandomUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static racingcar.constants.SystemConstants.INCREMENT_VALUE;
+import static racingcar.constants.SystemConstants.INITIAL_ROUND_NUM;
+
 public class Game {
 
     private final CarRepository carRepository = new CarRepository();
-    private int currentRound = 0;
     private final int totalRounds;
+    private int currentRound = INITIAL_ROUND_NUM;
 
     public Game(String[] carNames, int totalRounds) {
         initCars(carNames);
@@ -22,6 +25,10 @@ public class Game {
         }
     }
 
+    public List<Car> getCars() {
+        return carRepository.findAllCars();
+    }
+
     public void playRound() {
         List<Car> cars = carRepository.findAllCars();
 
@@ -29,7 +36,7 @@ public class Game {
             car.goOrNot(RandomUtils.generateNumber());
         }
 
-        currentRound += 1;
+        currentRound += INCREMENT_VALUE;
     }
 
     public List<Car> getWinners() {
@@ -43,11 +50,7 @@ public class Game {
     private int getMaxPosition() {
         return getCars().stream()
                 .mapToInt(Car::getPosition)
-                .max().orElse(0);
-    }
-
-    public List<Car> getCars() {
-        return carRepository.findAllCars();
+                .max().orElseThrow(null);
     }
 
     public boolean isOver() {
