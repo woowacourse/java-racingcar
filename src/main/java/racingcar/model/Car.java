@@ -5,6 +5,9 @@ import java.util.List;
 import racingcar.service.RandomNumberService;
 
 public class Car implements Comparable<Car> {
+	public static final String ONE_STEP = "-";
+	public static final String COLON = " : ";
+	public static final int MOVING_CONDITION_NUMBER = 4;
 	private String name;
 	private int position = 0;
 
@@ -23,23 +26,13 @@ public class Car implements Comparable<Car> {
 		return this.name.equals(car.name);
 	}
 
-	public void move() {
-		if (checkMovingCondition(RandomNumberService.getRandomNumber())) {
-			position += 1;
-		}
-	}
-
-	public boolean checkMovingCondition(int randomNumber) {
-		return randomNumber >= 4;
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder line = new StringBuilder();
 		for (int i = 0; i < position; i++) {
-			line.append("-");
+			line.append(ONE_STEP);
 		}
-		return name + " : " + line.toString();
+		return name + COLON + line.toString();
 	}
 
 	@Override
@@ -47,11 +40,21 @@ public class Car implements Comparable<Car> {
 		return position - o.position;
 	}
 
+	public void move() {
+		if (checkMovingCondition(RandomNumberService.getRandomNumber())) {
+			position += 1;
+		}
+	}
+
+	public boolean checkMovingCondition(int randomNumber) {
+		return randomNumber >= MOVING_CONDITION_NUMBER;
+	}
+
 	public boolean isSamePosition(Car otherCar) {
 		return this.position == otherCar.position;
 	}
 
-	public void collectName(List<String> winnerNames) {
+	public void appendName(List<String> winnerNames) {
 		winnerNames.add(name);
 	}
 }

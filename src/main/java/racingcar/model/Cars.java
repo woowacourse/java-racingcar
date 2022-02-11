@@ -26,7 +26,7 @@ public class Cars {
 		List<String> winners = new ArrayList<String>();
 		cars.stream()
 			.filter(maxPositionCar::isSamePosition)
-			.forEach(car -> car.collectName(winners));
+			.forEach(car -> car.appendName(winners));
 		return winners;
 	}
 
