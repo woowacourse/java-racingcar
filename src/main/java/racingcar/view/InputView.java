@@ -10,7 +10,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String InputTryCountUi() {
+    public static String inputTryCountUi() {
         OutputView.printInputTryCountUi();
         return scanner.nextLine();
     }

@@ -23,4 +23,8 @@ public class OutputView {
                 .map(Name::toString)
                 .collect(Collectors.joining(", ")));
     }
+
+    public static void printErrorUi(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
 }
