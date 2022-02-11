@@ -14,6 +14,7 @@ public class InputView {
     private static final String ERROR_ROUND_MINIMUM_ONE = "입력한 이동 숫자가 0 이하일수는 없습니다.";
     private static final String ERROR = "[ERROR] ";
     private static final String SPLIT_CARS_NAME = ",";
+    private static final String BLANK = " ";
     private static final int SPLIT_LIMIT = -1;
     private static final int CAR_NAME_LIMIT = 5;
     private static final int ROUND_MINIMUM_ONE = 1;
@@ -50,9 +51,8 @@ public class InputView {
         }
     }
 
-
     private static void validateCarsNameBlank(String carName) {
-        if (carName.contains(" ")) {
+        if (carName.contains(BLANK)) {
             throw new IllegalArgumentException(ERROR_CAR_NAME_BLANK);
         }
     }
