@@ -12,6 +12,8 @@ public class RacingCar {
 	public static final String RESULT = "실행결과";
 	public static final String COMMA_SPACE = ", ";
 	public static final String FINAL_WINNER = "가 최종 우승했습니다.";
+	public static final String COMMA = ",";
+	public static final int NAME_MAX_LENGTH = 5;
 	private ArrayList<Car> cars = new ArrayList<>();
 	private int maxPosition = Integer.MIN_VALUE;
 	private int times;
@@ -27,8 +29,20 @@ public class RacingCar {
 	}
 
 	private String[] racingCarNames() {
-		String inputCarName = userInput(ENTER_CAR_NAMES);
-		return makeCarNames(inputCarName);
+		String input = userInput(ENTER_CAR_NAMES);
+		try {
+			checkEndBlank(input);
+		} catch (RuntimeException e) {
+			return racingCarNames();
+		}
+		return makeCarNames(input);
+	}
+
+	private void checkEndBlank(String input) throws RuntimeException{
+		if (input.endsWith(",")) {
+			System.out.println(NAME_ERROR);
+			throw new RuntimeException();
+		}
 	}
 
 	private void racingCarTimes() {
@@ -56,7 +70,7 @@ public class RacingCar {
 	}
 
 	private String[] splitCarNames(String input) {
-		String[] carNames = input.split(",");
+		String[] carNames = input.split(COMMA);
 		return carNames;
 	}
 
@@ -76,7 +90,7 @@ public class RacingCar {
 	}
 
 	private boolean isRightLength(String name) {
-		return name.length() == 0 || name.length() > 5;
+		return name.length() == 0 || name.length() > NAME_MAX_LENGTH;
 	}
 
 	public void enterTimes(String input) {
