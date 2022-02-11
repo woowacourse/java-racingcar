@@ -13,7 +13,8 @@ public class CarDto {
 		return name;
 	}
 
-	public int getPosition() {
-		return position;
+	@Override
+	public String toString() {
+		return this.name + " : " + "-".repeat(this.position);
 	}
 }

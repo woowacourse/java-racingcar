@@ -11,12 +11,12 @@ public class ResultView {
 	private static final String BEFORE_GAME_RESULT_MESSAGE = "실행 결과";
 	private static final String JOIN_DELIMITER = ", ";
 	private static final String WINNERS_RESULT_SUFFIX= "가 최종 우승했습니다.";
+
 	public static void printGameResult(List<CarDto> cars) {
-		for (CarDto carDto : cars) {
-			System.out.print(carDto.getName() + " : ");
-			System.out.println("-".repeat(carDto.getPosition()));
-		}
-		System.out.println();
+		cars.stream()
+			.map(CarDto::toString)
+			.forEach(System.out::println);
+		printEmptyLine();
 	}
 
 	public static void printWinners(List<CarDto> cars) {
