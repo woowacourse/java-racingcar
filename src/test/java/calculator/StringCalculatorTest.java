@@ -1,15 +1,16 @@
 package calculator;
 
 import static org.assertj.core.api.Assertions.*;
-
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class StringCalculatorTest {
-	@Test
-	void 빈_문자열_또는_null값_입력(){
-		assertThat(StringCalculator.calculate(null)).isEqualTo(0);
-		assertThat(StringCalculator.calculate("")).isEqualTo(0);
+	@ParameterizedTest
+	@NullAndEmptySource
+	void 빈_문자열_또는_null값_입력(String input){
+		assertThat(StringCalculator.calculate(input)).isEqualTo(0);
 	}
 
 	@Test
@@ -24,15 +25,18 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	void 숫자_이외의_값_입력() {
-		assertThatThrownBy(() -> StringCalculator.calculate("a")).isInstanceOf(RuntimeException.class);
+	void 숫자_이외의_타입_입력() {
 		assertThatThrownBy(() -> StringCalculator.calculate("//;\n1:a,3")).isInstanceOf(RuntimeException.class);
 	}
 
 	@Test
-	void 자연수나_0_이외_입력() {
-		assertThatThrownBy(() -> StringCalculator.calculate("-3")).isInstanceOf(RuntimeException.class);
+	void 음수_입력() {
 		assertThatThrownBy(() -> StringCalculator.calculate("-3,2:1")).isInstanceOf(RuntimeException.class);
+
+	}
+
+	@Test
+	void 소수_입력(){
 		assertThatThrownBy(() -> StringCalculator.calculate("0.5,1.2:2")).isInstanceOf(RuntimeException.class);
 	}
 }
