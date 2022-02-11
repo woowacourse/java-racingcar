@@ -22,8 +22,7 @@ public class InputController {
 
             try {
                 Validation.carNameValidation(names);
-                List<Car> carList = splitList(names);
-                return carList;
+                return splitList(names);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
