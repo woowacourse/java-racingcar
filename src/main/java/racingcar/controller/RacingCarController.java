@@ -12,7 +12,11 @@ import racingcar.view.InputView;
 import racingcar.view.OutPutView;
 
 public class RacingCarController {
-    private final Racing racing = new Racing();
+    private final Racing racing;
+
+    public RacingCarController(Racing racing) {
+        this.racing = racing;
+    }
 
     public void run() {
         OutPutView.printResult(racing.race(getCars(), InputView.getCount()));
