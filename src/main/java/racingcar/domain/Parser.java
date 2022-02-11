@@ -3,11 +3,13 @@ package racingcar.domain;
 public class Parser {
     private static final int EMPTY = 0;
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String DELIMITER = ",";
+    private static final int CAN_START = 1;
 
     public static String[] split(String text) {
         isValidInput(text);
 
-        String[] carNames = text.split(",");
+        String[] carNames = text.split(DELIMITER);
         isValidAmount(carNames);
 
         for (String carName : carNames) {
@@ -38,7 +40,7 @@ public class Parser {
         if (!round.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException();
         }
-        if (Integer.parseInt(round) < 1) {
+        if (Integer.parseInt(round) < CAN_START) {
             throw new IllegalArgumentException();
         }
     }
