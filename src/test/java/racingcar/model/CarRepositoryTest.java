@@ -46,11 +46,11 @@ public class CarRepositoryTest {
 		carRepository.save(car2);
 
 		carRepository.move(numbers);
-		List<CarDto> winners = carRepository.getCars();
+		List<CarDto> cars = carRepository.getCars();
 		CarDto expected = new CarDto("소주캉", 1);
 		CarDto expected2 = new CarDto("범고래", 0);
-		assertThat(winners.contains(expected)).isTrue();
-		assertThat(winners.contains(expected2)).isTrue();
+		assertThat(cars.contains(expected)).isTrue();
+		assertThat(cars.contains(expected2)).isTrue();
 	}
 
 	@Test
