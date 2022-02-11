@@ -4,6 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +29,7 @@ class RacingCarServiceTest {
 		for (int i = 0; i < expectMaxPosition; i++) {
 			car3.moveCar();
 		}
-		racingCarService.cars = new ArrayList<>(Arrays.asList(new Car[] {car1, car2, car3}));
+		racingCarService.cars = new ArrayList<>(Arrays.asList(car1, car2, car3));
 		assertThat(racingCarService.findMaxPosition()).isEqualTo(expectMaxPosition);
 	}
 
@@ -47,8 +48,8 @@ class RacingCarServiceTest {
 		for (int i = 0; i < expectMaxPosition; i++) {
 			car3.moveCar();
 		}
-		racingCarService.cars = new ArrayList<>(Arrays.asList(new Car[] {car1, car2, car3}));
-		ArrayList<String> result = new ArrayList<>(Arrays.asList(new String[] {"pobi"}));
+		racingCarService.cars = new ArrayList<>(Arrays.asList(car1, car2, car3));
+		ArrayList<String> result = new ArrayList<>(Collections.singletonList("pobi"));
 		assertThat(racingCarService.findWinner()).isEqualTo(result);
 	}
 }
