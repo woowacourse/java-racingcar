@@ -6,6 +6,7 @@ import java.util.Objects;
 
 class Position implements Comparable<Position> {
     private static final int INCREASE_DISTANCE = 1;
+    private static final int DEFAULT_POSITION = 0;
     private static final String DISTANCE_BAR = "-";
 
     private final int position;
@@ -15,7 +16,7 @@ class Position implements Comparable<Position> {
     }
 
     public static Position create() {
-        return new Position(0);
+        return new Position(DEFAULT_POSITION);
     }
 
     public static Position from(int position) {

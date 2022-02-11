@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Names {
+    private static final String SPLIT_DELIMITER = ",";
+    private static final String TO_STRING_DELIMITER = ", ";
+
     private final List<Name> names;
 
     private Names(List<Name> names) {
@@ -15,7 +18,7 @@ public class Names {
     }
 
     public static Names from(String text) {
-        String[] splitText = text.split(",");
+        String[] splitText = text.split(SPLIT_DELIMITER);
         StringValidator.validateDuplicated(splitText);
 
         return new Names(Arrays.stream(splitText)
@@ -35,6 +38,6 @@ public class Names {
     public String toString() {
         return names.stream()
                 .map(Name::toString)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(TO_STRING_DELIMITER));
     }
 }

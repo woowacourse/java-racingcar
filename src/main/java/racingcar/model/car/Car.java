@@ -10,6 +10,7 @@ public class Car implements Comparable<Car> {
     private static final int MAX_RANDOM_BOUND = 9;
     private static final int MIN_MOVABLE_VALUE = 4;
 
+
     private final Name name;
     private final RandomUtil randomUtil;
     private Position position;
@@ -21,7 +22,7 @@ public class Car implements Comparable<Car> {
     }
 
     public static Car from(String name) {
-        return new Car(Name.from(name), Position.from(0), new RandomNumber());
+        return new Car(Name.from(name), Position.create(), new RandomNumber());
     }
 
     public static Car of(String name, int position, RandomUtil randomUtil) {
