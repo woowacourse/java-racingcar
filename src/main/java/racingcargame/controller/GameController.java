@@ -1,34 +1,46 @@
 package racingcargame.controller;
 
+import java.util.List;
+
 import racingcargame.model.RacingCarGame;
 import racingcargame.view.OutputView;
 
-import java.util.List;
-
 public class GameController {
-    private static final GameController gameController = new GameController();
-    private static InputController inputController = InputController.getInputController();
+	private static final GameController gameController = new GameController();
+	private static InputController inputController = InputController.getInputController();
 
-    private GameController() {
-    }
+	private GameController() {
+	}
 
-    public static GameController getGameController() {
-        return gameController;
-    }
+	public static GameController getGameController() {
+		return gameController;
+	}
 
-    public void runGame() {
-        OutputView.showCarNamesInputGuideMessage();
-        List<String> carNames = inputController.inputCarName();
+	public void runGame() {
+		RacingCarGame racingCarGame = setUpGame();
 
-        OutputView.showRaceCountInputGuideMessage();
-        int raceCount = inputController.inputRaceCount();
+		playGame(racingCarGame);
 
-        RacingCarGame racingCarGame = new RacingCarGame(carNames, raceCount);
+		finishGame(racingCarGame);
+	}
 
-        OutputView.showRaceProgressGuideMessage();
-        while (!racingCarGame.isOverRace()) {
-            OutputView.showRaceProgress(racingCarGame.startRace());
-        }
-        OutputView.showGameWinner(racingCarGame.findRacingGameWinner());
-    }
+	private RacingCarGame setUpGame() {
+		OutputView.showCarNamesInputGuideMessage();
+		List<String> carNames = inputController.inputCarName();
+
+		OutputView.showRaceCountInputGuideMessage();
+		int raceCount = inputController.inputRaceCount();
+
+		return new RacingCarGame(carNames, raceCount);
+	}
+
+	private void playGame(RacingCarGame racingCarGame) {
+		while (!racingCarGame.isOverRace()) {
+			OutputView.showRaceProgress(racingCarGame.startRace());
+		}
+	}
+
+	private void finishGame(RacingCarGame racingCarGame) {
+		OutputView.showGameWinner(racingCarGame.findRacingGameWinner());
+	}
 }
