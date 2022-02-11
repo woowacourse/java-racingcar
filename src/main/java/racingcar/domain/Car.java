@@ -5,6 +5,8 @@ import java.util.Random;
 public class Car {
     private static final int RANGE = 10;
     private static final int THRESHOLD = 4;
+    private static final String DELIMITER = " : ";
+    private static final String DISTANCE = "-";
 
     private final String name;
     private int position = 0;
@@ -25,18 +27,15 @@ public class Car {
     }
 
     public String getCurrentPosition() {
-        String currentPosition = name + " : ";
+        String currentPosition = name + DELIMITER;
         for (int i = 0; i < position; i++) {
-            currentPosition += "-";
+            currentPosition += DISTANCE;
         }
         return currentPosition;
     }
 
     public int comparePosition(int highScore) {
-        if (position > highScore) {
-            return position;
-        }
-        return highScore;
+        return Math.max(position, highScore);
     }
 
     public boolean isChampion(int highScore) {
