@@ -24,8 +24,9 @@ public class RacingGame {
         return new RacingGame(carsName, round, numberGeneratePolicy);
     }
 
-    public void race() {
+    public RacingRecord race() {
         cars.driveAll(numberGeneratePolicy);
+        return new RacingRecord(cars.getDriveRecord());
     }
 
     public boolean isContinue() {

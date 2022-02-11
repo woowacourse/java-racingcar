@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,5 +23,7 @@ public class Cars {
         cars.forEach(car -> car.drive(numberGeneratePolicy.generateNumber()));
     }
 
-
+    public List<Car> getDriveRecord() {
+        return Collections.unmodifiableList(cars);
+    }
 }

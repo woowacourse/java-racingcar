@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.RacingGame;
+import racingcar.domain.RacingRecord;
 import racingcar.util.RandomNumberGeneratePolicy;
 import racingcar.view.InputView;
 
@@ -12,7 +13,7 @@ public class RacingGameController {
             new RandomNumberGeneratePolicy()
         );
         while (racingGame.isContinue()) {
-            racingGame.race();
+            RacingRecord racingRecord = racingGame.race();
         }
     }
 }
