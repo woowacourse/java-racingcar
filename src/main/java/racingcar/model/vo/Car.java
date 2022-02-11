@@ -1,5 +1,7 @@
 package racingcar.model.vo;
 
+import java.util.Objects;
+
 public class Car implements Comparable<Car> {
     private static final int ADVANCE_STANDARD = 4;
     private static final int MAXIMUM_LENGTH = 5;
@@ -44,5 +46,28 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(final Car car) {
         return this.position - car.position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Car car = (Car)o;
+        return position == car.position && name.equals(car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+            "name='" + name + '\'' +
+            ", position=" + position +
+            '}';
     }
 }

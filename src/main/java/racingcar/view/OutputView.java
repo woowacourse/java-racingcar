@@ -1,13 +1,13 @@
 package racingcar.view;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import racingcar.model.vo.Car;
 
 public class OutputView {
     public static final String WINNERS_DELIMITER = ", ";
     public static final String WINNER_ANNOUNCE_MESSAGE = "%s가 최종 우승했습니다.";
+    public static final String RACE_PROGRESS_CHARACTER = "-";
 
     public static void printCurrentPosition(final List<Car> cars) {
         cars.forEach(OutputView::printRacingProgress);
@@ -19,9 +19,7 @@ public class OutputView {
     }
 
     private static String getPositionString(final int position) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("-".repeat(Math.max(0, position)));
-        return builder.toString();
+        return RACE_PROGRESS_CHARACTER.repeat(Math.max(0, position));
     }
 
     public static void printWinner(final List<String> winners) {
