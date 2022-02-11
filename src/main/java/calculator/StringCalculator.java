@@ -3,10 +3,25 @@ package calculator;
 import static calculator.Message.*;
 import static calculator.Constants.*;
 
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+
+	public static void main(String[] args) {
+		calculator();
+	}
+
+	public static void calculator() {
+		System.out.println(add(userInput()));
+	}
+
+	public static String userInput() {
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextLine();
+	}
+
 	public static int add(String input) {
 		if (isNullOREmpty(input)) {
 			return NULL_OR_EMPTY;

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class RacingCarTest {
 	private final RacingCar racingCar = new RacingCar();
 
