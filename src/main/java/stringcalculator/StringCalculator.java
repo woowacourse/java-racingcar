@@ -12,18 +12,22 @@ public class StringCalculator {
 	public static final int MATCH_GROUP_NEXT_INDEX = 2;
 	private String regex = "[,:]";
 
-	public String[] splitString(String str) {
-		if (str == null || str.isEmpty()) {
+	public int calculateString(String string) {
+		return sumString(splitString(string));
+	}
+
+	public String[] splitString(String string) {
+		if (string == null || string.isEmpty()) {
 			return new String[] {"0"};
 		}
-		CheckException.checkSplitOk(str, regex);
-		Matcher matcher = Pattern.compile(CUSTOM_REGEX).matcher(str);
+		CheckException.checkSplitOk(string, regex);
+		Matcher matcher = Pattern.compile(CUSTOM_REGEX).matcher(string);
 		if (matcher.find()) {
 			regex += OR_STRING + matcher.group(MATCH_GROUP_INDEX);
-			CheckException.checkSplitOk(str, regex);
+			CheckException.checkSplitOk(string, regex);
 			return matcher.group(MATCH_GROUP_NEXT_INDEX).split(regex);
 		}
-		return str.split(regex);
+		return string.split(regex);
 	}
 
 	public int sumString(String[] splitStringArray) {

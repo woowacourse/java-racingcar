@@ -27,8 +27,9 @@ public class StringCalculatorTest {
 		String[] splitStringArray = stringCalculator.splitString(str);
 		assertThat(splitStringArray).contains("2", "3", "4");
 	}
+
 	@Test
-	public void 파라미터가_숫자가_아닌경우(){
+	public void 파라미터가_숫자가_아닌경우() {
 		String str = "1,2,a";
 		String[] splitStringArray = stringCalculator.splitString(str);
 		assertThatThrownBy(() -> {
@@ -37,7 +38,7 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	public void 구분자_앞에_아무것도_없는경우(){
+	public void 구분자_앞에_아무것도_없는경우() {
 		String str = ",,1,2";
 		assertThatThrownBy(() -> {
 			String[] splitStringArray = stringCalculator.splitString(str);
@@ -46,7 +47,7 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	public void 구분자_뒤에_아무것도_없는경우(){
+	public void 구분자_뒤에_아무것도_없는경우() {
 		String str = "1,2,,,";
 		assertThatThrownBy(() -> {
 			String[] splitStringArray = stringCalculator.splitString(str);
@@ -55,7 +56,7 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	public void 구분자_중간에_아무것도_없는경우(){
+	public void 구분자_중간에_아무것도_없는경우() {
 		String str = "1,;2";
 		assertThatThrownBy(() -> {
 			String[] splitStringArray = stringCalculator.splitString(str);
@@ -64,7 +65,7 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	public void 구분자_뒤에_아무것도_없는경우_커스텀구분자_포함(){
+	public void 구분자_뒤에_아무것도_없는경우_커스텀구분자_포함() {
 		String str = "\\!\n1,2!!";
 		assertThatThrownBy(() -> {
 			String[] splitStringArray = stringCalculator.splitString(str);
@@ -73,7 +74,7 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	public void 구분자_중간에_아무것도_없는경우_커스텀구분자_포함(){
+	public void 구분자_중간에_아무것도_없는경우_커스텀구분자_포함() {
 		String str = "\\!\n1!!2";
 		assertThatThrownBy(() -> {
 			String[] splitStringArray = stringCalculator.splitString(str);
@@ -82,17 +83,24 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	public void 빈문자_입력(){
+	public void 빈문자_입력() {
 		String str = "";
 		String[] splitStringArray = stringCalculator.splitString(str);
 		assertThat(splitStringArray).contains("0");
 	}
 
 	@Test
-	public void null_입력(){
+	public void null_입력() {
 		String str = null;
 		String[] splitStringArray = stringCalculator.splitString(str);
 		assertThat(splitStringArray).contains("0");
+	}
+
+	@Test
+	public void 계산기_테스트() {
+		String str = "1,2:4";
+		int actual = stringCalculator.calculateString(str);
+		assertThat(actual).isEqualTo(7);
 	}
 
 	/*
