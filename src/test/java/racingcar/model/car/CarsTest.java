@@ -23,6 +23,19 @@ public class CarsTest {
                 .isEqualTo("car1 : -\ncar2 : \ncar3 : -");
     }
 
+    @Test
+    void 위치와_일치하는_자동차의_리스트를_가져온다() {
+        Cars cars = Cars.create();
+        cars.add(Car.of("car1", 2));
+        cars.add(Car.of("car2", 3));
+        cars.add(Car.of("car3", 8));
+        cars.add(Car.of("car4", 11));
+        cars.add(Car.of("car5", 11));
+
+        assertThat(cars.getCarsByPosition(Position.from(11)))
+                .contains(Car.from("car4"), Car.from("car5"));
+    }
+
     @DisplayName("getFirstPosition 메소드는")
     @Nested
     class GetFirstPosition {

@@ -42,6 +42,12 @@ public class Cars {
         return cars.get(0).getPosition();
     }
 
+    public List<Car> getCarsByPosition(Position position) {
+        return cars.stream()
+                .filter((car) -> car.getPosition().equals(position))
+                .collect(Collectors.toList());
+    }
+
     @Override
     public String toString() {
         return cars.stream()
