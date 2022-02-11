@@ -4,6 +4,7 @@ import racingcar.domain.Cars;
 import racingcar.io.Input;
 import racingcar.io.Output;
 import racingcar.vo.Trial;
+import racingcar.vo.Winners;
 
 public class RacingGame {
     private final Input input;
@@ -17,6 +18,14 @@ public class RacingGame {
     public void start() {
         Cars cars = new Cars(InputNameHandler.createNames(input.inputCarNames()));
         Trial trial = Trial.create(input.inputTrials());
-        output.printWinner(cars.race(trial.getCount()));
+        output.printWinner(race(cars, trial.getCount()));
+    }
+
+    public Winners race(Cars cars, int trials) {
+        for (int round = 0; round < trials; round++) {
+            cars.move();
+            output.printCurrentPosition(cars.iterator());
+        }
+        return cars.getWinners();
     }
 }

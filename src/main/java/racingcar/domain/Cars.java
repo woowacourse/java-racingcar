@@ -1,10 +1,13 @@
 package racingcar.domain;
 
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import racingcar.util.RandomUtil;
 import racingcar.vo.Name;
+import racingcar.vo.Winners;
 
 public class Cars {
     private List<Car> cars;
@@ -19,22 +22,12 @@ public class Cars {
             .collect(Collectors.toList());
     }
 
-    public List<Name> race(int trials) {
-        for (int round = 0; round < trials; round++) {
-            move();
-        }
-        return getWinner(getMaxPosition());
-    }
-
-    private void move() {
+    public void move() {
         cars.forEach(car -> car.advance(RandomUtil.getNumbersInRange(10)));
     }
 
-    private List<Name> getWinner(int maxPosition) {
-        return cars.stream()
-                .filter(car -> car.isEqualPosition(maxPosition))
-                .map(Car::getName)
-                .collect(Collectors.toList());
+    public Winners getWinners() {
+        return pickWinners(getMaxPosition());
     }
 
     private int getMaxPosition() {
@@ -42,5 +35,16 @@ public class Cars {
             .max(Car::compareTo)
             .orElseThrow(NoSuchElementException::new)
             .getPosition();
+    }
+
+    private Winners pickWinners(int maxPosition) {
+        return new Winners(cars.stream()
+            .filter(car -> car.isEqualPosition(maxPosition))
+            .map(Car::getName)
+            .collect(Collectors.toList()));
+    }
+
+    public Iterator<Car> iterator() {
+        return Collections.unmodifiableList(cars).iterator();
     }
 }
