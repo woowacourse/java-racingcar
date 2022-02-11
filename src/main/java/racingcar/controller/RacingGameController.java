@@ -4,6 +4,7 @@ import racingcar.domain.RacingGame;
 import racingcar.domain.RacingRecord;
 import racingcar.util.RandomNumberGeneratePolicy;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class RacingGameController {
     public static void main(String[] args) {
@@ -14,6 +15,7 @@ public class RacingGameController {
         );
         while (racingGame.isContinue()) {
             RacingRecord racingRecord = racingGame.race();
+            OutputView.printRacingRecord(racingRecord);
         }
     }
 }
