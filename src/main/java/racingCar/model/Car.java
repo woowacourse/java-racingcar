@@ -9,17 +9,17 @@ public class Car {
 	private int position = 0;
 
 	public Car(String name) throws Exception {
-		NameValidator.checkName(name);
+		NameValidator.validateName(name);
 		this.name = name;
 	}
 
 	public void go() {
-		if (Util.getRandomInt() >= 4) {
-			moveCar();
+		if (Util.getRandomInteger() >= 4) {
+			move();
 		}
 	}
 
-	public void moveCar() {
+	public void move() {
 		position++;
 	}
 
@@ -31,7 +31,7 @@ public class Car {
 		return position;
 	}
 
-	public boolean isWinner(int max) {
-		return position == max;
+	public boolean isWinner(int maxPosition) {
+		return position == maxPosition;
 	}
 }

@@ -3,8 +3,7 @@ package racingCar.utlis;
 import java.util.Random;
 
 public class Util {
-	public static int getRandomInt() {
-		Random random = new Random();
-		return random.nextInt(9);
+	public static int getRandomInteger() {
+		return new Random().nextInt(9);
 	}
 }

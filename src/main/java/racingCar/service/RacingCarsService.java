@@ -11,10 +11,26 @@ import racingCar.utlis.Convertor;
 import racingCar.validator.NameValidator;
 import racingCar.view.Output;
 
-public class RacingCarService {
+public class RacingCarsService {
 
-	List<Car> cars = new ArrayList<>();
+	public List<Car> cars = new ArrayList<>();
 	private int count;
+
+	public void initiateCars(String nameString) throws Exception {
+		List<String> carNameList = new ArrayList<>(Arrays.asList(Convertor.separate(nameString)));
+		NameValidator.validateNameList(carNameList);
+		save(carNameList);
+	}
+
+	public void save(List<String> carNameList) throws Exception {
+		for (String name : carNameList) {
+			cars.add(new Car(name));
+		}
+	}
+
+	public void saveCount(int count) {
+		this.count = count;
+	}
 
 	public void runGame() {
 		printResult();
@@ -28,22 +44,6 @@ public class RacingCarService {
 		for (Car car : cars) {
 			car.go();
 		}
-	}
-
-	public void saveCars(String carsNames) throws Exception {
-		List<String> carNameList = new ArrayList<>(Arrays.asList(Convertor.separateNamesByDelimiter(carsNames)));
-		NameValidator.checkNameList(carNameList);
-		save(carNameList);
-	}
-
-	public void save(List<String> carNameList) throws Exception {
-		for (String name : carNameList) {
-			cars.add(new Car(name));
-		}
-	}
-
-	public void saveCount(int count) {
-		this.count = count;
 	}
 
 	public int findMaxPosition() {

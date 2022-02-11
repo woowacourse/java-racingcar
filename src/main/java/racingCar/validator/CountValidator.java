@@ -8,12 +8,12 @@ public class CountValidator {
 	public static final String EXCEPTION_NOT_NUMBER_MESSAGE = "숫자를 입력해주세요.";
 	public static final String EXCEPTION_ZERO_MESSAGE = "0회 이상 입력해주세요.";
 
-	public static void checkCountInput(String inputString) throws Exception {
+	public static void validateInput(String inputString) throws Exception {
 		checkNull(inputString);
 		checkNotNumber(inputString);
 	}
 
-	public static void checkCountIsLessThanZero(int count) throws Exception {
+	public static void validateInteger(int count) throws Exception {
 		if (count <= 0) {
 			throw new Exception(EXCEPTION_ZERO_MESSAGE);
 		}

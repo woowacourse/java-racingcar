@@ -1,6 +1,6 @@
 package racingCar.controller;
 
-import racingCar.service.RacingCarService;
+import racingCar.service.RacingCarsService;
 import racingCar.utlis.Convertor;
 import racingCar.validator.CountValidator;
 import racingCar.validator.NameValidator;
@@ -9,26 +9,26 @@ import racingCar.view.Output;
 
 public class RacingCarsController {
 
-	RacingCarService racingCarService = new RacingCarService();
+	RacingCarsService carsService = new RacingCarsService();
 
-	public void requestCarsName() {
+	public void requestNames() {
 		try {
-			String input = Input.inputCarsName();
-			NameValidator.checkNameInput(input);
-			racingCarService.saveCars(input);
+			String input = Input.inputNames();
+			NameValidator.validateInput(input);
+			carsService.initiateCars(input);
 		} catch (Exception exception) {
 			Output.printError(exception.getMessage());
-			requestCarsName();
+			requestNames();
 		}
 	}
 
 	public void requestCount() {
 		try {
 			String input = Input.inputCount();
-			CountValidator.checkCountInput(input);
-			int count = Convertor.convertStringToInteger(input);
-			CountValidator.checkCountIsLessThanZero(count);
-			racingCarService.saveCount(count);
+			CountValidator.validateInput(input);
+			int count = Convertor.convertToInteger(input);
+			CountValidator.validateInteger(count);
+			carsService.saveCount(count);
 		} catch (Exception exception) {
 			Output.printError(exception.getMessage());
 			requestCount();
@@ -36,11 +36,11 @@ public class RacingCarsController {
 	}
 
 	public void startGame() {
-		racingCarService.runGame();
+		carsService.runGame();
 	}
 
 	public void endGame() {
-		Output.printWinner(racingCarService.findWinner());
+		Output.printWinner(carsService.findWinner());
 	}
 
 }
