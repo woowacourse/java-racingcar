@@ -9,34 +9,17 @@ public class Car {
     private final MovingPolicy movingPolicy;
 
     public Car(String name, MovingPolicy movingPolicy) {
-        validateNull(name);
-        validateEmpty(name);
-        validateBlank(name);
-        validateNameLength(name);
+        validateName(name);
         this.name = name;
         this.position = POSITION_INIT;
         this.movingPolicy = movingPolicy;
     }
 
-    private void validateNull(String name) {
-        if (name == null) {
+    private void validateName(String name) {
+        if (name == null || name.isEmpty() || name.isBlank()) {
             throw new IllegalArgumentException();
         }
-    }
 
-    private void validateEmpty(String name) {
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateBlank(String name) {
-        if (name.isBlank()) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateNameLength(String name) {
         if (name.length() > NAME_LIMITED_LENGTH) {
             throw new IllegalArgumentException();
         }
