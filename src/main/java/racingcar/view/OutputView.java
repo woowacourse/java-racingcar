@@ -7,10 +7,8 @@ public class OutputView {
     public static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
     public static final String WINNER_JOIN_DELIMITER = ", ";
 
-    public static void printCarPosition(List<String> carsToString) {
-        for (String carToString : carsToString) {
-            System.out.println(carToString);
-        }
+    public static void printCarPosition(List<String> cars) {
+        cars.forEach(System.out::println);
         System.out.println();
     }
 
