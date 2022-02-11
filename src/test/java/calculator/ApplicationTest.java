@@ -7,14 +7,20 @@ public class ApplicationTest {
     Application application = new Application();
 
     @Test
-    void 공백_입력_예외_처리() {
+    void NULL_입력_예외_처리() {
         int number = Application.runCalculator(null);
         assertThat(number).isEqualTo(0);
+    }
 
-        number = application.runCalculator("");
+    @Test
+    void 반칸_입력_예외_처리() {
+        int number = application.runCalculator("");
         assertThat(number).isEqualTo(0);
+    }
 
-        number = application.runCalculator(" ");
+    @Test
+    void 공백_입력_예외_처리() {
+        int number = application.runCalculator(" ");
         assertThat(number).isEqualTo(0);
     }
 
