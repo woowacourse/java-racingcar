@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -12,45 +13,68 @@ class InputTest {
 
     static Input input = new Input();
 
+    @DisplayName("자동차 이름 공백 테스트")
     @ParameterizedTest
     @ValueSource(strings = {" "})
-    void 자동차_이름_공백_테스트(String name) {
+    void car_name_empty(String name) {
         assertThatThrownBy(() -> {
             input.checkBlank(name, "자동차 이름은 공백일 수 없습니다.");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("자동차 이름 null 테스트")
     @Test
-    void 자동차_개수_테스트() {
+    void car_name_null() {
+        assertThatThrownBy(() -> {
+            input.checkBlank(null, "자동차 이름은 null 일 수 없습니다.");
+        }).isInstanceOf(NullPointerException.class);
+    }
+    
+    @DisplayName("자동차 개수 테스트")
+    @Test
+    void car_count_test() {
         assertFalse(input.isCars(split("pobi")));
     }
 
+    @DisplayName("자동차 이름 중복 테스트")
     @Test
-    void 자동차_이름_중복_테스트() {
+    void car_name_duplicated() {
         assertTrue(input.isDuplicated(split("pobi,jun,pobi")));
     }
 
+    @DisplayName("자동차 이름 길이 테스트")
     @Test
-    void 자동차_이름_길이_테스트() {
+    void car_name_length() {
         assertThatThrownBy(() -> {
             input.validLength("gooddd");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("시도횟수 공백 테스트")
     @Test
-    void 시도횟수_공백_테스트() {
+    void attempt_empty() {
         assertThatThrownBy(() -> {
-            input.checkBlank(" ", "시는수횟도도 공백일 수 없습니다.");
+            input.checkBlank(" ", "시도횟수는 공백일 수 없습니다.");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("시도횟수 null 테스트")
     @Test
-    void 시도횟수_문자_예외_테스트() {
+    void attempt_null() {
+        assertThatThrownBy(() -> {
+            input.checkBlank(null, "시도횟수는 null 일 수 없습니다.");
+        }).isInstanceOf(NullPointerException.class);
+    }
+
+    @DisplayName("시도횟수 문자 예외 테스트")
+    @Test
+    void attempt_number() {
         assertFalse(input.isNumber("횟수"));
     }
 
+    @DisplayName("시도횟수 음수 테스트")
     @Test
-    void 시도횟수_음수_테스트() {
+    void attempt_negative() {
         assertTrue(input.isNegative("-1"));
     }
 

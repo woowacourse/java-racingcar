@@ -13,7 +13,7 @@ public class StringTest {
 	@Test
 	public void split_테스트() {
 		String splitValue = "1,2";
-		assertThat(Arrays.toString(splitValue.split(","))).isEqualTo("[1, 2]");
+		assertThat(splitValue.split(",")).containsExactly("1", "2");
 	}
 
 	@DisplayName("문자열 반환 테스트")
