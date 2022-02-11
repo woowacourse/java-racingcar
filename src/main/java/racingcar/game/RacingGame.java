@@ -35,6 +35,7 @@ public class RacingGame {
         String[] names = getCarNames().split(",");
 
         for (String name : names) {
+            validateCarName(name);
             carList.add(new Car(name));
         }
 
