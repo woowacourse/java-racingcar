@@ -3,6 +3,8 @@ package racingcar.util;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import racingcar.Constant.ErrorMessage;
+
 public class VerificationUtil {
 
     private static final int CAR_NAME_MIN_LENGTH = 1;
@@ -18,17 +20,17 @@ public class VerificationUtil {
 
     private static void validateCarNameLength(String carName) {
         if (carName.length() < CAR_NAME_MIN_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름은 1글자 이상이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.MORE_THAN_ONE_LETTER);
         }
 
         if (carName.length() > CAR_NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름은 5글자 이하이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LESS_THAN_FIVE_LETTER);
         }
     }
 
     private static void validateCarNameSpace(String carName) {
-        if(carName.contains(" ")){
-            throw new IllegalArgumentException("[ERROR] 공백 없이 입력해주세요.");
+        if (carName.contains(" ")) {
+            throw new IllegalArgumentException(ErrorMessage.NO_SPACE);
         }
     }
 
@@ -36,7 +38,7 @@ public class VerificationUtil {
         HashSet<String> hashSet = new HashSet<>(Arrays.asList(carNames));
 
         if (hashSet.size() < carNames.length) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름이 중복되면 안됩니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED);
         }
     }
 
@@ -50,13 +52,13 @@ public class VerificationUtil {
         try {
             return Integer.parseInt(attempt);
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.MUST_BE_INTEGER);
         }
     }
 
     private static void validatePositiveNumber(int number) {
         if (number <= 0) {
-            throw new IllegalArgumentException("[ERROR] 양수를 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.MUST_BE_POSITIVE);
         }
     }
 }
