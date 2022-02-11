@@ -7,16 +7,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static racingcar.util.VerificationUtil.*;
-import static racingcar.view.InputView.getAttemptCount;
-import static racingcar.view.InputView.getCarNames;
+import static racingcar.util.InitUtil.initCar;
+import static racingcar.util.InitUtil.initTotalAttempt;
 import static racingcar.view.OutputView.*;
 
 public class RacingGame {
 
     public static final int ZERO = 0;
     public static final int FIRST_INDEX = 0;
-    public static final String SEPARATOR = ",";
 
     private List<Car> carList = new ArrayList<>();
     private List<String> winnerNameList = new ArrayList<>();
@@ -35,24 +33,8 @@ public class RacingGame {
     }
 
     private void initRacingCarGame() throws IllegalArgumentException {
-        initCarNames();
-        initTotalAttempt();
-    }
-
-    private void initCarNames() {
-        String[] names = getCarNames().split(SEPARATOR);
-        validateDuplication(names);
-
-        for (String name : names) {
-            validateCarName(name);
-            carList.add(new Car(name));
-        }
-    }
-
-    private void initTotalAttempt() {
-        String attempt = getAttemptCount();
-        validateAttempt(attempt);
-        totalAttemptCount = Integer.parseInt(attempt);
+        carList = initCar();
+        totalAttemptCount = initTotalAttempt();
     }
 
     private void run() {
