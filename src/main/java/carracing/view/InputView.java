@@ -6,8 +6,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import carracing.view.messages.ExceptionMessage;
-
 public class InputView {
 	private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -24,10 +22,9 @@ public class InputView {
 	}
 
 	public static int getNumberOfGames() {
-		String line = "";
 		int numberOfGames = 0;
 		try {
-			line = bufferedReader.readLine();
+			String line = bufferedReader.readLine();
 			validateEmptyString(line);
 			validateNumber(line);
 			numberOfGames = toInt(line);
@@ -60,5 +57,4 @@ public class InputView {
 			throw new IllegalArgumentException(INPUT_NUMBER_ZERO_EXCEPTION.getMessage());
 		}
 	}
-
 }
