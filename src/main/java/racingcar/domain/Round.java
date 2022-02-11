@@ -1,9 +1,11 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 public class Round {
     private static final int ZERO = 0;
-
-    private int roundNum;
+    private static final int ONE = 1;
+    private final int roundNum;
 
     public Round(int roundNum) {
         this.roundNum = roundNum;
@@ -13,7 +15,26 @@ public class Round {
         return new Round(round);
     }
 
-    public boolean hasNext() {
-        return roundNum-- > ZERO;
+    public boolean moreThanZero() {
+        return this.roundNum > ZERO;
+    }
+
+    public Round hasNext() {
+        return new Round(roundNum - ONE);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof Round))
+            return false;
+        Round round = (Round)o;
+        return roundNum == round.roundNum;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(roundNum);
     }
 }

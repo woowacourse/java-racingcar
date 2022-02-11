@@ -2,7 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.RacingGame;
 import racingcar.domain.RacingRecord;
-import racingcar.util.RandomNumberGeneratePolicy;
+import racingcar.domain.RandomNumberGeneratePolicy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -13,9 +13,11 @@ public class RacingGameController {
             InputView.getRound(),
             new RandomNumberGeneratePolicy()
         );
+        OutputView.printRacingRecordHeadLine();
         while (racingGame.isContinue()) {
             RacingRecord racingRecord = racingGame.race();
             OutputView.printRacingRecord(racingRecord);
         }
+        OutputView.printRacingResult(racingGame.getRacingResult());
     }
 }

@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.*;;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,5 +44,23 @@ class CarsTest {
         Car findMaxCar = cars.findMaxPositionCar();
 
         assertThat(findMaxCar).isEqualTo(car1);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"rookie:is2js"}, delimiter = ':')
+    @DisplayName("자동차 경주 우승자 판별 기능")
+    public void drive_winners(String name1, String name2) {
+        Car car1 = new Car(name1);
+        Car car2 = new Car(name2);
+
+        List<Car> carList = new ArrayList<>();
+        carList.add(car1);
+        carList.add(car2);
+
+        Cars cars = new Cars(carList);
+        car1.drive(5);
+        car2.drive(4);
+
+        assertThat(cars.getWinners().size()).isEqualTo(2);
     }
 }
