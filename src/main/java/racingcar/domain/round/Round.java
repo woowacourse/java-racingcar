@@ -31,4 +31,8 @@ public class Round {
 	public boolean isSame(int number) {
 		return round == number;
 	}
+
+	public void decrease() {
+		this.round--;
+	}
 }

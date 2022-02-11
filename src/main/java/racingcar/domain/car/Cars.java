@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.domain.movement.MovementStrategy;
 import racingcar.exception.CarNamesNotOnlyCommaException;
 
 public class Cars {
@@ -44,11 +45,10 @@ public class Cars {
 		return Collections.unmodifiableList(cars);
 	}
 
-	public List<String> getWinners() {
+	public List<Car> getWinners() {
 		final int max = getMaxPosition();
 		return cars.stream()
 			.filter(car -> car.isSamePosition(max))
-			.map(Car::getName)
 			.collect(Collectors.toList());
 	}
 
@@ -58,5 +58,11 @@ public class Cars {
 			max = Math.max(car.getPosition(), max);
 		}
 		return max;
+	}
+
+	public void move(MovementStrategy strategy) {
+		for (Car car : cars) {
+			car.move(strategy);
+		}
 	}
 }
