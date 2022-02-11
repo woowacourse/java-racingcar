@@ -14,7 +14,7 @@ public class StringCalculator {
             return 0;
         }
 
-        return sum(toInts(split(text)));
+        return sum(toNaturalNumbers(split(text)));
     }
 
     private static String[] split(String text) {
@@ -27,7 +27,7 @@ public class StringCalculator {
         return text.split("[,:]");
     }
 
-    private static List<NaturalNumber> toInts(String[] values) {
+    private static List<NaturalNumber> toNaturalNumbers(String[] values) {
         return Arrays.stream(values)
             .map(NaturalNumber::new)
             .collect(toList());
