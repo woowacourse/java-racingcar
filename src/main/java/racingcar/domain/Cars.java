@@ -60,7 +60,7 @@ public class Cars {
 	public List<String> getWinnerNames() {
 		int farthestLocation = getFarthestLocation();
 		return cars.stream()
-			.filter(car -> car.getLocation() == farthestLocation)
+			.filter(car -> car.isWinner(farthestLocation))
 			.map(Car::getName)
 			.collect(Collectors.toList());
 	}

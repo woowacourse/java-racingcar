@@ -32,4 +32,8 @@ public class Car {
 	public int getLocation() {
 		return this.location;
 	}
+
+	public boolean isWinner(int farthestLocation) {
+		return location == farthestLocation;
+	}
 }
