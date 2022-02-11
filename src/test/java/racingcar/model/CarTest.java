@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@SuppressWarnings("NonAsciiCharacters")
 class CarTest {
 	@Test
 	public void 자동차_생성() {
@@ -28,28 +29,23 @@ class CarTest {
 
 	@Test
 	public void 전진() {
-		// given
-		int random = 5;
-		Car car = new Car("test");
-
-		// when
-		car.goOrStop(random);
-
-		// then
-		assertThat(car.getPosition()).isEqualTo(1);
+		goOrStop_테스트(6, 1);
 	}
 
 	@Test
-	public void 전진_실패() {
+	public void 정지() {
+		goOrStop_테스트(3, 0);
+	}
+
+	private void goOrStop_테스트(int random, int expected) {
 		// given
-		int random = 3;
 		Car car = new Car("test");
 
 		// when
 		car.goOrStop(random);
 
 		// then
-		assertThat(car.getPosition()).isEqualTo(0);
+		assertThat(car.getPosition()).isEqualTo(expected);
 	}
 
 	@Test
