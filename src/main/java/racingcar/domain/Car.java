@@ -9,18 +9,11 @@ public class Car {
     private static final int RANDOM_CONDITION = 4;
 
     private final String name;
-    private int position = 0;
+    private int position;
 
     public Car(String name) {
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
+        this.position = 0;
     }
 
     public void goForward() {
@@ -33,7 +26,7 @@ public class Car {
 
     @Override
     public String toString() {
-        String info = getName() + INFO_BETWEEN_WORD;
+        String info = name + INFO_BETWEEN_WORD;
 
         for (int i = 0; i < position; i++) {
             info += POSITION_WORD;
