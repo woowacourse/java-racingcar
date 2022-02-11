@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RacingCarTest {
 
@@ -73,4 +74,15 @@ public class RacingCarTest {
 
         assertThat(actual).isEqualTo(winnersName);
     }
+
+    @Test
+    @DisplayName("자동차가 한개일 때 예외 처리")
+    public void validateCountOfCarTest() {
+
+        RacingCars racingCars = new RacingCars(List.of(racingCar1));
+        assertThatThrownBy(() -> Validator.validateCountOfCar(racingCars)).isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+
 }
