@@ -1,8 +1,11 @@
 package racingcar.controller;
 
+import racingcar.domain.Car;
 import racingcar.domain.Game;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
+
+import java.util.List;
 
 import static racingcar.util.ValidatorUtils.splitAndValidateCarNames;
 import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
@@ -12,22 +15,16 @@ public class GameController {
     private Game game;
 
     public void run() {
+        initGame();
+        playGameUntilEnd();
+        printGameResult();
+    }
+
+    private void initGame() {
         String[] carNames = requestCarNamesInput();
         int totalRounds = requestTotalRoundsInput();
 
         game = new Game(carNames, totalRounds);
-        playAllRounds();
-
-        OutputView.printWinners(game.getWinners());
-    }
-
-    public void playAllRounds() {
-        OutputView.printRoundResultText();
-
-        while(!game.isOver()) {
-            game.playRound();
-            OutputView.printRoundResult(game.getCars());
-        }
     }
 
     private String[] requestCarNamesInput() {
@@ -38,5 +35,19 @@ public class GameController {
     private int requestTotalRoundsInput() {
         String totalRoundsInput = InputView.requestTotalRoundsInput();
         return validateAndParsePositiveInt(totalRoundsInput);
+    }
+
+    private void playGameUntilEnd() {
+        OutputView.printRoundResultText();
+
+        while(!game.isOver()) {
+            game.playRound();
+            OutputView.printRoundResult(game.getCars());
+        }
+    }
+
+    private void printGameResult() {
+        List<Car> winners = game.getWinners();
+        OutputView.printWinners(winners);
     }
 }
