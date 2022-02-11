@@ -6,19 +6,14 @@ import racingcar.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameManager {
+public class Game {
 
     private final CarRepository carRepository = new CarRepository();
     private final int totalRounds;
 
-    public GameManager(String[] carNames, int totalRounds) {
+    public Game(String[] carNames, int totalRounds) {
         initCars(carNames);
         this.totalRounds = totalRounds;
-    }
-
-    public void run() {
-        playAllRounds();
-        OutputView.printWinners(getWinners());
     }
 
     private void initCars(String[] carNames) {
@@ -27,9 +22,9 @@ public class GameManager {
         }
     }
 
-    private void playAllRounds() {
+    public void playAllRounds() {
         List<Car> cars = carRepository.findAllCars();
-        
+
         OutputView.printRoundResultText();
         for (int i = 0; i < totalRounds; i++) {
             playRound();
@@ -45,7 +40,7 @@ public class GameManager {
         }
     }
 
-    private List<Car> getWinners() {
+    public List<Car> getWinners() {
         List<Car> winners = new ArrayList<>();
         List<Car> cars = carRepository.findAllCars();
 
