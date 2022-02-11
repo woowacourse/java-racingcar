@@ -26,10 +26,6 @@ public class Input {
     }
 
     private boolean isNumeric(String numberInput) {
-        return !isDigit(numberInput) || Integer.parseInt(numberInput) < 1;
-    }
-
-    private boolean isDigit(String numberInput) {
-        return numberInput.chars().allMatch(Character::isDigit);
+        return !numberInput.chars().allMatch(Character::isDigit);
     }
 }

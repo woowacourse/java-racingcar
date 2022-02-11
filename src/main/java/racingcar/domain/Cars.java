@@ -1,12 +1,10 @@
 package racingcar.domain;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-import racingcar.vo.Name;
 import racingcar.util.RandomUtil;
+import racingcar.vo.Name;
 
 public class Cars {
     private List<Car> cars;
@@ -21,13 +19,18 @@ public class Cars {
             .collect(Collectors.toList());
     }
 
-    public void move() {
+    public List<Name> race(int trials) {
+        for (int round = 0; round < trials; round++) {
+            move();
+        }
+        return getWinner(getMaxPosition());
+    }
+
+    private void move() {
         cars.forEach(car -> car.advance(RandomUtil.getNumbersInRange(10)));
     }
 
-    public List<Name> getWinner() {
-        int maxPosition = getMaxPosition();
-
+    private List<Name> getWinner(int maxPosition) {
         return cars.stream()
                 .filter(car -> car.isEqualPosition(maxPosition))
                 .map(Car::getName)
@@ -39,9 +42,5 @@ public class Cars {
             .max(Car::compareTo)
             .orElseThrow(NoSuchElementException::new)
             .getPosition();
-    }
-
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
     }
 }
