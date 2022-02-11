@@ -29,4 +29,15 @@ public class Cars {
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
+
+    public List<CarDto> getFarthestCar() {
+        return cars.stream()
+                .filter(this::isHighest)
+                .map(Car::info)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private boolean isHighest(Car standardCar) {
+        return cars.stream().allMatch(another -> standardCar.isFartherThan(standardCar));
+    }
 }
