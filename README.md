@@ -71,3 +71,7 @@ pobi, honux가 최종 우승했습니다.
 
 - Car의 전진여부 판단
 - 우승자 판정
+
+
+## References
+[포키 & 쿤 정보공유 문서](https://www.notion.so/b3664062733943e8b98489cffb82d322)
