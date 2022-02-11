@@ -1,5 +1,6 @@
 package racingcar.model.car;
 
+import racingcar.model.input.Names;
 import racingcar.model.trycount.TryCount;
 
 import java.util.ArrayList;
@@ -10,14 +11,22 @@ import java.util.stream.Collectors;
 public class Cars {
     private static final String TO_STRING_DELIMITER = "\n";
 
-    private final List<Car> cars = new ArrayList<>();
+    private List<Car> cars;
 
-    private Cars() {
+    private Cars(List<Car> cars) {
+        this.cars = cars;
+    }
 
+    public static Cars from(Names names) {
+        List<Car> cars = names.get().stream()
+                .map((name) -> Car.from(name.toString()))
+                .collect(Collectors.toList());
+
+        return new Cars(cars);
     }
 
     public static Cars create() {
-        return new Cars();
+        return new Cars(new ArrayList<>());
     }
 
     public void add(Car car) {
