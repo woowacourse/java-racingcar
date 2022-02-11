@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class InputView {
@@ -7,7 +8,11 @@ public class InputView {
   private static final Scanner SCANNER = new Scanner(System.in);
 
   private static String readNextLine() {
-    return SCANNER.nextLine();
+    try {
+      return SCANNER.nextLine();
+    } catch (NoSuchElementException exception) {
+      throw new RuntimeException("공백을 입력하셨습니다.");
+    }
   }
 
   public static String requestCarName() {

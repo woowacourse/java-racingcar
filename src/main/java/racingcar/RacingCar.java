@@ -22,7 +22,7 @@ public class RacingCar {
     printWinners(cars.getWinners());
   }
 
-  public String[] splitCarNames(String carNames) {
+  private String[] splitCarNames(String carNames) {
     return carNames.split(",");
   }
 

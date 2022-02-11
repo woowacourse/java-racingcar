@@ -1,28 +1,39 @@
 package racingcar;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import org.junit.jupiter.api.Test;
-import racingcar.view.InputView;
 
 public class RacingCarTest {
 
   @Test
-  public void input_car_names_test() throws Exception {
-    String input = "name1,name2,name3";
-    InputStream in = new ByteArrayInputStream(input.getBytes());
-    System.setIn(in);
-    String carNames = InputView.requestCarName();
-    assertThat(carNames).isEqualTo(input);
+  public void run_중간_공백_test() throws Exception {
+    String[] input = {"name1,,name3", "5"};
+    byte[] buf = String.join("\n", input).getBytes();
+    System.setIn(new ByteArrayInputStream(buf));
+    RacingCar racingCar = new RacingCar();
+    assertThatThrownBy(() -> racingCar.run())
+        .isInstanceOf(RuntimeException.class);
   }
 
   @Test
-  public void splitCarNames_test() throws Exception {
-    String input = "name1,name2,name3";
+  public void run_처음_공백_test() throws Exception {
+    String[] input = {",name1", "5"};
+    byte[] buf = String.join("\n", input).getBytes();
+    System.setIn(new ByteArrayInputStream(buf));
     RacingCar racingCar = new RacingCar();
-    String[] carNames = racingCar.splitCarNames(input);
-    assertThat(carNames).contains("name1", "name2", "name3");
+    assertThatThrownBy(() -> racingCar.run())
+        .isInstanceOf(RuntimeException.class);
+  }
+
+  @Test
+  public void run_마지막_공백_test() throws Exception {
+    String[] input = {"name1,name2,", "5"};
+    byte[] buf = String.join("\n", input).getBytes();
+    System.setIn(new ByteArrayInputStream(buf));
+    RacingCar racingCar = new RacingCar();
+    assertThatThrownBy(() -> racingCar.run())
+        .isInstanceOf(RuntimeException.class);
   }
 }

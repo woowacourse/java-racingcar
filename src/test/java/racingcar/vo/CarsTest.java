@@ -1,7 +1,9 @@
 package racingcar.vo;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import calculator.Calculator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
@@ -68,5 +70,18 @@ public class CarsTest {
     Winners winners = cars.getWinners();
     assertThat(winners.toString().contains(firstName)).isTrue();
     assertThat(winners.toString().contains(secondName)).isTrue();
+  }
+
+  @Test
+  public void 같은_이름이_있는_경우_예외_test() throws Exception {
+    String name = "name1";
+    CarName firstCarName = new CarName(name);
+    CarName secondCarName = new CarName(name);
+    Car firstCar = new Car(firstCarName);
+    Car secondCar = new Car(secondCarName);
+    Cars cars = new Cars();
+    cars.add(firstCar);
+    assertThatThrownBy(() -> cars.add(secondCar))
+        .isInstanceOf(RuntimeException.class);
   }
 }
