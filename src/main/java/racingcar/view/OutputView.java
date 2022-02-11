@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 import racingcar.model.Car;
 
 public class OutputView {
+
     private static final String RESULT_MESSAGE = "\n실행 결과";
     private static final String COLON = ":";
     private static final String DASH = "-";
@@ -17,26 +18,26 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printResult(List<Car> cars) {
+    public void printResult(final List<Car> cars) {
         cars.forEach(car -> System.out.println(createResultString(car)));
         System.out.println();
     }
 
-    private String createResultString(Car car) {
+    private String createResultString(final Car car) {
         return car.getCarName() + COLON + progress(car.getPosition());
     }
 
-    private String progress(int position) {
+    private String progress(final int position) {
         return IntStream.range(0, position)
             .mapToObj(i -> DASH)
             .collect(Collectors.joining());
     }
 
-    public void printWinners(List<String> winners) {
+    public void printWinners(final List<String> winners) {
         System.out.println(createWinnersString(winners));
     }
 
-    private String createWinnersString(List<String> winners) {
+    private String createWinnersString(final List<String> winners) {
         return WINNER_MESSAGE + String.join(COMMA, winners);
     }
 }

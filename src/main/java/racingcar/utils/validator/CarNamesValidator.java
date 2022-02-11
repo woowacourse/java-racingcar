@@ -14,7 +14,7 @@ public class CarNamesValidator {
 
     private CarNamesValidator() {}
 
-    public static void validateCarNames(String[] carNames) {
+    public static void validateCarNames(final String[] carNames) {
         carNamesSet = new HashSet<>();
         for (String carName : carNames) {
             validateLength(carName);
@@ -23,7 +23,7 @@ public class CarNamesValidator {
         }
     }
 
-    private static void validateLength(String carName) {
+    private static void validateLength(final String carName) {
         if (carName.length() > CAR_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR_MESSAGE);
         }
@@ -37,7 +37,7 @@ public class CarNamesValidator {
     }
 
     private static void validateBlank(String carName) {
-        if ((carName == null) || (carName.trim().length() == 0)) {
+        if ((carName == null) || (carName.length() == 0)) {
             throw new IllegalArgumentException(CAR_NAME_BLANK_ERROR_MESSAGE);
         }
     }

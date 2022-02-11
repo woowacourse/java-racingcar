@@ -5,16 +5,12 @@ import static org.assertj.core.api.Assertions.*;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("NonAsciiCharacters")
 class GameControllerTest {
-    private static GameController gameController;
-
-    @BeforeAll
-    static void initAll() {
-        gameController = new GameController();
-    }
+    
+    private final static GameController gameController = new GameController();
 
     @Test
     void 자동차_이름_입력() {

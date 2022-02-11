@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import racingcar.model.Winner;
@@ -9,13 +10,13 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
+
     private static final String CAR_NAMES_SPLIT_REGEX = ",";
 
     private final InputView inputView;
     private final OutputView outputView;
     private final CarController carController;
 
-    private String[] carNames;
     private int tryCount;
 
     public GameController() {
@@ -31,14 +32,14 @@ public class GameController {
     }
 
     private void ready() {
-        carNames = createCarNames();
-        carController.createCars(carNames);
+        carController.createCars(createCarNames());
         tryCount = createTryCount();
     }
 
     private void start() {
         outputView.printResultMessage();
-        for (int i = 0; i <tryCount; i++) {
+
+        for (int i = 0; i < tryCount; i++) {
             carController.moveCars();
             outputView.printResult(carController.getCars());
         }
@@ -47,38 +48,53 @@ public class GameController {
     private void result() {
         Winner winner = new Winner();
         List<String> winners = winner.getWinners(carController.getCars());
+
         outputView.printWinners(winners);
     }
 
     public String[] createCarNames() {
-        while(true) {
-            String[] carNames = trim(split(inputView.inputCarNames()));
-            try {
-                CarNamesValidator.validateCarNames(carNames);
-                return carNames;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        String[] carNames;
+        do {
+            carNames = trim(split(inputView.inputCarNames()));
+        } while (!CarNamesIsValidated(carNames));
+        return carNames;
     }
 
-    private String[] split(String carNames) {
+    private String[] split(final String carNames) {
         return carNames.split(CAR_NAMES_SPLIT_REGEX);
     }
 
-    private String[] trim(String[] carNames) {
-        for (String carName : carNames) {
-            carName.trim();
+    private String[] trim(final String[] carNames) {
+        return Arrays.stream(carNames)
+            .map(String::trim)
+            .toArray(String[]::new);
+    }
+
+    private boolean CarNamesIsValidated(final String[] carNames) {
+        try {
+            CarNamesValidator.validateCarNames(carNames);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
-        return carNames;
     }
 
     public int createTryCount() {
         String inputTryCount;
         do {
             inputTryCount = inputView.inputTryCount();
-        } while(!TryCountValidator.isValidated(inputTryCount));
+        } while (!tryCountIsValidated(inputTryCount));
         return Integer.parseInt(inputTryCount);
     }
 
+    private boolean tryCountIsValidated(final String inputValue) {
+        try {
+            TryCountValidator.validatePattern(inputValue);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 }
