@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -35,24 +37,17 @@ public class Cars {
         return String.join(LIST_JOIN_DELIMITER, winners) + WINNER_MESSAGE;
     }
 
-    private void addWinnerNames(int maxPosition) {
-        for (Car car : cars) {
-            addName(maxPosition, car);
-        }
-    }
-
-    private void addName(int maxPosition, Car car) {
-        if (car.isMaxPosition(maxPosition)) {
-            winners.add(car.getName());
-        }
+    private void addWinnerNames(int position) {
+        cars.stream()
+            .filter(car -> car.getPosition() == position)
+            .forEach(car -> winners.add(car.getName()));
     }
 
     private int getMaxPosition() {
-        int max = 0;
-        for (Car car : cars) {
-            max = Math.max(max, car.getPosition());
-        }
-        return max;
+        return cars.stream()
+                .mapToInt(car -> car.getPosition())
+                .max()
+                .orElseThrow(NoSuchElementException::new);
     }
 
     @Override

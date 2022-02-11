@@ -38,10 +38,6 @@ public class Car {
         return false;
     }
 
-    public boolean isMaxPosition(int maxPosition) {
-        return this.position == maxPosition;
-    }
-
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(this.name)
