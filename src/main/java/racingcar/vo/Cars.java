@@ -36,17 +36,19 @@ public class Cars {
     for (Car each : cars) {
       each.move();
       stringBuilder.append(each.toString());
+      stringBuilder.append(System.lineSeparator());
     }
     stringBuilder.append(System.lineSeparator());
     return stringBuilder.toString();
   }
 
-  public List<Car> getWinners() {
+  public Winners getWinners() {
     Car maxPositionCar = cars.stream()
         .max(Car::compareTo)
         .orElseThrow(() -> new NoSuchElementException("car가 없어요!"));
-    return cars.stream()
+    return new Winners(cars.stream()
         .filter(car -> car.isSamePosition(maxPositionCar))
-        .collect(Collectors.toList());
+        .map(Car::getName)
+        .collect(Collectors.toList()));
   }
 }
