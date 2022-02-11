@@ -13,7 +13,7 @@ public class CarCollection {
 	private final List<Car> cars = new ArrayList<>();
 
 	public CarCollection(List<String> names) {
-		CarNameValidator.validateCarNames(names);
+		CarNameValidator.validateNames(names);
 		names.forEach(name -> cars.add(new Car(name)));
 	}
 

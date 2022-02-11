@@ -12,25 +12,29 @@ public class CarNameValidator {
 
 	public static CarNameValidator instance = new CarNameValidator();
 
-	public static void validateCarNames(List<String> names) {
-		instance.validateNameIsTooLong(names);
-		instance.validateNameIsEmpty(names);
-		instance.validateNameIsDuplicate(names);
+	public static void validateNames(List<String> names) {
+		instance.validate(names);
 	}
 
-	private void validateNameIsTooLong(List<String> names) {
+	void validate(List<String> names) {
+		validateNameIsTooLong(names);
+		validateNameIsEmpty(names);
+		validateNameIsDuplicate(names);
+	}
+
+	void validateNameIsTooLong(List<String> names) {
 		if (names.stream().anyMatch(NameLength::isTooLong)) {
 			throw new CarNameTooLongException();
 		}
 	}
 
-	private void validateNameIsEmpty(List<String> names) {
+	void validateNameIsEmpty(List<String> names) {
 		if (names.stream().anyMatch(String::isEmpty)) {
 			throw new CarNameEmptyException();
 		}
 	}
 
-	private void validateNameIsDuplicate(List<String> names) {
+	void validateNameIsDuplicate(List<String> names) {
 		if (names.stream().anyMatch(name -> isNameDuplicated(names, name))) {
 			throw new CarNameDuplicatedException();
 		}
