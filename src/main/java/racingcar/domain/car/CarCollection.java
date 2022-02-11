@@ -1,7 +1,7 @@
 package racingcar.domain.car;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,10 +36,9 @@ public class CarCollection {
 	}
 
 	private int getFarthestLocation() {
-		return cars.stream()
-			.map(Car::getLocation)
-			.max(Comparator.comparingInt(o -> o))
-			.orElseThrow(IllegalArgumentException::new);
+		return Collections.max(
+			cars.stream().map(Car::getLocation).collect(Collectors.toList())
+		);
 	}
 
 }
