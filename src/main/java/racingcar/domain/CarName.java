@@ -13,25 +13,25 @@ public class CarName {
 
     private void validateNull(String name) {
         if (name == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름은 null이 될 수 없습니다.");
         }
     }
 
     private void validateEmpty(String name) {
         if (name.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름이 비어 있습니다.");
         }
     }
 
     private void validateBlank(String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름은 공백이 될 수 없습니다.");
         }
     }
 
     private void validateNameLength(String name) {
         if (name.length() > 5) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름은 5자를 초과할 수 없습니다.");
         }
     }
 

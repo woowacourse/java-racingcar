@@ -31,4 +31,8 @@ public class OutPutView {
     public static void printResult(List<String> winners) {
         System.out.println(String.join(WINNER_NAME_DELIMITER, winners) + END_MESSAGE);
     }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message + "\n");
+    }
 }

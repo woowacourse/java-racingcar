@@ -16,6 +16,7 @@ public class RacingCarController {
         try {
             return new Cars(InputView.getCarNames(), new RandomMovingPolicy());
         } catch (IllegalArgumentException e) {
+            OutPutView.printErrorMessage(e.getMessage());
             return getCars();
         }
     }
@@ -24,6 +25,7 @@ public class RacingCarController {
         try {
             return InputView.getCount();
         } catch (IllegalArgumentException e) {
+            OutPutView.printErrorMessage(e.getMessage());
             return getCount();
         }
     }

@@ -21,7 +21,7 @@ public class Cars {
         int originalSize = names.length;
         Set<String> noneDuplicatedNames = Arrays.stream(names).collect(toSet());
         if (originalSize != noneDuplicatedNames.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
         }
     }
 
