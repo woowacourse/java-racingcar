@@ -2,10 +2,13 @@ package racingcar.vo;
 
 public class Position implements Comparable<Position> {
 
+  private static final int INIT_POSITION = 0;
+  private static final String POSITION_BAR = "-";
+
   private int position;
 
   public Position() {
-    position = 0;
+    position = INIT_POSITION;
   }
 
   public void increase() {
@@ -20,7 +23,7 @@ public class Position implements Comparable<Position> {
   public String toString() {
     StringBuilder builder = new StringBuilder();
     for (int i = 0; i < position; i++) {
-      builder.append("-");
+      builder.append(POSITION_BAR);
     }
     return builder.toString();
   }

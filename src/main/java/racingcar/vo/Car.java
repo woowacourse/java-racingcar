@@ -5,6 +5,9 @@ import static racingcar.util.MovementUtil.isMoveForward;
 
 public class Car implements Comparable<Car> {
 
+  private static final String RESULT_DELIMITER = " : ";
+  private static final int SAME_POSITION = 0;
+
   private CarName name;
   private Position position;
 
@@ -22,7 +25,7 @@ public class Car implements Comparable<Car> {
   }
 
   public boolean isSamePosition(Car car) {
-    return position.compareTo(car.position) == 0;
+    return position.compareTo(car.position) == SAME_POSITION;
   }
 
   public boolean move() {
@@ -40,6 +43,6 @@ public class Car implements Comparable<Car> {
 
   @Override
   public String toString() {
-    return name.get() + " : " + position.toString();
+    return name.get() + RESULT_DELIMITER + position.toString();
   }
 }

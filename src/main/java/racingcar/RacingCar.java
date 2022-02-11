@@ -12,6 +12,8 @@ import racingcar.vo.Cars;
 
 public class RacingCar {
 
+  private static final String CAR_NAME_DELIMITER = ",";
+
   public RacingCar() {
   }
 
@@ -23,7 +25,7 @@ public class RacingCar {
   }
 
   public String[] splitCarNames(String carNames) {
-    return carNames.split(",");
+    return carNames.split(CAR_NAME_DELIMITER);
   }
 
   private Cars createCars(String[] names) {
