@@ -15,7 +15,7 @@ public class RacingCarTest {
 
     private static final int ONE_STEP = 1;
     private static final String WINNER_NAME_DELIMITER = ", ";
-
+    private static final String EMPTY_CAR_NAME = "";
     private RacingCar racingCar1;
     private RacingCar racingCar2;
     private RacingCar racingCar3;
@@ -84,5 +84,13 @@ public class RacingCarTest {
 
     }
 
+    @Test
+    @DisplayName("자동차 이름 빈칸일 때 예외처리")
+    public void validateCarNameIsEmptyTest() {
+
+        RacingCar noNameCar = RacingCar.generateRacingCar(EMPTY_CAR_NAME);
+        RacingCars racingCars = new RacingCars(List.of(noNameCar, racingCar1));
+        assertThatThrownBy(() -> Validator.validateCarNameIsEmpty(racingCars)).isInstanceOf(IllegalArgumentException.class);
+    }
 
 }
