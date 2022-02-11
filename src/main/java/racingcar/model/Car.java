@@ -15,23 +15,6 @@ public class Car {
 		this.position = INITIAL_POSITION;
 	}
 
-	private void validName(String name) {
-		if (isOverNameLength(name)) {
-			throw new RuntimeException(CAR_NAME_LENGTH_OVER_ERROR_MESSAGE);
-		}
-		if (isEmptyName(name)) {
-			throw new RuntimeException(CAR_NAME_IS_EMPTY_ERROR_MESSAGE);
-		}
-	}
-
-	private boolean isOverNameLength(String name) {
-		return name.length() > MAX_CAR_NAME_LENGTH;
-	}
-
-	private boolean isEmptyName(String name) {
-		return name.isEmpty();
-	}
-
 	public void move(int number) {
 		if (number >= MOVE_CONDITION_NO) {
 			this.position++;
@@ -48,5 +31,22 @@ public class Car {
 
 	public CarDto toCarDto() {
 		return new CarDto(this.name, this.position);
+	}
+
+	private void validName(String name) {
+		if (isOverNameLength(name)) {
+			throw new RuntimeException(CAR_NAME_LENGTH_OVER_ERROR_MESSAGE);
+		}
+		if (isEmptyName(name)) {
+			throw new RuntimeException(CAR_NAME_IS_EMPTY_ERROR_MESSAGE);
+		}
+	}
+
+	private boolean isOverNameLength(String name) {
+		return name.length() > MAX_CAR_NAME_LENGTH;
+	}
+
+	private boolean isEmptyName(String name) {
+		return name.isEmpty();
 	}
 }

@@ -19,8 +19,7 @@ public class InputViewTest {
 	@Test
 	void 시도_횟수_빈_입력_검증() {
 		Assertions.assertThatThrownBy(() -> {
-				String input = "";
-				InputView.validEmptyInput(input);
+				InputView.validEmptyInput("");
 			}).isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("빈 값");
 	}

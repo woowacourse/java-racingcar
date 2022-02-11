@@ -1,16 +1,14 @@
 package racingcar.view;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.model.Car;
 import racingcar.model.CarDto;
 
 public class ResultView {
 	private static final String BEFORE_GAME_RESULT_MESSAGE = "실행 결과";
 	private static final String JOIN_DELIMITER = ", ";
-	private static final String WINNERS_RESULT_SUFFIX= "가 최종 우승했습니다.";
+	private static final String WINNERS_RESULT_SUFFIX = "가 최종 우승했습니다.";
 
 	public static void printGameResult(List<CarDto> cars) {
 		cars.stream()
