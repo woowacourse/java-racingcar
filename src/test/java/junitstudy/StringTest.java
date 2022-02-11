@@ -32,9 +32,7 @@ public class StringTest {
         String testString = "abc";
         char zero = testString.charAt(0);
         assertThat(zero).isEqualTo('a');
-        assertThatThrownBy(() -> {
-            testString.charAt(testString.length());
-        }).isInstanceOf(IndexOutOfBoundsException.class)
+        assertThatThrownBy(() -> testString.charAt(testString.length())).isInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessageContaining("String index out of range: 3");
     }
 }
