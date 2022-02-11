@@ -52,15 +52,15 @@ public class RacingCars {
         }
     }
 
-    public List<String> calculateWinnerNames() {
-        int winnerPosition = calculateWinnerPosition();
+    public List<String> searchWinnerNames() {
+        int winnerPosition = searchWinnerPosition();
         return cars.stream()
             .filter(car -> car.comparePosition(winnerPosition))
             .map(RacingCar::getName)
             .collect(Collectors.toList());
     }
 
-    private int calculateWinnerPosition() {
+    private int searchWinnerPosition() {
         return Collections.max(cars.stream()
             .map(RacingCar::getPosition)
             .collect(Collectors.toList()));

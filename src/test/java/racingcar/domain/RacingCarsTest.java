@@ -26,7 +26,7 @@ class RacingCarsTest {
     @DisplayName("자동차 우승자 이름을 계산한다.")
     void calculateWinnerNames() {
         RacingCars racingCars = new RacingCars("pobi,crong,honux");
-        List<String> winnerNames = racingCars.calculateWinnerNames();
+        List<String> winnerNames = racingCars.searchWinnerNames();
         assertThat(winnerNames).containsExactly("pobi", "crong", "honux");
     }
 }

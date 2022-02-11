@@ -37,7 +37,7 @@ public class RacingGame {
         return leftCount == END_COUNT;
     }
 
-    public List<String> winnerNames() {
-        return racingCars.calculateWinnerNames();
+    public List<String> getWinnerNames() {
+        return racingCars.searchWinnerNames();
     }
 }

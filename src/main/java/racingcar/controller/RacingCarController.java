@@ -22,7 +22,7 @@ public class RacingCarController {
         RacingGame game = new RacingGame(racingCars, tryCount);
         outputView.printGameResultTitle();
         raceAllRounds(game, racingCars);
-        outputView.printWinnerNames(game.winnerNames());
+        outputView.printWinnerNames(game.getWinnerNames());
     }
 
     public void raceAllRounds(RacingGame game, RacingCars racingCars) {
