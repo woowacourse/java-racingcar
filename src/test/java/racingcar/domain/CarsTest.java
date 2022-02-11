@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.dto.CarDto;
 import racingcar.service.Movement;
 import racingcar.utils.ExceptionMessage;
 
@@ -31,12 +32,11 @@ class CarsTest {
     @DisplayName("자동차들을 전진시키고 반환한다")
     void move_getCars() {
         cars.move(movement);
-        List<Car> movedCar = cars.getCars();
-        Car abc = new Car("abc");
-        Car def = new Car("def");
-        Car ghi = new Car("ghi");
-        def.move(true);
-        List<Car> expected = Arrays.asList(abc, def, ghi);
+        List<CarDto> movedCar = cars.getCarInfos();
+        CarDto abc = new CarDto("abc",0);
+        CarDto def = new CarDto("def",1);
+        CarDto ghi = new CarDto("ghi",0);
+        List<CarDto> expected = Arrays.asList(abc, def, ghi);
         assertThat(movedCar).isEqualTo(expected);
     }
 
