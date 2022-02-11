@@ -6,12 +6,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Game {
-
-	public static final String WINNER_NAME_DELIMITER = ", ";
+	private static final String WINNER_NAME_DELIMITER = ", ";
+	private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
 
 	public void start() {
 		Set<Car> cars = CarFactory.of(InputView.inputCarNames());
 		int count = InputView.inputGameCount();
+		validateGameCount(count);
 		OutputView.printGameResultTitle();
 		for (int i = 0; i < count ; i++) {
 			play(cars);
@@ -43,5 +44,11 @@ public class Game {
 	public int makeRandomValue() {
 		Random random = new Random();
 		return random.nextInt(10);
+	}
+
+	private void validateGameCount(int gameCount) {
+		if(gameCount < 0) {
+			throw new IllegalArgumentException(NEGATIVE_ERROR_MESSAGE);
+		}
 	}
 }

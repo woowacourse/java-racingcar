@@ -9,7 +9,7 @@ public class InputView {
 	private static Scanner scanner = new Scanner(System.in);
 	public static String inputCarNames() {
 		System.out.println(CAR_NAME_INPUT_MESSAGE);
-		return scanner.next();
+		return scanner.nextLine();
 	}
 
 	public static int inputGameCount() {
