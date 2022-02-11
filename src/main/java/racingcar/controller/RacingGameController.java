@@ -13,6 +13,7 @@ public class RacingGameController {
             InputView.getRound(),
             new RandomNumberGeneratePolicy()
         );
+        OutputView.printRacingRecordHeadLine();
         while (racingGame.isContinue()) {
             RacingRecord racingRecord = racingGame.race();
             OutputView.printRacingRecord(racingRecord);

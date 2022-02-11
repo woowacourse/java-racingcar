@@ -10,7 +10,13 @@ public class OutputView {
     private static final String NAME_AND_SCORE_DELIMITER = " : ";
     private static final String DRIVE_SCORE_VIEW = "-";
     private static final String NAME_DELIMITER = ", ";
+    private static final String RACE_RECORD_MESSAGE = "실행 결과";
     private static final String RACE_WINNER_MESSAGE = "가 최종 우승했습니다.";
+
+    public static void printRacingRecordHeadLine() {
+        System.out.println();
+        System.out.println(RACE_RECORD_MESSAGE);
+    }
 
     public static void printRacingRecord(RacingRecord racingRecord) {
         for (Car car : racingRecord.getRacingRecord()) {
