@@ -11,10 +11,11 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(String[] names, MovingPolicy movingPolicy) {
-        validateDuplicate(names);
-        this.cars = Arrays.stream(names)
+        List<Car> cars = Arrays.stream(names)
             .map(name -> new Car(name, movingPolicy))
             .collect(toList());
+        validateDuplicate(names);
+        this.cars = cars;
     }
 
     private void validateDuplicate(String[] names) {
