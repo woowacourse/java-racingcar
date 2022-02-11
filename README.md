@@ -42,4 +42,12 @@
  5. Test Code
     - [x] 이름 입력 예외 테스트
     - [x] 횟수 입력 예외 테스트
+    - Car TEST
+      - [x] 전진하는지
+      - [x] 특정 위치와 비교하기
+    - Controller TEST
+      - [x] 생성된 자동차 개수가 입력된 이름의 개수와 동일한지
+      - [x] 최대 위치가 정확한지 // 우승자가 정확한지
+      - [x] 이름과 거리 HashMap 정확한지
+      
     - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
