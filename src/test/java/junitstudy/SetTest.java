@@ -24,19 +24,19 @@ public class SetTest {
     }
 
     @Test
-    void sizeTest() {
+    void rightSize() {
         assertThat(numbers.size()).isEqualTo(3);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    void containsTest(int argument) {
+    void contains(int argument) {
         assertThat(numbers.contains(argument)).isTrue();
     }
 
     @ParameterizedTest
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
-    void containsFalseTest(int argument, boolean expected) {
+    void notContains(int argument, boolean expected) {
         assertThat(numbers.contains(argument)).isEqualTo(expected);
     }
 }

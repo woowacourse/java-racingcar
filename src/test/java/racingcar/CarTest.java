@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 class CarTest {
     @Test
     @DisplayName("자동차 이름으로 클래스가 생성되는지 테스트")
-    void carGenerateTest() {
+    void carGenerate() {
         String name = "pobi";
         Car car = new Car(name);
         assertThat(car.getName()).isEqualTo(name);
@@ -17,7 +17,7 @@ class CarTest {
 
     @Test
     @DisplayName("자동차가 전진하는지 테스트")
-    void carMoveForwardTest() {
+    void carMoveForward() {
         String name = "pobi";
         Car car = new Car(name);
         car.moveForward();

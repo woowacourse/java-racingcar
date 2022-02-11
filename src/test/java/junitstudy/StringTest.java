@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
     @Test
-    void splitTest() {
+    void split() {
         String testString1 = "1,2";
         String testString2 = "1";
 
@@ -19,7 +19,7 @@ public class StringTest {
     }
 
     @Test
-    void removeBracketTest() {
+    void removeBracket() {
         String testString = "(1,2)";
         String result = testString.substring(1, testString.length() - 1);
 
@@ -28,7 +28,7 @@ public class StringTest {
 
     @Test
     @DisplayName("특정 위치의 문자를 가져오는 테스트")
-    void getCharTest() {
+    void getChar() {
         String testString = "abc";
         char zero = testString.charAt(0);
         assertThat(zero).isEqualTo('a');
