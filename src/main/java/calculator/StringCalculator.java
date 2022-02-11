@@ -30,8 +30,7 @@ public class StringCalculator {
 
 	private static List<Integer> toNumberList(List<String> inputNumbers) {
 		return inputNumbers.stream()
-			.mapToInt(Integer::parseInt)
-			.boxed()
+			.map(Integer::valueOf)
 			.collect(Collectors.toList());
 	}
 
