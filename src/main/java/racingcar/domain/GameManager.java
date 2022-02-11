@@ -6,17 +6,12 @@ import racingcar.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static racingcar.util.ValidatorUtils.validateNoDuplicates;
-import static racingcar.util.ValidatorUtils.validateNotBlank;
-import static racingcar.util.ValidatorUtils.validateNotOverFiveCharacters;
-
 public class GameManager {
 
     private final CarRepository carRepository = new CarRepository();
     private final int totalRounds;
 
-    public GameManager(String carNamesInput, int totalRounds) {
-        String[] carNames = getValidateCarNames(carNamesInput);
+    public GameManager(String[] carNames, int totalRounds) {
         initCars(carNames);
         this.totalRounds = totalRounds;
     }
@@ -24,22 +19,6 @@ public class GameManager {
     public void run() {
         playAllRounds();
         OutputView.printWinners(getWinners());
-    }
-
-    private String[] getValidateCarNames(String userInput) {
-        String[] carNames = splitUserInputByComma(userInput);
-
-        for (String name : carNames) {
-            validateNotBlank(name);
-            validateNotOverFiveCharacters(name);
-        }
-        validateNoDuplicates(carNames);
-
-        return carNames;
-    }
-
-    private String[] splitUserInputByComma(String userInput) {
-        return userInput.split(",");
     }
 
     private void initCars(String[] carNames) {

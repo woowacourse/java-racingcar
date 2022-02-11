@@ -6,10 +6,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static racingcar.util.ValidatorUtils.splitAndValidateCarNames;
 import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
-import static racingcar.util.ValidatorUtils.validateNoDuplicates;
-import static racingcar.util.ValidatorUtils.validateNotBlank;
-import static racingcar.util.ValidatorUtils.validateNotOverFiveCharacters;
 
 public class ValidatorUtilsTest {
 
@@ -17,6 +15,7 @@ public class ValidatorUtilsTest {
     @ValueSource(strings = {"1", "2", "10"})
     void validateAndParsePositiveInt_returnParsedPositiveInteger(String string) {
         int parsedInt = validateAndParsePositiveInt(string);
+
         assertThat(parsedInt).isPositive();
     }
 
@@ -36,27 +35,35 @@ public class ValidatorUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", " ", "   "})
-    void _validateNotBlank(String string) {
+    @ValueSource(strings = {"a,b,jeong", "#,$%^&*", "roma,b d", "1  2,c,d"})
+    void splitAndValidateCarNames_returnStringArrayOnPass(String carNamesString) {
+        String[] carNames = splitAndValidateCarNames(carNamesString);
+        assertThat(carNames).isEqualTo(carNamesString.split(","));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", ",a"," ,b", "   ,c,d"})
+    void splitAndValidateCarNames_errorOnBlank(String carNamesString) {
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> validateNotBlank(string))
+                .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
                 .withMessageMatching("공백을 입력하면 안 됩니다.");
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"123456", "carrots"})
-    void _validateNotOverFiveCharacters(String string) {
+    @ValueSource(strings = {"123456,a,b", "carrots,c,d"})
+    void splitAndValidateCarNames_errorOnOverFiveCharacters(String carNamesString) {
+
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> validateNotOverFiveCharacters(string))
+                .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
                 .withMessageMatching("5글자 이하의 이름을 입력해야 합니다.");
     }
 
     @Test
-    void _validateNoDuplicates() {
-        String[] carNames = new String[]{"aa", "aa", "b"};
+    void splitAndValidateCarNames_errorOnDuplicates() {
+        String carNamesString = "aa,aa,b";
 
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> validateNoDuplicates(carNames))
+                .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
                 .withMessageMatching("중복된 이름을 입력하면 안 됩니다.");
     }
 }
