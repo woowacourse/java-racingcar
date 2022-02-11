@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.controller.NumberPicker;
+import racingcar.exception.DuplicateCarNameException;
+import racingcar.exception.EmptyCarNameException;
+import racingcar.exception.OutOfCarNameLengthException;
 
 public class Cars {
 
@@ -25,19 +28,19 @@ public class Cars {
 
 	private void validateNameIsTooLong(List<String> names) {
 		if (names.stream().anyMatch(CarNameLength::isTooLong)) {
-			throw new IllegalArgumentException("자동차의 이름은 5자 이하여야 합니다.");
+			throw new OutOfCarNameLengthException();
 		}
 	}
 
 	private void validateNameIsDuplicate(List<String> names) {
 		if (names.stream().anyMatch(name -> Collections.frequency(names, name) > 1)) {
-			throw new IllegalArgumentException("자동차의 이름은 중복될 수 없습니다.");
+			throw new DuplicateCarNameException();
 		}
 	}
 
 	private void validateNameIsEmpty(List<String> names) {
 		if (names.stream().anyMatch(String::isEmpty)) {
-			throw new IllegalArgumentException("자동차의 이름은 공백이 될 수 없습니다.");
+			throw new EmptyCarNameException();
 		}
 	}
 

@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import racingcar.exception.InvalidRoundException;
+import racingcar.exception.NotDigitRoundException;
+
 public class Round {
 
 	private int count;
@@ -14,13 +17,13 @@ public class Round {
 		try {
 			return Integer.parseInt(count);
 		} catch (NumberFormatException exception) {
-			throw new IllegalArgumentException("이동 횟수는 숫자여야 합니다.");
+			throw new NotDigitRoundException();
 		}
 	}
 
 	private void validateCountPositive(int count) {
 		if (count <= 0) {
-			throw new IllegalArgumentException("이동 횟수는 양수여야 합니다.");
+			throw new InvalidRoundException();
 		}
 	}
 
