@@ -8,7 +8,7 @@ public class Constants {
 	public static final String REQUEST_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
 	public static final String REQUEST_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
 
-	public static final String ERROR_MESSAGE = "[ERROR]";
+	public static final String ERROR_MESSAGE = "[ERROR] ";
 	public static final String EXCEPTION_NULL_MESSAGE = "1자 이상 입력해주세요.";
 	public static final String EXCEPTION_NOT_NUMBER_MESSAGE = "숫자를 입력해주세요.";
 	public static final String EXCEPTION_ZERO_MESSAGE = "0회 이상 입력해주세요.";

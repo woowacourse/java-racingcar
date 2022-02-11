@@ -27,7 +27,7 @@ public class RacingCarsService {
 	}
 
 	public void runGame() {
-		printResult();
+		printStartMessage();
 		for (int i = 0; i < count; i++) {
 			cars.GoRound();
 			Output.printRoundResult(cars);
@@ -35,7 +35,6 @@ public class RacingCarsService {
 	}
 
 	public List<String> findWinner() {
-		int max = Util.getMax(cars.getPositions());
-		return cars.getWinners(max);
+		return cars.getWinners(Util.getMax(cars.getPositions()));
 	}
 }

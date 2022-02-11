@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 import racingCar.utlis.Constants;
 
 public class NameValidator {
-
 	public static final int maxNameSize = 5;
 
 	public static void validateInput(String inputString) throws Exception {
@@ -56,8 +55,7 @@ public class NameValidator {
 	}
 
 	private static void checkDuplicatedName(List<String> nameList) throws Exception {
-		Set<String> nameSet = new HashSet<>(nameList);
-		if (nameSet.size() != nameList.size()) {
+		if (new HashSet<>(nameList).size() != nameList.size()) {
 			throw new Exception(Constants.EXCEPTION_DUPLICATED_NAME_MESSAGE);
 		}
 	}

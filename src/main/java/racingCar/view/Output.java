@@ -2,7 +2,6 @@ package racingCar.view;
 
 import java.util.List;
 
-import racingCar.model.Car;
 import racingCar.model.RacingCars;
 import racingCar.utlis.Constants;
 
@@ -12,7 +11,7 @@ public class Output {
 		System.out.println(Constants.ERROR_MESSAGE + e);
 	}
 
-	public static void printResult() {
+	public static void printStartMessage() {
 		System.out.println(Constants.RESULT_FRONT_MESSAGE);
 	}
 
