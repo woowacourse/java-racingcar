@@ -2,10 +2,15 @@ package racingcartest;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import racingcar.controller.GameController;
+import racingcar.model.Car;
 import racingcar.util.Checker;
 
 public class MainTest {
