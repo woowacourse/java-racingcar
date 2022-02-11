@@ -5,9 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.Car;
-
-import java.lang.reflect.Method;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.ParameterizedTest.ARGUMENTS_PLACEHOLDER;
@@ -34,18 +31,6 @@ public class CarTest {
 
         assertThat(car.getName()).isEqualTo(name);
         assertThat(car.getPosition()).isEqualTo(0);
-    }
-
-    @DisplayName("go 메서드는 position 값을 1만큼 증가시킨다.")
-    @Test
-    void go() throws Exception {
-        int prevPosition = car.getPosition();
-
-        Method goMethod = car.getClass().getDeclaredMethod("go");
-        goMethod.setAccessible(true);
-        goMethod.invoke(car);
-
-        assertThat(car.getPosition()).isEqualTo(prevPosition + 1);
     }
 
     @DisplayName("goOrNot 메서드는 인자의 값이 4 이상일 경우 position 값을 1만큼 증가시킨다.")
