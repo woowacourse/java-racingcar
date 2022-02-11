@@ -1,6 +1,7 @@
 # java-racingcar
 
 자동차 경주 미션 저장소
+
 # ToDo List
 - 난수 생성 기능 구현
   - test: 1~9사이의 난수가 생성되었는지 확인
@@ -16,6 +17,9 @@
   - 출력: 실행 결과 문구 출력 기능
   - 출력: 매 턴 자동차 위치 출력 기능
   - 출력: 최종 우승자 출력 기능
+- 레이싱 게임 컨트롤러 구현
+  - 위에서 구현한 기능들을 활용해 실제 레이싱 게임 로직 구현
+
 # 우아한테크코스 코드리뷰
 
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
