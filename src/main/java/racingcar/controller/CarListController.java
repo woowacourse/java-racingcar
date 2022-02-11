@@ -3,8 +3,8 @@ package racingcar.controller;
 import java.util.ArrayList;
 import java.util.Random;
 
+import racingcar.model.Car;
 import racingcar.util.IntegerConst;
-import racingcar.model.CarList;
 
 public class CarListController {
 	private int generateRandNum() {

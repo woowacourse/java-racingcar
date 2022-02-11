@@ -1,12 +1,9 @@
 package racingcar.controller;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 import racingcar.model.Car;
-import racingcar.model.CarList;
 import racingcar.util.IntegerConst;
-import racingcar.util.StringConst;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
