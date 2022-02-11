@@ -1,47 +1,48 @@
 package racingcar.domain;
 
 public class Car implements Comparable<Car> {
-    private final String name;
-    private int position = 0;
+	private static final String STEP = "-";
+	private static final String FORMAT = "%s : %s";
+	private final String name;
+	private int position = 0;
 
-    public Car(String name) {
-        this.name = name;
-    }
+	public Car(String name) {
+		this.name = name;
+	}
 
-    public void move() {
-        position++;
-    }
+	private void move() {
+		position++;
+	}
 
-    public void drive() {
-        if (hasNext()) {
-            move();
-        }
-    }
+	public void drive(boolean directing) {
+		if (directing) {
+			move();
+		}
+	}
 
-    public boolean hasNext() {
-        int moveFlag = (int) (Math.random() * 100) % 10;
-        return moveFlag > 3;
-    }
+	public boolean isSamePosition(Car other) {
+		return this.position == other.position;
+	}
 
-    public boolean isSamePosition(Car other) {
-        return this.position == other.position;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public int getPosition() {
+		return position;
+	}
 
-    @Override
-    public String toString() {
-        String positions = "";
-        for (int i = 0; i < position; i++) {
-            positions += "-";
-        }
-        return String.format("%s : %s", name, positions);
-    }
+	@Override
+	public String toString() {
+		StringBuilder positions = new StringBuilder();
+		for (int i = 0; i < position; i++) {
+			positions.append(STEP);
+		}
+		return String.format(FORMAT, name, positions);
+	}
 
-    @Override
-    public int compareTo(Car car) {
-        return this.position - car.position;
-    }
+	@Override
+	public int compareTo(Car car) {
+		return this.position - car.position;
+	}
 }
