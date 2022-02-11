@@ -1,11 +1,11 @@
 package racingcar;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class CarsTest extends MockRandomGenerator {
-
 
     @Test
     void 자동차_우승_1명_성공() {
@@ -13,14 +13,10 @@ public class CarsTest extends MockRandomGenerator {
         Car rickCar = new Car("rick");
 
         for (int i = 0; i < 3; i++) {
-            randomNumberOverFour();
-            rickCar.goForward();
+            moveCarPosition(rickCar);
         }
-        closeMockRandom();
         Cars cars = new Cars();
-        cars.addCar(jaeCar);
-        cars.addCar(rickCar);
-
+        addTestCarToCars(cars, jaeCar, rickCar);
         assertThat(cars.getWinners()).isEqualTo("rick가 최종 우승 했습니다.");
     }
 
@@ -30,17 +26,29 @@ public class CarsTest extends MockRandomGenerator {
         Car rickCar = new Car("rick");
 
         for (int i = 0; i < 3; i++) {
-            randomNumberOverFour();
-            rickCar.goForward();
-
-            randomNumberOverFour();
-            jaeCar.goForward();
+            moveCarPosition(rickCar, jaeCar);
         }
-        closeMockRandom();
         Cars cars = new Cars();
-        cars.addCar(jaeCar);
-        cars.addCar(rickCar);
-
+        addTestCarToCars(cars, jaeCar, rickCar);
         assertThat(cars.getWinners()).isEqualTo("jae, rick가 최종 우승 했습니다.");
+    }
+
+    @AfterEach
+    void stopMockRandom() {
+        closeMockRandom();
+    }
+
+
+    private void addTestCarToCars(Cars cars, Car ...car) {
+        for (Car c : car) {
+            cars.addCar(c);
+        }
+    }
+
+    private void moveCarPosition(Car ...car) {
+        for (Car c : car) {
+            randomNumberOverFour();
+            c.goForward();
+        }
     }
 }

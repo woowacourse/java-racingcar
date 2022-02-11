@@ -6,7 +6,7 @@ import static racingcar.Output.*;
 public class RacingController {
 
     public void play() {
-        Cars cars = createCars();
+        Cars cars = Cars.toCars(getRightName());
         int trialCount = getRightNumber();
         printResultMessage();
         for (int i = 0; i < trialCount; i++) {
@@ -14,15 +14,6 @@ public class RacingController {
             printMessage(cars.toString());
         }
         printMessage(cars.getWinners());
-    }
-
-    private Cars createCars() {
-        String[] carNames = getRightName();
-        Cars cars = new Cars();
-        for (String carName : carNames) {
-            cars.addCar(new Car(carName));
-        }
-        return cars;
     }
 
     private String[] getRightName() {

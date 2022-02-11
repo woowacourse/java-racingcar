@@ -6,6 +6,15 @@ import java.util.List;
 public class Cars {
 
     private List<Car> cars = new ArrayList<>();
+    private List<String> winners = new ArrayList<>();
+
+    public static Cars toCars(String[] values) {
+        Cars cars = new Cars();
+        for (String value : values) {
+            cars.addCar(new Car(value));
+        }
+        return cars;
+    }
 
     public void addCar(Car car) {
         cars.add(car);
@@ -19,22 +28,19 @@ public class Cars {
 
     public String getWinners() {
         int maxPosition = getMaxPosition();
-        List<String> names = addWinnerNames(maxPosition);
-        return String.join(", ", names) + "가 최종 우승 했습니다.";
+        addWinnerNames(maxPosition);
+        return String.join(", ", winners) + "가 최종 우승 했습니다.";
     }
 
-    private List<String> addWinnerNames(int maxPosition) {
-        List<String> names = new ArrayList<>();
-
+    private void addWinnerNames(int maxPosition) {
         for (Car car : cars) {
-            addName(maxPosition, names, car);
+            addName(maxPosition, car);
         }
-        return names;
     }
 
-    private void addName(int maxPosition, List<String> names, Car car) {
+    private void addName(int maxPosition, Car car) {
         if (car.isMaxPosition(maxPosition)) {
-            names.add(car.getName());
+            winners.add(car.getName());
         }
     }
 
