@@ -14,7 +14,7 @@ import racingcar.view.OutPutView;
 
 public class RacingCarController {
 
-    private Racing racing = new Racing();
+    private final Racing racing = new Racing();
 
     public void run() {
         OutPutView.printResult(racing.race(getCars(), getCount()));

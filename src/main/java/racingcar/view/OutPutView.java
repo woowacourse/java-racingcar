@@ -5,10 +5,15 @@ import java.util.List;
 import racingcar.domain.Car;
 
 public class OutPutView {
+    private static final String STATUS_MESSAGE = "실행 결과";
+    public static final String STATUS_FORMAT = " " + ":" + " ";
+    private static final String POSITION_FORMAT = "-";
+    public static final String RESULT_DELIMITER = ", ";
+    public static final String RESULT_MESSAGE = "가 최종 우승했습니다.";
 
     public static void printStatusMessage() {
         System.out.println();
-        System.out.println("실행 결과");
+        System.out.println(STATUS_MESSAGE);
     }
 
     public static void printStatus(List<Car> cars) {
@@ -17,16 +22,16 @@ public class OutPutView {
     }
 
     private static String makeCarStatus(Car car) {
-        String carStatus = car.getName() + " " + ":" + " ";
+        StringBuilder carStatus = new StringBuilder(car.getName() + STATUS_FORMAT);
         int position = car.getPosition();
 
         while (position-- > 0) {
-            carStatus += "-";
+            carStatus.append(POSITION_FORMAT);
         }
-        return carStatus;
+        return carStatus.toString();
     }
 
     public static void printResult(List<String> winners) {
-        System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
+        System.out.println(String.join(RESULT_DELIMITER, winners) + RESULT_MESSAGE);
     }
 }
