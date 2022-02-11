@@ -6,7 +6,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import racingcargame.utils.NameInputValidator;
 
 public class GameControllerTest {
-    InputController inputController = InputController.getInputController();
 
     @Test
     void 자동차_이름_공백_입력_예외_테스트() {
