@@ -6,9 +6,10 @@ import java.util.List;
 
 import racingcar.util.BoundedRandomNumberGenerator;
 
-public class Cars {
+public class ParticipateCars {
 	private static final int MAX_BOUND = 9;
 	private static final int MIN_BOUND = 0;
+	private static final int FASTEST_CAR_INDEX = 0;
 	private final List<Car> cars = new ArrayList<>();
 
 	public void generateCars(List<String> carNames) {
@@ -25,20 +26,21 @@ public class Cars {
 		cars.add(car);
 	}
 
-	public List<String> findWinners(WinnerNames winnerNames) {
-		return getWinnerNamesWithFirstCar(findFastestCar(), winnerNames);
+	public WinnerNames findWinners() {
+		return getWinnerNamesWithFirstCar(findFastestCar());
 	}
 
 	private Car findFastestCar() {
 		Collections.sort(cars);
-		return cars.get(0);
+		return cars.get(FASTEST_CAR_INDEX);
 	}
 
-	private List<String> getWinnerNamesWithFirstCar(Car firstCar, WinnerNames winnerNames) {
+	private WinnerNames getWinnerNamesWithFirstCar(Car firstCar) {
+		WinnerNames winnerNames = new WinnerNames();
 		for (Car car : cars) {
 			winnerNames.addWinnerByFastestCar(car, firstCar);
 		}
-		return winnerNames.getWinnerNames();
+		return winnerNames;
 	}
 
 	public List<String> executeCarRacing() {

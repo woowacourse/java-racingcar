@@ -3,9 +3,11 @@ package racingcar.validator;
 import java.util.List;
 
 public class CarNameValidator {
+	private static int MAX_CAR_NAME_LENGTH = 5;
+	private static String EMPTY_STRING = "";
 
 	public static void checkCarNamesLine(String carNamesLine) {
-		if (carNamesLine.equals("")) {
+		if (carNamesLine.equals(EMPTY_STRING)) {
 			throw new RuntimeException("빈 문자열을 자동차 이름으로 입력할 수 없습니다.");
 		}
 	}
@@ -20,19 +22,19 @@ public class CarNameValidator {
 	}
 
 	private static void carNameLengthException(String carName) {
-		if (carName.length() > 5) {
+		if (carName.length() > MAX_CAR_NAME_LENGTH) {
 			throw new RuntimeException("자동차 이름은 5자 이하여야 합니다.");
 		}
 	}
 
 	private static void carNameIsEmptyException(String carName) {
-		if (carName.equals("")) {
+		if (carName.equals(EMPTY_STRING)) {
 			throw new RuntimeException("모든 자동차 이름은 반드시 존재해야 합니다.");
 		}
 	}
 
 	private static void carNameIsSpaceException(String carName) {
-		if (carName.trim().equals("")) {
+		if (carName.trim().equals(EMPTY_STRING)) {
 			throw new RuntimeException("자동차 이름은 공백으로 설정할 수 없습니다.");
 		}
 	}

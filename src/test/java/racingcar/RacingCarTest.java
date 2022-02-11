@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.controller.RacingCarController;
 import racingcar.domain.Car;
-import racingcar.domain.Cars;
+import racingcar.domain.ParticipateCars;
 import racingcar.domain.WinnerNames;
 import racingcar.util.BoundedRandomNumberGenerator;
 
@@ -18,7 +18,7 @@ import racingcar.util.BoundedRandomNumberGenerator;
 public class RacingCarTest {
 	public RacingCarController racingCarController = new RacingCarController();
 	public BoundedRandomNumberGenerator randomNumberGenerator = new BoundedRandomNumberGenerator(9, 0);
-	public Cars cars = new Cars();
+	public ParticipateCars participateCars = new ParticipateCars();
 	public WinnerNames winnerNames = new WinnerNames();
 
 	@Test
@@ -107,17 +107,17 @@ public class RacingCarTest {
 	@Test
 	public void 자동차_생성_테스트() {
 		List<String> carNames = racingCarController.getCarNames("이브,클레이,포비");
-		cars.generateCars(carNames);
-		assertThat(cars.getSize()).isEqualTo(3);
+		participateCars.generateCars(carNames);
+		assertThat(participateCars.getSize()).isEqualTo(3);
 	}
 
 	@Test
 	public void 최종_우승자_찾기_테스트() {
-		cars.addCar(new Car("이브", new BoundedRandomNumberGenerator(9, 4)));
-		cars.addCar(new Car("클레이", new BoundedRandomNumberGenerator(3, 0)));
-		cars.addCar(new Car("포비", new BoundedRandomNumberGenerator(9, 4)));
-		cars.executeCarRacing();
-		List<String> winners = cars.findWinners(winnerNames);
+		participateCars.addCar(new Car("이브", new BoundedRandomNumberGenerator(9, 4)));
+		participateCars.addCar(new Car("클레이", new BoundedRandomNumberGenerator(3, 0)));
+		participateCars.addCar(new Car("포비", new BoundedRandomNumberGenerator(9, 4)));
+		participateCars.executeCarRacing();
+		List<String> winners = participateCars.findWinners().getWinnerNames();
 
 		assertThat(winners.size()).isEqualTo(2);
 		assertThat(winners).contains("이브", "포비");

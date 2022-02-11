@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import racingcar.domain.WinnerNames;
+
 import java.util.List;
 
 public class OutputView {
@@ -19,8 +21,8 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printWinnerNames(List<String> winnerNames) {
-		String winners = String.join(WINNER_NAME_DELIMITER, winnerNames);
+	public static void printWinnerNames(WinnerNames winnerNames) {
+		String winners = String.join(WINNER_NAME_DELIMITER, winnerNames.getWinnerNames());
 		System.out.println(winners + WINNER_MESSAGE);
 	}
 }

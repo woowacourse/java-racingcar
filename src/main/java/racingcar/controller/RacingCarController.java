@@ -3,7 +3,7 @@ package racingcar.controller;
 import java.util.Arrays;
 import java.util.List;
 
-import racingcar.domain.Cars;
+import racingcar.domain.ParticipateCars;
 import racingcar.domain.WinnerNames;
 import racingcar.validator.CarNameValidator;
 import racingcar.validator.TrialCountValidator;
@@ -11,19 +11,23 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarController {
-	public final Cars cars = new Cars();
-	public final WinnerNames winnerNames = new WinnerNames();
+	public final ParticipateCars participateCars = new ParticipateCars();
+
+	public static final String CAR_NAME_DELIMITER = ",";
 
 	public void playGame() {
-		cars.generateCars(getCarNames(InputView.inputCarNames()));
+		participateCars.generateCars(getCarNames(InputView.inputCarNames()));
 		int trialCount = getTrialCount(InputView.inputTrials());
 
+		executeRacingUntil(trialCount);
+		OutputView.printWinnerNames(participateCars.findWinners());
+	}
+
+	private void executeRacingUntil(int trialCount) {
 		OutputView.printResultMessage();
 		for (int i = 0; i < trialCount; i++) {
-			OutputView.printRacingRecords(cars.executeCarRacing());
+			OutputView.printRacingRecords(participateCars.executeCarRacing());
 		}
-
-		OutputView.printWinnerNames(cars.findWinners(winnerNames));
 	}
 
 	public List<String> getCarNames(String carNamesLine) {
@@ -31,8 +35,8 @@ public class RacingCarController {
 		return split(carNamesLine);
 	}
 
-	public List<String> split(String carNamesLine) {
-		List<String> carNames = Arrays.asList(carNamesLine.split(","));
+	private List<String> split(String carNamesLine) {
+		List<String> carNames = Arrays.asList(carNamesLine.split(CAR_NAME_DELIMITER));
 		CarNameValidator.checkCarNames(carNames);
 		return carNames;
 	}
