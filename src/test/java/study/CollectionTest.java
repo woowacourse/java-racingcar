@@ -1,15 +1,16 @@
 package study;
 
+import static org.assertj.core.api.AssertionsForClassTypes.*;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import static org.assertj.core.api.AssertionsForClassTypes.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class CollectionTest {
     private Set<Integer> numbers;
@@ -39,7 +40,7 @@ public class CollectionTest {
     @ParameterizedTest
     @DisplayName("contains 메서드 테스트 - 실패 케이스 포함")
     @CsvSource(value = {"0:false", "1:true", "2:true", "3:true", "4:false"}, delimiter = ':')
-    void toLowerCase_ShouldGenerateTheExpectedLowercaseValue(int input, boolean expected) {
-        assertEquals(numbers.contains(input), expected);
+    void contains_withFail(int input, boolean expected) {
+        assertThat(numbers.contains(input)).isEqualTo(expected);
     }
 }

@@ -1,11 +1,11 @@
 package racingcar.model;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.stream.IntStream;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
-import racingcar.model.RandomUtil;
 
 public class RandomUtilTest {
     @Test
@@ -14,7 +14,7 @@ public class RandomUtilTest {
         IntStream.range(0, 10000)
             .forEach(i -> {
                 int result = RandomUtil.getNumbersInRange(10);
-                assertTrue(result < 10 && result >= 0);
+                assertThat(result < 10 && result >= 0).isTrue();
             });
     }
 }
