@@ -27,8 +27,7 @@ public class StringCalculator {
 
 	private static List<Integer> toNumberList(List<String> numberStringList) {
 		return numberStringList.stream()
-			.mapToInt(Integer::parseInt)
-			.boxed()
+			.map(Integer::valueOf)
 			.collect(Collectors.toList());
 	}
 
