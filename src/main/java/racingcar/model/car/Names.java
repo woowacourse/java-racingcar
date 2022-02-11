@@ -1,6 +1,5 @@
-package racingcar.model.input;
+package racingcar.model.car;
 
-import racingcar.model.car.Name;
 import racingcar.util.StringValidator;
 
 import java.util.Arrays;

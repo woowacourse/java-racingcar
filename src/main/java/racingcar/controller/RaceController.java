@@ -1,7 +1,7 @@
 package racingcar.controller;
 
 import racingcar.model.car.Cars;
-import racingcar.model.input.Names;
+import racingcar.model.car.Names;
 import racingcar.model.trycount.TryCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;

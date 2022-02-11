@@ -1,10 +1,9 @@
-package racingcar.model.input;
+package racingcar.model.car;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import racingcar.model.car.Name;
 
 public class NamesTest {
     @DisplayName("from 메소드는")
