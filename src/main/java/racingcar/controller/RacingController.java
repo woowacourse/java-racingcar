@@ -4,9 +4,10 @@ import racingcar.view.InputView;
 import racingcar.view.ResultView;
 
 public class RacingController {
-	private final CarController carController = new CarController();
+	private final CarController carController;
 
 	public RacingController() {
+		this.carController = new CarController();
 		createCars();
 	}
 

@@ -6,7 +6,11 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class CarRepository {
-	private final List<Car> cars = new ArrayList<>();
+	private final List<Car> cars;
+
+	public CarRepository() {
+		this.cars = new ArrayList<>();
+	}
 
 	public void save(Car car) {
 		cars.add(car);

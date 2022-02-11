@@ -16,8 +16,13 @@ import racingcar.model.RandomNo;
 public class CarController {
 	private static final String CAR_NAMES_DUPLICATE_ERROR_MESSAGE = "중복된 자동차 이름이 입력됐습니다.";
 	private static final String CAR_NAME_DELIMITER = ",";
-	private final CarRepository carRepository = new CarRepository();
-	private final RandomNo randomNo = new RandomNo();
+	private final CarRepository carRepository;
+	private final RandomNo randomNo;
+
+	public CarController() {
+		this.carRepository = new CarRepository();
+		this.randomNo = new RandomNo();
+	}
 
 	public String[] splitCarNames(String input) {
 		return Stream.of(input.split(CAR_NAME_DELIMITER))

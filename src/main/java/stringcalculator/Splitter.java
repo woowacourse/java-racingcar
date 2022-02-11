@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Splitter {
-	public static final String DEFAULT_DELIMITERS = ",|:";
+	public static final String DEFAULT_DELIMITERS = "[,:]";
 	public static final int DELIMITER_INDEX = 1;
 	public static final int INPUT_INDEX = 2;
 	public static final String CUSTOM_DELIMITER_PREFIX = "//";
@@ -29,6 +29,10 @@ public class Splitter {
 		return m.group(INPUT_INDEX).split(customDelimiter);
 	}
 
+	public static boolean isCustomInput(String input) {
+		return input.startsWith(CUSTOM_DELIMITER_PREFIX);
+	}
+
 	private static void validMatchRegEx(Matcher m) {
 		if (!m.find()) {
 			throw new RuntimeException();
@@ -45,9 +49,5 @@ public class Splitter {
 
 	private static String addCustomDelimiterPrefix(String customDelimiter) {
 		return SPECIAL_CUSTOM_DELIMITER_PREFIX + customDelimiter;
-	}
-
-	public static boolean isCustomInput(String input) {
-		return input.startsWith(CUSTOM_DELIMITER_PREFIX);
 	}
 }
