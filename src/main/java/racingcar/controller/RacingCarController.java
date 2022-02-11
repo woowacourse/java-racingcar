@@ -13,8 +13,8 @@ import racingcar.view.OutputView;
 public class RacingCarController {
 	public final ParticipateCars participateCars = new ParticipateCars();
 
-	public static final String CAR_NAME_DELIMITER = ",";
-
+	private static final String CAR_NAME_DELIMITER = ",";
+	private static final int SPLIT_WITH_EMPTY = -1;
 	public void playGame() {
 		participateCars.generateCars(getCarNames(InputView.inputCarNames()));
 		int trialCount = getTrialCount(InputView.inputTrials());
@@ -36,7 +36,7 @@ public class RacingCarController {
 	}
 
 	private List<String> split(String carNamesLine) {
-		List<String> carNames = Arrays.asList(carNamesLine.split(CAR_NAME_DELIMITER));
+		List<String> carNames = Arrays.asList(carNamesLine.split(CAR_NAME_DELIMITER, SPLIT_WITH_EMPTY));
 		CarNameValidator.checkCarNames(carNames);
 		return carNames;
 	}
