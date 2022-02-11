@@ -1,8 +1,8 @@
 package racingcar.util;
 
 public class BoundedRandomNumberGenerator implements RandomNumberGenerator {
-	private int maxBound;
-	private int minBound;
+	private final int maxBound;
+	private final int minBound;
 
 	public BoundedRandomNumberGenerator(int maxBound, int minBound) {
 		this.maxBound = maxBound;

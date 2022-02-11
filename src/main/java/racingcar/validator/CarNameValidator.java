@@ -3,6 +3,7 @@ package racingcar.validator;
 import java.util.List;
 
 public class CarNameValidator {
+	public static final int CAR_NAME_LENGTH_LIMIT = 5;
 
 	public static void checkCarNamesLine(String carNamesLine) {
 		if (carNamesLine.equals("")) {
@@ -20,7 +21,7 @@ public class CarNameValidator {
 	}
 
 	private static void carNameLengthException(String carName) {
-		if (carName.length() > 5) {
+		if (carName.length() > CAR_NAME_LENGTH_LIMIT) {
 			throw new RuntimeException("자동차 이름은 5자 이하여야 합니다.");
 		}
 	}

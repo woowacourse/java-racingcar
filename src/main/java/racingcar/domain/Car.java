@@ -4,9 +4,9 @@ import racingcar.util.RandomNumberGenerator;
 
 public class Car implements Comparable<Car> {
 	private static final int OPERATING_STANDARD = 4;
-	private String carName;
+	private final String carName;
 	private int position;
-	private RandomNumberGenerator randomNumberGenerator;
+	private final RandomNumberGenerator randomNumberGenerator;
 
 	public Car(String carName, RandomNumberGenerator randomNumberGenerator) {
 		this.carName = carName;
@@ -21,10 +21,7 @@ public class Car implements Comparable<Car> {
 	}
 
 	public boolean isMovable() {
-		if (randomNumberGenerator.generate() >= OPERATING_STANDARD) {
-			return true;
-		}
-		return false;
+		return randomNumberGenerator.generate() >= OPERATING_STANDARD;
 	}
 
 	public String getCarName() {

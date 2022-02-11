@@ -1,7 +1,6 @@
 package racingcar.validator;
 
 public class TrialCountValidator {
-
 	public static void checkTrialCountLine(String line) {
 		trialCountNotNumericValueException(line);
 		trialCountZeroException(line);
