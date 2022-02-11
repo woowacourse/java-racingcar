@@ -67,12 +67,12 @@
 
 ## 프로그래밍 요구사항
 - [ ] 모든 로직에 단위 테스트를 구현한다(단, UI(System.out, System.in) 로직은 제외)
-- [ ] 자바 코드 컨벤션을 지키면서 프로그래밍한다. (참고문서: https://google.github.io/styleguide/javaguide.html 또는 https://myeonguni.tistory.com/1596)
-- [ ] 한 메서드에 오직 한 단계의 들여쓰기(indent)만 한다.를 지키며 구현한다.
-- [ ] else 예약어를 쓰지 않는다.를 지키며 구현한다.
-- [ ] 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-- [ ] 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
+- [x] 자바 코드 컨벤션을 지키면서 프로그래밍한다. (참고문서: https://google.github.io/styleguide/javaguide.html 또는 https://myeonguni.tistory.com/1596)
+- [x] 한 메서드에 오직 한 단계의 들여쓰기(indent)만 한다.를 지키며 구현한다.
+- [x] else 예약어를 쓰지 않는다.를 지키며 구현한다.
+- [x] 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+- [x] 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
 
 ## 기능 목록 및 commit 로그 요구사항
-- [ ] 기능을 구현하기 전에 README.md 파일에 구현할 기능 목록을 정리해 추가한다.
-- [ ] git의 commit 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위로 추가한다.
+- [x] 기능을 구현하기 전에 README.md 파일에 구현할 기능 목록을 정리해 추가한다.
+- [x] git의 commit 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위로 추가한다.
