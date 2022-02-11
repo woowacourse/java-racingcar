@@ -19,6 +19,7 @@ public class InputView {
     private static final int ROUND_MINIMUM_ONE = 1;
 
     private static final Scanner scanner = new Scanner(System.in);
+    public static final String ERROR_CARS_NAME_DUPLICATED = "자동차의 이름에 중복이 있습니다.";
 
     public static String getInput() {
         return scanner.nextLine();
@@ -42,6 +43,7 @@ public class InputView {
     }
 
     private static void validateCarsName(List<String> carsName) {
+        validateCarsNameDuplicated(carsName);
         for (String carName : carsName) {
             validateCarsNameLength(carName);
             validateCarsNameBlank(carName);
@@ -52,6 +54,16 @@ public class InputView {
         if (carName.isBlank()) {
             throw new IllegalArgumentException(ERROR_CAR_NAME_BLANK);
         }
+    }
+
+    private static void validateCarsNameDuplicated(List<String> carsName) {
+        if (validateCarsNameSize(carsName)) {
+            throw new IllegalArgumentException(ERROR_CARS_NAME_DUPLICATED);
+        }
+    }
+
+    private static boolean validateCarsNameSize(List<String> carsName) {
+        return carsName.stream().distinct().count() != carsName.size();
     }
 
     private static void validateCarsNameLength(String carName) {
