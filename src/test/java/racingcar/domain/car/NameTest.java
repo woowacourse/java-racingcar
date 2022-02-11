@@ -20,7 +20,7 @@ public class NameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings ={""," ","    "})
+    @ValueSource(strings = {"", " ", "    "})
     void carNameIsNotBlank(String input) {
         assertThatExceptionOfType(CarNameBlankException.class)
             .isThrownBy(() -> new Name(input))

@@ -16,7 +16,8 @@ public class InputViewTest extends ConsoleTest {
         inputView = ViewConfig.getInputView();
         String carName = inputView.inputCarNames();
 
-        Assertions.assertThat(outputStream.toString()).contains("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        Assertions.assertThat(outputStream.toString())
+            .contains("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         Assertions.assertThat(carName).isEqualTo("pobi");
     }
 

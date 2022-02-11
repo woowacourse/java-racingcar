@@ -6,8 +6,8 @@ import racingcar.domain.movement.MovementStrategy;
 
 public class Car {
 
-    private Name name;
-    private Position position;
+    private final Name name;
+    private final Position position;
 
     public Car(String name) {
         this(new Name(name));
