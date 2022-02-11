@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.vo.Name;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,6 +38,18 @@ public class CarTest {
 
         // then
         assertThat(car.getPosition()).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 10})
+    void invalidAdvanceTest(int number) {
+        // given
+        Car car = new Car(Name.create("test"));
+
+        // when && then
+        assertThatThrownBy(() -> car.advance(number))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("유효한 범위가 아닙니다.");
     }
 
     @Test

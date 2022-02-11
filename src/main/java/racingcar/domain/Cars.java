@@ -10,6 +10,8 @@ import racingcar.vo.Name;
 import racingcar.vo.Winners;
 
 public class Cars {
+    private static final int RANDOM_NUMBER_RANGE = 9 + 1;
+
     private List<Car> cars;
 
     public Cars(List<Name> names) {
@@ -23,7 +25,7 @@ public class Cars {
     }
 
     public void move() {
-        cars.forEach(car -> car.advance(RandomUtil.getNumbersInRange(10)));
+        cars.forEach(car -> car.advance(RandomUtil.getNumbersInRange(RANDOM_NUMBER_RANGE)));
     }
 
     public Winners getWinners() {
