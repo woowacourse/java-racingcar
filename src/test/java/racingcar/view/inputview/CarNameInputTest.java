@@ -10,14 +10,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import racingcar.view.inputview.reader.CustomReader;
 import racingcar.view.input.InputView;
+import racingcar.view.inputview.reader.CustomReader;
+import racingcar.view.input.InputViewImpl;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarNameInputTest {
 
 	private final CustomReader customReader = new CustomReader();
-	private final InputView inputView = new InputView(customReader);
+	private final InputView inputView = new InputViewImpl(customReader);
 
 	@ParameterizedTest
 	@MethodSource("provideValuesForNormalInput")
