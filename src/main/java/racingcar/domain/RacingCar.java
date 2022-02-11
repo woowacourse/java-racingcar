@@ -36,8 +36,8 @@ public class RacingCar {
         return position;
     }
 
-    public int move() {
-        return ++position;
+    public void move() {
+        position++;
     }
 
     public boolean comparePosition(int position) {

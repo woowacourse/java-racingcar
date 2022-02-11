@@ -36,7 +36,8 @@ public class RacingCarTest {
     @Test
     @DisplayName("자동차가 움직일 수 있다.")
     void racingCarMove() {
-        assertThat(car.move()).isEqualTo(1);
+        car.move();
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
