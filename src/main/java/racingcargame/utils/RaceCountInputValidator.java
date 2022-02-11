@@ -20,16 +20,15 @@ public class RaceCountInputValidator {
     }
 
     private static boolean isRightNumberRaceCount(String raceCount) {
+        if (raceCount == null) {
+            throw new IllegalArgumentException(EMPTY_RACE_COUNT_ERROR_MESSAGE);
+        }
         if (!Pattern.matches(RACE_COUNT_PATTERN, raceCount)) {
             throw new IllegalArgumentException(NOT_RIGHT_COUNT_ERROR_MESSAGE);
         }
         if (raceCount.startsWith(COUNT_IS_ZERO)) {
             throw new IllegalArgumentException(RACE_COUNT_START_ZERO_ERROR_MESSAGE);
         }
-        if (raceCount == null) {
-            throw new IllegalArgumentException(EMPTY_RACE_COUNT_ERROR_MESSAGE);
-        }
-
         return true;
     }
 }
