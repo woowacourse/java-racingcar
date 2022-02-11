@@ -5,7 +5,8 @@ import java.util.Set;
 
 public class Validator {
 
-    public static final int MIN_COUNT = 2;
+    private static final int MIN_COUNT = 2;
+    private static final int MIN_LENGTH = 0;
     private static int MAX_COUNT = 5;
     private static String ERROR_NAME_HAS_BLANK = "[ERROR] 이름에 공백이 존재합니다.";
     private static String ERROR_NO_NAME = "[ERROR] 이름 입력은 필수입니다.";
@@ -41,7 +42,7 @@ public class Validator {
     }
 
     private static void checkNoName(String name) {
-        if (name.length() == 0) {
+        if (name.length() == MIN_LENGTH) {
             throw new IllegalArgumentException(ERROR_NO_NAME);
         }
     }
@@ -86,7 +87,7 @@ public class Validator {
     }
 
     private static void checkPositiveNumber(int parseInt) {
-        if (parseInt <= 0) {
+        if (parseInt <= MIN_LENGTH) {
             throw new IllegalArgumentException(ERROR_NUMBER_OVER_ONE);
         }
     }

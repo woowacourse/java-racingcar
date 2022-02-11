@@ -4,7 +4,12 @@ import static racingcar.RandomGenerator.*;
 
 public class Car {
 
-    private String name;
+    private static final int MAX_RANDOM_RANGE = 9;
+    private static final int MIN_GO_FORWARD_RANGE = 4;
+    private static final String NAME_POSITION_DELIMITER = " : ";
+    private static final String PROGRESS_BAR = "-";
+
+    final private String name;
     private int position;
 
     public Car(String name) {
@@ -27,7 +32,7 @@ public class Car {
     }
 
     private boolean isCarGoForward() {
-        if (getRandomNumberInRange(9) >= 4) {
+        if (getRandomNumberInRange(MAX_RANDOM_RANGE) >= MIN_GO_FORWARD_RANGE) {
             return true;
         }
         return false;
@@ -40,9 +45,9 @@ public class Car {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(this.name)
-                .append(" : ");
+                .append(NAME_POSITION_DELIMITER);
         for (int i = 0; i < position; i++) {
-            stringBuilder.append("-");
+            stringBuilder.append(PROGRESS_BAR);
         }
         return stringBuilder.toString();
     }

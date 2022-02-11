@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Cars {
 
+    public static final String LIST_JOIN_DELIMITER = ", ";
+    public static final String WINNER_MESSAGE = "가 최종 우승 했습니다.";
+
     private List<Car> cars = new ArrayList<>();
     private List<String> winners = new ArrayList<>();
 
@@ -29,7 +32,7 @@ public class Cars {
     public String getWinners() {
         int maxPosition = getMaxPosition();
         addWinnerNames(maxPosition);
-        return String.join(", ", winners) + "가 최종 우승 했습니다.";
+        return String.join(LIST_JOIN_DELIMITER, winners) + WINNER_MESSAGE;
     }
 
     private void addWinnerNames(int maxPosition) {
