@@ -3,37 +3,37 @@ package racingcargame.model;
 import java.util.*;
 
 public class RacingCarGame {
-    private CarRepository carRepository;
+	private CarRepository carRepository;
 
-    public RacingCarGame(List<String> carNames, int raceCount) {
-        orderToSaveCars(carNames);
-        orderToSaveRaceCount(raceCount);
-    }
+	public RacingCarGame(List<String> carNames, int raceCount) {
+		prepareRacingCars(carNames);
+		prepareRaceCount(raceCount);
+	}
 
-    private void orderToSaveCars(List<String> carNames) {
-        carRepository = new CarRepository(carNames);
-    }
+	private void prepareRacingCars(final List<String> carNames) {
+		carRepository = new CarRepository(carNames);
+	}
 
-    private void orderToSaveRaceCount(int raceCount) {
-        RaceCount.storeCount(raceCount);
-    }
+	private void prepareRaceCount(final int raceCount) {
+		RaceCount.storeCount(raceCount);
+	}
 
-    public boolean isOverRace() {
-        return RaceCount.getCount() == 0;
-    }
+	public boolean isOverRace() {
+		return RaceCount.getCount() == 0;
+	}
 
-    public List<CarVO> startRace() {
-        RaceCount.reduceRaceCount();
-        carRepository.moveCars();
+	public List<CarVO> startRace() {
+		RaceCount.reduceRaceCount();
+		carRepository.moveCars();
 
-        List<CarVO> cars = new ArrayList<>();
-        for (Car car : carRepository.getCars()) {
-            cars.add(new CarVO(car.getName(), car.getPosition()));
-        }
-        return cars;
-    }
+		List<CarVO> cars = new ArrayList<>();
+		for (Car car : carRepository.getCars()) {
+			cars.add(new CarVO(car.getName(), car.getPosition()));
+		}
+		return cars;
+	}
 
-    public List<String> findRacingGameWinner() {
-        return carRepository.findWinner();
-    }
+	public List<String> findRacingGameWinner() {
+		return carRepository.findWinner();
+	}
 }
