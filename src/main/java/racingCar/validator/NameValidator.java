@@ -14,6 +14,11 @@ public class NameValidator {
 		checkSpecialChar(name);
 	}
 
+	public static void checkNameList(List<String> nameList) throws Exception {
+		checkOneName(nameList);
+		checkDuplicatedName(nameList);
+	}
+
 	public static void checkNull(String inputString) throws Exception {
 		if (inputString == null || inputString.isEmpty())
 			throw new Exception(ERROR);

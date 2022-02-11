@@ -14,7 +14,7 @@ public class Car {
 		this.name = name;
 	}
 
-	public void go() {
+	public void decideMove() {
 		if (isMove()) {
 			moveCar();
 		}

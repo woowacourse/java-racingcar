@@ -6,6 +6,11 @@ public class CountValidator {
 
 	public static final String ERROR = "ERROR";
 
+	public static void checkInputString(String inputString) throws Exception {
+		checkNull(inputString);
+		checkNotNumber(inputString);
+	}
+
 	public static void checkNull(String inputString) throws Exception {
 		if (inputString == null || inputString.isEmpty()) {
 			throw new Exception(ERROR);

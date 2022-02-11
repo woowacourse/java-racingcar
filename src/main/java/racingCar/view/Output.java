@@ -13,7 +13,7 @@ public class Output {
 		System.out.println(ERROR_MSG + e);
 	}
 
-	public static void printResult() {
+	public static void printResultMessege() {
 		System.out.println("\n실행 결과");
 	}
 

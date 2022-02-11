@@ -1,5 +1,7 @@
 package racingCar.controller;
 
+import static racingCar.view.Output.*;
+
 import racingCar.service.RacingCarService;
 import racingCar.utlis.Convertor;
 import racingCar.validator.CountValidator;
@@ -9,7 +11,12 @@ import racingCar.view.Output;
 
 public class RacingCarsController {
 
-	RacingCarService racingCarService = new RacingCarService();
+	private int roundCount = 0;
+	private final RacingCarService racingCarService;
+
+	public RacingCarsController() {
+		this.racingCarService = new RacingCarService();
+	}
 
 	public void requestCarsName() {
 		try {
@@ -25,19 +32,21 @@ public class RacingCarsController {
 	public void requestCount() {
 		try {
 			String countString = Input.inputCount();
-			CountValidator.checkNull(countString);
-			CountValidator.checkNotNumber(countString);
-			int count = Convertor.convertStringToInteger(countString);
-			CountValidator.checkCountIsZero(count);
-			racingCarService.saveCount(count);
+			CountValidator.checkInputString(countString);
+			this.roundCount = Convertor.convertStringToInteger(countString);
 		} catch (Exception exception) {
 			Output.printError(exception.getMessage());
 			requestCount();
 		}
 	}
 
-	public void startGame() {
-		racingCarService.runGame();
+	public void startGame() throws Exception {
+		CountValidator.checkCountIsZero(roundCount);
+		printResultMessege();
+		for (int i = 0; i < roundCount; i++) {
+			racingCarService.runRound();
+			Output.printRoundResult(racingCarService.findAllCars());
+		}
 	}
 
 	public void endGame() {

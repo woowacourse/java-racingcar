@@ -1,7 +1,5 @@
 package racingCar.service;
 
-import static racingCar.view.Output.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,31 +8,20 @@ import java.util.stream.Collectors;
 import racingCar.model.Car;
 import racingCar.utlis.Convertor;
 import racingCar.validator.NameValidator;
-import racingCar.view.Output;
 
 public class RacingCarService {
 
 	List<Car> cars = new ArrayList<>();
-	private int count;
 
-	public void runGame() {
-		printResult();
-		for (int i = 0; i < count; i++) {
-			carsGo();
-			Output.printRoundResult(cars);
-		}
-	}
-
-	public void carsGo() {
+	public void runRound() {
 		for (Car car : cars) {
-			car.go();
+			car.decideMove();
 		}
 	}
 
 	public void saveCars(String carsNames) throws Exception {
 		List<String> carNameList = new ArrayList<>(Arrays.asList(Convertor.separateNamesByDelimiter(carsNames)));
-		NameValidator.checkOneName(carNameList);
-		NameValidator.checkDuplicatedName(carNameList);
+		NameValidator.checkNameList(carNameList);
 		save(carNameList);
 	}
 
@@ -44,25 +31,25 @@ public class RacingCarService {
 		}
 	}
 
-	public void saveCount(int count) {
-		this.count = count;
-	}
-
 	public int findMaxPosition() {
-		int max = 0;
+		int maxPosition = 0;
 		for (Car car : cars) {
-			if (car.getPosition() >= max) {
-				max = car.getPosition();
+			if (car.getPosition() >= maxPosition) {
+				maxPosition = car.getPosition();
 			}
 		}
-		return max;
+		return maxPosition;
 	}
 
 	public List<String> findWinner() {
-		int max = findMaxPosition();
+		int maxPosition = findMaxPosition();
 		return cars.stream()
-			.filter(car -> car.isWinner(max))
+			.filter(car -> car.isWinner(maxPosition))
 			.map(Car::getName)
 			.collect(Collectors.toList());
+	}
+
+	public List<Car> findAllCars() {
+		return cars;
 	}
 }
