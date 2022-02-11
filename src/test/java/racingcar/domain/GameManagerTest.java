@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class GameManagerTest {
 
-    GameManager gameManager = new GameManager("a,bc","5");
+    GameManager gameManager = new GameManager("a,bc",5);
 
     @Test
     void splitUserInputByComma() throws Exception {
@@ -63,36 +63,6 @@ public class GameManagerTest {
         );
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "2", "10"})
-    void getValidateTotalRounds_passesOnPositiveIntString(String totalRoundsInput) throws Exception {
-        Method validateTotalRoundsMethod = getValidateTotalRoundsMethod();
-
-        assertThatNoException().isThrownBy(
-                () -> validateTotalRoundsMethod.invoke(gameManager, totalRoundsInput)
-        );
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"한글", "eng", "$", "1.0"})
-    void getValidateTotalRounds_errorOnNonInteger(String totalRoundsInput) throws Exception {
-        Method validateTotalRoundsMethod = getValidateTotalRoundsMethod();
-
-        assertThatThrownBy(
-                () -> validateTotalRoundsMethod.invoke(gameManager, totalRoundsInput)
-        );
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"-1", "0"})
-    void getValidateTotalRounds_errorOnNonPositiveInteger(String totalRoundsInput) throws Exception {
-        Method validateTotalRoundsMethod = getValidateTotalRoundsMethod();
-
-        assertThatThrownBy(
-                () -> validateTotalRoundsMethod.invoke(gameManager, totalRoundsInput)
-        );
-    }
-
     private Method getPrivateMethod(String methodName, Class<?>... argsType) throws NoSuchMethodException {
         Method privateMethod = gameManager.getClass()
                 .getDeclaredMethod(methodName, argsType);
@@ -102,11 +72,6 @@ public class GameManagerTest {
 
     private Method getValidateCarNamesMethod() throws NoSuchMethodException {
         String methodName = "getValidateCarNames";
-        return getPrivateMethod(methodName, String.class);
-    }
-
-    private Method getValidateTotalRoundsMethod() throws NoSuchMethodException {
-        String methodName = "getValidateTotalRounds";
         return getPrivateMethod(methodName, String.class);
     }
 }

@@ -1,34 +1,37 @@
 package racingcar.util;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.Assertions.assertThatNoException;
+import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 import static racingcar.util.ValidatorUtils.validateNoDuplicates;
 import static racingcar.util.ValidatorUtils.validateNotBlank;
 import static racingcar.util.ValidatorUtils.validateNotOverFiveCharacters;
-import static racingcar.util.ValidatorUtils.validatePositiveInt;
 
 public class ValidatorUtilsTest {
 
-    @DisplayName("validatePositiveInt 메서드는 양수가 입력되었을 때 예외를 발생시키지 않는다.")
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 10})
-    void validatePositiveInt_passesOnPositive(int integer) {
-        assertThatNoException().isThrownBy(
-                () -> validatePositiveInt(integer)
-        );
+    @ValueSource(strings = {"1", "2", "10"})
+    void validateAndParsePositiveInt_returnParsedPositiveInteger(String string) {
+        int parsedInt = validateAndParsePositiveInt(string);
+        assertThat(parsedInt).isPositive();
     }
 
-    @DisplayName("validatePositiveInt 메서드는 음수 혹은 0이 입력되었을 때 예외를 발생시킨다.")
     @ParameterizedTest
-    @ValueSource(ints = {-10, 0})
-    void validatePositiveInt_errorOnNegativeAndZero(int integer) {
+    @ValueSource(strings = {"한글", "eng", "$", "1.0"})
+    void validateAndParsePositiveInt_errorOnNonInteger(String string) {
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> validatePositiveInt(integer))
+                .isThrownBy(() -> validateAndParsePositiveInt(string));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "0"})
+    void validateAndParsePositiveInt_errorOnNonPositiveInteger(String string) {
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> validateAndParsePositiveInt(string))
                 .withMessageMatching("양수를 입력해야 합니다.");
     }
 

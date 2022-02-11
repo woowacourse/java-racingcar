@@ -6,7 +6,13 @@ import java.util.Set;
 
 public class ValidatorUtils {
 
-    public static void validatePositiveInt(int integer) {
+    public static int validateAndParsePositiveInt(String string) {
+        int integer = Integer.parseInt(string);
+        validatePositiveInt(integer);
+        return integer;
+    }
+
+    private static void validatePositiveInt(int integer) {
         if (integer <= 0) {
             throw new RuntimeException("양수를 입력해야 합니다.");
         }

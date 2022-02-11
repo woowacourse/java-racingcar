@@ -9,17 +9,16 @@ import java.util.List;
 import static racingcar.util.ValidatorUtils.validateNoDuplicates;
 import static racingcar.util.ValidatorUtils.validateNotBlank;
 import static racingcar.util.ValidatorUtils.validateNotOverFiveCharacters;
-import static racingcar.util.ValidatorUtils.validatePositiveInt;
 
 public class GameManager {
 
     private final CarRepository carRepository = new CarRepository();
     private final int totalRounds;
 
-    public GameManager(String carNamesInput, String totalRoundsInput) {
+    public GameManager(String carNamesInput, int totalRounds) {
         String[] carNames = getValidateCarNames(carNamesInput);
         initCars(carNames);
-        totalRounds = getValidateTotalRounds(totalRoundsInput);
+        this.totalRounds = totalRounds;
     }
 
     public void run() {
@@ -47,12 +46,6 @@ public class GameManager {
         for (String name : carNames) {
             carRepository.add(new Car(name));
         }
-    }
-
-    private int getValidateTotalRounds(String userInput) {
-        int totalRoundsInput = Integer.parseInt(userInput);
-        validatePositiveInt(totalRoundsInput);
-        return totalRoundsInput;
     }
 
     private void playAllRounds() {
