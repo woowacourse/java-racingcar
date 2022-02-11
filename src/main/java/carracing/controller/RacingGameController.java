@@ -10,6 +10,10 @@ import carracing.view.InputView;
 import carracing.view.OutputView;
 
 public class RacingGameController {
+	public static final int ZERO = 0;
+	public static final String DELIMITER_REGEX = ",";
+	public static final String DELIMITER_JOIN = ",";
+
 	private Cars cars;
 	private int numberOfGames;
 
@@ -23,7 +27,7 @@ public class RacingGameController {
 
 	public void play() {
 		OutputView.printResultMessage();
-		while((numberOfGames--) > 0){
+		while((numberOfGames--) > ZERO){
 			cars.moveCars();
 			cars.printResult();
 		}
@@ -31,7 +35,7 @@ public class RacingGameController {
 	}
 
 	private void endGame() {
-		OutputView.printWinners(String.join(",", cars.getWinners()));
+		OutputView.printWinners(String.join(DELIMITER_JOIN, cars.getWinners()));
 	}
 
 	private void getNumberOfGames() {
@@ -48,12 +52,16 @@ public class RacingGameController {
 		OutputView.printInputCarName();
 		try {
 			String readLine = InputView.getCarNames();
-			List<String> carNames = Arrays.asList(readLine.split(","));
+			List<String> carNames = splitCarNames(readLine);
 			createCars(carNames);
 		} catch (IllegalArgumentException e){
 			OutputView.printException(e.getMessage());
 			getCars();
 		}
+	}
+
+	private List<String> splitCarNames(String readLine) {
+		return Arrays.asList(readLine.split(DELIMITER_REGEX));
 	}
 
 	private void createCars(List<String> carNames) {
