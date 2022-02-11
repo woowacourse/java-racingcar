@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
+
 public class RacingCarTest {
 	public RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator(9, 0);
 	public Cars cars = new Cars();
@@ -28,37 +29,29 @@ public class RacingCarTest {
 
 	@Test
 	public void 자동차_이름_글자수_테스트() {
-		List<String> carNames = InputManager.splitAndSaveCarNames("이브,클레이클레이,포비");
-
-		assertThatThrownBy(() -> { InputValidator.checkCarNameLength(carNames); })
+		assertThatThrownBy(() -> { InputManager.splitAndSaveCarNames("이브,클레이클레이,포비"); })
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("자동차 이름은 5자 이하여야 합니다.");
 	}
 
 	@Test
 	public void 자동차_이름이_존재하지_않는_경우_테스트() {
-		List<String> carNames = InputManager.splitAndSaveCarNames("이브,,포비");
-
-		assertThatThrownBy(() -> { InputValidator.validateIsSpace(carNames); })
+		assertThatThrownBy(() -> { InputManager.splitAndSaveCarNames("이브,,포비");})
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("모든 자동차 이름은 반드시 존재해야 합니다.");
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = {"이브, ,포비", "이브,       ,포비"})
+	@ValueSource(strings = {"이브, ,포비", "이브,   ,포비"})
 	public void 자동차_이름이_공백인_경우_테스트(String carNamesLine) {
-		List<String> carNames = InputManager.splitAndSaveCarNames(carNamesLine);
-
-		assertThatThrownBy(() -> { InputValidator.validateIsSpace(carNames); })
+		assertThatThrownBy(() -> {  InputManager.splitAndSaveCarNames(carNamesLine); })
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("자동차 이름은 공백으로 설정할 수 없습니다.");
 	}
 
 	@Test
 	public void 자동차_이름_중복_테스트() {
-		List<String> carNames = InputManager.splitAndSaveCarNames("이브,이브,포비");
-
-		assertThatThrownBy(() -> { InputValidator.validateDuplication(carNames); })
+		assertThatThrownBy(() -> { InputManager.splitAndSaveCarNames("이브,이브,포비"); })
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("자동차 이름은 중복될 수 없습니다.");
 	}
