@@ -20,4 +20,11 @@ public class CarNameTest {
     assertThatThrownBy(() -> new CarName(carName))
         .isInstanceOf(RuntimeException.class);
   }
+
+  @Test
+  public void 생성자_6자리_입력_test() throws Exception {
+    String carName = "abcdef";
+    assertThatThrownBy(() -> new CarName(carName))
+        .isInstanceOf(RuntimeException.class);
+  }
 }
