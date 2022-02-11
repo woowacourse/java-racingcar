@@ -16,10 +16,8 @@ public class Cars {
 	private final List<Car> cars = new ArrayList<>();
 
 	public Cars(String carNames) {
-		String[] carNameArray = carNames.replaceAll(" ", "").split(DELIMITER);
-		if (validateDuplicatedName(carNameArray)) {
-			throw new IllegalArgumentException(ErrorMessages.DUPLICATED_NAME);
-		}
+		String[] carNameArray = reduceBlank(carNames).split(DELIMITER);
+		validateDuplicatedName(carNameArray);
 		for (String carName : carNameArray) {
 			cars.add(new Car(carName));
 		}
@@ -35,13 +33,6 @@ public class Cars {
 		return new Winners(cars);
 	}
 
-	private boolean validateDuplicatedName(String[] carNames) {
-		long distinctSize = Arrays.stream(carNames)
-			.distinct().count();
-
-		return distinctSize != carNames.length;
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -50,5 +41,17 @@ public class Cars {
 				.append(NEW_LINE);
 		}
 		return sb.toString();
+	}
+
+	private void validateDuplicatedName(String[] carNames) {
+		long distinctSize = Arrays.stream(carNames)
+			.distinct().count();
+		if (distinctSize != carNames.length) {
+			throw new IllegalArgumentException(ErrorMessages.DUPLICATED_NAME);
+		}
+	}
+
+	private String reduceBlank(String string) {
+		return string.replaceAll(" ", "");
 	}
 }
