@@ -24,11 +24,10 @@ public class RacingCarsController {
 
 	public void requestCount() {
 		try {
-			String countString = Input.inputCount();
-			CountValidator.checkNull(countString);
-			CountValidator.checkNotNumber(countString);
-			int count = Convertor.convertStringToInteger(countString);
-			CountValidator.checkCountIsZero(count);
+			String input = Input.inputCount();
+			CountValidator.checkCountInput(input);
+			int count = Convertor.convertStringToInteger(input);
+			CountValidator.checkCountIsLessThanZero(count);
 			racingCarService.saveCount(count);
 		} catch (Exception exception) {
 			Output.printError(exception.getMessage());
