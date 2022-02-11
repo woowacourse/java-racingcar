@@ -17,29 +17,31 @@ public class Cars {
         this.cars = cars;
     }
 
-    private static List<Car> validateDuplicate(List<Car> cars) {
+    private static void validateDuplicate(List<Car> cars) {
         if (duplicateCarNames(cars)) {
             throw new IllegalArgumentException(MESSAGE_FOR_CAR_NAME_DUPLICATE);
         }
-
-        return cars;
     }
 
     private static boolean duplicateCarNames(List<Car> cars) {
-        return cars.stream().map(Car::getName).collect(Collectors.toSet()).size() != cars.size();
+        return cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.toSet())
+                .size() != cars.size();
     }
 
     public void move() {
-        cars.forEach(car -> car.advance(RandomUtil.getNumbersInRange(10)));
+        for (int i = 0; i < cars.size(); i++) {
+            cars.get(i).advance(getRandomNumber());
+        }
+    }
+
+    private int getRandomNumber() {
+        return RandomUtil.getNumbersInRange(10);
     }
 
     public List<String> getWinner() {
-        int maxPosition = getMaxPosition();
-
-        return cars.stream()
-                .filter(car -> car.isEqualPosition(maxPosition))
-                .map(Car::getName)
-                .collect(Collectors.toList());
+        return getWinnerNames(getMaxPosition());
     }
 
     private int getMaxPosition() {
@@ -47,6 +49,13 @@ public class Cars {
                 .max(Car::compareTo)
                 .orElseThrow(NoSuchElementException::new)
                 .getPosition();
+    }
+
+    private List<String> getWinnerNames(int maxPosition) {
+        return cars.stream()
+                .filter(car -> car.isEqualPosition(maxPosition))
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     public List<Car> getCars() {
