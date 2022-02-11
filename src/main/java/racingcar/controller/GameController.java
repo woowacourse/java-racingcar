@@ -20,9 +20,14 @@ public class GameController {
 	}
 
 	public void run() {
-		initParticipants();
+		initGame();
 		playGame();
 		announceWinners();
+	}
+
+	private void initGame() {
+		initParticipants();
+		initRound();
 	}
 
 	private void initParticipants() {
@@ -32,22 +37,23 @@ public class GameController {
 	private List<String> requestCarNames() {
 		outputView.printMessageOfRequestCarNames();
 		return inputView.requestCarNames();
+	}
 
+	private void initRound() {
+		gameService.initRound(requestRound());
+	}
+
+	private int requestRound() {
+		outputView.printMessageOfRequestRound();
+		return inputView.requestRoundNumber();
 	}
 
 	private void playGame() {
-		Round round = requestRound();
 		announceStatusTitle();
-		while (round.isNotFinished()) {
+		while (gameService.isContinuable()) {
 			List<String> carStatuses = gameService.playRound();
 			announceStatuses(carStatuses);
-			round.decreaseCount();
 		}
-	}
-
-	private Round requestRound() {
-		outputView.printMessageOfRequestRound();
-		return new Round(inputView.requestRoundNumber());
 	}
 
 	private void announceStatusTitle() {
