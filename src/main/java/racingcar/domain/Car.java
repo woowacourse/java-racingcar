@@ -9,7 +9,7 @@ public class Car {
     private static final String NAME_POSITION_DELIMITER = " : ";
     private static final String PROGRESS_BAR = "-";
 
-    final private String name;
+    private final String name;
     private int position;
 
     public Car(String name) {
@@ -32,19 +32,14 @@ public class Car {
     }
 
     private boolean isCarGoForward() {
-        if (getRandomNumberInRange(MAX_RANDOM_RANGE) >= MIN_GO_FORWARD_RANGE) {
-            return true;
-        }
-        return false;
+        return getRandomNumberInRange(MAX_RANDOM_RANGE) >= MIN_GO_FORWARD_RANGE;
     }
 
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(this.name)
                 .append(NAME_POSITION_DELIMITER);
-        for (int i = 0; i < position; i++) {
-            stringBuilder.append(PROGRESS_BAR);
-        }
+        stringBuilder.append(PROGRESS_BAR.repeat(position));
         return stringBuilder.toString();
     }
 

@@ -10,7 +10,7 @@ public class InputView {
 
     private static final int SPLIT_LIMIT = -1;
 
-    private static String SPLIT_DELIMITER = ",";
+    private static final String SPLIT_DELIMITER = ",";
 
     public static String[] insertRightName() {
         printCarNamesMessage();

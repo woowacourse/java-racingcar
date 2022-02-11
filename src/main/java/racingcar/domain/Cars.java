@@ -45,7 +45,7 @@ public class Cars {
 
     private int getMaxPosition() {
         return cars.stream()
-                .mapToInt(car -> car.getPosition())
+                .mapToInt(Car::getPosition)
                 .max()
                 .orElseThrow(NoSuchElementException::new);
     }
@@ -54,7 +54,8 @@ public class Cars {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Car car : cars) {
-            stringBuilder.append(car + "\n");
+            stringBuilder.append(car)
+                    .append("\n");
         }
         return stringBuilder.toString();
     }
