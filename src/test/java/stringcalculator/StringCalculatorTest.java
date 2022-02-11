@@ -11,63 +11,74 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class StringCalculatorTest {
 
 	@Test
-	@DisplayName("#1 null 혹은 빈 문자")
-	public void nullOrEmpty() {
-		// given
-		int caseNull = StringCalculator.splitAndSum(null);
-		int caseEmpty = StringCalculator.splitAndSum("");
+	@DisplayName("null 입력시 0을 반환")
+	public void inputNull() {
 
-		// then
-		assertThat(caseNull).isEqualTo(0);
-		assertThat(caseEmpty).isEqualTo(0);
+		// given
+		final int actual = StringCalculator.splitAndSum(null);
+
+		// when & then
+		assertThat(actual).isEqualTo(0);
+
 	}
 
 	@Test
-	@DisplayName("#2 숫자 하나")
+	@DisplayName("공백 입력시 0 반환")
+	public void inputEmpty() {
+		// given
+		final int actual = StringCalculator.splitAndSum("");
+
+		// when & then
+		assertThat(actual).isEqualTo(0);
+	}
+
+	@Test
+	@DisplayName("숫자 하나")
 	public void 숫자_하나() {
 		// given
-		int result = StringCalculator.splitAndSum("1");
+		final int result = StringCalculator.splitAndSum("1");
 
 		// then
-		int expected = 1;
-		assertThat(result).isEqualTo(expected);
+		assertThat(result).isEqualTo(1);
 
 	}
 
 	@Test
-	@DisplayName("#3 쉼표 구분자")
+	@DisplayName("쉼표 구분자")
 	public void splitCommaSeparator() {
 		// given
-		int result = StringCalculator.splitAndSum("1,2,3");
+		final int actual = StringCalculator.splitAndSum("1,2,3");
 
 		// then
-		assertThat(result).isEqualTo(6);
+		assertThat(actual).isEqualTo(6);
 	}
 
 	@Test
-	@DisplayName("#4 쉼표 또는 콜론 구분자")
+	@DisplayName("쉼표 또는 콜론 구분자")
 	public void splitCommaOrColon() {
 		// given
-		int result = StringCalculator.splitAndSum("1,2;3");
+		final int actual = StringCalculator.splitAndSum("1,2;3");
 
 		// then
-		assertThat(result).isEqualTo(6);
+		assertThat(actual).isEqualTo(6);
 	}
 
 	@Test
-	@DisplayName("#5 커스텀 구분자")
+	@DisplayName("커스텀 구분자")
 	public void splitCustomDeliminator() {
+
 		// given
-		int result = StringCalculator.splitAndSum("//;\n1;2;3");
+		final int actual = StringCalculator.splitAndSum("//;\n1;2;3");
 
 		// then
-		assertThat(result).isEqualTo(6);
+		assertThat(actual).isEqualTo(6);
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = {"-1", "A", "가"})
-	@DisplayName("#6 예외 처리 : 음수, 숫자 이외의 입력")
+	@DisplayName("예외 처리 : 음수, 숫자 이외의 입력")
 	public void exception(String input) {
+
 		// then
 		assertThatExceptionOfType(RuntimeException.class)
 			.isThrownBy(() -> StringCalculator.splitAndSum(input))
