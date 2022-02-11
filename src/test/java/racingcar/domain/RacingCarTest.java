@@ -51,12 +51,7 @@ public class RacingCarTest {
     @Test
     @DisplayName("움직일 수 있는 상황이면, 자동차가 움직인다.")
     void checkCanMove() {
-        MovingStrategy movingStrategy = new MovingStrategy() {
-            @Override
-            public boolean isMovable() {
-                return true;
-            }
-        };
+        MovingStrategy movingStrategy = () -> true;
         car.moveByCommand(movingStrategy.isMovable());
         assertThat(car.getPosition()).isEqualTo(1);
     }
