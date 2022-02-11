@@ -5,6 +5,7 @@ import static racingCar.view.Output.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import racingCar.model.Car;
 import racingCar.utlis.Convertor;
@@ -59,12 +60,9 @@ public class RacingCarService {
 
 	public List<String> findWinner() {
 		int max = findMaxPosition();
-		List<String> winners = new ArrayList<>();
-		for (Car car : cars) {
-			if (car.isWinner(max)) {
-				winners.add(car.getName());
-			}
-		}
-		return winners;
+		return cars.stream()
+			.filter(car -> car.isWinner(max))
+			.map(Car::getName)
+			.collect(Collectors.toList());
 	}
 }
