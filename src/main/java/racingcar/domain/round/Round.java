@@ -17,12 +17,12 @@ public class Round {
 		}
 	}
 
-	public void decreaseCount() {
-		this.count--;
+	public boolean isNotFinished() {
+		return (this.count != 0);
 	}
 
-	public boolean isFinish() {
-		return this.count == 0;
+	public void decreaseCount() {
+		this.count--;
 	}
 
 }

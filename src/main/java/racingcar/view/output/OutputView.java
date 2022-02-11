@@ -21,7 +21,7 @@ public class OutputView {
 		printMessage(MessageOfRequestRound);
 	}
 
-	public void printMessageStatusTitle() {
+	public void printMessageOfStatusTitle() {
 		printMessage(MessageOfStatusTitle);
 	}
 

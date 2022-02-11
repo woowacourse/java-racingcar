@@ -1,4 +1,4 @@
-package racingcar.controller.picker;
+package racingcar.service.picker;
 
 public enum RandomRange {
 

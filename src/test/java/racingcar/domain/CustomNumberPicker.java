@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.Iterator;
 import java.util.List;
 
-import racingcar.controller.picker.NumberPicker;
+import racingcar.service.picker.NumberPicker;
 
 public class CustomNumberPicker implements NumberPicker {
 
