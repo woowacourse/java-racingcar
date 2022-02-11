@@ -9,7 +9,7 @@ public class ConsoleReader implements DataReader {
 	public String readLine() {
 		try {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-			return bufferedReader.readLine() + " ";
+			return bufferedReader.readLine();
 		} catch (IOException exception) {
 			throw new IllegalArgumentException();
 		}
