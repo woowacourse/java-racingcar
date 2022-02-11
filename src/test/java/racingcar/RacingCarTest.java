@@ -16,7 +16,8 @@ public class RacingCarTest {
     private static final int ONE_STEP = 1;
     private static final String WINNER_NAME_DELIMITER = ", ";
     private static final String EMPTY_CAR_NAME = "";
-    public static final String LONG_NAME = "longlongcars";
+    private static final String DUPLICATED_NAME = "pobi";
+    private static final String LONG_NAME = "longlongcars";
     private RacingCar racingCar1;
     private RacingCar racingCar2;
     private RacingCar racingCar3;
@@ -102,6 +103,16 @@ public class RacingCarTest {
         RacingCars racingCars = new RacingCars(List.of(longNameCar, racingCar1));
 
         assertThatThrownBy(() -> Validator.validateCarsNameSize(racingCars)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("중복되는 자동차 이름이 있으면 예외처리")
+    public void validateDuplicatedNameTest() {
+
+        RacingCar duplicatedNameCar = RacingCar.generateRacingCar(DUPLICATED_NAME);
+        RacingCars racingCars = new RacingCars(List.of(duplicatedNameCar, racingCar1));
+
+        assertThatThrownBy(() -> Validator.validateDuplicatedName(racingCars)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }
