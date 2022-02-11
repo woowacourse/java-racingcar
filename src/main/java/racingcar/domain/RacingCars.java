@@ -13,7 +13,7 @@ public class RacingCars {
     private static final String NAME_NOT_BLANK = "";
 
     private final List<RacingCar> cars;
-    private final RandomGenerator generator = new RandomGenerator();
+    private final RacingCarCommander commander = new RacingCarCommander();
 
     public RacingCars(String carStringNames) {
         this.cars = makeRacingCars(carStringNames.split(CAR_NAME_DELIMITER));
@@ -47,7 +47,7 @@ public class RacingCars {
     }
 
     private void moveCar(RacingCar car) {
-        if (generator.isMovable()) {
+        if (commander.isMovable()) {
             car.move();
         }
     }
