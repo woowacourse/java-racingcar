@@ -12,6 +12,7 @@ public class StringCalculator {
     private static final String REGEX_DELIMITER = "|";
     private static final int CUSTOM_DELIMITER_INDEX = 1;
     private static final int TEXT_INDEX = 2;
+    private static final int DEFAULT_VALUE = 0;
 
     public static boolean isBlank(String text) {
         return text == null || text.isEmpty();
@@ -19,7 +20,7 @@ public class StringCalculator {
 
     public static int calculate(String text) {
         if (isBlank(text)) {
-            return 0;
+            return DEFAULT_VALUE;
         }
         String delimiter = sumOfDelimiter(text);
         String target = extractText(text);

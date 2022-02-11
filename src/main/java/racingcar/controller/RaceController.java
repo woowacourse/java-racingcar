@@ -32,11 +32,9 @@ public class RaceController {
         }
     }
 
+
     public String[] getWinner() {
-        int maxPosition = cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .getAsInt();
+        int maxPosition = getMaxPosition();
 
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
@@ -44,10 +42,16 @@ public class RaceController {
                 .toArray(String[]::new);
     }
 
+    private int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .getAsInt();
+    }
+
     public void printPosition() {
         OutputView.printResult(cars);
     }
-
     public void printWinner() {
         OutputView.printWinner(getWinner());
     }
