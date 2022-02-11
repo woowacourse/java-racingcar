@@ -5,11 +5,11 @@ import static java.util.stream.Collectors.toList;
 import java.util.List;
 import racingcar.domain.Car;
 
-public class WinnerResult {
+public class WinnersResult {
 
     private final List<Car> winners;
 
-    public WinnerResult(List<Car> winners) {
+    public WinnersResult(List<Car> winners) {
         this.winners = winners;
     }
 

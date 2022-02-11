@@ -30,7 +30,7 @@ public class Application {
             racingGame.proceedTurn();
             view.printMidtermResult(racingGame.getMidtermResult());
         }
-        view.printWinnerResult(racingGame.getWinnerResult());
+        view.printWinnerResult(racingGame.getWinnersResult());
     }
 
     public void inputCarNames() {

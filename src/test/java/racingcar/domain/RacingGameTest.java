@@ -8,10 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.MockRandomNumberGenerator;
 import racingcar.RacingGame;
-import racingcar.exception.GetWinnerBeforeFinishException;
+import racingcar.exception.GetWinnersBeforeFinishException;
 import racingcar.exception.RacingGameIsFinishedException;
 import racingcar.domain.result.MidtermResult;
-import racingcar.domain.result.WinnerResult;
 
 public class RacingGameTest {
 
@@ -41,7 +40,7 @@ public class RacingGameTest {
     }
 
     @Test
-    public void 시도횟수_이상으로_게임_진행시_예외발생() {
+    public void 시도횟수_이상으로_게임_진행시_예외_발생() {
         racingGame.initTryCount(1);
         racingGame.proceedTurn();
         assertThatThrownBy(() -> racingGame.proceedTurn())
@@ -63,31 +62,23 @@ public class RacingGameTest {
         racingGame.proceedTurn();
         racingGame.proceedTurn();
         racingGame.proceedTurn();
-        assertThat(racingGame.getWinnerResult().getWinnerNames()).contains(CAR_1_NAME);
+        assertThat(racingGame.getWinnersResult().getWinnerNames()).contains(CAR_1_NAME);
     }
 
     @Test
-    public void 우승자_조회() {
+    public void 공동우승자_조회() {
         racingGame.initTryCount(4);
         racingGame.proceedTurn();
         racingGame.proceedTurn();
         racingGame.proceedTurn();
         racingGame.proceedTurn();
-        assertThat(racingGame.getWinnerResult().getWinnerNames()).contains(CAR_1_NAME, CAR_2_NAME);
+        assertThat(racingGame.getWinnersResult().getWinnerNames()).contains(CAR_1_NAME, CAR_2_NAME);
     }
 
     @Test
     public void 게임_종료전에_우승자_반환시_예외_발생() {
         racingGame.initTryCount(1);
-        assertThatThrownBy(() -> racingGame.getWinnerResult())
-            .isInstanceOf(GetWinnerBeforeFinishException.class);
-    }
-
-    @Test
-    public void 우승자_반환() {
-        racingGame.initTryCount(1);
-        racingGame.proceedTurn();
-        WinnerResult result = racingGame.getWinnerResult();
-        assertThat(result.getWinnerNames()).contains(CAR_1_NAME);
+        assertThatThrownBy(() -> racingGame.getWinnersResult())
+            .isInstanceOf(GetWinnersBeforeFinishException.class);
     }
 }

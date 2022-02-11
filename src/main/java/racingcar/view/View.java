@@ -5,7 +5,7 @@ import static java.util.stream.Collectors.joining;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 import racingcar.domain.result.MidtermResult;
-import racingcar.domain.result.WinnerResult;
+import racingcar.domain.result.WinnersResult;
 
 public class View {
 
@@ -48,12 +48,12 @@ public class View {
         return name + NAME_AND_PROGRESS_BAR_DELIMITER + getProgressBar(position);
     }
 
-    public void printWinnerResult(WinnerResult winnerResult) {
-        System.out.println(getFormattedWinnerNames(winnerResult) + WINNER_RESULT_SUFFIX_MESSAGE);
+    public void printWinnerResult(WinnersResult winnersResult) {
+        System.out.println(getFormattedWinnerNames(winnersResult) + WINNER_RESULT_SUFFIX_MESSAGE);
     }
 
-    private String getFormattedWinnerNames(WinnerResult winnerResult) {
-        return winnerResult.getWinnerNames().stream().collect(joining(WINNER_NAMES_DELIMITER));
+    private String getFormattedWinnerNames(WinnersResult winnersResult) {
+        return winnersResult.getWinnerNames().stream().collect(joining(WINNER_NAMES_DELIMITER));
     }
 
     private String getProgressBar(int position) {

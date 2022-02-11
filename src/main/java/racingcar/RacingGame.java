@@ -3,11 +3,11 @@ package racingcar;
 import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
-import racingcar.exception.GetWinnerBeforeFinishException;
+import racingcar.exception.GetWinnersBeforeFinishException;
 import racingcar.exception.RacingGameIsFinishedException;
 import racingcar.domain.random.RandomNumberGenerator;
 import racingcar.domain.result.MidtermResult;
-import racingcar.domain.result.WinnerResult;
+import racingcar.domain.result.WinnersResult;
 
 public class RacingGame {
 
@@ -31,11 +31,11 @@ public class RacingGame {
         return tryCount.isFinished();
     }
 
-    public WinnerResult getWinnerResult() {
+    public WinnersResult getWinnersResult() {
         if (!isFinished()) {
-            throw new GetWinnerBeforeFinishException();
+            throw new GetWinnersBeforeFinishException();
         }
-        return cars.getWinnerResult();
+        return cars.getWinnersResult();
     }
 
     public MidtermResult getMidtermResult() {

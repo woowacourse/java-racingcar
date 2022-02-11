@@ -5,7 +5,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.List;
 import racingcar.domain.random.RandomNumberGenerator;
 import racingcar.domain.result.MidtermResult;
-import racingcar.domain.result.WinnerResult;
+import racingcar.domain.result.WinnersResult;
 
 public class Cars {
 
@@ -25,8 +25,8 @@ public class Cars {
         return new MidtermResult(cars);
     }
 
-    public WinnerResult getWinnerResult() {
-        return new WinnerResult(getWinners(getMostFarPosition()));
+    public WinnersResult getWinnersResult() {
+        return new WinnersResult(getWinners(getMostFarPosition()));
     }
 
     private int getMostFarPosition() {
