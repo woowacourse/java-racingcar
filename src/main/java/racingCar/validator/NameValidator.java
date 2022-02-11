@@ -8,6 +8,12 @@ import java.util.regex.Pattern;
 public class NameValidator {
 	public static final String ERROR = "ERROR";
 
+	public static void checkCarName(String name) throws Exception {
+		checkSpace(name);
+		checkNameSize(name);
+		checkSpecialChar(name);
+	}
+
 	public static void checkNull(String inputString) throws Exception {
 		if (inputString == null || inputString.isEmpty())
 			throw new Exception(ERROR);
