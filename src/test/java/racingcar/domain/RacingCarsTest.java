@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,5 +30,15 @@ class RacingCarsTest {
         RacingCars racingCars = new RacingCars("pobi,crong,honux");
         List<String> winnerNames = racingCars.searchWinnerNames();
         assertThat(winnerNames).containsExactly("pobi", "crong", "honux");
+    }
+
+    @Test
+    @DisplayName("콤마로 값을 분리하고 List로 반환한다.")
+    void checkContainsExactly() {
+        assertThat(splitWithList("a,b,c")).containsExactly("a", "b",  "c");
+    }
+
+    List<String> splitWithList(String text) {
+        return Arrays.asList(text.split(","));
     }
 }

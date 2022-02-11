@@ -42,7 +42,7 @@ public class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"-1", "-1,2,3"})
     @DisplayName("음수가 들어온 경우 예외가 발생한다.")
-    void sumNagativeNumberException(String input) {
+    void sumNegativeNumberException(String input) {
         assertThatExceptionOfType(RuntimeException.class)
             .isThrownBy(() -> Calculator.sum(input))
             .withMessageMatching("음수는 입력될 수 없다.");

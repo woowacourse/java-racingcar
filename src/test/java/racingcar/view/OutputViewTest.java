@@ -23,17 +23,6 @@ class OutputViewTest {
     }
 
     @Test
-    @DisplayName("psotion을 -로 출력한다.")
-    void printCarsPosition() {
-        List<RacingCarDto> racingCarDtos = Arrays.asList(
-            new RacingCarDto("pobi", 2),
-            new RacingCarDto("crong", 3)
-        );
-        outputView.printCarsPosition(racingCarDtos);
-        assertThat(outContent.toString()).isEqualTo("pobi : --\ncrong : ---\n\n");
-    }
-
-    @Test
     @DisplayName(", 를 구분자로 우승자를 출력한다.")
     void printWinnerNames() {
         List<String> winnerNames = Arrays.asList("pobi", "crong", "honux");
