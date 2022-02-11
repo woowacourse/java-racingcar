@@ -3,16 +3,20 @@ package racingcar.domain;
 import java.util.Objects;
 
 import racingcar.domain.strategy.MovingStrategy;
-import racingcar.domain.strategy.RandomMovingStrategy;
+import racingcar.domain.vo.CarName;
 
 public class Car implements Comparable<Car> {
 
-    private String name;
-    private int position;
+    private final CarName name;
+    private int position = 0;
     private MovingStrategy movingStrategy;
 
+    public Car(String name) {
+        this.name = new CarName(name);
+    }
+
     public Car(String name, MovingStrategy movingStrategy) {
-        this.name = name;
+        this.name = new CarName(name);
         this.movingStrategy = movingStrategy;
     }
 
@@ -21,7 +25,7 @@ public class Car implements Comparable<Car> {
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void move() {

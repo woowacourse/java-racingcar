@@ -1,19 +1,19 @@
 package racingcar.controller;
 
-import racingcar.domain.strategy.MovingStrategy;
-import racingcar.domain.strategy.RandomMovingStrategy;
-import racingcar.repository.CarRepository;
-import racingcar.domain.Car;
-import racingcar.validator.CarNameValidator;
-import racingcar.view.*;
-
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.domain.strategy.MovingStrategy;
+import racingcar.repository.CarRepository;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class CarController {
 
 	private static final String NOT_FOUND_CARS_MESSAGE = "[ERROR] 자동차를 찾을 수 없습니다.";
-	private static final String CAR_NAME_DELIMINATOR = ",";
+
 
 	private final CarRepository carRepository;
 	private int roundNumber;
@@ -38,7 +38,6 @@ public class CarController {
 	}
 
 	public void moveCars() {
-		Random random = new Random();
 		for (Car car : carRepository.findAll()) {
 			car.move();
 		}
@@ -50,26 +49,11 @@ public class CarController {
 	}
 
 	private void initCars() {
-		String input = InputView.inputCarNames();
 
-		CarNameValidator.parseCarNameInputs(input);
-
-		String[] strings = parseCarNames(input);
-
-		List<String> carNames = List.of(strings);
-		List<Car> cars = new ArrayList<>();
-
-		for (String carName : carNames) {
-			Car car = new Car(carName, movingStrategy);
-			cars.add(car);
-		}
-
-		carRepository.addCars(cars);
-	}
-
-	private String[] parseCarNames(String input) {
-		input = input.replaceAll(" ", "");
-		return input.split(CAR_NAME_DELIMINATOR);
+		String carNames = InputView.inputCarNames();
+		Cars cars = new Cars(carNames, movingStrategy);
+		List<Car> carList = cars.get();
+		carRepository.addCars(carList);
 	}
 
 	private void initRoundNumbers() {
