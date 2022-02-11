@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class CarController {
 
     private static final String NOT_FOUND_CARS_MESSAGE = "[ERROR] 자동차를 찾을 수 없습니다.";
-    private static final String EXECUTION_RESULT_MESSAGE="실행 결과";
+
     private static final int RANDOM_RANGE = 10;
     private static final int PIVOT_NUMBER = 4;
     private static final String CAR_NAME_DELIMINATOR = ",";
@@ -24,10 +24,16 @@ public class CarController {
     }
 
     public void playGame() {
-        System.out.println(EXECUTION_RESULT_MESSAGE);
+        OutputView.printResultMessage();
         for (int i = 0; i < roundNumber; i++) {
             playRound();
         }
+    }
+
+    public void playRound() {
+        moveCars();
+        List<Car> cars = carRepository.findAll();
+        OutputView.showCurrentStatus(cars);
     }
 
     public void moveCars() {
@@ -41,25 +47,16 @@ public class CarController {
         return random.nextInt(RANDOM_RANGE) < PIVOT_NUMBER;
     }
 
-    public void playRound() {
-        moveCars();
-        List<Car> cars = carRepository.findAll();
-        OutputView.showCurrentStatus(cars);
-    }
-
     public void initGame() {
         initCars();
         initRoundNumbers();
     }
 
     private void initCars() {
-        OutputView.printAskCarNameInputMessage();
-
-        String input = InputView.readCarNamesInput();
+        String input = InputView.inputCarNames();
         CarNameValidator.parseCarNameInputs(input);
         String[] strings = parseCarNames(input);
-        List<String> carNames = Arrays.asList(strings);
-
+        List<String> carNames = List.of(strings);
         List<Car> cars = new ArrayList<>();
         carNames.forEach(x -> cars.add(new Car(x)));
 
@@ -72,8 +69,7 @@ public class CarController {
     }
 
     private void initRoundNumbers() {
-        OutputView.printAskRoundNumberMessage();
-        roundNumber = InputView.readRoundNumberInput();
+        roundNumber = InputView.inputRoundNumber();
     }
 
     public List<Car> getWinners() {
