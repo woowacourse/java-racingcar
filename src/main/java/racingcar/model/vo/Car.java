@@ -8,11 +8,10 @@ public class Car implements Comparable<Car> {
     private int position;
 
     public Car(String name) {
-        validateLength(removeWhiteSpaces(name));
-        this.name = name;
+        this.name = validateLength(trim(name));
     }
 
-    private static String removeWhiteSpaces(String name) {
+    private static String trim(String name) {
         return name.trim();
     }
 
