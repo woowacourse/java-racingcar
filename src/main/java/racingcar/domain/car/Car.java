@@ -11,18 +11,12 @@ public class Car {
 		this.name = name;
 	}
 
-	private void increaseLocation() {
+	public boolean isPossibleToGoForward(int number) {
+		return (ForwardCondition.isInRange(number));
+	}
+
+	public void goForward() {
 		this.location++;
-	}
-
-	public void goForwardOrStop(int pickNumber) {
-		if (pickNumber >= 4) {
-			increaseLocation();
-		}
-	}
-
-	public String toString() {
-		return Delimiter.concatWithColon(name, Delimiter.repeatUnderBar(location));
 	}
 
 	public String getName() {
@@ -31,6 +25,10 @@ public class Car {
 
 	public int getLocation() {
 		return this.location;
+	}
+
+	public String toString() {
+		return Delimiter.concatWithColon(name, Delimiter.repeatUnderBar(location));
 	}
 
 }

@@ -74,7 +74,7 @@ public class CarCollectionTest {
 
 		List<String> statuses = new ArrayList<>();
 		for (int i = 0; i < time; i++) {
-			carCollection.play(customNumberPicker);
+			carCollection.goForwardOrStop(customNumberPicker);
 			statuses.addAll(carCollection.getStatuses());
 		}
 		assertThat(statuses).isEqualTo(expected);
@@ -104,7 +104,7 @@ public class CarCollectionTest {
 		CustomNumberPicker customNumberPicker = new CustomNumberPicker(numbers);
 
 		for (int i = 0; i < time; i++) {
-			carCollection.play(customNumberPicker);
+			carCollection.goForwardOrStop(customNumberPicker);
 		}
 		List<String> winnerNames = carCollection.getWinnerNames();
 		assertThat(winnerNames).isEqualTo(expected);

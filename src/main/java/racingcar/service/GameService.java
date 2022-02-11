@@ -19,7 +19,7 @@ public class GameService {
 	}
 
 	public List<String> playRound() {
-		carCollection.play(numberPicker);
+		carCollection.goForwardOrStop(numberPicker);
 		return carCollection.getStatuses();
 	}
 

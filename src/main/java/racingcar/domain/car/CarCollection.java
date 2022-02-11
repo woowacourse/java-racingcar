@@ -17,10 +17,10 @@ public class CarCollection {
 		names.forEach(name -> cars.add(new Car(name)));
 	}
 
-	public void play(NumberPicker numberPicker) {
-		for (Car car : cars) {
-			car.goForwardOrStop(numberPicker.pickNumber());
-		}
+	public void goForwardOrStop(NumberPicker numberPicker) {
+		cars.stream()
+			.filter(car -> car.isPossibleToGoForward(numberPicker.pickNumber()))
+			.forEach(Car::goForward);
 	}
 
 	public List<String> getStatuses() {
