@@ -1,6 +1,7 @@
 package racingcargame.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -31,5 +32,19 @@ public class RacingCarGameTest {
         racingCarGame.orderToSaveRaceCount(4);
         RaceCount.reduceRaceCount();
         assertThat(RaceCount.getCount()).isEqualTo(3);
+    }
+
+    @Test
+    void 우승자_선발_테스트() {
+        List<String> carNames = new ArrayList<>();
+        carNames.add("liver");
+        carNames.add("gl");
+
+        CarRepository carRepository = new CarRepository(carNames);
+        carRepository.getCars().stream()
+                .filter(car -> car.getName().equals("liver"))
+                .forEach(car -> car.setPosition(4));
+
+        assertThat(carRepository.findWinner().get(0)).isEqualTo("liver");
     }
 }
