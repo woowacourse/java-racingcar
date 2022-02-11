@@ -13,7 +13,6 @@ import racingcar.view.InputView;
 import racingcar.view.OutPutView;
 
 public class RacingCarController {
-
     private final Racing racing = new Racing();
 
     public void run() {

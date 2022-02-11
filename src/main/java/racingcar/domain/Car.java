@@ -1,13 +1,12 @@
 package racingcar.domain;
 
 public class Car {
-
     private static final int NAME_LIMITED_LENGTH = 5;
     private static final int POSITION_INIT = 0;
 
     private final String name;
     private int position;
-    private MovingPolicy movingPolicy;
+    private final MovingPolicy movingPolicy;
 
     public Car(String name, MovingPolicy movingPolicy) {
         validateNull(name);
@@ -44,7 +43,7 @@ public class Car {
     }
 
     public void move() {
-        if(movingPolicy.isMove()) {
+        if (movingPolicy.isMove()) {
             position++;
         }
     }
