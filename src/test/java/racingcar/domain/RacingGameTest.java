@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import racingcar.MockRandomNumberGenerator;
 import racingcar.RacingGame;
 import racingcar.exception.GetWinnerBeforeFinishException;
 import racingcar.exception.RacingGameIsFinishedException;
@@ -40,6 +41,23 @@ public class RacingGameTest {
     }
 
     @Test
+    public void 시도횟수_이상으로_게임_진행시_예외발생() {
+        racingGame.initTryCount(1);
+        racingGame.proceedTurn();
+        assertThatThrownBy(() -> racingGame.proceedTurn())
+            .isInstanceOf(RacingGameIsFinishedException.class);
+    }
+
+    @Test
+    public void 중간_실행결과_반환() {
+        racingGame.initTryCount(1);
+        racingGame.proceedTurn();
+        MidtermResult result = racingGame.getMidtermResult();
+        assertThat(result.getPositionByName(CAR_1_NAME)).isEqualTo(1);
+        assertThat(result.getPositionByName(CAR_2_NAME)).isEqualTo(0);
+    }
+
+    @Test
     public void 단독우승자_조회() {
         racingGame.initTryCount(3);
         racingGame.proceedTurn();
@@ -59,27 +77,10 @@ public class RacingGameTest {
     }
 
     @Test
-    public void 시도횟수_이상으로_게임_진행시_예외발생() {
-        racingGame.initTryCount(1);
-        racingGame.proceedTurn();
-        assertThatThrownBy(() -> racingGame.proceedTurn())
-            .isInstanceOf(RacingGameIsFinishedException.class);
-    }
-
-    @Test
     public void 게임_종료전에_우승자_반환시_예외_발생() {
         racingGame.initTryCount(1);
         assertThatThrownBy(() -> racingGame.getWinnerResult())
             .isInstanceOf(GetWinnerBeforeFinishException.class);
-    }
-
-    @Test
-    public void 중간_실행결과_반환() {
-        racingGame.initTryCount(1);
-        racingGame.proceedTurn();
-        MidtermResult result = racingGame.getMidtermResult();
-        assertThat(result.getPositionByName(CAR_1_NAME)).isEqualTo(1);
-        assertThat(result.getPositionByName(CAR_2_NAME)).isEqualTo(0);
     }
 
     @Test
