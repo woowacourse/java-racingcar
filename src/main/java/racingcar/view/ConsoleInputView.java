@@ -13,6 +13,7 @@ public class ConsoleInputView implements InputView {
     private final Scanner scanner = new Scanner(System.in);
 
     public List<String> inputCarNames() {
+        System.out.println(CAR_NAME_INPUT_ALERT_MESSAGE);
         String inputCarNames = scanner.nextLine();
         validateBlankInput(inputCarNames);
         return Arrays.stream(inputCarNames.split(NAME_DELIMITER))
@@ -26,6 +27,7 @@ public class ConsoleInputView implements InputView {
     }
 
     public int inputTrialCount() {
+        System.out.println(TRIAL_COUNT_INPUT_ALERT_MESSAGE);
         String inputTrialCount = scanner.nextLine();
         validateBlankInput(inputTrialCount);
         validatePositiveDigit(inputTrialCount);
