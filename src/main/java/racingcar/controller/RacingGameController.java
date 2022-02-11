@@ -2,7 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.RacingGame;
 import racingcar.domain.RacingRecord;
-import racingcar.util.RandomNumberGeneratePolicy;
+import racingcar.domain.RandomNumberGeneratePolicy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

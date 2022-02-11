@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.util.NumberGeneratePolicy;
-
 public class Cars {
     private static final String ERROR_CAR_EMPTY = "자동차가 존재하지 않습니다.";
     private final List<Car> cars;

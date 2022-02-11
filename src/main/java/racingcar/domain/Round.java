@@ -15,7 +15,26 @@ public class Round {
         return new Round(round);
     }
 
-    public boolean hasNext() {
-        return roundNum-- > ZERO;
+    public boolean moreThanZero() {
+        return this.roundNum > ZERO;
+    }
+
+    public Round hasNext() {
+        return new Round(roundNum - ONE);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof Round))
+            return false;
+        Round round = (Round)o;
+        return roundNum == round.roundNum;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(roundNum);
     }
 }

@@ -2,11 +2,8 @@ package racingcar.domain;
 
 import java.util.List;
 
-import racingcar.util.NumberGeneratePolicy;
-
 public class RacingGame {
     private final Cars cars;
-    private final Round round;
     private final NumberGeneratePolicy numberGeneratePolicy;
     private Round round;
 
@@ -31,7 +28,11 @@ public class RacingGame {
     }
 
     public boolean isContinue() {
-        return round.hasNext();
+        if (this.round.moreThanZero()) {
+            this.round = round.hasNext();
+            return true;
+        }
+        return false;
     }
 
     public RacingResult getRacingResult() {
