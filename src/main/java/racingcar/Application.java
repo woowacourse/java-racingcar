@@ -1,7 +1,6 @@
 package racingcar;
 
 import racingcar.domain.RacingCars;
-import racingcar.validator.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
