@@ -13,6 +13,7 @@ public class GameController {
     public static final String COMMA = ",";
     public static final String BLANK = "";
     public static final String SPACE = " ";
+
     private Cars cars;
     private int trialNum;
 
@@ -30,6 +31,7 @@ public class GameController {
         cars = initCars(carNameList);
         InputView.inputTrialNum();
         trialNum = convertToInteger(scanner.nextLine());
+        scanner.close();
     }
 
     private int convertToInteger(String number) {
