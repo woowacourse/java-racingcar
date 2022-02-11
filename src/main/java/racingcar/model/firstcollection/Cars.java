@@ -1,6 +1,5 @@
 package racingcar.model.firstcollection;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -12,12 +11,12 @@ public class Cars {
     private final List<Car> cars;
     public static final String MESSAGE_FOR_CAR_NAME_DUPLICATE = "이름은 중복될 수 없습니다.";
 
-    public Cars(List<Car> cars) {
+    public Cars(final List<Car> cars) {
         validateDuplicate(cars);
-        this.cars = cars;
+        this.cars = List.copyOf(cars);
     }
 
-    private static void validateDuplicate(List<Car> cars) {
+    private static void validateDuplicate(final List<Car> cars) {
         if (duplicateCarNames(cars)) {
             throw new IllegalArgumentException(MESSAGE_FOR_CAR_NAME_DUPLICATE);
         }
@@ -59,6 +58,6 @@ public class Cars {
     }
 
     public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+        return cars;
     }
 }
