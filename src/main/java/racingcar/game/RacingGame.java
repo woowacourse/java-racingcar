@@ -14,6 +14,10 @@ import static racingcar.view.OutputView.*;
 
 public class RacingGame {
 
+    public static final int ZERO = 0;
+    public static final int FIRST_INDEX = 0;
+    public static final String SEPARATOR = ",";
+
     private List<Car> carList = new ArrayList<>();
     private List<String> winners = new ArrayList<>();
     private int totalAttemptCount;
@@ -22,7 +26,7 @@ public class RacingGame {
         initRacingCarGame();
         startMessage();
 
-        while (totalAttemptCount --> 0) {
+        while (totalAttemptCount --> ZERO) {
             run();
         }
 
@@ -36,7 +40,7 @@ public class RacingGame {
     }
 
     private void initCarNames() {
-        String[] names = getCarNames().split(",");
+        String[] names = getCarNames().split(SEPARATOR);
         validateDuplication(names);
 
         for (String name : names) {
@@ -71,13 +75,14 @@ public class RacingGame {
     private void getWinners() {
         Collections.sort(carList);
 
-        int maxPosition = carList.get(0).getPosition();
+        int maxPosition = carList.get(FIRST_INDEX).getPosition();
 
-        for (int i = 0; i < carList.size(); i++) {
+        for (int i = ZERO; i < carList.size(); i++) {
             Car car = carList.get(i);
             isWinner(car, maxPosition);
         }
     }
+
     private void isWinner(Car car, int maxPosition) {
         if (car.getPosition() == maxPosition) {
             winners.add(car.getName());
