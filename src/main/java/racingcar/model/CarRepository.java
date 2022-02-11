@@ -3,11 +3,11 @@ package racingcar.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class CarRepository {
 	private static CarRepository instance;
 	private final List<Car> cars = new ArrayList<>();
-	private final RandomNo randomNo = new RandomNo();
 
 	public static CarRepository getInstance() {
 		if (instance == null) {
@@ -24,8 +24,17 @@ public class CarRepository {
 		cars.clear();
 	}
 
-	public void move() {
-		cars.forEach(car -> car.move(randomNo.getNumber()));
+	public void move(List<Integer> randoms) {
+		IntStream.range(0, randoms.size())
+			.forEach(i -> cars.get(i).move(randoms.get(i)));
+	}
+
+	public int getSize() {
+		return cars.size();
+	}
+
+	public List<CarDto> getCars() {
+		return carsToCarDtos(cars);
 	}
 
 	public List<CarDto> getWinners() {
@@ -47,9 +56,5 @@ public class CarRepository {
 			maxPosition = car.getBiggerPosition(maxPosition);
 		}
 		return maxPosition;
-	}
-
-	public List<CarDto> getCars() {
-		return carsToCarDtos(cars);
 	}
 }

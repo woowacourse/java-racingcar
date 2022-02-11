@@ -30,14 +30,6 @@ public class CarControllerTest {
 		assertThat(repository.getCars().size()).isEqualTo(3);
 	}
 
-	@Test
-	void 자동차_게임_진행() {
-		CarController carController = new CarController();
-		String userInputCarNames = "범고래,소주캉,고래";
-		carController.createCars(userInputCarNames);
-		carController.run();
-	}
-
 	@AfterEach
 	void afterEach() {
 		CarRepository repository = CarRepository.getInstance();
