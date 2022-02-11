@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class ValidationUtil {
 
-
     public static void checkFormat(String[] input) {
         checkNumber(input);
         checkPositive(input);
