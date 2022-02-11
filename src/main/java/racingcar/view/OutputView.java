@@ -13,9 +13,9 @@ public class OutputView {
 	}
 
 	private void printCarPosition(Car car) {
-		System.out.println(car.getName() + ":");
+		System.out.print(car.getName() + ":");
 		for (int i = 0; i < car.getPosition(); i++) {
-			System.out.println("-");
+			System.out.print("-");
 		}
 		System.out.println();
 	}
