@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.validator.MoveCountValidator;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static racingcar.validator.MoveCountValidator.*;
 
 class MoveCountValidatorTest {
     @ParameterizedTest
@@ -13,9 +14,9 @@ class MoveCountValidatorTest {
     @DisplayName("입력값이 숫자가 아닐 경우")
     void notIntegerTest(String moveCount) {
         assertThatThrownBy(() -> {
-            MoveCountValidator.validateMoveCount(moveCount);
+            validateMoveCount(moveCount);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 이동횟수는 숫자로 입력해야합니다.");
+                .hasMessageContaining(ERROR_NOT_INTEGER);
     }
 
     @ParameterizedTest
@@ -23,8 +24,8 @@ class MoveCountValidatorTest {
     @DisplayName("입력값이 양수가 아닐 경우")
     void notPositiveTest(String moveCount) {
         assertThatThrownBy(() -> {
-            MoveCountValidator.validateMoveCount(moveCount);
+            validateMoveCount(moveCount);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 이동횟수는 1 이상의 정수여야 합니다.");
+                .hasMessageContaining(ERROR_NOT_POSITIVE);
     }
 }
