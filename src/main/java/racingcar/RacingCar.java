@@ -20,6 +20,10 @@ public class RacingCar {
         return position;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void goOrStay(int randomNumber) {
         if (randomNumber >= MOVE_STANDARD) {
             position++;
