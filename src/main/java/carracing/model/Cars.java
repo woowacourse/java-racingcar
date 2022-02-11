@@ -20,17 +20,6 @@ public class Cars {
 		this.cars = cars;
 	}
 
-	private void validateDuplication(List<Car> cars) {
-		boolean isDuplicated = cars.stream()
-			.map(Car::getName)
-			.distinct()
-			.count() != cars.size();
-
-		if (isDuplicated) {
-			throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
-		}
-	}
-
 	public List<String> getWinners() {
 		int max = cars.stream()
 			.mapToInt(Car::getPosition)
@@ -53,4 +42,16 @@ public class Cars {
 			OutputView.printCarPosition(car.toString()));
 		OutputView.printNewLine();
 	}
+
+	private void validateDuplication(List<Car> cars) {
+		boolean isDuplicated = cars.stream()
+			.map(Car::getName)
+			.distinct()
+			.count() != cars.size();
+
+		if (isDuplicated) {
+			throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
+		}
+	}
+
 }

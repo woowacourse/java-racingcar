@@ -34,8 +34,16 @@ public class RacingGameController {
 		endGame();
 	}
 
-	private void endGame() {
-		OutputView.printWinners(String.join(DELIMITER_JOIN, cars.getWinners()));
+	private void getCars() {
+		OutputView.printInputCarName();
+		try {
+			String readLine = InputView.getCarNames();
+			List<String> carNames = splitCarNames(readLine);
+			createCars(carNames);
+		} catch (IllegalArgumentException e){
+			OutputView.printException(e.getMessage());
+			getCars();
+		}
 	}
 
 	private void getNumberOfGames() {
@@ -48,16 +56,8 @@ public class RacingGameController {
 		}
 	}
 
-	private void getCars() {
-		OutputView.printInputCarName();
-		try {
-			String readLine = InputView.getCarNames();
-			List<String> carNames = splitCarNames(readLine);
-			createCars(carNames);
-		} catch (IllegalArgumentException e){
-			OutputView.printException(e.getMessage());
-			getCars();
-		}
+	private void endGame() {
+		OutputView.printWinners(String.join(DELIMITER_JOIN, cars.getWinners()));
 	}
 
 	private List<String> splitCarNames(String readLine) {

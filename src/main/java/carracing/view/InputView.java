@@ -39,16 +39,6 @@ public class InputView {
 		return numberOfGames;
 	}
 
-	private static int toInt(String line) {
-		return Integer.parseInt(line);
-	}
-
-	private static void validateZero(int number) {
-		if (number <= 0) {
-			throw new IllegalArgumentException(INPUT_NUMBER_ZERO_EXCEPTION.getMessage());
-		}
-	}
-
 	private static void validateEmptyString(String line) {
 		if (line.isEmpty()) {
 			throw new IllegalArgumentException(INPUT_EMPTY_STRING_EXCEPTION.getMessage());
@@ -56,8 +46,18 @@ public class InputView {
 	}
 
 	public static void validateNumber(String line) {
-		if(!line.matches("^[0-9]+$")){
+		if (!line.matches("^[0-9]+$")) {
 			throw new IllegalArgumentException(INPUT_NOT_NUMBER_EXCEPTION.getMessage());
+		}
+	}
+
+	private static int toInt(String line) {
+		return Integer.parseInt(line);
+	}
+
+	private static void validateZero(int number) {
+		if (number <= 0) {
+			throw new IllegalArgumentException(INPUT_NUMBER_ZERO_EXCEPTION.getMessage());
 		}
 	}
 
