@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import racingcar.util.RandomUtil;
-import racingcar.vo.CarValue;
+import dto.CarValue;
 import racingcar.vo.Name;
-import racingcar.vo.Winners;
+import dto.Winners;
 
 public class Cars {
     private static final int RANDOM_NUMBER_RANGE = 9 + 1;

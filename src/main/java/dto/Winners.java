@@ -1,6 +1,7 @@
-package racingcar.vo;
+package dto;
 
 import java.util.List;
+import racingcar.vo.Name;
 
 public class Winners {
     private final List<Name> winners;

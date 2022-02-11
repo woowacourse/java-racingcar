@@ -1,4 +1,4 @@
-package racingcar.vo;
+package dto;
 
 public class CarValue {
     private final String name;
