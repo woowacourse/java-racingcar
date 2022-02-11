@@ -11,6 +11,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarController {
+	public static final String CAR_NAME_DELIMITER = ",";
 	public final Cars cars = new Cars();
 	public final WinnerNames winnerNames = new WinnerNames();
 
@@ -32,7 +33,7 @@ public class RacingCarController {
 	}
 
 	public List<String> split(String carNamesLine) {
-		List<String> carNames = Arrays.asList(carNamesLine.split(","));
+		List<String> carNames = Arrays.asList(carNamesLine.split(CAR_NAME_DELIMITER, -1));
 		CarNameValidator.checkCarNames(carNames);
 		return carNames;
 	}
