@@ -22,15 +22,13 @@ public class RacingCarGame {
 		return RaceCount.getCount() == 0;
 	}
 
-	public List<CarVO> startRace() {
+	public void startRace() {
 		RaceCount.reduceRaceCount();
 		carRepository.moveCars();
+	}
 
-		List<CarVO> cars = new ArrayList<>();
-		for (Car car : carRepository.getCars()) {
-			cars.add(new CarVO(car.getName(), car.getPosition()));
-		}
-		return cars;
+	public HashMap<String, Integer> sendCurrentLocationOfCars() {
+		return carRepository.bringCarsNameAndPosition();
 	}
 
 	public List<String> findRacingGameWinner() {
