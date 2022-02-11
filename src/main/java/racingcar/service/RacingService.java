@@ -32,6 +32,12 @@ public class RacingService {
 		}
 	}
 
+	public List<CarDto> findCarDtos() {
+		return carRepository.findCars().stream()
+			.map(Car::toDto)
+			.collect(Collectors.toList());
+	}
+
 	public List<String> findWinnerNames() {
 		int maxPosition = carRepository.findMaxPosition();
 

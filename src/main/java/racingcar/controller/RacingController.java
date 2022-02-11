@@ -19,30 +19,25 @@ public class RacingController {
 	private static final int MINIMUM_ATTEMPT_NUMBER = 1;
 
 	public void start() {
-		List<Car> cars = inputAndRegisterCarInfo();
+		inputAndRegisterCarInfo();
 		int attemptNumber = InputView.getAttemptNumber();
 
 		OutputView.printResultMessage();
-		play(attemptNumber, cars);
+		play(attemptNumber);
 		printRacingResult();
 	}
 
-	private List<Car> inputAndRegisterCarInfo() {
+	private void inputAndRegisterCarInfo() {
 		String carNames = InputView.getCarNames();
-		List<Car> cars = Converter.toCarList(carNames);
 		racingService.registerCars(Converter.toCarList(carNames));
-		return cars;
 	}
 
-	private void play(int attemptNumber, List<Car> cars) {
+	private void play(int attemptNumber) {
 		validateAttemptNumberRange(attemptNumber);
 
 		for (int i = 0; i < attemptNumber; i++) {
 			racingService.race(randomUtil);
-			OutputView.printRacingInfo(cars.stream()
-				.map(Car::toDto)
-				.collect(Collectors.toList())
-			);
+			OutputView.printRacingInfo(racingService.findCarDtos());
 		}
 	}
 
