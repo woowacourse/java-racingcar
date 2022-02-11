@@ -2,10 +2,13 @@ package racingcar.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import racingcar.model.vo.Car;
-import racingcar.model.vo.Name;
 
 public class OutputView {
+    public static final String WINNERS_DELIMITER = ", ";
+    public static final String WINNER_ANNOUNCE_MESSAGE = "%s가 최종 우승했습니다.";
+
     public static void printCurrentPosition(List<Car> cars) {
         cars.forEach(OutputView::printRacingProgress);
         System.out.println();
@@ -23,10 +26,7 @@ public class OutputView {
         return builder.toString();
     }
 
-    public static void printWinner(List<Name> winners) {
-        String winnersJoinedByComma = winners.stream()
-            .map(Name::toString)
-            .collect(Collectors.joining(", "));
-        System.out.printf("%s가 최종 우승했습니다.", winnersJoinedByComma);
+    public static void printWinner(List<String> winners) {
+        System.out.printf(WINNER_ANNOUNCE_MESSAGE, winners.stream().collect(Collectors.joining(WINNERS_DELIMITER)));
     }
 }

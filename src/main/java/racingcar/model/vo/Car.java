@@ -2,12 +2,26 @@ package racingcar.model.vo;
 
 public class Car implements Comparable<Car> {
     private static final int ADVANCE_STANDARD = 4;
+    private static final int MAXIMUM_LENGTH = 5;
 
-    private final Name name;
+    private final String name;
     private int position;
 
-    public Car(Name name) {
+    public Car(String name) {
+        validateLength(removeWhiteSpaces(name));
         this.name = name;
+    }
+
+    private static String removeWhiteSpaces(String name) {
+        return name.trim();
+    }
+
+    private static String validateLength(String name) {
+        if (name.length() > MAXIMUM_LENGTH) {
+            throw new IllegalArgumentException(String.format("이름은 %d글자가 넘을 수 없습니다.", MAXIMUM_LENGTH));
+        }
+
+        return name;
     }
 
     public void advance(int number) {
@@ -16,7 +30,7 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public Name getName() {
+    public String getName() {
         return name;
     }
 

@@ -1,11 +1,16 @@
 package racingcar.controller;
 
-import racingcar.model.InputNameHandler;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import racingcar.model.firstcollection.Cars;
+import racingcar.model.vo.Car;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGame {
+    public static final String CAR_NAME_DELIMITER = ",";
+
     public void start() {
         Cars cars = setupCars();
         race(cars, InputView.getTrial());
@@ -13,7 +18,10 @@ public class RacingGame {
     }
 
     private Cars setupCars() {
-        return new Cars(InputNameHandler.createNames(InputView.getCarNames()));
+        return new Cars(Arrays.stream(InputView.getCarNames()
+                            .split(CAR_NAME_DELIMITER))
+                            .map(Car::new)
+                            .collect(Collectors.toList()));
     }
 
     private void race(Cars cars, int trials) {

@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import racingcar.model.vo.Car;
-import racingcar.model.vo.Name;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +16,7 @@ public class CarTest {
     @DisplayName("이름으로 자동차 생성 테스트")
     void carTest() {
         // given
-        Name testName = Name.of("test");
+        String testName = "test";
 
         // when
         Car car = new Car(testName);
@@ -32,7 +30,7 @@ public class CarTest {
     @DisplayName("자동차 전진 테스트")
     void advanceTest(int number, int expected) {
         // given
-        Car car = new Car(Name.of("test"));
+        Car car = new Car("test");
 
         // when
         car.advance(number);
@@ -45,7 +43,7 @@ public class CarTest {
     @DisplayName("포지션 동일성 테스트")
     void equalsPosition() {
         // given
-        Car car = new Car(Name.of("test"));
+        Car car = new Car("test");
 
         // when
         car.advance(4);
@@ -58,14 +56,14 @@ public class CarTest {
     @DisplayName("포지션 내림차순 테스트")
     void sortByPositionDesc() {
         // given
-        Car pobi = new Car(Name.of("pobi"));
+        Car pobi = new Car("pobi");
         pobi.advance(4);
         pobi.advance(4);
 
-        Car hoho = new Car(Name.of("hoho"));
+        Car hoho = new Car("hoho");
         hoho.advance(4);
 
-        Car rich = new Car(Name.of("rich"));
+        Car rich = new Car("rich");
         rich.advance(3);
 
         // when
