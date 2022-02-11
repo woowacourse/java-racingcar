@@ -20,6 +20,7 @@ public class RacingCarController {
 		String roundNumber = inputView.inputRoundNumber();
 
 		RacingCarService service = new RacingCarService(carNames, roundNumber);
+		outputView.printProcessPrompt();
 		while (!service.isEnd()) {
 			Cars result = service.run();
 			outputView.printCarsPosition(result);
