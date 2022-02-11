@@ -24,6 +24,10 @@ public class RacingGame {
         return new RacingGame(carsName, round, numberGeneratePolicy);
     }
 
+    public void race() {
+        cars.driveAll(numberGeneratePolicy);
+    }
+
     public boolean isContinue() {
         return round.hasNext();
     }

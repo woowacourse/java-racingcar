@@ -12,6 +12,7 @@ public class RacingGameController {
             new RandomNumberGeneratePolicy()
         );
         while (racingGame.isContinue()) {
+            racingGame.race();
         }
     }
 }
