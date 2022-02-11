@@ -1,9 +1,8 @@
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import stringCalculator.StringCalculator;
+import stringcalculator.StringCalculator;
 
 public class StringCalculatorTest {
 	public StringCalculator stringCalculator = new StringCalculator();

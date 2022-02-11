@@ -1,6 +1,6 @@
-package racingCar;
+package racingcar;
 
-import racingCar.controller.RacingCarsController;
+import racingcar.controller.RacingCarsController;
 
 public class Application {
 	public static void main(String[] args) throws Exception {

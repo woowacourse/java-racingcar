@@ -1,13 +1,13 @@
-package racingCar.service;
+package racingcar.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingCar.model.Car;
-import racingCar.utlis.Convertor;
-import racingCar.validator.NameValidator;
+import racingcar.model.Car;
+import racingcar.utlis.Convertor;
+import racingcar.validator.NameValidator;
 
 public class RacingCarService {
 

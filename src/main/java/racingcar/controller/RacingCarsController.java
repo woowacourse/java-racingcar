@@ -1,13 +1,13 @@
-package racingCar.controller;
+package racingcar.controller;
 
-import static racingCar.view.Output.*;
+import static racingcar.view.Output.*;
 
-import racingCar.service.RacingCarService;
-import racingCar.utlis.Convertor;
-import racingCar.validator.CountValidator;
-import racingCar.validator.NameValidator;
-import racingCar.view.Input;
-import racingCar.view.Output;
+import racingcar.service.RacingCarService;
+import racingcar.utlis.Convertor;
+import racingcar.validator.CountValidator;
+import racingcar.validator.NameValidator;
+import racingcar.view.Input;
+import racingcar.view.Output;
 
 public class RacingCarsController {
 

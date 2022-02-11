@@ -1,4 +1,4 @@
-package racingCar.utlis;
+package racingcar.utlis;
 
 public class Convertor {
 	public static final String SEPARATION_REGEX = ",";

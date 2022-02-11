@@ -1,4 +1,4 @@
-package racingCar.utlis;
+package racingcar.utlis;
 
 import static org.junit.jupiter.api.Assertions.*;
 

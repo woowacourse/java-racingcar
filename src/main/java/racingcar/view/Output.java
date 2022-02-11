@@ -1,8 +1,8 @@
-package racingCar.view;
+package racingcar.view;
 
 import java.util.List;
 
-import racingCar.model.Car;
+import racingcar.model.Car;
 
 public class Output {
 

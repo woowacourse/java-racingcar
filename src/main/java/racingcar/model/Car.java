@@ -1,8 +1,8 @@
-package racingCar.model;
+package racingcar.model;
 
-import static racingCar.utlis.Util.*;
+import static racingcar.utlis.Util.*;
 
-import racingCar.validator.NameValidator;
+import racingcar.validator.NameValidator;
 
 public class Car {
 

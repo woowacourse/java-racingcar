@@ -1,14 +1,13 @@
-package racingCar.service;
+package racingcar.service;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import racingCar.model.Car;
+import racingcar.model.Car;
 
 class RacingCarServiceTest {
 
