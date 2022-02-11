@@ -14,7 +14,7 @@ public class StringCalculator {
         }
         Matcher matcher = CUSTOM_DELIMITERS.matcher(value);
         if (matcher.find()) {
-            return calculator(matcher.group(2), DEFAULT_DELIMITERS + "|" + CUSTOM_DELIMITERS);
+            return calculator(matcher.group(2), DEFAULT_DELIMITERS + "|" + matcher.group(1));
         }
         return calculator(value, DEFAULT_DELIMITERS);
     }
