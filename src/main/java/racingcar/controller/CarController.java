@@ -10,31 +10,30 @@ import java.util.stream.Collectors;
 public class CarController {
     private static final String PRINT_RESULT = "실행 결과";
 
-    public static void raceStart(List<Car> carList, int tryNum) {
+    public static void raceStart(List<Car> cars, int tryNum) {
         System.out.println(PRINT_RESULT);
 
         for (int i = 0; i < tryNum; i++) {
-            move(carList);
-            Output.racePrint(carList);
+            move(cars);
+            Output.racePrint(cars);
         }
     }
 
-    private static void move(List<Car> carList) {
-        for (Car car : carList) {
+    private static void move(List<Car> cars) {
+        for (Car car : cars) {
             car.goForward();
         }
     }
 
-    public static void finalWinner(List<Car> carList) {
-        List<String> winnerList = getWinnerList(carList);
-        Output.winnerPrint(winnerList);
+    public static void finalWinner(List<Car> cars) {
+        Output.winnerPrint(getWinnerList(cars));
     }
 
-    private static List<String> getWinnerList(List<Car> carList) {
+    private static List<String> getWinnerList(List<Car> cars) {
         List<String> winnerList = new ArrayList<>();
-        int winnerPosition = Car.getWinnerPosition(carList);
+        int winnerPosition = Car.getWinnerPosition(cars);
 
-        for (Car car : carList) {
+        for (Car car : cars) {
             if (car.isWinner(winnerPosition)) {
                 winnerList.add(car.getName());
             }
