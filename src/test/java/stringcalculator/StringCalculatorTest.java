@@ -1,5 +1,6 @@
 package stringcalculator;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -56,5 +57,21 @@ class StringCalculatorTest {
     void 커스텀_구분자를_입력하지_않은_경우() {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("//\n1;2;3"))
             .isInstanceOf(RuntimeException.class).hasMessage("양식이 올바르지 않습니다.");
+    }
+
+    @Test
+    @DisplayName("기본 구분자 제거")
+    void removeDefaultDelim() {
+        String input = "1,2,3";
+
+        assertThat(StringCalculator.getNumbersWithDelim(input)).containsExactly("1", "2", "3");
+    }
+
+    @Test
+    @DisplayName("커스텀 구분자 제거")
+    void removeCustomDelim() {
+        String input = "//;\n1;2;3";
+
+        assertThat(StringCalculator.getNumbersWithDelim(input)).containsExactly("1", "2", "3");
     }
 }
