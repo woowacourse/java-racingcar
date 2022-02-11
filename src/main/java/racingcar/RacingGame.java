@@ -11,11 +11,19 @@ import java.util.List;
 public class RacingGame {
 
     private static final String WINNER_NAME_DELIMITER = ", ";
+    private final RacingCars racingCars;
 
     public RacingGame() {
+        this.racingCars = new RacingCars();
     }
 
-    public void playGame(RacingCars racingCars, String tryCount) {
+    public RacingGame(RacingCars racingCars) {
+        this.racingCars = racingCars;
+    }
+
+    public void playGame(String userInputCarNames, String tryCount) {
+        racingCars.join(userInputCarNames);
+
         validatedCarStandard(racingCars);
         Validator.checkTryCountIsNaturalNumber(tryCount);
         int trialCount = Integer.parseInt(tryCount);
@@ -40,7 +48,16 @@ public class RacingGame {
         }
     }
 
-    public ArrayList<RacingCar> getWinners(RacingCars racingCars) {
+    public String getWinnersName() {
+        ArrayList<RacingCar> winners = getWinners(racingCars);
+        ArrayList<String> winnersName = new ArrayList<>();
+        for (RacingCar winner : winners) {
+            winnersName.add(winner.getName());
+        }
+        return String.join(WINNER_NAME_DELIMITER, winnersName);
+    }
+
+    private ArrayList<RacingCar> getWinners(RacingCars racingCars) {
 
         RacingCar racingCarOfMaxPosition = racingCars.getRacingCarMaxPosition();
         List<RacingCar> racingCarList = racingCars.getRacingCars();
@@ -52,13 +69,5 @@ public class RacingGame {
             }
         }
         return winners;
-    }
-
-    public String getWinnersName(ArrayList<RacingCar> winners) {
-        ArrayList<String> winnersName = new ArrayList<>();
-        for (RacingCar winner : winners) {
-            winnersName.add(winner.getName());
-        }
-        return String.join(WINNER_NAME_DELIMITER, winnersName);
     }
 }

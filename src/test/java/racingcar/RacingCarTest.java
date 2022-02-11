@@ -53,10 +53,10 @@ public class RacingCarTest {
         racingCar3.goOrStay(7);
 
         RacingCars racingCars = new RacingCars(racingCarList);
+        racingGame = new RacingGame(racingCars);
+        String winnersName = racingGame.getWinnersName();
 
-        ArrayList<RacingCar> winners = racingGame.getWinners(racingCars);
-
-        assertThat(winners.get(0).getName()).isEqualTo(racingCar3.getName());
+        assertThat(winnersName).isEqualTo(racingCar3.getName());
     }
 
     @Test
@@ -67,9 +67,8 @@ public class RacingCarTest {
         racingCar3.goOrStay(7);
 
         RacingCars racingCars = new RacingCars(racingCarList);
-        ArrayList<RacingCar> winners = racingGame.getWinners(racingCars);
-
-        String actual = racingGame.getWinnersName(winners);
+        racingGame = new RacingGame(racingCars);
+        String actual = racingGame.getWinnersName();
         String winnersName = racingCar2.getName() + WINNER_NAME_DELIMITER + racingCar3.getName();
 
         assertThat(actual).isEqualTo(winnersName);
