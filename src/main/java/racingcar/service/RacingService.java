@@ -8,8 +8,8 @@ import racingcar.ui.RacingCarOutput;
 import racingcar.utils.RandomIntegerGenerator;
 
 public class RacingService {
-	private final int START_RANDOM_NUMBER = 0;
-	private final int END_RANDOM_NUMBER = 9;
+	private static final int START_RANDOM_NUMBER = 0;
+	private static final int END_RANDOM_NUMBER = 9;
 	private final List<Car> cars;
 
 	public RacingService(List<Car> cars) {
