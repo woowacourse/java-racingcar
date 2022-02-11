@@ -9,14 +9,14 @@ import racingcar.util.NumberGeneratePolicy;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<String> carsName) {
-        this.cars = carsName.stream()
-            .map(carName -> new Car(carName))
-            .collect(Collectors.toList());
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public static Cars from(List<String> carsName) {
-        return new Cars(carsName);
+        return new Cars(carsName.stream()
+            .map(carName -> new Car(carName))
+            .collect(Collectors.toList()));
     }
 
     public void driveAll(NumberGeneratePolicy numberGeneratePolicy) {

@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,13 @@ class CarsTest {
     @CsvSource(value = {"rookie:is2js"}, delimiter = ':')
     @DisplayName("자동차 게임 라운드별 기록을 가져오는 기능")
     public void drive_round_record(String name1, String name2) {
-        List<String> carList = new ArrayList<>();
-        carList.add(name1);
-        carList.add(name2);
+        Car car1 = new Car(name1);
+        Car car2 = new Car(name2);
+
+        List<Car> carList = new ArrayList<>();
+        carList.add(car1);
+        carList.add(car2);
+
         Cars cars = new Cars(carList);
 
         assertThat(cars.getDriveRecord().size()).isEqualTo(2);
