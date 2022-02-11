@@ -20,13 +20,11 @@ public class OutputView {
 
     private static String getPositionString(final int position) {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            builder.append("-");
-        }
+        builder.append("-".repeat(Math.max(0, position)));
         return builder.toString();
     }
 
     public static void printWinner(final List<String> winners) {
-        System.out.printf(WINNER_ANNOUNCE_MESSAGE, winners.stream().collect(Collectors.joining(WINNERS_DELIMITER)));
+        System.out.printf(WINNER_ANNOUNCE_MESSAGE, String.join(WINNERS_DELIMITER, winners));
     }
 }
