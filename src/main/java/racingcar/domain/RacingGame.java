@@ -20,14 +20,8 @@ public class RacingGame {
         }
     }
 
-    public List<String> getAllCurrentPosition() {
-        List<String> positions = new ArrayList<>();
-
-        for (Car car : cars) {
-            positions.add(car.getCurrentPosition());
-        }
-
-        return positions;
+    public List<Car> getCars() {
+        return cars;
     }
 
     public int getHighScore() {

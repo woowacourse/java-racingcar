@@ -7,8 +7,8 @@ public class OutputView {
     public static final String RACE_RESULT_MESSAGE = "\n실행 결과";
 
     public static void printRaceResult(RacingGame cars) {
-        for (String current : cars.getAllCurrentPosition()) {
-            System.out.println(current);
+        for (Car car : cars.getCars()) {
+            System.out.println(car.getCurrentPosition());
         }
         System.out.println();
     }
