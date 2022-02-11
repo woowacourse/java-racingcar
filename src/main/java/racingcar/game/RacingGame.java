@@ -1,7 +1,6 @@
 package racingcar.game;
 
 import racingcar.entity.Car;
-import racingcar.util.VerificationUtil;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
@@ -34,6 +33,22 @@ public class RacingGame {
     private void initRacingCarGame() {
         initCarNames();
         initTotalAttempt();
+    }
+
+    private void initCarNames() {
+        String[] names = getCarNames().split(",");
+        validateDuplication(names);
+
+        for (String name : names) {
+            validateCarName(name);
+            carList.add(new Car(name));
+        }
+    }
+
+    private void initTotalAttempt() {
+        String attempt = getAttemptCount();
+        validateAttempt(attempt);
+        totalAttemptCount = Integer.parseInt(attempt);
     }
 
     private void run() {
