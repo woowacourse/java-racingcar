@@ -10,7 +10,8 @@ public class Calculator {
     private static final int DEFAULT_NUMBER = 0;
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final String CUSTOM_DELIMITER_PATTERN_REGEX = "//(.)\n(.*)";
-    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(CUSTOM_DELIMITER_PATTERN_REGEX);
+    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(
+        CUSTOM_DELIMITER_PATTERN_REGEX);
     private static final int CUSTOM_DELIMITER_INDEX = 1;
     private static final int CUSTOM_INPUT_INDEX = 2;
 

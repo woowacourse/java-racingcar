@@ -28,7 +28,7 @@ public class RacingGameTest {
     @Test
     @DisplayName("게임이 종료되었는지 확인한다.")
     void checkGameEnd() {
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             racingGame.race();
         }
         assertTrue(racingGame.isEnd());
@@ -46,7 +46,7 @@ public class RacingGameTest {
     @Test
     @DisplayName("게임이 종료되었는데 race할 경우 exception이 발생한다.")
     void raceEndException() {
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             racingGame.race();
         }
         assertThatExceptionOfType(RuntimeException.class)

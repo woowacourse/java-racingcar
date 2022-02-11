@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.Objects;
-
 public class RacingCar {
 
     private static final int NAME_MAX_LENGTH = 5;
@@ -17,7 +15,7 @@ public class RacingCar {
     }
 
     private void isBlank(String name) {
-        if(name == null || name.isEmpty()) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("자동차 이름은 비어있을 수 없다.");
         }
     }
@@ -37,7 +35,7 @@ public class RacingCar {
     }
 
     public void moveByCommand(boolean command) {
-        if(command) {
+        if (command) {
             position++;
         }
     }
