@@ -7,19 +7,13 @@ public class Car {
     private final String name;
     private int position = 0;
 
-    public Car(String name) {
+    public Car(final String name) {
         this.name = name;
     }
 
-    public Car(String name, int position) {
+    public Car(final String name, final int position) {
         this.name = name;
         this.position = position;
-    }
-
-    public void moveForward(int randomNumber) {
-        if (randomNumber >= MOVE_FORWARD_CONDITION) {
-            position++;
-        }
     }
 
     public String getCarName() {
@@ -28,5 +22,11 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public void moveForward(final int number) {
+        if (number >= MOVE_FORWARD_CONDITION) {
+            position++;
+        }
     }
 }

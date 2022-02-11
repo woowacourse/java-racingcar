@@ -1,13 +1,13 @@
-package model;
+package racingcar.model;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import racingcar.model.Car;
-
+@SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
+
     private static Car car;
 
     @BeforeEach

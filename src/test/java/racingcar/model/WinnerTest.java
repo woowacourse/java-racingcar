@@ -1,4 +1,4 @@
-package model;
+package racingcar.model;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,10 +7,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import racingcar.model.Car;
-import racingcar.model.Winner;
-
+@SuppressWarnings("NonAsciiCharacters")
 public class WinnerTest {
+
     @Test
     void 우승자_선정() {
         List<Car> cars = Arrays.asList(

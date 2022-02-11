@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.utils.validator.CarNamesValidator;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class CarNamesValidatorTest {
 
     @Test

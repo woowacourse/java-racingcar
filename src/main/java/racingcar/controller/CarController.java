@@ -11,13 +11,13 @@ public class CarController {
 
     private static final int END_EXCLUSIVE = 10;
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public CarController() {
+        cars = new ArrayList<>();
     }
 
-    public void createCars(String[] carNames) {
-        cars = new ArrayList<>();
+    public void createCars(final String[] carNames) {
         Arrays.stream(carNames)
             .forEach(carName -> cars.add(new Car(carName)));
     }

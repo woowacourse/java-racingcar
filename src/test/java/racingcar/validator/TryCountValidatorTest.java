@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.utils.validator.TryCountValidator;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class TryCountValidatorTest {
+    
     @Test
     void 시도_회수_문자() {
         String tryCount = "q";
