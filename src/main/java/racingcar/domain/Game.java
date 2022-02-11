@@ -2,8 +2,8 @@ package racingcar.domain;
 
 import racingcar.util.RandomUtils;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Game {
 
@@ -33,21 +33,17 @@ public class Game {
     }
 
     public List<Car> getWinners() {
-        List<Car> winners = new ArrayList<>();
-        int maxPosition = 0;
+        int maxPosition = getMaxPosition();
 
-        for (Car car : getCars()) {
-            int currentPosition = car.getPosition();
-            if (maxPosition > currentPosition) {
-                continue;
-            }
-            if (maxPosition < currentPosition) {
-                winners.clear();
-            }
-            winners.add(car);
-            maxPosition = currentPosition;
-        }
-        return winners;
+        return getCars().stream()
+                .filter((car) -> car.getPosition() == maxPosition)
+                .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return getCars().stream()
+                .mapToInt(Car::getPosition)
+                .max().orElse(0);
     }
 
     public List<Car> getCars() {
