@@ -6,23 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import racingCar.domain.Car;
+import racingCar.domain.RacingCars;
 import racingCar.validator.RacingCarValidator;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
 public class RacingCarController {
-	private ArrayList<Car> cars = new ArrayList<>();
-	private int maxPosition = Integer.MIN_VALUE;
+	private RacingCars racingCars;
 	private int times;
 
 	public void start() {
-		List<Car> winners;
 		String[] carNames = getAndSeparateCarNames();
 		getCarTimes();
 		makeCars(carNames);
 		race(times);
-		winners = findWinner(cars);
-		OutputView.printWinners(winners);
+		OutputView.printWinners(racingCars.findWinner());
 	}
 
 	private String[] getAndSeparateCarNames() {
@@ -60,52 +58,18 @@ public class RacingCarController {
 	}
 
 	private void makeCars(String[] carNames) {
+		List<Car> cars = new ArrayList<>();
 		for (String carName : carNames) {
 			cars.add(new Car(carName));
 		}
+		racingCars = new RacingCars(cars);
 	}
 
-	private void race(int count) {
+	public void race(int count) {
 		OutputView.startPrintResultMessage();
 		for (int i = 0; i < count; i++) {
-			moveCars();
-			OutputView.printCars(cars);
+			racingCars.moveRacingCars();
+			OutputView.printCars(racingCars);
 		}
-	}
-
-	private void moveCars() {
-		for (int idx = 0; idx < cars.size(); idx++) {
-			moveCar(idx);
-		}
-	}
-
-	private void moveCar(int idx) {
-		Car car = cars.get(idx);
-		car.moveCar(makeRandom());
-	}
-
-	private boolean makeRandom() {
-		return ((int)(Math.random() * 10) - 1) >= 4;
-	}
-
-	public List<Car> findWinner(List<Car> cars) {
-		List<Car> winners = new ArrayList<>();
-		for (Car car : cars) {
-			winners = checkLead(car, winners);
-		}
-		return winners;
-	}
-
-	private List<Car> checkLead(Car car, List<Car> winners) {
-		if (car.getPosition() > maxPosition) {
-			winners.clear();
-			winners.add(car);
-			maxPosition = car.getPosition();
-			return winners;
-		}
-		if (car.getPosition() == maxPosition) {
-			winners.add(car);
-		}
-		return winners;
 	}
 }

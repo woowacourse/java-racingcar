@@ -14,15 +14,6 @@ public class Car {
 		}
 	}
 
-	@Override
-	public String toString() {
-		String output = name + " : ";
-		for (int idx = 0; idx < position; idx++) {
-			output += "-";
-		}
-		return output;
-	}
-
 	public int getPosition() {
 		return this.position;
 	}
@@ -31,5 +22,16 @@ public class Car {
 		System.out.print(this.name);
 	}
 
+	public boolean isWinner(int maxDistance) {
+		return this.position == maxDistance;
+	}
 
+	@Override
+	public String toString() {
+		String output = name + " : ";
+		for (int idx = 0; idx < position; idx++) {
+			output += "-";
+		}
+		return output;
+	}
 }

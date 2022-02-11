@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import racingCar.controller.RacingCarController;
 import racingCar.domain.Car;
+import racingCar.domain.RacingCars;
 import racingCar.validator.RacingCarValidator;
 
 public class RacingCarTest {
@@ -75,6 +76,7 @@ public class RacingCarTest {
 
 	@Test
 	void 최종_결과_출력_정상() {
+		RacingCars racingCars;
 		List<Car> cars = new ArrayList<>();
 		List<Car> winners = new ArrayList<>();
 
@@ -95,7 +97,9 @@ public class RacingCarTest {
 		winners.add(car1);
 		winners.add(car2);
 
-		List<Car> result = racingCar.findWinner(cars);
+		racingCars = new RacingCars(cars);
+
+		List<Car> result = racingCars.findWinner();
 		assertThat(result).isEqualTo(winners);
 	}
 
