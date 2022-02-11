@@ -7,9 +7,13 @@ import racingcar.view.OutputView;
 
 public class RacingCarApplication {
 	public static void main(String[] args) {
-		CarRepository carRepository = new CarRepository();
 
+		CarRepository carRepository = new CarRepository();
 		CarController game = new CarController(carRepository);
-		game.play();
+
+		game.initGame();
+		game.playGame();
+		game.turnOffGame();
+
 	}
 }
