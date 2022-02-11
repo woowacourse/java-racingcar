@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.controller.GameController;
+import racingcar.controller.OutputViewController;
 import racingcar.model.Car;
 import racingcar.util.Checker;
 
@@ -81,11 +82,12 @@ public class MainTest {
 		testInfo.put("jason", "");
 		String[] names = {"pobi", "jun", "jason"};
 		GameController gameController = new GameController();
+		OutputViewController outputViewController = new OutputViewController();
 		ArrayList<Car> carList = gameController.generateCarList(names);
 		carList.get(0).movePosition(5);
 		carList.get(0).movePosition(6);
 		carList.get(1).movePosition(4);
-		LinkedHashMap<String, String> realInfo = gameController.getCarListInfo(carList);
+		LinkedHashMap<String, String> realInfo = outputViewController.getCarListInfo(carList);
 		assertThat(realInfo.entrySet()).isEqualTo(testInfo.entrySet());
 	}
 }
