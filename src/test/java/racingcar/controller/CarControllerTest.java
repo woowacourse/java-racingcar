@@ -26,13 +26,6 @@ public class CarControllerTest {
 		String userInputCarNames = "범고래,소주캉,고래";
 		carController.createCars(userInputCarNames);
 
-		CarRepository repository = CarRepository.getInstance();
-		assertThat(repository.getCars().size()).isEqualTo(3);
-	}
-
-	@AfterEach
-	void afterEach() {
-		CarRepository repository = CarRepository.getInstance();
-		repository.clear();
+		assertThat(carController.getCars().size()).isEqualTo(3);
 	}
 }
