@@ -18,8 +18,18 @@ public class CarName {
     return name;
   }
 
-  public boolean equals(CarName carName) {
+  @Override
+  public boolean equals(Object object) {
+    if (!(object instanceof CarName)) {
+      return false;
+    }
+    CarName carName = (CarName) object;
     return carName.name.equals(this.name);
+  }
+
+  @Override
+  public int hashCode(){
+    return name.hashCode();
   }
 
   private void validEmpty(String name) {
