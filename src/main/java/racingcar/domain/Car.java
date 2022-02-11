@@ -29,7 +29,7 @@ public class Car {
     }
 
     public void move() {
-        if (movingPolicy.isMove()) {
+        if (movingPolicy.isMovable()) {
             position++;
         }
     }
