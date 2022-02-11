@@ -5,35 +5,40 @@ import java.util.regex.Pattern;
 
 public class Calculator {
 
-	private String separators = ",:";
+	private String delimiter = ",:";
 
 	public int splitAndSumNumber(String inputValue) {
-		if (inputValue == null || inputValue.isEmpty()) {
+		if (isEmptyValue(inputValue)) {
 			return 0;
 		}
-
-		String[] splitValues = customSplit(inputValue);
-
-		return sumNumber(splitValues);
+		return sum(split(inputValue));
 	}
 
-	private String[] customSplit(String inputValue) {
+	private boolean isEmptyValue(String inputValue) {
+		return inputValue == null || inputValue.isEmpty();
+	}
+
+	private String[] split(String inputValue) {
 		Matcher matcher = Pattern.compile("//(.*)\n(.*)").matcher(inputValue);
 		if (matcher.find()) {
 			String customDelimiter = matcher.group(1);
 			inputValue = matcher.group(2);
-			separators += customDelimiter;
+			delimiter += customDelimiter;
 		}
-		String newSeparators = String.join("|", separators.split(""));
-		return inputValue.split(newSeparators);
+		String newDelimiter = createNewDelimiter();
+		return inputValue.split(newDelimiter);
 	}
 
-	private int sumNumber(String[] splitValues) {
-		int totalValue = 0;
-		for (String stringValue : splitValues) {
-			totalValue += toInt(stringValue);
+	private String createNewDelimiter() {
+		return String.join("|", delimiter.split(""));
+	}
+
+	private int sum(String[] values) {
+		int total = 0;
+		for (String value : values) {
+			total += toInt(value);
 		}
-		return totalValue;
+		return total;
 	}
 
 	private int toInt(String stringValue) {
