@@ -1,10 +1,10 @@
 package racingCar.service;
 
-import static org.assertj.core.api.AssertionsForClassTypes.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +12,6 @@ import racingCar.model.Car;
 import racingCar.model.RacingCars;
 
 class RacingCarsServiceTest {
-
-	RacingCarsService racingCarsService = new RacingCarsService();
 
 	@Test
 	public void 우승자_찾기_테스트() throws Exception {
@@ -31,10 +29,11 @@ class RacingCarsServiceTest {
 			car3.move();
 		}
 
-		racingCarsService.cars = new RacingCars(new ArrayList<>(Arrays.asList("a","b","c")));
-		racingCarsService.cars.addCar(car1);
-		racingCarsService.cars.addCar(car2);
-		racingCarsService.cars.addCar(car3);
+		RacingCars cars = new RacingCars(new ArrayList<>(Arrays.asList("a", "b", "c")));
+		cars.addCar(car1);
+		cars.addCar(car2);
+		cars.addCar(car3);
 		ArrayList<String> result = new ArrayList<>(List.of("juri3"));
+		assertThat(result).isEqualTo(cars.getWinners(expectMaxPosition));
 	}
 }

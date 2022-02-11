@@ -14,7 +14,7 @@ import racingCar.view.Output;
 
 public class RacingCarsService {
 
-	public RacingCars cars;
+	private RacingCars cars;
 	private int count;
 
 	public void initiateCars(String nameString) throws Exception {

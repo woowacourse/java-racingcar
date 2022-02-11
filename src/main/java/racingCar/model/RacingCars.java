@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import racingCar.validator.NameValidator;
 
 public class RacingCars {
-	private List<Car> cars = new ArrayList<>();
+	private final List<Car> cars = new ArrayList<>();
 
 	public RacingCars(List<String> cars) throws Exception {
 		NameValidator.validateNameList(cars);
