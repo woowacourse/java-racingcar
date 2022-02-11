@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
 import racingcar.domain.RacingRecord;
+import racingcar.domain.RacingResult;
 
 class OutputViewTest {
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -38,5 +39,16 @@ class OutputViewTest {
         OutputView.printRacingRecord(racingRecord);
 
         assertThat(output.toString()).contains("rookie : -\nis2hs : -");
+    }
+
+    @Test
+    @DisplayName("자동차 경주 우승자 이름 출력")
+    public void print_racing_winners() {
+        cars.forEach(car -> car.drive(4));
+        RacingResult racingResult = new RacingResult(cars);
+
+        OutputView.printRacingResult(racingResult);
+
+        assertThat(output.toString()).contains("rookie, is2hs가 최종 우승했습니다.");
     }
 }

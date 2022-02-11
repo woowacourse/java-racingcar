@@ -32,4 +32,8 @@ public class RacingGame {
     public boolean isContinue() {
         return round.hasNext();
     }
+
+    public RacingResult getRacingResult() {
+        return new RacingResult(cars.getWinners());
+    }
 }

@@ -17,5 +17,6 @@ public class RacingGameController {
             RacingRecord racingRecord = racingGame.race();
             OutputView.printRacingRecord(racingRecord);
         }
+        OutputView.printRacingResult(racingGame.getRacingResult());
     }
 }
