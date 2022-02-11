@@ -85,7 +85,7 @@ public class RacingCarTest {
     public void validateCountOfCarTest() {
 
         RacingCars racingCars = new RacingCars(List.of(racingCar1));
-        assertThatThrownBy(() -> Validator.validateCountOfCar(racingCars)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validator.checkCountOfCar(racingCars)).isInstanceOf(IllegalArgumentException.class);
 
     }
 
@@ -95,7 +95,7 @@ public class RacingCarTest {
 
         RacingCar noNameCar = RacingCar.generateRacingCar(EMPTY_CAR_NAME);
         RacingCars racingCars = new RacingCars(List.of(noNameCar, racingCar1));
-        assertThatThrownBy(() -> Validator.validateCarsNameIsEmpty(racingCars)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validator.checkCarsNameIsEmpty(racingCars)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -105,7 +105,7 @@ public class RacingCarTest {
         RacingCar longNameCar = RacingCar.generateRacingCar(LONG_NAME);
         RacingCars racingCars = new RacingCars(List.of(longNameCar, racingCar1));
 
-        assertThatThrownBy(() -> Validator.validateCarsNameSize(racingCars)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validator.checkCarsNameSize(racingCars)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -115,7 +115,7 @@ public class RacingCarTest {
         RacingCar duplicatedNameCar = RacingCar.generateRacingCar(DUPLICATED_NAME);
         RacingCars racingCars = new RacingCars(List.of(duplicatedNameCar, racingCar1));
 
-        assertThatThrownBy(() -> Validator.validateDuplicatedName(racingCars)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validator.checkDuplicatedName(racingCars)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -123,13 +123,13 @@ public class RacingCarTest {
     public void validateHaveLastInputCommaTest() {
         String userInput = "phobi,json,";
 
-        assertThatThrownBy(() -> Validator.validateHaveLastInputComma(userInput)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validator.checkHaveLastInputComma(userInput)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("시도 회수가 자연수가 아니면 예외처리")
     public void validateTryCountIsNaturalNumberTest() {
         String tryCountInput = "0";
-        assertThatThrownBy(() -> Validator.validateTryCountIsNaturalNumber(tryCountInput)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validator.checkTryCountIsNaturalNumber(tryCountInput)).isInstanceOf(IllegalArgumentException.class);
     }
 }

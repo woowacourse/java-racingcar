@@ -17,13 +17,13 @@ public class Validator {
     private static final String LAST_INPUT_IS_COMMA = "[ERROR] 마지막 자동차 이름을 입력하지 않았습니다.";
     private static final String TRY_COUNT_FORMAT_ERROR_MESSAGE = "[ERROR] 시도회수는 자연수여야 합니다.";
 
-    public static void validateCountOfCar(RacingCars racingCars) {
+    public static void checkCountOfCar(RacingCars racingCars) {
         if (racingCars.getRacingCars().size() < MIN_COUNT_OF_CAR) {
             throw new IllegalArgumentException(MIN_CAR_OF_COUNT_MESSAGE);
         }
     }
 
-    public static void validateCarsNameIsEmpty(RacingCars racingCars) {
+    public static void checkCarsNameIsEmpty(RacingCars racingCars) {
         for (RacingCar racingCar : racingCars.getRacingCars()) {
             validatorEmptyName(racingCar.getName());
         }
@@ -35,7 +35,7 @@ public class Validator {
         }
     }
 
-    public static void validateCarsNameSize(RacingCars racingCars) {
+    public static void checkCarsNameSize(RacingCars racingCars) {
         for (RacingCar racingCar : racingCars.getRacingCars()) {
             validatorCarNameSize(racingCar);
         }
@@ -47,7 +47,7 @@ public class Validator {
         }
     }
 
-    public static void validateDuplicatedName(RacingCars racingCars) {
+    public static void checkDuplicatedName(RacingCars racingCars) {
         List<String> nameList = new ArrayList<>();
         for (RacingCar racingCar : racingCars.getRacingCars()) {
             validatorDuplicatedName(nameList, racingCar.getName());
@@ -61,13 +61,13 @@ public class Validator {
         }
     }
 
-    public static void validateHaveLastInputComma(String userInput) {
+    public static void checkHaveLastInputComma(String userInput) {
         if (',' == userInput.charAt(userInput.length() - 1)) {
             throw new IllegalArgumentException(LAST_INPUT_IS_COMMA);
         }
     }
 
-    public static void validateTryCountIsNaturalNumber(String tryCountInput) {
+    public static void checkTryCountIsNaturalNumber(String tryCountInput) {
         for (int i = 0; i<tryCountInput.length(); ++i) {
             isNumber(tryCountInput.charAt(i));
         }

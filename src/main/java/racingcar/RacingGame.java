@@ -17,7 +17,7 @@ public class RacingGame {
 
     public void playGame(RacingCars racingCars, String tryCount) {
         validatedCarStandard(racingCars);
-        Validator.validateTryCountIsNaturalNumber(tryCount);
+        Validator.checkTryCountIsNaturalNumber(tryCount);
         int trialCount = Integer.parseInt(tryCount);
 
         OutputView.printGameStartMessage();
@@ -28,10 +28,10 @@ public class RacingGame {
     }
 
     private void validatedCarStandard(RacingCars racingCars) {
-        Validator.validateCarsNameIsEmpty(racingCars);
-        Validator.validateCarsNameSize(racingCars);
-        Validator.validateDuplicatedName(racingCars);
-        Validator.validateCountOfCar(racingCars);
+        Validator.checkCarsNameIsEmpty(racingCars);
+        Validator.checkCarsNameSize(racingCars);
+        Validator.checkDuplicatedName(racingCars);
+        Validator.checkCountOfCar(racingCars);
     }
 
     private void moveCar(RacingCars racingCars) {

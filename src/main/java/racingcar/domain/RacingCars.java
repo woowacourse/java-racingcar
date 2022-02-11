@@ -18,7 +18,7 @@ public class RacingCars {
     }
 
     public void join(String inputCarNames) {
-        Validator.validateHaveLastInputComma(inputCarNames);
+        Validator.checkHaveLastInputComma(inputCarNames);
         String[] validCarNames = inputCarNames.split(",");
         for (String validCarName : validCarNames) {
             racingCars.add(RacingCar.generateRacingCar(validCarName));
