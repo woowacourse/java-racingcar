@@ -3,16 +3,19 @@ package racingcar.controller;
 import racingcar.model.Car;
 import racingcar.model.Participants;
 import racingcar.model.PlayTime;
+import racingcar.view.Board;
 import racingcar.view.Staff;
 
 public class Racing {
 
     private final Staff staff;
     private final Participants participants;
+    private final Board board;
 
     public Racing() {
         this.staff = new Staff();
         this.participants = new Participants();
+        this.board = new Board();
     }
 
     public void start() {
@@ -23,9 +26,11 @@ public class Racing {
         }
         PlayTime playTime = new PlayTime(staff.getPlayTimes());
 
+        board.announceRacingStart();
         while (!playTime.isZero()) {
             participants.race();
             playTime.decreasePlayTime();
+            board.recordCurrentScore(participants.getParticipantCars());
         }
     }
 }

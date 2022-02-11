@@ -2,7 +2,6 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import racingcar.model.Car;
 
 public class Participants {
     private final List<Car> cars;
@@ -25,6 +24,10 @@ public class Participants {
                car.move();
            }
         }
+    }
+
+    public List<Car> getParticipantCars() {
+        return cars;
     }
 
     private boolean isMovable() {

@@ -17,4 +17,8 @@ public class Car {
     public Integer getLocation() {
         return location.getCurrentPosition();
     }
+
+    public Name getName() {
+        return this.name;
+    }
 }
