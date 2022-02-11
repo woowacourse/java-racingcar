@@ -16,13 +16,13 @@ public class Input {
 	final InputValidation inputValidation;
 	final Scanner scanner;
 
-	public Input(InputValidation inputValidation, Scanner scanner) {
+	public Input(final InputValidation inputValidation, final Scanner scanner) {
 		this.inputValidation = inputValidation;
 		this.scanner = scanner;
 	}
 
 	public List<String> inputValidNames() {
-		String names = inputNames();
+		final String names = inputNames();
 		return Arrays.stream(names.split(","))
 			.collect(Collectors.toList());
 	}
@@ -30,7 +30,7 @@ public class Input {
 	private String inputNames() {
 		try {
 			System.out.println(INPUT_CAR_NAME);
-			String names = scanner.next();
+			final String names = scanner.next();
 			inputValidation.validateName(names);
 			return names;
 		} catch (RuntimeException exception) {
@@ -45,7 +45,7 @@ public class Input {
 	private String inputRepeats() {
 		try {
 			System.out.println(INPUT_REPEATS);
-			String repeats = scanner.next();
+			final String repeats = scanner.next();
 			inputValidation.validateRepeats(repeats);
 			return repeats;
 		} catch (RuntimeException exception) {

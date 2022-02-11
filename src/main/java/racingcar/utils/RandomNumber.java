@@ -6,7 +6,7 @@ public class RandomNumber {
 	private final static int MAX_EXCLUSIVE = 9;
 
 	public int getRandomNumber() {
-		Random random = new Random();
+		final Random random = new Random();
 		return random.nextInt(MAX_EXCLUSIVE) + 1;
 	}
 }

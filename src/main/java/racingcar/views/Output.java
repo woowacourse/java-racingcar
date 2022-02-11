@@ -14,12 +14,12 @@ public class Output {
 		System.out.println(TURN_RESULT);
 	}
 
-	public void printTurnResult(List<Car> carList) {
+	public void printTurnResult(final List<Car> carList) {
 		carList.forEach(this::printCarPosition);
 		System.out.println();
 	}
 
-	private void printCarPosition(Car car) {
+	private void printCarPosition(final Car car) {
 		System.out.print(car.getName() + NAME_POSITION_SPLITTER);
 		for (int i = 0; i < car.getPosition(); i++) {
 			System.out.print(CAR_POSITION);
@@ -27,7 +27,7 @@ public class Output {
 		System.out.print("\n");
 	}
 
-	public void printWinner(String winners) {
+	public void printWinner(final String winners) {
 		System.out.print(winners + WINNER);
 	}
 

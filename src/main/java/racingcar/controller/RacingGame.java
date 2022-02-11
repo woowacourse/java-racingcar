@@ -16,7 +16,7 @@ public class RacingGame {
 	ArrayList<Car> cars;
 	int repeats;
 
-	public RacingGame(Input input, Output output) {
+	public RacingGame(final Input input, final Output output) {
 		this.input = input;
 		this.output = output;
 		cars = new ArrayList<>();
@@ -34,7 +34,7 @@ public class RacingGame {
 	}
 
 	private void createCar() {
-		List<String> carNameList = input.inputValidNames();
+		final List<String> carNameList = input.inputValidNames();
 		carNameList.forEach((carName) -> cars.add(new Car(new RandomNumber(), carName)));
 	}
 
@@ -48,8 +48,8 @@ public class RacingGame {
 	}
 
 	private String findWinner() {
-		int farthestPosition = findFarthestPosition();
-		List<Car> winners = getWinners(farthestPosition);
+		final int farthestPosition = findFarthestPosition();
+		final List<Car> winners = getWinners(farthestPosition);
 		return joinWinnerNames(winners);
 	}
 
@@ -60,14 +60,14 @@ public class RacingGame {
 			.get(cars.size() - 1).getPosition();
 	}
 
-	private List<Car> getWinners(int farthestPosition) {
+	private List<Car> getWinners(final int farthestPosition) {
 		return cars.stream()
 			.filter((car) -> farthestPosition == car.getPosition())
 			.collect(Collectors.toList());
 	}
 
-	private String joinWinnerNames(List<Car> winners) {
-		String[] winnerNames = winners.stream()
+	private String joinWinnerNames(final List<Car> winners) {
+		final String[] winnerNames = winners.stream()
 			.map(Car::getName)
 			.toArray(String[]::new);
 		return String.join(", ", winnerNames);
