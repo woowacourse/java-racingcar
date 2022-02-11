@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class StringCalculatorTest {
 
     @Test
@@ -51,7 +52,6 @@ public class StringCalculatorTest {
         int result = StringCalculator.splitAndSum("//*\n1*2");
         assertThat(result).isEqualTo(3);
     }
-
 
     @Test
     void 입력값_음수_실패() {
