@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import carracing.Car;
-import carracing.Cars;
+import carracing.model.Car;
+import carracing.model.Cars;
 import carracing.view.InputView;
 import carracing.view.OutputView;
 

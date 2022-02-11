@@ -1,4 +1,4 @@
-package carracing;
+package carracing.model;
 
 import static carracing.view.messages.ExceptionMessage.*;
 

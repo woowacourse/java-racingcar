@@ -1,4 +1,4 @@
-package carracing;
+package carracing.model;
 
 import static carracing.view.messages.ExceptionMessage.*;
 
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+import carracing.model.Car;
 import carracing.view.OutputView;
 
 public class Cars {
