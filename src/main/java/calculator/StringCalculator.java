@@ -9,7 +9,8 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    public static int splitAndSum(String text) {
+
+    public static int splitAndSum(final String text) {
         if (text == null || text.isEmpty()) {
             return 0;
         }
@@ -17,23 +18,23 @@ public class StringCalculator {
         return sum(toInts(split(text)));
     }
 
-    private static String[] split(String text) {
-        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
+    private static String[] split(final String text) {
+        final Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (matcher.find()) {
-            String customDelimiter = matcher.group(1);
+            final String customDelimiter = matcher.group(1);
             return matcher.group(2).split(customDelimiter);
         }
 
         return text.split("[,:]");
     }
 
-    private static List<NaturalNumber> toInts(String[] values) {
+    private static List<NaturalNumber> toInts(final String[] values) {
         return Arrays.stream(values)
             .map(NaturalNumber::new)
             .collect(toList());
     }
 
-    private static int sum(List<NaturalNumber> numbers) {
+    private static int sum(final List<NaturalNumber> numbers) {
         return numbers.stream()
             .mapToInt(NaturalNumber::get)
             .sum();
