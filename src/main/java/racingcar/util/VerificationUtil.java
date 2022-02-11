@@ -4,11 +4,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import static racingcar.constant.ErrorMessage.*;
+import static racingcar.constant.ConditionInfo.*;
 
 public class VerificationUtil {
-
-    private static final int CAR_NAME_MIN_LENGTH = 1;
-    private static final int CAR_NAME_MAX_LENGTH = 5;
 
     private VerificationUtil() {
     }
