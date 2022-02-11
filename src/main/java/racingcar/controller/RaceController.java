@@ -9,8 +9,31 @@ import java.util.List;
 
 public class RaceController {
     private static final int DEFAULT_POSITION = 0;
+
     private List<Car> cars = new ArrayList<>();
     private RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+
+    public void runGame() {
+        try {
+            startGame();
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void startGame() throws RuntimeException{
+        InputController inputController = new InputController();
+        RaceController raceController = new RaceController();
+        String[] carNames = inputController.getUserCarNames();
+        int tryCount = inputController.getUserTryCount();
+        raceController.insertCarFromCarNames(carNames);
+        OutputView.printResultPrefix();
+        for (int i = 0; i < tryCount; i++) {
+            raceController.moveRound();
+            raceController.printPosition();
+        }
+        raceController.printWinner();
+    }
 
     public void insertCar(Car car) {
         cars.add(car);
