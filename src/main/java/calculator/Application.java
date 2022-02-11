@@ -32,7 +32,7 @@ public class Application {
     }
 
     private static boolean isBlankInput(String input) {
-        return input == " ";
+        return input.isBlank();
     }
 
     private static boolean isEmptyInput(String input) {
