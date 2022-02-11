@@ -10,7 +10,6 @@ import racingcar.utils.InputValidation;
 public class Input {
 
 	private static final String INPUT_CAR_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
-
 	private static final String INPUT_REPEATS = "시도할 회수는 몇회인가요?";
 
 	final InputValidation inputValidation;
@@ -34,6 +33,7 @@ public class Input {
 			inputValidation.validateName(names);
 			return names;
 		} catch (RuntimeException exception) {
+			System.out.println(exception.getMessage() + "\n");
 			return inputNames();
 		}
 	}
@@ -49,6 +49,7 @@ public class Input {
 			inputValidation.validateRepeats(repeats);
 			return repeats;
 		} catch (RuntimeException exception) {
+			System.out.println(exception.getMessage() + "\n");
 			return inputRepeats();
 		}
 	}
