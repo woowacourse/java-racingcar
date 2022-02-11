@@ -1,20 +1,14 @@
 package racingcar.domain.round;
 
-import racingcar.exception.round.RoundNotPositiveException;
+import racingcar.domain.round.validator.RoundValidator;
 
 public class Round {
 
 	private int count;
 
 	public Round(int count) {
-		validateCountPositive(count);
+		RoundValidator.validateCount(count);
 		this.count = count;
-	}
-
-	private void validateCountPositive(int count) {
-		if (RoundRange.isTooSmall(count)) {
-			throw new RoundNotPositiveException();
-		}
 	}
 
 	public boolean isNotFinished() {

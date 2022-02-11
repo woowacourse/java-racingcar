@@ -2,7 +2,7 @@ package racingcar.domain.round;
 
 public enum RoundRange {
 
-	MINIMUM(0);
+	MINIMUM(1);
 
 	private final int number;
 
