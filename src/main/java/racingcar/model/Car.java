@@ -16,16 +16,16 @@ public class Car {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public int getPosition() {
-        return this.position;
+        return position;
     }
 
     public void move(int number) {
         if (canMove(number)) {
-            this.position++;
+            position++;
         }
     }
 

@@ -37,7 +37,6 @@ public class GameController {
     private int convertToInteger(String number) {
         InputValidator.validateTrialInput(number);
         return Integer.parseInt(number);
-
     }
 
     public List<String> splitCars(String carNames) {
@@ -69,7 +68,6 @@ public class GameController {
 
     public String findWinner(Cars cars) {
         int maxPosition = cars.findMaxPosition();
-
         return cars.findWinnerName(maxPosition);
     }
 }

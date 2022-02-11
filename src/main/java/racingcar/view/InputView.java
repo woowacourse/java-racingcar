@@ -7,7 +7,7 @@ public class InputView {
     public static void inputCarNames() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
     }
-    
+
     public static void inputTrialNum() {
         System.out.println(INPUT_TRIAL_NUMBER_MESSAGE);
     }

@@ -20,13 +20,13 @@ public class Cars {
     }
 
     public void race() {
-        this.cars.forEach(car -> {
-                    car.move(RandomNumberGenerator.generate());
-                });
+        cars.forEach(car -> {
+            car.move(RandomNumberGenerator.generate());
+        });
     }
 
     public int findMaxPosition() {
-        return this.cars.stream()
+        return cars.stream()
                 .map(Car::getPosition)
                 .max(Comparator.comparing(x -> x))
                 .orElse(MINIMUM_POSITION);
