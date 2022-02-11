@@ -25,14 +25,6 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public String toString() {
-        return "Car{" +
-                "name='" + name + '\'' +
-                ", position=" + position +
-                '}';
-    }
-
-    @Override
     public int compareTo(Car other) {
         return other.getPosition() - this.position;
     }
