@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    private List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
     public Cars(String[] names) {
         for (String name : names) {
@@ -30,11 +30,15 @@ public class Cars {
 
         List<String> championNames = new ArrayList<>();
         for (Car car : cars) {
-            if (car.isChampion(highScore)) {
-                championNames.add(car.getName());
-            }
+            checkChampion(car, highScore, championNames);
         }
 
         return championNames;
+    }
+
+    private void checkChampion(Car car, int highScore, List<String> championNames) {
+        if (car.isChampion(highScore)) {
+            championNames.add(car.getName());
+        }
     }
 }
