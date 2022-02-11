@@ -3,11 +3,11 @@ package racingcar.domain;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -63,59 +63,63 @@ public class CarCollectionTest {
 			Arguments.of(Arrays.asList("slow", "if", "test", "test")));
 	}
 
-	@Test
-	void 전진_조건이_만족할_때_자동자_전진() {
-		CarCollection carCollection = new CarCollection(
-			Arrays.asList("slow", "if", "poby")
-		);
-		CustomNumberPicker customNumberPicker = new CustomNumberPicker(
-			Arrays.asList(0, 5, 8)
-		);
-		carCollection.play(customNumberPicker);
-		List<String> statuses = carCollection.getStatuses();
-		List<String> expected = Arrays.asList("slow : ", "if : -", "poby : -");
+	@ParameterizedTest
+	@MethodSource("provideValuesForPlayRoundTest")
+	void 라운드실행_정상작동테스트(List<String> carNames, int time, List<Integer> numbers, List<String> expected) {
+		CarCollection carCollection = new CarCollection(carNames);
+		CustomNumberPicker customNumberPicker = new CustomNumberPicker(numbers);
 
-		assertThat(statuses.size()).isEqualTo(expected.size());
-		for (int i = 0; i < statuses.size(); i++) {
-			assertThat(statuses.get(i)).isEqualTo(expected.get(i));
+		List<String> statuses = new ArrayList<>();
+		for (int i = 0; i < time; i++) {
+			carCollection.play(customNumberPicker);
+			statuses.addAll(carCollection.getStatuses());
 		}
+		assertThat(statuses).isEqualTo(expected);
 	}
 
-	@Test
-	void 우승자_한명_선정() {
-		CarCollection carCollection = new CarCollection(
-			Arrays.asList("slow", "if", "poby")
+	public static Stream<Arguments> provideValuesForPlayRoundTest() {
+		return Stream.of(
+				Arguments.of(
+						Arrays.asList("slow", "if", "poby"),
+						1,
+						Arrays.asList(0,5,8),
+						Arrays.asList("slow : ", "if : -", "poby : -")),
+				Arguments.of(
+						Arrays.asList("slow", "if", "poby"),
+						2,
+						Arrays.asList(0,5,8, 7,3,4),
+						Arrays.asList(
+								"slow : ", "if : -", "poby : -",
+								"slow : -", "if : -", "poby : --"))
 		);
-		CustomNumberPicker customNumberPicker = new CustomNumberPicker(
-			Arrays.asList(0, 5, 8, 2, 2, 7)
-		);
-		carCollection.play(customNumberPicker);
-		carCollection.play(customNumberPicker);
-
-		List<String> winnerNames = carCollection.getWinnerNames();
-		assertThat(winnerNames.size()).isEqualTo(1);
-
-		assertThat(winnerNames.get(0)).isEqualTo("poby");
 	}
 
-	@Test
-	void 우승자_여러명_선정() {
-		CarCollection carCollection = new CarCollection(
-			Arrays.asList("slow", "if", "poby","doby")
-		);
-		CustomNumberPicker customNumberPicker = new CustomNumberPicker(
-			Arrays.asList(0,5,8,2, 2,0,7,6, 3,0,2,9)
-		);
-		carCollection.play(customNumberPicker);
-		carCollection.play(customNumberPicker);
-		carCollection.play(customNumberPicker);
+	@ParameterizedTest
+	@MethodSource("provideValuesForGetWinnerNamesTest")
+	void 우승자선정_정상작동테스트(List<String> carNames, int time, List<Integer> numbers, List<String> expected) {
+		CarCollection carCollection = new CarCollection(carNames);
+		CustomNumberPicker customNumberPicker = new CustomNumberPicker(numbers);
 
-		List<String> winnerNames = carCollection.getWinnerNames();
-		assertThat(winnerNames.size()).isEqualTo(2);
-
-		List<String> expected = Arrays.asList("poby", "doby");
-		for (int i = 0; i < winnerNames.size(); i++) {
-			assertThat(winnerNames.get(i)).isEqualTo(expected.get(i));
+		for (int i = 0; i < time; i++) {
+			carCollection.play(customNumberPicker);
 		}
+		List<String> winnerNames = carCollection.getWinnerNames();
+		assertThat(winnerNames).isEqualTo(expected);
 	}
+
+	public static Stream<Arguments> provideValuesForGetWinnerNamesTest() {
+		return Stream.of(
+				Arguments.of(
+						Arrays.asList("slow", "if", "poby"),
+						1,
+						Arrays.asList(0,5,8),
+						Arrays.asList("if", "poby")),
+				Arguments.of(
+						Arrays.asList("slow", "if", "poby"),
+						2,
+						Arrays.asList(0,5,8, 7,3,4),
+						Arrays.asList("poby"))
+		);
+	}
+
 }
