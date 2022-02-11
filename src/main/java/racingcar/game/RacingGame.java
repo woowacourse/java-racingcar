@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static racingcar.util.VerificationUtil.validateAttempt;
-import static racingcar.util.VerificationUtil.validateCarName;
+import static racingcar.util.VerificationUtil.*;
 import static racingcar.view.InputView.getAttemptCount;
 import static racingcar.view.InputView.getCarNames;
 import static racingcar.view.OutputView.*;
@@ -33,16 +32,8 @@ public class RacingGame {
     }
 
     private void initRacingCarGame() {
-        String[] names = getCarNames().split(",");
-
-        for (String name : names) {
-            validateCarName(name);
-            carList.add(new Car(name));
-        }
-
-        String attempt = getAttemptCount();
-        validateAttempt(attempt);
-        totalAttemptCount = Integer.parseInt(attempt);
+        initCarNames();
+        initTotalAttempt();
     }
 
     private void run() {
