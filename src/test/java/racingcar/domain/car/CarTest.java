@@ -21,4 +21,15 @@ public class CarTest {
 
         Assertions.assertThat(car).isEqualTo(testCar);
     }
+
+    void testIsSamePositionWithDefault() {
+        Car car = new Car("pobi");
+        Assertions.assertThat(car.isSamePosition(0)).isTrue();
+    }
+
+    void testIsSamePositionWithValue() {
+        Car car = new Car(new Name("pobi"), new Position(3));
+        Assertions.assertThat(car.isSamePosition(3)).isTrue();
+    }
+
 }
