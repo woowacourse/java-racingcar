@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 
-import racingcar.model.CarList;
+import racingcar.model.Car;
+import racingcar.util.StringConst;
 
 public class OutputViewController {
 
