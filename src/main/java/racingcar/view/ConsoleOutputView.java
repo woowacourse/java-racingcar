@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
+import racingcar.dto.CarDto;
 
 import java.util.List;
 
@@ -14,9 +15,9 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printRoundStatus(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.println(car.getCarName() + RESULT_DELIMITER + DISTANCE_SYMBOL.repeat(car.getDistance()));
+    public void printRoundStatus(List<CarDto> cars) {
+        for (CarDto car : cars) {
+            System.out.println(car.carName() + RESULT_DELIMITER + DISTANCE_SYMBOL.repeat(car.distance()));
         }
     }
 }

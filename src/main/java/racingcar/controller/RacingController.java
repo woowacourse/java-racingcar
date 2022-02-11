@@ -23,7 +23,7 @@ public class RacingController {
         outputView.printResultMessage();
         while(trialCount > 0) {
             cars.move(movement);
-            outputView.printRoundStatus(cars.getCars());
+            outputView.printRoundStatus(cars.getCarInfos());
             trialCount--;
         }
     }

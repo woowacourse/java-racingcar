@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.dto.CarDto;
+
 import java.util.Objects;
 
 public class Car {
@@ -18,12 +20,8 @@ public class Car {
         }
     }
 
-    public String getCarName() {
-        return carName.value();
-    }
-
-    public int getDistance() {
-        return distance;
+    public CarDto info(){
+        return new CarDto(carName.value(), distance);
     }
 
     @Override

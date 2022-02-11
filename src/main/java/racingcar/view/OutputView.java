@@ -1,10 +1,10 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
+import racingcar.dto.CarDto;
 
 import java.util.List;
 
 public interface OutputView {
     void printResultMessage();
-    void printRoundStatus(List<Car> cars);
+    void printRoundStatus(List<CarDto> cars);
 }
