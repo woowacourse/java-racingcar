@@ -13,8 +13,10 @@ public class Game {
 		Set<Car> cars = CarFactory.of(InputView.inputCarNames());
 		int count = InputView.inputGameCount();
 		OutputView.printGameResultTitle();
-		play(cars);
-		showResult(cars);
+		for (int i = 0; i < count ; i++) {
+			play(cars);
+			showResult(cars);
+		}
 		showWinner(Referee.judgeWinner(cars));
 	}
 
