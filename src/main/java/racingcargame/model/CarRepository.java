@@ -12,8 +12,8 @@ public class CarRepository {
     private List<Car> cars;
 
     public CarRepository(List<String> carNames) {
-        cars = carNames.stream().
-                map(carName -> new Car(carName, START_POSITION))
+        cars = carNames.stream()
+                .map(carName -> new Car(carName, START_POSITION))
                 .collect(Collectors.toList());
     }
 
@@ -30,9 +30,9 @@ public class CarRepository {
 
         List<String> winnerNames = new ArrayList<>();
         int winnerPosition = cars.get(WINNER_POSITION).getPosition();
-        cars.stream().
-                filter(car -> car.getPosition() == winnerPosition).
-                forEach(car -> winnerNames.add(car.getName()));
+        cars.stream()
+                .filter(car -> car.getPosition() == winnerPosition)
+                .forEach(car -> winnerNames.add(car.getName()));
         return winnerNames;
     }
 }

@@ -9,39 +9,46 @@ public class ApplicationTest {
     @Test
     void NULL_입력_예외_처리() {
         int number = Application.runCalculator(null);
+
         assertThat(number).isEqualTo(0);
     }
 
     @Test
     void 반칸_입력_예외_처리() {
         int number = application.runCalculator("");
+
         assertThat(number).isEqualTo(0);
     }
 
     @Test
     void 공백_입력_예외_처리() {
         int number = application.runCalculator(" ");
+
         assertThat(number).isEqualTo(0);
     }
 
     @Test
     void 구분자_기준_연산() {
         int number = application.runCalculator("1,2");
+
         assertThat(number).isEqualTo(3);
 
         number = application.runCalculator("1:2");
+
         assertThat(number).isEqualTo(3);
     }
 
     @Test
     void 숫자_하나_입력_처리() {
         int number = Application.runCalculator("1");
+
         assertThat(number).isEqualTo(1);
     }
 
     @Test
     void 커스컴_구분자_기준_연산() {
         int number = application.runCalculator("//;\n12;2;3");
+
         assertThat(number).isEqualTo(17);
     }
 

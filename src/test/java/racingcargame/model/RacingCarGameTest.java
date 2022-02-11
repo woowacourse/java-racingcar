@@ -23,6 +23,7 @@ public class RacingCarGameTest {
     @Test
     void 입력받은_경주_회수_테스트() {
         RacingCarGame racingCarGame = new RacingCarGame(Arrays.asList("a", "b", "c"), 5);
+
         assertThat(RaceCount.getCount()).isEqualTo(5);
     }
 
@@ -30,6 +31,7 @@ public class RacingCarGameTest {
     void 경주_회수_감소_테스트() {
         RacingCarGame racingCarGame = new RacingCarGame(Arrays.asList("a", "b", "c"), 5);
         RaceCount.reduceRaceCount();
+
         assertThat(RaceCount.getCount()).isEqualTo(4);
     }
 
