@@ -36,7 +36,7 @@ public class RacingCarTest {
     @Test
     @DisplayName("자동차의 위치를 비교한다.")
     void compareCarPosition() {
-        assertTrue(car.samePosition(new RacingCar("abc")));
+        assertTrue(car.isSamePosition(new RacingCar("abc")));
     }
 
     @ParameterizedTest

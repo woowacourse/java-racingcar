@@ -9,7 +9,9 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class RacingCarsTest {
 
@@ -36,7 +38,7 @@ class RacingCarsTest {
     }
 
     @ParameterizedTest
-    @NullAndEmptySource
+    @EmptySource
     @DisplayName("자동차 입력 값이 존재하지 않으면 예외를 발생한다.")
     void checkCarNamesNullOrEmpty(String input) {
         assertThatExceptionOfType(IllegalArgumentException.class)

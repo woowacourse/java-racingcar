@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.controller.RacingCarDto;
@@ -11,6 +10,7 @@ public class RacingCars {
     private static final String CAR_NAME_DELIMITER = ",";
     private static final String NAME_BLANK = " ";
     private static final String NAME_NOT_BLANK = "";
+    private static final int FIRST_ELEMENT = 0;
 
     private final List<RacingCar> cars;
     private final RacingCarCommander commander = new RacingCarCommander();
@@ -60,18 +60,16 @@ public class RacingCars {
     public List<String> searchWinnerNames() {
         RacingCar anyWinner = searchAnyWinner();
         return cars.stream()
-            .filter(car -> car.samePosition(anyWinner))
+            .filter(car -> car.isSamePosition(anyWinner))
             .map(RacingCar::getName)
             .collect(Collectors.toList());
     }
 
     private RacingCar searchAnyWinner() {
         checkCarsEmpty();
-        RacingCar anyWinner = cars.get(0);
+        RacingCar anyWinner = cars.get(FIRST_ELEMENT);
         for(RacingCar car : cars) {
-            if(car.isGreaterPosition(anyWinner)) {
-                anyWinner = car;
-            }
+            anyWinner = car.getGreaterPositionCar(anyWinner);
         }
         return anyWinner;
     }
@@ -81,4 +79,5 @@ public class RacingCars {
             throw new RuntimeException("최소 1개의 자동차가 존재해야 한다.");
         }
     }
+
 }
