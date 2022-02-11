@@ -20,19 +20,30 @@ public class Racing {
     }
 
     public void start() {
+        enrollCars();
+        PlayTime playTime = new PlayTime(staff.getPlayTimes());
+        startRacing(playTime);
+        showRacingResult();
+    }
+
+    private void enrollCars() {
         String[] carNames = staff.getCarNames().split(",");
         for (String carName : carNames) {
             Car car = new Car(carName);
             participants.participateInRacing(car);
         }
-        PlayTime playTime = new PlayTime(staff.getPlayTimes());
+    }
 
+    private void startRacing(PlayTime playTime) {
         board.announceRacingStart();
         while (!playTime.isZero()) {
             participants.race();
             playTime.decreasePlayTime();
             board.recordCurrentScore(participants.getParticipantCars());
         }
+    }
+
+    private void showRacingResult() {
         Referee referee = new Referee();
         board.recordRacingWinners(referee.judgeRacingWinners(participants.getParticipantCars()));
     }

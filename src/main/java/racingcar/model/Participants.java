@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Participants {
+    private static final int MOVE_MIN_VALUE = 4;
     private final List<Car> cars;
 
     public Participants() {
@@ -19,11 +20,7 @@ public class Participants {
     }
 
     public void race() {
-        for (Car car : cars) {
-           if (isMovable()) {
-               car.move();
-           }
-        }
+        cars.stream().filter(car -> isMovable()).forEach(Car::move);
     }
 
     public List<Car> getParticipantCars() {
@@ -31,7 +28,11 @@ public class Participants {
     }
 
     private boolean isMovable() {
-        int randomNumber = (int) (Math.random() * 10);
-        return randomNumber >= 4;
+        int randomNumber = makeRandomNumberBetweenZeroAndNine();
+        return randomNumber >= MOVE_MIN_VALUE;
+    }
+
+    private int makeRandomNumberBetweenZeroAndNine() {
+        return (int) (Math.random() * 10);
     }
 }

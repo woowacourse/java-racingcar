@@ -2,8 +2,8 @@ package racingcar.model;
 
 public class Car {
 
-    private Name name;
-    private Location location;
+    private final Name name;
+    private final Location location;
 
     public Car(String carName) {
         this.name = new Name(carName);

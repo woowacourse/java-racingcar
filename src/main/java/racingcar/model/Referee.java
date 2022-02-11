@@ -2,7 +2,6 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Referee {
 
@@ -21,7 +20,6 @@ public class Referee {
                 winners.add(participantCar.getName());
             }
         }
-
         return winners;
     }
 }
