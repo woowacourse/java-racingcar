@@ -1,9 +1,7 @@
 package racingcar.view;
 
-import java.util.List;
 import java.util.Scanner;
 
-import racingcar.domain.Car;
 import racingcar.util.Converter;
 
 public class InputView {
@@ -13,13 +11,13 @@ public class InputView {
 
 	private static final Scanner scanner = new Scanner(System.in);
 
-	public static List<Car> getCarNames() {
+	public static String getCarNames() {
 		System.out.println(CAR_NAMES_MESSAGE);
-		return Converter.toCarList(scanner.nextLine());
+		return scanner.nextLine();
 	}
 
 	public static int getAttemptNumber() {
 		System.out.println(ATTEMPT_NUMBER_MESSAGE);
-		return Converter.toAttemptNumber(scanner.nextLine());
+		return Converter.toInteger(scanner.nextLine());
 	}
 }

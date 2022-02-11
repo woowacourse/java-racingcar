@@ -17,8 +17,8 @@ public class Converter {
 			.collect(Collectors.toList());
 	}
 
-	public static int toAttemptNumber(String input) {
-		Validator.ofAttemptNumber(input);
+	public static int toInteger(String input) {
+		Validator.ofIntegerInput(input);
 		return Integer.parseInt(input);
 	}
 }
