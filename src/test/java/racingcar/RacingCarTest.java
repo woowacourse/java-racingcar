@@ -16,6 +16,7 @@ public class RacingCarTest {
     private static final int ONE_STEP = 1;
     private static final String WINNER_NAME_DELIMITER = ", ";
     private static final String EMPTY_CAR_NAME = "";
+    public static final String LONG_NAME = "longlongcars";
     private RacingCar racingCar1;
     private RacingCar racingCar2;
     private RacingCar racingCar3;
@@ -90,7 +91,17 @@ public class RacingCarTest {
 
         RacingCar noNameCar = RacingCar.generateRacingCar(EMPTY_CAR_NAME);
         RacingCars racingCars = new RacingCars(List.of(noNameCar, racingCar1));
-        assertThatThrownBy(() -> Validator.validateCarNameIsEmpty(racingCars)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validator.validateCarsNameIsEmpty(racingCars)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 6자 이상일때 예외처리")
+    public void validateCarNameSizeTest() {
+
+        RacingCar longNameCar = RacingCar.generateRacingCar(LONG_NAME);
+        RacingCars racingCars = new RacingCars(List.of(longNameCar, racingCar1));
+
+        assertThatThrownBy(() -> Validator.validateCarsNameSize(racingCars)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }
