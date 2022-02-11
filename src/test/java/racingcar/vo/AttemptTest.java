@@ -3,10 +3,12 @@ package racingcar.vo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class AttemptTest {
 
+  @DisplayName("new Attempt() 테스트")
   @Test
   public void 생성자_test() throws Exception {
     String input = "3";
@@ -14,6 +16,7 @@ public class AttemptTest {
     assertThat(attempt.get()).isEqualTo(3);
   }
 
+  @DisplayName("isLeft() 테스트")
   @Test
   public void isLeft_test() throws Exception {
     String inputZero = "0";
@@ -24,6 +27,7 @@ public class AttemptTest {
     assertThat(attemptOne.isLeft()).isTrue();
   }
 
+  @DisplayName("decrease() 테스트")
   @Test
   public void decrease_test() throws Exception {
     String input = "3";
@@ -37,15 +41,17 @@ public class AttemptTest {
     assertThat(attempt.get()).isEqualTo(0);
   }
 
+  @DisplayName("validNumberFormat() 입력 값이 숫자가 아닌 경우 예외 테스트")
   @Test
-  public void 숫자가_아닌_입력_예외_test() throws Exception {
+  public void 생성자_숫자가_아닌_입력_예외_test() throws Exception {
     String input = "abc";
     assertThatThrownBy(() -> new Attempt(input))
         .isInstanceOf(RuntimeException.class);
   }
 
+  @DisplayName("validNegative() 입력 값이 음수인 경우 예외 테스트")
   @Test
-  public void 음수_minus_3_예외_test() throws Exception {
+  public void 생성자_음수_minus_3_예외_test() throws Exception {
     String input = "-3";
     assertThatThrownBy(() -> new Attempt(input))
         .isInstanceOf(RuntimeException.class);

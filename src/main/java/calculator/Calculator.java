@@ -31,7 +31,7 @@ public class Calculator {
     return input == null || input.equals(EMPTY_STRING);
   }
 
-  public static String[] split(String input) {
+  private static String[] split(String input) {
     String delimiter = EMPTY_STRING;
     Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
     if (matcher.find()) {
@@ -41,7 +41,7 @@ public class Calculator {
     return input.split(String.format(DELIMITER_FORMAT, delimiter));
   }
 
-  public static int[] toIntegers(String[] stringNumbers) {
+  private static int[] toIntegers(String[] stringNumbers) {
     int[] numbers = new int[stringNumbers.length];
     for (int i = 0; i < stringNumbers.length; i++) {
       int result = toInteger(stringNumbers[i]);
@@ -65,7 +65,7 @@ public class Calculator {
     }
   }
 
-  public static int addAll(int[] numbers) {
+  private static int addAll(int[] numbers) {
     return Arrays.stream(numbers)
         .sum();
   }

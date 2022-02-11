@@ -4,10 +4,12 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ApplicationTest {
 
+  @DisplayName("main() 전체 테스트")
   @Test
   public void main_test() throws Exception {
     String[] input = {"name1,name2,name3", "5"};

@@ -2,10 +2,12 @@ package racingcar.vo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
 
+  @DisplayName("new CarName() 테스트")
   @Test
   public void 생성자_test() throws Exception {
     String name = "name1";
@@ -15,14 +17,7 @@ public class CarTest {
     assertThat(car.isSameName(testCar)).isTrue();
   }
 
-  @Test
-  public void 자동차_실행결과_출력_test() throws Exception {
-    String name = "name1";
-    CarName carName = new CarName(name);
-    Car car = new Car(carName);
-    assertThat(car.toString()).contains(name, " : ");
-  }
-
+  @DisplayName("isSamePosition() 테스트")
   @Test
   public void isSamePosition_test() throws Exception {
     String name = "name1";
@@ -34,6 +29,16 @@ public class CarTest {
     assertThat(car.isSamePosition(testCar)).isTrue();
   }
 
+  @DisplayName("toString() 테스트")
+  @Test
+  public void toString_test() throws Exception {
+    String name = "name1";
+    CarName carName = new CarName(name);
+    Car car = new Car(carName);
+    assertThat(car.toString()).contains(name, " : ");
+  }
+
+  @DisplayName("compareTo() 테스트")
   @Test
   public void compareTo_test() throws Exception {
     String name = "name1";
