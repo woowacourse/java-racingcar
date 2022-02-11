@@ -4,7 +4,7 @@ import racingcar.domain.Cars;
 import racingcar.io.Input;
 import racingcar.io.Output;
 import racingcar.vo.Trial;
-import dto.Winners;
+import racingcar.dto.Winners;
 
 public class RacingGame {
     private final Input input;

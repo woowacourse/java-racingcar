@@ -2,9 +2,9 @@ package racingcar.io;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import dto.CarValue;
+import racingcar.dto.CarValue;
 import racingcar.vo.Name;
-import dto.Winners;
+import racingcar.dto.Winners;
 
 public class Output {
     private static final String NAME_DELIMITER = ", ";
