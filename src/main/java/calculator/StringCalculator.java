@@ -12,32 +12,35 @@ public class StringCalculator {
 	private static final String JOINING_SEPARATOR_DELIMITER = "|";
 	private static final String BASIC_SEPARATOR_COMMA = ",";
 	private static final String BASIC_SEPARATOR_COLON = ":";
-	private static final String ZERO_AND_POSITIVE_INTEGER_REGEX = "^(0|[1-9][0-9]*)$";
+	private static final String ZERO_OR_POSITIVE_INTEGER_REGEX = "^(0|[1-9][0-9]*)$";
 	private static final String INVALID_POSITIVE_INTEGER_ERROR_MESSAGE = "양의 정수를 입력 해주세요.";
+	private static final int NULL_OR_EMPTY_VALUE = 0;
 
 	public static int calculate(String input) {
 		if (isNullOrEmpty(input)) {
-			return 0;
+			return NULL_OR_EMPTY_VALUE;
 		}
-		List<String> numberStringList = split(input);
-		checkRightPositiveInteger(numberStringList);
-		List<Integer> numberList = toNumberList(numberStringList);
-		return numberList.stream().mapToInt(num -> num).sum();
+		List<String> inputNumbers = split(input);
+		checkRightPositiveInteger(inputNumbers);
+		return toNumberList(inputNumbers)
+				.stream()
+				.mapToInt(num -> num)
+				.sum();
 	}
 
-	private static List<Integer> toNumberList(List<String> numberStringList) {
-		return numberStringList.stream()
+	private static List<Integer> toNumberList(List<String> inputNumbers) {
+		return inputNumbers.stream()
 			.mapToInt(Integer::parseInt)
 			.boxed()
 			.collect(Collectors.toList());
 	}
 
-	private static void checkRightPositiveInteger(List<String> numberStringList) {
-		numberStringList.forEach(StringCalculator::checkNumberStringException);
+	private static void checkRightPositiveInteger(List<String> inputNumbers) {
+		inputNumbers.forEach(StringCalculator::checkNumberStringException);
 	}
 
-	private static void checkNumberStringException(String numberString) {
-		if (!isPositiveInteger(numberString)) {
+	private static void checkNumberStringException(String inputNumber) {
+		if (!isZeroOrPositiveInteger(inputNumber)) {
 			throw new RuntimeException(INVALID_POSITIVE_INTEGER_ERROR_MESSAGE);
 		}
 	}
@@ -46,8 +49,8 @@ public class StringCalculator {
 		return input == null || input.isBlank();
 	}
 
-	private static boolean isPositiveInteger(String input) {
-		return input.matches(ZERO_AND_POSITIVE_INTEGER_REGEX);
+	private static boolean isZeroOrPositiveInteger(String input) {
+		return input.matches(ZERO_OR_POSITIVE_INTEGER_REGEX);
 	}
 
 	private static List<String> split(String input) {
@@ -59,7 +62,10 @@ public class StringCalculator {
 
 	private static String getParameterString(String input, List<String> delimiters) {
 		if (hasCustomSeparator(input)) {
-			String customDelimiter = input.substring(input.indexOf(CUSTOM_SEPARATOR_START_SIGNATURE) + 2, input.indexOf(CUSTOM_SEPARATOR_END_SIGNATURE));
+			String customDelimiter = input.substring(
+					input.indexOf(CUSTOM_SEPARATOR_START_SIGNATURE) + CUSTOM_SEPARATOR_START_SIGNATURE.length(),
+					input.indexOf(CUSTOM_SEPARATOR_END_SIGNATURE)
+			);
 			delimiters.add(customDelimiter);
 			return input.substring(input.indexOf(CUSTOM_SEPARATOR_END_SIGNATURE) + 1);
 		}
