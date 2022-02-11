@@ -12,6 +12,12 @@ import java.util.stream.Stream;
 public class Application {
     private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
     private static final String BASE_DELIMITER_PATTERN = ",|:";
+    public static final String COMMA = ",";
+    public static final String COLON = ":";
+    public static final String OR = "|";
+    public static final int NUMBER = 0;
+    public static final int DELIMITER = 1;
+    public static final int NUMBERS = 2;
 
     private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -74,10 +80,10 @@ public class Application {
     }
 
     private static boolean isRightNumber(String number) {
-        if (number.equals(",") || number.equals(":")) {
+        if (number.equals(COMMA) || number.equals(COLON)) {
             return true;
         }
-        return Character.isDigit((number.charAt(0)));
+        return Character.isDigit((number.charAt(NUMBER)));
     }
 
     private static boolean hasCustomDelimiterInInput(String input) {
@@ -89,8 +95,8 @@ public class Application {
     private static List<String> divideNumbersByCustomDelimiter(String input) {
         Matcher matcher = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
         if (matcher.find()) {
-            String delimiter = matcher.group(1) + "|" + BASE_DELIMITER_PATTERN;
-            return Arrays.asList(matcher.group(2).split(delimiter));
+            String delimiter = matcher.group(DELIMITER) + OR + BASE_DELIMITER_PATTERN;
+            return Arrays.asList(matcher.group(NUMBERS).split(delimiter));
         }
         throw new RuntimeException();
     }
