@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.domain.game.RandomNumberGenerator;
+
 public class MockRandomNumberGenerator implements RandomNumberGenerator {
 
     static final int FORWARDING_NUMBER = 4;

@@ -1,4 +1,4 @@
-package racingcar.controller.exception;
+package racingcar.domain.exception;
 
 public class GetWinnerBeforeFinishException extends IllegalStateException {
 

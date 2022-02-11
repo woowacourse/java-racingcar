@@ -1,12 +1,13 @@
-package racingcar.domain;
+package racingcar.domain.result;
 
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
+import racingcar.domain.Car;
 
 public class WinnerResult {
 
-    List<Car> winners;
+    private final List<Car> winners;
 
     public WinnerResult(List<Car> winners) {
         this.winners = winners;

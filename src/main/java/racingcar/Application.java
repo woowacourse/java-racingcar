@@ -1,25 +1,22 @@
 package racingcar;
 
-import racingcar.controller.RacingGameController;
-import racingcar.domain.DefaultRandomNumberGenerator;
-import racingcar.repository.CarRepository;
-import racingcar.service.RacingGameService;
+import java.util.List;
+import racingcar.domain.game.DefaultRandomNumberGenerator;
+import racingcar.parser.CarNameParser;
+import racingcar.parser.TryCountParser;
+import racingcar.domain.game.RacingGame;
 import racingcar.view.View;
 
 public class Application {
 
-    private CarRepository carRepository;
-    private RacingGameService racingGameService;
-    private RacingGameController racingGameController;
+    private final CarNameParser carNameParser = new CarNameParser();
+    private final TryCountParser tryCountParser = new TryCountParser();
+    private RacingGame racingGame;
     private View view;
     private RetryableTemplate retryableTemplate;
 
     public void init() {
-        carRepository = new CarRepository();
-        racingGameService = new RacingGameService(carRepository,
-            new DefaultRandomNumberGenerator());
-        racingGameController = new RacingGameController(carRepository,
-            racingGameService);
+        racingGame = new RacingGame(new DefaultRandomNumberGenerator());
         view = new View();
         retryableTemplate = new RetryableTemplate();
     }
@@ -29,19 +26,20 @@ public class Application {
         retryableTemplate.execute(this::inputTryCount, this::handleException);
 
         view.printResultViewTitle();
-        while (!racingGameController.isFinished()) {
-            racingGameController.proceedTurn();
-            view.printMidtermResult(racingGameController.getMidtermResult());
+        while (!racingGame.isFinished()) {
+            racingGame.proceedTurn();
+            view.printMidtermResult(racingGame.getMidtermResult());
         }
-        view.printWinnerResult(racingGameController.getWinnerResult());
+        view.printWinnerResult(racingGame.getWinnerResult());
     }
 
     public void inputCarNames() {
-        racingGameController.inputCarNames(view.inputCarNames());
+        List<String> names = carNameParser.parse(view.inputCarNames());
+        racingGame.enrollCars(names);
     }
 
     public void inputTryCount() {
-        racingGameController.inputTryCount(view.inputTryCount());
+        racingGame.initTryCount(tryCountParser.parse(view.inputTryCount()));
     }
 
     private void handleException(Exception e) {
