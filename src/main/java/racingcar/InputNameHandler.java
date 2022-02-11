@@ -8,7 +8,7 @@ import racingcar.vo.Name;
 public class InputNameHandler {
     private InputNameHandler() {}
 
-    public static List<Name> createNames(String input) {
+    public static List<Name> inputToNames(String input) {
         String[] split = splitByComma(input);
         validateDuplicate(split);
 

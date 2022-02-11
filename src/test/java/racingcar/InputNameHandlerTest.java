@@ -14,7 +14,7 @@ class InputNameHandlerTest {
         String input = " hoho,rich , pobi ";
 
         // when
-        List<Name> result = InputNameHandler.createNames(input);
+        List<Name> result = InputNameHandler.inputToNames(input);
 
         // then
         assertThat(result).containsExactly(Name.create("hoho"), Name.create("rich"), Name.create("pobi"));
@@ -28,7 +28,7 @@ class InputNameHandlerTest {
 
         // when & then
         assertThatIllegalArgumentException()
-            .isThrownBy(() -> InputNameHandler.createNames(input))
+            .isThrownBy(() -> InputNameHandler.inputToNames(input))
             .withMessageMatching("이름은 중복될 수 없습니다.");
     }
 

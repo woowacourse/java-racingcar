@@ -16,7 +16,7 @@ public class RacingGame {
     }
 
     public void start() {
-        Cars cars = new Cars(InputNameHandler.createNames(input.inputCarNames()));
+        Cars cars = new Cars(InputNameHandler.inputToNames(input.inputCarNames()));
         Trial trial = Trial.create(input.inputTrials());
         output.printWinner(race(cars, trial.getCount()));
     }
