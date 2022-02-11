@@ -8,6 +8,7 @@ public class RacingGame {
     private final Cars cars;
     private final Round round;
     private final NumberGeneratePolicy numberGeneratePolicy;
+    private Round round;
 
     public RacingGame(Cars cars, Round round, NumberGeneratePolicy numberGeneratePolicy) {
         this.cars = cars;

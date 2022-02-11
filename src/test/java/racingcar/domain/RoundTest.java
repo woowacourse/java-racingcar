@@ -13,10 +13,10 @@ class RoundTest {
     @DisplayName("시도 횟수 카운팅 감소")
     public void round_value_discount(int value) {
         Round round = new Round(value);
-
         for (int i = 0; i < value; i++) {
-            round.hasNext();
+            round = round.hasNext();
         }
-        assertThat(round.hasNext()).isEqualTo(false);
+
+        assertThat(round).isEqualTo(new Round(0));
     }
 }
