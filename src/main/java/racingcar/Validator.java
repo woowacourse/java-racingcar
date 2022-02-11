@@ -5,10 +5,11 @@ import java.util.Set;
 
 public class Validator {
 
+    public static final int MIN_COUNT = 2;
     private static int MAX_COUNT = 5;
     private static String ERROR_NAME_HAS_BLANK = "[ERROR] 이름에 공백이 존재합니다.";
     private static String ERROR_NO_NAME = "[ERROR] 이름 입력은 필수입니다.";
-    private static String ERROR_CAR_COUNT = "[ERROR] 자동차는 5대 이하이어야 합니다.";
+    private static String ERROR_CAR_COUNT = "[ERROR] 자동차는 2대 이상 5대 이하이어야 합니다.";
     private static String ERROR_NAME_LENGTH = "[ERROR] 이름은 5자 이하이어야 합니다.";
     private static String ERROR_DUPLICATE_NAME = "[ERROR] 중복된 이름입니다.";
     private static String ERROR_NUMBER_OVER_ONE = "[ERROR] 횟수는 1 이상이어야 합니다.";
@@ -46,7 +47,7 @@ public class Validator {
     }
 
     public static void validateCarCount(String[] names) {
-        if (names.length > MAX_COUNT) {
+        if (names.length > MAX_COUNT || names.length < MIN_COUNT) {
             throw new IllegalArgumentException(ERROR_CAR_COUNT);
         }
     }
