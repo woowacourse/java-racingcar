@@ -5,6 +5,9 @@ import java.util.stream.Collectors;
 
 public class Winners {
 
+  private static final String WINNERS_DELIMITER = ",";
+  private static final String WINNER_MESSAGE_FORM = "%s가 최종 우승했습니다.";
+
   private List<CarName> winners;
 
   public Winners(List<CarName> winners) {
@@ -13,9 +16,9 @@ public class Winners {
 
   @Override
   public String toString() {
-    return winners.stream()
+    String winnersString = winners.stream()
         .map(CarName::get)
-        .collect(Collectors.joining(", "))
-        + "가 최종 우승했습니다.";
+        .collect(Collectors.joining(WINNERS_DELIMITER));
+    return String.format(WINNER_MESSAGE_FORM, winnersString);
   }
 }

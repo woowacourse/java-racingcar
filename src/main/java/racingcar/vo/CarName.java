@@ -2,7 +2,7 @@ package racingcar.vo;
 
 public class CarName {
 
-  public static final String EMPTY_CAR_NAME_ERROR_MESSAGE = "자동차 이름으로 공백을 입력할 수 없습니다.";
+  private static final String EMPTY_CAR_NAME_ERROR_MESSAGE = "자동차 이름으로 공백을 입력할 수 없습니다.";
   private static final String TOO_LONG_CAR_NAME_ERROR_MESSAGE = "자동차 이름이 너무 깁니다.";
   private static final int MAX_LENGTH = 5;
 

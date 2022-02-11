@@ -2,8 +2,10 @@ package racingcar.vo;
 
 public class Attempt {
 
-  public static final String NUMBER_FORMAT_ERROR_MESSAGE = "시도 회수는 숫자로 입력해야합니다.";
+  private static final String NUMBER_FORMAT_ERROR_MESSAGE = "시도 회수는 숫자로 입력해야합니다.";
   private static final String NUMBER_NEGATIVE_ERROR_MESSAGE = "시도 회수는 0이상이어야 합니다.";
+  private static final int EMPTY_COUNT = 0;
+  private static final int ZERO = 0;
 
   private int attempt;
 
@@ -20,7 +22,7 @@ public class Attempt {
   }
 
   public boolean isLeft() {
-    return attempt > 0;
+    return attempt > EMPTY_COUNT;
   }
 
   public void decrease() {
@@ -43,7 +45,7 @@ public class Attempt {
   }
 
   private void validNegative(int attempt) {
-    if (attempt < 0) {
+    if (attempt < ZERO) {
       throw new RuntimeException(NUMBER_NEGATIVE_ERROR_MESSAGE);
     }
   }
