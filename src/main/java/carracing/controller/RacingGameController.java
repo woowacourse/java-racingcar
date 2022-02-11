@@ -20,14 +20,14 @@ public class RacingGameController {
 	public RacingGameController() {
 	}
 
-	public void init(){
+	public void init() {
 		getCars();
 		getNumberOfGames();
 	}
 
 	public void play() {
 		OutputView.printResultMessage();
-		while((numberOfGames--) > ZERO){
+		while ((numberOfGames--) > ZERO) {
 			cars.moveCars();
 			cars.printResult();
 		}
@@ -36,11 +36,11 @@ public class RacingGameController {
 
 	private void getCars() {
 		OutputView.printInputCarName();
+		String readLine = InputView.getCarNames();
+		List<String> carNames = splitCarNames(readLine);
 		try {
-			String readLine = InputView.getCarNames();
-			List<String> carNames = splitCarNames(readLine);
 			createCars(carNames);
-		} catch (IllegalArgumentException e){
+		} catch (IllegalArgumentException e) {
 			OutputView.printException(e.getMessage());
 			getCars();
 		}
@@ -48,9 +48,9 @@ public class RacingGameController {
 
 	private void getNumberOfGames() {
 		OutputView.printInputNumberOfGames();
-		try{
+		try {
 			numberOfGames = InputView.getNumberOfGames();
-		}catch (IllegalArgumentException e){
+		} catch (IllegalArgumentException e) {
 			OutputView.printException(e.getMessage());
 			getNumberOfGames();
 		}
