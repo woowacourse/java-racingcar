@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 public class Parser {
     private static final int EMPTY = 0;
