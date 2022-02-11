@@ -4,26 +4,28 @@ import racingcar.domain.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class GameController {
-    Scanner scanner;
+    private final Scanner scanner;
 
     public GameController(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    public void startRace() {
+    public void run() {
         String carNames = InputView.getCarNames(scanner);
         Cars cars = new Cars(Utils.splitAndTrim(carNames));
         int moveCount = Integer.parseInt(InputView.getMoveCount(scanner));
         OutputView.printResultMessage();
+        startRace(cars, moveCount);
+        OutputView.printWinners(cars.findWinners());
+    }
+
+    private void startRace(Cars cars, int moveCount) {
         for (int i = 0; i < moveCount; i++) {
             cars.startEachRace();
-            OutputView.printCarPosition(cars.getCarsToString());
+            OutputView.printCarPosition(cars.getAllPosition());
         }
-        List<String> winners = cars.getWinners();
-        OutputView.printWinners(winners);
     }
 }

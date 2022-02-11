@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Cars {
     public static final int MOVE_CONDITION = 4;
@@ -12,25 +13,29 @@ public class Cars {
 
     public Cars(String[] carNames) {
         for (String carName : carNames) {
-            this.cars.add(new Car(carName));
+            cars.add(new Car(carName));
         }
     }
 
     public void startEachRace() {
-        for (Car car : cars) {
-            checkAndMove(car);
-        }
+        cars.stream().filter(this::isMoveCondition).forEach(Car::moveForward);
     }
 
-    private void checkAndMove(Car car) {
-        if (makeRandom() >= MOVE_CONDITION) {
-            car.moveForward();
-        }
+    private boolean isMoveCondition(Car car) {
+        return makeRandom() >= MOVE_CONDITION;
     }
 
     private int makeRandom() {
         Random random = new Random();
         return random.nextInt(RANDOM_NUMBER_BOUND);
+    }
+
+    public List<String> findWinners() {
+        int maxPosition = findMaxPosition();
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     private int findMaxPosition() {
@@ -41,26 +46,13 @@ public class Cars {
         return maxPosition;
     }
 
-    public List<String> getWinners() {
-        int maxPosition = findMaxPosition();
-        List<String> winners = new ArrayList<>();
-        for (Car car : this.cars) {
-            if (car.getPosition() == maxPosition) {
-                winners.add(car.getName());
-            }
-        }
-        return winners;
-    }
-
     public int getSize() {
         return cars.size();
     }
 
-    public List<String> getCarsToString() {
-        List<String> carsToString = new ArrayList<>();
-        for (Car car : this.cars) {
-            carsToString.add(car.toString());
-        }
-        return carsToString;
+    public List<String> getAllPosition() {
+        return cars.stream()
+                .map(Car::toString)
+                .collect(Collectors.toList());
     }
 }

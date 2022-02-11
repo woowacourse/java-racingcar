@@ -14,13 +14,13 @@ public class NameValidator {
 
     public static final int NAME_LENGTH_LIMIT = 5;
 
-    public static void validateNames(String names) {
+    public static void validateName(String names) {
         String[] splitName = Utils.splitAndTrim(names);
         for (String name : splitName) {
             checkEmptyName(name);
-            checkNameLength(name);
+            checkLongName(name);
         }
-        checkOneName(splitName);
+        checkOnlyName(splitName);
         checkDuplicateName(splitName);
     }
 
@@ -30,21 +30,21 @@ public class NameValidator {
         }
     }
 
-    private static void checkOneName(String[] names) {
+    private static void checkOnlyName(String[] names) {
         if (names.length == 1) {
             throw new IllegalArgumentException(ERROR_ONLY_NAME);
         }
     }
 
-    private static void checkNameLength(String name) {
+    private static void checkLongName(String name) {
         if (name.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException(ERROR_LONG_NAME);
         }
     }
 
-    private static void checkDuplicateName(String[] splitName) {
-        Set<String> hashNames = new HashSet<>(Arrays.asList(splitName));
-        if (hashNames.size() != splitName.length) {
+    private static void checkDuplicateName(String[] names) {
+        Set<String> hashNames = new HashSet<>(Arrays.asList(names));
+        if (hashNames.size() != names.length) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_NAME);
         }
     }
