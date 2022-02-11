@@ -1,13 +1,13 @@
 package racingcar.model;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomNo {
 	private static final int RANDOM_BOUND = 10;
-	private final Random random;
+	private final ThreadLocalRandom random;
 
 	public RandomNo() {
-		random = new Random();
+		random = ThreadLocalRandom.current();
 	}
 
 	public int getNumber() {
