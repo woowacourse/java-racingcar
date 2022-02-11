@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Cars {
     public static final int MOVE_CONDITION = 4;
@@ -17,15 +18,13 @@ public class Cars {
     }
 
     public void startEachRace() {
-        for (Car car : cars) {
-            checkAndMove(car);
-        }
+        cars.stream()
+            .filter(this::isMoveCondition)
+            .forEach(Car::moveForward);
     }
 
-    private void checkAndMove(Car car) {
-        if (makeRandom() >= MOVE_CONDITION) {
-            car.moveForward();
-        }
+    private boolean isMoveCondition(Car car) {
+        return makeRandom() >= MOVE_CONDITION;
     }
 
     private int makeRandom() {
@@ -33,7 +32,7 @@ public class Cars {
         return random.nextInt(RANDOM_NUMBER_BOUND);
     }
 
-    private int findMaxPosition() {
+    private int getMaxPosition() {
         int maxPosition = 0;
         for (Car car : cars) {
             maxPosition = Math.max(maxPosition, car.getPosition());
@@ -42,25 +41,20 @@ public class Cars {
     }
 
     public List<String> getWinners() {
-        int maxPosition = findMaxPosition();
-        List<String> winners = new ArrayList<>();
-        for (Car car : this.cars) {
-            if (car.getPosition() == maxPosition) {
-                winners.add(car.getName());
-            }
-        }
-        return winners;
+        int maxPosition = getMaxPosition();
+        return this.cars.stream()
+            .filter(car -> car.getPosition() == maxPosition)
+            .map(Car::getName)
+            .collect(Collectors.toList());
     }
 
     public int getSize() {
         return cars.size();
     }
 
-    public List<String> getCarsToString() {
-        List<String> carsToString = new ArrayList<>();
-        for (Car car : this.cars) {
-            carsToString.add(car.toString());
-        }
-        return carsToString;
+    public List<String> getAllPosition() {
+        return this.cars.stream()
+            .map(Car::toString)
+            .collect(Collectors.toList());
     }
 }
