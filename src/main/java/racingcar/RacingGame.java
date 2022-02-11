@@ -10,11 +10,6 @@ public class RacingGame {
     public RacingGame() {
     }
 
-    public RacingGame(String carNames, String tryCount) {
-        RacingCars racingCars = new RacingCars();
-        racingCars.join(carNames);
-    }
-
     public void playGame(RacingCars racingCars, int trialCount) {
         OutputView.printGameStartMessage();
         for (int i = 0; i < trialCount; i++) {
