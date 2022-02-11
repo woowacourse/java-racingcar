@@ -17,7 +17,7 @@ class InputNameHandlerTest {
         List<Name> result = InputNameHandler.createNames(input);
 
         // then
-        assertThat(result).containsExactly(Name.of("hoho"), Name.of("rich"), Name.of("pobi"));
+        assertThat(result).containsExactly(Name.create("hoho"), Name.create("rich"), Name.create("pobi"));
     }
 
     @Test

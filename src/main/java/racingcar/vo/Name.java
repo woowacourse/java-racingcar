@@ -23,7 +23,7 @@ public class Name {
         return name.trim();
     }
 
-    public static Name of(String name) {
+    public static Name create(String name) {
         return new Name(name);
     }
 

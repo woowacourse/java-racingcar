@@ -13,7 +13,7 @@ public class InputNameHandler {
         validateDuplicate(split);
 
         return Arrays.stream(split)
-            .map(Name::of)
+            .map(Name::create)
             .collect(Collectors.toList());
     }
 

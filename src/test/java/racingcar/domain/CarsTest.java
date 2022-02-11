@@ -11,7 +11,7 @@ public class CarsTest {
     @DisplayName("자동차의 이름으로 자동차 리스트를 생성한다")
     void newCarsByNames() {
         // given
-        List<Name> names = List.of(Name.of("hoho"), Name.of("rich"), Name.of("pobi"));
+        List<Name> names = List.of(Name.create("hoho"), Name.create("rich"), Name.create("pobi"));
 
         // when & then
         assertThatCode(() -> new Cars(names)).doesNotThrowAnyException();
