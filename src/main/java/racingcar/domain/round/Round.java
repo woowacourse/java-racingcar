@@ -25,7 +25,4 @@ public class Round {
 		return this.count == 0;
 	}
 
-	public int getCount() {
-		return count;
-	}
 }

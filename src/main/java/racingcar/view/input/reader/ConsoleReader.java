@@ -16,4 +16,5 @@ public class ConsoleReader implements Reader {
 			throw new ReaderIoException();
 		}
 	}
+
 }

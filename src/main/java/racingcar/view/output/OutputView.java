@@ -34,4 +34,5 @@ public class OutputView {
 		String message = Delimiter.joinWithComma(winnerNames) + "가 최종 우승했습니다.";
 		printMessage(message);
 	}
+
 }

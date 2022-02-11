@@ -16,4 +16,5 @@ public class RacingCarApplication {
 		);
 		controller.run();
 	}
+
 }

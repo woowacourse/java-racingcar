@@ -41,4 +41,5 @@ public class InputView {
 			throw new RoundNotNumericException();
 		}
 	}
+
 }
