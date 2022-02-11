@@ -18,11 +18,6 @@ public class GameControllerImpl implements GameController {
 		this.outputView = outputView;
 	}
 
-	public void run() {
-		initGame();
-		playGame();
-	}
-
 	public void initGame() {
 		initParticipants();
 		initRound();
