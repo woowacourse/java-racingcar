@@ -31,7 +31,7 @@ public class Cars {
                 .getAsInt();
 
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isMaxPosition(maxPosition))
                 .map(Car::getName)
                 .toArray(String[]::new);
     }

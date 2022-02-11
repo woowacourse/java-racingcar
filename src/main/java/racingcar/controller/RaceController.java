@@ -2,14 +2,12 @@ package racingcar.controller;
 
 import racingcar.model.Car;
 import racingcar.model.Cars;
-import racingcar.util.RandomNumberGenerator;
 import racingcar.view.OutputView;
 
 public class RaceController {
     private static final int DEFAULT_POSITION = 0;
 
     private Cars cars = new Cars();
-    private RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     public void runGame() {
         try {
@@ -35,7 +33,7 @@ public class RaceController {
 
     public void insertCarFromCarNames(String[] carNames) {
         for (String carName : carNames) {
-            cars.insertCar(new Car(carName, DEFAULT_POSITION, randomNumberGenerator));
+            cars.insertCar(new Car(carName, DEFAULT_POSITION));
         }
     }
 

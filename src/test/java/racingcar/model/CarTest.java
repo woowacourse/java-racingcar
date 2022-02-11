@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
+
     @Test
     public void 자동차_이동() {
         Car car = new Car("bravo", 0, () -> 5);
@@ -19,5 +21,11 @@ public class CarTest {
         int position = car.getPosition();
         car.move();
         assertThat(car.getPosition()).isEqualTo(position);
+    }
+
+    @Test
+    public void 자동차_최대_위치_확인() {
+        Car car = new Car("bravo", 7, () -> 1);
+        assertThat(car.isMaxPosition(7)).isTrue();
     }
 }
