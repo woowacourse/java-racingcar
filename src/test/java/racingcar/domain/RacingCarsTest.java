@@ -43,14 +43,4 @@ class RacingCarsTest {
             .isThrownBy(() -> new RacingCars(input))
             .withMessageMatching("자동차 입력 값이 존재해야한다.");
     }
-
-    @Test
-    @DisplayName("콤마로 값을 분리하고 List로 반환한다.")
-    void checkContainsExactly() {
-        assertThat(splitWithList("a,b,c")).containsExactly("a", "b",  "c");
-    }
-
-    List<String> splitWithList(String text) {
-        return Arrays.asList(text.split(","));
-    }
 }
