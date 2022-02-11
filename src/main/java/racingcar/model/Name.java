@@ -19,7 +19,7 @@ public class Name {
 
 	private void validate() {
 		validateNotEmpty();
-		validateBoundary();
+		validateLength();
 	}
 
 	private void validateNotEmpty() {
@@ -28,7 +28,7 @@ public class Name {
 		}
 	}
 
-	private void validateBoundary() {
+	private void validateLength() {
 		if (name.length() > MAX_LENGTH) {
 			throw new IllegalArgumentException(ErrorMessages.LONG_NAME);
 		}
