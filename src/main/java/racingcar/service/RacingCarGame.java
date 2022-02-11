@@ -8,38 +8,38 @@ import racingcar.view.Output;
 import java.util.List;
 
 public class RacingCarGame {
-    private Cars cars;
-    private Attempt attempt;
+	private static final int START_VALUE = 0;
+	private Cars cars;
+	private Attempt attempt;
 
-    private final Input input;
+	private final Input input;
 
-    public RacingCarGame() {
-        input = new Input();
-    }
+	public RacingCarGame() {
+		input = new Input();
+	}
 
-    public void run() {
-        init();
-        round();
-        Output.allRoundResult();
-        win();
-    }
+	public void run() {
+		init();
+		round();
+		win();
+	}
 
-    private void init() {
-        cars = input.carName();
-        attempt = input.attempt();
-    }
+	private void init() {
+		cars = input.carName();
+		attempt = input.attempt();
+	}
 
-    private void round() {
-        int nowAttempt = 0;
+	private void round() {
+		int nowAttempt = START_VALUE;
 
-        while (!attempt.isSame(nowAttempt)) {
-            cars.play();
-            nowAttempt++;
-        }
-    }
+		while (!attempt.isSame(nowAttempt)) {
+			cars.play();
+			nowAttempt++;
+		}
+	}
 
-    private void win() {
-        List<String> winners = cars.findWinners();
-        Output.showWinners(winners);
-    }
+	private void win() {
+		List<String> winners = cars.findWinners();
+		Output.showResult(winners);
+	}
 }
