@@ -1,6 +1,7 @@
 package racingcar.vo;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,5 +35,12 @@ public class AttemptTest {
     assertThat(attempt.get()).isEqualTo(1);
     attempt.decrease();
     assertThat(attempt.get()).isEqualTo(0);
+  }
+
+  @Test
+  public void 숫자가_아닌_입력_예외_test() throws Exception {
+    String input = "abc";
+    assertThatThrownBy(() -> new Attempt(input))
+        .isInstanceOf(RuntimeException.class);
   }
 }
