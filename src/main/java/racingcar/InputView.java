@@ -7,6 +7,7 @@ public class InputView {
 	private static final String GAME_COUNT_INPUT_MESSAGE = "시도할 회수는 몇회인가요?";
 
 	private static Scanner scanner = new Scanner(System.in);
+
 	public static String inputCarNames() {
 		System.out.println(CAR_NAME_INPUT_MESSAGE);
 		return scanner.nextLine();
