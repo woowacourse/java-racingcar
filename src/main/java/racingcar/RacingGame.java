@@ -7,8 +7,24 @@ public class RacingGame {
 
     private static final String WINNER_NAME_DELIMITER = ", ";
 
-    public void moveCar(RacingCar car) {
-        car.goOrStay(RandomGenerator.generateRandomNumber());
+    public RacingGame() {
+    }
+
+    public RacingGame(String carNames, String tryCount) {
+        RacingCars racingCars = new RacingCars();
+        racingCars.join(carNames);
+    }
+
+    public void playGame(RacingCars racingCars, int trialCount) {
+        for (int i = 0; i < trialCount; i++) {
+            moveCar(racingCars);
+        }
+    }
+
+    private void moveCar(RacingCars racingCars) {
+        for (RacingCar racingCar : racingCars.getRacingCars()) {
+            racingCar.goOrStay(RandomGenerator.generateRandomNumber());
+        }
     }
 
     public ArrayList<RacingCar> getWinners(RacingCars racingCars) {
@@ -18,7 +34,7 @@ public class RacingGame {
         ArrayList<RacingCar> winners = new ArrayList<>();
 
         for (RacingCar racingCar : racingCarList) {
-            if(racingCar.isSamePosition(racingCarOfMaxPosition)){
+            if (racingCar.isSamePosition(racingCarOfMaxPosition)) {
                 winners.add(racingCar);
             }
         }
