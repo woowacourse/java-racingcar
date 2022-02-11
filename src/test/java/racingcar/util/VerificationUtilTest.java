@@ -10,6 +10,7 @@ import static racingcar.util.VerificationUtil.validateDuplication;
 class VerificationUtilTest {
 
     @Test
+
     public void 한글자_미만의_자동차_이름_테스트() throws Exception {
         //given
         String name = "";
