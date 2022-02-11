@@ -10,14 +10,18 @@ public class Car {
         this.position = 0;
     }
 
-    public void goOrNot(int num) {
-        if (num >= 4) {
+    public void goOrNot(int number) {
+        if (canGo(number)) {
             go();
         }
     }
 
     private void go() {
         position += 1;
+    }
+
+    private boolean canGo(int number) {
+        return number >= 4;
     }
 
     public String getName() {
