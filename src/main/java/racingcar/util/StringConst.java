@@ -9,6 +9,7 @@ public enum StringConst {
 	WINNER_DELIMITER(", "),
 	WINNER_MESSAGE("가 최종 우승했습니다."),
 	RESULT_MESSAGE("실행 결과"),
+	ERROR_PREFIX("[ERROR]"),
 	ERROR_NULL("[ERROR] 입력값은 NULL일 수 없습니다."),
 	ERROR_BLANK("[ERROR] 입력값은 빈 입력일 수 없습니다."),
 	ERROR_SIZE("[ERROR] 입력값의 크기는 5 초과일 수 없습니다."),

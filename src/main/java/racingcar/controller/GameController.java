@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import racingcar.model.Car;
 import racingcar.util.IntegerConst;
+import racingcar.util.StringConst;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -15,21 +16,33 @@ public class GameController {
 	public void runRace() {
 		OutputView.askCarName();
 		String[] carName = InputView.getCarNameInput();
-		if (carName[0].equals("[ERROR]")) {
-			return;
-		}
+		checkNameError(carName);
 		ArrayList<Car> carList = generateCarList(carName);
 		OutputView.askTurn();
 		int totalTurn = Integer.parseInt(InputView.getTurnInput());
-		if (totalTurn < IntegerConst.ZERO.getValue()) {
-			return;
-		}
+		checkTurnError(totalTurn);
 		OutputView.displayResult();
-		for (int eachTurn = 0; eachTurn < totalTurn; eachTurn++) {
+		playTotalTurn(totalTurn);
+		OutputView.displayWinner(outputViewController.mapWinner(carList));
+	}
+
+	private void checkNameError(String[] carName) {
+		if (carName[IntegerConst.ZERO.getValue()].equals(StringConst.ERROR_PREFIX.getValue())) {
+			System.exit(0);
+		}
+	}
+
+	private void checkTurnError(int totalTurn) {
+		if (totalTurn < IntegerConst.ZERO.getValue()) {
+			System.exit(0);
+		}
+	}
+
+	private void playTotalTurn(int totalTurn) {
+		for (int eachTurn = IntegerConst.ZERO.getValue(); eachTurn < totalTurn; eachTurn++) {
 			carListController.moveCarList(carList);
 			OutputView.displayCarPosition(outputViewController.getCarListInfo(carList));
 		}
-		OutputView.displayWinner(outputViewController.mapWinner(carList));
 	}
 
 	public ArrayList<Car> generateCarList(String[] names) {
@@ -37,12 +50,11 @@ public class GameController {
 		for (String name : names) {
 			carList.add(new Car(name));
 		}
-
 		return this.carList;
 	}
 
 	public int getMaxPosition(ArrayList<Car> carList) {
-		int max = 0;
+		int max = IntegerConst.ZERO.getValue();
 		for (Car car : carList) {
 			max = Math.max(max, car.getPosition());
 		}
