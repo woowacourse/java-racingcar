@@ -2,9 +2,15 @@ package racingcar;
 
 import racingcar.game.RacingGame;
 
+import static racingcar.view.OutputView.printErrorMessage;
+
 public class Application {
     public static void main(String[] args) {
         RacingGame racingGame = new RacingGame();
-        racingGame.start();
+        try {
+            racingGame.start();
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
+        }
     }
 }

@@ -18,7 +18,7 @@ public class RacingGame {
     private List<String> winners = new ArrayList<>();
     private int totalAttemptCount;
 
-    public void start() {
+    public void start() throws IllegalArgumentException {
         initRacingCarGame();
         startMessage();
 
@@ -30,7 +30,7 @@ public class RacingGame {
         printWinners(winners);
     }
 
-    private void initRacingCarGame() {
+    private void initRacingCarGame() throws IllegalArgumentException {
         initCarNames();
         initTotalAttempt();
     }
