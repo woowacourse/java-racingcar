@@ -38,12 +38,4 @@ class CarsTest {
 		// then
 		assertThat(cars.toString()).isEqualTo("오찌 : " + newLine + "연로그 : " + newLine);
 	}
-
-	// TODO
-	/*@Test
-	public void 우승자_출력() {
-		// given
-		// when
-		// then
-	}*/
 }
