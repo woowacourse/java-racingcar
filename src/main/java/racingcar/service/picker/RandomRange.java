@@ -15,10 +15,6 @@ public enum RandomRange {
 		return INCLUSIVE_MINIMUM.number;
 	}
 
-	public static int getInclusiveMaximum() {
-		return INCLUSIVE_MAXIMUM.number;
-	}
-
 	public static int getSize() {
 		return INCLUSIVE_MAXIMUM.number - INCLUSIVE_MINIMUM.number + 1;
 	}

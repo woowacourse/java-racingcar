@@ -13,7 +13,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.view.inputview.reader.CustomReader;
 import racingcar.view.input.InputView;
 
-
 @SuppressWarnings("NonAsciiCharacters")
 public class CarNameInputTest {
 
@@ -23,7 +22,7 @@ public class CarNameInputTest {
 	@ParameterizedTest
 	@MethodSource("provideValuesForNormalInput")
 	void 정상작동테스트(String inputValue, List<String> expected) {
-		customReader.setText(inputValue);
+		customReader.initText(inputValue);
 		List<String> carNames = inputView.requestCarNames();
 		assertThat(carNames).isEqualTo(expected);
 	}

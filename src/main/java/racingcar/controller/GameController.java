@@ -11,10 +11,10 @@ public class GameController {
 
 	private final InputView inputView;
 	private final OutputView outputView;
-	private final GameService racingCarService;
+	private final GameService gameService;
 
-	public GameController(GameService racingCarService, InputView inputView, OutputView outputView) {
-		this.racingCarService = racingCarService;
+	public GameController(GameService gameService, InputView inputView, OutputView outputView) {
+		this.gameService = gameService;
 		this.inputView = inputView;
 		this.outputView = outputView;
 	}
@@ -26,7 +26,7 @@ public class GameController {
 	}
 
 	private void initParticipants() {
-		racingCarService.initCarNames(requestCarNames());
+		gameService.initCarNames(requestCarNames());
 	}
 
 	private List<String> requestCarNames() {
@@ -39,7 +39,7 @@ public class GameController {
 		Round round = requestRound();
 		announceStatusTitle();
 		while (round.isNotFinished()) {
-			List<String> carStatuses = racingCarService.playRound();
+			List<String> carStatuses = gameService.playRound();
 			announceStatuses(carStatuses);
 			round.decreaseCount();
 		}
@@ -61,7 +61,7 @@ public class GameController {
 	}
 
 	private void announceWinners() {
-		List<String> winnerNames = racingCarService.getWinnerNames();
+		List<String> winnerNames = gameService.getWinnerNames();
 		outputView.printMessageOfWinners(winnerNames);
 	}
 

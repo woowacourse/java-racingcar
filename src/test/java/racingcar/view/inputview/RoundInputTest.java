@@ -22,7 +22,7 @@ public class RoundInputTest {
 	@ParameterizedTest
 	@MethodSource("provideValuesForNormalInput")
 	void 정상작동테스트(String inputValue, int expected) {
-		customReader.setText(inputValue);
+		customReader.initText(inputValue);
 		int number = inputView.requestRoundNumber();
 		assertThat(number).isEqualTo(expected);
 	}
@@ -39,7 +39,7 @@ public class RoundInputTest {
 	@ParameterizedTest
 	@MethodSource("provideValuesForNotNumericException")
 	void 숫자이외의값입력_예외테스트(String inputValue) {
-		customReader.setText(inputValue);
+		customReader.initText(inputValue);
 		assertThrows(RoundNotNumericException.class, inputView::requestRoundNumber);
 	}
 

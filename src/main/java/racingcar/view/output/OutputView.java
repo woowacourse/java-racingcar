@@ -1,11 +1,10 @@
 package racingcar.view.output;
 
-import static racingcar.view.output.OutputMessage.*;
+import static racingcar.view.output.message.OutputMessage.*;
 
 import java.util.List;
 
 import racingcar.utils.Delimiter;
-
 
 public class OutputView {
 

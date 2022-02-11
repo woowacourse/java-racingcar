@@ -1,5 +1,6 @@
 package racingcar.domain.car;
 
+import racingcar.domain.car.condition.ForwardCondition;
 import racingcar.utils.Delimiter;
 
 public class Car {

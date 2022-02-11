@@ -3,7 +3,7 @@ package racingcar.domain.car.validator;
 import java.util.Collections;
 import java.util.List;
 
-import racingcar.domain.car.NameLength;
+import racingcar.domain.car.condition.NameLength;
 import racingcar.exception.car.CarNameDuplicatedException;
 import racingcar.exception.car.CarNameEmptyException;
 import racingcar.exception.car.CarNameTooLongException;

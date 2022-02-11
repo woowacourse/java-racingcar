@@ -10,7 +10,8 @@ public class ConsoleReader implements Reader {
 
 	public String readLine() {
 		try {
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+			InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 			return bufferedReader.readLine();
 		} catch (IOException exception) {
 			throw new ReaderCannotReadException();

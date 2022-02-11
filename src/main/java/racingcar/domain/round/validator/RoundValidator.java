@@ -1,6 +1,6 @@
 package racingcar.domain.round.validator;
 
-import racingcar.domain.round.RoundRange;
+import racingcar.domain.round.condition.RoundRange;
 import racingcar.exception.round.RoundNotPositiveException;
 
 public class RoundValidator {

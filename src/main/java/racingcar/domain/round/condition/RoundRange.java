@@ -1,4 +1,4 @@
-package racingcar.domain.round;
+package racingcar.domain.round.condition;
 
 public enum RoundRange {
 
@@ -10,12 +10,8 @@ public enum RoundRange {
 		this.number = number;
 	}
 
-	public static int getMinimum() {
-		return MINIMUM.number;
-	}
-
 	public static boolean isTooSmall(int count) {
-		return (count < getMinimum());
+		return (count < MINIMUM.number);
 	}
 
 }

@@ -1,4 +1,4 @@
-package racingcar.domain.car;
+package racingcar.domain.car.condition;
 
 public enum ForwardCondition {
 
@@ -13,6 +13,5 @@ public enum ForwardCondition {
 	public static boolean isInRange(int number) {
 		return (number >= MINIMUM.value);
 	}
-
 
 }

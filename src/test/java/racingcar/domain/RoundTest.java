@@ -8,10 +8,11 @@ import racingcar.domain.round.Round;
 import racingcar.exception.round.RoundNotPositiveException;
 
 
-@SuppressWarnings("NonAsciiCharacters")public class RoundTest {
+@SuppressWarnings("NonAsciiCharacters")
+public class RoundTest {
 
 	@Test
-	void 음수_예외테스트() {
+	void 실행횟수_예외테스트() {
 		assertThrows(RoundNotPositiveException.class, () -> new Round(-2));
 	}
 
