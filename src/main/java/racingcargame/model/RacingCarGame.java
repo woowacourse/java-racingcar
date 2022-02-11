@@ -3,6 +3,8 @@ package racingcargame.model;
 import java.util.*;
 
 public class RacingCarGame {
+	private static final int GAME_OVER_COUNT = 0;
+
 	private CarRepository carRepository;
 
 	public RacingCarGame(List<String> carNames, int raceCount) {
@@ -19,7 +21,7 @@ public class RacingCarGame {
 	}
 
 	public boolean isOverRace() {
-		return RaceCount.getCount() == 0;
+		return RaceCount.getCount() == GAME_OVER_COUNT;
 	}
 
 	public void startRace() {
