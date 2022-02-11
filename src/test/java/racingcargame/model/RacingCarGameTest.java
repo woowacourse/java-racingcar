@@ -1,13 +1,14 @@
 package racingcargame.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
 public class RacingCarGameTest {
-    RacingCarGame racingCarGame = new RacingCarGame();
 
     @Test
     void 입력받은_자동차_개수_테스트() {
@@ -21,15 +22,15 @@ public class RacingCarGameTest {
 
     @Test
     void 입력받은_경주_회수_테스트() {
-        racingCarGame.orderToSaveRaceCount(4);
-        assertThat(RaceCount.getCount()).isEqualTo(4);
+        RacingCarGame racingCarGame = new RacingCarGame(Arrays.asList("a", "b", "c"), 5);
+        assertThat(RaceCount.getCount()).isEqualTo(5);
     }
 
     @Test
     void 경주_회수_감소_테스트() {
-        racingCarGame.orderToSaveRaceCount(4);
+        RacingCarGame racingCarGame = new RacingCarGame(Arrays.asList("a", "b", "c"), 5);
         RaceCount.reduceRaceCount();
-        assertThat(RaceCount.getCount()).isEqualTo(3);
+        assertThat(RaceCount.getCount()).isEqualTo(4);
     }
 
     @Test

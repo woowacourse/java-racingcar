@@ -5,14 +5,16 @@ import java.util.*;
 public class RacingCarGame {
     private CarRepository carRepository;
 
-    public RacingCarGame() {
+    public RacingCarGame(List<String> carNames, int raceCount) {
+        orderToSaveCars(carNames);
+        orderToSaveRaceCount(raceCount);
     }
 
-    public void orderToSaveCars(List<String> carNames) {
+    private void orderToSaveCars(List<String> carNames) {
         carRepository = new CarRepository(carNames);
     }
 
-    public void orderToSaveRaceCount(int raceCount) {
+    private void orderToSaveRaceCount(int raceCount) {
         RaceCount.storeCount(raceCount);
     }
 

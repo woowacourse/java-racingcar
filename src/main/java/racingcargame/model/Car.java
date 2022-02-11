@@ -11,19 +11,19 @@ public class Car implements Comparable<Car> {
         this.position = position;
     }
 
-    public String getName(){
+    String getName(){
         return name;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position;
     }
 
-    public void setPosition(int position) {
+    void setPosition(int position) {
         this.position = position;
     }
 
-    public void moveCar() {
+    void moveCar() {
         if (isMoveCar()) {
             position ++;
         }

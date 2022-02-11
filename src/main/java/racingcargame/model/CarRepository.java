@@ -18,7 +18,7 @@ public class CarRepository {
         return cars;
     }
 
-    public void moveCars() {
+    void moveCars() {
         cars.forEach(Car::moveCar);
     }
 
