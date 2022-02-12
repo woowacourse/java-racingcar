@@ -6,12 +6,12 @@ public class Car {
     private static final int STANDARD = 4;
     private String name;
     private int position;
-    private NumberGenerator randomGenerator;
+    private NumberGenerator numberGenerator;
 
-    public Car(String name, int position, NumberGenerator randomUtil) {
+    public Car(String name, int position, NumberGenerator numberGenerator) {
         this.name = name;
         this.position = position;
-        this.randomGenerator = randomUtil;
+        this.numberGenerator = numberGenerator;
     }
 
     public String getName() {
@@ -23,7 +23,7 @@ public class Car {
     }
 
     public void move() {
-        if (randomGenerator.generate() >= STANDARD) {
+        if (numberGenerator.generate() >= STANDARD) {
             position++;
         }
     }
