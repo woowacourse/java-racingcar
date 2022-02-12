@@ -4,7 +4,7 @@ public class CarVO {
     private final String name;
     private final int position;
 
-    public CarVO(String name, int position) {
+    public CarVO(final String name, final int position) {
         this.name = name;
         this.position = position;
     }

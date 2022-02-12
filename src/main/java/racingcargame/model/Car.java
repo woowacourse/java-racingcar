@@ -8,7 +8,7 @@ public class Car implements Comparable<Car> {
     private String name;
     private int position;
 
-    public Car(String name, int position) {
+    public Car(final String name, int position) {
         this.name = name;
         this.position = position;
     }
