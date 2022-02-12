@@ -9,7 +9,7 @@ import racingcargame.utils.RaceCountInputValidator;
 public class InputController {
     private static final InputController inputController = new InputController();
     private static final Scanner scanner = new Scanner(System.in);
-    public static final String COMMA = ",";
+    public static final String CAR_NAME_DELIMITER = ",";
 
     private InputController() {
     }
@@ -20,7 +20,7 @@ public class InputController {
 
     public List<String> inputCarName() {
         String carNames = scanner.nextLine();
-        return List.of(NameInputValidator.validateCarNames(carNames).split(COMMA));
+        return List.of(NameInputValidator.validateCarNames(carNames).split(CAR_NAME_DELIMITER));
     }
 
     public int inputRaceCount() {

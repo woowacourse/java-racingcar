@@ -7,7 +7,7 @@ public class NameInputValidator {
     public static final String ERROR_CAR_NAME_IS_EMPTY = "[error] 입력된 자동차 이름 중 이름이 입력되지 않는 자동차가 있습니다.";
     public static final String ERROR_CAR_NAME_IS_SIZE_EXCEED_THAN_MAX = "[error] 자동차 이름을 1자이상, 5자 이하로 입력해주세요.";
     public static final String ERROR_SAME_CAR_NAME = "[error] 중복된 자동차 이름이 있습니다.";
-    public static final String COMMA = ",";
+    public static final String CAR_NAME_DELIMITER = ",";
     public static final int ZERO_EXIST = 0;
     public static final int CAR_NAME_MAX_SIZE = 5;
 
@@ -30,7 +30,7 @@ public class NameInputValidator {
     }
 
     private static boolean isEmptyCarNames(String carNames) {
-        String[] cars = carNames.split(COMMA);
+        String[] cars = carNames.split(CAR_NAME_DELIMITER);
         long count = Arrays.stream(cars)
                 .filter(String::isBlank)
                 .count();
@@ -42,7 +42,7 @@ public class NameInputValidator {
     }
 
     private static boolean isOverCarNamesLimitSize(String carNames) {
-        String[] cars = carNames.split(COMMA);
+        String[] cars = carNames.split(CAR_NAME_DELIMITER);
         long count = Arrays.stream(cars)
                 .filter(car -> car.length() > CAR_NAME_MAX_SIZE)
                 .count();
@@ -54,7 +54,7 @@ public class NameInputValidator {
     }
 
     private static boolean isSameCarNames(String carNames) {
-        String[] cars = carNames.split(COMMA);
+        String[] cars = carNames.split(CAR_NAME_DELIMITER);
         long count = Arrays.stream(cars)
                 .distinct()
                 .count();

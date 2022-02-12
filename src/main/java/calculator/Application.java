@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 public class Application {
     private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
     private static final String BASE_DELIMITER_PATTERN = ",|:";
-    private static final String COMMA = ",";
-    private static final String COLON = ":";
+    private static final String COMMA_DELIMITER = ",";
+    private static final String COLON_DELIMITER = ":";
     private static final String OR = "|";
     private static final int NUMBER = 0;
     private static final int DELIMITER = 1;
@@ -80,7 +80,7 @@ public class Application {
     }
 
     private static boolean isRightNumber(String number) {
-        if (number.equals(COMMA) || number.equals(COLON)) {
+        if (number.equals(COMMA_DELIMITER) || number.equals(COLON_DELIMITER)) {
             return true;
         }
         return Character.isDigit((number.charAt(NUMBER)));
