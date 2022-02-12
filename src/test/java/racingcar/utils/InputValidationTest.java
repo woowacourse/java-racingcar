@@ -30,7 +30,7 @@ class InputValidationTest {
 		@ValueSource(strings = {"pobi,crong,honuxxx", "pobixxxx"})
 		void checkWrongName(final String names) {
 			InputValidation validation = new InputValidation();
-			assertThatExceptionOfType(RuntimeException.class)
+			assertThatExceptionOfType(IllegalArgumentException.class)
 				.isThrownBy(() -> validation.validateName(names))
 				.withMessageMatching("이름은 5자리 이하만 가능합니다.");
 		}
@@ -54,7 +54,7 @@ class InputValidationTest {
 		@ValueSource(strings = {"-2", "1a0"})
 		void checkWrongRepeats(final String repeats) {
 			InputValidation validation = new InputValidation();
-			assertThatExceptionOfType(RuntimeException.class)
+			assertThatExceptionOfType(IllegalArgumentException.class)
 				.isThrownBy(() -> validation.validateRepeats(repeats))
 				.withMessageMatching("반복횟수는 정수만 입력 가능합니다.");
 		}
