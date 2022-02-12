@@ -4,13 +4,14 @@ import racingcar.view.InputView;
 import racingcar.view.ResultView;
 
 public class RacingController {
-	private final CarController carController = new CarController();
+	private final CarController carController;
 
 	public RacingController() {
-		createCars();
+		carController = new CarController();
 	}
 
 	public void run() {
+		createCars();
 		int iteration = InputView.getIterationNo();
 		ResultView.printBeforeGameResult();
 		runInIteration(iteration);
