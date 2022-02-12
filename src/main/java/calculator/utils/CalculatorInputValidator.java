@@ -2,13 +2,13 @@ package calculator.utils;
 
 import java.util.List;
 
-public class InputValidator {
+public class CalculatorInputValidator {
     public static final String ERROR_NUMBER_RIGHT_FORMAT = "[error] 숫자를 입력해주세요.";
     private static final String COMMA_DELIMITER = ",";
     private static final String COLON_DELIMITER = ":";
     private static final int NUMBER = 0;
 
-    private InputValidator() {
+    private CalculatorInputValidator() {
     }
 
     public static boolean isInputNullOrBlankOrEmpty(String input) {
@@ -28,7 +28,7 @@ public class InputValidator {
     }
 
     public static void checkValidateNumbers(List<String> numbers) {
-        numbers.forEach(InputValidator::checkValidateNumber);
+        numbers.forEach(CalculatorInputValidator::checkValidateNumber);
     }
 
     private static void checkValidateNumber(String number) {

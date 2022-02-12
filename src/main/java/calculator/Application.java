@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import calculator.utils.InputValidator;
+import calculator.utils.CalculatorInputValidator;
 
 public class Application {
     private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
@@ -28,7 +28,7 @@ public class Application {
     }
 
     public static int runCalculator(String input) {
-        if (InputValidator.isInputNullOrBlankOrEmpty(input)) {
+        if (CalculatorInputValidator.isInputNullOrBlankOrEmpty(input)) {
             return 0;
         }
         return sumAndDivideInput(input);
@@ -37,10 +37,10 @@ public class Application {
     private static int sumAndDivideInput(String input) {
         if (hasCustomDelimiterInInput(input)) {
             List<String> numbersDividedByCustomDelimiter = divideNumbersByCustomDelimiter(input);
-            InputValidator.checkValidateNumbers(divideNumbersByCustomDelimiter(input));
+            CalculatorInputValidator.checkValidateNumbers(divideNumbersByCustomDelimiter(input));
             return makeSumOfNumbers(numbersDividedByCustomDelimiter);
         }
-        InputValidator.checkValidateNumbers(List.of(input.split("")));
+        CalculatorInputValidator.checkValidateNumbers(List.of(input.split("")));
         return makeSumOfNumbers(divideInput(input));
     }
 
@@ -72,7 +72,7 @@ public class Application {
     }
 
     private static String sumOfNumber(String number) {
-        if (InputValidator.isInputNullOrBlankOrEmpty(number)) {
+        if (CalculatorInputValidator.isInputNullOrBlankOrEmpty(number)) {
             return "0";
         }
         return number;

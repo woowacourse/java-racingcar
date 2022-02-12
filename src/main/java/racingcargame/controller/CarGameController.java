@@ -5,14 +5,14 @@ import java.util.List;
 import racingcargame.model.RacingCarGame;
 import racingcargame.view.OutputView;
 
-public class GameController {
-    private static final GameController gameController = new GameController();
-    private static final InputController inputController = InputController.getInputController();
+public class CarGameController {
+    private static final CarGameController gameController = new CarGameController();
+    private static final CarGameInputController inputController = CarGameInputController.getInputController();
 
-    private GameController() {
+    private CarGameController() {
     }
 
-    public static GameController getGameController() {
+    public static CarGameController getGameController() {
         return gameController;
     }
 

@@ -6,15 +6,15 @@ import java.util.Scanner;
 import racingcargame.utils.NameInputValidator;
 import racingcargame.utils.RaceCountInputValidator;
 
-public class InputController {
-    private static final InputController inputController = new InputController();
+public class CarGameInputController {
+    private static final CarGameInputController inputController = new CarGameInputController();
     private static final Scanner scanner = new Scanner(System.in);
     private static final String CAR_NAME_DELIMITER = ",";
 
-    private InputController() {
+    private CarGameInputController() {
     }
 
-    public static InputController getInputController() {
+    public static CarGameInputController getInputController() {
         return inputController;
     }
 
