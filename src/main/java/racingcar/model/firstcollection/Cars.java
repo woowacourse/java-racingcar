@@ -8,8 +8,9 @@ import racingcar.model.RandomUtil;
 import racingcar.model.vo.Car;
 
 public class Cars {
+    private static final String MESSAGE_FOR_CAR_NAME_DUPLICATE = "이름은 중복될 수 없습니다.";
+
     private final List<Car> cars;
-    public static final String MESSAGE_FOR_CAR_NAME_DUPLICATE = "이름은 중복될 수 없습니다.";
 
     public Cars(final List<Car> cars) {
         validateDuplicate(cars);

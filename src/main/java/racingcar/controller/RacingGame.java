@@ -10,7 +10,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGame {
-    public static final String CAR_NAME_DELIMITER = ",";
+    private static final String CAR_NAME_DELIMITER = ",";
 
     public void start() {
         final Cars cars = setupCars();
