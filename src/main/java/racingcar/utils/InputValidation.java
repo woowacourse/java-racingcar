@@ -17,13 +17,13 @@ public class InputValidation {
 
 	private void checkNameLength(final String carName) {
 		if (carName.length() > MAX_NAME_LENGTH) {
-			throw new RuntimeException(RacingGameMessage.NAME_LENGTH_ERROR);
+			throw new IllegalArgumentException(RacingGameMessage.NAME_LENGTH_ERROR);
 		}
 	}
 
 	public void validateRepeats(final String repeats) {
 		if (!COMPILED_NUMBER_PATTERN.matcher(repeats).matches()) {
-			throw new RuntimeException(RacingGameMessage.REPEATS_ERROR);
+			throw new IllegalArgumentException(RacingGameMessage.REPEATS_ERROR);
 		}
 	}
 }

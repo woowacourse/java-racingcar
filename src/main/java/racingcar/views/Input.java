@@ -30,7 +30,7 @@ public class Input {
 			final String names = scanner.next();
 			inputValidation.validateName(names);
 			return names;
-		} catch (RuntimeException exception) {
+		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage() + "\n");
 			return inputNames();
 		}
@@ -46,7 +46,7 @@ public class Input {
 			final String repeats = scanner.next();
 			inputValidation.validateRepeats(repeats);
 			return repeats;
-		} catch (RuntimeException exception) {
+		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage() + "\n");
 			return inputRepeats();
 		}
