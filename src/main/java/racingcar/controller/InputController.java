@@ -17,10 +17,11 @@ public class InputController {
     }
 
     public String[] carSplit(String cars) throws RuntimeException {
-        for (String carName : cars.split(",")) {
+        String[] carNames = cars.split(",");
+        for (String carName : carNames) {
             InputValidator.validateName(carName);
         }
-        return cars.split(",");
+        return carNames;
     }
 
     public int toInt(String scanNumber) throws RuntimeException {
