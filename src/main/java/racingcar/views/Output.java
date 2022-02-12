@@ -24,7 +24,14 @@ public class Output {
 		System.out.print("\n");
 	}
 
-	public void printWinner(final String winners) {
-		System.out.print(winners + RacingGameMessage.WINNER);
+	public void printWinner(final List<Car> winners) {
+		System.out.print(joinWinnerNames(winners) + RacingGameMessage.WINNER);
+	}
+
+	private String joinWinnerNames(final List<Car> winners) {
+		final String[] winnerNames = winners.stream()
+			.map(Car::getName)
+			.toArray(String[]::new);
+		return String.join(", ", winnerNames);
 	}
 }

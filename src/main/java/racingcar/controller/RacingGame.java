@@ -48,29 +48,22 @@ public class RacingGame {
 		output.printWinner(findWinner());
 	}
 
-	private String findWinner() {
+	private List<Car> findWinner() {
 		final int farthestPosition = findFarthestPosition();
-		final List<Car> winners = getWinners(farthestPosition);
-		return joinWinnerNames(winners);
+		return getWinners(farthestPosition);
 	}
 
 	private int findFarthestPosition() {
 		return cars.stream()
 			.sorted(Comparator.comparing(Car::getPosition))
 			.collect(Collectors.toList())
-			.get(cars.size() - 1).getPosition();
+			.get(cars.size() - 1)
+			.getPosition();
 	}
 
 	private List<Car> getWinners(final int farthestPosition) {
 		return cars.stream()
 			.filter((car) -> farthestPosition == car.getPosition())
 			.collect(Collectors.toList());
-	}
-
-	private String joinWinnerNames(final List<Car> winners) {
-		final String[] winnerNames = winners.stream()
-			.map(Car::getName)
-			.toArray(String[]::new);
-		return String.join(", ", winnerNames);
 	}
 }
