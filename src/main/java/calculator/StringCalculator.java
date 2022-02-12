@@ -4,16 +4,16 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    public static final String CUSTOM_FINDER = "\n";
-    public static final int CUSTOM_REGEX_INDEX = 0;
-    public static final int CUSTOM_VALUES_INDEX = 1;
-    public static final String NOT_VALID_DELIMITER = "올바르지 않은 구분자 입력입니다.";
-    public static final String NO_NUMBER_AS_DELIMITER = "구분자로 숫자를 사용할 수 없습니다.";
-    public static final String NOT_VALID_RANGE = "입력값은 0 이상이어야 합니다.";
-    public static final int DELIMITER_INDEX = 2;
-    private static String CUSTOM_START = "//";
-    private static String REGEX_CUSTOM = "[/]{2}.";
-    private static String DEFAULT_REGEX = ",|:";
+    private static final String CUSTOM_FINDER = "\n";
+    private static final int CUSTOM_REGEX_INDEX = 0;
+    private static final int CUSTOM_VALUES_INDEX = 1;
+    private static final String NOT_VALID_DELIMITER = "올바르지 않은 구분자 입력입니다.";
+    private static final String NO_NUMBER_AS_DELIMITER = "구분자로 숫자를 사용할 수 없습니다.";
+    private static final String NOT_VALID_RANGE = "입력값은 0 이상이어야 합니다.";
+    private static final int DELIMITER_INDEX = 2;
+    private static final String CUSTOM_START = "//";
+    private static final String REGEX_CUSTOM = "[/]{2}.";
+    private static final String DEFAULT_REGEX = ",|:";
 
     public static int splitAndSum(String text) {
         if (isSlashExist(text)) {
@@ -38,7 +38,7 @@ public class StringCalculator {
     }
 
     private static void validateRightCustomDelimiter(String customDelimiter) {
-        if(!Pattern.matches(REGEX_CUSTOM, customDelimiter)) {
+        if (!Pattern.matches(REGEX_CUSTOM, customDelimiter)) {
             throw new RuntimeException(NOT_VALID_DELIMITER);
         }
     }
@@ -52,7 +52,7 @@ public class StringCalculator {
     private static int getTotal(String[] values) {
         int total = 0;
         for (String value : values) {
-            total += getPositiverNumber(value);;
+            total += getPositiverNumber(value);
         }
         return total;
     }
@@ -64,7 +64,7 @@ public class StringCalculator {
     }
 
     private static void validatePositiveNumber(int toInt) {
-        if(toInt < 0) {
+        if (toInt < 0) {
             throw new RuntimeException(NOT_VALID_RANGE);
         }
     }
