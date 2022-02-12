@@ -51,4 +51,13 @@ public class StringCalculatorTest {
         assertThatExceptionOfType(RuntimeException.class)
             .isThrownBy(() -> StringCalculator.addString(text));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"s", "h,1,1", "1,2,k"})
+    @DisplayName("숫자가 아닌경우 RuntimeException 발생해야 한다")
+    void throwRuntimeExceptionWhenNotNumber(String text) {
+        assertThatExceptionOfType(RuntimeException.class)
+            .isThrownBy(() -> StringCalculator.addString(text))
+            .withMessageContaining("올바른 숫자를 입력해주세요.");
+    }
 }

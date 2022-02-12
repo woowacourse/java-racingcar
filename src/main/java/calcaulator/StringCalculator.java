@@ -21,7 +21,7 @@ public class StringCalculator {
             return DEFAULT_VALUE_FOR_NULL_OR_EMPTY;
         }
 
-        if (hasSingleNumber(text)) {
+        if (isMinimumLength(text)) {
             return validateNumber(stringToInt(text));
         }
 
@@ -34,14 +34,25 @@ public class StringCalculator {
     }
 
     private static int stringToInt(String string) {
-        return Integer.parseInt(string);
+        return Integer.parseInt(checkNumeric(string));
+    }
+
+    private static String checkNumeric(String string) {
+        if (!matchStringIsNumber(string)) {
+            throw new RuntimeException("올바른 숫자를 입력해주세요.");
+        }
+        return string;
+    }
+
+    private static boolean matchStringIsNumber(String string) {
+        return string.chars().allMatch(Character::isDigit);
     }
 
     private static boolean isNullOrEmpty(String text) {
         return Objects.isNull(text) || text.isEmpty();
     }
 
-    private static boolean hasSingleNumber(String text) {
+    private static boolean isMinimumLength(String text) {
         return text.length() == MINIMUM_LENGTH;
     }
 
