@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
+import racingcar.domain.CarDto;
 import racingcar.service.RacingService;
 import racingcar.util.RandomUtilImpl;
 import racingcar.view.InputView;
@@ -26,6 +27,7 @@ public class RacingController {
 	private List<Car> inputAndRegisterCarInfo() {
 		List<Car> cars = InputView.getCarNames();
 		racingService.registerCars(cars);
+
 		return cars;
 	}
 
@@ -40,7 +42,10 @@ public class RacingController {
 	}
 
 	private void printRacingResult() {
-		List<String> winnerNames = racingService.findWinnerNames();
+		List<String> winnerNames = racingService.findWinnerCars().stream()
+			.map(CarDto::getName)
+			.collect(Collectors.toList());
+
 		OutputView.printWinnersMessage(winnerNames);
 	}
 

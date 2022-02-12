@@ -2,9 +2,9 @@ package racingcar.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
-import racingcar.domain.CarDto;
 
 public class CarRepository {
 
@@ -24,12 +24,14 @@ public class CarRepository {
 		return new ArrayList<>(cars);
 	}
 
-	public int findMaxPosition() {
-		return cars.stream()
-			.map(Car::toDto)
-			.mapToInt(CarDto::getPosition)
-			.max()
+	public List<Car> findWinnerCars() {
+		Car maxPositionCar = cars.stream()
+			.max(Car::compareTo)
 			.orElseThrow(() -> new IllegalStateException(EMPTY_CAR_ERROR_MESSAGE));
+
+		return cars.stream()
+			.filter(car -> car.isSamePosition(maxPositionCar))
+			.collect(Collectors.toList());
 	}
 
 	public void clear() {

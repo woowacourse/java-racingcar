@@ -22,13 +22,9 @@ public class RacingService {
 		cars.forEach(car -> car.move(randomUtil.generate(RANDOM_VALUE_RANGE)));
 	}
 
-	public List<String> findWinnerNames() {
-		int maxPosition = carRepository.findMaxPosition();
-
-		return carRepository.findCars().stream()
-			.filter(car -> car.isSamePosition(maxPosition))
+	public List<CarDto> findWinnerCars() {
+		return carRepository.findWinnerCars().stream()
 			.map(Car::toDto)
-			.map(CarDto::getName)
 			.collect(Collectors.toList());
 	}
 }

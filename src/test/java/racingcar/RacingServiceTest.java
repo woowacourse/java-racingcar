@@ -3,25 +3,25 @@ package racingcar;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
+import racingcar.domain.CarDto;
 import racingcar.repository.CarRepository;
 import racingcar.service.RacingService;
 import racingcar.util.Converter;
 
 public class RacingServiceTest {
 
-	private RacingService racingService;
-	private CarRepository carRepository;
+	private final RacingService racingService = new RacingService();
+	private final CarRepository carRepository = new CarRepository();
 
 	@BeforeEach
 	public void init() {
-		racingService = new RacingService();
-		carRepository = new CarRepository();
 		String input = "pobi,joon";
 		racingService.registerCars(Converter.toCarList(input));
 	}
@@ -33,7 +33,6 @@ public class RacingServiceTest {
 
 	@Test
 	public void 자동차_저장() {
-
 		CarRepository carRepository = new CarRepository();
 		int carCount = carRepository.count();
 
@@ -46,7 +45,6 @@ public class RacingServiceTest {
 		racingService.race(bound -> 5);
 
 		List<Car> cars = carRepository.findCars();
-
 		cars.forEach(car -> {
 			assertThat(car.isSamePosition(2)).isTrue();
 		});
@@ -60,16 +58,17 @@ public class RacingServiceTest {
 
 		racingService.registerCars(List.of(car1, car2, car3));
 
-		List<String> winnerNames = racingService.findWinnerNames();
+		List<CarDto> winnerNames = racingService.findWinnerCars();
 		assertThat(winnerNames.size()).isEqualTo(1);
-		assertThat(winnerNames.get(0)).isEqualTo("lala");
+		assertThat(winnerNames.get(0).getName()).isEqualTo("lala");
 	}
 
 	@Test
 	public void 우승자_여러명_계산() {
-		List<String> winnerNames = racingService.findWinnerNames();
-		assertThat(winnerNames.size()).isEqualTo(2);
-		assertThat(winnerNames).containsSequence("pobi");
-		assertThat(winnerNames).containsSequence("joon");
+		List<CarDto> winnerCars = racingService.findWinnerCars();
+		assertThat(winnerCars.size()).isEqualTo(2);
+		Stream<String> winnerCarNames = winnerCars.stream()
+			.map(CarDto::getName);
+		assertThat(winnerCarNames).containsSequence("pobi", "joon");
 	}
 }
