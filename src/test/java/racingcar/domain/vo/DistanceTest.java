@@ -11,7 +11,7 @@ class DistanceTest {
     private final Distance distance = new Distance(1);
 
     @Test
-    @DisplayName("값을 반환한다.")
+    @DisplayName("거리 값을 반환한다.")
     void value() {
         int actual = distance.value();
         int expected = 1;
