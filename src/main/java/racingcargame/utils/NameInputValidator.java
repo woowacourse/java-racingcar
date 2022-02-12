@@ -15,30 +15,30 @@ public class NameInputValidator {
     }
 
     public static String validateCarNames(String carNames) {
-        if (isNotBlankInCarNames(carNames) && isNotEmptyInCarNames(carNames)
-                && isOverCarNamesLimitSize(carNames) && isNotSameCarNames(carNames)) {
-            return carNames;
+        if (isBlankCarNames(carNames) || isEmptyCarNames(carNames)
+                || isOverCarNamesLimitSize(carNames) || isSameCarNames(carNames)) {
+            throw new IllegalArgumentException();
         }
-        throw new IllegalArgumentException();
+        return carNames;
     }
 
-    private static boolean isNotBlankInCarNames(String carNames) {
-        if (carNames == null) {
-            throw new IllegalArgumentException(ERROR_CAR_NAME_IS_BLANK);
+    private static boolean isBlankCarNames(String carNames) {
+        if (carNames != null) {
+            return false;
         }
-        return true;
+        throw new IllegalArgumentException(ERROR_CAR_NAME_IS_BLANK);
     }
 
-    private static boolean isNotEmptyInCarNames(String carNames) {
+    private static boolean isEmptyCarNames(String carNames) {
         String[] cars = carNames.split(COMMA);
         long count = Arrays.stream(cars)
                 .filter(String::isBlank)
                 .count();
 
-        if (count > ZERO_EXIST) {
-            throw new IllegalArgumentException(ERROR_CAR_NAME_IS_EMPTY);
+        if (count == ZERO_EXIST) {
+            return false;
         }
-        return true;
+        throw new IllegalArgumentException(ERROR_CAR_NAME_IS_EMPTY);
     }
 
     private static boolean isOverCarNamesLimitSize(String carNames) {
@@ -47,21 +47,21 @@ public class NameInputValidator {
                 .filter(car -> car.length() > CAR_NAME_MAX_SIZE)
                 .count();
 
-        if (count > ZERO_EXIST) {
-            throw new IllegalArgumentException(ERROR_CAR_NAME_IS_SIZE_EXCEED_THAN_MAX);
+        if (count == ZERO_EXIST) {
+            return false;
         }
-        return true;
+        throw new IllegalArgumentException(ERROR_CAR_NAME_IS_SIZE_EXCEED_THAN_MAX);
     }
 
-    private static boolean isNotSameCarNames(String carNames) {
+    private static boolean isSameCarNames(String carNames) {
         String[] cars = carNames.split(COMMA);
         long count = Arrays.asList(cars).stream()
                 .distinct()
                 .count();
 
-        if (count < cars.length) {
-            throw new IllegalArgumentException(ERROR_SAME_CAR_NAME);
+        if (count == cars.length) {
+            return false;
         }
-        return true;
+        throw new IllegalArgumentException(ERROR_SAME_CAR_NAME);
     }
 }
