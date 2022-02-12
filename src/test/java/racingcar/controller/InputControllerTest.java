@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.controller.InputController;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputControllerTest {
     final InputController inputController = new InputController();

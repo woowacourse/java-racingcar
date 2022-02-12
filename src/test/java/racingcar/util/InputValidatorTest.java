@@ -26,4 +26,12 @@ public class InputValidatorTest {
             InputValidator.validateName("abcdef");
         }).isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    public void 음수인_숫자_입력() {
+        String scanNumber = "-3";
+        assertThatThrownBy(() -> {
+            InputValidator.validateNegativeTryCount(-3);
+        }).isInstanceOf(RuntimeException.class);
+    }
 }

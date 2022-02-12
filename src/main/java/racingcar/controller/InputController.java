@@ -15,7 +15,9 @@ public class InputController {
 
     public int getUserTryCount() throws RuntimeException {
         String userTryCount = scanTryCount();
-        return toInt(userTryCount);
+        int tryCount = toInt(userTryCount);
+        InputValidator.validateNegativeTryCount(tryCount);
+        return tryCount;
     }
 
     public String[] carSplit(String cars) throws RuntimeException {

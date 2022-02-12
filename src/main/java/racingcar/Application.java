@@ -22,6 +22,7 @@ public class Application {
             raceController.moveRound();
             raceController.printPosition();
         }
+
         raceController.printWinner();
     }
 
