@@ -16,16 +16,6 @@ public class CarControllerTest {
 	}
 
 	@Test
-	void 자동차_이름_중복() {
-		CarController carController = new CarController();
-		String userInputCarNames = "  범고래, 범고래,   고래  ";
-
-		assertThatThrownBy(() -> carController.createCars(userInputCarNames))
-			.isInstanceOf(RuntimeException.class)
-			.hasMessageContaining("중복");
-	}
-
-	@Test
 	void 자동차_3대_생성() {
 		CarController carController = new CarController();
 		String userInputCarNames = "범고래,소주캉,고래";

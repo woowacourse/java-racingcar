@@ -1,26 +1,21 @@
 package racingcar.controller;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import racingcar.model.Car;
 import racingcar.model.CarDto;
-import racingcar.model.CarRepository;
+import racingcar.model.Cars;
 import racingcar.model.RandomNo;
 
 public class CarController {
-	private static final String CAR_NAMES_DUPLICATE_ERROR_MESSAGE = "중복된 자동차 이름이 입력됐습니다.";
 	private static final String CAR_NAME_DELIMITER = ",";
-	private final CarRepository carRepository;
+	private final Cars cars;
 	private final RandomNo randomNo;
 
 	public CarController() {
-		this.carRepository = new CarRepository();
+		this.cars = new Cars();
 		this.randomNo = new RandomNo();
 	}
 
@@ -30,37 +25,27 @@ public class CarController {
 			.toArray(String[]::new);
 	}
 
-	protected void createCars(String userInputCarNames) {
-		carRepository.clear();
-		String[] carNames = splitCarNames(userInputCarNames);
-		validDuplicationCarNames(carNames);
-		Arrays.stream(carNames)
-			.forEach(carName -> carRepository.save(new Car(carName)));
-	}
-
 	protected void run() {
-		int numberOfCars = carRepository.getSize();
-		carRepository.move(createRandomNumbers(numberOfCars));
+		int numberOfCars = cars.getSize();
+		cars.move(createRandomNumbers(numberOfCars));
 	}
 
 	protected List<CarDto> getWinners() {
-		return carRepository.getWinners();
+		return cars.getWinners();
 	}
 
 	protected List<CarDto> getCars() {
-		return carRepository.getCars();
-	}
-
-	private void validDuplicationCarNames(String[] carNames) {
-		Set<String> temp = new HashSet<>(Arrays.asList(carNames));
-		if (temp.size() != carNames.length) {
-			throw new RuntimeException(CAR_NAMES_DUPLICATE_ERROR_MESSAGE);
-		}
+		return cars.getCars();
 	}
 
 	private List<Integer> createRandomNumbers(int size) {
 		return IntStream.range(0, size)
 			.mapToObj(i -> randomNo.getNumber())
 			.collect(Collectors.toList());
+	}
+
+	protected void createCars(String carNames) {
+		String[] splitCarNames = splitCarNames(carNames);
+		cars.createCars(splitCarNames);
 	}
 }
