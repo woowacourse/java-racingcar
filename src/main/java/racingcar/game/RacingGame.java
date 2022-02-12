@@ -4,20 +4,35 @@ import racingcar.entity.Car;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static racingcar.util.VerificationUtil.*;
+import static racingcar.util.RandomUtil.*;
 
 public class RacingGame {
 
     private List<Car> cars = new ArrayList<>();
     private int totalAttemptCount;
 
-    public String play(String carNames, String attempt) {
-        initRacingCarGame(carNames, attempt);
+    public void initCarNames(String carNames) {
+        String[] names = carNames.split(",");
+        validateDuplication(names);
 
+        for (String name : names) {
+            cars.add(new Car(name));
+        }
+    }
+
+    public void initTotalAttempt(String attempt) {
+        validateAttempt(attempt);
+        totalAttemptCount = Integer.parseInt(attempt);
+    }
+
+    public String play() {
         StringBuilder totalExecutionResult = new StringBuilder();
+
         while (totalAttemptCount-- > 0) {
             run();
             totalExecutionResult.append(generateExecutionResult() + "\n");
@@ -27,7 +42,7 @@ public class RacingGame {
     }
 
     public List<String> selectWinners() {
-        Collections.sort(cars);
+        sortCarsByPosition();
         int maxPosition = cars.get(0).getPosition();
 
         return cars.stream()
@@ -36,30 +51,19 @@ public class RacingGame {
                 .collect(Collectors.toList());
     }
 
-    private void initRacingCarGame(String carNames, String attempt) {
-        initCarNames(carNames);
-        initTotalAttempt(attempt);
-    }
-
-    private void initCarNames(String carNames) {
-        String[] names = carNames.split(",");
-        validateDuplication(names);
-
-        for (String name : names) {
-            validateCarName(name);
-            cars.add(new Car(name));
-        }
-    }
-
-    private void initTotalAttempt(String attempt) {
-        validateAttempt(attempt);
-        totalAttemptCount = Integer.parseInt(attempt);
-    }
-
     private void run() {
         for (Car car : cars) {
-            car.progress();
+            car.moveOrNot(getRandomNumber());
         }
+    }
+
+    private void sortCarsByPosition() {
+        Collections.sort(cars, new Comparator<Car>() {
+            @Override
+            public int compare(Car c1, Car c2) {
+                return c2.getPosition() - c1.getPosition();
+            }
+        });
     }
 
     private String generateExecutionResult() {

@@ -12,15 +12,21 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            play();
+            init();
+            playAndPrintExecutionResult();
             selectAndPrintWinners();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
         }
     }
 
-    private static void play() {
-        String executionResult = racingGame.play(inputCarNames(), inputAttemptCount());
+    private static void init() {
+        racingGame.initCarNames(inputCarNames());
+        racingGame.initTotalAttempt(inputAttemptCount());
+    }
+
+    private static void playAndPrintExecutionResult() {
+        String executionResult = racingGame.play();
         printExecutionResult(executionResult);
     }
 
