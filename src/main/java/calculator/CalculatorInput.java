@@ -1,16 +1,33 @@
 package calculator;
 
-public class CalculatorInput {
-	private static final String CUSTOM_SEPARATOR_START_SIGNATURE = "//";
-	private static final String CUSTOM_SEPARATOR_END_SIGNATURE = "\n";
-	private static final String INPUT_MESSAGE = "입력: ";
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-	public String userInput() {
-		System.out.print(INPUT_MESSAGE);
-		String stringInput = CalculatorMain.sc.nextLine();
-		if (stringInput.contains(CUSTOM_SEPARATOR_START_SIGNATURE )) {
-			return stringInput + CUSTOM_SEPARATOR_END_SIGNATURE + CalculatorMain.sc.nextLine();
+import calculator.domain.UserInputForm;
+import calculator.utils.validator.UserInputValidator;
+
+public class CalculatorInput {
+	private static final String INPUT_MESSAGE = "입력: ";
+	private static final int CUSTOM_DELIMITER_PREFIX_LENGTH = 2;
+
+	public UserInputForm userInput() {
+		String firstInput = inputFirst();
+		if (UserInputValidator.isNullOrWhiteSpace(firstInput)) {
+			return new UserInputForm("0");
 		}
-		return stringInput;
+		if (UserInputValidator.isCustomDelimiter(firstInput)) {
+			return new UserInputForm(extractCustomDelimiter(firstInput), CalculatorMain.sc.nextLine());
+		}
+		return new UserInputForm(firstInput);
+	}
+
+	private String extractCustomDelimiter(String firstInput) {
+		return firstInput.substring(CUSTOM_DELIMITER_PREFIX_LENGTH);
+	}
+
+	private String inputFirst() {
+		System.out.print(INPUT_MESSAGE);
+		return CalculatorMain.sc.nextLine();
 	}
 }
