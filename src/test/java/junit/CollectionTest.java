@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class CollectionTest {
+class CollectionTest {
 	private Set<Integer> numbers;
 
 	@BeforeEach

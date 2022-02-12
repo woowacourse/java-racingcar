@@ -2,29 +2,33 @@ package stringcalculator;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class StringCalculatorTest {
+class StringCalculatorTest {
 	StringCalculator calculator = new StringCalculator();
 
 	@Test
-	void 빈문자() {
+	@DisplayName("빈 문자열 입력 테스트")
+	void emptyInputTest() {
 		String input = "";
 		int actual = calculator.splitAndSum(input);
 		assertThat(actual).isEqualTo(0);
 	}
 
 	@Test
-	void null_판정() {
+	@DisplayName("null 입력 테스트")
+	void nullInputTest() {
 		String input = null;
 		int actual = calculator.splitAndSum(input);
 		assertThat(actual).isEqualTo(0);
 	}
 
 	@Test
-	void 숫자_하나_입력() {
+	@DisplayName("숫자 하나 입력 테스트")
+	void oneNumberInputTest() {
 		String input = "1";
 		int actual = calculator.splitAndSum(input);
 		int expected = 1;
@@ -33,7 +37,8 @@ public class StringCalculatorTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"&&&", "1,&,2", "//+\n1++3"})
-	void 숫자_이외의_값(String input) {
+	@DisplayName("숫자 이외의 값 예외 테스트")
+	void numberFormatExceptionTest(String input) {
 		assertThatThrownBy(() -> {
 			calculator.splitAndSum(input);
 		}).isInstanceOf(RuntimeException.class);
@@ -41,7 +46,8 @@ public class StringCalculatorTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"-1", "-1,1,2", "//+\n1+-1+3"})
-	void 음수_입력(String input) {
+	@DisplayName("음수 입력 예외 테스트")
+	void negativeInputTest(String input) {
 		assertThatThrownBy(() -> {
 			calculator.splitAndSum(input);
 		}).isInstanceOf(RuntimeException.class);
@@ -49,7 +55,8 @@ public class StringCalculatorTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"1,2:3", "//+\n1+2+3"})
-	void SplitAndSum(String input) {
+	@DisplayName("합 기능 테스트")
+	void splitAndSumTest(String input) {
 		int expected = 6;
 		assertThat(calculator.splitAndSum(input)).isEqualTo(expected);
 	}

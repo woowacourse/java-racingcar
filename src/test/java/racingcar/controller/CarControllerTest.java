@@ -2,12 +2,14 @@ package racingcar.controller;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class CarControllerTest {
+class CarControllerTest {
 
 	@Test
-	void 자동차_이름_파싱() {
+	@DisplayName("자동차 이름 파싱 테스트")
+	void splitCarNamesTest() {
 		CarController carController = new CarController();
 		String userInputCarNames = "  범고래, 소주캉,   고래  ";
 
@@ -16,7 +18,8 @@ public class CarControllerTest {
 	}
 
 	@Test
-	void 자동차_3대_생성() {
+	@DisplayName("자동차 목록 생성 테스트")
+	void createCarsTest() {
 		CarController carController = new CarController();
 		String userInputCarNames = "범고래,소주캉,고래";
 		carController.createCars(userInputCarNames);

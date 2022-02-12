@@ -1,15 +1,17 @@
 package racingcar.view;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class InputViewTest {
+class InputViewTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"0", "-1"})
-	void 시도_횟수_입력_검증(String input) {
+	@DisplayName("시도 횟수 입력 양수 검증 테스트")
+	void validPositiveInputTest(String input) {
 		Assertions.assertThatThrownBy(() -> {
 				InputView.validPositiveInput(input);
 			}).isInstanceOf(RuntimeException.class)
@@ -17,7 +19,8 @@ public class InputViewTest {
 	}
 
 	@Test
-	void 시도_횟수_빈_입력_검증() {
+	@DisplayName("시도 횟수 빈 입력 검증 테스트")
+	void validEmptyInputTest() {
 		Assertions.assertThatThrownBy(() -> {
 				InputView.validEmptyInput("");
 			}).isInstanceOf(RuntimeException.class)
