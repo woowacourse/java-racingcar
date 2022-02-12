@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class Calculator {
 
 	public static final String CUSTOM_REGEX_PATTERN = "//(.*)\n(.*)";
+	public static final Pattern CUSTOM_PATTERN = Pattern.compile(CUSTOM_REGEX_PATTERN);
 	private String delimiter = ",:";
 
 	public int splitAndSumNumber(String userInputText) {
@@ -20,10 +21,10 @@ public class Calculator {
 	}
 
 	private String[] split(String userInputText) {
-		Matcher matcher = Pattern.compile(CUSTOM_REGEX_PATTERN).matcher(userInputText);
-		if (matcher.find()) {
-			String customDelimiter = matcher.group(1);
-			userInputText = matcher.group(2);
+		Matcher customMatcher = CUSTOM_PATTERN.matcher(userInputText);
+		if (customMatcher.find()) {
+			String customDelimiter = customMatcher.group(1);
+			userInputText = customMatcher.group(2);
 			addCustomDelimiter(customDelimiter);
 		}
 		return userInputText.split(createNewDelimiter());
