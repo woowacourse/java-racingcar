@@ -21,7 +21,7 @@ class Splitter {
 
 	static String[] splitCustomDelimiter(String input) {
 		Matcher m = getMatcher(input);
-		validMatchRegEx(m);
+		validateMatchRegEx(m);
 		String customDelimiter = m.group(DELIMITER_INDEX);
 		if (isSpecialDelimiter(customDelimiter)) {
 			return m.group(INPUT_INDEX).split(addCustomDelimiterPrefix(customDelimiter));
@@ -33,7 +33,7 @@ class Splitter {
 		return input.startsWith(CUSTOM_DELIMITER_PREFIX);
 	}
 
-	private static void validMatchRegEx(Matcher m) {
+	private static void validateMatchRegEx(Matcher m) {
 		if (!m.find()) {
 			throw new RuntimeException();
 		}

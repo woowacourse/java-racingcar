@@ -9,7 +9,7 @@ public class StringCalculator {
 	private static final String ERROR_NOT_NUMBER_MESSAGE = "숫자 이외의 값이 입력되었습니다. 숫자를 입력하세요.";
 
 	public int splitAndSum(String input) {
-		if (validNullOrBlank(input)) {
+		if (validateNullOrBlank(input)) {
 			return 0;
 		}
 		return this.sum(split(input));
@@ -21,7 +21,7 @@ public class StringCalculator {
 			.sum();
 	}
 
-	private boolean validNullOrBlank(String input) {
+	private boolean validateNullOrBlank(String input) {
 		return input == null || input.isBlank();
 	}
 

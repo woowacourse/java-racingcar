@@ -11,18 +11,18 @@ class InputViewTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"0", "-1"})
 	@DisplayName("시도 횟수 입력 양수 검증 테스트")
-	void validPositiveInputTest(String input) {
+	void validatePositiveInputTest(String input) {
 		Assertions.assertThatThrownBy(() -> {
-				InputView.validPositiveInput(input);
+				InputView.validateIterationNumber(input);
 			}).isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("양수");
 	}
 
 	@Test
 	@DisplayName("시도 횟수 빈 입력 검증 테스트")
-	void validEmptyInputTest() {
+	void validateEmptyInputTest() {
 		Assertions.assertThatThrownBy(() -> {
-				InputView.validEmptyInput("");
+				InputView.validateIterationNumber("");
 			}).isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("빈 값");
 	}

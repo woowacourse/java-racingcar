@@ -22,7 +22,7 @@ public class RacingController {
 	}
 
 	public void run() {
-		int iteration = InputView.getIterationNo();
+		int iteration = InputView.getIterationNumber();
 		ResultView.printBeforeGameResult();
 		runInIteration(iteration);
 		ResultView.printWinners(carController.getWinners());
