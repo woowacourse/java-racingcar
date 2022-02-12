@@ -6,7 +6,6 @@ public class RacingCar {
     private final String name;
     private int position;
 
-
     private RacingCar(String name) {
         this.position = 0;
         this.name = name;
@@ -30,7 +29,7 @@ public class RacingCar {
         }
     }
 
-    public boolean isSamePosition(RacingCar racingCar){
+    public boolean isSamePosition(RacingCar racingCar) {
         return this.position == racingCar.getPosition();
     }
 
