@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CarTest {
 
     @Test
-    public void 자동차_이동() {
+    public void 자동차_이동_확인() {
         Car car = new Car("bravo", 0, () -> 5);
         int position = car.getPosition();
         car.move();
@@ -16,7 +16,7 @@ public class CarTest {
     }
 
     @Test
-    public void 자동차_중지() {
+    public void 자동차_중지_확인() {
         Car car = new Car("bravo", 0, () -> 1);
         int position = car.getPosition();
         car.move();

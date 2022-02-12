@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class InputValidatorTest {
+
     @Test
     public void 정수가_아닌_값_검증() {
         assertThatThrownBy(() -> {
