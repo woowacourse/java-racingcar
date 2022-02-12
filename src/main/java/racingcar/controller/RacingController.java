@@ -21,7 +21,7 @@ public class RacingController {
 
     public void run() {
         outputView.printResultMessage();
-        while(trialCount > 0) {
+        while (trialCount > 0) {
             cars.move(movement);
             outputView.printRoundStatus(cars.getCarInfos());
             trialCount--;

@@ -6,7 +6,7 @@ public class CarDto {
     private final String carName;
     private final int distance;
 
-    public CarDto(final String carName, final int distance){
+    public CarDto(final String carName, final int distance) {
         this.carName = carName;
         this.distance = distance;
     }
