@@ -1,12 +1,11 @@
-package racingcargame.controller;
+package racingcargame.utils;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import racingcargame.utils.NameInputValidator;
-
-public class GameControllerTest {
+public class NameInputValidatorTest {
 
     @Test
     @DisplayName("자동차 이름 null 입력 시 예외")
