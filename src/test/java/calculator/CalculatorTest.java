@@ -2,6 +2,7 @@ package calculator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,30 +65,11 @@ public class CalculatorTest {
 	}
 
 	@Test
-	void 커스텀_구분자(){
+	void 커스텀_구분자() {
 		String inputValue = "//;\n1;2;3";
 		int expected = 6;
 
 		int answer = calculator.splitAndSumNumber(inputValue);
 		assertThat(answer).isEqualTo(expected);
 	}
-
-	@Test
-	void 커스텀_구분자_여러개(){
-		String inputValue = "//;!\n1;2;3!3";
-		int expected = 9;
-
-		int answer = calculator.splitAndSumNumber(inputValue);
-		assertThat(answer).isEqualTo(expected);
-	}
-
-	@Test
-	void 커스텀_구분자와_기존_구분자_혼합(){
-		String inputValue = "//;\n1;2;3,3:1";
-		int expected = 10;
-
-		int answer = calculator.splitAndSumNumber(inputValue);
-		assertThat(answer).isEqualTo(expected);
-	}
-
 }
