@@ -13,8 +13,8 @@ public class OutputView {
     private static final String RACE_PROGRESS_OUTPUT_SEPARATOR = " : ";
     private static final String GAME_WINNER_MESSAGE = "가 최종 우승했습니다.";
     private static final String RACE_MOVE = "-";
-    public static final String WINNERS_OUTPUT_DELIMITER = ", ";
-    public static final int EMPTY = 1;
+    private static final String WINNERS_OUTPUT_DELIMITER = ", ";
+    private static final int EMPTY = 1;
 
     private OutputView() {
     }

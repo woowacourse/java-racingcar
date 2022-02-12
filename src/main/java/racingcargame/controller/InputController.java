@@ -9,7 +9,7 @@ import racingcargame.utils.RaceCountInputValidator;
 public class InputController {
     private static final InputController inputController = new InputController();
     private static final Scanner scanner = new Scanner(System.in);
-    public static final String CAR_NAME_DELIMITER = ",";
+    private static final String CAR_NAME_DELIMITER = ",";
 
     private InputController() {
     }

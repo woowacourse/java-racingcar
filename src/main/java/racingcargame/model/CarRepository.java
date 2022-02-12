@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarRepository {
-    public static final int START_POSITION = 0;
-    public static final int WINNER_POSITION = 0;
+    private static final int START_POSITION = 0;
+    private static final int WINNER_POSITION = 0;
 
     private List<Car> cars;
 

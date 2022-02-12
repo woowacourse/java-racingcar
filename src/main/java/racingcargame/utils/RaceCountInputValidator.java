@@ -7,7 +7,7 @@ public class RaceCountInputValidator {
     private static final String NOT_RIGHT_COUNT_ERROR_MESSAGE = "[error] 경주횟수는 0부터 9까지의 숫자만 입력해주세요.";
     private static final String RACE_COUNT_START_ZERO_ERROR_MESSAGE = "[error] 경주횟수는 1이상의 값을 입력해주세요.";
     private static final String EMPTY_RACE_COUNT_ERROR_MESSAGE = "[error] 경주횟수를 입력해주세요.";
-    public static final String COUNT_IS_ZERO = "0";
+    private static final String COUNT_IS_ZERO = "0";
 
     private RaceCountInputValidator() {
     }

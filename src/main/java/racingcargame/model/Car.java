@@ -3,7 +3,7 @@ package racingcargame.model;
 import racingcargame.utils.RandomNumberGenerator;
 
 public class Car implements Comparable<Car> {
-    public static final int MINIMUM_MOVE_ACCESSIBLE = 4;
+    private static final int MINIMUM_MOVE_ACCESSIBLE = 4;
 
     private String name;
     private int position;

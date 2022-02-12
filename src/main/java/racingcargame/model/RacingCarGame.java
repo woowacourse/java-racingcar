@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCarGame {
-    public static final int GAME_OVER = 0;
+    private static final int GAME_OVER = 0;
 
     private CarRepository carRepository;
 
