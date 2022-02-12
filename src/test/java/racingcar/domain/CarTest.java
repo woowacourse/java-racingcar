@@ -5,39 +5,52 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SuppressWarnings("NonAsciiCharacters")
 class CarTest {
 
     @Test
-    @DisplayName("자동차 진행시 전진 혹은 정지 하는지 확인")
-    public void 자동차_진행_테스트() throws Exception {
-        //given
+    @DisplayName("랜덤값이 전진 조건값 이상일 경우 한칸 전진")
+    public void carShouldMove() {
         Car car = new Car("woo");
+        int beforeMove = car.getPosition();
 
-        //when
-        car.progress();
+        car.moveOrNot(8);
 
-        //then
         assertThat(car.getPosition())
-                .isGreaterThanOrEqualTo(0)
-                .isLessThanOrEqualTo(1);
+                .isEqualTo(beforeMove + 1);
     }
 
     @Test
-    @DisplayName("자동차 반복 진행시 정상 동작 확인")
-    public void 자동차_반복_진행_테스트() throws Exception {
-        //given
+    @DisplayName("랜덤값이 전진 조건값 미만일 경우 전진하지 않음")
+    public void carShouldNotMove() {
         Car car = new Car("woo");
-        int count = 5;
+        int beforeMove = car.getPosition();
 
-        //when
-        for (int i = 0; i < count; i++) {
-            car.progress();
-        }
+        car.moveOrNot(2);
 
-        //then
         assertThat(car.getPosition())
-                .isGreaterThanOrEqualTo(0)
-                .isLessThanOrEqualTo(5);
+                .isEqualTo(beforeMove);
     }
+
+    @Test
+    @DisplayName("최대 전진횟수와 동일한 전진횟수를 가지는 경우 우승자임을 반환")
+    public void mustBeWinner() {
+        Car car = new Car("woo");
+
+        int maxPosition = car.getPosition() + 1;
+        car.moveOrNot(8);
+
+        assertThat(car.isWinner(maxPosition)).isTrue();
+    }
+
+    @Test
+    @DisplayName("최대전진횟수와 동일하지 않는 전진횟수를 가지는 경우 우승자가 아님을 반환")
+    public void mustNotBeWinner() {
+        Car car = new Car("woo");
+
+        int maxPosition = car.getPosition() + 2;
+        car.moveOrNot(8);
+
+        assertThat(car.isWinner(maxPosition)).isFalse();
+    }
+
 }
