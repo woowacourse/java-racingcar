@@ -15,9 +15,9 @@ public class OutputView {
 		System.out.println(GAME_RESULT_TITLE);
 	}
 
-	public static void printCarPosition(CarDto car) {
+	public static void printCarPosition(String name, int position) {
 		System.out.printf(
-			CAR_POSITION_FORMAT, car.getName(), POSITION_CHARACTOR.repeat(car.getPosition()));
+			CAR_POSITION_FORMAT, name, POSITION_CHARACTOR.repeat(position));
 	}
 
 	public static void printBlankLine() {
