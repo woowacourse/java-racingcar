@@ -31,14 +31,6 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
     public boolean isEqualPosition(final int position) {
         return this.position == position;
     }
@@ -46,6 +38,14 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(final Car car) {
         return this.position - car.position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override
