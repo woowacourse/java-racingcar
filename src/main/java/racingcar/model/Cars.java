@@ -5,13 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import racingcar.message.ErrorMessages;
-import racingcar.util.RandomGenerator;
+import racingcar.util.RandomNumberGenerator;
 
 public class Cars {
     private static final String NEW_LINE = System.lineSeparator();
     private static final String DELIMITER = ",";
-    private static final int MIN = 0;
-    private static final int MAX = 9;
 
     private final List<Car> cars = new ArrayList<>();
 
@@ -23,9 +21,9 @@ public class Cars {
         }
     }
 
-    public void moveAll() {
+    public void moveAll(RandomNumberGenerator random) {
         for (Car car : cars) {
-            car.goOrStop(RandomGenerator.generateNumber(MIN, MAX + 1));
+            car.goOrStop(random.generate());
         }
     }
 

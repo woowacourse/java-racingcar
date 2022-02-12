@@ -4,10 +4,14 @@ import java.io.IOException;
 
 import racingcar.model.Cars;
 import racingcar.model.TryCount;
+import racingcar.util.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingController {
+    private static final int RANDOM_LOWER_BOUND = 0;
+    private static final int RANDOM_UPPER_BOUND = 10;
+
     private Cars cars;
     private TryCount tryCount;
 
@@ -36,7 +40,7 @@ public class RacingController {
         int nowTryCnt = 0;
         OutputView.printStartMessage();
         while (tryCount.isNotSame(nowTryCnt++)) {
-            cars.moveAll();
+            cars.moveAll(RandomNumberGenerator.fromBounds(RANDOM_LOWER_BOUND, RANDOM_UPPER_BOUND));
             OutputView.printString(cars.toString());
         }
     }
