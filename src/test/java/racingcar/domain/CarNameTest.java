@@ -2,26 +2,27 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.utils.ExceptionMessage;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarNameTest {
     @Test
     @DisplayName("자동차 이름의 길이가 5 초과일 경우 예외를 발생 시킨다.")
     void create_LongerLengthOfCarNameThanFive() {
         String longerThanFiveCarName = "abcdef";
+        String expectedExceptionMessage = "자동차 이름은 최대 5자입니다.";
         assertThatThrownBy(() -> new CarName(longerThanFiveCarName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.LONGER_THAN_FIVE_CAR_NAME);
+                .hasMessage(expectedExceptionMessage);
     }
 
     @Test
     @DisplayName("자동차 이름이 공백으로만 이루어진 경우 예외를 발생시킨다.")
     void create_BlankCarName() {
         String blankCarName = " ";
+        String expectedExceptionMessage = "공백으로만 이루어진 자동차 이름이 있습니다.";
          assertThatThrownBy(() -> new CarName(blankCarName))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(ExceptionMessage.BLANK_CAR_NAME);
+                        .hasMessage(expectedExceptionMessage);
     }
 }

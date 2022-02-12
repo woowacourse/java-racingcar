@@ -5,12 +5,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.dto.CarDto;
 import racingcar.service.Movement;
-import racingcar.utils.ExceptionMessage;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarsTest {
     private final Cars cars = new Cars(Arrays.asList("abc", "def", "ghi"));
@@ -27,9 +27,10 @@ class CarsTest {
     @DisplayName("자동차 이름 간 중복이 있을 경우 예외를 발생시킵니다.")
     void create_duplicatedCarNames() {
         List<String> duplicatedCarNames = Arrays.asList("a", "a", "b");
+        String expectedExceptionMessage = "자동차 이름들 간 중복이 있습니다.";
         assertThatThrownBy(() -> new Cars(duplicatedCarNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.DUPLICATED_CAR_NAMES);
+                .hasMessage(expectedExceptionMessage);
     }
 
     @Test

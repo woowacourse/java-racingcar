@@ -2,12 +2,12 @@ package racingcar.domain;
 
 import racingcar.dto.CarDto;
 import racingcar.service.Movement;
-import racingcar.utils.ExceptionMessage;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    public static final String DUPLICATED_CAR_NAMES = "자동차 이름들 간 중복이 있습니다.";
     private final List<Car> values;
 
     public Cars(final List<String> carNames) {
@@ -19,7 +19,7 @@ public class Cars {
 
     private void validateDuplication(final List<String> carNames) {
         if (carNames.stream().distinct().count() != carNames.size()) {
-            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_CAR_NAMES);
+            throw new IllegalArgumentException(DUPLICATED_CAR_NAMES);
         }
     }
 

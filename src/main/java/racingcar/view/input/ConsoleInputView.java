@@ -1,13 +1,13 @@
 package racingcar.view.input;
 
-import racingcar.utils.ExceptionMessage;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ConsoleInputView implements InputView {
+    private static final String NOT_POSITIVE_DIGIT = "시도 횟수는 양의 정수만 가능합니다.";
+    private static final String BLANK_INPUT_EXCEPTION_MESSAGE = "입력이 비어있습니다.";
     private static final String CAR_NAME_INPUT_ALERT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String TRIAL_COUNT_INPUT_ALERT_MESSAGE = "시도할 회수는 몇회인가요?";
     private static final String NAME_DELIMITER = ",";
@@ -25,7 +25,7 @@ public class ConsoleInputView implements InputView {
 
     private void validateBlankInput(String inputString) {
         if (inputString.isBlank()) {
-            throw new IllegalArgumentException(ExceptionMessage.BLANK_INPUT_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(BLANK_INPUT_EXCEPTION_MESSAGE);
         }
     }
 
@@ -40,7 +40,7 @@ public class ConsoleInputView implements InputView {
 
     private void validatePositiveDigit(String inputString) {
         if (!inputString.matches(ZERO_AND_POSITIVE_DIGIT) || inputString.equals("0")) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_POSITIVE_DIGIT);
+            throw new IllegalArgumentException(NOT_POSITIVE_DIGIT);
         }
     }
 }
