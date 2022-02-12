@@ -1,6 +1,4 @@
-package racingcar.validator;
-
-import racingcar.Utils;
+package racingcar.utils;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -15,7 +13,7 @@ public class NameValidator {
     public static final int NAME_LENGTH_LIMIT = 5;
 
     public static void validateName(String names) {
-        String[] splitName = Utils.splitAndTrim(names);
+        String[] splitName = StringSeparator.splitAndTrim(names);
         for (String name : splitName) {
             checkEmptyName(name);
             checkLongName(name);

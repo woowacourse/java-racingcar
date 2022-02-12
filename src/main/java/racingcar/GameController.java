@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.domain.Cars;
+import racingcar.utils.StringSeparator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -15,7 +16,7 @@ public class GameController {
 
     public void run() {
         String carNames = InputView.getCarNames(scanner);
-        Cars cars = new Cars(Utils.splitAndTrim(carNames));
+        Cars cars = new Cars(StringSeparator.splitAndTrim(carNames));
         int moveCount = Integer.parseInt(InputView.getMoveCount(scanner));
         OutputView.printResultMessage();
         startRace(cars, moveCount);

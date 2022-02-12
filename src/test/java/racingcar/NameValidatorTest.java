@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static racingcar.validator.NameValidator.*;
+import static racingcar.utils.NameValidator.*;
 
 public class NameValidatorTest {
     @Test

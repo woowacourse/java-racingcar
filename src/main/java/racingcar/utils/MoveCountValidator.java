@@ -1,4 +1,4 @@
-package racingcar.validator;
+package racingcar.utils;
 
 public class MoveCountValidator {
     public static final String ERROR_NOT_INTEGER = "[ERROR] 이동횟수는 숫자로 입력해야합니다.";
