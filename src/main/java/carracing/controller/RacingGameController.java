@@ -11,7 +11,6 @@ import carracing.view.OutputView;
 
 public class RacingGameController {
 	private static final int END_OF_GAME_COUNT = 0;
-	private static final String DELIMITER_JOIN = ",";
 
 	private Cars cars;
 	private int numberOfGames;
@@ -55,7 +54,7 @@ public class RacingGameController {
 	}
 
 	private void endGame() {
-		OutputView.printWinners(String.join(DELIMITER_JOIN, cars.getWinners()));
+		OutputView.printWinners(cars.getWinners());
 	}
 
 	private void createCars(List<String> carNames) {

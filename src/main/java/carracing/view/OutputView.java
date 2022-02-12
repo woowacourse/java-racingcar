@@ -9,6 +9,7 @@ import carracing.view.messages.OutputMessage;
 public class OutputView {
 	private static final String DELIMITER_BETWEEN_NAME_AND_POSITION = " : ";
 	private static final String CAR_POSITION_UNIT = "_";
+	private static final String DELIMITER_FOR_JOINING_WINNERS = ",";
 
 	public static void printInputCarName() {
 		System.out.println(OutputMessage.INPUT_CAR_NAME.getMessage());
@@ -37,8 +38,12 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printWinners(String winners) {
-		System.out.println(winners + OutputMessage.FINAL_WINNER_MESSAGE.getMessage());
+	public static void printWinners(List<String> winners) {
+		System.out.println(generateWinnersString(winners) + OutputMessage.FINAL_WINNER_MESSAGE.getMessage());
+	}
+
+	private static String generateWinnersString(List<String> winners) {
+		return String.join(DELIMITER_FOR_JOINING_WINNERS, winners);
 	}
 
 	private static String generateResultString(Car car) {
