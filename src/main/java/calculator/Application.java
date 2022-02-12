@@ -66,8 +66,15 @@ public class Application {
     private static int makeSumOfNumbers(List<String> numbers) {
         int sumOfNumbers = 0;
         for (String number : numbers) {
-            sumOfNumbers += Integer.parseInt(number);
+            sumOfNumbers += Integer.parseInt(sumOfNumber(number));
         }
         return sumOfNumbers;
+    }
+
+    private static String sumOfNumber(String number) {
+        if (InputValidator.isInputNullOrBlankOrEmpty(number)) {
+            return "0";
+        }
+        return number;
     }
 }

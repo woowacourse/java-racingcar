@@ -3,6 +3,7 @@ package calculator.utils;
 import java.util.List;
 
 public class InputValidator {
+    public static final String ERROR_NUMBER_RIGHT_FORMAT = "[error] 숫자를 입력해주세요.";
     private static final String COMMA_DELIMITER = ",";
     private static final String COLON_DELIMITER = ":";
     private static final int NUMBER = 0;
@@ -34,7 +35,7 @@ public class InputValidator {
         if (isRightNumber(number)) {
             return;
         }
-        throw new RuntimeException();
+        throw new IllegalArgumentException(ERROR_NUMBER_RIGHT_FORMAT);
     }
 
     private static boolean isRightNumber(String number) {
