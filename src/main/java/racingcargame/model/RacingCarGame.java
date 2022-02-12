@@ -34,9 +34,8 @@ public class RacingCarGame {
         carRepository.moveCars();
 
         List<CarVO> cars = new ArrayList<>();
-        for (Car car : carRepository.getCars()) {
-            cars.add(new CarVO(car.getName(), car.getPosition()));
-        }
+        carRepository.getCars()
+                .forEach(car -> cars.add(new CarVO(car.getName(), car.getPosition())));
         return cars;
     }
 
