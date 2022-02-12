@@ -8,25 +8,25 @@ public class Calculator {
 	public static final String CUSTOM_REGEX_PATTERN = "//(.*)\n(.*)";
 	private String delimiter = ",:";
 
-	public int splitAndSumNumber(String inputValue) {
-		if (isEmptyValue(inputValue)) {
+	public int splitAndSumNumber(String userInputText) {
+		if (isEmptyOrNull(userInputText)) {
 			return 0;
 		}
-		return sum(split(inputValue));
+		return sum(split(userInputText));
 	}
 
-	private boolean isEmptyValue(String inputValue) {
-		return inputValue == null || inputValue.isEmpty();
+	private boolean isEmptyOrNull(String userInputText) {
+		return userInputText == null || userInputText.isEmpty();
 	}
 
-	private String[] split(String inputValue) {
-		Matcher matcher = Pattern.compile(CUSTOM_REGEX_PATTERN).matcher(inputValue);
+	private String[] split(String userInputText) {
+		Matcher matcher = Pattern.compile(CUSTOM_REGEX_PATTERN).matcher(userInputText);
 		if (matcher.find()) {
 			String customDelimiter = matcher.group(1);
-			inputValue = matcher.group(2);
+			userInputText = matcher.group(2);
 			addCustomDelimiter(customDelimiter);
 		}
-		return inputValue.split(createNewDelimiter());
+		return userInputText.split(createNewDelimiter());
 	}
 
 	private void addCustomDelimiter(String customDelimiter) {
