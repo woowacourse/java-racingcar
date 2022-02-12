@@ -20,7 +20,7 @@ public class Application {
     }
 
     private static void play() {
-        String executionResult = racingGame.play(getCarNames(), getAttemptCount());
+        String executionResult = racingGame.play(inputCarNames(), inputAttemptCount());
         printExecutionResult(executionResult);
     }
 
