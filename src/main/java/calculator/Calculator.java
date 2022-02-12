@@ -47,8 +47,8 @@ public class Calculator {
     private static String[] split(String input) {
         Matcher matcher = getMatcher(input);
         if (isCustom(matcher)) {
-            String delimeter = matcher.group(DELIMITER_INDEX);
-            return matcher.group(INPUT_INDEX).split(delimeter);
+            String delimiter = matcher.group(DELIMITER_INDEX);
+            return matcher.group(INPUT_INDEX).split(delimiter);
         }
         return input.split(STANDARD_SPLIT_REGEX);
     }
