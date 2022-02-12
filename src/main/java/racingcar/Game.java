@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Game {
-	private static final String WINNER_NAME_DELIMITER = ", ";
 	private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
 	private static final int RANDOM_VALUE_BOUND = 10;
 
@@ -36,8 +35,8 @@ public class Game {
 	}
 
 	private void showWinner(List<Car> winnerCars) {
-		String winnerNames = winnerCars.stream()
-			.map(Car::getName).collect(Collectors.joining(WINNER_NAME_DELIMITER));
+		List<String> winnerNames = winnerCars.stream()
+			.map(Car::getName).collect(Collectors.toList());
 		OutputView.printWinner(winnerNames);
 	}
 
