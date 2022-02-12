@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
     @Test
-    public void 자동차_이동() {
+    public void 랜덤값이_4이상이_나오면_자동차_이동() {
         Car car = new Car("bravo", 0, () -> 5);
         int position = car.getPosition();
         car.move();
@@ -15,7 +15,7 @@ public class CarTest {
     }
 
     @Test
-    public void 자동차_중지() {
+    public void 랜덤값이_4미만이_나오면_자동차_중지() {
         Car car = new Car("bravo", 0, () -> 1);
         int position = car.getPosition();
         car.move();

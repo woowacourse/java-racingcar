@@ -9,8 +9,8 @@ import java.util.List;
 
 public class RaceController {
     private static final int DEFAULT_POSITION = 0;
+
     private List<Car> cars = new ArrayList<>();
-    private RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     public void insertCar(Car car) {
         cars.add(car);
@@ -18,7 +18,7 @@ public class RaceController {
 
     public void insertCarFromCarNames(String[] carNames) {
         for (String carName : carNames) {
-            insertCar(new Car(carName, DEFAULT_POSITION, randomNumberGenerator));
+            insertCar(new Car(carName, DEFAULT_POSITION, new RandomNumberGenerator()));
         }
     }
 
@@ -32,8 +32,7 @@ public class RaceController {
         }
     }
 
-
-    public String[] getWinner() {
+    public String[] getWinners() {
         int maxPosition = getMaxPosition();
 
         return cars.stream()
@@ -52,7 +51,8 @@ public class RaceController {
     public void printPosition() {
         OutputView.printResult(cars);
     }
+
     public void printWinner() {
-        OutputView.printWinner(getWinner());
+        OutputView.printWinner(getWinners());
     }
 }

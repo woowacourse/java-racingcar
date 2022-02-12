@@ -26,5 +26,4 @@ public class OutputView {
         System.out.print(String.join(SPLIT_DELIMITER, winners));
         System.out.println(WINNER_SUFFIX);
     }
-
 }
