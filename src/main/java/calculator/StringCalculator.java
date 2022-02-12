@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import calculator.utils.validator.StringNumberValidator;
+
 public class StringCalculator {
 
 	private static final String CUSTOM_SEPARATOR_START_SIGNATURE = "//";
@@ -12,41 +14,21 @@ public class StringCalculator {
 	private static final String JOINING_SEPARATOR_DELIMITER = "|";
 	private static final String BASIC_SEPARATOR_COMMA = ",";
 	private static final String BASIC_SEPARATOR_COLON = ":";
-	private static final String ZERO_AND_POSITIVE_INTEGER_REGEX = "^(0|[1-9][0-9]*)$";
-	private static final String INVALID_POSITIVE_INTEGER_ERROR_MESSAGE = "양의 정수를 입력 해주세요.";
 
-	public static int calculate(String input) {
-		if (isNullOrEmpty(input)) {
-			return 0;
-		}
-		List<String> numberStringList = split(input);
-		checkRightPositiveInteger(numberStringList);
-		List<Integer> numberList = toNumberList(numberStringList);
+	public static int calculate(List<String> stringNumbers) {
+		checkRightPositiveInteger(stringNumbers);
+		List<Integer> numberList = toNumberList(stringNumbers);
 		return numberList.stream().mapToInt(num -> num).sum();
+	}
+
+	private static void checkRightPositiveInteger(List<String> numberStringList) {
+		numberStringList.forEach(StringNumberValidator::validate);
 	}
 
 	private static List<Integer> toNumberList(List<String> numberStringList) {
 		return numberStringList.stream()
 			.map(Integer::valueOf)
 			.collect(Collectors.toList());
-	}
-
-	private static void checkRightPositiveInteger(List<String> numberStringList) {
-		numberStringList.forEach(StringCalculator::checkNumberStringException);
-	}
-
-	private static void checkNumberStringException(String numberString) {
-		if (!isPositiveInteger(numberString)) {
-			throw new RuntimeException(INVALID_POSITIVE_INTEGER_ERROR_MESSAGE);
-		}
-	}
-
-	private static boolean isNullOrEmpty(String input) {
-		return input == null || input.isBlank();
-	}
-
-	private static boolean isPositiveInteger(String input) {
-		return input.matches(ZERO_AND_POSITIVE_INTEGER_REGEX);
 	}
 
 	private static List<String> split(String input) {
