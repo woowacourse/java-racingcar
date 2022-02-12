@@ -1,12 +1,12 @@
 package racingcar.game;
 
-import racingcar.entity.Car;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import racingcar.domain.Car;
 
 import static racingcar.util.VerificationUtil.*;
 import static racingcar.util.RandomUtil.*;
@@ -14,11 +14,11 @@ import static racingcar.util.RandomUtil.*;
 public class RacingGame {
 
     private List<Car> cars = new ArrayList<>();
-    private int totalAttemptCount;
+    private int totalAttempt;
 
     public void initCarNames(String carNames) {
         String[] names = carNames.split(",");
-        validateDuplication(names);
+        isDuplicated(names);
 
         for (String name : names) {
             cars.add(new Car(name));
@@ -27,13 +27,13 @@ public class RacingGame {
 
     public void initTotalAttempt(String attempt) {
         validateAttempt(attempt);
-        totalAttemptCount = Integer.parseInt(attempt);
+        totalAttempt = Integer.parseInt(attempt);
     }
 
     public String play() {
         StringBuilder totalExecutionResult = new StringBuilder();
 
-        while (totalAttemptCount-- > 0) {
+        while (totalAttempt-- > 0) {
             run();
             totalExecutionResult.append(generateExecutionResult() + "\n");
         }
@@ -53,7 +53,7 @@ public class RacingGame {
 
     private void run() {
         for (Car car : cars) {
-            car.moveOrNot(getRandomNumber());
+            car.moveOrNot(generateRandomNumber());
         }
     }
 

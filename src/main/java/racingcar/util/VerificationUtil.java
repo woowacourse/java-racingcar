@@ -11,18 +11,24 @@ public class VerificationUtil {
     }
 
     public static void validateCarName(String carName, int minLength, int maxLength) {
-        validateEmptyCarName(carName);
-        validateCarNameLength(carName, minLength, maxLength);
-        validateCarNameSpace(carName);
+        isEmpty(carName);
+        doesContainSpace(carName);
+        isValidLength(carName, minLength, maxLength);
     }
 
-    private static void validateEmptyCarName(String carName) {
+    private static void isEmpty(String carName) {
         if (carName == null || carName.length() == 0) {
             throw new IllegalArgumentException(EMPTY_CAR_NAME);
         }
     }
 
-    private static void validateCarNameLength(String carName, int minLength, int maxLength) {
+    private static void doesContainSpace(String carName) {
+        if (carName.contains(" ")) {
+            throw new IllegalArgumentException(NO_SPACE);
+        }
+    }
+
+    private static void isValidLength(String carName, int minLength, int maxLength) {
         if (carName.length() < minLength) {
             throw new IllegalArgumentException(MORE_THAN_ONE_LETTER);
         }
@@ -32,13 +38,7 @@ public class VerificationUtil {
         }
     }
 
-    private static void validateCarNameSpace(String carName) {
-        if (carName.contains(" ")) {
-            throw new IllegalArgumentException(NO_SPACE);
-        }
-    }
-
-    public static void validateDuplication(String[] carNames) {
+    public static void isDuplicated(String[] carNames) {
         HashSet<String> hashSet = new HashSet<>(Arrays.asList(carNames));
 
         if (hashSet.size() < carNames.length) {
@@ -47,20 +47,20 @@ public class VerificationUtil {
     }
 
     public static void validateAttempt(String attempt) {
-        int number = validateInteger(attempt);
-        validatePositiveNumber(number);
+        int num = isInteger(attempt);
+        isPositive(num);
     }
 
-    private static int validateInteger(String attempt) {
+    private static int isInteger(String num) {
         try {
-            return Integer.parseInt(attempt);
+            return Integer.parseInt(num);
         } catch (Exception e) {
             throw new IllegalArgumentException(MUST_BE_INTEGER);
         }
     }
 
-    private static void validatePositiveNumber(int number) {
-        if (number <= 0) {
+    private static void isPositive(int num) {
+        if (num <= 0) {
             throw new IllegalArgumentException(MUST_BE_POSITIVE);
         }
     }
