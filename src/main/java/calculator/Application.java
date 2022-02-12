@@ -12,12 +12,12 @@ import java.util.stream.Stream;
 public class Application {
     private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
     private static final String BASE_DELIMITER_PATTERN = ",|:";
-    public static final String COMMA = ",";
-    public static final String COLON = ":";
-    public static final String OR = "|";
-    public static final int NUMBER = 0;
-    public static final int DELIMITER = 1;
-    public static final int NUMBERS = 2;
+    private static final String COMMA = ",";
+    private static final String COLON = ":";
+    private static final String OR = "|";
+    private static final int NUMBER = 0;
+    private static final int DELIMITER = 1;
+    private static final int NUMBERS = 2;
 
     private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
