@@ -1,22 +1,20 @@
 package racingcar.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import racingcar.model.CarDto;
 import racingcar.model.Cars;
-import racingcar.model.RandomNo;
+import racingcar.model.Random;
 
 class CarController {
 	private static final String CAR_NAME_DELIMITER = ",";
 	private final Cars cars;
-	private final RandomNo randomNo;
+	private final Random random;
 
 	CarController() {
 		this.cars = new Cars();
-		this.randomNo = new RandomNo();
+		this.random = new Random();
 	}
 
 	String[] splitCarNames(String input) {
@@ -27,7 +25,7 @@ class CarController {
 
 	void run() {
 		int numberOfCars = cars.getSize();
-		cars.move(createRandomNumbers(numberOfCars));
+		cars.move(random.createNumbers(numberOfCars));
 	}
 
 	List<CarDto> getWinners() {
@@ -41,11 +39,5 @@ class CarController {
 	void createCars(String carNames) {
 		String[] splitCarNames = splitCarNames(carNames);
 		cars.createCars(splitCarNames);
-	}
-
-	private List<Integer> createRandomNumbers(int size) {
-		return IntStream.range(0, size)
-			.mapToObj(i -> randomNo.getNumber())
-			.collect(Collectors.toList());
 	}
 }
