@@ -1,9 +1,9 @@
 package junit;
 
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
 
@@ -23,7 +23,7 @@ public class StringTest {
 	@DisplayName("String index 범위 테스트")
 	void stringIndexOfTest() {
 		String actual = "abc";
-		assertThatThrownBy(() ->{
+		assertThatThrownBy(() -> {
 			actual.charAt(4);
 		}).isInstanceOf(StringIndexOutOfBoundsException.class);
 	}

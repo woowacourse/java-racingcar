@@ -48,7 +48,7 @@ public class StringCalculatorTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = {"1,2:3","//+\n1+2+3"})
+	@ValueSource(strings = {"1,2:3", "//+\n1+2+3"})
 	void SplitAndSum(String input) {
 		int expected = 6;
 		assertThat(calculator.splitAndSum(input)).isEqualTo(expected);
