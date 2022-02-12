@@ -9,6 +9,9 @@ public class CarName {
     private final String value;
 
     public CarName(final String value) {
+        if (value == null) {
+            throw new NullPointerException("자동차 이름에 null이 들어왔습니다.");
+        }
         validateLength(value);
         validateBlank(value);
         this.value = value;
