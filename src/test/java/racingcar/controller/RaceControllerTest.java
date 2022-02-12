@@ -26,7 +26,7 @@ public class RaceControllerTest {
         raceController.insertCar(new Car("A", 1, () -> 1));
         raceController.insertCar(new Car("B", 3, () -> 1));
         raceController.insertCar(new Car("C", 4, () -> 1));
-        assertThat(raceController.getWinner()).contains("C");
+        assertThat(raceController.getWinners()).contains("C");
     }
 
     @Test
@@ -34,6 +34,6 @@ public class RaceControllerTest {
         raceController.insertCar(new Car("A", 1, () -> 1));
         raceController.insertCar(new Car("B", 1, () -> 1));
         raceController.insertCar(new Car("C", 1, () -> 1));
-        assertThat(raceController.getWinner()).contains("A","B","C");
+        assertThat(raceController.getWinners()).contains("A","B","C");
     }
 }

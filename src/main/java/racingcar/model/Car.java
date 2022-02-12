@@ -4,6 +4,7 @@ import racingcar.util.NumberGenerator;
 
 public class Car {
     private static final int STANDARD = 4;
+
     private String name;
     private int position;
     private NumberGenerator numberGenerator;
