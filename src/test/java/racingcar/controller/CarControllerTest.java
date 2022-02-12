@@ -2,14 +2,9 @@ package racingcar.controller;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import racingcar.model.Car;
-import racingcar.model.CarRepository;
-
 public class CarControllerTest {
-
 
 	@Test
 	void 자동차_이름_파싱() {
@@ -24,7 +19,7 @@ public class CarControllerTest {
 	void 자동차_이름_중복() {
 		CarController carController = new CarController();
 		String userInputCarNames = "  범고래, 범고래,   고래  ";
-		
+
 		assertThatThrownBy(() -> carController.createCars(userInputCarNames))
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("중복");
