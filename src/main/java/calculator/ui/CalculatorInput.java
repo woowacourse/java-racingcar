@@ -1,5 +1,6 @@
-package calculator;
+package calculator.ui;
 
+import calculator.CalculatorMain;
 import calculator.domain.UserInputForm;
 import calculator.utils.validator.UserInputValidator;
 
