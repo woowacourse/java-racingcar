@@ -7,7 +7,7 @@ public class Calculator {
 
 	public static final String CUSTOM_REGEX_PATTERN = "//(.*)\n(.*)";
 	public static final Pattern CUSTOM_PATTERN = Pattern.compile(CUSTOM_REGEX_PATTERN);
-	private String delimiter = ",:";
+	private String DEFAULT_DELIMITER = ",|:";
 
 	public int splitAndSumNumber(String userInputText) {
 		if (isEmptyOrNull(userInputText)) {
@@ -23,19 +23,14 @@ public class Calculator {
 	private String[] split(String userInputText) {
 		Matcher customMatcher = CUSTOM_PATTERN.matcher(userInputText);
 		if (customMatcher.find()) {
-			String customDelimiter = customMatcher.group(1);
-			userInputText = customMatcher.group(2);
-			addCustomDelimiter(customDelimiter);
+			return customSplit(customMatcher);
 		}
-		return userInputText.split(createNewDelimiter());
+		return userInputText.split(DEFAULT_DELIMITER);
 	}
 
-	private void addCustomDelimiter(String customDelimiter) {
-		delimiter += customDelimiter;
-	}
-
-	private String createNewDelimiter() {
-		return String.join("|", delimiter.split(""));
+	private String[] customSplit(Matcher customMatcher) {
+		String customDelimiter = customMatcher.group(1);
+		return customMatcher.group(2).split(customDelimiter);
 	}
 
 	private int sum(String[] values) {
