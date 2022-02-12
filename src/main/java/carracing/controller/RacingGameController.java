@@ -11,7 +11,6 @@ import carracing.view.OutputView;
 
 public class RacingGameController {
 	private static final int END_OF_GAME_COUNT = 0;
-	private static final String DELIMITER_REGEX = ",";
 	private static final String DELIMITER_JOIN = ",";
 
 	private Cars cars;
@@ -36,8 +35,7 @@ public class RacingGameController {
 
 	private void getCars() {
 		OutputView.printInputCarName();
-		String readLine = InputView.getCarNames();
-		List<String> carNames = splitCarNames(readLine);
+		List<String> carNames = InputView.getCarNames();
 		try {
 			createCars(carNames);
 		} catch (IllegalArgumentException e) {
@@ -58,10 +56,6 @@ public class RacingGameController {
 
 	private void endGame() {
 		OutputView.printWinners(String.join(DELIMITER_JOIN, cars.getWinners()));
-	}
-
-	private List<String> splitCarNames(String readLine) {
-		return Arrays.asList(readLine.split(DELIMITER_REGEX));
 	}
 
 	private void createCars(List<String> carNames) {
