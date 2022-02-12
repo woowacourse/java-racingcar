@@ -8,7 +8,7 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        name = removeWhiteSpaces(name);
+        name = removeLeadingAndTrailingSpace(name);
         validateLength(name);
         this.name = name;
     }
@@ -19,7 +19,7 @@ public class Name {
         }
     }
 
-    private String removeWhiteSpaces(String name) {
+    private String removeLeadingAndTrailingSpace(String name) {
         return name.trim();
     }
 

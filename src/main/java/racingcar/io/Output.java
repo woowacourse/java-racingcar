@@ -8,6 +8,7 @@ import racingcar.dto.Winners;
 
 public class Output {
     private static final String NAME_DELIMITER = ", ";
+    private static final String CAR_ADVANCE_EXPRESSION = "-";
 
     public void printCurrentPosition(List<CarValue> cars) {
         cars.forEach(this::printRacingProgress);
@@ -21,7 +22,7 @@ public class Output {
     private String getPositionString(int position) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < position; i++) {
-            builder.append("-");
+            builder.append(CAR_ADVANCE_EXPRESSION);
         }
         return builder.toString();
     }

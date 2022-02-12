@@ -21,7 +21,7 @@ public class RacingGame {
         output.printWinner(race(cars, trial.getCount()));
     }
 
-    public Winners race(Cars cars, int trials) {
+    private Winners race(Cars cars, int trials) {
         for (int round = 0; round < trials; round++) {
             cars.move();
             output.printCurrentPosition(cars.getCars());

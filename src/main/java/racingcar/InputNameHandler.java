@@ -6,22 +6,27 @@ import java.util.stream.Collectors;
 import racingcar.vo.Name;
 
 public class InputNameHandler {
+    private static final String NAME_DELIMITER = ",";
+
     private InputNameHandler() {}
 
     public static List<Name> inputToNames(String input) {
-        String[] split = splitByComma(input);
-        validateDuplicate(split);
+        return convertArrayToNames(splitByComma(input));
+    }
 
-        return Arrays.stream(split)
+    private static List<Name> convertArrayToNames(String[] names) {
+        validateDuplicateName(names);
+
+        return Arrays.stream(names)
             .map(Name::create)
             .collect(Collectors.toList());
     }
 
     private static String[] splitByComma(String input) {
-        return input.split(",");
+        return input.split(NAME_DELIMITER);
     }
 
-    private static void validateDuplicate(String[] names) {
+    private static void validateDuplicateName(String[] names) {
         if (names.length != distinctCount(names)) {
             throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
         }

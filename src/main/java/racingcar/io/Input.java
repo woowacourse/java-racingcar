@@ -19,13 +19,13 @@ public class Input {
     }
 
     private int validateNumeric(String numberInput) {
-        if (isNumeric(numberInput)) {
+        if (!matchStringIsNumber(numberInput)) {
             throw new IllegalArgumentException("올바른 숫자를 입력해주세요.");
         }
         return Integer.parseInt(numberInput);
     }
 
-    private boolean isNumeric(String numberInput) {
-        return !numberInput.chars().allMatch(Character::isDigit);
+    private boolean matchStringIsNumber(String numberInput) {
+        return numberInput.chars().allMatch(Character::isDigit);
     }
 }
