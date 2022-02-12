@@ -8,17 +8,17 @@ public class InputView {
     public static final String ERROR_MESSAGE_FOR_INVALID_TRIAL_INPUT = "올바른 숫자를 입력해주세요.";
     public static final int MINIMUM_TRIAL = 1;
 
-    private final static Scanner scanner = new Scanner(System.in);
+    private final static Scanner SCANNER = new Scanner(System.in);
 
     public static String getCarNames() {
         System.out.println(INPUT_CAR_NAMES);
 
-        return scanner.nextLine();
+        return SCANNER.nextLine();
     }
 
     public static int getTrial() {
         System.out.println(INPUT_TRIALS);
-        final String trialInput = scanner.nextLine();
+        final String trialInput = SCANNER.nextLine();
 
         validateTrialInput(trialInput);
         return stringToInt(trialInput);
