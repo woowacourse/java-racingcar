@@ -7,9 +7,9 @@ public class Car {
 	private static final int FORWARD_STANDARD = 4;
 	private static final int INITIAL_POSITION = 0;
 
-	final RandomNumber randomNumber;
-	final String name;
-	int position;
+	private final RandomNumber randomNumber;
+	private final String name;
+	private int position;
 
 	public Car(final RandomNumber randomNumber, final String name) {
 		this.randomNumber = randomNumber;
