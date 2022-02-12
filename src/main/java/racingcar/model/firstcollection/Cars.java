@@ -9,6 +9,7 @@ import racingcar.model.vo.Car;
 
 public class Cars {
     private static final String MESSAGE_FOR_CAR_NAME_DUPLICATE = "이름은 중복될 수 없습니다.";
+    private static final int RANGE_OF_ZERO_TO_NINE = 10;
 
     private final List<Car> cars;
 
@@ -37,7 +38,7 @@ public class Cars {
     }
 
     private int getRandomNumber() {
-        return RandomUtil.getNumbersInRange(10);
+        return RandomUtil.getNumbersInRange(RANGE_OF_ZERO_TO_NINE);
     }
 
     public List<String> getWinner() {
