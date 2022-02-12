@@ -12,15 +12,14 @@ public class CarController {
     private static final String DELIMITER = ",";
 
     public void run() {
-        RacingGame racingGame = new RacingGame();
-
         String carNames = getCarNamesFromUser();
         int count = getCountFromUser();
-
         List<Car> cars = makeCars(carNames.split(DELIMITER));
 
-        racingGame.play(count, cars);
-        OutputView.printWinners(racingGame.findWinners(cars));
+        RacingGame racingGame = new RacingGame(cars, count);
+        racingGame.play();
+
+        OutputView.printWinners(racingGame.findWinners());
     }
 
     private List<Car> makeCars(String[] names) {
