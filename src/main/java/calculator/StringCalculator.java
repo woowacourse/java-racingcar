@@ -39,13 +39,13 @@ public class StringCalculator {
 
     private static void validateRightCustomDelimiter(String customDelimiter) {
         if (!Pattern.matches(REGEX_CUSTOM, customDelimiter)) {
-            throw new RuntimeException(NOT_VALID_DELIMITER);
+            throw new IllegalArgumentException(NOT_VALID_DELIMITER);
         }
     }
 
     private static void validateDelimiterNotNumber(String customDelimiter) {
         if (Character.isDigit(customDelimiter.charAt(DELIMITER_INDEX))) {
-            throw new RuntimeException(NO_NUMBER_AS_DELIMITER);
+            throw new IllegalArgumentException(NO_NUMBER_AS_DELIMITER);
         }
     }
 
@@ -65,7 +65,7 @@ public class StringCalculator {
 
     private static void validatePositiveNumber(int toInt) {
         if (toInt < 0) {
-            throw new RuntimeException(NOT_VALID_RANGE);
+            throw new IllegalArgumentException(NOT_VALID_RANGE);
         }
     }
 
