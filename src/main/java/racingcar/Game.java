@@ -30,7 +30,7 @@ public class Game {
 
 	private void showResult(Set<Car> cars) {
 		for (Car car : cars) {
-			OutputView.printLineString(car.toString());
+			OutputView.printCarPosition(new CarDto(car.getName(), car.getPosition()));
 		}
 		OutputView.printBlankLine();
 	}
