@@ -7,13 +7,9 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void startMessage() {
+    public static void printExecutionResult(String progressStatement) {
         System.out.println("\n실행 결과");
-    }
-
-    public static void printProgress(String carName, int position) {
-        String positionSign = "-".repeat(position);
-        System.out.println(carName + " : " + positionSign);
+        System.out.println(progressStatement);
     }
 
     public static void printWinners(List<String> winners) {

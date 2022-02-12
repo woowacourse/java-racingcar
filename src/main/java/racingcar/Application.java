@@ -2,15 +2,30 @@ package racingcar;
 
 import racingcar.game.RacingGame;
 
-import static racingcar.view.OutputView.printErrorMessage;
+import java.util.List;
+
+import static racingcar.view.InputView.*;
+import static racingcar.view.OutputView.*;
 
 public class Application {
+    static RacingGame racingGame = new RacingGame();
+
     public static void main(String[] args) {
-        RacingGame racingGame = new RacingGame();
         try {
-            racingGame.start();
+            play();
+            selectAndPrintWinners();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
         }
+    }
+
+    private static void play() {
+        String executionResult = racingGame.play(getCarNames(), getAttemptCount());
+        printExecutionResult(executionResult);
+    }
+
+    private static void selectAndPrintWinners() {
+        List<String> nameOfWinners = racingGame.selectWinners();
+        printWinners(nameOfWinners);
     }
 }

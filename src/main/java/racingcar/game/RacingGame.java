@@ -1,87 +1,73 @@
 package racingcar.game;
 
 import racingcar.entity.Car;
-import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static racingcar.util.VerificationUtil.*;
-import static racingcar.view.InputView.getAttemptCount;
-import static racingcar.view.InputView.getCarNames;
-import static racingcar.view.OutputView.*;
 
 public class RacingGame {
 
-    private List<Car> carList = new ArrayList<>();
-    private List<String> winners = new ArrayList<>();
+    private List<Car> cars = new ArrayList<>();
     private int totalAttemptCount;
 
-    public void start() {
-        initRacingCarGame();
-        startMessage();
+    public String play(String carNames, String attempt) {
+        initRacingCarGame(carNames, attempt);
 
+        StringBuilder totalExecutionResult = new StringBuilder();
         while (totalAttemptCount-- > 0) {
             run();
+            totalExecutionResult.append(generateExecutionResult() + "\n");
         }
 
-        getWinners();
-        printWinners(winners);
+        return totalExecutionResult.toString();
     }
 
-    private void initRacingCarGame() throws IllegalArgumentException {
-        initCarNames();
-        initTotalAttempt();
+    public List<String> selectWinners() {
+        Collections.sort(cars);
+        int maxPosition = cars.get(0).getPosition();
+
+        return cars.stream()
+                .filter(c -> c.getPosition() == maxPosition)
+                .map(c -> c.getName())
+                .collect(Collectors.toList());
     }
 
-    private void initCarNames() {
-        String[] names = getCarNames().split(",");
+    private void initRacingCarGame(String carNames, String attempt) {
+        initCarNames(carNames);
+        initTotalAttempt(attempt);
+    }
+
+    private void initCarNames(String carNames) {
+        String[] names = carNames.split(",");
         validateDuplication(names);
 
         for (String name : names) {
             validateCarName(name);
-            carList.add(new Car(name));
+            cars.add(new Car(name));
         }
     }
 
-    private void initTotalAttempt() {
-        String attempt = getAttemptCount();
+    private void initTotalAttempt(String attempt) {
         validateAttempt(attempt);
         totalAttemptCount = Integer.parseInt(attempt);
     }
 
     private void run() {
-        for (Car car : carList) {
+        for (Car car : cars) {
             car.progress();
         }
-        printProgress();
-        printLine();
     }
 
-    private void printProgress() {
-        for (Car car : carList) {
-            String carName = car.getName();
-            int position = car.getPosition();
-
-            OutputView.printProgress(carName, position);
+    private String generateExecutionResult() {
+        StringBuilder statement = new StringBuilder();
+        for (Car car : cars) {
+            statement.append(car.toString());
         }
+        return statement.toString();
     }
 
-    private void getWinners() {
-        Collections.sort(carList);
-
-        int maxPosition = carList.get(0).getPosition();
-
-        for (int i = 0; i < carList.size(); i++) {
-            Car car = carList.get(i);
-            isWinner(car, maxPosition);
-        }
-    }
-
-    private void isWinner(Car car, int maxPosition) {
-        if (car.getPosition() == maxPosition) {
-            winners.add(car.getName());
-        }
-    }
 }
