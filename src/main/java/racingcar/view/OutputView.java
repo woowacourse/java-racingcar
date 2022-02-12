@@ -4,18 +4,15 @@ import java.util.List;
 
 public class OutputView {
 
-    public static void startMessage() {
-        printLine();
-        System.out.println("실행 결과");
+    private OutputView() {
     }
 
-    public static void printLine() {
-        System.out.println();
+    public static void startMessage() {
+        System.out.println("\n실행 결과");
     }
 
     public static void printProgress(String carName, int position) {
         String positionSign = "-".repeat(position);
-
         System.out.println(carName + " : " + positionSign);
     }
 
