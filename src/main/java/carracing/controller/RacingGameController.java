@@ -10,7 +10,7 @@ import carracing.view.InputView;
 import carracing.view.OutputView;
 
 public class RacingGameController {
-	public static final int ZERO = 0;
+	public static final int END_OF_GAME_COUNT = 0;
 	public static final String DELIMITER_REGEX = ",";
 	public static final String DELIMITER_JOIN = ",";
 
@@ -27,9 +27,9 @@ public class RacingGameController {
 
 	public void play() {
 		OutputView.printResultMessage();
-		while ((numberOfGames--) > ZERO) {
+		while ((numberOfGames--) > END_OF_GAME_COUNT) {
 			cars.moveCars();
-			cars.printResult();
+			OutputView.printResultOfEachGame(cars.getCars());
 		}
 		endGame();
 	}
