@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.service.RandomNumberService;
+
 public class Cars {
 	private final List<Car> cars;
 
@@ -12,7 +14,7 @@ public class Cars {
 	}
 
 	public void moveCars() {
-		cars.forEach(Car::move);
+		cars.forEach(car -> car.move(RandomNumberService.getRandomNumber()));
 	}
 
 	public List<String> getPosition() {

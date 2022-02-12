@@ -50,10 +50,10 @@ public class RacingCarTest {
 	// }
 
 	@Test
-	public void 전진_조건() {
-		Car car = new Car("아스피");
-		boolean result = car.checkMovingCondition(4);
-		assertThat(result).isEqualTo(true);
+	public void 전진_여부() {
+		Car testCar = new Car("아스피", 2);
+		testCar.move(4);
+		assertThat(testCar.isSamePosition(new Car("배카라", 3))).isEqualTo(true);
 	}
 
 	@Test

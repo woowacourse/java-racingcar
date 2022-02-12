@@ -2,8 +2,6 @@ package racingcar.model;
 
 import java.util.List;
 
-import racingcar.service.RandomNumberService;
-
 public class Car implements Comparable<Car> {
 	private static final String NULL_EMPTY_CAR_NAME_ERROR_MESSAGE = "[Error] 다시 이름을 입력하세요";
 	private static final int MAX_CAR_NAME_LENGTH = 5;
@@ -57,14 +55,10 @@ public class Car implements Comparable<Car> {
 		return position - other.position;
 	}
 
-	public void move() {
-		if (checkMovingCondition(RandomNumberService.getRandomNumber())) {
+	public void move(int number) {
+		if (number >= MOVING_CONDITION_NUMBER) {
 			position += 1;
 		}
-	}
-
-	public boolean checkMovingCondition(int randomNumber) {
-		return randomNumber >= MOVING_CONDITION_NUMBER;
 	}
 
 	public boolean isSamePosition(Car otherCar) {
