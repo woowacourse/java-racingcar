@@ -9,6 +9,7 @@ import racingcar.model.Random;
 
 class CarController {
 	private static final String CAR_NAME_DELIMITER = ",";
+
 	private final Cars cars;
 	private final Random random;
 

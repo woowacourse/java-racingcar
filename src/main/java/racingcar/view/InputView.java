@@ -8,6 +8,7 @@ public class InputView {
 	private static final String GET_ITERATION_NUMBER_MESSAGE = "시도할 회수는 몇회인가요?";
 	private static final String ERROR_GET_POSITIVE_MESSAGE = "양수를 입력해주세요.";
 	private static final String ERROR_GET_NOT_EMPTY_MESSAGE = "빈 값을 입력하셨습니다. 양수를 입력해주세요.";
+
 	private static final Scanner scanner = new Scanner(System.in);
 
 	public static String getCarNames() {

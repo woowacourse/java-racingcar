@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 public class Random {
 	private static final int RANDOM_BOUND = 10;
+
 	private final ThreadLocalRandom random = ThreadLocalRandom.current();
 
 	public List<Integer> createNumbers(int size) {
