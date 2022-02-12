@@ -8,19 +8,19 @@ public class CarName {
     private static final int MAX_LENGTH_OF_CAR_NAME = 5;
     private final String value;
 
-    public CarName(String value) {
+    public CarName(final String value) {
         validateLength(value);
         validateBlank(value);
         this.value = value;
     }
 
-    private void validateLength(String value) {
+    private void validateLength(final String value) {
         if (value.length() > MAX_LENGTH_OF_CAR_NAME) {
             throw new IllegalArgumentException(ExceptionMessage.LONGER_THAN_FIVE_CAR_NAME);
         }
     }
 
-    private void validateBlank(String value) {
+    private void validateBlank(final String value) {
         if (value.isBlank()) {
             throw new IllegalArgumentException(ExceptionMessage.BLANK_CAR_NAME);
         }
@@ -31,7 +31,7 @@ public class CarName {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CarName carName = (CarName) o;

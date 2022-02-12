@@ -8,7 +8,7 @@ public class RandomNumberOverThanFour implements Movement {
     private final Random random = new Random();
 
     public boolean move() {
-        int randomNumber = random.nextInt(MAX_RANDOM_NUMBER_BOUNDARY);
+        final int randomNumber = random.nextInt(MAX_RANDOM_NUMBER_BOUNDARY);
         if (randomNumber >= NUMBER_POSSIBLE_TO_MOVE) {
             return true;
         }

@@ -12,7 +12,7 @@ public class RacingController {
     private final Cars cars;
     private int trialCount;
 
-    public RacingController(InputView inputView, OutputView outputView, Movement movement) {
+    public RacingController(final InputView inputView, final OutputView outputView, final Movement movement) {
         cars = new Cars(inputView.inputCarNames());
         trialCount = inputView.inputTrialCount();
         this.outputView = outputView;

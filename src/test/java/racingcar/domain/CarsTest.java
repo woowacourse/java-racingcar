@@ -13,10 +13,10 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class CarsTest {
-    private Cars cars = new Cars(Arrays.asList("abc", "def", "ghi"));
-    private boolean[] definedMovement = {false, true, true};
+    private final Cars cars = new Cars(Arrays.asList("abc", "def", "ghi"));
+    private final boolean[] definedMovement = {false, true, true};
     private int index = 0;
-    private Movement movement = () -> definedMovement[index++];
+    private final Movement movement = () -> definedMovement[index++];
 
     @BeforeEach
     void setUp() {
@@ -35,21 +35,21 @@ class CarsTest {
     @Test
     @DisplayName("자동차들을 전진시키고 반환한다")
     void move_getCars() {
-        List<CarDto> movedCar = cars.getCarInfos();
-        CarDto abc = new CarDto("abc", 0);
-        CarDto def = new CarDto("def", 1);
-        CarDto ghi = new CarDto("ghi", 1);
-        List<CarDto> expected = Arrays.asList(abc, def, ghi);
+        final List<CarDto> movedCar = cars.getCarInfos();
+        final CarDto abc = new CarDto("abc", 0);
+        final CarDto def = new CarDto("def", 1);
+        final CarDto ghi = new CarDto("ghi", 1);
+        final List<CarDto> expected = Arrays.asList(abc, def, ghi);
         assertThat(movedCar).isEqualTo(expected);
     }
 
     @Test
     @DisplayName("가장 멀리 간 자동차들을 반환한다.")
     void getFarthestCar() {
-        CarDto def = new CarDto("def", 1);
-        CarDto ghi = new CarDto("ghi", 1);
-        List<CarDto> actual = cars.getFarthestCar();
-        List<CarDto> expected = Arrays.asList(def,ghi);
+        final CarDto def = new CarDto("def", 1);
+        final CarDto ghi = new CarDto("ghi", 1);
+        final List<CarDto> actual = cars.getFarthestCar();
+        final List<CarDto> expected = Arrays.asList(def,ghi);
         assertThat(actual).isEqualTo(expected);
     }
 }

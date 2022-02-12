@@ -3,10 +3,10 @@ package racingcar.dto;
 import java.util.Objects;
 
 public class CarDto {
-    private String carName;
-    private int distance;
+    private final String carName;
+    private final int distance;
 
-    public CarDto(String carName, int distance){
+    public CarDto(final String carName, final int distance){
         this.carName = carName;
         this.distance = distance;
     }
@@ -20,7 +20,7 @@ public class CarDto {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CarDto carDto = (CarDto) o;

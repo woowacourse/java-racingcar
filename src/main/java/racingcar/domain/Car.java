@@ -9,12 +9,12 @@ public class Car {
     private final CarName carName;
     private int distance;
 
-    public Car(String carName) {
+    public Car(final String carName) {
         this.carName = new CarName(carName);
         distance = INITIAL_DISTANCE;
     }
 
-    public void move(boolean movement) {
+    public void move(final boolean movement) {
         if (movement) {
             distance++;
         }
@@ -24,12 +24,12 @@ public class Car {
         return new CarDto(carName.value(), distance);
     }
 
-    public boolean isFartherThan(Car another) {
+    public boolean isFartherThan(final Car another) {
         return this.distance >= another.distance;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;

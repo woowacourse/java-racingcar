@@ -27,7 +27,7 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printWinners(List<CarDto> winners) {
-        StringJoiner winnerNames = new StringJoiner(WINNER_DELIMITER);
+        final StringJoiner winnerNames = new StringJoiner(WINNER_DELIMITER);
         for (CarDto winner : winners) {
             winnerNames.add(winner.carName());
         }

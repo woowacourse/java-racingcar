@@ -10,20 +10,20 @@ import java.util.stream.Collectors;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<String> carNames) {
+    public Cars(final List<String> carNames) {
         validateDuplication(carNames);
         this.cars = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
 
-    private void validateDuplication(List<String> carNames) {
+    private void validateDuplication(final List<String> carNames) {
         if (carNames.stream().distinct().count() != carNames.size()) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_CAR_NAMES);
         }
     }
 
-    public void move(Movement movement) {
+    public void move(final Movement movement) {
         cars.forEach(car -> car.move(movement.move()));
     }
 
@@ -40,7 +40,7 @@ public class Cars {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private boolean isHighest(Car standardCar) {
+    private boolean isHighest(final Car standardCar) {
         return cars.stream().allMatch(standardCar::isFartherThan);
     }
 }

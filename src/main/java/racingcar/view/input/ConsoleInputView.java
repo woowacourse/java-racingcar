@@ -16,7 +16,7 @@ public class ConsoleInputView implements InputView {
 
     public List<String> inputCarNames() {
         System.out.println(CARNAME_INPUT_ALERT_MESSAGE);
-        String inputCarNames = scanner.nextLine();
+        final String inputCarNames = scanner.nextLine();
         validateBlankInput(inputCarNames);
         return Arrays.stream(inputCarNames.split(NAME_DELIMITER))
                 .collect(Collectors.toList());
