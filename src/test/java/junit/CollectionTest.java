@@ -25,7 +25,7 @@ public class CollectionTest {
 
 	@Test
 	void size() {
-		assertThat(numbers.size()).isEqualTo(4);
+		assertThat(numbers.size()).isEqualTo(3);
 	}
 
 	@ParameterizedTest
