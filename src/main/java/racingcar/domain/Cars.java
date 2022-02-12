@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private final List<Car> cars;
+    private final List<Car> values;
 
     public Cars(final List<String> carNames) {
         validateDuplication(carNames);
-        this.cars = carNames.stream()
+        this.values = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
@@ -24,23 +24,23 @@ public class Cars {
     }
 
     public void move(final Movement movement) {
-        cars.forEach(car -> car.move(movement.move()));
+        values.forEach(car -> car.move(movement.move()));
     }
 
     public List<CarDto> getCarInfos() {
-        return cars.stream()
+        return values.stream()
                 .map(Car::info)
                 .collect(Collectors.toUnmodifiableList());
     }
 
     public List<CarDto> getFarthestCar() {
-        return cars.stream()
+        return values.stream()
                 .filter(this::isHighest)
                 .map(Car::info)
                 .collect(Collectors.toUnmodifiableList());
     }
 
     private boolean isHighest(final Car standardCar) {
-        return cars.stream().allMatch(standardCar::isFartherThan);
+        return values.stream().allMatch(standardCar::isFartherThan);
     }
 }
