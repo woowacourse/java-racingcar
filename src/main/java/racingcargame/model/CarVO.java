@@ -1,8 +1,8 @@
 package racingcargame.model;
 
 public class CarVO {
-    String name;
-    int position;
+    private final String name;
+    private final int position;
 
     public CarVO(String name, int position) {
         this.name = name;
