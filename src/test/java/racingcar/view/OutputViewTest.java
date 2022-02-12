@@ -31,7 +31,7 @@ class OutputViewTest {
     }
 
     @Test
-    @DisplayName("자동자 경주 라운드별 기록 출력")
+    @DisplayName("자동자 경주 라운드별 기록 출력 검사")
     public void print_racing_round_record() {
         cars.forEach(car -> car.drive(4));
         RacingRecord racingRecord = new RacingRecord(cars);
@@ -42,7 +42,7 @@ class OutputViewTest {
     }
 
     @Test
-    @DisplayName("자동차 경주 우승자 이름 출력")
+    @DisplayName("자동차 경주 우승자 이름 출력 검사")
     public void print_racing_winners() {
         cars.forEach(car -> car.drive(4));
         RacingResult racingResult = new RacingResult(cars);

@@ -7,18 +7,21 @@ import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
     @Test
+    @DisplayName("문자열 구분자 split 검사")
     public void splitAndSum_comma() {
         String[] values = "1,2".split(",");
         assertThat(values).containsExactly("1", "2");
     }
 
     @Test
+    @DisplayName("문자열 숫자 하나만 구분자 split 검사")
     public void splitAndSum_single() {
         String[] values = "1".split(",");
         assertThat(values).contains("1");
     }
 
     @Test
+    @DisplayName("문자열에서 소괄호 제거 검사")
     public void remove_round_brackets() {
         String value = "(1,2)".replaceAll("[()]", "");
         assertThat(value).isEqualTo("1,2");

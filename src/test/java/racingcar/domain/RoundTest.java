@@ -10,11 +10,11 @@ class RoundTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    @DisplayName("시도 횟수 카운팅 감소")
+    @DisplayName("남은 자동차 경주 횟수 카운팅 테스트")
     public void round_value_discount(int value) {
         Round round = new Round(value);
         for (int i = 0; i < value; i++) {
-            round = round.hasNext();
+            round = round.toNextRound();
         }
 
         assertThat(round).isEqualTo(new Round(0));

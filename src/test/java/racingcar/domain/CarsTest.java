@@ -48,7 +48,7 @@ class CarsTest {
 
     @ParameterizedTest
     @CsvSource(value = {"rookie:is2js"}, delimiter = ':')
-    @DisplayName("자동차 경주 우승자 판별 기능")
+    @DisplayName("우승 자동차(들) 정상 추출 확인 테스트")
     public void drive_winners(String name1, String name2) {
         Car car1 = new Car(name1);
         Car car2 = new Car(name2);

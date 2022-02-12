@@ -10,7 +10,7 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(ints = {4,5})
-    @DisplayName("값이 4이상인 경우 자동차 전진 기능")
+    @DisplayName("자동차 이동시 랜덤값이 4이상인 경우 position변화 테스트")
     public void drive_forward_value(int value) {
         Car car = new Car("Rookie");
         car.drive(value);
@@ -20,7 +20,7 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1,3})
-    @DisplayName("값이 3이하 경우 자동차 정지 기능")
+    @DisplayName("자동차 이동시 랜덤값이 3이하인 경우 position변화 테스트")
     public void drive_stop_value(int value) {
         Car car = new Car("is2js");
         car.drive(value);
