@@ -10,6 +10,7 @@ import racingcar.utils.RandomIntegerGenerator;
 public class RacingService {
 	private static final int START_RANDOM_NUMBER = 0;
 	private static final int END_RANDOM_NUMBER = 9;
+	public static final int MIN_POSITION = 0;
 	private final List<Car> cars;
 
 	public RacingService(List<Car> cars) {
@@ -33,7 +34,7 @@ public class RacingService {
 		return cars.stream()
 			.mapToInt(Car::getPosition)
 			.max()
-			.orElseThrow(IllegalStateException::new);
+			.orElse(MIN_POSITION);
 	}
 
 	private void raceRound() {
