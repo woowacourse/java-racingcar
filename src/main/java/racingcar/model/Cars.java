@@ -4,33 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    private List<Car> cars;
+    private List<Car> racingCars;
 
     public Cars() {
-        this.cars = new ArrayList<>();
+        this.racingCars = new ArrayList<>();
     }
 
     public List<Car> getCars() {
-        return cars;
+        return racingCars;
     }
 
     public void insertCar(Car car) {
-        cars.add(car);
+        racingCars.add(car);
     }
 
     public void moveRound() {
-        for (Car car : cars) {
+        for (Car car : racingCars) {
             car.move();
         }
     }
 
     public String[] getWinner() {
-        int maxPosition = cars.stream()
+        int maxPosition = racingCars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .getAsInt();
 
-        return cars.stream()
+        return racingCars.stream()
                 .filter(car -> car.isMaxPosition(maxPosition))
                 .map(Car::getName)
                 .toArray(String[]::new);
