@@ -18,11 +18,11 @@ public class RacingGame {
     private List<String> winners = new ArrayList<>();
     private int totalAttemptCount;
 
-    public void start() throws IllegalArgumentException {
+    public void start() {
         initRacingCarGame();
         startMessage();
 
-        while (totalAttemptCount --> 0) {
+        while (totalAttemptCount-- > 0) {
             run();
         }
 
@@ -78,6 +78,7 @@ public class RacingGame {
             isWinner(car, maxPosition);
         }
     }
+
     private void isWinner(Car car, int maxPosition) {
         if (car.getPosition() == maxPosition) {
             winners.add(car.getName());
