@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,11 +41,10 @@ public class Cars {
 
 	public List<String> findWinnerCars() {
 		Car maxPositionCar = findWinnerCar();
-		List<String> winners = new ArrayList<>();
-		cars.stream()
+		return cars.stream()
 			.filter(maxPositionCar::isSamePosition)
-			.forEach(car -> car.appendName(winners));
-		return winners;
+			.map(Car::getName)
+			.collect(Collectors.toList());
 	}
 
 	public Car findWinnerCar() {
