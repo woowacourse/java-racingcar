@@ -1,14 +1,14 @@
 package racingcar.model;
 
-import racingcar.util.RandomUtil;
+import racingcar.util.NumberGenerator;
 
 public class Car {
     private static final int STANDARD = 4;
     private String name;
     private int position;
-    private RandomUtil randomGenerator;
+    private NumberGenerator randomGenerator;
 
-    public Car(String name, int position, RandomUtil randomUtil) {
+    public Car(String name, int position, NumberGenerator randomUtil) {
         this.name = name;
         this.position = position;
         this.randomGenerator = randomUtil;

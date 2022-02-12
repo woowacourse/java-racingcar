@@ -2,7 +2,7 @@ package racingcar.util;
 
 import java.util.Random;
 
-public class RandomNumberGenerator implements RandomUtil {
+public class RandomNumberGenerator implements NumberGenerator {
     @Override
     public int generate() {
         Random random = new Random();
