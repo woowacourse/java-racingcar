@@ -36,7 +36,7 @@ public class Calculator {
 
     private static void checkNegative(int number) {
         if (number < 0) {
-            throw new RuntimeException();
+            throw new RuntimeException("음수는 계산할 수 없습니다.");
         }
     }
 
