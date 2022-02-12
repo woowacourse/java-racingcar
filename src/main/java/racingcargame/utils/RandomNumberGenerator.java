@@ -25,7 +25,6 @@ public class RandomNumberGenerator {
     private static int shuffle() {
         List<Integer> numbers = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
         for (int i = 0; i < MAX_RANDOM_NUMBER; i++) {
-
             List<Integer> indexList = makeDifferentIndexForShuffle(random, selectRandom(), selectRandom());
             int indexFirst = indexList.get(SHUFFLE_FOR_INDEX_FIRST);
             int indexSecond = indexList.get(SHUFFLE_FOR_INDEX_SECOND);
