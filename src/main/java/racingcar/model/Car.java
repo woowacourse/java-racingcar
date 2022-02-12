@@ -5,10 +5,10 @@ import java.util.List;
 import racingcar.service.RandomNumberService;
 
 public class Car implements Comparable<Car> {
-	public static final String ONE_STEP = "-";
-	public static final String COLON = " : ";
-	public static final int MOVING_CONDITION_NUMBER = 4;
-	private String name;
+	private static final String ONE_STEP = "-";
+	private static final String COLON = " : ";
+	private static final int MOVING_CONDITION_NUMBER = 4;
+	private final String name;
 	private int position = 0;
 
 	public Car(String name) {
@@ -28,16 +28,14 @@ public class Car implements Comparable<Car> {
 
 	@Override
 	public String toString() {
-		StringBuilder line = new StringBuilder();
-		for (int i = 0; i < position; i++) {
-			line.append(ONE_STEP);
-		}
-		return name + COLON + line.toString();
+		String step = ONE_STEP;
+		step = step.repeat(position);
+		return name + COLON + step;
 	}
 
 	@Override
-	public int compareTo(Car o) {
-		return position - o.position;
+	public int compareTo(Car other) {
+		return position - other.position;
 	}
 
 	public void move() {

@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-	private List<Car> cars;
+	private final List<Car> cars;
 
 	public Cars(List<Car> cars) {
 		this.cars = cars;
 	}
 
 	public void moveCars() {
-		cars.stream().forEach(Car::move);
+		cars.forEach(Car::move);
 	}
 
 	public List<String> getPosition() {
@@ -23,7 +23,7 @@ public class Cars {
 
 	public List<String> findWinnerCars() {
 		Car maxPositionCar = findWinnerCar();
-		List<String> winners = new ArrayList<String>();
+		List<String> winners = new ArrayList<>();
 		cars.stream()
 			.filter(maxPositionCar::isSamePosition)
 			.forEach(car -> car.appendName(winners));
@@ -33,6 +33,6 @@ public class Cars {
 	public Car findWinnerCar() {
 		return cars.stream()
 			.max(Car::compareTo)
-			.orElseThrow(() -> new IllegalArgumentException());
+			.orElseThrow(IllegalArgumentException::new);
 	}
 }

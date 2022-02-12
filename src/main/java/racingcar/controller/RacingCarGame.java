@@ -11,15 +11,15 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarGame {
-	public static final String COMMA_DELIMITER = ",";
-	public static final String NULL_EMPTY_CAR_NAME_ERROR_MESSAGE = "[Error] 다시 이름을 입력하세요";
-	public static final int MAX_CAR_NAME_LENGTH = 5;
-	public static final String CAR_NAME_LENGTH_ERROR_MESSAGE = String.format("[Error] %d자 이하의 이름을 입력하세요.",
+	private static final String COMMA_DELIMITER = ",";
+	private static final String NULL_EMPTY_CAR_NAME_ERROR_MESSAGE = "[Error] 다시 이름을 입력하세요";
+	private static final int MAX_CAR_NAME_LENGTH = 5;
+	private static final String CAR_NAME_LENGTH_ERROR_MESSAGE = String.format("[Error] %d자 이하의 이름을 입력하세요.",
 		MAX_CAR_NAME_LENGTH);
-	public static final String GAME_TURN_NUMBER_ERROR_MESSAGE = "[Error] 숫자를 입력하세요.";
-	public static final String RANDOM_NUMBER_REGEX = "[1-9]\\d*";
-	private InputView inputView = new InputView();
-	private OutputView outputView = new OutputView();
+	private static final String GAME_TURN_NUMBER_ERROR_MESSAGE = "[Error] 숫자를 입력하세요.";
+	private static final String RANDOM_NUMBER_REGEX = "[1-9]\\d*";
+	private final InputView inputView = new InputView();
+	private final OutputView outputView = new OutputView();
 	private Cars cars;
 	private GameTurn gameTurn;
 
@@ -29,7 +29,7 @@ public class RacingCarGame {
 
 	public List<Car> toCar(List<String> carNames) {
 		return carNames.stream()
-			.map(carName -> new Car(carName))
+			.map(Car::new)
 			.collect(Collectors.toList());
 	}
 
@@ -87,7 +87,7 @@ public class RacingCarGame {
 
 	public void moveCars() {
 		outputView.printResultSentence();
-		
+
 		while (gameTurn.isPositive()) {
 			gameTurn.removeTurn();
 			cars.moveCars();
