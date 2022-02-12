@@ -22,7 +22,7 @@ public class Application {
     private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException {
-        System.out.println(runCalculator(askInput()));
+        System.out.println(runCalculator(askInput().replace("\\n", "\n")));
     }
 
     public static int runCalculator(String input) {
