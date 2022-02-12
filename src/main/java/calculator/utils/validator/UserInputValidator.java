@@ -1,12 +1,13 @@
 package calculator.utils.validator;
 
 public class UserInputValidator {
+	private static final String CUSTOM_DELIMITER_PREFIX = "//";
 
-	public static void validate(String inputString) {
-
+	public static boolean isCustomDelimiter(String input) {
+		return input.startsWith(CUSTOM_DELIMITER_PREFIX);
 	}
 
-	private static boolean isNullOrEmpty(String input) {
-		return input == null || input.isBlank();
+	public static boolean isNullOrWhiteSpace(String str) {
+		return str == null || str.isBlank();
 	}
 }
