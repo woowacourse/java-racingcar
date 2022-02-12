@@ -18,7 +18,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printRoundStatus(List<CarDto> cars) {
+    public void printRoundStatus(final List<CarDto> cars) {
         for (CarDto car : cars) {
             System.out.println(car.carName() + RESULT_DELIMITER + DISTANCE_SYMBOL.repeat(car.distance()));
         }
@@ -26,7 +26,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printWinners(List<CarDto> winners) {
+    public void printWinners(final List<CarDto> winners) {
         final StringJoiner winnerNames = new StringJoiner(WINNER_DELIMITER);
         for (CarDto winner : winners) {
             winnerNames.add(winner.carName());

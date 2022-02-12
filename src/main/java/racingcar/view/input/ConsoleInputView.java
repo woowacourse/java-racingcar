@@ -23,7 +23,7 @@ public class ConsoleInputView implements InputView {
                 .collect(Collectors.toList());
     }
 
-    private void validateBlankInput(String inputString) {
+    private void validateBlankInput(final String inputString) {
         if (inputString.isBlank()) {
             throw new IllegalArgumentException(BLANK_INPUT_EXCEPTION_MESSAGE);
         }
@@ -38,7 +38,7 @@ public class ConsoleInputView implements InputView {
         return Integer.parseInt(inputTrialCount);
     }
 
-    private void validatePositiveDigit(String inputString) {
+    private void validatePositiveDigit(final String inputString) {
         if (!inputString.matches(ZERO_AND_POSITIVE_DIGIT) || inputString.equals("0")) {
             throw new IllegalArgumentException(NOT_POSITIVE_DIGIT);
         }
