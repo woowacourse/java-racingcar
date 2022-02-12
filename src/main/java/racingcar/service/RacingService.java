@@ -11,6 +11,7 @@ import racingcar.util.RandomUtil;
 public class RacingService {
 
 	private static final int RANDOM_VALUE_RANGE = 10;
+
 	private static final CarRepository carRepository = new CarRepository();
 
 	public void registerCars(List<Car> cars) {

@@ -1,14 +1,12 @@
 package racingcar.domain;
 
-import java.util.Objects;
-
 public class Car implements Comparable<Car> {
-
-	private final String name;
-	private int position;
 
 	private static final int INITIAL_POSITION = 0;
 	private static final int STANDARD_OF_MOVING = 4;
+
+	private final String name;
+	private int position;
 
 	private Car(String name) {
 		this.name = name;
