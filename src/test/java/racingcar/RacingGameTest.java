@@ -14,8 +14,8 @@ public class RacingGameTest {
     void 우승자를_선출한다_우승자가_한명인경우() {
         // given
         RacingGame racingGame = new RacingGame();
-        Car car1 = new Car();
-        Car car2 = new Car();
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
         List<Car> cars = new ArrayList<>();
 
         cars.add(car1);
@@ -33,8 +33,8 @@ public class RacingGameTest {
     void 우승자를_선출한다_우승자가_두명인경우() {
         // given
         RacingGame racingGame = new RacingGame();
-        Car car1 = new Car();
-        Car car2 = new Car();
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
 
         List<Car> cars = new ArrayList<>();
 

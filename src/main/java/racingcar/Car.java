@@ -7,9 +7,6 @@ public class Car implements Comparable<Car> {
     private int position = INIT_POSITION;
     private String name;
 
-    protected Car() {
-    }
-
     public Car(String name) {
         this.name = name;
     }

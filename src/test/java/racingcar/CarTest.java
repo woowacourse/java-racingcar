@@ -9,7 +9,7 @@ public class CarTest {
     @Test
     void 자동차는_4이상일_경우_전진한다() {
         // given
-        Car car = new Car();
+        Car car = new Car("test");
         int beforeMove = car.getPosition();
         int number = 4;
         // when
@@ -23,8 +23,8 @@ public class CarTest {
     @Test
     void 같은_위치인_경우_참을_반환한다() {
         //given
-        Car car1 = new Car();
-        Car car2 = new Car();
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
         //when
 
         //then
@@ -34,8 +34,8 @@ public class CarTest {
     @Test
     void 같은_위치가_아닌_경우_거짓을_반환한다() {
         //given
-        Car car1 = new Car();
-        Car car2 = new Car();
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
         //when
         car1.attemptToMove(4);
         //then
