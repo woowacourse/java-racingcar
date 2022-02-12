@@ -33,7 +33,7 @@ public class RandomNumberGeneratorTest {
     }
 
     @Test
-    @DisplayName("swap을 위해 서로 다른 인뎃그를 추출하는지 확인")
+    @DisplayName("swap을 위해 필요한 서로 다른 인덱스를 추출하는지 확인")
     void createDifferentIndexForSwap() {
         Random random = new Random();
         List<Integer> indexList = RandomNumberGenerator
