@@ -4,13 +4,9 @@ import java.util.Random;
 
 public class RandomNo {
 	private static final int RANDOM_BOUND = 10;
-	private final Random random;
+	private static final Random random = new Random();
 
-	public RandomNo() {
-		random = new Random();
-	}
-
-	public int getNumber() {
+	public static int getNumber() {
 		return random.nextInt(RANDOM_BOUND);
 	}
 }
