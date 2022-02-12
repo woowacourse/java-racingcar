@@ -6,26 +6,27 @@ import java.util.Objects;
 
 public class Car {
     private static final int INITIAL_DISTANCE = 0;
+    private static final int INCREASING_UNIT = 1;
     private final CarName carName;
-    private int distance;
+    private final Distance distance;
 
     public Car(final String carName) {
         this.carName = new CarName(carName);
-        distance = INITIAL_DISTANCE;
+        distance = new Distance(INITIAL_DISTANCE);
     }
 
     public void move(final boolean movement) {
         if (movement) {
-            distance++;
+            distance.increaseBy(INCREASING_UNIT);
         }
     }
 
     public CarDto info() {
-        return new CarDto(carName.value(), distance);
+        return new CarDto(carName.value(), distance.value());
     }
 
     public boolean isFartherThan(final Car another) {
-        return this.distance >= another.distance;
+        return this.distance.isSameOrHigherThan(another.distance);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return distance == car.distance && Objects.equals(carName, car.carName);
+        return Objects.equals(carName, car.carName) && Objects.equals(distance, car.distance);
     }
 
     @Override
