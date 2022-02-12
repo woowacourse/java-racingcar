@@ -5,13 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class InputViewTest {
-
+class InputValidatorTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"0", "-1"})
 	void 시도_횟수_입력_검증(String input) {
 		Assertions.assertThatThrownBy(() -> {
-				InputView.validPositiveInput(input);
+				InputValidator.validIterationNo(input);
 			}).isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("양수");
 	}
@@ -19,7 +18,7 @@ public class InputViewTest {
 	@Test
 	void 시도_횟수_빈_입력_검증() {
 		Assertions.assertThatThrownBy(() -> {
-				InputView.validEmptyInput("");
+				InputValidator.validIterationNo("");
 			}).isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("빈 값");
 	}

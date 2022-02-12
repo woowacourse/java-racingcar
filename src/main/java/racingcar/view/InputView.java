@@ -1,13 +1,12 @@
 package racingcar.view;
 
+import static racingcar.view.InputValidator.*;
+
 import java.util.Scanner;
 
 public class InputView {
-	public static final String POSITIVE_REGEX = "^[1-9]+[0-9]*$";
 	private static final String GET_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
 	private static final String GET_ITERATION_NO_MESSAGE = "시도할 회수는 몇회인가요?";
-	private static final String ERROR_GET_POSITIVE_MESSAGE = "양수를 입력해주세요.";
-	private static final String ERROR_GET_NOT_EMPTY_MESSAGE = "빈 값을 입력하셨습니다. 양수를 입력해주세요.";
 	private static final Scanner scanner = new Scanner(System.in);
 
 	public static String getCarNames() {
@@ -24,23 +23,6 @@ public class InputView {
 		} catch (RuntimeException e) {
 			System.out.println(e.getMessage());
 			return getIterationNo();
-		}
-	}
-
-	private static void validIterationNo(String input) {
-		validEmptyInput(input);
-		validPositiveInput(input);
-	}
-
-	public static void validPositiveInput(String input) {
-		if (!input.matches(POSITIVE_REGEX)) {
-			throw new RuntimeException(ERROR_GET_POSITIVE_MESSAGE);
-		}
-	}
-
-	public static void validEmptyInput(String input) {
-		if (input == null || input.isEmpty()) {
-			throw new RuntimeException(ERROR_GET_NOT_EMPTY_MESSAGE);
 		}
 	}
 }
