@@ -14,6 +14,7 @@ public class ConsoleInputView implements InputView {
     private static final String ZERO_AND_POSITIVE_DIGIT = "^[0-9]*$";
     private final Scanner scanner = new Scanner(System.in);
 
+    @Override
     public List<String> inputCarNames() {
         System.out.println(CARNAME_INPUT_ALERT_MESSAGE);
         final String inputCarNames = scanner.nextLine();
@@ -28,6 +29,7 @@ public class ConsoleInputView implements InputView {
         }
     }
 
+    @Override
     public int inputTrialCount() {
         System.out.println(TRIAL_COUNT_INPUT_ALERT_MESSAGE);
         String inputTrialCount = scanner.nextLine();
