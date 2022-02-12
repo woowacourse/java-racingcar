@@ -3,10 +3,10 @@ package racingcar.utils;
 import java.util.Arrays;
 
 public class StringSeparator {
-    public static final String COMMA = ",";
+    private static final String STRING_DELIMITER = ",";
 
     public static String[] splitAndTrim(String names) {
-        String[] splitNames = names.split(COMMA);
+        String[] splitNames = names.split(STRING_DELIMITER);
         Arrays.setAll(splitNames, i -> splitNames[i].trim());
         return splitNames;
     }
