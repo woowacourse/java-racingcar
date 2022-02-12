@@ -27,7 +27,7 @@ public class RacingGame {
 
         String tryCount = InputView.askTryCount();
         Validator.checkTryCountIsNaturalNumber(tryCount);
-        int trialCount = Integer.parseInt(tryCount);
+        int trialCount = Validator.convertToInt(tryCount);
 
         OutputView.printGameStartMessage();
         for (int i = 0; i < trialCount; i++) {

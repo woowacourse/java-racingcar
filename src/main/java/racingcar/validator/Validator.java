@@ -73,14 +73,18 @@ public class Validator {
         for (int i = 0; i < tryCountInput.length(); ++i) {
             isNumber(tryCountInput.charAt(i));
         }
-        if (Integer.parseInt(tryCountInput) == 0) {
-            throw new IllegalArgumentException(TRY_COUNT_FORMAT_ERROR_MESSAGE);
-        }
     }
 
     private static void isNumber(char target) {
         if (target < MIN_NUMBER_CRITERIA || target > MAX_NUMBER_CRITERIA) {
             throw new IllegalArgumentException(TRY_COUNT_FORMAT_ERROR_MESSAGE);
         }
+    }
+
+    public static int convertToInt(String tryCountInput) {
+        if (Integer.parseInt(tryCountInput) == 0) {
+            throw new IllegalArgumentException(TRY_COUNT_FORMAT_ERROR_MESSAGE);
+        }
+        return Integer.parseInt(tryCountInput);
     }
 }
