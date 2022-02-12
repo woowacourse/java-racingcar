@@ -19,18 +19,15 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printRoundStatus(final List<CarDto> cars) {
-        for (CarDto car : cars) {
-            System.out.println(car.carName() + RESULT_DELIMITER + DISTANCE_SYMBOL.repeat(car.distance()));
-        }
+        cars.forEach(car ->
+                System.out.println(car.carName() + RESULT_DELIMITER + DISTANCE_SYMBOL.repeat(car.distance())));
         System.out.print(NEW_LINE);
     }
 
     @Override
     public void printWinners(final List<CarDto> winners) {
         final StringJoiner winnerNames = new StringJoiner(WINNER_DELIMITER);
-        for (CarDto winner : winners) {
-            winnerNames.add(winner.carName());
-        }
+        winners.forEach(winner -> winnerNames.add(winner.carName()));
         System.out.println(winnerNames + WINNER_MESSAGE);
     }
 }
