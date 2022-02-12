@@ -28,8 +28,8 @@ public class RacingGame {
     }
 
     public boolean hasNextGame() {
-        if (this.round.moreThanZero()) {
-            this.round = round.hasNext();
+        if (this.round.isValidRound()) {
+            this.round = round.toNextRound();
             return true;
         }
         return false;

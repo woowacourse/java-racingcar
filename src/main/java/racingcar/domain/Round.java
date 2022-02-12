@@ -15,11 +15,11 @@ public class Round {
         return new Round(round);
     }
 
-    public boolean moreThanZero() {
+    public boolean isValidRound() {
         return this.roundNum > ROUND_END_NUMBER;
     }
 
-    public Round hasNext() {
+    public Round toNextRound() {
         return new Round(roundNum - DECREASED_NUMBER);
     }
 

@@ -20,7 +20,7 @@ public class InputView {
     private static final int ROUND_MINIMUM_ONE = 1;
 
     private static final Scanner scanner = new Scanner(System.in);
-    public static final String ERROR_CARS_NAME_DUPLICATED = "자동차의 이름에 중복이 있습니다.";
+    private static final String ERROR_CARS_NAME_DUPLICATED = "자동차의 이름에 중복이 있습니다.";
 
     public static String getInput() {
         return scanner.nextLine();
