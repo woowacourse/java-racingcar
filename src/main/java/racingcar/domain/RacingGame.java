@@ -27,7 +27,7 @@ public class RacingGame {
         return new RacingRecord(cars.getDriveRecord());
     }
 
-    public boolean isContinue() {
+    public boolean hasNextGame() {
         if (this.round.moreThanZero()) {
             this.round = round.hasNext();
             return true;
