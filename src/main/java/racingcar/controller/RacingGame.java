@@ -12,10 +12,10 @@ import racingcar.views.Output;
 
 public class RacingGame {
 
-	final Input input;
-	final Output output;
-	ArrayList<Car> cars;
-	int repeats;
+	private final Input input;
+	private final Output output;
+	private List<Car> cars;
+	private int repeats;
 
 	public RacingGame(final Input input, final Output output) {
 		this.input = input;
