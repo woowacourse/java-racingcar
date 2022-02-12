@@ -55,7 +55,7 @@ public class NameInputValidator {
 
     private static boolean isSameCarNames(String carNames) {
         String[] cars = carNames.split(COMMA);
-        long count = Arrays.asList(cars).stream()
+        long count = Arrays.stream(cars)
                 .distinct()
                 .count();
 
