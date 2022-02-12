@@ -1,11 +1,15 @@
 package racingcargame.utils;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class RaceCountInputValidatorTest {  
+public class RaceCountInputValidatorTest {
+
     @Test
-    void 경주_횟수_숫자가_아닌_입력_예외_테스트() {
+    @DisplayName("입력한 경주 횟수가 숫자가 아닐 시 예외")
+    void inputStringRaceCountException() {
         assertThatThrownBy(() -> {
             RaceCountInputValidator.validateRaceCount("3a");
         }).isInstanceOf(IllegalArgumentException.class)
@@ -13,7 +17,8 @@ public class RaceCountInputValidatorTest {
     }
 
     @Test
-    void 경주_횟수_NULL_입력_예외_테스트() {
+    @DisplayName("입력한 경주 횟수가 null일 시 경우")
+    void inputNullRaceCountException() {
         assertThatThrownBy(() -> {
             RaceCountInputValidator.validateRaceCount(null);
         }).isInstanceOf(IllegalArgumentException.class)
@@ -21,7 +26,8 @@ public class RaceCountInputValidatorTest {
     }
 
     @Test
-    void 경주_휫수_0_예외_테스트() {
+    @DisplayName("입력한 경주 횟수가 0일 시 예외")
+    void InputZeroRaceCount() {
         assertThatThrownBy(() -> {
             RaceCountInputValidator.validateRaceCount("0");
         }).isInstanceOf(IllegalArgumentException.class)

@@ -5,12 +5,14 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RacingCarGameTest {
 
     @Test
-    void 입력받은_자동차_개수_테스트() {
+    @DisplayName("생성한 자동차 객체 갯수 확인")
+    void storeCarName() {
         List<String> carNames = new ArrayList<>();
         carNames.add("liver");
         carNames.add("lawn");
@@ -20,7 +22,8 @@ public class RacingCarGameTest {
     }
 
     @Test
-    void 우승자_선발_테스트() {
+    @DisplayName("우승자 확인")
+    void findCarName() {
         List<String> carNames = new ArrayList<>();
         carNames.add("liver");
         carNames.add("lawn");

@@ -7,6 +7,7 @@ import java.util.Random;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -16,21 +17,24 @@ public class RandomNumberGeneratorTest {
 
     @ParameterizedTest
     @CsvSource(value = {"0:9", "0:3", "0:8", "0:4"}, delimiter = ':')
-    void 난수_생성을_위한_인덱스_swap_테스트(int input, int expected) {
+    @DisplayName("난수 생성을 위한 인덱스 swap 확인")
+    void swapForMakeRandomNumber(int input, int expected) {
         int randomNumber = RandomNumberGenerator.getRandomNumber(RandomNumberGenerator.swap(numbers, input, expected));
 
         assertEquals(expected, randomNumber);
     }
 
     @Test
-    void 난수_생성_범위_테스트() {
+    @DisplayName("생성한 난수가 0-9의 범위인지 확인")
+    void createRandomNumberRightRange() {
         int actual = RandomNumberGenerator.makeRandomNumber();
 
         assertThat(numbers.contains(actual)).isTrue();
     }
 
     @Test
-    void swap을_위한_서로_다른_인덱스_추출() {
+    @DisplayName("swap을 위해 서로 다른 인뎃그를 추출하는지 확인")
+    void createDifferentIndexForSwap() {
         Random random = new Random();
         List<Integer> indexList = RandomNumberGenerator
                 .makeDifferentIndexForShuffle(random, 0, 0, 10);

@@ -1,5 +1,6 @@
 package racingcargame.controller;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -8,7 +9,8 @@ import racingcargame.utils.NameInputValidator;
 public class GameControllerTest {
 
     @Test
-    void 자동차_이름_공백_입력_예외_테스트() {
+    @DisplayName("자동차 이름 null 입력 시 예외")
+    void inputNullCarNameException() {
         assertThatThrownBy(() -> {
             NameInputValidator.validateCarNames(null);
         }).isInstanceOf(IllegalArgumentException.class)
@@ -16,7 +18,8 @@ public class GameControllerTest {
     }
 
     @Test
-    void 자동차_이름_빈칸_입력_예외_테스트() {
+    @DisplayName("자동차 이름 공백 입력 시 예외")
+    void inputBlankCarNameException() {
         assertThatThrownBy(() -> {
             NameInputValidator.validateCarNames("pii, ,doo");
         }).isInstanceOf(IllegalArgumentException.class)
@@ -24,7 +27,8 @@ public class GameControllerTest {
     }
 
     @Test
-    void 자동차_이름_5자초과_입력_예외_테스트() {
+    @DisplayName("자동차 이름이 5글자를 초과한 경우 예외")
+    void exceedCarNameLimitSize() {
         assertThatThrownBy(() -> {
             NameInputValidator.validateCarNames("pii,kikiee,doo");
         }).isInstanceOf(IllegalArgumentException.class)
@@ -32,9 +36,10 @@ public class GameControllerTest {
     }
 
     @Test
-    void 중복된_자동차_이름_입력_예외_테스트() {
+    @DisplayName("중복된 자동차 이름 입력 시 예외")
+    void inputSameCarNameException() {
         assertThatThrownBy(() -> {
-            NameInputValidator.validateCarNames("gl,gl");
+            NameInputValidator.validateCarNames("lawn,lawn");
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[error] 중복된 자동차 이름이 있습니다.");
     }
