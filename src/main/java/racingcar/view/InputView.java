@@ -51,6 +51,12 @@ public class InputView {
         }
     }
 
+    private static void validateCarsNameLength(String carName) {
+        if (carName.length() > CAR_NAME_LIMIT) {
+            throw new IllegalArgumentException(ERROR_CAR_NAME_LENGTH);
+        }
+    }
+
     private static void validateCarsNameBlank(String carName) {
         if (carName.contains(BLANK)) {
             throw new IllegalArgumentException(ERROR_CAR_NAME_BLANK);
@@ -67,11 +73,6 @@ public class InputView {
         return carsName.stream().distinct().count() != carsName.size();
     }
 
-    private static void validateCarsNameLength(String carName) {
-        if (carName.length() > CAR_NAME_LIMIT) {
-            throw new IllegalArgumentException(ERROR_CAR_NAME_LENGTH);
-        }
-    }
 
     public static int getRound() {
         System.out.println(REQUEST_ROUND_VALUE);
