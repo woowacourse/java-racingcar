@@ -3,8 +3,8 @@ package racingCar.domain;
 import static racingCar.constants.RacingCarConstants.*;
 
 public class Car {
-	String name;
-	int position = 0;
+	private final String name;
+	private int position = 0;
 
 	public Car(String name) {
 		this.name = name;
