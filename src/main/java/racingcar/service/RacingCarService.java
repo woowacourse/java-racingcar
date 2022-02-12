@@ -18,7 +18,7 @@ public class RacingCarService {
 	}
 
 	public void saveCars(String carsNames) throws Exception {
-		List<String> carNameList = new ArrayList<>(Arrays.asList(Convertor.separateNamesByDelimiter(carsNames)));
+		List<String> carNameList = Arrays.asList(Convertor.separateNamesByDelimiter(carsNames));
 		NameValidator.checkNameList(carNameList);
 		save(carNameList);
 	}
