@@ -6,37 +6,37 @@ import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
 class CarsTest {
-	@Test
-	public void 생성_성공() {
-		// given
-		String names = "오찌,연로그";
+    @Test
+    public void 생성_성공() {
+        // given
+        String names = "오찌,연로그";
 
-		// when
-		Cars cars = new Cars(names);
+        // when
+        Cars cars = new Cars(names);
 
-		// then
-		assertThat(cars).isNotNull();
-	}
+        // then
+        assertThat(cars).isNotNull();
+    }
 
-	@Test
-	public void 중복_체크() {
-		// given
-		String names = "오찌,연로그,연로그";
+    @Test
+    public void 중복_체크() {
+        // given
+        String names = "오찌,연로그,연로그";
 
-		// when
-		// then
-		assertThatThrownBy(() -> new Cars(names)).isInstanceOf(IllegalArgumentException.class);
-	}
+        // when
+        // then
+        assertThatThrownBy(() -> new Cars(names)).isInstanceOf(IllegalArgumentException.class);
+    }
 
-	@Test
-	public void toString_결과_생성() {
-		// given
-		String names = "오찌,연로그";
-		Cars cars = new Cars(names);
-		String newLine = System.lineSeparator();
+    @Test
+    public void toString_결과_생성() {
+        // given
+        String names = "오찌,연로그";
+        Cars cars = new Cars(names);
+        String newLine = System.lineSeparator();
 
-		// when
-		// then
-		assertThat(cars.toString()).isEqualTo("오찌 : " + newLine + "연로그 : " + newLine);
-	}
+        // when
+        // then
+        assertThat(cars.toString()).isEqualTo("오찌 : " + newLine + "연로그 : " + newLine);
+    }
 }
