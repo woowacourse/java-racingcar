@@ -30,10 +30,6 @@ public class Car {
 
 	@Override
 	public String toString() {
-		String output = name + COLON_WITH_SPACE;
-		for (int idx = 0; idx < position; idx++) {
-			output += DASH;
-		}
-		return output;
+		return name + COLON_WITH_SPACE + DASH.repeat(Math.max(0, position));
 	}
 }
