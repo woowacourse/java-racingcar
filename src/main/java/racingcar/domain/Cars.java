@@ -2,45 +2,45 @@ package racingcar.domain;
 
 import racingcar.dto.CarDto;
 import racingcar.service.Movement;
-import racingcar.utils.ExceptionMessage;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private final List<Car> cars;
+    public static final String DUPLICATED_CAR_NAMES = "자동차 이름들 간 중복이 있습니다.";
+    private final List<Car> values;
 
-    public Cars(List<String> carNames) {
+    public Cars(final List<String> carNames) {
         validateDuplication(carNames);
-        this.cars = carNames.stream()
+        this.values = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
 
-    private void validateDuplication(List<String> carNames) {
+    private void validateDuplication(final List<String> carNames) {
         if (carNames.stream().distinct().count() != carNames.size()) {
-            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_CAR_NAMES);
+            throw new IllegalArgumentException(DUPLICATED_CAR_NAMES);
         }
     }
 
-    public void move(Movement movement) {
-        cars.forEach(car -> car.move(movement.move()));
+    public void move(final Movement movement) {
+        values.forEach(car -> car.move(movement.move()));
     }
 
     public List<CarDto> getCarInfos() {
-        return cars.stream()
+        return values.stream()
                 .map(Car::info)
                 .collect(Collectors.toUnmodifiableList());
     }
 
     public List<CarDto> getFarthestCar() {
-        return cars.stream()
+        return values.stream()
                 .filter(this::isHighest)
                 .map(Car::info)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private boolean isHighest(Car standardCar) {
-        return cars.stream().allMatch(standardCar::isFartherThan);
+    private boolean isHighest(final Car standardCar) {
+        return values.stream().allMatch(standardCar::isFartherThan);
     }
 }

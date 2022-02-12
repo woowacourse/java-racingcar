@@ -2,8 +2,8 @@ package racingcar.controller;
 
 import racingcar.domain.Cars;
 import racingcar.service.Movement;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
+import racingcar.view.input.InputView;
+import racingcar.view.output.OutputView;
 
 public class RacingController {
     private final OutputView outputView;
@@ -12,7 +12,7 @@ public class RacingController {
     private final Cars cars;
     private int trialCount;
 
-    public RacingController(InputView inputView, OutputView outputView, Movement movement) {
+    public RacingController(final InputView inputView, final OutputView outputView, final Movement movement) {
         cars = new Cars(inputView.inputCarNames());
         trialCount = inputView.inputTrialCount();
         this.outputView = outputView;
@@ -21,7 +21,7 @@ public class RacingController {
 
     public void run() {
         outputView.printResultMessage();
-        while(trialCount > 0) {
+        while (trialCount > 0) {
             cars.move(movement);
             outputView.printRoundStatus(cars.getCarInfos());
             trialCount--;

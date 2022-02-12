@@ -1,6 +1,4 @@
-package racingcar.view;
-
-import racingcar.utils.ExceptionMessage;
+package racingcar.view.input;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,26 +6,30 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ConsoleInputView implements InputView {
-    private static final String CARNAME_INPUT_ALERT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private static final String NOT_POSITIVE_DIGIT = "시도 횟수는 양의 정수만 가능합니다.";
+    private static final String BLANK_INPUT_EXCEPTION_MESSAGE = "입력이 비어있습니다.";
+    private static final String CAR_NAME_INPUT_ALERT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String TRIAL_COUNT_INPUT_ALERT_MESSAGE = "시도할 회수는 몇회인가요?";
     private static final String NAME_DELIMITER = ",";
     private static final String ZERO_AND_POSITIVE_DIGIT = "^[0-9]*$";
     private final Scanner scanner = new Scanner(System.in);
 
+    @Override
     public List<String> inputCarNames() {
-        System.out.println(CARNAME_INPUT_ALERT_MESSAGE);
-        String inputCarNames = scanner.nextLine();
+        System.out.println(CAR_NAME_INPUT_ALERT_MESSAGE);
+        final String inputCarNames = scanner.nextLine();
         validateBlankInput(inputCarNames);
         return Arrays.stream(inputCarNames.split(NAME_DELIMITER))
                 .collect(Collectors.toList());
     }
 
-    private void validateBlankInput(String inputString) {
+    private void validateBlankInput(final String inputString) {
         if (inputString.isBlank()) {
-            throw new IllegalArgumentException(ExceptionMessage.BLANK_INPUT_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(BLANK_INPUT_EXCEPTION_MESSAGE);
         }
     }
 
+    @Override
     public int inputTrialCount() {
         System.out.println(TRIAL_COUNT_INPUT_ALERT_MESSAGE);
         String inputTrialCount = scanner.nextLine();
@@ -36,9 +38,9 @@ public class ConsoleInputView implements InputView {
         return Integer.parseInt(inputTrialCount);
     }
 
-    private void validatePositiveDigit(String inputString) {
+    private void validatePositiveDigit(final String inputString) {
         if (!inputString.matches(ZERO_AND_POSITIVE_DIGIT) || inputString.equals("0")) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_POSITIVE_DIGIT);
+            throw new IllegalArgumentException(NOT_POSITIVE_DIGIT);
         }
     }
 }

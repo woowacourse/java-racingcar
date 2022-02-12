@@ -1,4 +1,4 @@
-package racingcar.view;
+package racingcar.view.output;
 
 import racingcar.dto.CarDto;
 
@@ -13,25 +13,21 @@ public class ConsoleOutputView implements OutputView {
     private static final String WINNER_DELIMITER = ",";
     public static final String NEW_LINE = "\n";
 
-    public void printResultMessage(){
+    public void printResultMessage() {
         System.out.println(NEW_LINE + RESULT_MESSAGE);
     }
 
     @Override
-    public void printRoundStatus(List<CarDto> cars) {
-        for (CarDto car : cars) {
-            System.out.println(car.carName() + RESULT_DELIMITER + DISTANCE_SYMBOL.repeat(car.distance()));
-        }
+    public void printRoundStatus(final List<CarDto> cars) {
+        cars.forEach(car ->
+                System.out.println(car.carName() + RESULT_DELIMITER + DISTANCE_SYMBOL.repeat(car.distance())));
         System.out.print(NEW_LINE);
     }
 
     @Override
-    public void printWinners(List<CarDto> winners) {
-        StringJoiner winnerNames = new StringJoiner(WINNER_DELIMITER);
-        for (CarDto winner : winners) {
-            winnerNames.add(winner.carName());
-        }
+    public void printWinners(final List<CarDto> winners) {
+        final StringJoiner winnerNames = new StringJoiner(WINNER_DELIMITER);
+        winners.forEach(winner -> winnerNames.add(winner.carName()));
         System.out.println(winnerNames + WINNER_MESSAGE);
     }
-
 }
