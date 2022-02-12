@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class Calculator {
     private static final String CUSTOM_REGEX = "//(.)\n(.*)";
     private static final String STANDARD_SPLIT_REGEX = "[,:]";
-    private static final int DELIMETER_INDEX = 1;
+    private static final int DELIMITER_INDEX = 1;
     private static final int INPUT_INDEX = 2;
 
     public static int splitAndSum(String input) {
@@ -47,7 +47,7 @@ public class Calculator {
     private static String[] split(String input) {
         Matcher matcher = getMatcher(input);
         if (isCustom(matcher)) {
-            String delimeter = matcher.group(DELIMETER_INDEX);
+            String delimeter = matcher.group(DELIMITER_INDEX);
             return matcher.group(INPUT_INDEX).split(delimeter);
         }
         return input.split(STANDARD_SPLIT_REGEX);
