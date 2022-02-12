@@ -10,7 +10,15 @@ public class RacingController {
 
 	public RacingController() {
 		this.carController = new CarController();
-		createCars();
+	}
+
+	public void createCarsByUserInput() {
+		try {
+			carController.createCars(InputView.getCarNames());
+		} catch (RuntimeException e) {
+			System.out.println(e.getMessage());
+			createCarsByUserInput();
+		}
 	}
 
 	public void run() {
@@ -25,14 +33,5 @@ public class RacingController {
 			carController.run();
 			ResultView.printGameResult(carController.getCars());
 		});
-	}
-
-	private void createCars() {
-		try {
-			carController.createCars(InputView.getCarNames());
-		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-			createCars();
-		}
 	}
 }
