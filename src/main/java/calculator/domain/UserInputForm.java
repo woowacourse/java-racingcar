@@ -21,4 +21,8 @@ public class UserInputForm {
 	public String getCustomDelimiter() {
 		return customDelimiter;
 	}
+
+	public boolean hasCustomDelimiter() {
+		return this.getCustomDelimiter() != null;
+	}
 }
