@@ -18,8 +18,8 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
-    public void progress(){
-        if(checkMoveOrWait()) {
+    public void progress() {
+        if (checkMoveOrWait()) {
             position++;
         }
     }
