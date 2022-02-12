@@ -37,7 +37,7 @@ public class RandomNumberGeneratorTest {
     void createDifferentIndexForSwap() {
         Random random = new Random();
         List<Integer> indexList = RandomNumberGenerator
-                .makeDifferentIndexForShuffle(random, 0, 0, 10);
+                .makeDifferentIndexForShuffle(random, 0, 0);
 
         assertThat(indexList.get(0)).isNotEqualTo(indexList.get(1));
     }
