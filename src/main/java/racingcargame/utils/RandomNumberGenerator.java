@@ -25,23 +25,15 @@ public class RandomNumberGenerator {
     private static int shuffle() {
         List<Integer> numbers = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
         for (int i = 0; i < MAX_RANDOM_NUMBER; i++) {
-            int indexFirst = random.nextInt(MAX_RANDOM_NUMBER + 1);
-            int indexSecond = random.nextInt(MAX_RANDOM_NUMBER + 1);
 
-            List<Integer> indexList = makeDifferentIndexForShuffle(random, indexFirst, indexSecond, MAX_RANDOM_NUMBER);
-            indexFirst = indexList.get(SHUFFLE_FOR_INDEX_FIRST);
-            indexSecond = indexList.get(SHUFFLE_FOR_INDEX_SECOND);
+            List<Integer> indexList = makeDifferentIndexForShuffle(random, selectRandom(),
+                    selectRandom(), MAX_RANDOM_NUMBER);
+            int indexFirst = indexList.get(SHUFFLE_FOR_INDEX_FIRST);
+            int indexSecond = indexList.get(SHUFFLE_FOR_INDEX_SECOND);
 
             swap(numbers, indexFirst, indexSecond);
         }
         return getRandomNumber(numbers);
-    }
-
-    public static List<Integer> swap(List<Integer> numbers, int indexFirst, int indexSecond) {
-        int tmp = numbers.get(indexFirst);
-        numbers.set(indexFirst, numbers.get(indexSecond));
-        numbers.set(indexSecond, tmp);
-        return numbers;
     }
 
     public static List<Integer> makeDifferentIndexForShuffle(Random random, int indexFirst, int indexSecond, int length) {
@@ -50,5 +42,16 @@ public class RandomNumberGenerator {
             indexSecond = random.nextInt(length);
         }
         return Arrays.asList(indexFirst, indexSecond);
+    }
+
+    private static int selectRandom() {
+        return random.nextInt(MAX_RANDOM_NUMBER + 1);
+    }
+
+    public static List<Integer> swap(List<Integer> numbers, int indexFirst, int indexSecond) {
+        int tmp = numbers.get(indexFirst);
+        numbers.set(indexFirst, numbers.get(indexSecond));
+        numbers.set(indexSecond, tmp);
+        return numbers;
     }
 }
