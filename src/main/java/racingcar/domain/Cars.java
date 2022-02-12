@@ -2,15 +2,14 @@ package racingcar.domain;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Queue;
 import java.util.stream.Collectors;
-import racingcar.util.RandomUtil;
 import racingcar.dto.CarValue;
 import racingcar.vo.Name;
 import racingcar.dto.Winners;
+import racingcar.vo.Number;
 
 public class Cars {
-    private static final int RANDOM_NUMBER_RANGE = 9 + 1;
-
     private List<Car> cars;
 
     public Cars(List<Name> names) {
@@ -23,8 +22,17 @@ public class Cars {
             .collect(Collectors.toList());
     }
 
-    public void move() {
-        cars.forEach(car -> car.advance(RandomUtil.getNumbersInRange(RANDOM_NUMBER_RANGE)));
+    public void move(Queue<Number> numbers) {
+        validateSize(numbers.size());
+        for (Car car : cars) {
+            car.advance(numbers.poll().value());
+        }
+    }
+
+    private void validateSize(int size) {
+        if (cars.size() != size) {
+            throw new IllegalArgumentException("자동차와 랜덤한 숫자들의 갯수가 일치하지 않습니다.");
+        }
     }
 
     public Winners getWinners() {
@@ -49,5 +57,9 @@ public class Cars {
         return this.cars.stream()
             .map(car -> new CarValue(car.getName().toString(), car.getPosition()))
             .collect(Collectors.toList());
+    }
+
+    public int size() {
+        return this.cars.size();
     }
 }
