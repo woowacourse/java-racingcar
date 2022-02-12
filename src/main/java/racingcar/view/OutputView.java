@@ -34,10 +34,10 @@ public class OutputView {
     }
 
     public static void printRacingResult(RacingResult racingResult) {
-        System.out.println(appendComma(racingResult) + RACE_WINNER_MESSAGE);
+        System.out.println(collectingResult(racingResult) + RACE_WINNER_MESSAGE);
     }
 
-    private static String appendComma(RacingResult racingResult) {
+    private static String collectingResult(RacingResult racingResult) {
         return racingResult.getRacingRecord().stream()
             .map(Car::getName)
             .collect(Collectors.joining(NAME_DELIMITER));
