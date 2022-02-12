@@ -1,71 +1,58 @@
 package racingcar.util;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
+
 import static racingcar.util.VerificationUtil.*;
 
-@SuppressWarnings("NonAsciiCharacters")
 class VerificationUtilTest {
 
     @Test
-    @DisplayName("한 글자 미만의 자동차 이름 테스트")
-    public void 한글자_미만의_자동차_이름_테스트() throws Exception {
-        //given
-        String name = "";
+    @DisplayName("자동차 이름을 입력하지 않은 경우 예외 발생")
+    public void carNameMustNotBeEmpty() {
+        assertThatThrownBy(() -> validateCarName("", 0, 5))
+                .isInstanceOf(IllegalArgumentException.class);
 
-        //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            validateCarName(name);
-        });
+        assertThatThrownBy(() -> validateCarName(null, 0, 5))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("다섯 글자 이상의 자동차 이름 테스트")
-    public void 다섯글자_이상의_자동차_이름_테스트() throws Exception {
-        //given
-        String name = "wooteco";
-
-        //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            validateCarName(name);
-        });
+    @DisplayName("공백을 포함하는 자동차 이름을 입력한 경우 예외 발생")
+    public void carNameMustNotContainBlank() {
+        assertThatThrownBy(() -> validateCarName("w o", 0, 5))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("자동차 이름에 공백이 포함되어있는지 테스트")
-    public void 자동차_이름_공백_테스트() throws Exception {
-        //given
-        String name = "woo   te   co";
-
-        //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            validateCarName(name);
-        });
+    @DisplayName("다섯 글자 이상의 자동차 이름을 입력한 경우 예외 발생")
+    public void carNameMustLessThanFiveLetters() {
+        assertThatThrownBy(() -> validateCarName("wooteco", 0, 5))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("시도 횟수가 정수인지 테스트")
-    public void 시도횟수_정수인지_테스트() throws Exception {
-        // given
-        String attempt = "숫자";
+    @DisplayName("중복된 자동차 이름을 입력한 경우 예외 발생")
+    public void carNameMustNotDuplicated() {
+        String[] carNames = {"woo", "te", "co", "woo"};
 
-        //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            validateAttempt(attempt);
-        });
+        assertThatThrownBy(() -> isDuplicated(carNames))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("시도 횟수가 음수인 경우 테스트")
-    public void 시도횟수_음수_테스트() throws Exception {
-        // given
-        String attempt = "-3";
+    @DisplayName("시도 횟수에 정수를 입력하지 않는 경우 예외 발생")
+    public void attemptMustBeInteger() {
+        assertThatThrownBy(() -> validateAttempt("문자"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
-        //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            validateAttempt(attempt);
-        });
+    @Test
+    @DisplayName("시도 횟수에 음수를 입력한 경우 예외 발생")
+    public void attemptMustBePositive() {
+        assertThatThrownBy(() -> validateAttempt("-3"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
