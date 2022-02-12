@@ -23,7 +23,7 @@ public class RefereeTest {
 		car1.move();
 		cars.add(car1);
 		cars.add(car2);
-		assertThat(Referee.judgeWinner(cars).get(0)).isEqualTo(car1);
+		assertThat(Referee.judgeWinner(cars)).contains(car1);
 	}
 
 	@Test

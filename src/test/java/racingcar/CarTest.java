@@ -20,11 +20,11 @@ public class CarTest {
 	public void 차_여러대_생성() {
 		String names = "forky,kun";
 		Set<Car> cars = CarFactory.of(names);
-		assertThat(cars.size()).isEqualTo(2);
+		assertThat(cars.stream().anyMatch(car -> car.getName().equals("kun"))).isTrue();
 	}
 
 	@Test
-	public void 이름_5글자_이상() {
+	public void 이름_5글자_제한_오류발생() {
 		assertThatThrownBy(() -> new Car("abcdef"))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageStartingWith(ERROR_MESSAGE);
