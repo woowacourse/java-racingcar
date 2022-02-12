@@ -12,14 +12,12 @@ import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
 public class RacingCarController {
-	private RacingCars racingCars;
-	private int times;
 
 	public void start() {
+		RacingCars racingCars;
 		String[] carNames = getSplitCarNames();
-		setCarTimes();
-		makeCars(carNames);
-		race(times);
+		racingCars = makeCars(carNames);
+		race(getCarTimes(), racingCars);
 		OutputView.printWinners(racingCars.findWinner());
 	}
 
@@ -46,26 +44,33 @@ public class RacingCarController {
 		}
 	}
 
-	private void setCarTimes() {
+	private int getCarTimes() {
 		String inputRacingTimes = InputView.userStringInput(INPUT_COUNT_MESSAGE);
-		try {
-			RacingCarValidator.isRightTimes(inputRacingTimes);
-			times = Integer.parseInt(inputRacingTimes);
-		} catch (RuntimeException e) {
-			OutputView.printError(e.getMessage());
-			setCarTimes();
+		while (!checkCarTimes(inputRacingTimes)) {
+			inputRacingTimes = InputView.userStringInput(INPUT_COUNT_MESSAGE);
 		}
+		return Integer.parseInt(inputRacingTimes);
 	}
 
-	private void makeCars(String[] carNames) {
+	private boolean checkCarTimes(String inputRacingTimes) {
+		try {
+			RacingCarValidator.isRightTimes(inputRacingTimes);
+			return true;
+		} catch (RuntimeException e) {
+			OutputView.printError(e.getMessage());
+		}
+		return false;
+	}
+
+	private RacingCars makeCars(String[] carNames) {
 		List<Car> cars = new ArrayList<>();
 		for (String carName : carNames) {
 			cars.add(new Car(carName));
 		}
-		racingCars = new RacingCars(cars);
+		return new RacingCars(cars);
 	}
 
-	public void race(int count) {
+	public void race(int count, RacingCars racingCars) {
 		OutputView.startPrintResultMessage();
 		for (int i = 0; i < count; i++) {
 			racingCars.moveRacingCars();
