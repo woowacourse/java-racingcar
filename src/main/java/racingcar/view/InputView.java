@@ -2,16 +2,20 @@ package racingcar.view;
 
 import racingcar.utils.Validator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
+    private static final String DELIMITER = ",";
 
-    public static String getCarNames() {
+    public static List<String> getCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = scanner.nextLine();
         Validator.checkCarNames(input);
-        return input;
+        return new ArrayList<>(Arrays.asList(input.split(DELIMITER)));
     }
 
     public static int getCount() {

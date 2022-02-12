@@ -10,13 +10,9 @@ import java.util.*;
 import static java.util.stream.Collectors.toList;
 
 public class CarController {
-
-    private static final String DELIMITER = ",";
-
     public void run() {
-        String carNames = getCarNamesFromUser();
+        List<Car> cars = makeCars(getCarNamesFromUser());
         int count = getCountFromUser();
-        List<Car> cars = makeCars(carNames.split(DELIMITER));
 
         RacingGame racingGame = new RacingGame(cars, count);
         racingGame.play();
@@ -24,8 +20,8 @@ public class CarController {
         OutputView.printWinners(racingGame.findWinners());
     }
 
-    private List<Car> makeCars(String[] names) {
-        return Arrays.stream(names)
+    private List<Car> makeCars(List<String> names) {
+        return names.stream()
                 .map(Car::new)
                 .collect(toList());
     }
@@ -39,7 +35,7 @@ public class CarController {
         }
     }
 
-    private String getCarNamesFromUser() {
+    private List<String> getCarNamesFromUser() {
         try {
             return InputView.getCarNames();
         } catch (IllegalArgumentException e) {
