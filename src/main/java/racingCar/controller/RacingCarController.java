@@ -16,14 +16,14 @@ public class RacingCarController {
 	private int times;
 
 	public void start() {
-		String[] carNames = getAndSeparateCarNames();
-		getCarTimes();
+		String[] carNames = getSplitCarNames();
+		setCarTimes();
 		makeCars(carNames);
 		race(times);
 		OutputView.printWinners(racingCars.findWinner());
 	}
 
-	private String[] getAndSeparateCarNames() {
+	private String[] getSplitCarNames() {
 		String inputCarName = InputView.userStringInput(INPUT_CAR_NAME_MESSAGE);
 		return separateCarNames(inputCarName);
 	}
@@ -42,18 +42,18 @@ public class RacingCarController {
 			RacingCarValidator.isRightLength(name);
 		} catch (RuntimeException e) {
 			OutputView.printError(e.getMessage());
-			getAndSeparateCarNames();
+			getSplitCarNames();
 		}
 	}
 
-	private void getCarTimes() {
+	private void setCarTimes() {
 		String inputRacingTimes = InputView.userStringInput(INPUT_COUNT_MESSAGE);
 		try {
 			RacingCarValidator.isRightTimes(inputRacingTimes);
 			times = Integer.parseInt(inputRacingTimes);
 		} catch (RuntimeException e) {
 			OutputView.printError(e.getMessage());
-			getCarTimes();
+			setCarTimes();
 		}
 	}
 
