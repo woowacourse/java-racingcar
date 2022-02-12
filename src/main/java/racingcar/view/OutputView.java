@@ -13,7 +13,7 @@ public class OutputView {
     }
 
     public static void printRaceResultUi() {
-        System.out.println("\n실행 결과");
+        System.out.format("%n실행 결과%n");
     }
 
     public static void printCarsUi(Cars cars) {
