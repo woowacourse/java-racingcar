@@ -8,9 +8,6 @@ public class GameTest {
 	@Test
 	public void 랜덤값_부여_테스트() {
 		Game game = new Game();
-		for (int i = 0; i < 3; i++) {
-			int randomValue = game.makeRandomValue();
-			assertThat(randomValue >= 0 && randomValue <= 9).isTrue();
-		}
+		assertThat(game.makeRandomValue(2) < 2).isTrue();
 	}
 }

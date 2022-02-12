@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Game {
 	private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
-	private static final int RANDOM_VALUE_BOUND = 10;
+	private static final int RANDOM_VALUE_BOUND = 9;
 
 	public void start() {
 		Set<Car> cars = CarFactory.of(InputView.inputCarNames());
@@ -23,7 +23,7 @@ public class Game {
 
 	private void play(Set<Car> cars) {
 		for (Car car : cars) {
-			Referee.judgeAndMoveCar(car, makeRandomValue());
+			Referee.judgeAndMoveCar(car, makeRandomValue(RANDOM_VALUE_BOUND + 1));
 		}
 	}
 
@@ -40,9 +40,9 @@ public class Game {
 		OutputView.printWinner(winnerNames);
 	}
 
-	public int makeRandomValue() {
+	public int makeRandomValue(int bound) {
 		Random random = new Random();
-		return random.nextInt(RANDOM_VALUE_BOUND);
+		return random.nextInt(bound);
 	}
 
 	private void validateGameCount(int gameCount) {
