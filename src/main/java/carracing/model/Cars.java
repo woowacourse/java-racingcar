@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import carracing.utils.RandomNumber;
 
 public class Cars {
-	public static final int RANDOM_NUMBER_RANGE = 10;
+	private static final int RANDOM_NUMBER_RANGE = 10;
 
 	private final List<Car> cars;
 
