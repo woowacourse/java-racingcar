@@ -9,7 +9,7 @@ public class CarTest {
 	@Test
 	void 자동차_초기위치() {
 		Car car = new Car("소주캉");
-		assertThat(car.isSamePosition(0)).isTrue();
+		assertThat(car.matchPosition(0)).isTrue();
 	}
 
 	@Test
@@ -37,6 +37,13 @@ public class CarTest {
 	void 자동차_이동() {
 		Car car = new Car("범고래");
 		car.move(4);
-		assertThat(car.isSamePosition(1)).isTrue();
+		assertThat(car.matchPosition(1)).isTrue();
+	}
+
+	@Test
+	void 값이_더_큰_포지션_반환() {
+		Car car = new Car("범고래");
+		car.move(4);
+		assertThat(car.getBiggerPosition(0)).isEqualTo(1);
 	}
 }

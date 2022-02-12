@@ -31,7 +31,7 @@ public class CarRepository {
 
 	public List<CarDto> getWinners() {
 		List<Car> winnerCars = cars.stream()
-			.filter(car -> car.isSamePosition(getMaxPosition()))
+			.filter(car -> car.matchPosition(getMaxPosition()))
 			.collect(Collectors.toList());
 		return carsToCarDtos(winnerCars);
 	}

@@ -21,11 +21,11 @@ public class Car {
 		}
 	}
 
-	public int getBiggerPosition(int maxPosition) {
-		return Math.max(maxPosition, this.position);
+	public int getBiggerPosition(int position) {
+		return Math.max(position, this.position);
 	}
 
-	public boolean isSamePosition(int position) {
+	public boolean matchPosition(int position) {
 		return this.position == position;
 	}
 
