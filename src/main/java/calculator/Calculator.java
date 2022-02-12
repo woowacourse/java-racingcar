@@ -1,5 +1,6 @@
 package calculator;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +14,9 @@ public class Calculator {
 		if (isEmptyOrNull(userInputText)) {
 			return 0;
 		}
-		return sum(split(userInputText));
+		String[] numbers = split(userInputText);
+		validateNumbers(numbers);
+		return sum(numbers);
 	}
 
 	private boolean isEmptyOrNull(String userInputText) {
@@ -33,28 +36,28 @@ public class Calculator {
 		return customMatcher.group(2).split(customDelimiter);
 	}
 
-	private int sum(String[] values) {
+	private int sum(String[] numbers) {
 		int total = 0;
-		for (String value : values) {
-			total += toInt(value);
+		for (String number : numbers) {
+			total += Integer.parseInt(number);
 		}
 		return total;
 	}
 
-	private int toInt(String stringValue) {
-		int value = parseIntFromString(stringValue);
-		if (value < 0) {
-			throw new RuntimeException("음수를 입력하셨습니다.");
-		}
-		return value;
+	private void validateNumbers(String[] numbers) {
+		checkIsNotDigit(numbers);
+		checkIsNegativeNumber(numbers);
 	}
 
-	private int parseIntFromString(String value) {
-		try {
-			return Integer.parseInt(value);
-		} catch (NumberFormatException exception) {
+	private void checkIsNotDigit(String[] numbers) {
+		if (Arrays.stream(numbers).anyMatch(number -> !Character.isDigit(number.charAt(0)))) {
 			throw new RuntimeException("숫자 이외의 값을 입력하셨습니다.");
 		}
 	}
 
+	private void checkIsNegativeNumber(String[] numbers) {
+		if (Arrays.stream(numbers).anyMatch(number -> Integer.parseInt(number) < 0)) {
+			throw new RuntimeException("음수를 입력하셨습니다.");
+		}
+	}
 }
