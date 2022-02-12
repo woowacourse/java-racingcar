@@ -21,12 +21,16 @@ public class RacingCarGame {
         RaceCount.storeCount(raceCount);
     }
 
+    public void orderToReduceRaceCount() {
+        RaceCount.reduceRaceCount();
+    }
+
     public boolean isOverRace() {
         return RaceCount.getCount() == GAME_OVER;
     }
 
     public List<CarVO> startRace() {
-        RaceCount.reduceRaceCount();
+        orderToReduceRaceCount();
         carRepository.moveCars();
 
         List<CarVO> cars = new ArrayList<>();
