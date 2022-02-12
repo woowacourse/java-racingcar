@@ -1,6 +1,6 @@
 package racingcar.model;
 
-public class Car {
+class Car {
 	private static final int MAX_CAR_NAME_LENGTH = 5;
 	private static final int INITIAL_POSITION = 0;
 	private static final int MOVE_CONDITION_NO = 4;
@@ -9,27 +9,27 @@ public class Car {
 	private final String name;
 	private int position;
 
-	public Car(String name) {
+	Car(String name) {
 		validName(name);
 		this.name = name;
 		this.position = INITIAL_POSITION;
 	}
 
-	public void move(int number) {
+	void move(int number) {
 		if (number >= MOVE_CONDITION_NO) {
 			this.position++;
 		}
 	}
 
-	public int getBiggerPosition(int maxPosition) {
+	int getBiggerPosition(int maxPosition) {
 		return Math.max(maxPosition, this.position);
 	}
 
-	public boolean isSamePosition(int position) {
+	boolean isSamePosition(int position) {
 		return this.position == position;
 	}
 
-	public CarDto toCarDto() {
+	CarDto toCarDto() {
 		return new CarDto(this.name, this.position);
 	}
 

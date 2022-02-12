@@ -3,23 +3,23 @@ package stringcalculator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Splitter {
-	public static final String DEFAULT_DELIMITERS = "[,:]";
-	public static final int DELIMITER_INDEX = 1;
-	public static final int INPUT_INDEX = 2;
-	public static final String CUSTOM_DELIMITER_PREFIX = "//";
-	public static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
-	public static final String SPECIAL_CUSTOM_DELIMITER_PREFIX = "\\";
-	public static final String SPECIAL_CUSTOM_DELIMITERS = "+*^";
+class Splitter {
+	private static final String DEFAULT_DELIMITERS = "[,:]";
+	private static final int DELIMITER_INDEX = 1;
+	private static final int INPUT_INDEX = 2;
+	private static final String CUSTOM_DELIMITER_PREFIX = "//";
+	private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
+	private static final String SPECIAL_CUSTOM_DELIMITER_PREFIX = "\\";
+	private static final String SPECIAL_CUSTOM_DELIMITERS = "+*^";
 
-	public static String[] split(String input) {
+	static String[] split(String input) {
 		if (isCustomInput(input)) {
 			return splitCustomDelimiter(input);
 		}
 		return input.split(DEFAULT_DELIMITERS);
 	}
 
-	public static String[] splitCustomDelimiter(String input) {
+	static String[] splitCustomDelimiter(String input) {
 		Matcher m = getMatcher(input);
 		validMatchRegEx(m);
 		String customDelimiter = m.group(DELIMITER_INDEX);
@@ -29,7 +29,7 @@ public class Splitter {
 		return m.group(INPUT_INDEX).split(customDelimiter);
 	}
 
-	public static boolean isCustomInput(String input) {
+	static boolean isCustomInput(String input) {
 		return input.startsWith(CUSTOM_DELIMITER_PREFIX);
 	}
 

@@ -5,8 +5,8 @@ import static stringcalculator.Splitter.*;
 import java.util.Arrays;
 
 public class StringCalculator {
-	public static final String ERROR_NEGATIVE_NUMBER_MESSAGE = "음수의 값이 입력되었습니다. 양수를 입력하세요.";
-	public static final String ERROR_NOT_NUMBER_MESSAGE = "숫자 이외의 값이 입력되었습니다. 숫자를 입력하세요.";
+	private static final String ERROR_NEGATIVE_NUMBER_MESSAGE = "음수의 값이 입력되었습니다. 양수를 입력하세요.";
+	private static final String ERROR_NOT_NUMBER_MESSAGE = "숫자 이외의 값이 입력되었습니다. 숫자를 입력하세요.";
 
 	public int splitAndSum(String input) {
 		if (validNullOrBlank(input)) {
@@ -16,7 +16,9 @@ public class StringCalculator {
 	}
 
 	private int sum(String[] numbers) {
-		return Arrays.stream(numbers).mapToInt(this::mapToInt).sum();
+		return Arrays.stream(numbers)
+			.mapToInt(this::mapToInt)
+			.sum();
 	}
 
 	private boolean validNullOrBlank(String input) {
