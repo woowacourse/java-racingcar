@@ -7,13 +7,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import racingcar.controller.RacingCarGame;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.GameTurn;
 
 public class RacingCarTest {
-	RacingCarGame racingCarGame = new RacingCarGame();
 
 	@Test
 	public void 자동차_이름_공백() {
@@ -28,22 +26,22 @@ public class RacingCarTest {
 	}
 
 	@Test
-	public void 자동차_이름_길이_제한_예외처리() throws Exception {
+	public void 자동차_이름_길이_제한_예외처리() {
 		assertThatThrownBy(() -> new Car("배카라쿠네당"))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
-	// @Test
-	// public void 횟수_숫자_확인() throws Exception {
-	// 	assertThatThrownBy(() -> racingCarGame.checkGameTurnNumber("two"))
-	// 		.isInstanceOf(IllegalArgumentException.class);
-	// }
+	@Test
+	public void 횟수_숫자_확인() {
+		assertThatThrownBy(() -> new GameTurn("a"))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
 
-	// @Test
-	// public void 횟수_양수_확인() throws Exception {
-	// 	assertThatThrownBy(() -> racingCarGame.checkGameTurnNumber("-2"))
-	// 		.isInstanceOf(IllegalArgumentException.class);
-	// }
+	@Test
+	public void 횟수_양수_확인() {
+		assertThatThrownBy(() -> new GameTurn("-1"))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
 
 	// @Test
 	// public void 자동차_객체_생성() throws Exception {
@@ -60,9 +58,9 @@ public class RacingCarTest {
 
 	@Test
 	public void 남은_턴_확인() {
-		GameTurn gameTurn = new GameTurn(0);
+		GameTurn gameTurn = new GameTurn("1");
 		boolean result = gameTurn.isPositive();
-		assertThat(result).isEqualTo(false);
+		assertThat(result).isEqualTo(true);
 	}
 
 	@Test
