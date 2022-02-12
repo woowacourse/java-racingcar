@@ -9,7 +9,7 @@ public class CarRepository {
     private static final int START_POSITION = 0;
     private static final int WINNER_POSITION = 0;
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public CarRepository(List<String> carNames) {
         cars = carNames.stream()

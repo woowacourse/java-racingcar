@@ -5,7 +5,7 @@ import racingcargame.utils.RandomNumberGenerator;
 public class Car implements Comparable<Car> {
     private static final int MINIMUM_MOVE_ACCESSIBLE = 4;
 
-    private String name;
+    private final String name;
     private int position;
 
     public Car(final String name, int position) {
