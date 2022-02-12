@@ -9,6 +9,8 @@ public class OutputView {
     private static final String WINNER_ANNOUNCE_MESSAGE = "%s가 최종 우승했습니다.";
     private static final String RACE_PROGRESS_CHARACTER = "-";
 
+    private OutputView() {}
+
     public static void printCurrentPosition(final List<Car> cars) {
         cars.forEach(OutputView::printRacingProgress);
         System.out.println();

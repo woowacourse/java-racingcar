@@ -9,6 +9,8 @@ public class InputView {
     private static final int MINIMUM_TRIAL = 1;
     private static final Scanner SCANNER = new Scanner(System.in);
 
+    private InputView() {}
+
     public static String getCarNames() {
         System.out.println(INPUT_CAR_NAMES);
 
