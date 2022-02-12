@@ -16,10 +16,6 @@ public class CarRepository {
 		cars.add(car);
 	}
 
-	public int count() {
-		return cars.size();
-	}
-
 	public List<Car> findCars() {
 		return new ArrayList<>(cars);
 	}

@@ -21,22 +21,13 @@ public class RacingServiceTest {
 	private final CarRepository carRepository = new CarRepository();
 
 	@BeforeEach
-	public void init() {
-		String input = "pobi,joon";
-		racingService.registerCars(Converter.toCarList(input));
+	public void beforeEach() {
+		racingService.registerCars(Converter.toCarList("pobi,joon"));
 	}
 
 	@AfterEach
 	public void afterEach() {
 		carRepository.clear();
-	}
-
-	@Test
-	public void 자동차_저장() {
-		CarRepository carRepository = new CarRepository();
-		int carCount = carRepository.count();
-
-		assertThat(carCount).isEqualTo(2);
 	}
 
 	@Test
@@ -58,9 +49,9 @@ public class RacingServiceTest {
 
 		racingService.registerCars(List.of(car1, car2, car3));
 
-		List<CarDto> winnerNames = racingService.findWinnerCars();
-		assertThat(winnerNames.size()).isEqualTo(1);
-		assertThat(winnerNames.get(0).getName()).isEqualTo("lala");
+		List<CarDto> winnerCars = racingService.findWinnerCars();
+		assertThat(winnerCars.size()).isEqualTo(1);
+		assertThat(winnerCars.get(0).getName()).isEqualTo("lala");
 	}
 
 	@Test
