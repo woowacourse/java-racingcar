@@ -9,7 +9,7 @@ import racingcar.dto.CarDto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CarTest {
+class CarTest {
     private final Car car = new Car("abc");
 
     @BeforeEach
