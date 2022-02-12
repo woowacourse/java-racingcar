@@ -3,8 +3,8 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Round {
-    private static final int ZERO = 0;
-    private static final int ONE = 1;
+    private static final int ROUND_END_NUMBER = 0;
+    private static final int DECREASED_NUMBER = 1;
     private final int roundNum;
 
     public Round(int roundNum) {
@@ -16,11 +16,11 @@ public class Round {
     }
 
     public boolean moreThanZero() {
-        return this.roundNum > ZERO;
+        return this.roundNum > ROUND_END_NUMBER;
     }
 
     public Round hasNext() {
-        return new Round(roundNum - ONE);
+        return new Round(roundNum - DECREASED_NUMBER);
     }
 
     @Override
