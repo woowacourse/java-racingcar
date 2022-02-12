@@ -1,11 +1,12 @@
 package racingcar.view;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static racingcar.view.InputView.insertRightName;
+import static racingcar.view.InputView.insertRightNumber;
 
 import java.io.ByteArrayInputStream;
-
-import static org.assertj.core.api.Assertions.*;
-import static racingcar.view.InputView.*;
+import org.junit.jupiter.api.Test;
 
 
 public class InputViewTest {

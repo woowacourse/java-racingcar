@@ -1,16 +1,19 @@
 package racingcar.view;
 
 
-import racingcar.utils.Console;
+import static racingcar.utils.Validator.toInt;
+import static racingcar.utils.Validator.validateBlank;
+import static racingcar.utils.Validator.validateEachCarName;
+import static racingcar.view.OutputView.printCarNamesMessage;
+import static racingcar.view.OutputView.printNumberMessage;
 
-import static racingcar.view.OutputView.*;
-import static racingcar.utils.Validator.*;
+import racingcar.utils.Console;
 
 public class InputView {
 
     private static final int SPLIT_LIMIT = -1;
 
-    private static String SPLIT_DELIMITER = ",";
+    private static final String SPLIT_DELIMITER = ",";
 
     public static String[] insertRightName() {
         printCarNamesMessage();

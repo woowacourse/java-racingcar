@@ -8,8 +8,8 @@ public class Cars {
     public static final String LIST_JOIN_DELIMITER = ", ";
     public static final String WINNER_MESSAGE = "가 최종 우승 했습니다.";
 
-    private List<Car> cars = new ArrayList<>();
-    private List<String> winners = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
+    private final List<String> winners = new ArrayList<>();
 
     public static Cars toCars(String[] values) {
         Cars cars = new Cars();

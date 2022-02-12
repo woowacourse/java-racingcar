@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import static racingcar.utils.RandomGenerator.*;
+import static racingcar.utils.RandomGenerator.getRandomNumberInRange;
 
 public class Car {
 
@@ -32,10 +32,7 @@ public class Car {
     }
 
     private boolean isCarGoForward() {
-        if (getRandomNumberInRange(MAX_RANDOM_RANGE) >= MIN_GO_FORWARD_RANGE) {
-            return true;
-        }
-        return false;
+        return getRandomNumberInRange(MAX_RANDOM_RANGE) >= MIN_GO_FORWARD_RANGE;
     }
 
     public boolean isMaxPosition(int maxPosition) {

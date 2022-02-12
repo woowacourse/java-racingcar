@@ -1,9 +1,11 @@
 package racingcar.controller;
 
-import racingcar.domain.Cars;
+import static racingcar.view.InputView.insertRightName;
+import static racingcar.view.InputView.insertRightNumber;
+import static racingcar.view.OutputView.printMessage;
+import static racingcar.view.OutputView.printResultMessage;
 
-import static racingcar.view.InputView.*;
-import static racingcar.view.OutputView.*;
+import racingcar.domain.Cars;
 
 public class RacingController {
 

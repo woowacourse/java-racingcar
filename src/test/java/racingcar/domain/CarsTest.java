@@ -1,10 +1,10 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import racingcar.utils.MockRandomGenerator;
-
-import static org.assertj.core.api.Assertions.*;
 
 public class CarsTest extends MockRandomGenerator {
 
@@ -40,13 +40,13 @@ public class CarsTest extends MockRandomGenerator {
     }
 
 
-    private void addTestCarToCars(Cars cars, Car ...car) {
+    private void addTestCarToCars(Cars cars, Car... car) {
         for (Car c : car) {
             cars.addCar(c);
         }
     }
 
-    private void moveCarPosition(Car ...car) {
+    private void moveCarPosition(Car... car) {
         for (Car c : car) {
             randomNumberOverFour();
             c.goForward();

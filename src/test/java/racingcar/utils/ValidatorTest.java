@@ -1,9 +1,14 @@
 package racingcar.utils;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static racingcar.utils.Validator.toInt;
+import static racingcar.utils.Validator.validateBlank;
+import static racingcar.utils.Validator.validateCarCount;
+import static racingcar.utils.Validator.validateDuplicateName;
+import static racingcar.utils.Validator.validateNameLength;
 
-import static org.assertj.core.api.Assertions.*;
-import static racingcar.utils.Validator.*;
+import org.junit.jupiter.api.Test;
 
 public class ValidatorTest {
 

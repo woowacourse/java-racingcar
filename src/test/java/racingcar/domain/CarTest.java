@@ -1,10 +1,10 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import racingcar.utils.MockRandomGenerator;
-
-import static org.assertj.core.api.Assertions.*;
 
 public class CarTest extends MockRandomGenerator {
 
