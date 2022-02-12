@@ -7,15 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
+
+import calculator.utils.InputValidator;
 
 public class Application {
     private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
     private static final String BASE_DELIMITER_PATTERN = ",|:";
-    private static final String COMMA_DELIMITER = ",";
-    private static final String COLON_DELIMITER = ":";
     private static final String OR = "|";
-    private static final int NUMBER = 0;
     private static final int DELIMITER = 1;
     private static final int NUMBERS = 2;
 
@@ -25,65 +23,25 @@ public class Application {
         System.out.println(runCalculator(askInput().replace("\\n", "\n")));
     }
 
-    public static int runCalculator(String input) {
-        if (isNotValidateInput(input)) {
-            return 0;
-        }
-
-        return sumAndDivideInput(input);
-    }
-
-    private static boolean isNotValidateInput(String input) {
-        return isNullInput(input) || isEmptyInput(input) || isBlankInput(input);
-    }
-
-    private static boolean isBlankInput(String input) {
-        return input.isBlank();
-    }
-
-    private static boolean isEmptyInput(String input) {
-        return input.isEmpty();
-    }
-
-    private static boolean isNullInput(String input) {
-        return input == null;
-    }
-
     private static String askInput() throws IOException {
         return bufferedReader.readLine();
+    }
+
+    public static int runCalculator(String input) {
+        if (InputValidator.isInputNullOrBlankOrEmpty(input)) {
+            return 0;
+        }
+        return sumAndDivideInput(input);
     }
 
     private static int sumAndDivideInput(String input) {
         if (hasCustomDelimiterInInput(input)) {
             List<String> numbersDividedByCustomDelimiter = divideNumbersByCustomDelimiter(input);
-            checkValidateNumbers(numbersDividedByCustomDelimiter);
+            InputValidator.checkValidateNumbers(divideNumbersByCustomDelimiter(input));
             return makeSumOfNumbers(numbersDividedByCustomDelimiter);
         }
-
-        checkValidateNumbers(input);
+        InputValidator.checkValidateNumbers(List.of(input.split("")));
         return makeSumOfNumbers(divideInput(input));
-    }
-
-    private static void checkValidateNumbers(List<String> numbers) {
-        numbers.forEach(Application::checkValidateNumber);
-    }
-
-    private static void checkValidateNumbers(String numbers) {
-        Stream.of(numbers).forEach(Application::checkValidateNumber);
-    }
-
-    private static void checkValidateNumber(String number) {
-        if (isRightNumber(number)) {
-            return;
-        }
-        throw new RuntimeException();
-    }
-
-    private static boolean isRightNumber(String number) {
-        if (number.equals(COMMA_DELIMITER) || number.equals(COLON_DELIMITER)) {
-            return true;
-        }
-        return Character.isDigit((number.charAt(NUMBER)));
     }
 
     private static boolean hasCustomDelimiterInInput(String input) {
@@ -101,15 +59,15 @@ public class Application {
         throw new RuntimeException();
     }
 
+    private static List<String> divideInput(String input) {
+        return Arrays.asList(input.split(BASE_DELIMITER_PATTERN));
+    }
+
     private static int makeSumOfNumbers(List<String> numbers) {
         int sumOfNumbers = 0;
         for (String number : numbers) {
             sumOfNumbers += Integer.parseInt(number);
         }
         return sumOfNumbers;
-    }
-
-    private static List<String> divideInput(String input) {
-        return Arrays.asList(input.split(BASE_DELIMITER_PATTERN));
     }
 }
