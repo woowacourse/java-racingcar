@@ -31,6 +31,10 @@ public class Car {
         }
     }
 
+    public boolean isWinner(int maxPosition) {
+        return position == maxPosition;
+    }
+
     @Override
     public String toString() {
         String positionSign = SIGN_OF_POSITION.repeat(position);
