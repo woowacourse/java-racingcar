@@ -28,7 +28,11 @@ public class RefereeTest {
 
 	@Test
 	public void 우승자_여러명() {
-		Set<Car> cars = CarFactory.of("forky,kun");
-		assertThat(Referee.judgeWinner(cars).size()).isEqualTo(2);
+		Car winner1 = new Car("pobi");
+		Car winner2 = new Car("kun");
+		Car loser = new Car("forky");
+		winner1.move();
+		winner2.move();
+		assertThat(Referee.judgeWinner(Set.of(winner1, winner2, loser))).containsExactlyInAnyOrder(winner1, winner2);
 	}
 }
