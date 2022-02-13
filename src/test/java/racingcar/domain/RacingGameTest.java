@@ -1,18 +1,25 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
+
+import racingcar.Parser;
 
 class RacingGameTest {
 
     @Test
+    void validateNames_쉼표만() {
+        assertThatThrownBy(() -> {
+            new RacingGame(Arrays.asList());
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void getChampionNames_우승자가_한명() {
-        RacingGame racingGame = new RacingGame(new String[] {"car1", "car2", "car3"});
+        RacingGame racingGame = new RacingGame(Arrays.asList("car1", "car2", "car3"));
 
         racingGame.getCars().get(0).move(5);
         racingGame.getCars().get(1).move(1);
@@ -26,7 +33,7 @@ class RacingGameTest {
 
     @Test
     void getChampionNames_우승자가_여러명() {
-        RacingGame racingGame = new RacingGame(new String[] {"car1", "car2", "car3"});
+        RacingGame racingGame = new RacingGame(Arrays.asList("car1", "car2", "car3"));
 
         racingGame.getCars().get(0).move(5);
         racingGame.getCars().get(1).move(5);
