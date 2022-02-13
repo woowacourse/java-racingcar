@@ -55,10 +55,14 @@ public class RacingGame {
 	}
 
 	private int findFarthestPosition() {
-		return cars.stream()
-			.sorted(Comparator.comparing(Car::getPosition))
-			.collect(Collectors.toList())
-			.get(cars.size() - 1).getPosition();
+		List<Car> sortedCars = cars.stream()
+				.sorted(Comparator.comparing(Car::getPosition).reversed())
+				.collect(Collectors.toList());
+
+		if (!sortedCars.isEmpty()) {
+			return sortedCars.get(0).getPosition();
+		}
+		return 0;
 	}
 
 	private List<Car> getWinners(final int farthestPosition) {
