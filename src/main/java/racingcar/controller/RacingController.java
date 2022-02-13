@@ -1,7 +1,7 @@
 package racingcar.controller;
 
-import static racingcar.view.InputView.insertRightName;
-import static racingcar.view.InputView.insertRightNumber;
+import static racingcar.view.InputView.insertName;
+import static racingcar.view.InputView.insertNumber;
 import static racingcar.view.OutputView.printMessage;
 import static racingcar.view.OutputView.printResultMessage;
 
@@ -11,30 +11,13 @@ public class RacingController {
 
     public void play() {
         try {
-            Cars cars = new Cars(insertRightName());
-            int trialCount = getRightNumber();
+            Cars cars = new Cars(insertName());
+            int trialCount = insertNumber();
+
             progressTurns(cars, trialCount);
             printMessage(cars.getWinners());
         } catch (IllegalArgumentException e) {
             printMessage(e.getMessage());
-        }
-    }
-
-    private String[] getRightName() {
-        try {
-            return insertRightName();
-        } catch (IllegalArgumentException e) {
-            printMessage(e.getMessage());
-            return getRightName();
-        }
-    }
-
-    private int getRightNumber() {
-        try {
-            return insertRightNumber();
-        } catch (IllegalArgumentException e) {
-            printMessage(e.getMessage());
-            return getRightNumber();
         }
     }
 
