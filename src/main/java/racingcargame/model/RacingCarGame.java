@@ -2,31 +2,31 @@ package racingcargame.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RacingCarGame {
-    private static final int GAME_OVER = 0;
-
+    private final CarGameRaceCount raceCount;
     private CarRepository carRepository;
 
     public RacingCarGame(List<String> carNames, int raceCount) {
+        this.raceCount = Objects.requireNonNull(orderToSaveRaceCount(raceCount));
         orderToSaveCars(carNames);
-        orderToSaveRaceCount(raceCount);
     }
 
     private void orderToSaveCars(List<String> carNames) {
         carRepository = new CarRepository(carNames);
     }
 
-    private void orderToSaveRaceCount(int raceCount) {
-        RaceCount.storeCount(raceCount);
+    private CarGameRaceCount orderToSaveRaceCount(int count) {
+        return new CarGameRaceCount(count);
     }
 
     public void orderToReduceRaceCount() {
-        RaceCount.reduceRaceCount();
+        raceCount.reduceRaceCount();
     }
 
     public boolean isOverRace() {
-        return RaceCount.getCount() == GAME_OVER;
+        return raceCount.isZeroRaceCount();
     }
 
     public List<CarVO> startRace() {
