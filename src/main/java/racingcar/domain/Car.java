@@ -23,7 +23,7 @@ public class Car {
         return position;
     }
 
-    public void progress(int number){
+    public void progress(int number) {
         if (number >= PROGRESS_CONDITION_VALUE) {
             position++;
         }
