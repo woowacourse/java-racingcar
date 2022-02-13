@@ -8,6 +8,7 @@ import static calculator.CalculatorValidation.isValidMatcher;
 public class StringSplitter {
 
     private static final StringSplitter stringSplitter = new StringSplitter();
+    private static final String CUSTOM_PREFIX = "//";
 
     private StringSplitter() {
     }
@@ -16,12 +17,12 @@ public class StringSplitter {
         return stringSplitter;
     }
 
-    public String[] parseString(String str) {
-        if (str.contains(",") || str.contains(":")) {
-            return defaultSplit(str);
+    public String[] splitString(String str) {
+        if (str.startsWith(CUSTOM_PREFIX)) {
+           return customSplit(str);
         }
 
-        return customSplit(str);
+        return defaultSplit(str);
     }
 
     private String[] defaultSplit(String str) {

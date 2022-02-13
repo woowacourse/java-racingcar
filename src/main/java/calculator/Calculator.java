@@ -1,5 +1,7 @@
 package calculator;
 
+import java.util.List;
+
 import static calculator.CalculatorValidation.*;
 
 public class Calculator {
@@ -11,22 +13,18 @@ public class Calculator {
             return 0;
         }
 
-        if (isOnlyDigit(str)) {
-            return Integer.parseInt(str);
-        }
+        String[] tokens = stringSplitter.splitString(str);
 
-        String[] tokens = stringSplitter.parseString(str);
+        List<Integer> verifiedNumbers = getValidNumber(tokens);
 
-        isValidTokens(tokens);
-
-        return getSum(tokens);
+        return getSum(verifiedNumbers);
     }
 
-    private static int getSum(String[] tokens) {
+    private static int getSum(List<Integer> numbers) {
         int sum = 0;
 
-        for (String token : tokens) {
-            sum += Integer.parseInt(token);
+        for (int number : numbers) {
+            sum += number;
         }
 
         return sum;
