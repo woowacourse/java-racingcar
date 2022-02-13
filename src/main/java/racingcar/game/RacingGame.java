@@ -9,6 +9,8 @@ import java.util.List;
 
 import static racingcar.util.InitUtil.initCar;
 import static racingcar.util.InitUtil.initTotalAttempt;
+import static racingcar.view.InputView.getAttemptCount;
+import static racingcar.view.InputView.getCarNames;
 import static racingcar.view.OutputView.*;
 
 public class RacingGame {
@@ -32,8 +34,11 @@ public class RacingGame {
     }
 
     private void initRacingCarGame() throws IllegalArgumentException {
-        carList = initCar();
-        totalAttemptCount = initTotalAttempt();
+        String carNames = getCarNames();
+        carList = initCar(carNames);
+
+        String attempt = getAttemptCount();
+        totalAttemptCount = initTotalAttempt(attempt);
     }
 
     private void run() {

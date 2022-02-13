@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static racingcar.util.VerificationUtil.*;
-import static racingcar.view.InputView.getAttemptCount;
-import static racingcar.view.InputView.getCarNames;
 
 public class InitUtil {
 
@@ -16,9 +14,9 @@ public class InitUtil {
     private InitUtil() {
     }
 
-    public static List<Car> initCar() throws IllegalArgumentException {
+    public static List<Car> initCar(String carNames) throws IllegalArgumentException {
         List<Car> carList = new ArrayList<>();
-        String[] names = getCarNames().split(SEPARATOR);
+        String[] names = carNames.split(SEPARATOR);
 
         validateDuplication(names);
 
@@ -29,9 +27,7 @@ public class InitUtil {
         return carList;
     }
 
-    public static int initTotalAttempt() throws IllegalArgumentException {
-        String attempt = getAttemptCount();
-
+    public static int initTotalAttempt(String attempt) throws IllegalArgumentException {
         validateAttempt(attempt);
 
         return Integer.parseInt(attempt);
