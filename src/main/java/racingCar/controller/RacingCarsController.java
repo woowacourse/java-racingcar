@@ -1,5 +1,7 @@
 package racingCar.controller;
 
+import static racingCar.view.Output.*;
+
 import racingCar.service.RacingCarsService;
 import racingCar.service.RequestService;
 import racingCar.view.Output;
@@ -11,6 +13,7 @@ public class RacingCarsController {
 	}
 
 	public void startGame() {
+		printStartMessage();
 		RacingCarsService.runGame();
 	}
 

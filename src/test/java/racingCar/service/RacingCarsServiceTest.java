@@ -29,7 +29,7 @@ class RacingCarsServiceTest {
 
 		//then
 		assertThat(result)
-			.contains("","실행 결과","juri : -","hunch : -");
+			.contains("juri : -","hunch : -");
 	}
 
 	@Test

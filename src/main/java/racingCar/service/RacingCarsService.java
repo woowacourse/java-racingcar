@@ -1,7 +1,5 @@
 package racingCar.service;
 
-import static racingCar.view.Output.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,11 +23,17 @@ public class RacingCarsService {
 	}
 
 	public static void runGame() {
-		printStartMessage();
-		for (int i = 0; i < roundCount.get(); i++) {
-			cars.GoRound();
-			Output.printRoundResult(cars);
+		goRound();
+		if (roundCount.isFinish()) {
+			return;
 		}
+		runGame();
+	}
+
+	public static void goRound() {
+		cars.goRound();
+		roundCount.goRound();
+		Output.printRoundResult(cars);
 	}
 
 	public static List<String> findWinner() {

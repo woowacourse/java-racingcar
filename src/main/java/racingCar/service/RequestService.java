@@ -5,7 +5,6 @@ import racingCar.utlis.Util;
 import racingCar.view.Input;
 
 public class RequestService {
-
 	public static String requestNames() {
 		String input = Input.inputNames();
 		validateNotNullInput(input);

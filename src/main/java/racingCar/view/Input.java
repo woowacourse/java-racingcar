@@ -17,5 +17,4 @@ public class Input {
 		System.out.println(REQUEST_COUNT_MESSAGE);
 		return scanner.next();
 	}
-
 }

@@ -3,20 +3,27 @@ package racingCar.model;
 import racingCar.exception.count.CountRangeException;
 
 public class RoundCount {
-	private final int count;
+	private int count;
 
 	public RoundCount(int count) {
 		validate(count);
 		this.count = count;
 	}
 
+	public int get() {
+		return count;
+	}
+
+	public void goRound() {
+		count--;
+	}
+	public boolean isFinish() {
+		return count == 0;
+	}
+
 	private static void validate(int count) {
 		if (count <= 0) {
 			throw new CountRangeException();
 		}
-	}
-
-	public int get() {
-		return count;
 	}
 }

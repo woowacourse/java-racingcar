@@ -33,7 +33,7 @@ public class RacingCars {
 		this.cars.add(car);
 	}
 
-	public void GoRound() {
+	public void goRound() {
 		for (Car car : cars) {
 			car.go();
 		}
@@ -56,8 +56,7 @@ public class RacingCars {
 	}
 
 	public List<String> getSamePositionCars(int position) {
-		return cars
-			.stream()
+		return cars.stream()
 			.filter(car -> car.position.isSame(position))
 			.map(Car::getName)
 			.collect(Collectors.toList());
