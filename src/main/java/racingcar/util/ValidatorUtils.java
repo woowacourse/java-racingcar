@@ -4,30 +4,29 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static racingcar.constants.OutputMessages.BLANK_NOT_ALLOWED_EXCEPTION;
-import static racingcar.constants.OutputMessages.DUPLICATE_NAME_EXCEPTION;
-import static racingcar.constants.OutputMessages.NOT_POSITIVE_INTEGER_EXCEPTION;
-import static racingcar.constants.OutputMessages.OVER_FIVE_CHARACTERS_EXCEPTION;
-import static racingcar.constants.SystemConstants.COMMA;
-import static racingcar.constants.SystemConstants.MAX_NAME_LENGTH;
-import static racingcar.constants.SystemConstants.ZERO;
-
 public class ValidatorUtils {
 
+    public static final int MAX_NAME_LENGTH = 5;
+    public static final String CAR_NAMES_INPUT_DELIMITER = ",";
+    private static final String NOT_POSITIVE_INTEGER_EXCEPTION = "양수를 입력해야 합니다.";
+    private static final String BLANK_NOT_ALLOWED_EXCEPTION = "공백을 입력하면 안 됩니다.";
+    private static final String OVER_FIVE_CHARACTERS_EXCEPTION = "5글자 이하의 이름을 입력해야 합니다.";
+    private static final String DUPLICATE_NAME_EXCEPTION = "중복된 이름을 입력하면 안 됩니다.";
+
     public static int validateAndParsePositiveInt(String string) {
-        int integer = Integer.parseInt(string);
-        validatePositiveInt(integer);
-        return integer;
+        int number = Integer.parseInt(string);
+        validatePositiveInt(number);
+        return number;
     }
 
-    private static void validatePositiveInt(int integer) {
-        if (integer <= ZERO) {
+    private static void validatePositiveInt(int number) {
+        if (number <= 0) {
             throw new RuntimeException(NOT_POSITIVE_INTEGER_EXCEPTION);
         }
     }
 
     public static String[] splitAndValidateCarNames(String carNamesString) {
-        String[] carNames = carNamesString.split(COMMA);
+        String[] carNames = carNamesString.split(CAR_NAMES_INPUT_DELIMITER);
 
         for (String name : carNames) {
             validateNotBlank(name);
@@ -39,7 +38,7 @@ public class ValidatorUtils {
     }
 
     private static void validateNotBlank(String string) {
-        if (string.trim().isEmpty()) {
+        if (string.isBlank()) {
             throw new RuntimeException(BLANK_NOT_ALLOWED_EXCEPTION);
         }
     }
