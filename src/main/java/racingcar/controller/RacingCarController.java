@@ -26,7 +26,7 @@ public class RacingCarController {
 
     private Count getCount() {
         try {
-            return InputView.getCount();
+            return new Count(InputView.getCount());
         } catch (IllegalArgumentException e) {
             OutPutView.printErrorMessage(e.getMessage());
             return getCount();

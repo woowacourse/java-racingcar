@@ -1,6 +1,5 @@
 package racingcar.view;
 
-import racingcar.domain.Count;
 import racingcar.utils.Console;
 
 public class InputView {
@@ -18,8 +17,8 @@ public class InputView {
         return input.split(SPLIT_REGEX, SPLIT_LIMIT);
     }
 
-    public static Count getCount() {
+    public static String getCount() {
         System.out.println(INPUT_COUNT_MESSAGE);
-        return new Count(Console.readLine());
+        return Console.readLine();
     }
 }
