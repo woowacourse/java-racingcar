@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 
 class ConvertorTest {
 
-	Convertor convertor = new Convertor();
-
 	@Test
 	public void 쉼표_기준으로_이름_분리() {
+		//given
 		String names = "pobi,crong,honux";
-		String[] nameArray = convertor.separate(names);
+		//when
+		String[] nameArray = Convertor.separate(names);
+		//then
 		assertArrayEquals(nameArray, new String[] {"pobi", "crong", "honux"});
 	}
-
 }

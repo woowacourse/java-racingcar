@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import racingCar.utlis.Constants;
+
 class NameValidatorTest {
 
 	@Test
@@ -15,7 +17,8 @@ class NameValidatorTest {
 		String inputString = "";
 		assertThatThrownBy(() -> {
 			NameValidator.validateInput(inputString);
-		}).isInstanceOf(Exception.class);
+		}).isInstanceOf(Exception.class)
+			.hasMessage(Constants.EXCEPTION_NULL_MESSAGE);
 	}
 
 	@Test
@@ -23,7 +26,8 @@ class NameValidatorTest {
 		String name = "   ";
 		assertThatThrownBy(() -> {
 			NameValidator.validateName(name);
-		}).isInstanceOf(Exception.class);
+		}).isInstanceOf(Exception.class)
+			.hasMessage(Constants.EXCEPTION_SPACE_MESSAGE);
 	}
 
 	@Test
@@ -31,7 +35,8 @@ class NameValidatorTest {
 		String name = "abcdef";
 		assertThatThrownBy(() -> {
 			NameValidator.validateName(name);
-		}).isInstanceOf(Exception.class);
+		}).isInstanceOf(Exception.class)
+			.hasMessage(Constants.EXCEPTION_NAME_RANGE);
 	}
 
 	@Test
@@ -39,7 +44,8 @@ class NameValidatorTest {
 		String name = "주리!";
 		assertThatThrownBy(() -> {
 			NameValidator.validateName(name);
-		}).isInstanceOf(Exception.class);
+		}).isInstanceOf(Exception.class)
+			.hasMessage(Constants.EXCEPTION_SPACIAL_MESSAGE);
 	}
 
 	@Test
@@ -47,7 +53,8 @@ class NameValidatorTest {
 		List<String> nameList = new ArrayList<>(List.of("prodo"));
 		assertThatThrownBy(() -> {
 			NameValidator.validateNameList(nameList);
-		}).isInstanceOf(Exception.class);
+		}).isInstanceOf(Exception.class)
+			.hasMessage(Constants.EXCEPTION_ONE_NAME_MESSAGE);
 	}
 
 	@Test
@@ -55,6 +62,7 @@ class NameValidatorTest {
 		List<String> nameList = new ArrayList<>(Arrays.asList("prodo", "prodo"));
 		assertThatThrownBy(() -> {
 			NameValidator.validateNameList(nameList);
-		}).isInstanceOf(Exception.class);
+		}).isInstanceOf(Exception.class)
+			.hasMessage(Constants.EXCEPTION_DUPLICATED_NAME_MESSAGE);
 	}
 }

@@ -7,7 +7,11 @@ class UtilTest {
 
 	@Test
 	public void 랜덤값_테스트() {
-		assertThat(Util.getRandomInteger()).isBetween(0,9);
+		for (int i = 0; i < 100; i++) {
+			int result = Util.getRandomInteger();
+			System.out.println("result :"  + result);
+			assertThat(result).isBetween(0,9);
+		}
 	}
 
 }
