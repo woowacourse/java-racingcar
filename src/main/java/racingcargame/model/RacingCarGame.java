@@ -1,10 +1,13 @@
 package racingcargame.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class RacingCarGame {
+    private static final int WINNER_POSITION = 0;
+
     private final CarGameRaceCount raceCount;
     private CarRepository carRepository;
 
@@ -40,6 +43,12 @@ public class RacingCarGame {
     }
 
     public List<String> findRacingGameWinner() {
-        return carRepository.findWinner();
+        List<Car> cars = carRepository.getCars();
+        cars.sort(Collections.reverseOrder());
+
+        return cars.stream()
+                .filter(car -> car.isWinner(cars.get(WINNER_POSITION)))
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 }

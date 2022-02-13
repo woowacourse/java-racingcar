@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 public class CarRepository {
     private static final int START_POSITION = 0;
-    private static final int WINNER_POSITION = 0;
 
     private final List<Car> cars;
 
@@ -22,14 +21,5 @@ public class CarRepository {
 
     void moveCars() {
         cars.forEach(Car::moveCar);
-    }
-
-    public List<String> findWinner() {
-        cars.sort(Collections.reverseOrder());
-
-        return cars.stream()
-                .filter(car -> car.isWinner(cars.get(WINNER_POSITION)))
-                .map(Car::getName)
-                .collect(Collectors.toList());
     }
 }

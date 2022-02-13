@@ -5,33 +5,32 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RacingCarGameTest {
+    private RacingCarGame racingCarGame;
+    private List<String> carNames;
+
+    @BeforeEach
+    void setUp() {
+        carNames = new ArrayList<>();
+        carNames.add("liver");
+        carNames.add("lawn");
+        racingCarGame = new RacingCarGame(carNames, 0);
+    }
 
     @Test
     @DisplayName("생성한 자동차 객체 갯수 확인")
     void storeCarName() {
-        List<String> carNames = new ArrayList<>();
-        carNames.add("liver");
-        carNames.add("lawn");
-        CarRepository carRepository = new CarRepository(carNames);
-
-        assertThat(carRepository.getCars().size()).isEqualTo(2);
+        assertThat(racingCarGame.startRace().size()).isEqualTo(2);
     }
 
     @Test
     @DisplayName("우승자 확인")
     void findCarName() {
-        List<String> carNames = new ArrayList<>();
-        carNames.add("liver");
-        carNames.add("lawn");
-
-        CarRepository carRepository = new CarRepository(carNames);
-        carRepository.moveCars();
-
-        assertThat(carRepository.findWinner().get(0).contains("liver")
-                || carRepository.findWinner().get(0).contains("lawn")).isTrue();
+        assertThat(racingCarGame.findRacingGameWinner().get(0).contains("liver")
+                || racingCarGame.findRacingGameWinner().get(0).contains("lawn")).isTrue();
     }
 }
