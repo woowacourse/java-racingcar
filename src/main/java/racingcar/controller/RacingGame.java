@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -75,6 +76,6 @@ public class RacingGame {
 		final String[] winnerNames = winners.stream()
 			.map(Car::getName)
 			.toArray(String[]::new);
-		return String.join(", ", winnerNames);
+		return Arrays.stream(winnerNames).collect(Collectors.joining(", "));
 	}
 }
