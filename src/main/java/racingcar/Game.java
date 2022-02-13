@@ -10,6 +10,8 @@ public class Game {
 	private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
 	private static final int ERROR_CRITERIA_VALUE_ZERO = 0;
 
+	private final Random random = new Random();
+
 	public void start() {
 		Set<Car> cars = CarFactory.of(InputView.inputCarNames());
 		int count = InputView.inputGameCount();
@@ -43,7 +45,6 @@ public class Game {
 	}
 
 	public int makeRandomValue() {
-		Random random = new Random();
 		return random.nextInt(10);
 	}
 
