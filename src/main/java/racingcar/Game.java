@@ -24,11 +24,10 @@ public class Game {
 		showWinner(Referee.judgeWinner(cars));
 	}
 
-	public Set<Car> play(Set<Car> cars) {
+	public void play(Set<Car> cars) {
 		for (Car car : cars) {
 			Referee.judgeCarMove(car, makeRandomValue());
 		}
-		return cars;
 	}
 
 	public void showResult(Set<Car> cars) {
