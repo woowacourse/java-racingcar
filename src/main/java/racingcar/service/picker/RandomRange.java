@@ -3,7 +3,7 @@ package racingcar.service.picker;
 public enum RandomRange {
 
 	INCLUSIVE_MINIMUM(0),
-	INCLUSIVE_MAXIMUM(9);
+	EXCLUSIVE_MAXIMUM(10);
 
 	private final int number;
 
@@ -16,7 +16,7 @@ public enum RandomRange {
 	}
 
 	public static int getSize() {
-		return INCLUSIVE_MAXIMUM.number - INCLUSIVE_MINIMUM.number + 1;
+		return EXCLUSIVE_MAXIMUM.number - INCLUSIVE_MINIMUM.number;
 	}
 
 }
