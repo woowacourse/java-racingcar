@@ -17,7 +17,6 @@ public class RacingGame {
     private static final int FIRST_INDEX = 0;
 
     private List<Car> carList = new ArrayList<>();
-    private List<String> winnerNameList = new ArrayList<>();
     private int totalAttemptCount;
 
     public void start() throws IllegalArgumentException {
@@ -28,7 +27,7 @@ public class RacingGame {
             run();
         }
 
-        getWinners();
+        List<String> winnerNameList = getWinners();
         printWinners(winnerNameList);
     }
 
@@ -54,20 +53,31 @@ public class RacingGame {
         }
     }
 
-    private void getWinners() {
+    private List<String> getWinners() {
+        List<String> winnerNameList = new ArrayList<>();
+
+        int maxPosition = getMaxPosition();
+
+        for (int i = ZERO; i < carList.size(); i++) {
+            Car car = carList.get(i);
+            getWinnerNameList(winnerNameList, maxPosition, car);
+        }
+
+        return winnerNameList;
+    }
+
+    private int getMaxPosition() {
         Collections.sort(carList, (o1, o2) -> o2.getPosition() - o1.getPosition());
 
         int maxPosition = carList.get(FIRST_INDEX).getPosition();
 
-        for (int i = ZERO; i < carList.size(); i++) {
-            Car car = carList.get(i);
-            addWinnerName(maxPosition, car);
-        }
+        return maxPosition;
     }
 
-    private void addWinnerName(int maxPosition, Car car) {
+    private void getWinnerNameList(List<String> winnerNameList, int maxPosition, Car car) {
         if (car.isSamePosition(maxPosition)) {
-            winnerNameList.add(car.getName());
+            String winnerName = car.getName();
+            winnerNameList.add(winnerName);
         }
     }
 }
