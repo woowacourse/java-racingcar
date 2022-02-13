@@ -23,7 +23,6 @@ public class RaceController {
 
         String[] carNames = inputController.getUserCarNames();
         int tryCount = inputController.getUserTryCount();
-
         initCars(carNames);
         OutputView.printResultPrefix();
         for (int i = 0; i < tryCount; i++) {
