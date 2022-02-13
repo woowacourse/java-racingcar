@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import java.util.Objects;
+
 public class Car implements Comparable<Car> {
 	private static final String NULL_EMPTY_CAR_NAME_ERROR_MESSAGE = "[Error] 다시 이름을 입력하세요";
 	private static final int MAX_CAR_NAME_LENGTH = 5;
@@ -37,8 +39,19 @@ public class Car implements Comparable<Car> {
 
 	@Override
 	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
 		Car car = (Car)obj;
-		return this.name.equals(car.name);
+		return Objects.equals(name, car.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
 	}
 
 	@Override
