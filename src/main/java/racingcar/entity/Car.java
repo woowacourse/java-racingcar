@@ -1,6 +1,7 @@
 package racingcar.entity;
 
 import static racingcar.util.RandomUtil.checkMoveOrWait;
+import static racingcar.util.VerificationUtil.validateCarName;
 
 public class Car {
 
@@ -10,6 +11,7 @@ public class Car {
     private int position = INITIAL_VALUE;
 
     public Car(String name) {
+        validateCarName(name);
         this.name = name;
     }
 

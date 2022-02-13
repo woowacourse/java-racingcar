@@ -23,7 +23,6 @@ public class InitUtil {
         validateDuplication(names);
 
         for (String name : names) {
-            validateCarName(name);
             carList.add(new Car(name));
         }
 
