@@ -9,7 +9,7 @@ class CarDtoTest {
     private final CarDto carDto = new CarDto("abc", 2);
 
     @Test
-    @DisplayName("이름을 반환한다.")
+    @DisplayName("자동차의 이름을 반환한다.")
     void carName() {
         String actual = carDto.carName();
         String expected = "abc";
@@ -17,7 +17,7 @@ class CarDtoTest {
     }
 
     @Test
-    @DisplayName("이름을 반환한다.")
+    @DisplayName("자동차의 이동거리를 반환한다.")
     void distance() {
         int actual = carDto.distance();
         int expected = 2;
