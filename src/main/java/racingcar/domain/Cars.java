@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.utils.NumberGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -9,8 +11,9 @@ public class Cars {
     public static final String LIST_JOIN_DELIMITER = ", ";
     public static final String WINNER_MESSAGE = "가 최종 우승 했습니다.";
 
-    private List<Car> cars;
-    private List<String> winners;
+
+    private final List<Car> cars;
+    private final List<String> winners;
 
     public Cars(String[] values) {
         cars = new ArrayList<>();
@@ -19,9 +22,10 @@ public class Cars {
             cars.add(new Car(value));
         }
     }
-    public void moveCars() {
+
+    public void moveCars(NumberGenerator generator) {
         for (Car car : cars) {
-            car.goForward();
+            car.goForward(generator.generate());
         }
     }
 

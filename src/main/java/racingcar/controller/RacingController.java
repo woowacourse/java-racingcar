@@ -1,11 +1,18 @@
 package racingcar.controller;
 
 import racingcar.domain.Cars;
+import racingcar.utils.NumberGenerator;
 
 import static racingcar.view.InputView.*;
 import static racingcar.view.OutputView.*;
 
 public class RacingController {
+
+    private NumberGenerator numberGenerator;
+
+    public RacingController(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
 
     public void play() {
         Cars cars = new Cars(getRightName());
@@ -37,7 +44,7 @@ public class RacingController {
 
     private void progressTurns(Cars cars, int trialCount) {
         for (int i = 0; i < trialCount; i++) {
-            cars.moveCars();
+            cars.moveCars(numberGenerator);
             printMessage(cars.toString());
         }
     }

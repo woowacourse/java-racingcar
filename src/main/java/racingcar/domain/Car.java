@@ -1,10 +1,7 @@
 package racingcar.domain;
 
-import static racingcar.utils.RandomGenerator.*;
-
 public class Car {
 
-    private static final int MAX_RANDOM_RANGE = 9;
     private static final int MIN_GO_FORWARD_RANGE = 4;
     private static final String NAME_POSITION_DELIMITER = " : ";
     private static final String PROGRESS_BAR = "-";
@@ -25,14 +22,14 @@ public class Car {
         return position;
     }
 
-    public void goForward() {
-        if (isCarGoForward()) {
+    public void goForward(int number) {
+        if (isCarGoForward(number)) {
             position++;
         }
     }
 
-    private boolean isCarGoForward() {
-        return getRandomNumberInRange(MAX_RANDOM_RANGE) >= MIN_GO_FORWARD_RANGE;
+    private boolean isCarGoForward(int number) {
+        return number >= MIN_GO_FORWARD_RANGE;
     }
 
     public String toString() {
