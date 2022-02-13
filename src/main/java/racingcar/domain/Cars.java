@@ -23,7 +23,7 @@ public class Cars {
         }
     }
 
-    public List<String> getChampions() {
+    public List<String> getChampionList() {
         updateHighScore();
         verifyChampion();
         return championList;

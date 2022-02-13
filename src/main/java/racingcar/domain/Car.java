@@ -36,7 +36,7 @@ public class Car {
         return name;
     }
 
-    public String getCurrentPosition() {
+    public String getProgress() {
         StringBuilder currentPosition = new StringBuilder(name + DELIMITER);
         for (int i = 0; i < position; i++) {
             currentPosition.append(DISTANCE);
