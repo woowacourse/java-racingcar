@@ -3,11 +3,12 @@ package racingcargame.controller;
 import java.util.List;
 
 import racingcargame.model.RacingCarGame;
+import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 
 public class CarGameController {
     private static final CarGameController GAME_CONTROLLER = new CarGameController();
-    private static final CarGameInputController INPUT_CONTROLLER = CarGameInputController.getInputController();
+    private static final InputView INPUT_CONTROLLER = InputView.getInputController();
 
     private CarGameController() {
     }
