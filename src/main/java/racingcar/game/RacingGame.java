@@ -55,7 +55,7 @@ public class RacingGame {
     }
 
     private void getWinners() {
-        Collections.sort(carList);
+        Collections.sort(carList, (o1, o2) -> o2.getPosition() - o1.getPosition());
 
         int maxPosition = carList.get(FIRST_INDEX).getPosition();
 
