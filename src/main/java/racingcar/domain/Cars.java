@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Cars {
+    private static final int DEFAULT_MAX_POSITION = 0;
+
     private final List<Car> cars;
 
     public Cars(String[] names, MovingPolicy movingPolicy) {
@@ -42,7 +44,7 @@ public class Cars {
         return cars.stream()
             .mapToInt(Car::getPosition)
             .max()
-            .orElse(0);
+            .orElse(DEFAULT_MAX_POSITION);
     }
 
     public List<Car> getCars() {

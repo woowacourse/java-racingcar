@@ -1,6 +1,9 @@
 package racingcar.domain;
 
 public class Count {
+    private static final int NEGATIVE_NUMBER_STANDARD = 0;
+    private static final int COUNT_SUBTRACT_POSSIBLE_STANDARD = 0;
+
     private int count;
 
     public Count(String input) {
@@ -10,13 +13,13 @@ public class Count {
     }
 
     private void validateNegative(int number) {
-        if (number < 0) {
+        if (number < NEGATIVE_NUMBER_STANDARD) {
             throw new IllegalArgumentException();
         }
     }
 
     public boolean hasNextCount() {
-        if (count > 0) {
+        if (count > COUNT_SUBTRACT_POSSIBLE_STANDARD) {
             count--;
             return true;
         }
