@@ -11,16 +11,13 @@ public class CarTest {
 
 	@Test
 	public void 차_생성() {
-		String name = "forky";
-		Car car = new Car(name);
-		assertThat(car.getName()).isEqualTo(name);
+		assertThat( new Car("forky").getName()).isEqualTo("forky");
 	}
 
 	@Test
 	public void 차_여러대_생성() {
-		String names = "forky,kun";
-		Set<Car> cars = CarFactory.of(names);
-		assertThat(cars.stream().anyMatch(car -> car.getName().equals("kun"))).isTrue();
+		assertThat(CarFactory.of("forky,kun"))
+			.containsExactlyInAnyOrder(new Car("forky"), new Car("kun"));
 	}
 
 	@Test
