@@ -2,6 +2,7 @@ package racingcar;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -13,7 +14,6 @@ import racingcar.domain.Car;
 import racingcar.domain.CarDto;
 import racingcar.repository.CarRepository;
 import racingcar.service.RacingService;
-import racingcar.util.Converter;
 
 public class RacingServiceTest {
 
@@ -22,7 +22,7 @@ public class RacingServiceTest {
 
 	@BeforeEach
 	public void beforeEach() {
-		racingService.registerCars(Converter.toCarList("pobi,joon"));
+		racingService.registerCars(Arrays.asList("pobi", "joon"));
 	}
 
 	@AfterEach
@@ -43,11 +43,9 @@ public class RacingServiceTest {
 
 	@Test
 	public void 우승자_한명_계산() {
-		Car car1 = Car.of("lala", 5);
-		Car car2 = Car.of("good", 2);
-		Car car3 = Car.of("jason", 1);
-
-		racingService.registerCars(List.of(car1, car2, car3));
+		carRepository.addCar(Car.of("lala", 5));
+		carRepository.addCar(Car.of("good", 2));
+		carRepository.addCar(Car.of("jason", 1));
 
 		List<CarDto> winnerCars = racingService.findWinnerCars();
 		assertThat(winnerCars.size()).isEqualTo(1);

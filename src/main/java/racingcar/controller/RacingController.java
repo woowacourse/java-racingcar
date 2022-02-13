@@ -16,19 +16,14 @@ public class RacingController {
 	private final RandomUtilImpl randomUtil = new RandomUtilImpl();
 
 	public void start() {
-		List<Car> cars = inputAndRegisterCarInfo();
+		List<String> carNames = InputView.getCarNames();
+		List<Car> cars = racingService.registerCars(carNames);
+
 		int attemptNumber = InputView.getAttemptNumber();
 
 		OutputView.printResultMessage();
 		play(attemptNumber, cars);
 		printRacingResult();
-	}
-
-	private List<Car> inputAndRegisterCarInfo() {
-		List<Car> cars = InputView.getCarNames();
-		racingService.registerCars(cars);
-
-		return cars;
 	}
 
 	private void play(int attemptNumber, List<Car> cars) {

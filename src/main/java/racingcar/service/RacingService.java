@@ -14,8 +14,11 @@ public class RacingService {
 
 	private static final CarRepository carRepository = new CarRepository();
 
-	public void registerCars(List<Car> cars) {
-		cars.forEach(carRepository::addCar);
+	public List<Car> registerCars(List<String> carNames) {
+		carNames.forEach(carName -> {
+			carRepository.addCar(Car.of(carName));
+		});
+		return carRepository.findCars();
 	}
 
 	public void race(RandomUtil randomUtil) {
