@@ -1,7 +1,7 @@
 package racingcar.util;
 
 public class RoundValidator {
-    private static final int CAN_START = 1;
+    private static final int POSITIVE_INTEGER = 1;
 
     public static void validate(String round) {
         checkDigit(round);
@@ -15,7 +15,7 @@ public class RoundValidator {
     }
 
     private static void checkPositive(String round) {
-        if (Integer.parseInt(round) < CAN_START) {
+        if (Integer.parseInt(round) < POSITIVE_INTEGER) {
             throw new IllegalArgumentException();
         }
     }
