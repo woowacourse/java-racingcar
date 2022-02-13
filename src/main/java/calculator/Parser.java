@@ -19,8 +19,8 @@ public class Parser {
     }
 
     public void checkNumber(String[] values) {
-        for(String value:values) {
-            if(!Character.isDigit(value.charAt(0))) {
+        for (String value : values) {
+            if (!Character.isDigit(value.charAt(0))) {
                 throw new RuntimeException("숫자만 가능");
             }
         }
