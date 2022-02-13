@@ -64,7 +64,7 @@
 </details>
 
 <details>
-<summary>닉의 리 리뷰에 따른 수정사항</summary>
+<summary>닉의 첫 리뷰에 따른 수정사항</summary>
 
 1. 자동차 리스트가 필드에서 관리되고 있는 문제점 수정
     - [ ] 자동차 리스트를 객체로 묶기
