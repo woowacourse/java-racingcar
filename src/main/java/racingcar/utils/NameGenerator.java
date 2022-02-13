@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NameGenerator {
-    public static final String DELIMETER = ",";
+    public static final String DELIMITER = ",";
 
-    public static List<String> generateCarNames(String carNames) {
-        NameValidator.isValidateNames(carNames);
-        List<String> cars = Arrays.asList(carNames.split(DELIMETER));
-        NameValidator.isDuplicatedNames(cars);
-        return cars;
+    public static List<String> generateCarNames(String carName) {
+        NameValidator.isValidateNames(carName);
+        List<String> carNames = Arrays.asList(carName.split(DELIMITER));
+        NameValidator.isDuplicatedNames(carNames);
+        return carNames;
     }
 }

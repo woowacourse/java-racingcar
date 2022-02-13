@@ -14,8 +14,8 @@ public class NameValidator {
         }
     }
 
-    public static void isDuplicatedNames(List<String> cars) {
-        if (isContainingDuplicatedName(cars)) {
+    public static void isDuplicatedNames(List<String> carNames) {
+        if (isContainingDuplicatedName(carNames)) {
             throw new IllegalArgumentException(DUPLICATED_NAME_MESSAGE);
         }
     }
