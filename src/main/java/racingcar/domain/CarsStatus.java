@@ -5,20 +5,20 @@ import static java.util.stream.Collectors.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarStatus {
+public class CarsStatus {
     private static final String CARS_STATUS_JOIN_DELIMITER = "\n";
     private static final String CAR_STATUS_CRITERIA = " : ";
     private static final String CAR_STATUS_POSITION = "-";
 
     private final List<Car> cars;
 
-    public CarStatus(List<Car> cars) {
+    public CarsStatus(List<Car> cars) {
         this.cars = new ArrayList<>(cars);
     }
 
     public String makeCarsStatus() {
         return cars.stream()
-            .map(CarStatus::makeCarStatus)
+            .map(CarsStatus::makeCarStatus)
             .collect(joining(CARS_STATUS_JOIN_DELIMITER));
     }
 
