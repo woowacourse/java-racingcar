@@ -10,11 +10,15 @@ public class StringCalculator {
     public static final int CUSTOM_INPUT_INDEX = 2;
 
     public static int splitAndSum(String input) {
-        if (input == null || input.isEmpty()) {
+        if (isBlank(input)) {
             return 0;
         }
 
         return sum(toInts(split(input)));
+    }
+
+    private static boolean isBlank(String input) {
+        return input == null || input.isEmpty();
     }
 
     private static String[] split(String input) {
