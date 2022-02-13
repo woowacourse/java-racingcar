@@ -34,7 +34,7 @@ public class StringTest {
     @Test
     @DisplayName("인덱스 범위 테스트")
     public void 특정_위치_문자_테스트() {
-        assertThatThrownBy(()-> {"abc".charAt(3);})
+        assertThatThrownBy(()-> "abc".charAt(3))
                 .isInstanceOf(StringIndexOutOfBoundsException.class);
 
     }
