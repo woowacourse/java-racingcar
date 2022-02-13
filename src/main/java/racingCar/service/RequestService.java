@@ -1,32 +1,36 @@
 package racingCar.service;
 
-import racingCar.utlis.Convertor;
-import racingCar.validator.CountValidator;
-import racingCar.validator.NameValidator;
+import racingCar.exception.NullNameException;
+import racingCar.utlis.Util;
 import racingCar.view.Input;
 import racingCar.view.Output;
 
 public class RequestService {
 
-	public static void requestNames(RacingCarsService carsService) {
+	public static void requestNames() {
 		try {
 			String input = Input.inputNames();
-			NameValidator.validateInput(input);
-			carsService.initiateCars(input);
+			validateNotNullInput(input);
+			RacingCarsService.initiateCars(input);
 		} catch (Exception exception) {
 			Output.printError(exception.getMessage());
-			requestNames(carsService);
+			requestNames();
 		}
 	}
 
-	public static void requestCount(RacingCarsService carsService) {
+	public static void requestCount() {
 		try {
 			String input = Input.inputCount();
-			CountValidator.validateInput(input);
-			carsService.initiateCount(Convertor.convertToInteger(input));
+			validateNotNullInput(input);
+			RacingCarsService.initiateCount(Util.convertToInteger(input));
 		} catch (Exception exception) {
 			Output.printError(exception.getMessage());
-			requestCount(carsService);
+			requestCount();
 		}
+	}
+
+	private static void validateNotNullInput(String inputString) throws Exception {
+		if (inputString == null || inputString.isEmpty())
+			throw new NullNameException();
 	}
 }

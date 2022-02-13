@@ -3,7 +3,6 @@ package racingCar.view;
 import java.util.List;
 
 import racingCar.model.RacingCars;
-import racingCar.utlis.Constants;
 
 public class Output {
 	private static final String ERROR_MESSAGE = "[ERROR] ";

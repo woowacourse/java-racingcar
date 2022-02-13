@@ -13,7 +13,7 @@ class CarTest {
 	@Test
 	void move_후_위치확인_잘되는지_검사() {
 		car.move();
-		assertThat(car.getPosition()).isEqualTo(1);
+		assertThat(car.position.get()).isEqualTo(1);
 	}
 
 	@Test
@@ -24,7 +24,7 @@ class CarTest {
 	@Test
 	void 특정위치여부_확인_잘되는지_검사() {
 		car.move();
-		assertThat(car.isSamePosition(1)).isTrue();
+		assertThat(car.position.isSame(1)).isTrue();
 	}
 
 	@Test

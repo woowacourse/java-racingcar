@@ -1,19 +1,16 @@
 package racingCar.model;
 
 import racingCar.utlis.Util;
-import racingCar.validator.NameValidator;
 
 public class Car {
-
 	private static final String ROUND_REGEX = " : ";
 	private static final String POSITION_SIGNATURE = "-";
 
-	private final String name;
-	private int position = 0;
+	public final Name name;
+	public final Position position = new Position();
 
-	public Car(String name) throws Exception {
-		NameValidator.validateName(name);
-		this.name = name;
+	public Car(String name) {
+		this.name = new Name(name);
 	}
 
 	public void go() {
@@ -24,22 +21,14 @@ public class Car {
 	}
 
 	public void move() {
-		position++;
+		position.move();
 	}
 
 	public String getName() {
-		return name;
-	}
-
-	public int getPosition() {
-		return position;
-	}
-
-	public boolean isSamePosition(int position) {
-		return this.position == position;
+		return name.toString();
 	}
 
 	public String getStateString() {
-		return name + ROUND_REGEX + POSITION_SIGNATURE.repeat(position) + System.lineSeparator();
+		return name + ROUND_REGEX + POSITION_SIGNATURE.repeat(position.get()) + System.lineSeparator();
 	}
 }

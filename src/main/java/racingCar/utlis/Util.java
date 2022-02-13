@@ -3,10 +3,14 @@ package racingCar.utlis;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Pattern;
+
+import racingCar.exception.NotNumberException;
 
 public class Util {
-	public static final String NAME_REGEX = ",";
+	private static final String NAME_REGEX = ",";
 	private static final int RANDOM_MAX_BOUND_INTEGER = 10;
+	private static final String INTEGER_REGEX = "[0-9]+";
 
 	public static int getRandomInteger() {
 		return new Random().nextInt(RANDOM_MAX_BOUND_INTEGER);
@@ -21,6 +25,9 @@ public class Util {
 	}
 
 	public static int convertToInteger(String count) {
+		if (!Pattern.matches(INTEGER_REGEX, count)) {
+			throw new NotNumberException();
+		}
 		return Integer.parseInt(count);
 	}
 }

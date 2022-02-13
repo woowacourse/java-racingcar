@@ -5,18 +5,17 @@ import racingCar.service.RequestService;
 import racingCar.view.Output;
 
 public class RacingCarsController {
-	RacingCarsService carsService = new RacingCarsService();
 
 	public void request() {
-		RequestService.requestNames(carsService);
-		RequestService.requestCount(carsService);
+		RequestService.requestNames();
+		RequestService.requestCount();
 	}
 
 	public void startGame() {
-		carsService.runGame();
+		RacingCarsService.runGame();
 	}
 
 	public void endGame() {
-		Output.printWinner(carsService.findWinner());
+		Output.printWinner(RacingCarsService.findWinner());
 	}
 }
