@@ -30,7 +30,7 @@ public class Cars {
     public List<CarStatus> getCarsStatus() {
         return cars.stream()
                 .map(CarStatus::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<String> getWinners() {

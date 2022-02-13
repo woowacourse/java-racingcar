@@ -13,7 +13,7 @@ public class Winners {
         names = cars.stream()
                 .filter(car -> car.isMaxPosition(maxPosition))
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<String> getNames() {
