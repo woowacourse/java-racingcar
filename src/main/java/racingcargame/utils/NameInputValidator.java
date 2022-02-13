@@ -1,5 +1,7 @@
 package racingcargame.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Arrays;
 
 public class NameInputValidator {
@@ -23,7 +25,7 @@ public class NameInputValidator {
     }
 
     private static boolean isBlankCarNames(String carNames) {
-        if (carNames != null) {
+        if (!StringUtils.isBlank(carNames)) {
             return false;
         }
         throw new IllegalArgumentException(ERROR_CAR_NAME_IS_BLANK);
@@ -32,7 +34,7 @@ public class NameInputValidator {
     private static boolean isEmptyCarNames(String carNames) {
         String[] cars = carNames.split(CAR_NAME_DELIMITER);
         long count = Arrays.stream(cars)
-                .filter(String::isBlank)
+                .filter(StringUtils::isBlank)
                 .count();
 
         if (count == ZERO_EXIST) {

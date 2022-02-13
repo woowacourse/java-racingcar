@@ -1,5 +1,7 @@
 package racingcargame.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.regex.Pattern;
 
 public class RaceCountInputValidator {
@@ -20,7 +22,7 @@ public class RaceCountInputValidator {
     }
 
     private static boolean isRightNumberRaceCount(String raceCount) {
-        if (raceCount == null) {
+        if (StringUtils.isBlank(raceCount)) {
             throw new IllegalArgumentException(EMPTY_RACE_COUNT_ERROR_MESSAGE);
         }
         if (!Pattern.matches(RACE_COUNT_PATTERN, raceCount)) {

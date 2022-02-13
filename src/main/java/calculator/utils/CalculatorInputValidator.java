@@ -2,6 +2,8 @@ package calculator.utils;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class CalculatorInputValidator {
     public static final String ERROR_NUMBER_RIGHT_FORMAT = "[error] 숫자를 입력해주세요.";
     private static final String COMMA_DELIMITER = ",";
@@ -12,19 +14,11 @@ public class CalculatorInputValidator {
     }
 
     public static boolean isInputNullOrBlankOrEmpty(String input) {
-        return isNullInput(input) || isEmptyInput(input) || isBlankInput(input);
+        return isBlankInput(input);
     }
 
     private static boolean isBlankInput(String input) {
-        return input.isBlank();
-    }
-
-    private static boolean isEmptyInput(String input) {
-        return input.isEmpty();
-    }
-
-    private static boolean isNullInput(String input) {
-        return input == null;
+        return StringUtils.isBlank(input);
     }
 
     public static void checkValidateNumbers(List<String> numbers) {
