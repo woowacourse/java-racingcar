@@ -10,19 +10,27 @@ public class Car implements Comparable<Car> {
     private int position;
 
     public Car(String name) {
-        this.name = validateLength(trim(name));
+        String trimmedName = trim(name);
+        validateBlank(trimmedName);
+        validateLength(trimmedName);
+
+        this.name = trimmedName;
     }
 
     private static String trim(String name) {
         return name.trim();
     }
 
-    private static String validateLength(final String name) {
+    private void validateBlank(String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("이름은 공백일 수 없습니다.");
+        }
+    }
+
+    private static void validateLength(final String name) {
         if (name.length() > MAXIMUM_LENGTH) {
             throw new IllegalArgumentException(String.format("이름은 %d글자가 넘을 수 없습니다.", MAXIMUM_LENGTH));
         }
-
-        return name;
     }
 
     public void advance(final int number) {
