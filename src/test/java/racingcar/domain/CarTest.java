@@ -54,15 +54,6 @@ public class CarTest extends MockRandomGenerator {
 
     }
 
-    @Test
-    void 자동차_포지션_출력_성공() {
-        Car car = new Car("jae");
-        randomNumberOverFour();
-        car.goForward();
-        assertThat(car.toString()).isEqualTo("jae : -");
-
-    }
-
     @AfterEach
     void stopMockRandom() {
         closeMockRandom();

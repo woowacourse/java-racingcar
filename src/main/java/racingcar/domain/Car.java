@@ -69,14 +69,11 @@ public class Car {
         return this.position == position;
     }
 
+    @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(this.name)
-                .append(NAME_POSITION_DELIMITER);
-        for (int i = 0; i < position; i++) {
-            stringBuilder.append(PROGRESS_BAR);
-        }
-        return stringBuilder.toString();
+        return "Car("
+                + "name = " + name
+                + ", position = " + position
+                + ")";
     }
-
 }

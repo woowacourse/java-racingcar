@@ -1,5 +1,8 @@
 package racingcar.view;
 
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+
 public class OutputView {
 
     private static final String INPUT_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
@@ -16,6 +19,21 @@ public class OutputView {
 
     public static void printResultMessage() {
         System.out.println("\n" + RESULT_MESSAGE);
+    }
+
+    public static void printTurnResult(Cars cars) {
+        for (Car car : cars.getCars()) {
+            printCarStatus(car);
+        }
+        System.out.println();
+    }
+
+    private static void printCarStatus(Car car) {
+        StringBuilder stringBuilder = new StringBuilder(car.getName() + " : ");
+        for (int i = 0; i < car.getPosition(); i++) {
+            stringBuilder.append("-");
+        }
+        System.out.println(stringBuilder.toString());
     }
 
     public static void printMessage(String message) {

@@ -4,6 +4,7 @@ import static racingcar.view.InputView.insertName;
 import static racingcar.view.InputView.insertNumber;
 import static racingcar.view.OutputView.printMessage;
 import static racingcar.view.OutputView.printResultMessage;
+import static racingcar.view.OutputView.printTurnResult;
 
 import racingcar.domain.Cars;
 
@@ -23,9 +24,10 @@ public class RacingController {
 
     private void progressTurns(Cars cars, int trialCount) {
         printResultMessage();
+
         for (int i = 0; i < trialCount; i++) {
             cars.moveCars();
-            printMessage(cars.toString());
+            printTurnResult(cars);
         }
     }
 
