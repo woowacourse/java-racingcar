@@ -1,5 +1,9 @@
 # java-racingcar
 
+<details>
+<summary>알파와 작성한 기능 요구사항</summary>
+<div markdown="1">
+
  1. Model
     - Car
       - [x] 이름을 가져오는 기능 (getter)
@@ -55,5 +59,34 @@
       - [x] 생성된 자동차 개수가 입력된 이름의 개수와 동일한지
       - [x] 최대 위치가 정확한지 // 우승자가 정확한지
       - [x] 이름과 거리 LinkedHashMap 정확한지
-      
+
+ </div>
+</details>
+
+<details>
+<summary>닉의 리 리뷰에 따른 수정사항</summary>
+
+1. 자동차 리스트가 필드에서 관리되고 있는 문제점 수정
+    - [ ] 자동차 리스트를 객체로 묶기
+    - [ ] GameController 클래스의 getMaxPosition 메서드 이동
+    - [ ] getMaxPosition에 대한 추가적 단위 테스트 진행
+2. MVC 구조에 대해 다시 생각해보기
+    - [ ] Controller 단일화 시키기
+    - [ ] View를 나눈 의미를 생각해 본 후 리팩토링
+3. 유틸성 클래스를 지양하고 도메인 로직을 도메인 객체 내에서 처리
+    - [ ] 에러 체크 로직들을 적절한 객체로 이동하여 리팩토링
+    - [ ] 예외에 대한 단위 테스트 진행
+4. 테스트 클래스 리팩토링
+    - [ ] 프로덕션 코드와 동일하게 패키지와 클래스를 생성해 테스트 진행
+    - [ ] TDD를 진행하지 않으므로써 놓친 테스트 케이스 점검
+    - [ ] private 메서드에 대한 테스트는 상위 public 메서드를 통해 진행 (또는 객체의 책임 분리 고려)
+    - [ ] 이름에 대한 예외 처리 테스트를 최소 단위 기능별로 분리하여 추가
+5. 전체적 스타일 리팩토링
+    - [ ] 문맥에 맞게 공백 라인으로 구분해보기
+    - [ ] 각각의 상수를 문맥에 맞게 적절한 위치로 분리해보기
+
+<div markdown="1">
+ </div>
+</details>
+
     - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
