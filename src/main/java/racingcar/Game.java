@@ -23,7 +23,7 @@ public class Game {
 
 	private void play(Set<Car> cars) {
 		for (Car car : cars) {
-			Referee.judgeAndMoveCar(car, makeRandomValue(RANDOM_VALUE_BOUND + 1));
+			Referee.moveCar(car, makeRandomValue(RANDOM_VALUE_BOUND + 1));
 		}
 	}
 
