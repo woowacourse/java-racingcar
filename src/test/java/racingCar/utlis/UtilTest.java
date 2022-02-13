@@ -1,6 +1,8 @@
 package racingCar.utlis;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 class UtilTest {
@@ -12,6 +14,16 @@ class UtilTest {
 			System.out.println("result :"  + result);
 			assertThat(result).isBetween(0,9);
 		}
+	}
+
+	@Test
+	public void 쉼표_기준으로_이름_분리() {
+		//given
+		String names = "pobi,crong,honux";
+		//when
+		String[] nameArray = Util.separate(names);
+		//then
+		assertArrayEquals(nameArray, new String[] {"pobi", "crong", "honux"});
 	}
 
 }
