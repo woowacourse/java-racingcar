@@ -16,9 +16,9 @@ public class InputView {
 		return scanner.nextLine();
 	}
 
-	public static int inputRoundNumber() {
+	public static String inputRoundNumber() {
 		System.out.println(ASK_ROUND_NUMBER_INPUT_MESSAGE);
-		return Integer.parseInt(scanner.nextLine());
+		return scanner.nextLine();
 	}
 
 	public static void terminateScanner() {

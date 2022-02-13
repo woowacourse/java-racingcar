@@ -4,6 +4,7 @@ import java.util.List;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.vo.TryRoundNumber;
 import racingcar.repository.CarRepository;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -32,7 +33,9 @@ public class CarController {
 	}
 
 	private void initRoundNumbers() {
-		roundNumber = InputView.inputRoundNumber();
+		String input = InputView.inputRoundNumber();
+		TryRoundNumber tryRoundNumber = new TryRoundNumber(input);
+		roundNumber = tryRoundNumber.get();
 	}
 
 	public void playGame() {
