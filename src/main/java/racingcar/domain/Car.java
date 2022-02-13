@@ -15,10 +15,6 @@ public class Car {
         this.position++;
     }
 
-    public boolean isWinner(int maxPosition) {
-        return this.position == maxPosition;
-    }
-
     public String getName() {
         return name;
     }
