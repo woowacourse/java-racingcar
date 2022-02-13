@@ -4,10 +4,9 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-// 1. 빈 문자열 또는 null 값을 입력할 경우 0을 반환해야 한다.(예 : “” => 0, null => 0)
 public class StringCalculatorTest {
 	@Test
-	public void splitAndSum_null_또는_빈문자() throws Exception {
+	public void splitAndSum_null_또는_빈문자() {
 		int result = StringCalculator.splitAndSum(null);
 		assertThat(result).isEqualTo(0);
 
@@ -16,31 +15,31 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	public void splitAndSum_숫자하나() throws Exception {
+	public void splitAndSum_숫자하나() {
 		int result = StringCalculator.splitAndSum("1");
 		assertThat(result).isEqualTo(1);
 	}
 
 	@Test
-	public void splitAndSum_쉼표구분자() throws Exception {
+	public void splitAndSum_쉼표구분자() {
 		int result = StringCalculator.splitAndSum("1,2");
 		assertThat(result).isEqualTo(3);
 	}
 
 	@Test
-	public void splitAndSum_쉼표_또는_콜론_구분자() throws Exception {
+	public void splitAndSum_쉼표_또는_콜론_구분자() {
 		int result = StringCalculator.splitAndSum("1,2:3");
 		assertThat(result).isEqualTo(6);
 	}
 
 	@Test
-	public void splitAndSum_custom_구분자() throws Exception {
+	public void splitAndSum_custom_구분자() {
 		int result = StringCalculator.splitAndSum("//;\n1;2;3");
 		assertThat(result).isEqualTo(6);
 	}
 
 	@Test
-	public void splitAndSum_negative() throws Exception {
+	public void splitAndSum_negative() {
 		assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
 			.isInstanceOf(RuntimeException.class);
 	}
