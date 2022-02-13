@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
+    public static final int INITIAL_POSITION = 0;
+
     private final List<Car> cars;
     private final List<String> championList;
     private int highScore;
@@ -13,7 +15,7 @@ public class Cars {
         this.championList = new ArrayList<>();
         this.highScore = 0;
         for (String name : names) {
-            cars.add(new Car(name));
+            cars.add(new Car(name, INITIAL_POSITION));
         }
     }
 

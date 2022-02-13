@@ -43,7 +43,8 @@ public class ApplicationTest {
     void validate_0() {
         assertThatThrownBy(() -> {
             RoundValidator.validate("0");
-        }).isInstanceOf(IllegalArgumentException.class);    }
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     void validate_non_digit() {
@@ -53,22 +54,34 @@ public class ApplicationTest {
     }
 
     @Test
+    void updateMaxPosition() {
+        Car car = new Car("test", 0);
+        assertThat(car.updateMaxPosition(5)).isEqualTo(5);
+    }
+
+    @Test
+    void isMaxPosition() {
+        Car car = new Car("test", 3);
+        assertThat(car.isMaxPosition(3)).isTrue();
+    }
+
+    @Test
     void getProgress_move() {
-        Car car = new Car("test");
+        Car car = new Car("test", 0);
         car.move(5);
         assertThat(car.getProgress()).isEqualTo("test : -");
     }
 
     @Test
     void getProgress_stop() {
-        Car car = new Car("test");
+        Car car = new Car("test", 0);
         car.move(3);
         assertThat(car.getProgress()).isEqualTo("test : ");
     }
 
     @Test
     void getChampionList() {
-        Cars cars = new Cars(new String[] {"car1","car2","car3"});
+        Cars cars = new Cars(new String[] {"car1", "car2", "car3"});
 
         cars.getCars().get(0).move(5);
         cars.getCars().get(1).move(5);

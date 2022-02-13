@@ -7,11 +7,12 @@ public class Car {
 
     private final String name;
     private final Engine engine;
-    private int position = 0;
+    private int position;
 
-    public Car(String name) {
+    public Car(String name, int position) {
         this.name = name;
         this.engine = new Engine();
+        this.position = position;
     }
 
     public void move(int power) {
