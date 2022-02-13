@@ -1,11 +1,9 @@
 package racingcar.controller;
 
-import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.view.OutputView;
 
 public class RaceController {
-    private static final int DEFAULT_POSITION = 0;
 
     private Cars cars;
 
@@ -26,7 +24,9 @@ public class RaceController {
 
         String[] carNames = inputController.getUserCarNames();
         int tryCount = inputController.getUserTryCount();
-        insertCarFromCarNames(carNames);
+
+        initCars();
+        cars.insertCarFromCarNames(carNames);
         OutputView.printResultPrefix();
         for (int i = 0; i < tryCount; i++) {
             cars.moveRound();
@@ -35,12 +35,12 @@ public class RaceController {
         printWinner();
     }
 
-    public void insertCarFromCarNames(String[] carNames) {
-        initCars();
-        for (String carName : carNames) {
-            cars.insertCar(new Car(carName, DEFAULT_POSITION));
-        }
-    }
+//    public void insertCarFromCarNames(String[] carNames) {
+//        initCars();
+//        for (String carName : carNames) {
+//            cars.insertCar(new Car(carName, DEFAULT_POSITION));
+//        }
+//    }
 
     public int carCount() {
         return cars.getCars().size();

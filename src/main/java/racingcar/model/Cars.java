@@ -19,6 +19,12 @@ public class Cars {
         racingCars.add(car);
     }
 
+    public void insertCarFromCarNames(String[] carNames) {
+        for (String carName : carNames) {
+            insertCar(new Car(carName, 0));
+        }
+    }
+
     public void moveRound() {
         for (Car car : racingCars) {
             car.move();

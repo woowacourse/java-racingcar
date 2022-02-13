@@ -21,6 +21,12 @@ public class CarsTest {
         cars.insertCar(new Car("A", 1));
         cars.insertCar(new Car("B", 1));
         cars.insertCar(new Car("C", 1));
-        assertThat(cars.getWinner()).contains("A","B","C");
+        assertThat(cars.getWinner()).contains("A", "B", "C");
+    }
+
+    @Test
+    public void 자동차_저장_확인() {
+        cars.insertCarFromCarNames(new String[]{"A", "B", "C"});
+        assertThat(cars.getCars().size()).isEqualTo(3);
     }
 }
