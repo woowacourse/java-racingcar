@@ -1,21 +1,20 @@
 package calculator;
 
+import java.util.List;
+
 public class Calculator {
-	public int sum(int[] nums) {
-		int total = 0;
+    private static final String NEGATIVE_NUMBER_ERROR_MESSAGE = "음수 계산 불가능";
 
-		checkNegative(nums);
-		for (int num : nums) {
-			total += num;
-		}
-		return total;
-	}
+    public int sum(List<Integer> nums) {
+        for (Integer num : nums) {
+            validatePositive(num);
+        }
+        return nums.stream().mapToInt(Integer::intValue).sum();
+    }
 
-	private void checkNegative(int[] nums) {
-		for (int num : nums) {
-			if (num < 0) {
-				throw new RuntimeException("음수 불가능");
-			}
-		}
-	}
+    private void validatePositive(Integer num) {
+        if (num < 0) {
+            throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR_MESSAGE);
+        }
+    }
 }

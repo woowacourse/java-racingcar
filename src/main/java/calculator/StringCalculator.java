@@ -1,5 +1,8 @@
 package calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
     private static final Parser parser = new Parser();
     private static final Calculator calculator = new Calculator();
@@ -12,10 +15,10 @@ public class StringCalculator {
         String[] values = parser.splitter(input);
         parser.checkNumber(values);
 
-        int[] nums = new int[values.length];
+        List<Integer> nums = new ArrayList<>();
 
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] = Integer.parseInt(values[i]);
+        for (int i = 0; i < values.length; i++) {
+            nums.add(Integer.parseInt(values[i]));
         }
 
         return calculator.sum(nums);
