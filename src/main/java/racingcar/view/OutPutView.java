@@ -9,6 +9,9 @@ public class OutPutView {
     private static final String WINNER_NAME_DELIMITER = ", ";
     private static final String END_MESSAGE = "가 최종 우승했습니다.";
 
+    private OutPutView() {
+    }
+
     public static void printStatusMessage() {
         System.out.println(STATUS_MESSAGE);
     }

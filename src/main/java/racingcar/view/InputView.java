@@ -9,6 +9,9 @@ public class InputView {
     private static final int SPLIT_LIMIT = -1;
     private static final String INPUT_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
 
+    private InputView() {
+    }
+
     public static String[] getCarNames() {
         System.out.println(INPUT_NAMES_MESSAGE);
         String input = Console.readLine();
