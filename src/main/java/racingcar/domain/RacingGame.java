@@ -1,18 +1,17 @@
 package racingcar.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static racingcar.constants.SystemConstants.NUMBER_ONE_FOR_INCREMENT;
 import static racingcar.constants.GameConstants.INITIAL_ROUND_NUM;
 
-public class Game {
+public class RacingGame {
 
     private final Cars cars = new Cars();
     private final int totalRounds;
     private int currentRound = INITIAL_ROUND_NUM;
 
-    public Game(String[] carNames, int totalRounds) {
+    public RacingGame(String[] carNames, int totalRounds) {
         initCars(carNames);
         this.totalRounds = totalRounds;
     }
@@ -27,6 +26,10 @@ public class Game {
         return cars.findAllCars();
     }
 
+    public List<Car> getWinners() {
+        return cars.getWinners();
+    }
+
     public void playRound() {
         cars.race();
         addOneRound();
@@ -36,19 +39,6 @@ public class Game {
         currentRound += NUMBER_ONE_FOR_INCREMENT;
     }
 
-    public List<Car> getWinners() {
-        int maxPosition = getMaxPosition();
-
-        return getCars().stream()
-                .filter((car) -> car.getPosition() == maxPosition)
-                .collect(Collectors.toList());
-    }
-
-    private int getMaxPosition() {
-        return getCars().stream()
-                .mapToInt(Car::getPosition)
-                .max().orElseThrow(null);
-    }
 
     public boolean isOver() {
         return currentRound >= totalRounds;

@@ -1,7 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.Car;
-import racingcar.domain.Game;
+import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -14,7 +14,7 @@ import static racingcar.util.ValidatorUtils.validatePositiveInt;
 
 public class GameController {
 
-    private Game game;
+    private RacingGame racingGame;
 
     public void run() {
         initGame();
@@ -26,7 +26,7 @@ public class GameController {
         String[] carNames = requestCarNamesInput();
         int totalRounds = requestTotalRoundsInput();
 
-        game = new Game(carNames, totalRounds);
+        racingGame = new RacingGame(carNames, totalRounds);
     }
 
     private String[] requestCarNamesInput() {
@@ -48,14 +48,14 @@ public class GameController {
     private void playGame() {
         OutputView.printRoundResultText();
 
-        while (!game.isOver()) {
-            game.playRound();
-            OutputView.printRoundResult(game.getCars());
+        while (!racingGame.isOver()) {
+            racingGame.playRound();
+            OutputView.printRoundResult(racingGame.getCars());
         }
     }
 
     private void printGameResult() {
-        List<Car> winners = game.getWinners();
+        List<Car> winners = racingGame.getWinners();
         OutputView.printWinners(winners);
     }
 }

@@ -11,30 +11,30 @@ import java.util.List;
 import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GameTest {
+public class RacingGameTest {
 
     private final Cars cars = new Cars();
-    private Game game;
+    private RacingGame racingGame;
 
     private final int TOTAL_ROUNDS = 5;
 
     @BeforeEach
     void beforeEach() {
         cars.clear();
-        game = new Game(new String[]{"pobi", "jeong", "roma"}, TOTAL_ROUNDS);
+        racingGame = new RacingGame(new String[]{"pobi", "jeong", "roma"}, TOTAL_ROUNDS);
     }
 
     @DisplayName("getWinners 메서드는 가장 position 값이 큰 car 객체들을 반환한다")
     @Test
     void getWinners() {
         for (int i = 0; i < TOTAL_ROUNDS; i++) {
-            game.playRound();
+            racingGame.playRound();
         }
 
-        List<Car> winners = game.getWinners();
+        List<Car> winners = racingGame.getWinners();
         int maxPosition = winners.get(0).getPosition();
 
-        for (Car car : game.getCars()) {
+        for (Car car : racingGame.getCars()) {
             assertThat(car.getPosition()).isLessThanOrEqualTo(maxPosition);
         }
     }
@@ -47,9 +47,9 @@ public class GameTest {
         boolean result = Boolean.parseBoolean(resultString);
 
         for (int i = 0; i < roundNum; i++) {
-            game.playRound();
+            racingGame.playRound();
         }
 
-        assertThat(game.isOver()).isEqualTo(result);
+        assertThat(racingGame.isOver()).isEqualTo(result);
     }
 }
