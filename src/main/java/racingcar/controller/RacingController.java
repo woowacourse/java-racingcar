@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.Cars;
+import racingcar.domain.TrialCount;
 import racingcar.service.Movement;
 import racingcar.view.input.InputView;
 import racingcar.view.output.OutputView;
@@ -10,21 +11,21 @@ public class RacingController {
     private final Movement movement;
 
     private final Cars cars;
-    private int trialCount;
+    private final TrialCount trialCount;
 
     public RacingController(final InputView inputView, final OutputView outputView, final Movement movement) {
         cars = new Cars(inputView.inputCarNames());
-        trialCount = inputView.inputTrialCount();
+        trialCount = new TrialCount(inputView.inputTrialCount());
         this.outputView = outputView;
         this.movement = movement;
     }
 
     public void run() {
         outputView.printResultMessage();
-        while (trialCount > 0) {
+        while (trialCount.isHigherThanZero()) {
             cars.move(movement);
             outputView.printRoundStatus(cars.getCarInfos());
-            trialCount--;
+            trialCount.decrease();
         }
         outputView.printWinners(cars.getFarthestCar());
     }
