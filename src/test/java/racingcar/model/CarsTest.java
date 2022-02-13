@@ -27,6 +27,6 @@ public class CarsTest {
     @Test
     public void 자동차_저장_확인() {
         cars = new Cars(new String[]{"A", "B", "C"});
-        assertThat(cars.getCars().size()).isEqualTo(3);
+        assertThat(cars.getRacingCars().size()).isEqualTo(3);
     }
 }

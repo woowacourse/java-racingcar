@@ -34,7 +34,7 @@ public class RaceController {
     }
 
     public void printPosition() {
-        OutputView.printResult(cars.getCars());
+        OutputView.printResult(cars.getRacingCars());
     }
 
     public void printWinner() {

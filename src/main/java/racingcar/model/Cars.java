@@ -16,7 +16,7 @@ public class Cars {
         }
     }
 
-    public List<Car> getCars() {
+    public List<Car> getRacingCars() {
         return racingCars;
     }
 
