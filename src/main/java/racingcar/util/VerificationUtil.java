@@ -12,6 +12,10 @@ public class VerificationUtil {
     }
 
     public static void validateCarName(String carName) {
+        if (carName == null) {
+            throw new IllegalArgumentException("[ERROR] 자동차 이름은 null 일 수 없습니다.");
+        }
+
         validateCarNameLength(carName);
         validateCarNameSpace(carName);
     }
