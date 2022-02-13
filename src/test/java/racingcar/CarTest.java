@@ -7,7 +7,9 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
-	private static final String ERROR_MESSAGE = "[ERROR]";
+	private static final String NAME_LENGTH_ERROR = "[ERROR] 이름은 5글자를 초과할 수 없습니다.";
+	private static final String EMPTY_NAME_ERROR = "[ERROR] 이름은 공백일 수 없습니다.";
+	private static final String DUPLICATED_NAME_ERROR = "[ERROR] 차 이름은 중복될 수 없습니다.";
 
 	@Test
 	public void 차_생성() {
@@ -26,22 +28,22 @@ public class CarTest {
 	@Test
 	public void 이름_5글자_이상() {
 		assertThatThrownBy(() -> new Car("abcdef"))
-			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessageStartingWith(ERROR_MESSAGE);
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessage(NAME_LENGTH_ERROR);
 	}
 
 	@Test
 	public void 공백_이름() {
 		assertThatThrownBy(() -> new Car(""))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessageStartingWith(ERROR_MESSAGE);
+			.hasMessage(EMPTY_NAME_ERROR);
 	}
 
 	@Test
 	public void 중복된_이름() {
 		assertThatThrownBy(() -> CarFactory.of("forky,forky"))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessageStartingWith(ERROR_MESSAGE);
+			.hasMessage(DUPLICATED_NAME_ERROR);
 	}
 
 	@Test
