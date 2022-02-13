@@ -28,11 +28,10 @@ public class CarRepository {
     public List<String> findWinner() {
         cars.sort(Collections.reverseOrder());
 
-        List<String> winnerNames = new ArrayList<>();
         int winnerPosition = cars.get(WINNER_POSITION).getPosition();
-        cars.stream()
+        return cars.stream()
                 .filter(car -> car.getPosition() == winnerPosition)
-                .forEach(car -> winnerNames.add(car.getName()));
-        return winnerNames;
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 }
