@@ -12,8 +12,6 @@ public class RacingCarController {
     public void run() {
         Cars cars = getCars();
         race(cars, getCount());
-
-        OutPutView.printResult(cars.getWinners());
     }
 
     private Cars getCars() {
@@ -36,9 +34,19 @@ public class RacingCarController {
 
     private void race(Cars cars, Count count) {
         OutPutView.printStatusMessage();
-        while (count.hasNextCount()) {
-            cars.move();
-            OutPutView.printStatus(new CarStatus(cars.getCars()).makeCarsStatus());
+        proceed(cars, count);
+    }
+
+    private void proceed(Cars cars, Count count) {
+        try {
+            count.subtract();
+        } catch (IllegalStateException e) {
+            OutPutView.printResult(cars.getWinners());
+            return;
         }
+
+        cars.move();
+        OutPutView.printStatus(new CarStatus(cars.getCars()).makeCarsStatus());
+        proceed(cars, count);
     }
 }

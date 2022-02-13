@@ -43,9 +43,9 @@ class CountTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("시도가 가능한 경우 true를 반환하다.")
+    @DisplayName("시도가 가능한 경우 count를 차감하고 예외를 발생 시키지 않는다.")
     @Test
-    void isPositive_count_양수() {
+    void subtract_count_양수() {
         // given
         String input = "5";
 
@@ -53,12 +53,12 @@ class CountTest {
         Count count = new Count(input);
 
         // then
-        assertThat(count.hasNextCount()).isTrue();
+        assertThatCode(() -> count.subtract()).doesNotThrowAnyException();
     }
 
-    @DisplayName("시도가 불가능한 경우 false를 반환하다.")
+    @DisplayName("시도가 불가능한 경우 예외를 던진다.")
     @Test
-    void isPositive_count_0이하() {
+    void subtract_count_0이하() {
         // given
         String input = "0";
 
@@ -66,6 +66,6 @@ class CountTest {
         Count count = new Count(input);
 
         // when & then
-        assertThat(count.hasNextCount()).isFalse();
+        assertThatThrownBy(() -> count.subtract()).isInstanceOf(IllegalStateException.class);
     }
 }

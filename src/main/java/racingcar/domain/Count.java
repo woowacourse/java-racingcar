@@ -7,22 +7,31 @@ public class Count {
     private int count;
 
     public Count(String input) {
+        validateNumberFormat(input);
         int number = Integer.parseInt(input);
         validateNegative(number);
         this.count = number;
     }
 
-    private void validateNegative(int number) {
-        if (number < NEGATIVE_NUMBER_STANDARD) {
-            throw new IllegalArgumentException();
+    private void validateNumberFormat(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("숫자 이외의 값은 불가능합니다.");
         }
     }
 
-    public boolean hasNextCount() {
-        if (count > COUNT_SUBTRACT_POSSIBLE_STANDARD) {
-            count--;
-            return true;
+    private void validateNegative(int number) {
+        if (number < NEGATIVE_NUMBER_STANDARD) {
+            throw new IllegalArgumentException("시도 횟수는 음수가 될 수 없습니다.");
         }
-        return false;
+    }
+
+    public void subtract() {
+        if (count <= COUNT_SUBTRACT_POSSIBLE_STANDARD) {
+            throw new IllegalStateException();
+        }
+
+        count--;
     }
 }
