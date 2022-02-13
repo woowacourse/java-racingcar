@@ -8,6 +8,7 @@ public class Validator {
     private static final int MIN_COUNT = 2;
     private static final int MIN_LENGTH = 0;
     private static final int MAX_COUNT = 5;
+    private static final String BLANK = " ";
     private static final String ERROR_NAME_HAS_BLANK = "[ERROR] 이름에 공백이 존재합니다.";
     private static final String ERROR_NO_NAME = "[ERROR] 이름 입력은 필수입니다.";
     private static final String ERROR_CAR_COUNT = "[ERROR] 자동차는 2대 이상 5대 이하이어야 합니다.";
@@ -24,13 +25,7 @@ public class Validator {
     }
 
     public static void validateBlank(String names) {
-        for (int i = 0; i < names.length(); i++) {
-            checkBlank(names, i);
-        }
-    }
-
-    private static void checkBlank(String names, int i) {
-        if (Character.isWhitespace(names.charAt(i))) {
+        if (names.contains(BLANK)) {
             throw new IllegalArgumentException(ERROR_NAME_HAS_BLANK);
         }
     }
