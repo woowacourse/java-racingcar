@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -27,17 +28,9 @@ class CarTest {
         assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    public void 전진() {
-        goOrStop_테스트(6, 1);
-    }
-
-    @Test
-    public void 정지() {
-        goOrStop_테스트(3, 0);
-    }
-
-    private void goOrStop_테스트(int random, int expected) {
+    @ParameterizedTest
+    @CsvSource(value = {"4:1", "3:0"}, delimiter = ':')
+    public void goOrStop_테스트(int random, int expected) {
         // given
         Car car = new Car("test");
 
