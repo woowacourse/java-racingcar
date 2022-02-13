@@ -42,11 +42,11 @@ public class VerificationUtil {
 
 
     public static void validateAttempt(String attempt) {
-        int number = validateInteger(attempt);
+        int number = translateVerifiedInteger(attempt);
         validatePositiveNumber(number);
     }
 
-    private static int validateInteger(String attempt) {
+    private static int translateVerifiedInteger(String attempt) {
         try {
             return Integer.parseInt(attempt);
         } catch (Exception e) {
