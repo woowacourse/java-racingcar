@@ -1,8 +1,8 @@
 package racingcar;
 
-import racingcar.game.RacingGame;
-
 import java.util.List;
+
+import racingcar.game.RacingGame;
 
 import static racingcar.view.InputView.*;
 import static racingcar.view.OutputView.*;
@@ -14,7 +14,7 @@ public class Application {
         try {
             init();
             playAndPrintExecutionResult();
-            selectAndPrintWinners();
+            selectAndPrintWinner();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
         }
@@ -30,8 +30,9 @@ public class Application {
         printExecutionResult(executionResult);
     }
 
-    private static void selectAndPrintWinners() {
+    private static void selectAndPrintWinner() {
         List<String> nameOfWinners = racingGame.selectWinners();
         printWinners(nameOfWinners);
     }
+
 }
