@@ -1,5 +1,6 @@
 package racingcargame.utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -18,14 +19,15 @@ public class RandomNumberGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        numbers = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        numbers = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"0:9", "0:3", "0:8", "0:4"}, delimiter = ':')
     @DisplayName("난수 생성을 위한 인덱스 swap 확인")
     void swapForMakeRandomNumber(int input, int expected) {
-        int randomNumber = RandomNumberGenerator.getRandomNumber(RandomNumberGenerator.swap(numbers, input, expected));
+        int randomNumber = RandomNumberGenerator.getRandomNumber(
+                RandomNumberGenerator.swap(new ArrayList<>(numbers), input, expected));
 
         assertEquals(expected, randomNumber);
     }

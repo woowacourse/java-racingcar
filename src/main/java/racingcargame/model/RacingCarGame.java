@@ -3,6 +3,7 @@ package racingcargame.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class RacingCarGame {
     private final CarGameRaceCount raceCount;
@@ -33,10 +34,10 @@ public class RacingCarGame {
         orderToReduceRaceCount();
         carRepository.moveCars();
 
-        List<CarVO> cars = new ArrayList<>();
-        carRepository.getCars()
-                .forEach(car -> cars.add(new CarVO(car.getName(), car.getPosition())));
-        return cars;
+        return carRepository.getCars()
+                .stream()
+                .map(car -> new CarVO(car.getName(), car.getPosition()))
+                .collect(Collectors.toList());
     }
 
     public List<String> findRacingGameWinner() {

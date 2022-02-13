@@ -1,6 +1,6 @@
 package racingcargame.utils;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -23,13 +23,13 @@ public class RandomNumberGenerator {
     }
 
     private static int shuffle() {
-        List<Integer> numbers = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        List<Integer> numbers = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
         for (int i = 0; i < MAX_RANDOM_NUMBER; i++) {
             List<Integer> indexList = makeDifferentIndexForShuffle(RANDOM, selectRandom(), selectRandom());
             int indexFirst = indexList.get(SHUFFLE_FOR_INDEX_FIRST);
             int indexSecond = indexList.get(SHUFFLE_FOR_INDEX_SECOND);
 
-            swap(numbers, indexFirst, indexSecond);
+            swap(new ArrayList<>(numbers), indexFirst, indexSecond);
         }
         return getRandomNumber(numbers);
     }
