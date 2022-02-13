@@ -37,13 +37,13 @@ public class InputView {
     }
 
     private static void validateDigit(String round) {
-        if (round.chars().allMatch(Character::isDigit)) {
+        if (!round.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(NOT_NUMBER_ERROR_MASSAGE);
         }
     }
 
     private static void validatePositiveNumber(String round) {
-        if (Integer.parseInt(round) > 0) {
+        if (Integer.parseInt(round) <= 0) {
             throw new IllegalArgumentException(NOT_POSITIVE_NUMBER_ERROR_MESSAGE);
         }
     }
