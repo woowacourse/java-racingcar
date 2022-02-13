@@ -2,7 +2,6 @@ package racingCar.validator;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import racingCar.utlis.Constants;

@@ -19,6 +19,7 @@ public class RacingCars {
 	public void addCar(Car car) {
 		this.cars.add(car);
 	}
+
 	public void GoRound() {
 		for (Car car : cars) {
 			car.go();
