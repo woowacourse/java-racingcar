@@ -6,46 +6,36 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static racingcar.constants.OutputMessages.ERROR_BLANK_NOT_ALLOWED;
 import static racingcar.constants.OutputMessages.ERROR_DUPLICATE_NAME;
 import static racingcar.constants.OutputMessages.ERROR_NOT_POSITIVE_INTEGER;
 import static racingcar.constants.OutputMessages.ERROR_OVER_FIVE_CHARACTERS;
-import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 import static racingcar.util.ValidatorUtils.validateCarName;
 import static racingcar.util.ValidatorUtils.validateNoDuplicates;
+import static racingcar.util.ValidatorUtils.validatePositiveInt;
 
 public class ValidatorUtilsTest {
 
-    @DisplayName("validateAndParsePositiveInt 메서드는 문자열을 양수로 변환하여 반환한다.")
+    @DisplayName("validatePositiveInt 메서드는 입력된 숫자가 0이 아닌 양의 정수인지 검사한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @ValueSource(strings = {"1", "2", "10"})
-    void validateAndParsePositiveInt_returnParsedPositiveInteger(String string) {
-        int parsedInt = validateAndParsePositiveInt(string);
-
-        assertThat(parsedInt).isPositive();
+    @ValueSource(ints = {1, 2, 10})
+    void validatePositiveInt_PositiveInteger(int integer) {
+        assertThatNoException()
+                .isThrownBy(() -> validatePositiveInt(integer));
     }
 
-    @DisplayName("validateAndParsePositiveInt 메서드는 양수 이외의 문자열이 입력되었을 때 예외를 발생시킨다.")
+    @DisplayName("validatePositiveInt 메서드는 입력된 숫자가 0 또는 음의 정수일 때 예외를 발생시킨다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @ValueSource(strings = {"한글", "eng", "$", "1.0"})
-    void validateAndParsePositiveInt_errorOnNonInteger(String string) {
+    @ValueSource(ints = {0, -1})
+    void validateAndParsePositiveInt_errorOnNonInteger(int integer) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> validateAndParsePositiveInt(string));
-    }
-
-    @DisplayName("validateAndParsePositiveInt 메서드는 음수 혹은 0에 해당되는 문자열이 입력되었을 때 예외를 발생시킨다.")
-    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @ValueSource(strings = {"-1", "0"})
-    void validateAndParsePositiveInt_errorOnNonPositiveInteger(String string) {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> validateAndParsePositiveInt(string))
+                .isThrownBy(() -> validatePositiveInt(integer))
                 .withMessageMatching(ERROR_NOT_POSITIVE_INTEGER);
     }
 
-    @DisplayName("validateCarName 메서드는 문자열이 차 이름으로 적합한지 검사한다.")
+    @DisplayName("validateCarName 메서드는 문자열이 Car 이름으로 적합한지 검사한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @ValueSource(strings = {"jeong", "$%^&*", " roma", "1  2"})
     void validateCarNames_returnStringArrayOnPass(String carName) {

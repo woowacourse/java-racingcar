@@ -13,13 +13,7 @@ import static racingcar.constants.SystemConstants.ZERO;
 
 public class ValidatorUtils {
 
-    public static int validateAndParsePositiveInt(String string) {
-        int integer = Integer.parseInt(string);
-        validatePositiveInt(integer);
-        return integer;
-    }
-
-    private static void validatePositiveInt(int integer) {
+    public static void validatePositiveInt(int integer) {
         if (integer <= ZERO) {
             throw new IllegalArgumentException(ERROR_NOT_POSITIVE_INTEGER);
         }
