@@ -4,38 +4,49 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import racingcar.controller.GameController;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.util.RoundValidator;
 
 public class ApplicationTest {
 
     @Test
-    void 이름_입력_예외_테스트() {
+    void split_exceeding_5() {
         assertThatThrownBy(() -> {
-            Parser.split("abcdef,a,b");
+            GameController.split("abcdef,a,b");
         }).isInstanceOf(IllegalArgumentException.class);
+    }
 
+    @Test
+    void split_only_with_delimiter() {
         assertThatThrownBy(() -> {
-            Parser.split(",,");
+            GameController.split(",,");
         }).isInstanceOf(IllegalArgumentException.class);
+    }
 
+    @Test
+    void split_blank_input() {
         assertThatThrownBy(() -> {
-            Parser.split("");
+            GameController.split("");
         }).isInstanceOf(IllegalArgumentException.class);
+    }
 
+    @Test
+    void split_null() {
         assertThatThrownBy(() -> {
-            Parser.split(null);
+            GameController.split(null);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 라운드_입력_예외_테스트() {
         assertThatThrownBy(() -> {
-            Parser.isValidRounds("0");
+            RoundValidator.validate("0");
         }).isInstanceOf(IllegalArgumentException.class);
 
         assertThatThrownBy(() -> {
-            Parser.isValidRounds("a");
+            RoundValidator.validate("a");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
