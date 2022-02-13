@@ -34,7 +34,7 @@ public class SetCollectionTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1,2,3})
-    public void 집합_원소_존재_테스트(int number) throws Exception {
+    public void 집합_원소_존재_테스트(int number) {
         assertTrue(numbers.contains(number));
     }
 

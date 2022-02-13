@@ -11,7 +11,7 @@ class VerificationUtilTest {
 
     @Test
     @DisplayName("한 글자 미만의 자동차 이름 테스트")
-    public void 한글자_미만의_자동차_이름_테스트() throws Exception {
+    public void 한글자_미만의_자동차_이름_테스트() {
         //given
         String name = "";
 
@@ -23,7 +23,7 @@ class VerificationUtilTest {
 
     @Test
     @DisplayName("다섯 글자 이상의 자동차 이름 테스트")
-    public void 다섯글자_이상의_자동차_이름_테스트() throws Exception {
+    public void 다섯글자_이상의_자동차_이름_테스트() {
         //given
         String name = "wooteco";
 
@@ -35,7 +35,7 @@ class VerificationUtilTest {
 
     @Test
     @DisplayName("자동차 이름에 공백이 포함되어있는지 테스트")
-    public void 자동차_이름_공백_테스트() throws Exception {
+    public void 자동차_이름_공백_테스트() {
         //given
         String name = "woo   te   co";
 
@@ -47,7 +47,7 @@ class VerificationUtilTest {
 
     @Test
     @DisplayName("시도 횟수가 정수인지 테스트")
-    public void 시도횟수_정수인지_테스트() throws Exception {
+    public void 시도횟수_정수인지_테스트() {
         // given
         String attempt = "숫자";
 
@@ -59,7 +59,7 @@ class VerificationUtilTest {
 
     @Test
     @DisplayName("시도 횟수가 음수인 경우 테스트")
-    public void 시도횟수_음수_테스트() throws Exception {
+    public void 시도횟수_음수_테스트() {
         // given
         String attempt = "-3";
 

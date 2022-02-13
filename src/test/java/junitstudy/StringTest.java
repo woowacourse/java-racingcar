@@ -20,7 +20,7 @@ public class StringTest {
     }
 
     @Test
-    public void 괄호_제거_테스트() throws Exception {
+    public void 괄호_제거_테스트() {
         //given
         String input = "(1,2)";
         
@@ -33,7 +33,7 @@ public class StringTest {
     
     @Test
     @DisplayName("인덱스 범위 테스트")
-    public void 특정_위치_문자_테스트() throws Exception {
+    public void 특정_위치_문자_테스트() {
         assertThatThrownBy(()-> {"abc".charAt(3);})
                 .isInstanceOf(StringIndexOutOfBoundsException.class);
 
