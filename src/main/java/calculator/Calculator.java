@@ -2,7 +2,7 @@ package calculator;
 
 import java.util.List;
 
-import static calculator.CalculatorValidation.*;
+import static calculator.CalculatorValidator.*;
 
 public class Calculator {
 

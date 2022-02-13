@@ -3,7 +3,7 @@ package calculator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static calculator.CalculatorValidation.isValidMatcher;
+import static calculator.CalculatorValidator.isValidMatcher;
 
 public class StringSplitter {
 

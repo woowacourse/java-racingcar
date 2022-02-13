@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 
-public class CalculatorValidation {
+public class CalculatorValidator {
 
-    private CalculatorValidation() {}
+    private CalculatorValidator() {}
 
     public static boolean isEmpty(String str) {
         return (str == null || str.length() == 0);
