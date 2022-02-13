@@ -1,4 +1,4 @@
-package racingcar.entity;
+package racingcar.domain;
 
 import static racingcar.util.VerificationUtil.validateCarName;
 

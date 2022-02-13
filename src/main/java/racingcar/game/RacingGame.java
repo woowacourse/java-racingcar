@@ -1,6 +1,6 @@
 package racingcar.game;
 
-import racingcar.entity.Car;
+import racingcar.domain.Car;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
