@@ -19,7 +19,7 @@ import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 
 public class ValidatorUtilsTest {
 
-    final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
+    private static final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
         DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
 
     @DisplayName("validateAndParsePositiveInt 메서드는 문자열을 양수로 변환하여 반환한다.")

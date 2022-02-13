@@ -14,12 +14,12 @@ import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDE
 
 public class GameTest {
 
-    final int TOTAL_ROUNDS = 5;
-    CarRepository carRepository = new CarRepository();
-    Game game;
-
-    final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
+    private static final int TOTAL_ROUNDS = 5;
+    private static final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
         DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
+
+    private final CarRepository carRepository = new CarRepository();
+    private Game game;
 
     @BeforeEach
     void beforeEach() {

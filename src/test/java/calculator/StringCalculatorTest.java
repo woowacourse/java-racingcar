@@ -13,7 +13,7 @@ import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDE
 
 public class StringCalculatorTest {
 
-    private final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
+    private static final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
         DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
 
     @DisplayName("splitAndSum 메서드는 null 혹은 빈 문자열이 입력된 경우 0을 반환한다.")

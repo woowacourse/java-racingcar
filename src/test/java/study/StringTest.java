@@ -67,14 +67,12 @@ public class StringTest {
         String input = "abc";
         String exceptionMessage = "String index out of range: 3";
 
-        assertThatThrownBy(() -> {
-            input.charAt(3);
-        }).isInstanceOf(IndexOutOfBoundsException.class)
+        assertThatThrownBy(() -> input.charAt(3))
+            .isInstanceOf(IndexOutOfBoundsException.class)
             .hasMessageContaining(exceptionMessage);
 
         assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
-            .isThrownBy(() -> {
-                input.charAt(3);
-            }).withMessageMatching(exceptionMessage);
+            .isThrownBy(() -> input.charAt(3))
+            .withMessageMatching(exceptionMessage);
     }
 }
