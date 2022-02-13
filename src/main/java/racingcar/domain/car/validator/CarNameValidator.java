@@ -1,8 +1,8 @@
 package racingcar.domain.car.validator;
 
-import java.util.Collections;
 import java.util.List;
 
+import racingcar.domain.car.condition.DuplicateName;
 import racingcar.domain.car.condition.NameLength;
 import racingcar.exception.car.CarNameDuplicatedException;
 import racingcar.exception.car.CarNameEmptyException;
@@ -19,29 +19,40 @@ public class CarNameValidator {
 	void validate(List<String> names) {
 		validateNameIsTooLong(names);
 		validateNameIsEmpty(names);
-		validateNameIsDuplicate(names);
+		validateNameIsDuplicated(names);
 	}
 
 	void validateNameIsTooLong(List<String> names) {
-		if (names.stream().anyMatch(NameLength::isTooLong)) {
+		if (checkNameIsTooLong(names)) {
 			throw new CarNameTooLongException();
 		}
 	}
 
+	private boolean checkNameIsTooLong(List<String> names) {
+		return names.stream()
+				.anyMatch(NameLength::isTooLong);
+	}
+
 	void validateNameIsEmpty(List<String> names) {
-		if (names.stream().anyMatch(String::isEmpty)) {
+		if (checkNameIsEmpty(names)) {
 			throw new CarNameEmptyException();
 		}
 	}
 
-	void validateNameIsDuplicate(List<String> names) {
-		if (names.stream().anyMatch(name -> isNameDuplicated(names, name))) {
+	private boolean checkNameIsEmpty(List<String> names) {
+		return names.stream()
+				.anyMatch(String::isEmpty);
+	}
+
+	void validateNameIsDuplicated(List<String> names) {
+		if (checkNameIsDuplicated(names)) {
 			throw new CarNameDuplicatedException();
 		}
 	}
 
-	private boolean isNameDuplicated(List<String> names, String name) {
-		return (Collections.frequency(names, name) > 1);
+	private boolean checkNameIsDuplicated(List<String> names) {
+		return names.stream()
+				.anyMatch(name -> DuplicateName.isExcessiveDuplicated(names, name));
 	}
 
 }
