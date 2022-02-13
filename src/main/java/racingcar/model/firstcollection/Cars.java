@@ -14,8 +14,10 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(final List<Car> cars) {
-        validateDuplicate(cars);
-        this.cars = List.copyOf(cars);
+        List<Car> unmodifiableCars = List.copyOf(cars);
+        validateDuplicate(unmodifiableCars);
+
+        this.cars = unmodifiableCars;
     }
 
     private static void validateDuplicate(final List<Car> cars) {
