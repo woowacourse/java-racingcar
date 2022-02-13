@@ -1,7 +1,7 @@
 package racingcar.view;
 
 public class InputValidator {
-	public static final String ERROR_GET_INTEGER_MESSAGE = "입력 받은 값이 올바른 숫자 값이 아닙니다.";
+	private static final String ERROR_GET_INTEGER_MESSAGE = "입력 받은 값이 올바른 숫자 값이 아닙니다.";
 	private static final String ERROR_GET_POSITIVE_MESSAGE = "양수를 입력해주세요.";
 	private static final String ERROR_GET_NOT_EMPTY_MESSAGE = "빈 값을 입력하셨습니다. 양수를 입력해주세요.";
 

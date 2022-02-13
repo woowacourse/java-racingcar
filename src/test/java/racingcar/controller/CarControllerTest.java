@@ -10,7 +10,6 @@ import racingcar.model.CarRepository;
 
 public class CarControllerTest {
 
-
 	@Test
 	void 자동차_이름_파싱() {
 		CarController carController = new CarController();
