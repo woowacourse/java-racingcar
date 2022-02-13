@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.model.car.Car;
 
 @SuppressWarnings("NonAsciiCharacters")
 class CarTest {
@@ -40,5 +39,15 @@ class CarTest {
 
         // then
         assertThat(car.getPosition()).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:true", "1:false"}, delimiter = ':')
+    public void 가장_멀리_간_위치인지_비교(int maxPosition, boolean expected) {
+        // given
+        Car car = new Car("foo");
+
+        // then
+        assertThat(car.isMaxPosition(maxPosition)).isEqualTo(expected);
     }
 }
