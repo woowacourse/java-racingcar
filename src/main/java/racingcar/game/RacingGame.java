@@ -13,8 +13,8 @@ import static racingcar.view.OutputView.*;
 
 public class RacingGame {
 
-    public static final int ZERO = 0;
-    public static final int FIRST_INDEX = 0;
+    private static final int ZERO = 0;
+    private static final int FIRST_INDEX = 0;
 
     private List<Car> carList = new ArrayList<>();
     private List<String> winnerNameList = new ArrayList<>();

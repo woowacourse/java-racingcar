@@ -11,7 +11,7 @@ import static racingcar.view.InputView.getCarNames;
 
 public class InitUtil {
 
-    public static final String SEPARATOR = ",";
+    private static final String SEPARATOR = ",";
 
     private InitUtil() {
     }
