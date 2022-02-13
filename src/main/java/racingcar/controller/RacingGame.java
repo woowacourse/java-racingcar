@@ -35,8 +35,8 @@ public class RacingGame {
 	}
 
 	private void createCar() {
-		final List<String> carNameList = input.inputValidNames();
-		carNameList.forEach((carName) -> cars.add(new Car(new RandomNumber(), carName)));
+		final List<String> carNames = input.inputValidNames();
+		carNames.forEach((carName) -> cars.add(new Car(new RandomNumber(), carName)));
 	}
 
 	private void startRacing() {
