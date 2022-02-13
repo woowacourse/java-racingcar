@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import racingcar.dto.CarDto;
 import racingcar.service.Movement;

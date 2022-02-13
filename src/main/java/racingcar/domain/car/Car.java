@@ -1,7 +1,7 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
-import racingcar.domain.vo.CarName;
-import racingcar.domain.vo.Distance;
+import racingcar.domain.car.vo.CarName;
+import racingcar.domain.car.vo.Distance;
 import racingcar.dto.CarDto;
 
 import java.util.Objects;
