@@ -6,14 +6,14 @@ import racingcargame.model.RacingCarGame;
 import racingcargame.view.OutputView;
 
 public class CarGameController {
-    private static final CarGameController gameController = new CarGameController();
-    private static final CarGameInputController inputController = CarGameInputController.getInputController();
+    private static final CarGameController GAME_CONTROLLER = new CarGameController();
+    private static final CarGameInputController INPUT_CONTROLLER = CarGameInputController.getInputController();
 
     private CarGameController() {
     }
 
     public static CarGameController getGameController() {
-        return gameController;
+        return GAME_CONTROLLER;
     }
 
     public void playGame() {
@@ -28,10 +28,10 @@ public class CarGameController {
 
     private RacingCarGame makeRacingCarGameObjectByUserInput() {
         OutputView.showCarNamesInputGuideMessage();
-        List<String> carNames = inputController.inputCarName();
+        List<String> carNames = INPUT_CONTROLLER.inputCarName();
 
         OutputView.showRaceCountInputGuideMessage();
-        int raceCount = inputController.inputRaceCount();
+        int raceCount = INPUT_CONTROLLER.inputRaceCount();
 
         return new RacingCarGame(carNames, raceCount);
     }

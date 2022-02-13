@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomNumberGenerator {
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
     private static final int MAX_RANDOM_NUMBER = 9;
     private static final int RANDOM_NUMBER_PICK = 0;
     private static final int SHUFFLE_FOR_INDEX_FIRST = 0;
@@ -25,7 +25,7 @@ public class RandomNumberGenerator {
     private static int shuffle() {
         List<Integer> numbers = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
         for (int i = 0; i < MAX_RANDOM_NUMBER; i++) {
-            List<Integer> indexList = makeDifferentIndexForShuffle(random, selectRandom(), selectRandom());
+            List<Integer> indexList = makeDifferentIndexForShuffle(RANDOM, selectRandom(), selectRandom());
             int indexFirst = indexList.get(SHUFFLE_FOR_INDEX_FIRST);
             int indexSecond = indexList.get(SHUFFLE_FOR_INDEX_SECOND);
 
@@ -43,7 +43,7 @@ public class RandomNumberGenerator {
     }
 
     private static int selectRandom() {
-        return random.nextInt(MAX_RANDOM_NUMBER + 1);
+        return RANDOM.nextInt(MAX_RANDOM_NUMBER + 1);
     }
 
     public static List<Integer> swap(List<Integer> numbers, int indexFirst, int indexSecond) {
