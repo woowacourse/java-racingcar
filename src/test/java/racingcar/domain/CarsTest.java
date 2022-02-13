@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
+import static racingcar.domain.vo.CarName.*;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -11,13 +12,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 class CarsTest {
 
 	@ParameterizedTest
-	@ValueSource(strings = {"panda,philz,javajigi", "aaa, bb@bb, cc"})
+	@ValueSource(strings = {"panda,philz,jav#a", "aaa, bb@bb, cc"})
 	@DisplayName("허용되지 않는 문자를 입력했을 때")
 	public void input_all_car_name_exception(String carNames) {
 		assertThatThrownBy(
-			() -> Assertions.assertDoesNotThrow(
-				() -> new Cars(carNames)
-			));
+			() -> new Cars(carNames))
+			.isInstanceOf(RuntimeException.class)
+			.hasMessage(NOT_ALLOWED_FORMAT_MESSAGE);
 	}
 
 	@ParameterizedTest
@@ -34,7 +35,7 @@ class CarsTest {
 	@DisplayName("이름에 중복이 들어가면 아니된다")
 	public void not_duplicate_names(String carNames) {
 		assertThatExceptionOfType(RuntimeException.class).isThrownBy(
-			()->new Cars(carNames)
+			() -> new Cars(carNames)
 		);
 	}
 

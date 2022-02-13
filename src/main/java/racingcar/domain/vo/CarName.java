@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class CarName {
 
-	private static final int CAR_NAME_MAX_LENGTH = 5;
-	private static final String EXCEED_LENGTH_ERROR_MESSAGE = "[ERROR] 이름은 최대 5자입니다.";
-	private static final String ALLOWED_CHARACTERS = ".*[^\\w\\dㄱ-ㅎ가-힣]+.*";
-	private static final String NOT_ALLOWED_FORMAT_MESSAGE = "[ERROR] 올바르지 않은 입력 형식입니다.";
+	public static final int CAR_NAME_MAX_LENGTH = 5;
+	public static final String ALLOWED_CHARACTERS = ".*[^\\w\\dㄱ-ㅎ가-힣]+.*";
+	public static final String EXCEED_LENGTH_ERROR_MESSAGE = "[ERROR] 이름은 최대 5자입니다.";
+	public static final String NOT_ALLOWED_FORMAT_MESSAGE = "[ERROR] 올바르지 않은 입력 형식입니다.";
 	public static final String INVALID_CAR_NAME_SHOULD_BE_ONE_MORE_CHARACTER = "[ERROR] 자동차 이름은 최대 한 글자 이상입니다";
 
 	private String name;

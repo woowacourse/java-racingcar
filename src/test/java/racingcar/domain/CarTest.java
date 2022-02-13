@@ -1,9 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
-
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+import static racingcar.domain.vo.CarName.*;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -72,6 +70,15 @@ public class CarTest extends Car {
 			Assertions.assertDoesNotThrow(
 				() -> Car.createRandomMovingCar(carName)
 			);
+		}
+
+		@Test
+		@DisplayName("차 이름이 5글자를 넘어갔을 경우")
+		public void input_car_name_exceed_length() {
+			assertThatThrownBy(
+				() -> Car.createRandomMovingCar("numnum"))
+				.isInstanceOf(RuntimeException.class)
+				.hasMessage(EXCEED_LENGTH_ERROR_MESSAGE);
 		}
 	}
 }
