@@ -33,8 +33,8 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public Winners getWinners() {
-        return new Winners(cars);
+    public List<String> getWinners() {
+        return new Winners(cars).getNames();
     }
 
     private void validateDuplicatedName(String[] carNames) {
