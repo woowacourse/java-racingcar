@@ -3,8 +3,9 @@ package racingcar.view;
 
 import racingcar.utils.Console;
 
+import static racingcar.utils.NumberConverter.toInt;
 import static racingcar.view.OutputView.*;
-import static racingcar.utils.Validator.*;
+import static racingcar.utils.NameValidator.*;
 
 public class InputView {
 
@@ -16,6 +17,7 @@ public class InputView {
         printCarNamesMessage();
         String input = Console.readLine();
         validateBlank(input);
+
         String[] names = input.split(SPLIT_DELIMITER, SPLIT_LIMIT);
         validateEachCarName(names);
         return names;

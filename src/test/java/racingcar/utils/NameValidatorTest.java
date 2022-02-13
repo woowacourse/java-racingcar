@@ -3,9 +3,10 @@ package racingcar.utils;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
-import static racingcar.utils.Validator.*;
+import static racingcar.utils.NumberConverter.*;
+import static racingcar.utils.NameValidator.*;
 
-public class ValidatorTest {
+public class NameValidatorTest {
 
     @Test
     void 이름_빈칸_실패() {
@@ -16,9 +17,17 @@ public class ValidatorTest {
     }
 
     @Test
+    void 이름_없음_실패() {
+        assertThatThrownBy(() ->
+                validateEachCarName(new String[]{"jae",""}))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 이름 입력은 필수입니다.");
+    }
+
+    @Test
     void 자동차_개수_초과_실패() {
         assertThatThrownBy(() ->
-                validateCarCount(new String[]{"jae ", "hun", "ab", "cd", "ef", "gh"}))
+                validateEachCarName(new String[]{"jae ", "hun", "ab", "cd", "ef", "gh"}))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 자동차는 2대 이상 5대 이하이어야 합니다.");
     }
@@ -26,7 +35,7 @@ public class ValidatorTest {
     @Test
     void 이름_길이_초과_실패() {
         assertThatThrownBy(() ->
-                validateNameLength(new String[]{"jae ", "hunnnnnn", "jake"}))
+                validateEachCarName(new String[]{"jae ", "hunnnnnn", "jake"}))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이름은 5자 이하이어야 합니다.");
     }
@@ -34,7 +43,7 @@ public class ValidatorTest {
     @Test
     void 이름_중복_실패() {
         assertThatThrownBy(() ->
-                validateDuplicateName(new String[]{"jae", "hun", "jae"}))
+                validateEachCarName(new String[]{"jae", "hun", "jae"}))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 중복된 이름입니다.");
     }
