@@ -1,5 +1,8 @@
-package racingcar.domain;
+package racingcar.controller;
 
+import racingcar.domain.Cars;
+import racingcar.domain.Count;
+import racingcar.domain.RandomMovingPolicy;
 import racingcar.view.InputView;
 import racingcar.view.OutPutView;
 
