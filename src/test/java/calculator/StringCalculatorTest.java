@@ -29,18 +29,18 @@ public class StringCalculatorTest {
 
     @Test
     void 커스텀_구분자가_존재하는_문자열_입력() {
-        assertThat(StringCalculator.calculate("//;\n1;2,3")).isEqualTo(6);
-        assertThat(StringCalculator.calculate("//!\n1,2!3!4")).isEqualTo(10);
+        assertThat(StringCalculator.calculate("//;\\n1;2,3")).isEqualTo(6);
+        assertThat(StringCalculator.calculate("//!\\n1,2!3!4")).isEqualTo(10);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"//;\\n1;2,3", "//;!\n1;2;3"})
+    @ValueSource(strings = {"//;\n1;2,3", "//;!\n1;2;3"})
     void 많은_커스텀_구분자_입력(String input) {
         assertThatThrownBy(() -> StringCalculator.calculate(input)).isInstanceOf(RuntimeException.class);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"//;\\n1;2,3", "/;\n1;2;3", "//;1;2;3"})
+    @ValueSource(strings = {"//;\n1;2,3", "/;\n1;2;3", "//;1;2;3"})
     void 잘못된_딜리미터_입력(String input) {
         assertThatThrownBy(() -> StringCalculator.calculate(input)).isInstanceOf(RuntimeException.class);
     }
@@ -49,7 +49,7 @@ public class StringCalculatorTest {
     @Test
     void 숫자_이외의_타입_입력() {
         assertThatThrownBy(
-                () -> StringCalculator.calculate("//;\n1:a,3"))
+                () -> StringCalculator.calculate("//;\\n1:a,3"))
                 .isInstanceOf(RuntimeException.class
                 );
     }

@@ -8,13 +8,14 @@ import java.util.stream.Collectors;
 public class StringCalculator {
 
 	private static final String CUSTOM_SEPARATOR_START_SIGNATURE = "//";
-	private static final String CUSTOM_SEPARATOR_END_SIGNATURE = "\n";
+	private static final String CUSTOM_SEPARATOR_END_SIGNATURE = "\\n";
 	private static final String JOINING_SEPARATOR_DELIMITER = "|";
 	private static final String BASIC_SEPARATOR_COMMA = ",";
 	private static final String BASIC_SEPARATOR_COLON = ":";
 	private static final String ZERO_OR_POSITIVE_INTEGER_REGEX = "^(0|[1-9][0-9]*)$";
 	private static final String INVALID_POSITIVE_INTEGER_ERROR_MESSAGE = "양의 정수를 입력 해주세요.";
 	private static final int NULL_OR_EMPTY_VALUE = 0;
+	public static final int SEPARATOR_END_SIGNATURE_LENGTH = 2;
 
 	public static int calculate(String input) {
 		if (isNullOrEmpty(input)) {
@@ -66,7 +67,7 @@ public class StringCalculator {
 					input.indexOf(CUSTOM_SEPARATOR_END_SIGNATURE)
 			);
 			delimiters.add(customDelimiter);
-			return input.substring(input.indexOf(CUSTOM_SEPARATOR_END_SIGNATURE) + 1);
+			return input.substring(input.indexOf(CUSTOM_SEPARATOR_END_SIGNATURE) + SEPARATOR_END_SIGNATURE_LENGTH);
 		}
 		return input;
 	}
