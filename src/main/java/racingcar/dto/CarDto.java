@@ -11,11 +11,11 @@ public class CarDto {
         this.distance = distance;
     }
 
-    public String carName() {
+    public String getCarName() {
         return carName;
     }
 
-    public int distance() {
+    public int getDistance() {
         return distance;
     }
 
