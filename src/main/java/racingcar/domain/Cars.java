@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,17 @@ public class Cars {
 			Car car = Car.createRandomMovingCar(carName);
 			cars.add(car);
 		}
+		validateCarNames(cars);
+	}
+
+	private void validateCarNames(List<Car> cars) {
+		if (isValidated(cars)) {
+			throw new RuntimeException("차 이름이 중복됩니다");
+		}
+	}
+
+	private boolean isValidated(List<Car> cars) {
+		return cars.size() != new HashSet<>(cars).size();
 	}
 
 	public List<Car> get() {

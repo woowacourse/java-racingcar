@@ -74,28 +74,4 @@ public class CarTest extends Car {
 			);
 		}
 	}
-
-	@Nested
-	@DisplayName("자동차들을 생성시 이름에 ")
-	class CarNamesTest {
-
-		@ParameterizedTest
-		@ValueSource(strings = {"panda,philz,javajigi", "aaa, bb@bb, cc"})
-		@DisplayName("허용되지 않는 문자를 입력했을 때")
-		public void input_all_car_name_exception(String carNames) {
-			assertThatThrownBy(
-				() -> Assertions.assertDoesNotThrow(
-					() -> new Cars(carNames)
-				));
-		}
-
-		@ParameterizedTest
-		@ValueSource(strings = {"panda,philz,java", " panda, philz  , java"})
-		@DisplayName("정상 값을 입력했을 때")
-		public void input_all_car_name(String carNames) {
-			Assertions.assertDoesNotThrow(
-				() -> new Cars(carNames)
-			);
-		}
-	}
 }
