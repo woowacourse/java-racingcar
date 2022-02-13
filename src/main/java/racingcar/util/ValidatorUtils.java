@@ -2,6 +2,7 @@ package racingcar.util;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import static racingcar.constants.OutputMessages.BLANK_NOT_ALLOWED_EXCEPTION;
@@ -27,7 +28,7 @@ public class ValidatorUtils {
     }
 
     public static String[] splitAndValidateCarNames(String carNamesString) {
-        String[] carNames = carNamesString.split(COMMA);
+        String[] carNames = Optional.of(carNamesString.split(COMMA)).orElseThrow(RuntimeException::new);
 
         for (String name : carNames) {
             validateNotBlank(name);

@@ -79,4 +79,11 @@ public class ValidatorUtilsTest {
                 .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
                 .withMessageMatching(DUPLICATE_NAME_EXCEPTION);
     }
+
+    @DisplayName("splitAndValidateCarNames 메서드는 null이 입력되었을 때 예외를 발생시킨다.")
+    @Test
+    void splitAndValidateCarNames_null() {
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> splitAndValidateCarNames(null));
+    }
 }
