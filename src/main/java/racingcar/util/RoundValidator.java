@@ -9,9 +9,13 @@ public class RoundValidator {
     }
 
     private static void checkDigit(String round) {
-        if (!round.chars().allMatch(Character::isDigit)) {
+        if (isNotOnlyDigit(round)) {
             throw new IllegalArgumentException("라운드 횟수는 숫자만 가능합니다.");
         }
+    }
+
+    private static boolean isNotOnlyDigit(String round) {
+        return !round.chars().allMatch(Character::isDigit);
     }
 
     private static void checkPositive(String round) {
