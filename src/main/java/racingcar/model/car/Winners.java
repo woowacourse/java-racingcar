@@ -2,7 +2,6 @@ package racingcar.model.car;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.model.car.Car;
 
 public class Winners {
     private static final int MIN_POSITION = 0;
@@ -12,7 +11,7 @@ public class Winners {
     public Winners(List<Car> cars) {
         int maxPosition = getMaxPosition(cars);
         names = cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isMaxPosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
