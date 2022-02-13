@@ -1,11 +1,11 @@
 package racingcar;
 
-import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class RefereeTest {
 	@Test
@@ -38,7 +38,7 @@ public class RefereeTest {
 
 	@Test
 	public void 우승자_여러명() {
-		Set<Car> cars = CarFactory.of("forky,kun");
-		assertThat(Referee.judgeWinner(cars).size()).isEqualTo(2);
+		Cars cars = new Cars(CarFactory.of("forky,kun"));
+		assertThat(Referee.judgeWinner(cars.getCars()).size()).isEqualTo(2);
 	}
 }

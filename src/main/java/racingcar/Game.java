@@ -13,15 +13,15 @@ public class Game {
 	private final Random random = new Random();
 
 	public void start() {
-		Set<Car> cars = CarFactory.of(InputView.inputCarNames());
+		Cars cars = new Cars(CarFactory.of(InputView.inputCarNames()));
 		int count = InputView.inputGameCount();
 		validateGameCount(count);
 		OutputView.printGameResultTitle();
 		for (int i = 0; i < count ; i++) {
-			play(cars);
-			showResult(cars);
+			play(cars.getCars());
+			showResult(cars.getCars());
 		}
-		showWinner(Referee.judgeWinner(cars));
+		showWinner(Referee.judgeWinner(cars.getCars()));
 	}
 
 	public void play(Set<Car> cars) {

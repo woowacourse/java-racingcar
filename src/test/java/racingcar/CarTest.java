@@ -1,15 +1,15 @@
 package racingcar;
 
-import static org.assertj.core.api.Assertions.*;
-
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
 	private static final String NAME_LENGTH_ERROR = "[ERROR] 이름은 5글자를 초과할 수 없습니다.";
 	private static final String EMPTY_NAME_ERROR = "[ERROR] 이름은 공백일 수 없습니다.";
-	private static final String DUPLICATED_NAME_ERROR = "[ERROR] 차 이름은 중복될 수 없습니다.";
 
 	@Test
 	public void 이름_4글자_일때_차_생성() {
@@ -33,9 +33,15 @@ public class CarTest {
 	}
 
 	@Test
+	public void 차_1대_생성() {
+		List<Car> cars = CarFactory.of("kun");
+		assertThat(cars.size()).isEqualTo(1);
+	}
+
+	@Test
 	public void 차_여러대_생성() {
 		String names = "forky,kun";
-		Set<Car> cars = CarFactory.of(names);
+		List<Car> cars = CarFactory.of(names);
 		assertThat(cars.size()).isEqualTo(2);
 	}
 
@@ -44,13 +50,6 @@ public class CarTest {
 		assertThatThrownBy(() -> new Car(""))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage(EMPTY_NAME_ERROR);
-	}
-
-	@Test
-	public void 중복된_이름() {
-		assertThatThrownBy(() -> CarFactory.of("forky,forky"))
-			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(DUPLICATED_NAME_ERROR);
 	}
 
 	@Test
