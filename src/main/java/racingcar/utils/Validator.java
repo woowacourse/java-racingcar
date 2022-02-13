@@ -17,6 +17,12 @@ public class Validator {
     private static final String ERROR_NUMBER_OVER_ONE = "[ERROR] 횟수는 1 이상이어야 합니다.";
     private static final String ERROR_NUMBER_NOT_DIGIT = "[ERROR] 횟수는 숫자로 입력해야 합니다.";
 
+    public static void validateBlank(String names) {
+        if (names.contains(BLANK)) {
+            throw new IllegalArgumentException(ERROR_NAME_HAS_BLANK);
+        }
+    }
+
     public static void validateEachCarName(String[] names) {
         validateNoNames(names);
         validateCarCount(names);
@@ -24,39 +30,25 @@ public class Validator {
         validateDuplicateName(names);
     }
 
-    public static void validateBlank(String names) {
-        if (names.contains(BLANK)) {
-            throw new IllegalArgumentException(ERROR_NAME_HAS_BLANK);
-        }
-    }
-
-    public static void validateNoNames(String[] names) {
+    private static void validateNoNames(String[] names) {
         for (String name : names) {
-            checkNoName(name);
+            if (name.length() == MIN_LENGTH) {
+                throw new IllegalArgumentException(ERROR_NO_NAME);
+            }
         }
     }
 
-    private static void checkNoName(String name) {
-        if (name.length() == MIN_LENGTH) {
-            throw new IllegalArgumentException(ERROR_NO_NAME);
-        }
-    }
-
-    public static void validateCarCount(String[] names) {
+    private static void validateCarCount(String[] names) {
         if (names.length > MAX_COUNT || names.length < MIN_COUNT) {
             throw new IllegalArgumentException(ERROR_CAR_COUNT);
         }
     }
 
-    public static void validateNameLength(String[] names) {
+    private static void validateNameLength(String[] names) {
         for (String name : names) {
-            checkNameLength(name);
-        }
-    }
-
-    private static void checkNameLength(String name) {
-        if (name.length() > MAX_COUNT) {
-            throw new IllegalArgumentException(ERROR_NAME_LENGTH);
+            if (name.length() > MAX_COUNT) {
+                throw new IllegalArgumentException(ERROR_NAME_LENGTH);
+            }
         }
     }
 
