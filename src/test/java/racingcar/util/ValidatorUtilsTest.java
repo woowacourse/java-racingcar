@@ -14,9 +14,10 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.junit.jupiter.params.ParameterizedTest.ARGUMENTS_PLACEHOLDER;
 import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDER;
-import static racingcar.util.ValidatorUtils.splitAndValidateCarNames;
 import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 import static racingcar.util.ValidatorUtils.validateNoDuplicateCar;
+import static racingcar.util.ValidatorUtils.validateNotBlank;
+import static racingcar.util.ValidatorUtils.validateNotOverFiveCharacters;
 
 public class ValidatorUtilsTest {
 
@@ -48,28 +49,36 @@ public class ValidatorUtilsTest {
             .isThrownBy(() -> validateAndParsePositiveInt(string));
     }
 
-    @DisplayName("splitAndValidateCarNames 메서드는 문자열을 쉼표를 기준으로 구분하여 반환한다.")
+    @DisplayName("validateNotBlank 메서드는 공백이 포함되었더라도 문자가 존재하는 경우 예외를 발생시키지 않는다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @ValueSource(strings = {"a,b,jeong", "#,$%^&*", "roma,b d", "1  2,c,d"})
-    void splitAndValidateCarNames_returnStringArrayOnPass(String carNamesString) {
-        String[] carNames = splitAndValidateCarNames(carNamesString);
-        assertThat(carNames).isEqualTo(carNamesString.split(","));
+    @ValueSource(strings = {"a", "b  ", "  c "})
+    void validateNotBlank_passOnNotBlank(String string) {
+        assertThatNoException()
+            .isThrownBy(() -> validateNotBlank(string));
     }
 
-    @DisplayName("splitAndValidateCarNames 메서드는 공백 혹은 빈 문자열이 입력되었을 때 예외를 발생시킨다.")
+    @DisplayName("validateNotBlank 메서드는 공백 혹은 빈 문자열이 입력되었을 때 예외를 발생시킨다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @ValueSource(strings = {"", ",a", " ,b", "   ,c,d"})
-    void splitAndValidateCarNames_errorOnBlank(String carNamesString) {
+    @ValueSource(strings = {"", "   "})
+    void validateNotBlank_errorOnBlank(String string) {
         assertThatExceptionOfType(RuntimeException.class)
-            .isThrownBy(() -> splitAndValidateCarNames(carNamesString));
+            .isThrownBy(() -> validateNotBlank(string));
+    }
+
+    @DisplayName("validateNotOverFiveCharacters 메서드는 5글자 이내의 문자열이 입력되었을 때 예외를 발생시키지 않는다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @ValueSource(strings = {"a", "bc", "bacon"})
+    void validateNotOverFiveCharacters_passOnFiveOrLess(String string) {
+        assertThatNoException()
+            .isThrownBy(() -> validateNotOverFiveCharacters(string));
     }
 
     @DisplayName("splitAndValidateCarNames 메서드는 5글자를 초과하는 문자열이 입력되었을 때 예외를 발생시킨다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @ValueSource(strings = {"123456,a,b", "carrots,c,d"})
-    void splitAndValidateCarNames_errorOnOverFiveCharacters(String carNamesString) {
+    @ValueSource(strings = {"123456", "carrots"})
+    void validateNotOverFiveCharacters_errorOnOverFive(String string) {
         assertThatExceptionOfType(RuntimeException.class)
-            .isThrownBy(() -> splitAndValidateCarNames(carNamesString));
+            .isThrownBy(() -> validateNotOverFiveCharacters(string));
     }
 
     @DisplayName("validateNoDuplicateCar 메서드는 배열 인자가 서로 이름이 다른 Car 인스턴스들만으로 구성될 경우 예외를 발생시키지 않는다.")

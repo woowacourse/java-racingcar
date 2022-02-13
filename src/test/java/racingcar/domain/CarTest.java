@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.params.ParameterizedTest.ARGUMENTS_PLACEHOLDER;
 import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDER;
 
@@ -31,6 +32,22 @@ public class CarTest {
 
         assertThat(car.getName()).isEqualTo(name);
         assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @DisplayName("생성자는 인자로 공백 혹은 빈 문자열이 들어오면 예외를 발생시킨다")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @ValueSource(strings = {"", "  "})
+    void constructor_errorOnBlankName(String blankCarName) {
+        assertThatExceptionOfType(RuntimeException.class)
+            .isThrownBy(() -> new Car(blankCarName));
+    }
+
+    @DisplayName("생성자는 인자로 5글자를 초과한 문자열이 들어오면 예외를 발생시킨다")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @ValueSource(strings = {"123456", "carrots"})
+    void constructor_errorOnOverFiveLetters(String longName) {
+        assertThatExceptionOfType(RuntimeException.class)
+            .isThrownBy(() -> new Car(longName));
     }
 
     @DisplayName("goOrNot 메서드는 인자의 값이 4 이상일 경우 position 값을 1만큼 증가시킨다.")

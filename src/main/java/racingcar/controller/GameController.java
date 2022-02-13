@@ -7,10 +7,11 @@ import racingcar.view.OutputView;
 
 import java.util.List;
 
-import static racingcar.util.ValidatorUtils.splitAndValidateCarNames;
 import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 
 public class GameController {
+
+    private static final String CAR_NAMES_INPUT_DELIMITER = ",";
 
     private Game game;
 
@@ -29,7 +30,7 @@ public class GameController {
 
     private String[] requestCarNamesInput() {
         String carNamesInput = InputView.requestCarNameInput();
-        return splitAndValidateCarNames(carNamesInput);
+        return carNamesInput.split(CAR_NAMES_INPUT_DELIMITER);
     }
 
     private int requestTotalRoundsInput() {

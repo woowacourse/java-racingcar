@@ -9,7 +9,6 @@ import java.util.Set;
 public class ValidatorUtils {
 
     public static final int MAX_NAME_LENGTH = 5;
-    public static final String CAR_NAMES_INPUT_DELIMITER = ",";
     private static final String NOT_POSITIVE_INTEGER_EXCEPTION = "양수를 입력해야 합니다.";
     private static final String BLANK_NOT_ALLOWED_EXCEPTION = "공백을 입력하면 안 됩니다.";
     private static final String OVER_FIVE_CHARACTERS_EXCEPTION = "5글자 이하의 이름을 입력해야 합니다.";
@@ -27,24 +26,13 @@ public class ValidatorUtils {
         }
     }
 
-    public static String[] splitAndValidateCarNames(String carNamesString) {
-        String[] carNames = carNamesString.split(CAR_NAMES_INPUT_DELIMITER);
-
-        for (String name : carNames) {
-            validateNotBlank(name);
-            validateNotOverFiveCharacters(name);
-        }
-
-        return carNames;
-    }
-
-    private static void validateNotBlank(String string) {
+    public static void validateNotBlank(String string) {
         if (string.isBlank()) {
             throw new RuntimeException(BLANK_NOT_ALLOWED_EXCEPTION);
         }
     }
 
-    private static void validateNotOverFiveCharacters(String string) {
+    public static void validateNotOverFiveCharacters(String string) {
         if (string.length() > MAX_NAME_LENGTH) {
             throw new RuntimeException(OVER_FIVE_CHARACTERS_EXCEPTION);
         }

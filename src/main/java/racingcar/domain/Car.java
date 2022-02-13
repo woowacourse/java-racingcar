@@ -2,6 +2,9 @@ package racingcar.domain;
 
 import java.util.Objects;
 
+import static racingcar.util.ValidatorUtils.validateNotBlank;
+import static racingcar.util.ValidatorUtils.validateNotOverFiveCharacters;
+
 public class Car {
 
     private static final int CAN_GO_VALUE = 4;
@@ -13,6 +16,8 @@ public class Car {
     private int position = 0;
 
     public Car(String name) {
+        validateNotBlank(name);
+        validateNotOverFiveCharacters(name);
         this.name = name;
     }
 
