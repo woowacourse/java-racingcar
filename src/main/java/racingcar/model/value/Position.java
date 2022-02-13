@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.model.value;
 
 public class Position {
     private static final int INITIAL_POSITION = 0;

@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.model.car;
 
 /**
  * Car 클래스의 Dto 클래스

@@ -1,10 +1,11 @@
-package racingcar.model;
+package racingcar.model.value;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.model.value.TryCount;
 
 @SuppressWarnings("NonAsciiCharacters")
 class TryCountTest {

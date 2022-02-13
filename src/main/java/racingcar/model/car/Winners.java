@@ -1,7 +1,8 @@
-package racingcar.model;
+package racingcar.model.car;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.model.car.Car;
 
 public class Winners {
     private static final int MIN_POSITION = 0;

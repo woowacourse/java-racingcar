@@ -2,8 +2,8 @@ package racingcar.controller;
 
 import java.io.IOException;
 
-import racingcar.model.Cars;
-import racingcar.model.TryCount;
+import racingcar.model.car.Cars;
+import racingcar.model.value.TryCount;
 import racingcar.util.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;

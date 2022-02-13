@@ -1,8 +1,9 @@
-package racingcar.model;
+package racingcar.model.car;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import racingcar.model.car.Cars;
 
 @SuppressWarnings("NonAsciiCharacters")
 class CarsTest {

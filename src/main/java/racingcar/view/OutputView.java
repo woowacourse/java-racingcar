@@ -2,7 +2,7 @@ package racingcar.view;
 
 import java.util.List;
 import racingcar.message.NoticeMessages;
-import racingcar.model.CarStatus;
+import racingcar.model.car.CarStatus;
 
 public class OutputView {
     private static final String DISTANCE_MARK = "-";

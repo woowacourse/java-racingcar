@@ -1,4 +1,7 @@
-package racingcar.model;
+package racingcar.model.car;
+
+import racingcar.model.value.Name;
+import racingcar.model.value.Position;
 
 public class Car {
     private static final int MOVING_DISTANCE = 1;
