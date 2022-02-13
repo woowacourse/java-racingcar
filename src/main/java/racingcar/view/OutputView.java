@@ -22,7 +22,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinner(String[] winners) {
+    public static void printWinner(List<String> winners) {
         System.out.print(String.join(SPLIT_DELIMITER, winners));
         System.out.println(WINNER_SUFFIX);
     }

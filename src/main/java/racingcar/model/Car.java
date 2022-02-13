@@ -37,9 +37,6 @@ public class Car {
     }
 
     public boolean isMaxPosition(int maxPosition) {
-        if (position == maxPosition) {
-            return true;
-        }
-        return false;
+        return position == maxPosition;
     }
 }

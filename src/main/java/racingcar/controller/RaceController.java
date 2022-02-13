@@ -23,6 +23,7 @@ public class RaceController {
 
     public void startGame() throws RuntimeException {
         InputController inputController = new InputController();
+
         String[] carNames = inputController.getUserCarNames();
         int tryCount = inputController.getUserTryCount();
         insertCarFromCarNames(carNames);
