@@ -1,11 +1,12 @@
 package racingcar.domain;
 
-import racingcar.constants.Constants;
 import racingcar.exception.InvalidRoundException;
 import racingcar.exception.NotDigitRoundException;
 
 public class Round {
 
+	private static final int FINISH_ROUND = 0;
+	private static final int MINIMUM_ROUND = 1;
 	private int count;
 
 	public Round(String count) {
@@ -23,7 +24,7 @@ public class Round {
 	}
 
 	private void validateCountPositive(int count) {
-		if (count < Constants.MINIMUM_ROUND) {
+		if (count < MINIMUM_ROUND) {
 			throw new InvalidRoundException();
 		}
 	}
@@ -33,7 +34,7 @@ public class Round {
 	}
 
 	public boolean isFinish() {
-		return this.count == Constants.FINISH_ROUND;
+		return this.count == FINISH_ROUND;
 	}
 
 	public int getCount() {

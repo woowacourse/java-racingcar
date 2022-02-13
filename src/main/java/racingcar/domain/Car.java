@@ -1,9 +1,10 @@
 package racingcar.domain;
 
-import racingcar.constants.Constants;
-
 public class Car {
 
+	private static final String PROGRESS_BAR = "-";
+	private static final String COLON = " : ";
+	private static final int GO_FORWARD_NUMBER = 4;
 	private String name;
 	private int location;
 
@@ -16,13 +17,18 @@ public class Car {
 	}
 
 	public void goForwardOrStop(int pickNumber) {
-		if (pickNumber >= Constants.GO_FORWARD_NUMBER) {
+		if (pickNumber >= GO_FORWARD_NUMBER) {
 			increaseLocation();
 		}
 	}
 
+	public boolean isWinner(int farthestLocation) {
+		return location == farthestLocation;
+	}
+
+	@Override
 	public String toString() {
-		return name + Constants.COLON + Constants.PROGRESS_BAR.repeat(location);
+		return name + COLON + PROGRESS_BAR.repeat(location);
 	}
 
 	public String getName() {
@@ -31,9 +37,5 @@ public class Car {
 
 	public int getLocation() {
 		return this.location;
-	}
-
-	public boolean isWinner(int farthestLocation) {
-		return location == farthestLocation;
 	}
 }
