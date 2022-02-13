@@ -12,10 +12,24 @@ public class CarTest {
 	private static final String DUPLICATED_NAME_ERROR = "[ERROR] 차 이름은 중복될 수 없습니다.";
 
 	@Test
-	public void 차_생성() {
+	public void 이름_4글자_일때_차_생성() {
+		String name = "four";
+		Car car = new Car(name);
+		assertThat(car.getName()).isEqualTo(name);
+	}
+
+	@Test
+	public void 이름_5글자_일때_차_생성() {
 		String name = "forky";
 		Car car = new Car(name);
 		assertThat(car.getName()).isEqualTo(name);
+	}
+
+	@Test
+	public void 이름_6글자_일때_차_생성() {
+		assertThatThrownBy(() -> new Car("abcdef"))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessage(NAME_LENGTH_ERROR);
 	}
 
 	@Test
@@ -23,13 +37,6 @@ public class CarTest {
 		String names = "forky,kun";
 		Set<Car> cars = CarFactory.of(names);
 		assertThat(cars.size()).isEqualTo(2);
-	}
-
-	@Test
-	public void 이름_5글자_이상() {
-		assertThatThrownBy(() -> new Car("abcdef"))
-				.isInstanceOf(IllegalArgumentException.class)
-				.hasMessage(NAME_LENGTH_ERROR);
 	}
 
 	@Test
