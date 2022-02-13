@@ -7,10 +7,9 @@ import java.util.Comparator;
 import java.util.List;
 
 public class RacingCars {
-    private final List<RacingCar> racingCars;
+    private List<RacingCar> racingCars;
 
     public RacingCars() {
-        racingCars = new ArrayList<>();
     }
 
     public RacingCars(List<RacingCar> racingCars) {
@@ -20,6 +19,7 @@ public class RacingCars {
     public void join(String inputCarNames) {
         Validator.validateHaveLastInputComma(inputCarNames);
         String[] validCarNames = inputCarNames.split(",");
+        racingCars = new ArrayList<>();
         for (String validCarName : validCarNames) {
             racingCars.add(RacingCar.generateRacingCar(validCarName));
         }
