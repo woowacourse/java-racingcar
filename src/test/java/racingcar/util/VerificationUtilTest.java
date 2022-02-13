@@ -16,9 +16,7 @@ class VerificationUtilTest {
         String name = "";
 
         //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            validateCarName(name);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> validateCarName(name));
     }
 
     @Test
@@ -28,9 +26,7 @@ class VerificationUtilTest {
         String name = "wooteco";
 
         //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            validateCarName(name);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> validateCarName(name));
     }
 
     @Test
@@ -40,9 +36,7 @@ class VerificationUtilTest {
         String name = "woo   te   co";
 
         //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            validateCarName(name);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> validateCarName(name));
     }
 
     @Test
@@ -52,9 +46,7 @@ class VerificationUtilTest {
         String attempt = "숫자";
 
         //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            validateAttempt(attempt);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> validateAttempt(attempt));
     }
 
     @Test
@@ -64,8 +56,6 @@ class VerificationUtilTest {
         String attempt = "-3";
 
         //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            validateAttempt(attempt);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> validateAttempt(attempt));
     }
 }
