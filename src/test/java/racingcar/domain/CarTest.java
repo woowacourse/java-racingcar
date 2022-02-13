@@ -80,4 +80,36 @@ public class CarTest {
 
         assertThat(isWinner).isFalse();
     }
+
+    @DisplayName("이름과 포지션이 동일한 Car 인스턴스는 서로 동일한 것으로 간주된다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @ValueSource(strings = {"ace", "pobi", "jeong"})
+    void hashCode_sameNameAndPositionMeansSameInstances(String carName) {
+        Car car1 = new Car(carName);
+        Car car2 = new Car(carName);
+
+        for (int i = 0; i < carName.length(); i++) {
+            car1.goOrNot(CAN_GO_VALUE);
+            car2.goOrNot(CAN_GO_VALUE);
+        }
+        boolean isSame = car1.hashCode() == car2.hashCode();
+
+        assertThat(isSame).isTrue();
+    }
+
+    @DisplayName("이름이 다른 Car 인스턴스는 서로 다른 것으로 간주된다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @ValueSource(strings = {"ace", "pobi", "jeong"})
+    void hashCode_differentNameMeansDifferentInstances(String carName) {
+        Car car1 = new Car(carName);
+        Car car2 = new Car("other");
+
+        for (int i = 0; i < carName.length(); i++) {
+            car1.goOrNot(CAN_GO_VALUE);
+            car2.goOrNot(CAN_GO_VALUE);
+        }
+        boolean isSame = car1.hashCode() == car2.hashCode();
+
+        assertThat(isSame).isFalse();
+    }
 }
