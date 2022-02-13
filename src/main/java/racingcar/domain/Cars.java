@@ -8,15 +8,21 @@ public class Cars {
     public static final String LIST_JOIN_DELIMITER = ", ";
     public static final String WINNER_MESSAGE = "가 최종 우승 했습니다.";
 
-    private final List<Car> cars = new ArrayList<>();
-    private final List<String> winners = new ArrayList<>();
+    private final List<Car> cars;
+    private final List<String> winners;
 
-    public static Cars toCars(String[] values) {
-        Cars cars = new Cars();
+    public Cars() {
+        this.cars = new ArrayList<>();
+        this.winners = new ArrayList<>();
+    }
+
+    public Cars(String[] values) {
+        this.cars = new ArrayList<>();
+        this.winners = new ArrayList<>();
+
         for (String value : values) {
-            cars.addCar(new Car(value));
+            this.addCar(new Car(value));
         }
-        return cars;
     }
 
     public void addCar(Car car) {

@@ -10,7 +10,7 @@ import racingcar.domain.Cars;
 public class RacingController {
 
     public void play() {
-        Cars cars = Cars.toCars(getRightName());
+        Cars cars = new Cars(getRightName());
         int trialCount = getRightNumber();
         progressTurns(cars, trialCount);
         printMessage(cars.getWinners());
