@@ -25,7 +25,7 @@ public class Car {
     }
 
     public CarDto info() {
-        return new CarDto(carName.value(), distance.value());
+        return new CarDto(carName.getValue(), distance.getValue());
     }
 
     public boolean isFartherThan(final Car another) {

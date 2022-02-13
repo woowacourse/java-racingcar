@@ -13,7 +13,7 @@ class DistanceTest {
     @Test
     @DisplayName("거리 값을 반환한다.")
     void value() {
-        int actual = distance.value();
+        int actual = distance.getValue();
         int expected = 1;
         assertThat(actual).isEqualTo(expected);
     }
@@ -23,7 +23,7 @@ class DistanceTest {
     void increaseBy() {
         int increasingAmount = 1;
         distance.increaseBy(increasingAmount);
-        int actual = distance.value();
+        int actual = distance.getValue();
         int expected = 2;
         assertThat(actual).isEqualTo(expected);
     }
