@@ -23,6 +23,8 @@ public class CarName {
 
 	public static void validateCarName(String carName) {
 
+		isCarNameNull(carName);
+
 		carName = carName.trim();
 
 		isCarNameEmpty(carName);
@@ -31,6 +33,12 @@ public class CarName {
 
 		hasCarNameWrongFormat(carName);
 
+	}
+
+	private static void isCarNameNull(String carName) {
+		if (carName == null) {
+			throw new RuntimeException(INVALID_CAR_NAME_SHOULD_BE_ONE_MORE_CHARACTER);
+		}
 	}
 
 	private static void hasCarNameWrongFormat(final String carName) {

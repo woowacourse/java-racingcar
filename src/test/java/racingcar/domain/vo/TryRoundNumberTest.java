@@ -19,7 +19,7 @@ class TryRoundNumberTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {",", "#", "@"})
-	@DisplayName("비 정상 입력 : 특수문자")
+	@DisplayName("특수문자 입력시 예외 발생")
 	public void exceptionInputSpecialCharacter(String input) {
 		assertThatThrownBy(
 			() -> new TryRoundNumber(input)
@@ -28,7 +28,7 @@ class TryRoundNumberTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"-1", "0"})
-	@DisplayName("비 정상 입력 : 양수가 아닌 경우")
+	@DisplayName("양수가 아닌 경우 예외 발생")
 	public void exceptionInputNotPositiveNumber(String input) {
 		assertThatThrownBy(
 			() -> new TryRoundNumber(input)
