@@ -21,6 +21,6 @@ public class Application {
             OutputView.printOneTurnRaceResult(racingGame);
         }
 
-        OutputView.printChampionList(racingGame);
+        OutputView.printChampionNames(racingGame.getChampionNames());
     }
 }

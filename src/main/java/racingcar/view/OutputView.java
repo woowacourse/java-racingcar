@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import java.util.List;
+
 import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
 
@@ -34,8 +36,8 @@ public class OutputView {
         return sb.toString();
     }
 
-    public static void printChampionList(RacingGame cars) {
-        String championNames = String.join(CHAMPION_NAMES_SEPARATOR, cars.getChampionNames());
+    public static void printChampionNames(List<String> names) {
+        String championNames = String.join(CHAMPION_NAMES_SEPARATOR, names);
         System.out.println(championNames + CHAMPION_NAMES_FOLLOWING_MESSAGE);
     }
 }
