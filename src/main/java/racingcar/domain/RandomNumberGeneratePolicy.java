@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.Random;
 
 public class RandomNumberGeneratePolicy implements NumberGeneratePolicy {
-    public static final int RANDOM_MAXIMUM = 10;
+    private static final int RANDOM_MAXIMUM = 10;
 
     @Override
     public int generateNumber() {
