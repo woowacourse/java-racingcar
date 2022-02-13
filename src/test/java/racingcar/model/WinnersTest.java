@@ -25,7 +25,6 @@ class WinnersTest {
         Winners winners = new Winners(cars);
 
         // then
-        assertThat(winners.toString())
-                .contains(name1, name2);
+        assertThat(winners.getNames()).contains(name1, name2);
     }
 }

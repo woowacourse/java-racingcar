@@ -47,16 +47,4 @@ class CarTest {
         // then
         assertThat(car.getPosition()).isEqualTo(expected);
     }
-
-    @Test
-    public void toString_체크() {
-        // given
-        Car car = new Car("test");
-
-        // when
-        car.goOrStop(6);
-
-        // then
-        assertThat(car.toString()).isEqualTo("test : -");
-    }
 }
