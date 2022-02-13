@@ -3,6 +3,7 @@ package racingcar;
 import java.util.List;
 
 import racingcar.domain.RacingGame;
+import racingcar.util.Parser;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

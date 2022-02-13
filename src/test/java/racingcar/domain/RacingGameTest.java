@@ -8,8 +8,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import racingcar.Parser;
-
 class RacingGameTest {
 
     @Test
@@ -21,7 +19,7 @@ class RacingGameTest {
             names.add(car.getName());
         }
 
-        assertThat(names).containsExactly("car1","car2","car3");
+        assertThat(names).containsExactly("car1", "car2", "car3");
     }
 
     @Test
