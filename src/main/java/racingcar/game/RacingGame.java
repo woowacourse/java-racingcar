@@ -66,7 +66,7 @@ public class RacingGame {
     }
 
     private void addWinnerName(int maxPosition, Car car) {
-        if (car.isWinner(maxPosition)) {
+        if (car.isSamePosition(maxPosition)) {
             winnerNameList.add(car.getName());
         }
     }
