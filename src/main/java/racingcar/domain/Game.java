@@ -10,6 +10,7 @@ import static racingcar.util.ValidatorUtils.validateNoDuplicateCar;
 public class Game {
 
     private static final int ROUND_INCREMENT_UNIT = 1;
+    private static final int NON_EXISTING_MAX_POSITION = -1;
 
     private final CarRepository carRepository = new CarRepository();
     private final int totalRounds;
@@ -52,7 +53,7 @@ public class Game {
     private int getMaxPosition() {
         return getCars().stream()
             .mapToInt(Car::getPosition)
-            .max().orElseThrow(null);
+            .max().orElse(NON_EXISTING_MAX_POSITION);
     }
 
     public boolean isOver() {

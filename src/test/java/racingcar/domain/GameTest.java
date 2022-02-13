@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,6 +41,17 @@ public class GameTest {
         for (Car car : game.getCars()) {
             assertThat(car.getPosition()).isLessThanOrEqualTo(maxPosition);
         }
+    }
+
+    @DisplayName("getWinners 메서드는 cars 인스턴스가 존재하지 않는 경우 예외를 발생시키지 않는다")
+    @Test
+    void getWinners_noErrorOnNoCars() {
+        carRepository.clear();
+
+        List<Car> winners = game.getWinners();
+        List<Car> emptyList = new ArrayList<>();
+
+        assertThat(winners).isEqualTo(emptyList);
     }
 
     @DisplayName("isOver 메서드는 totalRounds와 currentRounds의 일치 여부를 반환한다.")
