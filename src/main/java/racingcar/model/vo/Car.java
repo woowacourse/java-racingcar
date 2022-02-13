@@ -5,6 +5,8 @@ import java.util.Objects;
 public class Car implements Comparable<Car> {
     private static final int ADVANCE_STANDARD = 4;
     private static final int MAXIMUM_LENGTH = 5;
+    private static final String ERROR_MESSAGE_FOR_BLANK_NAME = "이름은 공백일 수 없습니다.";
+    private static final String ERROR_MESSAGE_FOR_OVERSIZED_NAME = "이름은 %d글자가 넘을 수 없습니다.";
 
     private final String name;
     private int position;
@@ -21,15 +23,15 @@ public class Car implements Comparable<Car> {
         return name.trim();
     }
 
-    private void validateBlank(String name) {
+    private static void validateBlank(String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException("이름은 공백일 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_FOR_BLANK_NAME);
         }
     }
 
     private static void validateLength(final String name) {
         if (name.length() > MAXIMUM_LENGTH) {
-            throw new IllegalArgumentException(String.format("이름은 %d글자가 넘을 수 없습니다.", MAXIMUM_LENGTH));
+            throw new IllegalArgumentException(String.format(ERROR_MESSAGE_FOR_OVERSIZED_NAME, MAXIMUM_LENGTH));
         }
     }
 
