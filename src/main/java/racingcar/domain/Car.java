@@ -15,13 +15,13 @@ public class Car implements Comparable<Car> {
         this.name = name;
     }
 
-    private void validateCarName(String carName) {
+    private void validateCarName(final String carName) {
         if (carName == null || carName.isEmpty()) {
             throw new IllegalArgumentException(CAR_NAME_ERROR_MESSAGE);
         }
     }
 
-    private void validateCarNameLength(String name) {
+    private void validateCarNameLength(final String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR_MESSAGE);
         }
