@@ -15,9 +15,7 @@ class CarsTest {
         MovingPolicy movingPolicy = new RandomMovingPolicy();
 
         // when & then
-        assertThatCode(() -> {
-            new Cars(names, movingPolicy);
-        }).doesNotThrowAnyException();
+        assertThatCode(() -> new Cars(names, movingPolicy)).doesNotThrowAnyException();
     }
 
     @DisplayName("중복된 차 이름이 존재하는 경우 예외를 던진다.")
@@ -28,9 +26,7 @@ class CarsTest {
         MovingPolicy movingPolicy = new RandomMovingPolicy();
 
         // when & then
-        assertThatThrownBy(() -> {
-            new Cars(names, movingPolicy);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Cars(names, movingPolicy)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("isMove가 true이면 position이 일괄적으로 증가한다.")
@@ -77,7 +73,6 @@ class CarsTest {
         cars.move();
 
         // then
-        System.out.println(cars.getWinners());
         assertThat(cars.getWinners().size()).isGreaterThanOrEqualTo(1);
     }
 }

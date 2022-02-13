@@ -16,9 +16,7 @@ class CarNameTest {
         String input = "pobi";
 
         // when & then
-        assertThatCode(() -> {
-            new CarName(input);
-        }).doesNotThrowAnyException();
+        assertThatCode(() -> new CarName(input)).doesNotThrowAnyException();
     }
 
     @DisplayName("차 이름이 null인 경우 예외를 던진다.")
@@ -28,9 +26,7 @@ class CarNameTest {
         String input = null;
 
         // when & then
-        assertThatThrownBy(() -> {
-            new CarName(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new CarName(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("차 이름이 비어있는 경우 예외를 던진다.")
@@ -40,9 +36,7 @@ class CarNameTest {
         String input = "";
 
         // when & then
-        assertThatThrownBy(() -> {
-            new CarName(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new CarName(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("차 이름이 공백인 경우 예외를 던진다.")
@@ -50,9 +44,7 @@ class CarNameTest {
     @ValueSource(strings = {" ", "  ", "   "})
     void constructor_blank(String input) {
         // given & when & then
-        assertThatThrownBy(() -> {
-            new CarName(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new CarName(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("차 이름의 길이가 5자를 초과하는 경우 예외를 던진다.")
@@ -62,8 +54,6 @@ class CarNameTest {
         String input = "매트매트매트";
 
         // when & then
-        assertThatThrownBy(() -> {
-            new CarName(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new CarName(input)).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -50,9 +50,7 @@ public class CarTest {
     @ValueSource(strings = {" ", "  ", "   "})
     void constructor_blank(String input) {
         // given & when & then
-        assertThatThrownBy(() -> {
-            new Car(input, new RandomMovingPolicy());
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Car(input, new RandomMovingPolicy())).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("차 이름의 길이가 5자를 초과하는 경우 예외를 던진다.")
@@ -62,9 +60,7 @@ public class CarTest {
         String input = "매트매트매트";
 
         // when & then
-        assertThatThrownBy(() -> {
-            new Car(input, new RandomMovingPolicy());
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Car(input, new RandomMovingPolicy())).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("이동 전략이 true이면 이동한다.")

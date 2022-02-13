@@ -14,9 +14,7 @@ class CountTest {
         String input = "5";
 
         // when & then
-        assertThatCode(() -> {
-            new Count(input);
-        }).doesNotThrowAnyException();
+        assertThatCode(() -> new Count(input)).doesNotThrowAnyException();
     }
 
     @DisplayName("시도할 횟수가 숫자 이외의 값인 경우 예외를 throw 한다.")
@@ -26,9 +24,7 @@ class CountTest {
         String input = "매트";
 
         // when & then
-        assertThatThrownBy(() -> {
-            new Count(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Count(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("시도할 횟수가 음수인 경우 예외를 throw 한다.")
