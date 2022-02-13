@@ -14,10 +14,10 @@ public class Application {
 
         String rounds = InputView.inputRounds();
 
-        System.out.println(OutputView.RACE_RESULT_MESSAGE);
+        OutputView.printRaceResultMessage();
         for (int i = 0; i < Integer.parseInt(rounds); i++) {
             racingGame.moveCars();
-            OutputView.printRaceResult(racingGame);
+            OutputView.printOneTurnRaceResult(racingGame);
         }
 
         OutputView.printChampionList(racingGame);

@@ -1,13 +1,13 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RacingGame {
     private static final String NOTHING_NAME_ERROR_MASSAGE = "자동차 이름들이 존재하지 않음";
     private List<Car> cars = new ArrayList<>();
     private List<String> championNames = new ArrayList<>();
-    private int highScore = 0;
 
     public RacingGame(List<String> names) {
         validateNames(names);
@@ -32,28 +32,19 @@ public class RacingGame {
         return cars;
     }
 
-    public int getHighScore() {
-        int highScore = 0;
-
-        for (Car car : cars) {
-            highScore = car.getBiggerPosition(highScore);
-        }
-
-        return highScore;
-    }
-
     public List<String> getChampionNames() {
-        highScore = getHighScore();
+        championNames.clear();
+        Car firstCar = Collections.max(cars);
 
         for (Car car : cars) {
-            addChampionName(car);
+            addChampionName(firstCar, car);
         }
 
         return championNames;
     }
 
-    public void addChampionName(Car car) {
-        if (car.isChampion(highScore)) {
+    private void addChampionName(Car firstCar, Car car) {
+        if (car.isTiebreaker(firstCar)) {
             championNames.add(car.getName());
         }
     }

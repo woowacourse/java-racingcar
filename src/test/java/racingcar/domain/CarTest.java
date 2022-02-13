@@ -22,7 +22,7 @@ class CarTest {
     void move_전진(int input) {
         Car car = new Car("test");
         car.move(input);
-        assertThat(car.getCurrentPosition()).isEqualTo("test : -");
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @ParameterizedTest
@@ -30,6 +30,6 @@ class CarTest {
     void move_멈춤(int input) {
         Car car = new Car("test");
         car.move(input);
-        assertThat(car.getCurrentPosition()).isEqualTo("test : ");
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }

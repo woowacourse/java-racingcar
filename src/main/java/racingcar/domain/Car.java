@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Random;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int RANGE_MAX = 9;
     private static final int DO_NOT_MOVE_THRESHOLD = 3;
@@ -27,34 +27,24 @@ public class Car {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
     public int generateRandomNumber() {
         return new Random().nextInt(RANGE_MAX + 1);
     }
 
-    public String getCurrentPosition() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name);
-        sb.append(" : ");
-
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
-
-        return sb.toString();
+    public boolean isTiebreaker(Car car) {
+        return this.position == car.position;
     }
 
-    public int getBiggerPosition(int position) {
-        if (this.position > position) {
-            return this.position;
-        }
-        return position;
-    }
-
-    public boolean isChampion(int highScore) {
-        return position == highScore;
-    }
-
-    public String getName() {
-        return name;
+    @Override
+    public int compareTo(Car o) {
+        return this.position - o.position;
     }
 }

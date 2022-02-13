@@ -6,11 +6,28 @@ import racingcar.domain.RacingGame;
 public class OutputView {
     public static final String RACE_RESULT_MESSAGE = "\n실행 결과";
 
-    public static void printRaceResult(RacingGame cars) {
-        for (Car car : cars.getCars()) {
-            System.out.println(car.getCurrentPosition());
+    public static void printRaceResultMessage() {
+        System.out.println(RACE_RESULT_MESSAGE);
+    }
+
+    public static void printOneTurnRaceResult(RacingGame racingGame) {
+        for (Car car : racingGame.getCars()) {
+            System.out.println(getOneCarPosition(car));
         }
+
         System.out.println();
+    }
+
+    private static String getOneCarPosition(Car car) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(car.getName());
+        sb.append(" : ");
+
+        for (int i = 0; i < car.getPosition(); i++) {
+            sb.append("-");
+        }
+
+        return sb.toString();
     }
 
     public static void printChampionList(RacingGame cars) {
