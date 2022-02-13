@@ -2,6 +2,7 @@ package racingcar.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
 import racingcar.ui.RacingCarOutput;
@@ -23,10 +24,9 @@ public class RacingService {
 	}
 
 	public List<Car> findWinners() {
-		List<Car> winners = new ArrayList<>();
-		int maxPosition = findMaxPosition();
-		cars.forEach((car) -> addWinner(winners, maxPosition, car));
-		return winners;
+		return cars.stream()
+				.filter(car -> car.getPosition() == findMaxPosition())
+				.collect(Collectors.toList());
 	}
 
 	private int findMaxPosition() {
