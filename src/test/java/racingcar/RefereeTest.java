@@ -9,10 +9,20 @@ import org.junit.jupiter.api.Test;
 
 public class RefereeTest {
 	@Test
-	public void 차_전진_판단() {
+	public void 랜덤값이_3일때_차_전진_판단() {
 		Car car = new Car("kun");
-		int randomValue = 5;
-		assertThat(Referee.canCarMove(randomValue));
+		assertThat(Referee.canCarMove(3)).isFalse();
+	}
+
+	@Test
+	public void 랜덤값이_4일때_차_전진_판단() {
+		Car car = new Car("kun");
+		assertThat(Referee.canCarMove(4)).isTrue();
+	}
+	@Test
+	public void 랜덤값이_5일때_차_전진_판단() {
+		Car car = new Car("kun");
+		assertThat(Referee.canCarMove(5)).isTrue();
 	}
 
 	@Test
