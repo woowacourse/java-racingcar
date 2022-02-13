@@ -6,6 +6,7 @@ import racingcar.view.OutputView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static racingcar.util.InitUtil.initCar;
 import static racingcar.util.InitUtil.initTotalAttempt;
@@ -59,16 +60,12 @@ public class RacingGame {
     }
 
     private List<String> getWinners() {
-        List<String> winnerNameList = new ArrayList<>();
-
         int maxPosition = getMaxPosition();
 
-        for (int i = ZERO; i < carList.size(); i++) {
-            Car car = carList.get(i);
-            getWinnerNameList(winnerNameList, maxPosition, car);
-        }
-
-        return winnerNameList;
+        return carList.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .map(car -> car.getName())
+                .collect(Collectors.toList());
     }
 
     private int getMaxPosition() {
@@ -77,12 +74,5 @@ public class RacingGame {
         int maxPosition = carList.get(FIRST_INDEX).getPosition();
 
         return maxPosition;
-    }
-
-    private void getWinnerNameList(List<String> winnerNameList, int maxPosition, Car car) {
-        if (car.isSamePosition(maxPosition)) {
-            String winnerName = car.getName();
-            winnerNameList.add(winnerName);
-        }
     }
 }
