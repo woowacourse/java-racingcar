@@ -7,7 +7,7 @@ import racingcar.domain.Cars;
 import racingcar.io.Input;
 import racingcar.io.Output;
 import racingcar.util.RandomUtil;
-import racingcar.vo.Number;
+import racingcar.vo.MovingNumber;
 import racingcar.vo.Trial;
 import racingcar.dto.Winners;
 
@@ -30,15 +30,15 @@ public class RacingGame {
 
     private Winners race(Cars cars, int trials) {
         for (int round = 0; round < trials; round++) {
-            cars.move(createNumbers(cars.size()));
+            cars.move(createMovingNumbers(cars.size()));
             output.printCurrentPosition(cars.getCars());
         }
         return cars.getWinners();
     }
 
-    private Queue<Number> createNumbers(int size) {
+    private Queue<MovingNumber> createMovingNumbers(int size) {
         return RandomUtil.getRandomNumbers(size, RANDOM_NUMBER_RANGE).stream()
-            .map(Number::create)
+            .map(MovingNumber::create)
             .collect(Collectors.toCollection(LinkedList::new));
     }
 }

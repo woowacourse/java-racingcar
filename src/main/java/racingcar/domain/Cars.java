@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import racingcar.dto.CarValue;
 import racingcar.vo.Name;
 import racingcar.dto.Winners;
-import racingcar.vo.Number;
+import racingcar.vo.MovingNumber;
 
 public class Cars {
     private List<Car> cars;
@@ -22,10 +22,10 @@ public class Cars {
             .collect(Collectors.toList());
     }
 
-    public void move(Queue<Number> numbers) {
-        validateSize(numbers.size());
+    public void move(Queue<MovingNumber> movingNumbers) {
+        validateSize(movingNumbers.size());
         for (Car car : cars) {
-            car.advance(numbers.poll().value());
+            car.advance(movingNumbers.poll().value());
         }
     }
 

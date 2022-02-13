@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.vo.Name;
 import racingcar.dto.Winners;
-import racingcar.vo.Number;
+import racingcar.vo.MovingNumber;
 import static org.assertj.core.api.Assertions.*;
 
 public class CarsTest {
@@ -32,10 +32,10 @@ public class CarsTest {
     void existsWinner() {
         // given
         Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));
-        Queue<Number> numbers = givenNumbers(advanceValue, stopValue, stopValue);
+        Queue<MovingNumber> movingNumbers = givenNumbers(advanceValue, stopValue, stopValue);
 
         // when
-        cars.move(numbers);
+        cars.move(movingNumbers);
 
         // then
         Winners winners = cars.getWinners();
@@ -47,10 +47,10 @@ public class CarsTest {
     void existsWinners() {
         // given
         Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));
-        Queue<Number> numbers = givenNumbers(advanceValue, advanceValue, stopValue);
+        Queue<MovingNumber> movingNumbers = givenNumbers(advanceValue, advanceValue, stopValue);
 
         // when
-        cars.move(numbers);
+        cars.move(movingNumbers);
 
         // then
         Winners winners = cars.getWinners();
@@ -62,12 +62,24 @@ public class CarsTest {
     void throwExceptionWhenCarsSizeNotEqualsNumbersSize() {
         // given
         Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));
-        Queue<Number> numbers = givenNumbers(advanceValue);
+        Queue<MovingNumber> movingNumbers = givenNumbers(advanceValue);
 
         // when & then
         assertThatIllegalArgumentException()
-            .isThrownBy(() -> cars.move(numbers))
+            .isThrownBy(() -> cars.move(movingNumbers))
             .withMessage("자동차와 랜덤한 숫자들의 갯수가 일치하지 않습니다.");
+    }
+
+    @Test
+    @DisplayName("랜덤 숫자들을 음수로 생성한 경우 예외를 발생한다")
+    void throwExceptionWhenNumbersNegative() {
+        // given
+        Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));
+
+        // when && then
+        assertThatIllegalArgumentException()
+            .isThrownBy(() -> cars.move(givenNumbers(-1, -1, -1)))
+            .withMessage("숫자는 0과 9사이어야 합니다.");
     }
 
     private List<Name> givenCarsNames(String... names) {
@@ -76,9 +88,9 @@ public class CarsTest {
             .collect(Collectors.toList());
     }
 
-    private Queue<Number> givenNumbers(int... numbers) {
+    private Queue<MovingNumber> givenNumbers(int... numbers) {
         return Arrays.stream(numbers)
-            .mapToObj(Number::create)
+            .mapToObj(MovingNumber::create)
             .collect(Collectors.toCollection(LinkedList::new));
     }
 }

@@ -2,13 +2,13 @@ package racingcar.vo;
 
 import java.util.Objects;
 
-public class Number {
+public class MovingNumber {
     private static final int MINIMUM_RANGE = 0;
     private static final int MAXIMUM_RANGE = 9;
 
     private final int number;
 
-    public Number(int number) {
+    public MovingNumber(int number) {
         validateRange(number);
         this.number = number;
     }
@@ -28,11 +28,11 @@ public class Number {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Number)) {
+        if (!(o instanceof MovingNumber)) {
             return false;
         }
-        Number number1 = (Number)o;
-        return number == number1.number;
+        MovingNumber movingNumber1 = (MovingNumber)o;
+        return number == movingNumber1.number;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Number {
         return Objects.hash(number);
     }
 
-    public static Number create(int number) {
-        return new Number(number);
+    public static MovingNumber create(int number) {
+        return new MovingNumber(number);
     }
 }
