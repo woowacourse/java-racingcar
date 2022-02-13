@@ -14,7 +14,7 @@ public class Cars {
 		String[] parseCarNames = parseCarNames(carNames);
 
 		for (String carName : parseCarNames) {
-			Car car = new Car(carName);
+			Car car = Car.createRandomMovingCar(carName);
 			cars.add(car);
 		}
 	}

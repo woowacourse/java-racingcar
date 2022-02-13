@@ -12,8 +12,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.strategy.MovingStrategy;
 
 @DisplayName("자동차 도메인 TEST")
-public class CarTest {
-	
+public class CarTest extends Car{
+
 	@Nested
 	@DisplayName("자동차 움직임 : ")
 	class MovingTest {
@@ -21,8 +21,7 @@ public class CarTest {
 		@DisplayName("움직일 때")
 		public void car_move() {
 			// given
-			MovingStrategy movingStrategy = () -> true;
-			Car car = new Car("foo", movingStrategy);
+			Car car = Car.createFixedMovingCar("foo");
 
 			// when & then
 			car.move();
@@ -45,26 +44,31 @@ public class CarTest {
 	@Nested
 	@DisplayName("자동차 이름에 ")
 	class CarNameTest {
+
 		@ParameterizedTest
 		@ValueSource(strings = {",", "#", "panda,", "#philz", ",phobi,"})
 		@DisplayName("허용되지 않는 문자를 입력했을 때")
 		public void Not_Available_Character(String carName) {
-			assertThatThrownBy(() -> new Car(carName))
-				.isInstanceOf(RuntimeException.class);
+			assertThatThrownBy(
+				() -> Car.createRandomMovingCar(carName)
+			).isInstanceOf(RuntimeException.class);
 		}
 
 		@Test
 		@DisplayName("null을 입력했을 때")
 		public void Not_Available_Null() {
-			assertThatThrownBy(() -> new Car(null))
-				.isInstanceOf(RuntimeException.class);
+			assertThatThrownBy(
+				() -> Car.createRandomMovingCar(null)
+			).isInstanceOf(RuntimeException.class);
 		}
 
 		@ParameterizedTest
 		@ValueSource(strings = {"a", "aa", "philz"})
 		@DisplayName("정상 입력을 했을 때")
 		public void Available_Character(String carName) {
-			Assertions.assertDoesNotThrow(() -> new Car(carName));
+			Assertions.assertDoesNotThrow(
+				() -> Car.createRandomMovingCar(carName)
+			);
 		}
 
 	}
@@ -75,8 +79,9 @@ public class CarTest {
 		@DisplayName("허용되지 않는 문자를 입력했을 때")
 		public void input_all_car_name_exception() {
 			assertThatThrownBy(
-				() -> Assertions.assertDoesNotThrow(() -> new Cars("panda,philz,javajigi"))
-			);
+				() -> Assertions.assertDoesNotThrow(
+					() -> new Cars("panda,philz,javajigi")
+				));
 		}
 
 		@ParameterizedTest
@@ -88,4 +93,5 @@ public class CarTest {
 			);
 		}
 	}
+
 }

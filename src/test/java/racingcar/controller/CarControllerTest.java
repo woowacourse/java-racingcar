@@ -17,8 +17,18 @@ public class CarControllerTest {
     private CarController carController;
     private final MovingStrategy onlyMoveStrategy = () -> true;
 
+    private Car car1;
+    private Car car2;
+    private Car car3;
+
     @BeforeEach
     void setUp() {
+
+        // given
+        car1 = Car.createFixedMovingCar("foo");
+        car2 = Car.createFixedMovingCar("boo");
+        car3 = Car.createFixedMovingCar("bar");
+
         carRepository = new CarRepository();
         carController = new CarController(carRepository, onlyMoveStrategy);
     }
@@ -26,10 +36,6 @@ public class CarControllerTest {
     @Test
     @DisplayName("우승자가 한명일 때")
     public void Only_One_Winner() {
-        // given
-        Car car1 = new Car("foo", onlyMoveStrategy);
-        Car car2 = new Car("boo", onlyMoveStrategy);
-        Car car3 = new Car("bar", onlyMoveStrategy);
 
         // when
         car1.move(3);
@@ -46,10 +52,6 @@ public class CarControllerTest {
     @Test
     @DisplayName("우승자가 여러명일 때")
     public void Two_Or_More_Winners() {
-        // given
-        Car car1 = new Car("foo", onlyMoveStrategy);
-        Car car2 = new Car("boo", onlyMoveStrategy);
-        Car car3 = new Car("bar", onlyMoveStrategy);
 
         // when
         car1.move(3);
