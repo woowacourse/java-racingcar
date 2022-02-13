@@ -23,8 +23,10 @@ public class Car {
         return this.position == position;
     }
 
-    public void move() {
-        position++;
+    public void move(boolean canCarMove) {
+        if (canCarMove) {
+            position++;
+        }
     }
 
     private String buildStringPosition() {

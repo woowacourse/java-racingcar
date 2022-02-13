@@ -11,8 +11,8 @@ public class RefereeTest {
 	@Test
 	public void 차_전진_판단() {
 		Car car = new Car("kun");
-		Referee.judgeCarMove(car, 5);
-		assertThat(car.getPosition()).isEqualTo(1);
+		int randomValue = 5;
+		assertThat(Referee.canCarMove(randomValue));
 	}
 
 	@Test
@@ -20,7 +20,7 @@ public class RefereeTest {
 		Set<Car> cars = new HashSet<>();
 		Car car1 = new Car("forky");
 		Car car2 = new Car("kun");
-		car1.move();
+		car1.move(true);
 		cars.add(car1);
 		cars.add(car2);
 		assertThat(Referee.judgeWinner(cars).get(0)).isEqualTo(car1);

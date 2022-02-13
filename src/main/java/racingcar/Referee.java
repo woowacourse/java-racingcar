@@ -1,6 +1,5 @@
 package racingcar;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,10 +7,8 @@ import java.util.stream.Collectors;
 public class Referee {
 	private static final int MOVE_CRITERIA = 4;
 
-	public static void judgeCarMove(Car car, int randomValue) {
-		if (randomValue >= MOVE_CRITERIA) {
-			car.move();
-		}
+	public static boolean canCarMove(int randomValue) {
+		return randomValue >= MOVE_CRITERIA;
 	}
 
 	private static int getMaxPosition(Set<Car> cars) {

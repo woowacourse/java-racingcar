@@ -61,7 +61,7 @@ public class CarTest {
 	@Test
 	public void toString_position_1() {
 		Car car = new Car("kun");
-		car.move();
+		car.move(true);
 		assertThat(car.toString()).isEqualTo("kun : -");
 	}
 
@@ -69,7 +69,7 @@ public class CarTest {
 	public void toString_position_3() {
 		Car car = new Car("kun");
 		for (int i = 0; i < 3 ; i++) {
-			car.move();
+			car.move(true);
 		}
 		assertThat(car.toString()).isEqualTo("kun : ---");
 	}

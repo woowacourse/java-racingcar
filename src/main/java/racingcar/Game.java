@@ -26,7 +26,8 @@ public class Game {
 
 	public void play(Set<Car> cars) {
 		for (Car car : cars) {
-			Referee.judgeCarMove(car, makeRandomValue());
+			boolean canCarMove = Referee.canCarMove(makeRandomValue());
+			car.move(canCarMove);
 		}
 	}
 
