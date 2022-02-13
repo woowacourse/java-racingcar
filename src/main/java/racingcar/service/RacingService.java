@@ -48,10 +48,4 @@ public class RacingService {
             car.proceed();
         }
     }
-
-    private void addWinner(List<Car> winners, int maxPosition, Car car) {
-        if (car.isWinner(maxPosition)) {
-            winners.add(car);
-        }
-    }
 }
