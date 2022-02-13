@@ -52,14 +52,12 @@ class StringCalculatorTest {
     @DisplayName("주어진 문자열이 `숫자 이외의 값`을 전달할 경우 `RuntimeException 예외를 throw` 한다.")
     @Test
     void splitAndSum_숫자아님() {
-        assertThatThrownBy(() -> StringCalculator.splitAndSum("잉"))
-            .isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> StringCalculator.splitAndSum("잉")).isInstanceOf(RuntimeException.class);
     }
 
     @DisplayName("주어진 문자열이 `음수`를 전달할 경우 `RuntimeException 예외를 throw` 한다.")
     @Test
     void splitAndSum_음수확인() {
-        assertThatThrownBy(() -> StringCalculator.splitAndSum("-1"))
-            .isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> StringCalculator.splitAndSum("-1")).isInstanceOf(RuntimeException.class);
     }
 }
