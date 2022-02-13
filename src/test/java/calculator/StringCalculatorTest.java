@@ -34,7 +34,7 @@ public class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"//;\n1;2,3", "//;!\n1;2;3"})
+    @ValueSource(strings = {"//?!@\n1;2,3", "//;!\n1;2;3"})
     void 많은_커스텀_구분자_입력(String input) {
         assertThatThrownBy(() -> StringCalculator.calculate(input)).isInstanceOf(RuntimeException.class);
     }
