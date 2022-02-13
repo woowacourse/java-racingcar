@@ -39,7 +39,7 @@ public class RandomNumberGenerator {
             indexFirst = random.nextInt(MAX_RANDOM_NUMBER);
             indexSecond = random.nextInt(MAX_RANDOM_NUMBER);
         }
-        return Arrays.asList(indexFirst, indexSecond);
+        return List.of(indexFirst, indexSecond);
     }
 
     private static int selectRandom() {

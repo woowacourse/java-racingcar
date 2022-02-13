@@ -54,13 +54,13 @@ public class Application {
         Matcher matcher = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
         if (matcher.find()) {
             String delimiter = matcher.group(DELIMITER) + OR + BASE_DELIMITER_PATTERN;
-            return Arrays.asList(matcher.group(NUMBERS).split(delimiter));
+            return List.of(matcher.group(NUMBERS).split(delimiter));
         }
         throw new RuntimeException();
     }
 
     private static List<String> divideInput(String input) {
-        return Arrays.asList(input.split(BASE_DELIMITER_PATTERN));
+        return List.of(input.split(BASE_DELIMITER_PATTERN));
     }
 
     private static int makeSumOfNumbers(List<String> numbers) {
