@@ -3,11 +3,13 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import racingcar.utils.MockRandomGenerator;
+import racingcar.utils.numbergenerator.MovableNumberGenerator;
+import racingcar.utils.numbergenerator.NumberGenerator;
 
-public class CarsTest extends MockRandomGenerator {
+public class CarsTest {
+
+    private final NumberGenerator movableNumberGenerator = new MovableNumberGenerator();
 
     @Test
     void 자동차_2개_미만() {
@@ -50,22 +52,15 @@ public class CarsTest extends MockRandomGenerator {
         assertThat(cars.getWinners()).isEqualTo("jae, rick가 최종 우승 했습니다.");
     }
 
-    @AfterEach
-    void stopMockRandom() {
-        closeMockRandom();
+    private void moveCarPosition(Car... car) {
+        for (Car c : car) {
+            c.goForward(movableNumberGenerator);
+        }
     }
-
 
     private void addTestCarToCars(Cars cars, Car... car) {
         for (Car c : car) {
             cars.addCar(c);
-        }
-    }
-
-    private void moveCarPosition(Car... car) {
-        for (Car c : car) {
-            randomNumberOverFour();
-            c.goForward();
         }
     }
 }

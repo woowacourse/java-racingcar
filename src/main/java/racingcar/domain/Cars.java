@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import racingcar.utils.numbergenerator.NumberGenerator;
+import racingcar.utils.numbergenerator.RandomNumberGenerator;
 
 public class Cars {
 
@@ -16,7 +18,6 @@ public class Cars {
     private static final String ERROR_DUPLICATE_NAME = "[ERROR] 중복된 이름입니다.";
 
     private final List<Car> cars;
-
     private final List<String> winners;
 
     public Cars() {
@@ -58,8 +59,9 @@ public class Cars {
     }
 
     public void moveCars() {
+        NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         for (Car car : cars) {
-            car.goForward();
+            car.goForward(randomNumberGenerator);
         }
     }
 

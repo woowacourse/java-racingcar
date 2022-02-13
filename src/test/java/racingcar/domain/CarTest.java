@@ -3,11 +3,15 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import racingcar.utils.MockRandomGenerator;
+import racingcar.utils.numbergenerator.MovableNumberGenerator;
+import racingcar.utils.numbergenerator.NumberGenerator;
+import racingcar.utils.numbergenerator.StoppableNumberGenerator;
 
-public class CarTest extends MockRandomGenerator {
+public class CarTest {
+
+    private final NumberGenerator movableNumberGenerator = new MovableNumberGenerator();
+    private final NumberGenerator stoppableNumberGenerator = new StoppableNumberGenerator();
 
     @Test
     void 이름_빈칸_실패() {
@@ -39,8 +43,7 @@ public class CarTest extends MockRandomGenerator {
     @Test
     void 자동차_전진_성공() {
         Car car = new Car("jae");
-        randomNumberOverFour();
-        car.goForward();
+        car.goForward(movableNumberGenerator);
         assertThat(car.getPosition()).isEqualTo(1);
 
     }
@@ -48,14 +51,8 @@ public class CarTest extends MockRandomGenerator {
     @Test
     void 자동차_전진_실패() {
         Car car = new Car("jae");
-        randomNumberBelowFour();
-        car.goForward();
+        car.goForward(stoppableNumberGenerator);
         assertThat(car.getPosition()).isEqualTo(0);
 
-    }
-
-    @AfterEach
-    void stopMockRandom() {
-        closeMockRandom();
     }
 }

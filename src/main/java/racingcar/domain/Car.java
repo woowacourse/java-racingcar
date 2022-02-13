@@ -1,13 +1,10 @@
 package racingcar.domain;
 
-import static racingcar.utils.RandomGenerator.getRandomNumberInRange;
+import racingcar.utils.numbergenerator.NumberGenerator;
 
 public class Car {
 
-    private static final int MAX_RANDOM_RANGE = 9;
     private static final int MIN_GO_FORWARD_RANGE = 4;
-    private static final String NAME_POSITION_DELIMITER = " : ";
-    private static final String PROGRESS_BAR = "-";
     private static final int MAX_LENGTH = 5;
     private static final String BLANK = " ";
     private static final String ERROR_NO_NAME = "[ERROR] 이름 입력은 필수입니다.";
@@ -55,14 +52,10 @@ public class Car {
         return position;
     }
 
-    public void goForward() {
-        if (isCarGoForward()) {
+    public void goForward(final NumberGenerator numberGenerator) {
+        if (numberGenerator.generate() >= MIN_GO_FORWARD_RANGE) {
             position++;
         }
-    }
-
-    private boolean isCarGoForward() {
-        return getRandomNumberInRange(MAX_RANDOM_RANGE) >= MIN_GO_FORWARD_RANGE;
     }
 
     public boolean isSamePosition(int position) {
