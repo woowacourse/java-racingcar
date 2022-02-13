@@ -18,11 +18,11 @@ public class CarsStatus {
 
     public String makeCarsStatus() {
         return cars.stream()
-            .map(CarsStatus::makeCarStatus)
+            .map(this::makeCarStatus)
             .collect(joining(CARS_STATUS_JOIN_DELIMITER));
     }
 
-    private static String makeCarStatus(Car car) {
+    private String makeCarStatus(Car car) {
         StringBuilder carStatus = new StringBuilder(car.getName());
         carStatus.append(CAR_STATUS_CRITERIA);
         int position = car.getPosition();
