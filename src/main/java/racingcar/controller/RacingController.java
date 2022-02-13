@@ -8,7 +8,7 @@ import static racingcar.view.OutputView.*;
 
 public class RacingController {
 
-    private NumberGenerator numberGenerator;
+    private final NumberGenerator numberGenerator;
 
     public RacingController(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;

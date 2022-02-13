@@ -1,9 +1,8 @@
 package racingcar.view;
 
-
 import racingcar.utils.Console;
 
-import static racingcar.utils.NumberConverter.toInt;
+import static racingcar.utils.NumberConverter.*;
 import static racingcar.view.OutputView.*;
 import static racingcar.utils.NameValidator.*;
 
