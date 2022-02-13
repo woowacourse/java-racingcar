@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import racingcar.util.RandomUtil;
+
 public class RacingGame {
     private static final String NOTHING_NAME_ERROR_MASSAGE = "자동차 이름들이 존재하지 않음";
     private List<Car> cars = new ArrayList<>();
@@ -24,7 +26,7 @@ public class RacingGame {
 
     public void moveCars() {
         for (Car car : cars) {
-            car.move(car.generateRandomNumber());
+            car.move(RandomUtil.generateRandomNumber());
         }
     }
 

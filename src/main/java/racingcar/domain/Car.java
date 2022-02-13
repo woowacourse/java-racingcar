@@ -5,7 +5,6 @@ import java.util.Random;
 public class Car implements Comparable<Car> {
     private static final String CAR_NAME_ERROR_MESSAGE = "유효하지 않은 자동차 이름";
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int RANGE_MAX = 9;
     private static final int DO_NOT_MOVE_THRESHOLD = 3;
 
     private final String name;
@@ -34,10 +33,6 @@ public class Car implements Comparable<Car> {
 
     public int getPosition() {
         return position;
-    }
-
-    public int generateRandomNumber() {
-        return new Random().nextInt(RANGE_MAX + 1);
     }
 
     public boolean isTiebreaker(Car car) {
