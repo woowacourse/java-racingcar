@@ -45,6 +45,7 @@ public class Cars {
     }
 
     private boolean isHighest(final Car standardCar) {
-        return values.stream().allMatch(standardCar::isFartherThan);
+        return values.stream()
+                .allMatch(standardCar::isFartherThan);
     }
 }
