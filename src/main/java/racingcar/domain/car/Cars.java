@@ -19,7 +19,10 @@ public class Cars {
     }
 
     private void validateDuplication(final List<String> carNames) {
-        if (carNames.stream().distinct().count() != carNames.size()) {
+        int numOfDuplicationRemovedCars = (int) carNames.stream()
+                .distinct()
+                .count();
+        if (numOfDuplicationRemovedCars != carNames.size()) {
             throw new IllegalArgumentException(DUPLICATED_CAR_NAMES);
         }
     }
