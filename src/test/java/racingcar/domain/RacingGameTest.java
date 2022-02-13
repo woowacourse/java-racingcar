@@ -2,7 +2,9 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +13,19 @@ import racingcar.Parser;
 class RacingGameTest {
 
     @Test
-    void validateNames_쉼표만() {
+    void validateNames_정상_입력() {
+        RacingGame racingGame = new RacingGame(Arrays.asList("car1", "car2", "car3"));
+        List<String> names = new ArrayList<>();
+
+        for (Car car : racingGame.getCars()) {
+            names.add(car.getName());
+        }
+
+        assertThat(names).containsExactly("car1","car2","car3");
+    }
+
+    @Test
+    void validateNames_empty() {
         assertThatThrownBy(() -> {
             new RacingGame(Arrays.asList());
         }).isInstanceOf(IllegalArgumentException.class);

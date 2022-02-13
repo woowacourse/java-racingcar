@@ -11,6 +11,25 @@ import racingcar.Parser;
 class CarTest {
 
     @Test
+    void validateCarName_정상적인_이름() {
+        assertThat(new Car("car1").getName()).isEqualTo("car1");
+    }
+
+    @Test
+    void validateCarName_null() {
+        assertThatThrownBy(() -> {
+            new Car(null);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validateCarName_empty() {
+        assertThatThrownBy(() -> {
+            new Car("");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void validateCarName_다섯글자_초과() {
         assertThatThrownBy(() -> {
             new Car("123456");
