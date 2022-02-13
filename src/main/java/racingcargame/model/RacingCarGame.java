@@ -9,7 +9,7 @@ public class RacingCarGame {
     private static final int WINNER_POSITION = 0;
 
     private final CarGameRaceCount raceCount;
-    private CarRepository carRepository;
+    private Cars carRepository;
 
     public RacingCarGame(List<String> carNames, int raceCount) {
         this.raceCount = Objects.requireNonNull(orderToSaveRaceCount(raceCount));
@@ -17,7 +17,7 @@ public class RacingCarGame {
     }
 
     private void orderToSaveCars(List<String> carNames) {
-        carRepository = new CarRepository(carNames);
+        carRepository = new Cars(carNames);
     }
 
     private CarGameRaceCount orderToSaveRaceCount(int count) {
