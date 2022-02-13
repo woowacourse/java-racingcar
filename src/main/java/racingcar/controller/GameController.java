@@ -18,7 +18,7 @@ public class GameController {
         OutputView.printChampionList(cars);
     }
 
-    private String[] split(String input) {
+    public static String[] split(String input) {
         CarNameValidator.validate(input);
 
         String[] carNames = input.split(DELIMITER);

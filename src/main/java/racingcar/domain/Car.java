@@ -24,23 +24,23 @@ public class Car {
         return engine.ignite();
     }
 
-    public String getCurrentPosition() {
-        String currentPosition = name + DELIMITER;
-        for (int i = 0; i < position; i++) {
-            currentPosition += DISTANCE;
-        }
-        return currentPosition;
-    }
-
-    public int comparePosition(int highScore) {
+    public int updateMaxPosition(int highScore) {
         return Math.max(position, highScore);
     }
 
-    public boolean isChampion(int highScore) {
+    public boolean isMaxPosition(int highScore) {
         return position == highScore;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getCurrentPosition() {
+        StringBuilder currentPosition = new StringBuilder(name + DELIMITER);
+        for (int i = 0; i < position; i++) {
+            currentPosition.append(DISTANCE);
+        }
+        return currentPosition.toString();
     }
 }

@@ -5,9 +5,13 @@ import java.util.List;
 
 public class Cars {
     private final List<Car> cars;
+    private final List<String> championList;
+    private int highScore;
 
     public Cars(String[] names) {
         this.cars = new ArrayList<>();
+        this.championList = new ArrayList<>();
+        this.highScore = 0;
         for (String name : names) {
             cars.add(new Car(name));
         }
@@ -19,27 +23,31 @@ public class Cars {
         }
     }
 
+    public List<String> getChampions() {
+        updateHighScore();
+        verifyChampion();
+        return championList;
+    }
+
+    private void updateHighScore() {
+        for (Car car : cars) {
+            highScore = car.updateMaxPosition(highScore);
+        }
+    }
+
+    private void verifyChampion() {
+        for (Car car : cars) {
+            verifyMaxPosition(car);
+        }
+    }
+
+    private void verifyMaxPosition(Car car) {
+        if (car.isMaxPosition(highScore)) {
+            championList.add(car.getName());
+        }
+    }
+
     public List<Car> getCars() {
         return cars;
-    }
-
-    public List<String> getChampions() {
-        int highScore = 0;
-        for (Car car : cars) {
-            highScore = car.comparePosition(highScore);
-        }
-
-        List<String> championNames = new ArrayList<>();
-        for (Car car : cars) {
-            checkChampion(car, highScore, championNames);
-        }
-
-        return championNames;
-    }
-
-    private void checkChampion(Car car, int highScore, List<String> championNames) {
-        if (car.isChampion(highScore)) {
-            championNames.add(car.getName());
-        }
     }
 }
