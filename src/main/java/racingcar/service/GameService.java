@@ -10,7 +10,9 @@ public interface GameService {
 
     boolean isContinuable();
 
-    List<String> playRound();
+    void playRound();
+
+    List<String> getCurrentStatuses();
 
     List<String> getWinnerNames();
 

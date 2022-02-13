@@ -44,8 +44,8 @@ public class GameControllerImpl implements GameController {
     public void playGame() {
         announceStatusTitle();
         while (gameService.isContinuable()) {
-            List<String> carStatuses = gameService.playRound();
-            announceStatuses(carStatuses);
+            gameService.playRound();
+            announceStatuses(gameService.getCurrentStatuses());
         }
         announceWinners();
     }

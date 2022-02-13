@@ -30,9 +30,12 @@ public class GameServiceImpl implements GameService {
         return (round.isNotFinished());
     }
 
-    public List<String> playRound() {
+    public void playRound() {
         carCollection.goForwardOrStop(numberPicker);
         round.decreaseCount();
+    }
+
+    public List<String> getCurrentStatuses() {
         List<CarStatusDto> statuses = carCollection.getStatuses();
         return statuses.stream()
                 .map(CarStatusDto::toString)
