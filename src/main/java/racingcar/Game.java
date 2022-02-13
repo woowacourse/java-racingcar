@@ -29,15 +29,16 @@ public class Game {
 
 	private void showResult(Set<Car> cars) {
 		for (Car car : cars) {
-			OutputView.printCarPosition(car.getName(), car.getPosition());
+			OutputView.printCarPosition(new CarDto(car.getName(), car.getPosition()));
 		}
 		OutputView.printBlankLine();
 	}
 
 	private void showWinner(List<Car> winnerCars) {
-		List<String> winnerNames = winnerCars.stream()
-			.map(Car::getName).collect(Collectors.toList());
-		OutputView.printWinner(winnerNames);
+		List<CarDto> winnerDtos = winnerCars.stream()
+			.map(car -> new CarDto(car.getName()))
+			.collect(Collectors.toList());
+		OutputView.printWinner(winnerDtos);
 	}
 
 	public int makeRandomValue(int bound) {
