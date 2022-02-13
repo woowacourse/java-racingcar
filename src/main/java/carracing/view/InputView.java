@@ -38,7 +38,7 @@ public class InputView {
 			validateZero(numberOfGames);
 		} catch (IllegalArgumentException | IOException e) {
 			OutputView.printException(e.getMessage());
-			getNumberOfGames();
+			numberOfGames = getNumberOfGames();
 		}
 		return numberOfGames;
 	}
