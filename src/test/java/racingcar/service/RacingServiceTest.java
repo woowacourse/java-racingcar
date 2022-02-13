@@ -14,8 +14,6 @@ import racingcar.domain.Car;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class RacingServiceTest {
-	private static final int PROCEED_FlAG_NUMBER = 4;
-
 	private List<Car> cars;
 	private Car carA;
 	private Car carB;
@@ -41,14 +39,14 @@ public class RacingServiceTest {
 
 	@Test
 	void 우승자_판단() {
-		carA.proceed(PROCEED_FlAG_NUMBER);
+		carA.proceed();
 		assertThat(racingService.findWinners()).contains(carA);
 	}
 
 	@Test
 	void 중복_우승자_판단() {
-		carA.proceed(PROCEED_FlAG_NUMBER);
-		carB.proceed(PROCEED_FlAG_NUMBER);
+		carA.proceed();
+		carB.proceed();
 		assertThat(racingService.findWinners()).contains(carA, carB);
 	}
 }
