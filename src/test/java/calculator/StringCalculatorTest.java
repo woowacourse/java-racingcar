@@ -48,17 +48,25 @@ public class StringCalculatorTest {
 
     @Test
     void 숫자_이외의_타입_입력() {
-        assertThatThrownBy(() -> StringCalculator.calculate("//;\n1:a,3")).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(
+                () -> StringCalculator.calculate("//;\n1:a,3"))
+                .isInstanceOf(RuntimeException.class
+                );
     }
 
     @Test
     void 음수_입력() {
-        assertThatThrownBy(() -> StringCalculator.calculate("-3,2:1")).isInstanceOf(RuntimeException.class);
-
+        assertThatThrownBy(
+                () -> StringCalculator.calculate("-3,2:1"))
+                .isInstanceOf(RuntimeException.class
+                );
     }
 
     @Test
     void 소수_입력() {
-        assertThatThrownBy(() -> StringCalculator.calculate("0.5,1.2:2")).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(
+                () -> StringCalculator.calculate("0.5,1.2:2"))
+                .isInstanceOf(RuntimeException.class
+                );
     }
 }
