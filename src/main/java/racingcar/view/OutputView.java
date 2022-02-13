@@ -14,6 +14,7 @@ public class OutputView {
 
 	public static void showGameResult(List<Car> winners) {
 		String winnerNames = winners.stream()
+			.sorted(Car::compareNameTo)
 			.map(Car::getName)
 			.collect(Collectors.joining(","));
 		out.println(winnerNames + DECLARE_WINNER_MESSAGE);
