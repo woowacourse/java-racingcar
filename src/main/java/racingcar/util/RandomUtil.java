@@ -4,6 +4,9 @@ public class RandomUtil {
 
     private static final int CONDITION_VALUE = 4;
 
+    private RandomUtil() {
+    }
+
     public static boolean checkMoveOrWait() {
         return getRandomNumber() >= CONDITION_VALUE;
     }
