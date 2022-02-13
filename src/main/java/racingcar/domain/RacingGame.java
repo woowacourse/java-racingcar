@@ -39,14 +39,14 @@ public class RacingGame {
         Car firstCar = Collections.max(cars);
 
         for (Car car : cars) {
-            addChampionName(firstCar, car);
+            addTieCarName(firstCar, car);
         }
 
         return championNames;
     }
 
-    private void addChampionName(Car firstCar, Car car) {
-        if (car.isTiebreaker(firstCar)) {
+    private void addTieCarName(Car firstCar, Car car) {
+        if (car.isSamePosition(firstCar)) {
             championNames.add(car.getName());
         }
     }

@@ -1,9 +1,8 @@
 package racingcar.domain;
 
-import java.util.Random;
-
 public class Car implements Comparable<Car> {
     private static final String CAR_NAME_ERROR_MESSAGE = "유효하지 않은 자동차 이름";
+    private static final String CAR_NAME_LENGTH_ERROR_MESSAGE = "자동차 이름 5글자 초과";
     private static final int MAX_NAME_LENGTH = 5;
     private static final int DO_NOT_MOVE_THRESHOLD = 3;
 
@@ -12,12 +11,19 @@ public class Car implements Comparable<Car> {
 
     public Car(final String name) {
         validateCarName(name);
+        validateCarNameLength(name);
         this.name = name;
     }
 
     private void validateCarName(String carName) {
-        if (carName == null || carName.isEmpty() || carName.length() > MAX_NAME_LENGTH) {
+        if (carName == null || carName.isEmpty()) {
             throw new IllegalArgumentException(CAR_NAME_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateCarNameLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR_MESSAGE);
         }
     }
 
@@ -35,12 +41,12 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
-    public boolean isTiebreaker(Car car) {
+    public boolean isSamePosition(Car car) {
         return this.position == car.position;
     }
 
     @Override
-    public int compareTo(Car o) {
-        return this.position - o.position;
+    public int compareTo(Car car) {
+        return this.position - car.position;
     }
 }
