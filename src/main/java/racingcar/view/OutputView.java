@@ -2,12 +2,12 @@ package racingcar.view;
 
 import java.util.List;
 
-public class OutPutView {
+public class OutputView {
     private static final String STATUS_MESSAGE = "\n실행 결과";
     private static final String WINNER_NAME_DELIMITER = ", ";
     private static final String END_MESSAGE = "가 최종 우승했습니다.";
 
-    private OutPutView() {
+    private OutputView() {
     }
 
     public static void printStatusMessage() {

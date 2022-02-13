@@ -5,7 +5,7 @@ import racingcar.domain.Cars;
 import racingcar.domain.Count;
 import racingcar.domain.RandomMovingPolicy;
 import racingcar.view.InputView;
-import racingcar.view.OutPutView;
+import racingcar.view.OutputView;
 
 public class RacingCarController {
 
@@ -18,7 +18,7 @@ public class RacingCarController {
         try {
             return new Cars(InputView.getCarNames(), new RandomMovingPolicy());
         } catch (IllegalArgumentException e) {
-            OutPutView.printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return getCars();
         }
     }
@@ -27,13 +27,13 @@ public class RacingCarController {
         try {
             return new Count(InputView.getCount());
         } catch (IllegalArgumentException e) {
-            OutPutView.printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return getCount();
         }
     }
 
     private void race(Cars cars, Count count) {
-        OutPutView.printStatusMessage();
+        OutputView.printStatusMessage();
         proceed(cars, count);
     }
 
@@ -41,12 +41,12 @@ public class RacingCarController {
         try {
             count.subtract();
         } catch (IllegalStateException e) {
-            OutPutView.printResult(cars.getWinners());
+            OutputView.printResult(cars.getWinners());
             return;
         }
 
         cars.move();
-        OutPutView.printStatus(new CarStatus(cars.getCars()).makeCarsStatus());
+        OutputView.printStatus(new CarStatus(cars.getCars()).makeCarsStatus());
         proceed(cars, count);
     }
 }
