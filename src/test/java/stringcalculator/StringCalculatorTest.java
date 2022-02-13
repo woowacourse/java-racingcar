@@ -21,11 +21,16 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @DisplayName("비어있는 문자열 또는 null이 들어오면 0을 반환한다.")
-    void calculate_emptyOrNull() {
+    @DisplayName("비어있는 문자열이 들어오면 0을 반환한다.")
+    void calculate_empty() {
         int expected = 0;
-
         assertThat(stringCalculator.calculate("")).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("null이 들어오면 0을 반환한다.")
+    void calculate_Null() {
+        int expected = 0;
         assertThat(stringCalculator.calculate(null)).isEqualTo(expected);
     }
 
