@@ -13,7 +13,7 @@ public class Cars {
         }
     }
 
-    public void moveCars() {
+    public void moveAll() {
         for (Car car : cars) {
             car.move(car.startEngine());
         }

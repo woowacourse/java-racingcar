@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.Parser;
 
 public class ApplicationTest {
 

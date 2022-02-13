@@ -5,7 +5,7 @@ import racingcar.domain.Cars;
 
 public class OutputView {
 
-    public static void printRaceResult(Cars cars) {
+    public static void printRoundResult(Cars cars) {
         System.out.println();
         System.out.println("실행 결과");
         for (Car car : cars.getCars()) {
