@@ -40,14 +40,14 @@ public class Car implements Comparable<Car> {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
-		if (!(o instanceof Car)) {
+		if (!(object instanceof Car)) {
 			return false;
 		}
-		Car car = (Car) o;
+		Car car = (Car) object;
 		return position == car.position && Objects.equals(name, car.name);
 	}
 
