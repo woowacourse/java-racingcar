@@ -7,7 +7,8 @@ import java.util.regex.Pattern;
 import racingCar.utlis.Constants;
 
 public class NameValidator {
-	public static final int maxNameSize = 5;
+	private static final String NOT_SPECIAL_REGEX = "[가-힣\\w_]*";
+	private static final int maxNameSize = 5;
 
 	public static void validateInput(String inputString) throws Exception {
 		checkNull(inputString);
@@ -42,7 +43,7 @@ public class NameValidator {
 	}
 
 	private static void checkSpecialChar(String name) throws Exception {
-		if (!Pattern.matches(Constants.NOT_SPECIAL_REGEX, name)) {
+		if (!Pattern.matches(NOT_SPECIAL_REGEX, name)) {
 			throw new Exception(Constants.EXCEPTION_SPACIAL_MESSAGE);
 		}
 	}

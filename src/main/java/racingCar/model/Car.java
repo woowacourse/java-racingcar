@@ -1,10 +1,12 @@
 package racingCar.model;
 
-import racingCar.utlis.Constants;
 import racingCar.utlis.Util;
 import racingCar.validator.NameValidator;
 
 public class Car {
+
+	private static final String ROUND_REGEX = " : ";
+	private static final String POSITION_SIGNATURE = "-";
 
 	private final String name;
 	private int position = 0;
@@ -15,7 +17,8 @@ public class Car {
 	}
 
 	public void go() {
-		if (Util.getRandomInteger() >= Constants.GO_RANDOM_INTEGER) {
+		final int goNumber = 4;
+		if (Util.getRandomInteger() >= goNumber) {
 			move();
 		}
 	}
@@ -37,6 +40,6 @@ public class Car {
 	}
 
 	public String getStateString() {
-		return name + Constants.ROUND_REGEX + Constants.POSITION_SIGNATURE.repeat(position) + System.lineSeparator();
+		return name + ROUND_REGEX + POSITION_SIGNATURE.repeat(position) + System.lineSeparator();
 	}
 }
