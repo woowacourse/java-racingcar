@@ -15,8 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class CarsTest {
 
 	private void exceptionTest(List<String> carNames) {
-		assertThrows(IllegalArgumentException.class, () -> new Cars(carNames)
-		);
+		assertThrows(IllegalArgumentException.class, () -> new Cars(carNames));
 	}
 
 	@ParameterizedTest
@@ -96,10 +95,10 @@ public class CarsTest {
 	@Test
 	void 우승자_여러명_선정() {
 		Cars cars = new Cars(
-			Arrays.asList("slow", "if", "poby","doby")
+			Arrays.asList("slow", "if", "poby", "doby")
 		);
 		CustomNumberPicker customNumberPicker = new CustomNumberPicker(
-			Arrays.asList(0,5,8,2, 2,0,7,6, 3,0,2,9)
+			Arrays.asList(0, 5, 8, 2, 2, 0, 7, 6, 3, 0, 2, 9)
 		);
 		cars.play(customNumberPicker);
 		cars.play(customNumberPicker);
