@@ -5,33 +5,35 @@ import java.util.Objects;
 public class Car implements Comparable<Car> {
     private static final int ADVANCE_STANDARD = 4;
     private static final int MAXIMUM_LENGTH = 5;
-    private static final String ERROR_MESSAGE_FOR_BLANK_NAME = "이름은 공백일 수 없습니다.";
-    private static final String ERROR_MESSAGE_FOR_OVERSIZED_NAME = "이름은 %d글자가 넘을 수 없습니다.";
+    private static final int MINIMUM_LENGTH = 1;
+    private static final String ERROR_MESSAGE_FOR_INVALID_SIZED_NAME = "이름은 %d글자 이상, %d글자 이하여야 합니다.";
+    private static final String ERROR_MESSAGE_FOR_NULL_NAME = "올바른 이름을 입력해주세요";
 
     private final String name;
     private int position;
 
     public Car(String name) {
+        validateNotNull(name);
         String trimmedName = trim(name);
-        validateBlank(trimmedName);
         validateLength(trimmedName);
 
         this.name = trimmedName;
+    }
+
+    private static void validateNotNull(String name) {
+        if (Objects.isNull(name)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_FOR_NULL_NAME);
+        }
     }
 
     private static String trim(String name) {
         return name.trim();
     }
 
-    private static void validateBlank(String name) {
-        if (name.isBlank()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_FOR_BLANK_NAME);
-        }
-    }
-
     private static void validateLength(final String name) {
-        if (name.length() > MAXIMUM_LENGTH) {
-            throw new IllegalArgumentException(String.format(ERROR_MESSAGE_FOR_OVERSIZED_NAME, MAXIMUM_LENGTH));
+        if (name.length() < MINIMUM_LENGTH || name.length() > MAXIMUM_LENGTH) {
+            throw new IllegalArgumentException(
+                String.format(ERROR_MESSAGE_FOR_INVALID_SIZED_NAME, MINIMUM_LENGTH, MAXIMUM_LENGTH));
         }
     }
 
