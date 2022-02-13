@@ -6,6 +6,7 @@ import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.vo.TryRoundNumber;
 import racingcar.repository.CarRepository;
+import racingcar.util.Voider;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -25,17 +26,33 @@ public class CarController {
 	}
 
 	private void initCars() {
-
-		String carNames = InputView.inputCarNames();
-		Cars cars = new Cars(carNames);
-		List<Car> carList = cars.get();
-		carRepository.addCars(carList);
+		Voider voider = () -> {
+			String carNames = InputView.inputCarNames();
+			Cars cars = new Cars(carNames);
+			List<Car> carList = cars.get();
+			carRepository.addCars(carList);
+		};
+		commonInputProcess(voider);
 	}
 
 	private void initRoundNumbers() {
-		String input = InputView.inputRoundNumber();
-		TryRoundNumber tryRoundNumber = new TryRoundNumber(input);
-		roundNumber = tryRoundNumber.get();
+		Voider voider = () -> {
+			String input = InputView.inputRoundNumber();
+			TryRoundNumber tryRoundNumber = new TryRoundNumber(input);
+			roundNumber = tryRoundNumber.get();
+		};
+		commonInputProcess(voider);
+	}
+
+	private void commonInputProcess(Voider inputFunction) {
+		while (true) {
+			try {
+				inputFunction.exeucte();
+				return;
+			} catch (Exception exception) {
+				InputView.printErrorMessage(exception);
+			}
+		}
 	}
 
 	public void playGame() {
