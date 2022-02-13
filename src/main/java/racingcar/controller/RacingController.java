@@ -37,9 +37,9 @@ public class RacingController {
     }
 
     private void race() {
-        int nowTryCnt = 0;
+        int currentTryCount = 0;
         OutputView.printStartMessage();
-        while (tryCount.isNotSame(nowTryCnt++)) {
+        while (tryCount.isNotSame(currentTryCount++)) {
             cars.moveAll(RandomNumberGenerator.fromBounds(RANDOM_LOWER_BOUND, RANDOM_UPPER_BOUND));
             OutputView.printStatus(cars.getCarsStatus());
         }
