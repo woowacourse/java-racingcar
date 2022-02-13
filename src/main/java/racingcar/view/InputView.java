@@ -25,7 +25,15 @@ public class InputView {
     public static int getCount() {
         System.out.println("시도할 회수는 몇회인가요?");
         String input = scanner.nextLine();
-        Validator.checkCount(input);
-        return Integer.parseInt(input);
+        return parseInt(input);
+    }
+
+    private static int parseInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("숫자를 입력해주세요!");
+            return getCount();
+        }
     }
 }

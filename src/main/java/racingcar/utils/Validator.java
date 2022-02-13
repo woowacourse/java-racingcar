@@ -116,4 +116,9 @@ public class Validator {
             throw new IllegalArgumentException("입력횟수는 1 이상의 정수여야 합니다.");
         }
     }
+
+    public static void checkCount(int count) {
+        checkMinimumCount(count);
+        checkMaximumCount(count);
+    }
 }

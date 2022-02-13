@@ -25,8 +25,7 @@ public class CarController {
 
         List<Car> cars = makeCars(carNames);
 
-        int count = getCountFromUser();
-        this.count = new Count(count);
+        count = getCountFromUser();
 
         playGame(cars);
         OutputView.printWinners(findWinners(cars));
@@ -53,9 +52,9 @@ public class CarController {
         return Arrays.stream(names).map(CarName::new).map(Car::new).collect(toList());
     }
 
-    private int getCountFromUser() {
+    private Count getCountFromUser() {
         try {
-            return InputView.getCount();
+            return new Count(InputView.getCount());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getCountFromUser();
