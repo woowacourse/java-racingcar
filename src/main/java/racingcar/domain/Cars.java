@@ -35,24 +35,24 @@ public class Cars {
         return String.join(LIST_JOIN_DELIMITER, winners) + WINNER_MESSAGE;
     }
 
-    private void addWinnerNames(int maxPosition) {
-        for (Car car : cars) {
-            addName(maxPosition, car);
-        }
-    }
-
-    private void addName(int maxPosition, Car car) {
-        if (car.isMaxPosition(maxPosition)) {
-            winners.add(car.getName());
-        }
-    }
-
     private int getMaxPosition() {
         int max = 0;
         for (Car car : cars) {
             max = Math.max(max, car.getPosition());
         }
         return max;
+    }
+
+    private void addWinnerNames(int maxPosition) {
+        for (Car car : cars) {
+            addWinner(maxPosition, car);
+        }
+    }
+
+    private void addWinner(int maxPosition, Car car) {
+        if (car.isSamePosition(maxPosition)) {
+            winners.add(car.getName());
+        }
     }
 
     @Override

@@ -35,8 +35,8 @@ public class Car {
         return getRandomNumberInRange(MAX_RANDOM_RANGE) >= MIN_GO_FORWARD_RANGE;
     }
 
-    public boolean isMaxPosition(int maxPosition) {
-        return this.position == maxPosition;
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 
     public String toString() {
