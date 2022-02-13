@@ -3,6 +3,7 @@ package racingcar.domain;
 import static racingcar.constants.SystemConstants.CAN_GO_VALUE;
 import static racingcar.constants.SystemConstants.INCREMENT_VALUE;
 import static racingcar.constants.SystemConstants.INITIAL_POSITION;
+import static racingcar.util.ValidatorUtils.validateCarName;
 
 public class Car {
 
@@ -10,6 +11,7 @@ public class Car {
     private int position;
 
     public Car(String name) {
+        validateCarName(name);
         this.name = name;
         this.position = INITIAL_POSITION;
     }

@@ -8,6 +8,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static racingcar.constants.OutputMessages.ERROR_BLANK_NOT_ALLOWED;
+import static racingcar.constants.OutputMessages.ERROR_OVER_FIVE_CHARACTERS;
 
 public class CarTest {
 
@@ -26,6 +29,28 @@ public class CarTest {
 
         assertThat(car.getName()).isEqualTo(name);
         assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @DisplayName("생성자는 name으로 공백 혹은 빈 문자열이 입력되었을 때 예외를 발생시킨다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @ValueSource(strings = {" ", "", "   "})
+    void constructor_errorOnBlank(String name) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Car car = new Car(name);
+                })
+                .withMessageMatching(ERROR_BLANK_NOT_ALLOWED);
+    }
+
+    @DisplayName("생성자는 name으로 5글자를 초과하는 문자열이 입력되었을 때 예외를 발생시킨다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @ValueSource(strings = {"123456", "carrots"})
+    void constructor_errorOnOverFiveCharacters(String name) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Car car = new Car(name);
+                })
+                .withMessageMatching(ERROR_OVER_FIVE_CHARACTERS);
     }
 
     @DisplayName("goOrNot 메서드는 인자의 값이 4 이상일 경우 position 값을 1만큼 증가시킨다.")

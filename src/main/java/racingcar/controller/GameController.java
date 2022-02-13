@@ -7,8 +7,9 @@ import racingcar.view.OutputView;
 
 import java.util.List;
 
-import static racingcar.util.ValidatorUtils.splitAndValidateCarNames;
+import static racingcar.util.SplitUtils.splitByComma;
 import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
+import static racingcar.util.ValidatorUtils.validateNoDuplicates;
 
 public class GameController {
 
@@ -29,7 +30,10 @@ public class GameController {
 
     private String[] requestCarNamesInput() {
         String carNamesInput = InputView.requestCarNameInput();
-        return splitAndValidateCarNames(carNamesInput);
+        String[] carNames = splitByComma(carNamesInput);
+        validateNoDuplicates(carNames);
+
+        return carNames;
     }
 
     private int requestTotalRoundsInput() {
@@ -40,7 +44,7 @@ public class GameController {
     private void playGameUntilEnd() {
         OutputView.printRoundResultText();
 
-        while(!game.isOver()) {
+        while (!game.isOver()) {
             game.playRound();
             OutputView.printRoundResult(game.getCars());
         }
