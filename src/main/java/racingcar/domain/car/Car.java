@@ -9,6 +9,7 @@ import java.util.Objects;
 public class Car {
     private static final int INITIAL_DISTANCE = 0;
     private static final int INCREASING_UNIT = 1;
+
     private final CarName carName;
     private final Distance distance;
 

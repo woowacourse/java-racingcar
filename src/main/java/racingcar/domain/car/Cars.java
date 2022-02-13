@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class Cars {
     public static final String DUPLICATED_CAR_NAMES = "자동차 이름들 간 중복이 있습니다.";
+
     private final List<Car> values;
 
     public Cars(final List<String> carNames) {
