@@ -76,4 +76,18 @@ public class RacingCarTest {
 
         assertThat(actual).isEqualTo(winnersName);
     }
+
+    @Test
+    @DisplayName("객체가 생성될 때 이름이 없는지 확인하는 기능 테스트")
+    public void validateNameTest() {
+        RacingCar car = RacingCar.generateRacingCar("");
+        assertThatThrownBy(() -> car.validateName()).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("객체가 생성될 때 이름의 글자수가 5이하인지 확인하는 기능 테스트")
+    public void validateNameTest2() {
+        RacingCar car = RacingCar.generateRacingCar("123456");
+        assertThatThrownBy(() -> car.validateName()).isInstanceOf(IllegalArgumentException.class);
+    }
 }
