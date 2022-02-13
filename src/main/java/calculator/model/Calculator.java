@@ -43,11 +43,9 @@ public class Calculator {
     }
 
     private int makeSumOfNumbers(List<String> numbers) {
-        int sumOfNumbers = 0;
-        for (String number : numbers) {
-            sumOfNumbers += Integer.parseInt(sumOfNumber(number));
-        }
-        return sumOfNumbers;
+        return numbers.stream()
+                .mapToInt(num -> Integer.parseInt(sumOfNumber(num)))
+                .sum();
     }
 
     private String sumOfNumber(String number) {
