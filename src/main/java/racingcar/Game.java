@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class Game {
 	private static final String WINNER_NAME_DELIMITER = ", ";
 	private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
+	private static final int ERROR_CRITERIA_VALUE_ZERO = 0;
 
 	public void start() {
 		Set<Car> cars = CarFactory.of(InputView.inputCarNames());
@@ -47,7 +48,7 @@ public class Game {
 	}
 
 	private void validateGameCount(int gameCount) {
-		if(gameCount < 0) {
+		if(gameCount < ERROR_CRITERIA_VALUE_ZERO) {
 			throw new IllegalArgumentException(NEGATIVE_ERROR_MESSAGE);
 		}
 	}
