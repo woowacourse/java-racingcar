@@ -43,14 +43,14 @@ public class Game {
         int maxPosition = getMaxPosition();
 
         return getCars().stream()
-                .filter((car) -> car.getPosition() == maxPosition)
-                .collect(Collectors.toList());
+            .filter((car) -> car.isWinner(maxPosition))
+            .collect(Collectors.toList());
     }
 
     private int getMaxPosition() {
         return getCars().stream()
-                .mapToInt(Car::getPosition)
-                .max().orElseThrow(null);
+            .mapToInt(Car::getPosition)
+            .max().orElseThrow(null);
     }
 
     public boolean isOver() {
