@@ -22,7 +22,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void progress(){
-        if(checkMoveOrWait()) {
+        if (checkMoveOrWait()) {
             position++;
         }
     }

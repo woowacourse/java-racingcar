@@ -27,7 +27,7 @@ public class VerificationUtil {
     }
 
     private static void validateCarNameSpace(String carName) {
-        if(carName.contains(" ")){
+        if (carName.contains(" ")){
             throw new IllegalArgumentException("[ERROR] 공백 없이 입력해주세요.");
         }
     }
