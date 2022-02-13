@@ -25,13 +25,8 @@ public class Validator {
     }
 
     public static void validateBlank(String names) {
-        for (int i = 0; i < names.length(); i++) {
-            checkBlank(names, i);
-        }
-    }
-
-    private static void checkBlank(String names, int i) {
-        if (Character.isWhitespace(names.charAt(i))) {
+        String nameNoSpace = names.replace(" ", "");
+        if (!nameNoSpace.equals(names)) {
             throw new IllegalArgumentException(ERROR_NAME_HAS_BLANK);
         }
     }

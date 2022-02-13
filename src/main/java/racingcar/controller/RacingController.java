@@ -8,9 +8,11 @@ import static racingcar.view.OutputView.*;
 public class RacingController {
 
     public void play() {
-        Cars cars = Cars.toCars(getRightName());
+        Cars cars = new Cars(getRightName());
         int trialCount = getRightNumber();
+
         printResultMessage();
+
         progressTurns(cars, trialCount);
         printMessage(cars.getWinners());
     }
