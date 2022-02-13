@@ -21,7 +21,7 @@ public class Controller {
     private void forwardCarsByTrialNumber() {
         for (int i = 0; i < trialNumber; i++) {
             forwardCars();
-            OutputView.printCarsPosition(cars);
+            OutputView.printCarsPosition(cars.getCars());
         }
     }
 

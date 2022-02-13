@@ -28,11 +28,9 @@ public class Car {
 
     @Override
     public String toString() {
-        String result = name + " : ";
-        for (int count = 0; count < this.position; count++) {
-            result += "-";
-        }
-        result += "\n";
-        return result;
+        return "Car{" +
+            "name='" + name + '\'' +
+            ", position=" + position +
+            '}';
     }
 }
