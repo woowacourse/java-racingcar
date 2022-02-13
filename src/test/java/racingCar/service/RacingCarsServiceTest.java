@@ -34,6 +34,6 @@ class RacingCarsServiceTest {
 		cars.addCar(car2);
 		cars.addCar(car3);
 		ArrayList<String> result = new ArrayList<>(List.of("juri3"));
-		assertThat(result).isEqualTo(cars.getWinners(expectMaxPosition));
+		assertThat(result).isEqualTo(cars.getSamePositionCars(expectMaxPosition));
 	}
 }

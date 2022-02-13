@@ -18,9 +18,8 @@ public class RacingCarsService {
 	private int count;
 
 	public void initiateCars(String nameString) throws Exception {
-		cars = new RacingCars(new ArrayList<>(Arrays.asList(
-			Convertor.separate(nameString)
-		)));
+		String[] names = Convertor.separate(nameString);
+		cars = new RacingCars(new ArrayList<>(Arrays.asList(names)));
 	}
 
 	public void initiateCount(int count) throws Exception {
@@ -37,6 +36,6 @@ public class RacingCarsService {
 	}
 
 	public List<String> findWinner() {
-		return cars.getWinners(Util.getMax(cars.getPositions()));
+		return cars.getSamePositionCars(Util.getMax(cars.getPositions()));
 	}
 }

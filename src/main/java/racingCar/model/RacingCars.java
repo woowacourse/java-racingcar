@@ -20,7 +20,9 @@ public class RacingCars {
 		this.cars.add(car);
 	}
 	public void GoRound() {
-		cars.forEach(Car::go);
+		for (Car car : cars) {
+			car.go();
+		}
 	}
 
 	public String getRoundResult() {
@@ -33,13 +35,17 @@ public class RacingCars {
 
 	public ArrayList<Integer> getPositions() {
 		ArrayList<Integer> positions = new ArrayList<>();
-		cars.forEach(car -> positions.add(car.getPosition()));
+		for (Car car : cars) {
+			positions.add(car.getPosition());
+		}
 		return positions;
 	}
 
-	public List<String> getWinners(int max) {
-		return cars.stream()
-			.filter(car -> car.isWinner(max))
-			.map(Car::getName).collect(Collectors.toList());
+	public List<String> getSamePositionCars(int position) {
+		return cars
+			.stream()
+			.filter(car -> car.isSamePosition(position))
+			.map(Car::getName)
+			.collect(Collectors.toList());
 	}
 }

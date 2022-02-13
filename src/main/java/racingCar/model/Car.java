@@ -32,11 +32,11 @@ public class Car {
 		return position;
 	}
 
-	public boolean isWinner(int maxPosition) {
-		return position == maxPosition;
+	public boolean isSamePosition(int position) {
+		return this.position == position;
 	}
 
 	public String getStateString() {
-		return name + Constants.ROUND_REGEX + Constants.POSITION_SIGNATURE.repeat(position) + "\n";
+		return name + Constants.ROUND_REGEX + Constants.POSITION_SIGNATURE.repeat(position) + System.lineSeparator();
 	}
 }
