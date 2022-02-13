@@ -6,10 +6,11 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
     private static final String POSITIVE_NUMBER_REGEX = "^[0-9]";
+    private static final int DEFAULT_SET_VALUE = 0;
 
     public int calculate(final String expression) {
         if (isEmptyOrNull(expression)) {
-            return 0;
+            return DEFAULT_SET_VALUE;
         }
         int[] numbers = splitExpression(expression);
         return Arrays.stream(numbers)
