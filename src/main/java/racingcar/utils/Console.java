@@ -1,6 +1,7 @@
 package racingcar.utils;
 
 import java.lang.reflect.Field;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -23,14 +24,7 @@ public class Console {
     }
 
     private static boolean isClosed() {
-        try {
-            System.err.close();
-            Field sourceClosed = Scanner.class.getDeclaredField("sourceClosed");
-            sourceClosed.setAccessible(true);
-            return sourceClosed.getBoolean(scanner);
-        } catch (Exception e) {
-        }
-        return true;
+        return !scanner.hasNext();
     }
 
 }
