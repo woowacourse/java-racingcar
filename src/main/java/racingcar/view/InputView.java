@@ -9,9 +9,17 @@ public class InputView {
 
     public static String getCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input = scanner.nextLine();
-        Validator.checkCarNames(input);
-        return input;
+        return getCarNames(scanner.nextLine());
+    }
+
+    private static String getCarNames(String input) {
+        try {
+            Validator.checkInput(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getCarNames();
+        }
     }
 
     public static int getCount() {

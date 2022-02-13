@@ -6,12 +6,9 @@ public class Car implements Comparable<Car> {
     private static final int LOWER_MOVABLE_BOUND = 4;
 
     private int position = INIT_POSITION;
-    private String name;
+    private CarName name;
 
-    Car() {
-    }
-
-    public Car(String name) {
+    public Car(CarName name) {
         this.name = name;
     }
 
@@ -38,7 +35,7 @@ public class Car implements Comparable<Car> {
         return this.position == competitor.position;
     }
 
-    public String getName() {
+    public CarName getName() {
         return name;
     }
 }

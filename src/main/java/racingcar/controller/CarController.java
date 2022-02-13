@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.Random;
 
 import racingcar.domain.Car;
+import racingcar.domain.CarName;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -17,13 +18,23 @@ public class CarController {
     private static final int RANDOM_NUMBER_UPPER_BOUND = 10;
 
     public void run() {
-        String carNames = getCarNamesFromUser();
-        int count = getCountFromUser();
+        String carNames = InputView.getCarNames();
 
-        List<Car> cars = makeCars(carNames.split(DELIMITER));
+        List<Car> cars = makeCars(carNames);
+
+        int count = getCountFromUser();
 
         playGame(count, cars);
         OutputView.printWinners(findWinners(cars));
+    }
+
+    private List<Car> makeCars(String carNames) {
+        try {
+            return makeCars(carNames.split(DELIMITER));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return makeCars(InputView.getCarNames());
+        }
     }
 
     private void playGame(int count, List<Car> cars) {
@@ -35,7 +46,7 @@ public class CarController {
     }
 
     private List<Car> makeCars(String[] names) {
-        return Arrays.stream(names).map(Car::new).collect(toList());
+        return Arrays.stream(names).map(CarName::new).map(Car::new).collect(toList());
     }
 
     private int getCountFromUser() {
@@ -47,14 +58,14 @@ public class CarController {
         }
     }
 
-    private String getCarNamesFromUser() {
-        try {
-            return InputView.getCarNames();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getCarNamesFromUser();
-        }
-    }
+    // private String getCarNamesFromUser() {
+    //     try {
+    //         return InputView.getCarNames();
+    //     } catch (IllegalArgumentException e) {
+    //         System.out.println(e.getMessage());
+    //         return getCarNamesFromUser();
+    //     }
+    // }
 
     private void playRound(List<Car> cars) {
         for (Car car : cars) {

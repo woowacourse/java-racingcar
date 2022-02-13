@@ -69,7 +69,7 @@ public class Validator {
         }
     }
 
-    private static void checkBlankOrNull(String nameString) {
+    public static void checkBlankOrNull(String nameString) {
         if (isBlankOrNull(nameString)) {
             throw new IllegalArgumentException("입력값은 1글자 이상이여야 합니다");
         }
