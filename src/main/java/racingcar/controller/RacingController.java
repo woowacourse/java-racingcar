@@ -10,10 +10,14 @@ import racingcar.domain.Cars;
 public class RacingController {
 
     public void play() {
-        Cars cars = new Cars(getRightName());
-        int trialCount = getRightNumber();
-        progressTurns(cars, trialCount);
-        printMessage(cars.getWinners());
+        try {
+            Cars cars = new Cars(insertRightName());
+            int trialCount = getRightNumber();
+            progressTurns(cars, trialCount);
+            printMessage(cars.getWinners());
+        } catch (IllegalArgumentException e) {
+            printMessage(e.getMessage());
+        }
     }
 
     private String[] getRightName() {

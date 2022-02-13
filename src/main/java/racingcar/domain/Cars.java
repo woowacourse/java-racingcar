@@ -1,12 +1,18 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Cars {
 
-    public static final String LIST_JOIN_DELIMITER = ", ";
-    public static final String WINNER_MESSAGE = "가 최종 우승 했습니다.";
+    private static final String LIST_JOIN_DELIMITER = ", ";
+    private static final String WINNER_MESSAGE = "가 최종 우승 했습니다.";
+    private static final int MIN_COUNT = 2;
+    private static final int MAX_COUNT = 5;
+    private static final String ERROR_CAR_COUNT = "[ERROR] 자동차는 2대 이상 5대 이하이어야 합니다.";
+    private static final String ERROR_DUPLICATE_NAME = "[ERROR] 중복된 이름입니다.";
 
     private final List<Car> cars;
     private final List<String> winners;
@@ -16,12 +22,32 @@ public class Cars {
         this.winners = new ArrayList<>();
     }
 
-    public Cars(String[] values) {
+    public Cars(String[] names) {
+        validateCarCount(names);
+        validateDuplicateName(names);
+
         this.cars = new ArrayList<>();
         this.winners = new ArrayList<>();
 
-        for (String value : values) {
-            this.addCar(new Car(value));
+        for (String name : names) {
+            this.addCar(new Car(name));
+        }
+    }
+
+    private void validateCarCount(String[] names) {
+        if (names.length > MAX_COUNT || names.length < MIN_COUNT) {
+            throw new IllegalArgumentException(ERROR_CAR_COUNT);
+        }
+    }
+
+    private void validateDuplicateName(String[] names) {
+        Set<String> tempNameSet = new HashSet<>();
+        for (String name : names) {
+            tempNameSet.add(name);
+        }
+
+        if (tempNameSet.size() < names.length) {
+            throw new IllegalArgumentException(ERROR_DUPLICATE_NAME);
         }
     }
 
