@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.util.RandomUtils;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,7 +8,7 @@ import static racingcar.constants.SystemConstants.INITIAL_ROUND_NUM;
 
 public class Game {
 
-    private final CarRepository carRepository = new CarRepository();
+    private final Cars cars = new Cars();
     private final int totalRounds;
     private int currentRound = INITIAL_ROUND_NUM;
 
@@ -21,21 +19,20 @@ public class Game {
 
     private void initCars(String[] carNames) {
         for (String name : carNames) {
-            carRepository.add(new Car(name));
+            cars.add(new Car(name));
         }
     }
 
     public List<Car> getCars() {
-        return carRepository.findAllCars();
+        return cars.findAllCars();
     }
 
     public void playRound() {
-        List<Car> cars = carRepository.findAllCars();
+        cars.race();
+        addOneRound();
+    }
 
-        for (Car car : cars) {
-            car.goOrNot(RandomUtils.generateNumber());
-        }
-
+    private void addOneRound() {
         currentRound += INCREMENT_VALUE;
     }
 

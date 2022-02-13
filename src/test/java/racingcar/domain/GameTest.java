@@ -13,14 +13,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameTest {
 
-    private final CarRepository carRepository = new CarRepository();
+    private final Cars cars = new Cars();
     private Game game;
 
     private final int TOTAL_ROUNDS = 5;
 
     @BeforeEach
     void beforeEach() {
-        carRepository.clear();
+        cars.clear();
         game = new Game(new String[]{"pobi", "jeong", "roma"}, TOTAL_ROUNDS);
     }
 

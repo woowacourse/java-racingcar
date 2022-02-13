@@ -1,9 +1,11 @@
 package racingcar.domain;
 
+import racingcar.util.RandomUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarRepository {
+public class Cars {
 
     private static final List<Car> cars = new ArrayList<>();
 
@@ -17,5 +19,11 @@ public class CarRepository {
 
     public void clear() {
         cars.clear();
+    }
+
+    public void race() {
+        for (Car car : cars) {
+            car.goOrNot(RandomUtils.generateNumber());
+        }
     }
 }

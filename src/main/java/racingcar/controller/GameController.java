@@ -17,7 +17,7 @@ public class GameController {
 
     public void run() {
         initGame();
-        playGameUntilEnd();
+        playGame();
         printGameResult();
     }
 
@@ -41,7 +41,7 @@ public class GameController {
         return validateAndParsePositiveInt(totalRoundsInput);
     }
 
-    private void playGameUntilEnd() {
+    private void playGame() {
         OutputView.printRoundResultText();
 
         while (!game.isOver()) {
