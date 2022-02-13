@@ -1,8 +1,8 @@
 package racingcar.domain;
 
-import static racingcar.constants.SystemConstants.CAN_GO_VALUE;
-import static racingcar.constants.SystemConstants.INCREMENT_VALUE;
-import static racingcar.constants.SystemConstants.INITIAL_POSITION;
+import static racingcar.constants.GameConstants.CAN_GO_VALUE;
+import static racingcar.constants.SystemConstants.NUMBER_ONE_FOR_INCREMENT;
+import static racingcar.constants.GameConstants.INITIAL_POSITION;
 import static racingcar.util.ValidatorUtils.validateCarName;
 
 public class Car {
@@ -23,7 +23,7 @@ public class Car {
     }
 
     private void go() {
-        position += INCREMENT_VALUE;
+        position += NUMBER_ONE_FOR_INCREMENT;
     }
 
     private boolean canGo(int number) {

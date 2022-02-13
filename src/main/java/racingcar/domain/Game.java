@@ -3,8 +3,8 @@ package racingcar.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static racingcar.constants.SystemConstants.INCREMENT_VALUE;
-import static racingcar.constants.SystemConstants.INITIAL_ROUND_NUM;
+import static racingcar.constants.SystemConstants.NUMBER_ONE_FOR_INCREMENT;
+import static racingcar.constants.GameConstants.INITIAL_ROUND_NUM;
 
 public class Game {
 
@@ -33,7 +33,7 @@ public class Game {
     }
 
     private void addOneRound() {
-        currentRound += INCREMENT_VALUE;
+        currentRound += NUMBER_ONE_FOR_INCREMENT;
     }
 
     public List<Car> getWinners() {

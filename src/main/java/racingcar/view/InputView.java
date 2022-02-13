@@ -2,8 +2,8 @@ package racingcar.view;
 
 import java.util.Scanner;
 
-import static racingcar.constants.OutputMessages.REQUEST_CAR_NAME_INPUT_MESSAGE;
-import static racingcar.constants.OutputMessages.REQUEST_TOTAL_ROUNDS_INPUT_MESSAGE;
+import static racingcar.constants.output.RequestOutputMessages.REQUEST_CAR_NAME_INPUT_MESSAGE;
+import static racingcar.constants.output.RequestOutputMessages.REQUEST_TOTAL_ROUNDS_INPUT_MESSAGE;
 
 public class InputView {
 

@@ -9,8 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static racingcar.constants.OutputMessages.ERROR_BLANK_NOT_ALLOWED;
-import static racingcar.constants.OutputMessages.ERROR_OVER_FIVE_CHARACTERS;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_BLANK_NOT_ALLOWED;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_OVER_FIVE_CHARACTERS;
 
 public class CarTest {
 

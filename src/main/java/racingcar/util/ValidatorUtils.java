@@ -4,17 +4,17 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static racingcar.constants.OutputMessages.ERROR_BLANK_NOT_ALLOWED;
-import static racingcar.constants.OutputMessages.ERROR_DUPLICATE_NAME;
-import static racingcar.constants.OutputMessages.ERROR_NOT_POSITIVE_INTEGER;
-import static racingcar.constants.OutputMessages.ERROR_OVER_FIVE_CHARACTERS;
-import static racingcar.constants.SystemConstants.MAX_NAME_LENGTH;
-import static racingcar.constants.SystemConstants.ZERO;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_BLANK_NOT_ALLOWED;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_DUPLICATE_NAME;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_NOT_POSITIVE_INTEGER;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_OVER_FIVE_CHARACTERS;
+import static racingcar.constants.GameConstants.MAX_NAME_LENGTH;
+import static racingcar.constants.SystemConstants.NUMBER_ZERO;
 
 public class ValidatorUtils {
 
     public static void validatePositiveInt(int integer) {
-        if (integer <= ZERO) {
+        if (integer <= NUMBER_ZERO) {
             throw new IllegalArgumentException(ERROR_NOT_POSITIVE_INTEGER);
         }
     }

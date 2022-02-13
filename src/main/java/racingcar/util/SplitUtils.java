@@ -1,6 +1,6 @@
 package racingcar.util;
 
-import static racingcar.constants.OutputMessages.ERROR_NULL;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_NULL;
 import static racingcar.constants.SystemConstants.COMMA;
 
 public class SplitUtils {
