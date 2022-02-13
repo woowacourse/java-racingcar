@@ -2,8 +2,6 @@ package racingcar.view;
 
 import java.util.List;
 
-import racingcar.domain.Car;
-
 public class OutPutView {
     private static final String STATUS_MESSAGE = "\n실행 결과";
     private static final String WINNER_NAME_DELIMITER = ", ";
@@ -16,19 +14,9 @@ public class OutPutView {
         System.out.println(STATUS_MESSAGE);
     }
 
-    public static void printStatus(List<Car> cars) {
-        cars.forEach(car -> System.out.println(makeCarStatus(car)));
+    public static void printStatus(String carsStatus) {
+        System.out.println(carsStatus);
         System.out.println();
-    }
-
-    private static String makeCarStatus(Car car) {
-        StringBuilder carStatus = new StringBuilder(car.getName());
-        carStatus.append(" : ");
-        int position = car.getPosition();
-        while (position-- > 0) {
-            carStatus.append("-");
-        }
-        return carStatus.toString();
     }
 
     public static void printResult(List<String> winners) {
