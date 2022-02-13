@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import racingCar.model.Count;
+import racingCar.model.RoundCount;
 import racingCar.model.RacingCars;
 import racingCar.utlis.Util;
 import racingCar.view.Output;
 
 public class RacingCarsService {
 	private static RacingCars cars;
-	private static Count count;
+	private static RoundCount roundCount;
 
 	public static void initiateCars(String nameString) {
 		String[] names = Util.separate(nameString);
@@ -21,12 +21,12 @@ public class RacingCarsService {
 	}
 
 	public static void initiateCount(int countInput) {
-		count = new Count(countInput);
+		roundCount = new RoundCount(countInput);
 	}
 
 	public static void runGame() {
 		printStartMessage();
-		for (int i = 0; i < count.get(); i++) {
+		for (int i = 0; i < roundCount.get(); i++) {
 			cars.GoRound();
 			Output.printRoundResult(cars);
 		}

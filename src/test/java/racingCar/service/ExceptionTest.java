@@ -4,17 +4,24 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import racingCar.exception.count.CountNotNumberException;
 import racingCar.exception.count.CountRangeException;
 import racingCar.exception.name.NameDuplicatedException;
+import racingCar.exception.name.NameOnlyOneException;
 import racingCar.exception.name.NameRangeException;
 import racingCar.exception.name.NameSpecialCharException;
-import racingCar.exception.count.CountNotNumberException;
-import racingCar.exception.name.NameOnlyOneException;
+import racingCar.model.Car;
+import racingCar.model.RacingCars;
+import racingCar.service.RacingCarsService;
+import racingCar.service.RequestService;
 
-class RequestServiceTest {
+class ExceptionTest {
 
 	@Test
 	public void 이름이_5자보다_큰_경우() {
@@ -24,8 +31,9 @@ class RequestServiceTest {
 		System.setIn(in);
 
 		//then
-		assertThatThrownBy(RequestService::requestNames)
-			.isInstanceOf(NameRangeException.class);
+		assertThatThrownBy(() -> {
+			RacingCarsService.initiateCars(RequestService.requestNames());
+		}).isInstanceOf(NameRangeException.class);
 	}
 
 	@Test
@@ -36,8 +44,9 @@ class RequestServiceTest {
 		System.setIn(in);
 
 		//then
-		assertThatThrownBy(RequestService::requestNames)
-			.isInstanceOf(NameSpecialCharException.class);
+		assertThatThrownBy(() -> {
+			RacingCarsService.initiateCars(RequestService.requestNames());
+		}).isInstanceOf(NameSpecialCharException.class);
 	}
 
 	@Test
@@ -48,8 +57,9 @@ class RequestServiceTest {
 		System.setIn(in);
 
 		//then
-		assertThatThrownBy(RequestService::requestNames)
-			.isInstanceOf(NameOnlyOneException.class);
+		assertThatThrownBy(() -> {
+			RacingCarsService.initiateCars(RequestService.requestNames());
+		}).isInstanceOf(NameOnlyOneException.class);
 	}
 
 	@Test
@@ -60,8 +70,9 @@ class RequestServiceTest {
 		System.setIn(in);
 
 		//then
-		assertThatThrownBy(RequestService::requestNames)
-			.isInstanceOf(NameDuplicatedException.class);
+		assertThatThrownBy(() -> {
+			RacingCarsService.initiateCars(RequestService.requestNames());
+		}).isInstanceOf(NameDuplicatedException.class);
 	}
 
 	@Test
@@ -72,8 +83,9 @@ class RequestServiceTest {
 		System.setIn(in);
 
 		//then
-		assertThatThrownBy(RequestService::requestCount)
-			.isInstanceOf(CountNotNumberException.class);
+		assertThatThrownBy(() -> {
+			RacingCarsService.initiateCount(RequestService.requestCount());
+		}).isInstanceOf(CountNotNumberException.class);
 	}
 
 	@Test
@@ -84,7 +96,9 @@ class RequestServiceTest {
 		System.setIn(in);
 
 		//then
-		assertThatThrownBy(RequestService::requestCount)
+		assertThatThrownBy(() -> {
+			RacingCarsService.initiateCount(RequestService.requestCount());
+		})
 			.isInstanceOf(CountRangeException.class);
 	}
 }

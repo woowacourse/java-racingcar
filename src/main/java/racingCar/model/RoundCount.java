@@ -2,10 +2,10 @@ package racingCar.model;
 
 import racingCar.exception.count.CountRangeException;
 
-public class Count {
+public class RoundCount {
 	private final int count;
 
-	public Count(int count) {
+	public RoundCount(int count) {
 		validate(count);
 		this.count = count;
 	}
