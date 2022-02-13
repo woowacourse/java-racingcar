@@ -7,6 +7,8 @@ import static racingcar.constants.output.RequestOutputMessages.REQUEST_TOTAL_ROU
 
 public class InputView {
 
+    private static final Scanner scanner = new Scanner(System.in);
+
     public static String requestCarNameInput() {
         System.out.println(REQUEST_CAR_NAME_INPUT_MESSAGE);
         return InputView.requestUserInput();
@@ -18,7 +20,6 @@ public class InputView {
     }
 
     private static String requestUserInput() {
-        Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 }
