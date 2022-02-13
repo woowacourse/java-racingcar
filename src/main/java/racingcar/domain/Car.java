@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.Random;
 
 public class Car implements Comparable<Car> {
+    private static final String CAR_NAME_ERROR_MESSAGE = "유효하지 않은 자동차 이름";
     private static final int MAX_NAME_LENGTH = 5;
     private static final int RANGE_MAX = 9;
     private static final int DO_NOT_MOVE_THRESHOLD = 3;
@@ -17,7 +18,7 @@ public class Car implements Comparable<Car> {
 
     private void validateCarName(String carName) {
         if (carName == null || carName.isEmpty() || carName.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CAR_NAME_ERROR_MESSAGE);
         }
     }
 
