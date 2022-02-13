@@ -20,8 +20,7 @@ import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 public class ValidatorUtilsTest {
 
     final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
-            DISPLAY_NAME_PLACEHOLDER + " ["
-                    + ARGUMENTS_PLACEHOLDER + "]";
+        DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
 
     @DisplayName("validateAndParsePositiveInt 메서드는 문자열을 양수로 변환하여 반환한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
@@ -37,7 +36,7 @@ public class ValidatorUtilsTest {
     @ValueSource(strings = {"한글", "eng", "$", "1.0"})
     void validateAndParsePositiveInt_errorOnNonInteger(String string) {
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> validateAndParsePositiveInt(string));
+            .isThrownBy(() -> validateAndParsePositiveInt(string));
     }
 
     @DisplayName("validateAndParsePositiveInt 메서드는 음수 혹은 0에 해당되는 문자열이 입력되었을 때 예외를 발생시킨다.")
@@ -45,8 +44,8 @@ public class ValidatorUtilsTest {
     @ValueSource(strings = {"-1", "0"})
     void validateAndParsePositiveInt_errorOnNonPositiveInteger(String string) {
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> validateAndParsePositiveInt(string))
-                .withMessageMatching(NOT_POSITIVE_INTEGER_EXCEPTION);
+            .isThrownBy(() -> validateAndParsePositiveInt(string))
+            .withMessageMatching(NOT_POSITIVE_INTEGER_EXCEPTION);
     }
 
     @DisplayName("splitAndValidateCarNames 메서드는 문자열을 쉼표를 기준으로 구분하여 반환한다.")
@@ -59,11 +58,11 @@ public class ValidatorUtilsTest {
 
     @DisplayName("splitAndValidateCarNames 메서드는 공백 혹은 빈 문자열이 입력되었을 때 예외를 발생시킨다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @ValueSource(strings = {"", ",a"," ,b", "   ,c,d"})
+    @ValueSource(strings = {"", ",a", " ,b", "   ,c,d"})
     void splitAndValidateCarNames_errorOnBlank(String carNamesString) {
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
-                .withMessageMatching(BLANK_NOT_ALLOWED_EXCEPTION);
+            .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
+            .withMessageMatching(BLANK_NOT_ALLOWED_EXCEPTION);
     }
 
     @DisplayName("splitAndValidateCarNames 메서드는 5글자를 초과하는 문자열이 입력되었을 때 예외를 발생시킨다.")
@@ -71,8 +70,8 @@ public class ValidatorUtilsTest {
     @ValueSource(strings = {"123456,a,b", "carrots,c,d"})
     void splitAndValidateCarNames_errorOnOverFiveCharacters(String carNamesString) {
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
-                .withMessageMatching(OVER_FIVE_CHARACTERS_EXCEPTION);
+            .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
+            .withMessageMatching(OVER_FIVE_CHARACTERS_EXCEPTION);
     }
 
     @DisplayName("splitAndValidateCarNames 메서드는 중복된 이름이 입력되었을 때 예외를 발생시킨다.")
@@ -81,7 +80,7 @@ public class ValidatorUtilsTest {
         String carNamesString = "aa,aa,b";
 
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
-                .withMessageMatching(DUPLICATE_NAME_EXCEPTION);
+            .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
+            .withMessageMatching(DUPLICATE_NAME_EXCEPTION);
     }
 }

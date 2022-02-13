@@ -17,8 +17,7 @@ import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDE
 public class SetTest {
 
     private final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
-            DISPLAY_NAME_PLACEHOLDER + " ["
-            + ARGUMENTS_PLACEHOLDER + "]";
+        DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
 
     private Set<Integer> numbers;
 

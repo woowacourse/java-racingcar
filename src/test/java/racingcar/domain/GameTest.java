@@ -19,18 +19,17 @@ public class GameTest {
     Game game;
 
     final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
-            DISPLAY_NAME_PLACEHOLDER + " ["
-                    + ARGUMENTS_PLACEHOLDER + "]";
+        DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
 
     @BeforeEach
-    void beforeEach(){
+    void beforeEach() {
         carRepository.clear();
         game = new Game(new String[]{"pobi", "jeong", "roma"}, TOTAL_ROUNDS);
     }
 
     @DisplayName("getWinners 메서드는 가장 position 값이 큰 car 객체들을 반환한다")
     @Test
-    void getWinners(){
+    void getWinners() {
         for (int i = 0; i < TOTAL_ROUNDS; i++) {
             game.playRound();
         }
