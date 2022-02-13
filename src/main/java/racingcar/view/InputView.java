@@ -7,7 +7,6 @@ import racingcar.util.Utils;
 public class InputView {
 	private static final String REQUEST_CARS_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
 	private static final String REQUEST_ROUND_VALUE = "시도할 회수는 몇회인가요?";
-	private static final String ERROR = "[ERROR] ";
 	private static final Scanner SCANNER = new Scanner(System.in);
 
 	public static String getInput() {
@@ -21,7 +20,7 @@ public class InputView {
 			Utils.validateCarsName(carsName);
 			return carsName;
 		} catch (IllegalArgumentException e) {
-			printErrorMessage(e);
+			OutputView.printErrorMessage(e);
 			return getCarsName();
 		}
 	}
@@ -35,12 +34,9 @@ public class InputView {
 			Utils.validateRoundMinimumOne(inputRound);
 			return Integer.parseInt(inputRound);
 		} catch (IllegalArgumentException e) {
-			printErrorMessage(e);
+			OutputView.printErrorMessage(e);
 			return getRound();
 		}
 	}
 
-	private static void printErrorMessage(Exception e) {
-		System.out.println(ERROR + e.getMessage());
-	}
 }
