@@ -5,14 +5,13 @@ import racingcar.util.RandomUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static racingcar.constants.SystemConstants.INCREMENT_VALUE;
-import static racingcar.constants.SystemConstants.INITIAL_ROUND_NUM;
-
 public class Game {
+
+    private static final int ROUND_INCREMENT_UNIT = 1;
 
     private final CarRepository carRepository = new CarRepository();
     private final int totalRounds;
-    private int currentRound = INITIAL_ROUND_NUM;
+    private int currentRound = 0;
 
     public Game(String[] carNames, int totalRounds) {
         initCars(carNames);
@@ -36,7 +35,7 @@ public class Game {
             car.goOrNot(RandomUtils.generateNumber());
         }
 
-        currentRound += INCREMENT_VALUE;
+        currentRound += ROUND_INCREMENT_UNIT;
     }
 
     public List<Car> getWinners() {
