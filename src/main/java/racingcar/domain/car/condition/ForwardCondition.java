@@ -4,14 +4,14 @@ public enum ForwardCondition {
 
     MINIMUM(4);
 
-    private final int value;
+    private final int number;
 
-    ForwardCondition(int value) {
-        this.value = value;
+    ForwardCondition(int number) {
+        this.number = number;
     }
 
     public static boolean isInRange(int number) {
-        return (number >= MINIMUM.value);
+        return (number >= MINIMUM.number);
     }
 
 }

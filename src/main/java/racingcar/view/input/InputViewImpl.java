@@ -23,7 +23,8 @@ public class InputViewImpl implements InputView {
     private List<String> parseNames(String inputValue) {
         inputValue = appendSpaceBeforeSplit(inputValue);
         return Arrays.stream(Delimiter.splitWithComma(inputValue))
-                .map(String::trim).collect(Collectors.toList());
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     private String appendSpaceBeforeSplit(String targetString) {
