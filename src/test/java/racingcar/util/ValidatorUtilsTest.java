@@ -8,10 +8,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static racingcar.constants.OutputMessages.BLANK_NOT_ALLOWED_EXCEPTION;
-import static racingcar.constants.OutputMessages.DUPLICATE_NAME_EXCEPTION;
-import static racingcar.constants.OutputMessages.NOT_POSITIVE_INTEGER_EXCEPTION;
-import static racingcar.constants.OutputMessages.OVER_FIVE_CHARACTERS_EXCEPTION;
+import static racingcar.constants.OutputMessages.ERROR_BLANK_NOT_ALLOWED;
+import static racingcar.constants.OutputMessages.ERROR_DUPLICATE_NAME;
+import static racingcar.constants.OutputMessages.ERROR_NOT_POSITIVE_INTEGER;
+import static racingcar.constants.OutputMessages.ERROR_OVER_FIVE_CHARACTERS;
 import static racingcar.constants.SystemConstants.COMMA;
 import static racingcar.util.ValidatorUtils.splitAndValidateCarNames;
 import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
@@ -31,7 +31,7 @@ public class ValidatorUtilsTest {
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @ValueSource(strings = {"한글", "eng", "$", "1.0"})
     void validateAndParsePositiveInt_errorOnNonInteger(String string) {
-        assertThatExceptionOfType(RuntimeException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> validateAndParsePositiveInt(string));
     }
 
@@ -39,9 +39,9 @@ public class ValidatorUtilsTest {
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @ValueSource(strings = {"-1", "0"})
     void validateAndParsePositiveInt_errorOnNonPositiveInteger(String string) {
-        assertThatExceptionOfType(RuntimeException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> validateAndParsePositiveInt(string))
-                .withMessageMatching(NOT_POSITIVE_INTEGER_EXCEPTION);
+                .withMessageMatching(ERROR_NOT_POSITIVE_INTEGER);
     }
 
     @DisplayName("splitAndValidateCarNames 메서드는 문자열을 쉼표를 기준으로 구분하여 반환한다.")
@@ -56,18 +56,18 @@ public class ValidatorUtilsTest {
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @ValueSource(strings = {"", ",a", " ,b", "   ,c,d"})
     void splitAndValidateCarNames_errorOnBlank(String carNamesString) {
-        assertThatExceptionOfType(RuntimeException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
-                .withMessageMatching(BLANK_NOT_ALLOWED_EXCEPTION);
+                .withMessageMatching(ERROR_BLANK_NOT_ALLOWED);
     }
 
     @DisplayName("splitAndValidateCarNames 메서드는 5글자를 초과하는 문자열이 입력되었을 때 예외를 발생시킨다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @ValueSource(strings = {"123456,a,b", "carrots,c,d"})
     void splitAndValidateCarNames_errorOnOverFiveCharacters(String carNamesString) {
-        assertThatExceptionOfType(RuntimeException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
-                .withMessageMatching(OVER_FIVE_CHARACTERS_EXCEPTION);
+                .withMessageMatching(ERROR_OVER_FIVE_CHARACTERS);
     }
 
     @DisplayName("splitAndValidateCarNames 메서드는 중복된 이름이 입력되었을 때 예외를 발생시킨다.")
@@ -75,15 +75,15 @@ public class ValidatorUtilsTest {
     void splitAndValidateCarNames_errorOnDuplicates() {
         String carNamesString = "aa,aa,b";
 
-        assertThatExceptionOfType(RuntimeException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
-                .withMessageMatching(DUPLICATE_NAME_EXCEPTION);
+                .withMessageMatching(ERROR_DUPLICATE_NAME);
     }
 
     @DisplayName("splitAndValidateCarNames 메서드는 null이 입력되었을 때 예외를 발생시킨다.")
     @Test
     void splitAndValidateCarNames_null() {
-        assertThatExceptionOfType(RuntimeException.class)
+        assertThatExceptionOfType(NullPointerException.class)
                 .isThrownBy(() -> splitAndValidateCarNames(null));
     }
 }
