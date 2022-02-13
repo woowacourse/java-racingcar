@@ -6,16 +6,16 @@ import racingCar.view.Input;
 
 public class RequestService {
 
-	public static void requestNames() {
+	public static String requestNames() {
 		String input = Input.inputNames();
 		validateNotNullInput(input);
-		RacingCarsService.initiateCars(input);
+		return input;
 	}
 
-	public static void requestCount() {
+	public static int requestCount() {
 		String input = Input.inputCount();
 		validateNotNullInput(input);
-		RacingCarsService.initiateCount(Util.convertToInteger(input));
+		return Util.convertToInteger(input);
 	}
 
 	private static void validateNotNullInput(String inputString) {

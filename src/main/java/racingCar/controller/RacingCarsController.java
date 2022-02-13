@@ -5,10 +5,9 @@ import racingCar.service.RequestService;
 import racingCar.view.Output;
 
 public class RacingCarsController {
-
-	public void request() {
-		RequestService.requestNames();
-		RequestService.requestCount();
+	public RacingCarsController() {
+		RacingCarsService.initiateCars(RequestService.requestNames());
+		RacingCarsService.initiateCount(RequestService.requestCount());
 	}
 
 	public void startGame() {
