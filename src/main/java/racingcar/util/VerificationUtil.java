@@ -45,9 +45,11 @@ public class VerificationUtil {
     }
 
 
-    public static void validateAttempt(String attempt) {
+    public static int validateAttempt(String attempt) {
         int number = translateVerifiedInteger(attempt);
         validatePositiveNumber(number);
+
+        return number;
     }
 
     private static int translateVerifiedInteger(String attempt) {

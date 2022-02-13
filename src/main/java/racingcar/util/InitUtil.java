@@ -28,8 +28,6 @@ public class InitUtil {
     }
 
     public static int initTotalAttempt(String attempt) throws IllegalArgumentException {
-        validateAttempt(attempt);
-
-        return Integer.parseInt(attempt);
+        return validateAttempt(attempt);
     }
 }
