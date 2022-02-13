@@ -4,13 +4,19 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.Car;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.junit.jupiter.params.ParameterizedTest.ARGUMENTS_PLACEHOLDER;
 import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDER;
 import static racingcar.util.ValidatorUtils.splitAndValidateCarNames;
 import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
+import static racingcar.util.ValidatorUtils.validateNoDuplicateCar;
 
 public class ValidatorUtilsTest {
 
@@ -66,12 +72,29 @@ public class ValidatorUtilsTest {
             .isThrownBy(() -> splitAndValidateCarNames(carNamesString));
     }
 
-    @DisplayName("splitAndValidateCarNames 메서드는 중복된 이름이 입력되었을 때 예외를 발생시킨다.")
+    @DisplayName("validateNoDuplicateCar 메서드는 배열 인자가 서로 이름이 다른 Car 인스턴스들만으로 구성될 경우 예외를 발생시키지 않는다.")
     @Test
-    void splitAndValidateCarNames_errorOnDuplicates() {
-        String carNamesString = "aa,aa,b";
+    void validateNoDuplicateCar_passOnNoDuplicates() {
+        List<Car> carList = new ArrayList<>();
+
+        carList.add(new Car("ace"));
+        carList.add(new Car("pobi"));
+        carList.add(new Car("jeong"));
+
+        assertThatNoException()
+            .isThrownBy(() -> validateNoDuplicateCar(carList));
+    }
+
+    @DisplayName("validateNoDuplicateCar 메서드는 배열 인자로 이름이 동일한 Car 인스턴스가 포함된 경우 예외를 발생시킨다.")
+    @Test
+    void validateNoDuplicateCar_errorOnDuplicates() {
+        List<Car> carList = new ArrayList<>();
+
+        carList.add(new Car("ace"));
+        carList.add(new Car("ace"));
+        carList.add(new Car("jeong"));
 
         assertThatExceptionOfType(RuntimeException.class)
-            .isThrownBy(() -> splitAndValidateCarNames(carNamesString));
+            .isThrownBy(() -> validateNoDuplicateCar(carList));
     }
 }

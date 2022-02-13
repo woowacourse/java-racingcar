@@ -5,6 +5,8 @@ import racingcar.util.RandomUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static racingcar.util.ValidatorUtils.validateNoDuplicateCar;
+
 public class Game {
 
     private static final int ROUND_INCREMENT_UNIT = 1;
@@ -22,6 +24,7 @@ public class Game {
         for (String name : carNames) {
             carRepository.add(new Car(name));
         }
+        validateNoDuplicateCar(carRepository.findAllCars());
     }
 
     public List<Car> getCars() {

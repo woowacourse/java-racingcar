@@ -1,7 +1,9 @@
 package racingcar.util;
 
-import java.util.Arrays;
+import racingcar.domain.Car;
+
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ValidatorUtils {
@@ -11,7 +13,7 @@ public class ValidatorUtils {
     private static final String NOT_POSITIVE_INTEGER_EXCEPTION = "양수를 입력해야 합니다.";
     private static final String BLANK_NOT_ALLOWED_EXCEPTION = "공백을 입력하면 안 됩니다.";
     private static final String OVER_FIVE_CHARACTERS_EXCEPTION = "5글자 이하의 이름을 입력해야 합니다.";
-    private static final String DUPLICATE_NAME_EXCEPTION = "중복된 이름을 입력하면 안 됩니다.";
+    private static final String DUPLICATE_CAR_EXCEPTION = "중복된 이름을 입력하면 안 됩니다.";
 
     public static int validateAndParsePositiveInt(String string) {
         int number = Integer.parseInt(string);
@@ -32,7 +34,6 @@ public class ValidatorUtils {
             validateNotBlank(name);
             validateNotOverFiveCharacters(name);
         }
-        validateNoDuplicates(carNames);
 
         return carNames;
     }
@@ -49,10 +50,10 @@ public class ValidatorUtils {
         }
     }
 
-    private static void validateNoDuplicates(String[] strings) {
-        Set<String> carNameSet = new HashSet<>(Arrays.asList(strings));
-        if (strings.length != carNameSet.size()) {
-            throw new RuntimeException(DUPLICATE_NAME_EXCEPTION);
+    public static void validateNoDuplicateCar(List<Car> cars) {
+        Set<Car> carSet = new HashSet<>(cars);
+        if (cars.size() != carSet.size()) {
+            throw new RuntimeException(DUPLICATE_CAR_EXCEPTION);
         }
     }
 }
