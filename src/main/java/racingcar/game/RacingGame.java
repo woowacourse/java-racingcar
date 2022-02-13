@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import static racingcar.util.InitUtil.initCar;
 import static racingcar.util.InitUtil.initTotalAttempt;
+import static racingcar.util.RandomUtil.getRandomNumber;
 import static racingcar.view.InputView.getAttemptCount;
 import static racingcar.view.InputView.getCarNames;
 import static racingcar.view.OutputView.*;
@@ -44,7 +45,7 @@ public class RacingGame {
 
     private void run() {
         for (Car car : carList) {
-            car.progress();
+            car.progress(getRandomNumber());
         }
         printProgress();
         printLine();

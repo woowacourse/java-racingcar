@@ -1,11 +1,11 @@
 package racingcar.entity;
 
-import static racingcar.util.RandomUtil.checkMoveOrWait;
 import static racingcar.util.VerificationUtil.validateCarName;
 
 public class Car {
 
     private static final int INITIAL_VALUE = 0;
+    private static final int PROGRESS_CONDITION_VALUE = 4;
 
     private final String name;
     private int position = INITIAL_VALUE;
@@ -23,8 +23,8 @@ public class Car {
         return position;
     }
 
-    public void progress(){
-        if (checkMoveOrWait()) {
+    public void progress(int number){
+        if (number >= PROGRESS_CONDITION_VALUE) {
             position++;
         }
     }
@@ -36,3 +36,4 @@ public class Car {
         return false;
     }
 }
+
