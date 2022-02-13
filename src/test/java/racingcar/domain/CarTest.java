@@ -13,7 +13,7 @@ class CarTest {
     @ValueSource(ints = {4, 5})
     @DisplayName("값이 4이상인 경우 자동차 전진 기능")
     public void drive_forward_value(int value) {
-        Car car = new Car("Rookie");
+        Car car = new Car("hoon");
         car.drive(value);
 
         assertThat(1).isEqualTo(car.getPosition());

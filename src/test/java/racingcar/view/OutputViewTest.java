@@ -26,7 +26,7 @@ class OutputViewTest {
 
     @BeforeEach
     public void setUpCars() {
-        cars.add(new Car("rookie"));
+        cars.add(new Car("hoon"));
         cars.add(new Car("is2hs"));
     }
 
@@ -38,7 +38,7 @@ class OutputViewTest {
 
         OutputView.printRacingRecord(racingRecord);
 
-        assertThat(output.toString()).contains("rookie : -\nis2hs : -");
+        assertThat(output.toString()).contains("hoon : -\nis2hs : -");
     }
 
     @Test
@@ -49,6 +49,6 @@ class OutputViewTest {
 
         OutputView.printRacingResult(racingResult);
 
-        assertThat(output.toString()).contains("rookie, is2hs가 최종 우승했습니다.");
+        assertThat(output.toString()).contains("hoon, is2hs가 최종 우승했습니다.");
     }
 }
