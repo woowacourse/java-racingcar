@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import java.util.stream.Collectors;
 import racingcar.message.ErrorMessages;
 import racingcar.util.RandomNumberGenerator;
 
 public class Cars {
-    private static final String NEW_LINE = System.lineSeparator();
     private static final String DELIMITER = ",";
 
     private final List<Car> cars = new ArrayList<>();
@@ -27,18 +27,14 @@ public class Cars {
         }
     }
 
-    public Winners getWinners() {
-        return new Winners(cars);
+    public List<CarStatus> getCarsStatus() {
+        return cars.stream()
+                .map(CarStatus::new)
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Car car : cars) {
-            sb.append(car.toString())
-                    .append(NEW_LINE);
-        }
-        return sb.toString();
+    public Winners getWinners() {
+        return new Winners(cars);
     }
 
     private void validateDuplicatedName(String[] carNames) {
