@@ -38,9 +38,13 @@ public class CarCollection {
     }
 
     private int getFarthestLocation() {
-        return Collections.max(
-            cars.stream().map(Car::getLocation).collect(Collectors.toList())
-        );
+        return Collections.max(this.getCurrentLocations());
+    }
+
+    private List<Integer> getCurrentLocations() {
+        return cars.stream()
+                .map(Car::getLocation)
+                .collect(Collectors.toList());
     }
 
 }
