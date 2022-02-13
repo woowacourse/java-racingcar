@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,16 +14,6 @@ public class CarsTest {
         cars.insertCar(new Car("B", 3));
         cars.insertCar(new Car("C", 4));
         assertThat(cars.getWinner()).contains("C");
-    }
-
-    @Test
-    public void moveRound_메소드_확인() {
-        cars.insertCar(new Car("A", 1, () -> 1));
-        cars.insertCar(new Car("B", 2, () -> 5));
-        cars.insertCar(new Car("C", 2, () -> 1));
-        cars.moveRound();
-        assertThat(cars.getWinner()).contains("B");
-        assertThat(cars.getWinner()).doesNotContain("C");
     }
 
     @Test

@@ -8,18 +8,11 @@ public class Car {
 
     private String name;
     private int position;
-    private RandomUtil randomGenerator;
+
 
     public Car(String name, int position) {
         this.name = name;
         this.position = position;
-        this.randomGenerator = new RandomNumberGenerator();
-    }
-
-    public Car(String name, int position, RandomUtil randomUtil) {
-        this.name = name;
-        this.position = position;
-        this.randomGenerator = randomUtil;
     }
 
     public String getName() {
@@ -30,8 +23,15 @@ public class Car {
         return this.position;
     }
 
+    public boolean isMovable(RandomUtil randomNumberGenerator) {
+        if (randomNumberGenerator.generate() >= STANDARD) {
+            return true;
+        }
+        return false;
+    }
+
     public void move() {
-        if (randomGenerator.generate() >= STANDARD) {
+        if (isMovable(new RandomNumberGenerator())) {
             position++;
         }
     }
