@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import static racingcar.util.VerificationUtil.validateCarName;
+import static racingcar.util.ValidationUtil.validateCarName;
 
 public class Car {
 

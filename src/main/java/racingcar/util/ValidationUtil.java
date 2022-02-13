@@ -5,9 +5,9 @@ import java.util.HashSet;
 
 import static racingcar.constant.ErrorMessage.*;
 
-public class VerificationUtil {
+public class ValidationUtil {
 
-    private VerificationUtil() {
+    private ValidationUtil() {
     }
 
     public static void validateCarName(String carName, int minLength, int maxLength) {
@@ -47,11 +47,11 @@ public class VerificationUtil {
     }
 
     public static void validateAttempt(String attempt) {
-        int num = isInteger(attempt);
+        int num = isIntegerThenParse(attempt);
         isPositive(num);
     }
 
-    private static int isInteger(String num) {
+    private static int isIntegerThenParse(String num) {
         try {
             return Integer.parseInt(num);
         } catch (Exception e) {

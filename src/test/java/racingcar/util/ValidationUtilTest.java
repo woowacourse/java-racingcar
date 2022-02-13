@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-import static racingcar.util.VerificationUtil.*;
+import static racingcar.util.ValidationUtil.*;
 
-class VerificationUtilTest {
+class ValidationUtilTest {
 
     @Test
     @DisplayName("자동차 이름을 입력하지 않은 경우 예외 발생")
