@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingCar.exception.DuplicatedNameException;
-import racingCar.exception.OnlyOneNameException;
+import racingCar.exception.name.NameDuplicatedException;
+import racingCar.exception.name.NameOnlyOneException;
 import racingCar.utlis.Util;
 
 public class RacingCars {
@@ -21,10 +21,10 @@ public class RacingCars {
 
 	private static void validate(List<String> cars) {
 		if (cars.size() <= 1) {
-			throw new OnlyOneNameException();
+			throw new NameOnlyOneException();
 		}
 		if (new HashSet<>(cars).size() != cars.size()) {
-			throw new DuplicatedNameException();
+			throw new NameDuplicatedException();
 		}
 
 	}

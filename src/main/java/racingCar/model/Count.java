@@ -1,6 +1,6 @@
 package racingCar.model;
 
-import racingCar.exception.CountRangeException;
+import racingCar.exception.count.CountRangeException;
 
 public class Count {
 	private final int count;

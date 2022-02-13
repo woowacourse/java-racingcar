@@ -2,9 +2,9 @@ package racingCar.model;
 
 import java.util.regex.Pattern;
 
-import racingCar.exception.NameRangeException;
-import racingCar.exception.NameSpaceException;
-import racingCar.exception.NameSpecialCharException;
+import racingCar.exception.name.NameRangeException;
+import racingCar.exception.name.NameSpaceException;
+import racingCar.exception.name.NameSpecialCharException;
 
 public class Name {
 	private static final String NOT_SPECIAL_REGEX = "[가-힣\\w_]*";

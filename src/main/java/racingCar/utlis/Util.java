@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
 
-import racingCar.exception.NotNumberException;
+import racingCar.exception.count.CountNotNumberException;
 
 public class Util {
 	private static final String NAME_REGEX = ",";
@@ -26,7 +26,7 @@ public class Util {
 
 	public static int convertToInteger(String count) {
 		if (!Pattern.matches(INTEGER_REGEX, count)) {
-			throw new NotNumberException();
+			throw new CountNotNumberException();
 		}
 		return Integer.parseInt(count);
 	}
