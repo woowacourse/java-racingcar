@@ -29,7 +29,7 @@ public class CarController {
 		Voider voider = () -> {
 			String carNames = InputView.inputCarNames();
 			Cars cars = new Cars(carNames);
-			List<Car> carList = cars.get();
+			List<Car> carList = cars.getCars();
 			carRepository.addCars(carList);
 		};
 		commonInputProcess(voider);
@@ -44,10 +44,10 @@ public class CarController {
 		commonInputProcess(voider);
 	}
 
-	private void commonInputProcess(Voider inputFunction) {
+	private void commonInputProcess(final Voider inputFunction) {
 		while (true) {
 			try {
-				inputFunction.exeucte();
+				inputFunction.execute();
 				return;
 			} catch (Exception exception) {
 				InputView.printErrorMessage(exception);

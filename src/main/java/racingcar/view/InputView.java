@@ -18,7 +18,7 @@ public class InputView {
 	}
 
 	public static String inputRoundNumber() {
-		System.out.println(ASK_ROUND_NUMBER_INPUT_MESSAGE);
+		out.println(ASK_ROUND_NUMBER_INPUT_MESSAGE);
 		return scanner.nextLine();
 	}
 
@@ -26,7 +26,7 @@ public class InputView {
 		scanner.close();
 	}
 
-	public static void printErrorMessage(Exception exception) {
+	public static void printErrorMessage(final Exception exception) {
 		out.println(exception.getMessage() + LINE_SEPARATOR);
 	}
 }

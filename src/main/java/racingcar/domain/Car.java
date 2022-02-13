@@ -17,16 +17,16 @@ public class Car {
 	protected Car() {
 	}
 
-	protected Car(String name, MovingStrategy movingStrategy) {
+	protected Car(final String name, final MovingStrategy movingStrategy) {
 		this.name = new CarName(name);
 		this.movingStrategy = movingStrategy;
 	}
 
-	public static Car createRandomMovingCar(String name) {
+	public static Car createRandomMovingCar(final String name) {
 		return new Car(name, new RandomMovingStrategy());
 	}
 
-	public static Car createFixedMovingCar(String name) {
+	public static Car createFixedMovingCar(final String name) {
 		return new Car(name, new FixedMovingStrategy());
 	}
 
@@ -38,7 +38,7 @@ public class Car {
 		return name.get();
 	}
 
-	public void move(int distance) {
+	public void move(final int distance) {
 		position += distance;
 	}
 
@@ -48,19 +48,19 @@ public class Car {
 		}
 	}
 
-	public boolean isSamePosition(Car maxCar) {
+	public boolean isSamePosition(final Car maxCar) {
 		return position == maxCar.position;
 	}
 
-	public int comparePositionTo(Car other) {
+	public int comparePositionTo(final Car other) {
 		return compareTo((Car otherCar) -> this.position - otherCar.position, other);
 	}
 
-	public int compareNameTo(Car other) {
+	public int compareNameTo(final Car other) {
 		return compareTo((Car otherCar) -> this.name.get().compareTo(other.getName()), other);
 	}
 
-	public int compareTo(Function<Car, Integer> function, Car other) {
+	public int compareTo(final Function<Car, Integer> function, final Car other) {
 		return function.apply(other);
 	}
 

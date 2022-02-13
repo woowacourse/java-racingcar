@@ -10,9 +10,9 @@ public class CarName {
 	public static final String NOT_ALLOWED_FORMAT_MESSAGE = "[ERROR] 올바르지 않은 입력 형식입니다.";
 	public static final String INVALID_CAR_NAME_SHOULD_BE_ONE_MORE_CHARACTER = "[ERROR] 자동차 이름은 최대 한 글자 이상입니다";
 
-	private String name;
+	private final String name;
 
-	public CarName(String name) {
+	public CarName(final String name) {
 		validateCarName(name);
 		this.name = name;
 	}
@@ -33,19 +33,19 @@ public class CarName {
 
 	}
 
-	private static void hasCarNameWrongFormat(String carName) {
+	private static void hasCarNameWrongFormat(final String carName) {
 		if (carName.matches(ALLOWED_CHARACTERS)) {
 			throw new RuntimeException(NOT_ALLOWED_FORMAT_MESSAGE);
 		}
 	}
 
-	private static void isCarNameExceed(String carName) {
+	private static void isCarNameExceed(final String carName) {
 		if (carName.length() > CAR_NAME_MAX_LENGTH) {
 			throw new RuntimeException(EXCEED_LENGTH_ERROR_MESSAGE);
 		}
 	}
 
-	private static void isCarNameEmpty(String carName) {
+	private static void isCarNameEmpty(final String carName) {
 		if (carName.isEmpty()) {
 			throw new RuntimeException(INVALID_CAR_NAME_SHOULD_BE_ONE_MORE_CHARACTER);
 		}

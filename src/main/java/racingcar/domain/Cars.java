@@ -13,32 +13,32 @@ public class Cars {
 
 	private List<Car> cars = new ArrayList<>();
 
-	public Cars(List<Car> cars) {
+	public Cars(final List<Car> cars) {
 		this.cars = cars;
 	}
 
-	public Cars(String carNames) {
-		String[] parseCarNames = splitCarNames(carNames);
+	public Cars(final String carNames) {
+		final String[] parseCarNames = splitCarNames(carNames);
 
-		for (String carName : parseCarNames) {
-			Car car = Car.createRandomMovingCar(carName);
+		for (final String carName : parseCarNames) {
+			final Car car = Car.createRandomMovingCar(carName);
 			cars.add(car);
 		}
 		validateCarNames(cars);
 	}
 
-	private void validateCarNames(List<Car> cars) {
+	public List<Car> getCars() {
+		return cars;
+	}
+
+	private void validateCarNames(final List<Car> cars) {
 		if (isValidated(cars)) {
 			throw new RuntimeException(INVALID_DUPLICATE_CAR_NAMES);
 		}
 	}
 
-	private boolean isValidated(List<Car> cars) {
+	private boolean isValidated(final List<Car> cars) {
 		return cars.size() != new HashSet<>(cars).size();
-	}
-
-	public List<Car> get() {
-		return cars;
 	}
 
 	private String[] splitCarNames(String input) {
@@ -48,7 +48,7 @@ public class Cars {
 
 	public List<Car> getWinners() {
 
-		Car maxCar = getMaxPositionCar();
+		final Car maxCar = getMaxPositionCar();
 
 		return cars.stream()
 			.filter(car -> car.isSamePosition(maxCar))
