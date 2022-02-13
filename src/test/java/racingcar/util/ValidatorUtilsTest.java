@@ -5,10 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.params.ParameterizedTest.ARGUMENTS_PLACEHOLDER;
-import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDER;
 import static racingcar.constants.OutputMessages.BLANK_NOT_ALLOWED_EXCEPTION;
 import static racingcar.constants.OutputMessages.DUPLICATE_NAME_EXCEPTION;
 import static racingcar.constants.OutputMessages.NOT_POSITIVE_INTEGER_EXCEPTION;
@@ -18,10 +17,6 @@ import static racingcar.util.ValidatorUtils.splitAndValidateCarNames;
 import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 
 public class ValidatorUtilsTest {
-
-    final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
-            DISPLAY_NAME_PLACEHOLDER + " ["
-                    + ARGUMENTS_PLACEHOLDER + "]";
 
     @DisplayName("validateAndParsePositiveInt 메서드는 문자열을 양수로 변환하여 반환한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
@@ -59,7 +54,7 @@ public class ValidatorUtilsTest {
 
     @DisplayName("splitAndValidateCarNames 메서드는 공백 혹은 빈 문자열이 입력되었을 때 예외를 발생시킨다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @ValueSource(strings = {"", ",a"," ,b", "   ,c,d"})
+    @ValueSource(strings = {"", ",a", " ,b", "   ,c,d"})
     void splitAndValidateCarNames_errorOnBlank(String carNamesString) {
         assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() -> splitAndValidateCarNames(carNamesString))
