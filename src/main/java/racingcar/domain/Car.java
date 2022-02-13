@@ -1,17 +1,15 @@
 package racingcar.domain;
 
-import static racingcar.constants.SystemConstants.CAN_GO_VALUE;
-import static racingcar.constants.SystemConstants.INCREMENT_VALUE;
-import static racingcar.constants.SystemConstants.INITIAL_POSITION;
-
 public class Car {
 
+    private static final int CAN_GO_VALUE = 4;
+    private static final int POSITION_INCREMENT_UNIT = 1;
+
     private final String name;
-    private int position;
+    private int position = 0;
 
     public Car(String name) {
         this.name = name;
-        this.position = INITIAL_POSITION;
     }
 
     public void goOrNot(int number) {
@@ -21,7 +19,7 @@ public class Car {
     }
 
     private void go() {
-        position += INCREMENT_VALUE;
+        position += POSITION_INCREMENT_UNIT;
     }
 
     private boolean canGo(int number) {
