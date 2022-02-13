@@ -14,6 +14,7 @@ public class CarTest {
 
     private static final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
         DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
+    private static final int CAN_GO_VALUE = 9;
 
     private Car car;
 
@@ -52,5 +53,31 @@ public class CarTest {
         car.goOrNot(num);
 
         assertThat(car.getPosition()).isEqualTo(prevPosition);
+    }
+
+    @DisplayName("isWinner 메서드의 인자 값과 position이 일치하는 경우 참을 반환한다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @ValueSource(ints = {1, 3, 10})
+    void isWinner_returnTrueIfSame(int winnerPosition) {
+        for (int i = 0; i < winnerPosition; i++) {
+            car.goOrNot(CAN_GO_VALUE);
+        }
+
+        boolean isWinner = car.isWinner(winnerPosition);
+
+        assertThat(isWinner).isTrue();
+    }
+
+    @DisplayName("isWinner 메서드의 인자 값과 position이 불일치하는 경우 거짓을 반환한다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @ValueSource(ints = {1, 3, 10})
+    void isWinner_returnFalseIfDifferent(int winnerPosition) {
+        for (int i = 0; i < winnerPosition - 1; i++) {
+            car.goOrNot(CAN_GO_VALUE);
+        }
+
+        boolean isWinner = car.isWinner(winnerPosition);
+
+        assertThat(isWinner).isFalse();
     }
 }

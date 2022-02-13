@@ -33,4 +33,8 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+    public boolean isWinner(int winnerPosition) {
+        return position == winnerPosition;
+    }
 }
