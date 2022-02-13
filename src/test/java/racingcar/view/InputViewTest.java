@@ -37,13 +37,6 @@ class InputViewTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void validateRounds_null() {
-        assertThatThrownBy(() -> {
-            InputView.validateRounds(null);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1"})
     void validateRounds_isNotPositive(String input) {
