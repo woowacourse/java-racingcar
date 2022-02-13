@@ -3,17 +3,11 @@ package racingcar.utils;
 import java.util.Arrays;
 
 public class Validator {
-
     private static final String DELIMITER = ",";
     private static final int MINIMUM_CAR_NAME_QUANTITY = 2;
     private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
     private static final int MINIMUM_COUNT = 1;
     private static final int MAXIMUM_COUNT = 50;
-
-    public static void checkCarNames(String nameString) {
-        checkInput(nameString);
-        checkName(nameString);
-    }
 
     public static void checkName(String nameString) {
         String[] names = nameString.split(DELIMITER);
@@ -81,11 +75,11 @@ public class Validator {
 
     private static boolean hasDuplicateName(String nameString) {
         long origin = Arrays.stream(nameString.split(DELIMITER))
-                .count();
+            .count();
 
         long distinct = Arrays.stream(nameString.split(DELIMITER))
-                .distinct()
-                .count();
+            .distinct()
+            .count();
 
         return origin != distinct;
     }

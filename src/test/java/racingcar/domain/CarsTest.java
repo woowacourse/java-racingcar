@@ -1,0 +1,38 @@
+package racingcar.domain;
+
+import static org.assertj.core.api.Assertions.*;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+@SuppressWarnings("NoneAskiiCharacters")
+public class CarsTest {
+    private Car car1;
+    private Car car2;
+    private Cars cars;
+
+    @BeforeEach
+    void setUp() {
+        car1 = new Car(new CarName("칙촉"));
+        car2 = new Car(new CarName("어썸오"));
+        cars = new Cars(Arrays.asList(car1, car2));
+    }
+
+    @Test
+    void 우승자를_선출한다_우승자가_한명인경우() {
+        car1.attemptToMove(4);
+        car2.attemptToMove(3);
+
+        assertThat(cars.findWinners()).containsExactly(car1);
+    }
+
+    @Test
+    void 우승자를_선출한다_우승자가_두명인경우() {
+        car1.attemptToMove(4);
+        car2.attemptToMove(4);
+
+        assertThat(cars.findWinners()).containsExactly(car1, car2);
+    }
+}

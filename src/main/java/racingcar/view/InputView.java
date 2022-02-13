@@ -14,7 +14,7 @@ public class InputView {
 
     private static String getCarNames(String input) {
         try {
-            Validator.checkInput(input);
+            Validator.checkBlankOrNull(input);
             return input;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

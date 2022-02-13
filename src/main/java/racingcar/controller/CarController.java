@@ -1,55 +1,42 @@
 package racingcar.controller;
 
-import static java.util.stream.Collectors.*;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Random;
-
-import racingcar.domain.Car;
-import racingcar.domain.CarName;
+import racingcar.domain.Cars;
 import racingcar.domain.Count;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarController {
 
-    private static final String DELIMITER = ",";
-    private static final int RANDOM_NUMBER_UPPER_BOUND = 10;
-
     private Count count;
+    private Cars cars;
 
     public void run() {
-        String carNames = InputView.getCarNames();
+         cars = generateCars();
+         count = getCountFromUser();
 
-        List<Car> cars = makeCars(carNames);
-
-        count = getCountFromUser();
-
-        playGame(cars);
-        OutputView.printWinners(findWinners(cars));
+        playGame();
+        showResult();
     }
 
-    private List<Car> makeCars(String carNames) {
+    private void showResult() {
+        OutputView.printWinners(cars.findWinners());
+    }
+
+    private Cars generateCars() {
         try {
-            return makeCars(carNames.split(DELIMITER));
+            return new Cars(InputView.getCarNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return makeCars(InputView.getCarNames());
+            return generateCars();
         }
     }
 
-    private void playGame(List<Car> cars) {
-        OutputView.printResult(cars);
+    private void playGame() {
+        OutputView.printResult(cars.get());
         for (int i = 0; i < count.getInt(); i++) {
-            playRound(cars);
-            OutputView.printResult(cars);
+            cars.playRound();
+            OutputView.printResult(cars.get());
         }
-    }
-
-    private List<Car> makeCars(String[] names) {
-        return Arrays.stream(names).map(CarName::new).map(Car::new).collect(toList());
     }
 
     private Count getCountFromUser() {
@@ -59,25 +46,5 @@ public class CarController {
             System.out.println(e.getMessage());
             return getCountFromUser();
         }
-    }
-
-    private void playRound(List<Car> cars) {
-        for (Car car : cars) {
-            car.attemptToMove(getRandInt());
-        }
-    }
-
-    private int getRandInt() {
-        return new Random().nextInt(RANDOM_NUMBER_UPPER_BOUND);
-    }
-
-    public List<Car> findWinners(List<Car> cars) {
-        Car maxPositionCar = getMaxPositionCar(cars);
-        return cars.stream().filter(car -> car.isSamePositionWith(maxPositionCar))
-            .collect(toList());
-    }
-
-    private Car getMaxPositionCar(List<Car> cars) {
-        return cars.stream().max(Car::compareTo).orElseThrow(NoSuchElementException::new);
     }
 }
