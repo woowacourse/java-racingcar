@@ -9,11 +9,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CalculatorTest {
 
     @Test
-    public void splitAndSum_null_또는_빈문자() {
+    public void splitAndSum_null() {
         int result = Calculator.splitAndSum(null);
-        assertThat(result).isEqualTo(0);
 
-        result = Calculator.splitAndSum("");
+        assertThat(result).isEqualTo(0);
+    }
+
+    @Test
+    public void splitAndSum_empty() {
+        int result = Calculator.splitAndSum("");
+
         assertThat(result).isEqualTo(0);
     }
 
