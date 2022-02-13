@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,6 +14,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import racingcar.domain.car.CarCollection;
+import racingcar.domain.car.CarStatusDto;
 import racingcar.exception.car.CarNameDuplicatedException;
 import racingcar.exception.car.CarNameEmptyException;
 import racingcar.exception.car.CarNameTooLongException;
@@ -72,12 +74,16 @@ public class CarCollectionTest {
         CarCollection carCollection = new CarCollection(carNames);
         CustomNumberPicker customNumberPicker = new CustomNumberPicker(numbers);
 
-        List<String> statuses = new ArrayList<>();
+        List<CarStatusDto> statuses = new ArrayList<>();
         for (int i = 0; i < time; i++) {
             carCollection.goForwardOrStop(customNumberPicker);
             statuses.addAll(carCollection.getStatuses());
         }
-        assertThat(statuses).isEqualTo(expected);
+
+        List<String> actual = statuses.stream()
+                .map(CarStatusDto::toString)
+                .collect(Collectors.toList());
+        assertThat(actual).isEqualTo(expected);
     }
 
     public static Stream<Arguments> provideValuesForPlayRoundTest() {

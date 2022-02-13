@@ -23,8 +23,10 @@ public class CarCollection {
             .forEach(Car::goForward);
     }
 
-    public List<String> getStatuses() {
-        return cars.stream().map(Car::toString).collect(Collectors.toList());
+    public List<CarStatusDto> getStatuses() {
+        return cars.stream()
+                .map(CarStatusDto::toDto)
+                .collect(Collectors.toList());
     }
 
     public List<String> getWinnerNames() {

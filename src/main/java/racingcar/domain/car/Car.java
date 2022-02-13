@@ -1,7 +1,6 @@
 package racingcar.domain.car;
 
 import racingcar.domain.car.condition.ForwardCondition;
-import racingcar.utils.Delimiter;
 
 public class Car {
 
@@ -30,10 +29,6 @@ public class Car {
 
     public int getLocation() {
         return this.location;
-    }
-
-    public String toString() {
-        return Delimiter.concatWithColon(name, Delimiter.repeatUnderBar(location));
     }
 
 }
