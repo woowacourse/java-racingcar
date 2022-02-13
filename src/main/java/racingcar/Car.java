@@ -16,6 +16,7 @@ public class Car {
         validateEmptyName(name);
         validateName(name);
         this.name = name;
+        position = 0;
     }
 
     public boolean isPosition(int position) {
