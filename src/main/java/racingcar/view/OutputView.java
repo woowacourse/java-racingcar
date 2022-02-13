@@ -4,6 +4,9 @@ import java.util.List;
 
 public class OutputView {
 
+    private static final String DELIMITER = ", ";
+    public static final String PROGRESS_SYMBOL = "-";
+
     private OutputView() {
     }
 
@@ -17,13 +20,13 @@ public class OutputView {
     }
 
     public static void printProgress(String carName, int position) {
-        String positionSign = "-".repeat(position);
+        String positionSign = PROGRESS_SYMBOL.repeat(position);
 
         System.out.println(carName + " : " + positionSign);
     }
 
     public static void printWinners(List<String> winners) {
-        System.out.print(String.join(", ", winners));
+        System.out.print(String.join(DELIMITER, winners));
         System.out.println("가 최종 우승했습니다.");
     }
 
