@@ -11,14 +11,14 @@ import racingcar.exception.round.RoundNotPositiveException;
 @SuppressWarnings("NonAsciiCharacters")
 public class RoundTest {
 
-	@Test
-	void 실행횟수_예외테스트() {
-		assertThrows(RoundNotPositiveException.class, () -> new Round(-2));
-	}
+    @Test
+    void 실행횟수_예외테스트() {
+        assertThrows(RoundNotPositiveException.class, () -> new Round(-2));
+    }
 
-	@Test
-	void 제로_예외테스트() {
-		assertThrows(RoundNotPositiveException.class, () -> new Round(0));
-	}
+    @Test
+    void 제로_예외테스트() {
+        assertThrows(RoundNotPositiveException.class, () -> new Round(0));
+    }
 
 }

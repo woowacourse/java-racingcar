@@ -5,15 +5,15 @@ import java.util.List;
 
 public class CustomNumberPicker implements NumberPicker {
 
-	private final Iterator<Integer> numbers;
+    private final Iterator<Integer> numbers;
 
-	public CustomNumberPicker(List<Integer> numbers) {
-		this.numbers = numbers.iterator();
-	}
+    public CustomNumberPicker(List<Integer> numbers) {
+        this.numbers = numbers.iterator();
+    }
 
-	@Override
-	public int pickNumber() {
-		return numbers.next();
-	}
+    @Override
+    public int pickNumber() {
+        return numbers.next();
+    }
 
 }

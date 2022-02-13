@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface InputView {
 
-	List<String> requestCarNames();
+    List<String> requestCarNames();
 
-	int requestRoundNumber();
+    int requestRoundNumber();
 
 }

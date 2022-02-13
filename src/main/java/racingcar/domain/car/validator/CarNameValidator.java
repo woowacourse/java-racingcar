@@ -10,49 +10,49 @@ import racingcar.exception.car.CarNameTooLongException;
 
 public class CarNameValidator {
 
-	public static CarNameValidator instance = new CarNameValidator();
+    public static CarNameValidator instance = new CarNameValidator();
 
-	public static void validateNames(List<String> names) {
-		instance.validate(names);
-	}
+    public static void validateNames(List<String> names) {
+        instance.validate(names);
+    }
 
-	void validate(List<String> names) {
-		validateNameIsTooLong(names);
-		validateNameIsEmpty(names);
-		validateNameIsDuplicated(names);
-	}
+    void validate(List<String> names) {
+        validateNameIsTooLong(names);
+        validateNameIsEmpty(names);
+        validateNameIsDuplicated(names);
+    }
 
-	void validateNameIsTooLong(List<String> names) {
-		if (checkNameIsTooLong(names)) {
-			throw new CarNameTooLongException();
-		}
-	}
+    void validateNameIsTooLong(List<String> names) {
+        if (checkNameIsTooLong(names)) {
+            throw new CarNameTooLongException();
+        }
+    }
 
-	private boolean checkNameIsTooLong(List<String> names) {
-		return names.stream()
-				.anyMatch(NameLength::isTooLong);
-	}
+    private boolean checkNameIsTooLong(List<String> names) {
+        return names.stream()
+                .anyMatch(NameLength::isTooLong);
+    }
 
-	void validateNameIsEmpty(List<String> names) {
-		if (checkNameIsEmpty(names)) {
-			throw new CarNameEmptyException();
-		}
-	}
+    void validateNameIsEmpty(List<String> names) {
+        if (checkNameIsEmpty(names)) {
+            throw new CarNameEmptyException();
+        }
+    }
 
-	private boolean checkNameIsEmpty(List<String> names) {
-		return names.stream()
-				.anyMatch(String::isEmpty);
-	}
+    private boolean checkNameIsEmpty(List<String> names) {
+        return names.stream()
+                .anyMatch(String::isEmpty);
+    }
 
-	void validateNameIsDuplicated(List<String> names) {
-		if (checkNameIsDuplicated(names)) {
-			throw new CarNameDuplicatedException();
-		}
-	}
+    void validateNameIsDuplicated(List<String> names) {
+        if (checkNameIsDuplicated(names)) {
+            throw new CarNameDuplicatedException();
+        }
+    }
 
-	private boolean checkNameIsDuplicated(List<String> names) {
-		return names.stream()
-				.anyMatch(name -> DuplicateName.isExcessiveDuplicated(names, name));
-	}
+    private boolean checkNameIsDuplicated(List<String> names) {
+        return names.stream()
+                .anyMatch(name -> DuplicateName.isExcessiveDuplicated(names, name));
+    }
 
 }

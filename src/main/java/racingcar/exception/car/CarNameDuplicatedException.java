@@ -5,8 +5,8 @@ import racingcar.exception.car.message.CarNameExceptionMessage;
 
 public class CarNameDuplicatedException extends RacingCarException {
 
-	public CarNameDuplicatedException() {
-		super(CarNameExceptionMessage.NAME_DUPLICATED_EXCEPTION_MESSAGE);
-	}
+    public CarNameDuplicatedException() {
+        super(CarNameExceptionMessage.NAME_DUPLICATED_EXCEPTION_MESSAGE);
+    }
 
 }

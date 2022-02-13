@@ -8,34 +8,34 @@ import racingcar.service.picker.NumberPicker;
 
 public class GameServiceImpl implements GameService {
 
-	private final NumberPicker numberPicker;
-	private CarCollection carCollection;
-	private Round round;
+    private final NumberPicker numberPicker;
+    private CarCollection carCollection;
+    private Round round;
 
-	public GameServiceImpl(NumberPicker numberPicker) {
-		this.numberPicker = numberPicker;
-	}
+    public GameServiceImpl(NumberPicker numberPicker) {
+        this.numberPicker = numberPicker;
+    }
 
-	public void initCarNames(List<String> carNames) {
-		this.carCollection = new CarCollection(carNames);
-	}
+    public void initCarNames(List<String> carNames) {
+        this.carCollection = new CarCollection(carNames);
+    }
 
-	public void initRound(int count) {
-		this.round = new Round(count);
-	}
+    public void initRound(int count) {
+        this.round = new Round(count);
+    }
 
-	public boolean isContinuable() {
-		return (round.isNotFinished());
-	}
+    public boolean isContinuable() {
+        return (round.isNotFinished());
+    }
 
-	public List<String> playRound() {
-		carCollection.goForwardOrStop(numberPicker);
-		round.decreaseCount();
-		return carCollection.getStatuses();
-	}
+    public List<String> playRound() {
+        carCollection.goForwardOrStop(numberPicker);
+        round.decreaseCount();
+        return carCollection.getStatuses();
+    }
 
-	public List<String> getWinnerNames() {
-		return carCollection.getWinnerNames();
-	}
+    public List<String> getWinnerNames() {
+        return carCollection.getWinnerNames();
+    }
 
 }

@@ -5,8 +5,8 @@ import racingcar.exception.round.message.RoundExceptionMessage;
 
 public class RoundNotPositiveException extends RacingCarException {
 
-	public RoundNotPositiveException() {
-		super(RoundExceptionMessage.ROUND_NOT_POSITIVE_EXCEPTION_MESSAGE);
-	}
+    public RoundNotPositiveException() {
+        super(RoundExceptionMessage.ROUND_NOT_POSITIVE_EXCEPTION_MESSAGE);
+    }
 
 }

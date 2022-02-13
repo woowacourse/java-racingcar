@@ -4,18 +4,18 @@ import java.util.List;
 
 public interface OutputView {
 
-	void printMessage(String message);
+    void printMessage(String message);
 
-	void printMessageOfRequestCarNames();
+    void printMessageOfRequestCarNames();
 
-	void printMessageOfRequestRound();
+    void printMessageOfRequestRound();
 
-	void printMessageOfStatusTitle();
+    void printMessageOfStatusTitle();
 
-	void printCarStatuses(List<String> carStatuses);
+    void printCarStatuses(List<String> carStatuses);
 
-	void printMessageOfWinners(List<String> winnerNames);
+    void printMessageOfWinners(List<String> winnerNames);
 
-	void printEmptyLine();
+    void printEmptyLine();
 
 }

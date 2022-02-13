@@ -2,8 +2,8 @@ package racingcar.controller;
 
 public interface GameController {
 
-	void initGame();
+    void initGame();
 
-	void playGame();
+    void playGame();
 
 }

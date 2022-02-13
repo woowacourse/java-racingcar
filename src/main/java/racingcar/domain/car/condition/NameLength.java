@@ -2,16 +2,16 @@ package racingcar.domain.car.condition;
 
 public enum NameLength {
 
-	LENGTH(5);
+    LENGTH(5);
 
-	private final int value;
+    private final int value;
 
-	NameLength(int value) {
-		this.value = value;
-	}
+    NameLength(int value) {
+        this.value = value;
+    }
 
-	public static boolean isTooLong(String name) {
-		return (name.length() > LENGTH.value);
-	}
+    public static boolean isTooLong(String name) {
+        return (name.length() > LENGTH.value);
+    }
 
 }

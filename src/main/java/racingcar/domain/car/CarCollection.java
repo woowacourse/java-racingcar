@@ -10,35 +10,35 @@ import racingcar.service.picker.NumberPicker;
 
 public class CarCollection {
 
-	private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
-	public CarCollection(List<String> names) {
-		CarNameValidator.validateNames(names);
-		names.forEach(name -> cars.add(new Car(name)));
-	}
+    public CarCollection(List<String> names) {
+        CarNameValidator.validateNames(names);
+        names.forEach(name -> cars.add(new Car(name)));
+    }
 
-	public void goForwardOrStop(NumberPicker numberPicker) {
-		cars.stream()
-			.filter(car -> car.isPossibleToGoForward(numberPicker.pickNumber()))
-			.forEach(Car::goForward);
-	}
+    public void goForwardOrStop(NumberPicker numberPicker) {
+        cars.stream()
+            .filter(car -> car.isPossibleToGoForward(numberPicker.pickNumber()))
+            .forEach(Car::goForward);
+    }
 
-	public List<String> getStatuses() {
-		return cars.stream().map(Car::toString).collect(Collectors.toList());
-	}
+    public List<String> getStatuses() {
+        return cars.stream().map(Car::toString).collect(Collectors.toList());
+    }
 
-	public List<String> getWinnerNames() {
-		int farthestLocation = getFarthestLocation();
-		return cars.stream()
-			.filter(car -> car.isLocationSameWith(farthestLocation))
-			.map(Car::getName)
-			.collect(Collectors.toList());
-	}
+    public List<String> getWinnerNames() {
+        int farthestLocation = getFarthestLocation();
+        return cars.stream()
+            .filter(car -> car.isLocationSameWith(farthestLocation))
+            .map(Car::getName)
+            .collect(Collectors.toList());
+    }
 
-	private int getFarthestLocation() {
-		return Collections.max(
-			cars.stream().map(Car::getLocation).collect(Collectors.toList())
-		);
-	}
+    private int getFarthestLocation() {
+        return Collections.max(
+            cars.stream().map(Car::getLocation).collect(Collectors.toList())
+        );
+    }
 
 }
