@@ -4,11 +4,10 @@ import racingcar.model.Cars;
 import racingcar.view.OutputView;
 
 public class RaceController {
-
     private Cars cars;
 
-    public void initCars() {
-        cars = new Cars();
+    public void initCars(String[] carNames) {
+        cars = new Cars(carNames);
     }
 
     public void runGame() {
@@ -25,25 +24,13 @@ public class RaceController {
         String[] carNames = inputController.getUserCarNames();
         int tryCount = inputController.getUserTryCount();
 
-        initCars();
-        cars.insertCarFromCarNames(carNames);
+        initCars(carNames);
         OutputView.printResultPrefix();
         for (int i = 0; i < tryCount; i++) {
             cars.moveRound();
             printPosition();
         }
         printWinner();
-    }
-
-//    public void insertCarFromCarNames(String[] carNames) {
-//        initCars();
-//        for (String carName : carNames) {
-//            cars.insertCar(new Car(carName, DEFAULT_POSITION));
-//        }
-//    }
-
-    public int carCount() {
-        return cars.getCars().size();
     }
 
     public void printPosition() {

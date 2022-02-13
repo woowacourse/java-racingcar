@@ -5,10 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final int DEFAULT_POSITION = 0;
+
     private List<Car> racingCars;
 
-    public Cars() {
+    public Cars(String[] carNames) {
         this.racingCars = new ArrayList<>();
+        for (String carName : carNames) {
+            insertCar(new Car(carName, DEFAULT_POSITION));
+        }
     }
 
     public List<Car> getCars() {
@@ -17,12 +22,6 @@ public class Cars {
 
     public void insertCar(Car car) {
         racingCars.add(car);
-    }
-
-    public void insertCarFromCarNames(String[] carNames) {
-        for (String carName : carNames) {
-            insertCar(new Car(carName, 0));
-        }
     }
 
     public void moveRound() {

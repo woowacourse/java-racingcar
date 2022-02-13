@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarsTest {
-    Cars cars = new Cars();
+    Cars cars = new Cars(new String[]{});
 
     @Test
     public void 우승자_확인_() {
@@ -26,7 +26,7 @@ public class CarsTest {
 
     @Test
     public void 자동차_저장_확인() {
-        cars.insertCarFromCarNames(new String[]{"A", "B", "C"});
+        cars = new Cars(new String[]{"A", "B", "C"});
         assertThat(cars.getCars().size()).isEqualTo(3);
     }
 }
