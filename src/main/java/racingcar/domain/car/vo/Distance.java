@@ -3,22 +3,22 @@ package racingcar.domain.car.vo;
 import java.util.Objects;
 
 public class Distance {
-    private int value;
+    private int distance;
 
     public Distance(final int value) {
-        this.value = value;
+        this.distance = value;
     }
 
     public int getValue() {
-        return value;
+        return distance;
     }
 
     public void increaseBy(final int increasingAmount) {
-        value += increasingAmount;
+        distance += increasingAmount;
     }
 
     public boolean isSameOrHigherThan(final Distance another) {
-        return this.value >= another.value;
+        return this.distance >= another.distance;
     }
 
     @Override
@@ -26,11 +26,11 @@ public class Distance {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Distance distance = (Distance) o;
-        return value == distance.value;
+        return this.distance == distance.distance;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(distance);
     }
 }
