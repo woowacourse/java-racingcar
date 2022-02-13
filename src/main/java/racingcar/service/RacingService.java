@@ -39,7 +39,6 @@ public class RacingService {
     private void raceRound() {
         cars.forEach(this::decideToMoveCar);
         RacingCarOutput.printRoundResult(cars);
-        System.out.println();
     }
 
     private void decideToMoveCar(Car car) {

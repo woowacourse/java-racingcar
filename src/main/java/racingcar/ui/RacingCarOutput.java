@@ -18,6 +18,7 @@ public class RacingCarOutput {
 
 	public static void printRoundResult(List<Car> cars) {
 		cars.forEach(RacingCarOutput::printCarPositionInfo);
+		System.out.println();
 	}
 
 	private static void printCarPositionInfo(Car car) {
