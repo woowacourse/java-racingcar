@@ -21,7 +21,7 @@ class SplitUtilsTest {
     @Test
     void splitByComma_errorOnNull() {
         assertThatExceptionOfType(NullPointerException.class)
-                .isThrownBy(() -> SplitUtils.splitByComma(null))
-                .withMessageMatching(ERROR_NULL);
+            .isThrownBy(() -> SplitUtils.splitByComma(null))
+            .withMessageMatching(ERROR_NULL);
     }
 }
