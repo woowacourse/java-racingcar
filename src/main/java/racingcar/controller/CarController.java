@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.controller;
 
 import static java.util.stream.Collectors.*;
 
@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
+import racingcar.domain.Car;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
