@@ -3,28 +3,22 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 public class Cars {
 
     public static final String LIST_JOIN_DELIMITER = ", ";
     public static final String WINNER_MESSAGE = "가 최종 우승 했습니다.";
 
-    private List<Car> cars = new ArrayList<>();
-    private List<String> winners = new ArrayList<>();
+    private List<Car> cars;
+    private List<String> winners;
 
-    public static Cars toCars(String[] values) {
-        Cars cars = new Cars();
+    public Cars(String[] values) {
+        cars = new ArrayList<>();
+        winners = new ArrayList<>();
         for (String value : values) {
-            cars.addCar(new Car(value));
+            cars.add(new Car(value));
         }
-        return cars;
     }
-
-    public void addCar(Car car) {
-        cars.add(car);
-    }
-
     public void moveCars() {
         for (Car car : cars) {
             car.goForward();
