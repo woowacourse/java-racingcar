@@ -36,7 +36,7 @@ public class RacingCarGame {
 
         return carRepository.getCars()
                 .stream()
-                .map(car -> new CarVO(car.getName(), car.getPosition()))
+                .map(CarVO::new)
                 .collect(Collectors.toList());
     }
 

@@ -27,9 +27,8 @@ public class CarRepository {
     public List<String> findWinner() {
         cars.sort(Collections.reverseOrder());
 
-        int winnerPosition = cars.get(WINNER_POSITION).getPosition();
         return cars.stream()
-                .filter(car -> car.getPosition() == winnerPosition)
+                .filter(car -> car.isWinner(cars.get(WINNER_POSITION)))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }

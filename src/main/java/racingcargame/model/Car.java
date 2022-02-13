@@ -21,6 +21,10 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
+    boolean isWinner(Car winner) {
+        return position == winner.getPosition();
+    }
+
     void moveCar() {
         if (isMoveCar()) {
             position ++;

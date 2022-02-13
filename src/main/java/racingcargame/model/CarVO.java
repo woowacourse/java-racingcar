@@ -4,9 +4,9 @@ public class CarVO {
     private final String name;
     private final int position;
 
-    public CarVO(final String name, final int position) {
-        this.name = name;
-        this.position = position;
+    public CarVO(Car car) {
+        name = car.getName();
+        position = car.getPosition();
     }
 
     public int getPosition() {
