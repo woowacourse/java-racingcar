@@ -1,12 +1,14 @@
 package racingcar.domain;
 
 import java.util.Objects;
+import java.util.function.Function;
 
+import racingcar.domain.strategy.FixedMovingStrategy;
 import racingcar.domain.strategy.MovingStrategy;
-import racingcar.domain.strategy.MovingStrategyFactory;
+import racingcar.domain.strategy.RandomMovingStrategy;
 import racingcar.domain.vo.CarName;
 
-public class Car implements Comparable<Car> {
+public class Car {
 
 	private CarName name;
 	private int position = 0;
@@ -21,11 +23,11 @@ public class Car implements Comparable<Car> {
 	}
 
 	public static Car createRandomMovingCar(String name) {
-		return new Car(name, MovingStrategyFactory.randomMovingCar());
+		return new Car(name, new RandomMovingStrategy());
 	}
 
 	public static Car createFixedMovingCar(String name) {
-		return new Car(name, MovingStrategyFactory.fixedMovingCar());
+		return new Car(name, new FixedMovingStrategy());
 	}
 
 	public int getPosition() {
@@ -50,8 +52,16 @@ public class Car implements Comparable<Car> {
 		return position == maxCar.position;
 	}
 
-	public int compareTo(Car s) {
-		return position - s.position;
+	public int comparePositionTo(Car other) {
+		return compareTo((Car otherCar) -> this.position - otherCar.position, other);
+	}
+
+	public int compareNameTo(Car other) {
+		return compareTo((Car otherCar) -> this.name.get().compareTo(other.getName()), other);
+	}
+
+	public int compareTo(Function<Car, Integer> function, Car other) {
+		return function.apply(other);
 	}
 
 	@Override

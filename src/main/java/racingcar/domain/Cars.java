@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.domain.strategy.MovingStrategy;
-
 public class Cars {
 
 	private static final String NOT_FOUND_CARS_MESSAGE = "[ERROR] 자동차를 찾을 수 없습니다.";
@@ -18,7 +16,7 @@ public class Cars {
 	}
 
 	public Cars(String carNames) {
-		String[] parseCarNames = parseCarNames(carNames);
+		String[] parseCarNames = splitCarNames(carNames);
 
 		for (String carName : parseCarNames) {
 			Car car = Car.createRandomMovingCar(carName);
@@ -30,8 +28,8 @@ public class Cars {
 		return cars;
 	}
 
-	private String[] parseCarNames(String input) {
-		input = input.replaceAll(" ", "");
+	private String[] splitCarNames(String input) {
+		input = input.replaceAll("\\s", "");
 		return input.split(CAR_NAME_DELIMINATOR);
 	}
 
@@ -46,7 +44,7 @@ public class Cars {
 
 	private Car getMaxPositionCar() {
 		return cars.stream()
-			.max(Car::compareTo)
+			.max(Car::comparePositionTo)
 			.stream()
 			.findAny()
 			.orElseThrow(() -> new RuntimeException(NOT_FOUND_CARS_MESSAGE));

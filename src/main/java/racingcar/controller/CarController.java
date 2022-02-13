@@ -1,13 +1,9 @@
 package racingcar.controller;
 
-import static racingcar.domain.Cars.*;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.strategy.MovingStrategy;
 import racingcar.repository.CarRepository;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -67,7 +63,7 @@ public class CarController {
 	}
 
 	public void end() {
-		InputView.terminate();
+		InputView.terminateScanner();
 	}
 
 	public void showWinners() {

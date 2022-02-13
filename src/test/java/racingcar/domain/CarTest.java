@@ -2,6 +2,9 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -15,7 +18,7 @@ import racingcar.domain.strategy.MovingStrategy;
 public class CarTest extends Car {
 
 	@Nested
-	@DisplayName("자동차 움직임 : ")
+	@DisplayName("자동차 움직임(Moving)")
 	class MovingTest {
 		@Test
 		@DisplayName("움직일 때")
@@ -75,12 +78,14 @@ public class CarTest extends Car {
 	@Nested
 	@DisplayName("자동차들을 생성시 이름에 ")
 	class CarNamesTest {
-		@Test
+
+		@ParameterizedTest
+		@ValueSource(strings = {"panda,philz,javajigi", "aaa, bb@bb, cc"})
 		@DisplayName("허용되지 않는 문자를 입력했을 때")
-		public void input_all_car_name_exception() {
+		public void input_all_car_name_exception(String carNames) {
 			assertThatThrownBy(
 				() -> Assertions.assertDoesNotThrow(
-					() -> new Cars("panda,philz,javajigi")
+					() -> new Cars(carNames)
 				));
 		}
 
@@ -93,5 +98,4 @@ public class CarTest extends Car {
 			);
 		}
 	}
-
 }

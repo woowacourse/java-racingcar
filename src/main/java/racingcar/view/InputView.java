@@ -21,7 +21,7 @@ public class InputView {
 		return Integer.parseInt(scanner.nextLine());
 	}
 
-	public static void terminate() {
+	public static void terminateScanner() {
 		scanner.close();
 	}
 }
