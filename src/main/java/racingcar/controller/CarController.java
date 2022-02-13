@@ -1,5 +1,7 @@
 package racingcar.controller;
 
+import static racingcar.domain.Cars.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,16 +14,12 @@ import racingcar.view.OutputView;
 
 public class CarController {
 
-	private static final String NOT_FOUND_CARS_MESSAGE = "[ERROR] 자동차를 찾을 수 없습니다.";
-
 	private final CarRepository carRepository;
-	private final MovingStrategy movingStrategy;
 
 	private int roundNumber;
 
-	public CarController(CarRepository carRepository, MovingStrategy movingStrategy) {
+	public CarController(CarRepository carRepository) {
 		this.carRepository = carRepository;
-		this.movingStrategy = movingStrategy;
 	}
 
 	public void initGame() {
@@ -32,7 +30,7 @@ public class CarController {
 	private void initCars() {
 
 		String carNames = InputView.inputCarNames();
-		Cars cars = new Cars(carNames, movingStrategy);
+		Cars cars = new Cars(carNames);
 		List<Car> carList = cars.get();
 		carRepository.addCars(carList);
 	}
@@ -54,30 +52,26 @@ public class CarController {
 		OutputView.showCurrentStatus(cars);
 	}
 
+	public List<Car> getWinners() {
+		List<Car> findCars = carRepository.findAll();
+
+		Cars cars = new Cars(findCars);
+
+		return cars.getWinners();
+	}
+
 	public void moveCars(List<Car> cars) {
 		for (Car car : cars) {
 			car.move();
 		}
 	}
 
-	public List<Car> getWinners() {
-		List<Car> cars = carRepository.findAll();
-
-		Car maxCar = cars.stream()
-			.max(Car::compareTo)
-			.stream()
-			.findAny()
-			.orElseThrow(() -> new RuntimeException(NOT_FOUND_CARS_MESSAGE));
-
-		List<Car> winners = cars.stream()
-			.filter(car -> car.isSamePosition(maxCar))
-			.collect(Collectors.toList());
-
-		return winners;
+	public void end() {
+		InputView.terminate();
 	}
 
-	public void turnOffGame() {
-		InputView.terminate();
-		OutputView.showGameResult(getWinners());
+	public void showWinners() {
+		List<Car> winners = getWinners();
+		OutputView.showGameResult(winners);
 	}
 }

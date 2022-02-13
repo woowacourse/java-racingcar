@@ -30,7 +30,7 @@ public class CarControllerTest {
         car3 = Car.createFixedMovingCar("bar");
 
         carRepository = new CarRepository();
-        carController = new CarController(carRepository, onlyMoveStrategy);
+        carController = new CarController(carRepository);
     }
 
     @Test

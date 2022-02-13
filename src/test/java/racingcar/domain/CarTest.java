@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.strategy.MovingStrategy;
 
 @DisplayName("자동차 도메인 TEST")
-public class CarTest extends Car{
+public class CarTest extends Car {
 
 	@Nested
 	@DisplayName("자동차 움직임 : ")
@@ -70,8 +70,8 @@ public class CarTest extends Car{
 				() -> Car.createRandomMovingCar(carName)
 			);
 		}
-
 	}
+
 	@Nested
 	@DisplayName("자동차들을 생성시 이름에 ")
 	class CarNamesTest {
