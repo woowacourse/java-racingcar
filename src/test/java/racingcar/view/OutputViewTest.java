@@ -19,7 +19,7 @@ class OutputViewTest {
         car.attemptToMove(4);
 
         //when
-        String result = OutputView.makePositionString(car);
+        String result = OutputView.makePositionString(car.getPosition());
 
         //then
         assertThat(result).isEqualTo(expected);

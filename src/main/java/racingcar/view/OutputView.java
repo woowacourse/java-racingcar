@@ -2,6 +2,7 @@ package racingcar.view;
 
 import racingcar.domain.Car;
 import racingcar.domain.CarName;
+import racingcar.domain.Position;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +17,7 @@ public class OutputView {
     public static void printResult(List<Car> cars) {
         for (Car car : cars) {
             String result = car.getName() + BLANK + NAME_POSITION_SEPARATOR + BLANK;
-            result += makePositionString(car);
+            result += makePositionString(car.getPosition());
             System.out.println(result);
         }
         newLine();
@@ -26,9 +27,9 @@ public class OutputView {
         System.out.println();
     }
 
-    static String makePositionString(Car car) {
+    static String makePositionString(Position position) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < car.getPosition(); i++) {
+        for (int i = 0; i < position.getInt(); i++) {
             sb.append(POSITION_UNIT);
         }
         return sb.toString();

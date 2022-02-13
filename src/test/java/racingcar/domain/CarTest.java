@@ -20,26 +20,24 @@ public class CarTest {
     void 자동차는_4이상일_경우_전진한다() {
         // given
         Car car = new Car(carName1);
-        int beforeMove = car.getPosition();
         int number = 4;
+        Position afterMove = new Position(2);
         // when
         car.attemptToMove(number);
         // then
-        assertThat(beforeMove).isEqualTo(1);
-        assertThat(car.getPosition()).isEqualTo(2);
+        assertThat(car.getPosition()).isEqualTo(afterMove);
     }
 
     @Test
     void 자동차는_3이하일_경우_멈춘다() {
         // given
         Car car = new Car(carName1);
-        int beforeMove = car.getPosition();
         int number = 3;
+        Position afterMove = new Position(1);
         // when
         car.attemptToMove(number);
         // then
-        assertThat(beforeMove).isEqualTo(1);
-        assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(car.getPosition()).isEqualTo(afterMove);
     }
 
     @Test

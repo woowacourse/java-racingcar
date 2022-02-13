@@ -5,20 +5,20 @@ public class Car implements Comparable<Car> {
     private static final int INIT_POSITION = 1;
     private static final int LOWER_MOVABLE_BOUND = 4;
 
-    private int position = INIT_POSITION;
-    private CarName name;
+    private Position position = new Position(INIT_POSITION);
+    private final CarName name;
 
     public Car(CarName name) {
         this.name = name;
     }
 
-    public int getPosition() {
+    public Position getPosition() {
         return position;
     }
 
     public void attemptToMove(int number) {
         if (isMovable(number)) {
-            position++;
+            this.position = position.move();
         }
     }
 
@@ -27,12 +27,12 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public int compareTo(Car o) {
-        return position - o.position;
+    public int compareTo(Car other) {
+        return position.compareTo(other.getPosition());
     }
 
     public boolean isSamePositionWith(Car competitor) {
-        return this.position == competitor.position;
+        return this.position.equals(competitor.position);
     }
 
     public CarName getName() {
