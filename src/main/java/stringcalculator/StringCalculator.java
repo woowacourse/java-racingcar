@@ -31,21 +31,16 @@ public class StringCalculator {
     }
 
     private int[] parseToInts(final String[] tokens) {
-        validate(tokens);
         return Arrays.stream(tokens)
+                .filter(token -> validate(token))
                 .mapToInt(Integer::parseInt)
                 .toArray();
     }
 
-
-    private void validate(final String[] tokens) {
-        if (hasContainsNotPositiveNumber(tokens)) {
+    private boolean validate(final String token) {
+        if (token.matches(POSITIVE_NUMBER_REGEX)) {
             throw new RuntimeException("피연산자에 양의 정수 혹은 0이 아닌 값이 있습니다.");
         }
-    }
-
-    private boolean hasContainsNotPositiveNumber(final String[] tokens) {
-        return Arrays.stream(tokens)
-                .anyMatch(token -> !token.matches(POSITIVE_NUMBER_REGEX));
+        return true;
     }
 }
