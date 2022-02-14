@@ -26,18 +26,14 @@ public class StringCalculator {
         return input == null || input.isBlank();
     }
 
+    private static void getMatcher(String input) {
+        matcher = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
+    }
+
     private static int getSum(String input) {
         return Arrays.stream(split(input))
                 .mapToInt(StringCalculator::convertStringToNaturalNumber)
                 .sum();
-    }
-
-    private static int convertStringToNaturalNumber(String string) {
-        int converted = Integer.parseInt(string);
-        if (converted < 0) {
-            throw new RuntimeException();
-        }
-        return converted;
     }
 
     private static String[] split(String input) {
@@ -55,7 +51,11 @@ public class StringCalculator {
         return String.format("[%s%s]", matcher.group(GET_CUSTOM_DELIMITER), DEFAULT_DELIMITER);
     }
 
-    private static void getMatcher(String input) {
-        matcher = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
+    private static int convertStringToNaturalNumber(String string) {
+        int converted = Integer.parseInt(string);
+        if (converted < 0) {
+            throw new RuntimeException();
+        }
+        return converted;
     }
 }
