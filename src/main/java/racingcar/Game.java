@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Game {
 
@@ -57,12 +58,10 @@ public class Game {
     }
 
     private List<String> findWinnerByPosition(int maxPosition, List<Car> cars) {
-        List<String> winners = new ArrayList<>();
-
-        cars.stream()
-            .filter(car -> car.getPosition() == maxPosition)
-            .forEach(x -> winners.add(x.getName()));
-        return winners;
+        return cars.stream()
+            .filter(car -> car.isSamePosition(maxPosition))
+            .map(Car::getName)
+            .collect(Collectors.toList());
     }
 
     private String[] inputCarNames() {
