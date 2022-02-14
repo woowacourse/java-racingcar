@@ -10,16 +10,16 @@ class CountValidatorTest {
 	public void 빈_문자열_입력된_경우() {
 		String inputString = "";
 		assertThatThrownBy(() -> {
-			CountValidator.checkNull(inputString);
-		}).isInstanceOf(Exception.class);
+			CountValidator.checkInputString(inputString);
+		}).hasMessage("시도할 횟수가 입력되지 않았습니다.");
 	}
 
 	@Test
 	public void 숫자가_아닐_경우() {
 		String inputString = "a";
 		assertThatThrownBy(() -> {
-			CountValidator.checkNotNumber(inputString);
-		}).isInstanceOf(Exception.class);
+			CountValidator.checkInputString(inputString);
+		}).hasMessage("숫자가 아닌 값이 입력되었습니다.");
 	}
 
 	@Test
@@ -27,7 +27,7 @@ class CountValidatorTest {
 		int count = 0;
 		assertThatThrownBy(() -> {
 			CountValidator.checkCountIsZero(count);
-		}).isInstanceOf(Exception.class);
+		}).hasMessage("0회 이하는 게임을 진행할 수 없습니다.");
 	}
 
 }
