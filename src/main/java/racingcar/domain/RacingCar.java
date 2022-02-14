@@ -21,7 +21,7 @@ public class RacingCar {
     }
 
     private void checkNameLength(String name) {
-        if (name.length() > NAME_MAX_LENGTH) {
+        if (name != null && name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 5자를 초과할 수 없다.");
         }
     }
