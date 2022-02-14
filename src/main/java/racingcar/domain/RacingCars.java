@@ -13,11 +13,12 @@ public class RacingCars {
     private static final int FIRST_ELEMENT = 0;
 
     private final List<RacingCar> cars;
-    private final RacingCarCommander commander = new RacingCarCommander();
+    private final MovingStrategy movingStrategy;
 
-    public RacingCars(String carStringNames) {
+    public RacingCars(String carStringNames, MovingStrategy movingStrategy) {
         isEmpty(carStringNames);
         this.cars = makeRacingCars(carStringNames.split(CAR_NAME_DELIMITER));
+        this.movingStrategy = movingStrategy;
         checkCarsEmpty();
     }
 
@@ -61,7 +62,7 @@ public class RacingCars {
     }
 
     private void moveCar(RacingCar car) {
-        if(commander.isMovable()) {
+        if(movingStrategy.isMovable()) {
             car.move();
         }
     }

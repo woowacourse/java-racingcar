@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.domain.RacingCarCommander;
 import racingcar.domain.RacingCars;
 import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
@@ -16,7 +17,7 @@ public class RacingCarController {
     }
 
     public void run() {
-        RacingCars racingCars = new RacingCars(inputView.inputCarNames());
+        RacingCars racingCars = new RacingCars(inputView.inputCarNames(), new RacingCarCommander());
         int tryCount = inputView.inputTryCount();
 
         RacingGame game = new RacingGame(racingCars, tryCount);
