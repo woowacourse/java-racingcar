@@ -21,7 +21,7 @@ public class GameTest {
 
     @BeforeEach
     void beforeEach() {
-        carRepository.clear();
+        clearDatabase();
         game = new Game(new String[]{"pobi", "jeong", "roma"}, TOTAL_ROUNDS);
     }
 
@@ -43,7 +43,7 @@ public class GameTest {
     @DisplayName("getWinners 메서드는 cars 인스턴스가 존재하지 않는 경우 예외를 발생시키지 않는다")
     @Test
     void getWinners_noErrorOnNoCars() {
-        carRepository.clear();
+        clearDatabase();
 
         List<Car> winners = game.getWinners();
         List<Car> emptyList = new ArrayList<>();
@@ -63,5 +63,9 @@ public class GameTest {
         }
 
         assertThat(game.isOver()).isEqualTo(result);
+    }
+
+    private void clearDatabase() {
+        carRepository.findAllCars().clear();
     }
 }
