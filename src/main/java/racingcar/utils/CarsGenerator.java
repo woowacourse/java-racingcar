@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
-import racingcar.validator.CarNameValidator;
+import racingcar.utils.validator.CarNameValidator;
 
 public class CarsGenerator {
     private static final String NAME_DELIMITER = ",";

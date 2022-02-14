@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import racingcar.domain.Car;
 import racingcar.utils.CarsGenerator;
-import racingcar.validator.RoundNumberValidator;
+import racingcar.utils.validator.RoundNumberValidator;
 
 public class RacingCarInput {
     private static final Scanner scanner = new Scanner(System.in);

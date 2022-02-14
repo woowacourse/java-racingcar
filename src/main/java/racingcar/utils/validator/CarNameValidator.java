@@ -1,4 +1,4 @@
-package racingcar.validator;
+package racingcar.utils.validator;
 
 public class CarNameValidator {
     private static final String NULL_OR_EMPTY_NAME_ERROR_MESSAGE = "유효하지 않은 이름입니다.";
