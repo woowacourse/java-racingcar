@@ -1,18 +1,37 @@
 package racingcar.utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class StubNumberGenerator implements NumberGenerator{
 
-    private static final int NOT_MOVABLE = 3;
-    private static final int MOVABLE = 4;
+    private final List<Integer> numbers = new ArrayList<>();
+    private int index;
 
-    private int[] numbers = new int[]{NOT_MOVABLE, MOVABLE, MOVABLE, NOT_MOVABLE};
-    private int sequence = 0;
+    public void prepareStubNumbers(int count, int ... values) {
+        if (values.length != count) {
+            throw new AssertionError("put as many values as the count");
+        }
+        Arrays.stream(values)
+                .forEach(value -> {
+                    checkValueRange(value);
+                    numbers.add(value);
+                });
+        index = 0;
+    }
+
+    private void checkValueRange(int value) {
+        if (value < 0 || value >= 10) {
+            throw new AssertionError("put value that is between 0 and 9");
+        }
+    }
 
     @Override
     public int generate() {
-        if (sequence == 4) {
-            sequence = 0;
+        if (index >= numbers.size()) {
+            throw new AssertionError("index out of bounds");
         }
-        return numbers[sequence++];
+        return numbers.get(index++);
     }
 }
