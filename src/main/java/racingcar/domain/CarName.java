@@ -7,7 +7,7 @@ import racingcar.utils.Validator;
 public class CarName {
     private final String name;
 
-    public CarName(String name) {
+    public CarName(final String name) {
         Validator.checkName(name);
         this.name = name;
     }

@@ -12,14 +12,15 @@ class OutputViewTest {
     @Test
     void 결과_문자열을_생성한다() {
         // given
-        String expected = "---";
+        final String expected = "---";
+        final boolean moveForward = true;
 
-        Car car = new Car(new CarName("pobi"));
-        car.attemptToMove(4);
-        car.attemptToMove(4);
+        final Car car = new Car(new CarName("pobi"));
+        car.attemptToMove(moveForward);
+        car.attemptToMove(moveForward);
 
         //when
-        String result = OutputView.makePositionString(car.getPosition());
+        final String result = OutputView.makePositionString(car.getPosition());
 
         //then
         assertThat(result).isEqualTo(expected);

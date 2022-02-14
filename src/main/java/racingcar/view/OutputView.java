@@ -14,8 +14,8 @@ public class OutputView {
     public static final String POSITION_UNIT = "-";
     public static final String WINNERS_DELIMITER = ",";
 
-    public static void printResult(List<Car> cars) {
-        for (Car car : cars) {
+    public static void printResult(final List<Car> cars) {
+        for (final Car car : cars) {
             String result = car.getName() + BLANK + NAME_POSITION_SEPARATOR + BLANK;
             result += makePositionString(car.getPosition());
             System.out.println(result);
@@ -27,16 +27,16 @@ public class OutputView {
         System.out.println();
     }
 
-    static String makePositionString(Position position) {
-        StringBuilder sb = new StringBuilder();
+    static String makePositionString(final Position position) {
+        final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < position.get(); i++) {
             sb.append(POSITION_UNIT);
         }
         return sb.toString();
     }
 
-    public static void printWinners(List<Car> winners) {
-        String result = winners.stream()
+    public static void printWinners(final List<Car> winners) {
+        final String result = winners.stream()
             .map(Car::getName)
             .map(CarName::toString)
             .collect(Collectors.joining(WINNERS_DELIMITER + BLANK));

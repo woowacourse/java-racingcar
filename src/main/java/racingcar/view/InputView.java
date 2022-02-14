@@ -12,7 +12,7 @@ public class InputView {
         return getCarNames(scanner.nextLine());
     }
 
-    private static String getCarNames(String input) {
+    private static String getCarNames(final String input) {
         try {
             Validator.checkBlankOrNull(input);
             return input;
@@ -24,11 +24,11 @@ public class InputView {
 
     public static int getCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        String input = scanner.nextLine();
+        final String input = scanner.nextLine();
         return parseInt(input);
     }
 
-    private static int parseInt(String input) {
+    private static int parseInt(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

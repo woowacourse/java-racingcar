@@ -8,7 +8,7 @@ public class ValidatorTest {
 
     @Test
     void 이름_길이가_6이상인_경우_예외발생() {
-        String nameString = "pobi,jason11";
+        final String nameString = "pobi,jason11";
 
         assertThatThrownBy(() -> Validator.checkName(nameString))
             .isInstanceOf(RuntimeException.class)
@@ -17,7 +17,7 @@ public class ValidatorTest {
 
     @Test
     void 이름의_길이가_1보다_작은_경우_예외발생() {
-        String nameString = "pobi,,jason";
+        final String nameString = "pobi,,jason";
 
         assertThatThrownBy(() -> Validator.checkName(nameString))
             .isInstanceOf(RuntimeException.class)
@@ -26,7 +26,7 @@ public class ValidatorTest {
 
     @Test
     void 빈문자열이_입력된_경우_예외발생() {
-        String nameString = "";
+        final String nameString = "";
 
         assertThatThrownBy(() -> Validator.checkInput(nameString))
             .isInstanceOf(RuntimeException.class)
@@ -35,7 +35,7 @@ public class ValidatorTest {
 
     @Test
     void 쉼표만_입력된_경우_예외발생() {
-        String nameString = ",,";
+        final String nameString = ",,";
 
         assertThatThrownBy(() -> Validator.checkInput(nameString))
             .isInstanceOf(RuntimeException.class)
@@ -44,7 +44,7 @@ public class ValidatorTest {
 
     @Test
     void 이름이_중복인_경우() {
-        String nameString = "pobi,pobi";
+        final String nameString = "pobi,pobi";
 
         assertThatThrownBy(() -> Validator.checkInput(nameString))
             .isInstanceOf(RuntimeException.class)
@@ -53,7 +53,7 @@ public class ValidatorTest {
 
     @Test
     void 자동차_이름_수가_하나인_경우_예외발생() {
-        String nameString = "pobi";
+        final String nameString = "pobi";
 
         assertThatThrownBy(() -> Validator.checkInput(nameString))
             .isInstanceOf(RuntimeException.class)
@@ -62,7 +62,7 @@ public class ValidatorTest {
 
     @Test
     void 횟수_입력값이_숫자가_아닌_경우() {
-        String countString = "a";
+        final String countString = "a";
 
         assertThatThrownBy(() -> Validator.checkCount(countString))
             .isInstanceOf(RuntimeException.class)
@@ -71,7 +71,7 @@ public class ValidatorTest {
 
     @Test
     void 횟수_입력값이_1미만인_경우() {
-        String countString = "0";
+        final String countString = "0";
 
         assertThatThrownBy(() -> Validator.checkCount(countString))
             .isInstanceOf(RuntimeException.class)
@@ -80,7 +80,7 @@ public class ValidatorTest {
 
     @Test
     void 횟수_입력값이_50초과인_경우() {
-        String countString = "51";
+        final String countString = "51";
 
         assertThatThrownBy(() -> Validator.checkCount(countString))
             .isInstanceOf(RuntimeException.class)
