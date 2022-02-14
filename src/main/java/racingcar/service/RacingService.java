@@ -14,16 +14,23 @@ public class RacingService {
 
 	private static final CarRepository carRepository = new CarRepository();
 
-	public List<Car> registerCars(List<String> carNames) {
-		carNames.forEach(carName -> {
-			carRepository.addCar(Car.of(carName));
-		});
-		return carRepository.findCars();
+	public void registerCars(List<CarDto> carDtos) {
+		List<Car> cars = carDtos.stream()
+			.map(Car::of)
+			.collect(Collectors.toList());
+
+		carRepository.add(cars);
 	}
 
-	public void race(RandomUtil randomUtil) {
+	public List<CarDto> race(RandomUtil randomUtil) {
 		List<Car> cars = carRepository.findCars();
-		cars.forEach(car -> car.move(randomUtil.generate(RANDOM_VALUE_RANGE)));
+		cars.forEach(car -> {
+			car.move(randomUtil.generate(RANDOM_VALUE_RANGE));
+		});
+
+		return carRepository.findCars().stream()
+			.map(Car::toDto)
+			.collect(Collectors.toList());
 	}
 
 	public List<CarDto> findWinnerCars() {

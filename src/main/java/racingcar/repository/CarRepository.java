@@ -10,14 +10,15 @@ public class CarRepository {
 
 	private static final String EMPTY_CAR_ERROR_MESSAGE = "등록된 자동차가 없습니다.";
 
-	private static final ArrayList<Car> cars = new ArrayList<>();
+	private static final List<Car> cars = new ArrayList<>();
 
-	public void addCar(Car car) {
-		cars.add(car);
+	public List<Car> add(List<Car> cars) {
+		CarRepository.cars.addAll(cars);
+		return cars;
 	}
 
 	public List<Car> findCars() {
-		return new ArrayList<>(cars);
+		return cars;
 	}
 
 	public List<Car> findWinnerCars() {
@@ -33,5 +34,4 @@ public class CarRepository {
 	public void clear() {
 		cars.clear();
 	}
-
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import racingcar.domain.CarDto;
 import racingcar.util.Converter;
 import racingcar.validator.InputValidator;
 
@@ -16,12 +17,13 @@ public class InputView {
 
 	private static final Scanner scanner = new Scanner(System.in);
 
-	public static List<String> getCarNames() {
+	public static List<CarDto> getCars() {
 		System.out.println(CAR_NAMES_MESSAGE);
 		String input = scanner.nextLine();
 		InputValidator.ofCarNamesInput(input);
 
 		return Arrays.stream(input.split(SEPARATOR_OF_CAR_NAME))
+			.map(Converter::toCarDto)
 			.collect(Collectors.toList());
 	}
 

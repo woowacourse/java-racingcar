@@ -3,7 +3,6 @@ package racingcar.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.domain.Car;
 import racingcar.domain.CarDto;
 import racingcar.service.RacingService;
 import racingcar.util.RandomUtilImpl;
@@ -16,23 +15,19 @@ public class RacingController {
 	private final RandomUtilImpl randomUtil = new RandomUtilImpl();
 
 	public void start() {
-		List<String> carNames = InputView.getCarNames();
-		List<Car> cars = racingService.registerCars(carNames);
+		racingService.registerCars(InputView.getCars());
 
 		int attemptNumber = InputView.getAttemptNumber();
 
 		OutputView.printResultMessage();
-		play(attemptNumber, cars);
+		play(attemptNumber);
 		printRacingResult();
 	}
 
-	private void play(int attemptNumber, List<Car> cars) {
+	private void play(int attemptNumber) {
 		for (int i = 0; i < attemptNumber; i++) {
-			racingService.race(randomUtil);
-			OutputView.printRacingInfo(cars.stream()
-				.map(Car::toDto)
-				.collect(Collectors.toList())
-			);
+			List<CarDto> carDtos = racingService.race(randomUtil);
+			OutputView.printRacingInfo(carDtos);
 		}
 	}
 

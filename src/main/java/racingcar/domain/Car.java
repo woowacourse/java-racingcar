@@ -18,12 +18,21 @@ public class Car implements Comparable<Car> {
 		this.position = position;
 	}
 
+	private Car(CarDto carDto) {
+		this.name = carDto.getName();
+		this.position = carDto.getPosition();
+	}
+
 	public static Car of(String name) {
 		return new Car(name);
 	}
 
 	public static Car of(String name, int position) {
 		return new Car(name, position);
+	}
+
+	public static Car of(CarDto carDto) {
+		return new Car(carDto);
 	}
 
 	public void move(int movingValue) {
