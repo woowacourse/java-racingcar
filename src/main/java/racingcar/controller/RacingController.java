@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.service.RacingService;
 import racingcar.util.Converter;
+import racingcar.util.RandomUtil;
 import racingcar.util.RandomUtilImpl;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -13,7 +14,7 @@ import racingcar.view.OutputView;
 public class RacingController {
 
 	private final RacingService racingService = new RacingService();
-	private final RandomUtilImpl randomUtil = new RandomUtilImpl();
+	private final RandomUtil randomUtil = new RandomUtilImpl();
 
 	private static final String ATTEMPT_NUMBER_RANGE_ERROR_MESSAGE = "시도 횟수는 1회 이상이어야 합니다.";
 	private static final int MINIMUM_ATTEMPT_NUMBER = 1;
