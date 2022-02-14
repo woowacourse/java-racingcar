@@ -68,11 +68,6 @@ public class GameController {
     }
 
     private void endGame() {
-        OutputView.printWinnerName(findWinner(cars));
-    }
-
-    public String findWinner(Cars cars) {
-        int maxPosition = cars.findMaxPosition();
-        return cars.findWinnerName(maxPosition);
+        OutputView.printWinnerName(cars.findWinner());
     }
 }

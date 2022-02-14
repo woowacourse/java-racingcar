@@ -22,14 +22,19 @@ public class Cars {
         });
     }
 
-    public int findMaxPosition() {
+    public String findWinner() {
+        int maxPosition = findMaxPosition();
+        return findWinnerName(maxPosition);
+    }
+
+    private int findMaxPosition() {
         return cars.stream()
                 .map(Car::getPosition)
                 .max(Comparator.comparing(x -> x))
                 .orElse(MINIMUM_POSITION);
     }
 
-    public String findWinnerName(int maxPosition) {
+    private String findWinnerName(int maxPosition) {
         return cars.stream()
                 .filter(car -> maxPosition == car.getPosition())
                 .map(Car::getName)
