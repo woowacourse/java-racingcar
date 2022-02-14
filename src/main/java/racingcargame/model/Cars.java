@@ -40,8 +40,4 @@ public class Cars {
 			get().
 			getPosition();
 	}
-
-	public List<Car> getCars() {
-		return cars;
-	}
 }
