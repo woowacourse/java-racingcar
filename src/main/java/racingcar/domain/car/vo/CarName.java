@@ -10,8 +10,8 @@ public class CarName {
     private final String name;
 
     public CarName(final String value) {
-        validateLength(value);
         validateBlank(value);
+        validateLength(value);
         this.name = value;
     }
 
