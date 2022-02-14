@@ -34,5 +34,8 @@ public class Car {
 		System.out.print(this.name);
 	}
 
+	public boolean checkSamePosition(int maxPosition) {
+		return this.position == maxPosition;
+	}
 
 }

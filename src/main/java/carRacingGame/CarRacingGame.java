@@ -159,7 +159,7 @@ public class CarRacingGame {
 			maxPosition = car.getPosition();
 			return winners;
 		}
-		if (car.getPosition() == maxPosition) {
+		if (car.checkSamePosition(maxPosition)) {
 			winners.add(car);
 		}
 		return winners;
