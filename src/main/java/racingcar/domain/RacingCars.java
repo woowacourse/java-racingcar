@@ -10,7 +10,6 @@ public class RacingCars {
     private static final String CAR_NAME_DELIMITER = ",";
     private static final String NAME_BLANK = " ";
     private static final String NAME_NOT_BLANK = "";
-    private static final int FIRST_ELEMENT = 0;
 
     private final List<RacingCar> cars;
     private final MovingStrategy movingStrategy;
@@ -80,14 +79,8 @@ public class RacingCars {
     }
 
     private RacingCar searchAnyWinner() {
-        RacingCar anyWinner = cars.get(FIRST_ELEMENT);
-        for (RacingCar car : cars) {
-            anyWinner = getGreaterRacingCar(car, anyWinner);
-        }
-        return anyWinner;
+        return cars.stream()
+            .max(RacingCar::compareTo).get();
     }
 
-    private RacingCar getGreaterRacingCar(RacingCar racingCar, RacingCar anyWinner) {
-        return racingCar.compareTo(anyWinner) > 0 ? racingCar : anyWinner;
-    }
 }
