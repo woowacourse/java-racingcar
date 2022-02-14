@@ -6,6 +6,7 @@ import java.util.List;
 
 import racingcar.message.ErrorMessages;
 import racingcar.util.RandomGenerator;
+import racingcar.view.OutputView;
 
 public class Cars {
     private static final String NEW_LINE = System.lineSeparator();
@@ -33,14 +34,10 @@ public class Cars {
         return new Winners(cars);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
+    public void printCars() {
         for (Car car : cars) {
-            sb.append(car.toString())
-                    .append(NEW_LINE);
+            OutputView.printCarStatus(car);
         }
-        return sb.toString();
     }
 
     private void validateDuplicatedName(String[] carNames) {

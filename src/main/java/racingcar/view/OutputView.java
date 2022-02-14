@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.message.NoticeMessages;
+import racingcar.model.Car;
 
 public class OutputView {
     public static void printException(Exception exception) {
@@ -13,5 +14,9 @@ public class OutputView {
 
     public static void printString(String string) {
         System.out.println(string);
+    }
+
+    public static void printCarStatus(Car car) {
+        System.out.println(car.getName() + " : " + car.getPostionStatus());
     }
 }
