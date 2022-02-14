@@ -92,9 +92,9 @@ public class CarRacingGameTest {
 			.isInstanceOf(RuntimeException.class);
 	}
 
-	@DisplayName("최종 출력 결과 확인")
+	@DisplayName("자동차 경주 우승자 선정 결과 테스트")
 	@Test
-	void 최종_결과_출력_정상() {
+	void 자동차경주_우승자_선정_결과() {
 		List<Car> cars = new ArrayList<>();
 		List<Car> winners = new ArrayList<>();
 
