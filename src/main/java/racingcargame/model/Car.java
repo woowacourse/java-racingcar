@@ -2,7 +2,7 @@ package racingcargame.model;
 
 import racingcargame.utils.RandomNumberGenerator;
 
-public class Car implements Comparable<Car> {
+public class Car {
 	private static final int MIN_MOVE_NUMBER = 4;
 
 	private final String name;
@@ -32,10 +32,5 @@ public class Car implements Comparable<Car> {
 
 	private int pickMoveNumber() {
 		return RandomNumberGenerator.pickRandomNumber();
-	}
-
-	@Override
-	public int compareTo(Car car) {
-		return Integer.compare(position, car.getPosition());
 	}
 }

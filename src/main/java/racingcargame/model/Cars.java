@@ -2,6 +2,7 @@ package racingcargame.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,13 +27,18 @@ public class Cars {
 	}
 
 	List<String> findWinner() {
-		List<String> winnerName = new ArrayList<>();
-		cars.sort(Collections.reverseOrder());
-		int winnerPosition = cars.get(0).getPosition();
-		cars.stream().
-			filter(car -> car.getPosition() == winnerPosition).
-			forEach(car -> winnerName.add(car.getName()));
-		return winnerName;
+		int winnerPosition = findWinnerPosition();
+		return cars.stream()
+			.filter(car -> car.getPosition() == winnerPosition)
+			.map(Car::getName)
+			.collect(Collectors.toList());
+	}
+
+	private int findWinnerPosition() {
+		return cars.stream()
+			.max(Comparator.comparingInt(Car::getPosition)).
+			get().
+			getPosition();
 	}
 
 	public List<Car> getCars() {
