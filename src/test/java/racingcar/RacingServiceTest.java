@@ -22,7 +22,7 @@ public class RacingServiceTest {
 	@BeforeEach
 	public void init() {
 		racingService = new RacingService();
-		carRepository = new CarRepository();
+		carRepository = CarRepository.getInstance();
 		String input = "pobi,joon";
 		racingService.registerCars(Converter.toCarList(input));
 	}
