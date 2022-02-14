@@ -58,8 +58,10 @@
     - `IllegalStateException`를 사용하여 예외를 처리하도록 수정
     - `IllegalStateException`는 메소드 처리를 하려할 때 잘못된 상태가 된 경우 발생하는 예외이다.
 
-- [ ] FIXME Cars를 생성하는 책임을 Cars에게 줄 수 있다면?
+- [x] FIXME Cars를 생성하는 책임을 Cars에게 줄 수 있다면?
     - RacingCar
+    - RacingCar는 입력된 자동차 이름을 String 배열로 만들어서 Cars에게 주고 Cars가 자동차 객체들을 생성하여 List로 만들게 함.
+    - Cars를 RacingCar가 아닌 Cars가 생성하도록 하여 Cars에 대한 책임은 Cars에 모아두도록 수정함.
 
 - [ ] TODO 출력 형식이 바뀌어야 한다면 View와 Cars중 어느곳이 수정되어야 하는가?
     - Cars.repeatRaceBy()

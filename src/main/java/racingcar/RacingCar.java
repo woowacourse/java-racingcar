@@ -18,7 +18,7 @@ public class RacingCar {
   }
 
   public void play() {
-    Cars cars = createCars(splitCarNames(requestCarName()));
+    Cars cars = new Cars(splitCarNames(requestCarName()));
     Attempt attempt = new Attempt(requestAttempt());
     printRaceResult(cars.repeatRaceBy(attempt));
     printWinners(cars.findWinners());
@@ -26,15 +26,6 @@ public class RacingCar {
 
   private String[] splitCarNames(String carNames) {
     return carNames.split(CAR_NAME_DELIMITER);
-  }
-
-  // FIXME Cars를 생성하는 책임을 Cars에게 줄 수 있다면?
-  private Cars createCars(String[] names) {
-    Cars cars = new Cars();
-    for (String name : names) {
-      cars.add(createCar(name));
-    }
-    return cars;
   }
 
   private Car createCar(String name) {

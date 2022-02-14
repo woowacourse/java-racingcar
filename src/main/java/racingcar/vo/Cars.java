@@ -14,13 +14,13 @@ public class Cars {
 
   private List<Car> cars;
 
-  public Cars() {
+  public Cars(String[] names) {
     cars = new ArrayList<>();
-  }
-
-  public void add(Car car) {
-    validateDuplicateCarName(car);
-    cars.add(car);
+    for (String name : names) {
+      Car car = new Car(new CarName(name));
+      validateDuplicateCarName(car);
+      cars.add(car);
+    }
   }
 
   // TODO 출력 형식이 바뀌어야 한다면 View와 Cars중 어느곳이 수정되어야 하는가?
