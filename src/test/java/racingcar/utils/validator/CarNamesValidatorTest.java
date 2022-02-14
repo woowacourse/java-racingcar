@@ -1,10 +1,8 @@
-package racingcar.validator;
+package racingcar.utils.validator;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-
-import racingcar.utils.validator.CarNamesValidator;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarNamesValidatorTest {
