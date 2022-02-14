@@ -27,7 +27,7 @@ public class CountValidator {
 		}
 	}
 
-	public static void checkCountIsZero(int count) throws Exception {
+	public static void checkCountIsZero(int count) {
 		if (count == COUNT_ZERO_CRITERIA) {
 			throw new IllegalArgumentException(COUNT_ZERO_ERROR_MSG);
 		}

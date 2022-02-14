@@ -34,31 +34,31 @@ public class NameValidator {
 		}
 	}
 
-	public static void checkSpace(String name) throws Exception {
+	public static void checkSpace(String name) {
 		if (name.trim().isEmpty()) {
 			throw new IllegalArgumentException(NAME_EMPTY_ERROR_MSG);
 		}
 	}
 
-	public static void checkNameSize(String name) throws Exception {
+	public static void checkNameSize(String name) {
 		if (name.length() > MAXIMUM_NAME_SIZE) {
 			throw new IllegalArgumentException(NAME_MAX_SIZE_WARNING_MSG);
 		}
 	}
 
-	public static void checkSpecialChar(String name) throws Exception {
+	public static void checkSpecialChar(String name) {
 		if (!Pattern.matches(SPACIAL_CHAR_REGEX, name)) {
 			throw new IllegalArgumentException(NAME_SPATIAL_CHAR_WARNING_MSG);
 		}
 	}
 
-	public static void checkNameIsOne(List<String> nameList) throws Exception {
+	public static void checkNameIsOne(List<String> nameList) {
 		if (nameList.size() <= MINIMUM_NAME_LIST_SIZE) {
 			throw new IllegalArgumentException(CAR_NUMBER_IS_ONE_WARNING_MSG);
 		}
 	}
 
-	public static void checkDuplicatedName(List<String> nameList) throws Exception {
+	public static void checkDuplicatedName(List<String> nameList) {
 		Set<String> nameSet = new HashSet<>(nameList);
 		if (nameSet.size() != nameList.size()) {
 			throw new IllegalArgumentException(NAME_DUPLICATION_WARNING_MSG);
