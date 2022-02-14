@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Cars;
 
 import java.util.List;
 
@@ -18,11 +17,25 @@ class CarsTest {
     }
 
     @Test
-    void findWinner() {
-        Cars cars = new Cars(new String[]{"pobi", "cloy"});
+    @DisplayName("가장 멀리간 자동차 한대를 찾을 수 있는가")
+    void findOneWinner() {
+        Cars cars = new Cars(new String[]{"pobi"});
         Car elsa = new Car("elsa", 3);
         cars.addCar(elsa);
         List<Car> winners = cars.findWinners();
         assertThat(winners).contains(elsa);
     }
+
+    @Test
+    @DisplayName("가장 멀리간 자동차를 모두 찾을 수 있는가")
+    void findMultiWinner() {
+        Cars cars = new Cars(new String[]{"pobi"});
+        Car elsa = new Car("elsa", 3);
+        Car woods = new Car("woods", 3);
+        cars.addCar(elsa);
+        cars.addCar(woods);
+        List<Car> winners = cars.findWinners();
+        assertThat(winners).containsExactly(elsa,woods);
+    }
+
 }
