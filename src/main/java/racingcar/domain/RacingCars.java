@@ -75,7 +75,8 @@ public class RacingCars {
 
     private RacingCar searchAnyWinner() {
         return cars.stream()
-            .max(RacingCar::compareTo).get();
+            .max(RacingCar::compareTo)
+                .orElseThrow(() -> new RuntimeException("승자를 찾을 수 없다."));
     }
 
 }
