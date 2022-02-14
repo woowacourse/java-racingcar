@@ -13,30 +13,29 @@ public class Calculator {
         this.separator = separator;
     }
 
-    public int splitAndSum(String targetValue) {
-        if (isNullOrEmpty(targetValue)) {
+    public int splitAndSum(String text) {
+        if (isNullOrEmpty(text)) {
             return 0;
         }
 
-        List<String> splitValues = separator.splitByUnits(targetValue);
-        List<Integer> splitNumbers = parseValuesAsNumber(splitValues);
-
+        List<String> splitValues = separator.splitByUnits(text);
+        List<Integer> splitNumbers = parseAsNumbers(splitValues);
         return sumNumber(splitNumbers);
     }
 
-    private boolean isNullOrEmpty(String value) {
-        return (value == null || value.isEmpty());
+    private boolean isNullOrEmpty(String text) {
+        return (text == null || text.isEmpty());
     }
 
-    private List<Integer> parseValuesAsNumber(List<String> values) {
+    private List<Integer> parseAsNumbers(List<String> values) {
         return values.stream()
-                .map(this::parseValueAsNumber)
+                .map(this::parseAsNumber)
                 .collect(Collectors.toList());
     }
 
-    private int parseValueAsNumber(String value) {
+    private int parseAsNumber(String text) {
         try {
-            int number = Integer.parseInt(value);
+            int number = Integer.parseInt(text);
             NumberValidator.validateNumber(number);
             return number;
         } catch (NumberFormatException exception) {
@@ -44,8 +43,8 @@ public class Calculator {
         }
     }
 
-    private int sumNumber(List<Integer> splitNumbers) {
-        return splitNumbers.stream()
+    private int sumNumber(List<Integer> numbers) {
+        return numbers.stream()
                 .mapToInt(number -> number)
                 .sum();
     }

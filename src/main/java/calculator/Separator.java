@@ -1,41 +1,43 @@
 package calculator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Separator {
 
-    private static final List<String> STANDARD_UNITS = new ArrayList<>(Arrays.asList(",", ":"));
-    private static final String SEPARATOR_DELIMITER = "|";
-    private static final String CUSTOM_FORMAT_REGEX = "//(.*)\n(.*)";
+    private static final Pattern CUSTOM_SEPARATOR_PATTERN = Pattern.compile("//(.*)\n(.*)");
+    private static final String STANDARD_UNITS = ",:";
+    private static final String SEPARATOR_FORMAT = "[%s]";
+    private static final String emptyString = "";
 
-    public List<String> splitByUnits(String targetValue) {
-        List<String> customUnits = extractCustomUnits(targetValue);
-        customUnits.addAll(STANDARD_UNITS);
-
-        targetValue = extractOriginalString(targetValue);
-
-        String separatorRegex = String.join(SEPARATOR_DELIMITER, customUnits);
-        return Arrays.asList(targetValue.split(separatorRegex));
+    public List<String> splitByUnits(final String text) {
+        String unitsForSeparate = extractCustomUnits(text) + STANDARD_UNITS;
+        String regexForSeparate = String.format(SEPARATOR_FORMAT, unitsForSeparate);
+        String targetString = extractString(text);
+        return Arrays.asList(targetString.split(regexForSeparate));
     }
 
-    private List<String> extractCustomUnits(String targetValue) {
-        Matcher matcher = Pattern.compile(CUSTOM_FORMAT_REGEX).matcher(targetValue);
-        if (matcher.find()) {
-            return new ArrayList<>(Arrays.asList(matcher.group(1).split("")));
-        }
-        return new ArrayList<>();
+    private String extractCustomUnits(String text) {
+        int indexOfUnits = 1;
+        return extractIndexByPattern(text, indexOfUnits)
+                .orElse(emptyString);
     }
 
-    private String extractOriginalString(String targetValue) {
-        Matcher matcher = Pattern.compile(CUSTOM_FORMAT_REGEX).matcher(targetValue);
+    private String extractString(String text) {
+        int indexOfTargetString = 2;
+        return extractIndexByPattern(text, indexOfTargetString)
+                .orElse(text);
+    }
+
+    private Optional<String> extractIndexByPattern(String targetValue, int index) {
+        Matcher matcher = CUSTOM_SEPARATOR_PATTERN.matcher(targetValue);
         if (matcher.find()) {
-            targetValue = matcher.group(2);
+            return Optional.ofNullable(matcher.group(index));
         }
-        return targetValue;
+        return Optional.empty();
     }
 
 }
