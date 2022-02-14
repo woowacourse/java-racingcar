@@ -4,95 +4,73 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import racingcar.domain.car.CarCollection;
 import racingcar.domain.car.CarStatusDto;
+import racingcar.exception.RacingCarException;
 import racingcar.exception.car.CarNameDuplicatedException;
 import racingcar.exception.car.CarNameEmptyException;
 import racingcar.exception.car.CarNameNullException;
 import racingcar.exception.car.CarNameTooLongException;
 import racingcar.service.picker.CustomNumberPicker;
 
-
-@SuppressWarnings("NonAsciiCharacters")
 public class CarCollectionTest {
 
-    private void exceptionTest(Class throwableClass, List<String> carNames) {
-        assertThrows(throwableClass, () -> new CarCollection(carNames)
+    private static final String providerPath = "racingcar.domain.provider.CarCollectionTestProvider#";
+
+    private void exceptionTest(Class<? extends RacingCarException> exceptionClass, List<String> carNames) {
+        assertThrows(exceptionClass, () -> new CarCollection(carNames)
         );
     }
 
+    @DisplayName("자동차 이름은 NULL이 될 수 없다")
     @ParameterizedTest
-    @MethodSource("provideValuesForLengthException")
-    void 자동차이름_길이_예외처리(List<String> names) {
-        exceptionTest(CarNameTooLongException.class, names);
-    }
-
-    public static Stream<Arguments> provideValuesForLengthException() {
-        return Stream.of(
-            Arguments.of(Arrays.asList("slow", "if", "hanull")),
-            Arguments.of(Arrays.asList("sinb57", "slow", "if")),
-            Arguments.of(Arrays.asList("sinb57", "slow", "if", "hanull"))
-        );
-    }
-
-    @ParameterizedTest
-    @MethodSource("provideValuesForNullException")
-    void 자동차이름_null_예외처리(List<String> names) {
+    @MethodSource(providerPath + "provideForNullExceptionTest")
+    void carNameNullExceptionTest(List<String> names) {
         exceptionTest(CarNameNullException.class, names);
     }
 
-    public static Stream<Arguments> provideValuesForNullException() {
-        return Stream.of(
-                Arguments.of(Arrays.asList("if", null, "hanul")),
-                Arguments.of(Arrays.asList("if", "hanul", null))
-        );
-    }
-
+    @DisplayName("자동차 이름은 공백이 될 수 없다")
     @ParameterizedTest
-    @MethodSource("provideValuesForEmptyException")
-    void 자동차이름_공백_예외처리(List<String> names) {
+    @MethodSource(providerPath + "provideForEmptyExceptionTest")
+    void carNameEmptyExceptionTest(List<String> names) {
         exceptionTest(CarNameEmptyException.class, names);
     }
 
-    public static Stream<Arguments> provideValuesForEmptyException() {
-        return Stream.of(
-                Arguments.of(Arrays.asList("")),
-                Arguments.of(Arrays.asList("if", "hanul", ""))
-        );
+    @DisplayName("자동차 이름은 5자를 넘길 수 없다")
+    @ParameterizedTest
+    @MethodSource(providerPath + "provideForLengthExceptionTest")
+    void carNameTooLongExceptionTest(List<String> names) {
+        exceptionTest(CarNameTooLongException.class, names);
     }
 
+    @DisplayName("자동차 이름은 중복될 수 없다")
     @ParameterizedTest
-    @MethodSource("provideValuesForDuplicateException")
-    void 자동차이름_중복_예외처리(List<String> names) {
+    @MethodSource(providerPath + "provideForDuplicateExceptionTest")
+    void carNamesDuplicatedExceptionTest(List<String> names) {
         exceptionTest(CarNameDuplicatedException.class, names);
     }
 
-    public static Stream<Arguments> provideValuesForDuplicateException() {
-        return Stream.of(
-            Arguments.of(Arrays.asList("slow", "if", "slow")),
-            Arguments.of(Arrays.asList("slow", "if", "test", "test")));
+    @DisplayName("생성자 기능 테스트")
+    @ParameterizedTest
+    @MethodSource(providerPath + "provideForConstructorTest")
+    void constructorTest(List<String> names) {
+        assertDoesNotThrow(() -> new CarCollection(names));
     }
 
+    @DisplayName("라운드실행 기능 테스트")
     @ParameterizedTest
-    @MethodSource("provideValuesForPlayRoundTest")
-    void 라운드실행_정상작동테스트(List<String> carNames, int time, List<Integer> numbers, List<String> expected) {
+    @MethodSource(providerPath + "provideForPlayRoundTest")
+    void playRoundTest(List<String> carNames, int repeatTime, List<Integer> numbers, List<String> expected) {
         CarCollection carCollection = new CarCollection(carNames);
-        CustomNumberPicker customNumberPicker = new CustomNumberPicker(numbers);
 
-        List<CarStatusDto> statuses = new ArrayList<>();
-        for (int i = 0; i < time; i++) {
-            carCollection.goForwardOrStop(customNumberPicker);
-            statuses.addAll(carCollection.getStatuses());
-        }
+        List<CarStatusDto> statuses = repeatPlay(carCollection, repeatTime, numbers);
 
         List<String> actual = statuses.stream()
                 .map(CarStatusDto::toString)
@@ -100,49 +78,27 @@ public class CarCollectionTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    public static Stream<Arguments> provideValuesForPlayRoundTest() {
-        return Stream.of(
-                Arguments.of(
-                        Arrays.asList("slow", "if", "poby"),
-                        1,
-                        Arrays.asList(0,5,8),
-                        Arrays.asList("slow : ", "if : -", "poby : -")),
-                Arguments.of(
-                        Arrays.asList("slow", "if", "poby"),
-                        2,
-                        Arrays.asList(0,5,8, 7,3,4),
-                        Arrays.asList(
-                                "slow : ", "if : -", "poby : -",
-                                "slow : -", "if : -", "poby : --"))
-        );
-    }
-
+    @DisplayName("우승자 선정 기능 테스트")
     @ParameterizedTest
-    @MethodSource("provideValuesForGetWinnerNamesTest")
-    void 우승자선정_정상작동테스트(List<String> carNames, int time, List<Integer> numbers, List<String> expected) {
+    @MethodSource(providerPath + "provideForGetWinnerNamesTest")
+    void selectWinnersTest(List<String> carNames, int repeatTime, List<Integer> numbers, List<String> expected) {
         CarCollection carCollection = new CarCollection(carNames);
-        CustomNumberPicker customNumberPicker = new CustomNumberPicker(numbers);
 
-        for (int i = 0; i < time; i++) {
-            carCollection.goForwardOrStop(customNumberPicker);
-        }
+        repeatPlay(carCollection, repeatTime, numbers);
+
         List<String> winnerNames = carCollection.getWinnerNames();
         assertThat(winnerNames).isEqualTo(expected);
     }
 
-    public static Stream<Arguments> provideValuesForGetWinnerNamesTest() {
-        return Stream.of(
-                Arguments.of(
-                        Arrays.asList("slow", "if", "poby"),
-                        1,
-                        Arrays.asList(0,5,8),
-                        Arrays.asList("if", "poby")),
-                Arguments.of(
-                        Arrays.asList("slow", "if", "poby"),
-                        2,
-                        Arrays.asList(0,5,8, 7,3,4),
-                        Arrays.asList("poby"))
-        );
+    private List<CarStatusDto> repeatPlay(CarCollection carCollection, int repeatTime, List<Integer> numbers) {
+        CustomNumberPicker numberPicker = new CustomNumberPicker(numbers);
+
+        List<CarStatusDto> statuses = new ArrayList<>();
+        for (int i = 0; i < repeatTime; i++) {
+            carCollection.goForwardOrStop(numberPicker);
+            statuses.addAll(carCollection.getStatuses());
+        }
+        return statuses;
     }
 
 }

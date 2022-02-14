@@ -1,6 +1,4 @@
-package racingcar.view.inputview.reader;
-
-import racingcar.view.input.reader.Reader;
+package racingcar.view.input.reader;
 
 public class CustomReader implements Reader {
 

@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,15 +9,15 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.domain.car.Car;
+import racingcar.exception.RacingCarException;
 import racingcar.exception.car.CarNameEmptyException;
 import racingcar.exception.car.CarNameNullException;
 import racingcar.exception.car.CarNameTooLongException;
 
-
 public class CarTest {
 
-    private void exceptionTest(Class throwableClass, String name) {
-        assertThrows(throwableClass, () -> new Car(name)
+    private void exceptionTest(Class<? extends RacingCarException> exceptionClass, String name) {
+        assertThrows(exceptionClass, () -> new Car(name)
         );
     }
 
@@ -26,6 +25,7 @@ public class CarTest {
     @ParameterizedTest
     @NullSource
     void carNameNullExceptionTest(String name) {
+        Class<CarNameTooLongException> carNameTooLongExceptionClass = CarNameTooLongException.class;
         exceptionTest(CarNameNullException.class, name);
     }
 
@@ -43,13 +43,11 @@ public class CarTest {
         exceptionTest(CarNameTooLongException.class, name);
     }
 
-    @DisplayName("자동차 생성자 정상 테스트")
+    @DisplayName("생성자 기능 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"aaa", "poby", "if", "hanul"})
-    void carNameConstructorTest(String name) {
-        Car car = new Car(name);
-        assertThat(car.getName()).isEqualTo(name);
+    void constructorTest(String name) {
+        assertDoesNotThrow(() -> new Car(name));
     }
-
 
 }
