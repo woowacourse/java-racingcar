@@ -21,6 +21,24 @@ public class Game {
         output.printWinner(winners);
     }
 
+    private String[] inputCarNames() {
+        output.inputCarNameMessage();
+        return input.getNames();
+    }
+
+    private int inputCoin() {
+        output.inputCoinMessage();
+        return input.getCoin();
+    }
+
+    private List<Car> generateCar(String[] names) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : names) {
+            cars.add(new Car(name));
+        }
+        return cars;
+    }
+
     private void race(int coin, List<Car> cars) {
         output.printResultMessage();
         for (int index = 0; index < coin; index++) {
@@ -35,15 +53,7 @@ public class Game {
         }
     }
 
-    public List<Car> generateCar(String[] names) {
-        List<Car> cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
-        return cars;
-    }
-
-    public List<String> getWinner(List<Car> cars) {
+    private List<String> getWinner(List<Car> cars) {
         int maxPosition = findMaxPosition(cars);
         List<String> winners = findWinnerByPosition(maxPosition, cars);
         return winners;
@@ -65,13 +75,5 @@ public class Game {
         return winners;
     }
 
-    private String[] inputCarNames() {
-        output.inputCarNameMessage();
-        return input.getNames();
-    }
 
-    private int inputCoin() {
-        output.inputCoinMessage();
-        return input.getCoin();
-    }
 }

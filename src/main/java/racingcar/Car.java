@@ -10,18 +10,22 @@ public class Car {
         this.position = Constant.START_POSITION;
     }
 
-    private int makeRandom() {
-        return (int) (Math.random() * Constant.RANDOM_RANGE);
-    }
-
-    public boolean isMovable() {
-        return makeRandom() >= Constant.MINIMUM_MOVE;
-    }
-
     public void movePosition() {
         if (isMovable()) {
             position++;
         }
+    }
+
+    private boolean isMovable() {
+        return makeRandom() >= Constant.MINIMUM_MOVE;
+    }
+
+    private int makeRandom() {
+        return (int) (Math.random() * Constant.RANDOM_RANGE);
+    }
+
+    public boolean isSamePosition(int number) {
+        return position == number;
     }
 
     public int getPosition() {
@@ -30,9 +34,5 @@ public class Car {
 
     public String getName() {
         return name;
-    }
-
-    public boolean isSamePosition(int number) {
-        return position == number;
     }
 }

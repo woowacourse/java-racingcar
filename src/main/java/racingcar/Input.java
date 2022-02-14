@@ -19,7 +19,7 @@ public class Input {
         return names;
     }
 
-    public String[] splitByComma(String input) {
+    private String[] splitByComma(String input) {
         inputValidator.isValidPattern(input);
         return input.split(Constant.COMMA_REGEX);
     }
