@@ -18,13 +18,9 @@ public class RacingGameTest {
     private static final String CAR_2_NAME = "jason";
 
     private RacingGame racingGame;
-    private Car car1;
-    private Car car2;
 
     @BeforeEach
     public void setUp() {
-        car1 = Car.createByName(CAR_1_NAME);
-        car2 = Car.createByName(CAR_2_NAME);
         racingGame = new RacingGame(new MockRandomNumberGenerator());
         racingGame.enrollCars(List.of(CAR_1_NAME, CAR_2_NAME));
     }
