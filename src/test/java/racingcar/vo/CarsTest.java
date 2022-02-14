@@ -16,7 +16,7 @@ public class CarsTest {
 
   @DisplayName("생성자 테스트")
   @Test
-  public void 생성자_test() throws Exception {
+  public void constructor_test() throws Exception {
     String[] name = {"name1", "name2"};
     Cars cars = new Cars(name);
     assertThat(cars.toString()).contains(name);
@@ -37,9 +37,9 @@ public class CarsTest {
     assertThat(out).contains("실행 결과", name[0]);
   }
 
-  @DisplayName("생성자 중복된 이름이 입력되었을 때 예외 테스트")
+  @DisplayName("중복된 이름이 입력되었을 때 예외 테스트")
   @Test
-  public void 생성자_같은_이름이_있는_경우_예외_test() throws Exception {
+  public void duplicate_car_name_exception_test() throws Exception {
     String[] name = {"name1", "name1"};
     assertThatThrownBy(() -> new Cars(name))
         .isInstanceOf(RuntimeException.class);

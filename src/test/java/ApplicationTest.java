@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 public class ApplicationTest {
 
-  // FIXME main 통합 테스트가 제대로 되고있는게 맞는가?
   @DisplayName("main() 통합 테스트")
   @Test
   public void main_test() throws Exception {
@@ -19,10 +18,12 @@ public class ApplicationTest {
     byte[] buf = String.join("\n", input).getBytes();
     System.setIn(new ByteArrayInputStream(buf));
 
-    Application.main(null);
+    Application.main(new String[0]);
 
     String out = output.toString();
-    assertThat(out).contains("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).",
-        "시도할 회수는 몇회인가요?", "실행 결과", "name1 : ", "최종 우승했습니다.");
+    assertThat(out).contains("시도할 회수는 몇회인가요?", "실행 결과",
+        "name1 : ", "name2 : ", "name3 : ");
+    assertThat(out.startsWith("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")).isTrue();
+    assertThat(out.endsWith("최종 우승했습니다.")).isTrue();
   }
 }

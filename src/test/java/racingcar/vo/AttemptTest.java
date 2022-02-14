@@ -10,7 +10,7 @@ public class AttemptTest {
 
   @DisplayName("new Attempt() 테스트")
   @Test
-  public void 생성자_test() throws Exception {
+  public void constructor_test() throws Exception {
     String input = "3";
     Attempt attempt = new Attempt(input);
     assertThat(attempt.get()).isEqualTo(3);
@@ -43,7 +43,7 @@ public class AttemptTest {
 
   @DisplayName("validNumberFormat() 입력 값이 숫자가 아닌 경우 예외 테스트")
   @Test
-  public void 생성자_숫자가_아닌_입력_예외_test() throws Exception {
+  public void non_number_input_exception_test() throws Exception {
     String input = "abc";
     assertThatThrownBy(() -> new Attempt(input))
         .isInstanceOf(RuntimeException.class);
@@ -51,7 +51,7 @@ public class AttemptTest {
 
   @DisplayName("validNegative() 입력 값이 음수인 경우 예외 테스트")
   @Test
-  public void 생성자_음수_minus_3_예외_test() throws Exception {
+  public void negative_input_exception_test() throws Exception {
     String input = "-3";
     assertThatThrownBy(() -> new Attempt(input))
         .isInstanceOf(RuntimeException.class);

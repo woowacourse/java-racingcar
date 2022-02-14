@@ -9,7 +9,7 @@ public class PositionTest {
 
   @DisplayName("new Position() 테스트")
   @Test
-  public void 생성자_test() throws Exception {
+  public void constructor_test() throws Exception {
     Position position = new Position();
     assertThat(position.get()).isEqualTo(0);
   }
