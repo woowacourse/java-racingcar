@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import racingcar.utils.numbergenerator.NumberGenerator;
+import racingcar.domain.movestrategy.MoveStrategy;
 
 public class Cars {
 
@@ -25,14 +25,14 @@ public class Cars {
         this.cars = cars;
     }
 
-    public Cars(final List<String> names, final NumberGenerator numberGenerator) {
+    public Cars(final List<String> names, final MoveStrategy strategy) {
         validateCarCount(names.size());
         validateDuplicateName(names);
 
         this.cars = new ArrayList<>();
 
         for (String name : names) {
-            cars.add(new Car(name, numberGenerator));
+            cars.add(new Car(name, strategy));
         }
     }
 

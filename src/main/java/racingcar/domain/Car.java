@@ -1,23 +1,21 @@
 package racingcar.domain;
 
-import racingcar.utils.numbergenerator.NumberGenerator;
+import racingcar.domain.movestrategy.MoveStrategy;
 
 public class Car {
 
-    private static final int MIN_GO_FORWARD_RANGE = 4;
-
-    private final NumberGenerator numberGenerator;
+    private final MoveStrategy strategy;
     private final Name name;
     private int position;
 
-    public Car(final String name, final NumberGenerator numberGenerator) {
-        this.numberGenerator = numberGenerator;
+    public Car(final String name, final MoveStrategy strategy) {
+        this.strategy = strategy;
         this.name = new Name(name);
         position = 0;
     }
 
-    public Car(final String name, final NumberGenerator numberGenerator, final int position) {
-        this.numberGenerator = numberGenerator;
+    public Car(final String name, final MoveStrategy strategy, final int position) {
+        this.strategy = strategy;
         this.name = new Name(name);
         this.position = position;
     }
@@ -31,7 +29,7 @@ public class Car {
     }
 
     public void goForward() {
-        if (numberGenerator.generate() >= MIN_GO_FORWARD_RANGE) {
+        if (strategy.canMove()) {
             position++;
         }
     }
