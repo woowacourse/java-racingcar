@@ -6,7 +6,9 @@ public class InputValidator {
     private static final int MINIMUM_CAR_NAME_LENGTH = 5;
 
     public static void validateCarName(List<String> carNameList) {
-        if (!carNameList.stream().allMatch(carName -> carName.length() <= MINIMUM_CAR_NAME_LENGTH)) {
+        boolean validCarNamesLength = carNameList.stream()
+                .allMatch(carName -> carName.length() <= MINIMUM_CAR_NAME_LENGTH);
+        if (!validCarNamesLength) {
             throw new IllegalArgumentException("자동차의 이름은 5자 이하여야 합니다.");
         }
     }
@@ -26,7 +28,9 @@ public class InputValidator {
     }
 
     public static void validateDuplicateName(List<String> carNameList) {
-        long distinctNum = carNameList.stream().distinct().count();
+        long distinctNum = carNameList.stream()
+                .distinct()
+                .count();
         if (distinctNum != carNameList.size()) {
             throw new IllegalArgumentException("자동차의 이름에 중복이 포함되면 안됩니다.");
         }
