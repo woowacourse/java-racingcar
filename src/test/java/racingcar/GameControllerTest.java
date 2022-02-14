@@ -18,14 +18,6 @@ public class GameControllerTest {
     private final GameController gameController = new GameController();
 
     @Test
-    void 자동차의_이름이_공백인_경우_예외처리() {
-        assertThatThrownBy(() -> {
-            gameController.splitCars(" , , ");
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("자동차의 이름이 존재하지 않습니다.");
-    }
-
-    @Test
     void 자동차_입력시_공백이_들어간_경우() {
         final String actual = "bom, sun";
         final List<String> expected = Arrays.asList("bom", "sun");
@@ -51,9 +43,18 @@ public class GameControllerTest {
     }
 
     @Test
-    void 자동차_이름에_중복이_존재하는_경우() {
+    void 자동차_이름에_중복이_존재하는_경우_예외처리() {
         assertThatThrownBy(() -> {
             gameController.splitCars("aaa,bbb,aaa");
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @Test
+    void 자동차의_이름이_공백인_경우_예외처리() {
+        assertThatThrownBy(() -> {
+            gameController.splitCars(" , , ");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차의 이름이 존재하지 않습니다.");
     }
 }
