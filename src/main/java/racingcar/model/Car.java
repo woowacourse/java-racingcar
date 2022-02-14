@@ -6,6 +6,7 @@ import racingcar.validator.NameValidator;
 
 public class Car {
 
+	static final int MOVE_CRITERIA = 4;
 	private final String name;
 	private int position;
 
@@ -19,6 +20,10 @@ public class Car {
 		if (isMove()) {
 			moveCar();
 		}
+	}
+
+	private static boolean isMove() {
+		return getRandomInt() >= MOVE_CRITERIA;
 	}
 
 	private void moveCar() {
