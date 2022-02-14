@@ -1,6 +1,9 @@
 package racingcar.domain;
 
+import racingcar.domain.exception.RacingGameIsFinishedException;
+
 public class TryCount {
+
     private final int maxTryCount;
     private int currentTryCount;
 
@@ -10,6 +13,9 @@ public class TryCount {
     }
 
     public void increment() {
+        if (isFinished()) {
+            throw new RacingGameIsFinishedException();
+        }
         currentTryCount++;
     }
 

@@ -4,7 +4,6 @@ import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
 import racingcar.domain.exception.GetWinnerBeforeFinishException;
-import racingcar.domain.exception.RacingGameIsFinishedException;
 import racingcar.domain.result.MidtermResult;
 import racingcar.domain.result.WinnerResult;
 
@@ -19,9 +18,6 @@ public class RacingGame {
     }
 
     public void proceedTurn() {
-        if (isFinished()) {
-            throw new RacingGameIsFinishedException();
-        }
         cars.move();
         tryCount.increment();
     }
