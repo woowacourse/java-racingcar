@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
@@ -73,5 +74,26 @@ public class CarTest {
         car.goOrNot(num);
 
         assertThat(car.isSamePosition(prevPosition)).isEqualTo(true);
+    }
+
+    @DisplayName("isSamePosition 메서드는 인자로 정수가 들어올 경우 해당 정수 현재 Car의 position이 일치하는지 확인한다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @CsvSource(value = {"3:true", "4:false"}, delimiter = ':')
+    public void isSamePosition_int(String position, String result) throws Exception {
+        // given
+        Car pobi = new Car("pobi", 3);
+        // then
+        assertThat(pobi.isSamePosition(Integer.parseInt(position))).isEqualTo(Boolean.parseBoolean(result));
+    }
+
+    @DisplayName("isSamePosition 메서드는 인자로 Car 객체가 들어올 경우 해당 정수 현재 Car의 position이 일치하는지 확인한다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @CsvSource(value = {"3:true", "4:false"}, delimiter = ':')
+    public void isSamePosition_carObject(String position, String result) throws Exception {
+        // given
+        Car pobi = new Car("pobi", 3);
+        Car testCar = new Car("test", Integer.parseInt(position));
+        // then
+        assertThat(pobi.isSamePosition(testCar)).isEqualTo(Boolean.parseBoolean(result));
     }
 }
