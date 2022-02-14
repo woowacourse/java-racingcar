@@ -4,10 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    public static final String ORIGINAL_DELIMITER = "[,:]";
-    public static final String CUSTOM_REGEX = "//(.)\n(.*)";
-    public static final int CUSTOM_DELIMITER_INDEX = 1;
-    public static final int CUSTOM_INPUT_INDEX = 2;
+    private static final String ORIGINAL_DELIMITER = "[,:]";
+    private static final String CUSTOM_REGEX = "//(.)\n(.*)";
+    private static final int CUSTOM_DELIMITER_INDEX = 1;
+    private static final int CUSTOM_INPUT_INDEX = 2;
 
     public static int splitAndSum(String input) {
         if (isBlank(input)) {
