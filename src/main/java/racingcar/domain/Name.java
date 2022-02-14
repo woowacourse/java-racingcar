@@ -25,7 +25,7 @@ public class Name {
     }
 
     private void checkNameEmpty(String name) {
-        if (name.equals("")) {
+        if (name.equals(NAME_NOT_BLANK)) {
             throw new IllegalArgumentException("자동차 이름은 공백이 들어올 수 없다.");
         }
     }
