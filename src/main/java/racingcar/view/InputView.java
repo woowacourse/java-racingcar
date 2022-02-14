@@ -10,7 +10,7 @@ public class InputView {
 
     private final Scanner scanner;
 
-    public InputView(Scanner scanner) {
+    public InputView(final Scanner scanner) {
         this.scanner = scanner;
     }
 

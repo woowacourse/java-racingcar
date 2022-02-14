@@ -10,22 +10,22 @@ public class RacingCarController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public RacingCarController(InputView inputView, OutputView outputView) {
+    public RacingCarController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void run() {
-        RacingCars racingCars = RacingCars.from(inputView.inputCarNames());
-        int tryCount = inputView.inputTryCount();
+        final RacingCars racingCars = RacingCars.from(inputView.inputCarNames());
+        final int tryCount = inputView.inputTryCount();
 
-        RacingGame game = new RacingGame(racingCars, tryCount);
+        final RacingGame game = new RacingGame(racingCars, tryCount);
         outputView.printGameResultTitle();
         raceAllRound(game);
         outputView.printWinnerNames(game.winnerNames());
     }
 
-    private void raceAllRound(RacingGame game) {
+    private void raceAllRound(final RacingGame game) {
         while (!game.isEnd()) {
             game.race();
             outputView.printCarsPosition(game.getCurrentRacingCarDtos());

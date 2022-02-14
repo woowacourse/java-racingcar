@@ -15,37 +15,37 @@ public class Calculator {
     private static final int CUSTOM_DELIMITER_INDEX = 1;
     private static final int CUSTOM_INPUT_INDEX = 2;
 
-    public static int sum(String input) {
+    public static int sum(final String input) {
         if (!validateNullAndBlank(input)) {
             return DEFAULT_NUMBER;
         }
-        List<Integer> numbers = parseStringsToPositiveInts(splitInput(input));
+        final List<Integer> numbers = parseStringsToPositiveInts(splitInput(input));
         return sumNumbers(numbers);
     }
 
-    private static boolean validateNullAndBlank(String input) {
+    private static boolean validateNullAndBlank(final String input) {
         return input != null && !input.isEmpty();
     }
 
-    private static String[] splitInput(String input) {
-        Matcher m = CUSTOM_DELIMITER_PATTERN.matcher(input);
+    private static String[] splitInput(final String input) {
+        final Matcher m = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if (m.find()) {
             return splitByDelimiter(m.group(CUSTOM_INPUT_INDEX), m.group(CUSTOM_DELIMITER_INDEX));
         }
         return splitByDelimiter(input, DEFAULT_DELIMITER);
     }
 
-    private static String[] splitByDelimiter(String input, String delimiter) {
+    private static String[] splitByDelimiter(final String input, final String delimiter) {
         return input.split(delimiter);
     }
 
-    private static List<Integer> parseStringsToPositiveInts(String[] stringNumbers) {
+    private static List<Integer> parseStringsToPositiveInts(final String[] stringNumbers) {
         return Arrays.stream(stringNumbers)
             .map(Calculator::getPositiveNumber)
             .collect(Collectors.toList());
     }
 
-    private static int getPositiveNumber(String stringNumber) {
+    private static int getPositiveNumber(final String stringNumber) {
         try {
             return parsePositiveInt(stringNumber);
         } catch (NumberFormatException e) {
@@ -53,19 +53,19 @@ public class Calculator {
         }
     }
 
-    private static int parsePositiveInt(String stringNumber) {
-        int number = Integer.parseInt(stringNumber);
+    private static int parsePositiveInt(final String stringNumber) {
+        final int number = Integer.parseInt(stringNumber);
         checkPositiveNumber(number);
         return number;
     }
 
-    private static void checkPositiveNumber(int number) {
+    private static void checkPositiveNumber(final int number) {
         if (number < 0) {
             throw new RuntimeException("음수는 입력될 수 없다.");
         }
     }
 
-    private static int sumNumbers(List<Integer> numbers) {
+    private static int sumNumbers(final List<Integer> numbers) {
         return numbers.stream()
             .reduce(0, Integer::sum);
     }

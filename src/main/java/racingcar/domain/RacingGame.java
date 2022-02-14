@@ -10,13 +10,13 @@ public class RacingGame {
     private final RacingCars racingCars;
     private int leftCount;
 
-    public RacingGame(RacingCars racingCars, int leftCount) {
+    public RacingGame(final RacingCars racingCars, final int leftCount) {
         checkPositiveCount(leftCount);
         this.racingCars = racingCars;
         this.leftCount = leftCount;
     }
 
-    private void checkPositiveCount(int leftCount) {
+    private void checkPositiveCount(final int leftCount) {
         if (leftCount <= END_COUNT) {
             throw new IllegalArgumentException("시도횟수는 0이하의 값이 들어올 수 없다.");
         }

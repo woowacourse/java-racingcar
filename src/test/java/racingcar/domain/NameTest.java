@@ -35,8 +35,8 @@ class NameTest {
     @Test
     @DisplayName("공백이 제거된 이름을 생성할 수 있다.")
     void createNotBlankName() {
-        String input = " n a m e ";
-        Name expected = new Name("name");
+        final String input = " n a m e ";
+        final Name expected = new Name("name");
         assertThat(Name.createNotBlankName(input)).isEqualTo(expected);
     }
 }

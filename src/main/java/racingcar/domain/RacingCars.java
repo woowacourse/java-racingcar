@@ -12,26 +12,26 @@ public class RacingCars {
 
     private final List<RacingCar> cars;
 
-    public RacingCars(List<RacingCar> cars) {
+    public RacingCars(final List<RacingCar> cars) {
         checkDuplicateName(cars);
         this.cars = cars;
     }
 
-    private void checkDuplicateName(List<RacingCar> cars) {
+    private void checkDuplicateName(final List<RacingCar> cars) {
         if (cars.size() != calculateDistinctNameCount(cars)) {
             throw new IllegalArgumentException("자동차 이름은 중복되어 입력될 수 없다.");
         }
     }
 
-    private long calculateDistinctNameCount(List<RacingCar> cars) {
+    private long calculateDistinctNameCount(final List<RacingCar> cars) {
         return cars.stream()
             .map(RacingCar::getName)
             .distinct()
             .count();
     }
 
-    public static RacingCars from(String names) {
-        List<RacingCar> cars = Arrays.stream(names.split(CAR_NAME_DELIMITER))
+    public static RacingCars from(final String names) {
+        final List<RacingCar> cars = Arrays.stream(names.split(CAR_NAME_DELIMITER))
             .map(Name::createNotBlankName)
             .map(RacingCar::createRandomMoveCar)
             .collect(Collectors.toList());
@@ -55,7 +55,7 @@ public class RacingCars {
     }
 
     public List<String> calculateWinnerNames() {
-        int winnerPosition = calculateWinnerPosition();
+        final int winnerPosition = calculateWinnerPosition();
         return getWinnerNames(winnerPosition);
     }
 
@@ -65,7 +65,7 @@ public class RacingCars {
             .collect(Collectors.toList()));
     }
 
-    private List<String> getWinnerNames(int winnerPosition) {
+    private List<String> getWinnerNames(final int winnerPosition) {
         return cars.stream()
             .filter(car -> car.comparePosition(winnerPosition))
             .map(RacingCar::getName)

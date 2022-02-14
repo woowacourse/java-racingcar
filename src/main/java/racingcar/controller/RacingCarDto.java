@@ -7,7 +7,7 @@ public class RacingCarDto {
     private final String name;
     private final int position;
 
-    public RacingCarDto(String name, int postition) {
+    public RacingCarDto(final String name, final int postition) {
         this.name = name;
         this.position = postition;
     }
