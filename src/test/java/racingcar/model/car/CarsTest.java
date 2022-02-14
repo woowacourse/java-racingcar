@@ -9,59 +9,85 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.dto.CarDto;
 
+@DisplayName("Cars 클래스")
 public class CarsTest {
-	@DisplayName("경주 진행")
-	@Test
-	void race() {
-		Cars cars = Cars.create();
-		cars.add(Car.of("car1", 0));
-		cars.add(Car.of("car2", 0));
-		cars.add(Car.of("car3", 0));
-		cars.race((min, max) -> 4);
-		for (CarDto carInformation : cars.getCarsDto()) {
-			assertThat(carInformation.getPosition()).isEqualTo(1);
+	@DisplayName("add 메소드는")
+	@Nested
+	class Add {
+		@Nested
+		@DisplayName("중복 이름을 가진 차가 주어진다면")
+		class Context_with_duplicate_name_of_car {
+			@Test
+			@DisplayName("등록된 차들을 비우고 예외를 발생시킨다.")
+			void it_throw_exception() {
+				Cars cars = Cars.create();
+				cars.add(Car.from("car1"));
+
+				assertThatThrownBy(() -> cars.add(Car.from("car1")))
+					.isInstanceOf(IllegalArgumentException.class);
+				assertThat(cars.getCarsDto().size()).isEqualTo(0);
+			}
+		}
+
+		@Nested
+		@DisplayName("중복되지 않는 이름을 가진 차가 주어진다면")
+		class Context_with_not_duplicate_name_of_car {
+			@Test
+			@DisplayName("추가 시키고 예외를 발생시키지 않는다.")
+			void it_throw_exception() {
+				Cars cars = Cars.create();
+				cars.add(Car.from("car1"));
+
+				assertDoesNotThrow(() -> cars.add(Car.from("car2")));
+				assertThat(cars.getCarsDto().size()).isEqualTo(2);
+			}
 		}
 	}
 
-	@DisplayName("Car의 DTO 리스트를 반환한다.")
-	@Test
-	void getCarsDto() {
-		Cars cars = Cars.create();
-		cars.add(Car.of("car1", 2));
-		cars.add(Car.of("car2", 3));
-		cars.add(Car.of("car3", 8));
-		assertThat(cars.getCarsDto().size()).isEqualTo(3);
-	}
-
-	@Test
-	void 위치와_일치하는_자동차의_리스트를_가져온다() {
-		Cars cars = Cars.create();
-		cars.add(Car.of("car1", 2));
-		cars.add(Car.of("car2", 3));
-		cars.add(Car.of("car3", 8));
-		cars.add(Car.of("car4", 11));
-		cars.add(Car.of("car5", 11));
-
-		assertThat(cars.getCarsByPosition(Position.from(11)))
-			.contains(Car.from("car4"), Car.from("car5"));
-	}
-
-	@DisplayName("getWinnerNames 메소드는")
-	@Test
-	void 우승자들의_이름을_반환한다() {
-		Cars cars = Cars.create();
-		cars.add(Car.of("car1", 5));
-		cars.add(Car.of("car2", 3));
-		cars.add(Car.of("car3", 5));
-
-		assertThat(cars.getWinnersNames()).containsExactly("car1", "car3");
-	}
-
-	@DisplayName("getFirstPosition 메소드는")
 	@Nested
+	@DisplayName("race 메소드는")
+	class Describe_race {
+		@Nested
+		@DisplayName("만약 모든 차에게 4이상의 값이 주어지면")
+		class Context_Number_of_4_or_more {
+			@Test
+			@DisplayName("모든 차의 위치는 1 증가한다.")
+			void it_increase_position_of_cars() {
+				Cars cars = Cars.create();
+				cars.add(Car.of("car1", 0));
+				cars.add(Car.of("car2", 0));
+				cars.add(Car.of("car3", 0));
+				cars.race((min, max) -> 4);
+				for (CarDto carInformation : cars.getCarsDto()) {
+					assertThat(carInformation.getPosition()).isEqualTo(1);
+				}
+			}
+		}
+
+	}
+
+	@Nested
+	@DisplayName("getWinnerNames 메소드는") // ...메소드는
+	class GetWinnerNames {
+		@Test
+		@DisplayName("가장 멀린 간 위치에 있는 차들의 이름 리스트로 리턴한다.")
+			// ....를 리턴한다.(예외를 발생시킨다)
+		void it_returns_car_name_list() {
+			Cars cars = Cars.create();
+			cars.add(Car.of("car1", 5));
+			cars.add(Car.of("car2", 3));
+			cars.add(Car.of("car3", 5));
+
+			assertThat(cars.getWinnersNames()).containsExactly("car1", "car3");
+		}
+	}
+
+	@Nested
+	@DisplayName("getFirstPosition 메소드는")
 	class GetFirstPosition {
 		@Test
-		void 가장_멀리간_차의_위치를_가져온다() {
+		@DisplayName("가장 멀리간 차의 위치를 가져온다")
+		void it_returns_farthest_position() {
 			Cars cars = Cars.create();
 			cars.add(Car.of("car1", 5));
 			cars.add(Car.of("car2", 3));
@@ -71,32 +97,35 @@ public class CarsTest {
 				.isEqualTo(Position.from(8));
 		}
 
-		@Test
-		void 아무_차가_없다면() {
-			Cars cars = Cars.create();
-			assertThatThrownBy(cars::getFirstPosition)
-				.isInstanceOf(IllegalArgumentException.class);
+		@Nested
+		@DisplayName("아무 차가 없다면")
+		class Context_empty_cars {
+			@Test
+			@DisplayName("예외를 발생시킨다.")
+			void it_throw_exception() {
+				Cars cars = Cars.create();
+				assertThatThrownBy(cars::getFirstPosition)
+					.isInstanceOf(IllegalArgumentException.class);
+			}
+
 		}
 	}
 
-	@DisplayName("add 메소드는")
 	@Nested
-	class Add {
+	@DisplayName("getCarsByPosition 메소드는")
+	class GetCarsByposition {
 		@Test
-		void 중복_이름이_입력되었다면() {
+		@DisplayName("위치와_일치하는_자동차의_리스트를_가져온다")
+		void it_returns_car_list() {
 			Cars cars = Cars.create();
-			cars.add(Car.from("car1"));
+			cars.add(Car.of("car1", 2));
+			cars.add(Car.of("car2", 3));
+			cars.add(Car.of("car3", 8));
+			cars.add(Car.of("car4", 11));
+			cars.add(Car.of("car5", 11));
 
-			assertThatThrownBy(() -> cars.add(Car.from("car1")))
-				.isInstanceOf(IllegalArgumentException.class);
-		}
-
-		@Test
-		void 중복_이름이_입력되지았다면() {
-			Cars cars = Cars.create();
-			cars.add(Car.from("car1"));
-
-			assertDoesNotThrow(() -> cars.add(Car.from("car2")));
+			assertThat(cars.getCarsByPosition(Position.from(11)))
+				.contains(Car.from("car4"), Car.from("car5"));
 		}
 	}
 }
