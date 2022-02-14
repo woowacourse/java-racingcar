@@ -1,8 +1,6 @@
 package racingcar.view;
 
 import racingcar.message.NoticeMessages;
-import racingcar.model.Car;
-import racingcar.util.StringUtils;
 
 public class OutputView {
 
