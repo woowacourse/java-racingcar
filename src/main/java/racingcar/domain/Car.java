@@ -16,7 +16,7 @@ public class Car {
         return new Car(name);
     }
 
-    public void moveCarPosition() {
+    public void forwardCarPosition() {
         position++;
     }
 
