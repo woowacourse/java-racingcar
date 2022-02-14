@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -33,5 +34,23 @@ class RoundTest {
         final Round round = new Round(1);
         final Round expected = new Round(1);
         assertThat(round).isEqualTo(expected);
+    }
+
+    @Nested
+    class RoundComparable {
+        @Test
+        @DisplayName("자신보다 높은 round보다 작아야 한다.")
+        void lessCompare() {
+            final Round round = new Round(2);
+            final Round compareRound = new Round(5);
+            assertThat(round).isLessThan(compareRound);
+        }
+
+        @Test
+        void greaterCompare() {
+            final Round round = new Round(5);
+            final Round compareRound = new Round(2);
+            assertThat(round).isGreaterThan(compareRound);
+        }
     }
 }

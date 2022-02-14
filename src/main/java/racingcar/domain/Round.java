@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-public class Round {
+public class Round implements Comparable<Round> {
 
     private static final int FIRST_ROUND = 1;
 
@@ -25,6 +25,11 @@ public class Round {
 
     public Round nextRound() {
         return new Round(round + 1);
+    }
+
+    @Override
+    public int compareTo(Round o) {
+        return this.round - o.round;
     }
 
     @Override
