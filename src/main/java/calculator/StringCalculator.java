@@ -6,11 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    public static final String REGEX = "^//(.*)\n.*";
-    public static final String DELIMITER_REGEX = "^//(.*)\n";
-    public static final String DEFAULT_DELIMITER = ",|:";
-    public static final int VALID_REGEX_PART_LENGTH = 4;
-    public static final int CUSTOM_DELIMITER_INDEX = 2;
+    private static final String REGEX = "^//(.*)\n.*";
+    private static final String DELIMITER_REGEX = "^//(.*)\n";
+    private static final String DEFAULT_DELIMITER = ",|:";
+    private static final int VALID_REGEX_PART_LENGTH = 4;
+    private static final int CUSTOM_DELIMITER_INDEX = 2;
 
     public static int splitAndSum(String input) {
         if (isNullOrEmpty(input)) {
