@@ -1,20 +1,21 @@
 package racingcargame.model;
 
 public class RaceCount {
-    private static int count;
+	private static int count;
 
-    private RaceCount() {
-    }
+	public RaceCount(int number) {
+		initCount(number);
+	}
 
-    static void initCount(int number) {
-        count = number;
-    }
+	private static void initCount(int number) {
+		count = number;
+	}
 
-    static void reduceCount() {
-        count--;
-    }
+	static void reduceCount() {
+		count--;
+	}
 
-    static int getCount() {
-        return count;
-    }
+	static int getCount() {
+		return count;
+	}
 }

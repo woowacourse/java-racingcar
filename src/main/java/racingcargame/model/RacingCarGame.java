@@ -7,6 +7,7 @@ public class RacingCarGame {
 	private static final int GAME_OVER_COUNT = 0;
 
 	private Cars cars;
+	private RaceCount raceCount;
 
 	public RacingCarGame(List<String> racingCarNames, int raceCount) {
 		prepareRacingCars(racingCarNames);
@@ -18,7 +19,7 @@ public class RacingCarGame {
 	}
 
 	private void prepareRaceCount(final int raceCount) {
-		RaceCount.initCount(raceCount);
+		this.raceCount = new RaceCount(raceCount);
 	}
 
 	public boolean isOverRace() {
