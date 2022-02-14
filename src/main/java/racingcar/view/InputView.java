@@ -2,39 +2,53 @@ package racingcar.view;
 
 import java.util.Scanner;
 
-import racingcar.util.Checker;
-import racingcar.util.StringConst;
-
 public class InputView {
-	public static String[] getCarNameInput() {
+
+	private static final String CAR_NAME_REGEX = ",";
+	private static final int NUMBER_OF_TURN_BOUND = 1;
+	private static final String ERROR_NEGATIVE_NUM = "[ERROR] 횟수는 1이상이어야 합니다.";
+	private static final String ERROR_STRING_INPUT = "[ERROR] 횟수는 문자로 입력할 수 없습니다.";
+
+	public static String[] getCarNames() {
 		Scanner scanner = new Scanner(System.in);
-		String name = scanner.nextLine();
-		Checker checker = new Checker();
-		String flagStr = checker.checkNameConditions(name);
-		return checkNameError(flagStr);
+		String input = scanner.nextLine();
+
+		return splitByColon(input);
 	}
 
-	private static String[] checkNameError(String str) {
-		if (str.contains(StringConst.ERROR_PREFIX.getValue())) {
-			System.out.println(str);
-			return new String[] {StringConst.ERROR_PREFIX.getValue()};
-		}
-		return str.split(StringConst.DELIMITER.getValue());
+	private static String[] splitByColon(String input) {
+		return input.split(CAR_NAME_REGEX);
 	}
 
-	public static String getTurnInput() {
+	public static int getNumberOfTurn() {
 		Scanner scanner = new Scanner(System.in);
-		String turn = scanner.nextLine();
-		Checker checker = new Checker();
-		String flagStr = checker.checkTurnConditions(turn);
-		return checkTurnError(flagStr);
+		String input = scanner.nextLine();
+
+		return isValidNum(input);
 	}
 
-	private static String checkTurnError(String str) {
-		if (str.contains(StringConst.ERROR_PREFIX.getValue())) {
-			System.out.println(str);
-			return StringConst.ERROR_TURN_FLAG.getValue();
-		}
-		return str;
+	private static int isValidNum(String input) {
+		int numberOfTurn = isInteger(input);
+		isPositive(numberOfTurn);
+
+		return numberOfTurn;
 	}
+
+	private static void isPositive(int numberOfTurn) {
+		if (numberOfTurn < NUMBER_OF_TURN_BOUND) {
+			throw new IllegalArgumentException(ERROR_NEGATIVE_NUM);
+		}
+	}
+
+	private static int isInteger(String input) {
+		int numberOfTurn;
+		try {
+			numberOfTurn = Integer.parseInt(input);
+		} catch (Exception e) {
+			throw new IllegalArgumentException(ERROR_STRING_INPUT);
+		}
+
+		return numberOfTurn;
+	}
+
 }
