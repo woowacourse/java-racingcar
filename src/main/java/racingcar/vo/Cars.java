@@ -4,63 +4,61 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
+import racingcar.util.RandomNumberGenerator;
 
 public class Cars {
 
+  private static final RandomNumberGenerator GENERATOR = new RandomNumberGenerator();
   private static final String DUPLICATE_CAR_NAME_ERROR_MESSAGE = "자동차의 이름이 중복되었습니다.";
-  private static final String RACE_RESULT_MESSAGE = "실행 결과";
   private static final String NO_SUCH_CAR_ERROR_MESSAGE = "자동차가 없습니다.";
   private static final int NONE_DUPLICATION = 0;
 
   private List<Car> cars;
 
-  public Cars() {
+  public Cars(String[] names) {
     cars = new ArrayList<>();
+    for (String name : names) {
+      Car car = new Car(new CarName(name));
+      validateDuplicateCarName(car);
+      cars.add(car);
+    }
   }
 
-  public void add(Car car) {
-    validDuplicateCarName(car);
-    cars.add(car);
-  }
-
-  public String repeatRaceBy(Attempt attempt) {
-    StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append(RACE_RESULT_MESSAGE).append(System.lineSeparator());
+  public RoundResults repeatRaceBy(Attempt attempt) {
+    RoundResults results = new RoundResults();
     while (attempt.isLeft()) {
-      stringBuilder.append(raceAll());
+      results.add(raceAll());
       attempt.decrease();
     }
-    return stringBuilder.toString();
+    return results;
   }
 
-  private String raceAll() {
-    StringBuilder stringBuilder = new StringBuilder();
+  private RoundResult raceAll() {
+    RoundResult result = new RoundResult();
     for (Car car : cars) {
-      car.move();
-      stringBuilder.append(car.toString());
-      stringBuilder.append(System.lineSeparator());
+      car.move(GENERATOR.generate());
+      result.add(car);
     }
-    stringBuilder.append(System.lineSeparator());
-    return stringBuilder.toString();
+    return result;
   }
 
-  public Winners judgeWinners() {
+  public Winners findWinners() {
     Car maxPositionCar = cars.stream()
         .max(Car::compareTo)
         .orElseThrow(() -> new NoSuchElementException(NO_SUCH_CAR_ERROR_MESSAGE));
     return new Winners(cars.stream()
         .filter(car -> car.isSamePosition(maxPositionCar))
-        .map(Car::getName)
         .collect(Collectors.toList()));
   }
 
-  private void validDuplicateCarName(Car car) {
+  private void validateDuplicateCarName(Car car) {
     if (cars.stream().filter(each -> each.isSameName(car)).count() != NONE_DUPLICATION) {
       throw new RuntimeException(DUPLICATE_CAR_NAME_ERROR_MESSAGE);
     }
   }
 
-  public boolean isSize(int size) {
-    return cars.size() == size;
+  @Override
+  public String toString() {
+    return cars.toString();
   }
 }

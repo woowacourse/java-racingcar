@@ -21,13 +21,13 @@ public class Calculator {
   private static final String NEGATIVE_VALUE_ERROR_MESSAGE = "음수 값을 입력했습니다. 양수를 입력해주세요.";
 
   public static int sum(String input) {
-    if (validNullOrEmpty(input)) {
+    if (validateNullOrEmpty(input)) {
       return ZERO;
     }
     return addAll(toIntegers(split(input)));
   }
 
-  private static boolean validNullOrEmpty(String input) {
+  private static boolean validateNullOrEmpty(String input) {
     return input == null || input.equals(EMPTY_STRING);
   }
 
@@ -45,7 +45,7 @@ public class Calculator {
     int[] numbers = new int[stringNumbers.length];
     for (int i = 0; i < stringNumbers.length; i++) {
       int result = toInteger(stringNumbers[i]);
-      validNegative(result);
+      validateNegative(result);
       numbers[i] = result;
     }
     return numbers;
@@ -55,11 +55,11 @@ public class Calculator {
     try {
       return Integer.parseInt(stringNumber);
     } catch (NumberFormatException numberFormatException) {
-      throw new RuntimeException(NONE_INTEGER_ERROR_MESSAGE);
+      throw new NumberFormatException(NONE_INTEGER_ERROR_MESSAGE);
     }
   }
 
-  private static void validNegative(int number) {
+  private static void validateNegative(int number) {
     if (number < ZERO) {
       throw new RuntimeException(NEGATIVE_VALUE_ERROR_MESSAGE);
     }

@@ -1,11 +1,10 @@
 package racingcar.vo;
 
-import static racingcar.util.RandomUtil.generateRandomNumber;
 import static racingcar.util.MovementUtil.isMoveForward;
 
 public class Car implements Comparable<Car> {
 
-  private static final String RESULT_DELIMITER = " : ";
+  private static final String TO_STRING_DELIMITER = ":";
   private static final int SAME_POSITION = 0;
 
   private CarName name;
@@ -22,7 +21,7 @@ public class Car implements Comparable<Car> {
 
   @Override
   public String toString() {
-    return name.get() + RESULT_DELIMITER + position.toString();
+    return name.get() + TO_STRING_DELIMITER + position.toString();
   }
 
   @Override
@@ -38,8 +37,8 @@ public class Car implements Comparable<Car> {
     return position.compareTo(car.position) == SAME_POSITION;
   }
 
-  public boolean move() {
-    if (isMoveForward(generateRandomNumber())) {
+  public boolean move(int randomNumber) {
+    if (isMoveForward(randomNumber)) {
       position.increase();
       return true;
     }

@@ -18,22 +18,14 @@ public class RacingCar {
   }
 
   public void play() {
-    Cars cars = createCars(splitCarNames(requestCarName()));
+    Cars cars = new Cars(splitCarNames(requestCarName()));
     Attempt attempt = new Attempt(requestAttempt());
     printRaceResult(cars.repeatRaceBy(attempt));
-    printWinners(cars.judgeWinners());
+    printWinners(cars.findWinners());
   }
 
   private String[] splitCarNames(String carNames) {
     return carNames.split(CAR_NAME_DELIMITER);
-  }
-
-  private Cars createCars(String[] names) {
-    Cars cars = new Cars();
-    for (String name : names) {
-      cars.add(createCar(name));
-    }
-    return cars;
   }
 
   private Car createCar(String name) {

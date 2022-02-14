@@ -10,7 +10,7 @@ public class Attempt {
   private int attempt;
 
   public Attempt(String attempt) {
-    this.attempt = valid(attempt);
+    this.attempt = validate(attempt);
   }
 
   public int get() {
@@ -25,10 +25,10 @@ public class Attempt {
     attempt--;
   }
 
-  private int valid(String attempt) {
-    validNumberFormat(attempt);
+  private int validate(String attempt) {
+    validateNumberFormat(attempt);
     int number = toInteger(attempt);
-    validNegative(number);
+    validateNegative(number);
     return number;
   }
 
@@ -36,7 +36,7 @@ public class Attempt {
     return Integer.parseInt(string);
   }
 
-  private void validNumberFormat(String attempt) {
+  private void validateNumberFormat(String attempt) {
     try {
       Integer.parseInt(attempt);
     } catch (NumberFormatException numberFormatException) {
@@ -44,7 +44,7 @@ public class Attempt {
     }
   }
 
-  private void validNegative(int attempt) {
+  private void validateNegative(int attempt) {
     if (attempt < ZERO) {
       throw new RuntimeException(NUMBER_NEGATIVE_ERROR_MESSAGE);
     }

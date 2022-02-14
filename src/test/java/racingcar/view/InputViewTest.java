@@ -10,7 +10,7 @@ public class InputViewTest {
 
   @DisplayName("requestCarName() 자동차 이름이 공백으로 입력되었을 때 예외 테스트")
   @Test
-  public void requestCarName_이름_공백_test() throws Exception {
+  public void requestCarName_empty_name_input_test() throws Exception {
     String input = "";
     byte[] buf = input.getBytes();
     System.setIn(new ByteArrayInputStream(buf));
@@ -20,7 +20,7 @@ public class InputViewTest {
 
   @DisplayName("requestAttempt() 시도 회수가 공백으로 입력되었을 때 예외 테스트")
   @Test
-  public void requestAttempt_시도_회수_공백_test() throws Exception {
+  public void requestAttempt_empty_attempt_input_test() throws Exception {
     String input = "";
     byte[] buf = input.getBytes();
     System.setIn(new ByteArrayInputStream(buf));
