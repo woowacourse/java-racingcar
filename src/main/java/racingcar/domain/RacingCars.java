@@ -44,7 +44,7 @@ public class RacingCars {
             .collect(Collectors.toList());
     }
 
-    public List<RacingCarDto> getRacingCars() {
+    public List<RacingCarDto> getRacingCarDtos() {
         return cars.stream()
             .map(RacingCarDto::from)
             .collect(Collectors.toList());

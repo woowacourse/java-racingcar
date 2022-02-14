@@ -42,7 +42,7 @@ public class RacingGame {
         return racingCars.calculateWinnerNames();
     }
 
-    public List<RacingCarDto> getCurrentRacingCar() {
-        return racingCars.getRacingCars();
+    public List<RacingCarDto> getCurrentRacingCarDtos() {
+        return racingCars.getRacingCarDtos();
     }
 }

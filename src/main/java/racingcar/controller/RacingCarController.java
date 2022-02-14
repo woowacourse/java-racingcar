@@ -28,7 +28,7 @@ public class RacingCarController {
     private void raceAllRound(RacingGame game) {
         while (!game.isEnd()) {
             game.race();
-            outputView.printCarsPosition(game.getCurrentRacingCar());
+            outputView.printCarsPosition(game.getCurrentRacingCarDtos());
         }
     }
 }
