@@ -14,7 +14,7 @@ import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDE
 public class CarTest {
 
     private static final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
-        DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
+            DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
     private static final int CAN_GO_VALUE = 9;
 
     private Car car;
@@ -39,7 +39,7 @@ public class CarTest {
     @ValueSource(strings = {"", "  "})
     void constructor_errorOnBlankName(String blankCarName) {
         assertThatExceptionOfType(RuntimeException.class)
-            .isThrownBy(() -> new Car(blankCarName));
+                .isThrownBy(() -> new Car(blankCarName));
     }
 
     @DisplayName("생성자는 인자로 5글자를 초과한 문자열이 들어오면 예외를 발생시킨다")
@@ -47,7 +47,7 @@ public class CarTest {
     @ValueSource(strings = {"123456", "carrots"})
     void constructor_errorOnOverFiveLetters(String longName) {
         assertThatExceptionOfType(RuntimeException.class)
-            .isThrownBy(() -> new Car(longName));
+                .isThrownBy(() -> new Car(longName));
     }
 
     @DisplayName("goOrNot 메서드는 인자의 값이 4 이상일 경우 position 값을 1만큼 증가시킨다.")

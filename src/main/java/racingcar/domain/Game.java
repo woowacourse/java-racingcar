@@ -46,14 +46,14 @@ public class Game {
         int maxPosition = getMaxPosition();
 
         return getCars().stream()
-            .filter((car) -> car.hasSamePosition(maxPosition))
-            .collect(Collectors.toList());
+                .filter((car) -> car.hasSamePosition(maxPosition))
+                .collect(Collectors.toList());
     }
 
     private int getMaxPosition() {
         return getCars().stream()
-            .mapToInt(Car::getPosition)
-            .max().orElse(NON_EXISTING_MAX_POSITION);
+                .mapToInt(Car::getPosition)
+                .max().orElse(NON_EXISTING_MAX_POSITION);
     }
 
     public boolean isOver() {

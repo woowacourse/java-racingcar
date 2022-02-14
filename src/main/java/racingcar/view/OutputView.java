@@ -34,7 +34,7 @@ public class OutputView {
 
         for (Car car : cars) {
             builder.append(formatCarPositionData(car))
-                .append(LINE_SEPARATOR);
+                    .append(LINE_SEPARATOR);
         }
 
         print(builder.toString());
@@ -42,7 +42,7 @@ public class OutputView {
 
     private static String formatCarPositionData(Car car) {
         return car.getName() + CAR_INFO_DELIMITER
-            + DISTANCE_SYMBOL.repeat(car.getPosition());
+                + DISTANCE_SYMBOL.repeat(car.getPosition());
     }
 
     public static void printWinners(List<Car> winners) {

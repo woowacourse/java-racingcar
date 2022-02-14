@@ -17,7 +17,7 @@ public class GameTest {
 
     private static final int TOTAL_ROUNDS = 5;
     private static final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
-        DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
+            DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
 
     private final CarRepository carRepository = new CarRepository();
     private Game game;

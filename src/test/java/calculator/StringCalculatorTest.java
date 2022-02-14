@@ -14,7 +14,7 @@ import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDE
 public class StringCalculatorTest {
 
     private static final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
-        DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
+            DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
 
     @DisplayName("splitAndSum 메서드는 null 혹은 빈 문자열이 입력된 경우 0을 반환한다.")
     @Test
@@ -75,7 +75,7 @@ public class StringCalculatorTest {
     @ValueSource(strings = {"A", "A,1", "가:2"})
     void splitAndSum_nonIntegerThrowsException(String input) {
         assertThatThrownBy(() -> StringCalculator.splitAndSum(input))
-            .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class);
     }
 
     @DisplayName("splitAndSum 메서드는 음수가 입력된 경우 예외가 발생한다.")
@@ -85,8 +85,8 @@ public class StringCalculatorTest {
         String exceptionMessage = "음수를 입력하면 안 됩니다.";
 
         assertThatThrownBy(() -> StringCalculator.splitAndSum(input))
-            .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining(exceptionMessage);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(exceptionMessage);
     }
 
     private int toInt(String string) {

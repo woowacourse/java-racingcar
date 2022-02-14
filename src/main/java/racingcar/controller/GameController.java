@@ -41,7 +41,7 @@ public class GameController {
     private void playGameUntilEnd() {
         OutputView.printRoundResultText();
 
-        while(!game.isOver()) {
+        while (!game.isOver()) {
             game.playRound();
             OutputView.printRoundResult(game.getCars());
         }
