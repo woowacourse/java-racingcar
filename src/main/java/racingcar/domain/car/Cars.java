@@ -1,6 +1,6 @@
 package racingcar.domain.car;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,13 +19,13 @@ public class Cars {
         this.cars = createCarsByName(names);
     }
 
-    private List<Car> createCarsByName(String names) {
-        String[] carNames = splitByComma(names);
+    private List<Car> createCarsByName(String input) {
+        String[] carNames = splitByDelimiter(input);
         return createCarList(carNames);
 
     }
 
-    private String[] splitByComma(String names) {
+    private String[] splitByDelimiter(String names) {
         String[] carNames = names.split(DELIMITER);
         if (carNames.length == MIN_LENGTH) {
             throw new CarNamesNotOnlyCommaException("자동차 이름에 ,만 사용할 수 없습니다.");
@@ -33,12 +33,10 @@ public class Cars {
         return carNames;
     }
 
-    private List<Car> createCarList(String[] carNames) {
-        List<Car> carList = new ArrayList<>();
-        for (String carName : carNames) {
-            carList.add(new Car(carName));
-        }
-        return carList;
+    private List<Car> createCarList(String... carNames) {
+        return Arrays.stream(carNames)
+            .map(Car::new)
+            .collect(Collectors.toList());
     }
 
     public List<Car> getCarList() {
@@ -53,11 +51,10 @@ public class Cars {
     }
 
     private int getMaxPosition() {
-        int max = -1;
-        for (Car car : cars) {
-            max = Math.max(car.getPosition(), max);
-        }
-        return max;
+        return cars.stream()
+            .mapToInt(Car::getPosition)
+            .max()
+            .orElse(-1);
     }
 
     public void move(MovementStrategy strategy) {
