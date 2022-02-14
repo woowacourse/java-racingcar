@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 import static racingcar.utils.NumberConverter.*;
-import static racingcar.utils.NameValidator.*;
+import static racingcar.utils.Validator.*;
 
-public class NameValidatorTest {
+public class ValidatorTest {
 
     @Test
     void 이름_빈칸_실패() {

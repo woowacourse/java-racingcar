@@ -1,10 +1,11 @@
 package racingcar.utils;
 
+import static racingcar.utils.Validator.checkPositiveNumber;
+
 public class NumberConverter {
 
-    private static final String ERROR_NUMBER_OVER_ONE = "[ERROR] 횟수는 1 이상이어야 합니다.";
     private static final String ERROR_NUMBER_NOT_DIGIT = "[ERROR] 횟수는 숫자로 입력해야 합니다.";
-    private static final int MIN_NUMBER = 0;
+
 
     public static int toInt(String text) {
         try {
@@ -16,9 +17,4 @@ public class NumberConverter {
         }
     }
 
-    private static void checkPositiveNumber(int parseInt) {
-        if (parseInt <= MIN_NUMBER) {
-            throw new IllegalArgumentException(ERROR_NUMBER_OVER_ONE);
-        }
-    }
 }

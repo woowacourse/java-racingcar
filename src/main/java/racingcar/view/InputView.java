@@ -4,7 +4,7 @@ import racingcar.utils.Console;
 
 import static racingcar.utils.NumberConverter.*;
 import static racingcar.view.OutputView.*;
-import static racingcar.utils.NameValidator.*;
+import static racingcar.utils.Validator.*;
 
 public class InputView {
 
