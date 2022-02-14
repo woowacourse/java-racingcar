@@ -32,15 +32,16 @@ public class RacingCar {
 	private String[] racingCarNames() {
 		String input = userInput(ENTER_CAR_NAMES);
 		try {
-			checkEndBlank(input);
+			checkBlank(input);
 		} catch (RuntimeException e) {
 			return racingCarNames();
 		}
 		return makeCarNames(input);
 	}
 
-	private void checkEndBlank(String input) throws RuntimeException{
-		if (input.endsWith(",")) {
+	public void checkBlank(String input) throws RuntimeException{
+		final String REGEX = "^,|,$";
+		if (input.matches(REGEX)) {
 			System.out.println(NAME_ERROR);
 			throw new RuntimeException();
 		}

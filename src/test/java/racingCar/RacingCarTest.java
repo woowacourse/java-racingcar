@@ -19,11 +19,19 @@ public class RacingCarTest {
 		String[] names = racingCar.makeCarNames("a,bqwer,cdb");
 		assertThat(names).isEqualTo(new String[] {"a", "bqwer", "cdb"});
 	}
+
 	@DisplayName("자동차 이름 중복 확인")
 	@Test
 	void 자동차_이름_중복() {
 		String[] names = racingCar.makeCarNames("a,a,c");
 		assertThat(names).isEqualTo(new String[] {"a", "a", "c"});
+	}
+
+	@DisplayName("자동차 이름 입력 앞뒤 공백 에러 확인")
+	@Test
+	void 자동차_이름_앞뒤_공백_에러_확인() {
+		assertThatThrownBy(() -> racingCar.checkBlank("a,b,"))
+				.isInstanceOf(RuntimeException.class);
 	}
 
 	@DisplayName("자동차 이름 앞뒤 공백 제거 확인")
@@ -75,6 +83,33 @@ public class RacingCarTest {
 	void 시도_횟수_음수_값_에러() {
 		assertThatThrownBy(() -> racingCar.isRightTimes("-2"))
 			.isInstanceOf(RuntimeException.class);
+	}
+
+	@DisplayName("최종 출력 결과 확인")
+	@Test
+	void 최종_결과_출력_정상() {
+		List<Car> cars = new ArrayList<>();
+		List<Car> winners = new ArrayList<>();
+
+		Car car1 = new Car("a");
+		Car car2 = new Car("b");
+		Car car3 = new Car("c");
+
+		cars.add(car1);
+		cars.add(car2);
+		cars.add(car3);
+
+		cars.get(0).moveCar(true);
+		cars.get(0).moveCar(true);
+		cars.get(1).moveCar(true);
+		cars.get(1).moveCar(true);
+		cars.get(2).moveCar(false);
+
+		winners.add(car1);
+		winners.add(car2);
+
+		List<Car> result = racingCar.findWinner(cars);
+		assertThat(result).isEqualTo(winners);
 	}
 
 }
