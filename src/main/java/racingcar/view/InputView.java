@@ -26,13 +26,13 @@ public class InputView {
 	}
 
 
-	public static int getRound() {
+	public static String getRound() {
 		System.out.println(REQUEST_ROUND_VALUE);
 		try {
 			String inputRound = getInput();
 			Utils.validateRoundNumber(inputRound);
 			Utils.validateRoundMinimumOne(inputRound);
-			return Integer.parseInt(inputRound);
+			return inputRound;
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e);
 			return getRound();

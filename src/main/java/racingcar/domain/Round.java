@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.Objects;
+import racingcar.util.Utils;
 
 public class Round {
 	private static final int ROUND_END_NUMBER = 0;
@@ -11,7 +12,14 @@ public class Round {
 		this.roundNum = roundNum;
 	}
 
-	public static Round from(int round) {
+	public Round(String roundNum) {
+		Utils.validateRoundNumber(roundNum);
+		Utils.validateRoundMinimumOne(roundNum);
+		this.roundNum = Integer.parseInt(roundNum);
+	}
+
+
+	public static Round from(String round) {
 		return new Round(round);
 	}
 
