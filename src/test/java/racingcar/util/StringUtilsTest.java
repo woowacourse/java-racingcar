@@ -48,7 +48,7 @@ class StringUtilsTest {
         // when
 
         // then
-        assertThat(StringUtils.convertNumberToString(cnt)).isEqualTo(expect);
+        assertThat(StringUtils.getGaugeBar(cnt)).isEqualTo(expect);
     }
 
     @Test

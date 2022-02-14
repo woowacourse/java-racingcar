@@ -19,7 +19,7 @@ public class StringUtils {
         return copyArr;
     }
 
-    public static String convertNumberToString(int cnt) {
+    public static String getGaugeBar(int cnt) {
         return DISTANCE_MARK.repeat(Math.max(0, cnt));
     }
 
@@ -33,7 +33,7 @@ public class StringUtils {
     }
 
     private static String getCarStatus(Car car) {
-        String carPositionString = StringUtils.convertNumberToString(car.getPosition());
+        String carPositionString = StringUtils.getGaugeBar(car.getPosition());
         return car.getName() + " : " + carPositionString;
     }
 
