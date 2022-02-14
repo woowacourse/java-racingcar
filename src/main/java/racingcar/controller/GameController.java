@@ -19,7 +19,7 @@ public class GameController {
 
         outputView.printResultMessage();
 
-        for (int i = 0; i < racingGame.getTryCount(); i++) {
+        while (!racingGame.isEnd()) {
             racingGame.race();
             outputView.printResult(racingGame.getCars());
         }

@@ -9,8 +9,9 @@ import racingcar.utils.RandomNumber;
 
 public class RacingGame {
 
+    public static final int GAME_END_COUNT = 0;
     private final List<Car> cars;
-    private final int tryCount;
+    private int tryCount;
 
     public RacingGame(String[] cars, int tryCount) {
         this.cars = new ArrayList<>();
@@ -27,8 +28,12 @@ public class RacingGame {
         return cars;
     }
 
-    public int getTryCount() {
-        return tryCount;
+    public boolean isEnd() {
+        if (tryCount > GAME_END_COUNT) {
+            tryCount--;
+            return false;
+        }
+        return true;
     }
 
     public void race() {

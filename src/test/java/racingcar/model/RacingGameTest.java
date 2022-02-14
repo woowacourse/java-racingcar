@@ -42,6 +42,16 @@ class RacingGameTest {
         assertThat(getWinners(cars).size()).isEqualTo(2);
     }
 
+    @Test
+    void 게임횟수_카운트_검증() {
+        String[] cars = {"test"};
+        RacingGame racingGame = new RacingGame(cars, 5);
+
+        while (!racingGame.isEnd()) {}
+
+        assertThat(racingGame.isEnd()).isTrue();
+    }
+
     public List<String> getWinners(List<Car> cars) {
         return cars.stream()
             .filter(car -> car.getPosition() == findMaxPosition(cars))
