@@ -22,10 +22,6 @@ public class Cars {
 		return cars.size();
 	}
 
-	public void addCar(Car car) {
-		cars.add(car);
-	}
-
 	public List<String> findWinners(WinnerNames winnerNames) {
 		return getWinnerNamesWithFirstCar(findFastestCar(), winnerNames);
 	}
