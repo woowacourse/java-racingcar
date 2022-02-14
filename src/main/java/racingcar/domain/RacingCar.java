@@ -10,8 +10,15 @@ public class RacingCar {
     private int position = DEFAULT_POSITION;
 
     public RacingCar(String name) {
+        checkNameEmpty(name);
         checkNameLength(name);
         this.name = name;
+    }
+
+    private void checkNameEmpty(String name) {
+        if (name.equals("")) {
+            throw new IllegalArgumentException("자동차 이름은 공백이 들어올 수 없다.");
+        }
     }
 
     private void checkNameLength(String name) {

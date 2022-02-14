@@ -18,6 +18,14 @@ public class RacingCarTest {
     }
 
     @Test
+    @DisplayName("자동차의 이름이 공백이 들어올 경우 예외가 발생해야 한다.")
+    void checkRacingCarEmpty() {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> new RacingCar(""))
+            .withMessageMatching("자동차 이름은 공백이 들어올 수 없다.");
+    }
+
+    @Test
     @DisplayName("자동차의 이름이 5자가 초과될 경우 예외가 발생해야 한다.")
     void checkRacingCarNameLength() {
         assertThatExceptionOfType(IllegalArgumentException.class)
