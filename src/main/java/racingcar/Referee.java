@@ -11,16 +11,9 @@ public class Referee {
 		return randomValue >= MOVE_CRITERIA;
 	}
 
-	private static int getMaxPosition(Set<Car> cars) {
+	public static List<Car> judgeWinner(Set<Car> cars, int maxPosition) {
 		return cars.stream()
-			.mapToInt(Car::getPosition)
-			.max()
-			.getAsInt();
-	}
-
-	public static List<Car> judgeWinner(Set<Car> cars) {
-		return cars.stream()
-			.filter(car -> car.isPosition(getMaxPosition(cars)))
+			.filter(car -> car.isPosition(maxPosition))
 			.collect(Collectors.toList());
 	}
 }

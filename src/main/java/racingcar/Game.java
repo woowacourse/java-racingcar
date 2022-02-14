@@ -14,14 +14,14 @@ public class Game {
 
 	public void start() {
 		Cars cars = new Cars(CarFactory.of(InputView.inputCarNames()));
-		int count = InputView.inputGameCount();
-		validateGameCount(count);
+		Set<Car> carSet = cars.getCars();
+		int count = validateGameCount(InputView.inputGameCount());
 		OutputView.printGameResultTitle();
 		for (int i = 0; i < count ; i++) {
-			play(cars.getCars());
-			showResult(cars.getCars());
+			play(carSet);
+			showResult(carSet);
 		}
-		showWinner(Referee.judgeWinner(cars.getCars()));
+		showWinner(Referee.judgeWinner(carSet, cars.getMaxPosition()));
 	}
 
 	public void play(Set<Car> cars) {
@@ -48,9 +48,10 @@ public class Game {
 		return random.nextInt(10);
 	}
 
-	private void validateGameCount(int gameCount) {
+	private int validateGameCount(int gameCount) {
 		if(gameCount < ERROR_CRITERIA_VALUE_ZERO) {
 			throw new IllegalArgumentException(NEGATIVE_ERROR_MESSAGE);
 		}
+		return gameCount;
 	}
 }

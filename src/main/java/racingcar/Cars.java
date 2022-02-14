@@ -19,10 +19,17 @@ public class Cars {
         return cars.size();
     }
 
-    private static void validateDuplicatedCarName(List<Car> carList) {
+    private void validateDuplicatedCarName(List<Car> carList) {
         if (carList.size() != carList.stream().distinct().count()) {
             throw new IllegalArgumentException(DUPLICATED_NAME_ERROR);
         }
+    }
+
+    public int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow();
     }
 
     public Set<Car> getCars() {

@@ -33,12 +33,12 @@ public class RefereeTest {
 		car1.move(true);
 		cars.add(car1);
 		cars.add(car2);
-		assertThat(Referee.judgeWinner(cars).get(0)).isEqualTo(car1);
+		assertThat(Referee.judgeWinner(cars, 1)).containsExactly(car1);
 	}
 
 	@Test
 	public void 우승자_여러명() {
 		Cars cars = new Cars(CarFactory.of("forky,kun"));
-		assertThat(Referee.judgeWinner(cars.getCars()).size()).isEqualTo(2);
+		assertThat(Referee.judgeWinner(cars.getCars(), 0).size()).isEqualTo(2);
 	}
 }
