@@ -17,7 +17,7 @@ public class GameController {
 		OutputView.askCarName();
 		String[] carName = InputView.getCarNameInput();
 		checkNameError(carName);
-		ArrayList<Car> carList = generateCarList(carName);
+		this.carList = generateCarList(carName);
 		OutputView.askTurn();
 		int totalTurn = Integer.parseInt(InputView.getTurnInput());
 		checkTurnError(totalTurn);
@@ -46,11 +46,11 @@ public class GameController {
 	}
 
 	public ArrayList<Car> generateCarList(String[] names) {
-		this.carList = new ArrayList<>();
+		ArrayList<Car> carList = new ArrayList<>();
 		for (String name : names) {
 			carList.add(new Car(name));
 		}
-		return this.carList;
+		return carList;
 	}
 
 	public int getMaxPosition(ArrayList<Car> carList) {
