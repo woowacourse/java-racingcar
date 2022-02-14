@@ -5,9 +5,10 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
     private static final int EMPTY_RETURN_VALUE = 0;
-    private static final Pattern POSITIVE_NUMBER_PATTERN =  Pattern.compile("^[0-9]");
+    private static final String CLUE_OF_CUSTOM_DELIMITER = "//" ;
     private static final String CUSTOM_DELIMITER_AND_EXPRESSION_DELIMITER = "\n";
     private static final String DEFAULT_DELIMITER = ",|:";
+    private static final Pattern POSITIVE_NUMBER_PATTERN =  Pattern.compile("^[0-9]");
 
     public int calculate(final String expression) {
         if (isEmptyOrNull(expression)) {
@@ -23,7 +24,7 @@ public class StringCalculator {
     }
 
     private String[] splitExpression(String expression) {
-        if (expression.startsWith("//")) {
+        if (expression.startsWith(CLUE_OF_CUSTOM_DELIMITER)) {
             int customDelimiterIndex = 0;
             int expressionIndex = 1;
             String[] customDelimiterAndExpression = expression.split(CUSTOM_DELIMITER_AND_EXPRESSION_DELIMITER);
