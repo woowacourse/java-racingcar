@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class RandomNumber {
 
-	private final static int MAX_EXCLUSIVE = 9;
+	private final static int MAX_EXCLUSIVE = 10;
 	private static final Random random = new Random();
 
 	public int getRandomNumber() {
-		return random.nextInt(MAX_EXCLUSIVE) + 1;
+		return random.nextInt(MAX_EXCLUSIVE);
 	}
 }
