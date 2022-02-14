@@ -17,5 +17,10 @@ public class Output {
 
     public static void winnerPrint(List<String> winnerNames) {
         System.out.println(String.join(SPLIT_DELIM, winnerNames) + OUTPUT_WINNER_MESSAGE);
+        lastLineBreak();
+    }
+
+    private static void lastLineBreak() {
+        System.out.println();
     }
 }
