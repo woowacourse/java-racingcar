@@ -16,7 +16,7 @@ public class RacingGameTest {
 
     @BeforeEach
     void setUp() {
-        racingCars = new RacingCars("pobi,crong,honux");
+        racingCars = RacingCars.from("pobi,crong,honux");
     }
 
     @Test

@@ -14,18 +14,20 @@ public class RacingCars {
 
     private final List<RacingCar> cars;
 
-    public RacingCars(String carStringNames) {
-        this.cars = makeRacingCars(carStringNames.split(CAR_NAME_DELIMITER));
+    public RacingCars(List<RacingCar> cars) {
+        this.cars = cars;
     }
 
-    private List<RacingCar> makeRacingCars(String[] carNames) {
-        return Arrays.stream(carNames)
-            .map(this::removeNameBlank)
+    public static RacingCars from(String names) {
+        List<RacingCar> cars = Arrays.stream(names.split(CAR_NAME_DELIMITER))
+            .map(RacingCars::removeNameBlank)
+            .map(Name::new)
             .map(RacingCar::new)
             .collect(Collectors.toList());
+        return new RacingCars(cars);
     }
 
-    private String removeNameBlank(String name) {
+    private static String removeNameBlank(String name) {
         return name.replaceAll(NAME_BLANK, NAME_NOT_BLANK);
     }
 
