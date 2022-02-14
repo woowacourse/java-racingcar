@@ -3,6 +3,7 @@ package racingcar.view.input;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ConsoleInputView implements InputView {
@@ -12,7 +13,7 @@ public class ConsoleInputView implements InputView {
     private static final String TRIAL_COUNT_INPUT_ALERT_MESSAGE = "시도할 회수는 몇회인가요?";
 
     private static final String NAME_DELIMITER = ",";
-    private static final String ZERO_AND_POSITIVE_DIGIT = "^[0-9]*$";
+    private static final Pattern TRIAL_COUNT_PATTERN = Pattern.compile("^[0-9]*$");
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -41,7 +42,7 @@ public class ConsoleInputView implements InputView {
     }
 
     private void validatePositiveDigit(final String inputString) {
-        if (!inputString.matches(ZERO_AND_POSITIVE_DIGIT) || inputString.equals("0")) {
+        if (!TRIAL_COUNT_PATTERN.matcher(inputString).matches() || inputString.equals("0")) {
             throw new IllegalArgumentException(NOT_POSITIVE_DIGIT);
         }
     }
