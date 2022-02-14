@@ -29,13 +29,11 @@ public class StringCalculator {
 	}
 
 	private static int addAllNumber(List<String> numbers) {
-		int sum = 0;
-		for (String number : numbers) {
-			int num = toInts(number);
-			validateNegative(num);
-			sum += num;
-		}
-		return sum;
+		return numbers.stream().mapToInt(number -> {
+			int intValue = toInts(number);
+			validateNegative(intValue);
+			return intValue;
+		}).sum();
 	}
 
 	private static String findCustomDelimiter(String input) {
