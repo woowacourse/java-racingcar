@@ -6,17 +6,19 @@ import racingCar.service.RacingCarsService;
 import racingCar.service.RequestService;
 import racingCar.view.Output;
 
-public class RacingCarsController {
+public class GameController {
 	private final RacingCarsService racingCarsService = new RacingCarsService();
 
-	public RacingCarsController() {
+	public void run() {
 		racingCarsService.initiateCars(RequestService.requestNames());
 		racingCarsService.initiateCount(RequestService.requestCount());
+		playGame();
+		endGame();
 	}
 
-	public void startGame() {
+	public void playGame() {
 		printStartMessage();
-		racingCarsService.runGame();
+		racingCarsService.playGame();
 	}
 
 	public void endGame() {

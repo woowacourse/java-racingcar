@@ -28,7 +28,7 @@ class RacingCarsServiceTest {
 		System.setOut(new PrintStream(out));
 
 		//when
-		racingCarsService.runGame();
+		racingCarsService.playGame();
 		String result = out.toString();
 
 		//then

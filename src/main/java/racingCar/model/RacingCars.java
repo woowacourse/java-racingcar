@@ -33,7 +33,7 @@ public class RacingCars {
 		this.cars.add(car);
 	}
 
-	public void goRound() {
+	public void go() {
 		for (Car car : cars) {
 			car.go();
 		}

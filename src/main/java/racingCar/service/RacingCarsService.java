@@ -23,17 +23,17 @@ public class RacingCarsService {
 		roundCount = new RoundCount(countInput);
 	}
 
-	public void runGame() {
+	public void playGame() {
 		goRound();
 		if (roundCount.isFinish()) {
 			return;
 		}
-		runGame();
+		playGame();
 	}
 
 	public void goRound() {
-		cars.goRound();
-		roundCount.goRound();
+		cars.go();
+		roundCount.minusOne();
 		Output.printRoundResult(cars);
 	}
 

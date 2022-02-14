@@ -14,7 +14,7 @@ public class RoundCount {
 		return count;
 	}
 
-	public void goRound() {
+	public void minusOne() {
 		count--;
 	}
 	public boolean isFinish() {
