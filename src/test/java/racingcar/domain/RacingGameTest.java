@@ -78,4 +78,26 @@ public class RacingGameTest {
             () -> assertThat(result).contains("pobi")
         );
     }
+
+    @Test
+    @DisplayName("우승자가 여러명인 경우 모두 반환한다.")
+    void multiWinnerNames() {
+        // given
+        List<RacingCar> racingCars = Arrays.asList(
+            new RacingCar(new Name("pobi"), () -> true),
+            new RacingCar(new Name("crong"), () -> true),
+            new RacingCar(new Name("honux"), () -> false)
+        );
+        RacingGame racingGame = new RacingGame(new RacingCars(racingCars), 1);
+
+        // when
+        racingGame.race();
+        List<String> result = racingGame.winnerNames();
+
+        // then
+        assertAll(
+            () -> assertThat(result.size()).isEqualTo(2),
+            () -> assertThat(result).containsExactly("pobi", "crong")
+        );
+    }
 }
