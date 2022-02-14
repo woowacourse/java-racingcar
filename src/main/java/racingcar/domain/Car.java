@@ -25,14 +25,14 @@ public class Car {
         return position;
     }
 
-    public void moveOrNot(int randomNumber) {
-        if (randomNumber >= CONDITION_FOR_MOVE) {
+    public void moveOrNot(int targetNumber) {
+        if (targetNumber >= CONDITION_FOR_MOVE) {
             position++;
         }
     }
 
-    public boolean isWinner(int maxPosition) {
-        return position == maxPosition;
+    public boolean isSamePosition(int target) {
+        return position == target;
     }
 
     @Override

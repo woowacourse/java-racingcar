@@ -42,7 +42,7 @@ public class RacingGame {
         int maxPosition = getMaxPosition();
 
         return cars.stream()
-                .filter(c -> c.isWinner(maxPosition))
+                .filter(c -> c.isSamePosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
