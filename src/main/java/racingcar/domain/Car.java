@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Car implements Comparable<Car> {
     private static final int INIT_POSITION = 1;
+    public static final int SAME_POSITION_NUMBER = 0;
 
     private Position position = new Position(INIT_POSITION);
     private final CarName name;
@@ -22,7 +23,7 @@ public class Car implements Comparable<Car> {
     }
 
     public boolean isSamePositionWith(final Car other) {
-        return compareTo(other) == 0;
+        return compareTo(other) == SAME_POSITION_NUMBER;
     }
 
     public CarName getName() {
