@@ -13,6 +13,8 @@ public class InputValidator {
     private static final String CAR_NAME_PATTERN_REGEX = "^[a-zA-Z,]*$";
     private static final String COIN_PATTERN_REGEX = "^[0-9]*$";
 
+    private static final Pattern pattern = Pattern.compile(COIN_PATTERN_REGEX);
+
     public void isValidPattern(String input) {
         Pattern pattern = Pattern.compile(CAR_NAME_PATTERN_REGEX);
         Matcher matcher = pattern.matcher(input);
@@ -41,7 +43,6 @@ public class InputValidator {
     }
 
     public void isNumeric(String input) {
-        Pattern pattern = Pattern.compile(COIN_PATTERN_REGEX);
         Matcher matcher = pattern.matcher(input);
         if (!matcher.find()) {
             throw new IllegalArgumentException(Constant.NOT_NUMERIC_ERROR);
