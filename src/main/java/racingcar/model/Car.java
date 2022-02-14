@@ -7,11 +7,12 @@ import racingcar.validator.NameValidator;
 public class Car {
 
 	private final String name;
-	private int position = 0;
+	private int position;
 
-	public Car(String name) throws Exception {
+	public Car(String name, int position) throws Exception {
 		NameValidator.checkCarName(name);
 		this.name = name;
+		this.position = position;
 	}
 
 	public void decideMove() {
@@ -20,7 +21,7 @@ public class Car {
 		}
 	}
 
-	public void moveCar() {
+	private void moveCar() {
 		position++;
 	}
 

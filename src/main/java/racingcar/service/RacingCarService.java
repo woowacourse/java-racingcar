@@ -23,9 +23,11 @@ public class RacingCarService {
 		save(carNameList);
 	}
 
-	public void save(List<String> carNameList) throws Exception {
+
+
+	private void save(List<String> carNameList) throws Exception {
 		for (String name : carNameList) {
-			cars.add(new Car(name));
+			cars.add(new Car(name, 0));
 		}
 	}
 
