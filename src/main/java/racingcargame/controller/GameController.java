@@ -38,7 +38,7 @@ public class GameController {
 		Display.showRaceProgressGuideMessage();
 		while (!racingCarGame.isOverRace()) {
 			racingCarGame.startRace();
-			Display.showRaceProgress(racingCarGame.sendCurrentLocationOfRacingCars());
+			Display.showRaceProgress(racingCarGame.sendCurrentPositionOfRacingCars());
 		}
 	}
 
