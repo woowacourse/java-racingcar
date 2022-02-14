@@ -54,7 +54,7 @@ public class CarsTest {
 		cars.add(Car.of("car2", 3));
 		cars.add(Car.of("car3", 5));
 
-		assertThat(cars.getWinnersNames().toString()).isEqualTo("car1, car3");
+		assertThat(cars.getWinnersNames()).containsExactly("car1", "car3");
 	}
 
 	@DisplayName("getFirstPosition 메소드는")

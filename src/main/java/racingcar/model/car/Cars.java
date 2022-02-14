@@ -13,7 +13,7 @@ public class Cars {
 	private static final int MAX_RANDOM_BOUND = 9;
 	private static final int MIN_MOVABLE_VALUE = 4;
 
-	private List<Car> cars;
+	private final List<Car> cars;
 
 	private Cars(List<Car> cars) {
 		this.cars = cars;
@@ -45,12 +45,15 @@ public class Cars {
 			.forEach(Car::move);
 	}
 
-	public Position getFirstPosition() {
-		if (cars.isEmpty()) {
-			throw new IllegalArgumentException("아무 차량도 추가되지 않았습니다.");
-		}
-		Collections.sort(cars);
-		return cars.get(0).getPosition();
+	public List<String> getWinnersNames() {
+		return getWinners().stream()
+			.map(Car::toDto)
+			.map(CarDto::getName)
+			.collect(Collectors.toList());
+	}
+
+	private List<Car> getWinners() {
+		return getCarsByPosition(getFirstPosition());
 	}
 
 	public List<Car> getCarsByPosition(Position position) {
@@ -59,10 +62,12 @@ public class Cars {
 			.collect(Collectors.toList());
 	}
 
-	public Names getWinnersNames() {
-		return Names.from(getCarsByPosition(getFirstPosition()).stream()
-			.map(Car::getName)
-			.collect(Collectors.toList()));
+	public Position getFirstPosition() {
+		if (cars.isEmpty()) {
+			throw new IllegalArgumentException("아무 차량도 추가되지 않았습니다.");
+		}
+		Collections.sort(cars);
+		return cars.get(0).getPosition();
 	}
 
 	public List<CarDto> getCarsDto() {

@@ -3,7 +3,6 @@ package racingcar.view;
 import java.util.List;
 
 import racingcar.dto.CarDto;
-import racingcar.model.car.Names;
 
 public class OutputView {
 	public static void printRaceResultUi() {
@@ -20,8 +19,8 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printWinnersUi(Names names) {
-		System.out.printf("%s가 최종 우승했습니다.", names);
+	public static void printWinnersUi(List<String> names) {
+		System.out.printf("%s가 최종 우승했습니다.", String.join(", ", names));
 	}
 
 	public static void printErrorUi(Exception exception) {
