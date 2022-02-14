@@ -11,7 +11,6 @@ public class Cars {
     public static final String LIST_JOIN_DELIMITER = ", ";
     public static final String WINNER_MESSAGE = "가 최종 우승 했습니다.";
 
-
     private final List<Car> cars;
     private final List<String> winners;
 
@@ -48,13 +47,7 @@ public class Cars {
                 .orElseThrow(NoSuchElementException::new);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars) {
-            stringBuilder.append(car)
-                    .append("\n");
-        }
-        return stringBuilder.toString();
+    public List<Car> getCars() {
+        return cars;
     }
 }

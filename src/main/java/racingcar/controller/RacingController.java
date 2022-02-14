@@ -45,7 +45,7 @@ public class RacingController {
     private void progressTurns(Cars cars, int trialCount) {
         for (int i = 0; i < trialCount; i++) {
             cars.moveCars(numberGenerator);
-            printMessage(cars.toString());
+            printResultView(cars);
         }
     }
 

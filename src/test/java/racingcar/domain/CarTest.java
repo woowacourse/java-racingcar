@@ -23,13 +23,4 @@ public class CarTest {
         assertThat(car.getPosition()).isEqualTo(0);
 
     }
-
-    @Test
-    void 자동차_포지션_출력_성공() {
-        Car car = new Car("jae");
-        car.goForward(FORWARD_STANDARD);
-        assertThat(car.toString()).isEqualTo("jae : -");
-
-    }
-
 }
