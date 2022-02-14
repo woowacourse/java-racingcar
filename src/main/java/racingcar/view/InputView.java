@@ -7,6 +7,10 @@ import static racingcar.constants.output.RequestOutputMessages.REQUEST_TOTAL_ROU
 
 public class InputView {
 
+    private InputView() {
+        throw new AssertionError();
+    }
+
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String requestCarNameInput() {

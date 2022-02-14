@@ -9,15 +9,16 @@ import static racingcar.constants.output.ErrorOutputMessages.ERROR_DUPLICATE_NAM
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_NOT_POSITIVE_INTEGER;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_OVER_FIVE_CHARACTERS;
 import static racingcar.constants.GameConstants.MAX_NAME_LENGTH;
-import static racingcar.constants.SystemConstants.NUMBER_ZERO;
+import static racingcar.constants.SystemConstants.NUMBER_ZERO_FOR_POSITIVE_CHECK;
 
 public class ValidatorUtils {
 
     private ValidatorUtils() {
+        throw new AssertionError();
     }
 
     public static void validatePositiveInt(int integer) {
-        if (integer <= NUMBER_ZERO) {
+        if (integer <= NUMBER_ZERO_FOR_POSITIVE_CHECK) {
             throw new IllegalArgumentException(ERROR_NOT_POSITIVE_INTEGER);
         }
     }

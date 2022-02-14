@@ -11,9 +11,12 @@ import static racingcar.constants.output.SymbolOutputMessages.SYMBOL_DISTANCE;
 import static racingcar.constants.output.SymbolOutputMessages.SYMBOL_EMPTY_LINE;
 import static racingcar.constants.output.ResultOutputMessages.RESULT_ROUND_TEXT;
 import static racingcar.constants.output.SymbolOutputMessages.SYMBOL_WINNERS_JOINER_DELIMITER;
-import static racingcar.constants.SystemConstants.NUMBER_ZERO;
 
 public class OutputView {
+
+    private OutputView() {
+        throw new AssertionError();
+    }
 
     public static void printRoundResultText() {
         print(RESULT_ROUND_TEXT);
