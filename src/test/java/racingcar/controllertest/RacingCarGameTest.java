@@ -14,6 +14,12 @@ public class RacingCarGameTest {
 	RacingCarGame racingCarGame = new RacingCarGame();
 
 	@Test
+	public void 자동차_이름_구분() {
+		List<String> result = racingCarGame.splitCarNames("배카라,아스피");
+		assertThat(result).isEqualTo(Arrays.asList("배카라", "아스피"));
+	}
+	
+	@Test
 	public void 자동차_객체_생성() {
 		List<Car> result = racingCarGame.toCar(Arrays.asList("배카라", "아스피"));
 		assertThat(result).isEqualTo(Arrays.asList(new Car("배카라"), new Car("아스피")));
