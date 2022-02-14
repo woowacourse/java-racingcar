@@ -11,11 +11,11 @@ public class Validator {
     private static final int MAXIMUM_COUNT = 50;
 
     public static void checkCarNames(String nameString) {
-        checkInput(nameString);
-        checkName(nameString);
+        checkNameStringFormat(nameString);
+        checkEachName(nameString);
     }
 
-    public static void checkName(String nameString) {
+    public static void checkEachName(String nameString) {
         String[] names = nameString.split(DELIMITER);
 
         for (String name : names) {
@@ -24,11 +24,11 @@ public class Validator {
     }
 
     private static void checkLength(String name) {
-        checkMinimumCarName(name);
+        checkMinimumCarNameLength(name);
         checkMaximumCarNameLength(name);
     }
 
-    private static void checkMinimumCarName(String name) {
+    private static void checkMinimumCarNameLength(String name) {
         if (name.isEmpty()) {
             throw new IllegalArgumentException("이름은 1글자 이상이여야 합니다.");
         }
@@ -40,11 +40,7 @@ public class Validator {
         }
     }
 
-    private static boolean isBlankOrNull(String nameString) {
-        return nameString == null || nameString.isEmpty();
-    }
-
-    public static void checkInput(String nameString) {
+    public static void checkNameStringFormat(String nameString) {
         checkBlankOrNull(nameString);
         checkInvalidNameString(nameString);
         checkDuplicateName(nameString);
@@ -73,6 +69,10 @@ public class Validator {
         if (isBlankOrNull(nameString)) {
             throw new IllegalArgumentException("입력값은 1글자 이상이여야 합니다");
         }
+    }
+
+    private static boolean isBlankOrNull(String nameString) {
+        return nameString == null || nameString.isEmpty();
     }
 
     private static boolean hasMinimumCarName(String nameString) {

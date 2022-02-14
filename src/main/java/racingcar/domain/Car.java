@@ -11,10 +11,6 @@ public class Car implements Comparable<Car> {
         this.name = name;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public void attemptToMove(int number) {
         if (isMovable(number)) {
             position++;
@@ -25,16 +21,20 @@ public class Car implements Comparable<Car> {
         return number >= LOWER_MOVABLE_BOUND;
     }
 
+    public boolean isSamePositionWith(Car competitor) {
+        return this.position == competitor.position;
+    }
+
     @Override
     public int compareTo(Car o) {
         return position - o.position;
     }
 
-    public boolean isSamePositionWith(Car competitor) {
-        return this.position == competitor.position;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
