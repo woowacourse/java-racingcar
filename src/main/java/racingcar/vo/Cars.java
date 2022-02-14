@@ -27,7 +27,7 @@ public class Cars {
     private void addCar(String name) {
         CarName carName = new CarName(name);
         Car car = new Car(carName);
-        validDuplicateCarName(car);
+        validateDuplicateCarName(car);
         cars.add(car);
     }
 
@@ -62,13 +62,13 @@ public class Cars {
                 .collect(Collectors.toList()));
     }
 
-    private void validDuplicateCarName(Car car) {
+    private void validateDuplicateCarName(Car car) {
         if (cars.stream().filter(each -> each.isSameName(car)).count() != NONE_DUPLICATION) {
             throw new RuntimeException(ErrorMessage.CAR_NAME_DUPLICATE.toString());
         }
     }
 
-    public boolean isSize(int size) {
+    public boolean isSameSize(int size) {
         return cars.size() == size;
     }
 }

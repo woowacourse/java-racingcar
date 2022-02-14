@@ -14,11 +14,11 @@ public class RandomUtil {
     public static int generateRandomNumber() {
         int randomNumber =
                 RANDOM.nextInt(MAXIMUM - MINIMUM + EXCLUSIVE_BOUND_CORRECTION_VALUE) + MINIMUM;
-        validRange(randomNumber);
+        validateRange(randomNumber);
         return randomNumber;
     }
 
-    private static void validRange(int randomNumber) {
+    private static void validateRange(int randomNumber) {
         if (randomNumber > MAXIMUM || randomNumber < MINIMUM) {
             throw new IllegalArgumentException(ErrorMessage.RANGE_OVER.toString());
         }

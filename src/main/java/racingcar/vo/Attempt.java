@@ -13,7 +13,7 @@ public class Attempt {
         this.attempt = valid(attempt);
     }
 
-    public int get() {
+    public int getAttempt() {
         return attempt;
     }
 
@@ -27,15 +27,15 @@ public class Attempt {
 
     private int valid(String attempt) {
         int number = toInteger(attempt);
-        validNegative(number);
+        validateNegative(number);
         return number;
     }
 
-    private int toInteger(String string) {
-        return Integer.parseInt(string);
+    private int toInteger(String attempt) {
+        return Integer.parseInt(attempt);
     }
 
-    private void validNegative(int attempt) {
+    private void validateNegative(int attempt) {
         if (attempt < ZERO) {
             throw new RuntimeException(ErrorMessage.NUMBER_NEGATIVE.toString());
         }

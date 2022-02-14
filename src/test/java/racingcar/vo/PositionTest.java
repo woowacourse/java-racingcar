@@ -11,7 +11,7 @@ public class PositionTest {
     @Test
     public void 생성자_test() throws Exception {
         Position position = new Position();
-        assertThat(position.get()).isEqualTo(0);
+        assertThat(position.getPosition()).isEqualTo(0);
     }
 
     @DisplayName("increase() 테스트")
@@ -19,7 +19,7 @@ public class PositionTest {
     public void increase_test() throws Exception {
         Position position = new Position();
         position.increase();
-        assertThat(position.get()).isEqualTo(1);
+        assertThat(position.getPosition()).isEqualTo(1);
     }
 
     @DisplayName("compareTo() 테스트")

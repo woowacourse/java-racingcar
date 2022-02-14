@@ -16,7 +16,7 @@ public class CarsTest {
         String name = "name1";
         String[] names = {name};
         Cars cars = new Cars(names);
-        assertThat(cars.isSize(1)).isTrue();
+        assertThat(cars.isSameSize(1)).isTrue();
     }
 
     @DisplayName("repeatRaceBy() 테스트")

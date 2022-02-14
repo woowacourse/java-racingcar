@@ -13,7 +13,7 @@ public class AttemptTest {
     public void 생성자_test() throws Exception {
         String input = "3";
         Attempt attempt = new Attempt(input);
-        assertThat(attempt.get()).isEqualTo(3);
+        assertThat(attempt.getAttempt()).isEqualTo(3);
     }
 
     @DisplayName("isLeft() 테스트")
@@ -32,13 +32,13 @@ public class AttemptTest {
     public void decrease_test() throws Exception {
         String input = "3";
         Attempt attempt = new Attempt(input);
-        assertThat(attempt.get()).isEqualTo(3);
+        assertThat(attempt.getAttempt()).isEqualTo(3);
         attempt.decrease();
-        assertThat(attempt.get()).isEqualTo(2);
+        assertThat(attempt.getAttempt()).isEqualTo(2);
         attempt.decrease();
-        assertThat(attempt.get()).isEqualTo(1);
+        assertThat(attempt.getAttempt()).isEqualTo(1);
         attempt.decrease();
-        assertThat(attempt.get()).isEqualTo(0);
+        assertThat(attempt.getAttempt()).isEqualTo(0);
     }
 
     @DisplayName("validNumberFormat() 입력 값이 숫자가 아닌 경우 예외 테스트")

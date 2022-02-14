@@ -19,13 +19,13 @@ public class Calculator {
             "[" + BASIC_DELIMITER_COMMA + BASIC_DELIMITER_COLON + "%s]";
 
     public static int sum(String input) {
-        if (validNullOrEmpty(input)) {
+        if (validateNullOrEmpty(input)) {
             return ZERO;
         }
         return addAll(toIntegers(split(input)));
     }
 
-    private static boolean validNullOrEmpty(String input) {
+    private static boolean validateNullOrEmpty(String input) {
         return input == null || input.equals(EMPTY_STRING);
     }
 
@@ -43,7 +43,7 @@ public class Calculator {
         int[] numbers = new int[stringNumbers.length];
         for (int i = 0; i < stringNumbers.length; i++) {
             int result = toInteger(stringNumbers[i]);
-            validNegative(result);
+            validateNegative(result);
             numbers[i] = result;
         }
         return numbers;
@@ -53,7 +53,7 @@ public class Calculator {
         return Integer.parseInt(stringNumber);
     }
 
-    private static void validNegative(int number) {
+    private static void validateNegative(int number) {
         if (number < ZERO) {
             throw new RuntimeException(ErrorMessage.NUMBER_NEGATIVE.toString());
         }
