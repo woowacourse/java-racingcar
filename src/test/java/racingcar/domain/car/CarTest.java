@@ -17,6 +17,16 @@ class CarTest {
         car.move(true);
     }
 
+    @ParameterizedTest
+    @DisplayName("true를 받으면 전진하고 false를 받으면 정지한다.")
+    @CsvSource({"true, 2", "false, 1"})
+    void move(boolean movement, int expectedDistance) {
+        car.move(movement);
+        final CarDto actual = car.info();
+        final CarDto expected = new CarDto("abc", expectedDistance);
+        assertThat(actual).isEqualTo(expected);
+    }
+
     @Test
     @DisplayName("자동차의 이름과 거리를 dto 변환해 반환한다.")
     void info() {
