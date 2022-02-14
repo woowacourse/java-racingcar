@@ -59,7 +59,7 @@ class CarsTest {
 	void setPositionCars() {
 		int[] moveList = {0, 0, 1, 1, 2};
 		for (int i : moveList) {
-			cars.get(i).drive(true);
+			cars.get(i).drive();
 		}
 	}
 
