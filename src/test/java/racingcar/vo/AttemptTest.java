@@ -33,11 +33,11 @@ public class AttemptTest {
         String input = "3";
         Attempt attempt = new Attempt(input);
         assertThat(attempt.getAttempt()).isEqualTo(3);
-        attempt.decrease();
+        attempt = attempt.decrease();
         assertThat(attempt.getAttempt()).isEqualTo(2);
-        attempt.decrease();
+        attempt = attempt.decrease();
         assertThat(attempt.getAttempt()).isEqualTo(1);
-        attempt.decrease();
+        attempt = attempt.decrease();
         assertThat(attempt.getAttempt()).isEqualTo(0);
     }
 

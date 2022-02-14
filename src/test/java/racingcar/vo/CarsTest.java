@@ -26,14 +26,13 @@ public class CarsTest {
         String[] names = {name};
         Cars cars = new Cars(names);
         Attempt attempt = new Attempt("5");
-        String result = cars.repeatRaceBy(attempt);
+        Cars afterRaceCars = cars.repeatRaceBy(attempt);
+        String result = afterRaceCars.getRaceAllResult();
         Matcher matcher = Pattern.compile(name).matcher(result);
         int nameCount = 0;
         while (matcher.find()) {
             nameCount++;
         }
-        assertThat(attempt.isLeft()).isFalse();
-        assertThat(result).contains("실행 결과", name);
         assertThat(nameCount).isEqualTo(5);
     }
 

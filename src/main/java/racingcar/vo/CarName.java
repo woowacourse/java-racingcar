@@ -6,7 +6,7 @@ public class CarName {
 
     private static final int MAX_LENGTH = 5;
 
-    private String name;
+    private final String name;
 
     public CarName(String name) {
         validateEmpty(name);
@@ -14,7 +14,7 @@ public class CarName {
         this.name = name;
     }
 
-    public String get() {
+    public String getName() {
         return name;
     }
 

@@ -13,7 +13,7 @@ public class CarNameTest {
     public void 생성자_test() throws Exception {
         String carName = "name1";
         CarName name = new CarName(carName);
-        assertThat(name.get()).isEqualTo(carName);
+        assertThat(name.getName()).isEqualTo(carName);
     }
 
     @DisplayName("new CarName() 공백이 입력되었을 때 예외 테스트")

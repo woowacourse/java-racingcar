@@ -8,14 +8,21 @@ import racingcar.view.ErrorMessage;
 
 public class Cars {
 
-    private static final String RACE_RESULT_MESSAGE = "실행 결과";
     private static final int NONE_DUPLICATION = 0;
+    private static final String DEFAULT_RACE_ALL_RESULT = "자동차 경주 진행 전입니다.";
 
-    private List<Car> cars;
+    private final List<Car> cars;
+    private final String raceAllResult;
 
     public Cars(String[] names) {
         cars = new ArrayList<>();
+        raceAllResult = DEFAULT_RACE_ALL_RESULT;
         createCarsWith(names);
+    }
+
+    private Cars(List<Car> cars, String raceAllResult) {
+        this.cars = new ArrayList<>(cars);
+        this.raceAllResult = raceAllResult;
     }
 
     private void createCarsWith(String[] names) {
@@ -31,20 +38,29 @@ public class Cars {
         cars.add(car);
     }
 
-    public String repeatRaceBy(Attempt attempt) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(RACE_RESULT_MESSAGE).append(System.lineSeparator());
+    public Cars repeatRaceBy(Attempt attempt) {
+        StringBuilder raceAllResultBuilder = new StringBuilder();
+        List<Car> cars = new ArrayList<>(this.cars);
         while (attempt.isLeft()) {
-            stringBuilder.append(raceAll());
-            attempt.decrease();
+            cars = raceAll(cars);
+            raceAllResultBuilder.append(getRaceResultWith(cars));
+            attempt = attempt.decrease();
         }
-        return stringBuilder.toString();
+        return new Cars(cars, raceAllResultBuilder.toString());
     }
 
-    private String raceAll() {
+    private List<Car> raceAll(List<Car> cars) {
+        List<Car> afterRaceCars = new ArrayList<>();
+        for (Car car : cars) {
+            Car movedCar = car.move();
+            afterRaceCars.add(movedCar);
+        }
+        return afterRaceCars;
+    }
+
+    private String getRaceResultWith(List<Car> cars) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Car car : cars) {
-            car.move();
             stringBuilder.append(car.toString());
             stringBuilder.append(System.lineSeparator());
         }
@@ -70,5 +86,9 @@ public class Cars {
 
     public boolean isSameSize(int size) {
         return cars.size() == size;
+    }
+
+    public String getRaceAllResult() {
+        return raceAllResult;
     }
 }

@@ -15,7 +15,8 @@ public class RacingCar {
     public void play() {
         Cars cars = createCars(splitCarNames(requestCarName()));
         Attempt attempt = new Attempt(requestAttempt());
-        printRaceResult(cars.repeatRaceBy(attempt));
+        cars = cars.repeatRaceBy(attempt);
+        printRaceResult(cars.getRaceAllResult());
         printWinners(cars.judgeWinners());
     }
 

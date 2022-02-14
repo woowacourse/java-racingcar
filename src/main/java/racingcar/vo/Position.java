@@ -4,15 +4,20 @@ public class Position implements Comparable<Position> {
 
     private static final int INIT_POSITION = 0;
     private static final String POSITION_BAR = "-";
+    private static final int MOVE_ONE_TIME = 1;
 
-    private int position;
+    private final int position;
 
     public Position() {
-        position = INIT_POSITION;
+        this.position = INIT_POSITION;
     }
 
-    public void increase() {
-        position++;
+    public Position(int position) {
+        this.position = position;
+    }
+
+    public Position increase() {
+        return new Position(position + MOVE_ONE_TIME);
     }
 
     public int getPosition() {

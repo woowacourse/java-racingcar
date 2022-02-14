@@ -6,13 +6,18 @@ public class Attempt {
 
     private static final int EMPTY_COUNT = 0;
     private static final int ZERO = 0;
+    private static final int DECREASE_ONT_TIME = 1;
 
-    private int attempt;
+    private final int attempt;
 
     public Attempt(String attemptInput) {
         int number = toInteger(attemptInput);
         validateNegative(number);
         this.attempt = number;
+    }
+
+    private Attempt(int attempt) {
+        this.attempt = attempt;
     }
 
     public int getAttempt() {
@@ -23,10 +28,10 @@ public class Attempt {
         return attempt > EMPTY_COUNT;
     }
 
-    public void decrease() {
-        attempt--;
+    public Attempt decrease() {
+        return new Attempt(attempt - DECREASE_ONT_TIME);
     }
-    
+
     private int toInteger(String attempt) {
         return Integer.parseInt(attempt);
     }

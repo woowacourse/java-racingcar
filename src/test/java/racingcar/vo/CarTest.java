@@ -45,10 +45,10 @@ public class CarTest {
         String testName = "name2";
         CarName carName = new CarName(name);
         CarName testCarName = new CarName(testName);
-        Car car = new Car(carName);
-        Car testCar = new Car(testCarName);
-        while (!car.move()) {
-        }
+        Position onePosition = new Position(1);
+        Position zeroPosition = new Position(0);
+        Car car = new Car(carName, onePosition);
+        Car testCar = new Car(testCarName, zeroPosition);
         assertThat(car.compareTo(testCar)).isGreaterThan(0);
     }
 }
