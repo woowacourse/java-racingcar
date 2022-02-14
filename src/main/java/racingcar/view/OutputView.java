@@ -17,11 +17,14 @@ public class OutputView {
     }
 
     public static void printCarsUi(Cars cars) {
-        System.out.println(cars);
+        System.out.printf(cars.result() + "%n");
+    }
+
+    public static void printEnterUi() {
         System.out.println();
     }
 
-    public static void printRaceResultUi(Names names) {
+    public static void printWinnersUi(Names names) {
         System.out.printf("%s가 최종 우승했습니다.", names);
     }
 

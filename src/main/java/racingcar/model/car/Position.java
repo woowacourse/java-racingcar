@@ -4,10 +4,9 @@ import racingcar.util.NumberValidator;
 
 import java.util.Objects;
 
-class Position implements Comparable<Position> {
+public class Position implements Comparable<Position> {
     private static final int INCREASE_DISTANCE = 1;
     private static final int DEFAULT_POSITION = 0;
-    private static final String DISTANCE_BAR = "-";
 
     private final int position;
 
@@ -26,6 +25,10 @@ class Position implements Comparable<Position> {
 
     public Position increase() {
         return from(this.position + INCREASE_DISTANCE);
+    }
+
+    public int toInt() {
+        return position;
     }
 
     @Override
@@ -48,10 +51,5 @@ class Position implements Comparable<Position> {
     @Override
     public int hashCode() {
         return Objects.hash(position);
-    }
-
-    @Override
-    public String toString() {
-        return DISTANCE_BAR.repeat(position);
     }
 }
