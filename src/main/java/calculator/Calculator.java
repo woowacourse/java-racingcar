@@ -3,6 +3,8 @@ package calculator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import calculator.exception.NumberIsNotNumericException;
+
 public class Calculator {
 
     private final Separator separator;
@@ -27,31 +29,25 @@ public class Calculator {
     }
 
     private List<Integer> parseValuesAsNumber(List<String> values) {
-        return values.stream().map(this::parseValueAsNumber).collect(Collectors.toList());
+        return values.stream()
+                .map(this::parseValueAsNumber)
+                .collect(Collectors.toList());
     }
 
     private int parseValueAsNumber(String value) {
         try {
             int number = Integer.parseInt(value);
-            validateNumberIsNegative(number);
+            NumberValidator.validateNumber(number);
             return number;
         } catch (NumberFormatException exception) {
-            throw new RuntimeException("숫자 이외의 값을 입력하셨습니다.");
+            throw new NumberIsNotNumericException();
         }
-    }
-
-    private void validateNumberIsNegative(int number) {
-        if (isNumberNegative(number)) {
-            throw new RuntimeException("음수를 입력하셨습니다.");
-        }
-    }
-
-    private boolean isNumberNegative(int number) {
-        return (number < 0);
     }
 
     private int sumNumber(List<Integer> splitNumbers) {
-        return splitNumbers.stream().mapToInt(i -> i).sum();
+        return splitNumbers.stream()
+                .mapToInt(number -> number)
+                .sum();
     }
 
 }
