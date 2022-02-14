@@ -31,6 +31,5 @@ public class CarsTest {
 		Cars cars = new Cars(carNames, 4);
 
 		assertThat(cars.findWinner()).isEqualTo(List.of("토미", "제인", "데이빗"));
-
 	}
 }
