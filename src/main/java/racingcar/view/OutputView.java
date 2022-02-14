@@ -29,7 +29,7 @@ public class OutputView {
 
     static String makePositionString(Position position) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < position.getInt(); i++) {
+        for (int i = 0; i < position.get(); i++) {
             sb.append(POSITION_UNIT);
         }
         return sb.toString();

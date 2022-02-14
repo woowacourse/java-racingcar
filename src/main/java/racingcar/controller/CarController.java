@@ -33,7 +33,7 @@ public class CarController {
 
     private void playGame() {
         OutputView.printResult(cars.get());
-        for (int i = 0; i < count.getInt(); i++) {
+        for (int i = 0; i < count.get(); i++) {
             cars.playRound();
             OutputView.printResult(cars.get());
         }
