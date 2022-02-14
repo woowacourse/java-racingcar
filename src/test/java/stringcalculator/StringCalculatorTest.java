@@ -26,6 +26,8 @@ public class StringCalculatorTest {
         Assertions.assertDoesNotThrow(() -> StringCalculator.validateInput(text));
     }
 
+    // 사이드프로젝트, 주간회고, 보이는 라디오
+
     @DisplayName("입력 문자열 포맷 검사 - 실패")
     @ParameterizedTest
     @ValueSource(strings = {"1:2:", ",2,3", "//;\n;", "//;\n1;2;", "/:\n", "///;\n1;2", "1::2", ";;;"})
