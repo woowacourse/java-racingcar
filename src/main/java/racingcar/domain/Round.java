@@ -19,7 +19,7 @@ public class Round {
         return this.roundNum > ZERO;
     }
 
-    public Round hasNext() {
+    public Round reduce() {
         return new Round(roundNum - ONE);
     }
 

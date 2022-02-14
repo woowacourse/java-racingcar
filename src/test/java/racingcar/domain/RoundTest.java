@@ -14,7 +14,7 @@ class RoundTest {
     public void round_value_discount(int value) {
         Round round = new Round(value);
         for (int i = 0; i < value; i++) {
-            round = round.hasNext();
+            round = round.reduce();
         }
 
         assertThat(round).isEqualTo(new Round(0));

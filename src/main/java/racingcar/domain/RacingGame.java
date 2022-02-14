@@ -29,7 +29,7 @@ public class RacingGame {
 
     public boolean isFinished() {
         if (this.round.isPositiveNumber()) {
-            this.round = round.hasNext();
+            this.round = round.reduce();
             return true;
         }
         return false;
