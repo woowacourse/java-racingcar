@@ -12,7 +12,7 @@ public class CarRacingGame {
 	public static final String RESULT = "실행결과";
 	public static final String COMMA_SPACE = ", ";
 	public static final String FINAL_WINNER = "가 최종 우승했습니다.";
-	public static final String COMMA = ",";
+	public static final String WINNER_SEPARATOR = ",";
 	public static final int NAME_MAX_LENGTH = 5;
 	public static final int ZERO_TO_NINE_PROBABILITY = 4;
 	private ArrayList<Car> cars = new ArrayList<>();
@@ -72,7 +72,7 @@ public class CarRacingGame {
 	}
 
 	private String[] splitCarNames(String input) {
-		String[] carNames = input.split(COMMA);
+		String[] carNames = input.split(WINNER_SEPARATOR);
 		return carNames;
 	}
 
