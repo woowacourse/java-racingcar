@@ -33,8 +33,8 @@ public class Car implements Comparable<Car> {
         return position.compareTo(other.getPosition());
     }
 
-    public boolean isSamePositionWith(Car competitor) {
-        return this.position.equals(competitor.position);
+    public boolean isSamePositionWith(Car other) {
+        return compareTo(other) == 0;
     }
 
     public CarName getName() {
