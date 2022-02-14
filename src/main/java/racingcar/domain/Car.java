@@ -11,10 +11,7 @@ public class Car implements Comparable<Car> {
     private int position;
 
     public Car(String name) {
-        validateCarName(name);
-
-        this.name = name;
-        this.position = INITIAL_POSITION;
+        this(name, INITIAL_POSITION);
     }
 
     public Car(String name, int position) {
