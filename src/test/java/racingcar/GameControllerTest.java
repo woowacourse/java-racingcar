@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.controller.GameController;
 import racingcar.model.Car;
 import racingcar.model.Cars;
-import racingcar.util.InputValidator;
-import racingcar.util.RandomNumberGenerator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,17 +14,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SuppressWarnings("NonAsciiCharacters")
-public class RacingGameTest {
-
-    private static final int TESTCASE_NUM = 10000;
+public class GameControllerTest {
     private final GameController gameController = new GameController();
-
-    @Test
-    void 자동차의_이름이_5자_이상인_경우_예외처리() {
-        assertThatThrownBy(() -> {
-            InputValidator.validateCarNameLength(Arrays.asList("asd","qwerty"));
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
 
     @Test
     void 자동차의_이름이_공백인_경우_예외처리() {
@@ -53,24 +41,6 @@ public class RacingGameTest {
                 .collect(Collectors.toList());
 
         assertThat(expected).isEqualTo(actual);
-    }
-
-    @Test
-    void 랜덤_숫자_생셩() {
-        for (int i = 0; i < TESTCASE_NUM; i++) {
-            assertThat(RandomNumberGenerator.generate()).isBetween(0,9);
-        }
-    }
-
-    @Test
-    void 최종_우승자_출력() {
-        List<Car> carList = new ArrayList<>();
-        carList.add(new Car("bom", 3));
-        carList.add(new Car("sun", 4));
-        Cars cars = new Cars(carList);
-
-        String winnerName = gameController.findWinner(cars);
-        assertThat(winnerName).contains("sun").doesNotContain("bom");
     }
 
     @Test
