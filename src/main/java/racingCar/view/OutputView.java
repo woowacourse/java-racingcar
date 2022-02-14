@@ -17,15 +17,21 @@ public class OutputView {
 	}
 
 	public static void printCars(RacingCars cars) {
-		System.out.println(cars);
+		for (Car car : cars.getRacingCars()) {
+			System.out.println(car + " : " + CAR_MOVE.repeat(Math.max(0, car.getPosition())));
+		}
+		printNewLine();
+	}
+
+	private static void printNewLine() {
+		System.out.println();
 	}
 
 	public static void printWinners(List<Car> winners) {
 		for (int idx = 0; idx < winners.size() - 1; idx++) {
-			winners.get(idx).printName();
-			System.out.print(", ");
+			System.out.print(winners.get(idx) + ", ");
 		}
-		winners.get(winners.size() - 1).printName();
+		System.out.print(winners.get(winners.size() - 1));
 		System.out.println(FINAL_WINNER_MESSAGE);
 	}
 

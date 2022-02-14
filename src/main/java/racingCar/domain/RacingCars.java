@@ -3,6 +3,7 @@ package racingCar.domain;
 import static racingCar.constants.RacingCarConstants.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RacingCars {
@@ -46,12 +47,7 @@ public class RacingCars {
 		return winners;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder output = new StringBuilder();
-		for (Car racingCar : this.racingCars) {
-			output.append(racingCar.toString()).append(NEW_LINE);
-		}
-		return output.toString();
+	public List<Car> getRacingCars() {
+		return Collections.unmodifiableList(racingCars);
 	}
 }

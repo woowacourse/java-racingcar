@@ -20,16 +20,12 @@ public class Car {
 		return this.position;
 	}
 
-	public void printName() {
-		System.out.print(this.name);
-	}
-
 	public boolean isWinner(int maxDistance) {
 		return this.position == maxDistance;
 	}
 
 	@Override
 	public String toString() {
-		return name + " : " + CAR_MOVE.repeat(Math.max(0, position));
+		return name;
 	}
 }
