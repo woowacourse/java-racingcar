@@ -25,8 +25,8 @@ public class RacingService {
 
     public List<Car> findWinners() {
         return cars.stream()
-                .filter(car -> car.getPosition() == findMaxPosition())
-                .collect(Collectors.toList());
+            .filter(car -> car.getPosition() == findMaxPosition())
+            .collect(Collectors.toList());
     }
 
     private int findMaxPosition() {
