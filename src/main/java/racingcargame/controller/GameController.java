@@ -38,11 +38,11 @@ public class GameController {
 		Display.showRaceProgressGuideMessage();
 		while (!racingCarGame.isOverRace()) {
 			racingCarGame.startRace();
-			Display.showRaceProgress(racingCarGame.sendCurrentLocationOfCars());
+			Display.showRaceProgress(racingCarGame.sendCurrentLocationOfRacingCars());
 		}
 	}
 
 	private void finishGame(final RacingCarGame racingCarGame) {
-		Display.showGameWinner(racingCarGame.findRacingGameWinner());
+		Display.showGameWinner(racingCarGame.sendRacingGameWinner());
 	}
 }
