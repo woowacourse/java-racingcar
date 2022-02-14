@@ -30,8 +30,12 @@ class Car {
 		return this.position == position;
 	}
 
-	CarDto toCarDto() {
-		return new CarDto(this.name, this.position);
+	String getName() {
+		return this.name;
+	}
+
+	int getPosition() {
+		return this.position;
 	}
 
 	private void validateName(String name) {

@@ -46,7 +46,7 @@ public class Cars {
 
 	private List<CarDto> carsToCarDtos(List<Car> cars) {
 		return cars.stream()
-			.map(Car::toCarDto)
+			.map(CarDto::new)
 			.collect(Collectors.toList());
 	}
 

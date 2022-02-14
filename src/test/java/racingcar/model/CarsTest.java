@@ -39,21 +39,25 @@ class CarsTest {
 	@Test
 	@DisplayName("자동차 목록 전진 테스트, 두 번째 Car만 전진")
 	void moveTest() {
+		Car carStop = new Car("범고래");
+		Car carMove = new Car("소주캉");
+
+		carMove.move(4);
 		cars.move(moveConditionNumbers);
-		List<CarDto> cars = this.cars.getCars();
+		List<CarDto> expected = Arrays.asList(new CarDto(carStop), new CarDto(carMove));
 
-		List<CarDto> expected = Arrays.asList(new CarDto("범고래", 0), new CarDto("소주캉", 1));
-
-		assertThat(cars.equals(expected)).isTrue();
+		assertThat(cars.getCars().equals(expected)).isTrue();
 	}
 
 	@Test
 	@DisplayName("우승자 반환 테스트")
 	void winnerTest() {
+		Car carMove = new Car("소주캉");
+		carMove.move(4);
+		List<CarDto> expected = Arrays.asList(new CarDto(carMove));
+
 		cars.move(moveConditionNumbers);
 		List<CarDto> winners = cars.getWinners();
-
-		List<CarDto> expected = Arrays.asList(new CarDto("소주캉", 1));
 
 		assertThat(winners.equals(expected)).isTrue();
 	}
