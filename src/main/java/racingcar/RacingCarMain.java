@@ -8,8 +8,6 @@ import racingcar.ui.RacingCarInput;
 import racingcar.ui.RacingCarOutput;
 
 public class RacingCarMain {
-    public static final Scanner sc = new Scanner(System.in);
-
     public static void main(String[] args) {
         List<Car> cars = RacingCarInput.carNameInput();
         int round = RacingCarInput.roundInput();

@@ -1,13 +1,13 @@
 package racingcar.ui;
 
-import static racingcar.RacingCarMain.sc;
-
 import java.util.List;
+import java.util.Scanner;
 import racingcar.domain.Car;
 import racingcar.utils.CarsGenerator;
 import racingcar.validator.RoundNumberValidator;
 
 public class RacingCarInput {
+    private static final Scanner scanner = new Scanner(System.in);
     private static final String CAR_NAME_INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String ROUND_INPUT_MESSAGE = "시도할 회수는 몇회인가요?";
 
@@ -23,7 +23,7 @@ public class RacingCarInput {
 
     private static String userCarNameInput() {
         System.out.println(CAR_NAME_INPUT_MESSAGE);
-        return sc.nextLine();
+        return scanner.nextLine();
     }
 
     public static int roundInput() {
@@ -43,6 +43,6 @@ public class RacingCarInput {
 
     private static String userRoundInput() {
         System.out.println(ROUND_INPUT_MESSAGE);
-        return sc.nextLine();
+        return scanner.nextLine();
     }
 }
