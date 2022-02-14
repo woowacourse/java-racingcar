@@ -16,6 +16,12 @@ public class Car {
         position = 0;
     }
 
+    public Car(final String name, final NumberGenerator numberGenerator, final int position) {
+        this.numberGenerator = numberGenerator;
+        this.name = new Name(name);
+        this.position = position;
+    }
+
     public String getName() {
         return name.getName();
     }
