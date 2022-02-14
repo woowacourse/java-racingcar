@@ -1,18 +1,18 @@
 package stringcalculator;
 
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class StringCalculator {
     private static final String POSITIVE_NUMBER_REGEX = "^[0-9]";
+    private static final String CUSTOM_DELIMITER_AND_EXPRESSION_DELIMITER = "\n";
+    private static final String DEFAULT_DELIMITER = ",|:";
 
     public int calculate(final String expression) {
         if (isEmptyOrNull(expression)) {
             return 0;
         }
-        int[] numbers = splitExpression(expression);
-        return Arrays.stream(numbers)
+        String[] numbers = splitExpression(expression);
+        return Arrays.stream(parseToInts(numbers))
                 .sum();
     }
 
@@ -20,13 +20,15 @@ public class StringCalculator {
         return expression == null || expression.isEmpty();
     }
 
-    private int[] splitExpression(String expression) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(expression);
-        if (m.find()) {
-            String customDelimiter = m.group(1);
-            return parseToInts(m.group(2).split(customDelimiter));
+    private String[] splitExpression(String expression) {
+        if (expression.startsWith("//")) {
+            int customDelimiterIndex = 0;
+            int expressionIndex = 1;
+            String[] customDelimiterAndExpression = expression.split(CUSTOM_DELIMITER_AND_EXPRESSION_DELIMITER);
+            String customDelimiter = customDelimiterAndExpression[customDelimiterIndex].substring(2);
+            return customDelimiterAndExpression[expressionIndex].split(customDelimiter);
         }
-        return parseToInts(expression.split(",|:"));
+        return expression.split(DEFAULT_DELIMITER);
     }
 
     private int[] parseToInts(final String[] tokens) {
