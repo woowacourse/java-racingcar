@@ -3,7 +3,7 @@ package racingcar.util;
 import java.util.Random;
 
 public interface RandomNumberGenerator {
-	Random random = new Random();
+    Random random = new Random();
 
-	int generate();
+    int generate();
 }
