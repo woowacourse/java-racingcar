@@ -1,8 +1,6 @@
 package racingcar.domain.car;
 
 import java.util.Objects;
-import racingcar.exception.CarNameBlankException;
-import racingcar.exception.CarNameLengthException;
 
 public class Name {
 
@@ -16,11 +14,14 @@ public class Name {
     }
 
     private void validate(String name) {
-        if (name.isEmpty() || name.isBlank()) {
-            throw new CarNameBlankException("자동차 이름은 공백이 될 수 없습니다.");
+        if (name == null) {
+            throw new IllegalArgumentException("자동차 이름은 null이 될 수 없습니다.");
+        }
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("자동차 이름은 공백이 될 수 없습니다.");
         }
         if (name.length() > MAX_LENGTH) {
-            throw new CarNameLengthException("자동차 이름은 5글자 이하여야 합니다.");
+            throw new IllegalArgumentException("자동차 이름은 5글자 이하여야 합니다.");
         }
     }
 
