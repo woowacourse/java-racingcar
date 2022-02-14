@@ -3,30 +3,36 @@ package racingcar.view;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-import racingcar.util.StringConst;
-
 public class OutputView {
+
+	private static final String MESSAGE_ASK_CAR_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+	private static final String MESSAGE_ASK_TURN = "시도할 회수는 몇회인가요?";
+	private static final String MESSAGE_SHOW_RESULT = "실행 결과";
+	private static final String RESULT_DELIMITER = " : ";
+	private static final String WINNER_DELIMITER = ", ";
+	private static final String POSITION_SYMBOL = "-";
+
 	public static void askCarName() {
-		System.out.println(StringConst.INPUT_CAR_NAME_MESSAGE.getValue());
+		System.out.println(MESSAGE_ASK_CAR_NAME);
 	}
 
 	public static void askTurn() {
-		System.out.println(StringConst.INPUT_TURN_MESSAGE.getValue());
+		System.out.println(MESSAGE_ASK_TURN);
 	}
 
-	public static void displayCarPosition(LinkedHashMap<String, String> carPositions) {
-		for (String eachCarName : carPositions.keySet()) {
-			System.out.println(eachCarName + StringConst.OUTPUT_DELIMITER.getValue() + carPositions.get(eachCarName));
+	public static void showResult() {
+		System.out.println(MESSAGE_SHOW_RESULT);
+	}
+
+	public static void showCarPosition(LinkedHashMap<String, Integer> carInfo) {
+		for (String eachCarName : carInfo.keySet()) {
+			System.out.println(eachCarName + RESULT_DELIMITER + POSITION_SYMBOL.repeat(carInfo.get(eachCarName)));
 		}
 		System.out.println();
 	}
 
-	public static void displayWinner(ArrayList<String> winnerName) {
+	public static void displayWinner(ArrayList<String> winners) {
 		System.out.println(
-			String.join(StringConst.WINNER_DELIMITER.getValue(), winnerName) + StringConst.WINNER_MESSAGE.getValue());
-	}
-
-	public static void displayResult() {
-		System.out.println(StringConst.RESULT_MESSAGE.getValue());
+			String.join(WINNER_DELIMITER, winners) + "가 최종 우승했습니다.");
 	}
 }
