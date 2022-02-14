@@ -36,7 +36,7 @@ public class Game {
         }
     }
 
-    public List<Car> generateCar(String[] names) {
+    private List<Car> generateCar(String[] names) {
         List<Car> cars = new ArrayList<>();
         for (String name : names) {
             cars.add(new Car(name));
@@ -44,7 +44,7 @@ public class Game {
         return cars;
     }
 
-    public List<String> getWinner(List<Car> cars) {
+    private List<String> getWinner(List<Car> cars) {
         int maxPosition = findMaxPosition(cars);
         List<String> winners = findWinnerByPosition(maxPosition, cars);
         return winners;

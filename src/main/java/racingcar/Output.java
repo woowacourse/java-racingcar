@@ -27,13 +27,15 @@ public class Output {
         System.out.println();
     }
 
+    public void printWinner(List<String> winnerNames) {
+        System.out.print(String.join(JOIN_REGEX, winnerNames));
+        System.out.println(Constant.PRINT_WINNER_MESSAGE);
+    }
+
     private String makePositionString(int position) {
         String positionFlag = POSITION_FLAG;
         return positionFlag.repeat(position);
     }
 
-    public void printWinner(List<String> winnerNames) {
-        System.out.print(String.join(JOIN_REGEX, winnerNames));
-        System.out.println(Constant.PRINT_WINNER_MESSAGE);
-    }
+
 }

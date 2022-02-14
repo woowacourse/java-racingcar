@@ -7,7 +7,7 @@ public class Input {
     private final Scanner scanner = new Scanner(System.in);
     private final InputValidator inputValidator = new InputValidator();
 
-    public static final String COMMA_REGEX = ",";
+    private static final String COMMA_REGEX = ",";
 
     public String[] getNames() {
         String[] names = splitByComma(scanner.nextLine());

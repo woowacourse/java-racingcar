@@ -29,12 +29,6 @@ public class InputValidator {
         }
     }
 
-    private void checkLength(String name) {
-        if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException(Constant.NOT_ALLOW_LENGTH_ERROR);
-        }
-    }
-
     public void isDuplicate(String[] names) {
         Set<String> uniqueNames = new HashSet<>(Arrays.asList(names));
         if (uniqueNames.size() != names.length) {
@@ -52,6 +46,12 @@ public class InputValidator {
     public void isNaturalNumber(int input) {
         if (input < MINIMUM_NATURAL_NUMBER) {
             throw new IllegalArgumentException(Constant.MINIMUM_NATURAL_NUMBER_ERROR);
+        }
+    }
+
+    private void checkLength(String name) {
+        if (name.length() > MAXIMUM_NAME_LENGTH) {
+            throw new IllegalArgumentException(Constant.NOT_ALLOW_LENGTH_ERROR);
         }
     }
 }
