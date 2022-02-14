@@ -5,15 +5,16 @@ import static racingcar.util.CarNameValidationUtil.*;
 public class Car {
 
     private final String name;
-    private int position = 0;
+    private int position;
 
     private final int MIN_LENGTH_OF_NAME = 1;
     private final int MAX_LENGTH_OF_NAME = 5;
     private final int CONDITION_FOR_MOVE = 4;
 
-    public Car(String name) {
+    public Car(String name, int position) {
         validateCarName(name, MIN_LENGTH_OF_NAME, MAX_LENGTH_OF_NAME);
         this.name = name;
+        this.position = position;
     }
 
     public String getName() {
