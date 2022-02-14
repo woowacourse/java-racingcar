@@ -1,18 +1,18 @@
 package racingcargame.utils;
 
-import java.util.Arrays;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RandomNumberGeneratorTest {
 
-    @Test
-    void 난수_생성_범위_테스트() {
-        List<Integer> numbers = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-        int actual = RandomNumberGenerator.makeRandomNumber();
-
-        assertThat(numbers.contains(actual)).isTrue();
-    }
+	@DisplayName("생성된 난수가 올바른 범위인지 테스트")
+	@Test
+	void pickRandomNumber_Range() {
+		List<Integer> numbers = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+		assertThat(numbers.contains(RandomNumberGenerator.pickRandomNumber())).isTrue();
+	}
 }
