@@ -11,9 +11,10 @@ import racingcar.domain.result.WinnersResult;
 
 public class RacingGame {
 
-    private TryCount tryCount;
+    private final RandomNumberGenerator randomNumberGenerator;
+
     private Cars cars;
-    private RandomNumberGenerator randomNumberGenerator;
+    private TryCount tryCount;
 
     public RacingGame(RandomNumberGenerator randomNumberGenerator) {
         this.randomNumberGenerator = randomNumberGenerator;
