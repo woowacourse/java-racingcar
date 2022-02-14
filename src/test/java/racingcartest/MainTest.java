@@ -88,7 +88,7 @@ public class MainTest {
 		carList.get(0).movePosition(5);
 		carList.get(0).movePosition(6);
 		carList.get(1).movePosition(4);
-		LinkedHashMap<String, String> realInfo = outputViewController.getCarListInfo(carList);
+		LinkedHashMap<String, String> realInfo = outputViewController.getCarListInfo(carList, StringConst.POSITION_DELEIMIER.getValue());
 		assertThat(realInfo.entrySet()).isEqualTo(testInfo.entrySet());
 	}
 

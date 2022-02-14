@@ -9,10 +9,10 @@ import racingcar.util.StringConst;
 
 public class OutputViewController {
 
-	public LinkedHashMap<String, String> getCarListInfo(ArrayList<Car> carList) {
+	public LinkedHashMap<String, String> getCarListInfo(ArrayList<Car> carList, String delimiter) {
 		LinkedHashMap<String, String> carListInfo = new LinkedHashMap<>();
 		for (Car car : carList) {
-			carListInfo.put(car.getName(), StringConst.POSITION_DELEIMIER.getValue().repeat(car.getPosition()));
+			carListInfo.put(car.getName(), delimiter.repeat(car.getPosition()));
 		}
 		return carListInfo;
 	}

@@ -41,7 +41,7 @@ public class GameController {
 	private void playTotalTurn(int totalTurn) {
 		for (int eachTurn = IntegerConst.ZERO.getValue(); eachTurn < totalTurn; eachTurn++) {
 			carListController.moveCarList(carList);
-			OutputView.displayCarPosition(outputViewController.getCarListInfo(carList));
+			OutputView.displayCarPosition(outputViewController.getCarListInfo(carList, StringConst.POSITION_DELEIMIER.getValue()));
 		}
 	}
 
