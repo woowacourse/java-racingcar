@@ -1,6 +1,8 @@
 package racingcar.view;
 
-import racingcar.model.car.Cars;
+import java.util.List;
+
+import racingcar.dto.CarDto;
 import racingcar.model.car.Names;
 
 public class OutputView {
@@ -8,8 +10,10 @@ public class OutputView {
 		System.out.format("%n실행 결과%n");
 	}
 
-	public static void printCarsUi(Cars cars) {
-		System.out.printf(cars.result() + "%n");
+	public static void printCarsUi(List<CarDto> carsInformation) {
+		for (CarDto carInformation : carsInformation) {
+			System.out.println(carInformation.getName() + " : " + "-".repeat(carInformation.getPosition()));
+		}
 	}
 
 	public static void printEnterUi() {

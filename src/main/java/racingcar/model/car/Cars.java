@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.dto.CarDto;
 import racingcar.util.Format;
 
 public class Cars {
@@ -64,5 +65,11 @@ public class Cars {
 		return Names.from(getCarsByPosition(getFirstPosition()).stream()
 			.map(Car::getName)
 			.collect(Collectors.toList()));
+	}
+
+	public List<CarDto> getCarsDto() {
+		return cars.stream()
+			.map(Car::toDto)
+			.collect(Collectors.toList());
 	}
 }

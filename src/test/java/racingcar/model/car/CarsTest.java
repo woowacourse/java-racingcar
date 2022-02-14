@@ -21,6 +21,16 @@ public class CarsTest {
 			.isEqualTo("car1 : -\ncar2 : \ncar3 : -");
 	}
 
+	@DisplayName("Car의 DTO 리스트를 반환한다.")
+	@Test
+	void getCarsDto() {
+		Cars cars = Cars.create();
+		cars.add(Car.of("car1", 2));
+		cars.add(Car.of("car2", 3));
+		cars.add(Car.of("car3", 8));
+		assertThat(cars.getCarsDto().size()).isEqualTo(3);
+	}
+
 	@Test
 	void 위치와_일치하는_자동차의_리스트를_가져온다() {
 		Cars cars = Cars.create();
