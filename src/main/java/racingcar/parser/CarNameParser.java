@@ -11,8 +11,8 @@ public class CarNameParser {
     public static final String INVALID_LENGTH_ERROR_MESSAGE = "자동차 이름은 5글자 이하여야 합니다.";
     public static final String EMPTY_NAME_ERROR_MESSAGE = "자동차 이름은 공백일 수 없습니다.";
     public static final String DUPLICATE_NAME_ERROR_MESSAGE = "자동차 이름은 중복일 수 없습니다.";
-    private static final int NAME_UPPER_LENGTH = 5;
     private static final String NAME_DELIMITER = ",";
+    private static final int NAME_UPPER_LENGTH = 5;
 
     public List<String> parse(String names) {
         validateCarNames(names);
