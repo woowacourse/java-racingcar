@@ -1,40 +1,48 @@
 package calculator;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class StringCalculator {
 
-	public static int splitAndSum(String text) {
-		if (text == null || text.isEmpty()) {
-			return 0;
-		}
-		return sum(split(text));
-	}
+    private final static String BASIC_DELIMITER = ",|:";
+    private final static String PREFIX_FOR_CUSTOM_DELIMITER = "//";
+    private final static String POSTFIX_FOR_CUSTOM_DELIMITER = "\n";
+    private final static int CUSTOM_DELIMITER_TEXT_INDEX = 0;
+    private final static int CUSTOM_DELIMITER_INDEX = 2;
+    private final static int CUSTOM_TEXT_INDEX = 1;
 
-	private static String[] split(String text) {
-		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
-		if (m.find()) {
-			String customDelimiter = m.group(1);
-			return m.group(2).split(customDelimiter);
-		}
-		return text.split(",|:");
-	}
+    public static int splitAndSum(String text) {
+        if (text == null || text.isEmpty()) {
+            return 0;
+        }
+        return sum(split(text));
+    }
 
-	private static int sum(String[] tokens) {
-		int result = 0;
-		int number;
-		for (String token : tokens) {
-			number = Integer.parseInt(token);
-			validateNegative(number);
-			result += number;
-		}
-		return result;
-	}
+    private static String[] split(String text) {
+        if (text.startsWith(PREFIX_FOR_CUSTOM_DELIMITER)) {
+            String[] splitTexts = text.split(POSTFIX_FOR_CUSTOM_DELIMITER);
 
-	private static void validateNegative(int number) {
-		if (number < 0) {
-			throw new RuntimeException();
-		}
-	}
+            String customDelimiter = splitTexts[CUSTOM_DELIMITER_TEXT_INDEX].substring(CUSTOM_DELIMITER_INDEX);
+            String customText = splitTexts[CUSTOM_TEXT_INDEX];
+
+            return customText.split(customDelimiter);
+        }
+
+        return text.split(BASIC_DELIMITER);
+    }
+
+    private static int sum(String[] tokens) {
+        int result = 0;
+        int number;
+        for (String token : tokens) {
+            number = Integer.parseInt(token);
+            validateNegative(number);
+            result += number;
+        }
+        return result;
+    }
+
+    private static void validateNegative(int number) {
+        if (number < 0) {
+            throw new RuntimeException();
+        }
+    }
 }
