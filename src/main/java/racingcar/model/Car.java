@@ -22,7 +22,7 @@ public class Car {
 		}
 	}
 
-	private static boolean isMove() {
+	private boolean isMove() {
 		return getRandomInt() >= MOVE_CRITERIA;
 	}
 
