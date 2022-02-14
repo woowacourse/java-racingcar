@@ -13,11 +13,20 @@ public class Cars {
 
     private List<Car> cars;
 
-    public Cars() {
+    public Cars(String[] names) {
         cars = new ArrayList<>();
+        createCarsWith(names);
     }
 
-    public void add(Car car) {
+    private void createCarsWith(String[] names) {
+        for (String name : names) {
+            addCar(name);
+        }
+    }
+
+    private void addCar(String name) {
+        CarName carName = new CarName(name);
+        Car car = new Car(carName);
         validDuplicateCarName(car);
         cars.add(car);
     }
