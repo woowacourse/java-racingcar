@@ -4,6 +4,8 @@ import racingcar.message.NoticeMessages;
 import racingcar.model.Car;
 
 public class OutputView {
+    private static final String DISTANCE_MARK = "-";
+
     public static void printException(Exception exception) {
         System.out.println(exception.getMessage());
     }
@@ -17,6 +19,10 @@ public class OutputView {
     }
 
     public static void printCarStatus(Car car) {
-        System.out.println(car.getName() + " : " + car.getPostionStatus());
+        System.out.println(car.getName() + " : " + convertNumberToString(car.getPosition()));
+    }
+
+    private static String convertNumberToString(int cnt) {
+        return DISTANCE_MARK.repeat(Math.max(0, cnt));
     }
 }
