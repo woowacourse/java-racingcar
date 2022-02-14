@@ -1,6 +1,10 @@
 package racingcar.constant;
 
 public class ErrorMessage {
+
+    private ErrorMessage() {
+    }
+
     private static String ERROR = "[ERROR] ";
 
     public static final String EMPTY_CAR_NAME = ERROR + "자동차 이름이 입력되지 않았습니다.";
