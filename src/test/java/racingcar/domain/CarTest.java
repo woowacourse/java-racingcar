@@ -25,4 +25,12 @@ public class CarTest {
         car.move(randomNumber);
         assertThat(car.getPosition()).isEqualTo(prevPosition);
     }
+
+    @Test
+    public void 자동차_위치_확인() {
+        Car car = Car.createByName("pobi");
+        car.move(4);
+
+        assertThat(car.isSamePosition(1)).isTrue();
+    }
 }
