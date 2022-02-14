@@ -1,4 +1,4 @@
-package CarRacingGame;
+package carRacingGame;
 
 public class Application {
 

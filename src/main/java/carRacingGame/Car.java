@@ -1,7 +1,9 @@
-package CarRacingGame;
+package carRacingGame;
 
 public class Car {
 	public static final int INITIAL_POSITION = 0;
+	public static final String SPACE_BETWEEN_NAME_DISTANCE = " : ";
+	public static final String DISTANCE_OUTPUT = "-";
 	private final String name;
 	int position = INITIAL_POSITION;
 
@@ -17,9 +19,9 @@ public class Car {
 
 	@Override
 	public String toString() {
-		String output = name + " : ";
+		String output = name + SPACE_BETWEEN_NAME_DISTANCE;
 		for (int idx = 0; idx < position; idx++) {
-			output += "-";
+			output += DISTANCE_OUTPUT;
 		}
 		return output;
 	}
