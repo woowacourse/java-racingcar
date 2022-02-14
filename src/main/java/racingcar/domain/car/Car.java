@@ -21,7 +21,7 @@ public class Car {
         distance.increaseBy(movementValue);
     }
 
-    public CarDto info() {
+    public CarDto convertToDto() {
         return new CarDto(carName.getValue(), distance.getValue());
     }
 

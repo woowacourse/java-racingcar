@@ -33,14 +33,14 @@ public class Cars {
 
     public List<CarDto> getCarInfos() {
         return values.stream()
-                .map(Car::info)
+                .map(Car::convertToDto)
                 .collect(Collectors.toUnmodifiableList());
     }
 
     public List<CarDto> getFarthestCar() {
         return values.stream()
                 .filter(this::isHighest)
-                .map(Car::info)
+                .map(Car::convertToDto)
                 .collect(Collectors.toUnmodifiableList());
     }
 
