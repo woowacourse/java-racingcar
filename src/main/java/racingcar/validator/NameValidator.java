@@ -14,14 +14,13 @@ public class NameValidator {
 
 	public static final int NAME_LENGTH_LIMIT = 5;
 
-	public static void validateName(String names) {
-		String[] splitName = Utils.splitAndTrim(names);
-		for (String name : splitName) {
+	public static void validateName(String[] names) {
+		for (String name : names) {
 			checkEmptyName(name);
 			checkLongName(name);
 		}
-		checkOnlyName(splitName);
-		checkDuplicateName(splitName);
+		checkOnlyName(names);
+		checkDuplicateName(names);
 	}
 
 	private static void checkEmptyName(String name) {

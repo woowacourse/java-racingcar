@@ -14,8 +14,8 @@ public class GameController {
 	}
 
 	public void run() {
-		String carNames = InputView.getCarNames(scanner);
-		Cars cars = new Cars(Utils.splitAndTrim(carNames));
+		String[] carNames = InputView.getCarNames(scanner);
+		Cars cars = new Cars(carNames);
 		int moveCount = Integer.parseInt(InputView.getMoveCount(scanner));
 		OutputView.printResultMessage();
 		startRace(cars, moveCount);
