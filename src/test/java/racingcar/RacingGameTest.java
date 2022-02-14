@@ -55,15 +55,6 @@ public class RacingGameTest {
     }
 
     @Test
-    void 자동차_전진_확인() {
-        Car car = new Car("qwer");
-        for (int i = 0; i <= 9; i++) {
-            car.move(i);
-        }
-        assertThat(car.getPosition()).isEqualTo(6);
-    }
-
-    @Test
     void 최종_우승자_출력() {
         List<Car> carList = new ArrayList<>();
         carList.add(new Car("bom", 3));
