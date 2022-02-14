@@ -23,7 +23,7 @@ public class RacingCars {
     }
 
     private void isEmpty(String stringNames) {
-        if(stringNames == null || stringNames.isEmpty()) {
+        if (stringNames == null || stringNames.isEmpty()) {
             throw new IllegalArgumentException("자동차 입력 값이 존재해야한다.");
         }
     }
@@ -36,7 +36,7 @@ public class RacingCars {
     }
 
     private void checkCarsEmpty() {
-        if(cars.isEmpty()) {
+        if (cars.isEmpty()) {
             throw new RuntimeException("최소 1개의 자동차가 존재해야 한다.");
         }
     }
@@ -62,7 +62,7 @@ public class RacingCars {
     }
 
     private void moveCar(RacingCar car) {
-        if(movingStrategy.isMovable()) {
+        if (movingStrategy.isMovable()) {
             car.move();
         }
     }
@@ -81,7 +81,7 @@ public class RacingCars {
 
     private RacingCar searchAnyWinner() {
         RacingCar anyWinner = cars.get(FIRST_ELEMENT);
-        for(RacingCar car : cars) {
+        for (RacingCar car : cars) {
             anyWinner = getGreaterRacingCar(car, anyWinner);
         }
         return anyWinner;
