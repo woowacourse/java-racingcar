@@ -30,7 +30,10 @@ public class Cars {
     }
 
     private int getMostFarPosition() {
-        return cars.stream().mapToInt(Car::getPosition).max().getAsInt();
+        return cars.stream()
+            .mapToInt(Car::getPosition)
+            .max()
+            .orElse(0);
     }
 
     private List<Car> getWinners(final int mostFarPosition) {
