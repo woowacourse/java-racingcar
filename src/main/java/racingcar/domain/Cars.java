@@ -8,9 +8,6 @@ import java.util.NoSuchElementException;
 
 public class Cars {
 
-    public static final String LIST_JOIN_DELIMITER = ", ";
-    public static final String WINNER_MESSAGE = "가 최종 우승 했습니다.";
-
     private final List<Car> cars;
     private final List<String> winners;
 
@@ -28,10 +25,10 @@ public class Cars {
         }
     }
 
-    public String getWinners() {
+    public List<String> getWinners() {
         int maxPosition = getMaxPosition();
         addWinnerNames(maxPosition);
-        return String.join(LIST_JOIN_DELIMITER, winners) + WINNER_MESSAGE;
+        return winners;
     }
 
     private void addWinnerNames(int position) {

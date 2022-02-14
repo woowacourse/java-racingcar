@@ -16,7 +16,7 @@ public class RacingController {
         printResultMessage();
 
         progressTurns(cars, trialCount);
-        printMessage(cars.getWinners());
+        printWinners(cars);
     }
 
     private String[] getRightName() {
@@ -41,7 +41,7 @@ public class RacingController {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
         for (int i = 0; i < trialCount; i++) {
             cars.moveCars(numberGenerator);
-            printResultView(cars);
+            printCars(cars);
         }
     }
 

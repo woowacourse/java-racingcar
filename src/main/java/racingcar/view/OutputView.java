@@ -12,6 +12,9 @@ public class OutputView {
     private static final String NAME_POSITION_DELIMITER = " : ";
     private static final String PROGRESS_BAR = "-";
 
+    private static final String LIST_JOIN_DELIMITER = ", ";
+    private static final String WINNER_MESSAGE = "가 최종 우승 했습니다.";
+
     public static void printCarNamesMessage() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
     }
@@ -24,7 +27,7 @@ public class OutputView {
         System.out.println("\n" + RESULT_MESSAGE);
     }
 
-    public static void printResultView(Cars cars) {
+    public static void printCars(Cars cars) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Car car : cars.getCars()) {
             stringBuilder.append(car.getName())
@@ -33,6 +36,10 @@ public class OutputView {
                     .append("\n");
         }
         System.out.println(stringBuilder.toString());
+    }
+
+    public static void printWinners(Cars cars) {
+        System.out.println(String.join(LIST_JOIN_DELIMITER, cars.getWinners()) + WINNER_MESSAGE);
     }
 
     public static void printMessage(String message) {
