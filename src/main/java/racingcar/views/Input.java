@@ -39,16 +39,13 @@ public class Input {
 		}
 	}
 
-	public int inputValidRepeats() {
-		return Integer.parseInt(inputRepeats());
-	}
-
-	private String inputRepeats() {
+	public int inputRepeats() {
 		try {
 			System.out.println(INPUT_REPEATS);
 			final String repeats = scanner.next();
-			inputValidation.validateRepeats(repeats);
-			return repeats;
+			int repeatsNumber = inputValidation.validateNotIntegerRepeats(repeats);
+			inputValidation.validateNegativeNumberRepeats(repeatsNumber);
+			return repeatsNumber;
 		} catch (RuntimeException exception) {
 			System.out.println(exception.getMessage() + System.lineSeparator());
 			return inputRepeats();

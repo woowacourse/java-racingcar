@@ -1,7 +1,6 @@
 package racingcar.utils;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -45,8 +44,8 @@ class InputValidationTest {
 		@ValueSource(strings = {"2", "10"})
 		void checkRightRepeats(final String repeats) {
 			InputValidation validation = mock(InputValidation.class);
-			validation.validateRepeats(repeats);
-			verify(validation).validateRepeats(repeats);
+			validation.validateNotIntegerRepeats(repeats);
+			verify(validation).validateNotIntegerRepeats(repeats);
 		}
 
 		@DisplayName("잘못된 반복 횟수면 exception이 발생한다")
@@ -55,7 +54,7 @@ class InputValidationTest {
 		void checkWrongRepeats(final String repeats) {
 			InputValidation validation = new InputValidation();
 			assertThatExceptionOfType(RuntimeException.class)
-				.isThrownBy(() -> validation.validateRepeats(repeats))
+				.isThrownBy(() -> validation.validateNotIntegerRepeats(repeats))
 				.withMessageMatching("반복횟수는 정수만 입력 가능합니다.");
 		}
 	}

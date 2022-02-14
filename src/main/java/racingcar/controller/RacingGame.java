@@ -32,7 +32,7 @@ public class RacingGame {
 
     private void inputValidData() {
         createCar();
-        repeats = input.inputValidRepeats();
+        repeats = input.inputRepeats();
     }
 
     private void createCar() {
