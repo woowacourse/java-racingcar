@@ -2,6 +2,8 @@ package racingcarTest;
 
 import addCalculatorTest.StringCalculator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.controller.InputController;
 import racingcar.controller.MainController;
 import racingcar.controller.Validation;
@@ -26,20 +28,16 @@ public class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 게임_회수_입력_검증_1() {
-        assertThatThrownBy(() -> Validation.tryNumValidation("aaa"))
+    @ParameterizedTest
+    @ValueSource(strings = {"q", "qwerasdfzxcv", "qq23", "aaa", "-5"})
+    void 게임_회수_입력_오류검증(String value) {
+        assertThatThrownBy(() -> Validation.tryNumValidation(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 게임_회수_입력_검증_2() {
-        assertThatThrownBy(() -> Validation.tryNumValidation("-5"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 게임_회수_입력_검증_3() {
-        Validation.tryNumValidation("5");
+    @ParameterizedTest
+    @ValueSource(strings = {"5", "10", "20"})
+    void 게임_회수_입력_참검증(String value) {
+        Validation.tryNumValidation(value);
     }
 }
