@@ -23,13 +23,10 @@ public class CarControllerTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"범고래,범고래,고래", "중복 자동차이름, 중복 자동차이름, 고래"})
 	@DisplayName("중복된 자동차 이름 값을 넣으면 예외가 발생한다.")
-	void validDuplicationCarNames() {
+	void validDuplicationCarNames(String input) {
 		CarController carController = new CarController();
-		String userInputCarNames = "범고래,범고래,고래";
 
-		assertThatThrownBy(() -> {
-			carController.createCars(userInputCarNames);
-		}).isInstanceOf(RuntimeException.class)
+		assertThatThrownBy(() -> carController.createCars(input)).isInstanceOf(RuntimeException.class)
 				.hasMessageContaining("중복");
 	}
 }
