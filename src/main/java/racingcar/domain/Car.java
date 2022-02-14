@@ -25,16 +25,8 @@ public class Car {
         return engine.ignite();
     }
 
-    public int updateMaxPosition(int highScore) {
-        return Math.max(position, highScore);
-    }
-
     public boolean isSamePosition(int highScore) {
         return position == highScore;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getProgress() {
@@ -43,5 +35,13 @@ public class Car {
             currentPosition.append(DISTANCE);
         }
         return currentPosition.toString();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

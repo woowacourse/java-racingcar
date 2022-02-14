@@ -54,12 +54,6 @@ public class ApplicationTest {
     }
 
     @Test
-    void updateMaxPosition() {
-        Car car = new Car("test", 0);
-        assertThat(car.updateMaxPosition(5)).isEqualTo(5);
-    }
-
-    @Test
     void isMaxPosition() {
         Car car = new Car("test", 3);
         assertThat(car.isSamePosition(3)).isTrue();

@@ -33,7 +33,7 @@ public class Cars {
 
     private void updateHighScore() {
         for (Car car : cars) {
-            highScore = car.updateMaxPosition(highScore);
+            highScore = Math.max(highScore, car.getPosition());
         }
     }
 
