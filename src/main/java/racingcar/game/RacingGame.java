@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
+import racingcar.domain.CarDTO;
 
 import static racingcar.util.RacingGameValidationUtil.*;
 import static racingcar.util.TotalAttemptValidationUtil.*;
@@ -30,15 +31,15 @@ public class RacingGame {
         totalAttempt = Integer.parseInt(attempt);
     }
 
-    public String play() {
-        StringBuilder totalExecutionResult = new StringBuilder();
+    public List<List<CarDTO>> play() {
+        List<List<CarDTO>> totalExecutionResult = new ArrayList<>();
 
         while (totalAttempt-- > 0) {
             run();
-            totalExecutionResult.append(generateExecutionResult() + "\n");
+            totalExecutionResult.add(saveExecutionResult());
         }
 
-        return totalExecutionResult.toString();
+        return totalExecutionResult;
     }
 
     public List<String> selectWinners() {
@@ -56,14 +57,14 @@ public class RacingGame {
         }
     }
 
-    private String generateExecutionResult() {
-        StringBuilder statement = new StringBuilder();
+    private List<CarDTO> saveExecutionResult() {
+        List<CarDTO> executionResult = new ArrayList<>();
 
         for (Car car : cars) {
-            statement.append(car.toString());
+            executionResult.add(new CarDTO(car.getName(), car.getPosition()));
         }
 
-        return statement.toString();
+        return executionResult;
     }
 
     private int getMaxPosition() {

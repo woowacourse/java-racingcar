@@ -2,6 +2,7 @@ package racingcar;
 
 import java.util.List;
 
+import racingcar.domain.CarDTO;
 import racingcar.game.RacingGame;
 
 import static racingcar.view.InputView.*;
@@ -13,7 +14,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             init();
-            playAndPrintExecutionResult();
+            playAndPrintTotalExecutionResult();
             selectAndPrintWinner();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
@@ -25,9 +26,9 @@ public class Application {
         racingGame.initTotalAttempt(inputAttemptCount());
     }
 
-    private static void playAndPrintExecutionResult() {
-        String executionResult = racingGame.play();
-        printExecutionResult(executionResult);
+    private static void playAndPrintTotalExecutionResult() {
+        List<List<CarDTO>> executionResult = racingGame.play();
+        printTotalExecutionResult(executionResult);
     }
 
     private static void selectAndPrintWinner() {

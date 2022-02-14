@@ -7,7 +7,6 @@ public class Car {
     private final String name;
     private int position = 0;
 
-    private final String SIGN_OF_POSITION = "-";
     private final int MIN_LENGTH_OF_NAME = 1;
     private final int MAX_LENGTH_OF_NAME = 5;
     private final int CONDITION_FOR_MOVE = 4;
@@ -33,12 +32,6 @@ public class Car {
 
     public boolean isSamePosition(int target) {
         return position == target;
-    }
-
-    @Override
-    public String toString() {
-        String positionSign = SIGN_OF_POSITION.repeat(position);
-        return (name + " : " + positionSign + "\n");
     }
 
 }
