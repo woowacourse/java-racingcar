@@ -17,20 +17,9 @@ public class CarNameValidator {
     }
 
     void validate(List<String> names) {
-        validateNameIsTooLong(names);
         validateNameIsEmpty(names);
+        validateNameIsTooLong(names);
         validateNameIsDuplicated(names);
-    }
-
-    void validateNameIsTooLong(List<String> names) {
-        if (checkNameIsTooLong(names)) {
-            throw new CarNameTooLongException();
-        }
-    }
-
-    private boolean checkNameIsTooLong(List<String> names) {
-        return names.stream()
-                .anyMatch(NameLength::isTooLong);
     }
 
     void validateNameIsEmpty(List<String> names) {
@@ -42,6 +31,17 @@ public class CarNameValidator {
     private boolean checkNameIsEmpty(List<String> names) {
         return names.stream()
                 .anyMatch(String::isEmpty);
+    }
+
+    void validateNameIsTooLong(List<String> names) {
+        if (checkNameIsTooLong(names)) {
+            throw new CarNameTooLongException();
+        }
+    }
+
+    private boolean checkNameIsTooLong(List<String> names) {
+        return names.stream()
+                .anyMatch(NameLength::isTooLong);
     }
 
     void validateNameIsDuplicated(List<String> names) {
