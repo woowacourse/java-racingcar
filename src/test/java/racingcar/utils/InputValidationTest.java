@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 @DisplayName("InputValidation 클래스를 테스트한다.")
 class InputValidationTest {
 
+	InputValidation validation = new InputValidation();
+
 	@Nested
 	@DisplayName("이름 문자열이 주어졌을 때 ")
 	class NameTest {
@@ -19,7 +21,6 @@ class InputValidationTest {
 		@ParameterizedTest(name = "{index} {displayName} names={0}")
 		@ValueSource(strings = {"pobi,crong,honux", "pobi"})
 		void checkRightName(final String names) {
-			InputValidation validation = new InputValidation();
 			assertDoesNotThrow(() -> validation.validateName(names));
 		}
 
@@ -27,7 +28,6 @@ class InputValidationTest {
 		@ParameterizedTest(name = "{index} {displayName} names={0}")
 		@ValueSource(strings = {"pobi,crong,honuxxx", "pobixxxx"})
 		void checkWrongName(final String names) {
-			InputValidation validation = new InputValidation();
 			assertThatExceptionOfType(RuntimeException.class)
 				.isThrownBy(() -> validation.validateName(names))
 				.withMessageMatching("이름은 5자리 이하만 가능합니다.");
@@ -42,7 +42,6 @@ class InputValidationTest {
 		@ParameterizedTest(name = "{index} {displayName} repeats={0}")
 		@ValueSource(strings = {"2", "10"})
 		void checkRightRepeats(final String repeats) {
-			InputValidation validation = new InputValidation();
 			assertDoesNotThrow(() -> validation.validateNotIntegerRepeats(repeats));
 		}
 
@@ -60,7 +59,6 @@ class InputValidationTest {
 		@ParameterizedTest(name = "{index} {displayName} repeats={0}")
 		@ValueSource(ints = {-1, -123})
 		void checkNegativeNumberRepeats(final int repeats) {
-			InputValidation validation = new InputValidation();
 			assertThatExceptionOfType(RuntimeException.class)
 					.isThrownBy(() -> validation.validateNegativeNumberRepeats(repeats))
 					.withMessageMatching("반복횟수는 양의 정수만 입력 가능합니다.");
