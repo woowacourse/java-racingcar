@@ -38,4 +38,10 @@ public class CheckingServiceTest {
 		assertThatThrownBy(() -> CheckingService.checkGameTurnNumber("-2"))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
+
+	@Test
+	public void 횟수_양수_확인_0() {
+		assertThatThrownBy(() -> CheckingService.checkGameTurnNumber("0"))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
 }

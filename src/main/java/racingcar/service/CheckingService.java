@@ -8,7 +8,7 @@ public class CheckingService {
 	private static final String CAR_NAME_LENGTH_ERROR_MESSAGE = String.format("[Error] %d자 이하의 이름을 입력하세요.",
 		MAX_CAR_NAME_LENGTH);
 	private static final String GAME_TURN_NUMBER_ERROR_MESSAGE = "[Error] 숫자를 입력하세요.";
-	private static final String RANDOM_NUMBER_REGEX = "[1-9]\\d*";
+	private static final String GAME_TURN_NUMBER_REGEX = "[1-9]\\d*";
 
 	public static void checkCarNamesBlank(String input) {
 		if (input == null || input.isEmpty()) {
@@ -24,7 +24,7 @@ public class CheckingService {
 	}
 
 	public static void checkGameTurnNumber(String gameTurn) {
-		if (!gameTurn.matches(RANDOM_NUMBER_REGEX)) {
+		if (!gameTurn.matches(GAME_TURN_NUMBER_REGEX)) {
 			throw new IllegalArgumentException(GAME_TURN_NUMBER_ERROR_MESSAGE);
 		}
 	}
