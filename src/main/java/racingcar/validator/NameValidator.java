@@ -28,40 +28,40 @@ public class NameValidator {
 		checkDuplicatedName(nameList);
 	}
 
-	public static void checkNull(String inputString) throws Exception {
+	public static void checkNull(String inputString) {
 		if (inputString == null || inputString.trim().isEmpty()) {
-			throw new Exception(INPUT_STRING_NULL_ERROR_MSG);
+			throw new IllegalArgumentException(INPUT_STRING_NULL_ERROR_MSG);
 		}
 	}
 
 	public static void checkSpace(String name) throws Exception {
 		if (name.trim().isEmpty()) {
-			throw new Exception(NAME_EMPTY_ERROR_MSG);
+			throw new IllegalArgumentException(NAME_EMPTY_ERROR_MSG);
 		}
 	}
 
 	public static void checkNameSize(String name) throws Exception {
 		if (name.length() > MAXIMUM_NAME_SIZE) {
-			throw new Exception(NAME_MAX_SIZE_WARNING_MSG);
+			throw new IllegalArgumentException(NAME_MAX_SIZE_WARNING_MSG);
 		}
 	}
 
 	public static void checkSpecialChar(String name) throws Exception {
 		if (!Pattern.matches(SPACIAL_CHAR_REGEX, name)) {
-			throw new Exception(NAME_SPATIAL_CHAR_WARNING_MSG);
+			throw new IllegalArgumentException(NAME_SPATIAL_CHAR_WARNING_MSG);
 		}
 	}
 
 	public static void checkNameIsOne(List<String> nameList) throws Exception {
 		if (nameList.size() <= MINIMUM_NAME_LIST_SIZE) {
-			throw new Exception(CAR_NUMBER_IS_ONE_WARNING_MSG);
+			throw new IllegalArgumentException(CAR_NUMBER_IS_ONE_WARNING_MSG);
 		}
 	}
 
 	public static void checkDuplicatedName(List<String> nameList) throws Exception {
 		Set<String> nameSet = new HashSet<>(nameList);
 		if (nameSet.size() != nameList.size()) {
-			throw new Exception(NAME_DUPLICATION_WARNING_MSG);
+			throw new IllegalArgumentException(NAME_DUPLICATION_WARNING_MSG);
 		}
 	}
 }

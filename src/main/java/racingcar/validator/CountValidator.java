@@ -15,21 +15,21 @@ public class CountValidator {
 		checkNotNumber(inputString);
 	}
 
-	public static void checkNull(String inputString) throws Exception {
+	public static void checkNull(String inputString) {
 		if (inputString == null || inputString.isEmpty()) {
-			throw new Exception(COUNT_NULL_ERROR_MSG);
+			throw new IllegalArgumentException(COUNT_NULL_ERROR_MSG);
 		}
 	}
 
-	public static void checkNotNumber(String inputString) throws Exception {
+	public static void checkNotNumber(String inputString) {
 		if (!Pattern.matches(NUMBER_REGEX, inputString)) {
-			throw new Exception(COUNT_NOT_INTEGER_MSG);
+			throw new NumberFormatException(COUNT_NOT_INTEGER_MSG);
 		}
 	}
 
 	public static void checkCountIsZero(int count) throws Exception {
 		if (count == COUNT_ZERO_CRITERIA) {
-			throw new Exception(COUNT_ZERO_ERROR_MSG);
+			throw new IllegalArgumentException(COUNT_ZERO_ERROR_MSG);
 		}
 	}
 }
