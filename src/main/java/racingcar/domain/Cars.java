@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import racingcar.utils.numbergenerator.NumberGenerator;
 import racingcar.utils.numbergenerator.RandomNumberGenerator;
 
 public class Cars {
@@ -19,12 +20,7 @@ public class Cars {
     private final List<Car> cars;
     private final List<String> winners;
 
-    public Cars(List<Car> cars) {
-        this.cars = cars;
-        this.winners = new ArrayList<>();
-    }
-
-    public Cars(String[] names) {
+    public Cars(final String[] names, final NumberGenerator numberGenerator) {
         validateCarCount(names);
         validateDuplicateName(names);
 
@@ -32,7 +28,7 @@ public class Cars {
         this.winners = new ArrayList<>();
 
         for (String name : names) {
-            this.addCar(new Car(name, new RandomNumberGenerator()));
+            this.addCar(new Car(name, numberGenerator));
         }
     }
 
