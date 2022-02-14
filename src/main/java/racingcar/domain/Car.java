@@ -21,13 +21,13 @@ public class Car implements Comparable<Car> {
 	}
 
 	public static Car from(String name) {
-		CarValidator.validateNameLength(name);
+		CarValidator.checkNameLength(name);
 
 		return new Car(name);
 	}
 
 	public static Car of(String name, int position) {
-		CarValidator.validateNameLength(name);
+		CarValidator.checkNameLength(name);
 
 		return new Car(name, position);
 	}

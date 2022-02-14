@@ -6,7 +6,6 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import racingcar.domain.CarDto;
-import racingcar.util.Converter;
 import racingcar.validator.InputValidator;
 
 public class InputView {
@@ -20,15 +19,18 @@ public class InputView {
 	public static List<CarDto> getCars() {
 		System.out.println(CAR_NAMES_MESSAGE);
 		String input = scanner.nextLine();
-		InputValidator.ofCarNamesInput(input);
+		InputValidator.checkCarNames(input);
 
 		return Arrays.stream(input.split(SEPARATOR_OF_CAR_NAME))
-			.map(Converter::toCarDto)
+			.map(CarDto::from)
 			.collect(Collectors.toList());
 	}
 
-	public static int getAttemptNumber() {
+	public static String getAttemptNumber() {
 		System.out.println(ATTEMPT_NUMBER_MESSAGE);
-		return Converter.toAttemptNumber(scanner.next());
+		String input = scanner.nextLine();
+		InputValidator.checkAttemptNumber(input);
+
+		return input;
 	}
 }

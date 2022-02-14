@@ -6,7 +6,7 @@ public class CarValidator {
 
 	private static final int NAME_LENGTH_LIMIT = 5;
 
-	public static void validateNameLength(String name) {
+	public static void checkNameLength(String name) {
 		if (name.isEmpty() || isOverLength(name)) {
 			throw new IllegalArgumentException(INVALID_CAR_NAME_ERROR_MESSAGE);
 		}

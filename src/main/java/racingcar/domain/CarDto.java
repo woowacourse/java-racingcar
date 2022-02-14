@@ -10,6 +10,14 @@ public class CarDto {
 		this.position = position;
 	}
 
+	public static CarDto from(String name) {
+		return new CarDto(name, 0);
+	}
+
+	public static CarDto of(String name, int position) {
+		return new CarDto(name, position);
+	}
+
 	public Car toEntity() {
 		return Car.of(name, position);
 	}
