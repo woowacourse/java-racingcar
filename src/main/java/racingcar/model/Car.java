@@ -3,8 +3,6 @@ package racingcar.model;
 import java.util.List;
 import java.util.Objects;
 
-import racingcar.service.RandomNumberService;
-
 public class Car implements Comparable<Car> {
 	public static final String ONE_STEP = "-";
 	public static final String COLON = " : ";
@@ -46,8 +44,8 @@ public class Car implements Comparable<Car> {
 		return position - o.position;
 	}
 
-	public void move() {
-		if (checkMovingCondition(RandomNumberService.getRandomNumber())) {
+	public void move(int selectedNumber) {
+		if (checkMovingCondition(selectedNumber)) {
 			position += 1;
 		}
 	}
@@ -62,5 +60,12 @@ public class Car implements Comparable<Car> {
 
 	public void appendName(List<String> winnerNames) {
 		winnerNames.add(name);
+	}
+
+	public String testMoveFunction(int expectedPosition) {
+		if (expectedPosition == this.position) {
+			return "Success!!";
+		}
+		return "Fail!!";
 	}
 }
