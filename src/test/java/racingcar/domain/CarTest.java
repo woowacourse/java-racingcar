@@ -28,7 +28,7 @@ public class CarTest {
         Car car = new Car(name);
 
         assertThat(car.getName()).isEqualTo(name);
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.isSamePosition(0)).isEqualTo(true);
     }
 
     @DisplayName("생성자는 name으로 공백 혹은 빈 문자열이 입력되었을 때 예외를 발생시킨다.")
@@ -57,21 +57,21 @@ public class CarTest {
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     void goOrNot_move(int num) {
-        int prevPosition = car.getPosition();
+        int prevPosition = 0;
 
         car.goOrNot(num);
 
-        assertThat(car.getPosition()).isEqualTo(prevPosition + 1);
+        assertThat(car.isSamePosition(prevPosition + 1)).isEqualTo(true);
     }
 
     @DisplayName("goOrNot 메서드의 인자의 값이 4 미만일 경우 position 값은 변경되지 않는다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @ValueSource(ints = {0, 1, 2, 3})
     void goOrNot_stay(int num) {
-        int prevPosition = car.getPosition();
+        int prevPosition = 0;
 
         car.goOrNot(num);
 
-        assertThat(car.getPosition()).isEqualTo(prevPosition);
+        assertThat(car.isSamePosition(prevPosition)).isEqualTo(true);
     }
 }

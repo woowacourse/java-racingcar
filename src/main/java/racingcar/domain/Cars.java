@@ -18,10 +18,6 @@ public class Cars {
         cars.add(car);
     }
 
-    public void clear() {
-        cars.clear();
-    }
-
     public void race() {
         for (Car car : cars) {
             car.goOrNot(RandomUtils.generateNumber());
@@ -29,16 +25,16 @@ public class Cars {
     }
 
     public List<Car> getWinners() {
-        int maxPosition = getMaxPosition();
+        Car carMaxPosition = getCarMaxPosition();
 
         return cars.stream()
-            .filter((car) -> car.getPosition() == maxPosition)
+            .filter((car) -> car.isSamePosition(carMaxPosition))
             .collect(Collectors.toList());
     }
 
-    private int getMaxPosition() {
+    private Car getCarMaxPosition() {
         return cars.stream()
-            .mapToInt(Car::getPosition)
-            .max().orElseThrow(null);
+            .max(Car::compareTo)
+            .orElseThrow(null);
     }
 }

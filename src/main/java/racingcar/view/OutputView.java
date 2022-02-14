@@ -31,8 +31,10 @@ public class OutputView {
 
         sb.append(car.getName()).append(SYMBOL_CAR_INFO_DELIMITER);
 
-        for (int i = NUMBER_ZERO; i < car.getPosition(); i++) {
+        int i = 0;
+        while (!car.isSamePosition(i)) {
             sb.append(SYMBOL_DISTANCE);
+            i++;
         }
 
         print(sb.toString());

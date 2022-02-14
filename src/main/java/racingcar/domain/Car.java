@@ -5,15 +5,23 @@ import static racingcar.constants.SystemConstants.NUMBER_ONE_FOR_INCREMENT;
 import static racingcar.constants.GameConstants.INITIAL_POSITION;
 import static racingcar.util.ValidatorUtils.validateCarName;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private final String name;
     private int position;
 
     public Car(String name) {
         validateCarName(name);
+
         this.name = name;
         this.position = INITIAL_POSITION;
+    }
+
+    public Car(String name, int position) {
+        validateCarName(name);
+
+        this.name = name;
+        this.position = position;
     }
 
     public void goOrNot(int number) {
@@ -34,7 +42,16 @@ public class Car {
         return name;
     }
 
-    public int getPosition() {
-        return position;
+    public boolean isSamePosition(int position) {
+        return this.position == position;
+    }
+
+    public boolean isSamePosition(Car car) {
+        return this.position == car.position;
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return Integer.compare(this.position, car.position);
     }
 }
