@@ -70,9 +70,13 @@ public class RacingCars {
     public List<String> searchWinnerNames() {
         RacingCar anyWinner = searchAnyWinner();
         return cars.stream()
-            .filter(car -> car.isSamePosition(anyWinner))
+            .filter(car -> isSamePosition(car, anyWinner))
             .map(RacingCar::getName)
             .collect(Collectors.toList());
+    }
+
+    private boolean isSamePosition(RacingCar racingCar, RacingCar anyWinner) {
+        return racingCar.compareTo(anyWinner) == 0;
     }
 
     private RacingCar searchAnyWinner() {

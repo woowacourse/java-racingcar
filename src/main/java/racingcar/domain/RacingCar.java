@@ -9,9 +9,13 @@ public class RacingCar implements Comparable<RacingCar> {
     private int position = DEFAULT_POSITION;
 
     public RacingCar(String name) {
+        validateRacingCarName(name);
+        this.name = name;
+    }
+
+    private void validateRacingCarName(String name) {
         isEmpty(name);
         checkNameLength(name);
-        this.name = name;
     }
 
     private void isEmpty(String name) {
@@ -36,10 +40,6 @@ public class RacingCar implements Comparable<RacingCar> {
 
     public void move() {
         position++;
-    }
-
-    public boolean isSamePosition(RacingCar anotherCar) {
-        return this.position == anotherCar.getPosition();
     }
 
     @Override
