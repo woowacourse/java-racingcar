@@ -13,69 +13,62 @@ import racingcar.views.Output;
 
 public class RacingGame {
 
-	private final Input input;
-	private final Output output;
-	private List<Car> cars;
-	private int repeats;
+    private final Input input;
+    private final Output output;
+    private List<Car> cars;
+    private int repeats;
 
-	public RacingGame(final Input input, final Output output) {
-		this.input = input;
-		this.output = output;
-		cars = new ArrayList<>();
-		repeats = 0;
-	}
+    public RacingGame(final Input input, final Output output) {
+        this.input = input;
+        this.output = output;
+        cars = new ArrayList<>();
+        repeats = 0;
+    }
 
-	public void startGame() {
-		inputValidData();
-		startRacing();
-	}
+    public void startGame() {
+        inputValidData();
+        startRacing();
+    }
 
-	private void inputValidData() {
-		createCar();
-		repeats = input.inputValidRepeats();
-	}
+    private void inputValidData() {
+        createCar();
+        repeats = input.inputValidRepeats();
+    }
 
-	private void createCar() {
-		final List<String> carNames = input.inputValidNames();
-		carNames.forEach((carName) -> cars.add(new Car(new RandomNumber(), carName)));
-	}
+    private void createCar() {
+        final List<String> carNames = input.inputValidNames();
+        carNames.forEach((carName) -> cars.add(new Car(new RandomNumber(), carName)));
+    }
 
-	private void startRacing() {
-		output.printResultMessage();
-		while(repeats-- > 0) {
-			cars.forEach(Car::goForward);
-			output.printTurnResult(cars);
-		}
-		output.printWinner(findWinner());
-	}
+    private void startRacing() {
+        output.printResultMessage();
+        while (repeats-- > 0) {
+            cars.forEach(Car::goForward);
+            output.printTurnResult(cars);
+        }
+        output.printWinner(findWinner());
+    }
 
-	private String findWinner() {
-		final int farthestPosition = findFarthestPosition();
-		final List<Car> winners = getWinners(farthestPosition);
-		return joinWinnerNames(winners);
-	}
+    private String findWinner() {
+        final int farthestPosition = findFarthestPosition();
+        return getWinners(farthestPosition);
+    }
 
-	private int findFarthestPosition() {
-		List<Car> sortedCars = cars.stream()
-				.sorted(Comparator.comparing(Car::getPosition).reversed())
-				.collect(Collectors.toList());
+    private int findFarthestPosition() {
+        List<Car> sortedCars = cars.stream()
+                .sorted(Comparator.comparing(Car::getPosition).reversed())
+                .collect(Collectors.toList());
 
-		if (!sortedCars.isEmpty()) {
-			return sortedCars.get(0).getPosition();
-		}
-		return 0;
-	}
+        if (!sortedCars.isEmpty()) {
+            return sortedCars.get(0).getPosition();
+        }
+        return 0;
+    }
 
-	private List<Car> getWinners(final int farthestPosition) {
-		return cars.stream()
-			.filter((car) -> farthestPosition == car.getPosition())
-			.collect(Collectors.toList());
-	}
-
-	private String joinWinnerNames(final List<Car> winners) {
-		final String[] winnerNames = winners.stream()
-			.map(Car::getName)
-			.toArray(String[]::new);
-		return Arrays.stream(winnerNames).collect(Collectors.joining(", "));
-	}
+    private String getWinners(final int farthestPosition) {
+        return cars.stream()
+                .filter((car) -> farthestPosition == car.getPosition())
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+    }
 }
