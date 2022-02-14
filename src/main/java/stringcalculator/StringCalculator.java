@@ -11,8 +11,6 @@ public class StringCalculator {
 
     private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
     private static final String DEFAULT_DELIMITER = ",:";
-    private static final String LEFT_BRACKET = "[";
-    private static final String RIGHT_BRACKET = "]";
 
     private static Matcher matcher;
 
@@ -29,14 +27,9 @@ public class StringCalculator {
     }
 
     private static int getSum(String input) {
-        return Arrays.stream(convertStringArrToIntArr(split(input)))
-                .sum();
-    }
-
-    private static int[] convertStringArrToIntArr(String[] arr) {
-        return Arrays.stream(arr)
+        return Arrays.stream(split(input))
                 .mapToInt(StringCalculator::convertStringToNaturalNumber)
-                .toArray();
+                .sum();
     }
 
     private static int convertStringToNaturalNumber(String string) {
@@ -51,7 +44,7 @@ public class StringCalculator {
         if (matcher.find()) {
             return splitByCustomDelimiter(matcher.group(GET_NUMBERS));
         }
-        return input.split(LEFT_BRACKET + DEFAULT_DELIMITER + RIGHT_BRACKET);
+        return input.split(String.format("[%s]", DEFAULT_DELIMITER));
     }
 
     private static String[] splitByCustomDelimiter(String input) {
@@ -59,7 +52,7 @@ public class StringCalculator {
     }
 
     private static String getCustomDelimiter() {
-        return LEFT_BRACKET + matcher.group(GET_CUSTOM_DELIMITER) + DEFAULT_DELIMITER + RIGHT_BRACKET;
+        return String.format("[%s%s]", matcher.group(GET_CUSTOM_DELIMITER), DEFAULT_DELIMITER);
     }
 
     private static void getMatcher(String input) {
