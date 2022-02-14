@@ -9,8 +9,6 @@ import racingcar.controller.RacingCarDto;
 public class RacingCars {
 
     private static final String CAR_NAME_DELIMITER = ",";
-    private static final String NAME_BLANK = " ";
-    private static final String NAME_NOT_BLANK = "";
 
     private final List<RacingCar> cars;
 
@@ -20,15 +18,10 @@ public class RacingCars {
 
     public static RacingCars from(String names) {
         List<RacingCar> cars = Arrays.stream(names.split(CAR_NAME_DELIMITER))
-            .map(RacingCars::removeNameBlank)
-            .map(Name::new)
+            .map(Name::createNotBlankName)
             .map(RacingCar::new)
             .collect(Collectors.toList());
         return new RacingCars(cars);
-    }
-
-    private static String removeNameBlank(String name) {
-        return name.replaceAll(NAME_BLANK, NAME_NOT_BLANK);
     }
 
     public List<String> getCarNames() {
