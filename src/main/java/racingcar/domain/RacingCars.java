@@ -42,15 +42,19 @@ public class RacingCars {
 
     public List<String> calculateWinnerNames() {
         int winnerPosition = calculateWinnerPosition();
-        return cars.stream()
-            .filter(car -> car.comparePosition(winnerPosition))
-            .map(RacingCar::getName)
-            .collect(Collectors.toList());
+        return getWinnerNames(winnerPosition);
     }
 
     private int calculateWinnerPosition() {
         return Collections.max(cars.stream()
             .map(RacingCar::getPosition)
             .collect(Collectors.toList()));
+    }
+
+    private List<String> getWinnerNames(int winnerPosition) {
+        return cars.stream()
+            .filter(car -> car.comparePosition(winnerPosition))
+            .map(RacingCar::getName)
+            .collect(Collectors.toList());
     }
 }
