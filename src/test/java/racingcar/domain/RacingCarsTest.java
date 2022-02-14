@@ -45,4 +45,24 @@ class RacingCarsTest {
             .isThrownBy(() -> new RacingCars(input, new RacingCarCommander()))
             .withMessageMatching("자동차 입력 값이 존재해야한다.");
     }
+
+    @Test
+    @DisplayName("움직일 수 있는 상황이면, 자동차가 움직인다.")
+    void checkCanMove() {
+        MovingStrategy movingStrategy = () -> true;
+        RacingCars racingCars = new RacingCars("pobi,crong,honux", movingStrategy);
+        racingCars.moveCars();
+        racingCars.getRacingCars()
+            .forEach(car -> assertThat(car.getPosition()).isEqualTo(1));
+    }
+
+    @Test
+    @DisplayName("움직일 수 없는 상황이면, 자동차가 움직이지 않는다.")
+    void checkNotMove() {
+        MovingStrategy movingStrategy = () -> false;
+        RacingCars racingCars = new RacingCars("pobi,crong,honux", movingStrategy);
+        racingCars.moveCars();
+        racingCars.getRacingCars()
+            .forEach(car -> assertThat(car.getPosition()).isEqualTo(0));
+    }
 }

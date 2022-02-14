@@ -48,24 +48,4 @@ public class RacingCarTest {
             .withMessageMatching("자동차 이름은 비어있을 수 없다.");
     }
 
-    @Test
-    @DisplayName("움직일 수 있는 상황이면, 자동차가 움직인다.")
-    void checkCanMove() {
-        MovingStrategy movingStrategy = () -> true;
-        if(movingStrategy.isMovable()) {
-            car.move();
-        }
-        assertThat(car.getPosition()).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("움직일 수 없는 상황이면, 자동차가 움직이지 않는다.")
-    void checkNotMove() {
-        MovingStrategy movingStrategy = () -> false;
-        if(movingStrategy.isMovable()) {
-            car.move();
-        }
-        assertThat(car.getPosition()).isEqualTo(0);
-    }
-
 }
