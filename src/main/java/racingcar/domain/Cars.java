@@ -44,7 +44,7 @@ public class Cars {
     }
 
     private void verifyMaxPosition(Car car) {
-        if (car.isMaxPosition(highScore)) {
+        if (car.isSamePosition(highScore)) {
             champions.add(car.getName());
         }
     }

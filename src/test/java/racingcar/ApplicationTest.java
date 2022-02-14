@@ -62,7 +62,7 @@ public class ApplicationTest {
     @Test
     void isMaxPosition() {
         Car car = new Car("test", 3);
-        assertThat(car.isMaxPosition(3)).isTrue();
+        assertThat(car.isSamePosition(3)).isTrue();
     }
 
     @Test
