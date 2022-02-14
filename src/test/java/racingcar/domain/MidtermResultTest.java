@@ -9,13 +9,13 @@ import racingcar.domain.result.MidtermResult;
 
 public class MidtermResultTest {
 
-    static final String CAR_1_NAME = "pobi";
-    static final String CAR_2_NAME = "crong";
-    static final String CAR_3_NAME = "honux";
+    private static final String CAR_1_NAME = "pobi";
+    private static final String CAR_2_NAME = "crong";
+    private static final String CAR_3_NAME = "honux";
 
-    Car car1;
-    Car car2;
-    Car car3;
+    private Car car1;
+    private Car car2;
+    private Car car3;
 
     @BeforeEach
     void setUp() {

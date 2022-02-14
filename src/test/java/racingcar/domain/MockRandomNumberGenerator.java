@@ -4,15 +4,15 @@ import racingcar.domain.game.RandomNumberGenerator;
 
 public class MockRandomNumberGenerator implements RandomNumberGenerator {
 
-    static final int FORWARDING_NUMBER = 4;
-    static final int STOPPING_NUMBER = 0;
-    static final int[] RANDOM_NUMBERS = {
+    private static final int FORWARDING_NUMBER = 4;
+    private static final int STOPPING_NUMBER = 0;
+    private static final int[] RANDOM_NUMBERS = {
         FORWARDING_NUMBER, STOPPING_NUMBER,
         FORWARDING_NUMBER, STOPPING_NUMBER,
         STOPPING_NUMBER, FORWARDING_NUMBER,
         STOPPING_NUMBER, FORWARDING_NUMBER
     };
-    int index = 0;
+    private int index = 0;
 
     @Override
     public int getRandomNumber() {

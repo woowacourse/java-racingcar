@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class CarNameParserTest {
 
-    CarNameParser parser;
+    private CarNameParser parser;
 
     @BeforeEach
     void setUp() {
