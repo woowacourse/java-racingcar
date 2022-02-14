@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import calculator.utils.CalculatorInputValidator;
 
 public class Calculator {
-    private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
+    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
     private static final String BASE_DELIMITER_PATTERN = ",|:";
     private static final String OR = "|";
     private static final int DELIMITER = 1;
@@ -24,13 +24,12 @@ public class Calculator {
     }
 
     private boolean hasCustomDelimiterInInput(String input) {
-        Pattern pattern = Pattern.compile(CUSTOM_DELIMITER_PATTERN);
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         return matcher.find();
     }
 
     private List<String> divideNumbersByCustomDelimiter(String input) {
-        Matcher matcher = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(input);
+        Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if (matcher.find()) {
             String delimiter = matcher.group(DELIMITER) + OR + BASE_DELIMITER_PATTERN;
             return List.of(matcher.group(NUMBERS).split(delimiter));
