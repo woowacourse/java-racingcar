@@ -3,7 +3,8 @@ package racingcar.domain;
 import racingcar.util.RandomNumberGenerator;
 
 public class Car implements Comparable<Car> {
-	private static final int OPERATING_STANDARD = 4;
+	private static final int MOVING_CAR_BOUND = 4;
+
 	private final String carName;
 	private int position;
 	private final RandomNumberGenerator randomNumberGenerator;
@@ -21,28 +22,19 @@ public class Car implements Comparable<Car> {
 	}
 
 	public boolean isMovable() {
-		return randomNumberGenerator.generate() >= OPERATING_STANDARD;
+		return randomNumberGenerator.generate() >= MOVING_CAR_BOUND;
 	}
 
 	public String getCarName() {
 		return this.carName;
 	}
 
+	public int getCarPosition() {
+		return this.position;
+	}
+
 	@Override
 	public int compareTo(Car other) {
 		return other.position - this.position;
-	}
-
-	@Override
-	public String toString() {
-		return buildStatusView(new StringBuilder()).toString();
-	}
-
-	private StringBuilder buildStatusView(StringBuilder stringBuilder) {
-		stringBuilder.append(carName).append(" : ");
-		for (int i = 0; i < this.position; i++) {
-			stringBuilder.append("-");
-		}
-		return stringBuilder;
 	}
 }

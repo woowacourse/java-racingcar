@@ -1,9 +1,13 @@
 package racingcar.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
+import racingcar.domain.CarStatusDTO;
 import racingcar.domain.Cars;
+import racingcar.domain.RacingRecordDTO;
 import racingcar.domain.WinnerNames;
 import racingcar.validator.CarNameValidator;
 import racingcar.validator.TrialCountValidator;
@@ -18,9 +22,9 @@ public class RacingCarController {
 		Cars cars = new Cars((getCarNames(InputView.inputCarNames())));
 		int trialCount = getTrialCount(InputView.inputTrials());
 
-		OutputView.printResultMessage();
+		OutputView.printRacingRecordsMsg();
 		for (int i = 0; i < trialCount; i++) {
-			OutputView.printRacingRecords(cars.executeCarRacing());
+			OutputView.printRacingRecords(new RacingRecordDTO(cars.executeCarRacing()));
 		}
 
 		OutputView.printWinnerNames(cars.findWinners(winnerNames));

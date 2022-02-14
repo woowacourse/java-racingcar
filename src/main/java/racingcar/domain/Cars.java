@@ -2,7 +2,9 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import racingcar.util.BoundedRandomNumberGenerator;
 
@@ -43,11 +45,11 @@ public class Cars {
 		return winnerNames.getWinnerNames();
 	}
 
-	public List<String> executeCarRacing() {
-		List<String> racingRecord = new ArrayList<>();
+	public Map<String, Integer> executeCarRacing() {
+		Map<String, Integer> racingRecord = new HashMap<>();
 		for (Car car : cars) {
 			car.tryMoving();
-			racingRecord.add(car.toString());
+			racingRecord.put(car.getCarName(), car.getCarPosition());
 		}
 		return racingRecord;
 	}
