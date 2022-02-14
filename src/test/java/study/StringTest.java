@@ -34,7 +34,7 @@ public class StringTest {
 		int index = 1;
 		String input = "abc";
 		char character = input.charAt(index);
-		assertThat(character).isEqualTo("b");
+		assertThat(character).isEqualTo('b');
 	}
 
 	@Test
