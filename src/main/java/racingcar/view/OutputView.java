@@ -4,11 +4,11 @@ import racingcar.model.Car;
 import racingcar.model.Cars;
 
 public class OutputView {
-    private static final String TRIAL_RESULT = "\n실행 결과";
-    public static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
-    public static final String COLON = " : ";
-    public static final String DASH = "-";
-    public static final int MINIMUM_POSITION = 0;
+    private static final String TRIAL_RESULT = System.lineSeparator() + "실행 결과";
+    private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
+    private static final String COLON = " : ";
+    private static final String DASH = "-";
+    private static final int MINIMUM_POSITION = 0;
 
     public static void printCarPosition(Cars cars) {
         cars.getCars().forEach(OutputView::printCarResult);

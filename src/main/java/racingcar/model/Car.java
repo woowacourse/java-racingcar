@@ -1,8 +1,9 @@
 package racingcar.model;
 
 public class Car {
-    public static final int MINIMUM_POSITION = 0;
-    public static final int MOVE_FORWARD = 4;
+    private static final int MINIMUM_POSITION = 0;
+    private static final int MOVE_FORWARD = 4;
+
     private final String name;
     private int position;
 
@@ -29,7 +30,7 @@ public class Car {
         }
     }
 
-    public boolean canMove(int number) {
+    private boolean canMove(int number) {
         return number >= MOVE_FORWARD;
     }
 }

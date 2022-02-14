@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    public static final int MINIMUM_POSITION = 0;
-    public static final String JOIN_BY_COMMA = ", ";
+    private static final int MINIMUM_POSITION = 0;
+    private static final String JOIN_BY_COMMA = ", ";
+
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -20,9 +21,7 @@ public class Cars {
     }
 
     public void race() {
-        cars.forEach(car -> {
-            car.move(RandomNumberGenerator.generate());
-        });
+        cars.forEach(car -> car.move(RandomNumberGenerator.generate()));
     }
 
     public int findMaxPosition() {

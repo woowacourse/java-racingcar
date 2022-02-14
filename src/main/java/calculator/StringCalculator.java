@@ -7,8 +7,8 @@ import java.util.List;
 public class StringCalculator {
     private static final String CUSTOM_WITH_DIGITAL_REGEX = "(.*)\\d(.*)";
     private static final String BASIC_SPLITTER = ",|:";
-    public static final String CUSTOM_PREFIX = "//";
-    public static final String CUSTOM_SUFFIX = "\n";
+    private static final String CUSTOM_PREFIX = "//";
+    private static final String CUSTOM_SUFFIX = "\n";
 
     public static Integer splitAndSum(String input) {
         if (input == null || input.isEmpty()) {
@@ -74,7 +74,7 @@ public class StringCalculator {
         }
     }
 
-    public static Integer sumNumbers(List<Integer> numList) {
+    private static Integer sumNumbers(List<Integer> numList) {
         return numList.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
