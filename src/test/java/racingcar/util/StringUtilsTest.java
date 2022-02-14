@@ -38,39 +38,4 @@ class StringUtilsTest {
         assertThat(stripArr[0]).isEqualTo(expectStr);
     }
 
-    @Test
-    @DisplayName("숫자를 게이지 바로 표시")
-    void convertNumberToString() {
-        // given
-        int cnt = 5;
-        String expect = "-----";
-
-        // when
-
-        // then
-        assertThat(StringUtils.getGaugeBar(cnt)).isEqualTo(expect);
-    }
-
-    @Test
-    @DisplayName("자동차 실행 결과")
-    void generateCarStatus() {
-        // given
-        List<Car> cars = new ArrayList<>();
-
-        Car car1 = new Car("test1");
-        car1.goOrStop(6);
-
-        Car car2 = new Car("test2");
-        car2.goOrStop(6);
-        car2.goOrStop(6);
-
-        cars.add(car1);
-        cars.add(car2);
-
-        // when
-        String string = StringUtils.generateCarStatus(cars);
-
-        // then
-        assertThat(string).contains("test1 : -", "test2 : --");
-    }
 }

@@ -3,6 +3,7 @@ package racingcar.model;
 public class Car {
     private static final int MOVING_DISTANCE = 1;
     private static final int STANDARD_VALUE = 4;
+    private static final String DISTANCE_MARK = "-";
 
     private final Name name;
     private final Position position;
@@ -26,4 +27,12 @@ public class Car {
         return this.position.toInt();
     }
 
+    public String getCarStatus() {
+        String carPositionString = getGaugeBar(getPosition());
+        return getName() + " : " + carPositionString;
+    }
+
+    private String getGaugeBar(int cnt) {
+        return DISTANCE_MARK.repeat(Math.max(0, cnt));
+    }
 }
