@@ -11,10 +11,10 @@ public class Car {
     private final int MAX_LENGTH_OF_NAME = 5;
     private final int CONDITION_FOR_MOVE = 4;
 
-    public Car(String name, int position) {
+    public Car(String name) {
         validateCarName(name, MIN_LENGTH_OF_NAME, MAX_LENGTH_OF_NAME);
         this.name = name;
-        this.position = position;
+        this.position = 0;
     }
 
     public String getName() {

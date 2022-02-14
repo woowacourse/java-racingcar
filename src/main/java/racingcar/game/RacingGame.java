@@ -22,7 +22,7 @@ public class RacingGame {
         isDuplicated(names);
 
         for (String name : names) {
-            cars.add(new Car(name, 0));
+            cars.add(new Car(name));
         }
     }
 
