@@ -2,7 +2,6 @@ package racingcar.domain.car;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,6 +40,5 @@ class CarTest {
     void Should_SuccessToStop() {
         testCar.move(() -> STOP_OPTION);
         assertThat(testCar.getPosition()).isEqualTo(STOP_OPTION);
-
     }
 }
