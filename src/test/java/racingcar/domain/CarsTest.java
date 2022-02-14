@@ -40,10 +40,10 @@ public class CarsTest {
 		cars.play(customNumberPicker);
 		cars.play(customNumberPicker);
 
-		List<Name> winnerNames = cars.getWinnerNames();
+		List<String> winnerNames = cars.getWinnerNames();
 		assertThat(winnerNames.size()).isEqualTo(1);
 
-		assertThat(winnerNames.get(0).getName()).isEqualTo("if");
+		assertThat(winnerNames.get(0)).isEqualTo("if");
 	}
 
 	@Test
@@ -60,12 +60,12 @@ public class CarsTest {
 		cars.play(customNumberPicker);
 		cars.play(customNumberPicker);
 
-		List<Name> winnerNames = cars.getWinnerNames();
+		List<String> winnerNames = cars.getWinnerNames();
 		assertThat(winnerNames.size()).isEqualTo(2);
 
 		List<String> expected = Arrays.asList("slow", "if");
 		for (int i = 0; i < winnerNames.size(); i++) {
-			assertThat(winnerNames.get(i).getName()).isEqualTo(expected.get(i));
+			assertThat(winnerNames.get(i)).isEqualTo(expected.get(i));
 		}
 	}
 }
