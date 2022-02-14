@@ -6,13 +6,13 @@ import racingcar.model.Car;
 
 public class Output {
 
-	static final String ERROR_MSG = "[ERROR]";
-	static final String POSITION_SIGNATURE = "-";
-	public static final String RESULT_MSG = "\n실행 결과";
-	public static final String NAME_AND_POSITION_CONNECTION = " : ";
-	public static final String WINNER_SEPARATED_STR = ", ";
-	public static final int START_STRING_INDEX = 0;
-	public static final String FINAL_WINNER_MSG = "가 최종 우승했습니다.";
+	private static final String ERROR_MSG = "[ERROR]";
+	private static final String POSITION_SIGNATURE = "-";
+	private static final String RESULT_MSG = "\n실행 결과";
+	private static final String NAME_AND_POSITION_CONNECTION = " : ";
+	private static final String WINNER_SEPARATED_STR = ", ";
+	private static final int START_STRING_INDEX = 0;
+	private static final String FINAL_WINNER_MSG = "가 최종 우승했습니다.";
 
 	public static void printError(String error) {
 		System.out.println(ERROR_MSG + error);
