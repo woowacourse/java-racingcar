@@ -6,9 +6,12 @@ import java.util.List;
 
 public class StringCalculator {
     private static final String CUSTOM_WITH_DIGITAL_REGEX = "(.*)\\d(.*)";
+    private static final String CUSTOM_PREFIX = "//";
+    private static final String CUSTOM_SUFFIX = "\n";
+    private static final String BLANK = "";
 
     public static Integer splitAndSum(String input) {
-        if (input == null || input.isEmpty()) {
+        if (input == null || input.isBlank()) {
             return 0;
         }
         return sumNumbers(convertToIntegerArray(splitString(input)));
@@ -17,7 +20,7 @@ public class StringCalculator {
     public static String[] splitString(String input) {
         String regExp = ",|:";
         if (isCustom(input)) {
-            int idx = input.indexOf("\n");
+            int idx = input.indexOf(CUSTOM_SUFFIX);
             regExp = makeCustom(input, idx);
             input = input.substring(idx + 1);
         }
@@ -34,7 +37,7 @@ public class StringCalculator {
     }
 
     private static boolean isCustom(String input) {
-        return input.startsWith("//") && input.contains("\n");
+        return input.startsWith(CUSTOM_PREFIX) && input.contains(CUSTOM_SUFFIX);
     }
 
     public static List<Integer> convertToIntegerArray(String[] strArr) {
@@ -50,7 +53,7 @@ public class StringCalculator {
     }
 
     private static boolean isEmpty(String[] strArr) {
-        return Arrays.stream(strArr).count() == 1 && strArr[0].equals("");
+        return Arrays.stream(strArr).count() == 1 && strArr[0].equals(BLANK);
     }
 
     private static Integer convertToInt(String str) {
