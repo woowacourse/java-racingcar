@@ -53,8 +53,11 @@
     - oracle Java 컨벤션 -> 메소드 명은 동사로 시작한다.
     - 네이버 Java 컨벤션 -> 메소드 명은 동사/전치사로 시작한다.
 
-- [ ] FIXME 파라미터가 없는 메소드에서 IllegalArgumentException가 사용되는 것이 적절한가?
-    - RandomUtil
+- [x] FIXME 파라미터가 없는 메소드에서 `IllegalArgumentException`이 사용되는 것이 적절한가?
+    - RandomUtil.generateRandomNumber()에는 파라미터가 없지만 
+      그 내부에서 `IllegalArgumentException`이 사용됨.
+    - `IllegalStateException`를 사용하여 예외를 처리하도록 수정
+    - `IllegalStateException`는 메소드 처리를 하려할 때 잘못된 상태가 된 경우 발생하는 예외이다.
 
 - [ ] FIXME Cars를 생성하는 책임을 Cars에게 줄 수 있다면?
     - RacingCar

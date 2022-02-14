@@ -18,10 +18,9 @@ public class RandomUtil {
     return randomNumber;
   }
 
-  // FIXME IllegalArgumentException가 사용되는 것이 적절한가?
   private static void validateRange(int randomNumber) {
     if (randomNumber > MAXIMUM || randomNumber < MINIMUM) {
-      throw new IllegalArgumentException(RANGE_OVER_ERROR_MESSAGE);
+      throw new IllegalStateException(RANGE_OVER_ERROR_MESSAGE);
     }
   }
 }
