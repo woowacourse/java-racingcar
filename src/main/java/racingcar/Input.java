@@ -7,6 +7,8 @@ public class Input {
     private final Scanner scanner = new Scanner(System.in);
     private final InputValidator inputValidator = new InputValidator();
 
+    public static final String COMMA_REGEX = ",";
+
     public String[] getNames() {
         String[] names = splitByComma(scanner.nextLine());
         inputValidator.isValidLength(names);
@@ -16,7 +18,7 @@ public class Input {
 
     public String[] splitByComma(String input) {
         inputValidator.isValidPattern(input);
-        return input.split(Constant.COMMA_REGEX);
+        return input.split(COMMA_REGEX);
     }
 
     public int getCoin() {

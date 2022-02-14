@@ -5,17 +5,21 @@ public class Car {
     private String name;
     private int position;
 
+    private static final int START_POSITION = 0;
+    private static final int RANDOM_RANGE = 10;
+    private static final int MINIMUM_MOVE = 4;
+
     public Car(String name) {
         this.name = name;
-        this.position = Constant.START_POSITION;
+        this.position = START_POSITION;
     }
 
     private int makeRandom() {
-        return (int) (Math.random() * Constant.RANDOM_RANGE);
+        return (int) (Math.random() * RANDOM_RANGE);
     }
 
     public boolean isMovable() {
-        return makeRandom() >= Constant.MINIMUM_MOVE;
+        return makeRandom() >= MINIMUM_MOVE;
     }
 
     public void movePosition() {

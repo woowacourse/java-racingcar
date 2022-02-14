@@ -4,6 +4,9 @@ import java.util.List;
 
 public class Output {
 
+    private static final String POSITION_FLAG = "-";
+    private static final String JOIN_REGEX = ", ";
+
     public void inputCarNameMessage() {
         System.out.println(Constant.PRINT_INPUT_CAR_NAME_MESSAGE);
     }
@@ -25,12 +28,12 @@ public class Output {
     }
 
     private String makePositionString(int position) {
-        String positionFlag = Constant.POSITION_FLAG;
+        String positionFlag = POSITION_FLAG;
         return positionFlag.repeat(position);
     }
 
     public void printWinner(List<String> winnerNames) {
-        System.out.print(String.join(Constant.JOIN_REGEX, winnerNames));
+        System.out.print(String.join(JOIN_REGEX, winnerNames));
         System.out.println(Constant.PRINT_WINNER_MESSAGE);
     }
 }
