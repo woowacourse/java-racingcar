@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class RacingCarTest {
 	private final RacingCar racingCar = new RacingCar();
@@ -43,6 +45,15 @@ public class RacingCarTest {
 	void 자동차_이름_공백_에러() {
 		assertThatThrownBy(() -> racingCar.checkRightLength(""))
 			.isInstanceOf(RuntimeException.class);
+	}
+
+	@DisplayName("경기 횟수가 올바르지 않을 값일 때 에러 확인")
+	@ParameterizedTest
+	@ValueSource(strings = {"-2", "a", "-1", "1.5"})
+	void testInvalidTimes(String times) {
+		assertThatThrownBy(() -> racingCar.isRightTimes(times))
+				.isInstanceOf(RuntimeException.class);
+
 	}
 
 	@DisplayName("경기 횟수가 숫자 이외의 값일 때 에러 확인")
