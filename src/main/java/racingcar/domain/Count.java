@@ -10,7 +10,7 @@ public class Count {
         this.count = count;
     }
 
-    public int getInt() {
+    public int get() {
         return count;
     }
 }

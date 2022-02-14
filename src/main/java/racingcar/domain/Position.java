@@ -20,7 +20,7 @@ public class Position implements Comparable<Position> {
         return position - other.position;
     }
 
-    public int getInt() {
+    public int get() {
         return position;
     }
 
