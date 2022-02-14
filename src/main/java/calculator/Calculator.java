@@ -51,12 +51,11 @@ public class Calculator {
     return numbers;
   }
 
-  // TODO checkedException/uncheckedException의 차이에 대해 고민해보기
   private static int toInteger(String stringNumber) {
     try {
       return Integer.parseInt(stringNumber);
     } catch (NumberFormatException numberFormatException) {
-      throw new RuntimeException(NONE_INTEGER_ERROR_MESSAGE);
+      throw new NumberFormatException(NONE_INTEGER_ERROR_MESSAGE);
     }
   }
 

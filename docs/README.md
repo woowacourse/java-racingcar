@@ -54,8 +54,7 @@
     - 네이버 Java 컨벤션 -> 메소드 명은 동사/전치사로 시작한다.
 
 - [x] FIXME 파라미터가 없는 메소드에서 `IllegalArgumentException`이 사용되는 것이 적절한가?
-    - RandomUtil.generateRandomNumber()에는 파라미터가 없지만 
-      그 내부에서 `IllegalArgumentException`이 사용됨.
+    - RandomUtil.generateRandomNumber()에는 파라미터가 없지만 그 내부에서 `IllegalArgumentException`이 사용됨.
     - `IllegalStateException`를 사용하여 예외를 처리하도록 수정
     - `IllegalStateException`는 메소드 처리를 하려할 때 잘못된 상태가 된 경우 발생하는 예외이다.
 
@@ -74,6 +73,10 @@
 - [ ] FIXME Winners가 CarName을 가지는 것과 Car를 가지는 것 중 어느것이 더 좋을까?
     - Winners
 
-- [ ] TODO checkedException/uncheckedException의 차이에 대해 고민해보기
+- [x] TODO checkedException/uncheckedException의 차이에 대해 고민해보기
     - Calculator.toInteger()
-  
+    - Integer.parseInt()는 잘못된 값을 파라미터로 보낼 경우 알아서 `NumberFormatException`을 throw한다.
+    - `NumberFormatException`도 `RuntimeException`의 한 종류이다.
+    - 따라서 try/catch문을 쓰지 않아도 되지만 내가 원하는 에러를 발생시키고 싶다면 예외를 catch하여 원하는 에러 메시지를 추가하여 다시 throw를 해야하지
+      않을까?
+      
