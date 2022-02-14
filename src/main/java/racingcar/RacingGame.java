@@ -32,15 +32,15 @@ public class RacingGame {
         return tryCount.isFinished();
     }
 
+    public MidtermResult getMidtermResult() {
+        return cars.getMidtermResult();
+    }
+
     public WinnersResult getWinnersResult() {
         if (!isFinished()) {
             throw new GetWinnersBeforeFinishException();
         }
         return cars.getWinnersResult();
-    }
-
-    public MidtermResult getMidtermResult() {
-        return cars.getMidtermResult();
     }
 
     public void enrollCars(List<String> names) {
