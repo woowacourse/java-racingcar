@@ -27,7 +27,7 @@ public class Car {
     }
 
     public String getPostionStatus() {
-        return this.position.toString();
+        return this.position.toGraph();
     }
 
 }

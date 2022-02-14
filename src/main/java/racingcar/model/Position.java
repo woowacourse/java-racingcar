@@ -18,8 +18,8 @@ public class Position {
         return this.position;
     }
 
-    @Override
-    public String toString() {
+    public String toGraph() {
         return DISTANCE_MARK.repeat(Math.max(0, this.position));
     }
+
 }
