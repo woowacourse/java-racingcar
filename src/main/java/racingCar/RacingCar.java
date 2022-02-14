@@ -134,11 +134,11 @@ public class RacingCar {
 
 	private void moveCar(int idx) {
 		Car car = cars.get(idx);
-		car.moveCar(makeRandom());
+		car.moveCar(isRandomOverProbability());
 		System.out.println(car);
 	}
 
-	private boolean makeRandom() {
+	private boolean isRandomOverProbability() {
 		return ((int)(Math.random() * 10) - 1) >= ZERO_TO_NINE_PROBABILITY;
 	}
 
