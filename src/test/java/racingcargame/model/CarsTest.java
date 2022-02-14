@@ -2,6 +2,7 @@ package racingcargame.model;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +10,17 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CarsTest {
+
+	@DisplayName("자동차 이름이 중복되는 경우 테스트")
+	@Test
+	void createObject_Cars_HasDuplicateName() {
+		List<String> carNames = List.of("토미", "제인", "데이빗", "토미");
+
+		assertThatThrownBy(() -> {
+			Cars cars = new Cars(carNames);
+		}).isInstanceOf(IllegalArgumentException.class).
+			hasMessageContaining("[error] 입력한 자동차 이름 중 중복되는 이름이 있습니다.");
+	}
 
 	@DisplayName("Cars 객체가 정상적으로 생성되는지 테스트")
 	@Test
