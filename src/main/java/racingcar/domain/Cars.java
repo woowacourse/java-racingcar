@@ -16,21 +16,19 @@ public class Cars {
     private MoveStrategy moveStrategy = () -> new Random().nextInt(RANDOM_NUMBER_UPPER_BOUND);
     private final List<Car> cars;
 
-    public Cars(String carNames) {
-        Validator.checkInput(carNames);
-        this.cars = makeCars(carNames);
+    public Cars(String input) {
+        Validator.checkInput(input);
+        this.cars = makeCars(input);
     }
 
     protected Cars(List<Car> cars) {
         this.cars = cars;
     }
 
-    private List<Car> makeCars(String carNames) {
-        return makeCars(carNames.split(DELIMITER));
-    }
+    private List<Car> makeCars(String input) {
+        String[] carNames = input.split(DELIMITER);
 
-    private List<Car> makeCars(String[] names) {
-        return Arrays.stream(names).map(CarName::new).map(Car::new).collect(toList());
+        return Arrays.stream(carNames).map(CarName::new).map(Car::new).collect(toList());
     }
 
     public void playRound() {
