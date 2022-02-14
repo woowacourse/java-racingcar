@@ -10,7 +10,6 @@ public class Validator {
 
     public static final char MIN_NUMBER_CRITERIA = '0';
     private static final int MIN_COUNT_OF_CAR = 2;
-    private static final int CAR_NAME_STANDARD_SIZE = 5;
     private static final String MIN_CAR_OF_COUNT_MESSAGE = "[ERROR] 자동차 개수는 2개 이상이어야 합니다.";
     private static final String CAR_NAME_EMPTY_MESSAGE = "[ERROR] 자동차 이름은 빈칸일 수 없습니다.";
     private static final String CAR_NAME_SIZE_MASSAGE = "[ERROR] 자동차 이름은 5자 이하여야 합니다.";
@@ -44,7 +43,7 @@ public class Validator {
     }
 
     private static void validatorCarNameSize(RacingCar racingCar) {
-        if (racingCar.getName().length() > CAR_NAME_STANDARD_SIZE) {
+        if (racingCar.isLongCarName()) {
             throw new IllegalArgumentException(CAR_NAME_SIZE_MASSAGE);
         }
     }
