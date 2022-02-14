@@ -90,16 +90,18 @@ public class RacingCarTest {
 		assertThat(0 <= number && number <= 9).isEqualTo(true);
 	}
 
-	@Test
-	public void 자동차_멈춤_테스트() {
-		Car car = new Car("클레이", new BoundedRandomNumberGenerator(3, 0));
-		assertThat(car.isMovable()).isEqualTo(false);
+	@ParameterizedTest
+	@ValueSource(ints = {0, 1, 2, 3})
+	public void 자동차_멈춤_테스트(int input) {
+		Car car = new Car("클레이");
+		assertThat(car.isMovable(input)).isFalse();
 	}
 
-	@Test
-	public void 자동차_전진_테스트() {
-		Car car = new Car("클레이", new BoundedRandomNumberGenerator(9, 4));
-		assertThat(car.isMovable()).isEqualTo(true);
+	@ParameterizedTest
+	@ValueSource(ints = {4, 5, 6, 7, 8, 9})
+	public void 자동차_전진_테스트(int input) {
+		Car car = new Car("클레이");
+		assertThat(car.isMovable(input)).isTrue();
 	}
 
 	@Test
@@ -111,13 +113,14 @@ public class RacingCarTest {
 	@Test
 	public void 최종_우승자_찾기_테스트() {
 		Cars cars = new Cars(Collections.emptyList());
-		cars.addCar(new Car("이브", new BoundedRandomNumberGenerator(9, 4)));
-		cars.addCar(new Car("클레이", new BoundedRandomNumberGenerator(3, 0)));
-		cars.addCar(new Car("포비", new BoundedRandomNumberGenerator(9, 4)));
-		cars.executeCarRacing();
+		cars.addCar(new Car("이브"));
+		cars.addCar(new Car("클레이"));
+		cars.executeCarRacing(new BoundedRandomNumberGenerator(9, 4));
+		cars.addCar(new Car("포비"));
+		cars.executeCarRacing(new BoundedRandomNumberGenerator(3, 0));
 		List<String> winners = cars.findWinners(new WinnerNames());
 
 		assertThat(winners.size()).isEqualTo(2);
-		assertThat(winners).contains("이브", "포비");
+		assertThat(winners).contains("이브", "클레이");
 	}
 }

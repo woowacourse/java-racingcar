@@ -6,18 +6,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import racingcar.util.BoundedRandomNumberGenerator;
+import racingcar.util.RandomNumberGenerator;
 
 public class Cars {
-	private static final int MAX_BOUND = 9;
-	private static final int MIN_BOUND = 0;
-
 	private final List<Car> cars;
 
 	public Cars(List<String> carNames) {
 		cars = new ArrayList<>();
 		for (String carName : carNames) {
-			cars.add(new Car(carName, new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND)));
+			cars.add(new Car(carName));
 		}
 	}
 
@@ -45,10 +42,10 @@ public class Cars {
 		return winnerNames.getWinnerNames();
 	}
 
-	public Map<String, Integer> executeCarRacing() {
+	public Map<String, Integer> executeCarRacing(RandomNumberGenerator randomNumberGenerator) {
 		Map<String, Integer> racingRecord = new HashMap<>();
 		for (Car car : cars) {
-			car.tryMoving();
+			car.tryMoving(randomNumberGenerator.generate());
 			racingRecord.put(car.getCarName(), car.getCarPosition());
 		}
 		return racingRecord;

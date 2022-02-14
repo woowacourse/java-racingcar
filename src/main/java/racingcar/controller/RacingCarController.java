@@ -9,14 +9,20 @@ import racingcar.domain.CarStatusDTO;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingRecordDTO;
 import racingcar.domain.WinnerNames;
+import racingcar.util.BoundedRandomNumberGenerator;
+import racingcar.util.RandomNumberGenerator;
 import racingcar.validator.CarNameValidator;
 import racingcar.validator.TrialCountValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarController {
-	public static final String CAR_NAME_DELIMITER = ",";
+	private static final String CAR_NAME_DELIMITER = ",";
+	private static final int MAX_BOUND = 9;
+	private static final int MIN_BOUND = 0;
+
 	public final WinnerNames winnerNames = new WinnerNames();
+	public final RandomNumberGenerator randomNumberGenerator = new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND);
 
 	public void playGame() {
 		Cars cars = new Cars((getCarNames(InputView.inputCarNames())));
@@ -24,7 +30,7 @@ public class RacingCarController {
 
 		OutputView.printRacingRecordsMsg();
 		for (int i = 0; i < trialCount; i++) {
-			OutputView.printRacingRecords(new RacingRecordDTO(cars.executeCarRacing()));
+			OutputView.printRacingRecords(new RacingRecordDTO(cars.executeCarRacing(randomNumberGenerator)));
 		}
 
 		OutputView.printWinnerNames(cars.findWinners(winnerNames));
