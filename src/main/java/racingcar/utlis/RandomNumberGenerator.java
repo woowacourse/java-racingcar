@@ -2,7 +2,7 @@ package racingcar.utlis;
 
 import java.util.Random;
 
-public class Util {
+public class RandomNumberGenerator {
 
 	static final int MAX_RANDOM_NUMBER = 9;
 	static final int MOVE_CRITERIA = 4;

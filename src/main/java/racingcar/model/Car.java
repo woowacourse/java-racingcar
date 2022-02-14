@@ -1,6 +1,6 @@
 package racingcar.model;
 
-import static racingcar.utlis.Util.*;
+import static racingcar.utlis.RandomNumberGenerator.*;
 
 import racingcar.validator.NameValidator;
 
