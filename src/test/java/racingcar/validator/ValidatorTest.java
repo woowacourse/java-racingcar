@@ -69,10 +69,17 @@ class ValidatorTest {
     }
 
     @Test
-    @DisplayName("시도 회수가 자연수가 아니면 예외처리")
-    public void validateTryCountIsNaturalNumberTest() {
-        String tryCountInput = "0";
+    @DisplayName("시도 회수가 숫자가 아니면 예외처리")
+    public void validateTryCountIsNotNaturalNumberTest() {
+        String tryCountInput = "wrongInput";
         assertThatThrownBy(() -> Validator.checkTryCountIsNaturalNumber(tryCountInput)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("시도 회수가 0이면 예외처리")
+    public void validateTryCountIsZeroTest() {
+        String tryCountInput = "0";
+        assertThatThrownBy(() -> Validator.convertToInt(tryCountInput)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }
