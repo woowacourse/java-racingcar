@@ -24,14 +24,11 @@ public class GameController {
     }
 
     private void initGame() {
-        try (Scanner scanner = new Scanner(System.in)) {
-            InputView.inputCarNames();
-            String carNames = scanner.nextLine();
-            List<String> splitCarNames = splitCars(carNames);
-            cars = initCars(splitCarNames);
-            InputView.inputTrialNum();
-            trialNum = convertToInteger(scanner.nextLine());
-        }
+        String carNames = InputView.inputCarNames();
+        List<String> splitCarNames = splitCars(carNames);
+        cars = initCars(splitCarNames);
+        String inputTrialNum = InputView.inputTrialNum();
+        trialNum = convertToInteger(inputTrialNum);
     }
 
     public List<String> splitCars(String carNames) {
