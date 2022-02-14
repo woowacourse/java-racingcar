@@ -13,8 +13,6 @@ import racingcar.view.OutputView;
 
 public class RacingCarGame {
 	public static final String COMMA_DELIMITER = ",";
-	public static final String GAME_TURN_NUMBER_ERROR_MESSAGE = "[Error] 숫자를 입력하세요.";
-	public static final String RANDOM_NUMBER_REGEX = "[1-9]\\d*";
 
 	private InputView inputView = new InputView();
 	private OutputView outputView = new OutputView();
@@ -56,18 +54,12 @@ public class RacingCarGame {
 	public int getGameTurn() {
 		String gameTurn = inputView.getGameTurn();
 		try {
-			checkGameTurnNumber(gameTurn);
+			CheckingService.checkGameTurnNumber(gameTurn);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return getGameTurn();
 		}
 		return Integer.parseInt(gameTurn);
-	}
-
-	public void checkGameTurnNumber(String gameTurn) {
-		if (!gameTurn.matches(RANDOM_NUMBER_REGEX)) {
-			throw new IllegalArgumentException(GAME_TURN_NUMBER_ERROR_MESSAGE);
-		}
 	}
 
 	public void moveCars() {

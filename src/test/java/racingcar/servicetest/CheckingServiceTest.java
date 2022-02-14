@@ -20,10 +20,22 @@ public class CheckingServiceTest {
 		assertThatThrownBy(() -> CheckingService.checkCarNamesBlank(null))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
-	
+
 	@Test
 	public void 자동차_이름_예외처리() {
 		assertThatThrownBy(() -> CheckingService.checkCarNamesLength(Arrays.asList("배카라쿠배네", "아스피")))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	public void 횟수_숫자_확인() {
+		assertThatThrownBy(() -> CheckingService.checkGameTurnNumber("two"))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	public void 횟수_양수_확인() {
+		assertThatThrownBy(() -> CheckingService.checkGameTurnNumber("-2"))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 }
