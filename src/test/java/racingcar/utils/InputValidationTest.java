@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@DisplayName("InputValidation클래스 테스트")
+@DisplayName("InputValidation 클래스를 테스트한다.")
 class InputValidationTest {
 
 	@Nested

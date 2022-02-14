@@ -8,7 +8,7 @@ import java.io.InputStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("RacingGame 클래스")
+@DisplayName("RacingGame 클래스를 테스트한다.")
 class RacingGameTest {
 
 	@Test

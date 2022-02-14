@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.utils.RandomNumber;
 
+@DisplayName("RandomNumber 클래스를 테스트한다.")
 class RandomNumberTest {
 
 	@Test

@@ -1,10 +1,12 @@
 package calculator;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("StringCalculator 클래스를 테스트한다.")
 public class StringCalculatorTest {
     @Test
     public void splitAndSum_null_또는_빈문자() {
