@@ -34,10 +34,8 @@ public class RacingCar {
         return position;
     }
 
-    public void moveByCommand(boolean command) {
-        if (command) {
+    public void move() {
             position++;
-        }
     }
 
     public boolean isSamePosition(RacingCar anotherCar) {
