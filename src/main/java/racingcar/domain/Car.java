@@ -25,8 +25,8 @@ public class Car {
         return position;
     }
 
-    public void moveOrNot(int targetNumber) {
-        if (targetNumber >= CONDITION_FOR_MOVE) {
+    public void moveOrNot(int target) {
+        if (target >= CONDITION_FOR_MOVE) {
             position++;
         }
     }
