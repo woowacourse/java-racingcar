@@ -3,22 +3,28 @@ package racingcar.model;
 public class Car {
 
     private final Name name;
-    private final Location location;
+    private final Position position;
 
     public Car(String carName) {
         this.name = new Name(carName);
-        this.location = new Location();
+        this.position = new Position();
     }
 
-    public void move() {
-        this.location.increase();
+    public void move(boolean movable) {
+        if (movable) {
+            this.position.increase();
+        }
     }
 
-    public Integer getLocation() {
-        return location.getCurrentPosition();
+    public Position getPosition() {
+        return position;
     }
 
     public Name getName() {
         return this.name;
+    }
+
+    public boolean isMaxPosition(Position maxPosition) {
+        return position.equals(maxPosition);
     }
 }

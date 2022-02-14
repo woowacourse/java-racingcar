@@ -4,17 +4,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-class LocationTest {
+class PositionTest {
 
     @Test
     public void isZeroWhenStarted() {
-        Location location = new Location();
-        assertThat(location.getCurrentPosition()).isEqualTo(0);
+        Position startPosition = Position.createPosition(0);
+        assertThat(startPosition.getCurrentPosition()).isEqualTo(0);
     }
 
     @Test
     public void increase() {
-        Location location = new Location();
+        Position location = new Position();
         location.increase();
         assertThat(location.getCurrentPosition()).isEqualTo(1);
     }

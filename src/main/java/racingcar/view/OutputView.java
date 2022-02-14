@@ -3,9 +3,10 @@ package racingcar.view;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.model.Car;
+import racingcar.model.Cars;
 import racingcar.model.Name;
 
-public class Board {
+public class OutputView {
 
     private static final String EXECUTE_RESULT = "실행 결과";
     private static final String WINNER_RESULT_DELIMITER = ",";
@@ -16,9 +17,9 @@ public class Board {
         System.out.println(EXECUTE_RESULT);
     }
 
-    public void recordCurrentScore(List<Car> participants) {
-        for (Car participant : participants) {
-            System.out.println(participant.getName() + " : " + ROAD.repeat(participant.getLocation()));
+    public void recordCurrentScore(Cars cars) {
+        for (Car car : cars.getParticipantCars()) {
+            System.out.println(car.getName() + " : " + ROAD.repeat(car.getPosition().getCurrentPosition()));
         }
         System.out.println();
     }
