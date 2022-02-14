@@ -18,13 +18,16 @@ public class RacingCars {
     }
 
     private void checkDuplicateName(List<RacingCar> cars) {
-        long distinctCount = cars.stream()
+        if (cars.size() != calculateDistinctNameCount(cars)) {
+            throw new IllegalArgumentException("자동차 이름은 중복되어 입력될 수 없다.");
+        }
+    }
+
+    private long calculateDistinctNameCount(List<RacingCar> cars) {
+        return cars.stream()
             .map(RacingCar::getName)
             .distinct()
             .count();
-        if (cars.size() != distinctCount) {
-            throw new IllegalArgumentException("자동차 이름은 중복되어 입력될 수 없다.");
-        }
     }
 
     public static RacingCars from(String names) {
