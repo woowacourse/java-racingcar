@@ -20,8 +20,8 @@ public class Cars {
     private final List<Car> cars;
     private final List<String> winners;
 
-    public Cars() {
-        this.cars = new ArrayList<>();
+    public Cars(List<Car> cars) {
+        this.cars = cars;
         this.winners = new ArrayList<>();
     }
 
@@ -54,7 +54,7 @@ public class Cars {
         }
     }
 
-    public void addCar(Car car) {
+    private void addCar(Car car) {
         cars.add(car);
     }
 

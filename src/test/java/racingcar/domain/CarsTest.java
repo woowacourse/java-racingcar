@@ -3,6 +3,9 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import racingcar.utils.numbergenerator.MovableNumberGenerator;
 import racingcar.utils.numbergenerator.NumberGenerator;
@@ -34,8 +37,8 @@ public class CarsTest {
         for (int i = 0; i < 3; i++) {
             moveCarPosition(rickCar);
         }
-        Cars cars = new Cars();
-        addTestCarToCars(cars, jaeCar, rickCar);
+        Cars cars = new Cars(new ArrayList<>(Arrays.asList(jaeCar, rickCar)));
+
         assertThat(cars.getWinners()).isEqualTo("rick가 최종 우승 했습니다.");
     }
 
@@ -47,20 +50,14 @@ public class CarsTest {
         for (int i = 0; i < 3; i++) {
             moveCarPosition(rickCar, jaeCar);
         }
-        Cars cars = new Cars();
-        addTestCarToCars(cars, jaeCar, rickCar);
+        Cars cars = new Cars(new ArrayList<>(Arrays.asList(jaeCar, rickCar)));
+
         assertThat(cars.getWinners()).isEqualTo("jae, rick가 최종 우승 했습니다.");
     }
 
     private void moveCarPosition(Car... car) {
         for (Car c : car) {
             c.goForward(movableNumberGenerator);
-        }
-    }
-
-    private void addTestCarToCars(Cars cars, Car... car) {
-        for (Car c : car) {
-            cars.addCar(c);
         }
     }
 }
