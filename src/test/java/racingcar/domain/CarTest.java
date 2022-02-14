@@ -39,7 +39,7 @@ class CarTest {
         int maxPosition = car.getPosition() + 1;
         car.moveOrNot(8);
 
-        assertThat(car.isWinner(maxPosition)).isTrue();
+        assertThat(car.isSamePosition(maxPosition)).isTrue();
     }
 
     @Test
@@ -50,7 +50,7 @@ class CarTest {
         int maxPosition = car.getPosition() + 2;
         car.moveOrNot(8);
 
-        assertThat(car.isWinner(maxPosition)).isFalse();
+        assertThat(car.isSamePosition(maxPosition)).isFalse();
     }
 
 }

@@ -5,7 +5,8 @@ import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
 
-import static racingcar.util.ValidationUtil.*;
+import static racingcar.util.RacingGameValidationUtil.*;
+import static racingcar.util.TotalAttemptValidationUtil.*;
 import static racingcar.util.RandomUtil.*;
 
 public class RacingGame {

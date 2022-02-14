@@ -3,11 +3,10 @@ package racingcar.util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static racingcar.util.CarNameValidationUtil.validateCarName;
 
-import static racingcar.util.ValidationUtil.*;
-
-class ValidationUtilTest {
+public class CarNameValidationUtilTest {
 
     @Test
     @DisplayName("자동차 이름을 입력하지 않은 경우 예외 발생")
@@ -33,26 +32,4 @@ class ValidationUtilTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("중복된 자동차 이름을 입력한 경우 예외 발생")
-    public void carNameMustNotDuplicated() {
-        String[] carNames = {"woo", "te", "co", "woo"};
-
-        assertThatThrownBy(() -> isDuplicated(carNames))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("시도 횟수에 정수를 입력하지 않는 경우 예외 발생")
-    public void attemptMustBeInteger() {
-        assertThatThrownBy(() -> validateAttempt("문자"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("시도 횟수에 음수를 입력한 경우 예외 발생")
-    public void attemptMustBePositive() {
-        assertThatThrownBy(() -> validateAttempt("-3"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }
