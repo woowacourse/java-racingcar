@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import racingcar.service.RandomNumberService;
 
@@ -21,18 +22,23 @@ public class Car implements Comparable<Car> {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		Car car = (Car)obj;
-		return this.name.equals(car.name);
-	}
-
-	@Override
 	public String toString() {
 		StringBuilder line = new StringBuilder();
 		for (int i = 0; i < position; i++) {
 			line.append(ONE_STEP);
 		}
 		return name + COLON + line.toString();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Car car = (Car)obj;
+		return this.name.equals(car.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
 	}
 
 	@Override
