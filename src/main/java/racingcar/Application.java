@@ -13,17 +13,15 @@ public class Application {
     private final TryCountParser tryCountParser = new TryCountParser();
     private RacingGame racingGame;
     private View view;
-    private RetryableTemplate retryableTemplate;
 
     public void init() {
         racingGame = new RacingGame(new DefaultRandomNumberGenerator());
         view = new View();
-        retryableTemplate = new RetryableTemplate();
     }
 
     public void run() {
-        retryableTemplate.execute(this::inputCarNames, this::handleException);
-        retryableTemplate.execute(this::inputTryCount, this::handleException);
+        RetryableTemplate.execute(this::inputCarNames, this::handleException);
+        RetryableTemplate.execute(this::inputTryCount, this::handleException);
 
         view.printResultViewTitle();
         while (!racingGame.isFinished()) {

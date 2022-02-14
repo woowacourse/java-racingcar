@@ -4,7 +4,11 @@ import java.util.function.Consumer;
 
 public class RetryableTemplate {
 
-    public void execute(Runnable runnable, Consumer<Exception> exceptionHandler) {
+    private RetryableTemplate() {
+
+    }
+
+    public static void execute(Runnable runnable, Consumer<Exception> exceptionHandler) {
         try {
             runnable.run();
             return;
