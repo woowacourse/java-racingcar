@@ -5,7 +5,7 @@ public class Car {
 	private static final String ERROR_NULL = "[ERROR] 이름에는 null이 사용될 수 없습니다.";
 	private static final String ERROR_BLANK = "[ERROR] 이름은 공백일 수 없습니다.";
 	private static final String ERROR_LENGTH = "[ERROR] 이름의 길이는 5이상일 수 없습니다.";
-	private static final String REGEX_PATTERN = "[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*";
+	private static final String REGEX_PATTERN = "[^a-zA-Z0-9\\s]";
 	private static final String ERROR_SPECIAL_SYMBOL = "[ERROR] 이름에 특수문자가 사용될 수 없습니다.";
 	private static final int MOVE_CRITERIA = 3;
 	private static final int NAME_LENGTH_CRITERIA = 4;
@@ -33,8 +33,8 @@ public class Car {
 		}
 	}
 
-	public Boolean isMaxPosition(int maxPosition) {
-		return this.position == maxPosition;
+	public Boolean isSamePosition(int position) {
+		return this.position == position;
 	}
 
 	private void isValidName(String name) {
@@ -63,8 +63,15 @@ public class Car {
 	}
 
 	private void checkSpecialSymbol(String name) {
-		if (name.matches(REGEX_PATTERN)) {
+		for (int i = 0; i < name.length(); i++) {
+			throwSpecialSymbolError(name, i);
+		}
+	}
+
+	private void throwSpecialSymbolError(String name, int i) {
+		if (String.valueOf(name.charAt(i)).matches(REGEX_PATTERN)) {
 			throw new IllegalArgumentException(ERROR_SPECIAL_SYMBOL);
 		}
 	}
+
 }
