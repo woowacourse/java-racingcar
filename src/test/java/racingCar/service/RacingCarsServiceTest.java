@@ -9,14 +9,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import racingCar.model.Car;
 import racingCar.model.RacingCars;
 
 class RacingCarsServiceTest {
+
+	@DisplayName("게임_작동_테스트")
 	@Test
-	public void 게임_작동_테스트() {
+	public void t1() {
 		//given
 		RacingCarsService racingCarsService = new RacingCarsService();
 		racingCarsService.initiateCars("juri,hunch");
@@ -33,8 +36,9 @@ class RacingCarsServiceTest {
 			.contains("juri : -","hunch : -");
 	}
 
+	@DisplayName("우승자_찾기_테스트")
 	@Test
-	public void 우승자_찾기_테스트() {
+	public void t2() {
 		//given
 		int expectMaxPosition = 4;
 		RacingCars cars = new RacingCars(new ArrayList<>(Arrays.asList("juri", "hunch")));
