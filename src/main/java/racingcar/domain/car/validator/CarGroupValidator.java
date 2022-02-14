@@ -5,9 +5,9 @@ import java.util.List;
 import racingcar.domain.car.condition.NameDuplication;
 import racingcar.exception.car.CarNameDuplicatedException;
 
-public class CarCollectionValidator {
+public class CarGroupValidator {
 
-    private static final CarCollectionValidator instance = new CarCollectionValidator();
+    private static final CarGroupValidator instance = new CarGroupValidator();
 
     public static void validateNames(List<String> names) {
         instance.validateNameIsDuplicated(names);

@@ -3,7 +3,7 @@ package racingcar.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.domain.car.CarCollection;
+import racingcar.domain.car.CarGroup;
 import racingcar.domain.car.CarStatusDto;
 import racingcar.domain.round.Round;
 import racingcar.service.picker.NumberPicker;
@@ -11,7 +11,7 @@ import racingcar.service.picker.NumberPicker;
 public class GameServiceImpl implements GameService {
 
     private final NumberPicker numberPicker;
-    private CarCollection carCollection;
+    private CarGroup carGroup;
     private Round round;
 
     public GameServiceImpl(NumberPicker numberPicker) {
@@ -19,7 +19,7 @@ public class GameServiceImpl implements GameService {
     }
 
     public void initCarNames(List<String> carNames) {
-        this.carCollection = new CarCollection(carNames);
+        this.carGroup = new CarGroup(carNames);
     }
 
     public void initRound(int count) {
@@ -31,19 +31,19 @@ public class GameServiceImpl implements GameService {
     }
 
     public void playRound() {
-        carCollection.goForwardOrStop(numberPicker);
+        carGroup.goForwardOrStop(numberPicker);
         round.decreaseCount();
     }
 
     public List<String> getCurrentStatuses() {
-        List<CarStatusDto> statuses = carCollection.getStatuses();
+        List<CarStatusDto> statuses = carGroup.getStatuses();
         return statuses.stream()
                 .map(CarStatusDto::toString)
                 .collect(Collectors.toList());
     }
 
     public List<String> getWinnerNames() {
-        return carCollection.getWinnerNames();
+        return carGroup.getWinnerNames();
     }
 
 }

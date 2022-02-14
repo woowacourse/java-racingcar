@@ -11,7 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import racingcar.domain.car.CarCollection;
+import racingcar.domain.car.CarGroup;
 import racingcar.domain.car.CarStatusDto;
 import racingcar.exception.RacingCarException;
 import racingcar.exception.car.CarNameDuplicatedException;
@@ -20,12 +20,12 @@ import racingcar.exception.car.CarNameNullException;
 import racingcar.exception.car.CarNameTooLongException;
 import racingcar.service.picker.CustomNumberPicker;
 
-public class CarCollectionTest {
+public class CarGroupTest {
 
-    private static final String providerPath = "racingcar.domain.provider.CarCollectionTestProvider#";
+    private static final String providerPath = "racingcar.domain.provider.CarGroupTestProvider#";
 
     private void exceptionTest(Class<? extends RacingCarException> exceptionClass, List<String> carNames) {
-        assertThrows(exceptionClass, () -> new CarCollection(carNames)
+        assertThrows(exceptionClass, () -> new CarGroup(carNames)
         );
     }
 
@@ -61,16 +61,16 @@ public class CarCollectionTest {
     @ParameterizedTest
     @MethodSource(providerPath + "provideForConstructorTest")
     void constructorTest(List<String> names) {
-        assertDoesNotThrow(() -> new CarCollection(names));
+        assertDoesNotThrow(() -> new CarGroup(names));
     }
 
     @DisplayName("라운드실행 기능 테스트")
     @ParameterizedTest
     @MethodSource(providerPath + "provideForPlayRoundTest")
     void playRoundTest(List<String> carNames, int repeatTime, List<Integer> numbers, List<String> expected) {
-        CarCollection carCollection = new CarCollection(carNames);
+        CarGroup carGroup = new CarGroup(carNames);
 
-        List<CarStatusDto> statuses = repeatPlay(carCollection, repeatTime, numbers);
+        List<CarStatusDto> statuses = repeatPlay(carGroup, repeatTime, numbers);
 
         List<String> actual = statuses.stream()
                 .map(CarStatusDto::toString)
@@ -82,21 +82,21 @@ public class CarCollectionTest {
     @ParameterizedTest
     @MethodSource(providerPath + "provideForGetWinnerNamesTest")
     void selectWinnersTest(List<String> carNames, int repeatTime, List<Integer> numbers, List<String> expected) {
-        CarCollection carCollection = new CarCollection(carNames);
+        CarGroup carGroup = new CarGroup(carNames);
 
-        repeatPlay(carCollection, repeatTime, numbers);
+        repeatPlay(carGroup, repeatTime, numbers);
 
-        List<String> winnerNames = carCollection.getWinnerNames();
+        List<String> winnerNames = carGroup.getWinnerNames();
         assertThat(winnerNames).isEqualTo(expected);
     }
 
-    private List<CarStatusDto> repeatPlay(CarCollection carCollection, int repeatTime, List<Integer> numbers) {
+    private List<CarStatusDto> repeatPlay(CarGroup carGroup, int repeatTime, List<Integer> numbers) {
         CustomNumberPicker numberPicker = new CustomNumberPicker(numbers);
 
         List<CarStatusDto> statuses = new ArrayList<>();
         for (int i = 0; i < repeatTime; i++) {
-            carCollection.goForwardOrStop(numberPicker);
-            statuses.addAll(carCollection.getStatuses());
+            carGroup.goForwardOrStop(numberPicker);
+            statuses.addAll(carGroup.getStatuses());
         }
         return statuses;
     }
