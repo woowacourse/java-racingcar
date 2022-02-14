@@ -2,24 +2,16 @@ package racingcar.view;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.validator.Validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class InputTest {
-
-    static Input input = new Input();
-
     @DisplayName("자동차 이름 공백 테스트")
-    @ParameterizedTest
-    @ValueSource(strings = {" "})
-    void car_name_empty(String name) {
+    @Test
+    void car_name_empty() {
         assertThatThrownBy(() -> {
-            input.checkBlank(name, "자동차 이름은 공백일 수 없습니다.");
+            Validator.carName(" ");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -27,27 +19,31 @@ class InputTest {
     @Test
     void car_name_null() {
         assertThatThrownBy(() -> {
-            input.checkBlank(null, "자동차 이름은 null 일 수 없습니다.");
+            Validator.carName(null);
         }).isInstanceOf(NullPointerException.class);
     }
     
     @DisplayName("자동차 개수 테스트")
     @Test
     void car_count_test() {
-        assertFalse(input.isCars(split("pobi")));
+        assertThatThrownBy(() -> {
+            Validator.carName("pobi");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("자동차 이름 중복 테스트")
     @Test
     void car_name_duplicated() {
-        assertTrue(input.isDuplicated(split("pobi,jun,pobi")));
+        assertThatThrownBy(() -> {
+            Validator.carName("pobi,jun,pobi");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("자동차 이름 길이 테스트")
     @Test
     void car_name_length() {
         assertThatThrownBy(() -> {
-            input.validLength("gooddd");
+            Validator.carName("gooddd");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -81,9 +77,5 @@ class InputTest {
         assertThatThrownBy(() -> {
             Validator.attempt("-1");
         }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    String[] split(String text) {
-        return text.split(",");
     }
 }
