@@ -9,8 +9,10 @@ public class Attempt {
 
     private int attempt;
 
-    public Attempt(String attempt) {
-        this.attempt = valid(attempt);
+    public Attempt(String attemptInput) {
+        int number = toInteger(attemptInput);
+        validateNegative(number);
+        this.attempt = number;
     }
 
     public int getAttempt() {
@@ -24,13 +26,7 @@ public class Attempt {
     public void decrease() {
         attempt--;
     }
-
-    private int valid(String attempt) {
-        int number = toInteger(attempt);
-        validateNegative(number);
-        return number;
-    }
-
+    
     private int toInteger(String attempt) {
         return Integer.parseInt(attempt);
     }
