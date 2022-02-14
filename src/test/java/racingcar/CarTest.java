@@ -1,7 +1,9 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import calculator.StringCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +15,7 @@ public class CarTest {
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     void isMovable_자동차_전진_가능(int argument) {
-        Car car = new Car("testCar");
+        Car car = new Car("car");
         assertThat(car.isMovable(argument)).isEqualTo(true);
 
     }
@@ -21,7 +23,7 @@ public class CarTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
     void isMovable_자동차_전진_불가능(int argument) {
-        Car car = new Car("testCar");
+        Car car = new Car("car");
         assertThat(car.isMovable(argument)).isEqualTo(false);
     }
 
@@ -29,7 +31,7 @@ public class CarTest {
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     void movePosition_자동차_전진_성공(int argument) {
         //given
-        Car car = new Car("testCar");
+        Car car = new Car("car");
 
         //when
         car.movePosition(argument);
@@ -43,7 +45,7 @@ public class CarTest {
     @ValueSource(ints = {1, 2, 3})
     void movePosition_자동차_전진_실패(int argument) {
         //given
-        Car car = new Car("testCar");
+        Car car = new Car("car");
 
         //when
         car.movePosition(argument);
@@ -56,21 +58,35 @@ public class CarTest {
     @Test
     void isSamePosition_같은_포지션() {
         //given
-        Car car = new Car("testCar");
+        Car car = new Car("car");
         car.setPosition(1);
 
-        //when
+        //then
         assertThat(car.isSamePosition(1)).isEqualTo(true);
     }
 
     @Test
     void isSamePosition_다른_포지션() {
         //given
-        Car car = new Car("testCar");
+        Car car = new Car("car");
         car.setPosition(1);
 
-        //when
+        //then
         assertThat(car.isSamePosition(2)).isEqualTo(false);
+    }
+
+    @Test
+    void 자동차_이름이_5자_초과일시_예외발생() {
+
+        assertThatThrownBy(() -> {new Car("moreThanFive");})
+            .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+    @Test
+    void 자동차_이름이_알파벳이_아닐시_예외발생() {
+        assertThatThrownBy(() -> {new Car("1234");})
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
 
