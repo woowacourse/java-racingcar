@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+	public static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
 
 	private static final StringBuilder delimiters = new StringBuilder(",|:");
 
@@ -37,7 +38,7 @@ public class StringCalculator {
 	}
 
 	private static String findCustomDelimiter(String input) {
-		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+		Matcher m = Pattern.compile(CUSTOM_DELIMITER_REGEX).matcher(input);
 		if (m.find()) {
 			String customDelimiter = m.group(1);
 			delimiters.append("|").append(customDelimiter);
