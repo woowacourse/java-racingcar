@@ -17,7 +17,7 @@ public class CarTest {
     @Test
     void 자동차_전진_성공() {
         Car car = new Car("jae", new MovableMoveStrategy());
-        car.goForward();
+        car.move();
         assertThat(car.getPosition()).isEqualTo(1);
 
     }
@@ -25,7 +25,7 @@ public class CarTest {
     @Test
     void 자동차_전진_실패() {
         Car car = new Car("jae", new StoppableMoveStrategy());
-        car.goForward();
+        car.move();
         assertThat(car.getPosition()).isEqualTo(0);
 
     }

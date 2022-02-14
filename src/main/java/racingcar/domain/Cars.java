@@ -29,11 +29,7 @@ public class Cars {
         validateCarCount(names.size());
         validateDuplicateName(names);
 
-        this.cars = new ArrayList<>();
-
-        for (String name : names) {
-            cars.add(new Car(name, strategy));
-        }
+        this.cars = toCars(names, strategy);
     }
 
     private void validateCarCount(final int size) {
@@ -53,9 +49,18 @@ public class Cars {
         }
     }
 
+    private List<Car> toCars(final List<String> names, final MoveStrategy strategy) {
+        List<Car> cars = new ArrayList<>();
+
+        for (String name : names) {
+            cars.add(new Car(name, strategy));
+        }
+        return cars;
+    }
+
     public void moveCars() {
         for (Car car : cars) {
-            car.goForward();
+            car.move();
         }
     }
 
