@@ -2,9 +2,9 @@ package racingcar.view;
 
 import racingcar.message.NoticeMessages;
 import racingcar.model.Car;
+import racingcar.util.StringUtils;
 
 public class OutputView {
-    private static final String DISTANCE_MARK = "-";
 
     public static void printException(Exception exception) {
         System.out.println(exception.getMessage());
@@ -19,10 +19,9 @@ public class OutputView {
     }
 
     public static void printCarStatus(Car car) {
-        System.out.println(car.getName() + " : " + convertNumberToString(car.getPosition()));
+        String carPositionString = StringUtils.convertNumberToString(car.getPosition());
+        System.out.println(car.getName() + " : " + carPositionString);
     }
 
-    private static String convertNumberToString(int cnt) {
-        return DISTANCE_MARK.repeat(Math.max(0, cnt));
-    }
+
 }
