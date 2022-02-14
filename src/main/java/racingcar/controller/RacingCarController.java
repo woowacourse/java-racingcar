@@ -26,7 +26,7 @@ public class RacingCarController {
             Cars result = service.run();
             outputView.printCarsPosition(result);
         }
-        outputView.printWinners(service.getWinners());
+        outputView.printWinners(service.findWinners());
     }
 
     private RacingCarService createRacingService() {

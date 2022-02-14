@@ -27,7 +27,7 @@ public class RacingCarService {
         return cars;
     }
 
-    public List<Car> getWinners() {
-        return cars.getWinners();
+    public List<Car> findWinners() {
+        return cars.findWinners();
     }
 }

@@ -30,11 +30,11 @@ public class OutputView {
     }
 
     public void printWinners(List<Car> carList) {
-        List<String> nameList = toNameList(carList);
+        List<String> nameList = toNames(carList);
         System.out.println(String.join(WINNER_DELIMITER, nameList) + "가 최종 우승했습니다.");
     }
 
-    private List<String> toNameList(List<Car> carList) {
+    private List<String> toNames(List<Car> carList) {
         return carList.stream()
             .map(Car::getName)
             .collect(Collectors.toList());

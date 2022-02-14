@@ -49,14 +49,14 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    public List<Car> getWinners() {
-        final int max = getMaxPosition();
+    public List<Car> findWinners() {
+        final int max = findMaxPosition();
         return cars.stream()
             .filter(car -> car.isSamePosition(max))
             .collect(Collectors.toList());
     }
 
-    private int getMaxPosition() {
+    private int findMaxPosition() {
         return cars.stream()
             .mapToInt(Car::getPosition)
             .max()
