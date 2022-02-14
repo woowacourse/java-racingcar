@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_CARS_EMPTY;
+
 import racingcar.util.RandomUtils;
 
 import java.util.ArrayList;
@@ -35,6 +37,6 @@ public class Cars {
     private Car getCarMaxPosition() {
         return cars.stream()
                 .max(Car::compareTo)
-                .orElseThrow(null);
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_CARS_EMPTY));
     }
 }
