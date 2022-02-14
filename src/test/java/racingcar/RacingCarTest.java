@@ -28,9 +28,9 @@ public class RacingCarTest {
     public void setUp() {
         racingGame = new RacingGame();
 
-        racingCar1 = RacingCar.generateRacingCar("pobi");
-        racingCar2 = RacingCar.generateRacingCar("crong");
-        racingCar3 = RacingCar.generateRacingCar("honux");
+        racingCar1 = new RacingCar("pobi");
+        racingCar2 = new RacingCar("crong");
+        racingCar3 = new RacingCar("honux");
 
         racingCarList = new ArrayList<>(Arrays.asList(racingCar1, racingCar2, racingCar3));
     }
@@ -80,14 +80,14 @@ public class RacingCarTest {
     @Test
     @DisplayName("객체가 생성될 때 이름이 없는지 확인하는 기능 테스트")
     public void validateNameTest() {
-        RacingCar car = RacingCar.generateRacingCar("");
+        RacingCar car = new RacingCar("");
         assertThatThrownBy(() -> car.validateName()).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("객체가 생성될 때 이름의 글자수가 5이하인지 확인하는 기능 테스트")
     public void validateNameTest2() {
-        RacingCar car = RacingCar.generateRacingCar("123456");
+        RacingCar car = new RacingCar("123456");
         assertThatThrownBy(() -> car.validateName()).isInstanceOf(IllegalArgumentException.class);
     }
 }

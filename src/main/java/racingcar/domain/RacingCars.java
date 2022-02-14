@@ -21,7 +21,7 @@ public class RacingCars {
         String[] validCarNames = inputCarNames.split(",");
         racingCars = new ArrayList<>();
         for (String validCarName : validCarNames) {
-            racingCars.add(RacingCar.generateRacingCar(validCarName));
+            racingCars.add(new RacingCar(validCarName));
         }
     }
 

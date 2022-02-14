@@ -24,7 +24,7 @@ public class ValidatorTest {
 
 	@BeforeEach
 	public void setUp() {
-		racingCar1 = RacingCar.generateRacingCar("pobi");
+		racingCar1 = new RacingCar("pobi");
 	}
 
 	@Test
@@ -40,7 +40,7 @@ public class ValidatorTest {
 	@DisplayName("자동차 이름 빈칸일 때 예외처리")
 	public void validateCarNameIsEmptyTest() {
 
-		RacingCar noNameCar = RacingCar.generateRacingCar(EMPTY_CAR_NAME);
+		RacingCar noNameCar = new RacingCar(EMPTY_CAR_NAME);
 		RacingCars racingCars = new RacingCars(List.of(noNameCar, racingCar1));
 		assertThatThrownBy(() -> Validator.validateCarsNameIsEmpty(racingCars)).isInstanceOf(IllegalArgumentException.class);
 	}
@@ -49,7 +49,7 @@ public class ValidatorTest {
 	@DisplayName("자동차 이름이 6자 이상일때 예외처리")
 	public void validateCarNameSizeTest() {
 
-		RacingCar longNameCar = RacingCar.generateRacingCar(LONG_NAME);
+		RacingCar longNameCar = new RacingCar(LONG_NAME);
 		RacingCars racingCars = new RacingCars(List.of(longNameCar, racingCar1));
 
 		assertThatThrownBy(() -> Validator.validateCarsNameSize(racingCars)).isInstanceOf(IllegalArgumentException.class);
@@ -59,7 +59,7 @@ public class ValidatorTest {
 	@DisplayName("중복되는 자동차 이름이 있으면 예외처리")
 	public void validateDuplicatedNameTest() {
 
-		RacingCar duplicatedNameCar = RacingCar.generateRacingCar(DUPLICATED_NAME);
+		RacingCar duplicatedNameCar = new RacingCar(DUPLICATED_NAME);
 		RacingCars racingCars = new RacingCars(List.of(duplicatedNameCar, racingCar1));
 
 		assertThatThrownBy(() -> Validator.validateDuplicatedName(racingCars)).isInstanceOf(IllegalArgumentException.class);

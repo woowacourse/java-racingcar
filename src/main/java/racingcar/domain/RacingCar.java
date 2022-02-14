@@ -11,7 +11,7 @@ public class RacingCar {
     private int position;
 
 
-    private RacingCar(String name) {
+    public RacingCar(String name) {
         this.position = START_POSITION;
         this.name = name;
     }
@@ -31,11 +31,6 @@ public class RacingCar {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException((EXCEPTION_TOO_LONG_NAME));
         }
-    }
-
-
-    public static RacingCar generateRacingCar(String name) {
-        return new RacingCar(name);
     }
 
     public int getPosition() {
