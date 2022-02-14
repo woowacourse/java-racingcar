@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +39,7 @@ public class Cars {
 	}
 
 	public Map<String, Integer> executeCarRacing(RandomNumberGenerator randomNumberGenerator) {
-		Map<String, Integer> racingRecord = new HashMap<>();
+		Map<String, Integer> racingRecord = new LinkedHashMap<>();
 		for (Car car : cars) {
 			car.tryMoving(randomNumberGenerator.generate());
 			racingRecord.put(car.getCarName(), car.getCarPosition());
