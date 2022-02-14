@@ -14,7 +14,7 @@ public class InputView {
 	}
 
 	public static List<String> getCarsName() {
-		System.out.println(REQUEST_CARS_NAME);
+		OutputView.printRequestInstruction(REQUEST_CARS_NAME);
 		try {
 			List<String> carsName = Utils.convertCarsName(getInput());
 			Utils.validateCarsName(carsName);
@@ -27,7 +27,7 @@ public class InputView {
 
 
 	public static String getRound() {
-		System.out.println(REQUEST_ROUND_VALUE);
+		OutputView.printRequestInstruction(REQUEST_ROUND_VALUE);
 		try {
 			String inputRound = getInput();
 			Utils.validateRoundNumber(inputRound);
