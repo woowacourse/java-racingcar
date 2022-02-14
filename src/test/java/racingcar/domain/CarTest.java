@@ -47,7 +47,7 @@ public class CarTest extends Car {
 	class CarNameTest {
 
 		@ParameterizedTest
-		@ValueSource(strings = {",", "#", "panda,", "#philz", ",phobi,"})
+		@ValueSource(strings = {",", "#", "#phiz", "ph,bi"})
 		@DisplayName("허용되지 않는 문자를 입력했을 때 예외가 발생한다")
 		public void Not_Available_Character(String carName) {
 			assertThatThrownBy(

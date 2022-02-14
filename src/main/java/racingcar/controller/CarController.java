@@ -13,11 +13,13 @@ import racingcar.view.OutputView;
 public class CarController {
 
 	private final CarRepository carRepository;
+	private final InputView inputView;
 
 	private int roundNumber;
 
-	public CarController(CarRepository carRepository) {
+	public CarController(CarRepository carRepository, InputView inputView) {
 		this.carRepository = carRepository;
+		this.inputView = inputView;
 	}
 
 	public void initGame() {
@@ -27,7 +29,7 @@ public class CarController {
 
 	private void initCars() {
 		Voider voider = () -> {
-			String carNames = InputView.inputCarNames();
+			String carNames = inputView.inputCarNames();
 			Cars cars = new Cars(carNames);
 			List<Car> carList = cars.getCars();
 			carRepository.addCars(carList);
@@ -37,7 +39,7 @@ public class CarController {
 
 	private void initRoundNumbers() {
 		Voider voider = () -> {
-			String input = InputView.inputRoundNumber();
+			String input = inputView.inputRoundNumber();
 			TryRoundNumber tryRoundNumber = new TryRoundNumber(input);
 			roundNumber = tryRoundNumber.get();
 		};
@@ -50,7 +52,7 @@ public class CarController {
 				inputFunction.execute();
 				return;
 			} catch (Exception exception) {
-				InputView.printErrorMessage(exception);
+				inputView.printErrorMessage(exception);
 			}
 		}
 	}
@@ -83,7 +85,7 @@ public class CarController {
 	}
 
 	public void end() {
-		InputView.terminateScanner();
+		inputView.terminateScanner();
 	}
 
 	public void showWinners() {

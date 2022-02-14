@@ -2,7 +2,9 @@ package racingcar.view;
 
 import static java.lang.System.*;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class InputView {
 
@@ -10,23 +12,34 @@ public class InputView {
 	private static final String ASK_ROUND_NUMBER_INPUT_MESSAGE = "시도할 회수는 몇회인가요?";
 	private static final String LINE_SEPARATOR = System.lineSeparator();
 
-	private static final Scanner scanner = new Scanner(System.in);
+	private final BufferedReader bufferedReader;
+	public final InputStreamReader inputStreamReader;
 
-	public static String inputCarNames() {
+	{
+		inputStreamReader = new InputStreamReader(in);
+		bufferedReader = new BufferedReader(inputStreamReader);
+	}
+
+	public String inputCarNames() throws IOException {
 		out.println(ASK_CAR_NAME_INPUT_MESSAGE);
-		return scanner.nextLine();
+		return bufferedReader.readLine();
 	}
 
-	public static String inputRoundNumber() {
+	public String inputRoundNumber() throws IOException {
 		out.println(ASK_ROUND_NUMBER_INPUT_MESSAGE);
-		return scanner.nextLine();
+		return bufferedReader.readLine();
 	}
 
-	public static void terminateScanner() {
-		scanner.close();
-	}
-
-	public static void printErrorMessage(final Exception exception) {
+	public void printErrorMessage(final Exception exception) {
 		out.println(exception.getMessage() + LINE_SEPARATOR);
+	}
+
+	public void terminateScanner() {
+		try {
+			inputStreamReader.close();
+			bufferedReader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

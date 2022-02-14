@@ -1,21 +1,22 @@
 package racingcar.controller;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
-import racingcar.domain.strategy.MovingStrategy;
-import racingcar.repository.CarRepository;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import racingcar.domain.Car;
+import racingcar.repository.CarRepository;
+import racingcar.view.InputView;
 
 public class CarControllerTest {
 
     private CarRepository carRepository;
     private CarController carController;
-    private final MovingStrategy onlyMoveStrategy = () -> true;
+    private final InputView inputView = new InputView();
 
     private Car car1;
     private Car car2;
@@ -30,7 +31,7 @@ public class CarControllerTest {
         car3 = Car.createFixedMovingCar("bar");
 
         carRepository = new CarRepository();
-        carController = new CarController(carRepository);
+        carController = new CarController(carRepository, inputView);
     }
 
     @Test

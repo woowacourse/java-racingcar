@@ -1,6 +1,8 @@
 package racingcar.util;
 
+import java.io.IOException;
+
 @FunctionalInterface
 public interface Voider {
-	void execute();
+	void execute() throws IOException;
 }
