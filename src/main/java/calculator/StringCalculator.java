@@ -27,7 +27,7 @@ public class StringCalculator {
 	}
 
 	private static List<String> split(String input) {
-		input = findCustomDelimiter(input);
+		input = checkCustomDelimiter(input);
 		return Arrays.asList(input.split(delimiters.toString()));
 	}
 
@@ -39,14 +39,18 @@ public class StringCalculator {
 		}).sum();
 	}
 
-	private static String findCustomDelimiter(String input) {
+	private static String checkCustomDelimiter(String input) {
 		Matcher m = Pattern.compile(CUSTOM_DELIMITER_REGEX).matcher(input);
 		if (m.find()) {
-			String customDelimiter = m.group(CUSTOM_DELIMITER_GROUP);
-			delimiters.append("|").append(customDelimiter);
-			return m.group(INPUT_STRING_GROUP);
+			return findCustomDelimiter(m);
 		}
 		return input;
+	}
+
+	private static String findCustomDelimiter(Matcher m) {
+		String customDelimiter = m.group(CUSTOM_DELIMITER_GROUP);
+		delimiters.append("|").append(customDelimiter);
+		return m.group(INPUT_STRING_GROUP);
 	}
 
 	private static int toInts(String number) {
