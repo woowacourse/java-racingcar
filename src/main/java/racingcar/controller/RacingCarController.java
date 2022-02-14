@@ -1,11 +1,8 @@
 package racingcar.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
-import racingcar.domain.CarStatusDTO;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingRecordDTO;
 import racingcar.domain.WinnerNames;
@@ -21,8 +18,11 @@ public class RacingCarController {
 	private static final int MAX_BOUND = 9;
 	private static final int MIN_BOUND = 0;
 
-	public final WinnerNames winnerNames = new WinnerNames();
-	public final RandomNumberGenerator randomNumberGenerator = new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND);
+	public final RandomNumberGenerator randomNumberGenerator;
+
+	public RacingCarController() {
+		this.randomNumberGenerator = new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND);
+	}
 
 	public void playGame() {
 		Cars cars = new Cars((getCarNames(InputView.inputCarNames())));
@@ -33,7 +33,7 @@ public class RacingCarController {
 			OutputView.printRacingRecords(new RacingRecordDTO(cars.executeCarRacing(randomNumberGenerator)));
 		}
 
-		OutputView.printWinnerNames(cars.findWinners(winnerNames));
+		OutputView.printWinnerNames(cars.findWinners(new WinnerNames()));
 	}
 
 	public List<String> getCarNames(String carNamesLine) {
