@@ -52,8 +52,8 @@ public class Car implements Comparable<Car> {
 		}
 	}
 
-	public boolean checkMovingCondition(int randomNumber) {
-		return randomNumber >= MOVING_CONDITION_NUMBER;
+	public boolean checkMovingCondition(int selectedNumber) {
+		return selectedNumber >= MOVING_CONDITION_NUMBER;
 	}
 
 	public boolean isSamePosition(Car otherCar) {
