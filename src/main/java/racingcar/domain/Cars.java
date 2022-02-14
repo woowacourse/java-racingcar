@@ -32,7 +32,7 @@ public class Cars {
         int maxPosition = findMaxPosition();
         List<Car> winnerCars = new ArrayList<>();
         cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isSamePosition(maxPosition))
                 .forEach(winnerCars::add);
         return winnerCars;
     }
