@@ -19,7 +19,7 @@ public class RacingCars {
     public static RacingCars from(String names) {
         List<RacingCar> cars = Arrays.stream(names.split(CAR_NAME_DELIMITER))
             .map(Name::createNotBlankName)
-            .map(RacingCar::new)
+            .map(RacingCar::createRandomMoveCar)
             .collect(Collectors.toList());
         return new RacingCars(cars);
     }

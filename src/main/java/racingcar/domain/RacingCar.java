@@ -4,12 +4,17 @@ public class RacingCar {
 
     private static final int DEFAULT_POSITION = 0;
 
-    private final RandomMoveGenerator generator = new RandomMoveGenerator();
     private final Name name;
+    private final MoveGenerator moveGenerator;
     private int position = DEFAULT_POSITION;
 
-    public RacingCar(Name name) {
+    public RacingCar(Name name, MoveGenerator moveGenerator) {
         this.name = name;
+        this.moveGenerator = moveGenerator;
+    }
+
+    public static RacingCar createRandomMoveCar(Name name) {
+        return new RacingCar(name, new RandomMoveGenerator());
     }
 
     public String getName() {
@@ -21,7 +26,7 @@ public class RacingCar {
     }
 
     public int move() {
-        if (generator.isMovable()) {
+        if (moveGenerator.isMovable()) {
             return ++position;
         }
         return position;
