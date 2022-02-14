@@ -5,11 +5,20 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
+    private static final int INITIAL_SUM_VALUE = 0;
+    public static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
+    public static final String DEFAULT_DELIMITER_REGEX = ",|:";
+    public static final int CUSTOM_DELIMITER_GROUP = 1;
+    public static final int CUSTOM_TEXT_GROUP = 2;
+
     public int calculate(String input) {
         if (isNullOrEmpty(input)) {
-            return 0;
+            return INITIAL_SUM_VALUE;
         }
-        return sum(toInts(split(input)));
+
+        var splitTokens = split(input);
+        var numbers = toInts(splitTokens);
+        return sum(numbers);
     }
 
     private boolean isNullOrEmpty(String input) {
@@ -17,17 +26,18 @@ public class StringCalculator {
     }
 
     private String[] split(String input) {
-        return getText(input).split(getDelimiter(input));
+        var delimiter = getDelimiter(input);
+        return getText(input).split(delimiter);
     }
 
     private Matcher getMatcher(String input) {
-        return Pattern.compile("//(.)\n(.*)").matcher(input);
+        return Pattern.compile(CUSTOM_DELIMITER_REGEX).matcher(input);
     }
 
     private String getText(String input) {
         Matcher m = getMatcher(input);
         if (m.find()) {
-            return m.group(2);
+            return m.group(CUSTOM_TEXT_GROUP);
         }
         return input;
     }
@@ -35,9 +45,9 @@ public class StringCalculator {
     private String getDelimiter(String input) {
         Matcher m = getMatcher(input);
         if (m.find()) {
-            return m.group(1);
+            return m.group(CUSTOM_DELIMITER_GROUP);
         }
-        return ",|:";
+        return DEFAULT_DELIMITER_REGEX;
     }
 
     private int[] toInts(String[] inputTokens) {
@@ -57,7 +67,7 @@ public class StringCalculator {
     }
 
     private int sum(int[] numbers) {
-        int total = 0;
+        int total = INITIAL_SUM_VALUE;
         for (int number : numbers) {
             total += number;
         }
