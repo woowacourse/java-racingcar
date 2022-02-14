@@ -52,7 +52,9 @@ public class RacingCarTest {
     @DisplayName("움직일 수 있는 상황이면, 자동차가 움직인다.")
     void checkCanMove() {
         MovingStrategy movingStrategy = () -> true;
-        car.moveByCommand(movingStrategy.isMovable());
+        if(movingStrategy.isMovable()) {
+            car.move();
+        }
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
@@ -60,7 +62,9 @@ public class RacingCarTest {
     @DisplayName("움직일 수 없는 상황이면, 자동차가 움직이지 않는다.")
     void checkNotMove() {
         MovingStrategy movingStrategy = () -> false;
-        car.moveByCommand(movingStrategy.isMovable());
+        if(movingStrategy.isMovable()) {
+            car.move();
+        }
         assertThat(car.getPosition()).isEqualTo(0);
     }
 

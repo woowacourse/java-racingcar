@@ -35,7 +35,7 @@ public class RacingCar {
     }
 
     public void move() {
-            position++;
+        position++;
     }
 
     public boolean isSamePosition(RacingCar anotherCar) {

@@ -61,7 +61,9 @@ public class RacingCars {
     }
 
     private void moveCar(RacingCar car) {
-        car.moveByCommand(commander.isMovable());
+        if(commander.isMovable()) {
+            car.move();
+        }
     }
 
     public List<String> searchWinnerNames() {
