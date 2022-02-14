@@ -17,21 +17,41 @@ public class RacingCarsController {
 	private int roundCount = 0;
 	private final RacingCarService racingCarService = new RacingCarService(new ArrayList<>());
 
+	public void start() {
+		requestCarsName();
+		requestCount();
+		startGame();
+		endGame();
+	}
+
 	public void requestCarsName() {
+		String carNames = Input.inputCarsName();
 		try {
-			String carNames = Input.inputCarsName();
 			NameValidator.checkNull(carNames);
+			saveCarNames(carNames);
+		} catch (Exception exception) {
+			printError(exception.getMessage());
+			requestCarsName();
+		}
+	}
+
+	public void saveCarNames(String carNames) {
+		try {
 			racingCarService.saveCars(carNames);
 		} catch (Exception exception) {
-			Output.printError(exception.getMessage());
+			printError(exception.getMessage());
 			racingCarService.resetCars();
 			requestCarsName();
 		}
 	}
 
 	public void requestCount() {
+		String count = Input.inputCount();
+		validateCount(count);
+	}
+
+	private void validateCount(String count) {
 		try {
-			String count = Input.inputCount();
 			CountValidator.checkInputString(count);
 			this.roundCount = Convertor.convertStringToInteger(count);
 			CountValidator.checkCountIsZero(roundCount);
