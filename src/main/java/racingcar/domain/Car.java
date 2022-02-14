@@ -3,7 +3,6 @@ package racingcar.domain;
 public class Car {
 
     private static final int START_POSITION = 0;
-    private static final int FORWARD_BOUNDARY_NUMBER = 4;
 
     private final String name;
     private int position;
@@ -17,10 +16,8 @@ public class Car {
         return new Car(name);
     }
 
-    public void move(int randomNumber) {
-        if (randomNumber >= FORWARD_BOUNDARY_NUMBER) {
-            position++;
-        }
+    public void moveCarPosition() {
+        position++;
     }
 
     public boolean isSamePosition(int position) {

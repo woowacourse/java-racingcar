@@ -9,6 +9,8 @@ import racingcar.domain.result.WinnersResult;
 
 public class Cars {
 
+    private static final int FORWARD_BOUNDARY_NUMBER = 4;
+
     private final List<Car> cars;
 
     public Cars(List<String> names) {
@@ -18,7 +20,19 @@ public class Cars {
     }
 
     public void move(RandomNumberGenerator randomNumberGenerator) {
-        cars.forEach(car -> car.move(randomNumberGenerator.getRandomNumber()));
+        for (Car car : cars) {
+            moveOneCar(randomNumberGenerator, car);
+        }
+    }
+
+    private void moveOneCar(RandomNumberGenerator randomNumberGenerator, Car car) {
+        if (isAvailableMove(randomNumberGenerator)) {
+            car.moveCarPosition();
+        }
+    }
+
+    private boolean isAvailableMove(RandomNumberGenerator randomNumberGenerator) {
+        return randomNumberGenerator.getRandomNumber() >= FORWARD_BOUNDARY_NUMBER;
     }
 
     public MidtermResult getMidtermResult() {
@@ -26,12 +40,13 @@ public class Cars {
     }
 
     public WinnersResult getWinnersResult() {
-        return new WinnersResult(getWinners(getMostFarPosition()));
+        return new WinnersResult(getWinnerCars());
     }
 
-    private List<Car> getWinners(final int mostFarPosition) {
+    private List<Car> getWinnerCars() {
         return cars.stream()
-                .filter(c -> c.isSamePosition(mostFarPosition)).collect(toList());
+                .filter(c -> c.isSamePosition(getMostFarPosition()))
+                .collect(toList());
     }
 
     private int getMostFarPosition() {
