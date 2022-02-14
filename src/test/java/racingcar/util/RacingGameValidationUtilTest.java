@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static racingcar.util.RacingGameValidationUtil.isDuplicated;
-import static racingcar.util.TotalAttemptValidationUtil.validateAttempt;
+import static racingcar.constant.ErrorMessage.DUPLICATED;
 
 class RacingGameValidationUtilTest {
 
@@ -15,7 +15,8 @@ class RacingGameValidationUtilTest {
         String[] carNames = {"woo", "te", "co", "woo"};
 
         assertThatThrownBy(() -> isDuplicated(carNames))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DUPLICATED);
     }
 
 }
