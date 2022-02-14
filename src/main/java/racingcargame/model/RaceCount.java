@@ -12,10 +12,10 @@ public class RaceCount {
 	private static int count;
 
 	public RaceCount(String count) {
-		initCount(checkRightNumber(count));
+		initCount(checkRightCount(count));
 	}
 
-	private static int checkRightNumber(String count) {
+	private int checkRightCount(String count) {
 		if (count == null) {
 			throw new IllegalArgumentException(EMPTY_RACE_COUNT_ERROR_MESSAGE);
 		}

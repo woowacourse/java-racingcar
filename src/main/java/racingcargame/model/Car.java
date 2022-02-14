@@ -19,21 +19,21 @@ public class Car {
 		this.position = position;
 	}
 
-	public static String checkValidateName(final String name) {
+	public String checkValidateName(final String name) {
 		if (!hasBlankInNames(name) && isValidNameLength(name)) {
 			return name;
 		}
 		throw new IllegalArgumentException();
 	}
 
-	private static boolean hasBlankInNames(final String name) {
+	private boolean hasBlankInNames(final String name) {
 		if (name.contains(BLANK)) {
 			throw new IllegalArgumentException(HAS_BLANK_IN_NAMES_ERROR_MESSAGE);
 		}
 		return false;
 	}
 
-	private static boolean isValidNameLength(final String name) {
+	private boolean isValidNameLength(final String name) {
 		if (name.length() < MIN_NAME_LENGTH_COUNT || name.length() > MAX_NAME_LENGTH_COUNT) {
 			throw new IllegalArgumentException(NO_VALIDATE_NAME_LENGTH_ERROR_MESSAGE);
 		}
