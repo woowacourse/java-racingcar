@@ -24,21 +24,21 @@ class CarController {
 			.toArray(String[]::new);
 	}
 
+	void createCars(String carNames) {
+		String[] splitCarNames = splitCarNames(carNames);
+		cars.createCars(splitCarNames);
+	}
+
 	void run() {
 		int numberOfCars = cars.getSize();
 		cars.move(random.createNumbers(numberOfCars));
-	}
-
-	List<CarDto> getWinners() {
-		return cars.getWinners();
 	}
 
 	List<CarDto> getCars() {
 		return cars.getCars();
 	}
 
-	void createCars(String carNames) {
-		String[] splitCarNames = splitCarNames(carNames);
-		cars.createCars(splitCarNames);
+	List<CarDto> getWinners() {
+		return cars.getWinners();
 	}
 }

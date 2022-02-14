@@ -4,8 +4,8 @@ class Car {
 	private static final int MAX_CAR_NAME_LENGTH = 5;
 	private static final int INITIAL_POSITION = 0;
 	private static final int MOVE_CONDITION_NUMBER = 4;
-	private static final String CAR_NAME_LENGTH_OVER_ERROR_MESSAGE = "자동차 이름이 5글자를 초과했습니다. 5글자 이하로 입력해주세요.";
-	private static final String CAR_NAME_IS_EMPTY_ERROR_MESSAGE = "자동차 이름에 빈 문자열이 입력됐습니다.";
+	private static final String ERROR_OVER_CAR_NAME_LENGTH_MESSAGE = "자동차 이름이 5글자를 초과했습니다. 5글자 이하로 입력해주세요.";
+	private static final String ERROR_EMPTY_CAR_NAME_MESSAGE = "자동차 이름에 빈 문자열이 입력됐습니다.";
 
 	private final String name;
 	private int position;
@@ -22,8 +22,8 @@ class Car {
 		}
 	}
 
-	int getBiggerPosition(int maxPosition) {
-		return Math.max(maxPosition, this.position);
+	int getBiggerPosition(int position) {
+		return Math.max(position, this.position);
 	}
 
 	boolean isSamePosition(int position) {
@@ -35,19 +35,19 @@ class Car {
 	}
 
 	private void validateName(String name) {
-		if (isOverNameLength(name)) {
-			throw new RuntimeException(CAR_NAME_LENGTH_OVER_ERROR_MESSAGE);
-		}
-		if (isEmptyName(name)) {
-			throw new RuntimeException(CAR_NAME_IS_EMPTY_ERROR_MESSAGE);
+		validateEmptyName(name);
+		validateOverNameLength(name);
+	}
+
+	private void validateOverNameLength(String name) {
+		if (name.length() > MAX_CAR_NAME_LENGTH) {
+			throw new RuntimeException(ERROR_OVER_CAR_NAME_LENGTH_MESSAGE);
 		}
 	}
 
-	private boolean isOverNameLength(String name) {
-		return name.length() > MAX_CAR_NAME_LENGTH;
-	}
-
-	private boolean isEmptyName(String name) {
-		return name.isEmpty();
+	private void validateEmptyName(String name) {
+		if (name.isEmpty()) {
+			throw new RuntimeException(ERROR_EMPTY_CAR_NAME_MESSAGE);
+		}
 	}
 }

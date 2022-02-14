@@ -9,12 +9,19 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Cars {
-	private static final String CAR_NAMES_DUPLICATE_ERROR_MESSAGE = "중복된 자동차 이름이 입력됐습니다.";
+	private static final String ERROR_CAR_NAMES_DUPLICATE_MESSAGE = "중복된 자동차 이름이 입력됐습니다.";
 
 	private final List<Car> cars;
 
 	public Cars() {
 		this.cars = new ArrayList<>();
+	}
+
+	public void createCars(String[] carNames) {
+		cars.clear();
+		checkDuplicationCarNames(carNames);
+		Arrays.stream(carNames)
+			.forEach(carName -> cars.add(new Car(carName)));
 	}
 
 	public void move(List<Integer> randoms) {
@@ -32,16 +39,9 @@ public class Cars {
 
 	public List<CarDto> getWinners() {
 		List<Car> winnerCars = cars.stream()
-			.filter(car -> car.isSamePosition(getMaxPosition()))
+			.filter(car -> car.isSamePosition(maxPosition()))
 			.collect(Collectors.toList());
 		return carsToCarDtos(winnerCars);
-	}
-
-	public void createCars(String[] carNames) {
-		cars.clear();
-		checkDuplicationCarNames(carNames);
-		Arrays.stream(carNames)
-			.forEach(carName -> cars.add(new Car(carName)));
 	}
 
 	private List<CarDto> carsToCarDtos(List<Car> cars) {
@@ -50,7 +50,7 @@ public class Cars {
 			.collect(Collectors.toList());
 	}
 
-	private int getMaxPosition() {
+	private int maxPosition() {
 		int maxPosition = 0;
 		for (Car car : cars) {
 			maxPosition = car.getBiggerPosition(maxPosition);
@@ -61,7 +61,7 @@ public class Cars {
 	private void checkDuplicationCarNames(String[] carNames) {
 		Set<String> checkSet = new HashSet<>(Arrays.asList(carNames));
 		if (checkSet.size() != carNames.length) {
-			throw new RuntimeException(CAR_NAMES_DUPLICATE_ERROR_MESSAGE);
+			throw new RuntimeException(ERROR_CAR_NAMES_DUPLICATE_MESSAGE);
 		}
 	}
 }
