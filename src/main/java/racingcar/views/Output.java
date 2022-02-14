@@ -28,7 +28,7 @@ public class Output {
 		System.out.print("\n");
 	}
 
-	public void printWinner(final String winners) {
+	public void printWinners(final String winners) {
 		System.out.print(winners + WINNER);
 	}
 }

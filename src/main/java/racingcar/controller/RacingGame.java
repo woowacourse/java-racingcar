@@ -46,7 +46,7 @@ public class RacingGame {
             cars.forEach(Car::goForward);
             output.printTurnResult(cars);
         }
-        output.printWinner(findWinner());
+        output.printWinners(findWinner());
     }
 
     private String findWinner() {
