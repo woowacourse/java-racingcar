@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import racingcar.model.Winner;
@@ -10,8 +9,6 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-
-    private static final String CAR_NAMES_SPLIT_REGEX = ",";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -53,48 +50,24 @@ public class GameController {
     }
 
     public String[] createCarNames() {
-        String[] carNames;
-        do {
-            carNames = trim(split(inputView.inputCarNames()));
-        } while (!isCarNamesValidated(carNames));
-        return carNames;
-    }
-
-    private String[] split(final String carNames) {
-        return carNames.split(CAR_NAMES_SPLIT_REGEX);
-    }
-
-    private String[] trim(final String[] carNames) {
-        return Arrays.stream(carNames)
-                .map(String::trim)
-                .toArray(String[]::new);
-    }
-
-    private boolean isCarNamesValidated(final String[] carNames) {
         try {
+            String[] carNames = inputView.inputCarNames();
             CarNamesValidator.validateCarNames(carNames);
-            return true;
+            return carNames;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return false;
+            return createCarNames();
         }
     }
 
     public int createTryCount() {
-        String inputTryCount;
-        do {
-            inputTryCount = inputView.inputTryCount();
-        } while (!isTryCountValidated(inputTryCount));
-        return Integer.parseInt(inputTryCount);
-    }
-
-    private boolean isTryCountValidated(final String tryCountInput) {
         try {
+            String tryCountInput = inputView.inputTryCount();
             TryCountValidator.validateTryCount(tryCountInput);
-            return true;
+            return Integer.parseInt(tryCountInput);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return false;
+            return createTryCount();
         }
     }
 }
