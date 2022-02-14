@@ -10,9 +10,9 @@ public class CarRacingGame {
 	public static final String NAME_ERROR = "[ERROR] 이름이 공백이거나 6자 이상이면 안됩니다. 다시 입력해주세요.";
 	public static final String TIMES_ERROR = "[ERROR] 시도 횟수는 양수인 정수여야 합니다. 다시 입력해주세요.";
 	public static final String RESULT = "실행결과";
-	public static final String COMMA_SPACE = ", ";
+	public static final String WINNER_SEPARATOR = ", ";
 	public static final String FINAL_WINNER = "가 최종 우승했습니다.";
-	public static final String WINNER_SEPARATOR = ",";
+	public static final String NAME_SEPARATOR = ",";
 	public static final int NAME_MAX_LENGTH = 5;
 	public static final int RANDOM_OVER_PROBABILITY_ZERO_TO_NINE = 4;
 	private ArrayList<Car> cars = new ArrayList<>();
@@ -73,7 +73,7 @@ public class CarRacingGame {
 	}
 
 	private String[] splitCarNames(String input) {
-		String[] carNames = input.split(WINNER_SEPARATOR);
+		String[] carNames = input.split(NAME_SEPARATOR);
 		return carNames;
 	}
 
@@ -168,7 +168,7 @@ public class CarRacingGame {
 	private void printWinners(List<Car> winners) {
 		for (int idx = 0; idx < winners.size() - 1; idx++) {
 			winners.get(idx).printName();
-			System.out.print(COMMA_SPACE);
+			System.out.print(WINNER_SEPARATOR);
 		}
 		winners.get(winners.size() - 1).printName();
 		System.out.println(FINAL_WINNER);
