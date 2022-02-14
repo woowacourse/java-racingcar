@@ -1,6 +1,7 @@
 package racingcar.utils;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -19,9 +20,8 @@ class InputValidationTest {
 		@ParameterizedTest(name = "{index} {displayName} names={0}")
 		@ValueSource(strings = {"pobi,crong,honux", "pobi"})
 		void checkRightName(final String names) {
-			InputValidation validation = mock(InputValidation.class);
-			validation.validateName(names);
-			verify(validation).validateName(names);
+			InputValidation validation = new InputValidation();
+			assertDoesNotThrow(() -> validation.validateName(names));
 		}
 
 		@DisplayName("5자리 이상의 문자열이 주어지면 exception이 발생한다.")
@@ -43,14 +43,13 @@ class InputValidationTest {
 		@ParameterizedTest(name = "{index} {displayName} repeats={0}")
 		@ValueSource(strings = {"2", "10"})
 		void checkRightRepeats(final String repeats) {
-			InputValidation validation = mock(InputValidation.class);
-			validation.validateNotIntegerRepeats(repeats);
-			verify(validation).validateNotIntegerRepeats(repeats);
+			InputValidation validation = new InputValidation();
+			assertDoesNotThrow(() -> validation.validateNotIntegerRepeats(repeats));
 		}
 
 		@DisplayName("잘못된 반복 횟수면 exception이 발생한다")
 		@ParameterizedTest(name = "{index} {displayName} repeats={0}")
-		@ValueSource(strings = {"-2", "1a0"})
+		@ValueSource(strings = {"test", "asd"})
 		void checkWrongRepeats(final String repeats) {
 			InputValidation validation = new InputValidation();
 			assertThatExceptionOfType(RuntimeException.class)
