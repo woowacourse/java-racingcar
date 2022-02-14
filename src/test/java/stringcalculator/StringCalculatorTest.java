@@ -1,18 +1,18 @@
 package stringcalculator;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class StringCalculatorTest {
-    @Test
-    public void splitAndSum_null_또는_빈문자() throws Exception {
-        int result = StringCalculator.splitAndSum(null);
-        assertThat(result).isEqualTo(0);
-
-        result = StringCalculator.splitAndSum("");
+    @ParameterizedTest
+    @NullAndEmptySource
+    public void splitAndSum_null_또는_빈문자(String text) throws Exception {
+        int result = StringCalculator.splitAndSum(text);
         assertThat(result).isEqualTo(0);
     }
 
