@@ -3,9 +3,9 @@ package racingcar;
 import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
+import racingcar.domain.random.RandomNumberGenerator;
 import racingcar.exception.GetWinnersBeforeFinishException;
 import racingcar.exception.RacingGameIsFinishedException;
-import racingcar.domain.random.RandomNumberGenerator;
 import racingcar.domain.result.MidtermResult;
 import racingcar.domain.result.WinnersResult;
 
@@ -13,7 +13,7 @@ public class RacingGame {
 
     private TryCount tryCount;
     private Cars cars;
-    private final RandomNumberGenerator randomNumberGenerator;
+    private RandomNumberGenerator randomNumberGenerator;
 
     public RacingGame(RandomNumberGenerator randomNumberGenerator) {
         this.randomNumberGenerator = randomNumberGenerator;
@@ -23,7 +23,7 @@ public class RacingGame {
         if (isFinished()) {
             throw new RacingGameIsFinishedException();
         }
-        cars.move();
+        cars.move(randomNumberGenerator);
         tryCount.increment();
     }
 
@@ -43,7 +43,7 @@ public class RacingGame {
     }
 
     public void enrollCars(List<String> names) {
-        cars = new Cars(names, randomNumberGenerator);
+        cars = new Cars(names);
     }
 
     public void initTryCount(int inputTryCount) {

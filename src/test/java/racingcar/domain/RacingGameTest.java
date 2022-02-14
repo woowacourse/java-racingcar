@@ -31,7 +31,6 @@ public class RacingGameTest {
 
     @Test
     public void 시도횟수만큼_게임진행() {
-        racingGame.enrollCars(List.of("pobi", "crong"));
         racingGame.initTryCount(2);
         assertThat(racingGame.isFinished()).isFalse();
         racingGame.proceedTurn();

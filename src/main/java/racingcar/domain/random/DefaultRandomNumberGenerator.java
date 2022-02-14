@@ -6,11 +6,7 @@ public class DefaultRandomNumberGenerator implements RandomNumberGenerator {
 
     private static final int UPPER_BOUNDARY = 10;
 
-    private final Random random;
-
-    public DefaultRandomNumberGenerator() {
-        this.random = new Random();
-    }
+    private final Random random = new Random();
 
     @Override
     public int getRandomNumber() {
