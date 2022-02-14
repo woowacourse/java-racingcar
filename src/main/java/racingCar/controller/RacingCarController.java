@@ -46,20 +46,13 @@ public class RacingCarController {
 
 	private int getCarTimes() {
 		String inputRacingTimes = InputView.userStringInput(INPUT_COUNT_MESSAGE);
-		while (!checkCarTimes(inputRacingTimes)) {
-			inputRacingTimes = InputView.userStringInput(INPUT_COUNT_MESSAGE);
-		}
-		return Integer.parseInt(inputRacingTimes);
-	}
-
-	private boolean checkCarTimes(String inputRacingTimes) {
 		try {
 			RacingCarValidator.isRightTimes(inputRacingTimes);
-			return true;
+			return Integer.parseInt(inputRacingTimes);
 		} catch (RuntimeException e) {
 			OutputView.printError(e.getMessage());
+			return getCarTimes();
 		}
-		return false;
 	}
 
 	private RacingCars makeCars(String[] carNames) {
