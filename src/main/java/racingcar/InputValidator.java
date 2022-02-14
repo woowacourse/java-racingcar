@@ -12,7 +12,7 @@ public class InputValidator {
     public static final int MINIMUM_NATURAL_NUMBER = 1;
 
     public static final String CAR_NAME_PATTERN_REGEX = "^[a-zA-Z,]*$";
-    public static final String COIN_PATTERN_REGEX = "^[0-9]*$";
+    public static final String ATTEMPT_COUNT_PATTERN_REGEX = "^[0-9]*$";
 
     public static final String NOT_ALPHA_AND_COMMA_ERROR = "[ERROR]: 잘못된 입력입니다.(입력은 영어와 쉼표로만 이루어져있습니다.)";
     public static final String NOT_ALLOW_LENGTH_ERROR = "[ERROR]: 잘못된 입력입니다.(입력은 5자 이하만 가능합니다.)";
@@ -48,7 +48,7 @@ public class InputValidator {
     }
 
     public void isNumeric(String input) {
-        Pattern pattern = Pattern.compile(COIN_PATTERN_REGEX);
+        Pattern pattern = Pattern.compile(ATTEMPT_COUNT_PATTERN_REGEX);
         Matcher matcher = pattern.matcher(input);
         if (!matcher.find()) {
             throw new IllegalArgumentException(NOT_NUMERIC_ERROR);

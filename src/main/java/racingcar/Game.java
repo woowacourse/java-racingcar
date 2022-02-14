@@ -14,9 +14,9 @@ public class Game {
 
     public void start() {
         String[] names = inputCarNames();
-        int coin = inputCoin();
+        int attemptCount = inputAttemptCount();
         List<Car> cars = generateCar(names);
-        race(coin, cars);
+        race(attemptCount, cars);
         List<String> winners = getWinner(cars);
         output.printWinner(winners);
     }
@@ -26,9 +26,9 @@ public class Game {
         return input.getNames();
     }
 
-    private int inputCoin() {
-        output.inputCoinMessage();
-        return input.getCoin();
+    private int inputAttemptCount() {
+        output.inputAttemptCountMessage();
+        return input.inputAttemptCount();
     }
 
     private List<Car> generateCar(String[] names) {
@@ -39,9 +39,9 @@ public class Game {
         return cars;
     }
 
-    private void race(int coin, List<Car> cars) {
+    private void race(int attemptCount, List<Car> cars) {
         output.printResultMessage();
-        for (int index = 0; index < coin; index++) {
+        for (int index = 0; index < attemptCount; index++) {
             moveCar(cars);
             output.printPosition(cars);
         }
@@ -74,6 +74,4 @@ public class Game {
             .forEach(x -> winners.add(x.getName()));
         return winners;
     }
-
-
 }

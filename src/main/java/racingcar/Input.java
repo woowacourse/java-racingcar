@@ -3,6 +3,7 @@ package racingcar;
 import java.util.Scanner;
 
 public class Input {
+
     public static final String COMMA_REGEX = ",";
 
     private Scanner scanner;
@@ -25,12 +26,11 @@ public class Input {
         return input.split(COMMA_REGEX);
     }
 
-    public int getCoin() {
+    public int inputAttemptCount() {
         String input = scanner.nextLine();
         inputValidator.isNumeric(input);
-        int coin = Integer.parseInt(input);
-        inputValidator.isNaturalNumber(coin);
-        return coin;
+        int attemptCount = Integer.parseInt(input);
+        inputValidator.isNaturalNumber(attemptCount);
+        return attemptCount;
     }
-
 }
