@@ -9,13 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-    private final Cars cars = new Cars(getCars());
-    private final int trialNumber = getTrialNumber();
+    private Cars cars;
+    private int trialNumber;
 
     public void run() {
+        initialize();
         OutputView.printResultMessage();
         forwardCarsByTrialNumber();
         OutputView.printWinners(cars.findWinners());
+    }
+
+    private void initialize() {
+        cars = new Cars(getCars());
+        trialNumber = getTrialNumber();
     }
 
     private void forwardCarsByTrialNumber() {
