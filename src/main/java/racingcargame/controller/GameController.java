@@ -26,7 +26,7 @@ public class GameController {
 
 	private RacingCarGame setUpGame() {
 		Display.showCarNamesInputGuideMessage();
-		List<String> racingCarNames = inputController.inputCarName();
+		List<String> racingCarNames = inputController.inputRacingCarNames();
 
 		Display.showRaceCountInputGuideMessage();
 		int raceCount = inputController.inputRaceCount();
