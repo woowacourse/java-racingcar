@@ -78,7 +78,14 @@ public class RacingCars {
     private RacingCar searchAnyWinner() {
         RacingCar anyWinner = cars.get(FIRST_ELEMENT);
         for(RacingCar car : cars) {
-            anyWinner = car.getGreaterPositionCar(anyWinner);
+            anyWinner = getGreaterRacingCar(car, anyWinner);
+        }
+        return anyWinner;
+    }
+
+    private RacingCar getGreaterRacingCar(RacingCar racingCar, RacingCar anyWinner) {
+        if(racingCar.compareTo(anyWinner) > 0) {
+            return racingCar;
         }
         return anyWinner;
     }
