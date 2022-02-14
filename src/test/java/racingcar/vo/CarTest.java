@@ -60,7 +60,7 @@ public class CarTest {
     Car car = new Car(carName);
     MovableNumberGenerator movable = new MovableNumberGenerator();
     car.move(movable.generate());
-    assertThat(car.toString()).contains(name, ":");
+    assertThat(car).extracting("position").extracting("position").isEqualTo(1);
   }
 
   @DisplayName("move() 이동이 실패하는 테스트")
@@ -71,6 +71,6 @@ public class CarTest {
     Car car = new Car(carName);
     NonMovableNumberGenerator movable = new NonMovableNumberGenerator();
     car.move(movable.generate());
-    assertThat(car.toString()).contains(name, ":");
+    assertThat(car).extracting("position").extracting("position").isEqualTo(0);
   }
 }
