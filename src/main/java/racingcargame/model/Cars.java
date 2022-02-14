@@ -1,17 +1,14 @@
 package racingcargame.model;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Cars {
     private static final int START_POSITION = 0;
-
-    private final List<Car> cars;
+    private final List<Car> cars = new ArrayList<>();
 
     public Cars(List<String> carNames) {
-        cars = carNames.stream()
-                .map(carName -> new Car(carName, START_POSITION))
-                .collect(Collectors.toList());
+        carNames.forEach(name -> cars.add(new Car(name, START_POSITION)));
     }
 
     public List<Car> getCars() {
