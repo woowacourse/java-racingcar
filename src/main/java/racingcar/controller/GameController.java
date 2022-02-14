@@ -11,7 +11,7 @@ import racingcar.view.OutputView;
 public class GameController {
 	OutputViewController outputViewController = new OutputViewController();
 	CarListController carListController = new CarListController();
-	ArrayList<Car> carList;
+	private ArrayList<Car> carList;
 
 	public void runRace() {
 		OutputView.askCarName();
