@@ -7,6 +7,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import racingcar.domain.Name;
+import racingcar.domain.Names;
+
 public class InputViewTest {
 
 	private final CustomReader customReader;
@@ -25,12 +28,14 @@ public class InputViewTest {
 			"if",
 			"hanul"
 		);
-		List<String> carNames = inputView.requestCarNames();
 
-		assertThat(carNames.size()).isEqualTo(expected.size());
+		Names carNames = inputView.requestCarNames();
 
-		for (int i = 0; i < carNames.size(); i++) {
-			assertThat(carNames.get(i)).isEqualTo(expected.get(i));
+		assertThat(carNames.getSize()).isEqualTo(expected.size());
+
+		int index = 0;
+		for (Name name : carNames.getNames()) {
+			assertThat(name.getName()).isEqualTo(expected.get(index++));
 		}
 	}
 
@@ -42,17 +47,17 @@ public class InputViewTest {
 			"if",
 			"hanul"
 		);
-		List<String> carNames = inputView.requestCarNames();
 
-		assertThat(carNames.size()).isEqualTo(expected.size());
+		Names carNames = inputView.requestCarNames();
 
-		for (int i = 0; i < carNames.size(); i++) {
-			assertThat(carNames.get(i)).isEqualTo(expected.get(i));
+		int index = 0;
+		for (Name name : carNames.getNames()) {
+			assertThat(name.getName()).isEqualTo(expected.get(index++));
 		}
 	}
 
 	@Test
-	void 자동차이름_콤마로_끝날때_공백_포함해서_split() {
+	void 자동차이름_콤마로_끝날때_공백_포함해서_split_한다() {
 		customReader.setText("pobi,if  ,  hanul,");
 		List<String> expected = Arrays.asList(
 			"pobi",
@@ -60,8 +65,8 @@ public class InputViewTest {
 			"hanul"
 		);
 
-		List<String> carNames = inputView.requestCarNames();
+		String[] carNames = inputView.splitIncludeBlank();
 
-		assertThat(carNames.size()).isEqualTo(expected.size() + 1);
+		assertThat(carNames.length).isEqualTo(expected.size() + 1);
 	}
 }

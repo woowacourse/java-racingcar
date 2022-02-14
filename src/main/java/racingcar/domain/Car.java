@@ -5,10 +5,10 @@ public class Car {
 	private static final String PROGRESS_BAR = "-";
 	private static final String COLON = " : ";
 	private static final int GO_FORWARD_NUMBER = 4;
-	private String name;
+	private final Name name;
 	private int location;
 
-	public Car(String name) {
+	public Car(Name name) {
 		this.name = name;
 	}
 
@@ -31,7 +31,7 @@ public class Car {
 		return name + COLON + PROGRESS_BAR.repeat(location);
 	}
 
-	public String getName() {
+	public Name getName() {
 		return this.name;
 	}
 

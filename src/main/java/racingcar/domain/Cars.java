@@ -1,47 +1,18 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.controller.NumberPicker;
-import racingcar.exception.DuplicateCarNameException;
-import racingcar.exception.EmptyCarNameException;
-import racingcar.exception.OutOfCarNameLengthException;
 
 public class Cars {
 
 	private final List<Car> cars = new ArrayList<>();
 
-	public Cars(List<String> names) {
-		validateCarNames(names);
-		names.forEach(name -> cars.add(new Car(name)));
-	}
-
-	private void validateCarNames(List<String> names) {
-		validateNameIsTooLong(names);
-		validateNameIsEmpty(names);
-		validateNameIsDuplicate(names);
-	}
-
-	private void validateNameIsTooLong(List<String> names) {
-		if (names.stream().anyMatch(CarNameLength::isTooLong)) {
-			throw new OutOfCarNameLengthException();
-		}
-	}
-
-	private void validateNameIsDuplicate(List<String> names) {
-		if (names.stream().anyMatch(name -> Collections.frequency(names, name) > 1)) {
-			throw new DuplicateCarNameException();
-		}
-	}
-
-	private void validateNameIsEmpty(List<String> names) {
-		if (names.stream().anyMatch(String::isEmpty)) {
-			throw new EmptyCarNameException();
-		}
+	public Cars(Names names) {
+		names.getNames().forEach(name -> cars.add(new Car(name)));
 	}
 
 	public void play(NumberPicker numberPicker) {
@@ -56,7 +27,7 @@ public class Cars {
 			.collect(Collectors.toList());
 	}
 
-	public List<String> getWinnerNames() {
+	public List<Name> getWinnerNames() {
 		int farthestLocation = getFarthestLocation();
 		return cars.stream()
 			.filter(car -> car.isWinner(farthestLocation))
