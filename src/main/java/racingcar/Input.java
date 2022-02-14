@@ -4,13 +4,8 @@ import java.util.Scanner;
 
 public class Input {
 
-    private Scanner scanner;
-    private InputValidator inputValidator;
-
-    public Input() {
-        scanner = new Scanner(System.in);
-        inputValidator = new InputValidator();
-    }
+    private final Scanner scanner = new Scanner(System.in);
+    private final InputValidator inputValidator = new InputValidator();
 
     public String[] getNames() {
         String[] names = splitByComma(scanner.nextLine());
