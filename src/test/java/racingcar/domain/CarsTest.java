@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NoneAskiiCharacters")
@@ -34,5 +35,19 @@ public class CarsTest {
         car2.attemptToMove(4);
 
         assertThat(cars.findWinners()).containsExactly(car1, car2);
+    }
+
+    @Test
+    void 한_라운드를_진행한다_모든_자동차가_전진할_경우() {
+        //given
+        cars.setMoveStrategy(() -> 4);
+        Position positionAfterMove = new Position(2);
+
+        //when
+        cars.playRound();
+
+        //then
+        assertThat(car1.getPosition()).isEqualTo(positionAfterMove);
+        assertThat(car2.getPosition()).isEqualTo(positionAfterMove);
     }
 }

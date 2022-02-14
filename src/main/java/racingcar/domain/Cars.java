@@ -13,7 +13,7 @@ public class Cars {
     private static final int RANDOM_NUMBER_UPPER_BOUND = 10;
     private static final String DELIMITER = ",";
 
-    private final Random random = new Random();
+    private MoveStrategy moveStrategy = () -> new Random().nextInt(RANDOM_NUMBER_UPPER_BOUND);
     private final List<Car> cars;
 
     public Cars(String carNames) {
@@ -35,7 +35,7 @@ public class Cars {
 
     public void playRound() {
         for (Car car : cars) {
-            car.attemptToMove(random.nextInt(RANDOM_NUMBER_UPPER_BOUND));
+            car.attemptToMove(moveStrategy.get());
         }
     }
 
@@ -51,5 +51,9 @@ public class Cars {
 
     public List<Car> get() {
         return cars;
+    }
+
+    public void setMoveStrategy(MoveStrategy moveStrategy) {
+        this.moveStrategy = moveStrategy;
     }
 }
