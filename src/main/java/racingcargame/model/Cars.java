@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-	private List<Car> cars;
+	private final List<Car> cars;
 
 	public Cars(final List<String> carNames) {
 		cars = carNames.stream().
@@ -19,10 +19,10 @@ public class Cars {
 		cars.forEach(Car::moveCar);
 	}
 
-	HashMap<String, Integer> bringCarsNameAndPosition() {
-		HashMap<String, Integer> carsInformation = new HashMap<>();
-		cars.forEach(car -> carsInformation.put(car.getName(), car.getPosition()));
-		return carsInformation;
+	HashMap<String, Integer> bringCarsPositionSeparatedByName() {
+		HashMap<String, Integer> carsPosition = new HashMap<>();
+		cars.forEach(car -> carsPosition.put(car.getName(), car.getPosition()));
+		return carsPosition;
 	}
 
 	List<String> findWinner() {

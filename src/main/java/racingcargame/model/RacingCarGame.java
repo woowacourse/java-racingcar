@@ -31,7 +31,7 @@ public class RacingCarGame {
 	}
 
 	public HashMap<String, Integer> sendCurrentLocationOfRacingCars() {
-		return cars.bringCarsNameAndPosition();
+		return cars.bringCarsPositionSeparatedByName();
 	}
 
 	public List<String> sendRacingGameWinner() {
