@@ -9,8 +9,6 @@ import racingcar.domain.result.WinnersResult;
 
 public class Cars {
 
-    private static final int FORWARD_BOUNDARY_NUMBER = 4;
-
     private final List<Car> cars;
 
     public Cars(List<String> names) {
@@ -26,13 +24,9 @@ public class Cars {
     }
 
     private void moveOneCar(RandomNumberGenerator randomNumberGenerator, Car car) {
-        if (isAvailableMove(randomNumberGenerator)) {
+        if (randomNumberGenerator.isAvailableMove()) {
             car.forwardCarPosition();
         }
-    }
-
-    private boolean isAvailableMove(RandomNumberGenerator randomNumberGenerator) {
-        return randomNumberGenerator.getRandomNumber() >= FORWARD_BOUNDARY_NUMBER;
     }
 
     public MidtermResult getMidtermResult() {

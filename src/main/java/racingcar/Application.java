@@ -1,7 +1,7 @@
 package racingcar;
 
 import java.util.List;
-import racingcar.domain.random.DefaultRandomNumberGenerator;
+import racingcar.domain.random.RacingcarRandomNumberGenerator;
 import racingcar.parser.CarNameParser;
 import racingcar.parser.TryCountParser;
 import racingcar.util.RetryableTemplate;
@@ -24,7 +24,7 @@ public class Application {
     private void init() {
         carNameParser = new CarNameParser();
         tryCountParser = new TryCountParser();
-        racingGame = new RacingGame(new DefaultRandomNumberGenerator());
+        racingGame = new RacingGame(new RacingcarRandomNumberGenerator());
         view = new View();
         retryableTemplate = new RetryableTemplate();
     }
