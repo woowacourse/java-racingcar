@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.validator.Validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -54,7 +55,7 @@ class InputTest {
     @Test
     void attempt_empty() {
         assertThatThrownBy(() -> {
-            input.checkBlank(" ", "시도횟수는 공백일 수 없습니다.");
+            Validator.attempt(" ");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -62,20 +63,24 @@ class InputTest {
     @Test
     void attempt_null() {
         assertThatThrownBy(() -> {
-            input.checkBlank(null, "시도횟수는 null 일 수 없습니다.");
+            Validator.attempt(null);
         }).isInstanceOf(NullPointerException.class);
     }
 
     @DisplayName("시도횟수 문자 예외 테스트")
     @Test
     void attempt_number() {
-        assertFalse(input.isNumber("횟수"));
+        assertThatThrownBy(() -> {
+            Validator.attempt("횟수");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("시도횟수 음수 테스트")
     @Test
     void attempt_negative() {
-        assertTrue(input.isNegative("-1"));
+        assertThatThrownBy(() -> {
+            Validator.attempt("-1");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     String[] split(String text) {

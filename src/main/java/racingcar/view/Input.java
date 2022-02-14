@@ -2,6 +2,7 @@ package racingcar.view;
 
 import racingcar.domain.Attempt;
 import racingcar.domain.Cars;
+import racingcar.validator.Validator;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -32,7 +33,7 @@ public class Input {
 		try {
 			Output.getAttempt();
 			String inputValue = scan.nextLine();
-			attemptValid(inputValue);
+			Validator.attempt(inputValue);
 			return new Attempt(Integer.parseInt(inputValue));
 		} catch (IllegalArgumentException e) {
 			Output.errorMessage(e.getMessage());
@@ -81,26 +82,5 @@ public class Input {
 		if (!(name.trim().length() <= CAR_LENGTH_LIMIT)) {
 			throw new IllegalArgumentException("자동차의 이름은 5글자를 초과할 수 없습니다.");
 		}
-	}
-
-	private void attemptValid(String attempt) {
-		if (attempt.isBlank()) {
-			throw new IllegalArgumentException("반복 횟수는 %s일 수 없습니다.");
-		}
-		if (!isNumber(attempt)) {
-			throw new IllegalArgumentException("시도횟수는 숫자를 입력해주세요.");
-		}
-		if (isNegative(attempt)) {
-			throw new IllegalArgumentException("시도횟수는 1이상의 수를 입력해주세요.");
-		}
-	}
-
-	public boolean isNumber(String string) {
-		return string.matches("[+-]?\\d*(\\.\\d+)?");
-	}
-
-	public boolean isNegative(String string) {
-		int attempt = Integer.parseInt(string);
-		return attempt <= 0;
 	}
 }

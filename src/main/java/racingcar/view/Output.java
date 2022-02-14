@@ -5,9 +5,6 @@ import racingcar.domain.Car;
 import java.util.List;
 
 public class Output {
-
-	//:todo : 상수 밖으로 빼기
-
 	private static StringBuilder stringBuilder = new StringBuilder();
 
 	private Output() {
