@@ -30,4 +30,18 @@ public class CarsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(DUPLICATED_NAME_ERROR);
     }
+
+    @Test
+    public void Car_집합에서_이름이_kun_Car_반환() {
+        Cars cars = new Cars(CarFactory.of("kun,forky"));
+        Car car = cars.getCarByName("kun");
+        assertThat(car.getName()).isEqualTo("kun");
+    }
+
+    @Test
+    public void Car_집합에서_이름이_같은_Car_반환() {
+        Cars cars = new Cars(CarFactory.of("kun,forky"));
+        Car car = cars.getCarByName("forky");
+        assertThat(car.getName()).isEqualTo("forky");
+    }
 }
