@@ -14,6 +14,7 @@ public class StringCalculator {
         if (input == null || input.isEmpty()) {
             return 0;
         }
+
         return sumNumbers(convertToIntegerArray(splitString(input)));
     }
 
