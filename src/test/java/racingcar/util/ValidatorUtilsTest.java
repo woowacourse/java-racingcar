@@ -3,6 +3,7 @@ package racingcar.util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
@@ -45,7 +46,7 @@ public class ValidatorUtilsTest {
 
     @DisplayName("validateCarName 메서드는 공백 혹은 빈 문자열이 입력되었을 때 예외를 발생시킨다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @ValueSource(strings = {"", " ", "    "})
+    @EmptySource
     void validateCarNames_errorOnBlank(String carName) {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> validateCarName(carName))

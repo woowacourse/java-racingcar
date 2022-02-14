@@ -13,6 +13,9 @@ import static racingcar.constants.SystemConstants.NUMBER_ZERO;
 
 public class ValidatorUtils {
 
+    private ValidatorUtils() {
+    }
+
     public static void validatePositiveInt(int integer) {
         if (integer <= NUMBER_ZERO) {
             throw new IllegalArgumentException(ERROR_NOT_POSITIVE_INTEGER);
