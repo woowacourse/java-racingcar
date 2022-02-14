@@ -6,21 +6,64 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import racingcar.utils.Validator;
-
 public class Cars {
     private static final String DELIMITER = ",";
+    private static final int MINIMUM_CAR_NAME_QUANTITY = 2;
+    public static final int EMPTY_LENGTH = 0;
 
     private MoveStrategy moveStrategy = new RandomMoveStrategy();
     private final List<Car> cars;
 
     public Cars(final String input) {
-        Validator.checkInput(input);
+        checkInput(input);
         this.cars = makeCars(input);
     }
 
     protected Cars(final List<Car> cars) {
         this.cars = cars;
+    }
+
+    private static void checkInput(final String nameString) {
+        checkHasOnlyDelimiter(nameString);
+        checkDuplicateName(nameString);
+        checkMinimumCarNameQuantity(nameString);
+    }
+
+    private static void checkHasOnlyDelimiter(final String nameString) {
+        if (isEmpty(nameString.split(DELIMITER))) {
+            throw new IllegalArgumentException("이름을 입력해주세요");
+        }
+    }
+
+    private static void checkMinimumCarNameQuantity(final String nameString) {
+        if (hasMinimumCarName(nameString)) {
+            throw new IllegalArgumentException("최소 자동차 수는 " + MINIMUM_CAR_NAME_QUANTITY + " 개 이상이어야 합니다.");
+        }
+    }
+
+    private static void checkDuplicateName(final String nameString) {
+        if (hasDuplicateName(nameString)) {
+            throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
+        }
+    }
+
+    private static boolean hasMinimumCarName(final String nameString) {
+        return nameString.split(DELIMITER).length < MINIMUM_CAR_NAME_QUANTITY;
+    }
+
+    private static boolean hasDuplicateName(final String nameString) {
+        final long origin = Arrays.stream(nameString.split(DELIMITER))
+            .count();
+
+        final long distinct = Arrays.stream(nameString.split(DELIMITER))
+            .distinct()
+            .count();
+
+        return origin != distinct;
+    }
+
+    private static boolean isEmpty(final String[] array) {
+        return array.length <= EMPTY_LENGTH;
     }
 
     private List<Car> makeCars(final String input) {

@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NoneAskiiCharacters")
@@ -49,5 +48,32 @@ public class CarsTest {
         //then
         assertThat(car1.getPosition()).isEqualTo(positionAfterMove);
         assertThat(car2.getPosition()).isEqualTo(positionAfterMove);
+    }
+
+    @Test
+    void 생성자의_파라미터가_구분자만_있을_경우_예외발생() {
+        final String nameString = ",";
+
+        assertThatThrownBy(() -> new Cars(nameString))
+            .isInstanceOf(RuntimeException.class)
+            .hasMessageContaining("이름을 입력해주세요");
+    }
+
+    @Test
+    void 생성자의_파라미터가_중복된_이름을_가지고_있을_경우_예외발생() {
+        final String nameString = "pobi,pobi";
+
+        assertThatThrownBy(() -> new Cars(nameString))
+            .isInstanceOf(RuntimeException.class)
+            .hasMessageContaining("중복");
+    }
+
+    @Test
+    void 생성자의_파라미터가_하나만의_이름을_가지고_있을_경우_예외발생() {
+        final String nameString = "pobi";
+
+        assertThatThrownBy(() -> new Cars(nameString))
+            .isInstanceOf(RuntimeException.class)
+            .hasMessageContaining("최소");
     }
 }
