@@ -34,7 +34,7 @@ public class Input {
 			inputValidation.validateName(names);
 			return names;
 		} catch (RuntimeException exception) {
-			System.out.println(exception.getMessage() + "\n");
+			System.out.println(exception.getMessage() + System.lineSeparator());
 			return inputNames();
 		}
 	}
@@ -50,7 +50,7 @@ public class Input {
 			inputValidation.validateRepeats(repeats);
 			return repeats;
 		} catch (RuntimeException exception) {
-			System.out.println(exception.getMessage() + "\n");
+			System.out.println(exception.getMessage() + System.lineSeparator());
 			return inputRepeats();
 		}
 	}
