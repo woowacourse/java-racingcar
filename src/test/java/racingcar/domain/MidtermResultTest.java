@@ -1,10 +1,12 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.exception.NotFoundCarNameException;
 import racingcar.domain.result.MidtermResult;
 
 public class MidtermResultTest {
@@ -26,6 +28,13 @@ public class MidtermResultTest {
 
         car1.move(FORWARDING_RANDOM_NUMBER);
         car1.move(FORWARDING_RANDOM_NUMBER);
+    }
+
+    @Test
+    public void 존재하지_않는_자동차_이름으로_위치_조회시_예외_발생() {
+        MidtermResult midtermResult = new MidtermResult(Arrays.asList(car1, car2, car3));
+        assertThatThrownBy(() -> midtermResult.getPositionByName("Not Found Car Name"))
+            .isInstanceOf(NotFoundCarNameException.class);
     }
 
     @Test

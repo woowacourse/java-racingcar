@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 import racingcar.domain.Car;
+import racingcar.domain.exception.NotFoundCarNameException;
 
 public class MidtermResult {
     private final List<Car> cars;
@@ -20,7 +21,7 @@ public class MidtermResult {
         return cars.stream()
             .filter(car -> car.isSameName(name))
             .findFirst()
-            .get();
+            .orElseThrow(() -> new NotFoundCarNameException(name));
     }
 
     public List<String> getCarNames() {
