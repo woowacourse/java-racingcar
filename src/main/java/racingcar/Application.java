@@ -36,7 +36,7 @@ public class Application {
         view.printResultViewTitle();
         while (!racingGame.isFinished()) {
             racingGame.proceedTurn();
-            view.printMidtermResult(racingGame.getMidtermResult());
+            view.printMidtermResults(racingGame.getMidtermResult());
         }
 
         view.printWinnerResult(racingGame.getWinnersResult());

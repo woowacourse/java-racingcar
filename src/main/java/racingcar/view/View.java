@@ -34,19 +34,22 @@ public class View {
         System.out.println(RESULT_VIEW_TITLE_MESSAGE);
     }
 
-    public void printMidtermResult(MidtermResult midtermResult) {
+    public void printMidtermResults(MidtermResult midtermResult) {
         for (String name : midtermResult.getCarNames()) {
-            printEachCarNameAndProgressBar(name, midtermResult.getPositionByName(name));
+            printCarNameAndProgressBar(name, midtermResult.getPositionByName(name));
         }
         printBlankLine();
     }
 
-    private void printEachCarNameAndProgressBar(String name, int position) {
-        System.out.println(getNameAndProgressBar(name, position));
+    private void printCarNameAndProgressBar(String name, int position) {
+        System.out.println(name + NAME_AND_PROGRESS_BAR_DELIMITER + getProgressBar(position));
     }
 
-    private String getNameAndProgressBar(String name, int position) {
-        return name + NAME_AND_PROGRESS_BAR_DELIMITER + getProgressBar(position);
+    private String getProgressBar(int position) {
+        return IntStream
+                .range(0, position)
+                .mapToObj(i -> PROGRESS_BAR)
+                .reduce("", (a, b) -> a + b);
     }
 
     public void printWinnerResult(WinnersResult winnersResult) {
@@ -56,13 +59,6 @@ public class View {
     private String getFormattedWinnerNames(WinnersResult winnersResult) {
         return winnersResult.getWinnerNames().stream()
                 .collect(joining(WINNER_NAMES_DELIMITER));
-    }
-
-    private String getProgressBar(int position) {
-        return IntStream
-                .range(0, position)
-                .mapToObj(i -> PROGRESS_BAR)
-                .reduce("", (a, b) -> a + b);
     }
 
     private void printBlankLine() {
