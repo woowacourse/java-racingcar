@@ -14,14 +14,14 @@ class CarTest {
 
     @BeforeEach
     void setUp() {
-        car.move(true);
+        car.move(1);
     }
 
     @ParameterizedTest
     @DisplayName("true를 받으면 전진하고 false를 받으면 정지한다.")
-    @CsvSource({"true, 2", "false, 1"})
-    void move(boolean movement, int expectedDistance) {
-        car.move(movement);
+    @CsvSource({"1, 2", "0, 1"})
+    void move(int movementValue, int expectedDistance) {
+        car.move(movementValue);
         final CarDto actual = car.info();
         final CarDto expected = new CarDto("abc", expectedDistance);
         assertThat(actual).isEqualTo(expected);
@@ -36,9 +36,9 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"false, false, true", "false, true, true", "true, true, false"})
+    @CsvSource({"0, 0, true", "0, 1, true", "1, 1, false"})
     @DisplayName("다른 자동차를 받아 자기 자신의 거리의 값이 크거나 같으면 true를 반환한다.")
-    void isFartherThan(boolean firstMove, boolean secondMove, boolean expected){
+    void isFartherThan(int firstMove, int secondMove, boolean expected){
         final Car anotherCar = new Car("def");
         anotherCar.move(firstMove);
         anotherCar.move(secondMove);

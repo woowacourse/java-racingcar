@@ -8,7 +8,6 @@ import java.util.Objects;
 
 public class Car {
     private static final int INITIAL_DISTANCE = 0;
-    private static final int INCREASING_UNIT = 1;
 
     private final CarName carName;
     private final Distance distance;
@@ -18,10 +17,8 @@ public class Car {
         distance = new Distance(INITIAL_DISTANCE);
     }
 
-    public void move(final boolean movement) {
-        if (movement) {
-            distance.increaseBy(INCREASING_UNIT);
-        }
+    public void move(final int movementValue) {
+        distance.increaseBy(movementValue);
     }
 
     public CarDto info() {

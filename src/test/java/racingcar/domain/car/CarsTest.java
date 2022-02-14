@@ -14,9 +14,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarsTest {
     private final Cars cars = new Cars(Arrays.asList("abc", "def", "ghi"));
-    private final boolean[] definedMovement = {false, true, true};
+    private final int[] definedMovementValues = {0, 1, 1};
     private int index = 0;
-    private final Movement movement = () -> definedMovement[index++];
+    private final Movement movement = () -> definedMovementValues[index++];
 
     @BeforeEach
     void setUp() {
