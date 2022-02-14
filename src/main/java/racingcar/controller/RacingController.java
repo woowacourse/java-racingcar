@@ -5,9 +5,11 @@ import static racingcar.view.InputView.insertNumber;
 import static racingcar.view.OutputView.printMessage;
 import static racingcar.view.OutputView.printResultMessage;
 import static racingcar.view.OutputView.printTurnResult;
+import static racingcar.view.OutputView.printWinners;
 
 import racingcar.domain.Cars;
 import racingcar.domain.TrialCount;
+import racingcar.domain.Winners;
 import racingcar.utils.numbergenerator.RandomNumberGenerator;
 
 public class RacingController {
@@ -18,7 +20,7 @@ public class RacingController {
             TrialCount trialCount = insertNumber();
 
             progressTurns(cars, trialCount);
-            printMessage(cars.getWinners());
+            printWinners(new Winners(cars));
         } catch (IllegalArgumentException e) {
             printMessage(e.getMessage());
         }
