@@ -63,9 +63,8 @@ class StringAddCalculatorTest {
 	void negativeNumberError() {
 		String negativeNumberString = "-1,2,3";
 		StringAddCalculator stringAddCalculator = new StringAddCalculator();
-		assertThatThrownBy(() -> {
-			stringAddCalculator.SplitAndSum(negativeNumberString);
-		}).isInstanceOf(RuntimeException.class);
+		assertThatThrownBy(() -> stringAddCalculator.SplitAndSum(negativeNumberString))
+			.isInstanceOf(RuntimeException.class);
 	}
 
 	@Test
@@ -73,8 +72,7 @@ class StringAddCalculatorTest {
 	void notNumberError() {
 		String notNumberString = "1,a,3";
 		StringAddCalculator stringAddCalculator = new StringAddCalculator();
-		assertThatThrownBy(() -> {
-			stringAddCalculator.SplitAndSum(notNumberString);
-		}).isInstanceOf(RuntimeException.class);
+		assertThatThrownBy(() -> stringAddCalculator.SplitAndSum(notNumberString))
+			.isInstanceOf(RuntimeException.class);
 	}
 }
