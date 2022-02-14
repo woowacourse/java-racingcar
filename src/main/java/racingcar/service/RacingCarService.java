@@ -37,9 +37,14 @@ public class RacingCarService {
 	public int findMaxPosition() {
 		int maxPosition = 0;
 		for (Car car : cars) {
-			if (car.isOverMaxPosition(maxPosition)) {
-				maxPosition = car.getPosition();
-			}
+			maxPosition = getMaxPosition(maxPosition, car);
+		}
+		return maxPosition;
+	}
+
+	private int getMaxPosition(int maxPosition, Car car) {
+		if (car.isOverMaxPosition(maxPosition)) {
+			maxPosition = car.getPosition();
 		}
 		return maxPosition;
 	}
