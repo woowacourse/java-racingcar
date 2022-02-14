@@ -3,10 +3,8 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class Cars {
-    private static final int MOVE_CONDITION = 4;
     private static final int RANDOM_NUMBER_BOUND = 10;
 
     private final List<Car> cars;
@@ -20,14 +18,8 @@ public class Cars {
 
     public void startEachRace() {
         for (Car car : cars) {
-            if (isMoveCondition()) {
-                car.moveForward();
-            }
+            car.move(makeRandom());
         }
-    }
-
-    private boolean isMoveCondition() {
-        return makeRandom() >= MOVE_CONDITION;
     }
 
     private int makeRandom() {

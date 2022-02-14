@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 public class Car {
+    private static final int MOVE_CONDITION = 4;
     private static final String STRING_JOIN_DELIMITER = " : ";
     private static final String MOVE_EXPRESSION = "-";
 
@@ -11,8 +12,10 @@ public class Car {
         this.name = name;
     }
 
-    public void moveForward() {
-        position++;
+    public void move(int randomValue) {
+        if (randomValue >= MOVE_CONDITION) {
+            position++;
+        }
     }
 
     public boolean isSamePosition(int position) {
