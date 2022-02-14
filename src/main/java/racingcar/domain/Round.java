@@ -23,6 +23,10 @@ public class Round {
         return new Round(FIRST_ROUND);
     }
 
+    public Round nextRound() {
+        return new Round(round + 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -20,10 +20,18 @@ class RoundTest {
     }
 
     @Test
+    @DisplayName("다음 라운드를 반환할 수 있다.")
+    void nextRound() {
+        final Round round = new Round(2);
+        final Round expected = new Round(3);
+        assertThat(round.nextRound()).isEqualTo(expected);
+    }
+
+    @Test
     @DisplayName("equals hashCode 재정의를 통해 값을 비교할 수 있다.")
     void equalsHashCodeRedefinition() {
-        Round round = new Round(1);
-        Round expected = new Round(1);
+        final Round round = new Round(1);
+        final Round expected = new Round(1);
         assertThat(round).isEqualTo(expected);
     }
 }
