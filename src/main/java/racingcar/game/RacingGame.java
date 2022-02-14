@@ -11,11 +11,13 @@ import static racingcar.util.RandomUtil.*;
 
 public class RacingGame {
 
+    private final String SIGN_OF_CAR_NAME = ",";
+
     private Set<Car> cars = new HashSet<>();
     private int totalAttempt;
 
     public void initCarNames(String carNames) {
-        String[] names = carNames.split(",");
+        String[] names = carNames.split(SIGN_OF_CAR_NAME);
         isDuplicated(names);
 
         for (String name : names) {
