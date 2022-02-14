@@ -9,19 +9,21 @@ import racingcar.view.View;
 
 public class Application {
 
-    private final CarNameParser carNameParser = new CarNameParser();
-    private final TryCountParser tryCountParser = new TryCountParser();
+    private CarNameParser carNameParser;
+    private TryCountParser tryCountParser;
     private RacingGame racingGame;
     private View view;
     private RetryableTemplate retryableTemplate;
 
-    public void init() {
+    private void init() {
+        carNameParser = new CarNameParser();
+        tryCountParser = new TryCountParser();
         racingGame = new RacingGame(new DefaultRandomNumberGenerator());
         view = new View();
         retryableTemplate = new RetryableTemplate();
     }
 
-    public void run() {
+    private void run() {
         retryableTemplate.execute(this::inputCarNames, this::handleException);
         retryableTemplate.execute(this::inputTryCount, this::handleException);
 
@@ -33,13 +35,14 @@ public class Application {
         view.printWinnerResult(racingGame.getWinnersResult());
     }
 
-    public void inputCarNames() {
+    private void inputCarNames() {
         List<String> names = carNameParser.parse(view.inputCarNames());
         racingGame.enrollCars(names);
     }
 
-    public void inputTryCount() {
-        racingGame.initTryCount(tryCountParser.parse(view.inputTryCount()));
+    private void inputTryCount() {
+        int tryCount = tryCountParser.parse(view.inputTryCount());
+        racingGame.initTryCount(tryCount);
     }
 
     private void handleException(Exception e) {
