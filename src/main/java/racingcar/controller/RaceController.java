@@ -32,7 +32,6 @@ public class RaceController {
 		try {
 			String input = InputView.inputTryCountUi();
 			tryCount = TryCount.from(input);
-			System.out.println(tryCount.toInt());
 		} catch (IllegalArgumentException exception) {
 			OutputView.printErrorUi(exception);
 			setUpTryCount();
