@@ -36,7 +36,7 @@ public class RacingCarsService {
 		Output.printRoundResult(cars.getRoundResult());
 	}
 
-	public List<String> findWinner() {
+	public List<String> getWinnerCars() {
 		return cars.getSamePositionCars(cars.getMaxPosition());
 	}
 }
