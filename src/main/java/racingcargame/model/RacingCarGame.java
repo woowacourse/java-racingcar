@@ -23,11 +23,11 @@ public class RacingCarGame {
 	}
 
 	public boolean isOverRace() {
-		return RaceCount.getCount() == GAME_OVER_COUNT;
+		return raceCount.getCount() == GAME_OVER_COUNT;
 	}
 
 	public void startRace() {
-		RaceCount.reduceCount();
+		raceCount.reduceCount();
 		cars.moveCars();
 	}
 

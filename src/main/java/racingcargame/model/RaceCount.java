@@ -7,15 +7,15 @@ public class RaceCount {
 		initCount(number);
 	}
 
-	private static void initCount(int number) {
+	private void initCount(int number) {
 		count = number;
 	}
 
-	static void reduceCount() {
+	void reduceCount() {
 		count--;
 	}
 
-	static int getCount() {
+	int getCount() {
 		return count;
 	}
 }
