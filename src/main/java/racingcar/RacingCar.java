@@ -21,7 +21,7 @@ public class RacingCar {
     Cars cars = createCars(splitCarNames(requestCarName()));
     Attempt attempt = new Attempt(requestAttempt());
     printRaceResult(cars.repeatRaceBy(attempt));
-    printWinners(cars.judgeWinners());
+    printWinners(cars.findWinners());
   }
 
   private String[] splitCarNames(String carNames) {

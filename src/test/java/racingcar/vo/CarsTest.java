@@ -55,7 +55,7 @@ public class CarsTest {
     Cars cars = new Cars();
     cars.add(winnerCar);
     cars.add(looserCar);
-    Winners winners = cars.judgeWinners();
+    Winners winners = cars.findWinners();
     assertThat(winners.toString().contains(winnerName)).isTrue();
   }
 
@@ -71,7 +71,7 @@ public class CarsTest {
     Cars cars = new Cars();
     cars.add(firstCar);
     cars.add(secondCar);
-    Winners winners = cars.judgeWinners();
+    Winners winners = cars.findWinners();
     assertThat(winners.toString().contains(firstName)).isTrue();
     assertThat(winners.toString().contains(secondName)).isTrue();
   }

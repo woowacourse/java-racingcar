@@ -10,7 +10,7 @@ public class Attempt {
   private int attempt;
 
   public Attempt(String attempt) {
-    this.attempt = valid(attempt);
+    this.attempt = validate(attempt);
   }
 
   public int get() {
@@ -25,11 +25,10 @@ public class Attempt {
     attempt--;
   }
 
-  // FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
-  private int valid(String attempt) {
-    validNumberFormat(attempt);
+  private int validate(String attempt) {
+    validateNumberFormat(attempt);
     int number = toInteger(attempt);
-    validNegative(number);
+    validateNegative(number);
     return number;
   }
 
@@ -37,8 +36,7 @@ public class Attempt {
     return Integer.parseInt(string);
   }
 
-  // FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
-  private void validNumberFormat(String attempt) {
+  private void validateNumberFormat(String attempt) {
     try {
       Integer.parseInt(attempt);
     } catch (NumberFormatException numberFormatException) {
@@ -46,8 +44,7 @@ public class Attempt {
     }
   }
 
-  // FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
-  private void validNegative(int attempt) {
+  private void validateNegative(int attempt) {
     if (attempt < ZERO) {
       throw new RuntimeException(NUMBER_NEGATIVE_ERROR_MESSAGE);
     }

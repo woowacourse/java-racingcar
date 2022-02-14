@@ -45,7 +45,13 @@
 
 ## 피드백 수정 기록 및 궁금한 점
 
-- [ ] FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
+- [x] FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
+    - valid -> validate
+    - judge -> find
+    - toString(), of() 처럼 전치사로 시작하는 경우는 예외인가?
+    - google Java 컨벤션 -> 메소드 명은 동사, 동사구로 시작한다.
+    - oracle Java 컨벤션 -> 메소드 명은 동사로 시작한다.
+    - 네이버 Java 컨벤션 -> 메소드 명은 동사/전치사로 시작한다.
 
 - [ ] FIXME 파라미터가 없는 메소드에서 IllegalArgumentException가 사용되는 것이 적절한가?
     - RandomUtil

@@ -19,7 +19,7 @@ public class Cars {
   }
 
   public void add(Car car) {
-    validDuplicateCarName(car);
+    validateDuplicateCarName(car);
     cars.add(car);
   }
 
@@ -45,8 +45,7 @@ public class Cars {
     return stringBuilder.toString();
   }
 
-  // FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
-  public Winners judgeWinners() {
+  public Winners findWinners() {
     Car maxPositionCar = cars.stream()
         .max(Car::compareTo)
         .orElseThrow(() -> new NoSuchElementException(NO_SUCH_CAR_ERROR_MESSAGE));
@@ -56,8 +55,7 @@ public class Cars {
         .collect(Collectors.toList()));
   }
 
-  // FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
-  private void validDuplicateCarName(Car car) {
+  private void validateDuplicateCarName(Car car) {
     if (cars.stream().filter(each -> each.isSameName(car)).count() != NONE_DUPLICATION) {
       throw new RuntimeException(DUPLICATE_CAR_NAME_ERROR_MESSAGE);
     }
