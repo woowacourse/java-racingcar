@@ -10,6 +10,7 @@ public class RacingCars {
     private static final String CAR_NAME_DELIMITER = ",";
     private static final String NAME_BLANK = " ";
     private static final String NAME_NOT_BLANK = "";
+    private static final int EQUAL_SYMBOL_NUMBER = 0;
 
     private final List<RacingCar> cars;
     private final MovingStrategy movingStrategy;
@@ -75,7 +76,7 @@ public class RacingCars {
     }
 
     private boolean isSamePosition(RacingCar racingCar, RacingCar anyWinner) {
-        return racingCar.compareTo(anyWinner) == 0;
+        return racingCar.compareTo(anyWinner) == EQUAL_SYMBOL_NUMBER;
     }
 
     private RacingCar searchAnyWinner() {
