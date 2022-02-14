@@ -4,7 +4,6 @@ import racingcar.utils.RandomForwardJudgment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars;
@@ -14,8 +13,9 @@ public class Cars {
     }
 
     public void forward() {
-        cars.forEach(car ->
-                car.forward(RandomForwardJudgment.canForward()));
+        for (Car car : cars) {
+            car.forward(RandomForwardJudgment.canForward());
+        }
     }
 
     public List<Car> getCars() {
@@ -26,10 +26,16 @@ public class Cars {
         List<String> winners = new ArrayList<>();
         int farthestPosition = getFarthestPosition();
 
-        cars.stream()
-            .filter(car -> car.isSamePositionWith(farthestPosition))
-            .forEach(car -> winners.add(car.getName()));
+        for (Car car : cars) {
+            addWinners(winners, farthestPosition, car);
+        }
         return winners;
+    }
+
+    private void addWinners(List<String> winners, int farthestPosition, Car car) {
+        if (car.isSamePositionWith(farthestPosition)) {
+            winners.add(car.getName());
+        }
     }
 
     private int getFarthestPosition() {

@@ -37,10 +37,11 @@ public class Controller {
 
     private List<Car> getCars() {
         List<Car> cars = new ArrayList<>();
+        List<String> carNames = InputView.getCarNames();
 
-        InputView.getCarNames()
-                .forEach(carName -> cars.add(new Car(carName)));
-
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
         return cars;
     }
 
