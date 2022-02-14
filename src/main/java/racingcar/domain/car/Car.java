@@ -1,6 +1,7 @@
 package racingcar.domain.car;
 
 import racingcar.domain.car.condition.ForwardCondition;
+import racingcar.domain.car.validator.CarValidator;
 
 public class Car {
 
@@ -8,6 +9,7 @@ public class Car {
     private int location;
 
     public Car(String name) {
+        CarValidator.validateName(name);
         this.name = name;
     }
 

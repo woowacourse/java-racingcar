@@ -3,13 +3,13 @@ package racingcar.domain.car.condition;
 import java.util.Collections;
 import java.util.List;
 
-public enum DuplicateName {
+public enum NameDuplication {
 
     MAXIMUM(1);
 
     private final int number;
 
-    DuplicateName(int number) {
+    NameDuplication(int number) {
         this.number = number;
     }
 

@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.domain.car.validator.CarNameValidator;
+import racingcar.domain.car.validator.CarCollectionValidator;
 import racingcar.service.picker.NumberPicker;
 
 public class CarCollection {
@@ -13,8 +13,8 @@ public class CarCollection {
     private final List<Car> cars = new ArrayList<>();
 
     public CarCollection(List<String> names) {
-        CarNameValidator.validateNames(names);
         names.forEach(name -> cars.add(new Car(name)));
+        CarCollectionValidator.validateNames(names);
     }
 
     public void goForwardOrStop(NumberPicker numberPicker) {

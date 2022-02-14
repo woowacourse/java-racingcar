@@ -17,6 +17,7 @@ import racingcar.domain.car.CarCollection;
 import racingcar.domain.car.CarStatusDto;
 import racingcar.exception.car.CarNameDuplicatedException;
 import racingcar.exception.car.CarNameEmptyException;
+import racingcar.exception.car.CarNameNullException;
 import racingcar.exception.car.CarNameTooLongException;
 import racingcar.service.picker.CustomNumberPicker;
 
@@ -40,6 +41,19 @@ public class CarCollectionTest {
             Arguments.of(Arrays.asList("slow", "if", "hanull")),
             Arguments.of(Arrays.asList("sinb57", "slow", "if")),
             Arguments.of(Arrays.asList("sinb57", "slow", "if", "hanull"))
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideValuesForNullException")
+    void 자동차이름_null_예외처리(List<String> names) {
+        exceptionTest(CarNameNullException.class, names);
+    }
+
+    public static Stream<Arguments> provideValuesForNullException() {
+        return Stream.of(
+                Arguments.of(Arrays.asList("if", null, "hanul")),
+                Arguments.of(Arrays.asList("if", "hanul", null))
         );
     }
 
