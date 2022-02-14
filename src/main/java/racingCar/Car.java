@@ -1,8 +1,9 @@
 package racingCar;
 
 public class Car {
+	public static final int INITIAL_POSITION = 0;
 	private final String name;
-	int position = 0;
+	int position = INITIAL_POSITION;
 
 	public Car(String name) {
 		this.name = name;
