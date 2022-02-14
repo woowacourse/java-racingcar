@@ -26,12 +26,12 @@ public class Car implements Comparable<Car> {
 	}
 
 	void moveCar() {
-		if (isMoveCar()) {
+		if (canMoveCar()) {
 			position++;
 		}
 	}
 
-	private boolean isMoveCar() {
+	private boolean canMoveCar() {
 		int number = RandomNumberGenerator.makeRandomNumber();
 		return number >= MIN_MOVE_NUMBER;
 	}
