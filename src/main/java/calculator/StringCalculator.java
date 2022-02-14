@@ -57,7 +57,7 @@ public class StringCalculator {
 
     private static void checkNegative(int number) {
         if (number < 0) {
-            throw new RuntimeException();
+            throw new RuntimeException("음수는 사용할 수 없습니다.");
         }
     }
 }
