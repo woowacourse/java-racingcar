@@ -16,7 +16,6 @@ public class Input {
 
     public String[] getNames() {
         String[] names = splitByComma(scanner.nextLine());
-        inputValidator.isValidLength(names);
         inputValidator.isDuplicate(names);
         return names;
     }

@@ -4,6 +4,9 @@ import java.util.*;
 
 public class Game {
 
+    public static final int RANDOM_RANGE = 10;
+    public static final int MINIMUM_MOVE = 4;
+
     private Input input;
     private Output output;
 
@@ -14,8 +17,8 @@ public class Game {
 
     public void start() {
         String[] names = inputCarNames();
-        int attemptCount = inputAttemptCount();
         List<Car> cars = generateCar(names);
+        int attemptCount = inputAttemptCount();
         race(attemptCount, cars);
         List<String> winners = getWinner(cars);
         output.printWinner(winners);
@@ -49,8 +52,16 @@ public class Game {
 
     private void moveCar(List<Car> cars) {
         for (Car car : cars) {
-            car.movePosition();
+            int randomNumber = makeRandomNumber();
+            car.movePosition(isMovable(randomNumber));
         }
+    }
+    private int makeRandomNumber() {
+        return (int) (Math.random() * RANDOM_RANGE);
+    }
+
+    private boolean isMovable(int randomNumber) {
+        return randomNumber >= MINIMUM_MOVE;
     }
 
     private List<String> getWinner(List<Car> cars) {
