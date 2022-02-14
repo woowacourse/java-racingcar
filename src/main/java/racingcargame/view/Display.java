@@ -18,7 +18,7 @@ public class Display {
 	private Display() {
 	}
 
-	public static void showCarNamesInputGuideMessage() {
+	public static void showRacingCarNamesInputGuideMessage() {
 		print(CAR_NAMES_INPUT_GUIDE_MESSAGE);
 	}
 
@@ -30,20 +30,20 @@ public class Display {
 		print(NOW_RACE_PROGRESS_GUIDE_MESSAGE);
 	}
 
-	public static void showRaceProgress(HashMap<String, Integer> carsInformation) {
-		carsInformation.forEach((carName, carPosition) -> {
-			showCarName(carName);
-			showCarPosition(carPosition);
+	public static void showRaceProgress(HashMap<String, Integer> racingCarsInformation) {
+		racingCarsInformation.forEach((racingCarName, racingCarPosition) -> {
+			showRacingCarName(racingCarName);
+			showRacingCarPosition(racingCarPosition);
 		});
 		newLine();
 	}
 
-	public static void showCarName(String carName) {
-		System.out.print(carName + RACE_PROGRESS_OUTPUT_SEPARATOR);
+	public static void showRacingCarName(String racingCarName) {
+		System.out.print(racingCarName + RACE_PROGRESS_OUTPUT_SEPARATOR);
 	}
 
-	public static void showCarPosition(int carPosition) {
-		IntStream.range(0, carPosition).forEach(index -> System.out.print(CAR_MOVE));
+	public static void showRacingCarPosition(int racingCarPosition) {
+		IntStream.range(0, racingCarPosition).forEach(index -> System.out.print(CAR_MOVE));
 		newLine();
 	}
 
