@@ -10,7 +10,7 @@ public class RaceCountTest {
 	@DisplayName("경주횟수가 정상적으로 저장되는지 테스트")
 	@Test
 	void createObject_RaceCount() {
-		RaceCount raceCount = new RaceCount(7);
+		RaceCount raceCount = new RaceCount("7");
 
 		assertThat(raceCount.getCount()).isEqualTo(7);
 	}
@@ -18,7 +18,7 @@ public class RaceCountTest {
 	@DisplayName("경주횟수가 정상적으로 감소하는지 테스트")
 	@Test
 	void createObject_ReduceRaceCount() {
-		RaceCount raceCount = new RaceCount(7);
+		RaceCount raceCount = new RaceCount("7");
 		raceCount.reduceCount();
 
 		assertThat(raceCount.getCount()).isEqualTo(6);

@@ -15,7 +15,7 @@ public class RacingCarGameTest {
 	@Test
 	void createObject_RacingCarGame() {
 		List<String> carNames = List.of("토미", "제인", "데이빗");
-		int raceCount = 5;
+		String raceCount = "5";
 		RacingCarGame racingCarGame = new RacingCarGame(carNames, raceCount);
 
 		HashMap<String, Integer> carsPosition = racingCarGame.sendCurrentPositionOfRacingCars();
@@ -31,7 +31,7 @@ public class RacingCarGameTest {
 	@Test
 	void isOverRace() {
 		List<String> carNames = List.of("토미", "제인", "데이빗");
-		int raceCount = 5;
+		String raceCount = "5";
 		RacingCarGame racingCarGame = new RacingCarGame(carNames, raceCount);
 
 		IntStream.range(0, 5).forEach(index -> racingCarGame.startRace());
