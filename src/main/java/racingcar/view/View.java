@@ -11,7 +11,7 @@ public class View {
 
     private static final String INPUT_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String INPUT_TRY_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
-    private static final String RESULT_VIEW_TITLE = "실행 결과";
+    private static final String RESULT_VIEW_TITLE_MESSAGE = "실행 결과";
     private static final String WINNER_RESULT_SUFFIX_MESSAGE = "가 최종 우승했습니다.";
     private static final String PROGRESS_BAR = "-";
     private static final String NAME_AND_PROGRESS_BAR_DELIMITER = " : ";
@@ -31,7 +31,7 @@ public class View {
 
     public void printResultViewTitle() {
         printBlankLine();
-        System.out.println(RESULT_VIEW_TITLE);
+        System.out.println(RESULT_VIEW_TITLE_MESSAGE);
     }
 
     public void printMidtermResult(MidtermResult midtermResult) {
