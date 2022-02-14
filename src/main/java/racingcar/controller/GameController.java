@@ -7,7 +7,6 @@ import racingcar.view.OutputView;
 
 import java.util.List;
 
-import static racingcar.util.ParseUtils.toInt;
 import static racingcar.util.SplitUtils.splitByComma;
 
 public class GameController {
@@ -32,7 +31,7 @@ public class GameController {
     }
 
     private int requestTotalRounds() {
-        return toInt(InputView.requestTotalRoundsInput());
+        return Integer.parseInt(InputView.requestTotalRoundsInput());
     }
 
     private void playGame() {
