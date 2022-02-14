@@ -48,7 +48,7 @@ public class RacingGameTest {
         RacingCars racingCars = createInitCars();
         RacingGame racingGame = new RacingGame(racingCars, 1);
         racingGame.race();
-        assertThatExceptionOfType(RuntimeException.class)
+        assertThatExceptionOfType(UnsupportedOperationException.class)
             .isThrownBy(() -> racingGame.race())
             .withMessageMatching("종료된 게임은 더이상 실행할 수 없다.");
     }
