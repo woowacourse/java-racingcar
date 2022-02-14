@@ -6,6 +6,8 @@ import racingcar.domain.movement.MovementStrategy;
 
 public class Position {
 
+    public static final int MIN_POSITION = 0;
+
     private int position;
 
     public Position() {
@@ -18,7 +20,7 @@ public class Position {
     }
 
     private void validate(int position) {
-        if (position < 0) {
+        if (position < MIN_POSITION) {
             throw new IllegalArgumentException("자동차의 위치는 0이상의 양수 값을 가져야 합니다.");
         }
     }
