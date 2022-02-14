@@ -3,13 +3,14 @@ package stringcalculator;
 import java.util.Arrays;
 
 public class StringCalculator {
+    private static final int EMPTY_RETURN_VALUE = 0;
     private static final String POSITIVE_NUMBER_REGEX = "^[0-9]";
     private static final String CUSTOM_DELIMITER_AND_EXPRESSION_DELIMITER = "\n";
     private static final String DEFAULT_DELIMITER = ",|:";
 
     public int calculate(final String expression) {
         if (isEmptyOrNull(expression)) {
-            return 0;
+            return EMPTY_RETURN_VALUE;
         }
         String[] numbers = splitExpression(expression);
         return Arrays.stream(parseToInts(numbers))
