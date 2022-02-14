@@ -10,11 +10,12 @@ import racingcar.util.RandomUtil;
 
 public class RacingService {
 
-
 	private static final CarRepository carRepository = new CarRepository();
 
 	private static final int RANDOM_VALUE_RANGE = 10;
 	public static final int MINIMUM_NUMBER_OF_RACE_POSSIBLE = 2;
+
+	public static final String NUMBER_OF_CAR_ERROR_MESSAGE = "레이싱에 필요한 자동차 수는 2대 이상입니다.";
 
 	public void registerCars(List<Car> cars) {
 		cars.forEach(carRepository::addCar);
@@ -28,7 +29,7 @@ public class RacingService {
 
 	private void validateRacePossible(List<Car> cars) {
 		if (cars.size() < MINIMUM_NUMBER_OF_RACE_POSSIBLE) {
-			throw new IllegalStateException();
+			throw new IllegalStateException(NUMBER_OF_CAR_ERROR_MESSAGE);
 		}
 	}
 
