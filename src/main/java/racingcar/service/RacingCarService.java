@@ -20,7 +20,7 @@ public class RacingCarService {
     }
 
     public boolean isEnd() {
-        return round.isSame(END_ROUND);
+        return round.isEnd(END_ROUND);
     }
 
     public Cars run() {

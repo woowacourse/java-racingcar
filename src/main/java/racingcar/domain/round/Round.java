@@ -32,6 +32,13 @@ public class Round {
         }
     }
 
+    public boolean isEnd(int endRound) {
+        if (endRound > round) {
+            throw new IllegalArgumentException("현재 시도 회수가 끝나는 시도 회수보다 작을 수 없습니다.");
+        }
+        return this.isSame(endRound);
+    }
+
     public boolean isSame(int number) {
         return round == number;
     }
