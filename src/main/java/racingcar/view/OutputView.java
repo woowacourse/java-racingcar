@@ -35,11 +35,11 @@ public class OutputView {
                     .append(PROGRESS_BAR.repeat(car.getPosition()))
                     .append("\n");
         }
-        System.out.println(stringBuilder.toString());
+        System.out.println(stringBuilder);
     }
 
     public static void printWinners(Cars cars) {
-        System.out.println(String.join(LIST_JOIN_DELIMITER, cars.getWinners()) + WINNER_MESSAGE);
+        System.out.println(String.join(LIST_JOIN_DELIMITER, cars.findWinners()) + WINNER_MESSAGE);
     }
 
     public static void printMessage(String message) {

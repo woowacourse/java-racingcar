@@ -25,7 +25,7 @@ public class Cars {
         }
     }
 
-    public List<String> getWinners() {
+    public List<String> findWinners() {
         int maxPosition = getMaxPosition();
         addWinnerNames(maxPosition);
         return winners;

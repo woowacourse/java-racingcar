@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.utils.NumberGenerator;
@@ -8,7 +7,6 @@ import racingcar.utils.StubNumberGenerator;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.SoftAssertions.*;
 
 public class CarsTest{
@@ -26,7 +24,7 @@ public class CarsTest{
         cars.moveCars(numberGenerator);
 
         assertSoftly(softAssertions -> {
-            List<String> winners = cars.getWinners();
+            List<String> winners = cars.findWinners();
             softAssertions.assertThat(winners).contains("rick");
             softAssertions.assertThat(winners.size()).isEqualTo(1);
         });
@@ -39,7 +37,7 @@ public class CarsTest{
             cars.moveCars(numberGenerator);
         }
         assertSoftly(softAssertions -> {
-            List<String> winners = cars.getWinners();
+            List<String> winners = cars.findWinners();
             softAssertions.assertThat(winners).contains("rick");
             softAssertions.assertThat(winners).contains("jae");
             softAssertions.assertThat(winners.size()).isEqualTo(2);
