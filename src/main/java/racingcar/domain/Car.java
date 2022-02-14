@@ -1,10 +1,16 @@
 package racingcar.domain;
 
+import java.util.Random;
+
 import racingcar.domain.validation.CarValidator;
+import racingcar.service.StepGenerator;
 
 public class Car implements Comparable<Car> {
 	private static final String STEP = "-";
 	private static final String FORMAT = "%s : %s";
+	private static final int DRIVE_FLAG = 3;
+
+	private final StepGenerator stepGenerator = new StepGenerator();
 	private final String name;
 	private int position = 0;
 
@@ -18,10 +24,14 @@ public class Car implements Comparable<Car> {
 		position++;
 	}
 
-	public void drive(boolean directing) {
-		if (directing) {
+	public void drive() {
+		if (hasNext(stepGenerator.generate())) {
 			move();
 		}
+	}
+
+	public boolean hasNext(int random) {
+		return random > DRIVE_FLAG;
 	}
 
 	public boolean isSamePosition(Car other) {
