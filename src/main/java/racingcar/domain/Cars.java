@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.util.List;
 import racingcar.domain.game.RandomNumberGenerator;
@@ -15,7 +15,7 @@ public class Cars {
     public Cars(List<String> names, RandomNumberGenerator randomNumberGenerator) {
         cars = names.stream()
             .map(Car::createByName)
-            .collect(toList());
+            .collect(toUnmodifiableList());
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
@@ -41,6 +41,6 @@ public class Cars {
     private List<Car> getWinners(final int mostFarPosition) {
         return cars.stream()
             .filter(c -> c.isSamePosition(mostFarPosition))
-            .collect(toList());
+            .collect(toUnmodifiableList());
     }
 }
