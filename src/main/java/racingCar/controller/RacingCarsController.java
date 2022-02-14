@@ -7,17 +7,19 @@ import racingCar.service.RequestService;
 import racingCar.view.Output;
 
 public class RacingCarsController {
+	private final RacingCarsService racingCarsService = new RacingCarsService();
+
 	public RacingCarsController() {
-		RacingCarsService.initiateCars(RequestService.requestNames());
-		RacingCarsService.initiateCount(RequestService.requestCount());
+		racingCarsService.initiateCars(RequestService.requestNames());
+		racingCarsService.initiateCount(RequestService.requestCount());
 	}
 
 	public void startGame() {
 		printStartMessage();
-		RacingCarsService.runGame();
+		racingCarsService.runGame();
 	}
 
 	public void endGame() {
-		Output.printWinner(RacingCarsService.findWinner());
+		Output.printWinner(racingCarsService.findWinner());
 	}
 }

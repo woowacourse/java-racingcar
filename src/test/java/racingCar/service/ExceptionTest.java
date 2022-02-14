@@ -22,6 +22,7 @@ import racingCar.service.RacingCarsService;
 import racingCar.service.RequestService;
 
 class ExceptionTest {
+	RacingCarsService racingCarsService = new RacingCarsService();
 
 	@Test
 	public void 이름이_5자보다_큰_경우() {
@@ -32,7 +33,7 @@ class ExceptionTest {
 
 		//then
 		assertThatThrownBy(() -> {
-			RacingCarsService.initiateCars(RequestService.requestNames());
+			racingCarsService.initiateCars(RequestService.requestNames());
 		}).isInstanceOf(NameRangeException.class);
 	}
 
@@ -45,7 +46,7 @@ class ExceptionTest {
 
 		//then
 		assertThatThrownBy(() -> {
-			RacingCarsService.initiateCars(RequestService.requestNames());
+			racingCarsService.initiateCars(RequestService.requestNames());
 		}).isInstanceOf(NameSpecialCharException.class);
 	}
 
@@ -58,7 +59,7 @@ class ExceptionTest {
 
 		//then
 		assertThatThrownBy(() -> {
-			RacingCarsService.initiateCars(RequestService.requestNames());
+			racingCarsService.initiateCars(RequestService.requestNames());
 		}).isInstanceOf(NameOnlyOneException.class);
 	}
 
@@ -71,7 +72,7 @@ class ExceptionTest {
 
 		//then
 		assertThatThrownBy(() -> {
-			RacingCarsService.initiateCars(RequestService.requestNames());
+			racingCarsService.initiateCars(RequestService.requestNames());
 		}).isInstanceOf(NameDuplicatedException.class);
 	}
 
@@ -84,7 +85,7 @@ class ExceptionTest {
 
 		//then
 		assertThatThrownBy(() -> {
-			RacingCarsService.initiateCount(RequestService.requestCount());
+			racingCarsService.initiateCount(RequestService.requestCount());
 		}).isInstanceOf(CountNotNumberException.class);
 	}
 
@@ -97,7 +98,7 @@ class ExceptionTest {
 
 		//then
 		assertThatThrownBy(() -> {
-			RacingCarsService.initiateCount(RequestService.requestCount());
+			racingCarsService.initiateCount(RequestService.requestCount());
 		})
 			.isInstanceOf(CountRangeException.class);
 	}

@@ -18,13 +18,14 @@ class RacingCarsServiceTest {
 	@Test
 	public void 게임_작동_테스트() {
 		//given
-		RacingCarsService.initiateCars("juri,hunch");
-		RacingCarsService.initiateCount(5);
+		RacingCarsService racingCarsService = new RacingCarsService();
+		racingCarsService.initiateCars("juri,hunch");
+		racingCarsService.initiateCount(5);
 		OutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 
 		//when
-		RacingCarsService.runGame();
+		racingCarsService.runGame();
 		String result = out.toString();
 
 		//then

@@ -10,19 +10,19 @@ import racingCar.utlis.Util;
 import racingCar.view.Output;
 
 public class RacingCarsService {
-	private static RacingCars cars;
-	private static RoundCount roundCount;
+	private RacingCars cars;
+	private RoundCount roundCount;
 
-	public static void initiateCars(String nameString) {
+	public void initiateCars(String nameString) {
 		String[] names = Util.separate(nameString);
 		cars = new RacingCars(new ArrayList<>(Arrays.asList(names)));
 	}
 
-	public static void initiateCount(int countInput) {
+	public void initiateCount(int countInput) {
 		roundCount = new RoundCount(countInput);
 	}
 
-	public static void runGame() {
+	public void runGame() {
 		goRound();
 		if (roundCount.isFinish()) {
 			return;
@@ -30,13 +30,13 @@ public class RacingCarsService {
 		runGame();
 	}
 
-	public static void goRound() {
+	public void goRound() {
 		cars.goRound();
 		roundCount.goRound();
 		Output.printRoundResult(cars);
 	}
 
-	public static List<String> findWinner() {
+	public List<String> findWinner() {
 		return cars.getSamePositionCars(cars.getMaxPosition());
 	}
 }
