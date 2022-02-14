@@ -9,18 +9,18 @@ public class InputView {
     private static final String COMMA_DELIMITER = ",";
     private static final String REQUIRE_GAME_TURN_MESSAGE = "시도할 회수는 몇회인가요?";
     public static final String NOT_NUMBER_ERROR = "[ERROR] 숫자를 입력하세요.";
-    private final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public List<String> getCarNames() {
+    public static List<String> getCarNames() {
         System.out.println(REQUIRE_CAR_NAMES_MESSAGE);
         return splitCarNames(scanner.nextLine());
     }
 
-    private List<String> splitCarNames(String carNames) {
+    private static List<String> splitCarNames(String carNames) {
         return Arrays.asList(carNames.split(COMMA_DELIMITER));
     }
 
-    public int getGameTurn() {
+    public static int getGameTurn() {
         try {
             System.out.println(REQUIRE_GAME_TURN_MESSAGE);
             return Integer.parseInt(scanner.nextLine());
