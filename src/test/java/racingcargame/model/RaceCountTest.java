@@ -14,4 +14,13 @@ public class RaceCountTest {
 
 		assertThat(raceCount.getCount()).isEqualTo(7);
 	}
+
+	@DisplayName("경주횟수가 정상적으로 감소하는지 테스트")
+	@Test
+	void createObject_ReduceRaceCount() {
+		RaceCount raceCount = new RaceCount(7);
+		raceCount.reduceCount();
+
+		assertThat(raceCount.getCount()).isEqualTo(6);
+	}
 }
