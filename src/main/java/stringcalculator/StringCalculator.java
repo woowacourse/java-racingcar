@@ -5,6 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+    public static final int NEGATIVE_STANDARD = 0;
+    public static final int CUSTOM_DELIMITER_GROUP_INDEX = 1;
     private static final String DELIMITER_PATTERN = "^\\/\\/(.)\\n";
     private static final String INPUT_FORMAT_PATTERN = "(" + DELIMITER_PATTERN + ")?(([0-9]+.{1})*[0-9]+)?";
     private static final String DELIMITER = ",|:";
@@ -20,7 +22,7 @@ public class StringCalculator {
     }
 
     public static void validateNegativeNumber(int number) {
-        if (number < 0) {
+        if (number < NEGATIVE_STANDARD) {
             throw new RuntimeException("음수는 입력할 수 없습니다.");
         }
     }
@@ -30,7 +32,7 @@ public class StringCalculator {
                 .matcher(text);
 
         if (matcher.find()) {
-            return matcher.group(1);
+            return matcher.group(CUSTOM_DELIMITER_GROUP_INDEX);
         }
 
         return DELIMITER;
