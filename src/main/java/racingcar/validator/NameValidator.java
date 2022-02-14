@@ -17,15 +17,15 @@ public class NameValidator {
 	private static final String CAR_NUMBER_IS_ONE_WARNING_MSG = "경주할 자동차가 한 대일 경우 경주를 진행할 수 없습니다.";
 	private static final String NAME_DUPLICATION_WARNING_MSG = "중복되는 이름이 존재합니다.";
 
-	public static void checkCarName(String name) throws Exception {
+	public static void checkCarName(String name) {
 		checkSpace(name);
 		checkNameSize(name);
 		checkSpecialChar(name);
 	}
 
-	public static void checkNameList(List<String> nameList) throws Exception {
-		checkNameIsOne(nameList);
-		checkDuplicatedName(nameList);
+	public static void checkNameList(List<String> names) {
+		checkNameIsOne(names);
+		checkDuplicatedName(names);
 	}
 
 	public static void checkNull(String inputString) {
@@ -34,31 +34,31 @@ public class NameValidator {
 		}
 	}
 
-	public static void checkSpace(String name) {
+	private static void checkSpace(String name) {
 		if (name.trim().isEmpty()) {
 			throw new IllegalArgumentException(NAME_EMPTY_ERROR_MSG);
 		}
 	}
 
-	public static void checkNameSize(String name) {
+	private static void checkNameSize(String name) {
 		if (name.length() > MAXIMUM_NAME_SIZE) {
 			throw new IllegalArgumentException(NAME_MAX_SIZE_WARNING_MSG);
 		}
 	}
 
-	public static void checkSpecialChar(String name) {
+	private static void checkSpecialChar(String name) {
 		if (!Pattern.matches(SPACIAL_CHAR_REGEX, name)) {
 			throw new IllegalArgumentException(NAME_SPATIAL_CHAR_WARNING_MSG);
 		}
 	}
 
-	public static void checkNameIsOne(List<String> nameList) {
+	private static void checkNameIsOne(List<String> nameList) {
 		if (nameList.size() <= MINIMUM_NAME_LIST_SIZE) {
 			throw new IllegalArgumentException(CAR_NUMBER_IS_ONE_WARNING_MSG);
 		}
 	}
 
-	public static void checkDuplicatedName(List<String> nameList) {
+	private static void checkDuplicatedName(List<String> nameList) {
 		Set<String> nameSet = new HashSet<>(nameList);
 		if (nameSet.size() != nameList.size()) {
 			throw new IllegalArgumentException(NAME_DUPLICATION_WARNING_MSG);
