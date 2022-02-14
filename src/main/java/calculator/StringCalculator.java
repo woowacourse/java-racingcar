@@ -11,7 +11,7 @@ public class StringCalculator {
         if (input == null || input.isEmpty()) {
             return 0;
         }
-        return sumList(convertToIntegerArray(splitString(input)));
+        return sumNumbers(convertToIntegerArray(splitString(input)));
     }
 
     public static String[] splitString(String input) {
@@ -38,18 +38,18 @@ public class StringCalculator {
     }
 
     public static List<Integer> convertToIntegerArray(String[] strArr) {
-        List<Integer> numList = new ArrayList<>();
-        if (isEmptyList(strArr)) {
-            return numList;
+        List<Integer> numbers = new ArrayList<>();
+        if (isEmpty(strArr)) {
+            return numbers;
         }
 
         for (String num : strArr) {
-            numList.add(convertToInt(num));
+            numbers.add(convertToInt(num));
         }
-        return numList;
+        return numbers;
     }
 
-    private static boolean isEmptyList(String[] strArr) {
+    private static boolean isEmpty(String[] strArr) {
         return Arrays.stream(strArr).count() == 1 && strArr[0].equals("");
     }
 
@@ -71,8 +71,8 @@ public class StringCalculator {
         }
     }
 
-    public static Integer sumList(List<Integer> numList) {
-        return numList.stream()
+    public static Integer sumNumbers(List<Integer> numbers) {
+        return numbers.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
     }
