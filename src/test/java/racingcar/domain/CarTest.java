@@ -19,11 +19,11 @@ public class CarTest {
     @Test
     void 자동차는_4이상일_경우_전진한다() {
         // given
-        Car car = new Car(carName1);
-        int number = 4;
-        Position afterMove = new Position(2);
+        final Car car = new Car(carName1);
+        final int number = 4;
+        final Position afterMove = new Position(2);
         // when
-        car.attemptToMove(number);
+        car.attemptToMove(true);
         // then
         assertThat(car.getPosition()).isEqualTo(afterMove);
     }
@@ -31,11 +31,11 @@ public class CarTest {
     @Test
     void 자동차는_3이하일_경우_멈춘다() {
         // given
-        Car car = new Car(carName1);
-        int number = 3;
-        Position afterMove = new Position(1);
+        final Car car = new Car(carName1);
+        final int number = 3;
+        final Position afterMove = new Position(1);
         // when
-        car.attemptToMove(number);
+        car.attemptToMove(false);
         // then
         assertThat(car.getPosition()).isEqualTo(afterMove);
     }
@@ -43,8 +43,8 @@ public class CarTest {
     @Test
     void 같은_위치인_경우_참을_반환한다() {
         //given
-        Car car1 = new Car(carName1);
-        Car car2 = new Car(carName2);
+        final Car car1 = new Car(carName1);
+        final Car car2 = new Car(carName2);
         //when
 
         //then
@@ -54,10 +54,10 @@ public class CarTest {
     @Test
     void 같은_위치가_아닌_경우_거짓을_반환한다() {
         //given
-        Car car1 = new Car(carName1);
-        Car car2 = new Car(carName2);
+        final Car car1 = new Car(carName1);
+        final Car car2 = new Car(carName2);
         //when
-        car1.attemptToMove(4);
+        car1.attemptToMove(true);
         //then
         assertThat(car1.isSamePositionWith(car2)).isFalse();
     }

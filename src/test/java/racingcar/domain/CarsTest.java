@@ -23,16 +23,16 @@ public class CarsTest {
 
     @Test
     void 우승자를_선출한다_우승자가_한명인경우() {
-        car1.attemptToMove(4);
-        car2.attemptToMove(3);
+        car1.attemptToMove(true);
+        car2.attemptToMove(false);
 
         assertThat(cars.findWinners()).containsExactly(car1);
     }
 
     @Test
     void 우승자를_선출한다_우승자가_두명인경우() {
-        car1.attemptToMove(4);
-        car2.attemptToMove(4);
+        car1.attemptToMove(true);
+        car2.attemptToMove(true);
 
         assertThat(cars.findWinners()).containsExactly(car1, car2);
     }
@@ -40,8 +40,8 @@ public class CarsTest {
     @Test
     void 한_라운드를_진행한다_모든_자동차가_전진할_경우() {
         //given
-        cars.setMoveStrategy(() -> 4);
-        Position positionAfterMove = new Position(2);
+        cars.setMoveStrategy(() -> true);
+        final Position positionAfterMove = new Position(2);
 
         //when
         cars.playRound();

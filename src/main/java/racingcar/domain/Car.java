@@ -3,14 +3,12 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
-
     private static final int INIT_POSITION = 1;
-    private static final int LOWER_MOVABLE_BOUND = 4;
 
     private Position position = new Position(INIT_POSITION);
     private final CarName name;
 
-    public Car(CarName name) {
+    public Car(final CarName name) {
         this.name = name;
     }
 
@@ -18,22 +16,12 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
-    public void attemptToMove(int number) {
-        if (isMovable(number)) {
-            this.position = position.move();
-        }
-    }
-
-    private boolean isMovable(int number) {
-        return number >= LOWER_MOVABLE_BOUND;
-    }
-
     @Override
-    public int compareTo(Car other) {
+    public int compareTo(final Car other) {
         return position.compareTo(other.getPosition());
     }
 
-    public boolean isSamePositionWith(Car other) {
+    public boolean isSamePositionWith(final Car other) {
         return compareTo(other) == 0;
     }
 
@@ -54,5 +42,11 @@ public class Car implements Comparable<Car> {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public void attemptToMove(final boolean canMove) {
+        if (canMove) {
+            this.position = position.move();
+        }
     }
 }
