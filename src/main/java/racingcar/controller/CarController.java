@@ -9,25 +9,25 @@ import java.util.List;
 public class CarController {
     private static final String PRINT_RESULT = "실행 결과";
 
-    public static void raceStart(List<Car> carList, int tryNum) {
+    public static void startRace(List<Car> carList, int tryNum) {
         System.out.println(PRINT_RESULT);
 
         for (int i = 0; i < tryNum; i++) {
-            move(carList);
-            Output.racePrint(carList);
-        }
-    }
-
-    private static void move(List<Car> carList) {
-        for (Car car : carList) {
-            car.goForward();
+            moveCar(carList);
+            Output.printRace(carList);
         }
     }
 
     public static void finalWinner(List<Car> carList) {
         int maxPosition = findMaxPosition(carList);
         List<String> winnerList = getWinnerList(carList, maxPosition);
-        Output.winnerPrint(winnerList);
+        Output.printWinner(winnerList);
+    }
+
+    private static void moveCar(List<Car> carList) {
+        for (Car car : carList) {
+            car.goForward();
+        }
     }
 
     private static List<String> getWinnerList(List<Car> carList, int maxPosition) {
