@@ -14,7 +14,7 @@ public class CarRacingGame {
 	public static final String FINAL_WINNER = "가 최종 우승했습니다.";
 	public static final String WINNER_SEPARATOR = ",";
 	public static final int NAME_MAX_LENGTH = 5;
-	public static final int ZERO_TO_NINE_PROBABILITY = 4;
+	public static final int RANDOM_OVER_PROBABILITY_ZERO_TO_NINE = 4;
 	private ArrayList<Car> cars = new ArrayList<>();
 	private int maxPosition = Integer.MIN_VALUE;
 	private int times;
@@ -139,7 +139,7 @@ public class CarRacingGame {
 	}
 
 	private boolean isRandomOverProbability() {
-		return ((int)(Math.random() * 10) - 1) >= ZERO_TO_NINE_PROBABILITY;
+		return ((int)(Math.random() * 10) - 1) >= RANDOM_OVER_PROBABILITY_ZERO_TO_NINE;
 	}
 
 	public List<Car> findWinner(List<Car> cars) {
