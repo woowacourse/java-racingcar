@@ -7,6 +7,18 @@ import org.junit.jupiter.api.Test;
 
 public class CarTest {
 
+	@DisplayName("입력된 자동차 이름이 없는 경우 테스트")
+	@Test
+	void checkValidateName_EmptyName() {
+		String name = "";
+		int position = 3;
+
+		assertThatThrownBy(() -> {
+			Car car = new Car(name, position);
+		}).isInstanceOf(IllegalArgumentException.class).
+			hasMessageContaining("[error] 입력된 자동차 이름중 이름이 없는 자동차가 있습니다.");
+	}
+
 	@DisplayName("자동차 이름에 빈칸이 입력되는 경우 테스트")
 	@Test
 	void checkValidateName_HasBlank() {
