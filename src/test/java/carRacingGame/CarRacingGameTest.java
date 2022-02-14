@@ -1,4 +1,4 @@
-package racingCar;
+package CarRacingGame;
 
 import static org.assertj.core.api.Assertions.*;
 

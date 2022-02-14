@@ -1,4 +1,4 @@
-package racingCar;
+package CarRacingGame;
 
 public class Car {
 	public static final int INITIAL_POSITION = 0;

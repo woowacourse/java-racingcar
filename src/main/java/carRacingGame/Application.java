@@ -1,4 +1,4 @@
-package racingCar;
+package CarRacingGame;
 
 public class Application {
 
