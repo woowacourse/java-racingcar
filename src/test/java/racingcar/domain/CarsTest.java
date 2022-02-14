@@ -12,11 +12,9 @@ import racingcar.util.BoundedRandomNumberGenerator;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarsTest {
-	public RacingCarController racingCarController = new RacingCarController();
-
 	@Test
 	public void 자동차_생성_테스트() {
-		Cars cars = new Cars(racingCarController.getCarNames("이브,클레이,포비"));
+		Cars cars = new Cars(new RacingCarController().getCarNames("이브,클레이,포비"));
 		assertThat(cars.getSize()).isEqualTo(3);
 	}
 

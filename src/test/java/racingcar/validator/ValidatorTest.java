@@ -2,6 +2,7 @@ package racingcar.validator;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -10,7 +11,12 @@ import racingcar.controller.RacingCarController;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class ValidatorTest {
-	public RacingCarController racingCarController = new RacingCarController();
+	public RacingCarController racingCarController;
+
+	@BeforeEach
+	public void beforeEach() {
+		racingCarController = new RacingCarController();
+	}
 
 	@Test
 	public void 빈_문자열_입력_테스트() {

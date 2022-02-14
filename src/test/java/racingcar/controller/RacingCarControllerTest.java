@@ -4,11 +4,17 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
 class RacingCarControllerTest {
-	public RacingCarController racingCarController = new RacingCarController();
+	public RacingCarController racingCarController;
+
+	@BeforeEach
+	public void beforeEach() {
+		racingCarController = new RacingCarController();
+	}
 
 	@Test
 	public void 자동차_이름_분리해서_가져오기_테스트() {
