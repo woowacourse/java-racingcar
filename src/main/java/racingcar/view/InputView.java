@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.domain.Name;
+import racingcar.domain.Names;
 import racingcar.view.reader.DataReader;
 
 public class InputView {
@@ -15,10 +17,16 @@ public class InputView {
 		this.dataReader = dataReader;
 	}
 
-	public List<String> requestCarNames() {
-		return Arrays.stream(dataReader.readLine().split(CAR_NAME_DELIMITER, -1))
+	public Names requestCarNames() {
+		List<Name> names = Arrays.stream(splitIncludeBlank())
 			.map(String::trim)
+			.map(Name::new)
 			.collect(Collectors.toList());
+		return new Names(names);
+	}
+
+	public String[] splitIncludeBlank() {
+		return dataReader.readLine().split(CAR_NAME_DELIMITER, -1);
 	}
 
 	public String requestGameRound() {
