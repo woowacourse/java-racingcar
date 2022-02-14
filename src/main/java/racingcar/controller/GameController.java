@@ -19,7 +19,7 @@ public class GameController {
     }
 
     public static String[] split(String input) {
-        CarNameValidator.validate(input);
+        CarNameValidator.checkCarNames(input);
 
         String[] carNames = input.split(DELIMITER);
         CarNameValidator.checkQuantity(carNames);

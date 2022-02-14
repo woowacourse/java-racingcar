@@ -4,7 +4,7 @@ public class CarNameValidator {
     private static final int EMPTY = 0;
     private static final int MAX_NAME_LENGTH = 5;
 
-    public static void validate(String text) {
+    public static void checkCarNames(String text) {
         if (text == null || text.isEmpty()) {
             throw new IllegalArgumentException("참가자 명단은 공백일 수 없습니다.");
         }
