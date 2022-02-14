@@ -27,7 +27,7 @@ public class RacingCarController {
 	}
 
 	public String[] separateCarNames(String input) {
-		String[] carNames = input.split(COMMA);
+		String[] carNames = input.split(SPLIT_COMMA);
 		for (int idx = 0; idx < carNames.length; idx++) {
 			carNames[idx] = carNames[idx].trim();
 			checkCarName(carNames[idx]);

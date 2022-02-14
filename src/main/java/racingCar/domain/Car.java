@@ -4,7 +4,7 @@ import static racingCar.constants.RacingCarConstants.*;
 
 public class Car {
 	private final String name;
-	private int position = 0;
+	private int position = CAR_INITIAL_POSITION;
 
 	public Car(String name) {
 		this.name = name;
@@ -30,6 +30,6 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return name + COLON_WITH_SPACE + DASH.repeat(Math.max(0, position));
+		return name + " : " + CAR_MOVE.repeat(Math.max(0, position));
 	}
 }

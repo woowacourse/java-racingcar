@@ -23,7 +23,7 @@ public class OutputView {
 	public static void printWinners(List<Car> winners) {
 		for (int idx = 0; idx < winners.size() - 1; idx++) {
 			winners.get(idx).printName();
-			System.out.print(COMMA_SPACE);
+			System.out.print(", ");
 		}
 		winners.get(winners.size() - 1).printName();
 		System.out.println(FINAL_WINNER_MESSAGE);
