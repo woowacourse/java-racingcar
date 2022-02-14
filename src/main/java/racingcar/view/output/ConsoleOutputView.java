@@ -20,14 +20,14 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void printRoundStatus(final List<CarDto> cars) {
         cars.forEach(car ->
-                System.out.println(car.carName() + RESULT_DELIMITER + DISTANCE_SYMBOL.repeat(car.distance())));
+                System.out.println(car.getCarName() + RESULT_DELIMITER + DISTANCE_SYMBOL.repeat(car.getDistance())));
         System.out.print(NEW_LINE);
     }
 
     @Override
     public void printWinners(final List<CarDto> winners) {
         final StringJoiner winnerNames = new StringJoiner(WINNER_DELIMITER);
-        winners.forEach(winner -> winnerNames.add(winner.carName()));
+        winners.forEach(winner -> winnerNames.add(winner.getCarName()));
         System.out.println(winnerNames + WINNER_MESSAGE);
     }
 }

@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import racingcar.dto.CarDto;
 import racingcar.service.Movement;
@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    public static final String DUPLICATED_CAR_NAMES = "자동차 이름들 간 중복이 있습니다.";
+    private static final String DUPLICATED_CAR_NAMES = "자동차 이름들 간 중복이 있습니다.";
+
     private final List<Car> values;
 
     public Cars(final List<String> carNames) {
@@ -18,7 +19,10 @@ public class Cars {
     }
 
     private void validateDuplication(final List<String> carNames) {
-        if (carNames.stream().distinct().count() != carNames.size()) {
+        int numOfDuplicationRemovedCars = (int) carNames.stream()
+                .distinct()
+                .count();
+        if (numOfDuplicationRemovedCars != carNames.size()) {
             throw new IllegalArgumentException(DUPLICATED_CAR_NAMES);
         }
     }
@@ -41,6 +45,7 @@ public class Cars {
     }
 
     private boolean isHighest(final Car standardCar) {
-        return values.stream().allMatch(standardCar::isFartherThan);
+        return values.stream()
+                .allMatch(standardCar::isFartherThan);
     }
 }

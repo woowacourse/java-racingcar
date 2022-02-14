@@ -1,14 +1,14 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
-import racingcar.domain.vo.CarName;
-import racingcar.domain.vo.Distance;
+import racingcar.domain.car.vo.CarName;
+import racingcar.domain.car.vo.Distance;
 import racingcar.dto.CarDto;
 
 import java.util.Objects;
 
 public class Car {
     private static final int INITIAL_DISTANCE = 0;
-    private static final int INCREASING_UNIT = 1;
+
     private final CarName carName;
     private final Distance distance;
 
@@ -17,14 +17,12 @@ public class Car {
         distance = new Distance(INITIAL_DISTANCE);
     }
 
-    public void move(final boolean movement) {
-        if (movement) {
-            distance.increaseBy(INCREASING_UNIT);
-        }
+    public void move(final int movementValue) {
+        distance.increaseBy(movementValue);
     }
 
     public CarDto info() {
-        return new CarDto(carName.value(), distance.value());
+        return new CarDto(carName.getValue(), distance.getValue());
     }
 
     public boolean isFartherThan(final Car another) {

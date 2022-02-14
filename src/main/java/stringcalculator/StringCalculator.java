@@ -1,18 +1,21 @@
 package stringcalculator;
 
 import java.util.Arrays;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    private static final String POSITIVE_NUMBER_REGEX = "^[0-9]";
+    private static final int EMPTY_RETURN_VALUE = 0;
+    private static final String CLUE_OF_CUSTOM_DELIMITER = "//" ;
+    private static final String CUSTOM_DELIMITER_AND_EXPRESSION_DELIMITER = "\n";
+    private static final String DEFAULT_DELIMITER = ",|:";
+    private static final Pattern POSITIVE_NUMBER_PATTERN =  Pattern.compile("^[0-9]");
 
     public int calculate(final String expression) {
         if (isEmptyOrNull(expression)) {
-            return 0;
+            return EMPTY_RETURN_VALUE;
         }
-        int[] numbers = splitExpression(expression);
-        return Arrays.stream(numbers)
+        String[] numbers = splitExpression(expression);
+        return Arrays.stream(parseToInts(numbers))
                 .sum();
     }
 
@@ -20,13 +23,15 @@ public class StringCalculator {
         return expression == null || expression.isEmpty();
     }
 
-    private int[] splitExpression(String expression) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(expression);
-        if (m.find()) {
-            String customDelimiter = m.group(1);
-            return parseToInts(m.group(2).split(customDelimiter));
+    private String[] splitExpression(String expression) {
+        if (expression.startsWith(CLUE_OF_CUSTOM_DELIMITER)) {
+            int customDelimiterIndex = 0;
+            int expressionIndex = 1;
+            String[] customDelimiterAndExpression = expression.split(CUSTOM_DELIMITER_AND_EXPRESSION_DELIMITER);
+            String customDelimiter = customDelimiterAndExpression[customDelimiterIndex].substring(2);
+            return customDelimiterAndExpression[expressionIndex].split(customDelimiter);
         }
-        return parseToInts(expression.split(",|:"));
+        return expression.split(DEFAULT_DELIMITER);
     }
 
     private int[] parseToInts(final String[] tokens) {
@@ -45,6 +50,6 @@ public class StringCalculator {
 
     private boolean hasContainsNotPositiveNumber(final String[] tokens) {
         return Arrays.stream(tokens)
-                .anyMatch(token -> !token.matches(POSITIVE_NUMBER_REGEX));
+                .anyMatch(token -> !POSITIVE_NUMBER_PATTERN.matcher(token).matches());
     }
 }

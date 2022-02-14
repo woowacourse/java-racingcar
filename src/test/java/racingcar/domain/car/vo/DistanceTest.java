@@ -1,4 +1,4 @@
-package racingcar.domain.vo;
+package racingcar.domain.car.vo;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,9 +11,9 @@ class DistanceTest {
     private final Distance distance = new Distance(1);
 
     @Test
-    @DisplayName("값을 반환한다.")
+    @DisplayName("거리 값을 반환한다.")
     void value() {
-        int actual = distance.value();
+        int actual = distance.getValue();
         int expected = 1;
         assertThat(actual).isEqualTo(expected);
     }
@@ -23,7 +23,7 @@ class DistanceTest {
     void increaseBy() {
         int increasingAmount = 1;
         distance.increaseBy(increasingAmount);
-        int actual = distance.value();
+        int actual = distance.getValue();
         int expected = 2;
         assertThat(actual).isEqualTo(expected);
     }
