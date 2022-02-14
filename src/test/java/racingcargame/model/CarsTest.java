@@ -12,7 +12,7 @@ public class CarsTest {
 
 	@DisplayName("Cars 객체가 정상적으로 생성되는지 테스트")
 	@Test
-	void car_objectCreate() {
+	void createObject_Cars() {
 		List<String> carNames = List.of("토미", "제인", "데이빗");
 		Cars cars = new Cars(carNames);
 
@@ -22,5 +22,15 @@ public class CarsTest {
 			assertThat(carNames).contains(carName);
 			assertThat(carPosition).isEqualTo(0);
 		});
+	}
+
+	@DisplayName("우승자가 정상적으로 선정되는지 테스트")
+	@Test
+	void findWinner() {
+		List<String> carNames = List.of("토미", "제인", "데이빗");
+		Cars cars = new Cars(carNames, 4);
+
+		assertThat(cars.findWinner()).isEqualTo(List.of("토미", "제인", "데이빗"));
+
 	}
 }

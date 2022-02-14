@@ -16,6 +16,12 @@ public class Cars {
 			collect(Collectors.toList());
 	}
 
+	public Cars(final List<String> carNames, int carPositions) {
+		cars = carNames.stream().
+			map(carName -> new Car(carName, carPositions)).
+			collect(Collectors.toList());
+	}
+
 	void moveCars() {
 		cars.forEach(Car::moveCar);
 	}
