@@ -17,7 +17,7 @@ public class InputController {
 		return inputController;
 	}
 
-	public List<String> inputRacingCarNames() {
+	public static List<String> inputRacingCarNames() {
 		String racingCarNames = checkNothingInputInRacingCarNames(scanner.nextLine());
 		return List.of((racingCarNames).split(SEPARATOR));
 	}
