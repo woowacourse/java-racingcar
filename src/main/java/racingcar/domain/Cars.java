@@ -56,7 +56,12 @@ public class Cars {
         return cars.size();
     }
 
-    public List<String> getAllPosition() {
-        return cars.stream().map(Car::toString).collect(Collectors.toList());
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Car car : cars) {
+            stringBuilder.append(car.toString()).append("\n");
+        }
+        return stringBuilder.toString();
     }
 }
