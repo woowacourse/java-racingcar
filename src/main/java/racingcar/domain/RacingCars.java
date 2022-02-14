@@ -84,9 +84,6 @@ public class RacingCars {
     }
 
     private RacingCar getGreaterRacingCar(RacingCar racingCar, RacingCar anyWinner) {
-        if(racingCar.compareTo(anyWinner) > 0) {
-            return racingCar;
-        }
-        return anyWinner;
+        return racingCar.compareTo(anyWinner) > 0 ? racingCar : anyWinner;
     }
 }
