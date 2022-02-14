@@ -1,7 +1,9 @@
 package racingcar.controller;
 
+import java.util.Arrays;
+
+import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
-import racingcar.model.car.Names;
 import racingcar.model.trycount.TryCount;
 import racingcar.util.RandomNumber;
 import racingcar.view.InputView;
@@ -17,8 +19,9 @@ public class RaceController {
 	public void setUpCars() {
 		try {
 			String input = InputView.inputNamesUi();
-			Names names = Names.from(input);
-			cars = Cars.from(names);
+			Arrays.stream(input.split(","))
+				.map(Car::from)
+				.forEach(cars::add);
 		} catch (IllegalArgumentException exception) {
 			OutputView.printErrorUi(exception);
 			setUpCars();

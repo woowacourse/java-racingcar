@@ -19,20 +19,13 @@ public class Cars {
 		this.cars = cars;
 	}
 
-	public static Cars from(Names names) {
-		List<Car> cars = names.get().stream()
-			.map((name) -> Car.from(name.toString()))
-			.collect(Collectors.toList());
-
-		return new Cars(cars);
-	}
-
 	public static Cars create() {
 		return new Cars(new ArrayList<>());
 	}
 
 	public void add(Car car) {
 		if (cars.contains(car)) {
+			cars.clear();
 			throw new IllegalArgumentException("이미 존재하는 자동차 이름입니다.");
 		}
 
