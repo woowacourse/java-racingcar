@@ -4,13 +4,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Splitter {
-	private static final String DEFAULT_DELIMITERS = ",|:";
+	private static final String DEFAULT_DELIMITERS = "[,:]";
 	private static final int DELIMITER_INDEX = 1;
 	private static final int INPUT_INDEX = 2;
 	private static final String CUSTOM_DELIMITER_PREFIX = "//";
-	private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
 	private static final String SPECIAL_CUSTOM_DELIMITER_PREFIX = "\\";
 	private static final String SPECIAL_CUSTOM_DELIMITERS = "+*^";
+	private static final Pattern pattern = Pattern.compile("//(.)\n(.*)");
 
 	public static String[] split(String input) {
 		if (isCustomInput(input)) {
@@ -20,7 +20,7 @@ public class Splitter {
 	}
 
 	public static String[] splitCustomDelimiter(String input) {
-		Matcher m = getMatcher(input);
+		Matcher m = pattern.matcher(input);
 		validMatchRegEx(m);
 		String customDelimiter = m.group(DELIMITER_INDEX);
 		if (isSpecialDelimiter(customDelimiter)) {
@@ -33,10 +33,6 @@ public class Splitter {
 		if (!m.find()) {
 			throw new RuntimeException();
 		}
-	}
-
-	private static Matcher getMatcher(String input) {
-		return Pattern.compile(CUSTOM_DELIMITER_REGEX).matcher(input);
 	}
 
 	private static boolean isSpecialDelimiter(String customDelimiter) {
