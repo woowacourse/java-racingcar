@@ -32,11 +32,7 @@ public class StringCalculator {
 	}
 
 	private static int addAllNumber(List<String> numbers) {
-		return numbers.stream().mapToInt(number -> {
-			int intValue = toInts(number);
-			validateNegative(intValue);
-			return intValue;
-		}).sum();
+		return numbers.stream().mapToInt(StringCalculator::toInts).sum();
 	}
 
 	private static String checkCustomDelimiter(String input) {
@@ -54,11 +50,17 @@ public class StringCalculator {
 	}
 
 	private static int toInts(String number) {
+		validateNumber(number);
 		return Integer.parseInt(number);
 	}
 
-	private static void validateNegative(int num) {
-		if (num < 0) {
+	private static void validateNumber(String number) {
+		try {
+			Integer.parseInt(number);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("숫자가 아닌 문자는 허용되지 않습니다.");
+		}
+		if (Integer.parseInt(number) < 0) {
 			throw new IllegalArgumentException("음수는 허용되지 않습니다.");
 		}
 	}
