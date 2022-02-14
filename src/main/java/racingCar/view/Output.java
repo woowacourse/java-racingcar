@@ -13,8 +13,8 @@ public class Output {
 		System.out.println(RESULT_FRONT_MESSAGE);
 	}
 
-	public static void printRoundResult(RacingCars cars) {
-		System.out.println(cars.getRoundResult());
+	public static void printRoundResult(String result) {
+		System.out.println(result);
 	}
 
 	public static void printWinner(List<String> winner) {

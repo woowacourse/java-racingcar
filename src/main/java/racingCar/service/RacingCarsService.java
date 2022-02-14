@@ -33,7 +33,7 @@ public class RacingCarsService {
 	public void goRound() {
 		cars.goRound();
 		roundCount.goRound();
-		Output.printRoundResult(cars);
+		Output.printRoundResult(cars.getRoundResult());
 	}
 
 	public List<String> findWinner() {
