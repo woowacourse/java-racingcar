@@ -1,13 +1,17 @@
 package racingcar.model.car;
 
+import racingcar.util.RandomGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    public static final int DEFAULT_POSITION = 0;
+    public static final int RANDOM_MIN_BOUND = 0;
+    public static final int RANDOM_MAX_BOUND = 9;
     private static final String TO_STRING_DELIMITER = "\n";
-
     private List<Car> cars;
 
     private Cars(List<Car> cars) {
@@ -16,7 +20,7 @@ public class Cars {
 
     public static Cars from(Names names) {
         List<Car> cars = names.get().stream()
-                .map((name) -> Car.from(name.toString()))
+                .map((name) -> Car.of(name.toString(), DEFAULT_POSITION))
                 .collect(Collectors.toList());
 
         return new Cars(cars);
@@ -24,6 +28,20 @@ public class Cars {
 
     public static Cars create() {
         return new Cars(new ArrayList<>());
+    }
+
+    private Position getFirstPosition() {
+        if (cars.isEmpty()) {
+            throw new IllegalArgumentException("아무 차량도 추가되지 않았습니다.");
+        }
+        Collections.sort(cars);
+        return cars.get(0).getPosition();
+    }
+
+    private List<Car> getCarsByPosition(Position position) {
+        return cars.stream()
+                .filter((car) -> car.getPosition().equals(position))
+                .collect(Collectors.toList());
     }
 
     public void add(Car car) {
@@ -35,21 +53,15 @@ public class Cars {
     }
 
     public void moveAll() {
-        cars.forEach(Car::move);
+        cars.forEach((car) -> car.move(
+                RandomGenerator.createRandom(RANDOM_MIN_BOUND, RANDOM_MAX_BOUND))
+        );
     }
 
-    public Position getFirstPosition() {
-        if (cars.isEmpty()) {
-            throw new IllegalArgumentException("아무 차량도 추가되지 않았습니다.");
-        }
-        Collections.sort(cars);
-        return cars.get(0).getPosition();
-    }
-
-    public List<Car> getCarsByPosition(Position position) {
-        return cars.stream()
-                .filter((car) -> car.getPosition().equals(position))
-                .collect(Collectors.toList());
+    public Names getWinnersNames() {
+        return Names.from(getCarsByPosition(getFirstPosition()).stream()
+                .map(Car::getName)
+                .collect(Collectors.toList()));
     }
 
     @Override
@@ -57,11 +69,5 @@ public class Cars {
         return cars.stream()
                 .map(Car::toString)
                 .collect(Collectors.joining(TO_STRING_DELIMITER));
-    }
-
-    public Names getWinnersNames() {
-        return Names.from(getCarsByPosition(getFirstPosition()).stream()
-                .map(Car::getName)
-                .collect(Collectors.toList()));
     }
 }
