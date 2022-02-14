@@ -7,7 +7,7 @@ import racingcargame.view.Display;
 
 public class GameController {
 	private static final GameController gameController = new GameController();
-	private static InputController inputController = InputController.getInputController();
+	private static final InputController inputController = InputController.getInputController();
 
 	private GameController() {
 	}
@@ -26,12 +26,12 @@ public class GameController {
 
 	private RacingCarGame setUpGame() {
 		Display.showCarNamesInputGuideMessage();
-		List<String> carNames = inputController.inputCarName();
+		List<String> racingCarNames = inputController.inputCarName();
 
 		Display.showRaceCountInputGuideMessage();
 		int raceCount = inputController.inputRaceCount();
 
-		return new RacingCarGame(carNames, raceCount);
+		return new RacingCarGame(racingCarNames, raceCount);
 	}
 
 	private void playGame(final RacingCarGame racingCarGame) {
