@@ -15,7 +15,7 @@ public class Round {
         return new Round(round);
     }
 
-    public boolean moreThanZero() {
+    public boolean isPositiveNumber() {
         return this.roundNum > ZERO;
     }
 

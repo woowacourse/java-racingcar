@@ -14,7 +14,7 @@ public class RacingGameController {
             new RandomNumberGeneratePolicy()
         );
         OutputView.printRacingRecordHeadLine();
-        while (racingGame.isContinue()) {
+        while (racingGame.isFinished()) {
             RacingRecord racingRecord = racingGame.race();
             OutputView.printRacingRecord(racingRecord);
         }
