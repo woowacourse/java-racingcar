@@ -7,15 +7,19 @@ import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
 	@Test
-	void split() {
-		String testString1 = "1,2";
-		String testString2 = "1";
+	void splitOnlyNumber() {
+		String testString = "1";
+		String[] result = testString.split(",");
 
-		String[] result1 = testString1.split(",");
-		String[] result2 = testString2.split(",");
+		assertThat(result).containsExactly("1");
+	}
+
+	@Test
+	void splitSeveralNumber() {
+		String testString = "1,2";
+		String[] result1 = testString.split(",");
 
 		assertThat(result1).containsExactly("1", "2");
-		assertThat(result2).containsExactly("1");
 	}
 
 	@Test
