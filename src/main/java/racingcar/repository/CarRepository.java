@@ -12,9 +12,8 @@ public class CarRepository {
 
 	private static final List<Car> cars = new ArrayList<>();
 
-	public List<Car> add(List<Car> cars) {
+	public void add(List<Car> cars) {
 		CarRepository.cars.addAll(cars);
-		return cars;
 	}
 
 	public List<Car> findCars() {

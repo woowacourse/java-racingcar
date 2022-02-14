@@ -18,7 +18,7 @@ public class InputValidatorTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = {"abcde,dfsd", "abcm,er"})
+	@ValueSource(strings = {"abcde,dfsd", "abcm"})
 	public void 자동차_이름_정상_입력(String name) {
 		InputValidator.ofCarNamesInput(name);
 	}

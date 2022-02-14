@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.validator.CarValidator;
+
 public class Car implements Comparable<Car> {
 
 	private static final int INITIAL_POSITION = 0;
@@ -19,10 +21,14 @@ public class Car implements Comparable<Car> {
 	}
 
 	public static Car from(String name) {
+		CarValidator.validateNameLength(name);
+
 		return new Car(name);
 	}
 
 	public static Car of(String name, int position) {
+		CarValidator.validateNameLength(name);
+
 		return new Car(name, position);
 	}
 
