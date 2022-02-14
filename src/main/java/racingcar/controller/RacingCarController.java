@@ -12,11 +12,10 @@ import racingcar.view.OutputView;
 
 public class RacingCarController {
 	public static final String CAR_NAME_DELIMITER = ",";
-	public final Cars cars = new Cars();
 	public final WinnerNames winnerNames = new WinnerNames();
 
 	public void playGame() {
-		cars.generateCars(getCarNames(InputView.inputCarNames()));
+		Cars cars = new Cars((getCarNames(InputView.inputCarNames())));
 		int trialCount = getTrialCount(InputView.inputTrials());
 
 		OutputView.printResultMessage();

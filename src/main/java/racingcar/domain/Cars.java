@@ -9,9 +9,11 @@ import racingcar.util.BoundedRandomNumberGenerator;
 public class Cars {
 	private static final int MAX_BOUND = 9;
 	private static final int MIN_BOUND = 0;
-	private final List<Car> cars = new ArrayList<>();
 
-	public void generateCars(List<String> carNames) {
+	private final List<Car> cars;
+
+	public Cars(List<String> carNames) {
+		cars = new ArrayList<>();
 		for (String carName : carNames) {
 			cars.add(new Car(carName, new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND)));
 		}

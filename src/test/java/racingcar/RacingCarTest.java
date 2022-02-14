@@ -2,6 +2,7 @@ package racingcar;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -17,9 +18,6 @@ import racingcar.util.BoundedRandomNumberGenerator;
 @SuppressWarnings("NonAsciiCharacters")
 public class RacingCarTest {
 	public RacingCarController racingCarController = new RacingCarController();
-	public BoundedRandomNumberGenerator randomNumberGenerator = new BoundedRandomNumberGenerator(9, 0);
-	public Cars cars = new Cars();
-	public WinnerNames winnerNames = new WinnerNames();
 
 	@Test
 	public void 자동차_이름_분리해서_가져오기_테스트() {
@@ -88,7 +86,7 @@ public class RacingCarTest {
 
 	@Test
 	public void 랜덤값_범위_테스트() {
-		int number = randomNumberGenerator.generate();
+		int number = new BoundedRandomNumberGenerator(9, 0).generate();
 		assertThat(0 <= number && number <= 9).isEqualTo(true);
 	}
 
@@ -106,18 +104,18 @@ public class RacingCarTest {
 
 	@Test
 	public void 자동차_생성_테스트() {
-		List<String> carNames = racingCarController.getCarNames("이브,클레이,포비");
-		cars.generateCars(carNames);
+		Cars cars = new Cars(racingCarController.getCarNames("이브,클레이,포비"));
 		assertThat(cars.getSize()).isEqualTo(3);
 	}
 
 	@Test
 	public void 최종_우승자_찾기_테스트() {
+		Cars cars = new Cars(Collections.emptyList());
 		cars.addCar(new Car("이브", new BoundedRandomNumberGenerator(9, 4)));
 		cars.addCar(new Car("클레이", new BoundedRandomNumberGenerator(3, 0)));
 		cars.addCar(new Car("포비", new BoundedRandomNumberGenerator(9, 4)));
 		cars.executeCarRacing();
-		List<String> winners = cars.findWinners(winnerNames);
+		List<String> winners = cars.findWinners(new WinnerNames());
 
 		assertThat(winners.size()).isEqualTo(2);
 		assertThat(winners).contains("이브", "포비");
