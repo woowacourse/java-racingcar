@@ -21,10 +21,6 @@ public class Car implements Comparable<Car> {
 		return position;
 	}
 
-	void setPosition(final int position) {
-		this.position = position;
-	}
-
 	void moveCar() {
 		if (canMoveCar()) {
 			position++;
