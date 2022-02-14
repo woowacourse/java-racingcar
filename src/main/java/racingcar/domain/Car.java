@@ -17,14 +17,6 @@ public class Car {
         return new Car(name);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
     public boolean isSamePosition(int position) {
         return this.position == position;
     }
@@ -33,5 +25,13 @@ public class Car {
         if (randomNumber >= FORWARD_BOUNDARY_NUMBER) {
             position++;
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
