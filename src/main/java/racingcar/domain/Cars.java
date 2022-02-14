@@ -13,7 +13,9 @@ public class Cars {
     private final RandomNumberGenerator randomNumberGenerator;
 
     public Cars(List<String> names, RandomNumberGenerator randomNumberGenerator) {
-        cars = names.stream().map(Car::createByName).collect(toList());
+        cars = names.stream()
+            .map(Car::createByName)
+            .collect(toList());
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
@@ -37,6 +39,8 @@ public class Cars {
     }
 
     private List<Car> getWinners(final int mostFarPosition) {
-        return cars.stream().filter(c -> c.isSamePosition(mostFarPosition)).collect(toList());
+        return cars.stream()
+            .filter(c -> c.isSamePosition(mostFarPosition))
+            .collect(toList());
     }
 }
