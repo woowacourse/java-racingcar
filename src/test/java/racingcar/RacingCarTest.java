@@ -11,15 +11,20 @@ import racingcar.controller.RacingCarGame;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.GameTurn;
+import racingcar.service.CheckingService;
 
 public class RacingCarTest {
 	RacingCarGame racingCarGame = new RacingCarGame();
 
 	@Test
-	public void 자동차_이름_공백() throws Exception {
-		assertThatThrownBy(() -> racingCarGame.checkCarNamesBlank(""))
+	public void 자동차_이름_공백_빈칸() throws Exception {
+		assertThatThrownBy(() -> CheckingService.checkCarNamesBlank(""))
 			.isInstanceOf(IllegalArgumentException.class);
-		assertThatThrownBy(() -> racingCarGame.checkCarNamesBlank(null))
+	}
+
+	@Test
+	public void 자동차_이름_공백_NULL() {
+		assertThatThrownBy(() -> CheckingService.checkCarNamesBlank(null))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -31,7 +36,7 @@ public class RacingCarTest {
 
 	@Test
 	public void 자동차_이름_예외처리() throws Exception {
-		assertThatThrownBy(() -> racingCarGame.checkCarNamesLength(Arrays.asList("배카라쿠배네", "아스피")))
+		assertThatThrownBy(() -> CheckingService.checkCarNamesLength(Arrays.asList("배카라쿠배네", "아스피")))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 

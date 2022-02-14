@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.GameTurn;
+import racingcar.service.CheckingService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -18,6 +19,7 @@ public class RacingCarGame {
 		MAX_CAR_NAME_LENGTH);
 	public static final String GAME_TURN_NUMBER_ERROR_MESSAGE = "[Error] 숫자를 입력하세요.";
 	public static final String RANDOM_NUMBER_REGEX = "[1-9]\\d*";
+
 	private InputView inputView = new InputView();
 	private OutputView outputView = new OutputView();
 	private Cars cars;
@@ -37,8 +39,8 @@ public class RacingCarGame {
 		String inputCarNames = inputView.getCarNames();
 		List<String> carNames = splitCarNames(inputCarNames);
 		try {
-			checkCarNamesBlank(inputCarNames);
-			checkCarNamesLength(carNames);
+			CheckingService.checkCarNamesBlank(inputCarNames);
+			CheckingService.checkCarNamesLength(carNames);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return getCarNames();
@@ -51,7 +53,7 @@ public class RacingCarGame {
 		return Arrays.asList(carNames.split(COMMA_DELIMITER));
 	}
 
-	public void checkCarNamesBlank(String input) {
+	/*public void checkCarNamesBlank(String input) {
 		if (input == null || input.isEmpty()) {
 			throw new IllegalArgumentException(NULL_EMPTY_CAR_NAME_ERROR_MESSAGE);
 		}
@@ -62,7 +64,7 @@ public class RacingCarGame {
 			.anyMatch(carName -> carName.length() > MAX_CAR_NAME_LENGTH)) {
 			throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR_MESSAGE);
 		}
-	}
+	}*/
 
 	public void saveGameTurn() {
 		gameTurn = new GameTurn(getGameTurn());
@@ -87,7 +89,7 @@ public class RacingCarGame {
 
 	public void moveCars() {
 		outputView.printResultSentence();
-		
+
 		while (gameTurn.isPositive()) {
 			gameTurn.removeTurn();
 			cars.moveCars();
