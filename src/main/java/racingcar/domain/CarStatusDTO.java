@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.Map;
-
 public class CarStatusDTO {
 	String carName;
 	int position;
