@@ -46,7 +46,6 @@ public class Cars {
         .orElseThrow(() -> new NoSuchElementException(NO_SUCH_CAR_ERROR_MESSAGE));
     return new Winners(cars.stream()
         .filter(car -> car.isSamePosition(maxPositionCar))
-        .map(Car::getName)
         .collect(Collectors.toList()));
   }
 
