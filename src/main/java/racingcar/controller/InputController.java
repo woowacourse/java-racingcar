@@ -13,7 +13,7 @@ public class InputController {
     }
 
     public static int inputTryNum() {
-        return saveTryNumber();
+        return saveTryNum();
     }
 
     private static List<Car> saveCarList() {
@@ -41,7 +41,7 @@ public class InputController {
         return carList;
     }
 
-    private static int saveTryNumber() {
+    private static int saveTryNum() {
         while (true) {
             String tryValue = Input.inputTry();
 
