@@ -35,7 +35,7 @@ public class RacingCarsController {
 		}
 	}
 
-	public void saveCarNames(String carNames) {
+	private void saveCarNames(String carNames) {
 		try {
 			racingCarService.saveCars(carNames);
 		} catch (Exception exception) {
