@@ -5,7 +5,7 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import racingcar.exception.CarNamesNotOnlyCommaException;
+import racingcar.exception.InvalidNameInputException;
 
 public class CarsTest {
 
@@ -25,7 +25,7 @@ public class CarsTest {
         String input = ",,,";
         Assertions.assertThatThrownBy(() -> {
                 new Cars(input);
-            }).isInstanceOf(CarNamesNotOnlyCommaException.class)
+            }).isInstanceOf(InvalidNameInputException.class)
             .hasMessageContaining("자동차 이름에 ,만 사용할 수 없습니다.");
     }
 }

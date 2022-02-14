@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.domain.movement.MovementStrategy;
-import racingcar.exception.CarNamesNotOnlyCommaException;
+import racingcar.exception.InvalidNameInputException;
 
 public class Cars {
 
-    private static final int MIN_LENGTH = 0;
+    private static final int MINIMUM_CAR_QUANTITY = 0;
     private static final String DELIMITER = ",";
 
     private final List<Car> cars;
@@ -27,8 +27,8 @@ public class Cars {
 
     private String[] splitByDelimiter(String names) {
         String[] carNames = names.split(DELIMITER);
-        if (carNames.length == MIN_LENGTH) {
-            throw new CarNamesNotOnlyCommaException("자동차 이름에 ,만 사용할 수 없습니다.");
+        if (carNames.length == MINIMUM_CAR_QUANTITY) {
+            throw new InvalidNameInputException("입력된 자동차 목록이 유효하지 않습니다.");
         }
         return carNames;
     }
