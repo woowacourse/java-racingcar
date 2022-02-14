@@ -1,31 +1,16 @@
-package racingcar;
+package racingcar.validator;
 
 import static org.assertj.core.api.Assertions.*;
-
-import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.controller.RacingCarController;
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.WinnerNames;
-import racingcar.util.BoundedRandomNumberGenerator;
 
 @SuppressWarnings("NonAsciiCharacters")
-public class RacingCarTest {
+public class ValidatorTest {
 	public RacingCarController racingCarController = new RacingCarController();
-
-	@Test
-	public void 자동차_이름_분리해서_가져오기_테스트() {
-		List<String> carNames = racingCarController.getCarNames("이브,클레이,포비");
-		assertThat(carNames.get(0)).isEqualTo("이브");
-		assertThat(carNames.get(1)).isEqualTo("클레이");
-		assertThat(carNames.get(2)).isEqualTo("포비");
-	}
 
 	@Test
 	public void 빈_문자열_입력_테스트() {
@@ -82,45 +67,5 @@ public class RacingCarTest {
 		assertThatThrownBy(() -> racingCarController.getTrialCount(trial))
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("시도 횟수가 음수나 0이 될 수 없습니다.");
-	}
-
-	@Test
-	public void 랜덤값_범위_테스트() {
-		int number = new BoundedRandomNumberGenerator(9, 0).generate();
-		assertThat(0 <= number && number <= 9).isEqualTo(true);
-	}
-
-	@ParameterizedTest
-	@ValueSource(ints = {0, 1, 2, 3})
-	public void 자동차_멈춤_테스트(int input) {
-		Car car = new Car("클레이");
-		assertThat(car.isMovable(input)).isFalse();
-	}
-
-	@ParameterizedTest
-	@ValueSource(ints = {4, 5, 6, 7, 8, 9})
-	public void 자동차_전진_테스트(int input) {
-		Car car = new Car("클레이");
-		assertThat(car.isMovable(input)).isTrue();
-	}
-
-	@Test
-	public void 자동차_생성_테스트() {
-		Cars cars = new Cars(racingCarController.getCarNames("이브,클레이,포비"));
-		assertThat(cars.getSize()).isEqualTo(3);
-	}
-
-	@Test
-	public void 최종_우승자_찾기_테스트() {
-		Cars cars = new Cars(Collections.emptyList());
-		cars.addCar(new Car("이브"));
-		cars.addCar(new Car("클레이"));
-		cars.executeCarRacing(new BoundedRandomNumberGenerator(9, 4));
-		cars.addCar(new Car("포비"));
-		cars.executeCarRacing(new BoundedRandomNumberGenerator(3, 0));
-		List<String> winners = cars.findWinners(new WinnerNames());
-
-		assertThat(winners.size()).isEqualTo(2);
-		assertThat(winners).contains("이브", "클레이");
 	}
 }
