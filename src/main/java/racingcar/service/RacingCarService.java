@@ -9,8 +9,6 @@ import racingcar.domain.round.Round;
 
 public class RacingCarService {
 
-    private static final int END_ROUND = 0;
-
     private final Cars cars;
     private final Round round;
 
@@ -20,7 +18,7 @@ public class RacingCarService {
     }
 
     public boolean isEnd() {
-        return round.isSame(END_ROUND);
+        return round.isEnd();
     }
 
     public Cars run() {

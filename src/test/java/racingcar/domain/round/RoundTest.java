@@ -11,7 +11,7 @@ public class RoundTest {
     @Test
     void roundWithPositiveNumber() {
         Round round = new Round("3");
-        Assertions.assertThat(round.isSame(3)).isTrue();
+        Assertions.assertThat(round.isEnd()).isFalse();
     }
 
     @Test

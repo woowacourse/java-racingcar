@@ -6,6 +6,7 @@ import racingcar.utils.IntegerUtils;
 
 public class Round {
 
+    private static final int END_ROUND = 0;
     private static final int MIN_NUMBER = 1;
     public static final String ERROR_MESSAGE = "1 이상의 양수를 입력하세요.";
 
@@ -27,8 +28,8 @@ public class Round {
     }
 
 
-    public boolean isSame(int number) {
-        return round == number;
+    public boolean isEnd() {
+        return round <= END_ROUND;
     }
 
     public void decrease() {
