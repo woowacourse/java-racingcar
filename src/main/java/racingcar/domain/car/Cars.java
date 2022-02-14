@@ -39,6 +39,12 @@ public class Cars {
             .collect(Collectors.toList());
     }
 
+    public void move(MovementStrategy strategy) {
+        for (Car car : cars) {
+            car.move(strategy);
+        }
+    }
+
     public List<Car> getCarList() {
         return Collections.unmodifiableList(cars);
     }
@@ -55,11 +61,5 @@ public class Cars {
             .mapToInt(Car::getPosition)
             .max()
             .orElse(-1);
-    }
-
-    public void move(MovementStrategy strategy) {
-        for (Car car : cars) {
-            car.move(strategy);
-        }
     }
 }
