@@ -1,12 +1,15 @@
 package racingcar.view;
 
 import racingcar.domain.Attempt;
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.validation.CarValidator;
 import racingcar.domain.validation.Validator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -22,8 +25,8 @@ public class Input {
 			Output.getCarName();
 			String inputValue = scan.nextLine();
 			validator.checkBlank(inputValue, CAR_BLANK_ERROR_MESSAGE);
-			return new Cars(
-				inputValue.split(DELIMITER));
+			String[] names = inputValue.split(DELIMITER);
+			return new Cars(toCars(names));
 		} catch (IllegalArgumentException e) {
 			Output.errorMessage(e.getMessage());
 			return carName();
@@ -39,5 +42,18 @@ public class Input {
 			Output.errorMessage(e.getMessage());
 			return attempt();
 		}
+	}
+
+	private List<Car> toCars(String[] names) {
+		List<Car> cars = new ArrayList<>();
+
+		for (String name : names) {
+			cars.add(createCar(name));
+		}
+		return cars;
+	}
+
+	private Car createCar(String name) {
+		return new Car(name.trim());
 	}
 }

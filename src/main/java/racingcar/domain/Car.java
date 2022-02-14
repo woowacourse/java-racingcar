@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import java.util.Random;
+import java.util.Objects;
 
 import racingcar.domain.validation.CarValidator;
 import racingcar.service.StepGenerator;
@@ -18,6 +18,13 @@ public class Car implements Comparable<Car> {
 		CarValidator validator = new CarValidator();
 		validator.carValid(name);
 		this.name = name;
+	}
+
+	public Car(String name, int position) {
+		CarValidator validator = new CarValidator();
+		validator.carValid(name);
+		this.name = name;
+		this.position = position;
 	}
 
 	private void move() {
@@ -58,5 +65,19 @@ public class Car implements Comparable<Car> {
 	@Override
 	public int compareTo(Car car) {
 		return this.position - car.position;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Car) {
+			Car car = (Car)o;
+			return car.name.equals(name);
+		}
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
 	}
 }
