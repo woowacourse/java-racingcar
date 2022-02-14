@@ -1,5 +1,7 @@
 package racingcar.util;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,17 +21,14 @@ public class RandomUtilsTest {
     @DisplayName("generateNumber 메서드는 0도 반환할 수 있다.")
     @Test
     void generateNumber_includeZero() {
-        boolean foundZero = false;
+        Set<Integer> generatedNumbers = new HashSet<>();
 
         for (int i = 0; i < 10000; i++) {
             int randomNum = RandomUtils.generateNumber();
-            if (randomNum == 0) {
-                foundZero = true;
-                break;
-            }
+            generatedNumbers.add(randomNum);
         }
 
-        assertThat(foundZero).isTrue();
+        assertThat(generatedNumbers.contains(0)).isTrue();
     }
 
     @DisplayName("generateNumber 메서드는 10을 반환하지 않는다.")
