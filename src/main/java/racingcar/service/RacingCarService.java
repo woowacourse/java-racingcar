@@ -18,14 +18,14 @@ public class RacingCarService {
 		cars.forEach(Car::decideMove);
 	}
 
-	public void saveCars(String carsNames) throws Exception {
-		List<String> carNameList = Arrays.asList(Convertor.separateNamesByDelimiter(carsNames));
-		NameValidator.checkNameList(carNameList);
-		save(carNameList);
+	public void saveCars(String inputCarNames) {
+		List<String> carNames = Arrays.asList(Convertor.separateNamesByDelimiter(inputCarNames));
+		NameValidator.checkNameList(carNames);
+		save(carNames);
 	}
 
-	private void save(List<String> carNameList) throws Exception {
-		for (String name : carNameList) {
+	private void save(List<String> carNames) {
+		for (String name : carNames) {
 			cars.add(new Car(name, 0));
 		}
 	}
@@ -43,7 +43,7 @@ public class RacingCarService {
 	public List<String> findWinner() {
 		int maxPosition = findMaxPosition();
 		return cars.stream()
-			.filter(car -> car.isWinner(maxPosition))
+			.filter(car -> car.matchPosition(maxPosition))
 			.map(Car::getName)
 			.collect(Collectors.toUnmodifiableList());
 	}

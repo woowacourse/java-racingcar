@@ -10,7 +10,7 @@ public class Car {
 	private final String name;
 	private int position;
 
-	public Car(String name, int position) throws Exception {
+	public Car(String name, int position) {
 		NameValidator.checkCarName(name);
 		this.name = name;
 		this.position = position;
@@ -38,8 +38,8 @@ public class Car {
 		return position;
 	}
 
-	public boolean isWinner(int maxPosition) {
-		return position == maxPosition;
+	public boolean matchPosition(int position) {
+		return this.position == position;
 	}
 
 	public boolean isOverMaxPosition(int maxPosition) {

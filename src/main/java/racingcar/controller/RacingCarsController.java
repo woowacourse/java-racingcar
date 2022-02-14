@@ -18,9 +18,9 @@ public class RacingCarsController {
 
 	public void requestCarsName() {
 		try {
-			String carsNames = Input.inputCarsName();
-			NameValidator.checkNull(carsNames);
-			racingCarService.saveCars(carsNames);
+			String carNames = Input.inputCarsName();
+			NameValidator.checkNull(carNames);
+			racingCarService.saveCars(carNames);
 		} catch (Exception exception) {
 			Output.printError(exception.getMessage());
 			racingCarService.resetCars();
@@ -30,9 +30,9 @@ public class RacingCarsController {
 
 	public void requestCount() {
 		try {
-			String countString = Input.inputCount();
-			CountValidator.checkInputString(countString);
-			this.roundCount = Convertor.convertStringToInteger(countString);
+			String count = Input.inputCount();
+			CountValidator.checkInputString(count);
+			this.roundCount = Convertor.convertStringToInteger(count);
 			CountValidator.checkCountIsZero(roundCount);
 		} catch (Exception exception) {
 			Output.printError(exception.getMessage());
@@ -40,7 +40,7 @@ public class RacingCarsController {
 		}
 	}
 
-	public void startGame() throws Exception {
+	public void startGame() {
 		printResultMessage();
 		runGame();
 	}
