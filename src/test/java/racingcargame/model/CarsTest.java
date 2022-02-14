@@ -2,7 +2,6 @@ package racingcargame.model;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
