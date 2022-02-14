@@ -13,6 +13,12 @@ public class MidtermResult {
         this.cars = cars;
     }
 
+    public List<String> getCarNames() {
+        return cars.stream()
+                .map(Car::getName)
+                .collect(toList());
+    }
+
     public int getPositionByName(String name) {
         return findCarByName(name).getPosition();
     }
@@ -22,11 +28,5 @@ public class MidtermResult {
                 .filter(c -> c.getName().equals(name))
                 .findFirst()
                 .get();
-    }
-
-    public List<String> getCarNames() {
-        return cars.stream()
-                .map(Car::getName)
-                .collect(toList());
     }
 }
