@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import racingCar.model.Car;
 import racingCar.model.RoundCount;
 import racingCar.model.RacingCars;
 import racingCar.utlis.Util;
@@ -33,10 +34,10 @@ public class RacingCarsService {
 	public void goRound() {
 		cars.goRound();
 		roundCount.goRound();
-		Output.printRoundResult(cars.getRoundResult());
+		Output.printRoundResult(cars);
 	}
 
-	public List<String> getWinnerCars() {
+	public List<Car> getWinnerCars() {
 		return cars.getSamePositionCars(cars.getMaxPosition());
 	}
 }

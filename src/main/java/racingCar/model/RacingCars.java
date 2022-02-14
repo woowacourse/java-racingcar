@@ -39,14 +39,6 @@ public class RacingCars {
 		}
 	}
 
-	public String getRoundResult() {
-		StringBuilder result = new StringBuilder();
-		for (Car car : cars) {
-			result.append(car.getStateString());
-		}
-		return result.toString();
-	}
-
 	public int getMaxPosition() {
 		ArrayList<Integer> positions = new ArrayList<>();
 		for (Car car : cars) {
@@ -55,10 +47,13 @@ public class RacingCars {
 		return Util.getMax(positions);
 	}
 
-	public List<String> getSamePositionCars(int position) {
+	public List<Car> getSamePositionCars(int position) {
 		return cars.stream()
 			.filter(car -> car.position.isSame(position))
-			.map(Car::getName)
 			.collect(Collectors.toList());
+	}
+
+	public List<Car> get() {
+		return cars;
 	}
 }

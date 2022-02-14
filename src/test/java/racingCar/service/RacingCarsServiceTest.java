@@ -44,7 +44,7 @@ class RacingCarsServiceTest {
 		RacingCars cars = new RacingCars(new ArrayList<>(Arrays.asList("juri", "hunch")));
 		Car winCar = new Car("pobi");
 		cars.addCar(winCar);
-		ArrayList<String> result = new ArrayList<>(List.of("pobi"));
+		ArrayList<Car> result = new ArrayList<>(List.of(winCar));
 
 		//when
 		for (int i = 0; i < expectMaxPosition; i++) {
