@@ -15,7 +15,7 @@ public class RacingGame {
     private final String SIGN_OF_CAR_NAME = ",";
 
     private Set<Car> cars = new HashSet<>();
-    private int totalAttempt;
+    private int totalAttempt = 0;
 
     public void initCarNames(String carNames) {
         String[] names = carNames.split(SIGN_OF_CAR_NAME);
