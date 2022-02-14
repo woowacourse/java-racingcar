@@ -30,7 +30,7 @@ public class Cars {
 			.orElseThrow(NoSuchElementException::new);
 
 		return cars.stream()
-			.filter(car -> car.isMaxPosition(maxPosition))
+			.filter(car -> car.isSamePosition(maxPosition))
 			.map(Car::getName)
 			.collect(Collectors.toList());
 	}
