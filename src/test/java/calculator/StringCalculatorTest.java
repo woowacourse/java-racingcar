@@ -52,4 +52,10 @@ public class StringCalculatorTest {
 		assertThat(result).isEqualTo(10);
 	}
 
+	@Test
+	@DisplayName("숫자가 아닌 문자가 입력된 경우 오류 발생")
+	public void splitAndSum_문자입력() {
+		assertThatThrownBy(() -> StringCalculator.splitAndSum("p"))
+				.isInstanceOf(RuntimeException.class);
+	}
 }
