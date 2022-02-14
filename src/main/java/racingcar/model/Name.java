@@ -1,7 +1,6 @@
 package racingcar.model;
 
 import java.util.Objects;
-
 import racingcar.message.ErrorMessages;
 
 public class Name {
@@ -10,8 +9,8 @@ public class Name {
     private final String name;
 
     public Name(String name) {
+        validate(name);
         this.name = name;
-        validate();
     }
 
     @Override
@@ -19,18 +18,18 @@ public class Name {
         return this.name;
     }
 
-    private void validate() {
-        validateNotEmpty();
-        validateLength();
+    private void validate(String name) {
+        validateNotEmpty(name);
+        validateLength(name);
     }
 
-    private void validateNotEmpty() {
+    private void validateNotEmpty(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException(ErrorMessages.EMPTY_NAME);
         }
     }
 
-    private void validateLength() {
+    private void validateLength(String name) {
         if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(ErrorMessages.LONG_NAME);
         }
