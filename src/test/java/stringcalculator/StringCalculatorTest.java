@@ -1,6 +1,5 @@
 package stringcalculator;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,134 +10,48 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
-    @DisplayName("입력 문자열이 null 또는 빈 문자열인지 검사")
+    public static final char DELIMITER = ' ';
+
+    @DisplayName("null 또는 빈 문자가 입력되었을 경우 0을 반환한다")
     @Test
-    void isNullOrEmpty() {
-        assertThat(StringCalculator.isNullOrEmpty(null)).isTrue();
-        assertThat(StringCalculator.isNullOrEmpty("")).isTrue();
-        assertThat(StringCalculator.isNullOrEmpty("abc")).isFalse();
+    public void nullOrEmpty() {
+        assertThat(StringCalculator.sum(null)).isEqualTo(0);
+        assertThat(StringCalculator.sum("")).isEqualTo(0);
     }
 
-    @DisplayName("입력 문자열 포맷 검사 - 성공")
+    @DisplayName("숫자 하나를 문자열로 입력할 경우 해당 숫자를 반환한다")
     @ParameterizedTest
-    @ValueSource(strings = {"", "1:2:3", "1,2,3", "//;\n", "//;\n1;2;3", "//_\n1_2_3"})
-    void validateInputSuccess(String text) {
-        Assertions.assertDoesNotThrow(() -> StringCalculator.validateInput(text));
+    @CsvSource(value = {"1 1", "2 2", "3 3"}, delimiter = DELIMITER)
+    public void singleNumber(String input, int expected) {
+        assertThat(StringCalculator.sum(input)).isEqualTo(expected);
     }
 
-    // 사이드프로젝트, 주간회고, 보이는 라디오
-
-    @DisplayName("입력 문자열 포맷 검사 - 실패")
+    @DisplayName("숫자 두개를 컴마 구분자로 입력할 경우 두 숫자의 합을 반환한다")
     @ParameterizedTest
-    @ValueSource(strings = {"1:2:", ",2,3", "//;\n;", "//;\n1;2;", "/:\n", "///;\n1;2", "1::2", ";;;"})
-    void validateInputFail(String text) {
-        assertThatThrownBy(() -> StringCalculator.validateInput(text))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessage("잘못된 입력 형식입니다.");
+    @CsvSource(value = {"1,2 3", "3,4 7", "100,1000 1100"}, delimiter = DELIMITER)
+    public void twoNumbersWithComma(String input, int expected) {
+        assertThat(StringCalculator.sum(input)).isEqualTo(expected);
     }
 
-    @DisplayName("커스텀 구분자로 분리")
+    @DisplayName("숫자 두개를 콜론 구분자로 입력할 경우 두 숫자의 합을 반환한다")
     @ParameterizedTest
-    @CsvSource(value = {"1;2;3|;", "1_2_3|_", "1-2-3|-"}, delimiter = '|')
-    void splitStringWithCustomDelimiter(String input, String delimiter) {
-        assertThat(StringCalculator.split(input, delimiter)).containsExactly("1", "2", "3");
+    @CsvSource(value = {"1:2 3", "3:4 7", "100:1000 1100"}, delimiter = DELIMITER)
+    public void twoNumbersWithColon(String input, int expected) {
+        assertThat(StringCalculator.sum(input)).isEqualTo(expected);
     }
 
-    @DisplayName("구분된 문자열을 숫자로 변환")
+    @DisplayName("커스텀 구분자를 지정할 수 있다")
     @ParameterizedTest
-    @CsvSource(value = {"0|0", "1|1", "2|2", "3|3"}, delimiter = '|')
-    void toNumber(String text, int expected) {
-        assertThat(StringCalculator.toNumber(text)).isEqualTo(expected);
+    @ValueSource(strings = {"//;\n1;2;3", "//_\n1_2_3", "//-\n1-2-3"})
+    public void customDelimiter(String input) {
+        assertThat(StringCalculator.sum(input)).isEqualTo(6);
     }
 
-    @DisplayName("음수인지 검사 - 성공")
+    @DisplayName("음수를 입력받으면 예외를 Throw 한다")
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2})
-    void validateNegativeNumberSuccess(int number) {
-        Assertions.assertDoesNotThrow(() -> StringCalculator.validateNegativeNumber(number));
-    }
-
-    @DisplayName("음수인지 검사 - 실패")
-    @ParameterizedTest
-    @ValueSource(ints = {-1, -2, -3})
-    void validateNegativeNumberFail(int number) {
-        assertThatThrownBy(() -> StringCalculator.validateNegativeNumber(number))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessage("음수는 입력할 수 없습니다.");
-    }
-
-    @DisplayName("구분자 파싱")
-    @Test
-    void getDelimiterFromText() {
-        assertThat(StringCalculator.getDelimiterFromText("//;\n1;2;3")).isEqualTo(";");
-        assertThat(StringCalculator.getDelimiterFromText("//_\n1_2_3")).isEqualTo("_");
-        assertThat(StringCalculator.getDelimiterFromText("//-\n1-2-3")).isEqualTo("-");
-    }
-
-    @DisplayName("문자열에서 구분자 제거")
-    @Test
-    void removeDelimiterFromText() {
-        assertThat(StringCalculator.removeDelimiterFromText("//;\n1;2;3")).isEqualTo("1;2;3");
-        assertThat(StringCalculator.removeDelimiterFromText("//_\n1_2_3")).isEqualTo("1_2_3");
-        assertThat(StringCalculator.removeDelimiterFromText("//-\n1-2-3")).isEqualTo("1-2-3");
-    }
-
-    @DisplayName("String 배열을 Int 로 형변환")
-    @Test
-    void toIntegerArray() {
-        assertThat(StringCalculator.toIntegerArray(new String[]{"0", "1", "2", "3"}))
-                .containsExactly(0, 1, 2, 3);
-    }
-
-    @DisplayName("숫자 배열의 합 계산")
-    @Test
-    void sumIntegerArray() {
-        assertThat(StringCalculator.sumIntegerArray(new Integer[]{1, 2, 3}))
-                .isEqualTo(6);
-
-        assertThat(StringCalculator.sumIntegerArray(new Integer[]{0, 0, 0}))
-                .isEqualTo(0);
-
-        assertThat(StringCalculator.sumIntegerArray(new Integer[]{00, 100, 1000}))
-                .isEqualTo(1100);
-    }
-
-    @Test
-    public void splitAndSum_null_또는_빈문자() throws Exception {
-        int result = StringCalculator.sum(null);
-        assertThat(result).isEqualTo(0);
-
-        result = StringCalculator.sum("");
-        assertThat(result).isEqualTo(0);
-    }
-
-    @Test
-    public void splitAndSum_숫자하나() throws Exception {
-        int result = StringCalculator.sum("1");
-        assertThat(result).isEqualTo(1);
-    }
-
-    @Test
-    public void splitAndSum_쉼표구분자() throws Exception {
-        int result = StringCalculator.sum("1,2");
-        assertThat(result).isEqualTo(3);
-    }
-
-    @Test
-    public void splitAndSum_쉼표_또는_콜론_구분자() throws Exception {
-        int result = StringCalculator.sum("1,2:3");
-        assertThat(result).isEqualTo(6);
-    }
-
-    @Test
-    public void splitAndSum_custom_구분자() throws Exception {
-        int result = StringCalculator.sum("//;\n1;2;3");
-        assertThat(result).isEqualTo(6);
-    }
-
-    @Test
-    public void splitAndSum_negative() throws Exception {
-        assertThatThrownBy(() -> StringCalculator.sum("-1,2,3"))
+    @ValueSource(strings = {"-3", "3,-5", "//;\n1;-2;3"})
+    public void negative(String input) {
+        assertThatThrownBy(() -> StringCalculator.sum(input))
                 .isInstanceOf(RuntimeException.class);
     }
 }
