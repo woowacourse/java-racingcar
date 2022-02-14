@@ -1,7 +1,6 @@
 package racingcar.view;
 
 import racingcar.Utils;
-import racingcar.validator.MoveCountValidator;
 
 import java.util.Scanner;
 
@@ -15,15 +14,9 @@ public class InputView {
 		return Utils.splitAndTrim(inputNames);
 	}
 
-	public static String getMoveCount(Scanner scanner) {
-		try {
-			System.out.println(REQUEST_MOVE_COUNT);
-			String inputMoveCount = scanner.nextLine();
-			MoveCountValidator.validateMoveCount(inputMoveCount);
-			return inputMoveCount;
-		} catch (IllegalArgumentException exception) {
-			System.out.println(exception.getMessage());
-			return getMoveCount(scanner);
-		}
+	public static int getMoveCount(Scanner scanner) {
+		System.out.println(REQUEST_MOVE_COUNT);
+		String inputMoveCount = scanner.nextLine();
+		return Utils.strToInt(inputMoveCount);
 	}
 }

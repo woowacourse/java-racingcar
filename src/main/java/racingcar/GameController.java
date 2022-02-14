@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.domain.Cars;
+import racingcar.validator.MoveCountValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -15,7 +16,7 @@ public class GameController {
 
 	public void run() {
 		Cars cars = getCars();
-		int moveCount = Integer.parseInt(InputView.getMoveCount(scanner));
+		int moveCount = getMoveCount();
 		OutputView.printResultMessage();
 		startRace(cars, moveCount);
 		OutputView.printWinners(cars.getWinners());
@@ -28,6 +29,17 @@ public class GameController {
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
 			return getCars();
+		}
+	}
+
+	private int getMoveCount() {
+		try {
+			int moveCount = InputView.getMoveCount(scanner);
+			MoveCountValidator.validateMoveCount(moveCount);
+			return moveCount;
+		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
+			return getMoveCount();
 		}
 	}
 
