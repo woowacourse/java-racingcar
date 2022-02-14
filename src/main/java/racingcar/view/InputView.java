@@ -1,21 +1,18 @@
 package racingcar.view;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
+import java.util.Scanner;
 import racingcar.message.NoticeMessages;
 
 public class InputView {
-    private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public static String inputCarNames() throws IOException {
+    public static String inputCarNames() {
         System.out.println(NoticeMessages.INPUT_CAR_NAMES);
-        return bufferedReader.readLine();
+        return scanner.next();
     }
 
-    public static String inputTryCount() throws IOException {
+    public static String inputTryCount() {
         System.out.println(NoticeMessages.INPUT_TRY_CNT);
-        return bufferedReader.readLine();
+        return scanner.next();
     }
 }

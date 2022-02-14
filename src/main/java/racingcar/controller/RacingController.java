@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-import java.io.IOException;
 import racingcar.model.Cars;
 import racingcar.model.TryCount;
 import racingcar.view.InputView;
@@ -16,7 +15,7 @@ public class RacingController {
             inputTryCount();
             race();
             terminate();
-        } catch (IllegalArgumentException | IOException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             start();
         }
@@ -25,7 +24,7 @@ public class RacingController {
     private void inputTryCount() {
         try {
             tryCount = new TryCount(InputView.inputTryCount());
-        } catch (IllegalArgumentException | IOException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             inputTryCount();
         }
