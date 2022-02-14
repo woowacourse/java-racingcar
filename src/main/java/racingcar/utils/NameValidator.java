@@ -25,6 +25,10 @@ public class NameValidator {
     }
 
     private static boolean isContainingDuplicatedName(List<String> cars) {
-        return cars.size() != cars.stream().distinct().count();
+        return cars.size() != getDistinctCarsCount(cars);
+    }
+
+    private static long getDistinctCarsCount(List<String> cars) {
+        return cars.stream().distinct().count();
     }
 }

@@ -26,12 +26,16 @@ public class Cars {
         List<String> winners = new ArrayList<>();
         int farthestPosition = getFarthestPosition();
 
-        cars.stream().filter(car -> car.isSamePositionWith(farthestPosition))
-                .forEach(car -> winners.add(car.getName()));
+        cars.stream()
+            .filter(car -> car.isSamePositionWith(farthestPosition))
+            .forEach(car -> winners.add(car.getName()));
         return winners;
     }
 
     private int getFarthestPosition() {
-        return cars.stream().map(Car::getPosition).max(Integer::compare).orElse(-1);
+        return cars.stream()
+            .map(Car::getPosition)
+            .max(Integer::compare)
+            .orElse(-1);
     }
 }
