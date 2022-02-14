@@ -1,8 +1,19 @@
 package racingcargame.model;
 
-public interface RaceCount {
+public class RaceCount {
+    private static final int GAME_OVER = 0;
 
-    void reduceRaceCount();
-    boolean isZeroRaceCount();
+    private int count;
 
+    public RaceCount(int count) {
+        this.count = count;
+    }
+
+    public void reduceCount() {
+        count--;
+    }
+
+    public boolean isZeroCount() {
+        return count == GAME_OVER;
+    }
 }

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class RacingCarGame {
     private static final int WINNER_POSITION = 0;
 
-    private final CarGameRaceCount raceCount;
+    private final RaceCount raceCount;
     private Cars carRepository;
 
     public RacingCarGame(List<String> carNames, int raceCount) {
@@ -20,16 +20,16 @@ public class RacingCarGame {
         carRepository = new Cars(carNames);
     }
 
-    private CarGameRaceCount orderToSaveRaceCount(int count) {
-        return new CarGameRaceCount(count);
+    private RaceCount orderToSaveRaceCount(int count) {
+        return new RaceCount(count);
     }
 
     public void orderToReduceRaceCount() {
-        raceCount.reduceRaceCount();
+        raceCount.reduceCount();
     }
 
     public boolean isOverRace() {
-        return raceCount.isZeroRaceCount();
+        return raceCount.isZeroCount();
     }
 
     public List<CarVO> startRace() {
