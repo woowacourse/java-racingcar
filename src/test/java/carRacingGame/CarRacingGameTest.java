@@ -55,6 +55,13 @@ public class CarRacingGameTest {
 			.isInstanceOf(RuntimeException.class);
 	}
 
+	@DisplayName("자동차 이름이 null 일 때 에러 확인")
+	@Test
+	void 자동차_이름_NULL_에러() {
+		assertThatThrownBy(() -> racingCar.checkRightLength(null))
+				.isInstanceOf(RuntimeException.class);
+	}
+
 	@DisplayName("경기 횟수가 올바르지 않을 값일 때 에러 확인")
 	@ParameterizedTest
 	@ValueSource(strings = {"-2", "a", "-1", "1.5"})
