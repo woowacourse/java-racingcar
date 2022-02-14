@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import racingcar.utils.numbergenerator.NumberGenerator;
 import racingcar.utils.numbergenerator.RandomNumberGenerator;
 
 public class Cars {
@@ -33,7 +32,7 @@ public class Cars {
         this.winners = new ArrayList<>();
 
         for (String name : names) {
-            this.addCar(new Car(name));
+            this.addCar(new Car(name, new RandomNumberGenerator()));
         }
     }
 
@@ -59,9 +58,8 @@ public class Cars {
     }
 
     public void moveCars() {
-        NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         for (Car car : cars) {
-            car.goForward(randomNumberGenerator);
+            car.goForward();
         }
     }
 

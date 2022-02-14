@@ -6,10 +6,12 @@ public class Car {
 
     private static final int MIN_GO_FORWARD_RANGE = 4;
 
+    private final NumberGenerator numberGenerator;
     private final Name name;
     private int position;
 
-    public Car(String name) {
+    public Car(final String name, final NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
         this.name = new Name(name);
         position = 0;
     }
@@ -22,7 +24,7 @@ public class Car {
         return position;
     }
 
-    public void goForward(final NumberGenerator numberGenerator) {
+    public void goForward() {
         if (numberGenerator.generate() >= MIN_GO_FORWARD_RANGE) {
             position++;
         }

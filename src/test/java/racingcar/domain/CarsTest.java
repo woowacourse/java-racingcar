@@ -7,11 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import racingcar.utils.numbergenerator.MovableNumberGenerator;
-import racingcar.utils.numbergenerator.NumberGenerator;
 
 public class CarsTest {
-
-    private final NumberGenerator movableNumberGenerator = new MovableNumberGenerator();
 
     @Test
     void 자동차_2개_미만() {
@@ -30,8 +27,8 @@ public class CarsTest {
 
     @Test
     void 자동차_우승_1명_성공() {
-        Car jaeCar = new Car("jae");
-        Car rickCar = new Car("rick");
+        Car jaeCar = new Car("jae", new MovableNumberGenerator());
+        Car rickCar = new Car("rick", new MovableNumberGenerator());
 
         for (int i = 0; i < 3; i++) {
             moveCarPosition(rickCar);
@@ -43,8 +40,8 @@ public class CarsTest {
 
     @Test
     void 자동차_우승_2명_성공() {
-        Car jaeCar = new Car("jae");
-        Car rickCar = new Car("rick");
+        Car jaeCar = new Car("jae", new MovableNumberGenerator());
+        Car rickCar = new Car("rick", new MovableNumberGenerator());
 
         for (int i = 0; i < 3; i++) {
             moveCarPosition(rickCar, jaeCar);
@@ -56,7 +53,7 @@ public class CarsTest {
 
     private void moveCarPosition(Car... car) {
         for (Car c : car) {
-            c.goForward(movableNumberGenerator);
+            c.goForward();
         }
     }
 }
