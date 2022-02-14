@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public static void printChampionList(Cars cars) {
-        String championNames = String.join(", ", cars.getChampionList());
+        String championNames = String.join(", ", cars.getChampions());
         System.out.println(championNames + "가 최종 우승했습니다.");
     }
 }

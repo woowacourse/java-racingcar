@@ -7,12 +7,12 @@ public class Cars {
     public static final int INITIAL_POSITION = 0;
 
     private final List<Car> cars;
-    private final List<String> championList;
+    private final List<String> champions;
     private int highScore;
 
     public Cars(String[] names) {
         this.cars = new ArrayList<>();
-        this.championList = new ArrayList<>();
+        this.champions = new ArrayList<>();
         this.highScore = 0;
         for (String name : names) {
             cars.add(new Car(name, INITIAL_POSITION));
@@ -25,10 +25,10 @@ public class Cars {
         }
     }
 
-    public List<String> getChampionList() {
+    public List<String> getChampions() {
         updateHighScore();
         verifyChampion();
-        return championList;
+        return champions;
     }
 
     private void updateHighScore() {
@@ -45,7 +45,7 @@ public class Cars {
 
     private void verifyMaxPosition(Car car) {
         if (car.isMaxPosition(highScore)) {
-            championList.add(car.getName());
+            champions.add(car.getName());
         }
     }
 

@@ -87,7 +87,7 @@ public class ApplicationTest {
         cars.getCars().get(1).move(5);
         cars.getCars().get(2).move(3);
 
-        assertThat(cars.getChampionList())
+        assertThat(cars.getChampions())
             .contains("car1")
             .contains("car2")
             .doesNotContain("car3");
