@@ -2,8 +2,6 @@ package racingcar.domain;
 
 public class Car {
     private static final int THRESHOLD = 4;
-    private static final String DELIMITER = " : ";
-    private static final String DISTANCE = "-";
 
     private final String name;
     private final Engine engine;
@@ -27,14 +25,6 @@ public class Car {
 
     public boolean isSamePosition(int highScore) {
         return position == highScore;
-    }
-
-    public String getProgress() {
-        StringBuilder currentPosition = new StringBuilder(name + DELIMITER);
-        for (int i = 0; i < position; i++) {
-            currentPosition.append(DISTANCE);
-        }
-        return currentPosition.toString();
     }
 
     public String getName() {
