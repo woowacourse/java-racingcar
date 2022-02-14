@@ -12,15 +12,14 @@ public class Car {
 
 	private final String name;
 	private int position;
-	private int moveNumber;
 
 	public Car(final String name, final int position) {
-		checkValidateCarName(name);
+		checkValidateName(name);
 		this.name = name;
 		this.position = position;
 	}
 
-	public static String checkValidateCarName(final String name) {
+	public static String checkValidateName(final String name) {
 		if (!hasBlankInNames(name) && isValidNameLength(name)) {
 			return name;
 		}
