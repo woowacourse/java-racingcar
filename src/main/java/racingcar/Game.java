@@ -56,6 +56,7 @@ public class Game {
             car.movePosition(isMovable(randomNumber));
         }
     }
+
     private int makeRandomNumber() {
         return (int) (Math.random() * RANDOM_RANGE);
     }
