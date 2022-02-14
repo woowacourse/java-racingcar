@@ -25,16 +25,40 @@ public class AppConfig {
     public final OutputView outputView;
 
     private AppConfig() {
-        this.outputView = new OutputViewImpl();
-        this.reader = new ConsoleReader();
-        this.inputView = new InputViewImpl(reader);
-        this.numberPicker = new RandomNumberPicker();
-        this.gameService = new GameServiceImpl(numberPicker);
-        this.gameController = new GameControllerImpl(gameService, inputView, outputView);
+        this.outputView = initOutputView();
+        this.reader = initReader();
+        this.inputView = initInputView(reader);
+        this.numberPicker = initNumberPicker();
+        this.gameService = initGameService(numberPicker);
+        this.gameController = initGameController(gameService, inputView, outputView);
     }
 
     public static AppConfig getInstance() {
         return instance;
+    }
+
+    private OutputView initOutputView() {
+        return new OutputViewImpl();
+    }
+
+    private Reader initReader() {
+        return new ConsoleReader();
+    }
+
+    private InputView initInputView(Reader reader) {
+        return new InputViewImpl(reader);
+    }
+
+    private NumberPicker initNumberPicker() {
+        return new RandomNumberPicker();
+    }
+
+    private GameService initGameService(NumberPicker numberPicker) {
+        return new GameServiceImpl(numberPicker);
+    }
+
+    private GameController initGameController(GameService gameService, InputView inputView, OutputView outputView) {
+        return new GameControllerImpl(gameService, inputView, outputView);
     }
 
 }
