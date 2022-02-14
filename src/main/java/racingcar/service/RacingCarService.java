@@ -12,7 +12,11 @@ import racingcar.validator.NameValidator;
 
 public class RacingCarService {
 
-	List<Car> cars = new ArrayList<>();
+	private List<Car> cars;
+
+	public RacingCarService(List<Car> cars) {
+		this.cars = cars;
+	}
 
 	public void playRound() {
 		cars.forEach(Car::decideMove);

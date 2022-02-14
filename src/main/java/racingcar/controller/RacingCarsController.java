@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import static racingcar.view.Output.*;
 
+import java.util.ArrayList;
 import java.util.stream.IntStream;
 
 import racingcar.service.RacingCarService;
@@ -14,7 +15,7 @@ import racingcar.view.Output;
 public class RacingCarsController {
 
 	private int roundCount = 0;
-	private final RacingCarService racingCarService = new RacingCarService();
+	private final RacingCarService racingCarService = new RacingCarService(new ArrayList<>());
 
 	public void requestCarsName() {
 		try {
