@@ -2,18 +2,15 @@ package racingcar.model;
 
 public class Car {
 
+    private static final int INITIAL_POSITION = 0;
     private static final int MOVE_FORWARD_CONDITION = 4;
 
     private final String name;
-    private int position = 0;
+    private int position;
 
     public Car(final String name) {
         this.name = name;
-    }
-
-    public Car(final String name, final int position) {
-        this.name = name;
-        this.position = position;
+        this.position = INITIAL_POSITION;
     }
 
     public String getCarName() {
@@ -24,8 +21,8 @@ public class Car {
         return position;
     }
 
-    public void moveForward(final int number) {
-        if (number >= MOVE_FORWARD_CONDITION) {
+    public void move(int randomNumber) {
+        if (randomNumber >= MOVE_FORWARD_CONDITION) {
             position++;
         }
     }

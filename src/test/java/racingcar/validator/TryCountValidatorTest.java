@@ -8,31 +8,28 @@ import racingcar.utils.validator.TryCountValidator;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class TryCountValidatorTest {
-    
+
     @Test
-    void 시도_회수_문자() {
+    void 시도횟수가_문자인_경우() {
         String tryCount = "q";
-        assertThatThrownBy(() -> {
-            TryCountValidator.validatePattern(tryCount);
-        }).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> TryCountValidator.validatePattern(tryCount))
+            .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR] 시도 회수는 양수만 가능합니다.");
     }
 
     @Test
-    void 시도_횟수_음수() {
+    void 시도횟수가_음수인_경우() {
         String tryCount = "-1";
-        assertThatThrownBy(() -> {
-            TryCountValidator.validatePattern(tryCount);
-        }).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> TryCountValidator.validatePattern(tryCount))
+            .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR] 시도 회수는 양수만 가능합니다.");
     }
 
     @Test
     void 시도_횟수_공백() {
         String tryCount = "";
-        assertThatThrownBy(() -> {
-            TryCountValidator.validatePattern(tryCount);
-        }).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> TryCountValidator.validatePattern(tryCount))
+            .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR] 시도 회수는 양수만 가능합니다.");
     }
 }

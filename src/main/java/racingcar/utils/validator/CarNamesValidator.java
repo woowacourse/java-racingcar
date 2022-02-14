@@ -38,7 +38,7 @@ public class CarNamesValidator {
     }
 
     private static void validateBlank(final String carName) {
-        if ((carName == null) || (carName.length() == 0)) {
+        if ((carName == null) || (carName.trim().length() == 0)) {
             throw new IllegalArgumentException(CAR_NAME_BLANK_ERROR_MESSAGE);
         }
     }
