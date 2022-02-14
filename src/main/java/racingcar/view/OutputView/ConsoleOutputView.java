@@ -11,7 +11,7 @@ public class ConsoleOutputView implements OutputView {
     private static final String RESULT_DELIMITER = " : ";
     private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
     private static final String WINNER_DELIMITER = ",";
-    public static final String NEW_LINE = "\n";
+    private static final String NEW_LINE = "\n";
 
     public void printResultMessage(){
         System.out.println(NEW_LINE + RESULT_MESSAGE);
