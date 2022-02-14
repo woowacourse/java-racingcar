@@ -9,7 +9,7 @@ public class RacingCarGame {
 	private Cars cars;
 	private RaceCount raceCount;
 
-	public RacingCarGame(List<String> racingCarNames, int raceCount) {
+	public RacingCarGame(List<String> racingCarNames, String raceCount) {
 		prepareRacingCars(racingCarNames);
 		prepareRaceCount(raceCount);
 	}
@@ -18,7 +18,7 @@ public class RacingCarGame {
 		cars = new Cars(racingCarNames);
 	}
 
-	private void prepareRaceCount(final int raceCount) {
+	private void prepareRaceCount(final String raceCount) {
 		this.raceCount = new RaceCount(raceCount);
 	}
 

@@ -3,8 +3,6 @@ package racingcargame.controller;
 import java.util.List;
 import java.util.Scanner;
 
-import racingcargame.utils.RaceCountInputValidator;
-
 public class InputController {
 	private static final String SEPARATOR = ",";
 	private static final String NOTHING_INPUT_IN_CAR_NAMES_ERROR_MESSAGE = "[error] 입력된 자동차 이름이 없습니다.";
@@ -31,8 +29,7 @@ public class InputController {
 		return carNames;
 	}
 
-	public int inputRaceCount() {
-		String raceCount = scanner.nextLine();
-		return Integer.parseInt(RaceCountInputValidator.validateRaceCount(raceCount));
+	public String inputRaceCount() {
+		return scanner.nextLine();
 	}
 }

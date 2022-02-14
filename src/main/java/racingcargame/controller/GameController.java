@@ -29,7 +29,7 @@ public class GameController {
 		List<String> racingCarNames = inputController.inputRacingCarNames();
 
 		Display.showRaceCountInputGuideMessage();
-		int raceCount = inputController.inputRaceCount();
+		String raceCount = inputController.inputRaceCount();
 
 		return new RacingCarGame(racingCarNames, raceCount);
 	}
