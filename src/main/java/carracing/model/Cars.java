@@ -10,7 +10,7 @@ import carracing.utils.RandomNumber;
 import carracing.view.OutputView;
 
 public class Cars {
-	public static final int RANDOM_NUMBER_RANGE = 10;
+	private static final int RANDOM_NUMBER_RANGE = 10;
 
 	private final List<Car> cars;
 
@@ -53,5 +53,4 @@ public class Cars {
 			throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
 		}
 	}
-
 }

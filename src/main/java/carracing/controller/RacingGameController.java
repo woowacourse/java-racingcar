@@ -10,9 +10,9 @@ import carracing.view.InputView;
 import carracing.view.OutputView;
 
 public class RacingGameController {
-	public static final int ZERO = 0;
-	public static final String DELIMITER_REGEX = ",";
-	public static final String DELIMITER_JOIN = ",";
+	private static final int ZERO = 0;
+	private static final String DELIMITER_REGEX = ",";
+	private static final String DELIMITER_JOIN = ",";
 
 	private Cars cars;
 	private int numberOfGames;

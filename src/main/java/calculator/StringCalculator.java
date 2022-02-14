@@ -6,12 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-	public static final String NUMBER_FORMAT_EXCEPTION = "숫자가 아닌 문자는 허용되지 않습니다.";
-	public static final String NEGATIVE_NUMBER_EXCEPTION = "숫자가 아닌 문자는 허용되지 않습니다.";
-	public static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
-	public static final int CUSTOM_DELIMITER_GROUP = 1;
-	public static final int INPUT_STRING_GROUP = 2;
-
+	private static final String NUMBER_FORMAT_EXCEPTION = "숫자가 아닌 문자는 허용되지 않습니다.";
+	private static final String NEGATIVE_NUMBER_EXCEPTION = "숫자가 아닌 문자는 허용되지 않습니다.";
+	private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
+	private static final int CUSTOM_DELIMITER_GROUP = 1;
+	private static final int INPUT_STRING_GROUP = 2;
 	private static final StringBuilder delimiters = new StringBuilder(",|:");
 
 	public static int splitAndSum(String input) {

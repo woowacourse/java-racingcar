@@ -42,7 +42,7 @@ public class InputView {
 		}
 	}
 
-	public static void validateNumber(String line) {
+	private static void validateNumber(String line) {
 		if (!line.matches("^[0-9]+$")) {
 			throw new IllegalArgumentException(INPUT_NOT_NUMBER_EXCEPTION.getMessage());
 		}
