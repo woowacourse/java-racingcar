@@ -13,7 +13,7 @@ public class Converter {
 
 	public static List<Car> toCarList(String input) {
 		return Arrays.stream(input.split(SEPARATOR_OF_CAR_NAME))
-			.map(Car::of)
+			.map(Car::from)
 			.collect(Collectors.toList());
 	}
 
