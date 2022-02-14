@@ -1,11 +1,35 @@
 package racingcargame.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
+
+	@DisplayName("자동차 이름에 빈칸이 입력되는 경우 테스트")
+	@Test
+	void checkValidateName_HasBlank() {
+		String name = "토 미 ";
+		int position = 3;
+
+		assertThatThrownBy(() -> {
+			Car car = new Car(name, position);
+		}).isInstanceOf(IllegalArgumentException.class).
+			hasMessageContaining("[error] 입력한 자동차 이름에 공백이 있습니다.");
+	}
+
+	@DisplayName("자동차 이름이 5자를 초과하는 경우 테스트")
+	@Test
+	void checkValidateName_ValidNameLength() {
+		String name = "토미데이비슨";
+		int position = 3;
+
+		assertThatThrownBy(() -> {
+			Car car = new Car(name, position);
+		}).isInstanceOf(IllegalArgumentException.class).
+			hasMessageContaining("[error] 자동차 이름을 5자 이하로 입력해주세요.");
+	}
 
 	@DisplayName("Car 객체가 정상적으로 생성되는지 테스트")
 	@Test
