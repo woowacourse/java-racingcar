@@ -6,21 +6,22 @@ import java.util.regex.Pattern;
 
 public class StringAddCalculator {
 
-	public int SplitAndSum(String givenString) {
+	static public int SplitAndSum(String givenString) {
 		if (checkNullOrEmpty(givenString)) {
 			return 0;
 		}
 		String[] splitString = split(givenString);
 		int[] intValues = stringToInt(splitString);
-		Arrays.stream(intValues).forEach(this::checkNegativeInteger);
+
+		Arrays.stream(intValues).forEach(StringAddCalculator::checkNegativeInteger);
 		return Arrays.stream(intValues).sum();
 	}
 
-	private boolean checkNullOrEmpty(String givenString) {
+	static private boolean checkNullOrEmpty(String givenString) {
 		return givenString == null || givenString.isEmpty();
 	}
 
-	private String[] split(String givenString) {
+	static private String[] split(String givenString) {
 		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(givenString);
 		if (m.find()) {
 			String customDelimiter = m.group(1);
@@ -29,7 +30,7 @@ public class StringAddCalculator {
 		return givenString.split("[,:]");
 	}
 
-	private int[] stringToInt(String[] values) {
+	static private int[] stringToInt(String[] values) {
 		int[] intValues = new int[values.length];
 		for (int i = 0; i < values.length; i++) {
 			intValues[i] = intValueOf(values[i]);
@@ -37,7 +38,7 @@ public class StringAddCalculator {
 		return intValues;
 	}
 
-	private int intValueOf(String value) {
+	static private int intValueOf(String value) {
 		try {
 			return Integer.parseInt(value);
 		} catch (NumberFormatException e) {
@@ -45,7 +46,7 @@ public class StringAddCalculator {
 		}
 	}
 
-	private void checkNegativeInteger(int value) {
+	static private void checkNegativeInteger(int value) {
 		if (value < 0) {
 			throw new RuntimeException("음수는 입력할 수 없습니다.");
 		}

@@ -10,24 +10,21 @@ class StringAddCalculatorTest {
 	@DisplayName("빈 문자열 값을 입력할 경우 0을 반환해야 한다.")
 	void emptyString() {
 		String emptyString = "";
-		StringAddCalculator stringAddCalculator = new StringAddCalculator();
-		assertThat(stringAddCalculator.SplitAndSum(emptyString)).isEqualTo(0);
+		assertThat(StringAddCalculator.SplitAndSum(emptyString)).isEqualTo(0);
 	}
 
 	@Test
 	@DisplayName("null 값을 입력할 경우 0을 반환해야 한다.")
 	void nullValue() {
 		String nullString = null;
-		StringAddCalculator stringAddCalculator = new StringAddCalculator();
-		assertThat(stringAddCalculator.SplitAndSum(nullString)).isEqualTo(0);
+		assertThat(StringAddCalculator.SplitAndSum(nullString)).isEqualTo(0);
 	}
 
 	@Test
 	@DisplayName("숫자 하나를 문자열로 입력할 경우 해당 숫자를 반환한다.")
 	void oneNumber() {
 		String oneString = "1";
-		StringAddCalculator stringAddCalculator = new StringAddCalculator();
-		int result = stringAddCalculator.SplitAndSum(oneString);
+		int result = StringAddCalculator.SplitAndSum(oneString);
 		assertThat(result).isEqualTo(1);
 	}
 
@@ -35,8 +32,7 @@ class StringAddCalculatorTest {
 	@DisplayName("숫자 두개를 컴마(,) 구분자로 입력할 경우 두 숫자의 합을 반환한다.")
 	void splitByComma() {
 		String stringWithComma = "1,2";
-		StringAddCalculator stringAddCalculator = new StringAddCalculator();
-		int result = stringAddCalculator.SplitAndSum(stringWithComma);
+		int result = StringAddCalculator.SplitAndSum(stringWithComma);
 		assertThat(result).isEqualTo(3);
 	}
 
@@ -44,8 +40,7 @@ class StringAddCalculatorTest {
 	@DisplayName("구분자를 컴마(,) 이외에 콜론(:)을 사용할 수 있다.")
 	void splitByCommaAndColon() {
 		String stringWithCommaAndColon = "1,2:3";
-		StringAddCalculator stringAddCalculator = new StringAddCalculator();
-		int result = stringAddCalculator.SplitAndSum(stringWithCommaAndColon);
+		int result = StringAddCalculator.SplitAndSum(stringWithCommaAndColon);
 		assertThat(result).isEqualTo(6);
 	}
 
@@ -53,8 +48,7 @@ class StringAddCalculatorTest {
 	@DisplayName("“//”와 “\\n” 문자 사이에 커스텀 구분자를 지정할 수 있다")
 	void splitByCustomDelimiter() {
 		String stringWithCustomDelimiter = "//;\n1;2;3";
-		StringAddCalculator stringAddCalculator = new StringAddCalculator();
-		int result = stringAddCalculator.SplitAndSum(stringWithCustomDelimiter);
+		int result = StringAddCalculator.SplitAndSum(stringWithCustomDelimiter);
 		assertThat(result).isEqualTo(6);
 	}
 
@@ -62,8 +56,7 @@ class StringAddCalculatorTest {
 	@DisplayName("음수를 전달할 경우 RuntimeException 예외가 발생해야 한다.")
 	void negativeNumberError() {
 		String negativeNumberString = "-1,2,3";
-		StringAddCalculator stringAddCalculator = new StringAddCalculator();
-		assertThatThrownBy(() -> stringAddCalculator.SplitAndSum(negativeNumberString))
+		assertThatThrownBy(() -> StringAddCalculator.SplitAndSum(negativeNumberString))
 			.isInstanceOf(RuntimeException.class);
 	}
 
@@ -71,8 +64,7 @@ class StringAddCalculatorTest {
 	@DisplayName("숫자가 아닌 값을 전달할 경우 RuntimeException 예외가 발생해야 한다.")
 	void notNumberError() {
 		String notNumberString = "1,a,3";
-		StringAddCalculator stringAddCalculator = new StringAddCalculator();
-		assertThatThrownBy(() -> stringAddCalculator.SplitAndSum(notNumberString))
+		assertThatThrownBy(() -> StringAddCalculator.SplitAndSum(notNumberString))
 			.isInstanceOf(RuntimeException.class);
 	}
 }
