@@ -15,12 +15,8 @@ public class RacingCars {
 
 	public void moveRacingCars() {
 		for (Car racingCar : this.racingCars) {
-			racingCar.moveCar(makeRandomNumber());
+			racingCar.moveCar();
 		}
-	}
-
-	private boolean makeRandomNumber() {
-		return ((int)(Math.random() * 10) - 1) >= GO_OR_NOT;
 	}
 
 	private int getMaxDistance() {

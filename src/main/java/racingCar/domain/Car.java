@@ -10,8 +10,8 @@ public class Car {
 		this.name = name;
 	}
 
-	public void moveCar(boolean isGoing) {
-		if (isGoing) {
+	public void moveCar() {
+		if (((int)(Math.random() * 10) - 1) >= GO_OR_NOT) {
 			this.position++;
 		}
 	}
