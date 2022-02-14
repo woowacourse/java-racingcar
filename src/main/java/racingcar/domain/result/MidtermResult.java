@@ -17,7 +17,10 @@ public class MidtermResult {
     }
 
     private Car findCarByName(String name) {
-        return cars.stream().filter(c -> c.getName().equals(name)).findFirst().get();
+        return cars.stream()
+            .filter(car -> car.isSameName(name))
+            .findFirst()
+            .get();
     }
 
     public List<String> getCarNames() {

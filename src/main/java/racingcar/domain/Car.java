@@ -29,6 +29,10 @@ public class Car {
         return this.position == position;
     }
 
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
+    }
+
     public void move(int randomNumber) {
         if (randomNumber >= FORWARD_BOUNDARY_NUMBER) {
             position++;

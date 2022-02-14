@@ -32,5 +32,13 @@ public class CarTest {
         car.move(4);
 
         assertThat(car.isSamePosition(1)).isTrue();
+        assertThat(car.isSamePosition(3)).isFalse();
+    }
+
+    @Test
+    public void 자동차_이름_확인() {
+        Car car = Car.createByName("pobi");
+        assertThat(car.isSameName("pobi")).isTrue();
+        assertThat(car.isSameName("crong")).isFalse();
     }
 }
