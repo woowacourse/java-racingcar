@@ -16,11 +16,19 @@ public class Name {
     }
 
     private void validate(String name) {
-        if (name.isEmpty() || name.isBlank()) {
-            throw new CarNameBlankException("자동차 이름은 공백이 될 수 없습니다.");
-        }
+        validateExists(name);
+        validateLength(name);
+    }
+
+    private void validateLength(String name) {
         if (name.length() > MAX_LENGTH) {
             throw new CarNameLengthException("자동차 이름은 5글자 이하여야 합니다.");
+        }
+    }
+
+    private void validateExists(String name) {
+        if (name == null || name.isEmpty() || name.isBlank()) {
+            throw new CarNameBlankException("자동차 이름은 공백이 될 수 없습니다.");
         }
     }
 

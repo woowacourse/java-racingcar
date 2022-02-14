@@ -3,6 +3,7 @@ package racingcar.domain.car;
 import java.util.Objects;
 
 import racingcar.domain.movement.MovementStrategy;
+import racingcar.exception.NullInstanceException;
 
 public class Car {
 
@@ -18,8 +19,15 @@ public class Car {
     }
 
     public Car(Name name, Position position) {
+        validateNull(name, position);
         this.name = name;
         this.position = position;
+    }
+
+    private void validateNull(Name name, Position position) {
+        if (name == null || position == null) {
+            throw new NullInstanceException("Name 혹은 Position 의 인스턴스가 null 입니다.");
+        }
     }
 
     public String getName() {

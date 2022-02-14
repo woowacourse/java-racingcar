@@ -25,7 +25,6 @@ public class CarsTest {
         String input = ",,,";
         Assertions.assertThatThrownBy(() -> {
                 new Cars(input);
-            }).isInstanceOf(InvalidNameInputException.class)
-            .hasMessageContaining("자동차 이름에 ,만 사용할 수 없습니다.");
+            }).isInstanceOf(InvalidNameInputException.class);
     }
 }
