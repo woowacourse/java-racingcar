@@ -19,6 +19,10 @@ public class Car {
         }
     }
 
+    public void move() {
+        move(startEngine());
+    }
+
     public int startEngine() {
         return engine.ignite();
     }
