@@ -54,7 +54,7 @@ public class RacingServiceTest {
 	@Test
 	public void 자동차_경주_자동차_1대() {
 		carRepository.clear();
-		racingService.registerCars(List.of(Car.of("asd")));
+		racingService.registerCars(List.of(Car.from("asd")));
 
 		assertThatThrownBy(() -> racingService.race(new RandomUtilImpl()))
 			.isInstanceOf(IllegalStateException.class);
