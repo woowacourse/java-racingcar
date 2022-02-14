@@ -34,7 +34,7 @@ public class CarTest {
 
 	@Test
 	public void 중복된_이름() {
-		assertThatThrownBy(() -> CarFactory.of("forky,forky"))
+		assertThatThrownBy(() -> new Cars(CarFactory.of("forky,forky")))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageStartingWith(ERROR_MESSAGE);
 	}

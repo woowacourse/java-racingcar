@@ -2,8 +2,7 @@ package racingcar;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,13 +16,11 @@ public class RefereeTest {
 
 	@Test
 	public void 우승자_판정() {
-		Set<Car> cars = new HashSet<>();
 		Car car1 = new Car("forky");
 		Car car2 = new Car("kun");
 		car1.move();
-		cars.add(car1);
-		cars.add(car2);
-		assertThat(Referee.judgeWinner(cars)).contains(car1);
+		assertThat(Referee.judgeWinner(new Cars(List.of(car1, car2))))
+			.contains(car1);
 	}
 
 	@Test
@@ -33,6 +30,7 @@ public class RefereeTest {
 		Car loser = new Car("forky");
 		winner1.move();
 		winner2.move();
-		assertThat(Referee.judgeWinner(Set.of(winner1, winner2, loser))).containsExactlyInAnyOrder(winner1, winner2);
+		assertThat(Referee.judgeWinner(new Cars(List.of(winner1, winner2, loser))))
+			.containsExactlyInAnyOrder(winner1, winner2);
 	}
 }

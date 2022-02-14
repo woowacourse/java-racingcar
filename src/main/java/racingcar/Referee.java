@@ -1,7 +1,6 @@
 package racingcar;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Referee {
@@ -13,16 +12,9 @@ public class Referee {
 		}
 	}
 
-	private static int getMaxPosition(Set<Car> cars) {
-		return cars.stream()
-			.mapToInt(Car::getPosition)
-			.max()
-			.getAsInt();
-	}
-
-	public static List<Car> judgeWinner(Set<Car> cars) {
-		return cars.stream()
-			.filter(car -> car.isPosition(getMaxPosition(cars)))
+	public static List<Car> judgeWinner(Cars cars) {
+		return cars.getCars().stream()
+			.filter(car -> car.isPosition(cars.getMaxPosition()))
 			.collect(Collectors.toList());
 	}
 }
