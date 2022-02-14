@@ -6,26 +6,33 @@ import racingcar.domain.movement.MovementStrategy;
 
 public class Position {
 
-    private int value;
+    private int position;
 
     public Position() {
         this(0);
     }
 
-    public Position(int value) {
-        this.value = value;
+    public Position(int position) {
+        validate(position);
+        this.position = position;
+    }
+
+    private void validate(int position) {
+        if (position < 0) {
+            throw new IllegalArgumentException("자동차의 위치는 0이상의 양수 값을 가져야 합니다.");
+        }
     }
 
     public boolean isSame(int num) {
-        return value == num;
+        return position == num;
     }
 
     public void move(MovementStrategy strategy) {
-        value += strategy.move();
+        position += strategy.move();
     }
 
     public int getValue() {
-        return value;
+        return position;
     }
 
     @Override
@@ -36,12 +43,12 @@ public class Position {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Position position = (Position) o;
-        return value == position.value;
+        Position position1 = (Position) o;
+        return position == position1.position;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(position);
     }
 }
