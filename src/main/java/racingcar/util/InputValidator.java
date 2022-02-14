@@ -5,9 +5,15 @@ import java.util.List;
 public class InputValidator {
     private static final int MINIMUM_CAR_NAME_LENGTH = 5;
 
-    public static void validateCarName(List<String> carNameList) {
-        if (!carNameList.stream().allMatch(carName -> carName.length() <= MINIMUM_CAR_NAME_LENGTH)) {
+    public static void validateCarNameLength(List<String> carNames) {
+        if (!carNames.stream().allMatch(carName -> carName.length() <= MINIMUM_CAR_NAME_LENGTH)) {
             throw new IllegalArgumentException("자동차의 이름은 5자 이하여야 합니다.");
+        }
+    }
+
+    public static void validateEmptyCarName(List<String> carNames) {
+        if (carNames.isEmpty()) {
+            throw new IllegalArgumentException("자동차의 이름이 존재하지 않습니다.");
         }
     }
 

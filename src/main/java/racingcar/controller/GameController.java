@@ -42,7 +42,8 @@ public class GameController {
     public List<String> splitCars(String carNames) {
         InputValidator.validateNameInput(carNames);
         List<String> splitCarNames = Arrays.asList(carNames.replaceAll(SPACE, BLANK).split(COMMA));
-        InputValidator.validateCarName(splitCarNames);
+        InputValidator.validateEmptyCarName(splitCarNames);
+        InputValidator.validateCarNameLength(splitCarNames);
         InputValidator.validateDuplicateName(splitCarNames);
 
         return splitCarNames;

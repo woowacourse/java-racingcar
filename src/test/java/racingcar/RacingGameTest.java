@@ -25,8 +25,16 @@ public class RacingGameTest {
     @Test
     void 자동차의_이름이_5자_이상인_경우_예외처리() {
         assertThatThrownBy(() -> {
-            InputValidator.validateCarName(Arrays.asList("asd","qwerty"));
+            InputValidator.validateCarNameLength(Arrays.asList("asd","qwerty"));
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 자동차의_이름이_공백인_경우_예외처리() {
+        assertThatThrownBy(() -> {
+            gameController.splitCars(" , , ");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차의 이름이 존재하지 않습니다.");
     }
 
     @Test
