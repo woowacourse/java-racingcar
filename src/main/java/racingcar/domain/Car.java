@@ -41,8 +41,8 @@ public class Car {
         return position;
     }
 
-    public boolean isWinner(int winnerPosition) {
-        return position == winnerPosition;
+    public boolean hasSamePosition(int value) {
+        return position == value;
     }
 
     @Override
