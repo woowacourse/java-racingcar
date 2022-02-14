@@ -1,30 +1,30 @@
 package racingcar.domain.result;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toUnmodifiableMap;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import racingcar.domain.Car;
 import racingcar.domain.exception.NotFoundCarNameException;
 
 public class MidtermResult {
-    private final List<Car> cars;
+
+    private final Map<String, Integer> cars;
 
     public MidtermResult(List<Car> cars) {
-        this.cars = cars;
+        this.cars = cars.stream()
+            .collect(toUnmodifiableMap(Car::getName, Car::getPosition));
     }
 
     public int getPositionByName(String name) {
-        return findCarByName(name).getPosition();
+        if (!cars.containsKey(name)) {
+            throw new NotFoundCarNameException(name);
+        }
+        return cars.get(name);
     }
 
-    private Car findCarByName(String name) {
-        return cars.stream()
-            .filter(car -> car.isSameName(name))
-            .findFirst()
-            .orElseThrow(() -> new NotFoundCarNameException(name));
-    }
-
-    public List<String> getCarNames() {
-        return cars.stream().map(Car::getName).collect(toList());
+    public Set<String> getCarNames() {
+        return cars.keySet();
     }
 }

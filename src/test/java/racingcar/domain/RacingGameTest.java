@@ -55,11 +55,19 @@ public class RacingGameTest {
     }
 
     @Test
-    public void 시도횟수_이상으로_게임_진행시_예외발생() {
+    public void 시도횟수_이상으로_게임진행시_예외발생후_자동차_위치_미변경() {
         racingGame.initTryCount(1);
         racingGame.proceedTurn();
+        MidtermResult prevResult = racingGame.getMidtermResult();
+
         assertThatThrownBy(() -> racingGame.proceedTurn())
             .isInstanceOf(RacingGameIsFinishedException.class);
+
+        MidtermResult midtermResult = racingGame.getMidtermResult();
+        assertThat(midtermResult.getPositionByName(CAR_1_NAME))
+            .isEqualTo(prevResult.getPositionByName(CAR_1_NAME));
+        assertThat(midtermResult.getPositionByName(CAR_2_NAME))
+            .isEqualTo(prevResult.getPositionByName(CAR_2_NAME));
     }
 
     @Test

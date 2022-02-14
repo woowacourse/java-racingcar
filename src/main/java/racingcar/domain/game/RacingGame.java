@@ -18,8 +18,8 @@ public class RacingGame {
     }
 
     public void proceedTurn() {
-        cars.move();
         tryCount.increment();
+        cars.move();
     }
 
     public boolean isFinished() {
