@@ -3,13 +3,11 @@ package racingcar.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import racingcar.message.ErrorMessages;
 import racingcar.util.RandomGenerator;
-import racingcar.view.OutputView;
+import racingcar.util.StringUtils;
 
 public class Cars {
-    private static final String NEW_LINE = System.lineSeparator();
     private static final String DELIMITER = ",";
     private static final int MIN = 0;
     private static final int MAX = 9;
@@ -34,10 +32,8 @@ public class Cars {
         return new Winners(cars);
     }
 
-    public void printCars() {
-        for (Car car : cars) {
-            OutputView.printCarStatus(car);
-        }
+    public String getCarsStatus() {
+        return StringUtils.generateCarStatus(cars);
     }
 
     private void validateDuplicatedName(String[] carNames) {

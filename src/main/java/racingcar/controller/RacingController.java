@@ -1,7 +1,6 @@
 package racingcar.controller;
 
 import java.io.IOException;
-
 import racingcar.model.Cars;
 import racingcar.model.TryCount;
 import racingcar.view.InputView;
@@ -37,12 +36,12 @@ public class RacingController {
         OutputView.printStartMessage();
         while (tryCount.isNotSame(nowTryCnt++)) {
             cars.moveAll();
-            cars.printCars();
+            OutputView.printString(cars.getCarsStatus());
         }
     }
 
     private void terminate() {
-        cars.printCars();
+        OutputView.printString(cars.getCarsStatus());
         OutputView.printString(cars.getWinners().toString());
     }
 }

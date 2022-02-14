@@ -18,10 +18,4 @@ public class OutputView {
         System.out.println(string);
     }
 
-    public static void printCarStatus(Car car) {
-        String carPositionString = StringUtils.convertNumberToString(car.getPosition());
-        System.out.println(car.getName() + " : " + carPositionString);
-    }
-
-
 }
