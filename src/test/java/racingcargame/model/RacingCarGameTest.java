@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,5 +25,17 @@ public class RacingCarGameTest {
 		});
 
 		assertThat(racingCarGame.isOverRace()).isEqualTo(false);
+	}
+
+	@DisplayName("경주가 정상적으로 끝나는지 테스트")
+	@Test
+	void isOverRace() {
+		List<String> carNames = List.of("토미", "제인", "데이빗");
+		int raceCount = 5;
+		RacingCarGame racingCarGame = new RacingCarGame(carNames, raceCount);
+
+		IntStream.range(0, 5).forEach(index -> racingCarGame.startRace());
+
+		assertThat(racingCarGame.isOverRace()).isEqualTo(true);
 	}
 }
