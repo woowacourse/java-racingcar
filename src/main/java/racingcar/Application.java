@@ -15,6 +15,12 @@ public class Application {
     private View view;
     private RetryableTemplate retryableTemplate;
 
+    public static void main(String[] args) {
+        Application application = new Application();
+        application.init();
+        application.run();
+    }
+
     private void init() {
         carNameParser = new CarNameParser();
         tryCountParser = new TryCountParser();
@@ -47,11 +53,5 @@ public class Application {
 
     private void handleException(Exception e) {
         view.printErrorMessage(e.getMessage());
-    }
-
-    public static void main(String[] args) {
-        Application application = new Application();
-        application.init();
-        application.run();
     }
 }
