@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.Objects;
 import java.util.function.Function;
 
+import racingcar.controller.dto.CarDto;
 import racingcar.domain.strategy.FixedMovingStrategy;
 import racingcar.domain.strategy.MovingStrategy;
 import racingcar.domain.strategy.RandomMovingStrategy;
@@ -34,10 +35,6 @@ public class Car {
 		return position;
 	}
 
-	public String getName() {
-		return name.get();
-	}
-
 	public void move(final int distance) {
 		position += distance;
 	}
@@ -46,6 +43,10 @@ public class Car {
 		if (movingStrategy.movable()) {
 			this.position++;
 		}
+	}
+
+	public boolean isSamePosition(int position) {
+		return this.position == position;
 	}
 
 	public boolean isSamePosition(final Car maxCar) {
@@ -57,11 +58,15 @@ public class Car {
 	}
 
 	public int compareNameTo(final Car other) {
-		return compareTo((Car otherCar) -> this.name.get().compareTo(other.getName()), other);
+		return compareTo((Car otherCar) -> this.name.get().compareTo(other.name.get()), other);
 	}
 
 	public int compareTo(final Function<Car, Integer> function, final Car other) {
 		return function.apply(other);
+	}
+
+	public CarDto toDto() {
+		return new CarDto(name, position);
 	}
 
 	@Override
@@ -71,16 +76,20 @@ public class Car {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Car car = (Car)o;
-		return Objects.equals(getName(), car.getName());
+		return Objects.equals(name, car.name);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getName());
+		return Objects.hash(name);
 	}
 
 	@Override
 	public String toString() {
-		return name + " : " + "-".repeat(position);
+		return "Car{" +
+			"name=" + name +
+			", position=" + position +
+			", movingStrategy=" + movingStrategy +
+			'}';
 	}
 }

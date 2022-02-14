@@ -26,7 +26,7 @@ public class CarTest extends Car {
 
 			// when & then
 			car.move();
-			assertThat(car.getPosition()).isEqualTo(1);
+			assertThat(car.isSamePosition(1)).isTrue();
 		}
 
 		@Test
@@ -38,7 +38,7 @@ public class CarTest extends Car {
 
 			// when & then
 			car.move();
-			assertThat(car.getPosition()).isEqualTo(0);
+			assertThat(car.isSamePosition(0)).isTrue();
 		}
 	}
 

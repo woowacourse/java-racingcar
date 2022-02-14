@@ -6,23 +6,26 @@ import racingcar.view.InputView;
 
 public class RacingCarApplication {
 
-	private static CarController game;
+	private static CarController carController;
 	private static CarRepository carRepository;
 	private static InputView inputView;
 
 	public static void main(String[] args) {
-		CarController game = injectDependency();
 
-		game.initGame();
-		game.playGame();
-		game.showWinners();
-		game.end();
+		injectDependency();
+		playGame();
 	}
 
-	private static CarController injectDependency() {
+	private static void playGame() {
+		carController.initGame();
+		carController.playGame();
+		carController.showWinners();
+		carController.end();
+	}
+
+	private static void injectDependency() {
 		inputView = new InputView();
 		carRepository = new CarRepository();
-		game = new CarController(carRepository, inputView);
-		return game;
+		carController = new CarController(carRepository, inputView);
 	}
 }
