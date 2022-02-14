@@ -65,11 +65,9 @@ public class RacingGame {
 
     private int getMaxPosition() {
         return cars.stream()
-                .sorted(Comparator.comparing(Car::getPosition).reversed())
-                .findFirst()
-                .get()
-                .getPosition();
-
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
     }
 
 }
