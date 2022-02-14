@@ -11,8 +11,8 @@ public class RacingGame {
     private int leftCount;
 
     public RacingGame(RacingCars racingCars, int leftCount) {
-        this.racingCars = racingCars;
         checkPositiveCount(leftCount);
+        this.racingCars = racingCars;
         this.leftCount = leftCount;
     }
 
