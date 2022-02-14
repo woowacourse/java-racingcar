@@ -6,7 +6,7 @@ import java.util.List;
 public class RacingCarGame {
 	private static final int GAME_OVER_COUNT = 0;
 
-	private CarRepository carRepository;
+	private Cars cars;
 
 	public RacingCarGame(List<String> racingCarNames, int raceCount) {
 		prepareRacingCars(racingCarNames);
@@ -14,7 +14,7 @@ public class RacingCarGame {
 	}
 
 	private void prepareRacingCars(final List<String> racingCarNames) {
-		carRepository = new CarRepository(racingCarNames);
+		cars = new Cars(racingCarNames);
 	}
 
 	private void prepareRaceCount(final int raceCount) {
@@ -27,14 +27,14 @@ public class RacingCarGame {
 
 	public void startRace() {
 		RaceCount.reduceRaceCount();
-		carRepository.moveCars();
+		cars.moveCars();
 	}
 
 	public HashMap<String, Integer> sendCurrentLocationOfRacingCars() {
-		return carRepository.bringCarsNameAndPosition();
+		return cars.bringCarsNameAndPosition();
 	}
 
 	public List<String> sendRacingGameWinner() {
-		return carRepository.findWinner();
+		return cars.findWinner();
 	}
 }

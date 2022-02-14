@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarRepository {
+public class Cars {
 	private List<Car> cars;
 
-	public CarRepository(final List<String> carNames) {
+	public Cars(final List<String> carNames) {
 		cars = carNames.stream().
 			map(carName -> new Car(carName, 0)).
 			collect(Collectors.toList());

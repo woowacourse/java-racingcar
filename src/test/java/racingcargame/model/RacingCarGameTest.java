@@ -15,7 +15,7 @@ public class RacingCarGameTest {
         List<String> carNames = new ArrayList<>();
         carNames.add("liver");
         carNames.add("gl");
-        CarRepository carRepository = new CarRepository(carNames);
+        Cars carRepository = new Cars(carNames);
 
         assertThat(carRepository.getCars().size()).isEqualTo(2);
     }
@@ -39,7 +39,7 @@ public class RacingCarGameTest {
         carNames.add("liver");
         carNames.add("gl");
 
-        CarRepository carRepository = new CarRepository(carNames);
+        Cars carRepository = new Cars(carNames);
         carRepository.getCars().stream()
                 .filter(car -> car.getName().equals("liver"))
                 .forEach(car -> car.setPosition(4));
