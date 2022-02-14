@@ -18,15 +18,15 @@ public class InputController {
 	}
 
 	public List<String> inputRacingCarNames() {
-		String racingCarNames = checkNothingInputInCarNames(scanner.nextLine());
+		String racingCarNames = checkNothingInputInRacingCarNames(scanner.nextLine());
 		return List.of((racingCarNames).split(SEPARATOR));
 	}
 
-	private static String checkNothingInputInCarNames(final String carNames) {
-		if (carNames == null) {
+	private static String checkNothingInputInRacingCarNames(final String racingCarNames) {
+		if (racingCarNames == null) {
 			throw new IllegalArgumentException(NOTHING_INPUT_IN_CAR_NAMES_ERROR_MESSAGE);
 		}
-		return carNames;
+		return racingCarNames;
 	}
 
 	public String inputRaceCount() {
