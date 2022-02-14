@@ -17,8 +17,8 @@ public class Game {
 
     public void start() {
         String[] names = inputCarNames();
-        int coin = inputCoin();
         List<Car> cars = generateCar(names);
+        int coin = inputCoin();
         race(coin, cars);
         List<String> winners = getWinner(cars);
         output.printWinner(winners);
@@ -44,10 +44,18 @@ public class Game {
 
     private List<Car> generateCar(String[] names) {
         List<Car> cars = new ArrayList<>();
+        checkDuplicate(names);
         for (String name : names) {
             cars.add(new Car(name));
         }
         return cars;
+    }
+
+    private void checkDuplicate(String[] names) {
+        Set<String> uniqueNames = new HashSet<>(Arrays.asList(names));
+        if (uniqueNames.size() != names.length) {
+            throw new IllegalArgumentException(Constant.DUPLICATE_NAME_ERROR);
+        }
     }
 
     private List<String> getWinner(List<Car> cars) {
