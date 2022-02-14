@@ -52,7 +52,12 @@ public class StringCalculator {
     }
 
     private static int convertStringToNaturalNumber(String string) {
-        int converted = Integer.parseInt(string);
+        int converted;
+        try{
+            converted = Integer.parseInt(string);
+        } catch (NumberFormatException ignored) {
+            throw new RuntimeException();
+        }
         if (converted < 0) {
             throw new RuntimeException();
         }
