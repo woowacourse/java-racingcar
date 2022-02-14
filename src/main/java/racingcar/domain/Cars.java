@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,18 +27,20 @@ public class Cars {
 			.collect(Collectors.toList());
 	}
 
-	public List<Name> getWinnerNames() {
+	public List<String> getWinnerNames() {
 		int farthestLocation = getFarthestLocation();
 		return cars.stream()
 			.filter(car -> car.isWinner(farthestLocation))
 			.map(Car::getName)
+			.map(Name::getName)
 			.collect(Collectors.toList());
 	}
 
 	private int getFarthestLocation() {
-		return cars.stream()
+		List<Integer> carLocations = cars.stream()
 			.map(Car::getLocation)
-			.max((Comparator.comparingInt(o -> o)))
-			.orElseThrow(IllegalArgumentException::new);
+			.collect(Collectors.toList());
+
+		return Collections.max(carLocations);
 	}
 }
