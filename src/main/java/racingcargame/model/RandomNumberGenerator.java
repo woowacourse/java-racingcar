@@ -9,7 +9,7 @@ public class RandomNumberGenerator {
     private List<Integer> numbers;
 
     public RandomNumberGenerator(int start, int end) {
-        RandomNumber randomNumber = RandomNumber.of(start, end);
+        RandomNumbers randomNumber = RandomNumbers.of(start, end);
         numbers = randomNumber.getNumbers();
     }
 
