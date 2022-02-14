@@ -18,6 +18,7 @@ public class RacingCars {
     public RacingCars(String carStringNames) {
         isEmpty(carStringNames);
         this.cars = makeRacingCars(carStringNames.split(CAR_NAME_DELIMITER));
+        checkCarsEmpty();
     }
 
     private void isEmpty(String stringNames) {
@@ -31,6 +32,12 @@ public class RacingCars {
             .map(this::removeNameBlank)
             .map(RacingCar::new)
             .collect(Collectors.toList());
+    }
+
+    private void checkCarsEmpty() {
+        if(cars.isEmpty()) {
+            throw new RuntimeException("최소 1개의 자동차가 존재해야 한다.");
+        }
     }
 
     private String removeNameBlank(String name) {
@@ -66,18 +73,10 @@ public class RacingCars {
     }
 
     private RacingCar searchAnyWinner() {
-        checkCarsEmpty();
         RacingCar anyWinner = cars.get(FIRST_ELEMENT);
         for(RacingCar car : cars) {
             anyWinner = car.getGreaterPositionCar(anyWinner);
         }
         return anyWinner;
     }
-
-    private void checkCarsEmpty() {
-        if(cars.isEmpty()) {
-            throw new RuntimeException("최소 1개의 자동차가 존재해야 한다.");
-        }
-    }
-
 }
