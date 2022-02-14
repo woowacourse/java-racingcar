@@ -27,6 +27,7 @@ public class Calculator {
     return addAll(toIntegers(split(input)));
   }
 
+  // FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
   private static boolean validNullOrEmpty(String input) {
     return input == null || input.equals(EMPTY_STRING);
   }
@@ -51,6 +52,7 @@ public class Calculator {
     return numbers;
   }
 
+  // TODO checkedException/uncheckedException의 차이에 대해 고민해보기
   private static int toInteger(String stringNumber) {
     try {
       return Integer.parseInt(stringNumber);
@@ -59,6 +61,7 @@ public class Calculator {
     }
   }
 
+  // FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
   private static void validNegative(int number) {
     if (number < ZERO) {
       throw new RuntimeException(NEGATIVE_VALUE_ERROR_MESSAGE);

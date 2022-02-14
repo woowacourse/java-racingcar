@@ -38,6 +38,7 @@ public class Car implements Comparable<Car> {
     return position.compareTo(car.position) == SAME_POSITION;
   }
 
+  // FIXME move의 테스트를 generateRandomNumber() 때문에 하지 못하고 있는데 해결방법은 없는가?
   public boolean move() {
     if (isMoveForward(generateRandomNumber())) {
       position.increase();

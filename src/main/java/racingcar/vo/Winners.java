@@ -8,6 +8,7 @@ public class Winners {
   private static final String WINNERS_DELIMITER = ",";
   private static final String WINNER_MESSAGE_FORM = "%s가 최종 우승했습니다.";
 
+  // FIXME Winners가 CarName을 가지는 것과 Car를 가지는 것 중 어느것이 더 좋을까?
   private List<CarName> winners;
 
   public Winners(List<CarName> winners) {

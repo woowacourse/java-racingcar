@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 
 public class ApplicationTest {
 
-  @DisplayName("main() 전체 테스트")
+  // FIXME main 통합 테스트가 제대로 되고있는게 맞는가?
+  @DisplayName("main() 통합 테스트")
   @Test
   public void main_test() throws Exception {
     String[] input = {"name1,name2,name3", "5"};

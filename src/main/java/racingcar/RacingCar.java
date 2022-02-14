@@ -28,6 +28,7 @@ public class RacingCar {
     return carNames.split(CAR_NAME_DELIMITER);
   }
 
+  // FIXME Cars를 생성하는 책임을 Cars에게 줄 수 있다면?
   private Cars createCars(String[] names) {
     Cars cars = new Cars();
     for (String name : names) {

@@ -40,3 +40,31 @@
     - [x] 회수가 입력하지 않는 경우
     - [x] 회수가 숫자가 아닌 경우
     - [x] 회수가 음수인 경우
+
+---
+
+## 피드백 수정 기록 및 궁금한 점
+
+- [ ] FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
+
+- [ ] FIXME 파라미터가 없는 메소드에서 IllegalArgumentException가 사용되는 것이 적절한가?
+    - RandomUtil
+
+- [ ] FIXME Cars를 생성하는 책임을 Cars에게 줄 수 있다면?
+    - RacingCar
+
+- [ ] TODO 출력 형식이 바뀌어야 한다면 View와 Cars중 어느곳이 수정되어야 하는가?
+    - Cars.repeatRaceBy()
+
+- [ ] FIXME 메소드 명이 적절한가?
+    - Cars.isSize()
+
+- [ ] FIXME 이 메서드는 테스트에서만 사용되는데 이 메서드를 꼭 사용해서 테스트해야할까?
+    - Cars
+
+- [ ] FIXME Winners가 CarName을 가지는 것과 Car를 가지는 것 중 어느것이 더 좋을까?
+    - Winners
+
+- [ ] TODO checkedException/uncheckedException의 차이에 대해 고민해보기
+    - Calculator.toInteger()
+  

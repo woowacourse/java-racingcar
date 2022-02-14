@@ -25,6 +25,7 @@ public class Attempt {
     attempt--;
   }
 
+  // FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
   private int valid(String attempt) {
     validNumberFormat(attempt);
     int number = toInteger(attempt);
@@ -36,6 +37,7 @@ public class Attempt {
     return Integer.parseInt(string);
   }
 
+  // FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
   private void validNumberFormat(String attempt) {
     try {
       Integer.parseInt(attempt);
@@ -44,6 +46,7 @@ public class Attempt {
     }
   }
 
+  // FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
   private void validNegative(int attempt) {
     if (attempt < ZERO) {
       throw new RuntimeException(NUMBER_NEGATIVE_ERROR_MESSAGE);

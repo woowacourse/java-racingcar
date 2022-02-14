@@ -18,6 +18,8 @@ public class RandomUtil {
     return randomNumber;
   }
 
+  // FIXME google java style 메소드 명은 동사로 시작해야 한다.(5.2.3)
+  // FIXME IllegalArgumentException가 사용되는 것이 적절한가?
   private static void validRange(int randomNumber) {
     if (randomNumber > MAXIMUM || randomNumber < MINIMUM) {
       throw new IllegalArgumentException(RANGE_OVER_ERROR_MESSAGE);
