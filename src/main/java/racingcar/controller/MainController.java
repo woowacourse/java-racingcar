@@ -4,17 +4,17 @@ import racingcar.domain.Car;
 import java.util.List;
 
 public class MainController {
-    private List<Car> carList;
+    private List<Car> cars;
     private int tryNum;
 
     public MainController() {
     }
 
     public void play() {
-        carList = InputController.inputCarList();
+        cars = InputController.inputcars();
         tryNum = InputController.inputTryNum();
 
-        CarController.startRace(carList, tryNum);
-        CarController.finalWinner(carList);
+        CarController.startRace(cars, tryNum);
+        CarController.finalWinner(cars);
     }
 }

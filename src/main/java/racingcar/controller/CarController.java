@@ -9,31 +9,31 @@ import java.util.List;
 public class CarController {
     private static final String PRINT_RESULT = "실행 결과";
 
-    public static void startRace(List<Car> carList, int tryNum) {
+    public static void startRace(List<Car> cars, int tryNum) {
         System.out.println(PRINT_RESULT);
 
         for (int i = 0; i < tryNum; i++) {
-            moveCar(carList);
-            Output.printRace(carList);
+            moveCar(cars);
+            Output.printRace(cars);
         }
     }
 
-    public static void finalWinner(List<Car> carList) {
-        int maxPosition = findMaxPosition(carList);
-        List<String> winnerList = getWinnerList(carList, maxPosition);
+    public static void finalWinner(List<Car> cars) {
+        int maxPosition = findMaxPosition(cars);
+        List<String> winnerList = getWinnerList(cars, maxPosition);
         Output.printWinner(winnerList);
     }
 
-    private static void moveCar(List<Car> carList) {
-        for (Car car : carList) {
+    private static void moveCar(List<Car> cars) {
+        for (Car car : cars) {
             car.goForward();
         }
     }
 
-    private static List<String> getWinnerList(List<Car> carList, int maxPosition) {
+    private static List<String> getWinnerList(List<Car> cars, int maxPosition) {
         List<String> winnerList = new ArrayList<>();
 
-        for (Car car : carList) {
+        for (Car car : cars) {
             if (car.getPosition() == maxPosition) {
                 winnerList.add(car.getName());
             }
@@ -42,10 +42,10 @@ public class CarController {
         return winnerList;
     }
 
-    private static int findMaxPosition(List<Car> carList) {
+    private static int findMaxPosition(List<Car> cars) {
         int maxNum = 0;
 
-        for (Car car : carList) {
+        for (Car car : cars) {
             if (car.getPosition() > maxNum) {
                 maxNum = car.getPosition();
             }

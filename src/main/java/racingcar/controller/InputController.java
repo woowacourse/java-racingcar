@@ -8,22 +8,22 @@ import java.util.List;
 public class InputController {
     private static final String SPLIT_DELIM = ",";
 
-    public static List<Car> inputCarList() {
-        return saveCarList();
+    public static List<Car> inputcars() {
+        return savecars();
     }
 
     public static int inputTryNum() {
         return saveTryNum();
     }
 
-    private static List<Car> saveCarList() {
+    private static List<Car> savecars() {
         while (true) {
             String names = Input.inputCarNames();
 
             try {
                 Validation.carNameValidation(names);
-                List<Car> carList = splitList(names);
-                return carList;
+                List<Car> cars = splitList(names);
+                return cars;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -31,14 +31,14 @@ public class InputController {
     }
 
     private static List<Car> splitList(String names) {
-        List<Car> carList = new ArrayList<>();
+        List<Car> cars = new ArrayList<>();
         String[] carNames = names.split(SPLIT_DELIM);
 
         for (String carName : carNames) {
-            carList.add(new Car(carName));
+            cars.add(new Car(carName));
         }
 
-        return carList;
+        return cars;
     }
 
     private static int saveTryNum() {

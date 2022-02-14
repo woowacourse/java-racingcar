@@ -8,8 +8,8 @@ public class Output {
     private static final String SPLIT_DELIM = ", ";
     private static final String OUTPUT_WINNER_MESSAGE = "가 최종 우승했습니다.";
 
-    public static void printRace(List<Car> carList) {
-        for (Car car : carList) {
+    public static void printRace(List<Car> cars) {
+        for (Car car : cars) {
             System.out.println(car.toString());
         }
         System.out.println();
