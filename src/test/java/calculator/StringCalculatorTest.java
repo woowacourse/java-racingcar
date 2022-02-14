@@ -1,6 +1,7 @@
 package calculator;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,6 +50,6 @@ public class StringCalculatorTest {
     @DisplayName("음수 입력시 예외 발생 테스트")
     void splitAndSum_negative() {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("//;\n-1;2;3"))
-            .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class);
     }
 }

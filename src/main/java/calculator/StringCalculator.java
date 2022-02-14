@@ -33,13 +33,13 @@ public class StringCalculator {
 
     private static boolean containsNegative(final String[] numbers) {
         return Arrays.stream(numbers)
-            .map(Integer::parseInt)
-            .anyMatch(number -> number < 0);
+                .map(Integer::parseInt)
+                .anyMatch(number -> number < 0);
     }
 
     private static int addAll(String[] numbers) {
         return Arrays.stream(numbers)
-            .mapToInt(Integer::parseInt)
-            .sum();
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 }

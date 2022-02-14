@@ -14,8 +14,8 @@ public class Cars {
 
     public static Cars from(List<String> carsName) {
         return new Cars(carsName.stream()
-            .map(carName -> new Car(carName))
-            .collect(Collectors.toList()));
+                .map(carName -> new Car(carName))
+                .collect(Collectors.toList()));
     }
 
     public void driveAll(NumberGeneratePolicy numberGeneratePolicy) {
@@ -25,14 +25,14 @@ public class Cars {
     public List<Car> getWinners() {
         final Car maxPositionCar = findMaxPositionCar();
         return cars.stream()
-            .filter(car -> car.isSamePosition(maxPositionCar))
-            .collect(Collectors.toList());
+                .filter(car -> car.isSamePosition(maxPositionCar))
+                .collect(Collectors.toList());
     }
 
     public Car findMaxPositionCar() {
         return cars.stream()
-            .max(Car::compareTo)
-            .orElseThrow(() -> new IllegalArgumentException(ERROR_CAR_EMPTY));
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_CAR_EMPTY));
     }
 
     public List<Car> getDriveRecord() {

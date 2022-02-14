@@ -1,9 +1,11 @@
 package study;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
     @Test
@@ -31,12 +33,12 @@ public class StringTest {
     @DisplayName("문자의 특정 위치 예외 처리")
     public void specific_location() {
         assertThatThrownBy(() -> "abc".charAt(4))
-            .isInstanceOf(IndexOutOfBoundsException.class)
-            .hasMessageContaining("String index out of range: " + 4);
+                .isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessageContaining("String index out of range: " + 4);
 
         assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
-            .isThrownBy(() -> {
-                "abc".charAt(4);
-            }).withMessageMatching("String index out of range: " + 4);
+                .isThrownBy(() -> {
+                    "abc".charAt(4);
+                }).withMessageMatching("String index out of range: " + 4);
     }
 }

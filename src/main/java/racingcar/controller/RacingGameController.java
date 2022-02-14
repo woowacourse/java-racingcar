@@ -9,9 +9,9 @@ import racingcar.view.OutputView;
 public class RacingGameController {
     public static void main(String[] args) {
         RacingGame racingGame = RacingGame.createRacingGame(
-            InputView.getCarsName(),
-            InputView.getRound(),
-            new RandomNumberGeneratePolicy()
+                InputView.getCarsName(),
+                InputView.getRound(),
+                new RandomNumberGeneratePolicy()
         );
         OutputView.printRacingRecordHeadLine();
         while (racingGame.hasNextGame()) {
