@@ -30,7 +30,8 @@ public class CarRacingGame {
 	}
 
 	private String[] racingCarNames() {
-		String input = userInput(ENTER_CAR_NAMES);
+		System.out.println(ENTER_CAR_NAMES);
+		String input = getInput();
 		try {
 			checkBlank(input);
 		} catch (RuntimeException e) {
@@ -48,12 +49,12 @@ public class CarRacingGame {
 	}
 
 	private void racingCarTimes() {
-		String inputRacingTimes = userInput(WHAT_TIMES);
+		System.out.println(WHAT_TIMES);
+		String inputRacingTimes = getInput();
 		enterTimes(inputRacingTimes);
 	}
 
-	private String userInput(String message) {
-		System.out.println(message);
+	private String getInput() {
 		Scanner scanner = new Scanner(System.in);
 		return scanner.nextLine();
 	}
