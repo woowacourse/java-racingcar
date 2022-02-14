@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
+import racingcar.model.MovingCar;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
@@ -30,14 +31,24 @@ public class CarTest {
     @Test
     public void 전진_성공() {
         Car testCar = new Car("아스피", 2);
-        testCar.move(4);
+        MovingCar movingCar = (int turnNumber) -> turnNumber >= 4;
+        testCar.move(movingCar, 4);
         assertThat(testCar.isSamePosition(new Car("배카라", 3))).isEqualTo(true);
     }
 
     @Test
     public void 전진_살패() {
         Car testCar = new Car("아스피", 2);
-        testCar.move(3);
+        MovingCar movingCar = (int turnNumber) -> turnNumber >= 4;
+        testCar.move(movingCar, 3);
         assertThat(testCar.isSamePosition(new Car("배카라", 3))).isEqualTo(false);
+    }
+
+    @Test
+    public void 전진_조건_변경_6이상() {
+        Car testCar = new Car("아스피", 2);
+        MovingCar movingCar = (int turnNumber) -> turnNumber >= 6;
+        testCar.move(movingCar, 4);
+        assertThat(testCar.isSamePosition(new Car("배카라", 2))).isEqualTo(true);
     }
 }

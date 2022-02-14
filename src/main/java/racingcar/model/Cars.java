@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import racingcar.service.RandomNumberService;
 
 public class Cars {
+    private static final int MOVING_CONDITION_NUMBER = 4;
 
     private final List<Car> cars;
 
@@ -19,7 +20,8 @@ public class Cars {
     }
 
     public void moveCars() {
-        cars.forEach(car -> car.move(RandomNumberService.getRandomNumber()));
+        int randomNumber = RandomNumberService.getRandomNumber();
+        cars.forEach(car -> car.move((int turnNumber) -> turnNumber > MOVING_CONDITION_NUMBER, randomNumber));
     }
 
     public List<String> getPosition() {
