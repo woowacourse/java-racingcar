@@ -7,12 +7,11 @@ import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
-import racingcar.model.RandomUtil;
 import racingcar.model.vo.Car;
+import racingcar.model.vo.MovableStrategy;
 
 public class Cars {
     private static final String MESSAGE_FOR_CAR_NAME_DUPLICATE = "이름은 중복될 수 없습니다.";
-    private static final int RANGE_OF_ZERO_TO_NINE = 10;
     private static final String ERROR_MESSAGE_TO_GET_MAX_POSITION = "최대값을 구할 수 없습니다.";
     private static final String ERROR_MESSAGE_FOR_EMPTY_CAR_LIST = "자동차 목록을 확인해주세요";
 
@@ -45,14 +44,10 @@ public class Cars {
                 .size() != cars.size();
     }
 
-    public void move() {
+    public void move(MovableStrategy movableStrategy) {
         for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).advance(getRandomNumber());
+            cars.get(i).advance(movableStrategy);
         }
-    }
-
-    private int getRandomNumber() {
-        return RandomUtil.getNumbersInRange(RANGE_OF_ZERO_TO_NINE);
     }
 
     public List<String> getWinner() {

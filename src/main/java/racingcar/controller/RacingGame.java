@@ -6,11 +6,14 @@ import java.util.stream.Collectors;
 
 import racingcar.model.firstcollection.Cars;
 import racingcar.model.vo.Car;
+import racingcar.model.vo.MovableStrategy;
+import racingcar.model.vo.RacingCarMovableStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGame {
     private static final String CAR_NAME_DELIMITER = ",";
+    private static final MovableStrategy movableStrategy = new RacingCarMovableStrategy();
 
     public void start() {
         final Cars cars = setupCars();
@@ -40,7 +43,7 @@ public class RacingGame {
 
     private void race(final Cars cars, final int trials) {
         for (int round = 0; round < trials; round++) {
-            cars.move();
+            cars.move(movableStrategy);
             OutputView.printCurrentPosition(cars.getCars());
         }
     }

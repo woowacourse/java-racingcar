@@ -2,11 +2,6 @@ package racingcar.model.vo;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class CarTest {
     @Test
-    @DisplayName("이름으로 자동차 생성 테스트")
+    @DisplayName("유효한 이름으로 자동차 생성 테스트")
     void carTest() {
         // given
         String testName = "test";
@@ -26,15 +21,62 @@ public class CarTest {
         assertThat(car.getName()).isEqualTo(testName);
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {"4:1", "3:0"}, delimiter = ':')
+    @Test
+    @DisplayName("자동차 이름 앞 뒤 여백 제거 테스트")
+    void carNameTrimTest() {
+        // given
+        String testName = " hi ";
+
+        // when
+        Car car = new Car(testName);
+
+        // then
+        assertThat(car.getName()).isEqualTo(testName.trim());
+    }
+
+    @Test
+    @DisplayName("자동차 이름 null 전달 테스트")
+    void creatingNewCarWithNullNameShouldFail() {
+        // given
+        String nullName = null;
+
+        // when & then
+        assertThatThrownBy(() -> new Car(nullName))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageMatching("올바른 이름을 입력해주세요");
+    }
+
+    @Test
+    @DisplayName("자동차 이름 \"\" 전달 테스트")
+    void creatingNewCarWithEmptyNameShouldFail() {
+        // given
+        String nullName = "";
+
+        // when & then
+        assertThatThrownBy(() -> new Car(nullName))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageMatching("이름은 \\d+글자 이상, \\d+글자 이하여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("이름이 5글자가 넘으면 예외 발생 테스트")
+    void nameLengthShouldBeLessThenSix() {
+        String overSizedName = "richard";
+
+        assertThatThrownBy(() -> new Car(overSizedName))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageMatching("이름은 \\d+글자 이상, \\d+글자 이하여야 합니다.");
+    }
+
+    @ParameterizedTest(name = "전진 - {0}")
+    @CsvSource(value = {"true:1", "false:0"}, delimiter = ':')
     @DisplayName("자동차 전진 테스트")
-    void advanceTest(int number, int expected) {
+    void advanceTest(boolean isMove, int expected) {
         // given
         Car car = new Car("test");
 
         // when
-        car.advance(number);
+        car.advance(() -> isMove);
 
         // then
         assertThat(car.getPosition()).isEqualTo(expected);
@@ -47,38 +89,9 @@ public class CarTest {
         Car car = new Car("test");
 
         // when
-        car.advance(4);
+        car.advance(() -> true);
 
         // then
         assertThat(car.getPosition()).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("포지션 내림차순 테스트")
-    void sortByPositionDesc() {
-        // given
-        Car pobi = new Car("pobi");
-        pobi.advance(4);
-        pobi.advance(4);
-
-        Car hoho = new Car("hoho");
-        hoho.advance(4);
-
-        Car rich = new Car("rich");
-        rich.advance(3);
-
-        // when
-        List<Car> cars = new ArrayList<>();
-        cars.add(hoho);
-        cars.add(rich);
-        cars.add(pobi);
-        List<Car> sortedCars = cars.stream()
-                                .sorted(Comparator.comparingInt(Car::getPosition))
-                                .collect(Collectors.toList());
-
-        // then
-        assertThat(sortedCars.get(0)).isEqualTo(rich);
-        assertThat(sortedCars.get(1)).isEqualTo(hoho);
-        assertThat(sortedCars.get(2)).isEqualTo(pobi);
     }
 }

@@ -3,7 +3,6 @@ package racingcar.model.vo;
 import java.util.Objects;
 
 public class Car {
-    private static final int ADVANCE_STANDARD = 4;
     private static final int MAXIMUM_LENGTH = 5;
     private static final int MINIMUM_LENGTH = 1;
     private static final String ERROR_MESSAGE_FOR_INVALID_SIZED_NAME = "이름은 %d글자 이상, %d글자 이하여야 합니다.";
@@ -37,8 +36,8 @@ public class Car {
         }
     }
 
-    public void advance(final int number) {
-        if (number >= ADVANCE_STANDARD) {
+    public void advance(MovableStrategy movableStrategy) {
+        if (movableStrategy.isMove()) {
             this.position++;
         }
     }
