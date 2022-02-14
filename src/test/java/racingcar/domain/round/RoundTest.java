@@ -3,7 +3,7 @@ package racingcar.domain.round;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import racingcar.exception.NotNumericException;
+import racingcar.exception.NotIntegerException;
 import racingcar.exception.NumberTooSmallException;
 
 public class RoundTest {
@@ -33,7 +33,7 @@ public class RoundTest {
     @Test
     void roundWithNotNumericValue() {
         String input = "hello";
-        Assertions.assertThatExceptionOfType(NotNumericException.class)
+        Assertions.assertThatExceptionOfType(NotIntegerException.class)
             .isThrownBy(() -> new Round(input))
             .withMessageContaining("1 이상의 양수");
     }
