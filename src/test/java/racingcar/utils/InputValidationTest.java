@@ -1,13 +1,12 @@
 package racingcar.utils;
 
-import static org.assertj.core.api.AssertionsForClassTypes.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.mockito.Mockito.*;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @DisplayName("InputValidation 클래스를 테스트한다.")
 class InputValidationTest {
@@ -47,14 +46,24 @@ class InputValidationTest {
 			assertDoesNotThrow(() -> validation.validateNotIntegerRepeats(repeats));
 		}
 
-		@DisplayName("잘못된 반복 횟수면 exception이 발생한다")
+		@DisplayName("정수가 아닌 반복 횟수 입력 값이면 exception이 발생한다")
 		@ParameterizedTest(name = "{index} {displayName} repeats={0}")
 		@ValueSource(strings = {"test", "asd"})
-		void checkWrongRepeats(final String repeats) {
+		void checkNotIntegerRepeats(final String repeats) {
 			InputValidation validation = new InputValidation();
 			assertThatExceptionOfType(RuntimeException.class)
 				.isThrownBy(() -> validation.validateNotIntegerRepeats(repeats))
 				.withMessageMatching("반복횟수는 정수만 입력 가능합니다.");
+		}
+
+		@DisplayName("음수의 반복 횟수 입력 값이면 exception이 발생한다")
+		@ParameterizedTest(name = "{index} {displayName} repeats={0}")
+		@ValueSource(ints = {-1, -123})
+		void checkNegativeNumberRepeats(final int repeats) {
+			InputValidation validation = new InputValidation();
+			assertThatExceptionOfType(RuntimeException.class)
+					.isThrownBy(() -> validation.validateNegativeNumberRepeats(repeats))
+					.withMessageMatching("반복횟수는 양의 정수만 입력 가능합니다.");
 		}
 	}
 }
