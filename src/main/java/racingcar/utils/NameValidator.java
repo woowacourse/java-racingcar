@@ -10,7 +10,7 @@ public class NameValidator {
     public static final String ERROR_LONG_NAME = "[ERROR] 이름을 5자 이하로 등록해주세요";
     public static final String ERROR_DUPLICATE_NAME = "[ERROR] 중복된 이름이 있습니다.";
 
-    public static final int NAME_LENGTH_LIMIT = 5;
+    private static final int NAME_LENGTH_LIMIT = 5;
 
     public static void validateName(String names) {
         String[] splitName = StringSeparator.splitAndTrim(names);

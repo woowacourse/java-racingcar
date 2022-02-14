@@ -3,9 +3,9 @@ package racingcar.view;
 import java.util.List;
 
 public class OutputView {
-    public static final String RESULT_MESSAGE = "실행 결과";
-    public static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
-    public static final String WINNER_JOIN_DELIMITER = ", ";
+    private static final String RESULT_MESSAGE = "실행 결과";
+    private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
+    private static final String WINNER_JOIN_DELIMITER = ", ";
 
     public static void printCarPosition(List<String> cars) {
         cars.forEach(System.out::println);

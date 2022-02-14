@@ -6,8 +6,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Cars {
-    public static final int MOVE_CONDITION = 4;
-    public static final int RANDOM_NUMBER_BOUND = 10;
+    private static final int MOVE_CONDITION = 4;
+    private static final int RANDOM_NUMBER_BOUND = 10;
 
     private final List<Car> cars = new ArrayList<>();
 
