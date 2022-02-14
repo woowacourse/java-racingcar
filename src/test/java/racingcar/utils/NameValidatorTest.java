@@ -1,34 +1,38 @@
 package racingcar.utils;
 
+import static org.assertj.core.api.Assertions.*;
+
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import java.util.stream.Stream;
 
 class NameValidatorTest {
-    @Test
-    void 빈_문자_입력() {
-        assertThatThrownBy(() -> NameValidator.isValidateNames(""))
-                .isInstanceOf(IllegalArgumentException.class);
+
+    @ParameterizedTest(name = "{index}: {1}")
+    @MethodSource("invalidParameters")
+    @DisplayName("car 이름 생성 유효성 검사")
+    void invalidCreate(String carNames, String testName) {
+        assertThatThrownBy(() -> NameValidator.isValidateNames(carNames))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 자동차이름_1글자미만() {
-        assertThatThrownBy(() -> NameValidator.isValidateNames("pobi,"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 자동차이름_5글자초과() {
-        assertThatThrownBy(() -> NameValidator.isValidateNames("pobi,donghok"))
-                .isInstanceOf(IllegalArgumentException.class);
+    static Stream<Arguments> invalidParameters() {
+        return Stream.of(
+            Arguments.of("", "빈 문자 입력"),
+            Arguments.of("pobi,", "한글자 미만"),
+            Arguments.of("pobi,donghok", "5글자 초과")
+        );
     }
 
     @Test
     void 자동차이름_1개() {
-        Assertions.assertThatCode(() -> NameValidator.isValidateNames("pobi"))
+        assertThatCode(() -> NameValidator.isValidateNames("pobi"))
                 .doesNotThrowAnyException();
     }
 

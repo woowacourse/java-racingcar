@@ -1,44 +1,33 @@
 package racingcar.utils;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.stream.Stream;
+
 public class TrialNumberValidatorTest {
-    @Test
-    void 시도횟수_빈문자열() {
-        assertThatThrownBy(() -> TrialNumberValidator.isEmpty(""))
-                .isInstanceOf(IllegalArgumentException.class);
+    @ParameterizedTest(name = "{index}: {1}")
+    @MethodSource("invalidParameters")
+    @DisplayName("시도횟수 입력 유효성 검사")
+    void 시도횟수_입력_유효성_검사(String trialNumber, String testName) {
+        assertThatThrownBy(() -> TrialNumberValidator.validate(trialNumber))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 시도횟수_0이하_0() {
-        assertThatThrownBy(() -> TrialNumberValidator.isNotPositive(0))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 시도횟수_0이하_음수() {
-        assertThatThrownBy(() -> TrialNumberValidator.isNotPositive(-1))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 시도횟수_문자입력1() {
-        assertThatThrownBy(() -> TrialNumberValidator.isNotInteger("a"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 시도횟수_문자입력2() {
-        assertThatThrownBy(() -> TrialNumberValidator.isNotInteger("*"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 시도횟수_정수가_아닌_숫자_입력() {
-        assertThatThrownBy(() -> TrialNumberValidator.isNotInteger("1.3"))
-                .isInstanceOf(IllegalArgumentException.class);
+    static Stream<Arguments> invalidParameters() {
+        return Stream.of(
+            Arguments.of("", "빈 문자"),
+            Arguments.of("0", "0 입력"),
+            Arguments.of("-1", "음수 입력"),
+            Arguments.of("a", "문자입력: a"),
+            Arguments.of("*", "문자입력: *"),
+            Arguments.of("1.3", "소수입력")
+        );
     }
 }
