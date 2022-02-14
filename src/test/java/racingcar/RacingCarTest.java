@@ -71,10 +71,10 @@ public class RacingCarTest {
         RacingCars racingCars = new RacingCars(racingCarList);
         ArrayList<RacingCar> winners = racingGame.getWinners(racingCars);
 
-        String actual = racingGame.getWinnersName(winners);
+        List<String> actual = racingGame.getWinnersName(winners);
         String winnersName = racingCar2.getName() + WINNER_NAME_DELIMITER + racingCar3.getName();
 
-        assertThat(actual).isEqualTo(winnersName);
+        assertThat(String.join(WINNER_NAME_DELIMITER, actual)).isEqualTo(winnersName);
     }
 
     @Test

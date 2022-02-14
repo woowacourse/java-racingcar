@@ -9,8 +9,6 @@ import java.util.List;
 
 public class RacingGame {
 
-    private static final String WINNER_NAME_DELIMITER = ", ";
-
     public RacingGame() {
     }
 
@@ -42,11 +40,11 @@ public class RacingGame {
         return winners;
     }
 
-    public String getWinnersName(ArrayList<RacingCar> winners) {
+    public ArrayList<String> getWinnersName(ArrayList<RacingCar> winners) {
         ArrayList<String> winnersName = new ArrayList<>();
         for (RacingCar winner : winners) {
             winnersName.add(winner.getName());
         }
-        return String.join(WINNER_NAME_DELIMITER, winnersName);
+        return winnersName;
     }
 }

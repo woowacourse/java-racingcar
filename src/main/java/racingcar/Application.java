@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.List;
+
 import racingcar.domain.RacingCars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -16,7 +18,7 @@ public class Application {
         racingCars.join(carNames);
         racingGame.playGame(racingCars, Integer.parseInt(tryCount));
 
-        String winnersName = racingGame.getWinnersName(racingGame.getWinners(racingCars));
-        OutputView.printWinners(winnersName);
+        List<String> winnerNameBucket = racingGame.getWinnersName(racingGame.getWinners(racingCars));
+        OutputView.printWinners(winnerNameBucket);
     }
 }

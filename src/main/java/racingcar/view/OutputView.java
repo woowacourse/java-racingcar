@@ -7,6 +7,7 @@ import java.util.List;
 
 public class OutputView {
 
+    private static final String WINNER_NAME_DELIMITER = ", ";
     private static final String TRIAL_RESULT = "실행 결과:";
     private static final String POSITION_LOCATION = "-";
     private static final String CAR_POSITION_PARTITION_FORMAT = ":";
@@ -33,8 +34,8 @@ public class OutputView {
         return sb.toString();
     }
 
-    public static void printWinners(String winnersName){
-        System.out.println(winnersName + WINNER_ANNOUNCEMENT);
+    public static void printWinners(List<String> winnerNameBucket){
+        System.out.println(String.join(WINNER_NAME_DELIMITER, winnerNameBucket) + WINNER_ANNOUNCEMENT);
     }
 
 }
