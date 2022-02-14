@@ -16,6 +16,7 @@ public class View {
     private static final String PROGRESS_BAR = "-";
     private static final String NAME_AND_PROGRESS_BAR_DELIMITER = " : ";
     private static final String WINNER_NAMES_DELIMITER = ", ";
+
     private Scanner scanner = new Scanner(System.in);
 
     public String inputCarNames() {
@@ -53,11 +54,15 @@ public class View {
     }
 
     private String getFormattedWinnerNames(WinnersResult winnersResult) {
-        return winnersResult.getWinnerNames().stream().collect(joining(WINNER_NAMES_DELIMITER));
+        return winnersResult.getWinnerNames().stream()
+                .collect(joining(WINNER_NAMES_DELIMITER));
     }
 
     private String getProgressBar(int position) {
-        return IntStream.range(0, position).mapToObj(i -> PROGRESS_BAR).reduce("", (a, b) -> a + b);
+        return IntStream
+                .range(0, position)
+                .mapToObj(i -> PROGRESS_BAR)
+                .reduce("", (a, b) -> a + b);
     }
 
     private void printBlankLine() {

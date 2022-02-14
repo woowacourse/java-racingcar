@@ -6,6 +6,7 @@ import java.util.List;
 import racingcar.domain.Car;
 
 public class MidtermResult {
+
     private final List<Car> cars;
 
     public MidtermResult(List<Car> cars) {
@@ -17,10 +18,15 @@ public class MidtermResult {
     }
 
     private Car findCarByName(String name) {
-        return cars.stream().filter(c -> c.getName().equals(name)).findFirst().get();
+        return cars.stream()
+                .filter(c -> c.getName().equals(name))
+                .findFirst()
+                .get();
     }
 
     public List<String> getCarNames() {
-        return cars.stream().map(Car::getName).collect(toList());
+        return cars.stream()
+                .map(Car::getName)
+                .collect(toList());
     }
 }

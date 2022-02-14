@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 public class TryCount {
+
     private final int maxTryCount;
     private int currentTryCount;
 

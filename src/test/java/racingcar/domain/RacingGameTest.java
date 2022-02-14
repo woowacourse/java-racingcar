@@ -43,7 +43,7 @@ public class RacingGameTest {
         racingGame.initTryCount(1);
         racingGame.proceedTurn();
         assertThatThrownBy(() -> racingGame.proceedTurn())
-            .isInstanceOf(RacingGameIsFinishedException.class);
+                .isInstanceOf(RacingGameIsFinishedException.class);
     }
 
     @Test
@@ -78,6 +78,6 @@ public class RacingGameTest {
     public void 게임_종료전에_우승자_반환시_예외_발생() {
         racingGame.initTryCount(1);
         assertThatThrownBy(() -> racingGame.getWinnersResult())
-            .isInstanceOf(GetWinnersBeforeFinishException.class);
+                .isInstanceOf(GetWinnersBeforeFinishException.class);
     }
 }

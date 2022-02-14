@@ -18,7 +18,7 @@ public class CarNameParser {
         validateCarNames(names);
 
         return Arrays.stream(splitByDelimiter(names))
-            .collect(toList());
+                .collect(toList());
     }
 
     private void validateCarNames(String names) {
@@ -47,16 +47,18 @@ public class CarNameParser {
 
     private boolean isInvalidLength(String names) {
         return Arrays.stream(splitByDelimiter(names))
-            .anyMatch(n -> n.length() > NAME_UPPER_LENGTH);
+                .anyMatch(n -> n.length() > NAME_UPPER_LENGTH);
     }
 
     private boolean isEmptyName(String names) {
-        return Arrays.stream(splitByDelimiter(names)).anyMatch(String::isEmpty);
+        return Arrays.stream(splitByDelimiter(names))
+                .anyMatch(String::isEmpty);
     }
 
     private boolean isDuplicateName(String names) {
-        return Arrays.stream(splitByDelimiter(names)).distinct().count() != splitByDelimiter(
-            names).length;
+        return Arrays.stream(splitByDelimiter(names))
+                .distinct()
+                .count() != splitByDelimiter(names).length;
     }
 
     private String[] splitByDelimiter(String names) {

@@ -38,6 +38,7 @@ public class Application {
             racingGame.proceedTurn();
             view.printMidtermResult(racingGame.getMidtermResult());
         }
+
         view.printWinnerResult(racingGame.getWinnersResult());
     }
 

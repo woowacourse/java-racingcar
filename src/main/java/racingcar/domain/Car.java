@@ -17,14 +17,14 @@ public class Car {
         return new Car(name);
     }
 
-    public boolean isSamePosition(int position) {
-        return this.position == position;
-    }
-
     public void move(int randomNumber) {
         if (randomNumber >= FORWARD_BOUNDARY_NUMBER) {
             position++;
         }
+    }
+
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 
     public String getName() {

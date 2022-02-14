@@ -25,21 +25,21 @@ public class CarNameParserTest {
     @Test
     public void 이름이_6글자_이상인_경우_예외_발생() {
         assertThatThrownBy(() -> parser.parse("pobi,crong,honuxx"))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(CarNameParser.INVALID_LENGTH_ERROR_MESSAGE);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(CarNameParser.INVALID_LENGTH_ERROR_MESSAGE);
     }
 
     @Test
     public void 이름이_공백일_경우_예외_발생() {
         assertThatThrownBy(() -> parser.parse("pobi,,honux"))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(CarNameParser.EMPTY_NAME_ERROR_MESSAGE);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(CarNameParser.EMPTY_NAME_ERROR_MESSAGE);
     }
 
     @Test
     public void 이름이_중복일_경우_예외_발생() {
         assertThatThrownBy(() -> parser.parse("pobi,pobi,honux"))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(CarNameParser.DUPLICATE_NAME_ERROR_MESSAGE);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(CarNameParser.DUPLICATE_NAME_ERROR_MESSAGE);
     }
 }

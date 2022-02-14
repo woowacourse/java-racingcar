@@ -12,7 +12,9 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<String> names) {
-        cars = names.stream().map(Car::of).collect(toList());
+        cars = names.stream()
+                .map(Car::of)
+                .collect(toList());
     }
 
     public void move(RandomNumberGenerator randomNumberGenerator) {
@@ -28,10 +30,14 @@ public class Cars {
     }
 
     private List<Car> getWinners(final int mostFarPosition) {
-        return cars.stream().filter(c -> c.isSamePosition(mostFarPosition)).collect(toList());
+        return cars.stream()
+                .filter(c -> c.isSamePosition(mostFarPosition)).collect(toList());
     }
 
     private int getMostFarPosition() {
-        return cars.stream().mapToInt(Car::getPosition).max().getAsInt();
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .getAsInt();
     }
 }
