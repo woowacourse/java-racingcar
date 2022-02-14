@@ -8,6 +8,8 @@ public class Game {
     private Input input;
     private Output output;
 
+    private static final int RANDOM_RANGE = 10;
+
     public Game() {
         input = new Input();
         output = new Output();
@@ -32,8 +34,12 @@ public class Game {
 
     private void moveCar(List<Car> cars) {
         for (Car car : cars) {
-            car.movePosition();
+            car.movePosition(makeRandom());
         }
+    }
+
+    private int makeRandom() {
+        return (int) (Math.random() * RANDOM_RANGE);
     }
 
     private List<Car> generateCar(String[] names) {
