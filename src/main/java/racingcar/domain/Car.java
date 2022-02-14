@@ -2,7 +2,7 @@ package racingcar.domain;
 
 public class Car implements Comparable<Car> {
 	private static final String STEP = "-";
-	private static final String FORMAT = "%s : %s";
+
 	private final String name;
 	private int position = 0;
 
@@ -38,7 +38,7 @@ public class Car implements Comparable<Car> {
 		for (int i = 0; i < position; i++) {
 			positions.append(STEP);
 		}
-		return String.format(FORMAT, name, positions);
+		return String.format("%s : %s", name, positions);
 	}
 
 	@Override

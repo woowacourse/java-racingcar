@@ -8,7 +8,6 @@ import racingcar.view.Output;
 import java.util.List;
 
 public class RacingCarGame {
-	private static final int START_VALUE = 0;
 	private Cars cars;
 	private Attempt attempt;
 
@@ -30,7 +29,7 @@ public class RacingCarGame {
 	}
 
 	private void round() {
-		int nowAttempt = START_VALUE;
+		int nowAttempt = 0;
 
 		while (!attempt.isSame(nowAttempt)) {
 			cars.play();

@@ -8,10 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Cars {
-	private static final String MAX_FIND_ERROR = "max 값을 찾을 수 없습니다.";
 	private static final int DRIVE_FLAG = 3;
-	private static final int RANDOM_MULTIPLE = 100;
-	private static final int RANDOM_DIVISION = 10;
 	private List<Car> cars;
 
 	public Cars(String[] names) {
@@ -33,7 +30,7 @@ public class Cars {
 	}
 
 	private int generate() {
-		return (int)(Math.random() * RANDOM_MULTIPLE) % RANDOM_DIVISION;
+		return (int)(Math.random() * 100) % 10;
 	}
 
 	private Car createCar(String name) {
@@ -48,7 +45,7 @@ public class Cars {
 	private Car findMaxPositionCar() {
 		return cars.stream()
 			.max(Car::compareTo)
-			.orElseThrow(() -> new NoSuchElementException(MAX_FIND_ERROR));
+			.orElseThrow(() -> new NoSuchElementException("max 값을 찾을 수 없습니다."));
 	}
 
 	private List<String> findSamePositionCar(Car target) {

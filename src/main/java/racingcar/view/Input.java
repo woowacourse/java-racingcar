@@ -9,21 +9,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Input {
-	private static final int ATTEMPT_LIMIT = 0;
-	private static final String CARS_ERROR_MESSAGE = "자동차를 두 개 이상 입력해주세요.";
 	private static final String DELIMITER = ",";
-	private static final String NULL_ERROR = "null";
-	private static final String EMPTY_ERROR = "공백";
-	private static final String CAR_BLANK_ERROR_MESSAGE = "자동차 이름은 %s일 수 없습니다.";
-	private static final String CAR_DUPLICATED_ERROR_MESSAGE = "자동차 이름을 모두 다르게 입력해주세요.";
-	private static final String ATTEMPT_BLANK_ERROR_MESSAGE = "반복 횟수는 %s일 수 없습니다.";
-	private static final String CAR_NAME_LENGTH_ERROR_MESSAGE = "자동차의 이름은 5글자를 초과할 수 없습니다.";
-	private static final String ATTEMPT_NUMERIC_ERROR_MESSAGE = "시도횟수는 숫자를 입력해주세요.";
-	private static final String ATTEMPT_NEGATIVE_ERROR_MESSAGE = "시도횟수는 1이상의 수를 입력해주세요.";
-	private static final String NUMBER_REGEX = "[+-]?\\d*(\\.\\d+)?";
 	private static final int CAR_LIMIT = 2;
 	private static final int CAR_LENGTH_LIMIT = 5;
-	private static final String EMPTY = "";
 
 	private final Scanner scan = new Scanner(System.in);
 
@@ -53,30 +41,30 @@ public class Input {
 	}
 
 	public void allCarsValid(String names) {
-		checkBlank(names, CAR_BLANK_ERROR_MESSAGE);
+		checkBlank(names, "자동차 이름은 %s일 수 없습니다.");
 		String[] cars = names.split(DELIMITER);
 		if (!isCars(cars)) {
-			throw new IllegalArgumentException(CARS_ERROR_MESSAGE);
+			throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
 		}
 		if (isDuplicated(cars)) {
-			throw new IllegalArgumentException(CAR_DUPLICATED_ERROR_MESSAGE);
+			throw new IllegalArgumentException("자동차 이름을 모두 다르게 입력해주세요.");
 		}
 		nameValid(cars);
 	}
 
 	private void nameValid(String[] cars) {
 		for (String name : cars) {
-			checkBlank(name, CAR_BLANK_ERROR_MESSAGE);
+			checkBlank(name, "자동차 이름은 %s일 수 없습니다.");
 			validLength(name);
 		}
 	}
 
 	public void checkBlank(String name, String text) {
 		if (name == null) {
-			throw new NullPointerException(String.format(text, NULL_ERROR));
+			throw new NullPointerException(String.format(text, "null"));
 		}
-		if (name.trim().equals(EMPTY)) {
-			throw new IllegalArgumentException(String.format(text, EMPTY_ERROR));
+		if (name.trim().equals("")) {
+			throw new IllegalArgumentException(String.format(text, "공백"));
 		}
 	}
 
@@ -91,28 +79,28 @@ public class Input {
 
 	public void validLength(String name) {
 		if (!(name.trim().length() <= CAR_LENGTH_LIMIT)) {
-			throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR_MESSAGE);
+			throw new IllegalArgumentException("자동차의 이름은 5글자를 초과할 수 없습니다.");
 		}
 	}
 
 	private void attemptValid(String attempt) {
 		if (attempt.isBlank()) {
-			throw new IllegalArgumentException(ATTEMPT_BLANK_ERROR_MESSAGE);
+			throw new IllegalArgumentException("반복 횟수는 %s일 수 없습니다.");
 		}
 		if (!isNumber(attempt)) {
-			throw new IllegalArgumentException(ATTEMPT_NUMERIC_ERROR_MESSAGE);
+			throw new IllegalArgumentException("시도횟수는 숫자를 입력해주세요.");
 		}
 		if (isNegative(attempt)) {
-			throw new IllegalArgumentException(ATTEMPT_NEGATIVE_ERROR_MESSAGE);
+			throw new IllegalArgumentException("시도횟수는 1이상의 수를 입력해주세요.");
 		}
 	}
 
 	public boolean isNumber(String string) {
-		return string.matches(NUMBER_REGEX);
+		return string.matches("[+-]?\\d*(\\.\\d+)?");
 	}
 
 	public boolean isNegative(String string) {
 		int attempt = Integer.parseInt(string);
-		return attempt <= ATTEMPT_LIMIT;
+		return attempt <= 0;
 	}
 }
