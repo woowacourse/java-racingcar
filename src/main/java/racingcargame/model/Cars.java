@@ -1,7 +1,5 @@
 package racingcargame.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -19,19 +17,18 @@ public class Cars {
 			collect(Collectors.toList());
 	}
 
-	private static void checkDuplicateCarNames(final List<String> carNames) {
+	public Cars(final List<String> carNames, int carPositions) {
+		checkDuplicateCarNames(carNames);
+		cars = carNames.stream().
+			map(carName -> new Car(carName, carPositions)).
+			collect(Collectors.toList());
+	}
+
+	private void checkDuplicateCarNames(final List<String> carNames) {
 		int distinctNameCount = (int)carNames.stream().distinct().count();
 		if (carNames.size() != distinctNameCount) {
 			throw new IllegalArgumentException(HAS_DUPLICATE_CAR_NAME_ERROR_MESSAGE);
 		}
-		return;
-	}
-
-
-	public Cars(final List<String> carNames, int carPositions) {
-		cars = carNames.stream().
-			map(carName -> new Car(carName, carPositions)).
-			collect(Collectors.toList());
 	}
 
 	void moveCars() {
@@ -54,8 +51,7 @@ public class Cars {
 
 	private int findWinnerPosition() {
 		return cars.stream()
-			.max(Comparator.comparingInt(Car::getPosition)).
-			get().
+			.max(Comparator.comparingInt(Car::getPosition)).get().
 			getPosition();
 	}
 }
