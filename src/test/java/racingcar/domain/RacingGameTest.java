@@ -17,9 +17,9 @@ public class RacingGameTest {
     private static final String CAR_1_NAME = "pobi";
     private static final String CAR_2_NAME = "jason";
 
-    RacingGame racingGame;
-    Car car1;
-    Car car2;
+    private RacingGame racingGame;
+    private Car car1;
+    private Car car2;
 
     @BeforeEach
     public void setUp() {
