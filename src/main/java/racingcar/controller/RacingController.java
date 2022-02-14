@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.Cars;
+import racingcar.domain.RacingGame;
 import racingcar.utils.NumberGenerator;
 import racingcar.utils.RandomNumberGenerator;
 
@@ -9,14 +10,21 @@ import static racingcar.view.OutputView.*;
 
 public class RacingController {
 
-    public void play() {
-        Cars cars = new Cars(getRightName());
-        int trialCount = getRightNumber();
-
+    public void play(NumberGenerator numberGenerator) {
+        RacingGame racingGame = startRacingGame(numberGenerator);
         printResultMessage();
 
-        progressTurns(cars, trialCount);
-        printWinners(cars);
+        while (!racingGame.isFinished()) {
+            racingGame.playTurn();
+            printCars(racingGame.getCars());
+        }
+        printWinners(racingGame.getCars());
+    }
+
+    private RacingGame startRacingGame(NumberGenerator numberGenerator) {
+        Cars cars = new Cars(getRightName());
+        int trialCount = getRightNumber();
+        return new RacingGame(cars, trialCount, new RandomNumberGenerator());
     }
 
     private String[] getRightName() {
@@ -34,14 +42,6 @@ public class RacingController {
         } catch (IllegalArgumentException e) {
             printMessage(e.getMessage());
             return getRightNumber();
-        }
-    }
-
-    private void progressTurns(Cars cars, int trialCount) {
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-        for (int i = 0; i < trialCount; i++) {
-            cars.moveCars(numberGenerator);
-            printCars(cars);
         }
     }
 
