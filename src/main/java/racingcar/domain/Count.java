@@ -15,7 +15,7 @@ public class Count {
         return count;
     }
 
-    public static void checkCount(final int count) {
+    private static void checkCount(final int count) {
         checkMinimumCount(count);
         checkMaximumCount(count);
     }
