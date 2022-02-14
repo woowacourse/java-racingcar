@@ -40,23 +40,6 @@ public class InputViewTest {
 	}
 
 	@Test
-	void 자동차이름_공백_제거() {
-		customReader.setText("pobi,if  ,  hanul");
-		List<String> expected = Arrays.asList(
-			"pobi",
-			"if",
-			"hanul"
-		);
-
-		Names carNames = inputView.requestCarNames();
-
-		int index = 0;
-		for (Name name : carNames.getNames()) {
-			assertThat(name.getName()).isEqualTo(expected.get(index++));
-		}
-	}
-
-	@Test
 	void 자동차이름_콤마로_끝날때_공백_포함해서_split_한다() {
 		customReader.setText("pobi,if  ,  hanul,");
 		List<String> expected = Arrays.asList(

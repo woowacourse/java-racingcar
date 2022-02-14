@@ -11,8 +11,13 @@ public class Name {
 	private final String name;
 
 	public Name(String name) {
+		name = removeEmptySpace(name);
 		validateName(name);
 		this.name = name;
+	}
+
+	private String removeEmptySpace(String name) {
+		return name.trim();
 	}
 
 	private void validateName(String name) {

@@ -19,7 +19,6 @@ public class InputView {
 
 	public Names requestCarNames() {
 		List<Name> names = Arrays.stream(splitIncludeBlank())
-			.map(String::trim)
 			.map(Name::new)
 			.collect(Collectors.toList());
 		return new Names(names);

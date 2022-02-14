@@ -32,7 +32,7 @@ public class NameTest {
 	@Test
 	void 자동차_이름이_중복되면_예외를_던진다() {
 		List<Name> names = Arrays.asList(
-			new Name("slow"),
+			new Name("slow "),
 			new Name("pobi"),
 			new Name("if"),
 			new Name("slow")
@@ -40,5 +40,13 @@ public class NameTest {
 
 		assertThatThrownBy(() -> new Names(names))
 			.isInstanceOf(DuplicateCarNameException.class);
+	}
+
+	@Test
+	void 자동차_이름은_공백을_제거하고_저정한다() {
+		Name name = new Name("slow ");
+		String expected = "slow";
+
+		assertThat(name.getName()).isEqualTo(expected);
 	}
 }
