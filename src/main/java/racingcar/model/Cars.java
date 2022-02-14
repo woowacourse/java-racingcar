@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class Cars {
     public static final int MINIMUM_POSITION = 0;
     public static final String JOIN_BY_COMMA = ", ";
+
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {

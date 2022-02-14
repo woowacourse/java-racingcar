@@ -72,6 +72,8 @@ public class StringCalculator {
     }
 
     public static Integer sumList(List<Integer> numList) {
-        return numList.stream().mapToInt(Integer::intValue).sum();
+        return numList.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }

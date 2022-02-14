@@ -3,6 +3,7 @@ package racingcar.model;
 public class Car {
     private static final int MINIMUM_POSITION = 0;
     private static final int MOVE_FORWARD = 4;
+
     private final String name;
     private int position;
 
