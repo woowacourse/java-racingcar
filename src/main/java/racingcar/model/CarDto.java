@@ -15,9 +15,8 @@ public class CarDto {
 		return name;
 	}
 
-	@Override
-	public String toString() {
-		return this.name + " : " + "-".repeat(this.position);
+	public int getPosition() {
+		return this.position;
 	}
 
 	@Override

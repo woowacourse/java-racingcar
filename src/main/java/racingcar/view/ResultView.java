@@ -12,7 +12,7 @@ public class ResultView {
 
 	public static void printGameResult(List<CarDto> cars) {
 		cars.stream()
-			.map(CarDto::toString)
+			.map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))
 			.forEach(System.out::println);
 		printEmptyLine();
 	}
