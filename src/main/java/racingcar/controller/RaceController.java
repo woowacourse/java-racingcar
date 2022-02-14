@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.model.Cars;
+import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RaceController {
@@ -21,8 +22,8 @@ public class RaceController {
     public void startGame() throws RuntimeException {
         InputController inputController = new InputController();
 
-        String[] carNames = inputController.getUserCarNames();
-        int tryCount = inputController.getUserTryCount();
+        String[] carNames = inputController.getUserCarNames(InputView.scanCarNames());
+        int tryCount = inputController.getUserTryCount(InputView.scanTryCount());
         initCars(carNames);
         OutputView.printResultPrefix();
         for (int i = 0; i < tryCount; i++) {
