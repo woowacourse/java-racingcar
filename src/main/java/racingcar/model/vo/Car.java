@@ -2,7 +2,7 @@ package racingcar.model.vo;
 
 import java.util.Objects;
 
-public class Car implements Comparable<Car> {
+public class Car {
     private static final int ADVANCE_STANDARD = 4;
     private static final int MAXIMUM_LENGTH = 5;
     private static final int MINIMUM_LENGTH = 1;
@@ -45,11 +45,6 @@ public class Car implements Comparable<Car> {
 
     public boolean isEqualPosition(final int position) {
         return this.position == position;
-    }
-
-    @Override
-    public int compareTo(final Car car) {
-        return this.position - car.position;
     }
 
     public String getName() {

@@ -3,8 +3,9 @@ package racingcar.model.vo;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -71,12 +72,13 @@ public class CarTest {
         cars.add(hoho);
         cars.add(rich);
         cars.add(pobi);
-        Collections.sort(cars);
+        List<Car> sortedCars = cars.stream()
+                                .sorted(Comparator.comparingInt(Car::getPosition))
+                                .collect(Collectors.toList());
 
         // then
-        assertThat(cars.get(0)).isEqualTo(rich);
-        assertThat(cars.get(1)).isEqualTo(hoho);
-        assertThat(cars.get(2)).isEqualTo(pobi);
+        assertThat(sortedCars.get(0)).isEqualTo(rich);
+        assertThat(sortedCars.get(1)).isEqualTo(hoho);
+        assertThat(sortedCars.get(2)).isEqualTo(pobi);
     }
-    
 }

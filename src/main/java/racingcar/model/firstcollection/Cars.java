@@ -2,6 +2,7 @@ package racingcar.model.firstcollection;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 import racingcar.model.RandomUtil;
@@ -10,6 +11,7 @@ import racingcar.model.vo.Car;
 public class Cars {
     private static final String MESSAGE_FOR_CAR_NAME_DUPLICATE = "이름은 중복될 수 없습니다.";
     private static final int RANGE_OF_ZERO_TO_NINE = 10;
+    private static final String ERROR_MESSAGE_TO_GET_MAX_POSITION = "최대값을 구할 수 없습니다.";
 
     private final List<Car> cars;
 
@@ -48,10 +50,15 @@ public class Cars {
     }
 
     private int getMaxPosition() {
-        return cars.stream()
-                .max(Car::compareTo)
-                .orElseThrow(NoSuchElementException::new)
-                .getPosition();
+        OptionalInt max = cars.stream()
+                            .mapToInt(Car::getPosition)
+                            .max();
+
+        if (max.isEmpty()) {
+            throw new NoSuchElementException(ERROR_MESSAGE_TO_GET_MAX_POSITION);
+        }
+
+        return max.getAsInt();
     }
 
     private List<String> getWinnerNames(final int maxPosition) {
