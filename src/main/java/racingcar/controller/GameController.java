@@ -34,11 +34,6 @@ public class GameController {
         scanner.close();
     }
 
-    private int convertToInteger(String number) {
-        InputValidator.validateTrialInput(number);
-        return Integer.parseInt(number);
-    }
-
     public List<String> splitCars(String carNames) {
         InputValidator.validateNameInput(carNames);
         List<String> splitCarNames = Arrays.asList(splitNameWithoutSpace(carNames));
@@ -57,6 +52,11 @@ public class GameController {
         return new Cars(carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList()));
+    }
+
+    private int convertToInteger(String number) {
+        InputValidator.validateTrialInput(number);
+        return Integer.parseInt(number);
     }
 
     private void runGame() {

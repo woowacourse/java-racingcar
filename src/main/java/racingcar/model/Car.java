@@ -7,21 +7,13 @@ public class Car {
     private final String name;
     private int position;
 
-    public Car(String name, int position) {
-        this.name = name;
-        this.position = position;
-    }
-
     public Car(String name) {
         this(name, MINIMUM_POSITION);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
     }
 
     public void move(int number) {
@@ -32,5 +24,13 @@ public class Car {
 
     private boolean canMove(int number) {
         return number >= MOVE_FORWARD;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
