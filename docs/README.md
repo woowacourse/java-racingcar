@@ -65,11 +65,11 @@
 
 - [x] TODO 출력 형식이 바뀌어야 한다면 View와 Cars중 어느곳이 수정되어야 하는가?
     - Cars.repeatRaceBy()
-    - 출력 형식이나 결과가 바뀐다면 View가 수정되어야 할 것이다. 
-    - Cars는 결과를 반환하고 View에서 결과를 이용하여 출력 값을 만드는 방법으로 수정했다. 
-    - Cars는 매 라운드 별 자동차들의 이름과 이동 거리를 vo(RoundResult)로 만들어 반환한다. 
+    - 출력 형식이나 결과가 바뀐다면 View가 수정되어야 할 것이다.
+    - Cars는 결과를 반환하고 View에서 결과를 이용하여 출력 값을 만드는 방법으로 수정했다.
+    - Cars는 매 라운드 별 자동차들의 이름과 이동 거리를 vo(RoundResult)로 만들어 반환한다.
     - View는 RoundResult에서 반환된 결과값으로 출력을 함.
-  
+
 - [x] FIXME VO가 View의 세부사항을 알고 있는것이 바람직한가?
     - Position
     - 출력과 관련된 부분은 VO가 아닌 View가 처리하도록 수정
@@ -88,7 +88,7 @@
 - [x] FIXME Winners가 CarName을 가지는 것과 Car를 가지는 것 중 어느것이 더 좋을까?
     - Winners
     - Winners는 Cars에서 우승자(Car)를 찾는 것이기 때문에 Car를 가지고 있는것이 더 자연스러운것 같다.
-    - 이후 이름을 얻기위해 getName()으로 CarName을 얻고 CarName.get()으로 String형 이름을 얻는다. 
+    - 이후 이름을 얻기위해 getName()으로 CarName을 얻고 CarName.get()으로 String형 이름을 얻는다.
 
 - [x] TODO checkedException/uncheckedException의 차이에 대해 고민해보기
     - Calculator.toInteger()
@@ -96,6 +96,14 @@
     - `NumberFormatException`도 `RuntimeException`의 한 종류이다.
     - 따라서 try/catch문을 쓰지 않아도 되지만 내가 원하는 에러를 발생시키고 싶다면 예외를 catch하여 원하는 에러 메시지를 추가하여 다시 throw를 해야하지
       않을까?
-      
-- [ ] FIXME move의 테스트를 generateRandomNumber() 때문에 하지 못하고 있는데 해결방법은 없는가?
+
+- [x] FIXME move의 테스트를 generateRandomNumber() 때문에 하지 못하고 있는데 해결방법은 없는가?
     - Car
+    - https://tecoble.techcourse.co.kr/post/2020-05-17-appropriate_method_for_test_by_interface
+    - 문제점
+        - move() 내에서 랜덤값을 만드는 메소드를 호출하면 테스트하기 어렵다.
+    - 해결 방법
+        - move(int randomNumber)와 같이 파라미터로 랜덤값을 주면 move() 메소드를 테스트하기 쉽다.
+        - move()메소드를 테스트 할 때 파라미터 값으로 이동이 가능한 값을 주면 이동이 성공하고, 이동이 불가능 한 값을 주면 이동이 실패한다.
+        - 전략 패턴을 사용한 인터페이스 분리를 하면 테스트하기 더 쉽고 코드의 응집도가 더 높아진다고 한다.
+        - [ ] 전략 패턴과 인터페이스 분리가 완전히 이해되면 체크

@@ -1,6 +1,5 @@
 package racingcar.vo;
 
-import static racingcar.util.RandomUtil.generateRandomNumber;
 import static racingcar.util.MovementUtil.isMoveForward;
 
 public class Car implements Comparable<Car> {
@@ -38,9 +37,8 @@ public class Car implements Comparable<Car> {
     return position.compareTo(car.position) == SAME_POSITION;
   }
 
-  // FIXME move의 테스트를 generateRandomNumber() 때문에 하지 못하고 있는데 해결방법은 없는가?
-  public boolean move() {
-    if (isMoveForward(generateRandomNumber())) {
+  public boolean move(int randomNumber) {
+    if (isMoveForward(randomNumber)) {
       position.increase();
       return true;
     }

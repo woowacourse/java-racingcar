@@ -2,7 +2,7 @@ package racingcar.util;
 
 import java.util.Random;
 
-public class RandomUtil {
+public class RandomNumberGenerator implements NumberGenerator {
 
   private static final int EXCLUSIVE_BOUND_CORRECTION_VALUE = 1;
   private static final int MINIMUM = 0;
@@ -11,7 +11,8 @@ public class RandomUtil {
 
   private static final Random RANDOM = new Random();
 
-  public static int generateRandomNumber() {
+  @Override
+  public int generate() {
     int randomNumber =
         RANDOM.nextInt(MAXIMUM - MINIMUM + EXCLUSIVE_BOUND_CORRECTION_VALUE) + MINIMUM;
     validateRange(randomNumber);
