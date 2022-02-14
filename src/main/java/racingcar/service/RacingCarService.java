@@ -30,6 +30,6 @@ public class RacingCarService {
     }
 
     public List<Car> getWinners() {
-        return cars.getWinners();
+        return cars.findWinners();
     }
 }

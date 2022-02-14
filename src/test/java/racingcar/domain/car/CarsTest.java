@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import racingcar.exception.CarNamesNotOnlyCommaException;
-
 class CarsTest {
 
     @Test
@@ -27,7 +25,7 @@ class CarsTest {
         String input = ",,,";
         assertThatThrownBy(() -> {
             new Cars(input);
-        }).isInstanceOf(CarNamesNotOnlyCommaException.class)
+        }).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("자동차 이름에 ,만 사용할 수 없습니다.");
     }
 }

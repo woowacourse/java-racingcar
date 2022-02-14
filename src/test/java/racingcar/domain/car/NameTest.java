@@ -8,8 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.exception.CarNameBlankException;
-import racingcar.exception.CarNameLengthException;
 
 class NameTest {
 
@@ -26,7 +24,7 @@ class NameTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "    "})
     void carNameIsNotBlank(String input) {
-        assertThatExceptionOfType(CarNameBlankException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> new Name(input))
             .withMessageContaining("자동차 이름은 공백이 될 수 없습니다.");
     }
@@ -41,7 +39,7 @@ class NameTest {
     @Test
     void carNameGreaterThanFive() {
         String input = "hellow";
-        assertThatExceptionOfType(CarNameLengthException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> new Name(input))
             .withMessageContaining("자동차 이름은 5글자 이하여야 합니다.");
     }

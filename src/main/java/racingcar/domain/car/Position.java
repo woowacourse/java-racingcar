@@ -23,16 +23,16 @@ public class Position {
         }
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     public boolean isSame(int num) {
         return position == num;
     }
 
     public void move(MovementStrategy strategy) {
         position += strategy.move();
-    }
-
-    public int getValue() {
-        return position;
     }
 
     @Override

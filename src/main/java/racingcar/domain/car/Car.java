@@ -27,10 +27,10 @@ public class Car {
     }
 
     public int getPosition() {
-        return position.getValue();
+        return position.getPosition();
     }
 
-    public boolean isSamePosition(int max) {
+    public boolean isMaxPosition(int max) {
         return position.isSame(max);
     }
 

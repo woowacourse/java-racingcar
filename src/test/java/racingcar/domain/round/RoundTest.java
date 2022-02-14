@@ -3,8 +3,6 @@ package racingcar.domain.round;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.exception.NotNumericException;
-import racingcar.exception.NumberTooSmallException;
 
 class RoundTest {
 
@@ -19,7 +17,7 @@ class RoundTest {
     @Test
     void roundWithNegativeNumber() {
         String input = "-1";
-        Assertions.assertThatExceptionOfType(NumberTooSmallException.class)
+        Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> new Round(input))
             .withMessageContaining("1 이상의 양수");
     }
@@ -28,7 +26,7 @@ class RoundTest {
     @Test
     void roundWithZero() {
         String input = "0";
-        Assertions.assertThatExceptionOfType(NumberTooSmallException.class)
+        Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> new Round(input))
             .withMessageContaining("1 이상의 양수");
     }
@@ -37,7 +35,7 @@ class RoundTest {
     @Test
     void roundWithNotNumericValue() {
         String input = "hello";
-        Assertions.assertThatExceptionOfType(NotNumericException.class)
+        Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> new Round(input))
             .withMessageContaining("1 이상의 양수");
     }

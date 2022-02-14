@@ -1,8 +1,5 @@
 package racingcar.domain.round;
 
-import racingcar.exception.NotNumericException;
-import racingcar.exception.NumberTooSmallException;
-
 public class Round {
 
     private static final int MIN_NUMBER = 1;
@@ -20,7 +17,7 @@ public class Round {
 
     private void validate(int round) {
         if (round < MIN_NUMBER) {
-            throw new NumberTooSmallException("1 이상의 양수를 입력하세요.");
+            throw new IllegalArgumentException("1 이상의 양수를 입력하세요.");
         }
     }
 
@@ -28,7 +25,7 @@ public class Round {
         try {
             return Integer.parseInt(round);
         } catch (NumberFormatException e) {
-            throw new NotNumericException("1 이상의 양수를 입력하세요.");
+            throw new IllegalArgumentException("1 이상의 양수를 입력하세요.");
         }
     }
 
