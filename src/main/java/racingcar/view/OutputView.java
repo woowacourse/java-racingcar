@@ -10,6 +10,8 @@ public class OutputView {
     private static final String REQUEST_CAR_NAME_INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String REQUEST_TOTAL_ROUNDS_INPUT_MESSAGE = "시도할 회수는 몇회인가요?";
     private static final String ROUND_RESULT_TEXT = "실행 결과";
+    private static final String CAR_INFO_DELIMITER = " : ";
+    private static final String DISTANCE_SYMBOL = "-";
     private static final String WINNERS_JOINER_DELIMITER = ", ";
     private static final String ANNOUNCE_GAME_WINNER_TEXT = "가 최종 우승했습니다.";
     private static final String LINE_SEPARATOR = System.lineSeparator();
@@ -31,11 +33,16 @@ public class OutputView {
         StringBuilder builder = new StringBuilder();
 
         for (Car car : cars) {
-            builder.append(car.toString())
+            builder.append(formatCarPositionData(car))
                 .append(LINE_SEPARATOR);
         }
 
         print(builder.toString());
+    }
+
+    private static String formatCarPositionData(Car car) {
+        return car.getName() + CAR_INFO_DELIMITER
+            + DISTANCE_SYMBOL.repeat(car.getPosition());
     }
 
     public static void printWinners(List<Car> winners) {

@@ -9,8 +9,6 @@ public class Car {
 
     private static final int CAN_GO_VALUE = 4;
     private static final int POSITION_INCREMENT_UNIT = 1;
-    private static final String CAR_INFO_DELIMITER = " : ";
-    private static final String DISTANCE_SYMBOL = "-";
 
     private final String name;
     private int position = 0;
@@ -66,7 +64,9 @@ public class Car {
 
     @Override
     public String toString() {
-        return name + CAR_INFO_DELIMITER
-            + DISTANCE_SYMBOL.repeat(position);
+        return "Car{" +
+            "name='" + name + '\'' +
+            ", position=" + position +
+            '}';
     }
 }
