@@ -3,14 +3,11 @@ package racingCar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
 
-    private final RacingCar racingCar = new RacingCar();
+    private final CarRacingGame racingCar = new CarRacingGame();
 
     @DisplayName("자동차 위치 출력 정상 확인")
     @Test

@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class RacingCarTest {
-	private final RacingCar racingCar = new RacingCar();
+public class CarRacingGameTest {
+	private final CarRacingGame racingCar = new CarRacingGame();
 
 	@DisplayName("자동차 이름 정상 입력")
 	@Test

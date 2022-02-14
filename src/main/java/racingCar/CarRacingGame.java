@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class RacingCar {
+public class CarRacingGame {
 	public static final String ENTER_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
 	public static final String WHAT_TIMES = "시도할 횟수는 몇회인가요?";
 	public static final String NAME_ERROR = "[ERROR] 이름이 공백이거나 6자 이상이면 안됩니다. 다시 입력해주세요.";
