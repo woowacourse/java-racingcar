@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,14 +20,24 @@ class RacingCarsTest {
     @DisplayName("자동차 이름을 받아 자동차를 생성한다.")
     void createRacingCars() {
         RacingCars racingCars = new RacingCars("pobi,crong,honux", new RacingCarCommander());
-        assertThat(racingCars.getCarNames()).containsExactly("pobi", "crong", "honux");
+        List<String> carNames = racingCars.getRacingCars()
+            .stream()
+            .map(racingCarDto -> racingCarDto.getName())
+            .collect(Collectors.toList());
+
+        assertThat(carNames)
+            .containsExactly("pobi", "crong", "honux");
     }
 
     @Test
     @DisplayName("자동차 이름의 공백을 제거한다.")
     void trimBlank() {
         RacingCars racingCars = new RacingCars("pobi , cr ong , honux", new RacingCarCommander());
-        assertThat(racingCars.getCarNames()).containsExactly("pobi", "crong", "honux");
+        List<String> carNames = racingCars.getRacingCars()
+            .stream()
+            .map(racingCarDto -> racingCarDto.getName())
+            .collect(Collectors.toList());
+        assertThat(carNames).containsExactly("pobi", "crong", "honux");
     }
 
     @Test
