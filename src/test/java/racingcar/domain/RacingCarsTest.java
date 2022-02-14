@@ -1,7 +1,9 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,6 +15,17 @@ class RacingCarsTest {
     void createRacingCars() {
         RacingCars racingCars = RacingCars.from("pobi,crong,honux");
         assertThat(racingCars.getCarNames()).containsExactly("pobi", "crong", "honux");
+    }
+
+    @Test
+    @DisplayName("자동차의 이름이 중복되어 입력될 경우 예외가 발생한다.")
+    void createExceptionByDuplicateName() {
+        Name name = new Name("pobi");
+        RacingCar racingCar = new RacingCar(name, () -> true);
+        List<RacingCar> racingCars = Arrays.asList(racingCar, racingCar);
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> new RacingCars(racingCars))
+            .withMessageMatching("자동차 이름은 중복되어 입력될 수 없다.");
     }
 
     @Test
