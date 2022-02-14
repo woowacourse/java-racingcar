@@ -6,18 +6,21 @@ import java.util.List;
 
 public class StringCalculator {
     private static final String CUSTOM_WITH_DIGITAL_REGEX = "(.*)\\d(.*)";
+    private static final String BASIC_SPLITTER = ",|:";
+    public static final String CUSTOM_PREFIX = "//";
+    public static final String CUSTOM_SUFFIX = "\n";
 
     public static Integer splitAndSum(String input) {
         if (input == null || input.isEmpty()) {
             return 0;
         }
-        return sumList(convertToIntegerArray(splitString(input)));
+        return sumNumbers(convertToIntegerArray(splitString(input)));
     }
 
     public static String[] splitString(String input) {
-        String regExp = ",|:";
+        String regExp = BASIC_SPLITTER;
         if (isCustom(input)) {
-            int idx = input.indexOf("\n");
+            int idx = input.indexOf(CUSTOM_SUFFIX);
             regExp = makeCustom(input, idx);
             input = input.substring(idx + 1);
         }
@@ -34,7 +37,7 @@ public class StringCalculator {
     }
 
     private static boolean isCustom(String input) {
-        return input.startsWith("//") && input.contains("\n");
+        return input.startsWith(CUSTOM_PREFIX) && input.contains(CUSTOM_SUFFIX);
     }
 
     public static List<Integer> convertToIntegerArray(String[] strArr) {
@@ -58,7 +61,7 @@ public class StringCalculator {
         try {
             value = Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            throw new RuntimeException("입력 값은 숫자여야 합니다.");
+            throw new NumberFormatException("입력 값은 숫자여야 합니다.");
         }
         isPositive(value);
 
@@ -71,7 +74,9 @@ public class StringCalculator {
         }
     }
 
-    public static Integer sumList(List<Integer> numList) {
-        return numList.stream().mapToInt(Integer::intValue).sum();
+    public static Integer sumNumbers(List<Integer> numList) {
+        return numList.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }
