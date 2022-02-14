@@ -11,12 +11,12 @@ public class InputView {
 
     public static String requestCarNameInput() {
         System.out.println(REQUEST_CAR_NAME_INPUT_MESSAGE);
-        return InputView.requestUserInput();
+        return requestUserInput();
     }
 
     public static String requestTotalRoundsInput() {
         System.out.println(REQUEST_TOTAL_ROUNDS_INPUT_MESSAGE);
-        return InputView.requestUserInput();
+        return requestUserInput();
     }
 
     private static String requestUserInput() {

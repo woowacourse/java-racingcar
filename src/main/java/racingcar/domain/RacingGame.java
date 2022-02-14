@@ -4,6 +4,8 @@ import java.util.List;
 
 import static racingcar.constants.SystemConstants.NUMBER_ONE_FOR_INCREMENT;
 import static racingcar.constants.GameConstants.INITIAL_ROUND_NUM;
+import static racingcar.util.ValidatorUtils.validateNoDuplicates;
+import static racingcar.util.ValidatorUtils.validatePositiveInt;
 
 public class RacingGame {
 
@@ -12,6 +14,9 @@ public class RacingGame {
     private int currentRound = INITIAL_ROUND_NUM;
 
     public RacingGame(String[] carNames, int totalRounds) {
+        validateNoDuplicates(carNames);
+        validatePositiveInt(totalRounds);
+
         initCars(carNames);
         this.totalRounds = totalRounds;
     }

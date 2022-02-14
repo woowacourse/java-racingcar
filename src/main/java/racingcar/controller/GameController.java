@@ -9,8 +9,6 @@ import java.util.List;
 
 import static racingcar.util.ParseUtils.toInt;
 import static racingcar.util.SplitUtils.splitByComma;
-import static racingcar.util.ValidatorUtils.validateNoDuplicates;
-import static racingcar.util.ValidatorUtils.validatePositiveInt;
 
 public class GameController {
 
@@ -23,26 +21,18 @@ public class GameController {
     }
 
     private void initGame() {
-        String[] carNames = requestCarNamesInput();
-        int totalRounds = requestTotalRoundsInput();
+        String[] carNames = requestCarNames();
+        int totalRounds = requestTotalRounds();
 
         racingGame = new RacingGame(carNames, totalRounds);
     }
 
-    private String[] requestCarNamesInput() {
-        String carNamesInput = InputView.requestCarNameInput();
-        String[] carNames = splitByComma(carNamesInput);
-        validateNoDuplicates(carNames);
-
-        return carNames;
+    private String[] requestCarNames() {
+        return splitByComma(InputView.requestCarNameInput());
     }
 
-    private int requestTotalRoundsInput() {
-        String totalRoundsInput = InputView.requestTotalRoundsInput();
-        int totalRoundsNum = toInt(totalRoundsInput);
-        validatePositiveInt(totalRoundsNum);
-
-        return totalRoundsNum;
+    private int requestTotalRounds() {
+        return toInt(InputView.requestTotalRoundsInput());
     }
 
     private void playGame() {
