@@ -10,9 +10,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class GameController {
-    public static final String COMMA = ",";
-    public static final String BLANK = "";
-    public static final String SPACE = " ";
+    private static final String COMMA = ",";
+    private static final String BLANK = "";
+    private static final String SPACE = " ";
 
     private Cars cars;
     private int trialNum;
