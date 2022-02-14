@@ -6,9 +6,9 @@ import java.util.Set;
 
 public class RoundResult {
 
-  public static final String RESULT_DELIMITER = ",";
-  public static final int NAME_INDEX = 0;
-  public static final int POSITION_INDEX = 1;
+  private static final String RESULT_DELIMITER = ":";
+  private static final int NAME_INDEX = 0;
+  private static final int POSITION_INDEX = 1;
 
   private Map<String, Integer> roundResult = new LinkedHashMap<>();
 

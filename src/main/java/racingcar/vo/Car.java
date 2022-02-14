@@ -5,7 +5,7 @@ import static racingcar.util.MovementUtil.isMoveForward;
 
 public class Car implements Comparable<Car> {
 
-  private static final String TO_STRING_DELIMITER = ",";
+  private static final String TO_STRING_DELIMITER = ":";
   private static final int SAME_POSITION = 0;
 
   private CarName name;

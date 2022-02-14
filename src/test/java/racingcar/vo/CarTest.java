@@ -35,7 +35,7 @@ public class CarTest {
     String name = "name1";
     CarName carName = new CarName(name);
     Car car = new Car(carName);
-    assertThat(car.toString()).contains(name, ",");
+    assertThat(car.toString()).contains(name, ":");
   }
 
   @DisplayName("compareTo() 테스트")
