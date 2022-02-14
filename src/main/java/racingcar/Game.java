@@ -5,15 +5,10 @@ import java.util.stream.Collectors;
 
 public class Game {
 
-    private Input input;
-    private Output output;
+    private final Input input = new Input();
+    private final Output output = new Output();
 
     private static final int RANDOM_RANGE = 10;
-
-    public Game() {
-        input = new Input();
-        output = new Output();
-    }
 
     public void start() {
         String[] names = inputCarNames();
