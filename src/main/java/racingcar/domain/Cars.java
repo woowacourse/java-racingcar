@@ -9,9 +9,10 @@ public class Cars {
     private static final int MOVE_CONDITION = 4;
     private static final int RANDOM_NUMBER_BOUND = 10;
 
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
     public Cars(String[] carNames) {
+        cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
@@ -34,12 +35,13 @@ public class Cars {
         return random.nextInt(RANDOM_NUMBER_BOUND);
     }
 
-    public List<String> findWinners() {
+    public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
-        return cars.stream()
+        List<Car> winnerCars = new ArrayList<>();
+        cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
-                .map(Car::getName)
-                .collect(Collectors.toList());
+                .forEach(winnerCars::add);
+        return winnerCars;
     }
 
     private int findMaxPosition() {
@@ -55,8 +57,6 @@ public class Cars {
     }
 
     public List<String> getAllPosition() {
-        return cars.stream()
-                .map(Car::toString)
-                .collect(Collectors.toList());
+        return cars.stream().map(Car::toString).collect(Collectors.toList());
     }
 }

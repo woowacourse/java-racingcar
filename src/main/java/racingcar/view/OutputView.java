@@ -1,5 +1,8 @@
 package racingcar.view;
 
+import racingcar.domain.Car;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
@@ -16,7 +19,16 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printWinners(List<String> winners) {
-        System.out.println(String.join(WINNER_JOIN_DELIMITER, winners) + WINNER_MESSAGE);
+    public static void printWinners(List<Car> winnerCars) {
+        List<String> winnerCarNames = getWinnerCarNames(winnerCars);
+        System.out.println(String.join(WINNER_JOIN_DELIMITER, winnerCarNames) + WINNER_MESSAGE);
+    }
+
+    private static List<String> getWinnerCarNames(List<Car> winnerCars) {
+        List<String> winner = new ArrayList<>();
+        for (Car winnerCar : winnerCars) {
+            winner.add(winnerCar.getName());
+        }
+        return winner;
     }
 }
