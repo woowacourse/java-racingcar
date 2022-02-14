@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import racingcar.utils.numbergenerator.NumberGenerator;
 
 public class Cars {
@@ -17,11 +18,15 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(final List<Car> cars) {
+        validateCarCount(cars.size());
+        validateDuplicateName(cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList()));
         this.cars = cars;
     }
 
-    public Cars(final String[] names, final NumberGenerator numberGenerator) {
-        validateCarCount(names);
+    public Cars(final List<String> names, final NumberGenerator numberGenerator) {
+        validateCarCount(names.size());
         validateDuplicateName(names);
 
         this.cars = new ArrayList<>();
@@ -31,19 +36,19 @@ public class Cars {
         }
     }
 
-    private void validateCarCount(String[] names) {
-        if (names.length > MAX_COUNT || names.length < MIN_COUNT) {
+    private void validateCarCount(final int size) {
+        if (size > MAX_COUNT || size < MIN_COUNT) {
             throw new IllegalArgumentException(ERROR_CAR_COUNT);
         }
     }
 
-    private void validateDuplicateName(String[] names) {
+    private void validateDuplicateName(final List<String> names) {
         Set<String> tempNameSet = new HashSet<>();
         for (String name : names) {
             tempNameSet.add(name);
         }
 
-        if (tempNameSet.size() < names.length) {
+        if (tempNameSet.size() < names.size()) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_NAME);
         }
     }
