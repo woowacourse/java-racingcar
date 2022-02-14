@@ -18,7 +18,7 @@ public class RacingCarGame {
 	}
 
 	private void prepareRaceCount(final int raceCount) {
-		RaceCount.storeCount(raceCount);
+		RaceCount.initCount(raceCount);
 	}
 
 	public boolean isOverRace() {
@@ -26,7 +26,7 @@ public class RacingCarGame {
 	}
 
 	public void startRace() {
-		RaceCount.reduceRaceCount();
+		RaceCount.reduceCount();
 		cars.moveCars();
 	}
 

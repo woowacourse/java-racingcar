@@ -6,11 +6,11 @@ public class RaceCount {
     private RaceCount() {
     }
 
-    static void storeCount(int number) {
+    static void initCount(int number) {
         count = number;
     }
 
-    static void reduceRaceCount() {
+    static void reduceCount() {
         count--;
     }
 
