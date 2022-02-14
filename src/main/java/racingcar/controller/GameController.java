@@ -32,9 +32,9 @@ public class GameController {
     }
 
     private int toInts(String input) {
-        RoundValidator.validate(input);
-
-        return Integer.parseInt(input);
+        int rounds = Integer.parseInt(input);
+        RoundValidator.checkPositive(rounds);
+        return rounds;
     }
 
     private void runRounds(int rounds, Cars cars) {
