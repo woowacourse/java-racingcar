@@ -14,8 +14,8 @@ public class ValidatorUtils {
     private static final String OVER_FIVE_CHARACTERS_EXCEPTION = "5글자 이하의 이름을 입력해야 합니다.";
     private static final String DUPLICATE_CAR_EXCEPTION = "중복된 이름을 입력하면 안 됩니다.";
 
-    public static int validateAndParsePositiveInt(String string) {
-        int number = Integer.parseInt(string);
+    public static int validateAndParsePositiveInt(String value) {
+        int number = Integer.parseInt(value);
         validatePositiveInt(number);
         return number;
     }
@@ -26,14 +26,14 @@ public class ValidatorUtils {
         }
     }
 
-    public static void validateNotBlank(String string) {
-        if (string.isBlank()) {
+    public static void validateNotBlank(String value) {
+        if (value.isBlank()) {
             throw new RuntimeException(BLANK_NOT_ALLOWED_EXCEPTION);
         }
     }
 
-    public static void validateNotOverFiveCharacters(String string) {
-        if (string.length() > MAX_NAME_LENGTH) {
+    public static void validateNotOverFiveCharacters(String value) {
+        if (value.length() > MAX_NAME_LENGTH) {
             throw new RuntimeException(OVER_FIVE_CHARACTERS_EXCEPTION);
         }
     }
