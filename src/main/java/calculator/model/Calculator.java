@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import calculator.utils.CalculatorInputValidator;
+import calculator.utils.InputValidator;
 
 public class Calculator {
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
@@ -16,10 +16,10 @@ public class Calculator {
     public int sumAndDivideInput(String input) {
         if (hasCustomDelimiterInInput(input)) {
             List<String> numbersDividedByCustomDelimiter = divideNumbersByCustomDelimiter(input);
-            CalculatorInputValidator.checkValidateNumbers(divideNumbersByCustomDelimiter(input));
+            InputValidator.checkValidateNumbers(divideNumbersByCustomDelimiter(input));
             return makeSumOfNumbers(numbersDividedByCustomDelimiter);
         }
-        CalculatorInputValidator.checkValidateNumbers(List.of(input.split("")));
+        InputValidator.checkValidateNumbers(List.of(input.split("")));
         return makeSumOfNumbers(divideInput(input));
     }
 
@@ -48,7 +48,7 @@ public class Calculator {
     }
 
     private String sumOfNumber(String number) {
-        if (CalculatorInputValidator.isInputNullOrBlankOrEmpty(number)) {
+        if (InputValidator.isInputNullOrBlankOrEmpty(number)) {
             return "0";
         }
         return number;

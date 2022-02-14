@@ -1,7 +1,7 @@
 package calculator.controller;
 
 import calculator.model.Calculator;
-import calculator.utils.CalculatorInputValidator;
+import calculator.utils.InputValidator;
 import calculator.view.OutputView;
 
 public class CalculatorController {
@@ -17,7 +17,7 @@ public class CalculatorController {
     }
 
     public void runCalculator(String input){
-        if (CalculatorInputValidator.isInputNullOrBlankOrEmpty(input)) {
+        if (InputValidator.isInputNullOrBlankOrEmpty(input)) {
             OutputView.showSum(0);
             return;
         }

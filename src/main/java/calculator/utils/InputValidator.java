@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class CalculatorInputValidator {
+public class InputValidator {
     public static final String ERROR_NUMBER_RIGHT_FORMAT = "[error] 숫자를 입력해주세요.";
     private static final String COMMA_DELIMITER = ",";
     private static final String COLON_DELIMITER = ":";
     private static final int NUMBER = 0;
 
-    private CalculatorInputValidator() {
+    private InputValidator() {
     }
 
     public static boolean isInputNullOrBlankOrEmpty(String input) {
@@ -22,7 +22,7 @@ public class CalculatorInputValidator {
     }
 
     public static void checkValidateNumbers(List<String> numbers) {
-        numbers.forEach(CalculatorInputValidator::checkValidateNumber);
+        numbers.forEach(InputValidator::checkValidateNumber);
     }
 
     private static void checkValidateNumber(String number) {
