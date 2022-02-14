@@ -12,8 +12,8 @@ public class Cars {
 
     private static final int MIN_COUNT = 2;
     private static final int MAX_COUNT = 5;
-    private static final String ERROR_CAR_COUNT = "[ERROR] 자동차는 2대 이상 5대 이하이어야 합니다.";
-    private static final String ERROR_DUPLICATE_NAME = "[ERROR] 중복된 이름입니다.";
+    private static final String ERROR_CAR_COUNT = "자동차는 2대 이상 5대 이하이어야 합니다.";
+    private static final String ERROR_DUPLICATE_NAME = "중복된 이름입니다.";
 
     private final List<Car> cars;
 

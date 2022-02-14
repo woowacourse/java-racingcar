@@ -2,7 +2,7 @@ package racingcar.controller;
 
 import static racingcar.view.InputView.insertName;
 import static racingcar.view.InputView.insertNumber;
-import static racingcar.view.OutputView.printMessage;
+import static racingcar.view.OutputView.printErrorMessage;
 import static racingcar.view.OutputView.printResultMessage;
 import static racingcar.view.OutputView.printTurnResult;
 import static racingcar.view.OutputView.printWinners;
@@ -22,7 +22,7 @@ public class RacingController {
             progressTurns(cars, trialCount);
             printWinners(new Winners(cars));
         } catch (IllegalArgumentException e) {
-            printMessage(e.getMessage());
+            printErrorMessage(e.getMessage());
         }
     }
 

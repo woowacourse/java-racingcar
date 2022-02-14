@@ -4,9 +4,9 @@ public class Name {
 
     private static final int MAX_LENGTH = 5;
     private static final String BLANK = " ";
-    private static final String ERROR_EMPTY = "[ERROR] 이름 입력은 필수입니다.";
-    private static final String ERROR_HAS_BLANK = "[ERROR] 이름에 공백이 존재합니다.";
-    private static final String ERROR_LENGTH = "[ERROR] 이름은 5자 이하이어야 합니다.";
+    private static final String ERROR_EMPTY = "이름 입력은 필수입니다.";
+    private static final String ERROR_HAS_BLANK = "이름에 공백이 존재합니다.";
+    private static final String ERROR_LENGTH = "이름은 5자 이하이어야 합니다.";
 
     private final String name;
 

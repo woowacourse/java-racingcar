@@ -17,13 +17,13 @@ class TrialCountTest {
     void 횟수_문자_입력_실패() {
         assertThatThrownBy(() -> new TrialCount("ab"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 횟수는 숫자로 입력해야 합니다.");
+                .hasMessage("횟수는 숫자로 입력해야 합니다.");
     }
 
     @Test
     void 횟수_음수_입력_실패() {
         assertThatThrownBy(() -> new TrialCount("-3"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 횟수는 1 이상이어야 합니다.");
+                .hasMessage("횟수는 1 이상이어야 합니다.");
     }
 }

@@ -3,8 +3,8 @@ package racingcar.domain;
 public class TrialCount {
 
     private static final int MIN_COUNT = 0;
-    private static final String ERROR_NUMBER_OVER_ONE = "[ERROR] 횟수는 1 이상이어야 합니다.";
-    private static final String ERROR_NUMBER_NOT_DIGIT = "[ERROR] 횟수는 숫자로 입력해야 합니다.";
+    private static final String ERROR_NUMBER_OVER_ONE = "횟수는 1 이상이어야 합니다.";
+    private static final String ERROR_NUMBER_NOT_DIGIT = "횟수는 숫자로 입력해야 합니다.";
 
     private final int trialCount;
 

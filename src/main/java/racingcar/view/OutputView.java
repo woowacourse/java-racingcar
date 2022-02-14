@@ -11,6 +11,9 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "실행 결과";
     private static final String LIST_JOIN_DELIMITER = ", ";
     private static final String WINNER_MESSAGE_SUFFIX = "가 최종 우승 했습니다.";
+    private static final String CAR_PROGRESS_DELIMITER = " : ";
+    private static final String PROGRESS_BAR = "-";
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
     public static void printCarNamesMessage() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
@@ -32,9 +35,9 @@ public class OutputView {
     }
 
     private static void printCarStatus(Car car) {
-        StringBuilder stringBuilder = new StringBuilder(car.getName() + " : ");
+        StringBuilder stringBuilder = new StringBuilder(car.getName() + CAR_PROGRESS_DELIMITER);
         for (int i = 0; i < car.getPosition(); i++) {
-            stringBuilder.append("-");
+            stringBuilder.append(PROGRESS_BAR);
         }
         System.out.println(stringBuilder.toString());
     }
@@ -44,7 +47,7 @@ public class OutputView {
         System.out.println(winnerNames + WINNER_MESSAGE_SUFFIX);
     }
 
-    public static void printMessage(String message) {
-        System.out.println(message);
+    public static void printErrorMessage(String message) {
+        System.out.println(ERROR_MESSAGE_PREFIX + message);
     }
 }

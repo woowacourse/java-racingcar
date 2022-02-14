@@ -12,7 +12,7 @@ public class CarsTest {
     void 자동차_2개_미만() {
         assertThatThrownBy(() -> new Cars(List.of("rick"), new MovableMoveStrategy()))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 자동차는 2대 이상 5대 이하이어야 합니다.");
+                .hasMessage("자동차는 2대 이상 5대 이하이어야 합니다.");
     }
 
     @Test
@@ -21,6 +21,6 @@ public class CarsTest {
                 () -> new Cars(List.of("rick", "huni", "sudal", "ukong", "tomy", "pobi"),
                         new MovableMoveStrategy()))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 자동차는 2대 이상 5대 이하이어야 합니다.");
+                .hasMessage("자동차는 2대 이상 5대 이하이어야 합니다.");
     }
 }
