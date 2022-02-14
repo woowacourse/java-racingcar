@@ -7,9 +7,12 @@ public class OutputView {
     private static final String DELIMITER = " : ";
     private static final String DISTANCE = "-";
 
-    public static void printRoundResult(Cars cars) {
+    public static void printResultMessage() {
         System.out.println();
         System.out.println("실행 결과");
+    }
+
+    public static void printRoundResult(Cars cars) {
         for (Car car : cars.getCars()) {
             System.out.println(car.getName() + DELIMITER + DISTANCE.repeat(car.getPosition()));
         }

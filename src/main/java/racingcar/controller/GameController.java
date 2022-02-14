@@ -38,6 +38,7 @@ public class GameController {
     }
 
     private void runRounds(int rounds, Cars cars) {
+        OutputView.printResultMessage();
         for (int i = 0; i < rounds; i++) {
             cars.moveAll();
             OutputView.printRoundResult(cars);
