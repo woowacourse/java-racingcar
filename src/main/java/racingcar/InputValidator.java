@@ -20,9 +20,11 @@ public class InputValidator {
     public static final String NOT_NUMERIC_ERROR = "[ERROR]: 잘못된 입력입니다.(시도 횟수는 숫자만 가능합니다.)";
     public static final String MINIMUM_NATURAL_NUMBER_ERROR = "[ERROR]: 잘못된 입력입니다.(1 이상의 값만 입력이 가능합니다.)";
 
+    private static final Pattern carNamePattern = Pattern.compile(CAR_NAME_PATTERN_REGEX);
+    private static final Pattern attemptCountPattern = Pattern.compile(ATTEMPT_COUNT_PATTERN_REGEX);
+
     public void isValidPattern(String input) {
-        Pattern pattern = Pattern.compile(CAR_NAME_PATTERN_REGEX);
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = carNamePattern.matcher(input);
         if (!matcher.find()) {
             throw new IllegalArgumentException(NOT_ALPHA_AND_COMMA_ERROR);
         }
@@ -48,8 +50,7 @@ public class InputValidator {
     }
 
     public void isNumeric(String input) {
-        Pattern pattern = Pattern.compile(ATTEMPT_COUNT_PATTERN_REGEX);
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = attemptCountPattern.matcher(input);
         if (!matcher.find()) {
             throw new IllegalArgumentException(NOT_NUMERIC_ERROR);
         }
