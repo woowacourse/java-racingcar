@@ -2,12 +2,16 @@ package racingcar;
 
 public class Car {
 
+    public static final int START_POSITION = 0;
+    public static final int MINIMUM_MOVE = 4;
+    public static final int RANDOM_RANGE = 10;
+
     private String name;
     private int position;
 
     public Car(String name) {
         this.name = name;
-        this.position = Constant.START_POSITION;
+        this.position = START_POSITION;
     }
 
     public void movePosition() {
@@ -17,11 +21,11 @@ public class Car {
     }
 
     private boolean isMovable() {
-        return makeRandom() >= Constant.MINIMUM_MOVE;
+        return makeRandom() >= MINIMUM_MOVE;
     }
 
     private int makeRandom() {
-        return (int) (Math.random() * Constant.RANDOM_RANGE);
+        return (int) (Math.random() * RANDOM_RANGE);
     }
 
     public boolean isSamePosition(int number) {

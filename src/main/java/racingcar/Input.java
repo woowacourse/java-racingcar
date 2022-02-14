@@ -3,6 +3,7 @@ package racingcar;
 import java.util.Scanner;
 
 public class Input {
+    public static final String COMMA_REGEX = ",";
 
     private Scanner scanner;
     private InputValidator inputValidator;
@@ -21,7 +22,7 @@ public class Input {
 
     private String[] splitByComma(String input) {
         inputValidator.isValidPattern(input);
-        return input.split(Constant.COMMA_REGEX);
+        return input.split(COMMA_REGEX);
     }
 
     public int getCoin() {
