@@ -28,7 +28,7 @@ public class StringCalculator {
     private static String makeCustom(String input, int idx) {
         String custom = input.substring(2, idx);
         if (custom.matches(CUSTOM_WITH_DIGITAL_REGEX)) {
-            throw new RuntimeException("커스텀 구분자 내에 숫자가 포함되어 있습니다.");
+            throw new IllegalArgumentException("커스텀 구분자 내에 숫자가 포함되어 있습니다.");
         }
         return custom;
     }
@@ -58,7 +58,7 @@ public class StringCalculator {
         try {
             value = Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            throw new RuntimeException("입력 값은 숫자여야 합니다.");
+            throw new IllegalArgumentException("입력 값은 숫자여야 합니다.");
         }
         isPositive(value);
 
@@ -67,7 +67,7 @@ public class StringCalculator {
 
     private static void isPositive(int value) {
         if (value < 0) {
-            throw new RuntimeException("입력 값은 0 이상의 정수여야 합니다.");
+            throw new IllegalArgumentException("입력 값은 0 이상의 정수여야 합니다.");
         }
     }
 
