@@ -11,13 +11,13 @@ public class TryCountTest {
     @Test
     public void 정해진_횟수만큼_진행() {
         TryCount tryCount = new TryCount(2);
-        assertThat(tryCount.isFinished()).isFalse();
+        assertThat(tryCount.isReachedMaxCount()).isFalse();
 
         tryCount.increment();
-        assertThat(tryCount.isFinished()).isFalse();
+        assertThat(tryCount.isReachedMaxCount()).isFalse();
 
         tryCount.increment();
-        assertThat(tryCount.isFinished()).isTrue();
+        assertThat(tryCount.isReachedMaxCount()).isTrue();
     }
 
     @Test

@@ -13,13 +13,13 @@ public class TryCount {
     }
 
     public void increment() {
-        if (isFinished()) {
+        if (isReachedMaxCount()) {
             throw new RacingGameIsFinishedException();
         }
         currentTryCount++;
     }
 
-    public boolean isFinished() {
+    public boolean isReachedMaxCount() {
         return currentTryCount == maxTryCount;
     }
 }

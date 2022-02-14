@@ -23,7 +23,7 @@ public class RacingGame {
     }
 
     public boolean isFinished() {
-        return tryCount.isFinished();
+        return tryCount.isReachedMaxCount();
     }
 
     public WinnerResult getWinnerResult() {
