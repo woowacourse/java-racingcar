@@ -1,5 +1,8 @@
 package racingcar.model;
 
+import static racingcar.util.StringUtils.splitByDelimiter;
+import static racingcar.util.StringUtils.stripStringArray;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +18,7 @@ public class Cars {
     private final List<Car> cars = new ArrayList<>();
 
     public Cars(String carNames) {
-        String[] carNameArray = reduceBlank(carNames).split(DELIMITER);
+        String[] carNameArray = stripStringArray(splitByDelimiter(carNames, DELIMITER));
         validateDuplicatedName(carNameArray);
         for (String carName : carNameArray) {
             cars.add(new Car(carName));
@@ -42,9 +45,5 @@ public class Cars {
         if (distinctSize != carNames.length) {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATED_NAME);
         }
-    }
-
-    private String reduceBlank(String string) {
-        return string.replaceAll(" ", "");
     }
 }
