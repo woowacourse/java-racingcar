@@ -15,17 +15,22 @@ public class Calculator {
 
     public int sumAndDivideInput(String input) {
         if (hasCustomDelimiterInInput(input)) {
-            List<String> numbersDividedByCustomDelimiter = divideNumbersByCustomDelimiter(input);
-            InputValidator.checkValidateNumbers(divideNumbersByCustomDelimiter(input));
-            return makeSumOfNumbers(numbersDividedByCustomDelimiter);
+            List<String> numbersDividedByCustom = dividesByCustomAndCheckValidate(input);
+            return makeSumOfNumbers(numbersDividedByCustom);
         }
         InputValidator.checkValidateNumbers(List.of(input.split("")));
-        return makeSumOfNumbers(divideInput(input));
+        return makeSumOfNumbers(divideNumbersByDelimiter(input));
     }
 
     private boolean hasCustomDelimiterInInput(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         return matcher.find();
+    }
+
+    private List<String> dividesByCustomAndCheckValidate(String input) {
+        List<String> numbers = divideNumbersByCustomDelimiter(input);
+        InputValidator.checkValidateNumbers(numbers);
+        return numbers;
     }
 
     private List<String> divideNumbersByCustomDelimiter(String input) {
@@ -37,7 +42,7 @@ public class Calculator {
         throw new RuntimeException();
     }
 
-    private List<String> divideInput(String input) {
+    private List<String> divideNumbersByDelimiter(String input) {
         return List.of(input.split(BASE_DELIMITER_PATTERN));
     }
 
