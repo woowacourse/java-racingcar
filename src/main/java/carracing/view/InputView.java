@@ -27,9 +27,7 @@ public class InputView {
 		try {
 			String line = bufferedReader.readLine();
 			validateEmptyString(line);
-			validateNumber(line);
 			numberOfGames = toInt(line);
-			validateZero(numberOfGames);
 		} catch (IllegalArgumentException | IOException e) {
 			OutputView.printException(e.getMessage());
 			getNumberOfGames();
@@ -43,18 +41,16 @@ public class InputView {
 		}
 	}
 
-	private static void validateNumber(String line) {
-		if (!line.matches(NUMBER_REGEX)) {
-			throw new IllegalArgumentException(INPUT_NOT_NUMBER_EXCEPTION.getMessage());
-		}
-	}
-
 	private static int toInt(String line) {
+		validateNumber(line);
 		return Integer.parseInt(line);
 	}
 
-	private static void validateZero(int number) {
-		if (number <= 0) {
+	private static void validateNumber(String number) {
+		if (!number.matches(NUMBER_REGEX)) {
+			throw new IllegalArgumentException(INPUT_NOT_NUMBER_EXCEPTION.getMessage());
+		}
+		if (Integer.parseInt(number) <= 0) {
 			throw new IllegalArgumentException(INPUT_NUMBER_ZERO_EXCEPTION.getMessage());
 		}
 	}
