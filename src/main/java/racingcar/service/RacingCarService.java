@@ -2,6 +2,7 @@ package racingcar.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,8 +23,6 @@ public class RacingCarService {
 		NameValidator.checkNameList(carNameList);
 		save(carNameList);
 	}
-
-
 
 	private void save(List<String> carNameList) throws Exception {
 		for (String name : carNameList) {
@@ -46,11 +45,11 @@ public class RacingCarService {
 		return cars.stream()
 			.filter(car -> car.isWinner(maxPosition))
 			.map(Car::getName)
-			.collect(Collectors.toList());
+			.collect(Collectors.toUnmodifiableList());
 	}
 
 	public List<Car> findAllCars() {
-		return cars;
+		return Collections.unmodifiableList(cars);
 	}
 
 	public void resetCars() {
