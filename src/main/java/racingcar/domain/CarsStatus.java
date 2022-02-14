@@ -8,6 +8,7 @@ import java.util.List;
 public class CarsStatus {
     private static final String CARS_STATUS_JOIN_DELIMITER = "\n";
     private static final String CAR_STATUS_CRITERIA = " : ";
+    private static final int DEFAULT_POSITION = 0;
     private static final String CAR_STATUS_POSITION = "-";
 
     private final List<Car> cars;
@@ -26,7 +27,7 @@ public class CarsStatus {
         StringBuilder carStatus = new StringBuilder(car.getName());
         carStatus.append(CAR_STATUS_CRITERIA);
         int position = car.getPosition();
-        while (position-- > 0) {
+        while (position-- > DEFAULT_POSITION) {
             carStatus.append(CAR_STATUS_POSITION);
         }
         return carStatus.toString();
