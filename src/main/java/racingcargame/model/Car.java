@@ -7,6 +7,7 @@ public class Car implements Comparable<Car> {
 
 	private final String name;
 	private int position;
+	private int moveNumber;
 
 	public Car(final String name, final int position) {
 		this.name = name;
@@ -21,15 +22,16 @@ public class Car implements Comparable<Car> {
 		return position;
 	}
 
-	void moveCar() {
-		if (canMoveCar()) {
+	int moveCar() {
+		int moveNumber = pickMoveNumber();
+		if (moveNumber >= MIN_MOVE_NUMBER) {
 			position++;
 		}
+		return moveNumber;
 	}
 
-	private boolean canMoveCar() {
-		int number = RandomNumberGenerator.pickRandomNumber();
-		return number >= MIN_MOVE_NUMBER;
+	private int pickMoveNumber() {
+		return RandomNumberGenerator.pickRandomNumber();
 	}
 
 	@Override
