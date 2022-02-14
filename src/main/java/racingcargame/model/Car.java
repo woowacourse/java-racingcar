@@ -1,9 +1,9 @@
 package racingcargame.model;
 
-import racingcargame.utils.RandomNumberGenerator;
-
 public class Car implements Comparable<Car> {
     private static final int MINIMUM_MOVE_ACCESSIBLE = 4;
+    private static final int MAX_NUMBER = 9;
+    private static final int MIN_NUMBER = 0;
 
     private final String name;
     private int position;
@@ -32,8 +32,8 @@ public class Car implements Comparable<Car> {
     }
 
     private boolean isMoveCar() {
-        int number = RandomNumberGenerator.makeRandomNumber();
-        return number >= MINIMUM_MOVE_ACCESSIBLE;
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator(MIN_NUMBER, MAX_NUMBER + 1);
+        return randomNumberGenerator.pickRandomNumber() >= MINIMUM_MOVE_ACCESSIBLE;
     }
 
     @Override
