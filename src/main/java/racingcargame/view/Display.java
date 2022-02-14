@@ -19,15 +19,15 @@ public class Display {
 	}
 
 	public static void showRacingCarNamesInputGuideMessage() {
-		print(CAR_NAMES_INPUT_GUIDE_MESSAGE);
+		println(CAR_NAMES_INPUT_GUIDE_MESSAGE);
 	}
 
 	public static void showRaceCountInputGuideMessage() {
-		print(RACE_COUNT_INPUT_GUIDE_MESSAGE);
+		println(RACE_COUNT_INPUT_GUIDE_MESSAGE);
 	}
 
 	public static void showRaceProgressGuideMessage() {
-		print(NOW_RACE_PROGRESS_GUIDE_MESSAGE);
+		println(NOW_RACE_PROGRESS_GUIDE_MESSAGE);
 	}
 
 	public static void showRaceProgress(HashMap<String, Integer> racingCarsInformation) {
@@ -39,11 +39,11 @@ public class Display {
 	}
 
 	public static void showRacingCarName(String racingCarName) {
-		System.out.print(racingCarName + RACE_PROGRESS_OUTPUT_SEPARATOR);
+		print(racingCarName + RACE_PROGRESS_OUTPUT_SEPARATOR);
 	}
 
 	public static void showRacingCarPosition(int racingCarPosition) {
-		IntStream.range(0, racingCarPosition).forEach(index -> System.out.print(CAR_MOVE));
+		IntStream.range(0, racingCarPosition).forEach(index -> print(CAR_MOVE));
 		newLine();
 	}
 
@@ -51,13 +51,17 @@ public class Display {
 		Queue<String> winner = new LinkedList<>(winners);
 
 		while (winner.size() > 1) {
-			System.out.print(winner.poll() + CAR_NAME_SEPARATOR);
+			print(winner.poll() + CAR_NAME_SEPARATOR);
 		}
-		System.out.print(winner.poll() + GAME_WINNER_MESSAGE);
+		print(winner.poll() + GAME_WINNER_MESSAGE);
+	}
+
+	private static void println(String message) {
+		System.out.println(message);
 	}
 
 	private static void print(String message) {
-		System.out.println(message);
+		System.out.print(message);
 	}
 
 	private static void newLine() {
