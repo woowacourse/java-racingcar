@@ -13,7 +13,7 @@ public class Car {
         this.position = START_POSITION;
     }
 
-    public static Car from(String name) {
+    public static Car createByName(String name) {
         return new Car(name);
     }
 

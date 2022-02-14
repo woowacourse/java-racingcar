@@ -23,8 +23,8 @@ public class RacingGameTest {
 
     @BeforeEach
     public void setUp() {
-        car1 = Car.from(CAR_1_NAME);
-        car2 = Car.from(CAR_2_NAME);
+        car1 = Car.createByName(CAR_1_NAME);
+        car2 = Car.createByName(CAR_2_NAME);
         racingGame = new RacingGame(new MockRandomNumberGenerator());
         racingGame.enrollCars(List.of(CAR_1_NAME, CAR_2_NAME));
     }
