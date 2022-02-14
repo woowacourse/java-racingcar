@@ -63,8 +63,17 @@
     - RacingCar는 입력된 자동차 이름을 String 배열로 만들어서 Cars에게 주고 Cars가 자동차 객체들을 생성하여 List로 만들게 함.
     - Cars를 RacingCar가 아닌 Cars가 생성하도록 하여 Cars에 대한 책임은 Cars에 모아두도록 수정함.
 
-- [ ] TODO 출력 형식이 바뀌어야 한다면 View와 Cars중 어느곳이 수정되어야 하는가?
+- [x] TODO 출력 형식이 바뀌어야 한다면 View와 Cars중 어느곳이 수정되어야 하는가?
     - Cars.repeatRaceBy()
+    - 출력 형식이나 결과가 바뀐다면 View가 수정되어야 할 것이다. 
+    - Cars는 결과를 반환하고 View에서 결과를 이용하여 출력 값을 만드는 방법으로 수정했다. 
+    - Cars는 매 라운드 별 자동차들의 이름과 이동 거리를 vo(RoundResult)로 만들어 반환한다. 
+    - View는 RoundResult에서 반환된 결과값으로 출력을 함.
+  
+- [x] FIXME VO가 View의 세부사항을 알고 있는것이 바람직한가?
+    - Position
+    - 출력과 관련된 부분은 VO가 아닌 View가 처리하도록 수정
+    - 실행 결과의 형식이 달라지면 VO가 아닌 OutputView를 수정하게 됨.
 
 - [ ] FIXME 메소드 명이 적절한가?
     - Cars.isSize()

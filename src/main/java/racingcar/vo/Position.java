@@ -3,8 +3,6 @@ package racingcar.vo;
 public class Position implements Comparable<Position> {
 
   private static final int INIT_POSITION = 0;
-  // FIXME VO가 View의 세부사항을 알고 있는것이 바람직한가?
-  private static final String POSITION_BAR = "-";
 
   private int position;
 
@@ -22,11 +20,7 @@ public class Position implements Comparable<Position> {
 
   @Override
   public String toString() {
-    StringBuilder builder = new StringBuilder();
-    for (int i = 0; i < position; i++) {
-      builder.append(POSITION_BAR);
-    }
-    return builder.toString();
+    return Integer.toString(position);
   }
 
   @Override

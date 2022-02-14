@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 public class Cars {
 
   private static final String DUPLICATE_CAR_NAME_ERROR_MESSAGE = "자동차의 이름이 중복되었습니다.";
-  private static final String RACE_RESULT_MESSAGE = "실행 결과";
   private static final String NO_SUCH_CAR_ERROR_MESSAGE = "자동차가 없습니다.";
   private static final int NONE_DUPLICATION = 0;
 
@@ -23,26 +22,22 @@ public class Cars {
     }
   }
 
-  // TODO 출력 형식이 바뀌어야 한다면 View와 Cars중 어느곳이 수정되어야 하는가?
-  public String repeatRaceBy(Attempt attempt) {
-    StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append(RACE_RESULT_MESSAGE).append(System.lineSeparator());
+  public RoundResults repeatRaceBy(Attempt attempt) {
+    RoundResults results = new RoundResults();
     while (attempt.isLeft()) {
-      stringBuilder.append(raceAll());
+      results.add(raceAll());
       attempt.decrease();
     }
-    return stringBuilder.toString();
+    return results;
   }
 
-  private String raceAll() {
-    StringBuilder stringBuilder = new StringBuilder();
+  private RoundResult raceAll() {
+    RoundResult result = new RoundResult();
     for (Car car : cars) {
       car.move();
-      stringBuilder.append(car.toString());
-      stringBuilder.append(System.lineSeparator());
+      result.add(car);
     }
-    stringBuilder.append(System.lineSeparator());
-    return stringBuilder.toString();
+    return result;
   }
 
   public Winners findWinners() {

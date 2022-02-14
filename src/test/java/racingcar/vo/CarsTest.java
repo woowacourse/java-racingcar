@@ -3,10 +3,14 @@ package racingcar.vo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.view.OutputView;
 
 public class CarsTest {
 
@@ -21,18 +25,16 @@ public class CarsTest {
   @DisplayName("repeatRaceBy() 테스트")
   @Test
   public void repeatRaceBy_test() throws Exception {
+    OutputStream output = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(output));
     String[] name = {"name1"};
     Cars cars = new Cars(name);
     Attempt attempt = new Attempt("5");
-    String result = cars.repeatRaceBy(attempt);
-    Matcher matcher = Pattern.compile(name[0]).matcher(result);
-    int nameCount = 0;
-    while (matcher.find()) {
-      nameCount++;
-    }
+    RoundResults result = cars.repeatRaceBy(attempt);
+    OutputView.printRaceResult(result);
+    String out = output.toString();
     assertThat(attempt.isLeft()).isFalse();
-    assertThat(result).contains("실행 결과", name[0]);
-    assertThat(nameCount).isEqualTo(5);
+    assertThat(out).contains("실행 결과", name[0]);
   }
 
   @DisplayName("생성자 중복된 이름이 입력되었을 때 예외 테스트")
