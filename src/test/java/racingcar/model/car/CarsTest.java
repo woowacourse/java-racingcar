@@ -7,18 +7,20 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class CarsTest {
-	@DisplayName("moveAll 메소드는")
-	@Test
-	void 모든_차를_움직인다() {
-		Cars cars = Cars.create();
-		cars.add(Car.of("car1", 0, (min, max) -> 5));
-		cars.add(Car.of("car2", 0, (min, max) -> 0));
-		cars.add(Car.of("car3", 0, (min, max) -> 5));
-		cars.moveAll();
+import racingcar.dto.CarDto;
 
-		assertThat(cars.result())
-			.isEqualTo("car1 : -\ncar2 : \ncar3 : -");
+public class CarsTest {
+	@DisplayName("경주 진행")
+	@Test
+	void race() {
+		Cars cars = Cars.create();
+		cars.add(Car.of("car1", 0));
+		cars.add(Car.of("car2", 0));
+		cars.add(Car.of("car3", 0));
+		cars.race((min, max) -> 4);
+		for (CarDto carInformation : cars.getCarsDto()) {
+			assertThat(carInformation.getPosition()).isEqualTo(1);
+		}
 	}
 
 	@DisplayName("Car의 DTO 리스트를 반환한다.")

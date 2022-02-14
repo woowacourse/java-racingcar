@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.model.car.Cars;
 import racingcar.model.car.Names;
 import racingcar.model.trycount.TryCount;
+import racingcar.util.RandomNumber;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -38,7 +39,7 @@ public class RaceController {
 	public void raceStart() {
 		OutputView.printRaceResultUi();
 		for (int i = 0; i < tryCount.toInt(); i++) {
-			cars.moveAll();
+			cars.race(new RandomNumber());
 			OutputView.printCarsUi(cars.getCarsDto());
 			OutputView.printEnterUi();
 		}

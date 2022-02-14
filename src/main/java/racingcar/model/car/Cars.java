@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.dto.CarDto;
-import racingcar.util.Format;
+import racingcar.util.RandomUtil;
 
 public class Cars {
-	private static final String TO_STRING_DELIMITER = String.format("%n");
+	private static final int MIN_RANDOM_BOUND = 0;
+	private static final int MAX_RANDOM_BOUND = 9;
+	private static final int MIN_MOVABLE_VALUE = 4;
 
 	private List<Car> cars;
 
@@ -37,8 +39,10 @@ public class Cars {
 		cars.add(car);
 	}
 
-	public void moveAll() {
-		cars.forEach(Car::move);
+	public void race(RandomUtil randomUtil) {
+		cars.stream()
+			.filter(i -> randomUtil.createRandom(MIN_RANDOM_BOUND, MAX_RANDOM_BOUND) >= MIN_MOVABLE_VALUE)
+			.forEach(Car::move);
 	}
 
 	public Position getFirstPosition() {
@@ -53,12 +57,6 @@ public class Cars {
 		return cars.stream()
 			.filter((car) -> car.getPosition().equals(position))
 			.collect(Collectors.toList());
-	}
-
-	public String result() {
-		return cars.stream()
-			.map(Format::carResult)
-			.collect(Collectors.joining(TO_STRING_DELIMITER));
 	}
 
 	public Names getWinnersNames() {
