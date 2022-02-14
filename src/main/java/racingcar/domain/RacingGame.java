@@ -1,4 +1,4 @@
-package racingcar.service;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,20 +6,22 @@ import racingcar.domain.Car;
 import racingcar.ui.RacingCarOutput;
 import racingcar.utils.RandomIntegerGenerator;
 
-public class RacingService {
+public class RacingGame {
     private static final int MIN_POSITION = 0;
     private static final int START_RANDOM_NUMBER = 0;
     private static final int END_RANDOM_NUMBER = 9;
     private final List<Car> cars;
 
-    public RacingService(List<Car> cars) {
+    public RacingGame(List<Car> cars) {
         this.cars = cars;
     }
 
-    public void race(int round) {
-        for (int i = 0; i < round; i++) {
-            raceRound();
-        }
+    public List<Car> race() {
+        cars.forEach(
+                (car) -> car.proceed(RandomIntegerGenerator.random(START_RANDOM_NUMBER, END_RANDOM_NUMBER))
+        );
+
+        return cars;
     }
 
     public List<Car> findWinners() {
@@ -34,14 +36,6 @@ public class RacingService {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(MIN_POSITION);
-    }
-
-    private void raceRound() {
-        cars.forEach(
-                (car) -> car.proceed(RandomIntegerGenerator.random(START_RANDOM_NUMBER, END_RANDOM_NUMBER))
-        );
-        RacingCarOutput.printRoundResult(cars);
-        System.out.println();
     }
 
     private void addWinner(List<Car> winners, int maxPosition, Car car) {

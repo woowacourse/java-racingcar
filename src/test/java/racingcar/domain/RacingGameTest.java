@@ -1,4 +1,4 @@
-package racingcar.service;
+package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,8 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
+import racingcar.domain.RacingGame;
 
-public class RacingServiceTest {
+public class RacingGameTest {
     private static final int PROCEED_FlAG_NUMBER = 4;
     private static final List<Car> cars = new ArrayList<>();
 
@@ -27,13 +28,12 @@ public class RacingServiceTest {
         cars.clear();
     }
 
-
     @Test
     @DisplayName("우승자 판단 - 단독")
     void checkSingleWinner() {
         cars.get(0).proceed(PROCEED_FlAG_NUMBER);
-        RacingService racingService = new RacingService(cars);
-        assertThat(racingService.findWinners()).contains(cars.get(0));
+        RacingGame racingGame = new RacingGame(cars);
+        assertThat(racingGame.findWinners()).contains(cars.get(0));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class RacingServiceTest {
     void checkCoWinner() {
         cars.get(0).proceed(PROCEED_FlAG_NUMBER);
         cars.get(1).proceed(PROCEED_FlAG_NUMBER);
-        RacingService racingService = new RacingService(cars);
-        assertThat(racingService.findWinners()).contains(cars.get(0), cars.get(1));
+        RacingGame racingGame = new RacingGame(cars);
+        assertThat(racingGame.findWinners()).contains(cars.get(0), cars.get(1));
     }
 }
