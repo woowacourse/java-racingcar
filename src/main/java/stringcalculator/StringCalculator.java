@@ -10,13 +10,14 @@ public class StringCalculator {
     private static final int GET_NUMBERS = 2;
 
     private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
+    private static final String NUMBER_PATTERN = "[0-9]";
     private static final String DEFAULT_DELIMITER = ",:";
     private static final String LEFT_BRACKET = "[";
     private static final String RIGHT_BRACKET = "]";
 
     private static Matcher matcher;
 
-    public static int splitAndSum(String input) {
+    public static int caculate(String input) {
         if (isEmpty(input)) {
             return DEFAULT_RETURN_NUMBER;
         }
@@ -35,8 +36,15 @@ public class StringCalculator {
 
     private static int[] convertStringArrToIntArr(String[] arr) {
         return Arrays.stream(arr)
+                .peek(StringCalculator::validateNumber)
                 .mapToInt(StringCalculator::convertStringToNaturalNumber)
                 .toArray();
+    }
+
+    private static void validateNumber(String string) {
+        if (!string.matches(NUMBER_PATTERN)) {
+            throw new RuntimeException();
+        }
     }
 
     private static int convertStringToNaturalNumber(String string) {
