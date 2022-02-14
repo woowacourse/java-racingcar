@@ -6,6 +6,7 @@ public class TryCount {
 
     public TryCount(int maxTryCount) {
         this.maxTryCount = maxTryCount;
+        this.currentTryCount = 0;
     }
 
     public void increment() {
