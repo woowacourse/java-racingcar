@@ -29,7 +29,10 @@ public class Cars {
         validateCarCount(names.size());
         validateDuplicateName(names);
 
-        this.cars = toCars(names, strategy);
+        this.cars = new ArrayList<>();
+        for (String name : names) {
+            cars.add(new Car(name, strategy));
+        }
     }
 
     private void validateCarCount(final int size) {
@@ -47,15 +50,6 @@ public class Cars {
         if (tempNameSet.size() < names.size()) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_NAME);
         }
-    }
-
-    private List<Car> toCars(final List<String> names, final MoveStrategy strategy) {
-        List<Car> cars = new ArrayList<>();
-
-        for (String name : names) {
-            cars.add(new Car(name, strategy));
-        }
-        return cars;
     }
 
     public void moveCars() {
