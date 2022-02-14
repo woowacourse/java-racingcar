@@ -28,7 +28,7 @@ public class Car implements Comparable<Car> {
 	}
 
 	private boolean canMoveCar() {
-		int number = RandomNumberGenerator.makeRandomNumber();
+		int number = RandomNumberGenerator.pickRandomNumber();
 		return number >= MIN_MOVE_NUMBER;
 	}
 
