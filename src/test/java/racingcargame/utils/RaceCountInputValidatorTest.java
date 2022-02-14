@@ -17,10 +17,28 @@ public class RaceCountInputValidatorTest {
     }
 
     @Test
-    @DisplayName("입력한 경주 횟수가 null일 시 경우")
-    void inputNullRaceCountException() {
+    @DisplayName("입력한 경주 횟수가 null인 경우")
+    void inputNullException() {
         assertThatThrownBy(() -> {
             RaceCountInputValidator.validateRaceCount(null);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[error] 경주횟수를 입력해주세요.");
+    }
+
+    @Test
+    @DisplayName("입력한 경주 횟수가 space 하나인 경우")
+    void inputBlankException() {
+        assertThatThrownBy(() -> {
+            RaceCountInputValidator.validateRaceCount(" ");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[error] 경주횟수를 입력해주세요.");
+    }
+
+    @Test
+    @DisplayName("아무것도 입력하지 않았을 경우")
+    void inputEmptyException() {
+        assertThatThrownBy(() -> {
+            RaceCountInputValidator.validateRaceCount("");
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[error] 경주횟수를 입력해주세요.");
     }
