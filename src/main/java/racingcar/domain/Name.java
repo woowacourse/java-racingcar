@@ -6,6 +6,9 @@ public class Name {
 
     private static final int NAME_MAX_LENGTH = 5;
 
+    private static final String NAME_BLANK = " ";
+    private static final String NAME_NOT_BLANK = "";
+
     private final String name;
 
     public Name(String name) {
@@ -33,7 +36,33 @@ public class Name {
         }
     }
 
+    public static Name createNotBlankName(String name) {
+        String notBlankName = removeNameBlank(name);
+        return new Name(notBlankName);
+    }
+
+    private static String removeNameBlank(String name) {
+        return name.replaceAll(NAME_BLANK, NAME_NOT_BLANK);
+    }
+
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

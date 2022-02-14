@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.DisplayName;
@@ -29,5 +30,13 @@ class NameTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> new Name("abcede"))
             .withMessageMatching("자동차 이름은 5자를 초과할 수 없다.");
+    }
+
+    @Test
+    @DisplayName("공백이 제거된 이름을 생성할 수 있다.")
+    void createNotBlankName() {
+        String input = " n a m e ";
+        Name expected = new Name("name");
+        assertThat(Name.createNotBlankName(input)).isEqualTo(expected);
     }
 }
