@@ -6,15 +6,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static common.DisplayFormat.PARAMETERIZED_TEST_DISPLAY_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.params.ParameterizedTest.ARGUMENTS_PLACEHOLDER;
-import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDER;
 
 public class StringCalculatorTest {
-
-    private static final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
-            DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
 
     @DisplayName("splitAndSum 메서드는 null 혹은 빈 문자열이 입력된 경우 0을 반환한다.")
     @Test

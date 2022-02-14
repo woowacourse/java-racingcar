@@ -9,20 +9,16 @@ import racingcar.domain.Car;
 import java.util.ArrayList;
 import java.util.List;
 
+import static common.DisplayFormat.PARAMETERIZED_TEST_DISPLAY_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.junit.jupiter.params.ParameterizedTest.ARGUMENTS_PLACEHOLDER;
-import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDER;
 import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 import static racingcar.util.ValidatorUtils.validateNoDuplicateCar;
 import static racingcar.util.ValidatorUtils.validateNotBlank;
 import static racingcar.util.ValidatorUtils.validateNotOverFiveCharacters;
 
 public class ValidatorUtilsTest {
-
-    private static final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
-            DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
 
     @DisplayName("validateAndParsePositiveInt 메서드는 문자열을 양수로 변환하여 반환한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
