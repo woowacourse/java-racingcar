@@ -20,6 +20,6 @@ public class OutputViewController {
 	public ArrayList<String> mapWinner(ArrayList<Car> carList) {
 		GameController gameController = new GameController();
 		int maxPosition = gameController.getMaxPosition(carList);
-		return (ArrayList<String>)carList.stream().filter(car -> car.isMaxPosition(maxPosition)).map(car -> car.getName()).collect(Collectors.toList());
+		return (ArrayList<String>)carList.stream().filter(car -> car.isWinner(maxPosition)).map(car -> car.getName()).collect(Collectors.toList());
 	}
 }
