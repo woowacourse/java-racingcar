@@ -2,7 +2,6 @@ package racingcargame.utils;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -11,7 +10,9 @@ public class RandomNumberGenerator {
 	private static final int MIN_NUMBER = 0;
 	private static final int SHUFFLED_INDEX = 0;
 
-	private static List<Integer> numbers = IntStream.range(MIN_NUMBER, MAX_NUMBER).boxed().collect(Collectors.toList());
+	private static final List<Integer> numbers = IntStream.range(MIN_NUMBER, MAX_NUMBER)
+		.boxed()
+		.collect(Collectors.toList());
 
 	private RandomNumberGenerator() {
 	}
