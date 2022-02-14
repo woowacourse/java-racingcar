@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.domain.validation.CarValidator;
+
 public class Car implements Comparable<Car> {
 	private static final String STEP = "-";
 	private static final String FORMAT = "%s : %s";
@@ -7,6 +9,8 @@ public class Car implements Comparable<Car> {
 	private int position = 0;
 
 	public Car(String name) {
+		CarValidator validator = new CarValidator();
+		validator.carValid(name);
 		this.name = name;
 	}
 

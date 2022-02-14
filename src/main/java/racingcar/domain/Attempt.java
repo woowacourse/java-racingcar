@@ -1,13 +1,17 @@
 package racingcar.domain;
 
-public class Attempt {
-    private final int attempt;
+import racingcar.domain.validation.AttemptValidator;
 
-    public Attempt(int attempt) {
-        this.attempt = attempt;
-    }
-    
-    public boolean isSame(int nowAttempt) {
-        return attempt == nowAttempt;
-    }
+public class Attempt {
+	private final int attempt;
+
+	public Attempt(String attempt) {
+		AttemptValidator validator = new AttemptValidator();
+		validator.attemptValid(attempt);
+		this.attempt = Integer.parseInt(attempt);
+	}
+
+	public boolean isSame(int nowAttempt) {
+		return attempt == nowAttempt;
+	}
 }

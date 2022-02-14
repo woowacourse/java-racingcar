@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.domain.validation.CarsValidator;
 import racingcar.view.Output;
 
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ public class Cars {
 	private List<Car> cars;
 
 	public Cars(String[] names) {
+		CarsValidator validator = new CarsValidator();
+		validator.carsValid(names);
 		cars = new ArrayList<>();
 		for (String name : names) {
 			cars.add(createCar(name));
