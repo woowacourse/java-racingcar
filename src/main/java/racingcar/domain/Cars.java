@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import racingcar.validator.RacingGameValidator;
+
 public class Cars {
 	public static final int MOVE_CONDITION = 4;
 	public static final int RANDOM_NUMBER_BOUND = 10;
@@ -12,6 +14,7 @@ public class Cars {
 	private final List<Car> cars = new ArrayList<>();
 
 	public Cars(String[] carNames) {
+		RacingGameValidator.validateCarNames(carNames);
 		for (String carName : carNames) {
 			this.cars.add(new Car(carName));
 		}

@@ -2,7 +2,6 @@ package racingcar.view;
 
 import racingcar.Utils;
 import racingcar.validator.MoveCountValidator;
-import racingcar.validator.NameValidator;
 
 import java.util.Scanner;
 
@@ -11,16 +10,9 @@ public class InputView {
 	private static final String REQUEST_MOVE_COUNT = "시도할 회수는 몇회인가요?";
 
 	public static String[] getCarNames(Scanner scanner) {
-		try {
-			System.out.println(REQUEST_CAR_NAMES);
-			String inputNames = scanner.nextLine();
-			String[] splitName = Utils.splitAndTrim(inputNames);
-			NameValidator.validateName(splitName);
-			return splitName;
-		} catch (IllegalArgumentException exception) {
-			System.out.println(exception.getMessage());
-			return getCarNames(scanner);
-		}
+		System.out.println(REQUEST_CAR_NAMES);
+		String inputNames = scanner.nextLine();
+		return Utils.splitAndTrim(inputNames);
 	}
 
 	public static String getMoveCount(Scanner scanner) {

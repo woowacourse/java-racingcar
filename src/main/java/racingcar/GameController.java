@@ -14,12 +14,21 @@ public class GameController {
 	}
 
 	public void run() {
-		String[] carNames = InputView.getCarNames(scanner);
-		Cars cars = new Cars(carNames);
+		Cars cars = getCars();
 		int moveCount = Integer.parseInt(InputView.getMoveCount(scanner));
 		OutputView.printResultMessage();
 		startRace(cars, moveCount);
 		OutputView.printWinners(cars.getWinners());
+	}
+
+	private Cars getCars() {
+		try {
+			String[] carNames = InputView.getCarNames(scanner);
+			return new Cars(carNames);
+		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
+			return getCars();
+		}
 	}
 
 	private void startRace(Cars cars, int moveCount) {

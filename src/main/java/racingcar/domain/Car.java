@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.validator.CarNameValidator;
+
 public class Car {
 	private static final String STRING_JOIN_DELIMITER = " : ";
 	private static final String MOVE_EXPRESSION = "-";
@@ -16,6 +18,7 @@ public class Car {
 	}
 
 	public Car(String name) {
+		CarNameValidator.validateName(name);
 		this.name = name;
 	}
 
