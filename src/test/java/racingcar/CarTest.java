@@ -10,7 +10,7 @@ public class CarTest {
 
 	@Test
 	public void 자동차_전진() {
-		Car car = Car.of("pobi");
+		Car car = Car.from("pobi");
 		car.move(4);
 
 		assertThat(car.isSamePosition(1)).isTrue();
@@ -18,7 +18,7 @@ public class CarTest {
 
 	@Test
 	public void 자동차_정지() {
-		Car car = Car.of("pobi");
+		Car car = Car.from("pobi");
 		car.move(2);
 
 		assertThat(car.isSamePosition(0)).isTrue();

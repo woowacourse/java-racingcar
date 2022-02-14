@@ -16,7 +16,7 @@ public class RacingService {
 
 	public void registerCars(List<CarDto> carDtos) {
 		List<Car> cars = carDtos.stream()
-			.map(Car::of)
+			.map(CarDto::toEntity)
 			.collect(Collectors.toList());
 
 		carRepository.add(cars);

@@ -10,6 +10,10 @@ public class CarDto {
 		this.position = position;
 	}
 
+	public Car toEntity() {
+		return Car.of(name, position);
+	}
+
 	public String getName() {
 		return name;
 	}
