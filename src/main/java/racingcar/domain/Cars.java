@@ -22,11 +22,11 @@ public class Cars {
 
 	public void startEachRace() {
 		cars.stream()
-			.filter(this::isMoveCondition)
+			.filter(car -> isMoveCondition())
 			.forEach(Car::moveForward);
 	}
 
-	private boolean isMoveCondition(Car car) {
+	private boolean isMoveCondition() {
 		return makeRandom() >= MOVE_CONDITION;
 	}
 
