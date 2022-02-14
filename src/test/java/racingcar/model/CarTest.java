@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
@@ -15,8 +18,16 @@ class CarTest {
 	}
 
 	@Test
-	@DisplayName("자동차 이름 5자 초과 검증 테스트")
+	@DisplayName("자동차 이름 5자 일때 테스트")
 	void isOverNameLengthTest() {
+		assertThatCode(() -> {
+			Car car = new Car("범고래고래");
+		}).doesNotThrowAnyException();
+	}
+
+	@Test
+	@DisplayName("자동차 이름 5자 초과 검증 테스트")
+	void isOverNameLengthTestFalse() {
 		assertThatThrownBy(() -> {
 			Car car = new Car("소주캉범고래");
 		}).isInstanceOf(RuntimeException.class);
@@ -38,11 +49,12 @@ class CarTest {
 		}).isInstanceOf(RuntimeException.class);
 	}
 
-	@Test
+	@ParameterizedTest
+	@CsvSource(value = {"4,True", "3,false"}, delimiter = ',')
 	@DisplayName("자동차 이동 테스트")
-	void moveTest() {
+	void moveTest(int moveConditionNumber, boolean expected) {
 		Car car = new Car("범고래");
-		car.move(4);
-		assertThat(car.isSamePosition(1)).isTrue();
+		car.move(moveConditionNumber);
+		assertThat(car.isSamePosition(1)).isEqualTo(expected);
 	}
 }

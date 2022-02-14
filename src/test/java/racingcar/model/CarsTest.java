@@ -22,13 +22,13 @@ class CarsTest {
 	}
 
 	@Test
-	@DisplayName("자동차 생성 테스트")
+	@DisplayName("2 대의 자동차 생성 테스트")
 	void createCarsTest() {
 		assertThat(cars.getSize()).isEqualTo(2);
 	}
 
 	@Test
-	@DisplayName("자동차 이름 중복 체크 테스트")
+	@DisplayName("자동차 이름이 중복이면 예외 발생")
 	void checkDuplicationCarNamesTest() {
 		String[] CarNames = {"범고래", "범고래"};
 		assertThatThrownBy(() -> cars.createCars(CarNames))
@@ -37,16 +37,14 @@ class CarsTest {
 	}
 
 	@Test
-	@DisplayName("자동차 목록 전진 테스트")
+	@DisplayName("자동차 목록 전진 테스트, 두 번째 Car만 전진")
 	void moveTest() {
 		cars.move(moveConditionNumbers);
 		List<CarDto> cars = this.cars.getCars();
 
-		CarDto expected = new CarDto("소주캉", 1);
-		CarDto expected2 = new CarDto("범고래", 0);
+		List<CarDto> expected = Arrays.asList(new CarDto("범고래", 0), new CarDto("소주캉", 1));
 
-		assertThat(cars.contains(expected)).isTrue();
-		assertThat(cars.contains(expected2)).isTrue();
+		assertThat(cars.equals(expected)).isTrue();
 	}
 
 	@Test
@@ -55,8 +53,8 @@ class CarsTest {
 		cars.move(moveConditionNumbers);
 		List<CarDto> winners = cars.getWinners();
 
-		CarDto expected = new CarDto("소주캉", 1);
+		List<CarDto> expected = Arrays.asList(new CarDto("소주캉", 1));
 
-		assertThat(winners.contains(expected)).isTrue();
+		assertThat(winners.equals(expected)).isTrue();
 	}
 }

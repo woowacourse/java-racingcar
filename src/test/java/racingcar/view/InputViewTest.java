@@ -10,7 +10,7 @@ class InputViewTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"0", "-1"})
-	@DisplayName("시도 횟수 입력 양수 검증 테스트")
+	@DisplayName("시도 횟수 양수 입력시 예외 발생")
 	void validatePositiveInputTest(String input) {
 		Assertions.assertThatThrownBy(() -> {
 				InputView.validateIterationNumber(input);
@@ -19,7 +19,7 @@ class InputViewTest {
 	}
 
 	@Test
-	@DisplayName("시도 횟수 빈 입력 검증 테스트")
+	@DisplayName("시도 횟수 빈 입력 입력시 예외 발생")
 	void validateEmptyInputTest() {
 		Assertions.assertThatThrownBy(() -> {
 				InputView.validateIterationNumber("");

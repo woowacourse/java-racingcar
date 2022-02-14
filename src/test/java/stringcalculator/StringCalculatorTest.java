@@ -11,7 +11,7 @@ class StringCalculatorTest {
 	StringCalculator calculator = new StringCalculator();
 
 	@Test
-	@DisplayName("빈 문자열 입력 테스트")
+	@DisplayName("빈 문자열 입력시 0 반환")
 	void emptyInputTest() {
 		String input = "";
 		int actual = calculator.splitAndSum(input);
@@ -19,7 +19,7 @@ class StringCalculatorTest {
 	}
 
 	@Test
-	@DisplayName("null 입력 테스트")
+	@DisplayName("null 입력시 0 반환")
 	void nullInputTest() {
 		String input = null;
 		int actual = calculator.splitAndSum(input);
@@ -27,7 +27,7 @@ class StringCalculatorTest {
 	}
 
 	@Test
-	@DisplayName("숫자 하나 입력 테스트")
+	@DisplayName("숫자 하나 입력시 그대로 반환")
 	void oneNumberInputTest() {
 		String input = "1";
 		int actual = calculator.splitAndSum(input);
@@ -37,7 +37,7 @@ class StringCalculatorTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"&&&", "1,&,2", "//+\n1++3"})
-	@DisplayName("숫자 이외의 값 예외 테스트")
+	@DisplayName("숫자 이외의 값 입력시 예외 발생")
 	void numberFormatExceptionTest(String input) {
 		assertThatThrownBy(() -> {
 			calculator.splitAndSum(input);
@@ -46,7 +46,7 @@ class StringCalculatorTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"-1", "-1,1,2", "//+\n1+-1+3"})
-	@DisplayName("음수 입력 예외 테스트")
+	@DisplayName("음수 입력시 예외 발생")
 	void negativeInputTest(String input) {
 		assertThatThrownBy(() -> {
 			calculator.splitAndSum(input);
