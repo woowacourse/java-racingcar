@@ -1,11 +1,12 @@
 package racingcar.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Winners {
     private static final int MIN_POSITION = 0;
+    private static final String DELIMITER = ", ";
+    private static final String WINNER_SENTENCE = "가 최종 우승했습니다.";
 
     private final List<Car> winners;
 
@@ -16,6 +17,10 @@ public class Winners {
                 .collect(Collectors.toList());
     }
 
+    public String getWinnersSentence() {
+        return String.join(DELIMITER, getNames()) + WINNER_SENTENCE;
+    }
+
     private int getMaxPosition(List<Car> cars) {
         return cars.stream()
                 .mapToInt(Car::getPosition)
@@ -23,13 +28,9 @@ public class Winners {
                 .orElse(MIN_POSITION);
     }
 
-    @Override
-    public String toString() {
-        List<String> names = new ArrayList<>();
-        for (Car winner : winners) {
-            names.add(winner.getName());
-        }
-
-        return String.join(", ", names) + "가 최종 우승했습니다.";
+    private List<String> getNames() {
+        return winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 }
