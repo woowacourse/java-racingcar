@@ -26,7 +26,6 @@ public class Attempt {
     }
 
     private int valid(String attempt) {
-        validNumberFormat(attempt);
         int number = toInteger(attempt);
         validNegative(number);
         return number;
@@ -34,14 +33,6 @@ public class Attempt {
 
     private int toInteger(String string) {
         return Integer.parseInt(string);
-    }
-
-    private void validNumberFormat(String attempt) {
-        try {
-            Integer.parseInt(attempt);
-        } catch (NumberFormatException numberFormatException) {
-            throw new RuntimeException(ErrorMessage.NUMBER_FORMAT.toString());
-        }
     }
 
     private void validNegative(int attempt) {

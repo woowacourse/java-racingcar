@@ -50,11 +50,7 @@ public class Calculator {
     }
 
     private static int toInteger(String stringNumber) {
-        try {
-            return Integer.parseInt(stringNumber);
-        } catch (NumberFormatException numberFormatException) {
-            throw new RuntimeException(ErrorMessage.NUMBER_FORMAT.toString());
-        }
+        return Integer.parseInt(stringNumber);
     }
 
     private static void validNegative(int number) {
