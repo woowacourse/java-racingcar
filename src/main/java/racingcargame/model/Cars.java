@@ -11,11 +11,11 @@ public class Cars {
         carNames.forEach(name -> cars.add(new Car(name, START_POSITION)));
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
-
     void moveCars() {
         cars.forEach(Car::moveCar);
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }

@@ -40,9 +40,7 @@ public class OutputView {
 
     public static String showMove(int moveCount) {
         StringBuilder move = new StringBuilder();
-        for (int count = 0; count < moveCount; count++) {
-            move.append(RACE_MOVE);
-        }
+        move.append(RACE_MOVE.repeat(Math.max(0, moveCount)));
         return move.toString();
     }
 

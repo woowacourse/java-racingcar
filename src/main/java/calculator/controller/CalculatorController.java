@@ -7,8 +7,6 @@ import calculator.view.OutputView;
 public class CalculatorController {
     private final static CalculatorController CALCULATOR_CONTROLLER = new CalculatorController();
 
-    Calculator calculator = new Calculator();
-
     private CalculatorController() {
     }
 
@@ -17,6 +15,8 @@ public class CalculatorController {
     }
 
     public void runCalculator(String input){
+        Calculator calculator = new Calculator();
+
         if (InputValidator.isInputNullOrBlankOrEmpty(input)) {
             OutputView.showSum(0);
             return;
