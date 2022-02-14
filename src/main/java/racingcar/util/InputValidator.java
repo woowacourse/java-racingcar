@@ -6,9 +6,14 @@ public class InputValidator {
     private static final int MINIMUM_CAR_NAME_LENGTH = 5;
 
     public static void validateCarNameLength(List<String> carNames) {
-        if (!carNames.stream().allMatch(carName -> carName.length() <= MINIMUM_CAR_NAME_LENGTH)) {
+        if (isCarNameLengthLongerThan5(carNames)) {
             throw new IllegalArgumentException("자동차의 이름은 5자 이하여야 합니다.");
         }
+    }
+
+    private static boolean isCarNameLengthLongerThan5(List<String> carNames) {
+            return carNames.stream()
+                    .anyMatch(carName -> carName.length() > MINIMUM_CAR_NAME_LENGTH);
     }
 
     public static void validateEmptyCarName(List<String> carNames) {
