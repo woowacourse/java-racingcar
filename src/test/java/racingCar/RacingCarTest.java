@@ -5,60 +5,68 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@SuppressWarnings("NonAsciiCharacters")
 public class RacingCarTest {
 	private final RacingCar racingCar = new RacingCar();
 
+	@DisplayName("자동차 이름 정상 입력")
 	@Test
 	void 자동차_이름_정상_입력() {
 		String[] names = racingCar.makeCarNames("a,bqwer,cdb");
 		assertThat(names).isEqualTo(new String[] {"a", "bqwer", "cdb"});
 	}
-
+	@DisplayName("자동차 이름 중복 확인")
 	@Test
 	void 자동차_이름_중복() {
 		String[] names = racingCar.makeCarNames("a,a,c");
 		assertThat(names).isEqualTo(new String[] {"a", "a", "c"});
 	}
 
+	@DisplayName("자동차 이름 앞뒤 공백 제거 확인")
 	@Test
 	void 자동차_이름_앞뒤_공백() {
 		String[] names = racingCar.makeCarNames("   abc, a ,cde  ");
 		assertThat(names).isEqualTo(new String[] {"abc", "a", "cde"});
 	}
 
+	@DisplayName("자동차 이름이 6자 이상일 때 에러 확인")
 	@Test
 	void 자동차_이름_6자_에러() {
 		assertThatThrownBy(() -> racingCar.checkRightLength("techCourse"))
 			.isInstanceOf(RuntimeException.class);
 	}
 
+	@DisplayName("자동차 이름이 공백일 때 에러 확인")
 	@Test
 	void 자동차_이름_공백_에러() {
 		assertThatThrownBy(() -> racingCar.checkRightLength(""))
 			.isInstanceOf(RuntimeException.class);
 	}
 
+	@DisplayName("경기 횟수가 숫자 이외의 값일 때 에러 확인")
 	@Test
 	void 시도_횟수_숫자_이외의_값_에러() {
 		assertThatThrownBy(() -> racingCar.isRightTimes("!"))
 			.isInstanceOf(RuntimeException.class);
 	}
 
+	@DisplayName("시도 횟수가 실수일 떄 에러 확인")
 	@Test
 	void 시도_횟수_정수가_아닌_실수값_에러() {
 		assertThatThrownBy(() -> racingCar.isRightTimes("1.5"))
 			.isInstanceOf(RuntimeException.class);
 	}
 
+	@DisplayName("시도 횟수가 음수일 떄 에러 확인")
 	@Test
 	void 시도_횟수_음수_값_에러() {
 		assertThatThrownBy(() -> racingCar.isRightTimes("-2"))
 			.isInstanceOf(RuntimeException.class);
 	}
 
+	@DisplayName("자동차 위치 출력 정상 확인")
 	@Test
 	void 자동차_위치_출력_정상() {
 		Car car = new Car("woowahan");
@@ -70,6 +78,7 @@ public class RacingCarTest {
 		assertThat(car.toString()).isEqualTo("woowahan : --");
 	}
 
+	@DisplayName("최종 출력 결과 확인")
 	@Test
 	void 최종_결과_출력_정상() {
 		List<Car> cars = new ArrayList<>();
