@@ -3,6 +3,7 @@ package calculator;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import racingcar.view.ErrorMessage;
 
 public class Calculator {
 
@@ -16,9 +17,6 @@ public class Calculator {
     private static final String BASIC_DELIMITER_COLON = ":";
     private static final String DELIMITER_FORMAT =
             "[" + BASIC_DELIMITER_COMMA + BASIC_DELIMITER_COLON + "%s]";
-
-    private static final String NONE_INTEGER_ERROR_MESSAGE = "숫자가 아닌 입력입니다. 구분자를 이용해서 숫자를 입력해주세요.";
-    private static final String NEGATIVE_VALUE_ERROR_MESSAGE = "음수 값을 입력했습니다. 양수를 입력해주세요.";
 
     public static int sum(String input) {
         if (validNullOrEmpty(input)) {
@@ -55,13 +53,13 @@ public class Calculator {
         try {
             return Integer.parseInt(stringNumber);
         } catch (NumberFormatException numberFormatException) {
-            throw new RuntimeException(NONE_INTEGER_ERROR_MESSAGE);
+            throw new RuntimeException(ErrorMessage.NUMBER_FORMAT.toString());
         }
     }
 
     private static void validNegative(int number) {
         if (number < ZERO) {
-            throw new RuntimeException(NEGATIVE_VALUE_ERROR_MESSAGE);
+            throw new RuntimeException(ErrorMessage.NUMBER_NEGATIVE.toString());
         }
     }
 
