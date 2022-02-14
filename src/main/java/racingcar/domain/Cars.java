@@ -28,13 +28,13 @@ public class Cars {
         Car carMaxPosition = getCarMaxPosition();
 
         return cars.stream()
-            .filter((car) -> car.isSamePosition(carMaxPosition))
-            .collect(Collectors.toList());
+                .filter((car) -> car.isSamePosition(carMaxPosition))
+                .collect(Collectors.toList());
     }
 
     private Car getCarMaxPosition() {
         return cars.stream()
-            .max(Car::compareTo)
-            .orElseThrow(null);
+                .max(Car::compareTo)
+                .orElseThrow(null);
     }
 }

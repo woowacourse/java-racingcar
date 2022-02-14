@@ -70,11 +70,11 @@ public class StringTest {
         assertThatThrownBy(() -> {
             input.charAt(3);
         }).isInstanceOf(IndexOutOfBoundsException.class)
-            .hasMessageContaining(exceptionMessage);
+                .hasMessageContaining(exceptionMessage);
 
         assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
-            .isThrownBy(() -> {
-                input.charAt(3);
-            }).withMessageMatching(exceptionMessage);
+                .isThrownBy(() -> {
+                    input.charAt(3);
+                }).withMessageMatching(exceptionMessage);
     }
 }
