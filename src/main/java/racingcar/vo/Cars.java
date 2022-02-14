@@ -55,9 +55,8 @@ public class Cars {
     }
   }
 
-  // FIXME 메소드 명이 isSize가 적절한가?
-  // FIXME 이 메서드는 테스트에서만 사용되는데 이 메서드를 꼭 사용해서 테스트해야할까?
-  public boolean isSize(int size) {
-    return cars.size() == size;
+  @Override
+  public String toString() {
+    return cars.toString();
   }
 }

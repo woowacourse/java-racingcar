@@ -17,9 +17,9 @@ public class CarsTest {
   @DisplayName("생성자 테스트")
   @Test
   public void 생성자_test() throws Exception {
-    String[] name = {"name1"};
+    String[] name = {"name1", "name2"};
     Cars cars = new Cars(name);
-    assertThat(cars.isSize(1)).isTrue();
+    assertThat(cars.toString()).contains(name);
   }
 
   @DisplayName("repeatRaceBy() 테스트")
