@@ -3,8 +3,6 @@ package racingcar;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import calculator.StringCalculator;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -88,6 +86,5 @@ public class CarTest {
         assertThatThrownBy(() -> {new Car("1234");})
             .isInstanceOf(IllegalArgumentException.class);
     }
-
 
 }
