@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private static final int MOVE_MIN_VALUE = 4;
-    public static final int MAX_RANDOM_VALUE = 10;
+    private static final int MAX_RANDOM_VALUE = 10;
     private static final Random random = new Random();
 
     private final List<Car> cars;
@@ -21,7 +21,7 @@ public class Cars {
         this.cars.add(car);
     }
 
-    public Integer participateSize() {
+    public int participateSize() {
         return this.cars.size();
     }
 

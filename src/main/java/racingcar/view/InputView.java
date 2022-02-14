@@ -13,7 +13,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public Integer getPlayTimes() {
+    public int getPlayTimes() {
         System.out.println(INPUT_RACING_TIMES_MESSAGE);
         return Integer.parseInt(scanner.nextLine());
     }
