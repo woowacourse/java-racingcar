@@ -23,8 +23,8 @@ public class RacingCar {
         return name;
     }
 
-    public void goOrStay(int randomNumber) {
-        if (randomNumber >= MOVE_STANDARD) {
+    public void goOrStay(int number) {
+        if (number >= MOVE_STANDARD) {
             position++;
         }
     }
