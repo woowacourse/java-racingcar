@@ -2,8 +2,6 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import racingcar.domain.Car;
-import racingcar.ui.RacingCarOutput;
 import racingcar.utils.RandomIntegerGenerator;
 
 public class RacingGame {
@@ -39,7 +37,7 @@ public class RacingGame {
     }
 
     private void addWinner(List<Car> winners, int maxPosition, Car car) {
-        if (car.isWinner(maxPosition)) {
+        if (car.isHere(maxPosition)) {
             winners.add(car);
         }
     }

@@ -13,14 +13,14 @@ public class Car {
         this.position = 0;
     }
 
-    public void proceed(int randomNumber) {
-        if (randomNumber >= PROCEED_FlAG_NUMBER) {
+    public void proceed(int number) {
+        if (number >= PROCEED_FlAG_NUMBER) {
             this.position++;
         }
     }
 
-    public boolean isWinner(int maxPosition) {
-        return this.position == maxPosition;
+    public boolean isHere(int position) {
+        return this.position == position;
     }
 
     public String getName() {
