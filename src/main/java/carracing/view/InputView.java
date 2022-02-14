@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class InputView {
+	private static final String NUMBER_REGEX = "^[0-9]+$";
 	private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
 	public static String getCarNames() {
@@ -43,7 +44,7 @@ public class InputView {
 	}
 
 	private static void validateNumber(String line) {
-		if (!line.matches("^[0-9]+$")) {
+		if (!line.matches(NUMBER_REGEX)) {
 			throw new IllegalArgumentException(INPUT_NOT_NUMBER_EXCEPTION.getMessage());
 		}
 	}
