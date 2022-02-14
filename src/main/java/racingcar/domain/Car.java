@@ -6,10 +6,11 @@ public class Car {
     private static final String MOVE_EXPRESSION = "-";
 
     private final String name;
-    private int position = 0;
+    private int position;
 
-    public Car(String name) {
+    public Car(String name, int position) {
         this.name = name;
+        this.position = position;
     }
 
     public void move(int randomValue) {

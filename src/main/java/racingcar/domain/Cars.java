@@ -6,13 +6,14 @@ import java.util.Random;
 
 public class Cars {
     private static final int RANDOM_NUMBER_BOUND = 10;
+    public static final int START_POSITION = 0;
 
-    private final List<Car> cars;
+    private List<Car> cars;
 
     public Cars(String[] carNames) {
         cars = new ArrayList<>();
         for (String carName : carNames) {
-            cars.add(new Car(carName));
+            cars.add(new Car(carName, START_POSITION));
         }
     }
 
@@ -44,9 +45,14 @@ public class Cars {
         return maxPosition;
     }
 
+    public void addCar(Car car) {
+        cars.add(car);
+    }
+
     public int getSize() {
         return cars.size();
     }
+
 
     @Override
     public String toString() {
