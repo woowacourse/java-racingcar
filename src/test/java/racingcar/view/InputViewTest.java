@@ -15,11 +15,9 @@ class InputViewTest {
     void checkTryCountIsDigit() {
         InputStream customInputStream = new ByteArrayInputStream("123a".getBytes());
         System.setIn(customInputStream);
-        Scanner scanner = new Scanner(System.in);
-        InputView inputView = new InputView(scanner);
 
         assertThatExceptionOfType(IllegalArgumentException.class)
-            .isThrownBy(() -> inputView.inputTryCount())
+            .isThrownBy(() -> InputView.inputTryCount())
             .withMessageMatching("시도횟수는 숫자이어야 합니다.");
     }
 }

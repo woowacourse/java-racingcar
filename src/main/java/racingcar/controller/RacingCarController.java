@@ -8,28 +8,23 @@ import racingcar.view.OutputView;
 
 public class RacingCarController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
-
-    public RacingCarController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public RacingCarController() {
     }
 
     public void run() {
-        RacingCars racingCars = new RacingCars(inputView.inputCarNames(), new RacingCarCommander());
-        int tryCount = inputView.inputTryCount();
+        RacingCars racingCars = new RacingCars(InputView.inputCarNames(), new RacingCarCommander());
+        int tryCount = InputView.inputTryCount();
 
         RacingGame game = new RacingGame(racingCars, tryCount);
-        outputView.printGameResultTitle();
+        OutputView.printGameResultTitle();
         raceAllRounds(game, racingCars);
-        outputView.printWinnerNames(game.getWinnerNames());
+        OutputView.printWinnerNames(game.getWinnerNames());
     }
 
     public void raceAllRounds(RacingGame game, RacingCars racingCars) {
         while (!game.isEnd()) {
             game.race();
-            outputView.printCarsPosition(racingCars.getRacingCarDtoList());
+            OutputView.printCarsPosition(racingCars.getRacingCarDtoList());
         }
     }
 }
