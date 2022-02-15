@@ -9,9 +9,9 @@ import java.util.List;
 
 public class RacingCarGame {
 	private static final int START_VALUE = 0;
+
 	private Cars cars;
 	private Attempt attempt;
-
 	private final Input input;
 
 	public RacingCarGame() {

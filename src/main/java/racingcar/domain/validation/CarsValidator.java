@@ -1,9 +1,6 @@
 package racingcar.domain.validation;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import racingcar.domain.Car;
 
@@ -23,11 +20,6 @@ public class CarsValidator {
 
 	private boolean isCars(List<Car> cars) {
 		return cars.size() >= CAR_LIMIT;
-	}
-
-	private boolean isDuplicated(String[] names) {
-		Set<String> carNames = new HashSet<>(Arrays.asList(names));
-		return carNames.size() != names.length;
 	}
 
 	private boolean isDuplicated(List<Car> cars) {

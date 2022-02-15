@@ -49,10 +49,6 @@ public class Car implements Comparable<Car> {
 		return name;
 	}
 
-	public int getPosition() {
-		return position;
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder positions = new StringBuilder();
@@ -68,9 +64,9 @@ public class Car implements Comparable<Car> {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (o instanceof Car) {
-			Car car = (Car)o;
+	public boolean equals(Object object) {
+		if (object instanceof Car) {
+			Car car = (Car)object;
 			return car.name.equals(name);
 		}
 		return false;
