@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.firstcollection.Cars;
+import racingcar.domain.strategy.MovableStrategy;
+import racingcar.domain.strategy.RacingCarMovableStrategy;
 import racingcar.domain.vo.Car;
-import racingcar.domain.vo.MovableStrategy;
-import racingcar.domain.vo.RacingCarMovableStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

@@ -1,6 +1,7 @@
 package racingcar.domain.vo;
 
 import java.util.Objects;
+import racingcar.domain.strategy.MovableStrategy;
 
 public class Car {
     private static final int MAXIMUM_LENGTH = 5;

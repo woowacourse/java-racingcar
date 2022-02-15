@@ -6,8 +6,8 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.stream.Collectors;
+import racingcar.domain.strategy.MovableStrategy;
 import racingcar.domain.vo.Car;
-import racingcar.domain.vo.MovableStrategy;
 
 public class Cars {
     private static final String MESSAGE_FOR_CAR_NAME_DUPLICATE = "이름은 중복될 수 없습니다.";
