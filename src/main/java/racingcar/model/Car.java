@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import java.util.Objects;
+
 public class Car implements RacingCar{
 
     private final Name name;
@@ -29,5 +31,9 @@ public class Car implements RacingCar{
 
     private boolean isMovable(Integer number) {
         return number >= movableNumber;
+    }
+
+    public boolean isWinnerPosition(Integer position) {
+        return Objects.equals(position, getCarPosition());
     }
 }
