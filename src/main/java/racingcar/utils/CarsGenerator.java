@@ -3,6 +3,7 @@ package racingcar.utils;
 import racingcar.domain.Car;
 import racingcar.ui.RacingCarInput;
 import racingcar.validator.CarNameValidator;
+import racingcar.validator.CarNamesValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +24,7 @@ public class CarsGenerator {
 
     public static List<Car> generateCars(String userInput) {
         List<String> carNames = separateCarNames(userInput);
+        CarNamesValidator.validate(carNames);
         carNames.forEach(CarNameValidator::validate);
         return carNames.stream()
             .map(Car::of)
