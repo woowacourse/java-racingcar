@@ -14,6 +14,9 @@ public class ValidatorUtils {
     private static final String OVER_FIVE_CHARACTERS_EXCEPTION = "5글자 이하의 이름을 입력해야 합니다.";
     private static final String DUPLICATE_CAR_EXCEPTION = "중복된 이름을 입력하면 안 됩니다.";
 
+    private ValidatorUtils() {
+    }
+
     public static int validateAndParsePositiveInt(String value) {
         int number = Integer.parseInt(value);
         validatePositiveInt(number);

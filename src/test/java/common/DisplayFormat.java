@@ -7,4 +7,7 @@ public class DisplayFormat {
 
     public static final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
             DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
+
+    private DisplayFormat() {
+    }
 }

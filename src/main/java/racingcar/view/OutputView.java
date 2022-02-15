@@ -16,6 +16,9 @@ public class OutputView {
     private static final String ANNOUNCE_GAME_WINNER_TEXT = "가 최종 우승했습니다.";
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
+    private OutputView() {
+    }
+
     public static void printRequestCarNamesInputMessage() {
         print(REQUEST_CAR_NAME_INPUT_MESSAGE);
     }
