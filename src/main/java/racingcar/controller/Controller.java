@@ -2,31 +2,25 @@ package racingcar.controller;
 
 import java.util.List;
 import racingcar.domain.game.RacingGame;
-import racingcar.domain.random.RandomNumberGenerator;
-import racingcar.parser.CarNameParser;
-import racingcar.parser.TryCountParser;
-import racingcar.util.RetryableTemplate;
+import racingcar.domain.random.RacingcarRandomNumberGenerator;
+import racingcar.receiver.NamesReceiver;
+import racingcar.receiver.TryCountReceiver;
 import racingcar.view.View;
 
 public class Controller {
 
-    private CarNameParser carNameParser;
-    private TryCountParser tryCountParser;
-    private RacingGame racingGame;
+    private NamesReceiver namesReceiver;
+    private TryCountReceiver tryCountReceiver;
     private View view;
-    private RetryableTemplate retryableTemplate;
 
-    public Controller(RandomNumberGenerator randomNumberGenerator) {
-        this.carNameParser = new CarNameParser();
-        this.tryCountParser = new TryCountParser();
-        this.racingGame = new RacingGame(randomNumberGenerator);
+    public Controller() {
+        this.namesReceiver = new NamesReceiver();
+        this.tryCountReceiver = new TryCountReceiver();
         this.view = new View();
-        this.retryableTemplate = new RetryableTemplate();
     }
 
     public void runGame() {
-        retryableTemplate.execute(this::inputCarNames, this::handleException);
-        retryableTemplate.execute(this::inputTryCount, this::handleException);
+        RacingGame racingGame = getRacingGame();
 
         view.printResultViewTitle();
         while (!racingGame.isFinished()) {
@@ -37,17 +31,17 @@ public class Controller {
         view.printWinnerResult(racingGame.getWinnersResult());
     }
 
-    private void inputCarNames() {
-        List<String> names = carNameParser.parse(view.inputCarNames());
-        racingGame.enrollCars(names);
+    private RacingGame getRacingGame() {
+        return new RacingGame(inputCarNames(), inputTryCount(), new RacingcarRandomNumberGenerator());
     }
 
-    private void inputTryCount() {
-        int tryCount = tryCountParser.parse(view.inputTryCount());
-        racingGame.initTryCount(tryCount);
+    private List<String> inputCarNames() {
+        List<String> names = namesReceiver.parse(view.inputCarNames());
+        return names;
     }
 
-    private void handleException(Exception e) {
-        view.printErrorMessage(e.getMessage());
+    private int inputTryCount() {
+        int tryCount = tryCountReceiver.parse(view.inputTryCount());
+        return tryCount;
     }
 }

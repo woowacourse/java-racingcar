@@ -1,4 +1,4 @@
-package racingcar.parser;
+package racingcar.receiver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -7,13 +7,13 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class CarNameParserTest {
+public class NamesReceiverTest {
 
-    CarNameParser parser;
+    NamesReceiver parser;
 
     @BeforeEach
     void setUp() {
-        parser = new CarNameParser();
+        parser = new NamesReceiver();
     }
 
     @Test
@@ -26,20 +26,20 @@ public class CarNameParserTest {
     public void 이름이_6글자_이상인_경우_예외_발생() {
         assertThatThrownBy(() -> parser.parse("pobi,crong,honuxx"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(CarNameParser.INVALID_LENGTH_ERROR_MESSAGE);
+                .hasMessageContaining(NamesReceiver.INVALID_LENGTH_ERROR_MESSAGE);
     }
 
     @Test
     public void 이름이_공백일_경우_예외_발생() {
         assertThatThrownBy(() -> parser.parse("pobi,,honux"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(CarNameParser.EMPTY_NAME_ERROR_MESSAGE);
+                .hasMessageContaining(NamesReceiver.EMPTY_NAME_ERROR_MESSAGE);
     }
 
     @Test
     public void 이름이_중복일_경우_예외_발생() {
         assertThatThrownBy(() -> parser.parse("pobi,pobi,honux"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(CarNameParser.DUPLICATE_NAME_ERROR_MESSAGE);
+                .hasMessageContaining(NamesReceiver.DUPLICATE_NAME_ERROR_MESSAGE);
     }
 }

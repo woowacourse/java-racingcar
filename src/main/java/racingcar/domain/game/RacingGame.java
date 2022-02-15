@@ -16,7 +16,9 @@ public class RacingGame {
     private Cars cars;
     private TryCount tryCount;
 
-    public RacingGame(RandomNumberGenerator randomNumberGenerator) {
+    public RacingGame(List<String> names, int inputTryCount, RandomNumberGenerator randomNumberGenerator) {
+        enrollCars(names);
+        initTryCount(inputTryCount);
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
@@ -43,11 +45,11 @@ public class RacingGame {
         return cars.getWinnersResult();
     }
 
-    public void enrollCars(List<String> names) {
+    private void enrollCars(List<String> names) {
         cars = new Cars(names);
     }
 
-    public void initTryCount(int inputTryCount) {
+    private void initTryCount(int inputTryCount) {
         tryCount = new TryCount(inputTryCount);
     }
 }
