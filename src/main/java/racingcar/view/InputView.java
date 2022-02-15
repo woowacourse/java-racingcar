@@ -2,7 +2,8 @@ package racingcar.view;
 
 import java.util.List;
 import java.util.Scanner;
-import racingcar.util.Utils;
+import racingcar.util.Util;
+import racingcar.util.Validators;
 
 public class InputView {
     private static final String REQUEST_CARS_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
@@ -16,8 +17,8 @@ public class InputView {
     public static List<String> getCarsName() {
         OutputView.printRequestInstruction(REQUEST_CARS_NAME);
         try {
-            List<String> carsName = Utils.convertCarsName(getInput());
-            Utils.validateCarsName(carsName);
+            List<String> carsName = Util.convertCarsName(getInput());
+            Validators.validateCarsName(carsName);
             return carsName;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
@@ -29,8 +30,8 @@ public class InputView {
         OutputView.printRequestInstruction(REQUEST_ROUND_VALUE);
         try {
             String inputRound = getInput();
-            Utils.validateRoundNumber(inputRound);
-            Utils.validateRoundMinimumOne(inputRound);
+            Validators.validateRoundNumber(inputRound);
+            Validators.validateRoundMinimumOne(inputRound);
             return inputRound;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
