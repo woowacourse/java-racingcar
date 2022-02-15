@@ -39,7 +39,7 @@ public class Cars {
 
     private List<Car> getWinnerCars() {
         return cars.stream()
-                .filter(c -> c.isSamePosition(getMostFarPosition()))
+                .filter(car -> car.isSamePosition(getMostFarPosition()))
                 .collect(toList());
     }
 
