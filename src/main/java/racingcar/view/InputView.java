@@ -58,12 +58,12 @@ public class InputView {
         }
     }
 
-    private static void nullOrBlank(String stringInput) {
+    private static void nullOrBlank(String stringInput) throws IllegalArgumentException {
         isNull(stringInput);
         isBlank(stringInput);
     }
 
-    private static void checkNameError(String nameInput) {
+    private static void checkNameError(String nameInput) throws IllegalArgumentException {
         nullOrBlank(nameInput);
         String[] commaSeparateName = nameInput.split(StringConst.DELIMITER.getValue());
         isZeroCars(commaSeparateName);
@@ -72,12 +72,12 @@ public class InputView {
         isDuplicate(commaSeparateName);
     }
 
-    private static void checkTurnError(String turnInput) {
+    private static void checkTurnError(String turnInput) throws IllegalArgumentException {
         nullOrBlank(turnInput);
         isIntNum(turnInput);
     }
 
-	public static String[] getCarNameInput() {
+	public static String[] getCarNameInput() throws IllegalArgumentException {
 		Scanner scanner = new Scanner(System.in);
 		String name = scanner.nextLine();
 		checkNameError(name);
@@ -85,7 +85,7 @@ public class InputView {
 	}
 
 
-	public static int getTurnInput() {
+	public static int getTurnInput() throws IllegalArgumentException {
 		Scanner scanner = new Scanner(System.in);
 		String turn = scanner.nextLine();
 		checkTurnError(turn);
