@@ -10,8 +10,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingCar.model.RacingCars;
 
-class OutputTest {
-
+@SuppressWarnings("NonAsciiCharacters")
+public class OutputTest {
     @Test
     void 차_상태확인_잘되는지_검사() {
         //given

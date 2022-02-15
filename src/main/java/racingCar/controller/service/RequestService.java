@@ -1,18 +1,15 @@
 package racingCar.controller.service;
 
 import racingCar.model.exception.NullInputException;
-import racingCar.model.utlis.Util;
-import racingCar.view.Input;
+import racingCar.model.utils.Util;
 
 public class RequestService {
-    public static String requestNames() {
-        String input = Input.inputNames();
+    public static String requestNames(String input) {
         validateNotNullInput(input);
         return input;
     }
 
-    public static int requestCount() {
-        String input = Input.inputCount();
+    public static int requestCount(String input) {
         validateNotNullInput(input);
         return Util.convertToInteger(input);
     }

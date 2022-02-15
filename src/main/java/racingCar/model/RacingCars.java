@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingCar.model.exception.name.NameDuplicatedException;
 import racingCar.model.exception.name.NameOnlyOneException;
-import racingCar.model.utlis.Util;
+import racingCar.model.utils.Util;
 
 public class RacingCars {
     private final List<Car> cars = new ArrayList<>();

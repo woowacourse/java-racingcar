@@ -1,4 +1,4 @@
-package racingCar.controller;
+package racingCar.controller.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,25 +8,36 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingCar.controller.service.RacingCarsService;
 import racingCar.model.Car;
 import racingCar.model.RacingCars;
 
-class RacingCarsServiceTest {
+@SuppressWarnings("NonAsciiCharacters")
+public class RacingCarsServiceTest {
+    RacingCarsService carsService;
+
+    @BeforeEach
+    void setup() {
+        carsService = new RacingCarsService();
+    }
 
     @Test
-    public void 게임_작동_테스트() {
+    void initiateCars_테스트() {
+        carsService.initiateCars("juri,hunch");
+
+    }
+
+    @Test
+    void 게임_작동_테스트() {
         //given
-        RacingCarsService racingCarsService = new RacingCarsService();
-        racingCarsService.initiateCars("juri,hunch");
-        racingCarsService.initiateCount(5);
+        carsService.initiateCars("juri,hunch");
+        carsService.initiateCount(5);
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
         //when
-        racingCarsService.playGame();
+        carsService.playGame();
         String result = out.toString();
 
         //then
@@ -35,7 +46,7 @@ class RacingCarsServiceTest {
     }
 
     @Test
-    public void 우승자_찾기_테스트() {
+    void 우승자_찾기_테스트() {
         //given
         int expectMaxPosition = 4;
         RacingCars cars = new RacingCars(new ArrayList<>(Arrays.asList("juri", "hunch")));

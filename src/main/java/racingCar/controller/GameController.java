@@ -4,14 +4,16 @@ import static racingCar.view.Output.printStartMessage;
 
 import racingCar.controller.service.RacingCarsService;
 import racingCar.controller.service.RequestService;
+import racingCar.view.Input;
 import racingCar.view.Output;
 
 public class GameController {
     private final RacingCarsService racingCarsService = new RacingCarsService();
 
     public void run() {
-        racingCarsService.initiateCars(RequestService.requestNames());
-        racingCarsService.initiateCount(RequestService.requestCount());
+        String names = RequestService.requestNames(Input.inputNames());
+        racingCarsService.initiateCars(names);
+        racingCarsService.initiateCount(RequestService.requestCount(Input.inputCount()));
         playGame();
         endGame();
     }

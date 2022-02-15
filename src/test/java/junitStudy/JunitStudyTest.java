@@ -9,14 +9,14 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class JunitStudyTest {
+class JunitStudyTest {
     private Set<Integer> numbers;
 
     @BeforeEach
     void setUp() {
         numbers = new HashSet<>();
         numbers.add(1);
-        numbers.add(1);
+        //numbers.add(1);
         numbers.add(2);
         numbers.add(3);
     }
@@ -27,16 +27,14 @@ public class JunitStudyTest {
     }
 
     @Test
-    public void contain() {
+    void contain() {
         assertTrue(numbers.contains(1));
         assertTrue(numbers.contains(2));
         assertTrue(numbers.contains(3));
     }
-    //assertThat(numbers.contains(1)).isTrue();
-    //assertTrue(Strings.isBlank(input));
 
     @Test
-    public void notContain() {
+    void notContain() {
         assertFalse(numbers.contains(4));
         assertFalse(numbers.contains(5));
     }
