@@ -32,7 +32,7 @@ public class Cars {
 
     private static void checkNullOrBlank(String nameString) {
         if (nameString == null || nameString.isBlank()) {
-            throw new IllegalArgumentException("값을 입력해주세요!");
+            throw new IllegalArgumentException("자동차들의 값을 입력해주세요!");
         }
     }
 

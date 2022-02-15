@@ -83,7 +83,7 @@ public class CarsTest {
 
         assertThatThrownBy(() -> new Cars(nameString))
             .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining("값을 입력해주세요!");
+            .hasMessageContaining("자동차들의 값을 입력해주세요!");
     }
 
     @Test
@@ -92,6 +92,6 @@ public class CarsTest {
 
         assertThatThrownBy(() -> new Cars(nameString))
             .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining("값을 입력해주세요!");
+            .hasMessageContaining("자동차들의 값을 입력해주세요!");
     }
 }
