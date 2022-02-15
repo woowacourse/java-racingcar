@@ -3,17 +3,20 @@ package racingCar.controller;
 import static racingCar.view.Output.printStartMessage;
 
 import racingCar.controller.service.RacingCarsService;
-import racingCar.controller.service.RequestService;
+import racingCar.controller.service.ValidateInputService;
 import racingCar.view.Input;
 import racingCar.view.Output;
 
 public class GameController {
-    private final RacingCarsService racingCarsService = new RacingCarsService();
+    private final RacingCarsService racingCarsService;
+
+    public GameController() {
+        String names = ValidateInputService.request(Input.inputNames());
+        String count = ValidateInputService.request(Input.inputCount());
+        racingCarsService = new RacingCarsService(names, count);
+    }
 
     public void run() {
-        String names = RequestService.requestNames(Input.inputNames());
-        racingCarsService.initiateCars(names);
-        racingCarsService.initiateCount(RequestService.requestCount(Input.inputCount()));
         playGame();
         endGame();
     }
