@@ -14,7 +14,7 @@ public class Cars {
 	private static final String DELIMITER = ",";
 	private static final int CAR_LIMIT = 2;
 	private static final int DRIVE_FLAG = 3;
-	private List<Car> cars;
+	private List<Car> cars = new ArrayList<>();
 
 	public Cars(String names) {
 		new Cars(names.split(DELIMITER));
@@ -22,7 +22,6 @@ public class Cars {
 
 	public Cars(String[] names) {
 		checkValid(names);
-		cars = new ArrayList<>();
 		for (String name : names) {
 			cars.add(createCar(name));
 		}
