@@ -8,6 +8,11 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarController {
+    private final InputView inputView;
+
+    public RacingCarController(InputView inputView) {
+        this.inputView = inputView;
+    }
 
     public void run() {
         Cars cars = getCars();
@@ -16,7 +21,7 @@ public class RacingCarController {
 
     private Cars getCars() {
         try {
-            return new Cars(InputView.getCarNames(), new RandomMovingPolicy());
+            return new Cars(inputView.getCarNames(), new RandomMovingPolicy());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getCars();
@@ -25,7 +30,7 @@ public class RacingCarController {
 
     private Count getCount() {
         try {
-            return new Count(InputView.getCount());
+            return new Count(inputView.getCount());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getCount();
