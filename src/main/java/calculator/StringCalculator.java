@@ -18,6 +18,12 @@ public class StringCalculator {
         return sumNumbers(convertToIntegerArray(splitString(input)));
     }
 
+    private static void validateBlank(String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("입력 값이 공백입니다.");
+        }
+    }
+
     public static String[] splitString(String input) {
         String regExp = BASIC_SPLITTER;
         if (isCustom(input)) {
