@@ -44,9 +44,10 @@ public class Cars {
     }
 
     private int getMostFarPosition() {
+        int defaultPosition = 0;
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .getAsInt();
+                .orElse(defaultPosition);
     }
 }
