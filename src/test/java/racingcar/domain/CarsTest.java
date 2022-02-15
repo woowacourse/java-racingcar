@@ -76,4 +76,22 @@ public class CarsTest {
             .isInstanceOf(RuntimeException.class)
             .hasMessageContaining("최소");
     }
+
+    @Test
+    void 생성자의_파라미터가_null_일경우_예외발생() {
+        final String nameString = null;
+
+        assertThatThrownBy(() -> new Cars(nameString))
+            .isInstanceOf(RuntimeException.class)
+            .hasMessageContaining("값을 입력해주세요!");
+    }
+
+    @Test
+    void 생성자의_파라미터가_빈값_일경우_예외발생() {
+        final String nameString = "";
+
+        assertThatThrownBy(() -> new Cars(nameString))
+            .isInstanceOf(RuntimeException.class)
+            .hasMessageContaining("값을 입력해주세요!");
+    }
 }

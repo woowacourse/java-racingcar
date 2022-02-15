@@ -24,14 +24,21 @@ public class Cars {
     }
 
     private static void checkInput(final String nameString) {
+        checkNullOrBlank(nameString);
         checkHasOnlyDelimiter(nameString);
         checkDuplicateName(nameString);
         checkMinimumCarNameQuantity(nameString);
     }
 
+    private static void checkNullOrBlank(String nameString) {
+        if (nameString == null || nameString.isBlank()) {
+            throw new IllegalArgumentException("값을 입력해주세요!");
+        }
+    }
+
     private static void checkHasOnlyDelimiter(final String nameString) {
         if (isEmpty(nameString.split(DELIMITER))) {
-            throw new IllegalArgumentException("이름을 입력해주세요");
+            throw new IllegalArgumentException("구분자 이외의 이름을 입력해주세요");
         }
     }
 
