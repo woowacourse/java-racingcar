@@ -5,6 +5,7 @@ import racingcar.domain.Car;
 import java.util.List;
 
 public class Output {
+	private static final String STEP = "-";
 	private static StringBuilder stringBuilder = new StringBuilder();
 
 	private Output() {
@@ -24,7 +25,9 @@ public class Output {
 
 	public static void roundResult(List<Car> cars) {
 		for (Car car : cars) {
-			stringBuilder.append(car.toString()).append("\n");
+			stringBuilder.append(car.getName()).append(" : ");
+			stringBuilder.append(STEP.repeat(car.getPosition()));
+			stringBuilder.append("\n");
 		}
 		stringBuilder.append("\n");
 	}

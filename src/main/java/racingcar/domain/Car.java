@@ -2,7 +2,6 @@ package racingcar.domain;
 
 public class Car implements Comparable<Car> {
 	private static final int CAR_LENGTH_LIMIT = 5;
-	private static final String STEP = "-";
 
 	private final String name;
 	private int position = 0;
@@ -28,15 +27,6 @@ public class Car implements Comparable<Car> {
 
 	public int getPosition() {
 		return position;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder positions = new StringBuilder();
-		for (int i = 0; i < position; i++) {
-			positions.append(STEP);
-		}
-		return String.format("%s : %s", name, positions);
 	}
 
 	@Override
