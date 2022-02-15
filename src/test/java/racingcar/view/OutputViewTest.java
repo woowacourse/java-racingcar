@@ -14,8 +14,8 @@ class OutputViewTest {
         // given
         String expected = "---";
         Car car = new Car("pobi");
-        car.attemptToMove(4);
-        car.attemptToMove(4);
+        car.move(4);
+        car.move(4);
 
         //when
         String result = OutputView.makePositionString(car);

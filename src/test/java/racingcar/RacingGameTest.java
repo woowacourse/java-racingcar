@@ -30,8 +30,8 @@ class RacingGameTest {
     @Test
     @DisplayName("우승자가 한 명일 때 우승자를 선출한다")
     void getWinnerWhenSingleWinner() {
-        car1.attemptToMove(4);
-        car2.attemptToMove(3);
+        car1.move(4);
+        car2.move(3);
 
         assertThat(racingGame.findWinners()).containsExactly(car1);
     }
@@ -39,8 +39,8 @@ class RacingGameTest {
     @Test
     @DisplayName("우승자가 여러 명일 때 우승자를 선출한다")
     void getWinnersWhenMultipleWinners() {
-        car1.attemptToMove(4);
-        car2.attemptToMove(4);
+        car1.move(4);
+        car2.move(4);
 
         assertThat(racingGame.findWinners()).containsExactly(car1, car2);
     }

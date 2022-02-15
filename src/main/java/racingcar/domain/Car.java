@@ -4,14 +4,14 @@ public class Car implements Comparable<Car> {
     private static final int INIT_POSITION = 1;
     private static final int LOWER_MOVABLE_BOUND = 4;
 
-    private int position = INIT_POSITION;
     private final String name;
+    private int position = INIT_POSITION;
 
     public Car(String name) {
         this.name = name;
     }
 
-    public void attemptToMove(int number) {
+    public void move(int number) {
         if (isMovable(number)) {
             position++;
         }

@@ -39,7 +39,7 @@ public class RacingGame {
 
     private void playRound() {
         for (Car car : cars) {
-            car.attemptToMove(getRandInt());
+            car.move(getRandInt());
         }
     }
 

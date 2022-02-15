@@ -16,7 +16,7 @@ public class CarTest {
         int beforeMove = car.getPosition();
         int number = 4;
         // when
-        car.attemptToMove(number);
+        car.move(number);
 
         // then
         assertThat(beforeMove).isEqualTo(1);
@@ -42,7 +42,7 @@ public class CarTest {
         Car car1 = new Car("car1");
         Car car2 = new Car("car2");
         //when
-        car1.attemptToMove(4);
+        car1.move(4);
         //then
         assertThat(car1.isSamePositionWith(car2)).isFalse();
     }
