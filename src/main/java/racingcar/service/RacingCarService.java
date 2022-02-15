@@ -29,24 +29,11 @@ public class RacingCarService {
 	}
 
 	private void save(List<String> carNames) {
-		for (String name : carNames) {
-			cars.add(new Car(name, 0));
-		}
+		carNames.forEach(carName -> cars.add(new Car(carName, 0)));
 	}
 
 	public int findMaxPosition() {
-		int maxPosition = 0;
-		for (Car car : cars) {
-			maxPosition = getMaxPosition(maxPosition, car);
-		}
-		return maxPosition;
-	}
-
-	private int getMaxPosition(int maxPosition, Car car) {
-		if (car.isOverMaxPosition(maxPosition)) {
-			maxPosition = car.getPosition();
-		}
-		return maxPosition;
+		return cars.stream().mapToInt(Car::getPosition).max().orElse(0);
 	}
 
 	public List<String> findWinner() {
