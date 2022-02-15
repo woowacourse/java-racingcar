@@ -1,12 +1,12 @@
 package racingcar;
 
-import racingcar.config.ControllerConfig;
-import racingcar.controller.RacingCarController;
+import racingcar.config.AppConfig;
+import racingcar.domain.Game;
 
 public class Application {
 
     public static void main(String[] args) {
-        RacingCarController racingCarController = ControllerConfig.getRacingCarController();
-        racingCarController.run();
+        Game game = AppConfig.getGame();
+        game.play();
     }
 }

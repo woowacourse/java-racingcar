@@ -4,6 +4,7 @@ import java.util.List;
 
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
+import racingcar.domain.movement.MovementStrategy;
 import racingcar.domain.movement.RandomMovementStrategy;
 import racingcar.domain.round.Round;
 
@@ -17,12 +18,12 @@ public class RacingCarService {
         this.round = new Round(roundNumber);
     }
 
-    public boolean isEnd() {
+    public boolean isRoundEnd() {
         return round.isEnd();
     }
 
-    public Cars run() {
-        cars.move(new RandomMovementStrategy());
+    public Cars run(MovementStrategy strategy) {
+        cars.move(strategy);
         round.decrease();
         return cars;
     }
