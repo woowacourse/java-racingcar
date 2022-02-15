@@ -5,14 +5,11 @@ import racingcar.view.Output;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CarController {
-    private static final String PRINT_RESULT = "실행 결과";
 
     public static void raceStart(List<Car> cars, int tryNum) {
-        System.out.println(PRINT_RESULT);
-
+        Output.printStartRace();
         for (int i = 0; i < tryNum; i++) {
             move(cars);
             Output.racePrint(cars);
