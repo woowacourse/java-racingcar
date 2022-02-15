@@ -15,13 +15,12 @@ public class RacingGame {
 
     private final Input input;
     private final Output output;
-    private List<Car> cars;
+    private final List<Car> cars = new ArrayList<>();
     private int repeats;
 
     public RacingGame(final Input input, final Output output) {
         this.input = input;
         this.output = output;
-        cars = new ArrayList<>();
         repeats = 0;
     }
 
