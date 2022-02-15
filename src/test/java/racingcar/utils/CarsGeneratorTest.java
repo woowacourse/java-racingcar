@@ -13,7 +13,7 @@ class CarsGeneratorTest {
     @Test
     void 올바른_자동차_생성_검증() {
         assertThat(CarsGenerator.generateCars("pobi,crong,honux"))
-            .contains(new Car("pobi"), new Car("crong"), new Car("honux"));
+            .contains(Car.of("pobi"), Car.of("crong"), Car.of("honux"));
     }
 
     @Test

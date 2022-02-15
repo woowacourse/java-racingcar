@@ -11,6 +11,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class RacingServiceTest {
+    private static final int PROCEED_FlAG_NUMBER = 4;
+
     private List<Car> cars;
     private Car carA;
     private Car carB;
@@ -20,10 +22,10 @@ public class RacingServiceTest {
 
     @BeforeEach
     void beforeEach() {
-        carA = new Car("A");
-        carB = new Car("B");
-        carC = new Car("C");
-        carD = new Car("D");
+        carA = Car.of("A");
+        carB = Car.of("B");
+        carC = Car.of("C");
+        carD = Car.of("D");
 
         cars = new ArrayList<>();
         cars.add(carA);
@@ -36,14 +38,14 @@ public class RacingServiceTest {
 
     @Test
     void 우승자_판단() {
-        carA.proceed();
+        carA.proceed(PROCEED_FlAG_NUMBER);
         assertThat(racingService.findWinners()).contains(carA);
     }
 
     @Test
     void 중복_우승자_판단() {
-        carA.proceed();
-        carB.proceed();
+        carA.proceed(PROCEED_FlAG_NUMBER);
+        carB.proceed(PROCEED_FlAG_NUMBER);
         assertThat(racingService.findWinners()).contains(carA, carB);
     }
 }

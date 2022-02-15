@@ -25,7 +25,7 @@ public class CarsGenerator {
         List<String> carNames = separateCarNames(userInput);
         carNames.forEach(CarNameValidator::validate);
         return carNames.stream()
-            .map(Car::new)
+            .map(Car::of)
             .collect(Collectors.toList());
     }
 

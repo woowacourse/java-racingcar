@@ -1,18 +1,30 @@
 package racingcar.domain;
 
+import racingcar.utils.RandomIntegerGenerator;
+import racingcar.validator.CarNameValidator;
+
 import java.util.Objects;
 
 public class Car {
+    private static final int PROCEED_FlAG_NUMBER = 4;
+
     private final String name;
     private int position;
 
-    public Car(String name) {
+    private Car(String name) {
         this.name = name;
         this.position = 0;
     }
 
-    public void proceed() {
-        this.position++;
+    public static Car of(String name){
+        CarNameValidator.validate(name);
+        return new Car(name);
+    }
+
+    public void proceed(int number) {
+        if (number >= PROCEED_FlAG_NUMBER) {
+            this.position++;
+        }
     }
 
     public String getName() {
