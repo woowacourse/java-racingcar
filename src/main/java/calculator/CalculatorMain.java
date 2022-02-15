@@ -1,17 +1,18 @@
 package calculator;
 
+import calculator.ui.CalculatorInput;
+import calculator.ui.CalculatorOutput;
+
 public class CalculatorMain {
     public static void main(String[] args) {
         int result = run();
 
-        CalculatorOutput calculatorOutput = new CalculatorOutput(result);
-        calculatorOutput.OutputResult();
+        CalculatorOutput.printResult(result);
     }
 
     public static int run() {
-        CalculatorInput calculatorInput = new CalculatorInput();
         try {
-            return StringCalculator.calculate(calculatorInput.userInput());
+            return StringCalculator.calculate(CalculatorInput.userInput());
         } catch (RuntimeException e) {
             CalculatorOutput.printErrorMessage(e.getMessage());
             return run();
