@@ -3,19 +3,29 @@ package racingcar.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.util.Validator;
 
 public class Cars {
     private static final String ERROR_CAR_EMPTY = "자동차가 존재하지 않습니다.";
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    private Cars(List<Car> cars) {
         this.cars = cars;
+    }
+
+    public static Cars from(List<Car> cars) {
+        Validator.validateCarsName(getCarNames(cars));
+        return new Cars(cars);
     }
 
     public static Cars fromNames(List<String> carsNames) {
         return new Cars(carsNames.stream()
                 .map(carName -> new Car(carName))
                 .collect(Collectors.toList()));
+    }
+
+    private static List<String> getCarNames(List<Car> cars) {
+        return cars.stream().map(car -> car.getName()).collect(Collectors.toList());
     }
 
     public void driveAll(NumberGeneratePolicy numberGeneratePolicy) {

@@ -20,7 +20,7 @@ class CarsTest {
         carList.add(car1);
         carList.add(car2);
 
-        Cars cars = new Cars(carList);
+        Cars cars = Cars.from(carList);
 
         assertThat(cars.getDriveRecord().size()).isEqualTo(2);
         assertThat(cars.getDriveRecord().get(0).getName()).isEqualTo(name1);
@@ -38,7 +38,7 @@ class CarsTest {
         carList.add(car1);
         carList.add(car2);
 
-        Cars cars = new Cars(carList);
+        Cars cars = Cars.from(carList);
         car1.drive(5);
         Car findMaxCar = cars.findMaxPositionCar();
 
@@ -56,7 +56,7 @@ class CarsTest {
         carList.add(car1);
         carList.add(car2);
 
-        Cars cars = new Cars(carList);
+        Cars cars = Cars.from(carList);
         car1.drive(5);
         car2.drive(4);
 
