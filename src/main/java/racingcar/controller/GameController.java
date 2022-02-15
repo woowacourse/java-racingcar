@@ -24,19 +24,21 @@ public class GameController {
     }
 
     private void initGame() {
+        inputCarNames();
+        inputTrialNum();
+    }
+
+    private void inputCarNames() {
         InputView.inputCarNames();
         String inputCarNames = InputView.getInput();
         List<String> carNames = splitCars(inputCarNames);
         cars = initCars(carNames);
+    }
 
+    private void inputTrialNum() {
         InputView.inputTrialNum();
         String inputTrialNum = InputView.getInput();
         trialNum = convertToInteger(inputTrialNum);
-    }
-
-    private int convertToInteger(String number) {
-        InputValidator.validateTrialInput(number);
-        return Integer.parseInt(number);
     }
 
     public List<String> splitCars(String carNamesInput) {
@@ -53,6 +55,11 @@ public class GameController {
         return new Cars(carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList()));
+    }
+
+    private int convertToInteger(String number) {
+        InputValidator.validateTrialInput(number);
+        return Integer.parseInt(number);
     }
 
     private void runGame() {
