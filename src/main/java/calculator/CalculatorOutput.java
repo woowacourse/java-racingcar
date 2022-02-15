@@ -11,4 +11,8 @@ public class CalculatorOutput {
     public void OutputResult() {
         System.out.println(RESULT_MESSAGE + result);
     }
+
+    public static void printErrorMessage(String error) {
+        System.out.println(error);
+    }
 }

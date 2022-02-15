@@ -13,7 +13,7 @@ public class CalculatorMain {
         try {
             return StringCalculator.calculate(calculatorInput.userInput());
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            CalculatorOutput.printErrorMessage(e.getMessage());
             return run();
         }
     }
