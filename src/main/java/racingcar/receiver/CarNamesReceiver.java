@@ -6,25 +6,24 @@ import java.util.Arrays;
 import java.util.List;
 import racingcar.exception.CarNameException;
 
-public class NamesReceiver {
+public class CarNamesReceiver {
 
     public static final String INVALID_LENGTH_ERROR_MESSAGE = "자동차 이름은 5글자 이하여야 합니다.";
     public static final String EMPTY_NAME_ERROR_MESSAGE = "자동차 이름은 공백일 수 없습니다.";
     public static final String DUPLICATE_NAME_ERROR_MESSAGE = "자동차 이름은 중복일 수 없습니다.";
-
     private static final int NAME_UPPER_LENGTH = 5;
     private static final String NAME_DELIMITER = ",";
 
-    public List<String> parse(String names) {
-        validateCarNames(names);
-        return Arrays.stream(splitByDelimiter(names))
-                .collect(toList());
-    }
-
-    private void validateCarNames(String names) {
+    public String validateCarNames(String names) {
         checkNameLength(names);
         checkEmptyName(names);
         checkDuplicateName(names);
+        return names;
+    }
+
+    public List<String> parseNames(String names) {
+        return Arrays.stream(splitByDelimiter(names))
+                .collect(toList());
     }
 
     private void checkNameLength(String names) {

@@ -17,16 +17,16 @@ public class View {
     private static final String NAME_AND_PROGRESS_BAR_DELIMITER = " : ";
     private static final String WINNER_NAMES_DELIMITER = ", ";
 
-    private Scanner scanner = new Scanner(System.in);
-
-    public String inputCarNames() {
+    public void printInputNamesMessage() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
-        return scanner.nextLine();
     }
 
-    public String inputTryCount() {
+    public void printInputTryCountMessage() {
         System.out.println(INPUT_TRY_COUNT_MESSAGE);
-        return scanner.nextLine();
+    }
+
+    public void printExceptionMessage(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 
     public void printResultViewTitle() {

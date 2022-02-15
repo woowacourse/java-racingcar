@@ -10,22 +10,21 @@ public class TryCountReceiver {
     public static final String NEGATIVE_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 음수가 될 수 없습니다.";
     public static final String ZERO_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 0이 될 수 없습니다.";
     public static final String CHARACTER_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 문자가 될 수 없습니다.";
-
     private static final String FLOAT_REG_EXP = "(-|\\+)?[0-9]+\\.[0-9]+";
     private static final String DIGIT_REG_EXP = "(-|\\+)?[0-9]+";
 
-    public int parse(String input) {
-        validateTryCount(input);
-        return Integer.parseInt(input);
+    public String validateTryCount(String tryCount) {
+        checkNullTryCount(tryCount);
+        checkBlankTryCount(tryCount);
+        checkFloatTryCount(tryCount);
+        checkCharacterTryCount(tryCount);
+        checkNegativeTryCount(tryCount);
+        checkZeroTryCount(tryCount);
+        return tryCount;
     }
 
-    private void validateTryCount(String input) {
-        checkNullTryCount(input);
-        checkBlankTryCount(input);
-        checkFloatTryCount(input);
-        checkCharacterTryCount(input);
-        checkNegativeTryCount(input);
-        checkZeroTryCount(input);
+    public int parseTryCount(String input) {
+        return Integer.parseInt(input);
     }
 
     private void checkNullTryCount(String input) {
