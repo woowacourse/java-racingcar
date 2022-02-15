@@ -14,11 +14,11 @@ public class PlayTime {
         this.playTime = playTime;
     }
 
-    public boolean isZero() {
-        return playTime == 0;
+    public void decrease() {
+        this.playTime--;
     }
 
-    public void decreasePlayTime() {
-        this.playTime--;
+    public boolean isZero() {
+        return playTime == 0;
     }
 }

@@ -37,7 +37,7 @@ public class Racing {
         outputView.announceRacingStart();
         while (!playTime.isZero()) {
             participants.race();
-            playTime.decreasePlayTime();
+            playTime.decrease();
             outputView.recordCurrentScore(participants.getParticipantCars());
         }
     }
