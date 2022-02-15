@@ -26,7 +26,7 @@ public class OutputView {
 	}
 
 	public static void printWinner(List<CarDto> winners) {
-		List<String> winnerNames = winners.stream()
+		final List<String> winnerNames = winners.stream()
 									.map(CarDto::getName)
 									.collect(Collectors.toList());
 		System.out.printf(WINNER_FORMAT, String.join(WINNER_NAME_DELIMITER, winnerNames));

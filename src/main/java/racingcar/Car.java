@@ -7,7 +7,7 @@ public class Car {
 	private static final String NAME_LENGTH_ERROR = "[ERROR] 이름은 5글자를 초과할 수 없습니다.";
 	private static final String EMPTY_NAME_ERROR = "[ERROR] 이름은 공백일 수 없습니다.";
 
-	private String name;
+	private final String name;
 	private int position;
 
 	public Car(String name) {

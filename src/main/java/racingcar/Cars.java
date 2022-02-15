@@ -1,16 +1,15 @@
 package racingcar;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Cars {
 	private static final String DUPLICATED_NAME_ERROR = "[ERROR] 차 이름은 중복될 수 없습니다.";
 
-	private Set<Car> cars;
+	private final Set<Car> cars;
 
 	public Cars(List<Car> cars) {
-		this.cars = new HashSet<>(cars);
+		this.cars = Set.copyOf(cars);
 		validateDuplicatedCars(cars);
 	}
 

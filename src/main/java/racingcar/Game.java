@@ -8,9 +8,11 @@ public class Game {
 	private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
 	private static final int RANDOM_VALUE_BOUND = 9;
 
+	private static final Random RANDOM = new Random();
+
 	public void start() {
-		Cars cars = new Cars(CarFactory.of(InputView.inputCarNames()));
-		int count = InputView.inputGameCount();
+		final Cars cars = new Cars(CarFactory.of(InputView.inputCarNames()));
+		final int count = InputView.inputGameCount();
 		validateGameCount(count);
 		OutputView.printGameResultTitle();
 		for (int i = 0; i < count ; i++) {
@@ -34,19 +36,18 @@ public class Game {
 	}
 
 	private void showWinner(Cars cars) {
-		List<CarDto> winnerDtos = Referee.judgeWinner(cars).stream()
+		final List<CarDto> winnerDtos = Referee.judgeWinner(cars).stream()
 			.map(car -> new CarDto(car.getName()))
 			.collect(Collectors.toList());
 		OutputView.printWinner(winnerDtos);
 	}
 
 	public int makeRandomValue(int bound) {
-		Random random = new Random();
-		return random.nextInt(bound);
+		return RANDOM.nextInt(bound);
 	}
 
-	private void validateGameCount(int gameCount) {
-		if(gameCount < 0) {
+	private void validateGameCount(int count) {
+		if(count < 0) {
 			throw new IllegalArgumentException(NEGATIVE_ERROR_MESSAGE);
 		}
 	}
