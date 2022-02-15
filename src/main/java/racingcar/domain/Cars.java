@@ -1,15 +1,15 @@
 package racingcar.domain;
 
+import static racingcar.Utils.*;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import racingcar.validator.RacingGameValidator;
 
 public class Cars {
 	public static final int MOVE_CONDITION = 4;
-	public static final int RANDOM_NUMBER_BOUND = 10;
 
 	private final List<Car> cars = new ArrayList<>();
 
@@ -28,11 +28,6 @@ public class Cars {
 
 	private boolean isMoveCondition() {
 		return makeRandom() >= MOVE_CONDITION;
-	}
-
-	private int makeRandom() {
-		Random random = new Random();
-		return random.nextInt(RANDOM_NUMBER_BOUND);
 	}
 
 	private int getMaxPosition() {
@@ -55,7 +50,7 @@ public class Cars {
 		return cars.size();
 	}
 
-	public List<String> getAllPosition() {
+	public List<String> getAllPositionToString() {
 		return this.cars.stream()
 			.map(Car::toString)
 			.collect(Collectors.toList());
