@@ -9,11 +9,15 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(List<String> carNames) {
-        this.cars = toCar(carNames);
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
-    private List<Car> toCar(List<String> carNames) {
+    public static Cars from(List<String> carNames) {
+        return new Cars(toCar(carNames));
+    }
+
+    private static List<Car> toCar(List<String> carNames) {
         return carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
