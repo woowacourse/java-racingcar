@@ -10,7 +10,7 @@ public class RacingCarController {
 		Racing racing = new Racing(InputView.getCars(), InputView.getCount());
 
 		OutPutView.printStatusMessage();
-		while (racing.isEnd()) {
+		while (!racing.isEnd()) {
 			OutPutView.printStatus(racing.race());
 		}
 

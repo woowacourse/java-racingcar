@@ -14,7 +14,7 @@ public class Racing {
 	}
 
 	public boolean isEnd() {
-		return count.isPositive();
+		return !count.isPositive();
 	}
 
 	public List<Car> race() {
