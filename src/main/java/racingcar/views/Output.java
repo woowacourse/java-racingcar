@@ -17,7 +17,7 @@ public class Output {
 
 	public void printTurnResult(final List<Car> carList) {
 		carList.forEach(this::printCarPosition);
-		System.out.print("\n");
+		System.out.print(System.lineSeparator());
 	}
 
 	private void printCarPosition(final Car car) {
@@ -25,7 +25,7 @@ public class Output {
 		for (int i = 0; i < car.getPosition(); i++) {
 			System.out.print(CAR_POSITION);
 		}
-		System.out.print("\n");
+		System.out.print(System.lineSeparator());
 	}
 
 	public void printWinners(final String winners) {
