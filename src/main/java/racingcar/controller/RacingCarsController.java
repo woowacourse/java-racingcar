@@ -40,7 +40,6 @@ public class RacingCarsController {
 			racingCarService.saveCars(carNames);
 		} catch (Exception exception) {
 			printError(exception.getMessage());
-			racingCarService.resetCars();
 			requestCarNames();
 		}
 	}

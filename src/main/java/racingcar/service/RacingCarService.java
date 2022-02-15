@@ -26,10 +26,11 @@ public class RacingCarService {
 		List<String> carNames = Arrays.asList(Convertor.separateNamesByDelimiter(inputCarNames));
 		NameValidator.checkNameList(carNames);
 		save(carNames);
+
 	}
 
 	private void save(List<String> carNames) {
-		carNames.forEach(carName -> cars.add(new Car(carName, 0)));
+		this.cars = carNames.stream().map(name -> new Car(name, 0)).collect(Collectors.toList());
 	}
 
 	public int findMaxPosition() {
@@ -46,9 +47,5 @@ public class RacingCarService {
 
 	public List<Car> findAllCars() {
 		return Collections.unmodifiableList(cars);
-	}
-
-	public void resetCars() {
-		cars = new ArrayList<>();
 	}
 }
