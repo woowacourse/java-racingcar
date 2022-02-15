@@ -27,9 +27,9 @@ public class Cars {
         }
     }
 
-    public List<CarStatus> getCarsStatus() {
+    public List<CarInfo> getCarsStatus() {
         return cars.stream()
-                .map(CarStatus::new)
+                .map(CarInfo::new)
                 .collect(Collectors.toUnmodifiableList());
     }
 

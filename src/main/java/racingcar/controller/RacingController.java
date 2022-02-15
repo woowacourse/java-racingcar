@@ -41,12 +41,12 @@ public class RacingController {
         OutputView.printStartMessage();
         while (tryCount.isNotSame(currentTryCount++)) {
             cars.moveAll(RandomNumberGenerator.fromBounds(RANDOM_LOWER_BOUND, RANDOM_UPPER_BOUND));
-            OutputView.printStatus(cars.getCarsStatus());
+            OutputView.printCurrentCarInfo(cars.getCarsStatus());
         }
     }
 
     private void terminate() {
-        OutputView.printStatus(cars.getCarsStatus());
+        OutputView.printCurrentCarInfo(cars.getCarsStatus());
         OutputView.printWinners(cars.getWinners());
     }
 }
