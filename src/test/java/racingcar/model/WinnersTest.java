@@ -50,10 +50,13 @@ class WinnersTest {
     @Test
     void maxPosition_구하기() {
         // given
+        String name = "연로그";
+
+        Car car = new Car(name);
+        car.goOrStop(6);
+        car.goOrStop(6);
+
         List<Car> cars = new ArrayList<>();
-        Car car = new Car("연로그");
-        car.goOrStop(6);
-        car.goOrStop(6);
         cars.add(car);
 
         // when
