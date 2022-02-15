@@ -13,47 +13,43 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import racingcar.domain.car.Cars;
 import racingcar.domain.car.CarStatusDto;
-import racingcar.exception.RacingCarIllegalArgumentException;
-import racingcar.exception.car.CarNameDuplicatedException;
-import racingcar.exception.car.CarNameEmptyException;
-import racingcar.exception.car.CarNameNullException;
-import racingcar.exception.car.CarNameTooLongException;
+import racingcar.exception.WrongArgumentException;
 import racingcar.service.picker.CustomNumberPicker;
 
 class CarsTest {
 
     private static final String providerPath = "racingcar.domain.provider.CarsTestProvider#";
 
-    private void exceptionTest(Class exceptionClass, List<String> carNames) {
-        assertThrows(exceptionClass, () -> new Cars(carNames));
+    private void exceptionTest(List<String> carNames) {
+        assertThrows(WrongArgumentException.class, () -> new Cars(carNames));
     }
 
     @DisplayName("자동차 이름은 NULL이 될 수 없다")
     @ParameterizedTest
     @MethodSource(providerPath + "provideForNullExceptionTest")
     void carNameNullExceptionTest(List<String> names) {
-        exceptionTest(CarNameNullException.class, names);
+        exceptionTest(names);
     }
 
     @DisplayName("자동차 이름은 공백이 될 수 없다")
     @ParameterizedTest
     @MethodSource(providerPath + "provideForEmptyExceptionTest")
     void carNameEmptyExceptionTest(List<String> names) {
-        exceptionTest(CarNameEmptyException.class, names);
+        exceptionTest(names);
     }
 
     @DisplayName("자동차 이름은 5자를 넘길 수 없다")
     @ParameterizedTest
     @MethodSource(providerPath + "provideForLengthExceptionTest")
     void carNameTooLongExceptionTest(List<String> names) {
-        exceptionTest(CarNameTooLongException.class, names);
+        exceptionTest(names);
     }
 
     @DisplayName("자동차 이름은 중복될 수 없다")
     @ParameterizedTest
     @MethodSource(providerPath + "provideForDuplicateExceptionTest")
     void carNamesDuplicatedExceptionTest(List<String> names) {
-        exceptionTest(CarNameDuplicatedException.class, names);
+        exceptionTest(names);
     }
 
     @DisplayName("생성자 기능 테스트")

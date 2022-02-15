@@ -1,18 +1,20 @@
-package racingcar.exception.round.status;
+package racingcar.exception.status.round;
 
-public enum RoundExceptionStatus {
+import racingcar.exception.status.ExceptionStatus;
+
+public enum RoundCountExceptionStatus implements ExceptionStatus {
 
     ROUND_IS_NOT_NUMERIC_EXCEPTION_STATUS("이동 횟수는 숫자여야 합니다."),
     ROUND_IS_NOT_POSITIVE_EXCEPTION_STATUS("이동 횟수는 양수여야 합니다.");
 
     private final String message;
 
-    RoundExceptionStatus(String message) {
+    RoundCountExceptionStatus(String message) {
         this.message = message;
     }
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 
 }

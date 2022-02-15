@@ -4,7 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.exception.round.RoundNotNumericException;
+import racingcar.exception.WrongArgumentException;
+import racingcar.exception.status.round.RoundCountExceptionStatus;
 import racingcar.utils.Delimiter;
 import racingcar.view.input.reader.Reader;
 
@@ -39,7 +40,7 @@ public class InputView {
         try {
             return Integer.parseInt(inputValue.trim());
         } catch (NumberFormatException exception) {
-            throw new RoundNotNumericException();
+            throw new WrongArgumentException(RoundCountExceptionStatus.ROUND_IS_NOT_NUMERIC_EXCEPTION_STATUS);
         }
     }
 

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import racingcar.exception.round.RoundNotNumericException;
+import racingcar.exception.WrongArgumentException;
 import racingcar.view.input.reader.CustomReader;
 
 class RoundInputTest {
@@ -22,7 +22,7 @@ class RoundInputTest {
     @MethodSource(providerPath + "provideValuesForNotNumericException")
     void roundNotNumericExceptionTest(String inputValue) {
         customReader.initText(inputValue);
-        assertThrows(RoundNotNumericException.class, inputView::requestRoundNumber);
+        assertThrows(WrongArgumentException.class, inputView::requestRoundNumber);
     }
 
     @DisplayName("실행횟수 입력 기능 테스트")

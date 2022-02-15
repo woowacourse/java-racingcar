@@ -9,13 +9,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
+import calculator.exception.WrongArgumentException;
+
 class CalculatorTest {
 
     private final Separator separator = new Separator();
     private final Calculator calculator = new Calculator(separator);
 
     private void exceptionText(String text) {
-        assertThrows(RuntimeException.class, () -> calculator.splitAndSum(text));
+        assertThrows(WrongArgumentException.class, () -> calculator.splitAndSum(text));
     }
 
     @DisplayName("숫자 이외의 값은 입력할 수 없습니다")

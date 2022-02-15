@@ -1,6 +1,8 @@
-package racingcar.exception.reader.status;
+package racingcar.exception.status.reader;
 
-public enum ReaderExceptionStatus {
+import racingcar.exception.status.ExceptionStatus;
+
+public enum ReaderExceptionStatus implements ExceptionStatus {
 
     READER_CANNOT_READ_EXCEPTION_STATUS("입력을 받아올 수 없습니다.");
 
@@ -11,7 +13,7 @@ public enum ReaderExceptionStatus {
     }
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 
 }

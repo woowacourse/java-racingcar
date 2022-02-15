@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.domain.round.Round;
-import racingcar.exception.round.RoundNotPositiveException;
+import racingcar.exception.WrongArgumentException;
 
 class RoundTest {
 
@@ -15,7 +15,7 @@ class RoundTest {
     @ParameterizedTest()
     @ValueSource(ints = {-3, -2, -1, 0})
     void roundNotPositiveExceptionTest(int number) {
-        assertThrows(RoundNotPositiveException.class, () -> new Round(number));
+        assertThrows(WrongArgumentException.class, () -> new Round(number));
     }
 
     @DisplayName("생성자 기능 테스트")
