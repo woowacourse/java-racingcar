@@ -30,15 +30,15 @@ public class GameController {
 
     private void inputCarNames() {
         InputView.inputCarNames();
-        String inputCarNames = InputView.getInput();
-        List<String> carNames = splitCars(inputCarNames);
+        String carNamesInput = InputView.getInput();
+        List<String> carNames = splitCars(carNamesInput);
         cars = initCars(carNames);
     }
 
     private void inputTrialNum() {
         InputView.inputTrialNum();
-        String inputTrialNum = InputView.getInput();
-        trialNum = convertToInteger(inputTrialNum);
+        String trialNumInput = InputView.getInput();
+        trialNum = convertToInteger(trialNumInput);
     }
 
     public List<String> splitCars(String carNamesInput) {
