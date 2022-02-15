@@ -1,8 +1,11 @@
 package calculator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringAddCalculator {
 
@@ -11,10 +14,10 @@ public class StringAddCalculator {
 			return 0;
 		}
 		String[] splitString = split(givenString);
-		int[] intValues = stringToInt(splitString);
+		List<Integer> intValues = stringToInt(splitString);
 
-		Arrays.stream(intValues).forEach(StringAddCalculator::checkNegativeInteger);
-		return Arrays.stream(intValues).sum();
+		intValues.forEach(StringAddCalculator::checkNegativeInteger);
+		return intValues.stream().mapToInt(intValue -> intValue).sum();
 	}
 
 	static private boolean checkNullOrEmpty(String givenString) {
@@ -30,12 +33,11 @@ public class StringAddCalculator {
 		return givenString.split("[,:]");
 	}
 
-	static private int[] stringToInt(String[] values) {
-		int[] intValues = new int[values.length];
-		for (int i = 0; i < values.length; i++) {
-			intValues[i] = intValueOf(values[i]);
-		}
-		return intValues;
+	static private List<Integer> stringToInt(String[] values) {
+		return Arrays.stream(values)
+			.map(StringAddCalculator::intValueOf)
+			.collect(Collectors.toList());
+
 	}
 
 	static private int intValueOf(String value) {
