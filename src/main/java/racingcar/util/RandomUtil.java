@@ -1,5 +1,5 @@
 package racingcar.util;
 
 public interface RandomUtil {
-    int createRandom(int min, int max);
+	int create(int min, int max);
 }
