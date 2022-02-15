@@ -7,10 +7,12 @@ import racingcar.exception.car.CarNameDuplicatedException;
 
 public class CarGroupValidator {
 
-    private static final CarGroupValidator carGroupValidator = new CarGroupValidator();
+    private static final CarGroupValidator CAR_GROUP_VALIDATOR = new CarGroupValidator();
+
+    private CarGroupValidator() { }
 
     public static void validateNames(List<String> names) {
-        carGroupValidator.validateNameIsDuplicated(names);
+        CAR_GROUP_VALIDATOR.validateNameIsDuplicated(names);
     }
 
     void validateNameIsDuplicated(List<String> names) {
