@@ -30,9 +30,9 @@ public class RefereeTest {
 		Set<Car> cars = new HashSet<>();
 		Car car1 = new Car("forky");
 		Car car2 = new Car("kun");
-		car1.move(true);
 		cars.add(car1);
 		cars.add(car2);
+		car1.move(true);
 		assertThat(Referee.judgeWinner(cars, 1)).containsExactly(car1);
 	}
 
