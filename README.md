@@ -8,9 +8,15 @@
 
 ## 목표
 
-- TDD 방식으로 개발해보기
-- 포키 : Driver와 Navigator 역할을 분명하게 해보기
-- 쿤 : Navigator 역할을 할 때, 더 넓은 관점에서 바라보기
+- Step 1
+  - TDD 방식으로 개발해보기
+  - 포키 : Driver와 Navigator 역할을 분명하게 해보기
+  - 쿤 : Navigator 역할을 할 때, 더 넓은 관점에서 바라보기
+- Step 2
+  - 일급 컬렉션 학습, 적용
+  - Domain의 책임 분배를 더 reasonable하게
+  - Interface를 활용한 테스트 하기 좋은 코드 학습
+  - 적절한 package 분리
 
 ## 기능 목록
 
