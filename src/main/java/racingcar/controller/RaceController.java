@@ -3,10 +3,12 @@ package racingcar.controller;
 import racingcar.domain.car.Cars;
 import racingcar.domain.car.Names;
 import racingcar.domain.trycount.TryCount;
+import racingcar.util.RandomGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RaceController {
+    private static RandomGenerator randomGenerator = new RandomGenerator();
     private TryCount tryCount;
     private Cars cars = Cars.create();
 
@@ -38,7 +40,7 @@ public class RaceController {
     public void raceStart() {
         OutputView.printRaceResultUi();
         for (int i = 0; i < tryCount.toInt(); i++) {
-            cars.moveAll();
+            cars.moveAll(randomGenerator);
             OutputView.printCarsUi(cars);
         }
     }

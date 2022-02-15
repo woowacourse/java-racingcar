@@ -1,6 +1,6 @@
 package racingcar.domain.car;
 
-import racingcar.util.RandomGenerator;
+import racingcar.util.RandomGeneratable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,9 +52,9 @@ public class Cars {
         cars.add(car);
     }
 
-    public void moveAll() {
+    public void moveAll(RandomGeneratable randomGeneratable) {
         cars.forEach((car) -> car.move(
-                RandomGenerator.createRandom(RANDOM_MIN_BOUND, RANDOM_MAX_BOUND))
+                randomGeneratable.generateNumber(RANDOM_MIN_BOUND, RANDOM_MAX_BOUND))
         );
     }
 
