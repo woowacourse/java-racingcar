@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -10,7 +11,8 @@ public class ValidatorTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"아라", "abc"})
-	public void 시도횟수_타입_예외(String input) {
+	@DisplayName("시도횧수 타입 예외")
+	public void generateExceptionWithAttemptNumber(String input) {
 		Assertions.assertThatThrownBy(() -> {
 				Validator.ofIntegerInput(input);
 			}).isInstanceOf(IllegalArgumentException.class)
@@ -20,7 +22,8 @@ public class ValidatorTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"3", "344"})
-	public void 시도횟수_정상(String input) {
+	@DisplayName("시도 횟수 정상")
+	public void passAttemptTypeInput(String input) {
 		Validator.ofIntegerInput(input);
 	}
 }
