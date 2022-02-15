@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import racingcar.dto.CarDto;
-import racingcar.service.Movement;
+import racingcar.service.MoveOrStop;
 import racingcar.utils.ExceptionMessage;
 
 import java.util.List;
@@ -23,8 +23,8 @@ public class Cars {
         }
     }
 
-    public void move(Movement movement) {
-        cars.forEach(car -> car.move(movement.move()));
+    public void move(MoveOrStop moveOrStop) {
+        cars.forEach(car -> car.move(moveOrStop.determine()));
     }
 
     public List<CarDto> getCarInfos() {

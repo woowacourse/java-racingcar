@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.dto.CarDto;
-import racingcar.service.Movement;
+import racingcar.service.MoveOrStop;
 import racingcar.utils.ExceptionMessage;
 
 import java.util.Arrays;
@@ -14,13 +14,13 @@ import static org.assertj.core.api.Assertions.*;
 
 class CarsTest {
     private Cars cars = new Cars(Arrays.asList("abc", "def", "ghi"));
-    private boolean[] definedMovement = {false, true, true};
+    private boolean[] definedmoveOrStop = {false, true, true};
     private int index = 0;
-    private Movement movement = () -> definedMovement[index++];
+    private MoveOrStop moveOrStop = () -> definedmoveOrStop[index++];
 
     @BeforeEach
     void setUp() {
-        cars.move(movement);
+        cars.move(moveOrStop);
     }
 
     @Test

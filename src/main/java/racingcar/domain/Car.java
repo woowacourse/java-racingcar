@@ -15,8 +15,8 @@ public class Car {
         distance = INITIAL_DISTANCE;
     }
 
-    public void move(boolean movement) {
-        if (movement) {
+    public void move(boolean moveOrStop) {
+        if (moveOrStop) {
             distance++;
         }
     }
