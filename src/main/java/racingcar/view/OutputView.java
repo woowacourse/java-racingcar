@@ -5,6 +5,7 @@ import racingcar.message.NoticeMessages;
 import racingcar.model.Car;
 
 public class OutputView {
+    private static final String DISTANCE_MARK = "-";
 
     public static void printException(Exception exception) {
         System.out.println(exception.getMessage());
@@ -20,7 +21,17 @@ public class OutputView {
 
     public static void printCarsStatus(List<Car> cars) {
         for (Car car : cars) {
-            System.out.println(car.getCarStatus());
+            System.out.println(getCarStatus(car));
         }
+        System.out.println();
+    }
+
+    private static String getCarStatus(Car car) {
+        String carPositionString = getGaugeBar(car.getPosition());
+        return car.getName() + " : " + carPositionString;
+    }
+
+    private static String getGaugeBar(int cnt) {
+        return DISTANCE_MARK.repeat(Math.max(0, cnt));
     }
 }
