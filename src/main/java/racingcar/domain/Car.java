@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.utils.RandomIntegerGenerator;
 import racingcar.validator.CarNameValidator;
 
 import java.util.Objects;
