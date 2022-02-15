@@ -47,14 +47,17 @@ public class CarList {
 
 	public int getMaxPosition() {
 		int max = ZERO;
+
 		for (Car car : carList) {
 			max = Math.max(max, car.getPosition());
 		}
+
 		return max;
 	}
 
 	public void moveCarList() {
 		ArrayList<Integer> randomNumberArray = generateRandNumArray(carList.size());
+
 		for (int index = ZERO; index < carList.size(); index++) {
 			carList.get(index).movePosition(randomNumberArray.get(index));
 		}
@@ -62,22 +65,27 @@ public class CarList {
 
 	private ArrayList<Integer> generateRandNumArray(int size) {
 		ArrayList<Integer> randomNumberArray = new ArrayList<>();
+
 		for (int index = ZERO; index < size; index++) {
 			randomNumberArray.add(generateRandNum());
 		}
+
 		return randomNumberArray;
 	}
 
 	private int generateRandNum() {
 		Random random = new Random();
+
 		return random.nextInt(BOUND_RANDOM);
 	}
 
 	public LinkedHashMap<String, Integer> getCarListInfo() {
 		LinkedHashMap<String, Integer> carListInfo = new LinkedHashMap<>();
+
 		for (Car car : this.carList) {
 			carListInfo.put(car.getName(), car.getPosition());
 		}
+
 		return carListInfo;
 	}
 }

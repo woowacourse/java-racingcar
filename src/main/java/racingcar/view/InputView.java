@@ -42,6 +42,7 @@ public class InputView {
 
 	private static int isInteger(String input) {
 		int numberOfTurn;
+
 		try {
 			numberOfTurn = Integer.parseInt(input);
 		} catch (Exception e) {

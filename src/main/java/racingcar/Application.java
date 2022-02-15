@@ -1,6 +1,8 @@
+package racingcar;
+
 import racingcar.controller.GameController;
 
-public class Main {
+public class Application {
 
 	public static void main(String[] args) {
 		GameController gameController = new GameController();
