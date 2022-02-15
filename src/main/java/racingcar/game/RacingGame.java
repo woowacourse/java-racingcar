@@ -3,8 +3,6 @@ package racingcar.game;
 import racingcar.domain.Car;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
