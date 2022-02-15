@@ -9,9 +9,11 @@ import racingcar.view.OutputView;
 
 public class RacingCarController {
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public RacingCarController(InputView inputView) {
+    public RacingCarController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
@@ -23,7 +25,7 @@ public class RacingCarController {
         try {
             return new Cars(inputView.getCarNames(), new RandomMovingPolicy());
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return getCars();
         }
     }
@@ -32,13 +34,13 @@ public class RacingCarController {
         try {
             return new Count(inputView.getCount());
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return getCount();
         }
     }
 
     private void race(Cars cars, Count count) {
-        OutputView.printStatusMessage();
+        outputView.printStatusMessage();
         proceed(cars, count);
     }
 
@@ -46,12 +48,12 @@ public class RacingCarController {
         try {
             count.subtract();
         } catch (IllegalStateException e) {
-            OutputView.printResult(cars.getWinners());
+            outputView.printResult(cars.getWinners());
             return;
         }
 
         cars.move();
-        OutputView.printStatus(new CarsStatus(cars.getCars()).makeCarsStatus());
+        outputView.printStatus(new CarsStatus(cars.getCars()).makeCarsStatus());
         proceed(cars, count);
     }
 }
