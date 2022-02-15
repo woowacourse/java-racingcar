@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import java.util.Objects;
-import racingcar.util.Validators;
+import racingcar.util.Validator;
 
 public class Car implements Comparable<Car> {
     private static final int MINIMUM_DRIVE_CONDITION = 4;
@@ -11,7 +11,7 @@ public class Car implements Comparable<Car> {
 
     public Car(String name) {
         this.name = name;
-        Validators.validateCarName(this.name);
+        Validator.validateCarName(this.name);
     }
 
     public void drive(int value) {

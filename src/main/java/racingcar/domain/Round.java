@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import java.util.Objects;
-import racingcar.util.Validators;
+import racingcar.util.Validator;
 
 public class Round {
     private static final int ROUND_END_NUMBER = 0;
@@ -10,7 +10,7 @@ public class Round {
 
     public Round(String roundNum) {
         this.roundNum = Integer.parseInt(roundNum);
-        Validators.validateRound(roundNum);
+        Validator.validateRound(roundNum);
     }
 
     public static Round from(String round) {
