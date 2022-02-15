@@ -1,50 +1,30 @@
 package racingcar.controller;
 
-import java.util.ArrayList;
-
-import racingcar.model.Car;
-import racingcar.util.ErrorMessage;
+import racingcar.model.CarList;
+import racingcar.model.RandomNumberList;
 import racingcar.util.IntegerConst;
-import racingcar.util.StringConst;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-	OutputViewController outputViewController = new OutputViewController();
-	CarListController carListController = new CarListController();
-	private ArrayList<Car> carList;
 
 	public void runRace() {
 		OutputView.askCarName();
-		String[] carName = InputView.getCarNameInput();
-		this.carList = generateCarList(carName);
+		CarList carList = new CarList(InputView.getCarNameInput());
 		OutputView.askTurn();
 		int totalTurn = InputView.getTurnInput();
-		OutputView.displayResult();
-		playTotalTurn(totalTurn);
-		OutputView.displayWinner(outputViewController.mapWinner(carList));
+        OutputView.displayResult();
+        for (int nowTurn = IntegerConst.ZERO.getValue(); nowTurn < totalTurn; nowTurn++) {
+            moveCarList(carList);
+        }
+		OutputView.displayWinner(carList.getWinnerNames());
 	}
 
-	private void playTotalTurn(int totalTurn) {
-		for (int eachTurn = IntegerConst.ZERO.getValue(); eachTurn < totalTurn; eachTurn++) {
-			carListController.moveCarList(carList);
-			OutputView.displayCarPosition(outputViewController.getCarListInfo(carList, StringConst.POSITION_DELEIMIER.getValue()));
-		}
-	}
-
-	public ArrayList<Car> generateCarList(String[] names) {
-		ArrayList<Car> carList = new ArrayList<>();
-		for (String name : names) {
-			carList.add(new Car(name));
-		}
-		return carList;
-	}
-
-	public int getMaxPosition(ArrayList<Car> carList) {
-		int max = IntegerConst.ZERO.getValue();
-		for (Car car : carList) {
-			max = Math.max(max, car.getPosition());
-		}
-		return max;
-	}
+	private void moveCarList(CarList carList) {
+        int size = carList.getTotalCount();
+        RandomNumberList randomNumberList = new RandomNumberList(size);
+        for (int index = IntegerConst.ZERO.getValue(); index < size; index++) {
+            carList.moveCarAt(index, randomNumberList.getNumberAt(index));
+        }
+    }
 }
