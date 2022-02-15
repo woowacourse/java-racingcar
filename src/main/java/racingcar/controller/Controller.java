@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import java.util.List;
 import racingcar.domain.RacingGame;
-import racingcar.domain.random.RacingcarRandomNumberGenerator;
 import racingcar.domain.random.RandomNumberGenerator;
 import racingcar.parser.CarNameParser;
 import racingcar.parser.TryCountParser;

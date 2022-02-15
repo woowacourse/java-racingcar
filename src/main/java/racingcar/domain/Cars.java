@@ -13,7 +13,7 @@ public class Cars {
 
     public Cars(List<String> names) {
         cars = names.stream()
-                .map(Car::of)
+                .map(name -> new Car(name))
                 .collect(toList());
     }
 
