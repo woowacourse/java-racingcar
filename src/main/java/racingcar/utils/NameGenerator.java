@@ -6,10 +6,8 @@ import java.util.List;
 public class NameGenerator {
     public static final String DELIMITER = ",";
 
-    public static List<String> generateCarNames(String carName) {
-        NameValidator.isValidateNames(carName);
-        List<String> carNames = Arrays.asList(carName.split(DELIMITER));
-        NameValidator.isDuplicatedNames(carNames);
-        return carNames;
+    public static List<String> generateCarNames(String input) {
+        NameValidator.checkNameValidate(input);
+        return Arrays.asList(input.split(DELIMITER));
     }
 }
