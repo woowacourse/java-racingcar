@@ -3,7 +3,7 @@ package racingcar.utlis;
 import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-class UtilTest {
+class RandomNumberGeneratorTest {
 
 	@Test
 	public void 랜덤값_테스트() {
