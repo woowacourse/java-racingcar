@@ -16,14 +16,6 @@ public class Car {
         this(name, MINIMUM_POSITION);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
     public void move(int number) {
         if (canMove(number)) {
             position++;
@@ -32,5 +24,14 @@ public class Car {
 
     private boolean canMove(int number) {
         return number >= MOVE_FORWARD;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
