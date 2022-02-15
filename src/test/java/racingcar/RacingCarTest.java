@@ -22,7 +22,7 @@ public class RacingCarTest {
     private RacingCar racingCar2;
     private RacingCar racingCar3;
     private RacingGame racingGame;
-    private List<RacingCar> racingCarList;
+    private List<String> carNameBucket;
 
     @BeforeEach
     public void setUp() {
@@ -32,12 +32,13 @@ public class RacingCarTest {
         racingCar2 = new RacingCar("crong");
         racingCar3 = new RacingCar("honux");
 
-        racingCarList = new ArrayList<>(Arrays.asList(racingCar1, racingCar2, racingCar3));
+
+        carNameBucket = new ArrayList<>(Arrays.asList("pobi", "crong", "honux"));
     }
 
     @Test
     @DisplayName("랜덤 값이 4이상이면 전진하는 기능 테스트")
-    public void moveTest() {
+    public void goOrStayTest() {
         int beforePosition = racingCar1.getPosition();
         racingCar1.goOrStay(5);
         int afterPosition = racingCar1.getPosition();
@@ -47,47 +48,59 @@ public class RacingCarTest {
     }
 
     @Test
-    @DisplayName("위치가 제일 먼 자동차가 우승자인지 테스트")
-    public void getWinnersTest() {
-
-        racingCar2.goOrStay(5);
-        racingCar3.goOrStay(5);
-        racingCar3.goOrStay(7);
-
-        RacingCars racingCars = new RacingCars(racingCarList);
-
-        ArrayList<RacingCar> winners = racingGame.getWinners(racingCars);
-
-        assertThat(winners.get(0).getName()).isEqualTo(racingCar3.getName());
-    }
-
-    @Test
-    @DisplayName("우승자가 여러명일때 쉼표를 이용해 구분하는 기능")
-    public void getWinnersNameTest() {
-
-        racingCar2.goOrStay(5);
-        racingCar3.goOrStay(7);
-
-        RacingCars racingCars = new RacingCars(racingCarList);
-        ArrayList<RacingCar> winners = racingGame.getWinners(racingCars);
-
-        List<String> actual = racingGame.getWinnersName(winners);
-        String winnersName = racingCar2.getName() + WINNER_NAME_DELIMITER + racingCar3.getName();
-
-        assertThat(String.join(WINNER_NAME_DELIMITER, actual)).isEqualTo(winnersName);
-    }
-
-    @Test
     @DisplayName("객체가 생성될 때 이름이 없는지 확인하는 기능 테스트")
     public void validateNameTest() {
-        RacingCar car = new RacingCar("");
-        assertThatThrownBy(() -> car.validateName()).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new RacingCar("")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("객체가 생성될 때 이름의 글자수가 5이하인지 확인하는 기능 테스트")
     public void validateNameTest2() {
-        RacingCar car = new RacingCar("123456");
-        assertThatThrownBy(() -> car.validateName()).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new RacingCar("123456")).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("두 자동차의 위치가 같을때 true를 반환하는지 확인하는 테스트")
+    public void isSamePositionTest_True() {
+        RacingCar sourceCar = new RacingCar("pobi");
+        RacingCar targetCar = new RacingCar("josh");
+
+        assertThat(sourceCar.isSamePosition(targetCar)).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("두 자동차의 위치가 다를 때 false를 반환하는지 확인하는 테스트")
+    public void isSamePositionTest_False() {
+        RacingCar sourceCar = new RacingCar("pobi");
+        RacingCar targetCar = new RacingCar("josh");
+
+        sourceCar.goOrStay(5);
+
+        assertThat(sourceCar.isSamePosition(targetCar)).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("자동차의 이름, 현재위치를 시각화하는 기능 테스트")
+    public void currentStateTest() {
+        RacingCar car = new RacingCar("josh");
+        car.goOrStay(5);
+        car.goOrStay(5);
+        car.goOrStay(5);
+
+        assertThat(car.currentState()).isEqualTo("josh : ---");
+    }
+
+    @Test
+    @DisplayName("두 자동차의 위치를 비교하고 더 큰 자동차 객체를 반환하는 기능 테스트")
+    public void compareCarTest() {
+        RacingCar sourceCar = new RacingCar("pobi");
+        RacingCar targetCar = new RacingCar("josh");
+        targetCar.goOrStay(5);
+        targetCar.goOrStay(5);
+        targetCar.goOrStay(5);
+
+        assertThat(sourceCar.compareCar(targetCar)).isEqualTo(targetCar);
+    }
+
+
 }

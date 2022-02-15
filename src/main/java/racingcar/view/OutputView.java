@@ -9,33 +9,18 @@ public class OutputView {
 
     private static final String WINNER_NAME_DELIMITER = ", ";
     private static final String TRIAL_RESULT = "실행 결과:";
-    private static final String POSITION_LOCATION = "-";
-    private static final String CAR_POSITION_PARTITION_FORMAT = ":";
     private static final String WINNER_ANNOUNCEMENT = "가 최종 우승했습니다.";
     public static void printGameStartMessage(){
         System.out.println(TRIAL_RESULT);
     }
 
-    public static void printCurrentRacingSituation(RacingCars racingCars){
-        List<RacingCar> racingCarList = racingCars.getRacingCars();
-        for (RacingCar racingCar : racingCarList) {
-            String currentPosition = getCurrentPosition(racingCar);
-            System.out.println(racingCar.getName() + CAR_POSITION_PARTITION_FORMAT +currentPosition);
+    public static void printCurrentRaceState(List<String> currentRaceState){
+        for (String oneCarState : currentRaceState) {
+            System.out.println(oneCarState);
         }
-        System.out.println();
-    }
-
-    private static String getCurrentPosition(RacingCar racingCar){
-        StringBuilder sb = new StringBuilder();
-        int position = racingCar.getPosition();
-        for (int i=0; i<position; i++){
-            sb.append(POSITION_LOCATION);
-        }
-        return sb.toString();
     }
 
     public static void printWinners(List<String> winnerNameBucket){
         System.out.println(String.join(WINNER_NAME_DELIMITER, winnerNameBucket) + WINNER_ANNOUNCEMENT);
     }
-
 }

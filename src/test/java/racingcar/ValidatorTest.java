@@ -20,47 +20,22 @@ public class ValidatorTest {
 	private static final String DUPLICATED_NAME = "pobi";
 	private static final String LONG_NAME = "longlongcars";
 
-	private RacingCar racingCar1;
-
-	@BeforeEach
-	public void setUp() {
-		racingCar1 = new RacingCar("pobi");
-	}
-
 	@Test
 	@DisplayName("자동차가 한개일 때 예외 처리")
 	public void validateCountOfCarTest() {
-
-		RacingCars racingCars = new RacingCars(List.of(racingCar1));
+		List<String> carNameBucket = new ArrayList<>(Arrays.asList("pobi"));
+		RacingCars racingCars = new RacingCars(carNameBucket);
 		assertThatThrownBy(() -> Validator.validateCountOfCar(racingCars)).isInstanceOf(IllegalArgumentException.class);
 
 	}
 
-	@Test
-	@DisplayName("자동차 이름 빈칸일 때 예외처리")
-	public void validateCarNameIsEmptyTest() {
-
-		RacingCar noNameCar = new RacingCar(EMPTY_CAR_NAME);
-		RacingCars racingCars = new RacingCars(List.of(noNameCar, racingCar1));
-		assertThatThrownBy(() -> Validator.validateCarsNameIsEmpty(racingCars)).isInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	@DisplayName("자동차 이름이 6자 이상일때 예외처리")
-	public void validateCarNameSizeTest() {
-
-		RacingCar longNameCar = new RacingCar(LONG_NAME);
-		RacingCars racingCars = new RacingCars(List.of(longNameCar, racingCar1));
-
-		assertThatThrownBy(() -> Validator.validateCarsNameSize(racingCars)).isInstanceOf(IllegalArgumentException.class);
-	}
 
 	@Test
 	@DisplayName("중복되는 자동차 이름이 있으면 예외처리")
 	public void validateDuplicatedNameTest() {
 
-		RacingCar duplicatedNameCar = new RacingCar(DUPLICATED_NAME);
-		RacingCars racingCars = new RacingCars(List.of(duplicatedNameCar, racingCar1));
+		List<String> carNameBucket = new ArrayList<>(Arrays.asList(DUPLICATED_NAME, "pobi"));
+		RacingCars racingCars = new RacingCars(carNameBucket);
 
 		assertThatThrownBy(() -> Validator.validateDuplicatedName(racingCars)).isInstanceOf(IllegalArgumentException.class);
 	}
