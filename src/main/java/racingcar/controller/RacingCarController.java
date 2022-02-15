@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.RacingCars;
 import racingcar.domain.RacingGame;
+import racingcar.domain.Round;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -17,9 +18,9 @@ public class RacingCarController {
 
     public void run() {
         final RacingCars racingCars = RacingCars.from(inputView.inputCarNames());
-        final int tryCount = inputView.inputTryCount();
+        final Round finalRound = new Round(inputView.inputTryCount());
 
-        final RacingGame game = new RacingGame(racingCars, tryCount);
+        final RacingGame game = new RacingGame(racingCars, finalRound);
         outputView.printGameResultTitle();
         raceAllRound(game);
         outputView.printWinnerNames(game.winnerNames());

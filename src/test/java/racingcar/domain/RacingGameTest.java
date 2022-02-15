@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class RacingGameTest {
 
@@ -23,7 +21,8 @@ public class RacingGameTest {
     @DisplayName("게임이 종료되었는지 확인한다.")
     void checkGameEnd() {
         final RacingCars racingCars = createInitCars();
-        final RacingGame racingGame = new RacingGame(racingCars, 1);
+        final Round finalRound = new Round(1);
+        final RacingGame racingGame = new RacingGame(racingCars, finalRound);
         racingGame.race();
         assertTrue(racingGame.isEnd());
     }
@@ -32,25 +31,17 @@ public class RacingGameTest {
     @DisplayName("게임이 종료되지 않았는지 확인한다.")
     void checkGameNotEnd() {
         final RacingCars racingCars = createInitCars();
-        final RacingGame racingGame = new RacingGame(racingCars, 5);
+        final Round finalRound = new Round(5);
+        final RacingGame racingGame = new RacingGame(racingCars, finalRound);
         assertFalse(racingGame.isEnd());
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {0, -1})
-    @DisplayName("게임을 생성할 때 시도횟수가 0이하이면 예외가 발생한다.")
-    void nagativeCount(int count) {
-        final RacingCars racingCars = createInitCars();
-        assertThatExceptionOfType(IllegalArgumentException.class)
-            .isThrownBy(() -> new RacingGame(racingCars, count))
-            .withMessageMatching("시도횟수는 0이하의 값이 들어올 수 없다.");
     }
 
     @Test
     @DisplayName("게임이 종료되었는데 race할 경우 exception이 발생한다.")
     void raceEndException() {
         final RacingCars racingCars = createInitCars();
-        final RacingGame racingGame = new RacingGame(racingCars, 1);
+        final Round finalRound = new Round(1);
+        final RacingGame racingGame = new RacingGame(racingCars, finalRound);
         racingGame.race();
         assertThatExceptionOfType(UnsupportedOperationException.class)
             .isThrownBy(() -> racingGame.race())
@@ -66,7 +57,7 @@ public class RacingGameTest {
             new RacingCar(new Name("crong"), () -> false),
             new RacingCar(new Name("honux"), () -> false)
         );
-        final RacingGame racingGame = new RacingGame(new RacingCars(racingCars), 1);
+        final RacingGame racingGame = new RacingGame(new RacingCars(racingCars), new Round(1));
 
         // when
         racingGame.race();
@@ -88,7 +79,7 @@ public class RacingGameTest {
             new RacingCar(new Name("crong"), () -> true),
             new RacingCar(new Name("honux"), () -> false)
         );
-        final RacingGame racingGame = new RacingGame(new RacingCars(racingCars), 1);
+        final RacingGame racingGame = new RacingGame(new RacingCars(racingCars), new Round(1));
 
         // when
         racingGame.race();

@@ -8,24 +8,28 @@ public class RacingGame {
     private static final int END_COUNT = 0;
 
     private final RacingCars racingCars;
-    private int leftCount;
+    private final Round finalRound;
+    private Round currentRound = Round.init();
 
-    public RacingGame(final RacingCars racingCars, final int leftCount) {
-        checkPositiveCount(leftCount);
+    public RacingGame(final RacingCars racingCars, final Round finalRound, final Round currentRound) {
         this.racingCars = racingCars;
-        this.leftCount = leftCount;
+        this.finalRound = finalRound;
+        this.currentRound = currentRound;
     }
 
-    private void checkPositiveCount(final int leftCount) {
-        if (leftCount <= END_COUNT) {
-            throw new IllegalArgumentException("시도횟수는 0이하의 값이 들어올 수 없다.");
-        }
+    public RacingGame(final RacingCars racingCars, final Round finalRound) {
+        this.racingCars = racingCars;
+        this.finalRound = finalRound;
     }
 
     public void race() {
         checkCanRace();
+        changeCurrentRoundToNext();
         racingCars.moveCars();
-        leftCount--;
+    }
+
+    public boolean isEnd() {
+        return currentRound.compareTo(finalRound) > 0;
     }
 
     private void checkCanRace() {
@@ -34,8 +38,8 @@ public class RacingGame {
         }
     }
 
-    public boolean isEnd() {
-        return leftCount == END_COUNT;
+    private void changeCurrentRoundToNext() {
+        currentRound = currentRound.nextRound();
     }
 
     public List<String> winnerNames() {
