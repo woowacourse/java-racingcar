@@ -26,10 +26,10 @@ public class InputView {
         }
     }
 
-    public static String getRound() {
+    public static int getRound() {
         OutputView.printRequestInstruction(REQUEST_ROUND_VALUE);
         try {
-            String inputRound = getInput();
+            int inputRound = Integer.parseInt(getInput());
             Validator.validateRound(inputRound);
             return inputRound;
         } catch (IllegalArgumentException e) {

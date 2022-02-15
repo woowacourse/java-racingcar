@@ -46,21 +46,12 @@ public class Validator {
         return carsName.stream().distinct().count() != carsName.size();
     }
 
-    public static void validateRound(String inputRound) {
-        validateRoundNumber(inputRound);
+    public static void validateRound(int inputRound) {
         validateRoundMinimumOne(inputRound);
     }
 
-    private static void validateRoundNumber(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_ROUND_NOT_NUMBER);
-        }
-    }
-
-    private static void validateRoundMinimumOne(String inputRound) {
-        if (Integer.parseInt(inputRound) < ROUND_MINIMUM_ONE) {
+    private static void validateRoundMinimumOne(int inputRound) {
+        if (inputRound < ROUND_MINIMUM_ONE) {
             throw new IllegalArgumentException(ERROR_ROUND_MINIMUM_ONE);
         }
     }

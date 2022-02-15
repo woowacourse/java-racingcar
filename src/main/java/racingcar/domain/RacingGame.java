@@ -13,7 +13,7 @@ public class RacingGame {
         this.numberGeneratePolicy = numberGeneratePolicy;
     }
 
-    public static RacingGame createRacingGame(List<String> carsName, String round,
+    public static RacingGame createRacingGame(List<String> carsName, int round,
                                               NumberGeneratePolicy numberGeneratePolicy) {
         return new RacingGame(Cars.fromNames(carsName), new Round(round), numberGeneratePolicy);
     }

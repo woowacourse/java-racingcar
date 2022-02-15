@@ -8,9 +8,13 @@ public class Round {
     private static final int DECREASED_NUMBER = 1;
     private final int roundNum;
 
-    public Round(String roundNum) {
-        this.roundNum = Integer.parseInt(roundNum);
+    public Round(int roundNum) {
+        this.roundNum = roundNum;
+    }
+
+    public static Round fromNumber(int roundNum) {
         Validator.validateRound(roundNum);
+        return new Round(roundNum);
     }
 
     public boolean isValidRound() {
@@ -18,7 +22,7 @@ public class Round {
     }
 
     public Round toNextRound() {
-        return new Round(String.valueOf(roundNum - DECREASED_NUMBER));
+        return new Round(roundNum - DECREASED_NUMBER);
     }
 
     @Override
