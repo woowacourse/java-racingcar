@@ -13,7 +13,6 @@ public class Round {
         Validators.validateRound(roundNum);
     }
 
-
     public static Round from(String round) {
         return new Round(round);
     }

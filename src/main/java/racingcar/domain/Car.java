@@ -6,7 +6,6 @@ import racingcar.util.Validators;
 public class Car implements Comparable<Car> {
     private static final int MINIMUM_DRIVE_CONDITION = 4;
     private static final int DEFAULT_POSITION_VALUE = 0;
-
     private final String name;
     private int position = DEFAULT_POSITION_VALUE;
 

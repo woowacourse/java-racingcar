@@ -42,7 +42,6 @@ public class Validators {
         }
     }
 
-
     private static boolean validateCarsNameSize(List<String> carsName) {
         return carsName.stream().distinct().count() != carsName.size();
     }
