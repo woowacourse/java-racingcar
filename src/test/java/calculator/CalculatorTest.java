@@ -5,21 +5,19 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.view.ErrorMessage;
 
 public class CalculatorTest {
-
-    @DisplayName("sum() null 값이 입력되었을 때 테스트")
-    @Test
-    public void sum_null_test() throws Exception {
-        int inputResult = Calculator.sum(null);
-        assertThat(inputResult).isEqualTo(0);
-    }
-
-    @DisplayName("sum() 빈칸이 입력되었을 때 테스트")
-    @Test
-    public void sum_empty_test() throws Exception {
-        int inputResult = Calculator.sum("");
+    
+    @DisplayName("sum() null 혹은 빈칸 입력되었을 때 테스트")
+    @ParameterizedTest
+    @NullSource
+    @ValueSource(strings = {""})
+    public void sum_null_empty_test(String input) throws Exception {
+        int inputResult = Calculator.sum(input);
         assertThat(inputResult).isEqualTo(0);
     }
 

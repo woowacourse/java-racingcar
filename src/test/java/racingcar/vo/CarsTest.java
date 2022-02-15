@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.view.ErrorMessage;
 
 public class CarsTest {
@@ -37,26 +39,16 @@ public class CarsTest {
         assertThat(nameCount).isEqualTo(5);
     }
 
-    @DisplayName("judgeWinners() 단독우승 테스트")
-    @Test
-    public void judgeWinners_solo_win_test() throws Exception {
-        String winnerName = "name1";
-        String[] names = {winnerName};
+    @DisplayName("judgeWinners() 단독, 공동우승 테스트")
+    @ParameterizedTest()
+    @ValueSource(strings = {"name1", "name1,name2"})
+    public void judgeWinners_test(String inputNames) throws Exception {
+        String[] names = inputNames.split(",");
         Cars cars = new Cars(names);
-        Winners winners = cars.judgeWinners();
-        assertThat(winners.toString().contains(winnerName)).isTrue();
-    }
-
-    @DisplayName("judgeWinners() 공동우승 테스트")
-    @Test
-    public void judgeWinners_joint_win_test() throws Exception {
-        String firstName = "name1";
-        String secondName = "name2";
-        String[] names = {firstName, secondName};
-        Cars cars = new Cars(names);
-        Winners winners = cars.judgeWinners();
-        assertThat(winners.toString().contains(firstName)).isTrue();
-        assertThat(winners.toString().contains(secondName)).isTrue();
+        String winners = cars.judgeWinners().toString();
+        for (String name : names) {
+            assertThat(winners.contains(name)).isTrue();
+        }
     }
 
     @DisplayName("add() 중복된 이름이 입력되었을 때 예외 테스트")
