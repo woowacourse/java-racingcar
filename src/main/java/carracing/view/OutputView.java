@@ -9,6 +9,7 @@ import java.util.List;
 public class OutputView {
 	private static final String DELIMITER_BETWEEN_NAME_AND_POSITION =":";
 	private static final String POSITION_INDICATOR ="-";
+	private static final String WINNER_DELIMITER  = ",";
 
 	public static void printInputCarName() {
 		System.out.println(OutputMessage.INPUT_CAR_NAME.getMessage());
@@ -40,7 +41,7 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printWinners(String winners) {
-		System.out.println(winners + OutputMessage.FINAL_WINNER_MESSAGE.getMessage());
+	public static void printWinners(List<String> winners) {
+		System.out.println(String.join(WINNER_DELIMITER, winners) + OutputMessage.FINAL_WINNER_MESSAGE.getMessage());
 	}
 }
