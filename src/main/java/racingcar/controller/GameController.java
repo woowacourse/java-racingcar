@@ -1,9 +1,9 @@
 package racingcar.controller;
 
+import racingcar.builder.CarBuilder;
 import racingcar.repository.CarRepository;
 import racingcar.domain.Car;
 import racingcar.util.CarNameParser;
-import racingcar.validator.CarNameValidator;
 import racingcar.view.*;
 
 import java.util.*;
@@ -15,17 +15,16 @@ public class GameController {
 
     private static final int RANDOM_RANGE = 10;
     private static final int PIVOT_NUMBER = 4;
-    private static final String CAR_NAME_DELIMINATOR = ",";
 
     private InputView inputView;
     private OutputView outputView;
     private CarRepository carRepository;
     private int roundNumber;
 
-    public GameController(CarRepository carRepository, InputView inputView, OutputView outputView) {
-        this.carRepository = carRepository;
+    public GameController(InputView inputView, OutputView outputView, CarRepository carRepository) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.carRepository = carRepository;
     }
 
     public GameController(CarRepository carRepository) {
@@ -52,7 +51,11 @@ public class GameController {
         List<String> carNames = Arrays.asList(strings);
 
         List<Car> cars = new ArrayList<>();
-        carNames.forEach(x -> cars.add(new Car(x)));
+        CarBuilder carBuilder = new CarBuilder();
+        carNames.forEach(x -> {
+            Car car = carBuilder.setCarName(x).build();
+            cars.add(car);
+        });
 
         carRepository.addCars(cars);
     }
