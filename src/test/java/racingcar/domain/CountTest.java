@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class CountTest {
 
     @Test
-    void 횟수_입력값이_1미만인_경우() {
+    void 횟수가_1미만인_경우() {
         final int incorrectCount = 0;
 
         assertThatThrownBy(() -> new Count(incorrectCount))
@@ -16,7 +16,7 @@ public class CountTest {
     }
 
     @Test
-    void 횟수_입력값이_50초과인_경우() {
+    void 횟수가_50초과인_경우() {
         final int incorrectCount = 51;
 
         assertThatThrownBy(() -> new Count(incorrectCount))
