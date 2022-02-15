@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.Cars;
+import racingcar.service.DetermineMovement;
 import racingcar.service.MoveOrStop;
 import racingcar.view.InputView.InputView;
 import racingcar.view.OutputView.ConsoleOutputView;
@@ -13,7 +14,7 @@ public class RacingController {
     private final Cars cars;
     private int trialCount;
 
-    public RacingController(InputView inputView, ConsoleOutputView outputView, MoveOrStop moveOrStop) {
+    public RacingController(InputView inputView, ConsoleOutputView outputView, DetermineMovement moveOrStop) {
         cars = new Cars(inputView.inputCarNames());
         trialCount = inputView.inputTrialCount();
         this.outputView = outputView;
