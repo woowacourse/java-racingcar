@@ -16,7 +16,7 @@ class NameValidatorTest {
     @MethodSource("invalidParameters")
     @DisplayName("car 이름 생성 유효성 검사")
     void invalidCreate(String carNames, String testName) {
-        assertThatThrownBy(() -> NameValidator.checkNameValidate(carNames))
+        assertThatThrownBy(() -> NameValidator.validate(carNames))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -30,7 +30,7 @@ class NameValidatorTest {
 
     @Test
     void 자동차이름_1개() {
-        assertThatCode(() -> NameValidator.checkNameValidate("pobi"))
+        assertThatCode(() -> NameValidator.validate("pobi"))
                 .doesNotThrowAnyException();
     }
 }

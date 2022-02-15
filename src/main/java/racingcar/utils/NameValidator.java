@@ -10,7 +10,7 @@ public class NameValidator {
     private static final String MIN_NAME_LENGTH_MESSAGE = "이름의 길이는 1글자 이상이어야 합니다.";
     public static final String NAME_LENGTH_MESSAGE = "이름의 길이는 1글자 이상 5글자 이하여야 합니다.";
 
-    public static void checkNameValidate(String input) {
+    public static void validate(String input) {
         checkEmpty(input);
         checkLastCharIsComma(input);
         checkDuplicatedNames(input);

@@ -7,24 +7,28 @@ public class TrialNumberValidator {
     private static final String NOT_INTEGER_NUMBER_MESSAGE = "시도 횟수에는 정수만 입력할 수 있습니다.";
 
     public static void validate(String trialNumber) {
-        isEmpty(trialNumber);
-        isNotInteger(trialNumber);
-        isNotPositive(Integer.parseInt(trialNumber));
+        checkEmpty(trialNumber);
+        checkNotInteger(trialNumber);
+        checkNotPositive(Integer.parseInt(trialNumber));
     }
 
-    private static void isEmpty(String trialNumber) {
-        if (trialNumber.isEmpty() || trialNumber.isBlank()) {
+    private static void checkEmpty(String trialNumber) {
+        if (isEmpty(trialNumber)) {
             throw new IllegalArgumentException(EMPTY_INPUT_MESSAGE);
         }
     }
 
-    private static void isNotPositive(int trialNumber) {
+    private static boolean isEmpty(String trialNumber) {
+        return trialNumber.isEmpty() || trialNumber.isBlank();
+    }
+
+    private static void checkNotPositive(int trialNumber) {
         if (trialNumber < MIN_BOUND) {
             throw new IllegalArgumentException(NOT_POSITIVE_NUMBER_MESSAGE);
         }
     }
 
-    private static void isNotInteger(String trialNumber) {
+    private static void checkNotInteger(String trialNumber) {
         try {
             Integer.parseInt(trialNumber);
         } catch (NumberFormatException e) {
