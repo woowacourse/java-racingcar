@@ -38,7 +38,7 @@ public class InputView {
 			numberOfGames = toInt(line);
 		} catch (IllegalArgumentException | IOException e) {
 			OutputView.printException(e.getMessage());
-			getNumberOfGames();
+			return getNumberOfGames();
 		}
 		return numberOfGames;
 	}
