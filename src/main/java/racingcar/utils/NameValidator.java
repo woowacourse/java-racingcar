@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NameValidator {
+    private static final String DELIMITER = ",";
     private static final String WRONG_INPUT_MESSAGE = "이름은 최소 한명이상이어야 합니다.";
     private static final String DUPLICATED_NAME_MESSAGE = "중복된 이름이 있습니다.";
-    public static final String MIN_NAME_LENGTH_MESSAGE = "이름의 길이는 1글자 이상이어야 합니다.";
+    private static final String MIN_NAME_LENGTH_MESSAGE = "이름의 길이는 1글자 이상이어야 합니다.";
     public static final String NAME_LENGTH_MESSAGE = "이름의 길이는 1글자 이상 5글자 이하여야 합니다.";
-    public static final String DELIMITER = ",";
 
     public static void checkNameValidate(String input) {
         checkEmpty(input);
