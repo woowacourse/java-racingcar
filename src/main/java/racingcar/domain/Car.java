@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
@@ -17,14 +16,6 @@ public class Car {
     public Car(String name) {
         this.name = name;
         this.position = 0;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    private int getPosition() {
-        return position;
     }
 
     public void goForward() {
@@ -47,6 +38,14 @@ public class Car {
             return true;
         }
         return false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    private int getPosition() {
+        return position;
     }
 
     @Override
