@@ -17,7 +17,7 @@ public class Cars {
 	private List<Car> cars = new ArrayList<>();
 
 	public Cars(String names) {
-		new Cars(names.split(DELIMITER));
+		this(names.split(DELIMITER));
 	}
 
 	public Cars(String[] names) {
