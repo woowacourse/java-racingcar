@@ -37,7 +37,9 @@ public class InputView {
     }
 
     private static void validateDigit(String round) {
-        if (!round.chars().allMatch(Character::isDigit)) {
+        try {
+            Integer.parseInt(round);
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_NUMBER_ERROR_MASSAGE);
         }
     }
