@@ -2,6 +2,8 @@ package racingcargame.utils;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -18,27 +20,19 @@ public class RaceCountInputValidatorTest {
 
     @Test
     @DisplayName("입력한 경주 횟수가 null인 경우")
-    void inputNullException() {
+    void inputBlankException() {
         assertThatThrownBy(() -> {
             RaceCountInputValidator.validateRaceCount(null);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[error] 경주횟수를 입력해주세요.");
     }
 
-    @Test
-    @DisplayName("입력한 경주 횟수가 space 하나인 경우")
-    void inputBlankException() {
+    @ParameterizedTest
+    @DisplayName("경주 횟수가 공백이거나 비어있는 경우")
+    @ValueSource(strings = {" ", ""})
+    void inputNullException(String input) {
         assertThatThrownBy(() -> {
-            RaceCountInputValidator.validateRaceCount(" ");
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[error] 경주횟수를 입력해주세요.");
-    }
-
-    @Test
-    @DisplayName("아무것도 입력하지 않았을 경우")
-    void inputEmptyException() {
-        assertThatThrownBy(() -> {
-            RaceCountInputValidator.validateRaceCount("");
+            RaceCountInputValidator.validateRaceCount(input);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[error] 경주횟수를 입력해주세요.");
     }

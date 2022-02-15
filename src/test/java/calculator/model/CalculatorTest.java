@@ -19,17 +19,11 @@ class CalculatorTest {
         assertThat(number).isEqualTo(1);
     }
 
-    @Test
-    @DisplayName("음수 입력 시 예외")
-    void inputNegativeNumberException() {
-        assertThatThrownBy(() -> calculator.sumAndDivideInput("-1,2,3"))
-                .isInstanceOf(RuntimeException.class);
-    }
-
-    @Test
-    @DisplayName("숫자가 아닌 문자 입력 시 예외")
-    void inputStringException() {
-        assertThatThrownBy(() -> calculator.sumAndDivideInput("a,2,3"))
+    @ParameterizedTest
+    @DisplayName("숫자 이외의 값 입력시 예외")
+    @ValueSource(strings = {"-1,2,3", "a,2,3"})
+    void inputNegativeNumberException(String input) {
+        assertThatThrownBy(() -> calculator.sumAndDivideInput(input))
                 .isInstanceOf(RuntimeException.class);
     }
 
@@ -40,14 +34,11 @@ class CalculatorTest {
         assertThat(calculator.sumAndDivideInput(input)).isEqualTo(4);
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("구분자 기준으로 나누어서 연산")
-    void calculateByDelimiter() {
+    @ValueSource(strings = {"1,2", "1:2"})
+    void calculateByCommaDelimiter() {
         int number = calculator.sumAndDivideInput("1,2");
-
-        assertThat(number).isEqualTo(3);
-
-        number = calculator.sumAndDivideInput("1:2");
 
         assertThat(number).isEqualTo(3);
     }
