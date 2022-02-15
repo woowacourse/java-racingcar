@@ -20,8 +20,10 @@ public class Cars {
     }
 
     public void moveCars() {
-        int randomNumber = RandomNumberService.getRandomNumber();
-        cars.forEach(car -> car.move((int turnNumber) -> turnNumber > MOVING_CONDITION_NUMBER, randomNumber));
+        cars.forEach(car -> {
+            int randomNumber = RandomNumberService.getRandomNumber();
+            car.move((int turnNumber) -> turnNumber > MOVING_CONDITION_NUMBER, randomNumber);
+        });
     }
 
     public List<String> getPosition() {
