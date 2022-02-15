@@ -4,8 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.RacingCar;
-import racingcar.domain.RacingCars;
-import racingcar.validator.Validator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,23 +15,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class RacingCarTest {
 
     private static final int ONE_STEP = 1;
-    private static final String WINNER_NAME_DELIMITER = ", ";
     private RacingCar racingCar1;
-    private RacingCar racingCar2;
-    private RacingCar racingCar3;
-    private RacingGame racingGame;
-    private List<String> carNameBucket;
-
     @BeforeEach
     public void setUp() {
-        racingGame = new RacingGame();
-
         racingCar1 = new RacingCar("pobi");
-        racingCar2 = new RacingCar("crong");
-        racingCar3 = new RacingCar("honux");
-
-
-        carNameBucket = new ArrayList<>(Arrays.asList("pobi", "crong", "honux"));
     }
 
     @Test

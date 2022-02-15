@@ -1,13 +1,9 @@
 package racingcar.domain;
 
 import racingcar.RandomGenerator;
-import racingcar.validator.Validator;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class RacingCars {
 
@@ -61,11 +57,6 @@ public class RacingCars {
             throw new IllegalArgumentException(EXCEPTION_NUMBER_OF_CAR);
         }
     }
-
-    public List<RacingCar> getRacingCars() {
-        return racingCarBucket;
-    }
-
 
     public void moveCars() {
         for (RacingCar racingCar : racingCarBucket) {
