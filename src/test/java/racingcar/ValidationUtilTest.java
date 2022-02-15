@@ -1,5 +1,6 @@
 package racingcar;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.utils.Validator;
 
@@ -8,7 +9,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidationUtilTest {
     @Test
-    void 이름_길이가_6이상인_경우_예외발생() {
+    @DisplayName("자동차의 이름의 길이가 6자 이상인 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenNameLengthOverSix() {
         String nameString = "pobi,jason11";
 
         assertThatThrownBy(() -> Validator.checkEachName(nameString))
@@ -17,7 +19,8 @@ public class ValidationUtilTest {
     }
 
     @Test
-    void 이름의_길이가_1보다_작은_경우_예외발생() {
+    @DisplayName("자동차의 이름의 길이가 1보다 작은 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenNameLengthLessThanOne() {
         String nameString = "pobi,,jason";
         assertThatThrownBy(() -> Validator.checkEachName(nameString))
                 .isInstanceOf(RuntimeException.class)
@@ -25,7 +28,8 @@ public class ValidationUtilTest {
     }
 
     @Test
-    void 빈문자열이_입력된_경우_예외발생() {
+    @DisplayName("입력값으로 빈 문자열이 들어온 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenInputStringIsBlank() {
         String nameString = "";
         assertThatThrownBy(() -> Validator.checkNameStringFormat(nameString))
                 .isInstanceOf(RuntimeException.class)
@@ -34,7 +38,8 @@ public class ValidationUtilTest {
     }
 
     @Test
-    void 쉼표만_있는_경우_예외발생() {
+    @DisplayName("입력값에 쉼표만 있는 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenInputStringContainsOnlyComma() {
         String nameString = ",,";
 
         assertThatThrownBy(() -> Validator.checkNameStringFormat(nameString))
@@ -44,7 +49,8 @@ public class ValidationUtilTest {
     }
 
     @Test
-    void 이름이_중복인_경우() {
+    @DisplayName("입력값에 포함된 이름이 중복된 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenContainsDuplicateName() {
         String nameString = "pobi,pobi";
 
         assertThatThrownBy(() -> Validator.checkNameStringFormat(nameString))
@@ -53,7 +59,8 @@ public class ValidationUtilTest {
     }
 
     @Test
-    void 자동차_이름_수가_하나인_경우_예외발생() {
+    @DisplayName("참가하는 자동차가 하나인 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenSinglePlayer() {
         String nameString = "pobi";
 
         assertThatThrownBy(() -> Validator.checkNameStringFormat(nameString))
@@ -62,7 +69,8 @@ public class ValidationUtilTest {
     }
 
     @Test
-    void 횟수_입력값이_숫자가_아닌_경우() {
+    @DisplayName("시도 횟수의 입력값이 숫자가 아닌 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenCountInputIsNotANumber() {
         String countString = "a";
 
         assertThatThrownBy(() -> Validator.checkCount(countString))
@@ -71,7 +79,8 @@ public class ValidationUtilTest {
     }
 
     @Test
-    void 횟수_입력값이_1미만인_경우() {
+    @DisplayName("시도 횟수의 입력값이 1보다 작은 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenCountLessThanOne() {
         String countString = "0";
 
         assertThatThrownBy(() -> Validator.checkCount(countString))
@@ -80,7 +89,8 @@ public class ValidationUtilTest {
     }
 
     @Test
-    void 횟수_입력값이_50초과인_경우() {
+    @DisplayName("시도 횟수의 입력값이 50을 넘는 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenCountOverFifty() {
         String countString = "51";
 
         assertThatThrownBy(() -> Validator.checkCount(countString))
