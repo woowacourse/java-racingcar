@@ -25,7 +25,7 @@ public class Winners {
     private List<String> createWinners(final Cars cars, final int maxPosition) {
         return cars.getCars().stream()
                 .filter(car -> car.isSamePosition(maxPosition))
-                .map(car -> car.getName())
+                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
