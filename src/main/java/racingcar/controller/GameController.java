@@ -19,6 +19,7 @@ public class GameController {
         initGame();
         playGameUntilEnd();
         printGameResult();
+        endGame();
     }
 
     private void initGame() {
@@ -50,5 +51,10 @@ public class GameController {
     private void printGameResult() {
         List<Car> winners = game.getWinners();
         OutputView.printWinners(winners);
+    }
+
+    private void endGame() {
+        game.clearCars();
+        game = null;
     }
 }
