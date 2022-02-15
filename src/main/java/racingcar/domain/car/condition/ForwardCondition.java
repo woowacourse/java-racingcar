@@ -11,7 +11,7 @@ public enum ForwardCondition {
     }
 
     public static boolean isInRange(int number) {
-        return (number >= ALLOWED_MINIMUM_RANGE.range);
+        return number >= ALLOWED_MINIMUM_RANGE.range;
     }
 
 }

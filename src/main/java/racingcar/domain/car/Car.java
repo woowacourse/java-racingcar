@@ -14,7 +14,7 @@ public class Car {
     }
 
     public boolean isPossibleToGoForward(int number) {
-        return (ForwardCondition.isInRange(number));
+        return ForwardCondition.isInRange(number);
     }
 
     public void goForward() {
@@ -22,7 +22,7 @@ public class Car {
     }
 
     public boolean isLocationSameWith(int location) {
-        return (this.location == location);
+        return this.location == location;
     }
 
     public String getName() {

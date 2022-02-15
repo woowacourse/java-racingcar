@@ -24,7 +24,7 @@ public class Calculator {
     }
 
     private boolean isNullOrEmpty(String text) {
-        return (text == null || text.isEmpty());
+        return (text == null) || (text.isEmpty());
     }
 
     private List<Integer> parseAsNumbers(List<String> values) {

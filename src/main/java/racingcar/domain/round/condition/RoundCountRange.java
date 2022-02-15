@@ -11,7 +11,7 @@ public enum RoundCountRange {
     }
 
     public static boolean isTooSmall(int count) {
-        return (count < ALLOWED_MINIMUM_COUNT.count);
+        return count < ALLOWED_MINIMUM_COUNT.count;
     }
 
 }

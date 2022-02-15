@@ -11,7 +11,7 @@ public enum NameLength {
     }
 
     public static boolean isTooLong(String name) {
-        return (name.length() > ALLOWED_MAXIMUM_LENGTH.length);
+        return name.length() > ALLOWED_MAXIMUM_LENGTH.length;
     }
 
     public int getLength() {

@@ -17,7 +17,7 @@ public class NumberValidator {
     }
 
     private boolean isNumberNegative(int number) {
-        return (number < 0);
+        return number < 0;
     }
 
 }

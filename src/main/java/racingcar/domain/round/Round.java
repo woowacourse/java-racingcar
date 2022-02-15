@@ -12,7 +12,7 @@ public class Round {
     }
 
     public boolean isNotFinished() {
-        return (this.count != 0);
+        return this.count != 0;
     }
 
     public void decreaseCount() {

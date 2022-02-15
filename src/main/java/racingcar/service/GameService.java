@@ -27,7 +27,7 @@ public class GameService {
     }
 
     public boolean isContinuable() {
-        return (round.isNotFinished());
+        return round.isNotFinished();
     }
 
     public void playRound() {

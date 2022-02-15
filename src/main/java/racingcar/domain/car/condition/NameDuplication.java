@@ -14,7 +14,7 @@ public enum NameDuplication {
     }
 
     public static boolean isExcessiveDuplicated(List<String> names, String name) {
-        return (Collections.frequency(names, name) > ALLOWED_MAXIMUM_COUNT.count);
+        return Collections.frequency(names, name) > ALLOWED_MAXIMUM_COUNT.count;
     }
 
 }
