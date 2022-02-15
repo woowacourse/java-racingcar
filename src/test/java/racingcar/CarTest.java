@@ -106,4 +106,28 @@ public class CarTest {
 
         assertThat(car.isMaxPosition(3)).isEqualTo(false);
     }
+
+    @DisplayName("Car 이동할 수 있는지 테스트 - TRUE")
+    @Test
+    public void carMovable_True() {
+        String name = "bunny";
+        Car car = new Car(name);
+
+        boolean isMove = car.isMovable(5);
+        car.movePosition(isMove);
+
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @DisplayName("Car 이동할 수 있는지 테스트 - FALSE")
+    @Test
+    public void carMovable_False() {
+        String name = "bunny";
+        Car car = new Car(name);
+
+        boolean isMove = car.isMovable(3);
+        car.movePosition(isMove);
+
+        assertThat(car.getPosition()).isEqualTo(0);
+    }
 }

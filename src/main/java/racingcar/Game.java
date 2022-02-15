@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 public class Game {
 
     private static final int RANDOM_RANGE = 10;
-    private static final int MINIMUM_MOVE = 4;
 
     private Input input;
     private Output output;
@@ -54,16 +53,13 @@ public class Game {
     private void moveCar(List<Car> cars) {
         for (Car car : cars) {
             int randomNumber = makeRandomNumber();
-            car.movePosition(isMovable(randomNumber));
+            boolean isMove = car.isMovable(randomNumber);
+            car.movePosition(isMove);
         }
     }
 
     private int makeRandomNumber() {
         return (int) (Math.random() * RANDOM_RANGE);
-    }
-
-    private boolean isMovable(int randomNumber) {
-        return randomNumber >= MINIMUM_MOVE;
     }
 
     private List<String> getWinner(List<Car> cars) {

@@ -3,6 +3,7 @@ package racingcar;
 public class Car {
 
     private static final int START_POSITION = 0;
+    private static final int MINIMUM_MOVE = 4;
     private static final int MINIMUM_NAME_LENGTH = 0;
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final String SPACE = " ";
@@ -24,6 +25,10 @@ public class Car {
         if (isMovable) {
             position++;
         }
+    }
+
+    public boolean isMovable(int number) {
+        return number >= MINIMUM_MOVE;
     }
 
     public boolean isMaxPosition(int maxPosition) {
