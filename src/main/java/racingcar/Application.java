@@ -13,10 +13,10 @@ public class Application {
         List<String> names = Parser.split(carNamesInput);
         RacingGame racingGame = new RacingGame(names);
 
-        String rounds = InputView.inputRounds();
+        int rounds = InputView.inputRounds();
 
         OutputView.printRaceResultMessage();
-        for (int i = 0; i < Integer.parseInt(rounds); i++) {
+        for (int i = 0; i < rounds; i++) {
             racingGame.moveCars();
             OutputView.printOneTurnRaceResult(racingGame);
         }
