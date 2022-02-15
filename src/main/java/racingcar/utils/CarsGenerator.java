@@ -23,7 +23,7 @@ public class CarsGenerator {
         }
     }
 
-    public static List<Car> generateCars(String userInput) {
+    public static List<Car> generateCars(final String userInput) {
         List<String> carNames = separateCarNames(userInput);
         CarNamesValidator.validate(carNames);
         carNames.forEach(CarNameValidator::validate);
@@ -32,7 +32,7 @@ public class CarsGenerator {
             .collect(Collectors.toList());
     }
 
-    private static List<String> separateCarNames(String userInput) {
+    private static List<String> separateCarNames(final String userInput) {
         return Arrays.asList(userInput.split(NAME_DELIMITER, -1));
     }
 }

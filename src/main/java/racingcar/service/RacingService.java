@@ -14,11 +14,11 @@ public class RacingService {
     private final int END_RANDOM_NUMBER = 9;
     private final List<Car> cars;
 
-    public RacingService(List<Car> cars) {
+    public RacingService(final List<Car> cars) {
         this.cars = cars;
     }
 
-    public void race(int round) {
+    public void race(final int round) {
         for (int i = 0; i < round; i++) {
             raceRound();
         }

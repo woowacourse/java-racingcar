@@ -15,7 +15,7 @@ public class RoundNumberGenerator {
         }
     }
 
-    private static int toIntWithValidate(String roundNumberString) {
+    private static int toIntWithValidate(final String roundNumberString) {
         RoundNumberValidator.validate(roundNumberString);
         return Integer.parseInt(roundNumberString);
     }

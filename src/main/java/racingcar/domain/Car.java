@@ -11,17 +11,17 @@ public class Car {
     private final String name;
     private int position;
 
-    private Car(String name) {
+    private Car(final String name) {
         this.name = name;
         this.position = 0;
     }
 
-    public static Car of(String name){
+    public static Car of(final String name){
         CarNameValidator.validate(name);
         return new Car(name);
     }
 
-    public void proceed(int number) {
+    public void proceed(final int number) {
         if (number >= PROCEED_FlAG_NUMBER) {
             this.position++;
         }
