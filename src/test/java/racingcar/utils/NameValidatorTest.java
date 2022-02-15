@@ -1,6 +1,5 @@
 package racingcar.utils;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -9,27 +8,21 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NameValidatorTest {
     @Test
-    void 빈_문자_입력() {
-        assertThatThrownBy(() -> NameValidator.isValidateNames(""))
+    void 자동차이름_빈_문자() {
+        assertThatThrownBy(() -> NameValidator.isValidateName(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 자동차이름_1글자미만() {
-        assertThatThrownBy(() -> NameValidator.isValidateNames("pobi,"))
+    void 자동차이름_공백() {
+        assertThatThrownBy(() -> NameValidator.isValidateName("   "))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 자동차이름_5글자초과() {
-        assertThatThrownBy(() -> NameValidator.isValidateNames("pobi,donghok"))
+        assertThatThrownBy(() -> NameValidator.isValidateName("donghok"))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 자동차이름_1개() {
-        Assertions.assertThatCode(() -> NameValidator.isValidateNames("pobi"))
-                .doesNotThrowAnyException();
     }
 
     @Test

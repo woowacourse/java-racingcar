@@ -1,6 +1,5 @@
 package racingcar.utils;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -13,13 +12,13 @@ public class TrialNumberValidatorTest {
     }
 
     @Test
-    void 시도횟수_0이하_0() {
+    void 시도횟수_0인_경우() {
         assertThatThrownBy(() -> TrialNumberValidator.isNotPositive(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 시도횟수_0이하_음수() {
+    void 시도횟수_음수인_경우() {
         assertThatThrownBy(() -> TrialNumberValidator.isNotPositive(-1))
                 .isInstanceOf(IllegalArgumentException.class);
     }

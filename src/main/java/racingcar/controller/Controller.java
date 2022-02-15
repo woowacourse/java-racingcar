@@ -1,21 +1,35 @@
 package racingcar.controller;
 
-import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Controller {
-    private final Cars cars = new Cars(getCars());
+    private final Cars cars = getCars();
     private final int trialNumber = getTrialNumber();
+
+    private Cars getCars() {
+        try {
+            return new Cars(InputView.getCarNames());
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getCars();
+        }
+    }
+
+    private int getTrialNumber() {
+        try {
+            return InputView.getTrialNumber();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getTrialNumber();
+        }
+    }
 
     public void run() {
         OutputView.printResultMessage();
         forwardCarsByTrialNumber();
-        OutputView.printWinners(cars.findWinners());
+        OutputView.printWinners(cars.getWinnerNames());
     }
 
     private void forwardCarsByTrialNumber() {
@@ -27,18 +41,5 @@ public class Controller {
 
     private void forwardCars() {
         cars.forward();
-    }
-
-    private List<Car> getCars() {
-        List<Car> cars = new ArrayList<>();
-
-        InputView.getCarNames()
-                .forEach(carName -> cars.add(new Car(carName)));
-
-        return cars;
-    }
-
-    private int getTrialNumber() {
-        return InputView.getTrialNumber();
     }
 }

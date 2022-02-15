@@ -1,30 +1,34 @@
 package racingcar.utils;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class NameValidator {
-    private static final Pattern pattern = Pattern.compile("[a-zA-Z가-힣0-9]{1,5}(,[a-zA-Z가-힣0-9]{1,5})*");
-    private static final String WRONG_INPUT_MESSAGE = "올바르지 않은 입력입니다.";
+    private static final String WRONG_NAME_MESSAGE = "빈 글자이거나 5글자를 초과하는 이름이 존재합니다.";
     private static final String DUPLICATED_NAME_MESSAGE = "중복된 이름이 있습니다.";
+    private static final int MIN_NAME_LENGTH = 1;
+    private static final int MAX_NAME_LENGTH = 5;
 
-    public static void isValidateNames(String carNames) {
-        if (isInvalidPattern(carNames)) {
-            throw new IllegalArgumentException(WRONG_INPUT_MESSAGE);
+    public static void isValidateName(String carName) {
+        if (isInvalidNameLength(carName.length()) || isBlankName(carName)) {
+            throw new IllegalArgumentException(WRONG_NAME_MESSAGE);
         }
     }
 
-    public static void isDuplicatedNames(List<String> cars) {
-        if (isContainingDuplicatedName(cars)) {
+    private static boolean isInvalidNameLength(int nameLength) {
+        return nameLength < MIN_NAME_LENGTH || nameLength > MAX_NAME_LENGTH;
+    }
+
+    private static boolean isBlankName(String carName) {
+        return carName.isBlank();
+    }
+
+    public static void isDuplicatedNames(List<String> carNames) {
+        if (isContainingDuplicatedName(carNames)) {
             throw new IllegalArgumentException(DUPLICATED_NAME_MESSAGE);
         }
     }
 
-    private static boolean isInvalidPattern(String carNames) {
-        return !pattern.matcher(carNames).matches();
-    }
-
-    private static boolean isContainingDuplicatedName(List<String> cars) {
-        return cars.size() != cars.stream().distinct().count();
+    private static boolean isContainingDuplicatedName(List<String> carNames) {
+        return carNames.size() != carNames.stream().distinct().count();
     }
 }

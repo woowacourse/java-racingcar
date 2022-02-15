@@ -1,33 +1,30 @@
 package racingcar.model;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-class CarsTest {
-    Car car1, car2, car3;
-    Cars cars;
+import static org.assertj.core.api.Assertions.*;
 
-    @BeforeEach
-    void initialize() {
-        car1 = new Car("pobi");
-        car2 = new Car("crong");
-        car3 = new Car("honux");
-        cars = new Cars(Arrays.asList(car1, car2, car3));
+class CarsTest {
+    @Test
+    void 생성자_중복이름() {
+        assertThatThrownBy(() -> new Cars(Arrays.asList("pobi", "pobi")))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 단독_우승자() {
-        car1.forward(true);
-        Assertions.assertThat(cars.findWinners()).containsExactly("pobi");
+        Cars cars = new Cars(Arrays.asList("pobi","crong","honux"));
+        cars.getCars().get(0).forward(true);
+        assertThat(cars.getWinnerNames()).containsExactly("pobi");
     }
 
     @Test
     void 공동_우승자() {
-        car1.forward(true);
-        car2.forward(true);
-        Assertions.assertThat(cars.findWinners()).containsExactly("pobi", "crong");
+        Cars cars = new Cars(Arrays.asList("pobi", "crong", "honux"));
+        cars.getCars().get(0).forward(true);
+        cars.getCars().get(1).forward(true);
+        assertThat(cars.getWinnerNames()).containsExactly("pobi", "crong");
     }
 }

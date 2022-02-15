@@ -1,10 +1,13 @@
 package racingcar.model;
 
-public class Car {
+import racingcar.utils.NameValidator;
+
+public class Car implements Comparable<Car> {
     private final String name;
     private int position;
 
     public Car(String name) {
+        NameValidator.isValidateName(name);
         this.name = name;
     }
 
@@ -14,25 +17,20 @@ public class Car {
         }
     }
 
-    public int getPosition() {
-        return position;
+    public boolean isSamePositionWith(int position) {
+        return this.position == position;
     }
 
     public String getName() {
         return name;
     }
 
-    public boolean isSamePositionWith(int position) {
-        return this.position == position;
+    public int getPosition() {
+        return position;
     }
 
     @Override
-    public String toString() {
-        String result = name + " : ";
-        for (int count = 0; count < this.position; count++) {
-            result += "-";
-        }
-        result += "\n";
-        return result;
+    public int compareTo(Car car) {
+        return this.position - car.position;
     }
 }

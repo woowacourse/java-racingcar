@@ -1,41 +1,48 @@
 package racingcar.model;
 
+import racingcar.utils.NameValidator;
 import racingcar.utils.RandomForwardJudgment;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
-        this.cars = cars;
+    public Cars(List<String> carNames) {
+        NameValidator.isDuplicatedNames(carNames);
+        this.cars = transformCarNamesToCars(carNames);
+    }
+
+    private List<Car> transformCarNamesToCars(List<String> carNames) {
+        return carNames.stream()
+                .map(name -> new Car(name))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public void forward() {
-        cars.forEach(car ->
-                car.forward(RandomForwardJudgment.canForward()));
+        for (Car car : cars) {
+            car.forward(RandomForwardJudgment.canForward());
+        }
     }
 
-    public List<String> findWinners() {
-        List<String> winners = new ArrayList<>();
+    public List<String> getWinnerNames() {
         int farthestPosition = getFarthestPosition();
-
-        cars.stream().filter(car -> car.isSamePositionWith(farthestPosition))
-                .forEach(car -> winners.add(car.getName()));
-        return winners;
+        return cars.stream()
+                .filter(car -> car.isSamePositionWith(farthestPosition))
+                .map(Car::getName)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private int getFarthestPosition() {
-        return cars.stream().map(Car::getPosition).max(Integer::compare).orElse(-1);
+        return cars.stream()
+                .max(Car::compareTo)
+                .get()
+                .getPosition();
     }
 
-    @Override
-    public String toString() {
-        String result = "";
-        for (Car car : cars) {
-            result += car;
-        }
-        return result;
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }
