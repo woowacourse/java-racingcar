@@ -21,9 +21,8 @@ public class Count {
     }
 
     private static void checkMaximumCount(final int count) {
-        if (count >= MAXIMUM_COUNT) {
+        if (count > MAXIMUM_COUNT) {
             throw new IllegalArgumentException("입력횟수는 50 이하의 정수여야 합니다.");
-
         }
     }
 
