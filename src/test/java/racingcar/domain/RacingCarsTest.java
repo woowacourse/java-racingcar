@@ -44,15 +44,6 @@ class RacingCarsTest {
         assertThat(winnerNames).containsExactly("pobi", "crong", "honux");
     }
 
-    @ParameterizedTest
-    @EmptySource
-    @DisplayName("자동차 입력 값이 존재하지 않으면 예외를 발생한다.")
-    void checkCarNamesNullOrEmpty(String input) {
-//        assertThatExceptionOfType(IllegalArgumentException.class)
-//            .isThrownBy(() -> new RacingCars(input, new RacingCarCommander()))
-//            .withMessageMatching("자동차 입력 값이 존재해야한다.");
-    }
-
     @Test
     @DisplayName("움직일 수 있는 상황이면, 자동차가 움직인다.")
     void checkCanMove() {
