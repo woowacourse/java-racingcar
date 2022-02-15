@@ -20,17 +20,17 @@ public class RacingGame {
         return cars;
     }
 
-    private void randomDrawAndProceed(Car car) {
-        if(RandomIntegerGenerator.random(START_RANDOM_NUMBER, END_RANDOM_NUMBER) > PROCEED_FlAG_NUMBER) {
-            car.proceed();
-        }
-    }
-
     public List<Car> findWinners() {
         List<Car> winners = new ArrayList<>();
         int maxPosition = findMaxPosition();
         cars.forEach((car) -> addWinner(winners, maxPosition, car));
         return winners;
+    }
+
+    private void randomDrawAndProceed(Car car) {
+        if(RandomIntegerGenerator.random(START_RANDOM_NUMBER, END_RANDOM_NUMBER) > PROCEED_FlAG_NUMBER) {
+            car.proceed();
+        }
     }
 
     private int findMaxPosition() {

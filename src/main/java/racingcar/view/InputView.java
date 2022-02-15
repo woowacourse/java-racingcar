@@ -21,11 +21,6 @@ public class InputView {
         }
     }
 
-    private static String userCarNameInput() {
-        System.out.println(CAR_NAME_INPUT_MESSAGE);
-        return scanner.nextLine();
-    }
-
     public static int getRound() {
         String roundNumberString = userRoundInput();
         try {
@@ -34,6 +29,11 @@ public class InputView {
             System.out.println(e.getMessage());
             return getRound();
         }
+    }
+
+    private static String userCarNameInput() {
+        System.out.println(CAR_NAME_INPUT_MESSAGE);
+        return scanner.nextLine();
     }
 
     private static int toIntWithValidate(String roundNumberString) {
