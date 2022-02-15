@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import racingcar.util.RandomNumberGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +32,7 @@ public class Cars {
 
     public void moveRound() {
         for (Car car : cars) {
-            car.move();
+            car.move(new RandomNumberGenerator());
         }
     }
 

@@ -23,15 +23,15 @@ public class Car {
         return this.position;
     }
 
-    public boolean isMovable(final RandomUtil randomNumberGenerator) {
+    private boolean isMovable(final RandomUtil randomNumberGenerator) {
         if (randomNumberGenerator.generate() >= STANDARD) {
             return true;
         }
         return false;
     }
 
-    public void move() {
-        if (isMovable(new RandomNumberGenerator())) {
+    public void move(final RandomUtil randomNumberGenerator) {
+        if (isMovable(randomNumberGenerator)) {
             position++;
         }
     }
