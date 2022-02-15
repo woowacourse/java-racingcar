@@ -11,8 +11,9 @@ public class CalculatorMain {
     }
 
     public static int run() {
+        StringCalculator stringCalculator = new StringCalculator();
         try {
-            return StringCalculator.calculate(CalculatorInput.userInput());
+            return stringCalculator.calculate(CalculatorInput.userInput());
         } catch (RuntimeException e) {
             CalculatorOutput.printErrorMessage(e.getMessage());
             return run();

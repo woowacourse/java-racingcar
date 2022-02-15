@@ -1,5 +1,7 @@
 package calculator;
 
+import calculator.validator.InputValidator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,37 +13,17 @@ public class StringCalculator {
     private static final String JOINING_SEPARATOR_DELIMITER = "|";
     private static final String BASIC_SEPARATOR_COMMA = ",";
     private static final String BASIC_SEPARATOR_COLON = ":";
-    private static final String ZERO_OR_POSITIVE_INTEGER_REGEX = "^(0|[1-9][0-9]*)$";
-    private static final String INVALID_POSITIVE_INTEGER_ERROR_MESSAGE = "양의 정수를 입력 해주세요.";
     private static final int NULL_OR_EMPTY_VALUE = 0;
 
-    public static int calculate(String input) {
-        if (isNullOrEmpty(input)) {
+    public int calculate(String input) {
+        if (InputValidator.isNullOrEmpty(input)) {
             return NULL_OR_EMPTY_VALUE;
         }
         List<String> inputNumbers = split(input);
-        checkRightPositiveInteger(inputNumbers);
+        InputValidator.checkRightPositiveInteger(inputNumbers);
         return inputNumbers.stream()
             .mapToInt(Integer::valueOf)
             .sum();
-    }
-
-    private static void checkRightPositiveInteger(List<String> inputNumbers) {
-        inputNumbers.forEach(StringCalculator::checkNumberStringException);
-    }
-
-    private static void checkNumberStringException(String inputNumber) {
-        if (!isZeroOrPositiveInteger(inputNumber)) {
-            throw new RuntimeException(INVALID_POSITIVE_INTEGER_ERROR_MESSAGE);
-        }
-    }
-
-    private static boolean isNullOrEmpty(String input) {
-        return input == null || input.isBlank();
-    }
-
-    private static boolean isZeroOrPositiveInteger(String input) {
-        return input.matches(ZERO_OR_POSITIVE_INTEGER_REGEX);
     }
 
     private static List<String> split(String input) {
