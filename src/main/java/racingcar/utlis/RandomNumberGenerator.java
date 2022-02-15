@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomNumberGenerator {
 
-	static final int MAX_RANDOM_NUMBER = 9;
+	private static final int MAX_RANDOM_NUMBER = 9;
 
 	public static int getRandomInt() {
 		Random random = new Random();

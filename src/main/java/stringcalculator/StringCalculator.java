@@ -6,10 +6,10 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-	public static final String CUSTOM_REGEX = "//(.)\n(.*)";
-	public static final String OR_STRING = "|";
-	public static final int MATCH_GROUP_INDEX = 1;
-	public static final int MATCH_GROUP_NEXT_INDEX = 2;
+	private static final String CUSTOM_REGEX = "//(.)\n(.*)";
+	private static final String OR_STRING = "|";
+	private static final int MATCH_GROUP_INDEX = 1;
+	private static final int MATCH_GROUP_NEXT_INDEX = 2;
 	private String regex = "[,:]";
 
 	public int calculateString(String string) {
