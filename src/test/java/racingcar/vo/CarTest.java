@@ -12,7 +12,7 @@ public class CarTest {
 
     @DisplayName("new CarName() 테스트")
     @Test
-    public void 생성자_test() throws Exception {
+    public void constructor_test() throws Exception {
         String name = "name1";
         CarName carName = new CarName(name);
         Car car = new Car(carName);

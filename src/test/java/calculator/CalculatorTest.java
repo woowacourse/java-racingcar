@@ -17,14 +17,14 @@ public class CalculatorTest {
 
     @DisplayName("sum() 빈칸이 입력되었을 때 테스트")
     @Test
-    public void sum_blank_test() throws Exception {
+    public void sum_empty_test() throws Exception {
         int inputResult = Calculator.sum("");
         assertThat(inputResult).isEqualTo(0);
     }
 
     @DisplayName("sum() 입력 값이 하나인 경우 테스트")
     @Test
-    public void sum_입력이_하나인_경우_test() throws Exception {
+    public void sum_with_only_one_test() throws Exception {
         int inputResult = Calculator.sum("3");
         assertThat(inputResult).isEqualTo(3);
     }
@@ -38,14 +38,14 @@ public class CalculatorTest {
 
     @DisplayName("sum() 입력 값이 문자인 경우 예외 테스트")
     @Test
-    public void sum_숫자가_아닌_입력_test() throws Exception {
+    public void sum_nonNumber_test() throws Exception {
         assertThatThrownBy(() -> Calculator.sum("a,b"))
                 .isInstanceOf(RuntimeException.class);
     }
 
     @DisplayName("sum() 음수를 입력 했을 때 예외 테스트")
     @Test
-    public void sum_음수_입력_test() throws Exception {
+    public void sum_negativeNumber_test() throws Exception {
         assertThatThrownBy(() -> Calculator.sum("-1,-2"))
                 .isInstanceOf(RuntimeException.class);
     }

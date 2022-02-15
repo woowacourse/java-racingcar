@@ -38,7 +38,7 @@ public class CarsTest {
 
     @DisplayName("judgeWinners() 단독우승 테스트")
     @Test
-    public void judgeWinners_단독우승_test() throws Exception {
+    public void judgeWinners_solo_win_test() throws Exception {
         String winnerName = "name1";
         String[] names = {winnerName};
         Cars cars = new Cars(names);
@@ -48,7 +48,7 @@ public class CarsTest {
 
     @DisplayName("judgeWinners() 공동우승 테스트")
     @Test
-    public void judgeWinners_공동우승_test() throws Exception {
+    public void judgeWinners_joint_win_test() throws Exception {
         String firstName = "name1";
         String secondName = "name2";
         String[] names = {firstName, secondName};
@@ -60,7 +60,7 @@ public class CarsTest {
 
     @DisplayName("add() 중복된 이름이 입력되었을 때 예외 테스트")
     @Test
-    public void add_같은_이름이_있는_경우_예외_test() throws Exception {
+    public void add_duplicate_name_exception_test() throws Exception {
         String name = "name1";
         String[] names = {name, name};
         assertThatThrownBy(() -> new Cars(names))
