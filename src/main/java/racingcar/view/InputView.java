@@ -5,7 +5,6 @@ import static racingcar.view.OutputView.printNumberMessage;
 
 import java.util.Arrays;
 import java.util.List;
-import racingcar.domain.TrialCount;
 import racingcar.utils.Console;
 
 public class InputView {
@@ -19,8 +18,8 @@ public class InputView {
         return Arrays.asList(input.split(SPLIT_DELIMITER, SPLIT_LIMIT));
     }
 
-    public static TrialCount insertNumber() {
+    public static String insertNumber() {
         printNumberMessage();
-        return new TrialCount(Console.readLine());
+        return Console.readLine();
     }
 }

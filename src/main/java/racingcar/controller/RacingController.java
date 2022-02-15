@@ -17,7 +17,7 @@ public class RacingController {
     public void play() {
         try {
             Cars cars = new Cars(insertName(), new RandomMoveStrategy());
-            TrialCount trialCount = insertNumber();
+            TrialCount trialCount = new TrialCount(insertNumber());
 
             progressTurns(cars, trialCount);
             printWinners(new Winners(cars));
