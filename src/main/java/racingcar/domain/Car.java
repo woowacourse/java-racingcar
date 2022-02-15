@@ -11,14 +11,10 @@ public class Car {
     private final String name;
     private int position;
 
-    private Car(final String name) {
+    public Car(final String name) {
+        CarNameValidator.validate(name);
         this.name = name;
         this.position = 0;
-    }
-
-    public static Car of(final String name){
-        CarNameValidator.validate(name);
-        return new Car(name);
     }
 
     public void proceed(final int number) {

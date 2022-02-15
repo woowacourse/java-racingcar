@@ -22,10 +22,10 @@ public class RacingServiceTest {
 
     @BeforeEach
     void beforeEach() {
-        carA = Car.of("A");
-        carB = Car.of("B");
-        carC = Car.of("C");
-        carD = Car.of("D");
+        carA = new Car("A");
+        carB = new Car("B");
+        carC = new Car("C");
+        carD = new Car("D");
 
         cars = new ArrayList<>();
         cars.add(carA);

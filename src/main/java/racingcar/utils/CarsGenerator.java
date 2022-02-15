@@ -28,7 +28,7 @@ public class CarsGenerator {
         CarNamesValidator.validate(carNames);
         carNames.forEach(CarNameValidator::validate);
         return carNames.stream()
-            .map(Car::of)
+            .map(Car::new)
             .collect(Collectors.toList());
     }
 
