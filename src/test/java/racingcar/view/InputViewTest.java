@@ -3,6 +3,7 @@ package racingcar.view;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayInputStream;
+import java.util.Scanner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +15,9 @@ public class InputViewTest {
         String input = "";
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
-        assertThatThrownBy(() -> InputView.requestCarName())
-                .isInstanceOf(RuntimeException.class);
+        Scanner scanner = new Scanner(System.in);
+        assertThatThrownBy(() -> InputView.requestCarName(scanner))
+                .hasMessageContaining(ErrorMessage.INPUT_EMPTY.toString());
     }
 
     @DisplayName("requestAttempt() 시도 회수가 공백으로 입력되었을 때 예외 테스트")
@@ -24,7 +26,8 @@ public class InputViewTest {
         String input = "";
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
-        assertThatThrownBy(() -> InputView.requestAttempt())
-                .isInstanceOf(RuntimeException.class);
+        Scanner scanner = new Scanner(System.in);
+        assertThatThrownBy(() -> InputView.requestAttempt(scanner))
+                .hasMessageContaining(ErrorMessage.INPUT_EMPTY.toString());
     }
 }
