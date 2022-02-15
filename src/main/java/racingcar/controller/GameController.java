@@ -25,13 +25,13 @@ public class GameController {
 
     private void initGame() {
         InputView.inputCarNames();
-        Scanner scanner = new Scanner(System.in);
-        String carNames = scanner.nextLine();
-        List<String> carNameList = splitCars(carNames);
-        cars = initCars(carNameList);
+        String inputCarNames = InputView.getInput();
+        List<String> carNames = splitCars(inputCarNames);
+        cars = initCars(carNames);
+
         InputView.inputTrialNum();
-        trialNum = convertToInteger(scanner.nextLine());
-        scanner.close();
+        String inputTrialNum = InputView.getInput();
+        trialNum = convertToInteger(inputTrialNum);
     }
 
     private int convertToInteger(String number) {
@@ -39,17 +39,18 @@ public class GameController {
         return Integer.parseInt(number);
     }
 
-    public List<String> splitCars(String carNames) {
-        InputValidator.validateNameInput(carNames);
-        List<String> carNameList = Arrays.asList(carNames.replaceAll(SPACE, BLANK).split(COMMA));
-        InputValidator.validateCarName(carNameList);
-        InputValidator.validateDuplicateName(carNameList);
+    public List<String> splitCars(String carNamesInput) {
+        InputValidator.validateNameInput(carNamesInput);
+        String carNamesWithoutSpace = carNamesInput.replaceAll(SPACE, BLANK);
+        List<String> carNames = Arrays.asList(carNamesWithoutSpace.split(COMMA));
+        InputValidator.validateCarName(carNames);
+        InputValidator.validateDuplicateName(carNames);
 
-        return carNameList;
+        return carNames;
     }
 
-    public Cars initCars(List<String> carNameList) {
-        return new Cars(carNameList.stream()
+    public Cars initCars(List<String> carNames) {
+        return new Cars(carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList()));
     }
