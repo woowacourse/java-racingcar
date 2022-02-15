@@ -6,19 +6,27 @@ import java.util.List;
 
 public class StubNumberGenerator implements NumberGenerator{
 
-    private final List<Integer> numbers = new ArrayList<>();
+    private final List<Integer> numbers;
     private int index;
 
+    public StubNumberGenerator() {
+        numbers = new ArrayList<>();
+        index = 0;
+    }
+
     public void prepareStubNumbers(int count, int ... values) {
-        if (values.length != count) {
-            throw new AssertionError("put as many values as the count");
-        }
+        checkValuesLengthSameAsCount(count, values);
         Arrays.stream(values)
                 .forEach(value -> {
                     checkValueRange(value);
                     numbers.add(value);
                 });
-        index = 0;
+    }
+
+    private void checkValuesLengthSameAsCount(int count, int[] values) {
+        if (values.length != count) {
+            throw new AssertionError("put as many values as the count");
+        }
     }
 
     private void checkValueRange(int value) {
