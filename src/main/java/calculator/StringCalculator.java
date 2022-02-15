@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    public static final int CUSTOM_DELIMITER_INDEX = 1;
-    public static final int TEXT_INDEX = 2;
+    private static final int CUSTOM_DELIMITER_INDEX = 1;
+    private static final int TEXT_INDEX = 2;
 
     public static int splitAndSum(String text) {
         if (text == null || text.isEmpty()) {
