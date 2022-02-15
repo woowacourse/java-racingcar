@@ -5,8 +5,6 @@ import racingcar.controller.RacingCarDto;
 
 public class RacingGame {
 
-    private static final int END_COUNT = 0;
-
     private final RacingCars racingCars;
     private final Round finalRound;
     private Round currentRound = Round.init();
