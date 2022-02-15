@@ -1,5 +1,6 @@
 package calculator;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,11 +9,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import java.util.Arrays;
 
-@SuppressWarnings("NonAsciiCharacters")
 public class StringCalculatorTest {
 
     @Test
-    void 콤마_구분자() {
+    @DisplayName("콤마 구분자")
+    void splitByComma() {
         String[] actual = StringCalculator.splitString("1,2");
         String[] expected = {"1", "2"};
 
@@ -20,7 +21,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 콜론_구분자() {
+    @DisplayName("콜론 구분자")
+    void splitByColon() {
         String[] actual = StringCalculator.splitString("1:2");
         String[] expected = {"1", "2"};
 
@@ -28,7 +30,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 커스텀_구분자() {
+    @DisplayName("커스텀 구분자")
+    void splitByCustom() {
         String[] actual = StringCalculator.splitString("//;\n1;2;3");
         String[] expected = {"1", "2", "3"};
 
@@ -36,7 +39,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 문자열_배열을_숫자_배열로_변환() {
+    @DisplayName("문자열 배열을 숫자 배열로 변환")
+    void covertStringArrayToIntegerArray() {
         List<Integer> actual = StringCalculator.convertToIntegerArray(new String[]{"1", "2", "3"});
         List<Integer> expected = Arrays.asList(1, 2, 3);
 
@@ -44,7 +48,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 숫자_배열_더하기() {
+    @DisplayName("숫자 배열 더하기")
+    void sumIntegerArray() {
         int actual = StringCalculator.splitAndSum("1,2,3,4");
         int expected = 10;
 
@@ -52,7 +57,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 숫자_하나만_입력한_경우_해당_숫자_반환() {
+    @DisplayName("숫자 하나만 입력한 경우 해당 숫자 반환")
+    void singleInput() {
         int actual = StringCalculator.splitAndSum("15");
         int expected = 15;
 
@@ -60,7 +66,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 커스텀_구분자에_여러_문자가_포함된_경우() {
+    @DisplayName("커스텀 구분자에 여러 문자가 포함된 경우")
+    void severalCharactersOnCustom() {
         int actual = StringCalculator.splitAndSum("//@@..\n5@@..6@@..4");
         int expected = 15;
 
@@ -68,7 +75,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 구분자만_입력한_경우_예외처리() {
+    @DisplayName("구분자만 입력한 경우 예외처리")
+    void onlySplitterInputException() {
         int actual = StringCalculator.splitAndSum(",");
         int expected = 0;
 
@@ -76,7 +84,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 커스텀_구분자만_입력한_경우_예외처리() {
+    @DisplayName("커스텀 구분자만 입력한 경우 예외처리")
+    void onlyCustomSplitterInputException() {
         int actual = StringCalculator.splitAndSum("//\n");
         int expected = 0;
 
@@ -84,7 +93,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 빈_문자열_입력한_경우_예외처리() {
+    @DisplayName("빈 문자열 입력한 경우 예외처리")
+    void blankInputException() {
         int actual = StringCalculator.splitAndSum("");
         int expected = 0;
 
@@ -92,7 +102,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void null_입력한_경우_예외처리() {
+    @DisplayName("null 입력한 경우 예외처리")
+    void nullInputException() {
         int actual = StringCalculator.splitAndSum(null);
         int expected = 0;
 
@@ -100,26 +111,29 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void 커스텀_구분자에_숫자가_포함된_경우_예외처리() {
-        assertThatThrownBy(() -> {
-            StringCalculator.splitAndSum("//..2.\n1..2.4");
-        }).isInstanceOf(RuntimeException.class);
+    @DisplayName("커스텀 구분자에 숫자가 포함된 경우 예외처리")
+    void numbersOnCustomSplitterException() {
+        assertThatThrownBy(() -> StringCalculator.splitAndSum("//..2.\n1..2.4"))
+                .isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    void 숫자_이외의_값을_입력한_경우_예외처리() {
+    @DisplayName("숫자 이외의 값을 입력한 경우 예외처리")
+    void inputNotNumbersException() {
         assertThatThrownBy(() -> StringCalculator.convertToIntegerArray(new String[]{"a", "b"}))
                 .isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    void 음수를을_입력한_경우_예외처리() {
+    @DisplayName("음수를 입력한 경우 예외처리")
+    void inputNegativeNumberException() {
         assertThatThrownBy(() -> StringCalculator.convertToIntegerArray(new String[]{"-1", "-2"}))
                 .isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    void 소수값을_입력한_경우_예외처리() {
+    @DisplayName("소수값을 입력한 경우 예외처리")
+    void inputDecimalException() {
         assertThatThrownBy(() -> StringCalculator.convertToIntegerArray(new String[]{"1.1", "2.3"}))
                 .isInstanceOf(RuntimeException.class);
     }

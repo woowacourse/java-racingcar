@@ -1,5 +1,6 @@
 package racingcar;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.controller.GameController;
 import racingcar.model.Car;
@@ -16,28 +17,22 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@SuppressWarnings("NonAsciiCharacters")
 public class RacingGameTest {
 
     private static final int TESTCASE_NUM = 10000;
     private final GameController gameController = new GameController();
 
     @Test
-    void 자동차의_이름이_5자_이상인_경우_예외처리() {
-        assertThatThrownBy(() -> {
-            InputValidator.validateCarName(Arrays.asList("asd","qwerty"));
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 자동차_입력시_공백이_들어간_경우() {
+    @DisplayName("자동차명 입력시 공백이 들어간 경우")
+    void inputSpaceBetweenCarNames() {
         final String actual = "bom, sun";
         final List<String> expected = Arrays.asList("bom", "sun");
         assertThat(gameController.splitCars(actual)).isEqualTo(expected);
     }
 
     @Test
-    void 자동차_객체_생성() {
+    @DisplayName("자동차 객체 생성")
+    void createCarObject() {
         List<String> actual = Arrays.asList("bom", "sun");
         Cars cars = gameController.initCars(actual);
         List<String> expected = cars.getCars().stream()
@@ -48,14 +43,16 @@ public class RacingGameTest {
     }
 
     @Test
-    void 랜덤_숫자_생셩() {
+    @DisplayName("랜덤 숫자 생성")
+    void generateRandomNumber() {
         for (int i = 0; i < TESTCASE_NUM; i++) {
             assertThat(RandomNumberGenerator.generate()).isBetween(0,9);
         }
     }
 
     @Test
-    void 자동차_전진_확인() {
+    @DisplayName("자동차 전진 확인")
+    void moveCarForward() {
         Car car = new Car("qwer");
         for (int i = 0; i <= 9; i++) {
             car.move(i);
@@ -64,7 +61,8 @@ public class RacingGameTest {
     }
 
     @Test
-    void 최종_우승자_출력() {
+    @DisplayName("최종 우승자 출력")
+    void findWinner() {
         List<Car> carList = new ArrayList<>();
         carList.add(new Car("bom", 3));
         carList.add(new Car("sun", 4));
@@ -75,16 +73,23 @@ public class RacingGameTest {
     }
 
     @Test
-    void 자동차_이름이_하나도_존재하지_않을_경우_예외처리() {
-        assertThatThrownBy(() -> {
-            gameController.splitCars("");
-        }).isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("자동차 이름이 하나도 존재하지 않을 경우 예외처리")
+    void blankInputException() {
+        assertThatThrownBy(() -> gameController.splitCars(""))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 자동차_이름에_중복이_존재하는_경우() {
-        assertThatThrownBy(() -> {
-            gameController.splitCars("aaa,bbb,aaa");
-        }).isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("자동차 이름에 중복이 존재하는 경우 예외처리")
+    void duplicateCarNamesException() {
+        assertThatThrownBy(() -> gameController.splitCars("aaa,bbb,aaa"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 5자 이상인 경우 예외처리")
+    void exceededMaxCarNameLengthException() {
+        assertThatThrownBy(() -> InputValidator.validateCarName(Arrays.asList("asd","qwerty")))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
