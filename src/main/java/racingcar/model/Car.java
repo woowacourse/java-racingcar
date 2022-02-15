@@ -14,7 +14,7 @@ public class Car {
         this.location.increase();
     }
 
-    public Integer getLocation() {
+    public Integer getCarPosition() {
         return location.getCurrentPosition();
     }
 

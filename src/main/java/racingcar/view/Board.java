@@ -18,7 +18,7 @@ public class Board {
 
     public void recordCurrentScore(List<Car> participants) {
         for (Car participant : participants) {
-            System.out.println(participant.getName() + " : " + ROAD.repeat(participant.getLocation()));
+            System.out.println(participant.getName() + " : " + ROAD.repeat(participant.getCarPosition()));
         }
         System.out.println();
     }

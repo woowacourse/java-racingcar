@@ -10,13 +10,13 @@ public class Referee {
         List<Name> winners = new ArrayList<>();
 
         for (Car participantCar : participantCars) {
-            if (maxLocation < participantCar.getLocation()) {
+            if (maxLocation < participantCar.getCarPosition()) {
                 winners = new ArrayList<>();
                 winners.add(participantCar.getName());
-                maxLocation = participantCar.getLocation();
+                maxLocation = participantCar.getCarPosition();
                 continue;
             }
-            if (maxLocation == participantCar.getLocation()) {
+            if (maxLocation == participantCar.getCarPosition()) {
                 winners.add(participantCar.getName());
             }
         }

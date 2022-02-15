@@ -10,6 +10,6 @@ class CarTest {
     public void move() {
         Car car = new Car("Thor");
         car.move();
-        assertThat(car.getLocation()).isEqualTo(1);
+        assertThat(car.getCarPosition()).isEqualTo(1);
     }
 }
