@@ -28,14 +28,16 @@ public class RacingGame {
         return getCarsByCarNames(getCarNames());
     }
 
-    private String[] getCarNames() {
+    private List<String> getCarNames() {
         String userInput = InputView.getCarNames();
+        String[] splitNames = userInput.split(CAR_NAME_DELIMITER);
 
-        return userInput.split(CAR_NAME_DELIMITER);
+        return Arrays.stream(splitNames)
+                .collect(Collectors.toList());
     }
 
-    private List<Car> getCarsByCarNames(final String[] carNames) {
-        return Arrays.stream(carNames)
+    private List<Car> getCarsByCarNames(final List<String> carNames) {
+        return carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
