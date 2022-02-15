@@ -46,7 +46,6 @@ public class Car {
         if (position == maxPosition) {
             return true;
         }
-
         return false;
     }
 }
