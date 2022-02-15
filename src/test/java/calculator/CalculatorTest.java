@@ -9,31 +9,27 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
-import calculator.exception.CalculatorException;
-import calculator.exception.NumberIsNegativeException;
-import calculator.exception.NumberIsNotNumericException;
-
 class CalculatorTest {
 
     private final Separator separator = new Separator();
     private final Calculator calculator = new Calculator(separator);
 
-    private void exceptionText(Class<? extends CalculatorException> exception, String text) {
-        assertThrows(exception, () -> calculator.splitAndSum(text));
+    private void exceptionText(String text) {
+        assertThrows(RuntimeException.class, () -> calculator.splitAndSum(text));
     }
 
     @DisplayName("숫자 이외의 값은 입력할 수 없습니다")
     @ParameterizedTest
     @ValueSource(strings = {"a", "1,a"})
     void numberIsNotNumericExceptionTest(String text) {
-        exceptionText(NumberIsNotNumericException.class, text);
+        exceptionText(text);
     }
 
     @DisplayName("음수는 입력할 수 없습니다")
     @ParameterizedTest
     @ValueSource(strings = {"-1", "1,-1"})
     void numberIsNegativeExceptionTest(String text) {
-        exceptionText(NumberIsNegativeException.class, text);
+        exceptionText(text);
     }
 
     private void calculatorSumTest(String text, int expected) {
