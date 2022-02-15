@@ -4,24 +4,37 @@ import static java.util.stream.Collectors.*;
 
 import java.util.List;
 
-import racingcar.view.OutPutView;
-
 public class Racing {
+	private final List<Car> cars;
+	private final Count count;
 
-	public List<String> race(List<Car> cars, Count count) {
-		OutPutView.printStatusMessage();
+	public Racing(List<Car> cars, Count count) {
+		this.cars = cars;
+		this.count = count;
+	}
 
-		while (count.isPositive()) {
-			count.subtract();
-			moveCars(cars);
-			OutPutView.printStatus(cars);
-		}
+	public boolean isEnd() {
+		return count.isPositive();
+	}
 
-		return getWinners(cars, getMaxPosition(cars));
+	public List<Car> race() {
+		count.subtract();
+		moveCars(cars);
+
+		return cars;
 	}
 
 	private void moveCars(List<Car> cars) {
 		cars.forEach(Car::move);
+	}
+
+	public List<String> getWinners() {
+		int maxPosition = getMaxPosition(cars);
+
+		return cars.stream()
+			.filter(car -> maxPosition == car.getPosition())
+			.map(Car::getName)
+			.collect(toList());
 	}
 
 	private int getMaxPosition(List<Car> cars) {
@@ -29,12 +42,5 @@ public class Racing {
 			.mapToInt(Car::getPosition)
 			.max()
 			.orElse(0);
-	}
-
-	private List<String> getWinners(List<Car> cars, int maxPosition) {
-		return cars.stream()
-			.filter(car -> maxPosition == car.getPosition())
-			.map(Car::getName)
-			.collect(toList());
 	}
 }
