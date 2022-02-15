@@ -1,8 +1,6 @@
 package calculator;
 
-import static calculator.exception.NumberExceptionStatus.NUMBER_IS_NEGATIVE_EXCEPTION_STATUS;
-
-import calculator.exception.CalculatorException;
+import static calculator.NumberExceptionStatus.NUMBER_IS_NEGATIVE_EXCEPTION_STATUS;
 
 public class NumberValidator {
 
@@ -16,7 +14,7 @@ public class NumberValidator {
 
     private void validateNumberIsNegative(int number) {
         if (number < 0) {
-            throw new CalculatorException(NUMBER_IS_NEGATIVE_EXCEPTION_STATUS.getMessage());
+            throw new RuntimeException(NUMBER_IS_NEGATIVE_EXCEPTION_STATUS.getMessage());
         }
     }
 

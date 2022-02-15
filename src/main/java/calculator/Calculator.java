@@ -1,11 +1,9 @@
 package calculator;
 
-import static calculator.exception.NumberExceptionStatus.NUMBER_IS_NOT_NUMERIC_EXCEPTION_STATUS;
+import static calculator.NumberExceptionStatus.NUMBER_IS_NOT_NUMERIC_EXCEPTION_STATUS;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import calculator.exception.CalculatorException;
 
 public class Calculator {
 
@@ -41,7 +39,7 @@ public class Calculator {
             NumberValidator.validateNumber(number);
             return number;
         } catch (NumberFormatException exception) {
-            throw new CalculatorException(NUMBER_IS_NOT_NUMERIC_EXCEPTION_STATUS.getMessage());
+            throw new RuntimeException(NUMBER_IS_NOT_NUMERIC_EXCEPTION_STATUS.getMessage());
         }
     }
 

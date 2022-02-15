@@ -1,4 +1,4 @@
-package calculator.exception;
+package calculator;
 
 public enum NumberExceptionStatus {
 
