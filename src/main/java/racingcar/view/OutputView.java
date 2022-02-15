@@ -27,10 +27,10 @@ public class OutputView {
     }
 
     private static String createStatusString(CarStatus carStatus) {
-        return String.format("%s : ", carStatus.getName()) + DISTANCE_MARK.repeat(carStatus.getPosition());
+        return String.format("%s : %s", carStatus.getName(), DISTANCE_MARK.repeat(carStatus.getPosition()));
     }
 
     private static String createWinnersString(List<String> winners) {
-        return String.join(", ", winners) + NoticeMessages.WINNERS_MESSAGE;
+        return String.format("%s%s", String.join(", ", winners), NoticeMessages.WINNERS_MESSAGE);
     }
 }
