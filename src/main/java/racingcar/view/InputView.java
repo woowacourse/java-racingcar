@@ -1,4 +1,4 @@
-package racingcar.ui;
+package racingcar.view;
 
 import java.util.List;
 import java.util.Scanner;
@@ -6,18 +6,18 @@ import racingcar.domain.Car;
 import racingcar.utils.CarsGenerator;
 import racingcar.utils.validator.RoundNumberValidator;
 
-public class RacingCarInput {
+public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String CAR_NAME_INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String ROUND_INPUT_MESSAGE = "시도할 회수는 몇회인가요?";
 
-    public static List<Car> carNameInput() {
+    public static List<Car> getCars() {
         String userInput = userCarNameInput();
         try {
             return CarsGenerator.generateCars(userInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return carNameInput();
+            return getCars();
         }
     }
 
@@ -26,13 +26,13 @@ public class RacingCarInput {
         return scanner.nextLine();
     }
 
-    public static int roundInput() {
+    public static int getRound() {
         String roundNumberString = userRoundInput();
         try {
             return toIntWithValidate(roundNumberString);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return roundInput();
+            return getRound();
         }
     }
 

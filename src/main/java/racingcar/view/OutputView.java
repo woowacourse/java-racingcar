@@ -1,10 +1,10 @@
-package racingcar.ui;
+package racingcar.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
 
-public class RacingCarOutput {
+public class OutputView {
     private static final String ROUND_RESULT = "실행 결과";
     private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
     private static final String CAR_INFO_SEPARATOR = " : ";
@@ -15,7 +15,7 @@ public class RacingCarOutput {
     }
 
     public static void printRoundResult(List<Car> cars) {
-        cars.forEach(RacingCarOutput::printCarPositionInfo);
+        cars.forEach(OutputView::printCarPositionInfo);
         System.out.println();
     }
 
