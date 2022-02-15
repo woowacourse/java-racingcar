@@ -24,19 +24,19 @@ class OutputViewTest {
 
     @BeforeEach
     public void setUpCars() {
-        cars.add(new Car("rookie"));
+        cars.add(new Car("코니"));
         cars.add(new Car("is2hs"));
     }
 
     @Test
-    @DisplayName("자동자 경주 라운드별 기록 출력 검사")
+    @DisplayName("자동자 경주 라운드별 기록 출력")
     public void print_racing_round_record() {
         cars.forEach(car -> car.drive(4));
         RacingRecord racingRecord = new RacingRecord(cars);
 
         OutputView.printRacingRecord(racingRecord);
 
-        assertThat(output.toString()).contains("rookie : -\nis2hs : -");
+        assertThat(output.toString()).contains("코니 : -" + System.lineSeparator() + "is2hs : -");
     }
 
     @Test
@@ -47,6 +47,6 @@ class OutputViewTest {
 
         OutputView.printRacingResult(racingResult);
 
-        assertThat(output.toString()).contains("rookie, is2hs가 최종 우승했습니다.");
+        assertThat(output.toString()).contains("코니, is2hs가 최종 우승했습니다.");
     }
 }

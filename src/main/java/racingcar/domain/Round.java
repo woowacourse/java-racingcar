@@ -8,10 +8,6 @@ public class Round {
     private static final int DECREASED_NUMBER = 1;
     private final int roundNum;
 
-    public Round(int roundNum) {
-        this.roundNum = roundNum;
-    }
-
     public Round(String roundNum) {
         Utils.validateRoundNumber(roundNum);
         Utils.validateRoundMinimumOne(roundNum);
@@ -28,7 +24,7 @@ public class Round {
     }
 
     public Round toNextRound() {
-        return new Round(roundNum - DECREASED_NUMBER);
+        return new Round(String.valueOf(roundNum - DECREASED_NUMBER));
     }
 
     @Override
