@@ -37,7 +37,7 @@ public class Cars {
     public List<CarDto> getFarthestCars() {
         Car maxDistanceCar = cars.stream()
                 .max(Car::compareTo)
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(IllegalArgumentException::new);
 
         List<CarDto> farthestCars = cars.stream()
                 .filter(maxDistanceCar::isSameDistance)
