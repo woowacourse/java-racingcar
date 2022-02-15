@@ -9,31 +9,31 @@ public enum Delimiter {
     SPACE(" "),
     BAR("-");
 
-    private final String value;
+    private final String unit;
 
-    Delimiter(String value) {
-        this.value = value;
+    Delimiter(String unit) {
+        this.unit = unit;
     }
 
     public static String[] splitWithComma(String targetString) {
-        return targetString.split(COMMA.value);
+        return targetString.split(COMMA.unit);
     }
 
     public static String appendSpaceBehind(String targetString) {
-        return targetString + SPACE.value;
+        return targetString + SPACE.unit;
     }
 
     public static String joinWithComma(List<String> strings) {
-        return String.join(COMMA.value + SPACE.value, strings);
+        return String.join(COMMA.unit + SPACE.unit, strings);
     }
 
     public static String concatWithColon(String preString, String postString) {
-        String separator = SPACE.value + COLON.value + SPACE.value;
+        String separator = SPACE.unit + COLON.unit + SPACE.unit;
         return preString + separator + postString;
     }
 
     public static String repeatUnderBar(int count) {
-        return BAR.value.repeat(count);
+        return BAR.unit.repeat(count);
     }
 
 }
