@@ -1,9 +1,11 @@
 package racingcar.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
+import java.util.stream.Collectors;
+import racingcar.model.Car;
 import racingcar.model.RacingGame;
-import racingcar.model.Winner;
 import racingcar.utils.validator.CarNamesValidator;
 import racingcar.utils.validator.TryCountValidator;
 import racingcar.view.InputView;
@@ -27,10 +29,10 @@ public class GameController {
     }
 
     private void ready() {
-        final String[] carNames = inputCarNames();
+        final List<Car> cars = createCars(inputCarNames());
         final int tryCount = inputTryCount();
 
-        racingGame = new RacingGame(carNames, tryCount);
+        racingGame = new RacingGame(cars, tryCount);
     }
 
     public String[] inputCarNames() {
@@ -42,6 +44,12 @@ public class GameController {
             System.out.println(e.getMessage());
             return inputCarNames();
         }
+    }
+
+    private List<Car> createCars(final String[] carNames) {
+        return Arrays.stream(carNames)
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public int inputTryCount() {
@@ -65,8 +73,7 @@ public class GameController {
     }
 
     private void result() {
-        Winner winner = new Winner();
-        List<String> winners = winner.getWinners(racingGame.getCars());
+        List<String> winners = racingGame.getWinners();
 
         outputView.printWinners(winners);
     }

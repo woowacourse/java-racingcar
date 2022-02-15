@@ -1,11 +1,11 @@
 package racingcar.model;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private static final int MOVE_FORWARD_CONDITION = 4;
 
     private final String name;
-    private int position = 0;
+    private int position;
 
     public Car(final String name) {
         this.name = name;
@@ -17,6 +17,12 @@ public class Car {
         this.position = position;
     }
 
+    public void moveForward(final int number) {
+        if (number >= MOVE_FORWARD_CONDITION) {
+            position++;
+        }
+    }
+
     public String getCarName() {
         return name;
     }
@@ -25,9 +31,8 @@ public class Car {
         return position;
     }
 
-    public void moveForward(final int number) {
-        if (number >= MOVE_FORWARD_CONDITION) {
-            position++;
-        }
+    @Override
+    public int compareTo(Car car) {
+        return Integer.compare(car.getPosition(), this.position);
     }
 }
