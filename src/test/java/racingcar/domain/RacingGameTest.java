@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RacingGameTest {
 
     @Test
-    void validateNames_정상_입력() {
+    @DisplayName("정상적인 차 이름들을 받았을 경우")
+    void validateNames() {
         RacingGame racingGame = new RacingGame(Arrays.asList("car1", "car2", "car3"));
         List<String> names = new ArrayList<>();
 
@@ -23,14 +25,16 @@ class RacingGameTest {
     }
 
     @Test
-    void validateNames_empty() {
+    @DisplayName("빈 배열을 차 이름들로 받았을 경우")
+    void validateNamesEmpty() {
         assertThatThrownBy(() -> {
             new RacingGame(Arrays.asList());
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void getChampionNames_우승자가_한명() {
+    @DisplayName("챔피언이 한명인 경우 챔피언 이름 받기")
+    void getChampionNamesOnlyOneChampion() {
         RacingGame racingGame = new RacingGame(Arrays.asList("car1", "car2", "car3"));
 
         racingGame.getCars().get(0).move(5);
@@ -44,7 +48,8 @@ class RacingGameTest {
     }
 
     @Test
-    void getChampionNames_우승자가_여러명() {
+    @DisplayName("챔피언이 여러명인 경우 챔피언 이름 받기")
+    void getChampionNames() {
         RacingGame racingGame = new RacingGame(Arrays.asList("car1", "car2", "car3"));
 
         racingGame.getCars().get(0).move(5);

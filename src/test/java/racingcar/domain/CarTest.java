@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -9,26 +10,30 @@ import org.junit.jupiter.params.provider.ValueSource;
 class CarTest {
 
     @Test
-    void validateCarName_정상적인_이름() {
+    @DisplayName("정상적인 이름들을 받은 경우")
+    void validateCarName() {
         assertThat(new Car("car1").getName()).isEqualTo("car1");
     }
 
     @Test
-    void validateCarName_null() {
+    @DisplayName("null값이 차 이름으로 들어온 경우")
+    void validateCarNameNull() {
         assertThatThrownBy(() -> {
             new Car(null);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void validateCarName_empty() {
+    @DisplayName("빈 스트링이 차 이름으로 들어온 경우")
+    void validateCarNameEmpty() {
         assertThatThrownBy(() -> {
             new Car("");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void validateCarName_다섯글자_초과() {
+    @DisplayName("차 이름이 다섯글자를 초과한 경우")
+    void validateCarNameOverFiveLength() {
         assertThatThrownBy(() -> {
             new Car("123456");
         }).isInstanceOf(IllegalArgumentException.class);
@@ -36,7 +41,8 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6})
-    void move_전진(int input) {
+    @DisplayName("차가 전진하는 경우")
+    void moveCar(int input) {
         Car car = new Car("test");
         car.move(input);
         assertThat(car.getPosition()).isEqualTo(1);
@@ -44,7 +50,8 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    void move_멈춤(int input) {
+    @DisplayName("차가 전진하지 않는 경우")
+    void stopCar(int input) {
         Car car = new Car("test");
         car.move(input);
         assertThat(car.getPosition()).isEqualTo(0);
