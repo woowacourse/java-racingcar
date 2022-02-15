@@ -28,8 +28,7 @@ public class Input {
 		try {
 			Output.getAttempt();
 			String inputValue = scan.nextLine();
-			Validator.attempt(inputValue);
-			return new Attempt(Integer.parseInt(inputValue));
+			return new Attempt(inputValue);
 		} catch (IllegalArgumentException e) {
 			Output.errorMessage(e.getMessage());
 			return attempt();

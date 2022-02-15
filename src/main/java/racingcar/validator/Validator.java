@@ -10,7 +10,7 @@ public class Validator {
     private static final int CAR_LENGTH_LIMIT = 5;
 
     public static void carName(String names) {
-        checkBlank(names, "자동차 이름은 %s일 수 없습니다.");
+        checkBlank(names);
         String[] cars = names.split(DELIMITER);
         if (!isCars(cars)) {
             throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
@@ -21,26 +21,15 @@ public class Validator {
         nameValid(cars);
     }
 
-    public static void attempt(String attempt) {
-        if (attempt.isBlank()) {
-            throw new IllegalArgumentException("반복 횟수는 %s일 수 없습니다.");
-        }
-        if (!isNumber(attempt)) {
-            throw new IllegalArgumentException("시도횟수는 숫자를 입력해주세요.");
-        }
-        if (isNegative(attempt)) {
-            throw new IllegalArgumentException("시도횟수는 1이상의 수를 입력해주세요.");
-        }
-    }
-
     private static void nameValid(String[] cars) {
         for (String name : cars) {
-            checkBlank(name, "자동차 이름은 %s일 수 없습니다.");
+            checkBlank(name);
             validLength(name);
         }
     }
 
-    private static void checkBlank(String name, String text) {
+    private static void checkBlank(String name) {
+        String text = "자동차 이름은 %s일 수 없습니다.";
         if (name == null) {
             throw new NullPointerException(String.format(text, "null"));
         }
@@ -62,14 +51,5 @@ public class Validator {
         if (!(name.trim().length() <= CAR_LENGTH_LIMIT)) {
             throw new IllegalArgumentException("자동차의 이름은 5글자를 초과할 수 없습니다.");
         }
-    }
-
-    private static boolean isNumber(String string) {
-        return string.matches("[+-]?\\d*(\\.\\d+)?");
-    }
-
-    private static boolean isNegative(String string) {
-        int attempt = Integer.parseInt(string);
-        return attempt <= 0;
     }
 }
