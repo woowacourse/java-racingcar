@@ -3,6 +3,7 @@ package racingcar.util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.GameTotalCount;
 
 import static racingcar.util.VerificationUtil.*;
 
@@ -46,7 +47,7 @@ class VerificationUtilTest {
         String attempt = "숫자";
 
         //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> validateAttempt(attempt));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new GameTotalCount(attempt));
     }
 
     @Test
@@ -56,6 +57,6 @@ class VerificationUtilTest {
         String attempt = "-3";
 
         //then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> validateAttempt(attempt));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new GameTotalCount(attempt));
     }
 }
