@@ -1,8 +1,5 @@
 package racingcar.domain;
 
-import java.util.Comparator;
-import java.util.List;
-
 public class Car {
     private static final int RANDOM_CONDITION = 4;
 
