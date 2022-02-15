@@ -59,4 +59,8 @@ public class Game {
     public boolean isOver() {
         return currentRound >= totalRounds;
     }
+
+    public void clearCars() {
+        carRepository.clear();
+    }
 }
