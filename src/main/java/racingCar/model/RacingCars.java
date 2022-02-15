@@ -41,13 +41,17 @@ public class RacingCars {
         return Util.getMax(positions);
     }
 
-    public List<Car> getSamePositionCars(int position) {
-        return cars.stream()
-                .filter(car -> car.position.isSame(position))
+    public List<CarDTO> getSamePositionCars(int position) {
+        return get().stream()
+                .filter(car -> car.position == position)
                 .collect(Collectors.toList());
     }
 
-    public List<Car> get() {
-        return cars;
+    public List<CarDTO> get() {
+        List<CarDTO> carDTOs = new ArrayList<>();
+        for (Car car : cars) {
+            carDTOs.add(new CarDTO(car));
+        }
+        return carDTOs;
     }
 }

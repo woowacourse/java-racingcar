@@ -2,7 +2,7 @@ package racingCar.controller.service;
 
 import java.util.Arrays;
 import java.util.List;
-import racingCar.model.Car;
+import racingCar.model.CarDTO;
 import racingCar.model.RacingCars;
 import racingCar.model.RoundCount;
 import racingCar.model.utils.Util;
@@ -41,7 +41,7 @@ public class RacingCarsService {
         Output.printRoundResult(cars.get());
     }
 
-    public List<Car> getWinnerCars() {
+    public List<CarDTO> getWinnerCars() {
         return cars.getSamePositionCars(cars.getMaxPosition());
     }
 }

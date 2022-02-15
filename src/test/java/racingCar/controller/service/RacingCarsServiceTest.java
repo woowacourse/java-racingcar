@@ -5,13 +5,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingCar.model.Car;
-import racingCar.model.RacingCars;
+import racingCar.model.CarDTO;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class RacingCarsServiceTest {
@@ -19,7 +18,7 @@ public class RacingCarsServiceTest {
 
     @BeforeEach
     void setup() {
-        carsService = new RacingCarsService("juri,hunch","5");
+        carsService = new RacingCarsService("juri,hunch", "5");
     }
 
     @Test
@@ -41,14 +40,17 @@ public class RacingCarsServiceTest {
     @Test
     void 우승자_찾기_테스트() {
         //given
-        int expectMaxPosition = 4;
-        Car winCar = carsService.cars.get().get(0);
-        ArrayList<Car> result = new ArrayList<>(List.of(winCar));
+        List<CarDTO> carDTOs = carsService.cars.get();
 
         //when
-        for (int i = 0; i < expectMaxPosition; i++) {
-            winCar.move();
-        }
+        carsService.playGame();
+        int max = carDTOs.stream()
+                .mapToInt(carDTO -> carDTO.position)
+                .max()
+                .orElse(0);
+        List<CarDTO> result = carDTOs.stream()
+                .filter(carDTO -> carDTO.position == max)
+                .collect(Collectors.toList());
 
         //then
         assertThat(result)

@@ -1,7 +1,7 @@
 package racingCar.view;
 
 import java.util.List;
-import racingCar.model.Car;
+import racingCar.model.CarDTO;
 
 public class Output {
     private static final String RESULT_FRONT_MESSAGE = System.lineSeparator() + "실행 결과";
@@ -14,16 +14,17 @@ public class Output {
         System.out.println(RESULT_FRONT_MESSAGE);
     }
 
-    public static void printRoundResult(List<Car> cars) {
-        for (Car car : cars) {
+    public static void printRoundResult(List<CarDTO> cars) {
+        for (CarDTO car : cars) {
             System.out.println(
-                    car.name + ROUND_REGEX + POSITION_SIGNATURE.repeat(car.position.get()) + System.lineSeparator());
+                    car.name + ROUND_REGEX + POSITION_SIGNATURE.repeat(car.position));
         }
+        System.out.println();
     }
 
-    public static void printWinner(List<Car> winnerCars) {
+    public static void printWinner(List<CarDTO> winnerCars) {
         StringBuilder Result = new StringBuilder();
-        for (Car winnerCar : winnerCars) {
+        for (CarDTO winnerCar : winnerCars) {
             Result.append(winnerCar.name).append(WINNER_REGEX);
         }
         System.out.println(Result.substring(0, Result.length() - 2) + WINNER_RESULT_LAST_MESSAGE);
