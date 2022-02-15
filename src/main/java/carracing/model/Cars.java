@@ -7,7 +7,6 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import carracing.utils.RandomNumber;
-import carracing.view.OutputView;
 
 public class Cars {
 	private static final int RANDOM_NUMBER_RANGE = 10;
@@ -37,12 +36,6 @@ public class Cars {
 			car.move(RandomNumber.generate(RANDOM_NUMBER_RANGE)));
 	}
 
-	public void printResult() {
-		cars.forEach(car ->
-			OutputView.printCarPosition(car.toString()));
-		OutputView.printNewLine();
-	}
-
 	private void validateDuplication(List<Car> cars) {
 		boolean isDuplicated = cars.stream()
 			.map(Car::getName)
@@ -52,5 +45,9 @@ public class Cars {
 		if (isDuplicated) {
 			throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
 		}
+	}
+
+	public List<Car> getCars() {
+		return cars;
 	}
 }

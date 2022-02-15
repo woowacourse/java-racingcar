@@ -29,7 +29,7 @@ public class RacingGameController {
 		OutputView.printResultMessage();
 		while ((numberOfGames--) > ZERO) {
 			cars.moveCars();
-			cars.printResult();
+			OutputView.printGameResult(cars.getCars());
 		}
 		endGame();
 	}

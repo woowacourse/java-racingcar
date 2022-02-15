@@ -1,14 +1,20 @@
 package carracing.view;
 
+import carracing.model.Car;
 import carracing.view.messages.ExceptionMessage;
 import carracing.view.messages.OutputMessage;
 
+import java.util.List;
+
 public class OutputView {
-	public static void printInputCarName(){
+	private static final String DELIMITER_BETWEEN_NAME_AND_POSITION =":";
+	private static final String POSITION_INDICATOR ="-";
+
+	public static void printInputCarName() {
 		System.out.println(OutputMessage.INPUT_CAR_NAME.getMessage());
 	}
 
-	public static void printInputNumberOfGames(){
+	public static void printInputNumberOfGames() {
 		System.out.println(OutputMessage.INPUT_NUM_OF_GAMES.getMessage());
 	}
 
@@ -20,8 +26,14 @@ public class OutputView {
 		System.out.println(OutputMessage.RESULT_MESSAGE.getMessage());
 	}
 
-	public static void printCarPosition(String carPosition) {
-		System.out.println(carPosition);
+
+	public static void printGameResult(List<Car> cars) {
+		cars.forEach(car -> System.out.println(visualizeCarPosition(car)));
+		printNewLine();
+	}
+
+	private static String visualizeCarPosition(Car car) {
+		return car.getName() + DELIMITER_BETWEEN_NAME_AND_POSITION + POSITION_INDICATOR.repeat(car.getPosition());
 	}
 
 	public static void printNewLine() {
