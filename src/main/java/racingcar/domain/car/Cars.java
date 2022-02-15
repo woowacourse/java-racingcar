@@ -19,8 +19,8 @@ public class Cars {
 
     public void goForwardOrStop(NumberPicker numberPicker) {
         cars.stream()
-            .filter(car -> car.isPossibleToGoForward(numberPicker.pickNumber()))
-            .forEach(Car::goForward);
+                .filter(car -> car.isPossibleToGoForward(numberPicker.pickNumber()))
+                .forEach(Car::goForward);
     }
 
     public List<CarStatusDto> getStatuses() {
@@ -32,9 +32,9 @@ public class Cars {
     public List<String> getWinnerNames() {
         int farthestLocation = getFarthestLocation();
         return cars.stream()
-            .filter(car -> car.isLocationSameWith(farthestLocation))
-            .map(Car::getName)
-            .collect(Collectors.toUnmodifiableList());
+                .filter(car -> car.isLocationSameWith(farthestLocation))
+                .map(Car::getName)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private int getFarthestLocation() {

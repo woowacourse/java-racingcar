@@ -11,8 +11,8 @@ public class ConsoleReader implements Reader {
 
     public String readLine() {
         try (
-            InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader)
         ) {
             return bufferedReader.readLine();
         } catch (IOException exception) {

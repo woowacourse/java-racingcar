@@ -10,7 +10,8 @@ public class CarsValidator {
 
     private static final CarsValidator CAR_GROUP_VALIDATOR = new CarsValidator();
 
-    private CarsValidator() { }
+    private CarsValidator() {
+    }
 
     public static void validateNames(List<String> names) {
         CAR_GROUP_VALIDATOR.validateNameIsDuplicated(names);

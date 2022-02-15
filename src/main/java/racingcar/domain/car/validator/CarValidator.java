@@ -8,7 +8,8 @@ public class CarValidator {
 
     private static final CarValidator CAR_VALIDATOR = new CarValidator();
 
-    private CarValidator() { }
+    private CarValidator() {
+    }
 
     public static void validateName(String name) {
         CAR_VALIDATOR.validateNameIsNull(name);

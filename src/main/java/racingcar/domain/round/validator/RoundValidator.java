@@ -8,7 +8,8 @@ public class RoundValidator {
 
     public static final RoundValidator ROUND_VALIDATOR = new RoundValidator();
 
-    private RoundValidator() { }
+    private RoundValidator() {
+    }
 
     public static void validateCount(int count) {
         ROUND_VALIDATOR.validateCountPositive(count);

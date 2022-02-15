@@ -1,7 +1,8 @@
 package racingcar.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +12,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import racingcar.domain.car.Cars;
 import racingcar.domain.car.CarStatusDto;
+import racingcar.domain.car.Cars;
 import racingcar.exception.WrongArgumentException;
 import racingcar.service.picker.CustomNumberPicker;
 

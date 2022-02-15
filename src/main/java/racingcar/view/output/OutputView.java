@@ -1,10 +1,9 @@
 package racingcar.view.output;
 
-import static racingcar.view.output.message.OutputMessage.*;
-
 import java.util.List;
 
 import racingcar.utils.Delimiter;
+import racingcar.view.output.message.OutputMessage;
 
 public class OutputView {
 
@@ -13,15 +12,15 @@ public class OutputView {
     }
 
     public void printMessageOfRequestCarNames() {
-        printMessage(MessageOfRequestCarNames);
+        printMessage(OutputMessage.MessageOfRequestCarNames);
     }
 
     public void printMessageOfRequestRound() {
-        printMessage(MessageOfRequestRound);
+        printMessage(OutputMessage.MessageOfRequestRound);
     }
 
     public void printMessageOfStatusTitle() {
-        printMessage(MessageOfStatusTitle);
+        printMessage(OutputMessage.MessageOfStatusTitle);
     }
 
     public void printCarStatuses(List<String> carStatuses) {
@@ -29,7 +28,7 @@ public class OutputView {
     }
 
     public void printMessageOfWinners(List<String> winnerNames) {
-        String message = String.format(MessageFormatOfPrintWinner, Delimiter.joinWithComma(winnerNames));
+        String message = String.format(OutputMessage.MessageFormatOfPrintWinner, Delimiter.joinWithComma(winnerNames));
         printMessage(message);
     }
 

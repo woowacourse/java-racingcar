@@ -7,7 +7,8 @@ public class NumberValidator {
 
     private static final NumberValidator NUMBER_VALIDATOR = new NumberValidator();
 
-    private NumberValidator() { }
+    private NumberValidator() {
+    }
 
     public static void validateNumber(int number) {
         NUMBER_VALIDATOR.validateNumberIsNegative(number);

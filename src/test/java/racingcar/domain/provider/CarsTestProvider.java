@@ -48,11 +48,11 @@ class CarsTestProvider {
         return Stream.of(
                 Arguments.of(
                         Arrays.asList("slow", "if", "poby"),
-                        1, Arrays.asList(3,4,5),
+                        1, Arrays.asList(3, 4, 5),
                         Arrays.asList("slow : ", "if : -", "poby : -")),
                 Arguments.of(
                         Arrays.asList("slow", "if", "poby"),
-                        2, Arrays.asList(0,5,8, 7,3,4),
+                        2, Arrays.asList(0, 5, 8, 7, 3, 4),
                         Arrays.asList(
                                 "slow : ", "if : -", "poby : -",
                                 "slow : -", "if : -", "poby : --"))
@@ -63,11 +63,11 @@ class CarsTestProvider {
         return Stream.of(
                 Arguments.of(
                         Arrays.asList("slow", "if", "poby"),
-                        1, Arrays.asList(0,5,8),
+                        1, Arrays.asList(0, 5, 8),
                         Arrays.asList("if", "poby")),
                 Arguments.of(
                         Arrays.asList("slow", "if", "poby"),
-                        2, Arrays.asList(0,5,8, 7,3,4),
+                        2, Arrays.asList(0, 5, 8, 7, 3, 4),
                         Arrays.asList("poby"))
         );
     }
