@@ -5,7 +5,7 @@ import java.util.List;
 public class OutputView {
 
     private static final String DELIMITER = ", ";
-    public static final String PROGRESS_SYMBOL = "-";
+    private static final String PROGRESS_SYMBOL = "-";
 
     private OutputView() {
     }
