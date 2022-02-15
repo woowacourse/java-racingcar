@@ -10,6 +10,9 @@ public class InputView {
 
     private static final Scanner CONSOLE = new Scanner(System.in);
 
+    private InputView() {
+    }
+
     public static String inputCarNames() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
         return CONSOLE.nextLine();
