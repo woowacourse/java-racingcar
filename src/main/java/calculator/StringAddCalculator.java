@@ -1,6 +1,5 @@
 package calculator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -44,7 +43,7 @@ public class StringAddCalculator {
 		try {
 			return Integer.parseInt(value);
 		} catch (NumberFormatException e) {
-			throw new RuntimeException("숫자값을 입력해주세요");
+			throw new NumberFormatException("숫자값을 입력해주세요");
 		}
 	}
 
