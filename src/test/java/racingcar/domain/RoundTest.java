@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.round.Round;
 import racingcar.exception.round.RoundNotPositiveException;
 
-public class RoundTest {
+class RoundTest {
 
     @DisplayName("실행횟수는 양수여야 한다")
     @ParameterizedTest()

@@ -2,12 +2,21 @@ package racingcar.exception.car.message;
 
 import racingcar.domain.car.condition.NameLength;
 
-public class CarNameExceptionMessage {
+public enum CarNameExceptionMessage {
 
-    public static final String NAME_DUPLICATED_EXCEPTION_MESSAGE = "자동차의 이름은 중복될 수 없습니다.";
-    public static final String NAME_EMPTY_EXCEPTION_MESSAGE = "자동차의 이름은 공백이 될 수 없습니다.";
-    public static final String NAME_NULL_EXCEPTION_MESSAGE = "자동차의 이름은 NULL이 될 수 없습니다.";
-    public static final String NAME_TOO_LONG_EXCEPTION_MESSAGE =
-            String.format("자동차의 이름은 %d자 이하여야 합니다.", NameLength.getMaximum());
+    NAME_IS_DUPLICATED("자동차의 이름은 중복될 수 없습니다."),
+    NAME_IS_EMPTY("자동차의 이름은 공백이 될 수 없습니다."),
+    NAME_IS_NULL("자동차의 이름은 NULL이 될 수 없습니다."),
+    NAME_IS_TOO_LONG(String.format("자동차의 이름은 %d자 이하여야 합니다.", NameLength.getMaximum()));
+
+    public final String message;
+
+    CarNameExceptionMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 
 }

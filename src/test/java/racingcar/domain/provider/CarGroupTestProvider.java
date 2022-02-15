@@ -1,11 +1,11 @@
 package racingcar.domain.provider;
 
-import org.junit.jupiter.params.provider.Arguments;
-
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-public class CarGroupTestProvider {
+import org.junit.jupiter.params.provider.Arguments;
+
+class CarGroupTestProvider {
 
     public static Stream<Arguments> provideForNullExceptionTest() {
         return Stream.of(

@@ -1,8 +1,8 @@
 package racingcar.view.input.provider;
 
-import org.junit.jupiter.params.provider.Arguments;
-
 import java.util.stream.Stream;
+
+import org.junit.jupiter.params.provider.Arguments;
 
 public class RoundInputTestProvider {
 

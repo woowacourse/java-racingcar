@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
@@ -14,7 +13,7 @@ import calculator.exception.CalculatorException;
 import calculator.exception.NumberIsNegativeException;
 import calculator.exception.NumberIsNotNumericException;
 
-public class CalculatorTest {
+class CalculatorTest {
 
     private final Separator separator = new Separator();
     private final Calculator calculator = new Calculator(separator);

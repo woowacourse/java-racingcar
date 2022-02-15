@@ -20,13 +20,12 @@ import racingcar.exception.car.CarNameNullException;
 import racingcar.exception.car.CarNameTooLongException;
 import racingcar.service.picker.CustomNumberPicker;
 
-public class CarGroupTest {
+class CarGroupTest {
 
     private static final String providerPath = "racingcar.domain.provider.CarGroupTestProvider#";
 
     private void exceptionTest(Class<? extends RacingCarException> exceptionClass, List<String> carNames) {
-        assertThrows(exceptionClass, () -> new CarGroup(carNames)
-        );
+        assertThrows(exceptionClass, () -> new CarGroup(carNames));
     }
 
     @DisplayName("자동차 이름은 NULL이 될 수 없다")

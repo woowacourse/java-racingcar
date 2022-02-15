@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import racingcar.view.input.reader.CustomReader;
 
-public class CarNameInputTest {
+class CarNameInputTest {
 
     private static final String providerPath = "racingcar.view.input.provider.CarNamesInputTestProvider#";
 

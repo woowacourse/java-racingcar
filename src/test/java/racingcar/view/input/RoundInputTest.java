@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.exception.round.RoundNotNumericException;
 import racingcar.view.input.reader.CustomReader;
 
-public class RoundInputTest {
+class RoundInputTest {
 
     private static final String providerPath = "racingcar.view.input.provider.RoundInputTestProvider#";
 

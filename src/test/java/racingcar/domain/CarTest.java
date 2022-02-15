@@ -14,18 +14,16 @@ import racingcar.exception.car.CarNameEmptyException;
 import racingcar.exception.car.CarNameNullException;
 import racingcar.exception.car.CarNameTooLongException;
 
-public class CarTest {
+class CarTest {
 
     private void exceptionTest(Class<? extends RacingCarException> exceptionClass, String name) {
-        assertThrows(exceptionClass, () -> new Car(name)
-        );
+        assertThrows(exceptionClass, () -> new Car(name));
     }
 
     @DisplayName("자동차 이름은 NULL이 될 수 없다.")
     @ParameterizedTest
     @NullSource
     void carNameNullExceptionTest(String name) {
-        Class<CarNameTooLongException> carNameTooLongExceptionClass = CarNameTooLongException.class;
         exceptionTest(CarNameNullException.class, name);
     }
 

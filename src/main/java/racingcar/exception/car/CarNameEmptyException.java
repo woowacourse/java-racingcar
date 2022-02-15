@@ -6,7 +6,7 @@ import racingcar.exception.car.message.CarNameExceptionMessage;
 public class CarNameEmptyException extends RacingCarException {
 
     public CarNameEmptyException() {
-        super(CarNameExceptionMessage.NAME_EMPTY_EXCEPTION_MESSAGE);
+        super(CarNameExceptionMessage.NAME_IS_EMPTY.getMessage());
     }
 
 }

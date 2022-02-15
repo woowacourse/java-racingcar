@@ -1,11 +1,11 @@
 package racingcar.view.input.provider;
 
-import org.junit.jupiter.params.provider.Arguments;
-
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-public class CarNamesInputTestProvider {
+import org.junit.jupiter.params.provider.Arguments;
+
+class CarNamesInputTestProvider {
 
     public static Stream<Arguments> provideValuesForNormalInput() {
         return Stream.of(
