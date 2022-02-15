@@ -19,6 +19,13 @@ public class Cars {
                 .forEach(car -> car.goForward(RandomUtil.getRandomForCar()));
     }
 
+    public List<String> findAllWinnerNames() {
+        return cars.stream()
+                .filter(car -> car.isAlsoWinner(findOneWinner()))
+                .map(car -> car.getName())
+                .collect(Collectors.toList());
+    }
+
     public List<Car> findAllWinners() {
         return cars.stream()
                 .filter(car -> car.isAlsoWinner(findOneWinner()))
@@ -34,6 +41,7 @@ public class Cars {
         for (Car car : cars) {
             Output.printCarStatus(car);
         }
+        Output.printBlankLine();
     }
 
     @Override

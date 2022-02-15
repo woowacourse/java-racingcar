@@ -20,7 +20,11 @@ public class Output {
         System.out.println(car.getName() + INFO_BETWEEN_WORD + POSITION_WORD.repeat(car.getPosition()));
     }
 
-    public static void winnerPrint(List<String> winnerNames) {
+    public static void printWinner(List<String> winnerNames) {
         System.out.println(String.join(SPLIT_DELIM, winnerNames) + OUTPUT_WINNER_MESSAGE);
+    }
+
+    public static void printBlankLine() {
+        System.out.println();
     }
 }
