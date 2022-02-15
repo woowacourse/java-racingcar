@@ -21,7 +21,7 @@ public class RacingServiceTest {
 
 	@BeforeEach
 	public void init() {
-		racingService = new RacingService();
+		racingService = new RacingService(bound -> bound + 5);
 		carRepository = CarRepository.getInstance();
 		String input = "pobi,joon";
 		racingService.registerCars(Converter.toCarList(input));
@@ -41,8 +41,7 @@ public class RacingServiceTest {
 
 	@Test
 	public void 자동차_경주() {
-		racingService.race(bound -> 5);
-		racingService.race(bound -> 5);
+		racingService.race(2);
 
 		List<Car> cars = carRepository.findCars();
 
@@ -56,7 +55,7 @@ public class RacingServiceTest {
 		carRepository.clear();
 		racingService.registerCars(List.of(Car.from("asd")));
 
-		assertThatThrownBy(() -> racingService.race(new RandomUtilImpl()))
+		assertThatThrownBy(() -> racingService.race(3))
 			.isInstanceOf(IllegalStateException.class);
 	}
 
