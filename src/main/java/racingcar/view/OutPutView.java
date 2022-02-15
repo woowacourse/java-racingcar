@@ -5,6 +5,8 @@ import java.util.List;
 import racingcar.domain.Car;
 
 public class OutPutView {
+    private static final int POSITION_ZERO = 0;
+
     private static final String STATUS_MESSAGE = "실행 결과";
     private static final String STATUS_FORMAT = " " + ":" + " ";
     private static final String POSITION_FORMAT = "-";
@@ -25,7 +27,7 @@ public class OutPutView {
         StringBuilder carStatus = new StringBuilder(car.getName() + STATUS_FORMAT);
         int position = car.getPosition();
 
-        while (position-- > 0) {
+        while (position-- > POSITION_ZERO) {
             carStatus.append(POSITION_FORMAT);
         }
         return carStatus.toString();
