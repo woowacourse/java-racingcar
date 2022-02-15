@@ -33,10 +33,6 @@ public class Car {
 		}
 	}
 
-	public Boolean isSamePosition(int position) {
-		return this.position == position;
-	}
-
 	private void isValidName(String name) {
 		isNull(name);
 		isEmpty(name);
