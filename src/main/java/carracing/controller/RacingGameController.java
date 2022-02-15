@@ -9,8 +9,6 @@ import carracing.view.InputView;
 import carracing.view.OutputView;
 
 public class RacingGameController {
-	private static final int ZERO = 0;
-
 	private Cars cars;
 	private int numberOfGames;
 
@@ -24,7 +22,7 @@ public class RacingGameController {
 
 	public void play() {
 		OutputView.printResultMessage();
-		while ((numberOfGames--) > ZERO) {
+		for (int round = 0; round < numberOfGames; round++) {
 			cars.moveCars();
 			OutputView.printGameResult(cars.getCars());
 		}
