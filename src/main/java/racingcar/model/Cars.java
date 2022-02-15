@@ -11,7 +11,6 @@ import racingcar.util.RandomGenerator;
 
 public class Cars {
     private static final String DELIMITER = ",";
-    private static final String NEW_LINE = System.lineSeparator();
     private static final int MIN = 0;
     private static final int MAX = 9;
 
@@ -35,13 +34,8 @@ public class Cars {
         return new Winners(cars);
     }
 
-    public String getCarsStatus() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars) {
-            stringBuilder.append(car.getCarStatus())
-                    .append(NEW_LINE);
-        }
-        return stringBuilder.toString();
+    public List<Car> getCars() {
+        return cars;
     }
 
     private void validateDuplicatedName(String[] carNames) {

@@ -1,6 +1,8 @@
 package racingcar.view;
 
+import java.util.List;
 import racingcar.message.NoticeMessages;
+import racingcar.model.Car;
 
 public class OutputView {
 
@@ -16,4 +18,9 @@ public class OutputView {
         System.out.println(string);
     }
 
+    public static void printCarsStatus(List<Car> cars) {
+        for (Car car : cars) {
+            System.out.println(car.getCarStatus());
+        }
+    }
 }
