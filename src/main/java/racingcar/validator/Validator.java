@@ -1,8 +1,5 @@
 package racingcar.validator;
 
-import racingcar.domain.RacingCar;
-import racingcar.domain.RacingCars;
-
 import java.util.*;
 
 public class Validator {
