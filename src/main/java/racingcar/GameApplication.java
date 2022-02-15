@@ -4,15 +4,19 @@ import racingcar.controller.GameController;
 
 public class GameApplication {
 
-    private final AppConfig appConfig = AppConfig.getInstance();
+    private final GameController gameController;
+
+    public GameApplication(AppConfig appConfig) {
+        this.gameController = appConfig.gameController;
+    }
 
     public static void main(String[] args) {
-        GameApplication gameApplication = new GameApplication();
+        AppConfig appConfig = AppConfig.getInstance();
+        GameApplication gameApplication = new GameApplication(appConfig);
         gameApplication.run();
     }
 
     public void run() {
-        GameController gameController = appConfig.gameController;
         gameController.initGame();
         gameController.playGame();
     }
