@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class CarsTest {
     @ParameterizedTest
-    @CsvSource(value = {"rookie:is2js"}, delimiter = ':')
+    @CsvSource(value = {"코니:is2js"}, delimiter = ':')
     @DisplayName("자동차 게임 라운드별 기록을 가져오는 기능")
     public void drive_round_record(String name1, String name2) {
         Car car1 = new Car(name1);
@@ -28,7 +28,7 @@ class CarsTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"rookie:is2js"}, delimiter = ':')
+    @CsvSource(value = {"코니:is2js"}, delimiter = ':')
     @DisplayName("자동차 경주 후 가장 많이 전진한 자동차를 구하는 기능")
     public void drive_result_maxPositionCar(String name1, String name2) {
         Car car1 = new Car(name1);
@@ -46,7 +46,7 @@ class CarsTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"rookie:is2js"}, delimiter = ':')
+    @CsvSource(value = {"코니:is2js"}, delimiter = ':')
     @DisplayName("우승 자동차(들) 정상 추출 확인 테스트")
     public void drive_winners(String name1, String name2) {
         Car car1 = new Car(name1);
