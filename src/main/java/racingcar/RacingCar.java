@@ -12,23 +12,23 @@ import racingcar.vo.Cars;
 
 public class RacingCar {
 
-  private static final String CAR_NAME_DELIMITER = ",";
+    private static final String CAR_NAME_DELIMITER = ",";
 
-  public RacingCar() {
-  }
+    public RacingCar() {
+    }
 
-  public void play() {
-    Cars cars = new Cars(splitCarNames(requestCarName()));
-    Attempt attempt = new Attempt(requestAttempt());
-    printRaceResult(cars.repeatRaceBy(attempt));
-    printWinners(cars.findWinners());
-  }
+    public void play() {
+        Cars cars = new Cars(splitCarNames(requestCarName()));
+        Attempt attempt = new Attempt(requestAttempt());
+        printRaceResult(cars.repeatRaceBy(attempt));
+        printWinners(cars.findWinners());
+    }
 
-  private String[] splitCarNames(String carNames) {
-    return carNames.split(CAR_NAME_DELIMITER);
-  }
+    private String[] splitCarNames(String carNames) {
+        return carNames.split(CAR_NAME_DELIMITER);
+    }
 
-  private Car createCar(String name) {
-    return new Car(new CarName(name));
-  }
+    private Car createCar(String name) {
+        return new Car(new CarName(name));
+    }
 }

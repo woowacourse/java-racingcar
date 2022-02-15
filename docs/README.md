@@ -94,8 +94,7 @@
     - Calculator.toInteger()
     - Integer.parseInt()는 잘못된 값을 파라미터로 보낼 경우 알아서 `NumberFormatException`을 throw한다.
     - `NumberFormatException`도 `RuntimeException`의 한 종류이다.
-    - 따라서 try/catch문을 쓰지 않아도 되지만 내가 원하는 에러를 발생시키고 싶다면 예외를 catch하여 원하는 에러 메시지를 추가하여 다시 throw를 해야하지
-      않을까?
+    - 따라서 try/catch문을 쓰지 않아도 되지만 내가 원하는 에러를 발생시키고 싶다면 예외를 catch하여 원하는 에러 메시지를 추가하여 다시 throw를 해야하지 않을까?
 
 - [x] move의 테스트를 generateRandomNumber() 때문에 하지 못하고 있는데 해결방법은 없는가?
     - Car
@@ -110,7 +109,7 @@
 
 - [x] 테스트의 메소드 명을 모두 영어로 수정한다.
     - @DisplayName()을 이용하여 메소드명 + 설명 형식으로 한국어로 설명했다.
-  
+
 - [x] 테스트에서 중복되는 것들을 Parameterized Test를 이용하여 리팩토링할 수 있지 않을까?
     - @ParameterizedTest(name = "{index} : {0}")
         - name으로 @DisplayName처럼 사용할 수 있다.

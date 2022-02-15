@@ -5,20 +5,20 @@ import java.util.List;
 
 public class RoundResults {
 
-  private List<RoundResult> results = new ArrayList<>();
+    private List<RoundResult> results = new ArrayList<>();
 
-  public RoundResults() {
-  }
+    public RoundResults() {
+    }
 
-  public void add(RoundResult result) {
-    results.add(result);
-  }
+    public void add(RoundResult result) {
+        results.add(result);
+    }
 
-  public RoundResult poll() {
-    return results.remove(0);
-  }
+    public RoundResult poll() {
+        return results.remove(0);
+    }
 
-  public boolean hasResult() {
-    return results.size() > 0;
-  }
+    public boolean hasResult() {
+        return results.size() > 0;
+    }
 }
