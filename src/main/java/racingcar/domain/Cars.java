@@ -30,7 +30,7 @@ public class Cars {
 
     public List<CarDto> getCarInfos() {
         return cars.stream()
-                .map(Car::info)
+                .map(CarDto::toDto)
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -41,7 +41,7 @@ public class Cars {
 
         List<CarDto> farthestCars = cars.stream()
                 .filter(maxDistanceCar::isSameDistance)
-                .map(Car::info)
+                .map(CarDto::toDto)
                 .collect(Collectors.toUnmodifiableList());
 
         return farthestCars;

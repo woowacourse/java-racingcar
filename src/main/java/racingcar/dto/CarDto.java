@@ -1,14 +1,20 @@
 package racingcar.dto;
 
+import racingcar.domain.Car;
+
 import java.util.Objects;
 
 public class CarDto {
     private final String carName;
-    private int distance;
+    private final int distance;
 
     public CarDto(String carName, int distance){
         this.carName = carName;
         this.distance = distance;
+    }
+
+    public static CarDto toDto(Car car){
+        return new CarDto(car.getCarName(),car.getDistance());
     }
 
     public String carName() {

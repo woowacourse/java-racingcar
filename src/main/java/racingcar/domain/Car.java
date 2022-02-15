@@ -15,15 +15,20 @@ public class Car implements Comparable<Car>{
         distance = INITIAL_DISTANCE;
     }
 
+    public String getCarName(){
+        return carName.value();
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
     public void move(boolean moveOrStop) {
         if (moveOrStop) {
             distance++;
         }
     }
 
-    public CarDto info() {
-        return new CarDto(carName.value(), distance);
-    }
 
     public boolean isSameDistance(Car otherCar) {
         return this.distance == otherCar.distance;

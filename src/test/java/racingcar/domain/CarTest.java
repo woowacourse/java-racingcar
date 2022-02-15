@@ -19,8 +19,8 @@ public class CarTest {
 
     @Test
     @DisplayName("자동차의 이름과 거리를 dto 변환해 반환한다.")
-    void info() {
-        CarDto actual = car.info();
+    void toDto() {
+        CarDto actual = CarDto.toDto(car);
         CarDto expected = new CarDto("abc", 1);
         assertThat(actual).isEqualTo(expected);
     }
