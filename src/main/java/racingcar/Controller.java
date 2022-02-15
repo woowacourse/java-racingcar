@@ -8,7 +8,7 @@ import racingcar.parser.TryCountParser;
 import racingcar.util.RetryableTemplate;
 import racingcar.view.View;
 
-public class Application {
+public class Controller {
 
     private CarNameParser carNameParser;
     private TryCountParser tryCountParser;
@@ -17,9 +17,9 @@ public class Application {
     private RetryableTemplate retryableTemplate;
 
     public static void main(String[] args) {
-        Application application = new Application();
-        application.init();
-        application.run();
+        Controller controller = new Controller();
+        controller.init();
+        controller.run();
     }
 
     private void init() {
