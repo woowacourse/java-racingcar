@@ -3,9 +3,9 @@ package racingcar.util;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import static racingcar.constant.ErrorMessage.*;
-
 public class RacingGameValidationUtil {
+
+    private static final String DUPLICATED = "[ERROR] 중복된 자동차 이름은 허용되지 않습니다.";
 
     private RacingGameValidationUtil() {
     }

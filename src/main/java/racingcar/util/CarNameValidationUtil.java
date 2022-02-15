@@ -1,8 +1,11 @@
 package racingcar.util;
 
-import static racingcar.constant.ErrorMessage.*;
-
 public class CarNameValidationUtil {
+
+    private static final String EMPTY_CAR_NAME = "[ERROR] 자동차 이름이 입력되지 않았습니다.";
+    private static final String MORE_THAN_ONE_LETTER = "[ERROR] 1글자 미만의 자동차 이름은 허용되지 않습니다.";
+    private static final String LESS_THAN_FIVE_LETTER = "[ERROR] 5글자 초과의 자동차 이름은 허용되지 않습니다.";
+    private static final String NO_SPACE = "[ERROR] 공백을 포함하는 자동차 이름은 허용되지 않습니다.";
 
     private CarNameValidationUtil() {
     }

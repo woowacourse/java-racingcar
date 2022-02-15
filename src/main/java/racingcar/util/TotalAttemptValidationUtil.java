@@ -1,9 +1,9 @@
 package racingcar.util;
 
-import static racingcar.constant.ErrorMessage.MUST_BE_INTEGER;
-import static racingcar.constant.ErrorMessage.MUST_BE_POSITIVE;
-
 public class TotalAttemptValidationUtil {
+
+    private static final String MUST_BE_INTEGER = "[ERROR] 시도 횟수는 숫자만 허용됩니다.";
+    private static final String MUST_BE_POSITIVE = "[ERROR] 1미만의 시도횟수는 허용되지 않습니다.";
 
     private TotalAttemptValidationUtil() {
     }
