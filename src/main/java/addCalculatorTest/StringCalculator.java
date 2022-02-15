@@ -1,4 +1,4 @@
-package AddCalculatorTest;
+package addCalculatorTest;
 
 import java.util.Arrays;
 
