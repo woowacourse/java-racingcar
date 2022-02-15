@@ -3,7 +3,7 @@ package racingcar.dto;
 import java.util.Objects;
 
 public class CarDto {
-    private String carName;
+    private final String carName;
     private int distance;
 
     public CarDto(String carName, int distance){
