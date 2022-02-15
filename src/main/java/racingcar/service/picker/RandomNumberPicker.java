@@ -13,7 +13,7 @@ public class RandomNumberPicker implements NumberPicker {
 
     @Override
     public int pickNumber() {
-        return random.nextInt(RandomRange.getSize()) + RandomRange.getInclusiveMinimum();
+        return RandomRange.pick(random);
     }
 
 }
