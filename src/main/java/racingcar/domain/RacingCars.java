@@ -26,7 +26,7 @@ public class RacingCars {
         return racingCars;
     }
 
-    public RacingCar getRacingCarMaxPosition() {
+    public RacingCar getRacingCarWithMaxPosition() {
         return racingCars.stream().max(Comparator.comparingInt(RacingCar::getPosition)).get();
     }
 }

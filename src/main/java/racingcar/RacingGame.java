@@ -52,7 +52,7 @@ public class RacingGame {
 
     private ArrayList<RacingCar> getWinners(RacingCars racingCars) {
 
-        RacingCar racingCarOfMaxPosition = racingCars.getRacingCarMaxPosition();
+        RacingCar racingCarOfMaxPosition = racingCars.getRacingCarWithMaxPosition();
         List<RacingCar> racingCarList = racingCars.getRacingCars();
         ArrayList<RacingCar> winners = new ArrayList<>();
 

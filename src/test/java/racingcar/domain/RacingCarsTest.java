@@ -29,4 +29,21 @@ class RacingCarsTest {
 
     }
 
+
+    @Test
+    @DisplayName("최대 거리 이동한 자동차를 뽑는 테스트")
+    void getRacingCarWithMaxPositionTest() {
+
+        RacingCar racingCar1 = RacingCar.generateRacingCar("pobi");
+        RacingCar racingCar2 = RacingCar.generateRacingCar("crong");
+        RacingCar maxPositionCar = RacingCar.generateRacingCar("honux");
+        maxPositionCar.goOrStay(9);
+        maxPositionCar.goOrStay(9);
+
+        RacingCars racingCars = new RacingCars(List.of(racingCar1, racingCar2, maxPositionCar));
+
+        RacingCar actual = racingCars.getRacingCarWithMaxPosition();
+        assertThat(actual).isEqualTo(maxPositionCar);
+    }
+
 }
