@@ -84,9 +84,15 @@ public class RacingCars {
 
         List<String> winnerNameBucket = new ArrayList<>();
         for (RacingCar racingCar : racingCarBucket) {
-            if (racingCar.isSamePosition(bestPositionCar)) {
-                winnerNameBucket.add(racingCar.getName());
-            }
+            winnerNameBucket = updateWinnerNameBucket(winnerNameBucket, bestPositionCar, racingCar);
+        }
+        return winnerNameBucket;
+    }
+
+    private List<String> updateWinnerNameBucket(List<String> winnerNameBucket,
+        RacingCar bestPositionCar, RacingCar racingCar) {
+        if (racingCar.isSamePosition(bestPositionCar)) {
+            winnerNameBucket.add(racingCar.getName());
         }
         return winnerNameBucket;
     }
