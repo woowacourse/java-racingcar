@@ -6,6 +6,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import racingcar.domain.Car;
+import racingcar.domain.CarFactory;
+import racingcar.domain.RacingCars;
+
 public class RacingCarsTest {
 	private static final String ERROR_MESSAGE = "[ERROR]";
 

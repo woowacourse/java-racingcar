@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 public class Referee {
 	private static final int MOVE_CRITERIA = 4;

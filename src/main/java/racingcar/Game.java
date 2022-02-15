@@ -4,6 +4,14 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import racingcar.domain.Car;
+import racingcar.domain.CarDto;
+import racingcar.domain.CarFactory;
+import racingcar.domain.RacingCars;
+import racingcar.domain.Referee;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
+
 public class Game {
 	private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
 	private static final int RANDOM_VALUE_BOUND = 9;
