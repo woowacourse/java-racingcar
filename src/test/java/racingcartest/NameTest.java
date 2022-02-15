@@ -5,21 +5,19 @@ import static org.assertj.core.api.AssertionsForClassTypes.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import racingcar.util.Checker;
+import racingcar.view.InputView;
 
 public class NameTest {
-	Checker checker = new Checker();
 
 	@ParameterizedTest
 	@ValueSource(strings = {"", "abc,abc", "!@#,abc", "asdkqop,qwe", ",,,,"})
 	public void nameExceptNullTest(String input) {
-		assertThat(checker.checkNameConditions(input)).contains("[ERROR]");
+		assertThatThrownBy(() -> InputView.checkNameError(input)).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
 	}
 
 	@Test
 	public void nameNullTest() {
-		assertThat(checker.checkNameConditions(null)).contains("[ERROR]");
-	}
+        assertThatThrownBy(() -> InputView.checkNameError(null)).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+    }
 
 }

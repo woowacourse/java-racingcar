@@ -63,7 +63,7 @@ public class InputView {
         isBlank(stringInput);
     }
 
-    private static void checkNameError(String nameInput) throws IllegalArgumentException {
+    public static void checkNameError(String nameInput) throws IllegalArgumentException {
         nullOrBlank(nameInput);
         String[] commaSeparateName = nameInput.split(StringConst.DELIMITER.getValue());
         isZeroCars(commaSeparateName);
@@ -72,7 +72,7 @@ public class InputView {
         isDuplicate(commaSeparateName);
     }
 
-    private static void checkTurnError(String turnInput) throws IllegalArgumentException {
+    public static void checkTurnError(String turnInput) throws IllegalArgumentException {
         nullOrBlank(turnInput);
         isIntNum(turnInput);
     }
