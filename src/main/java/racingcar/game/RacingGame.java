@@ -20,7 +20,7 @@ public class RacingGame {
     private static final int ZERO = 0;
     private static final int FIRST_INDEX = 0;
 
-    private List<Car> carList = new ArrayList<>();
+    private List<Car> carList;
     private int totalAttemptCount;
 
     public void start() throws IllegalArgumentException {
