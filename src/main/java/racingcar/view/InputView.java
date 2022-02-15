@@ -8,11 +8,11 @@ public class InputView {
 
     public static String inputCarNames() {
         System.out.println(NoticeMessages.INPUT_CAR_NAMES);
-        return scanner.next();
+        return scanner.nextLine();
     }
 
     public static String inputTryCount() {
         System.out.println(NoticeMessages.INPUT_TRY_CNT);
-        return scanner.next();
+        return scanner.nextLine();
     }
 }
