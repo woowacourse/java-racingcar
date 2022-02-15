@@ -1,7 +1,7 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import racingcar.utils.RandomIntegerGenerator;
 
 public class RacingGame {
@@ -21,10 +21,10 @@ public class RacingGame {
     }
 
     public List<Car> findWinners() {
-        List<Car> winners = new ArrayList<>();
         int maxPosition = findMaxPosition();
-        cars.forEach((car) -> addWinner(winners, maxPosition, car));
-        return winners;
+        return cars.stream()
+                .filter(car -> car.isHere(maxPosition))
+                .collect(Collectors.toList());
     }
 
     private void randomDrawAndProceed(Car car) {
@@ -38,11 +38,5 @@ public class RacingGame {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(MIN_POSITION);
-    }
-
-    private void addWinner(List<Car> winners, int maxPosition, Car car) {
-        if (car.isHere(maxPosition)) {
-            winners.add(car);
-        }
     }
 }

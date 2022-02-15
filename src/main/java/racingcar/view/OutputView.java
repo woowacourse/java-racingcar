@@ -9,6 +9,7 @@ public class OutputView {
     private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
     private static final String CAR_INFO_SEPARATOR = " : ";
     private static final String CAR_POSITION_BAR = "-";
+    private static final String WINNER_NAME_DELIMITER = ", ";
 
     public static void printRoundResultMessage() {
         System.out.println(ROUND_RESULT);
@@ -31,7 +32,7 @@ public class OutputView {
     private static String toWinnerNameString(List<Car> winners) {
         return winners.stream()
                 .map(Car::getName)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(WINNER_NAME_DELIMITER));
     }
 
 }
