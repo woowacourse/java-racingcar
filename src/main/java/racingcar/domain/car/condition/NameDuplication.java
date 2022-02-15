@@ -5,16 +5,16 @@ import java.util.List;
 
 public enum NameDuplication {
 
-    MAXIMUM(1);
+    ALLOWED_MAXIMUM_COUNT(1);
 
-    private final int number;
+    private final int count;
 
-    NameDuplication(int number) {
-        this.number = number;
+    NameDuplication(int count) {
+        this.count = count;
     }
 
     public static boolean isExcessiveDuplicated(List<String> names, String name) {
-        return (Collections.frequency(names, name) > MAXIMUM.number);
+        return (Collections.frequency(names, name) > ALLOWED_MAXIMUM_COUNT.count);
     }
 
 }
