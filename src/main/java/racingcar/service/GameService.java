@@ -15,7 +15,7 @@ public class GameService {
         setTryNumFromInput();
     }
     
-    public static void raceStart() {
+    public static void runRace() {
         Output.printStartRace();
         for (int i = 0; i < tryNum; i++) {
             cars.moveAllByRandom();
@@ -32,5 +32,9 @@ public class GameService {
 
     private static void setTryNumFromInput() {
         tryNum = InputService.getTryNum();
+    }
+
+    public static void showWinners() {
+        Output.printWinner(cars.findAllWinnerNames());
     }
 }
