@@ -5,10 +5,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class AttemptTest {
 
-  @DisplayName("new Attempt() 테스트")
+  @DisplayName("Attempt() 테스트")
   @Test
   public void constructor_test() throws Exception {
     String input = "3";
@@ -16,32 +18,30 @@ public class AttemptTest {
     assertThat(attempt.get()).isEqualTo(3);
   }
 
-  @DisplayName("isLeft() 테스트")
-  @Test
-  public void isLeft_test() throws Exception {
-    String inputZero = "0";
-    String inputOne = "1";
-    Attempt attemptZero = new Attempt(inputZero);
-    Attempt attemptOne = new Attempt(inputOne);
-    assertThat(attemptZero.isLeft()).isFalse();
-    assertThat(attemptOne.isLeft()).isTrue();
-  }
-
-  @DisplayName("decrease() 테스트")
-  @Test
-  public void decrease_test() throws Exception {
-    String input = "3";
+  @ParameterizedTest(name = "isLeft() 테스트 : {0}")
+  @ValueSource(strings = {"0"})
+  public void has_false_test(String input) throws Exception {
     Attempt attempt = new Attempt(input);
-    assertThat(attempt.get()).isEqualTo(3);
-    attempt.decrease();
-    assertThat(attempt.get()).isEqualTo(2);
-    attempt.decrease();
-    assertThat(attempt.get()).isEqualTo(1);
-    attempt.decrease();
-    assertThat(attempt.get()).isEqualTo(0);
+    assertThat(attempt.isLeft()).isFalse();
   }
 
-  @DisplayName("validNumberFormat() 입력 값이 숫자가 아닌 경우 예외 테스트")
+  @ParameterizedTest(name = "isLeft() 테스트 : {0}")
+  @ValueSource(strings = {"1", "10"})
+  public void has_true_test(String input) throws Exception {
+    Attempt attempt = new Attempt(input);
+    assertThat(attempt.isLeft()).isTrue();
+  }
+
+  @ParameterizedTest(name = "decrease() 테스트 : {0}")
+  @ValueSource(strings = {"1", "3", "10"})
+  public void decrease_test(String input) throws Exception {
+    Attempt attempt = new Attempt(input);
+    attempt.decrease();
+    int decreasedNumber = Integer.parseInt(input) - 1;
+    assertThat(attempt.get()).isEqualTo(decreasedNumber);
+  }
+
+  @DisplayName("validNumberFormat() 문자 입력 예외 테스트")
   @Test
   public void non_number_input_exception_test() throws Exception {
     String input = "abc";
@@ -49,7 +49,7 @@ public class AttemptTest {
         .isInstanceOf(RuntimeException.class);
   }
 
-  @DisplayName("validNegative() 입력 값이 음수인 경우 예외 테스트")
+  @DisplayName("validNegative() 음수 입력 예외 테스트")
   @Test
   public void negative_input_exception_test() throws Exception {
     String input = "-3";

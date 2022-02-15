@@ -3,15 +3,16 @@ package racingcar;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayInputStream;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import java.util.stream.Stream;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class RacingCarTest {
 
-  @DisplayName("play() 입력 값에 중간에 공백이 있는 경우 예외 테스트")
-  @Test
-  public void play_middle_empty_input_exception_test() throws Exception {
-    String[] input = {"name1,,name3", "5"};
+  @ParameterizedTest(name = "play() 공백 입력 예외 테스트 : {0}")
+  @MethodSource("playEmptyInputExceptionTestSet")
+  public void play_middle_empty_input_exception_test(String[] input) throws Exception {
     byte[] buf = String.join("\n", input).getBytes();
     System.setIn(new ByteArrayInputStream(buf));
     RacingCar racingCar = new RacingCar();
@@ -19,25 +20,11 @@ public class RacingCarTest {
         .isInstanceOf(RuntimeException.class);
   }
 
-  @DisplayName("play() 입력 값에 처음에 공백이 있는 경우 예외 테스트")
-  @Test
-  public void play_first_empty_input_exception_test() throws Exception {
-    String[] input = {",name1", "5"};
-    byte[] buf = String.join("\n", input).getBytes();
-    System.setIn(new ByteArrayInputStream(buf));
-    RacingCar racingCar = new RacingCar();
-    assertThatThrownBy(() -> racingCar.play())
-        .isInstanceOf(RuntimeException.class);
-  }
-
-  @DisplayName("play() 입력 값에 마지막에 공백이 있는 경우 예외 테스트")
-  @Test
-  public void play_last_empty_input_exception_test() throws Exception {
-    String[] input = {"name1,name2,", "5"};
-    byte[] buf = String.join("\n", input).getBytes();
-    System.setIn(new ByteArrayInputStream(buf));
-    RacingCar racingCar = new RacingCar();
-    assertThatThrownBy(() -> racingCar.play())
-        .isInstanceOf(RuntimeException.class);
+  private static Stream<Arguments> playEmptyInputExceptionTestSet() {
+    return Stream.of(
+        Arguments.of((Object) new String[]{",name2,name3", "5"}),
+        Arguments.of((Object) new String[]{"name1,,name3", "5"}),
+        Arguments.of((Object) new String[]{"name1,name2,", "5"})
+    );
   }
 }

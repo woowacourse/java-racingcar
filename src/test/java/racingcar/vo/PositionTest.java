@@ -4,10 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
 public class PositionTest {
 
-  @DisplayName("new Position() 테스트")
+  @DisplayName("Position() 테스트")
   @Test
   public void constructor_test() throws Exception {
     Position position = new Position();
@@ -25,9 +26,11 @@ public class PositionTest {
   @DisplayName("compareTo() 테스트")
   @Test
   public void compareTo_test() throws Exception {
-    Position position = new Position();
-    Position testPosition = new Position();
-    position.increase();
-    assertThat(position.compareTo(testPosition)).isGreaterThan(0);
+    Position positionZero = new Position();
+    Position positionOne = new Position();
+    positionOne.increase();
+    assertThat(positionZero.compareTo(positionZero)).isEqualTo(0);
+    assertThat(positionZero.compareTo(positionOne)).isLessThan(0);
+    assertThat(positionOne.compareTo(positionZero)).isGreaterThan(0);
   }
 }

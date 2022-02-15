@@ -3,18 +3,16 @@ package racingcar.vo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.view.OutputView;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class CarsTest {
 
-  @DisplayName("생성자 테스트")
+  @DisplayName("Cars() 테스트")
   @Test
   public void constructor_test() throws Exception {
     String[] name = {"name1", "name2"};
@@ -22,22 +20,30 @@ public class CarsTest {
     assertThat(cars.toString()).contains(name);
   }
 
-  @DisplayName("repeatRaceBy() 테스트")
-  @Test
-  public void repeatRaceBy_test() throws Exception {
-    OutputStream output = new ByteArrayOutputStream();
-    System.setOut(new PrintStream(output));
-    String[] name = {"name1"};
-    Cars cars = new Cars(name);
-    Attempt attempt = new Attempt("5");
+  @ParameterizedTest(name = "repeatRaceBy() 테스트 : {0}, {1}")
+  @MethodSource("repeatRaceByTestSet")
+  public void repeatRaceBy_test(String[] nameInput, String attemptInput) throws Exception {
+    Cars cars = new Cars(nameInput);
+    Attempt attempt = new Attempt(attemptInput);
     RoundResults result = cars.repeatRaceBy(attempt);
-    OutputView.printRaceResult(result);
-    String out = output.toString();
-    assertThat(attempt.isLeft()).isFalse();
-    assertThat(out).contains("실행 결과", name[0]);
+    for (int i = 0; i < Integer.parseInt(attemptInput); i++) {
+      assertThat(result.hasResult()).isTrue();
+      RoundResult roundResult = result.poll();
+      assertThat(roundResult.getNames()).hasSize(nameInput.length);
+      assertThat(roundResult.getNames()).contains(nameInput);
+    }
+    assertThat(result.hasResult()).isFalse();
   }
 
-  @DisplayName("중복된 이름이 입력되었을 때 예외 테스트")
+  private static Stream<Arguments> repeatRaceByTestSet() {
+    return Stream.of(
+        Arguments.of(new String[]{"name1", "name2"}, "5"),
+        Arguments.of(new String[]{"name3", "name4"}, "3"),
+        Arguments.of(new String[]{"name5", "name6"}, "1")
+    );
+  }
+
+  @DisplayName("Cars() 중복된 이름 입력 예외 테스트")
   @Test
   public void duplicate_car_name_exception_test() throws Exception {
     String[] name = {"name1", "name1"};
