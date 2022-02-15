@@ -5,14 +5,6 @@ import calculator.utils.InputValidator;
 import calculator.view.OutputView;
 
 public class CalculatorController {
-    private final static CalculatorController CALCULATOR_CONTROLLER = new CalculatorController();
-
-    private CalculatorController() {
-    }
-
-    public static CalculatorController getCalculatorController() {
-        return CALCULATOR_CONTROLLER;
-    }
 
     public void runCalculator(String input){
         Calculator calculator = new Calculator();

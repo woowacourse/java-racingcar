@@ -5,11 +5,6 @@ import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 
 public class CarGameController {
-    private final CarGameController gameController;
-
-    public CarGameController() {
-        this.gameController = new CarGameController();
-    }
 
     public void playGame() {
         RacingCarGame racingCarGame = makeRacingCarGameObjectByUserInput();

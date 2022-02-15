@@ -1,8 +1,8 @@
 package calculator.utils;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class InputValidator {
     public static final String ERROR_NUMBER_RIGHT_FORMAT = "[error] 숫자를 입력해주세요.";

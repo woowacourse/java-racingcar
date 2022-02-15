@@ -1,10 +1,10 @@
 package calculator.model;
 
-import calculator.utils.InputValidator;
-
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import calculator.utils.InputValidator;
 
 public class Calculator {
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");

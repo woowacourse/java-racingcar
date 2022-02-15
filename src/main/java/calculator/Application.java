@@ -1,14 +1,14 @@
 package calculator;
 
+import java.io.IOException;
+
 import calculator.controller.CalculatorController;
 import calculator.view.InputView;
-
-import java.io.IOException;
 
 public class Application {
 
     public static void main(String[] args) throws IOException {
-        CalculatorController calculatorController = CalculatorController.getCalculatorController();
+        CalculatorController calculatorController = new CalculatorController();
         calculatorController.runCalculator(InputView.askInput());
     }
 }
