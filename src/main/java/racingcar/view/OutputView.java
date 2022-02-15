@@ -3,9 +3,12 @@ package racingcar.view;
 import java.util.List;
 import racingcar.message.NoticeMessages;
 import racingcar.model.Car;
+import racingcar.model.Winners;
 
 public class OutputView {
     private static final String DISTANCE_MARK = "-";
+    private static final String DELIMITER = ", ";
+    private static final String WINNER_SENTENCE = "가 최종 우승했습니다.";
 
     public static void printException(Exception exception) {
         System.out.println(exception.getMessage());
@@ -17,6 +20,10 @@ public class OutputView {
 
     public static void printString(String string) {
         System.out.println(string);
+    }
+
+    public static void printWinners(Winners winners) {
+        System.out.println(String.join(DELIMITER, winners.getNames()) + WINNER_SENTENCE);
     }
 
     public static void printCarsStatus(List<Car> cars) {

@@ -22,7 +22,7 @@ class WinnersTest {
         Winners winners = new Winners(cars);
 
         // then
-        assertThat(winners.getWinnersSentence())
+        assertThat(winners.getNames())
                 .contains(name1, name2);
     }
 
@@ -43,7 +43,7 @@ class WinnersTest {
         Winners winners = new Winners(cars);
 
         // then
-        assertThat(winners.getWinnersSentence())
+        assertThat(winners.getNames())
                 .doesNotContain(name1);
     }
 

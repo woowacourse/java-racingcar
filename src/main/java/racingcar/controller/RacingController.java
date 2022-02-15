@@ -41,7 +41,7 @@ public class RacingController {
 
     private void terminate() {
         OutputView.printCarsStatus(cars.getCars());
-        OutputView.printString(cars.getWinners().getWinnersSentence());
+        OutputView.printWinners(cars.getWinners());
     }
 }
 
