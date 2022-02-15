@@ -6,11 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.model.car.Car;
-import racingcar.model.car.Winners;
 
-@SuppressWarnings("NonAsciiCharacters")
 class WinnersTest {
     String name1 = "오찌";
     String name2 = "연로그";
@@ -21,7 +19,7 @@ class WinnersTest {
     private List<Car> cars;
 
     @BeforeEach
-    public void 자동차_생성() {
+    public void beforeEach() {
         cars = new ArrayList<>();
 
         car1 = new Car(name1);
@@ -32,7 +30,8 @@ class WinnersTest {
     }
 
     @Test
-    public void 우승자_1명() {
+    @DisplayName("단독 우승자가 나온다")
+    public void soleWinner() {
         // given
         car1.goOrStop(4);
 
@@ -44,7 +43,8 @@ class WinnersTest {
     }
 
     @Test
-    public void 공동우승() {
+    @DisplayName("공동 우승자가 나온다")
+    public void coWinner() {
         // given
         car1.goOrStop(4);
         car2.goOrStop(4);
