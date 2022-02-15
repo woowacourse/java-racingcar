@@ -2,16 +2,16 @@ package racingcar.domain.car.condition;
 
 public enum ForwardCondition {
 
-    MINIMUM(4);
+    ALLOWED_MINIMUM_RANGE(4);
 
-    private final int number;
+    private final int range;
 
-    ForwardCondition(int number) {
-        this.number = number;
+    ForwardCondition(int range) {
+        this.range = range;
     }
 
     public static boolean isInRange(int number) {
-        return (number >= MINIMUM.number);
+        return (number >= ALLOWED_MINIMUM_RANGE.range);
     }
 
 }
