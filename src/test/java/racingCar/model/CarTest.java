@@ -14,6 +14,18 @@ class CarTest {
     }
 
     @Test
+    void go_3넣으면_이동안함() {
+        car.go(3);
+        assertThat(car.position.get()).isEqualTo(0);
+    }
+
+    @Test
+    void go_4넣으면_이동() {
+        car.go(4);
+        assertThat(car.position.get()).isEqualTo(1);
+    }
+
+    @Test
     void 특정위치여부_확인_잘되는지_검사() {
         car.move();
         assertThat(car.position.isSame(1)).isTrue();

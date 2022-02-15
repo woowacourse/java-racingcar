@@ -1,8 +1,7 @@
 package racingCar.model;
 
-import racingCar.model.utlis.Util;
-
 public class Car {
+    private static final int GO_NUMBER = 4;
     public final Name name;
     public final Position position = new Position();
 
@@ -10,9 +9,8 @@ public class Car {
         this.name = new Name(name);
     }
 
-    public void go() {
-        final int goNumber = 4;
-        if (Util.getRandomInteger() >= goNumber) {
+    public void go(int number) {
+        if (number >= GO_NUMBER) {
             move();
         }
     }
