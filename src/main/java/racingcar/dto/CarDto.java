@@ -8,13 +8,13 @@ public class CarDto {
     private final String carName;
     private final int distance;
 
-    public CarDto(String carName, int distance){
+    public CarDto(String carName, int distance) {
         this.carName = carName;
         this.distance = distance;
     }
 
-    public static CarDto toDto(Car car){
-        return new CarDto(car.getCarName(),car.getDistance());
+    public static CarDto toDto(Car car) {
+        return new CarDto(car.getCarName(), car.getDistance());
     }
 
     public String carName() {

@@ -4,7 +4,7 @@ import racingcar.dto.CarDto;
 
 import java.util.Objects;
 
-public class Car implements Comparable<Car>{
+public class Car implements Comparable<Car> {
     private static final int INITIAL_DISTANCE = 0;
 
     private final CarName carName;
@@ -15,7 +15,7 @@ public class Car implements Comparable<Car>{
         distance = INITIAL_DISTANCE;
     }
 
-    public String getCarName(){
+    public String getCarName() {
         return carName.value();
     }
 
@@ -28,7 +28,6 @@ public class Car implements Comparable<Car>{
             distance++;
         }
     }
-
 
     public boolean isSameDistance(Car otherCar) {
         return this.distance == otherCar.distance;

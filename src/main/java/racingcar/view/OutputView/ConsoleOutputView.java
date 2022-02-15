@@ -13,7 +13,7 @@ public class ConsoleOutputView implements OutputView {
     private static final String WINNER_DELIMITER = ",";
     private static final String NEW_LINE = "\n";
 
-    public void printResultMessage(){
+    public void printResultMessage() {
         System.out.println(NEW_LINE + RESULT_MESSAGE);
     }
 

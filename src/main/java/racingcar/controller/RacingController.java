@@ -23,11 +23,13 @@ public class RacingController {
 
     public void run() {
         outputView.printResultMessage();
+
         while(trialCount > 0) {
             cars.move(moveOrStop);
             outputView.printRoundStatus(cars.getCarInfos());
             trialCount--;
         }
+
         outputView.printWinners(cars.getFarthestCars());
     }
 }

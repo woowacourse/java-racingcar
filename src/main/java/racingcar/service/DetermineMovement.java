@@ -17,7 +17,7 @@ public class DetermineMovement implements MoveOrStop {
         return false;
     }
 
-    private boolean judgeToMove(int randomNumber){
+    private boolean judgeToMove(int randomNumber) {
         return randomNumber >= MOVE_CRITERION;
     }
 }
