@@ -5,12 +5,15 @@ import static carracing.view.messages.ExceptionMessage.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
 
 public class InputView {
+	private static final String CAR_DELIMITER  = ",";
 	private static final String NUMBER_REGEX = "^[0-9]+$";
 	private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-	public static String getCarNames() {
+	public static List<String> getCarNames() {
 		String line = "";
 		try {
 			line = bufferedReader.readLine();
@@ -19,7 +22,12 @@ public class InputView {
 			OutputView.printException(e.getMessage());
 			getCarNames();
 		}
-		return line;
+		List<String> carNames = splitCarNames(line);
+		return carNames;
+	}
+
+	private static List<String> splitCarNames(String readLine) {
+		return Arrays.asList(readLine.split(CAR_DELIMITER));
 	}
 
 	public static int getNumberOfGames() {

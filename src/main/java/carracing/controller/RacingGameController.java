@@ -1,7 +1,6 @@
 package carracing.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import carracing.model.Car;
@@ -11,7 +10,6 @@ import carracing.view.OutputView;
 
 public class RacingGameController {
 	private static final int ZERO = 0;
-	private static final String DELIMITER_REGEX = ",";
 
 	private Cars cars;
 	private int numberOfGames;
@@ -35,8 +33,7 @@ public class RacingGameController {
 
 	private void getCars() {
 		OutputView.printInputCarName();
-		String readLine = InputView.getCarNames();
-		List<String> carNames = splitCarNames(readLine);
+		List<String> carNames = InputView.getCarNames();
 		try {
 			createCars(carNames);
 		} catch (IllegalArgumentException e) {
@@ -57,10 +54,6 @@ public class RacingGameController {
 
 	private void endGame() {
 		OutputView.printWinners(cars.getWinners());
-	}
-
-	private List<String> splitCarNames(String readLine) {
-		return Arrays.asList(readLine.split(DELIMITER_REGEX));
 	}
 
 	private void createCars(List<String> carNames) {
