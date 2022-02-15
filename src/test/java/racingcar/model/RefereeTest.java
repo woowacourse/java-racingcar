@@ -1,7 +1,5 @@
 package racingcar.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -14,15 +12,15 @@ class RefereeTest {
         List<Car> cars = new ArrayList<>();
 
         Car eden = new Car("Eden");
-        eden.move();
-        eden.move();
+        eden.tryMove(5);
+        eden.tryMove(5);
 
         Car thor = new Car("Thor");
-        thor.move();
-        thor.move();
+        thor.tryMove(5);
+        thor.tryMove(5);
 
         Car pobi = new Car("Pobi");
-        pobi.move();
+        pobi.tryMove(5);
 
         cars.add(eden);
         cars.add(thor);
