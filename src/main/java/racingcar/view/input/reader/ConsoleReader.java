@@ -16,7 +16,7 @@ public class ConsoleReader implements Reader {
         ) {
             return bufferedReader.readLine();
         } catch (IOException exception) {
-            throw new WrongArgumentException(ReaderExceptionStatus.READER_CANNOT_READ_EXCEPTION_STATUS);
+            throw new WrongArgumentException(ReaderExceptionStatus.READER_CANNOT_READ);
         }
     }
 

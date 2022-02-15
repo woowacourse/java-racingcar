@@ -16,7 +16,7 @@ public class NumberValidator {
 
     private void validateNumberIsNegative(int number) {
         if (number < 0) {
-            throw new WrongArgumentException(NumberExceptionStatus.NUMBER_IS_NEGATIVE_EXCEPTION_STATUS);
+            throw new WrongArgumentException(NumberExceptionStatus.NUMBER_IS_NEGATIVE);
         }
     }
 

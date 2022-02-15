@@ -19,19 +19,19 @@ public class CarValidator {
 
     private void validateNameIsNull(String name) {
         if (name == null) {
-            throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_NULL_EXCEPTION_STATUS);
+            throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_NULL);
         }
     }
 
     private void validateNameIsEmpty(String name) {
         if (name.isEmpty()) {
-            throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_EMPTY_EXCEPTION_STATUS);
+            throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_EMPTY);
         }
     }
 
     private void validateNameIsTooLong(String name) {
         if (NameLength.isTooLong(name)) {
-            throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_TOO_LONG_EXCEPTION_STATUS);
+            throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_TOO_LONG);
         }
     }
 

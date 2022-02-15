@@ -4,8 +4,8 @@ import racingcar.exception.status.ExceptionStatus;
 
 public enum RoundCountExceptionStatus implements ExceptionStatus {
 
-    ROUND_IS_NOT_NUMERIC_EXCEPTION_STATUS("이동 횟수는 숫자여야 합니다."),
-    ROUND_IS_NOT_POSITIVE_EXCEPTION_STATUS("이동 횟수는 양수여야 합니다.");
+    ROUND_IS_NOT_NUMERIC("이동 횟수는 숫자여야 합니다."),
+    ROUND_IS_NOT_POSITIVE("이동 횟수는 양수여야 합니다.");
 
     private final String message;
 

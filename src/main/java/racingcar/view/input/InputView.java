@@ -40,7 +40,7 @@ public class InputView {
         try {
             return Integer.parseInt(inputValue.trim());
         } catch (NumberFormatException exception) {
-            throw new WrongArgumentException(RoundCountExceptionStatus.ROUND_IS_NOT_NUMERIC_EXCEPTION_STATUS);
+            throw new WrongArgumentException(RoundCountExceptionStatus.ROUND_IS_NOT_NUMERIC);
         }
     }
 

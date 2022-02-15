@@ -17,7 +17,7 @@ public class RoundValidator {
 
     private void validateCountPositive(int count) {
         if (RoundCountRange.isTooSmall(count)) {
-            throw new WrongArgumentException(RoundCountExceptionStatus.ROUND_IS_NOT_POSITIVE_EXCEPTION_STATUS);
+            throw new WrongArgumentException(RoundCountExceptionStatus.ROUND_IS_NOT_POSITIVE);
         }
     }
 

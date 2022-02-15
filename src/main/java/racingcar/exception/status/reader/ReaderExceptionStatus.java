@@ -4,7 +4,7 @@ import racingcar.exception.status.ExceptionStatus;
 
 public enum ReaderExceptionStatus implements ExceptionStatus {
 
-    READER_CANNOT_READ_EXCEPTION_STATUS("입력을 받아올 수 없습니다.");
+    READER_CANNOT_READ("입력을 받아올 수 없습니다.");
 
     private final String message;
 

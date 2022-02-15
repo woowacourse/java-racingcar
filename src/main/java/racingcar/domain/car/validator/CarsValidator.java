@@ -19,7 +19,7 @@ public class CarsValidator {
 
     private void validateNameIsDuplicated(List<String> names) {
         if (checkNameIsDuplicated(names)) {
-            throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_DUPLICATED_EXCEPTION_STATUS);
+            throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_DUPLICATED);
         }
     }
 

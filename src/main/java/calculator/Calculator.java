@@ -40,7 +40,7 @@ public class Calculator {
             NumberValidator.validateNumber(number);
             return number;
         } catch (NumberFormatException exception) {
-            throw new WrongArgumentException(NumberExceptionStatus.NUMBER_IS_NOT_NUMERIC_EXCEPTION_STATUS);
+            throw new WrongArgumentException(NumberExceptionStatus.NUMBER_IS_NOT_NUMERIC);
         }
     }
 
