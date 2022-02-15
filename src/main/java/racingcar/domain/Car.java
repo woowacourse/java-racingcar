@@ -4,9 +4,7 @@ import java.util.Objects;
 import java.util.function.Function;
 
 import racingcar.controller.dto.CarDto;
-import racingcar.domain.strategy.FixedMovingStrategy;
 import racingcar.domain.strategy.MovingStrategy;
-import racingcar.domain.strategy.RandomMovingStrategy;
 import racingcar.domain.vo.CarName;
 
 public class Car {
@@ -15,20 +13,42 @@ public class Car {
 	private int position = 0;
 	private MovingStrategy movingStrategy;
 
-	protected Car() {
+	private Car() {
 	}
 
-	protected Car(final String name, final MovingStrategy movingStrategy) {
-		this.name = new CarName(name);
-		this.movingStrategy = movingStrategy;
+	private Car(Builder builder) {
+		this.name = builder.name;
+		this.position = builder.position;
+		this.movingStrategy = builder.movingStrategy;
 	}
 
-	public static Car createRandomMovingCar(final String name) {
-		return new Car(name, new RandomMovingStrategy());
+	public static class Builder {
+		private CarName name;
+		private int position = 0;
+		private MovingStrategy movingStrategy;
+
+		public Builder name(String name) {
+			this.name = new CarName(name);
+			return this;
+		}
+
+		public Builder position(int position) {
+			this.position = position;
+			return this;
+		}
+
+		public Builder movingStrategy(MovingStrategy movingStrategy) {
+			this.movingStrategy = movingStrategy;
+			return this;
+		}
+
+		public Car build() {
+			return new Car(this);
+		}
 	}
 
-	public static Car createFixedMovingCar(final String name) {
-		return new Car(name, new FixedMovingStrategy());
+	public static Builder builder() {
+		return new Builder();
 	}
 
 	public void move(final int distance) {
@@ -39,10 +59,6 @@ public class Car {
 		if (movingStrategy.movable()) {
 			this.position++;
 		}
-	}
-
-	public boolean isSamePosition(int position) {
-		return this.position == position;
 	}
 
 	public boolean isSamePosition(final Car maxCar) {

@@ -10,10 +10,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import racingcar.domain.strategy.FixedMovingStrategy;
 import racingcar.domain.strategy.MovingStrategy;
 
 @DisplayName("자동차 도메인 TEST")
-public class CarTest extends Car {
+public class CarTest {
 
 	@Nested
 	@DisplayName("자동차 움직임(Moving)")
@@ -22,23 +23,38 @@ public class CarTest extends Car {
 		@DisplayName("움직일 때 위치는 +1 이 된다")
 		public void car_move() {
 			// given
-			Car car = Car.createFixedMovingCar("foo");
+			final Car car = Car.builder()
+				.position(0)
+				.movingStrategy(new FixedMovingStrategy())
+				.build();
+
+			final Car movedCar = Car.builder()
+				.position(1)
+				.build();
 
 			// when & then
 			car.move();
-			assertThat(car.isSamePosition(1)).isTrue();
+			assertThat(car.isSamePosition(movedCar)).isTrue();
 		}
 
 		@Test
 		@DisplayName("움직이지 않을 때 위치는 그대로다")
 		public void car_not_move() {
 			// given
-			MovingStrategy movingStrategy = () -> false;
-			Car car = new Car("foo", movingStrategy);
+			final MovingStrategy notMoving = () -> false;
+
+			final Car car = Car.builder()
+				.position(0)
+				.movingStrategy(notMoving)
+				.build();
+
+			final Car notMovedCar = Car.builder()
+				.position(0)
+				.build();
 
 			// when & then
 			car.move();
-			assertThat(car.isSamePosition(0)).isTrue();
+			assertThat(car.isSamePosition(notMovedCar)).isTrue();
 		}
 	}
 
@@ -51,17 +67,21 @@ public class CarTest extends Car {
 		@DisplayName("허용되지 않는 문자를 입력했을 때 예외가 발생한다")
 		public void Not_Available_Character(String carName) {
 			assertThatThrownBy(
-				() -> Car.createRandomMovingCar(carName)
-			)
+				() -> Car.builder()
+					.name(carName)
+					.build())
 				.isInstanceOf(RuntimeException.class)
 				.hasMessage(NOT_ALLOWED_FORMAT_MESSAGE);
+
 		}
 
 		@Test
 		@DisplayName("null을 입력했을 때 예외가 발생한다")
 		public void Not_Available_Null() {
 			assertThatThrownBy(
-				() -> Car.createRandomMovingCar(null))
+				() -> Car.builder()
+					.name(null)
+					.build())
 				.isInstanceOf(RuntimeException.class)
 				.hasMessage(INVALID_CAR_NAME_SHOULD_BE_ONE_MORE_CHARACTER);
 		}
@@ -70,7 +90,9 @@ public class CarTest extends Car {
 		@DisplayName("차 이름이 5글자를 넘어갔을 경우 예외가 발생한다")
 		public void input_car_name_exceed_length() {
 			assertThatThrownBy(
-				() -> Car.createRandomMovingCar("numnum"))
+				() -> Car.builder()
+					.name("abcdef")
+					.build())
 				.isInstanceOf(RuntimeException.class)
 				.hasMessage(EXCEED_LENGTH_ERROR_MESSAGE);
 		}
@@ -80,8 +102,9 @@ public class CarTest extends Car {
 		@DisplayName("정상 입력을 했을 때 예외가 발생하지 않는다")
 		public void Available_Character(String carName) {
 			Assertions.assertDoesNotThrow(
-				() -> Car.createRandomMovingCar(carName)
-			);
+				() -> Car.builder()
+					.name(carName)
+					.build());
 		}
 	}
 }

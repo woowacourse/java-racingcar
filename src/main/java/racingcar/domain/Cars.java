@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.domain.strategy.RandomMovingStrategy;
+
 public class Cars {
 
 	private static final String CAR_NAME_DELIMINATOR = ",";
@@ -22,7 +24,11 @@ public class Cars {
 		final String[] parseCarNames = splitCarNames(carNames);
 
 		for (final String carName : parseCarNames) {
-			final Car car = Car.createRandomMovingCar(carName);
+			final Car car = Car.builder()
+				.name(carName)
+				.movingStrategy(new RandomMovingStrategy())
+				.build();
+
 			cars.add(car);
 		}
 		validateCarNamesEmpty(parseCarNames);
@@ -66,8 +72,6 @@ public class Cars {
 	private Car getMaxPositionCar() {
 		return cars.stream()
 			.max(Car::comparePositionTo)
-			.stream()
-			.findAny()
 			.orElseThrow(() -> new RuntimeException(NOT_FOUND_CARS_MESSAGE));
 	}
 }

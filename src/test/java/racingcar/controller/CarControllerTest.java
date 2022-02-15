@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
+import racingcar.domain.strategy.RandomMovingStrategy;
 import racingcar.repository.CarRepository;
 import racingcar.view.InputView;
 
@@ -26,9 +27,9 @@ public class CarControllerTest {
     void setUp() {
 
         // given
-        car1 = Car.createFixedMovingCar("foo");
-        car2 = Car.createFixedMovingCar("boo");
-        car3 = Car.createFixedMovingCar("bar");
+        car1 = Car.builder().movingStrategy(new RandomMovingStrategy()).build();
+        car2 = Car.builder().movingStrategy(new RandomMovingStrategy()).build();
+        car3 = Car.builder().movingStrategy(new RandomMovingStrategy()).build();
 
         carRepository = new CarRepository();
         carController = new CarController(carRepository, inputView);
