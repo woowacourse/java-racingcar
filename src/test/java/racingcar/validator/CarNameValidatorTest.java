@@ -12,7 +12,7 @@ public class CarNameValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {",", "#", "panda,", "#philz", ",phobi,"})
-    @DisplayName("이름에 허용되지 않는 문자")
+    @DisplayName("이름에 허용되지 않는 문자가 들어오면 유효성 검사에서 예외 발생")
     public void Not_Available_Character(String input) {
         assertThatThrownBy(
                 () -> CarNameValidator.validateCarName(input)
@@ -20,7 +20,7 @@ public class CarNameValidatorTest {
     }
 
     @Test
-    @DisplayName("이름에 허용되지 않는 문자 : null")
+    @DisplayName("이름에 null 값이 들어오면 유효성 검사에서 예외 발생")
     public void Not_Available_Null() {
         assertThatThrownBy(
                 () -> CarNameValidator.validateCarName(null)
@@ -28,27 +28,10 @@ public class CarNameValidatorTest {
     }
 
     @Test
-    @DisplayName("한 번 해보는 정상입력")
+    @DisplayName("정상입력")
     public void Available_Character() {
         Assertions.assertDoesNotThrow(() -> {
             CarNameValidator.validateCarName("polo");
-        });
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"panda,philz,java", " panda, philz  , java"})
-    @DisplayName("자동차 전체 입력 : 정상")
-    public void input_all_car_name(String input) {
-        Assertions.assertDoesNotThrow(
-                () -> CarNameValidator.parseCarNameInputs(input)
-        );
-    }
-
-    @Test
-    @DisplayName("자동차 전체 입력 : 예외")
-    public void input_all_car_name_exception() {
-        assertThatThrownBy(() -> {
-            CarNameValidator.parseCarNameInputs("panda,philz,javajigi");
         });
     }
 }
