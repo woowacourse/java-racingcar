@@ -20,7 +20,7 @@ public class InputView {
 			validateEmptyString(line);
 		} catch (IllegalArgumentException | IOException e) {
 			OutputView.printException(e.getMessage());
-			getCarNames();
+			return getCarNames();
 		}
 		List<String> carNames = splitCarNames(line);
 		return carNames;
