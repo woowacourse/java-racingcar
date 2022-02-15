@@ -42,7 +42,7 @@ public class TryCount {
     }
 
     private void validatePositive(int count) {
-        if (count <= 0) {
+        if (count < 0) {
             throw new IllegalArgumentException(TRY_CNT_NOT_NATURAL_NUMBER);
         }
     }

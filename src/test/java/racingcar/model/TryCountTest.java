@@ -1,17 +1,18 @@
 package racingcar.model;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @SuppressWarnings("NonAsciiCharacters")
 class TryCountTest {
-    @Test
-    public void 정상_시도횟수() {
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "1"})
+    public void 정상_시도횟수(String string) {
         // given
-        TryCount tryCount = new TryCount("1");
+        TryCount tryCount = new TryCount(string);
 
         // when
         // then
