@@ -24,11 +24,7 @@ public class RacingCars {
 			.collect(Collectors.toSet());
 	}
 
-	public Set<Car> getWinners() {
-		return getCarsInPosition(getMaxPosition());
-	}
-
-	private int getMaxPosition() {
+	public int getMaxPosition() {
 		return cars.stream()
 			.mapToInt(Car::getPosition)
 			.max()

@@ -62,15 +62,21 @@ pobi, honux가 최종 우승했습니다.
 - 전진하기
 - 현재 상태 toString() 오버라이딩
 
+### RacingCars
+
+- 중복 없는 경주용 Car의 Collection
+
 ### Game
 
+- 경주 게임의 규칙(우승자 판정 기준, 경기 방식)을 알고 있음
+
+### GameController
+
 - 입력받은 횟수에 맞게 게임 진행
-- Car 객체에 랜덤값 부여
 
-### Referee
+### Random
 
-- Car의 전진여부 판단
-- 우승자 판정
+- 랜덤값 생성
 
 
 ## References
