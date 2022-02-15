@@ -1,5 +1,6 @@
 package racingcar.util;
 
+import java.util.Objects;
 import racingcar.domain.Car;
 
 import java.util.HashSet;
@@ -13,6 +14,7 @@ public class ValidatorUtils {
     private static final String BLANK_NOT_ALLOWED_EXCEPTION = "공백을 입력하면 안 됩니다.";
     private static final String OVER_FIVE_CHARACTERS_EXCEPTION = "5글자 이하의 이름을 입력해야 합니다.";
     private static final String DUPLICATE_CAR_EXCEPTION = "중복된 이름을 입력하면 안 됩니다.";
+    private static final String INVALID_BOOLEAN_STRING_EXCEPTION = "y 혹은 n을 입력해야 합니다.";
 
     private ValidatorUtils() {
     }
@@ -45,6 +47,17 @@ public class ValidatorUtils {
         Set<Car> carSet = new HashSet<>(cars);
         if (cars.size() != carSet.size()) {
             throw new RuntimeException(DUPLICATE_CAR_EXCEPTION);
+        }
+    }
+
+    public static boolean validateAndParseBoolean(String value) {
+        validateBooleanString(value);
+        return Objects.equals(value, "y");
+    }
+
+    private static void validateBooleanString(String value) {
+        if (!value.equals("y") && !value.equals("n")) {
+            throw new RuntimeException(INVALID_BOOLEAN_STRING_EXCEPTION);
         }
     }
 }

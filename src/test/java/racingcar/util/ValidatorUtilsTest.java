@@ -13,6 +13,7 @@ import static common.DisplayFormat.PARAMETERIZED_TEST_DISPLAY_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
+import static racingcar.util.ValidatorUtils.validateAndParseBoolean;
 import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 import static racingcar.util.ValidatorUtils.validateNoDuplicateCar;
 import static racingcar.util.ValidatorUtils.validateNotBlank;
@@ -101,5 +102,24 @@ public class ValidatorUtilsTest {
 
         assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() -> validateNoDuplicateCar(carList));
+    }
+
+    @DisplayName("validateAndParseBoolean 메서드는 y 혹은 n을 인자로 받는 경우 참/거짓으로 변환하여 반환한다.")
+    @Test
+    void validateAndParseBoolean_returnBooleanOnValidInput() {
+        boolean shouldBeTrue = validateAndParseBoolean("y");
+        boolean shouldBeFalse = validateAndParseBoolean("n");
+
+        assertThat(shouldBeTrue).isTrue();
+        assertThat(shouldBeFalse).isFalse();
+    }
+
+    @DisplayName("validateAndParseBoolean 메서드는 y, n 이외의 문자열을 인자로 받는 경우 예외를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "abc"})
+    void validateAndParseBoolean_errorOnInvalidInput(String value) {
+
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> validateAndParseBoolean(value));
     }
 }
