@@ -2,6 +2,7 @@ package racingcar.model.car;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,7 +60,7 @@ public class Cars {
 		if (cars.isEmpty()) {
 			throw new IllegalArgumentException("아무 차량도 추가되지 않았습니다.");
 		}
-		Collections.sort(cars);
+		Collections.sort(cars, Comparator.reverseOrder());
 		return cars.get(0).getPosition();
 	}
 
