@@ -21,17 +21,17 @@ public class TryRoundNumber {
 		isPositiveNumber(input);
 	}
 
-	private void isPositiveNumber(final String input) {
-		if (Integer.parseInt(input) <= 0) {
-			throw new RuntimeException(INVALID_NOT_POSITIVE_NUMBER);
-		}
-	}
-
 	private void isNumber(final String input) {
 		try {
 			Integer.parseInt(input);
 		} catch (NumberFormatException e) {
 			throw new RuntimeException(INVALID_NOT_NUMBER);
+		}
+	}
+
+	private void isPositiveNumber(final String input) {
+		if (Integer.parseInt(input) <= 0) {
+			throw new RuntimeException(INVALID_NOT_POSITIVE_NUMBER);
 		}
 	}
 }

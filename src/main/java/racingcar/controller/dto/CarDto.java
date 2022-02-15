@@ -21,16 +21,12 @@ public class CarDto {
 		return name.get();
 	}
 
-	public int comparePositionTo(final CarDto other) {
-		return compareTo((CarDto otherCar) -> this.position - otherCar.position, other);
+	public int compareTo(final Function<CarDto, Integer> function, final CarDto other) {
+		return function.apply(other);
 	}
 
 	public int compareNameTo(final CarDto other) {
 		return compareTo((CarDto otherCar) -> this.name.get().compareTo(other.getName()), other);
-	}
-
-	public int compareTo(final Function<CarDto, Integer> function, final CarDto other) {
-		return function.apply(other);
 	}
 
 	public static List<CarDto> from(List<Car> cars) {

@@ -65,14 +65,26 @@ public class CarController {
 		}
 	}
 
-	public void playRound() {
+	private void playRound() {
 		List<Car> cars = carRepository.findAll();
 		moveCars(cars);
 		List<CarDto> carDtos = CarDto.from(cars);
 		OutputView.showCurrentStatus(carDtos);
 	}
 
-	public List<Car> getWinners() {
+	void moveCars(List<Car> cars) {
+		for (Car car : cars) {
+			car.move();
+		}
+	}
+
+	public void showWinners() {
+		List<Car> winners = getWinners();
+		List<CarDto> carDtos = CarDto.from(winners);
+		OutputView.showGameResult(carDtos);
+	}
+
+	List<Car> getWinners() {
 		List<Car> findCars = carRepository.findAll();
 
 		Cars cars = new Cars(findCars);
@@ -80,19 +92,7 @@ public class CarController {
 		return cars.getWinners();
 	}
 
-	public void moveCars(List<Car> cars) {
-		for (Car car : cars) {
-			car.move();
-		}
-	}
-
 	public void end() {
 		inputView.terminateScanner();
-	}
-
-	public void showWinners() {
-		List<Car> winners = getWinners();
-		List<CarDto> carDtos = CarDto.from(winners);
-		OutputView.showGameResult(carDtos);
 	}
 }

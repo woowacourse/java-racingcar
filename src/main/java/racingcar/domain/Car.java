@@ -31,10 +31,6 @@ public class Car {
 		return new Car(name, new FixedMovingStrategy());
 	}
 
-	public int getPosition() {
-		return position;
-	}
-
 	public void move(final int distance) {
 		position += distance;
 	}
@@ -53,16 +49,12 @@ public class Car {
 		return position == maxCar.position;
 	}
 
-	public int comparePositionTo(final Car other) {
-		return compareTo((Car otherCar) -> this.position - otherCar.position, other);
-	}
-
-	public int compareNameTo(final Car other) {
-		return compareTo((Car otherCar) -> this.name.get().compareTo(other.name.get()), other);
-	}
-
 	public int compareTo(final Function<Car, Integer> function, final Car other) {
 		return function.apply(other);
+	}
+
+	public int comparePositionTo(final Car other) {
+		return compareTo((Car otherCar) -> this.position - otherCar.position, other);
 	}
 
 	public CarDto toDto() {

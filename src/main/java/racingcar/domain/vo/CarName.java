@@ -21,18 +21,13 @@ public class CarName {
 		return name;
 	}
 
-	public static void validateCarName(String carName) {
-
+	private static void validateCarName(String carName) {
 		isCarNameNull(carName);
-
 		carName = carName.trim();
 
 		isCarNameEmpty(carName);
-
 		isCarNameExceed(carName);
-
 		hasCarNameWrongFormat(carName);
-
 	}
 
 	private static void isCarNameNull(String carName) {
