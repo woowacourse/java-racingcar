@@ -20,13 +20,10 @@ public class Cars {
 	}
 
 	public List<String> getWinners() {
-		int max = cars.stream()
-			.mapToInt(Car::getPosition)
-			.max()
-			.orElseThrow(NoSuchElementException::new);
+		int maxPosition = getMaxPosition();
 
 		return cars.stream()
-			.filter(car -> car.getPosition() == max)
+			.filter(car -> car.isEqualTo(maxPosition))
 			.map(Car::getName)
 			.collect(Collectors.toList());
 	}
@@ -45,6 +42,13 @@ public class Cars {
 		if (isDuplicated) {
 			throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
 		}
+	}
+
+	private int getMaxPosition() {
+		return cars.stream()
+				.mapToInt(Car::getPosition)
+				.max()
+				.orElseThrow(NoSuchElementException::new);
 	}
 
 	public List<Car> getCars() {
