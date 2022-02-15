@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    public static final int DEFAULT_POSITION = 0;
-    public static final int RANDOM_MIN_BOUND = 0;
-    public static final int RANDOM_MAX_BOUND = 9;
+    private static final int DEFAULT_POSITION = 0;
+    private static final int RANDOM_MIN_BOUND = 0;
+    private static final int RANDOM_MAX_BOUND = 9;
     private static final String TO_STRING_DELIMITER = "\n";
     private List<Car> cars;
 

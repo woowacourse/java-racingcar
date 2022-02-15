@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
-    public static final char DELIMITER = ' ';
+    private static final char DELIMITER = ' ';
 
     @DisplayName("null 또는 빈 문자가 입력되었을 경우 0을 반환한다")
     @Test
