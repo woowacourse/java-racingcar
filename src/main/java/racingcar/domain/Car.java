@@ -1,8 +1,8 @@
 package racingcar.domain;
 
 public class Car {
-    private static final String NAME_INPUT_ERROR = "이름은 공백, 빈 값, null일 수 없습니다.";
-    private static final String NAME_LENGTH_ERROR = "이름은 5자를 초과할 수 없습니다.";
+    private static final String NAME_INPUT_ERROR = "[ERROR] 이름은 공백, 빈 값, null일 수 없습니다.";
+    private static final String NAME_LENGTH_ERROR = "[ERROR] 이름은 5자를 초과할 수 없습니다.";
 
     private static final int NAME_LIMITED_LENGTH = 5;
     private static final int POSITION_INIT = 0;
