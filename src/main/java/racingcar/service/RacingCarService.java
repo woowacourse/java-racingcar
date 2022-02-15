@@ -1,5 +1,7 @@
 package racingcar.service;
 
+import static racingcar.utlis.RandomNumberGenerator.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,7 +21,7 @@ public class RacingCarService {
 	}
 
 	public void playRound() {
-		cars.forEach(Car::decideMove);
+		cars.forEach(car -> car.decideMove(getRandomInt()));
 	}
 
 	public void saveCars(String inputCarNames) {

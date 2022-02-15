@@ -1,7 +1,6 @@
 package racingcar.model;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
-import static racingcar.utlis.RandomNumberGenerator.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,25 +22,26 @@ class CarTest {
 		assertThat(actualCar.getPosition()).isEqualTo(position);
 	}
 
+	@DisplayName("랜덤 넘버가 3이하 일 때")
 	@Test
-	void decideMoveCarTest() {
+	void decideMoveCarTest_1() {
 		//given
 		Car car = new Car("주디", 0);
-		boolean situation = isMove();
 		//when
-		if (situation) {
-			car = new Car("주디", 1);
-		}
+		car.decideMove(3);
 		//then
-		if (situation) {
-			assertThat(car.getPosition()).isEqualTo(1);
-		} else {
-			assertThat(car.getPosition()).isEqualTo(0);
-		}
+		assertThat(car.getPosition()).isEqualTo(0);
 	}
 
-	boolean isMove() {
-		return getRandomInt() >= MOVE_CRITERIA;
+	@DisplayName("랜덤 넘버가 4이상 일 때")
+	@Test
+	void decideMoveCarTest_2() {
+		//given
+		Car car = new Car("주디", 0);
+		//when
+		car.decideMove(4);
+		//then
+		assertThat(car.getPosition()).isEqualTo(1);
 	}
 
 }

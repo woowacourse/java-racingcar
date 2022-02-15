@@ -16,14 +16,10 @@ public class Car {
 		this.position = position;
 	}
 
-	public void decideMove() {
-		if (isMove()) {
+	public void decideMove(int number) {
+		if (number >= MOVE_CRITERIA) {
 			move();
 		}
-	}
-
-	private boolean isMove() {
-		return getRandomInt() >= MOVE_CRITERIA;
 	}
 
 	private void move() {
