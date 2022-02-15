@@ -8,6 +8,7 @@ public class RacingGame {
     private static final int MIN_POSITION = 0;
     private static final int START_RANDOM_NUMBER = 0;
     private static final int END_RANDOM_NUMBER = 9;
+    private static final int PROCEED_FlAG_NUMBER = 4;
     private final List<Car> cars;
 
     public RacingGame(List<Car> cars) {
@@ -15,11 +16,14 @@ public class RacingGame {
     }
 
     public List<Car> race() {
-        cars.forEach(
-                (car) -> car.proceed(RandomIntegerGenerator.random(START_RANDOM_NUMBER, END_RANDOM_NUMBER))
-        );
-
+        cars.forEach(this::randomDrawAndProceed);
         return cars;
+    }
+
+    private void randomDrawAndProceed(Car car) {
+        if(RandomIntegerGenerator.random(START_RANDOM_NUMBER, END_RANDOM_NUMBER) > PROCEED_FlAG_NUMBER) {
+            car.proceed();
+        }
     }
 
     public List<Car> findWinners() {

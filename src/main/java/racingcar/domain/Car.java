@@ -3,7 +3,6 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Car {
-    private static final int PROCEED_FlAG_NUMBER = 4;
 
     private final String name;
     private int position;
@@ -13,10 +12,8 @@ public class Car {
         this.position = 0;
     }
 
-    public void proceed(int number) {
-        if (number >= PROCEED_FlAG_NUMBER) {
-            this.position++;
-        }
+    public void proceed() {
+        this.position++;
     }
 
     public boolean isHere(int position) {

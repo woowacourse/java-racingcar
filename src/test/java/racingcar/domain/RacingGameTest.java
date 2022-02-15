@@ -8,11 +8,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
-import racingcar.domain.RacingGame;
 
 public class RacingGameTest {
-    private static final int PROCEED_FlAG_NUMBER = 4;
     private static final List<Car> cars = new ArrayList<>();
 
     @BeforeEach
@@ -31,7 +28,7 @@ public class RacingGameTest {
     @Test
     @DisplayName("우승자 판단 - 단독")
     void checkSingleWinner() {
-        cars.get(0).proceed(PROCEED_FlAG_NUMBER);
+        cars.get(0).proceed();
         RacingGame racingGame = new RacingGame(cars);
         assertThat(racingGame.findWinners()).contains(cars.get(0));
     }
@@ -39,8 +36,8 @@ public class RacingGameTest {
     @Test
     @DisplayName("우승자 판단 - 공동 우승")
     void checkCoWinner() {
-        cars.get(0).proceed(PROCEED_FlAG_NUMBER);
-        cars.get(1).proceed(PROCEED_FlAG_NUMBER);
+        cars.get(0).proceed();
+        cars.get(1).proceed();
         RacingGame racingGame = new RacingGame(cars);
         assertThat(racingGame.findWinners()).contains(cars.get(0), cars.get(1));
     }
