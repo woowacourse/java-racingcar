@@ -2,7 +2,6 @@ package racingcar.model.car;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -19,25 +18,24 @@ public class PositionTest {
         position = Position.create();
     }
 
+    @DisplayName("from 메소드에 정상범위의 숫자를 전달하면 예외가 발생하지 않는다.")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 11})
+    void fromWithValidInput(int input) {
+        assertDoesNotThrow(() -> Position.from(input));
+    }
+
+    @DisplayName("increase 메소드를 실행하면 1만큼 더 큰 Position 인스턴스를 반환한다.")
     @Test
-    void 위치_값_증가() {
+    void increase() {
         assertThat(position.increase()).isEqualTo(Position.from(1));
     }
 
-    @DisplayName("from 메소드는")
-    @Nested
-    class from {
-        @ParameterizedTest
-        @ValueSource(ints = {0, 1, 11})
-        void 입력값이_음수가_아니라면(int input) {
-            assertDoesNotThrow(() -> Position.from(input));
-        }
-
-        @ParameterizedTest
-        @ValueSource(ints = {-1, -22})
-        void 입력값이_음수라면(int input) {
-            assertThatThrownBy(() -> Position.from(input))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
+    @DisplayName("from 메소드에 음수값이 전달되면 예외가 발생 한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, -22})
+    void fromWithNegative(int input) {
+        assertThatThrownBy(() -> Position.from(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

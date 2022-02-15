@@ -47,7 +47,7 @@ public class StringCalculatorTest {
         assertThat(StringCalculator.sum(input)).isEqualTo(6);
     }
 
-    @DisplayName("음수를 입력받으면 예외를 Throw 한다")
+    @DisplayName("음수를 입력받으면 예외가 발생 한다")
     @ParameterizedTest
     @ValueSource(strings = {"-3", "3,-5", "//;\n1;-2;3"})
     public void negative(String input) {

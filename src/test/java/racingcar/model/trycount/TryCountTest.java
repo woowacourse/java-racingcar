@@ -1,7 +1,6 @@
 package racingcar.model.trycount;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -9,27 +8,26 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class TryCountTest {
-    @DisplayName("from 메소드는")
-    @Nested
-    class from {
-        @ParameterizedTest
-        @ValueSource(strings = {"a", "", "12a", "-"})
-        void 숫자가_아닌_문자라면(String input) {
-            assertThatThrownBy(() -> TryCount.from(input))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
+    @DisplayName("from 메소드에 정상 숫자를 전달하면 예외가 발생하지 않는다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "11"})
+    void fromWithValidInput(String input) {
+        assertDoesNotThrow(() -> TryCount.from(input));
+    }
 
-        @ParameterizedTest
-        @ValueSource(strings = {"1", "11"})
-        void 양수라면(String input) {
-            assertDoesNotThrow(() -> TryCount.from(input));
-        }
+    @DisplayName("from 메소드에 숫자가 아닌 문자를 전달하면 예외가 발생 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "", "12a", "-"})
+    void fromWithNotNumber(String input) {
+        assertThatThrownBy(() -> TryCount.from(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
-        @ParameterizedTest
-        @ValueSource(strings = {"0", "-1", "-22"})
-        void 양수가_아니라면(String input) {
-            assertThatThrownBy(() -> TryCount.from(input))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
+    @DisplayName("from 메소드에 양수가 아닌 숫자를 전달하면 예외가 발생 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "-1", "-22"})
+    void fromWithNotPositive(String input) {
+        assertThatThrownBy(() -> TryCount.from(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
