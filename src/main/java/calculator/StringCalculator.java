@@ -11,7 +11,10 @@ public class StringCalculator {
     private static final String CUSTOM_SUFFIX = "\n";
 
     public static Integer splitAndSum(String input) {
-        if (input == null || input.isEmpty()) {
+        try {
+            validateBlank(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return 0;
         }
 
