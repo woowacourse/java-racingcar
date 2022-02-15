@@ -24,7 +24,7 @@ public class RacingGame {
 
     public void race() {
         checkCanRace();
-        changeCurrentRoundToNext();
+        currentRoundToNextRound();
         racingCars.moveCars();
     }
 
@@ -38,7 +38,7 @@ public class RacingGame {
         }
     }
 
-    private void changeCurrentRoundToNext() {
+    private void currentRoundToNextRound() {
         currentRound = currentRound.nextRound();
     }
 
