@@ -34,10 +34,7 @@ public class Car {
     }
 
     public boolean isWinner(int winnerPosition) {
-        if (position == winnerPosition) {
-            return true;
-        }
-        return false;
+        return position == winnerPosition;
     }
 
     public String getName() {
