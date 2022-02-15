@@ -15,14 +15,14 @@ public class OutputView {
         System.out.println(RESULT_PREFIX);
     }
 
-    public static void printResult(List<Car> cars) {
+    public static void printResult(final List<Car> cars) {
         for (Car car : cars) {
             System.out.println(car.getName() + SEPARATOR + MOVE_SIGN.repeat(car.getPosition()));
         }
         System.out.println();
     }
 
-    public static void printWinner(List<String> winners) {
+    public static void printWinner(final List<String> winners) {
         System.out.print(String.join(SPLIT_DELIMITER, winners));
         System.out.println(WINNER_SUFFIX);
     }

@@ -5,8 +5,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RaceController {
-
-    public Cars initCars(String[] carNames) {
+    private Cars initCars(final String[] carNames) {
         return new Cars(carNames);
     }
 
@@ -18,7 +17,7 @@ public class RaceController {
         }
     }
 
-    public void startGame() throws RuntimeException {
+    private void startGame() throws RuntimeException {
         InputController inputController = new InputController();
 
         String[] carNames = inputController.getUserCarNames(InputView.scanCarNames());
@@ -32,11 +31,11 @@ public class RaceController {
         printWinner(cars);
     }
 
-    public void printPosition(Cars cars) {
+    public void printPosition(final Cars cars) {
         OutputView.printResult(cars.getRacingCars());
     }
 
-    public void printWinner(Cars cars) {
+    public void printWinner(final Cars cars) {
         OutputView.printWinner(cars.getWinner());
     }
 }

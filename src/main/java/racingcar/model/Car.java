@@ -6,11 +6,11 @@ import racingcar.util.RandomUtil;
 public class Car {
     private static final int STANDARD = 4;
 
-    private String name;
+    private final String name;
     private int position;
 
 
-    public Car(String name, int position) {
+    public Car(final String name, int position) {
         this.name = name;
         this.position = position;
     }
@@ -23,7 +23,7 @@ public class Car {
         return this.position;
     }
 
-    public boolean isMovable(RandomUtil randomNumberGenerator) {
+    public boolean isMovable(final RandomUtil randomNumberGenerator) {
         if (randomNumberGenerator.generate() >= STANDARD) {
             return true;
         }
@@ -36,7 +36,7 @@ public class Car {
         }
     }
 
-    public boolean isMaxPosition(int maxPosition) {
+    public boolean isMaxPosition(final int maxPosition) {
         return position == maxPosition;
     }
 }

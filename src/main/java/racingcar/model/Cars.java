@@ -9,7 +9,7 @@ public class Cars {
 
     private List<Car> cars;
 
-    public Cars(String[] carNames) {
+    public Cars(final String[] carNames) {
         this.cars = new ArrayList<>();
         insertCarFromCarNames(carNames);
     }
@@ -18,11 +18,11 @@ public class Cars {
         return cars;
     }
 
-    public void insertCar(Car car) {
+    public void insertCar(final Car car) {
         cars.add(car);
     }
 
-    public void insertCarFromCarNames(String[] carNames) {
+    private void insertCarFromCarNames(final String[] carNames) {
         for (String carName : carNames) {
             insertCar(new Car(carName, DEFAULT_POSITION));
         }
