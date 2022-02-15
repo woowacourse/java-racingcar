@@ -34,7 +34,7 @@ public class CarTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = {"소주캉범고래", "여섯글자이름"})
+	@ValueSource(strings = {"가나다라마바사", "여섯글자이름"})
 	@DisplayName("자동차 이름이 5글자를 초과하면 에러를 발생시킨다. ")
 	void isOverNameLength(String input) {
 		assertThatThrownBy(() -> {
