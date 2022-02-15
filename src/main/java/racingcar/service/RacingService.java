@@ -40,10 +40,7 @@ public class RacingService {
 	}
 
 	public List<String> findWinnerNames() {
-		int maxPosition = carRepository.findMaxPosition();
-
-		return carRepository.findCars().stream()
-			.filter(car -> car.isSamePosition(maxPosition))
+		return carRepository.findMaxPositionCars().stream()
 			.map(Car::toDto)
 			.map(CarDto::getName)
 			.collect(Collectors.toList());
