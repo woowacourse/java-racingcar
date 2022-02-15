@@ -11,7 +11,7 @@ public class RacingCarController {
     }
 
     public void run() {
-        RacingCars racingCars = new RacingCars(InputView.inputCarNames(), new RacingCarCommander());
+        RacingCars racingCars = new RacingCars(InputView.getCarNames(), new RacingCarCommander());
         int tryCount = InputView.inputTryCount();
 
         RacingGame game = new RacingGame(racingCars, tryCount);

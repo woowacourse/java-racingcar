@@ -16,17 +16,10 @@ public class RacingCars {
     private final List<RacingCar> cars;
     private final MovingStrategy movingStrategy;
 
-    public RacingCars(String carStringNames, MovingStrategy movingStrategy) {
-        isEmpty(carStringNames);
-        this.cars = makeRacingCars(carStringNames.split(CAR_NAME_DELIMITER));
+    public RacingCars(String[] carNameArray, MovingStrategy movingStrategy) {
+        this.cars = makeRacingCars(carNameArray);
         this.movingStrategy = movingStrategy;
         checkCarsEmpty();
-    }
-
-    private void isEmpty(String stringNames) {
-        if (stringNames == null || stringNames.isEmpty()) {
-            throw new IllegalArgumentException("자동차 입력 값이 존재해야한다.");
-        }
     }
 
     private List<RacingCar> makeRacingCars(String[] carNames) {

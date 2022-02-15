@@ -18,7 +18,7 @@ public class RacingGameTest {
 
     @BeforeEach
     void setUp() {
-        racingCars = new RacingCars("pobi,crong,honux", new RacingCarCommander());
+        racingCars = new RacingCars(new String[]{"pobi", "crong", "honux"}, new RacingCarCommander());
         racingGame = new RacingGame(racingCars, 5);
     }
 

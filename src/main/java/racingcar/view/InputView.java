@@ -1,6 +1,8 @@
 package racingcar.view;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -9,13 +11,16 @@ public class InputView {
     private static final String INPUT_TRY_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
 
     private static final Scanner CONSOLE = new Scanner(System.in);
+    private static final String CAR_NAME_DELIMITER = ",";
 
     private InputView() {
     }
 
-    public static String inputCarNames() {
+    public static String[] getCarNames() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
-        return CONSOLE.nextLine();
+        String carNames = CONSOLE.nextLine();
+        Validator.validateCarNames(carNames);
+        return carNames.split(CAR_NAME_DELIMITER);
     }
 
     public static int inputTryCount() {
