@@ -12,7 +12,7 @@ public class Cars {
     private static final int RANDOM_MIN_BOUND = 0;
     private static final int RANDOM_MAX_BOUND = 9;
     private static final String TO_STRING_DELIMITER = "\n";
-    private List<Car> cars;
+    private final List<Car> cars;
 
     private Cars(List<Car> cars) {
         this.cars = cars;
