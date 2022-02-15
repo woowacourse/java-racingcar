@@ -31,4 +31,20 @@ public class CarNameTest {
             .isInstanceOf(RuntimeException.class)
             .hasMessageContaining("자동차의 이름을 입력해주세요!");
     }
+
+    @Test
+    void 이름_길이가_5글자인경우() {
+        final String nameString = "jason";
+
+        assertThatCode(() -> new CarName(nameString))
+            .doesNotThrowAnyException();
+    }
+
+    @Test
+    void 이름_길이가_1글자인경우() {
+        final String nameString = "a";
+
+        assertThatCode(() -> new CarName(nameString))
+            .doesNotThrowAnyException();
+    }
 }
