@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Car {
     private static final int INITIAL_DISTANCE = 0;
+
     private final CarName carName;
     private int distance;
 

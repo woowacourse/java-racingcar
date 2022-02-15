@@ -12,12 +12,15 @@ public class ConsoleInputView implements InputView {
     private static final String TRIAL_COUNT_INPUT_ALERT_MESSAGE = "시도할 회수는 몇회인가요?";
     private static final String NAME_DELIMITER = ",";
     private static final String ZERO_AND_POSITIVE_DIGIT = "^[0-9]*$";
+
     private final Scanner scanner = new Scanner(System.in);
 
     public List<String> inputCarNames() {
         System.out.println(CARNAME_INPUT_ALERT_MESSAGE);
         String inputCarNames = scanner.nextLine();
+
         validateBlankInput(inputCarNames);
+
         return Arrays.stream(inputCarNames.split(NAME_DELIMITER))
                 .collect(Collectors.toList());
     }
@@ -31,8 +34,10 @@ public class ConsoleInputView implements InputView {
     public int inputTrialCount() {
         System.out.println(TRIAL_COUNT_INPUT_ALERT_MESSAGE);
         String inputTrialCount = scanner.nextLine();
+
         validateBlankInput(inputTrialCount);
         validatePositiveDigit(inputTrialCount);
+
         return Integer.parseInt(inputTrialCount);
     }
 
