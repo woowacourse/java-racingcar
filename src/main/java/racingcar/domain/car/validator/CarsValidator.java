@@ -15,7 +15,7 @@ public class CarsValidator {
         CAR_GROUP_VALIDATOR.validateNameIsDuplicated(names);
     }
 
-    void validateNameIsDuplicated(List<String> names) {
+    private void validateNameIsDuplicated(List<String> names) {
         if (checkNameIsDuplicated(names)) {
             throw new CarNameDuplicatedException();
         }

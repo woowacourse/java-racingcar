@@ -17,19 +17,19 @@ public class CarValidator {
         CAR_VALIDATOR.validateNameIsTooLong(name);
     }
 
-    void validateNameIsNull(String name) {
+    private void validateNameIsNull(String name) {
         if (name == null) {
             throw new CarNameNullException();
         }
     }
 
-    void validateNameIsEmpty(String name) {
+    private void validateNameIsEmpty(String name) {
         if (name.isEmpty()) {
             throw new CarNameEmptyException();
         }
     }
 
-    void validateNameIsTooLong(String name) {
+    private void validateNameIsTooLong(String name) {
         if (NameLength.isTooLong(name)) {
             throw new CarNameTooLongException();
         }

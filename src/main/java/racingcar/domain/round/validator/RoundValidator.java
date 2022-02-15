@@ -13,7 +13,7 @@ public class RoundValidator {
         ROUND_VALIDATOR.validateCountPositive(count);
     }
 
-    void validateCountPositive(int count) {
+    private void validateCountPositive(int count) {
         if (RoundCountRange.isTooSmall(count)) {
             throw new RoundNotPositiveException();
         }
