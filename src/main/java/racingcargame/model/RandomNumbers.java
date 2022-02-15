@@ -5,10 +5,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RandomNumbers {
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     private RandomNumbers(int start, int end) {
-        numbers = IntStream.range(start, end)
+        this.numbers = IntStream.range(start, end)
                 .boxed()
                 .collect(Collectors.toList());
     }

@@ -7,15 +7,11 @@ import racingcargame.view.OutputView;
 import java.util.List;
 
 public class CarGameController {
-    private static final CarGameController GAME_CONTROLLER = new CarGameController();
-    private static final InputView INPUT_CONTROLLER = InputView.getInputController();
+    private final CarGameController gameController;
     private static final String CAR_NAME_DELIMITER = ",";
 
-    private CarGameController() {
-    }
-
-    public static CarGameController getGameController() {
-        return GAME_CONTROLLER;
+    public CarGameController() {
+        this.gameController = new CarGameController();
     }
 
     public void playGame() {
@@ -30,10 +26,10 @@ public class CarGameController {
 
     private RacingCarGame makeRacingCarGameObjectByUserInput() {
         OutputView.showCarNamesInputGuideMessage();
-        List<String> carNames = makeSplitCarNames(INPUT_CONTROLLER.inputCarName());
+        List<String> carNames = makeSplitCarNames(InputView.inputCarName());
 
         OutputView.showRaceCountInputGuideMessage();
-        int raceCount = makeIntegerRaceCount(INPUT_CONTROLLER.inputRaceCount());
+        int raceCount = makeIntegerRaceCount(InputView.inputRaceCount());
 
         return new RacingCarGame(carNames, raceCount);
     }
