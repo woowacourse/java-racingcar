@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import racingcar.model.car.Cars;
-import racingcar.model.car.Names;
+import racingcar.domain.car.Cars;
+import racingcar.domain.car.Names;
 
 public class OutputView {
     public static void printInputNamesUi() {

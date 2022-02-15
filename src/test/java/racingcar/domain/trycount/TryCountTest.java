@@ -1,4 +1,4 @@
-package racingcar.model.trycount;
+package racingcar.domain.trycount;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

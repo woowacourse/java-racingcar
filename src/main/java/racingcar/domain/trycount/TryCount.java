@@ -1,4 +1,4 @@
-package racingcar.model.trycount;
+package racingcar.domain.trycount;
 
 import racingcar.util.NumberValidator;
 
