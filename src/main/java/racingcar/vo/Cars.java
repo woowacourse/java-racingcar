@@ -8,7 +8,7 @@ import racingcar.util.RandomNumberGenerator;
 
 public class Cars {
 
-  private static final RandomNumberGenerator GENERATOR = new RandomNumberGenerator();
+  private static final RandomNumberGenerator RANDOM_NUMBER_GENERATOR = new RandomNumberGenerator();
   private static final String DUPLICATE_CAR_NAME_ERROR_MESSAGE = "자동차의 이름이 중복되었습니다.";
   private static final String NO_SUCH_CAR_ERROR_MESSAGE = "자동차가 없습니다.";
   private static final int NONE_DUPLICATION = 0;
@@ -36,7 +36,7 @@ public class Cars {
   private RoundResult raceAll() {
     RoundResult result = new RoundResult();
     for (Car car : cars) {
-      car.move(GENERATOR.generate());
+      car.move(RANDOM_NUMBER_GENERATOR.generate());
       result.add(car);
     }
     return result;
