@@ -19,8 +19,12 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printRoundStatus(final List<CarDto> cars) {
+        final StringBuilder result = new StringBuilder();
         cars.forEach(car ->
-                System.out.println(car.getCarName() + RESULT_DELIMITER + DISTANCE_SYMBOL.repeat(car.getDistance())));
+                System.out.println(
+                        result.append(car.getCarName())
+                                .append(RESULT_DELIMITER)
+                                .append(DISTANCE_SYMBOL.repeat(car.getDistance()))));
         System.out.print(NEW_LINE);
     }
 
