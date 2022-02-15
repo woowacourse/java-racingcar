@@ -5,8 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StringCalculator {
-
-    public static final int SEPARATOR_END_SIGNATURE_LENGTH = 2;
+    private static final int SEPARATOR_END_SIGNATURE_LENGTH = 2;
     private static final String CUSTOM_SEPARATOR_START_SIGNATURE = "//";
     private static final String CUSTOM_SEPARATOR_END_SIGNATURE = "\\n";
     private static final String JOINING_SEPARATOR_DELIMITER = "|";
