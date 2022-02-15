@@ -42,4 +42,11 @@ public class InputValidationTest {
         assertThatThrownBy(() -> InputValidator.validateCarName(Arrays.asList("asd","qwerty")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("자동차 이름에 공백이 있는 경우 예외처")
+    void minimumCarNameLengthException() {
+        assertThatThrownBy(() -> InputValidator.validateCarName(Arrays.asList("asd","qwerty")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
