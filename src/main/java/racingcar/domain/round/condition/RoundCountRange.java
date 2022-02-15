@@ -1,17 +1,14 @@
 package racingcar.domain.round.condition;
 
-public enum RoundCountRange {
+public class RoundCountRange {
 
-    ALLOWED_MINIMUM_COUNT(1);
+    private static final int ALLOWED_MINIMUM = 1;
 
-    private final int count;
-
-    RoundCountRange(int count) {
-        this.count = count;
+    private RoundCountRange() {
     }
 
     public static boolean isTooSmall(int count) {
-        return count < ALLOWED_MINIMUM_COUNT.count;
+        return count < ALLOWED_MINIMUM;
     }
 
 }

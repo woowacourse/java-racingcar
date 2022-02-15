@@ -14,7 +14,7 @@ public class Car {
     }
 
     public boolean isPossibleToGoForward(int number) {
-        return ForwardCondition.isInRange(number);
+        return ForwardCondition.isSatisfied(number);
     }
 
     public void goForward() {
