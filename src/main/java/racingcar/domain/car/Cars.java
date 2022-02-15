@@ -3,7 +3,9 @@ package racingcar.domain.car;
 import racingcar.dto.CarDto;
 import racingcar.service.Movement;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -19,12 +21,15 @@ public class Cars {
     }
 
     private void validateDuplication(final List<String> carNames) {
-        int numOfDuplicationRemovedCars = (int) carNames.stream()
-                .distinct()
-                .count();
-        if (numOfDuplicationRemovedCars != carNames.size()) {
+        Set<String> addedCarNames = new HashSet<>();
+        carNames.forEach(carName -> checkCarNameDuplication(addedCarNames, carName));
+    }
+
+    private void checkCarNameDuplication(final Set<String> addedCarNames, final String nextCarName) {
+        if (addedCarNames.contains(nextCarName)) {
             throw new IllegalArgumentException(DUPLICATED_CAR_NAMES);
         }
+        addedCarNames.add(nextCarName);
     }
 
     public void move(final Movement movement) {
