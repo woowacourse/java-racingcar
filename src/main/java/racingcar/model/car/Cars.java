@@ -35,7 +35,7 @@ public class Cars {
 
 	public void race(RandomUtil randomUtil) {
 		cars.stream()
-			.filter(i -> randomUtil.createRandom(MIN_RANDOM_BOUND, MAX_RANDOM_BOUND) >= MIN_MOVABLE_VALUE)
+			.filter(i -> randomUtil.create(MIN_RANDOM_BOUND, MAX_RANDOM_BOUND) >= MIN_MOVABLE_VALUE)
 			.forEach(Car::move);
 	}
 
@@ -57,11 +57,15 @@ public class Cars {
 	}
 
 	public Position getFirstPosition() {
+		validateIsEmpty();
+		Collections.sort(cars, Comparator.reverseOrder());
+		return cars.get(0).getPosition();
+	}
+
+	public void validateIsEmpty() {
 		if (cars.isEmpty()) {
 			throw new IllegalArgumentException("아무 차량도 추가되지 않았습니다.");
 		}
-		Collections.sort(cars, Comparator.reverseOrder());
-		return cars.get(0).getPosition();
 	}
 
 	public List<CarDto> getCarsDto() {
