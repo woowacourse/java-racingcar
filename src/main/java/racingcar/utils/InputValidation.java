@@ -1,7 +1,5 @@
 package racingcar.utils;
 
-import java.util.regex.Pattern;
-
 public class InputValidation {
 
 	private static final String NAME_LENGTH_ERROR = "이름은 5자리 이하만 가능합니다.";

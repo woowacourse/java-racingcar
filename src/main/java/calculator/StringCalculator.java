@@ -19,7 +19,7 @@ public class StringCalculator {
         if (checkNullOrEmpty(input)) {
             return 0;
         }
-        Matcher matcher = compile(CUSTOM_DISTRIBUTOR_PATTERN).matcher(input);
+        final Matcher matcher = compile(CUSTOM_DISTRIBUTOR_PATTERN).matcher(input);
         if (matcher.find()) {
             checkInvalidInput(matcher.group(NUMBER_GROUP), matcher.group(CUSTOM_DISTRIBUTOR));
             return getSum(matcher.group(NUMBER_GROUP), matcher.group(CUSTOM_DISTRIBUTOR));

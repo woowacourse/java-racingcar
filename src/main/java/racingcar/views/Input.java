@@ -1,11 +1,11 @@
 package racingcar.views;
 
+import racingcar.utils.InputValidation;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-
-import racingcar.utils.InputValidation;
 
 public class Input {
 
@@ -43,7 +43,7 @@ public class Input {
 		try {
 			System.out.println(INPUT_REPEATS);
 			final String repeats = scanner.next();
-			int repeatsNumber = inputValidation.validateNotIntegerRepeats(repeats);
+			final int repeatsNumber = inputValidation.validateNotIntegerRepeats(repeats);
 			inputValidation.validateNegativeNumberRepeats(repeatsNumber);
 			return repeatsNumber;
 		} catch (RuntimeException exception) {

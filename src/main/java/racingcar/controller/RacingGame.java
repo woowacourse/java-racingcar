@@ -1,15 +1,14 @@
 package racingcar.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import racingcar.models.Car;
 import racingcar.utils.RandomNumber;
 import racingcar.views.Input;
 import racingcar.views.Output;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingGame {
 
@@ -54,7 +53,7 @@ public class RacingGame {
     }
 
     private int findFarthestPosition() {
-        List<Car> sortedCars = cars.stream()
+        final List<Car> sortedCars = cars.stream()
                 .sorted(Comparator.comparing(Car::getPosition).reversed())
                 .collect(Collectors.toList());
 

@@ -1,11 +1,9 @@
 package racingcar.utils;
 
-import static org.assertj.core.api.AssertionsForClassTypes.*;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import racingcar.utils.RandomNumber;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DisplayName("RandomNumber 클래스를 테스트한다.")
 class RandomNumberTest {

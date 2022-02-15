@@ -1,9 +1,9 @@
-import java.util.Scanner;
-
 import racingcar.controller.RacingGame;
 import racingcar.utils.InputValidation;
 import racingcar.views.Input;
 import racingcar.views.Output;
+
+import java.util.Scanner;
 
 public class Application {
 
