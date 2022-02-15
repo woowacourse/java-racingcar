@@ -35,6 +35,11 @@ public class Cars {
 		Output.roundResult(cars);
 	}
 
+	public List<String> findWinners() {
+		Car maxPositionCar = findMaxPositionCar();
+		return findSamePositionCar(maxPositionCar);
+	}
+
 	private void checkValid(String[] names) {
 		if (!isCars(names)) {
 			throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
@@ -63,11 +68,6 @@ public class Cars {
 
 	private int generate() {
 		return (int)(Math.random() * 100) % 10;
-	}
-
-	public List<String> findWinners() {
-		Car maxPositionCar = findMaxPositionCar();
-		return findSamePositionCar(maxPositionCar);
 	}
 
 	private Car findMaxPositionCar() {
