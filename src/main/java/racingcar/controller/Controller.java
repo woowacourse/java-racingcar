@@ -3,6 +3,7 @@ package racingcar.controller;
 import java.util.List;
 import racingcar.domain.RacingGame;
 import racingcar.domain.random.RacingcarRandomNumberGenerator;
+import racingcar.domain.random.RandomNumberGenerator;
 import racingcar.parser.CarNameParser;
 import racingcar.parser.TryCountParser;
 import racingcar.util.RetryableTemplate;
@@ -16,21 +17,15 @@ public class Controller {
     private View view;
     private RetryableTemplate retryableTemplate;
 
-    public static void main(String[] args) {
-        Controller controller = new Controller();
-        controller.init();
-        controller.run();
+    public Controller(RandomNumberGenerator randomNumberGenerator) {
+        this.carNameParser = new CarNameParser();
+        this.tryCountParser = new TryCountParser();
+        this.racingGame = new RacingGame(randomNumberGenerator);
+        this.view = new View();
+        this.retryableTemplate = new RetryableTemplate();
     }
 
-    private void init() {
-        carNameParser = new CarNameParser();
-        tryCountParser = new TryCountParser();
-        racingGame = new RacingGame(new RacingcarRandomNumberGenerator());
-        view = new View();
-        retryableTemplate = new RetryableTemplate();
-    }
-
-    private void run() {
+    public void runGame() {
         retryableTemplate.execute(this::inputCarNames, this::handleException);
         retryableTemplate.execute(this::inputTryCount, this::handleException);
 

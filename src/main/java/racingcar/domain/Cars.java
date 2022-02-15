@@ -24,7 +24,7 @@ public class Cars {
     }
 
     private void moveOneCar(RandomNumberGenerator randomNumberGenerator, Car car) {
-        if (randomNumberGenerator.isAvailableMove()) {
+        if (randomNumberGenerator.isMoveAvailable()) {
             car.forwardCarPosition();
         }
     }

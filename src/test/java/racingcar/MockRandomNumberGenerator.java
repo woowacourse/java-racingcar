@@ -16,7 +16,7 @@ public class MockRandomNumberGenerator implements RandomNumberGenerator {
     private int index = 0;
 
     @Override
-    public boolean isAvailableMove() {
+    public boolean isMoveAvailable() {
         return MOCK_RANDOM_NUMBERS[index++] >= FORWARD_BOUNDARY_NUMBER;
     }
 }
