@@ -10,7 +10,7 @@ class CarDtoTest {
 
     @Test
     @DisplayName("이름을 반환한다.")
-    void carName() {
+    void getCarName_Test() {
         final String actual = carDto.getCarName();
         final String expected = "abc";
         assertThat(actual).isEqualTo(expected);
@@ -18,7 +18,7 @@ class CarDtoTest {
 
     @Test
     @DisplayName("이름을 반환한다.")
-    void distance() {
+    void getDistance_Test() {
         final int actual = carDto.getDistance();
         final int expected = 2;
         assertThat(actual).isEqualTo(expected);

@@ -11,7 +11,7 @@ class TrialCountTest {
     @ParameterizedTest
     @DisplayName("남은 시도 횟수가 0보다 큰 지 반환한다.")
     @CsvSource({"1, true", "0, false"})
-    void isHigherThanZero(final int trialCountValue, final boolean expected) {
+    void isHigherThanZero_Test(final int trialCountValue, final boolean expected) {
         final TrialCount trialCount = new TrialCount(trialCountValue);
         boolean actual = trialCount.isHigherThanZero();
         assertThat(actual).isEqualTo(expected);
@@ -19,7 +19,7 @@ class TrialCountTest {
 
     @Test
     @DisplayName("시도 횟수를 감소시킨다.")
-    void decrease() {
+    void decrease_Test() {
         final int initialTrialCountValue = 1;
         final TrialCount trialCount = new TrialCount(initialTrialCountValue);
         trialCount.decrease();
