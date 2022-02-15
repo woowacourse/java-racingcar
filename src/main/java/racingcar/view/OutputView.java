@@ -3,6 +3,7 @@ package racingcar.view;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.client.OutputClient;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 
@@ -12,26 +13,32 @@ public class OutputView {
     private static final String CAR_PROGRESS = "-";
     private static final String WINNER_DELIMITER = ", ";
 
+    private final OutputClient outputClient;
+
+    public OutputView(OutputClient outputClient) {
+        this.outputClient = outputClient;
+    }
+
     public void printProcessPrompt() {
-        System.out.println("실행 결과");
+        outputClient.output("실행 결과\n");
     }
 
     public void printCarsPosition(Cars cars) {
         cars.getCarList().forEach(this::printCarPosition);
-        System.out.println();
+        outputClient.output("\n");
     }
 
     private void printCarPosition(Car car) {
-        System.out.print(car.getName() + CAR_DELIMITER);
+        outputClient.output(car.getName() + CAR_DELIMITER);
         for (int i = 0; i < car.getPosition(); i++) {
-            System.out.print(CAR_PROGRESS);
+            outputClient.output(CAR_PROGRESS);
         }
-        System.out.println();
+        outputClient.output("\n");
     }
 
     public void printWinners(List<Car> carList) {
         List<String> nameList = toNames(carList);
-        System.out.println(String.join(WINNER_DELIMITER, nameList) + "가 최종 우승했습니다.");
+        System.out.println(String.join(WINNER_DELIMITER, nameList) + "가 최종 우승했습니다.\n");
     }
 
     private List<String> toNames(List<Car> carList) {
