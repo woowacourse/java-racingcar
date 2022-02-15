@@ -6,11 +6,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-import carracing.utils.RandomNumber;
+import carracing.utils.RandomMove;
+import carracing.utils.RandomUtil;
 
 public class Cars {
-	private static final int RANDOM_NUMBER_RANGE = 10;
-
 	private final List<Car> cars;
 
 	public Cars(List<Car> cars) {
@@ -29,8 +28,8 @@ public class Cars {
 	}
 
 	public void moveCars() {
-		cars.forEach(car ->
-			car.move(RandomNumber.generate(RANDOM_NUMBER_RANGE)));
+		RandomUtil randomUtil = new RandomMove();
+		cars.forEach(car -> car.move(randomUtil));
 	}
 
 	private void validateDuplication(List<Car> cars) {

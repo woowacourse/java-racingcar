@@ -1,11 +1,12 @@
 package carracing.model;
 
+import carracing.utils.RandomUtil;
+
 import static carracing.view.messages.ExceptionMessage.*;
 
 public class Car {
 	private static final int MIN_NAME_LENGTH = 1;
 	private static final int MAX_NAME_LENGTH = 5;
-	private static final int MOVABLE_NUMBER_THRESHOLD = 4;
 
 	private final String name;
 	private int position;
@@ -22,8 +23,8 @@ public class Car {
 		return this.name;
 	}
 
-	public void move(int number) {
-		if (number >= MOVABLE_NUMBER_THRESHOLD) {
+	public void move(RandomUtil randomUtil) {
+		if (randomUtil.isMovable()) {
 			this.position++;
 		}
 	}
