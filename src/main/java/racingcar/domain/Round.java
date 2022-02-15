@@ -13,10 +13,6 @@ public class Round {
         Validator.validateRound(roundNum);
     }
 
-    public static Round from(String round) {
-        return new Round(round);
-    }
-
     public boolean isValidRound() {
         return this.roundNum > ROUND_END_NUMBER;
     }

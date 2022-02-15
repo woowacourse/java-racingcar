@@ -15,7 +15,7 @@ public class RacingGame {
 
     public static RacingGame createRacingGame(List<String> carsName, String round,
                                               NumberGeneratePolicy numberGeneratePolicy) {
-        return new RacingGame(Cars.fromNames(carsName), Round.from(round), numberGeneratePolicy);
+        return new RacingGame(Cars.fromNames(carsName), new Round(round), numberGeneratePolicy);
     }
 
     public RacingRecord race() {
