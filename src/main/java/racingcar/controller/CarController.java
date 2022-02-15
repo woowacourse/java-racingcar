@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import java.util.List;
 
-import racingcar.controller.dto.CarDto;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.vo.TryRoundNumber;
@@ -68,8 +67,7 @@ public class CarController {
 	private void playRound() {
 		List<Car> cars = carRepository.findAll();
 		moveCars(cars);
-		List<CarDto> carDtos = CarDto.from(cars);
-		OutputView.showCurrentStatus(carDtos);
+		OutputView.showCurrentStatus(cars);
 	}
 
 	void moveCars(List<Car> cars) {
@@ -80,8 +78,7 @@ public class CarController {
 
 	public void showWinners() {
 		List<Car> winners = getWinners();
-		List<CarDto> carDtos = CarDto.from(winners);
-		OutputView.showGameResult(carDtos);
+		OutputView.showGameResult(winners);
 	}
 
 	List<Car> getWinners() {

@@ -3,12 +3,12 @@ package racingcar.domain;
 import java.util.Objects;
 import java.util.function.Function;
 
-import racingcar.controller.dto.CarDto;
 import racingcar.domain.strategy.MovingStrategy;
 import racingcar.domain.vo.CarName;
 
 public class Car {
 
+	public static final String CAR_PROGRESS_BAR = "-";
 	private CarName name;
 	private int position = 0;
 	private MovingStrategy movingStrategy;
@@ -23,6 +23,10 @@ public class Car {
 		this.name = builder.name;
 		this.position = builder.position;
 		this.movingStrategy = builder.movingStrategy;
+	}
+
+	public String getName() {
+		return name.get();
 	}
 
 	public static class Builder {
@@ -68,19 +72,18 @@ public class Car {
 		return position == maxCar.position;
 	}
 
-	public int compareTo(final Function<Car, Integer> function, final Car other) {
-		return function.apply(other);
+	public int compareNameTo(final Car other) {
+		return compareTo((Car otherCar) -> this.name.get().compareTo(otherCar.name.get()), other);
 	}
 
 	public int comparePositionTo(final Car other) {
 		return compareTo((Car otherCar) -> this.position - otherCar.position, other);
 	}
 
-	public CarDto toDto() {
-		return new CarDto(name, position);
+	public int compareTo(final Function<Car, Integer> function, final Car other) {
+		return function.apply(other);
 	}
 
-	@Override
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -97,10 +100,6 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return "Car{" +
-			"name=" + name +
-			", position=" + position +
-			", movingStrategy=" + movingStrategy +
-			'}';
+		return name + " : " + CAR_PROGRESS_BAR.repeat(position);
 	}
 }
