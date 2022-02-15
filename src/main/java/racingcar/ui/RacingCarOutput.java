@@ -16,6 +16,10 @@ public class RacingCarOutput {
         System.out.println(ROUND_RESULT);
     }
 
+    public static void printErrorMessage(String error) {
+        System.out.println(error);
+    }
+
     public static void printRoundResult(List<Car> cars) {
         cars.forEach(RacingCarOutput::printCarPositionInfo);
         System.out.println();

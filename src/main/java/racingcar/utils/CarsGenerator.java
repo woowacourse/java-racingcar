@@ -2,6 +2,7 @@ package racingcar.utils;
 
 import racingcar.domain.Car;
 import racingcar.ui.RacingCarInput;
+import racingcar.ui.RacingCarOutput;
 import racingcar.validator.CarNameValidator;
 import racingcar.validator.CarNamesValidator;
 
@@ -17,7 +18,7 @@ public class CarsGenerator {
         try {
             return CarsGenerator.generateCars(userInput);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            RacingCarOutput.printErrorMessage(e.getMessage());
             return carNameInput();
         }
     }

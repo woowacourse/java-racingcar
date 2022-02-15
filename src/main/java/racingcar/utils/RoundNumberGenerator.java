@@ -1,6 +1,7 @@
 package racingcar.utils;
 
 import racingcar.ui.RacingCarInput;
+import racingcar.ui.RacingCarOutput;
 import racingcar.validator.RoundNumberValidator;
 
 public class RoundNumberGenerator {
@@ -9,7 +10,7 @@ public class RoundNumberGenerator {
         try {
             return toIntWithValidate(roundNumberString);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            RacingCarOutput.printErrorMessage(e.getMessage());
             return roundInput();
         }
     }
