@@ -15,7 +15,7 @@ public class Cars {
         validateDuplication(carNames);
         this.cars = carNames.stream()
                 .map(Car::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private void validateDuplication(final List<String> carNames) {
