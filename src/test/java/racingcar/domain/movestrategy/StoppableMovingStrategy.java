@@ -1,6 +1,6 @@
 package racingcar.domain.movestrategy;
 
-public class StoppableMoveStrategy implements MoveStrategy {
+public class StoppableMovingStrategy implements MovingStrategy {
 
     @Override
     public boolean canMove() {

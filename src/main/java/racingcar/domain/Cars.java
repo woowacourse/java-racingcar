@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import racingcar.domain.movestrategy.MoveStrategy;
+import racingcar.domain.movestrategy.MovingStrategy;
 
 public class Cars {
 
@@ -25,7 +25,7 @@ public class Cars {
         this.cars = cars;
     }
 
-    public Cars(final List<String> names, final MoveStrategy strategy) {
+    public Cars(final List<String> names, final MovingStrategy strategy) {
         validateCarCount(names.size());
         validateDuplicateName(names);
 

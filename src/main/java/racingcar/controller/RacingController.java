@@ -10,13 +10,13 @@ import static racingcar.view.OutputView.printWinners;
 import racingcar.domain.Cars;
 import racingcar.domain.TrialCount;
 import racingcar.domain.Winners;
-import racingcar.domain.movestrategy.RandomMoveStrategy;
+import racingcar.domain.movestrategy.RandomMovingStrategy;
 
 public class RacingController {
 
     public void play() {
         try {
-            Cars cars = new Cars(insertName(), new RandomMoveStrategy());
+            Cars cars = new Cars(insertName(), new RandomMovingStrategy());
             TrialCount trialCount = new TrialCount(insertNumber());
 
             progressTurns(cars, trialCount);

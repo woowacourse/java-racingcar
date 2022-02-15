@@ -1,20 +1,20 @@
 package racingcar.domain;
 
-import racingcar.domain.movestrategy.MoveStrategy;
+import racingcar.domain.movestrategy.MovingStrategy;
 
 public class Car {
 
-    private final MoveStrategy strategy;
+    private final MovingStrategy strategy;
     private final Name name;
     private int position;
 
-    public Car(final String name, final MoveStrategy strategy) {
+    public Car(final String name, final MovingStrategy strategy) {
         this.strategy = strategy;
         this.name = new Name(name);
         position = 0;
     }
 
-    public Car(final String name, final MoveStrategy strategy, final int position) {
+    public Car(final String name, final MovingStrategy strategy, final int position) {
         this.strategy = strategy;
         this.name = new Name(name);
         this.position = position;

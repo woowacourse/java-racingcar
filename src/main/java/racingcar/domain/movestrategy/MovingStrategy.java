@@ -1,6 +1,6 @@
 package racingcar.domain.movestrategy;
 
-public interface MoveStrategy {
+public interface MovingStrategy {
 
     boolean canMove();
 
