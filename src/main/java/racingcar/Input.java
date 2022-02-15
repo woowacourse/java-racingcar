@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Input {
 
-    public static final String COMMA_REGEX = ",";
+    private static final String COMMA_REGEX = ",";
 
     private Scanner scanner;
     private InputValidator inputValidator;

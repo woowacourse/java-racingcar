@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 public class Game {
 
-    public static final int RANDOM_RANGE = 10;
-    public static final int MINIMUM_MOVE = 4;
+    private static final int RANDOM_RANGE = 10;
+    private static final int MINIMUM_MOVE = 4;
 
     private Input input;
     private Output output;
