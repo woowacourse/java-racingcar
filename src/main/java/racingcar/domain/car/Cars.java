@@ -38,14 +38,21 @@ public class Cars {
     }
 
     public List<CarDto> getFarthestCar() {
+        final Car winnerCar = findWinnerCar();
         return values.stream()
-                .filter(this::isHighest)
+                .filter(other -> hasSameDistance(winnerCar, other))
                 .map(Car::convertToDto)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private boolean isHighest(final Car standardCar) {
+    private Car findWinnerCar() {
         return values.stream()
-                .allMatch(standardCar::isFartherThan);
+                .sorted()
+                .findFirst()
+                .get();
+    }
+
+    private boolean hasSameDistance(final Car first, final Car second) {
+        return first.compareTo(second) == 0;
     }
 }

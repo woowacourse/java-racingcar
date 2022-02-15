@@ -6,7 +6,7 @@ import racingcar.dto.CarDto;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int INITIAL_DISTANCE = 0;
 
     private final CarName carName;
@@ -25,8 +25,14 @@ public class Car {
         return new CarDto(carName.getValue(), distance.getValue());
     }
 
-    public boolean isFartherThan(final Car another) {
-        return this.distance.isSameOrHigherThan(another.distance);
+    @Override
+    public int compareTo(final Car another) {
+        if (this.distance.getValue() > another.distance.getValue()) {
+            return -1;
+        } else if (this.distance.getValue() < another.distance.getValue()) {
+            return 1;
+        }
+        return 0;
     }
 
     @Override
