@@ -5,50 +5,36 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import racingCar.domain.Car;
 import racingCar.domain.RacingCars;
 
-public class RacingCarOutputTest {
-	@Test
-	void 자동차_위치_출력_정상() {
-		Car car = new Car("woowahan");
-		car.moveCar(true);
-		assertThat(car.toString()).isEqualTo("woowahan : -");
-		car.moveCar(false);
-		assertThat(car.toString()).isEqualTo("woowahan : -");
-		car.moveCar(true);
-		assertThat(car.toString()).isEqualTo("woowahan : --");
-	}
+public class RacingCarsTest {
+	private RacingCars racingCars;
 
-	@Test
-	void 최종_결과_출력_정상() {
-		RacingCars racingCars;
+	@BeforeEach
+	@DisplayName("RacingCars 객체 생성")
+	void setup() {
 		List<Car> cars = new ArrayList<>();
-		List<Car> winners = new ArrayList<>();
-
-		Car car1 = new Car("a");
-		Car car2 = new Car("b");
-		Car car3 = new Car("c");
-
-		cars.add(car1);
-		cars.add(car2);
-		cars.add(car3);
-
-		cars.get(0).moveCar(true);
-		cars.get(0).moveCar(true);
-		cars.get(1).moveCar(true);
-		cars.get(1).moveCar(true);
-		cars.get(2).moveCar(false);
-
-		winners.add(car1);
-		winners.add(car2);
-
+		cars.add(new Car("runa"));
+		cars.add(new Car("leo"));
+		cars.add(new Car("pobi"));
 		racingCars = new RacingCars(cars);
-
-		List<Car> result = racingCars.findWinner();
-		assertThat(result).isEqualTo(winners);
 	}
+
+	@Test
+	@DisplayName("RacingCars 불변 확인")
+	void carsNotBeChanged(){
+		RacingCars racingCars = new RacingCars(this.racingCars.getRacingCars());
+
+		List<Car> unmodifiableCars = racingCars.getRacingCars();
+
+		assertThatThrownBy(()->unmodifiableCars.add(new Car("dun")))
+			.isInstanceOf(UnsupportedOperationException.class);
+	}
+
 
 }
