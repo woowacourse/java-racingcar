@@ -80,4 +80,30 @@ public class CarTest {
         car.movePosition(false);
         assertThat(car.getPosition()).isEqualTo(0);
     }
+
+    @DisplayName("Car 우승자 계산 테스트 - TRUE")
+    @Test
+    public void carMaxPosition_True() {
+        String name = "bunny";
+        Car car = new Car(name);
+
+        car.movePosition(true);
+        car.movePosition(true);
+        car.movePosition(true);
+
+        assertThat(car.isMaxPosition(3)).isEqualTo(true);
+    }
+
+    @DisplayName("Car 우승자 계산 테스트 - FALSE")
+    @Test
+    public void carMaxPosition_False() {
+        String name = "bunny";
+        Car car = new Car(name);
+
+        car.movePosition(true);
+        car.movePosition(true);
+        car.movePosition(false);
+
+        assertThat(car.isMaxPosition(3)).isEqualTo(false);
+    }
 }
