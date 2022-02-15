@@ -21,8 +21,8 @@ public class Car {
         }
     }
 
-    public boolean isMaxPosition(int maxPosition) {
-        return position.toInt() == maxPosition;
+    public boolean isSameWithPosition(int position) {
+        return this.position.isSameWith(position);
     }
 
     public String getName() {

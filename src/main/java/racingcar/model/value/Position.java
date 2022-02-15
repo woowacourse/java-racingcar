@@ -19,6 +19,10 @@ public class Position {
         return this.position;
     }
 
+    public boolean isSameWith(int position) {
+        return this.position == position;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

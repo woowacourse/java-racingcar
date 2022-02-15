@@ -48,6 +48,6 @@ class CarTest {
         Car car = new Car("foo");
 
         // then
-        assertThat(car.isMaxPosition(maxPosition)).isEqualTo(expected);
+        assertThat(car.isSameWithPosition(maxPosition)).isEqualTo(expected);
     }
 }
