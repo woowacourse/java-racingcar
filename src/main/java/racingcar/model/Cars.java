@@ -7,36 +7,40 @@ import java.util.stream.Collectors;
 public class Cars {
     private static final int DEFAULT_POSITION = 0;
 
-    private List<Car> racingCars;
+    private List<Car> cars;
 
     public Cars(String[] carNames) {
-        this.racingCars = new ArrayList<>();
+        this.cars = new ArrayList<>();
+        insertCarFromCarNames(carNames);
+    }
+
+    public List<Car> getRacingCars() {
+        return cars;
+    }
+
+    public void insertCar(Car car) {
+        cars.add(car);
+    }
+
+    public void insertCarFromCarNames(String[] carNames) {
         for (String carName : carNames) {
             insertCar(new Car(carName, DEFAULT_POSITION));
         }
     }
 
-    public List<Car> getRacingCars() {
-        return racingCars;
-    }
-
-    public void insertCar(Car car) {
-        racingCars.add(car);
-    }
-
     public void moveRound() {
-        for (Car car : racingCars) {
+        for (Car car : cars) {
             car.move();
         }
     }
 
     public List<String> getWinner() {
-        int maxPosition = racingCars.stream()
+        int maxPosition = cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .getAsInt();
 
-        return racingCars.stream()
+        return cars.stream()
                 .filter(car -> car.isMaxPosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());

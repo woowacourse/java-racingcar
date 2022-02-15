@@ -1,8 +1,10 @@
 package racingcar.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarsTest {
@@ -25,8 +27,18 @@ public class CarsTest {
     }
 
     @Test
-    public void 자동차_저장_확인() {
-        cars = new Cars(new String[]{"A", "B", "C"});
-        assertThat(cars.getRacingCars().size()).isEqualTo(3);
+    public void 자동차_저장_확인1() {
+        Car carA = new Car("A",0);
+        cars.insertCar(carA);
+        assertEquals(carA, cars.getRacingCars().get(0));
+    }
+
+    @Test
+    public void 자동차_저장_확인2() {
+        Car carA = new Car("A",0);
+        Car carB = new Car("B",0);
+        cars.insertCar(carA);
+        cars.insertCar(carB);
+        assertEquals(carB, cars.getRacingCars().get(1));
     }
 }
