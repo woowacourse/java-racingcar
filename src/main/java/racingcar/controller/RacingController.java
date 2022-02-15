@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import racingcar.domain.CarDto;
 import racingcar.service.RacingService;
-import racingcar.util.RandomUtilImpl;
 import racingcar.validator.AttemptValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -13,7 +12,6 @@ import racingcar.view.OutputView;
 public class RacingController {
 
 	private final RacingService racingService = new RacingService();
-	private final RandomUtilImpl randomUtil = new RandomUtilImpl();
 
 	public void start() {
 		racingService.registerCars(InputView.getCars());
@@ -33,10 +31,9 @@ public class RacingController {
 	}
 
 	private void play(int attemptNumber) {
-		for (int i = 0; i < attemptNumber; i++) {
-			List<CarDto> carDtos = racingService.race(randomUtil);
-			OutputView.printRacingInfo(carDtos);
-		}
+		List<CarDto> carDtos = racingService.race(attemptNumber);
+		OutputView.printRacingInfo(carDtos);
+
 	}
 
 	private void printRacingResult() {

@@ -10,14 +10,18 @@ public class CarRepository {
 
 	private static final String EMPTY_CAR_ERROR_MESSAGE = "등록된 자동차가 없습니다.";
 
-	private static final List<Car> cars = new ArrayList<>();
+	private List<Car> cars = new ArrayList<>();
 
 	public void add(List<Car> cars) {
-		CarRepository.cars.addAll(cars);
+		this.cars.addAll(cars);
 	}
 
 	public List<Car> findCars() {
 		return cars;
+	}
+
+	public void updateCars(List<Car> cars) {
+		this.cars = cars;
 	}
 
 	public List<Car> findWinnerCars() {
@@ -28,9 +32,5 @@ public class CarRepository {
 		return cars.stream()
 			.filter(car -> car.isSamePosition(maxPositionCar))
 			.collect(Collectors.toList());
-	}
-
-	public void clear() {
-		cars.clear();
 	}
 }

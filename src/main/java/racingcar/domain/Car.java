@@ -39,7 +39,7 @@ public class Car implements Comparable<Car> {
 	}
 
 	public CarDto toDto() {
-		return new CarDto(this.name, this.position);
+		return CarDto.of(this.name, this.position);
 	}
 
 	public boolean isSamePosition(Car other) {

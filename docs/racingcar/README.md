@@ -48,6 +48,7 @@
 - domain
   - Car
   - CarDto
+  - Game
 - repository
   - CarRepository
 - service 
@@ -60,7 +61,6 @@
 - validator
   - Validator
 - util
-  - Converter
   - RandomUtil
   - RandomUtilImpl
 
@@ -91,11 +91,11 @@
 ### Validator
 - 입력값이 유효한 값인지 검증한다.
 
-### Converter
-- 데이터를 필요한 형식으로 변환해준다.
-
 ### RandomUtil
-- 난수 발생 메소드를 가지고 있는 interface이다.
+- 난수 발생 메소드를 가지고 있는 `interface` 이다.
 
 ### RandomUtilImpl
 - RandomUtil 을 구현하는 클래스이다.
+
+### Game
+- 자동차, 시도 횟수를 가지고 

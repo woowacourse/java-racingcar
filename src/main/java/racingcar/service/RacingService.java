@@ -5,14 +5,14 @@ import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
 import racingcar.domain.CarDto;
+import racingcar.domain.RacingGame;
 import racingcar.repository.CarRepository;
-import racingcar.util.RandomUtil;
+import racingcar.util.RandomUtilImpl;
 
 public class RacingService {
 
-	private static final int RANDOM_VALUE_RANGE = 10;
-
-	private static final CarRepository carRepository = new CarRepository();
+	private final CarRepository carRepository = new CarRepository();
+	private final RandomUtilImpl randomUtil = new RandomUtilImpl();
 
 	public void registerCars(List<CarDto> carDtos) {
 		List<Car> cars = carDtos.stream()
@@ -22,11 +22,10 @@ public class RacingService {
 		carRepository.add(cars);
 	}
 
-	public List<CarDto> race(RandomUtil randomUtil) {
-		List<Car> cars = carRepository.findCars();
-		cars.forEach(car -> {
-			car.move(randomUtil.generate(RANDOM_VALUE_RANGE));
-		});
+	public List<CarDto> race(int round) {
+		RacingGame racingGame = RacingGame.of(carRepository.findCars(), round);
+		List<Car> resultCars = racingGame.start(randomUtil);
+		carRepository.updateCars(resultCars);
 
 		return carRepository.findCars().stream()
 			.map(Car::toDto)
