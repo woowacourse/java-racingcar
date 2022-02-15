@@ -70,7 +70,7 @@ public class RacingGame {
     }
 
     private int getMaxPosition() {
-        Collections.sort(carList, (o1, o2) -> o2.getPosition() - o1.getPosition());
+        carList.sort((o1, o2) -> o2.getPosition() - o1.getPosition());
 
         int maxPosition = carList.get(FIRST_INDEX).getPosition();
 
