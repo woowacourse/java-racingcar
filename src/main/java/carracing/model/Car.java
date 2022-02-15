@@ -22,8 +22,8 @@ public class Car {
 		return this.name;
 	}
 
-	public void move(int randomNumber) {
-		if (randomNumber >= MOVABLE_NUMBER_THRESHOLD) {
+	public void move(int number) {
+		if (number >= MOVABLE_NUMBER_THRESHOLD) {
 			this.position++;
 		}
 	}
