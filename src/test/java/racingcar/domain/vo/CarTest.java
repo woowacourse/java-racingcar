@@ -7,19 +7,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarTest {
-    @Test
-    @DisplayName("유효한 이름으로 자동차 생성 테스트")
-    void carTest() {
-        // given
-        String testName = "test";
-
-        // when
-        Car car = new Car(testName);
+    @ParameterizedTest(name = "자동차 이름 : {0}")
+    @ValueSource(strings = {"j", "woowa"})
+    @DisplayName("유효한 이름으로 자동차 생성 테스트 - 1이상, 5이하")
+    void carTest(String carName) {
+        // given & when
+        Car car = new Car(carName);
 
         // then
-        assertThat(car.getName()).isEqualTo(testName);
+        assertThat(car.getName()).isEqualTo(carName);
     }
 
     @Test
