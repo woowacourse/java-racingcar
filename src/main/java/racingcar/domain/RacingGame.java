@@ -11,12 +11,6 @@ public class RacingGame {
     private final Round finalRound;
     private Round currentRound = Round.init();
 
-    public RacingGame(final RacingCars racingCars, final Round finalRound, final Round currentRound) {
-        this.racingCars = racingCars;
-        this.finalRound = finalRound;
-        this.currentRound = currentRound;
-    }
-
     public RacingGame(final RacingCars racingCars, final Round finalRound) {
         this.racingCars = racingCars;
         this.finalRound = finalRound;
