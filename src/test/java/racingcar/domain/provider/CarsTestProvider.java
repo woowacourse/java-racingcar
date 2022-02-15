@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.params.provider.Arguments;
 
-class CarGroupTestProvider {
+class CarsTestProvider {
 
     public static Stream<Arguments> provideForNullExceptionTest() {
         return Stream.of(

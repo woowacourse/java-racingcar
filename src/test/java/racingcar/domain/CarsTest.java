@@ -11,7 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import racingcar.domain.car.CarGroup;
+import racingcar.domain.car.Cars;
 import racingcar.domain.car.CarStatusDto;
 import racingcar.exception.RacingCarException;
 import racingcar.exception.car.CarNameDuplicatedException;
@@ -20,12 +20,12 @@ import racingcar.exception.car.CarNameNullException;
 import racingcar.exception.car.CarNameTooLongException;
 import racingcar.service.picker.CustomNumberPicker;
 
-class CarGroupTest {
+class CarsTest {
 
-    private static final String providerPath = "racingcar.domain.provider.CarGroupTestProvider#";
+    private static final String providerPath = "racingcar.domain.provider.CarsTestProvider#";
 
     private void exceptionTest(Class<? extends RacingCarException> exceptionClass, List<String> carNames) {
-        assertThrows(exceptionClass, () -> new CarGroup(carNames));
+        assertThrows(exceptionClass, () -> new Cars(carNames));
     }
 
     @DisplayName("자동차 이름은 NULL이 될 수 없다")
@@ -60,16 +60,16 @@ class CarGroupTest {
     @ParameterizedTest
     @MethodSource(providerPath + "provideForConstructorTest")
     void constructorTest(List<String> names) {
-        assertDoesNotThrow(() -> new CarGroup(names));
+        assertDoesNotThrow(() -> new Cars(names));
     }
 
     @DisplayName("라운드실행 기능 테스트")
     @ParameterizedTest
     @MethodSource(providerPath + "provideForPlayRoundTest")
     void playRoundTest(List<String> carNames, int repeatTime, List<Integer> numbers, List<String> expected) {
-        CarGroup carGroup = new CarGroup(carNames);
+        Cars cars = new Cars(carNames);
 
-        List<CarStatusDto> statuses = repeatPlay(carGroup, repeatTime, numbers);
+        List<CarStatusDto> statuses = repeatPlay(cars, repeatTime, numbers);
 
         List<String> actual = statuses.stream()
                 .map(CarStatusDto::toString)
@@ -81,21 +81,21 @@ class CarGroupTest {
     @ParameterizedTest
     @MethodSource(providerPath + "provideForGetWinnerNamesTest")
     void selectWinnersTest(List<String> carNames, int repeatTime, List<Integer> numbers, List<String> expected) {
-        CarGroup carGroup = new CarGroup(carNames);
+        Cars cars = new Cars(carNames);
 
-        repeatPlay(carGroup, repeatTime, numbers);
+        repeatPlay(cars, repeatTime, numbers);
 
-        List<String> winnerNames = carGroup.getWinnerNames();
+        List<String> winnerNames = cars.getWinnerNames();
         assertThat(winnerNames).isEqualTo(expected);
     }
 
-    private List<CarStatusDto> repeatPlay(CarGroup carGroup, int repeatTime, List<Integer> numbers) {
+    private List<CarStatusDto> repeatPlay(Cars cars, int repeatTime, List<Integer> numbers) {
         CustomNumberPicker numberPicker = new CustomNumberPicker(numbers);
 
         List<CarStatusDto> statuses = new ArrayList<>();
         for (int i = 0; i < repeatTime; i++) {
-            carGroup.goForwardOrStop(numberPicker);
-            statuses.addAll(carGroup.getStatuses());
+            cars.goForwardOrStop(numberPicker);
+            statuses.addAll(cars.getStatuses());
         }
         return statuses;
     }

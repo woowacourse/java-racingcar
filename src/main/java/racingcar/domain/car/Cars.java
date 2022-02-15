@@ -5,16 +5,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.domain.car.validator.CarGroupValidator;
+import racingcar.domain.car.validator.CarsValidator;
 import racingcar.service.picker.NumberPicker;
 
-public class CarGroup {
+public class Cars {
 
     private final List<Car> cars = new ArrayList<>();
 
-    public CarGroup(List<String> names) {
+    public Cars(List<String> names) {
         names.forEach(name -> cars.add(new Car(name)));
-        CarGroupValidator.validateNames(names);
+        CarsValidator.validateNames(names);
     }
 
     public void goForwardOrStop(NumberPicker numberPicker) {
