@@ -49,4 +49,8 @@ public class Car {
 	private boolean isEmptyName(String name) {
 		return name.isEmpty();
 	}
+
+	public String getName() {
+		return name;
+	}
 }

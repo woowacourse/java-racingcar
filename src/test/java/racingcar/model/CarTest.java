@@ -19,6 +19,14 @@ public class CarTest {
 	}
 
 	@ParameterizedTest
+	@ValueSource(strings = {"가나다라마", "가나다라", "가나다", "가나", "가"})
+	@DisplayName("자동차 이름이 5글자 이하이면 통과된다.")
+	void successNameValidate(String input) {
+		Car car = new Car(input);
+		assertThat(car.getName()).isEqualTo(input);
+	}
+
+	@ParameterizedTest
 	@ValueSource(strings = {"소주캉범고래", "여섯글자이름"})
 	@DisplayName("자동차 이름이 5글자를 초과하면 에러를 발생시킨다. ")
 	void isOverNameLength(String input) {
