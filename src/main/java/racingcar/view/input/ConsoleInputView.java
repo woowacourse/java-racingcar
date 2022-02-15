@@ -47,4 +47,3 @@ public class ConsoleInputView implements InputView {
         }
     }
 }
- 
