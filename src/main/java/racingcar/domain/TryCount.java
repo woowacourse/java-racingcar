@@ -9,7 +9,7 @@ public class TryCount {
         this.maxTryCount = maxTryCount;
     }
 
-    public void increment() {
+    public void increaseCount() {
         currentTryCount++;
     }
 

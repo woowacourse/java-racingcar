@@ -27,7 +27,7 @@ public class RacingGame {
             throw new RacingGameIsFinishedException();
         }
         cars.move(randomNumberGenerator);
-        tryCount.increment();
+        tryCount.increaseCount();
     }
 
     public boolean isFinished() {
