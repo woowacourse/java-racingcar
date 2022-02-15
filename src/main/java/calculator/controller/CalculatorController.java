@@ -2,6 +2,7 @@ package calculator.controller;
 
 import calculator.model.Calculator;
 import calculator.utils.InputValidator;
+import calculator.view.InputView;
 import calculator.view.OutputView;
 
 public class CalculatorController {
@@ -14,6 +15,11 @@ public class CalculatorController {
             OutputView.showSum(DEFAULT_NUMBER);
             return;
         }
-        OutputView.showSum(calculator.sumAndDivideInput(input));
+
+        if (InputView.hasCustomDelimiterInInput(input)) {
+            OutputView.showSum(calculator.makeSumOfNumbers(InputView.dividesByCustomAndCheckValidate(input)));
+            return;
+        }
+        OutputView.showSum(calculator.makeSumOfNumbers(InputView.divideNumbersByDelimiterAndCheckValidate(input)));
     }
 }
