@@ -4,11 +4,8 @@ import racingcargame.model.RacingCarGame;
 import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 
-import java.util.List;
-
 public class CarGameController {
     private final CarGameController gameController;
-    private static final String CAR_NAME_DELIMITER = ",";
 
     public CarGameController() {
         this.gameController = new CarGameController();
@@ -26,19 +23,11 @@ public class CarGameController {
 
     private RacingCarGame makeRacingCarGameObjectByUserInput() {
         OutputView.showCarNamesInputGuideMessage();
-        List<String> carNames = makeSplitCarNames(InputView.inputCarName());
+        String carNames = InputView.inputCarName();
 
         OutputView.showRaceCountInputGuideMessage();
-        int raceCount = makeIntegerRaceCount(InputView.inputRaceCount());
+        String raceCount = InputView.inputRaceCount();
 
         return new RacingCarGame(carNames, raceCount);
-    }
-
-    private List<String> makeSplitCarNames(String carNames) {
-        return List.of(carNames.split(CAR_NAME_DELIMITER));
-    }
-
-    private int makeIntegerRaceCount(String count) {
-        return Integer.parseInt(count);
     }
 }

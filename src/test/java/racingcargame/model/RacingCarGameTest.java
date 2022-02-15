@@ -15,10 +15,7 @@ public class RacingCarGameTest {
 
     @BeforeEach
     void setUp() {
-        carNames = new ArrayList<>();
-        carNames.add("liver");
-        carNames.add("lawn");
-        racingCarGame = new RacingCarGame(carNames, 0);
+        racingCarGame = new RacingCarGame("liver,lawn", "0");
     }
 
     @Test
