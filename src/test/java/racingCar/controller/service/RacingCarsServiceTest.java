@@ -19,20 +19,12 @@ public class RacingCarsServiceTest {
 
     @BeforeEach
     void setup() {
-        carsService = new RacingCarsService();
-    }
-
-    @Test
-    void initiateCars_테스트() {
-        carsService.initiateCars("juri,hunch");
-
+        carsService = new RacingCarsService("juri,hunch","5");
     }
 
     @Test
     void 게임_작동_테스트() {
         //given
-        carsService.initiateCars("juri,hunch");
-        carsService.initiateCount(5);
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
@@ -41,17 +33,16 @@ public class RacingCarsServiceTest {
         String result = out.toString();
 
         //then
-        assertThat(result)
-                .contains("juri : -", "hunch : -");
+        assertThat(Arrays.stream(result.split(" ")).filter(s -> s.contains("juri")).count() == 5 &&
+                Arrays.stream(result.split(" ")).filter(s -> s.contains("hunch")).count() == 5)
+                .isTrue();
     }
 
     @Test
     void 우승자_찾기_테스트() {
         //given
         int expectMaxPosition = 4;
-        RacingCars cars = new RacingCars(new ArrayList<>(Arrays.asList("juri", "hunch")));
-        Car winCar = new Car("pobi");
-        cars.addCar(winCar);
+        Car winCar = carsService.cars.get().get(0);
         ArrayList<Car> result = new ArrayList<>(List.of(winCar));
 
         //when
@@ -61,6 +52,6 @@ public class RacingCarsServiceTest {
 
         //then
         assertThat(result)
-                .isEqualTo(cars.getSamePositionCars(expectMaxPosition));
+                .isEqualTo(carsService.getWinnerCars());
     }
 }

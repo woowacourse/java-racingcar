@@ -9,16 +9,22 @@ import racingCar.model.utils.Util;
 import racingCar.view.Output;
 
 public class RacingCarsService {
-    private RacingCars cars;
-    private RoundCount roundCount;
+    public final RacingCars cars;
+    public final RoundCount roundCount;
 
-    public void initiateCars(String nameString) {
-        String[] names = Util.separate(nameString);
-        cars = new RacingCars(Arrays.asList(names));
+    public RacingCarsService(String names, String count) {
+        this.cars = initiateCars(names);
+        this.roundCount = initiateCount(count);
     }
 
-    public void initiateCount(int countInput) {
-        roundCount = new RoundCount(countInput);
+    private RacingCars initiateCars(String nameString) {
+        String[] names = Util.separate(nameString);
+        return new RacingCars(Arrays.asList(names));
+    }
+
+    private RoundCount initiateCount(String countInput) {
+        int count = Util.convertToInteger(countInput);
+        return new RoundCount(count);
     }
 
     public void playGame() {
