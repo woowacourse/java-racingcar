@@ -1,11 +1,13 @@
-package carRacingGame;
+package carracinggame;
 
 public class Car {
+
 	public static final int INITIAL_POSITION = 0;
 	public static final String SPACE_BETWEEN_NAME_DISTANCE = " : ";
 	public static final String DISTANCE_OUTPUT = "-";
+
 	private final String name;
-	int position = INITIAL_POSITION;
+	private int position = INITIAL_POSITION;
 
 	public Car(String name) {
 		this.name = name;
