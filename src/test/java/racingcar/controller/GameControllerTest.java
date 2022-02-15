@@ -17,7 +17,7 @@ class GameControllerTest {
         String input = "aa,bb,cc";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertThat(gameController.createCarNames()).containsExactly("aa", "bb", "cc");
+        assertThat(gameController.inputCarNames()).containsExactly("aa", "bb", "cc");
     }
 
     @Test
@@ -25,6 +25,6 @@ class GameControllerTest {
         String input = "5";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertThat(gameController.createTryCount()).isEqualTo(5);
+        assertThat(gameController.inputTryCount()).isEqualTo(5);
     }
 }
