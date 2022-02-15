@@ -2,10 +2,9 @@ package racingcar.view;
 
 import static java.util.stream.Collectors.joining;
 
-import java.util.Scanner;
+import java.util.List;
 import java.util.stream.IntStream;
-import racingcar.domain.result.MidtermResult;
-import racingcar.domain.result.WinnersResult;
+import racingcar.domain.result.GameLog;
 
 public class View {
 
@@ -25,18 +24,15 @@ public class View {
         System.out.println(INPUT_TRY_COUNT_MESSAGE);
     }
 
-    public void printExceptionMessage(Exception exception) {
-        System.out.println(exception.getMessage());
-    }
-
     public void printResultViewTitle() {
         printBlankLine();
         System.out.println(RESULT_VIEW_TITLE_MESSAGE);
     }
 
-    public void printMidtermResults(MidtermResult midtermResult) {
-        for (String name : midtermResult.getCarNames()) {
-            printCarNameAndProgressBar(name, midtermResult.getPositionByName(name));
+    public void printMidtermResults(GameLog gameLog) {
+        int currentTryCount = gameLog.getLatestTryCount();
+        for (String name : gameLog.getLatestCarNames()) {
+            printCarNameAndProgressBar(name, gameLog.getPositionByName(currentTryCount, name));
         }
         printBlankLine();
     }
@@ -52,20 +48,20 @@ public class View {
                 .reduce("", (a, b) -> a + b);
     }
 
-    public void printWinnerResult(WinnersResult winnersResult) {
-        System.out.println(getFormattedWinnerNames(winnersResult) + WINNER_RESULT_SUFFIX_MESSAGE);
+    public void printWinnersResult(GameLog gameLog) {
+        System.out.println(getFormattedWinnerNames(gameLog.getWinnerCarNames()) + WINNER_RESULT_SUFFIX_MESSAGE);
     }
 
-    private String getFormattedWinnerNames(WinnersResult winnersResult) {
-        return winnersResult.getWinnerNames().stream()
+    private String getFormattedWinnerNames(List<String> lastCarNames) {
+        return lastCarNames.stream()
                 .collect(joining(WINNER_NAMES_DELIMITER));
+    }
+
+    public void printExceptionMessage(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 
     private void printBlankLine() {
         System.out.println();
-    }
-
-    public void printErrorMessage(String message) {
-        System.out.println(message);
     }
 }

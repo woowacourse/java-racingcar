@@ -16,8 +16,8 @@ public class Controller {
     private final View view;
     private final RacingGame racingGame;
 
-    private String namesForGame = "init";
-    private String tryCountForGame = "init";
+    private String receivedNamesForGame = "init";
+    private String receivedTryCountForGame = "init";
 
     public Controller(RandomNumberGenerator randomNumberGenerator) {
         this.carNamesReceiver = new CarNamesReceiver();
@@ -30,21 +30,21 @@ public class Controller {
         view.printResultViewTitle();
         while (!racingGame.isFinished()) {
             racingGame.proceedTurn();
-            view.printMidtermResults(racingGame.getMidtermResult());
+            view.printMidtermResults(racingGame.getGameLog());
         }
-        view.printWinnerResult(racingGame.getWinnersResult());
+        view.printWinnersResult(racingGame.getGameLog());
     }
 
     private List<String> enrollNames() {
         while (inputNames()) {
         }
-        return carNamesReceiver.parseNames(namesForGame);
+        return carNamesReceiver.parseNames(receivedNamesForGame);
     }
 
     private boolean inputNames() {
         try {
             view.printInputNamesMessage();
-            namesForGame = carNamesReceiver.validateCarNames(scanner.nextLine());
+            receivedNamesForGame = carNamesReceiver.validateCarNames(scanner.nextLine());
             return false;
         } catch (IllegalArgumentException exception) {
             view.printExceptionMessage(exception);
@@ -55,13 +55,13 @@ public class Controller {
     private int enrollTryCount() {
         while (inputTryCount()) {
         }
-        return tryCountReceiver.parseTryCount(tryCountForGame);
+        return tryCountReceiver.parseTryCount(receivedTryCountForGame);
     }
 
     private boolean inputTryCount() {
         try {
             view.printInputTryCountMessage();
-            tryCountForGame = tryCountReceiver.validateTryCount(scanner.nextLine());
+            receivedTryCountForGame = tryCountReceiver.validateTryCount(scanner.nextLine());
             return false;
         } catch (IllegalArgumentException exception) {
             view.printExceptionMessage(exception);

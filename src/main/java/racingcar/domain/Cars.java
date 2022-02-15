@@ -2,23 +2,22 @@ package racingcar.domain;
 
 import static java.util.stream.Collectors.toList;
 
+import java.util.ArrayList;
 import java.util.List;
 import racingcar.domain.random.RandomNumberGenerator;
-import racingcar.domain.result.MidtermResult;
-import racingcar.domain.result.WinnersResult;
 
 public class Cars {
 
-    private final List<Car> cars;
+    private final List<Car> carList;
 
     public Cars(List<String> names) {
-        cars = names.stream()
+        carList = names.stream()
                 .map(name -> new Car(name))
                 .collect(toList());
     }
 
     public void move(RandomNumberGenerator randomNumberGenerator) {
-        for (Car car : cars) {
+        for (Car car : carList) {
             moveOneCar(randomNumberGenerator, car);
         }
     }
@@ -29,25 +28,11 @@ public class Cars {
         }
     }
 
-    public MidtermResult getMidtermResult() {
-        return new MidtermResult(cars);
-    }
-
-    public WinnersResult getWinnersResult() {
-        return new WinnersResult(getWinnerCars());
-    }
-
-    private List<Car> getWinnerCars() {
-        return cars.stream()
-                .filter(car -> car.isSamePosition(getMostFarPosition()))
-                .collect(toList());
-    }
-
-    private int getMostFarPosition() {
-        int defaultPosition = 0;
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(defaultPosition);
+    public List<Car> cloneCarList() {
+        List<Car> carsClone = new ArrayList<>();
+        for (Car car : carList) {
+            carsClone.add(car.clone());
+        }
+        return carsClone;
     }
 }

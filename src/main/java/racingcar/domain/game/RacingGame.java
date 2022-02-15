@@ -4,22 +4,21 @@ import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
 import racingcar.domain.random.RandomNumberGenerator;
-import racingcar.exception.GetWinnersBeforeFinishException;
 import racingcar.exception.RacingGameIsFinishedException;
-import racingcar.domain.result.MidtermResult;
-import racingcar.domain.result.WinnersResult;
+import racingcar.domain.result.GameLog;
 
 public class RacingGame {
 
+    private final Cars cars;
+    private final TryCount tryCount;
     private final RandomNumberGenerator randomNumberGenerator;
-
-    private Cars cars;
-    private TryCount tryCount;
+    private final GameLog gameLog;
 
     public RacingGame(List<String> names, int inputTryCount, RandomNumberGenerator randomNumberGenerator) {
-        enrollCars(names);
-        initTryCount(inputTryCount);
+        this.cars = new Cars(names);
+        this.tryCount = new TryCount(inputTryCount);
         this.randomNumberGenerator = randomNumberGenerator;
+        this.gameLog = new GameLog();
     }
 
     public void proceedTurn() {
@@ -28,28 +27,14 @@ public class RacingGame {
         }
         cars.move(randomNumberGenerator);
         tryCount.increaseCount();
+        gameLog.writeLog(tryCount.getCurrentTryCount(), cars);
     }
 
     public boolean isFinished() {
         return tryCount.isFinished();
     }
 
-    public MidtermResult getMidtermResult() {
-        return cars.getMidtermResult();
-    }
-
-    public WinnersResult getWinnersResult() {
-        if (!isFinished()) {
-            throw new GetWinnersBeforeFinishException();
-        }
-        return cars.getWinnersResult();
-    }
-
-    private void enrollCars(List<String> names) {
-        cars = new Cars(names);
-    }
-
-    private void initTryCount(int inputTryCount) {
-        tryCount = new TryCount(inputTryCount);
+    public GameLog getGameLog() {
+        return gameLog;
     }
 }
