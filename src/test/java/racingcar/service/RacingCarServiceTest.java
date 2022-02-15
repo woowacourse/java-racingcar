@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,6 @@ class RacingCarServiceTest {
 
 	@Test
 	public void 우승자_찾기_테스트() {
-		ArrayList<String> result = new ArrayList<>(Collections.singletonList("pobi"));
-		assertThat(racingCarService.findWinner()).isEqualTo(result);
+		assertThat(racingCarService.findWinner()).isEqualTo(Collections.singletonList("pobi"));
 	}
 }
