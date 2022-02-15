@@ -13,6 +13,9 @@ public class Car {
 	private int position = 0;
 	private MovingStrategy movingStrategy;
 
+	/**
+	 * 다른 스타일의 생성자를 허용하지 않는다
+	 */
 	private Car() {
 	}
 

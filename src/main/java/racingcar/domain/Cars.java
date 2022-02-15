@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import racingcar.domain.strategy.RandomMovingStrategy;
@@ -73,5 +74,27 @@ public class Cars {
 		return cars.stream()
 			.max(Car::comparePositionTo)
 			.orElseThrow(() -> new RuntimeException(NOT_FOUND_CARS_MESSAGE));
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Cars cars1 = (Cars)o;
+		return Objects.equals(cars, cars1.cars);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cars);
+	}
+
+	@Override
+	public String toString() {
+		return "Cars{" +
+			"cars=" + cars +
+			'}';
 	}
 }
