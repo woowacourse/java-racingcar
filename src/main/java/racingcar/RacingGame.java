@@ -23,7 +23,6 @@ public class RacingGame {
     }
 
     public void playGame(RacingCars racingCars) {
-        validatedCarStandard(racingCars);
 
         String tryCount = InputView.askTryCount();
         Validator.checkTryCountIsNaturalNumber(tryCount);
@@ -34,13 +33,6 @@ public class RacingGame {
             moveCar(racingCars);
             OutputView.printCurrentRacingSituation(racingCars);
         }
-    }
-
-    private void validatedCarStandard(RacingCars racingCars) {
-        Validator.checkCarsNameIsEmpty(racingCars);
-        Validator.checkCarsNameSize(racingCars);
-        Validator.checkDuplicatedName(racingCars);
-        Validator.checkCountOfCar(racingCars);
     }
 
     private void moveCar(RacingCars racingCars) {

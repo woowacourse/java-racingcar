@@ -3,7 +3,6 @@ package racingcar.domain;
 public class RacingCar {
 
     private static final int MOVE_STANDARD = 4;
-    private static final int CAR_NAME_STANDARD_SIZE = 5;
     private final String name;
     private int position;
 
@@ -32,10 +31,6 @@ public class RacingCar {
 
     public boolean isSamePosition(RacingCar racingCar) {
         return this.position == racingCar.getPosition();
-    }
-
-    public boolean isLongCarName() {
-        return name.length() > CAR_NAME_STANDARD_SIZE;
     }
 
 }

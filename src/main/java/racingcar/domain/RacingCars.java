@@ -1,14 +1,11 @@
 package racingcar.domain;
 
-import racingcar.validator.Validator;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class RacingCars {
 
-    private static final String DELIMITER = ",";
     private final List<RacingCar> racingCars;
 
     public RacingCars() {
@@ -19,9 +16,7 @@ public class RacingCars {
         this.racingCars = racingCars;
     }
 
-    public void join(String inputCarNames) {
-        Validator.checkHaveLastInputComma(inputCarNames);
-        String[] validCarNames = inputCarNames.split(DELIMITER);
+    public void join(String[] validCarNames) {
         for (String validCarName : validCarNames) {
             racingCars.add(RacingCar.generateRacingCar(validCarName));
         }

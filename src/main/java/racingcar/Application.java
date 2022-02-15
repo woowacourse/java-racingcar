@@ -7,11 +7,10 @@ import racingcar.view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        RacingGame racingGame = new RacingGame();
         RacingCars racingCars = new RacingCars();
 
-        String userInputCarNames = InputView.askCarName();
-        racingCars.join(userInputCarNames);
+        racingCars.join(InputView.askCarName());
+        RacingGame racingGame = new RacingGame(racingCars);
 
         racingGame.playGame(racingCars);
 
