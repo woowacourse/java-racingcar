@@ -10,11 +10,15 @@ public class Staff {
 
     public String getCarNames() {
         System.out.println(INPUT_NAME_MESSAGE);
-        return SCANNER.nextLine();
+        return inputFromUser();
     }
 
     public Integer getPlayTimes() {
         System.out.println(INPUT_RACING_TIMES_MESSAGE);
-        return Integer.parseInt(SCANNER.nextLine());
+        return Integer.parseInt(inputFromUser());
+    }
+
+    private String inputFromUser() {
+        return SCANNER.nextLine();
     }
 }
