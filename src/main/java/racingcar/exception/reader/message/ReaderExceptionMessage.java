@@ -1,7 +1,17 @@
 package racingcar.exception.reader.message;
 
-public class ReaderExceptionMessage {
+public enum ReaderExceptionMessage {
 
-    public static final String READER_CANNOT_READ_EXCEPTION_MESSAGE = "입력을 받아올 수 없습니다.";
+    READER_CANNOT_READ("입력을 받아올 수 없습니다.");
+
+    private final String message;
+
+    ReaderExceptionMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 
 }
