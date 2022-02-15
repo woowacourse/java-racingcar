@@ -30,6 +30,13 @@ class ParticipantsTest {
     }
 
     @Test
+    public void findWinners() {
+        participants.getParticipantCars().get(0).tryMove(5);
+        List<Name> racingWinners = participants.findRacingWinners();
+        assertThat(racingWinners.size()).isEqualTo(1);
+    }
+
+    @Test
     public void race() {
     }
 }
