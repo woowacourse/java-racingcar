@@ -1,27 +1,27 @@
 package racingcar.domain.validation;
 
-public class AttemptValidator extends Validator {
-	private static final String ATTEMPT_NUMERIC_ERROR_MESSAGE = "시도횟수는 숫자를 입력해주세요.";
-	private static final String ATTEMPT_NEGATIVE_ERROR_MESSAGE = "시도횟수는 1이상의 수를 입력해주세요.";
-	private static final String ATTEMPT_BLANK_ERROR_MESSAGE = "반복 횟수는 %s일 수 없습니다.";
-	private static final String NUMBER_REGEX = "[+-]?\\d*(\\.\\d+)?";
+import racingcar.util.Constant;
 
-	private boolean isNumber(String string) {
-		return string.matches(NUMBER_REGEX);
+public class AttemptValidator extends Validator {
+
+
+	public static void attemptValid(String attempt) {
+		checkBlank(attempt, Constant.ATTEMPT_BLANK_ERROR_MESSAGE);
+
+		if (!isNumber(attempt)) {
+			throw new IllegalArgumentException(Constant.ATTEMPT_NUMERIC_ERROR_MESSAGE);
+		}
+		if (isNegative(attempt)) {
+			throw new IllegalArgumentException(Constant.ATTEMPT_NEGATIVE_ERROR_MESSAGE);
+		}
 	}
 
-	private boolean isNegative(String attempt) {
+	private static boolean isNumber(String string) {
+		return string.matches(Constant.NUMBER_REGEX);
+	}
+
+	private static boolean isNegative(String attempt) {
 		return Integer.parseInt(attempt) <= 0;
 	}
 
-	public void attemptValid(String attempt) {
-		checkBlank(attempt, ATTEMPT_BLANK_ERROR_MESSAGE);
-
-		if (!isNumber(attempt)) {
-			throw new IllegalArgumentException(ATTEMPT_NUMERIC_ERROR_MESSAGE);
-		}
-		if (isNegative(attempt)) {
-			throw new IllegalArgumentException(ATTEMPT_NEGATIVE_ERROR_MESSAGE);
-		}
-	}
 }

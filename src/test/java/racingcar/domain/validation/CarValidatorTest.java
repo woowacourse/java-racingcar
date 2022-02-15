@@ -7,32 +7,32 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class CarValidatorTest {
+import racingcar.util.Constant;
 
-	private final CarValidator validator = new CarValidator();
+class CarValidatorTest {
 
 	@DisplayName("자동차 이름 공백 테스트")
 	@ParameterizedTest
 	@ValueSource(strings = {" "})
 	void car_name_empty(String name) {
 		assertThatThrownBy(() -> {
-			validator.checkBlank(name, "자동차 이름은 공백일 수 없습니다.");
-		}).isInstanceOf(IllegalArgumentException.class);
+			CarValidator.carValid(name);
+		}).isInstanceOf(IllegalArgumentException.class).hasMessage(String.format(Constant.CAR_BLANK_ERROR_MESSAGE,"공백"));
 	}
 
 	@DisplayName("자동차 이름 null 테스트")
 	@Test
 	void car_name_null() {
 		assertThatThrownBy(() -> {
-			validator.checkBlank(null, "자동차 이름은 null 일 수 없습니다.");
-		}).isInstanceOf(NullPointerException.class);
+			CarValidator.carValid(null);
+		}).isInstanceOf(NullPointerException.class).hasMessage("자동차 이름은 null 일 수 없습니다.");
 	}
 
 	@DisplayName("자동차 이름 길이 테스트")
 	@Test
 	void car_name_length() {
 		assertThatThrownBy(() -> {
-			validator.carValid("gooddd");
-		}).isInstanceOf(IllegalArgumentException.class);
+			CarValidator.carValid("gooddd");
+		}).isInstanceOf(IllegalArgumentException.class).hasMessage("자동차의 이름은 5글자를 초과할 수 없습니다.");
 	}
 }

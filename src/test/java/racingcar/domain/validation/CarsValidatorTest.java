@@ -10,9 +10,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
+import racingcar.util.Constant;
 
 class CarsValidatorTest {
-	private final CarsValidator validator = new CarsValidator();
 	private List<Car> cars = new ArrayList<>();
 
 	@DisplayName("자동차 이름 중복 테스트")
@@ -24,8 +24,8 @@ class CarsValidatorTest {
 		cars.add(new Car("bong"));
 		//then
 		assertThatThrownBy(() -> {
-			validator.carsValid(cars);
-		}).isInstanceOf(IllegalArgumentException.class);
+			CarsValidator.carsValid(cars);
+		}).isInstanceOf(IllegalArgumentException.class).hasMessage(Constant.CAR_DUPLICATED_ERROR_MESSAGE);
 	}
 
 	@DisplayName("자동차 개수 테스트")
@@ -35,8 +35,8 @@ class CarsValidatorTest {
 		cars.add(new Car("pobi"));
 		//then
 		assertThatThrownBy(() -> {
-			validator.carsValid(cars);
-		}).isInstanceOf(IllegalArgumentException.class);
+			CarsValidator.carsValid(cars);
+		}).isInstanceOf(IllegalArgumentException.class).hasMessage(Constant.CARS_ERROR_MESSAGE);
 	}
 
 	@AfterEach

@@ -1,16 +1,15 @@
 package racingcar.domain.validation;
 
-public class Validator {
-	private static final String NULL_ERROR = "null";
-	private static final String EMPTY_ERROR = "공백";
-	private static final String EMPTY = "";
+import racingcar.util.Constant;
 
-	public void checkBlank(String name, String text) {
+public class Validator {
+
+	public static void checkBlank(String name, String text) {
 		if (name == null) {
-			throw new NullPointerException(String.format(text, NULL_ERROR));
+			throw new NullPointerException(String.format(text, Constant.NULL_ERROR));
 		}
-		if (name.trim().equals(EMPTY)) {
-			throw new IllegalArgumentException(String.format(text, EMPTY_ERROR));
+		if (name.trim().equals(Constant.EMPTY)) {
+			throw new IllegalArgumentException(String.format(text, Constant.EMPTY_ERROR));
 		}
 	}
 }
