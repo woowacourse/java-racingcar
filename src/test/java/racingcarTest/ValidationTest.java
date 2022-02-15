@@ -1,45 +1,37 @@
 package racingcarTest;
 
-import addCalculatorTest.StringCalculator;
 import org.junit.jupiter.api.Test;
-import racingcar.controller.InputController;
-import racingcar.controller.MainController;
 import racingcar.controller.Validation;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidationTest {
 
     @Test
-    void 플레이어_이름_5자_초과_검증() {
+    void player_name_over_lengthLimit_throw_exception() {
         assertThatThrownBy(() -> Validation.carNameValidation("aaaaaaa,bbbb"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 플레이어_이름_0자_검증() {
+    void player_name_blank_throw_exception() {
         assertThatThrownBy(() -> Validation.carNameValidation(",,,bbbb"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 게임_회수_입력_검증_1() {
+    void if_tryNum_is_string_throw_exception() {
         assertThatThrownBy(() -> Validation.tryNumValidation("aaa"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 게임_회수_입력_검증_2() {
+    void if_tryNum_is_minus_throw_exception() {
         assertThatThrownBy(() -> Validation.tryNumValidation("-5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 게임_회수_입력_검증_3() {
+    void validate_tryNum_is_integer() {
         Validation.tryNumValidation("5");
     }
 }
