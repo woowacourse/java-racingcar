@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Participants {
+    private static final int MAKE_ONE_DIGIT_MULTIPLIER = 10;
+
     private final List<Car> cars;
 
     public Participants() {
@@ -47,6 +49,6 @@ public class Participants {
     }
 
     private int makeRandomNumberBetweenZeroAndNine() {
-        return (int) (Math.random() * 10);
+        return (int) (Math.random() * MAKE_ONE_DIGIT_MULTIPLIER);
     }
 }
