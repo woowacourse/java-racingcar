@@ -22,14 +22,14 @@ public class Car implements Comparable<Car> {
     }
 
     public CarDto convertToDto() {
-        return new CarDto(carName.getValue(), distance.getValue());
+        return new CarDto(carName.getCarName(), distance.getDistance());
     }
 
     @Override
     public int compareTo(final Car another) {
-        if (this.distance.getValue() > another.distance.getValue()) {
+        if (this.distance.getDistance() > another.distance.getDistance()) {
             return -1;
-        } else if (this.distance.getValue() < another.distance.getValue()) {
+        } else if (this.distance.getDistance() < another.distance.getDistance()) {
             return 1;
         }
         return 0;
