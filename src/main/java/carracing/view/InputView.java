@@ -55,11 +55,8 @@ public class InputView {
 	}
 
 	private static void validateNumber(String number) {
-		if (!number.matches(NUMBER_REGEX)) {
+		if (!number.matches(NUMBER_REGEX) || Integer.parseInt(number) == 0) {
 			throw new IllegalArgumentException(INPUT_NOT_NUMBER_EXCEPTION.getMessage());
-		}
-		if (Integer.parseInt(number) <= 0) {
-			throw new IllegalArgumentException(INPUT_NUMBER_ZERO_EXCEPTION.getMessage());
 		}
 	}
 }
