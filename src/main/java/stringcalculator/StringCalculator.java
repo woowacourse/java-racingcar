@@ -8,6 +8,7 @@ public class StringCalculator {
     private static final String CLUE_OF_CUSTOM_DELIMITER = "//" ;
     private static final String CUSTOM_DELIMITER_AND_EXPRESSION_DELIMITER = "\n";
     private static final String DEFAULT_DELIMITER = ",|:";
+    private static final String INVALID_OPERAND_EXCEPTION_MESSAGE = "피연산자에 양의 정수 혹은 0이 아닌 값이 있습니다.";
     private static final Pattern POSITIVE_NUMBER_PATTERN =  Pattern.compile("^[0-9]");
 
     public int calculate(final String expression) {
@@ -44,7 +45,7 @@ public class StringCalculator {
 
     private void validate(final String[] tokens) {
         if (hasContainsNotPositiveNumber(tokens)) {
-            throw new RuntimeException("피연산자에 양의 정수 혹은 0이 아닌 값이 있습니다.");
+            throw new IllegalArgumentException(INVALID_OPERAND_EXCEPTION_MESSAGE);
         }
     }
 

@@ -50,7 +50,9 @@ public class StringCalculatorTest {
     @DisplayName("피연산자의 위치에 0 혹은 양의 정수가 아닌 값이 들어오면 예외를 발생시킨다.")
     @ValueSource(strings = {"//;\n-1;2;3", "//;\na;2;3"})
     void calculate_NotPositiveOrZeroOperand_Test(String expression) {
+        String expectedExceptionMessage = "피연산자에 양의 정수 혹은 0이 아닌 값이 있습니다.";
         assertThatThrownBy(() -> stringCalculator.calculate(expression))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(expectedExceptionMessage);
     }
 }
