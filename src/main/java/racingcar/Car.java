@@ -11,10 +11,10 @@ public class Car {
     public static final String NOT_ALLOW_MINIMUM_LENGTH_ERROR = "[ERROR]: 잘못된 입력입니다.(자동차 이름은 1자 이상만 가능합니다.)";
     public static final String NOT_ALLOW_SPACE_ERROR = "[ERROR]: 잘못된 입력입니다.(자동차 이름에 공백 입력은 불가능합니다.)";
 
-    private String name;
+    private final String name;
     private int position;
 
-    public Car(String name) {
+    public Car(final String name) {
         validName(name);
         this.name = name;
         this.position = START_POSITION;
