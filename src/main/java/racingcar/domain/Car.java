@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.dto.CarDto;
-
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
