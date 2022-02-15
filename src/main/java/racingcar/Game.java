@@ -75,9 +75,9 @@ public class Game {
             .max(comparatorByPosition).get().getPosition();
     }
 
-    private List<String> findWinnerByPosition(int maxPosition, List<Car> cars) {
+    private List<String> findWinnerByPosition(int position, List<Car> cars) {
         return cars.stream()
-            .filter(car -> car.isMaxPosition(maxPosition))
+            .filter(car -> car.isSamePosition(position))
             .map(car -> car.getName())
             .collect(Collectors.toList());
     }

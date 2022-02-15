@@ -31,8 +31,8 @@ public class Car {
         return number >= MINIMUM_MOVE;
     }
 
-    public boolean isMaxPosition(int maxPosition) {
-        return this.position == maxPosition;
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 
     public int getPosition() {
