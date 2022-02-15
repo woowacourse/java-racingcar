@@ -2,11 +2,11 @@ package racingcar.game;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.GameTotalCount;
 import racingcar.view.OutputView;
 
 import java.util.List;
 
-import static racingcar.util.InitUtil.initTotalAttempt;
 import static racingcar.view.InputView.getAttemptCount;
 import static racingcar.view.InputView.getCarNames;
 import static racingcar.view.OutputView.*;
@@ -16,11 +16,13 @@ public class RacingGame {
     private static final int ZERO = 0;
 
     private Cars cars;
-    private int totalAttemptCount;
+    private GameTotalCount gameTotalCount;
 
     public void start() throws IllegalArgumentException {
         initRacingCarGame();
         startMessage();
+
+        int totalAttemptCount = gameTotalCount.getTotalAttemptCount();
 
         while (totalAttemptCount --> ZERO) {
             run();
@@ -35,7 +37,7 @@ public class RacingGame {
         cars = new Cars(carNames);
 
         String attempt = getAttemptCount();
-        totalAttemptCount = initTotalAttempt(attempt);
+        gameTotalCount = new GameTotalCount(attempt);
     }
 
     private void run() {

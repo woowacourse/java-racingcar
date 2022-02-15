@@ -32,26 +32,4 @@ public class VerificationUtil {
             throw new IllegalArgumentException("[ERROR] 공백 없이 입력해주세요.");
         }
     }
-
-
-    public static int validateAttempt(String attempt) {
-        int number = translateVerifiedInteger(attempt);
-        validatePositiveNumber(number);
-
-        return number;
-    }
-
-    private static int translateVerifiedInteger(String attempt) {
-        try {
-            return Integer.parseInt(attempt);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 합니다.");
-        }
-    }
-
-    private static void validatePositiveNumber(int number) {
-        if (number <= 0) {
-            throw new IllegalArgumentException("[ERROR] 양수를 입력해주세요.");
-        }
-    }
 }
