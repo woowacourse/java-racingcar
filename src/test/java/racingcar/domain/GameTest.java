@@ -76,6 +76,6 @@ public class GameTest {
     }
 
     private void clearDatabase() {
-        carRepository.findAllCars().clear();
+        carRepository.clear();
     }
 }
