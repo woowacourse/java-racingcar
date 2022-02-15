@@ -18,20 +18,20 @@ public class RacingCarsController {
 	private final RacingCarService racingCarService = new RacingCarService(new ArrayList<>());
 
 	public void start() {
-		requestCarsName();
+		requestCarNames();
 		requestCount();
 		startGame();
 		endGame();
 	}
 
-	public void requestCarsName() {
-		String carNames = Input.inputCarsName();
+	public void requestCarNames() {
+		String carNames = Input.inputCarNames();
 		try {
 			NameValidator.checkNull(carNames);
 			saveCarNames(carNames);
 		} catch (Exception exception) {
 			printError(exception.getMessage());
-			requestCarsName();
+			requestCarNames();
 		}
 	}
 
@@ -41,7 +41,7 @@ public class RacingCarsController {
 		} catch (Exception exception) {
 			printError(exception.getMessage());
 			racingCarService.resetCars();
-			requestCarsName();
+			requestCarNames();
 		}
 	}
 
@@ -74,7 +74,7 @@ public class RacingCarsController {
 	}
 
 	public void endGame() {
-		Output.printWinner(racingCarService.findWinner());
+		Output.printWinners(racingCarService.findWinner());
 	}
 
 }

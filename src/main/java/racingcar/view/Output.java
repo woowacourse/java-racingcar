@@ -30,7 +30,7 @@ public class Output {
 		System.out.println();
 	}
 
-	public static void printWinner(List<String> winners) {
+	public static void printWinners(List<String> winners) {
 		StringBuilder result = new StringBuilder();
 		for (String winner : winners) {
 			result.append(winner).append(WINNER_SEPARATED_STR);

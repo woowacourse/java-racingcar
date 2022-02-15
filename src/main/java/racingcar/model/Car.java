@@ -18,7 +18,7 @@ public class Car {
 
 	public void decideMove() {
 		if (isMove()) {
-			moveCar();
+			move();
 		}
 	}
 
@@ -26,7 +26,7 @@ public class Car {
 		return getRandomInt() >= MOVE_CRITERIA;
 	}
 
-	private void moveCar() {
+	private void move() {
 		position++;
 	}
 
@@ -42,7 +42,4 @@ public class Car {
 		return this.position == position;
 	}
 
-	public boolean isOverMaxPosition(int maxPosition) {
-		return position > maxPosition;
-	}
 }
