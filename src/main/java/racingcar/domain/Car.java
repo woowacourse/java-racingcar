@@ -2,12 +2,8 @@ package racingcar.domain;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 
 public class Car {
-    private static final String INFO_BETWEEN_WORD = " : ";
-    private static final String POSITION_WORD = "-";
-    private static final int RANDOM_MAX_RANGE = 10;
     private static final int RANDOM_CONDITION = 4;
 
     private final String name;
@@ -18,41 +14,29 @@ public class Car {
         this.position = 0;
     }
 
-    public void goForward() {
-        Random random = new Random();
-
-        if (random.nextInt(RANDOM_MAX_RANGE) >= RANDOM_CONDITION) {
+    public void goForward(int randomNum) {
+        if (randomNum >= RANDOM_CONDITION) {
             position += 1;
         }
     }
 
-    public static int getWinnerPosition(List<Car> cars) {
-        return cars.stream()
-                .max(Comparator.comparing(Car::getPosition))
-                .orElseThrow(RuntimeException::new)
-                .position;
-    }
-
-    public boolean isWinner(int winnerPosition) {
-        return position == winnerPosition;
+    public boolean isAlsoWinner(Car winner) {
+        return position == winner.position;
     }
 
     public String getName() {
         return name;
     }
 
-    private int getPosition() {
+    public int getPosition() {
         return position;
     }
 
     @Override
     public String toString() {
-        String info = name + INFO_BETWEEN_WORD;
-
-        for (int i = 0; i < position; i++) {
-            info += POSITION_WORD;
-        }
-
-        return info;
+        return "Car{" +
+                "name='" + name + '\'' +
+                ", position=" + position +
+                '}';
     }
 }
