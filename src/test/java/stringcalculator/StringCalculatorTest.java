@@ -21,13 +21,22 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @DisplayName("비어있는 문자열 또는 null이 들어오면 0을 반환한다.")
-    void calculate_emptyOrNull() {
+    @DisplayName("null이 들어오면 0을 반환한다.")
+    void calculate_null() {
+        int actual = stringCalculator.calculate(null);
         int expected = 0;
-
-        assertThat(stringCalculator.calculate("")).isEqualTo(expected);
-        assertThat(stringCalculator.calculate(null)).isEqualTo(expected);
+        assertThat(actual).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @DisplayName("비어있는 문자열 혹은 공백으로만 이루어진 문자열이 들어오면 0을 반환한다.")
+    @ValueSource(strings = {"", " "})
+    void calculate_Blank(String blackString) {
+        int actual = stringCalculator.calculate(blackString);
+        int expected = 0;
+        assertThat(actual).isEqualTo(expected);
+    }
+
 
     @Test
     @DisplayName("사용자 지정 구분자로 구분한 값들을 더해서 반환한다.")

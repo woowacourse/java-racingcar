@@ -20,7 +20,7 @@ public class StringCalculator {
     }
 
     private boolean isEmptyOrNull(String expression) {
-        return expression == null || expression.isEmpty();
+        return expression == null || expression.isBlank();
     }
 
     private String[] splitExpression(String expression) {
