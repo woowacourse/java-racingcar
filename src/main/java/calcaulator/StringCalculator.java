@@ -60,7 +60,7 @@ public class StringCalculator {
 
     private static int sum(String[] numbersOfString) {
         return Arrays.stream(numbersOfString)
-            .mapToInt(stringNumber -> validateNumber(stringToInt(stringNumber)))
-            .sum();
+                .mapToInt(stringNumber -> validateNumber(stringToInt(stringNumber)))
+                .sum();
     }
 }

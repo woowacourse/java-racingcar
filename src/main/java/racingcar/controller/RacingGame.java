@@ -3,11 +3,10 @@ package racingcar.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import racingcar.model.firstcollection.Cars;
-import racingcar.model.vo.Car;
-import racingcar.model.vo.MovableStrategy;
-import racingcar.model.vo.RacingCarMovableStrategy;
+import racingcar.domain.firstcollection.Cars;
+import racingcar.domain.vo.Car;
+import racingcar.domain.vo.MovableStrategy;
+import racingcar.domain.vo.RacingCarMovableStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -37,8 +36,8 @@ public class RacingGame {
 
     private List<Car> getCarsByCarNames(final String[] carNames) {
         return Arrays.stream(carNames)
-                    .map(Car::new)
-                    .collect(Collectors.toList());
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     private void race(final Cars cars, final int trials) {

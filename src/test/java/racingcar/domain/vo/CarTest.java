@@ -1,6 +1,7 @@
-package racingcar.model.vo;
+package racingcar.domain.vo;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,8 +43,8 @@ public class CarTest {
 
         // when & then
         assertThatThrownBy(() -> new Car(nullName))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageMatching("올바른 이름을 입력해주세요");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageMatching("올바른 이름을 입력해주세요");
     }
 
     @Test
@@ -54,8 +55,8 @@ public class CarTest {
 
         // when & then
         assertThatThrownBy(() -> new Car(nullName))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageMatching("이름은 \\d+글자 이상, \\d+글자 이하여야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageMatching("이름은 \\d+글자 이상, \\d+글자 이하여야 합니다.");
     }
 
     @Test
@@ -64,8 +65,8 @@ public class CarTest {
         String overSizedName = "richard";
 
         assertThatThrownBy(() -> new Car(overSizedName))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageMatching("이름은 \\d+글자 이상, \\d+글자 이하여야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageMatching("이름은 \\d+글자 이상, \\d+글자 이하여야 합니다.");
     }
 
     @ParameterizedTest(name = "전진 - {0}")

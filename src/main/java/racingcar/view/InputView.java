@@ -9,7 +9,8 @@ public class InputView {
     private static final int MINIMUM_TRIAL = 1;
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    private InputView() {}
+    private InputView() {
+    }
 
     public static String getCarNames() {
         System.out.println(INPUT_CAR_NAMES);
@@ -37,7 +38,7 @@ public class InputView {
 
     private static boolean isDigit(final String numberInput) {
         return numberInput.chars()
-                        .allMatch(Character::isDigit);
+                .allMatch(Character::isDigit);
     }
 
     private static boolean isSmallerThanOne(final String numberInput) {

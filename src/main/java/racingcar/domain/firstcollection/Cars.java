@@ -1,4 +1,4 @@
-package racingcar.model.firstcollection;
+package racingcar.domain.firstcollection;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,9 +6,8 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.stream.Collectors;
-
-import racingcar.model.vo.Car;
-import racingcar.model.vo.MovableStrategy;
+import racingcar.domain.vo.Car;
+import racingcar.domain.vo.MovableStrategy;
 
 public class Cars {
     private static final String MESSAGE_FOR_CAR_NAME_DUPLICATE = "이름은 중복될 수 없습니다.";
@@ -25,12 +24,6 @@ public class Cars {
         this.cars = unmodifiableCars;
     }
 
-    private void validateNullOrEmpty(List<Car> cars) {
-        if (Objects.isNull(cars) || cars.isEmpty()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_FOR_EMPTY_CAR_LIST);
-        }
-    }
-
     private static void validateDuplicate(final List<Car> cars) {
         if (duplicateCarNames(cars)) {
             throw new IllegalArgumentException(MESSAGE_FOR_CAR_NAME_DUPLICATE);
@@ -42,6 +35,12 @@ public class Cars {
                 .map(Car::getName)
                 .collect(Collectors.toSet())
                 .size() != cars.size();
+    }
+
+    private void validateNullOrEmpty(List<Car> cars) {
+        if (Objects.isNull(cars) || cars.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_FOR_EMPTY_CAR_LIST);
+        }
     }
 
     public void move(MovableStrategy movableStrategy) {
@@ -56,8 +55,8 @@ public class Cars {
 
     private int getMaxPosition() {
         OptionalInt max = cars.stream()
-                            .mapToInt(Car::getPosition)
-                            .max();
+                .mapToInt(Car::getPosition)
+                .max();
 
         if (max.isEmpty()) {
             throw new NoSuchElementException(ERROR_MESSAGE_TO_GET_MAX_POSITION);

@@ -1,4 +1,4 @@
-package racingcar.model.vo;
+package racingcar.domain.vo;
 
 import java.util.Objects;
 
@@ -32,7 +32,7 @@ public class Car {
     private static void validateLength(final String name) {
         if (name.length() < MINIMUM_LENGTH || name.length() > MAXIMUM_LENGTH) {
             throw new IllegalArgumentException(
-                String.format(ERROR_MESSAGE_FOR_INVALID_SIZED_NAME, MINIMUM_LENGTH, MAXIMUM_LENGTH));
+                    String.format(ERROR_MESSAGE_FOR_INVALID_SIZED_NAME, MINIMUM_LENGTH, MAXIMUM_LENGTH));
         }
     }
 
@@ -56,11 +56,13 @@ public class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
+        if (this == o) {
             return true;
-        if (o == null || getClass() != o.getClass())
+        }
+        if (o == null || getClass() != o.getClass()) {
             return false;
-        Car car = (Car)o;
+        }
+        Car car = (Car) o;
         return name.equals(car.name);
     }
 
@@ -72,8 +74,8 @@ public class Car {
     @Override
     public String toString() {
         return "Car{" +
-            "name='" + name + '\'' +
-            ", position=" + position +
-            '}';
+                "name='" + name + '\'' +
+                ", position=" + position +
+                '}';
     }
 }
