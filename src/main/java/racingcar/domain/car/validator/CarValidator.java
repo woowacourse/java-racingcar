@@ -7,12 +7,12 @@ import racingcar.exception.car.CarNameTooLongException;
 
 public class CarValidator {
 
-    private static final CarValidator instance = new CarValidator();
+    private static final CarValidator carValidator = new CarValidator();
 
     public static void validateName(String name) {
-        instance.validateNameIsNull(name);
-        instance.validateNameIsEmpty(name);
-        instance.validateNameIsTooLong(name);
+        carValidator.validateNameIsNull(name);
+        carValidator.validateNameIsEmpty(name);
+        carValidator.validateNameIsTooLong(name);
     }
 
     void validateNameIsNull(String name) {

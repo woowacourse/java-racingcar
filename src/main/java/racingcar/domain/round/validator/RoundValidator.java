@@ -5,10 +5,10 @@ import racingcar.exception.round.RoundNotPositiveException;
 
 public class RoundValidator {
 
-    public static RoundValidator instance = new RoundValidator();
+    public static final RoundValidator roundValidator = new RoundValidator();
 
     public static void validateCount(int count) {
-        instance.validateCountPositive(count);
+        roundValidator.validateCountPositive(count);
     }
 
     void validateCountPositive(int count) {
