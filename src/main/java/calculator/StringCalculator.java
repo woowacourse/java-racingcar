@@ -1,7 +1,6 @@
 package calculator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,15 +12,15 @@ public class StringCalculator {
     private static final Calculator calculator = new Calculator();
 
     public static void main(String[] args) {
-        splitAndSum(scanner.nextLine());
+        System.out.print(splitAndSum(scanner.nextLine()));
     }
 
     public static int splitAndSum(String input) {
         if (input == null || input.isEmpty()) {
-            input = "0";
+            return 0;
         }
 
-        List<String> values = Arrays.asList(parser.split(input));
+        List<String> values = parser.split(input);
         List<Integer> nums = new ArrayList<>();
 
         for (String value : values) {
