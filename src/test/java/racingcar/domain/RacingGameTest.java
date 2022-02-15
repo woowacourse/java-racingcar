@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.MockRandomNumberGenerator;
+import racingcar.domain.game.RacingGame;
 import racingcar.exception.GetWinnersBeforeFinishException;
 import racingcar.exception.RacingGameIsFinishedException;
 import racingcar.domain.result.MidtermResult;
