@@ -3,7 +3,7 @@ package racingcar;
 import java.util.List;
 
 import racingcar.domain.CarDTO;
-import racingcar.game.RacingGame;
+import racingcar.domain.RacingGame;
 
 import static racingcar.view.InputView.*;
 import static racingcar.view.OutputView.*;

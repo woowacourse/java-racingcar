@@ -1,10 +1,7 @@
-package racingcar.game;
+package racingcar.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
-import racingcar.domain.Car;
-import racingcar.domain.CarDTO;
 
 import static racingcar.util.RacingGameValidationUtil.*;
 import static racingcar.util.TotalAttemptValidationUtil.*;
