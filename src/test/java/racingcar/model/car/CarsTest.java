@@ -24,7 +24,8 @@ public class CarsTest {
 				cars.add(Car.from("car1"));
 
 				assertThatThrownBy(() -> cars.add(Car.from("car1")))
-					.isInstanceOf(IllegalArgumentException.class);
+					.isInstanceOf(IllegalArgumentException.class)
+					.hasMessage("이미 존재하는 자동차 이름입니다.");
 				assertThat(cars.getCarsDto().size()).isEqualTo(0);
 			}
 		}
