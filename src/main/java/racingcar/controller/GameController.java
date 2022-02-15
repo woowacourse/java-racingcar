@@ -3,6 +3,7 @@ package racingcar.controller;
 import java.util.ArrayList;
 
 import racingcar.model.Car;
+import racingcar.util.ErrorMessage;
 import racingcar.util.IntegerConst;
 import racingcar.util.StringConst;
 import racingcar.view.InputView;
@@ -16,26 +17,12 @@ public class GameController {
 	public void runRace() {
 		OutputView.askCarName();
 		String[] carName = InputView.getCarNameInput();
-		checkNameError(carName);
 		this.carList = generateCarList(carName);
 		OutputView.askTurn();
-		int totalTurn = Integer.parseInt(InputView.getTurnInput());
-		checkTurnError(totalTurn);
+		int totalTurn = InputView.getTurnInput();
 		OutputView.displayResult();
 		playTotalTurn(totalTurn);
 		OutputView.displayWinner(outputViewController.mapWinner(carList));
-	}
-
-	private void checkNameError(String[] carName) {
-		if (carName[IntegerConst.ZERO.getValue()].equals(StringConst.ERROR_PREFIX.getValue())) {
-			System.exit(0);
-		}
-	}
-
-	private void checkTurnError(int totalTurn) {
-		if (totalTurn < IntegerConst.ZERO.getValue()) {
-			System.exit(0);
-		}
 	}
 
 	private void playTotalTurn(int totalTurn) {

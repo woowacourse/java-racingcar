@@ -19,6 +19,6 @@ public class CarTest {
         Car car = new Car("pobi");
         car.movePosition(5);
         car.movePosition(6);
-        assertThat(car.isMaxPosition(2)).isEqualTo(true);
+        assertThat(car.isWinner(2)).isEqualTo(true);
     }
 }
