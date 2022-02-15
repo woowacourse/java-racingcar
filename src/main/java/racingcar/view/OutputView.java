@@ -11,6 +11,7 @@ public class OutputView {
 	private static final String RESULT_DELIMITER = " : ";
 	private static final String WINNER_DELIMITER = ", ";
 	private static final String POSITION_SYMBOL = "-";
+	private static final String MESSAGE_WIN = "가 최종 우승했습니다.";
 
 	public static void askCarName() {
 		System.out.println(MESSAGE_ASK_CAR_NAME);
@@ -20,19 +21,19 @@ public class OutputView {
 		System.out.println(MESSAGE_ASK_TURN);
 	}
 
-	public static void showResult() {
+	public static void printResultMessage() {
 		System.out.println(MESSAGE_SHOW_RESULT);
 	}
 
-	public static void showCarPosition(LinkedHashMap<String, Integer> carInfo) {
+	public static void printCarPosition(LinkedHashMap<String, Integer> carInfo) {
 		for (String eachCarName : carInfo.keySet()) {
 			System.out.println(eachCarName + RESULT_DELIMITER + POSITION_SYMBOL.repeat(carInfo.get(eachCarName)));
 		}
 		System.out.println();
 	}
 
-	public static void displayWinner(ArrayList<String> winners) {
+	public static void printWinner(ArrayList<String> winners) {
 		System.out.println(
-			String.join(WINNER_DELIMITER, winners) + "가 최종 우승했습니다.");
+			String.join(WINNER_DELIMITER, winners) + MESSAGE_WIN);
 	}
 }
