@@ -3,30 +3,30 @@ package racingcar.controller;
 import racingcar.model.Car;
 import racingcar.model.Participants;
 import racingcar.model.PlayTime;
-import racingcar.view.Board;
-import racingcar.view.Staff;
+import racingcar.view.OutputView;
+import racingcar.view.InputView;
 
 public class Racing {
 
-    private final Staff staff;
+    private final InputView inputView;
     private final Participants participants;
-    private final Board board;
+    private final OutputView outputView;
 
     public Racing() {
-        this.staff = new Staff();
+        this.inputView = new InputView();
         this.participants = new Participants();
-        this.board = new Board();
+        this.outputView = new OutputView();
     }
 
     public void start() {
         enrollCars();
-        PlayTime playTime = new PlayTime(staff.getPlayTimes());
+        PlayTime playTime = new PlayTime(inputView.getPlayTimes());
         startRacing(playTime);
         showRacingResult();
     }
 
     private void enrollCars() {
-        String[] carNames = staff.getCarNames().split(",");
+        String[] carNames = inputView.getCarNames().split(",");
         for (String carName : carNames) {
             Car car = new Car(carName);
             participants.participateInRacing(car);
@@ -34,15 +34,15 @@ public class Racing {
     }
 
     private void startRacing(PlayTime playTime) {
-        board.announceRacingStart();
+        outputView.announceRacingStart();
         while (!playTime.isZero()) {
             participants.race();
             playTime.decreasePlayTime();
-            board.recordCurrentScore(participants.getParticipantCars());
+            outputView.recordCurrentScore(participants.getParticipantCars());
         }
     }
 
     private void showRacingResult() {
-        board.recordRacingWinners(participants.findRacingWinners());
+        outputView.recordRacingWinners(participants.findRacingWinners());
     }
 }

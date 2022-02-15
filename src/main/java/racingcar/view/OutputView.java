@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import racingcar.model.Car;
 import racingcar.model.Name;
 
-public class Board {
+public class OutputView {
 
     private static final String EXECUTE_RESULT = "실행 결과";
     private static final String WINNER_RESULT_DELIMITER = ",";
