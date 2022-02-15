@@ -23,7 +23,6 @@ public class CarController {
 	}
 
 	protected void createCars(String userInputCarNames) {
-		carRepository.clear();
 		String[] carNames = splitCarNames(userInputCarNames);
 		validDuplicationCarNames(carNames);
 		Arrays.stream(carNames)
@@ -50,8 +49,8 @@ public class CarController {
 	}
 
 	private void validDuplicationCarNames(String[] carNames) {
-		Set<String> temp = new HashSet<>(Arrays.asList(carNames));
-		if (temp.size() != carNames.length) {
+		Set<String> duplicationSet = new HashSet<>(Arrays.asList(carNames));
+		if (duplicationSet.size() != carNames.length) {
 			throw new RuntimeException(CAR_NAMES_DUPLICATE_ERROR_MESSAGE);
 		}
 	}

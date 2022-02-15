@@ -12,10 +12,6 @@ public class CarRepository {
 		cars.add(car);
 	}
 
-	public void clear() {
-		cars.clear();
-	}
-
 	public void move(List<Integer> randoms) {
 		IntStream.range(0, randoms.size())
 			.forEach(i -> cars.get(i).move(randoms.get(i)));
