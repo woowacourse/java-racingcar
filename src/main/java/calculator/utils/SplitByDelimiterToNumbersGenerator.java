@@ -12,14 +12,14 @@ public class SplitByDelimiterToNumbersGenerator {
     private static final String BASIC_SEPARATOR_COMMA = ",";
     private static final String BASIC_SEPARATOR_COLON = ":";
 
-    public static List<String> split(String input) {
+    public static List<String> split(final String input) {
         List<String> delimiters = new ArrayList<>(Arrays.asList(BASIC_SEPARATOR_COMMA, BASIC_SEPARATOR_COLON));
         String parameterString = getParameterString(input, delimiters);
         String delimiter = String.join(JOINING_SEPARATOR_DELIMITER, delimiters);
         return Arrays.asList(parameterString.split(delimiter));
     }
 
-    private static String getParameterString(String input, List<String> delimiters) {
+    private static String getParameterString(final String input, final List<String> delimiters) {
         if (hasCustomSeparator(input)) {
             String customDelimiter = input.substring(
                 input.indexOf(CUSTOM_SEPARATOR_START_SIGNATURE) + CUSTOM_SEPARATOR_START_SIGNATURE.length(),
@@ -31,7 +31,7 @@ public class SplitByDelimiterToNumbersGenerator {
         return input;
     }
 
-    private static boolean hasCustomSeparator(String input) {
+    private static boolean hasCustomSeparator(final String input) {
         return input.contains(CUSTOM_SEPARATOR_START_SIGNATURE) && input.contains(CUSTOM_SEPARATOR_END_SIGNATURE);
     }
 }

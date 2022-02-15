@@ -8,7 +8,7 @@ import java.util.List;
 public class StringCalculator {
     private static final int NULL_OR_EMPTY_VALUE = 0;
 
-    public int calculate(String input) {
+    public int calculate(final String input) {
         if (InputValidator.isNullOrEmpty(input)) {
             return NULL_OR_EMPTY_VALUE;
         }
