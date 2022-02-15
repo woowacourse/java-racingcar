@@ -48,7 +48,7 @@ public class Cars {
     }
 
     private Position getMaxPosition() {
-        Position position = new Position();
+        Position position = Position.createStartPosition();
         for (Car car : cars) {
             position.changeIfSmallerThan(car.getPosition());
         }

@@ -7,7 +7,7 @@ public class Car {
 
     public Car(String carName) {
         this.name = new Name(carName);
-        this.position = new Position();
+        this.position = Position.createStartPosition();
     }
 
     public void move(boolean movable) {
