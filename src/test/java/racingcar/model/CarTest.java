@@ -21,7 +21,7 @@ public class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {5, 6, 7, 8, 9})
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     @DisplayName("자동차 전진 테스트")
     void move(int number) {
         car.moveForward(number);
@@ -29,7 +29,7 @@ public class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3, 4})
+    @ValueSource(ints = {0, 1, 2, 3})
     @DisplayName("자동차 멈춤 테스트")
     void notMove(int number) {
         car.moveForward(number);

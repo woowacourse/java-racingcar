@@ -15,8 +15,7 @@ public class RacingGame {
     private int tryCount;
 
     public RacingGame(List<Car> cars) {
-        this.cars = cars;
-        this.tryCount = 0;
+        this(cars, 0);
     }
 
     public RacingGame(List<Car> cars, int tryCount) {
