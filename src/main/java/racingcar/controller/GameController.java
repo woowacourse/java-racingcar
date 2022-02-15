@@ -10,10 +10,19 @@ import racingcar.view.OutputView;
 public class GameController {
 
     public void runRace() {
-        OutputView.askCarName();
-        CarList carList = new CarList(InputView.getCarNameInput());
-        OutputView.askTurn();
-        int totalTurn = InputView.getTurnInput();
+        try {
+            OutputView.askCarName();
+            CarList carList = new CarList(InputView.getCarNameInput());
+            OutputView.askTurn();
+            int totalTurn = InputView.getTurnInput();
+            playGame(totalTurn, carList);
+        }
+        catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+        }
+    }
+
+    private void playGame(int totalTurn, CarList carList) {
         OutputView.displayResult();
         for (int nowTurn = IntegerConst.ZERO.getValue(); nowTurn < totalTurn; nowTurn++) {
             moveCarList(carList);
