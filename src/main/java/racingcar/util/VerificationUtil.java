@@ -1,8 +1,5 @@
 package racingcar.util;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
 public class VerificationUtil {
 
     private static final int CAR_NAME_MIN_LENGTH = 1;
@@ -33,14 +30,6 @@ public class VerificationUtil {
     private static void validateCarNameSpace(String carName) {
         if (carName.contains(" ")){
             throw new IllegalArgumentException("[ERROR] 공백 없이 입력해주세요.");
-        }
-    }
-
-    public static void validateDuplication(String[] carNames) {
-        HashSet<String> hashSet = new HashSet<>(Arrays.asList(carNames));
-
-        if (hashSet.size() < carNames.length) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름이 중복되면 안됩니다.");
         }
     }
 
