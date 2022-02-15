@@ -2,20 +2,20 @@ package racingcar.domain.car.condition;
 
 public enum NameLength {
 
-    MAXIMUM(5);
+    ALLOWED_MAXIMUM_LENGTH(5);
 
-    private final int number;
+    private final int length;
 
-    NameLength(int number) {
-        this.number = number;
+    NameLength(int length) {
+        this.length = length;
     }
 
     public static boolean isTooLong(String name) {
-        return (name.length() > MAXIMUM.number);
+        return (name.length() > ALLOWED_MAXIMUM_LENGTH.length);
     }
 
-    public static int getMaximum() {
-        return MAXIMUM.number;
+    public int getLength() {
+        return ALLOWED_MAXIMUM_LENGTH.length;
     }
 
 }
