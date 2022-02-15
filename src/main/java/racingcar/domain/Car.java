@@ -3,26 +3,22 @@ package racingcar.domain;
 import java.util.Objects;
 
 import racingcar.domain.validation.CarValidator;
-import racingcar.service.StepGenerator;
+import racingcar.service.StepPolicy;
 
 public class Car implements Comparable<Car> {
 	private static final String STEP = "-";
 	private static final String FORMAT = "%s : %s";
-	private static final int DRIVE_FLAG = 3;
 
-	private final StepGenerator stepGenerator = new StepGenerator();
 	private final String name;
 	private int position = 0;
 
 	public Car(String name) {
-		CarValidator validator = new CarValidator();
-		validator.carValid(name);
+		CarValidator.carValid(name);
 		this.name = name;
 	}
 
 	public Car(String name, int position) {
-		CarValidator validator = new CarValidator();
-		validator.carValid(name);
+		CarValidator.carValid(name);
 		this.name = name;
 		this.position = position;
 	}
@@ -31,14 +27,10 @@ public class Car implements Comparable<Car> {
 		position++;
 	}
 
-	public void drive() {
-		if (hasNext(stepGenerator.generate())) {
+	public void drive(StepPolicy stepPolicy) {
+		if (stepPolicy.hasNext()) {
 			move();
 		}
-	}
-
-	public boolean hasNext(int random) {
-		return random > DRIVE_FLAG;
 	}
 
 	public boolean isSamePosition(Car other) {
@@ -47,6 +39,10 @@ public class Car implements Comparable<Car> {
 
 	public String getName() {
 		return name;
+	}
+
+	public int getPosition() {
+		return position;
 	}
 
 	@Override

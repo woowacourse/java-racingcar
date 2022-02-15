@@ -7,28 +7,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CarTest {
-	private Car car = new Car("sudal");
+import racingcar.service.StepPolicy;
 
-	@DisplayName("랜덤 넘버가 4 이상일 경우 전진지시")
+class CarTest {
+	@DisplayName("랜덤 넘버가 4 이상일 경우 전진")
 	@Test
 	void car_hasNext_true() {
 		//given
-		int randomNumber = 4;
+		Car car = new Car("sudal");
+		StepPolicy stepPolicy = () -> true;
 		//when
-		boolean stepStatus = car.hasNext(randomNumber);
+		car.drive(stepPolicy);
 		//then
-		assertTrue(stepStatus);
+		assertThat(car.getPosition()).isEqualTo(1);
 	}
 
 	@DisplayName("랜덤 넘버가 3 이하일 경우 멈춤")
 	@Test
 	void car_drive_false() {
-		//given
-		int randomNumber = 3;
+		Car car = new Car("sudal");
+		StepPolicy stepPolicy = () -> false;
 		//when
-		boolean stepStatus = car.hasNext(randomNumber);
+		car.drive(stepPolicy);
 		//then
-		assertFalse(stepStatus);
+		assertThat(car.getPosition()).isEqualTo(0);
 	}
 }

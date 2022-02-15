@@ -14,28 +14,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarsTest {
-	private Cars cars;
 
-	@DisplayName("이동거리 최댓값을 가지는 Car 찾기")
+	@DisplayName("최댓값을 가진 자동차 찾기")
 	@Test
-	void cars_max_position_car() {
+	void find_winners() {
 		//given
 		Cars cars = new Cars(check_ranking_if_correct());
 		//when
 		List<String> winners = cars.findWinners();
 		//then
-		assertThat(winners.size() == 3).isTrue();
-	}
-
-	@DisplayName("공동 승리")
-	@Test
-	void cars_winners() {
-		//given
-		cars = new Cars(check_ranking_if_correct());
-		//when
-		List<String> winners = cars.findWinners();
-		//then
-		assertThat(winners).containsExactly("bong", "su", "dal");
+		assertAll(
+			() -> assertThat(winners.size() == 3).isTrue(),
+			() -> assertThat(winners).containsExactly("bong", "su", "dal"));
 	}
 
 	private List<Car> check_ranking_if_correct() {
