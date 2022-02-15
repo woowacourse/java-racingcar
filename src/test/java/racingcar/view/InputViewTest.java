@@ -14,11 +14,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class InputViewTest {
 
-    public static InputStream generateStream(String input) {
+    private static InputStream generateStream(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }
 
-    static Stream<Arguments> getNamesMethodSourceProvider() {
+    private static Stream<Arguments> getNamesMethodSourceProvider() {
         return Stream.of(
             Arguments.arguments("pobi,woni,jun", 3),
             Arguments.arguments(",,,,", 5),
