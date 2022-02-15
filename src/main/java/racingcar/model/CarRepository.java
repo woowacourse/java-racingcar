@@ -25,8 +25,14 @@ public class CarRepository {
 		return cars.size();
 	}
 
-	public List<CarDto> getCars() {
-		return carsToCarDtos(cars);
+	public List<CarDto> getCarDtos() {
+		return carsToCarDtos(this.cars);
+	}
+
+	private List<CarDto> carsToCarDtos(List<Car> cars) {
+		return cars.stream()
+				.map(CarDto::new)
+				.collect(Collectors.toList());
 	}
 
 	public List<CarDto> getWinners() {
@@ -34,12 +40,6 @@ public class CarRepository {
 			.filter(car -> car.matchPosition(getMaxPosition()))
 			.collect(Collectors.toList());
 		return carsToCarDtos(winnerCars);
-	}
-
-	private List<CarDto> carsToCarDtos(List<Car> cars) {
-		return cars.stream()
-			.map(Car::toCarDto)
-			.collect(Collectors.toList());
 	}
 
 	private int getMaxPosition() {

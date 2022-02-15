@@ -1,5 +1,10 @@
 package racingcar.controller;
 
+import racingcar.model.Car;
+import racingcar.model.CarDto;
+import racingcar.model.CarRepository;
+import racingcar.model.RandomNo;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -7,11 +12,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-
-import racingcar.model.Car;
-import racingcar.model.CarDto;
-import racingcar.model.CarRepository;
-import racingcar.model.RandomNo;
 
 public class CarController {
 	private static final String CAR_NAMES_DUPLICATE_ERROR_MESSAGE = "중복된 자동차 이름이 입력됐습니다.";
@@ -46,7 +46,7 @@ public class CarController {
 	}
 
 	protected List<CarDto> getCars() {
-		return carRepository.getCars();
+		return carRepository.getCarDtos();
 	}
 
 	private void validDuplicationCarNames(String[] carNames) {
