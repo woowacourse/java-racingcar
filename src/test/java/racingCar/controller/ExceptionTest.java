@@ -18,9 +18,8 @@ import racingCar.model.exception.name.NameSpecialCharException;
 class ExceptionTest {
     RacingCarsService racingCarsService = new RacingCarsService();
 
-    @DisplayName("이름이_5자보다_큰_경우")
     @Test
-    public void t1() {
+    public void 이름이_5자보다_큰_경우() {
         //given
         String input = "abcdef,cde";
         InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -32,9 +31,8 @@ class ExceptionTest {
                 .hasMessage("이름은 5자 이하만 가능합니다.");
     }
 
-    @DisplayName("이름에_특수문자가_들어간_경우")
     @Test
-    public void t2() {
+    public void 이름에_특수문자가_들어간_경우() {
         //given
         String input = "주리!,juri";
         InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -46,9 +44,8 @@ class ExceptionTest {
                 .hasMessage("이름에는 특수문자가 입력될 수 없습니다.");
     }
 
-    @DisplayName("입력된_이름이_하나인_경우")
     @Test
-    public void t3() {
+    public void 입력된_이름이_하나인_경우() {
         //given
         String input = "주리";
         InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -60,9 +57,8 @@ class ExceptionTest {
                 .hasMessage("이름을 2개 이상 입력해주세요.");
     }
 
-    @DisplayName("중복된_이름이_있는_경우")
     @Test
-    public void t4() {
+    public void 중복된_이름이_있는_경우() {
         //given
         String input = "juri,juri";
         InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -74,9 +70,8 @@ class ExceptionTest {
                 .hasMessage("중복된 이름이 입력되었습니다.");
     }
 
-    @DisplayName("라운드수_숫자가_아닐_경우")
     @Test
-    public void t5() {
+    public void 라운드수_숫자가_아닐_경우() {
         //given
         String input = "오";
         InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -88,9 +83,8 @@ class ExceptionTest {
                 .hasMessage("숫자를 입력해주세요.");
     }
 
-    @DisplayName("라운드수_숫자가_제로_이하인_경우")
     @Test
-    public void t6() {
+    public void 라운드수_숫자가_제로_이하인_경우() {
         //given
         String input = "0";
         InputStream in = new ByteArrayInputStream(input.getBytes());

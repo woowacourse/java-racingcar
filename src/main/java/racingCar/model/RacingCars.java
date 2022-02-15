@@ -33,7 +33,7 @@ public class RacingCars {
 
     public void go() {
         for (Car car : cars) {
-            car.go();
+            car.go(Util.getRandomInteger());
         }
     }
 

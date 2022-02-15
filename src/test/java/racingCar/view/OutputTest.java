@@ -12,9 +12,8 @@ import racingCar.model.RacingCars;
 
 class OutputTest {
 
-    @DisplayName("차_상태확인_잘되는지_검사")
     @Test
-    void test1() {
+    void 차_상태확인_잘되는지_검사() {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
@@ -23,7 +22,7 @@ class OutputTest {
         cars.get().get(0).move();
 
         //when
-        Output.printRoundResult(cars);
+        Output.printRoundResult(cars.get());
 
         //then
         assertThat(out.toString())

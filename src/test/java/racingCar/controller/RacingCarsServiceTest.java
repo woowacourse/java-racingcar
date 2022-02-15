@@ -16,9 +16,8 @@ import racingCar.model.RacingCars;
 
 class RacingCarsServiceTest {
 
-    @DisplayName("게임_작동_테스트")
     @Test
-    public void t1() {
+    public void 게임_작동_테스트() {
         //given
         RacingCarsService racingCarsService = new RacingCarsService();
         racingCarsService.initiateCars("juri,hunch");
@@ -35,9 +34,8 @@ class RacingCarsServiceTest {
                 .contains("juri : -", "hunch : -");
     }
 
-    @DisplayName("우승자_찾기_테스트")
     @Test
-    public void t2() {
+    public void 우승자_찾기_테스트() {
         //given
         int expectMaxPosition = 4;
         RacingCars cars = new RacingCars(new ArrayList<>(Arrays.asList("juri", "hunch")));
