@@ -73,7 +73,7 @@ class CarGroupTest {
 
         List<String> actual = statuses.stream()
                 .map(CarStatusDto::toString)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
         assertThat(actual).isEqualTo(expected);
     }
 

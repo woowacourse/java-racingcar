@@ -39,7 +39,7 @@ public class GameServiceImpl implements GameService {
         List<CarStatusDto> statuses = carGroup.getStatuses();
         return statuses.stream()
                 .map(CarStatusDto::toString)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<String> getWinnerNames() {

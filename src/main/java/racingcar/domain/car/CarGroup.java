@@ -26,7 +26,7 @@ public class CarGroup {
     public List<CarStatusDto> getStatuses() {
         return cars.stream()
                 .map(CarStatusDto::toDto)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<String> getWinnerNames() {
@@ -34,7 +34,7 @@ public class CarGroup {
         return cars.stream()
             .filter(car -> car.isLocationSameWith(farthestLocation))
             .map(Car::getName)
-            .collect(Collectors.toList());
+            .collect(Collectors.toUnmodifiableList());
     }
 
     private int getFarthestLocation() {
@@ -44,7 +44,7 @@ public class CarGroup {
     private List<Integer> getCurrentLocations() {
         return cars.stream()
                 .map(Car::getLocation)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
 }

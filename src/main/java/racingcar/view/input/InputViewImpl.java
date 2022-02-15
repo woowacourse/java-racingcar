@@ -24,7 +24,7 @@ public class InputViewImpl implements InputView {
         inputValue = appendSpaceBeforeSplit(inputValue);
         return Arrays.stream(Delimiter.splitWithComma(inputValue))
                 .map(String::trim)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private String appendSpaceBeforeSplit(String targetString) {

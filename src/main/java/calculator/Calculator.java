@@ -30,7 +30,7 @@ public class Calculator {
     private List<Integer> parseAsNumbers(List<String> values) {
         return values.stream()
                 .map(this::parseAsNumber)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private int parseAsNumber(String text) {
