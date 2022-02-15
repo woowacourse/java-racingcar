@@ -1,7 +1,6 @@
 package racingcar.vo;
 
 import static racingcar.util.MovementUtil.isMoveForward;
-import static racingcar.util.RandomUtil.generateRandomNumber;
 
 public class Car implements Comparable<Car> {
 
@@ -43,8 +42,8 @@ public class Car implements Comparable<Car> {
         return position.compareTo(car.position) == SAME_POSITION;
     }
 
-    public Car move() {
-        if (isMoveForward(generateRandomNumber())) {
+    public Car move(int number) {
+        if (isMoveForward((number))) {
             return new Car(name, position.increase());
         }
         return this;

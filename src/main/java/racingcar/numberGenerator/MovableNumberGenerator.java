@@ -1,17 +1,18 @@
-package racingcar.util;
+package racingcar.numberGenerator;
 
 import java.util.Random;
 import racingcar.view.ErrorMessage;
 
-public class RandomUtil {
+public class MovableNumberGenerator implements NumberGenerator {
 
     private static final int EXCLUSIVE_BOUND_CORRECTION_VALUE = 1;
-    private static final int MINIMUM = 0;
+    private static final int MINIMUM = 4;
     private static final int MAXIMUM = 9;
 
     private static final Random RANDOM = new Random();
 
-    public static int generateRandomNumber() {
+    @Override
+    public int generate() {
         int randomNumber =
                 RANDOM.nextInt(MAXIMUM - MINIMUM + EXCLUSIVE_BOUND_CORRECTION_VALUE) + MINIMUM;
         validateRange(randomNumber);
