@@ -34,7 +34,7 @@ public class CarController {
         List<String> winnerList = new ArrayList<>();
 
         for (Car car : cars) {
-            if (car.getPosition() == maxPosition) {
+            if (car.checkPosition(maxPosition)) {
                 winnerList.add(car.getName());
             }
         }

@@ -41,4 +41,12 @@ public class Car {
 
         return info;
     }
+
+    public boolean checkPosition(int maxPosition) {
+        if (position == maxPosition) {
+            return true;
+        }
+
+        return false;
+    }
 }
