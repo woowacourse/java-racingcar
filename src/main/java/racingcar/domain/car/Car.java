@@ -18,8 +18,18 @@ public class Car {
     }
 
     public Car(Name name, Position position) {
+        validate(name, position);
         this.name = name;
         this.position = position;
+    }
+
+    private void validate(Name name, Position position) {
+        if (name == null) {
+            throw new IllegalArgumentException("자동차 이름은 null이 될 수 없습니다.");
+        }
+        if (position == null) {
+            throw new IllegalArgumentException("자동차 위치는 null이 될 수 없습니다.");
+        }
     }
 
     public String getName() {

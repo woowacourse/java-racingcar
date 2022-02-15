@@ -41,4 +41,20 @@ class CarTest {
         testCar.move(() -> STOP_OPTION);
         assertThat(testCar.getPosition()).isEqualTo(STOP_OPTION);
     }
+
+    @Test
+    void Should_FailToCreateCarPosition_Null() {
+        Name name = new Name("pobi");
+        assertThatThrownBy(() -> new Car(name, null))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("자동차 위치는 null이 될 수 없습니다.");
+    }
+
+    @Test
+    void Should_FailToCreateCarName_Null() {
+        Position position = new Position(3);
+        assertThatThrownBy(() -> new Car(null, position))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("자동차 이름은 null이 될 수 없습니다.");
+    }
 }
