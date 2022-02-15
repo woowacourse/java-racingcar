@@ -20,10 +20,6 @@ public class Position implements Comparable<Position> {
         return new Position(position + MOVE_ONE_TIME);
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
@@ -36,5 +32,9 @@ public class Position implements Comparable<Position> {
     @Override
     public int compareTo(Position position) {
         return this.position - position.position;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

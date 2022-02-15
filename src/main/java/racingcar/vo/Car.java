@@ -20,20 +20,6 @@ public class Car implements Comparable<Car> {
         this.position = position;
     }
 
-    public CarName getName() {
-        return name;
-    }
-
-    @Override
-    public String toString() {
-        return name.getName() + RESULT_DELIMITER + position.toString();
-    }
-
-    @Override
-    public int compareTo(Car car) {
-        return position.compareTo(car.position);
-    }
-
     public boolean isSameName(Car car) {
         return car.name.equals(this.name);
     }
@@ -47,5 +33,19 @@ public class Car implements Comparable<Car> {
             return new Car(name, position.increase());
         }
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return name.getName() + RESULT_DELIMITER + position.toString();
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return position.compareTo(car.position);
+    }
+
+    public CarName getName() {
+        return name;
     }
 }

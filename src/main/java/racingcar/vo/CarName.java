@@ -14,8 +14,16 @@ public class CarName {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    private void validateEmpty(String name) {
+        if (name.isEmpty()) {
+            throw new RuntimeException(ErrorMessage.CAR_NAME_EMPTY.toString());
+        }
+    }
+
+    private void validateLength(String name) {
+        if (name.length() > MAX_LENGTH) {
+            throw new RuntimeException(ErrorMessage.CAR_NAME_TOO_LONG.toString());
+        }
     }
 
     @Override
@@ -32,15 +40,7 @@ public class CarName {
         return name.hashCode();
     }
 
-    private void validateEmpty(String name) {
-        if (name.isEmpty()) {
-            throw new RuntimeException(ErrorMessage.CAR_NAME_EMPTY.toString());
-        }
-    }
-
-    private void validateLength(String name) {
-        if (name.length() > MAX_LENGTH) {
-            throw new RuntimeException(ErrorMessage.CAR_NAME_TOO_LONG.toString());
-        }
+    public String getName() {
+        return name;
     }
 }

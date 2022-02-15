@@ -20,10 +20,6 @@ public class Attempt {
         this.attempt = attempt;
     }
 
-    public int getAttempt() {
-        return attempt;
-    }
-
     public boolean isLeft() {
         return attempt > EMPTY_COUNT;
     }
@@ -40,5 +36,9 @@ public class Attempt {
         if (attempt < ZERO) {
             throw new RuntimeException(ErrorMessage.NUMBER_NEGATIVE.toString());
         }
+    }
+
+    public int getAttempt() {
+        return attempt;
     }
 }
