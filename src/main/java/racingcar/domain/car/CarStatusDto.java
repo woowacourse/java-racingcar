@@ -4,8 +4,8 @@ import racingcar.utils.Delimiter;
 
 public class CarStatusDto {
 
-    private String name;
-    private int location;
+    private final String name;
+    private final int location;
 
     public CarStatusDto(String name, int location) {
         this.name = name;
