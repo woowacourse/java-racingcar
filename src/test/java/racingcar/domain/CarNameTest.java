@@ -15,11 +15,20 @@ public class CarNameTest {
     }
 
     @Test
-    void 이름의_길이가_1보다_작은_경우_예외발생() {
+    void 이름의_빈값_일경우_예외발생() {
         final String nameString = "";
 
         assertThatThrownBy(() -> new CarName(nameString))
             .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining("이상");
+            .hasMessageContaining("자동차의 이름을 입력해주세요!");
+    }
+
+    @Test
+    void 이름이_null_일경우_예외발생() {
+        final String nameString = null;
+
+        assertThatThrownBy(() -> new CarName(nameString))
+            .isInstanceOf(RuntimeException.class)
+            .hasMessageContaining("자동차의 이름을 입력해주세요!");
     }
 }

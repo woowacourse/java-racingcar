@@ -14,8 +14,15 @@ public class CarName {
     }
 
     private static void checkName(final String name) {
+        checkNullOrBlank(name);
         checkMinimumCarName(name);
         checkMaximumCarNameLength(name);
+    }
+
+    private static void checkNullOrBlank(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("자동차의 이름을 입력해주세요!");
+        }
     }
 
     private static void checkMinimumCarName(final String name) {
