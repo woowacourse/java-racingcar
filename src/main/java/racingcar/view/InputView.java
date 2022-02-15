@@ -19,6 +19,11 @@ public class InputView {
         return InputView.requestUserInput();
     }
 
+    public static String requestRestartGameInput() {
+        OutputView.printRequestRestartGameInputMessage();
+        return InputView.requestUserInput();
+    }
+
     private static String requestUserInput() {
         return scanner.nextLine();
     }

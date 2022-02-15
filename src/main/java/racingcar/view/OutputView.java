@@ -9,6 +9,7 @@ public class OutputView {
 
     private static final String REQUEST_CAR_NAME_INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String REQUEST_TOTAL_ROUNDS_INPUT_MESSAGE = "시도할 회수는 몇회인가요?";
+    private static final String REQUEST_RESTART_GAME_INPUT_MESSAGE = "새로운 게임을 시작하시겠습니까? (y/n)";
     private static final String ROUND_RESULT_TEXT = "실행 결과";
     private static final String CAR_INFO_DELIMITER = " : ";
     private static final String DISTANCE_SYMBOL = "-";
@@ -25,6 +26,11 @@ public class OutputView {
 
     public static void printRequestTotalRoundsInputMessage() {
         print(REQUEST_TOTAL_ROUNDS_INPUT_MESSAGE);
+    }
+
+    public static void printRequestRestartGameInputMessage() {
+        printBlankLine();
+        print(REQUEST_RESTART_GAME_INPUT_MESSAGE);
     }
 
     public static void printRoundResultText() {
