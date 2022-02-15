@@ -14,9 +14,9 @@ public class CarTest {
         Car car = new Car("foo");
 
         // when & then
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.getPositionForTest()).isEqualTo(0);
         car.moveOrHold(true);
-        assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(car.getPositionForTest()).isEqualTo(1);
     }
 
     @Test
@@ -26,8 +26,8 @@ public class CarTest {
         Car car = new Car("foo");
 
         // when & then
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.getPositionForTest()).isEqualTo(0);
         car.moveOrHold(false);
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.getPositionForTest()).isEqualTo(0);
     }
 }

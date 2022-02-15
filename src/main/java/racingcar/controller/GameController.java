@@ -48,8 +48,7 @@ public class GameController {
         outputView.printAskCarNameInputMessage();
 
         String input = inputView.readCarNamesInput();
-        CarNameParser.parseCarNameInputs(input);
-        String[] strings = parseCarNames(input);
+        String[] strings = CarNameParser.parseCarNameInputs(input);
         List<String> carNames = Arrays.asList(strings);
 
         List<Car> cars = new ArrayList<>();
@@ -58,10 +57,6 @@ public class GameController {
         carRepository.addCars(cars);
     }
 
-    private String[] parseCarNames(String input) {
-        input = input.replaceAll(" ", "");
-        return input.split(CAR_NAME_DELIMINATOR);
-    }
 
     private void setRoundNumbers() {
         outputView.printAskRoundNumberMessage();

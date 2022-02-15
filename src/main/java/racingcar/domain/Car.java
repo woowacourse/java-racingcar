@@ -15,11 +15,19 @@ public class Car implements Comparable<Car> {
     }
 
     public boolean isSamePosition(Car targetCar) {
-        return position == targetCar.getPosition();
+        return targetCar.decideIsSame(position);
     }
 
-    public int getPosition() {
+    public boolean decideIsSame(int targetPosition) {
+        return position == targetPosition;
+    }
+
+    public int getPositionForTest() {
         return position;
+    }
+
+    public String getNameForTest() {
+        return name;
     }
 
     @Override
