@@ -54,7 +54,7 @@ public class CarsTest {
 
         // when
         Cars cars = new Cars(this.cars);
-        List<String> winnerNames = cars.getWinner();
+        List<String> winnerNames = cars.getWinnerNames();
 
         // when & then
         assertThat(winnerNames.size() == 1 && winnerNames.get(0).equals(expected)).isTrue();
@@ -72,7 +72,7 @@ public class CarsTest {
 
         // when
         Cars cars = new Cars(this.cars);
-        List<String> actual = cars.getWinner();
+        List<String> actual = cars.getWinnerNames();
 
         // when & then
         assertThat(actual.size() == 2 && actual.equals(expected)).isTrue();

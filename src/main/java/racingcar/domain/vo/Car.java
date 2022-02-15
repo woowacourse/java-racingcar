@@ -37,14 +37,14 @@ public class Car {
         }
     }
 
+    public boolean isEqualPosition(final Car car) {
+        return this.position == car.position;
+    }
+
     public void advance(MovableStrategy movableStrategy) {
         if (movableStrategy.isMove()) {
             this.position++;
         }
-    }
-
-    public boolean isEqualPosition(final int position) {
-        return this.position == position;
     }
 
     public String getName() {
@@ -53,6 +53,16 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public int isWinning(final Car competitor) {
+        if (this.position > competitor.position) {
+            return -1;
+        } else if (this.position < competitor.position) {
+            return 1;
+        }
+
+        return 0;
     }
 
     @Override

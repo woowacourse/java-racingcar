@@ -17,7 +17,7 @@ public class RacingGame {
     public void start() {
         final Cars cars = setupCars();
         race(cars, InputView.getTrial());
-        OutputView.printWinner(cars.getWinner());
+        OutputView.printWinner(cars.getWinnerNames());
     }
 
     private Cars setupCars() {
