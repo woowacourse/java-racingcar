@@ -82,7 +82,10 @@ public class Cars {
     }
 
     private void validateDuplicateCarName(Car car) {
-        if (cars.stream().filter(each -> each.isSameName(car)).count() != NONE_DUPLICATION) {
+        long countDuplication = cars.stream()
+                .filter(each -> each.isSameName(car))
+                .count();
+        if (countDuplication != NONE_DUPLICATION) {
             throw new RuntimeException(ErrorMessage.CAR_NAME_DUPLICATE.toString());
         }
     }
