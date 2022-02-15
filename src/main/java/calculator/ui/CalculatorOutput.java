@@ -1,4 +1,4 @@
-package calculator;
+package calculator.ui;
 
 public class CalculatorOutput {
     private static final String RESULT_MESSAGE = "결과값: ";
