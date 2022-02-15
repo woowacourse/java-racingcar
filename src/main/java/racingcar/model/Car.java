@@ -2,6 +2,8 @@ package racingcar.model;
 
 public class Car {
 
+    private static final int MOVE_MIN_VALUE = 4;
+
     private final Name name;
     private final Location location;
 
@@ -10,8 +12,10 @@ public class Car {
         this.location = new Location();
     }
 
-    public void move() {
-        this.location.increase();
+    public void tryMove(Integer number) {
+        if (isMovable(number)) {
+            this.location.increase();
+        }
     }
 
     public Integer getCarPosition() {
@@ -20,5 +24,9 @@ public class Car {
 
     public Name getName() {
         return this.name;
+    }
+
+    private boolean isMovable(Integer number) {
+        return number >= MOVE_MIN_VALUE;
     }
 }
