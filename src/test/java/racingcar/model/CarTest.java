@@ -12,4 +12,11 @@ class CarTest {
         car.tryMove(5);
         assertThat(car.getCarPosition()).isEqualTo(1);
     }
+
+    @Test
+    public void doNotMove() {
+        Car car = new Car("Thor");
+        car.tryMove(3);
+        assertThat(car.getCarPosition()).isEqualTo(0);
+    }
 }
