@@ -1,12 +1,11 @@
-package racingcar.view;
+package racingcar.validator;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.validator.Validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class InputTest {
+class ValidatorTest {
     @DisplayName("자동차 이름 공백 테스트")
     @Test
     void car_name_empty() {
@@ -22,7 +21,7 @@ class InputTest {
             Validator.carName(null);
         }).isInstanceOf(NullPointerException.class);
     }
-    
+
     @DisplayName("자동차 개수 테스트")
     @Test
     void car_count_test() {
