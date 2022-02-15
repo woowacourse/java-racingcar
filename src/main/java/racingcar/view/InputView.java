@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private static Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     public String readCarNamesInput() {
         return scanner.nextLine();
@@ -14,7 +14,7 @@ public class InputView {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static void terminate() {
+    public void terminate() {
         scanner.close();
     }
 }

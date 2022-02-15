@@ -48,7 +48,7 @@ public class GameControllerTest {
     }
 
     @Test
-    @DisplayName("우승자가 여러일 때")
+    @DisplayName("우승자가 여럿일 때")
     public void Two_Or_More_Winners() {
         // given
         Car car1 = new Car("foo");

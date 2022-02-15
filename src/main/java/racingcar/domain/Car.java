@@ -8,30 +8,31 @@ public class Car implements Comparable<Car> {
         this.name = name;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public void moveOrHold(Boolean isMove) {
         if (isMove) {
             this.position++;
         }
     }
 
-    public void printPosition() {
-        System.out.print(name + " : ");
-        System.out.println("-".repeat(position));
+    public boolean isSamePosition(Car targetCar) {
+        return position == targetCar.getPosition();
     }
 
-    public boolean isSamePosition(Car maxCar) {
-        return position == maxCar.getPosition();
+    public int getPosition() {
+        return position;
     }
 
+    @Override
     public int compareTo(Car s) {
-        return position - s.getPosition();
+        return s.getCompareToValue(position);
+    }
+
+    public int getCompareToValue(int targetPosition) {
+        return targetPosition - position;
+    }
+
+    @Override
+    public String toString() {
+        return name + " : " + "-".repeat(position);
     }
 }

@@ -4,8 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class StringCalculator {
-    static int sum;
-    static final String CUSTOM_DELIMETER_SIGN = "//.*\\n.*";
+    private static final String CUSTOM_DELIMETER_SIGN = "//.*\\n.*";
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -38,20 +37,20 @@ public class StringCalculator {
     }
 
     public static int adder(String[] tokens) {
-        negativeCheck(tokens);
-        zeroFill();
-        Arrays.asList(tokens).forEach(x -> sum += Integer.parseInt(x));
+        checkNotContainNegative(tokens);
+        int sum = 0;
+        for (String token : tokens) {
+            sum += Integer.parseInt(token);
+        }
+        //Arrays.asList(tokens).forEach(x -> sum += Integer.parseInt(x));
         return sum;
     }
 
-    public static void negativeCheck(String[] tokens) {
-        if (Arrays.asList(tokens).stream().anyMatch(x -> Integer.parseInt(x) < 0)) {
+    public static void checkNotContainNegative(String[] tokens) {
+        Boolean isNegative = Arrays.asList(tokens).stream().anyMatch(x -> Integer.parseInt(x) < 0);
+        if (isNegative) {
             throw new RuntimeException();
         }
-    }
-
-    public static void zeroFill() {
-        sum = 0;
     }
 
     public static boolean isNumber(String s) {
