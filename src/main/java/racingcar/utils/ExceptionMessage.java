@@ -7,5 +7,6 @@ public class ExceptionMessage {
 
     public static final String LONGER_THAN_FIVE_CAR_NAME = "자동차 이름은 최대 5자입니다.";
     public static final String BLANK_CAR_NAME = "공백으로만 이루어진 자동차 이름이 있습니다.";
+    public static final String NULL_CAR_NAME = "비어있는 자동차 이름이 있습니다.";
     public static final String DUPLICATED_CAR_NAMES = "자동차 이름들 간 중복이 있습니다.";
 }

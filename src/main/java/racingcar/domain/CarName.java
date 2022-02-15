@@ -10,6 +10,7 @@ public class CarName {
     private final String value;
 
     public CarName(String value) {
+        validateNull(value);
         validateLength(value);
         validateBlank(value);
         this.value = value;
@@ -24,6 +25,12 @@ public class CarName {
     private void validateBlank(String value) {
         if (value.isBlank()) {
             throw new IllegalArgumentException(ExceptionMessage.BLANK_CAR_NAME);
+        }
+    }
+
+    private void validateNull(String value) {
+        if (value == null) {
+            throw new IllegalArgumentException(ExceptionMessage.NULL_CAR_NAME);
         }
     }
 
