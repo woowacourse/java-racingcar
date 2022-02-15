@@ -3,6 +3,7 @@ package racingcar.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Participants {
     private final List<Car> cars;
@@ -27,6 +28,22 @@ public class Participants {
 
     public List<Car> getParticipantCars() {
         return Collections.unmodifiableList(cars);
+    }
+
+    public List<Name> findRacingWinners() {
+        Integer maxPosition = findMaxPosition();
+        return  cars.stream()
+                .filter(car -> car.isWinnerPosition(maxPosition))
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private Integer findMaxPosition() {
+        return Collections
+                .max(cars.stream()
+                        .map(Car::getCarPosition)
+                        .collect(Collectors.toList())
+                );
     }
 
     private int makeRandomNumberBetweenZeroAndNine() {

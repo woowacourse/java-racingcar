@@ -3,7 +3,6 @@ package racingcar.controller;
 import racingcar.model.Car;
 import racingcar.model.Participants;
 import racingcar.model.PlayTime;
-import racingcar.model.Referee;
 import racingcar.view.Board;
 import racingcar.view.Staff;
 
@@ -44,7 +43,6 @@ public class Racing {
     }
 
     private void showRacingResult() {
-        Referee referee = new Referee();
-        board.recordRacingWinners(referee.judgeRacingWinners(participants.getParticipantCars()));
+        board.recordRacingWinners(participants.findRacingWinners());
     }
 }
