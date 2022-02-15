@@ -5,15 +5,16 @@ import static org.assertj.core.api.Assertions.*;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@SuppressWarnings("NonAsciiCharacters")
 class GameControllerTest {
 
     private final static GameController gameController = new GameController();
 
     @Test
-    void 자동차_이름_입력() {
+    @DisplayName("자동차 이름 입력 테스트")
+    void inputCarNames() {
         String input = "aa,bb,cc";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
@@ -21,7 +22,8 @@ class GameControllerTest {
     }
 
     @Test
-    void 시도_횟수_입력() {
+    @DisplayName("시도 횟수 입력 테스트")
+    void inputTryCount() {
         String input = "5";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);

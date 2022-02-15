@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class CarNamesValidator {
 
-    public static final String CAR_NAME_LENGTH_ERROR_MESSAGE = "[ERROR] 자동차 이름은 5자 미만이어야 합니다.";
+    public static final String CAR_NAME_LENGTH_ERROR_MESSAGE = "[ERROR] 자동차 이름은 5자 이하여야 합니다.";
     public static final String CAR_NAME_DUPLICATE_ERROR_MESSAGE = "[ERROR] 자동차 이름은 중복될 수 없습니다.";
     public static final String CAR_NAME_BLANK_ERROR_MESSAGE = "[ERROR] 자동차 이름은 공백이 될 수 없습니다.";
     public static final int CAR_NAME_MAX_LENGTH = 5;
