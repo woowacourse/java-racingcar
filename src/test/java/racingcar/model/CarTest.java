@@ -12,6 +12,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CarTest {
 
 	@Test
+	@DisplayName("자동차 이름이 같을 시, 같은 객체로 간주한다.")
+	void matchCar() {
+		Car car = new Car("범고래");
+		assertThat(car).isEqualTo(new Car("범고래"));
+	}
+
+	@Test
 	@DisplayName("자동차 생성 시, position 값을 0이 된다.")
 	void initCarPosition() {
 		Car car = new Car("소주캉");
