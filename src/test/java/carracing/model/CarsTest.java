@@ -77,7 +77,7 @@ public class CarsTest {
 
 	void move(Car car, int cnt) {
 		while ((cnt--) > 0) {
-			car.move(9);
+			car.move(() -> true);
 		}
 	}
 }
