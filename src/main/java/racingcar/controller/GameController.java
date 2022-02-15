@@ -7,6 +7,7 @@ import racingcar.view.OutputView;
 
 import java.util.List;
 
+import static racingcar.util.ValidatorUtils.validateAndParseBoolean;
 import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 
 public class GameController {
@@ -16,6 +17,15 @@ public class GameController {
     private Game game;
 
     public void run() {
+        boolean isRunning = true;
+
+        while (isRunning) {
+            playGame();
+            isRunning = requestNewGameInput();
+        }
+    }
+
+    public void playGame() {
         initGame();
         playGameUntilEnd();
         printGameResult();
@@ -56,5 +66,10 @@ public class GameController {
     private void endGame() {
         game.clearCars();
         game = null;
+    }
+
+    private boolean requestNewGameInput() {
+        String restartGameInput = InputView.requestRestartGameInput();
+        return validateAndParseBoolean(restartGameInput);
     }
 }
