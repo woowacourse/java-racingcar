@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.view.ErrorMessage;
 
 public class CalculatorTest {
 
@@ -47,6 +48,6 @@ public class CalculatorTest {
     @Test
     public void sum_negativeNumber_test() throws Exception {
         assertThatThrownBy(() -> Calculator.sum("-1,-2"))
-                .isInstanceOf(RuntimeException.class);
+                .hasMessageContaining(ErrorMessage.NUMBER_NEGATIVE.toString());
     }
 }

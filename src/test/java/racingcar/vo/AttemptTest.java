@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.view.ErrorMessage;
 
 public class AttemptTest {
 
@@ -54,6 +55,6 @@ public class AttemptTest {
     public void constructor_negativeNumber_exception_test() throws Exception {
         String input = "-3";
         assertThatThrownBy(() -> new Attempt(input))
-                .isInstanceOf(RuntimeException.class);
+                .hasMessageContaining(ErrorMessage.NUMBER_NEGATIVE.toString());
     }
 }

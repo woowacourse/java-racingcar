@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.view.ErrorMessage;
 
 public class CarNameTest {
 
@@ -21,7 +22,7 @@ public class CarNameTest {
     public void constructor_empty_test() throws Exception {
         String carName = "";
         assertThatThrownBy(() -> new CarName(carName))
-                .isInstanceOf(RuntimeException.class);
+                .hasMessageContaining(ErrorMessage.CAR_NAME_EMPTY.toString());
     }
 
     @DisplayName("new CarName() 글자 수 초과 값이 입력되었을 때 예외 테스트")
@@ -29,6 +30,6 @@ public class CarNameTest {
     public void constructor_long_name_test() throws Exception {
         String carName = "abcdef";
         assertThatThrownBy(() -> new CarName(carName))
-                .isInstanceOf(RuntimeException.class);
+                .hasMessageContaining(ErrorMessage.CAR_NAME_TOO_LONG.toString());
     }
 }

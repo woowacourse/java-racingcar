@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.view.ErrorMessage;
 
 public class CarsTest {
 
@@ -64,6 +65,6 @@ public class CarsTest {
         String name = "name1";
         String[] names = {name, name};
         assertThatThrownBy(() -> new Cars(names))
-                .isInstanceOf(RuntimeException.class);
+                .hasMessageContaining(ErrorMessage.CAR_NAME_DUPLICATE.toString());
     }
 }
