@@ -18,7 +18,7 @@ public class PlayTime {
         this.playTime--;
     }
 
-    public boolean isZero() {
+    public boolean isEnd() {
         return playTime == 0;
     }
 }
