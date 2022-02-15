@@ -3,61 +3,79 @@ package racingcar.controller;
 import java.util.ArrayList;
 
 import racingcar.model.Car;
-import racingcar.util.IntegerConst;
-import racingcar.util.StringConst;
+import racingcar.model.CarList;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-	OutputViewController outputViewController = new OutputViewController();
-	CarListController carListController = new CarListController();
-	ArrayList<Car> carList;
+	private static final int ZERO = 0;
+	CarList carList;
+	int numberOfTurn = ZERO;
 
 	public void runRace() {
-		OutputView.askCarName();
-		String[] carName = InputView.getCarNameInput();
-		checkNameError(carName);
-		ArrayList<Car> carList = generateCarList(carName);
+		getCarNames();
+		getNumberOfTurn();
+		printProcess();
+		printResult();
+	}
+
+	private void printResult() {
+		OutputView.printWinner(getWinner());
+	}
+
+	private void printProcess() {
+		OutputView.printResultMessage();
+		playTotalTurn(numberOfTurn);
+	}
+
+	private void getNumberOfTurn() {
 		OutputView.askTurn();
-		int totalTurn = Integer.parseInt(InputView.getTurnInput());
-		checkTurnError(totalTurn);
-		OutputView.displayResult();
-		playTotalTurn(totalTurn);
-		OutputView.displayWinner(outputViewController.mapWinner(carList));
-	}
-
-	private void checkNameError(String[] carName) {
-		if (carName[IntegerConst.ZERO.getValue()].equals(StringConst.ERROR_PREFIX.getValue())) {
-			System.exit(0);
+		try {
+			numberOfTurn = InputView.getNumberOfTurn();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			System.exit(ZERO);
 		}
 	}
 
-	private void checkTurnError(int totalTurn) {
-		if (totalTurn < IntegerConst.ZERO.getValue()) {
-			System.exit(0);
+	private void getCarNames() {
+		OutputView.askCarName();
+		String[] carNames = InputView.getCarNames();
+		try {
+			generateCarList(carNames);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			System.exit(ZERO);
 		}
 	}
 
-	private void playTotalTurn(int totalTurn) {
-		for (int eachTurn = IntegerConst.ZERO.getValue(); eachTurn < totalTurn; eachTurn++) {
-			carListController.moveCarList(carList);
-			OutputView.displayCarPosition(outputViewController.getCarListInfo(carList));
+	private void playTotalTurn(int numberOfTurn) {
+		for (int eachTurn = ZERO; eachTurn < numberOfTurn; eachTurn++) {
+			carList.moveCarList();
+			OutputView.printCarPosition(carList.getCarListInfo());
 		}
 	}
 
-	public ArrayList<Car> generateCarList(String[] names) {
-		this.carList = new ArrayList<>();
+	private void generateCarList(String[] names) {
+		ArrayList<Car> cars = new ArrayList<>();
 		for (String name : names) {
-			carList.add(new Car(name));
+			cars.add(new Car(name));
 		}
-		return this.carList;
+		this.carList = new CarList(cars);
 	}
 
-	public int getMaxPosition(ArrayList<Car> carList) {
-		int max = IntegerConst.ZERO.getValue();
-		for (Car car : carList) {
-			max = Math.max(max, car.getPosition());
+	private ArrayList<String> getWinner() {
+		ArrayList<String> winner = new ArrayList<>();
+		isMaxPosition(winner);
+		return winner;
+	}
+
+	private void isMaxPosition(ArrayList<String> winner) {
+		int maxPosition = carList.getMaxPosition();
+		for (Car car : carList.getCarList()) {
+			if (car.getPosition() == maxPosition) {
+				winner.add(car.getName());
+			}
 		}
-		return max;
 	}
 }
