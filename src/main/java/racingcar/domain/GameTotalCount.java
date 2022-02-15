@@ -12,7 +12,7 @@ public class GameTotalCount {
         return totalAttemptCount;
     }
 
-    private int initTotalAttempt(String attempt) throws IllegalArgumentException {
+    private void initTotalAttempt(String attempt) throws IllegalArgumentException {
         int validateAttempt = validateAttempt(attempt);
         this.totalAttemptCount = validateAttempt;
     }
