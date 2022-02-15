@@ -16,22 +16,6 @@ public class Car {
 		this.name = name;
 	}
 
-	public String getName() {
-		return this.name;
-	}
-
-	public int getPosition() {
-		return this.position;
-	}
-
-	public boolean isPosition(int position) {
-		return this.position == position;
-	}
-
-	public void move() {
-		position++;
-	}
-
 	private void validateEmptyName(String name) {
 		if (name.isEmpty()) {
 			throw new IllegalArgumentException(EMPTY_NAME_ERROR);
@@ -42,6 +26,22 @@ public class Car {
 		if (name.length() > MAX_NAME_LENGTH) {
 			throw new IllegalArgumentException(NAME_LENGTH_ERROR);
 		}
+	}
+
+	public void move() {
+		position++;
+	}
+
+	public boolean isPosition(int position) {
+		return this.position == position;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public int getPosition() {
+		return this.position;
 	}
 
 	@Override
