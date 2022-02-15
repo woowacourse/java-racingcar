@@ -4,10 +4,35 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CarTest {
 	Car car = new Car("sudal");
+
+	@DisplayName("자동차 이름 공백 테스트")
+	@Test
+	void car_name_empty() {
+		assertThatThrownBy(() -> {
+			Car car = new Car(" ");
+		}).isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@DisplayName("자동차 이름 null 테스트")
+	@Test
+	void car_name_null() {
+		assertThatThrownBy(() -> {
+			Car car = new Car(null);
+		}).isInstanceOf(NullPointerException.class);
+	}
+
+	@DisplayName("자동차 이름 길이 테스트")
+	@Test
+	void car_name_length() {
+		assertThatThrownBy(() -> {
+			Car car = new Car("yukong");
+		}).isInstanceOf(IllegalArgumentException.class);
+	}
 
 	@DisplayName("랜덤 넘버가 4 이상일 경우 전진")
 	@Test

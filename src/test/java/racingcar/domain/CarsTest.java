@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -22,6 +23,22 @@ class CarsTest {
 		for (String name : names) {
 			cars.add(new Car(name.trim()));
 		}
+	}
+
+	@DisplayName("자동차 개수 테스트")
+	@Test
+	void cars_count_test() {
+		assertThatThrownBy(() -> {
+			Cars cars = new Cars("pobi");
+		}).isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@DisplayName("자동차 이름 중복 테스트")
+	@Test
+	void cars_name_duplicated() {
+		assertThatThrownBy(() -> {
+			Cars cars = new Cars("pobi,jun,pobi");
+		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@DisplayName("자동차 랜덤 숫자 범위 확인")

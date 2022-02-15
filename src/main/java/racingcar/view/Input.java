@@ -2,12 +2,10 @@ package racingcar.view;
 
 import racingcar.domain.Attempt;
 import racingcar.domain.Cars;
-import racingcar.validator.Validator;
 
 import java.util.Scanner;
 
 public class Input {
-	private static final String DELIMITER = ",";
 
 	private final Scanner scan = new Scanner(System.in);
 
@@ -15,9 +13,7 @@ public class Input {
 		try {
 			Output.getCarName();
 			String inputValue = scan.nextLine();
-			Validator.carName(inputValue);
-			return new Cars(
-				inputValue.split(DELIMITER));
+			return new Cars(inputValue);
 		} catch (IllegalArgumentException e) {
 			Output.errorMessage(e.getMessage());
 			return carName();
