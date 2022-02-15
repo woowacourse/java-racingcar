@@ -45,7 +45,7 @@ public class CarsTest {
     }
 
     @Test
-    @DisplayName("우승자 목록 가져오기")
+    @DisplayName("우승자 한 명 가져오기")
     void getWinnerTest() {
         // given
         Car winner = cars.get(0);
@@ -58,6 +58,24 @@ public class CarsTest {
 
         // when & then
         assertThat(winnerNames.size() == 1 && winnerNames.get(0).equals(expected)).isTrue();
+    }
+
+    @Test
+    @DisplayName("공동 우승자 두 명 가져오기")
+    void getTwoWinnersTest() {
+        // given
+        Car firstWinner = cars.get(0);
+        firstWinner.advance(() -> true);
+        Car secondWinner = cars.get(1);
+        secondWinner.advance(() -> true);
+        List<String> expected = List.of(firstWinner.getName(), secondWinner.getName());
+
+        // when
+        Cars cars = new Cars(this.cars);
+        List<String> actual = cars.getWinner();
+
+        // when & then
+        assertThat(actual.size() == 2 && actual.equals(expected)).isTrue();
     }
 
     @Test
