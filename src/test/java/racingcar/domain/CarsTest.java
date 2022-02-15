@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import racingcar.domain.car.Cars;
 import racingcar.domain.car.CarStatusDto;
-import racingcar.exception.RacingCarException;
+import racingcar.exception.RacingCarIllegalArgumentException;
 import racingcar.exception.car.CarNameDuplicatedException;
 import racingcar.exception.car.CarNameEmptyException;
 import racingcar.exception.car.CarNameNullException;
@@ -24,7 +24,7 @@ class CarsTest {
 
     private static final String providerPath = "racingcar.domain.provider.CarsTestProvider#";
 
-    private void exceptionTest(Class<? extends RacingCarException> exceptionClass, List<String> carNames) {
+    private void exceptionTest(Class exceptionClass, List<String> carNames) {
         assertThrows(exceptionClass, () -> new Cars(carNames));
     }
 

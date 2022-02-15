@@ -3,8 +3,8 @@ package racingcar.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.domain.car.Cars;
 import racingcar.domain.car.CarStatusDto;
+import racingcar.domain.car.Cars;
 import racingcar.domain.round.Round;
 import racingcar.service.picker.NumberPicker;
 

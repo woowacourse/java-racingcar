@@ -1,12 +1,13 @@
 package racingcar.exception.round;
 
-import racingcar.exception.RacingCarException;
-import racingcar.exception.round.message.RoundExceptionMessage;
+import static racingcar.exception.round.status.RoundExceptionStatus.ROUND_IS_NOT_NUMERIC_EXCEPTION_STATUS;
 
-public class RoundNotNumericException extends RacingCarException {
+import racingcar.exception.RacingCarIllegalArgumentException;
+
+public class RoundNotNumericException extends RacingCarIllegalArgumentException {
 
     public RoundNotNumericException() {
-        super(RoundExceptionMessage.ROUND_IS_NOT_NUMERIC.getMessage());
+        super(ROUND_IS_NOT_NUMERIC_EXCEPTION_STATUS.getMessage());
     }
 
 }

@@ -1,12 +1,13 @@
 package racingcar.exception.car;
 
-import racingcar.exception.RacingCarException;
-import racingcar.exception.car.message.CarNameExceptionMessage;
+import static racingcar.exception.car.status.CarNameExceptionStatus.NAME_IS_DUPLICATED_EXCEPTION_STATUS;
 
-public class CarNameDuplicatedException extends RacingCarException {
+import racingcar.exception.RacingCarIllegalArgumentException;
+
+public class CarNameDuplicatedException extends RacingCarIllegalArgumentException {
 
     public CarNameDuplicatedException() {
-        super(CarNameExceptionMessage.NAME_IS_DUPLICATED.getMessage());
+        super(NAME_IS_DUPLICATED_EXCEPTION_STATUS.getMessage());
     }
 
 }

@@ -1,12 +1,13 @@
 package racingcar.exception.car;
 
-import racingcar.exception.RacingCarException;
-import racingcar.exception.car.message.CarNameExceptionMessage;
+import static racingcar.exception.car.status.CarNameExceptionStatus.NAME_IS_EMPTY_EXCEPTION_STATUS;
 
-public class CarNameEmptyException extends RacingCarException {
+import racingcar.exception.RacingCarIllegalArgumentException;
+
+public class CarNameEmptyException extends RacingCarIllegalArgumentException {
 
     public CarNameEmptyException() {
-        super(CarNameExceptionMessage.NAME_IS_EMPTY.getMessage());
+        super(NAME_IS_EMPTY_EXCEPTION_STATUS.getMessage());
     }
 
 }

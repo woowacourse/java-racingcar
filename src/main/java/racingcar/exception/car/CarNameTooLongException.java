@@ -1,12 +1,13 @@
 package racingcar.exception.car;
 
-import racingcar.exception.RacingCarException;
-import racingcar.exception.car.message.CarNameExceptionMessage;
+import static racingcar.exception.car.status.CarNameExceptionStatus.NAME_IS_TOO_LONG_EXCEPTION_STATUS;
 
-public class CarNameTooLongException extends RacingCarException {
+import racingcar.exception.RacingCarIllegalArgumentException;
+
+public class CarNameTooLongException extends RacingCarIllegalArgumentException {
 
     public CarNameTooLongException() {
-        super(CarNameExceptionMessage.NAME_IS_TOO_LONG.getMessage());
+        super(NAME_IS_TOO_LONG_EXCEPTION_STATUS.getMessage());
     }
 
 }

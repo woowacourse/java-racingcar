@@ -1,12 +1,13 @@
 package racingcar.exception.round;
 
-import racingcar.exception.RacingCarException;
-import racingcar.exception.round.message.RoundExceptionMessage;
+import static racingcar.exception.round.status.RoundExceptionStatus.ROUND_IS_NOT_POSITIVE_EXCEPTION_STATUS;
 
-public class RoundNotPositiveException extends RacingCarException {
+import racingcar.exception.RacingCarIllegalArgumentException;
+
+public class RoundNotPositiveException extends RacingCarIllegalArgumentException {
 
     public RoundNotPositiveException() {
-        super(RoundExceptionMessage.ROUND_IS_NOT_POSITIVE.getMessage());
+        super(ROUND_IS_NOT_POSITIVE_EXCEPTION_STATUS.getMessage());
     }
 
 }

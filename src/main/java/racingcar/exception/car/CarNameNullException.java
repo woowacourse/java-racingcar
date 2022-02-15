@@ -1,12 +1,13 @@
 package racingcar.exception.car;
 
-import racingcar.exception.RacingCarException;
-import racingcar.exception.car.message.CarNameExceptionMessage;
+import static racingcar.exception.car.status.CarNameExceptionStatus.NAME_IS_NULL_EXCEPTION_STATUS;
 
-public class CarNameNullException extends RacingCarException {
+import racingcar.exception.RacingCarNullPointerException;
+
+public class CarNameNullException extends RacingCarNullPointerException {
 
     public CarNameNullException() {
-        super(CarNameExceptionMessage.NAME_IS_NULL.getMessage());
+        super(NAME_IS_NULL_EXCEPTION_STATUS.getMessage());
     }
 
 }

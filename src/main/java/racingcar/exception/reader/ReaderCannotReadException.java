@@ -1,12 +1,13 @@
 package racingcar.exception.reader;
 
-import racingcar.exception.RacingCarException;
-import racingcar.exception.reader.message.ReaderExceptionMessage;
+import static racingcar.exception.reader.status.ReaderExceptionStatus.READER_CANNOT_READ_EXCEPTION_STATUS;
 
-public class ReaderCannotReadException extends RacingCarException {
+import racingcar.exception.RacingCarIllegalArgumentException;
+
+public class ReaderCannotReadException extends RacingCarIllegalArgumentException {
 
     public ReaderCannotReadException() {
-        super(ReaderExceptionMessage.READER_CANNOT_READ.getMessage());
+        super(READER_CANNOT_READ_EXCEPTION_STATUS.getMessage());
     }
 
 }

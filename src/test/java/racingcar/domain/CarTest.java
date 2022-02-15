@@ -9,14 +9,14 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.domain.car.Car;
-import racingcar.exception.RacingCarException;
+import racingcar.exception.RacingCarIllegalArgumentException;
 import racingcar.exception.car.CarNameEmptyException;
 import racingcar.exception.car.CarNameNullException;
 import racingcar.exception.car.CarNameTooLongException;
 
 class CarTest {
 
-    private void exceptionTest(Class<? extends RacingCarException> exceptionClass, String name) {
+    private void exceptionTest(Class exceptionClass, String name) {
         assertThrows(exceptionClass, () -> new Car(name));
     }
 
