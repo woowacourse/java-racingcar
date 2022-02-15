@@ -2,6 +2,7 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Random;
 
 public class CarList {
@@ -70,5 +71,13 @@ public class CarList {
 	private int generateRandNum() {
 		Random random = new Random();
 		return random.nextInt(BOUND_RANDOM);
+	}
+
+	public LinkedHashMap<String, Integer> getCarListInfo() {
+		LinkedHashMap<String, Integer> carListInfo = new LinkedHashMap<>();
+		for (Car car : this.carList) {
+			carListInfo.put(car.getName(), car.getPosition());
+		}
+		return carListInfo;
 	}
 }
