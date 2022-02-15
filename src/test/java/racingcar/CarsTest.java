@@ -33,35 +33,40 @@ public class CarsTest {
                 .hasMessage(DUPLICATED_NAME_ERROR);
     }
 
-    @Test
-    public void Car_집합에서_이름이_kun_Car_반환() {
-        Cars cars = new Cars(CarFactory.of("kun,forky"));
-        Car car = cars.getCarByName("kun");
-        assertThat(car.getName()).isEqualTo("kun");
-    }
-
-    @Test
-    public void Car_집합에서_이름이_같은_Car_반환() {
-        Cars cars = new Cars(CarFactory.of("kun,forky"));
-        Car car = cars.getCarByName("forky");
-        assertThat(car.getName()).isEqualTo("forky");
-    }
-
-    @Test
-    public void Car_집합에서_찾는_이름이_존재_X() {
-        Cars cars = new Cars(CarFactory.of("kun,forky"));
-        assertThatThrownBy(() -> cars.getCarByName("pobi"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NOT_FOUND_CAR_NAME_ERROR);
-    }
+//    @Test
+//    public void Car_집합에서_이름이_kun_Car_반환() {
+//        Cars cars = new Cars(CarFactory.of("kun,forky"));
+//        Car car = cars.getCarByName("kun");
+//        assertThat(car.getName()).isEqualTo("kun");
+//    }
+//
+//    @Test
+//    public void Car_집합에서_이름이_같은_Car_반환() {
+//        Cars cars = new Cars(CarFactory.of("kun,forky"));
+//        Car car = cars.getCarByName("forky");
+//        assertThat(car.getName()).isEqualTo("forky");
+//    }
+//
+//    @Test
+//    public void Car_집합에서_찾는_이름이_존재_X() {
+//        Cars cars = new Cars(CarFactory.of("kun,forky"));
+//        assertThatThrownBy(() -> cars.getCarByName("pobi"))
+//                .isInstanceOf(IllegalArgumentException.class)
+//                .hasMessage(NOT_FOUND_CAR_NAME_ERROR);
+//    }
 
     @Test
     public void Car_집합에서_최대_position_값_찾기() {
         Cars cars = new Cars(CarFactory.of("kun,forky"));
-        Car car = cars.getCarByName("kun");
-        for (int i = 0; i < 5; i++) {
-            car.move(true);
+        String name = "kun";
+
+        for (Car car : cars.getCars()) {
+            if (name.equals(car.getName())) {
+                car.move(true);
+
+            }
         }
-        assertThat(cars.getMaxPosition()).isEqualTo(5);
+
+        assertThat(cars.getMaxPosition()).isEqualTo(1);
     }
 }

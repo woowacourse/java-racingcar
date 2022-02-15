@@ -33,12 +33,12 @@ public class Cars {
                 .getAsInt();
     }
 
-    public Car getCarByName(String carName) {
-        return cars.stream()
-                .filter(car -> car.getName().equals(carName))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_CAR_NAME_ERROR));
-    }
+//    public Car getCarByName(String carName) {
+//        return cars.stream()
+//                .filter(car -> car.getName().equals(carName))
+//                .findFirst()
+//                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_CAR_NAME_ERROR));
+//    }
 
     public Set<Car> getCars() {
         return Collections.unmodifiableSet(cars);
