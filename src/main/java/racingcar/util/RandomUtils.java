@@ -4,7 +4,7 @@ import static racingcar.constants.SystemConstants.NUMBER_TEN_FOR_RANDOM;
 
 public class RandomUtils {
 
-    public RandomUtils() {
+    private RandomUtils() {
         throw new AssertionError();
     }
 

@@ -30,7 +30,7 @@ public class CarsTest {
 
     @DisplayName("getWinners 메서드는 List<Car>이 비어있으면 예외를 발생시킨다.")
     @Test
-    void getWinners_error() {
+    void getWinners_errorOnEmpty() {
         Cars cars = new Cars();
 
         assertThatExceptionOfType(IllegalArgumentException.class)

@@ -5,7 +5,7 @@ import static racingcar.constants.SystemConstants.DELIMITER_COMMA;
 
 public class SplitUtils {
 
-    public SplitUtils() {
+    private SplitUtils() {
         throw new AssertionError();
     }
 
