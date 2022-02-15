@@ -9,7 +9,7 @@ public class Distance {
         this.distance = value;
     }
 
-    public int getValue() {
+    public int getDistance() {
         return distance;
     }
 

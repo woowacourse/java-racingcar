@@ -5,10 +5,11 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
     private static final int EMPTY_RETURN_VALUE = 0;
-    private static final String CLUE_OF_CUSTOM_DELIMITER = "//" ;
+    private static final String CLUE_OF_CUSTOM_DELIMITER = "//";
     private static final String CUSTOM_DELIMITER_AND_EXPRESSION_DELIMITER = "\n";
     private static final String DEFAULT_DELIMITER = ",|:";
-    private static final Pattern POSITIVE_NUMBER_PATTERN =  Pattern.compile("^[0-9]");
+    private static final String INVALID_OPERAND_EXCEPTION_MESSAGE = "피연산자에 양의 정수 혹은 0이 아닌 값이 있습니다.";
+    private static final Pattern POSITIVE_NUMBER_PATTERN = Pattern.compile("^[0-9]");
 
     public int calculate(final String expression) {
         if (isEmptyOrNull(expression)) {
@@ -20,7 +21,7 @@ public class StringCalculator {
     }
 
     private boolean isEmptyOrNull(String expression) {
-        return expression == null || expression.isEmpty();
+        return expression == null || expression.isBlank();
     }
 
     private String[] splitExpression(String expression) {
@@ -44,7 +45,7 @@ public class StringCalculator {
 
     private void validate(final String[] tokens) {
         if (hasContainsNotPositiveNumber(tokens)) {
-            throw new RuntimeException("피연산자에 양의 정수 혹은 0이 아닌 값이 있습니다.");
+            throw new IllegalArgumentException(INVALID_OPERAND_EXCEPTION_MESSAGE);
         }
     }
 

@@ -20,7 +20,7 @@ class CarTest {
     @ParameterizedTest
     @DisplayName("true를 받으면 전진하고 false를 받으면 정지한다.")
     @CsvSource({"1, 2", "0, 1"})
-    void move(int movementValue, int expectedDistance) {
+    void move_Test(int movementValue, int expectedDistance) {
         car.move(movementValue);
         final CarDto actual = car.convertToDto();
         final CarDto expected = new CarDto("abc", expectedDistance);
@@ -29,19 +29,19 @@ class CarTest {
 
     @Test
     @DisplayName("자동차의 이름과 거리를 dto 변환해 반환한다.")
-    void info() {
+    void convertToDto_Test() {
         final CarDto actual = car.convertToDto();
         final CarDto expected = new CarDto("abc", 1);
         assertThat(actual).isEqualTo(expected);
     }
 
     @ParameterizedTest
-    @CsvSource({"0, 0, true", "0, 1, true", "1, 1, false"})
-    @DisplayName("다른 자동차를 받아 자기 자신의 거리의 값이 크거나 같으면 true를 반환한다.")
-    void isFartherThan(int firstMove, int secondMove, boolean expected){
+    @CsvSource({"0, -1", "1, 0", "2, 1"})
+    @DisplayName("다른 자동차를 받아 자기 자신의 거리 값이 크면 -1, 작으면 1, 같으면 0을 반환한다.")
+    void isFartherThan_Test(int anotherCarMovement, int expected){
         final Car anotherCar = new Car("def");
-        anotherCar.move(firstMove);
-        anotherCar.move(secondMove);
-        assertThat(car.isFartherThan(anotherCar)).isEqualTo(expected);
+        anotherCar.move(anotherCarMovement);
+        int actual = car.compareTo(anotherCar);
+        assertThat(actual).isEqualTo(expected);
     }
 }
