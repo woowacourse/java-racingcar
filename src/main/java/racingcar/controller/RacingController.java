@@ -27,6 +27,6 @@ public class RacingController {
             outputView.printRoundStatus(cars.getCarInfos());
             trialCount--;
         }
-        outputView.printWinners(cars.getFarthestCar());
+        outputView.printWinners(cars.getFarthestCars());
     }
 }

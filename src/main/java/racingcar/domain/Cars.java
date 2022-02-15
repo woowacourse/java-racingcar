@@ -4,6 +4,7 @@ import racingcar.dto.CarDto;
 import racingcar.service.MoveOrStop;
 import racingcar.utils.ExceptionMessage;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,14 +34,17 @@ public class Cars {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<CarDto> getFarthestCar() {
-        return cars.stream()
-                .filter(this::isHighest)
+    public List<CarDto> getFarthestCars() {
+        Car maxDistanceCar = cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException());
+
+        List<CarDto> farthestCars = cars.stream()
+                .filter(maxDistanceCar::isSameDistance)
                 .map(Car::info)
                 .collect(Collectors.toUnmodifiableList());
+
+        return farthestCars;
     }
 
-    private boolean isHighest(Car standardCar) {
-        return cars.stream().allMatch(standardCar::isFartherThan);
-    }
 }

@@ -48,7 +48,7 @@ class CarsTest {
     void getFarthestCar() {
         CarDto def = new CarDto("def", 1);
         CarDto ghi = new CarDto("ghi", 1);
-        List<CarDto> actual = cars.getFarthestCar();
+        List<CarDto> actual = cars.getFarthestCars();
         List<CarDto> expected = Arrays.asList(def,ghi);
         assertThat(actual).isEqualTo(expected);
     }

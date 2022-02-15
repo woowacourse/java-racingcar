@@ -31,4 +31,5 @@ public class CarDto {
     public int hashCode() {
         return Objects.hash(carName, distance);
     }
+
 }
