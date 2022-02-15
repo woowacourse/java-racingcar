@@ -15,8 +15,7 @@ public class Validators {
     public static void validateCarsName(List<String> carsName) {
         validateCarsNameDuplicated(carsName);
         for (String carName : carsName) {
-            validateCarsNameLength(carName);
-            validateCarsNameBlank(carName);
+            validateCarName(carName);
         }
     }
 
@@ -26,13 +25,18 @@ public class Validators {
         }
     }
 
-    public static void validateCarsNameLength(String carName) {
+    public static void validateCarName(String carName) {
+        validateCarsNameLength(carName);
+        validateCarsNameBlank(carName);
+    }
+
+    private static void validateCarsNameLength(String carName) {
         if (carName.length() > CAR_NAME_LIMIT) {
             throw new IllegalArgumentException(ERROR_CAR_NAME_LENGTH);
         }
     }
 
-    public static void validateCarsNameBlank(String carName) {
+    private static void validateCarsNameBlank(String carName) {
         if (carName.contains(BLANK)) {
             throw new IllegalArgumentException(ERROR_CAR_NAME_BLANK);
         }
@@ -43,7 +47,12 @@ public class Validators {
         return carsName.stream().distinct().count() != carsName.size();
     }
 
-    public static void validateRoundNumber(String input) {
+    public static void validateRound(String inputRound) {
+        validateRoundNumber(inputRound);
+        validateRoundMinimumOne(inputRound);
+    }
+
+    private static void validateRoundNumber(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -51,7 +60,7 @@ public class Validators {
         }
     }
 
-    public static void validateRoundMinimumOne(String inputRound) {
+    private static void validateRoundMinimumOne(String inputRound) {
         if (Integer.parseInt(inputRound) < ROUND_MINIMUM_ONE) {
             throw new IllegalArgumentException(ERROR_ROUND_MINIMUM_ONE);
         }

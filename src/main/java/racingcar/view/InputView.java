@@ -30,8 +30,7 @@ public class InputView {
         OutputView.printRequestInstruction(REQUEST_ROUND_VALUE);
         try {
             String inputRound = getInput();
-            Validators.validateRoundNumber(inputRound);
-            Validators.validateRoundMinimumOne(inputRound);
+            Validators.validateRound(inputRound);
             return inputRound;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);

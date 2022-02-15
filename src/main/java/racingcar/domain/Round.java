@@ -9,9 +9,8 @@ public class Round {
     private final int roundNum;
 
     public Round(String roundNum) {
-        Validators.validateRoundNumber(roundNum);
-        Validators.validateRoundMinimumOne(roundNum);
         this.roundNum = Integer.parseInt(roundNum);
+        Validators.validateRound(roundNum);
     }
 
 

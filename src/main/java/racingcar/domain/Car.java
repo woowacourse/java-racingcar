@@ -12,8 +12,7 @@ public class Car implements Comparable<Car> {
 
     public Car(String name) {
         this.name = name;
-        Validators.validateCarsNameLength(this.name);
-        Validators.validateCarsNameBlank(this.name);
+        Validators.validateCarName(this.name);
     }
 
     public void drive(int value) {
