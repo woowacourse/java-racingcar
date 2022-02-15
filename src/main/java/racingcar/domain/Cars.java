@@ -1,11 +1,11 @@
 package racingcar.domain;
 
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import racingcar.utils.RandomNumberGenerator;
 
 public class Cars {
-    private static final int RANDOM_NUMBER_BOUND = 10;
     public static final int START_POSITION = 0;
 
     private List<Car> cars;
@@ -19,13 +19,8 @@ public class Cars {
 
     public void startEachRace() {
         for (Car car : cars) {
-            car.move(makeRandom());
+            car.move(RandomNumberGenerator.makeRandom());
         }
-    }
-
-    private int makeRandom() {
-        Random random = new Random();
-        return random.nextInt(RANDOM_NUMBER_BOUND);
     }
 
     public List<Car> findWinners() {
