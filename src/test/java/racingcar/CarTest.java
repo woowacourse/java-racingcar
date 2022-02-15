@@ -2,9 +2,13 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.controller.GameController;
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.util.FixedNumberGenerator;
+import racingcar.util.NumberGenerator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,13 +31,23 @@ public class CarTest {
         assertThat(expected).isEqualTo(actual);
     }
 
-    @Test
-    @DisplayName("자동차 전진 확인")
-    void moveCarForward() {
-        Car car = new Car("qwer");
-        for (int i = 0; i <= 9; i++) {
-            car.move(i);
-        }
-        assertThat(car.getPosition()).isEqualTo(6);
+    @ParameterizedTest
+    @DisplayName("특정 값을 통한 자동차 비전진 확인")
+    @ValueSource(ints = {0, 1, 2, 3})
+    void notMoveTest(int num) {
+        NumberGenerator numberGenerator = new FixedNumberGenerator(num);
+        Car car = new Car("sun");
+        car.move(numberGenerator);
+        assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @ParameterizedTest
+    @DisplayName("특정 값을 통한 자동차 전진 확인")
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    void moveTest(int num) {
+        NumberGenerator numberGenerator = new FixedNumberGenerator(num);
+        Car car = new Car("sun");
+        car.move(numberGenerator);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 }
