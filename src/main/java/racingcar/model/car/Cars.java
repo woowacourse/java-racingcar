@@ -1,6 +1,5 @@
 package racingcar.model.car;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,14 +10,15 @@ import racingcar.util.RandomNumberGenerator;
 public class Cars {
     private static final String DELIMITER = ",";
 
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
     public Cars(String carNames) {
-        String[] carNameArray = reduceBlank(carNames).split(DELIMITER);
-        validateDuplicatedName(carNameArray);
-        for (String carName : carNameArray) {
-            cars.add(new Car(carName));
-        }
+        List<String> separatedNames = Arrays.stream(reduceBlank(carNames).split(DELIMITER))
+                .collect(Collectors.toList());
+        validateDuplicatedName(separatedNames);
+        cars = separatedNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public void moveAll(RandomNumberGenerator random) {
@@ -37,10 +37,10 @@ public class Cars {
         return new Winners(cars).getNames();
     }
 
-    private void validateDuplicatedName(String[] carNames) {
-        long distinctSize = Arrays.stream(carNames)
+    private void validateDuplicatedName(List<String> carNames) {
+        long distinctSize = carNames.stream()
                 .distinct().count();
-        if (distinctSize != carNames.length) {
+        if (distinctSize != carNames.size()) {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATED_NAME);
         }
     }
