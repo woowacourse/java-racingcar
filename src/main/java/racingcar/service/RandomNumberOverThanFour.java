@@ -10,7 +10,7 @@ public class RandomNumberOverThanFour implements Movement {
         this.numberGenerator = numberGenerator;
     }
 
-    public int move() {
+    public int getMovementValue() {
         final int randomNumber = numberGenerator.generate(MAX_RANDOM_NUMBER_BOUNDARY);
         if (randomNumber >= NUMBER_POSSIBLE_TO_MOVE) {
             return 1;

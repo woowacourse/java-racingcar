@@ -28,7 +28,7 @@ public class Cars {
     }
 
     public void move(final Movement movement) {
-        cars.forEach(car -> car.move(movement.move()));
+        cars.forEach(car -> car.move(movement.getMovementValue()));
     }
 
     public List<CarDto> getCarInfos() {

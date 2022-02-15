@@ -15,7 +15,7 @@ class RandomNumberOverThanFourTest {
     @MethodSource("provideDefinedRandomNumberAndExpectedMovementValue")
     void move_Test(NumberGenerator numberGenerator, int expected) {
         Movement movement = new RandomNumberOverThanFour(numberGenerator);
-        int actual = movement.move();
+        int actual = movement.getMovementValue();
         assertThat(actual).isEqualTo(expected);
     }
 
