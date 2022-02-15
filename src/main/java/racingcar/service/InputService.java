@@ -6,10 +6,6 @@ import racingcar.view.Input;
 public class InputService {
     private static final String SPLIT_DELIM = ",";
 
-    public static int inputTryNum() {
-        return saveTryNumber();
-    }
-
     public static String[] getCarNames() {
         String carNamesInput = Input.inputCarNames();
         try {
@@ -21,16 +17,14 @@ public class InputService {
         return carNamesInput.split(SPLIT_DELIM);
     }
 
-    private static int saveTryNumber() {
-        while (true) {
-            String tryValue = Input.inputTry();
-
-            try {
-                Validation.tryNumValidation(tryValue);
-                return Integer.parseInt(tryValue);
+    public static int getTryNum() {
+        String tryValue = Input.inputTry();
+        try {
+            Validation.tryNumValidation(tryValue);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                getTryNum();
             }
-        }
+        return Integer.parseInt(tryValue);
     }
 }

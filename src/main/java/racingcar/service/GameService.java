@@ -1,41 +1,36 @@
 package racingcar.service;
 
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
 import racingcar.view.Output;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class GameService {
+    private static Cars cars;
+    private static int tryNum;
 
-    public static void raceStart(List<Car> cars, int tryNum) {
+    public static void setUpRace() {
+        makeCarsFromInput();
+        setTryNumFromInput();
+    }
+    
+    public static void raceStart() {
         Output.printStartRace();
         for (int i = 0; i < tryNum; i++) {
-            move(cars);
-            Output.racePrint(cars);
+            cars.moveAllByRandom();
+            cars.showCarsStatus();
         }
     }
 
-    private static void move(List<Car> cars) {
-//        for (Car car : cars) {
-//            car.goForward();
-//        }
+    private static void makeCarsFromInput() {
+        String[] carNames = InputService.getCarNames();
+        cars = new Cars(Arrays.stream(carNames)
+                .map(carName -> new Car(carName))
+                .collect(Collectors.toList()));
     }
 
-    public static void finalWinner(List<Car> cars) {
-        Output.winnerPrint(getWinnerList(cars));
-    }
-
-    private static List<String> getWinnerList(List<Car> cars) {
-        List<String> winnerList = new ArrayList<>();
-//        int winnerPosition = Car.getWinnerPosition(cars);
-
-//        for (Car car : cars) {
-//            if (car.isWinner(winnerPosition)) {
-//                winnerList.add(car.getName());
-//            }
-//        }
-
-        return winnerList;
+    private static void setTryNumFromInput() {
+        tryNum = InputService.getTryNum();
     }
 }
