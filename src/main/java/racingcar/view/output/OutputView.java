@@ -1,21 +1,40 @@
 package racingcar.view.output;
 
+import static racingcar.view.output.message.OutputMessage.*;
+
 import java.util.List;
 
-public interface OutputView {
+import racingcar.utils.Delimiter;
 
-    void printMessage(String message);
+public class OutputView {
 
-    void printMessageOfRequestCarNames();
+    public void printMessage(String message) {
+        System.out.println(message);
+    }
 
-    void printMessageOfRequestRound();
+    public void printMessageOfRequestCarNames() {
+        printMessage(MessageOfRequestCarNames);
+    }
 
-    void printMessageOfStatusTitle();
+    public void printMessageOfRequestRound() {
+        printMessage(MessageOfRequestRound);
+    }
 
-    void printCarStatuses(List<String> carStatuses);
+    public void printMessageOfStatusTitle() {
+        printMessage(MessageOfStatusTitle);
+    }
 
-    void printMessageOfWinners(List<String> winnerNames);
+    public void printCarStatuses(List<String> carStatuses) {
+        carStatuses.forEach(this::printMessage);
+    }
 
-    void printEmptyLine();
+    public void printMessageOfWinners(List<String> winnerNames) {
+        String message = String.format(MessageFormatOfPrintWinner, Delimiter.joinWithComma(winnerNames));
+        printMessage(message);
+    }
+
+    public void printEmptyLine() {
+        printMessage("");
+    }
 
 }

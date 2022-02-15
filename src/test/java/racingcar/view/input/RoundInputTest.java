@@ -15,7 +15,7 @@ class RoundInputTest {
     private static final String providerPath = "racingcar.view.input.provider.RoundInputTestProvider#";
 
     private final CustomReader customReader = new CustomReader();
-    private final InputView inputView = new InputViewImpl(customReader);
+    private final InputView inputView = new InputView(customReader);
 
     @DisplayName("숫자 이외의 값은 입력할 수 없다.")
     @ParameterizedTest

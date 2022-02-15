@@ -15,7 +15,7 @@ class CarNameInputTest {
     private static final String providerPath = "racingcar.view.input.provider.CarNamesInputTestProvider#";
 
     private final CustomReader customReader = new CustomReader();
-    private final InputView inputView = new InputViewImpl(customReader);
+    private final InputView inputView = new InputView(customReader);
 
     @DisplayName("자동차 이름 입력 기능 테스트")
     @ParameterizedTest

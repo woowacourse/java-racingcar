@@ -1,19 +1,49 @@
 package racingcar.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public interface GameService {
+import racingcar.domain.car.CarGroup;
+import racingcar.domain.car.CarStatusDto;
+import racingcar.domain.round.Round;
+import racingcar.service.picker.NumberPicker;
 
-    void initCarNames(List<String> carNames);
+public class GameService {
 
-    void initRound(int count);
+    private final NumberPicker numberPicker;
+    private CarGroup carGroup;
+    private Round round;
 
-    boolean isContinuable();
+    public GameService(NumberPicker numberPicker) {
+        this.numberPicker = numberPicker;
+    }
 
-    void playRound();
+    public void initCarNames(List<String> carNames) {
+        this.carGroup = new CarGroup(carNames);
+    }
 
-    List<String> getCurrentStatuses();
+    public void initRound(int count) {
+        this.round = new Round(count);
+    }
 
-    List<String> getWinnerNames();
+    public boolean isContinuable() {
+        return (round.isNotFinished());
+    }
+
+    public void playRound() {
+        carGroup.goForwardOrStop(numberPicker);
+        round.decreaseCount();
+    }
+
+    public List<String> getCurrentStatuses() {
+        List<CarStatusDto> statuses = carGroup.getStatuses();
+        return statuses.stream()
+                .map(CarStatusDto::toString)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<String> getWinnerNames() {
+        return carGroup.getWinnerNames();
+    }
 
 }
