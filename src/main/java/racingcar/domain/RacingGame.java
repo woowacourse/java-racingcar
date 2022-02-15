@@ -9,7 +9,7 @@ import racingcar.util.RandomUtil;
 public class RacingGame {
     private static final String NOTHING_NAME_ERROR_MASSAGE = "자동차 이름들이 존재하지 않음";
     private final List<Car> cars = new ArrayList<>();
-    private List<String> championNames = new ArrayList<>();
+    private final List<String> championNames = new ArrayList<>();
 
     public RacingGame(final List<String> names) {
         validateNames(names);
@@ -46,7 +46,7 @@ public class RacingGame {
     }
 
     private void addTieCarName(Car firstCar, Car car) {
-        if (car.isSamePosition(firstCar)) {
+        if (car.isSamePosition(firstCar.getPosition())) {
             championNames.add(car.getName());
         }
     }

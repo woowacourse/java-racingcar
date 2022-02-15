@@ -41,8 +41,8 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
-    public boolean isSamePosition(Car car) {
-        return this.position == car.position;
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 
     @Override
