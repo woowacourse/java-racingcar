@@ -27,8 +27,8 @@ public class Cars {
     public int findMaxPosition() {
         return cars.stream()
                 .map(Car::getPosition)
-                .max(Comparator.comparing(x -> x))
-                .orElse(MINIMUM_POSITION);
+                .mapToInt(position -> position)
+                .max().orElse(MINIMUM_POSITION);
     }
 
     public String findWinnerName(int maxPosition) {
