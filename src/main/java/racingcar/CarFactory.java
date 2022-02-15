@@ -8,8 +8,14 @@ public class CarFactory {
 	private static final String NAME_REGEX = ",";
 
 	public static List<Car> of(String names) {
-		return Arrays.stream(names.split(NAME_REGEX))
-			.map(name -> new Car(name.trim()))
+		return Arrays.stream(splitNames(names))
+			.map(Car::new)
 			.collect(Collectors.toList());
+	}
+
+	public static String[] splitNames(String names) {
+		return (String[])Arrays.stream(names.split(NAME_REGEX))
+			.map(String::trim)
+			.toArray();
 	}
 }
