@@ -1,6 +1,6 @@
 package racingcar;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -25,10 +25,10 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printWinner(List<CarDto> winners) {
-		final List<String> winnerNames = winners.stream()
+	public static void printWinner(Set<CarDto> winners) {
+		final Set<String> winnerNames = winners.stream()
 									.map(CarDto::getName)
-									.collect(Collectors.toList());
+									.collect(Collectors.toSet());
 		System.out.printf(WINNER_FORMAT, String.join(WINNER_NAME_DELIMITER, winnerNames));
 	}
 }

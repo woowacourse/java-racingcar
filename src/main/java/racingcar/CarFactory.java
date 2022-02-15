@@ -13,7 +13,7 @@ public class CarFactory {
 			.collect(Collectors.toList());
 	}
 
-	public static String[] splitNames(String names) {
+	private static String[] splitNames(String names) {
 		return (String[])Arrays.stream(names.split(NAME_REGEX))
 			.map(String::trim)
 			.toArray();

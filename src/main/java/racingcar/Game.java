@@ -1,7 +1,7 @@
 package racingcar;
 
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -11,34 +11,34 @@ public class Game {
 	private static final Random RANDOM = new Random();
 
 	public void start() {
-		final Cars cars = new Cars(CarFactory.of(InputView.inputCarNames()));
+		final RacingCars racingCars = new RacingCars(CarFactory.of(InputView.inputCarNames()));
 		final int count = InputView.inputGameCount();
 		validateGameCount(count);
 		OutputView.printGameResultTitle();
 		for (int i = 0; i < count ; i++) {
-			play(cars);
-			showResult(cars);
+			play(racingCars);
+			showResult(racingCars);
 		}
-		showWinner(cars);
+		showWinner(racingCars);
 	}
 
-	private void play(Cars cars) {
-		for (Car car : cars.getCars()) {
+	private void play(RacingCars racingCars) {
+		for (Car car : racingCars.getCars()) {
 			Referee.moveCar(car, makeRandomValue(RANDOM_VALUE_BOUND + 1));
 		}
 	}
 
-	private void showResult(Cars cars) {
-		for (Car car : cars.getCars()) {
+	private void showResult(RacingCars racingCars) {
+		for (Car car : racingCars.getCars()) {
 			OutputView.printCarPosition(new CarDto(car.getName(), car.getPosition()));
 		}
 		OutputView.printBlankLine();
 	}
 
-	private void showWinner(Cars cars) {
-		final List<CarDto> winnerDtos = Referee.judgeWinner(cars).stream()
+	private void showWinner(RacingCars racingCars) {
+		final Set<CarDto> winnerDtos = racingCars.getWinners().stream()
 			.map(car -> new CarDto(car.getName()))
-			.collect(Collectors.toList());
+			.collect(Collectors.toSet());
 		OutputView.printWinner(winnerDtos);
 	}
 

@@ -31,11 +31,4 @@ public class CarTest {
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageStartingWith(ERROR_MESSAGE);
 	}
-
-	@Test
-	public void 중복된_이름() {
-		assertThatThrownBy(() -> new Cars(CarFactory.of("forky,forky")))
-			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessageStartingWith(ERROR_MESSAGE);
-	}
 }
