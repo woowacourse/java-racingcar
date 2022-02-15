@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Participants {
@@ -25,7 +26,7 @@ public class Participants {
     }
 
     public List<Car> getParticipantCars() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 
     private int makeRandomNumberBetweenZeroAndNine() {
