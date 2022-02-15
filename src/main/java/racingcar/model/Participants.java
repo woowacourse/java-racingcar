@@ -19,7 +19,7 @@ public class Participants {
     }
 
     public void race() {
-        for (Car car : cars) {
+        for (RacingCar car : cars) {
             car.tryMove(makeRandomNumberBetweenZeroAndNine());
         }
     }
