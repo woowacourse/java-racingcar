@@ -31,7 +31,7 @@ class InputViewTest {
     @DisplayName("경주할 자동차 이름을 입력 받으면 쉼표를 기준으로 나눠 리스트를 반환한다.")
     @ParameterizedTest
     @MethodSource("getNamesMethodSourceProvider")
-    void getNames_정상(String inputNames, int size) {
+    void getCarNames_정상(String inputNames, int size) {
         // given
         System.setIn(generateStream(inputNames));
         InputView inputView = new InputView();
