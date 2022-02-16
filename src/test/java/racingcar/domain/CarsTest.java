@@ -3,6 +3,7 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ public class CarsTest {
     void setUp() {
         car1 = new Car(new CarName("칙촉"));
         car2 = new Car(new CarName("어썸오"));
-        cars = new Cars(Arrays.asList(car1, car2));
+        cars = new Cars(Arrays.asList(car1, car2), () -> true);
     }
 
     @Test
@@ -37,13 +38,12 @@ public class CarsTest {
     }
 
     @Test
-    void 한_라운드를_진행한다_모든_자동차가_전진할_경우() {
+    void 모든_자동차가_전진할_경우() {
         //given
-        cars.setMoveStrategy(() -> true);
         final Position positionAfterMove = new Position(2);
 
         //when
-        cars.playRound();
+        cars.attemptToMoveCars();
 
         //then
         assertThat(car1.getPosition()).isEqualTo(positionAfterMove);
@@ -51,47 +51,29 @@ public class CarsTest {
     }
 
     @Test
-    void 생성자의_파라미터가_구분자만_있을_경우_예외발생() {
-        final String nameString = ",";
+    void 자동차가_중복된_이름을_가지고_있을_경우_예외발생() {
+        Car car1 = new Car(new CarName("앨런"));
+        Car car2 = new Car(new CarName("앨런"));
+        List<Car> inCorrectCars = Arrays.asList(car1, car2);
 
-        assertThatThrownBy(() -> new Cars(nameString))
-            .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining("이름을 입력해주세요");
-    }
-
-    @Test
-    void 생성자의_파라미터가_중복된_이름을_가지고_있을_경우_예외발생() {
-        final String nameString = "pobi,pobi";
-
-        assertThatThrownBy(() -> new Cars(nameString))
+        assertThatThrownBy(() -> new Cars(inCorrectCars, () -> true))
             .isInstanceOf(RuntimeException.class)
             .hasMessageContaining("중복");
     }
 
     @Test
-    void 생성자의_파라미터가_하나만의_이름을_가지고_있을_경우_예외발생() {
-        final String nameString = "pobi";
+    void 자동차가_한대_일경우_예외발생() {
+        List<Car> onlyOneCar = List.of(car1);
 
-        assertThatThrownBy(() -> new Cars(nameString))
+        assertThatThrownBy(() -> new Cars(onlyOneCar, () -> true))
             .isInstanceOf(RuntimeException.class)
             .hasMessageContaining("최소");
     }
 
     @Test
-    void 생성자의_파라미터가_null_일경우_예외발생() {
-        final String nameString = null;
-
-        assertThatThrownBy(() -> new Cars(nameString))
+    void 자동차들이_null_일경우_예외발생() {
+        assertThatThrownBy(() -> new Cars(null, () -> true))
             .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining("자동차들의 값을 입력해주세요!");
-    }
-
-    @Test
-    void 생성자의_파라미터가_빈값_일경우_예외발생() {
-        final String nameString = "";
-
-        assertThatThrownBy(() -> new Cars(nameString))
-            .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining("자동차들의 값을 입력해주세요!");
+            .hasMessageContaining("null");
     }
 }

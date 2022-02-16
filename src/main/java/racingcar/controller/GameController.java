@@ -1,18 +1,28 @@
 package racingcar.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import racingcar.domain.Car;
+import racingcar.domain.CarName;
 import racingcar.domain.Cars;
 import racingcar.domain.Count;
+import racingcar.domain.MoveStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarController {
-
     private Count count;
-    private Cars cars;
+    private final MoveStrategy moveStrategy;
+
+    public CarController(final MoveStrategy moveStrategy) {
+        this.moveStrategy = moveStrategy;
+    }
 
     public void run() {
-         cars = generateCars();
-         count = getCountFromUser();
+        cars = generateCars();
+        count = getCountFromUser();
 
         playGame();
         showResult();
@@ -24,7 +34,12 @@ public class CarController {
 
     private Cars generateCars() {
         try {
-            return new Cars(InputView.getCarNames());
+            String carsNames = InputView.getCarNames();
+            List<Car> cars = Arrays.stream(carsNames.split(","))
+                .map(CarName::new)
+                .map(Car::new)
+                .collect(Collectors.toList());
+            return new Cars(cars, moveStrategy);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return generateCars();
@@ -34,7 +49,7 @@ public class CarController {
     private void playGame() {
         OutputView.printResult(cars.get());
         for (int i = 0; i < count.get(); i++) {
-            cars.playRound();
+            cars.attemptToMoveCars();
             OutputView.printResult(cars.get());
         }
     }
