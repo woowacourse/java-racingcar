@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +23,24 @@ public class RacingCarsServiceTest {
     }
 
     @Test
-    void 게임_작동_테스트() {
+    void 생성자_cars_값이_들어가는지_테스트() {
+        //when
+        List<String> names = new ArrayList<>();
+        for (CarDTO carDTO : carsService.cars.get()) {
+            names.add(carDTO.name);
+        }
+
+        //then
+        assertThat(names).isEqualTo(Arrays.asList("juri","hunch"));
+    }
+
+    @Test
+    void 생성자_roundCount_값이_들어가는지_테스트() {
+        assertThat(carsService.roundCount.get()).isEqualTo(5);
+    }
+
+    @Test
+    void playGame_게임_작동_테스트() {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
@@ -38,22 +56,21 @@ public class RacingCarsServiceTest {
     }
 
     @Test
-    void 우승자_찾기_테스트() {
+    void getWinnerCars_우승자_찾기_테스트() {
         //given
-        List<CarDTO> carDTOs = carsService.cars.get();
+        carsService.playGame();
 
         //when
-        carsService.playGame();
-        int max = carDTOs.stream()
+        int max = carsService.cars.get().stream()
                 .mapToInt(carDTO -> carDTO.position)
                 .max()
-                .orElse(0);
-        List<CarDTO> result = carDTOs.stream()
+                .orElse(-1);
+        List<CarDTO> result = carsService.cars.get().stream()
                 .filter(carDTO -> carDTO.position == max)
                 .collect(Collectors.toList());
 
         //then
-        assertThat(result)
-                .isEqualTo(carsService.getWinnerCars());
+        assertThat(result.get(0).name)
+                .isEqualTo(carsService.getWinnerCars().get(0).name);
     }
 }

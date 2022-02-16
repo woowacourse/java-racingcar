@@ -17,6 +17,18 @@ public class RacingCarsService {
         this.roundCount = initiateCount(count);
     }
 
+    public void playGame() {
+        goRound();
+        if (roundCount.isFinish()) {
+            return;
+        }
+        playGame();
+    }
+
+    public List<CarDTO> getWinnerCars() {
+        return cars.getSamePositionCars(cars.getMaxPosition());
+    }
+
     private RacingCars initiateCars(String nameString) {
         String[] names = Util.separate(nameString);
         return new RacingCars(Arrays.asList(names));
@@ -27,21 +39,9 @@ public class RacingCarsService {
         return new RoundCount(count);
     }
 
-    public void playGame() {
-        goRound();
-        if (roundCount.isFinish()) {
-            return;
-        }
-        playGame();
-    }
-
-    public void goRound() {
+    private void goRound() {
         cars.go();
         roundCount.minusOne();
         Output.printRoundResult(cars.get());
-    }
-
-    public List<CarDTO> getWinnerCars() {
-        return cars.getSamePositionCars(cars.getMaxPosition());
     }
 }

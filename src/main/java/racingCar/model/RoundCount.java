@@ -10,10 +10,6 @@ public class RoundCount {
         this.count = count;
     }
 
-    public int get() {
-        return count;
-    }
-
     public void minusOne() {
         count--;
     }
@@ -26,5 +22,9 @@ public class RoundCount {
         if (count <= 0) {
             throw new CountRangeException();
         }
+    }
+
+    public int get() {
+        return count;
     }
 }

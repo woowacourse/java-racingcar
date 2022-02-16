@@ -1,12 +1,18 @@
-package racingCar.controller.service;
+package racingCar.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
+import racingCar.controller.service.RacingCarsService;
+import racingCar.model.exception.count.CountNotNumberException;
+import racingCar.model.exception.count.CountRangeException;
+import racingCar.model.exception.name.NameDuplicatedException;
+import racingCar.model.exception.name.NameOnlyOneException;
 import racingCar.model.exception.name.NameRangeException;
+import racingCar.model.exception.name.NameSpecialCharException;
 
 @SuppressWarnings("NonAsciiCharacters")
-public class RacingCarsService_ExceptionTest {
+public class ExceptionTest {
     private static final String RIGHT_NAMES_INPUT = "juri,hunch";
     private static final String RIGHT_COUNT_INPUT = "5";
 
@@ -28,7 +34,7 @@ public class RacingCarsService_ExceptionTest {
 
         //then
         assertThatThrownBy(() -> new RacingCarsService(nameInput, RIGHT_COUNT_INPUT))
-                .isInstanceOf(NameRangeException.class)
+                .isInstanceOf(NameSpecialCharException.class)
                 .hasMessage("이름에는 특수문자가 입력될 수 없습니다.");
     }
 
@@ -39,7 +45,7 @@ public class RacingCarsService_ExceptionTest {
 
         //then
         assertThatThrownBy(() -> new RacingCarsService(nameInput, RIGHT_COUNT_INPUT))
-                .isInstanceOf(NameRangeException.class)
+                .isInstanceOf(NameOnlyOneException.class)
                 .hasMessage("이름을 2개 이상 입력해주세요.");
     }
 
@@ -50,7 +56,7 @@ public class RacingCarsService_ExceptionTest {
 
         //then
         assertThatThrownBy(() -> new RacingCarsService(nameInput, RIGHT_COUNT_INPUT))
-                .isInstanceOf(NameRangeException.class)
+                .isInstanceOf(NameDuplicatedException.class)
                 .hasMessage("중복된 이름이 입력되었습니다.");
     }
 
@@ -61,7 +67,7 @@ public class RacingCarsService_ExceptionTest {
 
         //then
         assertThatThrownBy(() -> new RacingCarsService(RIGHT_NAMES_INPUT, countInput))
-                .isInstanceOf(NameRangeException.class)
+                .isInstanceOf(CountNotNumberException.class)
                 .hasMessage("숫자를 입력해주세요.");
     }
 
@@ -72,7 +78,7 @@ public class RacingCarsService_ExceptionTest {
 
         //then
         assertThatThrownBy(() -> new RacingCarsService(RIGHT_NAMES_INPUT, countInput))
-                .isInstanceOf(NameRangeException.class)
+                .isInstanceOf(CountRangeException.class)
                 .hasMessage("0회 이상 입력해주세요.");
     }
 }

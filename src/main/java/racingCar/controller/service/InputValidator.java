@@ -2,8 +2,8 @@ package racingCar.controller.service;
 
 import racingCar.model.exception.NullInputException;
 
-public class ValidateInputService {
-    public static String request(String input) {
+public class InputValidator {
+    public static String validate(String input) {
         validateNotNullInput(input);
         return input;
     }

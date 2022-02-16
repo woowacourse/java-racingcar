@@ -10,8 +10,4 @@ public class Position {
     public int get() {
         return position;
     }
-
-    public boolean isSame(int position) {
-        return this.position == position;
-    }
 }
