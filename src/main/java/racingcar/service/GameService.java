@@ -7,15 +7,15 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class GameService {
-    private static Cars cars;
-    private static int tryNum;
+    private Cars cars;
+    private int tryNum;
 
-    public static void setUpRace() {
+    public void setUpRace() {
         makeCarsFromInput();
         setTryNumFromInput();
     }
     
-    public static void runRace() {
+    public void runRace() {
         Output.printStartRace();
         for (int i = 0; i < tryNum; i++) {
             cars.moveAllByRandom();
@@ -23,18 +23,18 @@ public class GameService {
         }
     }
 
-    private static void makeCarsFromInput() {
+    private void makeCarsFromInput() {
         String[] carNames = InputService.getCarNames();
         cars = new Cars(Arrays.stream(carNames)
                 .map(carName -> new Car(carName))
                 .collect(Collectors.toList()));
     }
 
-    private static void setTryNumFromInput() {
+    private void setTryNumFromInput() {
         tryNum = InputService.getTryNum();
     }
 
-    public static void showWinners() {
+    public void showWinners() {
         Output.printWinner(cars.findAllWinners());
     }
 }
