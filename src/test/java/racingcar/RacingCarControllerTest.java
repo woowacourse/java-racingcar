@@ -9,13 +9,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.controller.RacingCarController;
-import racingcar.domain.Car;
-import racingcar.domain.ParticipatedCars;
-import racingcar.domain.WinnerNames;
-import racingcar.util.BoundedRandomNumberGenerator;
 
 @SuppressWarnings("NonAsciiCharacters")
-public class RacingCarTest {
+public class RacingCarControllerTest {
 	public RacingCarController racingCarController = new RacingCarController();
 
 	@Test
@@ -81,17 +77,5 @@ public class RacingCarTest {
 		assertThatThrownBy(() -> racingCarController.getTrialCount(trial))
 			.isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("시도 횟수가 음수나 0이 될 수 없습니다.");
-	}
-
-	@Test
-	public void 자동차_멈춤_테스트() {
-		Car car = new Car("클레이");
-		assertThat(car.isMovableBy(new BoundedRandomNumberGenerator(3, 0))).isEqualTo(false);
-	}
-
-	@Test
-	public void 자동차_전진_테스트() {
-		Car car = new Car("클레이");
-		assertThat(car.isMovableBy(new BoundedRandomNumberGenerator(9, 4))).isEqualTo(true);
 	}
 }
