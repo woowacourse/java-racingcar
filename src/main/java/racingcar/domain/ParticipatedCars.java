@@ -15,7 +15,7 @@ public class ParticipateCars {
 
     public void generateCars(List<String> carNames) {
         for (String carName : carNames) {
-            cars.add(new Car(carName, new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND)));
+            cars.add(new Car(carName));
         }
     }
 
@@ -47,7 +47,7 @@ public class ParticipateCars {
     public List<String> executeCarRacing() {
         List<String> racingRecord = new ArrayList<>();
         for (Car car : cars) {
-            car.tryMoving();
+            car.tryMovingBy(new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND));
             racingRecord.add(car.toString());
         }
         return racingRecord;

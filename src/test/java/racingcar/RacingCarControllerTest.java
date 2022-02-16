@@ -10,16 +10,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.controller.RacingCarController;
 import racingcar.domain.Car;
-import racingcar.domain.ParticipateCars;
+import racingcar.domain.ParticipatedCars;
 import racingcar.domain.WinnerNames;
 import racingcar.util.BoundedRandomNumberGenerator;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class RacingCarTest {
 	public RacingCarController racingCarController = new RacingCarController();
-	public BoundedRandomNumberGenerator randomNumberGenerator = new BoundedRandomNumberGenerator(9, 0);
-	public ParticipateCars participateCars = new ParticipateCars();
-	public WinnerNames winnerNames = new WinnerNames();
 
 	@Test
 	public void 자동차_이름_분리해서_가져오기_테스트() {
@@ -87,39 +84,14 @@ public class RacingCarTest {
 	}
 
 	@Test
-	public void 랜덤값_범위_테스트() {
-		int number = randomNumberGenerator.generate();
-		assertThat(0 <= number && number <= 9).isEqualTo(true);
-	}
-
-	@Test
 	public void 자동차_멈춤_테스트() {
-		Car car = new Car("클레이", new BoundedRandomNumberGenerator(3, 0));
-		assertThat(car.isMovable()).isEqualTo(false);
+		Car car = new Car("클레이");
+		assertThat(car.isMovableBy(new BoundedRandomNumberGenerator(3, 0))).isEqualTo(false);
 	}
 
 	@Test
 	public void 자동차_전진_테스트() {
-		Car car = new Car("클레이", new BoundedRandomNumberGenerator(9, 4));
-		assertThat(car.isMovable()).isEqualTo(true);
-	}
-
-	@Test
-	public void 자동차_생성_테스트() {
-		List<String> carNames = racingCarController.getCarNames("이브,클레이,포비");
-		participateCars.generateCars(carNames);
-		assertThat(participateCars.getSize()).isEqualTo(3);
-	}
-
-	@Test
-	public void 최종_우승자_찾기_테스트() {
-		participateCars.addCar(new Car("이브", new BoundedRandomNumberGenerator(9, 4)));
-		participateCars.addCar(new Car("클레이", new BoundedRandomNumberGenerator(3, 0)));
-		participateCars.addCar(new Car("포비", new BoundedRandomNumberGenerator(9, 4)));
-		participateCars.executeCarRacing();
-		List<String> winners = participateCars.findWinners().getWinnerNames();
-
-		assertThat(winners.size()).isEqualTo(2);
-		assertThat(winners).contains("이브", "포비");
+		Car car = new Car("클레이");
+		assertThat(car.isMovableBy(new BoundedRandomNumberGenerator(9, 4))).isEqualTo(true);
 	}
 }
