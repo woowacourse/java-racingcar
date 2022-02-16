@@ -24,6 +24,10 @@ public class Car {
         return position;
     }
 
+    public boolean isMaxPosition(int max) {
+        return position == max;
+    }
+
     public void move(int randomNumber) {
         if (randomNumber >= MOVE_FORWARD_CONDITION) {
             position++;
