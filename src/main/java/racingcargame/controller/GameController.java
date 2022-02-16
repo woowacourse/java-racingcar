@@ -24,24 +24,20 @@ public class GameController {
     }
 
     private RacingCarGame setUpGame() {
-        OutputView.showRacingCarNamesInputGuideMessage();
-        List<String> racingCarNames = inputController.inputRacingCarNames();
-
-        OutputView.showRaceCountInputGuideMessage();
-        String raceCount = inputController.inputRaceCount();
-
+        List<String> racingCarNames = inputView.inputRacingCarNames();
+        String raceCount = inputView.inputRaceCount();
         return new RacingCarGame(racingCarNames, raceCount);
     }
 
     private void playGame(final RacingCarGame racingCarGame) {
-        OutputView.showRaceProgressGuideMessage();
+        outputView.showRaceResultMessage();
         while (!racingCarGame.isOverRace()) {
             racingCarGame.startRace();
-            OutputView.showRaceProgress(racingCarGame.sendCurrentPositionOfRacingCars());
+            outputView.showCurrentRaceStatus(racingCarGame.sendCurrentPositionOfRacingCars());
         }
     }
 
     private void finishGame(final RacingCarGame racingCarGame) {
-        OutputView.showGameWinner(racingCarGame.sendRacingGameWinner());
+        outputView.showWinners(racingCarGame.sendRacingGameWinner());
     }
 }
