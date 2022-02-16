@@ -2,7 +2,6 @@ package racingcar;
 
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -14,25 +13,24 @@ public class Game {
 
     public void start() {
         Cars cars = new Cars(CarFactory.of(InputView.inputCarNames()));
-        List<Car> carList = cars.getCars();
         int count = validateGameCount(InputView.inputGameCount());
         OutputView.printGameResultTitle();
         for (int i = 0; i < count; i++) {
-            play(carList);
-            showResult(carList);
+            play(cars);
+            showResult(cars);
         }
-        showWinner(Referee.judgeWinner(carList, cars.getMaxPosition()));
+        showWinner(Referee.judgeWinner(cars, cars.getMaxPosition()));
     }
 
-    public void play(List<Car> cars) {
-        for (Car car : cars) {
+    public void play(Cars cars) {
+        for (Car car : cars.getCars()) {
             boolean canCarMove = Referee.canCarMove(makeRandomValue());
             car.move(canCarMove);
         }
     }
 
-    public void showResult(List<Car> cars) {
-        for (Car car : cars) {
+    public void showResult(Cars cars) {
+        for (Car car : cars.getCars()) {
             OutputView.printLineString(car.toString());
         }
         OutputView.printBlankLine();
