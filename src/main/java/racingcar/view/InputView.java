@@ -24,6 +24,7 @@ public class InputView {
     }
 
     public static int inputTryCount() {
+        System.out.println(INPUT_TRY_COUNT_MESSAGE);
         String tryCountText = CONSOLE.nextLine();
         Validator.validateTryCount(tryCountText);
         return Integer.parseInt(tryCountText);

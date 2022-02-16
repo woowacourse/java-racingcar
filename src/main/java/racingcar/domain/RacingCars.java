@@ -8,7 +8,6 @@ import racingcar.controller.RacingCarDto;
 
 public class RacingCars {
 
-    private static final String CAR_NAME_DELIMITER = ",";
     private static final String NAME_BLANK = " ";
     private static final String NAME_NOT_BLANK = "";
     private static final int EQUAL_SYMBOL_NUMBER = 0;
