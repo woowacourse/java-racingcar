@@ -24,4 +24,10 @@ public class CalculatorTest {
 		int result = calculator.splitAndSum("1");
 		assertThat(result).isEqualTo(1);
 	}
+
+	@Test
+	public void splitAndSum_숫자하나_번외() throws Exception {
+		int result = calculator.splitAndSum("2");
+		assertThat(result).isEqualTo(2);
+	}
 }
