@@ -14,7 +14,7 @@ public class RacingGame {
     }
 
     public RacingGame(List<String> carsName, int round, NumberGeneratePolicy numberGeneratePolicy) {
-        this(Cars.from(carsName), Round.from(round), numberGeneratePolicy);
+        this(Cars.fromNames(carsName), Round.from(round), numberGeneratePolicy);
     }
 
     public static RacingGame createRacingGame(List<String> carsName, int round,

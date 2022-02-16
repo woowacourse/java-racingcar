@@ -6,13 +6,18 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private static final String ERROR_CAR_EMPTY = "자동차가 존재하지 않습니다.";
+
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    private Cars(List<Car> cars) {
         this.cars = cars;
     }
 
-    public static Cars from(List<String> carsName) {
+    public static Cars from(List<Car> cars) {
+        return new Cars(cars);
+    }
+
+    public static Cars fromNames(List<String> carsName) {
         return new Cars(carsName.stream()
             .map(carName -> new Car(carName))
             .collect(Collectors.toList()));
