@@ -34,6 +34,15 @@ public class CarTest {
 			.hasMessageContaining(CAR_NAME_LENGTH_EXCEPTION.getMessage());
 	}
 
+	@Test
+	@DisplayName("자동차 이름에 공백이 포함될 경우 에러 발생")
+	void validate_자동차이름_공백포함() {
+		assertThatThrownBy(() -> {
+			new Car(" east");
+		}).isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining(CAR_NAME_BLANK_EXCEPTION.getMessage());
+	}
+
 	@ParameterizedTest
 	@ValueSource(ints = {4, 5, 6, 7, 8, 9})
 	@DisplayName("랜덤값이 4 이상으로 주어질 경우 자동차의 position이 1 증가")
