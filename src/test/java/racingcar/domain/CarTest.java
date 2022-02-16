@@ -32,4 +32,26 @@ class CarTest {
 		//then
 		assertThat(car.getPosition()).isEqualTo(0);
 	}
+
+	@DisplayName("같은 위치인지 비교 성공")
+	@Test
+	void isSamePosition_true() {
+		Car targetPositionCar = new Car("hee", 1);
+		Car otherPositionCar = new Car("bong", 1);
+		//when
+		boolean actual = targetPositionCar.isSamePosition(otherPositionCar);
+		//then
+		assertThat(actual).isTrue();
+	}
+
+	@DisplayName("같은 위치인지 비교 실패")
+	@Test
+	void isSamePosition_false() {
+		Car targetPositionCar = new Car("hee", 25);
+		Car otherPositionCar = new Car("bong", 26);
+		//when
+		boolean actual = targetPositionCar.isSamePosition(otherPositionCar);
+		//then
+		assertThat(actual).isFalse();
+	}
 }

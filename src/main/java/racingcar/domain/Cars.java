@@ -3,7 +3,6 @@ package racingcar.domain;
 import racingcar.domain.validation.CarsValidator;
 import racingcar.service.StepGenerator;
 import racingcar.util.Constant;
-import racingcar.view.Output;
 
 import java.util.ArrayList;
 import java.util.Collections;

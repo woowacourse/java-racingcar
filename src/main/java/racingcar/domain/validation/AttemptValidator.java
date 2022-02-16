@@ -4,7 +4,6 @@ import racingcar.util.Constant;
 
 public class AttemptValidator extends Validator {
 
-
 	public static void attemptValid(String attempt) {
 		checkBlank(attempt, Constant.ATTEMPT_BLANK_ERROR_MESSAGE);
 
