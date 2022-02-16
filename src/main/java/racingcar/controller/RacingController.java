@@ -5,6 +5,7 @@ import racingcar.service.RacingService;
 import racingcar.ui.RacingCarInput;
 import racingcar.ui.RacingCarOutput;
 import racingcar.utils.CarsGenerator;
+import racingcar.utils.RoundNumberGenerator;
 
 import java.util.List;
 
@@ -26,6 +27,16 @@ public class RacingController {
         } catch (IllegalArgumentException e) {
             RacingCarOutput.printErrorMessage(e.getMessage());
             return carNameInput();
+        }
+    }
+
+    public int roundInput() {
+        String roundNumberString = RacingCarInput.userRoundInput();
+        try {
+            return RoundNumberGenerator.toIntWithValidate(roundNumberString);
+        } catch (IllegalArgumentException e) {
+            RacingCarOutput.printErrorMessage(e.getMessage());
+            return roundInput();
         }
     }
 
