@@ -1,4 +1,4 @@
-package racingcarTest;
+package racingcarTest.view;
 
 public class OutputTest {
 }

@@ -1,4 +1,4 @@
-package racingcarTest;
+package racingcarTest.controller;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import java.util.Random;
 import racingcar.domain.Car;
 import racingcar.view.Output;
 
@@ -7,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarController {
+    private static final int RANDOM_MAX_RANGE = 10;
+
     public static void startRace(List<Car> cars, int tryNum) {
         Output.printResultWord();
 
@@ -32,8 +35,9 @@ public class CarController {
     }
 
     private static void moveCar(List<Car> cars) {
+        Random random = new Random();
         for (Car car : cars) {
-            car.goForward();
+            car.goForward(random.nextInt(RANDOM_MAX_RANGE));
         }
     }
 

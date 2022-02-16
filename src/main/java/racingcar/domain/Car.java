@@ -3,7 +3,6 @@ package racingcar.domain;
 import java.util.Random;
 
 public class Car {
-    private static final int RANDOM_MAX_RANGE = 10;
     private static final int RANDOM_CONDITION = 4;
 
     private final String name;
@@ -11,6 +10,11 @@ public class Car {
 
     public Car(String name) {
         this.name = name;
+    }
+
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
     }
 
     public String getName() {
@@ -21,10 +25,8 @@ public class Car {
         return position;
     }
 
-    public void goForward() {
-        Random random = new Random();
-
-        if (random.nextInt(RANDOM_MAX_RANGE) >= RANDOM_CONDITION) {
+    public void goForward(int randomNum) {
+        if (randomNum >= RANDOM_CONDITION) {
             position += 1;
         }
     }
