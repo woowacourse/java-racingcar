@@ -31,7 +31,7 @@ public class RacingController {
         printResultMessage();
 
         for (int i = 0; i < trialCount.getTrialCount(); i++) {
-            cars.moveCars(movingStrategy);
+            cars.moveCarsForward(movingStrategy);
             printTurnResult(cars);
         }
     }

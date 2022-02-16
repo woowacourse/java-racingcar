@@ -53,9 +53,9 @@ public class Cars {
         }
     }
 
-    public void moveCars(MovingStrategy movingStrategy) {
+    public void moveCarsForward(MovingStrategy movingStrategy) {
         for (Car car : cars) {
-            car.move(movingStrategy);
+            car.moveForward(movingStrategy);
         }
     }
 

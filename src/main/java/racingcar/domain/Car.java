@@ -25,8 +25,8 @@ public class Car {
         return position;
     }
 
-    public void move(MovingStrategy movingStrategy) {
-        if (movingStrategy.canMove()) {
+    public void moveForward(MovingStrategy movingStrategy) {
+        if (movingStrategy.canMoveForward()) {
             position++;
         }
     }
