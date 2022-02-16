@@ -9,9 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import racingCar.domain.Car;
-import racingCar.domain.RacingCars;
-
 public class RacingCarsTest {
 	private RacingCars racingCars;
 
@@ -27,14 +24,31 @@ public class RacingCarsTest {
 
 	@Test
 	@DisplayName("RacingCars 불변 확인")
-	void carsNotBeChanged(){
+	void carsNotBeChanged() {
 		RacingCars racingCars = new RacingCars(this.racingCars.getRacingCars());
 
 		List<Car> unmodifiableCars = racingCars.getRacingCars();
 
-		assertThatThrownBy(()->unmodifiableCars.add(new Car("dun")))
+		assertThatThrownBy(() -> unmodifiableCars.add(new Car("dun")))
 			.isInstanceOf(UnsupportedOperationException.class);
 	}
 
+	@Test
+	@DisplayName("승자 확인")
+	void findWinnerTest() {
+		List<Car> cars = new ArrayList<>();
+		cars.add(new Car("runa"));
+		cars.add(new Car("leo"));
+		cars.add(new Car("pobi"));
+
+		Car car = new Car("dun");
+		car.moveCar(true);
+		cars.add(car);
+		racingCars = new RacingCars(cars);
+
+		List<Car> winners = racingCars.findWinner();
+
+		assertThat(winners.get(0).toString()).isEqualTo("dun");
+	}
 
 }
