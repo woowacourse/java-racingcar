@@ -3,13 +3,13 @@ package racingcar.controller;
 import java.util.ArrayList;
 
 import racingcar.model.Car;
-import racingcar.model.CarList;
+import racingcar.model.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
 	private static final int ZERO = 0;
-	CarList carList;
+	Cars cars;
 	int numberOfTurn = ZERO;
 
 	public void runRace() {
@@ -54,8 +54,8 @@ public class GameController {
 
 	private void playTotalTurn(int numberOfTurn) {
 		for (int eachTurn = ZERO; eachTurn < numberOfTurn; eachTurn++) {
-			carList.moveCarList();
-			OutputView.printCarPosition(carList.getCarListInfo());
+			cars.moveCars();
+			OutputView.printCarPosition(cars.getCarsInfo());
 		}
 	}
 
@@ -66,7 +66,7 @@ public class GameController {
 			cars.add(new Car(name));
 		}
 
-		this.carList = new CarList(cars);
+		this.cars = new Cars(cars);
 	}
 
 	private ArrayList<String> getWinner() {
@@ -78,9 +78,9 @@ public class GameController {
 	}
 
 	private void isMaxPosition(ArrayList<String> winner) {
-		int maxPosition = carList.getMaxPosition();
+		int maxPosition = cars.getMaxPosition();
 
-		for (Car car : carList.getCarList()) {
+		for (Car car : cars.getCars()) {
 			isSamePosition(winner, maxPosition, car);
 		}
 	}
