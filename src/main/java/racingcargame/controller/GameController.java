@@ -3,17 +3,16 @@ package racingcargame.controller;
 import java.util.List;
 
 import racingcargame.model.RacingCarGame;
+import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 
 public class GameController {
-    private static final GameController gameController = new GameController();
-    private static final InputController inputController = InputController.getInputController();
+    final InputView inputView;
+    final OutputView outputView;
 
-    private GameController() {
-    }
-
-    public static GameController getGameController() {
-        return gameController;
+    public GameController(final InputView inputView, final OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void runGame() {
