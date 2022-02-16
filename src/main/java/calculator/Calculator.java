@@ -5,8 +5,19 @@ public class Calculator {
 		if (text == null || text.isEmpty()) {
 			return 0;
 		}
-		final String[] splitValues = text.split(",|:");
+		final String[] splitValues = split(text);
 		return sum(splitValues);
+	}
+
+	private static String[] split(String text) {
+		String basicDelimiter = ",|:";
+		if (text.startsWith("//")) {
+			String[] splitValues = text.split("\n");
+			String delimiter = splitValues[0].substring(2);
+			String customText = splitValues[1];
+			return customText.split(String.format("%s|%s", basicDelimiter, delimiter));
+		}
+		return text.split(basicDelimiter);
 	}
 
 	private static int sum(String[] values) {
