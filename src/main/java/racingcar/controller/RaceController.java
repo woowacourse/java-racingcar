@@ -8,7 +8,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RaceController {
-    private static RandomGenerator randomGenerator = new RandomGenerator();
+    private static final RandomGenerator randomGenerator = new RandomGenerator();
     private TryCount tryCount;
     private Cars cars = Cars.create();
 
