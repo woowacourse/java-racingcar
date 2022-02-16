@@ -10,6 +10,7 @@ public class Cars {
 
     private static final String CAR_POSITION = "-";
     private static final String NAME_POSITION_SPLITTER = " : ";
+    private final static String CAR_NAME_DISTRIBUTOR = ", ";
 
     private final List<Car> cars;
     private final RandomNumber randomNumber;
@@ -47,7 +48,7 @@ public class Cars {
         return cars.stream()
                 .filter((car) -> car.isWinner(farthestPosition))
                 .map(Car::getName)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(CAR_NAME_DISTRIBUTOR));
     }
 
     public List<String> turnResult() {
