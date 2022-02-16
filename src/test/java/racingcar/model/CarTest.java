@@ -13,9 +13,19 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
     private final GameController gameController = new GameController();
+
+    @Test
+    @DisplayName("자동차 이름이 5자 이상인 경우 예외처리")
+    void exceededMaxCarNameLengthException() {
+        String name = "qwerty";
+        assertThatThrownBy(() -> new Car(new Name(name)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("5자 이하");
+    }
 
     @Test
     @DisplayName("자동차 객체 생성")
