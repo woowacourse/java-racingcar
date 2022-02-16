@@ -13,9 +13,9 @@ public class RacingGame {
     private final RandomNumberGenerator randomNumberGenerator;
     private final GameLog gameLog;
 
-    public RacingGame(List<String> names, int inputTryCount, RandomNumberGenerator randomNumberGenerator) {
+    public RacingGame(List<String> names, int tryCount, RandomNumberGenerator randomNumberGenerator) {
         this.cars = new Cars(names);
-        this.tryCount = new TryCount(inputTryCount);
+        this.tryCount = new TryCount(tryCount);
         this.randomNumberGenerator = randomNumberGenerator;
         this.gameLog = new GameLog();
     }

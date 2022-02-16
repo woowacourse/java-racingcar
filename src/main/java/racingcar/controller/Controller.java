@@ -10,14 +10,15 @@ import racingcar.view.View;
 
 public class Controller {
 
+    public static final String INPUT_INIT_VALUE = "init";
     private final Scanner scanner = new Scanner(System.in);
     private final CarNamesReceiver carNamesReceiver;
     private final TryCountReceiver tryCountReceiver;
     private final View view;
     private final RacingGame racingGame;
 
-    private String receivedNamesForGame = "init";
-    private String receivedTryCountForGame = "init";
+    private String receivedNamesForGame = INPUT_INIT_VALUE;
+    private String receivedTryCountForGame = INPUT_INIT_VALUE;
 
     public Controller(RandomNumberGenerator randomNumberGenerator) {
         this.carNamesReceiver = new CarNamesReceiver();
