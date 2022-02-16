@@ -3,6 +3,8 @@ package racingcar.domain.round;
 public class Round {
 
     private static final int MIN_NUMBER = 1;
+    private static final int END_OF_ROUND = 0;
+    private static final String ERROR_MESSAGE = MIN_NUMBER + " 이상의 양수를 입력하세요.";
 
     private int round;
 
@@ -17,7 +19,7 @@ public class Round {
 
     private void validate(int round) {
         if (round < MIN_NUMBER) {
-            throw new IllegalArgumentException("1 이상의 양수를 입력하세요.");
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 
@@ -25,22 +27,19 @@ public class Round {
         try {
             return Integer.parseInt(round);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("1 이상의 양수를 입력하세요.");
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 
-    public boolean isEnd(int endRound) {
-        if (endRound > round) {
-            throw new IllegalArgumentException("현재 시도 회수가 끝나는 시도 회수보다 작을 수 없습니다.");
-        }
-        return this.isSame(endRound);
-    }
-
-    public boolean isSame(int number) {
-        return round == number;
+    public boolean isEnd() {
+        return round == END_OF_ROUND;
     }
 
     public void decrease() {
         this.round--;
+    }
+
+    public int getRound() {
+        return round;
     }
 }
