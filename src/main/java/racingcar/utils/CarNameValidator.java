@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NameValidator {
+public class CarNameValidator {
     public static final String ERROR_EMPTY_NAME = "[ERROR] 빈 이름이 있습니다.";
     public static final String ERROR_ONLY_NAME = "[ERROR] 이름을 2개 이상 입력해주세요.";
     public static final String ERROR_LONG_NAME = "[ERROR] 이름을 5자 이하로 등록해주세요";
@@ -12,18 +12,17 @@ public class NameValidator {
 
     private static final int NAME_LENGTH_LIMIT = 5;
 
-    public static void validateName(String names) {
-        String[] splitName = StringSeparator.splitAndTrim(names);
-        for (String name : splitName) {
-            checkEmptyName(name);
-            checkLongName(name);
+    public static void validateCarNames(String[] splitCarNames) {
+        for (String carName : splitCarNames) {
+            checkEmptyName(carName);
+            checkLongName(carName);
         }
-        checkOnlyName(splitName);
-        checkDuplicateName(splitName);
+        checkOnlyName(splitCarNames);
+        checkDuplicateName(splitCarNames);
     }
 
     private static void checkEmptyName(String name) {
-        if (name.isEmpty()) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(ERROR_EMPTY_NAME);
         }
     }
