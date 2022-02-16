@@ -9,7 +9,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGameController {
-    public static void main(String[] args) {
+    public void startRacing() {
         RacingGame racingGame = RacingGame.createRacingGame(
                 getCars(),
                 getRound(),
@@ -22,7 +22,7 @@ public class RacingGameController {
         OutputView.printRacingResult(racingGame.findCarsOfWinner());
     }
 
-    private static Cars getCars() {
+    private Cars getCars() {
         try {
             return Cars.fromNames(InputView.getCarsName());
         } catch (IllegalArgumentException e) {
@@ -31,7 +31,7 @@ public class RacingGameController {
         }
     }
 
-    public static Round getRound() {
+    private Round getRound() {
         try {
             return Round.fromInput(Util.convertToInt(InputView.getRound()));
         } catch (IllegalArgumentException e) {
