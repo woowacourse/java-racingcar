@@ -3,8 +3,9 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Round {
-    private static final int ZERO = 0;
-    private static final int ONE = 1;
+    private static final int MINIMUM_ROUND_NUMBER = 1;
+    private static final int DECREASE_NUMBER = 1;
+
     private final int roundNum;
 
     public Round(int roundNum) {
@@ -16,20 +17,22 @@ public class Round {
     }
 
     public boolean isPositiveNumber() {
-        return this.roundNum > ZERO;
+        return this.roundNum >= MINIMUM_ROUND_NUMBER;
     }
 
     public Round reduce() {
-        return new Round(roundNum - ONE);
+        return new Round(roundNum - DECREASE_NUMBER);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
+        if (this == o) {
             return true;
-        if (!(o instanceof Round))
+        }
+        if (!(o instanceof Round)) {
             return false;
-        Round round = (Round)o;
+        }
+        Round round = (Round) o;
         return roundNum == round.roundNum;
     }
 
