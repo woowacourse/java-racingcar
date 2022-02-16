@@ -8,11 +8,11 @@ public class Round {
 
     private final int roundNum;
 
-    public Round(int roundNum) {
+    private Round(int roundNum) {
         this.roundNum = roundNum;
     }
 
-    public static Round from(int round) {
+    public static Round fromNumber(int round) {
         return new Round(round);
     }
 

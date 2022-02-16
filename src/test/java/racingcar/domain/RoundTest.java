@@ -12,11 +12,11 @@ class RoundTest {
     @ValueSource(ints = {1, 2, 3})
     @DisplayName("시도 횟수 카운팅 감소")
     public void round_value_discount(int value) {
-        Round round = new Round(value);
+        Round round = Round.fromNumber(value);
         for (int i = 0; i < value; i++) {
             round = round.reduce();
         }
 
-        assertThat(round).isEqualTo(new Round(0));
+        assertThat(round).isEqualTo(Round.fromNumber(0));
     }
 }

@@ -13,15 +13,6 @@ public class RacingGame {
         this.numberGeneratePolicy = numberGeneratePolicy;
     }
 
-    public RacingGame(List<String> carsName, int round, NumberGeneratePolicy numberGeneratePolicy) {
-        this(Cars.fromNames(carsName), Round.from(round), numberGeneratePolicy);
-    }
-
-    public static RacingGame createRacingGame(List<String> carsName, int round,
-        NumberGeneratePolicy numberGeneratePolicy) {
-        return new RacingGame(carsName, round, numberGeneratePolicy);
-    }
-
     public RacingRecord race() {
         cars.driveAll(numberGeneratePolicy);
         return new RacingRecord(cars.getDriveRecord());
