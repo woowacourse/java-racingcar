@@ -4,13 +4,11 @@ import static racingcar.view.InputView.requestAttempt;
 import static racingcar.view.OutputView.printRaceResult;
 import static racingcar.view.OutputView.printWinners;
 
-import racingcar.dto.ResponseRoundResultDto;
-import racingcar.dto.ResponseWinnersDto;
+import racingcar.domain.dto.ResponseRoundResultDto;
+import racingcar.domain.dto.ResponseWinnersDto;
 import racingcar.view.InputView;
-import racingcar.vo.Attempt;
-import racingcar.vo.Car;
-import racingcar.vo.CarName;
-import racingcar.vo.Cars;
+import racingcar.domain.vo.Attempt;
+import racingcar.domain.vo.Cars;
 
 public class RacingCar {
 

@@ -2,10 +2,10 @@ package racingcar.view;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import racingcar.dto.RequestAttemptDto;
-import racingcar.dto.RequestCarsDto;
-import racingcar.vo.Attempt;
-import racingcar.vo.Cars;
+import racingcar.domain.dto.RequestAttemptDto;
+import racingcar.domain.dto.RequestCarsDto;
+import racingcar.domain.vo.Attempt;
+import racingcar.domain.vo.Cars;
 
 public class InputView {
 
