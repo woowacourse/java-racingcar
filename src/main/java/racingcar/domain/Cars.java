@@ -6,6 +6,7 @@ import racingcar.util.Constant;
 import racingcar.view.Output;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -22,7 +23,10 @@ public class Cars {
 		for (Car car : cars) {
 			car.drive(new StepGenerator());
 		}
-		Output.roundResult(cars);
+	}
+
+	public List<Car> getCars() {
+		return Collections.unmodifiableList(cars);
 	}
 
 	public List<String> findWinners() {

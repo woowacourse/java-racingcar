@@ -16,15 +16,15 @@ import java.util.Set;
 public class Input {
 	private static final String DELIMITER = ",";
 	private static final String CAR_BLANK_ERROR_MESSAGE = "자동차 이름은 %s일 수 없습니다.";
+	private static final Scanner scan = new Scanner(System.in);
 
-	private final Scanner scan = new Scanner(System.in);
-	private final Validator validator = new Validator();
+	private Input(){}
 
-	public Cars carName() {
+	public static Cars carName() {
 		try {
 			Output.getCarName();
 			String inputValue = scan.nextLine();
-			validator.checkBlank(inputValue, CAR_BLANK_ERROR_MESSAGE);
+			Validator.checkBlank(inputValue, CAR_BLANK_ERROR_MESSAGE);
 			String[] names = inputValue.split(DELIMITER);
 			return new Cars(toCars(names));
 		} catch (IllegalArgumentException e) {
@@ -33,7 +33,7 @@ public class Input {
 		}
 	}
 
-	public Attempt attempt() {
+	public static Attempt attempt() {
 		try {
 			Output.getAttempt();
 			String inputValue = scan.nextLine();
@@ -44,7 +44,7 @@ public class Input {
 		}
 	}
 
-	private List<Car> toCars(String[] names) {
+	private static List<Car> toCars(String[] names) {
 		List<Car> cars = new ArrayList<>();
 
 		for (String name : names) {
@@ -53,7 +53,7 @@ public class Input {
 		return cars;
 	}
 
-	private Car createCar(String name) {
+	private static Car createCar(String name) {
 		return new Car(name.trim());
 	}
 }

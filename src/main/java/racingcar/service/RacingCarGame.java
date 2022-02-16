@@ -12,10 +12,8 @@ public class RacingCarGame {
 
 	private Cars cars;
 	private Attempt attempt;
-	private final Input input;
 
 	public RacingCarGame() {
-		input = new Input();
 	}
 
 	public void run() {
@@ -25,8 +23,8 @@ public class RacingCarGame {
 	}
 
 	private void init() {
-		cars = input.carName();
-		attempt = input.attempt();
+		cars = Input.carName();
+		attempt = Input.attempt();
 	}
 
 	private void round() {
@@ -34,6 +32,7 @@ public class RacingCarGame {
 
 		while (!attempt.isSame(nowAttempt)) {
 			cars.play();
+			Output.roundResult(cars.getCars());
 			nowAttempt++;
 		}
 	}
