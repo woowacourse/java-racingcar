@@ -1,9 +1,10 @@
 package racingcar.domain;
 
 import java.util.Objects;
-import racingcar.util.Validator;
 
 public class Round {
+    private static final int POSITIVE_NUMBER_STANDARD = 1;
+    private static final String ERROR_INVALID_RANGE_MESSAGE = "정상 범위(" + 1 + "이상)가 아닙니다";
     private static final int ROUND_END_NUMBER = 0;
     private static final int DECREASED_NUMBER = 1;
     private final int roundNum;
@@ -13,8 +14,18 @@ public class Round {
     }
 
     public static Round fromInput(int inputRound) {
-        Validator.validateRound(inputRound);
+        validateRound(inputRound);
         return new Round(inputRound);
+    }
+
+    private static void validateRound(int inputRound) {
+        checkValidRangeOfInputRound(inputRound);
+    }
+
+    private static void checkValidRangeOfInputRound(int inputRound) {
+        if (!(POSITIVE_NUMBER_STANDARD <= inputRound)) {
+            throw new IllegalArgumentException(ERROR_INVALID_RANGE_MESSAGE);
+        }
     }
 
     public boolean isValidRound() {

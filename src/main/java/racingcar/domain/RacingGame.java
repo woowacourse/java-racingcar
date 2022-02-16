@@ -14,9 +14,9 @@ public class RacingGame {
         this.numberGeneratePolicy = numberGeneratePolicy;
     }
 
-    public static RacingGame createRacingGame(List<String> carsName, Round round,
+    public static RacingGame createRacingGame(Cars cars, Round round,
                                               NumberGeneratePolicy numberGeneratePolicy) {
-        return new RacingGame(Cars.fromNames(carsName), round, numberGeneratePolicy);
+        return new RacingGame(cars, round, numberGeneratePolicy);
     }
 
     public List<CarDto> race() {
