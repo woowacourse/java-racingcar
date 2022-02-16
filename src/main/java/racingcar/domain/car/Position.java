@@ -6,12 +6,13 @@ import racingcar.domain.movement.MovementStrategy;
 
 public class Position {
 
+    public static final int DEFAULT_POSITION = 0;
     public static final int MIN_POSITION = 0;
 
     private int position;
 
     public Position() {
-        this(0);
+        this(DEFAULT_POSITION);
     }
 
     public Position(int position) {
@@ -29,8 +30,8 @@ public class Position {
         return position;
     }
 
-    public boolean isSame(int num) {
-        return position == num;
+    public boolean isSame(int otherPosition) {
+        return position == otherPosition;
     }
 
     public void move(MovementStrategy strategy) {
@@ -46,11 +47,11 @@ public class Position {
             return false;
         }
         Position position1 = (Position) o;
-        return position == position1.position;
+        return getPosition() == position1.getPosition();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position);
+        return Objects.hash(getPosition());
     }
 }
