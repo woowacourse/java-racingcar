@@ -5,10 +5,12 @@ import racingcar.util.RandomUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 import static racingcar.util.ValidatorUtils.validateNoDuplicateCar;
 
 public class Game {
 
+    private static final String CAR_NAMES_INPUT_DELIMITER = ",";
     private static final int ROUND_INCREMENT_UNIT = 1;
     private static final int NON_EXISTING_MAX_POSITION = -1;
 
@@ -19,6 +21,13 @@ public class Game {
     public Game(String[] carNames, int totalRounds) {
         initCars(carNames);
         this.totalRounds = totalRounds;
+    }
+
+    public static Game byUserInput(String carNamesInput, String totalRoundsInput) {
+        String[] carNames = carNamesInput.split(CAR_NAMES_INPUT_DELIMITER);
+        int totalRounds = validateAndParsePositiveInt(totalRoundsInput);
+
+        return new Game(carNames, totalRounds);
     }
 
     private void initCars(String[] carNames) {
