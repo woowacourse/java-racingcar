@@ -37,12 +37,6 @@ public class GameController {
         cars = initCars(carNames);
     }
 
-    public void inputTrialNum() {
-        InputView.inputTrialNum();
-        String trialNumInput = InputView.getInput();
-        trialNum = new TrialNum(trialNumInput);
-    }
-
     public List<Name> splitCars(String carNamesInput) {
         InputValidator.validateBlank(carNamesInput);
         String inputWithoutSpace = carNamesInput.replaceAll(SPACE, BLANK);
@@ -55,6 +49,12 @@ public class GameController {
         return new Cars(carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList()));
+    }
+
+    public void inputTrialNum() {
+        InputView.inputTrialNum();
+        String trialNumInput = InputView.getInput();
+        trialNum = new TrialNum(trialNumInput);
     }
 
     private void runGame() {
