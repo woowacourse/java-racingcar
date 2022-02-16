@@ -45,7 +45,7 @@ public class GameController {
 		String[] carNames = InputView.getCarNames();
 
 		try {
-			generateCarList(carNames);
+			generateCars(carNames);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			System.exit(ZERO);
@@ -59,7 +59,7 @@ public class GameController {
 		}
 	}
 
-	private void generateCarList(String[] names) {
+	private void generateCars(String[] names) {
 		ArrayList<Car> cars = new ArrayList<>();
 
 		for (String name : names) {
