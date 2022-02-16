@@ -7,15 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarController {
-    private static final String PRINT_RESULT = "실행 결과";
-
     public static void startRace(List<Car> cars, int tryNum) {
-        System.out.println(PRINT_RESULT);
+        Output.printResultWord();
 
         for (int i = 0; i < tryNum; i++) {
             moveCar(cars);
-            Output.printRace(cars);
+            printRace(cars);
         }
+    }
+
+    private static void printRace(List<Car> cars) {
+        for (Car car : cars) {
+            Output.printName(car);
+            Output.printPositionWord(car.getPosition());
+            System.out.println();
+        }
+        System.out.println();
     }
 
     public static void finalWinner(List<Car> cars) {

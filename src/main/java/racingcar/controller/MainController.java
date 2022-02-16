@@ -11,7 +11,7 @@ public class MainController {
     }
 
     public void play() {
-        cars = InputController.inputcars();
+        cars = InputController.inputCars();
         tryNum = InputController.inputTryNum();
 
         CarController.startRace(cars, tryNum);

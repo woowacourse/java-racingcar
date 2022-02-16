@@ -8,15 +8,15 @@ import java.util.List;
 public class InputController {
     private static final String SPLIT_DELIM = ",";
 
-    public static List<Car> inputcars() {
-        return savecars();
+    public static List<Car> inputCars() {
+        return saveCars();
     }
 
     public static int inputTryNum() {
         return saveTryNum();
     }
 
-    private static List<Car> savecars() {
+    private static List<Car> saveCars() {
         while (true) {
             String names = Input.inputCarNames();
 
