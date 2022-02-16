@@ -25,7 +25,7 @@ public class JunitStudyTest {
 	}
 
 	@Test
-	public void contain(){
+	public void contain() {
 		assertTrue(numbers.contains(1));
 		assertTrue(numbers.contains(2));
 		assertTrue(numbers.contains(3));
@@ -34,7 +34,7 @@ public class JunitStudyTest {
 	//assertTrue(Strings.isBlank(input));
 
 	@Test
-	public void notContain(){
+	public void notContain() {
 		assertFalse(numbers.contains(4));
 		assertFalse(numbers.contains(5));
 	}

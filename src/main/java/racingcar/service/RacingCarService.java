@@ -35,7 +35,7 @@ public class RacingCarService {
 		this.cars = carNames.stream().map(name -> new Car(name, 0)).collect(Collectors.toList());
 	}
 
-	public int findMaxPosition() {
+	private int findMaxPosition() {
 		return cars.stream().mapToInt(Car::getPosition).max().orElse(0);
 	}
 

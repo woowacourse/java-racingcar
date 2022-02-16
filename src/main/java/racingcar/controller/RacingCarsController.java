@@ -24,7 +24,7 @@ public class RacingCarsController {
 		endGame();
 	}
 
-	public void requestCarNames() {
+	private void requestCarNames() {
 		String carNames = Input.inputCarNames();
 		try {
 			NameValidator.checkNull(carNames);
@@ -44,7 +44,7 @@ public class RacingCarsController {
 		}
 	}
 
-	public void requestCount() {
+	private void requestCount() {
 		String count = Input.inputCount();
 		validateCount(count);
 	}
@@ -60,7 +60,7 @@ public class RacingCarsController {
 		}
 	}
 
-	public void startGame() {
+	private void startGame() {
 		printResultMessage();
 		runGame();
 	}
@@ -72,7 +72,7 @@ public class RacingCarsController {
 		});
 	}
 
-	public void endGame() {
+	private void endGame() {
 		Output.printWinners(racingCarService.findWinner());
 	}
 
