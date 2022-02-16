@@ -123,3 +123,6 @@
     - @MethodSource
     - https://www.baeldung.com/parameterized-tests-junit-5
   
+### step2 MVC 패턴으로 리팩터링 해보기
+
+- Winners에서 처리하던 출력 세부사항을 OutputView로 이동
