@@ -1,9 +1,9 @@
 package racingcar.service;
 
 import racingcar.domain.Car;
-import racingcar.ui.RacingCarOutput;
 import racingcar.utils.RandomIntegerGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,16 +12,20 @@ public class RacingService {
 
     private final int START_RANDOM_NUMBER = 0;
     private final int END_RANDOM_NUMBER = 9;
-    private final List<Car> cars;
+    private List<Car> cars;
 
-    public RacingService(final List<Car> cars) {
-        this.cars = cars;
+    public RacingService() {
+        cars = new ArrayList<>();
     }
 
-    public void race(final int round) {
-        for (int i = 0; i < round; i++) {
-            raceRound();
-        }
+    public void generateCars(List<String> carNames) {
+        carNames.stream()
+            .map(Car::new)
+            .forEach(cars::add);
+    }
+
+    public void generateCarsByTheseCars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public List<Car> findWinners() {
@@ -37,8 +41,8 @@ public class RacingService {
             .orElseThrow(() -> new IllegalStateException(INVALID_GET_WINNERS_ERROR_MESSAGE));
     }
 
-    private void raceRound() {
+    public List<Car> raceRound() {
         cars.forEach((car) -> car.proceed(RandomIntegerGenerator.random(START_RANDOM_NUMBER, END_RANDOM_NUMBER)));
-        RacingCarOutput.printRoundResult(cars);
+        return cars;
     }
 }
