@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinnerNames {
+    private static final int SAME_POSITION = 0;
+
     private List<String> winnerNames = new ArrayList<>();
 
-    private static final int SAME_POSITION = 0;
 
     public void addWinnerByFastestCar(Car car, Car fastest) {
         if (fastest.compareTo(car) == SAME_POSITION) {

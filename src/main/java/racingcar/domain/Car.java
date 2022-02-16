@@ -3,13 +3,14 @@ package racingcar.domain;
 import racingcar.util.RandomNumberGenerator;
 
 public class Car implements Comparable<Car> {
+    private static final int OPERATING_STANDARD = 4;
+    private static final String STATUS_DELIMITER = " : ";
+    private static final String POSITION_TO_STRING = "-";
+
     private String carName;
     private int position;
     private RandomNumberGenerator randomNumberGenerator;
 
-    private static final int OPERATING_STANDARD = 4;
-    private static final String STATUS_DELIMITER = " : ";
-    private static final String POSITION_TO_STRING = "-";
 
     public Car(String carName, RandomNumberGenerator randomNumberGenerator) {
         this.carName = carName;

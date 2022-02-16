@@ -11,10 +11,10 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarController {
-    public final ParticipateCars participateCars = new ParticipateCars();
-
     private static final String CAR_NAME_DELIMITER = ",";
     private static final int SPLIT_WITH_EMPTY = -1;
+
+    public final ParticipateCars participateCars = new ParticipateCars();
 
     public void playGame() {
         participateCars.generateCars(getCarNames(InputView.inputCarNames()));
