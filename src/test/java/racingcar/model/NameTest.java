@@ -9,9 +9,9 @@ class NameTest {
 
 	@Test
 	@DisplayName("이름이 공백인 경우")
-	public void NameEmptyTest() {
+	public void nameEmptyTest() {
 		//given
-		String name = "";
+		String name = " ";
 		//when
 		//then
 		assertThatThrownBy(() -> {
@@ -21,7 +21,7 @@ class NameTest {
 
 	@Test
 	@DisplayName("이름이 5자 이상인 경우")
-	public void NameSizeOverFiveTest() {
+	public void nameSizeOverFiveTest() {
 		//given
 		String name = "주리짱짱짱걸";
 		//when
@@ -33,7 +33,7 @@ class NameTest {
 
 	@Test
 	@DisplayName("이름이 5자 이하인 경우")
-	public void NameSizeLowerFiveTest() {
+	public void nameSizeLowerFiveTest() {
 		//given
 		String name = "주리짱짱걸";
 		//when
@@ -44,7 +44,7 @@ class NameTest {
 
 	@Test
 	@DisplayName("이름에 특수문자가 들어간 경우")
-	public void SpatialCharInNameTest() {
+	public void spatialCharInNameTest() {
 		//given
 		String name = "*주리*";
 		//when
@@ -56,14 +56,12 @@ class NameTest {
 
 	@Test
 	@DisplayName("이름에 특수문자가 들어간 경우지만 '_'인 경우")
-	public void SpatialCharInNameTestWithException() {
+	public void spatialCharInNameTestWithException() {
 		//given
-		String name = "*주리*";
+		String name = "주_리";
 		//when
 		//then
-		assertThatThrownBy(() -> {
-			new Name(name);
-		}).hasMessage("이름에 특수문자를 입력할 수 없습니다. (단, '_' 제외)");
+		assertThat(new Name(name).getName()).isEqualTo(name);
 	}
 
 }
