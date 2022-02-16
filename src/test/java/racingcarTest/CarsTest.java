@@ -14,37 +14,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CarsTest {
 
     private final int intOverRandomCondition = 5;
-    private final int intRandomCondition = 4;
-    private final int intUnderRandomCondition = 3;
 
     private void makeCarMoveCountTimes(Car car, int count) {
         for (int i = 0; i < count; i++) {
             car.goForward(intOverRandomCondition);
         }
-    }
-
-    @DisplayName("랜덤값이_4이상_일_때_전진")
-    @Test
-    void randomNum_is4OrOver_carGoForward() {
-        Car testCar = new Car("test");
-
-        // 랜덤값이 4일 때 전진
-        testCar.goForward(intRandomCondition);
-        assertThat(testCar.getPosition()).isEqualTo(1);
-
-        //랜덤값이 5일 때 전진
-        testCar.goForward(intOverRandomCondition);
-        assertThat(testCar.getPosition()).isEqualTo(2);
-    }
-
-    @DisplayName("랜덤값이_4미만_일_때_전진하지_않음")
-    @Test
-    void randomNum_isUnder4_carDontGoForward() {
-        Car testCar = new Car("test");
-
-        // 랜덤값이 3일 때 전진하지 않음
-        testCar.goForward(intUnderRandomCondition);
-        assertThat(testCar.getPosition()).isEqualTo(0);
     }
 
     @DisplayName("단일_우승자_반환")
