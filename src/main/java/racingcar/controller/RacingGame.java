@@ -44,6 +44,6 @@ public class RacingGame {
             cars.startOneTurn();
             output.printTurnResult(cars.turnResult());
         }
-        output.printWinners(cars.findWinner());
+        output.printWinners(cars.findWinners());
     }
 }

@@ -27,7 +27,7 @@ public class Cars {
         });
     }
 
-    public String findWinner() {
+    public String findWinners() {
         final int farthestPosition = findFarthestPosition();
         return getWinners(farthestPosition);
     }
