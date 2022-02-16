@@ -15,7 +15,12 @@ public class CarController {
         int count = getCountFromUser();
 
         RacingGame racingGame = new RacingGame(cars, count);
-        racingGame.play();
+
+        OutputView.printResult(racingGame.getCars());
+        while (!racingGame.isGameFinished()) {
+            racingGame.playRound();
+            OutputView.printResult(racingGame.getCars());
+        }
 
         OutputView.printWinners(racingGame.findWinners());
     }
