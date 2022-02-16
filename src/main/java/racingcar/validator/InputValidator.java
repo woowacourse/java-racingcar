@@ -2,7 +2,7 @@ package racingcar.validator;
 
 import java.util.List;
 
-public class CarNameValidator {
+public class InputValidator {
     private static int MAX_CAR_NAME_LENGTH = 5;
     private static String EMPTY_STRING = "";
 
@@ -42,6 +42,25 @@ public class CarNameValidator {
     private static void carNameDuplicationException(List<String> carNames) {
         if (carNames.stream().distinct().count() != carNames.size()) {
             throw new RuntimeException("자동차 이름은 중복될 수 없습니다.");
+        }
+    }
+
+    public static void checkTrialCountLine(String line) {
+        trialCountNotNumericValueException(line);
+        trialCountZeroException(line);
+    }
+
+    private static void trialCountNotNumericValueException(String line) {
+        try {
+            Integer.parseInt(line);
+        } catch (NumberFormatException exception) {
+            throw new RuntimeException("시도 횟수가 숫자가 아닙니다.");
+        }
+    }
+
+    private static void trialCountZeroException(String line) {
+        if (Integer.parseInt(line) <= 0) {
+            throw new RuntimeException("시도 횟수가 음수나 0이 될 수 없습니다.");
         }
     }
 }
