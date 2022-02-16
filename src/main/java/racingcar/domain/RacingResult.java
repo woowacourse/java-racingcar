@@ -6,11 +6,13 @@ import java.util.List;
 
 public class RacingResult {
 
+	private static final int ADDITIONAL_NUMBER = 1;
+
 	private final HashMap<Round, List<Car>> results = new HashMap<>();
-	private AttemptNumber attemptNumber = AttemptNumber.fromIntegerValue(0);
+	private AttemptNumber attemptNumber = AttemptNumber.fromInitValue();
 
 	public void add(List<Car> cars)  {
-		int newRound = attemptNumber.value() + 1;
+		int newRound = attemptNumber.value() + ADDITIONAL_NUMBER;
 		attemptNumber = AttemptNumber.fromIntegerValue(newRound);
 
 		results.put(Round.of(newRound), cars);

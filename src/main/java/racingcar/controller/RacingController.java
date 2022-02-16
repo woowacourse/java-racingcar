@@ -12,6 +12,8 @@ import racingcar.view.OutputView;
 
 public class RacingController {
 
+	private static final int START_ROUND = 1;
+
 	private final RacingService racingService = new RacingService();
 
 	public void start() {
@@ -35,7 +37,7 @@ public class RacingController {
 	}
 
 	private void printRacingRoundResult(AttemptNumber attemptNumber) {
-		for (int round = 1; round <= attemptNumber.value(); round++) {
+		for (int round = START_ROUND; round <= attemptNumber.value(); round++) {
 			List<CarDto> racingResult = racingService.findRacingResult(Round.of(round));
 			OutputView.printRacingInfo(racingResult);
 		}

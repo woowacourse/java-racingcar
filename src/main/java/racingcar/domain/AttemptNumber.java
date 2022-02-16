@@ -6,6 +6,8 @@ import racingcar.validator.AttemptValidator;
 
 public class AttemptNumber {
 
+	private static final int INIT_VALUE_OF_ATTEMPT_NUMBER = 0;
+
 	private final int value;
 
 	private AttemptNumber(int value) {
@@ -19,6 +21,10 @@ public class AttemptNumber {
 
 	public static AttemptNumber fromIntegerValue(int value) {
 		return new AttemptNumber(value);
+	}
+
+	public static AttemptNumber fromInitValue() {
+		return new AttemptNumber(INIT_VALUE_OF_ATTEMPT_NUMBER);
 	}
 
 	public int value() {
