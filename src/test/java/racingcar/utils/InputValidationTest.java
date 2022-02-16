@@ -42,7 +42,7 @@ class InputValidationTest {
 		@ParameterizedTest(name = "{index} {displayName} repeats={0}")
 		@ValueSource(strings = {"2", "10"})
 		void checkRightRepeats(final String repeats) {
-			assertDoesNotThrow(() -> validation.validateNotIntegerRepeats(repeats));
+			assertDoesNotThrow(() -> validation.checkIntegerRepeats(repeats));
 		}
 
 		@DisplayName("정수가 아닌 반복 횟수 입력 값이면 exception이 발생한다")
@@ -51,7 +51,7 @@ class InputValidationTest {
 		void checkNotIntegerRepeats(final String repeats) {
 			InputValidation validation = new InputValidation();
 			assertThatExceptionOfType(RuntimeException.class)
-				.isThrownBy(() -> validation.validateNotIntegerRepeats(repeats))
+				.isThrownBy(() -> validation.checkIntegerRepeats(repeats))
 				.withMessageMatching("반복횟수는 정수만 입력 가능합니다.");
 		}
 
@@ -60,7 +60,7 @@ class InputValidationTest {
 		@ValueSource(ints = {-1, -123})
 		void checkNegativeNumberRepeats(final int repeats) {
 			assertThatExceptionOfType(RuntimeException.class)
-					.isThrownBy(() -> validation.validateNegativeNumberRepeats(repeats))
+					.isThrownBy(() -> validation.checkNegativeRepeats(repeats))
 					.withMessageMatching("반복횟수는 양의 정수만 입력 가능합니다.");
 		}
 	}

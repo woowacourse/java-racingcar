@@ -21,7 +21,7 @@ public class InputValidation {
 		}
 	}
 
-	public int validateNotIntegerRepeats(final String repeats) {
+	public int checkIntegerRepeats(final String repeats) {
 		try {
 			return Integer.parseInt(repeats);
 		} catch (NumberFormatException exception) {
@@ -29,7 +29,7 @@ public class InputValidation {
 		}
 	}
 
-	public void validateNegativeNumberRepeats(final int repeatNumber) {
+	public void checkNegativeRepeats(final int repeatNumber) {
 		if (repeatNumber < 0) {
 			throw new RuntimeException(REPEATS_NEGATIVE_NUMBER_ERROR);
 		}

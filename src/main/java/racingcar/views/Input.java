@@ -43,8 +43,8 @@ public class Input {
 		try {
 			System.out.println(INPUT_REPEATS);
 			final String repeats = scanner.next();
-			final int repeatsNumber = inputValidation.validateNotIntegerRepeats(repeats);
-			inputValidation.validateNegativeNumberRepeats(repeatsNumber);
+			final int repeatsNumber = inputValidation.checkIntegerRepeats(repeats);
+			inputValidation.checkNegativeRepeats(repeatsNumber);
 			return repeatsNumber;
 		} catch (RuntimeException exception) {
 			System.out.println(exception.getMessage() + System.lineSeparator());
